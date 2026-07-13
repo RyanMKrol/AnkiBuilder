@@ -1,0 +1,13 @@
+# Keep the formatter's blast radius aligned with the code we own, so a whole-repo
+# `prettier --check .` never rewrites hand-written prose or plugin-owned files that a
+# scoped task cannot touch (see .harness/tasks/T001.md for the rationale).
+node_modules
+dist
+build
+package-lock.json
+
+# Hand-written prose / harness-owned files — never reformat these.
+.harness
+.claude
+.github
+CLAUDE.md

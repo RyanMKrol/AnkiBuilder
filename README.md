@@ -21,6 +21,6 @@ npm run build
 
 ## Implementation status
 
-| Task | Description | Status |
-|------|-------------|--------|
+| Task | Description                                   | Status     |
+| ---- | --------------------------------------------- | ---------- |
 | T001 | Project scaffold + CI green on an empty build | ⬜ pending |

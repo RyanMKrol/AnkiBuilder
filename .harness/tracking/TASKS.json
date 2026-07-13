@@ -241,7 +241,7 @@
     {
       "id": "T010",
       "title": "SKILL.md — thin conversational orchestration layer",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T003",
         "T004",

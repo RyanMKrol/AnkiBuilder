@@ -6,3 +6,4 @@
 {"id":"T009","ts":"2026-07-13T13:21:57Z","kind":"scope-creep","rung":0,"attempt":0,"model":"claude-haiku-4-5","effort":"","facets":{"layer":"cli","workType":"feature","risk":[]},"detail":"bin/anki-builder"}
 {"id":"T009","ts":"2026-07-13T13:26:50Z","kind":"scope-creep","rung":0,"attempt":1,"model":"claude-haiku-4-5","effort":"","facets":{"layer":"cli","workType":"feature","risk":[]},"detail":"bin/anki-builder.js"}
 {"id":"T009","ts":"2026-07-13T13:33:51Z","kind":"audit-fail","rung":1,"attempt":0,"model":"claude-sonnet-5","effort":"low","facets":{"layer":"cli","workType":"feature","risk":[]},"detail":""}
+{"id":"T010","ts":"2026-07-13T13:42:47Z","kind":"audit-fail","rung":0,"attempt":0,"model":"claude-haiku-4-5","effort":"","facets":{"layer":"docs","workType":"docs","risk":[]},"detail":""}

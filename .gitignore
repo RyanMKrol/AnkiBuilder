@@ -7,6 +7,7 @@
 # Environment / local
 .env
 .env.*
+!.env.example
 .DS_Store
 
 # NOTE: the harness's OWN local-scratch ignores (loop scratch + status board, atomic-write temps, the

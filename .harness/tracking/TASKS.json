@@ -20,7 +20,8 @@
         ".prettierignore",
         "eslint.config.js",
         ".github/workflows/ci.yml",
-        "README.md"
+        "README.md",
+        ".env.example"
       ],
       "design": null,
       "verify": [],

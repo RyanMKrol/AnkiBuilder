@@ -56,7 +56,7 @@
     {
       "id": "T003",
       "title": "Travel starter corpus template(s) + registry/loader",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],

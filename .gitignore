@@ -4,6 +4,9 @@
 /build
 *.log
 
+# anki-builder run directories (generated corpus/cards/deck artifacts, not source)
+/runs
+
 # Environment / local
 .env
 .env.*

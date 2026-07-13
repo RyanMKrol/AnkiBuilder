@@ -31,7 +31,7 @@
     {
       "id": "T002",
       "title": "Pipeline data contracts + run-dir/state-home conventions",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T001"
       ],

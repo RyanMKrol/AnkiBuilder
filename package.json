@@ -4,6 +4,9 @@
   "description": "A tool for building Anki flashcard decks.",
   "type": "module",
   "license": "MIT",
+  "bin": {
+    "anki-builder": "./src/cli/bin.js"
+  },
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check .",

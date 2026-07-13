@@ -185,7 +185,7 @@
     {
       "id": "T008",
       "title": "Audit-table renderer for review gates",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T005"
       ],

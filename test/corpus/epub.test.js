@@ -149,6 +149,35 @@ test("extractEpub() result validates against the corpus schema", async () => {
   }
 });
 
+test("extractEpub() does not let a <link> tag in <head> swallow content up to the next unrelated </li>", () => {
+  const dir = mkdtempSync(join(tmpdir(), "epub-fixture-"));
+  const epubPath = join(dir, "sample.epub");
+
+  const page1 = `<html><head>
+    <link href="style.css" rel="stylesheet"/>
+  </head><body>
+    <p>Hello — Hola</p>
+    <ul><li>Excuse me</li></ul>
+  </body></html>`;
+
+  const zipBuffer = buildZip([{ name: "OEBPS/page1.xhtml", content: page1 }]);
+  writeFileSync(epubPath, zipBuffer);
+
+  try {
+    const corpus = extractEpub(epubPath, { targetLanguage: "Spanish" });
+    assert.strictEqual(corpus.items.length, 2);
+
+    const hello = corpus.items.find((item) => item.english === "Hello");
+    assert(hello, "expected a standalone Hello item, not swallowed by the <link> tag");
+    assert.strictEqual(hello.notes, "Hola");
+
+    const excuseMe = corpus.items.find((item) => item.english === "Excuse me");
+    assert(excuseMe, "expected a standalone Excuse me item");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("extractEpub() requires a targetLanguage", () => {
   const { epubPath, dir } = createFixtureEpub();
   try {

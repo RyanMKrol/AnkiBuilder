@@ -81,7 +81,11 @@ function decodeEntities(text) {
 }
 
 function extractTextBlocks(html) {
-  const blockPattern = /<(p|li|dt|dd|td)[^>]*>([\s\S]*?)<\/\1>/gi;
+  // The lookahead after the tag-name alternation enforces a real tag-name boundary —
+  // without it, "li" matches as a prefix of "link", so a stray <link .../> in <head>
+  // gets treated as an opening <li>, and the regex then swallows everything up to the
+  // next unrelated </li> into one corrupted "block".
+  const blockPattern = /<(p|li|dt|dd|td)(?=[\s/>])[^>]*>([\s\S]*?)<\/\1>/gi;
   const blocks = [];
   let match;
   while ((match = blockPattern.exec(html)) !== null) {

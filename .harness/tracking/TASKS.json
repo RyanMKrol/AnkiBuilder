@@ -210,7 +210,7 @@
     {
       "id": "T009",
       "title": "CLI orchestrator over the run directory (resumable)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T003",
         "T004",

@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "targetLanguage": "Spanish",
+    "sourceType": "template"
+  },
+  "items": [
+    {
+      "id": "greet_hello",
+      "english": "Hello",
+      "category": "Greetings"
+    },
+    {
+      "id": "greet_goodbye",
+      "english": "Goodbye",
+      "category": "Greetings"
+    },
+    {
+      "id": "greet_thank_you",
+      "english": "Thank you",
+      "category": "Greetings"
+    },
+    {
+      "id": "greet_sorry",
+      "english": "Sorry",
+      "category": "Greetings"
+    },
+    {
+      "id": "num_one",
+      "english": "One",
+      "category": "Numbers"
+    },
+    {
+      "id": "num_two",
+      "english": "Two",
+      "category": "Numbers"
+    },
+    {
+      "id": "num_three",
+      "english": "Three",
+      "category": "Numbers"
+    },
+    {
+      "id": "num_ten",
+      "english": "Ten",
+      "category": "Numbers"
+    },
+    {
+      "id": "num_hundred",
+      "english": "One hundred",
+      "category": "Numbers"
+    },
+    {
+      "id": "dir_left",
+      "english": "Left",
+      "category": "Directions"
+    },
+    {
+      "id": "dir_right",
+      "english": "Right",
+      "category": "Directions"
+    },
+    {
+      "id": "dir_straight",
+      "english": "Straight",
+      "category": "Directions"
+    },
+    {
+      "id": "dir_where_is",
+      "english": "Where is...?",
+      "category": "Directions"
+    },
+    {
+      "id": "food_water",
+      "english": "Water",
+      "category": "Food"
+    },
+    {
+      "id": "food_coffee",
+      "english": "Coffee",
+      "category": "Food"
+    },
+    {
+      "id": "food_bread",
+      "english": "Bread",
+      "category": "Food"
+    },
+    {
+      "id": "food_menu",
+      "english": "Menu",
+      "category": "Food"
+    },
+    {
+      "id": "food_bill",
+      "english": "Bill",
+      "category": "Food"
+    },
+    {
+      "id": "trans_bus",
+      "english": "Bus",
+      "category": "Transport"
+    },
+    {
+      "id": "trans_taxi",
+      "english": "Taxi",
+      "category": "Transport"
+    },
+    {
+      "id": "trans_train",
+      "english": "Train",
+      "category": "Transport"
+    },
+    {
+      "id": "trans_airport",
+      "english": "Airport",
+      "category": "Transport"
+    },
+    {
+      "id": "trans_ticket",
+      "english": "Ticket",
+      "category": "Transport"
+    },
+    {
+      "id": "money_price",
+      "english": "How much?",
+      "category": "Money"
+    },
+    {
+      "id": "money_expensive",
+      "english": "Expensive",
+      "category": "Money"
+    },
+    {
+      "id": "money_cheap",
+      "english": "Cheap",
+      "category": "Money"
+    },
+    {
+      "id": "money_currency",
+      "english": "Currency",
+      "category": "Money"
+    },
+    {
+      "id": "time_now",
+      "english": "Now",
+      "category": "Time"
+    },
+    {
+      "id": "time_today",
+      "english": "Today",
+      "category": "Time"
+    },
+    {
+      "id": "time_tomorrow",
+      "english": "Tomorrow",
+      "category": "Time"
+    },
+    {
+      "id": "time_yesterday",
+      "english": "Yesterday",
+      "category": "Time"
+    },
+    {
+      "id": "time_hour",
+      "english": "Hour",
+      "category": "Time"
+    },
+    {
+      "id": "emerg_help",
+      "english": "Help!",
+      "category": "Emergencies"
+    },
+    {
+      "id": "emerg_doctor",
+      "english": "Doctor",
+      "category": "Emergencies"
+    },
+    {
+      "id": "emerg_hospital",
+      "english": "Hospital",
+      "category": "Emergencies"
+    },
+    {
+      "id": "emerg_police",
+      "english": "Police",
+      "category": "Emergencies"
+    }
+  ]
+}

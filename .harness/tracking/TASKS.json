@@ -158,7 +158,7 @@
     {
       "id": "T007",
       "title": ".apkg deck builder (two-template model)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T005"
       ],

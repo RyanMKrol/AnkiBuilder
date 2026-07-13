@@ -8,7 +8,9 @@
       "status": "pending",
       "dependsOn": [],
       "gate": null,
-      "tags": ["scaffold"],
+      "tags": [
+        "scaffold"
+      ],
       "scope": [
         "package.json",
         "package-lock.json",
@@ -23,7 +25,266 @@
       "design": null,
       "verify": [],
       "spec": ".harness/tasks/T001.md",
-      "facets": { "layer": "infra", "workType": "config", "risk": [] }
+      "facets": {
+        "layer": "infra",
+        "workType": "config",
+        "risk": []
+      }
+    },
+    {
+      "id": "T002",
+      "title": "Pipeline data contracts + run-dir/state-home conventions",
+      "status": "pending",
+      "dependsOn": [
+        "T001"
+      ],
+      "gate": null,
+      "tags": [
+        "model"
+      ],
+      "facets": {
+        "layer": "core",
+        "workType": "feature",
+        "risk": []
+      },
+      "scope": [
+        "src/model/**",
+        "test/model/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T002.md"
+    },
+    {
+      "id": "T003",
+      "title": "Travel starter corpus template(s) + registry/loader",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "corpus"
+      ],
+      "facets": {
+        "layer": "core",
+        "workType": "feature",
+        "risk": []
+      },
+      "scope": [
+        "templates/**",
+        "src/corpus/templates.js",
+        "test/corpus/templates.test.js"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T003.md"
+    },
+    {
+      "id": "T004",
+      "title": "EPUB → candidate corpus extractor",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "corpus"
+      ],
+      "facets": {
+        "layer": "io",
+        "workType": "feature",
+        "risk": []
+      },
+      "scope": [
+        "src/corpus/epub.js",
+        "test/corpus/epub.test.js",
+        "test/fixtures/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T004.md"
+    },
+    {
+      "id": "T005",
+      "title": "Translation stage via local claude -p",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "translate"
+      ],
+      "facets": {
+        "layer": "core",
+        "workType": "llm-prompt",
+        "risk": []
+      },
+      "scope": [
+        "src/translate/**",
+        "test/translate/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T005.md"
+    },
+    {
+      "id": "T006",
+      "title": "ElevenLabs audio stage (cached, idempotent)",
+      "status": "pending",
+      "dependsOn": [
+        "T005"
+      ],
+      "gate": null,
+      "tags": [
+        "audio"
+      ],
+      "facets": {
+        "layer": "io",
+        "workType": "feature",
+        "risk": []
+      },
+      "scope": [
+        "src/audio/**",
+        "test/audio/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T006.md"
+    },
+    {
+      "id": "T007",
+      "title": ".apkg deck builder (two-template model)",
+      "status": "pending",
+      "dependsOn": [
+        "T005"
+      ],
+      "gate": null,
+      "tags": [
+        "deck"
+      ],
+      "facets": {
+        "layer": "core",
+        "workType": "feature",
+        "risk": [
+          "touches-core"
+        ]
+      },
+      "scope": [
+        "src/deck/**",
+        "test/deck/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T007.md"
+    },
+    {
+      "id": "T008",
+      "title": "Audit-table renderer for review gates",
+      "status": "pending",
+      "dependsOn": [
+        "T005"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "facets": {
+        "layer": "cli",
+        "workType": "feature",
+        "risk": []
+      },
+      "scope": [
+        "src/audit/**",
+        "test/audit/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T008.md"
+    },
+    {
+      "id": "T009",
+      "title": "CLI orchestrator over the run directory (resumable)",
+      "status": "pending",
+      "dependsOn": [
+        "T003",
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008"
+      ],
+      "gate": null,
+      "tags": [
+        "cli"
+      ],
+      "facets": {
+        "layer": "cli",
+        "workType": "feature",
+        "risk": []
+      },
+      "scope": [
+        "src/cli/**",
+        "package.json",
+        "test/cli/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T009.md"
+    },
+    {
+      "id": "T010",
+      "title": "SKILL.md — thin conversational orchestration layer",
+      "status": "pending",
+      "dependsOn": [
+        "T003",
+        "T004",
+        "T009"
+      ],
+      "gate": null,
+      "tags": [
+        "skill"
+      ],
+      "facets": {
+        "layer": "docs",
+        "workType": "docs",
+        "risk": []
+      },
+      "scope": [
+        "skills/build/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T010.md"
+    },
+    {
+      "id": "T011",
+      "title": "End-to-end: build a real travel deck + verify in Anki",
+      "status": "pending",
+      "dependsOn": [
+        "T010"
+      ],
+      "gate": "needs-human",
+      "tags": [
+        "acceptance"
+      ],
+      "scope": [
+        "docs/**"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T011.md"
     }
   ]
 }

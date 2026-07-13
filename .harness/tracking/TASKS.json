@@ -1,0 +1,29 @@
+{
+  "_doc": "Implementation backlog for the single sequential Ralph loop. SOURCE OF TRUTH for done/not-done + dependency order; docs/HARNESS.md §8.1 = schema. Each task's `do` + `done-when` live in a per-task Markdown spec at the `spec` path (.harness/tasks/TNNN.md, sections '## Do' / '## Done when'); every BUILDABLE task carries `facets` (difficulty auto-tuning) — a needs-human gated task carries none. `gate` is `null` (buildable) or `needs-human`. Grow this backlog with /implementation-harness-add-to-backlog.",
+  "version": 1,
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Project scaffold + CI green on an empty build",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": ["scaffold"],
+      "scope": [
+        "package.json",
+        "package-lock.json",
+        "src/index.js",
+        "test/smoke.test.js",
+        ".prettierrc.json",
+        ".prettierignore",
+        "eslint.config.js",
+        ".github/workflows/ci.yml",
+        "README.md"
+      ],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T001.md",
+      "facets": { "layer": "infra", "workType": "config", "risk": [] }
+    }
+  ]
+}

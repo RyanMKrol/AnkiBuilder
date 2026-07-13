@@ -1,0 +1,43 @@
+name: CI
+# ▲ The loop gates on a workflow whose `name:` matches CI_WORKFLOW (default "CI").
+#   If you rename this, set CI_WORKFLOW to match in .harness/config/harness.env.
+
+# Run on every push (so the loop's per-task branches get a run to watch) and on PRs
+# to main. The loop merges a branch into `main` ONLY when this workflow goes green.
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref to save CI minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Definition of Done
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build

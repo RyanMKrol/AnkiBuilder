@@ -1,0 +1,138 @@
+{
+  "_about": "Canonical, controlled facet vocabulary for the difficulty auto-tuning system (see docs/designs/difficulty-autotune.md). SOURCE OF TRUTH: the add-to-backlog authoring step picks facet values ONLY from this file; the calibration/policy validate against it; it self-curates via the poor-fit gate. Facets are the join key that lets the policy generalise escalation history from past tasks to new ones. needs-human (gated) tasks are CARVED OUT entirely — no facets, never calibrated. The `work-type` + `risk` axes are UNIVERSAL (rarely change); the `layer` axis is PROJECT-SPECIFIC — the create-harness step tailors it to this repo's structure, and the poor-fit gate evolves it over time. ⚠️ The difficultyHint on each value is ADVISORY ONLY — human/LLM-readable taxonomy intuition; the policy NEVER reads it. Model selection is driven entirely by the outcomes ledger, the tier ladder (.tiers.ladder), and the floor/minN knobs (.policy). Do NOT wire difficultyHint into any code.",
+  "version": 1,
+  "facets": {
+    "layer": {
+      "cardinality": "exactly-one",
+      "desc": "WHERE the change lives — inferable largely from the task's scope file paths. PROJECT-SPECIFIC: tailored to this Anki-deck-builder (a Node CLI/library); it self-evolves via the poor-fit gate.",
+      "values": {
+        "core": {
+          "desc": "deck/card model + the deck-building logic",
+          "difficultyHint": "med"
+        },
+        "io": {
+          "desc": "reading input sources / writing .apkg (or other) output files",
+          "difficultyHint": "med"
+        },
+        "cli": {
+          "desc": "command-line interface / entrypoint / argument handling",
+          "difficultyHint": "low-med"
+        },
+        "infra": {
+          "desc": "CI / build tooling / dependencies / runtime config",
+          "difficultyHint": "varies"
+        },
+        "docs": {
+          "desc": "README / docs / project scaffolding / the harness itself",
+          "difficultyHint": "low"
+        }
+      }
+    },
+    "work-type": {
+      "cardinality": "exactly-one",
+      "desc": "WHAT KIND of change it is — the main thing the authoring LLM reasons about. UNIVERSAL across projects.",
+      "values": {
+        "style": {
+          "desc": "visual / CSS / layout only",
+          "difficultyHint": "very-easy"
+        },
+        "logging": {
+          "desc": "log verbosity / messages / observability text",
+          "difficultyHint": "very-easy"
+        },
+        "docs": {
+          "desc": "README / docs / spec text",
+          "difficultyHint": "very-easy"
+        },
+        "config": {
+          "desc": "env / config knobs / flags",
+          "difficultyHint": "easy"
+        },
+        "component": {
+          "desc": "new/changed UI component or page",
+          "difficultyHint": "med"
+        },
+        "endpoint": {
+          "desc": "new/changed API route / handler",
+          "difficultyHint": "med"
+        },
+        "bugfix": {
+          "desc": "fix a specific defect",
+          "difficultyHint": "med-varies"
+        },
+        "feature": {
+          "desc": "multi-file new capability",
+          "difficultyHint": "high"
+        },
+        "migration": {
+          "desc": "schema / data migration",
+          "difficultyHint": "high"
+        },
+        "llm-prompt": {
+          "desc": "LLM / prompt / agent logic",
+          "difficultyHint": "high"
+        },
+        "refactor": {
+          "desc": "rename / move / restructure",
+          "difficultyHint": "high"
+        }
+      }
+    },
+    "risk": {
+      "cardinality": "zero-or-more",
+      "desc": "Danger modifiers. A non-empty risk on a task forces the blocking audit (mandatory, bypassing the usual per-cell sampling decay) and clamps the starting tier to at least the ladder's second-cheapest rung, regardless of how reliable the (layer x work-type) cell has looked historically. UNIVERSAL.",
+      "values": {
+        "touches-schema": {
+          "desc": "changes a DB schema / migration / persistent-data shape"
+        },
+        "touches-core": {
+          "desc": "changes a critical-path / framework / shared-runtime module"
+        },
+        "full-stack": {
+          "desc": "spans multiple layers (e.g. data + backend + frontend) in one task"
+        },
+        "cross-cutting": {
+          "desc": "many files / a shared convention"
+        }
+      }
+    }
+  },
+  "policy": {
+    "_about": "Difficulty auto-tuning policy knobs. The policy picks, per task, the CHEAPEST tier on the ladder whose historical first-attempt success rate for the task's (layer × work-type) cell is >= floor, requiring at least minN samples; otherwise it falls back to the authored difficulty (cold start). Bias is toward cheap — the escalation ladder is the safety net. poorFitThreshold = how many poor-fit signals accumulate before the add-to-backlog flow triggers a layer re-evaluation. exploreProbabilityPM (per-mille, default 0/off) = chance an eligible task probes one untested rung below the policy's normal pick instead — the ONLY way a newly inserted cheaper rung ever gets tried on a cell that's already calibrated to a pricier one, since it otherwise has 0 samples and can never become eligible on its own (see docs/designs/difficulty-autotune.md). exploreCooldownN (default 20) = once a probed rung's most recent minN-sized batch fails the floor, how many MORE rows must land on the cell (not calendar time) before a fresh batch of trials is offered again — lets task difficulty that's genuinely drifted (a rung that failed early in a project's life but would succeed now) eventually get re-tested, without diluting a fresh batch's verdict with permanently-retained old failures.",
+    "floor": 0.75,
+    "minN": 6,
+    "poorFitThreshold": 5,
+    "auditStartN": 3,
+    "auditFloorN": 8,
+    "auditFloor": 0.10,
+    "auditorModel": "claude-opus-4-8",
+    "auditorEffort": "medium",
+    "exploreProbabilityPM": 0,
+    "exploreCooldownN": 20
+  },
+  "tiers": {
+    "_about": "The GLOBAL difficulty ladder, cheapest → most expensive. The policy chooses a START tier from here per task; escalation walks UP it. The authored model/effort is the cold-start start tier. PROJECT-SPECIFIC — set this to the models your project actually uses (cheapest → priciest). The default is a deliberately SHORT 5-tier ladder — Haiku, then Sonnet low→medium→high, then Opus/high — so a stuck task blocks to a human after at most ladder_length × MAX_ATTEMPTS attempts (5×2=10). Extend the top (e.g. opus/xhigh, opus/max) ONLY if you'd genuinely want the hardest tasks built unsupervised — every extra rung is extra spend a stuck task grinds through before it asks for help. A rung's `effort` may be explicit `null` for a model with no effort parameter at the API level (e.g. Claude Haiku 4.5, the default tier-0 rung) — the loop omits `--effort` entirely for such a rung, and calibration matches it correctly (jq's null == null) without any special-casing.",
+    "ladder": [
+      {
+        "model": "claude-haiku-4-5",
+        "effort": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "effort": "low"
+      },
+      {
+        "model": "claude-sonnet-5",
+        "effort": "medium"
+      },
+      {
+        "model": "claude-sonnet-5",
+        "effort": "high"
+      },
+      {
+        "model": "claude-opus-4-8",
+        "effort": "high"
+      }
+    ]
+  }
+}

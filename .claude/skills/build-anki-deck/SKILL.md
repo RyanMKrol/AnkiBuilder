@@ -199,7 +199,7 @@ Ensure the `.apkg` file exists and is not corrupted. Check that the run director
 
 ## Learn More
 
-- [README.md](../../README.md) — project overview
+- [README.md](../../../README.md) — project overview
 - `.env.example` — environment variable reference
 - ElevenLabs docs: https://elevenlabs.io/docs
 - Anki docs: https://docs.ankiweb.net/

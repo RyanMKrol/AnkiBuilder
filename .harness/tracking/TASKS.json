@@ -82,7 +82,7 @@
     {
       "id": "T004",
       "title": "EPUB → candidate corpus extractor",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],

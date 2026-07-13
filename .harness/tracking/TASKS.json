@@ -108,7 +108,7 @@
     {
       "id": "T005",
       "title": "Translation stage via local claude -p",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],

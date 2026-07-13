@@ -133,7 +133,7 @@
     {
       "id": "T006",
       "title": "ElevenLabs audio stage (cached, idempotent)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T005"
       ],

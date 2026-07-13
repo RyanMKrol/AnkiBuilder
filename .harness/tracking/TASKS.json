@@ -5,7 +5,7 @@
     {
       "id": "T001",
       "title": "Project scaffold + CI green on an empty build",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": "needs-human",
       "tags": [

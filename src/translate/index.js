@@ -44,8 +44,16 @@ function buildBatchPrompt(items, targetLanguage) {
   return lines.join("\n");
 }
 
+// The model is asked for raw JSON but occasionally wraps it in a markdown code
+// fence (```json ... ```) anyway — strip that before parsing rather than
+// failing the whole batch over formatting.
+function stripMarkdownFence(text) {
+  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
+  return match ? match[1] : text;
+}
+
 function parseBatch(raw) {
-  const trimmed = raw.trim();
+  const trimmed = stripMarkdownFence(raw.trim()).trim();
   let parsed;
   try {
     parsed = JSON.parse(trimmed);

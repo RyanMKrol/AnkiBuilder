@@ -85,6 +85,18 @@ test("surfaces a wholly-malformed batch response as an error for every item in i
   }
 });
 
+test("tolerates a batch response wrapped in a markdown code fence", () => {
+  const corpus = baseCorpus([{ id: "hello", english: "Hello", category: "Greetings" }]);
+
+  const { cards, errors } = translateCorpus(corpus, {
+    runClaude: () =>
+      '```json\n[{"id": "hello", "target": "Bonjour", "pronunciation": "bohn-ZHOOR"}]\n```',
+  });
+
+  assert.deepEqual(errors, []);
+  assert.equal(cards.items[0].target, "Bonjour");
+});
+
 test("batches into `claude -p` calls of at most 10 items", () => {
   const items = Array.from({ length: 25 }, (_, i) => ({
     id: `w${i}`,

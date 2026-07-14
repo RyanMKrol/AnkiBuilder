@@ -55,7 +55,11 @@ directory (`--run <dir>`).
   language, chapter file path, and the canonical category list (`src/model/categories.js`) — it
   also instructs the model not to rule out images as a content source purely because their `alt`
   text is empty, and to open image files directly with its Read tool when they sit in a content
-  section. All three paths produce the same superset item shape:
+  section. For the `--epub` path, `extractChapterToFile` (`src/corpus/epubArchive.js`) makes this
+  possible by also extracting every image the chapter's `<img src>` tags reference, at the same
+  relative path from the cached chapter file that the src attribute encodes from the original
+  chapter file inside the archive — so those references resolve to real files on disk instead of a
+  directory that was never unpacked. All three paths produce the same superset item shape:
   `{ id, english, category, notes, target }`, with `notes`/`target` explicitly `null` when the
   source path can't populate them, plus two optional flags carried through when the extractor sets
   them: `uncertain` (the model wasn't sure the item belonged) and `aiSuggested` (a critical-gap item
@@ -95,6 +99,9 @@ always relative to the repo itself, regardless of which directory you invoke the
   audio/<voiceId>/<hash>.mp3                    # ElevenLabs TTS cache
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
   epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
+  epubs/<epubHash>/images/<...>                     # images the cached chapters reference,
+                                                     #   at whatever relative path their own
+                                                     #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved by `review`
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
 ```

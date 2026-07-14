@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { inflateRawSync } from "zlib";
-import { posix, dirname } from "path";
+import { posix, dirname, join } from "path";
 
 const EOCD_SIGNATURE = 0x06054b50;
 const CENTRAL_DIRECTORY_SIGNATURE = 0x02014b50;
@@ -163,14 +163,7 @@ export function listChapters(epubPath) {
   return { chapters, opfDir };
 }
 
-/**
- * Reads chapter `number`'s raw content (UTF-8 text) directly out of the
- * archive, by 1-indexed spine position. No HTML stripping or text
- * extraction happens here — callers that need flashcard content still go
- * through the LLM extractor, which reads whatever file this content ends up
- * in via its own Read tool.
- */
-export function readChapter(epubPath, number) {
+function loadChapterEntry(epubPath, number) {
   const { entries, chapters } = loadEpub(epubPath);
 
   const chapter = chapters.find((c) => c.number === number);
@@ -183,17 +176,69 @@ export function readChapter(epubPath, number) {
     throw new Error(`Chapter ${number}'s content file "${chapter.href}" not found in archive`);
   }
 
-  return contentEntry.data.toString("utf-8");
+  return { entries, chapter, content: contentEntry.data.toString("utf-8") };
+}
+
+/**
+ * Reads chapter `number`'s raw content (UTF-8 text) directly out of the
+ * archive, by 1-indexed spine position. No HTML stripping or text
+ * extraction happens here — callers that need flashcard content still go
+ * through the LLM extractor, which reads whatever file this content ends up
+ * in via its own Read tool.
+ */
+export function readChapter(epubPath, number) {
+  return loadChapterEntry(epubPath, number).content;
+}
+
+// The image-aware extraction prompt (docs/epub-extraction-prompt.md) tells the model to
+// resolve each <img src> relative to the chapter file it just Read and open it directly —
+// so any referenced image has to actually exist on disk at that resolved location, not
+// just inside the original .epub archive. This extracts each referenced image to the
+// exact path that resolving its own (possibly "../"-relative) src against `destPath`
+// would produce, by applying that same relative src against BOTH the chapter's real
+// archive-internal directory (to find the bytes) and destPath's directory (to place
+// them) — so the on-disk relationship it copies mirrors the one baked into the HTML,
+// however many directories deep that happens to be for a given EPUB. Missing images
+// (a dangling reference, an external URL, a data: URI) are skipped rather than failing
+// the whole chapter — most of a chapter's images are still real content even if one ref
+// is bad.
+const IMG_SRC_PATTERN = /<img\b[^>]*\bsrc="([^"]*)"/g;
+
+function isLocalRelativePath(src) {
+  return Boolean(src) && !/^([a-z]+:)?\/\//i.test(src) && !src.startsWith("data:");
+}
+
+function extractReferencedImages(entries, chapter, content, destPath) {
+  const srcs = new Set(
+    [...content.matchAll(IMG_SRC_PATTERN)].map((m) => m[1]).filter(isLocalRelativePath),
+  );
+
+  const chapterDir = posix.dirname(chapter.href);
+  const destDir = dirname(destPath);
+
+  for (const src of srcs) {
+    const archivePath = posix.normalize(posix.join(chapterDir, src));
+    const imageEntry = entries.find((e) => e.name === archivePath);
+    if (!imageEntry) {
+      continue;
+    }
+
+    const localDest = join(destDir, src);
+    mkdirSync(dirname(localDest), { recursive: true });
+    writeFileSync(localDest, imageEntry.data);
+  }
 }
 
 /**
  * Extracts chapter `number`'s content to a real file on disk at `destPath`
- * (creating parent directories as needed) — for handing to `runClaude`,
- * which reads files by path, not inline content. Returns `destPath`.
+ * (creating parent directories as needed), along with every image it
+ * references via `<img src>` — for handing to `runClaude`, which reads
+ * files (including images) by path, not inline content. Returns `destPath`.
  */
 export function extractChapterToFile(epubPath, number, destPath) {
-  const content = readChapter(epubPath, number);
+  const { entries, chapter, content } = loadChapterEntry(epubPath, number);
   mkdirSync(dirname(destPath), { recursive: true });
   writeFileSync(destPath, content, "utf-8");
+  extractReferencedImages(entries, chapter, content, destPath);
   return destPath;
 }

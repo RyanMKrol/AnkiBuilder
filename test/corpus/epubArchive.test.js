@@ -219,6 +219,57 @@ test("extractChapterToFile() writes real bytes to disk and creates parent direct
   });
 });
 
+test("extractChapterToFile() also extracts images the chapter references, at the path its own relative <img src> resolves to from destPath", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content: '<html><body><img src="../images/pic.jpg"/></body></html>',
+        },
+        { name: "OEBPS/images/pic.jpg", content: "fake-jpeg-bytes" },
+      ],
+    });
+
+    const destPath = join(dir, "cache", "chapters", "1.xhtml");
+    extractChapterToFile(epubPath, 1, destPath);
+
+    const expectedImagePath = join(dir, "cache", "images", "pic.jpg");
+    assert.ok(existsSync(expectedImagePath));
+    assert.equal(readFileSync(expectedImagePath, "utf-8"), "fake-jpeg-bytes");
+  });
+});
+
+test("extractChapterToFile() skips image references that don't resolve to a real archive entry", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content:
+            "<html><body>" +
+            '<img src="../images/missing.jpg"/>' +
+            '<img src="https://example.com/remote.jpg"/>' +
+            '<img src="data:image/png;base64,abcd"/>' +
+            "</body></html>",
+        },
+      ],
+    });
+
+    const destPath = join(dir, "cache", "chapters", "1.xhtml");
+
+    // Should not throw despite none of the referenced images existing/being local.
+    extractChapterToFile(epubPath, 1, destPath);
+
+    assert.ok(existsSync(destPath));
+    assert.ok(!existsSync(join(dir, "cache", "images", "missing.jpg")));
+  });
+});
+
 test("listChapters() throws on a malformed zip (no end-of-central-directory record)", () => {
   withTempDir((dir) => {
     const epubPath = join(dir, "not-a-zip.epub");

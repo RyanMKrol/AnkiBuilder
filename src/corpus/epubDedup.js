@@ -86,12 +86,26 @@ export function dedupBackward(candidateItems, priorItems) {
   return { kept, dropped };
 }
 
-// The model is asked for raw JSON but may wrap it in a markdown fence anyway
-// (same deviation observed elsewhere in this pipeline) — strip it before
-// parsing rather than failing outright over formatting.
+// The model is asked for raw JSON but may deviate: wrapping it in a markdown
+// fence (observed elsewhere in this pipeline), or — observed here against a
+// real book — prefacing it with a plain-prose sentence and no fence at all
+// (e.g. "Confirmed — chapter 56 is the glossary... {"drop": []}"). Handle
+// both: prefer a fenced block if present, otherwise take the span from the
+// first "{" to the last "}" rather than requiring the ENTIRE response to be
+// JSON, since that's what actually shows up when a model narrates first.
 function extractJsonObjectText(raw) {
   const fenceMatch = raw.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
-  return fenceMatch ? fenceMatch[1] : raw.trim();
+  if (fenceMatch) {
+    return fenceMatch[1];
+  }
+
+  const firstBrace = raw.indexOf("{");
+  const lastBrace = raw.lastIndexOf("}");
+  if (firstBrace !== -1 && lastBrace > firstBrace) {
+    return raw.slice(firstBrace, lastBrace + 1);
+  }
+
+  return raw.trim();
 }
 
 function parseForwardResponse(raw) {

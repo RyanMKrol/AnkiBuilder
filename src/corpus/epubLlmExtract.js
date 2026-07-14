@@ -1,5 +1,6 @@
 import { renderExtractionPrompt } from "./epubLlmPrompt.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { CATEGORIES } from "../model/categories.js";
 
 // The model is told to respond with ONLY a JSON array, but in practice two
 // deviations have both been observed for real: the whole response wrapped in
@@ -19,10 +20,13 @@ function validateItem(item, index) {
   if (typeof item !== "object" || item === null) {
     throw new Error(`item ${index} must be an object`);
   }
-  for (const field of ["id", "english", "target"]) {
+  for (const field of ["id", "english", "target", "category"]) {
     if (typeof item[field] !== "string" || !item[field]) {
       throw new Error(`item ${index} missing required string field "${field}"`);
     }
+  }
+  if (!CATEGORIES.includes(item.category)) {
+    throw new Error(`item ${index} has an invalid "category": ${JSON.stringify(item.category)}`);
   }
   if (item.notes !== undefined && typeof item.notes !== "string") {
     throw new Error(`item ${index} field "notes" must be a string when present`);
@@ -38,18 +42,19 @@ function validateItem(item, index) {
 /**
  * Extracts a flashcard-worthy item list from ONE chapter file by having the
  * model read it directly (no pre-split text blocks). Returns the parsed and
- * validated item array: { id, english, target, notes?, uncertain?, aiSuggested? }.
+ * validated item array: { id, english, target, category, notes?, uncertain?, aiSuggested? }.
  *
  * This is the extraction primitive only — it does not write corpus.json/
- * cards.json, assign categories, generate pronunciation, or handle more than
- * one chapter. See docs/epub-extraction-prompt.md for the prompt itself.
+ * cards.json, generate pronunciation, or handle more than one chapter. See
+ * docs/epub-extraction-prompt.md for the prompt itself.
  */
 export function extractChapterViaLlm({
   chapterFilePath,
   targetLanguage,
+  categoryList = CATEGORIES,
   runClaude = defaultRunClaude,
 } = {}) {
-  const prompt = renderExtractionPrompt({ targetLanguage, chapterFilePath });
+  const prompt = renderExtractionPrompt({ targetLanguage, chapterFilePath, categoryList });
   const raw = runClaude(prompt);
 
   const jsonText = extractJsonArrayText(raw);

@@ -1,12 +1,17 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
 import { join } from "path";
 import { Buffer } from "buffer";
-import { runPaths as defaultRunPaths, stateHome as defaultStateHome } from "../model/index.js";
+import {
+  runPaths as defaultRunPaths,
+  stateHome as defaultStateHome,
+  validateCorpus,
+} from "../model/index.js";
 import { listTemplates, loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
-import { extractEpub as defaultExtractEpub } from "../corpus/epub.js";
+import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from "../corpus/epubLlmCorpus.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { buildDeck as defaultBuildDeck } from "../deck/index.js";
+import { defaultPromptReviewDecisions } from "./reviewPrompt.js";
 
 const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
 
@@ -64,21 +69,46 @@ async function runAssemble(flags, ctx) {
   }
 
   let corpus;
-  if (flags.epub) {
+  if (flags.chapter) {
     if (!flags.lang) {
-      throw new Error("--lang is required when assembling from an --epub source");
+      throw new Error("--lang is required when assembling from a --chapter source");
     }
-    corpus = ctx.extractEpub(flags.epub, { targetLanguage: flags.lang });
+    corpus = ctx.assembleCorpusFromChapter({
+      chapterFilePath: flags.chapter,
+      targetLanguage: flags.lang,
+    });
   } else if (flags.template) {
     corpus = ctx.loadTemplate(flags.template);
   } else {
     throw new Error(
-      `either --template <name> or --epub <path> is required. Available templates: ${listTemplates().join(", ")}`,
+      `either --template <name> or --chapter <path> is required. Available templates: ${listTemplates().join(", ")}`,
     );
   }
 
   writeJson(paths.corpus, corpus);
   ctx.log(`wrote corpus with ${corpus.items.length} item(s) to ${paths.corpus}`);
+}
+
+async function runReview(flags, ctx) {
+  const paths = ctx.runPaths(flags.run);
+
+  if (!existsSync(paths.corpus)) {
+    throw new Error(`corpus.json not found at ${paths.corpus} — run "assemble" first`);
+  }
+
+  const corpus = readJson(paths.corpus);
+  const reviewedItems = await ctx.promptReviewDecisions(corpus.items, { print: ctx.log });
+
+  const updated = {
+    meta: { ...corpus.meta, reviewed: true },
+    items: reviewedItems,
+  };
+
+  validateCorpus(updated);
+  writeJson(paths.corpus, updated);
+  ctx.log(
+    `reviewed corpus: kept ${reviewedItems.length}/${corpus.items.length} item(s), wrote ${paths.corpus}`,
+  );
 }
 
 async function runTranslate(flags, ctx) {
@@ -94,6 +124,13 @@ async function runTranslate(flags, ctx) {
   }
 
   const corpus = readJson(paths.corpus);
+
+  if (corpus.meta.reviewed !== true) {
+    throw new Error(
+      `corpus.json at ${paths.corpus} has not been reviewed yet — run "review --run ${flags.run}" first`,
+    );
+  }
+
   const { cards, errors } = ctx.translateCorpus(corpus);
 
   writeJson(paths.cards, cards);
@@ -171,6 +208,7 @@ async function runDeck(flags, ctx) {
 
 const COMMANDS = {
   assemble: runAssemble,
+  review: runReview,
   translate: runTranslate,
   audio: runAudio,
   deck: runDeck,
@@ -181,7 +219,8 @@ export async function runCli(argv, deps = {}) {
     runPaths = defaultRunPaths,
     stateHome = defaultStateHome,
     loadTemplate = defaultLoadTemplate,
-    extractEpub = defaultExtractEpub,
+    assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
+    promptReviewDecisions = defaultPromptReviewDecisions,
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
     buildDeck = defaultBuildDeck,
@@ -207,7 +246,8 @@ export async function runCli(argv, deps = {}) {
     runPaths,
     stateHome,
     loadTemplate,
-    extractEpub,
+    assembleCorpusFromChapter,
+    promptReviewDecisions,
     translateCorpus,
     generateAudio,
     buildDeck,

@@ -14,13 +14,16 @@ test("validateCorpus - valid corpus passes validation", () => {
       {
         id: "1",
         english: "hello",
-        category: "greetings",
+        category: "Greetings",
+        notes: null,
+        target: null,
       },
       {
         id: "2",
         english: "goodbye",
-        category: "greetings",
+        category: "Greetings",
         notes: "formal",
+        target: null,
       },
     ],
   };
@@ -28,6 +31,69 @@ test("validateCorpus - valid corpus passes validation", () => {
   assert.doesNotThrow(() => {
     validateCorpus(validCorpus);
   });
+});
+
+test("validateCorpus - notes/target may be a real string instead of null", () => {
+  const validCorpus = {
+    meta: { targetLanguage: "ja", sourceType: "epub" },
+    items: [
+      {
+        id: "1",
+        english: "hello",
+        category: "Greetings",
+        notes: "a hint",
+        target: "こんにちは",
+      },
+    ],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCorpus(validCorpus);
+  });
+});
+
+test("validateCorpus - missing notes/target fails validation (must be present, even if null)", () => {
+  const invalidCorpus = {
+    meta: { targetLanguage: "es", sourceType: "template" },
+    items: [{ id: "1", english: "hello", category: "Greetings" }],
+  };
+
+  assert.throws(
+    () => {
+      validateCorpus(invalidCorpus);
+    },
+    (err) => /notes|target/.test(err.message),
+  );
+});
+
+test("validateCorpus - a non-null, non-string target fails validation", () => {
+  const invalidCorpus = {
+    meta: { targetLanguage: "es", sourceType: "template" },
+    items: [{ id: "1", english: "hello", category: "Greetings", notes: null, target: 5 }],
+  };
+
+  assert.throws(
+    () => {
+      validateCorpus(invalidCorpus);
+    },
+    (err) => err.message.includes("target"),
+  );
+});
+
+test("validateCorpus - a category outside the enum fails validation", () => {
+  const invalidCorpus = {
+    meta: { targetLanguage: "es", sourceType: "template" },
+    items: [
+      { id: "1", english: "hello", category: "Not A Real Category", notes: null, target: null },
+    ],
+  };
+
+  assert.throws(
+    () => {
+      validateCorpus(invalidCorpus);
+    },
+    (err) => err.message.includes("category"),
+  );
 });
 
 test("validateCorpus - missing english field fails validation", () => {

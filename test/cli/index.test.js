@@ -17,10 +17,10 @@ async function withTempDir(fn) {
   }
 }
 
-function baseCorpus() {
+function baseCorpus({ reviewed = true } = {}) {
   return {
-    meta: { targetLanguage: "es", sourceType: "template" },
-    items: [{ id: "a1", english: "Hello", category: "Greetings" }],
+    meta: { targetLanguage: "es", sourceType: "template", reviewed },
+    items: [{ id: "a1", english: "Hello", category: "Greetings", notes: null, target: null }],
   };
 }
 
@@ -60,22 +60,34 @@ test("assemble: dispatches to loadTemplate and writes corpus.json", async () => 
   });
 });
 
-test("assemble: dispatches to extractEpub when --epub is given", async () => {
+test("assemble: dispatches to assembleCorpusFromChapter when --chapter is given", async () => {
   await withTempDir(async (runDir) => {
     let calledWith = null;
-    const extractEpub = (path, opts) => {
-      calledWith = { path, opts };
+    const assembleCorpusFromChapter = (opts) => {
+      calledWith = opts;
       return baseCorpus();
     };
 
-    await runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--lang", "es"], {
-      extractEpub,
-      log: () => {},
-    });
+    await runCli(
+      ["assemble", "--run", runDir, "--chapter", "/tmp/chapter08.xhtml", "--lang", "es"],
+      { assembleCorpusFromChapter, log: () => {} },
+    );
 
-    assert.equal(calledWith.path, "/tmp/book.epub");
-    assert.equal(calledWith.opts.targetLanguage, "es");
+    assert.equal(calledWith.chapterFilePath, "/tmp/chapter08.xhtml");
+    assert.equal(calledWith.targetLanguage, "es");
     assert(existsSync(runPaths(runDir).corpus));
+  });
+});
+
+test("assemble: throws when --chapter is given without --lang", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () =>
+        runCli(["assemble", "--run", runDir, "--chapter", "/tmp/chapter08.xhtml"], {
+          log: () => {},
+        }),
+      /--lang is required/,
+    );
   });
 });
 
@@ -97,6 +109,52 @@ test("assemble: is resumable — skips work when corpus.json already exists", as
     });
 
     assert.equal(called, false);
+  });
+});
+
+test("review: filters excluded items and marks the corpus as reviewed", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = {
+      meta: { targetLanguage: "es", sourceType: "template", reviewed: false },
+      items: [
+        { id: "a1", english: "Hello", category: "Greetings", notes: null, target: null },
+        { id: "a2", english: "Goodbye", category: "Greetings", notes: null, target: null },
+      ],
+    };
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    const promptReviewDecisions = async (items) => items.filter((item) => item.id !== "a2");
+
+    await runCli(["review", "--run", runDir], { promptReviewDecisions, log: () => {} });
+
+    const written = JSON.parse(await fs.readFile(paths.corpus, "utf-8"));
+    assert.equal(written.items.length, 1);
+    assert.equal(written.items[0].id, "a1");
+    assert.equal(written.meta.reviewed, true);
+  });
+});
+
+test("review: throws when corpus.json is missing", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () => runCli(["review", "--run", runDir], { log: () => {} }),
+      /corpus\.json not found/,
+    );
+  });
+});
+
+test("translate: throws when the corpus has not been reviewed yet", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseCorpus({ reviewed: false })));
+
+    await assert.rejects(
+      () => runCli(["translate", "--run", runDir], { log: () => {} }),
+      /has not been reviewed yet/,
+    );
   });
 });
 

@@ -3,7 +3,8 @@ import { runClaude as defaultRunClaude } from "./runClaude.js";
 
 // Max corpus items per `claude -p` invocation. Kept small so the cheaper pinned
 // model has little to get wrong per call; larger corpora are split into several
-// batches (e.g. 25 items → calls of 10, 10, 5).
+// batches (e.g. 25 items → calls of 10, 10, 5). Each of the two groups below
+// (full-translation vs. pronunciation-only) is batched independently.
 const BATCH_SIZE = 10;
 
 function chunk(items, size) {
@@ -14,7 +15,7 @@ function chunk(items, size) {
   return batches;
 }
 
-function buildBatchPrompt(items, targetLanguage) {
+function buildFullTranslationPrompt(items, targetLanguage) {
   const lines = [
     "You are translating flashcards for a language-learning deck.",
     `Target language: ${targetLanguage}`,
@@ -26,10 +27,7 @@ function buildBatchPrompt(items, targetLanguage) {
     lines.push(`- id: ${item.id}`);
     lines.push(`  English: "${item.english}"`);
     if (item.notes) {
-      lines.push(
-        `  Candidate translation already extracted from source material: "${item.notes}". ` +
-          "Verify it, correct it if wrong, and base your pronunciation on it.",
-      );
+      lines.push(`  Context/hint from source material (not a translation): "${item.notes}"`);
     }
   }
 
@@ -39,6 +37,40 @@ function buildBatchPrompt(items, targetLanguage) {
     "reusing the SAME id, of the form:",
     '[{"id": "<id>", "target": "<translation>", "pronunciation": "<phonetic pronunciation>", "hint": "<optional usage hint>"}]',
     'Include every id exactly once (order does not matter). Omit "hint" for an entry when you have none.',
+  );
+
+  return lines.join("\n");
+}
+
+// For items that already have a trusted target (e.g. extracted directly from a
+// bilingual source rather than invented). The model is only ever asked for a
+// pronunciation guide here — never a translation — so it has no opportunity to
+// second-guess or alter a target we already trust.
+function buildPronunciationOnlyPrompt(items, targetLanguage) {
+  const lines = [
+    "You are producing phonetic pronunciation guides for flashcards in a language-learning deck.",
+    `Target language: ${targetLanguage}`,
+    `Each of the following ${items.length} item(s) already has a correct, final translation.`,
+    "Do NOT alter, correct, retranslate, or comment on it in any way — only produce a phonetic",
+    "pronunciation guide for the given text.",
+    "",
+  ];
+
+  for (const item of items) {
+    lines.push(`- id: ${item.id}`);
+    lines.push(`  English: "${item.english}"`);
+    lines.push(`  ${targetLanguage} (already final, do not change): "${item.target}"`);
+    if (item.notes) {
+      lines.push(`  Context/hint from source material: "${item.notes}"`);
+    }
+  }
+
+  lines.push(
+    "",
+    "Respond with ONLY a JSON array (no markdown fences, no extra prose). One object per item,",
+    "reusing the SAME id, of the form:",
+    '[{"id": "<id>", "pronunciation": "<phonetic pronunciation>"}]',
+    'Include every id exactly once (order does not matter). Do not include a "target" key at all.',
   );
 
   return lines.join("\n");
@@ -66,7 +98,7 @@ function parseBatch(raw) {
   return parsed;
 }
 
-function validateEntry(entry) {
+function validateFullEntry(entry) {
   if (typeof entry !== "object" || entry === null) {
     throw new Error("model entry must be an object");
   }
@@ -81,26 +113,58 @@ function validateEntry(entry) {
   }
 }
 
-/**
- * Fills each corpus item's target/pronunciation/hint by invoking `runClaude`
- * (the local `claude -p` CLI by default), batching up to BATCH_SIZE items per
- * call. Items whose `notes` already carry a source-extracted translation are
- * verified rather than regenerated: the model is asked to confirm/correct it,
- * but the existing `notes` text is kept as the authoritative `target`.
- *
- * Returns `{ cards, errors }`: `cards` is a schema-valid cards.json (only items
- * that translated successfully); `errors` lists `{ id, error }` for items whose
- * model response was missing or could not be parsed. Errors stay per-item: a
- * malformed entry only drops that item, and a whole batch fails only when its
- * response isn't a JSON array at all.
- */
-export function translateCorpus(corpus, { runClaude = defaultRunClaude } = {}) {
-  const items = [];
-  const errors = [];
-  const { targetLanguage } = corpus.meta;
+function validatePronunciationEntry(entry) {
+  if (typeof entry !== "object" || entry === null) {
+    throw new Error("model entry must be an object");
+  }
+  if (typeof entry.pronunciation !== "string" || !entry.pronunciation) {
+    throw new Error('model entry missing string "pronunciation"');
+  }
+}
 
-  for (const batch of chunk(corpus.items, BATCH_SIZE)) {
-    const prompt = buildBatchPrompt(batch, targetLanguage);
+function assembleFullCard(item, entry) {
+  const card = {
+    id: item.id,
+    english: item.english,
+    category: item.category,
+    target: entry.target,
+    pronunciation: entry.pronunciation,
+  };
+  if (item.notes) {
+    card.notes = item.notes;
+  }
+  if (entry.hint) {
+    card.hint = entry.hint;
+  }
+  return card;
+}
+
+// Deliberately never reads `entry.target` anywhere in this function's body —
+// the pre-existing `item.target` is authoritative. This is a structural
+// guarantee, not a precedence pick: unlike the old `item.notes || entry.target`
+// check (which still evaluated `entry.target` before discarding it), there is
+// no expression here through which the model's response could influence the
+// final target at all.
+function assemblePronunciationOnlyCard(item, entry) {
+  const { pronunciation } = entry;
+  const card = {
+    id: item.id,
+    english: item.english,
+    category: item.category,
+    target: item.target,
+    pronunciation,
+  };
+  if (item.notes) {
+    card.notes = item.notes;
+  }
+  return card;
+}
+
+function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) {
+  const { runClaude, targetLanguage, items, errors } = ctx;
+
+  for (const batch of chunk(group, BATCH_SIZE)) {
+    const prompt = buildPrompt(batch, targetLanguage);
 
     let entries;
     try {
@@ -133,23 +197,57 @@ export function translateCorpus(corpus, { runClaude = defaultRunClaude } = {}) {
         continue;
       }
 
-      const card = {
-        id: item.id,
-        english: item.english,
-        category: item.category,
-        target: item.notes || entry.target,
-        pronunciation: entry.pronunciation,
-      };
-      if (item.notes) {
-        card.notes = item.notes;
-      }
-      if (entry.hint) {
-        card.hint = entry.hint;
-      }
-
-      items.push(card);
+      items.push(assembleCard(item, entry));
     }
   }
+}
+
+/**
+ * Fills each corpus item's target/pronunciation/hint by invoking `runClaude`
+ * (the local `claude -p` CLI by default), batching up to BATCH_SIZE items per
+ * call. Items are split into two independently-batched groups based on
+ * whether `item.target` is already set:
+ *
+ * - `target === null`: full translation — the model produces both `target`
+ *   and `pronunciation`.
+ * - `target !== null`: pronunciation-only — the model is only ever asked for
+ *   a pronunciation guide; it cannot influence the final `target` at all
+ *   (see `assemblePronunciationOnlyCard`).
+ *
+ * Returns `{ cards, errors }`: `cards` is a schema-valid cards.json (only items
+ * that translated successfully); `errors` lists `{ id, error }` for items whose
+ * model response was missing or could not be parsed. Errors stay per-item: a
+ * malformed entry only drops that item, and a whole batch fails only when its
+ * response isn't a JSON array at all.
+ */
+export function translateCorpus(corpus, { runClaude = defaultRunClaude } = {}) {
+  const items = [];
+  const errors = [];
+  const { targetLanguage } = corpus.meta;
+
+  const needsFullTranslation = corpus.items.filter((item) => item.target === null);
+  const needsPronunciationOnly = corpus.items.filter((item) => item.target !== null);
+
+  const ctx = { runClaude, targetLanguage, items, errors };
+
+  processGroup(
+    needsFullTranslation,
+    {
+      buildPrompt: buildFullTranslationPrompt,
+      validateEntry: validateFullEntry,
+      assembleCard: assembleFullCard,
+    },
+    ctx,
+  );
+  processGroup(
+    needsPronunciationOnly,
+    {
+      buildPrompt: buildPronunciationOnlyPrompt,
+      validateEntry: validatePronunciationEntry,
+      assembleCard: assemblePronunciationOnlyCard,
+    },
+    ctx,
+  );
 
   const cards = {
     meta: corpus.meta,

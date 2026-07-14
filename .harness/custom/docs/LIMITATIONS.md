@@ -25,44 +25,37 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   (re-invoke `runClaude` for just the ids missing from a batch) instead of requiring a full corpus
   re-run.
 
-## EPUB block extraction is regex-based HTML parsing, not a real parser
+## `assemble --chapter` handles one chapter file, not a whole `.epub` archive
 
-- **What:** `extractTextBlocks` (`src/corpus/epub.js`) finds text blocks with a regex over tag names
-  (`p|li|dt|dd|td`) rather than a proper HTML/XML parser. A tag-name lookahead now guards against the
-  specific bug found in practice (`<link .../>` in `<head>` matching as a prefix of `<li>`, causing the
-  regex to swallow everything up to the next unrelated `</li>` into one corrupted block — observed
-  first-hand on a real textbook EPUB, where it merged CSS/meta tags and an entire dialogue+vocabulary
-  section into a single ~6,500-character "block"). The fix only closes this one prefix-collision class
-  of bug; it is not a general HTML-correctness guarantee (e.g. it still doesn't handle self-nesting or
-  malformed/unclosed tags of the matched types themselves).
-- **Why:** a full HTML parser is heavier than this mechanical extractor's stated scope; the regex
-  approach was accepted as "good enough" for well-formed EPUB content, and this class of bug wasn't
-  caught until tested against a real, messy production EPUB rather than hand-written fixtures.
-- **Impact:** any future tag added to the matched set (or any oddly-formed real-world EPUB) could
-  reintroduce a similar corruption silently — the extractor doesn't detect or warn when a block looks
-  anomalously large.
-- **When to revisit:** if another prefix-collision or similar corruption surfaces again, replace the
-  regex with a real (even minimal) HTML tokenizer rather than patching another one-off boundary case.
+- **What:** the mechanical, regex-based EPUB extractor (formerly `src/corpus/epub.js`) has been
+  deleted entirely. `assemble --chapter <path> --lang <language>` now uses the LLM-based extractor
+  (`src/corpus/epubLlmCorpus.js` → `epubLlmExtract.js`), which reads ONE already-extracted chapter
+  `.xhtml` file directly via the model's own Read tool. There is no code anywhere in this
+  repository that opens a real `.epub` archive, enumerates its chapters in correct (spine) reading
+  order, or loops the extractor across a whole book — a user has to already have a single chapter
+  file extracted on disk to pass to `--chapter`.
+- **Why:** the extraction primitive and the whole-book orchestration (unzip, spine-order chapter
+  enumeration, per-chapter looping, merging results into one corpus) are separable concerns; the
+  former was built and validated first rather than guessing at the orchestration design up front.
+- **Impact:** building a deck from a real textbook currently requires manually extracting each
+  chapter file from the `.epub` zip and running `assemble --chapter` once per chapter, then merging
+  the resulting `corpus.json` files by hand — there's no single-command "build my whole book" path.
+- **When to revisit:** when whole-book support is actually needed — requires a spine-order chapter
+  enumerator (reading `content.opf`) and a loop that merges each chapter's corpus into one.
 
-## EPUB LLM extraction is a standalone primitive, not yet wired into the corpus/cards pipeline
+## The category enum is a first-cut list, not yet validated against real usage
 
-- **What:** `extractChapterViaLlm` (`src/corpus/epubLlmExtract.js`) extracts vocabulary/key-sentence
-  items from ONE chapter file at a time, by having the model read the raw chapter XHTML directly
-  (validated empirically against `assemble --epub`'s existing mechanical, regex-based path — this
-  approach caught vocabulary an un-glossed section required inferring, which the regex extractor
-  cannot do at all). Its output shape (`id`/`english`/`target`/`notes`/`uncertain`/`aiSuggested`)
-  does not match either `CORPUS_SCHEMA` or `CARDS_SCHEMA` in `src/model/index.js` — neither
-  produces a `category`, and `CARDS_SCHEMA` also requires `pronunciation`, which this pipeline
-  does not generate. There is also no CLI command wired up yet, and no multi-chapter orchestration
-  (a real book needs EPUB spine-order chapter enumeration, which nothing in this codebase does yet
-  — `extractTextBlocks`'s mechanical path doesn't either, it iterates zip central-directory order).
-- **Why:** the extraction primitive (prompt template + `claude -p` invocation + response parsing)
-  and the pipeline-integration questions (schema fit, category assignment, whether/how to generate
-  pronunciation, chapter ordering, multi-chapter merging) are separable concerns; the primitive was
-  validated and built first rather than guessing at the integration design.
-- **Impact:** `extractChapterViaLlm` cannot currently be used to produce a real deck end-to-end —
-  it has to be called directly (not via the `anki-builder` CLI), on one already-known chapter file
-  path, and its output isn't consumable by the existing `audio`/`deck` stages as-is.
-- **When to revisit:** before or when building the CLI-facing command for this path — needs a
-  decision on schema fit (extend `CARDS_SCHEMA` to make `pronunciation`/`category` optional, or
-  define a new schema for LLM-extracted cards) and a spine-order chapter enumerator.
+- **What:** `src/model/categories.js`'s `CATEGORIES` list (25 entries) was drafted in one sitting
+  to give every corpus item a shared, enum-constrained `category` — 8 entries match the
+  travel-essentials template's existing categories, the rest are new and aim for general textbook
+  coverage (family, work, school, nationalities, grammar/function words, etc.), plus an `"Other"`
+  fallback.
+- **Why:** some categorization is needed now (item 1–3 of this feature), but the "right" set of
+  categories can really only be judged against real extracted corpora across multiple chapters/
+  languages — that data doesn't exist yet.
+- **Impact:** some items may end up in `"Other"` more than intended, or a category may prove too
+  broad/narrow once used against real textbook content.
+- **When to revisit:** after running the LLM extractor across several real chapters — check the
+  `"Other"` rate and whether any category is doing too much or too little work, then adjust
+  `CATEGORIES` (this is a single, centrally-imported list, so renaming/splitting an entry is a
+  small change).

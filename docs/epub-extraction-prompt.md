@@ -21,8 +21,10 @@ Respond with ONLY a single JSON array (no markdown fences, no prose before or af
 **Important: preserve textbook order.** Emit items in exactly the order they appear in the chapter, top to bottom — do not reorder them, do not group them by type (e.g. all vocabulary together, then all key sentences), and do not sort them any other way. The sequence in the output must match the sequence in the source file.
 
 ```
-{"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file>", "notes": "<optional short context, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
+{"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file>", "category": "<exactly one value from the category list below>", "notes": "<optional short context, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
 ```
+
+**Category list — `category` MUST be exactly one of these values, verbatim:** {{CATEGORY_LIST}}. If nothing else fits, use `"Other"`.
 
 ## Example Output
 
@@ -30,17 +32,19 @@ Showing a plain item, an item with a note, an uncertain item, and an AI-suggeste
 
 ```json
 [
-  { "id": "sumimasen", "english": "Excuse me.", "target": "すみません。" },
+  { "id": "sumimasen", "english": "Excuse me.", "target": "すみません。", "category": "Greetings" },
   {
     "id": "yoroshiku",
     "english": "I look forward to working with you.",
     "target": "よろしく おねがいします。",
+    "category": "Greetings",
     "notes": "Usually combined with はじめまして when being introduced"
   },
   {
     "id": "nihonjin",
     "english": "Japanese (person)",
     "target": "にほんじん",
+    "category": "Nationalities & Countries",
     "notes": "Translation inferred by combining にほん + じん; not separately glossed in the source",
     "uncertain": true
   },
@@ -48,6 +52,7 @@ Showing a plain item, an item with a note, an uncertain item, and an AI-suggeste
     "id": "arigatou-suggestion",
     "english": "thank you",
     "target": "ありがとう",
+    "category": "Greetings",
     "notes": "Basic thanks — not present in this chapter's text, but a genuine gap for a learner at this level",
     "aiSuggested": true
   }
@@ -70,6 +75,10 @@ Evaluate BOTH the English and the {{TARGET_LANGUAGE}} text; do not favor one lan
 - Dialogue/conversation scripts in full — a modeled conversation between named speakers is for listening/rehearsal practice, not a flashcard source. Do not extract dialogue lines, reactions, or recap sentences, even ones that seem useful — treat the whole dialogue as off-limits for this test.
 - Supplementary/culture notes as standalone cards — fold a clarification into the "notes" field of the item it clarifies instead.
 - Proper nouns naming a specific person (e.g. a surname like "Harris") or a specific organization/business (e.g. "ABC Foods," "Nozomi Department Store," real or fictitious) as standalone vocabulary. Country and city names ARE genuine vocabulary and should be extracted. A name inside a key sentence you're otherwise keeping should stay in that sentence — this only blocks a standalone "here's a name" card.
+
+### Assigning category
+
+Every item needs a `category` from the fixed list above — pick the one that best matches the item's topic (not its grammatical role). A vocabulary word and a full sentence about the same topic get the same category (e.g. a food-related sentence and the word "rice" both get `"Food"`). Use `"Grammar & Function Words"` for particles/conjunctions/question markers, and `"Other"` only when nothing else genuinely fits.
 
 ## Step 2: Add Critical Gap Suggestions
 

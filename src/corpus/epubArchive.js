@@ -117,23 +117,35 @@ function parseContainerXml(entries) {
 // Reading order is defined by <spine>'s <itemref idref="..."> list, resolved through
 // <manifest>'s id -> href map — NOT by the order <item> tags happen to be declared in
 // the manifest. hrefs are relative to the OPF's own directory inside the archive, not
-// the archive root, hence the posix.join/normalize against opfDir.
-function parseOpfSpine(opfXml, opfDir) {
-  const manifest = new Map();
+// the archive root, hence the posix.join/normalize against opfDir. Also surfaces the
+// full manifest item list (id/href/properties/media-type) and the <spine>'s own `toc`
+// idref — both unused by chapter reading itself, but needed to locate the EPUB's own
+// navigation document (nav.xhtml/toc.ncx) for describeChapter()/listExternalChapters().
+function parseOpfDocument(opfXml, opfDir) {
+  const manifestItems = [];
+  const hrefById = new Map();
   for (const attrString of findTags(opfXml, "item")) {
-    const { id, href } = parseAttrs(attrString);
-    if (id && href) {
-      manifest.set(id, posix.normalize(posix.join(opfDir, href)));
+    const { id, href, properties, "media-type": mediaType } = parseAttrs(attrString);
+    if (!id || !href) {
+      continue;
     }
+    const archiveHref = posix.normalize(posix.join(opfDir, href));
+    manifestItems.push({ id, href: archiveHref, properties, mediaType });
+    hrefById.set(id, archiveHref);
   }
+
+  const [spineAttrString] = findTags(opfXml, "spine");
+  const tocId = spineAttrString ? parseAttrs(spineAttrString).toc : undefined;
 
   const spineIds = findTags(opfXml, "itemref")
     .map((attrString) => parseAttrs(attrString).idref)
     .filter(Boolean);
 
-  return spineIds
-    .map((id, index) => ({ number: index + 1, href: manifest.get(id) }))
+  const chapters = spineIds
+    .map((id, index) => ({ number: index + 1, href: hrefById.get(id) }))
     .filter((chapter) => chapter.href);
+
+  return { chapters, manifestItems, tocId };
 }
 
 function loadEpub(epubPath) {
@@ -147,9 +159,12 @@ function loadEpub(epubPath) {
   }
 
   const opfDir = posix.dirname(opfPath);
-  const chapters = parseOpfSpine(opfEntry.data.toString("utf-8"), opfDir);
+  const { chapters, manifestItems, tocId } = parseOpfDocument(
+    opfEntry.data.toString("utf-8"),
+    opfDir,
+  );
 
-  return { entries, chapters, opfDir };
+  return { entries, chapters, opfDir, manifestItems, tocId };
 }
 
 /**
@@ -204,6 +219,8 @@ function decodeHtmlEntities(text) {
 // "Lesson 1: Meeting: Nice to Meet You" — label, then title, then a fuller description) —
 // only the first two are kept, since the third+ segment is descriptive prose rather than
 // a label, and this needs to read naturally as a short human-facing chapter reference.
+// This is the FALLBACK tier used only when the EPUB has no usable navigation document —
+// see listExternalChapters() below for the preferred, spec-grounded source.
 function shortenChapterTitle(rawTitle) {
   const pageTitle = decodeHtmlEntities(rawTitle).split(",")[0].trim();
   const segments = pageTitle
@@ -213,21 +230,285 @@ function shortenChapterTitle(rawTitle) {
   return segments.slice(0, 2).join(": ");
 }
 
-/**
- * A short, human-readable label for chapter `number` — e.g. "Lesson 6: Going
- * Places (1)" — for surfacing to a person instead of the raw 1-indexed spine
- * position, which is an internal detail with no relationship to how the book
- * itself numbers/names its own chapters. Sourced from the chapter's own
- * `<title>` tag; falls back to `chapter ${number}` (matching the plain
- * numeric wording used elsewhere) when the chapter has no title tag or an
- * empty one, so callers can drop this straight into an "in ___" phrase
- * either way.
- */
-export function describeChapter(epubPath, number) {
+function describeChapterFromTitleTag(epubPath, number) {
   const { content } = loadChapterEntry(epubPath, number);
   const match = content.match(TITLE_TAG_PATTERN);
   const shortened = match ? shortenChapterTitle(match[1]) : "";
   return shortened || `chapter ${number}`;
+}
+
+// Same regex/attribute-scanning approach as findTags()/parseAttrs() (no real XML/HTML
+// parser — see the "OPF/container.xml parsing is a hand-rolled scanner" trade-off this
+// project has already accepted), but also captures each match's offset, since isolating
+// the specific <nav epub:type="toc"> block among possibly several <nav> elements (toc,
+// landmarks, page-list) needs position info that findTags() itself doesn't expose.
+function findTagOccurrences(xml, tagName) {
+  const pattern = new RegExp(`<${tagName}\\b([^>]*)>`, "g");
+  return [...xml.matchAll(pattern)].map((m) => ({
+    attrs: parseAttrs(m[1]),
+    start: m.index,
+    end: m.index + m[0].length,
+  }));
+}
+
+// EPUB3's nav document can contain several <nav> blocks for different purposes
+// (epub:type="toc", "landmarks", "page-list", ...) — only the "toc" one is a chapter
+// list. epub:type is itself a space-separated token list (rarely, but validly,
+// "toc landmarks" etc.), so this token-matches rather than doing an exact-string
+// comparison.
+function isolateNavToc(xhtml) {
+  for (const tag of findTagOccurrences(xhtml, "nav")) {
+    const epubTypeTokens = (tag.attrs["epub:type"] || "").split(/\s+/);
+    if (!epubTypeTokens.includes("toc")) {
+      continue;
+    }
+    const closeIndex = xhtml.indexOf("</nav>", tag.end);
+    if (closeIndex === -1) {
+      continue;
+    }
+    return xhtml.slice(tag.end, closeIndex);
+  }
+  return null;
+}
+
+const NAV_A_TAG_PATTERN = /<a\b[^>]*\bhref="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g;
+
+// Returns the toc <nav>'s <a href="...">Label</a> entries in document order — nesting
+// (a sub-<ol> under one <li> for sub-sections) is deliberately NOT tracked structurally,
+// only sequence is: a <ol><li> tree read top-to-bottom already IS book reading order
+// regardless of depth, and building a real tree here would be a step up in parsing
+// complexity this codebase has consistently avoided (see findTags()'s own comment).
+function parseNavXhtmlToc(xhtml) {
+  const tocXml = isolateNavToc(xhtml);
+  if (!tocXml) {
+    return [];
+  }
+
+  const entries = [];
+  for (const m of tocXml.matchAll(NAV_A_TAG_PATTERN)) {
+    const href = m[1];
+    const label = decodeHtmlEntities(m[2].replace(/<[^>]+>/g, "")).trim();
+    if (href && label) {
+      entries.push({ href, label });
+    }
+  }
+  return entries;
+}
+
+function isolateNavMap(ncxXml) {
+  const startMatch = /<navMap\b[^>]*>/i.exec(ncxXml);
+  if (!startMatch) {
+    return null;
+  }
+  const endIndex = ncxXml.indexOf("</navMap>", startMatch.index);
+  if (endIndex === -1) {
+    return null;
+  }
+  return ncxXml.slice(startMatch.index + startMatch[0].length, endIndex);
+}
+
+// NCX <navPoint>s can nest for sub-levels. Rather than tracking depth, this slices the
+// navMap between one <navPoint> tag's start and the NEXT <navPoint> tag's start (sibling
+// OR first child, whichever comes first in document order) — since a navPoint's own
+// <navLabel>/<content> always precede any nested child <navPoint> in a well-formed NCX,
+// taking the first label/content match within that slice always yields that navPoint's
+// own data, never a descendant's. This produces one entry per navPoint, parent and child
+// alike, flattened into one list in document order (same flattening philosophy as the
+// nav.xhtml <ol> case above).
+function parseNcxNavMap(ncxXml) {
+  const navMapXml = isolateNavMap(ncxXml);
+  if (!navMapXml) {
+    return [];
+  }
+
+  const navPointStarts = [...navMapXml.matchAll(/<navPoint\b[^>]*>/g)].map((m) => m.index);
+  const entries = [];
+  for (let i = 0; i < navPointStarts.length; i++) {
+    const start = navPointStarts[i];
+    const end = i + 1 < navPointStarts.length ? navPointStarts[i + 1] : navMapXml.length;
+    const slice = navMapXml.slice(start, end);
+
+    const labelMatch = /<navLabel>\s*<text>([^<]*)<\/text>/i.exec(slice);
+    const contentMatch = /<content\b[^>]*\bsrc="([^"]*)"/i.exec(slice);
+    if (!labelMatch || !contentMatch) {
+      continue;
+    }
+
+    const label = decodeHtmlEntities(labelMatch[1]).trim();
+    const href = contentMatch[1];
+    if (label && href) {
+      entries.push({ href, label });
+    }
+  }
+  return entries;
+}
+
+// properties is a space-separated token list (e.g. properties="nav scripted") — must
+// token-match, not substring-match, so a hypothetical "navsomething" value doesn't
+// false-positive.
+function findManifestItemByProperty(manifestItems, token) {
+  return manifestItems.find((item) => (item.properties || "").split(/\s+/).includes(token));
+}
+
+function findNcxManifestItem(manifestItems, tocId) {
+  if (tocId) {
+    const byId = manifestItems.find((item) => item.id === tocId);
+    if (byId) {
+      return byId;
+    }
+  }
+  return manifestItems.find((item) => item.mediaType === "application/x-dtbncx+xml");
+}
+
+// A nav/NCX entry's href is relative to the nav/NCX document's OWN directory, not
+// necessarily the OPF's — resolved the same posix.join/normalize way chapter hrefs are.
+// Fragments (#page_267) are stripped since chapter identity is file-level, not
+// position-within-file. URL-decoded before comparing since real EPUBs occasionally
+// percent-encode spaces/special characters in nav hrefs even when the OPF manifest's
+// hrefs for the same files aren't encoded.
+function resolveHrefToSpinePosition(href, baseDir, chapters) {
+  const withoutFragment = href.split("#")[0];
+  if (!withoutFragment) {
+    return null;
+  }
+
+  let decoded;
+  try {
+    decoded = decodeURIComponent(withoutFragment);
+  } catch {
+    decoded = withoutFragment;
+  }
+
+  const archivePath = posix.normalize(posix.join(baseDir, decoded));
+  const chapter = chapters.find((c) => c.href === archivePath);
+  return chapter ? chapter.number : null;
+}
+
+// Tries nav.xhtml (EPUB3, preferred — required by spec, located via the OPF manifest
+// item whose properties include "nav") first, then toc.ncx (EPUB2/legacy, located via
+// <spine toc="..."> or a media-type fallback) — returns null if neither exists, isn't
+// found in the archive, or parses to zero entries, so the caller can fall through to the
+// <title>-tag heuristic.
+function resolveNavSource(entries, manifestItems, tocId) {
+  const navItem = findManifestItemByProperty(manifestItems, "nav");
+  if (navItem) {
+    const navEntry = entries.find((e) => e.name === navItem.href);
+    if (navEntry) {
+      const rawEntries = parseNavXhtmlToc(navEntry.data.toString("utf-8"));
+      if (rawEntries.length > 0) {
+        return { rawEntries, baseDir: posix.dirname(navItem.href), source: "nav" };
+      }
+    }
+  }
+
+  const ncxItem = findNcxManifestItem(manifestItems, tocId);
+  if (ncxItem) {
+    const ncxEntry = entries.find((e) => e.name === ncxItem.href);
+    if (ncxEntry) {
+      const rawEntries = parseNcxNavMap(ncxEntry.data.toString("utf-8"));
+      if (rawEntries.length > 0) {
+        return { rawEntries, baseDir: posix.dirname(ncxItem.href), source: "ncx" };
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Lists the book's own human-declared chapters — sourced from its navigation document
+ * (nav.xhtml, falling back to toc.ncx), each as a spine-position RANGE rather than a
+ * single number, since one external (human) chapter can span several internal (spine)
+ * files, or several external chapters can point into the same internal file. When
+ * consecutive nav/NCX entries resolve to the SAME spine position, only the first one's
+ * label is kept — there's no addressing finer than a chapter number to disambiguate
+ * "the 2nd of 3 chapters in this file," so this is a deliberate, deterministic collapse,
+ * not a crash or a silent duplicate. Returns `[]` when the EPUB has no navigation
+ * document, it can't be found/parsed, or every one of its entries fails to resolve to a
+ * real spine file — callers should treat that as "fall back to the <title>-tag
+ * heuristic," not as an error.
+ */
+export function listExternalChapters(epubPath, { log = () => {} } = {}) {
+  const { entries, chapters, manifestItems, tocId } = loadEpub(epubPath);
+
+  const resolved = resolveNavSource(entries, manifestItems, tocId);
+  if (!resolved) {
+    return [];
+  }
+  const { rawEntries, baseDir, source } = resolved;
+
+  const positioned = [];
+  for (const { href, label } of rawEntries) {
+    const spinePosition = resolveHrefToSpinePosition(href, baseDir, chapters);
+    if (spinePosition == null) {
+      log(
+        `listExternalChapters: "${label}" (href "${href}") did not resolve to a spine file — skipped`,
+      );
+      continue;
+    }
+    positioned.push({ label, spinePosition });
+  }
+
+  const deduped = [];
+  for (const entry of positioned) {
+    const prev = deduped[deduped.length - 1];
+    if (prev && prev.spinePosition === entry.spinePosition) {
+      continue;
+    }
+    deduped.push(entry);
+  }
+
+  if (deduped.length === 0) {
+    return [];
+  }
+
+  const lastSpineNumber = chapters[chapters.length - 1].number;
+  return deduped.map((entry, i) => ({
+    label: entry.label,
+    firstChapterNumber: entry.spinePosition,
+    lastChapterNumber: i + 1 < deduped.length ? deduped[i + 1].spinePosition - 1 : lastSpineNumber,
+    source,
+  }));
+}
+
+// listExternalChapters() itself stays pure/uncached (so tests and any other caller get
+// deterministic, cache-free behavior, including a caller-supplied `log`). This cache
+// exists only for describeChapter()'s own internal call path, which can invoke it many
+// times in one process (e.g. once per flagged item in flagForwardConcerns) — without it,
+// the same book's nav/NCX document would be re-parsed on every single call. Scoped to one
+// process's lifetime: no TTL, no eviction, no invalidation — a CLI invocation processes
+// one book.
+const externalChaptersCache = new Map();
+
+function listExternalChaptersCached(epubPath) {
+  if (!externalChaptersCache.has(epubPath)) {
+    externalChaptersCache.set(epubPath, listExternalChapters(epubPath));
+  }
+  return externalChaptersCache.get(epubPath);
+}
+
+/**
+ * A short, human-readable label for chapter `number` — e.g. "Lesson 6: Going
+ * Places (1)" — for surfacing to a person instead of the raw 1-indexed spine
+ * position, which is an internal detail with no relationship to how the book
+ * itself numbers/names its own chapters. Prefers the book's own navigation
+ * document (see listExternalChapters()); falls back to the chapter's own
+ * `<title>` tag when there's no usable nav document or `number` falls
+ * outside every one of its entries' ranges (e.g. front matter before the
+ * first real chapter); falls back further to plain `chapter ${number}`
+ * wording when even that yields nothing — so callers can drop the result
+ * straight into an "in ___" phrase no matter which tier answered.
+ */
+export function describeChapter(epubPath, number) {
+  const externalChapters = listExternalChaptersCached(epubPath);
+  const match = externalChapters.find(
+    (chapter) => number >= chapter.firstChapterNumber && number <= chapter.lastChapterNumber,
+  );
+  if (match) {
+    return match.label;
+  }
+
+  return describeChapterFromTitleTag(epubPath, number);
 }
 
 // The image-aware extraction prompt (docs/epub-extraction-prompt.md) tells the model to

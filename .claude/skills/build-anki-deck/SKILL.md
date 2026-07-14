@@ -56,39 +56,22 @@ The result is `corpus.json` in your run directory, containing:
 - Optional translations or hints from the source
 
 **Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
-Read `corpus.json` and build an HTML review table, then publish it as an Artifact (load the
-`artifact-design` skill first — this is a utilitarian data-review tool, polished but not
-over-designed). Columns: #, English, Category, Target (if the source already populated it, e.g.
-the EPUB path), Notes. Make each row clickable to mark it for exclusion (visual only — strikethrough
-+ dim), with a running "N marked" counter and a "Copy instruction" button. Don't skip this even for
-a small corpus — a terminal dump is not an acceptable substitute; the point is that it's actually
-visible and scannable in the browser.
-Let the page fill the available window width — don't cap the content in a fixed-width, centered
-column (no `max-width` + `margin: 0 auto` on the page wrapper). That leaves large dead space on
-both sides on any reasonably wide window and the table never grows to use it. Instead give the
-page wrapper roughly a 1-inch side margin (`padding: 48px 96px 96px` — 96px ≈ 1in at the standard
-96px/in CSS reference) and no `max-width`/auto-margin at all, so the table genuinely widens as the
-window widens.
-Keep the table header row static (no `position: sticky`) — sticky positioning on `thead th` breaks
-inside a horizontally-scrolling wrapper (`overflow-x: auto` on the table's container implicitly
-turns that container into the sticky containing block, so the header detaches and floats mid-table
-instead of pinning to the top). A plain, non-sticky header is correct here; don't reintroduce it.
-The copy button must put a ready-to-paste instruction on the clipboard, not bare numbers — e.g.
-`Please exclude rows 3, 12, 19.` (or `No rows marked for exclusion.` when nothing's marked), so the
-result can go straight back into chat with no editing. `navigator.clipboard.writeText` is often
-blocked inside the artifact's sandboxed iframe and silently throws — always try it first, fall back
-to a hidden-textarea `document.execCommand("copy")` on failure, and if BOTH fail, reveal the text in
-a visible, pre-selected, read-only input so it can be copied by hand. Never let a copy failure be
-silent (e.g. don't just overwrite the button's own label with the text).
-Never put a Notes/long-text column's full content inline in the cell — a long note forces that
-whole row to wrap across many lines while every other row stays single-line, which reads as broken,
-uneven table styling. Instead put a small pill-style "Note" button in that cell (nothing when there's
-no note) that opens the full text in a floating popover on click. Use `position: fixed` for the
-popover (not `absolute`) and position it via the button's `getBoundingClientRect()`, clamped to the
-viewport — `position: absolute` gets clipped by the table's `overflow-x: auto` wrapper. One shared
-popover element reused for every row is enough; `e.stopPropagation()` on the button's click handler
-so it doesn't also trigger that row's exclusion-mark toggle, and close the popover on an outside
-click or Escape.
+Generate it from the checked-in template rather than hand-authoring HTML — that's what keeps this
+page visually and behaviorally identical run over run:
+
+```sh
+anki-builder render-review --run <runDir> --stage corpus
+```
+
+This reads `corpus.json` and writes `<runDir>/review-corpus.html` (columns: #, English, Category,
+Target; click-to-mark-for-exclusion rows with a running counter; a "Copy instruction" button with a
+robust clipboard fallback; long notes behind a "Note" popover button; full window width, ~1-inch
+margins, no sticky header). Publish that file as an Artifact — don't recreate the page by hand, and
+don't skip this even for a small corpus; a terminal dump is not an acceptable substitute for
+something actually visible and scannable in the browser. The template itself lives in
+`src/review/` (`reviewPageTemplate.js` plus a `render*ReviewPage.js` per stage) — if the page ever
+needs a design change, edit it there so every stage and every future run stays in sync, rather than
+freehand-adjusting one instance of the HTML.
 
 **You decide:** does the corpus look right?
 
@@ -113,13 +96,18 @@ This:
 - Writes `cards.json` (the translated cards, ready for audio/images)
 
 **Review gate — publish a new Claude Artifact (don't reuse the corpus-stage one, the data's
-different now).** Read `cards.json` and build a review table, same visual system as the corpus
-review (same tokens/fonts, same "no `position: sticky` on `thead th`" rule, same robust
-copy-with-fallback button — see Step 2 for the concrete requirements, they apply here unchanged).
-Columns: #, English, Target, Pronunciation, Category, Notes. Same click-to-mark-for-exclusion
-interaction, copying `Please exclude rows 3, 12, 19.` — but note the mechanism differs from Step 2:
-there's no `anki-builder review` equivalent for `cards.json`, so acting on this means directly
-removing those entries from `cards.json` and re-validating it, not running a CLI command.
+different now):**
+
+```sh
+anki-builder render-review --run <runDir> --stage translate
+```
+
+This reads `cards.json` and writes `<runDir>/review-translate.html` — same shared template and
+interaction as the corpus review (columns: #, English, Target, Pronunciation, Category, Note;
+click-to-mark-for-exclusion, copying `Please exclude rows 3, 12, 19.`). Publish it as an Artifact.
+Note the mechanism differs from Step 2: there's no `anki-builder review` equivalent for
+`cards.json`, so acting on marked rows means directly removing those entries from `cards.json` and
+re-validating it, not running a CLI command.
 
 If you want to edit translations or pronunciations, do it in `cards.json` now before proceeding.
 Once you give a decision, apply it and move straight into Step 4 in the same turn — same
@@ -148,19 +136,25 @@ This:
 If you skip audio, the deck will still work — cards just won't have pronunciation recordings.
 
 **Review gate — publish a new Claude Artifact you can actually listen to.** A text table isn't
-enough here — the whole point is hearing the clips. Read the updated `cards.json` (now has an
-`audio` filename per card) and the run's `audio/` directory; for each card, base64-encode its mp3
-file and embed it as `<audio controls src="data:audio/mpeg;base64,...">` next to English/Target/
-Pronunciation, same visual system as the other two review artifacts. Skip the click-to-mark
-row-strike interaction here — instead, add a short free-text note per row (or a simple "flag"
-toggle) since the real action isn't exclusion, it's "this one sounds wrong, regenerate it": copy
-button produces `Please regenerate audio for rows 3, 12.` To act on that: delete that term's cached
-clip from `.anki-builder/audio/<voiceId>/<hash>.mp3` AND its copy under `<runDir>/audio/`, then
-re-run `anki-builder audio --run <runDir> --voice <voiceId>` — it's resumable and only regenerates
+enough here — the whole point is hearing the clips:
+
+```sh
+anki-builder render-review --run <runDir> --stage audio
+```
+
+This reads the updated `cards.json` (now has an `audio` filename per card) and the run's `audio/`
+directory, base64-encodes each clip, and writes `<runDir>/review-audio.html` with each row's clip
+embedded as `<audio controls src="data:audio/mpeg;base64,...">` next to English/Target/
+Pronunciation, same shared visual system as the other two review artifacts. Publish it as an
+Artifact. This stage uses "flag for regeneration" instead of exclusion — the real action isn't
+dropping a row, it's "this one sounds wrong, regenerate it": copy button produces
+`Please regenerate audio for rows 3, 12.` To act on that: delete that term's cached clip from
+`.anki-builder/audio/<voiceId>/<hash>.mp3` AND its copy under `<runDir>/audio/`, then re-run
+`anki-builder audio --run <runDir> --voice <voiceId>` — it's resumable and only regenerates
 whichever terms are missing from the cache, not the whole batch. For a large deck (many dozens of
 cards), embedding every clip can make the artifact file large/slow to publish — if that happens,
-say so and offer to split it into a few smaller artifacts rather than silently producing one huge
-page.
+say so rather than silently publishing one huge page (see
+`.harness/custom/docs/LIMITATIONS.md` — there's no chunking built in yet).
 
 ### Step 5: Deck Build
 
@@ -216,6 +210,13 @@ anki-builder audio --run <dir> --voice 21m00Tcm4TlvDq8ikWAM
 anki-builder deck --run <dir> --name "Travel Spanish"
 ```
 
+### Render a review artifact
+```sh
+anki-builder render-review --run <dir> --stage corpus
+anki-builder render-review --run <dir> --stage translate
+anki-builder render-review --run <dir> --stage audio
+```
+
 ## Environment Variables
 
 Set in `.env` or export to your shell:
@@ -233,6 +234,8 @@ All artifacts are stored in your run directory (`--run <dir>`):
 - `cards.json` — translated and enriched corpus
 - `audio/` — generated audio files (if audio stage ran)
 - `deck.apkg` — final Anki deck, ready to import
+- `review-corpus.html` / `review-translate.html` / `review-audio.html` — templated review
+  artifacts generated by `render-review`, meant to be published as Claude Artifacts
 
 Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio.
 

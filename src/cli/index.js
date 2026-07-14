@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 import { Buffer } from "buffer";
 import {
   runPaths as defaultRunPaths,
@@ -26,6 +26,11 @@ import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { buildDeck as defaultBuildDeck } from "../deck/index.js";
 import { defaultPromptReviewDecisions } from "./reviewPrompt.js";
+import { renderCorpusReviewPage as defaultRenderCorpusReviewPage } from "../review/renderCorpusReviewPage.js";
+import { renderTranslateReviewPage as defaultRenderTranslateReviewPage } from "../review/renderTranslateReviewPage.js";
+import { renderAudioReviewPage as defaultRenderAudioReviewPage } from "../review/renderAudioReviewPage.js";
+
+const REVIEW_STAGES = ["corpus", "translate", "audio"];
 
 const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
 
@@ -300,12 +305,47 @@ async function runDeck(flags, ctx) {
   );
 }
 
+async function runRenderReview(flags, ctx) {
+  const stage = flags.stage;
+  if (!REVIEW_STAGES.includes(stage)) {
+    throw new Error(
+      `--stage must be one of: ${REVIEW_STAGES.join(", ")} (got ${JSON.stringify(stage ?? null)})`,
+    );
+  }
+
+  const paths = ctx.runPaths(flags.run);
+  const outPath = join(resolve(flags.run), `review-${stage}.html`);
+
+  let html;
+  if (stage === "corpus") {
+    if (!existsSync(paths.corpus)) {
+      throw new Error(`corpus.json not found at ${paths.corpus} — run "assemble" first`);
+    }
+    html = ctx.renderCorpusReviewPage(readJson(paths.corpus));
+  } else if (stage === "translate") {
+    if (!existsSync(paths.cards)) {
+      throw new Error(`cards.json not found at ${paths.cards} — run "translate" first`);
+    }
+    html = ctx.renderTranslateReviewPage(readJson(paths.cards));
+  } else {
+    if (!existsSync(paths.cards)) {
+      throw new Error(`cards.json not found at ${paths.cards} — run "translate" first`);
+    }
+    html = ctx.renderAudioReviewPage(readJson(paths.cards), { audioDir: paths.audio });
+  }
+
+  mkdirSync(join(outPath, ".."), { recursive: true });
+  writeFileSync(outPath, html);
+  ctx.log(`wrote ${stage} review artifact to ${outPath}`);
+}
+
 const COMMANDS = {
   assemble: runAssemble,
   review: runReview,
   translate: runTranslate,
   audio: runAudio,
   deck: runDeck,
+  "render-review": runRenderReview,
 };
 
 export async function runCli(argv, deps = {}) {
@@ -329,6 +369,9 @@ export async function runCli(argv, deps = {}) {
     generateAudio = defaultGenerateAudio,
     buildDeck = defaultBuildDeck,
     fetchTts = defaultFetchTts,
+    renderCorpusReviewPage = defaultRenderCorpusReviewPage,
+    renderTranslateReviewPage = defaultRenderTranslateReviewPage,
+    renderAudioReviewPage = defaultRenderAudioReviewPage,
     log = console.log,
   } = deps;
 
@@ -366,6 +409,9 @@ export async function runCli(argv, deps = {}) {
     generateAudio,
     buildDeck,
     fetchTts,
+    renderCorpusReviewPage,
+    renderTranslateReviewPage,
+    renderAudioReviewPage,
     log,
   };
 

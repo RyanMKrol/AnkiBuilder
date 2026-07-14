@@ -114,3 +114,31 @@ test("renderExtractionPrompt() defaults to the real docs/epub-extraction-prompt.
   assert.match(rendered, /\/tmp\/chapter\.xhtml/);
   assert.doesNotMatch(rendered, /\{\{[A-Z_]+\}\}/);
 });
+
+test("renderExtractionPrompt() substitutes bookConventions when given", () => {
+  withTempTemplate("Conventions: {{BOOK_CONVENTIONS}}", (templatePath) => {
+    const rendered = renderExtractionPrompt({
+      targetLanguage: "Japanese",
+      chapterFilePath: "/tmp/chapter.xhtml",
+      bookConventions: "Placeholders use 〜.",
+      templatePath,
+    });
+
+    assert.strictEqual(rendered, "Conventions: Placeholders use 〜.");
+  });
+});
+
+test("renderExtractionPrompt() falls back to a plain string when bookConventions is omitted", () => {
+  withTempTemplate("Conventions: {{BOOK_CONVENTIONS}}", (templatePath) => {
+    const rendered = renderExtractionPrompt({
+      targetLanguage: "Japanese",
+      chapterFilePath: "/tmp/chapter.xhtml",
+      templatePath,
+    });
+
+    assert.strictEqual(
+      rendered,
+      "Conventions: (no book-wide conventions available for this source)",
+    );
+  });
+});

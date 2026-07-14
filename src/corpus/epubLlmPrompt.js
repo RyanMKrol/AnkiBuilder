@@ -20,14 +20,21 @@ function substitute(template, values) {
   return rendered;
 }
 
+const NO_BOOK_CONVENTIONS = "(no book-wide conventions available for this source)";
+
 /**
  * Renders the LLM chapter-extraction prompt from the Markdown template,
- * substituting {{TARGET_LANGUAGE}}, {{CHAPTER_FILE_PATH}}, and {{CATEGORY_LIST}}.
+ * substituting {{TARGET_LANGUAGE}}, {{CHAPTER_FILE_PATH}}, {{CATEGORY_LIST}},
+ * and {{BOOK_CONVENTIONS}}. `bookConventions` is optional — when omitted
+ * (e.g. the manual --chapter path, which has no book identity to look
+ * conventions up under), a plain fallback string is substituted instead of
+ * leaving a gap.
  */
 export function renderExtractionPrompt({
   targetLanguage,
   chapterFilePath,
   categoryList = CATEGORIES,
+  bookConventions = null,
   templatePath = DEFAULT_TEMPLATE_PATH,
 } = {}) {
   if (!targetLanguage) {
@@ -42,6 +49,7 @@ export function renderExtractionPrompt({
     TARGET_LANGUAGE: targetLanguage,
     CHAPTER_FILE_PATH: resolve(chapterFilePath),
     CATEGORY_LIST: categoryList.join(", "),
+    BOOK_CONVENTIONS: bookConventions || NO_BOOK_CONVENTIONS,
   });
 
   const unresolved = rendered.match(/\{\{[A-Z_]+\}\}/);

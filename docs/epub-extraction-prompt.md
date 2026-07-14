@@ -6,6 +6,12 @@ Read the file at this exact path yourself using your Read tool — it is the raw
 
 Use the file's structure (headings, CSS classes, tag nesting) as signal for what kind of content each part is. Go through the ENTIRE file top to bottom — do not skip any part of it.
 
+## Book-Wide Conventions
+
+{{BOOK_CONVENTIONS}}
+
+Use this as grounding for how THIS book specifically formats placeholders, content, and exercises — apply it alongside (not instead of) the general guidance below.
+
 ## Why
 
 The data you extract here will become flashcards in an Anki deck used to learn this language. Prioritize content that actually helps someone learn to speak and recognize the language — real vocabulary, real sentences — over exhaustively cataloguing every explanatory detail in the chapter.

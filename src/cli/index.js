@@ -14,11 +14,14 @@ import {
   chapterCachePath as defaultChapterCachePath,
   saveChapterCorpus as defaultSaveChapterCorpus,
   loadPriorChapterItems as defaultLoadPriorChapterItems,
+  loadBookConventions as defaultLoadBookConventions,
+  saveBookConventions as defaultSaveBookConventions,
 } from "../corpus/epubLibrary.js";
 import {
   dedupBackward as defaultDedupBackward,
   dedupForward as defaultDedupForward,
 } from "../corpus/epubDedup.js";
+import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { buildDeck as defaultBuildDeck } from "../deck/index.js";
@@ -101,13 +104,31 @@ async function runAssemble(flags, ctx) {
 
     const chapterNumber = Number(flags["chapter-number"]);
     const { epubHash } = ctx.registerEpub(flags.epub);
+
+    let bookConventions = ctx.loadBookConventions(epubHash);
+    if (!bookConventions) {
+      ctx.log(
+        `no cached book conventions for epub ${epubHash} — running a one-time whole-book analysis pass`,
+      );
+      bookConventions = ctx.analyzeBookConventions({
+        epubPath: flags.epub,
+        targetLanguage: flags.lang,
+      });
+      ctx.saveBookConventions(epubHash, bookConventions);
+      ctx.log(`saved book conventions to the local library (epub ${epubHash})`);
+    }
+
     const chapterFilePath = ctx.extractChapterToFile(
       flags.epub,
       chapterNumber,
       ctx.chapterCachePath(epubHash, chapterNumber),
     );
 
-    corpus = ctx.assembleCorpusFromChapter({ chapterFilePath, targetLanguage: flags.lang });
+    corpus = ctx.assembleCorpusFromChapter({
+      chapterFilePath,
+      targetLanguage: flags.lang,
+      bookConventions,
+    });
     corpus.meta = { ...corpus.meta, epubHash, chapterNumber };
 
     const backward = ctx.dedupBackward(
@@ -298,6 +319,9 @@ export async function runCli(argv, deps = {}) {
     chapterCachePath = defaultChapterCachePath,
     saveChapterCorpus = defaultSaveChapterCorpus,
     loadPriorChapterItems = defaultLoadPriorChapterItems,
+    loadBookConventions = defaultLoadBookConventions,
+    saveBookConventions = defaultSaveBookConventions,
+    analyzeBookConventions = defaultAnalyzeBookConventions,
     dedupBackward = defaultDedupBackward,
     dedupForward = defaultDedupForward,
     promptReviewDecisions = defaultPromptReviewDecisions,
@@ -332,6 +356,9 @@ export async function runCli(argv, deps = {}) {
     chapterCachePath,
     saveChapterCorpus,
     loadPriorChapterItems,
+    loadBookConventions,
+    saveBookConventions,
+    analyzeBookConventions,
     dedupBackward,
     dedupForward,
     promptReviewDecisions,

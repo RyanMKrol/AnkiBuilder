@@ -35,7 +35,15 @@ directory (`--run <dir>`).
     writing `corpus.json`: a backward pass drops anything already introduced in an earlier
     (reviewed) chapter of the same book; a forward pass asks a Sonnet-medium model whether anything
     is explicitly taught in a later chapter and should wait. Every dropped item is logged
-    individually, naming the item and the reason — never just a count.
+    individually, naming the item and the reason — never just a count. The _first_ `assemble --epub`
+    call for a never-before-seen book also triggers a one-time, whole-book conventions pass
+    (`src/corpus/epubBookConventions.js`) — a Sonnet-medium agent reads every chapter and
+    characterizes this specific book's own structural conventions (placeholder notation, what
+    content markup vs. exercise markup looks like), caching the result at
+    `.anki-builder/epubs/<hash>/conventions.md`. Every subsequent chapter for that book (this run
+    or a future one) reuses the cache and feeds it into the extraction prompt as grounding context,
+    instead of each chapter re-inferring the book's conventions from just its own content. Manual
+    `--chapter` mode has no book identity to cache this under, so it doesn't get this context.
 
   Both the `--chapter` and `--epub` paths call the same extractor
   (`src/corpus/epubLlmCorpus.js` / `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet
@@ -72,6 +80,7 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
   epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved by `review`
+  epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
 ```
 
 ## Implementation status

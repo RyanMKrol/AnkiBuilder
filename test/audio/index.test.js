@@ -42,7 +42,7 @@ test("writes one MP3 per unique target term into voice-specific cache dir", asyn
       await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.equal(calls.length, 2);
@@ -89,13 +89,13 @@ test("uses stable hash so same term yields same filename across runs", async () 
       const result1 = await generateAudio(cards1, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       const result2 = await generateAudio(cards2, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.equal(result1.items[0].audio, result2.items[0].audio);
@@ -130,7 +130,7 @@ test("is idempotent: second run with files present makes zero calls (cache hit)"
       await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.equal(callCount, 2);
@@ -138,7 +138,7 @@ test("is idempotent: second run with files present makes zero calls (cache hit)"
       await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.equal(callCount, 2);
@@ -173,7 +173,7 @@ test("handles multiple cards with duplicate target terms", async () => {
       const result = await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.equal(calls.length, 2);
@@ -206,7 +206,7 @@ test("annotates each card with its audio filename", async () => {
       const result = await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.equal(result.items[0].audio, result.items[0].audio);
@@ -235,7 +235,7 @@ test("throws clear error if ELEVENLABS_API_KEY is not set", async () => {
       await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: async () => Buffer.from("audio data"),
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
       assert.fail("should have thrown");
     } catch (error) {
@@ -257,7 +257,7 @@ test("throws error if voiceId is not provided", async () => {
     try {
       await generateAudio(cards, {
         fetchTts: async () => Buffer.from("audio data"),
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
       assert.fail("should have thrown");
     } catch (error) {
@@ -275,7 +275,7 @@ test("throws error if fetchTts is not provided", async () => {
     try {
       await generateAudio(cards, {
         voiceId: "voice123",
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
       assert.fail("should have thrown");
     } catch (error) {
@@ -306,7 +306,7 @@ test("preserves other card properties when annotating with audio", async () => {
       const result = await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       const item = result.items[0];
@@ -344,7 +344,7 @@ test("passes voiceId and apiKey to fetchTts function", async () => {
     await generateAudio(cards, {
       voiceId: "voice123",
       fetchTts: mockFetchTts,
-      stateHomeDir: tmpDir,
+      libraryHomeDir: tmpDir,
     });
   });
 });
@@ -364,7 +364,7 @@ test("preserves meta property in returned cards", async () => {
       const result = await generateAudio(cards, {
         voiceId: "voice123",
         fetchTts: mockFetchTts,
-        stateHomeDir: tmpDir,
+        libraryHomeDir: tmpDir,
       });
 
       assert.deepEqual(result.meta, cards.meta);

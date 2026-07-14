@@ -3,7 +3,7 @@ import { join } from "path";
 import { Buffer } from "buffer";
 import {
   runPaths as defaultRunPaths,
-  stateHome as defaultStateHome,
+  libraryHome as defaultLibraryHome,
   validateCorpus,
 } from "../model/index.js";
 import { listTemplates, loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
@@ -164,11 +164,11 @@ async function runAudio(flags, ctx) {
   const annotated = await ctx.generateAudio(cards, {
     voiceId: flags.voice,
     fetchTts: ctx.fetchTts,
-    stateHomeDir: ctx.stateHome(),
+    libraryHomeDir: ctx.libraryHome(),
   });
 
   mkdirSync(paths.audio, { recursive: true });
-  const cacheDir = join(ctx.stateHome(), "audio", flags.voice);
+  const cacheDir = join(ctx.libraryHome(), "audio", flags.voice);
   for (const item of annotated.items) {
     if (!item.audio) continue;
     const src = join(cacheDir, item.audio);
@@ -217,7 +217,7 @@ const COMMANDS = {
 export async function runCli(argv, deps = {}) {
   const {
     runPaths = defaultRunPaths,
-    stateHome = defaultStateHome,
+    libraryHome = defaultLibraryHome,
     loadTemplate = defaultLoadTemplate,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
     promptReviewDecisions = defaultPromptReviewDecisions,
@@ -244,7 +244,7 @@ export async function runCli(argv, deps = {}) {
 
   const ctx = {
     runPaths,
-    stateHome,
+    libraryHome,
     loadTemplate,
     assembleCorpusFromChapter,
     promptReviewDecisions,

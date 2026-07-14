@@ -1,8 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert";
-import { homedir } from "os";
-import { join, resolve } from "path";
-import { validateCorpus, validateCards, stateHome, runPaths } from "../../src/model/index.js";
+import { fileURLToPath } from "url";
+import { dirname, join, resolve } from "path";
+import { validateCorpus, validateCards, libraryHome, runPaths } from "../../src/model/index.js";
+
+const TEST_DIR = dirname(fileURLToPath(import.meta.url)); // test/model/
+const REPO_ROOT = resolve(join(TEST_DIR, "..", ".."));
 
 test("validateCorpus - valid corpus passes validation", () => {
   const validCorpus = {
@@ -94,6 +97,45 @@ test("validateCorpus - a category outside the enum fails validation", () => {
     },
     (err) => err.message.includes("category"),
   );
+});
+
+test("validateCorpus - accepts meta.epubHash and meta.chapterNumber when set", () => {
+  const validCorpus = {
+    meta: {
+      targetLanguage: "ja",
+      sourceType: "epub",
+      reviewed: false,
+      epubHash: "abc123def4567890",
+      chapterNumber: 3,
+    },
+    items: [],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCorpus(validCorpus);
+  });
+});
+
+test("validateCorpus - accepts meta without epubHash/chapterNumber (backward compat)", () => {
+  const validCorpus = {
+    meta: { targetLanguage: "es", sourceType: "template" },
+    items: [],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCorpus(validCorpus);
+  });
+});
+
+test("validateCorpus - accepts meta.epubHash/chapterNumber explicitly set to null", () => {
+  const validCorpus = {
+    meta: { targetLanguage: "es", sourceType: "template", epubHash: null, chapterNumber: null },
+    items: [],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCorpus(validCorpus);
+  });
 });
 
 test("validateCorpus - missing english field fails validation", () => {
@@ -330,41 +372,15 @@ test("validateCards - optional fields are allowed", () => {
   });
 });
 
-test("stateHome - returns default path when ANKI_BUILDER_HOME is not set", () => {
-  const originalEnv = process.env.ANKI_BUILDER_HOME;
-  delete process.env.ANKI_BUILDER_HOME;
-
-  const path = stateHome();
-  const expected = resolve(join(homedir(), ".anki-builder"));
+test("libraryHome - resolves to <repo-root>/.anki-builder", () => {
+  const path = libraryHome();
+  const expected = resolve(join(REPO_ROOT, ".anki-builder"));
 
   assert.strictEqual(path, expected);
-
-  // Restore original value
-  if (originalEnv) {
-    process.env.ANKI_BUILDER_HOME = originalEnv;
-  }
 });
 
-test("stateHome - returns custom path when ANKI_BUILDER_HOME is set", () => {
-  const customPath = "/tmp/custom-anki-home";
-  const originalEnv = process.env.ANKI_BUILDER_HOME;
-  process.env.ANKI_BUILDER_HOME = customPath;
-
-  const path = stateHome();
-  const expected = resolve(customPath);
-
-  assert.strictEqual(path, expected);
-
-  // Restore original value
-  if (originalEnv) {
-    process.env.ANKI_BUILDER_HOME = originalEnv;
-  } else {
-    delete process.env.ANKI_BUILDER_HOME;
-  }
-});
-
-test("stateHome - resolves path correctly", () => {
-  const path = stateHome();
+test("libraryHome - resolves path correctly", () => {
+  const path = libraryHome();
   // Should not start with ~ (must be resolved)
   assert.ok(!path.includes("~"), "path should be resolved, not contain ~");
 });

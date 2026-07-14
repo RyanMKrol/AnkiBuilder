@@ -208,12 +208,12 @@ test("translate: throws when corpus.json is missing", async () => {
 
 test("audio: dispatches to generateAudio, copies files into run audio dir, and rewrites cards.json", async () => {
   await withTempDir(async (runDir) =>
-    withTempDir(async (stateHomeDir) => {
+    withTempDir(async (libraryHomeDir) => {
       const paths = runPaths(runDir);
       mkdirSync(runDir, { recursive: true });
       writeFileSync(paths.cards, JSON.stringify(baseCards()));
 
-      const cacheDir = join(stateHomeDir, "audio", "voice1");
+      const cacheDir = join(libraryHomeDir, "audio", "voice1");
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
 
@@ -228,7 +228,7 @@ test("audio: dispatches to generateAudio, copies files into run audio dir, and r
 
       await runCli(["audio", "--run", runDir, "--voice", "voice1"], {
         generateAudio,
-        stateHome: () => stateHomeDir,
+        libraryHome: () => libraryHomeDir,
         log: () => {},
       });
 

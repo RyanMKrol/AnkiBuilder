@@ -125,3 +125,27 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   romaji more prominently than an ad hoc respelling), split `pronunciation` into a
   `romanization`/`phonetic` pair on `CARDS_SCHEMA` and have the model report which kind it
   produced.
+
+## Book-conventions pass reads every chapter in one call — no automated coverage check
+
+- **What:** `analyzeBookConventions` (`src/corpus/epubBookConventions.js`) asks a single
+  Sonnet-medium call to read EVERY chapter of a book (via its own Read tool, one file per chapter)
+  before producing a conventions summary. This was a deliberate choice over sampling a
+  representative subset of chapters, made explicitly aware that a whole-book pass echoes the
+  earlier whole-book *extraction* attempt that failed this session (74,504 output tokens
+  generated, only an 8,487-char tail returned, no error surfaced). The risk profile differs here —
+  this pass's output is a small, bounded summary document, not a large structured item array that
+  scales with book length — but the risk isn't zero, especially for very long books. The prompt
+  instructs the model to self-report which chapters it did/didn't actually read in a `## Coverage`
+  section rather than silently presenting partial coverage as complete, but nothing in the code
+  parses or verifies that self-report — a silently-incomplete analysis is possible and would only
+  surface as a real chapter mis-extracted downstream.
+- **Why:** most thorough option, chosen deliberately over the cheaper/safer sampling alternative
+  after weighing both explicitly during planning.
+- **Impact:** for a long book, this is the single most expensive/slowest step in first-time
+  processing (one call reading dozens of files) and its correctness has no automated check —
+  only the resulting corpus quality on later chapters serves as an indirect signal.
+- **When to revisit:** if a very long book's conventions pass turns out unreliable or too
+  slow/costly in practice — switch to a representative-chapter sample (first, a few middle,
+  last, plus any chapter self-identified as exercise-heavy) instead of reading every chapter, or
+  parse the `## Coverage` section and warn explicitly when it reports incomplete coverage.

@@ -12,7 +12,12 @@ Different textbooks format the same kind of content differently — how they mar
 
 ## What to look for
 
-- **Placeholder / fill-in-the-blank conventions**: what character(s) or notation does this book use to mark "insert a word here" in a grammar pattern (e.g. a wave dash, a fullwidth tilde, an ASCII tilde, an underscore, bracketed text like "[noun]")? Give real examples you found, with the exact characters used.
+- **Placeholder / fill-in-the-blank notation** — this is really two distinct questions; check both separately, don't assume answering one answers the other:
+  - **Pattern-template blanks**: how does the book mark a fill-in-the-blank slot inside a full grammar-pattern _template_, or a drill/exercise/quiz (e.g. bolded English gloss words, blank spans, underscores, bracketed text like "[noun]")?
+  - **Attachment-point markers on individual entries**: does the book ever mark a SINGLE vocabulary or grammar entry as a prefix or suffix using a symbol directly attached to the morpheme (e.g. a wave dash before or after it, like "〜さん" or "お〜")? This can appear on its own in a vocabulary table row, not just inside a larger sentence pattern — check vocabulary tables specifically, not only pattern/template sections.
+
+  Give real examples you found for each, with the exact characters used.
+
 - **Content markup**: what does a genuine teaching section look like structurally — vocabulary lists, key/model sentences, dialogue? Note recurring CSS classes, heading patterns, or tag structures that reliably signal "this is real content."
 - **Exercise/drill markup**: what does a practice exercise or drill section look like structurally, that should be SKIPPED rather than extracted? Note how to distinguish it from genuine content.
 - **Anything else structurally consistent** across chapters that would help a future single-chapter extraction pass — e.g. how chapters are titled/numbered, where vocabulary is glossed vs. inferred from context, recurring section labels.
@@ -31,6 +36,10 @@ Respond with a single Markdown document (no other commentary before or after it)
 # {{TARGET_LANGUAGE}} Book Conventions
 
 ## Placeholder Notation
+### Pattern-Template Blanks
+...
+
+### Attachment-Point Markers (prefixes/suffixes on individual entries)
 ...
 
 ## Content Section Markers

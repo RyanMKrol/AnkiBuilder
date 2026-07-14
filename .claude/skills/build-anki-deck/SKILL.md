@@ -63,6 +63,12 @@ the EPUB path), Notes. Make each row clickable to mark it for exclusion (visual 
 + dim), with a running "N marked" counter and a "Copy instruction" button. Don't skip this even for
 a small corpus — a terminal dump is not an acceptable substitute; the point is that it's actually
 visible and scannable in the browser.
+Let the page fill the available window width — don't cap the content in a fixed-width, centered
+column (no `max-width` + `margin: 0 auto` on the page wrapper). That leaves large dead space on
+both sides on any reasonably wide window and the table never grows to use it. Instead give the
+page wrapper roughly a 1-inch side margin (`padding: 48px 96px 96px` — 96px ≈ 1in at the standard
+96px/in CSS reference) and no `max-width`/auto-margin at all, so the table genuinely widens as the
+window widens.
 Keep the table header row static (no `position: sticky`) — sticky positioning on `thead th` breaks
 inside a horizontally-scrolling wrapper (`overflow-x: auto` on the table's container implicitly
 turns that container into the sticky containing block, so the header detaches and floats mid-table

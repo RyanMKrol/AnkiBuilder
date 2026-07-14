@@ -74,6 +74,15 @@ blocked inside the artifact's sandboxed iframe and silently throws — always tr
 to a hidden-textarea `document.execCommand("copy")` on failure, and if BOTH fail, reveal the text in
 a visible, pre-selected, read-only input so it can be copied by hand. Never let a copy failure be
 silent (e.g. don't just overwrite the button's own label with the text).
+Never put a Notes/long-text column's full content inline in the cell — a long note forces that
+whole row to wrap across many lines while every other row stays single-line, which reads as broken,
+uneven table styling. Instead put a small pill-style "Note" button in that cell (nothing when there's
+no note) that opens the full text in a floating popover on click. Use `position: fixed` for the
+popover (not `absolute`) and position it via the button's `getBoundingClientRect()`, clamped to the
+viewport — `position: absolute` gets clipped by the table's `overflow-x: auto` wrapper. One shared
+popover element reused for every row is enough; `e.stopPropagation()` on the button's click handler
+so it doesn't also trigger that row's exclusion-mark toggle, and close the popover on an outside
+click or Escape.
 
 **You decide:** does the corpus look right?
 

@@ -25,23 +25,69 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   (re-invoke `runClaude` for just the ids missing from a batch) instead of requiring a full corpus
   re-run.
 
-## `assemble --chapter` handles one chapter file, not a whole `.epub` archive
+## `assemble --epub` reads one chapter per command — no whole-book, one-shot loop yet
 
-- **What:** the mechanical, regex-based EPUB extractor (formerly `src/corpus/epub.js`) has been
-  deleted entirely. `assemble --chapter <path> --lang <language>` now uses the LLM-based extractor
-  (`src/corpus/epubLlmCorpus.js` → `epubLlmExtract.js`), which reads ONE already-extracted chapter
-  `.xhtml` file directly via the model's own Read tool. There is no code anywhere in this
-  repository that opens a real `.epub` archive, enumerates its chapters in correct (spine) reading
-  order, or loops the extractor across a whole book — a user has to already have a single chapter
-  file extracted on disk to pass to `--chapter`.
-- **Why:** the extraction primitive and the whole-book orchestration (unzip, spine-order chapter
-  enumeration, per-chapter looping, merging results into one corpus) are separable concerns; the
-  former was built and validated first rather than guessing at the orchestration design up front.
-- **Impact:** building a deck from a real textbook currently requires manually extracting each
-  chapter file from the `.epub` zip and running `assemble --chapter` once per chapter, then merging
-  the resulting `corpus.json` files by hand — there's no single-command "build my whole book" path.
-- **When to revisit:** when whole-book support is actually needed — requires a spine-order chapter
-  enumerator (reading `content.opf`) and a loop that merges each chapter's corpus into one.
+- **What:** `src/corpus/epubArchive.js` now reads a real `.epub` archive directly (a dependency-free
+  zip reader, ported from the deleted mechanical extractor, plus new `META-INF/container.xml`/OPF
+  spine parsing) — `assemble --epub <path> --chapter-number <N> --lang <language>` self-extracts
+  chapter `N` in correct reading order, no manual pre-extraction step required. What's still
+  missing: a single command that builds every chapter of a book in one shot. Today that's still one
+  `assemble`/`review` cycle per chapter number, even though `listChapters(epubPath).chapters.length`
+  already gives the loop bound needed to build that command.
+- **Why:** the per-chapter primitive (real archive access, dedup, registry) was the harder, riskier
+  part and needed validating first; a whole-book loop over an already-working per-chapter command is
+  comparatively mechanical.
+- **Impact:** building a deck from a real textbook still requires running `assemble`/`review` once
+  per chapter by hand — there's no single-command "build my whole book" path yet.
+- **When to revisit:** when that's actually annoying enough to be worth a `--epub <path> --all`
+  (or similar) loop over `listChapters(...).chapters`.
+
+## OPF/container.xml parsing is a hand-rolled scanner, not a real XML parser
+
+- **What:** `src/corpus/epubArchive.js` isolates `<tag ...>` occurrences with a narrow per-tag-name
+  regex, then extracts `attr="value"` pairs from within each isolated tag separately — deliberately
+  order-independent (EPUB doesn't guarantee attribute order), but not a real XML parser. CDATA
+  sections, XML comments containing tag-like text, or other unusual-but-legal XML wouldn't parse
+  correctly.
+- **Why:** every other EPUB-processing piece of this codebase already avoids an XML/HTML-parser
+  dependency the same way (regex-based, targeted extraction) — this keeps the project genuinely
+  dependency-free rather than making an exception for one module.
+- **Impact:** low in practice — real-world EPUBs are near-universally produced by consistent tooling
+  (Calibre, Sigil, publisher pipelines) that emits plain, well-formed `container.xml`/OPF documents —
+  but a hand-authored or unusually-generated EPUB could misparse silently rather than erroring.
+- **When to revisit:** if a real EPUB is found to misparse — add a targeted case to the scanner
+  rather than reaching for a full parser unless several distinct cases pile up.
+
+## Backward dedup only catches exact-string duplicates, not paraphrases
+
+- **What:** `dedupBackward` (`src/corpus/epubDedup.js`) matches `english` case-insensitively and
+  `target` exactly (both trimmed) against every earlier reviewed chapter of the same book. A
+  differently-worded duplicate (e.g. "How much is this?" vs. "What does this cost?") is not caught
+  by this pass — only the forward LLM pass has any chance of catching semantic overlap, and only
+  for content it judges is *explicitly re-taught*, not merely similar.
+- **Why:** exact-string matching is deterministic, free, and instant — the intentional trade-off
+  for a "hard drop" pass that runs on every `assemble --epub` call with zero API cost.
+- **Impact:** near-duplicate phrasing across chapters can still slip through and needs to be caught
+  during `review` instead.
+- **When to revisit:** if near-duplicate leakage across chapters proves common in practice — would
+  need a semantic-similarity check (embeddings or an LLM call), a real cost/complexity step up from
+  the current pure-function pass.
+
+## Forward dedup re-reads every later chapter's content on every `assemble --epub` call
+
+- **What:** `dedupForward` extracts (or reuses a cached extraction of) every chapter after the
+  current one and asks the model to Read each of them fresh, every time `assemble --epub` runs for
+  a book. The extracted *bytes* are cached (`epubs/<epubHash>/chapters/<N>.xhtml`), but the forward
+  pass's *result* is not — there's no memoization of "I already checked chapter 3's items against
+  chapters 4-10 and got this answer."
+- **Why:** keeping the pass simple (re-derive the answer every call) was chosen over adding a
+  result-cache invalidation story (what invalidates it — a later chapter's content changing? the
+  candidate item list changing? both are plausible and neither was worth the complexity yet).
+- **Impact:** real latency/cost that scales with how early you are in a long book — chapter 1 of a
+  20-chapter book means the model reads chapters 2 through 20 on every `assemble` call for chapter 1.
+- **When to revisit:** if this cost/latency becomes a real practical annoyance — cache the forward
+  pass's `{kept, dropped}` result keyed by (epubHash, chapterNumber, a hash of the candidate item
+  ids), invalidated whenever any later chapter's registry entry changes.
 
 ## The category enum is a first-cut list, not yet validated against real usage
 

@@ -17,10 +17,8 @@ import {
   loadBookConventions as defaultLoadBookConventions,
   saveBookConventions as defaultSaveBookConventions,
 } from "../corpus/epubLibrary.js";
-import {
-  dedupBackward as defaultDedupBackward,
-  dedupForward as defaultDedupForward,
-} from "../corpus/epubDedup.js";
+import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
+import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
@@ -147,25 +145,24 @@ async function runAssemble(flags, ctx) {
       );
     }
 
-    const forward = ctx.dedupForward({
+    const forward = ctx.flagForwardConcerns({
       candidateItems: backward.kept,
       epubPath: flags.epub,
       chapterNumber,
       targetLanguage: flags.lang,
+      bookConventions,
       log: ctx.log,
     });
-    for (const { item, laterChapter, reason } of forward.dropped) {
-      ctx.log(
-        `[dedup:forward] dropped "${item.english}" (id: ${item.id}) — explicitly taught later in ` +
-          `chapter ${laterChapter} (${reason})`,
-      );
+    for (const { item, laterChapter, reason } of forward.flagged) {
+      const where = laterChapter ? `explicitly taught later in chapter ${laterChapter}` : "flagged";
+      ctx.log(`[flag:forward] "${item.english}" (id: ${item.id}) — ${where} (${reason})`);
     }
 
-    corpus.items = forward.kept;
-    const totalDropped = backward.dropped.length + forward.dropped.length;
+    corpus.items = forward.items;
+    const totalOriginal = backward.kept.length + backward.dropped.length;
     ctx.log(
-      `dedup: kept ${corpus.items.length}/${corpus.items.length + totalDropped} item(s) ` +
-        `(${backward.dropped.length} dropped as already-taught, ${forward.dropped.length} dropped as taught-later)`,
+      `dedup: kept ${corpus.items.length}/${totalOriginal} item(s) ` +
+        `(${backward.dropped.length} dropped as already-taught, ${forward.flagged.length} flagged as possibly premature)`,
     );
 
     validateCorpus(corpus);
@@ -363,7 +360,7 @@ export async function runCli(argv, deps = {}) {
     saveBookConventions = defaultSaveBookConventions,
     analyzeBookConventions = defaultAnalyzeBookConventions,
     dedupBackward = defaultDedupBackward,
-    dedupForward = defaultDedupForward,
+    flagForwardConcerns = defaultFlagForwardConcerns,
     promptReviewDecisions = defaultPromptReviewDecisions,
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
@@ -403,7 +400,7 @@ export async function runCli(argv, deps = {}) {
     saveBookConventions,
     analyzeBookConventions,
     dedupBackward,
-    dedupForward,
+    flagForwardConcerns,
     promptReviewDecisions,
     translateCorpus,
     generateAudio,

@@ -31,11 +31,16 @@ directory (`--run <dir>`).
   - `--epub <path> --chapter-number <N> --lang <language>`: reads chapter `N` directly out of a
     real `.epub` archive in spine (reading) order (`src/corpus/epubArchive.js` — a dependency-free
     zip reader + `META-INF/container.xml`/OPF spine parser), registers the book into the local
-    library, and automatically runs two deduplication passes (`src/corpus/epubDedup.js`) before
-    writing `corpus.json`: a backward pass drops anything already introduced in an earlier
-    (reviewed) chapter of the same book; a forward pass asks a Sonnet-medium model whether anything
-    is explicitly taught in a later chapter and should wait. Every dropped item is logged
-    individually, naming the item and the reason — never just a count. The _first_ `assemble --epub`
+    library, and automatically runs two passes before writing `corpus.json`: a backward pass
+    (`dedupBackward`, `src/corpus/epubDedup.js`) drops anything already introduced in an earlier
+    (reviewed) chapter of the same book; a forward pass (`flagForwardConcerns`,
+    `src/corpus/epubForwardFlags.js`) asks a Sonnet-medium model to flag — never drop — anything that
+    looks premature, either because a later chapter explicitly re-teaches it or because it relies on
+    grammar/vocabulary the book hasn't introduced yet. A flagged item comes back with `uncertain:
+true` and a "Possibly premature — ..." note appended, so the corpus review gate is where the
+    human actually decides, rather than the item silently vanishing before anyone sees it. Every
+    dropped or flagged item is logged individually, naming the item and the reason — never just a
+    count. The _first_ `assemble --epub`
     call for a never-before-seen book also triggers a one-time, whole-book conventions pass
     (`src/corpus/epubBookConventions.js`) — a Sonnet-medium agent reads every chapter and
     characterizes this specific book's own structural conventions (placeholder notation, what

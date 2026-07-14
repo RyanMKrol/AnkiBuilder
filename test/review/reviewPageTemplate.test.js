@@ -44,7 +44,7 @@ test("renderReviewPage() renders column headers, row cells, and row numbering", 
   assert.match(html, /<td>Adiós<\/td>/);
 });
 
-test("renderReviewPage() emits a note popover button only for rows that have a note", () => {
+test("renderReviewPage() renders a note inline in the note cell only for rows that have one", () => {
   const html = renderReviewPage({
     title: "t",
     subtitle: "s",
@@ -56,12 +56,11 @@ test("renderReviewPage() emits a note popover button only for rows that have a n
     mode: "exclude",
   });
 
-  const noteButtons = html.match(/class="note-btn"/g) || [];
-  assert.equal(noteButtons.length, 1);
-  assert.match(html, /data-note="some context"/);
+  assert.match(html, /<td class="note-cell">some context<\/td>/);
+  assert.match(html, /<td class="note-cell"><\/td>/);
 });
 
-test("renderReviewPage() escapes note text to prevent breaking out of the data attribute", () => {
+test("renderReviewPage() escapes note text to prevent breaking out of the cell", () => {
   const html = renderReviewPage({
     title: "t",
     subtitle: "s",
@@ -70,8 +69,8 @@ test("renderReviewPage() escapes note text to prevent breaking out of the data a
     mode: "exclude",
   });
 
-  assert.doesNotMatch(html, /data-note="">/);
-  assert.match(html, /data-note="&quot;&gt;&lt;script&gt;/);
+  assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
+  assert.match(html, /&quot;&gt;&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
 });
 
 test("renderReviewPage() wires the exclude mode's copy instruction and marked class into the script", () => {

@@ -75,15 +75,18 @@ to a hidden-textarea `document.execCommand("copy")` on failure, and if BOTH fail
 a visible, pre-selected, read-only input so it can be copied by hand. Never let a copy failure be
 silent (e.g. don't just overwrite the button's own label with the text).
 
-**You decide:** does the corpus look right? Can I proceed with translation?
+**You decide:** does the corpus look right?
 
 If you want to edit the corpus (add, remove, or fix terms), do it now in `corpus.json` before
-proceeding, or tell me which numbers to exclude and I'll run `anki-builder review --run <runDir>`
-to apply it — each stage reads from the prior artifact.
+proceeding, or tell me which numbers to exclude. Once you give a decision — a list of numbers to
+exclude, or none — run `anki-builder review --run <runDir>` to apply it, then move straight on to
+`translate` in the same turn. Don't stop to ask "should I proceed with translation?" first — telling
+me the exclusions (or that there are none) IS the go-ahead. Only pause again if something in
+`translate`'s own output needs a decision (e.g. errors).
 
 ### Step 3: Translation via Claude
 
-Once you approve, I'll translate the corpus to your target language using `claude -p` (the local Claude tool):
+Translate the corpus to the target language using `claude -p` (the local Claude tool):
 
 ```sh
 anki-builder translate --run <runDir>

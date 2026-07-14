@@ -54,3 +54,17 @@ test("every bundled template validates against corpus schema", () => {
     assert(corpus.items, `Template ${name} missing items`);
   }
 });
+
+test("loadTemplate() normalizes every item to the superset shape (notes/target always present, nullable)", () => {
+  const corpus = loadTemplate("travel-essentials");
+  for (const item of corpus.items) {
+    assert("notes" in item, `item ${item.id} missing "notes" key`);
+    assert("target" in item, `item ${item.id} missing "target" key`);
+    assert.strictEqual(item.target, null, `template items should never have a pre-set target`);
+  }
+});
+
+test("loadTemplate() sets meta.reviewed to false on a fresh corpus", () => {
+  const corpus = loadTemplate("travel-essentials");
+  assert.strictEqual(corpus.meta.reviewed, false);
+});

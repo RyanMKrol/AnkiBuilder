@@ -78,6 +78,32 @@ test("renderExtractionPrompt() throws if the template has an unresolved placehol
   });
 });
 
+test("renderExtractionPrompt() substitutes CATEGORY_LIST from a given categoryList", () => {
+  withTempTemplate("Pick one of: {{CATEGORY_LIST}}", (templatePath) => {
+    const rendered = renderExtractionPrompt({
+      targetLanguage: "Spanish",
+      chapterFilePath: "/tmp/chapter.xhtml",
+      categoryList: ["Alpha", "Beta", "Other"],
+      templatePath,
+    });
+
+    assert.strictEqual(rendered, "Pick one of: Alpha, Beta, Other");
+  });
+});
+
+test("renderExtractionPrompt() defaults CATEGORY_LIST to the canonical CATEGORIES enum", () => {
+  withTempTemplate("{{CATEGORY_LIST}}", (templatePath) => {
+    const rendered = renderExtractionPrompt({
+      targetLanguage: "Spanish",
+      chapterFilePath: "/tmp/chapter.xhtml",
+      templatePath,
+    });
+
+    assert.match(rendered, /Greetings/);
+    assert.match(rendered, /Other/);
+  });
+});
+
 test("renderExtractionPrompt() defaults to the real docs/epub-extraction-prompt.md template", () => {
   const rendered = renderExtractionPrompt({
     targetLanguage: "Japanese",

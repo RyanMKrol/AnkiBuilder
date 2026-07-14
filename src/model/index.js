@@ -1,5 +1,6 @@
 import { homedir } from "os";
 import { join, resolve } from "path";
+import { CATEGORIES } from "./categories.js";
 
 const CORPUS_SCHEMA = {
   type: "object",
@@ -14,6 +15,7 @@ const CORPUS_SCHEMA = {
           type: "string",
           enum: ["template", "epub", "manual"],
         },
+        reviewed: { type: "boolean" },
       },
       additionalProperties: false,
     },
@@ -21,12 +23,13 @@ const CORPUS_SCHEMA = {
       type: "array",
       items: {
         type: "object",
-        required: ["id", "english", "category"],
+        required: ["id", "english", "category", "notes", "target"],
         properties: {
           id: { type: "string" },
           english: { type: "string" },
-          category: { type: "string" },
-          notes: { type: "string" },
+          category: { type: "string", enum: CATEGORIES },
+          notes: { type: ["string", "null"] },
+          target: { type: ["string", "null"] },
         },
         additionalProperties: false,
       },
@@ -46,6 +49,7 @@ const CARDS_SCHEMA = {
           type: "string",
           enum: ["template", "epub", "manual"],
         },
+        reviewed: { type: "boolean" },
       },
     },
     items: {
@@ -70,6 +74,23 @@ const CARDS_SCHEMA = {
   },
   additionalProperties: false,
 };
+
+// Supports a single type string ("string") or a list of allowed types
+// (["string", "null"]) for nullable fields — "null" matches only literal null,
+// since typeof null === "object" would otherwise be a silent landmine.
+function matchesType(value, type) {
+  if (Array.isArray(type)) {
+    return type.some((t) => matchesType(value, t));
+  }
+  if (type === "null") {
+    return value === null;
+  }
+  return typeof value === type;
+}
+
+function typeLabel(type) {
+  return Array.isArray(type) ? type.join(" or ") : type;
+}
 
 function validateAgainstSchema(obj, schema) {
   if (typeof obj !== "object" || obj === null) {
@@ -110,8 +131,10 @@ function validateValue(key, value, propSchema) {
         const item = value[i];
         if (propSchema.items.type === "object") {
           validateItemObject(key, i, item, propSchema.items);
-        } else if (propSchema.items.type && typeof item !== propSchema.items.type) {
-          throw new Error(`Item ${i} in ${key} must be of type ${propSchema.items.type}`);
+        } else if (propSchema.items.type && !matchesType(item, propSchema.items.type)) {
+          throw new Error(
+            `Item ${i} in ${key} must be of type ${typeLabel(propSchema.items.type)}`,
+          );
         }
       }
     }
@@ -137,8 +160,8 @@ function validateValue(key, value, propSchema) {
         validateNestedValue(nestedKey, nestedValue, nestedPropSchema);
       }
     }
-  } else if (propSchema.type && typeof value !== propSchema.type) {
-    throw new Error(`Property ${key} must be of type ${propSchema.type}`);
+  } else if (propSchema.type && !matchesType(value, propSchema.type)) {
+    throw new Error(`Property ${key} must be of type ${typeLabel(propSchema.type)}`);
   }
 
   if (propSchema.enum && !propSchema.enum.includes(value)) {
@@ -147,8 +170,8 @@ function validateValue(key, value, propSchema) {
 }
 
 function validateNestedValue(key, value, propSchema) {
-  if (propSchema.type && typeof value !== propSchema.type) {
-    throw new Error(`Property ${key} must be of type ${propSchema.type}`);
+  if (propSchema.type && !matchesType(value, propSchema.type)) {
+    throw new Error(`Property ${key} must be of type ${typeLabel(propSchema.type)}`);
   }
   if (propSchema.enum && !propSchema.enum.includes(value)) {
     throw new Error(`Property ${key} must be one of: ${propSchema.enum.join(", ")}`);
@@ -178,9 +201,14 @@ function validateItemObject(arrayKey, index, item, itemSchema) {
     }
 
     if (propSchema) {
-      if (propSchema.type && typeof value !== propSchema.type) {
+      if (propSchema.type && !matchesType(value, propSchema.type)) {
         throw new Error(
-          `Property ${key} in ${arrayKey}[${index}] must be of type ${propSchema.type}`,
+          `Property ${key} in ${arrayKey}[${index}] must be of type ${typeLabel(propSchema.type)}`,
+        );
+      }
+      if (propSchema.enum && !propSchema.enum.includes(value)) {
+        throw new Error(
+          `Property ${key} in ${arrayKey}[${index}] must be one of: ${propSchema.enum.join(", ")}`,
         );
       }
     }

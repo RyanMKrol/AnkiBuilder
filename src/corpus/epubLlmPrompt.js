@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
+import { CATEGORIES } from "../model/categories.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -21,11 +22,12 @@ function substitute(template, values) {
 
 /**
  * Renders the LLM chapter-extraction prompt from the Markdown template,
- * substituting {{TARGET_LANGUAGE}} and {{CHAPTER_FILE_PATH}}.
+ * substituting {{TARGET_LANGUAGE}}, {{CHAPTER_FILE_PATH}}, and {{CATEGORY_LIST}}.
  */
 export function renderExtractionPrompt({
   targetLanguage,
   chapterFilePath,
+  categoryList = CATEGORIES,
   templatePath = DEFAULT_TEMPLATE_PATH,
 } = {}) {
   if (!targetLanguage) {
@@ -39,6 +41,7 @@ export function renderExtractionPrompt({
   const rendered = substitute(template, {
     TARGET_LANGUAGE: targetLanguage,
     CHAPTER_FILE_PATH: resolve(chapterFilePath),
+    CATEGORY_LIST: categoryList.join(", "),
   });
 
   const unresolved = rendered.match(/\{\{[A-Z_]+\}\}/);

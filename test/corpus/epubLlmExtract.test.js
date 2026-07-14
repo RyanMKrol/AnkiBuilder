@@ -7,7 +7,10 @@ const BASE_ARGS = { chapterFilePath: "/tmp/chapter.xhtml", targetLanguage: "Japa
 test("extractChapterViaLlm() parses a plain JSON array response", () => {
   const items = extractChapterViaLlm({
     ...BASE_ARGS,
-    runClaude: () => JSON.stringify([{ id: "hello", english: "Hello", target: "こんにちは" }]),
+    runClaude: () =>
+      JSON.stringify([
+        { id: "hello", english: "Hello", target: "こんにちは", category: "Greetings" },
+      ]),
   });
 
   assert.strictEqual(items.length, 1);
@@ -17,7 +20,8 @@ test("extractChapterViaLlm() parses a plain JSON array response", () => {
 test("extractChapterViaLlm() strips a markdown fence wrapping the whole response", () => {
   const items = extractChapterViaLlm({
     ...BASE_ARGS,
-    runClaude: () => '```json\n[{"id": "hello", "english": "Hello", "target": "こんにちは"}]\n```',
+    runClaude: () =>
+      '```json\n[{"id": "hello", "english": "Hello", "target": "こんにちは", "category": "Greetings"}]\n```',
   });
 
   assert.strictEqual(items.length, 1);
@@ -29,7 +33,7 @@ test("extractChapterViaLlm() extracts a fenced block even with prose commentary 
     ...BASE_ARGS,
     runClaude: () =>
       "Now I'll extract the flashcards according to the specifications:\n\n" +
-      '```json\n[{"id": "hello", "english": "Hello", "target": "こんにちは"}]\n```\n\n' +
+      '```json\n[{"id": "hello", "english": "Hello", "target": "こんにちは", "category": "Greetings"}]\n```\n\n' +
       "That covers the chapter.",
   });
 
@@ -46,6 +50,7 @@ test("extractChapterViaLlm() preserves optional notes/uncertain/aiSuggested fiel
           id: "nihonjin",
           english: "Japanese (person)",
           target: "にほんじん",
+          category: "Nationalities & Countries",
           notes: "inferred, not separately glossed",
           uncertain: true,
         },
@@ -53,6 +58,7 @@ test("extractChapterViaLlm() preserves optional notes/uncertain/aiSuggested fiel
           id: "arigatou",
           english: "thank you",
           target: "ありがとう",
+          category: "Greetings",
           notes: "genuine gap",
           aiSuggested: true,
         },
@@ -61,6 +67,18 @@ test("extractChapterViaLlm() preserves optional notes/uncertain/aiSuggested fiel
 
   assert.strictEqual(items[0].uncertain, true);
   assert.strictEqual(items[1].aiSuggested, true);
+});
+
+test("extractChapterViaLlm() throws when category is not one of the canonical values", () => {
+  assert.throws(() => {
+    extractChapterViaLlm({
+      ...BASE_ARGS,
+      runClaude: () =>
+        JSON.stringify([
+          { id: "hello", english: "Hello", target: "こんにちは", category: "Not A Category" },
+        ]),
+    });
+  }, /invalid "category"/);
 });
 
 test("extractChapterViaLlm() throws when the response is not valid JSON", () => {
@@ -89,7 +107,15 @@ test("extractChapterViaLlm() throws when uncertain is present but not a boolean"
     extractChapterViaLlm({
       ...BASE_ARGS,
       runClaude: () =>
-        JSON.stringify([{ id: "hello", english: "Hello", target: "こんにちは", uncertain: "yes" }]),
+        JSON.stringify([
+          {
+            id: "hello",
+            english: "Hello",
+            target: "こんにちは",
+            category: "Greetings",
+            uncertain: "yes",
+          },
+        ]),
     });
   }, /"uncertain" must be a boolean/);
 });

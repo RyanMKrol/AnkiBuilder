@@ -39,7 +39,11 @@ directory (`--run <dir>`).
   `meta.reviewed: true` once confirmed.
 - **`translate`** — items with `target: null` get a full translation; items with a real
   `target` already set (e.g. from the EPUB path) only ever get a pronunciation guide — the model
-  cannot override a pre-existing target (see `src/translate/index.js`).
+  cannot override a pre-existing target (see `src/translate/index.js`). Both prompts are
+  Markdown-structured (Overview / Input Format / Example Input / Output Format / Example Output /
+  Important / Input Data) and ask for a target language's standard romanization system (e.g.
+  romaji, pinyin) when one exists, falling back to a phonetic respelling otherwise — see
+  [`docs/translate-prompts.md`](./docs/translate-prompts.md) for the full templates.
 - **`audio`** / **`deck`** — unchanged from before.
 
 ## Implementation status

@@ -59,3 +59,23 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `"Other"` rate and whether any category is doing too much or too little work, then adjust
   `CATEGORIES` (this is a single, centrally-imported list, so renaming/splitting an entry is a
   small change).
+
+## `pronunciation` conflates a real romanization system with an ad hoc phonetic respelling
+
+- **What:** both translate prompts (`buildFullTranslationPrompt` / `buildPronunciationOnlyPrompt`
+  in `src/translate/index.js`) ask the model to prefer a target language's standard romanization
+  or transliteration system when one exists (e.g. romaji for Japanese, pinyin for Mandarin
+  Chinese), falling back to an invented English-spelling phonetic respelling otherwise. Both cases
+  are written into the same `pronunciation` string field on the card — there's no way to tell,
+  from the card alone, which kind of value it holds.
+- **Why:** a single field was the smallest change that let the guidance be added without touching
+  `CARDS_SCHEMA`; deciding whether the distinction actually needs its own schema field was
+  deliberately left open rather than guessed at (see `docs/translate-prompts.md`'s "Open
+  question").
+- **Impact:** a deck built for a language with a real romanization system (Japanese, Mandarin,
+  etc.) can't distinguish "this is the standard romanization, worth its own display treatment"
+  from "this is just a rough phonetic hint" — both render identically in the Anki template.
+- **When to revisit:** if a deck's presentation ever wants to treat the two differently (e.g. show
+  romaji more prominently than an ad hoc respelling), split `pronunciation` into a
+  `romanization`/`phonetic` pair on `CARDS_SCHEMA` and have the model report which kind it
+  produced.

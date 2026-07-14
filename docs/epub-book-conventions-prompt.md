@@ -1,6 +1,6 @@
 # Overview
 
-Read EVERY chapter file listed below yourself, using your Read tool, in order. This is a {{TARGET_LANGUAGE}}-language textbook for English speakers, split across {{CHAPTER_COUNT}} chapter files:
+Read EVERY chapter file listed below yourself, using your Read tool, in order. Read each chapter file in FULL, start to end — every page/section inside it, not just the opening portion. If a chapter file is long enough that your Read tool would otherwise truncate it (e.g. a default line-count limit), issue additional reads with an offset to cover the rest of that same file before moving on to the next chapter — never treat a partial read of a chapter as if you'd read the whole thing. This is a {{TARGET_LANGUAGE}}-language textbook for English speakers, split across {{CHAPTER_COUNT}} chapter files:
 
 {{CHAPTER_FILE_PATHS}}
 
@@ -26,7 +26,7 @@ If a convention only shows up in some chapters, say so and name which ones, rath
 
 ## Coverage
 
-You must actually read every one of the {{CHAPTER_COUNT}} chapter files listed above using your Read tool — do not guess or extrapolate from a subset. If you are genuinely unable to read all of them (e.g. a hard limit is reached), say exactly which chapters you did and didn't read in the `## Coverage` section of your output, rather than silently presenting partial coverage as complete.
+You must actually read every one of the {{CHAPTER_COUNT}} chapter files listed above using your Read tool — do not guess or extrapolate from a subset. This also means reading each chapter file in its entirety, not just its first page or first portion — a chapter file you only partially read counts as unread for the parts you skipped. If you are genuinely unable to read all of a chapter, or all of the chapters (e.g. a hard limit is reached), say exactly which chapters — and which parts of them — you did and didn't read in the `## Coverage` section of your output, rather than silently presenting partial coverage as complete.
 
 ## Output Format
 

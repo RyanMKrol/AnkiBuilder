@@ -121,7 +121,10 @@ function withTempDir(fn) {
 }
 
 // Builds a fixture book with `chapterCount` chapters, each a tiny distinct XHTML file.
-function buildFixtureEpub(dir, chapterCount) {
+// `titles` optionally maps a 1-indexed chapter number to a <title> tag's text, for
+// exercising describeChapter()'s label resolution — chapters not in the map get no
+// <title> tag at all (describeChapter falls back to plain "chapter N" wording for them).
+function buildFixtureEpub(dir, chapterCount, { titles = {} } = {}) {
   const manifestItems = [];
   const spineIdrefs = [];
   const extraFiles = [];
@@ -131,7 +134,11 @@ function buildFixtureEpub(dir, chapterCount) {
     const href = `text/ch${i}.xhtml`;
     manifestItems.push({ id, href });
     spineIdrefs.push(id);
-    extraFiles.push({ name: `OEBPS/${href}`, content: `<html><body>Chapter ${i}</body></html>` });
+    const head = titles[i] ? `<head><title>${titles[i]}</title></head>` : "";
+    extraFiles.push({
+      name: `OEBPS/${href}`,
+      content: `<html>${head}<body>Chapter ${i}</body></html>`,
+    });
   }
 
   const epubPath = join(dir, "book.epub");
@@ -204,13 +211,43 @@ test("flagForwardConcerns() marks a flagged item uncertain and appends a note, w
     assert.equal(items[0].id, "department-store");
     assert.equal(items[0].uncertain, true);
     assert.match(items[0].notes, /Possibly premature/);
+    // Fixture chapter 3 has no <title> tag, so describeChapter() falls back to plain
+    // numeric wording here — the human-label case is covered separately below.
     assert.match(items[0].notes, /chapter 3/);
     assert.match(items[0].notes, /taught as shopping vocabulary/);
 
     assert.equal(flagged.length, 1);
     assert.equal(flagged[0].laterChapter, 3);
+    assert.equal(flagged[0].laterChapterLabel, "chapter 3");
     assert.equal(flagged[0].reason, "taught as shopping vocabulary");
     assert.equal(flagged[0].item.id, "department-store");
+  });
+});
+
+test("flagForwardConcerns() resolves laterChapter to the later chapter's own human-readable title in the note and log data, not the raw spine number", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 3, {
+      titles: { 3: "Lesson 3: Asking the Time: What Time Is It?, Some Book" },
+    });
+    const candidates = [candidate("department-store", "department store", "デパート")];
+
+    const { items, flagged } = flagForwardConcerns({
+      candidateItems: candidates,
+      epubPath,
+      chapterNumber: 1,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () =>
+        JSON.stringify({
+          flag: [
+            { id: "department-store", laterChapter: 3, reason: "taught as shopping vocabulary" },
+          ],
+        }),
+    });
+
+    assert.match(items[0].notes, /explicitly taught later in Lesson 3: Asking the Time/);
+    assert.doesNotMatch(items[0].notes, /taught later in chapter 3/);
+    assert.equal(flagged[0].laterChapterLabel, "Lesson 3: Asking the Time");
   });
 });
 

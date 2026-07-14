@@ -61,8 +61,13 @@ export function saveChapterCorpus(epubHash, chapterNumber, corpus, { libraryHome
  * Loads items from every previously-saved chapter STRICTLY BEFORE
  * chapterNumber, for the given book — the backward dedup pass's input.
  * Each item is tagged with `__chapterNumber` (which stored chapter it came
- * from) so a drop can name the specific chapter, not just "some earlier
- * one". Returns [] if the book has no saved chapters yet (e.g. chapter 1).
+ * from) and `__chapterLabel` (that chapter's own human-readable title, e.g.
+ * "Lesson 2: Possession" — from the stored corpus's `meta.chapterLabel`,
+ * falling back to plain `chapter ${storedChapterNumber}` wording for a
+ * corpus saved before that field existed) so a drop can name the specific
+ * chapter the way a person reading the book would recognize it, not just
+ * "some earlier one" or an internal spine index. Returns [] if the book has
+ * no saved chapters yet (e.g. chapter 1).
  */
 export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir } = {}) {
   const dir = join(bookDir(epubHash, { libraryHomeDir }), "corpora");
@@ -83,8 +88,9 @@ export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir 
     }
 
     const stored = JSON.parse(readFileSync(join(dir, filename), "utf-8"));
+    const chapterLabel = stored.meta?.chapterLabel || `chapter ${storedChapterNumber}`;
     for (const item of stored.items) {
-      items.push({ ...item, __chapterNumber: storedChapterNumber });
+      items.push({ ...item, __chapterNumber: storedChapterNumber, __chapterLabel: chapterLabel });
     }
   }
 

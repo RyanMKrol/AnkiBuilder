@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
-import { listChapters, extractChapterToFile } from "./epubArchive.js";
+import { listChapters, extractChapterToFile, describeChapter } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 
@@ -96,10 +96,10 @@ function parseForwardFlagResponse(raw) {
   return parsed.flag;
 }
 
-function noteWithFlag(existingNotes, reason, laterChapter) {
+function noteWithFlag(existingNotes, reason, laterChapterLabel) {
   const concern =
-    laterChapter !== undefined
-      ? `Possibly premature — explicitly taught later in chapter ${laterChapter} (${reason})`
+    laterChapterLabel !== undefined
+      ? `Possibly premature — explicitly taught later in ${laterChapterLabel} (${reason})`
       : `Possibly premature — ${reason}`;
   return existingNotes ? `${existingNotes} | ${concern}` : concern;
 }
@@ -183,11 +183,23 @@ export function flagForwardConcerns({
     if (!entry) {
       return item;
     }
-    flagged.push({ item, reason: entry.reason, laterChapter: entry.laterChapter });
+    // The model reports laterChapter as the raw spine number matching the file list it
+    // was given — translated here to the book's own chapter label (e.g. "Lesson 6: Going
+    // Places (1)") rather than trusting the model to transcribe the book's title text
+    // itself, since that's cheap and deterministic to resolve from the chapter it's
+    // naming anyway.
+    const laterChapterLabel =
+      entry.laterChapter !== undefined ? describeChapter(epubPath, entry.laterChapter) : undefined;
+    flagged.push({
+      item,
+      reason: entry.reason,
+      laterChapter: entry.laterChapter,
+      laterChapterLabel,
+    });
     return {
       ...item,
       uncertain: true,
-      notes: noteWithFlag(item.notes, entry.reason, entry.laterChapter),
+      notes: noteWithFlag(item.notes, entry.reason, laterChapterLabel),
     };
   });
 

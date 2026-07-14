@@ -96,6 +96,36 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   pass's `{items, flagged}` result keyed by (epubHash, chapterNumber, a hash of the candidate item
   ids), invalidated whenever any later chapter's registry entry changes.
 
+## Human-readable chapter labels are a heuristic over `<title>` text, not a real EPUB convention
+
+- **What:** `describeChapter` (`src/corpus/epubArchive.js`) turns a chapter's `<title>` tag into a
+  short human-facing label (e.g. `"Lesson 6: Going Places (1)"`) by splitting off everything after
+  the first comma (assumed to be a repeated book-title suffix) and keeping at most two
+  `":"`-separated segments of what's left. This was discovered manually: forward-flag notes and
+  dedup log lines were naming chapters by raw 1-indexed EPUB spine position (e.g. "chapter 43"),
+  which has no relationship to the book's own numbering (a book might only have 20 real lessons
+  spread across 57 spine entries once front matter, unit openers, and quizzes are counted) and read
+  as confusing/wrong to a human reviewer. There's no EPUB spec that guarantees `<title>` follows a
+  `"<page title>, <book title>"` shape or that a page title is `":"`-delimited into label/title/
+  description — this is an observed convention for the one real book exercised so far, applied as a
+  general best-effort heuristic to every EPUB.
+- **Why:** parsing an actual, guaranteed-correct chapter number/title mapping would need either a
+  book-specific convention (which the whole-book conventions pass could arguably supply, but that's
+  an LLM call, not a deterministic one) or a real EPUB navigation-document (`nav.xhtml`/NCX) parser
+  cross-referencing spine position — meaningfully more machinery than a comma/colon split. The
+  heuristic was judged good enough because the fallback (plain `"chapter N"` wording) is always at
+  least as good as today's behavior, so this can only improve labeling, never make it worse than the
+  status quo it replaced.
+- **Impact:** a book whose `<title>` tags don't follow the observed convention could get an
+  oddly-truncated or unhelpful label (e.g. a title with no comma keeps a real book-title suffix; a
+  title using colons for something other than label/subtitle gets cut at the wrong point) — never
+  wrong data (nothing downstream depends on the label's exact shape), just a worse-than-ideal display
+  string.
+- **When to revisit:** if a book is found where the heuristic produces a genuinely confusing label —
+  consider parsing the EPUB's actual nav document (`nav.xhtml`/NCX, already read once during
+  `analyzeBookConventions`) for chapter titles instead of re-deriving them from raw `<title>` tags
+  per chapter.
+
 ## The category enum is a first-cut list, not yet validated against real usage
 
 - **What:** `src/model/categories.js`'s `CATEGORIES` list (25 entries) was drafted in one sitting

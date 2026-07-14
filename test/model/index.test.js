@@ -116,6 +116,24 @@ test("validateCorpus - accepts meta.epubHash and meta.chapterNumber when set", (
   });
 });
 
+test("validateCorpus - accepts meta.chapterLabel when set", () => {
+  const validCorpus = {
+    meta: {
+      targetLanguage: "ja",
+      sourceType: "epub",
+      reviewed: false,
+      epubHash: "abc123def4567890",
+      chapterNumber: 3,
+      chapterLabel: "Lesson 3: Asking the Time",
+    },
+    items: [],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCorpus(validCorpus);
+  });
+});
+
 test("validateCorpus - accepts meta without epubHash/chapterNumber (backward compat)", () => {
   const validCorpus = {
     meta: { targetLanguage: "es", sourceType: "template" },

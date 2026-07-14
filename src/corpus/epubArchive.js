@@ -190,6 +190,46 @@ export function readChapter(epubPath, number) {
   return loadChapterEntry(epubPath, number).content;
 }
 
+const TITLE_TAG_PATTERN = /<title>([^<]*)<\/title>/i;
+const HTML_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'" };
+
+function decodeHtmlEntities(text) {
+  return text.replace(/&(amp|lt|gt|quot|#39);/g, (_, name) => HTML_ENTITIES[name]);
+}
+
+// EPUB chapter <title> tags commonly follow "<page title>, <book title>" — the book
+// title repeats identically on every chapter and carries no per-chapter information, so
+// it's dropped by keeping only the text before the first comma. Within what's left, a
+// lesson/unit-style title can itself be several ":"-separated segments deep (e.g.
+// "Lesson 1: Meeting: Nice to Meet You" — label, then title, then a fuller description) —
+// only the first two are kept, since the third+ segment is descriptive prose rather than
+// a label, and this needs to read naturally as a short human-facing chapter reference.
+function shortenChapterTitle(rawTitle) {
+  const pageTitle = decodeHtmlEntities(rawTitle).split(",")[0].trim();
+  const segments = pageTitle
+    .split(":")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return segments.slice(0, 2).join(": ");
+}
+
+/**
+ * A short, human-readable label for chapter `number` — e.g. "Lesson 6: Going
+ * Places (1)" — for surfacing to a person instead of the raw 1-indexed spine
+ * position, which is an internal detail with no relationship to how the book
+ * itself numbers/names its own chapters. Sourced from the chapter's own
+ * `<title>` tag; falls back to `chapter ${number}` (matching the plain
+ * numeric wording used elsewhere) when the chapter has no title tag or an
+ * empty one, so callers can drop this straight into an "in ___" phrase
+ * either way.
+ */
+export function describeChapter(epubPath, number) {
+  const { content } = loadChapterEntry(epubPath, number);
+  const match = content.match(TITLE_TAG_PATTERN);
+  const shortened = match ? shortenChapterTitle(match[1]) : "";
+  return shortened || `chapter ${number}`;
+}
+
 // The image-aware extraction prompt (docs/epub-extraction-prompt.md) tells the model to
 // resolve each <img src> relative to the chapter file it just Read and open it directly —
 // so any referenced image has to actually exist on disk at that resolved location, not

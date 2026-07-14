@@ -25,15 +25,20 @@ export function renderCorpusReviewPage(corpus) {
     };
   });
 
+  const metaItems = [
+    { label: "Source", value: corpus.meta?.sourceType || "unknown" },
+    { label: "Target language", value: targetLanguage },
+    { label: "Items", value: String(items.length) },
+  ];
+  if (corpus.meta?.chapterLabel) {
+    metaItems.push({ label: "Chapter", value: corpus.meta.chapterLabel });
+  }
+
   return renderReviewPage({
     eyebrow: "Anki Builder — Corpus Review",
     title: "Corpus Review",
     subtitle: `Assembled corpus for ${escapeHtml(targetLanguage)} — ${items.length} item(s). Click a row to mark it for exclusion, then copy the instruction back into the conversation.`,
-    metaItems: [
-      { label: "Source", value: corpus.meta?.sourceType || "unknown" },
-      { label: "Target language", value: targetLanguage },
-      { label: "Items", value: String(items.length) },
-    ],
+    metaItems,
     columns: ["English", "Category", "Target", "Flags"],
     rows,
     mode: "exclude",

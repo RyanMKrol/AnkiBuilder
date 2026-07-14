@@ -128,6 +128,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
       flagForwardConcernsCalledWith = opts;
       return { items: opts.candidateItems, flagged: [] };
     };
+    const describeChapter = (epubPath, chapterNumber) => `Lesson ${chapterNumber}`;
 
     await runCli(
       [
@@ -150,6 +151,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
         loadBookConventions,
         dedupBackward,
         flagForwardConcerns,
+        describeChapter,
         log: () => {},
       },
     );
@@ -162,6 +164,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
     const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
     assert.equal(written.meta.epubHash, "hash123");
     assert.equal(written.meta.chapterNumber, 3);
+    assert.equal(written.meta.chapterLabel, "Lesson 3");
   });
 });
 
@@ -188,6 +191,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
     };
     const dedupBackward = (items) => ({ kept: items, dropped: [] });
     const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
+    const describeChapter = () => "chapter label";
 
     await runCli(
       [
@@ -212,6 +216,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
         saveBookConventions,
         dedupBackward,
         flagForwardConcerns,
+        describeChapter,
         log: () => {},
       },
     );
@@ -247,6 +252,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
     };
     const dedupBackward = (items) => ({ kept: items, dropped: [] });
     const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
+    const describeChapter = () => "chapter label";
 
     await runCli(
       [
@@ -271,6 +277,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
         saveBookConventions,
         dedupBackward,
         flagForwardConcerns,
+        describeChapter,
         log: () => {},
       },
     );
@@ -365,6 +372,7 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
         notes: null,
         target: "古い",
         __chapterNumber: 1,
+        __chapterLabel: "Lesson 1: Meeting",
       },
     ];
     const loadBookConventions = () => "cached conventions";
@@ -378,8 +386,16 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
           ? { ...item, uncertain: true, notes: "Possibly premature — taught later" }
           : item,
       ),
-      flagged: [{ item: candidateItems[0], laterChapter: 5, reason: "taught later" }],
+      flagged: [
+        {
+          item: candidateItems[0],
+          laterChapter: 5,
+          laterChapterLabel: "Lesson 5: Shopping (2)",
+          reason: "taught later",
+        },
+      ],
     });
+    const describeChapter = () => "Lesson 2: Possession";
 
     await runCli(
       [
@@ -402,18 +418,22 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
         loadBookConventions,
         dedupBackward,
         flagForwardConcerns,
+        describeChapter,
         log: (msg) => logs.push(msg),
       },
     );
 
     assert.ok(
       logs.some(
-        (msg) => msg.includes('[dedup:backward] dropped "Old"') && msg.includes("chapter 1"),
+        (msg) =>
+          msg.includes('[dedup:backward] dropped "Old"') && msg.includes("Lesson 1: Meeting"),
       ),
       "expected an individual backward-drop log line naming the item and matched chapter",
     );
     assert.ok(
-      logs.some((msg) => msg.includes('[flag:forward] "Later"') && msg.includes("chapter 5")),
+      logs.some(
+        (msg) => msg.includes('[flag:forward] "Later"') && msg.includes("Lesson 5: Shopping (2)"),
+      ),
       "expected an individual forward-flag log line naming the item and later chapter",
     );
 
@@ -421,6 +441,7 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
     assert.equal(written.items.length, 2, "flagged items stay in the corpus, only backward drops");
     assert.equal(written.items[0].id, "later-item");
     assert.equal(written.items[0].uncertain, true);
+    assert.equal(written.meta.chapterLabel, "Lesson 2: Possession");
   });
 });
 

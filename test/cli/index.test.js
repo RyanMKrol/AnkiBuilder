@@ -122,6 +122,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
       return baseEpubCorpus();
     };
     const loadPriorChapterItems = () => [];
+    const loadBookConventions = () => "cached conventions";
     const dedupBackward = (items) => ({ kept: items, dropped: [] });
     const dedupForward = (opts) => {
       dedupForwardCalledWith = opts;
@@ -146,6 +147,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
         extractChapterToFile,
         assembleCorpusFromChapter,
         loadPriorChapterItems,
+        loadBookConventions,
         dedupBackward,
         dedupForward,
         log: () => {},
@@ -160,6 +162,121 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
     const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
     assert.equal(written.meta.epubHash, "hash123");
     assert.equal(written.meta.chapterNumber, 3);
+  });
+});
+
+test("assemble: runs the book-conventions pass on the first --epub assemble for a book and caches it", async () => {
+  await withTempDir(async (runDir) => {
+    let savedConventionsCalledWith = null;
+    let analyzeCalled = false;
+
+    const registerEpub = () => ({ epubHash: "hash123" });
+    const chapterCachePath = () => "/cache/1.xhtml";
+    const extractChapterToFile = (epubPath, chapterNumber, destPath) => destPath;
+    const assembleCorpusFromChapter = ({ bookConventions }) => {
+      assert.equal(bookConventions, "generated conventions");
+      return baseEpubCorpus();
+    };
+    const loadPriorChapterItems = () => [];
+    const loadBookConventions = () => null; // nothing cached yet
+    const analyzeBookConventions = () => {
+      analyzeCalled = true;
+      return "generated conventions";
+    };
+    const saveBookConventions = (epubHash, markdown) => {
+      savedConventionsCalledWith = { epubHash, markdown };
+    };
+    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupForward = ({ candidateItems }) => ({ kept: candidateItems, dropped: [] });
+
+    await runCli(
+      [
+        "assemble",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "1",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub,
+        chapterCachePath,
+        extractChapterToFile,
+        assembleCorpusFromChapter,
+        loadPriorChapterItems,
+        loadBookConventions,
+        analyzeBookConventions,
+        saveBookConventions,
+        dedupBackward,
+        dedupForward,
+        log: () => {},
+      },
+    );
+
+    assert.equal(analyzeCalled, true);
+    assert.deepEqual(savedConventionsCalledWith, {
+      epubHash: "hash123",
+      markdown: "generated conventions",
+    });
+  });
+});
+
+test("assemble: skips the book-conventions pass when it's already cached for that epub", async () => {
+  await withTempDir(async (runDir) => {
+    let analyzeCalled = false;
+    let saveCalled = false;
+
+    const registerEpub = () => ({ epubHash: "hash123" });
+    const chapterCachePath = () => "/cache/1.xhtml";
+    const extractChapterToFile = (epubPath, chapterNumber, destPath) => destPath;
+    const assembleCorpusFromChapter = ({ bookConventions }) => {
+      assert.equal(bookConventions, "already cached conventions");
+      return baseEpubCorpus();
+    };
+    const loadPriorChapterItems = () => [];
+    const loadBookConventions = () => "already cached conventions";
+    const analyzeBookConventions = () => {
+      analyzeCalled = true;
+      return "should not be called";
+    };
+    const saveBookConventions = () => {
+      saveCalled = true;
+    };
+    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupForward = ({ candidateItems }) => ({ kept: candidateItems, dropped: [] });
+
+    await runCli(
+      [
+        "assemble",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "2",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub,
+        chapterCachePath,
+        extractChapterToFile,
+        assembleCorpusFromChapter,
+        loadPriorChapterItems,
+        loadBookConventions,
+        analyzeBookConventions,
+        saveBookConventions,
+        dedupBackward,
+        dedupForward,
+        log: () => {},
+      },
+    );
+
+    assert.equal(analyzeCalled, false);
+    assert.equal(saveCalled, false);
   });
 });
 
@@ -250,6 +367,7 @@ test("assemble: logs one line per dropped item for both dedup passes, not just a
         __chapterNumber: 1,
       },
     ];
+    const loadBookConventions = () => "cached conventions";
     const dedupBackward = (items, priorItems) => ({
       kept: items.slice(1),
       dropped: [{ item: items[0], matchedField: "english", matchedPriorItem: priorItems[0] }],
@@ -277,6 +395,7 @@ test("assemble: logs one line per dropped item for both dedup passes, not just a
         extractChapterToFile,
         assembleCorpusFromChapter,
         loadPriorChapterItems,
+        loadBookConventions,
         dedupBackward,
         dedupForward,
         log: (msg) => logs.push(msg),

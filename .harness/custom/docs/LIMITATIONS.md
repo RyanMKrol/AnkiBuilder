@@ -63,8 +63,9 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **What:** `dedupBackward` (`src/corpus/epubDedup.js`) matches `english` case-insensitively and
   `target` exactly (both trimmed) against every earlier reviewed chapter of the same book. A
   differently-worded duplicate (e.g. "How much is this?" vs. "What does this cost?") is not caught
-  by this pass — only the forward LLM pass has any chance of catching semantic overlap, and only
-  for content it judges is *explicitly re-taught*, not merely similar.
+  by this pass — only the forward flag pass has any chance of surfacing semantic overlap, and even
+  then only as a flag for the human reviewer to act on, not an automatic drop, and only for content
+  it judges is *explicitly re-taught*, not merely similar.
 - **Why:** exact-string matching is deterministic, free, and instant — the intentional trade-off
   for a "hard drop" pass that runs on every `assemble --epub` call with zero API cost.
 - **Impact:** near-duplicate phrasing across chapters can still slip through and needs to be caught
@@ -73,20 +74,26 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   need a semantic-similarity check (embeddings or an LLM call), a real cost/complexity step up from
   the current pure-function pass.
 
-## Forward dedup re-reads every later chapter's content on every `assemble --epub` call
+## Forward flag pass re-reads every later chapter's content on every `assemble --epub` call
 
-- **What:** `dedupForward` extracts (or reuses a cached extraction of) every chapter after the
-  current one and asks the model to Read each of them fresh, every time `assemble --epub` runs for
-  a book. The extracted *bytes* are cached (`epubs/<epubHash>/chapters/<N>.xhtml`), but the forward
-  pass's *result* is not — there's no memoization of "I already checked chapter 3's items against
-  chapters 4-10 and got this answer."
+- **What:** `flagForwardConcerns` (`src/corpus/epubForwardFlags.js`) extracts (or reuses a cached
+  extraction of) every chapter after the current one and asks the model to Read each of them fresh,
+  every time `assemble --epub` runs for a book. The extracted *bytes* are cached
+  (`epubs/<epubHash>/chapters/<N>.xhtml`), but the pass's *result* is not — there's no memoization of
+  "I already checked chapter 3's items against chapters 4-10 and got this answer." This pass used to
+  be a hard drop (`dedupForward`); it's now purely advisory — flagged items are kept in the corpus
+  with `uncertain: true` and a "Possibly premature — ..." note, and it was also broadened to flag
+  items that look too complex for this point in the book (not just ones explicitly re-taught later),
+  so the human reviewer — not a second blind LLM pass — makes the actual keep/drop call. None of that
+  changes this entry's cost characteristics: it's still one model call per `assemble --epub`
+  invocation reading every later chapter in sequence, not a fan-out.
 - **Why:** keeping the pass simple (re-derive the answer every call) was chosen over adding a
   result-cache invalidation story (what invalidates it — a later chapter's content changing? the
   candidate item list changing? both are plausible and neither was worth the complexity yet).
 - **Impact:** real latency/cost that scales with how early you are in a long book — chapter 1 of a
   20-chapter book means the model reads chapters 2 through 20 on every `assemble` call for chapter 1.
 - **When to revisit:** if this cost/latency becomes a real practical annoyance — cache the forward
-  pass's `{kept, dropped}` result keyed by (epubHash, chapterNumber, a hash of the candidate item
+  pass's `{items, flagged}` result keyed by (epubHash, chapterNumber, a hash of the candidate item
   ids), invalidated whenever any later chapter's registry entry changes.
 
 ## The category enum is a first-cut list, not yet validated against real usage

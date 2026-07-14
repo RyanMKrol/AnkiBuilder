@@ -35,7 +35,7 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
 /**
  * The cache file path a given (epubHash, chapterNumber) pair's raw content
  * should be extracted to — shared by the "current chapter" extraction in
- * assemble and the "later chapter" reads in the forward dedup pass.
+ * assemble and the "later chapter" reads in the forward flag pass.
  */
 export function chapterCachePath(epubHash, chapterNumber, { libraryHomeDir } = {}) {
   return join(bookDir(epubHash, { libraryHomeDir }), "chapters", `${chapterNumber}.xhtml`);

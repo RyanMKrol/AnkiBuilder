@@ -50,7 +50,7 @@ export function renderBookConventionsPrompt({
 
 /**
  * One-time, whole-book pass: materializes every chapter to the shared
- * extraction cache (chapterCachePath — the same cache assemble/dedupForward
+ * extraction cache (chapterCachePath — the same cache assemble/flagForwardConcerns
  * use, so this warms it for them too) and asks a Sonnet-medium model to
  * characterize the book's own structural conventions (placeholder notation,
  * content vs. exercise markup). Returns the raw Markdown text as-is — this

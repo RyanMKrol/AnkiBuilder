@@ -104,7 +104,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
   await withTempDir(async (runDir) => {
     let registerEpubCalledWith = null;
     let extractChapterToFileCalledWith = null;
-    let dedupForwardCalledWith = null;
+    let flagForwardConcernsCalledWith = null;
 
     const registerEpub = (epubPath) => {
       registerEpubCalledWith = epubPath;
@@ -124,9 +124,9 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
     const loadPriorChapterItems = () => [];
     const loadBookConventions = () => "cached conventions";
     const dedupBackward = (items) => ({ kept: items, dropped: [] });
-    const dedupForward = (opts) => {
-      dedupForwardCalledWith = opts;
-      return { kept: opts.candidateItems, dropped: [] };
+    const flagForwardConcerns = (opts) => {
+      flagForwardConcernsCalledWith = opts;
+      return { items: opts.candidateItems, flagged: [] };
     };
 
     await runCli(
@@ -149,15 +149,15 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
         loadPriorChapterItems,
         loadBookConventions,
         dedupBackward,
-        dedupForward,
+        flagForwardConcerns,
         log: () => {},
       },
     );
 
     assert.equal(registerEpubCalledWith, "/tmp/book.epub");
     assert.equal(extractChapterToFileCalledWith.chapterNumber, 3);
-    assert.equal(dedupForwardCalledWith.chapterNumber, 3);
-    assert.equal(dedupForwardCalledWith.epubPath, "/tmp/book.epub");
+    assert.equal(flagForwardConcernsCalledWith.chapterNumber, 3);
+    assert.equal(flagForwardConcernsCalledWith.epubPath, "/tmp/book.epub");
 
     const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
     assert.equal(written.meta.epubHash, "hash123");
@@ -187,7 +187,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
       savedConventionsCalledWith = { epubHash, markdown };
     };
     const dedupBackward = (items) => ({ kept: items, dropped: [] });
-    const dedupForward = ({ candidateItems }) => ({ kept: candidateItems, dropped: [] });
+    const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
 
     await runCli(
       [
@@ -211,7 +211,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
         analyzeBookConventions,
         saveBookConventions,
         dedupBackward,
-        dedupForward,
+        flagForwardConcerns,
         log: () => {},
       },
     );
@@ -246,7 +246,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
       saveCalled = true;
     };
     const dedupBackward = (items) => ({ kept: items, dropped: [] });
-    const dedupForward = ({ candidateItems }) => ({ kept: candidateItems, dropped: [] });
+    const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
 
     await runCli(
       [
@@ -270,7 +270,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
         analyzeBookConventions,
         saveBookConventions,
         dedupBackward,
-        dedupForward,
+        flagForwardConcerns,
         log: () => {},
       },
     );
@@ -342,7 +342,7 @@ test("assemble: throws when --epub is given without --lang", async () => {
   });
 });
 
-test("assemble: logs one line per dropped item for both dedup passes, not just a count", async () => {
+test("assemble: logs one line per dropped/flagged item for both passes, not just a count", async () => {
   await withTempDir(async (runDir) => {
     const logs = [];
 
@@ -372,9 +372,13 @@ test("assemble: logs one line per dropped item for both dedup passes, not just a
       kept: items.slice(1),
       dropped: [{ item: items[0], matchedField: "english", matchedPriorItem: priorItems[0] }],
     });
-    const dedupForward = ({ candidateItems }) => ({
-      kept: candidateItems.slice(1),
-      dropped: [{ item: candidateItems[0], laterChapter: 5, reason: "taught later" }],
+    const flagForwardConcerns = ({ candidateItems }) => ({
+      items: candidateItems.map((item, index) =>
+        index === 0
+          ? { ...item, uncertain: true, notes: "Possibly premature — taught later" }
+          : item,
+      ),
+      flagged: [{ item: candidateItems[0], laterChapter: 5, reason: "taught later" }],
     });
 
     await runCli(
@@ -397,7 +401,7 @@ test("assemble: logs one line per dropped item for both dedup passes, not just a
         loadPriorChapterItems,
         loadBookConventions,
         dedupBackward,
-        dedupForward,
+        flagForwardConcerns,
         log: (msg) => logs.push(msg),
       },
     );
@@ -409,11 +413,14 @@ test("assemble: logs one line per dropped item for both dedup passes, not just a
       "expected an individual backward-drop log line naming the item and matched chapter",
     );
     assert.ok(
-      logs.some(
-        (msg) => msg.includes('[dedup:forward] dropped "Later"') && msg.includes("chapter 5"),
-      ),
-      "expected an individual forward-drop log line naming the item and later chapter",
+      logs.some((msg) => msg.includes('[flag:forward] "Later"') && msg.includes("chapter 5")),
+      "expected an individual forward-flag log line naming the item and later chapter",
     );
+
+    const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
+    assert.equal(written.items.length, 2, "flagged items stay in the corpus, only backward drops");
+    assert.equal(written.items[0].id, "later-item");
+    assert.equal(written.items[0].uncertain, true);
   });
 });
 

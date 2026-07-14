@@ -90,3 +90,28 @@ export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir 
 
   return items;
 }
+
+function conventionsPath(epubHash, { libraryHomeDir } = {}) {
+  return join(bookDir(epubHash, { libraryHomeDir }), "conventions.md");
+}
+
+/**
+ * Loads the book-wide conventions doc for a book, if the whole-book
+ * analysis pass has already run for it. Returns null if nothing's cached
+ * yet (e.g. the first assemble for this book hasn't happened).
+ */
+export function loadBookConventions(epubHash, { libraryHomeDir } = {}) {
+  const path = conventionsPath(epubHash, { libraryHomeDir });
+  return existsSync(path) ? readFileSync(path, "utf-8") : null;
+}
+
+/**
+ * Saves the book-wide conventions doc for a book — idempotent overwrite,
+ * same as saveChapterCorpus. Returns the path written.
+ */
+export function saveBookConventions(epubHash, markdown, { libraryHomeDir } = {}) {
+  const dest = conventionsPath(epubHash, { libraryHomeDir });
+  mkdirSync(join(dest, ".."), { recursive: true });
+  writeFileSync(dest, markdown);
+  return dest;
+}

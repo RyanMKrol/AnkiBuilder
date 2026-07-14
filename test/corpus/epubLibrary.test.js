@@ -10,6 +10,8 @@ import {
   chapterCachePath,
   saveChapterCorpus,
   loadPriorChapterItems,
+  loadBookConventions,
+  saveBookConventions,
 } from "../../src/corpus/epubLibrary.js";
 
 function withTempDir(fn) {
@@ -181,5 +183,41 @@ test("loadPriorChapterItems() keeps different books' chapters separate", () => {
       priorForBookA.map((i) => i.id),
       ["a"],
     );
+  });
+});
+
+test("loadBookConventions() returns null when nothing's cached yet", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    assert.equal(loadBookConventions("never-analyzed", { libraryHomeDir }), null);
+  });
+});
+
+test("saveBookConventions()/loadBookConventions() round-trip", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    const markdown = "# Japanese Book Conventions\n\n## Placeholder Notation\nUses 〜.\n";
+
+    saveBookConventions("book1", markdown, { libraryHomeDir });
+    const loaded = loadBookConventions("book1", { libraryHomeDir });
+
+    assert.equal(loaded, markdown);
+  });
+});
+
+test("saveBookConventions() is an idempotent overwrite", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    saveBookConventions("book1", "# Old conventions", { libraryHomeDir });
+    saveBookConventions("book1", "# New conventions", { libraryHomeDir });
+
+    assert.equal(loadBookConventions("book1", { libraryHomeDir }), "# New conventions");
+  });
+});
+
+test("loadBookConventions() keeps different books separate", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    saveBookConventions("bookA", "# Book A conventions", { libraryHomeDir });
+    saveBookConventions("bookB", "# Book B conventions", { libraryHomeDir });
+
+    assert.equal(loadBookConventions("bookA", { libraryHomeDir }), "# Book A conventions");
+    assert.equal(loadBookConventions("bookB", { libraryHomeDir }), "# Book B conventions");
   });
 });

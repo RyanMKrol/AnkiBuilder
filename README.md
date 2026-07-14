@@ -24,19 +24,32 @@ npm run build
 `assemble` → `review` → `translate` → `audio` → `deck`, each stage reading/writing JSON in a run
 directory (`--run <dir>`).
 
-- **`assemble`** — `--template <name>` (bundled word lists) or `--chapter <path> --lang <language>`
-  (one already-extracted EPUB chapter `.xhtml` file, read directly by a model via
-  `src/corpus/epubLlmCorpus.js` / `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet at
-  medium effort by default, no pre-split text blocks). The prompt template lives at
+- **`assemble`** — three sources:
+  - `--template <name>`: bundled word lists.
+  - `--chapter <path> --lang <language>`: one already-extracted EPUB chapter `.xhtml` file, read
+    directly by a model (no book-level context, no dedup/registry tracking) — a manual/ad hoc mode.
+  - `--epub <path> --chapter-number <N> --lang <language>`: reads chapter `N` directly out of a
+    real `.epub` archive in spine (reading) order (`src/corpus/epubArchive.js` — a dependency-free
+    zip reader + `META-INF/container.xml`/OPF spine parser), registers the book into the local
+    library, and automatically runs two deduplication passes (`src/corpus/epubDedup.js`) before
+    writing `corpus.json`: a backward pass drops anything already introduced in an earlier
+    (reviewed) chapter of the same book; a forward pass asks a Sonnet-medium model whether anything
+    is explicitly taught in a later chapter and should wait. Every dropped item is logged
+    individually, naming the item and the reason — never just a count.
+
+  Both the `--chapter` and `--epub` paths call the same extractor
+  (`src/corpus/epubLlmCorpus.js` / `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet
+  at medium effort by default). The prompt template lives at
   [`docs/epub-extraction-prompt.md`](./docs/epub-extraction-prompt.md), parameterized by target
-  language, chapter file path, and the canonical category list (`src/model/categories.js`). Both
-  paths produce the same superset item shape: `{ id, english, category, notes, target }`, with
-  `notes`/`target` explicitly `null` when the source path can't populate them. `assemble --chapter`
-  takes a single chapter file, not a whole `.epub` archive — multi-chapter/whole-book orchestration
-  (spine-order enumeration, looping, merging) doesn't exist yet.
+  language, chapter file path, and the canonical category list (`src/model/categories.js`). All
+  three paths produce the same superset item shape: `{ id, english, category, notes, target }`,
+  with `notes`/`target` explicitly `null` when the source path can't populate them.
+
 - **`review`** — a hard gate before `translate` will run. Interactively lists the corpus (numbered,
   via `src/audit/index.js`'s `renderReviewTable`), lets you exclude items by number, and marks
-  `meta.reviewed: true` once confirmed.
+  `meta.reviewed: true` once confirmed. For an `--epub`-sourced corpus, also saves the approved
+  corpus into the local library (`src/corpus/epubLibrary.js`), so later chapters' backward dedup
+  pass has something to check against.
 - **`translate`** — items with `target: null` get a full translation; items with a real
   `target` already set (e.g. from the EPUB path) only ever get a pronunciation guide — the model
   cannot override a pre-existing target (see `src/translate/index.js`). Both prompts are
@@ -45,6 +58,21 @@ directory (`--run <dir>`).
   romaji, pinyin) when one exists, falling back to a phonetic respelling otherwise — see
   [`docs/translate-prompts.md`](./docs/translate-prompts.md) for the full templates.
 - **`audio`** / **`deck`** — unchanged from before.
+
+## Local library
+
+All durable state that survives between runs — the ElevenLabs audio cache and the EPUB registry —
+lives inside this checkout at `.anki-builder/` (gitignored, never committed or pushed), via
+`libraryHome()` in `src/model/index.js`. There's no env-var override and nothing to configure; it's
+always relative to the repo itself, regardless of which directory you invoke the CLI from.
+
+```
+.anki-builder/
+  audio/<voiceId>/<hash>.mp3                    # ElevenLabs TTS cache
+  epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
+  epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
+  epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved by `review`
+```
 
 ## Implementation status
 

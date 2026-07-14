@@ -1,7 +1,7 @@
 import { createHash } from "crypto";
 import { join, resolve } from "path";
 import { promises as fs } from "fs";
-import { stateHome } from "../model/index.js";
+import { libraryHome } from "../model/index.js";
 
 function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
@@ -24,7 +24,10 @@ async function fileExists(path) {
   }
 }
 
-export async function generateAudio(cards, { voiceId, fetchTts = null, stateHomeDir = null } = {}) {
+export async function generateAudio(
+  cards,
+  { voiceId, fetchTts = null, libraryHomeDir = null } = {},
+) {
   if (!voiceId) {
     throw new Error("voiceId is required");
   }
@@ -38,7 +41,7 @@ export async function generateAudio(cards, { voiceId, fetchTts = null, stateHome
     throw new Error("ELEVENLABS_API_KEY environment variable is not set");
   }
 
-  const basePath = stateHomeDir || stateHome();
+  const basePath = libraryHomeDir || libraryHome();
   const audioDir = resolve(join(basePath, "audio", voiceId));
 
   await ensureDir(audioDir);

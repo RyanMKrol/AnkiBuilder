@@ -1,6 +1,9 @@
-import { homedir } from "os";
-import { join, resolve } from "path";
+import { fileURLToPath } from "url";
+import { dirname, join, resolve } from "path";
 import { CATEGORIES } from "./categories.js";
+
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url)); // src/model/
+const REPO_ROOT = resolve(join(MODULE_DIR, "..", ".."));
 
 const CORPUS_SCHEMA = {
   type: "object",
@@ -16,6 +19,8 @@ const CORPUS_SCHEMA = {
           enum: ["template", "epub", "manual"],
         },
         reviewed: { type: "boolean" },
+        epubHash: { type: ["string", "null"] },
+        chapterNumber: { type: ["number", "null"] },
       },
       additionalProperties: false,
     },
@@ -225,12 +230,10 @@ export function validateCards(obj) {
   return true;
 }
 
-export function stateHome() {
-  const envPath = process.env.ANKI_BUILDER_HOME;
-  if (envPath) {
-    return resolve(envPath);
-  }
-  return resolve(join(homedir(), ".anki-builder"));
+// All durable cross-run state (audio cache, EPUB registry) lives inside this
+// checkout, gitignored — never in $HOME, never committed. See .gitignore.
+export function libraryHome() {
+  return resolve(join(REPO_ROOT, ".anki-builder"));
 }
 
 export function runPaths(runDir) {

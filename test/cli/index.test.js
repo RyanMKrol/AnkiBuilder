@@ -690,3 +690,109 @@ test("deck: is resumable — skips work when deck.apkg already exists", async ()
     assert.equal(called, false);
   });
 });
+
+test("render-review: throws when --stage is missing or unrecognized", async () => {
+  await withTempDir(async (runDir) => {
+    mkdirSync(runDir, { recursive: true });
+    await assert.rejects(
+      () => runCli(["render-review", "--run", runDir], { log: () => {} }),
+      /--stage must be one of/,
+    );
+    await assert.rejects(
+      () => runCli(["render-review", "--run", runDir, "--stage", "bogus"], { log: () => {} }),
+      /--stage must be one of/,
+    );
+  });
+});
+
+test("render-review --stage corpus: reads corpus.json, calls renderCorpusReviewPage, writes review-corpus.html", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseCorpus()));
+
+    let received = null;
+    const renderCorpusReviewPage = (corpus) => {
+      received = corpus;
+      return "<title>fake corpus review</title>";
+    };
+
+    await runCli(["render-review", "--run", runDir, "--stage", "corpus"], {
+      renderCorpusReviewPage,
+      log: () => {},
+    });
+
+    assert.equal(received.items[0].id, "a1");
+    const outPath = join(runDir, "review-corpus.html");
+    assert(existsSync(outPath));
+    assert.equal(await fs.readFile(outPath, "utf-8"), "<title>fake corpus review</title>");
+  });
+});
+
+test("render-review --stage corpus: throws when corpus.json doesn't exist yet", async () => {
+  await withTempDir(async (runDir) => {
+    mkdirSync(runDir, { recursive: true });
+    await assert.rejects(
+      () => runCli(["render-review", "--run", runDir, "--stage", "corpus"], { log: () => {} }),
+      /corpus\.json not found/,
+    );
+  });
+});
+
+test("render-review --stage translate: reads cards.json, calls renderTranslateReviewPage, writes review-translate.html", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.cards, JSON.stringify(baseCards()));
+
+    let received = null;
+    const renderTranslateReviewPage = (cards) => {
+      received = cards;
+      return "<title>fake translate review</title>";
+    };
+
+    await runCli(["render-review", "--run", runDir, "--stage", "translate"], {
+      renderTranslateReviewPage,
+      log: () => {},
+    });
+
+    assert.equal(received.items[0].id, "a1");
+    const outPath = join(runDir, "review-translate.html");
+    assert(existsSync(outPath));
+    assert.equal(await fs.readFile(outPath, "utf-8"), "<title>fake translate review</title>");
+  });
+});
+
+test("render-review --stage audio: reads cards.json, passes the run's audio dir, writes review-audio.html", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.cards, JSON.stringify(baseCards()));
+
+    let received = null;
+    const renderAudioReviewPage = (cards, opts) => {
+      received = { cards, opts };
+      return "<title>fake audio review</title>";
+    };
+
+    await runCli(["render-review", "--run", runDir, "--stage", "audio"], {
+      renderAudioReviewPage,
+      log: () => {},
+    });
+
+    assert.equal(received.cards.items[0].id, "a1");
+    assert.equal(received.opts.audioDir, paths.audio);
+    const outPath = join(runDir, "review-audio.html");
+    assert(existsSync(outPath));
+  });
+});
+
+test("render-review --stage translate: throws when cards.json doesn't exist yet", async () => {
+  await withTempDir(async (runDir) => {
+    mkdirSync(runDir, { recursive: true });
+    await assert.rejects(
+      () => runCli(["render-review", "--run", runDir, "--stage", "translate"], { log: () => {} }),
+      /cards\.json not found/,
+    );
+  });
+});

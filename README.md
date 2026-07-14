@@ -66,6 +66,13 @@ directory (`--run <dir>`).
   romaji, pinyin) when one exists, falling back to a phonetic respelling otherwise — see
   [`docs/translate-prompts.md`](./docs/translate-prompts.md) for the full templates.
 - **`audio`** / **`deck`** — unchanged from before.
+- **`render-review --stage <corpus|translate|audio>`** — generates a self-contained,
+  ready-to-publish HTML review artifact (`<runDir>/review-<stage>.html`) from `corpus.json` or
+  `cards.json`, so the corpus/translate/audio review gates are produced from one shared,
+  checked-in template (`src/review/`) rather than hand-authored HTML each time — keeping look and
+  interaction identical across stages and across runs. Corpus/translate reviews use a
+  click-to-mark-for-exclusion interaction; the audio review embeds each clip as a base64
+  `<audio>` element and uses a "flag for regeneration" interaction instead.
 
 ## Local library
 

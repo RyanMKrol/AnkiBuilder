@@ -149,3 +149,20 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   slow/costly in practice — switch to a representative-chapter sample (first, a few middle,
   last, plus any chapter self-identified as exercise-heavy) instead of reading every chapter, or
   parse the `## Coverage` section and warn explicitly when it reports incomplete coverage.
+
+## Audio review artifact embeds every clip as base64 in one HTML file — no chunking
+
+- **What:** `renderAudioReviewPage` (`src/review/renderAudioReviewPage.js`), invoked via
+  `anki-builder render-review --stage audio`, base64-encodes every card's mp3 and inlines it as a
+  `data:audio/mpeg;base64,...` `<audio>` element in a single `review-audio.html` file — there's no
+  size cap or splitting into multiple pages.
+- **Why:** simplest correct behavior, and matches how the other two review stages already produce
+  one file per stage; splitting introduces real complexity (deciding a chunk size, threading
+  chunk index through the CLI/publish step) that wasn't justified without a real deck actually
+  hitting a size problem.
+- **Impact:** a large deck (many dozens of cards) can produce a large HTML file that's slow to
+  generate/publish/open as a Claude Artifact. There's no automatic warning when this happens —
+  it has to be noticed by whoever runs `render-review`.
+- **When to revisit:** if a real deck's audio review artifact becomes noticeably slow or fails to
+  publish, add a `--chunk-size <n>` flag to `render-review` that splits the audio stage's output
+  into `review-audio-1.html`, `review-audio-2.html`, etc.

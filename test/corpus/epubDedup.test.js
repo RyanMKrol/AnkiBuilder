@@ -261,6 +261,26 @@ test("dedupForward() keeps items the model does not flag", () => {
   });
 });
 
+test("dedupForward() parses a JSON object prefaced with unfenced prose commentary", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 2);
+    const candidates = [candidate("a", "A", "あ")];
+
+    const { kept, dropped } = dedupForward({
+      candidateItems: candidates,
+      epubPath,
+      chapterNumber: 1,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () =>
+        'Confirmed — chapter 2 is just the glossary, nothing qualifies for drop.\n\n{"drop": []}\n',
+    });
+
+    assert.equal(kept.length, 1);
+    assert.equal(dropped.length, 0);
+  });
+});
+
 test("dedupForward() fails open on a malformed model response and logs the reason", () => {
   withTempDir((dir) => {
     const epubPath = buildFixtureEpub(dir, 2);

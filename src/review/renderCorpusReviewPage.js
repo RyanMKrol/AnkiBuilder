@@ -4,16 +4,26 @@ export function renderCorpusReviewPage(corpus) {
   const items = corpus.items || [];
   const targetLanguage = corpus.meta?.targetLanguage || "the target language";
 
-  const rows = items.map((item) => ({
-    cells: [
-      escapeHtml(item.english),
-      escapeHtml(item.category),
-      item.target
-        ? `<span class="target-cell">${escapeHtml(item.target)}</span>`
-        : `<span class="empty">—</span>`,
-    ],
-    note: item.notes || null,
-  }));
+  const rows = items.map((item) => {
+    const badges = [
+      item.uncertain ? `<span class="badge badge-uncertain">Uncertain</span>` : "",
+      item.aiSuggested ? `<span class="badge badge-ai-suggested">AI-suggested</span>` : "",
+    ]
+      .filter(Boolean)
+      .join("");
+
+    return {
+      cells: [
+        escapeHtml(item.english),
+        escapeHtml(item.category),
+        item.target
+          ? `<span class="target-cell">${escapeHtml(item.target)}</span>`
+          : `<span class="empty">—</span>`,
+        badges || `<span class="empty">—</span>`,
+      ],
+      note: item.notes || null,
+    };
+  });
 
   return renderReviewPage({
     eyebrow: "Anki Builder — Corpus Review",
@@ -24,7 +34,7 @@ export function renderCorpusReviewPage(corpus) {
       { label: "Target language", value: targetLanguage },
       { label: "Items", value: String(items.length) },
     ],
-    columns: ["English", "Category", "Target"],
+    columns: ["English", "Category", "Target", "Flags"],
     rows,
     mode: "exclude",
   });

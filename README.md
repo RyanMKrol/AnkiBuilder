@@ -39,19 +39,27 @@ directory (`--run <dir>`).
     call for a never-before-seen book also triggers a one-time, whole-book conventions pass
     (`src/corpus/epubBookConventions.js`) — a Sonnet-medium agent reads every chapter and
     characterizes this specific book's own structural conventions (placeholder notation, what
-    content markup vs. exercise markup looks like), caching the result at
-    `.anki-builder/epubs/<hash>/conventions.md`. Every subsequent chapter for that book (this run
-    or a future one) reuses the cache and feeds it into the extraction prompt as grounding context,
-    instead of each chapter re-inferring the book's conventions from just its own content. Manual
-    `--chapter` mode has no book identity to cache this under, so it doesn't get this context.
+    content markup vs. exercise markup looks like, and which chapters embed real teaching content
+    inside images rather than extractable text — see `## Image-Embedded Content` in
+    [`docs/epub-book-conventions-prompt.md`](./docs/epub-book-conventions-prompt.md)), caching the
+    result at `.anki-builder/epubs/<hash>/conventions.md`. Every subsequent chapter for that book
+    (this run or a future one) reuses the cache and feeds it into the extraction prompt as
+    grounding context, instead of each chapter re-inferring the book's conventions from just its own
+    content. Manual `--chapter` mode has no book identity to cache this under, so it doesn't get
+    this context.
 
   Both the `--chapter` and `--epub` paths call the same extractor
   (`src/corpus/epubLlmCorpus.js` / `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet
   at medium effort by default). The prompt template lives at
   [`docs/epub-extraction-prompt.md`](./docs/epub-extraction-prompt.md), parameterized by target
-  language, chapter file path, and the canonical category list (`src/model/categories.js`). All
-  three paths produce the same superset item shape: `{ id, english, category, notes, target }`,
-  with `notes`/`target` explicitly `null` when the source path can't populate them.
+  language, chapter file path, and the canonical category list (`src/model/categories.js`) — it
+  also instructs the model not to rule out images as a content source purely because their `alt`
+  text is empty, and to open image files directly with its Read tool when they sit in a content
+  section. All three paths produce the same superset item shape:
+  `{ id, english, category, notes, target }`, with `notes`/`target` explicitly `null` when the
+  source path can't populate them, plus two optional flags carried through when the extractor sets
+  them: `uncertain` (the model wasn't sure the item belonged) and `aiSuggested` (a critical-gap item
+  the model added itself, not present in the source).
 
 - **`review`** — a hard gate before `translate` will run. Interactively lists the corpus (numbered,
   via `src/audit/index.js`'s `renderReviewTable`), lets you exclude items by number, and marks
@@ -72,7 +80,8 @@ directory (`--run <dir>`).
   checked-in template (`src/review/`) rather than hand-authored HTML each time — keeping look and
   interaction identical across stages and across runs. Corpus/translate reviews use a
   click-to-mark-for-exclusion interaction; the audio review embeds each clip as a base64
-  `<audio>` element and uses a "flag for regeneration" interaction instead.
+  `<audio>` element and uses a "flag for regeneration" interaction instead. The corpus review's
+  `Flags` column surfaces `uncertain`/`aiSuggested` as badges when the extractor set them.
 
 ## Local library
 

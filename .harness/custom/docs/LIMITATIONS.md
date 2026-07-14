@@ -150,6 +150,29 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   last, plus any chapter self-identified as exercise-heavy) instead of reading every chapter, or
   parse the `## Coverage` section and warn explicitly when it reports incomplete coverage.
 
+## Image-embedded EPUB content relies on model diligence — no forced inspection, no OCR fallback
+
+- **What:** `docs/epub-book-conventions-prompt.md` and `docs/epub-extraction-prompt.md` now instruct
+  the model to open referenced image files with its own Read tool when they sit in a content
+  section, rather than trusting (often-empty) `alt` text. This was discovered manually: a real
+  textbook's "Frequently Used Expressions" page (a whole chapter's worth of vocabulary) is rendered
+  entirely as illustrated images with no extractable text at all — the automatic pipeline would have
+  silently produced zero items for that chapter with no error. There is no code-level enforcement
+  that the model actually opens any given image, and no OCR/vision fallback if it declines or
+  misjudges an image as decorative — the guidance is prose in the prompt, not a mechanism.
+- **Why:** neither prompt template has any way to programmatically detect "this image contains
+  text" ahead of the model call — that judgment call is exactly what the model is being asked to
+  make. Building a real enforcement mechanism (e.g. a separate vision pass that always runs and is
+  cross-checked against the extraction output) was not justified without first seeing whether
+  prompt-level guidance already closes the gap in practice.
+- **Impact:** a book that embeds significant content in images could still silently under-extract if
+  the model skips an image it should have opened — this would look identical to "this chapter
+  genuinely has little vocabulary," with no automatic signal that content was missed.
+- **When to revisit:** if a real run is later found to have silently skipped image content despite
+  this guidance, add a deterministic check — e.g. flag any chapter where the source has `<img>` tags
+  in content sections but the extractor returned few/no items, so a human is prompted to check
+  manually, rather than relying solely on the model choosing to look.
+
 ## Audio review artifact embeds every clip as base64 in one HTML file — no chunking
 
 - **What:** `renderAudioReviewPage` (`src/review/renderAudioReviewPage.js`), invoked via

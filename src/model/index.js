@@ -35,6 +35,8 @@ const CORPUS_SCHEMA = {
           category: { type: "string", enum: CATEGORIES },
           notes: { type: ["string", "null"] },
           target: { type: ["string", "null"] },
+          uncertain: { type: "boolean" },
+          aiSuggested: { type: "boolean" },
         },
         additionalProperties: false,
       },

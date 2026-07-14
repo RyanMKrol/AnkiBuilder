@@ -35,14 +35,22 @@ const REVIEW_STAGES = ["corpus", "translate", "audio"];
 
 const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
 
-async function defaultFetchTts(text, voiceId, apiKey) {
+// languageCode is only ever a real ISO 639-1 code or null (see resolveIso639Code,
+// src/model/iso639.js) — omitted from the request body entirely when null, rather than
+// sent as an empty/invalid value, so ElevenLabs falls back to its own language
+// auto-detection exactly as it did before this parameter existed.
+async function defaultFetchTts(text, voiceId, apiKey, languageCode = null) {
   const response = await globalThis.fetch(`${ELEVENLABS_TTS_URL}/${voiceId}`, {
     method: "POST",
     headers: {
       "xi-api-key": apiKey,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ text, model_id: "eleven_multilingual_v2" }),
+    body: JSON.stringify({
+      text,
+      model_id: "eleven_multilingual_v2",
+      ...(languageCode ? { language_code: languageCode } : {}),
+    }),
   });
 
   if (!response.ok) {

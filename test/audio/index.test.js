@@ -349,6 +349,71 @@ test("passes voiceId and apiKey to fetchTts function", async () => {
   });
 });
 
+test("passes the resolved ISO 639-1 language code to fetchTts when targetLanguage is a real code", async () => {
+  await withTempDir(async (tmpDir) => {
+    process.env.ELEVENLABS_API_KEY = "test-api-key-12345";
+
+    const cards = baseCards([
+      { id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" },
+    ]);
+
+    const mockFetchTts = async (term, voiceId, apiKey, languageCode) => {
+      assert.equal(languageCode, "ja");
+      return Buffer.from("audio data");
+    };
+
+    await generateAudio(cards, {
+      voiceId: "voice123",
+      fetchTts: mockFetchTts,
+      libraryHomeDir: tmpDir,
+    });
+  });
+});
+
+test("passes null as the language code when targetLanguage isn't a recognized ISO 639-1 code", async () => {
+  await withTempDir(async (tmpDir) => {
+    process.env.ELEVENLABS_API_KEY = "test-api-key-12345";
+
+    const cards = {
+      meta: { targetLanguage: "Japanese", sourceType: "manual" },
+      items: [{ id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" }],
+    };
+
+    const mockFetchTts = async (term, voiceId, apiKey, languageCode) => {
+      assert.equal(languageCode, null);
+      return Buffer.from("audio data");
+    };
+
+    await generateAudio(cards, {
+      voiceId: "voice123",
+      fetchTts: mockFetchTts,
+      libraryHomeDir: tmpDir,
+    });
+  });
+});
+
+test("passes null as the language code when targetLanguage is missing entirely", async () => {
+  await withTempDir(async (tmpDir) => {
+    process.env.ELEVENLABS_API_KEY = "test-api-key-12345";
+
+    const cards = {
+      meta: { sourceType: "manual" },
+      items: [{ id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" }],
+    };
+
+    const mockFetchTts = async (term, voiceId, apiKey, languageCode) => {
+      assert.equal(languageCode, null);
+      return Buffer.from("audio data");
+    };
+
+    await generateAudio(cards, {
+      voiceId: "voice123",
+      fetchTts: mockFetchTts,
+      libraryHomeDir: tmpDir,
+    });
+  });
+});
+
 test("preserves meta property in returned cards", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";

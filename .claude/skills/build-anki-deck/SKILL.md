@@ -60,13 +60,20 @@ Read `corpus.json` and build an HTML review table, then publish it as an Artifac
 `artifact-design` skill first — this is a utilitarian data-review tool, polished but not
 over-designed). Columns: #, English, Category, Target (if the source already populated it, e.g.
 the EPUB path), Notes. Make each row clickable to mark it for exclusion (visual only — strikethrough
-+ dim), with a running "N marked" counter and a "copy marked numbers" button so you can read the
-numbers back to me in chat. Don't skip this even for a small corpus — a terminal dump is not
-an acceptable substitute; the point is that it's actually visible and scannable in the browser.
++ dim), with a running "N marked" counter and a "Copy instruction" button. Don't skip this even for
+a small corpus — a terminal dump is not an acceptable substitute; the point is that it's actually
+visible and scannable in the browser.
 Keep the table header row static (no `position: sticky`) — sticky positioning on `thead th` breaks
 inside a horizontally-scrolling wrapper (`overflow-x: auto` on the table's container implicitly
 turns that container into the sticky containing block, so the header detaches and floats mid-table
 instead of pinning to the top). A plain, non-sticky header is correct here; don't reintroduce it.
+The copy button must put a ready-to-paste instruction on the clipboard, not bare numbers — e.g.
+`Please exclude rows 3, 12, 19.` (or `No rows marked for exclusion.` when nothing's marked), so the
+result can go straight back into chat with no editing. `navigator.clipboard.writeText` is often
+blocked inside the artifact's sandboxed iframe and silently throws — always try it first, fall back
+to a hidden-textarea `document.execCommand("copy")` on failure, and if BOTH fail, reveal the text in
+a visible, pre-selected, read-only input so it can be copied by hand. Never let a copy failure be
+silent (e.g. don't just overwrite the button's own label with the text).
 
 **You decide:** does the corpus look right? Can I proceed with translation?
 

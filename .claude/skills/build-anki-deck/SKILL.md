@@ -63,6 +63,10 @@ the EPUB path), Notes. Make each row clickable to mark it for exclusion (visual 
 + dim), with a running "N marked" counter and a "copy marked numbers" button so you can read the
 numbers back to me in chat. Don't skip this even for a small corpus — a terminal dump is not
 an acceptable substitute; the point is that it's actually visible and scannable in the browser.
+Keep the table header row static (no `position: sticky`) — sticky positioning on `thead th` breaks
+inside a horizontally-scrolling wrapper (`overflow-x: auto` on the table's container implicitly
+turns that container into the sticky containing block, so the header detaches and floats mid-table
+instead of pinning to the top). A plain, non-sticky header is correct here; don't reintroduce it.
 
 **You decide:** does the corpus look right? Can I proceed with translation?
 

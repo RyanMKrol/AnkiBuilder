@@ -8,6 +8,17 @@ import {
 } from "../model/index.js";
 import { listTemplates, loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
 import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from "../corpus/epubLlmCorpus.js";
+import { extractChapterToFile as defaultExtractChapterToFile } from "../corpus/epubArchive.js";
+import {
+  registerEpub as defaultRegisterEpub,
+  chapterCachePath as defaultChapterCachePath,
+  saveChapterCorpus as defaultSaveChapterCorpus,
+  loadPriorChapterItems as defaultLoadPriorChapterItems,
+} from "../corpus/epubLibrary.js";
+import {
+  dedupBackward as defaultDedupBackward,
+  dedupForward as defaultDedupForward,
+} from "../corpus/epubDedup.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { buildDeck as defaultBuildDeck } from "../deck/index.js";
@@ -70,6 +81,9 @@ async function runAssemble(flags, ctx) {
 
   let corpus;
   if (flags.chapter) {
+    if (flags.epub) {
+      ctx.log("both --chapter and --epub given — using --chapter (manual mode, no dedup/registry)");
+    }
     if (!flags.lang) {
       throw new Error("--lang is required when assembling from a --chapter source");
     }
@@ -77,11 +91,63 @@ async function runAssemble(flags, ctx) {
       chapterFilePath: flags.chapter,
       targetLanguage: flags.lang,
     });
+  } else if (flags.epub) {
+    if (!flags["chapter-number"]) {
+      throw new Error("--chapter-number is required when assembling from --epub");
+    }
+    if (!flags.lang) {
+      throw new Error("--lang is required when assembling from an --epub source");
+    }
+
+    const chapterNumber = Number(flags["chapter-number"]);
+    const { epubHash } = ctx.registerEpub(flags.epub);
+    const chapterFilePath = ctx.extractChapterToFile(
+      flags.epub,
+      chapterNumber,
+      ctx.chapterCachePath(epubHash, chapterNumber),
+    );
+
+    corpus = ctx.assembleCorpusFromChapter({ chapterFilePath, targetLanguage: flags.lang });
+    corpus.meta = { ...corpus.meta, epubHash, chapterNumber };
+
+    const backward = ctx.dedupBackward(
+      corpus.items,
+      ctx.loadPriorChapterItems(epubHash, chapterNumber),
+    );
+    for (const { item, matchedField, matchedPriorItem } of backward.dropped) {
+      ctx.log(
+        `[dedup:backward] dropped "${item.english}" (id: ${item.id}) — already introduced in ` +
+          `chapter ${matchedPriorItem.__chapterNumber} (matched on ${matchedField})`,
+      );
+    }
+
+    const forward = ctx.dedupForward({
+      candidateItems: backward.kept,
+      epubPath: flags.epub,
+      chapterNumber,
+      targetLanguage: flags.lang,
+      log: ctx.log,
+    });
+    for (const { item, laterChapter, reason } of forward.dropped) {
+      ctx.log(
+        `[dedup:forward] dropped "${item.english}" (id: ${item.id}) — explicitly taught later in ` +
+          `chapter ${laterChapter} (${reason})`,
+      );
+    }
+
+    corpus.items = forward.kept;
+    const totalDropped = backward.dropped.length + forward.dropped.length;
+    ctx.log(
+      `dedup: kept ${corpus.items.length}/${corpus.items.length + totalDropped} item(s) ` +
+        `(${backward.dropped.length} dropped as already-taught, ${forward.dropped.length} dropped as taught-later)`,
+    );
+
+    validateCorpus(corpus);
   } else if (flags.template) {
     corpus = ctx.loadTemplate(flags.template);
   } else {
     throw new Error(
-      `either --template <name> or --chapter <path> is required. Available templates: ${listTemplates().join(", ")}`,
+      `either --template <name>, --chapter <path>, or --epub <path> --chapter-number <N> is required. Available templates: ${listTemplates().join(", ")}`,
     );
   }
 
@@ -109,6 +175,13 @@ async function runReview(flags, ctx) {
   ctx.log(
     `reviewed corpus: kept ${reviewedItems.length}/${corpus.items.length} item(s), wrote ${paths.corpus}`,
   );
+
+  if (updated.meta.epubHash && updated.meta.chapterNumber != null) {
+    ctx.saveChapterCorpus(updated.meta.epubHash, updated.meta.chapterNumber, updated);
+    ctx.log(
+      `saved chapter ${updated.meta.chapterNumber} corpus to the local library (epub ${updated.meta.epubHash})`,
+    );
+  }
 }
 
 async function runTranslate(flags, ctx) {
@@ -220,6 +293,13 @@ export async function runCli(argv, deps = {}) {
     libraryHome = defaultLibraryHome,
     loadTemplate = defaultLoadTemplate,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
+    extractChapterToFile = defaultExtractChapterToFile,
+    registerEpub = defaultRegisterEpub,
+    chapterCachePath = defaultChapterCachePath,
+    saveChapterCorpus = defaultSaveChapterCorpus,
+    loadPriorChapterItems = defaultLoadPriorChapterItems,
+    dedupBackward = defaultDedupBackward,
+    dedupForward = defaultDedupForward,
     promptReviewDecisions = defaultPromptReviewDecisions,
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
@@ -247,6 +327,13 @@ export async function runCli(argv, deps = {}) {
     libraryHome,
     loadTemplate,
     assembleCorpusFromChapter,
+    extractChapterToFile,
+    registerEpub,
+    chapterCachePath,
+    saveChapterCorpus,
+    loadPriorChapterItems,
+    dedupBackward,
+    dedupForward,
     promptReviewDecisions,
     translateCorpus,
     generateAudio,

@@ -33,6 +33,15 @@ function baseCards() {
   };
 }
 
+function baseEpubCorpus() {
+  return {
+    meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false },
+    items: [
+      { id: "hello", english: "Hello", category: "Greetings", notes: null, target: "こんにちは" },
+    ],
+  };
+}
+
 test("throws on unknown command", async () => {
   await assert.rejects(() => runCli(["bogus", "--run", "/tmp/x"]), /Unknown command/);
 });
@@ -91,6 +100,204 @@ test("assemble: throws when --chapter is given without --lang", async () => {
   });
 });
 
+test("assemble: dispatches to the --epub path — registers, extracts, dedups, and tags meta", async () => {
+  await withTempDir(async (runDir) => {
+    let registerEpubCalledWith = null;
+    let extractChapterToFileCalledWith = null;
+    let dedupForwardCalledWith = null;
+
+    const registerEpub = (epubPath) => {
+      registerEpubCalledWith = epubPath;
+      return { epubHash: "hash123" };
+    };
+    const chapterCachePath = (epubHash, chapterNumber) =>
+      `/cache/${epubHash}/${chapterNumber}.xhtml`;
+    const extractChapterToFile = (epubPath, chapterNumber, destPath) => {
+      extractChapterToFileCalledWith = { epubPath, chapterNumber, destPath };
+      return destPath;
+    };
+    const assembleCorpusFromChapter = ({ chapterFilePath, targetLanguage }) => {
+      assert.equal(chapterFilePath, "/cache/hash123/3.xhtml");
+      assert.equal(targetLanguage, "Japanese");
+      return baseEpubCorpus();
+    };
+    const loadPriorChapterItems = () => [];
+    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupForward = (opts) => {
+      dedupForwardCalledWith = opts;
+      return { kept: opts.candidateItems, dropped: [] };
+    };
+
+    await runCli(
+      [
+        "assemble",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "3",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub,
+        chapterCachePath,
+        extractChapterToFile,
+        assembleCorpusFromChapter,
+        loadPriorChapterItems,
+        dedupBackward,
+        dedupForward,
+        log: () => {},
+      },
+    );
+
+    assert.equal(registerEpubCalledWith, "/tmp/book.epub");
+    assert.equal(extractChapterToFileCalledWith.chapterNumber, 3);
+    assert.equal(dedupForwardCalledWith.chapterNumber, 3);
+    assert.equal(dedupForwardCalledWith.epubPath, "/tmp/book.epub");
+
+    const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
+    assert.equal(written.meta.epubHash, "hash123");
+    assert.equal(written.meta.chapterNumber, 3);
+  });
+});
+
+test("assemble: --chapter takes precedence when both --chapter and --epub are given", async () => {
+  await withTempDir(async (runDir) => {
+    const logs = [];
+    let assembleCalledWith = null;
+    let registerEpubCalled = false;
+
+    const assembleCorpusFromChapter = (opts) => {
+      assembleCalledWith = opts;
+      return baseCorpus();
+    };
+    const registerEpub = () => {
+      registerEpubCalled = true;
+      return { epubHash: "x" };
+    };
+
+    await runCli(
+      [
+        "assemble",
+        "--run",
+        runDir,
+        "--chapter",
+        "/tmp/manual.xhtml",
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "1",
+        "--lang",
+        "es",
+      ],
+      { assembleCorpusFromChapter, registerEpub, log: (msg) => logs.push(msg) },
+    );
+
+    assert.equal(assembleCalledWith.chapterFilePath, "/tmp/manual.xhtml");
+    assert.equal(registerEpubCalled, false);
+    assert.ok(logs.some((msg) => msg.includes("both --chapter and --epub")));
+  });
+});
+
+test("assemble: throws when --epub is given without --chapter-number", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () =>
+        runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--lang", "es"], {
+          log: () => {},
+        }),
+      /--chapter-number is required/,
+    );
+  });
+});
+
+test("assemble: throws when --epub is given without --lang", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () =>
+        runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--chapter-number", "1"], {
+          log: () => {},
+        }),
+      /--lang is required/,
+    );
+  });
+});
+
+test("assemble: logs one line per dropped item for both dedup passes, not just a count", async () => {
+  await withTempDir(async (runDir) => {
+    const logs = [];
+
+    const registerEpub = () => ({ epubHash: "hash1" });
+    const chapterCachePath = () => "/cache/1.xhtml";
+    const extractChapterToFile = (epubPath, chapterNumber, destPath) => destPath;
+    const assembleCorpusFromChapter = () => ({
+      meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false },
+      items: [
+        { id: "old-item", english: "Old", category: "Other", notes: null, target: "古い" },
+        { id: "later-item", english: "Later", category: "Other", notes: null, target: "後で" },
+        { id: "keep-item", english: "Keep", category: "Other", notes: null, target: "保つ" },
+      ],
+    });
+    const loadPriorChapterItems = () => [
+      {
+        id: "prior",
+        english: "Old",
+        category: "Other",
+        notes: null,
+        target: "古い",
+        __chapterNumber: 1,
+      },
+    ];
+    const dedupBackward = (items, priorItems) => ({
+      kept: items.slice(1),
+      dropped: [{ item: items[0], matchedField: "english", matchedPriorItem: priorItems[0] }],
+    });
+    const dedupForward = ({ candidateItems }) => ({
+      kept: candidateItems.slice(1),
+      dropped: [{ item: candidateItems[0], laterChapter: 5, reason: "taught later" }],
+    });
+
+    await runCli(
+      [
+        "assemble",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "2",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub,
+        chapterCachePath,
+        extractChapterToFile,
+        assembleCorpusFromChapter,
+        loadPriorChapterItems,
+        dedupBackward,
+        dedupForward,
+        log: (msg) => logs.push(msg),
+      },
+    );
+
+    assert.ok(
+      logs.some(
+        (msg) => msg.includes('[dedup:backward] dropped "Old"') && msg.includes("chapter 1"),
+      ),
+      "expected an individual backward-drop log line naming the item and matched chapter",
+    );
+    assert.ok(
+      logs.some(
+        (msg) => msg.includes('[dedup:forward] dropped "Later"') && msg.includes("chapter 5"),
+      ),
+      "expected an individual forward-drop log line naming the item and later chapter",
+    );
+  });
+});
+
 test("assemble: is resumable — skips work when corpus.json already exists", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);
@@ -133,6 +340,63 @@ test("review: filters excluded items and marks the corpus as reviewed", async ()
     assert.equal(written.items.length, 1);
     assert.equal(written.items[0].id, "a1");
     assert.equal(written.meta.reviewed, true);
+  });
+});
+
+test("review: saves to the local library when the corpus is epub-tracked", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = {
+      meta: {
+        targetLanguage: "Japanese",
+        sourceType: "epub",
+        reviewed: false,
+        epubHash: "hash1",
+        chapterNumber: 2,
+      },
+      items: [
+        { id: "a1", english: "Hello", category: "Greetings", notes: null, target: "こんにちは" },
+      ],
+    };
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    let savedWith = null;
+    const saveChapterCorpus = (epubHash, chapterNumber) => {
+      savedWith = { epubHash, chapterNumber };
+    };
+    const promptReviewDecisions = async (items) => items;
+
+    await runCli(["review", "--run", runDir], {
+      promptReviewDecisions,
+      saveChapterCorpus,
+      log: () => {},
+    });
+
+    assert.equal(savedWith.epubHash, "hash1");
+    assert.equal(savedWith.chapterNumber, 2);
+  });
+});
+
+test("review: does not save to the local library for a template-sourced corpus", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseCorpus({ reviewed: false })));
+
+    let saveChapterCorpusCalled = false;
+    const saveChapterCorpus = () => {
+      saveChapterCorpusCalled = true;
+    };
+    const promptReviewDecisions = async (items) => items;
+
+    await runCli(["review", "--run", runDir], {
+      promptReviewDecisions,
+      saveChapterCorpus,
+      log: () => {},
+    });
+
+    assert.equal(saveChapterCorpusCalled, false);
   });
 });
 

@@ -55,15 +55,20 @@ The result is `corpus.json` in your run directory, containing:
 - Categories (Greetings, Food, etc.)
 - Optional translations or hints from the source
 
-**Review gate:** I'll show you an audit table of all terms:
-- English phrase
-- Category
-- Candidate translation (if any)
-- Image & audio flags (populated in later steps)
+**Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
+Read `corpus.json` and build an HTML review table, then publish it as an Artifact (load the
+`artifact-design` skill first — this is a utilitarian data-review tool, polished but not
+over-designed). Columns: #, English, Category, Target (if the source already populated it, e.g.
+the EPUB path), Notes. Make each row clickable to mark it for exclusion (visual only — strikethrough
++ dim), with a running "N marked" counter and a "copy marked numbers" button so you can read the
+numbers back to me in chat. Don't skip this even for a small corpus — a terminal dump is not
+an acceptable substitute; the point is that it's actually visible and scannable in the browser.
 
 **You decide:** does the corpus look right? Can I proceed with translation?
 
-If you want to edit the corpus (add, remove, or fix terms), do it now in `corpus.json` before proceeding — each stage reads from the prior artifact.
+If you want to edit the corpus (add, remove, or fix terms), do it now in `corpus.json` before
+proceeding, or tell me which numbers to exclude and I'll run `anki-builder review --run <runDir>`
+to apply it — each stage reads from the prior artifact.
 
 ### Step 3: Translation via Claude
 
@@ -78,7 +83,10 @@ This:
 - Generates translations and pronunciations for each phrase
 - Writes `cards.json` (the translated cards, ready for audio/images)
 
-**Review gate:** After translation, I'll show you the audit table again with the translated terms and pronunciations. Verify the quality — any mistakes here affect the final deck.
+**Review gate — same treatment: render as a Claude Artifact.** Read `cards.json` and publish a
+new review table (English, Target, Pronunciation, Hint if present) as its own Artifact — don't
+reuse the corpus-stage one, the data's different now. Verify translation quality; any mistakes
+here affect the final deck.
 
 If you want to edit translations or pronunciations, do it in `cards.json` now before proceeding.
 

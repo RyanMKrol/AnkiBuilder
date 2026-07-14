@@ -97,12 +97,18 @@ This:
 - Generates translations and pronunciations for each phrase
 - Writes `cards.json` (the translated cards, ready for audio/images)
 
-**Review gate — same treatment: render as a Claude Artifact.** Read `cards.json` and publish a
-new review table (English, Target, Pronunciation, Hint if present) as its own Artifact — don't
-reuse the corpus-stage one, the data's different now. Verify translation quality; any mistakes
-here affect the final deck.
+**Review gate — publish a new Claude Artifact (don't reuse the corpus-stage one, the data's
+different now).** Read `cards.json` and build a review table, same visual system as the corpus
+review (same tokens/fonts, same "no `position: sticky` on `thead th`" rule, same robust
+copy-with-fallback button — see Step 2 for the concrete requirements, they apply here unchanged).
+Columns: #, English, Target, Pronunciation, Category, Notes. Same click-to-mark-for-exclusion
+interaction, copying `Please exclude rows 3, 12, 19.` — but note the mechanism differs from Step 2:
+there's no `anki-builder review` equivalent for `cards.json`, so acting on this means directly
+removing those entries from `cards.json` and re-validating it, not running a CLI command.
 
 If you want to edit translations or pronunciations, do it in `cards.json` now before proceeding.
+Once you give a decision, apply it and move straight into Step 4 in the same turn — same
+no-separate-confirmation rule as the assemble → translate transition.
 
 ### Step 4: Audio Generation
 
@@ -116,7 +122,7 @@ This:
 - Requires `ELEVENLABS_API_KEY` in your environment (or `.env`)
 - Reads `cards.json`
 - Fetches audio from ElevenLabs for each card
-- Caches audio in `~/.anki-builder/audio/` so reruns are fast
+- Caches audio in `.anki-builder/audio/<voiceId>/` (inside this repo, gitignored) so reruns are fast
 - Copies audio files into the run directory
 - Writes updated `cards.json` with audio file references
 
@@ -125,6 +131,21 @@ This:
 - For other languages, visit https://elevenlabs.io/voice-lab
 
 If you skip audio, the deck will still work — cards just won't have pronunciation recordings.
+
+**Review gate — publish a new Claude Artifact you can actually listen to.** A text table isn't
+enough here — the whole point is hearing the clips. Read the updated `cards.json` (now has an
+`audio` filename per card) and the run's `audio/` directory; for each card, base64-encode its mp3
+file and embed it as `<audio controls src="data:audio/mpeg;base64,...">` next to English/Target/
+Pronunciation, same visual system as the other two review artifacts. Skip the click-to-mark
+row-strike interaction here — instead, add a short free-text note per row (or a simple "flag"
+toggle) since the real action isn't exclusion, it's "this one sounds wrong, regenerate it": copy
+button produces `Please regenerate audio for rows 3, 12.` To act on that: delete that term's cached
+clip from `.anki-builder/audio/<voiceId>/<hash>.mp3` AND its copy under `<runDir>/audio/`, then
+re-run `anki-builder audio --run <runDir> --voice <voiceId>` — it's resumable and only regenerates
+whichever terms are missing from the cache, not the whole batch. For a large deck (many dozens of
+cards), embedding every clip can make the artifact file large/slow to publish — if that happens,
+say so and offer to split it into a few smaller artifacts rather than silently producing one huge
+page.
 
 ### Step 5: Deck Build
 
@@ -185,7 +206,9 @@ anki-builder deck --run <dir> --name "Travel Spanish"
 Set in `.env` or export to your shell:
 
 - `ELEVENLABS_API_KEY` (required for audio): Your ElevenLabs API key
-- `ANKI_BUILDER_HOME` (optional): Where per-user state (audio cache, run dirs) is stored. Defaults to `~/.anki-builder`
+
+No env var needed for local state — it always lives in `.anki-builder/` inside this repo
+(gitignored), nothing to configure.
 
 ## State & Artifacts
 
@@ -196,7 +219,7 @@ All artifacts are stored in your run directory (`--run <dir>`):
 - `audio/` — generated audio files (if audio stage ran)
 - `deck.apkg` — final Anki deck, ready to import
 
-Audio is cached in `$ANKI_BUILDER_HOME/audio/` so reruns don't regenerate the same audio.
+Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio.
 
 ## Troubleshooting
 

@@ -8,7 +8,10 @@ import {
 } from "../model/index.js";
 import { listTemplates, loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
 import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from "../corpus/epubLlmCorpus.js";
-import { extractChapterToFile as defaultExtractChapterToFile } from "../corpus/epubArchive.js";
+import {
+  extractChapterToFile as defaultExtractChapterToFile,
+  describeChapter as defaultDescribeChapter,
+} from "../corpus/epubArchive.js";
 import {
   registerEpub as defaultRegisterEpub,
   chapterCachePath as defaultChapterCachePath,
@@ -132,7 +135,8 @@ async function runAssemble(flags, ctx) {
       targetLanguage: flags.lang,
       bookConventions,
     });
-    corpus.meta = { ...corpus.meta, epubHash, chapterNumber };
+    const chapterLabel = ctx.describeChapter(flags.epub, chapterNumber);
+    corpus.meta = { ...corpus.meta, epubHash, chapterNumber, chapterLabel };
 
     const backward = ctx.dedupBackward(
       corpus.items,
@@ -141,7 +145,7 @@ async function runAssemble(flags, ctx) {
     for (const { item, matchedField, matchedPriorItem } of backward.dropped) {
       ctx.log(
         `[dedup:backward] dropped "${item.english}" (id: ${item.id}) — already introduced in ` +
-          `chapter ${matchedPriorItem.__chapterNumber} (matched on ${matchedField})`,
+          `${matchedPriorItem.__chapterLabel} (matched on ${matchedField})`,
       );
     }
 
@@ -153,8 +157,10 @@ async function runAssemble(flags, ctx) {
       bookConventions,
       log: ctx.log,
     });
-    for (const { item, laterChapter, reason } of forward.flagged) {
-      const where = laterChapter ? `explicitly taught later in chapter ${laterChapter}` : "flagged";
+    for (const { item, laterChapterLabel, reason } of forward.flagged) {
+      const where = laterChapterLabel
+        ? `explicitly taught later in ${laterChapterLabel}`
+        : "flagged";
       ctx.log(`[flag:forward] "${item.english}" (id: ${item.id}) — ${where} (${reason})`);
     }
 
@@ -352,6 +358,7 @@ export async function runCli(argv, deps = {}) {
     loadTemplate = defaultLoadTemplate,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
     extractChapterToFile = defaultExtractChapterToFile,
+    describeChapter = defaultDescribeChapter,
     registerEpub = defaultRegisterEpub,
     chapterCachePath = defaultChapterCachePath,
     saveChapterCorpus = defaultSaveChapterCorpus,
@@ -392,6 +399,7 @@ export async function runCli(argv, deps = {}) {
     loadTemplate,
     assembleCorpusFromChapter,
     extractChapterToFile,
+    describeChapter,
     registerEpub,
     chapterCachePath,
     saveChapterCorpus,

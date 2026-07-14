@@ -31,9 +31,9 @@ function writeFixtureEpub(sourceDir, content = "fake epub bytes") {
   return epubPath;
 }
 
-function baseCorpus(items) {
+function baseCorpus(items, { chapterLabel } = {}) {
   return {
-    meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: true },
+    meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: true, chapterLabel },
     items,
   };
 }
@@ -87,9 +87,10 @@ test("chapterCachePath() returns a path scoped to the book and chapter", () => {
 
 test("saveChapterCorpus()/loadPriorChapterItems() round-trip", () => {
   withTempDir(({ libraryHomeDir }) => {
-    const corpus = baseCorpus([
-      { id: "hello", english: "Hello", category: "Greetings", notes: null, target: "こんにちは" },
-    ]);
+    const corpus = baseCorpus(
+      [{ id: "hello", english: "Hello", category: "Greetings", notes: null, target: "こんにちは" }],
+      { chapterLabel: "Lesson 1: Meeting" },
+    );
 
     saveChapterCorpus("book1", 1, corpus, { libraryHomeDir });
     const prior = loadPriorChapterItems("book1", 2, { libraryHomeDir });
@@ -97,6 +98,20 @@ test("saveChapterCorpus()/loadPriorChapterItems() round-trip", () => {
     assert.equal(prior.length, 1);
     assert.equal(prior[0].id, "hello");
     assert.equal(prior[0].__chapterNumber, 1);
+    assert.equal(prior[0].__chapterLabel, "Lesson 1: Meeting");
+  });
+});
+
+test("loadPriorChapterItems() falls back to plain 'chapter N' wording when the stored corpus has no chapterLabel", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    const corpus = baseCorpus([
+      { id: "hello", english: "Hello", category: "Greetings", notes: null, target: "こんにちは" },
+    ]);
+
+    saveChapterCorpus("book1", 1, corpus, { libraryHomeDir });
+    const prior = loadPriorChapterItems("book1", 2, { libraryHomeDir });
+
+    assert.equal(prior[0].__chapterLabel, "chapter 1");
   });
 });
 

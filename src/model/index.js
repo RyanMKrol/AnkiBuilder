@@ -21,6 +21,7 @@ const CORPUS_SCHEMA = {
         reviewed: { type: "boolean" },
         epubHash: { type: ["string", "null"] },
         chapterNumber: { type: ["number", "null"] },
+        chapterLabel: { type: ["string", "null"] },
       },
       additionalProperties: false,
     },

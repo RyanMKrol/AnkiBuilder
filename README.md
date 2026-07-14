@@ -53,6 +53,21 @@ true` and a "Possibly premature — ..." note appended, so the corpus review gat
     content. Manual `--chapter` mode has no book identity to cache this under, so it doesn't get
     this context.
 
+  Any chapter number shown to a person — in a dropped/flagged item's log line or note, or the
+  corpus review page's meta row — is the book's own human-readable title (e.g. `"Lesson 6: Going
+Places (1)"`), never the raw 1-indexed spine position that's an internal implementation detail
+  with no relationship to how the book itself numbers or names its chapters. `describeChapter`
+  (`src/corpus/epubArchive.js`) derives this from a chapter's own `<title>` tag — dropping the
+  repeated book-title suffix EPUB `<title>` tags commonly carry after a comma, and keeping at most
+  two `":"`-separated segments (a label plus its immediate title, e.g. `"Lesson 1: Meeting"` — not
+  the fuller `"Lesson 1: Meeting: Nice to Meet You"`) — falling back to plain `"chapter N"` wording
+  when a chapter has no title tag at all. `corpus.meta.chapterLabel` stores the current chapter's
+  own label (computed once per `assemble --epub` call); `flagForwardConcerns` resolves a flagged
+  item's `laterChapter` (the raw spine number the model reports, matching the file list it was
+  given) to this same label rather than trusting the model to transcribe the book's title text
+  itself; `loadPriorChapterItems` carries a saved chapter's label forward as `__chapterLabel` so
+  `dedupBackward`'s drop log can name it too, without that pure function needing epub access itself.
+
   Both the `--chapter` and `--epub` paths call the same extractor
   (`src/corpus/epubLlmCorpus.js` / `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet
   at medium effort by default). The prompt template lives at

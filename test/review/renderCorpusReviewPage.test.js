@@ -71,3 +71,22 @@ test("renderCorpusReviewPage() handles an empty corpus without throwing", () => 
   const html = renderCorpusReviewPage(corpus({ items: [] }));
   assert.match(html, /<tbody><\/tbody>/);
 });
+
+test("renderCorpusReviewPage() surfaces the human-readable chapter label in the meta row when present", () => {
+  const html = renderCorpusReviewPage(
+    corpus({
+      meta: {
+        targetLanguage: "Japanese",
+        sourceType: "epub",
+        chapterLabel: "Lesson 3: Asking the Time",
+      },
+    }),
+  );
+  assert.match(html, /<span class="meta-label">Chapter<\/span>/);
+  assert.match(html, /<span class="meta-value">Lesson 3: Asking the Time<\/span>/);
+});
+
+test("renderCorpusReviewPage() omits the Chapter meta row when there's no chapterLabel", () => {
+  const html = renderCorpusReviewPage(corpus());
+  assert.doesNotMatch(html, /<span class="meta-label">Chapter<\/span>/);
+});

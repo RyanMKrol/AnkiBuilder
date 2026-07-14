@@ -5,7 +5,12 @@ import { tmpdir } from "os";
 import { join } from "path";
 import { deflateRawSync } from "zlib";
 import { Buffer } from "buffer";
-import { listChapters, readChapter, extractChapterToFile } from "../../src/corpus/epubArchive.js";
+import {
+  listChapters,
+  readChapter,
+  extractChapterToFile,
+  describeChapter,
+} from "../../src/corpus/epubArchive.js";
 
 function crc32(buffer) {
   let crc = ~0;
@@ -343,5 +348,108 @@ test("readEntryData throws on an unsupported compression method", () => {
     writeFileSync(epubPath, Buffer.concat([localHeader, name, content, centralHeader, name, eocd]));
 
     assert.throws(() => listChapters(epubPath), /Unsupported zip compression method: 99/);
+  });
+});
+
+test("describeChapter() shortens a two-colon <title> to its label plus first title segment", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content:
+            "<html><head><title>Lesson 1: Meeting: Nice to Meet You, Japanese for Busy People Book 1: Kana</title></head><body></body></html>",
+        },
+      ],
+    });
+
+    assert.equal(describeChapter(epubPath, 1), "Lesson 1: Meeting");
+  });
+});
+
+test("describeChapter() keeps a single-colon <title> intact once the book-title suffix is dropped", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content:
+            "<html><head><title>Unit 1: At the Office, Japanese for Busy People Book 1: Kana</title></head><body></body></html>",
+        },
+      ],
+    });
+
+    assert.equal(describeChapter(epubPath, 1), "Unit 1: At the Office");
+  });
+});
+
+test("describeChapter() keeps a no-colon <title> as-is", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content:
+            "<html><head><title>Hiragana, Japanese for Busy People Book 1: Kana</title></head><body></body></html>",
+        },
+      ],
+    });
+
+    assert.equal(describeChapter(epubPath, 1), "Hiragana");
+  });
+});
+
+test("describeChapter() decodes HTML entities in the title", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content:
+            "<html><head><title>Rock &amp; Roll, Some Book</title></head><body></body></html>",
+        },
+      ],
+    });
+
+    assert.equal(describeChapter(epubPath, 1), "Rock & Roll");
+  });
+});
+
+test("describeChapter() falls back to a plain 'chapter N' phrase when there's no <title> tag", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        { name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>No title here</body></html>" },
+      ],
+    });
+
+    assert.equal(describeChapter(epubPath, 1), "chapter 1");
+  });
+});
+
+test("describeChapter() falls back to a plain 'chapter N' phrase for an empty <title> tag", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content: "<html><head><title></title></head><body></body></html>",
+        },
+      ],
+    });
+
+    assert.equal(describeChapter(epubPath, 1), "chapter 1");
   });
 });

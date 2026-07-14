@@ -52,9 +52,15 @@ export function extractChapterViaLlm({
   chapterFilePath,
   targetLanguage,
   categoryList = CATEGORIES,
+  bookConventions = null,
   runClaude = defaultRunClaude,
 } = {}) {
-  const prompt = renderExtractionPrompt({ targetLanguage, chapterFilePath, categoryList });
+  const prompt = renderExtractionPrompt({
+    targetLanguage,
+    chapterFilePath,
+    categoryList,
+    bookConventions,
+  });
   const raw = runClaude(prompt);
 
   const jsonText = extractJsonArrayText(raw);

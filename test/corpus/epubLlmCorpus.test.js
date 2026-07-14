@@ -38,3 +38,20 @@ test("assembleCorpusFromChapter() preserves a real notes string instead of nulli
 
   assert.strictEqual(corpus.items[0].notes, "a hint");
 });
+
+test("assembleCorpusFromChapter() threads bookConventions into the extraction prompt", () => {
+  let capturedPrompt = null;
+  assembleCorpusFromChapter({
+    chapterFilePath: "/tmp/chapter.xhtml",
+    targetLanguage: "Japanese",
+    bookConventions: "Placeholders in this book use 〜.",
+    runClaude: (prompt) => {
+      capturedPrompt = prompt;
+      return JSON.stringify([
+        { id: "hello", english: "Hello", target: "こんにちは", category: "Greetings" },
+      ]);
+    },
+  });
+
+  assert.match(capturedPrompt, /Placeholders in this book use 〜\./);
+});

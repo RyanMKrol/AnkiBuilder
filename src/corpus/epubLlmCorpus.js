@@ -8,8 +8,18 @@ import { validateCorpus } from "../model/index.js";
  * `meta.reviewed: false`, since a freshly assembled corpus has not been
  * through the review stage yet.
  */
-export function assembleCorpusFromChapter({ chapterFilePath, targetLanguage, runClaude } = {}) {
-  const rawItems = extractChapterViaLlm({ chapterFilePath, targetLanguage, runClaude });
+export function assembleCorpusFromChapter({
+  chapterFilePath,
+  targetLanguage,
+  bookConventions,
+  runClaude,
+} = {}) {
+  const rawItems = extractChapterViaLlm({
+    chapterFilePath,
+    targetLanguage,
+    bookConventions,
+    runClaude,
+  });
 
   const items = rawItems.map((item) => ({
     id: item.id,

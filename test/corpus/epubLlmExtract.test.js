@@ -133,3 +133,30 @@ test("extractChapterViaLlm() passes the rendered prompt (with resolved path) to 
   assert.match(capturedPrompt, /Japanese-language textbook/);
   assert.match(capturedPrompt, /\/tmp\/chapter\.xhtml/);
 });
+
+test("extractChapterViaLlm() threads bookConventions into the rendered prompt", () => {
+  let capturedPrompt = null;
+  extractChapterViaLlm({
+    ...BASE_ARGS,
+    bookConventions: "Placeholders in this book use 〜.",
+    runClaude: (prompt) => {
+      capturedPrompt = prompt;
+      return "[]";
+    },
+  });
+
+  assert.match(capturedPrompt, /Placeholders in this book use 〜\./);
+});
+
+test("extractChapterViaLlm() falls back to the no-conventions string when bookConventions is omitted", () => {
+  let capturedPrompt = null;
+  extractChapterViaLlm({
+    ...BASE_ARGS,
+    runClaude: (prompt) => {
+      capturedPrompt = prompt;
+      return "[]";
+    },
+  });
+
+  assert.match(capturedPrompt, /no book-wide conventions available/);
+});

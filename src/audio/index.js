@@ -2,6 +2,7 @@ import { createHash } from "crypto";
 import { join, resolve } from "path";
 import { promises as fs } from "fs";
 import { libraryHome } from "../model/index.js";
+import { resolveIso639Code } from "../model/iso639.js";
 
 function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
@@ -46,6 +47,13 @@ export async function generateAudio(
 
   await ensureDir(audioDir);
 
+  // Only a real ISO 639-1 code (e.g. "ja") is passed through to fetchTts — a full
+  // language name (e.g. "Japanese") or an unrecognized value resolves to null, and
+  // ElevenLabs falls back to auto-detecting the language from the text itself, same as
+  // it always has. Resolved once per call, not per term, since it's the same corpus-wide
+  // targetLanguage for every item.
+  const languageCode = resolveIso639Code(cards.meta?.targetLanguage);
+
   const uniqueTerms = new Set();
   for (const item of cards.items) {
     uniqueTerms.add(item.target);
@@ -63,7 +71,7 @@ export async function generateAudio(
       continue;
     }
 
-    const mp3Data = await fetchTts(term, voiceId, apiKey);
+    const mp3Data = await fetchTts(term, voiceId, apiKey, languageCode);
     await fs.writeFile(filepath, mp3Data);
     fetchedFiles.set(term, filename);
   }

@@ -100,7 +100,16 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   Important / Input Data) and ask for a target language's standard romanization system (e.g.
   romaji, pinyin) when one exists, falling back to a phonetic respelling otherwise — see
   [`docs/translate-prompts.md`](./docs/translate-prompts.md) for the full templates.
-- **`audio`** / **`deck`** — unchanged from before.
+- **`audio`** — `generateAudio` (`src/audio/index.js`) resolves `cards.meta.targetLanguage`
+  against `src/model/iso639.js`'s `resolveIso639Code` (the full ISO 639-1 code set) once per
+  run and, when it's a real code (not a full language name like `"Japanese"`, which resolves
+  to `null`), passes it through to `fetchTts` as a 4th argument. The default `fetchTts`
+  (`src/cli/index.js`) includes it in the ElevenLabs request body as `language_code` only
+  when non-null — omitted entirely otherwise, so ElevenLabs falls back to its own
+  auto-detection exactly as it always did before this parameter existed. This is on top of
+  `voiceId` (sent as part of the request URL path, `.../text-to-speech/<voiceId>`, not the
+  body) and `model_id: "eleven_multilingual_v2"`.
+- **`deck`** — unchanged from before.
 - **`render-review --stage <corpus|translate|audio>`** — generates a self-contained,
   ready-to-publish HTML review artifact (`<runDir>/review-<stage>.html`) from `corpus.json` or
   `cards.json`, so the corpus/translate/audio review gates are produced from one shared,

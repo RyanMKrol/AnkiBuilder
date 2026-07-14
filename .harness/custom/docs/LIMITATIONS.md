@@ -248,3 +248,26 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if a real deck's audio review artifact becomes noticeably slow or fails to
   publish, add a `--chunk-size <n>` flag to `render-review` that splits the audio stage's output
   into `review-audio-1.html`, `review-audio-2.html`, etc.
+
+## ElevenLabs `language_code` only fires for a real ISO 639-1 code — no name-to-code lookup
+
+- **What:** `generateAudio` (`src/audio/index.js`) passes ElevenLabs' `language_code` request
+  parameter only when `cards.meta.targetLanguage` resolves against `src/model/iso639.js`'s
+  `resolveIso639Code` — the full, hardcoded ISO 639-1 code set (no npm dependency, following this
+  project's existing "hand-rolled over adding a dependency" pattern from `epubArchive.js`'s OPF/
+  container.xml parsing). A value like `"ja"`/`"JA"`/`"Ja"` resolves and gets sent; a full language
+  name like `"Japanese"` does not — it resolves to `null`, and `language_code` is simply omitted
+  from the request, falling back to ElevenLabs' own auto-detection from the text (unchanged from
+  before this parameter existed).
+- **Why:** deliberately narrow scope — resolving `"Japanese"` → `"ja"` needs a real name-to-code
+  lookup (and handling ambiguity: "Chinese" alone doesn't disambiguate Mandarin from Cantonese,
+  multiple English names can map to one code, etc.), a fuzzier problem than validating an
+  already-code-shaped value against a fixed, authoritative set. Every EPUB-driven run in this
+  project already stores a real code (`--lang ja`, `--lang es`, etc., per the CLI's own `--lang`
+  flag convention), so the gap only bites hand-authored or template corpora that used a full name.
+- **Impact:** a corpus/cards file with `targetLanguage: "Japanese"` (rather than `"ja"`) gets no
+  `language_code` sent — TTS still works via ElevenLabs' auto-detection, just without the extra
+  hint, so this is a missed *improvement*, not a broken *pipeline*.
+- **When to revisit:** if a real run's `targetLanguage` value turns out to commonly be a full name
+  rather than a code, add a small, explicit name→code map for the common cases actually seen,
+  rather than attempting a general natural-language lookup.

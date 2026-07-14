@@ -152,19 +152,26 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 ## Image-embedded EPUB content relies on model diligence — no forced inspection, no OCR fallback
 
-- **What:** `docs/epub-book-conventions-prompt.md` and `docs/epub-extraction-prompt.md` now instruct
-  the model to open referenced image files with its own Read tool when they sit in a content
-  section, rather than trusting (often-empty) `alt` text. This was discovered manually: a real
-  textbook's "Frequently Used Expressions" page (a whole chapter's worth of vocabulary) is rendered
-  entirely as illustrated images with no extractable text at all — the automatic pipeline would have
-  silently produced zero items for that chapter with no error. There is no code-level enforcement
-  that the model actually opens any given image, and no OCR/vision fallback if it declines or
-  misjudges an image as decorative — the guidance is prose in the prompt, not a mechanism.
+- **What:** `docs/epub-book-conventions-prompt.md` and `docs/epub-extraction-prompt.md` instruct the
+  model to open referenced image files with its own Read tool when they sit in a content section,
+  rather than trusting (often-empty) `alt` text. This was discovered manually: a real textbook's
+  "Frequently Used Expressions" page (a whole chapter's worth of vocabulary) is rendered entirely as
+  illustrated images with no extractable text at all. The original manual discovery actually hit a
+  more fundamental bug, since fixed: `extractChapterToFile` (`src/corpus/epubArchive.js`) wrote only
+  the chapter's XHTML to the local library cache and never unpacked the images it referenced, so the
+  `../images/...` paths the prompt tells the model to resolve and open pointed at nothing on disk —
+  the model couldn't have opened them no matter how diligent it was. `extractChapterToFile` now also
+  extracts every `<img src>` the chapter references, at the same relative path from the cached
+  chapter file that the src attribute encodes from the original chapter file, so the images genuinely
+  exist for the model's Read tool to find. With that fixed, the remaining gap is the one this entry
+  originally named: there is still no code-level enforcement that the model actually opens any given
+  image once it exists, and no OCR/vision fallback if it declines or misjudges an image as
+  decorative — the guidance is prose in the prompt, not a mechanism.
 - **Why:** neither prompt template has any way to programmatically detect "this image contains
   text" ahead of the model call — that judgment call is exactly what the model is being asked to
   make. Building a real enforcement mechanism (e.g. a separate vision pass that always runs and is
   cross-checked against the extraction output) was not justified without first seeing whether
-  prompt-level guidance already closes the gap in practice.
+  prompt-level guidance already closes the gap in practice, now that the images are actually present.
 - **Impact:** a book that embeds significant content in images could still silently under-extract if
   the model skips an image it should have opened — this would look identical to "this chapter
   genuinely has little vocabulary," with no automatic signal that content was missed.

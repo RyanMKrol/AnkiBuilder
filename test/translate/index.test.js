@@ -17,6 +17,15 @@ function alreadyTranslated(id, english, category, target, notes = null) {
   return { id, english, category, notes, target };
 }
 
+// Ids appear both in the fixed "Example Input"/"Example Output" blocks and in
+// the real "## Input Data" block, so scan only after the "## Input Data"
+// marker to recover just the ids actually being sent for translation.
+function extractInputDataIds(prompt) {
+  const marker = "## Input Data";
+  const section = prompt.slice(prompt.indexOf(marker));
+  return [...section.matchAll(/"id":\s*"([^"]+)"/g)].map((m) => m[1]);
+}
+
 test("translates untranslated items (target: null) into schema-valid cards", () => {
   const corpus = baseCorpus([untranslated("hello", "Hello", "Greetings")]);
 
@@ -132,7 +141,7 @@ test("batches the full-translation group into `claude -p` calls of at most 10 it
   const batchSizes = [];
   const { cards, errors } = translateCorpus(corpus, {
     runClaude: (prompt) => {
-      const ids = [...prompt.matchAll(/- id: (\S+)/g)].map((m) => m[1]);
+      const ids = extractInputDataIds(prompt);
       batchSizes.push(ids.length);
       return JSON.stringify(ids.map((id) => ({ id, target: `t-${id}`, pronunciation: `p-${id}` })));
     },
@@ -153,7 +162,7 @@ test("batches the pronunciation-only group into `claude -p` calls of at most 10 
   const batchSizes = [];
   const { cards, errors } = translateCorpus(corpus, {
     runClaude: (prompt) => {
-      const ids = [...prompt.matchAll(/- id: (\S+)/g)].map((m) => m[1]);
+      const ids = extractInputDataIds(prompt);
       batchSizes.push(ids.length);
       return JSON.stringify(ids.map((id) => ({ id, pronunciation: `p-${id}` })));
     },

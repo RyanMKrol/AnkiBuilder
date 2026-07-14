@@ -16,30 +16,77 @@ function chunk(items, size) {
 }
 
 function buildFullTranslationPrompt(items, targetLanguage) {
-  const lines = [
-    "You are translating flashcards for a language-learning deck.",
-    `Target language: ${targetLanguage}`,
-    `Translate each of the following ${items.length} English phrase(s).`,
-    "",
-  ];
-
-  for (const item of items) {
-    lines.push(`- id: ${item.id}`);
-    lines.push(`  English: "${item.english}"`);
+  const inputData = items.map((item) => {
+    const entry = { id: item.id, english: item.english };
     if (item.notes) {
-      lines.push(`  Context/hint from source material (not a translation): "${item.notes}"`);
+      entry.notes = item.notes;
     }
-  }
+    return entry;
+  });
 
-  lines.push(
+  return [
+    "# Task: Translate Flashcards",
     "",
-    "Respond with ONLY a JSON array (no markdown fences, no extra prose). One object per phrase,",
-    "reusing the SAME id, of the form:",
-    '[{"id": "<id>", "target": "<translation>", "pronunciation": "<phonetic pronunciation>", "hint": "<optional usage hint>"}]',
-    'Include every id exactly once (order does not matter). Omit "hint" for an entry when you have none.',
-  );
-
-  return lines.join("\n");
+    "## Overview",
+    "You are translating flashcards for a language-learning deck.",
+    `Target language: ${targetLanguage}.`,
+    "You will be given a JSON array of English phrases and must translate each one, producing both a translation and a pronunciation guide.",
+    "",
+    "## Input Format",
+    "The input is a JSON array of objects, one per flashcard:",
+    "",
+    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
+    "- `english` (string): the English phrase to translate.",
+    "- `notes` (string, optional): context or a hint about how this phrase is used, taken from the source material.",
+    "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
+    "",
+    "### Example Input",
+    "```json",
+    JSON.stringify(
+      [
+        { id: "hello", english: "Hello" },
+        { id: "cheese", english: "Cheese", notes: "as in the food, not a smile" },
+      ],
+      null,
+      2,
+    ),
+    "```",
+    "",
+    "## Output Format",
+    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
+    "Produce exactly one object per input item:",
+    "",
+    "- `id` (string): the SAME id as the corresponding input item.",
+    `- \`target\` (string): the translation into ${targetLanguage}.`,
+    `- \`pronunciation\` (string): a pronunciation guide for \`target\`, readable by an English speaker unfamiliar with ${targetLanguage}.`,
+    `  - If ${targetLanguage} has a standard, widely-used romanization or transliteration system (e.g. romaji for Japanese, pinyin for Mandarin Chinese), use that system instead of inventing a phonetic spelling.`,
+    '  - Otherwise, fall back to a phonetic respelling using English spelling and stress conventions (e.g. "bohn-ZHOOR").',
+    "- `hint` (string, optional): a short usage hint.",
+    "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
+    "",
+    "### Example Output",
+    "```json",
+    JSON.stringify(
+      [
+        { id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" },
+        { id: "cheese", target: "Fromage", pronunciation: "froh-MAHZH", hint: "casual, singular" },
+      ],
+      null,
+      2,
+    ),
+    "```",
+    "",
+    "## Important",
+    "- Include every id from the input exactly once.",
+    "  - Order does not matter.",
+    "- Do not wrap the response in markdown code fences.",
+    "- Do not include any text before or after the JSON array.",
+    "",
+    `## Input Data (${items.length} item(s) to translate)`,
+    "```json",
+    JSON.stringify(inputData, null, 2),
+    "```",
+  ].join("\n");
 }
 
 // For items that already have a trusted target (e.g. extracted directly from a
@@ -47,33 +94,76 @@ function buildFullTranslationPrompt(items, targetLanguage) {
 // pronunciation guide here — never a translation — so it has no opportunity to
 // second-guess or alter a target we already trust.
 function buildPronunciationOnlyPrompt(items, targetLanguage) {
-  const lines = [
-    "You are producing phonetic pronunciation guides for flashcards in a language-learning deck.",
-    `Target language: ${targetLanguage}`,
-    `Each of the following ${items.length} item(s) already has a correct, final translation.`,
-    "Do NOT alter, correct, retranslate, or comment on it in any way — only produce a phonetic",
-    "pronunciation guide for the given text.",
-    "",
-  ];
-
-  for (const item of items) {
-    lines.push(`- id: ${item.id}`);
-    lines.push(`  English: "${item.english}"`);
-    lines.push(`  ${targetLanguage} (already final, do not change): "${item.target}"`);
+  const inputData = items.map((item) => {
+    const entry = { id: item.id, english: item.english, target: item.target };
     if (item.notes) {
-      lines.push(`  Context/hint from source material: "${item.notes}"`);
+      entry.notes = item.notes;
     }
-  }
+    return entry;
+  });
 
-  lines.push(
+  return [
+    "# Task: Produce Pronunciation Guides",
     "",
-    "Respond with ONLY a JSON array (no markdown fences, no extra prose). One object per item,",
-    "reusing the SAME id, of the form:",
-    '[{"id": "<id>", "pronunciation": "<phonetic pronunciation>"}]',
-    'Include every id exactly once (order does not matter). Do not include a "target" key at all.',
-  );
-
-  return lines.join("\n");
+    "## Overview",
+    "You are producing pronunciation guides for flashcards in a language-learning deck.",
+    `Target language: ${targetLanguage}.`,
+    "Each item below already has a correct, final translation — do NOT alter, correct, retranslate, or comment on it in any way.",
+    "Only produce a pronunciation guide for the given `target` text.",
+    "",
+    "## Input Format",
+    "The input is a JSON array of objects, one per flashcard:",
+    "",
+    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
+    "- `english` (string): the English phrase, given for context only.",
+    `- \`target\` (string): the final ${targetLanguage} translation.`,
+    "  - Already correct — do not change it, and do not return it.",
+    "- `notes` (string, optional): context or a hint about how this phrase is used, taken from the source material.",
+    "",
+    "### Example Input",
+    "```json",
+    JSON.stringify(
+      [{ id: "cheese", english: "Cheese", target: "Fromage", notes: "as in the food" }],
+      null,
+      2,
+    ),
+    "```",
+    "",
+    "## Output Format",
+    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
+    "Produce exactly one object per input item:",
+    "",
+    "- `id` (string): the SAME id as the corresponding input item.",
+    `- \`pronunciation\` (string): a pronunciation guide for the given \`target\`, readable by an English speaker unfamiliar with ${targetLanguage}.`,
+    `  - If ${targetLanguage} has a standard, widely-used romanization or transliteration system (e.g. romaji for Japanese, pinyin for Mandarin Chinese), use that system instead of inventing a phonetic spelling.`,
+    '  - Otherwise, fall back to a phonetic respelling using English spelling and stress conventions (e.g. "froh-MAHZH").',
+    "- `hint` (string, optional): a short usage hint.",
+    "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
+    "",
+    "Do not include a `target` key at all — the translation is already final and is not requested back.",
+    "",
+    "### Example Output",
+    "```json",
+    JSON.stringify(
+      [{ id: "cheese", pronunciation: "froh-MAHZH", hint: "casual, singular" }],
+      null,
+      2,
+    ),
+    "```",
+    "",
+    "## Important",
+    "- Do NOT alter, correct, retranslate, or comment on the given target in any way.",
+    "- Include every id from the input exactly once.",
+    "  - Order does not matter.",
+    "- Do not include a `target` key in your response.",
+    "- Do not wrap the response in markdown code fences.",
+    "- Do not include any text before or after the JSON array.",
+    "",
+    `## Input Data (${items.length} item(s))`,
+    "```json",
+    JSON.stringify(inputData, null, 2),
+    "```",
+  ].join("\n");
 }
 
 // The model is asked for raw JSON but occasionally wraps it in a markdown code

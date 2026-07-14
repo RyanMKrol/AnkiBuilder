@@ -21,14 +21,26 @@ Respond with ONLY a single JSON array (no markdown fences, no prose before or af
 **Important: preserve textbook order.** Emit items in exactly the order they appear in the chapter, top to bottom — do not reorder them, do not group them by type (e.g. all vocabulary together, then all key sentences), and do not sort them any other way. The sequence in the output must match the sequence in the source file.
 
 ```
-{"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file>", "category": "<exactly one value from the category list below>", "notes": "<optional short context, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
+{"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file — EXCEPT placeholder markers (〜, ～, ~), which must be resolved or stripped per Handling Placeholders below>", "category": "<exactly one value from the category list below>", "notes": "<optional short context, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
 ```
 
 **Category list — `category` MUST be exactly one of these values, verbatim:** {{CATEGORY_LIST}}. If nothing else fits, use `"Other"`.
 
+## Handling Placeholders
+
+Textbooks commonly write a grammar pattern or attachment point using a placeholder-like character — e.g. 〜さん, お〜, 〜を おねがいします. These are typographical conventions, not part of the spoken word, and can appear as any of several near-identical characters depending on how the source was digitized: 〜 (wave dash), ～ (fullwidth tilde), or a plain ~. Treat all of these as the same placeholder marker.
+
+**Never leave a placeholder character in the final `target`.** Decide per item, using your best judgment:
+
+- **The item IS the grammatical particle/suffix/prefix itself** — its English gloss describes the particle's own function or meaning (e.g. "Mr., Mrs., Ms., Miss" for さん, "(honorific prefix)" for お). Strip the placeholder and keep only the actual morpheme in `target` (e.g. `さん`, not `〜さん`; `お`, not `お〜`). Do NOT invent a concrete example to fill it — that would misrepresent a general-purpose particle as one specific case. Instead, record in `notes` whether it's a prefix or suffix and what it attaches to (e.g. "Suffix — attaches after a person's name"), since that's real information the stripped placeholder would otherwise lose.
+- **The item is a phrase-level usage pattern meant to be spoken as a complete unit** — its English gloss describes an action or request rather than a particle's own meaning (e.g. "please (get me…)"). Replace the placeholder with a natural, contextually-appropriate word or phrase, chosen using your best judgment — prefer reusing a word already introduced elsewhere in this chapter when a sensible one exists. Record exactly what you filled in and why in `notes` (e.g. "Placeholder filled with 'コーヒー' (coffee) as a natural example — not literally present in the source text at this point").
+
+When genuinely unsure which of the two applies, prefer resolving it into a phrase over leaving a placeholder — an unresolved placeholder character is never a valid `target`.
+
 ## Example Output
 
-Showing a plain item, an item with a note, an uncertain item, and an AI-suggested item:
+Showing a plain item, an item with a note, an uncertain item, an AI-suggested item, and both kinds
+of placeholder resolution:
 
 ```json
 [
@@ -55,6 +67,20 @@ Showing a plain item, an item with a note, an uncertain item, and an AI-suggeste
     "category": "Greetings",
     "notes": "Basic thanks — not present in this chapter's text, but a genuine gap for a learner at this level",
     "aiSuggested": true
+  },
+  {
+    "id": "san-suffix",
+    "english": "Mr., Mrs., Ms., Miss",
+    "target": "さん",
+    "category": "Family & People",
+    "notes": "Suffix — attaches after a person's name (written 〜さん in the source)"
+  },
+  {
+    "id": "onegaishimasu-pattern",
+    "english": "please (get me a coffee)",
+    "target": "コーヒーを おねがいします",
+    "category": "Grammar & Function Words",
+    "notes": "Placeholder filled with 'コーヒー' (coffee) as a natural example — the source shows only '〜を おねがいします'"
   }
 ]
 ```

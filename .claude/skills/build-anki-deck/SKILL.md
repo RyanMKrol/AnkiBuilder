@@ -65,8 +65,9 @@ anki-builder render-review --run <runDir> --stage corpus
 
 This reads `corpus.json` and writes `<runDir>/review-corpus.html` (columns: #, English, Category,
 Target; click-to-mark-for-exclusion rows with a running counter; a "Copy instruction" button with a
-robust clipboard fallback; long notes behind a "Note" popover button; full window width, ~1-inch
-margins, no sticky header). Publish that file as an Artifact — don't recreate the page by hand, and
+robust clipboard fallback; notes shown inline in their own column, not hidden behind a popover; full
+window width, ~1-inch margins, no sticky header). Publish that file as an Artifact — don't recreate
+the page by hand, and
 don't skip this even for a small corpus; a terminal dump is not an acceptable substitute for
 something actually visible and scannable in the browser. The template itself lives in
 `src/review/` (`reviewPageTemplate.js` plus a `render*ReviewPage.js` per stage) — if the page ever

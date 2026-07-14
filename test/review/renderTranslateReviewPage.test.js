@@ -33,7 +33,7 @@ test("renderTranslateReviewPage() uses exclude mode", () => {
   assert.match(html, /"excluded"/);
 });
 
-test("renderTranslateReviewPage() surfaces a note popover button when notes are present", () => {
+test("renderTranslateReviewPage() surfaces the note inline when notes are present", () => {
   const html = renderTranslateReviewPage(cards());
-  assert.match(html, /data-note="casual greeting"/);
+  assert.match(html, /<td class="note-cell">casual greeting<\/td>/);
 });

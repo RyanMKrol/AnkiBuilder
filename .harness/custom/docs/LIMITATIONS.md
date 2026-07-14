@@ -43,3 +43,26 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   anomalously large.
 - **When to revisit:** if another prefix-collision or similar corruption surfaces again, replace the
   regex with a real (even minimal) HTML tokenizer rather than patching another one-off boundary case.
+
+## EPUB LLM extraction is a standalone primitive, not yet wired into the corpus/cards pipeline
+
+- **What:** `extractChapterViaLlm` (`src/corpus/epubLlmExtract.js`) extracts vocabulary/key-sentence
+  items from ONE chapter file at a time, by having the model read the raw chapter XHTML directly
+  (validated empirically against `assemble --epub`'s existing mechanical, regex-based path — this
+  approach caught vocabulary an un-glossed section required inferring, which the regex extractor
+  cannot do at all). Its output shape (`id`/`english`/`target`/`notes`/`uncertain`/`aiSuggested`)
+  does not match either `CORPUS_SCHEMA` or `CARDS_SCHEMA` in `src/model/index.js` — neither
+  produces a `category`, and `CARDS_SCHEMA` also requires `pronunciation`, which this pipeline
+  does not generate. There is also no CLI command wired up yet, and no multi-chapter orchestration
+  (a real book needs EPUB spine-order chapter enumeration, which nothing in this codebase does yet
+  — `extractTextBlocks`'s mechanical path doesn't either, it iterates zip central-directory order).
+- **Why:** the extraction primitive (prompt template + `claude -p` invocation + response parsing)
+  and the pipeline-integration questions (schema fit, category assignment, whether/how to generate
+  pronunciation, chapter ordering, multi-chapter merging) are separable concerns; the primitive was
+  validated and built first rather than guessing at the integration design.
+- **Impact:** `extractChapterViaLlm` cannot currently be used to produce a real deck end-to-end —
+  it has to be called directly (not via the `anki-builder` CLI), on one already-known chapter file
+  path, and its output isn't consumable by the existing `audio`/`deck` stages as-is.
+- **When to revisit:** before or when building the CLI-facing command for this path — needs a
+  decision on schema fit (extend `CARDS_SCHEMA` to make `pronunciation`/`category` optional, or
+  define a new schema for LLM-extracted cards) and a spine-order chapter enumerator.

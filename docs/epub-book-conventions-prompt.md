@@ -20,6 +20,15 @@ Different textbooks format the same kind of content differently — how they mar
 
 - **Content markup**: what does a genuine teaching section look like structurally — vocabulary lists, key/model sentences, dialogue? Note recurring CSS classes, heading patterns, or tag structures that reliably signal "this is real content."
 - **Exercise/drill markup**: what does a practice exercise or drill section look like structurally, that should be SKIPPED rather than extracted? Note how to distinguish it from genuine content.
+- **Image-embedded content**: some textbooks put real teaching content inside raster images (a scanned/illustrated page) instead of as extractable text — the underlying `<img>` tag's `alt` text is usually empty or missing, so this is easy to miss by reading markup alone. Whenever a chapter has images sitting inside or right next to a content heading (not a purely decorative banner or a tiny inline icon), open the actual image file yourself with your Read tool and look at it — do not assume it's decorative just because there's no alt text. Classify what you find into:
+  - **Content-bearing images** — the image itself IS the vocabulary/phrase/translation content (e.g. an illustrated "frequently used expressions" page with the target-language phrase, its English gloss, and a usage note all drawn into the picture). These are genuine extraction targets that the per-chapter pass cannot reach by reading text alone.
+  - **Reference charts/tables as images** — kana charts, conjugation tables, grammar-pattern tables rendered as a picture rather than an HTML table.
+  - **Labeled diagrams/photos** — a diagram, map, or photo with a label that is itself real vocabulary (e.g. a floor plan with room names, a photo captioned with a food's name).
+  - **Decorative/illustrative images** — art that accompanies a section but carries no unique text of its own (generic line drawings, mood illustrations). Skip these — no action needed downstream.
+  - **Inline functional icons** — small in-line markers like an audio-clip icon (e.g. `class="inline height_1-0em"` next to a heading). These are UI furniture, not content — note the pattern so the extraction pass doesn't waste time opening them.
+
+  For every chapter/section you find with content-bearing or reference-chart images, name it explicitly (chapter file + a short description of what's in the image) so the per-chapter extraction pass knows in advance to open those specific images rather than discovering the gap by producing an empty/near-empty item list.
+
 - **Anything else structurally consistent** across chapters that would help a future single-chapter extraction pass — e.g. how chapters are titled/numbered, where vocabulary is glossed vs. inferred from context, recurring section labels.
 
 If a convention only shows up in some chapters, say so and name which ones, rather than presenting it as universal.
@@ -47,6 +56,9 @@ Respond with a single Markdown document (no other commentary before or after it)
 
 ## Exercise Section Markers (skip these)
 ...
+
+## Image-Embedded Content
+List each chapter/section that has content-bearing or reference-chart images (name the chapter file and describe what's in the image). Separately note any recurring decorative or inline-icon image patterns worth ignoring, so the extraction pass isn't surprised by them either.
 
 ## Other Notes
 ...

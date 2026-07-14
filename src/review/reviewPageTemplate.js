@@ -200,6 +200,18 @@ export function renderReviewPage({
   tr.row.flagged .row-num { color: var(--flag); font-weight: 700; }
   .target-cell { font-family: var(--script); }
   .empty { color: var(--ink-faint); }
+  .badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 100px;
+    padding: 2px 9px;
+    margin: 0 4px 2px 0;
+    white-space: nowrap;
+  }
+  .badge-uncertain { color: var(--flag); background: var(--flag-tint); }
+  .badge-ai-suggested { color: var(--accent); background: var(--accent-tint); }
   .note-cell { width: 1%; white-space: nowrap; }
   .note-btn {
     font-family: var(--sans);

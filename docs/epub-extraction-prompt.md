@@ -95,6 +95,18 @@ of placeholder resolution:
 
 Evaluate BOTH the English and the {{TARGET_LANGUAGE}} text; do not favor one language when deciding what counts as content.
 
+### Images
+
+Pay attention to this chapter's images and do not rule them out as sources of content just because the surrounding HTML has no extractable text for them (an `<img>` tag's `alt` attribute is often empty or missing even when the picture itself carries real teaching content). For every image that sits inside or right next to a content section in this chapter, resolve its file path relative to the chapter file and open it yourself with your Read tool to see what's actually in it, rather than assuming it's decorative. When Book-Wide Conventions above names this chapter or a similar one as having image-embedded content, treat that as a strong signal to check here specifically. Look out for:
+
+- **Content-bearing images** — the image itself IS the vocabulary/phrase/translation content (e.g. a phrase presented as an illustrated panel with the target-language text, its English gloss, and a usage note drawn into the picture). Extract these exactly as you would extracted text, following the same rules below.
+- **Reference charts/tables as images** — a kana chart, conjugation table, or grammar-pattern table rendered as a picture rather than an HTML table. Extract genuine vocabulary/pattern entries from these the same way you would from an equivalent text table.
+- **Labeled diagrams/photos** — a diagram, map, or photo with a label that is itself real vocabulary (e.g. a floor plan with room names, a photo captioned with a food's name).
+- **Decorative/illustrative images** — art that accompanies a section but carries no unique text of its own. Skip these — no card needed.
+- **Inline functional icons** — small in-line markers like an audio-clip icon next to a heading. These are UI furniture, not content — skip them without needing to open the file.
+
+If you open an image and it turns out to be decorative, that's a fine outcome — the point is to actually look rather than to assume from absent alt text.
+
 ### What to extract
 
 - Every vocabulary word or short phrase presented as an individual term with its translation — including particles and other short function words, wherever they're listed as vocabulary (not buried in a grammar explanation paragraph).

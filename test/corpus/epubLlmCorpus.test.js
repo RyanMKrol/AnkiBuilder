@@ -39,6 +39,43 @@ test("assembleCorpusFromChapter() preserves a real notes string instead of nulli
   assert.strictEqual(corpus.items[0].notes, "a hint");
 });
 
+test("assembleCorpusFromChapter() preserves uncertain/aiSuggested flags when true, omits when false/absent", () => {
+  const corpus = assembleCorpusFromChapter({
+    chapterFilePath: "/tmp/chapter.xhtml",
+    targetLanguage: "Japanese",
+    runClaude: () =>
+      JSON.stringify([
+        {
+          id: "guess",
+          english: "Guessed word",
+          target: "推測",
+          category: "Other",
+          uncertain: true,
+        },
+        {
+          id: "gap",
+          english: "Thank you",
+          target: "ありがとう",
+          category: "Greetings",
+          aiSuggested: true,
+        },
+        {
+          id: "plain",
+          english: "Hello",
+          target: "こんにちは",
+          category: "Greetings",
+          uncertain: false,
+        },
+      ]),
+  });
+
+  assert.strictEqual(corpus.items[0].uncertain, true);
+  assert.strictEqual(corpus.items[0].aiSuggested, undefined);
+  assert.strictEqual(corpus.items[1].aiSuggested, true);
+  assert.strictEqual(corpus.items[1].uncertain, undefined);
+  assert.strictEqual(corpus.items[2].uncertain, undefined);
+});
+
 test("assembleCorpusFromChapter() threads bookConventions into the extraction prompt", () => {
   let capturedPrompt = null;
   assembleCorpusFromChapter({

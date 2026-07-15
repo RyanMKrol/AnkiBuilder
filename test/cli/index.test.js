@@ -436,6 +436,165 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
   });
 });
 
+test("assemble: --words resolves the run dir via resolveCourseSlug/resolveLessonRunDir and writes corpus.json there", async () => {
+  await withTempDir(async (outputRoot) => {
+    const wordsPath = join(outputRoot, "words.txt");
+    await fs.writeFile(wordsPath, "Good morning\n\nChina\n");
+
+    const resolvedRunDir = join(outputRoot, "my-course", "lesson-0");
+    const logs = [];
+
+    let resolveCourseSlugCalledWith = null;
+    let resolveLessonRunDirCalledWith = null;
+    let assembleCalledWith = null;
+
+    const resolveCourseSlug = (...args) => {
+      resolveCourseSlugCalledWith = args;
+      return "my-course";
+    };
+    const resolveLessonRunDir = (...args) => {
+      resolveLessonRunDirCalledWith = args;
+      return resolvedRunDir;
+    };
+    const assembleCorpusFromLessonWords = (args) => {
+      assembleCalledWith = args;
+      return {
+        meta: { targetLanguage: "ja", sourceType: "manual", reviewed: false },
+        items: [
+          {
+            id: "good-morning",
+            english: "Good morning",
+            category: "Greetings",
+            notes: null,
+            target: null,
+          },
+          {
+            id: "china",
+            english: "China",
+            category: "Nationalities & Countries",
+            notes: null,
+            target: null,
+          },
+        ],
+      };
+    };
+
+    await runCli(
+      [
+        "assemble",
+        "--output-root",
+        outputRoot,
+        "--words",
+        wordsPath,
+        "--course",
+        "Intensive Japanese 1",
+        "--lesson-number",
+        "1",
+        "--lang",
+        "ja",
+      ],
+      {
+        resolveCourseSlug,
+        resolveLessonRunDir,
+        assembleCorpusFromLessonWords,
+        log: (msg) => logs.push(msg),
+      },
+    );
+
+    assert.deepEqual(resolveCourseSlugCalledWith, [outputRoot, "Intensive Japanese 1", "ja"]);
+    assert.deepEqual(resolveLessonRunDirCalledWith, [outputRoot, "my-course", 1]);
+    assert.deepEqual(assembleCalledWith.englishWords, ["Good morning", "China"]);
+    assert.equal(assembleCalledWith.targetLanguage, "ja");
+    assert.ok(logs.some((msg) => msg.includes(`resolved run directory: ${resolvedRunDir}`)));
+
+    const written = JSON.parse(await fs.readFile(runPaths(resolvedRunDir).corpus, "utf-8"));
+    assert.equal(written.meta.courseSlug, "my-course");
+    assert.equal(written.meta.chapterNumber, 1);
+    assert.equal(written.meta.chapterLabel, "Lesson 1");
+  });
+});
+
+test("assemble: --words --lesson-label overrides the default 'Lesson <N>' chapterLabel", async () => {
+  await withTempDir(async (outputRoot) => {
+    const wordsPath = join(outputRoot, "words.txt");
+    await fs.writeFile(wordsPath, "Good morning\n");
+
+    const resolvedRunDir = join(outputRoot, "my-course", "lesson-0");
+
+    await runCli(
+      [
+        "assemble",
+        "--output-root",
+        outputRoot,
+        "--words",
+        wordsPath,
+        "--course",
+        "Intensive Japanese 1",
+        "--lesson-number",
+        "1",
+        "--lesson-label",
+        "Lesson 1: Greetings",
+        "--lang",
+        "ja",
+      ],
+      {
+        resolveCourseSlug: () => "my-course",
+        resolveLessonRunDir: () => resolvedRunDir,
+        assembleCorpusFromLessonWords: () => ({
+          meta: { targetLanguage: "ja", sourceType: "manual", reviewed: false },
+          items: [
+            {
+              id: "good-morning",
+              english: "Good morning",
+              category: "Greetings",
+              notes: null,
+              target: null,
+            },
+          ],
+        }),
+        log: () => {},
+      },
+    );
+
+    const written = JSON.parse(await fs.readFile(runPaths(resolvedRunDir).corpus, "utf-8"));
+    assert.equal(written.meta.chapterLabel, "Lesson 1: Greetings");
+  });
+});
+
+test("assemble: --words requires --course, --lesson-number, and --lang", async () => {
+  await withTempDir(async (outputRoot) => {
+    const wordsPath = join(outputRoot, "words.txt");
+    await fs.writeFile(wordsPath, "Good morning\n");
+
+    await assert.rejects(
+      () =>
+        runCli(["assemble", "--output-root", outputRoot, "--words", wordsPath, "--lang", "ja"], {
+          log: () => {},
+        }),
+      /--course <name> is required/,
+    );
+
+    await assert.rejects(
+      () =>
+        runCli(
+          [
+            "assemble",
+            "--output-root",
+            outputRoot,
+            "--words",
+            wordsPath,
+            "--course",
+            "Intensive Japanese 1",
+            "--lang",
+            "ja",
+          ],
+          { log: () => {} },
+        ),
+      /--lesson-number is required/,
+    );
+  });
+});
+
 test("assemble: logs one line per flagged item for both passes, not just a count", async () => {
   await withTempDir(async (runDir) => {
     const logs = [];
@@ -918,6 +1077,19 @@ function writeChapter(bookDir, seq, { chapterLabel, epubHash, items }) {
   return dir;
 }
 
+function writeLesson(courseDir, seq, { chapterLabel, courseSlug, items }) {
+  const dir = join(courseDir, `lesson-${seq}`);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(
+    join(dir, "cards.json"),
+    JSON.stringify({
+      meta: { targetLanguage: "ja", sourceType: "manual", courseSlug, chapterLabel },
+      items,
+    }),
+  );
+  return dir;
+}
+
 test("deck --book-dir: discovers chapter-*/cards.json in seq order and merges via buildBookDeck", async () => {
   await withTempDir(async (bookDir) => {
     writeChapter(bookDir, 0, {
@@ -958,7 +1130,7 @@ test("deck --book-dir: throws when no chapter-*/ directories exist", async () =>
     mkdirSync(bookDir, { recursive: true });
     await assert.rejects(
       () => runCli(["deck", "--book-dir", bookDir], { log: () => {} }),
-      /no chapter-\*\/ directories found/,
+      /no chapter-\*\/ or lesson-\*\/ directories found/,
     );
   });
 });
@@ -1014,6 +1186,46 @@ test("deck --book-dir: falls back to --name then a generic string when no book t
       log: () => {},
     });
     assert.equal(receivedBookName, "Custom Name");
+  });
+});
+
+test("deck --book-dir: discovers lesson-*/cards.json in seq order and uses the course name via loadCourseMeta", async () => {
+  await withTempDir(async (courseDir) => {
+    writeLesson(courseDir, 0, {
+      chapterLabel: "Lesson 1",
+      courseSlug: "intensive-japanese-1",
+      items: [{ id: "a1", english: "Good morning", category: "Greetings", target: "おはよう" }],
+    });
+    writeLesson(courseDir, 1, {
+      chapterLabel: "Lesson 2",
+      courseSlug: "intensive-japanese-1",
+      items: [
+        { id: "a2", english: "China", category: "Nationalities & Countries", target: "ちゅうごく" },
+      ],
+    });
+
+    let receivedChapterDecks = null;
+    let receivedOpts = null;
+    const buildBookDeck = (chapterDecks, opts) => {
+      receivedChapterDecks = chapterDecks;
+      receivedOpts = opts;
+      return { outPath: opts.outPath, noteCount: 2, chapterCount: 2, mediaCount: 0 };
+    };
+    const loadCourseMeta = (dir) => {
+      assert.equal(dir, courseDir);
+      return { name: "Intensive Japanese 1", targetLanguage: "ja" };
+    };
+
+    await runCli(["deck", "--book-dir", courseDir], {
+      buildBookDeck,
+      loadCourseMeta,
+      log: () => {},
+    });
+
+    assert.equal(receivedChapterDecks.length, 2);
+    assert.equal(receivedChapterDecks[0].name, "Lesson 1");
+    assert.equal(receivedChapterDecks[1].name, "Lesson 2");
+    assert.equal(receivedOpts.bookName, "Intensive Japanese 1");
   });
 });
 

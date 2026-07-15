@@ -344,3 +344,51 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if a real run's `targetLanguage` value turns out to commonly be a full name
   rather than a code, add a small, explicit name→code map for the common cases actually seen,
   rather than attempting a general natural-language lookup.
+
+## Lesson-sourced courses (`--words`) have no cross-lesson dedup, unlike EPUB chapters
+
+- **What:** `assemble --words` (`src/corpus/lessonCorpus.js`, `resolveCourseSlug`/
+  `resolveLessonRunDir` in `src/cli/outputPaths.js`) deliberately does NOT run anything analogous
+  to the EPUB path's `dedupBackward`/`flagForwardConcerns` passes. A word re-taught across two
+  lessons of the same course (e.g. "Yes" appearing in both Lesson 1 and Lesson 3) is assembled
+  twice, independently, with no cross-lesson awareness at all — no flag, no note, nothing.
+- **Why:** those passes exist for EPUBs specifically because a whole book's chapter text is
+  available up front to check a new item against (`loadPriorChapterItems`) and to scan forward
+  into (`flagForwardConcerns`'s later-chapter re-teach detection) — real source text to compare
+  against. A `--words` lesson has no equivalent: it's a flat list of English phrases the user
+  dictated, with no source text a later/earlier lesson's content could be compared against beyond
+  the phrases themselves. Building real dedup for this source wasn't requested when this path was
+  added and would need its own design (exact-string match against every prior lesson in the same
+  course, most likely) rather than reusing the EPUB passes as-is, which assume book-chapter shape.
+- **Impact:** a real-life course that revisits vocabulary across lessons (common in language
+  teaching) will get duplicate cards across the merged course deck, with no automated signal
+  during assembly — only a human skimming the corpus review page would catch it.
+- **When to revisit:** if a real course's merged deck turns out to have noticeable duplicate cards
+  across lessons, add an exact-string backward-dedup pass scoped to `--words` assembly (mirroring
+  `dedupBackward`'s matching logic, but reading prior lessons' `corpus.json` files directly from
+  `output/<courseSlug>/lesson-*/`, since there's no by-EPUB-hash library entry to read from —
+  `resolveLessonRunDir` already knows how to enumerate a course's lesson folders).
+
+## Lesson word-list categorization is a single unverified Haiku pass, unlike EPUB extraction
+
+- **What:** `assembleCorpusFromLessonWords` assigns each item's `category` via one batched Haiku
+  call with no evaluation/verification step — contrast with the library-first romanization
+  pipeline's Haiku-eval-over-a-library's-output pattern, or the EPUB path's two dedicated dedup
+  passes. A wrong category here has no automated check at all; it silently ships as whatever the
+  model returned (or `"Other"` on a parse failure).
+- **Why:** category assignment for a already-curated, user-dictated word list is a much lower-
+  stakes judgment call than translation correctness or romanization accuracy — the corpus review
+  gate (`render-review --stage corpus`, the same gate every other source goes through) is a cheap,
+  fast place for a human to catch and fix a wrong category, and this project's own category enum
+  (`src/model/categories.js`) is itself documented as a first-cut list "revisit if it proves too
+  coarse or fine in practice" — adding a second model pass to verify a coarse categorization judgment
+  felt like more machinery than the risk warranted.
+- **Impact:** occasional miscategorized cards (e.g. a greeting phrase filed under "Other") that
+  only get fixed if a human notices them during corpus review — no different in practice from a
+  wrong category slipping through the EPUB extraction path's own single-pass categorization (that
+  path has no dedicated category-verification step either), just called out explicitly here since
+  this is a newer, less-exercised path.
+- **When to revisit:** if miscategorization turns out to be common enough in practice to be an
+  actual review-burden problem, consider a lightweight self-consistency check (e.g. asking the
+  model to re-categorize with the full category list restated and comparing) rather than a full
+  Haiku-eval-style second pass.

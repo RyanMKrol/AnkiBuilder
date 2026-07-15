@@ -22,6 +22,14 @@ const CORPUS_SCHEMA = {
         epubHash: { type: ["string", "null"] },
         chapterNumber: { type: ["number", "null"] },
         chapterLabel: { type: ["string", "null"] },
+        // Set only for sourceType "manual" corpora assembled from a real-life
+        // lesson's word list (see lessonCorpus.js) — the course's folder slug under
+        // output/, the lesson-source analogue of epubHash's "which book" role.
+        // chapterNumber/chapterLabel are reused as-is for the lesson number/display
+        // name rather than adding near-duplicate lessonNumber/lessonLabel fields,
+        // since both sourceTypes need the exact same "numbered sub-deck of a bigger
+        // merged collection" shape — see resolveLessonRunDir in cli/outputPaths.js.
+        courseSlug: { type: ["string", "null"] },
       },
       additionalProperties: false,
     },

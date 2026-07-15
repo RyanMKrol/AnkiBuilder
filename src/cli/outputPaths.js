@@ -86,3 +86,134 @@ export function resolveChapterRunDir(outputRoot, slug, epubHash, chapterNumber) 
   const nextSeq = seqs.length > 0 ? Math.max(...seqs) + 1 : 0;
   return join(bookDir, `chapter-${nextSeq}`);
 }
+
+function courseMarkerPath(outputRoot, slug) {
+  return join(outputRoot, slug, "course.json");
+}
+
+/**
+ * Reads a course's `course.json` marker (written by resolveCourseSlug) if present —
+ * `{ name, targetLanguage }` — or `null` if `courseDir` isn't a course folder at all
+ * (e.g. it's an EPUB book folder, or doesn't exist). Takes the folder path directly
+ * (not outputRoot+slug) since callers like `deck --book-dir` already have the exact
+ * directory in hand.
+ */
+export function loadCourseMeta(courseDir) {
+  const markerPath = join(courseDir, "course.json");
+  if (!existsSync(markerPath)) {
+    return null;
+  }
+  return JSON.parse(readFileSync(markerPath, "utf-8"));
+}
+
+/**
+ * Lists every course folder directly under `outputRoot` — anything with a
+ * `course.json` marker — as `{ slug, name, targetLanguage }`. Used to offer "pick an
+ * existing course" during lesson assembly instead of always creating a new one.
+ */
+export function listCourses(outputRoot) {
+  if (!existsSync(outputRoot)) {
+    return [];
+  }
+  return readdirSync(outputRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => {
+      const meta = loadCourseMeta(join(outputRoot, entry.name));
+      return meta ? { slug: entry.name, ...meta } : null;
+    })
+    .filter(Boolean);
+}
+
+/**
+ * Resolves (and, on first use, creates) a course's folder under `outputRoot` — the
+ * lesson-source analogue of resolveBookSlug, but keyed by name (case-insensitive
+ * exact match against an existing `course.json`) rather than content hash, since
+ * there's no source file to hash the way there is for an EPUB. Re-running with the
+ * exact same course name always reuses the same folder; a name collision with a
+ * DIFFERENT course (or any other folder already at that slug, e.g. an EPUB book) falls
+ * back to a numeric suffix (`-2`, `-3`, ...), same spirit as resolveBookSlug.
+ */
+export function resolveCourseSlug(outputRoot, courseName, targetLanguage) {
+  const existing = listCourses(outputRoot).find(
+    (course) => course.name.toLowerCase() === courseName.toLowerCase(),
+  );
+  if (existing) {
+    return existing.slug;
+  }
+
+  const baseSlug = slugify(courseName);
+  let candidate = baseSlug;
+  let suffix = 2;
+  while (existsSync(join(outputRoot, candidate))) {
+    candidate = `${baseSlug}-${suffix}`;
+    suffix++;
+  }
+
+  mkdirSync(join(outputRoot, candidate), { recursive: true });
+  writeFileSync(
+    courseMarkerPath(outputRoot, candidate),
+    JSON.stringify({ name: courseName, targetLanguage }, null, 2) + "\n",
+  );
+  return candidate;
+}
+
+const LESSON_DIR_PATTERN = /^lesson-(\d+)$/;
+
+function existingLessonSeqs(courseDir) {
+  if (!existsSync(courseDir)) {
+    return [];
+  }
+  return readdirSync(courseDir)
+    .map((name) => name.match(LESSON_DIR_PATTERN))
+    .filter(Boolean)
+    .map((m) => Number(m[1]));
+}
+
+/**
+ * Resolves the run directory for one (courseSlug, lessonNumber) pair under
+ * `outputRoot/<courseSlug>/` — the lesson-source analogue of resolveChapterRunDir,
+ * naming folders `lesson-<seq>` instead of `chapter-<seq>`. lessonNumber is matched
+ * against each existing lesson's `corpus.meta.chapterNumber` (that field is reused
+ * as-is for a lesson's number — see the courseSlug comment on CORPUS_SCHEMA in
+ * model/index.js), not a separate lessonNumber field.
+ */
+export function resolveLessonRunDir(outputRoot, courseSlug, lessonNumber) {
+  const courseDir = join(outputRoot, courseSlug);
+  const seqs = existingLessonSeqs(courseDir);
+
+  for (const seq of seqs) {
+    const corpusPath = join(courseDir, `lesson-${seq}`, "corpus.json");
+    if (!existsSync(corpusPath)) {
+      continue;
+    }
+    const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
+    if (corpus.meta?.courseSlug === courseSlug && corpus.meta?.chapterNumber === lessonNumber) {
+      return join(courseDir, `lesson-${seq}`);
+    }
+  }
+
+  const nextSeq = seqs.length > 0 ? Math.max(...seqs) + 1 : 0;
+  return join(courseDir, `lesson-${nextSeq}`);
+}
+
+/**
+ * Suggests the next lesson number for a course — one past the highest
+ * `chapterNumber` seen across the course's existing lesson folders (or `1` for a
+ * brand-new course). A suggestion only, meant for an interactive caller to confirm or
+ * override — resolveLessonRunDir itself never calls this.
+ */
+export function nextLessonNumber(outputRoot, courseSlug) {
+  const courseDir = join(outputRoot, courseSlug);
+  let max = 0;
+  for (const seq of existingLessonSeqs(courseDir)) {
+    const corpusPath = join(courseDir, `lesson-${seq}`, "corpus.json");
+    if (!existsSync(corpusPath)) {
+      continue;
+    }
+    const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
+    if (typeof corpus.meta?.chapterNumber === "number") {
+      max = Math.max(max, corpus.meta.chapterNumber);
+    }
+  }
+  return max + 1;
+}

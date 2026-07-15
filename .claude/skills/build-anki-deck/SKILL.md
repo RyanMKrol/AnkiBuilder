@@ -1,6 +1,6 @@
 ---
 name: build-anki-deck
-description: Build an Anki deck from travel phrases, template, or custom EPUB
+description: Build an Anki deck from a real-life lesson, template, or custom EPUB
 ---
 
 # Build an Anki Deck
@@ -33,25 +33,57 @@ The CLI loads `.env` automatically — no need to export by hand. The file is gi
 
 ## Workflow
 
-### Step 1: Corpus Source — Template or EPUB?
+### Step 1: What do you want to build a deck for?
 
-Tell me which:
+Ask which of these three:
 
-1. **Bundled template** (ready-made travel vocabulary): `travel-essentials`
-2. **Your own EPUB**: path to an .epub file on your machine
+1. **A real-life lesson** — a list of English words/phrases you learned in an actual class, to
+   organize into a course.
+2. **A bundled template** (ready-made travel vocabulary): `travel-essentials`
+3. **Your own EPUB**: path to an .epub file on your machine
 
-If you choose a template, I'll assemble the corpus immediately. If you choose an EPUB, I'll extract candidate terms and ask which target language to prepare translations for.
+If they pick a template, assemble the corpus immediately. If they pick an EPUB, extract candidate
+terms and ask which target language to prepare translations for. **If they pick a lesson**, walk
+through this before assembling anything:
+
+- **Which course?** List existing courses by reading `output/*/course.json` (each is
+  `{ name, targetLanguage }`, keyed by the folder name — `listCourses(outputRoot)` in
+  `src/cli/outputPaths.js` if you'd rather call it directly than read files by hand) and offer them
+  as choices, plus an explicit "start a new course" option. For a new course, ask its name (e.g.
+  "Intensive Japanese 1") and target language.
+- **Which lesson number?** Suggest the next free one (`nextLessonNumber(outputRoot, courseSlug)` —
+  one past the highest lesson number already assembled for this course, or `1` for a brand-new
+  course) and let them confirm or override it. Also ask if they want a custom sub-deck label
+  (defaults to `"Lesson <N>"` if they don't say).
+- **The word list itself.** Ask them to paste or dictate the English terms from the lesson, one
+  per line. Write what they give you to a plain text file (e.g. `<scratchpad>/lesson-words.txt`,
+  one phrase per line, blank lines are fine — they're skipped) — `assemble --words` reads from a
+  file, not inline text, so this file is how their dictated list gets in.
 
 ### Step 2: Corpus Assembly & Review
 
 Once the source is decided, I'll assemble the corpus.
 
-**For a template or a manual `--chapter` source** (no book identity to organize by), pick any run
-directory and pass it directly:
+**For a template or a manual `--chapter` source** (no book/course identity to organize by), pick
+any run directory and pass it directly:
 
 ```sh
 anki-builder assemble --run <runDir> --template travel-essentials
 ```
+
+**For a real-life lesson**, pass `--output-root` (same idea as an EPUB below) along with the
+course/lesson details gathered in Step 1:
+
+```sh
+anki-builder assemble --output-root output --words <wordsFile> \
+  --course "Intensive Japanese 1" --lesson-number <N> --lang <lang> \
+  [--lesson-label "Lesson <N>: <topic>"]
+```
+
+This resolves (or creates) `output/<course-slug>/lesson-<seq>/` — every item's `target` stays
+`null` here (there's no bilingual source text to translate from, unlike an EPUB chapter), so
+`translate` fills it in fresh just like it does for a template. Category assignment for each word
+is a quick automated pass — check it during the corpus review below same as any other source.
 
 **For an EPUB**, pass `--output-root` instead of `--run` and let `assemble` resolve the run
 directory itself — this keeps every chapter of the same book organized together under one
@@ -61,11 +93,12 @@ book-level folder (see [Output layout](../../../README.md#output-layout) in the 
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang <lang>
 ```
 
-This prints `resolved run directory: output/<book-slug>/chapter-<seq>`. **Capture that path** —
-it's the `<runDir>` to reuse for every subsequent `review`/`translate`/`audio`/`render-review` call
-for this chapter (all of those commands still take a plain `--run <runDir>`; only `assemble` knows
-how to resolve one from `--output-root`). Re-running `assemble --output-root` for the same chapter
-of the same book reuses its existing folder rather than allocating a new one.
+Both the lesson and EPUB forms print `resolved run directory: output/<slug>/lesson-<seq>` or
+`.../chapter-<seq>`. **Capture that path** — it's the `<runDir>` to reuse for every subsequent
+`review`/`translate`/`audio`/`render-review` call (all of those commands still take a plain
+`--run <runDir>`; only `assemble` knows how to resolve one from `--output-root`). Re-running
+`assemble --output-root` for the same lesson-of-course or chapter-of-book reuses its existing
+folder rather than allocating a new one.
 
 The result is `corpus.json` in the run directory, containing:
 - English phrases (the terms to memorize)
@@ -196,31 +229,34 @@ This:
 
 The `.apkg` file is a complete, importable Anki deck.
 
-### Step 6: Build the Book-Level Package (EPUB books only)
+### Step 6: Build the Book/Course-Level Package (EPUB books and lesson-sourced courses only)
 
-If you're working through an EPUB book chapter by chapter (via `--output-root`), each chapter so
-far has its own `cards.json`/`deck.apkg` under `output/<book-slug>/chapter-<seq>/`. Once you've
-finished Steps 2–5 for every chapter you want included, build ONE merged package for the whole
-book:
+If you're working through an EPUB book chapter by chapter, or a course lesson by lesson (both via
+`--output-root`), each unit so far has its own `cards.json`/`deck.apkg` under
+`output/<book-slug>/chapter-<seq>/` or `output/<course-slug>/lesson-<seq>/`. Once you've finished
+Steps 2–5 for every chapter/lesson you want included, build ONE merged package for the whole
+book/course:
 
 ```sh
-anki-builder deck --book-dir output/<book-slug>
+anki-builder deck --book-dir output/<book-or-course-slug>
 ```
 
-This scans every `chapter-*/cards.json` under that folder and writes a single
-`output/<book-slug>/deck.apkg` containing all of them, each chapter as its own real Anki sub-deck
-(`Book Title::Chapter Label`) nested under one parent deck named for the book. Run this once after
-all of that book's chapters are individually complete — and again any time you add or change a
-chapter, since (unlike the per-chapter `deck --run` command) this always rebuilds from scratch
-rather than reusing a stale merge. Skip this step entirely for template/manual decks — there's
-only ever one chapter, so the per-chapter `deck.apkg` from Step 5 is already the final artifact.
+This scans every `chapter-*/cards.json` AND `lesson-*/cards.json` under that folder (a given
+folder only ever has one or the other) and writes a single `output/<slug>/deck.apkg` containing
+all of them, each as its own real Anki sub-deck (`Book/Course Title::Chapter/Lesson Label`) nested
+under one parent deck named for the book (from the EPUB library) or the course (from its
+`course.json` marker). Run this once after all of that book's/course's units are individually
+complete — and again any time you add or change one, since (unlike the per-unit `deck --run`
+command) this always rebuilds from scratch rather than reusing a stale merge. Skip this step
+entirely for template/manual decks — there's only ever one unit, so the `deck.apkg` from Step 5 is
+already the final artifact.
 
 ### Step 7: Import & Verify
 
 Open Anki:
-1. File → Import → select the book-level `deck.apkg` (or the per-chapter one, for a
+1. File → Import → select the book/course-level `deck.apkg` (or the per-unit one, for a
    template/manual deck)
-2. Review the imported cards, including the sub-deck hierarchy for a book
+2. Review the imported cards, including the sub-deck hierarchy for a book or course
 3. Test playback (audio should play if audio was generated)
 4. Start studying!
 
@@ -238,6 +274,8 @@ All commands use `--run <dir>` to specify the run directory and read/write artif
 anki-builder assemble --run <dir> --template travel-essentials
 anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang es
+anki-builder assemble --output-root output --words <path> --course "Intensive Japanese 1" \
+  --lesson-number <N> --lang ja [--lesson-label "Lesson <N>: <topic>"]
 ```
 
 ### Translate
@@ -255,13 +293,13 @@ anki-builder audio --run <dir> --voice 21m00Tcm4TlvDq8ikWAM
 anki-builder deck --run <dir> --name "Travel Spanish"
 ```
 
-### Build book-level deck
+### Build book/course-level deck
 ```sh
-anki-builder deck --book-dir output/<book-slug>
+anki-builder deck --book-dir output/<book-or-course-slug>
 ```
-Merges every `chapter-*/cards.json` under the book folder into one `deck.apkg`, one Anki sub-deck
-per chapter. Always rebuilds from scratch. EPUB books only — nothing to merge for a
-template/manual deck.
+Merges every `chapter-*/cards.json` or `lesson-*/cards.json` under the folder into one
+`deck.apkg`, one Anki sub-deck per chapter/lesson. Always rebuilds from scratch. EPUB books and
+lesson-sourced courses only — nothing to merge for a template/manual deck.
 
 ### Render a review artifact
 ```sh
@@ -300,6 +338,17 @@ output/<book-slug>/
   chapter-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
   chapter-1/...
   deck.apkg              # built by `deck --book-dir output/<book-slug>` (Step 6)
+```
+
+A lesson-sourced course assembled via `--words --output-root` mirrors this exact shape one level
+down — `course-slug/lesson-<seq>/` instead of `book-slug/chapter-<seq>/`:
+
+```
+output/<course-slug>/
+  course.json             # { name, targetLanguage } — written on first use of this course
+  lesson-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
+  lesson-1/...
+  deck.apkg               # built by `deck --book-dir output/<course-slug>` (Step 6)
 ```
 
 Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio.

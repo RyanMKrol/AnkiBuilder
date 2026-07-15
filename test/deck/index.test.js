@@ -305,7 +305,10 @@ test("buildBookDeck merges 2 chapters' cards + audio into one .apkg", async () =
     assert.ok(names.includes("media"));
 
     const media = JSON.parse(extractZipEntry(zipBuffer, "media").toString("utf-8"));
-    assert.deepStrictEqual(media, { "0-0": "hello.mp3", "1-0": "pen.mp3" });
+    // Media manifest keys MUST be plain sequential integers — Anki's own .apkg format
+    // constraint, not a style choice (a chapter-prefixed scheme like "0-0"/"1-0" is
+    // rejected outright by Anki's importer).
+    assert.deepStrictEqual(media, { 0: "hello.mp3", 1: "pen.mp3" });
   });
 });
 
@@ -340,14 +343,17 @@ test("buildBookDeck keeps identical audio filenames across two different chapter
 
     const zipBuffer = await fs.readFile(outPath);
     const media = JSON.parse(extractZipEntry(zipBuffer, "media").toString("utf-8"));
-    assert.deepStrictEqual(media, { "0-0": "word.mp3", "1-0": "word.mp3" });
+    // Same real filename in two different chapters must still get two distinct,
+    // plain-sequential-integer keys — never chapter-prefixed (see the note on the
+    // previous test).
+    assert.deepStrictEqual(media, { 0: "word.mp3", 1: "word.mp3" });
 
     const names = readZipEntryNames(zipBuffer);
-    assert.ok(names.includes("0-0"));
-    assert.ok(names.includes("1-0"));
+    assert.ok(names.includes("0"));
+    assert.ok(names.includes("1"));
 
-    const chapter0Bytes = extractZipEntry(zipBuffer, "0-0");
-    const chapter1Bytes = extractZipEntry(zipBuffer, "1-0");
+    const chapter0Bytes = extractZipEntry(zipBuffer, "0");
+    const chapter1Bytes = extractZipEntry(zipBuffer, "1");
     assert.strictEqual(chapter0Bytes.toString("utf-8"), "chapter 0 word");
     assert.strictEqual(chapter1Bytes.toString("utf-8"), "chapter 1 word");
   });
@@ -385,5 +391,66 @@ test("buildBookDeck's noteCount is the sum across chapters", async () => {
 
     assert.strictEqual(result.noteCount, 6);
     assert.strictEqual(result.chapterCount, 3);
+  });
+});
+
+test("buildBookDeck's media manifest keys are always plain sequential integers, never chapter-prefixed", async () => {
+  await withTempDir(async (tmpDir) => {
+    const audioDirs = [0, 1, 2].map((i) => join(tmpDir, `chapter-${i}`, "audio"));
+    for (const dir of audioDirs) {
+      await fs.mkdir(dir, { recursive: true });
+    }
+    // Give each chapter more than one audio file, so a chapter-prefixed scheme
+    // ("0-0", "0-1", "1-0", ...) and a globally-sequential one ("0", "1", "2", ...)
+    // would actually produce visibly different keys, not just coincidentally equal
+    // single-item ones.
+    await fs.writeFile(join(audioDirs[0], "a1.mp3"), Buffer.from("a1"));
+    await fs.writeFile(join(audioDirs[0], "a2.mp3"), Buffer.from("a2"));
+    await fs.writeFile(join(audioDirs[1], "b1.mp3"), Buffer.from("b1"));
+    await fs.writeFile(join(audioDirs[2], "c1.mp3"), Buffer.from("c1"));
+    await fs.writeFile(join(audioDirs[2], "c2.mp3"), Buffer.from("c2"));
+
+    const chapterDecks = [
+      {
+        name: "Lesson 1",
+        cards: baseCards([
+          { id: "a1", english: "A1", category: "Other", target: "a1", audio: "a1.mp3" },
+          { id: "a2", english: "A2", category: "Other", target: "a2", audio: "a2.mp3" },
+        ]),
+        audioDir: audioDirs[0],
+      },
+      {
+        name: "Lesson 2",
+        cards: baseCards([
+          { id: "b1", english: "B1", category: "Other", target: "b1", audio: "b1.mp3" },
+        ]),
+        audioDir: audioDirs[1],
+      },
+      {
+        name: "Lesson 3",
+        cards: baseCards([
+          { id: "c1", english: "C1", category: "Other", target: "c1", audio: "c1.mp3" },
+          { id: "c2", english: "C2", category: "Other", target: "c2", audio: "c2.mp3" },
+        ]),
+        audioDir: audioDirs[2],
+      },
+    ];
+
+    const outPath = join(tmpDir, "deck.apkg");
+    buildBookDeck(chapterDecks, { outPath, bookName: "Book", now: 1700000000000 });
+
+    const zipBuffer = await fs.readFile(outPath);
+    const media = JSON.parse(extractZipEntry(zipBuffer, "media").toString("utf-8"));
+
+    const keys = Object.keys(media);
+    assert.equal(keys.length, 5);
+    for (const key of keys) {
+      assert.match(key, /^\d+$/, `media key "${key}" must be a plain non-negative integer string`);
+    }
+    // Globally sequential across chapters, in chapter order — not reset per chapter.
+    assert.deepStrictEqual(
+      keys.map(Number).sort((a, b) => a - b),
+      [0, 1, 2, 3, 4],
+    );
   });
 });

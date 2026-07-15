@@ -97,8 +97,8 @@ function buildModel(now) {
         {
           name: "Recognition",
           ord: 0,
-          qfmt: "{{Target}}",
-          afmt: "{{FrontSide}}<hr id=answer>{{English}}<br>{{Pronunciation}}<br>{{Hint}}<br>{{Image}}<br>{{Audio}}",
+          qfmt: "{{Target}}<br>{{Audio}}",
+          afmt: "{{FrontSide}}<hr id=answer>{{English}}<br>{{Pronunciation}}<br>{{Hint}}<br>{{Image}}",
           did: null,
           bqfmt: "",
           bafmt: "",

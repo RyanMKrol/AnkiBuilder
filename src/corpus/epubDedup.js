@@ -1,10 +1,22 @@
+function noteWithMatch(existingNotes, chapterLabel, matchedField) {
+  const concern = `Possibly already taught — already introduced in ${chapterLabel} (matched on ${matchedField})`;
+  return existingNotes ? `${existingNotes} | ${concern}` : concern;
+}
+
 /**
- * Backward-looking, deterministic, hard drop — pure function, no I/O.
- * Drops any candidate item whose english (case-insensitive, trimmed) or
- * target (exact, trimmed) matches an item from an earlier chapter of the
- * same book. `priorItems` is expected to carry `__chapterNumber` (see
- * epubLibrary.js's loadPriorChapterItems) so a drop can name which earlier
- * chapter it matched — `dropped[].matchedPriorItem.__chapterNumber`.
+ * Backward-looking, deterministic, non-destructive review — pure function, no I/O.
+ * Flags (never drops) any candidate item whose english (case-insensitive, trimmed)
+ * or target (exact, trimmed) matches an item from an earlier chapter of the same
+ * book. `priorItems` is expected to carry `__chapterNumber`/`__chapterLabel` (see
+ * epubLibrary.js's loadPriorChapterItems) so a flag can name which earlier chapter
+ * it matched.
+ *
+ * Returns `{ items, flagged }`: `items` is `candidateItems` in the same order and
+ * count, annotated (`uncertain: true` plus a "Possibly already taught — ..." note)
+ * where matched; `flagged` is the subset actually matched, each paired with its
+ * original (pre-annotation) item plus which field matched and the prior item it
+ * matched, for logging. Matched items are never removed — the human reviewer sees
+ * and decides, same philosophy as the forward pass (flagForwardConcerns).
  */
 export function dedupBackward(candidateItems, priorItems) {
   const priorEnglish = new Map();
@@ -16,23 +28,25 @@ export function dedupBackward(candidateItems, priorItems) {
     }
   }
 
-  const kept = [];
-  const dropped = [];
-  for (const item of candidateItems) {
+  const flagged = [];
+  const items = candidateItems.map((item) => {
     const englishMatch = priorEnglish.get(item.english.trim().toLowerCase());
     const targetMatch = item.target ? priorTarget.get(item.target.trim()) : undefined;
     const match = englishMatch ?? targetMatch;
 
-    if (match) {
-      dropped.push({
-        item,
-        matchedField: englishMatch ? "english" : "target",
-        matchedPriorItem: match,
-      });
-    } else {
-      kept.push(item);
+    if (!match) {
+      return item;
     }
-  }
 
-  return { kept, dropped };
+    const matchedField = englishMatch ? "english" : "target";
+    flagged.push({ item, matchedField, matchedPriorItem: match });
+
+    return {
+      ...item,
+      uncertain: true,
+      notes: noteWithMatch(item.notes, match.__chapterLabel, matchedField),
+    };
+  });
+
+  return { items, flagged };
 }

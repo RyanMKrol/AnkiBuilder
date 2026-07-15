@@ -64,12 +64,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `target` exactly (both trimmed) against every earlier reviewed chapter of the same book. A
   differently-worded duplicate (e.g. "How much is this?" vs. "What does this cost?") is not caught
   by this pass — only the forward flag pass has any chance of surfacing semantic overlap, and even
-  then only as a flag for the human reviewer to act on, not an automatic drop, and only for content
-  it judges is *explicitly re-taught*, not merely similar.
+  then only for content it judges is *explicitly re-taught*, not merely similar.
 - **Why:** exact-string matching is deterministic, free, and instant — the intentional trade-off
-  for a "hard drop" pass that runs on every `assemble --epub` call with zero API cost.
-- **Impact:** near-duplicate phrasing across chapters can still slip through and needs to be caught
-  during `review` instead.
+  for a pass that runs on every `assemble --epub` call with zero API cost. It used to be a hard
+  drop; it's now purely advisory, same as the forward pass — matched items are kept in the corpus
+  with `uncertain: true` and a `"Possibly already taught — ..."` note (naming the earlier chapter
+  and which field matched) rather than silently removed, so a false-positive match (e.g. a grammar
+  particle whose earlier occurrence taught a different point) doesn't quietly disappear before a
+  human ever sees it.
+- **Impact:** near-duplicate phrasing across chapters can still slip through uncaught and needs to
+  be noticed during `review` instead; conversely, an exact match that IS a legitimate re-teach
+  (rather than a true duplicate) now shows up as a flagged row the reviewer must actively dismiss,
+  rather than vanishing invisibly.
 - **When to revisit:** if near-duplicate leakage across chapters proves common in practice — would
   need a semantic-similarity check (embeddings or an LLM call), a real cost/complexity step up from
   the current pure-function pass.

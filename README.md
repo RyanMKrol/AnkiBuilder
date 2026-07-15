@@ -33,16 +33,18 @@ under a book-organized `output/` tree (`--output-root <dir>`; see
   - `--epub <path> --chapter-number <N> --lang <language>`: reads chapter `N` directly out of a
     real `.epub` archive in spine (reading) order (`src/corpus/epubArchive.js` — a dependency-free
     zip reader + `META-INF/container.xml`/OPF spine parser), registers the book into the local
-    library, and automatically runs two passes before writing `corpus.json`: a backward pass
-    (`dedupBackward`, `src/corpus/epubDedup.js`) drops anything already introduced in an earlier
-    (reviewed) chapter of the same book; a forward pass (`flagForwardConcerns`,
-    `src/corpus/epubForwardFlags.js`) asks a Sonnet-medium model to flag — never drop — anything that
-    looks premature, either because a later chapter explicitly re-teaches it or because it relies on
-    grammar/vocabulary the book hasn't introduced yet. A flagged item comes back with `uncertain:
-true` and a "Possibly premature — ..." note appended, so the corpus review gate is where the
-    human actually decides, rather than the item silently vanishing before anyone sees it. Every
-    dropped or flagged item is logged individually, naming the item and the reason — never just a
-    count. The _first_ `assemble --epub`
+    library, and automatically runs two passes before writing `corpus.json` — both non-destructive:
+    a backward pass (`dedupBackward`, `src/corpus/epubDedup.js`) flags anything that exact-matches
+    (case-insensitive `english`, or exact `target`) an item already introduced in an earlier
+    (reviewed) chapter of the same book, deterministically and with zero API cost; a forward pass
+    (`flagForwardConcerns`, `src/corpus/epubForwardFlags.js`) asks a Sonnet-medium model to flag
+    anything that looks premature, either because a later chapter explicitly re-teaches it or
+    because it relies on grammar/vocabulary the book hasn't introduced yet. Neither pass ever drops
+    an item — each flagged item comes back with `uncertain: true` and a note appended (`"Possibly
+already taught — ..."` for a backward match, `"Possibly premature — ..."` for a forward one), so
+    the corpus review gate is where the human actually decides, rather than the item silently
+    vanishing before anyone sees it. Every flagged item is logged individually, naming the item and
+    the reason — never just a count. The _first_ `assemble --epub`
     call for a never-before-seen book also triggers a one-time, whole-book conventions pass
     (`src/corpus/epubBookConventions.js`) — a Sonnet-medium agent reads every chapter and
     characterizes this specific book's own structural conventions (placeholder notation, what
@@ -63,7 +65,7 @@ true` and a "Possibly premature — ..." note appended, so the corpus review gat
   numbering. The resolved path is printed (`resolved run directory: ...`) for you to reuse as
   `--run <dir>` on every later stage for that chapter. See [Output layout](#output-layout).
 
-  Any chapter number shown to a person — in a dropped/flagged item's log line or note, or the
+  Any chapter number shown to a person — in a flagged item's log line or note, or the
   corpus review page's meta row — is the book's own human-readable title (e.g. `"Lesson 6: Going
 Places (1)"`), never the raw 1-indexed spine position that's an internal implementation detail
   with no relationship to how the book itself numbers or names its chapters (an "internal chapter" —
@@ -79,7 +81,7 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   flagged item's `laterChapter` (the raw spine number the model reports, matching the file list it
   was given) to this same label rather than trusting the model to transcribe the book's title text
   itself; `loadPriorChapterItems` carries a saved chapter's label forward as `__chapterLabel` so
-  `dedupBackward`'s drop log can name it too, without that pure function needing epub access itself.
+  `dedupBackward`'s flag log can name it too, without that pure function needing epub access itself.
 
   Both the `--chapter` and `--epub` paths call the same extractor
   (`src/corpus/epubLlmCorpus.js` / `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet

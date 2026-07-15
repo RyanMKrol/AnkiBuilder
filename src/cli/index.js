@@ -186,15 +186,15 @@ async function runAssemble(flags, ctx) {
       corpus.items,
       ctx.loadPriorChapterItems(epubHash, chapterNumber),
     );
-    for (const { item, matchedField, matchedPriorItem } of backward.dropped) {
+    for (const { item, matchedField, matchedPriorItem } of backward.flagged) {
       ctx.log(
-        `[dedup:backward] dropped "${item.english}" (id: ${item.id}) — already introduced in ` +
+        `[dedup:backward] flagged "${item.english}" (id: ${item.id}) — already introduced in ` +
           `${matchedPriorItem.__chapterLabel} (matched on ${matchedField})`,
       );
     }
 
     const forward = ctx.flagForwardConcerns({
-      candidateItems: backward.kept,
+      candidateItems: backward.items,
       epubPath: flags.epub,
       chapterNumber,
       targetLanguage: flags.lang,
@@ -209,10 +209,9 @@ async function runAssemble(flags, ctx) {
     }
 
     corpus.items = forward.items;
-    const totalOriginal = backward.kept.length + backward.dropped.length;
     ctx.log(
-      `dedup: kept ${corpus.items.length}/${totalOriginal} item(s) ` +
-        `(${backward.dropped.length} dropped as already-taught, ${forward.flagged.length} flagged as possibly premature)`,
+      `dedup: ${corpus.items.length} item(s) total ` +
+        `(${backward.flagged.length} flagged as already-taught, ${forward.flagged.length} flagged as possibly premature)`,
     );
 
     validateCorpus(corpus);

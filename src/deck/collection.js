@@ -99,7 +99,7 @@ CREATE INDEX ix_revlog_usn on revlog (usn);
 CREATE INDEX ix_cards_nid on cards (nid);
 CREATE INDEX ix_cards_sched on cards (did, queue, due);
 CREATE INDEX ix_revlog_cid on revlog (cid);
-CREATE INDEX ix_notes_mid on notes (mid);
+CREATE INDEX ix_notes_csum on notes (csum);
 `;
 
 // `nowSeconds`: epoch SECONDS — every JSON-embedded `mod` field in this file (model,
@@ -244,9 +244,14 @@ function buildConf(curDeck, activeDecks) {
   };
 }
 
+// Masked to 31 bits (clearing the sign bit) so this always fits a signed 32-bit
+// integer — the first 8 hex chars of a SHA1 digest are effectively random, so an
+// unmasked value exceeds i32::MAX (2147483647) roughly half the time. csum is only
+// ever used as a cheap duplicate-detection hint, never validated against a
+// recomputed value, so narrowing it costs nothing real.
 function fieldChecksum(sortField) {
   const digest = createHash("sha1").update(sortField, "utf-8").digest("hex");
-  return parseInt(digest.slice(0, 8), 16);
+  return parseInt(digest.slice(0, 8), 16) & 0x7fffffff;
 }
 
 function fieldValue(card, name) {

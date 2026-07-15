@@ -246,3 +246,20 @@ test("buildMultiDeckCollection also stores every mod field in epoch SECONDS", ()
     assert.equal(card.mod, nowSeconds);
   });
 });
+
+test("buildCollection keeps every note's csum within signed 32-bit range", () => {
+  // Sort fields chosen to exercise many different SHA1 prefixes — a real regression
+  // would only show up probabilistically, so use enough distinct inputs to make a
+  // silent reintroduction very unlikely to slip through.
+  const words = Array.from({ length: 50 }, (_, i) => `word-${i}-with-some-variety-${i * 7}`);
+  const bytes = buildCollection(cardsOf(...words), { deckName: "Deck", now: 1_700_000_000_000 });
+
+  withTempDb(bytes, (db) => {
+    const notes = db.prepare("SELECT csum FROM notes").all();
+    const I32_MAX = 2147483647;
+    for (const note of notes) {
+      assert.ok(note.csum >= 0, "csum must be non-negative");
+      assert.ok(note.csum <= I32_MAX, `csum ${note.csum} exceeds signed 32-bit range`);
+    }
+  });
+});

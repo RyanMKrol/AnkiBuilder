@@ -9,6 +9,7 @@ import {
 import { resolveIso639Code } from "../model/iso639.js";
 import { listTemplates, loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
 import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from "../corpus/epubLlmCorpus.js";
+import { assembleCorpusFromLessonWords as defaultAssembleCorpusFromLessonWords } from "../corpus/lessonCorpus.js";
 import {
   extractChapterToFile as defaultExtractChapterToFile,
   describeChapter as defaultDescribeChapter,
@@ -25,6 +26,9 @@ import {
 import {
   resolveBookSlug as defaultResolveBookSlug,
   resolveChapterRunDir as defaultResolveChapterRunDir,
+  resolveCourseSlug as defaultResolveCourseSlug,
+  resolveLessonRunDir as defaultResolveLessonRunDir,
+  loadCourseMeta as defaultLoadCourseMeta,
 } from "./outputPaths.js";
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
 import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
@@ -102,8 +106,27 @@ function resolveAssembleRunDir(flags, ctx) {
   if (!flags["output-root"]) {
     return flags.run;
   }
+
+  if (flags.words) {
+    if (!flags.course) {
+      throw new Error("--course <name> is required when assembling from --words");
+    }
+    if (!flags["lesson-number"]) {
+      throw new Error("--lesson-number is required when assembling from --words");
+    }
+    if (!flags.lang) {
+      throw new Error("--lang is required when assembling from --words");
+    }
+
+    const outputRoot = resolve(flags["output-root"]);
+    const courseSlug = ctx.resolveCourseSlug(outputRoot, flags.course, flags.lang);
+    const runDir = ctx.resolveLessonRunDir(outputRoot, courseSlug, Number(flags["lesson-number"]));
+    ctx.log(`resolved run directory: ${runDir}`);
+    return runDir;
+  }
+
   if (!flags.epub) {
-    throw new Error("--output-root can only be used with --epub");
+    throw new Error("--output-root can only be used with --epub or --words");
   }
   if (!flags["chapter-number"]) {
     throw new Error("--chapter-number is required when assembling from --epub");
@@ -125,7 +148,7 @@ function resolveAssembleRunDir(flags, ctx) {
 async function runAssemble(flags, ctx) {
   const runDir = resolveAssembleRunDir(flags, ctx);
   if (!runDir) {
-    throw new Error("--run <dir> is required (or --output-root <dir> with --epub)");
+    throw new Error("--run <dir> is required (or --output-root <dir> with --epub or --words)");
   }
   const paths = ctx.runPaths(runDir);
 
@@ -135,7 +158,39 @@ async function runAssemble(flags, ctx) {
   }
 
   let corpus;
-  if (flags.chapter) {
+  if (flags.words) {
+    if (!flags.lang) {
+      throw new Error("--lang is required when assembling from --words");
+    }
+    if (!flags.course) {
+      throw new Error("--course <name> is required when assembling from --words");
+    }
+    if (!flags["lesson-number"]) {
+      throw new Error("--lesson-number is required when assembling from --words");
+    }
+
+    const englishWords = readFileSync(flags.words, "utf-8")
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0);
+
+    corpus = ctx.assembleCorpusFromLessonWords({
+      englishWords,
+      targetLanguage: flags.lang,
+      log: ctx.log,
+    });
+
+    const lessonNumber = Number(flags["lesson-number"]);
+    const outputRoot = resolve(flags["output-root"]);
+    const courseSlug = ctx.resolveCourseSlug(outputRoot, flags.course, flags.lang);
+    corpus.meta = {
+      ...corpus.meta,
+      courseSlug,
+      chapterNumber: lessonNumber,
+      chapterLabel: flags["lesson-label"] || `Lesson ${lessonNumber}`,
+    };
+    validateCorpus(corpus);
+  } else if (flags.chapter) {
     if (flags.epub) {
       ctx.log("both --chapter and --epub given — using --chapter (manual mode, no dedup/registry)");
     }
@@ -221,7 +276,7 @@ async function runAssemble(flags, ctx) {
     corpus = ctx.loadTemplate(flags.template);
   } else {
     throw new Error(
-      `either --template <name>, --chapter <path>, or --epub <path> --chapter-number <N> is required. Available templates: ${listTemplates().join(", ")}`,
+      `either --template <name>, --chapter <path>, --epub <path> --chapter-number <N>, or --words <path> --course <name> --lesson-number <N> is required. Available templates: ${listTemplates().join(", ")}`,
     );
   }
 
@@ -347,20 +402,24 @@ async function runAudio(flags, ctx) {
   ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);
 }
 
-const CHAPTER_DIR_PATTERN = /^chapter-(\d+)$/;
+// Matches both an EPUB book's chapter-<N>/ folders and a lesson-source course's
+// lesson-<N>/ folders — the two sourceTypes share this exact "numbered sub-deck of a
+// bigger merged collection" directory shape (see the courseSlug comment on
+// CORPUS_SCHEMA in model/index.js), so one book-dir merge path serves both.
+const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)$/;
 
 async function runBookDeck(flags, ctx) {
   const bookDir = resolve(flags["book-dir"]);
   const outPath = join(bookDir, "deck.apkg");
 
   const chapterDirs = readdirSync(bookDir)
-    .map((name) => name.match(CHAPTER_DIR_PATTERN))
+    .map((name) => name.match(BOOK_UNIT_DIR_PATTERN))
     .filter(Boolean)
     .map((m) => ({ seq: Number(m[1]), dir: join(bookDir, m[0]) }))
     .sort((a, b) => a.seq - b.seq);
 
   if (chapterDirs.length === 0) {
-    throw new Error(`no chapter-*/ directories found under ${bookDir}`);
+    throw new Error(`no chapter-*/ or lesson-*/ directories found under ${bookDir}`);
   }
 
   const chapterDecks = [];
@@ -384,8 +443,8 @@ async function runBookDeck(flags, ctx) {
     });
   }
 
-  const bookMeta = epubHash ? ctx.loadBookMeta(epubHash) : null;
-  const bookName = bookMeta?.title || flags.name || "AnkiBuilder Book Deck";
+  const bookMeta = epubHash ? ctx.loadBookMeta(epubHash) : ctx.loadCourseMeta(bookDir);
+  const bookName = bookMeta?.title || bookMeta?.name || flags.name || "AnkiBuilder Book Deck";
 
   // Merges N independently-changeable chapter inputs — always rebuild fresh rather
   // than reusing an existing deck.apkg (unlike the single-chapter path below), since
@@ -482,7 +541,11 @@ export async function runCli(argv, deps = {}) {
     loadTemplate = defaultLoadTemplate,
     resolveBookSlug = defaultResolveBookSlug,
     resolveChapterRunDir = defaultResolveChapterRunDir,
+    resolveCourseSlug = defaultResolveCourseSlug,
+    resolveLessonRunDir = defaultResolveLessonRunDir,
+    loadCourseMeta = defaultLoadCourseMeta,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
+    assembleCorpusFromLessonWords = defaultAssembleCorpusFromLessonWords,
     extractChapterToFile = defaultExtractChapterToFile,
     describeChapter = defaultDescribeChapter,
     registerEpub = defaultRegisterEpub,
@@ -525,7 +588,11 @@ export async function runCli(argv, deps = {}) {
     loadTemplate,
     resolveBookSlug,
     resolveChapterRunDir,
+    resolveCourseSlug,
+    resolveLessonRunDir,
+    loadCourseMeta,
     assembleCorpusFromChapter,
+    assembleCorpusFromLessonWords,
     extractChapterToFile,
     describeChapter,
     registerEpub,

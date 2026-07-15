@@ -26,10 +26,24 @@ directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved 
 under a book-organized `output/` tree (`--output-root <dir>`; see
 [Output layout](#output-layout)).
 
-- **`assemble`** — three sources:
+- **`assemble`** — four sources:
   - `--template <name>`: bundled word lists.
   - `--chapter <path> --lang <language>`: one already-extracted EPUB chapter `.xhtml` file, read
     directly by a model (no book-level context, no dedup/registry tracking) — a manual/ad hoc mode.
+  - `--words <path> --course <name> --lesson-number <N> --lang <language>`: a plain text file, one
+    English phrase per line, dictated from a real-life lesson rather than extracted from a book —
+    for example, vocabulary you learned in an in-person class. Unlike `--chapter`/`--epub`, there's
+    no bilingual source text to extract a translation from, so every item's `target` stays `null`
+    (`assembleCorpusFromLessonWords`, `src/corpus/lessonCorpus.js`) — it flows into `translate` the
+    same way a template's items do. The only judgment call this source makes itself is category
+    assignment, via a small batched Haiku pass (same "fail open, never block" idiom as the rest of
+    this project — a batch that fails to parse defaults to category `"Other"` rather than blocking
+    assembly; the corpus review gate is where a wrong category actually gets fixed). Optional
+    `--lesson-label <text>` overrides the sub-deck's display name, defaulting to `"Lesson <N>"`.
+    Like `--epub`, pass `--output-root <dir>` instead of `--run <dir>`; `assemble` resolves (or
+    creates) the named course's folder (`resolveCourseSlug`, keyed by course name rather than a
+    content hash, since there's no source file to hash) and then that lesson's `lesson-<seq>/`
+    folder within it (`resolveLessonRunDir`) — see [Output layout](#output-layout).
   - `--epub <path> --chapter-number <N> --lang <language>`: reads chapter `N` directly out of a
     real `.epub` archive in spine (reading) order (`src/corpus/epubArchive.js` — a dependency-free
     zip reader + `META-INF/container.xml`/OPF spine parser), registers the book into the local
@@ -139,13 +153,17 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   reveals `Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions
   play the target-language audio; Recognition plays it on the question side, since that's the
   direction meant to exercise listening comprehension, not just script recognition.
-  - `--run <dir>`: the ordinary one-chapter mode — one `cards.json` in, one `deck.apkg` out.
-  - `--book-dir <dir>`: the book-level merge mode — scans `<dir>/chapter-*/cards.json` (in
-    ascending folder-seq order) and merges every chapter into a SINGLE `<dir>/deck.apkg`, each
-    chapter as its own real Anki sub-deck (`Book Title::Chapter Label`, via
-    `buildMultiDeckCollection`) nested under one parent deck named for the book (title looked up
-    from the local library by the first chapter's `epubHash`, falling back to `--name` then a
-    generic string). Always rebuilds from scratch — no "already exists, reusing" short-circuit —
+  - `--run <dir>`: the ordinary one-chapter/one-lesson mode — one `cards.json` in, one `deck.apkg`
+    out.
+  - `--book-dir <dir>`: the book/course-level merge mode — scans `<dir>/chapter-*/cards.json` AND
+    `<dir>/lesson-*/cards.json` (in ascending folder-seq order; an EPUB book only ever has the
+    former, a lesson-sourced course only ever has the latter) and merges every one into a SINGLE
+    `<dir>/deck.apkg`, each as its own real Anki sub-deck (`Book/Course Title::Chapter/Lesson
+Label`, via `buildMultiDeckCollection`) nested under one parent deck named for the book or
+    course (title looked up from the local library by the first chapter's `epubHash`, or from the
+    course folder's own `course.json` marker when there's no `epubHash` — `loadCourseMeta`,
+    `src/cli/outputPaths.js` — falling back to `--name` then a generic string). Always rebuilds
+    from scratch — no "already exists, reusing" short-circuit —
     since it's merging inputs that can change between runs (a re-translated chapter, a newly added
     one, regenerated audio), and reusing a stale merge would be a correctness footgun for a
     recompute this cheap.
@@ -200,6 +218,27 @@ chapter's own `corpus.meta`/`cards.meta`: `epubHash`, `chapterNumber`, `chapterL
 the same `(epubHash, chapterNumber)` pair reuses its existing folder rather than allocating a new
 one. Templates and manual `--chapter` sources have no book identity to organize by, so they keep
 using a plain, freely-named `--run <dir>`.
+
+A `--words`-sourced course (see `assemble` above) mirrors this exact shape, one level down —
+`course-slug/lesson-<seq>/` instead of `book-slug/chapter-<seq>/` — since both sourceTypes need the
+same "numbered sub-deck of a bigger merged collection" structure:
+
+```
+output/<course-slug>/
+  course.json                    # { name, targetLanguage } — written by resolveCourseSlug on
+                                  #   first use, read back by loadCourseMeta for deck --book-dir's
+                                  #   course-name fallback and by listCourses for course discovery
+  lesson-0/corpus.json, cards.json, audio/, review-*.html    # ordinary per-lesson artifacts,
+  lesson-1/...                                               #   same shape as a chapter's
+  deck.apkg                      # single merged course-level package (`deck --book-dir`)
+```
+
+`lesson-<seq>` is likewise a simple sequential folder index, unrelated to the lesson number you
+gave `--lesson-number` (tracked faithfully in `corpus.meta.chapterNumber`, reused as-is for a
+lesson's number rather than adding a near-duplicate `lessonNumber` field — see the `courseSlug`
+comment on `CORPUS_SCHEMA` in `src/model/index.js`). Re-assembling the same `(courseSlug,
+lessonNumber)` pair reuses its existing folder rather than allocating a new one, exactly like
+`resolveChapterRunDir`.
 
 ## Implementation status
 

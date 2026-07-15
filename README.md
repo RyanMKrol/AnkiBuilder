@@ -107,11 +107,20 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   pass has something to check against.
 - **`translate`** — items with `target: null` get a full translation; items with a real
   `target` already set (e.g. from the EPUB path) only ever get a pronunciation guide — the model
-  cannot override a pre-existing target (see `src/translate/index.js`). Both prompts are
+  cannot override a pre-existing target (see `src/translate/index.js`). Prompts are
   Markdown-structured (Overview / Input Format / Example Input / Output Format / Example Output /
-  Important / Input Data) and ask for a target language's standard romanization system (e.g.
-  romaji, pinyin) when one exists, falling back to a phonetic respelling otherwise — see
-  [`docs/translate-prompts.md`](./docs/translate-prompts.md) for the full templates.
+  Important / Input Data). How `pronunciation` gets filled in depends on whether the target
+  language has a configured romanization library
+  (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese,
+  Mandarin, Korean, Russian, Hebrew, Hindi, Arabic): with a library configured, the model is asked
+  for `target` only, the library romanizes it deterministically, and a Haiku pass judges that
+  output (flagging `uncertain: true` with a note if it disagrees — never silently correcting it,
+  same "flag, don't override" idiom as the corpus-assembly dedup passes); with no library
+  configured, the model is asked for `pronunciation` directly, preferring a standard romanization
+  system when one exists and falling back to a phonetic respelling otherwise, unchanged from
+  before this distinction existed. See
+  [`docs/translate-prompts.md`](./docs/translate-prompts.md) for the full templates and
+  `.harness/custom/docs/LIMITATIONS.md` for the dependency trade-offs this introduces.
 - **`audio`** — `generateAudio` (`src/audio/index.js`) resolves `cards.meta.targetLanguage`
   against `src/model/iso639.js`'s `resolveIso639Code` (the full ISO 639-1 code set) once per
   run and, when it's a real code (not a full language name like `"Japanese"`, which resolves

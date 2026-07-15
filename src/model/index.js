@@ -75,6 +75,7 @@ const CARDS_SCHEMA = {
           hint: { type: "string" },
           image: { type: "string" },
           audio: { type: "string" },
+          uncertain: { type: "boolean" },
         },
         additionalProperties: false,
       },

@@ -1,5 +1,8 @@
 import { validateCards } from "../model/index.js";
+import { resolveIso639Code } from "../model/iso639.js";
 import { runClaude as defaultRunClaude } from "./runClaude.js";
+import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./romanizationLibraries.js";
+import { romanizeAndEvaluate } from "./romanizationEval.js";
 
 // Max corpus items per `claude -p` invocation. Kept small so the cheaper pinned
 // model has little to get wrong per call; larger corpora are split into several
@@ -79,6 +82,84 @@ function buildFullTranslationPrompt(items, targetLanguage) {
     "## Important",
     "- Include every id from the input exactly once.",
     "  - Order does not matter.",
+    "- Do not wrap the response in markdown code fences.",
+    "- Do not include any text before or after the JSON array.",
+    "",
+    `## Input Data (${items.length} item(s) to translate)`,
+    "```json",
+    JSON.stringify(inputData, null, 2),
+    "```",
+  ].join("\n");
+}
+
+// Used instead of buildFullTranslationPrompt when a real romanization library (see
+// romanizationLibraries.js) will produce `pronunciation` afterward — asking the model for a
+// pronunciation guide it's never used would waste a model turn and risk the later Haiku eval step
+// being anchored by having already seen the model's own (about-to-be-superseded) guess.
+function buildTargetOnlyPrompt(items, targetLanguage) {
+  const inputData = items.map((item) => {
+    const entry = { id: item.id, english: item.english };
+    if (item.notes) {
+      entry.notes = item.notes;
+    }
+    return entry;
+  });
+
+  return [
+    "# Task: Translate Flashcards",
+    "",
+    "## Overview",
+    "You are translating flashcards for a language-learning deck.",
+    `Target language: ${targetLanguage}.`,
+    "You will be given a JSON array of English phrases and must translate each one.",
+    "",
+    "## Input Format",
+    "The input is a JSON array of objects, one per flashcard:",
+    "",
+    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
+    "- `english` (string): the English phrase to translate.",
+    "- `notes` (string, optional): context or a hint about how this phrase is used, taken from the source material.",
+    "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
+    "",
+    "### Example Input",
+    "```json",
+    JSON.stringify(
+      [
+        { id: "hello", english: "Hello" },
+        { id: "cheese", english: "Cheese", notes: "as in the food, not a smile" },
+      ],
+      null,
+      2,
+    ),
+    "```",
+    "",
+    "## Output Format",
+    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
+    "Produce exactly one object per input item:",
+    "",
+    "- `id` (string): the SAME id as the corresponding input item.",
+    `- \`target\` (string): the translation into ${targetLanguage}.`,
+    "- `hint` (string, optional): a short usage hint.",
+    "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
+    "",
+    "Do not include a `pronunciation` key — pronunciation is produced separately for this language.",
+    "",
+    "### Example Output",
+    "```json",
+    JSON.stringify(
+      [
+        { id: "hello", target: "Bonjour" },
+        { id: "cheese", target: "Fromage", hint: "casual, singular" },
+      ],
+      null,
+      2,
+    ),
+    "```",
+    "",
+    "## Important",
+    "- Include every id from the input exactly once.",
+    "  - Order does not matter.",
+    "- Do not include a `pronunciation` key in your response.",
     "- Do not wrap the response in markdown code fences.",
     "- Do not include any text before or after the JSON array.",
     "",
@@ -203,6 +284,18 @@ function validateFullEntry(entry) {
   }
 }
 
+function validateTargetOnlyEntry(entry) {
+  if (typeof entry !== "object" || entry === null) {
+    throw new Error("model entry must be an object");
+  }
+  if (typeof entry.target !== "string" || !entry.target) {
+    throw new Error('model entry missing string "target"');
+  }
+  if (entry.hint !== undefined && typeof entry.hint !== "string") {
+    throw new Error('model entry "hint" must be a string when present');
+  }
+}
+
 function validatePronunciationEntry(entry) {
   if (typeof entry !== "object" || entry === null) {
     throw new Error("model entry must be an object");
@@ -219,6 +312,25 @@ function assembleFullCard(item, entry) {
     category: item.category,
     target: entry.target,
     pronunciation: entry.pronunciation,
+  };
+  if (item.notes) {
+    card.notes = item.notes;
+  }
+  if (entry.hint) {
+    card.hint = entry.hint;
+  }
+  return card;
+}
+
+// Produces a card-shaped object with NO `pronunciation` key at all — deliberately, since this
+// feeds into romanizeAndEvaluate (romanizationEval.js), which fills `pronunciation` in afterward
+// from the configured library + Haiku eval, not from this translation call.
+function assembleTargetOnlyCard(item, entry) {
+  const card = {
+    id: item.id,
+    english: item.english,
+    category: item.category,
+    target: entry.target,
   };
   if (item.notes) {
     card.notes = item.notes;
@@ -292,52 +404,130 @@ function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) 
   }
 }
 
+// The pre-existing-target half of the library-first path needs no model call at all (the target
+// is already trusted) — just a plain object matching what assembleTargetOnlyCard would have
+// produced, so both halves feed romanizeAndEvaluate in the same shape.
+function toPartialCard(item) {
+  const card = {
+    id: item.id,
+    english: item.english,
+    category: item.category,
+    target: item.target,
+  };
+  if (item.notes) {
+    card.notes = item.notes;
+  }
+  return card;
+}
+
 /**
- * Fills each corpus item's target/pronunciation/hint by invoking `runClaude`
- * (the local `claude -p` CLI by default), batching up to BATCH_SIZE items per
- * call. Items are split into two independently-batched groups based on
- * whether `item.target` is already set:
+ * Fills each corpus item's target/pronunciation/hint, batching up to BATCH_SIZE items per
+ * `runClaude` call (the local `claude -p` CLI by default). Items are split into two groups based
+ * on whether `item.target` is already set:
  *
- * - `target === null`: full translation — the model produces both `target`
- *   and `pronunciation`.
- * - `target !== null`: pronunciation-only — the model is only ever asked for
- *   a pronunciation guide; it cannot influence the final `target` at all
- *   (see `assemblePronunciationOnlyCard`).
+ * - `target === null`: needs translation.
+ * - `target !== null`: pre-existing target, trusted as-is.
  *
- * Returns `{ cards, errors }`: `cards` is a schema-valid cards.json (only items
- * that translated successfully); `errors` lists `{ id, error }` for items whose
- * model response was missing or could not be parsed. Errors stay per-item: a
- * malformed entry only drops that item, and a whole batch fails only when its
- * response isn't a JSON array at all.
+ * How `pronunciation` gets filled in depends on whether `getRomanizationLibrary` has an entry for
+ * `corpus.meta.targetLanguage` (resolved via `resolveIso639Code`):
+ *
+ * - **No library configured** (the original, unmodified behavior): both groups go through the
+ *   model — `target === null` items get `buildFullTranslationPrompt` (translation +
+ *   pronunciation in one call); `target !== null` items get `buildPronunciationOnlyPrompt`
+ *   (pronunciation only; the model cannot influence `target` at all — see
+ *   `assemblePronunciationOnlyCard`).
+ * - **Library configured**: `target === null` items get `buildTargetOnlyPrompt` (translation
+ *   only, no pronunciation ask); `target !== null` items need no model call for `target` at all.
+ *   Every item then goes through `romanizeAndEvaluate` (romanizationEval.js), which runs the
+ *   configured library and a Haiku evaluation pass to produce `pronunciation` — falling back to
+ *   the ordinary `buildPronunciationOnlyPrompt` path per-item if the library adapter itself
+ *   throws (missing dependency, dictionary load failure, etc.).
+ *
+ * Returns `{ cards, errors }`: `cards` is a schema-valid cards.json (only items that translated
+ * successfully); `errors` lists `{ id, error }` for items whose model response was missing or
+ * could not be parsed. Errors stay per-item: a malformed entry only drops that item, and a whole
+ * batch fails only when its response isn't a JSON array at all.
  */
-export function translateCorpus(corpus, { runClaude = defaultRunClaude } = {}) {
-  const items = [];
+export async function translateCorpus(
+  corpus,
+  {
+    runClaude = defaultRunClaude,
+    getRomanizationLibrary = defaultGetRomanizationLibrary,
+    log = () => {},
+  } = {},
+) {
   const errors = [];
   const { targetLanguage } = corpus.meta;
 
   const needsFullTranslation = corpus.items.filter((item) => item.target === null);
   const needsPronunciationOnly = corpus.items.filter((item) => item.target !== null);
 
-  const ctx = { runClaude, targetLanguage, items, errors };
+  const languageCode = resolveIso639Code(targetLanguage);
+  const libraryEntry = languageCode ? getRomanizationLibrary(languageCode) : undefined;
 
-  processGroup(
-    needsFullTranslation,
-    {
-      buildPrompt: buildFullTranslationPrompt,
-      validateEntry: validateFullEntry,
-      assembleCard: assembleFullCard,
-    },
-    ctx,
-  );
-  processGroup(
-    needsPronunciationOnly,
-    {
-      buildPrompt: buildPronunciationOnlyPrompt,
-      validateEntry: validatePronunciationEntry,
-      assembleCard: assemblePronunciationOnlyCard,
-    },
-    ctx,
-  );
+  let items;
+
+  if (libraryEntry) {
+    const translated = [];
+    processGroup(
+      needsFullTranslation,
+      {
+        buildPrompt: buildTargetOnlyPrompt,
+        validateEntry: validateTargetOnlyEntry,
+        assembleCard: assembleTargetOnlyCard,
+      },
+      { runClaude, targetLanguage, items: translated, errors },
+    );
+
+    const partials = [...translated, ...needsPronunciationOnly.map(toPartialCard)];
+
+    const fallback = (fallbackItems) => {
+      const fallbackItemsResult = [];
+      const fallbackErrors = [];
+      processGroup(
+        fallbackItems,
+        {
+          buildPrompt: buildPronunciationOnlyPrompt,
+          validateEntry: validatePronunciationEntry,
+          assembleCard: assemblePronunciationOnlyCard,
+        },
+        { runClaude, targetLanguage, items: fallbackItemsResult, errors: fallbackErrors },
+      );
+      return { items: fallbackItemsResult, errors: fallbackErrors };
+    };
+
+    const result = await romanizeAndEvaluate(partials, {
+      targetLanguage,
+      libraryEntry,
+      runClaude,
+      log,
+      fallback,
+    });
+    items = result.items;
+    errors.push(...result.errors);
+  } else {
+    items = [];
+    const ctx = { runClaude, targetLanguage, items, errors };
+
+    processGroup(
+      needsFullTranslation,
+      {
+        buildPrompt: buildFullTranslationPrompt,
+        validateEntry: validateFullEntry,
+        assembleCard: assembleFullCard,
+      },
+      ctx,
+    );
+    processGroup(
+      needsPronunciationOnly,
+      {
+        buildPrompt: buildPronunciationOnlyPrompt,
+        validateEntry: validatePronunciationEntry,
+        assembleCard: assemblePronunciationOnlyCard,
+      },
+      ctx,
+    );
+  }
 
   const cards = {
     meta: corpus.meta,

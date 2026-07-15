@@ -12,7 +12,10 @@ import {
   loadPriorChapterItems,
   loadBookConventions,
   saveBookConventions,
+  loadBookMeta,
+  saveBookSlug,
 } from "../../src/corpus/epubLibrary.js";
+import { buildFixtureEpub } from "../support/epubFixtures.js";
 
 function withTempDir(fn) {
   const libraryHomeDir = mkdtempSync(join(tmpdir(), "epub-library-"));
@@ -46,21 +49,30 @@ test("hashEpubFile() returns a stable, content-derived hash", () => {
   });
 });
 
+function fixtureManifest(dcTitles = []) {
+  return {
+    manifestItems: [{ id: "ch1", href: "text/ch01.xhtml" }],
+    spineIdrefs: ["ch1"],
+    extraFiles: [{ name: "OEBPS/text/ch01.xhtml", content: "<html><body>One</body></html>" }],
+    dcTitles,
+  };
+}
+
 test("registerEpub() copies the file into the library under its content hash", () => {
   withTempDir(({ libraryHomeDir, sourceDir }) => {
-    const epubPath = writeFixtureEpub(sourceDir, "book contents");
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest());
 
     const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
 
     const dest = join(libraryHomeDir, "epubs", epubHash, "book.epub");
     assert.ok(existsSync(dest));
-    assert.equal(readFileSync(dest, "utf-8"), "book contents");
+    assert.deepEqual(readFileSync(dest), readFileSync(epubPath));
   });
 });
 
 test("registerEpub() is idempotent — a second call does not re-copy", () => {
   withTempDir(({ libraryHomeDir, sourceDir }) => {
-    const epubPath = writeFixtureEpub(sourceDir, "original contents");
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest());
 
     const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
     const dest = join(libraryHomeDir, "epubs", epubHash, "book.epub");
@@ -75,6 +87,64 @@ test("registerEpub() is idempotent — a second call does not re-copy", () => {
       readFileSync(dest, "utf-8"),
       "sentinel — should survive a second registerEpub call",
     );
+  });
+});
+
+test("registerEpub() writes book.json with the EPUB's title and a null slug", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Japanese for Busy People"]));
+
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
+      title: "Japanese for Busy People",
+      slug: null,
+    });
+  });
+});
+
+test("registerEpub() writes a null title when the EPUB has no <dc:title>", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest());
+
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), { title: null, slug: null });
+  });
+});
+
+test("registerEpub() does not overwrite book.json on a second call", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Original Title"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    saveBookSlug(epubHash, "original-title", { libraryHomeDir });
+    registerEpub(epubPath, { libraryHomeDir });
+
+    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
+      title: "Original Title",
+      slug: "original-title",
+    });
+  });
+});
+
+test("loadBookMeta() returns null for a never-registered book", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    assert.equal(loadBookMeta("never-registered", { libraryHomeDir }), null);
+  });
+});
+
+test("saveBookSlug()/loadBookMeta() round-trip and preserve the stored title", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Some Book Title"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    saveBookSlug(epubHash, "some-book-title", { libraryHomeDir });
+
+    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
+      title: "Some Book Title",
+      slug: "some-book-title",
+    });
   });
 });
 

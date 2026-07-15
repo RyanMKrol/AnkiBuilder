@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, readdirSync } from "fs";
 import { join, resolve } from "path";
 import { Buffer } from "buffer";
 import {
@@ -19,13 +19,21 @@ import {
   loadPriorChapterItems as defaultLoadPriorChapterItems,
   loadBookConventions as defaultLoadBookConventions,
   saveBookConventions as defaultSaveBookConventions,
+  loadBookMeta as defaultLoadBookMeta,
 } from "../corpus/epubLibrary.js";
+import {
+  resolveBookSlug as defaultResolveBookSlug,
+  resolveChapterRunDir as defaultResolveChapterRunDir,
+} from "./outputPaths.js";
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
 import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
-import { buildDeck as defaultBuildDeck } from "../deck/index.js";
+import {
+  buildDeck as defaultBuildDeck,
+  buildBookDeck as defaultBuildBookDeck,
+} from "../deck/index.js";
 import { defaultPromptReviewDecisions } from "./reviewPrompt.js";
 import { renderCorpusReviewPage as defaultRenderCorpusReviewPage } from "../review/renderCorpusReviewPage.js";
 import { renderTranslateReviewPage as defaultRenderTranslateReviewPage } from "../review/renderTranslateReviewPage.js";
@@ -88,8 +96,36 @@ function writeJson(path, obj) {
   writeFileSync(path, JSON.stringify(obj, null, 2));
 }
 
+function resolveAssembleRunDir(flags, ctx) {
+  if (!flags["output-root"]) {
+    return flags.run;
+  }
+  if (!flags.epub) {
+    throw new Error("--output-root can only be used with --epub");
+  }
+  if (!flags["chapter-number"]) {
+    throw new Error("--chapter-number is required when assembling from --epub");
+  }
+
+  const outputRoot = resolve(flags["output-root"]);
+  const { epubHash } = ctx.registerEpub(flags.epub);
+  const slug = ctx.resolveBookSlug(outputRoot, flags.epub, epubHash);
+  const runDir = ctx.resolveChapterRunDir(
+    outputRoot,
+    slug,
+    epubHash,
+    Number(flags["chapter-number"]),
+  );
+  ctx.log(`resolved run directory: ${runDir}`);
+  return runDir;
+}
+
 async function runAssemble(flags, ctx) {
-  const paths = ctx.runPaths(flags.run);
+  const runDir = resolveAssembleRunDir(flags, ctx);
+  if (!runDir) {
+    throw new Error("--run <dir> is required (or --output-root <dir> with --epub)");
+  }
+  const paths = ctx.runPaths(runDir);
 
   if (existsSync(paths.corpus)) {
     ctx.log(`corpus.json already exists at ${paths.corpus} — reusing`);
@@ -193,6 +229,9 @@ async function runAssemble(flags, ctx) {
 }
 
 async function runReview(flags, ctx) {
+  if (!flags.run) {
+    throw new Error("--run <dir> is required");
+  }
   const paths = ctx.runPaths(flags.run);
 
   if (!existsSync(paths.corpus)) {
@@ -222,6 +261,9 @@ async function runReview(flags, ctx) {
 }
 
 async function runTranslate(flags, ctx) {
+  if (!flags.run) {
+    throw new Error("--run <dir> is required");
+  }
   const paths = ctx.runPaths(flags.run);
 
   if (existsSync(paths.cards)) {
@@ -251,6 +293,9 @@ async function runTranslate(flags, ctx) {
 }
 
 async function runAudio(flags, ctx) {
+  if (!flags.run) {
+    throw new Error("--run <dir> is required");
+  }
   const paths = ctx.runPaths(flags.run);
 
   if (!existsSync(paths.cards)) {
@@ -292,7 +337,65 @@ async function runAudio(flags, ctx) {
   ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);
 }
 
+const CHAPTER_DIR_PATTERN = /^chapter-(\d+)$/;
+
+async function runBookDeck(flags, ctx) {
+  const bookDir = resolve(flags["book-dir"]);
+  const outPath = join(bookDir, "deck.apkg");
+
+  const chapterDirs = readdirSync(bookDir)
+    .map((name) => name.match(CHAPTER_DIR_PATTERN))
+    .filter(Boolean)
+    .map((m) => ({ seq: Number(m[1]), dir: join(bookDir, m[0]) }))
+    .sort((a, b) => a.seq - b.seq);
+
+  if (chapterDirs.length === 0) {
+    throw new Error(`no chapter-*/ directories found under ${bookDir}`);
+  }
+
+  const chapterDecks = [];
+  let epubHash = null;
+  for (const { dir } of chapterDirs) {
+    const cardsPath = join(dir, "cards.json");
+    if (!existsSync(cardsPath)) {
+      throw new Error(
+        `cards.json not found in ${dir} — run "translate"/"audio" for that chapter first`,
+      );
+    }
+
+    const cards = readJson(cardsPath);
+    epubHash = epubHash || cards.meta?.epubHash;
+    const chapterLabel = cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`;
+    const audioDir = join(dir, "audio");
+    chapterDecks.push({
+      name: chapterLabel,
+      cards,
+      audioDir: existsSync(audioDir) ? audioDir : null,
+    });
+  }
+
+  const bookMeta = epubHash ? ctx.loadBookMeta(epubHash) : null;
+  const bookName = bookMeta?.title || flags.name || "AnkiBuilder Book Deck";
+
+  // Merges N independently-changeable chapter inputs — always rebuild fresh rather
+  // than reusing an existing deck.apkg (unlike the single-chapter path below), since
+  // any upstream chapter change (re-translation, a newly added chapter, regenerated
+  // audio) would otherwise silently leave a stale merged package in place.
+  const result = ctx.buildBookDeck(chapterDecks, { outPath, bookName, now: Date.now() });
+
+  ctx.log(
+    `built book deck with ${result.noteCount} note(s) across ${result.chapterCount} chapter(s) at ${outPath}`,
+  );
+}
+
 async function runDeck(flags, ctx) {
+  if (flags["book-dir"]) {
+    return runBookDeck(flags, ctx);
+  }
+
+  if (!flags.run) {
+    throw new Error("--run <dir> is required");
+  }
   const paths = ctx.runPaths(flags.run);
 
   if (existsSync(paths.deck)) {
@@ -322,6 +425,9 @@ async function runRenderReview(flags, ctx) {
     throw new Error(
       `--stage must be one of: ${REVIEW_STAGES.join(", ")} (got ${JSON.stringify(stage ?? null)})`,
     );
+  }
+  if (!flags.run) {
+    throw new Error("--run <dir> is required");
   }
 
   const paths = ctx.runPaths(flags.run);
@@ -364,6 +470,8 @@ export async function runCli(argv, deps = {}) {
     runPaths = defaultRunPaths,
     libraryHome = defaultLibraryHome,
     loadTemplate = defaultLoadTemplate,
+    resolveBookSlug = defaultResolveBookSlug,
+    resolveChapterRunDir = defaultResolveChapterRunDir,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
     extractChapterToFile = defaultExtractChapterToFile,
     describeChapter = defaultDescribeChapter,
@@ -373,6 +481,7 @@ export async function runCli(argv, deps = {}) {
     loadPriorChapterItems = defaultLoadPriorChapterItems,
     loadBookConventions = defaultLoadBookConventions,
     saveBookConventions = defaultSaveBookConventions,
+    loadBookMeta = defaultLoadBookMeta,
     analyzeBookConventions = defaultAnalyzeBookConventions,
     dedupBackward = defaultDedupBackward,
     flagForwardConcerns = defaultFlagForwardConcerns,
@@ -380,6 +489,7 @@ export async function runCli(argv, deps = {}) {
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
     buildDeck = defaultBuildDeck,
+    buildBookDeck = defaultBuildBookDeck,
     fetchTts = defaultFetchTts,
     renderCorpusReviewPage = defaultRenderCorpusReviewPage,
     renderTranslateReviewPage = defaultRenderTranslateReviewPage,
@@ -397,14 +507,13 @@ export async function runCli(argv, deps = {}) {
   }
 
   const flags = parseFlags(rest);
-  if (!flags.run) {
-    throw new Error("--run <dir> is required");
-  }
 
   const ctx = {
     runPaths,
     libraryHome,
     loadTemplate,
+    resolveBookSlug,
+    resolveChapterRunDir,
     assembleCorpusFromChapter,
     extractChapterToFile,
     describeChapter,
@@ -414,6 +523,7 @@ export async function runCli(argv, deps = {}) {
     loadPriorChapterItems,
     loadBookConventions,
     saveBookConventions,
+    loadBookMeta,
     analyzeBookConventions,
     dedupBackward,
     flagForwardConcerns,
@@ -421,6 +531,7 @@ export async function runCli(argv, deps = {}) {
     translateCorpus,
     generateAudio,
     buildDeck,
+    buildBookDeck,
     fetchTts,
     renderCorpusReviewPage,
     renderTranslateReviewPage,

@@ -7,7 +7,26 @@ import { tmpdir } from "os";
 const FIELD_NAMES = ["Target", "Pronunciation", "English", "Category", "Hint", "Image", "Audio"];
 const FIELD_SEP = "\x1f";
 const MODEL_ID = 1;
-const DECK_ID = 1;
+const DEFAULT_DECK_ID = 1;
+// The single-deck path's own deck (buildCollection) and the multi-deck path's book/
+// parent deck (buildMultiDeckCollection) never coexist in the same collection, so
+// reusing id 2 for both is safe — each function builds its own independent `decks`
+// blob.
+const DECK_ID = 2;
+const BOOK_DECK_ID = 2;
+const chapterDeckId = (index) => BOOK_DECK_ID + 1 + index;
+
+// Anki uses a literal "::" in a deck's own name to signal nesting (e.g.
+// "Book::Chapter 2") — sanitize any occurrence out of a book/chapter name so it can't
+// accidentally introduce an extra nesting level.
+const sanitizeDeckNameSegment = (name) => name.replace(/::/g, "-");
+
+// Reserved id-space per chapter when merging several chapters' notes into one
+// collection — comfortably larger than any realistic single-chapter card count (even
+// 10,000 cards uses only ~1/10th of one block), so chapter N's notes never collide
+// with chapter N+1's.
+const CHAPTER_ID_BLOCK = 1_000_000;
+const MAX_ITEMS_PER_CHAPTER = CHAPTER_ID_BLOCK / 10;
 
 const SCHEMA_SQL = `
 CREATE TABLE col (
@@ -134,43 +153,47 @@ function buildModel(now) {
   };
 }
 
+function deckRow(id, name, now) {
+  return {
+    id,
+    name,
+    mod: now,
+    usn: -1,
+    lrnToday: [0, 0],
+    revToday: [0, 0],
+    newToday: [0, 0],
+    timeToday: [0, 0],
+    collapsed: true,
+    browserCollapsed: true,
+    desc: "",
+    dyn: 0,
+    conf: 1,
+    extendNew: 0,
+    extendRev: 0,
+  };
+}
+
 function buildDecks(now, deckName) {
   return {
-    1: {
-      id: 1,
-      name: "Default",
-      mod: now,
-      usn: -1,
-      lrnToday: [0, 0],
-      revToday: [0, 0],
-      newToday: [0, 0],
-      timeToday: [0, 0],
-      collapsed: true,
-      browserCollapsed: true,
-      desc: "",
-      dyn: 0,
-      conf: 1,
-      extendNew: 0,
-      extendRev: 0,
-    },
-    [DECK_ID]: {
-      id: DECK_ID,
-      name: deckName,
-      mod: now,
-      usn: -1,
-      lrnToday: [0, 0],
-      revToday: [0, 0],
-      newToday: [0, 0],
-      timeToday: [0, 0],
-      collapsed: true,
-      browserCollapsed: true,
-      desc: "",
-      dyn: 0,
-      conf: 1,
-      extendNew: 0,
-      extendRev: 0,
-    },
+    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", now),
+    [DECK_ID]: deckRow(DECK_ID, deckName, now),
   };
+}
+
+// The book/parent deck holds no cards itself — Anki's client aggregates due counts
+// under it purely from the "::" name prefix on its chapter sub-decks, no data
+// modeling needed beyond giving the parent name its own row.
+function buildMultiDecks(now, bookName, chapterNames) {
+  const book = sanitizeDeckNameSegment(bookName);
+  const decks = {
+    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", now),
+    [BOOK_DECK_ID]: deckRow(BOOK_DECK_ID, book, now),
+  };
+  chapterNames.forEach((chapterName, index) => {
+    const id = chapterDeckId(index);
+    decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(chapterName)}`, now);
+  });
+  return decks;
 }
 
 function buildDconf(now) {
@@ -199,14 +222,14 @@ function buildDconf(now) {
   };
 }
 
-function buildConf() {
+function buildConf(curDeck, activeDecks) {
   return {
-    curDeck: DECK_ID,
+    curDeck,
     curModel: MODEL_ID,
     nextPos: 1,
     estTimes: true,
     dueCounts: true,
-    activeDecks: [DECK_ID],
+    activeDecks,
     sortType: "noteFld",
     timeLim: 0,
     sortBackwards: false,
@@ -244,13 +267,39 @@ function fieldValue(card, name) {
   }
 }
 
-/**
- * Builds the raw bytes of a `collection.anki2` SQLite database from cards,
- * one note per card with two generated cards (Recognition, Production).
- * `card.audio`, when present, must already be the filename to embed via
- * `[sound:...]` (the caller resolves whether the underlying file exists).
- */
-export function buildCollection(cards, { deckName, now }) {
+// `chapterGroups`: [{ deckId, cards }], one entry per chapter (a single-entry array
+// for the ordinary one-deck case). Each chapter gets its own reserved
+// CHAPTER_ID_BLOCK of note/card ids, so merging several chapters' notes into one
+// collection never collides even though each chapter's own `items` numbering
+// restarts at 0. `position` (and so `due`, new-card order) runs as ONE counter across
+// every chapter in order, so new cards surface chapter-by-chapter in book order.
+function insertNotesAndCards(insertNote, insertCard, chapterGroups, now) {
+  let position = 1;
+  chapterGroups.forEach(({ deckId, cards }, chapterIndex) => {
+    if (cards.items.length > MAX_ITEMS_PER_CHAPTER) {
+      throw new Error(
+        `chapter ${chapterIndex} has ${cards.items.length} item(s), exceeding the ` +
+          `${MAX_ITEMS_PER_CHAPTER}-item-per-chapter id-block limit`,
+      );
+    }
+
+    cards.items.forEach((card, itemIndex) => {
+      const noteId = now + chapterIndex * CHAPTER_ID_BLOCK + itemIndex * 10;
+      const flds = FIELD_NAMES.map((name) => fieldValue(card, name)).join(FIELD_SEP);
+      const sortField = fieldValue(card, FIELD_NAMES[0]);
+
+      insertNote.run(noteId, card.id, MODEL_ID, now, flds, sortField, fieldChecksum(sortField));
+
+      for (let ord = 0; ord < 2; ord++) {
+        const cardId = noteId + ord + 1;
+        insertCard.run(cardId, noteId, deckId, ord, now, position);
+        position++;
+      }
+    });
+  });
+}
+
+function writeCollectionDb({ decksJson, curDeck, activeDecks, now, chapterGroups }) {
   const tmpDir = mkdtempSync(join(tmpdir(), "anki-builder-collection-"));
   const dbPath = join(tmpDir, "collection.anki2");
 
@@ -266,9 +315,9 @@ export function buildCollection(cards, { deckName, now }) {
         now,
         now,
         now,
-        JSON.stringify(buildConf()),
+        JSON.stringify(buildConf(curDeck, activeDecks)),
         JSON.stringify(buildModel(now)),
-        JSON.stringify(buildDecks(now, deckName)),
+        decksJson,
         JSON.stringify(buildDconf(now)),
       );
 
@@ -279,20 +328,7 @@ export function buildCollection(cards, { deckName, now }) {
         "INSERT INTO cards (id, nid, did, ord, mod, usn, type, queue, due, ivl, factor, reps, lapses, left, odue, odid, flags, data) VALUES (?, ?, ?, ?, ?, -1, 0, 0, ?, 0, 2500, 0, 0, 0, 0, 0, 0, '')",
       );
 
-      let position = 1;
-      cards.items.forEach((card, index) => {
-        const noteId = now + index * 10;
-        const flds = FIELD_NAMES.map((name) => fieldValue(card, name)).join(FIELD_SEP);
-        const sortField = fieldValue(card, FIELD_NAMES[0]);
-
-        insertNote.run(noteId, card.id, MODEL_ID, now, flds, sortField, fieldChecksum(sortField));
-
-        for (let ord = 0; ord < 2; ord++) {
-          const cardId = noteId + ord + 1;
-          insertCard.run(cardId, noteId, DECK_ID, ord, now, position);
-          position++;
-        }
-      });
+      insertNotesAndCards(insertNote, insertCard, chapterGroups, now);
     } finally {
       db.close();
     }
@@ -301,6 +337,48 @@ export function buildCollection(cards, { deckName, now }) {
   } finally {
     rmSync(tmpDir, { recursive: true, force: true });
   }
+}
+
+/**
+ * Builds the raw bytes of a `collection.anki2` SQLite database from cards,
+ * one note per card with two generated cards (Recognition, Production).
+ * `card.audio`, when present, must already be the filename to embed via
+ * `[sound:...]` (the caller resolves whether the underlying file exists).
+ */
+export function buildCollection(cards, { deckName, now }) {
+  return writeCollectionDb({
+    decksJson: JSON.stringify(buildDecks(now, deckName)),
+    curDeck: DECK_ID,
+    activeDecks: [DECK_ID],
+    now,
+    chapterGroups: [{ deckId: DECK_ID, cards }],
+  });
+}
+
+/**
+ * Builds the raw bytes of a `collection.anki2` SQLite database merging several
+ * chapters' cards into ONE collection, each chapter as its own real Anki sub-deck
+ * nested under a parent deck named for the book. `chapterDecks`:
+ * `[{ name: chapterLabel, cards }]`, in the desired sub-deck order — `name` is the
+ * chapter label only, `"${bookName}::${chapterLabel}"` composition happens here, not
+ * by the caller. Every card's `did` points at its own chapter's sub-deck — never the
+ * parent/Default, which hold no cards.
+ */
+export function buildMultiDeckCollection(chapterDecks, { bookName, now }) {
+  const chapterNames = chapterDecks.map((c) => c.name);
+  const decks = buildMultiDecks(now, bookName, chapterNames);
+  const chapterGroups = chapterDecks.map((c, index) => ({
+    deckId: chapterDeckId(index),
+    cards: c.cards,
+  }));
+
+  return writeCollectionDb({
+    decksJson: JSON.stringify(decks),
+    curDeck: BOOK_DECK_ID,
+    activeDecks: Object.keys(decks).map(Number),
+    now,
+    chapterGroups,
+  });
 }
 
 export { FIELD_NAMES };

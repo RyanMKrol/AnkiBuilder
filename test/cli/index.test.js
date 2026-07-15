@@ -349,6 +349,93 @@ test("assemble: throws when --epub is given without --lang", async () => {
   });
 });
 
+test("assemble: throws when --output-root is given without --epub", async () => {
+  await assert.rejects(
+    () =>
+      runCli(["assemble", "--output-root", "/tmp/output", "--template", "travel-essentials"], {
+        log: () => {},
+      }),
+    /--output-root can only be used with --epub/,
+  );
+});
+
+test("assemble: throws when --output-root is given without --chapter-number", async () => {
+  await assert.rejects(
+    () =>
+      runCli(
+        ["assemble", "--output-root", "/tmp/output", "--epub", "/tmp/book.epub", "--lang", "es"],
+        {
+          log: () => {},
+        },
+      ),
+    /--chapter-number is required/,
+  );
+});
+
+test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveChapterRunDir and writes corpus.json there", async () => {
+  await withTempDir(async (outputRoot) => {
+    const resolvedRunDir = join(outputRoot, "my-book", "chapter-0");
+    const logs = [];
+
+    let resolveBookSlugCalledWith = null;
+    let resolveChapterRunDirCalledWith = null;
+
+    const registerEpub = () => ({ epubHash: "hash123" });
+    const resolveBookSlug = (...args) => {
+      resolveBookSlugCalledWith = args;
+      return "my-book";
+    };
+    const resolveChapterRunDir = (...args) => {
+      resolveChapterRunDirCalledWith = args;
+      return resolvedRunDir;
+    };
+    const chapterCachePath = () => "/cache/1.xhtml";
+    const extractChapterToFile = (epubPath, chapterNumber, destPath) => destPath;
+    const assembleCorpusFromChapter = () => baseEpubCorpus();
+    const loadPriorChapterItems = () => [];
+    const loadBookConventions = () => "cached conventions";
+    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
+    const describeChapter = () => "Lesson 2: Possession";
+
+    await runCli(
+      [
+        "assemble",
+        "--output-root",
+        outputRoot,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "15",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub,
+        resolveBookSlug,
+        resolveChapterRunDir,
+        chapterCachePath,
+        extractChapterToFile,
+        assembleCorpusFromChapter,
+        loadPriorChapterItems,
+        loadBookConventions,
+        dedupBackward,
+        flagForwardConcerns,
+        describeChapter,
+        log: (msg) => logs.push(msg),
+      },
+    );
+
+    assert.deepEqual(resolveBookSlugCalledWith, [outputRoot, "/tmp/book.epub", "hash123"]);
+    assert.deepEqual(resolveChapterRunDirCalledWith, [outputRoot, "my-book", "hash123", 15]);
+    assert.ok(logs.some((msg) => msg.includes(`resolved run directory: ${resolvedRunDir}`)));
+
+    const written = JSON.parse(await fs.readFile(runPaths(resolvedRunDir).corpus, "utf-8"));
+    assert.equal(written.meta.epubHash, "hash123");
+    assert.equal(written.meta.chapterNumber, 15);
+  });
+});
+
 test("assemble: logs one line per dropped/flagged item for both passes, not just a count", async () => {
   await withTempDir(async (runDir) => {
     const logs = [];
@@ -716,6 +803,118 @@ test("deck: is resumable — skips work when deck.apkg already exists", async ()
 
     await runCli(["deck", "--run", runDir], { buildDeck, log: () => {} });
     assert.equal(called, false);
+  });
+});
+
+function writeChapter(bookDir, seq, { chapterLabel, epubHash, items }) {
+  const dir = join(bookDir, `chapter-${seq}`);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(
+    join(dir, "cards.json"),
+    JSON.stringify({
+      meta: { targetLanguage: "ja", sourceType: "epub", epubHash, chapterLabel },
+      items,
+    }),
+  );
+  return dir;
+}
+
+test("deck --book-dir: discovers chapter-*/cards.json in seq order and merges via buildBookDeck", async () => {
+  await withTempDir(async (bookDir) => {
+    writeChapter(bookDir, 0, {
+      chapterLabel: "Lesson 1: Meeting",
+      epubHash: "hash123",
+      items: [{ id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" }],
+    });
+    writeChapter(bookDir, 1, {
+      chapterLabel: "Lesson 2: Possession",
+      epubHash: "hash123",
+      items: [{ id: "a2", english: "Pen", category: "Objects", target: "ペン" }],
+    });
+
+    let receivedChapterDecks = null;
+    let receivedOpts = null;
+    const buildBookDeck = (chapterDecks, opts) => {
+      receivedChapterDecks = chapterDecks;
+      receivedOpts = opts;
+      return { outPath: opts.outPath, noteCount: 2, chapterCount: 2, mediaCount: 0 };
+    };
+    const loadBookMeta = (epubHash) => {
+      assert.equal(epubHash, "hash123");
+      return { title: "Japanese for Busy People", slug: "japanese-for-busy-people" };
+    };
+
+    await runCli(["deck", "--book-dir", bookDir], { buildBookDeck, loadBookMeta, log: () => {} });
+
+    assert.equal(receivedChapterDecks.length, 2);
+    assert.equal(receivedChapterDecks[0].name, "Lesson 1: Meeting");
+    assert.equal(receivedChapterDecks[1].name, "Lesson 2: Possession");
+    assert.equal(receivedOpts.bookName, "Japanese for Busy People");
+    assert.equal(receivedOpts.outPath, join(bookDir, "deck.apkg"));
+  });
+});
+
+test("deck --book-dir: throws when no chapter-*/ directories exist", async () => {
+  await withTempDir(async (bookDir) => {
+    mkdirSync(bookDir, { recursive: true });
+    await assert.rejects(
+      () => runCli(["deck", "--book-dir", bookDir], { log: () => {} }),
+      /no chapter-\*\/ directories found/,
+    );
+  });
+});
+
+test("deck --book-dir: throws naming the chapter missing cards.json", async () => {
+  await withTempDir(async (bookDir) => {
+    mkdirSync(join(bookDir, "chapter-0"), { recursive: true });
+    await assert.rejects(
+      () => runCli(["deck", "--book-dir", bookDir], { log: () => {} }),
+      /cards\.json not found in .*chapter-0/,
+    );
+  });
+});
+
+test("deck --book-dir: always rebuilds, even when deck.apkg already exists", async () => {
+  await withTempDir(async (bookDir) => {
+    writeChapter(bookDir, 0, {
+      chapterLabel: "Lesson 1",
+      epubHash: "hash123",
+      items: [{ id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" }],
+    });
+    writeFileSync(join(bookDir, "deck.apkg"), Buffer.from("stale-apkg"));
+
+    let called = false;
+    const buildBookDeck = (chapterDecks, opts) => {
+      called = true;
+      return { outPath: opts.outPath, noteCount: 1, chapterCount: 1, mediaCount: 0 };
+    };
+    const loadBookMeta = () => null;
+
+    await runCli(["deck", "--book-dir", bookDir], { buildBookDeck, loadBookMeta, log: () => {} });
+
+    assert.equal(called, true, "buildBookDeck must run even though deck.apkg already existed");
+  });
+});
+
+test("deck --book-dir: falls back to --name then a generic string when no book title is found", async () => {
+  await withTempDir(async (bookDir) => {
+    writeChapter(bookDir, 0, {
+      chapterLabel: "Lesson 1",
+      epubHash: null,
+      items: [{ id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" }],
+    });
+
+    let receivedBookName = null;
+    const buildBookDeck = (chapterDecks, opts) => {
+      receivedBookName = opts.bookName;
+      return { outPath: opts.outPath, noteCount: 1, chapterCount: 1, mediaCount: 0 };
+    };
+
+    await runCli(["deck", "--book-dir", bookDir, "--name", "Custom Name"], {
+      buildBookDeck,
+      log: () => {},
+    });
+    assert.equal(receivedBookName, "Custom Name");
   });
 });
 

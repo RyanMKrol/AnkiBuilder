@@ -159,12 +159,10 @@ function loadEpub(epubPath) {
   }
 
   const opfDir = posix.dirname(opfPath);
-  const { chapters, manifestItems, tocId } = parseOpfDocument(
-    opfEntry.data.toString("utf-8"),
-    opfDir,
-  );
+  const opfXml = opfEntry.data.toString("utf-8");
+  const { chapters, manifestItems, tocId } = parseOpfDocument(opfXml, opfDir);
 
-  return { entries, chapters, opfDir, manifestItems, tocId };
+  return { entries, chapters, opfDir, manifestItems, tocId, opfXml };
 }
 
 /**
@@ -176,6 +174,25 @@ function loadEpub(epubPath) {
 export function listChapters(epubPath) {
   const { chapters, opfDir } = loadEpub(epubPath);
   return { chapters, opfDir };
+}
+
+// OPF <metadata> can rarely carry more than one <dc:title> (a main title plus a
+// subtitle wired together via `refines`) — the first one in document order is always
+// the primary title, so no further disambiguation is needed.
+const DC_TITLE_PATTERN = /<dc:title\b[^>]*>([\s\S]*?)<\/dc:title>/i;
+
+/**
+ * The book's own title, read from its OPF `<dc:title>` metadata — `null` when absent
+ * (never a fallback string; callers decide what to substitute).
+ */
+export function getBookTitle(epubPath) {
+  const { opfXml } = loadEpub(epubPath);
+  const match = opfXml.match(DC_TITLE_PATTERN);
+  if (!match) {
+    return null;
+  }
+  const title = decodeHtmlEntities(match[1].replace(/<[^>]+>/g, "")).trim();
+  return title || null;
 }
 
 function loadChapterEntry(epubPath, number) {

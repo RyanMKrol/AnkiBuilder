@@ -2,6 +2,7 @@ import { createHash } from "crypto";
 import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { libraryHome } from "../model/index.js";
+import { getBookTitle } from "./epubArchive.js";
 
 // Same sha256 + hex + 16-char-truncation convention as src/audio/index.js's
 // hashTerm, applied to file bytes rather than a term string.
@@ -14,10 +15,38 @@ function bookDir(epubHash, { libraryHomeDir } = {}) {
   return join(libraryHomeDir || libraryHome(), "epubs", epubHash);
 }
 
+function bookMetaPath(epubHash, { libraryHomeDir } = {}) {
+  return join(bookDir(epubHash, { libraryHomeDir }), "book.json");
+}
+
+/**
+ * The book's durable metadata — `{ title, slug }`. `title` comes from the EPUB's own
+ * `<dc:title>` (or `null`); `slug` starts `null` and is filled in later, once an
+ * output root is resolved (a slug is only meaningful relative to a specific output
+ * tree's existing folder names — see `resolveBookSlug` in `src/cli/outputPaths.js`).
+ * Returns `null` if this book hasn't been registered yet.
+ */
+export function loadBookMeta(epubHash, { libraryHomeDir } = {}) {
+  const path = bookMetaPath(epubHash, { libraryHomeDir });
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
+}
+
+/**
+ * Persists the output-root-specific slug chosen for a book, preserving its
+ * already-stored title. Idempotent overwrite, same as saveChapterCorpus.
+ */
+export function saveBookSlug(epubHash, slug, { libraryHomeDir } = {}) {
+  const path = bookMetaPath(epubHash, { libraryHomeDir });
+  const meta = loadBookMeta(epubHash, { libraryHomeDir }) || { title: null, slug: null };
+  writeFileSync(path, JSON.stringify({ ...meta, slug }, null, 2));
+}
+
 /**
  * Copies epubPath into the library under its content hash, if not already
  * present — idempotent, same "don't regenerate what's already there"
- * philosophy as the audio cache. Returns { epubHash }.
+ * philosophy as the audio cache. Also writes a one-time `book.json` (title
+ * from the EPUB's own `<dc:title>`, slug left `null` until first resolved
+ * against an output root). Returns { epubHash }.
  */
 export function registerEpub(epubPath, { libraryHomeDir } = {}) {
   const epubHash = hashEpubFile(epubPath);
@@ -27,6 +56,11 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
   const dest = join(dir, "book.epub");
   if (!existsSync(dest)) {
     copyFileSync(epubPath, dest);
+  }
+
+  const metaPath = bookMetaPath(epubHash, { libraryHomeDir });
+  if (!existsSync(metaPath)) {
+    writeFileSync(metaPath, JSON.stringify({ title: getBookTitle(epubPath), slug: null }, null, 2));
   }
 
   return { epubHash };

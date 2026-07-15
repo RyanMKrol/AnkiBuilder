@@ -22,7 +22,9 @@ npm run build
 ## Pipeline stages
 
 `assemble` → `review` → `translate` → `audio` → `deck`, each stage reading/writing JSON in a run
-directory (`--run <dir>`).
+directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved chapter directory
+under a book-organized `output/` tree (`--output-root <dir>`; see
+[Output layout](#output-layout)).
 
 - **`assemble`** — three sources:
   - `--template <name>`: bundled word lists.
@@ -52,6 +54,14 @@ true` and a "Possibly premature — ..." note appended, so the corpus review gat
     grounding context, instead of each chapter re-inferring the book's conventions from just its own
     content. Manual `--chapter` mode has no book identity to cache this under, so it doesn't get
     this context.
+
+  For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
+  the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
+  (`getBookTitle`/`slugify`, falling back to the book's content hash when there's no title), then
+  resolves (or reuses, if this exact chapter was already assembled) `<dir>/<slug>/chapter-<seq>/` —
+  a simple sequential index scoped to that book, unrelated to the book's own internal chapter
+  numbering. The resolved path is printed (`resolved run directory: ...`) for you to reuse as
+  `--run <dir>` on every later stage for that chapter. See [Output layout](#output-layout).
 
   Any chapter number shown to a person — in a dropped/flagged item's log line or note, or the
   corpus review page's meta row — is the book's own human-readable title (e.g. `"Lesson 6: Going
@@ -115,6 +125,16 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   reveals `Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions
   play the target-language audio; Recognition plays it on the question side, since that's the
   direction meant to exercise listening comprehension, not just script recognition.
+  - `--run <dir>`: the ordinary one-chapter mode — one `cards.json` in, one `deck.apkg` out.
+  - `--book-dir <dir>`: the book-level merge mode — scans `<dir>/chapter-*/cards.json` (in
+    ascending folder-seq order) and merges every chapter into a SINGLE `<dir>/deck.apkg`, each
+    chapter as its own real Anki sub-deck (`Book Title::Chapter Label`, via
+    `buildMultiDeckCollection`) nested under one parent deck named for the book (title looked up
+    from the local library by the first chapter's `epubHash`, falling back to `--name` then a
+    generic string). Always rebuilds from scratch — no "already exists, reusing" short-circuit —
+    since it's merging inputs that can change between runs (a re-translated chapter, a newly added
+    one, regenerated audio), and reusing a stale merge would be a correctness footgun for a
+    recompute this cheap.
 - **`render-review --stage <corpus|translate|audio>`** — generates a self-contained,
   ready-to-publish HTML review artifact (`<runDir>/review-<stage>.html`) from `corpus.json` or
   `cards.json`, so the corpus/translate/audio review gates are produced from one shared,
@@ -135,6 +155,8 @@ always relative to the repo itself, regardless of which directory you invoke the
 .anki-builder/
   audio/<voiceId>/<hash>.mp3                    # ElevenLabs TTS cache
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
+  epubs/<epubHash>/book.json                    # { title, slug } — title from <dc:title>, slug
+                                                 #   filled in lazily on first --output-root use
   epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
   epubs/<epubHash>/images/<...>                     # images the cached chapters reference,
                                                      #   at whatever relative path their own
@@ -142,6 +164,28 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved by `review`
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
 ```
+
+## Output layout
+
+For an `--epub`-sourced book assembled via `assemble --output-root <dir>` (see `assemble` above),
+artifacts land in an `output/`-style tree organized by book, then by chapter — instead of an
+arbitrary flat `--run <dir>` per chapter:
+
+```
+output/<book-slug>/
+  .epub-hash                     # binds this slug to one epubHash (collision guard — see
+                                  #   resolveBookSlug, src/cli/outputPaths.js)
+  chapter-0/corpus.json, cards.json, audio/, review-*.html    # ordinary per-chapter artifacts,
+  chapter-1/...                                               #   unchanged in shape
+  deck.apkg                      # single merged book-level package (`deck --book-dir`)
+```
+
+`chapter-<seq>` is a simple sequential index scoped to that book folder (`0`, `1`, `2`, ...) —
+unrelated to the EPUB's own internal spine/chapter numbering (still tracked faithfully inside each
+chapter's own `corpus.meta`/`cards.meta`: `epubHash`, `chapterNumber`, `chapterLabel`). Re-assembling
+the same `(epubHash, chapterNumber)` pair reuses its existing folder rather than allocating a new
+one. Templates and manual `--chapter` sources have no book identity to organize by, so they keep
+using a plain, freely-named `--run <dir>`.
 
 ## Implementation status
 

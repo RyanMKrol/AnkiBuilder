@@ -4,8 +4,9 @@ import { promises as fs } from "fs";
 import { join } from "path";
 import os from "os";
 import { Buffer } from "buffer";
+import { inflateRawSync } from "zlib";
 import { DatabaseSync } from "node:sqlite";
-import { buildDeck } from "../../src/deck/index.js";
+import { buildDeck, buildBookDeck } from "../../src/deck/index.js";
 
 function baseCards(items) {
   return {
@@ -50,6 +51,46 @@ function readZipEntryNames(zipBuffer) {
     offset += 46 + nameLength + extraLength + commentLength;
   }
   return names;
+}
+
+// Extracts one named entry's decompressed bytes from a zip, via its local file
+// header — used to inspect the "media" manifest and (for the multi-chapter merge
+// tests) collection.anki2 without relying on entry ORDER, unlike the single-chapter
+// test above which reads the always-first local header directly.
+function extractZipEntry(zipBuffer, entryName) {
+  const EOCD_SIGNATURE = 0x06054b50;
+  let eocdOffset = -1;
+  for (let i = zipBuffer.length - 22; i >= 0; i--) {
+    if (zipBuffer.readUInt32LE(i) === EOCD_SIGNATURE) {
+      eocdOffset = i;
+      break;
+    }
+  }
+  assert.ok(eocdOffset >= 0);
+
+  const entryCount = zipBuffer.readUInt16LE(eocdOffset + 10);
+  const centralDirOffset = zipBuffer.readUInt32LE(eocdOffset + 16);
+
+  let offset = centralDirOffset;
+  for (let i = 0; i < entryCount; i++) {
+    const compressedSize = zipBuffer.readUInt32LE(offset + 20);
+    const nameLength = zipBuffer.readUInt16LE(offset + 28);
+    const extraLength = zipBuffer.readUInt16LE(offset + 30);
+    const commentLength = zipBuffer.readUInt16LE(offset + 32);
+    const localHeaderOffset = zipBuffer.readUInt32LE(offset + 42);
+    const name = zipBuffer.toString("utf-8", offset + 46, offset + 46 + nameLength);
+
+    if (name === entryName) {
+      const localNameLength = zipBuffer.readUInt16LE(localHeaderOffset + 26);
+      const localExtraLength = zipBuffer.readUInt16LE(localHeaderOffset + 28);
+      const dataStart = localHeaderOffset + 30 + localNameLength + localExtraLength;
+      const compressed = zipBuffer.subarray(dataStart, dataStart + compressedSize);
+      return inflateRawSync(compressed);
+    }
+
+    offset += 46 + nameLength + extraLength + commentLength;
+  }
+  throw new Error(`zip entry not found: ${entryName}`);
 }
 
 test("buildDeck writes a valid .apkg zip with collection.anki2 and media entries", async () => {
@@ -204,5 +245,145 @@ test("a card with no audio still produces valid cards and no dangling media refe
     const zipBuffer = await fs.readFile(outPath);
     const names = readZipEntryNames(zipBuffer);
     assert.ok(!names.includes("0"), "no media entry should be produced for a missing audio file");
+  });
+});
+
+test("buildBookDeck merges 2 chapters' cards + audio into one .apkg", async () => {
+  await withTempDir(async (tmpDir) => {
+    const chapter0AudioDir = join(tmpDir, "chapter-0", "audio");
+    const chapter1AudioDir = join(tmpDir, "chapter-1", "audio");
+    await fs.mkdir(chapter0AudioDir, { recursive: true });
+    await fs.mkdir(chapter1AudioDir, { recursive: true });
+    await fs.writeFile(join(chapter0AudioDir, "hello.mp3"), Buffer.from("chapter 0 hello"));
+    await fs.writeFile(join(chapter1AudioDir, "pen.mp3"), Buffer.from("chapter 1 pen"));
+
+    const chapterDecks = [
+      {
+        name: "Lesson 1: Meeting",
+        cards: baseCards([
+          {
+            id: "c1",
+            english: "Hello",
+            category: "Greetings",
+            target: "こんにちは",
+            pronunciation: "konnichiwa",
+            audio: "hello.mp3",
+          },
+        ]),
+        audioDir: chapter0AudioDir,
+      },
+      {
+        name: "Lesson 2: Possession",
+        cards: baseCards([
+          {
+            id: "c2",
+            english: "Pen",
+            category: "Objects",
+            target: "ペン",
+            pronunciation: "pen",
+            audio: "pen.mp3",
+          },
+        ]),
+        audioDir: chapter1AudioDir,
+      },
+    ];
+
+    const outPath = join(tmpDir, "output", "deck.apkg");
+    const result = buildBookDeck(chapterDecks, {
+      outPath,
+      bookName: "Japanese for Busy People",
+      now: 1700000000000,
+    });
+
+    assert.strictEqual(result.noteCount, 2);
+    assert.strictEqual(result.chapterCount, 2);
+    assert.strictEqual(result.mediaCount, 2);
+
+    const zipBuffer = await fs.readFile(outPath);
+    const names = readZipEntryNames(zipBuffer);
+    assert.ok(names.includes("collection.anki2"));
+    assert.ok(names.includes("media"));
+
+    const media = JSON.parse(extractZipEntry(zipBuffer, "media").toString("utf-8"));
+    assert.deepStrictEqual(media, { "0-0": "hello.mp3", "1-0": "pen.mp3" });
+  });
+});
+
+test("buildBookDeck keeps identical audio filenames across two different chapters from colliding in the merged media map", async () => {
+  await withTempDir(async (tmpDir) => {
+    const chapter0AudioDir = join(tmpDir, "chapter-0", "audio");
+    const chapter1AudioDir = join(tmpDir, "chapter-1", "audio");
+    await fs.mkdir(chapter0AudioDir, { recursive: true });
+    await fs.mkdir(chapter1AudioDir, { recursive: true });
+    await fs.writeFile(join(chapter0AudioDir, "word.mp3"), Buffer.from("chapter 0 word"));
+    await fs.writeFile(join(chapter1AudioDir, "word.mp3"), Buffer.from("chapter 1 word"));
+
+    const chapterDecks = [
+      {
+        name: "Lesson 1",
+        cards: baseCards([
+          { id: "c1", english: "One", category: "Other", target: "一", audio: "word.mp3" },
+        ]),
+        audioDir: chapter0AudioDir,
+      },
+      {
+        name: "Lesson 2",
+        cards: baseCards([
+          { id: "c2", english: "Two", category: "Other", target: "二", audio: "word.mp3" },
+        ]),
+        audioDir: chapter1AudioDir,
+      },
+    ];
+
+    const outPath = join(tmpDir, "deck.apkg");
+    buildBookDeck(chapterDecks, { outPath, bookName: "Book", now: 1700000000000 });
+
+    const zipBuffer = await fs.readFile(outPath);
+    const media = JSON.parse(extractZipEntry(zipBuffer, "media").toString("utf-8"));
+    assert.deepStrictEqual(media, { "0-0": "word.mp3", "1-0": "word.mp3" });
+
+    const names = readZipEntryNames(zipBuffer);
+    assert.ok(names.includes("0-0"));
+    assert.ok(names.includes("1-0"));
+
+    const chapter0Bytes = extractZipEntry(zipBuffer, "0-0");
+    const chapter1Bytes = extractZipEntry(zipBuffer, "1-0");
+    assert.strictEqual(chapter0Bytes.toString("utf-8"), "chapter 0 word");
+    assert.strictEqual(chapter1Bytes.toString("utf-8"), "chapter 1 word");
+  });
+});
+
+test("buildBookDeck's noteCount is the sum across chapters", async () => {
+  await withTempDir(async (tmpDir) => {
+    const chapterDecks = [
+      {
+        name: "Lesson 1",
+        cards: baseCards([
+          { id: "a", english: "A", category: "Other", target: "a" },
+          { id: "b", english: "B", category: "Other", target: "b" },
+        ]),
+        audioDir: null,
+      },
+      {
+        name: "Lesson 2",
+        cards: baseCards([{ id: "c", english: "C", category: "Other", target: "c" }]),
+        audioDir: null,
+      },
+      {
+        name: "Lesson 3",
+        cards: baseCards([
+          { id: "d", english: "D", category: "Other", target: "d" },
+          { id: "e", english: "E", category: "Other", target: "e" },
+          { id: "f", english: "F", category: "Other", target: "f" },
+        ]),
+        audioDir: null,
+      },
+    ];
+
+    const outPath = join(tmpDir, "deck.apkg");
+    const result = buildBookDeck(chapterDecks, { outPath, bookName: "Book", now: 1700000000000 });
+
+    assert.strictEqual(result.noteCount, 6);
+    assert.strictEqual(result.chapterCount, 3);
   });
 });

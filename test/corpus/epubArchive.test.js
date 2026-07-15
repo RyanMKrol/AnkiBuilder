@@ -3,118 +3,15 @@ import assert from "node:assert";
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
-import { deflateRawSync } from "zlib";
 import { Buffer } from "buffer";
 import {
   listChapters,
   readChapter,
   extractChapterToFile,
   describeChapter,
+  getBookTitle,
 } from "../../src/corpus/epubArchive.js";
-
-function crc32(buffer) {
-  let crc = ~0;
-  for (const byte of buffer) {
-    crc ^= byte;
-    for (let i = 0; i < 8; i++) {
-      crc = crc & 1 ? (crc >>> 1) ^ 0xedb88320 : crc >>> 1;
-    }
-  }
-  return ~crc >>> 0;
-}
-
-function buildZip(files) {
-  const localParts = [];
-  const centralParts = [];
-  let offset = 0;
-
-  for (const { name, content } of files) {
-    const nameBuffer = Buffer.from(name, "utf-8");
-    const contentBuffer = Buffer.from(content, "utf-8");
-    const compressed = deflateRawSync(contentBuffer);
-    const crc = crc32(contentBuffer);
-
-    const localHeader = Buffer.alloc(30);
-    localHeader.writeUInt32LE(0x04034b50, 0);
-    localHeader.writeUInt16LE(20, 4);
-    localHeader.writeUInt16LE(0, 6);
-    localHeader.writeUInt16LE(8, 8);
-    localHeader.writeUInt16LE(0, 10);
-    localHeader.writeUInt16LE(0, 12);
-    localHeader.writeUInt32LE(crc, 14);
-    localHeader.writeUInt32LE(compressed.length, 18);
-    localHeader.writeUInt32LE(contentBuffer.length, 22);
-    localHeader.writeUInt16LE(nameBuffer.length, 26);
-    localHeader.writeUInt16LE(0, 28);
-
-    localParts.push(localHeader, nameBuffer, compressed);
-
-    const centralHeader = Buffer.alloc(46);
-    centralHeader.writeUInt32LE(0x02014b50, 0);
-    centralHeader.writeUInt16LE(20, 4);
-    centralHeader.writeUInt16LE(20, 6);
-    centralHeader.writeUInt16LE(0, 8);
-    centralHeader.writeUInt16LE(8, 10);
-    centralHeader.writeUInt16LE(0, 12);
-    centralHeader.writeUInt16LE(0, 14);
-    centralHeader.writeUInt32LE(crc, 16);
-    centralHeader.writeUInt32LE(compressed.length, 20);
-    centralHeader.writeUInt32LE(contentBuffer.length, 24);
-    centralHeader.writeUInt16LE(nameBuffer.length, 28);
-    centralHeader.writeUInt16LE(0, 30);
-    centralHeader.writeUInt16LE(0, 32);
-    centralHeader.writeUInt16LE(0, 34);
-    centralHeader.writeUInt16LE(0, 36);
-    centralHeader.writeUInt32LE(0, 38);
-    centralHeader.writeUInt32LE(offset, 42);
-
-    centralParts.push(centralHeader, nameBuffer);
-
-    offset += localHeader.length + nameBuffer.length + compressed.length;
-  }
-
-  const centralDirectoryOffset = offset;
-  const centralDirectory = Buffer.concat(centralParts);
-
-  const eocd = Buffer.alloc(22);
-  eocd.writeUInt32LE(0x06054b50, 0);
-  eocd.writeUInt16LE(0, 4);
-  eocd.writeUInt16LE(0, 6);
-  eocd.writeUInt16LE(files.length, 8);
-  eocd.writeUInt16LE(files.length, 10);
-  eocd.writeUInt32LE(centralDirectory.length, 12);
-  eocd.writeUInt32LE(centralDirectoryOffset, 16);
-  eocd.writeUInt16LE(0, 20);
-
-  return Buffer.concat([...localParts, centralDirectory, eocd]);
-}
-
-function containerXml(opfPath) {
-  return `<?xml version="1.0"?>
-<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
-  <rootfiles>
-    <rootfile full-path="${opfPath}" media-type="application/oebps-package+xml"/>
-  </rootfiles>
-</container>`;
-}
-
-// manifestItems: [{ id, href }]; spineIdrefs: [id, ...] in reading order — deliberately
-// NOT required to match manifestItems' order, so tests can prove spine order wins.
-function opfXml(manifestItems, spineIdrefs) {
-  const manifest = manifestItems
-    .map((i) => `<item id="${i.id}" href="${i.href}" media-type="application/xhtml+xml"/>`)
-    .join("\n    ");
-  const spine = spineIdrefs.map((id) => `<itemref idref="${id}"/>`).join("\n    ");
-  return `<?xml version="1.0"?>
-<package version="3.0" xmlns="http://www.idpf.org/2007/opf">
-  <manifest>
-    ${manifest}
-  </manifest>
-  <spine>
-    ${spine}
-  </spine>
-</package>`;
-}
+import { buildFixtureEpub, buildZip, containerXml } from "../support/epubFixtures.js";
 
 function withTempDir(fn) {
   const dir = mkdtempSync(join(tmpdir(), "epub-archive-"));
@@ -123,20 +20,6 @@ function withTempDir(fn) {
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
-}
-
-function buildFixtureEpub(
-  dir,
-  { opfPath = "OEBPS/content.opf", manifestItems, spineIdrefs, extraFiles = [] },
-) {
-  const epubPath = join(dir, "book.epub");
-  const zipBuffer = buildZip([
-    { name: "META-INF/container.xml", content: containerXml(opfPath) },
-    { name: opfPath, content: opfXml(manifestItems, spineIdrefs) },
-    ...extraFiles,
-  ]);
-  writeFileSync(epubPath, zipBuffer);
-  return epubPath;
 }
 
 test("listChapters() returns chapters in spine order, not manifest declaration order", () => {
@@ -451,5 +334,69 @@ test("describeChapter() falls back to a plain 'chapter N' phrase for an empty <t
     });
 
     assert.equal(describeChapter(epubPath, 1), "chapter 1");
+  });
+});
+
+test("getBookTitle() returns the OPF's <dc:title> text", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>One</body></html>" }],
+      dcTitles: ["Japanese for Busy People: Book 1"],
+    });
+
+    assert.equal(getBookTitle(epubPath), "Japanese for Busy People: Book 1");
+  });
+});
+
+test("getBookTitle() returns null when there's no <dc:title>", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>One</body></html>" }],
+    });
+
+    assert.equal(getBookTitle(epubPath), null);
+  });
+});
+
+test("getBookTitle() decodes HTML entities in the title", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>One</body></html>" }],
+      dcTitles: ["Kana &amp; Kanji"],
+    });
+
+    assert.equal(getBookTitle(epubPath), "Kana & Kanji");
+  });
+});
+
+test("getBookTitle() uses only the first <dc:title> when several are present", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>One</body></html>" }],
+      dcTitles: ["Main Title", "Subtitle"],
+    });
+
+    assert.equal(getBookTitle(epubPath), "Main Title");
+  });
+});
+
+test("getBookTitle() returns null for a blank <dc:title>", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>One</body></html>" }],
+      dcTitles: ["   "],
+    });
+
+    assert.equal(getBookTitle(epubPath), null);
   });
 });

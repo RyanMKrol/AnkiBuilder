@@ -4,8 +4,8 @@
 /build
 *.log
 
-# anki-builder run directories (generated corpus/cards/deck artifacts, not source)
-/runs
+# anki-builder book/chapter output directories (generated corpus/cards/deck artifacts, not source)
+/output
 
 # anki-builder local library (audio cache, EPUB registry) — durable but never pushed
 /.anki-builder

@@ -44,13 +44,30 @@ If you choose a template, I'll assemble the corpus immediately. If you choose an
 
 ### Step 2: Corpus Assembly & Review
 
-Once the source is decided, I'll assemble the corpus:
+Once the source is decided, I'll assemble the corpus.
+
+**For a template or a manual `--chapter` source** (no book identity to organize by), pick any run
+directory and pass it directly:
 
 ```sh
-anki-builder assemble --run <runDir> [--template travel-essentials | --epub <path> --lang <lang>]
+anki-builder assemble --run <runDir> --template travel-essentials
 ```
 
-The result is `corpus.json` in your run directory, containing:
+**For an EPUB**, pass `--output-root` instead of `--run` and let `assemble` resolve the run
+directory itself — this keeps every chapter of the same book organized together under one
+book-level folder (see [Output layout](../../../README.md#output-layout) in the README):
+
+```sh
+anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang <lang>
+```
+
+This prints `resolved run directory: output/<book-slug>/chapter-<seq>`. **Capture that path** —
+it's the `<runDir>` to reuse for every subsequent `review`/`translate`/`audio`/`render-review` call
+for this chapter (all of those commands still take a plain `--run <runDir>`; only `assemble` knows
+how to resolve one from `--output-root`). Re-running `assemble --output-root` for the same chapter
+of the same book reuses its existing folder rather than allocating a new one.
+
+The result is `corpus.json` in the run directory, containing:
 - English phrases (the terms to memorize)
 - Categories (Greetings, Food, etc.)
 - Optional translations or hints from the source
@@ -173,11 +190,31 @@ This:
 
 The `.apkg` file is a complete, importable Anki deck.
 
-### Step 6: Import & Verify
+### Step 6: Build the Book-Level Package (EPUB books only)
+
+If you're working through an EPUB book chapter by chapter (via `--output-root`), each chapter so
+far has its own `cards.json`/`deck.apkg` under `output/<book-slug>/chapter-<seq>/`. Once you've
+finished Steps 2–5 for every chapter you want included, build ONE merged package for the whole
+book:
+
+```sh
+anki-builder deck --book-dir output/<book-slug>
+```
+
+This scans every `chapter-*/cards.json` under that folder and writes a single
+`output/<book-slug>/deck.apkg` containing all of them, each chapter as its own real Anki sub-deck
+(`Book Title::Chapter Label`) nested under one parent deck named for the book. Run this once after
+all of that book's chapters are individually complete — and again any time you add or change a
+chapter, since (unlike the per-chapter `deck --run` command) this always rebuilds from scratch
+rather than reusing a stale merge. Skip this step entirely for template/manual decks — there's
+only ever one chapter, so the per-chapter `deck.apkg` from Step 5 is already the final artifact.
+
+### Step 7: Import & Verify
 
 Open Anki:
-1. File → Import → select `deck.apkg` from your run directory
-2. Review the imported cards
+1. File → Import → select the book-level `deck.apkg` (or the per-chapter one, for a
+   template/manual deck)
+2. Review the imported cards, including the sub-deck hierarchy for a book
 3. Test playback (audio should play if audio was generated)
 4. Start studying!
 
@@ -193,7 +230,8 @@ All commands use `--run <dir>` to specify the run directory and read/write artif
 ### Assemble corpus
 ```sh
 anki-builder assemble --run <dir> --template travel-essentials
-anki-builder assemble --run <dir> --epub <path> --lang es
+anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es
+anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang es
 ```
 
 ### Translate
@@ -210,6 +248,14 @@ anki-builder audio --run <dir> --voice 21m00Tcm4TlvDq8ikWAM
 ```sh
 anki-builder deck --run <dir> --name "Travel Spanish"
 ```
+
+### Build book-level deck
+```sh
+anki-builder deck --book-dir output/<book-slug>
+```
+Merges every `chapter-*/cards.json` under the book folder into one `deck.apkg`, one Anki sub-deck
+per chapter. Always rebuilds from scratch. EPUB books only — nothing to merge for a
+template/manual deck.
 
 ### Render a review artifact
 ```sh
@@ -229,14 +275,26 @@ No env var needed for local state — it always lives in `.anki-builder/` inside
 
 ## State & Artifacts
 
-All artifacts are stored in your run directory (`--run <dir>`):
+Each chapter's own artifacts live in its run directory (`--run <dir>`, or the directory
+`assemble --output-root` resolved for you):
 
 - `corpus.json` — assembled from template or EPUB
 - `cards.json` — translated and enriched corpus
 - `audio/` — generated audio files (if audio stage ran)
-- `deck.apkg` — final Anki deck, ready to import
+- `deck.apkg` — this chapter's own Anki deck (for template/manual sources, this is the final
+  artifact; for an EPUB book, it's superseded by the book-level merge below)
 - `review-corpus.html` / `review-translate.html` / `review-audio.html` — templated review
   artifacts generated by `render-review`, meant to be published as Claude Artifacts
+
+For an EPUB book assembled via `--output-root`, chapters nest under one book folder, with a
+single merged package at the book root:
+
+```
+output/<book-slug>/
+  chapter-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
+  chapter-1/...
+  deck.apkg              # built by `deck --book-dir output/<book-slug>` (Step 6)
+```
 
 Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio.
 

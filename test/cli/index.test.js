@@ -780,6 +780,93 @@ test("audio: throws when --voice is missing and audio is not already generated",
   });
 });
 
+test("audio: falls back to the configured default voice for the language when --voice is omitted", async () => {
+  await withTempDir(async (runDir) =>
+    withTempDir(async (libraryHomeDir) => {
+      const paths = runPaths(runDir);
+      mkdirSync(runDir, { recursive: true });
+      const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
+      writeFileSync(paths.cards, JSON.stringify(cards));
+
+      const cacheDir = join(libraryHomeDir, "audio", "default-voice-id");
+      mkdirSync(cacheDir, { recursive: true });
+      writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
+
+      const getDefaultVoice = (code) => {
+        assert.equal(code, "ja");
+        return "default-voice-id";
+      };
+
+      let receivedOpts = null;
+      const generateAudio = (cardsArg, opts) => {
+        receivedOpts = opts;
+        return {
+          ...cardsArg,
+          items: cardsArg.items.map((item) => ({ ...item, audio: "hola.mp3" })),
+        };
+      };
+
+      const logs = [];
+      await runCli(["audio", "--run", runDir], {
+        generateAudio,
+        getDefaultVoice,
+        libraryHome: () => libraryHomeDir,
+        log: (msg) => logs.push(msg),
+      });
+
+      assert.equal(receivedOpts.voiceId, "default-voice-id");
+      assert.ok(logs.some((msg) => msg.includes("default-voice-id")));
+    }),
+  );
+});
+
+test("audio: an explicit --voice overrides the configured default", async () => {
+  await withTempDir(async (runDir) =>
+    withTempDir(async (libraryHomeDir) => {
+      const paths = runPaths(runDir);
+      mkdirSync(runDir, { recursive: true });
+      const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
+      writeFileSync(paths.cards, JSON.stringify(cards));
+
+      const cacheDir = join(libraryHomeDir, "audio", "explicit-voice");
+      mkdirSync(cacheDir, { recursive: true });
+      writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
+
+      const getDefaultVoice = () => "default-voice-id";
+      let receivedOpts = null;
+      const generateAudio = (cardsArg, opts) => {
+        receivedOpts = opts;
+        return {
+          ...cardsArg,
+          items: cardsArg.items.map((item) => ({ ...item, audio: "hola.mp3" })),
+        };
+      };
+
+      await runCli(["audio", "--run", runDir, "--voice", "explicit-voice"], {
+        generateAudio,
+        getDefaultVoice,
+        libraryHome: () => libraryHomeDir,
+        log: () => {},
+      });
+
+      assert.equal(receivedOpts.voiceId, "explicit-voice");
+    }),
+  );
+});
+
+test("audio: still throws when --voice is missing and no default is configured for the language", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.cards, JSON.stringify(baseCards())); // targetLanguage: "es", no default
+
+    await assert.rejects(
+      () => runCli(["audio", "--run", runDir], { getDefaultVoice: () => undefined, log: () => {} }),
+      /--voice/,
+    );
+  });
+});
+
 test("deck: dispatches to buildDeck with cards.json and audio dir", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

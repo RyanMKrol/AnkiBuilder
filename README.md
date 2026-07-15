@@ -129,7 +129,10 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   when non-null — omitted entirely otherwise, so ElevenLabs falls back to its own
   auto-detection exactly as it always did before this parameter existed. This is on top of
   `voiceId` (sent as part of the request URL path, `.../text-to-speech/<voiceId>`, not the
-  body) and `model_id: "eleven_multilingual_v2"`.
+  body) and `model_id: "eleven_multilingual_v2"`. `--voice <voiceId>` can be omitted once a
+  language has a configured default (`src/audio/voiceLibrary.js`'s `DEFAULT_VOICES`, keyed by
+  the same ISO 639-1 code) — an explicit `--voice` always overrides it; with neither, the
+  stage still throws asking for one.
 - **`deck`** — builds a two-template Anki note type (`src/deck/collection.js`): **Recognition**
   (question shows `Target` and autoplays `Audio` — the target-language listening/recall
   direction — answer reveals `English`) and **Production** (question shows `English`, answer

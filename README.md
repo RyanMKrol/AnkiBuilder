@@ -109,7 +109,12 @@ Places (1)"`), never the raw 1-indexed spine position that's an internal impleme
   auto-detection exactly as it always did before this parameter existed. This is on top of
   `voiceId` (sent as part of the request URL path, `.../text-to-speech/<voiceId>`, not the
   body) and `model_id: "eleven_multilingual_v2"`.
-- **`deck`** — unchanged from before.
+- **`deck`** — builds a two-template Anki note type (`src/deck/collection.js`): **Recognition**
+  (question shows `Target` and autoplays `Audio` — the target-language listening/recall
+  direction — answer reveals `English`) and **Production** (question shows `English`, answer
+  reveals `Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions
+  play the target-language audio; Recognition plays it on the question side, since that's the
+  direction meant to exercise listening comprehension, not just script recognition.
 - **`render-review --stage <corpus|translate|audio>`** — generates a self-contained,
   ready-to-publish HTML review artifact (`<runDir>/review-<stage>.html`) from `corpus.json` or
   `cards.json`, so the corpus/translate/audio review gates are produced from one shared,

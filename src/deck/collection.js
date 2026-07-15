@@ -120,7 +120,11 @@ function buildModel(nowSeconds) {
           name: "Recognition",
           ord: 0,
           qfmt: "{{Target}}<br>{{Audio}}",
-          afmt: "{{FrontSide}}<hr id=answer>{{English}}<br>{{Pronunciation}}<br>{{Hint}}<br>{{Image}}",
+          afmt: `{{FrontSide}}<hr id=answer>
+<div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
+{{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
+{{#Hint}}<div class="field"><div class="field-label">Note</div><div class="hint">{{Hint}}</div></div>{{/Hint}}
+{{#Image}}<div class="field">{{Image}}</div>{{/Image}}`,
           did: null,
           bqfmt: "",
           bafmt: "",
@@ -129,7 +133,12 @@ function buildModel(nowSeconds) {
           name: "Production",
           ord: 1,
           qfmt: "{{English}}",
-          afmt: "{{FrontSide}}<hr id=answer>{{Target}}<br>{{Pronunciation}}<br>{{Hint}}<br>{{Image}}<br>{{Audio}}",
+          afmt: `{{FrontSide}}<hr id=answer>
+<div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
+{{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
+{{#Hint}}<div class="field"><div class="field-label">Note</div><div class="hint">{{Hint}}</div></div>{{/Hint}}
+{{#Image}}<div class="field">{{Image}}</div>{{/Image}}
+{{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
           did: null,
           bqfmt: "",
           bafmt: "",
@@ -144,7 +153,40 @@ function buildModel(nowSeconds) {
         size: 20,
         media: [],
       })),
-      css: ".card { font-family: arial; font-size: 20px; text-align: center; color: black; background-color: white; }",
+      css: `.card {
+  font-family: arial;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  background-color: white;
+}
+.field {
+  margin-bottom: 14px;
+}
+.field:last-child {
+  margin-bottom: 0;
+}
+.field-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1f6f6b;
+  margin-bottom: 3px;
+}
+.answer {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.pron {
+  font-size: 16px;
+  font-weight: 400;
+  color: #555555;
+}
+.hint {
+  font-size: 14px;
+  color: #888888;
+}`,
       latexPre:
         "\\documentclass[12pt]{article}\\special{papersize=3in,5in}\\usepackage[utf8]{inputenc}\\usepackage{amssymb,amsmath}\\pagestyle{empty}\\setlength{\\parindent}{0in}\\begin{document}",
       latexPost: "\\end{document}",

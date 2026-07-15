@@ -123,7 +123,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
     };
     const loadPriorChapterItems = () => [];
     const loadBookConventions = () => "cached conventions";
-    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupBackward = (items) => ({ items, flagged: [] });
     const flagForwardConcerns = (opts) => {
       flagForwardConcernsCalledWith = opts;
       return { items: opts.candidateItems, flagged: [] };
@@ -189,7 +189,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
     const saveBookConventions = (epubHash, markdown) => {
       savedConventionsCalledWith = { epubHash, markdown };
     };
-    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupBackward = (items) => ({ items, flagged: [] });
     const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
     const describeChapter = () => "chapter label";
 
@@ -250,7 +250,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
     const saveBookConventions = () => {
       saveCalled = true;
     };
-    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupBackward = (items) => ({ items, flagged: [] });
     const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
     const describeChapter = () => "chapter label";
 
@@ -394,7 +394,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
     const assembleCorpusFromChapter = () => baseEpubCorpus();
     const loadPriorChapterItems = () => [];
     const loadBookConventions = () => "cached conventions";
-    const dedupBackward = (items) => ({ kept: items, dropped: [] });
+    const dedupBackward = (items) => ({ items, flagged: [] });
     const flagForwardConcerns = ({ candidateItems }) => ({ items: candidateItems, flagged: [] });
     const describeChapter = () => "Lesson 2: Possession";
 
@@ -436,7 +436,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
   });
 });
 
-test("assemble: logs one line per dropped/flagged item for both passes, not just a count", async () => {
+test("assemble: logs one line per flagged item for both passes, not just a count", async () => {
   await withTempDir(async (runDir) => {
     const logs = [];
 
@@ -464,18 +464,22 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
     ];
     const loadBookConventions = () => "cached conventions";
     const dedupBackward = (items, priorItems) => ({
-      kept: items.slice(1),
-      dropped: [{ item: items[0], matchedField: "english", matchedPriorItem: priorItems[0] }],
+      items: items.map((item, index) =>
+        index === 0
+          ? { ...item, uncertain: true, notes: "Possibly already taught — matched Lesson 1" }
+          : item,
+      ),
+      flagged: [{ item: items[0], matchedField: "english", matchedPriorItem: priorItems[0] }],
     });
     const flagForwardConcerns = ({ candidateItems }) => ({
       items: candidateItems.map((item, index) =>
-        index === 0
+        index === 1
           ? { ...item, uncertain: true, notes: "Possibly premature — taught later" }
           : item,
       ),
       flagged: [
         {
-          item: candidateItems[0],
+          item: candidateItems[1],
           laterChapter: 5,
           laterChapterLabel: "Lesson 5: Shopping (2)",
           reason: "taught later",
@@ -513,9 +517,9 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
     assert.ok(
       logs.some(
         (msg) =>
-          msg.includes('[dedup:backward] dropped "Old"') && msg.includes("Lesson 1: Meeting"),
+          msg.includes('[dedup:backward] flagged "Old"') && msg.includes("Lesson 1: Meeting"),
       ),
-      "expected an individual backward-drop log line naming the item and matched chapter",
+      "expected an individual backward-flag log line naming the item and matched chapter",
     );
     assert.ok(
       logs.some(
@@ -525,9 +529,17 @@ test("assemble: logs one line per dropped/flagged item for both passes, not just
     );
 
     const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
-    assert.equal(written.items.length, 2, "flagged items stay in the corpus, only backward drops");
-    assert.equal(written.items[0].id, "later-item");
+    assert.equal(
+      written.items.length,
+      3,
+      "backward dedup never drops — all items stay in the corpus",
+    );
+    assert.equal(written.items[0].id, "old-item");
     assert.equal(written.items[0].uncertain, true);
+    assert.equal(written.items[1].id, "later-item");
+    assert.equal(written.items[1].uncertain, true);
+    assert.equal(written.items[2].id, "keep-item");
+    assert.ok(!written.items[2].uncertain);
     assert.equal(written.meta.chapterLabel, "Lesson 2: Possession");
   });
 });

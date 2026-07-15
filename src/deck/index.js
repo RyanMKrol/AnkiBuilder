@@ -7,11 +7,18 @@ import { buildZip } from "./zip.js";
 // Resolves each card's `audio` filename against `audioDir` into an embeddable zip
 // media entry, or drops it (audio: undefined) when missing/unresolvable — shared by
 // buildDeck (one chapter) and buildBookDeck (many chapters merged into one package).
-// `keyPrefix` keeps media keys unique when several chapters' media maps are merged
-// into one zip (`"0-0"`, `"0-1"`, `"1-0"`, ...) — plain `""` for the single-chapter
-// case reproduces today's plain numeric keys ("0", "1", ...) exactly.
-function resolveChapterAudio(cards, audioDir, keyPrefix, media, mediaEntries) {
-  let mediaIndex = 0;
+//
+// Media manifest keys MUST be plain sequential non-negative integers ("0", "1", "2",
+// ...), matching the zip entry filename for that media file exactly — this is a real
+// constraint of Anki's own .apkg format, not a stylistic choice. An earlier version of
+// this function used a `${chapterIndex}-${mediaIndex}` scheme (e.g. "0-0", "1-3") to
+// keep keys unique across merged chapters, which LOOKS like a reasonable unique key
+// but silently produces an .apkg Anki's importer rejects outright with "A number was
+// invalid or out of range" — confirmed by bisecting a real import against the actual
+// Anki backend (see .harness/custom/docs/LIMITATIONS.md). `counter` is a single shared
+// mutable `{ next }` object threaded across every chapter's call in buildBookDeck, so
+// numbering stays globally sequential with no resets and no prefixes.
+function resolveChapterAudio(cards, audioDir, media, mediaEntries, counter) {
   const items = cards.items.map((item) => {
     if (!item.audio) {
       return { ...item, audio: undefined };
@@ -21,10 +28,10 @@ function resolveChapterAudio(cards, audioDir, keyPrefix, media, mediaEntries) {
       return { ...item, audio: undefined };
     }
 
-    const key = `${keyPrefix}${mediaIndex}`;
+    const key = String(counter.next);
+    counter.next++;
     media[key] = item.audio;
     mediaEntries.push({ name: key, data: readFileSync(audioPath) });
-    mediaIndex++;
 
     return item;
   });
@@ -49,7 +56,7 @@ export function buildDeck(
 
   const media = {};
   const mediaEntries = [];
-  const resolvedCards = resolveChapterAudio(cards, audioDir, "", media, mediaEntries);
+  const resolvedCards = resolveChapterAudio(cards, audioDir, media, mediaEntries, { next: 0 });
 
   const collectionBytes = buildCollection(resolvedCards, {
     deckName: deckName || resolvedCards.meta?.targetLanguage || "AnkiBuilder Deck",
@@ -83,10 +90,11 @@ export function buildBookDeck(chapterDecks, { outPath, bookName, now = Date.now(
 
   const media = {};
   const mediaEntries = [];
+  const counter = { next: 0 };
 
-  const resolvedChapterDecks = chapterDecks.map((chapter, index) => ({
+  const resolvedChapterDecks = chapterDecks.map((chapter) => ({
     name: chapter.name,
-    cards: resolveChapterAudio(chapter.cards, chapter.audioDir, `${index}-`, media, mediaEntries),
+    cards: resolveChapterAudio(chapter.cards, chapter.audioDir, media, mediaEntries, counter),
   }));
 
   const collectionBytes = buildMultiDeckCollection(resolvedChapterDecks, { bookName, now });

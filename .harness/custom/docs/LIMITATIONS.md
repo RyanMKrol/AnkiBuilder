@@ -297,6 +297,31 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   publish, add a `--chunk-size <n>` flag to `render-review` that splits the audio stage's output
   into `review-audio-1.html`, `review-audio-2.html`, etc.
 
+## `.apkg` media manifest keys must be plain sequential integers — chapter-prefixing broke real Anki imports
+
+- **What:** `buildBookDeck` (`src/deck/index.js`) originally keyed its media manifest with a
+  `${chapterIndex}-${mediaIndex}` scheme (e.g. `"0-0"`, `"1-3"`) to keep keys unique across merged
+  chapters. This looked like a reasonable unique key, and passed every unit test, but Anki's real
+  `.apkg` importer rejects it outright with `"500: A number was invalid or out of range"` — media
+  keys must be plain sequential non-negative integers ("0", "1", "2", ...) that also literally match
+  the zip entry filename for that media file. Fixed by threading one shared mutable `{ next }`
+  counter through every chapter's `resolveChapterAudio` call, so numbering is globally sequential
+  across the whole merged book with no resets and no prefixes.
+- **Why:** this bug (and two others fixed alongside it in the same debugging arc — `col.crt` stored
+  in milliseconds instead of seconds, and note `csum` values exceeding the signed 32-bit range) all
+  passed `npm test` and every synthetic check, because nothing in the test suite actually ran a real
+  Anki import. They were only found by installing the real `anki` Python package and reproducing the
+  exact import error, then bisecting a known-good `genanki`-built reference file against ours,
+  swapping pieces until the exact culprit was isolated.
+- **Impact:** a merged book deck could build, pass all tests, and still fail to import into Anki with
+  a generic, unhelpful error — three real format bugs shipped invisibly until a human tried a real
+  import. There is still no automated test that runs a real Anki import in CI (that would require the
+  `anki` Python package as a dev dependency, which hasn't been added).
+- **When to revisit:** if another silent `.apkg`-format bug surfaces, consider adding a scripted
+  real-import smoke test (via a pinned `anki` Python package, shelled out to from a test or a
+  standalone verification script) to the Definition of Done, rather than relying on structural
+  assertions about the zip/SQLite contents alone.
+
 ## ElevenLabs `language_code` only fires for a real ISO 639-1 code — no name-to-code lookup
 
 - **What:** `generateAudio` (`src/audio/index.js`) passes ElevenLabs' `language_code` request

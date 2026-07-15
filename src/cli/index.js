@@ -6,6 +6,7 @@ import {
   libraryHome as defaultLibraryHome,
   validateCorpus,
 } from "../model/index.js";
+import { resolveIso639Code } from "../model/iso639.js";
 import { listTemplates, loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
 import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from "../corpus/epubLlmCorpus.js";
 import {
@@ -30,6 +31,7 @@ import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epu
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
+import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import {
   buildDeck as defaultBuildDeck,
   buildBookDeck as defaultBuildBookDeck,
@@ -311,18 +313,27 @@ async function runAudio(flags, ctx) {
     return;
   }
 
-  if (!flags.voice) {
-    throw new Error("--voice <voiceId> is required for the audio stage");
+  let voiceId = flags.voice;
+  if (!voiceId) {
+    const languageCode = resolveIso639Code(cards.meta.targetLanguage);
+    voiceId = languageCode ? ctx.getDefaultVoice(languageCode) : undefined;
+    if (voiceId) {
+      ctx.log(
+        `no --voice given — using the configured default for ${cards.meta.targetLanguage}: ${voiceId}`,
+      );
+    } else {
+      throw new Error("--voice <voiceId> is required for the audio stage");
+    }
   }
 
   const annotated = await ctx.generateAudio(cards, {
-    voiceId: flags.voice,
+    voiceId,
     fetchTts: ctx.fetchTts,
     libraryHomeDir: ctx.libraryHome(),
   });
 
   mkdirSync(paths.audio, { recursive: true });
-  const cacheDir = join(ctx.libraryHome(), "audio", flags.voice);
+  const cacheDir = join(ctx.libraryHome(), "audio", voiceId);
   for (const item of annotated.items) {
     if (!item.audio) continue;
     const src = join(cacheDir, item.audio);
@@ -487,6 +498,7 @@ export async function runCli(argv, deps = {}) {
     promptReviewDecisions = defaultPromptReviewDecisions,
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
+    getDefaultVoice = defaultGetDefaultVoice,
     buildDeck = defaultBuildDeck,
     buildBookDeck = defaultBuildBookDeck,
     fetchTts = defaultFetchTts,
@@ -529,6 +541,7 @@ export async function runCli(argv, deps = {}) {
     promptReviewDecisions,
     translateCorpus,
     generateAudio,
+    getDefaultVoice,
     buildDeck,
     buildBookDeck,
     fetchTts,

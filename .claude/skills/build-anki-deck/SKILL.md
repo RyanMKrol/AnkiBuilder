@@ -147,9 +147,15 @@ This:
 - Copies audio files into the run directory
 - Writes updated `cards.json` with audio file references
 
-**Voice choice:** I'll help you pick a voice. Available voices vary by language. Popular choices:
+**Voice choice:** if this target language already has a configured default voice
+(`src/audio/voiceLibrary.js`'s `DEFAULT_VOICES`), `--voice` can be omitted entirely — the CLI
+uses the default and says so. Otherwise I'll help you pick one; available voices vary by
+language. Popular choices:
 - For English: `21m00Tcm4TlvDq8ikWAM` (Bella), `EXAVITQu4vr4xnSDxMaL` (Premom)
 - For other languages, visit https://elevenlabs.io/voice-lab
+
+Once you've settled on a voice for a language you'll keep using (e.g. continuing the same
+book), add it to `DEFAULT_VOICES` so future chapters don't need `--voice` repeated.
 
 If you skip audio, the deck will still work — cards just won't have pronunciation recordings.
 

@@ -35,22 +35,36 @@ The CLI loads `.env` automatically — no need to export by hand. The file is gi
 
 ### Step 1: What do you want to build a deck for?
 
-Ask which of these three:
+Use the `AskUserQuestion` tool to ask which source to build from, with these three options:
 
 1. **A real-life lesson** — a list of English words/phrases you learned in an actual class, to
    organize into a course.
 2. **A bundled template** (ready-made travel vocabulary): `travel-essentials`
 3. **Your own EPUB**: path to an .epub file on your machine
 
-If they pick a template, assemble the corpus immediately. If they pick an EPUB, extract candidate
-terms and ask which target language to prepare translations for. **If they pick a lesson**, walk
-through this before assembling anything:
+Once they answer, disambiguate with follow-up questions specific to that source:
+
+- **Template:** ask which bundled template before assembling — see the sub-question below.
+- **EPUB:** ask for the file path (if not already given) and which target language to prepare
+  translations for.
+- **Lesson:** walk through the sub-questions below before assembling anything.
+
+- **Which template?** List the available templates by calling `listTemplates()`
+  (`src/corpus/templates.js`) and offer each as an `AskUserQuestion` option — describe it with its
+  `meta.targetLanguage` (e.g. "travel-essentials — Spanish"), read from `templates/<name>.json`.
+  Even if only one template is currently bundled, still ask so the choice is explicit and the
+  question keeps working as more templates get added. If they pick "Other" (no listed template
+  fits), ask what vocabulary they had in mind: if it's really a custom word list, redirect to the
+  **Lesson** or **EPUB** path instead of a template; if they specifically want a new *reusable*
+  template added to the bundle, that's a codebase change (a new `templates/<name>.json` plus a
+  registry entry in `AVAILABLE_TEMPLATES`), not something this skill authors on the fly — flag it
+  and let them decide whether to pursue it as a separate task.
 
 - **Which course?** List existing courses by reading `output/*/course.json` (each is
   `{ name, targetLanguage }`, keyed by the folder name — `listCourses(outputRoot)` in
   `src/cli/outputPaths.js` if you'd rather call it directly than read files by hand) and offer them
-  as choices, plus an explicit "start a new course" option. For a new course, ask its name (e.g.
-  "Intensive Japanese 1") and target language.
+  as `AskUserQuestion` options, plus an explicit "start a new course" option. For a new course, ask
+  its name (e.g. "Intensive Japanese 1") and target language.
 - **Which lesson number?** Suggest the next free one (`nextLessonNumber(outputRoot, courseSlug)` —
   one past the highest lesson number already assembled for this course, or `1` for a brand-new
   course) and let them confirm or override it. Also ask if they want a custom sub-deck label
@@ -68,7 +82,7 @@ Once the source is decided, I'll assemble the corpus.
 any run directory and pass it directly:
 
 ```sh
-anki-builder assemble --run <runDir> --template travel-essentials
+anki-builder assemble --run <runDir> --template <templateName>
 ```
 
 **For a real-life lesson**, pass `--output-root` (same idea as an EPUB below) along with the

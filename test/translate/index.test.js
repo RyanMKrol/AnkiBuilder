@@ -26,10 +26,10 @@ function extractInputDataIds(prompt) {
   return [...section.matchAll(/"id":\s*"([^"]+)"/g)].map((m) => m[1]);
 }
 
-test("translates untranslated items (target: null) into schema-valid cards", () => {
+test("translates untranslated items (target: null) into schema-valid cards", async () => {
   const corpus = baseCorpus([untranslated("hello", "Hello", "Greetings")]);
 
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: () =>
       JSON.stringify([{ id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" }]),
   });
@@ -40,10 +40,10 @@ test("translates untranslated items (target: null) into schema-valid cards", () 
   assert.equal(cards.items[0].pronunciation, "bohn-ZHOOR");
 });
 
-test("includes an optional hint when the model supplies one (full-translation path)", () => {
+test("includes an optional hint when the model supplies one (full-translation path)", async () => {
   const corpus = baseCorpus([untranslated("thanks", "Thanks", "Greetings")]);
 
-  const { cards } = translateCorpus(corpus, {
+  const { cards } = await translateCorpus(corpus, {
     runClaude: () =>
       JSON.stringify([{ id: "thanks", target: "Merci", pronunciation: "mer-SEE", hint: "casual" }]),
   });
@@ -51,13 +51,13 @@ test("includes an optional hint when the model supplies one (full-translation pa
   assert.equal(cards.items[0].hint, "casual");
 });
 
-test("an item with a pre-existing target only requests pronunciation, never a translation", () => {
+test("an item with a pre-existing target only requests pronunciation, never a translation", async () => {
   const corpus = baseCorpus([
     alreadyTranslated("cheese", "Cheese", "Food", "Fromage", "a hint from the source"),
   ]);
 
   let capturedPrompt = null;
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: (prompt) => {
       capturedPrompt = prompt;
       return JSON.stringify([{ id: "cheese", pronunciation: "froh-MAHZH" }]);
@@ -72,10 +72,10 @@ test("an item with a pre-existing target only requests pronunciation, never a tr
   assert.match(capturedPrompt, /do not alter, correct, retranslate/i);
 });
 
-test("a pre-existing target cannot be overridden by the model, even if it dishonestly returns one", () => {
+test("a pre-existing target cannot be overridden by the model, even if it dishonestly returns one", async () => {
   const corpus = baseCorpus([alreadyTranslated("cheese", "Cheese", "Food", "Fromage")]);
 
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     // Misbehaving model: returns a target anyway, different from the given one.
     runClaude: () =>
       JSON.stringify([{ id: "cheese", target: "Something Else", pronunciation: "froh-MAHZH" }]),
@@ -86,14 +86,14 @@ test("a pre-existing target cannot be overridden by the model, even if it dishon
   assert.equal(cards.items[0].pronunciation, "froh-MAHZH");
 });
 
-test("keeps errors per-item: a missing entry drops only that item", () => {
+test("keeps errors per-item: a missing entry drops only that item", async () => {
   const corpus = baseCorpus([
     untranslated("hello", "Hello", "Greetings"),
     untranslated("bye", "Goodbye", "Greetings"),
   ]);
 
   // One `claude -p` call for the whole batch; the response omits "bye".
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: () =>
       JSON.stringify([{ id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" }]),
   });
@@ -105,13 +105,13 @@ test("keeps errors per-item: a missing entry drops only that item", () => {
   assert.match(errors[0].error, /missing an entry/);
 });
 
-test("surfaces a wholly-malformed batch response as an error for every item in it", () => {
+test("surfaces a wholly-malformed batch response as an error for every item in it", async () => {
   const corpus = baseCorpus([
     untranslated("hello", "Hello", "Greetings"),
     untranslated("bye", "Goodbye", "Greetings"),
   ]);
 
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: () => "not json at all",
   });
 
@@ -122,10 +122,10 @@ test("surfaces a wholly-malformed batch response as an error for every item in i
   }
 });
 
-test("tolerates a batch response wrapped in a markdown code fence", () => {
+test("tolerates a batch response wrapped in a markdown code fence", async () => {
   const corpus = baseCorpus([untranslated("hello", "Hello", "Greetings")]);
 
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: () =>
       '```json\n[{"id": "hello", "target": "Bonjour", "pronunciation": "bohn-ZHOOR"}]\n```',
   });
@@ -134,12 +134,12 @@ test("tolerates a batch response wrapped in a markdown code fence", () => {
   assert.equal(cards.items[0].target, "Bonjour");
 });
 
-test("batches the full-translation group into `claude -p` calls of at most 10 items", () => {
+test("batches the full-translation group into `claude -p` calls of at most 10 items", async () => {
   const items = Array.from({ length: 25 }, (_, i) => untranslated(`w${i}`, `word ${i}`, "Misc"));
   const corpus = baseCorpus(items);
 
   const batchSizes = [];
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: (prompt) => {
       const ids = extractInputDataIds(prompt);
       batchSizes.push(ids.length);
@@ -153,14 +153,14 @@ test("batches the full-translation group into `claude -p` calls of at most 10 it
   assert.deepEqual(errors, []);
 });
 
-test("batches the pronunciation-only group into `claude -p` calls of at most 10 items, independently", () => {
+test("batches the pronunciation-only group into `claude -p` calls of at most 10 items, independently", async () => {
   const items = Array.from({ length: 12 }, (_, i) =>
     alreadyTranslated(`w${i}`, `word ${i}`, "Misc", `t-${i}`),
   );
   const corpus = baseCorpus(items);
 
   const batchSizes = [];
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: (prompt) => {
       const ids = extractInputDataIds(prompt);
       batchSizes.push(ids.length);
@@ -178,14 +178,14 @@ test("batches the pronunciation-only group into `claude -p` calls of at most 10 
   }
 });
 
-test("a mixed corpus sends two separate prompts — full translation and pronunciation-only", () => {
+test("a mixed corpus sends two separate prompts — full translation and pronunciation-only", async () => {
   const corpus = baseCorpus([
     untranslated("hello", "Hello", "Greetings"),
     alreadyTranslated("cheese", "Cheese", "Food", "Fromage"),
   ]);
 
   const prompts = [];
-  const { cards, errors } = translateCorpus(corpus, {
+  const { cards, errors } = await translateCorpus(corpus, {
     runClaude: (prompt) => {
       prompts.push(prompt);
       if (prompt.includes("hello")) {
@@ -204,4 +204,120 @@ test("a mixed corpus sends two separate prompts — full translation and pronunc
   assert.equal(helloCard.target, "Bonjour");
   assert.equal(cheeseCard.target, "Fromage");
   assert.equal(cheeseCard.pronunciation, "froh-MAHZH");
+});
+
+test("library-path: a configured romanization library supplies pronunciation, not the model", async () => {
+  const corpus = {
+    meta: { targetLanguage: "ja", sourceType: "manual" },
+    items: [untranslated("cat", "cat", "Other")],
+  };
+
+  const getRomanizationLibrary = (code) => {
+    assert.equal(code, "ja");
+    return { load: async () => ({ romanize: async (text) => `roman-${text}` }) };
+  };
+
+  let translatePrompt = null;
+  const runClaude = (prompt) => {
+    if (prompt.includes("Translate Flashcards")) {
+      translatePrompt = prompt;
+      return JSON.stringify([{ id: "cat", target: "猫" }]);
+    }
+    return JSON.stringify([{ id: "cat", ok: true }]);
+  };
+
+  const { cards, errors } = await translateCorpus(corpus, { runClaude, getRomanizationLibrary });
+
+  assert.deepEqual(errors, []);
+  assert.equal(cards.items[0].target, "猫");
+  assert.equal(cards.items[0].pronunciation, "roman-猫");
+  assert.ok(!cards.items[0].uncertain);
+  // The translation call never asked the model for pronunciation at all.
+  assert.doesNotMatch(translatePrompt, /producing both a translation and a pronunciation guide/);
+  assert.match(translatePrompt, /Do not include a `pronunciation` key/);
+});
+
+test("library-path: a Haiku-flagged romanization keeps the library value and gets uncertain + a note", async () => {
+  const corpus = {
+    meta: { targetLanguage: "ja", sourceType: "manual" },
+    items: [untranslated("cat", "cat", "Other")],
+  };
+
+  const getRomanizationLibrary = () => ({
+    load: async () => ({ romanize: async () => "neko" }),
+  });
+
+  const runClaude = (prompt) => {
+    if (prompt.includes("Translate Flashcards")) {
+      return JSON.stringify([{ id: "cat", target: "猫" }]);
+    }
+    return JSON.stringify([{ id: "cat", ok: false, concern: "looks off" }]);
+  };
+
+  const { cards } = await translateCorpus(corpus, { runClaude, getRomanizationLibrary });
+
+  assert.equal(cards.items[0].pronunciation, "neko");
+  assert.equal(cards.items[0].uncertain, true);
+  assert.equal(cards.items[0].notes, "Possibly incorrect romanization — looks off");
+});
+
+test("no-library-path parity: an unconfigured language uses the original full-translation prompt unchanged", async () => {
+  const corpus = baseCorpus([untranslated("hello", "Hello", "Greetings")]);
+
+  let getRomanizationLibraryCalledWith = null;
+  const getRomanizationLibrary = (code) => {
+    getRomanizationLibraryCalledWith = code;
+    return undefined;
+  };
+
+  let capturedPrompt = null;
+  const { cards, errors } = await translateCorpus(corpus, {
+    getRomanizationLibrary,
+    runClaude: (prompt) => {
+      capturedPrompt = prompt;
+      return JSON.stringify([{ id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" }]);
+    },
+  });
+
+  assert.equal(getRomanizationLibraryCalledWith, "fr");
+  assert.deepEqual(errors, []);
+  assert.equal(cards.items[0].target, "Bonjour");
+  assert.equal(cards.items[0].pronunciation, "bohn-ZHOOR");
+  // Byte-for-byte the same prompt shape as pre-feature code — the model is still asked to
+  // produce pronunciation itself, in the same call as the translation.
+  assert.match(capturedPrompt, /producing both a translation and a pronunciation guide/);
+});
+
+test("library-throws-falls-back: an adapter failure falls through to the ordinary pronunciation-only path", async () => {
+  const corpus = {
+    meta: { targetLanguage: "ja", sourceType: "manual" },
+    items: [untranslated("cat", "cat", "Other")],
+  };
+
+  const getRomanizationLibrary = () => ({
+    load: async () => {
+      throw new Error("dictionary not found");
+    },
+  });
+
+  const logs = [];
+  const runClaude = (prompt) => {
+    if (prompt.includes("Translate Flashcards")) {
+      return JSON.stringify([{ id: "cat", target: "猫" }]);
+    }
+    // The fallback path reuses the ordinary pronunciation-only prompt.
+    assert.match(prompt, /do not alter, correct, retranslate/i);
+    return JSON.stringify([{ id: "cat", pronunciation: "neko" }]);
+  };
+
+  const { cards, errors } = await translateCorpus(corpus, {
+    runClaude,
+    getRomanizationLibrary,
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.deepEqual(errors, []);
+  assert.equal(cards.items[0].pronunciation, "neko");
+  assert.ok(!cards.items[0].uncertain);
+  assert.ok(logs.some((msg) => msg.includes("dictionary not found")));
 });

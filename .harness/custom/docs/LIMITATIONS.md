@@ -166,23 +166,65 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 ## `pronunciation` conflates a real romanization system with an ad hoc phonetic respelling
 
-- **What:** both translate prompts (`buildFullTranslationPrompt` / `buildPronunciationOnlyPrompt`
-  in `src/translate/index.js`) ask the model to prefer a target language's standard romanization
-  or transliteration system when one exists (e.g. romaji for Japanese, pinyin for Mandarin
-  Chinese), falling back to an invented English-spelling phonetic respelling otherwise. Both cases
-  are written into the same `pronunciation` string field on the card — there's no way to tell,
-  from the card alone, which kind of value it holds.
-- **Why:** a single field was the smallest change that let the guidance be added without touching
-  `CARDS_SCHEMA`; deciding whether the distinction actually needs its own schema field was
-  deliberately left open rather than guessed at (see `docs/translate-prompts.md`'s "Open
-  question").
-- **Impact:** a deck built for a language with a real romanization system (Japanese, Mandarin,
-  etc.) can't distinguish "this is the standard romanization, worth its own display treatment"
-  from "this is just a rough phonetic hint" — both render identically in the Anki template.
-- **When to revisit:** if a deck's presentation ever wants to treat the two differently (e.g. show
-  romaji more prominently than an ad hoc respelling), split `pronunciation` into a
-  `romanization`/`phonetic` pair on `CARDS_SCHEMA` and have the model report which kind it
-  produced.
+- **What:** for a language with a configured romanization library (`src/translate/
+  romanizationLibraries.js`), `pronunciation` now comes from a real deterministic library,
+  Haiku-evaluated (`src/translate/romanizationEval.js`) — see the next entry. For a language with
+  no configured library, `translate` still asks the model to prefer a standard system when one
+  exists (romaji, pinyin, etc.), falling back to an invented phonetic respelling otherwise, exactly
+  as before. Both cases are still written into the same `pronunciation` string field on the card —
+  there's no way to tell, from the card alone, which of these three cases (library-backed,
+  model-preferred-standard-system, model-invented-phonetic) produced a given value.
+- **Why:** the pipeline now has an internal signal for at least the first split (library-backed vs.
+  not — whether `getRomanizationLibrary(languageCode)` returned an entry), but surfacing it on
+  `CARDS_SCHEMA` is a deliberately separate, deferred follow-up (see
+  `docs/translate-prompts.md`'s "Open question") — it would commit every downstream consumer (deck
+  template rendering, review tooling) to a two-field shape before there's a concrete presentation
+  reason to need one.
+- **Impact:** a deck built for a language with a real romanization system still can't distinguish
+  "this came from a real deterministic library" / "this is the model's own attempt at a standard
+  system" / "this is just a rough phonetic hint" from the card alone — all render identically in
+  the Anki template.
+- **When to revisit:** if a deck's presentation ever wants to treat these differently (e.g. show
+  library-backed romanization more prominently), split `pronunciation` into a
+  `romanization`/`phonetic` pair on `CARDS_SCHEMA` and have both the library path and the model
+  report which kind they produced.
+
+## Romanization libraries are lazy-loaded, real npm dependencies — a deliberate, bounded exception to this project's dependency-free stance
+
+- **What:** `package.json` now has a real `"dependencies"` block for the first time — seven
+  packages backing `src/translate/romanization/*.js`'s per-language adapters:
+  `kuroshiro`/`kuroshiro-analyzer-kuromoji` (Japanese, kana+kanji → romaji), `pinyin-pro`
+  (Mandarin), `koroman` (Korean), `cyrillic-to-translit-js` (Russian/Cyrillic),
+  `hebrew-transliteration` (Hebrew), `@indic-transliteration/sanscript` (Hindi/Devanagari), and
+  `arabic-transliterate` (Arabic). The Japanese case is the one genuinely costly dependency:
+  `kuromoji`'s bundled IPADIC morphological dictionary is **~41MB unpacked** — real linguistic data
+  needed for kanji-aware analysis, not something that can be hand-rolled small. Every adapter's
+  library import is a dynamic `import()` inside the adapter function itself (never a static
+  top-level import anywhere in `src/translate/`), gated behind `getRomanizationLibrary(languageCode)`
+  actually returning an entry for the run's target language — so a run in an unconfigured language
+  (Spanish, French, Greek, Thai, ...) never evaluates `import("kuroshiro")` at all, never pays
+  kuromoji's dictionary-load cost. `kuroshiro`/`kuromoji` are CJS-only; interop is a plain dynamic
+  `import()` (Node wraps CJS `module.exports` transparently), not `createRequire` — nothing here
+  needs `createRequire`'s synchronous semantics, since every adapter's `romanize()` is async by
+  contract regardless of whether the underlying library itself is sync or async.
+- **Why:** this project's existing "genuinely dependency-free" stance (`src/corpus/epubArchive.js`'s
+  hand-rolled zip/XML parsing) was a decision to hand-roll something narrow and fully specifiable
+  rather than pull in a general-purpose parser — a handful of well-understood XML tags, a zip
+  central-directory format. Romanization doesn't have a narrow hand-rollable version: kanji
+  morphological analysis, pinyin generation, and script-specific transliteration rules all require
+  real linguistic data/rulesets that can't be hand-written small. That earlier precedent doesn't
+  transfer to this problem. The alternative to taking these dependencies was the literal status quo
+  this feature replaced: an LLM guessing at romanization with zero deterministic backing, which is
+  the exact gap this feature exists to close (see `docs/translate-prompts.md`).
+- **Impact:** `npm ci` now installs real third-party packages instead of dev-tooling only;
+  `node_modules` gains kuromoji's ~41MB dictionary specifically (only paid once per process, per
+  Node's module cache, and never paid at all for a run in an unconfigured language).
+- **When to revisit:** if a future maintainer wants to shrink the Japanese dependency further,
+  investigate whether a lighter kanji-aware alternative to `kuromoji` has emerged — none was found
+  during this feature's own research (`wanakana` is lighter but kana-only, insufficient for real
+  sentences containing kanji). If another CJS-only romanization library is added for a new language
+  later, follow this same dynamic-`import()` interop pattern rather than introducing
+  `createRequire` as a second mechanism.
 
 ## Book-conventions pass reads every chapter in one call — no automated coverage check
 

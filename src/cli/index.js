@@ -282,7 +282,7 @@ async function runTranslate(flags, ctx) {
     );
   }
 
-  const { cards, errors } = ctx.translateCorpus(corpus);
+  const { cards, errors } = await ctx.translateCorpus(corpus);
 
   writeJson(paths.cards, cards);
   ctx.log(`translated ${cards.items.length} item(s) to ${paths.cards}`);

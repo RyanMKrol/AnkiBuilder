@@ -102,13 +102,16 @@ CREATE INDEX ix_revlog_cid on revlog (cid);
 CREATE INDEX ix_notes_mid on notes (mid);
 `;
 
-function buildModel(now) {
+// `nowSeconds`: epoch SECONDS — every JSON-embedded `mod` field in this file (model,
+// deck, dconf) uses seconds, matching notes.mod/cards.mod, NOT the milliseconds used
+// by col.mod/col.scm or by note/card `id`s. See writeCollectionDb's own comment.
+function buildModel(nowSeconds) {
   return {
     [MODEL_ID]: {
       id: MODEL_ID,
       name: "AnkiBuilder",
       type: 0,
-      mod: now,
+      mod: nowSeconds,
       usn: -1,
       sortf: 0,
       did: DECK_ID,
@@ -153,11 +156,11 @@ function buildModel(now) {
   };
 }
 
-function deckRow(id, name, now) {
+function deckRow(id, name, nowSeconds) {
   return {
     id,
     name,
-    mod: now,
+    mod: nowSeconds,
     usn: -1,
     lrnToday: [0, 0],
     revToday: [0, 0],
@@ -173,34 +176,34 @@ function deckRow(id, name, now) {
   };
 }
 
-function buildDecks(now, deckName) {
+function buildDecks(nowSeconds, deckName) {
   return {
-    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", now),
-    [DECK_ID]: deckRow(DECK_ID, deckName, now),
+    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", nowSeconds),
+    [DECK_ID]: deckRow(DECK_ID, deckName, nowSeconds),
   };
 }
 
 // The book/parent deck holds no cards itself — Anki's client aggregates due counts
 // under it purely from the "::" name prefix on its chapter sub-decks, no data
 // modeling needed beyond giving the parent name its own row.
-function buildMultiDecks(now, bookName, chapterNames) {
+function buildMultiDecks(nowSeconds, bookName, chapterNames) {
   const book = sanitizeDeckNameSegment(bookName);
   const decks = {
-    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", now),
-    [BOOK_DECK_ID]: deckRow(BOOK_DECK_ID, book, now),
+    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", nowSeconds),
+    [BOOK_DECK_ID]: deckRow(BOOK_DECK_ID, book, nowSeconds),
   };
   chapterNames.forEach((chapterName, index) => {
     const id = chapterDeckId(index);
-    decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(chapterName)}`, now);
+    decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(chapterName)}`, nowSeconds);
   });
   return decks;
 }
 
-function buildDconf(now) {
+function buildDconf(nowSeconds) {
   return {
     1: {
       id: 1,
-      mod: now,
+      mod: nowSeconds,
       name: "Default",
       usn: -1,
       maxTaken: 60,
@@ -273,7 +276,14 @@ function fieldValue(card, name) {
 // collection never collides even though each chapter's own `items` numbering
 // restarts at 0. `position` (and so `due`, new-card order) runs as ONE counter across
 // every chapter in order, so new cards surface chapter-by-chapter in book order.
-function insertNotesAndCards(insertNote, insertCard, chapterGroups, now) {
+//
+// `now` (epoch milliseconds) seeds note/card `id`s — Anki uses millisecond epoch
+// values as its id scheme. `nowSeconds` is a SEPARATE value for the `mod` column on
+// both tables — unlike `col.mod`/`col.scm` (milliseconds), a note's and a card's own
+// `mod` field is epoch SECONDS in Anki's actual schema. Passing the millisecond value
+// there produces a modification time ~1000x in the future, which is the kind of
+// out-of-range timestamp Anki's importer rejects.
+function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeconds) {
   let position = 1;
   chapterGroups.forEach(({ deckId, cards }, chapterIndex) => {
     if (cards.items.length > MAX_ITEMS_PER_CHAPTER) {
@@ -288,18 +298,33 @@ function insertNotesAndCards(insertNote, insertCard, chapterGroups, now) {
       const flds = FIELD_NAMES.map((name) => fieldValue(card, name)).join(FIELD_SEP);
       const sortField = fieldValue(card, FIELD_NAMES[0]);
 
-      insertNote.run(noteId, card.id, MODEL_ID, now, flds, sortField, fieldChecksum(sortField));
+      insertNote.run(
+        noteId,
+        card.id,
+        MODEL_ID,
+        nowSeconds,
+        flds,
+        sortField,
+        fieldChecksum(sortField),
+      );
 
       for (let ord = 0; ord < 2; ord++) {
         const cardId = noteId + ord + 1;
-        insertCard.run(cardId, noteId, deckId, ord, now, position);
+        insertCard.run(cardId, noteId, deckId, ord, nowSeconds, position);
         position++;
       }
     });
   });
 }
 
-function writeCollectionDb({ decksJson, curDeck, activeDecks, now, chapterGroups }) {
+// `now` (milliseconds) seeds col.mod/col.scm and note/card ids — Anki's own id scheme.
+// `nowSeconds` seeds col.crt and every note/card mod field, matching Anki's actual
+// schema convention: col.crt/notes.mod/cards.mod (and, from the caller, every
+// JSON-embedded model/deck/dconf `mod`) are epoch SECONDS, while col.mod/col.scm are
+// epoch milliseconds. `decksJson` is already fully rendered JSON by the time it gets
+// here, built by the caller using nowSeconds too — see buildCollection/
+// buildMultiDeckCollection.
+function writeCollectionDb({ decksJson, curDeck, activeDecks, now, nowSeconds, chapterGroups }) {
   const tmpDir = mkdtempSync(join(tmpdir(), "anki-builder-collection-"));
   const dbPath = join(tmpDir, "collection.anki2");
 
@@ -312,13 +337,13 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, chapterGroups
         "INSERT INTO col (id, crt, mod, scm, ver, dty, usn, ls, conf, models, decks, dconf, tags) VALUES (1, ?, ?, ?, 11, 0, 0, 0, ?, ?, ?, ?, '{}')",
       );
       insertCol.run(
-        now,
+        nowSeconds,
         now,
         now,
         JSON.stringify(buildConf(curDeck, activeDecks)),
-        JSON.stringify(buildModel(now)),
+        JSON.stringify(buildModel(nowSeconds)),
         decksJson,
-        JSON.stringify(buildDconf(now)),
+        JSON.stringify(buildDconf(nowSeconds)),
       );
 
       const insertNote = db.prepare(
@@ -328,7 +353,7 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, chapterGroups
         "INSERT INTO cards (id, nid, did, ord, mod, usn, type, queue, due, ivl, factor, reps, lapses, left, odue, odid, flags, data) VALUES (?, ?, ?, ?, ?, -1, 0, 0, ?, 0, 2500, 0, 0, 0, 0, 0, 0, '')",
       );
 
-      insertNotesAndCards(insertNote, insertCard, chapterGroups, now);
+      insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeconds);
     } finally {
       db.close();
     }
@@ -346,11 +371,13 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, chapterGroups
  * `[sound:...]` (the caller resolves whether the underlying file exists).
  */
 export function buildCollection(cards, { deckName, now }) {
+  const nowSeconds = Math.floor(now / 1000);
   return writeCollectionDb({
-    decksJson: JSON.stringify(buildDecks(now, deckName)),
+    decksJson: JSON.stringify(buildDecks(nowSeconds, deckName)),
     curDeck: DECK_ID,
     activeDecks: [DECK_ID],
     now,
+    nowSeconds,
     chapterGroups: [{ deckId: DECK_ID, cards }],
   });
 }
@@ -365,8 +392,9 @@ export function buildCollection(cards, { deckName, now }) {
  * parent/Default, which hold no cards.
  */
 export function buildMultiDeckCollection(chapterDecks, { bookName, now }) {
+  const nowSeconds = Math.floor(now / 1000);
   const chapterNames = chapterDecks.map((c) => c.name);
-  const decks = buildMultiDecks(now, bookName, chapterNames);
+  const decks = buildMultiDecks(nowSeconds, bookName, chapterNames);
   const chapterGroups = chapterDecks.map((c, index) => ({
     deckId: chapterDeckId(index),
     cards: c.cards,
@@ -377,6 +405,7 @@ export function buildMultiDeckCollection(chapterDecks, { bookName, now }) {
     curDeck: BOOK_DECK_ID,
     activeDecks: Object.keys(decks).map(Number),
     now,
+    nowSeconds,
     chapterGroups,
   });
 }

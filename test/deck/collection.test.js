@@ -189,3 +189,60 @@ test("buildMultiDeckCollection's total card count is the sum of each chapter's i
     assert.equal(cardCount, (3 + 1 + 2) * 2);
   });
 });
+
+test("buildCollection stores col.crt in epoch SECONDS, not milliseconds", () => {
+  const now = 1_700_000_000_000; // a millisecond epoch timestamp
+  const bytes = buildCollection(cardsOf("Hello"), { deckName: "My Deck", now });
+
+  withTempDb(bytes, (db) => {
+    const col = db.prepare("SELECT crt, mod, scm FROM col").get();
+    assert.equal(col.crt, Math.floor(now / 1000), "crt must be seconds, not milliseconds");
+    assert.equal(col.mod, now, "mod stays milliseconds");
+    assert.equal(col.scm, now, "scm stays milliseconds");
+  });
+});
+
+test("buildCollection stores model/deck/note/card mod fields in epoch SECONDS", () => {
+  const now = 1_700_000_000_000;
+  const bytes = buildCollection(cardsOf("Hello"), { deckName: "My Deck", now });
+  const nowSeconds = Math.floor(now / 1000);
+
+  withTempDb(bytes, (db) => {
+    const models = JSON.parse(db.prepare("SELECT models FROM col").get().models);
+    const model = Object.values(models)[0];
+    assert.equal(model.mod, nowSeconds);
+
+    const decks = JSON.parse(db.prepare("SELECT decks FROM col").get().decks);
+    for (const deck of Object.values(decks)) {
+      assert.equal(deck.mod, nowSeconds, `deck "${deck.name}" mod must be seconds`);
+    }
+
+    const note = db.prepare("SELECT mod FROM notes LIMIT 1").get();
+    assert.equal(note.mod, nowSeconds);
+
+    const card = db.prepare("SELECT mod FROM cards LIMIT 1").get();
+    assert.equal(card.mod, nowSeconds);
+  });
+});
+
+test("buildMultiDeckCollection also stores every mod field in epoch SECONDS", () => {
+  const now = 1_700_000_000_000;
+  const nowSeconds = Math.floor(now / 1000);
+  const chapterDecks = [{ name: "Lesson 1", cards: cardsOf("Hello") }];
+  const bytes = buildMultiDeckCollection(chapterDecks, { bookName: "Book", now });
+
+  withTempDb(bytes, (db) => {
+    const col = db.prepare("SELECT crt FROM col").get();
+    assert.equal(col.crt, nowSeconds);
+
+    const decks = JSON.parse(db.prepare("SELECT decks FROM col").get().decks);
+    for (const deck of Object.values(decks)) {
+      assert.equal(deck.mod, nowSeconds);
+    }
+
+    const note = db.prepare("SELECT mod FROM notes LIMIT 1").get();
+    assert.equal(note.mod, nowSeconds);
+    const card = db.prepare("SELECT mod FROM cards LIMIT 1").get();
+    assert.equal(card.mod, nowSeconds);
+  });
+});

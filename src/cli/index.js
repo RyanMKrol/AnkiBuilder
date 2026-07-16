@@ -273,7 +273,10 @@ async function runAssemble(flags, ctx) {
 
     validateCorpus(corpus);
   } else if (flags.template) {
-    corpus = ctx.loadTemplate(flags.template);
+    if (!flags.lang) {
+      throw new Error("--lang is required when assembling from a --template source");
+    }
+    corpus = ctx.loadTemplate(flags.template, flags.lang);
   } else {
     throw new Error(
       `either --template <name>, --chapter <path>, --epub <path> --chapter-number <N>, or --words <path> --course <name> --lesson-number <N> is required. Available templates: ${listTemplates().join(", ")}`,

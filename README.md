@@ -30,8 +30,9 @@ It drives the CLI commands below for you and knows when to pause for your review
 ## Quick start
 
 ```sh
-# From a bundled template — no source material needed
-anki-builder assemble --run output/travel --template travel-essentials
+# From a bundled template — no source material needed. Templates are
+# language-agnostic (English terms + categories only); --lang picks the language.
+anki-builder assemble --run output/travel --template travel-essentials --lang es
 anki-builder review --run output/travel
 anki-builder translate --run output/travel
 anki-builder audio --run output/travel --voice <voiceId>
@@ -89,7 +90,7 @@ npm run build
 
 - [x] Project scaffold, CI
 - [x] Pipeline data contracts + run-directory conventions
-- [x] Bundled template corpora
+- [x] Bundled template corpora (language-agnostic; `travel-essentials`, `numbers`)
 - [x] EPUB → candidate corpus extraction (with dedup + convention-awareness)
 - [x] Translation stage (Claude)
 - [x] Audio stage (ElevenLabs, cached)

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "sourceType": "template"
+  },
+  "items": [
+    { "id": "num_zero", "english": "Zero", "category": "Numbers" },
+    { "id": "num_one", "english": "One", "category": "Numbers" },
+    { "id": "num_two", "english": "Two", "category": "Numbers" },
+    { "id": "num_three", "english": "Three", "category": "Numbers" },
+    { "id": "num_four", "english": "Four", "category": "Numbers" },
+    { "id": "num_five", "english": "Five", "category": "Numbers" },
+    { "id": "num_six", "english": "Six", "category": "Numbers" },
+    { "id": "num_seven", "english": "Seven", "category": "Numbers" },
+    { "id": "num_eight", "english": "Eight", "category": "Numbers" },
+    { "id": "num_nine", "english": "Nine", "category": "Numbers" },
+    { "id": "num_ten", "english": "Ten", "category": "Numbers" },
+    { "id": "num_eleven", "english": "Eleven", "category": "Numbers" },
+    { "id": "num_twelve", "english": "Twelve", "category": "Numbers" },
+    { "id": "num_thirteen", "english": "Thirteen", "category": "Numbers" },
+    { "id": "num_fourteen", "english": "Fourteen", "category": "Numbers" },
+    { "id": "num_fifteen", "english": "Fifteen", "category": "Numbers" },
+    { "id": "num_sixteen", "english": "Sixteen", "category": "Numbers" },
+    { "id": "num_seventeen", "english": "Seventeen", "category": "Numbers" },
+    { "id": "num_eighteen", "english": "Eighteen", "category": "Numbers" },
+    { "id": "num_nineteen", "english": "Nineteen", "category": "Numbers" },
+    { "id": "num_twenty", "english": "Twenty", "category": "Numbers" },
+    { "id": "num_thirty", "english": "Thirty", "category": "Numbers" },
+    { "id": "num_forty", "english": "Forty", "category": "Numbers" },
+    { "id": "num_fifty", "english": "Fifty", "category": "Numbers" },
+    { "id": "num_sixty", "english": "Sixty", "category": "Numbers" },
+    { "id": "num_seventy", "english": "Seventy", "category": "Numbers" },
+    { "id": "num_eighty", "english": "Eighty", "category": "Numbers" },
+    { "id": "num_ninety", "english": "Ninety", "category": "Numbers" },
+    { "id": "num_hundred", "english": "One hundred", "category": "Numbers" },
+    { "id": "num_thousand", "english": "One thousand", "category": "Numbers" }
+  ]
+}

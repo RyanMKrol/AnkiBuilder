@@ -52,12 +52,13 @@ test("throws when --run is missing", async () => {
 
 test("assemble: dispatches to loadTemplate and writes corpus.json", async () => {
   await withTempDir(async (runDir) => {
-    const loadTemplate = (name) => {
+    const loadTemplate = (name, targetLanguage) => {
       assert.equal(name, "travel-essentials");
+      assert.equal(targetLanguage, "es");
       return baseCorpus();
     };
 
-    await runCli(["assemble", "--run", runDir, "--template", "travel-essentials"], {
+    await runCli(["assemble", "--run", runDir, "--template", "travel-essentials", "--lang", "es"], {
       loadTemplate,
       log: () => {},
     });
@@ -66,6 +67,21 @@ test("assemble: dispatches to loadTemplate and writes corpus.json", async () => 
     assert(existsSync(paths.corpus));
     const written = JSON.parse(await fs.readFile(paths.corpus, "utf-8"));
     assert.equal(written.items[0].id, "a1");
+  });
+});
+
+test("assemble: throws when --template is given without --lang", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () =>
+        runCli(["assemble", "--run", runDir, "--template", "travel-essentials"], {
+          loadTemplate: () => {
+            throw new Error("loadTemplate should not be reached without --lang");
+          },
+          log: () => {},
+        }),
+      /--lang is required/,
+    );
   });
 });
 

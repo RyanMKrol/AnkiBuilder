@@ -32,11 +32,13 @@ It drives the CLI commands below for you and knows when to pause for your review
 ```sh
 # From a bundled template — no source material needed. Templates are
 # language-agnostic (English terms + categories only); --lang picks the language.
-anki-builder assemble --run output/travel --template travel-essentials --lang es
-anki-builder review --run output/travel
-anki-builder translate --run output/travel
-anki-builder audio --run output/travel --voice <voiceId>
-anki-builder deck --run output/travel --name "Travel Spanish"
+# --output-root files the deck under output/templates/<name>/<language>/.
+anki-builder assemble --output-root output --template travel-essentials --lang es
+RUN=output/templates/travel-essentials/es      # the dir assemble just resolved
+anki-builder review --run "$RUN"
+anki-builder translate --run "$RUN"
+anki-builder audio --run "$RUN" --voice <voiceId>
+anki-builder deck --run "$RUN" --name "Travel Spanish"
 ```
 
 ```sh
@@ -58,6 +60,9 @@ For the full command reference (every flag, every source type), see the skill's
   directory, wherever you pointed `--run`.
 - Books and lesson-based courses are auto-organized under `output/<book-or-course-slug>/`, one
   folder per chapter/lesson, plus a merged `deck.apkg` at the top.
+- Template decks are auto-organized under `output/templates/<template-name>/<language>/` when you
+  pass `--output-root` — one folder per language, the deck's `deck.apkg` right inside it (no merge
+  step; there's only ever one unit per language).
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   (gitignored) so re-runs don't redo expensive work.
 

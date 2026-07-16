@@ -438,3 +438,25 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** when adding reading generation to `translate` — surface `reading` in the
   translate review artifact and validate it (ideally a deterministic generator for numerics, LLM +
   review for open vocabulary) so the whole pipeline can produce reading-driven audio unattended.
+
+## Template decks reserve `output/templates/` — a book/course could in theory collide with it
+
+- **What:** `assemble --output-root <dir> --template <name> --lang <lang>` files template decks
+  under a reserved `templates/` segment: `output/templates/<template>/<language>/`
+  (`resolveTemplateRunDir`, `src/cli/outputPaths.js`). Books (`resolveBookSlug`) and courses
+  (`resolveCourseSlug`) allocate their folders directly at the `output/` root by slugifying the
+  book title / course name. Nothing stops a book literally titled "Templates" (or a course named
+  that) from slugifying to `templates` and sharing the root folder with the template tree. There's
+  no collision guard between the reserved segment and book/course slugs.
+- **Why:** the reserved-segment layout was what was asked for (templates grouped under their own
+  `templates/` folder, then by name, then by language), and a title/name that collides with it is
+  vanishingly rare; adding a guard (e.g. refusing or suffixing a book/course slug that equals a
+  reserved segment) is more machinery than the risk currently warrants.
+- **Impact:** in the pathological case, a book/course named "Templates" would nest its
+  `chapter-*`/`lesson-*` folders (or `course.json`) alongside `<template-name>/` folders under the
+  same `output/templates/` directory — confusing, though the per-unit `corpus.meta` still records
+  the true identity, so nothing is silently mis-merged (`deck --book-dir` keys off `.epub-hash` /
+  `course.json` markers, which template folders don't have).
+- **When to revisit:** if real book/course titles ever approach the reserved name, add a small guard
+  in `resolveBookSlug`/`resolveCourseSlug` that suffixes any slug equal to a reserved top-level
+  segment (`templates`), the same numeric-suffix spirit already used for slug collisions.

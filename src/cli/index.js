@@ -28,6 +28,7 @@ import {
   resolveChapterRunDir as defaultResolveChapterRunDir,
   resolveCourseSlug as defaultResolveCourseSlug,
   resolveLessonRunDir as defaultResolveLessonRunDir,
+  resolveTemplateRunDir as defaultResolveTemplateRunDir,
   loadCourseMeta as defaultLoadCourseMeta,
 } from "./outputPaths.js";
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
@@ -107,6 +108,16 @@ function resolveAssembleRunDir(flags, ctx) {
     return flags.run;
   }
 
+  if (flags.template) {
+    if (!flags.lang) {
+      throw new Error("--lang is required when assembling from a --template source");
+    }
+    const outputRoot = resolve(flags["output-root"]);
+    const runDir = ctx.resolveTemplateRunDir(outputRoot, flags.template, flags.lang);
+    ctx.log(`resolved run directory: ${runDir}`);
+    return runDir;
+  }
+
   if (flags.words) {
     if (!flags.course) {
       throw new Error("--course <name> is required when assembling from --words");
@@ -126,7 +137,7 @@ function resolveAssembleRunDir(flags, ctx) {
   }
 
   if (!flags.epub) {
-    throw new Error("--output-root can only be used with --epub or --words");
+    throw new Error("--output-root can only be used with --template, --epub, or --words");
   }
   if (!flags["chapter-number"]) {
     throw new Error("--chapter-number is required when assembling from --epub");
@@ -148,7 +159,9 @@ function resolveAssembleRunDir(flags, ctx) {
 async function runAssemble(flags, ctx) {
   const runDir = resolveAssembleRunDir(flags, ctx);
   if (!runDir) {
-    throw new Error("--run <dir> is required (or --output-root <dir> with --epub or --words)");
+    throw new Error(
+      "--run <dir> is required (or --output-root <dir> with --template, --epub, or --words)",
+    );
   }
   const paths = ctx.runPaths(runDir);
 
@@ -546,6 +559,7 @@ export async function runCli(argv, deps = {}) {
     resolveChapterRunDir = defaultResolveChapterRunDir,
     resolveCourseSlug = defaultResolveCourseSlug,
     resolveLessonRunDir = defaultResolveLessonRunDir,
+    resolveTemplateRunDir = defaultResolveTemplateRunDir,
     loadCourseMeta = defaultLoadCourseMeta,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
     assembleCorpusFromLessonWords = defaultAssembleCorpusFromLessonWords,
@@ -593,6 +607,7 @@ export async function runCli(argv, deps = {}) {
     resolveChapterRunDir,
     resolveCourseSlug,
     resolveLessonRunDir,
+    resolveTemplateRunDir,
     loadCourseMeta,
     assembleCorpusFromChapter,
     assembleCorpusFromLessonWords,

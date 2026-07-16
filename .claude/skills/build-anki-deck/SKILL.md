@@ -111,13 +111,23 @@ own small flow that completes *before* you return to the deck build:
 
 Once the source is decided, I'll assemble the corpus.
 
-**For a template or a manual `--chapter` source** (no book/course identity to organize by), pick
-any run directory and pass it directly. Templates are language-agnostic, so `--lang` is **required**
-here (it's the target language gathered in Step 1):
+**For a template**, pass `--output-root output` so the deck is filed under the organized
+`output/templates/<templateName>/<lang>/` tree (one folder per language). Templates are
+language-agnostic, so `--lang` is **required** here (it's the target language gathered in Step 1):
 
 ```sh
-anki-builder assemble --run <runDir> --template <templateName> --lang <lang>
+anki-builder assemble --output-root output --template <templateName> --lang <lang>
 ```
+
+This prints `resolved run directory: output/templates/<templateName>/<lang>` — **capture that path**
+as the `<runDir>` for every later `review`/`translate`/`audio`/`deck`/`render-review` call, exactly
+like the lesson/EPUB forms below. Re-running `assemble` for the same template+language reuses that
+folder. There's no book-level merge for a template (only one unit per language), so the Step 5
+`deck --run <runDir>` output is already the final artifact — skip Step 6. (A one-off ad hoc build can
+still use a plain `--run <anyDir>` instead of `--output-root`.)
+
+**For a manual `--chapter` source** (no identity to organize by), pick any run directory and pass it
+directly with `--run <runDir>` (also requires `--lang`).
 
 **For a real-life lesson**, pass `--output-root` (same idea as an EPUB below) along with the
 course/lesson details gathered in Step 1:
@@ -319,7 +329,8 @@ All commands use `--run <dir>` to specify the run directory and read/write artif
 
 ### Assemble corpus
 ```sh
-anki-builder assemble --run <dir> --template travel-essentials --lang es
+anki-builder assemble --output-root output --template travel-essentials --lang es
+anki-builder assemble --run <dir> --template travel-essentials --lang es   # ad hoc, unorganized
 anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang es
 anki-builder assemble --output-root output --words <path> --course "Intensive Japanese 1" \
@@ -397,6 +408,15 @@ output/<course-slug>/
   lesson-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
   lesson-1/...
   deck.apkg               # built by `deck --book-dir output/<course-slug>` (Step 6)
+```
+
+A template deck assembled via `--output-root` lands under a reserved `templates/` segment, keyed by
+template name then language — one unit per language, so its `deck.apkg` is the final artifact (no
+book-level merge, no Step 6):
+
+```
+output/templates/<template-name>/<language>/
+  corpus.json, cards.json, audio/, review-*.html, deck.apkg
 ```
 
 Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio.

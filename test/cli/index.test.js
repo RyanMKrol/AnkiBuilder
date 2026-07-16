@@ -70,6 +70,42 @@ test("assemble: dispatches to loadTemplate and writes corpus.json", async () => 
   });
 });
 
+test("assemble: --output-root + --template resolves output/templates/<name>/<lang>/ and writes there", async () => {
+  await withTempDir(async (outputRoot) => {
+    const loadTemplate = (name, targetLanguage) => {
+      assert.equal(name, "numbers");
+      assert.equal(targetLanguage, "ja");
+      return baseCorpus();
+    };
+
+    await runCli(
+      ["assemble", "--output-root", outputRoot, "--template", "numbers", "--lang", "ja"],
+      { loadTemplate, log: () => {} },
+    );
+
+    const runDir = join(outputRoot, "templates", "numbers", "ja");
+    const paths = runPaths(runDir);
+    assert(existsSync(paths.corpus), "corpus.json should be written under templates/numbers/ja/");
+    const written = JSON.parse(await fs.readFile(paths.corpus, "utf-8"));
+    assert.equal(written.items[0].id, "a1");
+  });
+});
+
+test("assemble: --output-root + --template requires --lang", async () => {
+  await withTempDir(async (outputRoot) => {
+    await assert.rejects(
+      () =>
+        runCli(["assemble", "--output-root", outputRoot, "--template", "numbers"], {
+          loadTemplate: () => {
+            throw new Error("loadTemplate should not be reached without --lang");
+          },
+          log: () => {},
+        }),
+      /--lang is required/,
+    );
+  });
+});
+
 test("assemble: throws when --template is given without --lang", async () => {
   await withTempDir(async (runDir) => {
     await assert.rejects(
@@ -365,13 +401,16 @@ test("assemble: throws when --epub is given without --lang", async () => {
   });
 });
 
-test("assemble: throws when --output-root is given without --epub", async () => {
+test("assemble: throws when --output-root is given with an unsupported source (--chapter)", async () => {
   await assert.rejects(
     () =>
-      runCli(["assemble", "--output-root", "/tmp/output", "--template", "travel-essentials"], {
-        log: () => {},
-      }),
-    /--output-root can only be used with --epub/,
+      runCli(
+        ["assemble", "--output-root", "/tmp/output", "--chapter", "/tmp/ch.xhtml", "--lang", "es"],
+        {
+          log: () => {},
+        },
+      ),
+    /--output-root can only be used with --template, --epub, or --words/,
   );
 });
 

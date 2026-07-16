@@ -42,10 +42,10 @@ anki-builder deck --run "$RUN" --name "Travel Spanish"
 ```
 
 ```sh
-# From a book, chapter by chapter — organizes everything under output/epub/<book-slug>/
+# From a book, chapter by chapter — organizes everything under output/epubs/<book-slug>/
 anki-builder assemble --output-root output --epub mybook.epub --chapter-number 1 --lang ja
 # ...review / translate / audio for that chapter, then repeat for each chapter...
-anki-builder deck --book-dir output/epub/<book-slug>   # merges every chapter into one deck
+anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter into one deck
 ```
 
 Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` and add
@@ -59,8 +59,8 @@ For the full command reference (every flag, every source type), see the skill's
 - Each run's artifacts (`corpus.json`, `cards.json`, `deck.apkg`, review pages) live in its run
   directory, wherever you pointed `--run`.
 - Every source type lives under its own reserved folder of `output/` when you pass `--output-root`:
-  EPUB books under `output/epub/<book-slug>/`, lesson-based courses under
-  `output/lesson/<course-slug>/` (each one folder per chapter/lesson, plus a merged `deck.apkg` at
+  EPUB books under `output/epubs/<book-slug>/`, lesson-based courses under
+  `output/courses/<course-slug>/` (each one folder per chapter/lesson, plus a merged `deck.apkg` at
   the top), and bundled templates under `output/templates/<template-name>/<language>/` (one folder
   per language, its `deck.apkg` right inside — no merge step, since there's only ever one unit per
   language).

@@ -6,23 +6,25 @@ import { loadBookMeta, saveBookSlug } from "../corpus/epubLibrary.js";
 
 // Every source type lands under its own reserved top-level segment of `outputRoot`,
 // so book slugs, course slugs, and template names can never collide with each other
-// at the root: EPUB books under `epub/`, lesson-sourced courses under `lesson/`,
-// bundled templates under `templates/`. `epubRoot`/`lessonRoot` are the per-source
-// category roots the resolvers below build their slug folders inside.
-const EPUB_DIR = "epub";
-const LESSON_DIR = "lesson";
+// at the root: EPUB books under `epubs/`, lesson-sourced courses under `courses/`,
+// bundled templates under `templates/`. `epubsRoot`/`coursesRoot` are the per-source
+// category roots the resolvers below build their slug folders inside. (The segment is
+// `courses/` — a course is the top-level unit; the `lesson-<seq>/` folders live one
+// level down inside each course.)
+const EPUBS_DIR = "epubs";
+const COURSES_DIR = "courses";
 const TEMPLATES_DIR = "templates";
 
-function epubRoot(outputRoot) {
-  return join(outputRoot, EPUB_DIR);
+function epubsRoot(outputRoot) {
+  return join(outputRoot, EPUBS_DIR);
 }
 
-function lessonRoot(outputRoot) {
-  return join(outputRoot, LESSON_DIR);
+function coursesRoot(outputRoot) {
+  return join(outputRoot, COURSES_DIR);
 }
 
 function epubHashMarkerPath(outputRoot, slug) {
-  return join(epubRoot(outputRoot), slug, ".epub-hash");
+  return join(epubsRoot(outputRoot), slug, ".epub-hash");
 }
 
 function matchesHashMarker(outputRoot, slug, epubHash) {
@@ -31,7 +33,7 @@ function matchesHashMarker(outputRoot, slug, epubHash) {
 }
 
 /**
- * Resolves (and, on first use, creates) a book's folder under `outputRoot/epub/` — keyed by
+ * Resolves (and, on first use, creates) a book's folder under `outputRoot/epubs/` — keyed by
  * content hash, but named with a human-readable slug derived from the EPUB's own
  * title. Once assigned, the slug is persisted to the library (via `saveBookSlug`) and
  * reused on every later call for the same hash, without recomputing it from the
@@ -51,14 +53,14 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
   let candidate = baseSlug;
   let suffix = 2;
   while (
-    existsSync(join(epubRoot(outputRoot), candidate)) &&
+    existsSync(join(epubsRoot(outputRoot), candidate)) &&
     !matchesHashMarker(outputRoot, candidate, epubHash)
   ) {
     candidate = `${baseSlug}-${suffix}`;
     suffix++;
   }
 
-  mkdirSync(join(epubRoot(outputRoot), candidate), { recursive: true });
+  mkdirSync(join(epubsRoot(outputRoot), candidate), { recursive: true });
   writeFileSync(epubHashMarkerPath(outputRoot, candidate), epubHash);
   saveBookSlug(epubHash, candidate, opts);
   return candidate;
@@ -94,7 +96,7 @@ function existingChapterSeqs(bookDir) {
 
 /**
  * Resolves the run directory for one (epubHash, chapterNumber) pair under
- * `outputRoot/epub/<slug>/` — reusing an existing `chapter-<seq>/` whose own corpus.json
+ * `outputRoot/epubs/<slug>/` — reusing an existing `chapter-<seq>/` whose own corpus.json
  * already matches this exact chapter (same idempotency spirit as assemble's own
  * "corpus.json already exists — reusing", just at directory granularity), or else
  * allocating the next free sequential index (gaps from a manually-deleted folder are
@@ -102,7 +104,7 @@ function existingChapterSeqs(bookDir) {
  * corpus.json write does that, same as every other run dir today.
  */
 export function resolveChapterRunDir(outputRoot, slug, epubHash, chapterNumber) {
-  const bookDir = join(epubRoot(outputRoot), slug);
+  const bookDir = join(epubsRoot(outputRoot), slug);
   const seqs = existingChapterSeqs(bookDir);
 
   for (const seq of seqs) {
@@ -121,7 +123,7 @@ export function resolveChapterRunDir(outputRoot, slug, epubHash, chapterNumber) 
 }
 
 function courseMarkerPath(outputRoot, slug) {
-  return join(lessonRoot(outputRoot), slug, "course.json");
+  return join(coursesRoot(outputRoot), slug, "course.json");
 }
 
 /**
@@ -140,12 +142,12 @@ export function loadCourseMeta(courseDir) {
 }
 
 /**
- * Lists every course folder directly under `outputRoot/lesson/` — anything with a
+ * Lists every course folder directly under `outputRoot/courses/` — anything with a
  * `course.json` marker — as `{ slug, name, targetLanguage }`. Used to offer "pick an
  * existing course" during lesson assembly instead of always creating a new one.
  */
 export function listCourses(outputRoot) {
-  const root = lessonRoot(outputRoot);
+  const root = coursesRoot(outputRoot);
   if (!existsSync(root)) {
     return [];
   }
@@ -159,7 +161,7 @@ export function listCourses(outputRoot) {
 }
 
 /**
- * Resolves (and, on first use, creates) a course's folder under `outputRoot/lesson/` — the
+ * Resolves (and, on first use, creates) a course's folder under `outputRoot/courses/` — the
  * lesson-source analogue of resolveBookSlug, but keyed by name (case-insensitive
  * exact match against an existing `course.json`) rather than content hash, since
  * there's no source file to hash the way there is for an EPUB. Re-running with the
@@ -178,12 +180,12 @@ export function resolveCourseSlug(outputRoot, courseName, targetLanguage) {
   const baseSlug = slugify(courseName);
   let candidate = baseSlug;
   let suffix = 2;
-  while (existsSync(join(lessonRoot(outputRoot), candidate))) {
+  while (existsSync(join(coursesRoot(outputRoot), candidate))) {
     candidate = `${baseSlug}-${suffix}`;
     suffix++;
   }
 
-  mkdirSync(join(lessonRoot(outputRoot), candidate), { recursive: true });
+  mkdirSync(join(coursesRoot(outputRoot), candidate), { recursive: true });
   writeFileSync(
     courseMarkerPath(outputRoot, candidate),
     JSON.stringify({ name: courseName, targetLanguage }, null, 2) + "\n",
@@ -205,14 +207,14 @@ function existingLessonSeqs(courseDir) {
 
 /**
  * Resolves the run directory for one (courseSlug, lessonNumber) pair under
- * `outputRoot/lesson/<courseSlug>/` — the lesson-source analogue of resolveChapterRunDir,
+ * `outputRoot/courses/<courseSlug>/` — the lesson-source analogue of resolveChapterRunDir,
  * naming folders `lesson-<seq>` instead of `chapter-<seq>`. lessonNumber is matched
  * against each existing lesson's `corpus.meta.chapterNumber` (that field is reused
  * as-is for a lesson's number — see the courseSlug comment on CORPUS_SCHEMA in
  * model/index.js), not a separate lessonNumber field.
  */
 export function resolveLessonRunDir(outputRoot, courseSlug, lessonNumber) {
-  const courseDir = join(lessonRoot(outputRoot), courseSlug);
+  const courseDir = join(coursesRoot(outputRoot), courseSlug);
   const seqs = existingLessonSeqs(courseDir);
 
   for (const seq of seqs) {
@@ -237,7 +239,7 @@ export function resolveLessonRunDir(outputRoot, courseSlug, lessonNumber) {
  * override — resolveLessonRunDir itself never calls this.
  */
 export function nextLessonNumber(outputRoot, courseSlug) {
-  const courseDir = join(lessonRoot(outputRoot), courseSlug);
+  const courseDir = join(coursesRoot(outputRoot), courseSlug);
   let max = 0;
   for (const seq of existingLessonSeqs(courseDir)) {
     const corpusPath = join(courseDir, `lesson-${seq}`, "corpus.json");

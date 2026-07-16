@@ -200,15 +200,15 @@ always relative to the repo itself, regardless of which directory you invoke the
 ## Output layout
 
 When you pass `assemble --output-root <dir>`, every source type lands under its own **reserved
-top-level segment** of that root — `epub/` for books, `lesson/` for courses, `templates/` for
+top-level segment** of that root — `epubs/` for books, `courses/` for courses, `templates/` for
 templates — so a book slug, a course slug, and a template name can never collide at the root
-(`EPUB_DIR`/`LESSON_DIR`/`TEMPLATES_DIR`, `src/cli/outputPaths.js`).
+(`EPUBS_DIR`/`COURSES_DIR`/`TEMPLATES_DIR`, `src/cli/outputPaths.js`).
 
-For an `--epub`-sourced book, artifacts land under `epub/`, organized by book then by chapter —
+For an `--epub`-sourced book, artifacts land under `epubs/`, organized by book then by chapter —
 instead of an arbitrary flat `--run <dir>` per chapter:
 
 ```
-output/epub/<book-slug>/
+output/epubs/<book-slug>/
   .epub-hash                     # binds this slug to one epubHash (collision guard — see
                                   #   resolveBookSlug, src/cli/outputPaths.js)
   chapter-0/corpus.json, cards.json, audio/, review-*.html    # ordinary per-chapter artifacts,
@@ -224,12 +224,12 @@ allocating a new one. A manual `--chapter` source has no identity to organize by
 using a plain, freely-named `--run <dir>`.
 
 A `--words`-sourced course (see [`assemble`](#assemble) above) mirrors this exact shape under its
-own `lesson/` segment — `lesson/<course-slug>/lesson-<seq>/` instead of
-`epub/<book-slug>/chapter-<seq>/` — since both sourceTypes need the same "numbered sub-deck of a
+own `courses/` segment — `courses/<course-slug>/lesson-<seq>/` instead of
+`epubs/<book-slug>/chapter-<seq>/` — since both sourceTypes need the same "numbered sub-deck of a
 bigger merged collection" structure:
 
 ```
-output/lesson/<course-slug>/
+output/courses/<course-slug>/
   course.json                    # { name, targetLanguage } — written by resolveCourseSlug on
                                   #   first use, read back by loadCourseMeta for deck --book-dir's
                                   #   course-name fallback and by listCourses for course discovery

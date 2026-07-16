@@ -51,6 +51,7 @@
     { "id": "num_90", "english": "Ninety", "category": "Numbers" },
     { "id": "num_92", "english": "Ninety-two", "category": "Numbers" },
     { "id": "num_96", "english": "Ninety-six", "category": "Numbers" },
+    { "id": "num_99", "english": "Ninety-nine", "category": "Numbers" },
     { "id": "num_100", "english": "One hundred", "category": "Numbers" },
     { "id": "num_101", "english": "One hundred one", "category": "Numbers" },
     { "id": "num_125", "english": "One hundred twenty-five", "category": "Numbers" },
@@ -66,6 +67,7 @@
     { "id": "num_700", "english": "Seven hundred", "category": "Numbers" },
     { "id": "num_750", "english": "Seven hundred fifty", "category": "Numbers" },
     { "id": "num_850", "english": "Eight hundred fifty", "category": "Numbers" },
+    { "id": "num_888", "english": "Eight hundred eighty-eight", "category": "Numbers" },
     { "id": "num_999", "english": "Nine hundred ninety-nine", "category": "Numbers" },
     { "id": "num_1000", "english": "One thousand", "category": "Numbers" },
     { "id": "num_10000", "english": "Ten thousand", "category": "Numbers" },
@@ -76,7 +78,9 @@
     { "id": "num_500000", "english": "Five hundred thousand", "category": "Numbers" },
     { "id": "num_1000000", "english": "One million", "category": "Numbers" },
     { "id": "num_5000000", "english": "Five million", "category": "Numbers" },
+    { "id": "num_10000000", "english": "Ten million", "category": "Numbers" },
     { "id": "num_100000000", "english": "One hundred million", "category": "Numbers" },
-    { "id": "num_1000000000", "english": "One billion", "category": "Numbers" }
+    { "id": "num_1000000000", "english": "One billion", "category": "Numbers" },
+    { "id": "num_1000000000000", "english": "One trillion", "category": "Numbers" }
   ]
 }

@@ -51,16 +51,16 @@ function registerFixtureEpub(sourceDir, libraryHomeDir, title, content) {
   return { epubPath, epubHash };
 }
 
-test("resolveBookSlug() creates output/epub/<slug>/, writes a .epub-hash marker, and persists the slug", () => {
+test("resolveBookSlug() creates output/epubs/<slug>/, writes a .epub-hash marker, and persists the slug", () => {
   withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
     const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
 
     const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
 
     assert.equal(slug, "my-book");
-    assert.ok(existsSync(join(outputRoot, "epub", "my-book")));
+    assert.ok(existsSync(join(outputRoot, "epubs", "my-book")));
     assert.equal(
-      readFileSync(join(outputRoot, "epub", "my-book", ".epub-hash"), "utf-8"),
+      readFileSync(join(outputRoot, "epubs", "my-book", ".epub-hash"), "utf-8"),
       epubHash,
     );
 
@@ -122,8 +122,8 @@ test("resolveBookSlug() reuses the base slug if its folder+marker already exist 
     // Simulate the folder+marker already existing (e.g. a previous resolution) while
     // book.json's own slug field was never persisted (or got cleared) — the
     // "matches this epubHash" branch of the collision loop should still find it.
-    mkdirSync(join(outputRoot, "epub", "my-book"), { recursive: true });
-    writeFileSync(join(outputRoot, "epub", "my-book", ".epub-hash"), epubHash);
+    mkdirSync(join(outputRoot, "epubs", "my-book"), { recursive: true });
+    writeFileSync(join(outputRoot, "epubs", "my-book", ".epub-hash"), epubHash);
 
     const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
 
@@ -185,13 +185,13 @@ test("resolveTemplateRunDir() does not create the directory (the corpus write do
 test("resolveChapterRunDir() allocates chapter-0 when no chapters exist yet", () => {
   withTempDirs(({ outputRoot }) => {
     const runDir = resolveChapterRunDir(outputRoot, "my-book", "hash-a", 1);
-    assert.equal(runDir, join(outputRoot, "epub", "my-book", "chapter-0"));
+    assert.equal(runDir, join(outputRoot, "epubs", "my-book", "chapter-0"));
   });
 });
 
 test("resolveChapterRunDir() allocates the next index for a new chapter of an existing book", () => {
   withTempDirs(({ outputRoot }) => {
-    const bookDir = join(outputRoot, "epub", "my-book");
+    const bookDir = join(outputRoot, "epubs", "my-book");
     writeChapterCorpus(bookDir, 0, { epubHash: "hash-a", chapterNumber: 14 });
 
     const runDir = resolveChapterRunDir(outputRoot, "my-book", "hash-a", 15);
@@ -202,7 +202,7 @@ test("resolveChapterRunDir() allocates the next index for a new chapter of an ex
 
 test("resolveChapterRunDir() reuses the existing folder for the same (epubHash, chapterNumber)", () => {
   withTempDirs(({ outputRoot }) => {
-    const bookDir = join(outputRoot, "epub", "my-book");
+    const bookDir = join(outputRoot, "epubs", "my-book");
     writeChapterCorpus(bookDir, 0, { epubHash: "hash-a", chapterNumber: 14 });
     writeChapterCorpus(bookDir, 1, { epubHash: "hash-a", chapterNumber: 15 });
 
@@ -214,7 +214,7 @@ test("resolveChapterRunDir() reuses the existing folder for the same (epubHash, 
 
 test("resolveChapterRunDir() tolerates gaps — never backfills a vacated index", () => {
   withTempDirs(({ outputRoot }) => {
-    const bookDir = join(outputRoot, "epub", "my-book");
+    const bookDir = join(outputRoot, "epubs", "my-book");
     writeChapterCorpus(bookDir, 0, { epubHash: "hash-a", chapterNumber: 11 });
     writeChapterCorpus(bookDir, 2, { epubHash: "hash-a", chapterNumber: 15 });
 
@@ -224,12 +224,12 @@ test("resolveChapterRunDir() tolerates gaps — never backfills a vacated index"
   });
 });
 
-test("resolveCourseSlug() creates output/lesson/<slug>/ and writes a course.json marker", () => {
+test("resolveCourseSlug() creates output/courses/<slug>/ and writes a course.json marker", () => {
   withTempDirs(({ outputRoot }) => {
     const slug = resolveCourseSlug(outputRoot, "Intensive Japanese 1", "ja");
 
     assert.equal(slug, "intensive-japanese-1");
-    assert.deepEqual(loadCourseMeta(join(outputRoot, "lesson", slug)), {
+    assert.deepEqual(loadCourseMeta(join(outputRoot, "courses", slug)), {
       name: "Intensive Japanese 1",
       targetLanguage: "ja",
     });
@@ -248,7 +248,7 @@ test("resolveCourseSlug() reuses the existing course folder on a case-insensitiv
 test("resolveCourseSlug() disambiguates a name collision with an unrelated existing folder", () => {
   withTempDirs(({ outputRoot }) => {
     // Another course (or stray folder) already occupying that slug under lesson/.
-    mkdirSync(join(outputRoot, "lesson", "intensive-japanese-1"), { recursive: true });
+    mkdirSync(join(outputRoot, "courses", "intensive-japanese-1"), { recursive: true });
 
     const slug = resolveCourseSlug(outputRoot, "Intensive Japanese 1", "ja");
 
@@ -260,7 +260,7 @@ test("listCourses() returns every course.json-marked folder, ignoring plain (e.g
   withTempDirs(({ outputRoot }) => {
     resolveCourseSlug(outputRoot, "Intensive Japanese 1", "ja");
     // A plain (markerless) folder alongside the courses under lesson/ — must be ignored.
-    mkdirSync(join(outputRoot, "lesson", "some-plain-folder"), { recursive: true });
+    mkdirSync(join(outputRoot, "courses", "some-plain-folder"), { recursive: true });
 
     const courses = listCourses(outputRoot);
 
@@ -297,13 +297,13 @@ function writeLessonCorpus(courseDir, seq, { courseSlug, lessonNumber }) {
 test("resolveLessonRunDir() allocates lesson-0 when no lessons exist yet", () => {
   withTempDirs(({ outputRoot }) => {
     const runDir = resolveLessonRunDir(outputRoot, "my-course", 1);
-    assert.equal(runDir, join(outputRoot, "lesson", "my-course", "lesson-0"));
+    assert.equal(runDir, join(outputRoot, "courses", "my-course", "lesson-0"));
   });
 });
 
 test("resolveLessonRunDir() allocates the next index for a new lesson of an existing course", () => {
   withTempDirs(({ outputRoot }) => {
-    const courseDir = join(outputRoot, "lesson", "my-course");
+    const courseDir = join(outputRoot, "courses", "my-course");
     writeLessonCorpus(courseDir, 0, { courseSlug: "my-course", lessonNumber: 1 });
 
     const runDir = resolveLessonRunDir(outputRoot, "my-course", 2);
@@ -314,7 +314,7 @@ test("resolveLessonRunDir() allocates the next index for a new lesson of an exis
 
 test("resolveLessonRunDir() reuses the existing folder for the same (courseSlug, lessonNumber)", () => {
   withTempDirs(({ outputRoot }) => {
-    const courseDir = join(outputRoot, "lesson", "my-course");
+    const courseDir = join(outputRoot, "courses", "my-course");
     writeLessonCorpus(courseDir, 0, { courseSlug: "my-course", lessonNumber: 1 });
     writeLessonCorpus(courseDir, 1, { courseSlug: "my-course", lessonNumber: 2 });
 
@@ -326,7 +326,7 @@ test("resolveLessonRunDir() reuses the existing folder for the same (courseSlug,
 
 test("resolveLessonRunDir() tolerates gaps — never backfills a vacated index", () => {
   withTempDirs(({ outputRoot }) => {
-    const courseDir = join(outputRoot, "lesson", "my-course");
+    const courseDir = join(outputRoot, "courses", "my-course");
     writeLessonCorpus(courseDir, 0, { courseSlug: "my-course", lessonNumber: 1 });
     writeLessonCorpus(courseDir, 2, { courseSlug: "my-course", lessonNumber: 3 });
 
@@ -344,7 +344,7 @@ test("nextLessonNumber() suggests 1 for a brand-new course", () => {
 
 test("nextLessonNumber() suggests one past the highest existing lesson number", () => {
   withTempDirs(({ outputRoot }) => {
-    const courseDir = join(outputRoot, "lesson", "my-course");
+    const courseDir = join(outputRoot, "courses", "my-course");
     writeLessonCorpus(courseDir, 0, { courseSlug: "my-course", lessonNumber: 1 });
     writeLessonCorpus(courseDir, 1, { courseSlug: "my-course", lessonNumber: 2 });
 

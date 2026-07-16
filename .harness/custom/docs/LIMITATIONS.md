@@ -442,14 +442,14 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 ## `--output-root` reorg has no automatic migration for pre-existing flat `output/` folders
 
 - **What:** every source type now nests under a reserved top-level segment of `outputRoot` —
-  `epub/` (books), `lesson/` (courses), `templates/` (templates) — via `EPUB_DIR`/`LESSON_DIR`/
+  `epubs/` (books), `courses/` (courses), `templates/` (templates) — via `EPUBS_DIR`/`COURSES_DIR`/
   `TEMPLATES_DIR` in `src/cli/outputPaths.js`. This eliminates cross-source slug collisions at the
-  root (a book titled "Templates" now lands at `output/epub/templates/`, never alongside the
+  root (a book titled "Templates" now lands at `output/epubs/templates/`, never alongside the
   template tree). But the resolvers only ever look under the new segments: any book/course folder
   created by an OLDER version directly at `output/<slug>/` (flat, pre-reorg) is invisible to
   `resolveBookSlug`/`resolveChapterRunDir`/`listCourses`/`resolveCourseSlug`/`resolveLessonRunDir`
-  until it's physically moved under the right segment (`output/<slug>/` → `output/epub/<slug>/` or
-  `output/lesson/<slug>/`). There's no built-in migration command.
+  until it's physically moved under the right segment (`output/<slug>/` → `output/epubs/<slug>/` or
+  `output/courses/<slug>/`). There's no built-in migration command.
 - **Why:** the reserved-segment layout was the explicit ask, and `output/` is gitignored build
   output — a one-time manual `mv` (or re-assemble) is cheaper than shipping and testing a migration
   path for what is, for most users, a single machine's throwaway folder.

@@ -39,7 +39,9 @@ Use the `AskUserQuestion` tool to ask which source to build from, with these thr
 
 1. **A real-life lesson** — a list of English words/phrases you learned in an actual class, to
    organize into a course.
-2. **A bundled template** (ready-made travel vocabulary): `travel-essentials`
+2. **A bundled template** (ready-made vocabulary, e.g. `travel-essentials`, `numbers`). Templates
+   are language-agnostic — the target language is a build-time choice, so the *same* template can
+   become a deck in any language.
 3. **Your own EPUB**: path to an .epub file on your machine
 
 Once they answer, disambiguate with follow-up questions specific to that source:
@@ -50,15 +52,46 @@ Once they answer, disambiguate with follow-up questions specific to that source:
 - **Lesson:** walk through the sub-questions below before assembling anything.
 
 - **Which template?** List the available templates by calling `listTemplates()`
-  (`src/corpus/templates.js`) and offer each as an `AskUserQuestion` option — describe it with its
-  `meta.targetLanguage` (e.g. "travel-essentials — Spanish"), read from `templates/<name>.json`.
-  Even if only one template is currently bundled, still ask so the choice is explicit and the
-  question keeps working as more templates get added. If they pick "Other" (no listed template
-  fits), ask what vocabulary they had in mind: if it's really a custom word list, redirect to the
-  **Lesson** or **EPUB** path instead of a template; if they specifically want a new *reusable*
-  template added to the bundle, that's a codebase change (a new `templates/<name>.json` plus a
-  registry entry in `AVAILABLE_TEMPLATES`), not something this skill authors on the fly — flag it
-  and let them decide whether to pursue it as a separate task.
+  (`src/corpus/templates.js`) and offer each as an `AskUserQuestion` option — describe it by its
+  *vocabulary* (the English terms and categories it covers), read from `templates/<name>.json`.
+  Templates no longer carry a target language, so **don't** describe them by language — every
+  template works for any language. If only one option exists, `AskUserQuestion` still needs a second
+  option, so pair it with a "None of these fit" choice. If they pick that (or "Other"), see
+  **Creating a new reusable template** below.
+- **Which target language?** Because templates are language-agnostic, once a template is chosen you
+  must ask which language to build the deck in (e.g. Spanish, `es`, Japanese, `ja`). This value is
+  the `--lang` you pass to `assemble` in Step 2 — `assemble --template` now *requires* it and errors
+  without it. Use an ISO 639-1 code where you can (`es`, `ja`, `fr`) so the audio stage's default
+  voice lookup and ElevenLabs `language_code` resolve; a full name still works but is a weaker hint.
+
+#### Creating a new reusable template
+
+Template *creation* is orthogonal to deck *building*: a template is just reusable English vocabulary
++ categories, with no language baked in. When the user wants a new **reusable** template added to the
+bundle (not a one-off word list — that's the **Lesson** or **EPUB** path instead), treat it as its
+own small flow that completes *before* you return to the deck build:
+
+1. **Confirm it's really a reusable template**, not a one-off deck. If they just want e.g. a numbers
+   deck once, redirect to the **Lesson** path (dictate the words) — don't add a template.
+2. **Gather the vocabulary, language-agnostically.** Ask for the English terms (dictated or pasted).
+   **Do not ask what language it's for** — that's chosen later at build time. Group each term under a
+   category from the enum in `src/model/categories.js` (`category` is validated against that fixed
+   list — an unknown category fails schema validation; use `"Other"` if nothing fits).
+3. **Author the files** (this is a codebase change, so do it on a branch per the repo conventions):
+   - `templates/<name>.json` — `{ "meta": { "sourceType": "template" }, "items": [ { "id", "english",
+     "category" }, ... ] }`. **No `targetLanguage`** in meta. `id`s are short kebab/snake handles
+     unique within the file (e.g. `num_one`); `target`/`notes` are omitted (backfilled to `null` on
+     load).
+   - Register it in `AVAILABLE_TEMPLATES` in `src/corpus/templates.js` (`"<name>": "<name>.json"`).
+   - Add a `test/corpus/templates.test.js` case (or extend the "every bundled template validates"
+     loop) so the new template is schema-checked.
+4. **Review the template with the user** before moving on — render/inspect the item list and confirm
+   the terms and categories look right (a quick corpus-style review; you can `assemble --template
+   <name> --lang <lang>` into a scratch run dir and `render-review --stage corpus` if you want the
+   same review artifact the deck flow uses).
+5. **Then hand off to the deck build**: with the new template committed and reviewed, proceed into
+   Step 2 exactly as for any bundled template — ask the **Which target language?** question above and
+   run `assemble --template <name> --lang <lang>`.
 
 - **Which course?** List existing courses by reading `output/*/course.json` (each is
   `{ name, targetLanguage }`, keyed by the folder name — `listCourses(outputRoot)` in
@@ -79,10 +112,11 @@ Once they answer, disambiguate with follow-up questions specific to that source:
 Once the source is decided, I'll assemble the corpus.
 
 **For a template or a manual `--chapter` source** (no book/course identity to organize by), pick
-any run directory and pass it directly:
+any run directory and pass it directly. Templates are language-agnostic, so `--lang` is **required**
+here (it's the target language gathered in Step 1):
 
 ```sh
-anki-builder assemble --run <runDir> --template <templateName>
+anki-builder assemble --run <runDir> --template <templateName> --lang <lang>
 ```
 
 **For a real-life lesson**, pass `--output-root` (same idea as an EPUB below) along with the
@@ -285,7 +319,7 @@ All commands use `--run <dir>` to specify the run directory and read/write artif
 
 ### Assemble corpus
 ```sh
-anki-builder assemble --run <dir> --template travel-essentials
+anki-builder assemble --run <dir> --template travel-essentials --lang es
 anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang es
 anki-builder assemble --output-root output --words <path> --course "Intensive Japanese 1" \

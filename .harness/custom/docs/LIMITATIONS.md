@@ -147,6 +147,29 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   wanted to see — consider representing external chapters as a tree instead of a flat list, or
   surfacing collapsed entries somewhere in the audit trail rather than discarding them.
 
+## `assemble --template` now requires `--lang` — a breaking change to the template CLI
+
+- **What:** templates are now language-agnostic — `templates/*.json` carry only English terms +
+  categories, no `meta.targetLanguage`. `loadTemplate(name, targetLanguage)` (`src/corpus/
+  templates.js`) takes the language from its caller and injects it into the assembled corpus's meta,
+  and `assemble --template <name>` now **requires** `--lang <language>` (throws if absent), the same
+  way the `--epub`/`--chapter`/`--words` paths already do. Previously `--template` ignored `--lang`
+  entirely and the template file's own baked `targetLanguage` (`travel-essentials` → `"Spanish"`)
+  drove translation.
+- **Why:** creating a template and building a deck are orthogonal concerns — a template is reusable
+  vocabulary, and which language you study it in is a build-time choice, not a property of the word
+  list. Baking one language into the file meant a second Spanish-only "numbers" template couldn't be
+  reused for French without duplicating the JSON. Dropping the language entirely (rather than keeping
+  it as an overridable default) was the deliberate choice for the cleanest separation.
+- **Impact:** a caller that ran `assemble --template travel-essentials` with no `--lang` now errors
+  instead of silently defaulting to Spanish — a breaking CLI change (there is no released
+  compatibility contract, so no deprecation shim was added). The corpus's `targetLanguage` is now
+  whatever `--lang` supplies (typically an ISO code like `es`, consistent with the other sources),
+  not the full name `"Spanish"` the old template baked in.
+- **When to revisit:** if a template ever genuinely needs a default language (e.g. one so
+  language-specific it's meaningless in another), reintroduce an *optional* `meta.targetLanguage`
+  that `--lang` overrides, rather than making it required-in-file again.
+
 ## The category enum is a first-cut list, not yet validated against real usage
 
 - **What:** `src/model/categories.js`'s `CATEGORIES` list (25 entries) was drafted in one sitting

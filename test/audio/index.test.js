@@ -442,3 +442,120 @@ test("preserves meta property in returned cards", async () => {
     }
   }
 });
+
+test("speaks `reading` instead of `target` when a card carries one", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([
+        // Kanji face, kana reading — TTS must receive the kana, not the kanji.
+        {
+          id: "n21",
+          english: "Twenty-one",
+          category: "Numbers",
+          target: "二十一",
+          reading: "にじゅういち",
+        },
+      ]);
+
+      const calls = [];
+      const mockFetchTts = async (term) => {
+        calls.push(term);
+        return Buffer.from(`audio for ${term}`);
+      };
+
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: mockFetchTts,
+        libraryHomeDir: tmpDir,
+      });
+
+      assert.deepEqual(calls, ["にじゅういち"]);
+      // The card still carries its kanji target untouched; only what was spoken changed.
+      assert.equal(result.items[0].target, "二十一");
+      assert.equal(result.items[0].reading, "にじゅういち");
+      assert.ok(result.items[0].audio);
+    });
+  } finally {
+    if (originalKey) {
+      process.env.ELEVENLABS_API_KEY = originalKey;
+    } else {
+      delete process.env.ELEVENLABS_API_KEY;
+    }
+  }
+});
+
+test("audio cache key follows the spoken text: same target + different reading => distinct clips", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([
+        { id: "c1", english: "A", category: "Numbers", target: "同", reading: "どう" },
+        { id: "c2", english: "B", category: "Numbers", target: "同", reading: "おなじ" },
+      ]);
+
+      const calls = [];
+      const mockFetchTts = async (term) => {
+        calls.push(term);
+        return Buffer.from(`audio for ${term}`);
+      };
+
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: mockFetchTts,
+        libraryHomeDir: tmpDir,
+      });
+
+      // Two readings => two TTS calls => two files, even though `target` is identical.
+      assert.equal(calls.length, 2);
+      assert.notEqual(result.items[0].audio, result.items[1].audio);
+
+      const audioDir = resolve(join(tmpDir, "audio", "voice123"));
+      const files = await fs.readdir(audioDir);
+      assert.equal(files.length, 2);
+    });
+  } finally {
+    if (originalKey) {
+      process.env.ELEVENLABS_API_KEY = originalKey;
+    } else {
+      delete process.env.ELEVENLABS_API_KEY;
+    }
+  }
+});
+
+test("falls back to `target` when `reading` is an empty string", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([
+        { id: "e1", english: "Hello", category: "Greetings", target: "こんにちは", reading: "" },
+      ]);
+
+      const calls = [];
+      const mockFetchTts = async (term) => {
+        calls.push(term);
+        return Buffer.from("audio data");
+      };
+
+      await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: mockFetchTts,
+        libraryHomeDir: tmpDir,
+      });
+
+      assert.deepEqual(calls, ["こんにちは"]);
+    });
+  } finally {
+    if (originalKey) {
+      process.env.ELEVENLABS_API_KEY = originalKey;
+    } else {
+      delete process.env.ELEVENLABS_API_KEY;
+    }
+  }
+});

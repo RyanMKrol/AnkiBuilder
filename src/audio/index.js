@@ -8,6 +8,15 @@ function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
 }
 
+// The text actually handed to TTS (and used as the audio cache key) for a card:
+// the card's `reading` when it's a non-empty string, otherwise its `target`. This
+// is what lets a Japanese deck show kanji on the face (`target`) while speaking an
+// unambiguous kana `reading` — for languages whose target is already phonetic, no
+// `reading` is set and `target` is spoken exactly as before.
+function speechText(item) {
+  return typeof item.reading === "string" && item.reading.length > 0 ? item.reading : item.target;
+}
+
 async function ensureDir(dir) {
   try {
     await fs.mkdir(dir, { recursive: true });
@@ -56,7 +65,7 @@ export async function generateAudio(
 
   const uniqueTerms = new Set();
   for (const item of cards.items) {
-    uniqueTerms.add(item.target);
+    uniqueTerms.add(speechText(item));
   }
 
   const fetchedFiles = new Map();
@@ -80,7 +89,7 @@ export async function generateAudio(
     ...cards,
     items: cards.items.map((item) => ({
       ...item,
-      audio: fetchedFiles.get(item.target),
+      audio: fetchedFiles.get(speechText(item)),
     })),
   };
 

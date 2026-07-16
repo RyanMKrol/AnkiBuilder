@@ -67,6 +67,16 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
 }
 
 /**
+ * The path of the book's own EPUB copy inside the local library
+ * (`.anki-builder/epubs/<epubHash>/book.epub`, written by registerEpub). Used as the
+ * backfill source when re-building a chapter of a book that was worked on before the
+ * output tree kept its own copy — see resolveBookEpubPath in outputPaths.js.
+ */
+export function libraryEpubPath(epubHash, { libraryHomeDir } = {}) {
+  return join(bookDir(epubHash, { libraryHomeDir }), "book.epub");
+}
+
+/**
  * The cache file path a given (epubHash, chapterNumber) pair's raw content
  * should be extracted to — shared by the "current chapter" extraction in
  * assemble and the "later chapter" reads in the forward flag pass.

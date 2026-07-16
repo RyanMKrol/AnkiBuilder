@@ -211,6 +211,11 @@ instead of an arbitrary flat `--run <dir>` per chapter:
 output/epubs/<book-slug>/
   .epub-hash                     # binds this slug to one epubHash (collision guard — see
                                   #   resolveBookSlug, src/cli/outputPaths.js)
+  book.epub                      # copy of the source EPUB, kept so a later chapter can be built
+                                  #   with `--book <slug>` (no need to re-find the original file)
+  book.json                      # { title, slug, epubHash, targetLanguage } — written by
+                                  #   materializeBookInOutput, read back by listBooks for book
+                                  #   discovery (the course.json analogue for books)
   chapter-0/corpus.json, cards.json, audio/, review-*.html    # ordinary per-chapter artifacts,
   chapter-1/...                                               #   unchanged in shape
   deck.apkg                      # single merged book-level package (`deck --book-dir`)
@@ -222,6 +227,14 @@ chapter's own `corpus.meta`/`cards.meta`: `epubHash`, `chapterNumber`, `chapterL
 Re-assembling the same `(epubHash, chapterNumber)` pair reuses its existing folder rather than
 allocating a new one. A manual `--chapter` source has no identity to organize by, so it keeps
 using a plain, freely-named `--run <dir>`.
+
+Every `--epub` assemble also copies the source file to `book.epub` and refreshes `book.json`
+(`materializeBookInOutput`), making the book folder a self-contained record. A later chapter can
+then be assembled with `--book <slug>` in place of `--epub <path>`: the CLI desugars it to the kept
+copy via `resolveBookEpubPath` (preferring `output/epubs/<slug>/book.epub`, falling back to the
+local-library copy through `.epub-hash` for a book worked on before this copy existed), then the
+flow proceeds identically to `--epub`. `listBooks` enumerates these folders (by `book.json`,
+`book.epub`, or the legacy `.epub-hash`) so a caller can offer "pick a previously-worked book".
 
 A `--words`-sourced course (see [`assemble`](#assemble) above) mirrors this exact shape under its
 own `courses/` segment — `courses/<course-slug>/lesson-<seq>/` instead of

@@ -30,6 +30,8 @@ import {
   resolveLessonRunDir as defaultResolveLessonRunDir,
   resolveTemplateRunDir as defaultResolveTemplateRunDir,
   loadCourseMeta as defaultLoadCourseMeta,
+  materializeBookInOutput as defaultMaterializeBookInOutput,
+  resolveBookEpubPath as defaultResolveBookEpubPath,
 } from "./outputPaths.js";
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
 import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
@@ -146,6 +148,9 @@ function resolveAssembleRunDir(flags, ctx) {
   const outputRoot = resolve(flags["output-root"]);
   const { epubHash } = ctx.registerEpub(flags.epub);
   const slug = ctx.resolveBookSlug(outputRoot, flags.epub, epubHash);
+  // Keep a durable copy of the EPUB in the book's output folder (+ a book.json marker)
+  // so future chapters can be built with `--book <slug>` without re-locating the file.
+  ctx.materializeBookInOutput(outputRoot, slug, flags.epub, epubHash, flags.lang);
   const runDir = ctx.resolveChapterRunDir(
     outputRoot,
     slug,
@@ -157,6 +162,20 @@ function resolveAssembleRunDir(flags, ctx) {
 }
 
 async function runAssemble(flags, ctx) {
+  // `--book <slug>` builds a new chapter of a previously-worked EPUB straight from its
+  // durable output copy — desugar it into the normal `--epub <path>` flow before anything
+  // else reads flags.epub (run-dir resolution, registerEpub, dedup, ...).
+  if (flags.book && !flags.epub) {
+    if (!flags["output-root"]) {
+      throw new Error("--book <slug> requires --output-root <dir>");
+    }
+    const outputRoot = resolve(flags["output-root"]);
+    flags.epub = ctx.resolveBookEpubPath(outputRoot, flags.book, {
+      libraryHomeDir: ctx.libraryHome(),
+    });
+    ctx.log(`resolved book "${flags.book}" to ${flags.epub}`);
+  }
+
   const runDir = resolveAssembleRunDir(flags, ctx);
   if (!runDir) {
     throw new Error(
@@ -561,6 +580,8 @@ export async function runCli(argv, deps = {}) {
     resolveLessonRunDir = defaultResolveLessonRunDir,
     resolveTemplateRunDir = defaultResolveTemplateRunDir,
     loadCourseMeta = defaultLoadCourseMeta,
+    materializeBookInOutput = defaultMaterializeBookInOutput,
+    resolveBookEpubPath = defaultResolveBookEpubPath,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
     assembleCorpusFromLessonWords = defaultAssembleCorpusFromLessonWords,
     extractChapterToFile = defaultExtractChapterToFile,
@@ -609,6 +630,8 @@ export async function runCli(argv, deps = {}) {
     resolveLessonRunDir,
     resolveTemplateRunDir,
     loadCourseMeta,
+    materializeBookInOutput,
+    resolveBookEpubPath,
     assembleCorpusFromChapter,
     assembleCorpusFromLessonWords,
     extractChapterToFile,

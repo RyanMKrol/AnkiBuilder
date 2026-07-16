@@ -43,7 +43,11 @@ anki-builder deck --run "$RUN" --name "Travel Spanish"
 
 ```sh
 # From a book, chapter by chapter — organizes everything under output/epubs/<book-slug>/
+# and keeps a copy of the EPUB (book.epub) inside that folder.
 anki-builder assemble --output-root output --epub mybook.epub --chapter-number 1 --lang ja
+# For a later chapter of a book you've already worked on, pick it by slug instead of
+# re-locating the file — assemble reads the copy it kept:
+anki-builder assemble --output-root output --book <book-slug> --chapter-number 2 --lang ja
 # ...review / translate / audio for that chapter, then repeat for each chapter...
 anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter into one deck
 ```
@@ -64,6 +68,10 @@ For the full command reference (every flag, every source type), see the skill's
   the top), and bundled templates under `output/templates/<template-name>/<language>/` (one folder
   per language, its `deck.apkg` right inside — no merge step, since there's only ever one unit per
   language).
+- An EPUB book folder also keeps its own copy of the source file (`book.epub`) and a `book.json`
+  marker, so it's a self-contained record of a book you've worked on. That's what lets you build a
+  later chapter with `--book <book-slug>` (no need to re-find the original `.epub`), and lets the
+  skill offer a list of previously-worked books to pick from.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   (gitignored) so re-runs don't redo expensive work.
 

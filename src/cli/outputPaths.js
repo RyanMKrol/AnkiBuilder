@@ -1,8 +1,8 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { slugify } from "../util/slugify.js";
 import { getBookTitle } from "../corpus/epubArchive.js";
-import { loadBookMeta, saveBookSlug } from "../corpus/epubLibrary.js";
+import { loadBookMeta, saveBookSlug, libraryEpubPath } from "../corpus/epubLibrary.js";
 
 // Every source type lands under its own reserved top-level segment of `outputRoot`,
 // so book slugs, course slugs, and template names can never collide with each other
@@ -64,6 +64,121 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
   writeFileSync(epubHashMarkerPath(outputRoot, candidate), epubHash);
   saveBookSlug(epubHash, candidate, opts);
   return candidate;
+}
+
+function bookMarkerPath(outputRoot, slug) {
+  return join(epubsRoot(outputRoot), slug, "book.json");
+}
+
+/**
+ * Reads a book's `book.json` marker (written by materializeBookInOutput) if present —
+ * `{ title, slug, epubHash, targetLanguage }` — or `null` for a folder that predates
+ * the marker (older books carry only the `.epub-hash` file). The book analogue of
+ * loadCourseMeta; takes the folder path directly.
+ */
+export function loadBookMarker(bookDir) {
+  const markerPath = join(bookDir, "book.json");
+  if (!existsSync(markerPath)) {
+    return null;
+  }
+  return JSON.parse(readFileSync(markerPath, "utf-8"));
+}
+
+/**
+ * Copies the source EPUB into the book's output folder as `book.epub` and writes a
+ * `book.json` marker — mirroring how a lesson-sourced course writes `course.json`. This
+ * makes the output tree a SELF-CONTAINED, durable reference to the book: a later chapter
+ * can be assembled by picking the book (`assemble --book <slug>`) straight from this copy,
+ * with no need to re-locate the original file on disk. Idempotent: the copy is skipped
+ * when `book.epub` already exists (same "don't regenerate what's already there" spirit as
+ * registerEpub / the audio cache), while the marker is refreshed each call so it tracks
+ * the most recent build's `targetLanguage`. Returns the destination EPUB path.
+ */
+export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, targetLanguage) {
+  const dir = join(epubsRoot(outputRoot), slug);
+  mkdirSync(dir, { recursive: true });
+
+  const dest = join(dir, "book.epub");
+  // Guard the self-copy: when picking an existing book, epubPath already IS this dest.
+  if (!existsSync(dest)) {
+    copyFileSync(epubPath, dest);
+  }
+
+  writeFileSync(
+    bookMarkerPath(outputRoot, slug),
+    JSON.stringify(
+      { title: getBookTitle(dest) || null, slug, epubHash, targetLanguage: targetLanguage || null },
+      null,
+      2,
+    ) + "\n",
+  );
+  return dest;
+}
+
+/**
+ * Lists every book folder directly under `outputRoot/epubs/` that has been worked on —
+ * anything carrying a `book.json` marker, a copied `book.epub`, or the legacy
+ * `.epub-hash` file — as `{ slug, title, epubHash, targetLanguage, epubPath }`. The book
+ * analogue of listCourses, used to offer "pick a previously-worked EPUB" during assembly.
+ * `epubPath` points at the folder's own `book.epub` when present (else `null` — a legacy
+ * folder whose EPUB still lives only in the local library; resolveBookEpubPath backfills
+ * that case). Fields absent from an older marker come back `null`.
+ */
+export function listBooks(outputRoot) {
+  const root = epubsRoot(outputRoot);
+  if (!existsSync(root)) {
+    return [];
+  }
+  return readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => {
+      const dir = join(root, entry.name);
+      const marker = loadBookMarker(dir);
+      const ownEpub = join(dir, "book.epub");
+      const hasOwnEpub = existsSync(ownEpub);
+      const hasHashMarker = existsSync(join(dir, ".epub-hash"));
+      if (!marker && !hasOwnEpub && !hasHashMarker) {
+        return null;
+      }
+      return {
+        slug: entry.name,
+        title: marker?.title ?? null,
+        epubHash:
+          marker?.epubHash ??
+          (hasHashMarker ? readFileSync(join(dir, ".epub-hash"), "utf-8").trim() : null),
+        targetLanguage: marker?.targetLanguage ?? null,
+        epubPath: hasOwnEpub ? ownEpub : null,
+      };
+    })
+    .filter(Boolean);
+}
+
+/**
+ * Resolves the EPUB file to build from for an already-worked-on book, chosen by slug —
+ * the source that `assemble --book <slug>` reads. Prefers the book's own durable copy
+ * (`outputRoot/epubs/<slug>/book.epub`); for a book worked on before that copy existed,
+ * falls back to the local library copy via the folder's `.epub-hash` marker. Throws with
+ * a clear message if neither is available.
+ */
+export function resolveBookEpubPath(outputRoot, slug, opts = {}) {
+  const ownEpub = join(epubsRoot(outputRoot), slug, "book.epub");
+  if (existsSync(ownEpub)) {
+    return ownEpub;
+  }
+
+  const markerPath = epubHashMarkerPath(outputRoot, slug);
+  if (existsSync(markerPath)) {
+    const epubHash = readFileSync(markerPath, "utf-8").trim();
+    const libEpub = libraryEpubPath(epubHash, opts);
+    if (existsSync(libEpub)) {
+      return libEpub;
+    }
+  }
+
+  throw new Error(
+    `no EPUB found for book "${slug}" — expected a copy at ${ownEpub} or in the local library. ` +
+      `Re-assemble this book once with --epub <path> to restore it.`,
+  );
 }
 
 /**

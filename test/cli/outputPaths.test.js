@@ -13,6 +13,10 @@ import {
   nextLessonNumber,
   listCourses,
   loadCourseMeta,
+  materializeBookInOutput,
+  loadBookMarker,
+  listBooks,
+  resolveBookEpubPath,
 } from "../../src/cli/outputPaths.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
 
@@ -128,6 +132,120 @@ test("resolveBookSlug() reuses the base slug if its folder+marker already exist 
     const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
 
     assert.equal(slug, "my-book");
+  });
+});
+
+test("materializeBookInOutput() copies the EPUB into the book folder and writes a book.json marker", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+
+    const dest = materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+
+    assert.equal(dest, join(outputRoot, "epubs", slug, "book.epub"));
+    assert.ok(existsSync(dest));
+    assert.deepEqual(readFileSync(dest), readFileSync(epubPath));
+    assert.deepEqual(loadBookMarker(join(outputRoot, "epubs", slug)), {
+      title: "My Book",
+      slug,
+      epubHash,
+      targetLanguage: "ja",
+    });
+  });
+});
+
+test("materializeBookInOutput() is idempotent for the copy but refreshes the marker language", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    const dest = materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+
+    // Second call with the already-copied EPUB as the source (the `--book` case) must not
+    // throw on a self-copy, and should update the recorded target language.
+    materializeBookInOutput(outputRoot, slug, dest, epubHash, "es");
+
+    assert.equal(loadBookMarker(join(outputRoot, "epubs", slug)).targetLanguage, "es");
+  });
+});
+
+test("listBooks() returns worked-on books and ignores non-book folders", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+    // A stray non-book folder alongside the books — must be ignored.
+    mkdirSync(join(outputRoot, "epubs", "some-plain-folder"), { recursive: true });
+
+    assert.deepEqual(listBooks(outputRoot), [
+      {
+        slug,
+        title: "My Book",
+        epubHash,
+        targetLanguage: "ja",
+        epubPath: join(outputRoot, "epubs", slug, "book.epub"),
+      },
+    ]);
+  });
+});
+
+test("listBooks() surfaces a legacy book (only a .epub-hash marker) with a null epubPath", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = join(outputRoot, "epubs", "legacy-book");
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, ".epub-hash"), "deadbeefcafe0000");
+
+    assert.deepEqual(listBooks(outputRoot), [
+      {
+        slug: "legacy-book",
+        title: null,
+        epubHash: "deadbeefcafe0000",
+        targetLanguage: null,
+        epubPath: null,
+      },
+    ]);
+  });
+});
+
+test("listBooks() returns an empty array when outputRoot has no epubs folder", () => {
+  withTempDirs(({ outputRoot }) => {
+    assert.deepEqual(listBooks(join(outputRoot, "does-not-exist")), []);
+  });
+});
+
+test("resolveBookEpubPath() prefers the book's own output copy", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+
+    assert.equal(
+      resolveBookEpubPath(outputRoot, slug, { libraryHomeDir }),
+      join(outputRoot, "epubs", slug, "book.epub"),
+    );
+  });
+});
+
+test("resolveBookEpubPath() falls back to the local library copy for a legacy book", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    // Simulate a book worked on before the output-copy existed: only the .epub-hash
+    // marker in output, but the EPUB still cached in the local library.
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+
+    assert.equal(
+      resolveBookEpubPath(outputRoot, slug, { libraryHomeDir }),
+      join(libraryHomeDir, "epubs", epubHash, "book.epub"),
+    );
+  });
+});
+
+test("resolveBookEpubPath() throws when neither an output copy nor a library copy exists", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = join(outputRoot, "epubs", "orphan-book");
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, ".epub-hash"), "deadbeefcafe0000");
+
+    assert.throws(() => resolveBookEpubPath(outputRoot, "orphan-book"), /no EPUB found for book/);
   });
 });
 

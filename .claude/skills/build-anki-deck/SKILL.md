@@ -47,9 +47,21 @@ Use the `AskUserQuestion` tool to ask which source to build from, with these thr
 Once they answer, disambiguate with follow-up questions specific to that source:
 
 - **Template:** ask which bundled template before assembling — see the sub-question below.
-- **EPUB:** ask for the file path (if not already given) and which target language to prepare
+- **EPUB:** first offer any **previously-worked-on books** to pick from (see below); only if they
+  want a new book ask for the file path. Either way, ask which target language to prepare
   translations for.
 - **Lesson:** walk through the sub-questions below before assembling anything.
+
+- **Which book? (new or already-worked-on)** Before asking for a file path, list the EPUBs already
+  worked on under this output root by calling `listBooks(outputRoot)` (`src/cli/outputPaths.js`) —
+  each is `{ slug, title, epubHash, targetLanguage, epubPath }` — and offer each (labelled by
+  `title`, falling back to `slug`) as an `AskUserQuestion` option, plus an explicit "a new EPUB
+  (I'll give a path)" choice. Every `--epub` build keeps a copy of the source file inside the book's
+  output folder (`output/epubs/<book-slug>/book.epub`), so a book that shows up here can be built
+  from **without re-locating the original file**. If they pick an existing book, use the
+  `--book <book-slug>` form in Step 2 (no path needed); if they choose the new-EPUB option (or there
+  are no books yet), ask for the `.epub` path and use the `--epub <path>` form. If `listBooks`
+  returns nothing, skip straight to asking for a path.
 
 - **Which template?** List the available templates by calling `listTemplates()`
   (`src/corpus/templates.js`) and offer each as an `AskUserQuestion` option — describe it by its
@@ -145,13 +157,20 @@ is a quick automated pass — check it during the corpus review below same as an
 
 **For an EPUB**, pass `--output-root` instead of `--run` and let `assemble` resolve the run
 directory itself — this keeps every chapter of the same book organized together under one
-book-level folder (see [Output layout](../../../README.md#output-layout) in the README):
+book-level folder (see [Output layout](../../../README.md#output-layout) in the README). This also
+copies the source `.epub` into that book folder (`output/epubs/<book-slug>/book.epub`) and writes a
+`book.json` marker, so the book becomes something you can pick again later:
 
 ```sh
+# A new book (first time) — give the file path:
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang <lang>
+# A book already worked on (chosen via listBooks in Step 1) — pick it by slug, no path:
+anki-builder assemble --output-root output --book <book-slug> --chapter-number <N> --lang <lang>
 ```
 
-Both the lesson and EPUB forms print `resolved run directory: output/courses/<course-slug>/lesson-<seq>`
+`--book <book-slug>` reads the copy the book folder kept (falling back to the local-library copy for
+a book worked on before this copy existed), so you never have to re-find the original file for a
+later chapter. Both forms print `resolved run directory: output/courses/<course-slug>/lesson-<seq>`
 or `output/epubs/<book-slug>/chapter-<seq>`. **Capture that path** — it's the `<runDir>` to reuse for
 every subsequent
 `review`/`translate`/`audio`/`render-review` call (all of those commands still take a plain
@@ -335,6 +354,7 @@ anki-builder assemble --output-root output --template travel-essentials --lang e
 anki-builder assemble --run <dir> --template travel-essentials --lang es   # ad hoc, unorganized
 anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang es
+anki-builder assemble --output-root output --book <book-slug> --chapter-number <N> --lang es  # a previously-worked book
 anki-builder assemble --output-root output --words <path> --course "Intensive Japanese 1" \
   --lesson-number <N> --lang ja [--lesson-label "Lesson <N>: <topic>"]
 ```
@@ -398,6 +418,8 @@ Under `--output-root`, each source type nests under its own reserved segment of 
 
 ```
 output/epubs/<book-slug>/
+  book.epub               # copy of the source EPUB, kept so `--book <slug>` can build later chapters
+  book.json               # { title, slug, epubHash, targetLanguage } — powers listBooks discovery
   chapter-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
   chapter-1/...
   deck.apkg              # built by `deck --book-dir output/epubs/<book-slug>` (Step 6)

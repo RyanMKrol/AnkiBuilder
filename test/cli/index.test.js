@@ -434,11 +434,16 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
 
     let resolveBookSlugCalledWith = null;
     let resolveChapterRunDirCalledWith = null;
+    let materializeBookCalledWith = null;
 
     const registerEpub = () => ({ epubHash: "hash123" });
     const resolveBookSlug = (...args) => {
       resolveBookSlugCalledWith = args;
       return "my-book";
+    };
+    const materializeBookInOutput = (...args) => {
+      materializeBookCalledWith = args;
+      return join(outputRoot, "my-book", "book.epub");
     };
     const resolveChapterRunDir = (...args) => {
       resolveChapterRunDirCalledWith = args;
@@ -468,6 +473,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
       {
         registerEpub,
         resolveBookSlug,
+        materializeBookInOutput,
         resolveChapterRunDir,
         chapterCachePath,
         extractChapterToFile,
@@ -482,6 +488,13 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
     );
 
     assert.deepEqual(resolveBookSlugCalledWith, [outputRoot, "/tmp/book.epub", "hash123"]);
+    assert.deepEqual(materializeBookCalledWith, [
+      outputRoot,
+      "my-book",
+      "/tmp/book.epub",
+      "hash123",
+      "Japanese",
+    ]);
     assert.deepEqual(resolveChapterRunDirCalledWith, [outputRoot, "my-book", "hash123", 15]);
     assert.ok(logs.some((msg) => msg.includes(`resolved run directory: ${resolvedRunDir}`)));
 

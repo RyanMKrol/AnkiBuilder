@@ -294,6 +294,52 @@ test("validateCards - valid cards object passes validation", () => {
   });
 });
 
+test("validateCards - accepts an optional `reading` field on an item", () => {
+  const cardsWithReading = {
+    meta: {
+      targetLanguage: "ja",
+      sourceType: "template",
+    },
+    items: [
+      {
+        id: "n21",
+        english: "Twenty-one",
+        category: "Numbers",
+        target: "二十一",
+        pronunciation: "nijūichi",
+        reading: "にじゅういち",
+      },
+    ],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCards(cardsWithReading);
+  });
+});
+
+test("validateCards - a non-string `reading` fails validation", () => {
+  const invalidCards = {
+    meta: {
+      targetLanguage: "ja",
+      sourceType: "template",
+    },
+    items: [
+      {
+        id: "n21",
+        english: "Twenty-one",
+        category: "Numbers",
+        target: "二十一",
+        pronunciation: "nijūichi",
+        reading: 21,
+      },
+    ],
+  };
+
+  assert.throws(() => {
+    validateCards(invalidCards);
+  });
+});
+
 test("validateCards - missing target field fails validation", () => {
   const invalidCards = {
     meta: {

@@ -80,6 +80,12 @@ const CARDS_SCHEMA = {
           notes: { type: "string" },
           target: { type: "string" },
           pronunciation: { type: "string" },
+          // Optional phonetic spelling in the target language's own native script
+          // (e.g. hiragana for Japanese) that the audio stage speaks INSTEAD of
+          // `target` when present — see generateAudio. `target` is what the card
+          // face shows (e.g. kanji 二十一); `reading` is only what TTS pronounces
+          // (にじゅういち), sidestepping ambiguous readings of logographic scripts.
+          reading: { type: "string" },
           hint: { type: "string" },
           image: { type: "string" },
           audio: { type: "string" },

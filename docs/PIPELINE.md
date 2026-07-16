@@ -15,7 +15,10 @@ under a book-organized `output/` tree (`--output-root <dir>`; see [Output layout
 
 Four sources:
 
-- `--template <name>`: bundled word lists.
+- `--template <name> --lang <language>`: bundled word lists (language-agnostic; `--lang` picks the
+  target language at build time). Pass `--run <dir>` for an ad hoc build, or `--output-root <dir>`
+  to file the deck under the organized `output/templates/<name>/<language>/` tree
+  (`resolveTemplateRunDir`) — see [Output layout](#output-layout).
 - `--chapter <path> --lang <language>`: one already-extracted EPUB chapter `.xhtml` file, read
   directly by a model (no book-level context, no dedup/registry tracking) — a manual/ad hoc mode.
 - `--words <path> --course <name> --lesson-number <N> --lang <language>`: a plain text file, one
@@ -213,8 +216,8 @@ output/<book-slug>/
 unrelated to the EPUB's own internal spine/chapter numbering (still tracked faithfully inside each
 chapter's own `corpus.meta`/`cards.meta`: `epubHash`, `chapterNumber`, `chapterLabel`).
 Re-assembling the same `(epubHash, chapterNumber)` pair reuses its existing folder rather than
-allocating a new one. Templates and manual `--chapter` sources have no book identity to organize
-by, so they keep using a plain, freely-named `--run <dir>`.
+allocating a new one. A manual `--chapter` source has no identity to organize by, so it keeps
+using a plain, freely-named `--run <dir>`.
 
 A `--words`-sourced course (see [`assemble`](#assemble) above) mirrors this exact shape, one level
 down — `course-slug/lesson-<seq>/` instead of `book-slug/chapter-<seq>/` — since both sourceTypes
@@ -236,3 +239,21 @@ lesson's number rather than adding a near-duplicate `lessonNumber` field — see
 comment on `CORPUS_SCHEMA` in `src/model/index.js`). Re-assembling the same `(courseSlug,
 lessonNumber)` pair reuses its existing folder rather than allocating a new one, exactly like
 `resolveChapterRunDir`.
+
+A `--template`-sourced deck assembled via `assemble --output-root <dir>` lands under a reserved
+`templates/` segment, keyed by template name then target language:
+
+```
+output/templates/<template-name>/<language>/
+  corpus.json, cards.json, audio/, review-*.html    # ordinary per-run artifacts, same shape
+  deck.apkg                                          # this deck's final package (`deck --run`)
+```
+
+Unlike a book or course, a template yields exactly one unit per `(template, language)`, so the
+`<language>` folder IS the run directory — there's no `chapter-<seq>`/`lesson-<seq>` level and no
+book-level `deck --book-dir` merge (nothing to merge; the `deck --run` output is already final).
+The path is a pure deterministic function of `(template, language)` (`resolveTemplateRunDir`), both
+segments slugified so `--lang ja` and `--lang Japanese` become stable folder names (`ja`,
+`japanese`); re-assembling the same pair reuses the folder via assemble's "corpus.json already
+exists — reusing" guard. A template built with a plain `--run <dir>` (no `--output-root`) still
+lands wherever you point it, unchanged.

@@ -9,6 +9,7 @@ import {
   resolveChapterRunDir,
   resolveCourseSlug,
   resolveLessonRunDir,
+  resolveTemplateRunDir,
   nextLessonNumber,
   listCourses,
   loadCourseMeta,
@@ -138,6 +139,45 @@ function writeChapterCorpus(bookDir, seq, { epubHash, chapterNumber }) {
     }),
   );
 }
+
+test("resolveTemplateRunDir() places a deck under templates/<template>/<language>/", () => {
+  withTempDirs(({ outputRoot }) => {
+    const runDir = resolveTemplateRunDir(outputRoot, "numbers", "ja");
+    assert.equal(runDir, join(outputRoot, "templates", "numbers", "ja"));
+  });
+});
+
+test("resolveTemplateRunDir() is a pure deterministic function of (template, language)", () => {
+  withTempDirs(({ outputRoot }) => {
+    // Same inputs → same folder (idempotent), and different pairs never collide.
+    assert.equal(
+      resolveTemplateRunDir(outputRoot, "numbers", "ja"),
+      resolveTemplateRunDir(outputRoot, "numbers", "ja"),
+    );
+    assert.notEqual(
+      resolveTemplateRunDir(outputRoot, "numbers", "ja"),
+      resolveTemplateRunDir(outputRoot, "numbers", "es"),
+    );
+    assert.notEqual(
+      resolveTemplateRunDir(outputRoot, "numbers", "ja"),
+      resolveTemplateRunDir(outputRoot, "travel-essentials", "ja"),
+    );
+  });
+});
+
+test("resolveTemplateRunDir() slugifies a full language name into a stable folder", () => {
+  withTempDirs(({ outputRoot }) => {
+    const runDir = resolveTemplateRunDir(outputRoot, "numbers", "Japanese");
+    assert.equal(runDir, join(outputRoot, "templates", "numbers", "japanese"));
+  });
+});
+
+test("resolveTemplateRunDir() does not create the directory (the corpus write does)", () => {
+  withTempDirs(({ outputRoot }) => {
+    const runDir = resolveTemplateRunDir(outputRoot, "numbers", "ja");
+    assert.equal(existsSync(runDir), false);
+  });
+});
 
 test("resolveChapterRunDir() allocates chapter-0 when no chapters exist yet", () => {
   withTempDirs(({ outputRoot }) => {

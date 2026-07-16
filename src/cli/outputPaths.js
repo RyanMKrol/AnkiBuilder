@@ -47,6 +47,27 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
   return candidate;
 }
 
+// The reserved top-level segment under outputRoot that holds every template-sourced
+// deck, keeping them from colliding with book/course slugs at the root. See
+// resolveTemplateRunDir.
+const TEMPLATES_DIR = "templates";
+
+/**
+ * Resolves the run directory for a template-sourced deck:
+ * `outputRoot/templates/<templateSlug>/<langSlug>/`. Unlike a book or course, a
+ * template produces exactly one unit per (template, language) — so the language
+ * folder IS the run directory, with no `chapter-<seq>`/`lesson-<seq>` level and no
+ * later book-level merge. The path is a pure deterministic function of (template,
+ * language): re-running `assemble` for the same pair resolves the same folder, and
+ * assemble's own "corpus.json already exists — reusing" guard supplies idempotency.
+ * Both segments are slugified so a full language name (e.g. "Japanese") and an ISO
+ * code ("ja") each become a stable, filesystem-safe folder name. Does not create the
+ * directory — the caller's corpus.json write does, same as resolveChapterRunDir.
+ */
+export function resolveTemplateRunDir(outputRoot, templateName, lang) {
+  return join(outputRoot, TEMPLATES_DIR, slugify(templateName), slugify(lang));
+}
+
 const CHAPTER_DIR_PATTERN = /^chapter-(\d+)$/;
 
 function existingChapterSeqs(bookDir) {

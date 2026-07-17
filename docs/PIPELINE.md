@@ -163,6 +163,17 @@ existed. This is on top of `voiceId` (sent as part of the request URL path,
 `DEFAULT_VOICES`, keyed by the same ISO 639-1 code) — an explicit `--voice` always overrides it;
 with neither, the stage still throws asking for one.
 
+**Alt audio (per-language second recording).** A language listed in `src/audio/altAudio.js`'s
+`ALT_AUDIO_TRANSFORMS` gets a SECOND clip per card — the spoken text run through that language's
+transform. Japanese appends a `。`: a trailing full stop gives ElevenLabs a sentence boundary and
+empirically fixes many mis-rendered short/bare clips (lone kana, some numbers). `generateAudio` runs
+the alt pass after the default one, reusing the same hash/cache/fetch machinery (the transformed text
+hashes to a distinct filename, so it caches alongside the default), and records the alt filename on
+the card as `altAudio`. Languages with no transform get one clip and no `altAudio` field — behaviour
+is unchanged for them. `audio --no-alt` skips the alt pass for a run. The deck build never embeds
+`altAudio`; it's a review-stage choice (see the audio review below), where a card can be switched to
+its alt (`audio` ← `altAudio`) or have its audio dropped.
+
 ### `deck`
 
 Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows

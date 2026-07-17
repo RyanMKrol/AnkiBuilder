@@ -45,6 +45,7 @@ import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corp
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
+import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
 import {
   buildDeck as defaultBuildDeck,
   buildBookDeck as defaultBuildBookDeck,
@@ -463,9 +464,23 @@ async function runAudio(flags, ctx) {
   }
 
   const cards = readJson(paths.cards);
+
+  // A language with a configured alt-audio transform gets a second recording per card, unless
+  // `--no-alt` is passed. When alt audio is in play, a run only counts as "already done" if every
+  // card has BOTH its clips on disk — so enabling this feature backfills alt clips for a run that
+  // was processed before it existed (regeneration stays cheap: generateAudio only fetches cache
+  // misses).
+  const altEnabled = !flags["no-alt"];
+  const hasAlt =
+    altEnabled && !!ctx.getAltAudioTransform(resolveIso639Code(cards.meta.targetLanguage));
   const alreadyDone =
     cards.items.length > 0 &&
-    cards.items.every((item) => item.audio && existsSync(join(paths.audio, item.audio)));
+    cards.items.every(
+      (item) =>
+        item.audio &&
+        existsSync(join(paths.audio, item.audio)) &&
+        (!hasAlt || (item.altAudio && existsSync(join(paths.audio, item.altAudio)))),
+    );
 
   if (alreadyDone) {
     ctx.log(`audio already generated in ${paths.audio} — reusing`);
@@ -489,21 +504,31 @@ async function runAudio(flags, ctx) {
     voiceId,
     fetchTts: ctx.fetchTts,
     libraryHomeDir: ctx.libraryHome(),
+    // `--no-alt` disables the alt pass for this run by resolving no transform for any language.
+    getAltTransform: altEnabled ? ctx.getAltAudioTransform : () => undefined,
   });
 
   mkdirSync(paths.audio, { recursive: true });
   const cacheDir = join(ctx.libraryHome(), "audio", voiceId);
+  // Copy both the default clip and (when present) the alt clip from the cache into the run's
+  // audio/ dir. The deck build reads files from there; a card carrying `altAudio` needs its alt
+  // clip on disk in case the review later switches the card to it.
   for (const item of annotated.items) {
-    if (!item.audio) continue;
-    const src = join(cacheDir, item.audio);
-    const dest = join(paths.audio, item.audio);
-    if (!existsSync(dest)) {
-      copyFileSync(src, dest);
+    for (const filename of [item.audio, item.altAudio]) {
+      if (!filename) continue;
+      const dest = join(paths.audio, filename);
+      if (!existsSync(dest)) {
+        copyFileSync(join(cacheDir, filename), dest);
+      }
     }
   }
 
   writeJson(paths.cards, annotated);
-  ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);
+  const altCount = annotated.items.filter((item) => item.altAudio).length;
+  ctx.log(
+    `generated audio for ${annotated.items.length} item(s) into ${paths.audio}` +
+      (altCount > 0 ? ` (+${altCount} alt clip(s))` : ""),
+  );
 }
 
 // Matches both an EPUB book's chapter-<N>/ folders and a lesson-source course's
@@ -673,6 +698,7 @@ export async function runCli(argv, deps = {}) {
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
     getDefaultVoice = defaultGetDefaultVoice,
+    getAltAudioTransform = defaultGetAltAudioTransform,
     buildDeck = defaultBuildDeck,
     buildBookDeck = defaultBuildBookDeck,
     fetchTts = defaultFetchTts,
@@ -727,6 +753,7 @@ export async function runCli(argv, deps = {}) {
     translateCorpus,
     generateAudio,
     getDefaultVoice,
+    getAltAudioTransform,
     buildDeck,
     buildBookDeck,
     fetchTts,

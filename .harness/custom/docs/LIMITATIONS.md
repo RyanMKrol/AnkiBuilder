@@ -490,3 +490,21 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   when consecutive nav entries collapse to one spine file, then fragment-level slicing), or where the
   EPUB has no nav document (add the LLM-only structure-inference fallback). A `--list-lessons` that
   emitted a "couldn't detect structure" note for the no-TOC case would make the fallback discoverable.
+
+## Alt audio doubles TTS calls and is a heuristic, not a guaranteed improvement
+
+- **What:** for a language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS` (currently only
+  Japanese → append `。`), the audio stage generates a SECOND recording per card from the transformed
+  spoken text, so every card fetches two ElevenLabs clips instead of one. The alt is offered in the
+  audio review to switch to or drop; the deck only ever embeds the card's final `audio`.
+- **Why:** empirically a trailing `。` gives ElevenLabs a sentence boundary that fixes many
+  mis-rendered short/bare Japanese clips (lone kana like はん/ふん, some numbers) — a real, recurring
+  quality problem found while building the JBP Kana Lesson 3 deck. Generating both (rather than
+  guessing which clip is better per card) lets a human pick in the review.
+- **Impact:** ~2× the TTS API calls (and cache files, and audio-review artifact size) for a
+  configured language. The `。` transform is a blunt heuristic — it helps short clips but isn't
+  guaranteed better for every card (e.g. a card whose target already ends in `。` gets a doubled
+  `。。`), which is exactly why it's an opt-in *alt* per card, never the silent default.
+- **When to revisit:** if cost matters, `audio --no-alt` skips the pass for a run; longer term,
+  generate alt clips lazily (only for rows the review actually flags) instead of for every card, and
+  make the transform smarter (skip cards already ending in sentence punctuation).

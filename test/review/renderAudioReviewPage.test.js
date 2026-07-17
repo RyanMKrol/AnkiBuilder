@@ -58,3 +58,62 @@ test("renderAudioReviewPage() uses regenerate mode", () => {
   assert.match(html, /"regenerate audio for"/);
   assert.match(html, /No rows flagged for regeneration\./);
 });
+
+test("renderAudioReviewPage() switches to audio-alt mode with an Alt column when any card has altAudio", () => {
+  const withAlt = cards({
+    items: [
+      {
+        id: "hachi",
+        english: "eight",
+        category: "Time",
+        target: "はちじ",
+        pronunciation: "hachiji",
+        audio: "def.mp3",
+        altAudio: "def-alt.mp3",
+      },
+    ],
+  });
+  const html = renderAudioReviewPage(withAlt, {
+    audioDir: "/runs/x/audio",
+    readFile: () => Buffer.from("x"),
+  });
+
+  assert.match(html, /<th>Alt \(。\)<\/th>/);
+  assert.match(html, /"audio-alt"/);
+  // two <audio> players for the row (default + alt)
+  assert.equal((html.match(/<audio controls/g) || []).length, 2);
+  assert.match(html, /data-has-alt="1"/);
+  assert.match(html, /to switch to alt/);
+  assert.doesNotMatch(html, /"regenerate audio for"/);
+});
+
+test("renderAudioReviewPage() marks a row with no alt clip as data-has-alt=0 and shows a placeholder", () => {
+  const mixed = cards({
+    items: [
+      {
+        id: "a",
+        english: "eight",
+        category: "Time",
+        target: "はちじ",
+        pronunciation: "hachiji",
+        audio: "a.mp3",
+        altAudio: "a-alt.mp3",
+      },
+      {
+        id: "b",
+        english: "nine",
+        category: "Time",
+        target: "くじ",
+        pronunciation: "kuji",
+        audio: "b.mp3",
+      },
+    ],
+  });
+  const html = renderAudioReviewPage(mixed, {
+    audioDir: "/runs/x/audio",
+    readFile: () => Buffer.from("x"),
+  });
+  assert.match(html, /data-has-alt="1"/);
+  assert.match(html, /data-has-alt="0"/);
+  assert.match(html, /<span class="empty">no alt<\/span>/);
+});

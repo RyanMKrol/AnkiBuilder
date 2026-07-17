@@ -280,6 +280,13 @@ This:
 - Copies audio files into the run directory
 - Writes updated `cards.json` with audio file references
 
+**Alt audio (per-language).** A language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS`
+(Japanese appends a `。`) gets a **second** recording per card from the transformed spoken text — a
+trailing `。` gives ElevenLabs a sentence boundary and fixes many mis-rendered short/bare clips (lone
+kana, some numbers). Both clips are generated (cached alongside each other) and the alt filename is
+stored on the card as `altAudio`. Languages with no transform get one clip, exactly as before. Pass
+`--no-alt` to skip the alt pass for a run (halves the TTS calls when you don't want it).
+
 **Voice choice:** if this target language already has a configured default voice
 (`src/audio/voiceLibrary.js`'s `DEFAULT_VOICES`), `--voice` can be omitted entirely — the CLI
 uses the default and says so. Otherwise I'll help you pick one; available voices vary by
@@ -303,15 +310,28 @@ This reads the updated `cards.json` (now has an `audio` filename per card) and t
 directory, base64-encodes each clip, and writes `<runDir>/review-audio.html` with each row's clip
 embedded as `<audio controls src="data:audio/mpeg;base64,...">` next to English/Target/
 Pronunciation, same shared visual system as the other two review artifacts. Publish it as an
-Artifact. This stage uses "flag for regeneration" instead of exclusion — the real action isn't
-dropping a row, it's "this one sounds wrong, regenerate it": copy button produces
+Artifact.
+
+**Without alt audio**, this stage uses "flag for regeneration" instead of exclusion — the real
+action isn't dropping a row, it's "this one sounds wrong, regenerate it": copy button produces
 `Please regenerate audio for rows 3, 12.` To act on that: delete that term's cached clip from
 `.anki-builder/audio/<voiceId>/<hash>.mp3` AND its copy under `<runDir>/audio/`, then re-run
 `anki-builder audio --run <runDir> --voice <voiceId>` — it's resumable and only regenerates
-whichever terms are missing from the cache, not the whole batch. For a large deck (many dozens of
-cards), embedding every clip can make the artifact file large/slow to publish — if that happens,
-say so rather than silently publishing one huge page (see
-`.harness/custom/docs/LIMITATIONS.md` — there's no chunking built in yet).
+whichever terms are missing from the cache, not the whole batch. (ElevenLabs is non-deterministic, so
+a fresh take usually differs.)
+
+**When cards carry `altAudio`** (a language with an alt-audio config), the page instead shows an
+**Alt (。)** column with a second player per row and switches to a two-action mode: clicking a row
+cycles **switch to alt → drop audio → keep default**, and the copy button produces up to two clauses,
+e.g. `Please switch to alt audio for rows 8, 80. Please drop audio for rows 12.` To act on those,
+edit `cards.json` directly (there's no CLI command, same as the translate stage): **switch** → set
+`item.audio = item.altAudio` and delete `altAudio`; **drop** → delete both `audio` and `altAudio`.
+Then re-validate and re-render. The deck build embeds whatever ends up in `audio`. (You can also just
+tell me the rows in chat, or hand me a replacement `.mp3` for a specific row.)
+
+For a large deck (many dozens of cards), embedding every clip — doubly so with alt audio — can make
+the artifact file large/slow to publish; if that happens, say so rather than silently publishing one
+huge page (see `.harness/custom/docs/LIMITATIONS.md` — there's no chunking built in yet).
 
 ### Step 5: Deck Build
 

@@ -42,13 +42,25 @@ anki-builder deck --run "$RUN" --name "Travel Spanish"
 ```
 
 ```sh
-# From a book, chapter by chapter — organizes everything under output/epubs/<book-slug>/
-# and keeps a copy of the EPUB (book.epub) inside that folder.
+# From a book — organizes everything under output/epubs/<book-slug>/ and keeps a copy of
+# the EPUB (book.epub) inside that folder.
+#
+# Prefer selecting by the book's OWN lesson (from its table of contents) rather than a raw
+# spine index: an EPUB "chapter" is just one internal content file, which is NOT guaranteed
+# to line up with a lesson — a lesson can span several files, and dividers/quizzes/front
+# matter are their own files. First list the book's lessons, then pick one:
+anki-builder assemble --output-root output --epub mybook.epub --list-lessons --lang ja
+anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
+# --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
+# right span of spine files (however many), and extracts them all as one unit.
+#
+# --chapter-number <N> still works as a low-level escape hatch (the Nth spine file), e.g.
+# for a book whose EPUB has no usable table of contents:
 anki-builder assemble --output-root output --epub mybook.epub --chapter-number 1 --lang ja
-# For a later chapter of a book you've already worked on, pick it by slug instead of
+# For a later lesson of a book you've already worked on, pick it by slug instead of
 # re-locating the file — assemble reads the copy it kept:
-anki-builder assemble --output-root output --book <book-slug> --chapter-number 2 --lang ja
-# ...review / translate / audio for that chapter, then repeat for each chapter...
+anki-builder assemble --output-root output --book <book-slug> --lesson "Lesson 4" --lang ja
+# ...review / translate / audio for that lesson, then repeat for each lesson...
 anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter into one deck
 ```
 

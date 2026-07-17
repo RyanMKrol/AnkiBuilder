@@ -220,6 +220,120 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
   });
 });
 
+test("assemble: --lesson resolves a multi-file lesson, extracts the whole spine range, and tags meta", async () => {
+  await withTempDir(async (runDir) => {
+    let extractRangeCalledWith = null;
+    let flagForwardConcernsCalledWith = null;
+
+    const registerEpub = () => ({ epubHash: "hash123" });
+    const resolveLesson = (epubPath, selector) => {
+      assert.equal(selector, "Lesson 3");
+      return {
+        number: 17,
+        label: "Lesson 3: Asking the Time",
+        type: "lesson",
+        firstChapterNumber: 17,
+        lastChapterNumber: 18,
+        source: "nav",
+      };
+    };
+    const chapterRangeCachePath = (epubHash, first, last) =>
+      `/cache/${epubHash}/${first}-${last}.xhtml`;
+    const extractChapterRangeToFile = (epubPath, first, last, destPath) => {
+      extractRangeCalledWith = { epubPath, first, last, destPath };
+      return destPath;
+    };
+    const extractChapterToFile = () => {
+      throw new Error("single-file extract should not be called for a multi-file lesson");
+    };
+    const assembleCorpusFromChapter = ({ chapterFilePath }) => {
+      assert.equal(chapterFilePath, "/cache/hash123/17-18.xhtml");
+      return baseEpubCorpus();
+    };
+    const loadPriorChapterItems = () => [];
+    const loadBookConventions = () => "cached conventions";
+    const dedupBackward = (items) => ({ items, flagged: [] });
+    const flagForwardConcerns = (opts) => {
+      flagForwardConcernsCalledWith = opts;
+      return { items: opts.candidateItems, flagged: [] };
+    };
+
+    await runCli(
+      [
+        "assemble",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--lesson",
+        "Lesson 3",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub,
+        resolveLesson,
+        chapterRangeCachePath,
+        extractChapterRangeToFile,
+        extractChapterToFile,
+        assembleCorpusFromChapter,
+        loadPriorChapterItems,
+        loadBookConventions,
+        dedupBackward,
+        flagForwardConcerns,
+        log: () => {},
+      },
+    );
+
+    assert.deepEqual(
+      { first: extractRangeCalledWith.first, last: extractRangeCalledWith.last },
+      { first: 17, last: 18 },
+    );
+    // Forward-flag boundary is the lesson's LAST spine file, so the lesson's own files
+    // aren't mistaken for "taught later".
+    assert.equal(flagForwardConcernsCalledWith.chapterNumber, 18);
+
+    const written = JSON.parse(await fs.readFile(runPaths(runDir).corpus, "utf-8"));
+    assert.equal(written.meta.chapterNumber, 17);
+    assert.equal(written.meta.lastChapterNumber, 18);
+    assert.equal(written.meta.chapterLabel, "Lesson 3: Asking the Time");
+  });
+});
+
+test("assemble: --list-lessons prints the book's lessons and exits without assembling", async () => {
+  await withTempDir(async (runDir) => {
+    const logs = [];
+    const listLessons = () => [
+      {
+        number: 1,
+        label: "Cover",
+        type: "front-matter",
+        firstChapterNumber: 1,
+        lastChapterNumber: 1,
+      },
+      {
+        number: 2,
+        label: "Lesson 1: Meeting",
+        type: "lesson",
+        firstChapterNumber: 2,
+        lastChapterNumber: 3,
+      },
+    ];
+    const assembleCorpusFromChapter = () => {
+      throw new Error("--list-lessons must not assemble anything");
+    };
+
+    await runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--list-lessons"], {
+      listLessons,
+      assembleCorpusFromChapter,
+      log: (msg) => logs.push(msg),
+    });
+
+    assert.ok(logs.some((m) => m.includes("Lesson 1: Meeting") && m.includes("spine 2-3")));
+    assert.ok(!existsSync(runPaths(runDir).corpus));
+  });
+});
+
 test("assemble: runs the book-conventions pass on the first --epub assemble for a book and caches it", async () => {
   await withTempDir(async (runDir) => {
     let savedConventionsCalledWith = null;

@@ -12,11 +12,17 @@ import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from ".
 import { assembleCorpusFromLessonWords as defaultAssembleCorpusFromLessonWords } from "../corpus/lessonCorpus.js";
 import {
   extractChapterToFile as defaultExtractChapterToFile,
+  extractChapterRangeToFile as defaultExtractChapterRangeToFile,
   describeChapter as defaultDescribeChapter,
 } from "../corpus/epubArchive.js";
 import {
+  listLessons as defaultListLessons,
+  resolveLesson as defaultResolveLesson,
+} from "../corpus/epubLessons.js";
+import {
   registerEpub as defaultRegisterEpub,
   chapterCachePath as defaultChapterCachePath,
+  chapterRangeCachePath as defaultChapterRangeCachePath,
   saveChapterCorpus as defaultSaveChapterCorpus,
   loadPriorChapterItems as defaultLoadPriorChapterItems,
   loadBookConventions as defaultLoadBookConventions,
@@ -176,6 +182,49 @@ async function runAssemble(flags, ctx) {
     ctx.log(`resolved book "${flags.book}" to ${flags.epub}`);
   }
 
+  // `--list-lessons` prints the book's OWN lessons (from its nav document, as spine-position
+  // ranges) so a person can pick one by name/number instead of guessing a raw spine index,
+  // then exits without assembling anything.
+  if (flags["list-lessons"]) {
+    if (!flags.epub) {
+      throw new Error("--list-lessons requires --epub <path> or --book <slug>");
+    }
+    const lessons = ctx.listLessons(flags.epub, { log: ctx.log });
+    if (lessons.length === 0) {
+      ctx.log(
+        "no navigation document found — this EPUB doesn't declare its own lessons; " +
+          "use --chapter-number <spine index> instead",
+      );
+      return;
+    }
+    for (const lesson of lessons) {
+      const range =
+        lesson.lastChapterNumber > lesson.firstChapterNumber
+          ? `${lesson.firstChapterNumber}-${lesson.lastChapterNumber}`
+          : `${lesson.firstChapterNumber}`;
+      ctx.log(`[${lesson.number}] (${lesson.type}) spine ${range}: ${lesson.label}`);
+    }
+    return;
+  }
+
+  // `--lesson <selector>` selects one of the book's OWN lessons (by nav-list number or a
+  // label substring) and desugars it into the normal --chapter-number flow: the lesson's
+  // FIRST spine file becomes the chapter-number (so run-dir allocation, dedup, and the saved
+  // corpus all key on it exactly as before), and the resolved range is stashed for the epub
+  // assemble branch to extract in full. An explicit --chapter-number wins (manual override).
+  if (flags.epub && flags.lesson && !flags["chapter-number"]) {
+    const lesson = ctx.resolveLesson(flags.epub, flags.lesson, { log: ctx.log });
+    flags["chapter-number"] = String(lesson.firstChapterNumber);
+    flags.resolvedLesson = lesson;
+    const range =
+      lesson.lastChapterNumber > lesson.firstChapterNumber
+        ? `spine ${lesson.firstChapterNumber}-${lesson.lastChapterNumber}`
+        : `spine ${lesson.firstChapterNumber}`;
+    ctx.log(`resolved lesson "${flags.lesson}" to "${lesson.label}" (${range})`);
+  } else if (flags.lesson && flags["chapter-number"]) {
+    ctx.log("both --lesson and --chapter-number given — using --chapter-number (manual override)");
+  }
+
   const runDir = resolveAssembleRunDir(flags, ctx);
   if (!runDir) {
     throw new Error(
@@ -257,19 +306,36 @@ async function runAssemble(flags, ctx) {
       ctx.log(`saved book conventions to the local library (epub ${epubHash})`);
     }
 
-    const chapterFilePath = ctx.extractChapterToFile(
-      flags.epub,
-      chapterNumber,
-      ctx.chapterCachePath(epubHash, chapterNumber),
-    );
+    // A resolved --lesson may span several spine files; extract the whole range as one
+    // unit. Falls back to single-file extraction for a plain --chapter-number (or a
+    // one-file lesson). Range content is cached under a distinct `<first>-<last>.xhtml`
+    // path so it never clobbers the per-spine-file caches other passes rely on.
+    const lesson = flags.resolvedLesson;
+    const lastChapterNumber = lesson ? lesson.lastChapterNumber : chapterNumber;
+    const chapterFilePath =
+      lastChapterNumber > chapterNumber
+        ? ctx.extractChapterRangeToFile(
+            flags.epub,
+            chapterNumber,
+            lastChapterNumber,
+            ctx.chapterRangeCachePath(epubHash, chapterNumber, lastChapterNumber),
+          )
+        : ctx.extractChapterToFile(
+            flags.epub,
+            chapterNumber,
+            ctx.chapterCachePath(epubHash, chapterNumber),
+          );
 
     corpus = ctx.assembleCorpusFromChapter({
       chapterFilePath,
       targetLanguage: flags.lang,
       bookConventions,
     });
-    const chapterLabel = ctx.describeChapter(flags.epub, chapterNumber);
+    const chapterLabel = lesson ? lesson.label : ctx.describeChapter(flags.epub, chapterNumber);
     corpus.meta = { ...corpus.meta, epubHash, chapterNumber, chapterLabel };
+    if (lastChapterNumber > chapterNumber) {
+      corpus.meta.lastChapterNumber = lastChapterNumber;
+    }
 
     const backward = ctx.dedupBackward(
       corpus.items,
@@ -285,7 +351,10 @@ async function runAssemble(flags, ctx) {
     const forward = ctx.flagForwardConcerns({
       candidateItems: backward.items,
       epubPath: flags.epub,
-      chapterNumber,
+      // Check chapters AFTER this lesson's last spine file, so a multi-file lesson's own
+      // later files aren't mistaken for "taught later" (for a single-file lesson this is
+      // just chapterNumber).
+      chapterNumber: lastChapterNumber,
       targetLanguage: flags.lang,
       bookConventions,
       log: ctx.log,
@@ -585,9 +654,13 @@ export async function runCli(argv, deps = {}) {
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
     assembleCorpusFromLessonWords = defaultAssembleCorpusFromLessonWords,
     extractChapterToFile = defaultExtractChapterToFile,
+    extractChapterRangeToFile = defaultExtractChapterRangeToFile,
     describeChapter = defaultDescribeChapter,
+    listLessons = defaultListLessons,
+    resolveLesson = defaultResolveLesson,
     registerEpub = defaultRegisterEpub,
     chapterCachePath = defaultChapterCachePath,
+    chapterRangeCachePath = defaultChapterRangeCachePath,
     saveChapterCorpus = defaultSaveChapterCorpus,
     loadPriorChapterItems = defaultLoadPriorChapterItems,
     loadBookConventions = defaultLoadBookConventions,
@@ -635,9 +708,13 @@ export async function runCli(argv, deps = {}) {
     assembleCorpusFromChapter,
     assembleCorpusFromLessonWords,
     extractChapterToFile,
+    extractChapterRangeToFile,
     describeChapter,
+    listLessons,
+    resolveLesson,
     registerEpub,
     chapterCachePath,
+    chapterRangeCachePath,
     saveChapterCorpus,
     loadPriorChapterItems,
     loadBookConventions,

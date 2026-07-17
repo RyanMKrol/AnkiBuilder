@@ -85,6 +85,20 @@ export function chapterCachePath(epubHash, chapterNumber, { libraryHomeDir } = {
   return join(bookDir(epubHash, { libraryHomeDir }), "chapters", `${chapterNumber}.xhtml`);
 }
 
+/**
+ * The cache file path for a multi-spine-file lesson RANGE's concatenated content
+ * (extractChapterRangeToFile). Deliberately distinct from chapterCachePath's single-file
+ * `<n>.xhtml` names (uses `<first>-<last>.xhtml`) so a range extraction never clobbers the
+ * per-spine-file caches the book-conventions and forward-flag passes rely on.
+ */
+export function chapterRangeCachePath(epubHash, firstNumber, lastNumber, { libraryHomeDir } = {}) {
+  return join(
+    bookDir(epubHash, { libraryHomeDir }),
+    "chapters",
+    `${firstNumber}-${lastNumber}.xhtml`,
+  );
+}
+
 function corpusPath(epubHash, chapterNumber, { libraryHomeDir } = {}) {
   return join(bookDir(epubHash, { libraryHomeDir }), "corpora", `${chapterNumber}.json`);
 }

@@ -63,6 +63,21 @@ Once they answer, disambiguate with follow-up questions specific to that source:
   are no books yet), ask for the `.epub` path and use the `--epub <path>` form. If `listBooks`
   returns nothing, skip straight to asking for a path.
 
+- **Which lesson? (select by the book's OWN table of contents — NOT a raw spine index.)** An EPUB
+  "chapter number" is just the position of an internal content file, which is **not guaranteed** to
+  correspond to a lesson: a lesson can span several files, and unit dividers / quizzes / front matter
+  are their own files. So don't ask the user for a chapter number. Instead, **list the book's own
+  lessons** and let them pick one. Run
+  `anki-builder assemble --output-root output {--epub <path> | --book <slug>} --list-lessons --lang <lang>`
+  (or call `listLessons(epubPath)` in `src/corpus/epubLessons.js` directly) — each entry is
+  `{ number, label, type, firstChapterNumber, lastChapterNumber }`, where `type` is
+  `lesson`/`unit`/`quiz`/`front-matter`/`other` and the range is the span of spine files that lesson
+  covers. Offer the `lesson`-typed entries as `AskUserQuestion` options (label by `label`), and pass
+  the chosen one's `label` (or its `[number]`) to `assemble --lesson` in Step 2 — assemble resolves it
+  to the right file range and extracts them all as one unit. Only fall back to
+  `--chapter-number <spine index>` if the book has **no** navigation document (`--list-lessons` says
+  so and returns nothing) — then you must pick spine indices by inspection.
+
 - **Which template?** List the available templates by calling `listTemplates()`
   (`src/corpus/templates.js`) and offer each as an `AskUserQuestion` option — describe it by its
   *vocabulary* (the English terms and categories it covers), read from `templates/<name>.json`.
@@ -162,15 +177,22 @@ copies the source `.epub` into that book folder (`output/epubs/<book-slug>/book.
 `book.json` marker, so the book becomes something you can pick again later:
 
 ```sh
+# Prefer selecting the book's OWN lesson (from Step 1's --list-lessons) — assemble resolves it
+# to the right span of spine files, however many, and extracts them together:
 # A new book (first time) — give the file path:
-anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang <lang>
+anki-builder assemble --output-root output --epub <path> --lesson "<label or number>" --lang <lang>
 # A book already worked on (chosen via listBooks in Step 1) — pick it by slug, no path:
-anki-builder assemble --output-root output --book <book-slug> --chapter-number <N> --lang <lang>
+anki-builder assemble --output-root output --book <book-slug> --lesson "<label or number>" --lang <lang>
+# Fallback ONLY for a book with no table of contents: address a single spine file directly.
+anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang <lang>
 ```
 
-`--book <book-slug>` reads the copy the book folder kept (falling back to the local-library copy for
+`--lesson` takes a `[number]` from `--list-lessons` or a label substring (e.g. `"Lesson 3"`); it
+resolves to the lesson's spine-file range via the book's navigation document and extracts the whole
+range as one unit, so a lesson that spans multiple files isn't under-covered. `--book <book-slug>`
+reads the copy the book folder kept (falling back to the local-library copy for
 a book worked on before this copy existed), so you never have to re-find the original file for a
-later chapter. Both forms print `resolved run directory: output/courses/<course-slug>/lesson-<seq>`
+later lesson. All forms print `resolved run directory: output/courses/<course-slug>/lesson-<seq>`
 or `output/epubs/<book-slug>/chapter-<seq>`. **Capture that path** — it's the `<runDir>` to reuse for
 every subsequent
 `review`/`translate`/`audio`/`render-review` call (all of those commands still take a plain
@@ -352,9 +374,11 @@ All commands use `--run <dir>` to specify the run directory and read/write artif
 ```sh
 anki-builder assemble --output-root output --template travel-essentials --lang es
 anki-builder assemble --run <dir> --template travel-essentials --lang es   # ad hoc, unorganized
-anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es
+anki-builder assemble --output-root output --epub <path> --list-lessons --lang es  # list the book's own lessons
+anki-builder assemble --output-root output --epub <path> --lesson "Lesson 3" --lang es  # select a lesson (label or [number])
+anki-builder assemble --output-root output --book <book-slug> --lesson 17 --lang es  # a previously-worked book
+anki-builder assemble --run <dir> --epub <path> --chapter-number <N> --lang es  # low-level: the Nth spine file (no TOC)
 anki-builder assemble --output-root output --epub <path> --chapter-number <N> --lang es
-anki-builder assemble --output-root output --book <book-slug> --chapter-number <N> --lang es  # a previously-worked book
 anki-builder assemble --output-root output --words <path> --course "Intensive Japanese 1" \
   --lesson-number <N> --lang ja [--lesson-label "Lesson <N>: <topic>"]
 ```

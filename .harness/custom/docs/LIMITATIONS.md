@@ -461,3 +461,32 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if this reorg ever ships to users with real populated `output/` trees, add a
   one-shot `migrate-output` helper (or a lazy "found a flat `<slug>/` with a marker — relocating it
   under `<segment>/`" fallback in the resolvers) instead of a manual move.
+
+## EPUB lesson selection is TOC-driven and file-level — it can't split two lessons that share one spine file
+
+- **What:** `--lesson` (`src/corpus/epubLessons.js`, built on `listExternalChapters` in
+  `src/corpus/epubArchive.js`) resolves a lesson to an inclusive RANGE of whole spine files from the
+  book's navigation document (nav.xhtml / toc.ncx), and `extractChapterRangeToFile` concatenates that
+  whole range. This correctly handles a lesson that spans multiple files, and stops the old
+  "one spine file == one lesson" assumption from silently under-covering a lesson. But it stays at
+  **file granularity** in three ways: (a) if two lessons live in the *same* spine file (a nav entry
+  with only a `#fragment` differing), `listExternalChapters` collapses them to one entry (keeping the
+  first label), so the second lesson can't be selected on its own — its content rides along with the
+  first; (b) there is **no LLM reconciliation** of the TOC — whatever the nav document says the
+  boundaries are is taken as truth, with no cross-check against the actual file contents; (c) a book
+  with **no usable nav/NCX** returns no lessons at all, so `--lesson`/`--list-lessons` can't be used
+  and the user must fall back to `--chapter-number <spine index>`.
+- **Why:** the nav document is the book's own authoritative statement of its structure and is
+  deterministic and free to parse, so it carries the whole feature with no extra model calls. The
+  three deferred cases are rarer and each needs a real step up in machinery (fragment-level XHTML
+  slicing; a whole-book LLM structure pass; LLM-only inference when there's no TOC) that wasn't
+  warranted for the first cut.
+- **Impact:** for a well-structured textbook (the common case) lesson selection is exact and
+  multi-file-safe. For a book that packs multiple lessons into one file, a shared-file lesson is
+  silently merged into its predecessor; for a TOC-less book, only the raw spine-index path is
+  available. No case produces *wrong* content silently for the multi-file span itself — the gap is
+  strictly "can't address finer than a file" and "can't select at all without a TOC".
+- **When to revisit:** if a real book is hit where a lesson boundary falls mid-file (add a warning
+  when consecutive nav entries collapse to one spine file, then fragment-level slicing), or where the
+  EPUB has no nav document (add the LLM-only structure-inference fallback). A `--list-lessons` that
+  emitted a "couldn't detect structure" note for the no-TOC case would make the fallback discoverable.

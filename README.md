@@ -120,7 +120,7 @@ npm run build
 - [x] EPUB → candidate corpus extraction (with dedup + convention-awareness)
 - [x] Translation stage (Claude)
 - [x] Audio stage (ElevenLabs, cached; speaks an optional per-card `reading` when set)
-- [x] `.apkg` deck builder (two-template model)
+- [x] `.apkg` deck builder (single-template Production model — one card per note)
 - [x] Review-gate artifacts for each stage
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill

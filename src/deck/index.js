@@ -41,10 +41,10 @@ function resolveChapterAudio(cards, audioDir, media, mediaEntries, counter) {
 
 /**
  * Builds a `.apkg` (a zip of collection.anki2 + media) from cards.json.
- * Each card becomes one note with two generated cards (Recognition,
- * Production). When `audioDir` is given and a card's `audio` filename
- * exists inside it, the audio is embedded and referenced via [sound:...];
- * otherwise the card is built without audio.
+ * Each card becomes one note with a single generated Production card
+ * (English prompt -> Japanese Target answer). When `audioDir` is given and a
+ * card's `audio` filename exists inside it, the audio is embedded and
+ * referenced via [sound:...]; otherwise the card is built without audio.
  */
 export function buildDeck(
   cards,

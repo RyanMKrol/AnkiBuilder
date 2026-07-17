@@ -188,13 +188,13 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       assert.strictEqual(noteRows.length, 3);
 
       const cardRows = db.prepare("SELECT * FROM cards ORDER BY id").all();
-      assert.strictEqual(cardRows.length, 6, "two cards per note");
+      assert.strictEqual(cardRows.length, 3, "one card per note");
 
       const colRow = db.prepare("SELECT models FROM col").get();
       const models = JSON.parse(colRow.models);
       const model = Object.values(models)[0];
       const templateNames = model.tmpls.map((t) => t.name);
-      assert.deepStrictEqual(templateNames, ["Recognition", "Production"]);
+      assert.deepStrictEqual(templateNames, ["Production"]);
       assert.deepStrictEqual(
         model.flds.map((f) => f.name),
         ["Target", "Pronunciation", "English", "Category", "Hint", "Image", "Audio"],
@@ -212,7 +212,7 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
         .filter((c) => c.nid === firstNote.id)
         .map((c) => c.ord)
         .sort();
-      assert.deepStrictEqual(ords, [0, 1]);
+      assert.deepStrictEqual(ords, [0]);
     } finally {
       db.close();
     }

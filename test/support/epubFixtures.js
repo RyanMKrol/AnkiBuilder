@@ -93,14 +93,22 @@ export function containerXml(opfPath) {
 </container>`;
 }
 
-// manifestItems: [{ id, href }]; spineIdrefs: [id, ...] in reading order — deliberately
-// NOT required to match manifestItems' order, so tests can prove spine order wins.
-// dcTitles: raw inner content for zero or more <dc:title> elements, in document order.
-export function opfXml(manifestItems, spineIdrefs, dcTitles = []) {
+// manifestItems: [{ id, href, properties?, mediaType? }]; spineIdrefs: [id, ...] in reading
+// order — deliberately NOT required to match manifestItems' order, so tests can prove spine
+// order wins. Per-item `properties` (e.g. "nav") and `mediaType` (e.g. an NCX's
+// "application/x-dtbncx+xml") are optional, needed only by tests that exercise navigation
+// documents. dcTitles: raw inner content for zero or more <dc:title> elements, in document
+// order. spineToc: the <spine toc="..."> idref, for locating a legacy NCX.
+export function opfXml(manifestItems, spineIdrefs, dcTitles = [], { spineToc } = {}) {
   const manifest = manifestItems
-    .map((i) => `<item id="${i.id}" href="${i.href}" media-type="application/xhtml+xml"/>`)
+    .map((i) => {
+      const mediaType = i.mediaType || "application/xhtml+xml";
+      const props = i.properties ? ` properties="${i.properties}"` : "";
+      return `<item id="${i.id}" href="${i.href}" media-type="${mediaType}"${props}/>`;
+    })
     .join("\n    ");
   const spine = spineIdrefs.map((id) => `<itemref idref="${id}"/>`).join("\n    ");
+  const tocAttr = spineToc ? ` toc="${spineToc}"` : "";
   const metadata = dcTitles.length
     ? `<metadata>
     ${dcTitles.map((t) => `<dc:title>${t}</dc:title>`).join("\n    ")}
@@ -112,7 +120,7 @@ export function opfXml(manifestItems, spineIdrefs, dcTitles = []) {
   <manifest>
     ${manifest}
   </manifest>
-  <spine>
+  <spine${tocAttr}>
     ${spine}
   </spine>
 </package>`;
@@ -126,12 +134,19 @@ export function opfXml(manifestItems, spineIdrefs, dcTitles = []) {
  */
 export function buildFixtureEpub(
   dir,
-  { opfPath = "OEBPS/content.opf", manifestItems, spineIdrefs, extraFiles = [], dcTitles = [] },
+  {
+    opfPath = "OEBPS/content.opf",
+    manifestItems,
+    spineIdrefs,
+    extraFiles = [],
+    dcTitles = [],
+    spineToc,
+  },
 ) {
   const epubPath = join(dir, "book.epub");
   const zipBuffer = buildZip([
     { name: "META-INF/container.xml", content: containerXml(opfPath) },
-    { name: opfPath, content: opfXml(manifestItems, spineIdrefs, dcTitles) },
+    { name: opfPath, content: opfXml(manifestItems, spineIdrefs, dcTitles, { spineToc }) },
     ...extraFiles,
   ]);
   writeFileSync(epubPath, zipBuffer);

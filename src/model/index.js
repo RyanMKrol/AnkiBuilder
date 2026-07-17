@@ -21,6 +21,11 @@ const CORPUS_SCHEMA = {
         reviewed: { type: "boolean" },
         epubHash: { type: ["string", "null"] },
         chapterNumber: { type: ["number", "null"] },
+        // Set only when an --epub lesson spans MORE THAN ONE spine file (see
+        // epubLessons.js / listExternalChapters): chapterNumber is the lesson's first
+        // spine file, lastChapterNumber its last. Omitted for a single-file lesson/chapter,
+        // where the lesson is fully described by chapterNumber alone.
+        lastChapterNumber: { type: ["number", "null"] },
         chapterLabel: { type: ["string", "null"] },
         // Set only for sourceType "manual" corpora assembled from a real-life
         // lesson's word list (see lessonCorpus.js) — the course's folder slug under

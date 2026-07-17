@@ -580,3 +580,41 @@ export function extractChapterToFile(epubPath, number, destPath) {
   extractReferencedImages(entries, chapter, content, destPath);
   return destPath;
 }
+
+/**
+ * Extracts an inclusive RANGE of spine chapters [firstNumber..lastNumber] to a single
+ * file at `destPath`, concatenated in reading order with an HTML comment marking each
+ * source spine file, plus every image any of them references. This is how a lesson that
+ * spans several spine files (see epubLessons.js / listExternalChapters) is handed to the
+ * single-file LLM extractor as one unit. A one-file range (first === last) is just
+ * extractChapterToFile with a comment header. Images are resolved and placed per source
+ * chapter exactly as extractChapterToFile does — so `<img src>`s that are relative to
+ * each source file still resolve against the combined file's directory (the common case,
+ * where a lesson's files share one directory); a cross-directory `src` collision is the
+ * same tolerated edge as a single dangling image ref.
+ */
+export function extractChapterRangeToFile(epubPath, firstNumber, lastNumber, destPath) {
+  if (lastNumber < firstNumber) {
+    throw new Error(`Invalid chapter range ${firstNumber}-${lastNumber}: last is before first`);
+  }
+  const { entries, chapters } = loadEpub(epubPath);
+  mkdirSync(dirname(destPath), { recursive: true });
+
+  const parts = [];
+  for (let number = firstNumber; number <= lastNumber; number++) {
+    const chapter = chapters.find((c) => c.number === number);
+    if (!chapter) {
+      throw new Error(`Chapter ${number} not found — book has ${chapters.length} chapter(s)`);
+    }
+    const contentEntry = entries.find((e) => e.name === chapter.href);
+    if (!contentEntry) {
+      throw new Error(`Chapter ${number}'s content file "${chapter.href}" not found in archive`);
+    }
+    const content = contentEntry.data.toString("utf-8");
+    parts.push(`<!-- anki-builder: spine chapter ${number} (${chapter.href}) -->\n${content}`);
+    extractReferencedImages(entries, chapter, content, destPath);
+  }
+
+  writeFileSync(destPath, parts.join("\n\n"), "utf-8");
+  return destPath;
+}

@@ -61,6 +61,26 @@ already taught — ..."` for a backward match, `"Possibly premature — ..."` fo
   instead of each chapter re-inferring the book's conventions from just its own content. Manual
   `--chapter` mode has no book identity to cache this under, so it doesn't get this context.
 
+The `--epub` source has two ways to choose _what_ to assemble.
+`--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the
+preferred one, because a `--chapter-number` is a raw spine index (the Nth
+internal content file) and a spine file is **not guaranteed** to correspond to a lesson — a lesson
+can span several files, and dividers/quizzes/front matter are their own files. `--lesson` selects one
+of the book's **own** lessons from its navigation document via `resolveLesson`/`listLessons`
+(`src/corpus/epubLessons.js`, built on `listExternalChapters`): a purely-numeric selector is the
+nav-list ordinal (`--list-lessons` prints these), anything else is a unique case-insensitive label
+substring. The selector resolves to a spine-position **range**; `extractChapterRangeToFile`
+(`src/corpus/epubArchive.js`) concatenates that whole range into one cache file (a distinct
+`<first>-<last>.xhtml` path, so it never clobbers the per-spine-file caches the conventions/forward
+passes use) before the single-file extractor runs, so a multi-file lesson isn't under-covered.
+Internally `--lesson` desugars to `--chapter-number <first spine file>` (so run-dir allocation, the
+backward dedup, and the saved corpus all key on it exactly as before) plus a stashed range;
+`corpus.meta.lastChapterNumber` records the last spine file only when a lesson spans more than one,
+and the forward pass checks chapters _after_ that last file so the lesson's own later files aren't
+mistaken for "taught later". `--list-lessons` prints the book's lessons (number, type, spine range,
+label) and exits. A book with no usable nav document has no selectable lessons — `--list-lessons`
+says so and the raw `--chapter-number` path remains the fallback.
+
 For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
 the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
 (`getBookTitle`/`slugify`, falling back to the book's content hash when there's no title), then

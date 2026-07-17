@@ -8,6 +8,7 @@ import {
   listChapters,
   readChapter,
   extractChapterToFile,
+  extractChapterRangeToFile,
   describeChapter,
   getBookTitle,
 } from "../../src/corpus/epubArchive.js";
@@ -127,6 +128,98 @@ test("extractChapterToFile() also extracts images the chapter references, at the
     const expectedImagePath = join(dir, "cache", "images", "pic.jpg");
     assert.ok(existsSync(expectedImagePath));
     assert.equal(readFileSync(expectedImagePath, "utf-8"), "fake-jpeg-bytes");
+  });
+});
+
+test("extractChapterRangeToFile() concatenates an inclusive spine range in reading order, one marker per file", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "ch1", href: "text/ch01.xhtml" },
+        { id: "ch2", href: "text/ch02.xhtml" },
+        { id: "ch3", href: "text/ch03.xhtml" },
+      ],
+      spineIdrefs: ["ch1", "ch2", "ch3"],
+      extraFiles: [
+        { name: "OEBPS/text/ch01.xhtml", content: "<html><body>One</body></html>" },
+        { name: "OEBPS/text/ch02.xhtml", content: "<html><body>Two</body></html>" },
+        { name: "OEBPS/text/ch03.xhtml", content: "<html><body>Three</body></html>" },
+      ],
+    });
+
+    const destPath = join(dir, "cache", "chapters", "2-3.xhtml");
+    const returned = extractChapterRangeToFile(epubPath, 2, 3, destPath);
+    const written = readFileSync(destPath, "utf-8");
+
+    assert.equal(returned, destPath);
+    // Only files 2 and 3, in order, each preceded by its own marker; file 1 excluded.
+    assert.ok(written.includes("spine chapter 2"));
+    assert.ok(written.includes("spine chapter 3"));
+    assert.ok(!written.includes("spine chapter 1"));
+    assert.ok(written.indexOf("Two") < written.indexOf("Three"));
+    assert.ok(!written.includes("One"));
+  });
+});
+
+test("extractChapterRangeToFile() with a one-file range is a single chapter plus a marker", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "text/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/text/ch01.xhtml", content: "<html><body>Only</body></html>" }],
+    });
+
+    const destPath = join(dir, "cache", "chapters", "1-1.xhtml");
+    extractChapterRangeToFile(epubPath, 1, 1, destPath);
+    const written = readFileSync(destPath, "utf-8");
+
+    assert.ok(written.includes("spine chapter 1"));
+    assert.ok(written.includes("Only"));
+  });
+});
+
+test("extractChapterRangeToFile() extracts images referenced by any file in the range", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "ch1", href: "xhtml/ch01.xhtml" },
+        { id: "ch2", href: "xhtml/ch02.xhtml" },
+      ],
+      spineIdrefs: ["ch1", "ch2"],
+      extraFiles: [
+        { name: "OEBPS/xhtml/ch01.xhtml", content: "<html><body>One</body></html>" },
+        {
+          name: "OEBPS/xhtml/ch02.xhtml",
+          content: '<html><body><img src="../images/two.jpg"/></body></html>',
+        },
+        { name: "OEBPS/images/two.jpg", content: "fake-jpeg-two" },
+      ],
+    });
+
+    const destPath = join(dir, "cache", "chapters", "1-2.xhtml");
+    extractChapterRangeToFile(epubPath, 1, 2, destPath);
+
+    const expectedImagePath = join(dir, "cache", "images", "two.jpg");
+    assert.ok(existsSync(expectedImagePath));
+    assert.equal(readFileSync(expectedImagePath, "utf-8"), "fake-jpeg-two");
+  });
+});
+
+test("extractChapterRangeToFile() throws when the range is inverted", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "ch1", href: "text/ch01.xhtml" },
+        { id: "ch2", href: "text/ch02.xhtml" },
+      ],
+      spineIdrefs: ["ch1", "ch2"],
+      extraFiles: [
+        { name: "OEBPS/text/ch01.xhtml", content: "<html><body>One</body></html>" },
+        { name: "OEBPS/text/ch02.xhtml", content: "<html><body>Two</body></html>" },
+      ],
+    });
+
+    assert.throws(() => extractChapterRangeToFile(epubPath, 2, 1, join(dir, "x.xhtml")), /range/i);
   });
 });
 

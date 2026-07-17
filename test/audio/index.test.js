@@ -4,7 +4,17 @@ import { promises as fs } from "fs";
 import { join, resolve } from "path";
 import os from "os";
 import { Buffer } from "buffer";
-import { generateAudio } from "../../src/audio/index.js";
+import { generateAudio as generateAudioImpl } from "../../src/audio/index.js";
+import { getAltAudioTransform } from "../../src/audio/altAudio.js";
+
+// The core-mechanics tests below (dedup, caching, hashing, reading-vs-target) exercise the DEFAULT
+// recording pass. Since baseCards is tagged `ja` — which has an alt-audio transform — the alt pass
+// would double every fetch/file count and muddy those assertions. Default alt OFF here so they stay
+// focused; a test can re-enable it by passing its own `getAltTransform`. The alt pass has its own
+// dedicated tests at the bottom of this file.
+function generateAudio(cards, opts = {}) {
+  return generateAudioImpl(cards, { getAltTransform: () => undefined, ...opts });
+}
 
 function baseCards(items) {
   return {
@@ -558,4 +568,106 @@ test("falls back to `target` when `reading` is an empty string", async () => {
       delete process.env.ELEVENLABS_API_KEY;
     }
   }
+});
+
+// ---------------------------------------------------------------------------
+// Alt audio pass (per-language second recording — see src/audio/altAudio.js).
+// These call the real implementation with the real ja transform, overriding the
+// no-alt default that the wrapper at the top applies.
+// ---------------------------------------------------------------------------
+
+async function withKey(fn) {
+  const original = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    return await withTempDir(fn);
+  } finally {
+    if (original) process.env.ELEVENLABS_API_KEY = original;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+}
+
+test("alt pass: a ja card gets both a default and an alt (。) clip with distinct filenames", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
+    const calls = [];
+    const result = await generateAudioImpl(cards, {
+      voiceId: "voice123",
+      fetchTts: async (term) => {
+        calls.push(term);
+        return Buffer.from(`audio for ${term}`);
+      },
+      libraryHomeDir: tmpDir,
+      getAltTransform: getAltAudioTransform,
+    });
+
+    const item = result.items[0];
+    assert.ok(item.audio, "default audio set");
+    assert.ok(item.altAudio, "alt audio set");
+    assert.notEqual(item.audio, item.altAudio, "default and alt have distinct filenames");
+    assert.deepEqual(new Set(calls), new Set(["はちじ", "はちじ。"]), "fetched plain + 。 variant");
+
+    const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123")));
+    assert.equal(files.length, 2, "both clips cached");
+  });
+});
+
+test("alt pass: language with no transform yields no altAudio field", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
+    const result = await generateAudioImpl(cards, {
+      voiceId: "voice123",
+      fetchTts: async () => Buffer.from("x"),
+      libraryHomeDir: tmpDir,
+      getAltTransform: () => undefined,
+    });
+    assert.ok(result.items[0].audio);
+    assert.equal("altAudio" in result.items[0], false, "no altAudio key at all");
+  });
+});
+
+test("alt pass: both clips are cached — a second run makes zero calls", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
+    const opts = (calls) => ({
+      voiceId: "voice123",
+      fetchTts: async (term) => {
+        calls.push(term);
+        return Buffer.from(`audio for ${term}`);
+      },
+      libraryHomeDir: tmpDir,
+      getAltTransform: getAltAudioTransform,
+    });
+
+    const first = [];
+    await generateAudioImpl(cards, opts(first));
+    assert.equal(first.length, 2, "first run fetches default + alt");
+
+    const second = [];
+    await generateAudioImpl(cards, opts(second));
+    assert.equal(second.length, 0, "second run is a full cache hit for both clips");
+  });
+});
+
+test("alt pass: alt is built from the spoken text (reading when present)", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([
+      { id: "a1", english: "one", category: "Numbers", target: "一", reading: "いち" },
+    ]);
+    const calls = [];
+    await generateAudioImpl(cards, {
+      voiceId: "voice123",
+      fetchTts: async (term) => {
+        calls.push(term);
+        return Buffer.from("x");
+      },
+      libraryHomeDir: tmpDir,
+      getAltTransform: getAltAudioTransform,
+    });
+    assert.deepEqual(
+      new Set(calls),
+      new Set(["いち", "いち。"]),
+      "speaks the reading and its 。 variant, not the kanji target",
+    );
+  });
 });

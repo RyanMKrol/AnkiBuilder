@@ -12,13 +12,13 @@ studyable Anki deck, complete with translations, pronunciation guides, and spoke
 Every deck moves through the same five stages, each one producing a reviewable artifact before
 the next stage runs:
 
-| Stage         | What happens                                                                                                                                                              |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **assemble**  | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate.                                                                            |
-| **review**    | You check the list over (a browsable HTML page) and drop anything that shouldn't be there.                                                                                |
-| **translate** | Each term gets translated and given a pronunciation guide, via Claude.                                                                                                    |
-| **audio**     | Each term gets a spoken recording, via ElevenLabs. A card may carry an optional `reading` (a phonetic spelling in the target script) that TTS speaks instead of `target`. |
-| **deck**      | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                    |
+| Stage         | What happens                                                                                                                                                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **assemble**  | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate.                                                                                                                                                                                                                        |
+| **review**    | You check the list over (a browsable HTML page) and drop anything that shouldn't be there.                                                                                                                                                                                                                            |
+| **translate** | Each term gets translated and given a pronunciation guide, via Claude.                                                                                                                                                                                                                                                |
+| **audio**     | Each term gets a spoken recording, via ElevenLabs. A card may carry an optional `reading` (a phonetic spelling in the target script) that TTS speaks instead of `target`. Languages with an "alt audio" config (Japanese appends `。`) also get a second recording, offered in the audio review to switch to or drop. |
+| **deck**      | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                |
 
 For books and courses, each chapter/lesson goes through this individually and then gets merged
 into one deck with a sub-deck per chapter/lesson.
@@ -119,7 +119,7 @@ npm run build
 - [x] Bundled template corpora (language-agnostic; `travel-essentials`, `numbers`)
 - [x] EPUB → candidate corpus extraction (with dedup + convention-awareness)
 - [x] Translation stage (Claude)
-- [x] Audio stage (ElevenLabs, cached; speaks an optional per-card `reading` when set)
+- [x] Audio stage (ElevenLabs, cached; speaks an optional per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`)
 - [x] `.apkg` deck builder (two-template model)
 - [x] Review-gate artifacts for each stage
 - [x] CLI orchestrator (resumable run directories)

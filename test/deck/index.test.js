@@ -454,3 +454,37 @@ test("buildBookDeck's media manifest keys are always plain sequential integers, 
     );
   });
 });
+
+test("buildDeck embeds only the default audio, never altAudio", async () => {
+  await withTempDir(async (tmpDir) => {
+    const audioDir = join(tmpDir, "audio");
+    await fs.mkdir(audioDir, { recursive: true });
+    await fs.writeFile(join(audioDir, "default.mp3"), Buffer.from("default clip"));
+    await fs.writeFile(join(audioDir, "alt.mp3"), Buffer.from("alt clip"));
+
+    const cards = baseCards([
+      {
+        id: "c1",
+        english: "eight",
+        category: "Time",
+        target: "はちじ",
+        pronunciation: "hachiji",
+        audio: "default.mp3",
+        altAudio: "alt.mp3", // present on the card but must NOT be embedded
+      },
+    ]);
+
+    const outPath = join(tmpDir, "deck.apkg");
+    const result = buildDeck(cards, { outPath, audioDir, now: 1700000000000 });
+
+    assert.strictEqual(result.mediaCount, 1, "exactly one media file embedded (the default)");
+
+    const zipBuffer = await fs.readFile(outPath);
+    const media = JSON.parse(extractZipEntry(zipBuffer, "media").toString("utf-8"));
+    assert.deepStrictEqual(media, { 0: "default.mp3" }, "only the default clip is in the manifest");
+    assert.ok(
+      !Object.values(media).includes("alt.mp3"),
+      "the alt clip is never embedded in the deck",
+    );
+  });
+});

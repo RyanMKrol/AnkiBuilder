@@ -110,3 +110,30 @@ test("renderReviewPage() never emits a max-width/centered page wrapper or a stic
   assert.doesNotMatch(html, /position:\s*sticky/);
   assert.doesNotMatch(html, /max-width:\s*\d+(px|ch)[^;]*;\s*margin:\s*0 auto/);
 });
+
+test("renderReviewPage() wires the audio-alt mode's two-action script and dual counter", () => {
+  const html = renderReviewPage({
+    title: "t",
+    subtitle: "s",
+    columns: ["Audio", "Alt (。)"],
+    rows: [
+      { cells: ["<audio></audio>", "<audio></audio>"], note: null, hasAlt: true },
+      {
+        cells: ["<audio></audio>", '<span class="empty">no alt</span>'],
+        note: null,
+        hasAlt: false,
+      },
+    ],
+    mode: "audio-alt",
+  });
+  // two-action client logic present
+  assert.match(html, /var mode = "audio-alt"/);
+  assert.match(html, /switch to alt audio for rows/);
+  assert.match(html, /drop audio for rows/);
+  // dual counter + per-row alt flag + the two CSS states
+  assert.match(html, /to switch to alt/);
+  assert.match(html, /data-has-alt="1"/);
+  assert.match(html, /data-has-alt="0"/);
+  assert.match(html, /tr\.row\.use-alt td/);
+  assert.match(html, /tr\.row\.drop td/);
+});

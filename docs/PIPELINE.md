@@ -165,13 +165,12 @@ with neither, the stage still throws asking for one.
 
 ### `deck`
 
-Builds a single-template Anki note type (`src/deck/collection.js`): **Production** — the question
-shows `English`, and the answer reveals `Target`/`Pronunciation`/`Audio`. Each note yields exactly
-one card, in the one direction where the answer is the target-language text the learner must
-produce (write). The reverse Recognition direction (`Target` → `English`) was intentionally dropped:
-every deck this tool builds feeds Kakitori, a handwriting-practice app, where "produce the Japanese"
-is the only meaningful direction and a second card would just duplicate scheduling with no writing
-value (see `.harness/custom/docs/LIMITATIONS.md`).
+Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows
+`Target` and autoplays `Audio` — the target-language listening/recall direction — answer reveals
+`English`) and **Production** (question shows `English`, answer reveals
+`Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions play the
+target-language audio; Recognition plays it on the question side, since that's the direction meant
+to exercise listening comprehension, not just script recognition.
 
 - `--run <dir>`: the ordinary one-chapter/one-lesson mode — one `cards.json` in, one `deck.apkg`
   out.

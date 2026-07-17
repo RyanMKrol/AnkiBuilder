@@ -115,16 +115,23 @@ function buildModel(nowSeconds) {
       usn: -1,
       sortf: 0,
       did: DECK_ID,
-      // Single-direction model: one Production card per note only (prompt with English,
-      // answer is the Japanese Target the learner must write). The reverse Recognition
-      // card (Japanese->English) was intentionally dropped — every deck this tool
-      // produces feeds Kakitori, a handwriting app, where "produce the Japanese" is the
-      // only meaningful direction, so a second card just duplicates scheduling with no
-      // writing value. See .harness/custom/docs/LIMITATIONS.md.
       tmpls: [
         {
-          name: "Production",
+          name: "Recognition",
           ord: 0,
+          qfmt: "{{Target}}<br>{{Audio}}",
+          afmt: `{{FrontSide}}<hr id=answer>
+<div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
+{{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
+{{#Hint}}<div class="field"><div class="field-label">Note</div><div class="hint">{{Hint}}</div></div>{{/Hint}}
+{{#Image}}<div class="field">{{Image}}</div>{{/Image}}`,
+          did: null,
+          bqfmt: "",
+          bafmt: "",
+        },
+        {
+          name: "Production",
+          ord: 1,
           qfmt: "{{English}}",
           afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
@@ -183,7 +190,10 @@ function buildModel(nowSeconds) {
       latexPre:
         "\\documentclass[12pt]{article}\\special{papersize=3in,5in}\\usepackage[utf8]{inputenc}\\usepackage{amssymb,amsmath}\\pagestyle{empty}\\setlength{\\parindent}{0in}\\begin{document}",
       latexPost: "\\end{document}",
-      req: [[0, "any", [2]]],
+      req: [
+        [0, "any", [0]],
+        [1, "any", [2]],
+      ],
     },
   };
 }
@@ -345,10 +355,11 @@ function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeco
         fieldChecksum(sortField),
       );
 
-      // One card per note (the single Production template, ord 0) — see buildModel.
-      const cardId = noteId + 1;
-      insertCard.run(cardId, noteId, deckId, 0, nowSeconds, position);
-      position++;
+      for (let ord = 0; ord < 2; ord++) {
+        const cardId = noteId + ord + 1;
+        insertCard.run(cardId, noteId, deckId, ord, nowSeconds, position);
+        position++;
+      }
     });
   });
 }
@@ -402,10 +413,9 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, nowSeconds, c
 
 /**
  * Builds the raw bytes of a `collection.anki2` SQLite database from cards,
- * one note per card with a single generated Production card (English prompt ->
- * Japanese Target answer). `card.audio`, when present, must already be the
- * filename to embed via `[sound:...]` (the caller resolves whether the
- * underlying file exists).
+ * one note per card with two generated cards (Recognition, Production).
+ * `card.audio`, when present, must already be the filename to embed via
+ * `[sound:...]` (the caller resolves whether the underlying file exists).
  */
 export function buildCollection(cards, { deckName, now }) {
   const nowSeconds = Math.floor(now / 1000);

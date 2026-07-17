@@ -129,7 +129,7 @@ test("buildMultiDeckCollection never collides note/card ids across chapters, eve
     assert.equal(new Set(noteIds).size, noteIds.length, "note ids must be unique");
     assert.equal(new Set(cardIds).size, cardIds.length, "card ids must be unique");
     assert.equal(noteIds.length, 6);
-    assert.equal(cardIds.length, 12);
+    assert.equal(cardIds.length, 6);
   });
 });
 
@@ -172,7 +172,7 @@ test("buildMultiDeckCollection sanitizes a literal '::' in the book name or a ch
   });
 });
 
-test("buildMultiDeckCollection's total card count is the sum of each chapter's items.length * 2", () => {
+test("buildMultiDeckCollection's total card count is the sum of each chapter's items.length (one card per note)", () => {
   const chapterDecks = [
     { name: "Lesson 1", cards: cardsOf("A", "B", "C") },
     { name: "Lesson 2", cards: cardsOf("D") },
@@ -186,7 +186,7 @@ test("buildMultiDeckCollection's total card count is the sum of each chapter's i
 
   withTempDb(bytes, (db) => {
     const cardCount = db.prepare("SELECT COUNT(*) as c FROM cards").get().c;
-    assert.equal(cardCount, (3 + 1 + 2) * 2);
+    assert.equal(cardCount, 3 + 1 + 2);
   });
 });
 

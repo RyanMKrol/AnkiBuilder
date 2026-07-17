@@ -490,3 +490,24 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   when consecutive nav entries collapse to one spine file, then fragment-level slicing), or where the
   EPUB has no nav document (add the LLM-only structure-inference fallback). A `--list-lessons` that
   emitted a "couldn't detect structure" note for the no-TOC case would make the fallback discoverable.
+
+## The deck note model is single-direction (Production only) — no reverse Target→English card
+
+- **What:** `buildModel` (`src/deck/collection.js`) defines exactly one card template,
+  **Production** (question shows `English`, answer reveals `Target`/`Pronunciation`/`Audio`), and
+  `insertNotesAndCards` emits exactly one card per note. The former **Recognition** template
+  (`Target` → `English`) was removed, so every `.apkg` this tool builds now has one card per note in
+  the single direction where the answer is the target-language text the learner must write.
+- **Why:** every deck this tool produces feeds Kakitori (`~/Development/Kakitori`), a
+  handwriting-practice app, where "produce/write the Japanese" is the only meaningful study
+  direction. A second Recognition card duplicated the note into a second SRS card that exercised
+  reading recognition, not writing — noise for this use-case. Making the model single-direction by
+  default (rather than adding an opt-in flag) keeps the model coherent and the code minimal.
+- **Impact:** the change is global — any deck rebuilt after this change (including the existing
+  travel/EPUB/course decks, if regenerated) becomes single-direction. Already-built committed
+  `.apkg` files are unaffected until rebuilt. Anyone wanting a two-way deck for a
+  recognition-focused (non-writing) use would no longer get one out of the box.
+- **When to revisit:** if a future consumer needs the reverse direction, reintroduce two-way as an
+  opt-in `deck --two-way` flag threaded through `buildDeck`/`buildBookDeck` → `buildCollection` →
+  `buildModel`/`insertNotesAndCards`, defaulting to the single Production card so Kakitori decks are
+  unaffected.

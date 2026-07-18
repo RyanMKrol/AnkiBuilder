@@ -120,7 +120,8 @@ npm run build
 - [x] EPUB → candidate corpus extraction (with dedup + convention-awareness)
 - [x] Translation stage (Claude)
 - [x] Audio stage (ElevenLabs, cached; speaks an optional per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`)
-- [x] `.apkg` deck builder (two-template model)
+- [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
+      auto-embeds the language's font, e.g. Japanese → Klee One)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō
       textbook face) so kana/kanji render the same on every client; `restyle-font` applies it to any
       existing `.apkg`, including third-party decks

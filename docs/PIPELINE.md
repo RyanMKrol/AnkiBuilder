@@ -183,6 +183,15 @@ Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition**
 target-language audio; Recognition plays it on the question side, since that's the direction meant
 to exercise listening comprehension, not just script recognition.
 
+The note type is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
+`AnkiBuilder ja`) with a stable, language-derived id (`languageModelId`). Anki keys note types by
+id, so every deck of a language shares ONE note type — no pile-up of duplicates on repeated imports
+— and different languages never collide. When the language has a configured deck font
+(`fontLibrary.js`'s `LANGUAGE_FONTS`; Japanese → Klee One), the builder auto-embeds it: the font
+file goes into the deck's media (`embedLanguageFont`, `src/deck/index.js`) and the model's CSS gains
+the scoped `@font-face` + `.card` rule (`languageFontCss`), so kana/kanji render in the textbook font
+on every client while Latin stays Latin. (`restyle-font` applies the same to third-party decks.)
+
 - `--run <dir>`: the ordinary one-chapter/one-lesson mode — one `cards.json` in, one `deck.apkg`
   out.
 - `--book-dir <dir>`: the book/course-level merge mode — scans `<dir>/chapter-*/cards.json` AND

@@ -3,10 +3,11 @@ import { createHash } from "crypto";
 import { mkdtempSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
+import { resolveIso639Code } from "../model/iso639.js";
+import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
 
 const FIELD_NAMES = ["Target", "Pronunciation", "English", "Category", "Hint", "Image", "Audio"];
 const FIELD_SEP = "\x1f";
-const MODEL_ID = 1;
 const DEFAULT_DECK_ID = 1;
 // The single-deck path's own deck (buildCollection) and the multi-deck path's book/
 // parent deck (buildMultiDeckCollection) never coexist in the same collection, so
@@ -27,6 +28,36 @@ const sanitizeDeckNameSegment = (name) => name.replace(/::/g, "-");
 // with chapter N+1's.
 const CHAPTER_ID_BLOCK = 1_000_000;
 const MAX_ITEMS_PER_CHAPTER = CHAPTER_ID_BLOCK / 10;
+
+// The note type is per-language: named `AnkiBuilder <lang>` with a stable, language-derived id.
+// Anki keys note types by id, so this means one shared note type per language (its decks reuse it —
+// no pile-up of duplicates) that never collides with another language's, and each language can carry
+// its own styling (e.g. an embedded font — see fontLibrary.js). `lang` is the resolved ISO 639-1
+// code where possible (e.g. "ja"), else the raw targetLanguage.
+function languageLabel(targetLanguage) {
+  return resolveIso639Code(targetLanguage) || targetLanguage || "?";
+}
+
+// A stable, unique-per-language model id, well above the small deck ids and comfortably inside the
+// safe-integer range. Deterministic so the same language always yields the same id.
+function languageModelId(label) {
+  let hash = 0;
+  for (let i = 0; i < label.length; i++) {
+    hash = (hash * 131 + label.charCodeAt(i)) % 1_000_000;
+  }
+  return 1_000_000_000 + hash;
+}
+
+// Resolves the per-language note-type identity + optional embedded font for a deck's target
+// language. `getFont` is injectable so tests can turn font embedding off.
+function resolveModelSpec(targetLanguage, getFont) {
+  const label = languageLabel(targetLanguage);
+  return {
+    modelId: languageModelId(label),
+    modelName: `AnkiBuilder ${label}`,
+    fontDescriptor: getFont(resolveIso639Code(targetLanguage)),
+  };
+}
 
 const SCHEMA_SQL = `
 CREATE TABLE col (
@@ -105,11 +136,11 @@ CREATE INDEX ix_notes_csum on notes (csum);
 // `nowSeconds`: epoch SECONDS — every JSON-embedded `mod` field in this file (model,
 // deck, dconf) uses seconds, matching notes.mod/cards.mod, NOT the milliseconds used
 // by col.mod/col.scm or by note/card `id`s. See writeCollectionDb's own comment.
-function buildModel(nowSeconds) {
+function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
   return {
-    [MODEL_ID]: {
-      id: MODEL_ID,
-      name: "AnkiBuilder",
+    [modelId]: {
+      id: modelId,
+      name: modelName,
       type: 0,
       mod: nowSeconds,
       usn: -1,
@@ -186,7 +217,7 @@ function buildModel(nowSeconds) {
 .hint {
   font-size: 14px;
   color: #888888;
-}`,
+}${fontDescriptor ? "\n" + languageFontCss(fontDescriptor) : ""}`,
       latexPre:
         "\\documentclass[12pt]{article}\\special{papersize=3in,5in}\\usepackage[utf8]{inputenc}\\usepackage{amssymb,amsmath}\\pagestyle{empty}\\setlength{\\parindent}{0in}\\begin{document}",
       latexPost: "\\end{document}",
@@ -267,10 +298,10 @@ function buildDconf(nowSeconds) {
   };
 }
 
-function buildConf(curDeck, activeDecks) {
+function buildConf(curDeck, activeDecks, modelId) {
   return {
     curDeck,
-    curModel: MODEL_ID,
+    curModel: modelId,
     nextPos: 1,
     estTimes: true,
     dueCounts: true,
@@ -330,7 +361,7 @@ function fieldValue(card, name) {
 // `mod` field is epoch SECONDS in Anki's actual schema. Passing the millisecond value
 // there produces a modification time ~1000x in the future, which is the kind of
 // out-of-range timestamp Anki's importer rejects.
-function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeconds) {
+function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeconds, modelId) {
   let position = 1;
   chapterGroups.forEach(({ deckId, cards }, chapterIndex) => {
     if (cards.items.length > MAX_ITEMS_PER_CHAPTER) {
@@ -348,7 +379,7 @@ function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeco
       insertNote.run(
         noteId,
         card.id,
-        MODEL_ID,
+        modelId,
         nowSeconds,
         flds,
         sortField,
@@ -371,7 +402,15 @@ function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeco
 // epoch milliseconds. `decksJson` is already fully rendered JSON by the time it gets
 // here, built by the caller using nowSeconds too — see buildCollection/
 // buildMultiDeckCollection.
-function writeCollectionDb({ decksJson, curDeck, activeDecks, now, nowSeconds, chapterGroups }) {
+function writeCollectionDb({
+  decksJson,
+  curDeck,
+  activeDecks,
+  now,
+  nowSeconds,
+  chapterGroups,
+  modelSpec,
+}) {
   const tmpDir = mkdtempSync(join(tmpdir(), "anki-builder-collection-"));
   const dbPath = join(tmpDir, "collection.anki2");
 
@@ -387,8 +426,8 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, nowSeconds, c
         nowSeconds,
         now,
         now,
-        JSON.stringify(buildConf(curDeck, activeDecks)),
-        JSON.stringify(buildModel(nowSeconds)),
+        JSON.stringify(buildConf(curDeck, activeDecks, modelSpec.modelId)),
+        JSON.stringify(buildModel(nowSeconds, modelSpec)),
         decksJson,
         JSON.stringify(buildDconf(nowSeconds)),
       );
@@ -400,7 +439,14 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, nowSeconds, c
         "INSERT INTO cards (id, nid, did, ord, mod, usn, type, queue, due, ivl, factor, reps, lapses, left, odue, odid, flags, data) VALUES (?, ?, ?, ?, ?, -1, 0, 0, ?, 0, 2500, 0, 0, 0, 0, 0, 0, '')",
       );
 
-      insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeconds);
+      insertNotesAndCards(
+        insertNote,
+        insertCard,
+        chapterGroups,
+        now,
+        nowSeconds,
+        modelSpec.modelId,
+      );
     } finally {
       db.close();
     }
@@ -417,7 +463,7 @@ function writeCollectionDb({ decksJson, curDeck, activeDecks, now, nowSeconds, c
  * `card.audio`, when present, must already be the filename to embed via
  * `[sound:...]` (the caller resolves whether the underlying file exists).
  */
-export function buildCollection(cards, { deckName, now }) {
+export function buildCollection(cards, { deckName, now, getFont = getLanguageFont }) {
   const nowSeconds = Math.floor(now / 1000);
   return writeCollectionDb({
     decksJson: JSON.stringify(buildDecks(nowSeconds, deckName)),
@@ -426,6 +472,7 @@ export function buildCollection(cards, { deckName, now }) {
     now,
     nowSeconds,
     chapterGroups: [{ deckId: DECK_ID, cards }],
+    modelSpec: resolveModelSpec(cards.meta?.targetLanguage, getFont),
   });
 }
 
@@ -438,7 +485,10 @@ export function buildCollection(cards, { deckName, now }) {
  * by the caller. Every card's `did` points at its own chapter's sub-deck — never the
  * parent/Default, which hold no cards.
  */
-export function buildMultiDeckCollection(chapterDecks, { bookName, now }) {
+export function buildMultiDeckCollection(
+  chapterDecks,
+  { bookName, now, getFont = getLanguageFont },
+) {
   const nowSeconds = Math.floor(now / 1000);
   const chapterNames = chapterDecks.map((c) => c.name);
   const decks = buildMultiDecks(nowSeconds, bookName, chapterNames);
@@ -454,7 +504,8 @@ export function buildMultiDeckCollection(chapterDecks, { bookName, now }) {
     now,
     nowSeconds,
     chapterGroups,
+    modelSpec: resolveModelSpec(chapterDecks[0]?.cards?.meta?.targetLanguage, getFont),
   });
 }
 
-export { FIELD_NAMES };
+export { FIELD_NAMES, languageLabel, languageModelId };

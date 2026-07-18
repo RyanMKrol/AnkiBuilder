@@ -58,3 +58,16 @@ export function fontFaceCss(descriptor) {
   const range = descriptor.unicodeRange ? ` unicode-range: ${descriptor.unicodeRange};` : "";
   return `@font-face { font-family: "${descriptor.family}"; src: url("${descriptor.mediaName}") format("${descriptor.format}");${range} font-display: swap; }`;
 }
+
+/**
+ * The full CSS block that makes a card use the font for the target script: the (unicode-ranged)
+ * `@font-face` plus a `.card` rule listing the font first, then a Latin sans stack. Because the
+ * `@font-face` is scoped, the font only renders target-script glyphs; Latin text falls through to
+ * the Latin fonts. Shared by the deck builder and `restyle-font`.
+ */
+export function languageFontCss(descriptor) {
+  return (
+    fontFaceCss(descriptor) +
+    `\n.card { font-family: "${descriptor.family}", "Helvetica Neue", Helvetica, Arial, sans-serif; }`
+  );
+}

@@ -214,6 +214,14 @@ a re-ordering (never adds/drops/rewrites a card) and fails open. The order you s
 review below **is** the study order the deck will use, so the review is your chance to sanity-check the
 sequence — if a sentence still lands before its vocabulary, tell me and I'll nudge it.
 
+**Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
+e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the
+target language's own script (`にせんえん`, `ごかい`). The digits stay in `target` for a natural card
+face, but the spelled-out `reading` is what drives the romaji pronunciation AND the audio — because
+digits break both (kuroshiro renders `2,000えん` as `2 , 000 en`, and ElevenLabs may read it in
+English). The corpus review shows a **Reading (spoken)** column whenever any item has one, so you can
+verify the kana; if a reading's counter looks wrong, tell me and I'll fix it.
+
 **Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
 Generate it from the checked-in template rather than hand-authoring HTML — that's what keeps this
 page visually and behaviorally identical run over run:

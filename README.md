@@ -121,7 +121,10 @@ npm run build
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
 - [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)
-- [x] Audio stage (ElevenLabs, cached; speaks an optional per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`)
+- [x] Spoken-form `reading` field — numbers stay as digits in `target` (natural display, e.g. `2,000えん`)
+      while a spelled-out `reading` (`にせんえん`) drives BOTH the romaji pronunciation and the audio,
+      since digits break the romanizer and TTS
+- [x] Audio stage (ElevenLabs, cached; speaks the per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`)
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō

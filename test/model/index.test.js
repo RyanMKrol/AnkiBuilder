@@ -36,6 +36,26 @@ test("validateCorpus - valid corpus passes validation", () => {
   });
 });
 
+test("validateCorpus - accepts an optional `reading` (spoken form) on an item", () => {
+  const validCorpus = {
+    meta: { targetLanguage: "ja", sourceType: "epub" },
+    items: [
+      {
+        id: "price",
+        english: "2,000 yen",
+        category: "Shopping",
+        notes: null,
+        target: "2,000えん",
+        reading: "にせんえん",
+      },
+    ],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCorpus(validCorpus);
+  });
+});
+
 test("validateCorpus - notes/target may be a real string instead of null", () => {
   const validCorpus = {
     meta: { targetLanguage: "ja", sourceType: "epub" },

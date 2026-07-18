@@ -23,6 +23,31 @@ test("renderCorpusReviewPage() renders English/Category/Target/Flags columns", (
   assert.match(html, /こんにちは/);
 });
 
+test("renderCorpusReviewPage() adds a Reading column only when some item has a reading", () => {
+  // No reading anywhere → no Reading column (unchanged four-column header).
+  const plain = renderCorpusReviewPage(corpus());
+  assert.doesNotMatch(plain, /<th>Reading \(spoken\)<\/th>/);
+
+  // At least one reading → the column appears, between Target and Flags, showing the spoken form.
+  const withReading = renderCorpusReviewPage(
+    corpus({
+      items: [
+        {
+          id: "price",
+          english: "2,000 yen",
+          category: "Shopping",
+          notes: null,
+          target: "2,000えん",
+          reading: "にせんえん",
+        },
+      ],
+    }),
+  );
+  assert.match(withReading, /<th>Target<\/th><th>Reading \(spoken\)<\/th><th>Flags<\/th>/);
+  assert.match(withReading, /にせんえん/);
+  assert.match(withReading, /2,000えん/);
+});
+
 test("renderCorpusReviewPage() renders badges for uncertain and aiSuggested items", () => {
   const html = renderCorpusReviewPage(
     corpus({

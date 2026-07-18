@@ -177,7 +177,9 @@ export async function romanizeAndEvaluate(
   for (const item of items) {
     try {
       const mod = await libraryEntry.load();
-      const libraryPronunciation = await mod.romanize(item.target);
+      // Romanize the spoken form when set (e.g. kana にせんえん) rather than the display
+      // `target` (e.g. "2,000えん", which kuroshiro would leave as "2 , 000 en").
+      const libraryPronunciation = await mod.romanize(item.reading || item.target);
       romanized.push({ ...item, libraryPronunciation });
     } catch (error) {
       log(

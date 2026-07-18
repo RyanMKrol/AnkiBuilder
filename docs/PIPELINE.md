@@ -147,7 +147,17 @@ pass has something to check against.
 
 Items with `target: null` get a full translation; items with a real `target` already set (e.g.
 from the EPUB path) only ever get a pronunciation guide — the model cannot override a pre-existing
-target (see `src/translate/index.js`). Prompts are Markdown-structured (Overview / Input Format /
+target (see `src/translate/index.js`).
+
+**Spoken form (`reading`).** An item may carry an optional `reading` — a spoken version of the
+target with anything the romanizer/TTS mishandles spelled out in the target language's own script.
+The one case that needs it today is **numbers**: kuroshiro leaves a digit verbatim (`2,000えん` →
+`2 , 000 en`) and ElevenLabs may read it as an English number, so extraction keeps the digits in
+`target` (natural card display) and emits `reading: "にせんえん"`. When present, `reading` drives BOTH
+the romaji `pronunciation` (the romanizer/pronunciation prompt romanizes `reading ?? target`) and
+the `audio` (the audio stage's `speechText` speaks `reading ?? target`); the deck still shows
+`target`. Absent a `reading`, everything falls back to `target` exactly as before, so only
+number-bearing cards are affected. Prompts are Markdown-structured (Overview / Input Format /
 Example Input / Output Format / Example Output / Important / Input Data). How `pronunciation` gets
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,

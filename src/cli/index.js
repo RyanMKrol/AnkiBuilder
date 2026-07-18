@@ -47,6 +47,7 @@ import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
+import { TTS_MODEL } from "../audio/ttsModel.js";
 import {
   buildDeck as defaultBuildDeck,
   buildBookDeck as defaultBuildBookDeck,
@@ -78,7 +79,7 @@ async function defaultFetchTts(text, voiceId, apiKey, languageCode = null) {
     },
     body: JSON.stringify({
       text,
-      model_id: "eleven_multilingual_v2",
+      model_id: TTS_MODEL,
       ...(languageCode ? { language_code: languageCode } : {}),
     }),
   });
@@ -537,7 +538,8 @@ async function runAudio(flags, ctx) {
   });
 
   mkdirSync(paths.audio, { recursive: true });
-  const cacheDir = join(ctx.libraryHome(), "audio", voiceId);
+  // Must match generateAudio's model-segmented cache path (audio/<voiceId>/<model>/).
+  const cacheDir = join(ctx.libraryHome(), "audio", voiceId, TTS_MODEL);
   // Copy both the default clip and (when present) the alt clip from the cache into the run's
   // audio/ dir. The deck build reads files from there; a card carrying `altAudio` needs its alt
   // clip on disk in case the review later switches the card to it.

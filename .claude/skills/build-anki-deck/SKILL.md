@@ -214,6 +214,14 @@ a re-ordering (never adds/drops/rewrites a card) and fails open. The order you s
 review below **is** the study order the deck will use, so the review is your chance to sanity-check the
 sequence — if a sentence still lands before its vocabulary, tell me and I'll nudge it.
 
+**Every review stage reflects this one pedagogical order.** The sort runs once, at assemble, and the
+order flows straight through: `translate` and `audio` preserve the item order, so the corpus,
+translate, and audio review artifacts all present the cards in the same pedagogical sequence, and the
+deck's study order matches it. There's no per-stage re-sort — fix the order once (in `corpus.json`,
+or by telling me) and every downstream stage and review inherits it. When you hand-edit the order (or
+I split/add/reorder rows), keep `corpus.json` and `cards.json` in the same sequence so the reviews and
+the deck stay aligned.
+
 **Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
 e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the
 target language's own script (`にせんえん`, `ごかい`). The digits stay in `target` for a natural card
@@ -292,8 +300,11 @@ anki-builder audio --run <runDir> --voice <voiceId>
 This:
 - Requires `ELEVENLABS_API_KEY` in your environment (or `.env`)
 - Reads `cards.json`
-- Fetches audio from ElevenLabs for each card
-- Caches audio in `.anki-builder/audio/<voiceId>/` (inside this repo, gitignored) so reruns are fast
+- Fetches audio from ElevenLabs (model `eleven_v3` by default — `src/audio/ttsModel.js`'s `TTS_MODEL`,
+  override with `ANKI_BUILDER_TTS_MODEL`; v3 is markedly more natural than the old `eleven_multilingual_v2`
+  at the same cost)
+- Caches audio in `.anki-builder/audio/<voiceId>/<model>/` (gitignored; **segmented by model** so a
+  model switch never reuses a stale clip) so reruns are fast
 - Copies audio files into the run directory
 - Writes updated `cards.json` with audio file references
 

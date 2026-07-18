@@ -6,6 +6,7 @@ import os from "os";
 import { Buffer } from "buffer";
 import { generateAudio as generateAudioImpl } from "../../src/audio/index.js";
 import { getAltAudioTransform } from "../../src/audio/altAudio.js";
+import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
 // The core-mechanics tests below (dedup, caching, hashing, reading-vs-target) exercise the DEFAULT
 // recording pass. Since baseCards is tagged `ja` — which has an alt-audio transform — the alt pass
@@ -53,12 +54,14 @@ test("writes one MP3 per unique target term into voice-specific cache dir", asyn
         voiceId: "voice123",
         fetchTts: mockFetchTts,
         libraryHomeDir: tmpDir,
+        model: "test-model",
       });
 
       assert.equal(calls.length, 2);
       assert.deepEqual(new Set(calls), new Set(["こんにちは", "さようなら"]));
 
-      const audioDir = resolve(join(tmpDir, "audio", "voice123"));
+      // Cache is segmented by model: audio/<voiceId>/<model>/
+      const audioDir = resolve(join(tmpDir, "audio", "voice123", "test-model"));
       const files = await fs.readdir(audioDir);
       assert.equal(files.length, 2);
 
@@ -524,7 +527,7 @@ test("audio cache key follows the spoken text: same target + different reading =
       assert.equal(calls.length, 2);
       assert.notEqual(result.items[0].audio, result.items[1].audio);
 
-      const audioDir = resolve(join(tmpDir, "audio", "voice123"));
+      const audioDir = resolve(join(tmpDir, "audio", "voice123", TTS_MODEL));
       const files = await fs.readdir(audioDir);
       assert.equal(files.length, 2);
     });
@@ -607,7 +610,7 @@ test("alt pass: a ja card gets both a default and an alt (。) clip with distinc
     assert.notEqual(item.audio, item.altAudio, "default and alt have distinct filenames");
     assert.deepEqual(new Set(calls), new Set(["はちじ", "はちじ。"]), "fetched plain + 。 variant");
 
-    const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123")));
+    const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123", TTS_MODEL)));
     assert.equal(files.length, 2, "both clips cached");
   });
 });
@@ -670,4 +673,44 @@ test("alt pass: alt is built from the spoken text (reading when present)", async
       "speaks the reading and its 。 variant, not the kanji target",
     );
   });
+});
+
+test("cache is segmented by model — the same text under two models does not collide", async () => {
+  const tmpDir = await fs.mkdtemp(join(os.tmpdir(), "audio-test-"));
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    const cards = { meta: { targetLanguage: "es" }, items: [{ id: "a1", target: "hola" }] };
+    const calls = [];
+    const fetchTts = async (term) => {
+      calls.push(term);
+      return Buffer.from(`clip-${term}`);
+    };
+
+    const r1 = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts,
+      libraryHomeDir: tmpDir,
+      model: "model-a",
+    });
+    const r2 = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts,
+      libraryHomeDir: tmpDir,
+      model: "model-b",
+    });
+
+    // Same text, but a second model must NOT hit the first model's cache — fetched under both.
+    assert.equal(calls.length, 2, "each model fetches its own clip; no cross-model cache hit");
+    // Same filename (hash of the text) but under different model directories.
+    assert.equal(r1.items[0].audio, r2.items[0].audio);
+    const aFiles = await fs.readdir(resolve(join(tmpDir, "audio", "v", "model-a")));
+    const bFiles = await fs.readdir(resolve(join(tmpDir, "audio", "v", "model-b")));
+    assert.equal(aFiles.length, 1);
+    assert.equal(bFiles.length, 1);
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+    await fs.rm(tmpDir, { recursive: true, force: true });
+  }
 });

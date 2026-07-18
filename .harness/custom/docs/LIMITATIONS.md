@@ -7,6 +7,20 @@ refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/cus
 
 Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
 
+## Switching the TTS model re-fetches every clip (cache is model-segmented)
+
+- **What:** the audio cache lives at `.anki-builder/audio/<voiceId>/<model>/…`, keyed by model
+  (`src/audio/ttsModel.js`). This is deliberate — it stops a clip made by one model being served for
+  another — but it means changing `TTS_MODEL` (or `ANKI_BUILDER_TTS_MODEL`) is a **cold cache**: every
+  term is re-fetched from ElevenLabs under the new model directory, re-spending credits, and the old
+  model's clips sit on disk unused until manually cleared.
+- **Why:** correctness over disk/credits — a v2 clip and a v3 clip of the same text are genuinely
+  different audio, so they must not collide on one hash.
+- **Impact:** a model switch re-bills the whole corpus's audio (a few cents per lesson at 1
+  credit/char) and leaves orphaned clips under the old `<model>/` dir.
+- **When to revisit:** if orphaned caches pile up, add a `deck audio --prune-models` or a cache GC that
+  drops model dirs no longer referenced by any `cards.json`.
+
 ## Number `reading`s are LLM/hand-authored and only checked at review
 
 - **What:** numbers are kept as digits in `target` (natural display) with a spelled-out `reading`

@@ -1,11 +1,11 @@
 # Translate stage — the prompts
 
-`translateCorpus` (`src/translate/index.js`) splits corpus items into two groups depending on whether `item.target` is already set, and sends each group through a different prompt, batched independently in groups of up to 10 items per `claude -p` call (pinned to Haiku by default, overridable via `ANKI_BUILDER_TRANSLATE_MODEL`).
+`translateCorpus` (`src/translate/index.js`) splits corpus items into two groups depending on whether `item.target` is already set, and sends each group through a different prompt — one `claude -p` call per group, unbatched (the whole group goes in a single call, pinned to Sonnet at medium effort by default, overridable via `ANKI_BUILDER_TRANSLATE_MODEL` / `ANKI_BUILDER_TRANSLATE_EFFORT`).
 
 **Which prompts run depends on whether the target language has a configured romanization library** (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code):
 
 - **No library configured** (the original design, unchanged): the two prompts below — full-translation and pronunciation-only — both ask the model for `pronunciation` directly.
-- **Library configured** (e.g. Japanese, Mandarin, Korean, Russian, Hebrew, Hindi, Arabic — see `romanizationLibraries.js` for the current list): the translation call asks for `target` only (§1a, below) — never `pronunciation` — and a separate romanization eval pass (§3) runs the real library and has Haiku judge its output instead. See `src/translate/romanizationEval.js`.
+- **Library configured** (e.g. Japanese, Mandarin, Korean, Russian, Hebrew, Hindi, Arabic — see `romanizationLibraries.js` for the current list): the translation call asks for `target` only (§1a, below) — never `pronunciation` — and a separate romanization eval pass (§3) runs the real library and has a Sonnet-medium model judge its output instead. See `src/translate/romanizationEval.js`.
 
 ## 1. Full-translation prompt
 
@@ -327,7 +327,7 @@ Do not include a `target` key at all — the translation is already final and is
 
 ## 3. Romanization eval prompt (library-configured languages)
 
-Used by `romanizeAndEvaluate` (`src/translate/romanizationEval.js`) once the configured library (§1a's flow) has produced a candidate romanization for `target`. The model is shown the library's own output and asked only to judge it — **it cannot substitute a replacement of its own.** The output schema has no key a rewritten romanization could travel through: only `ok` (approve/flag) and, when flagging, `concern` (why). This mirrors the same "flag, never silently override" idiom already used by the corpus-assembly dedup passes (`src/corpus/epubDedup.js`'s `dedupBackward`, `src/corpus/epubForwardFlags.js`'s `flagForwardConcerns`) — deliberately, not by coincidence: if Haiku disagrees with a deterministic library, that disagreement is a signal for a human reviewer, not a license for the model to silently overwrite ground truth. A flagged item keeps the library's `pronunciation` value, gets `uncertain: true`, and a `"Possibly incorrect romanization — <concern>"` note appended.
+Used by `romanizeAndEvaluate` (`src/translate/romanizationEval.js`) once the configured library (§1a's flow) has produced a candidate romanization for `target`. The model is shown the library's own output and asked only to judge it — **it cannot substitute a replacement of its own.** The output schema has no key a rewritten romanization could travel through: only `ok` (approve/flag) and, when flagging, `concern` (why). This mirrors the same "flag, never silently override" idiom already used by the corpus-assembly dedup passes (`src/corpus/epubDedup.js`'s `dedupBackward`, `src/corpus/epubForwardFlags.js`'s `flagForwardConcerns`) — deliberately, not by coincidence: if the model disagrees with a deterministic library, that disagreement is a signal for a human reviewer, not a license for the model to silently overwrite ground truth. A flagged item keeps the library's `pronunciation` value, gets `uncertain: true`, and a `"Possibly incorrect romanization — <concern>"` note appended.
 
 ### Template
 

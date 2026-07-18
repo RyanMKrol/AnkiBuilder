@@ -134,7 +134,7 @@ test("tolerates a batch response wrapped in a markdown code fence", async () => 
   assert.equal(cards.items[0].target, "Bonjour");
 });
 
-test("batches the full-translation group into `claude -p` calls of at most 10 items", async () => {
+test("sends the whole full-translation group in a single `claude -p` call", async () => {
   const items = Array.from({ length: 25 }, (_, i) => untranslated(`w${i}`, `word ${i}`, "Misc"));
   const corpus = baseCorpus(items);
 
@@ -147,13 +147,13 @@ test("batches the full-translation group into `claude -p` calls of at most 10 it
     },
   });
 
-  assert.deepEqual(batchSizes, [10, 10, 5]);
-  assert.ok(batchSizes.every((n) => n <= 10));
+  // No chunking: all 25 items go in one call.
+  assert.deepEqual(batchSizes, [25]);
   assert.equal(cards.items.length, 25);
   assert.deepEqual(errors, []);
 });
 
-test("batches the pronunciation-only group into `claude -p` calls of at most 10 items, independently", async () => {
+test("sends the whole pronunciation-only group in a single `claude -p` call, independently", async () => {
   const items = Array.from({ length: 12 }, (_, i) =>
     alreadyTranslated(`w${i}`, `word ${i}`, "Misc", `t-${i}`),
   );
@@ -168,7 +168,7 @@ test("batches the pronunciation-only group into `claude -p` calls of at most 10 
     },
   });
 
-  assert.deepEqual(batchSizes, [10, 2]);
+  assert.deepEqual(batchSizes, [12]);
   assert.equal(cards.items.length, 12);
   assert.deepEqual(errors, []);
   // Pre-existing targets are all preserved unchanged (item id "w0" -> target "t-0").

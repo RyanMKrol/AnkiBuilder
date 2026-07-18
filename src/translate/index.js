@@ -4,11 +4,12 @@ import { runClaude as defaultRunClaude } from "./runClaude.js";
 import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./romanizationLibraries.js";
 import { romanizeAndEvaluate } from "./romanizationEval.js";
 
-// Max corpus items per `claude -p` invocation. Kept small so the cheaper pinned
-// model has little to get wrong per call; larger corpora are split into several
-// batches (e.g. 25 items → calls of 10, 10, 5). Each of the two groups below
-// (full-translation vs. pronunciation-only) is batched independently.
-const BATCH_SIZE = 10;
+// Max corpus items per `claude -p` invocation. Unbounded — a lesson's worth of items goes in a
+// SINGLE call now that every LLM pass is pinned to Sonnet at medium effort (a capable model handles
+// a whole lesson in one shot, and one call keeps translations self-consistent instead of split
+// across independent batches). Each of the two groups below (full-translation vs. pronunciation-only)
+// is still a call of its own, since they're different tasks on different item sets.
+const BATCH_SIZE = Infinity;
 
 function chunk(items, size) {
   const batches = [];
@@ -94,7 +95,7 @@ function buildFullTranslationPrompt(items, targetLanguage) {
 
 // Used instead of buildFullTranslationPrompt when a real romanization library (see
 // romanizationLibraries.js) will produce `pronunciation` afterward — asking the model for a
-// pronunciation guide it's never used would waste a model turn and risk the later Haiku eval step
+// pronunciation guide it's never used would waste a model turn and risk the later eval step
 // being anchored by having already seen the model's own (about-to-be-superseded) guess.
 function buildTargetOnlyPrompt(items, targetLanguage) {
   const inputData = items.map((item) => {
@@ -324,7 +325,7 @@ function assembleFullCard(item, entry) {
 
 // Produces a card-shaped object with NO `pronunciation` key at all — deliberately, since this
 // feeds into romanizeAndEvaluate (romanizationEval.js), which fills `pronunciation` in afterward
-// from the configured library + Haiku eval, not from this translation call.
+// from the configured library + a Sonnet-medium eval, not from this translation call.
 function assembleTargetOnlyCard(item, entry) {
   const card = {
     id: item.id,
@@ -439,7 +440,7 @@ function toPartialCard(item) {
  * - **Library configured**: `target === null` items get `buildTargetOnlyPrompt` (translation
  *   only, no pronunciation ask); `target !== null` items need no model call for `target` at all.
  *   Every item then goes through `romanizeAndEvaluate` (romanizationEval.js), which runs the
- *   configured library and a Haiku evaluation pass to produce `pronunciation` — falling back to
+ *   configured library and a Sonnet-medium evaluation pass to produce `pronunciation` — falling back to
  *   the ordinary `buildPronunciationOnlyPrompt` path per-item if the library adapter itself
  *   throws (missing dependency, dictionary load failure, etc.).
  *

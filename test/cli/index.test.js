@@ -42,6 +42,10 @@ function baseEpubCorpus() {
   };
 }
 
+// Passthrough stub for the assemble-time pedagogical sort so multi-item test corpora don't spawn a
+// real `claude`. (Single-item corpora no-op in the real default, so those tests don't need this.)
+const passthroughSort = ({ items }) => ({ items, changed: false });
+
 test("throws on unknown command", async () => {
   await assert.rejects(() => runCli(["bogus", "--run", "/tmp/x"]), /Unknown command/);
 });
@@ -597,6 +601,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
         dedupBackward,
         flagForwardConcerns,
         describeChapter,
+        sortItemsPedagogically: passthroughSort,
         log: (msg) => logs.push(msg),
       },
     );
@@ -679,6 +684,7 @@ test("assemble: --words resolves the run dir via resolveCourseSlug/resolveLesson
         resolveCourseSlug,
         resolveLessonRunDir,
         assembleCorpusFromLessonWords,
+        sortItemsPedagogically: passthroughSort,
         log: (msg) => logs.push(msg),
       },
     );
@@ -851,6 +857,7 @@ test("assemble: logs one line per flagged item for both passes, not just a count
         dedupBackward,
         flagForwardConcerns,
         describeChapter,
+        sortItemsPedagogically: passthroughSort,
         log: (msg) => logs.push(msg),
       },
     );

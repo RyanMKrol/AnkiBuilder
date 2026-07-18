@@ -2,8 +2,8 @@ import { runClaude as defaultRunClaude } from "./runClaude.js";
 
 // Duplicated from index.js (rather than imported) to avoid a circular module dependency —
 // index.js imports romanizeAndEvaluate from here, so this module can't import back from index.js.
-// Same batch size/semantics as the rest of the translate stage.
-const BATCH_SIZE = 10;
+// Same batch size/semantics as the rest of the translate stage: unbounded, i.e. one call per group.
+const BATCH_SIZE = Infinity;
 
 function chunk(items, size) {
   const batches = [];
@@ -114,7 +114,7 @@ function assembleCard(item, verdict) {
 }
 
 /**
- * Evaluates a batch of library-romanized items with the Haiku-pinned model, mirroring
+ * Evaluates the library-romanized items with the pinned Sonnet-medium model, mirroring
  * `dedupBackward`/`flagForwardConcerns`'s "flag, never silently override" idiom: the model can
  * only approve (`ok: true`) or flag (`ok: false, concern`) — there is no way for it to substitute
  * its own romanization, since the output schema has no key a replacement value could travel
@@ -155,7 +155,7 @@ function evaluateRomanizations(items, { targetLanguage, runClaude }) {
 
 /**
  * Fills in `pronunciation` for every item already holding a `target` (freshly translated or
- * pre-existing), via the configured romanization library for `targetLanguage` plus a Haiku
+ * pre-existing), via the configured romanization library for `targetLanguage` plus a Sonnet-medium
  * evaluation pass — see `evaluateRomanizations`. A per-item adapter failure (missing package,
  * dictionary load failure, or any other library-internal error) is not a hard failure: that one
  * item falls through to the ordinary pronunciation-only LLM path instead (reusing

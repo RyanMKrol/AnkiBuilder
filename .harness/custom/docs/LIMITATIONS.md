@@ -7,23 +7,44 @@ refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/cus
 
 Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
 
-## Translate batch parsing strips markdown fences, but a batch can still fail outright
+## Translate response parsing strips markdown fences, but a call can still fail outright
 
-- **What:** `translateCorpus` (`src/translate/index.js`) calls the pinned Haiku model via `claude -p`
-  per batch of up to 10 items. The model is instructed to respond with raw JSON only, but sometimes
-  wraps the array in a ` ```json ... ``` ` fence anyway; `parseBatch` now strips a single leading/trailing
-  fence before parsing. If the response is malformed in some other way (truncated, extra prose,
-  nested fences), the whole batch's items still fail together and must be retried by re-running
-  `translate` after deleting `cards.json` (the CLI only regenerates when the file is absent — it
-  does not resume just the failed ids).
-- **Why:** batching keeps the cheap pinned model's context small per call; the fence-stripping fix
-  only guards against the one failure mode actually observed (occasional markdown wrapping), not
-  every possible malformed response.
-- **Impact:** on a run with several batches, one bad batch means re-running translation for the
-  *whole* corpus, re-spending API calls on batches that already succeeded.
-- **When to revisit:** if malformed-batch failures keep recurring after this fix, add per-item retry
-  (re-invoke `runClaude` for just the ids missing from a batch) instead of requiring a full corpus
-  re-run.
+- **What:** `translateCorpus` (`src/translate/index.js`) sends each group (full-translation,
+  pronunciation-only) to Sonnet-medium via `claude -p` in a **single unbatched call** (BATCH_SIZE is
+  `Infinity` — the whole group in one shot). The model is instructed to respond with raw JSON only, but
+  sometimes wraps the array in a ` ```json ... ``` ` fence anyway; `parseBatch` strips a single
+  leading/trailing fence before parsing. If the response is malformed in some other way (truncated,
+  extra prose, nested fences), the whole group's items fail together and must be retried by re-running
+  `translate` after deleting `cards.json` (the CLI only regenerates when the file is absent — it does
+  not resume just the failed ids).
+- **Why:** every LLM pass in the toolset is now pinned to one model/effort (Sonnet medium), and a
+  capable model handles a whole lesson in one call — which also keeps translations self-consistent
+  instead of split across independent batches. The fence-stripping fix only guards the one failure mode
+  actually observed (occasional markdown wrapping), not every possible malformed response.
+- **Impact:** one unparseable response now fails the *whole* group's translation at once (there are no
+  smaller batches to partially succeed); re-running re-spends the call. For a lesson-sized corpus this
+  is one call, so the blast radius is a single lesson, not the toolset.
+- **When to revisit:** if whole-group failures recur, add per-item retry (re-invoke `runClaude` for
+  just the ids missing from the response) instead of requiring a full re-run; and if a corpus ever grows
+  large enough to strain a single call's context/output, reintroduce a (larger) batch cap.
+
+## Pedagogical sort is a non-deterministic LLM pass
+
+- **What:** `assemble` re-orders every corpus for learning flow via `sortItemsPedagogically`
+  (`src/corpus/pedagogicalSort.js`) — a Sonnet-medium `claude -p` pass. Because it's an LLM call, the
+  chosen order is **not deterministic**: re-assembling the same lesson could produce a slightly
+  different sequence. It's a *re-ordering only* (the reorder defensively appends omitted ids, ignores
+  invented ones, de-dupes — so it can never add/drop/rewrite a card), and it fails open (any
+  parse/shape error keeps the extracted order).
+- **Why:** the core rule — "a sentence comes after the vocabulary it's built from" — needs morpheme-level
+  judgment across spaceless, conjugating target text that a substring algorithm would miss; the LLM
+  reads meaning. The user explicitly wanted "the agent to have an opinion" on ordering.
+- **Impact:** the order isn't reproducible run-over-run, and a wrong call (a sentence before its
+  vocabulary) is possible; it's caught at the corpus review gate, which shows the sorted order for a
+  human to approve/nudge. The order is cached in `corpus.json` once written, so it's stable after that.
+- **When to revisit:** if reproducibility matters or the LLM mis-orders often, add a deterministic
+  guardrail (flag any sentence landing before a substring-matched component vocab) or replace the pass
+  with a rules-based sort (bucket by length/type; sentences after their matched vocabulary).
 
 ## `assemble --epub` reads one chapter per command — no whole-book, one-shot loop yet
 

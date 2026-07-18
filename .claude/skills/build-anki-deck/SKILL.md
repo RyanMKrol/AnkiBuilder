@@ -205,6 +205,15 @@ The result is `corpus.json` in the run directory, containing:
 - Categories (Greetings, Food, etc.)
 - Optional translations or hints from the source
 
+The items in `corpus.json` are **already pedagogically sorted** — as the last step of `assemble`, a
+dependency-aware LLM pass (`sortItemsPedagogically`, Sonnet-medium) re-orders them for learning flow
+so a learner meets vocabulary before the sentences built from it (atoms → molecules), rather than raw
+textbook order (which often prints a Key Sentence before the words inside it). This is on by default
+for every source; pass `--no-sort` to `assemble` to keep the raw extracted order instead. It's purely
+a re-ordering (never adds/drops/rewrites a card) and fails open. The order you see in the corpus
+review below **is** the study order the deck will use, so the review is your chance to sanity-check the
+sequence — if a sentence still lands before its vocabulary, tell me and I'll nudge it.
+
 **Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
 Generate it from the checked-in template rather than hand-authoring HTML — that's what keeps this
 page visually and behaviorally identical run over run:

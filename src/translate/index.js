@@ -177,7 +177,9 @@ function buildTargetOnlyPrompt(items, targetLanguage) {
 // second-guess or alter a target we already trust.
 function buildPronunciationOnlyPrompt(items, targetLanguage) {
   const inputData = items.map((item) => {
-    const entry = { id: item.id, english: item.english, target: item.target };
+    // Pronounce the spoken form when set (e.g. kana にせんえん) rather than the display
+    // `target` (e.g. "2,000えん") — keeps this LLM/fallback path in step with the library romanizer.
+    const entry = { id: item.id, english: item.english, target: item.reading || item.target };
     if (item.notes) {
       entry.notes = item.notes;
     }
@@ -360,6 +362,9 @@ function assemblePronunciationOnlyCard(item, entry) {
   if (item.notes) {
     card.notes = item.notes;
   }
+  if (item.reading) {
+    card.reading = item.reading;
+  }
   return card;
 }
 
@@ -417,6 +422,11 @@ function toPartialCard(item) {
   };
   if (item.notes) {
     card.notes = item.notes;
+  }
+  // Carry the spoken form onto the card so the audio stage speaks it and the
+  // romanizer romanized it (see romanizeAndEvaluate).
+  if (item.reading) {
+    card.reading = item.reading;
   }
   return card;
 }

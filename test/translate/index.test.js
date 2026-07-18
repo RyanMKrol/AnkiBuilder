@@ -237,6 +237,46 @@ test("library-path: a configured romanization library supplies pronunciation, no
   assert.match(translatePrompt, /Do not include a `pronunciation` key/);
 });
 
+test("library-path: a card's `reading` (spoken form) drives romanization and survives onto the card", async () => {
+  const corpus = {
+    meta: { targetLanguage: "ja", sourceType: "manual" },
+    // Pre-existing target with digits + a spelled-out kana reading (the spoken form).
+    items: [
+      {
+        id: "price",
+        english: "2,000 yen",
+        category: "Shopping",
+        notes: null,
+        target: "2,000えん",
+        reading: "にせんえん",
+      },
+    ],
+  };
+
+  let romanizedText = null;
+  const getRomanizationLibrary = () => ({
+    load: async () => ({
+      romanize: async (text) => {
+        romanizedText = text;
+        return "nisen en";
+      },
+    }),
+  });
+  const runClaude = () => JSON.stringify([{ id: "price", ok: true }]);
+
+  const { cards, errors } = await translateCorpus(corpus, { runClaude, getRomanizationLibrary });
+
+  assert.deepEqual(errors, []);
+  assert.equal(romanizedText, "にせんえん", "romanized the reading, not the digit target");
+  assert.equal(cards.items[0].target, "2,000えん", "display target preserved for the card face");
+  assert.equal(cards.items[0].pronunciation, "nisen en");
+  assert.equal(
+    cards.items[0].reading,
+    "にせんえん",
+    "reading carried onto the card for the audio stage",
+  );
+});
+
 test("library-path: a Haiku-flagged romanization keeps the library value and gets uncertain + a note", async () => {
   const corpus = {
     meta: { targetLanguage: "ja", sourceType: "manual" },

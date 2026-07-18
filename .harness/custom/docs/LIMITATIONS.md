@@ -7,6 +7,22 @@ refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/cus
 
 Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
 
+## Number `reading`s are LLM/hand-authored and only checked at review
+
+- **What:** numbers are kept as digits in `target` (natural display) with a spelled-out `reading`
+  (kana) that drives the romaji pronunciation and the audio, because digits break both kuroshiro
+  (`2,000えん` → `2 , 000 en`) and ElevenLabs (reads it in English). That `reading` is produced by the
+  extraction LLM (or by hand), and Japanese counter readings are irregular (`いっぽん`/`にほん`/`さんぼん`,
+  `いっかい`/`ごかい`), so a wrong reading is possible and is only caught at the corpus review's
+  **Reading (spoken)** column. Nothing validates that a `reading` actually matches its `target`.
+- **Why:** the alternative (a lookup table of every counter × number) is a lot of machinery for a
+  human-reviewed deck; the review gate is the backstop, and the mechanism itself is language-agnostic
+  (`reading` is just "the spoken form") even though numbers are the only trigger in practice today.
+- **Impact:** a mis-read number reaches the review looking plausible; if the reviewer misses it, the
+  card's pronunciation guide and audio are wrong while the (correct) digit display looks fine.
+- **When to revisit:** if wrong readings recur, add a deterministic number→kana speller (per language,
+  with counter tables) to generate/verify `reading` instead of trusting the extraction LLM.
+
 ## Translate response parsing strips markdown fences, but a call can still fail outright
 
 - **What:** `translateCorpus` (`src/translate/index.js`) sends each group (full-translation,

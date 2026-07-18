@@ -4,6 +4,10 @@ export function renderCorpusReviewPage(corpus) {
   const items = corpus.items || [];
   const targetLanguage = corpus.meta?.targetLanguage || "the target language";
 
+  // Only surface the spoken-form column when some item actually carries a `reading` (e.g. a lesson
+  // with number cards) — otherwise it's just an empty column for every row.
+  const hasReading = items.some((item) => item.reading);
+
   const rows = items.map((item) => {
     const badges = [
       item.uncertain ? `<span class="badge badge-uncertain">Uncertain</span>` : "",
@@ -12,17 +16,23 @@ export function renderCorpusReviewPage(corpus) {
       .filter(Boolean)
       .join("");
 
-    return {
-      cells: [
-        escapeHtml(item.english),
-        escapeHtml(item.category),
-        item.target
-          ? `<span class="target-cell">${escapeHtml(item.target)}</span>`
+    const cells = [
+      escapeHtml(item.english),
+      escapeHtml(item.category),
+      item.target
+        ? `<span class="target-cell">${escapeHtml(item.target)}</span>`
+        : `<span class="empty">—</span>`,
+    ];
+    if (hasReading) {
+      cells.push(
+        item.reading
+          ? `<span class="target-cell">${escapeHtml(item.reading)}</span>`
           : `<span class="empty">—</span>`,
-        badges || `<span class="empty">—</span>`,
-      ],
-      note: item.notes || null,
-    };
+      );
+    }
+    cells.push(badges || `<span class="empty">—</span>`);
+
+    return { cells, note: item.notes || null };
   });
 
   const metaItems = [
@@ -39,7 +49,9 @@ export function renderCorpusReviewPage(corpus) {
     title: "Corpus Review",
     subtitle: `Assembled corpus for ${escapeHtml(targetLanguage)} — ${items.length} item(s). Click a row to mark it for exclusion, then copy the instruction back into the conversation.`,
     metaItems,
-    columns: ["English", "Category", "Target", "Flags"],
+    columns: hasReading
+      ? ["English", "Category", "Target", "Reading (spoken)", "Flags"]
+      : ["English", "Category", "Target", "Flags"],
     rows,
     mode: "exclude",
   });

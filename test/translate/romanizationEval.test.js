@@ -14,6 +14,58 @@ function noopFallback(items) {
   return { items: items.map((i) => ({ ...i, pronunciation: "FALLBACK" })), errors: [] };
 }
 
+test("romanizes the spoken `reading` (not the display `target`) when set, and keeps reading on the card", async () => {
+  // target is the digit display form; reading is the spelled-out spoken form.
+  const items = [
+    {
+      id: "price",
+      english: "2,000 yen",
+      category: "Shopping",
+      target: "2,000えん",
+      reading: "にせんえん",
+    },
+  ];
+  let romanizedText = null;
+  const libraryEntry = workingLibraryEntry(async (text) => {
+    romanizedText = text;
+    return "nisen en";
+  });
+
+  const { items: cards } = await romanizeAndEvaluate(items, {
+    targetLanguage: "ja",
+    libraryEntry,
+    runClaude: () => JSON.stringify([{ id: "price", ok: true }]),
+    fallback: noopFallback,
+  });
+
+  assert.equal(romanizedText, "にせんえん", "should romanize the reading, not the digit target");
+  assert.equal(cards[0].pronunciation, "nisen en");
+  assert.equal(cards[0].target, "2,000えん", "display target is preserved");
+  assert.equal(
+    cards[0].reading,
+    "にせんえん",
+    "reading survives onto the card for the audio stage",
+  );
+});
+
+test("falls back to `target` for romanization when no reading is set", async () => {
+  const items = [partialCard("cat", "cat", "猫")];
+  let romanizedText = null;
+  const libraryEntry = workingLibraryEntry(async (text) => {
+    romanizedText = text;
+    return "neko";
+  });
+
+  await romanizeAndEvaluate(items, {
+    targetLanguage: "ja",
+    libraryEntry,
+    runClaude: () => JSON.stringify([{ id: "cat", ok: true }]),
+    fallback: noopFallback,
+  });
+
+  assert.equal(romanizedText, "猫");
+});
+
 test("approve-as-is: pronunciation is the library value, no uncertain flag", async () => {
   const items = [partialCard("cat", "cat", "猫")];
   const libraryEntry = workingLibraryEntry(async () => "neko");

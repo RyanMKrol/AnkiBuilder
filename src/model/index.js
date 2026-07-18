@@ -49,6 +49,13 @@ const CORPUS_SCHEMA = {
           category: { type: "string", enum: CATEGORIES },
           notes: { type: ["string", "null"] },
           target: { type: ["string", "null"] },
+          // Optional spoken form: the target text with anything the romanizer/TTS
+          // mishandles (notably digits — kuroshiro leaves "2,000えん" as "2 , 000 en",
+          // and ElevenLabs may read it as an English number) spelled out in the target
+          // language's own script (e.g. kana にせんえん). When set it drives BOTH the
+          // romaji `pronunciation` and the `audio`; `target` stays the natural display
+          // form. Carried through translate onto the card's `reading` field.
+          reading: { type: "string" },
           uncertain: { type: "boolean" },
           aiSuggested: { type: "boolean" },
         },

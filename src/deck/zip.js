@@ -1,5 +1,9 @@
-import { deflateRawSync } from "zlib";
+import { deflateRawSync, inflateRawSync } from "zlib";
 import { Buffer } from "buffer";
+
+const EOCD_SIGNATURE = 0x06054b50;
+const CENTRAL_DIRECTORY_SIGNATURE = 0x02014b50;
+const LOCAL_FILE_HEADER_SIGNATURE = 0x04034b50;
 
 const CRC_TABLE = (() => {
   const table = new Uint32Array(256);
@@ -95,4 +99,54 @@ export function buildZip(entries) {
   eocd.writeUInt16LE(0, 20);
 
   return Buffer.concat([...localParts, centralDirectory, eocd]);
+}
+
+/**
+ * Reads a ZIP archive (as produced by `buildZip`, or any standard store/deflate zip such as an
+ * Anki `.apkg`) into `[{ name, data: Buffer }]`, in central-directory order. Supports stored
+ * (method 0) and deflate (method 8) entries — enough for `.apkg` — and no zip64.
+ */
+export function readZip(buffer) {
+  let eocd = -1;
+  for (let i = buffer.length - 22; i >= 0; i--) {
+    if (buffer.readUInt32LE(i) === EOCD_SIGNATURE) {
+      eocd = i;
+      break;
+    }
+  }
+  if (eocd < 0) {
+    throw new Error("Not a valid zip: end-of-central-directory record not found");
+  }
+
+  const entryCount = buffer.readUInt16LE(eocd + 10);
+  let offset = buffer.readUInt32LE(eocd + 16);
+  const entries = [];
+  for (let i = 0; i < entryCount; i++) {
+    if (buffer.readUInt32LE(offset) !== CENTRAL_DIRECTORY_SIGNATURE) {
+      throw new Error("Invalid zip: malformed central directory entry");
+    }
+    const method = buffer.readUInt16LE(offset + 10);
+    const compressedSize = buffer.readUInt32LE(offset + 20);
+    const nameLength = buffer.readUInt16LE(offset + 28);
+    const extraLength = buffer.readUInt16LE(offset + 30);
+    const commentLength = buffer.readUInt16LE(offset + 32);
+    const localHeaderOffset = buffer.readUInt32LE(offset + 42);
+    const name = buffer.toString("utf-8", offset + 46, offset + 46 + nameLength);
+
+    if (buffer.readUInt32LE(localHeaderOffset) !== LOCAL_FILE_HEADER_SIGNATURE) {
+      throw new Error("Invalid zip: malformed local file header");
+    }
+    const localNameLength = buffer.readUInt16LE(localHeaderOffset + 26);
+    const localExtraLength = buffer.readUInt16LE(localHeaderOffset + 28);
+    const dataStart = localHeaderOffset + 30 + localNameLength + localExtraLength;
+    if (method !== 0 && method !== 8) {
+      throw new Error(`Unsupported zip compression method: ${method}`);
+    }
+    const compressed = buffer.subarray(dataStart, dataStart + compressedSize);
+    const data = method === 0 ? compressed : inflateRawSync(compressed);
+
+    entries.push({ name, data });
+    offset += 46 + nameLength + extraLength + commentLength;
+  }
+  return entries;
 }

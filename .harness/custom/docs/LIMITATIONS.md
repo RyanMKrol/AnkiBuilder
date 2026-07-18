@@ -508,3 +508,25 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if cost matters, `audio --no-alt` skips the pass for a run; longer term,
   generate alt clips lazily (only for rows the review actually flags) instead of for every card, and
   make the transform smarter (skip cards already ending in sentence punctuation).
+
+## Deck font is embedded whole, applies to the whole card, and only supports classic .apkg
+
+- **What:** `restyle-font` (and the per-language `LANGUAGE_FONTS` config in `src/deck/fontLibrary.js`)
+  embeds a script-appropriate font into a deck so it renders identically everywhere. Three edges:
+  (1) the **full font** is embedded — Klee One with kanji is ~1.9 MB, added to every restyled deck;
+  (2) it sets **`.card`'s** `font-family`, so *all* card text renders in the language font, not only
+  the target-language text (Latin included — Klee One has Latin glyphs, so it's legible, just not
+  the deck's original Latin face); (3) only the **classic `.apkg`** format (a `media` JSON map +
+  `collection.anki2`/`.anki21`) is handled — the newer `anki21b`/protobuf-media export is rejected
+  with a clear error rather than silently mangled.
+- **Why:** embedding whole avoids a build-time font-subsetting dependency (fonttools/Python) in a
+  Node/CI project; a single `.card` rule is deck-agnostic (works on any third-party deck without
+  knowing its class names); the classic format is what this tool builds and what the target decks
+  (e.g. Tofugu) use, and parsing zstd/protobuf exports is a much bigger lift.
+- **Impact:** +~1.9 MB per restyled Japanese deck; a deck's English/romaji text changes face; a very
+  new `.apkg` can't be restyled until re-exported in the classic format (Anki can do this).
+- **When to revisit:** subset the font to the glyphs a deck actually uses (needs a subsetter) to
+  shrink it; add a field/element-scoped option so only the target-language text is restyled; add
+  `anki21b` support if a real deck needs it. Also: the deck **builder** doesn't yet auto-embed the
+  language font (only `restyle-font` does) — wiring it into `buildDeck`/`buildBookDeck` is the
+  natural follow-up so tool-built Japanese decks get the textbook font without a separate step.

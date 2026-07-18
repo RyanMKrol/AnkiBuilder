@@ -1592,3 +1592,44 @@ test("audio: --no-alt disables the alt pass (transform resolves to undefined for
     }),
   );
 });
+
+test("restyle-font: applies the language font and writes the output apkg", async () => {
+  await withTempDir(async (dir) => {
+    const input = join(dir, "in.apkg");
+    writeFileSync(input, Buffer.from("original-apkg-bytes"));
+    const out = join(dir, "out.apkg");
+
+    let received = null;
+    await runCli(["restyle-font", "--apkg", input, "--lang", "ja", "--out", out], {
+      getLanguageFont: (code) =>
+        code === "ja" ? { family: "Klee One", mediaName: "_k.woff2" } : undefined,
+      readFontBytes: () => Buffer.from("FONT"),
+      restyleApkgBuffer: (buf, desc, font) => {
+        received = { input: buf.toString(), family: desc.family, font: font.toString() };
+        return Buffer.from("restyled-apkg-bytes");
+      },
+      log: () => {},
+    });
+
+    assert.equal(existsSync(out), true);
+    assert.equal(await fs.readFile(out, "utf-8"), "restyled-apkg-bytes");
+    assert.equal(received.input, "original-apkg-bytes");
+    assert.equal(received.family, "Klee One");
+    assert.equal(received.font, "FONT");
+  });
+});
+
+test("restyle-font: errors when the language has no configured font", async () => {
+  await withTempDir(async (dir) => {
+    const input = join(dir, "in.apkg");
+    writeFileSync(input, Buffer.from("x"));
+    await assert.rejects(
+      () =>
+        runCli(["restyle-font", "--apkg", input, "--lang", "en"], {
+          getLanguageFont: () => undefined,
+          log: () => {},
+        }),
+      /no deck font is configured/,
+    );
+  });
+});

@@ -197,6 +197,24 @@ Label`, via `buildMultiDeckCollection`) nested under one parent deck named for t
   between runs (a re-translated chapter, a newly added one, regenerated audio), and reusing a
   stale merge would be a correctness footgun for a recompute this cheap.
 
+### `restyle-font`
+
+`restyle-font --apkg <path> --lang <code> [--out <path>]` embeds a language's configured deck font
+into an existing `.apkg` and points every note type at it — including third-party decks not built
+here. The per-language font map is `src/deck/fontLibrary.js`'s `LANGUAGE_FONTS` (keyed by the same
+ISO 639-1 code as voices/alt-audio); Japanese → **Klee One**, a Kyōkashō (教科書体, "textbook") face
+that keeps the hand-written stroke separations screen Gothic fonts smooth over, so kana/kanji read
+correctly for a learner. The font ships in `assets/fonts/` under the SIL OFL (`KleeOne-OFL.txt`).
+
+`restyleApkgBuffer` (`src/deck/restyleFont.js`) reads the archive (`readZip`, `src/deck/zip.js`),
+rewrites each note type's CSS (`restyleModelsCss`: drops any external-URL `@font-face`, adds an
+`@font-face` for the embedded file, and appends a `.card { font-family: "<font>", … }` rule that
+wins over the deck's own), registers the font in the `media` manifest under a `_`-prefixed name (so
+Anki's Check Media never purges it), and re-zips (`buildZip`). It's idempotent, and embeds the font
+so it renders identically on every client. Only the classic `.apkg` format (a `media` JSON map +
+`collection.anki2`/`.anki21`) is supported — the newer `anki21b`/protobuf-media export is rejected
+with a clear error.
+
 ### `render-review --stage <corpus|translate|audio>`
 
 Generates a self-contained, ready-to-publish HTML review artifact (`<runDir>/review-<stage>.html`)

@@ -7,6 +7,7 @@ import os from "os";
 import { Buffer } from "buffer";
 import { runCli } from "../../src/cli/index.js";
 import { runPaths } from "../../src/model/index.js";
+import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
 async function withTempDir(fn) {
   const tmpDir = await fs.mkdtemp(join(os.tmpdir(), "cli-test-"));
@@ -1071,7 +1072,7 @@ test("audio: dispatches to generateAudio, copies files into run audio dir, and r
       mkdirSync(runDir, { recursive: true });
       writeFileSync(paths.cards, JSON.stringify(baseCards()));
 
-      const cacheDir = join(libraryHomeDir, "audio", "voice1");
+      const cacheDir = join(libraryHomeDir, "audio", "voice1", TTS_MODEL);
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
 
@@ -1136,7 +1137,7 @@ test("audio: falls back to the configured default voice for the language when --
       const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
       writeFileSync(paths.cards, JSON.stringify(cards));
 
-      const cacheDir = join(libraryHomeDir, "audio", "default-voice-id");
+      const cacheDir = join(libraryHomeDir, "audio", "default-voice-id", TTS_MODEL);
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
 
@@ -1176,7 +1177,7 @@ test("audio: an explicit --voice overrides the configured default", async () => 
       const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
       writeFileSync(paths.cards, JSON.stringify(cards));
 
-      const cacheDir = join(libraryHomeDir, "audio", "explicit-voice");
+      const cacheDir = join(libraryHomeDir, "audio", "explicit-voice", TTS_MODEL);
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
 
@@ -1532,7 +1533,7 @@ test("audio: copies alt clips into the run dir and passes the real alt transform
       const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
       writeFileSync(paths.cards, JSON.stringify(cards));
 
-      const cacheDir = join(libraryHomeDir, "audio", "voice1");
+      const cacheDir = join(libraryHomeDir, "audio", "voice1", TTS_MODEL);
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "def.mp3"), Buffer.from("default"));
       writeFileSync(join(cacheDir, "alt.mp3"), Buffer.from("alt"));
@@ -1572,7 +1573,7 @@ test("audio: --no-alt disables the alt pass (transform resolves to undefined for
       const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
       writeFileSync(paths.cards, JSON.stringify(cards));
 
-      const cacheDir = join(libraryHomeDir, "audio", "voice1");
+      const cacheDir = join(libraryHomeDir, "audio", "voice1", TTS_MODEL);
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "def.mp3"), Buffer.from("default"));
 

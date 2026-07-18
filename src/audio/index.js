@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import { libraryHome } from "../model/index.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getAltAudioTransform } from "./altAudio.js";
+import { TTS_MODEL } from "./ttsModel.js";
 
 function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
@@ -58,7 +59,13 @@ async function fetchTermsToCache(terms, audioDir, { fetchTts, voiceId, apiKey, l
 
 export async function generateAudio(
   cards,
-  { voiceId, fetchTts = null, libraryHomeDir = null, getAltTransform = getAltAudioTransform } = {},
+  {
+    voiceId,
+    fetchTts = null,
+    libraryHomeDir = null,
+    getAltTransform = getAltAudioTransform,
+    model = TTS_MODEL,
+  } = {},
 ) {
   if (!voiceId) {
     throw new Error("voiceId is required");
@@ -74,7 +81,9 @@ export async function generateAudio(
   }
 
   const basePath = libraryHomeDir || libraryHome();
-  const audioDir = resolve(join(basePath, "audio", voiceId));
+  // Segment the cache by model so an eleven_v3 clip never collides with an eleven_multilingual_v2
+  // clip of the same text (same hash, different model dir). See ttsModel.js.
+  const audioDir = resolve(join(basePath, "audio", voiceId, model));
 
   await ensureDir(audioDir);
 

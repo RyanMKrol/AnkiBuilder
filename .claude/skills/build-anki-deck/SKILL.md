@@ -427,6 +427,17 @@ Merges every `chapter-*/cards.json` or `lesson-*/cards.json` under the folder in
 `deck.apkg`, one Anki sub-deck per chapter/lesson. Always rebuilds from scratch. EPUB books and
 lesson-sourced courses only — nothing to merge for a template/manual deck.
 
+### Restyle a deck's font
+```sh
+anki-builder restyle-font --apkg <path.apkg> --lang ja [--out <path.apkg>]
+```
+Embeds the language's configured font (`src/deck/fontLibrary.js`; Japanese → **Klee One**, a
+Kyōkashō/textbook face) into an existing `.apkg` and points every note type at it, so kana/kanji
+render the same on every client. Works on any classic `.apkg`, including third-party decks (e.g. a
+downloaded Tofugu deck). Idempotent; `--out` defaults to the input path with the font name appended.
+Note: it sets `.card`'s `font-family`, so all card text — not only the target-language text —
+renders in that font (fine for a language deck; the font covers Latin too).
+
 ### Render a review artifact
 ```sh
 anki-builder render-review --run <dir> --stage corpus

@@ -50,6 +50,11 @@ import {
   buildDeck as defaultBuildDeck,
   buildBookDeck as defaultBuildBookDeck,
 } from "../deck/index.js";
+import {
+  getLanguageFont as defaultGetLanguageFont,
+  readFontBytes as defaultReadFontBytes,
+} from "../deck/fontLibrary.js";
+import { restyleApkgBuffer as defaultRestyleApkgBuffer } from "../deck/restyleFont.js";
 import { defaultPromptReviewDecisions } from "./reviewPrompt.js";
 import { renderCorpusReviewPage as defaultRenderCorpusReviewPage } from "../review/renderCorpusReviewPage.js";
 import { renderTranslateReviewPage as defaultRenderTranslateReviewPage } from "../review/renderTranslateReviewPage.js";
@@ -617,6 +622,40 @@ async function runDeck(flags, ctx) {
   );
 }
 
+// Applies a language's configured deck font (src/deck/fontLibrary.js) to ANY .apkg — including
+// third-party decks not built here — embedding the font and pointing every note type at it.
+async function runRestyleFont(flags, ctx) {
+  if (!flags.apkg) {
+    throw new Error("--apkg <path.apkg> is required");
+  }
+  if (!flags.lang) {
+    throw new Error("--lang <code> is required (e.g. ja)");
+  }
+
+  const languageCode = resolveIso639Code(flags.lang) || flags.lang;
+  const descriptor = ctx.getLanguageFont(languageCode);
+  if (!descriptor) {
+    throw new Error(`no deck font is configured for language "${flags.lang}"`);
+  }
+
+  const inputPath = resolve(flags.apkg);
+  if (!existsSync(inputPath)) {
+    throw new Error(`input .apkg not found: ${inputPath}`);
+  }
+  const outPath = flags.out
+    ? resolve(flags.out)
+    : `${inputPath.replace(/\.apkg$/i, "")}.${descriptor.family.replace(/\s+/g, "")}.apkg`;
+
+  const outBuffer = ctx.restyleApkgBuffer(
+    readFileSync(inputPath),
+    descriptor,
+    ctx.readFontBytes(descriptor),
+  );
+  mkdirSync(join(outPath, ".."), { recursive: true });
+  writeFileSync(outPath, outBuffer);
+  ctx.log(`restyled ${inputPath} in ${descriptor.family} — wrote ${outPath}`);
+}
+
 async function runRenderReview(flags, ctx) {
   const stage = flags.stage;
   if (!REVIEW_STAGES.includes(stage)) {
@@ -660,6 +699,7 @@ const COMMANDS = {
   translate: runTranslate,
   audio: runAudio,
   deck: runDeck,
+  "restyle-font": runRestyleFont,
   "render-review": runRenderReview,
 };
 
@@ -701,6 +741,9 @@ export async function runCli(argv, deps = {}) {
     getAltAudioTransform = defaultGetAltAudioTransform,
     buildDeck = defaultBuildDeck,
     buildBookDeck = defaultBuildBookDeck,
+    getLanguageFont = defaultGetLanguageFont,
+    readFontBytes = defaultReadFontBytes,
+    restyleApkgBuffer = defaultRestyleApkgBuffer,
     fetchTts = defaultFetchTts,
     renderCorpusReviewPage = defaultRenderCorpusReviewPage,
     renderTranslateReviewPage = defaultRenderTranslateReviewPage,
@@ -756,6 +799,9 @@ export async function runCli(argv, deps = {}) {
     getAltAudioTransform,
     buildDeck,
     buildBookDeck,
+    getLanguageFont,
+    readFontBytes,
+    restyleApkgBuffer,
     fetchTts,
     renderCorpusReviewPage,
     renderTranslateReviewPage,

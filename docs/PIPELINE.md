@@ -208,8 +208,10 @@ correctly for a learner. The font ships in `assets/fonts/` under the SIL OFL (`K
 
 `restyleApkgBuffer` (`src/deck/restyleFont.js`) reads the archive (`readZip`, `src/deck/zip.js`),
 rewrites each note type's CSS (`restyleModelsCss`: drops any external-URL `@font-face`, adds an
-`@font-face` for the embedded file, and appends a `.card { font-family: "<font>", … }` rule that
-wins over the deck's own), registers the font in the `media` manifest under a `_`-prefixed name (so
+`@font-face` for the embedded file — scoped to the target script via `unicode-range`, so it renders
+only kana/kanji and leaves English/romaji/numbers in a Latin font — and appends a
+`.card { font-family: "<font>", <Latin sans>… }` rule that wins over the deck's own), registers the
+font in the `media` manifest under a `_`-prefixed name (so
 Anki's Check Media never purges it), and re-zips (`buildZip`). It's idempotent, and embeds the font
 so it renders identically on every client. Only the classic `.apkg` format (a `media` JSON map +
 `collection.anki2`/`.anki21`) is supported — the newer `anki21b`/protobuf-media export is rejected

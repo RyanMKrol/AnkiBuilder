@@ -435,8 +435,8 @@ Embeds the language's configured font (`src/deck/fontLibrary.js`; Japanese → *
 Kyōkashō/textbook face) into an existing `.apkg` and points every note type at it, so kana/kanji
 render the same on every client. Works on any classic `.apkg`, including third-party decks (e.g. a
 downloaded Tofugu deck). Idempotent; `--out` defaults to the input path with the font name appended.
-Note: it sets `.card`'s `font-family`, so all card text — not only the target-language text —
-renders in that font (fine for a language deck; the font covers Latin too).
+The embedded `@font-face` is scoped to the target script via `unicode-range`, so it renders **only**
+the target-language text (kana/kanji) — English mnemonics, romaji, and numbers stay in a Latin font.
 
 Add **`--fresh-notetype`** when you'll import into a collection that already has this deck's note
 type: Anki keeps your *existing* note type's styling on a same-id re-import (so the font silently

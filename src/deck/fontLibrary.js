@@ -23,6 +23,12 @@ export const LANGUAGE_FONTS = {
     // The name the font is stored under inside a deck's collection.media. The leading underscore
     // marks it as intentionally-kept so Anki's "Check Media" never purges it as unused.
     mediaName: "_KleeOne-Regular.woff2",
+    // Scopes the font to the JAPANESE script only (CJK punctuation, hiragana, katakana + phonetic
+    // extensions, kanji, and fullwidth/halfwidth forms). With this, a card can list the font first
+    // yet it only renders Japanese text — Latin (English mnemonics, romaji, numbers) falls through
+    // to the card's own font. Cross-device-safe: the browser applies the embedded font per-glyph
+    // strictly within this range.
+    unicodeRange: "U+3000-303F, U+3040-30FF, U+31F0-31FF, U+4E00-9FFF, U+FF00-FFEF",
   },
 };
 
@@ -49,5 +55,6 @@ export function readFontBytes(descriptor, { readFile = readFileSync } = {}) {
  * embeds it under. Prepend `descriptor.family` to a card's `font-family` to actually use it.
  */
 export function fontFaceCss(descriptor) {
-  return `@font-face { font-family: "${descriptor.family}"; src: url("${descriptor.mediaName}") format("${descriptor.format}"); font-display: swap; }`;
+  const range = descriptor.unicodeRange ? ` unicode-range: ${descriptor.unicodeRange};` : "";
+  return `@font-face { font-family: "${descriptor.family}"; src: url("${descriptor.mediaName}") format("${descriptor.format}");${range} font-display: swap; }`;
 }

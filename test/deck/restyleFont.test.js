@@ -51,7 +51,13 @@ test("restyleModelsCss drops external @font-face and points .card at the embedde
   const out = restyleModelsCss(input, JA);
   assert.doesNotMatch(out, /googleapis\.com/, "external @font-face removed");
   assert.match(out, /url\("_KleeOne-Regular\.woff2"\)/, "our @font-face added");
-  assert.match(out, /\.card\s*{\s*font-family:\s*"Klee One"/, ".card now leads with the font");
+  assert.match(out, /unicode-range:.*U\+3040-30FF/, "font scoped to Japanese");
+  assert.match(out, /\.card\s*{\s*font-family:\s*"Klee One"/, ".card leads with the font");
+  assert.match(
+    out,
+    /"Helvetica Neue".*sans-serif/,
+    "Latin text falls through to a Latin sans stack",
+  );
   assert.match(out, /font-size: 20px/, "original rules preserved");
 });
 

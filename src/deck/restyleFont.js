@@ -11,11 +11,12 @@ import { fontFaceCss } from "./fontLibrary.js";
 const COLLECTION_NAMES = ["collection.anki2", "collection.anki21"];
 
 /**
- * Rewrites one note type's CSS to render its cards in the embedded language font: drops any
- * `@font-face` pointing at an external URL (those never load in Anki), then registers the embedded
- * font and appends a `.card { font-family: … }` rule so it wins over whatever the deck set. The
- * font is listed first, with a target-language fallback after it, so the target text renders in it
- * on every client.
+ * Rewrites one note type's CSS to render its TARGET-LANGUAGE text in the embedded font while leaving
+ * everything else (English, romaji, numbers) in a Latin font: drops any `@font-face` pointing at an
+ * external URL (those never load in Anki), registers the embedded font (scoped to the target script
+ * via its `unicode-range`), then appends a `.card` rule that lists the font first followed by a
+ * Latin sans stack. Because the `@font-face` is unicode-ranged, the font only serves target-script
+ * glyphs (e.g. kana/kanji) — Latin glyphs fall straight through to the Latin fonts.
  */
 export function restyleModelsCss(css, descriptor) {
   const withoutExternal = (css || "").replace(/@font-face\s*{[^}]*}/gi, (block) =>
@@ -23,9 +24,9 @@ export function restyleModelsCss(css, descriptor) {
   );
   return (
     withoutExternal.replace(/\s+$/, "") +
-    "\n\n/* anki-builder: embedded language font */\n" +
+    "\n\n/* anki-builder: embedded language font (target script only) */\n" +
     fontFaceCss(descriptor) +
-    `\n.card { font-family: "${descriptor.family}", "Hiragino Mincho ProN", sans-serif; }\n`
+    `\n.card { font-family: "${descriptor.family}", "Helvetica Neue", Helvetica, Arial, sans-serif; }\n`
   );
 }
 

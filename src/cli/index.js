@@ -41,6 +41,7 @@ import {
 } from "./outputPaths.js";
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
 import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
+import { sortItemsPedagogically as defaultSortItemsPedagogically } from "../corpus/pedagogicalSort.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
@@ -245,6 +246,9 @@ async function runAssemble(flags, ctx) {
   }
 
   let corpus;
+  // Hoisted so the pedagogical-sort pass below can pass the book's conventions as grounding on the
+  // --epub path (null for every other source).
+  let bookConventions = null;
   if (flags.words) {
     if (!flags.lang) {
       throw new Error("--lang is required when assembling from --words");
@@ -299,7 +303,7 @@ async function runAssemble(flags, ctx) {
     const chapterNumber = Number(flags["chapter-number"]);
     const { epubHash } = ctx.registerEpub(flags.epub);
 
-    let bookConventions = ctx.loadBookConventions(epubHash);
+    bookConventions = ctx.loadBookConventions(epubHash);
     if (!bookConventions) {
       ctx.log(
         `no cached book conventions for epub ${epubHash} — running a one-time whole-book analysis pass`,
@@ -387,6 +391,25 @@ async function runAssemble(flags, ctx) {
   } else {
     throw new Error(
       `either --template <name>, --chapter <path>, --epub <path> --chapter-number <N>, or --words <path> --course <name> --lesson-number <N> is required. Available templates: ${listTemplates().join(", ")}`,
+    );
+  }
+
+  // Pedagogical sort — a dependency-aware re-ordering so a learner meets vocabulary before the
+  // sentences built from it (atoms → molecules), rather than the raw textbook order (which often
+  // prints a Key Sentence before the words inside it). On by default for every source; --no-sort
+  // opts out. Fail-open: any trouble leaves the extracted order untouched.
+  if (!flags["no-sort"]) {
+    const sortResult = ctx.sortItemsPedagogically({
+      items: corpus.items,
+      targetLanguage: flags.lang,
+      bookConventions,
+      log: ctx.log,
+    });
+    corpus.items = sortResult.items;
+    ctx.log(
+      sortResult.changed
+        ? `pedagogical sort: reordered ${corpus.items.length} item(s) into a vocabulary-first learning sequence`
+        : `pedagogical sort: extracted order left unchanged`,
     );
   }
 
@@ -738,6 +761,7 @@ export async function runCli(argv, deps = {}) {
     analyzeBookConventions = defaultAnalyzeBookConventions,
     dedupBackward = defaultDedupBackward,
     flagForwardConcerns = defaultFlagForwardConcerns,
+    sortItemsPedagogically = defaultSortItemsPedagogically,
     promptReviewDecisions = defaultPromptReviewDecisions,
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
@@ -796,6 +820,7 @@ export async function runCli(argv, deps = {}) {
     analyzeBookConventions,
     dedupBackward,
     flagForwardConcerns,
+    sortItemsPedagogically,
     promptReviewDecisions,
     translateCorpus,
     generateAudio,

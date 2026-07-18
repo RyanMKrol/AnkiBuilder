@@ -61,7 +61,7 @@ test("flag-uncertain appends to an existing note rather than replacing it", asyn
   assert.equal(cards[0].notes, "informal too | Possibly incorrect romanization — looks off");
 });
 
-test("batches the eval call at BATCH_SIZE (10)", async () => {
+test("evaluates the whole set in a single eval call (no chunking)", async () => {
   const items = Array.from({ length: 12 }, (_, i) => partialCard(`w${i}`, `word ${i}`, `t-${i}`));
   const libraryEntry = workingLibraryEntry(async (text) => `roman-${text}`);
 
@@ -78,7 +78,7 @@ test("batches the eval call at BATCH_SIZE (10)", async () => {
     fallback: noopFallback,
   });
 
-  assert.deepEqual(batchSizes, [10, 2]);
+  assert.deepEqual(batchSizes, [12]);
   assert.equal(cards.length, 12);
 });
 

@@ -118,7 +118,9 @@ npm run build
 - [x] Pipeline data contracts + run-directory conventions
 - [x] Bundled template corpora (language-agnostic; `travel-essentials`, `numbers`)
 - [x] EPUB → candidate corpus extraction (with dedup + convention-awareness)
-- [x] Translation stage (Claude)
+- [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
+      learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
+- [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)
 - [x] Audio stage (ElevenLabs, cached; speaks an optional per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`)
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One)

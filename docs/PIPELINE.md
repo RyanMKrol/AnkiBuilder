@@ -27,8 +27,8 @@ Four sources:
   no bilingual source text to extract a translation from, so every item's `target` stays `null`
   (`assembleCorpusFromLessonWords`, `src/corpus/lessonCorpus.js`) — it flows into `translate` the
   same way a template's items do. The only judgment call this source makes itself is category
-  assignment, via a small batched Haiku pass (same "fail open, never block" idiom as the rest of
-  this project — a batch that fails to parse defaults to category `"Other"` rather than blocking
+  assignment, via a single Sonnet-medium pass (same "fail open, never block" idiom as the rest of
+  this project — a response that fails to parse defaults to category `"Other"` rather than blocking
   assembly; the corpus review gate is where a wrong category actually gets fixed). Optional
   `--lesson-label <text>` overrides the sub-deck's display name, defaulting to `"Lesson <N>"`.
   Like `--epub`, pass `--output-root <dir>` instead of `--run <dir>`; `assemble` resolves (or
@@ -60,6 +60,18 @@ already taught — ..."` for a backward match, `"Possibly premature — ..."` fo
   a future one) reuses the cache and feeds it into the extraction prompt as grounding context,
   instead of each chapter re-inferring the book's conventions from just its own content. Manual
   `--chapter` mode has no book identity to cache this under, so it doesn't get this context.
+
+**Pedagogical sort (every source).** As the final step before writing `corpus.json` — for _every_
+source, not just EPUB — `assemble` re-orders the items for learning flow via `sortItemsPedagogically`
+(`src/corpus/pedagogicalSort.js`): a Sonnet-medium `claude -p` pass that returns the items
+re-sequenced so a learner meets vocabulary **before** the sentences built from it (atoms → molecules),
+keeping topical groups together. Textbooks routinely print a Key Sentence before the words inside it
+(これは さんぜんえんです。 before さんぜん / えん); this undoes that. It is purely a re-ordering — the model
+returns only a permutation of the item ids, and `reorderByIds` defensively appends any id the model
+omitted, ignores ids it invents, and de-dupes, so a malformed answer can never add, drop, or rewrite a
+card (worst case it degrades toward the extracted order). On by default; `--no-sort` opts out; and it
+fails open — any parse/shape error leaves the extracted order untouched and logs why. The re-ordered
+corpus is what the review gate then shows, so the human is always the final check on the sequence.
 
 The `--epub` source has two ways to choose _what_ to assemble.
 `--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the
@@ -140,7 +152,7 @@ Example Input / Output Format / Example Output / Important / Input Data). How `p
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,
 Korean, Russian, Hebrew, Hindi, Arabic): with a library configured, the model is asked for
-`target` only, the library romanizes it deterministically, and a Haiku pass judges that output
+`target` only, the library romanizes it deterministically, and a Sonnet-medium pass judges that output
 (flagging `uncertain: true` with a note if it disagrees — never silently correcting it, same
 "flag, don't override" idiom as the corpus-assembly dedup passes); with no library configured, the
 model is asked for `pronunciation` directly, preferring a standard romanization system when one

@@ -3,9 +3,9 @@ import { validateCorpus } from "../model/index.js";
 import { slugify } from "../util/slugify.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
 
-// Kept small so the cheaper pinned model has little to get wrong per call — same
-// reasoning as translate/index.js's own BATCH_SIZE.
-const BATCH_SIZE = 10;
+// Unbounded — one call for the whole lesson, same reasoning as translate/index.js's own BATCH_SIZE
+// (every LLM pass is pinned to Sonnet at medium effort, which handles a whole lesson in one shot).
+const BATCH_SIZE = Infinity;
 
 function chunk(items, size) {
   const batches = [];

@@ -85,7 +85,7 @@ test("assembleCorpusFromLessonWords() strips a markdown fence around the model's
   assert.strictEqual(corpus.items[0].category, "Greetings");
 });
 
-test("assembleCorpusFromLessonWords() batches at 10 items — a 12-item list makes two runClaude calls", () => {
+test("assembleCorpusFromLessonWords() categorizes the whole list in a single runClaude call", () => {
   const calls = [];
   assembleCorpusFromLessonWords({
     englishWords: Array.from({ length: 12 }, (_, i) => `word ${i}`),
@@ -96,7 +96,8 @@ test("assembleCorpusFromLessonWords() batches at 10 items — a 12-item list mak
     },
   });
 
-  assert.strictEqual(calls.length, 2);
+  // No chunking — one call covers all 12 words.
+  assert.strictEqual(calls.length, 1);
 });
 
 test("assembleCorpusFromLessonWords() throws on an empty word list", () => {

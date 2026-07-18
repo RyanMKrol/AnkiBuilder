@@ -31,7 +31,13 @@ export function restyleModelsCss(css, descriptor) {
 
 // SQLite needs a file path, so round-trip the collection bytes through a temp file (same pattern as
 // the deck builder's writeCollectionDb).
-function restyleCollectionBytes(dbBytes, descriptor) {
+//
+// `freshNoteType` reassigns each note type a new id (+1, deterministic so both collection files and
+// both scripts of the same deck stay consistent) and appends the font name to its name, then
+// repoints its notes at it. Importing Anki keeps your EXISTING note type's styling on collision, so
+// a same-id restyle silently does nothing on re-import; a fresh id imports as a brand-new note type
+// that actually carries the restyled CSS.
+function restyleCollectionBytes(dbBytes, descriptor, { freshNoteType = false } = {}) {
   const dir = mkdtempSync(join(tmpdir(), "anki-builder-restyle-"));
   const path = join(dir, "collection.anki2");
   try {
@@ -39,10 +45,21 @@ function restyleCollectionBytes(dbBytes, descriptor) {
     const db = new DatabaseSync(path);
     try {
       const models = JSON.parse(db.prepare("SELECT models FROM col").get().models);
-      for (const model of Object.values(models)) {
+      const nextModels = {};
+      const repointNotes = db.prepare("UPDATE notes SET mid = ? WHERE mid = ?");
+      for (const [oldId, model] of Object.entries(models)) {
         model.css = restyleModelsCss(model.css, descriptor);
+        if (freshNoteType) {
+          const newId = Number(oldId) + 1;
+          model.id = newId;
+          model.name = `${model.name} · ${descriptor.family}`;
+          repointNotes.run(newId, Number(oldId));
+          nextModels[String(newId)] = model;
+        } else {
+          nextModels[oldId] = model;
+        }
       }
-      db.prepare("UPDATE col SET models = ? WHERE id = 1").run(JSON.stringify(models));
+      db.prepare("UPDATE col SET models = ? WHERE id = 1").run(JSON.stringify(nextModels));
     } finally {
       db.close();
     }
@@ -58,7 +75,12 @@ function restyleCollectionBytes(dbBytes, descriptor) {
  * Idempotent — re-running reuses the font's existing media slot. Throws on the newer
  * (anki21b/protobuf-media) `.apkg` format, which this doesn't parse.
  */
-export function restyleApkgBuffer(inputBuffer, descriptor, fontBytes) {
+export function restyleApkgBuffer(
+  inputBuffer,
+  descriptor,
+  fontBytes,
+  { freshNoteType = false } = {},
+) {
   const entries = readZip(inputBuffer);
 
   const mediaEntry = entries.find((e) => e.name === "media");
@@ -76,7 +98,7 @@ export function restyleApkgBuffer(inputBuffer, descriptor, fontBytes) {
   // 1) rewrite each collection db's note-type CSS
   const rewritten = entries.map((e) =>
     COLLECTION_NAMES.includes(e.name)
-      ? { name: e.name, data: restyleCollectionBytes(e.data, descriptor) }
+      ? { name: e.name, data: restyleCollectionBytes(e.data, descriptor, { freshNoteType }) }
       : e,
   );
 

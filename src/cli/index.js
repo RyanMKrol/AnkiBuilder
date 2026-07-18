@@ -646,14 +646,18 @@ async function runRestyleFont(flags, ctx) {
     ? resolve(flags.out)
     : `${inputPath.replace(/\.apkg$/i, "")}.${descriptor.family.replace(/\s+/g, "")}.apkg`;
 
+  const freshNoteType = Boolean(flags["fresh-notetype"]);
   const outBuffer = ctx.restyleApkgBuffer(
     readFileSync(inputPath),
     descriptor,
     ctx.readFontBytes(descriptor),
+    { freshNoteType },
   );
   mkdirSync(join(outPath, ".."), { recursive: true });
   writeFileSync(outPath, outBuffer);
-  ctx.log(`restyled ${inputPath} in ${descriptor.family} — wrote ${outPath}`);
+  ctx.log(
+    `restyled ${inputPath} in ${descriptor.family}${freshNoteType ? " (fresh note type)" : ""} — wrote ${outPath}`,
+  );
 }
 
 async function runRenderReview(flags, ctx) {

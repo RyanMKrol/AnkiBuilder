@@ -438,6 +438,12 @@ downloaded Tofugu deck). Idempotent; `--out` defaults to the input path with the
 Note: it sets `.card`'s `font-family`, so all card text — not only the target-language text —
 renders in that font (fine for a language deck; the font covers Latin too).
 
+Add **`--fresh-notetype`** when you'll import into a collection that already has this deck's note
+type: Anki keeps your *existing* note type's styling on a same-id re-import (so the font silently
+won't apply), whereas a fresh note type (new id + name suffixed with the font) always imports clean.
+Use it when re-importing a restyled version of a deck you've had before; skip it for a genuinely new
+deck.
+
 ### Render a review artifact
 ```sh
 anki-builder render-review --run <dir> --stage corpus

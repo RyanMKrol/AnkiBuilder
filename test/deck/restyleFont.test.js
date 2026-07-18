@@ -122,3 +122,47 @@ test("restyleApkgBuffer is idempotent — a second pass reuses the font's media 
     assert.equal(count(twice), 1, "not duplicated on re-run");
   });
 });
+
+test("restyleApkgBuffer with freshNoteType gives the note type a new id + name and repoints its notes", async () => {
+  await withTempDir(async (dir) => {
+    const outPath = join(dir, "deck.apkg");
+    buildDeck(
+      {
+        meta: { targetLanguage: "ja", sourceType: "manual" },
+        items: [
+          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+        ],
+      },
+      { outPath, now: 1700000000000 },
+    );
+    const restyled = restyleApkgBuffer(readFileSync(outPath), JA, FONT, { freshNoteType: true });
+
+    const entries = readZip(restyled);
+    const colName = entries.some((e) => e.name === "collection.anki21")
+      ? "collection.anki21"
+      : "collection.anki2";
+    const tdir = mkdtempSync(join(tmpdir(), "fresh-"));
+    const p = join(tdir, "c.anki2");
+    try {
+      writeFileSync(p, entries.find((e) => e.name === colName).data);
+      const db = new DatabaseSync(p);
+      try {
+        const models = JSON.parse(db.prepare("SELECT models FROM col").get().models);
+        const ids = Object.keys(models);
+        assert.equal(ids.length, 1);
+        // buildDeck uses model id 1; freshNoteType bumps it to 2
+        assert.equal(ids[0], "2");
+        assert.match(Object.values(models)[0].name, /· Klee One$/);
+        const noteMids = db
+          .prepare("SELECT DISTINCT mid FROM notes")
+          .all()
+          .map((r) => r.mid);
+        assert.deepEqual(noteMids, [2], "notes repointed to the new note type id");
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(tdir, { recursive: true, force: true });
+    }
+  });
+});

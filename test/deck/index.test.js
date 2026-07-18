@@ -6,7 +6,21 @@ import os from "os";
 import { Buffer } from "buffer";
 import { inflateRawSync } from "zlib";
 import { DatabaseSync } from "node:sqlite";
-import { buildDeck, buildBookDeck } from "../../src/deck/index.js";
+import {
+  buildDeck as buildDeckImpl,
+  buildBookDeck as buildBookDeckImpl,
+} from "../../src/deck/index.js";
+
+// These tests exercise audio/zip/collection mechanics; the per-language font (embedded for `ja` by
+// default) would add a media entry and shift every count. Default it off here — dedicated tests for
+// the font live in fontLibrary/restyleFont/collection tests.
+const NO_FONT = { getFont: () => undefined };
+function buildDeck(cards, opts = {}) {
+  return buildDeckImpl(cards, { ...NO_FONT, ...opts });
+}
+function buildBookDeck(chapterDecks, opts = {}) {
+  return buildBookDeckImpl(chapterDecks, { ...NO_FONT, ...opts });
+}
 
 function baseCards(items) {
   return {
@@ -485,6 +499,30 @@ test("buildDeck embeds only the default audio, never altAudio", async () => {
     assert.ok(
       !Object.values(media).includes("alt.mp3"),
       "the alt clip is never embedded in the deck",
+    );
+  });
+});
+
+test("buildDeck embeds the per-language font file into the deck media (ja)", async () => {
+  await withTempDir(async (tmpDir) => {
+    const outPath = join(tmpDir, "deck.apkg");
+    buildDeckImpl(
+      {
+        meta: { targetLanguage: "ja", sourceType: "manual" },
+        items: [
+          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+        ],
+      },
+      { outPath, now: 1700000000000, readFont: () => Buffer.from("FONTBYTES") },
+    );
+    const zip = await fs.readFile(outPath);
+    const media = JSON.parse(extractZipEntry(zip, "media").toString("utf-8"));
+    const fontKey = Object.entries(media).find(([, n]) => n === "_KleeOne-Regular.woff2")?.[0];
+    assert.ok(fontKey, "font file registered in media");
+    assert.strictEqual(
+      extractZipEntry(zip, fontKey).toString(),
+      "FONTBYTES",
+      "font bytes embedded",
     );
   });
 });

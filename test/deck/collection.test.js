@@ -4,7 +4,11 @@ import { mkdtempSync, writeFileSync, rmSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { DatabaseSync } from "node:sqlite";
-import { buildCollection, buildMultiDeckCollection } from "../../src/deck/collection.js";
+import {
+  buildCollection,
+  buildMultiDeckCollection,
+  languageModelId,
+} from "../../src/deck/collection.js";
 
 function withTempDb(bytes, fn) {
   const dir = mkdtempSync(join(tmpdir(), "collection-test-"));
@@ -262,4 +266,43 @@ test("buildCollection keeps every note's csum within signed 32-bit range", () =>
       assert.ok(note.csum <= I32_MAX, `csum ${note.csum} exceeds signed 32-bit range`);
     }
   });
+});
+
+test("note type is per-language: ja → 'AnkiBuilder ja', a stable id, and the embedded scoped font", () => {
+  const bytes = buildCollection(
+    { meta: { targetLanguage: "ja" }, items: cardsOf("Hello").items },
+    { deckName: "D", now: 1_700_000_000_000 },
+  );
+  withTempDb(bytes, (db) => {
+    const models = JSON.parse(db.prepare("SELECT models FROM col").get().models);
+    const [id, m] = Object.entries(models)[0];
+    assert.equal(m.name, "AnkiBuilder ja");
+    assert.equal(Number(id), languageModelId("ja"));
+    assert.match(m.css, /@font-face/);
+    assert.match(m.css, /unicode-range/);
+    const mids = db
+      .prepare("SELECT DISTINCT mid FROM notes")
+      .all()
+      .map((r) => r.mid);
+    assert.deepEqual(mids, [languageModelId("ja")], "notes point at the per-language note type");
+    const conf = JSON.parse(db.prepare("SELECT conf FROM col").get().conf);
+    assert.equal(conf.curModel, languageModelId("ja"));
+  });
+});
+
+test("note type is per-language: a language with no font → no @font-face and a distinct id", () => {
+  const bytes = buildCollection(
+    { meta: { targetLanguage: "es" }, items: cardsOf("Hello").items },
+    { deckName: "D", now: 1_700_000_000_000 },
+  );
+  withTempDb(bytes, (db) => {
+    const m = Object.values(JSON.parse(db.prepare("SELECT models FROM col").get().models))[0];
+    assert.equal(m.name, "AnkiBuilder es");
+    assert.doesNotMatch(m.css, /@font-face/);
+  });
+  assert.notEqual(
+    languageModelId("es"),
+    languageModelId("ja"),
+    "different languages don't collide",
+  );
 });

@@ -511,20 +511,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 ## Deck font is embedded whole and only supports the classic .apkg format
 
-- **What:** `restyle-font` (and the per-language `LANGUAGE_FONTS` config in `src/deck/fontLibrary.js`)
-  embeds a script-appropriate font into a deck so it renders identically everywhere. Two edges:
-  (1) the **full font** is embedded — Klee One with kanji is ~1.9 MB, added to every restyled deck;
-  (2) only the **classic `.apkg`** format (a `media` JSON map + `collection.anki2`/`.anki21`) is
-  handled — the newer `anki21b`/protobuf-media export is rejected with a clear error rather than
-  silently mangled. (The font is scoped to the target script via `@font-face`'s `unicode-range`, so
-  it renders *only* the target-language glyphs and leaves Latin/romaji/English text alone — this used
-  to be a "whole card" limitation and is now resolved.)
+- **What:** the deck builder (per-language `LANGUAGE_FONTS`, `src/deck/fontLibrary.js`) and
+  `restyle-font` embed a script-appropriate font so a deck renders identically everywhere. Two edges:
+  (1) the **full font** is embedded — Klee One with kanji is ~1.9 MB, added to every Japanese deck
+  built or restyled; (2) `restyle-font` only handles the **classic `.apkg`** format (a `media` JSON
+  map + `collection.anki2`/`.anki21`) — the newer `anki21b`/protobuf-media export is rejected with a
+  clear error rather than silently mangled. (The font is scoped to the target script via
+  `@font-face`'s `unicode-range`, so it renders *only* the target-language glyphs and leaves
+  Latin/romaji/English text alone.)
 - **Why:** embedding whole avoids a build-time font-subsetting dependency (fonttools/Python) in a
   Node/CI project; the classic format is what this tool builds and what the target decks (e.g. Tofugu)
   use, and parsing zstd/protobuf exports is a much bigger lift.
-- **Impact:** +~1.9 MB per restyled Japanese deck; a very new `.apkg` can't be restyled until
+- **Impact:** +~1.9 MB per Japanese deck; a very new third-party `.apkg` can't be restyled until
   re-exported in the classic format (Anki can do this).
 - **When to revisit:** subset the font to the glyphs a deck actually uses (needs a subsetter) to
-  shrink it; add `anki21b` support if a real deck needs it. Also: the deck **builder** doesn't yet
-  auto-embed the language font (only `restyle-font` does) — wiring it into `buildDeck`/`buildBookDeck`
-  is the natural follow-up so tool-built Japanese decks get the textbook font without a separate step.
+  shrink it; add `anki21b` support to `restyle-font` if a real deck needs it.

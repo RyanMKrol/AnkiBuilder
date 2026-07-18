@@ -4,7 +4,7 @@ import { tmpdir } from "os";
 import { join } from "path";
 import { Buffer } from "buffer";
 import { readZip, buildZip } from "./zip.js";
-import { fontFaceCss } from "./fontLibrary.js";
+import { languageFontCss } from "./fontLibrary.js";
 
 // A .apkg stores each note type's Styling in the `models` JSON of the `col` row; older exports may
 // carry both schema files, so rewrite whichever are present.
@@ -25,8 +25,8 @@ export function restyleModelsCss(css, descriptor) {
   return (
     withoutExternal.replace(/\s+$/, "") +
     "\n\n/* anki-builder: embedded language font (target script only) */\n" +
-    fontFaceCss(descriptor) +
-    `\n.card { font-family: "${descriptor.family}", "Helvetica Neue", Helvetica, Arial, sans-serif; }\n`
+    languageFontCss(descriptor) +
+    "\n"
   );
 }
 

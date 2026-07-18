@@ -7,13 +7,20 @@ import { Buffer } from "buffer";
 import { DatabaseSync } from "node:sqlite";
 import { mkdtempSync, writeFileSync, readFileSync, rmSync } from "fs";
 import { tmpdir } from "os";
-import { buildDeck } from "../../src/deck/index.js";
+import { buildDeck as buildDeckImpl } from "../../src/deck/index.js";
 import { buildZip, readZip } from "../../src/deck/zip.js";
 import { restyleModelsCss, restyleApkgBuffer } from "../../src/deck/restyleFont.js";
 import { getLanguageFont } from "../../src/deck/fontLibrary.js";
+import { languageModelId } from "../../src/deck/collection.js";
 
 const JA = getLanguageFont("ja");
 const FONT = Buffer.from("FONT-BYTES-PLACEHOLDER");
+
+// Build the input decks WITHOUT the auto-embedded font so the restyle is what adds it (that's what
+// these tests are about). A real ja deck would already carry the font from the builder.
+function buildDeck(cards, opts = {}) {
+  return buildDeckImpl(cards, { getFont: () => undefined, ...opts });
+}
 
 async function withTempDir(fn) {
   const dir = await fs.mkdtemp(join(os.tmpdir(), "restyle-test-"));
@@ -156,14 +163,15 @@ test("restyleApkgBuffer with freshNoteType gives the note type a new id + name a
         const models = JSON.parse(db.prepare("SELECT models FROM col").get().models);
         const ids = Object.keys(models);
         assert.equal(ids.length, 1);
-        // buildDeck uses model id 1; freshNoteType bumps it to 2
-        assert.equal(ids[0], "2");
+        // the ja deck's note type id is languageModelId("ja"); freshNoteType bumps it by 1
+        const freshId = languageModelId("ja") + 1;
+        assert.equal(ids[0], String(freshId));
         assert.match(Object.values(models)[0].name, /· Klee One$/);
         const noteMids = db
           .prepare("SELECT DISTINCT mid FROM notes")
           .all()
           .map((r) => r.mid);
-        assert.deepEqual(noteMids, [2], "notes repointed to the new note type id");
+        assert.deepEqual(noteMids, [freshId], "notes repointed to the new note type id");
       } finally {
         db.close();
       }

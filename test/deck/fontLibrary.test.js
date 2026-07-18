@@ -20,12 +20,14 @@ test("a language with no configured font returns undefined", () => {
   assert.equal(getLanguageFont(null), undefined);
 });
 
-test("fontFaceCss references the family, media name, and format", () => {
+test("fontFaceCss references the family, media name, format, and Japanese unicode-range", () => {
   const css = fontFaceCss(getLanguageFont("ja"));
   assert.match(css, /@font-face/);
   assert.match(css, /font-family:\s*"Klee One"/);
   assert.match(css, /url\("_KleeOne-Regular\.woff2"\)/);
   assert.match(css, /format\("woff2"\)/);
+  // scoped to Japanese so it never touches Latin text
+  assert.match(css, /unicode-range:.*U\+3040-30FF/);
 });
 
 test("the bundled font file exists and is non-trivial", () => {

@@ -386,10 +386,10 @@ test("ja: strips editorial spaces from the display target/reading (but keeps the
   });
   assert.equal(
     cards.items[0].target,
-    "これはフランスのワインです。",
-    "ja target rendered space-free",
+    "これはフランスのワインです",
+    "ja target rendered space-free and without the trailing 。",
   );
-  // romaji keeps its own word spacing
+  // romaji keeps its own word spacing and punctuation
   assert.equal(cards.items[0].pronunciation, "kore wa furansu no wain desu.");
 
   // es: spaces are real word boundaries — untouched

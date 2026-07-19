@@ -42,7 +42,7 @@ import {
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
 import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
 import { sortItemsPedagogically as defaultSortItemsPedagogically } from "../corpus/pedagogicalSort.js";
-import { stripEditorialSpaces } from "../model/scriptSpacing.js";
+import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
@@ -420,8 +420,8 @@ async function runAssemble(flags, ctx) {
   // resulting cards. No-op for languages whose spaces are real word boundaries.
   const displayLang = resolveIso639Code(flags.lang);
   for (const item of corpus.items) {
-    if (item.target) item.target = stripEditorialSpaces(item.target, displayLang);
-    if (item.reading) item.reading = stripEditorialSpaces(item.reading, displayLang);
+    if (item.target) item.target = normalizeDisplayText(item.target, displayLang);
+    if (item.reading) item.reading = normalizeDisplayText(item.reading, displayLang);
   }
 
   writeJson(paths.corpus, corpus);

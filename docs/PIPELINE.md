@@ -73,6 +73,15 @@ card (worst case it degrades toward the extracted order). On by default; `--no-s
 fails open — any parse/shape error leaves the extracted order untouched and logs why. The re-ordered
 corpus is what the review gate then shows, so the human is always the final check on the sequence.
 
+**Space-free scripts — strip editorial display spaces (`src/model/scriptSpacing.js`).** For a
+language written without spaces between words (Japanese today), any spaces in a card's `target`/`reading`
+are editorial — e.g. the JBP kana textbook uses 分かち書き word-separation as a beginner aid — and are
+stripped from the stored DISPLAY text so the deck face and reviews render as natural spaceless script.
+`assemble` applies it to `corpus.json` and `translate` applies it to the resulting `cards.json`. This
+is independent of the audio-side space strip (`src/audio/ttsText.js`, which cleans the text sent to
+TTS) and the romaji, which keeps its own word spacing. Languages whose spaces are real word boundaries
+(Spanish, French, …) are untouched.
+
 The `--epub` source has two ways to choose _what_ to assemble.
 `--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the
 preferred one, because a `--chapter-number` is a raw spine index (the Nth

@@ -225,11 +225,11 @@ the deck stay aligned.
 **Japanese (and other space-free scripts) render without editorial spaces, and cards never end in 。.**
 A textbook writes Japanese with word-separation spaces (a beginner aid) and terminal `。` periods, but
 the deck face, reading, and reviews strip both — `normalizeDisplayText` in `src/model/scriptSpacing.js`,
-applied at assemble + translate. So `これは ワインです。` is stored/shown as `これはワインです`. **No card
-ends in a period by default** — this is deliberate: the terminal `。` changes ElevenLabs' prosody, so
-the **default audio is the dot-less take and the with-dot take is always generated as the alt** (via
-`src/audio/altAudio.js`). The deck embeds the no-dot default; the audio review lets you switch a card
-to its with-dot alt. (Romaji keeps its own punctuation.)
+applied at assemble + translate. So `これは ワインです。` is stored/shown as `これはワインです`. The `。` is
+**audio-only** — the displayed face/reading never carries one. Both takes are always generated (via
+`src/audio/altAudio.js`), but the terminal `。` steadies ElevenLabs' prosody, so **the with-dot take
+is the DEFAULT audio and the dot-less take is the alt**. The deck embeds the with-dot default; the
+audio review lets you switch a card to its dot-less alt. (Romaji keeps its own punctuation.)
 
 **The final review presents per-card AUDIO variants as the CARTESIAN PRODUCT of three with/without
 axes, so the human picks the best take per card** (labelled `9a`/`9b`/`9c`… — call out the winner).
@@ -344,11 +344,12 @@ This:
 - Writes updated `cards.json` with audio file references
 
 **Alt audio (per-language).** A language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS`
-(Japanese appends a `。`) gets a **second** recording per card from the transformed spoken text — a
-trailing `。` gives ElevenLabs a sentence boundary and fixes many mis-rendered short/bare clips (lone
-kana, some numbers). Both clips are generated (cached alongside each other) and the alt filename is
-stored on the card as `altAudio`. Languages with no transform get one clip, exactly as before. Pass
-`--no-alt` to skip the alt pass for a run (halves the TTS calls when you don't want it).
+(Japanese appends a `。`) gets **two** recordings per card. The transformed (with-`。`) take is the
+**default** stored as `audio` — a trailing `。` gives ElevenLabs a sentence boundary and fixes many
+mis-rendered short/bare clips (lone kana, some numbers) — and the plain (no-`。`) take is the **alt**
+stored as `altAudio`, offered in the review to switch a card to. Both clips are generated and cached
+alongside each other. Languages with no transform get one clip, exactly as before. Pass `--no-alt` to
+skip the alt pass for a run (halves the TTS calls when you don't want it).
 
 **Voice choice:** if this target language already has a configured default voice
 (`src/audio/voiceLibrary.js`'s `DEFAULT_VOICES`), `--voice` can be omitted entirely — the CLI

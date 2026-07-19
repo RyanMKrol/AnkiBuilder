@@ -83,11 +83,13 @@ resulting `cards.json`. This is independent of the romaji (which keeps its own s
 the audio-side space strip (`src/audio/ttsText.js`). Languages whose spaces/terminal punctuation are
 meaningful (Spanish, French, …) are untouched.
 
-The dot-less default plays directly into the audio: because the card text has no trailing `。`, the
-**default** TTS take is dot-less, and the per-language alt transform (`src/audio/altAudio.js`, ja
-appends `。`) yields the **with-dot** take as the alt — so every Japanese card carries both a no-dot
-(default, embedded in the deck) and a with-dot (alt, switchable) recording. The terminal `。`
-measurably changes ElevenLabs' prosody, which is why no-dot is the default and both are always kept.
+The stripped display text is dot-less, but the `。` lives on in the **audio**: the per-language
+transform (`src/audio/altAudio.js`, ja appends `。`) produces the **with-dot** take, and that take is
+the **default** embedded in the deck; the plain dot-less take is generated as the **alt** you can
+switch a card to. So every Japanese card carries both a with-dot (default) and a no-dot (alt, switchable)
+recording, while the displayed face/reading stays dot-less. The terminal `。` measurably steadies
+ElevenLabs' prosody (it anchors a sentence boundary), which is why with-dot is the default and both
+are always kept.
 
 The `--epub` source has two ways to choose _what_ to assemble.
 `--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the
@@ -210,9 +212,10 @@ different one. `--voice
 with neither, the stage still throws asking for one.
 
 **Alt audio (per-language second recording).** A language listed in `src/audio/altAudio.js`'s
-`ALT_AUDIO_TRANSFORMS` gets a SECOND clip per card — the spoken text run through that language's
-transform. Japanese appends a `。`: a trailing full stop gives ElevenLabs a sentence boundary and
-empirically fixes many mis-rendered short/bare clips (lone kana, some numbers).
+`ALT_AUDIO_TRANSFORMS` gets TWO clips per card. The transformed take is the DEFAULT (`audio`) and the
+plain untransformed take is the ALT (`altAudio`). Japanese appends a `。`: a trailing full stop gives
+ElevenLabs a sentence boundary and empirically fixes many mis-rendered short/bare clips (lone kana,
+some numbers), so the with-`。` take is the default and the plain no-`。` take is the switchable alt.
 
 **Per-language TTS text normalization (`src/audio/ttsText.js`'s `normalizeTtsText`).** The exact text
 sent to TTS (and used as the cache key) is the card's spoken text run through a per-language

@@ -9,7 +9,7 @@
 // reaches TTS, while `target`/`reading` keep their spaces for display.
 export const TTS_TEXT_TRANSFORMS = {
   // Strip every run of whitespace — ASCII space, tab, newline, and the fullwidth space (U+3000).
-  ja: (text) => text.replace(/[\s　]+/g, ""),
+  ja: (text) => text.replace(/[\s\u3000]+/g, ""),
 };
 
 /**

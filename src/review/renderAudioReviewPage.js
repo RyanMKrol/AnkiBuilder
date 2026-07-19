@@ -38,7 +38,7 @@ export function renderAudioReviewPage(cards, { audioDir, readFile = readFileSync
   });
 
   const subtitle = hasAlt
-    ? `Generated audio for ${escapeHtml(targetLanguage)} — ${items.length} item(s), each with a default and an alt (。) recording. Click a row to cycle: switch to alt → drop audio → keep default, then copy the instruction back into the conversation.`
+    ? `Generated audio for ${escapeHtml(targetLanguage)} — ${items.length} item(s), each with a default (with 。) and an alt (no 。) recording. Click a row to cycle: switch to alt → drop audio → keep default, then copy the instruction back into the conversation.`
     : `Generated audio for ${escapeHtml(targetLanguage)} — ${items.length} item(s). Click a row to flag it for regeneration, then copy the instruction back into the conversation.`;
 
   return renderReviewPage({
@@ -50,7 +50,7 @@ export function renderAudioReviewPage(cards, { audioDir, readFile = readFileSync
       { label: "Items", value: String(items.length) },
     ],
     columns: hasAlt
-      ? ["English", "Target", "Pronunciation", "Audio", "Alt (。)"]
+      ? ["English", "Target", "Pronunciation", "Audio (。)", "Alt (no 。)"]
       : ["English", "Target", "Pronunciation", "Audio"],
     rows,
     mode: hasAlt ? "audio-alt" : "regenerate",

@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import { join, resolve } from "path";
 import os from "os";
 import { Buffer } from "buffer";
+import { createHash } from "crypto";
 import { generateAudio as generateAudioImpl } from "../../src/audio/index.js";
 import { getAltAudioTransform } from "../../src/audio/altAudio.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
@@ -590,7 +591,7 @@ async function withKey(fn) {
   }
 }
 
-test("alt pass: a ja card gets both a default and an alt (。) clip with distinct filenames", async () => {
+test("alt pass: a ja card's DEFAULT is the with-。 clip and its ALT is the plain clip", async () => {
   await withKey(async (tmpDir) => {
     const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
     const calls = [];
@@ -604,10 +605,14 @@ test("alt pass: a ja card gets both a default and an alt (。) clip with distinc
       getAltTransform: getAltAudioTransform,
     });
 
+    // Mirrors hashTerm in src/audio/index.js.
+    const clip = (t) => `${createHash("sha256").update(t).digest("hex").slice(0, 16)}.mp3`;
     const item = result.items[0];
     assert.ok(item.audio, "default audio set");
     assert.ok(item.altAudio, "alt audio set");
     assert.notEqual(item.audio, item.altAudio, "default and alt have distinct filenames");
+    assert.equal(item.audio, clip("はちじ。"), "default take is the with-。 clip");
+    assert.equal(item.altAudio, clip("はちじ"), "alt take is the plain (no-。) clip");
     assert.deepEqual(new Set(calls), new Set(["はちじ", "はちじ。"]), "fetched plain + 。 variant");
 
     const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123", TTS_MODEL)));

@@ -78,7 +78,8 @@ test("renderAudioReviewPage() switches to audio-alt mode with an Alt column when
     readFile: () => Buffer.from("x"),
   });
 
-  assert.match(html, /<th>Alt \(。\)<\/th>/);
+  assert.match(html, /<th>Alt \(no 。\)<\/th>/);
+  assert.match(html, /<th>Audio \(。\)<\/th>/);
   assert.match(html, /"audio-alt"/);
   // two <audio> players for the row (default + alt)
   assert.equal((html.match(/<audio controls/g) || []).length, 2);

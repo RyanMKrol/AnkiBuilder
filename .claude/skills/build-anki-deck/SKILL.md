@@ -222,6 +222,12 @@ or by telling me) and every downstream stage and review inherits it. When you ha
 I split/add/reorder rows), keep `corpus.json` and `cards.json` in the same sequence so the reviews and
 the deck stay aligned.
 
+**Japanese (and other space-free scripts) render without editorial spaces.** A textbook may write
+Japanese with spaces between words (a beginner aid), but the deck face, reading, and reviews strip
+them so the script renders naturally — `src/model/scriptSpacing.js`, applied at assemble + translate.
+(Audio and romaji are handled separately.) So don't be surprised that the card shows `これはワインです。`
+even if the source had `これは ワインです。`.
+
 **Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
 e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the
 target language's own script (`にせんえん`, `ごかい`). The digits stay in `target` for a natural card

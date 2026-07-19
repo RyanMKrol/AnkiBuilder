@@ -42,6 +42,7 @@ import {
 import { dedupBackward as defaultDedupBackward } from "../corpus/epubDedup.js";
 import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epubForwardFlags.js";
 import { sortItemsPedagogically as defaultSortItemsPedagogically } from "../corpus/pedagogicalSort.js";
+import { stripEditorialSpaces } from "../model/scriptSpacing.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
@@ -412,6 +413,15 @@ async function runAssemble(flags, ctx) {
         ? `pedagogical sort: reordered ${corpus.items.length} item(s) into a vocabulary-first learning sequence`
         : `pedagogical sort: extracted order left unchanged`,
     );
+  }
+
+  // For space-free scripts (e.g. Japanese), strip editorial spaces from the display text so the
+  // corpus (and its review) renders as natural spaceless script — translate does the same on the
+  // resulting cards. No-op for languages whose spaces are real word boundaries.
+  const displayLang = resolveIso639Code(flags.lang);
+  for (const item of corpus.items) {
+    if (item.target) item.target = stripEditorialSpaces(item.target, displayLang);
+    if (item.reading) item.reading = stripEditorialSpaces(item.reading, displayLang);
   }
 
   writeJson(paths.corpus, corpus);

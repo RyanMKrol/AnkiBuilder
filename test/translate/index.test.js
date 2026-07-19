@@ -363,3 +363,39 @@ test("library-throws-falls-back: an adapter failure falls through to the ordinar
   assert.ok(!cards.items[0].uncertain);
   assert.ok(logs.some((msg) => msg.includes("dictionary not found")));
 });
+
+test("ja: strips editorial spaces from the display target/reading (but keeps them for es)", async () => {
+  const jaCorpus = {
+    meta: { targetLanguage: "ja", sourceType: "epub" },
+    items: [
+      {
+        id: "s1",
+        english: "This is a French wine.",
+        category: "Food",
+        notes: null,
+        target: "これは フランスの ワインです。",
+      },
+    ],
+  };
+  const getRomanizationLibrary = () => ({
+    load: async () => ({ romanize: async () => "kore wa furansu no wain desu." }),
+  });
+  const { cards } = await translateCorpus(jaCorpus, {
+    runClaude: () => JSON.stringify([{ id: "s1", pronunciation: "kore wa furansu no wain desu." }]),
+    getRomanizationLibrary,
+  });
+  assert.equal(
+    cards.items[0].target,
+    "これはフランスのワインです。",
+    "ja target rendered space-free",
+  );
+  // romaji keeps its own word spacing
+  assert.equal(cards.items[0].pronunciation, "kore wa furansu no wain desu.");
+
+  // es: spaces are real word boundaries — untouched
+  const esCorpus = baseCorpus([alreadyTranslated("g", "good day", "Greetings", "buenos días")]);
+  const { cards: esCards } = await translateCorpus(esCorpus, {
+    runClaude: () => JSON.stringify([{ id: "g", pronunciation: "BWEH-nos DEE-as" }]),
+  });
+  assert.equal(esCards.items[0].target, "buenos días", "es target keeps its spaces");
+});

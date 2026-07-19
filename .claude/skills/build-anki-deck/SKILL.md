@@ -303,6 +303,9 @@ This:
 - Fetches audio from ElevenLabs (model `eleven_v3` by default — `src/audio/ttsModel.js`'s `TTS_MODEL`,
   override with `ANKI_BUILDER_TTS_MODEL`; v3 is markedly more natural than the old `eleven_multilingual_v2`
   at the same cost)
+- Normalizes the spoken text per language before sending it (`src/audio/ttsText.js`): Japanese strips
+  editorial spaces so ElevenLabs doesn't voice them as pauses (`target`/`reading` keep their spaces for
+  display; only the audio drops them)
 - Caches audio in `.anki-builder/audio/<voiceId>/<model>/` (gitignored; **segmented by model** so a
   model switch never reuses a stale clip) so reruns are fast
 - Copies audio files into the run directory

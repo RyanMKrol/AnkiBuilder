@@ -246,6 +246,19 @@ So the count is the Cartesian of the APPLICABLE axes: **minimum 2** (just dot, f
 `reading` keeps its comma/brackets and never carries a trailing dot. Generate the extra takes for the
 review; apply the human's per-card pick to the card's `audio` (and rebuild).
 
+**Present this variant review as a Claude Artifact in the format we've standardized on** — the same
+editorial page used for every audio review (Klee kana font, per-card stacked take chips each with a
+short descriptor + its own player, wrapping kana columns, full window width). Two markers per card,
+which coexist: **◆ marks the default policy take** (the with-`。` take — see below) and **★ marks the
+take currently selected for the deck** (exactly what a rebuild will embed, whether that's the default,
+a no-`。`/comma/bracket variant, or a hand-supplied custom clip). Every card has exactly one ★. Number
+the cards **globally and monotonically across the whole unit** (1…N; when reviewing a merged book,
+continue the numbering across lessons) and label each take `<N>a`/`<N>b`/`<N>c`… so the human calls out
+a change as "row + letter" (e.g. `217 → a`). If embedding every clip pushes the artifact past the
+~16 MB Artifact limit, **split it into parts** with continuous numbering rather than dropping clips.
+The checked-in `render-review --stage audio` page (`src/review/renderAudioReviewPage.js`) uses this
+same per-card variant presentation for the dot axis; the book-level review adds the comma/bracket axes.
+
 **Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
 e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the
 target language's own script (`にせんえん`, `ごかい`). The digits stay in `target` for a natural card
@@ -339,8 +352,32 @@ Note the mechanism differs from Step 2: there's no `anki-builder review` equival
 re-validating it, not running a CLI command.
 
 If you want to edit translations or pronunciations, do it in `cards.json` now before proceeding.
-Once you give a decision, apply it and move straight into Step 4 in the same turn — same
-no-separate-confirmation rule as the assemble → translate transition.
+Once you give a decision, apply it and move straight into Step 3.5 (for an EPUB/lesson source) or
+Step 4 in the same turn — same no-separate-confirmation rule as the assemble → translate transition.
+
+### Step 3.5: Fill-in-the-blank enrichment (EPUB lessons)
+
+**For an EPUB or real-life-lesson source, this is an explicit pipeline step** (skip it for a template
+— a template is a fixed vocabulary list with no drills to mine). Textbook lessons contain
+fill-in-the-blank drills and practice exercises whose example lines are a rich source of natural
+sentence cards. After translation, mine those patterns into extra **practice sentence cards**: resolve
+each blank into a concrete, level-appropriate word drawn from **already-introduced lesson vocabulary**
+(never fabricate new words or grammar the lesson hasn't taught), producing a complete sentence with
+`target`/`reading`/`english`/`pronunciation`. Mark every such card `"fillInBlank": true` so it is
+**clearly delineated** in the reviews (badged, tinted) and targetable by the de-dup gate.
+
+Then, in the same step and **before** the cards go to audio, apply the two content gates defined in the
+conventions above:
+
+1. **Semantic de-dup against the corpus** — group every card (corpus **and** FIB) by sentence pattern
+   and keep at most ~2 examples per pattern, favouring FIB that introduce a new pattern or new
+   vocabulary; remove pure pattern-repeats. Back up the removed cards; surface the keep/remove result
+   in the review for the human to push back on.
+2. **Split any combined question-and-answer line into two cards** — one question card, one answer card.
+
+The kept FIB cards are ordinary cards from here on: they flow into Step 4 (audio — each gets the same
+default + alt takes) and the deck exactly like any other card. Publish the result as a Claude Artifact
+(the AI-content review) so the human can review the additions before the build.
 
 ### Step 4: Audio Generation
 

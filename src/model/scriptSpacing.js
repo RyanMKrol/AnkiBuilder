@@ -20,7 +20,7 @@ export function normalizeDisplayText(text, languageCode) {
   if (typeof text !== "string" || !SPACE_FREE_LANGUAGES.has(languageCode)) {
     return text;
   }
-  return text.replace(/[\s　]+/g, "").replace(/。+$/, "");
+  return text.replace(/[\s\u3000]+/g, "").replace(/。+$/, "");
 }
 
 export function isSpaceFreeLanguage(languageCode) {

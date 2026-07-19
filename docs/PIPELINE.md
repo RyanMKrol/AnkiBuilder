@@ -192,7 +192,18 @@ with neither, the stage still throws asking for one.
 **Alt audio (per-language second recording).** A language listed in `src/audio/altAudio.js`'s
 `ALT_AUDIO_TRANSFORMS` gets a SECOND clip per card — the spoken text run through that language's
 transform. Japanese appends a `。`: a trailing full stop gives ElevenLabs a sentence boundary and
-empirically fixes many mis-rendered short/bare clips (lone kana, some numbers). `generateAudio` runs
+empirically fixes many mis-rendered short/bare clips (lone kana, some numbers).
+
+**Per-language TTS text normalization (`src/audio/ttsText.js`'s `normalizeTtsText`).** The exact text
+sent to TTS (and used as the cache key) is the card's spoken text run through a per-language
+normalizer. Japanese strips whitespace: `target`/`reading` keep their editorial spaces for the learner
+(これは フランスの ワインです。), but the audio is generated from the space-free form
+(これはフランスのワインです。) — because ElevenLabs voices each space as an audible pause (a spaced clip
+runs ~20-25% longer than its unspaced twin). Languages whose spaces are real word boundaries (Spanish,
+etc.) have no transform and are sent unchanged. The `。`alt transform composes on top of the normalized
+text.
+
+`generateAudio` runs
 the alt pass after the default one, reusing the same hash/cache/fetch machinery (the transformed text
 hashes to a distinct filename, so it caches alongside the default), and records the alt filename on
 the card as `altAudio`. Languages with no transform get one clip and no `altAudio` field — behaviour

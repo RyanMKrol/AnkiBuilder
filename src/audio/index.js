@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import { libraryHome } from "../model/index.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getAltAudioTransform } from "./altAudio.js";
+import { normalizeTtsText } from "./ttsText.js";
 import { TTS_MODEL } from "./ttsModel.js";
 
 function hashTerm(term) {
@@ -95,9 +96,14 @@ export async function generateAudio(
   const languageCode = resolveIso639Code(cards.meta?.targetLanguage);
   const fetchCtx = { fetchTts, voiceId, apiKey, languageCode };
 
+  // The exact text sent to TTS (and used as the cache key): the card's spoken text with any
+  // language-specific normalization applied — for Japanese, spaces stripped so they aren't voiced
+  // as pauses. `target`/`reading` keep their editorial spaces for display; only the audio loses them.
+  const ttsTextFor = (item) => normalizeTtsText(speechText(item), languageCode);
+
   const uniqueTerms = new Set();
   for (const item of cards.items) {
-    uniqueTerms.add(speechText(item));
+    uniqueTerms.add(ttsTextFor(item));
   }
   const fetchedFiles = await fetchTermsToCache(uniqueTerms, audioDir, fetchCtx);
 
@@ -110,7 +116,7 @@ export async function generateAudio(
   if (altTransform) {
     const uniqueAltTerms = new Set();
     for (const item of cards.items) {
-      uniqueAltTerms.add(altTransform(speechText(item)));
+      uniqueAltTerms.add(altTransform(ttsTextFor(item)));
     }
     altFetchedFiles = await fetchTermsToCache(uniqueAltTerms, audioDir, fetchCtx);
   }
@@ -118,9 +124,9 @@ export async function generateAudio(
   const annotatedCards = {
     ...cards,
     items: cards.items.map((item) => {
-      const annotated = { ...item, audio: fetchedFiles.get(speechText(item)) };
+      const annotated = { ...item, audio: fetchedFiles.get(ttsTextFor(item)) };
       if (altFetchedFiles) {
-        annotated.altAudio = altFetchedFiles.get(altTransform(speechText(item)));
+        annotated.altAudio = altFetchedFiles.get(altTransform(ttsTextFor(item)));
       }
       return annotated;
     }),

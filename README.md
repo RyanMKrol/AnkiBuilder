@@ -124,7 +124,7 @@ npm run build
 - [x] Spoken-form `reading` field — numbers stay as digits in `target` (natural display, e.g. `2,000えん`)
       while a spelled-out `reading` (`にせんえん`) drives BOTH the romaji pronunciation and the audio,
       since digits break the romanizer and TTS
-- [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`)
+- [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `reading` when set; per-language "alt audio", e.g. Japanese appends `。`; per-language TTS text normalization — Japanese strips editorial spaces so they aren't voiced as pauses)
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō

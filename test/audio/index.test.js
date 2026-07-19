@@ -714,3 +714,37 @@ test("cache is segmented by model — the same text under two models does not co
     await fs.rm(tmpDir, { recursive: true, force: true });
   }
 });
+
+test("ja: the text sent to TTS (and cache key) has spaces stripped, though target keeps them", async () => {
+  const tmpDir = await fs.mkdtemp(join(os.tmpdir(), "audio-test-"));
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    const cards = {
+      meta: { targetLanguage: "ja" },
+      items: [
+        { id: "s1", english: "This is a French wine.", target: "これは フランスの ワインです。" },
+      ],
+    };
+    const calls = [];
+    await generateAudioImpl(cards, {
+      voiceId: "v",
+      fetchTts: async (term) => {
+        calls.push(term);
+        return Buffer.from("x");
+      },
+      libraryHomeDir: tmpDir,
+      getAltTransform: getAltAudioTransform,
+    });
+    // default + 。 alt, both space-free.
+    assert.deepEqual(
+      new Set(calls),
+      new Set(["これはフランスのワインです。", "これはフランスのワインです。。"]),
+      "spaces stripped before TTS; alt appends 。 to the stripped text",
+    );
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+    await fs.rm(tmpDir, { recursive: true, force: true });
+  }
+});

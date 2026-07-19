@@ -1,21 +1,28 @@
 import test from "node:test";
 import assert from "node:assert";
-import { stripEditorialSpaces, isSpaceFreeLanguage } from "../../src/model/scriptSpacing.js";
+import { normalizeDisplayText, isSpaceFreeLanguage } from "../../src/model/scriptSpacing.js";
 
-test("ja: strips editorial spaces (ASCII and fullwidth) from display text", () => {
+test("ja: strips editorial spaces AND the trailing 。 from display text", () => {
   assert.equal(
-    stripEditorialSpaces("あの あおい Tシャツは 3,000えんです。", "ja"),
-    "あのあおいTシャツは3,000えんです。",
+    normalizeDisplayText("あの あおい Tシャツは 3,000えんです。", "ja"),
+    "あのあおいTシャツは3,000えんです",
   );
-  assert.equal(stripEditorialSpaces("ちか　いっかい", "ja"), "ちかいっかい"); // U+3000
+  assert.equal(normalizeDisplayText("ちか　いっかい", "ja"), "ちかいっかい"); // U+3000
 });
 
-test("ja: text without spaces is unchanged", () => {
-  assert.equal(stripEditorialSpaces("ねこ", "ja"), "ねこ");
+test("ja: strips a trailing 。 but leaves a mid-string 。 (two sentences) intact", () => {
+  assert.equal(
+    normalizeDisplayText("はじめまして。ライアンです。", "ja"),
+    "はじめまして。ライアンです",
+  );
 });
 
-test("space-using languages are left untouched (spaces are real word boundaries)", () => {
-  assert.equal(stripEditorialSpaces("buenos días", "es"), "buenos días");
+test("ja: text with no spaces or trailing 。 is unchanged", () => {
+  assert.equal(normalizeDisplayText("ねこ", "ja"), "ねこ");
+});
+
+test("space-using languages are left untouched (spaces + terminal punctuation kept)", () => {
+  assert.equal(normalizeDisplayText("buenos días.", "es"), "buenos días.");
   assert.equal(isSpaceFreeLanguage("es"), false);
 });
 
@@ -24,6 +31,6 @@ test("isSpaceFreeLanguage is true for Japanese", () => {
 });
 
 test("non-string input passes through", () => {
-  assert.equal(stripEditorialSpaces(null, "ja"), null);
-  assert.equal(stripEditorialSpaces(undefined, "ja"), undefined);
+  assert.equal(normalizeDisplayText(null, "ja"), null);
+  assert.equal(normalizeDisplayText(undefined, "ja"), undefined);
 });

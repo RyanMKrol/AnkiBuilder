@@ -73,14 +73,21 @@ card (worst case it degrades toward the extracted order). On by default; `--no-s
 fails open — any parse/shape error leaves the extracted order untouched and logs why. The re-ordered
 corpus is what the review gate then shows, so the human is always the final check on the sequence.
 
-**Space-free scripts — strip editorial display spaces (`src/model/scriptSpacing.js`).** For a
-language written without spaces between words (Japanese today), any spaces in a card's `target`/`reading`
-are editorial — e.g. the JBP kana textbook uses 分かち書き word-separation as a beginner aid — and are
-stripped from the stored DISPLAY text so the deck face and reviews render as natural spaceless script.
-`assemble` applies it to `corpus.json` and `translate` applies it to the resulting `cards.json`. This
-is independent of the audio-side space strip (`src/audio/ttsText.js`, which cleans the text sent to
-TTS) and the romaji, which keeps its own word spacing. Languages whose spaces are real word boundaries
-(Spanish, French, …) are untouched.
+**Space-free scripts — normalize the display text (`src/model/scriptSpacing.js`, `normalizeDisplayText`).**
+For a language written without spaces between words (Japanese today), a card's stored `target`/`reading`
+is normalized so the deck renders natural script: **(1)** editorial spaces are stripped (the JBP kana
+textbook uses 分かち書き word-separation as a beginner aid, which isn't part of real written Japanese),
+and **(2)** a trailing sentence-final `。` is stripped — **a card never ends in a period by default**. A
+mid-string `。` (two sentences) is kept. `assemble` applies it to `corpus.json` and `translate` to the
+resulting `cards.json`. This is independent of the romaji (which keeps its own spacing/punctuation) and
+the audio-side space strip (`src/audio/ttsText.js`). Languages whose spaces/terminal punctuation are
+meaningful (Spanish, French, …) are untouched.
+
+The dot-less default plays directly into the audio: because the card text has no trailing `。`, the
+**default** TTS take is dot-less, and the per-language alt transform (`src/audio/altAudio.js`, ja
+appends `。`) yields the **with-dot** take as the alt — so every Japanese card carries both a no-dot
+(default, embedded in the deck) and a with-dot (alt, switchable) recording. The terminal `。`
+measurably changes ElevenLabs' prosody, which is why no-dot is the default and both are always kept.
 
 The `--epub` source has two ways to choose _what_ to assemble.
 `--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the

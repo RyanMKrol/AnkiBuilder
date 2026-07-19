@@ -1,6 +1,6 @@
 import { validateCards } from "../model/index.js";
 import { resolveIso639Code } from "../model/iso639.js";
-import { stripEditorialSpaces } from "../model/scriptSpacing.js";
+import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { runClaude as defaultRunClaude } from "./runClaude.js";
 import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./romanizationLibraries.js";
 import { romanizeAndEvaluate } from "./romanizationEval.js";
@@ -546,8 +546,8 @@ export async function translateCorpus(
   // the spaced source, which the romanizer re-tokenizes anyway), and the audio stage strips spaces
   // for TTS separately — this is purely the stored display value.
   for (const item of items) {
-    if (item.target) item.target = stripEditorialSpaces(item.target, languageCode);
-    if (item.reading) item.reading = stripEditorialSpaces(item.reading, languageCode);
+    if (item.target) item.target = normalizeDisplayText(item.target, languageCode);
+    if (item.reading) item.reading = normalizeDisplayText(item.reading, languageCode);
   }
 
   const cards = {

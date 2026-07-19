@@ -231,18 +231,20 @@ the **default audio is the dot-less take and the with-dot take is always generat
 `src/audio/altAudio.js`). The deck embeds the no-dot default; the audio review lets you switch a card
 to its with-dot alt. (Romaji keeps its own punctuation.)
 
-**The final review presents per-card AUDIO variants across three axes, so the human can pick the best
-take per card** (labelled `9a`/`9b`/`9c`… — call out the winner). The axes:
-- **Dot** — with vs without a trailing `。` (every card). The `。` adds a terminal pause.
+**The final review presents per-card AUDIO variants as the CARTESIAN PRODUCT of three with/without
+axes, so the human picks the best take per card** (labelled `9a`/`9b`/`9c`… — call out the winner).
+Never straight-remove the punctuation from a card — always keep the card's canonical text and offer
+the toggled take as a variant. The axes:
+- **Dot** — with vs without a trailing `。` (EVERY card). The `。` adds a terminal pause.
 - **Comma** — with vs without a mid-sentence `、` (any card containing one). The `、` adds an internal
-  pause that sometimes hurts (e.g. じゃ、また was split/de-comma'd to じゃまた); offer both takes.
+  pause that sometimes hurts (e.g. じゃ、また). Keep the `、` in the display; offer both takes.
 - **Brackets** — for a Japanese card with an optional bracketed part (`（お）さら`, `おつかれさま（でした）`),
   the full vs short spoken form. (English-only parentheticals like `goodbye (formal)` are a display
   variant, not audio — show the bracket-free English inline.)
-These are AUDIO-only variants — the displayed `target`/`reading` never carries the dot or the toggled
-comma. Only a handful of cards have the comma/bracket axes, so most cards are just `a` (no-dot) / `b`
-(with-dot). Generate the extra takes for the review; apply the human's per-card pick to the card's
-`audio` (and rebuild).
+So the count is the Cartesian of the APPLICABLE axes: **minimum 2** (just dot, for a plain card) up to a
+**maximum of 8** (dot × comma × brackets). These are AUDIO-only variants — the displayed `target`/
+`reading` keeps its comma/brackets and never carries a trailing dot. Generate the extra takes for the
+review; apply the human's per-card pick to the card's `audio` (and rebuild).
 
 **Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
 e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the

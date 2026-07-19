@@ -254,6 +254,19 @@ digits break both (kuroshiro renders `2,000えん` as `2 , 000 en`, and ElevenLa
 English). The corpus review shows a **Reading (spoken)** column whenever any item has one, so you can
 verify the kana; if a reading's counter looks wrong, tell me and I'll fix it.
 
+**Fill-in-the-blank (FIB) cards must be semantically de-duped against the corpus.** When AI-generated
+fill-in-the-blank practice sentences are added (marked `"fillInBlank": true`, mixed into the lesson
+and clearly delineated in reviews), they are prone to **pattern overlap** — regenerating a sentence
+frame the corpus already teaches, or producing many near-identical siblings (e.g. "X is from France"
+vs "Y is from France", or the same shopping dialogue with the nouns swapped). Before finalizing, run a
+**semantic de-dup pass** (not just exact-string): group every card — corpus **and** FIB — by its
+sentence pattern, then keep **at most ~2 examples per pattern counting the corpus lines**, preferring
+FIB that introduce a **new** pattern or genuinely new vocabulary/context, and **remove the rest**. A
+couple of same-pattern examples is fine; many is not. Record the keep/remove decision per card (frame
++ reason), back up removed cards so any can be restored, and surface the result in the review so the
+human can push back before the deck is built. This applies both to any FIB extraction going forward
+**and** as a gate on FIB content already in a book.
+
 **Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
 Generate it from the checked-in template rather than hand-authoring HTML — that's what keeps this
 page visually and behaviorally identical run over run:
@@ -384,8 +397,10 @@ action isn't dropping a row, it's "this one sounds wrong, regenerate it": copy b
 whichever terms are missing from the cache, not the whole batch. (ElevenLabs is non-deterministic, so
 a fresh take usually differs.)
 
-**When cards carry `altAudio`** (a language with an alt-audio config), the page instead shows an
-**Alt (。)** column with a second player per row and switches to a two-action mode: clicking a row
+**When cards carry `altAudio`** (a language with an alt-audio config), the page instead shows a
+single **Audio variants** column that stacks each card's labelled takes — the with-`。` **default**
+(marked ◆) and the no-`。` **alt** — with its own player, the same per-card variant presentation used
+in the book-level review. It switches to a two-action mode: clicking a row
 cycles **switch to alt → drop audio → keep default**, and the copy button produces up to two clauses,
 e.g. `Please switch to alt audio for rows 8, 80. Please drop audio for rows 12.` To act on those,
 edit `cards.json` directly (there's no CLI command, same as the translate stage): **switch** → set

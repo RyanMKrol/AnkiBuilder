@@ -98,6 +98,7 @@ export function renderReviewPage({
     --accent-tint-strong: #e7c9c2;
     --flag: #6b5d1f;
     --flag-tint: #f4edd4;
+    --ok: #2f6b47;
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
@@ -245,6 +246,17 @@ export function renderReviewPage({
     font-size: 13.5px;
   }
   audio { display: block; width: 220px; height: 32px; }
+  /* Per-card "audio variants" cell: each take is a descriptor + its player, stacked. */
+  .variants { display: flex; flex-direction: column; gap: 6px; }
+  .var { display: flex; align-items: center; gap: 9px; }
+  .var .vd {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    min-width: 104px;
+    white-space: nowrap;
+  }
+  .var .vd b { color: var(--ok); font-weight: 700; }
+  .var audio { display: block; width: 190px; height: 30px; }
   footer {
     margin-top: 20px;
     font-size: 12.5px;

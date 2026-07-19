@@ -109,17 +109,28 @@ function parseEvalBatch(raw) {
   return parsed;
 }
 
+// Deterministic tidy-up applied to whatever romanization we end up with (model correction or library
+// fallback): a space before ASCII punctuation is never right in a romanization ("desu ." → "desu."),
+// nor are doubled/edge spaces. Catches the residue the model occasionally leaves (kuroshiro emits
+// "desu ." and the model sometimes agrees). Safe for every language's romanization/transliteration.
+function normalizeRomaji(text) {
+  return text
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 function assembleCard(item, correction) {
   // Use the model's corrected romanization; fall back to the library's value only when the model
   // omitted this item or returned a non-string (fail-open — a real romanization beats nothing).
-  const pronunciation =
+  const chosen =
     correction &&
     typeof correction.pronunciation === "string" &&
     correction.pronunciation.length > 0
       ? correction.pronunciation
       : item.libraryPronunciation;
 
-  const card = { ...item, pronunciation };
+  const card = { ...item, pronunciation: normalizeRomaji(chosen) };
   delete card.libraryPronunciation;
   return card;
 }

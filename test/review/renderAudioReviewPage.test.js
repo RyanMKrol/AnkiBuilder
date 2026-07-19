@@ -59,7 +59,7 @@ test("renderAudioReviewPage() uses regenerate mode", () => {
   assert.match(html, /No rows flagged for regeneration\./);
 });
 
-test("renderAudioReviewPage() switches to audio-alt mode with an Alt column when any card has altAudio", () => {
+test("renderAudioReviewPage() switches to audio-alt mode with a variants column when any card has altAudio", () => {
   const withAlt = cards({
     items: [
       {
@@ -78,17 +78,19 @@ test("renderAudioReviewPage() switches to audio-alt mode with an Alt column when
     readFile: () => Buffer.from("x"),
   });
 
-  assert.match(html, /<th>Alt \(no 。\)<\/th>/);
-  assert.match(html, /<th>Audio \(。\)<\/th>/);
+  assert.match(html, /<th>Audio variants<\/th>/);
+  assert.doesNotMatch(html, /<th>Alt/);
   assert.match(html, /"audio-alt"/);
-  // two <audio> players for the row (default + alt)
+  // two <audio> players for the row (with-。 default + no-。 alt takes), stacked in one cell
   assert.equal((html.match(/<audio controls/g) || []).length, 2);
+  assert.match(html, /◆ default/);
+  assert.match(html, /no 。 · alt/);
   assert.match(html, /data-has-alt="1"/);
   assert.match(html, /to switch to alt/);
   assert.doesNotMatch(html, /"regenerate audio for"/);
 });
 
-test("renderAudioReviewPage() marks a row with no alt clip as data-has-alt=0 and shows a placeholder", () => {
+test("renderAudioReviewPage() marks a row with no alt clip as data-has-alt=0 and shows only the default take", () => {
   const mixed = cards({
     items: [
       {
@@ -116,5 +118,6 @@ test("renderAudioReviewPage() marks a row with no alt clip as data-has-alt=0 and
   });
   assert.match(html, /data-has-alt="1"/);
   assert.match(html, /data-has-alt="0"/);
-  assert.match(html, /<span class="empty">no alt<\/span>/);
+  // item a shows both takes (2 players); item b only the default take (1) => 3 total
+  assert.equal((html.match(/<audio controls/g) || []).length, 3);
 });

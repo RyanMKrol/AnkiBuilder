@@ -224,3 +224,18 @@ test("library adapter failure falls back per-item via the injected fallback, not
   assert.equal(fallbackCalledWith[0].id, "cat");
   assert.ok(logs.some((msg) => msg.includes("cat") && msg.includes("dictionary not found")));
 });
+
+test("normalizes residual whitespace: strips a space before punctuation and collapses doubles", async () => {
+  const items = [partialCard("bye", "goodbye", "さようなら。")];
+  // Even if the model returns kuroshiro's spaced form, the deterministic tidy-up fixes it.
+  const libraryEntry = workingLibraryEntry(async () => "sayōnara .");
+
+  const { items: cards } = await romanizeAndEvaluate(items, {
+    targetLanguage: "ja",
+    libraryEntry,
+    runClaude: () => JSON.stringify([{ id: "bye", pronunciation: "sayōnara ." }]),
+    fallback: noopFallback,
+  });
+
+  assert.equal(cards[0].pronunciation, "sayōnara.");
+});

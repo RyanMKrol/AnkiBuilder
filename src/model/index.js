@@ -106,6 +106,10 @@ const CARDS_SCHEMA = {
           // review can switch a card to it. Never embedded by the deck build — only `audio` is.
           altAudio: { type: "string" },
           uncertain: { type: "boolean" },
+          // Marks an AI-generated fill-in-the-blank practice card (a sentence built by resolving a
+          // drill blank with lesson vocabulary), so reviews can delineate them and the semantic
+          // de-dup pass can target them. Behaves like any other card in the deck.
+          fillInBlank: { type: "boolean" },
         },
         additionalProperties: false,
       },

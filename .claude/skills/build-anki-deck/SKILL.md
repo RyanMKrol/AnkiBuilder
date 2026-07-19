@@ -267,6 +267,14 @@ couple of same-pattern examples is fine; many is not. Record the keep/remove dec
 human can push back before the deck is built. This applies both to any FIB extraction going forward
 **and** as a gate on FIB content already in a book.
 
+**Never put a question and its answer on the same card — split them into two.** A single card that
+holds both a question and its answer (e.g. `プレゼンはいつですか。きょうのさんじからです` / "When is the
+presentation? It's at 3:00 today.") reviews awkwardly — flashcards are one prompt → one response. When
+generation produces a combined Q&A line, split it into **two separate items**: a question card and an
+answer card, each with its own `target`/`reading`/`english`/`pronunciation` and its own audio (the
+Japanese splits on the internal `。`, the English on the `?`). Keep both marked `fillInBlank` when they
+came from a drill. This holds for any source, not just FIB.
+
 **Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
 Generate it from the checked-in template rather than hand-authoring HTML — that's what keeps this
 page visually and behaviorally identical run over run:

@@ -337,6 +337,30 @@ test("validateCards - accepts an optional `reading` field on an item", () => {
   });
 });
 
+test("validateCards - accepts an optional boolean `fillInBlank` field on an item", () => {
+  const cardsWithFib = {
+    meta: {
+      targetLanguage: "ja",
+      sourceType: "epub",
+    },
+    items: [
+      {
+        id: "fib-1",
+        english: "When is the party?",
+        category: "Time",
+        target: "パーティーはいつですか",
+        pronunciation: "pātī wa itsu desu ka.",
+        reading: "パーティーはいつですか",
+        fillInBlank: true,
+      },
+    ],
+  };
+
+  assert.doesNotThrow(() => {
+    validateCards(cardsWithFib);
+  });
+});
+
 test("validateCards - a non-string `reading` fails validation", () => {
   const invalidCards = {
     meta: {

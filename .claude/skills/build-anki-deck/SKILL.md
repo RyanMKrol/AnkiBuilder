@@ -366,6 +366,13 @@ each blank into a concrete, level-appropriate word drawn from **already-introduc
 `target`/`reading`/`english`/`pronunciation`. Mark every such card `"fillInBlank": true` so it is
 **clearly delineated** in the reviews (badged, tinted) and targetable by the de-dup gate.
 
+**Placement — a contiguous drill block at the END of the lesson.** Append the kept FIB cards after all
+of that lesson's vocabulary and textbook sentences; do **not** interleave them earlier. A drill only
+ever reuses vocabulary the lesson has already introduced, so putting the whole block last keeps the
+lesson's dependency order intact (vocab → textbook sentences → practice drills) and is what the
+pedagogical-order check expects. Keep each split Q&A pair adjacent (question card immediately followed
+by its answer card).
+
 Then, in the same step and **before** the cards go to audio, apply the two content gates defined in the
 conventions above:
 
@@ -453,6 +460,20 @@ edit `cards.json` directly (there's no CLI command, same as the translate stage)
 Then re-validate and re-render. The deck build embeds whatever ends up in `audio`. (You can also just
 tell me the rows in chat, or hand me a replacement `.mp3` for a specific row.)
 
+**Custom per-card clips + a re-run footgun.** A human-supplied recording — common for numbers,
+counters, and other short strings ElevenLabs mishandles even with a `reading` — is applied by copying
+the file into `<runDir>/audio/<cardId>-custom.mp3` and setting that card's `audio` to the new filename.
+**Once ANY per-card audio selection has been made — a custom clip, a no-`。` pick, a comma/bracket
+variant — do NOT re-run the whole `audio` stage.** `generateAudio` re-derives `audio`/`altAudio` for
+*every* card from the card text, so a full re-run silently overwrites all those hand-picked selections
+(and adding even one new card defeats the stage's `alreadyDone` skip, which triggers exactly that
+recompute). To add audio for new or changed cards, generate clips for **only those items** (a scoped
+`generateAudio` over a mini card set, copying the results into the run's `audio/` dir) and leave every
+already-selected card untouched. Because the deck embeds whatever is in `audio`, that field is the
+source of truth for a card's final take — never assume `audio` is the no-`。` take and `altAudio` the
+with-`。` one; after the with-`。` default is applied they are swapped, so derive the two takes from the
+card text (hash of the normalized spoken text, ± `。`) rather than from which field holds which.
+
 For a large deck (many dozens of cards), embedding every clip — doubly so with alt audio — can make
 the artifact file large/slow to publish; if that happens, say so rather than silently publishing one
 huge page (see `.harness/custom/docs/LIMITATIONS.md` — there's no chunking built in yet).
@@ -509,6 +530,13 @@ If something looks wrong (missing translations, bad pronunciation, etc.), you ca
 - Edit the source corpus.json / cards.json and re-run from that stage
 - Re-run `anki-builder` commands to regenerate later stages
 - Stages are resumable — running a stage whose output already exists reuses it
+
+**Re-import updates in place but does NOT reorder.** Note GUIDs are the deterministic `card.id`, so
+re-importing a rebuilt deck updates each existing card's fields where it already sits — it never
+duplicates. But Anki keeps the existing cards' **positions and scheduling**, so a changed pedagogical
+order (e.g. after adding/removing/reordering cards) only takes effect on a **fresh** import. Delete the
+old deck in Anki first if you want the new order to apply; otherwise the field updates land but the
+old order stays.
 
 ## Command Reference
 

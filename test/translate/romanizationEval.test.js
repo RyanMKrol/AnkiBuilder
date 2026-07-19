@@ -66,14 +66,14 @@ test("falls back to `target` for romanization when no reading is set", async () 
   assert.equal(romanizedText, "猫");
 });
 
-test("approve-as-is: pronunciation is the library value, no uncertain flag", async () => {
+test("agreement: when the model returns the same value the library had, that's the pronunciation", async () => {
   const items = [partialCard("cat", "cat", "猫")];
   const libraryEntry = workingLibraryEntry(async () => "neko");
 
   const { items: cards, errors } = await romanizeAndEvaluate(items, {
     targetLanguage: "ja",
     libraryEntry,
-    runClaude: () => JSON.stringify([{ id: "cat", ok: true }]),
+    runClaude: () => JSON.stringify([{ id: "cat", pronunciation: "neko" }]),
     fallback: noopFallback,
   });
 
@@ -83,34 +83,57 @@ test("approve-as-is: pronunciation is the library value, no uncertain flag", asy
   assert.ok(!cards[0].uncertain);
 });
 
-test("flag-uncertain: keeps the library's pronunciation, sets uncertain, appends a note", async () => {
-  const items = [partialCard("cat", "cat", "猫")];
-  const libraryEntry = workingLibraryEntry(async () => "neko");
+test("correction: the model's pronunciation replaces the library's, with no uncertain flag or note", async () => {
+  const items = [partialCard("floor", "sixth floor", "ろっかい")];
+  // Library garbles the sokuon; the model returns the correct value.
+  const libraryEntry = workingLibraryEntry(async () => "ro tsu kai");
 
   const { items: cards } = await romanizeAndEvaluate(items, {
     targetLanguage: "ja",
     libraryEntry,
-    runClaude: () => JSON.stringify([{ id: "cat", ok: false, concern: "looks off" }]),
+    runClaude: () => JSON.stringify([{ id: "floor", pronunciation: "rokkai" }]),
     fallback: noopFallback,
   });
 
-  assert.equal(cards[0].pronunciation, "neko");
-  assert.equal(cards[0].uncertain, true);
-  assert.equal(cards[0].notes, "Possibly incorrect romanization — looks off");
+  assert.equal(
+    cards[0].pronunciation,
+    "rokkai",
+    "uses the model's correction, not the library value",
+  );
+  assert.ok(!cards[0].uncertain, "no uncertain flag — the correction is the resolution");
+  assert.equal(cards[0].notes, undefined, "no 'possibly incorrect' note is appended");
 });
 
-test("flag-uncertain appends to an existing note rather than replacing it", async () => {
-  const items = [{ ...partialCard("cat", "cat", "猫"), notes: "informal too" }];
-  const libraryEntry = workingLibraryEntry(async () => "neko");
+test("correction: the prompt shows the model the spoken `reading`, not a digit/kanji display target", async () => {
+  const items = [
+    {
+      id: "price",
+      english: "2,000 yen",
+      category: "Shopping",
+      target: "2,000えん",
+      reading: "にせんえん",
+    },
+  ];
+  const libraryEntry = workingLibraryEntry(async () => "ni se n e n");
+  let prompt = null;
 
   const { items: cards } = await romanizeAndEvaluate(items, {
     targetLanguage: "ja",
     libraryEntry,
-    runClaude: () => JSON.stringify([{ id: "cat", ok: false, concern: "looks off" }]),
+    runClaude: (p) => {
+      prompt = p;
+      return JSON.stringify([{ id: "price", pronunciation: "nisen'en" }]);
+    },
     fallback: noopFallback,
   });
 
-  assert.equal(cards[0].notes, "informal too | Possibly incorrect romanization — looks off");
+  assert.match(prompt, /にせんえん/, "the reading is shown as the text to romanize");
+  assert.doesNotMatch(
+    prompt,
+    /2,000えん/,
+    "the digit display target is not shown as the romanization target",
+  );
+  assert.equal(cards[0].pronunciation, "nisen'en");
 });
 
 test("evaluates the whole set in a single eval call (no chunking)", async () => {

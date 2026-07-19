@@ -241,8 +241,9 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 ## `pronunciation` conflates a real romanization system with an ad hoc phonetic respelling
 
 - **What:** for a language with a configured romanization library (`src/translate/
-  romanizationLibraries.js`), `pronunciation` now comes from a real deterministic library,
-  Haiku-evaluated (`src/translate/romanizationEval.js`) — see the next entry. For a language with
+  romanizationLibraries.js`), `pronunciation` comes from a real deterministic library, then
+  **corrected in place by a Sonnet-medium pass** (`src/translate/romanizationEval.js`'s
+  `correctRomanizations`) — the model is the final authority and fixes the library's frequent errors. For a language with
   no configured library, `translate` still asks the model to prefer a standard system when one
   exists (romaji, pinyin, etc.), falling back to an invented phonetic respelling otherwise, exactly
   as before. Both cases are still written into the same `pronunciation` string field on the card —

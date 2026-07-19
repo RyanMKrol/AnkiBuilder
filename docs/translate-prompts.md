@@ -7,7 +7,7 @@
 **Which prompts run depends on whether the target language has a configured romanization library** (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code):
 
 - **No library configured** (the original design, unchanged): the two prompts below — full-translation and pronunciation-only — both ask the model for `pronunciation` directly.
-- **Library configured** (e.g. Japanese, Mandarin, Korean, Russian, Hebrew, Hindi, Arabic — see `romanizationLibraries.js` for the current list): the translation call asks for `target` only (§1a, below) — never `pronunciation` — and a separate romanization eval pass (§3) runs the real library and has a Sonnet-medium model judge its output instead. See `src/translate/romanizationEval.js`.
+- **Library configured** (e.g. Japanese, Mandarin, Korean, Russian, Hebrew, Hindi, Arabic — see `romanizationLibraries.js` for the current list): the translation call asks for `target` only (§1a, below) — never `pronunciation` — and a separate romanization eval pass (§3) runs the real library and has a Sonnet-medium model correct its output in place instead. See `src/translate/romanizationEval.js`.
 
 ## 1. Full-translation prompt
 
@@ -327,61 +327,55 @@ Do not include a `target` key at all — the translation is already final and is
 ```
 ````
 
-## 3. Romanization eval prompt (library-configured languages)
+## 3. Romanization correction prompt (library-configured languages)
 
-Used by `romanizeAndEvaluate` (`src/translate/romanizationEval.js`) once the configured library (§1a's flow) has produced a candidate romanization for `target`. The model is shown the library's own output and asked only to judge it — **it cannot substitute a replacement of its own.** The output schema has no key a rewritten romanization could travel through: only `ok` (approve/flag) and, when flagging, `concern` (why). This mirrors the same "flag, never silently override" idiom already used by the corpus-assembly dedup passes (`src/corpus/epubDedup.js`'s `dedupBackward`, `src/corpus/epubForwardFlags.js`'s `flagForwardConcerns`) — deliberately, not by coincidence: if the model disagrees with a deterministic library, that disagreement is a signal for a human reviewer, not a license for the model to silently overwrite ground truth. A flagged item keeps the library's `pronunciation` value, gets `uncertain: true`, and a `"Possibly incorrect romanization — <concern>"` note appended.
+Used by `romanizeAndEvaluate` (`src/translate/romanizationEval.js`, `correctRomanizations` → `buildRomanizationPrompt`) once the configured library (§1a's flow) has produced a candidate romanization for the spoken text (`reading ?? target`). The library (kuroshiro et al.) is a **starting point, not ground truth** — empirically it mis-splits single words with spurious spaces, mishandles the sokuon っ (emitting a literal "tsu"), and spells unfamiliar kana letter-by-letter. So the model is shown the library's output and asked to return the **correct** romanization for every item: keep the library's value when it's already right, fix it when it's wrong. The corrected value lands directly in `pronunciation` — **no `uncertain` flag or note**, the correction is the resolution. Fails open: a malformed/missing response keeps the library value. (This replaced an earlier flag-only design that could only surface a concern for a human — see the git history; kuroshiro turned out to be wrong too often for "library = ground truth" to hold.)
 
 ### Template
 
 ````
-# Task: Judge Machine-Generated Romanizations
+# Task: Produce the Correct Romanization
 
 ## Overview
-A deterministic romanization library has already converted each flashcard's translated text
-(`target`, in <targetLanguage>) into a romanization (`romanization`). Your job is only to
-judge whether that romanization correctly represents the given `target` text — you are a
-reviewer, not a translator or a romanizer.
+Each flashcard has a <targetLanguage> `target` text and a `libraryRomanization` — a romanization
+produced by a deterministic library. That library is a useful starting point but is frequently
+WRONG: it mis-splits a single word into pieces with spurious spaces, mishandles the Japanese small
+っ (sokuon) by emitting a literal "tsu" instead of doubling the next consonant, and falls back to
+spelling out unfamiliar kana letter-by-letter. Your job is to return the CORRECT romanization for
+each item — keep the library's value when it is already right, and fix it when it is wrong. You are
+the final authority on the romanization.
 
 ## Input Format
-The input is a JSON array of objects, one per flashcard:
-
-- `id` (string): a unique identifier for this item — reuse it unchanged in your response.
-- `english` (string): the English phrase, given for meaning context only.
-- `target` (string): the final <targetLanguage> text that was romanized.
-- `romanization` (string): the library-generated romanization of `target`, to be judged.
-
-### Example Input
-```json
-[{ "id": "hello", "english": "Hello", "target": "こんにちは", "romanization": "konnichiwa" }]
-```
+- `id` (string): a unique identifier — reuse it unchanged in your response.
+- `english` (string): the English phrase, for meaning context.
+- `target` (string): the <targetLanguage> text to romanize (the spoken `reading` when the card has one).
+- `libraryRomanization` (string): the library's attempt — a starting point, often wrong.
 
 ## Output Format
-Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).
-Produce exactly one object per input item:
+Respond with ONLY a JSON array. One object per input item:
 
 - `id` (string): the SAME id as the corresponding input item.
-- `ok` (boolean): `true` if `romanization` correctly represents `target`, `false` if it looks wrong.
-- `concern` (string, required when `ok` is `false`): a brief, specific reason the romanization looks wrong.
+- `pronunciation` (string): the correct romanization of `target`, using the standard system for
+  <targetLanguage> (Hepburn for Japanese, pinyin for Mandarin, etc.) — the library's value if already
+  correct, otherwise your corrected version.
 
 ## Important
-- Do not invent, correct, or improve the romanization yourself — you are only judging the one you were given.
-- If it looks wrong, say so via `concern`; never provide a replacement value.
-- Include every id from the input exactly once.
-  - Order does not matter.
-- Do not wrap the response in markdown code fences.
-- Do not include any text before or after the JSON array.
+- Return the final, correct `pronunciation` for EVERY item — never leave a known-wrong value in place.
+- Romanize a single word as a single token (no spurious internal spaces); double the consonant for a
+  sokuon (ろっかい → `rokkai`, not `ro tsu kai`); keep natural word spacing in a full sentence.
+- Include every id exactly once. No markdown fences, no text around the JSON array.
 
 ### Example Output
 ```json
 [
-  { "id": "hello", "ok": true },
-  { "id": "cheese", "ok": false, "concern": "romanization reads as a different word entirely" }
+  { "id": "sixth-floor", "pronunciation": "rokkai" },
+  { "id": "hello", "pronunciation": "konnichiwa" }
 ]
 ```
 
-## Input Data (<N> item(s) to judge)
+## Input Data (<N> item(s) to romanize)
 ```json
-<JSON array of the actual items, same shape as Example Input>
+<JSON array of the actual items, same shape as Input Format>
 ```
 ````
 
@@ -394,7 +388,7 @@ Produce exactly one object per input item:
 - **`Example Input`/`Example Output`** are a fixed, illustrative pair — not the real batch — so the model has a concrete instance of the full round-trip to pattern-match against. **`Input Data`** is the real batch of items for this call; it's what the model is actually asked to act on.
 - **`hint` is symmetric across both prompts.** An already-translated (pronunciation-only) item can be just as deserving of a usage hint as a freshly-translated one.
 - **`pronunciation` accounts for standard romanization systems** (romaji for Japanese, pinyin for Mandarin Chinese, etc.) — for a language with no configured library, by asking the model to prefer that system over an invented phonetic respelling; for a language WITH a configured library, by using the library directly (§1a/§3) instead of asking the model at all.
-- **The eval prompt (§3) deliberately excludes a "correct it" option.** Giving the model a way to silently substitute its own romanization would reintroduce the exact "no ground truth, can't tell what's real" problem the library-first design exists to fix — see `.harness/custom/docs/LIMITATIONS.md`'s dependency-exception entry for the fuller reasoning.
+- **The correction prompt (§3) now lets the model fix the romanization in place.** An earlier design deliberately excluded a "correct it" option (the model could only flag a concern, never substitute), on the theory that the library was ground truth and letting the model overwrite it would reintroduce a "can't tell what's real" problem. In practice kuroshiro is wrong too often (mis-splits, sokuon, letter-by-letter kana) for that to hold, so the model is now the final authority on `pronunciation` — it returns the correct value, keeping the library's only when it's already right.
 
 ### Open question: does `pronunciation` need its own on-card field for "romanization"?
 
@@ -408,4 +402,4 @@ The library-first design (§1a/§3) resolves the underlying ambiguity _internall
 - `src/translate/index.js`: `buildFullTranslationPrompt`, `buildTargetOnlyPrompt`, `buildPronunciationOnlyPrompt`, `translateCorpus` (the entry point, decides which prompts run per §1a above)
 - `src/translate/romanizationLibraries.js`: the per-language library config (`ROMANIZATION_LIBRARIES`, `getRomanizationLibrary`)
 - `src/translate/romanization/*.js`: one adapter per configured language, each a uniform `async romanize(targetText) => string`
-- `src/translate/romanizationEval.js`: `buildRomanizationEvalPrompt`, `romanizeAndEvaluate` (§3)
+- `src/translate/romanizationEval.js`: `buildRomanizationPrompt`, `correctRomanizations`, `romanizeAndEvaluate` (§3)

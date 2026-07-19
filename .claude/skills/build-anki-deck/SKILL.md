@@ -271,6 +271,14 @@ This:
 - Generates translations and pronunciations for each phrase
 - Writes `cards.json` (the translated cards, ready for audio/images)
 
+For languages with a configured romanization library (Japanese, Mandarin, Korean, …), the
+`pronunciation` (romaji/pinyin) is produced by the library **and then corrected by a Sonnet-medium
+pass** (`src/translate/romanizationEval.js`): the library (kuroshiro for Japanese) is only a starting
+point — it mis-splits words, mishandles the sokuon っ, and spells unfamiliar kana letter-by-letter —
+so the model returns the correct romanization in place, keeping the library's when it's already right.
+The fix lands directly in `pronunciation` (no flag/note). So garbled romaji should be rare now; if you
+still spot one in the translate review, tell me and I'll fix that card.
+
 **Review gate — publish a new Claude Artifact (don't reuse the corpus-stage one, the data's
 different now):**
 

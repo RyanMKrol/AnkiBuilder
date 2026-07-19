@@ -162,9 +162,13 @@ Example Input / Output Format / Example Output / Important / Input Data). How `p
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,
 Korean, Russian, Hebrew, Hindi, Arabic): with a library configured, the model is asked for
-`target` only, the library romanizes it deterministically, and a Sonnet-medium pass judges that output
-(flagging `uncertain: true` with a note if it disagrees — never silently correcting it, same
-"flag, don't override" idiom as the corpus-assembly dedup passes); with no library configured, the
+`target` only, the library romanizes it deterministically, and a Sonnet-medium pass then **corrects that
+output in place** — the library (kuroshiro et al.) is a starting point, not ground truth (it mis-splits
+words, mishandles the sokuon っ, and spells unfamiliar kana letter-by-letter), so the model returns the
+right romanization for every item, keeping the library's when it's already correct and fixing it when
+it's not (see `correctRomanizations` in `src/translate/romanizationEval.js`). The correction lands
+directly in `pronunciation` — no `uncertain` flag or note; the fix IS the resolution. It fails open (a
+malformed/missing response keeps the library value). With no library configured, the
 model is asked for `pronunciation` directly, preferring a standard romanization system when one
 exists and falling back to a phonetic respelling otherwise, unchanged from before this distinction
 existed. See [`translate-prompts.md`](./translate-prompts.md) for the full templates and

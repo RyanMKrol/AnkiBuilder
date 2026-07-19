@@ -277,28 +277,30 @@ test("library-path: a card's `reading` (spoken form) drives romanization and sur
   );
 });
 
-test("library-path: a Haiku-flagged romanization keeps the library value and gets uncertain + a note", async () => {
+test("library-path: the model corrects a garbled library romanization in place (no uncertain flag)", async () => {
   const corpus = {
     meta: { targetLanguage: "ja", sourceType: "manual" },
-    items: [untranslated("cat", "cat", "Other")],
+    items: [untranslated("floor", "sixth floor", "Other")],
   };
 
   const getRomanizationLibrary = () => ({
-    load: async () => ({ romanize: async () => "neko" }),
+    // Library garbles the sokuon.
+    load: async () => ({ romanize: async () => "ro tsu kai" }),
   });
 
   const runClaude = (prompt) => {
     if (prompt.includes("Translate Flashcards")) {
-      return JSON.stringify([{ id: "cat", target: "猫" }]);
+      return JSON.stringify([{ id: "floor", target: "ろっかい" }]);
     }
-    return JSON.stringify([{ id: "cat", ok: false, concern: "looks off" }]);
+    // Correction pass returns the fixed romanization.
+    return JSON.stringify([{ id: "floor", pronunciation: "rokkai" }]);
   };
 
   const { cards } = await translateCorpus(corpus, { runClaude, getRomanizationLibrary });
 
-  assert.equal(cards.items[0].pronunciation, "neko");
-  assert.equal(cards.items[0].uncertain, true);
-  assert.equal(cards.items[0].notes, "Possibly incorrect romanization — looks off");
+  assert.equal(cards.items[0].pronunciation, "rokkai", "library value corrected in place");
+  assert.ok(!cards.items[0].uncertain, "correction leaves no uncertain flag");
+  assert.equal(cards.items[0].notes, undefined);
 });
 
 test("no-library-path parity: an unconfigured language uses the original full-translation prompt unchanged", async () => {

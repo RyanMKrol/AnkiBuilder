@@ -13,35 +13,48 @@ function chunk(items, size) {
   return batches;
 }
 
-function buildRomanizationEvalPrompt(items, targetLanguage) {
+function buildRomanizationPrompt(items, targetLanguage) {
   const inputData = items.map((item) => ({
     id: item.id,
     english: item.english,
-    target: item.target,
-    romanization: item.libraryPronunciation,
+    // The text that was actually romanized — the spoken `reading` when set (e.g. kana にせんえん),
+    // else `target`. This is what the romanization must match, not a digit/kanji display form.
+    target: item.reading || item.target,
+    libraryRomanization: item.libraryPronunciation,
   }));
 
   return [
-    "# Task: Judge Machine-Generated Romanizations",
+    "# Task: Produce the Correct Romanization",
     "",
     "## Overview",
-    "A deterministic romanization library has already converted each flashcard's translated text",
-    `(\`target\`, in ${targetLanguage}) into a romanization (\`romanization\`). Your job is only to`,
-    "judge whether that romanization correctly represents the given `target` text — you are a",
-    "reviewer, not a translator or a romanizer.",
+    `Each flashcard has a ${targetLanguage} \`target\` text and a \`libraryRomanization\` — a romanization`,
+    "produced by a deterministic library. That library is a useful starting point but is frequently",
+    "WRONG: it mis-splits a single word into pieces with spurious spaces, mishandles the Japanese small",
+    'っ (sokuon) by emitting a literal "tsu" instead of doubling the next consonant, and falls back to',
+    "spelling out unfamiliar kana letter-by-letter. Your job is to return the CORRECT romanization for",
+    "each item — keep the library's value when it is already right, and fix it when it is wrong. You are",
+    "the final authority on the romanization.",
     "",
     "## Input Format",
     "The input is a JSON array of objects, one per flashcard:",
     "",
-    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
-    "- `english` (string): the English phrase, given for meaning context only.",
-    `- \`target\` (string): the final ${targetLanguage} text that was romanized.`,
-    "- `romanization` (string): the library-generated romanization of `target`, to be judged.",
+    "- `id` (string): a unique identifier — reuse it unchanged in your response.",
+    "- `english` (string): the English phrase, for meaning context.",
+    `- \`target\` (string): the ${targetLanguage} text to romanize.`,
+    "- `libraryRomanization` (string): the library's attempt — a starting point, often wrong.",
     "",
     "### Example Input",
     "```json",
     JSON.stringify(
-      [{ id: "hello", english: "Hello", target: "こんにちは", romanization: "konnichiwa" }],
+      [
+        {
+          id: "sixth-floor",
+          english: "Sixth floor",
+          target: "ろっかい",
+          libraryRomanization: "ro tsu kai",
+        },
+        { id: "hello", english: "Hello", target: "こんにちは", libraryRomanization: "konnichiwa" },
+      ],
       null,
       2,
     ),
@@ -52,30 +65,30 @@ function buildRomanizationEvalPrompt(items, targetLanguage) {
     "Produce exactly one object per input item:",
     "",
     "- `id` (string): the SAME id as the corresponding input item.",
-    "- `ok` (boolean): `true` if `romanization` correctly represents `target`, `false` if it looks wrong.",
-    "- `concern` (string, required when `ok` is `false`): a brief, specific reason the romanization looks wrong.",
+    `- \`pronunciation\` (string): the correct romanization of \`target\`, using the standard system for`,
+    `  ${targetLanguage} (Hepburn for Japanese, pinyin for Mandarin, etc.) — the library's value if it is`,
+    "  already correct, otherwise your corrected version.",
     "",
     "## Important",
-    "- Do not invent, correct, or improve the romanization yourself — you are only judging the one you were given.",
-    "- If it looks wrong, say so via `concern`; never provide a replacement value.",
-    "- Include every id from the input exactly once.",
-    "  - Order does not matter.",
-    "- Do not wrap the response in markdown code fences.",
-    "- Do not include any text before or after the JSON array.",
+    "- Return the final, correct `pronunciation` for EVERY item — never leave a known-wrong value in place.",
+    "- Romanize a single word as a single token (no spurious internal spaces); double the consonant for a",
+    "  sokuon (ろっかい → `rokkai`, not `ro tsu kai`); keep natural word spacing in a full sentence.",
+    "- Include every id from the input exactly once. Order does not matter.",
+    "- Do not wrap the response in markdown code fences, and include no text before or after the JSON array.",
     "",
     "### Example Output",
     "```json",
     JSON.stringify(
       [
-        { id: "hello", ok: true },
-        { id: "cheese", ok: false, concern: "romanization reads as a different word entirely" },
+        { id: "sixth-floor", pronunciation: "rokkai" },
+        { id: "hello", pronunciation: "konnichiwa" },
       ],
       null,
       2,
     ),
     "```",
     "",
-    `## Input Data (${items.length} item(s) to judge)`,
+    `## Input Data (${items.length} item(s) to romanize)`,
     "```json",
     JSON.stringify(inputData, null, 2),
     "```",
@@ -96,57 +109,53 @@ function parseEvalBatch(raw) {
   return parsed;
 }
 
-function noteWithConcern(existingNotes, concern) {
-  const flagged = `Possibly incorrect romanization — ${concern}`;
-  return existingNotes ? `${existingNotes} | ${flagged}` : flagged;
-}
+function assembleCard(item, correction) {
+  // Use the model's corrected romanization; fall back to the library's value only when the model
+  // omitted this item or returned a non-string (fail-open — a real romanization beats nothing).
+  const pronunciation =
+    correction &&
+    typeof correction.pronunciation === "string" &&
+    correction.pronunciation.length > 0
+      ? correction.pronunciation
+      : item.libraryPronunciation;
 
-function assembleCard(item, verdict) {
-  const card = { ...item, pronunciation: item.libraryPronunciation };
+  const card = { ...item, pronunciation };
   delete card.libraryPronunciation;
-
-  if (verdict && verdict.ok === false) {
-    card.uncertain = true;
-    card.notes = noteWithConcern(card.notes, verdict.concern || "reason not given");
-  }
-
   return card;
 }
 
 /**
- * Evaluates the library-romanized items with the pinned Sonnet-medium model, mirroring
- * `dedupBackward`/`flagForwardConcerns`'s "flag, never silently override" idiom: the model can
- * only approve (`ok: true`) or flag (`ok: false, concern`) — there is no way for it to substitute
- * its own romanization, since the output schema has no key a replacement value could travel
- * through. `pronunciation` always ends up as the library's own value; a flagged item additionally
- * gets `uncertain: true` and a `"Possibly incorrect romanization — ..."` note.
+ * Corrects the library-romanized items with the pinned Sonnet-medium model. The library
+ * (kuroshiro et al.) is a starting point, not ground truth — it frequently mis-splits words,
+ * mishandles the sokuon っ, and spells unfamiliar kana letter-by-letter — so the model reviews
+ * every romanization and returns the CORRECT value in place (keeping the library's when it's already
+ * right, fixing it when it's wrong). The corrected value lands directly in `pronunciation`; no
+ * `uncertain` flag or note is added — the correction IS the resolution.
  *
- * Fails open on a malformed/missing eval response — same philosophy as `flagForwardConcerns`
- * ("fails open... never blocking assemble"): every item in an unparseable batch, or any item
- * missing from an otherwise-valid response, is approved unflagged rather than dropped, since the
- * romanization itself is already a real deterministic value, not an LLM guess needing a safety
- * net the way a from-scratch invention would.
+ * Fails open on a malformed/missing response: any item in an unparseable batch, or any item the
+ * model omits, keeps the library's romanization rather than being dropped — a real (if imperfect)
+ * value beats none.
  */
-function evaluateRomanizations(items, { targetLanguage, runClaude }) {
+function correctRomanizations(items, { targetLanguage, runClaude }) {
   const cards = [];
 
   for (const batch of chunk(items, BATCH_SIZE)) {
-    const prompt = buildRomanizationEvalPrompt(batch, targetLanguage);
+    const prompt = buildRomanizationPrompt(batch, targetLanguage);
 
-    let verdictById = new Map();
+    let correctionById = new Map();
     try {
-      const verdicts = parseEvalBatch(runClaude(prompt));
-      for (const verdict of verdicts) {
-        if (verdict && typeof verdict === "object" && typeof verdict.id === "string") {
-          verdictById.set(verdict.id, verdict);
+      const corrections = parseEvalBatch(runClaude(prompt));
+      for (const correction of corrections) {
+        if (correction && typeof correction === "object" && typeof correction.id === "string") {
+          correctionById.set(correction.id, correction);
         }
       }
     } catch {
-      verdictById = new Map(); // fail open — every item below is approved unflagged
+      correctionById = new Map(); // fail open — every item below keeps the library value
     }
 
     for (const item of batch) {
-      cards.push(assembleCard(item, verdictById.get(item.id)));
+      cards.push(assembleCard(item, correctionById.get(item.id)));
     }
   }
 
@@ -156,7 +165,7 @@ function evaluateRomanizations(items, { targetLanguage, runClaude }) {
 /**
  * Fills in `pronunciation` for every item already holding a `target` (freshly translated or
  * pre-existing), via the configured romanization library for `targetLanguage` plus a Sonnet-medium
- * evaluation pass — see `evaluateRomanizations`. A per-item adapter failure (missing package,
+ * correction pass — see `correctRomanizations`. A per-item adapter failure (missing package,
  * dictionary load failure, or any other library-internal error) is not a hard failure: that one
  * item falls through to the ordinary pronunciation-only LLM path instead (reusing
  * `buildPronunciationOnlyPrompt`/`validatePronunciationEntry`/`assemblePronunciationOnlyCard` from
@@ -189,8 +198,8 @@ export async function romanizeAndEvaluate(
     }
   }
 
-  const evaluated = evaluateRomanizations(romanized, { targetLanguage, runClaude });
+  const corrected = correctRomanizations(romanized, { targetLanguage, runClaude });
   const { items: fallbackCards, errors } = fallback(needsFallback);
 
-  return { items: [...evaluated, ...fallbackCards], errors };
+  return { items: [...corrected, ...fallbackCards], errors };
 }

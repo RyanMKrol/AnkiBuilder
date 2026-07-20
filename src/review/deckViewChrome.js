@@ -81,7 +81,9 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .sec-tools button{font:inherit;font-size:12px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:4px 12px;cursor:pointer}
 .sec-tools button:hover{border-color:var(--accent)}.sec-tools button:disabled{opacity:.5;cursor:default}
 .sec-tools .rev-msg{font-size:11px;color:var(--faint)}
-label.excl-l{display:inline-flex;gap:5px;align-items:center;margin-top:6px;font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}`;
+label.excl-l{display:inline-flex;gap:5px;align-items:center;margin-top:6px;font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
+td.saved{background:rgba(122,59,54,.1)}`;
 
 // The @font-face rule for the target-script font. Pass { base64 } for an inlined data URI (static
 // artifact) or { url } for a served asset (dashboard). Returns "" when no font is supplied.
@@ -211,6 +213,43 @@ export const CORPUS_EDIT_SCRIPT = `(function () {
   });
 })();`;
 
+// Client wiring for the translate review (included when a translate section is editable). Per-row
+// Exclude toggle + inline editing of the target/pronunciation cells (contentEditable, saved on blur).
+// Reads deck ctx from #deckctx; vanilla JS, no ${}.
+export const TRANSLATE_EDIT_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  if (!ctx) return;
+  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
+  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  document.querySelectorAll('tr[data-stage="translate"] input.excl').forEach(function (cb) {
+    cb.addEventListener("change", function () {
+      var tr = cb.closest("tr");
+      var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
+      cb.disabled = true;
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/translate/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); })
+        .catch(function (e) { cb.checked = !cb.checked; alert(e.message); })
+        .finally(function () { cb.disabled = false; });
+    });
+  });
+  document.querySelectorAll('tr[data-stage="translate"] td[data-field]').forEach(function (cell) {
+    cell.contentEditable = "true"; cell.spellcheck = false;
+    var orig = cell.textContent;
+    cell.addEventListener("focus", function () { orig = cell.textContent; });
+    cell.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); cell.blur(); } });
+    cell.addEventListener("blur", function () {
+      var val = cell.textContent.trim();
+      if (val === orig.trim()) { cell.textContent = val; return; }
+      var tr = cell.closest("tr");
+      var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
+      var body = {}; body[cell.getAttribute("data-field")] = val;
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/translate/edit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); cell.textContent = val; orig = val; cell.classList.add("saved"); setTimeout(function () { cell.classList.remove("saved"); }, 800); })
+        .catch(function (e) { cell.textContent = orig; alert(e.message); });
+    });
+  });
+})();`;
+
 const flagsCell = (c) => {
   const badges = [
     c.excluded ? `<span class="badge badge-drop">Excluded</span>` : "",
@@ -258,8 +297,8 @@ const STAGE_TABLES = {
     head: `<th class="num">#</th><th>English</th><th>Target</th><th>Pronunciation</th><th>Category</th><th>Note</th>`,
     cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}</td>
-  <td class="jp">${jpOrDash(c.target)}</td>
-  <td class="pron">${escapeHtml(c.pronunciation)}</td>
+  <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
+  <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}${rowExtra(ctx, "translate", c)}</td>`,
   },

@@ -304,6 +304,113 @@ test("read-only server 403s the corpus write routes and hides the controls", asy
 });
 
 // ---------------------------------------------------------------------------
+// Translate review write-back (exclude + inline field edit) in the dashboard.
+// ---------------------------------------------------------------------------
+
+function translateFixture() {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-tr-"));
+  const book = join(root, "epubs", "tbook");
+  mkdirSync(join(book, "chapter-0"), { recursive: true });
+  writeFileSync(join(book, "book.json"), JSON.stringify({ title: "T Book", targetLanguage: "ja" }));
+  writeFileSync(
+    join(book, "chapter-0", "cards.json"),
+    JSON.stringify({
+      meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Tch" },
+      items: [
+        { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+        { id: "b", english: "two", category: "Numbers", target: "に", pronunciation: "ni" },
+      ],
+    }),
+  );
+  return { root, book };
+}
+const readCards = (book) =>
+  JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+
+test("translate section is editable: exclude checkboxes, editable target/pron cells, #deckctx", async () => {
+  const { root } = translateFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/tbook`)).text();
+        assert.match(html, /data-stage="translate"/);
+        assert.match(html, /data-field="target"/);
+        assert.match(html, /data-field="pronunciation"/);
+        assert.match(html, /class="excl"/);
+        assert.match(html, /id="deckctx"/);
+        // no audio-edit UI at the translate stage
+        assert.doesNotMatch(html, /Rebuild deck/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("translate exclude writes the flag; translate edit updates whitelisted fields", async () => {
+  const { root, book } = translateFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const ex = await asJson(
+          await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/translate/exclude`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ excluded: true }),
+          }),
+        );
+        assert.equal(ex.status, 200);
+        assert.equal(readCards(book).items.find((i) => i.id === "a").excluded, true);
+
+        const ed = await asJson(
+          await fetch(`${url}/api/deck/book/tbook/unit/0/card/b/translate/edit`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ target: "二", pronunciation: "ni!", english: "HACK" }),
+          }),
+        );
+        assert.equal(ed.status, 200);
+        const b = readCards(book).items.find((i) => i.id === "b");
+        assert.equal(b.target, "二");
+        assert.equal(b.pronunciation, "ni!");
+        assert.equal(b.english, "two", "non-whitelisted field untouched");
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("read-only server 403s the translate write routes and hides the controls", async () => {
+  const { root } = translateFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/tbook`)).text();
+        assert.doesNotMatch(html, /class="excl"/);
+        assert.doesNotMatch(html, /id="deckctx"/);
+        assert.equal(
+          (
+            await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/translate/exclude`, {
+              method: "POST",
+            })
+          ).status,
+          403,
+        );
+      },
+      { ...editDeps, editable: false },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Editor: upload / generate / select / rebuild / download (editable server).
 // ---------------------------------------------------------------------------
 

@@ -605,3 +605,16 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   keep the earlier pick; a careless Generate spends a handful of credits.
 - **When to revisit:** add a "prune unreferenced audio" pass; a per-run-dir write lock if concurrent
   editing ever matters; a confirm/estimate before Generate, or a per-card generate cap, if credit cost becomes a concern.
+
+### Trailing-silence trim is best-effort and needs an optional system ffmpeg
+- **What:** ElevenLabs clips are auto-trimmed of trailing silence + the end blip via ffmpeg
+  (`src/audio/trimSilence.js`), but ffmpeg is a system binary the project does not bundle and isn't
+  installed by default. The trim uses fixed `silencedetect` thresholds and re-encodes (pass 2).
+- **Why:** never let an optional audio-polish step break the audio build (Node can't decode/re-encode
+  mp3 alone, and bundling a binary is out of scope) — so it degrades to a no-op; and fixed thresholds
+  keep it deterministic and dependency-free to test.
+- **Impact:** without `brew install ffmpeg` clips keep their trailing silence + blip (one warning, then
+  a silent no-op). The fixed thresholds may under/over-trim an unusual clip; pass 2 re-encodes (tiny
+  quality/size cost). Only ElevenLabs-generated clips are trimmed — manual dashboard uploads are not.
+- **When to revisit:** if under/over-trimming recurs, tune the `ANKI_BUILDER_TRIM_*` env knobs or add a
+  start-trim / loudness-normalize pass; add a one-time backfill over existing on-disk clips if wanted.

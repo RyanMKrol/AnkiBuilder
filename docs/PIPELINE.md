@@ -226,6 +226,18 @@ runs ~20-25% longer than its unspaced twin). Languages whose spaces are real wor
 etc.) have no transform and are sent unchanged. The `。`alt transform composes on top of the normalized
 text.
 
+**Trailing-silence trim (`src/audio/trimSilence.js`).** ElevenLabs leaves ~0.3s of silence plus a tiny
+end artifact ("blip") on every clip. Every clip returned by `fetchElevenLabsTts` (the single choke
+point — so both the build stage and the dashboard's Generate) is passed through `trimTrailingSilence`
+before it's cached/hashed: ffmpeg `silencedetect` locates the last real speech segment (≥
+`minSpeechSec`, so a short trailing blip is skipped and a genuine mid-clip pause is preserved) and the
+clip is cut just after it (+ `padSec` of tail) and re-encoded. Because trimming happens before the
+`generateVariants` bytes-hash, a re-rolled preview reflects the trimmed audio. **Best-effort:** if
+ffmpeg isn't installed (a one-time warning) or any step fails or the result isn't smaller, the original
+clip is used unchanged — the audio build never breaks. Off with `ANKI_BUILDER_TRIM_AUDIO=0`; thresholds
+via `ANKI_BUILDER_TRIM_SILENCE_DB` / `_MIN_SILENCE_SEC` / `_MIN_SPEECH_SEC` / `_PAD_SEC`. Manual uploads
+via the dashboard are NOT trimmed (only ElevenLabs-generated clips).
+
 `generateAudio` runs
 the alt pass after the default one, reusing the same hash/cache/fetch machinery (the transformed text
 hashes to a distinct filename, so it caches alongside the default), and records the alt filename on

@@ -603,6 +603,19 @@ anki-builder render-review --run <dir> --stage translate
 anki-builder render-review --run <dir> --stage audio
 ```
 
+### Browse a built deck (`.apkg`) as an artifact
+```sh
+anki-builder view-deck --apkg <path/to/deck.apkg> [--out <file.html>]
+```
+Reads a finished `.apkg` back and writes a **read-only deck-browser** HTML page in the same editorial
+format as the audio review — every card grouped by its sub-deck, fields laid out for scanning, and the
+deck's own audio clip embedded inline per card (one player each, the take that's actually in the deck).
+Publish the output as a Claude Artifact. It reads the legacy `collection.anki2`/`collection.anki21`
+format a deck built here uses (modern zstd `collection.anki21b` exports are not supported). A large
+deck is split into numbered parts (`<out>-part1.html`, …) so no page exceeds the Artifact size limit;
+card numbering runs continuously across the parts. Use this to review or re-read a whole deck at a
+glance without importing it into Anki.
+
 ## Environment Variables
 
 Set in `.env` or export to your shell:

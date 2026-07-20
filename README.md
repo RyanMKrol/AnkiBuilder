@@ -67,6 +67,13 @@ anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter i
 Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` and add
 `ELEVENLABS_API_KEY=...`. Everything else works without any external account.
 
+To browse a finished deck without importing it into Anki, render it to a read-only HTML page (every
+card grouped by sub-deck, audio embedded inline per card):
+
+```sh
+anki-builder view-deck --apkg output/epubs/<book-slug>/deck.apkg
+```
+
 For the full command reference (every flag, every source type), see the skill's
 [Command Reference](./.claude/skills/build-anki-deck/SKILL.md#command-reference).
 
@@ -131,6 +138,8 @@ npm run build
       textbook face) so kana/kanji render the same on every client; `restyle-font` applies it to any
       existing `.apkg`, including third-party decks
 - [x] Review-gate artifacts for each stage
+- [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
+      grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki

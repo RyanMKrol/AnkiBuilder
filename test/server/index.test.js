@@ -242,8 +242,11 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/wip`)).text();
-        // corpus section is ENGLISH-ONLY (no Target/Reading columns)
-        assert.match(html, /<th>English<\/th><th>Category<\/th><th>Flags<\/th>/);
+        // corpus section is ENGLISH-ONLY (no Target/Reading), with Note + provenance tick columns
+        assert.match(
+          html,
+          /<th>English<\/th><th>Category<\/th><th>Note<\/th><th class="ctr">AI-suggested<\/th><th class="ctr">Uncertain<\/th>/,
+        );
         assert.doesNotMatch(html, /<th>Reading<\/th>/);
         assert.match(html, /data-stage="corpus"/);
         // translate section columns

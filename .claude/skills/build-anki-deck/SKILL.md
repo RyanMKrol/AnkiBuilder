@@ -308,10 +308,11 @@ npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop
 
 Open the deck's **Review** view (the **Review** link on the dashboard, `/review/...` — distinct from
 the read-only **Browse** view). A corpus-stage unit is **English-only** (columns: #, English,
-Category, Flags — no Target/Reading; those arrive at the translate stage), with an **Exclude**
-checkbox per row and a per-lesson **Mark reviewed** button. The Flags column badges `aiSuggested` /
-`uncertain`. This replaces the old CLI `review` / `render-review` flow entirely — no per-stage HTML
-artifact any more.
+Category, **Note**, **AI-suggested**, **Uncertain**, Exclude — no Target/Reading; those arrive at the
+translate stage). Note shows the item's source/authoring context; AI-suggested / Uncertain are ✓ tick
+columns (persisted provenance). Each row has an **Exclude** checkbox and each lesson a **Mark
+reviewed** button. This replaces the old CLI `review` / `render-review` flow entirely — no per-stage
+HTML artifact any more.
 
 **You decide:** does the corpus look right?
 

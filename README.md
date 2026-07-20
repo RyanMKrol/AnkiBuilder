@@ -72,8 +72,10 @@ deck and opens each to a page of collapsible lessons with audio played inline (s
 size limit):
 
 ```sh
-anki-builder serve            # then open the printed http://localhost:… URL
+npm run serve                 # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
+
+(`npm run serve` is just `anki-builder serve`; pass a different port with `npm run serve -- --port 5000`.)
 
 Or render a single finished deck to a self-contained, shareable HTML page (audio embedded inline;
 auto-split into parts for a large deck):

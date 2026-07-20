@@ -12,7 +12,8 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "test": "node --test",
-    "build": "node -e \"process.exit(0)\""
+    "build": "node -e \"process.exit(0)\"",
+    "serve": "node ./src/cli/bin.js serve"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

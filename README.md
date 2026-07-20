@@ -73,7 +73,9 @@ Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` a
 Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing silence/artifact
 ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
 
-Run the local dashboard (`npm run serve`) and each deck offers two views:
+Run the local dashboard (`npm run serve`). The home page splits your decks into two sections — **In
+review** (still being built — one _Continue review_ action) and **Built** (finished — _Browse_ /
+_Download_ / _Edit audio_) — so the two workflows stay fully separate. The two views behind them:
 
 - **Review** (`/review/...`) — the guided, editable workflow, one purpose-built page per stage:
   **① Corpus** (English only — "is this the right list?" — exclude items, mark reviewed) →

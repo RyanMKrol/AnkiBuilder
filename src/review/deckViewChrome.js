@@ -63,6 +63,11 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .deck-actions a.da{font-size:12.5px;color:var(--accent);text-decoration:none}
 .deck-actions a.da.primary{font-weight:700}.deck-actions a.da:hover{text-decoration:underline}
 .grp{margin-top:30px}.grp h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 2px;border-bottom:2px solid var(--accent);padding-bottom:6px}
+.grp h2 .gcount{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--faint);font-variant-numeric:tabular-nums}
+.ghint{font-size:12.5px;color:var(--soft);margin:6px 0 0}
+.grp-built h2{border-bottom-color:#5c7a52}
+.deck.rvw{border-left:3px solid var(--accent)}
+.deck.built{border-left:3px solid #5c7a52}
 /* editor: per-row controls */
 .au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .au .ed button,.au .ed label.btn{font:inherit;font-size:11px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 9px;cursor:pointer}

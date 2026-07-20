@@ -430,7 +430,9 @@ lands wherever you point it, unchanged.
 ## Deck dashboard (`serve`)
 
 `anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) over the runs under
-`output/`. The home page lists every deck with two links each — **Review** and **Browse** — the two
+`output/`. The **home page bifurcates by status** into two sections — **In review** (any unit still
+pre-audio → a single _Continue review_ action) and **Built** (every unit at audio → _Browse_ /
+_Download .apkg_ / _Edit audio_) — so the two paths stay fully separate. Those actions lead to the two
 distinct views the server renders:
 
 - **Browse** — `GET /deck/:type/:id` (`renderDeckPage`): a **read-only** look at a deck's cards, lessons

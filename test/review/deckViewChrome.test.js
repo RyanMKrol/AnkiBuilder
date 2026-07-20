@@ -54,7 +54,7 @@ test("DECK_EDIT_SCRIPT auto-rebuilds after a successful upload and a successful 
   assert.match(DECK_EDIT_SCRIPT, /base \+ "\/rebuild"/);
 });
 
-test("renderLessonSections badges AI-suggested / Uncertain at every stage (corpus, translate, audio)", () => {
+test("review surfaces AI-suggested / Uncertain at every stage (tick columns + Note at corpus, badges elsewhere)", () => {
   const cards = [
     {
       id: "a",
@@ -62,7 +62,7 @@ test("renderLessonSections badges AI-suggested / Uncertain at every stage (corpu
       target: "いち",
       pronunciation: "ichi",
       category: "Numbers",
-      note: "",
+      note: "a source note",
       audio: null,
       aiSuggested: true,
     },
@@ -77,7 +77,19 @@ test("renderLessonSections badges AI-suggested / Uncertain at every stage (corpu
       uncertain: true,
     },
   ];
-  for (const stage of ["corpus", "translate", "audio"]) {
+  // corpus: dedicated Note + AI-suggested + Uncertain columns, ✓ ticks for flagged rows
+  const corpus = renderLessonSections({
+    sections: [{ leaf: "L", stage: "corpus", cards }],
+    audioCell: () => "",
+  }).html;
+  assert.match(
+    corpus,
+    /<th>Note<\/th><th class="ctr">AI-suggested<\/th><th class="ctr">Uncertain<\/th>/,
+  );
+  assert.match(corpus, /✓/); // a tick for the flagged rows
+  assert.match(corpus, /a source note/); // notes are shown at the corpus stage
+  // translate / audio: inline badges under the English gloss
+  for (const stage of ["translate", "audio"]) {
     const { html } = renderLessonSections({
       sections: [{ leaf: "L", stage, cards }],
       audioCell: () => "",

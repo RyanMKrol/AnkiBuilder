@@ -36,7 +36,8 @@ a.plain{color:inherit;text-decoration:none}a.back{font-size:13px;color:var(--acc
 table{width:100%;border-collapse:collapse;table-layout:fixed}
 thead th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:10px 12px 8px;border-bottom:1px solid var(--rule2)}
 col.c-num{width:48px}col.c-en{width:24%}col.c-jp{width:22%}col.c-pron{width:15%}col.c-au{width:180px}col.c-note{width:auto}
-col.c-cat{width:13%}col.c-flags{width:150px}
+col.c-cat{width:13%}col.c-flags{width:150px}col.c-flag{width:120px}col.c-excl{width:104px}
+th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
 td.num{color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -275,16 +276,9 @@ const inlineFlags = (c) => {
   const b = provenanceBadges(c);
   return b ? `<div class="rowflags">${b}</div>` : "";
 };
-// The corpus stage's dedicated Flags column: provenance badges plus the Excluded badge.
-const flagsCell = (c) => {
-  const badges = [
-    c.excluded ? `<span class="badge badge-drop">Excluded</span>` : "",
-    provenanceBadges(c),
-  ]
-    .filter(Boolean)
-    .join(" ");
-  return badges || `<span class="x">—</span>`;
-};
+// A centered ✓ (or —) for a boolean provenance column (corpus stage). An excluded row is already
+// shown struck-through, so it isn't repeated as a badge here.
+const tick = (on) => (on ? `<span class="tick">✓</span>` : `<span class="x">—</span>`);
 const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
 
 // Per-stage table shape: the <colgroup>, the <thead> row, and the trailing <td>s after the shared
@@ -308,14 +302,18 @@ const STAGE_TABLES = {
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
   // Stage 1 is ENGLISH-ONLY — you're reviewing "is this the right list of things to learn?", not the
-  // translations (those arrive at the translate stage). Target/Reading are deliberately not shown here.
+  // translations (those arrive at the translate stage). Target/Reading are deliberately not shown here;
+  // Note (source/authoring context) and the provenance columns AI-suggested / Uncertain are.
   corpus: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-flags">`,
-    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Flags</th>`,
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-note"><col class="c-flag"><col class="c-flag"><col class="c-excl">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th><th></th>`,
     cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="flags">${flagsCell(c)}${rowExtra(ctx, "corpus", c)}</td>`,
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
+  <td class="ctr">${tick(c.aiSuggested)}</td>
+  <td class="ctr">${tick(c.uncertain)}</td>
+  <td class="excl-cell">${rowExtra(ctx, "corpus", c)}</td>`,
   },
   translate: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-cat"><col class="c-note">`,

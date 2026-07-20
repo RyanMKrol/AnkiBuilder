@@ -620,7 +620,9 @@ glance without importing it into Anki.
 
 ### Browse decks in the local dashboard (no size cap)
 ```sh
-anki-builder serve [--output-root output] [--port 4321]
+npm run serve                                  # convenience wrapper, from the repo root
+npm run serve -- --port 5000                   # …with a different port
+anki-builder serve [--output-root output] [--port 4321]   # the underlying command
 ```
 Starts a small local web app (Node builtins, no external deps) and prints a `http://localhost:<port>`
 URL. The home page lists **every built deck** discovered under `output/` — grouped into Books,

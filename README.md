@@ -73,17 +73,19 @@ Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` a
 Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing silence/artifact
 ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
 
-To browse your decks without importing them into Anki, run the local dashboard — it lists every deck
-and opens each to a page of collapsible lessons. A deck is surfaced at whatever pipeline stage its
-units have reached: a **corpus** unit lets you exclude items and mark the lesson reviewed, a
-**translate** unit lets you exclude cards and fix their target/pronunciation inline, and a
-fully-built **audio** unit plays each clip inline (served over HTTP, so no size limit). Once
-every unit of a deck has reached the audio stage it also becomes a lightweight **editor**: replace a
-card's clip (upload) or **Generate** fresh ElevenLabs variants to audition and pick — including, for
-Japanese, a **Generate (kanji)** button that first turns the card's kana reading into natural
-kanji+kana orthography (which ElevenLabs voices more naturally than all-kana) and synthesizes takes
-from that. Then **Rebuild deck** to regenerate the `.apkg` for re-import — a few clicks, no round-trip
-through the tooling. Start with `--read-only` to browse-only.
+Run the local dashboard (`npm run serve`) and each deck offers two views:
+
+- **Review** (`/review/...`) — the guided, editable workflow, one purpose-built page per stage:
+  **① Corpus** (English only — "is this the right list?" — exclude items, mark reviewed) →
+  **② Translation** (English + target + romaji — exclude / fix inline) → **③ Audio** (play a clip,
+  **Replace** it, or **Generate** fresh ElevenLabs variants to audition and pick — including, for
+  Japanese, **Generate (kanji)**, which turns the card's kana reading into natural kanji+kana
+  orthography that ElevenLabs voices more naturally than all-kana). Then **Rebuild deck** to
+  regenerate the `.apkg`. AI-suggested / uncertain items are badged at every stage.
+- **Browse** (`/deck/...`) — a **read-only** look at a finished deck: collapsible lessons, audio
+  played inline (served over HTTP, so no size limit). No editing.
+
+Start with `--read-only` to disable all editing (Review becomes read-only too).
 
 ```sh
 npm run serve                 # then open the printed http://localhost:… URL (Ctrl+C to stop)
@@ -169,11 +171,12 @@ npm run build
       artifacts + `review`/`render-review` CLI commands
 - [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
-- [x] `serve` — local deck-dashboard web app (Node builtins only): lists every deck and opens each to
-      collapsible lessons, surfacing each unit at its pipeline stage and letting you review/edit it
-      (corpus + translate write-back, audio streamed over HTTP with per-card edit/generate, no size
-      cap); pluggable per-format adapters (`src/server/adapters/`). An all-audio deck also rebuilds
-      the `.apkg` in place (`--read-only` disables all editing)
+- [x] `serve` — local deck-dashboard web app (Node builtins only) with two views per deck: a
+      **Review** view (`/review/...`) — the guided, editable per-stage workflow (corpus English-only →
+      translation → audio, with exclude / edit / mark-reviewed / generate / rebuild write-back and
+      AI-suggested/uncertain badges) — and a read-only **Browse** view (`/deck/...`) that streams audio
+      over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
+      disables all editing
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki

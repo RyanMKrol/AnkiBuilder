@@ -86,6 +86,41 @@ test("dashboard lists decks; deck page has collapsible lessons + audio URLs; med
   }
 });
 
+test("dashboard lists each deck with both Review and Browse links", async () => {
+  const root = fixture();
+  try {
+    await withServer(root, async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      assert.match(home, /href="\/review\/book\/mybook"/);
+      assert.match(home, /href="\/deck\/book\/mybook"/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("browse view (/deck) is read-only even on an editable server, and links to Review", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        assert.match(html, /Browse · anki-builder/);
+        assert.match(html, /src="\/media\/book\/mybook\/0\/a\.mp3"/); // players still render
+        assert.doesNotMatch(html, /class="repl"/); // no edit controls
+        assert.doesNotMatch(html, /class="gen"/);
+        assert.doesNotMatch(html, /Rebuild deck/);
+        assert.doesNotMatch(html, /id="deckctx"/);
+        assert.match(html, /href="\/review\/book\/mybook"/); // link across to Review
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("media supports Range requests (206 with a byte slice)", async () => {
   const root = fixture();
   try {
@@ -174,9 +209,10 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/wip`)).text();
-        // corpus section columns
-        assert.match(html, /<th>Category<\/th><th>Target<\/th><th>Reading<\/th><th>Flags<\/th>/);
+        const html = await (await fetch(`${url}/review/book/wip`)).text();
+        // corpus section is ENGLISH-ONLY (no Target/Reading columns)
+        assert.match(html, /<th>English<\/th><th>Category<\/th><th>Flags<\/th>/);
+        assert.doesNotMatch(html, /<th>Reading<\/th>/);
         assert.match(html, /data-stage="corpus"/);
         // translate section columns
         assert.match(
@@ -184,7 +220,7 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
           /<th>Target<\/th><th>Pronunciation<\/th><th>Category<\/th><th>Note<\/th>/,
         );
         assert.match(html, /data-stage="translate"/);
-        // not all-audio → read-only: no edit controls or rebuild toolbar
+        // not all-audio → the audio-edit UI + rebuild are absent (corpus/translate controls still show)
         assert.doesNotMatch(html, /Rebuild deck/);
         assert.doesNotMatch(html, /class="repl"/);
         assert.doesNotMatch(html, /class="gen"/);
@@ -232,7 +268,7 @@ test("corpus section is editable: exclude checkboxes, Mark reviewed, and #deckct
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/cbook`)).text();
+        const html = await (await fetch(`${url}/review/book/cbook`)).text();
         assert.match(html, /id="deckctx"/);
         assert.match(html, /class="excl"/);
         assert.match(html, /Mark reviewed/);
@@ -287,7 +323,7 @@ test("read-only server 403s the corpus write routes and hides the controls", asy
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/cbook`)).text();
+        const html = await (await fetch(`${url}/review/book/cbook`)).text();
         assert.doesNotMatch(html, /class="excl"/);
         assert.doesNotMatch(html, /id="deckctx"/);
         assert.equal(
@@ -333,7 +369,7 @@ test("translate section is editable: exclude checkboxes, editable target/pron ce
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/tbook`)).text();
+        const html = await (await fetch(`${url}/review/book/tbook`)).text();
         assert.match(html, /data-stage="translate"/);
         assert.match(html, /data-field="target"/);
         assert.match(html, /data-field="pronunciation"/);
@@ -391,7 +427,7 @@ test("read-only server 403s the translate write routes and hides the controls", 
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/tbook`)).text();
+        const html = await (await fetch(`${url}/review/book/tbook`)).text();
         assert.doesNotMatch(html, /class="excl"/);
         assert.doesNotMatch(html, /id="deckctx"/);
         assert.equal(
@@ -420,7 +456,7 @@ test("editable deck page shows Replace/Generate/Rebuild controls", async () => {
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.match(html, /Rebuild deck/);
         assert.match(html, /class="repl"/);
         assert.match(html, /class="gen"/);
@@ -525,7 +561,7 @@ test("generate-kanji returns kanji variants for a ja deck; the button is shown",
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.match(html, /class="gen-kanji"/);
 
         const gen = await asJson(
@@ -571,7 +607,7 @@ test("generate-kanji is hidden and 422s for a non-Japanese deck", async () => {
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/template/nums__es`)).text();
+        const html = await (await fetch(`${url}/review/template/nums__es`)).text();
         assert.doesNotMatch(html, /class="gen-kanji"/);
         assert.equal(
           (
@@ -626,7 +662,7 @@ test("read-only server hides the edit UI and 403s the write routes", async () =>
     await withServer(
       root,
       async (url) => {
-        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(html, /Rebuild deck/);
         assert.doesNotMatch(html, /class="repl"/);
         assert.equal(

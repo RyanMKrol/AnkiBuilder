@@ -4,6 +4,7 @@ import {
   DECK_VIEW_CSS,
   fontFaceRule,
   renderLessonSections,
+  DECK_EDIT_SCRIPT,
 } from "../../src/review/deckViewChrome.js";
 
 test("fontFaceRule builds base64 or url @font-face, and is empty when no font is given", () => {
@@ -43,6 +44,14 @@ test("renderLessonSections emits collapsible sections, global numbering, and the
   assert.match(html, /<audio data-f="a\.mp3">/); // caller's audio cell used
   assert.match(html, /class="x">—/); // no-audio placeholder
   assert.equal(endNumber, 6);
+});
+
+test("DECK_EDIT_SCRIPT auto-rebuilds after a successful upload and a successful select", () => {
+  // both edit success paths chain into rebuild() — no manual Rebuild click required
+  assert.match(DECK_EDIT_SCRIPT, /"\\u2713 replaced"; return rebuild\(\)/);
+  assert.match(DECK_EDIT_SCRIPT, /"\\u2713 generated"; return rebuild\(\)/);
+  // rebuild hits the deck rebuild endpoint
+  assert.match(DECK_EDIT_SCRIPT, /base \+ "\/rebuild"/);
 });
 
 test("DECK_VIEW_CSS carries the shared palette and collapsible-lesson styling", () => {

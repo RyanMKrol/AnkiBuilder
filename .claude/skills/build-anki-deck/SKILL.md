@@ -647,11 +647,13 @@ deck** button:
   audio. Requires `ELEVENLABS_API_KEY` (the server loads `.env` on start); pick the voice with
   `--voice` if the language has no default. Costs credits on every click (one call per variant, up to
   8) and doesn't touch `cards.json` until you pick.
-- **Rebuild deck** — regenerates the deck's `.apkg` **using the exact same assembly as
-  `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`), then shows a **Download** link and
-  the on-disk `deck.apkg` path. Import that into Anki (stable note GUIDs → updates in place).
+- **Auto-rebuild** — **every successful Replace/Use also rebuilds the deck's `.apkg` automatically**
+  (a rebuild is ~0.2–1 s, negligible next to the time it takes to make the next edit), **using the exact
+  same assembly as `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`). The header shows a
+  **Download** link + the on-disk `deck.apkg` path, refreshed after each edit. The **Rebuild deck**
+  button forces one on demand. Import the `.apkg` into Anki (stable note GUIDs → updates in place).
 
-So a spot-check is: Replace/Generate on a row → **Rebuild deck** → Download/Import. Start with
+So a spot-check is just: Replace/Generate on a row → (auto-rebuilds) → Download/Import. Start with
 **`serve --read-only`** to disable all of this (the edit controls disappear and the write routes 403).
 Edits write straight to `cards.json` + `audio/`; the previous clip is left on disk.
 

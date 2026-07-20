@@ -40,6 +40,27 @@ test("translates untranslated items (target: null) into schema-valid cards", asy
   assert.equal(cards.items[0].pronunciation, "bohn-ZHOOR");
 });
 
+test("drops corpus items marked excluded before translating", async () => {
+  const corpus = baseCorpus([
+    untranslated("keep", "Keep", "Greetings"),
+    { ...untranslated("drop", "Drop", "Greetings"), excluded: true },
+  ]);
+
+  const sentIds = [];
+  const { cards } = await translateCorpus(corpus, {
+    runClaude: (prompt) => {
+      sentIds.push(...extractInputDataIds(prompt));
+      return JSON.stringify([{ id: "keep", target: "Garder", pronunciation: "gar-DAY" }]);
+    },
+  });
+
+  assert.deepEqual(
+    cards.items.map((c) => c.id),
+    ["keep"],
+  );
+  assert.ok(!sentIds.includes("drop"), "excluded item is never sent to the model");
+});
+
 test("includes an optional hint when the model supplies one (full-translation path)", async () => {
   const corpus = baseCorpus([untranslated("thanks", "Thanks", "Greetings")]);
 

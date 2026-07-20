@@ -75,7 +75,13 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .vrow button{margin-left:auto;font:inherit;font-size:12px;color:#fff;background:var(--accent);border:none;border-radius:7px;padding:5px 12px;cursor:pointer}
 .modal-foot{display:flex;justify-content:flex-end;margin-top:16px}
 .modal-foot button{font:inherit;font-size:13px;color:var(--soft);background:none;border:1px solid var(--rule2);border-radius:8px;padding:6px 14px;cursor:pointer}
-.spin{font-size:13px;color:var(--soft)}`;
+.spin{font-size:13px;color:var(--soft)}
+/* editor: corpus/translate review controls */
+.sec-tools{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--rule)}
+.sec-tools button{font:inherit;font-size:12px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:4px 12px;cursor:pointer}
+.sec-tools button:hover{border-color:var(--accent)}.sec-tools button:disabled{opacity:.5;cursor:default}
+.sec-tools .rev-msg{font-size:11px;color:var(--faint)}
+label.excl-l{display:inline-flex;gap:5px;align-items:center;margin-top:6px;font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}`;
 
 // The @font-face rule for the target-script font. Pass { base64 } for an inlined data URI (static
 // artifact) or { url } for a served asset (dashboard). Returns "" when no font is supplied.
@@ -174,6 +180,37 @@ export const DECK_EDIT_SCRIPT = `(function () {
   modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
 })();`;
 
+// Client wiring for the corpus review (included when a corpus section is editable). Reads the deck
+// type/id from #deckctx; per-row card id/unit from each <tr>'s data-* attributes. Vanilla JS, no ${}.
+// Handles the per-row Exclude toggle and the per-section "Mark reviewed" button.
+export const CORPUS_EDIT_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  if (!ctx) return;
+  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
+  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  document.querySelectorAll('tr[data-stage="corpus"] input.excl').forEach(function (cb) {
+    cb.addEventListener("change", function () {
+      var tr = cb.closest("tr");
+      var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
+      cb.disabled = true;
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/corpus/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); })
+        .catch(function (e) { cb.checked = !cb.checked; alert(e.message); })
+        .finally(function () { cb.disabled = false; });
+    });
+  });
+  document.querySelectorAll("button.mark-rev").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var unit = btn.getAttribute("data-unit");
+      var msg = btn.parentNode.querySelector(".rev-msg");
+      btn.disabled = true; if (msg) msg.textContent = "saving\\u2026";
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/corpus/reviewed", { method: "POST" })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); if (msg) msg.textContent = "\\u2713 reviewed"; btn.disabled = false; })
+        .catch(function (e) { if (msg) msg.textContent = e.message; btn.disabled = false; });
+    });
+  });
+})();`;
+
 const flagsCell = (c) => {
   const badges = [
     c.excluded ? `<span class="badge badge-drop">Excluded</span>` : "",
@@ -189,40 +226,46 @@ const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
 // Per-stage table shape: the <colgroup>, the <thead> row, and the trailing <td>s after the shared
 // leading `#` cell. The `audio` preset is byte-identical to the original layout (so the static
 // deck-view artifact and existing callers are unchanged); `audioCell(c)` is only consulted there.
+// Per-stage table shape: the <colgroup>, the <thead> row, and the trailing <td>s after the shared
+// leading `#` cell. The `audio` preset is byte-identical to the original layout (so the static
+// deck-view artifact and existing callers are unchanged). `ctx.audioCell(c)` is consulted by the
+// audio stage; `ctx.rowControl(stage, c)` (optional) injects an editor control into the corpus Flags
+// cell / translate Note cell — omitted for a read-only render.
+const rowExtra = (ctx, stage, c) => (ctx.rowControl ? ctx.rowControl(stage, c) : "");
 const STAGE_TABLES = {
   audio: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-note">`,
     head: `<th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Note</th>`,
-    cells: (c, audioCell) =>
+    cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}</td>
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
-  <td class="au">${audioCell(c)}</td>
+  <td class="au">${ctx.audioCell(c)}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
   corpus: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-jp"><col class="c-flags">`,
     head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Reading</th><th>Flags</th>`,
-    cells: (c) =>
+    cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="jp">${jpOrDash(c.target)}</td>
   <td class="jp">${jpOrDash(c.reading)}</td>
-  <td class="flags">${flagsCell(c)}</td>`,
+  <td class="flags">${flagsCell(c)}${rowExtra(ctx, "corpus", c)}</td>`,
   },
   translate: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-cat"><col class="c-note">`,
     head: `<th class="num">#</th><th>English</th><th>Target</th><th>Pronunciation</th><th>Category</th><th>Note</th>`,
-    cells: (c) =>
+    cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="jp">${jpOrDash(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}${rowExtra(ctx, "translate", c)}</td>`,
   },
 };
 
-const cardRow = (c, n, stage, audioCell) => {
+const cardRow = (c, n, stage, ctx) => {
   const spec = STAGE_TABLES[stage] || STAGE_TABLES.audio;
   const attrs =
     `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +
@@ -230,28 +273,37 @@ const cardRow = (c, n, stage, audioCell) => {
     ` data-stage="${escapeHtml(stage)}"`;
   return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs}>
   <td class="num">${n}</td>
-  ${spec.cells(c, audioCell)}
+  ${spec.cells(c, ctx)}
 </tr>`;
 };
 
 /**
  * Renders the deck's units as collapsible <details> sections (collapsed by default). Each section may
  * carry a `stage` (`corpus` | `translate` | `audio`, default `audio`) that picks its column layout; the
- * `audio` layout uses the caller's `audioCell(card)`. Numbering is global and continues from
- * `startNumber`.
+ * `audio` layout uses the caller's `audioCell(card)`. Optional `rowControl(stage, card)` injects a
+ * per-row editor control; optional `sectionControl(section)` a per-section toolbar (both omitted for a
+ * read-only render). Numbering is global and continues from `startNumber`.
  * @returns {{ html: string, endNumber: number }}
  */
-export function renderLessonSections({ sections, startNumber = 1, audioCell }) {
+export function renderLessonSections({
+  sections,
+  startNumber = 1,
+  audioCell,
+  rowControl,
+  sectionControl,
+}) {
+  const ctx = { audioCell, rowControl };
   let n = startNumber - 1;
   const html = sections
     .map((s) => {
       const stage = s.stage || "audio";
       const spec = STAGE_TABLES[stage] || STAGE_TABLES.audio;
       const from = n + 1;
-      const rows = s.cards.map((c) => cardRow(c, ++n, stage, audioCell)).join("");
+      const rows = s.cards.map((c) => cardRow(c, ++n, stage, ctx)).join("");
       const range = s.cards.length ? `${from}–${n}` : "—";
+      const tools = sectionControl ? sectionControl(s) : "";
       return `<details class="lesson"><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
-  <div class="tw"><table><colgroup>${spec.cols}</colgroup>
+  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table><colgroup>${spec.cols}</colgroup>
   <thead><tr>${spec.head}</tr></thead>
   <tbody>${rows}</tbody></table></div></details>`;
     })

@@ -197,6 +197,113 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
 });
 
 // ---------------------------------------------------------------------------
+// Corpus review write-back (exclude toggle + mark reviewed) in the dashboard.
+// ---------------------------------------------------------------------------
+
+function corpusFixture() {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-corpus-"));
+  const book = join(root, "epubs", "cbook");
+  mkdirSync(join(book, "chapter-0"), { recursive: true });
+  writeFileSync(join(book, "book.json"), JSON.stringify({ title: "C Book", targetLanguage: "ja" }));
+  writeFileSync(
+    join(book, "chapter-0", "corpus.json"),
+    JSON.stringify({
+      meta: {
+        targetLanguage: "ja",
+        sourceType: "epub",
+        epubHash: "h1",
+        chapterNumber: 2,
+        chapterLabel: "Ch",
+      },
+      items: [
+        { id: "a", english: "one", category: "Numbers", notes: null, target: "いち" },
+        { id: "b", english: "two", category: "Numbers", notes: null, target: "に" },
+      ],
+    }),
+  );
+  return { root, book };
+}
+const readCorpus = (book) =>
+  JSON.parse(readFileSync(join(book, "chapter-0", "corpus.json"), "utf-8"));
+
+test("corpus section is editable: exclude checkboxes, Mark reviewed, and #deckctx are rendered", async () => {
+  const { root } = corpusFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/cbook`)).text();
+        assert.match(html, /id="deckctx"/);
+        assert.match(html, /class="excl"/);
+        assert.match(html, /Mark reviewed/);
+        assert.match(html, /data-stage="corpus"/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("corpus exclude writes the flag; mark-reviewed sets meta.reviewed + saves the filtered corpus to the library", async () => {
+  const { root, book } = corpusFixture();
+  const saved = [];
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const ex = await asJson(
+          await fetch(`${url}/api/deck/book/cbook/unit/0/card/a/corpus/exclude`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ excluded: true }),
+          }),
+        );
+        assert.equal(ex.status, 200);
+        assert.equal(readCorpus(book).items.find((i) => i.id === "a").excluded, true);
+
+        const rev = await asJson(
+          await fetch(`${url}/api/deck/book/cbook/unit/0/corpus/reviewed`, { method: "POST" }),
+        );
+        assert.equal(rev.status, 200);
+        assert.equal(readCorpus(book).meta.reviewed, true);
+        // the library copy is saved for (h1, 2), with the excluded item filtered out
+        assert.deepEqual(saved, [{ hash: "h1", ch: 2, ids: ["b"] }]);
+      },
+      {
+        ...editDeps,
+        saveChapterCorpus: (hash, ch, corpus) =>
+          saved.push({ hash, ch, ids: corpus.items.map((i) => i.id) }),
+      },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("read-only server 403s the corpus write routes and hides the controls", async () => {
+  const { root } = corpusFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/cbook`)).text();
+        assert.doesNotMatch(html, /class="excl"/);
+        assert.doesNotMatch(html, /id="deckctx"/);
+        assert.equal(
+          (await fetch(`${url}/api/deck/book/cbook/unit/0/corpus/reviewed`, { method: "POST" }))
+            .status,
+          403,
+        );
+      },
+      { ...editDeps, editable: false },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Editor: upload / generate / select / rebuild / download (editable server).
 // ---------------------------------------------------------------------------
 

@@ -423,9 +423,10 @@ the server (`src/server/index.js`) exposes, gated on `editable`:
   replacement clip. Stored in the unit's `audio/` under a server-generated `<cardId>-user-<hash>.<ext>`
   name and set as the card's `audio` (via `applyCardAudio`, which validates cards.json). 10 MB cap.
 - `POST …/card/:cardId/generate` — synthesizes the card's variant takes via ElevenLabs
-  (`generateCardVariants` + the codified axes in `src/audio/variants.js`), caching each under its
-  `hash(ttsText).mp3` name; returns the list for the modal. Needs `ELEVENLABS_API_KEY`; picks the
-  language's default voice or `--voice`. Does not modify cards.json.
+  (`generateCardVariants` + the codified axes in `src/audio/variants.js`). Makes a FRESH call per
+  variant every time (no cache reuse — ElevenLabs is non-deterministic, so re-rolls differ), writing
+  each under a bytes-addressed `…-gen-<hash>.mp3` name that never overwrites the built clips. Needs
+  `ELEVENLABS_API_KEY`; picks the language's default voice or `--voice`. Does not modify cards.json.
 - `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`).
 - `POST /api/deck/:type/:id/rebuild` — regenerate `<deckDir>/deck.apkg` via `src/deck/rebuild.js`
   (`rebuildBookDir`/`rebuildRunDir`) — the **same** assembly the CLI's `deck --book-dir`/`deck --run`

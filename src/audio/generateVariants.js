@@ -1,15 +1,19 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
+import { createHash } from "crypto";
 import { hashTerm } from "./index.js";
 import { cardAudioVariants } from "./variants.js";
 import { fetchElevenLabsTts } from "./elevenLabsTts.js";
 import { TTS_MODEL } from "./ttsModel.js";
 import { httpError } from "../util/httpError.js";
 
-// Synthesizes (or reuses from cache) the audio-variant clips for one card via ElevenLabs, writing
-// each into the run's `audio/` dir under its content-addressed `hash(ttsText).mp3` name. The with-/
-// no-。 variants share names with the audio stage's own clips, so those are cache hits. Does NOT touch
-// cards.json — the caller applies a pick via `selectCardAudio`. Returns `[{ label, audio }]`.
+// On-demand audio-variant generation for one card, for the dashboard's Generate button. Makes a
+// FRESH ElevenLabs call per applicable variant every time (no cache reuse) — ElevenLabs is
+// non-deterministic, so this is what lets a spot-check re-roll a take that sounds wrong. Each clip is
+// written under a name content-addressed by its BYTES (`<hash(ttsText)>-gen-<hash(bytes)>.mp3`), so a
+// fresh take NEVER overwrites the audio stage's built clips (which a card's current `audio` may point
+// at) — it's a new preview file. Does NOT touch cards.json — the caller applies a pick via
+// `selectCardAudio`. Returns `[{ label, audio }]`. Costs credits on every call (one per variant).
 export async function generateCardVariants(
   runDir,
   cardId,
@@ -28,12 +32,10 @@ export async function generateCardVariants(
   mkdirSync(audioDir, { recursive: true });
   const out = [];
   for (const variant of variants) {
-    const filename = `${hashTerm(variant.ttsText)}.mp3`;
-    const filepath = join(audioDir, filename);
-    if (!existsSync(filepath)) {
-      const bytes = await fetchTts(variant.ttsText, voiceId, apiKey, languageCode, model);
-      writeFileSync(filepath, bytes);
-    }
+    const bytes = await fetchTts(variant.ttsText, voiceId, apiKey, languageCode, model);
+    const bytesHash = createHash("sha1").update(bytes).digest("hex").slice(0, 8);
+    const filename = `${hashTerm(variant.ttsText)}-gen-${bytesHash}.mp3`;
+    writeFileSync(join(audioDir, filename), bytes);
     out.push({ label: variant.label, audio: filename });
   }
   return out;

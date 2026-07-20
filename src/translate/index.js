@@ -554,6 +554,16 @@ export async function translateCorpus(
     if (item.reading) item.reading = normalizeDisplayText(item.reading, languageCode);
   }
 
+  // Preserve the corpus-review flags on the translated card so they survive into cards.json and every
+  // later review. They're informational provenance (this item was AI-suggested / flagged uncertain at
+  // assemble) and are never auto-cleared — the record persists for auditing over time.
+  const bySourceId = new Map(corpus.items.map((i) => [i.id, i]));
+  for (const item of items) {
+    const src = bySourceId.get(item.id);
+    if (src?.uncertain) item.uncertain = true;
+    if (src?.aiSuggested) item.aiSuggested = true;
+  }
+
   const cards = {
     meta: corpus.meta,
     items,

@@ -111,6 +111,10 @@ const CARDS_SCHEMA = {
           // embedded by the deck build — only `audio` is.
           altAudio: { type: "string" },
           uncertain: { type: "boolean" },
+          // Provenance flag carried forward from the corpus (the extractor/author added this item as a
+          // critical-gap suggestion rather than it being in the source). Persisted through translate so
+          // it survives into cards.json and every review; never auto-cleared.
+          aiSuggested: { type: "boolean" },
           // Marks an AI-generated fill-in-the-blank practice card (a sentence built by resolving a
           // drill blank with lesson vocabulary), so reviews can delineate them and the semantic
           // de-dup pass can target them. Behaves like any other card in the deck.

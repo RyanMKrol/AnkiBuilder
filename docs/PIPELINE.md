@@ -197,6 +197,12 @@ existed. See [`translate-prompts.md`](./translate-prompts.md) for the full templ
 [`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) for the dependency
 trade-offs this introduces.
 
+**Provenance flags carry forward.** The corpus's `aiSuggested` / `uncertain` flags are copied onto the
+translated card by `translateCorpus` (matched by `id`), so they persist into `cards.json` and every
+downstream review rather than being lost at translate. `aiSuggested` is a field on both
+`CORPUS_SCHEMA` and `CARDS_SCHEMA`; the dashboard badges both at every review stage
+(`src/server/adapters/runDir.js` render mappers → `deckViewChrome`). They're never auto-cleared.
+
 ### `audio`
 
 `generateAudio` (`src/audio/index.js`) resolves `cards.meta.targetLanguage` against

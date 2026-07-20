@@ -48,6 +48,8 @@ td.note{font-size:12px;color:var(--soft)}
 td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--soft)}
 .badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:100px;border:1px solid var(--rule2);color:var(--soft);white-space:nowrap}
 .badge-drop{color:var(--accent);border-color:var(--accent)}
+.badge-ai{color:#3f6f6a;border-color:#3f6f6a}.badge-uncertain{color:#8a6a24;border-color:#8a6a24}
+.rowflags{margin-top:4px;display:flex;gap:5px;flex-wrap:wrap}
 tr.row.excluded td{color:var(--faint);text-decoration:line-through}
 .tw{overflow-x:auto}
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}
@@ -254,11 +256,22 @@ export const TRANSLATE_EDIT_SCRIPT = `(function () {
   });
 })();`;
 
+// The AI-suggested / Uncertain provenance badges (shown at EVERY review stage). `excluded` is not
+// included here — an excluded row is already shown struck-through.
+const aiBadge = `<span class="badge badge-ai">AI-suggested</span>`;
+const uncertainBadge = `<span class="badge badge-uncertain">Uncertain</span>`;
+const provenanceBadges = (c) =>
+  [c.aiSuggested ? aiBadge : "", c.uncertain ? uncertainBadge : ""].filter(Boolean).join(" ");
+// Inline block under a card's English gloss (translate/audio stages, which have no Flags column).
+const inlineFlags = (c) => {
+  const b = provenanceBadges(c);
+  return b ? `<div class="rowflags">${b}</div>` : "";
+};
+// The corpus stage's dedicated Flags column: provenance badges plus the Excluded badge.
 const flagsCell = (c) => {
   const badges = [
     c.excluded ? `<span class="badge badge-drop">Excluded</span>` : "",
-    c.uncertain ? `<span class="badge">Uncertain</span>` : "",
-    c.aiSuggested ? `<span class="badge">AI</span>` : "",
+    provenanceBadges(c),
   ]
     .filter(Boolean)
     .join(" ");
@@ -280,7 +293,7 @@ const STAGE_TABLES = {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-note">`,
     head: `<th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Note</th>`,
     cells: (c, ctx) =>
-      `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}</td>
+      `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}${inlineFlags(c)}</td>
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   <td class="au">${ctx.audioCell(c)}</td>
@@ -300,7 +313,7 @@ const STAGE_TABLES = {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-cat"><col class="c-note">`,
     head: `<th class="num">#</th><th>English</th><th>Target</th><th>Pronunciation</th><th>Category</th><th>Note</th>`,
     cells: (c, ctx) =>
-      `<td class="en">${escapeHtml(c.english)}</td>
+      `<td class="en">${escapeHtml(c.english)}${inlineFlags(c)}</td>
   <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
   <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>

@@ -112,10 +112,10 @@ own small flow that completes *before* you return to the deck build:
    - Register it in `AVAILABLE_TEMPLATES` in `src/corpus/templates.js` (`"<name>": "<name>.json"`).
    - Add a `test/corpus/templates.test.js` case (or extend the "every bundled template validates"
      loop) so the new template is schema-checked.
-4. **Review the template with the user** before moving on — render/inspect the item list and confirm
-   the terms and categories look right (a quick corpus-style review; you can `assemble --template
-   <name> --lang <lang>` into a scratch run dir and `render-review --stage corpus` if you want the
-   same review artifact the deck flow uses).
+4. **Review the template with the user** before moving on — inspect the item list and confirm the
+   terms and categories look right (a quick corpus-style review; you can `assemble --template <name>
+   --lang <lang>` into a scratch run dir and open it in the dashboard (`npm run serve`) for the same
+   corpus review the deck flow uses).
 5. **Then hand off to the deck build**: with the new template committed and reviewed, proceed into
    Step 2 exactly as for any bundled template — ask the **Which target language?** question above and
    run `assemble --template <name> --lang <lang>`.
@@ -147,7 +147,7 @@ anki-builder assemble --output-root output --template <templateName> --lang <lan
 ```
 
 This prints `resolved run directory: output/templates/<templateName>/<lang>` — **capture that path**
-as the `<runDir>` for every later `review`/`translate`/`audio`/`deck`/`render-review` call, exactly
+as the `<runDir>` for every later `translate`/`audio`/`deck` call (and for the dashboard), exactly
 like the lesson/EPUB forms below. Re-running `assemble` for the same template+language reuses that
 folder. There's no book-level merge for a template (only one unit per language), so the Step 5
 `deck --run <runDir>` output is already the final artifact — skip Step 6. (A one-off ad hoc build can
@@ -195,8 +195,9 @@ a book worked on before this copy existed), so you never have to re-find the ori
 later lesson. All forms print `resolved run directory: output/courses/<course-slug>/lesson-<seq>`
 or `output/epubs/<book-slug>/chapter-<seq>`. **Capture that path** — it's the `<runDir>` to reuse for
 every subsequent
-`review`/`translate`/`audio`/`render-review` call (all of those commands still take a plain
-`--run <runDir>`; only `assemble` knows how to resolve one from `--output-root`). Re-running
+`translate`/`audio`/`deck` call (all of those commands still take a plain
+`--run <runDir>`; only `assemble` knows how to resolve one from `--output-root`, and the dashboard
+finds runs under `output/` itself). Re-running
 `assemble --output-root` for the same lesson-of-course or chapter-of-book reuses its existing
 folder rather than allocating a new one.
 
@@ -226,38 +227,36 @@ the deck stay aligned.
 A textbook writes Japanese with word-separation spaces (a beginner aid) and terminal `。` periods, but
 the deck face, reading, and reviews strip both — `normalizeDisplayText` in `src/model/scriptSpacing.js`,
 applied at assemble + translate. So `これは ワインです。` is stored/shown as `これはワインです`. The `。` is
-**audio-only** — the displayed face/reading never carries one. Both takes are always generated (via
-`src/audio/altAudio.js`), but the terminal `。` steadies ElevenLabs' prosody, so **the with-dot take
-is the DEFAULT audio and the dot-less take is the alt**. The deck embeds the with-dot default; the
-audio review lets you switch a card to its dot-less alt. (Romaji keeps its own punctuation.)
+**audio-only** — the displayed face/reading never carries one. The terminal `。` steadies ElevenLabs'
+prosody, so **the with-dot take is the DEFAULT audio** (the only clip generated up front, via
+`src/audio/altAudio.js`); the dot-less take and every other variant are generated on demand in the
+dashboard's audio review. (Romaji keeps its own punctuation.)
 
-**The final review presents per-card AUDIO variants as the CARTESIAN PRODUCT of three with/without
-axes, so the human picks the best take per card** (labelled `9a`/`9b`/`9c`… — call out the winner).
-Never straight-remove the punctuation from a card — always keep the card's canonical text and offer
-the toggled take as a variant. The axes:
-- **Dot** — with vs without a trailing `。` (EVERY card). The `。` adds a terminal pause.
-- **Comma** — with vs without a mid-sentence `、` (any card containing one). The `、` adds an internal
-  pause that sometimes hurts (e.g. じゃ、また). Keep the `、` in the display; offer both takes.
-- **Brackets** — for a Japanese card with an optional bracketed part (`（お）さら`, `おつかれさま（でした）`),
-  the full vs short spoken form. (English-only parentheticals like `goodbye (formal)` are a display
-  variant, not audio — show the bracket-free English inline.)
-So the count is the Cartesian of the APPLICABLE axes: **minimum 2** (just dot, for a plain card) up to a
-**maximum of 8** (dot × comma × brackets). These are AUDIO-only variants — the displayed `target`/
-`reading` keeps its comma/brackets and never carries a trailing dot. Generate the extra takes for the
-review; apply the human's per-card pick to the card's `audio` (and rebuild).
+**Audio review happens in the dashboard.** Once every unit of a deck has reached the audio stage
+(editing + rebuild unlock only when the whole deck is at audio), each card plays its default clip
+inline, and per card you can:
 
-**Present this variant review as a Claude Artifact in the format we've standardized on** — the same
-editorial page used for every audio review (Klee kana font, per-card stacked take chips each with a
-short descriptor + its own player, wrapping kana columns, full window width). Two markers per card,
-which coexist: **◆ marks the default policy take** (the with-`。` take — see below) and **★ marks the
-take currently selected for the deck** (exactly what a rebuild will embed, whether that's the default,
-a no-`。`/comma/bracket variant, or a hand-supplied custom clip). Every card has exactly one ★. Number
-the cards **globally and monotonically across the whole unit** (1…N; when reviewing a merged book,
-continue the numbering across lessons) and label each take `<N>a`/`<N>b`/`<N>c`… so the human calls out
-a change as "row + letter" (e.g. `217 → a`). If embedding every clip pushes the artifact past the
-~16 MB Artifact limit, **split it into parts** with continuous numbering rather than dropping clips.
-The checked-in `render-review --stage audio` page (`src/review/renderAudioReviewPage.js`) uses this
-same per-card variant presentation for the dot axis; the book-level review adds the comma/bracket axes.
+- **Replace** — upload a hand-made clip.
+- **Generate** — synthesize the card's variant takes FRESH via ElevenLabs and audition them in a
+  modal, then **Use this** to pick one. The variants are the Cartesian product of three with/without
+  **audio-only** axes (the displayed `target`/`reading` keeps its punctuation; these only change what's
+  spoken):
+  - **Dot** — with vs without a trailing `。` (every card; the `。` adds a terminal pause and is the
+    default take).
+  - **Comma** — with vs without a mid-sentence `、` (any card containing one; e.g. じゃ、また).
+  - **Brackets** — full vs short spoken form for a card with an optional bracketed part
+    (`おつかれさま（でした）`). (English-only parentheticals like `goodbye (formal)` are a display variant,
+    not audio.)
+
+  So a card offers **minimum 2** takes (just dot, plain card) up to **8** (dot × comma × brackets).
+- **Generate (kanji)** — Japanese only. Converts the card's kana reading into natural kanji+kana
+  orthography (which ElevenLabs voices more naturally than all-kana) and synthesizes takes from THAT
+  text; the modal shows the produced kanji so you can sanity-check the reading before picking.
+
+Picking a take writes the card's `audio` and auto-rebuilds `deck.apkg`. There's no ◆/★-marked HTML
+artifact any more — the dashboard IS the audio-review surface, and the currently-selected clip is
+simply the one playing inline on the card. The variant axes are codified in `src/audio/variants.js`;
+the on-demand generators are `src/audio/generateVariants.js` and `src/audio/generateKanjiVariants.js`.
 
 **Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
 e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the
@@ -288,32 +287,26 @@ answer card, each with its own `target`/`reading`/`english`/`pronunciation` and 
 Japanese splits on the internal `。`, the English on the `?`). Keep both marked `fillInBlank` when they
 came from a drill. This holds for any source, not just FIB.
 
-**Review gate — always render as a Claude Artifact, never just print a table in chat/terminal:**
-Generate it from the checked-in template rather than hand-authoring HTML — that's what keeps this
-page visually and behaviorally identical run over run:
+**Review gate — in the dashboard, never a terminal table.** Start the dashboard once and leave it
+running for the whole build:
 
 ```sh
-anki-builder render-review --run <runDir> --stage corpus
+npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
-This reads `corpus.json` and writes `<runDir>/review-corpus.html` (columns: #, English, Category,
-Target; click-to-mark-for-exclusion rows with a running counter; a "Copy instruction" button with a
-robust clipboard fallback; notes shown inline in their own column, not hidden behind a popover; full
-window width, ~1-inch margins, no sticky header). Publish that file as an Artifact — don't recreate
-the page by hand, and
-don't skip this even for a small corpus; a terminal dump is not an acceptable substitute for
-something actually visible and scannable in the browser. The template itself lives in
-`src/review/` (`reviewPageTemplate.js` plus a `render*ReviewPage.js` per stage) — if the page ever
-needs a design change, edit it there so every stage and every future run stays in sync, rather than
-freehand-adjusting one instance of the HTML.
+Open this deck's lesson. A corpus-stage unit renders each item with an **Exclude** checkbox and a
+per-lesson **Mark reviewed** button (columns: #, English, Category, Target, Reading, Flags — the
+Flags column badges `uncertain`/`aiSuggested` when the extractor set them). This replaces the old CLI
+`review` / `render-review` flow entirely — there is no per-stage HTML artifact any more.
 
 **You decide:** does the corpus look right?
 
-If you want to edit the corpus (add, remove, or fix terms), do it now in `corpus.json` before
-proceeding, or tell me which numbers to exclude. Once you give a decision — a list of numbers to
-exclude, or none — run `anki-builder review --run <runDir>` to apply it, then move straight on to
-`translate` in the same turn. Don't stop to ask "should I proceed with translation?" first — telling
-me the exclusions (or that there are none) IS the go-ahead. Only pause again if something in
+If you want to drop terms, tick **Exclude** on those rows (it writes a reversible `excluded` flag to
+`corpus.json`; `translate` drops excluded items), or tell me the numbers and I'll do it. You can also
+still hand-edit `corpus.json` to add/fix terms. When it looks right, click **Mark reviewed** — that
+sets `meta.reviewed: true` (the gate `translate` checks) and, for an EPUB source, saves the reviewed
+corpus to the dedup library. Then move straight on to `translate` in the same turn — marking reviewed
+IS the go-ahead; don't stop to ask "should I proceed with translation?". Only pause again if
 `translate`'s own output needs a decision (e.g. errors).
 
 ### Step 3: Translation via Claude
@@ -337,23 +330,15 @@ so the model returns the correct romanization in place, keeping the library's wh
 The fix lands directly in `pronunciation` (no flag/note). So garbled romaji should be rare now; if you
 still spot one in the translate review, tell me and I'll fix that card.
 
-**Review gate — publish a new Claude Artifact (don't reuse the corpus-stage one, the data's
-different now):**
+**Review gate — in the dashboard (the same one you already have running).** Reload this deck's
+lesson: now that `cards.json` exists it renders at the **translate** stage — columns #, English,
+Target, Pronunciation, Category, Note — with an **Exclude** checkbox per row and inline-editable
+Target/Pronunciation cells (click a cell, edit, click away to save). Fix any garbled romaji or wrong
+translation right there, or tell me the rows and I'll edit `cards.json`. Excluding a card here writes
+a reversible `excluded` flag (the deck build drops it).
 
-```sh
-anki-builder render-review --run <runDir> --stage translate
-```
-
-This reads `cards.json` and writes `<runDir>/review-translate.html` — same shared template and
-interaction as the corpus review (columns: #, English, Target, Pronunciation, Category, Note;
-click-to-mark-for-exclusion, copying `Please exclude rows 3, 12, 19.`). Publish it as an Artifact.
-Note the mechanism differs from Step 2: there's no `anki-builder review` equivalent for
-`cards.json`, so acting on marked rows means directly removing those entries from `cards.json` and
-re-validating it, not running a CLI command.
-
-If you want to edit translations or pronunciations, do it in `cards.json` now before proceeding.
-Once you give a decision, apply it and move straight into Step 3.5 (for an EPUB/lesson source) or
-Step 4 in the same turn — same no-separate-confirmation rule as the assemble → translate transition.
+Once it looks right, move straight into Step 3.5 (for an EPUB/lesson source) or Step 4 in the same
+turn — same no-separate-confirmation rule as the assemble → translate transition.
 
 ### Step 3.5: Fill-in-the-blank enrichment (EPUB lessons)
 
@@ -383,8 +368,9 @@ conventions above:
 2. **Split any combined question-and-answer line into two cards** — one question card, one answer card.
 
 The kept FIB cards are ordinary cards from here on: they flow into Step 4 (audio — each gets the same
-default + alt takes) and the deck exactly like any other card. Publish the result as a Claude Artifact
-(the AI-content review) so the human can review the additions before the build.
+default take) and the deck exactly like any other card. They show up in the dashboard's translate
+review alongside every other card (a `fillInBlank` flag marks them), so the human reviews the
+additions there before the build.
 
 ### Step 4: Audio Generation
 
@@ -412,13 +398,13 @@ This:
 - Copies audio files into the run directory
 - Writes updated `cards.json` with audio file references
 
-**Alt audio (per-language).** A language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS`
-(Japanese appends a `。`) gets **two** recordings per card. The transformed (with-`。`) take is the
-**default** stored as `audio` — a trailing `。` gives ElevenLabs a sentence boundary and fixes many
-mis-rendered short/bare clips (lone kana, some numbers) — and the plain (no-`。`) take is the **alt**
-stored as `altAudio`, offered in the review to switch a card to. Both clips are generated and cached
-alongside each other. Languages with no transform get one clip, exactly as before. Pass `--no-alt` to
-skip the alt pass for a run (halves the TTS calls when you don't want it).
+**Default take only (per-language transform).** The `audio` stage generates exactly ONE clip per
+card. For a language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS` (Japanese appends a
+`。`), that default is the transformed (with-`。`) take — a trailing `。` gives ElevenLabs a sentence
+boundary and fixes many mis-rendered short/bare clips (lone kana, some numbers). Languages with no
+transform get the plain take. Every OTHER variant — the no-`。` take, comma/bracket forms, and
+kana+kanji — is generated **on demand** in the dashboard's audio review (the Generate / Generate
+(kanji) buttons), not up front.
 
 **Voice choice:** if this target language already has a configured default voice
 (`src/audio/voiceLibrary.js`'s `DEFAULT_VOICES`), `--voice` can be omitted entirely — the CLI
@@ -432,55 +418,22 @@ book), add it to `DEFAULT_VOICES` so future chapters don't need `--voice` repeat
 
 If you skip audio, the deck will still work — cards just won't have pronunciation recordings.
 
-**Review gate — publish a new Claude Artifact you can actually listen to.** A text table isn't
-enough here — the whole point is hearing the clips:
+**Review gate — in the dashboard.** Reload this deck's lesson: once every unit has reached the audio
+stage it renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)**
+controls and a **Rebuild deck** button (see "Audio review happens in the dashboard" above for how the
+variant axes and the kana+kanji option work). Play each card's default clip; for any that sound wrong,
+**Generate** fresh takes, audition them in the modal, and **Use this** to pick — each pick writes the
+card's `audio` and auto-rebuilds. For a short string ElevenLabs mishandles even with a `reading`,
+**Replace** with a hand-made clip (uploads are stored as `<cardId>-user-<hash>.<ext>` and are NOT
+trimmed).
 
-```sh
-anki-builder render-review --run <runDir> --stage audio
-```
-
-This reads the updated `cards.json` (now has an `audio` filename per card) and the run's `audio/`
-directory, base64-encodes each clip, and writes `<runDir>/review-audio.html` with each row's clip
-embedded as `<audio controls src="data:audio/mpeg;base64,...">` next to English/Target/
-Pronunciation, same shared visual system as the other two review artifacts. Publish it as an
-Artifact.
-
-**Without alt audio**, this stage uses "flag for regeneration" instead of exclusion — the real
-action isn't dropping a row, it's "this one sounds wrong, regenerate it": copy button produces
-`Please regenerate audio for rows 3, 12.` To act on that: delete that term's cached clip from
-`.anki-builder/audio/<voiceId>/<hash>.mp3` AND its copy under `<runDir>/audio/`, then re-run
-`anki-builder audio --run <runDir> --voice <voiceId>` — it's resumable and only regenerates
-whichever terms are missing from the cache, not the whole batch. (ElevenLabs is non-deterministic, so
-a fresh take usually differs.)
-
-**When cards carry `altAudio`** (a language with an alt-audio config), the page instead shows a
-single **Audio variants** column that stacks each card's labelled takes — the with-`。` **default**
-(marked ◆) and the no-`。` **alt** — with its own player, the same per-card variant presentation used
-in the book-level review. It switches to a two-action mode: clicking a row
-cycles **switch to alt → drop audio → keep default**, and the copy button produces up to two clauses,
-e.g. `Please switch to alt audio for rows 8, 80. Please drop audio for rows 12.` To act on those,
-edit `cards.json` directly (there's no CLI command, same as the translate stage): **switch** → set
-`item.audio = item.altAudio` and delete `altAudio`; **drop** → delete both `audio` and `altAudio`.
-Then re-validate and re-render. The deck build embeds whatever ends up in `audio`. (You can also just
-tell me the rows in chat, or hand me a replacement `.mp3` for a specific row.)
-
-**Custom per-card clips + a re-run footgun.** A human-supplied recording — common for numbers,
-counters, and other short strings ElevenLabs mishandles even with a `reading` — is applied by copying
-the file into `<runDir>/audio/<cardId>-custom.mp3` and setting that card's `audio` to the new filename.
-**Once ANY per-card audio selection has been made — a custom clip, a no-`。` pick, a comma/bracket
-variant — do NOT re-run the whole `audio` stage.** `generateAudio` re-derives `audio`/`altAudio` for
-*every* card from the card text, so a full re-run silently overwrites all those hand-picked selections
-(and adding even one new card defeats the stage's `alreadyDone` skip, which triggers exactly that
-recompute). To add audio for new or changed cards, generate clips for **only those items** (a scoped
-`generateAudio` over a mini card set, copying the results into the run's `audio/` dir) and leave every
-already-selected card untouched. Because the deck embeds whatever is in `audio`, that field is the
-source of truth for a card's final take — never assume `audio` is the no-`。` take and `altAudio` the
-with-`。` one; after the with-`。` default is applied they are swapped, so derive the two takes from the
-card text (hash of the normalized spoken text, ± `。`) rather than from which field holds which.
-
-For a large deck (many dozens of cards), embedding every clip — doubly so with alt audio — can make
-the artifact file large/slow to publish; if that happens, say so rather than silently publishing one
-huge page (see `.harness/custom/docs/LIMITATIONS.md` — there's no chunking built in yet).
+**Re-run footgun.** The `audio` CLI stage re-derives every card's default `audio` from the card text,
+so **once you've picked variants / uploaded clips in the dashboard, do NOT re-run `anki-builder audio`
+over the whole run** — it would overwrite those hand-picked selections (and adding even one new card
+defeats the stage's `alreadyDone` skip, triggering exactly that recompute). To add audio for new or
+changed cards only, generate for just those items and leave every already-selected card untouched. The
+deck embeds whatever is in each card's `audio`, so that field is the source of truth for its final
+take.
 
 ### Step 5: Deck Build
 
@@ -600,11 +553,10 @@ won't apply), whereas a fresh note type (new id + name suffixed with the font) a
 Use it when re-importing a restyled version of a deck you've had before; skip it for a genuinely new
 deck.
 
-### Render a review artifact
+### Review a run (corpus / translate / audio)
+Review happens in the dashboard, not a CLI command:
 ```sh
-anki-builder render-review --run <dir> --stage corpus
-anki-builder render-review --run <dir> --stage translate
-anki-builder render-review --run <dir> --stage audio
+npm run serve   # open the printed URL, click into the deck; each unit shows its stage's review UI
 ```
 
 ### Browse a built deck (`.apkg`) as an artifact
@@ -688,8 +640,9 @@ Each chapter's own artifacts live in its run directory (`--run <dir>`, or the di
 - `audio/` — generated audio files (if audio stage ran)
 - `deck.apkg` — this chapter's own Anki deck (for template/manual sources, this is the final
   artifact; for an EPUB book, it's superseded by the book-level merge below)
-- `review-corpus.html` / `review-translate.html` / `review-audio.html` — templated review
-  artifacts generated by `render-review`, meant to be published as Claude Artifacts
+
+Review is done live in the dashboard (`serve`), which reads these files directly — there are no
+per-stage `review-*.html` artifacts any more.
 
 Under `--output-root`, each source type nests under its own reserved segment of `output/`
 (`epubs/`, `courses/`, `templates/`). For an EPUB book, chapters nest under one book folder beneath

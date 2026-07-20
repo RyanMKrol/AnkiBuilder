@@ -67,8 +67,16 @@ anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter i
 Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` and add
 `ELEVENLABS_API_KEY=...`. Everything else works without any external account.
 
-To browse a finished deck without importing it into Anki, render it to a read-only HTML page (every
-card grouped by sub-deck, audio embedded inline per card):
+To browse your decks without importing them into Anki, run the local dashboard — it lists every built
+deck and opens each to a page of collapsible lessons with audio played inline (served over HTTP, so no
+size limit):
+
+```sh
+anki-builder serve            # then open the printed http://localhost:… URL
+```
+
+Or render a single finished deck to a self-contained, shareable HTML page (audio embedded inline;
+auto-split into parts for a large deck):
 
 ```sh
 anki-builder view-deck --apkg output/epubs/<book-slug>/deck.apkg
@@ -140,6 +148,9 @@ npm run build
 - [x] Review-gate artifacts for each stage
 - [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
+- [x] `serve` — local deck-dashboard web app (Node builtins only): lists every built deck and opens
+      each to collapsible lessons with audio streamed over HTTP (no size cap); pluggable per-format
+      adapters (`src/server/adapters/`)
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki

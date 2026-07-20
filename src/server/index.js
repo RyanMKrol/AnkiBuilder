@@ -1,6 +1,6 @@
 import http from "node:http";
 import { Buffer } from "buffer";
-import { createReadStream, statSync, realpathSync } from "fs";
+import { createReadStream, statSync, realpathSync, existsSync } from "fs";
 import { resolve, sep } from "path";
 import {
   escapeHtml,
@@ -34,11 +34,7 @@ import { httpError } from "../util/httpError.js";
 // over HTTP (`/media/...`) instead of base64, so an entire deck browses on one page with no size cap.
 // Node builtins only; server-side rendered; dependency-injected for testing.
 
-const TYPE_GROUPS = [
-  { type: "book", label: "Books" },
-  { type: "course", label: "Courses" },
-  { type: "template", label: "Templates" },
-];
+const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
 
 function page(title, body, script = null) {
   return `<title>${escapeHtml(title)}</title>
@@ -106,50 +102,59 @@ export function createDeckServer({
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
+  // The home page is bifurcated by STATUS, not deck type: two separate sections with different cards
+  // and different actions. "In review" = still building the cards (some unit pre-audio) → the Review
+  // workflow. "Built" = every unit has audio → Browse / Download / tweak-clips. The two paths are
+  // deliberately kept apart.
   function renderDashboard() {
     const decks = adapters.flatMap((a) => a.listDecks(outputRoot));
     if (decks.length === 0) {
       return page(
         "Decks — anki-builder",
         `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede">No built decks found under <code>${escapeHtml(outputRoot)}</code>. Build a deck first, then reload this page.</p></header>`,
+<p class="lede">No decks found under <code>${escapeHtml(outputRoot)}</code>. Assemble one first, then reload this page.</p></header>`,
       );
     }
-    const groups = TYPE_GROUPS.map((g) => {
-      const items = decks.filter((d) => d.type === g.type);
-      if (!items.length) return "";
-      const cards = items
-        .map((d) => {
-          const unitWord =
-            d.type === "template" ? null : `${d.unitCount} lesson${d.unitCount === 1 ? "" : "s"}`;
-          const stageWord =
-            d.stage && d.stage !== "audio" ? `${d.stage} stage` : d.stage ? "ready" : null;
-          const meta = [
-            d.targetLanguage ? escapeHtml(d.targetLanguage.toUpperCase()) : null,
-            unitWord,
-            stageWord,
-          ]
-            .filter(Boolean)
-            .join(" · ");
-          const reviewHref = `/review/${encodeURIComponent(d.type)}/${encodeURIComponent(d.id)}`;
-          const browseHref = `/deck/${encodeURIComponent(d.type)}/${encodeURIComponent(d.id)}`;
-          // Lead with Review while any unit is still pre-audio; once every unit is built, lead with Browse.
-          const needsReview = d.stage && d.stage !== "audio";
-          const link = (href, label, primary) =>
-            `<a class="da${primary ? " primary" : ""}" href="${href}">${label}</a>`;
-          const actions = needsReview
-            ? link(reviewHref, "Review", true) + link(browseHref, "Browse", false)
-            : link(browseHref, "Browse", true) + link(reviewHref, "Review", false);
-          return `<div class="deck"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${meta}</div><div class="deck-actions">${actions}</div></div>`;
-        })
-        .join("");
-      return `<div class="grp"><h2>${g.label}</h2><div class="decks">${cards}</div></div>`;
-    }).join("");
+    const enc = encodeURIComponent;
+    const deckMeta = (d, extra) =>
+      [
+        TYPE_LABEL[d.type] || d.type,
+        d.targetLanguage ? escapeHtml(d.targetLanguage.toUpperCase()) : null,
+        d.type === "template" ? null : `${d.unitCount} lesson${d.unitCount === 1 ? "" : "s"}`,
+        extra,
+      ]
+        .filter(Boolean)
+        .join(" · ");
+    const apkgExists = (d) => {
+      const a = adapterFor(d.type);
+      const f = a && a.deckFile ? a.deckFile(outputRoot, d.id) : null;
+      return f ? existsSync(f) : false;
+    };
+
+    const inReview = decks.filter((d) => d.stage !== "audio"); // includes no-units (stage null)
+    const built = decks.filter((d) => d.stage === "audio");
+
+    const reviewCard = (d) =>
+      `<div class="deck rvw"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${deckMeta(d, d.stage ? `${d.stage} stage` : "not started")}</div>
+<div class="deck-actions"><a class="da primary" href="/review/${enc(d.type)}/${enc(d.id)}">Continue review →</a></div></div>`;
+    const builtCard = (d) => {
+      const dl = apkgExists(d)
+        ? `<a class="da" href="/download/${enc(d.type)}/${enc(d.id)}/deck.apkg">Download .apkg</a>`
+        : "";
+      return `<div class="deck built"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${deckMeta(d, "ready")}</div>
+<div class="deck-actions"><a class="da primary" href="/deck/${enc(d.type)}/${enc(d.id)}">Browse</a>${dl}<a class="da" href="/review/${enc(d.type)}/${enc(d.id)}">Edit audio</a></div></div>`;
+    };
+    const section = (cls, title, hint, cards) =>
+      cards.length
+        ? `<div class="grp ${cls}"><h2>${title} <span class="gcount">${cards.length}</span></h2><p class="ghint">${hint}</p><div class="decks">${cards.join("")}</div></div>`
+        : "";
+
     return page(
       "Decks — anki-builder",
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede"><b>${decks.length}</b> deck${decks.length === 1 ? "" : "s"}. Click one to browse its lessons and play the audio inline.</p></header>
-${groups}`,
+<p class="lede"><b>${inReview.length}</b> in review · <b>${built.length}</b> built.</p></header>
+${section("grp-review", "In review", "Still building the cards — corpus &amp; translation. Continue the review workflow.", inReview.map(reviewCard))}
+${section("grp-built", "Built · ready to study", "Every lesson has audio. Browse the deck, download the .apkg, or tweak clips.", built.map(builtCard))}`,
     );
   }
 

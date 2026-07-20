@@ -99,6 +99,38 @@ test("dashboard lists each deck with both Review and Browse links", async () => 
   }
 });
 
+test("home page bifurcates decks into 'In review' and 'Built' sections with different actions", async () => {
+  const root = fixture(); // mybook is all-audio → Built
+  try {
+    // add an in-review book (corpus-only)
+    const wip = join(root, "epubs", "wipbook");
+    mkdirSync(join(wip, "chapter-0"), { recursive: true });
+    writeFileSync(
+      join(wip, "book.json"),
+      JSON.stringify({ title: "WIP Book", targetLanguage: "ja" }),
+    );
+    writeFileSync(
+      join(wip, "chapter-0", "corpus.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "C1" },
+        items: [{ id: "a", english: "one", category: "Numbers", notes: null, target: null }],
+      }),
+    );
+    await withServer(root, async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      assert.match(home, /In review/);
+      assert.match(home, /Built · ready to study/);
+      // in-review deck → "Continue review" to /review, and NO Browse link (paths bifurcated)
+      assert.match(home, /href="\/review\/book\/wipbook">Continue review/);
+      assert.doesNotMatch(home, /href="\/deck\/book\/wipbook"/);
+      // built deck → Browse to /deck
+      assert.match(home, /href="\/deck\/book\/mybook">Browse/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("browse view (/deck) is read-only even on an editable server, and links to Review", async () => {
   const root = fixture();
   try {
@@ -174,7 +206,7 @@ test("empty output shows an empty-state, not a 500", async () => {
     await withServer(root, async (url) => {
       const res = await fetch(`${url}/`);
       assert.equal(res.status, 200);
-      assert.match(await res.text(), /No built decks found/);
+      assert.match(await res.text(), /No decks found/);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });

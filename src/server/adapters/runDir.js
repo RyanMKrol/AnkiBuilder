@@ -20,6 +20,7 @@ export function readCardsJson(runDir) {
 // in `audio`; `altAudio` is a review-only concept and is dropped (the dashboard shows one take).
 export function toRenderCard(item) {
   return {
+    id: item.id,
     english: item.english || "",
     target: item.target || "",
     pronunciation: item.pronunciation || "",

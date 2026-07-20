@@ -8,12 +8,19 @@ import {
   fontFaceRule,
   renderLessonSections,
   EXPAND_COLLAPSE_SCRIPT,
+  DECK_EDIT_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { ADAPTERS } from "./adapters/index.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
   readFontBytes as defaultReadFontBytes,
 } from "../deck/fontLibrary.js";
+import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
+import { generateCardVariants } from "../audio/generateVariants.js";
+import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
+import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
+import { resolveIso639Code as defaultResolveIso639Code } from "../model/iso639.js";
+import { httpError } from "../util/httpError.js";
 
 // Local deck-dashboard server. Lists every built deck (via the format adapters) and renders per-deck
 // collapsible lesson views in the same editorial style as the deck-view artifact — but serving audio
@@ -41,16 +48,52 @@ function sendHtml(res, body, status = 200) {
   res.writeHead(status, { "Content-Type": "text/html; charset=utf-8" });
   res.end(body);
 }
+function sendJson(res, obj, status = 200) {
+  res.writeHead(status, { "Content-Type": "application/json; charset=utf-8" });
+  res.end(JSON.stringify(obj));
+}
 const notFound = (res) =>
   sendHtml(res, page("Not found", `<header><h1>404 — not found</h1></header>`), 404);
-const forbidden = (res) =>
-  sendHtml(res, page("Forbidden", `<header><h1>403 — forbidden</h1></header>`), 403);
+const forbidden = (res, message = "forbidden") => sendJson(res, { error: message }, 403);
+
+const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+
+// Reads a request body into a Buffer, capping memory at `cap`. On overflow it STOPS buffering but
+// keeps draining the stream to its end (rather than destroying the socket, which resets the client
+// mid-upload), then rejects 413 — so the client reliably receives the error response.
+function readBodyCapped(req, cap) {
+  return new Promise((resolvePromise, reject) => {
+    const chunks = [];
+    let size = 0;
+    let over = false;
+    req.on("data", (chunk) => {
+      if (over) return;
+      size += chunk.length;
+      if (size > cap) {
+        over = true;
+        chunks.length = 0;
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on("end", () =>
+      over ? reject(httpError(413, "upload too large")) : resolvePromise(Buffer.concat(chunks)),
+    );
+    req.on("error", reject);
+  });
+}
 
 export function createDeckServer({
   outputRoot = "output",
   adapters = ADAPTERS,
+  editable = true,
   getLanguageFont = defaultGetLanguageFont,
   readFontBytes = defaultReadFontBytes,
+  getDefaultVoice = defaultGetDefaultVoice,
+  resolveIso639Code = defaultResolveIso639Code,
+  fetchTts = fetchElevenLabsTts,
+  voice = null,
+  getApiKey = () => process.env.ELEVENLABS_API_KEY,
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
@@ -98,28 +141,47 @@ ${groups}`,
       leaf: u.label,
       cards: u.cards.map((c) => ({
         ...c,
+        unit: u.seq,
         audioUrl: c.audio
           ? `/media/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(String(u.seq))}/${encodeURIComponent(c.audio)}`
           : null,
       })),
     }));
-    const audioCell = (c) =>
-      c.audioUrl
+    const editControls = editable
+      ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button><span class="msg"></span></div>`
+      : "";
+    const audioCell = (c) => {
+      const player = c.audioUrl
         ? `<audio controls preload="none" src="${c.audioUrl}"></audio>`
         : `<span class="x">—</span>`;
+      return player + editControls;
+    };
     const { html: sectionHtml } = renderLessonSections({ sections, startNumber: 1, audioCell });
 
     const total = deck.units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = deck.units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
+    const toolbar = editable
+      ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}">Rebuild deck</button><span id="rebuild-status" class="rb"></span>`
+      : "";
+    const modal = editable
+      ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
+      : "";
+    const lede = editable
+      ? `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Then <b>Rebuild deck</b> and import the .apkg.`
+      : `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and play the audio inline. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">Deck · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
-<p class="lede"><b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and play the audio inline. <b>${withAudio}</b> have audio.</p>
-<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>
+<p class="lede">${lede}</p>
+<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button>${toolbar}</div>
 </header>
 ${sectionHtml}
+${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
-    return page(`${deck.title} — deck`, body, EXPAND_COLLAPSE_SCRIPT);
+    const script = editable
+      ? `${EXPAND_COLLAPSE_SCRIPT}\n${DECK_EDIT_SCRIPT}`
+      : EXPAND_COLLAPSE_SCRIPT;
+    return page(`${deck.title} — deck`, body, script);
   }
 
   function serveFont(res) {
@@ -183,32 +245,180 @@ ${sectionHtml}
     createReadStream(real).pipe(res);
   }
 
-  return function handler(req, res) {
-    if (req.method !== "GET") {
-      res.writeHead(405, { Allow: "GET" });
-      return res.end();
-    }
-    let seg;
+  // Resolve a path (deck file / run dir) and return its realpath only if it stays inside outputRoot
+  // (blocks traversal and symlink escapes); null otherwise or if it doesn't exist.
+  function realWithinRoot(candidate) {
     try {
-      const pathname = new URL(req.url, "http://localhost").pathname;
+      const rootReal = realpathSync(resolve(outputRoot));
+      const real = realpathSync(candidate);
+      return real === rootReal || real.startsWith(rootReal + sep) ? real : null;
+    } catch {
+      return null;
+    }
+  }
+
+  const mediaUrl = (type, id, unit, file) =>
+    `/media/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(String(unit))}/${encodeURIComponent(file)}`;
+
+  // The run dir owning a card's edits, realpath-verified inside outputRoot. null => 404.
+  function safeUnitDir(type, id, unit) {
+    const adapter = adapterFor(type);
+    const dir = adapter && adapter.unitDir ? adapter.unitDir(outputRoot, id, unit) : null;
+    return dir ? realWithinRoot(dir) : null;
+  }
+
+  function serveDownload(res, type, id) {
+    const adapter = adapterFor(type);
+    const file = adapter && adapter.deckFile ? adapter.deckFile(outputRoot, id) : null;
+    const real = file ? realWithinRoot(file) : null;
+    if (!real) return notFound(res);
+    let stat;
+    try {
+      stat = statSync(real);
+    } catch {
+      return notFound(res);
+    }
+    if (!stat.isFile()) return notFound(res);
+    res.writeHead(200, {
+      "Content-Type": "application/octet-stream",
+      "Content-Length": stat.size,
+      "Content-Disposition": `attachment; filename="${id}.apkg"`,
+    });
+    createReadStream(real).pipe(res);
+  }
+
+  async function handleUpload(req, res, type, id, unit, cardId, ext) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const bytes = await readBodyCapped(req, MAX_UPLOAD_BYTES);
+    const { audio } = applyCardAudio(runDir, cardId, bytes, ext);
+    sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
+  }
+
+  async function handleGenerate(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const adapter = adapterFor(type);
+    const languageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
+    const voiceId = voice || getDefaultVoice(languageCode);
+    if (!voiceId)
+      throw httpError(400, "no default voice for this language — start the server with --voice");
+    const apiKey = getApiKey();
+    if (!apiKey)
+      throw httpError(
+        503,
+        "ELEVENLABS_API_KEY is not set — start the server with the key available",
+      );
+    const variants = await generateCardVariants(runDir, cardId, {
+      voiceId,
+      apiKey,
+      languageCode,
+      fetchTts,
+    });
+    sendJson(res, {
+      variants: variants.map((v) => ({
+        label: v.label,
+        audio: v.audio,
+        mediaUrl: mediaUrl(type, id, unit, v.audio),
+      })),
+    });
+  }
+
+  async function handleSelect(req, res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const body = await readBodyCapped(req, 64 * 1024);
+    let filename;
+    try {
+      filename = JSON.parse(body.toString("utf-8")).audio;
+    } catch {
+      throw httpError(400, "invalid JSON body");
+    }
+    const { audio } = selectCardAudio(runDir, cardId, filename);
+    sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
+  }
+
+  function handleRebuild(res, type, id) {
+    const adapter = adapterFor(type);
+    if (!adapter || !adapter.rebuild) return notFound(res);
+    if (!adapter.listDecks(outputRoot).some((d) => d.id === id)) return notFound(res);
+    let result;
+    try {
+      result = adapter.rebuild(outputRoot, id);
+    } catch (e) {
+      // Missing cards.json / no built units — the deck isn't fully built yet.
+      throw httpError(409, e.message);
+    }
+    sendJson(res, {
+      noteCount: result.noteCount,
+      downloadUrl: `/download/${encodeURIComponent(type)}/${encodeURIComponent(id)}/deck.apkg`,
+      apkgPath: adapter.deckFile(outputRoot, id),
+    });
+  }
+
+  // POST route dispatch under /api/deck/:type/:id/… . Returns true if it handled the request.
+  async function routePost(req, res, seg) {
+    if (seg[0] !== "api" || seg[1] !== "deck") return false;
+    const [type, id] = [seg[2], seg[3]];
+    if (seg[4] === "rebuild" && seg.length === 5) return (handleRebuild(res, type, id), true);
+    if (seg[4] === "unit" && seg[6] === "card") {
+      const [unit, cardId] = [seg[5], seg[7]];
+      const query = new URL(req.url, "http://localhost").searchParams;
+      if (seg[8] === "audio" && seg.length === 9) {
+        await handleUpload(req, res, type, id, unit, cardId, query.get("ext"));
+        return true;
+      }
+      if (seg[8] === "generate" && seg.length === 9) {
+        await handleGenerate(res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "audio" && seg[9] === "select" && seg.length === 10) {
+        await handleSelect(req, res, type, id, unit, cardId);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  return async function handler(req, res) {
+    let pathname, seg;
+    try {
+      pathname = new URL(req.url, "http://localhost").pathname;
       seg = pathname
         .split("/")
         .filter(Boolean)
         .map((s) => decodeURIComponent(s));
-      if (pathname === "/") return sendHtml(res, renderDashboard());
     } catch {
       return notFound(res);
     }
 
-    if (seg[0] === "assets" && seg[1] === "font.woff2" && seg.length === 2) return serveFont(res);
-    if (seg[0] === "deck" && seg.length === 3) {
-      const html = renderDeckPage(seg[1], seg[2]);
-      return html ? sendHtml(res, html) : notFound(res);
+    try {
+      if (req.method === "GET") {
+        if (pathname === "/") return sendHtml(res, renderDashboard());
+        if (seg[0] === "assets" && seg[1] === "font.woff2" && seg.length === 2)
+          return serveFont(res);
+        if (seg[0] === "deck" && seg.length === 3) {
+          const html = renderDeckPage(seg[1], seg[2]);
+          return html ? sendHtml(res, html) : notFound(res);
+        }
+        if (seg[0] === "media" && seg.length === 5)
+          return serveMedia(req, res, seg[1], seg[2], seg[3], seg[4]);
+        if (seg[0] === "download" && seg.length === 4 && seg[3] === "deck.apkg")
+          return serveDownload(res, seg[1], seg[2]);
+        return notFound(res);
+      }
+      if (req.method === "POST") {
+        if (!editable)
+          return forbidden(res, "editing is disabled (server started with --read-only)");
+        if (await routePost(req, res, seg)) return;
+        return notFound(res);
+      }
+      res.writeHead(405, { Allow: "GET, POST" });
+      return res.end();
+    } catch (err) {
+      if (res.headersSent) return res.end();
+      sendJson(res, { error: err.message || "server error" }, err.status || 500);
     }
-    if (seg[0] === "media" && seg.length === 5) {
-      return serveMedia(req, res, seg[1], seg[2], seg[3], seg[4]);
-    }
-    return notFound(res);
   };
 }
 

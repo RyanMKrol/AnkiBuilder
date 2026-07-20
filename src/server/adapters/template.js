@@ -1,5 +1,6 @@
 import { existsSync, readdirSync } from "fs";
 import { join } from "path";
+import { rebuildRunDir } from "../../deck/rebuild.js";
 import { readCardsJson, toRenderCard, isSafeMediaFile } from "./runDir.js";
 
 // Adapter for bundled-template decks: output/templates/<name>/<lang>/. Unlike books/courses there is
@@ -61,5 +62,26 @@ export const templateAdapter = {
     if (!parts || !isSafeMediaFile(file)) return null;
     const path = join(templateRunDir(outputRoot, parts.name, parts.lang), "audio", file);
     return existsSync(path) ? path : null;
+  },
+
+  // Templates have no chapter/lesson sublevel — the lang folder IS the run dir; `unit` is ignored.
+  unitDir(outputRoot, id) {
+    const parts = splitId(id);
+    return parts ? templateRunDir(outputRoot, parts.name, parts.lang) : null;
+  },
+
+  deckFile(outputRoot, id) {
+    const parts = splitId(id);
+    return parts ? join(templateRunDir(outputRoot, parts.name, parts.lang), "deck.apkg") : null;
+  },
+
+  rebuild(outputRoot, id) {
+    const parts = splitId(id);
+    if (!parts) return null;
+    return rebuildRunDir(templateRunDir(outputRoot, parts.name, parts.lang));
+  },
+
+  deckLanguage(outputRoot, id) {
+    return splitId(id)?.lang ?? null;
   },
 };

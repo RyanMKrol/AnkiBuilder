@@ -7,7 +7,7 @@ import { getAltAudioTransform } from "./altAudio.js";
 import { normalizeTtsText } from "./ttsText.js";
 import { TTS_MODEL } from "./ttsModel.js";
 
-function hashTerm(term) {
+export function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
 }
 
@@ -16,7 +16,7 @@ function hashTerm(term) {
 // is what lets a Japanese deck show kanji on the face (`target`) while speaking an
 // unambiguous kana `reading` — for languages whose target is already phonetic, no
 // `reading` is set and `target` is spoken exactly as before.
-function speechText(item) {
+export function speechText(item) {
   return typeof item.reading === "string" && item.reading.length > 0 ? item.reading : item.target;
 }
 

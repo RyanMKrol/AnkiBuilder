@@ -1,6 +1,8 @@
 import { existsSync } from "fs";
 import { join } from "path";
-import { listBooks } from "../../cli/outputPaths.js";
+import { listBooks, loadCourseMeta } from "../../cli/outputPaths.js";
+import { loadBookMeta } from "../../corpus/epubLibrary.js";
+import { rebuildBookDir } from "../../deck/rebuild.js";
 import { scanNumberedUnits, isSafeMediaFile } from "./runDir.js";
 
 // Adapter for EPUB-book decks: output/epubs/<slug>/chapter-N/. The deck `id` is the book slug; each
@@ -37,5 +39,23 @@ export const bookAdapter = {
     if (!/^\d+$/.test(String(unit)) || !isSafeMediaFile(file)) return null;
     const path = join(bookDir(outputRoot, id), `chapter-${unit}`, "audio", file);
     return existsSync(path) ? path : null;
+  },
+
+  // The run dir owning a card's cards.json + audio/, for edits. null on unsafe/unknown unit.
+  unitDir(outputRoot, id, unit) {
+    if (!/^\d+$/.test(String(unit))) return null;
+    return join(bookDir(outputRoot, id), `chapter-${unit}`);
+  },
+
+  deckFile(outputRoot, id) {
+    return join(bookDir(outputRoot, id), "deck.apkg");
+  },
+
+  rebuild(outputRoot, id) {
+    return rebuildBookDir(bookDir(outputRoot, id), { loadBookMeta, loadCourseMeta });
+  },
+
+  deckLanguage(outputRoot, id) {
+    return listBooks(outputRoot).find((b) => b.slug === id)?.targetLanguage ?? null;
   },
 };

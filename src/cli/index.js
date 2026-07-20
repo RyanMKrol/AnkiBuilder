@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, readdirSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
 import { join, resolve } from "path";
 import { Buffer } from "buffer";
 import {
@@ -49,10 +49,12 @@ import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
 import { TTS_MODEL } from "../audio/ttsModel.js";
+import { fetchElevenLabsTts as defaultFetchTts } from "../audio/elevenLabsTts.js";
 import {
   buildDeck as defaultBuildDeck,
   buildBookDeck as defaultBuildBookDeck,
 } from "../deck/index.js";
+import { rebuildBookDir as defaultRebuildBookDir } from "../deck/rebuild.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
   readFontBytes as defaultReadFontBytes,
@@ -67,34 +69,6 @@ import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
 import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
 
 const REVIEW_STAGES = ["corpus", "translate", "audio"];
-
-const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
-
-// languageCode is only ever a real ISO 639-1 code or null (see resolveIso639Code,
-// src/model/iso639.js) — omitted from the request body entirely when null, rather than
-// sent as an empty/invalid value, so ElevenLabs falls back to its own language
-// auto-detection exactly as it did before this parameter existed.
-async function defaultFetchTts(text, voiceId, apiKey, languageCode = null) {
-  const response = await globalThis.fetch(`${ELEVENLABS_TTS_URL}/${voiceId}`, {
-    method: "POST",
-    headers: {
-      "xi-api-key": apiKey,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      text,
-      model_id: TTS_MODEL,
-      ...(languageCode ? { language_code: languageCode } : {}),
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`ElevenLabs TTS request failed: ${response.status} ${response.statusText}`);
-  }
-
-  const arrayBuffer = await response.arrayBuffer();
-  return Buffer.from(arrayBuffer);
-}
 
 function parseFlags(args) {
   const flags = {};
@@ -574,58 +548,19 @@ async function runAudio(flags, ctx) {
   );
 }
 
-// Matches both an EPUB book's chapter-<N>/ folders and a lesson-source course's
-// lesson-<N>/ folders — the two sourceTypes share this exact "numbered sub-deck of a
-// bigger merged collection" directory shape (see the courseSlug comment on
-// CORPUS_SCHEMA in model/index.js), so one book-dir merge path serves both.
-const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)$/;
-
 async function runBookDeck(flags, ctx) {
   const bookDir = resolve(flags["book-dir"]);
-  const outPath = join(bookDir, "deck.apkg");
-
-  const chapterDirs = readdirSync(bookDir)
-    .map((name) => name.match(BOOK_UNIT_DIR_PATTERN))
-    .filter(Boolean)
-    .map((m) => ({ seq: Number(m[1]), dir: join(bookDir, m[0]) }))
-    .sort((a, b) => a.seq - b.seq);
-
-  if (chapterDirs.length === 0) {
-    throw new Error(`no chapter-*/ or lesson-*/ directories found under ${bookDir}`);
-  }
-
-  const chapterDecks = [];
-  let epubHash = null;
-  for (const { dir } of chapterDirs) {
-    const cardsPath = join(dir, "cards.json");
-    if (!existsSync(cardsPath)) {
-      throw new Error(
-        `cards.json not found in ${dir} — run "translate"/"audio" for that chapter first`,
-      );
-    }
-
-    const cards = readJson(cardsPath);
-    epubHash = epubHash || cards.meta?.epubHash;
-    const chapterLabel = cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`;
-    const audioDir = join(dir, "audio");
-    chapterDecks.push({
-      name: chapterLabel,
-      cards,
-      audioDir: existsSync(audioDir) ? audioDir : null,
-    });
-  }
-
-  const bookMeta = epubHash ? ctx.loadBookMeta(epubHash) : ctx.loadCourseMeta(bookDir);
-  const bookName = bookMeta?.title || bookMeta?.name || flags.name || "AnkiBuilder Book Deck";
-
-  // Merges N independently-changeable chapter inputs — always rebuild fresh rather
-  // than reusing an existing deck.apkg (unlike the single-chapter path below), since
-  // any upstream chapter change (re-translation, a newly added chapter, regenerated
-  // audio) would otherwise silently leave a stale merged package in place.
-  const result = ctx.buildBookDeck(chapterDecks, { outPath, bookName, now: Date.now() });
+  // Assembly + merge live in src/deck/rebuild.js (shared with the dashboard's Rebuild action). This
+  // always rebuilds fresh — any upstream chapter change would otherwise leave a stale merged package.
+  const result = ctx.rebuildBookDir(bookDir, {
+    buildBookDeck: ctx.buildBookDeck,
+    loadBookMeta: ctx.loadBookMeta,
+    loadCourseMeta: ctx.loadCourseMeta,
+    bookNameFallback: flags.name || null,
+  });
 
   ctx.log(
-    `built book deck with ${result.noteCount} note(s) across ${result.chapterCount} chapter(s) at ${outPath}`,
+    `built book deck with ${result.noteCount} note(s) across ${result.chapterCount} chapter(s) at ${join(bookDir, "deck.apkg")}`,
   );
 }
 
@@ -830,9 +765,24 @@ async function runServe(flags, ctx) {
   if (!Number.isInteger(port) || port < 0 || port > 65535) {
     throw new Error(`--port must be a valid port number (got ${JSON.stringify(flags.port)})`);
   }
-  const { url } = await ctx.startDeckServer({ port, outputRoot });
+  // Load .env if present so the Generate button's ElevenLabs key is available even when the server is
+  // launched via `node`/`npm run serve` (which don't apply bin.js's shebang --env-file loader).
+  try {
+    process.loadEnvFile?.(resolve(".env"));
+  } catch {
+    // no .env — Generate will report the missing key if used
+  }
+  const editable = !flags["read-only"];
+  const { url } = await ctx.startDeckServer({
+    port,
+    outputRoot,
+    editable,
+    voice: flags.voice || null,
+  });
   ctx.log(`deck dashboard running at ${url}`);
-  ctx.log(`serving decks from ${outputRoot} — press Ctrl+C to stop`);
+  ctx.log(
+    `serving decks from ${outputRoot}${editable ? "" : " (read-only)"} — press Ctrl+C to stop`,
+  );
 }
 
 const COMMANDS = {
@@ -886,6 +836,7 @@ export async function runCli(argv, deps = {}) {
     getAltAudioTransform = defaultGetAltAudioTransform,
     buildDeck = defaultBuildDeck,
     buildBookDeck = defaultBuildBookDeck,
+    rebuildBookDir = defaultRebuildBookDir,
     getLanguageFont = defaultGetLanguageFont,
     readFontBytes = defaultReadFontBytes,
     restyleApkgBuffer = defaultRestyleApkgBuffer,
@@ -948,6 +899,7 @@ export async function runCli(argv, deps = {}) {
     getAltAudioTransform,
     buildDeck,
     buildBookDeck,
+    rebuildBookDir,
     getLanguageFont,
     readFontBytes,
     restyleApkgBuffer,

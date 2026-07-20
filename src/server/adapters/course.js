@@ -1,6 +1,8 @@
 import { existsSync } from "fs";
 import { join } from "path";
-import { listCourses } from "../../cli/outputPaths.js";
+import { listCourses, loadCourseMeta } from "../../cli/outputPaths.js";
+import { loadBookMeta } from "../../corpus/epubLibrary.js";
+import { rebuildBookDir } from "../../deck/rebuild.js";
 import { scanNumberedUnits, isSafeMediaFile } from "./runDir.js";
 
 // Adapter for lesson-sourced course decks: output/courses/<slug>/lesson-N/. Structurally identical to
@@ -35,5 +37,22 @@ export const courseAdapter = {
     if (!/^\d+$/.test(String(unit)) || !isSafeMediaFile(file)) return null;
     const path = join(courseDir(outputRoot, id), `lesson-${unit}`, "audio", file);
     return existsSync(path) ? path : null;
+  },
+
+  unitDir(outputRoot, id, unit) {
+    if (!/^\d+$/.test(String(unit))) return null;
+    return join(courseDir(outputRoot, id), `lesson-${unit}`);
+  },
+
+  deckFile(outputRoot, id) {
+    return join(courseDir(outputRoot, id), "deck.apkg");
+  },
+
+  rebuild(outputRoot, id) {
+    return rebuildBookDir(courseDir(outputRoot, id), { loadBookMeta, loadCourseMeta });
+  },
+
+  deckLanguage(outputRoot, id) {
+    return listCourses(outputRoot).find((c) => c.slug === id)?.targetLanguage ?? null;
   },
 };

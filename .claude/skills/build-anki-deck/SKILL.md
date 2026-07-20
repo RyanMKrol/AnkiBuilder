@@ -631,8 +631,26 @@ Courses, and Templates — and clicking one opens a deck page with the **same ed
 table and an inline audio player each. Unlike the `view-deck` artifact, the dashboard **serves audio
 over HTTP** rather than inlining it as base64, so a whole deck browses on **one page with no ~16 MB
 size cap** (no part-splitting). This is the preferred way to browse a large deck; `view-deck` remains
-for producing a self-contained shareable artifact. It's read-only and serves from the build folders,
-so it always reflects the current `cards.json`/audio; stop it with Ctrl+C.
+for producing a self-contained shareable artifact. It serves from the build folders, so it always
+reflects the current `cards.json`/audio; stop it with Ctrl+C.
+
+**Edit a card's audio + rebuild, from the dashboard (2–3 clicks).** By default the dashboard is
+**editable** — each card row has **Replace** and **Generate** controls, and the header has a **Rebuild
+deck** button:
+- **Replace** — pick a local audio file; it's stored in the deck's `audio/` under a server-generated
+  name and set as that card's `audio` (validated), and the row's player updates in place.
+- **Generate** — calls **ElevenLabs** to synthesize the card's usual variant takes (the dot × comma ×
+  brackets Cartesian, codified in `src/audio/variants.js`) and shows them in a modal to audition;
+  **Use this** applies one. Requires `ELEVENLABS_API_KEY` (the server loads `.env` on start); pick the
+  voice with `--voice` if the language has no default. Generating costs credits (up to 8 calls/card,
+  cached by content hash so repeats are free) and doesn't touch `cards.json` until you pick.
+- **Rebuild deck** — regenerates the deck's `.apkg` **using the exact same assembly as
+  `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`), then shows a **Download** link and
+  the on-disk `deck.apkg` path. Import that into Anki (stable note GUIDs → updates in place).
+
+So a spot-check is: Replace/Generate on a row → **Rebuild deck** → Download/Import. Start with
+**`serve --read-only`** to disable all of this (the edit controls disappear and the write routes 403).
+Edits write straight to `cards.json` + `audio/`; the previous clip is left on disk.
 
 **Extending the dashboard for a new deck format (required pipeline step).** The dashboard ingests each
 deck layout through a **format adapter** in `src/server/adapters/` (`book.js`, `course.js`,

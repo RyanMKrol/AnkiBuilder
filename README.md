@@ -69,10 +69,13 @@ Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` a
 
 To browse your decks without importing them into Anki, run the local dashboard — it lists every built
 deck and opens each to a page of collapsible lessons with audio played inline (served over HTTP, so no
-size limit):
+size limit). It's also a lightweight **editor**: replace a card's clip (upload) or **Generate** new
+ElevenLabs variants to pick from, then **Rebuild deck** to regenerate the `.apkg` for re-import — a few
+clicks, no round-trip through the tooling. Start with `--read-only` to browse-only.
 
 ```sh
 npm run serve                 # then open the printed http://localhost:… URL (Ctrl+C to stop)
+npm run serve -- --read-only  # browse only, no editing
 ```
 
 (`npm run serve` is just `anki-builder serve`; pass a different port with `npm run serve -- --port 5000`.)
@@ -152,7 +155,8 @@ npm run build
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
 - [x] `serve` — local deck-dashboard web app (Node builtins only): lists every built deck and opens
       each to collapsible lessons with audio streamed over HTTP (no size cap); pluggable per-format
-      adapters (`src/server/adapters/`)
+      adapters (`src/server/adapters/`). Also an editor — replace/generate a card's audio and rebuild
+      the `.apkg` in place (`--read-only` to disable)
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki

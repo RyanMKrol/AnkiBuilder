@@ -413,3 +413,25 @@ templates have a single unit (the `<lang>` folder). The deck `id` is the slug (b
 `<template>__<lang>` (templates). **Contract: a new on-disk deck format ⇒ a new adapter module +
 registry line** — that one change is what makes the dashboard ingest it. `/media` enforces
 path-safety (filename regex + a `realpath`-within-`outputRoot` check) and supports `Range` requests.
+
+### Dashboard editing (`serve`, editable by default)
+
+The dashboard is also a lightweight editor (disable with `serve --read-only`). Beyond the read routes,
+the server (`src/server/index.js`) exposes, gated on `editable`:
+
+- `POST /api/deck/:type/:id/unit/:unit/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a
+  replacement clip. Stored in the unit's `audio/` under a server-generated `<cardId>-user-<hash>.<ext>`
+  name and set as the card's `audio` (via `applyCardAudio`, which validates cards.json). 10 MB cap.
+- `POST …/card/:cardId/generate` — synthesizes the card's variant takes via ElevenLabs
+  (`generateCardVariants` + the codified axes in `src/audio/variants.js`), caching each under its
+  `hash(ttsText).mp3` name; returns the list for the modal. Needs `ELEVENLABS_API_KEY`; picks the
+  language's default voice or `--voice`. Does not modify cards.json.
+- `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`).
+- `POST /api/deck/:type/:id/rebuild` — regenerate `<deckDir>/deck.apkg` via `src/deck/rebuild.js`
+  (`rebuildBookDir`/`rebuildRunDir`) — the **same** assembly the CLI's `deck --book-dir`/`deck --run`
+  use, so a browser rebuild is byte-identical. `GET /download/:type/:id/deck.apkg` streams it.
+
+Card targeting is by cards.json item `id`; all written filenames are server-generated + validated, and
+every write path is realpath-checked to stay inside `outputRoot`. Note the same folder-seq vs
+`chapterNumber` nuance as a CLI rebuild: the merged deck orders sub-decks by folder seq, the dashboard
+displays by `chapterNumber` (they coincide unless a book was built out of order).

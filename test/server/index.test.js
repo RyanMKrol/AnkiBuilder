@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
@@ -35,20 +35,28 @@ function fixture() {
   return root;
 }
 
-// Injected font deps so the test doesn't depend on the bundled asset.
+// Injected deps so the tests don't depend on the bundled font, a real ElevenLabs key, or the network.
 const fontDeps = {
   getLanguageFont: () => ({ family: "X" }),
   readFontBytes: () => Buffer.from("FONTBYTES"),
 };
+const editDeps = {
+  ...fontDeps,
+  getDefaultVoice: () => "voice1",
+  fetchTts: async (text) => Buffer.from("TTS:" + text),
+  getApiKey: () => "test-key",
+};
 
-async function withServer(root, fn) {
-  const { server, url } = await startDeckServer({ port: 0, outputRoot: root, ...fontDeps });
+async function withServer(root, fn, opts = fontDeps) {
+  const { server, url } = await startDeckServer({ port: 0, outputRoot: root, ...opts });
   try {
     return await fn(url);
   } finally {
     server.close();
   }
 }
+
+const asJson = async (res) => ({ status: res.status, body: await res.json() });
 
 test("dashboard lists decks; deck page has collapsible lessons + audio URLs; media streams bytes", async () => {
   const root = fixture();
@@ -103,7 +111,8 @@ test("path traversal, unknown routes, and non-GET are rejected", async () => {
       assert.equal((await fetch(`${url}/deck/book/nope`)).status, 404);
       assert.equal((await fetch(`${url}/deck/nosuchtype/x`)).status, 404);
       assert.equal((await fetch(`${url}/nonsense`)).status, 404);
-      assert.equal((await fetch(`${url}/`, { method: "POST" })).status, 405);
+      assert.equal((await fetch(`${url}/`, { method: "POST" })).status, 404); // non-write POST route
+      assert.equal((await fetch(`${url}/`, { method: "PUT" })).status, 405); // unsupported method
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -132,6 +141,226 @@ test("empty output shows an empty-state, not a 500", async () => {
       assert.equal(res.status, 200);
       assert.match(await res.text(), /No built decks found/);
     });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Editor: upload / generate / select / rebuild / download (editable server).
+// ---------------------------------------------------------------------------
+
+test("editable deck page shows Replace/Generate/Rebuild controls", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        assert.match(html, /Rebuild deck/);
+        assert.match(html, /class="repl"/);
+        assert.match(html, /class="gen"/);
+        assert.match(html, /data-card-id="a"/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("upload writes a new clip, updates cards.json, and /media serves the new bytes", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        // card b starts with NO audio → upload adds the field
+        const up = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/b/audio?ext=mp3`, {
+            method: "POST",
+            body: Buffer.from("NEW-BYTES"),
+          }),
+        );
+        assert.equal(up.status, 200);
+        assert.match(up.body.audio, /^b-user-[0-9a-f]{8}\.mp3$/);
+
+        const cards = JSON.parse(
+          readFileSync(join(root, "epubs/mybook/chapter-0/cards.json"), "utf-8"),
+        );
+        assert.equal(cards.items.find((i) => i.id === "b").audio, up.body.audio);
+
+        const media = await fetch(`${url}${up.body.mediaUrl}`);
+        assert.equal(media.status, 200);
+        assert.equal(await media.text(), "NEW-BYTES");
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("generate returns variants (stubbed TTS) without touching cards.json; select applies one", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const before = readFileSync(join(root, "epubs/mybook/chapter-0/cards.json"), "utf-8");
+        const gen = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/generate`, { method: "POST" }),
+        );
+        assert.equal(gen.status, 200);
+        assert.equal(gen.body.variants.length, 2); // plain ja card → no 。 / with 。
+        // stubbed clip is reachable
+        assert.equal((await fetch(`${url}${gen.body.variants[0].mediaUrl}`)).status, 200);
+        // generation did not mutate cards.json
+        assert.equal(
+          readFileSync(join(root, "epubs/mybook/chapter-0/cards.json"), "utf-8"),
+          before,
+        );
+
+        const sel = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/select`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ audio: gen.body.variants[0].audio }),
+          }),
+        );
+        assert.equal(sel.status, 200);
+        const cards = JSON.parse(
+          readFileSync(join(root, "epubs/mybook/chapter-0/cards.json"), "utf-8"),
+        );
+        assert.equal(cards.items.find((i) => i.id === "a").audio, gen.body.variants[0].audio);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("rebuild regenerates deck.apkg and /download streams it as an attachment", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        // replace card a's clip, then rebuild
+        await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio?ext=mp3`, {
+          method: "POST",
+          body: Buffer.from("REBUILT-CLIP"),
+        });
+        const rb = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/rebuild`, { method: "POST" }),
+        );
+        assert.equal(rb.status, 200);
+        assert.equal(rb.body.noteCount, 2);
+        assert.match(rb.body.apkgPath, /mybook[/\\]deck\.apkg$/);
+
+        const dl = await fetch(`${url}${rb.body.downloadUrl}`);
+        assert.equal(dl.status, 200);
+        assert.equal(dl.headers.get("content-type"), "application/octet-stream");
+        assert.match(dl.headers.get("content-disposition"), /attachment; filename="mybook\.apkg"/);
+        assert.ok((await dl.arrayBuffer()).byteLength > 0);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("read-only server hides the edit UI and 403s the write routes", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        assert.doesNotMatch(html, /Rebuild deck/);
+        assert.doesNotMatch(html, /class="repl"/);
+        assert.equal(
+          (await fetch(`${url}/api/deck/book/mybook/rebuild`, { method: "POST" })).status,
+          403,
+        );
+      },
+      { ...editDeps, editable: false },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("editor input errors: bad ext 400, oversized 413, unknown card 404, missing key 503", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        assert.equal(
+          (
+            await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio?ext=exe`, {
+              method: "POST",
+              body: Buffer.from("x"),
+            })
+          ).status,
+          400,
+        );
+        assert.equal(
+          (
+            await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio?ext=mp3`, {
+              method: "POST",
+              body: Buffer.alloc(11 * 1024 * 1024),
+            })
+          ).status,
+          413,
+        );
+        assert.equal(
+          (
+            await fetch(`${url}/api/deck/book/mybook/unit/0/card/nope/audio?ext=mp3`, {
+              method: "POST",
+              body: Buffer.from("x"),
+            })
+          ).status,
+          404,
+        );
+      },
+      editDeps,
+    );
+    // no ElevenLabs key → 503 on generate
+    await withServer(
+      root,
+      async (url) => {
+        assert.equal(
+          (await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/generate`, { method: "POST" }))
+            .status,
+          503,
+        );
+      },
+      { ...editDeps, getApiKey: () => undefined },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("rebuild with a chapter missing cards.json returns 409", async () => {
+  const root = fixture();
+  try {
+    // add an unbuilt chapter dir → rebuild's assembly throws → 409
+    mkdirSync(join(root, "epubs/mybook/chapter-1"), { recursive: true });
+    await withServer(
+      root,
+      async (url) => {
+        assert.equal(
+          (await fetch(`${url}/api/deck/book/mybook/rebuild`, { method: "POST" })).status,
+          409,
+        );
+      },
+      editDeps,
+    );
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

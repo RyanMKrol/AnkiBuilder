@@ -48,7 +48,29 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .deck:hover{border-color:var(--accent)}
 .deck .dt{font-family:var(--serif);font-size:18px;margin-bottom:6px}
 .deck .dm{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
-.grp{margin-top:30px}.grp h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 2px;border-bottom:2px solid var(--accent);padding-bottom:6px}`;
+.grp{margin-top:30px}.grp h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 2px;border-bottom:2px solid var(--accent);padding-bottom:6px}
+/* editor: per-row controls */
+.au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.au .ed button,.au .ed label.btn{font:inherit;font-size:11px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 9px;cursor:pointer}
+.au .ed button:hover,.au .ed label.btn:hover{border-color:var(--accent)}
+.au .ed .msg{font-size:10.5px;color:var(--faint)}
+/* editor: rebuild toolbar */
+.rb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:6px}
+.rb a.dl{font-size:12.5px;color:var(--accent);font-weight:600}
+.rb .path{font-family:var(--mono);font-size:11px;color:var(--faint);word-break:break-all}
+/* editor: generate modal */
+.modal{position:fixed;inset:0;background:rgba(35,32,28,.5);display:flex;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal[hidden]{display:none}
+.modal-box{background:var(--paper);border:1px solid var(--rule2);border-radius:12px;max-width:640px;width:100%;max-height:85vh;overflow:auto;padding:22px 24px}
+.modal-box h3{font-family:var(--serif);font-weight:500;font-size:19px;margin:0 0 4px}
+.modal-box .sub{font-size:13px;color:var(--soft);margin:0 0 14px}
+.vlist{display:flex;flex-direction:column;gap:8px}
+.vrow{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--card)}
+.vrow .vlabel{font-size:12px;color:var(--soft);min-width:130px}.vrow audio{height:30px;width:170px}
+.vrow button{margin-left:auto;font:inherit;font-size:12px;color:#fff;background:var(--accent);border:none;border-radius:7px;padding:5px 12px;cursor:pointer}
+.modal-foot{display:flex;justify-content:flex-end;margin-top:16px}
+.modal-foot button{font:inherit;font-size:13px;color:var(--soft);background:none;border:1px solid var(--rule2);border-radius:8px;padding:6px 14px;cursor:pointer}
+.spin{font-size:13px;color:var(--soft)}`;
 
 // The @font-face rule for the target-script font. Pass { base64 } for an inlined data URI (static
 // artifact) or { url } for a served asset (dashboard). Returns "" when no font is supplied.
@@ -68,7 +90,89 @@ export const EXPAND_COLLAPSE_SCRIPT = `(function () {
   var c = document.getElementById("call"); if (c) c.addEventListener("click", function () { setAll(false); });
 })();`;
 
-const cardRow = (c, n, audioCell) => `<tr class="row">
+// Client wiring for the editor (only included when the dashboard is editable). Reads the deck
+// type/id from the #rebuild button; per-row card id/unit from each <tr>'s data-* attributes. Vanilla
+// JS, no template literals / ${} (it's embedded in a template literal). Handles: Replace (raw upload),
+// Generate (ElevenLabs variants in a modal → Use this), and Rebuild (→ download link + on-disk path).
+export const DECK_EDIT_SCRIPT = `(function () {
+  var rebuildBtn = document.getElementById("rebuild");
+  if (!rebuildBtn) return;
+  var type = rebuildBtn.getAttribute("data-type");
+  var id = rebuildBtn.getAttribute("data-id");
+  var base = "/api/deck/" + encodeURIComponent(type) + "/" + encodeURIComponent(id);
+  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  var rowRef = function (el) {
+    var tr = el.closest("tr");
+    return { tr: tr, cid: tr.getAttribute("data-card-id"), unit: tr.getAttribute("data-unit"),
+             msg: tr.querySelector(".msg") };
+  };
+  var swap = function (tr, url) {
+    var cell = tr.querySelector("td.au");
+    var a = cell.querySelector("audio");
+    if (a) { a.src = url; return; }
+    var na = document.createElement("audio"); na.controls = true; na.preload = "none"; na.src = url;
+    var x = cell.querySelector(".x"); if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
+  };
+  document.querySelectorAll("input.repl").forEach(function (inp) {
+    inp.addEventListener("change", function () {
+      var f = inp.files[0]; if (!f) return;
+      var r = rowRef(inp); var ext = (f.name.split(".").pop() || "mp3").toLowerCase();
+      if (r.msg) r.msg.textContent = "uploading…";
+      fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio?ext=" + encodeURIComponent(ext), { method: "POST", body: f })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "upload failed"); swap(r.tr, x.j.mediaUrl); if (r.msg) r.msg.textContent = "\\u2713 replaced"; })
+        .catch(function (e) { if (r.msg) r.msg.textContent = e.message; });
+      inp.value = "";
+    });
+  });
+  var modal = document.getElementById("gen-modal");
+  var closeModal = function () { modal.hidden = true; modal.querySelector(".vlist").innerHTML = ""; };
+  document.querySelectorAll("button.gen").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var r = rowRef(btn); modal.hidden = false;
+      var list = modal.querySelector(".vlist"); list.innerHTML = '<div class="spin">Generating variants via ElevenLabs\\u2026</div>';
+      fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/generate", { method: "POST" })
+        .then(jsonp).then(function (x) {
+          if (!x.ok) throw new Error(x.j.error || "generation failed");
+          list.innerHTML = "";
+          x.j.variants.forEach(function (v) {
+            var row = document.createElement("div"); row.className = "vrow";
+            var lab = document.createElement("span"); lab.className = "vlabel"; lab.textContent = v.label;
+            var au = document.createElement("audio"); au.controls = true; au.preload = "none"; au.src = v.mediaUrl;
+            var use = document.createElement("button"); use.textContent = "Use this";
+            use.addEventListener("click", function () {
+              fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio }) })
+                .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); swap(r.tr, y.j.mediaUrl); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; })
+                .catch(function (e) { alert(e.message); });
+            });
+            row.appendChild(lab); row.appendChild(au); row.appendChild(use); list.appendChild(row);
+          });
+        })
+        .catch(function (e) { list.innerHTML = '<div class="spin"></div>'; list.firstChild.textContent = e.message; });
+    });
+  });
+  modal.querySelector(".close").addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+  var status = document.getElementById("rebuild-status");
+  rebuildBtn.addEventListener("click", function () {
+    rebuildBtn.disabled = true; status.textContent = "rebuilding\\u2026";
+    fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
+      if (!x.ok) throw new Error(x.j.error || "rebuild failed");
+      status.innerHTML = "";
+      var a = document.createElement("a"); a.className = "dl"; a.href = x.j.downloadUrl; a.setAttribute("download", "");
+      a.textContent = "\\u2913 Download .apkg (" + x.j.noteCount + " cards)";
+      var p = document.createElement("span"); p.className = "path"; p.textContent = x.j.apkgPath;
+      status.appendChild(a); status.appendChild(p);
+    }).catch(function (e) { status.textContent = e.message; }).finally(function () { rebuildBtn.disabled = false; });
+  });
+})();`;
+
+const cardRow = (
+  c,
+  n,
+  audioCell,
+) => `<tr class="row"${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}${
+  c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""
+}>
   <td class="num">${n}</td>
   <td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}</td>
   <td class="jp">${escapeHtml(c.target)}</td>

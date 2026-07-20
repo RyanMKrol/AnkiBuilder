@@ -618,6 +618,28 @@ deck is split into numbered parts (`<out>-part1.html`, …) so no page exceeds t
 card numbering runs continuously across the parts. Use this to review or re-read a whole deck at a
 glance without importing it into Anki.
 
+### Browse decks in the local dashboard (no size cap)
+```sh
+anki-builder serve [--output-root output] [--port 4321]
+```
+Starts a small local web app (Node builtins, no external deps) and prints a `http://localhost:<port>`
+URL. The home page lists **every built deck** discovered under `output/` — grouped into Books,
+Courses, and Templates — and clicking one opens a deck page with the **same editorial style as the
+`view-deck` artifact**: collapsible per-lesson `<details>` sections (collapsed by default) with a card
+table and an inline audio player each. Unlike the `view-deck` artifact, the dashboard **serves audio
+over HTTP** rather than inlining it as base64, so a whole deck browses on **one page with no ~16 MB
+size cap** (no part-splitting). This is the preferred way to browse a large deck; `view-deck` remains
+for producing a self-contained shareable artifact. It's read-only and serves from the build folders,
+so it always reflects the current `cards.json`/audio; stop it with Ctrl+C.
+
+**Extending the dashboard for a new deck format (required pipeline step).** The dashboard ingests each
+deck layout through a **format adapter** in `src/server/adapters/` (`book.js`, `course.js`,
+`template.js`), registered in `src/server/adapters/index.js`. Each adapter implements
+`listDecks` / `loadDeck` / `resolveMedia`. **If a new on-disk deck format/layout is ever introduced**
+(a new folder shape under `output/`, or a fundamentally different deck source), **add a new adapter
+module for it and register it** — that one change is what makes the dashboard ingest the new type.
+Treat this as part of shipping any new deck format, alongside the assemble/build changes.
+
 ## Environment Variables
 
 Set in `.env` or export to your shell:

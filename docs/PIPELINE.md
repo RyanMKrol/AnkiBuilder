@@ -395,3 +395,21 @@ segments slugified so `--lang ja` and `--lang Japanese` become stable folder nam
 `japanese`); re-assembling the same pair reuses the folder via assemble's "corpus.json already
 exists — reusing" guard. A template built with a plain `--run <dir>` (no `--output-root`) still
 lands wherever you point it, unchanged.
+
+## Deck dashboard (`serve`)
+
+`anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) that browses the built
+decks under `output/`. The home page lists every deck; a deck page renders its lessons as collapsible
+`<details>` sections with a card table and an inline `<audio>` per card, in the same editorial style as
+the `view-deck` artifact (the shared chrome lives in `src/review/deckViewChrome.js`, used by both).
+The crucial difference from `view-deck`: audio is **served over HTTP** from `/media/...` rather than
+inlined as base64, so a whole deck renders on one page with no ~16 MB Artifact ceiling.
+
+Discovery is pluggable through a **format-adapter registry** (`src/server/adapters/`). Each adapter
+(`book`, `course`, `template`) implements `listDecks(outputRoot)`, `loadDeck(outputRoot, id)`, and
+`resolveMedia(outputRoot, id, unit, file)`, and is registered in `adapters/index.js`. Books/courses
+scan their `chapter-*/`/`lesson-*/` units and order them by `meta.chapterNumber` (not folder seq);
+templates have a single unit (the `<lang>` folder). The deck `id` is the slug (books/courses) or
+`<template>__<lang>` (templates). **Contract: a new on-disk deck format ⇒ a new adapter module +
+registry line** — that one change is what makes the dashboard ingest it. `/media` enforces
+path-safety (filename regex + a `realpath`-within-`outputRoot` check) and supports `Range` requests.

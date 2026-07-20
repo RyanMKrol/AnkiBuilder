@@ -64,6 +64,7 @@ import { renderTranslateReviewPage as defaultRenderTranslateReviewPage } from ".
 import { renderAudioReviewPage as defaultRenderAudioReviewPage } from "../review/renderAudioReviewPage.js";
 import { renderDeckViewPage as defaultRenderDeckViewPage } from "../review/renderDeckViewPage.js";
 import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
+import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
 
 const REVIEW_STAGES = ["corpus", "translate", "audio"];
 
@@ -820,6 +821,20 @@ async function runViewDeck(flags, ctx) {
   );
 }
 
+// Starts the local deck-dashboard web server: a browsable index of every built deck, each opening to a
+// page of collapsible lessons with audio streamed over HTTP (no Artifact size cap, unlike view-deck).
+// Long-running — the listening server keeps the process alive until Ctrl+C.
+async function runServe(flags, ctx) {
+  const outputRoot = flags["output-root"] ? resolve(flags["output-root"]) : resolve("output");
+  const port = flags.port ? Number(flags.port) : 4321;
+  if (!Number.isInteger(port) || port < 0 || port > 65535) {
+    throw new Error(`--port must be a valid port number (got ${JSON.stringify(flags.port)})`);
+  }
+  const { url } = await ctx.startDeckServer({ port, outputRoot });
+  ctx.log(`deck dashboard running at ${url}`);
+  ctx.log(`serving decks from ${outputRoot} — press Ctrl+C to stop`);
+}
+
 const COMMANDS = {
   assemble: runAssemble,
   review: runReview,
@@ -829,6 +844,7 @@ const COMMANDS = {
   "restyle-font": runRestyleFont,
   "render-review": runRenderReview,
   "view-deck": runViewDeck,
+  serve: runServe,
 };
 
 export async function runCli(argv, deps = {}) {
@@ -879,6 +895,7 @@ export async function runCli(argv, deps = {}) {
     renderAudioReviewPage = defaultRenderAudioReviewPage,
     renderDeckViewPage = defaultRenderDeckViewPage,
     readApkg = defaultReadApkg,
+    startDeckServer = defaultStartDeckServer,
     log = console.log,
   } = deps;
 
@@ -940,6 +957,7 @@ export async function runCli(argv, deps = {}) {
     renderAudioReviewPage,
     renderDeckViewPage,
     readApkg,
+    startDeckServer,
     log,
   };
 

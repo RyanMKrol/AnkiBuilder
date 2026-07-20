@@ -578,3 +578,17 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   re-exported in the classic format (Anki can do this).
 - **When to revisit:** subset the font to the glyphs a deck actually uses (needs a subsetter) to
   shrink it; add `anki21b` support to `restyle-font` if a real deck needs it.
+
+### Deck dashboard (`serve`) reads build folders, is localhost-only, no `.apkg` ingestion yet
+- **What:** the `serve` dashboard discovers decks from the `output/` **build folders** (`cards.json` +
+  `audio/`), not from arbitrary `.apkg` files, and binds `localhost` with **no authentication**. Only
+  the built-in formats (book/course/template) are ingested — a new layout needs a new adapter.
+- **Why:** build folders are richer (reading/notes/category) and always current, and their layouts map
+  1:1 to adapters (the "new format ⇒ new adapter" extension model). HTTP audio streaming removes the
+  base64 size cap that forces `view-deck` to split into parts. Localhost/no-auth is fine for a
+  single-user local tool.
+- **Impact:** can't point the dashboard at a loose downloaded `.apkg`; not safe to expose on a shared
+  network as-is.
+- **When to revisit:** add an `apkg.js` adapter (buffer-backed media route, since `readApkg` returns
+  in-memory audio) behind the same interface if browsing arbitrary packages is wanted; add auth/bind
+  options before exposing beyond localhost.

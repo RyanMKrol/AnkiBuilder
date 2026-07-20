@@ -36,6 +36,8 @@ export function toRenderCard(item) {
     note: item.notes || "",
     audio: item.audio || null,
     excluded: !!item.excluded,
+    uncertain: !!item.uncertain,
+    aiSuggested: !!item.aiSuggested,
   };
 }
 
@@ -66,6 +68,8 @@ export function toTranslateRenderCard(item) {
     category: item.category || "",
     note: item.notes || "",
     excluded: !!item.excluded,
+    uncertain: !!item.uncertain,
+    aiSuggested: !!item.aiSuggested,
   };
 }
 

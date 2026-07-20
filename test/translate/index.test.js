@@ -61,6 +61,29 @@ test("drops corpus items marked excluded before translating", async () => {
   assert.ok(!sentIds.includes("drop"), "excluded item is never sent to the model");
 });
 
+test("carries uncertain + aiSuggested provenance flags from the corpus onto the translated card", async () => {
+  const corpus = baseCorpus([
+    { ...untranslated("a", "Alpha", "Greetings"), aiSuggested: true },
+    { ...untranslated("b", "Beta", "Greetings"), uncertain: true },
+    untranslated("c", "Gamma", "Greetings"),
+  ]);
+
+  const { cards } = await translateCorpus(corpus, {
+    runClaude: () =>
+      JSON.stringify([
+        { id: "a", target: "A", pronunciation: "a" },
+        { id: "b", target: "B", pronunciation: "b" },
+        { id: "c", target: "C", pronunciation: "c" },
+      ]),
+  });
+
+  const byId = Object.fromEntries(cards.items.map((c) => [c.id, c]));
+  assert.equal(byId.a.aiSuggested, true); // survives into cards.json (and validates)
+  assert.equal(byId.b.uncertain, true);
+  assert.equal("aiSuggested" in byId.c, false); // unflagged items stay clean
+  assert.equal("uncertain" in byId.c, false);
+});
+
 test("includes an optional hint when the model supplies one (full-translation path)", async () => {
   const corpus = baseCorpus([untranslated("thanks", "Thanks", "Greetings")]);
 

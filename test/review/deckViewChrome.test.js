@@ -54,6 +54,39 @@ test("DECK_EDIT_SCRIPT auto-rebuilds after a successful upload and a successful 
   assert.match(DECK_EDIT_SCRIPT, /base \+ "\/rebuild"/);
 });
 
+test("renderLessonSections badges AI-suggested / Uncertain at every stage (corpus, translate, audio)", () => {
+  const cards = [
+    {
+      id: "a",
+      english: "one",
+      target: "いち",
+      pronunciation: "ichi",
+      category: "Numbers",
+      note: "",
+      audio: null,
+      aiSuggested: true,
+    },
+    {
+      id: "b",
+      english: "two",
+      target: "に",
+      pronunciation: "ni",
+      category: "Numbers",
+      note: "",
+      audio: null,
+      uncertain: true,
+    },
+  ];
+  for (const stage of ["corpus", "translate", "audio"]) {
+    const { html } = renderLessonSections({
+      sections: [{ leaf: "L", stage, cards }],
+      audioCell: () => "",
+    });
+    assert.match(html, /AI-suggested/, `${stage} stage shows the AI-suggested badge`);
+    assert.match(html, /Uncertain/, `${stage} stage shows the Uncertain badge`);
+  }
+});
+
 test("DECK_VIEW_CSS carries the shared palette and collapsible-lesson styling", () => {
   assert.match(DECK_VIEW_CSS, /--paper:#ece8df/);
   assert.match(DECK_VIEW_CSS, /--accent:#7a3b36/);

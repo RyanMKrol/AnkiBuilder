@@ -266,6 +266,18 @@ digits break both (kuroshiro renders `2,000えん` as `2 , 000 en`, and ElevenLa
 English). The corpus review shows a **Reading (spoken)** column whenever any item has one, so you can
 verify the kana; if a reading's counter looks wrong, tell me and I'll fix it.
 
+**Provenance flags are core, persisted, and shown at EVERY review stage.** Two boolean fields track
+where an item came from: **`aiSuggested`** (you/the model added this item as a critical-gap suggestion,
+not from the source) and **`uncertain`** (the extractor flagged it as possibly premature or already
+taught). Both are first-class fields carried **all the way through the pipeline** — set at assemble,
+preserved by `translate` into `cards.json` (never auto-cleared), so the record survives for auditing
+over time. The dashboard **badges them at every gate** — a coloured **AI-suggested** / **Uncertain**
+badge in the corpus Flags column and inline under the English gloss at the translate and audio reviews
+— so a reviewer can always see, without asking, which items are AI-added or flagged. When you author
+items yourself (e.g. AI suggestions on a dictated lesson), set `aiSuggested: true` on them so they're
+visibly delineated. Reviewing a flagged item does **not** clear the flag; it's informational
+provenance, kept indefinitely.
+
 **Fill-in-the-blank (FIB) cards must be semantically de-duped against the corpus.** When AI-generated
 fill-in-the-blank practice sentences are added (marked `"fillInBlank": true`, mixed into the lesson
 and clearly delineated in reviews), they are prone to **pattern overlap** — regenerating a sentence

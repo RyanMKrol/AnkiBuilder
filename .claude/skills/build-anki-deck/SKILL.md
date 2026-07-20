@@ -610,7 +610,9 @@ anki-builder view-deck --apkg <path/to/deck.apkg> [--out <file.html>]
 Reads a finished `.apkg` back and writes a **read-only deck-browser** HTML page in the same editorial
 format as the audio review — every card grouped by its sub-deck, fields laid out for scanning, and the
 deck's own audio clip embedded inline per card (one player each, the take that's actually in the deck).
-Publish the output as a Claude Artifact. It reads the legacy `collection.anki2`/`collection.anki21`
+Each sub-deck is a **collapsible `<details>` section, collapsed by default** (its summary shows the
+lesson name, card count, and global row range), plus **Expand all / Collapse all** controls — so you
+can work through the deck one lesson at a time. Publish the output as a Claude Artifact. It reads the legacy `collection.anki2`/`collection.anki21`
 format a deck built here uses (modern zstd `collection.anki21b` exports are not supported). A large
 deck is split into numbered parts (`<out>-part1.html`, …) so no page exceeds the Artifact size limit;
 card numbering runs continuously across the parts. Use this to review or re-read a whole deck at a

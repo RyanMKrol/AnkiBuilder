@@ -38,6 +38,13 @@ test("renderDeckViewPage embeds one player per card with audio, global numbering
   assert.match(html, /My Book/);
   assert.match(html, /Lesson 1/);
   assert.match(html, /こんにちは/);
+  // each lesson is a collapsible <details>, collapsed by default (no `open` attribute)
+  assert.match(html, /<details class="lesson">/);
+  assert.doesNotMatch(html, /<details class="lesson" open>/);
+  assert.match(html, /<summary>/);
+  // expand/collapse-all controls are present
+  assert.match(html, /Expand all/);
+  assert.match(html, /Collapse all/);
   // only the card with audioData gets a player
   assert.equal((html.match(/<audio controls/g) || []).length, 1);
   assert.match(html, /data:audio\/mpeg;base64,Y2xpcDE=/); // base64("clip1")

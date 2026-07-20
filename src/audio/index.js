@@ -101,11 +101,12 @@ export async function generateAudio(
   // as pauses. `target`/`reading` keep their editorial spaces for display; only the audio loses them.
   const ttsTextFor = (item) => normalizeTtsText(speechText(item), languageCode);
 
-  // Default vs. alt take. For a language with a transform (Japanese appends 。), the WITH-。 take is
-  // the DEFAULT — a trailing 。 gives ElevenLabs a sentence boundary and fixes many mis-rendered
-  // short/bare clips (lone kana, some numbers) — and the plain (no-。) take is the ALT you can switch
-  // a card to. Languages with no transform get a single plain take as the default and no alt. The
-  // displayed target/reading never carries a 。; the dot is audio-only.
+  // The DEFAULT (and only up-front) take. For a language with a transform (Japanese appends 。), the
+  // WITH-。 take is the default — a trailing 。 gives ElevenLabs a sentence boundary and fixes many
+  // mis-rendered short/bare clips (lone kana, some numbers). Languages with no transform get the plain
+  // take. Every OTHER variant — the no-。 take, comma/bracket forms, and kana+kanji — is generated ON
+  // DEMAND in the dashboard, not here. The displayed target/reading never carries a 。; the dot is
+  // audio-only.
   const altTransform = getAltTransform(languageCode);
   const defaultTextFor = (item) =>
     altTransform ? altTransform(ttsTextFor(item)) : ttsTextFor(item);
@@ -116,28 +117,9 @@ export async function generateAudio(
   }
   const fetchedFiles = await fetchTermsToCache(uniqueTerms, audioDir, fetchCtx);
 
-  // Alt pass: when the target language has a transform, generate a SECOND recording per card from
-  // the PLAIN (untransformed) spoken text — the no-。 take. It hashes to a distinct filename, so it
-  // caches alongside the default with no collision. Languages with no transform get no alt audio and
-  // no `altAudio` field at all.
-  let altFetchedFiles = null;
-  if (altTransform) {
-    const uniqueAltTerms = new Set();
-    for (const item of cards.items) {
-      uniqueAltTerms.add(ttsTextFor(item));
-    }
-    altFetchedFiles = await fetchTermsToCache(uniqueAltTerms, audioDir, fetchCtx);
-  }
-
   const annotatedCards = {
     ...cards,
-    items: cards.items.map((item) => {
-      const annotated = { ...item, audio: fetchedFiles.get(defaultTextFor(item)) };
-      if (altFetchedFiles) {
-        annotated.altAudio = altFetchedFiles.get(ttsTextFor(item));
-      }
-      return annotated;
-    }),
+    items: cards.items.map((item) => ({ ...item, audio: fetchedFiles.get(defaultTextFor(item)) })),
   };
 
   return annotatedCards;

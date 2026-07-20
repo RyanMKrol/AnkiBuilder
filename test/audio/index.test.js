@@ -575,9 +575,10 @@ test("falls back to `target` when `reading` is an empty string", async () => {
 });
 
 // ---------------------------------------------------------------------------
-// Alt audio pass (per-language second recording — see src/audio/altAudio.js).
-// These call the real implementation with the real ja transform, overriding the
-// no-alt default that the wrapper at the top applies.
+// Default take (the ONLY clip generated up front — see src/audio/altAudio.js). For a language with a
+// transform (Japanese appends 。) the default IS the with-。 take; there is no second "alt" pass any
+// more (the no-。 take and every other variant are on-demand dashboard actions). These call the real
+// implementation with the real ja transform, overriding the no-alt default the wrapper applies.
 // ---------------------------------------------------------------------------
 
 async function withKey(fn) {
@@ -591,7 +592,7 @@ async function withKey(fn) {
   }
 }
 
-test("alt pass: a ja card's DEFAULT is the with-。 clip and its ALT is the plain clip", async () => {
+test("default: a ja card's default is the with-。 clip, and NO alt clip is generated", async () => {
   await withKey(async (tmpDir) => {
     const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
     const calls = [];
@@ -608,19 +609,16 @@ test("alt pass: a ja card's DEFAULT is the with-。 clip and its ALT is the plai
     // Mirrors hashTerm in src/audio/index.js.
     const clip = (t) => `${createHash("sha256").update(t).digest("hex").slice(0, 16)}.mp3`;
     const item = result.items[0];
-    assert.ok(item.audio, "default audio set");
-    assert.ok(item.altAudio, "alt audio set");
-    assert.notEqual(item.audio, item.altAudio, "default and alt have distinct filenames");
     assert.equal(item.audio, clip("はちじ。"), "default take is the with-。 clip");
-    assert.equal(item.altAudio, clip("はちじ"), "alt take is the plain (no-。) clip");
-    assert.deepEqual(new Set(calls), new Set(["はちじ", "はちじ。"]), "fetched plain + 。 variant");
+    assert.equal("altAudio" in item, false, "no altAudio field — the up-front alt pass is gone");
+    assert.deepEqual(calls, ["はちじ。"], "only the with-。 default is fetched");
 
     const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123", TTS_MODEL)));
-    assert.equal(files.length, 2, "both clips cached");
+    assert.equal(files.length, 1, "only the default clip is cached");
   });
 });
 
-test("alt pass: language with no transform yields no altAudio field", async () => {
+test("default: language with no transform yields no altAudio field", async () => {
   await withKey(async (tmpDir) => {
     const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
     const result = await generateAudioImpl(cards, {
@@ -634,7 +632,7 @@ test("alt pass: language with no transform yields no altAudio field", async () =
   });
 });
 
-test("alt pass: both clips are cached — a second run makes zero calls", async () => {
+test("default: the clip is cached — a second run makes zero calls", async () => {
   await withKey(async (tmpDir) => {
     const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
     const opts = (calls) => ({
@@ -649,15 +647,15 @@ test("alt pass: both clips are cached — a second run makes zero calls", async 
 
     const first = [];
     await generateAudioImpl(cards, opts(first));
-    assert.equal(first.length, 2, "first run fetches default + alt");
+    assert.equal(first.length, 1, "first run fetches the default only");
 
     const second = [];
     await generateAudioImpl(cards, opts(second));
-    assert.equal(second.length, 0, "second run is a full cache hit for both clips");
+    assert.equal(second.length, 0, "second run is a full cache hit");
   });
 });
 
-test("alt pass: alt is built from the spoken text (reading when present)", async () => {
+test("default: the clip is built from the spoken text (reading when present)", async () => {
   await withKey(async (tmpDir) => {
     const cards = baseCards([
       { id: "a1", english: "one", category: "Numbers", target: "一", reading: "いち" },
@@ -672,11 +670,7 @@ test("alt pass: alt is built from the spoken text (reading when present)", async
       libraryHomeDir: tmpDir,
       getAltTransform: getAltAudioTransform,
     });
-    assert.deepEqual(
-      new Set(calls),
-      new Set(["いち", "いち。"]),
-      "speaks the reading and its 。 variant, not the kanji target",
-    );
+    assert.deepEqual(calls, ["いち。"], "speaks the reading's 。 variant, not the kanji target");
   });
 });
 
@@ -741,11 +735,11 @@ test("ja: the text sent to TTS (and cache key) has spaces stripped, though targe
       libraryHomeDir: tmpDir,
       getAltTransform: getAltAudioTransform,
     });
-    // default + 。 alt, both space-free.
+    // default only, space-free; the with-。 default appends 。 to the already-。-terminated text.
     assert.deepEqual(
-      new Set(calls),
-      new Set(["これはフランスのワインです。", "これはフランスのワインです。。"]),
-      "spaces stripped before TTS; alt appends 。 to the stripped text",
+      calls,
+      ["これはフランスのワインです。。"],
+      "spaces stripped before TTS; the with-。 default appends 。 to the stripped text",
     );
   } finally {
     if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;

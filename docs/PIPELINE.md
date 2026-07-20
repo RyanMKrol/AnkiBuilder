@@ -85,11 +85,10 @@ meaningful (Spanish, French, …) are untouched.
 
 The stripped display text is dot-less, but the `。` lives on in the **audio**: the per-language
 transform (`src/audio/altAudio.js`, ja appends `。`) produces the **with-dot** take, and that take is
-the **default** embedded in the deck; the plain dot-less take is generated as the **alt** you can
-switch a card to. So every Japanese card carries both a with-dot (default) and a no-dot (alt, switchable)
-recording, while the displayed face/reading stays dot-less. The terminal `。` measurably steadies
-ElevenLabs' prosody (it anchors a sentence boundary), which is why with-dot is the default and both
-are always kept.
+the single **default** clip embedded in the deck, while the displayed face/reading stays dot-less. The
+terminal `。` measurably steadies ElevenLabs' prosody (it anchors a sentence boundary), which is why
+with-dot is the default. The plain dot-less take is no longer pre-generated as a second recording —
+it's one of the on-demand variants you can synthesize and switch to in the dashboard's audio review.
 
 The `--epub` source has two ways to choose _what_ to assemble.
 `--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the
@@ -211,11 +210,14 @@ different one. `--voice
 `DEFAULT_VOICES`, keyed by the same ISO 639-1 code) — an explicit `--voice` always overrides it;
 with neither, the stage still throws asking for one.
 
-**Alt audio (per-language second recording).** A language listed in `src/audio/altAudio.js`'s
-`ALT_AUDIO_TRANSFORMS` gets TWO clips per card. The transformed take is the DEFAULT (`audio`) and the
-plain untransformed take is the ALT (`altAudio`). Japanese appends a `。`: a trailing full stop gives
+**Default take only (per-language transform).** The stage generates exactly ONE clip per card — the
+default (`audio`). For a language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS`, that
+default is the _transformed_ take: Japanese appends a `。`, because a trailing full stop gives
 ElevenLabs a sentence boundary and empirically fixes many mis-rendered short/bare clips (lone kana,
-some numbers), so the with-`。` take is the default and the plain no-`。` take is the switchable alt.
+some numbers). Languages with no transform get the plain take. Every OTHER variant — the no-`。` take,
+comma/bracket forms, and kana+kanji — is generated **on demand** in the dashboard (see the audio
+review below), not up front. The displayed `target`/`reading` never carries a `。`; the dot is
+audio-only.
 
 **Per-language TTS text normalization (`src/audio/ttsText.js`'s `normalizeTtsText`).** The exact text
 sent to TTS (and used as the cache key) is the card's spoken text run through a per-language
@@ -223,8 +225,8 @@ normalizer. Japanese strips whitespace: `target`/`reading` keep their editorial 
 (これは フランスの ワインです。), but the audio is generated from the space-free form
 (これはフランスのワインです。) — because ElevenLabs voices each space as an audible pause (a spaced clip
 runs ~20-25% longer than its unspaced twin). Languages whose spaces are real word boundaries (Spanish,
-etc.) have no transform and are sent unchanged. The `。`alt transform composes on top of the normalized
-text.
+etc.) have no transform and are sent unchanged. The `。` default transform composes on top of the
+normalized text.
 
 **Trailing-silence trim (`src/audio/trimSilence.js`).** ElevenLabs leaves ~0.3s of silence plus a tiny
 end artifact ("blip") on every clip. Every clip returned by `fetchElevenLabsTts` (the single choke
@@ -240,13 +242,11 @@ clip is used unchanged — the audio build never breaks. Off with `ANKI_BUILDER_
 via `ANKI_BUILDER_TRIM_SILENCE_DB` / `_MIN_SILENCE_SEC` / `_MIN_SPEECH_SEC` / `_PAD_SEC`. Manual uploads
 via the dashboard are NOT trimmed (only ElevenLabs-generated clips).
 
-`generateAudio` runs
-the alt pass after the default one, reusing the same hash/cache/fetch machinery (the transformed text
-hashes to a distinct filename, so it caches alongside the default), and records the alt filename on
-the card as `altAudio`. Languages with no transform get one clip and no `altAudio` field — behaviour
-is unchanged for them. `audio --no-alt` skips the alt pass for a run. The deck build never embeds
-`altAudio`; it's a review-stage choice (see the audio review below), where a card can be switched to
-its alt (`audio` ← `altAudio`) or have its audio dropped.
+`generateAudio` fetches only the default clip per card (cache misses only). The legacy `altAudio`
+field is no longer written — switching a Japanese card to its plain no-`。` take is now an on-demand
+dashboard action (the Generate button synthesizes the no-`。` / comma / bracket variants to audition
+and pick), not a pre-baked second recording. The schema still tolerates `altAudio` on cards from older
+runs; the deck build never embeds it.
 
 ### `deck`
 

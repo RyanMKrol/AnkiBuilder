@@ -481,22 +481,12 @@ async function runAudio(flags, ctx) {
 
   const cards = readJson(paths.cards);
 
-  // A language with a configured alt-audio transform gets a second recording per card, unless
-  // `--no-alt` is passed. When alt audio is in play, a run only counts as "already done" if every
-  // card has BOTH its clips on disk — so enabling this feature backfills alt clips for a run that
-  // was processed before it existed (regeneration stays cheap: generateAudio only fetches cache
-  // misses).
-  const altEnabled = !flags["no-alt"];
-  const hasAlt =
-    altEnabled && !!ctx.getAltAudioTransform(resolveIso639Code(cards.meta.targetLanguage));
+  // Only the DEFAULT (kana+。 for Japanese) clip is generated up front — every other variant is an
+  // on-demand dashboard action. A run counts as "already done" once every card's default clip is on
+  // disk (regeneration stays cheap: generateAudio only fetches cache misses).
   const alreadyDone =
     cards.items.length > 0 &&
-    cards.items.every(
-      (item) =>
-        item.audio &&
-        existsSync(join(paths.audio, item.audio)) &&
-        (!hasAlt || (item.altAudio && existsSync(join(paths.audio, item.altAudio)))),
-    );
+    cards.items.every((item) => item.audio && existsSync(join(paths.audio, item.audio)));
 
   if (alreadyDone) {
     ctx.log(`audio already generated in ${paths.audio} — reusing`);
@@ -520,32 +510,25 @@ async function runAudio(flags, ctx) {
     voiceId,
     fetchTts: ctx.fetchTts,
     libraryHomeDir: ctx.libraryHome(),
-    // `--no-alt` disables the alt pass for this run by resolving no transform for any language.
-    getAltTransform: altEnabled ? ctx.getAltAudioTransform : () => undefined,
+    // The default (kana+。) take still uses the alt-audio transform; there's no separate alt pass.
+    getAltTransform: ctx.getAltAudioTransform,
   });
 
   mkdirSync(paths.audio, { recursive: true });
   // Must match generateAudio's model-segmented cache path (audio/<voiceId>/<model>/).
   const cacheDir = join(ctx.libraryHome(), "audio", voiceId, TTS_MODEL);
-  // Copy both the default clip and (when present) the alt clip from the cache into the run's
-  // audio/ dir. The deck build reads files from there; a card carrying `altAudio` needs its alt
-  // clip on disk in case the review later switches the card to it.
+  // Copy each card's default clip from the cache into the run's audio/ dir; the deck build reads
+  // files from there. Other variants are generated on demand in the dashboard, not copied here.
   for (const item of annotated.items) {
-    for (const filename of [item.audio, item.altAudio]) {
-      if (!filename) continue;
-      const dest = join(paths.audio, filename);
-      if (!existsSync(dest)) {
-        copyFileSync(join(cacheDir, filename), dest);
-      }
+    if (!item.audio) continue;
+    const dest = join(paths.audio, item.audio);
+    if (!existsSync(dest)) {
+      copyFileSync(join(cacheDir, item.audio), dest);
     }
   }
 
   writeJson(paths.cards, annotated);
-  const altCount = annotated.items.filter((item) => item.altAudio).length;
-  ctx.log(
-    `generated audio for ${annotated.items.length} item(s) into ${paths.audio}` +
-      (altCount > 0 ? ` (+${altCount} alt clip(s))` : ""),
-  );
+  ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);
 }
 
 async function runBookDeck(flags, ctx) {

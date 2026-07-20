@@ -779,10 +779,15 @@ async function runServe(flags, ctx) {
     editable,
     voice: flags.voice || null,
   });
-  ctx.log(`deck dashboard running at ${url}`);
-  ctx.log(
-    `serving decks from ${outputRoot}${editable ? "" : " (read-only)"} — press Ctrl+C to stop`,
-  );
+  // Keep the URL as the LAST, most prominent thing printed — it's the one thing you need.
+  ctx.log(`Serving decks from ${outputRoot}${editable ? "" : " (read-only)"}. Press Ctrl+C to stop.`);
+  const line = `  Dashboard  →  ${url}  `;
+  const bar = "─".repeat(line.length);
+  ctx.log("");
+  ctx.log(`┌${bar}┐`);
+  ctx.log(`│${line}│`);
+  ctx.log(`└${bar}┘`);
+  ctx.log("");
 }
 
 const COMMANDS = {

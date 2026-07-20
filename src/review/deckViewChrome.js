@@ -154,30 +154,30 @@ export const DECK_EDIT_SCRIPT = `(function () {
   });
   var modal = document.getElementById("gen-modal");
   var closeModal = function () { modal.hidden = true; modal.querySelector(".vlist").innerHTML = ""; };
-  document.querySelectorAll("button.gen").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var r = rowRef(btn); modal.hidden = false;
-      var list = modal.querySelector(".vlist"); list.innerHTML = '<div class="spin">Generating variants via ElevenLabs\\u2026</div>';
-      fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/generate", { method: "POST" })
-        .then(jsonp).then(function (x) {
-          if (!x.ok) throw new Error(x.j.error || "generation failed");
-          list.innerHTML = "";
-          x.j.variants.forEach(function (v) {
-            var row = document.createElement("div"); row.className = "vrow";
-            var lab = document.createElement("span"); lab.className = "vlabel"; lab.textContent = v.label;
-            var au = document.createElement("audio"); au.controls = true; au.preload = "none"; au.src = v.mediaUrl;
-            var use = document.createElement("button"); use.textContent = "Use this";
-            use.addEventListener("click", function () {
-              fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio }) })
-                .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); swap(r.tr, y.j.mediaUrl); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return rebuild(); })
-                .catch(function (e) { alert(e.message); });
-            });
-            row.appendChild(lab); row.appendChild(au); row.appendChild(use); list.appendChild(row);
+  var openGen = function (btn, path) {
+    var r = rowRef(btn); modal.hidden = false;
+    var list = modal.querySelector(".vlist"); list.innerHTML = '<div class="spin">Generating variants via ElevenLabs\\u2026</div>';
+    fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + path, { method: "POST" })
+      .then(jsonp).then(function (x) {
+        if (!x.ok) throw new Error(x.j.error || "generation failed");
+        list.innerHTML = "";
+        x.j.variants.forEach(function (v) {
+          var row = document.createElement("div"); row.className = "vrow";
+          var lab = document.createElement("span"); lab.className = "vlabel"; lab.textContent = v.kanji ? v.label + " — " + v.kanji : v.label;
+          var au = document.createElement("audio"); au.controls = true; au.preload = "none"; au.src = v.mediaUrl;
+          var use = document.createElement("button"); use.textContent = "Use this";
+          use.addEventListener("click", function () {
+            fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio }) })
+              .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); swap(r.tr, y.j.mediaUrl); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return rebuild(); })
+              .catch(function (e) { alert(e.message); });
           });
-        })
-        .catch(function (e) { list.innerHTML = '<div class="spin"></div>'; list.firstChild.textContent = e.message; });
-    });
-  });
+          row.appendChild(lab); row.appendChild(au); row.appendChild(use); list.appendChild(row);
+        });
+      })
+      .catch(function (e) { list.innerHTML = '<div class="spin"></div>'; list.firstChild.textContent = e.message; });
+  };
+  document.querySelectorAll("button.gen").forEach(function (btn) { btn.addEventListener("click", function () { openGen(btn, "/generate"); }); });
+  document.querySelectorAll("button.gen-kanji").forEach(function (btn) { btn.addEventListener("click", function () { openGen(btn, "/generate-kanji"); }); });
   modal.querySelector(".close").addEventListener("click", closeModal);
   modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
 })();`;

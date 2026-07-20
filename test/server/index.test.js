@@ -519,6 +519,76 @@ test("generate makes a FRESH TTS call per variant every time (no cache), without
   }
 });
 
+test("generate-kanji returns kanji variants for a ja deck; the button is shown", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/mybook`)).text();
+        assert.match(html, /class="gen-kanji"/);
+
+        const gen = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/generate-kanji`, {
+            method: "POST",
+          }),
+        );
+        assert.equal(gen.status, 200);
+        assert.equal(gen.body.variants.length, 2); // no 。 / with 。
+        assert.equal(gen.body.variants[0].kanji, "一"); // from the stubbed runClaude
+        assert.match(gen.body.variants[0].audio, /-genkanji-[0-9a-f]{8}\.mp3$/);
+        assert.equal((await fetch(`${url}${gen.body.variants[0].mediaUrl}`)).status, 200);
+      },
+      { ...editDeps, runClaude: () => '{ "kanji": "一" }' },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("generate-kanji is hidden and 422s for a non-Japanese deck", async () => {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-es-"));
+  try {
+    const t = join(root, "templates", "nums", "es");
+    mkdirSync(join(t, "audio"), { recursive: true });
+    writeFileSync(
+      join(t, "cards.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "es", sourceType: "template" },
+        items: [
+          {
+            id: "a",
+            english: "one",
+            category: "Numbers",
+            target: "uno",
+            pronunciation: "OO-no",
+            audio: "a.mp3",
+          },
+        ],
+      }),
+    );
+    writeFileSync(join(t, "audio", "a.mp3"), Buffer.from("CLIP"));
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/template/nums__es`)).text();
+        assert.doesNotMatch(html, /class="gen-kanji"/);
+        assert.equal(
+          (
+            await fetch(`${url}/api/deck/template/nums__es/unit/0/card/a/generate-kanji`, {
+              method: "POST",
+            })
+          ).status,
+          422,
+        );
+      },
+      { ...editDeps, runClaude: () => '{ "kanji": "x" }' },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("rebuild regenerates deck.apkg and /download streams it as an attachment", async () => {
   const root = fixture();
   try {

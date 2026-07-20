@@ -76,9 +76,11 @@ units have reached: a **corpus** unit lets you exclude items and mark the lesson
 **translate** unit lets you exclude cards and fix their target/pronunciation inline, and a
 fully-built **audio** unit plays each clip inline (served over HTTP, so no size limit). Once
 every unit of a deck has reached the audio stage it also becomes a lightweight **editor**: replace a
-card's clip (upload) or **Generate** new ElevenLabs variants to pick from, then **Rebuild deck** to
-regenerate the `.apkg` for re-import — a few clicks, no round-trip through the tooling. Start with
-`--read-only` to browse-only.
+card's clip (upload) or **Generate** fresh ElevenLabs variants to audition and pick — including, for
+Japanese, a **Generate (kanji)** button that first turns the card's kana reading into natural
+kanji+kana orthography (which ElevenLabs voices more naturally than all-kana) and synthesizes takes
+from that. Then **Rebuild deck** to regenerate the `.apkg` for re-import — a few clicks, no round-trip
+through the tooling. Start with `--read-only` to browse-only.
 
 ```sh
 npm run serve                 # then open the printed http://localhost:… URL (Ctrl+C to stop)

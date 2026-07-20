@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert";
-import { translateCorpus } from "../../src/translate/index.js";
+import { translateCorpus, buildTargetOnlyPrompt } from "../../src/translate/index.js";
 
 function baseCorpus(items) {
   return {
@@ -59,6 +59,17 @@ test("drops corpus items marked excluded before translating", async () => {
     ["keep"],
   );
   assert.ok(!sentIds.includes("drop"), "excluded item is never sent to the model");
+});
+
+test("buildTargetOnlyPrompt injects a supplied target-script rule verbatim (script-agnostic core)", () => {
+  const items = [{ id: "a", english: "Wallet" }];
+  const rule = "MADE-UP RULE: write the target in squiggles only.";
+  const on = buildTargetOnlyPrompt(items, "xx", { targetScriptRule: rule });
+  assert.match(on, /MADE-UP RULE: write the target in squiggles only\./);
+  // no rule → the prompt says nothing about a target-script constraint
+  const off = buildTargetOnlyPrompt(items, "xx");
+  assert.doesNotMatch(off, /squiggles/);
+  assert.doesNotMatch(off, /target-script constraint/);
 });
 
 test("carries uncertain + aiSuggested provenance flags from the corpus onto the translated card", async () => {

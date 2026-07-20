@@ -3,6 +3,7 @@ import { resolveIso639Code } from "../model/iso639.js";
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { runClaude as defaultRunClaude } from "./runClaude.js";
 import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./romanizationLibraries.js";
+import { getSimpleScriptRule as defaultGetSimpleScriptRule } from "./targetScript.js";
 import { romanizeAndEvaluate } from "./romanizationEval.js";
 
 // Max corpus items per `claude -p` invocation. Unbounded — a lesson's worth of items goes in a
@@ -98,7 +99,9 @@ function buildFullTranslationPrompt(items, targetLanguage) {
 // romanizationLibraries.js) will produce `pronunciation` afterward — asking the model for a
 // pronunciation guide it's never used would waste a model turn and risk the later eval step
 // being anchored by having already seen the model's own (about-to-be-superseded) guess.
-function buildTargetOnlyPrompt(items, targetLanguage) {
+// `targetScriptRule` (optional) is a language-supplied instruction constraining the SCRIPT the target
+// is written in (see targetScript.js). The core is script-agnostic — it just injects the string.
+export function buildTargetOnlyPrompt(items, targetLanguage, { targetScriptRule = null } = {}) {
   const inputData = items.map((item) => {
     const entry = { id: item.id, english: item.english };
     if (item.notes) {
@@ -141,6 +144,7 @@ function buildTargetOnlyPrompt(items, targetLanguage) {
     "",
     "- `id` (string): the SAME id as the corresponding input item.",
     `- \`target\` (string): the translation into ${targetLanguage}.`,
+    ...(targetScriptRule ? [`  - ${targetScriptRule}`] : []),
     "- `hint` (string, optional): a short usage hint.",
     "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
     "",
@@ -159,6 +163,7 @@ function buildTargetOnlyPrompt(items, targetLanguage) {
     "```",
     "",
     "## Important",
+    ...(targetScriptRule ? ["- Apply the target-script constraint above to EVERY `target`."] : []),
     "- Include every id from the input exactly once.",
     "  - Order does not matter.",
     "- Do not include a `pronunciation` key in your response.",
@@ -370,10 +375,10 @@ function assemblePronunciationOnlyCard(item, entry) {
 }
 
 function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) {
-  const { runClaude, targetLanguage, items, errors } = ctx;
+  const { runClaude, targetLanguage, items, errors, targetScriptRule } = ctx;
 
   for (const batch of chunk(group, BATCH_SIZE)) {
-    const prompt = buildPrompt(batch, targetLanguage);
+    const prompt = buildPrompt(batch, targetLanguage, { targetScriptRule });
 
     let entries;
     try {
@@ -465,7 +470,9 @@ export async function translateCorpus(
   {
     runClaude = defaultRunClaude,
     getRomanizationLibrary = defaultGetRomanizationLibrary,
+    getSimpleScriptRule = defaultGetSimpleScriptRule,
     log = () => {},
+    simpleScript = false,
   } = {},
 ) {
   const errors = [];
@@ -480,6 +487,9 @@ export async function translateCorpus(
 
   const languageCode = resolveIso639Code(targetLanguage);
   const libraryEntry = languageCode ? getRomanizationLibrary(languageCode) : undefined;
+  // Optional per-language script constraint on the generated target (e.g. Japanese kana-only) —
+  // resolved from the language plug-in when --simple-script is on; null (no-op) otherwise.
+  const targetScriptRule = simpleScript && languageCode ? getSimpleScriptRule(languageCode) : null;
 
   let items;
 
@@ -492,7 +502,7 @@ export async function translateCorpus(
         validateEntry: validateTargetOnlyEntry,
         assembleCard: assembleTargetOnlyCard,
       },
-      { runClaude, targetLanguage, items: translated, errors },
+      { runClaude, targetLanguage, items: translated, errors, targetScriptRule },
     );
 
     const partials = [...translated, ...needsPronunciationOnly.map(toPartialCard)];
@@ -523,7 +533,7 @@ export async function translateCorpus(
     errors.push(...result.errors);
   } else {
     items = [];
-    const ctx = { runClaude, targetLanguage, items, errors };
+    const ctx = { runClaude, targetLanguage, items, errors, targetScriptRule };
 
     processGroup(
       needsFullTranslation,

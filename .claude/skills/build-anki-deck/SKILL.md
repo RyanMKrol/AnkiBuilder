@@ -527,7 +527,12 @@ anki-builder assemble --output-root output --words <path> --course "Intensive Ja
 ### Translate
 ```sh
 anki-builder translate --run <dir>
+anki-builder translate --run <dir> --simple-script   # constrain the target to the language's beginner script
 ```
+`--simple-script` asks the language plug-in (`src/translate/targetScript.js`) to constrain the
+generated `target` to that language's beginner/learner script — for Japanese that means **kana only,
+no kanji**. It's language-agnostic: a language with no such rule configured ignores the flag. Use it
+for a beginner dictated-lesson deck where the learner reads the simpler script.
 
 ### Generate audio
 ```sh

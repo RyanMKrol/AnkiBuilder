@@ -1,12 +1,16 @@
-import { escapeHtml } from "./reviewPageTemplate.js";
-
 // Shared "deck view" chrome — the editorial visual system used by BOTH the static deck-view artifact
 // (audio inlined as base64 data URIs, size-capped) and the local deck dashboard server (audio served
 // over HTTP, no size cap). Keeping the CSS, the collapsible-lesson markup, and the expand/collapse
 // script in one place is what keeps the two byte-for-byte visually identical: each caller supplies
 // only its own `audioCell(card)` (base64 vs URL) and its own page header.
 
-export { escapeHtml };
+// HTML-escapes a value for safe interpolation into the templates below.
+export function escapeHtml(value) {
+  return String(value ?? "").replace(
+    /[&<>"']/g,
+    (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch],
+  );
+}
 
 // The full stylesheet (no <style> wrapper, no @font-face — the caller prepends fontFaceRule()).
 export const DECK_VIEW_CSS = `:root{--paper:#ece8df;--card:#f6f3ec;--ink:#23201c;--soft:#6a6459;--faint:#9a9284;--rule:#ded8cb;--rule2:#cdc6b6;--accent:#7a3b36;

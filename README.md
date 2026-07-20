@@ -9,14 +9,14 @@ studyable Anki deck, complete with translations, pronunciation guides, and spoke
 
 ## How it works
 
-Every deck moves through the same five stages, each one producing a reviewable artifact before
-the next stage runs:
+Every deck moves through the same four CLI stages. You **review** the result of each stage in the
+local dashboard (`npm run serve`) — the dashboard surfaces every run at its current stage and is
+where you exclude items, fix fields, and pick audio; the CLI advances a run to the next stage.
 
 | Stage         | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **assemble**  | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate.                                                                                                                                                                                                                                                                                                                                                         |
-| **review**    | You check the list over (a browsable HTML page) and drop anything that shouldn't be there.                                                                                                                                                                                                                                                                                                                                                             |
-| **translate** | Each term gets translated and given a pronunciation guide, via Claude.                                                                                                                                                                                                                                                                                                                                                                                 |
+| **assemble**  | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. Review it in the dashboard (exclude items, mark the lesson reviewed) before translating.                                                                                                                                                                                                                                                                |
+| **translate** | Each term gets translated and given a pronunciation guide, via Claude. Review/fix target + pronunciation in the dashboard.                                                                                                                                                                                                                                                                                                                             |
 | **audio**     | Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `reading` (a phonetic spelling in the target script) that TTS speaks instead of `target`. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front. |
 | **deck**      | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                 |
 
@@ -35,9 +35,12 @@ It drives the CLI commands below for you and knows when to pause for your review
 # --output-root files the deck under output/templates/<name>/<language>/.
 anki-builder assemble --output-root output --template travel-essentials --lang es
 RUN=output/templates/travel-essentials/es      # the dir assemble just resolved
-anki-builder review --run "$RUN"
+# Review the corpus in the dashboard (npm run serve): exclude anything wrong, then
+# open the deck and click "Mark reviewed" — that's the gate `translate` checks.
 anki-builder translate --run "$RUN"
+# ...review/fix translations in the dashboard...
 anki-builder audio --run "$RUN" --voice <voiceId>
+# ...audition audio + generate variants in the dashboard...
 anki-builder deck --run "$RUN" --name "Travel Spanish"
 ```
 
@@ -60,7 +63,7 @@ anki-builder assemble --output-root output --epub mybook.epub --chapter-number 1
 # For a later lesson of a book you've already worked on, pick it by slug instead of
 # re-locating the file — assemble reads the copy it kept:
 anki-builder assemble --output-root output --book <book-slug> --lesson "Lesson 4" --lang ja
-# ...review / translate / audio for that lesson, then repeat for each lesson...
+# ...review in the dashboard, then translate / audio for that lesson; repeat for each lesson...
 anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter into one deck
 ```
 
@@ -101,8 +104,9 @@ For the full command reference (every flag, every source type), see the skill's
 
 ## Where things live
 
-- Each run's artifacts (`corpus.json`, `cards.json`, `deck.apkg`, review pages) live in its run
-  directory, wherever you pointed `--run`.
+- Each run's artifacts (`corpus.json`, `cards.json`, `deck.apkg`) live in its run
+  directory, wherever you pointed `--run`. (Review happens live in the dashboard, not as a per-stage
+  HTML file.)
 - Every source type lives under its own reserved folder of `output/` when you pass `--output-root`:
   EPUB books under `output/epubs/<book-slug>/`, lesson-based courses under
   `output/courses/<course-slug>/` (each one folder per chapter/lesson, plus a merged `deck.apkg` at
@@ -159,14 +163,17 @@ npm run build
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō
       textbook face) so kana/kanji render the same on every client; `restyle-font` applies it to any
       existing `.apkg`, including third-party decks
-- [x] Review-gate artifacts for each stage
+- [x] Review at every stage in the dashboard — corpus (exclude items / mark reviewed), translate
+      (exclude / inline-edit target + pronunciation), audio (audition + Generate variants, incl.
+      Japanese kana+kanji) — with write-back to the run's JSON. Replaces the old per-stage HTML
+      artifacts + `review`/`render-review` CLI commands
 - [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
 - [x] `serve` — local deck-dashboard web app (Node builtins only): lists every deck and opens each to
-      collapsible lessons, surfacing each unit at its pipeline stage (corpus/translate read-only,
-      audio with clips streamed over HTTP, no size cap); pluggable per-format adapters
-      (`src/server/adapters/`). An all-audio deck is also an editor — replace/generate a card's audio
-      and rebuild the `.apkg` in place (`--read-only` to disable)
+      collapsible lessons, surfacing each unit at its pipeline stage and letting you review/edit it
+      (corpus + translate write-back, audio streamed over HTTP with per-card edit/generate, no size
+      cap); pluggable per-format adapters (`src/server/adapters/`). An all-audio deck also rebuilds
+      the `.apkg` in place (`--read-only` disables all editing)
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki

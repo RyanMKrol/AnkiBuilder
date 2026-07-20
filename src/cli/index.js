@@ -60,15 +60,9 @@ import {
   readFontBytes as defaultReadFontBytes,
 } from "../deck/fontLibrary.js";
 import { restyleApkgBuffer as defaultRestyleApkgBuffer } from "../deck/restyleFont.js";
-import { defaultPromptReviewDecisions } from "./reviewPrompt.js";
-import { renderCorpusReviewPage as defaultRenderCorpusReviewPage } from "../review/renderCorpusReviewPage.js";
-import { renderTranslateReviewPage as defaultRenderTranslateReviewPage } from "../review/renderTranslateReviewPage.js";
-import { renderAudioReviewPage as defaultRenderAudioReviewPage } from "../review/renderAudioReviewPage.js";
 import { renderDeckViewPage as defaultRenderDeckViewPage } from "../review/renderDeckViewPage.js";
 import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
 import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
-
-const REVIEW_STAGES = ["corpus", "translate", "audio"];
 
 function parseFlags(args) {
   const flags = {};
@@ -405,38 +399,6 @@ async function runAssemble(flags, ctx) {
   ctx.log(`wrote corpus with ${corpus.items.length} item(s) to ${paths.corpus}`);
 }
 
-async function runReview(flags, ctx) {
-  if (!flags.run) {
-    throw new Error("--run <dir> is required");
-  }
-  const paths = ctx.runPaths(flags.run);
-
-  if (!existsSync(paths.corpus)) {
-    throw new Error(`corpus.json not found at ${paths.corpus} — run "assemble" first`);
-  }
-
-  const corpus = readJson(paths.corpus);
-  const reviewedItems = await ctx.promptReviewDecisions(corpus.items, { print: ctx.log });
-
-  const updated = {
-    meta: { ...corpus.meta, reviewed: true },
-    items: reviewedItems,
-  };
-
-  validateCorpus(updated);
-  writeJson(paths.corpus, updated);
-  ctx.log(
-    `reviewed corpus: kept ${reviewedItems.length}/${corpus.items.length} item(s), wrote ${paths.corpus}`,
-  );
-
-  if (updated.meta.epubHash && updated.meta.chapterNumber != null) {
-    ctx.saveChapterCorpus(updated.meta.epubHash, updated.meta.chapterNumber, updated);
-    ctx.log(
-      `saved chapter ${updated.meta.chapterNumber} corpus to the local library (epub ${updated.meta.epubHash})`,
-    );
-  }
-}
-
 async function runTranslate(flags, ctx) {
   if (!flags.run) {
     throw new Error("--run <dir> is required");
@@ -456,7 +418,7 @@ async function runTranslate(flags, ctx) {
 
   if (corpus.meta.reviewed !== true) {
     throw new Error(
-      `corpus.json at ${paths.corpus} has not been reviewed yet — run "review --run ${flags.run}" first`,
+      `corpus.json at ${paths.corpus} has not been reviewed yet — open the dashboard ("npm run serve"), review this lesson's corpus, and click "Mark reviewed" first`,
     );
   }
 
@@ -616,43 +578,6 @@ async function runRestyleFont(flags, ctx) {
   );
 }
 
-async function runRenderReview(flags, ctx) {
-  const stage = flags.stage;
-  if (!REVIEW_STAGES.includes(stage)) {
-    throw new Error(
-      `--stage must be one of: ${REVIEW_STAGES.join(", ")} (got ${JSON.stringify(stage ?? null)})`,
-    );
-  }
-  if (!flags.run) {
-    throw new Error("--run <dir> is required");
-  }
-
-  const paths = ctx.runPaths(flags.run);
-  const outPath = join(resolve(flags.run), `review-${stage}.html`);
-
-  let html;
-  if (stage === "corpus") {
-    if (!existsSync(paths.corpus)) {
-      throw new Error(`corpus.json not found at ${paths.corpus} — run "assemble" first`);
-    }
-    html = ctx.renderCorpusReviewPage(readJson(paths.corpus));
-  } else if (stage === "translate") {
-    if (!existsSync(paths.cards)) {
-      throw new Error(`cards.json not found at ${paths.cards} — run "translate" first`);
-    }
-    html = ctx.renderTranslateReviewPage(readJson(paths.cards));
-  } else {
-    if (!existsSync(paths.cards)) {
-      throw new Error(`cards.json not found at ${paths.cards} — run "translate" first`);
-    }
-    html = ctx.renderAudioReviewPage(readJson(paths.cards), { audioDir: paths.audio });
-  }
-
-  mkdirSync(join(outPath, ".."), { recursive: true });
-  writeFileSync(outPath, html);
-  ctx.log(`wrote ${stage} review artifact to ${outPath}`);
-}
-
 // Browse a built `.apkg` as a read-only Claude Artifact: every card grouped by sub-deck, each with
 // its embedded audio clip inline. Splits a large deck into parts so no single HTML page blows past
 // the Artifact size limit; card numbering runs globally across the parts.
@@ -777,12 +702,10 @@ async function runServe(flags, ctx) {
 
 const COMMANDS = {
   assemble: runAssemble,
-  review: runReview,
   translate: runTranslate,
   audio: runAudio,
   deck: runDeck,
   "restyle-font": runRestyleFont,
-  "render-review": runRenderReview,
   "view-deck": runViewDeck,
   serve: runServe,
 };
@@ -819,7 +742,6 @@ export async function runCli(argv, deps = {}) {
     dedupBackward = defaultDedupBackward,
     flagForwardConcerns = defaultFlagForwardConcerns,
     sortItemsPedagogically = defaultSortItemsPedagogically,
-    promptReviewDecisions = defaultPromptReviewDecisions,
     translateCorpus = defaultTranslateCorpus,
     generateAudio = defaultGenerateAudio,
     getDefaultVoice = defaultGetDefaultVoice,
@@ -831,9 +753,6 @@ export async function runCli(argv, deps = {}) {
     readFontBytes = defaultReadFontBytes,
     restyleApkgBuffer = defaultRestyleApkgBuffer,
     fetchTts = defaultFetchTts,
-    renderCorpusReviewPage = defaultRenderCorpusReviewPage,
-    renderTranslateReviewPage = defaultRenderTranslateReviewPage,
-    renderAudioReviewPage = defaultRenderAudioReviewPage,
     renderDeckViewPage = defaultRenderDeckViewPage,
     readApkg = defaultReadApkg,
     startDeckServer = defaultStartDeckServer,
@@ -882,7 +801,6 @@ export async function runCli(argv, deps = {}) {
     dedupBackward,
     flagForwardConcerns,
     sortItemsPedagogically,
-    promptReviewDecisions,
     translateCorpus,
     generateAudio,
     getDefaultVoice,
@@ -894,9 +812,6 @@ export async function runCli(argv, deps = {}) {
     readFontBytes,
     restyleApkgBuffer,
     fetchTts,
-    renderCorpusReviewPage,
-    renderTranslateReviewPage,
-    renderAudioReviewPage,
     renderDeckViewPage,
     readApkg,
     startDeckServer,

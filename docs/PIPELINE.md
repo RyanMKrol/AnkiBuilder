@@ -7,9 +7,12 @@ understand or modify the implementation.
 
 ## Pipeline stages
 
-`assemble` → `review` → `translate` → `audio` → `deck`, each stage reading/writing JSON in a run
+`assemble` → `translate` → `audio` → `deck`, each stage reading/writing JSON in a run
 directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved chapter directory
 under a book-organized `output/` tree (`--output-root <dir>`; see [Output layout](#output-layout)).
+**Review happens between stages in the dashboard** (`serve`), not as a CLI stage — see
+[Deck dashboard](#deck-dashboard-serve). The one gate the CLI still enforces: `translate` refuses to
+run until the corpus's `meta.reviewed` is set, which the dashboard's "Mark reviewed" does.
 
 ### `assemble`
 
@@ -152,13 +155,15 @@ explicitly `null` when the source path can't populate them, plus two optional fl
 through when the extractor sets them: `uncertain` (the model wasn't sure the item belonged) and
 `aiSuggested` (a critical-gap item the model added itself, not present in the source).
 
-### `review`
+### corpus review (in the dashboard)
 
-A hard gate before `translate` will run. Interactively lists the corpus (numbered, via
-`src/audit/index.js`'s `renderReviewTable`), lets you exclude items by number, and marks
-`meta.reviewed: true` once confirmed. For an `--epub`-sourced corpus, also saves the approved
-corpus into the local library (`src/corpus/epubLibrary.js`), so later chapters' backward dedup
-pass has something to check against.
+There is no `review` CLI command — the corpus review is a **hard gate** before `translate` will run,
+performed in the dashboard. Open the run's deck, exclude anything wrong (a reversible `excluded` flag
+on the corpus item — `translateCorpus` drops those when it builds `cards.json`), and click **Mark
+reviewed** to set `meta.reviewed: true`. For an `--epub`-sourced corpus, marking reviewed also saves
+the approved corpus (excluded items filtered out) into the local library (`src/corpus/epubLibrary.js`
+`saveChapterCorpus`), so later chapters' backward-dedup pass has something to check against. See
+[Deck dashboard](#deck-dashboard-serve) for the routes.
 
 ### `translate`
 
@@ -308,16 +313,6 @@ so it renders identically on every client. Only the classic `.apkg` format (a `m
 `collection.anki2`/`.anki21`) is supported — the newer `anki21b`/protobuf-media export is rejected
 with a clear error.
 
-### `render-review --stage <corpus|translate|audio>`
-
-Generates a self-contained, ready-to-publish HTML review artifact (`<runDir>/review-<stage>.html`)
-from `corpus.json` or `cards.json`, so the corpus/translate/audio review gates are produced from
-one shared, checked-in template (`src/review/`) rather than hand-authored HTML each time — keeping
-look and interaction identical across stages and across runs. Corpus/translate reviews use a
-click-to-mark-for-exclusion interaction; the audio review embeds each clip as a base64 `<audio>`
-element and uses a "flag for regeneration" interaction instead. The corpus review's `Flags` column
-surfaces `uncertain`/`aiSuggested` as badges when the extractor set them.
-
 ## Local library
 
 All durable state that survives between runs — the ElevenLabs audio cache and the EPUB registry —
@@ -335,7 +330,7 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/images/<...>                     # images the cached chapters reference,
                                                      #   at whatever relative path their own
                                                      #   <img src> resolves to from chapters/
-  epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved by `review`
+  epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
 ```
 
@@ -358,7 +353,7 @@ output/epubs/<book-slug>/
   book.json                      # { title, slug, epubHash, targetLanguage } — written by
                                   #   materializeBookInOutput, read back by listBooks for book
                                   #   discovery (the course.json analogue for books)
-  chapter-0/corpus.json, cards.json, audio/, review-*.html    # ordinary per-chapter artifacts,
+  chapter-0/corpus.json, cards.json, audio/    # ordinary per-chapter artifacts,
   chapter-1/...                                               #   unchanged in shape
   deck.apkg                      # single merged book-level package (`deck --book-dir`)
 ```
@@ -388,7 +383,7 @@ output/courses/<course-slug>/
   course.json                    # { name, targetLanguage } — written by resolveCourseSlug on
                                   #   first use, read back by loadCourseMeta for deck --book-dir's
                                   #   course-name fallback and by listCourses for course discovery
-  lesson-0/corpus.json, cards.json, audio/, review-*.html    # ordinary per-lesson artifacts,
+  lesson-0/corpus.json, cards.json, audio/    # ordinary per-lesson artifacts,
   lesson-1/...                                               #   same shape as a chapter's
   deck.apkg                      # single merged course-level package (`deck --book-dir`)
 ```
@@ -405,7 +400,7 @@ A `--template`-sourced deck assembled via `assemble --output-root <dir>` lands u
 
 ```
 output/templates/<template-name>/<language>/
-  corpus.json, cards.json, audio/, review-*.html    # ordinary per-run artifacts, same shape
+  corpus.json, cards.json, audio/    # ordinary per-run artifacts, same shape
   deck.apkg                                          # this deck's final package (`deck --run`)
 ```
 
@@ -438,23 +433,45 @@ path-safety (filename regex + a `realpath`-within-`outputRoot` check) and suppor
 
 ### Dashboard editing (`serve`, editable by default)
 
-The dashboard is also a lightweight editor (disable with `serve --read-only`). Beyond the read routes,
-the server (`src/server/index.js`) exposes, gated on `editable`:
+The dashboard surfaces every unit at its **pipeline stage** (`src/server/adapters/stage.js`
+`detectStage`: `corpus.json` only → corpus; `cards.json`, no audio → translate; a card has audio →
+audio) and renders the stage-appropriate columns + review controls. Beyond the read routes, the
+server (`src/server/index.js`) exposes, gated on `editable` (disable all editing with `serve
+--read-only`):
 
-- `POST /api/deck/:type/:id/unit/:unit/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a
-  replacement clip. Stored in the unit's `audio/` under a server-generated `<cardId>-user-<hash>.<ext>`
-  name and set as the card's `audio` (via `applyCardAudio`, which validates cards.json). 10 MB cap.
-- `POST …/card/:cardId/generate` — synthesizes the card's variant takes via ElevenLabs
-  (`generateCardVariants` + the codified axes in `src/audio/variants.js`). Makes a FRESH call per
-  variant every time (no cache reuse — ElevenLabs is non-deterministic, so re-rolls differ), writing
-  each under a bytes-addressed `…-gen-<hash>.mp3` name that never overwrites the built clips. Needs
-  `ELEVENLABS_API_KEY`; picks the language's default voice or `--voice`. Does not modify cards.json.
+**Corpus review** (`src/server/adapters/applyCorpus.js`) — a corpus-stage unit shows an Exclude
+checkbox per row and a per-lesson Mark reviewed button:
+
+- `POST …/unit/:unit/card/:cardId/corpus/exclude` `{excluded}` — toggle the reversible `excluded`
+  flag on the corpus item (`translate` drops excluded items).
+- `POST …/unit/:unit/corpus/reviewed` — set `meta.reviewed: true`; for an EPUB source, also
+  `saveChapterCorpus` the excluded-filtered corpus to the dedup library (injected as a server dep).
+
+**Translate review** (`src/server/adapters/applyCards.js`) — a translate-stage unit shows an Exclude
+checkbox and inline-editable target/pronunciation cells (contentEditable, saved on blur):
+
+- `POST …/card/:cardId/translate/exclude` `{excluded}` — toggle the card's `excluded` flag (the deck
+  build drops excluded cards).
+- `POST …/card/:cardId/translate/edit` `{target?,pronunciation?,reading?}` — whitelisted field edit.
+
+**Audio review** (an all-audio deck only — editing + rebuild unlock when EVERY unit reaches the audio
+stage):
+
+- `POST …/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a replacement clip
+  (`applyCardAudio`, `<cardId>-user-<hash>.<ext>`, 10 MB cap). Uploads are NOT trimmed.
+- `POST …/card/:cardId/generate` — FRESH ElevenLabs takes of the card's variant axes
+  (`generateCardVariants` + `src/audio/variants.js`), written `…-gen-<hash>.mp3`; no cache reuse; does
+  not modify cards.json.
+- `POST …/card/:cardId/generate-kanji` — **Japanese only** (422 otherwise). Generates a kanji
+  orthography from the kana reading via `runClaude` (`src/audio/kanjiOrthography.js`) and synthesizes
+  fresh takes from it (`generateCardKanjiVariants`, `…-genkanji-<hash>.mp3`); returns the produced
+  kanji text for the audition modal.
 - `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`).
 - `POST /api/deck/:type/:id/rebuild` — regenerate `<deckDir>/deck.apkg` via `src/deck/rebuild.js`
   (`rebuildBookDir`/`rebuildRunDir`) — the **same** assembly the CLI's `deck --book-dir`/`deck --run`
   use, so a browser rebuild is byte-identical. `GET /download/:type/:id/deck.apkg` streams it.
 
-Card targeting is by cards.json item `id`; all written filenames are server-generated + validated, and
-every write path is realpath-checked to stay inside `outputRoot`. Note the same folder-seq vs
-`chapterNumber` nuance as a CLI rebuild: the merged deck orders sub-decks by folder seq, the dashboard
-displays by `chapterNumber` (they coincide unless a book was built out of order).
+Card targeting is by cards.json/corpus.json item `id`; all written filenames are server-generated +
+validated, and every write path is realpath-checked to stay inside `outputRoot`. Note the same
+folder-seq vs `chapterNumber` nuance as a CLI rebuild: the merged deck orders sub-decks by folder seq,
+the dashboard displays by `chapterNumber` (they coincide unless a book was built out of order).

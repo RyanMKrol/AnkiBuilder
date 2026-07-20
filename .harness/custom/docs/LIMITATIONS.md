@@ -27,7 +27,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 - **What:** the `serve` dashboard now surfaces a deck at whatever stage its units are in (corpus /
   translate / audio). Audio editing (Replace / Generate / Rebuild) is gated on **all** surfaced units
-  being at the audio stage (`renderDeckPage`'s `canEdit` in `src/server/index.js`); a book with a
+  being at the audio stage (`renderReviewPage`'s `canEdit` in `src/server/index.js`); a book with a
   chapter still at corpus/translate renders entirely read-only.
 - **Why:** a partially-built book can't be merge-rebuilt anyway — `rebuildBookDir` throws if any unit
   lacks `cards.json` — so exposing edit+rebuild on a mixed-stage deck would only produce failed

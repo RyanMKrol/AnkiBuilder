@@ -306,10 +306,12 @@ running for the whole build:
 npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
-Open this deck's lesson. A corpus-stage unit renders each item with an **Exclude** checkbox and a
-per-lesson **Mark reviewed** button (columns: #, English, Category, Target, Reading, Flags — the
-Flags column badges `uncertain`/`aiSuggested` when the extractor set them). This replaces the old CLI
-`review` / `render-review` flow entirely — there is no per-stage HTML artifact any more.
+Open the deck's **Review** view (the **Review** link on the dashboard, `/review/...` — distinct from
+the read-only **Browse** view). A corpus-stage unit is **English-only** (columns: #, English,
+Category, Flags — no Target/Reading; those arrive at the translate stage), with an **Exclude**
+checkbox per row and a per-lesson **Mark reviewed** button. The Flags column badges `aiSuggested` /
+`uncertain`. This replaces the old CLI `review` / `render-review` flow entirely — no per-stage HTML
+artifact any more.
 
 **You decide:** does the corpus look right?
 
@@ -342,12 +344,14 @@ so the model returns the correct romanization in place, keeping the library's wh
 The fix lands directly in `pronunciation` (no flag/note). So garbled romaji should be rare now; if you
 still spot one in the translate review, tell me and I'll fix that card.
 
-**Review gate — in the dashboard (the same one you already have running).** Reload this deck's
-lesson: now that `cards.json` exists it renders at the **translate** stage — columns #, English,
-Target, Pronunciation, Category, Note — with an **Exclude** checkbox per row and inline-editable
-Target/Pronunciation cells (click a cell, edit, click away to save). Fix any garbled romaji or wrong
-translation right there, or tell me the rows and I'll edit `cards.json`. Excluding a card here writes
-a reversible `excluded` flag (the deck build drops it).
+**Review gate — the Review view (the same one you already have running).** Reload it: now that
+`cards.json` exists the unit renders at the **translate** stage — columns #, English, Target,
+Pronunciation (romaji), Category, Note — with an **Exclude** checkbox per row and inline-editable
+Target/Pronunciation cells (click a cell, edit, click away to save). This is where the Japanese +
+romaji first appear together, so verify the readings (and, for a re-derived dictated lesson, that
+they match what your class taught). Fix any wrong romaji/translation right there, or tell me the rows
+and I'll edit `cards.json`. Excluding a card here writes a reversible `excluded` flag (the deck build
+drops it).
 
 Once it looks right, move straight into Step 3.5 (for an EPUB/lesson source) or Step 4 in the same
 turn — same no-separate-confirmation rule as the assemble → translate transition.
@@ -430,7 +434,7 @@ book), add it to `DEFAULT_VOICES` so future chapters don't need `--voice` repeat
 
 If you skip audio, the deck will still work — cards just won't have pronunciation recordings.
 
-**Review gate — in the dashboard.** Reload this deck's lesson: once every unit has reached the audio
+**Review gate — the Review view's audio stage.** Reload it: once every unit has reached the audio
 stage it renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)**
 controls and a **Rebuild deck** button (see "Audio review happens in the dashboard" above for how the
 variant axes and the kana+kanji option work). Play each card's default clip; for any that sound wrong,
@@ -571,10 +575,12 @@ Use it when re-importing a restyled version of a deck you've had before; skip it
 deck.
 
 ### Review a run (corpus / translate / audio)
-Review happens in the dashboard, not a CLI command:
+Review happens in the dashboard's **Review** view, not a CLI command:
 ```sh
-npm run serve   # open the printed URL, click into the deck; each unit shows its stage's review UI
+npm run serve   # open the printed URL → a deck's "Review" link (/review/...) → per-stage review UI
 ```
+(Corpus review is English-only; translate adds target + romaji; audio adds players + generate/pick.
+The read-only **Browse** link, `/deck/...`, is for looking at a finished deck.)
 
 ### Browse a built deck (`.apkg`) as an artifact
 ```sh

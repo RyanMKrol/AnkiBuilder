@@ -429,12 +429,19 @@ lands wherever you point it, unchanged.
 
 ## Deck dashboard (`serve`)
 
-`anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) that browses the built
-decks under `output/`. The home page lists every deck; a deck page renders its lessons as collapsible
-`<details>` sections with a card table and an inline `<audio>` per card, in the same editorial style as
-the `view-deck` artifact (the shared chrome lives in `src/review/deckViewChrome.js`, used by both).
-The crucial difference from `view-deck`: audio is **served over HTTP** from `/media/...` rather than
-inlined as base64, so a whole deck renders on one page with no ~16 MB Artifact ceiling.
+`anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) over the runs under
+`output/`. The home page lists every deck with two links each — **Review** and **Browse** — the two
+distinct views the server renders:
+
+- **Browse** — `GET /deck/:type/:id` (`renderDeckPage`): a **read-only** look at a deck's cards, lessons
+  as collapsible `<details>` sections with an inline `<audio>` per card, in the same editorial style as
+  the `view-deck` artifact (shared chrome in `src/review/deckViewChrome.js`). Audio is **served over
+  HTTP** from `/media/...` rather than base64-inlined, so a whole deck renders on one page with no
+  ~16 MB Artifact ceiling. No editing.
+- **Review** — `GET /review/:type/:id` (`renderReviewPage`): the guided, editable per-stage workflow
+  (see [Dashboard editing](#dashboard-editing-serve-editable-by-default) below). Corpus is English-only,
+  translate adds target + romaji, audio adds players + generate/pick; provenance flags badge on every
+  stage.
 
 Discovery is pluggable through a **format-adapter registry** (`src/server/adapters/`). Each adapter
 (`book`, `course`, `template`) implements `listDecks(outputRoot)`, `loadDeck(outputRoot, id)`, and
@@ -445,13 +452,13 @@ templates have a single unit (the `<lang>` folder). The deck `id` is the slug (b
 registry line** — that one change is what makes the dashboard ingest it. `/media` enforces
 path-safety (filename regex + a `realpath`-within-`outputRoot` check) and supports `Range` requests.
 
-### Dashboard editing (`serve`, editable by default)
+### Dashboard editing (the Review view, `/review`, editable by default)
 
-The dashboard surfaces every unit at its **pipeline stage** (`src/server/adapters/stage.js`
-`detectStage`: `corpus.json` only → corpus; `cards.json`, no audio → translate; a card has audio →
-audio) and renders the stage-appropriate columns + review controls. Beyond the read routes, the
-server (`src/server/index.js`) exposes, gated on `editable` (disable all editing with `serve
---read-only`):
+The **Review view** (`renderReviewPage`) surfaces every unit at its **pipeline stage**
+(`src/server/adapters/stage.js` `detectStage`: `corpus.json` only → corpus; `cards.json`, no audio →
+translate; a card has audio → audio) and renders the stage-appropriate columns + review controls
+(the Browse view at `/deck` renders the same units read-only). Beyond the read routes, the server
+(`src/server/index.js`) exposes, gated on `editable` (disable all editing with `serve --read-only`):
 
 **Corpus review** (`src/server/adapters/applyCorpus.js`) — a corpus-stage unit shows an Exclude
 checkbox per row and a per-lesson Mark reviewed button:

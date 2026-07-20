@@ -131,7 +131,16 @@ export function createDeckServer({
           ]
             .filter(Boolean)
             .join(" · ");
-          return `<a class="deck" href="/deck/${encodeURIComponent(d.type)}/${encodeURIComponent(d.id)}"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${meta}</div></a>`;
+          const reviewHref = `/review/${encodeURIComponent(d.type)}/${encodeURIComponent(d.id)}`;
+          const browseHref = `/deck/${encodeURIComponent(d.type)}/${encodeURIComponent(d.id)}`;
+          // Lead with Review while any unit is still pre-audio; once every unit is built, lead with Browse.
+          const needsReview = d.stage && d.stage !== "audio";
+          const link = (href, label, primary) =>
+            `<a class="da${primary ? " primary" : ""}" href="${href}">${label}</a>`;
+          const actions = needsReview
+            ? link(reviewHref, "Review", true) + link(browseHref, "Browse", false)
+            : link(browseHref, "Browse", true) + link(reviewHref, "Review", false);
+          return `<div class="deck"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${meta}</div><div class="deck-actions">${actions}</div></div>`;
         })
         .join("");
       return `<div class="grp"><h2>${g.label}</h2><div class="decks">${cards}</div></div>`;
@@ -144,7 +153,10 @@ ${groups}`,
     );
   }
 
-  function renderDeckPage(type, id) {
+  // The REVIEW view (/review/:type/:id): the guided per-stage workflow — corpus (English-only) →
+  // translate → audio — with exclude / edit / mark-reviewed / generate / rebuild controls when the
+  // server is editable. (Browsing a finished deck read-only is renderDeckPage below.)
+  function renderReviewPage(type, id) {
     const adapter = adapterFor(type);
     const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
     if (!deck) return null;
@@ -218,9 +230,9 @@ ${groups}`,
       ? `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Then <b>Rebuild deck</b> and import the .apkg.`
       : `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and review the fields inline. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
-<div class="eyebrow" style="margin-top:12px">Deck · anki-builder</div>
+<div class="eyebrow" style="margin-top:12px">Review · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
-<p class="lede">${lede}</p>
+<p class="lede">${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a></p>
 <div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button>${toolbar}</div>
 </header>
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" hidden></div>` : ""}
@@ -232,7 +244,43 @@ ${modal}
     if (editable && hasCorpus) scripts.push(CORPUS_EDIT_SCRIPT);
     if (editable && hasTranslate) scripts.push(TRANSLATE_EDIT_SCRIPT);
     const script = scripts.join("\n");
-    return page(`${deck.title} — deck`, body, script);
+    return page(`${deck.title} — review`, body, script);
+  }
+
+  // The BROWSE view (/deck/:type/:id): a read-only look at a deck's cards + audio. No edit controls,
+  // no review write-back — all editing lives in the Review view above.
+  function renderDeckPage(type, id) {
+    const adapter = adapterFor(type);
+    const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
+    if (!deck) return null;
+
+    const sections = deck.units.map((u) => ({
+      leaf: u.label,
+      stage: u.stage || "audio",
+      cards: u.cards.map((c) => ({
+        ...c,
+        unit: u.seq,
+        stage: u.stage || "audio",
+        audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
+      })),
+    }));
+    const audioCell = (c) =>
+      c.audioUrl
+        ? `<audio controls preload="none" src="${c.audioUrl}"></audio>`
+        : `<span class="x">—</span>`;
+    const { html: sectionHtml } = renderLessonSections({ sections, startNumber: 1, audioCell });
+
+    const total = deck.units.reduce((n, u) => n + u.cards.length, 0);
+    const withAudio = deck.units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
+    const body = `<header><a class="back" href="/">← All decks</a>
+<div class="eyebrow" style="margin-top:12px">Browse · anki-builder</div>
+<h1>${escapeHtml(deck.title)}</h1>
+<p class="lede"><b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a></p>
+<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>
+</header>
+${sectionHtml}
+<footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
+    return page(`${deck.title} — browse`, body, EXPAND_COLLAPSE_SCRIPT);
   }
 
   function serveFont(res) {
@@ -545,6 +593,10 @@ ${modal}
           return serveFont(res);
         if (seg[0] === "deck" && seg.length === 3) {
           const html = renderDeckPage(seg[1], seg[2]);
+          return html ? sendHtml(res, html) : notFound(res);
+        }
+        if (seg[0] === "review" && seg.length === 3) {
+          const html = renderReviewPage(seg[1], seg[2]);
           return html ? sendHtml(res, html) : notFound(res);
         }
         if (seg[0] === "media" && seg.length === 5)

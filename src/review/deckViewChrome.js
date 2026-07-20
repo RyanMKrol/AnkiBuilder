@@ -59,6 +59,9 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .deck:hover{border-color:var(--accent)}
 .deck .dt{font-family:var(--serif);font-size:18px;margin-bottom:6px}
 .deck .dm{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.deck-actions{display:flex;gap:16px;margin-top:12px}
+.deck-actions a.da{font-size:12.5px;color:var(--accent);text-decoration:none}
+.deck-actions a.da.primary{font-weight:700}.deck-actions a.da:hover{text-decoration:underline}
 .grp{margin-top:30px}.grp h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 2px;border-bottom:2px solid var(--accent);padding-bottom:6px}
 /* editor: per-row controls */
 .au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -299,14 +302,14 @@ const STAGE_TABLES = {
   <td class="au">${ctx.audioCell(c)}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
+  // Stage 1 is ENGLISH-ONLY — you're reviewing "is this the right list of things to learn?", not the
+  // translations (those arrive at the translate stage). Target/Reading are deliberately not shown here.
   corpus: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-jp"><col class="c-flags">`,
-    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Reading</th><th>Flags</th>`,
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-flags">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Flags</th>`,
     cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="jp">${jpOrDash(c.target)}</td>
-  <td class="jp">${jpOrDash(c.reading)}</td>
   <td class="flags">${flagsCell(c)}${rowExtra(ctx, "corpus", c)}</td>`,
   },
   translate: {

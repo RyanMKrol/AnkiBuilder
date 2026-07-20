@@ -10,6 +10,7 @@ import {
   EXPAND_COLLAPSE_SCRIPT,
   DECK_EDIT_SCRIPT,
   CORPUS_EDIT_SCRIPT,
+  TRANSLATE_EDIT_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { ADAPTERS } from "./adapters/index.js";
 import {
@@ -18,6 +19,7 @@ import {
 } from "../deck/fontLibrary.js";
 import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
 import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpus.js";
+import { setCardExcluded, editCard } from "./adapters/applyCards.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
@@ -153,6 +155,7 @@ ${groups}`,
       deck.units.every((u) => (u.stage || "audio") === "audio");
 
     const hasCorpus = deck.units.some((u) => (u.stage || "audio") === "corpus");
+    const hasTranslate = deck.units.some((u) => (u.stage || "audio") === "translate");
 
     const sections = deck.units.map((u) => ({
       leaf: u.label,
@@ -179,7 +182,7 @@ ${groups}`,
     // the all-audio `canEdit` gate, which only governs audio editing + the global rebuild.
     const rowControl = editable
       ? (stage, c) =>
-          stage === "corpus"
+          stage === "corpus" || stage === "translate"
             ? `<label class="excl-l"><input type="checkbox" class="excl"${c.excluded ? " checked" : ""}> exclude</label>`
             : ""
       : undefined;
@@ -221,6 +224,7 @@ ${modal}
     const scripts = [EXPAND_COLLAPSE_SCRIPT];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
     if (editable && hasCorpus) scripts.push(CORPUS_EDIT_SCRIPT);
+    if (editable && hasTranslate) scripts.push(TRANSLATE_EDIT_SCRIPT);
     const script = scripts.join("\n");
     return page(`${deck.title} — deck`, body, script);
   }
@@ -384,6 +388,32 @@ ${modal}
     sendJson(res, markCorpusReviewed(runDir, { saveChapterCorpus }));
   }
 
+  async function handleTranslateExclude(req, res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const body = await readBodyCapped(req, 64 * 1024);
+    let excluded;
+    try {
+      excluded = !!JSON.parse(body.toString("utf-8")).excluded;
+    } catch {
+      throw httpError(400, "invalid JSON body");
+    }
+    sendJson(res, setCardExcluded(runDir, cardId, excluded));
+  }
+
+  async function handleTranslateEdit(req, res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const body = await readBodyCapped(req, 64 * 1024);
+    let fields;
+    try {
+      fields = JSON.parse(body.toString("utf-8"));
+    } catch {
+      throw httpError(400, "invalid JSON body");
+    }
+    sendJson(res, editCard(runDir, cardId, fields));
+  }
+
   async function handleSelect(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -441,6 +471,14 @@ ${modal}
       }
       if (seg[8] === "corpus" && seg[9] === "exclude" && seg.length === 10) {
         await handleCorpusExclude(req, res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "translate" && seg[9] === "exclude" && seg.length === 10) {
+        await handleTranslateExclude(req, res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "translate" && seg[9] === "edit" && seg.length === 10) {
+        await handleTranslateEdit(req, res, type, id, unit, cardId);
         return true;
       }
     }

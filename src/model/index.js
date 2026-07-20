@@ -115,6 +115,9 @@ const CARDS_SCHEMA = {
           // drill blank with lesson vocabulary), so reviews can delineate them and the semantic
           // de-dup pass can target them. Behaves like any other card in the deck.
           fillInBlank: { type: "boolean" },
+          // Set by the dashboard translate review to drop a card from the built deck (reversible
+          // flag, not a delete). The deck build skips excluded cards.
+          excluded: { type: "boolean" },
         },
         additionalProperties: false,
       },

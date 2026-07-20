@@ -469,6 +469,25 @@ test("buildBookDeck's media manifest keys are always plain sequential integers, 
   });
 });
 
+test("buildDeck drops cards marked excluded (translate-review exclusion)", async () => {
+  await withTempDir(async (tmpDir) => {
+    const outPath = join(tmpDir, "deck.apkg");
+    const cards = baseCards([
+      { id: "a", english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" },
+      {
+        id: "b",
+        english: "two",
+        target: "に",
+        pronunciation: "ni",
+        category: "Numbers",
+        excluded: true,
+      },
+    ]);
+    const result = buildDeck(cards, { outPath, now: 1700000000000 });
+    assert.strictEqual(result.noteCount, 1);
+  });
+});
+
 test("buildDeck embeds only the default audio, never altAudio", async () => {
   await withTempDir(async (tmpDir) => {
     const audioDir = join(tmpDir, "audio");

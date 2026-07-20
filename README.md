@@ -73,8 +73,8 @@ ElevenLabs leaves on each clip. It's best-effort — audio still builds fine wit
 To browse your decks without importing them into Anki, run the local dashboard — it lists every deck
 and opens each to a page of collapsible lessons. A deck is surfaced at whatever pipeline stage its
 units have reached: a **corpus** unit lets you exclude items and mark the lesson reviewed, a
-**translate** unit renders read-only (editable in a later step), and a fully-built **audio** unit
-plays each clip inline (served over HTTP, so no size limit). Once
+**translate** unit lets you exclude cards and fix their target/pronunciation inline, and a
+fully-built **audio** unit plays each clip inline (served over HTTP, so no size limit). Once
 every unit of a deck has reached the audio stage it also becomes a lightweight **editor**: replace a
 card's clip (upload) or **Generate** new ElevenLabs variants to pick from, then **Rebuild deck** to
 regenerate the `.apkg` for re-import — a few clicks, no round-trip through the tooling. Start with

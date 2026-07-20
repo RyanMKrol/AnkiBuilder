@@ -13,7 +13,7 @@ const DEFAULTS = {
   silenceDb: -40, // silencedetect noise floor (dB)
   minSilenceSec: 0.15, // silencedetect: minimum silence run to register
   minSpeechSec: 0.2, // a speech segment shorter than this is a blip/noise, not real content
-  padSec: 0.08, // breathing room kept after the last real speech
+  padSec: 0.08, // MINIMUM tail kept after speech (the cut targets the silence midpoint; this is a floor)
 };
 const MP3_QUALITY = "2"; // libmp3lame -q:a (VBR, ~190 kbps)
 const MIN_SHORTEN_SEC = 0.05; // don't re-encode for a negligible gain
@@ -65,7 +65,18 @@ export function computeTrimPoint(stderr, opts = {}) {
   }
   if (contentEnd == null) return null;
 
-  const trimTo = Math.min(contentEnd + padSec, duration);
+  // Cut partway INTO the trailing silence, not at the speech edge — a buffer that scales with the
+  // silence so we never clip the final sound. Target the MIDPOINT of the silence immediately after the
+  // last real speech; keep at least `padSec` of tail for a very short silence. Everything past that
+  // (the rest of the silence, the blip, and any further silence) is discarded.
+  const trailingSilence =
+    silences.find(([s]) => Math.abs(s - contentEnd) < 1e-6) ||
+    silences.find(([s]) => s >= contentEnd - 1e-6);
+  if (!trailingSilence) return null; // speech runs to EOF — nothing trailing to trim
+  const silenceEnd = trailingSilence[1];
+  const buffer = Math.max((silenceEnd - contentEnd) / 2, padSec);
+  const trimTo = Math.min(contentEnd + buffer, silenceEnd, duration);
+
   if (duration - trimTo < minShortenSec) return null; // negligible gain
   if (trimTo < minPlausibleSec) return null; // implausibly short → likely all-silence
   return Math.round(trimTo * 1000) / 1000;

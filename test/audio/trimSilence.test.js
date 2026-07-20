@@ -13,12 +13,12 @@ import { fetchElevenLabsTts } from "../../src/audio/elevenLabsTts.js";
 // Pure parser — no ffmpeg, no I/O.
 // ---------------------------------------------------------------------------
 
-test("computeTrimPoint: discards the trailing blip + silence, trims at the last real speech + pad", () => {
+test("computeTrimPoint: discards the trailing blip + silence, cuts at the midpoint of the trailing silence", () => {
   const stderr = `  Duration: 00:00:01.35, start: 0.0, bitrate: 48 kb/s
 [silencedetect @ 0x1] silence_start: 1.0
 [silencedetect @ 0x1] silence_end: 1.3 | silence_duration: 0.3`;
   // speech [0,1.0] (real) → silence [1.0,1.3] → blip [1.3,1.35] (0.05s < minSpeech) skipped
-  assert.equal(computeTrimPoint(stderr), 1.08); // 1.0 + 0.08 pad
+  assert.equal(computeTrimPoint(stderr), 1.15); // midpoint of [1.0,1.3]
 });
 
 test("computeTrimPoint: no trailing silence → null (negligible shorten)", () => {
@@ -39,8 +39,8 @@ test("computeTrimPoint: a genuine mid-clip pause is preserved", () => {
 [silencedetect] silence_end: 0.7
 [silencedetect] silence_start: 1.4
 [silencedetect] silence_end: 1.7`;
-  // speech [0,0.5], [0.7,1.4] (both real); last real speech ends 1.4 → 1.4 + 0.08
-  assert.equal(computeTrimPoint(stderr), 1.48);
+  // speech [0,0.5], [0.7,1.4] (both real); last real speech ends 1.4 → midpoint of [1.4,1.7]
+  assert.equal(computeTrimPoint(stderr), 1.55);
 });
 
 test("computeTrimPoint: no Duration line → null", () => {
@@ -50,8 +50,8 @@ test("computeTrimPoint: no Duration line → null", () => {
 test("computeTrimPoint: trailing silence running to EOF (unclosed silence_start)", () => {
   const stderr = `  Duration: 00:00:01.50
 [silencedetect] silence_start: 1.0`;
-  // silence [1.0, 1.5(EOF)]; speech [0,1.0] real → 1.0 + 0.08
-  assert.equal(computeTrimPoint(stderr), 1.08);
+  // silence [1.0, 1.5(EOF)]; speech [0,1.0] real → midpoint of [1.0,1.5]
+  assert.equal(computeTrimPoint(stderr), 1.25);
 });
 
 // ---------------------------------------------------------------------------

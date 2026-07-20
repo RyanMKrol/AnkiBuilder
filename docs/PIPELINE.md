@@ -231,7 +231,9 @@ end artifact ("blip") on every clip. Every clip returned by `fetchElevenLabsTts`
 point — so both the build stage and the dashboard's Generate) is passed through `trimTrailingSilence`
 before it's cached/hashed: ffmpeg `silencedetect` locates the last real speech segment (≥
 `minSpeechSec`, so a short trailing blip is skipped and a genuine mid-clip pause is preserved) and the
-clip is cut just after it (+ `padSec` of tail) and re-encoded. Because trimming happens before the
+clip is cut at the **midpoint of the trailing silence** (never at the speech edge — the buffer scales
+with the silence, with `padSec` as a floor, so the final sound is never clipped) and re-encoded.
+Because trimming happens before the
 `generateVariants` bytes-hash, a re-rolled preview reflects the trimmed audio. **Best-effort:** if
 ffmpeg isn't installed (a one-time warning) or any step fails or the result isn't smaller, the original
 clip is used unchanged — the audio build never breaks. Off with `ANKI_BUILDER_TRIM_AUDIO=0`; thresholds

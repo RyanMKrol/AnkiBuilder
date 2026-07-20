@@ -403,6 +403,10 @@ This:
 - Normalizes the spoken text per language before sending it (`src/audio/ttsText.js`): Japanese strips
   editorial spaces so ElevenLabs doesn't voice them as pauses (`target`/`reading` keep their spaces for
   display; only the audio drops them)
+- Trims each clip's trailing silence + end "blip" (`src/audio/trimSilence.js`) — **best-effort, needs an
+  optional system `ffmpeg`** (`brew install ffmpeg`); without it, clips just keep their trailing silence
+  (one warning, then a silent no-op). Off with `ANKI_BUILDER_TRIM_AUDIO=0`. Applies to every
+  ElevenLabs-generated clip (build stage + dashboard Generate); manual dashboard uploads are untouched
 - Caches audio in `.anki-builder/audio/<voiceId>/<model>/` (gitignored; **segmented by model** so a
   model switch never reuses a stale clip) so reruns are fast
 - Copies audio files into the run directory

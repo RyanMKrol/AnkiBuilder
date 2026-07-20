@@ -1,5 +1,6 @@
 import { Buffer } from "buffer";
 import { TTS_MODEL } from "./ttsModel.js";
+import { trimTrailingSilence } from "./trimSilence.js";
 
 const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
 
@@ -31,5 +32,9 @@ export async function fetchElevenLabsTts(
     throw new Error(`ElevenLabs TTS request failed: ${response.status} ${response.statusText}`);
   }
 
-  return Buffer.from(await response.arrayBuffer());
+  // Central post-process: trim the trailing silence + end blip ElevenLabs leaves on every clip
+  // (best-effort — a no-op if ffmpeg is absent). This is the single choke point, so both the audio
+  // build stage and the dashboard's Generate get cleaned clips.
+  const bytes = Buffer.from(await response.arrayBuffer());
+  return await trimTrailingSilence(bytes);
 }

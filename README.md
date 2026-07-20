@@ -67,6 +67,9 @@ anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter i
 Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` and add
 `ELEVENLABS_API_KEY=...`. Everything else works without any external account.
 
+Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing silence/artifact
+ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
+
 To browse your decks without importing them into Anki, run the local dashboard — it lists every built
 deck and opens each to a page of collapsible lessons with audio played inline (served over HTTP, so no
 size limit). It's also a lightweight **editor**: replace a card's clip (upload) or **Generate** new

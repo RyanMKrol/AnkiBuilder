@@ -1,7 +1,8 @@
 import { existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { rebuildRunDir } from "../../deck/rebuild.js";
-import { readCardsJson, toRenderCard, isSafeMediaFile } from "./runDir.js";
+import { renderCardForStage, isSafeMediaFile } from "./runDir.js";
+import { loadStageData } from "./stage.js";
 
 // Adapter for bundled-template decks: output/templates/<name>/<lang>/. Unlike books/courses there is
 // NO chapter/lesson sublevel — the language folder IS the run dir — so a template deck has a single
@@ -30,7 +31,7 @@ export const templateAdapter = {
       if (!nameEntry.isDirectory()) continue;
       for (const langEntry of readdirSync(join(root, nameEntry.name), { withFileTypes: true })) {
         if (!langEntry.isDirectory()) continue;
-        const data = readCardsJson(templateRunDir(outputRoot, nameEntry.name, langEntry.name));
+        const data = loadStageData(templateRunDir(outputRoot, nameEntry.name, langEntry.name));
         if (!data) continue;
         decks.push({
           type: "template",
@@ -38,6 +39,7 @@ export const templateAdapter = {
           title: `${nameEntry.name} (${langEntry.name})`,
           targetLanguage: data.meta?.targetLanguage ?? langEntry.name,
           unitCount: 1,
+          stage: data.stage,
         });
       }
     }
@@ -47,13 +49,21 @@ export const templateAdapter = {
   loadDeck(outputRoot, id) {
     const parts = splitId(id);
     if (!parts) return null;
-    const data = readCardsJson(templateRunDir(outputRoot, parts.name, parts.lang));
+    const data = loadStageData(templateRunDir(outputRoot, parts.name, parts.lang));
     if (!data) return null;
     const title = `${parts.name} (${parts.lang})`;
     return {
       title,
       targetLanguage: data.meta?.targetLanguage ?? parts.lang,
-      units: [{ seq: "0", number: 1, label: title, cards: data.items.map(toRenderCard) }],
+      units: [
+        {
+          seq: "0",
+          number: 1,
+          label: title,
+          stage: data.stage,
+          cards: data.items.map(renderCardForStage(data.stage)),
+        },
+      ],
     };
   },
 

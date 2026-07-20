@@ -113,9 +113,12 @@ export function createDeckServer({
         .map((d) => {
           const unitWord =
             d.type === "template" ? null : `${d.unitCount} lesson${d.unitCount === 1 ? "" : "s"}`;
+          const stageWord =
+            d.stage && d.stage !== "audio" ? `${d.stage} stage` : d.stage ? "ready" : null;
           const meta = [
             d.targetLanguage ? escapeHtml(d.targetLanguage.toUpperCase()) : null,
             unitWord,
+            stageWord,
           ]
             .filter(Boolean)
             .join(" · ");
@@ -137,17 +140,25 @@ ${groups}`,
     const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
     if (!deck) return null;
 
+    // Editing (Replace/Generate + Rebuild) unlocks only when EVERY surfaced unit has reached the audio
+    // stage — a book mid-pipeline (some chapters still at corpus/translate) renders read-only for
+    // inspection until the CLI advances them, since a partial book can't be merge-rebuilt anyway.
+    const canEdit =
+      editable &&
+      deck.units.length > 0 &&
+      deck.units.every((u) => (u.stage || "audio") === "audio");
+
     const sections = deck.units.map((u) => ({
       leaf: u.label,
+      stage: u.stage || "audio",
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
-        audioUrl: c.audio
-          ? `/media/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(String(u.seq))}/${encodeURIComponent(c.audio)}`
-          : null,
+        stage: u.stage || "audio",
+        audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
       })),
     }));
-    const editControls = editable
+    const editControls = canEdit
       ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button><span class="msg"></span></div>`
       : "";
     const audioCell = (c) => {
@@ -160,15 +171,15 @@ ${groups}`,
 
     const total = deck.units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = deck.units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
-    const toolbar = editable
+    const toolbar = canEdit
       ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}">Rebuild deck</button><span id="rebuild-status" class="rb"></span>`
       : "";
-    const modal = editable
+    const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
       : "";
-    const lede = editable
+    const lede = canEdit
       ? `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Then <b>Rebuild deck</b> and import the .apkg.`
-      : `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and play the audio inline. <b>${withAudio}</b> have audio.`;
+      : `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and review the fields inline. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">Deck · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
@@ -178,7 +189,7 @@ ${groups}`,
 ${sectionHtml}
 ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
-    const script = editable
+    const script = canEdit
       ? `${EXPAND_COLLAPSE_SCRIPT}\n${DECK_EDIT_SCRIPT}`
       : EXPAND_COLLAPSE_SCRIPT;
     return page(`${deck.title} — deck`, body, script);

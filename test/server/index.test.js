@@ -146,6 +146,56 @@ test("empty output shows an empty-state, not a 500", async () => {
   }
 });
 
+test("a mixed-stage book renders corpus + translate sections read-only (no edit UI until all-audio)", async () => {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-wip-"));
+  try {
+    const book = join(root, "epubs", "wip");
+    mkdirSync(book, { recursive: true });
+    writeFileSync(join(book, "book.json"), JSON.stringify({ title: "WIP", targetLanguage: "ja" }));
+    mkdirSync(join(book, "chapter-0"), { recursive: true });
+    writeFileSync(
+      join(book, "chapter-0", "corpus.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Corpus Ch" },
+        items: [{ id: "a", english: "one", category: "Numbers", target: "いち", reading: "いち" }],
+      }),
+    );
+    mkdirSync(join(book, "chapter-1"), { recursive: true });
+    writeFileSync(
+      join(book, "chapter-1", "cards.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 2, chapterLabel: "Translate Ch" },
+        items: [
+          { id: "b", english: "two", category: "Numbers", target: "に", pronunciation: "ni" },
+        ],
+      }),
+    );
+
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/wip`)).text();
+        // corpus section columns
+        assert.match(html, /<th>Category<\/th><th>Target<\/th><th>Reading<\/th><th>Flags<\/th>/);
+        assert.match(html, /data-stage="corpus"/);
+        // translate section columns
+        assert.match(
+          html,
+          /<th>Target<\/th><th>Pronunciation<\/th><th>Category<\/th><th>Note<\/th>/,
+        );
+        assert.match(html, /data-stage="translate"/);
+        // not all-audio → read-only: no edit controls or rebuild toolbar
+        assert.doesNotMatch(html, /Rebuild deck/);
+        assert.doesNotMatch(html, /class="repl"/);
+        assert.doesNotMatch(html, /class="gen"/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 // ---------------------------------------------------------------------------
 // Editor: upload / generate / select / rebuild / download (editable server).
 // ---------------------------------------------------------------------------

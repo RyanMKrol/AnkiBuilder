@@ -1,12 +1,12 @@
-import { existsSync, readFileSync, readdirSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 
-// Shared helpers for the build-folder deck adapters: reading a run directory's cards.json and
-// mapping its items into the deck-view render shape, plus scanning a book/course dir's numbered unit
-// folders (chapter-N / lesson-N) in pedagogical order.
+// Shared helpers for the build-folder deck adapters: reading a run directory's corpus.json/cards.json
+// and mapping their items into stage-appropriate render shapes for the dashboard. (Stage detection and
+// the numbered-unit scan live in ./stage.js, which builds on these low-level readers.)
 
-export function readCardsJson(runDir) {
-  const path = join(runDir, "cards.json");
+function readJsonItems(runDir, file) {
+  const path = join(runDir, file);
   if (!existsSync(path)) return null;
   try {
     const data = JSON.parse(readFileSync(path, "utf-8"));
@@ -16,8 +16,16 @@ export function readCardsJson(runDir) {
   }
 }
 
-// A cards.json item -> the render-card shape used by deckViewChrome. The deck embeds the chosen take
-// in `audio`; `altAudio` is a review-only concept and is dropped (the dashboard shows one take).
+export function readCardsJson(runDir) {
+  return readJsonItems(runDir, "cards.json");
+}
+
+export function readCorpusJson(runDir) {
+  return readJsonItems(runDir, "corpus.json");
+}
+
+// An audio-stage cards.json item -> the render-card shape used by deckViewChrome. The deck embeds the
+// chosen take in `audio`; `altAudio` is a review-only concept and is dropped (the dashboard shows one).
 export function toRenderCard(item) {
   return {
     id: item.id,
@@ -27,35 +35,45 @@ export function toRenderCard(item) {
     category: item.category || "",
     note: item.notes || "",
     audio: item.audio || null,
+    excluded: !!item.excluded,
   };
 }
 
-// Scans a book/course dir for its numbered unit folders (`<prefix>-<seq>`), reads each cards.json, and
-// returns the built units ordered by `meta.chapterNumber` (tie-break: folder seq). Unbuilt units (no
-// cards.json) are skipped. Each unit carries `seq` (its folder index — the stable media key) and a
-// display `number`/`label`.
-export function scanNumberedUnits(deckDir, prefix) {
-  if (!existsSync(deckDir)) return [];
-  const label = `${prefix[0].toUpperCase()}${prefix.slice(1)}`;
-  const units = [];
-  for (const entry of readdirSync(deckDir, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const m = entry.name.match(new RegExp(`^${prefix}-(\\d+)$`));
-    if (!m) continue;
-    const seq = Number(m[1]);
-    const data = readCardsJson(join(deckDir, entry.name));
-    if (!data) continue;
-    const meta = data.meta || {};
-    const number = typeof meta.chapterNumber === "number" ? meta.chapterNumber : seq;
-    units.push({
-      seq,
-      number,
-      label: meta.chapterLabel || `${label} ${number}`,
-      cards: data.items.map(toRenderCard),
-    });
-  }
-  units.sort((a, b) => a.number - b.number || a.seq - b.seq);
-  return units;
+// A corpus.json item -> render shape for the corpus review (no pronunciation/audio yet; carries the
+// review flags so the page can badge them).
+export function toCorpusRenderCard(item) {
+  return {
+    id: item.id,
+    english: item.english || "",
+    target: item.target || "",
+    reading: item.reading || "",
+    category: item.category || "",
+    note: item.notes || "",
+    uncertain: !!item.uncertain,
+    aiSuggested: !!item.aiSuggested,
+    excluded: !!item.excluded,
+  };
+}
+
+// A post-translate cards.json item (pre-audio) -> render shape for the translate review.
+export function toTranslateRenderCard(item) {
+  return {
+    id: item.id,
+    english: item.english || "",
+    target: item.target || "",
+    pronunciation: item.pronunciation || "",
+    reading: item.reading || "",
+    category: item.category || "",
+    note: item.notes || "",
+    excluded: !!item.excluded,
+  };
+}
+
+// The item -> render-card mapper for a given pipeline stage.
+export function renderCardForStage(stage) {
+  if (stage === "corpus") return toCorpusRenderCard;
+  if (stage === "translate") return toTranslateRenderCard;
+  return toRenderCard;
 }
 
 // A media filename is only ever a flat file in a run dir's audio/ folder — reject anything with path

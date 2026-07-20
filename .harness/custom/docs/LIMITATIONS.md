@@ -7,6 +7,22 @@ refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/cus
 
 Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
 
+## Dashboard editing unlocks only when EVERY unit of a deck has reached the audio stage
+
+- **What:** the `serve` dashboard now surfaces a deck at whatever stage its units are in (corpus /
+  translate / audio). Audio editing (Replace / Generate / Rebuild) is gated on **all** surfaced units
+  being at the audio stage (`renderDeckPage`'s `canEdit` in `src/server/index.js`); a book with a
+  chapter still at corpus/translate renders entirely read-only.
+- **Why:** a partially-built book can't be merge-rebuilt anyway — `rebuildBookDir` throws if any unit
+  lacks `cards.json` — so exposing edit+rebuild on a mixed-stage deck would only produce failed
+  rebuilds. Corpus/translate write-back (exclude/edit) is a separate, per-unit path added in later
+  phases and does not need a global rebuild.
+- **Impact:** you can't Replace/Generate audio on the finished chapters of a book while an earlier
+  chapter is still pre-audio; advance the whole book through the CLI first, then edit.
+- **When to revisit:** once per-section write-back lands (corpus/translate phases), consider letting
+  audio-stage sections edit independently, or teach `rebuildBookDir` to skip non-audio units so a
+  mixed deck can still rebuild the finished part.
+
 ## Switching the TTS model re-fetches every clip (cache is model-segmented)
 
 - **What:** the audio cache lives at `.anki-builder/audio/<voiceId>/<model>/…`, keyed by model

@@ -596,11 +596,12 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 ### Dashboard editing: orphaned clips, last-writer-wins, credit cost
 - **What:** editing a card's audio from the dashboard leaves the **previous clip on disk** (the card
   just stops referencing it); two rapid edits to the **same** card are last-writer-wins; **Generate**
-  makes up to 8 ElevenLabs calls per card (billed), cached by content hash so repeats are free.
+  makes up to 8 ElevenLabs calls per card (billed) on EVERY click — fresh takes by design (no cache
+  reuse), so re-rolling a card spends credits each time.
 - **Why:** deleting the old clip risks removing a hash-named TTS file another card still references;
   serialized per-card locking is overkill for a local single-user tool; generating the full variant
-  set is the whole point of the feature and the cache bounds repeat cost.
+  set is the whole point of the feature and fresh renderings are the point of a re-roll.
 - **Impact:** `audio/` accumulates unreferenced files over many edits; a same-card double-submit could
   keep the earlier pick; a careless Generate spends a handful of credits.
 - **When to revisit:** add a "prune unreferenced audio" pass; a per-run-dir write lock if concurrent
-  editing ever matters; a confirm/estimate before Generate if credit cost becomes a concern.
+  editing ever matters; a confirm/estimate before Generate, or a per-card generate cap, if credit cost becomes a concern.

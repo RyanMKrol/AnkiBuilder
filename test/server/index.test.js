@@ -201,9 +201,17 @@ test("upload writes a new clip, updates cards.json, and /media serves the new by
   }
 });
 
-test("generate returns variants (stubbed TTS) without touching cards.json; select applies one", async () => {
+test("generate makes a FRESH TTS call per variant every time (no cache), without touching cards.json; select applies one", async () => {
   const root = fixture();
   try {
+    let ttsCalls = 0;
+    const countingDeps = {
+      ...editDeps,
+      fetchTts: async (text) => {
+        ttsCalls += 1;
+        return Buffer.from("TTS:" + text);
+      },
+    };
     await withServer(
       root,
       async (url) => {
@@ -213,6 +221,12 @@ test("generate returns variants (stubbed TTS) without touching cards.json; selec
         );
         assert.equal(gen.status, 200);
         assert.equal(gen.body.variants.length, 2); // plain ja card → no 。 / with 。
+        assert.equal(ttsCalls, 2); // one fresh ElevenLabs call per variant
+        // fresh clips are named distinctly (never the built hash(text).mp3), so they can't clobber it
+        assert.match(gen.body.variants[0].audio, /-gen-[0-9a-f]{8}\.mp3$/);
+        // a second generate calls TTS again — no cache reuse
+        await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/generate`, { method: "POST" });
+        assert.equal(ttsCalls, 4);
         // stubbed clip is reachable
         assert.equal((await fetch(`${url}${gen.body.variants[0].mediaUrl}`)).status, 200);
         // generation did not mutate cards.json
@@ -234,7 +248,7 @@ test("generate returns variants (stubbed TTS) without touching cards.json; selec
         );
         assert.equal(cards.items.find((i) => i.id === "a").audio, gen.body.variants[0].audio);
       },
-      editDeps,
+      countingDeps,
     );
   } finally {
     rmSync(root, { recursive: true, force: true });

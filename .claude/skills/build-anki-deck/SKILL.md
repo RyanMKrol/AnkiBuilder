@@ -641,9 +641,12 @@ deck** button:
   name and set as that card's `audio` (validated), and the row's player updates in place.
 - **Generate** — calls **ElevenLabs** to synthesize the card's usual variant takes (the dot × comma ×
   brackets Cartesian, codified in `src/audio/variants.js`) and shows them in a modal to audition;
-  **Use this** applies one. Requires `ELEVENLABS_API_KEY` (the server loads `.env` on start); pick the
-  voice with `--voice` if the language has no default. Generating costs credits (up to 8 calls/card,
-  cached by content hash so repeats are free) and doesn't touch `cards.json` until you pick.
+  **Use this** applies one. Every click makes **fresh** calls (ElevenLabs is non-deterministic, so this
+  is how you re-roll a take that sounds wrong) — it does **not** reuse cached clips, and the fresh
+  clips are written under distinct `…-gen-<hash>.mp3` names so they never overwrite the deck's built
+  audio. Requires `ELEVENLABS_API_KEY` (the server loads `.env` on start); pick the voice with
+  `--voice` if the language has no default. Costs credits on every click (one call per variant, up to
+  8) and doesn't touch `cards.json` until you pick.
 - **Rebuild deck** — regenerates the deck's `.apkg` **using the exact same assembly as
   `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`), then shows a **Download** link and
   the on-disk `deck.apkg` path. Import that into Anki (stable note GUIDs → updates in place).

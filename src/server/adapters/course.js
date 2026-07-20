@@ -3,7 +3,8 @@ import { join } from "path";
 import { listCourses, loadCourseMeta } from "../../cli/outputPaths.js";
 import { loadBookMeta } from "../../corpus/epubLibrary.js";
 import { rebuildBookDir } from "../../deck/rebuild.js";
-import { scanNumberedUnits, isSafeMediaFile } from "./runDir.js";
+import { isSafeMediaFile } from "./runDir.js";
+import { scanNumberedUnits, deckStage } from "./stage.js";
 
 // Adapter for lesson-sourced course decks: output/courses/<slug>/lesson-N/. Structurally identical to
 // the book adapter (units are lessons instead of chapters), reusing scanNumberedUnits.
@@ -14,13 +15,17 @@ export const courseAdapter = {
   type: "course",
 
   listDecks(outputRoot) {
-    return listCourses(outputRoot).map((c) => ({
-      type: "course",
-      id: c.slug,
-      title: c.name || c.slug,
-      targetLanguage: c.targetLanguage,
-      unitCount: scanNumberedUnits(courseDir(outputRoot, c.slug), "lesson").length,
-    }));
+    return listCourses(outputRoot).map((c) => {
+      const units = scanNumberedUnits(courseDir(outputRoot, c.slug), "lesson");
+      return {
+        type: "course",
+        id: c.slug,
+        title: c.name || c.slug,
+        targetLanguage: c.targetLanguage,
+        unitCount: units.length,
+        stage: deckStage(units),
+      };
+    });
   },
 
   loadDeck(outputRoot, id) {

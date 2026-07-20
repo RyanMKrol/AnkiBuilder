@@ -170,6 +170,53 @@ test("templateAdapter encodes id as name__lang and resolves its single unit + me
   }
 });
 
+test("bookAdapter surfaces corpus-only and translate-only chapters with their stage", () => {
+  const root = mkdtempSync(join(tmpdir(), "deck-stage-"));
+  try {
+    const book = join(root, "epubs", "wip");
+    mkdirSync(book, { recursive: true });
+    writeFileSync(join(book, "book.json"), JSON.stringify({ title: "WIP", targetLanguage: "ja" }));
+    // chapter-0: corpus stage (corpus.json only)
+    mkdirSync(join(book, "chapter-0"), { recursive: true });
+    writeFileSync(
+      join(book, "chapter-0", "corpus.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Ch1" },
+        items: [{ id: "a", english: "one", category: "Numbers", target: null, aiSuggested: true }],
+      }),
+    );
+    // chapter-1: translate stage (cards.json, no audio)
+    mkdirSync(join(book, "chapter-1"), { recursive: true });
+    writeFileSync(
+      join(book, "chapter-1", "cards.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 2, chapterLabel: "Ch2" },
+        items: [
+          { id: "b", english: "two", category: "Numbers", target: "に", pronunciation: "ni" },
+        ],
+      }),
+    );
+
+    const decks = bookAdapter.listDecks(root);
+    assert.equal(decks[0].unitCount, 2);
+    assert.equal(decks[0].stage, "corpus"); // least-advanced unit
+
+    const deck = bookAdapter.loadDeck(root, "wip");
+    assert.deepEqual(
+      deck.units.map((u) => [u.label, u.stage]),
+      [
+        ["Ch1", "corpus"],
+        ["Ch2", "translate"],
+      ],
+    );
+    // corpus card carries the review flags; translate card carries pronunciation
+    assert.equal(deck.units[0].cards[0].aiSuggested, true);
+    assert.equal(deck.units[1].cards[0].pronunciation, "ni");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("listAllDecks aggregates every format", () => {
   const root = fixture();
   try {

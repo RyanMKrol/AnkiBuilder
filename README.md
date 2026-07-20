@@ -70,11 +70,14 @@ Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` a
 Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing silence/artifact
 ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
 
-To browse your decks without importing them into Anki, run the local dashboard — it lists every built
-deck and opens each to a page of collapsible lessons with audio played inline (served over HTTP, so no
-size limit). It's also a lightweight **editor**: replace a card's clip (upload) or **Generate** new
-ElevenLabs variants to pick from, then **Rebuild deck** to regenerate the `.apkg` for re-import — a few
-clicks, no round-trip through the tooling. Start with `--read-only` to browse-only.
+To browse your decks without importing them into Anki, run the local dashboard — it lists every deck
+and opens each to a page of collapsible lessons. A deck is surfaced at whatever pipeline stage its
+units have reached: a **corpus** or **translate** unit renders its fields read-only for inspection,
+while a fully-built **audio** unit plays each clip inline (served over HTTP, so no size limit). Once
+every unit of a deck has reached the audio stage it also becomes a lightweight **editor**: replace a
+card's clip (upload) or **Generate** new ElevenLabs variants to pick from, then **Rebuild deck** to
+regenerate the `.apkg` for re-import — a few clicks, no round-trip through the tooling. Start with
+`--read-only` to browse-only.
 
 ```sh
 npm run serve                 # then open the printed http://localhost:… URL (Ctrl+C to stop)
@@ -156,10 +159,11 @@ npm run build
 - [x] Review-gate artifacts for each stage
 - [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
-- [x] `serve` — local deck-dashboard web app (Node builtins only): lists every built deck and opens
-      each to collapsible lessons with audio streamed over HTTP (no size cap); pluggable per-format
-      adapters (`src/server/adapters/`). Also an editor — replace/generate a card's audio and rebuild
-      the `.apkg` in place (`--read-only` to disable)
+- [x] `serve` — local deck-dashboard web app (Node builtins only): lists every deck and opens each to
+      collapsible lessons, surfacing each unit at its pipeline stage (corpus/translate read-only,
+      audio with clips streamed over HTTP, no size cap); pluggable per-format adapters
+      (`src/server/adapters/`). An all-audio deck is also an editor — replace/generate a card's audio
+      and rebuild the `.apkg` in place (`--read-only` to disable)
 - [x] CLI orchestrator (resumable run directories)
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki

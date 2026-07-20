@@ -32,6 +32,7 @@ a.plain{color:inherit;text-decoration:none}a.back{font-size:13px;color:var(--acc
 table{width:100%;border-collapse:collapse;table-layout:fixed}
 thead th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:10px 12px 8px;border-bottom:1px solid var(--rule2)}
 col.c-num{width:48px}col.c-en{width:24%}col.c-jp{width:22%}col.c-pron{width:15%}col.c-au{width:180px}col.c-note{width:auto}
+col.c-cat{width:13%}col.c-flags{width:150px}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
 td.num{color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -40,6 +41,10 @@ td.jp{font-family:var(--jp);font-size:21px;line-height:1.4}
 td.pron{font-family:var(--mono);font-size:12px;color:var(--soft)}
 td.au audio{height:30px;width:168px}.x{color:var(--faint)}
 td.note{font-size:12px;color:var(--soft)}
+td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--soft)}
+.badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:100px;border:1px solid var(--rule2);color:var(--soft);white-space:nowrap}
+.badge-drop{color:var(--accent);border-color:var(--accent)}
+tr.row.excluded td{color:var(--faint);text-decoration:line-through}
 .tw{overflow-x:auto}
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}
 /* dashboard index */
@@ -169,37 +174,85 @@ export const DECK_EDIT_SCRIPT = `(function () {
   modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
 })();`;
 
-const cardRow = (
-  c,
-  n,
-  audioCell,
-) => `<tr class="row"${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}${
-  c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""
-}>
-  <td class="num">${n}</td>
-  <td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}</td>
+const flagsCell = (c) => {
+  const badges = [
+    c.excluded ? `<span class="badge badge-drop">Excluded</span>` : "",
+    c.uncertain ? `<span class="badge">Uncertain</span>` : "",
+    c.aiSuggested ? `<span class="badge">AI</span>` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return badges || `<span class="x">—</span>`;
+};
+const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
+
+// Per-stage table shape: the <colgroup>, the <thead> row, and the trailing <td>s after the shared
+// leading `#` cell. The `audio` preset is byte-identical to the original layout (so the static
+// deck-view artifact and existing callers are unchanged); `audioCell(c)` is only consulted there.
+const STAGE_TABLES = {
+  audio: {
+    cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-note">`,
+    head: `<th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Note</th>`,
+    cells: (c, audioCell) =>
+      `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}</td>
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   <td class="au">${audioCell(c)}</td>
-  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
+  },
+  corpus: {
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-jp"><col class="c-flags">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Reading</th><th>Flags</th>`,
+    cells: (c) =>
+      `<td class="en">${escapeHtml(c.english)}</td>
+  <td class="cat-col">${escapeHtml(c.category)}</td>
+  <td class="jp">${jpOrDash(c.target)}</td>
+  <td class="jp">${jpOrDash(c.reading)}</td>
+  <td class="flags">${flagsCell(c)}</td>`,
+  },
+  translate: {
+    cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-cat"><col class="c-note">`,
+    head: `<th class="num">#</th><th>English</th><th>Target</th><th>Pronunciation</th><th>Category</th><th>Note</th>`,
+    cells: (c) =>
+      `<td class="en">${escapeHtml(c.english)}</td>
+  <td class="jp">${jpOrDash(c.target)}</td>
+  <td class="pron">${escapeHtml(c.pronunciation)}</td>
+  <td class="cat-col">${escapeHtml(c.category)}</td>
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
+  },
+};
+
+const cardRow = (c, n, stage, audioCell) => {
+  const spec = STAGE_TABLES[stage] || STAGE_TABLES.audio;
+  const attrs =
+    `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +
+    `${c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""}` +
+    ` data-stage="${escapeHtml(stage)}"`;
+  return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs}>
+  <td class="num">${n}</td>
+  ${spec.cells(c, audioCell)}
 </tr>`;
+};
 
 /**
- * Renders the deck's units as collapsible <details> sections (collapsed by default), each with a
- * cards table whose audio cell is produced by `audioCell(card)`. Numbering is global and continues
- * from `startNumber`.
+ * Renders the deck's units as collapsible <details> sections (collapsed by default). Each section may
+ * carry a `stage` (`corpus` | `translate` | `audio`, default `audio`) that picks its column layout; the
+ * `audio` layout uses the caller's `audioCell(card)`. Numbering is global and continues from
+ * `startNumber`.
  * @returns {{ html: string, endNumber: number }}
  */
 export function renderLessonSections({ sections, startNumber = 1, audioCell }) {
   let n = startNumber - 1;
   const html = sections
     .map((s) => {
+      const stage = s.stage || "audio";
+      const spec = STAGE_TABLES[stage] || STAGE_TABLES.audio;
       const from = n + 1;
-      const rows = s.cards.map((c) => cardRow(c, ++n, audioCell)).join("");
+      const rows = s.cards.map((c) => cardRow(c, ++n, stage, audioCell)).join("");
       const range = s.cards.length ? `${from}–${n}` : "—";
       return `<details class="lesson"><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
-  <div class="tw"><table><colgroup><col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-note"></colgroup>
-  <thead><tr><th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Note</th></tr></thead>
+  <div class="tw"><table><colgroup>${spec.cols}</colgroup>
+  <thead><tr>${spec.head}</tr></thead>
   <tbody>${rows}</tbody></table></div></details>`;
     })
     .join("\n");

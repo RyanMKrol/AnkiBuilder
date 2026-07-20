@@ -3,7 +3,8 @@ import { join } from "path";
 import { listBooks, loadCourseMeta } from "../../cli/outputPaths.js";
 import { loadBookMeta } from "../../corpus/epubLibrary.js";
 import { rebuildBookDir } from "../../deck/rebuild.js";
-import { scanNumberedUnits, isSafeMediaFile } from "./runDir.js";
+import { isSafeMediaFile } from "./runDir.js";
+import { scanNumberedUnits, deckStage } from "./stage.js";
 
 // Adapter for EPUB-book decks: output/epubs/<slug>/chapter-N/. The deck `id` is the book slug; each
 // unit is a chapter, ordered by pedagogical chapter number.
@@ -14,13 +15,17 @@ export const bookAdapter = {
   type: "book",
 
   listDecks(outputRoot) {
-    return listBooks(outputRoot).map((b) => ({
-      type: "book",
-      id: b.slug,
-      title: b.title || b.slug,
-      targetLanguage: b.targetLanguage,
-      unitCount: scanNumberedUnits(bookDir(outputRoot, b.slug), "chapter").length,
-    }));
+    return listBooks(outputRoot).map((b) => {
+      const units = scanNumberedUnits(bookDir(outputRoot, b.slug), "chapter");
+      return {
+        type: "book",
+        id: b.slug,
+        title: b.title || b.slug,
+        targetLanguage: b.targetLanguage,
+        unitCount: units.length,
+        stage: deckStage(units),
+      };
+    });
   },
 
   loadDeck(outputRoot, id) {

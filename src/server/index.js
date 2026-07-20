@@ -22,6 +22,8 @@ import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpu
 import { setCardExcluded, editCard } from "./adapters/applyCards.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
+import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
+import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { resolveIso639Code as defaultResolveIso639Code } from "../model/iso639.js";
@@ -100,6 +102,7 @@ export function createDeckServer({
   voice = null,
   getApiKey = () => process.env.ELEVENLABS_API_KEY,
   saveChapterCorpus = defaultSaveChapterCorpus,
+  runClaude = defaultRunClaude,
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
@@ -156,6 +159,9 @@ ${groups}`,
 
     const hasCorpus = deck.units.some((u) => (u.stage || "audio") === "corpus");
     const hasTranslate = deck.units.some((u) => (u.stage || "audio") === "translate");
+    // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
+    // reading), so the button only appears for a ja deck.
+    const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
 
     const sections = deck.units.map((u) => ({
       leaf: u.label,
@@ -170,7 +176,7 @@ ${groups}`,
       })),
     }));
     const editControls = canEdit
-      ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button><span class="msg"></span></div>`
+      ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button>${isJa ? `<button type="button" class="gen-kanji">Generate (kanji)</button>` : ""}<span class="msg"></span></div>`
       : "";
     const audioCell = (c) => {
       const player = c.audioUrl
@@ -369,6 +375,37 @@ ${modal}
     });
   }
 
+  async function handleGenerateKanji(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const adapter = adapterFor(type);
+    const languageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
+    const voiceId = voice || getDefaultVoice(languageCode);
+    if (!voiceId)
+      throw httpError(400, "no default voice for this language — start the server with --voice");
+    const apiKey = getApiKey();
+    if (!apiKey)
+      throw httpError(
+        503,
+        "ELEVENLABS_API_KEY is not set — start the server with the key available",
+      );
+    const variants = await generateCardKanjiVariants(runDir, cardId, {
+      voiceId,
+      apiKey,
+      languageCode,
+      fetchTts,
+      runClaude,
+    });
+    sendJson(res, {
+      variants: variants.map((v) => ({
+        label: v.label,
+        audio: v.audio,
+        kanji: v.kanji,
+        mediaUrl: mediaUrl(type, id, unit, v.audio),
+      })),
+    });
+  }
+
   async function handleCorpusExclude(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -463,6 +500,10 @@ ${modal}
       }
       if (seg[8] === "generate" && seg.length === 9) {
         await handleGenerate(res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "generate-kanji" && seg.length === 9) {
+        await handleGenerateKanji(res, type, id, unit, cardId);
         return true;
       }
       if (seg[8] === "audio" && seg[9] === "select" && seg.length === 10) {

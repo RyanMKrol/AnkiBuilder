@@ -244,9 +244,17 @@ via the dashboard are NOT trimmed (only ElevenLabs-generated clips).
 
 `generateAudio` fetches only the default clip per card (cache misses only). The legacy `altAudio`
 field is no longer written — switching a Japanese card to its plain no-`。` take is now an on-demand
-dashboard action (the Generate button synthesizes the no-`。` / comma / bracket variants to audition
-and pick), not a pre-baked second recording. The schema still tolerates `altAudio` on cards from older
-runs; the deck build never embeds it.
+dashboard action (the **Generate** button synthesizes the no-`。` / comma / bracket variants to
+audition and pick), not a pre-baked second recording. The schema still tolerates `altAudio` on cards
+from older runs; the deck build never embeds it.
+
+A second on-demand action, **Generate (kanji)** (Japanese decks only — `src/audio/generateKanjiVariants.js`),
+addresses ElevenLabs mis-parsing all-kana input: it first asks Claude (`src/audio/kanjiOrthography.js`,
+via the same `runClaude` as translate) to render the card's kana reading as natural kanji+kana
+orthography — preserving the exact reading, only the script changes — then synthesizes fresh no-`。` /
+with-`。` takes from THAT text and shows the produced kanji in the audition modal. Both on-demand paths
+write content-addressed preview files (`-gen-` / `-genkanji-` infixes) that never collide with the
+built clip, and neither touches `cards.json` until you pick a take.
 
 ### `deck`
 

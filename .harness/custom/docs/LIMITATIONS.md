@@ -7,6 +7,22 @@ refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/cus
 
 Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
 
+## Kana→kanji audio variants cost an LLM + TTS call per click and aren't reading-validated automatically
+
+- **What:** the dashboard's **Generate (kanji)** button (Japanese only) makes one `claude -p` call to
+  convert the card's kana reading into kanji orthography, then a fresh ElevenLabs call per take —
+  every click, no cache. The prompt PINS the reading (kanji only where it doesn't change
+  pronunciation), but there's no automatic round-trip check that the generated kanji actually reads
+  back to the intended kana.
+- **Why:** the safeguard is the human ear — the produced kanji text is shown in the audition modal and
+  you listen before picking, so a bad conversion (an ambiguous kanji voiced with the wrong reading) is
+  caught on audition rather than by code. A round-trip romanize-and-compare would add a second LLM/
+  library pass for a feature used a few times per deck.
+- **Impact:** each kanji generation spends a Claude call + TTS credits; a wrong-reading kanji is
+  possible and only caught by listening. It's an on-demand spot-fix, not a bulk transform.
+- **When to revisit:** if kanji variants get used at scale, add a round-trip check (romanize the kanji
+  via kuroshiro, compare to the kana reading, auto-discard on mismatch) before offering the take.
+
 ## Dashboard editing unlocks only when EVERY unit of a deck has reached the audio stage
 
 - **What:** the `serve` dashboard now surfaces a deck at whatever stage its units are in (corpus /

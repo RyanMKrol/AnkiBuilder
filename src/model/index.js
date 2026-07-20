@@ -58,6 +58,10 @@ const CORPUS_SCHEMA = {
           reading: { type: "string" },
           uncertain: { type: "boolean" },
           aiSuggested: { type: "boolean" },
+          // Set by the dashboard corpus review to mark an item for exclusion. Reversible in the live
+          // UI (a toggle, not a delete); `translate` drops excluded items when it builds cards.json,
+          // and the dedup-library copy saved at review time omits them too.
+          excluded: { type: "boolean" },
         },
         additionalProperties: false,
       },

@@ -9,6 +9,7 @@ import {
   renderLessonSections,
   EXPAND_COLLAPSE_SCRIPT,
   DECK_EDIT_SCRIPT,
+  CORPUS_EDIT_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { ADAPTERS } from "./adapters/index.js";
 import {
@@ -16,6 +17,8 @@ import {
   readFontBytes as defaultReadFontBytes,
 } from "../deck/fontLibrary.js";
 import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
+import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpus.js";
+import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
@@ -94,6 +97,7 @@ export function createDeckServer({
   fetchTts = fetchElevenLabsTts,
   voice = null,
   getApiKey = () => process.env.ELEVENLABS_API_KEY,
+  saveChapterCorpus = defaultSaveChapterCorpus,
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
@@ -148,9 +152,13 @@ ${groups}`,
       deck.units.length > 0 &&
       deck.units.every((u) => (u.stage || "audio") === "audio");
 
+    const hasCorpus = deck.units.some((u) => (u.stage || "audio") === "corpus");
+
     const sections = deck.units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
+      seq: u.seq,
+      reviewed: !!u.reviewed,
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
@@ -167,7 +175,27 @@ ${groups}`,
         : `<span class="x">—</span>`;
       return player + editControls;
     };
-    const { html: sectionHtml } = renderLessonSections({ sections, startNumber: 1, audioCell });
+    // Corpus/translate write-back works per-section whenever the server is editable — independent of
+    // the all-audio `canEdit` gate, which only governs audio editing + the global rebuild.
+    const rowControl = editable
+      ? (stage, c) =>
+          stage === "corpus"
+            ? `<label class="excl-l"><input type="checkbox" class="excl"${c.excluded ? " checked" : ""}> exclude</label>`
+            : ""
+      : undefined;
+    const sectionControl = editable
+      ? (s) =>
+          s.stage === "corpus"
+            ? `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`
+            : ""
+      : undefined;
+    const { html: sectionHtml } = renderLessonSections({
+      sections,
+      startNumber: 1,
+      audioCell,
+      rowControl,
+      sectionControl,
+    });
 
     const total = deck.units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = deck.units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
@@ -186,12 +214,14 @@ ${groups}`,
 <p class="lede">${lede}</p>
 <div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button>${toolbar}</div>
 </header>
+${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" hidden></div>` : ""}
 ${sectionHtml}
 ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
-    const script = canEdit
-      ? `${EXPAND_COLLAPSE_SCRIPT}\n${DECK_EDIT_SCRIPT}`
-      : EXPAND_COLLAPSE_SCRIPT;
+    const scripts = [EXPAND_COLLAPSE_SCRIPT];
+    if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
+    if (editable && hasCorpus) scripts.push(CORPUS_EDIT_SCRIPT);
+    const script = scripts.join("\n");
     return page(`${deck.title} — deck`, body, script);
   }
 
@@ -335,6 +365,25 @@ ${modal}
     });
   }
 
+  async function handleCorpusExclude(req, res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    const body = await readBodyCapped(req, 64 * 1024);
+    let excluded;
+    try {
+      excluded = !!JSON.parse(body.toString("utf-8")).excluded;
+    } catch {
+      throw httpError(400, "invalid JSON body");
+    }
+    sendJson(res, setCorpusItemExcluded(runDir, cardId, excluded));
+  }
+
+  function handleCorpusReviewed(res, type, id, unit) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    sendJson(res, markCorpusReviewed(runDir, { saveChapterCorpus }));
+  }
+
   async function handleSelect(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -372,6 +421,9 @@ ${modal}
     if (seg[0] !== "api" || seg[1] !== "deck") return false;
     const [type, id] = [seg[2], seg[3]];
     if (seg[4] === "rebuild" && seg.length === 5) return (handleRebuild(res, type, id), true);
+    if (seg[4] === "unit" && seg[6] === "corpus" && seg[7] === "reviewed" && seg.length === 8) {
+      return (handleCorpusReviewed(res, type, id, seg[5]), true);
+    }
     if (seg[4] === "unit" && seg[6] === "card") {
       const [unit, cardId] = [seg[5], seg[7]];
       const query = new URL(req.url, "http://localhost").searchParams;
@@ -385,6 +437,10 @@ ${modal}
       }
       if (seg[8] === "audio" && seg[9] === "select" && seg.length === 10) {
         await handleSelect(req, res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "corpus" && seg[9] === "exclude" && seg.length === 10) {
+        await handleCorpusExclude(req, res, type, id, unit, cardId);
         return true;
       }
     }

@@ -471,6 +471,10 @@ export async function translateCorpus(
   const errors = [];
   const { targetLanguage } = corpus.meta;
 
+  // Items marked for exclusion in the dashboard corpus review are dropped here — the single point
+  // where a reviewed corpus becomes cards. (The flag is reversible up to this stage.)
+  corpus = { ...corpus, items: corpus.items.filter((item) => !item.excluded) };
+
   const needsFullTranslation = corpus.items.filter((item) => item.target === null);
   const needsPronunciationOnly = corpus.items.filter((item) => item.target !== null);
 

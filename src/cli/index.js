@@ -422,7 +422,12 @@ async function runTranslate(flags, ctx) {
     );
   }
 
-  const { cards, errors } = await ctx.translateCorpus(corpus);
+  // `--simple-script` asks the language plug-in (src/translate/targetScript.js) to constrain the
+  // generated target to the language's beginner/learner script (e.g. Japanese → kana only). No-op for
+  // a language with no such rule.
+  const { cards, errors } = await ctx.translateCorpus(corpus, {
+    simpleScript: !!flags["simple-script"],
+  });
 
   writeJson(paths.cards, cards);
   ctx.log(`translated ${cards.items.length} item(s) to ${paths.cards}`);

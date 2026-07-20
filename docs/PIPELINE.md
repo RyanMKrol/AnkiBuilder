@@ -197,6 +197,14 @@ existed. See [`translate-prompts.md`](./translate-prompts.md) for the full templ
 [`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) for the dependency
 trade-offs this introduces.
 
+**Optional simplified target script (`--simple-script`).** A language may define a beginner/learner
+script constraint in the language plug-in `src/translate/targetScript.js` (`getSimpleScriptRule`, keyed
+by ISO code — Japanese → "kana only, no kanji"). When `translate --simple-script` is passed,
+`translateCorpus` resolves that rule for the target language and injects it into the target-generation
+prompt; the translate core is script-agnostic (it just forwards the instruction string), and a language
+with no rule ignores the flag. This is the same per-language plug-in pattern as voices / alt-audio /
+romanization / fonts — nothing language-specific lives in the core.
+
 **Provenance flags carry forward.** The corpus's `aiSuggested` / `uncertain` flags are copied onto the
 translated card by `translateCorpus` (matched by `id`), so they persist into `cards.json` and every
 downstream review rather than being lost at translate. `aiSuggested` is a field on both

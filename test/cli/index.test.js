@@ -948,6 +948,28 @@ test("translate: reads corpus.json and writes cards.json", async () => {
   });
 });
 
+test("translate: --simple-script passes simpleScript:true through to translateCorpus (else false)", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+
+    const run = async (argv) => {
+      writeFileSync(paths.corpus, JSON.stringify(baseCorpus()));
+      let opts = null;
+      const translateCorpus = (_corpus, o) => {
+        opts = o;
+        return { cards: baseCards(), errors: [] };
+      };
+      await runCli(argv, { translateCorpus, log: () => {} });
+      await fs.rm(paths.cards, { force: true });
+      return opts;
+    };
+
+    assert.equal((await run(["translate", "--run", runDir, "--simple-script"])).simpleScript, true);
+    assert.equal((await run(["translate", "--run", runDir])).simpleScript, false);
+  });
+});
+
 test("translate: is resumable — skips work when cards.json already exists", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

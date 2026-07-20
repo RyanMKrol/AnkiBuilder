@@ -101,9 +101,10 @@ const CARDS_SCHEMA = {
           hint: { type: "string" },
           image: { type: "string" },
           audio: { type: "string" },
-          // Optional second recording (see src/audio/altAudio.js): for a language with an
-          // alt-audio transform, the audio stage records the transformed spoken text here so the
-          // review can switch a card to it. Never embedded by the deck build — only `audio` is.
+          // Legacy optional second recording. The audio stage no longer writes this (only the default
+          // clip is generated up front; the no-。 take and other variants are on-demand dashboard
+          // actions), but the field is kept so cards.json from older runs still validate. Never
+          // embedded by the deck build — only `audio` is.
           altAudio: { type: "string" },
           uncertain: { type: "boolean" },
           // Marks an AI-generated fill-in-the-blank practice card (a sentence built by resolving a

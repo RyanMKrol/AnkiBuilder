@@ -1525,47 +1525,7 @@ test("render-review --stage translate: throws when cards.json doesn't exist yet"
   });
 });
 
-test("audio: copies alt clips into the run dir and passes the real alt transform through", async () => {
-  await withTempDir(async (runDir) =>
-    withTempDir(async (libraryHomeDir) => {
-      const paths = runPaths(runDir);
-      mkdirSync(runDir, { recursive: true });
-      const cards = { ...baseCards(), meta: { ...baseCards().meta, targetLanguage: "ja" } };
-      writeFileSync(paths.cards, JSON.stringify(cards));
-
-      const cacheDir = join(libraryHomeDir, "audio", "voice1", TTS_MODEL);
-      mkdirSync(cacheDir, { recursive: true });
-      writeFileSync(join(cacheDir, "def.mp3"), Buffer.from("default"));
-      writeFileSync(join(cacheDir, "alt.mp3"), Buffer.from("alt"));
-
-      let receivedOpts = null;
-      const generateAudio = (cardsArg, opts) => {
-        receivedOpts = opts;
-        return {
-          ...cardsArg,
-          items: cardsArg.items.map((item) => ({ ...item, audio: "def.mp3", altAudio: "alt.mp3" })),
-        };
-      };
-
-      await runCli(["audio", "--run", runDir, "--voice", "voice1"], {
-        generateAudio,
-        libraryHome: () => libraryHomeDir,
-        log: () => {},
-      });
-
-      // real alt-transform lookup is threaded through (ja resolves to a function, en to undefined)
-      assert.equal(typeof receivedOpts.getAltTransform("ja"), "function");
-      assert.equal(receivedOpts.getAltTransform("en"), undefined);
-      // both the default and the alt clip land in the run's audio dir
-      assert(existsSync(join(paths.audio, "def.mp3")));
-      assert(existsSync(join(paths.audio, "alt.mp3")));
-      const written = JSON.parse(await fs.readFile(paths.cards, "utf-8"));
-      assert.equal(written.items[0].altAudio, "alt.mp3");
-    }),
-  );
-});
-
-test("audio: --no-alt disables the alt pass (transform resolves to undefined for every language)", async () => {
+test("audio: copies the default clip into the run dir and threads the real alt transform (for the with-。 default)", async () => {
   await withTempDir(async (runDir) =>
     withTempDir(async (libraryHomeDir) => {
       const paths = runPaths(runDir);
@@ -1586,17 +1546,21 @@ test("audio: --no-alt disables the alt pass (transform resolves to undefined for
         };
       };
 
-      await runCli(["audio", "--run", runDir, "--voice", "voice1", "--no-alt"], {
+      await runCli(["audio", "--run", runDir, "--voice", "voice1"], {
         generateAudio,
         libraryHome: () => libraryHomeDir,
         log: () => {},
       });
 
-      assert.equal(
-        receivedOpts.getAltTransform("ja"),
-        undefined,
-        "no alt transform under --no-alt",
-      );
+      // the real alt-transform lookup is still threaded through — it builds the with-。 DEFAULT clip,
+      // even though there's no separate alt pass any more (ja → a function, en → undefined)
+      assert.equal(typeof receivedOpts.getAltTransform("ja"), "function");
+      assert.equal(receivedOpts.getAltTransform("en"), undefined);
+      // only the default clip lands in the run's audio dir; no altAudio field is written
+      assert(existsSync(join(paths.audio, "def.mp3")));
+      const written = JSON.parse(await fs.readFile(paths.cards, "utf-8"));
+      assert.equal(written.items[0].audio, "def.mp3");
+      assert.equal("altAudio" in written.items[0], false);
     }),
   );
 });

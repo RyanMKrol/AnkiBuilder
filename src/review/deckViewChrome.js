@@ -79,16 +79,25 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .grp-built .dblock{border-left:3px solid #5c7a52}
 .dblock .dt{font-family:var(--serif);font-size:17px}
 .dblock .dm{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;margin-left:10px}
-.dbhead{display:flex;align-items:baseline;flex-wrap:wrap}
-.urow{display:flex;align-items:center;gap:12px;padding:7px 0;border-top:1px solid var(--rule);margin-top:8px}
-.urow:first-of-type{margin-top:10px}
+.dbhead{display:flex;align-items:baseline;flex-wrap:wrap;margin-bottom:2px}
+/* Symmetric vertical padding (no lopsided margin) so the text sits centred between the row rules. */
+.urow{display:flex;align-items:center;gap:12px;padding:11px 2px;border-top:1px solid var(--rule);position:relative;cursor:pointer}
+.urow:first-of-type{margin-top:6px}
+.urow:hover{background:rgba(122,59,54,.05)}
 .urow .ulabel{flex:1 1 auto;font-size:13.5px}
 .urow .ustage{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
 .urow .ustage.done{color:#5c7a52;font-weight:700}
 .urow .uactions{display:flex;gap:14px}
 .urow .uactions a.da{font-size:12.5px;color:var(--accent);text-decoration:none}
 .urow .uactions a.da.primary{font-weight:700}.urow .uactions a.da:hover{text-decoration:underline}
+/* Whole row is the click target: the primary action's stretched ::after overlays the entire row,
+   so clicking anywhere on it follows the link (the visible "Open"/"Review" stays as the affordance). */
+.urow .uactions a.da.primary::after{content:"";position:absolute;inset:0}
+/* Same for a single-unit deck block — the whole card is clickable. */
+.dblock.single{position:relative;cursor:pointer}
+.dblock.single:hover{border-color:var(--accent)}
 .dblock.single .deck-actions{margin-top:8px}
+.dblock.single .deck-actions a.da.primary::after{content:"";position:absolute;inset:0}
 /* editor: per-row controls */
 .au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .au .ed button,.au .ed label.btn{font:inherit;font-size:11px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 9px;cursor:pointer}
@@ -388,6 +397,7 @@ export function renderLessonSections({
   audioCell,
   rowControl,
   sectionControl,
+  open = false,
 }) {
   const ctx = { audioCell, rowControl };
   let n = startNumber - 1;
@@ -399,7 +409,7 @@ export function renderLessonSections({
       const rows = s.cards.map((c) => cardRow(c, ++n, stage, ctx)).join("");
       const range = s.cards.length ? `${from}–${n}` : "—";
       const tools = sectionControl ? sectionControl(s) : "";
-      return `<details class="lesson"><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
+      return `<details class="lesson"${open ? " open" : ""}><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
   ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="tbl tbl-${stage}"><colgroup>${spec.cols}</colgroup>
   <thead><tr>${spec.head}</tr></thead>
   <tbody>${rows}</tbody></table></div></details>`;

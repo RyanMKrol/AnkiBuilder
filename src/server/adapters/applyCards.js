@@ -1,11 +1,12 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
+import { saveChapterCorpus as defaultSaveChapterCorpus } from "../../corpus/epubLibrary.js";
 import { httpError } from "../../util/httpError.js";
 
-// Write-back for the dashboard translate review — non-audio edits to cards.json (exclude a card,
-// or fix its target/pronunciation/reading). Each is a read-modify-write targeting the item by `id`.
-// (Audio edits live in applyCardAudio.js; corpus edits in applyCorpus.js.)
+// Write-back for the dashboard Corpus review — non-audio edits to cards.json (exclude a card, fix its
+// target/pronunciation/reading, or mark the lesson reviewed). Each is a read-modify-write targeting the
+// item by `id`. (Audio edits live in applyCardAudio.js.)
 
 const EDITABLE_FIELDS = ["target", "pronunciation", "reading"];
 
@@ -58,8 +59,40 @@ export function setLessonDone(runDir, done, { validateCards = defaultValidateCar
   return { done: !!done };
 }
 
-// Edit a card's translate-stage text fields. Only the whitelisted fields are ever written, and each
-// is coerced to a string; anything else in the body is ignored.
+// Mark a lesson's Corpus review signed off (cards.meta.reviewed = true) — the gate `audio` checks —
+// and, for an EPUB source, save the reviewed (excluded-filtered) corpus into the dedup library as the
+// backward-dedup input for later chapters. The corpus is derived from the cards (English is unchanged
+// by translation), so this preserves the load-bearing side effect that used to fire at the old
+// corpus-stage "Mark reviewed".
+export function markCardsReviewed(
+  runDir,
+  { validateCards = defaultValidateCards, saveChapterCorpus = defaultSaveChapterCorpus } = {},
+) {
+  const { cardsPath, data } = loadCards(runDir);
+  data.meta = { ...(data.meta || {}), reviewed: true };
+  persist(cardsPath, data, validateCards);
+
+  const { epubHash, chapterNumber } = data.meta;
+  if (epubHash && chapterNumber != null) {
+    const items = data.items
+      .filter((i) => !i.excluded)
+      .map((i) => ({
+        id: i.id,
+        english: i.english,
+        category: i.category,
+        notes: i.notes ?? null,
+        target: i.target ?? null,
+        reading: i.reading,
+        ...(i.uncertain ? { uncertain: true } : {}),
+        ...(i.aiSuggested ? { aiSuggested: true } : {}),
+      }));
+    saveChapterCorpus(epubHash, chapterNumber, { meta: data.meta, items });
+  }
+  return { reviewed: true };
+}
+
+// Edit a card's text fields. Only the whitelisted fields are ever written, and each is coerced to a
+// string; anything else in the body is ignored.
 export function editCard(runDir, cardId, fields, { validateCards = defaultValidateCards } = {}) {
   const { cardsPath, data } = loadCards(runDir);
   const item = findItem(data, cardId);

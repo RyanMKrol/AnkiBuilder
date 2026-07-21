@@ -10,9 +10,12 @@ understand or modify the implementation.
 `assemble` → `translate` → `audio` → `deck`, each stage reading/writing JSON in a run
 directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved chapter directory
 under a book-organized `output/` tree (`--output-root <dir>`; see [Output layout](#output-layout)).
-**Review happens between stages in the dashboard** (`serve`), not as a CLI stage — see
-[Deck dashboard](#deck-dashboard-serve). The one gate the CLI still enforces: `translate` refuses to
-run until the corpus's `meta.reviewed` is set, which the dashboard's "Mark reviewed" does.
+**Review happens in the dashboard** (`serve`), not as a CLI stage — see
+[Deck dashboard](#deck-dashboard-serve). There are **two review steps**: the **Corpus** review
+(English + target + pronunciation, on `cards.json`) and the **Audio** review. `translate` runs right
+after `assemble` with **no** gate between them (so the Corpus review can show the translation); the
+one gate the CLI enforces is `audio`, which refuses to run until `cards.meta.reviewed` is set —
+the dashboard's Corpus-review "Mark reviewed".
 
 ### `assemble`
 
@@ -155,21 +158,26 @@ explicitly `null` when the source path can't populate them, plus two optional fl
 through when the extractor sets them: `uncertain` (the model wasn't sure the item belonged) and
 `aiSuggested` (a critical-gap item the model added itself, not present in the source).
 
-### corpus review (in the dashboard)
+### Corpus review (in the dashboard)
 
-There is no `review` CLI command — the corpus review is a **hard gate** before `translate` will run,
-performed in the dashboard. Open the run's deck, exclude anything wrong (a reversible `excluded` flag
-on the corpus item — `translateCorpus` drops those when it builds `cards.json`), and click **Mark
-reviewed** to set `meta.reviewed: true`. For an `--epub`-sourced corpus, marking reviewed also saves
-the approved corpus (excluded items filtered out) into the local library (`src/corpus/epubLibrary.js`
-`saveChapterCorpus`), so later chapters' backward-dedup pass has something to check against. See
+There is no `review` CLI command — the **Corpus review** is performed in the dashboard, on the
+**translated** cards (English + target + pronunciation together), and it is a **hard gate before
+`audio`** (not before `translate`, which now runs unconditionally right after `assemble`). Open the
+run's deck, exclude anything wrong (a reversible `excluded` flag on the card — the deck build drops
+those), fix target/pronunciation inline, and click **Mark reviewed** to set `cards.meta.reviewed:
+true`. For an `--epub`-sourced run, marking reviewed also saves the approved corpus (excluded items
+filtered out, derived from the cards) into the local library (`src/corpus/epubLibrary.js`
+`saveChapterCorpus`), so later chapters' backward-dedup pass has something to check against
+(`markCardsReviewed` in `src/server/adapters/applyCards.js`). See
 [Deck dashboard](#deck-dashboard-serve) for the routes.
 
 ### `translate`
 
-Items with `target: null` get a full translation; items with a real `target` already set (e.g.
-from the EPUB path) only ever get a pronunciation guide — the model cannot override a pre-existing
-target (see `src/translate/index.js`).
+Runs right after `assemble` — there is **no review gate before it** (the review moved onto its
+output). Items with `target: null` get a full translation; items with a real `target` already set
+(e.g. from the EPUB path) only ever get a pronunciation guide — the model cannot override a
+pre-existing target (see `src/translate/index.js`). The resulting `cards.json` is what the **Corpus
+review** operates on.
 
 **Spoken form (`reading`).** An item may carry an optional `reading` — a spoken version of the
 target with anything the romanizer/TTS mishandles spelled out in the target language's own script.
@@ -470,23 +478,23 @@ path-safety (filename regex + a `realpath`-within-`outputRoot` check) and suppor
 The **Review view** (`renderReviewPage`) surfaces every unit at its **pipeline stage**
 (`src/server/adapters/stage.js` `detectStage`: `corpus.json` only → corpus; `cards.json`, no audio →
 translate; a card has audio → audio) and renders the stage-appropriate columns + review controls
-(the Browse view at `/deck` renders the same units read-only). Beyond the read routes, the server
+(the Browse view at `/deck` renders the same units read-only). The `translate` file-stage IS the
+combined **Corpus review** (labelled "corpus" in the UI); the `corpus` file-stage (pre-translate,
+transient) renders **read-only** with a "run `translate`" hint. Beyond the read routes, the server
 (`src/server/index.js`) exposes, gated on `editable` (disable all editing with `serve --read-only`):
 
-**Corpus review** (`src/server/adapters/applyCorpus.js`) — a corpus-stage unit shows an Exclude
-checkbox per row and a per-lesson Mark reviewed button:
+**Corpus review** (`src/server/adapters/applyCards.js`) — the combined first review, on `cards.json`:
+English + target + pronunciation with an Exclude checkbox, inline-editable target/pronunciation cells
+(contentEditable, saved on blur), AI/Uncertain provenance ticks, and a per-lesson Mark reviewed
+button:
 
-- `POST …/unit/:unit/card/:cardId/corpus/exclude` `{excluded}` — toggle the reversible `excluded`
-  flag on the corpus item (`translate` drops excluded items).
-- `POST …/unit/:unit/corpus/reviewed` — set `meta.reviewed: true`; for an EPUB source, also
-  `saveChapterCorpus` the excluded-filtered corpus to the dedup library (injected as a server dep).
-
-**Translate review** (`src/server/adapters/applyCards.js`) — a translate-stage unit shows an Exclude
-checkbox and inline-editable target/pronunciation cells (contentEditable, saved on blur):
-
-- `POST …/card/:cardId/translate/exclude` `{excluded}` — toggle the card's `excluded` flag (the deck
-  build drops excluded cards).
-- `POST …/card/:cardId/translate/edit` `{target?,pronunciation?,reading?}` — whitelisted field edit.
+- `POST …/unit/:unit/card/:cardId/review/exclude` `{excluded}` — toggle the card's reversible
+  `excluded` flag (the deck build drops excluded cards).
+- `POST …/unit/:unit/card/:cardId/review/edit` `{target?,pronunciation?,reading?}` — whitelisted
+  field edit.
+- `POST …/unit/:unit/review/reviewed` — set `cards.meta.reviewed: true` (the gate `audio` checks);
+  for an EPUB source, also `saveChapterCorpus` the excluded-filtered corpus (derived from the cards)
+  to the dedup library (injected as a server dep) — `markCardsReviewed`.
 
 **Audio review** (a unit-scoped review `/review/:type/:id/:unit` edits when THAT lesson is at the audio
 stage — independent of its siblings; a whole-deck `/review/:type/:id` edits only when EVERY unit is at

@@ -25,9 +25,9 @@ function baseCorpus({ reviewed = true } = {}) {
   };
 }
 
-function baseCards() {
+function baseCards({ reviewed = true } = {}) {
   return {
-    meta: { targetLanguage: "es", sourceType: "template" },
+    meta: { targetLanguage: "es", sourceType: "template", reviewed },
     items: [
       { id: "a1", english: "Hello", category: "Greetings", target: "Hola", pronunciation: "OH-la" },
     ],
@@ -914,14 +914,27 @@ test("assemble: is resumable — skips work when corpus.json already exists", as
   });
 });
 
-test("translate: throws when the corpus has not been reviewed yet", async () => {
+test("translate: runs on an un-reviewed corpus (the gate moved to audio)", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);
     mkdirSync(runDir, { recursive: true });
     writeFileSync(paths.corpus, JSON.stringify(baseCorpus({ reviewed: false })));
 
+    const translateCorpus = () => ({ cards: baseCards({ reviewed: false }), errors: [] });
+    await runCli(["translate", "--run", runDir], { translateCorpus, log: () => {} });
+
+    assert.ok(existsSync(paths.cards)); // translated despite meta.reviewed === false
+  });
+});
+
+test("audio: throws when the corpus review has not been marked reviewed yet", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.cards, JSON.stringify(baseCards({ reviewed: false })));
+
     await assert.rejects(
-      () => runCli(["translate", "--run", runDir], { log: () => {} }),
+      () => runCli(["audio", "--run", runDir, "--voice", "voice1"], { log: () => {} }),
       /has not been reviewed yet/,
     );
   });

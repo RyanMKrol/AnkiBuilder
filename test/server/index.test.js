@@ -250,20 +250,19 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/wip`)).text();
-        // corpus section is ENGLISH-ONLY (no Target/Reading), with Note + provenance tick columns
+        // pre-translate corpus section is READ-ONLY English + Note + provenance ticks (no Target, no Exclude)
         assert.match(
           html,
           /<th>English<\/th><th>Category<\/th><th>Note<\/th><th class="ctr">AI-suggested<\/th><th class="ctr">Uncertain<\/th>/,
         );
-        assert.doesNotMatch(html, /<th>Reading<\/th>/);
         assert.match(html, /data-stage="corpus"/);
-        // translate section columns
+        // combined Corpus review section: English-first, Category, then Target + Pronunciation, Note, flags
         assert.match(
           html,
-          /<th>Target<\/th><th>Pronunciation<\/th><th>Category<\/th><th>Note<\/th>/,
+          /<th>English<\/th><th>Category<\/th><th>Target<\/th><th>Pronunciation<\/th><th>Note<\/th>/,
         );
         assert.match(html, /data-stage="translate"/);
-        // not all-audio → the audio-edit UI + rebuild are absent (corpus/translate controls still show)
+        // not all-audio → the audio-edit UI + rebuild are absent
         assert.doesNotMatch(html, /Rebuild deck/);
         assert.doesNotMatch(html, /class="repl"/);
         assert.doesNotMatch(html, /class="gen"/);
@@ -302,20 +301,18 @@ function corpusFixture() {
   );
   return { root, book };
 }
-const readCorpus = (book) =>
-  JSON.parse(readFileSync(join(book, "chapter-0", "corpus.json"), "utf-8"));
 
-test("corpus section is editable: exclude checkboxes, Mark reviewed, and #deckctx are rendered", async () => {
+test("pre-translate corpus section is read-only: no exclude, no Mark reviewed, a run-translate hint", async () => {
   const { root } = corpusFixture();
   try {
     await withServer(
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/cbook`)).text();
-        assert.match(html, /id="deckctx"/);
-        assert.match(html, /class="excl"/);
-        assert.match(html, /Mark reviewed/);
         assert.match(html, /data-stage="corpus"/);
+        assert.doesNotMatch(html, /class="excl"/); // no exclude checkbox pre-translation
+        assert.doesNotMatch(html, /Mark reviewed/); // the review gate is post-translation
+        assert.match(html, /run <code>translate<\/code>/i); // hint to translate first
       },
       editDeps,
     );
@@ -324,29 +321,78 @@ test("corpus section is editable: exclude checkboxes, Mark reviewed, and #deckct
   }
 });
 
-test("corpus exclude writes the flag; mark-reviewed sets meta.reviewed + saves the filtered corpus to the library", async () => {
-  const { root, book } = corpusFixture();
+// ---------------------------------------------------------------------------
+// Combined Corpus review write-back (exclude + inline edit + Mark reviewed) on cards.json.
+// ---------------------------------------------------------------------------
+
+function translateFixture() {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-tr-"));
+  const book = join(root, "epubs", "tbook");
+  mkdirSync(join(book, "chapter-0"), { recursive: true });
+  writeFileSync(join(book, "book.json"), JSON.stringify({ title: "T Book", targetLanguage: "ja" }));
+  writeFileSync(
+    join(book, "chapter-0", "cards.json"),
+    JSON.stringify({
+      meta: {
+        targetLanguage: "ja",
+        sourceType: "epub",
+        epubHash: "h1",
+        chapterNumber: 2,
+        chapterLabel: "Tch",
+      },
+      items: [
+        { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+        { id: "b", english: "two", category: "Numbers", target: "に", pronunciation: "ni" },
+      ],
+    }),
+  );
+  return { root, book };
+}
+const readCards = (book) =>
+  JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+
+test("Corpus review section is editable: exclude, editable target/pron cells, Mark reviewed, #deckctx", async () => {
+  const { root } = translateFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/tbook`)).text();
+        assert.match(html, /data-stage="translate"/);
+        assert.match(html, /data-field="target"/);
+        assert.match(html, /data-field="pronunciation"/);
+        assert.match(html, /class="excl"/);
+        assert.match(html, /Mark reviewed/); // the combined review carries the sign-off button
+        assert.match(html, /id="deckctx"/);
+        // no audio-edit UI at this stage
+        assert.doesNotMatch(html, /Rebuild deck/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("Corpus review: Mark reviewed sets cards.meta.reviewed + saves the filtered dedup corpus (epub)", async () => {
+  const { root, book } = translateFixture();
   const saved = [];
   try {
     await withServer(
       root,
       async (url) => {
-        const ex = await asJson(
-          await fetch(`${url}/api/deck/book/cbook/unit/0/card/a/corpus/exclude`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ excluded: true }),
-          }),
-        );
-        assert.equal(ex.status, 200);
-        assert.equal(readCorpus(book).items.find((i) => i.id === "a").excluded, true);
-
+        // exclude card a, then mark reviewed
+        await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/review/exclude`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ excluded: true }),
+        });
         const rev = await asJson(
-          await fetch(`${url}/api/deck/book/cbook/unit/0/corpus/reviewed`, { method: "POST" }),
+          await fetch(`${url}/api/deck/book/tbook/unit/0/review/reviewed`, { method: "POST" }),
         );
         assert.equal(rev.status, 200);
-        assert.equal(readCorpus(book).meta.reviewed, true);
-        // the library copy is saved for (h1, 2), with the excluded item filtered out
+        assert.equal(readCards(book).meta.reviewed, true);
+        // dedup library gets (h1, 2) with the excluded card filtered out
         assert.deepEqual(saved, [{ hash: "h1", ch: 2, ids: ["b"] }]);
       },
       {
@@ -360,82 +406,14 @@ test("corpus exclude writes the flag; mark-reviewed sets meta.reviewed + saves t
   }
 });
 
-test("read-only server 403s the corpus write routes and hides the controls", async () => {
-  const { root } = corpusFixture();
-  try {
-    await withServer(
-      root,
-      async (url) => {
-        const html = await (await fetch(`${url}/review/book/cbook`)).text();
-        assert.doesNotMatch(html, /class="excl"/);
-        assert.doesNotMatch(html, /id="deckctx"/);
-        assert.equal(
-          (await fetch(`${url}/api/deck/book/cbook/unit/0/corpus/reviewed`, { method: "POST" }))
-            .status,
-          403,
-        );
-      },
-      { ...editDeps, editable: false },
-    );
-  } finally {
-    rmSync(root, { recursive: true, force: true });
-  }
-});
-
-// ---------------------------------------------------------------------------
-// Translate review write-back (exclude + inline field edit) in the dashboard.
-// ---------------------------------------------------------------------------
-
-function translateFixture() {
-  const root = mkdtempSync(join(tmpdir(), "deck-srv-tr-"));
-  const book = join(root, "epubs", "tbook");
-  mkdirSync(join(book, "chapter-0"), { recursive: true });
-  writeFileSync(join(book, "book.json"), JSON.stringify({ title: "T Book", targetLanguage: "ja" }));
-  writeFileSync(
-    join(book, "chapter-0", "cards.json"),
-    JSON.stringify({
-      meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Tch" },
-      items: [
-        { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
-        { id: "b", english: "two", category: "Numbers", target: "に", pronunciation: "ni" },
-      ],
-    }),
-  );
-  return { root, book };
-}
-const readCards = (book) =>
-  JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
-
-test("translate section is editable: exclude checkboxes, editable target/pron cells, #deckctx", async () => {
-  const { root } = translateFixture();
-  try {
-    await withServer(
-      root,
-      async (url) => {
-        const html = await (await fetch(`${url}/review/book/tbook`)).text();
-        assert.match(html, /data-stage="translate"/);
-        assert.match(html, /data-field="target"/);
-        assert.match(html, /data-field="pronunciation"/);
-        assert.match(html, /class="excl"/);
-        assert.match(html, /id="deckctx"/);
-        // no audio-edit UI at the translate stage
-        assert.doesNotMatch(html, /Rebuild deck/);
-      },
-      editDeps,
-    );
-  } finally {
-    rmSync(root, { recursive: true, force: true });
-  }
-});
-
-test("translate exclude writes the flag; translate edit updates whitelisted fields", async () => {
+test("Corpus review exclude writes the flag; edit updates whitelisted fields", async () => {
   const { root, book } = translateFixture();
   try {
     await withServer(
       root,
       async (url) => {
         const ex = await asJson(
-          await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/translate/exclude`, {
+          await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/review/exclude`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ excluded: true }),
@@ -445,7 +423,7 @@ test("translate exclude writes the flag; translate edit updates whitelisted fiel
         assert.equal(readCards(book).items.find((i) => i.id === "a").excluded, true);
 
         const ed = await asJson(
-          await fetch(`${url}/api/deck/book/tbook/unit/0/card/b/translate/edit`, {
+          await fetch(`${url}/api/deck/book/tbook/unit/0/card/b/review/edit`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ target: "二", pronunciation: "ni!", english: "HACK" }),
@@ -464,7 +442,7 @@ test("translate exclude writes the flag; translate edit updates whitelisted fiel
   }
 });
 
-test("read-only server 403s the translate write routes and hides the controls", async () => {
+test("read-only server 403s the Corpus review write routes and hides the controls", async () => {
   const { root } = translateFixture();
   try {
     await withServer(
@@ -475,7 +453,7 @@ test("read-only server 403s the translate write routes and hides the controls", 
         assert.doesNotMatch(html, /id="deckctx"/);
         assert.equal(
           (
-            await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/translate/exclude`, {
+            await fetch(`${url}/api/deck/book/tbook/unit/0/card/a/review/exclude`, {
               method: "POST",
             })
           ).status,

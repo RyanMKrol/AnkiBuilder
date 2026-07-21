@@ -134,9 +134,10 @@ own small flow that completes *before* you return to the deck build:
   one phrase per line, blank lines are fine — they're skipped) — `assemble --words` reads from a
   file, not inline text, so this file is how their dictated list gets in.
 
-### Step 2: Corpus Assembly & Review
+### Step 2: Corpus Assembly
 
-Once the source is decided, I'll assemble the corpus.
+Once the source is decided, I'll assemble the corpus (the human review happens later, in Step 3, on
+the translated cards).
 
 **For a template**, pass `--output-root output` so the deck is filed under the organized
 `output/templates/<templateName>/<lang>/` tree (one folder per language). Templates are
@@ -263,8 +264,9 @@ e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the 
 target language's own script (`にせんえん`, `ごかい`). The digits stay in `target` for a natural card
 face, but the spelled-out `reading` is what drives the romaji pronunciation AND the audio — because
 digits break both (kuroshiro renders `2,000えん` as `2 , 000 en`, and ElevenLabs may read it in
-English). The corpus review shows a **Reading (spoken)** column whenever any item has one, so you can
-verify the kana; if a reading's counter looks wrong, tell me and I'll fix it.
+English). The `reading` drives the **Pronunciation** you see in the Corpus review, so a wrong counter
+shows up as wrong romaji there — if a number's pronunciation looks off, tell me and I'll fix the
+`reading`.
 
 **Provenance flags are core, persisted, and shown at EVERY review stage.** Two boolean fields track
 where an item came from: **`aiSuggested`** (you/the model added this item as a critical-gap suggestion,
@@ -306,23 +308,12 @@ running for the whole build:
 npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
-Open the deck's **Review** view (the **Review** link on the dashboard, `/review/...` — distinct from
-the read-only **Browse** view). A corpus-stage unit is **English-only** (columns: #, English,
-Category, **Note**, **AI-suggested**, **Uncertain**, Exclude — no Target/Reading; those arrive at the
-translate stage). Note shows the item's source/authoring context; AI-suggested / Uncertain are ✓ tick
-columns (persisted provenance). Each row has an **Exclude** checkbox and each lesson a **Mark
-reviewed** button. This replaces the old CLI `review` / `render-review` flow entirely — no per-stage
-HTML artifact any more.
-
-**You decide:** does the corpus look right?
-
-If you want to drop terms, tick **Exclude** on those rows (it writes a reversible `excluded` flag to
-`corpus.json`; `translate` drops excluded items), or tell me the numbers and I'll do it. You can also
-still hand-edit `corpus.json` to add/fix terms. When it looks right, click **Mark reviewed** — that
-sets `meta.reviewed: true` (the gate `translate` checks) and, for an EPUB source, saves the reviewed
-corpus to the dedup library. Then move straight on to `translate` in the same turn — marking reviewed
-IS the go-ahead; don't stop to ask "should I proceed with translation?". Only pause again if
-`translate`'s own output needs a decision (e.g. errors).
+**There is no separate corpus review before translation any more** — the single human review (the
+**Corpus review**, Step 3 below) happens on the *translated* cards so you can verify the English AND
+the target + pronunciation at one gate. So after `assemble` writes `corpus.json`, move **straight on
+to `translate`** in the same turn (don't stop to ask "should I review the English first?"). A
+`corpus.json`-only lesson opened in the dashboard renders **read-only** with a "run `translate`" hint
+— it isn't reviewable until it's translated.
 
 ### Step 3: Translation via Claude
 
@@ -345,17 +336,23 @@ so the model returns the correct romanization in place, keeping the library's wh
 The fix lands directly in `pronunciation` (no flag/note). So garbled romaji should be rare now; if you
 still spot one in the translate review, tell me and I'll fix that card.
 
-**Review gate — the Review view (the same one you already have running).** Reload it: now that
-`cards.json` exists the unit renders at the **translate** stage — columns #, English, Target,
-Pronunciation (romaji), Category, Note — with an **Exclude** checkbox per row and inline-editable
-Target/Pronunciation cells (click a cell, edit, click away to save). This is where the Japanese +
-romaji first appear together, so verify the readings (and, for a re-derived dictated lesson, that
-they match what your class taught). Fix any wrong romaji/translation right there, or tell me the rows
-and I'll edit `cards.json`. Excluding a card here writes a reversible `excluded` flag (the deck build
-drops it).
+**Corpus review — the one human gate before audio.** Open the deck's **Review** view (the **Review**
+link on the dashboard, `/review/...` — distinct from the read-only **Browse** view). Now that
+`cards.json` exists the unit renders the combined **Corpus review**: columns #, **English**,
+**Category**, **Target**, **Pronunciation** (romaji), **Note**, **AI-suggested**, **Uncertain**,
+**Exclude** — the English you verify AND the target + pronunciation you sanity-check, together.
+Target/Pronunciation are inline-editable (click a cell, edit, click away to save); AI-suggested /
+Uncertain are ✓ tick columns (persisted provenance); each row has an **Exclude** checkbox and each
+lesson a **Mark reviewed** button. This is the point to catch a translation with several unfamiliar
+variants before it becomes a pain to organise — fix or exclude it right here (or tell me the rows and
+I'll edit `cards.json`). Excluding a card writes a reversible `excluded` flag (the deck build drops
+it).
 
-Once it looks right, move straight into Step 3.5 (for an EPUB/lesson source) or Step 4 in the same
-turn — same no-separate-confirmation rule as the assemble → translate transition.
+When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
+`audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves
+the reviewed (excluded-filtered) corpus to the dedup library for later chapters' backward-dedup. Then
+move straight into Step 3.5 (for an EPUB/lesson source) or Step 4 in the same turn — marking reviewed
+IS the go-ahead.
 
 ### Step 3.5: Fill-in-the-blank enrichment (EPUB lessons)
 
@@ -588,8 +585,9 @@ Review happens in the dashboard's **Review** view, not a CLI command:
 ```sh
 npm run serve   # open the printed URL → a deck's "Review" link (/review/...) → per-stage review UI
 ```
-(Corpus review is English-only; translate adds target + romaji; audio adds players + generate/pick.
-The read-only **Browse** link, `/deck/...`, is for looking at a finished deck.)
+(Two review steps: the **Corpus** review shows English + target + pronunciation together (on the
+translated cards); the **Audio** review adds players + generate/pick. The read-only **Browse** link,
+`/deck/...`, is for looking at a finished deck.)
 
 ### Browse a built deck (`.apkg`) as an artifact
 ```sh

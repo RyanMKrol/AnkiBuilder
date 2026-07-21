@@ -416,11 +416,9 @@ async function runTranslate(flags, ctx) {
 
   const corpus = readJson(paths.corpus);
 
-  if (corpus.meta.reviewed !== true) {
-    throw new Error(
-      `corpus.json at ${paths.corpus} has not been reviewed yet — open the dashboard ("npm run serve"), review this lesson's corpus, and click "Mark reviewed" first`,
-    );
-  }
+  // No review gate here: translation runs right after assemble so the FIRST human review (the combined
+  // Corpus review in the dashboard) can show English + target + pronunciation together. The review gate
+  // moved one step later — `audio` refuses to run until that Corpus review is signed off (see runAudio).
 
   // `--simple-script` asks the language plug-in (src/translate/targetScript.js) to constrain the
   // generated target to the language's beginner/learner script (e.g. Japanese → kana only). No-op for
@@ -447,6 +445,12 @@ async function runAudio(flags, ctx) {
   }
 
   const cards = readJson(paths.cards);
+
+  if (cards.meta.reviewed !== true) {
+    throw new Error(
+      `cards.json at ${paths.cards} has not been reviewed yet — open the dashboard ("npm run serve"), review this lesson's corpus (English + target + pronunciation), and click "Mark reviewed" before generating audio`,
+    );
+  }
 
   // Only the DEFAULT (kana+。 for Japanese) clip is generated up front — every other variant is an
   // on-demand dashboard action. A run counts as "already done" once every card's default clip is on

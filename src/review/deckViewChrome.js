@@ -34,9 +34,16 @@ a.plain{color:inherit;text-decoration:none}a.back{font-size:13px;color:var(--acc
 .bar button{font:inherit;font-size:12.5px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:5px 13px;cursor:pointer}
 .bar button:hover{border-color:var(--accent)}
 table{width:100%;border-collapse:collapse;table-layout:fixed}
-thead th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:10px 12px 8px;border-bottom:1px solid var(--rule2)}
+thead th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:10px 12px 8px;border-bottom:1px solid var(--rule2);vertical-align:bottom;overflow-wrap:anywhere}
 col.c-num{width:48px}col.c-en{width:24%}col.c-jp{width:22%}col.c-pron{width:15%}col.c-au{width:180px}col.c-note{width:auto}
 col.c-cat{width:13%}col.c-flags{width:150px}col.c-flag{width:120px}col.c-excl{width:104px}
+/* Flag-bearing stages (corpus / translate) mix an auto NOTE column with several fixed-px columns; on a
+   narrow viewport the auto column collapses to ~0 and its header spills onto the next one. Give every
+   column a real px width and the table a min-width, so it scrolls in its .tw wrapper instead of crushing. */
+table.tbl-corpus{min-width:900px}
+.tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:260px}.tbl-corpus col.c-cat{width:150px}.tbl-corpus col.c-note{width:196px}.tbl-corpus col.c-flag{width:125px}
+table.tbl-translate{min-width:1160px}
+.tbl-translate col.c-num{width:44px}.tbl-translate col.c-en{width:210px}.tbl-translate col.c-cat{width:130px}.tbl-translate col.c-jp{width:200px}.tbl-translate col.c-pron{width:150px}.tbl-translate col.c-note{width:120px}.tbl-translate col.c-flag{width:106px}.tbl-translate col.c-excl{width:100px}
 th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
@@ -393,7 +400,7 @@ export function renderLessonSections({
       const range = s.cards.length ? `${from}–${n}` : "—";
       const tools = sectionControl ? sectionControl(s) : "";
       return `<details class="lesson"><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
-  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table><colgroup>${spec.cols}</colgroup>
+  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="tbl tbl-${stage}"><colgroup>${spec.cols}</colgroup>
   <thead><tr>${spec.head}</tr></thead>
   <tbody>${rows}</tbody></table></div></details>`;
     })

@@ -73,19 +73,29 @@ Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` a
 Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing silence/artifact
 ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
 
-Run the local dashboard (`npm run serve`). The home page splits your decks into two sections — **In
-review** (still being built — one _Continue review_ action) and **Built** (finished — _Browse_ /
-_Download_ / _Edit audio_) — so the two workflows stay fully separate. The two views behind them:
+Run the local dashboard (`npm run serve`). Readiness is tracked **per lesson (sub-deck)**, not per
+deck: a lesson is "in review" through all three stages (corpus / translation / audio) and becomes
+**Built** only when you click **Mark done** — the final human sign-off. The home page splits your
+lessons into two sections — **In review** (each with a _Review_ action) and **Built · ready to
+study** (_Browse_ / _Download_ / _Edit audio_) — with a deck's lessons grouped under its heading. A
+deck with some lessons done and others still in review appears (grouped) in **both** sections, so a
+finished lesson is never stranded behind an in-progress sibling. The two views behind them:
 
-- **Review** (`/review/...`) — the guided, editable workflow, one purpose-built page per stage:
-  **① Corpus** (English only — "is this the right list?" — exclude items, mark reviewed) →
-  **② Translation** (English + target + romaji — exclude / fix inline) → **③ Audio** (play a clip,
-  **Replace** it, or **Generate** fresh ElevenLabs variants to audition and pick — including, for
-  Japanese, **Generate (kanji)**, which turns the card's kana reading into natural kanji+kana
-  orthography that ElevenLabs voices more naturally than all-kana). Then **Rebuild deck** to
-  regenerate the `.apkg`. AI-suggested / uncertain items are badged at every stage.
-- **Browse** (`/deck/...`) — a **read-only** look at a finished deck: collapsible lessons, audio
-  played inline (served over HTTP, so no size limit). No editing.
+- **Review** (`/review/:type/:id` for the whole deck, or `/review/:type/:id/:unit` for one lesson) —
+  the guided, editable workflow, one purpose-built page per stage: **① Corpus** (English only — "is
+  this the right list?" — exclude items, mark reviewed) → **② Translation** (English + target +
+  romaji — exclude / fix inline) → **③ Audio** (play a clip, **Replace** it, or **Generate** fresh
+  ElevenLabs variants to audition and pick — including, for Japanese, **Generate (kanji)**, which
+  turns the card's kana reading into natural kanji+kana orthography that ElevenLabs voices more
+  naturally than all-kana), then **Mark done**. A lesson edits at the audio stage on its own —
+  independent of its siblings' stages — and **Rebuild lesson** regenerates just that lesson's
+  `.apkg` for spot-checking. AI-suggested / uncertain items are badged at every stage.
+- **Browse** (`/deck/:type/:id`, or `/deck/:type/:id/:unit` for one lesson) — a **read-only** look
+  at a finished deck: collapsible lessons, audio played inline (served over HTTP, so no size limit).
+  No editing.
+
+The merged deck `.apkg` (`deck --book-dir`, or the dashboard's deck-level rebuild) includes **only
+done lessons** — an in-review lesson is never packaged into the shippable deck.
 
 Start with `--read-only` to disable all editing (Review becomes read-only too).
 

@@ -67,8 +67,21 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .grp h2 .gcount{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--faint);font-variant-numeric:tabular-nums}
 .ghint{font-size:12.5px;color:var(--soft);margin:6px 0 0}
 .grp-built h2{border-bottom-color:#5c7a52}
-.deck.rvw{border-left:3px solid var(--accent)}
-.deck.built{border-left:3px solid #5c7a52}
+.dblock{border:1px solid var(--rule2);border-radius:10px;background:var(--card);padding:14px 16px;margin-top:14px}
+.grp-review .dblock{border-left:3px solid var(--accent)}
+.grp-built .dblock{border-left:3px solid #5c7a52}
+.dblock .dt{font-family:var(--serif);font-size:17px}
+.dblock .dm{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;margin-left:10px}
+.dbhead{display:flex;align-items:baseline;flex-wrap:wrap}
+.urow{display:flex;align-items:center;gap:12px;padding:7px 0;border-top:1px solid var(--rule);margin-top:8px}
+.urow:first-of-type{margin-top:10px}
+.urow .ulabel{flex:1 1 auto;font-size:13.5px}
+.urow .ustage{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
+.urow .ustage.done{color:#5c7a52;font-weight:700}
+.urow .uactions{display:flex;gap:14px}
+.urow .uactions a.da{font-size:12.5px;color:var(--accent);text-decoration:none}
+.urow .uactions a.da.primary{font-weight:700}.urow .uactions a.da:hover{text-decoration:underline}
+.dblock.single .deck-actions{margin-top:8px}
 /* editor: per-row controls */
 .au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .au .ed button,.au .ed label.btn{font:inherit;font-size:11px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 9px;cursor:pointer}
@@ -131,6 +144,9 @@ export const DECK_EDIT_SCRIPT = `(function () {
   var type = rebuildBtn.getAttribute("data-type");
   var id = rebuildBtn.getAttribute("data-id");
   var base = "/api/deck/" + encodeURIComponent(type) + "/" + encodeURIComponent(id);
+  // A unit-scoped review (#rebuild carries data-unit) rebuilds just that lesson's .apkg, not the merge.
+  var runit = rebuildBtn.getAttribute("data-unit");
+  var rebuildUrl = runit ? base + "/unit/" + encodeURIComponent(runit) + "/rebuild" : base + "/rebuild";
   var status = document.getElementById("rebuild-status");
   var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
   var rowRef = function (el) {
@@ -147,7 +163,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
   };
   var rebuild = function () {
     rebuildBtn.disabled = true; status.textContent = "rebuilding\\u2026";
-    return fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
+    return fetch(rebuildUrl, { method: "POST" }).then(jsonp).then(function (x) {
       if (!x.ok) throw new Error(x.j.error || "rebuild failed");
       status.innerHTML = "";
       var a = document.createElement("a"); a.className = "dl"; a.href = x.j.downloadUrl; a.setAttribute("download", "");

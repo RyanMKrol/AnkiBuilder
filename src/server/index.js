@@ -1,7 +1,7 @@
 import http from "node:http";
 import { Buffer } from "buffer";
 import { createReadStream, statSync, realpathSync, existsSync } from "fs";
-import { resolve, sep } from "path";
+import { resolve, sep, join } from "path";
 import {
   escapeHtml,
   DECK_VIEW_CSS,
@@ -22,6 +22,7 @@ import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
 import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpus.js";
 import { setCardExcluded, editCard, setLessonDone } from "./adapters/applyCards.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
+import { rebuildRunDir } from "../deck/rebuild.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
@@ -103,10 +104,10 @@ export function createDeckServer({
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
-  // The home page is bifurcated by STATUS, not deck type: two separate sections with different cards
-  // and different actions. "In review" = still building the cards (some unit pre-audio) → the Review
-  // workflow. "Built" = every unit has audio → Browse / Download / tweak-clips. The two paths are
-  // deliberately kept apart.
+  // The home page splits by STATUS at the SUB-DECK (lesson) level: two sections — "In review" (lessons
+  // not yet marked done) and "Built" (done lessons) — with each deck's lessons grouped under its
+  // heading. A deck with lessons in both states appears (grouped) in both sections. Actions are
+  // per-lesson and link to the unit-scoped views.
   function renderDashboard() {
     const decks = adapters.flatMap((a) => a.listDecks(outputRoot));
     if (decks.length === 0) {
@@ -117,72 +118,116 @@ export function createDeckServer({
       );
     }
     const enc = encodeURIComponent;
-    const deckMeta = (d, extra) =>
-      [
-        TYPE_LABEL[d.type] || d.type,
-        d.targetLanguage ? escapeHtml(d.targetLanguage.toUpperCase()) : null,
-        d.type === "template" ? null : `${d.unitCount} lesson${d.unitCount === 1 ? "" : "s"}`,
-        extra,
-      ]
+    const stageWord = (s) =>
+      s === "corpus" ? "corpus" : s === "translate" ? "translation" : "audio";
+
+    const withUnits = decks.map((d) => {
+      const adapter = adapterFor(d.type);
+      const full = adapter && adapter.loadDeck ? adapter.loadDeck(outputRoot, d.id) : null;
+      const units = ((full && full.units) || []).map((u) => {
+        const unitDir =
+          adapter && adapter.unitDir ? adapter.unitDir(outputRoot, d.id, u.seq) : null;
+        return {
+          seq: u.seq,
+          label: u.label,
+          stage: u.stage || "audio",
+          done: !!u.done,
+          apkg: unitDir ? existsSync(join(unitDir, "deck.apkg")) : false,
+        };
+      });
+      return {
+        type: d.type,
+        id: d.id,
+        title: (full && full.title) || d.title,
+        lang: d.targetLanguage,
+        total: units.length,
+        units,
+      };
+    });
+
+    const unitActions = (deck, u, mode) => {
+      const rurl = `/review/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
+      const burl = `/deck/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
+      const durl = `/download/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}/deck.apkg`;
+      return mode === "review"
+        ? `<a class="da primary" href="${rurl}">Review →</a>`
+        : `<a class="da primary" href="${burl}">Browse</a>${u.apkg ? `<a class="da" href="${durl}">Download</a>` : ""}<a class="da" href="${rurl}">Edit audio</a>`;
+    };
+    const deckMeta = (deck) =>
+      [TYPE_LABEL[deck.type] || deck.type, deck.lang ? escapeHtml(deck.lang.toUpperCase()) : null]
         .filter(Boolean)
         .join(" · ");
-    const apkgExists = (d) => {
-      const a = adapterFor(d.type);
-      const f = a && a.deckFile ? a.deckFile(outputRoot, d.id) : null;
-      return f ? existsSync(f) : false;
+    const deckBlock = (deck, units, mode) => {
+      const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span></div>`;
+      // A single-unit deck (template) has no meaningful sub-decks — actions go inline in the heading.
+      if (deck.total === 1)
+        return `<div class="dblock single">${head}<div class="deck-actions">${unitActions(deck, units[0], mode)}</div></div>`;
+      const rows = units
+        .map(
+          (u) =>
+            `<div class="urow"><span class="ulabel">${escapeHtml(u.label)}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span><span class="uactions">${unitActions(deck, u, mode)}</span></div>`,
+        )
+        .join("");
+      return `<div class="dblock">${head}${rows}</div>`;
     };
 
-    const inReview = decks.filter((d) => d.stage !== "audio"); // includes no-units (stage null)
-    const built = decks.filter((d) => d.stage === "audio");
+    const reviewBlocks = [];
+    const builtBlocks = [];
+    let reviewCount = 0;
+    let builtCount = 0;
+    for (const deck of withUnits) {
+      const inReview = deck.units.filter((u) => !u.done);
+      const built = deck.units.filter((u) => u.done);
+      if (inReview.length) {
+        reviewBlocks.push(deckBlock(deck, inReview, "review"));
+        reviewCount += inReview.length;
+      }
+      if (built.length) {
+        builtBlocks.push(deckBlock(deck, built, "built"));
+        builtCount += built.length;
+      }
+    }
 
-    const reviewCard = (d) =>
-      `<div class="deck rvw"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${deckMeta(d, d.stage ? `${d.stage} stage` : "not started")}</div>
-<div class="deck-actions"><a class="da primary" href="/review/${enc(d.type)}/${enc(d.id)}">Continue review →</a></div></div>`;
-    const builtCard = (d) => {
-      const dl = apkgExists(d)
-        ? `<a class="da" href="/download/${enc(d.type)}/${enc(d.id)}/deck.apkg">Download .apkg</a>`
-        : "";
-      return `<div class="deck built"><div class="dt">${escapeHtml(d.title)}</div><div class="dm">${deckMeta(d, "ready")}</div>
-<div class="deck-actions"><a class="da primary" href="/deck/${enc(d.type)}/${enc(d.id)}">Browse</a>${dl}<a class="da" href="/review/${enc(d.type)}/${enc(d.id)}">Edit audio</a></div></div>`;
-    };
-    const section = (cls, title, hint, cards) =>
-      cards.length
-        ? `<div class="grp ${cls}"><h2>${title} <span class="gcount">${cards.length}</span></h2><p class="ghint">${hint}</p><div class="decks">${cards.join("")}</div></div>`
+    const section = (cls, title, hint, blocks, count) =>
+      blocks.length
+        ? `<div class="grp ${cls}"><h2>${title} <span class="gcount">${count}</span></h2><p class="ghint">${hint}</p>${blocks.join("")}</div>`
         : "";
 
     return page(
       "Decks — anki-builder",
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede"><b>${inReview.length}</b> in review · <b>${built.length}</b> built.</p></header>
-${section("grp-review", "In review", "Still building the cards — corpus &amp; translation. Continue the review workflow.", inReview.map(reviewCard))}
-${section("grp-built", "Built · ready to study", "Every lesson has audio. Browse the deck, download the .apkg, or tweak clips.", built.map(builtCard))}`,
+<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p></header>
+${section("grp-review", "In review", "Lessons still being built — corpus / translation / audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
+${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — browse, download, or reopen to tweak.", builtBlocks, builtCount)}`,
     );
   }
 
   // The REVIEW view (/review/:type/:id): the guided per-stage workflow — corpus (English-only) →
   // translate → audio — with exclude / edit / mark-reviewed / generate / rebuild controls when the
   // server is editable. (Browsing a finished deck read-only is renderDeckPage below.)
-  function renderReviewPage(type, id) {
+  function renderReviewPage(type, id, unit = null) {
     const adapter = adapterFor(type);
     const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
     if (!deck) return null;
+    // Unit-scoped review renders a single lesson; deck-level renders all of them.
+    const units =
+      unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
+    if (units.length === 0) return null;
 
-    // Editing (Replace/Generate + Rebuild) unlocks only when EVERY surfaced unit has reached the audio
-    // stage — a book mid-pipeline (some chapters still at corpus/translate) renders read-only for
-    // inspection until the CLI advances them, since a partial book can't be merge-rebuilt anyway.
+    // Audio editing (Replace/Generate + Rebuild) unlocks only when EVERY rendered unit is at the audio
+    // stage. Deck-level: a mixed book stays read-only. Unit-scoped: a single audio lesson is editable
+    // even when its siblings aren't — so you can finalize one lesson at a time.
     const canEdit =
-      editable &&
-      deck.units.length > 0 &&
-      deck.units.every((u) => (u.stage || "audio") === "audio");
+      editable && units.length > 0 && units.every((u) => (u.stage || "audio") === "audio");
 
-    const hasCorpus = deck.units.some((u) => (u.stage || "audio") === "corpus");
-    const hasTranslate = deck.units.some((u) => (u.stage || "audio") === "translate");
-    const hasAudio = deck.units.some((u) => (u.stage || "audio") === "audio");
+    const hasCorpus = units.some((u) => (u.stage || "audio") === "corpus");
+    const hasTranslate = units.some((u) => (u.stage || "audio") === "translate");
+    const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
     const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
 
-    const sections = deck.units.map((u) => ({
+    const sections = units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
       seq: u.seq,
@@ -233,17 +278,17 @@ ${section("grp-built", "Built · ready to study", "Every lesson has audio. Brows
       sectionControl,
     });
 
-    const total = deck.units.reduce((n, u) => n + u.cards.length, 0);
-    const withAudio = deck.units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
+    const total = units.reduce((n, u) => n + u.cards.length, 0);
+    const withAudio = units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
     const toolbar = canEdit
-      ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}">Rebuild deck</button><span id="rebuild-status" class="rb"></span>`
+      ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}"${unit != null ? ` data-unit="${escapeHtml(String(unit))}"` : ""}>Rebuild ${unit != null ? "lesson" : "deck"}</button><span id="rebuild-status" class="rb"></span>`
       : "";
     const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
       : "";
     const lede = canEdit
-      ? `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Then <b>Rebuild deck</b> and import the .apkg.`
-      : `<b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and review the fields inline. <b>${withAudio}</b> have audio.`;
+      ? `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Then <b>Rebuild deck</b> and import the .apkg.`
+      : `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and review the fields inline. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">Review · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
@@ -265,12 +310,15 @@ ${modal}
 
   // The BROWSE view (/deck/:type/:id): a read-only look at a deck's cards + audio. No edit controls,
   // no review write-back — all editing lives in the Review view above.
-  function renderDeckPage(type, id) {
+  function renderDeckPage(type, id, unit = null) {
     const adapter = adapterFor(type);
     const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
     if (!deck) return null;
+    const units =
+      unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
+    if (units.length === 0) return null;
 
-    const sections = deck.units.map((u) => ({
+    const sections = units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
       cards: u.cards.map((c) => ({
@@ -286,12 +334,12 @@ ${modal}
         : `<span class="x">—</span>`;
     const { html: sectionHtml } = renderLessonSections({ sections, startNumber: 1, audioCell });
 
-    const total = deck.units.reduce((n, u) => n + u.cards.length, 0);
-    const withAudio = deck.units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
+    const total = units.reduce((n, u) => n + u.cards.length, 0);
+    const withAudio = units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">Browse · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
-<p class="lede"><b>${total}</b> cards across <b>${deck.units.length}</b> lesson${deck.units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a></p>
+<p class="lede"><b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a></p>
 <div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>
 </header>
 ${sectionHtml}
@@ -382,9 +430,18 @@ ${sectionHtml}
     return dir ? realWithinRoot(dir) : null;
   }
 
-  function serveDownload(res, type, id) {
-    const adapter = adapterFor(type);
-    const file = adapter && adapter.deckFile ? adapter.deckFile(outputRoot, id) : null;
+  function serveDownload(res, type, id, unit = null) {
+    // unit-scoped → that lesson's own deck.apkg; otherwise the merged book/course deck.apkg.
+    let file, filename;
+    if (unit != null) {
+      const runDir = safeUnitDir(type, id, unit);
+      file = runDir ? join(runDir, "deck.apkg") : null;
+      filename = `${id}-${unit}.apkg`;
+    } else {
+      const adapter = adapterFor(type);
+      file = adapter && adapter.deckFile ? adapter.deckFile(outputRoot, id) : null;
+      filename = `${id}.apkg`;
+    }
     const real = file ? realWithinRoot(file) : null;
     if (!real) return notFound(res);
     let stat;
@@ -397,7 +454,7 @@ ${sectionHtml}
     res.writeHead(200, {
       "Content-Type": "application/octet-stream",
       "Content-Length": stat.size,
-      "Content-Disposition": `attachment; filename="${id}.apkg"`,
+      "Content-Disposition": `attachment; filename="${filename}"`,
     });
     createReadStream(real).pipe(res);
   }
@@ -543,13 +600,31 @@ ${sectionHtml}
     try {
       result = adapter.rebuild(outputRoot, id);
     } catch (e) {
-      // Missing cards.json / no built units — the deck isn't fully built yet.
+      // No finished (done) lessons yet — the deck can't be merged.
       throw httpError(409, e.message);
     }
     sendJson(res, {
       noteCount: result.noteCount,
       downloadUrl: `/download/${encodeURIComponent(type)}/${encodeURIComponent(id)}/deck.apkg`,
       apkgPath: adapter.deckFile(outputRoot, id),
+    });
+  }
+
+  // Rebuild ONE lesson's own deck.apkg (rebuildRunDir) — for spot-checking a single lesson without
+  // touching the merged book/course package. Auto-triggered after audio edits in a unit-scoped review.
+  function handleUnitRebuild(res, type, id, unit) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    let result;
+    try {
+      result = rebuildRunDir(runDir);
+    } catch (e) {
+      throw httpError(409, e.message);
+    }
+    sendJson(res, {
+      noteCount: result.noteCount,
+      downloadUrl: `/download/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(unit)}/deck.apkg`,
+      apkgPath: join(runDir, "deck.apkg"),
     });
   }
 
@@ -566,6 +641,9 @@ ${sectionHtml}
     }
     if (seg[4] === "unit" && seg[6] === "reopen" && seg.length === 7) {
       return (handleLessonDone(res, type, id, seg[5], false), true);
+    }
+    if (seg[4] === "unit" && seg[6] === "rebuild" && seg.length === 7) {
+      return (handleUnitRebuild(res, type, id, seg[5]), true);
     }
     if (seg[4] === "unit" && seg[6] === "card") {
       const [unit, cardId] = [seg[5], seg[7]];
@@ -619,18 +697,21 @@ ${sectionHtml}
         if (pathname === "/") return sendHtml(res, renderDashboard());
         if (seg[0] === "assets" && seg[1] === "font.woff2" && seg.length === 2)
           return serveFont(res);
-        if (seg[0] === "deck" && seg.length === 3) {
-          const html = renderDeckPage(seg[1], seg[2]);
+        if (seg[0] === "deck" && (seg.length === 3 || seg.length === 4)) {
+          const html = renderDeckPage(seg[1], seg[2], seg[3] ?? null);
           return html ? sendHtml(res, html) : notFound(res);
         }
-        if (seg[0] === "review" && seg.length === 3) {
-          const html = renderReviewPage(seg[1], seg[2]);
+        if (seg[0] === "review" && (seg.length === 3 || seg.length === 4)) {
+          const html = renderReviewPage(seg[1], seg[2], seg[3] ?? null);
           return html ? sendHtml(res, html) : notFound(res);
         }
         if (seg[0] === "media" && seg.length === 5)
           return serveMedia(req, res, seg[1], seg[2], seg[3], seg[4]);
         if (seg[0] === "download" && seg.length === 4 && seg[3] === "deck.apkg")
           return serveDownload(res, seg[1], seg[2]);
+        // Per-lesson download: /download/:type/:id/:unit/deck.apkg
+        if (seg[0] === "download" && seg.length === 5 && seg[4] === "deck.apkg")
+          return serveDownload(res, seg[1], seg[2], seg[3]);
         return notFound(res);
       }
       if (req.method === "POST") {

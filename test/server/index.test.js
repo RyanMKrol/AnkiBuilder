@@ -91,8 +91,9 @@ test("dashboard lists each deck with both Review and Browse links", async () => 
   try {
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
-      assert.match(home, /href="\/review\/book\/mybook"/);
-      assert.match(home, /href="\/deck\/book\/mybook"/);
+      // Home actions are per-lesson (unit-scoped): Built lesson → Browse (/deck) + Edit audio (/review).
+      assert.match(home, /href="\/review\/book\/mybook\/0"/);
+      assert.match(home, /href="\/deck\/book\/mybook\/0"/);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -120,11 +121,11 @@ test("home page bifurcates decks into 'In review' and 'Built' sections with diff
       const home = await (await fetch(`${url}/`)).text();
       assert.match(home, /In review/);
       assert.match(home, /Built · ready to study/);
-      // in-review deck → "Continue review" to /review, and NO Browse link (paths bifurcated)
-      assert.match(home, /href="\/review\/book\/wipbook">Continue review/);
-      assert.doesNotMatch(home, /href="\/deck\/book\/wipbook"/);
-      // built deck → Browse to /deck
-      assert.match(home, /href="\/deck\/book\/mybook">Browse/);
+      // in-review lesson → "Review →" to the unit-scoped /review, and NO Browse link (paths bifurcated)
+      assert.match(home, /href="\/review\/book\/wipbook\/0">Review/);
+      assert.doesNotMatch(home, /\/deck\/book\/wipbook/);
+      // built lesson → Browse to the unit-scoped /deck
+      assert.match(home, /href="\/deck\/book\/mybook\/0">Browse/);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -835,6 +836,93 @@ test("rebuild 409s when no lesson is marked done", async () => {
           (await fetch(`${url}/api/deck/book/mybook/rebuild`, { method: "POST" })).status,
           409,
         );
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// Adds a second, in-review (translate-stage, no audio) chapter to the mybook fixture.
+function addTranslateChapter(root) {
+  const ch = join(root, "epubs/mybook/chapter-1");
+  mkdirSync(ch, { recursive: true });
+  writeFileSync(
+    join(ch, "cards.json"),
+    JSON.stringify({
+      meta: { targetLanguage: "ja", chapterNumber: 2, chapterLabel: "Lesson Two" },
+      items: [
+        { id: "c", english: "three", target: "さん", pronunciation: "san", category: "Numbers" },
+      ],
+    }),
+  );
+}
+
+test("unit-scoped review renders ONE lesson editable at audio; out-of-range unit 404s", async () => {
+  const root = fixture();
+  addTranslateChapter(root); // ch1 is translate-stage — mixing stages
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        // The done audio lesson edits on its own, regardless of the in-review sibling.
+        const one = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.match(one, /Lesson One/);
+        assert.doesNotMatch(one, /Lesson Two/); // filtered to the single unit
+        assert.match(one, /Rebuild lesson/); // per-unit editable + unit-scoped rebuild label
+        assert.match(one, /data-unit="0"/);
+        // A whole-deck review is NOT editable while stages are mixed (no rebuild button).
+        const all = await (await fetch(`${url}/review/book/mybook`)).text();
+        assert.doesNotMatch(all, /Rebuild deck/);
+        // An out-of-range unit has no lesson to show.
+        assert.equal((await fetch(`${url}/review/book/mybook/9`)).status, 404);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("unit-scoped browse (/deck/:type/:id/:unit) shows one lesson read-only", async () => {
+  const root = fixture();
+  addTranslateChapter(root);
+  try {
+    await withServer(root, async (url) => {
+      const html = await (await fetch(`${url}/deck/book/mybook/0`)).text();
+      assert.match(html, /Browse · anki-builder/);
+      assert.match(html, /Lesson One/);
+      assert.doesNotMatch(html, /Lesson Two/);
+      assert.doesNotMatch(html, /class="repl"/); // read-only
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("per-lesson rebuild builds that lesson's own deck.apkg and /download/:unit streams it", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const rb = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/rebuild`, { method: "POST" }),
+        );
+        assert.equal(rb.status, 200);
+        assert.equal(rb.body.noteCount, 2);
+        assert.match(rb.body.apkgPath, /chapter-0[/\\]deck\.apkg$/); // the lesson's own dir, not the merge
+        assert.equal(rb.body.downloadUrl, "/download/book/mybook/0/deck.apkg");
+
+        const dl = await fetch(`${url}${rb.body.downloadUrl}`);
+        assert.equal(dl.status, 200);
+        assert.equal(dl.headers.get("content-type"), "application/octet-stream");
+        assert.match(
+          dl.headers.get("content-disposition"),
+          /attachment; filename="mybook-0\.apkg"/,
+        );
+        assert.ok((await dl.arrayBuffer()).byteLength > 0);
       },
       editDeps,
     );

@@ -436,11 +436,13 @@ lands wherever you point it, unchanged.
 `anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) over the runs under
 `output/`. The **home page splits by status at the sub-deck (lesson) level** (`renderDashboard`) into
 two sections — **In review** (lessons where `cards.meta.done !== true`, each with a _Review_ action)
-and **Built · ready to study** (done lessons → _Browse_ / _Edit audio_) — with a deck's lessons
+and **Built · ready to study** (done lessons → a single **Open** action) — with a deck's lessons
 grouped under its heading. A deck with lessons in both states appears (grouped) in **both** sections,
 so a finished lesson is never stranded behind an in-progress sibling. There is **no download action** —
-the server is local, so the single group `.apkg` is already on disk. Actions are per-lesson and link
-to the **unit-scoped** views:
+the server is local, so the single group `.apkg` is already on disk. A built lesson's **Open** goes to
+the unit-scoped Review view: the audio-review page is a superset of read-only Browse (same cards +
+inline players, plus Replace/Generate and Mark done/Reopen), so it's the one default view — not a
+separate Browse. Actions are per-lesson and link to the **unit-scoped** views:
 
 - **Browse** — `GET /deck/:type/:id` (whole deck) or `GET /deck/:type/:id/:unit` (one lesson)
   (`renderDeckPage`, `unit` filters `deck.units` to that lesson): a **read-only** look at a deck's

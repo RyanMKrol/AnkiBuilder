@@ -72,7 +72,7 @@ test("dashboard lists decks; deck page has collapsible lessons + audio URLs; med
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
       assert.match(home, /My Book/);
-      assert.match(home, /\/deck\/book\/mybook/);
+      assert.match(home, /\/review\/book\/mybook\/0/); // built lesson opens the edit-audio view
 
       const deckRes = await fetch(`${url}/deck/book/mybook`);
       assert.equal(deckRes.status, 200);
@@ -94,14 +94,13 @@ test("dashboard lists decks; deck page has collapsible lessons + audio URLs; med
   }
 });
 
-test("dashboard lists each deck with both Review and Browse links", async () => {
+test("built lesson has a single action opening the unit-scoped edit-audio view (no separate Browse)", async () => {
   const root = fixture();
   try {
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
-      // Home actions are per-lesson (unit-scoped): Built lesson → Browse (/deck) + Edit audio (/review).
-      assert.match(home, /href="\/review\/book\/mybook\/0"/);
-      assert.match(home, /href="\/deck\/book\/mybook\/0"/);
+      assert.match(home, /href="\/review\/book\/mybook\/0">Open/);
+      assert.doesNotMatch(home, /\/deck\/book\/mybook/); // Browse is consolidated into the review view
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -129,11 +128,11 @@ test("home page bifurcates decks into 'In review' and 'Built' sections with diff
       const home = await (await fetch(`${url}/`)).text();
       assert.match(home, /In review/);
       assert.match(home, /Built · ready to study/);
-      // in-review lesson → "Review →" to the unit-scoped /review, and NO Browse link (paths bifurcated)
+      // in-review lesson → "Review →" to the unit-scoped /review
       assert.match(home, /href="\/review\/book\/wipbook\/0">Review/);
       assert.doesNotMatch(home, /\/deck\/book\/wipbook/);
-      // built lesson → Browse to the unit-scoped /deck
-      assert.match(home, /href="\/deck\/book\/mybook\/0">Browse/);
+      // built lesson → a single "Open" action to the unit-scoped edit-audio view
+      assert.match(home, /href="\/review\/book\/mybook\/0">Open/);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });

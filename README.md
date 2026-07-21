@@ -77,9 +77,10 @@ Run the local dashboard (`npm run serve`). Readiness is tracked **per lesson (su
 deck: a lesson is "in review" through all three stages (corpus / translation / audio) and becomes
 **Built** only when you click **Mark done** — the final human sign-off. The home page splits your
 lessons into two sections — **In review** (each with a _Review_ action) and **Built · ready to
-study** (_Browse_ / _Edit audio_) — with a deck's lessons grouped under its heading. A deck with some
+study** (a single **Open** action) — with a deck's lessons grouped under its heading. A deck with some
 lessons done and others still in review appears (grouped) in **both** sections, so a finished lesson
-is never stranded behind an in-progress sibling. The two views behind them:
+is never stranded behind an in-progress sibling. **Open** on a built lesson lands on the same
+edit-audio view — browsing and audio-editing are one page, not two. The two views behind them:
 
 - **Review** (`/review/:type/:id` for the whole deck, or `/review/:type/:id/:unit` for one lesson) —
   the guided, editable workflow, one purpose-built page per stage: **① Corpus** (English only — "is

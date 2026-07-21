@@ -297,7 +297,11 @@ on every client while Latin stays Latin. (`restyle-font` applies the same to thi
   out.
 - `--book-dir <dir>`: the book/course-level merge mode — scans `<dir>/chapter-*/cards.json` AND
   `<dir>/lesson-*/cards.json` (in ascending folder-seq order; an EPUB book only ever has the
-  former, a lesson-sourced course only ever has the latter) and merges every one into a SINGLE
+  former, a lesson-sourced course only ever has the latter). It merges **only FINISHED lessons** —
+  those whose `cards.meta.done === true` (the human's final "Mark done" sign-off in the dashboard);
+  a lesson not yet translated or not marked done is **skipped**, so an un-reviewed lesson never gets
+  baked into the package (`rebuildBookDir`, `src/deck/rebuild.js`). If no lesson is done it errors
+  clearly. The finished lessons merge into a SINGLE
   `<dir>/deck.apkg`, each as its own real Anki sub-deck (`Book/Course Title::Chapter/Lesson
 Label`, via `buildMultiDeckCollection`) nested under one parent deck named for the book or
   course (title looked up from the local library by the first chapter's `epubHash`, or from the

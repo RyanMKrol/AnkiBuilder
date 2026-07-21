@@ -40,16 +40,16 @@ export function rebuildBookDir(
     throw new Error(`no chapter-*/ or lesson-*/ directories found under ${bookDir}`);
   }
 
+  // Only FINISHED (human-marked `done`) lessons ship in the merged deck. A lesson still in progress —
+  // not translated yet (no cards.json), or translated/audio'd but not marked done — is excluded, so an
+  // un-reviewed lesson never gets baked into the package.
   const chapterDecks = [];
   let epubHash = null;
   for (const { dir } of chapterDirs) {
     const cardsPath = join(dir, "cards.json");
-    if (!existsSync(cardsPath)) {
-      throw new Error(
-        `cards.json not found in ${dir} — run "translate"/"audio" for that chapter first`,
-      );
-    }
+    if (!existsSync(cardsPath)) continue;
     const cards = readJson(cardsPath);
+    if (cards.meta?.done !== true) continue;
     epubHash = epubHash || cards.meta?.epubHash;
     const audioDir = join(dir, "audio");
     chapterDecks.push({
@@ -57,6 +57,12 @@ export function rebuildBookDir(
       cards,
       audioDir: existsSync(audioDir) ? audioDir : null,
     });
+  }
+
+  if (chapterDecks.length === 0) {
+    throw new Error(
+      `no finished lessons to build under ${bookDir} — mark a lesson "done" in the dashboard first`,
+    );
   }
 
   const bookMeta = epubHash ? loadBookMeta?.(epubHash) : loadCourseMeta?.(bookDir);

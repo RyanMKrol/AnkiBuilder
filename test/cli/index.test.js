@@ -1192,7 +1192,7 @@ function writeChapter(bookDir, seq, { chapterLabel, epubHash, items }) {
   writeFileSync(
     join(dir, "cards.json"),
     JSON.stringify({
-      meta: { targetLanguage: "ja", sourceType: "epub", epubHash, chapterLabel },
+      meta: { targetLanguage: "ja", sourceType: "epub", epubHash, chapterLabel, done: true },
       items,
     }),
   );
@@ -1205,7 +1205,7 @@ function writeLesson(courseDir, seq, { chapterLabel, courseSlug, items }) {
   writeFileSync(
     join(dir, "cards.json"),
     JSON.stringify({
-      meta: { targetLanguage: "ja", sourceType: "manual", courseSlug, chapterLabel },
+      meta: { targetLanguage: "ja", sourceType: "manual", courseSlug, chapterLabel, done: true },
       items,
     }),
   );
@@ -1257,12 +1257,12 @@ test("deck --book-dir: throws when no chapter-*/ directories exist", async () =>
   });
 });
 
-test("deck --book-dir: throws naming the chapter missing cards.json", async () => {
+test("deck --book-dir: throws when no lesson is finished (a chapter with no cards.json is skipped)", async () => {
   await withTempDir(async (bookDir) => {
     mkdirSync(join(bookDir, "chapter-0"), { recursive: true });
     await assert.rejects(
       () => runCli(["deck", "--book-dir", bookDir], { log: () => {} }),
-      /cards\.json not found in .*chapter-0/,
+      /no finished lessons to build/,
     );
   });
 });

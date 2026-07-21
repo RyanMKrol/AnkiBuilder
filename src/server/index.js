@@ -9,8 +9,7 @@ import {
   renderLessonSections,
   EXPAND_COLLAPSE_SCRIPT,
   DECK_EDIT_SCRIPT,
-  CORPUS_EDIT_SCRIPT,
-  TRANSLATE_EDIT_SCRIPT,
+  REVIEW_EDIT_SCRIPT,
   MARK_DONE_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { ADAPTERS } from "./adapters/index.js";
@@ -19,8 +18,12 @@ import {
   readFontBytes as defaultReadFontBytes,
 } from "../deck/fontLibrary.js";
 import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
-import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpus.js";
-import { setCardExcluded, editCard, setLessonDone } from "./adapters/applyCards.js";
+import {
+  setCardExcluded,
+  editCard,
+  setLessonDone,
+  markCardsReviewed,
+} from "./adapters/applyCards.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
@@ -117,8 +120,10 @@ export function createDeckServer({
       );
     }
     const enc = encodeURIComponent;
+    // Two review steps in the UI: the `translate` file-stage IS the combined "corpus" review (English +
+    // target + pronunciation); the pre-translate `corpus` file-stage is a transient "not translated yet".
     const stageWord = (s) =>
-      s === "corpus" ? "corpus" : s === "translate" ? "translation" : "audio";
+      s === "corpus" ? "not translated" : s === "translate" ? "corpus" : "audio";
 
     const withUnits = decks.map((d) => {
       const adapter = adapterFor(d.type);
@@ -214,8 +219,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const canEdit =
       editable && units.length > 0 && units.every((u) => (u.stage || "audio") === "audio");
 
-    const hasCorpus = units.some((u) => (u.stage || "audio") === "corpus");
-    const hasTranslate = units.some((u) => (u.stage || "audio") === "translate");
+    // `translate` file-stage = the combined Corpus review (editable: exclude / edit / mark reviewed).
+    const hasReview = units.some((u) => (u.stage || "audio") === "translate");
     const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
@@ -243,17 +248,24 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
         : `<span class="x">—</span>`;
       return player + editControls;
     };
-    // Corpus/translate write-back works per-section whenever the server is editable — independent of
-    // the all-audio `canEdit` gate, which only governs audio editing + the global rebuild.
+    // The Corpus review's write-back (exclude / inline edit) works per-section whenever the server is
+    // editable — independent of the all-audio `canEdit` gate, which only governs audio editing + the
+    // global rebuild. Only the combined review (`translate` file-stage) is editable; the pre-translate
+    // `corpus` file-stage is read-only.
     const rowControl = editable
       ? (stage, c) =>
-          stage === "corpus" || stage === "translate"
+          stage === "translate"
             ? `<label class="excl-l"><input type="checkbox" class="excl"${c.excluded ? " checked" : ""}> exclude</label>`
             : ""
       : undefined;
     const sectionControl = editable
       ? (s) => {
+          // Pre-translate: nothing to review yet — run `translate` to produce the reviewable cards.
           if (s.stage === "corpus")
+            return `<span class="hint">Not translated yet — run <code>translate</code> to review this lesson.</span>`;
+          // Combined Corpus review (English + target + pronunciation): the first sign-off. `reviewed`
+          // gates the `audio` step.
+          if (s.stage === "translate")
             return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
           // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
           // ship in the merged deck.
@@ -297,8 +309,7 @@ ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
     const scripts = [EXPAND_COLLAPSE_SCRIPT];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
-    if (editable && hasCorpus) scripts.push(CORPUS_EDIT_SCRIPT);
-    if (editable && hasTranslate) scripts.push(TRANSLATE_EDIT_SCRIPT);
+    if (editable && hasReview) scripts.push(REVIEW_EDIT_SCRIPT);
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
     const script = scripts.join("\n");
     return page(`${deck.title} — review`, body, script);
@@ -494,23 +505,10 @@ ${sectionHtml}
     });
   }
 
-  async function handleCorpusExclude(req, res, type, id, unit, cardId) {
+  function handleCardsReviewed(res, type, id, unit) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
-    const body = await readBodyCapped(req, 64 * 1024);
-    let excluded;
-    try {
-      excluded = !!JSON.parse(body.toString("utf-8")).excluded;
-    } catch {
-      throw httpError(400, "invalid JSON body");
-    }
-    sendJson(res, setCorpusItemExcluded(runDir, cardId, excluded));
-  }
-
-  function handleCorpusReviewed(res, type, id, unit) {
-    const runDir = safeUnitDir(type, id, unit);
-    if (!runDir) return notFound(res);
-    sendJson(res, markCorpusReviewed(runDir, { saveChapterCorpus }));
+    sendJson(res, markCardsReviewed(runDir, { saveChapterCorpus }));
   }
 
   function handleLessonDone(res, type, id, unit, done) {
@@ -522,7 +520,7 @@ ${sectionHtml}
     sendJson(res, result);
   }
 
-  async function handleTranslateExclude(req, res, type, id, unit, cardId) {
+  async function handleReviewExclude(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
     const body = await readBodyCapped(req, 64 * 1024);
@@ -535,7 +533,7 @@ ${sectionHtml}
     sendJson(res, setCardExcluded(runDir, cardId, excluded));
   }
 
-  async function handleTranslateEdit(req, res, type, id, unit, cardId) {
+  async function handleReviewEdit(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
     const body = await readBodyCapped(req, 64 * 1024);
@@ -596,8 +594,8 @@ ${sectionHtml}
     if (seg[0] !== "api" || seg[1] !== "deck") return false;
     const [type, id] = [seg[2], seg[3]];
     if (seg[4] === "rebuild" && seg.length === 5) return (handleRebuild(res, type, id), true);
-    if (seg[4] === "unit" && seg[6] === "corpus" && seg[7] === "reviewed" && seg.length === 8) {
-      return (handleCorpusReviewed(res, type, id, seg[5]), true);
+    if (seg[4] === "unit" && seg[6] === "review" && seg[7] === "reviewed" && seg.length === 8) {
+      return (handleCardsReviewed(res, type, id, seg[5]), true);
     }
     if (seg[4] === "unit" && seg[6] === "done" && seg.length === 7) {
       return (handleLessonDone(res, type, id, seg[5], true), true);
@@ -624,16 +622,12 @@ ${sectionHtml}
         await handleSelect(req, res, type, id, unit, cardId);
         return true;
       }
-      if (seg[8] === "corpus" && seg[9] === "exclude" && seg.length === 10) {
-        await handleCorpusExclude(req, res, type, id, unit, cardId);
+      if (seg[8] === "review" && seg[9] === "exclude" && seg.length === 10) {
+        await handleReviewExclude(req, res, type, id, unit, cardId);
         return true;
       }
-      if (seg[8] === "translate" && seg[9] === "exclude" && seg.length === 10) {
-        await handleTranslateExclude(req, res, type, id, unit, cardId);
-        return true;
-      }
-      if (seg[8] === "translate" && seg[9] === "edit" && seg.length === 10) {
-        await handleTranslateEdit(req, res, type, id, unit, cardId);
+      if (seg[8] === "review" && seg[9] === "edit" && seg.length === 10) {
+        await handleReviewEdit(req, res, type, id, unit, cardId);
         return true;
       }
     }

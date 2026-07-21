@@ -108,6 +108,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .sec-tools button:hover{border-color:var(--accent)}.sec-tools button:disabled{opacity:.5;cursor:default}
 .sec-tools .rev-msg,.sec-tools .done-msg{font-size:11px;color:var(--faint)}
 .sec-tools .done-badge{font-size:11px;font-weight:700;color:#5c7a52;text-transform:uppercase;letter-spacing:.04em}
+.sec-tools .hint{font-size:12px;color:var(--faint)}.sec-tools .hint code{font-family:var(--mono);font-size:11px}
 label.excl-l{display:inline-flex;gap:5px;align-items:center;margin-top:6px;font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
 td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
 td.saved{background:rgba(122,59,54,.1)}`;
@@ -213,41 +214,12 @@ export const DECK_EDIT_SCRIPT = `(function () {
   modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
 })();`;
 
-// Client wiring for the corpus review (included when a corpus section is editable). Reads the deck
-// type/id from #deckctx; per-row card id/unit from each <tr>'s data-* attributes. Vanilla JS, no ${}.
-// Handles the per-row Exclude toggle and the per-section "Mark reviewed" button.
-export const CORPUS_EDIT_SCRIPT = `(function () {
-  var ctx = document.getElementById("deckctx");
-  if (!ctx) return;
-  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
-  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
-  document.querySelectorAll('tr[data-stage="corpus"] input.excl').forEach(function (cb) {
-    cb.addEventListener("change", function () {
-      var tr = cb.closest("tr");
-      var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
-      cb.disabled = true;
-      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/corpus/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
-        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); })
-        .catch(function (e) { cb.checked = !cb.checked; alert(e.message); })
-        .finally(function () { cb.disabled = false; });
-    });
-  });
-  document.querySelectorAll("button.mark-rev").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var unit = btn.getAttribute("data-unit");
-      var msg = btn.parentNode.querySelector(".rev-msg");
-      btn.disabled = true; if (msg) msg.textContent = "saving\\u2026";
-      fetch(base + "/unit/" + encodeURIComponent(unit) + "/corpus/reviewed", { method: "POST" })
-        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); if (msg) msg.textContent = "\\u2713 reviewed"; btn.disabled = false; })
-        .catch(function (e) { if (msg) msg.textContent = e.message; btn.disabled = false; });
-    });
-  });
-})();`;
-
-// Client wiring for the translate review (included when a translate section is editable). Per-row
-// Exclude toggle + inline editing of the target/pronunciation cells (contentEditable, saved on blur).
-// Reads deck ctx from #deckctx; vanilla JS, no ${}.
-export const TRANSLATE_EDIT_SCRIPT = `(function () {
+// Client wiring for the combined Corpus review (included when the first-review section is editable).
+// Reads the deck type/id from #deckctx; per-row card id/unit from each <tr>'s data-* attributes.
+// Vanilla JS, no ${}. Handles: the per-row Exclude toggle, inline editing of the target/pronunciation
+// cells (contentEditable, saved on blur), and the per-section "Mark reviewed" button. All wired to
+// the `translate` file-stage rows (which carry the translated cards).
+export const REVIEW_EDIT_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx) return;
   var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
@@ -257,7 +229,7 @@ export const TRANSLATE_EDIT_SCRIPT = `(function () {
       var tr = cb.closest("tr");
       var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
       cb.disabled = true;
-      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/translate/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/review/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
         .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); })
         .catch(function (e) { cb.checked = !cb.checked; alert(e.message); })
         .finally(function () { cb.disabled = false; });
@@ -274,9 +246,19 @@ export const TRANSLATE_EDIT_SCRIPT = `(function () {
       var tr = cell.closest("tr");
       var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
       var body = {}; body[cell.getAttribute("data-field")] = val;
-      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/translate/edit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/review/edit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
         .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); cell.textContent = val; orig = val; cell.classList.add("saved"); setTimeout(function () { cell.classList.remove("saved"); }, 800); })
         .catch(function (e) { cell.textContent = orig; alert(e.message); });
+    });
+  });
+  document.querySelectorAll("button.mark-rev").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var unit = btn.getAttribute("data-unit");
+      var msg = btn.parentNode.querySelector(".rev-msg");
+      btn.disabled = true; if (msg) msg.textContent = "saving\\u2026";
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/review/reviewed", { method: "POST" })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); if (msg) msg.textContent = "\\u2713 reviewed"; btn.disabled = false; })
+        .catch(function (e) { if (msg) msg.textContent = e.message; btn.disabled = false; });
     });
   });
 })();`;
@@ -341,29 +323,35 @@ const STAGE_TABLES = {
   <td class="au">${ctx.audioCell(c)}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
-  // Stage 1 is ENGLISH-ONLY — you're reviewing "is this the right list of things to learn?", not the
-  // translations (those arrive at the translate stage). Target/Reading are deliberately not shown here;
-  // Note (source/authoring context) and the provenance columns AI-suggested / Uncertain are.
+  // Pre-translate placeholder — READ-ONLY. A corpus.json-only lesson isn't reviewable yet (no target
+  // to check); the combined Corpus review happens post-translate (the `translate` preset below). No
+  // Exclude column here.
   corpus: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-note"><col class="c-flag"><col class="c-flag"><col class="c-excl">`,
-    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th><th></th>`,
-    cells: (c, ctx) =>
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-note"><col class="c-flag"><col class="c-flag">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th>`,
+    cells: (c) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
-  <td class="ctr">${tick(c.uncertain)}</td>
-  <td class="excl-cell">${rowExtra(ctx, "corpus", c)}</td>`,
+  <td class="ctr">${tick(c.uncertain)}</td>`,
   },
+  // The combined "Corpus" review (first review step): English + target + pronunciation together, so
+  // you verify the list AND the translation at one gate. English-first, then Category, then the
+  // inline-editable Target / Pronunciation, then Note, the AI / Uncertain provenance ticks, and the
+  // Exclude checkbox.
   translate: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-cat"><col class="c-note">`,
-    head: `<th class="num">#</th><th>English</th><th>Target</th><th>Pronunciation</th><th>Category</th><th>Note</th>`,
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-pron"><col class="c-note"><col class="c-flag"><col class="c-flag"><col class="c-excl">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Pronunciation</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th><th></th>`,
     cells: (c, ctx) =>
-      `<td class="en">${escapeHtml(c.english)}${inlineFlags(c)}</td>
+      `<td class="en">${escapeHtml(c.english)}</td>
+  <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
   <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
-  <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="note">${c.note ? escapeHtml(c.note) : ""}${rowExtra(ctx, "translate", c)}</td>`,
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
+  <td class="ctr">${tick(c.aiSuggested)}</td>
+  <td class="ctr">${tick(c.uncertain)}</td>
+  <td class="excl-cell">${rowExtra(ctx, "translate", c)}</td>`,
   },
 };
 

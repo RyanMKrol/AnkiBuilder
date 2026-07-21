@@ -274,17 +274,16 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
-    // The button rebuilds the single group package; data-done tells the client whether an audio edit
-    // should auto-rebuild (only when a lesson in view is already part of the package).
+    // Rebuilds are fully automatic (see DECK_EDIT_SCRIPT) — there's no manual button. `anyDone` tells
+    // the client whether an audio edit should auto-rebuild (only when a lesson in view is already part
+    // of the package); it's carried on #deckctx. The toolbar keeps just a status line for feedback.
     const anyDone = units.some((u) => u.done);
-    const toolbar = canEdit
-      ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}">Rebuild deck</button><span id="rebuild-status" class="rb"></span>`
-      : "";
+    const toolbar = canEdit ? `<span id="rebuild-status" class="rb"></span>` : "";
     const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
       : "";
     const lede = canEdit
-      ? `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Then <b>Rebuild deck</b> and import the .apkg.`
+      ? `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Edits to a done lesson rebuild the deck's <code>.apkg</code> automatically — just re-import it.`
       : `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and review the fields inline. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">Review · anki-builder</div>
@@ -292,7 +291,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
 <p class="lede">${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a></p>
 <div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button>${toolbar}</div>
 </header>
-${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" hidden></div>` : ""}
+${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
 ${sectionHtml}
 ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;

@@ -131,23 +131,24 @@ export const EXPAND_COLLAPSE_SCRIPT = `(function () {
 })();`;
 
 // Client wiring for the editor (only included when the dashboard is editable). Reads the deck
-// type/id from the #rebuild button; per-row card id/unit from each <tr>'s data-* attributes. Vanilla
-// JS, no template literals / ${} (it's embedded in a template literal). Handles: Replace (raw upload),
-// Generate (ElevenLabs variants in a modal → Use this), and Rebuild. There is ONE package per group
-// (the book/course merge, or a template's own deck); rebuilds always target it — never a per-lesson
-// file. An audio edit auto-rebuilds the group ONLY when this lesson is already done (data-done="1"),
-// so the on-disk package stays current without pointless whole-book rebuilds while you're still
-// finishing a fresh lesson (Mark done rebuilds it in). Auditioning is via the inline players; there
-// is no download — the dashboard is local, the .apkg is already on disk.
+// type/id/done from #deckctx; per-row card id/unit from each <tr>'s data-* attributes. Vanilla JS, no
+// template literals / ${} (it's embedded in a template literal). Handles: Replace (raw upload) and
+// Generate (ElevenLabs variants in a modal → Use this). There is ONE package per group (the book/course
+// merge, or a template's own deck) and rebuilds are FULLY AUTOMATIC — no manual button. After every
+// successful edit the group auto-rebuilds, but ONLY when this lesson is already done (data-done="1"),
+// so the on-disk .apkg stays current without pointless whole-book rebuilds while you're still finishing
+// a fresh lesson (Mark done rebuilds it in). Auditioning is via the inline players; there is no download
+// — the dashboard is local, the .apkg is already on disk.
 export const DECK_EDIT_SCRIPT = `(function () {
-  var rebuildBtn = document.getElementById("rebuild");
-  if (!rebuildBtn) return;
-  var type = rebuildBtn.getAttribute("data-type");
-  var id = rebuildBtn.getAttribute("data-id");
+  var ctx = document.getElementById("deckctx");
+  if (!ctx) return;
+  var type = ctx.getAttribute("data-type");
+  var id = ctx.getAttribute("data-id");
   var base = "/api/deck/" + encodeURIComponent(type) + "/" + encodeURIComponent(id);
   var rebuildUrl = base + "/rebuild"; // always the group package
-  var isDone = rebuildBtn.getAttribute("data-done") === "1";
+  var isDone = ctx.getAttribute("data-done") === "1";
   var status = document.getElementById("rebuild-status");
+  var setStatus = function (t) { if (status) status.textContent = t; };
   var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
   var rowRef = function (el) {
     var tr = el.closest("tr");
@@ -162,15 +163,15 @@ export const DECK_EDIT_SCRIPT = `(function () {
     var x = cell.querySelector(".x"); if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
   };
   var rebuild = function () {
-    rebuildBtn.disabled = true; status.textContent = "rebuilding\\u2026";
+    setStatus("rebuilding\\u2026");
     return fetch(rebuildUrl, { method: "POST" }).then(jsonp).then(function (x) {
       if (!x.ok) throw new Error(x.j.error || "rebuild failed");
-      status.textContent = "\\u2713 rebuilt (" + x.j.noteCount + " cards)";
-    }).catch(function (e) { status.textContent = "rebuild failed: " + e.message; }).finally(function () { rebuildBtn.disabled = false; });
+      setStatus("\\u2713 deck rebuilt (" + x.j.noteCount + " cards)");
+    }).catch(function (e) { setStatus("rebuild failed: " + e.message); });
   };
-  // After an edit: only rebuild the group if this lesson is already part of it (done).
+  // After an edit: auto-rebuild the group, but only if this lesson is already part of it (done). A
+  // not-yet-done lesson isn't in the deck, so Mark done is what folds it in (and rebuilds then).
   var maybeRebuild = function () { return isDone ? rebuild() : Promise.resolve(); };
-  rebuildBtn.addEventListener("click", rebuild);
   document.querySelectorAll("input.repl").forEach(function (inp) {
     inp.addEventListener("change", function () {
       var f = inp.files[0]; if (!f) return;

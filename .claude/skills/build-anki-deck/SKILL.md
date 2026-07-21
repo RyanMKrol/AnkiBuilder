@@ -438,13 +438,13 @@ If you skip audio, the deck will still work — cards just won't have pronunciat
 **Review gate — the Review view's audio stage.** Open the lesson's own Review view
 (`/review/:type/:id/:unit`, or its **Review** link on the home page): once that lesson is at the audio
 stage it renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)**
-controls and a **Rebuild deck** button (which rebuilds the single group package; see "Audio review
-happens in the dashboard" above for how the variant axes and the kana+kanji option work). A lesson
-edits on its own — you don't need its siblings finished. Play each card's default clip; for any that
-sound wrong, **Generate** fresh takes, audition them in the modal, and **Use this** to pick — each
-pick writes the card's `audio`. For a short string ElevenLabs mishandles even with a `reading`,
-**Replace** with a hand-made clip (uploads are stored as `<cardId>-user-<hash>.<ext>` and are NOT
-trimmed). Editing an already-**done** lesson auto-rebuilds the group package; while you're still
+controls (see "Audio review happens in the dashboard" above for how the variant axes and the
+kana+kanji option work). A lesson edits on its own — you don't need its siblings finished. Play each
+card's default clip; for any that sound wrong, **Generate** fresh takes, audition them in the modal,
+and **Use this** to pick — each pick writes the card's `audio`. For a short string ElevenLabs
+mishandles even with a `reading`, **Replace** with a hand-made clip (uploads are stored as
+`<cardId>-user-<hash>.<ext>` and are NOT trimmed). Rebuilds are **fully automatic — there's no manual
+button**. Editing an already-**done** lesson auto-rebuilds the group package; while you're still
 finishing a not-yet-done lesson, edits don't rebuild (Mark done folds it in and rebuilds then).
 
 **Mark done — the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
@@ -635,13 +635,13 @@ deck** button:
   audio. Requires `ELEVENLABS_API_KEY` (the server loads `.env` on start); pick the voice with
   `--voice` if the language has no default. Costs credits on every click (one call per variant, up to
   8) and doesn't touch `cards.json` until you pick.
-- **Rebuild** — there is **one `.apkg` per group** (the book/course merge of done lessons, or a
-  template's own deck); rebuilds always target it (never a per-lesson file), **using the exact same
-  assembly as `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`). Editing an
-  already-**done** lesson auto-rebuilds the group; **Mark done** / **Reopen** rebuild it too — so the
-  on-disk `output/<…>/deck.apkg` always tracks the done-set. The **Rebuild deck** button forces one on
-  demand. There is **no download button** — the server is local, so just import the on-disk `.apkg`
-  into Anki (stable note GUIDs → updates in place).
+- **Rebuild (automatic, no button)** — there is **one `.apkg` per group** (the book/course merge of
+  done lessons, or a template's own deck); rebuilds always target it (never a per-lesson file), **using
+  the exact same assembly as `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`). It's
+  **fully automatic**: editing an already-**done** lesson auto-rebuilds the group, and **Mark done** /
+  **Reopen** rebuild it too — so the on-disk `output/<…>/deck.apkg` always tracks the done-set with no
+  manual step. There is **no download button** — the server is local, so just import the on-disk
+  `.apkg` into Anki (stable note GUIDs → updates in place).
 
 So a spot-check is just: Replace/Generate on a done lesson's row → (auto-rebuilds the group) → import
 the on-disk `.apkg`. Start with **`serve --read-only`** to disable all of this (the edit controls

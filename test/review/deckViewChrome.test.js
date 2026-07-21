@@ -46,12 +46,13 @@ test("renderLessonSections emits collapsible sections, global numbering, and the
   assert.equal(endNumber, 6);
 });
 
-test("DECK_EDIT_SCRIPT auto-rebuilds after a successful upload and a successful select", () => {
-  // both edit success paths chain into rebuild() — no manual Rebuild click required
-  assert.match(DECK_EDIT_SCRIPT, /"\\u2713 replaced"; return rebuild\(\)/);
-  assert.match(DECK_EDIT_SCRIPT, /"\\u2713 generated"; return rebuild\(\)/);
-  // rebuild hits the deck rebuild endpoint
-  assert.match(DECK_EDIT_SCRIPT, /base \+ "\/rebuild"/);
+test("DECK_EDIT_SCRIPT auto-rebuilds the group after an edit, but only when the lesson is done", () => {
+  // both edit success paths chain into maybeRebuild() — a no-op unless data-done="1"
+  assert.match(DECK_EDIT_SCRIPT, /"\\u2713 replaced"; return maybeRebuild\(\)/);
+  assert.match(DECK_EDIT_SCRIPT, /"\\u2713 generated"; return maybeRebuild\(\)/);
+  assert.match(DECK_EDIT_SCRIPT, /isDone \? rebuild\(\) : Promise\.resolve\(\)/);
+  // rebuild always targets the single group package (never a per-lesson file)
+  assert.match(DECK_EDIT_SCRIPT, /var rebuildUrl = base \+ "\/rebuild"/);
 });
 
 test("review surfaces AI-suggested / Uncertain at every stage (tick columns + Note at corpus, badges elsewhere)", () => {

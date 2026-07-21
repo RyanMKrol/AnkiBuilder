@@ -436,10 +436,11 @@ lands wherever you point it, unchanged.
 `anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) over the runs under
 `output/`. The **home page splits by status at the sub-deck (lesson) level** (`renderDashboard`) into
 two sections — **In review** (lessons where `cards.meta.done !== true`, each with a _Review_ action)
-and **Built · ready to study** (done lessons → _Browse_ / _Download_ / _Edit audio_) — with a deck's
-lessons grouped under its heading. A deck with lessons in both states appears (grouped) in **both**
-sections, so a finished lesson is never stranded behind an in-progress sibling. Actions are per-lesson
-and link to the **unit-scoped** views:
+and **Built · ready to study** (done lessons → _Browse_ / _Edit audio_) — with a deck's lessons
+grouped under its heading. A deck with lessons in both states appears (grouped) in **both** sections,
+so a finished lesson is never stranded behind an in-progress sibling. There is **no download action** —
+the server is local, so the single group `.apkg` is already on disk. Actions are per-lesson and link
+to the **unit-scoped** views:
 
 - **Browse** — `GET /deck/:type/:id` (whole deck) or `GET /deck/:type/:id/:unit` (one lesson)
   (`renderDeckPage`, `unit` filters `deck.units` to that lesson): a **read-only** look at a deck's
@@ -489,7 +490,8 @@ checkbox and inline-editable target/pronunciation cells (contentEditable, saved 
 stage — independent of its siblings; a whole-deck `/review/:type/:id` edits only when EVERY unit is at
 audio). An audio-stage lesson also shows **Mark done** (`.../unit/:unit/done`) / **Reopen**
 (`.../unit/:unit/reopen`) — `setLessonDone` in `applyCards.js` sets/clears `cards.meta.done`, the final
-sign-off that gates the merge:
+sign-off that gates the merge; both handlers then `rebuildGroupQuiet` (best-effort group rebuild) so
+the single package tracks the done-set:
 
 - `POST …/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a replacement clip
   (`applyCardAudio`, `<cardId>-user-<hash>.<ext>`, 10 MB cap). Uploads are NOT trimmed.
@@ -501,13 +503,14 @@ sign-off that gates the merge:
   fresh takes from it (`generateCardKanjiVariants`, `…-genkanji-<hash>.mp3`); returns the produced
   kanji text for the audition modal.
 - `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`).
-- `POST /api/deck/:type/:id/rebuild` — regenerate the **merged** `<deckDir>/deck.apkg` via
-  `rebuildBookDir` (`src/deck/rebuild.js`) — the **same** assembly the CLI's `deck --book-dir` uses, so
-  a browser rebuild is byte-identical, and it packages **only done lessons** (409 if none are done).
-  `GET /download/:type/:id/deck.apkg` streams it.
-- `POST /api/deck/:type/:id/unit/:unit/rebuild` — regenerate just **that lesson's** own `deck.apkg`
-  (`rebuildRunDir` on the unit dir) for spot-checking, without touching the merge; auto-fired after an
-  audio edit in a unit-scoped review. `GET /download/:type/:id/:unit/deck.apkg` streams it.
+- `POST /api/deck/:type/:id/rebuild` (`handleRebuild`) — regenerate the **single group package**
+  `<deckDir>/deck.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
+  assembly the CLI's `deck --book-dir` uses, so a browser rebuild is byte-identical, and it packages
+  **only done lessons** (409 if none are done). This is the ONLY rebuild endpoint — there is no
+  per-lesson rebuild and no per-lesson `.apkg`. The client (`DECK_EDIT_SCRIPT`) fires it from the
+  manual **Rebuild deck** button, and auto-fires it after an audio edit only when the lesson in view is
+  already done (`data-done="1"`), so finishing a fresh lesson doesn't trigger pointless whole-book
+  rebuilds. There is **no download route** — the file is served off the local disk directly.
 
 Card targeting is by cards.json/corpus.json item `id`; all written filenames are server-generated +
 validated, and every write path is realpath-checked to stay inside `outputRoot`. Note the same

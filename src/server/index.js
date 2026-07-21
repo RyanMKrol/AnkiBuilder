@@ -1,7 +1,7 @@
 import http from "node:http";
 import { Buffer } from "buffer";
-import { createReadStream, statSync, realpathSync, existsSync } from "fs";
-import { resolve, sep, join } from "path";
+import { createReadStream, statSync, realpathSync } from "fs";
+import { resolve, sep } from "path";
 import {
   escapeHtml,
   DECK_VIEW_CSS,
@@ -22,7 +22,6 @@ import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
 import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpus.js";
 import { setCardExcluded, editCard, setLessonDone } from "./adapters/applyCards.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
-import { rebuildRunDir } from "../deck/rebuild.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
@@ -124,17 +123,12 @@ export function createDeckServer({
     const withUnits = decks.map((d) => {
       const adapter = adapterFor(d.type);
       const full = adapter && adapter.loadDeck ? adapter.loadDeck(outputRoot, d.id) : null;
-      const units = ((full && full.units) || []).map((u) => {
-        const unitDir =
-          adapter && adapter.unitDir ? adapter.unitDir(outputRoot, d.id, u.seq) : null;
-        return {
-          seq: u.seq,
-          label: u.label,
-          stage: u.stage || "audio",
-          done: !!u.done,
-          apkg: unitDir ? existsSync(join(unitDir, "deck.apkg")) : false,
-        };
-      });
+      const units = ((full && full.units) || []).map((u) => ({
+        seq: u.seq,
+        label: u.label,
+        stage: u.stage || "audio",
+        done: !!u.done,
+      }));
       return {
         type: d.type,
         id: d.id,
@@ -148,10 +142,9 @@ export function createDeckServer({
     const unitActions = (deck, u, mode) => {
       const rurl = `/review/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
       const burl = `/deck/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
-      const durl = `/download/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}/deck.apkg`;
       return mode === "review"
         ? `<a class="da primary" href="${rurl}">Review →</a>`
-        : `<a class="da primary" href="${burl}">Browse</a>${u.apkg ? `<a class="da" href="${durl}">Download</a>` : ""}<a class="da" href="${rurl}">Edit audio</a>`;
+        : `<a class="da primary" href="${burl}">Browse</a><a class="da" href="${rurl}">Edit audio</a>`;
     };
     const deckMeta = (deck) =>
       [TYPE_LABEL[deck.type] || deck.type, deck.lang ? escapeHtml(deck.lang.toUpperCase()) : null]
@@ -198,7 +191,7 @@ export function createDeckServer({
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
 <p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p></header>
 ${section("grp-review", "In review", "Lessons still being built — corpus / translation / audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
-${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — browse, download, or reopen to tweak.", builtBlocks, builtCount)}`,
+${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Browse, or Edit audio to tweak.", builtBlocks, builtCount)}`,
     );
   }
 
@@ -280,8 +273,11 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
+    // The button rebuilds the single group package; data-done tells the client whether an audio edit
+    // should auto-rebuild (only when a lesson in view is already part of the package).
+    const anyDone = units.some((u) => u.done);
     const toolbar = canEdit
-      ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}"${unit != null ? ` data-unit="${escapeHtml(String(unit))}"` : ""}>Rebuild ${unit != null ? "lesson" : "deck"}</button><span id="rebuild-status" class="rb"></span>`
+      ? `<button type="button" id="rebuild" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}">Rebuild deck</button><span id="rebuild-status" class="rb"></span>`
       : "";
     const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
@@ -430,35 +426,6 @@ ${sectionHtml}
     return dir ? realWithinRoot(dir) : null;
   }
 
-  function serveDownload(res, type, id, unit = null) {
-    // unit-scoped → that lesson's own deck.apkg; otherwise the merged book/course deck.apkg.
-    let file, filename;
-    if (unit != null) {
-      const runDir = safeUnitDir(type, id, unit);
-      file = runDir ? join(runDir, "deck.apkg") : null;
-      filename = `${id}-${unit}.apkg`;
-    } else {
-      const adapter = adapterFor(type);
-      file = adapter && adapter.deckFile ? adapter.deckFile(outputRoot, id) : null;
-      filename = `${id}.apkg`;
-    }
-    const real = file ? realWithinRoot(file) : null;
-    if (!real) return notFound(res);
-    let stat;
-    try {
-      stat = statSync(real);
-    } catch {
-      return notFound(res);
-    }
-    if (!stat.isFile()) return notFound(res);
-    res.writeHead(200, {
-      "Content-Type": "application/octet-stream",
-      "Content-Length": stat.size,
-      "Content-Disposition": `attachment; filename="${filename}"`,
-    });
-    createReadStream(real).pipe(res);
-  }
-
   async function handleUpload(req, res, type, id, unit, cardId, ext) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -549,7 +516,10 @@ ${sectionHtml}
   function handleLessonDone(res, type, id, unit, done) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
-    sendJson(res, setLessonDone(runDir, done));
+    const result = setLessonDone(runDir, done);
+    // The done-set just changed — refresh the group package so it always matches (best-effort).
+    rebuildGroupQuiet(type, id);
+    sendJson(res, result);
   }
 
   async function handleTranslateExclude(req, res, type, id, unit, cardId) {
@@ -592,6 +562,9 @@ ${sectionHtml}
     sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
   }
 
+  // Rebuild the single group package (the book/course merge of done lessons, or a template's own deck)
+  // — the only .apkg per group. Never writes a per-lesson file. Shared by the manual "Rebuild deck"
+  // button and by rebuildGroupQuiet below.
   function handleRebuild(res, type, id) {
     const adapter = adapterFor(type);
     if (!adapter || !adapter.rebuild) return notFound(res);
@@ -603,29 +576,19 @@ ${sectionHtml}
       // No finished (done) lessons yet — the deck can't be merged.
       throw httpError(409, e.message);
     }
-    sendJson(res, {
-      noteCount: result.noteCount,
-      downloadUrl: `/download/${encodeURIComponent(type)}/${encodeURIComponent(id)}/deck.apkg`,
-      apkgPath: adapter.deckFile(outputRoot, id),
-    });
+    sendJson(res, { noteCount: result.noteCount, apkgPath: adapter.deckFile(outputRoot, id) });
   }
 
-  // Rebuild ONE lesson's own deck.apkg (rebuildRunDir) — for spot-checking a single lesson without
-  // touching the merged book/course package. Auto-triggered after audio edits in a unit-scoped review.
-  function handleUnitRebuild(res, type, id, unit) {
-    const runDir = safeUnitDir(type, id, unit);
-    if (!runDir) return notFound(res);
-    let result;
+  // Best-effort rebuild of the group package, ignoring the "nothing done yet" case — so marking a
+  // lesson done (or reopening one) keeps the on-disk package in step with the done-set without failing
+  // the write when no lesson is done.
+  function rebuildGroupQuiet(type, id) {
+    const adapter = adapterFor(type);
     try {
-      result = rebuildRunDir(runDir);
-    } catch (e) {
-      throw httpError(409, e.message);
+      adapter?.rebuild?.(outputRoot, id);
+    } catch {
+      /* no done lessons (or nothing to build) — leave the package as-is */
     }
-    sendJson(res, {
-      noteCount: result.noteCount,
-      downloadUrl: `/download/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(unit)}/deck.apkg`,
-      apkgPath: join(runDir, "deck.apkg"),
-    });
   }
 
   // POST route dispatch under /api/deck/:type/:id/… . Returns true if it handled the request.
@@ -641,9 +604,6 @@ ${sectionHtml}
     }
     if (seg[4] === "unit" && seg[6] === "reopen" && seg.length === 7) {
       return (handleLessonDone(res, type, id, seg[5], false), true);
-    }
-    if (seg[4] === "unit" && seg[6] === "rebuild" && seg.length === 7) {
-      return (handleUnitRebuild(res, type, id, seg[5]), true);
     }
     if (seg[4] === "unit" && seg[6] === "card") {
       const [unit, cardId] = [seg[5], seg[7]];
@@ -707,11 +667,6 @@ ${sectionHtml}
         }
         if (seg[0] === "media" && seg.length === 5)
           return serveMedia(req, res, seg[1], seg[2], seg[3], seg[4]);
-        if (seg[0] === "download" && seg.length === 4 && seg[3] === "deck.apkg")
-          return serveDownload(res, seg[1], seg[2]);
-        // Per-lesson download: /download/:type/:id/:unit/deck.apkg
-        if (seg[0] === "download" && seg.length === 5 && seg[4] === "deck.apkg")
-          return serveDownload(res, seg[1], seg[2], seg[3]);
         return notFound(res);
       }
       if (req.method === "POST") {

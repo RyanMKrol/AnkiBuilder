@@ -1,6 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "fs";
+import {
+  mkdtempSync,
+  mkdirSync,
+  writeFileSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  existsSync,
+} from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
@@ -661,13 +669,13 @@ test("generate-kanji is hidden and 422s for a non-Japanese deck", async () => {
   }
 });
 
-test("rebuild regenerates deck.apkg and /download streams it as an attachment", async () => {
+test("rebuild writes the single group deck.apkg (no per-lesson file, no download route)", async () => {
   const root = fixture();
   try {
     await withServer(
       root,
       async (url) => {
-        // replace card a's clip, then rebuild
+        // replace card a's clip, then rebuild the group package
         await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio?ext=mp3`, {
           method: "POST",
           body: Buffer.from("REBUILT-CLIP"),
@@ -678,12 +686,15 @@ test("rebuild regenerates deck.apkg and /download streams it as an attachment", 
         assert.equal(rb.status, 200);
         assert.equal(rb.body.noteCount, 2);
         assert.match(rb.body.apkgPath, /mybook[/\\]deck\.apkg$/);
+        assert.equal(rb.body.downloadUrl, undefined); // download removed entirely
 
-        const dl = await fetch(`${url}${rb.body.downloadUrl}`);
-        assert.equal(dl.status, 200);
-        assert.equal(dl.headers.get("content-type"), "application/octet-stream");
-        assert.match(dl.headers.get("content-disposition"), /attachment; filename="mybook\.apkg"/);
-        assert.ok((await dl.arrayBuffer()).byteLength > 0);
+        // the group package lands at the book root, and NO per-lesson file is written
+        assert.ok(statSync(join(root, "epubs/mybook/deck.apkg")).size > 0);
+        assert.equal(existsSync(join(root, "epubs/mybook/chapter-0/deck.apkg")), false);
+
+        // the download routes are gone
+        assert.equal((await fetch(`${url}/download/book/mybook/deck.apkg`)).status, 404);
+        assert.equal((await fetch(`${url}/download/book/mybook/0/deck.apkg`)).status, 404);
       },
       editDeps,
     );
@@ -870,8 +881,8 @@ test("unit-scoped review renders ONE lesson editable at audio; out-of-range unit
         const one = await (await fetch(`${url}/review/book/mybook/0`)).text();
         assert.match(one, /Lesson One/);
         assert.doesNotMatch(one, /Lesson Two/); // filtered to the single unit
-        assert.match(one, /Rebuild lesson/); // per-unit editable + unit-scoped rebuild label
-        assert.match(one, /data-unit="0"/);
+        assert.match(one, /Rebuild deck/); // per-unit editable; rebuild always targets the group
+        assert.match(one, /data-done="1"/); // this lesson is done → audio edits auto-rebuild the group
         // A whole-deck review is NOT editable while stages are mixed (no rebuild button).
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(all, /Rebuild deck/);
@@ -901,31 +912,56 @@ test("unit-scoped browse (/deck/:type/:id/:unit) shows one lesson read-only", as
   }
 });
 
-test("per-lesson rebuild builds that lesson's own deck.apkg and /download/:unit streams it", async () => {
+test("the per-lesson rebuild route is gone (only the group package is built)", async () => {
   const root = fixture();
   try {
     await withServer(
       root,
       async (url) => {
-        const rb = await asJson(
-          await fetch(`${url}/api/deck/book/mybook/unit/0/rebuild`, { method: "POST" }),
+        assert.equal(
+          (await fetch(`${url}/api/deck/book/mybook/unit/0/rebuild`, { method: "POST" })).status,
+          404,
         );
-        assert.equal(rb.status, 200);
-        assert.equal(rb.body.noteCount, 2);
-        assert.match(rb.body.apkgPath, /chapter-0[/\\]deck\.apkg$/); // the lesson's own dir, not the merge
-        assert.equal(rb.body.downloadUrl, "/download/book/mybook/0/deck.apkg");
-
-        const dl = await fetch(`${url}${rb.body.downloadUrl}`);
-        assert.equal(dl.status, 200);
-        assert.equal(dl.headers.get("content-type"), "application/octet-stream");
-        assert.match(
-          dl.headers.get("content-disposition"),
-          /attachment; filename="mybook-0\.apkg"/,
-        );
-        assert.ok((await dl.arrayBuffer()).byteLength > 0);
       },
       editDeps,
     );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("Mark done rebuilds the group package so the single .apkg tracks the done-set", async () => {
+  const root = fixture();
+  // start not-done so there's no package yet, then mark done
+  const p = join(root, "epubs/mybook/chapter-0/cards.json");
+  const stripped = JSON.parse(readFileSync(p, "utf-8"));
+  delete stripped.meta.done;
+  writeFileSync(p, JSON.stringify(stripped));
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        assert.equal(existsSync(join(root, "epubs/mybook/deck.apkg")), false);
+        const done = await fetch(`${url}/api/deck/book/mybook/unit/0/done`, { method: "POST" });
+        assert.equal(done.status, 200);
+        // the group package now exists (the newly-done lesson was folded in server-side)
+        assert.ok(statSync(join(root, "epubs/mybook/deck.apkg")).size > 0);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("homepage never shows a Download action", async () => {
+  const root = fixture();
+  try {
+    await withServer(root, async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      assert.doesNotMatch(home, />Download</);
+      assert.doesNotMatch(home, /\/download\//);
+    });
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

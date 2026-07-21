@@ -422,6 +422,20 @@ This:
 - Copies audio files into the run directory
 - Writes updated `cards.json` with audio file references
 
+**⚠️ Drop the whole audio cache whenever the audio-GENERATION algorithm changes.** The cache key is
+only `(voiceId, model, sha256(spoken text))` — it does **not** encode the *processing* applied to a
+clip (silence-trim, normalization, the `。`/variant transforms, or anything else about HOW the clip is
+produced). So a **cache hit reuses the old bytes and skips the fetch AND all post-processing** — meaning
+any clip cached before an algorithm change is served **stale forever** on reuse, silently. (This bit us:
+trimming lives on the fetch/miss path only, so clips cached before trimming worked kept their untrimmed
+trailing blip on every reuse — audible as a click at the end, e.g. row 3 「さいふ」.) The cache isn't
+valuable enough to nurse around this: when you change trimming, TTS text normalization, the model
+wiring, an alt/variant transform, or any other core audio step, **delete the whole cache and let it
+rebuild** — `rm -rf .anki-builder/audio` (leave `.anki-builder/epubs`, the EPUB library, alone). Regenerating costs ElevenLabs
+credits but correctness wins; don't try to surgically re-process cached clips. Re-running `audio` after
+the drop refetches every clip through the current pipeline. (Run-directory copies are separate — a
+lesson already built keeps its clips; the drop only forces the *next* generation to refetch.)
+
 **Default take only (per-language transform).** The `audio` stage generates exactly ONE clip per
 card. For a language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS` (Japanese appends a
 `。`), that default is the transformed (with-`。`) take — a trailing `。` gives ElevenLabs a sentence
@@ -720,7 +734,9 @@ output/templates/<template-name>/<language>/
   corpus.json, cards.json, audio/, review-*.html, deck.apkg
 ```
 
-Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio.
+Audio is cached in `.anki-builder/audio/<voiceId>/` so reruns don't regenerate the same audio. The
+cache key ignores *how* a clip was processed, so **drop the whole cache (`rm -rf .anki-builder/audio`)
+whenever the audio-generation algorithm changes** — see the ⚠️ note under Step 4 (Audio Generation).
 
 ## Troubleshooting
 

@@ -140,11 +140,12 @@ export function createDeckServer({
     });
 
     const unitActions = (deck, u, mode) => {
+      // One door per built lesson: the audio-review view is a superset of read-only browse (same page
+      // of cards + inline players, plus Replace/Generate and Mark done/Reopen), so it IS the default.
       const rurl = `/review/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
-      const burl = `/deck/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
       return mode === "review"
         ? `<a class="da primary" href="${rurl}">Review →</a>`
-        : `<a class="da primary" href="${burl}">Browse</a><a class="da" href="${rurl}">Edit audio</a>`;
+        : `<a class="da primary" href="${rurl}">Open</a>`;
     };
     const deckMeta = (deck) =>
       [TYPE_LABEL[deck.type] || deck.type, deck.lang ? escapeHtml(deck.lang.toUpperCase()) : null]
@@ -191,7 +192,7 @@ export function createDeckServer({
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
 <p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p></header>
 ${section("grp-review", "In review", "Lessons still being built — corpus / translation / audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
-${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Browse, or Edit audio to tweak.", builtBlocks, builtCount)}`,
+${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play its cards, tweak audio, or reopen it.", builtBlocks, builtCount)}`,
     );
   }
 

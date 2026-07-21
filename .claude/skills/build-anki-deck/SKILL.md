@@ -207,6 +207,16 @@ The result is `corpus.json` in the run directory, containing:
 - Categories (Greetings, Food, etc.)
 - Optional translations or hints from the source
 
+**Every English gloss reads as natural sentence-case English — capitalized, never a lowercased clip.**
+Each card's `english` starts with a capital letter (sentence case, *not* Title Case): a single common
+noun is `Bag` / `Water` / `Green tea`, a phrase is `Nice to meet you`, a full sentence is punctuated
+(`Is this a pen?`, `This is my pen.`). This holds no matter how the source arrived — when you author a
+word list from a dictated/pasted lesson (the `--words` path), capitalize each gloss *as you write the
+words file*, since `assemble` stores the English verbatim and later stages never re-case it. Proper
+nouns keep their own casing (`UK`, `French Person`); items opening with a digit or symbol keep it and
+capitalize the first letter (`5 AM`, `9 PM`). Match the existing lessons in the same course/book so the
+deck reads consistently — a lowercase `bag` next to `Good morning` looks wrong.
+
 The items in `corpus.json` are **already pedagogically sorted** — as the last step of `assemble`, a
 dependency-aware LLM pass (`sortItemsPedagogically`, Sonnet-medium) re-orders them for learning flow
 so a learner meets vocabulary before the sentences built from it (atoms → molecules), rather than raw

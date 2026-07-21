@@ -282,6 +282,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       audioCell,
       rowControl,
       sectionControl,
+      // Review opens a lesson to work on it — render its cards expanded, no expand/collapse chrome.
+      open: true,
     });
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);
@@ -296,18 +298,20 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       : "";
     const lede = canEdit
       ? `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Edits to a done lesson rebuild the deck's <code>.apkg</code> automatically — just re-import it.`
-      : `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Each lesson is collapsed — click one to open it and review the fields inline. <b>${withAudio}</b> have audio.`;
+      : `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, expanded below for review. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">Review · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
 <p class="lede">${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a></p>
-<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button>${toolbar}</div>
+${toolbar ? `<div class="bar">${toolbar}</div>` : ""}
 </header>
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
 ${sectionHtml}
 ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
-    const scripts = [EXPAND_COLLAPSE_SCRIPT];
+    // Review renders lessons expanded with no expand/collapse buttons, so EXPAND_COLLAPSE_SCRIPT is
+    // not needed here (it still drives the read-only Browse view below).
+    const scripts = [];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
     if (editable && hasReview) scripts.push(REVIEW_EDIT_SCRIPT);
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);

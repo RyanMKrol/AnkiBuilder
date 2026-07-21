@@ -861,6 +861,9 @@ test("unit-scoped review renders ONE lesson editable at audio; out-of-range unit
         assert.doesNotMatch(one, /Lesson Two/); // filtered to the single unit
         assert.match(one, /class="repl"/); // per-unit editable (audio controls present)
         assert.match(one, /id="deckctx"[^>]*data-done="1"/); // done → audio edits auto-rebuild the group
+        assert.match(one, /<details class="lesson" open>/); // review opens the lesson expanded
+        assert.doesNotMatch(one, /Expand all/); // …with no expand/collapse chrome
+        assert.doesNotMatch(one, /Collapse all/);
         // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(all, /class="repl"/);

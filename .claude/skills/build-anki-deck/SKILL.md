@@ -444,6 +444,11 @@ card's `audio` and auto-rebuilds. For a short string ElevenLabs mishandles even 
 **Replace** with a hand-made clip (uploads are stored as `<cardId>-user-<hash>.<ext>` and are NOT
 trimmed).
 
+**Mark done — the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
+lesson (sets `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` (and
+the dashboard build) package **only `done` lessons**, so an un-finished lesson never ships. A done
+lesson moves to the dashboard's **Built** section; **Reopen** returns it to review to tweak.
+
 **Re-run footgun.** The `audio` CLI stage re-derives every card's default `audio` from the card text,
 so **once you've picked variants / uploaded clips in the dashboard, do NOT re-run `anki-builder audio`
 over the whole run** — it would overwrite those hand-picked selections (and adding even one new card

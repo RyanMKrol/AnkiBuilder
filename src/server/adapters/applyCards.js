@@ -46,6 +46,18 @@ export function setCardExcluded(
   return { excluded: !!excluded };
 }
 
+// Set/clear the lesson's final "done" sign-off (cards.meta.done) — the audio-review "Mark done" /
+// "Reopen". Only `done` lessons are merged into the book/course deck. Deleting the key on reopen keeps
+// cards.json clean (undefined = not done).
+export function setLessonDone(runDir, done, { validateCards = defaultValidateCards } = {}) {
+  const { cardsPath, data } = loadCards(runDir);
+  data.meta = data.meta || {};
+  if (done) data.meta.done = true;
+  else delete data.meta.done;
+  persist(cardsPath, data, validateCards);
+  return { done: !!done };
+}
+
 // Edit a card's translate-stage text fields. Only the whitelisted fields are ever written, and each
 // is coerced to a string; anything else in the body is ignored.
 export function editCard(runDir, cardId, fields, { validateCards = defaultValidateCards } = {}) {

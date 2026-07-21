@@ -75,6 +75,7 @@ export function scanNumberedUnits(deckDir, prefix) {
       label: meta.chapterLabel || `${label} ${number}`,
       stage: data.stage,
       reviewed: !!meta.reviewed,
+      done: !!meta.done,
       cards: data.items.map(renderCardForStage(data.stage)),
     });
   }

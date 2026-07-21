@@ -11,6 +11,7 @@ import {
   DECK_EDIT_SCRIPT,
   CORPUS_EDIT_SCRIPT,
   TRANSLATE_EDIT_SCRIPT,
+  MARK_DONE_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { ADAPTERS } from "./adapters/index.js";
 import {
@@ -19,7 +20,7 @@ import {
 } from "../deck/fontLibrary.js";
 import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
 import { setCorpusItemExcluded, markCorpusReviewed } from "./adapters/applyCorpus.js";
-import { setCardExcluded, editCard } from "./adapters/applyCards.js";
+import { setCardExcluded, editCard, setLessonDone } from "./adapters/applyCards.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
@@ -176,6 +177,7 @@ ${section("grp-built", "Built · ready to study", "Every lesson has audio. Brows
 
     const hasCorpus = deck.units.some((u) => (u.stage || "audio") === "corpus");
     const hasTranslate = deck.units.some((u) => (u.stage || "audio") === "translate");
+    const hasAudio = deck.units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
     const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
@@ -185,6 +187,7 @@ ${section("grp-built", "Built · ready to study", "Every lesson has audio. Brows
       stage: u.stage || "audio",
       seq: u.seq,
       reviewed: !!u.reviewed,
+      done: !!u.done,
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
@@ -210,10 +213,17 @@ ${section("grp-built", "Built · ready to study", "Every lesson has audio. Brows
             : ""
       : undefined;
     const sectionControl = editable
-      ? (s) =>
-          s.stage === "corpus"
-            ? `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`
-            : ""
+      ? (s) => {
+          if (s.stage === "corpus")
+            return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
+          // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
+          // ship in the merged deck.
+          if (s.stage === "audio")
+            return s.done
+              ? `<span class="done-badge">✓ done</span> <button type="button" class="reopen" data-unit="${escapeHtml(String(s.seq))}">Reopen</button><span class="done-msg"></span>`
+              : `<button type="button" class="mark-done" data-unit="${escapeHtml(String(s.seq))}">Mark done</button><span class="done-msg"></span>`;
+          return "";
+        }
       : undefined;
     const { html: sectionHtml } = renderLessonSections({
       sections,
@@ -248,6 +258,7 @@ ${modal}
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
     if (editable && hasCorpus) scripts.push(CORPUS_EDIT_SCRIPT);
     if (editable && hasTranslate) scripts.push(TRANSLATE_EDIT_SCRIPT);
+    if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
     const script = scripts.join("\n");
     return page(`${deck.title} — review`, body, script);
   }
@@ -478,6 +489,12 @@ ${sectionHtml}
     sendJson(res, markCorpusReviewed(runDir, { saveChapterCorpus }));
   }
 
+  function handleLessonDone(res, type, id, unit, done) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    sendJson(res, setLessonDone(runDir, done));
+  }
+
   async function handleTranslateExclude(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -543,6 +560,12 @@ ${sectionHtml}
     if (seg[4] === "rebuild" && seg.length === 5) return (handleRebuild(res, type, id), true);
     if (seg[4] === "unit" && seg[6] === "corpus" && seg[7] === "reviewed" && seg.length === 8) {
       return (handleCorpusReviewed(res, type, id, seg[5]), true);
+    }
+    if (seg[4] === "unit" && seg[6] === "done" && seg.length === 7) {
+      return (handleLessonDone(res, type, id, seg[5], true), true);
+    }
+    if (seg[4] === "unit" && seg[6] === "reopen" && seg.length === 7) {
+      return (handleLessonDone(res, type, id, seg[5], false), true);
     }
     if (seg[4] === "unit" && seg[6] === "card") {
       const [unit, cardId] = [seg[5], seg[7]];

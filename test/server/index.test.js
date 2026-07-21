@@ -765,6 +765,40 @@ test("editor input errors: bad ext 400, oversized 413, unknown card 404, missing
   }
 });
 
+test("audio review: Mark done sets meta.done and shows Reopen; Reopen clears it", async () => {
+  const root = fixture();
+  const p = join(root, "epubs/mybook/chapter-0/cards.json");
+  // start not-done so the "Mark done" button shows
+  const stripped = JSON.parse(readFileSync(p, "utf-8"));
+  delete stripped.meta.done;
+  writeFileSync(p, JSON.stringify(stripped));
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/mybook`)).text();
+        assert.match(html, /class="mark-done"/);
+        assert.doesNotMatch(html, /class="reopen"/);
+
+        const done = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/done`, { method: "POST" }),
+        );
+        assert.equal(done.status, 200);
+        assert.equal(JSON.parse(readFileSync(p, "utf-8")).meta.done, true);
+
+        const html2 = await (await fetch(`${url}/review/book/mybook`)).text();
+        assert.match(html2, /class="reopen"/);
+
+        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
+        assert.equal("done" in JSON.parse(readFileSync(p, "utf-8")).meta, false);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("rebuild skips an in-progress chapter and merges only the done ones", async () => {
   const root = fixture(); // mybook chapter-0 is done
   try {

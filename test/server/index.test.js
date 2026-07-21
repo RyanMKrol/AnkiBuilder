@@ -99,7 +99,8 @@ test("built lesson has a single action opening the unit-scoped edit-audio view (
   try {
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
-      assert.match(home, /href="\/review\/book\/mybook\/0">Open/);
+      assert.match(home, /class="[^"]*\bsingle\b[^"]*" href="\/review\/book\/mybook\/0"/); // whole block is the link
+      assert.doesNotMatch(home, />Open</); // no separate Open button — the row itself is clickable
       assert.doesNotMatch(home, /\/deck\/book\/mybook/); // Browse is consolidated into the review view
     });
   } finally {
@@ -128,11 +129,14 @@ test("home page bifurcates decks into 'In review' and 'Built' sections with diff
       const home = await (await fetch(`${url}/`)).text();
       assert.match(home, /In review/);
       assert.match(home, /Built · ready to study/);
-      // in-review lesson → "Review →" to the unit-scoped /review
-      assert.match(home, /href="\/review\/book\/wipbook\/0">Review/);
+      // in-review lesson → its row links to the unit-scoped /review (whole row is the link now)
+      assert.match(home, /href="\/review\/book\/wipbook\/0"/);
       assert.doesNotMatch(home, /\/deck\/book\/wipbook/);
-      // built lesson → a single "Open" action to the unit-scoped edit-audio view
-      assert.match(home, /href="\/review\/book\/mybook\/0">Open/);
+      // built lesson → its row links to the unit-scoped edit-audio view
+      assert.match(home, /href="\/review\/book\/mybook\/0"/);
+      // no separate Open/Review buttons — bifurcation is conveyed by the two sections above
+      assert.doesNotMatch(home, />Open</);
+      assert.doesNotMatch(home, />Review →</);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });

@@ -144,27 +144,23 @@ export function createDeckServer({
       };
     });
 
-    const unitActions = (deck, u, mode) => {
-      // One door per built lesson: the audio-review view is a superset of read-only browse (same page
-      // of cards + inline players, plus Replace/Generate and Mark done/Reopen), so it IS the default.
-      const rurl = `/review/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
-      return mode === "review"
-        ? `<a class="da primary" href="${rurl}">Review →</a>`
-        : `<a class="da primary" href="${rurl}">Open</a>`;
-    };
+    // Every lesson row / single-unit block links to the unit-scoped review (a superset of read-only
+    // browse: cards + inline players, plus Replace/Generate and Mark done/Reopen). The WHOLE row is the
+    // link (see .urow / .dblock.single in the CSS) — there's no separate Open/Review button.
+    const unitUrl = (deck, u) => `/review/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
     const deckMeta = (deck) =>
       [TYPE_LABEL[deck.type] || deck.type, deck.lang ? escapeHtml(deck.lang.toUpperCase()) : null]
         .filter(Boolean)
         .join(" · ");
     const deckBlock = (deck, units, mode) => {
       const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span></div>`;
-      // A single-unit deck (template) has no meaningful sub-decks — actions go inline in the heading.
+      // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link.
       if (deck.total === 1)
-        return `<div class="dblock single">${head}<div class="deck-actions">${unitActions(deck, units[0], mode)}</div></div>`;
+        return `<a class="dblock single" href="${unitUrl(deck, units[0])}">${head}</a>`;
       const rows = units
         .map(
           (u) =>
-            `<div class="urow"><span class="ulabel">${escapeHtml(u.label)}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span><span class="uactions">${unitActions(deck, u, mode)}</span></div>`,
+            `<a class="urow" href="${unitUrl(deck, u)}"><span class="ulabel">${escapeHtml(u.label)}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span></a>`,
         )
         .join("");
       return `<div class="dblock">${head}${rows}</div>`;

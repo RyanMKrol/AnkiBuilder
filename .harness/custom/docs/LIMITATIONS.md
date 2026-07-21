@@ -7,6 +7,23 @@ refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/cus
 
 Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
 
+## The Corpus review translates every item before you can exclude it
+
+- **What:** the review flow is two steps — a combined **Corpus** review (English + target +
+  pronunciation) then **Audio**. The Corpus review operates on `cards.json`, so `translate` runs on the
+  **whole** assembled corpus before the human sees it; exclusion happens *after* translation (on the
+  cards), not before it. There is no longer an English-only pre-translation gate.
+- **Why:** the point of the merge is to green-light the English AND see the actual target translation at
+  one gate (to catch a word that comes back with several unfamiliar variants). You can't judge a
+  translation you haven't generated, so pre-translation exclusion is incompatible with the goal.
+- **Impact:** a little LLM cost is spent translating items you then exclude (they never reach the deck).
+  For a typical lesson this is a handful of items — negligible — but a very large corpus with many
+  throw-away rows pays for translating all of them. The old English-only gate (which let you drop items
+  *before* paying to translate them) is gone.
+- **When to revisit:** if translate cost on large corpora becomes a real concern, consider an optional
+  lightweight pre-pass exclusion (by id, no UI) before `translate`, keeping the combined review as the
+  primary gate.
+
 ## Kana→kanji audio variants cost an LLM + TTS call per click and aren't reading-validated automatically
 
 - **What:** the dashboard's **Generate (kanji)** button (Japanese only) makes one `claude -p` call to

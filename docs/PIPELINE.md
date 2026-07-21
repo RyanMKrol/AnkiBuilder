@@ -434,20 +434,24 @@ lands wherever you point it, unchanged.
 ## Deck dashboard (`serve`)
 
 `anki-builder serve` runs a local `node:http` web app (`src/server/index.js`) over the runs under
-`output/`. The **home page bifurcates by status** into two sections — **In review** (any unit still
-pre-audio → a single _Continue review_ action) and **Built** (every unit at audio → _Browse_ /
-_Download .apkg_ / _Edit audio_) — so the two paths stay fully separate. Those actions lead to the two
-distinct views the server renders:
+`output/`. The **home page splits by status at the sub-deck (lesson) level** (`renderDashboard`) into
+two sections — **In review** (lessons where `cards.meta.done !== true`, each with a _Review_ action)
+and **Built · ready to study** (done lessons → _Browse_ / _Download_ / _Edit audio_) — with a deck's
+lessons grouped under its heading. A deck with lessons in both states appears (grouped) in **both**
+sections, so a finished lesson is never stranded behind an in-progress sibling. Actions are per-lesson
+and link to the **unit-scoped** views:
 
-- **Browse** — `GET /deck/:type/:id` (`renderDeckPage`): a **read-only** look at a deck's cards, lessons
-  as collapsible `<details>` sections with an inline `<audio>` per card, in the same editorial style as
-  the `view-deck` artifact (shared chrome in `src/review/deckViewChrome.js`). Audio is **served over
-  HTTP** from `/media/...` rather than base64-inlined, so a whole deck renders on one page with no
-  ~16 MB Artifact ceiling. No editing.
-- **Review** — `GET /review/:type/:id` (`renderReviewPage`): the guided, editable per-stage workflow
-  (see [Dashboard editing](#dashboard-editing-serve-editable-by-default) below). Corpus is English-only,
-  translate adds target + romaji, audio adds players + generate/pick; provenance flags badge on every
-  stage.
+- **Browse** — `GET /deck/:type/:id` (whole deck) or `GET /deck/:type/:id/:unit` (one lesson)
+  (`renderDeckPage`, `unit` filters `deck.units` to that lesson): a **read-only** look at a deck's
+  cards, lessons as collapsible `<details>` sections with an inline `<audio>` per card, in the same
+  editorial style as the `view-deck` artifact (shared chrome in `src/review/deckViewChrome.js`). Audio
+  is **served over HTTP** from `/media/...` rather than base64-inlined, so a whole deck renders on one
+  page with no ~16 MB Artifact ceiling. No editing.
+- **Review** — `GET /review/:type/:id` (whole deck) or `GET /review/:type/:id/:unit` (one lesson)
+  (`renderReviewPage`): the guided, editable per-stage workflow (see
+  [Dashboard editing](#dashboard-editing-serve-editable-by-default) below). Corpus is English-only,
+  translate adds target + romaji, audio adds players + generate/pick + **Mark done**; provenance flags
+  badge on every stage. An out-of-range `:unit` (no matching lesson) 404s.
 
 Discovery is pluggable through a **format-adapter registry** (`src/server/adapters/`). Each adapter
 (`book`, `course`, `template`) implements `listDecks(outputRoot)`, `loadDeck(outputRoot, id)`, and
@@ -481,8 +485,11 @@ checkbox and inline-editable target/pronunciation cells (contentEditable, saved 
   build drops excluded cards).
 - `POST …/card/:cardId/translate/edit` `{target?,pronunciation?,reading?}` — whitelisted field edit.
 
-**Audio review** (an all-audio deck only — editing + rebuild unlock when EVERY unit reaches the audio
-stage):
+**Audio review** (a unit-scoped review `/review/:type/:id/:unit` edits when THAT lesson is at the audio
+stage — independent of its siblings; a whole-deck `/review/:type/:id` edits only when EVERY unit is at
+audio). An audio-stage lesson also shows **Mark done** (`.../unit/:unit/done`) / **Reopen**
+(`.../unit/:unit/reopen`) — `setLessonDone` in `applyCards.js` sets/clears `cards.meta.done`, the final
+sign-off that gates the merge:
 
 - `POST …/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a replacement clip
   (`applyCardAudio`, `<cardId>-user-<hash>.<ext>`, 10 MB cap). Uploads are NOT trimmed.
@@ -494,9 +501,13 @@ stage):
   fresh takes from it (`generateCardKanjiVariants`, `…-genkanji-<hash>.mp3`); returns the produced
   kanji text for the audition modal.
 - `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`).
-- `POST /api/deck/:type/:id/rebuild` — regenerate `<deckDir>/deck.apkg` via `src/deck/rebuild.js`
-  (`rebuildBookDir`/`rebuildRunDir`) — the **same** assembly the CLI's `deck --book-dir`/`deck --run`
-  use, so a browser rebuild is byte-identical. `GET /download/:type/:id/deck.apkg` streams it.
+- `POST /api/deck/:type/:id/rebuild` — regenerate the **merged** `<deckDir>/deck.apkg` via
+  `rebuildBookDir` (`src/deck/rebuild.js`) — the **same** assembly the CLI's `deck --book-dir` uses, so
+  a browser rebuild is byte-identical, and it packages **only done lessons** (409 if none are done).
+  `GET /download/:type/:id/deck.apkg` streams it.
+- `POST /api/deck/:type/:id/unit/:unit/rebuild` — regenerate just **that lesson's** own `deck.apkg`
+  (`rebuildRunDir` on the unit dir) for spot-checking, without touching the merge; auto-fired after an
+  audio edit in a unit-scoped review. `GET /download/:type/:id/:unit/deck.apkg` streams it.
 
 Card targeting is by cards.json/corpus.json item `id`; all written filenames are server-generated +
 validated, and every write path is realpath-checked to stay inside `outputRoot`. Note the same

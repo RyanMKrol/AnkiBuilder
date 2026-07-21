@@ -232,9 +232,9 @@ prosody, so **the with-dot take is the DEFAULT audio** (the only clip generated 
 `src/audio/altAudio.js`); the dot-less take and every other variant are generated on demand in the
 dashboard's audio review. (Romaji keeps its own punctuation.)
 
-**Audio review happens in the dashboard.** Once every unit of a deck has reached the audio stage
-(editing + rebuild unlock only when the whole deck is at audio), each card plays its default clip
-inline, and per card you can:
+**Audio review happens in the dashboard.** Open a lesson's own Review view (`/review/:type/:id/:unit`)
+— a lesson edits once IT reaches the audio stage, independent of its siblings' stages. Each card plays
+its default clip inline, and per card you can:
 
 - **Replace** — upload a hand-made clip.
 - **Generate** — synthesize the card's variant takes FRESH via ElevenLabs and audition them in a
@@ -435,14 +435,16 @@ book), add it to `DEFAULT_VOICES` so future chapters don't need `--voice` repeat
 
 If you skip audio, the deck will still work — cards just won't have pronunciation recordings.
 
-**Review gate — the Review view's audio stage.** Reload it: once every unit has reached the audio
+**Review gate — the Review view's audio stage.** Open the lesson's own Review view
+(`/review/:type/:id/:unit`, or its **Review** link on the home page): once that lesson is at the audio
 stage it renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)**
-controls and a **Rebuild deck** button (see "Audio review happens in the dashboard" above for how the
-variant axes and the kana+kanji option work). Play each card's default clip; for any that sound wrong,
-**Generate** fresh takes, audition them in the modal, and **Use this** to pick — each pick writes the
-card's `audio` and auto-rebuilds. For a short string ElevenLabs mishandles even with a `reading`,
-**Replace** with a hand-made clip (uploads are stored as `<cardId>-user-<hash>.<ext>` and are NOT
-trimmed).
+controls and a **Rebuild lesson** button (which rebuilds just that lesson's own `.apkg` for
+spot-checking; see "Audio review happens in the dashboard" above for how the variant axes and the
+kana+kanji option work). A lesson edits on its own — you don't need its siblings finished. Play each
+card's default clip; for any that sound wrong, **Generate** fresh takes, audition them in the modal,
+and **Use this** to pick — each pick writes the card's `audio` and auto-rebuilds. For a short string
+ElevenLabs mishandles even with a `reading`, **Replace** with a hand-made clip (uploads are stored as
+`<cardId>-user-<hash>.<ext>` and are NOT trimmed).
 
 **Mark done — the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
 lesson (sets `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` (and

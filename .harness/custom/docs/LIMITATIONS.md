@@ -23,21 +23,17 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if kanji variants get used at scale, add a round-trip check (romanize the kanji
   via kuroshiro, compare to the kana reading, auto-discard on mismatch) before offering the take.
 
-## Dashboard editing unlocks only when EVERY unit of a deck has reached the audio stage
+## ~~Dashboard editing unlocks only when EVERY unit of a deck has reached the audio stage~~ (RESOLVED)
 
-- **What:** the `serve` dashboard now surfaces a deck at whatever stage its units are in (corpus /
-  translate / audio). Audio editing (Replace / Generate / Rebuild) is gated on **all** surfaced units
-  being at the audio stage (`renderReviewPage`'s `canEdit` in `src/server/index.js`); a book with a
-  chapter still at corpus/translate renders entirely read-only.
-- **Why:** a partially-built book can't be merge-rebuilt anyway — `rebuildBookDir` throws if any unit
-  lacks `cards.json` — so exposing edit+rebuild on a mixed-stage deck would only produce failed
-  rebuilds. Corpus/translate write-back (exclude/edit) is a separate, per-unit path added in later
-  phases and does not need a global rebuild.
-- **Impact:** you can't Replace/Generate audio on the finished chapters of a book while an earlier
-  chapter is still pre-audio; advance the whole book through the CLI first, then edit.
-- **When to revisit:** once per-section write-back lands (corpus/translate phases), consider letting
-  audio-stage sections edit independently, or teach `rebuildBookDir` to skip non-audio units so a
-  mixed deck can still rebuild the finished part.
+- **Resolved** by the unit-scoped review (`/review/:type/:id/:unit`): a lesson now edits when THAT
+  lesson is at the audio stage, independent of its siblings, and **Rebuild lesson** rebuilds just its
+  own `.apkg` (`rebuildRunDir`). So you can finalize a done chapter's audio while an earlier chapter is
+  still pre-audio. `renderReviewPage`'s `canEdit` is computed over the *filtered* units, so a
+  single-lesson view unlocks on its own.
+- **Residual (by design):** a *whole-deck* review (`/review/:type/:id`, no `:unit`) still only edits
+  when EVERY unit is at audio, and the *merged* deck build (`rebuildBookDir`) packages only `done`
+  lessons (409 if none). This is intentional — the merge is the shippable artifact and must not bake in
+  an un-finished lesson. Per-lesson work is the unit-scoped path.
 
 ## Switching the TTS model re-fetches every clip (cache is model-segmented)
 

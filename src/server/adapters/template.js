@@ -62,6 +62,7 @@ export const templateAdapter = {
           label: title,
           stage: data.stage,
           reviewed: !!data.meta?.reviewed,
+          done: !!data.meta?.done,
           cards: data.items.map(renderCardForStage(data.stage)),
         },
       ],

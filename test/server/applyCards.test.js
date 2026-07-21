@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
-import { setCardExcluded, editCard } from "../../src/server/adapters/applyCards.js";
+import { setCardExcluded, editCard, setLessonDone } from "../../src/server/adapters/applyCards.js";
 
 function runDir(items) {
   const dir = mkdtempSync(join(tmpdir(), "applycards-"));
@@ -21,6 +21,18 @@ const card = (id, over = {}) => ({
   target: id,
   pronunciation: id,
   ...over,
+});
+
+test("setLessonDone sets meta.done and clears it on reopen", () => {
+  const dir = runDir([card("a")]);
+  try {
+    setLessonDone(dir, true);
+    assert.equal(read(dir).meta.done, true);
+    setLessonDone(dir, false);
+    assert.equal("done" in read(dir).meta, false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test("setCardExcluded toggles the flag (reversible) and rejects unknown ids", () => {

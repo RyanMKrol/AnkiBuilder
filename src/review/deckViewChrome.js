@@ -95,7 +95,8 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .sec-tools{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--rule)}
 .sec-tools button{font:inherit;font-size:12px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:4px 12px;cursor:pointer}
 .sec-tools button:hover{border-color:var(--accent)}.sec-tools button:disabled{opacity:.5;cursor:default}
-.sec-tools .rev-msg{font-size:11px;color:var(--faint)}
+.sec-tools .rev-msg,.sec-tools .done-msg{font-size:11px;color:var(--faint)}
+.sec-tools .done-badge{font-size:11px;font-weight:700;color:#5c7a52;text-transform:uppercase;letter-spacing:.04em}
 label.excl-l{display:inline-flex;gap:5px;align-items:center;margin-top:6px;font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
 td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
 td.saved{background:rgba(122,59,54,.1)}`;
@@ -263,6 +264,30 @@ export const TRANSLATE_EDIT_SCRIPT = `(function () {
         .catch(function (e) { cell.textContent = orig; alert(e.message); });
     });
   });
+})();`;
+
+// Client wiring for the lesson-level "Mark done" / "Reopen" buttons (the final sign-off in the audio
+// review, and reopening a done lesson). Reads deck ctx from #deckctx; unit from data-unit. Reloads on
+// success so the lesson moves between In review / Built. Vanilla JS, no ${}.
+export const MARK_DONE_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  if (!ctx) return;
+  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
+  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  var wire = function (sel, path, okText) {
+    document.querySelectorAll(sel).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var unit = btn.getAttribute("data-unit");
+        var msg = btn.parentNode.querySelector(".done-msg");
+        btn.disabled = true; if (msg) msg.textContent = "saving\\u2026";
+        fetch(base + "/unit/" + encodeURIComponent(unit) + path, { method: "POST" })
+          .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); if (msg) msg.textContent = okText; setTimeout(function () { location.reload(); }, 500); })
+          .catch(function (e) { if (msg) msg.textContent = e.message; btn.disabled = false; });
+      });
+    });
+  };
+  wire("button.mark-done", "/done", "\\u2713 done");
+  wire("button.reopen", "/reopen", "reopened");
 })();`;
 
 // The AI-suggested / Uncertain provenance badges (shown at EVERY review stage). `excluded` is not

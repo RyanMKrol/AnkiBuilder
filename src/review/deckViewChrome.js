@@ -89,8 +89,6 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .au .ed .msg{font-size:10.5px;color:var(--faint)}
 /* editor: rebuild toolbar */
 .rb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:6px}
-.rb a.dl{font-size:12.5px;color:var(--accent);font-weight:600}
-.rb .path{font-family:var(--mono);font-size:11px;color:var(--faint);word-break:break-all}
 /* editor: generate modal */
 .modal{position:fixed;inset:0;background:rgba(35,32,28,.5);display:flex;align-items:center;justify-content:center;padding:20px;z-index:20}
 .modal[hidden]{display:none}
@@ -135,18 +133,20 @@ export const EXPAND_COLLAPSE_SCRIPT = `(function () {
 // Client wiring for the editor (only included when the dashboard is editable). Reads the deck
 // type/id from the #rebuild button; per-row card id/unit from each <tr>'s data-* attributes. Vanilla
 // JS, no template literals / ${} (it's embedded in a template literal). Handles: Replace (raw upload),
-// Generate (ElevenLabs variants in a modal → Use this), and Rebuild (→ download link + on-disk path).
-// Every successful edit auto-rebuilds the deck (a rebuild is ~0.2–1s, dwarfed by the time to make the
-// next edit), so the .apkg on disk always reflects the latest pick; the manual button forces one too.
+// Generate (ElevenLabs variants in a modal → Use this), and Rebuild. There is ONE package per group
+// (the book/course merge, or a template's own deck); rebuilds always target it — never a per-lesson
+// file. An audio edit auto-rebuilds the group ONLY when this lesson is already done (data-done="1"),
+// so the on-disk package stays current without pointless whole-book rebuilds while you're still
+// finishing a fresh lesson (Mark done rebuilds it in). Auditioning is via the inline players; there
+// is no download — the dashboard is local, the .apkg is already on disk.
 export const DECK_EDIT_SCRIPT = `(function () {
   var rebuildBtn = document.getElementById("rebuild");
   if (!rebuildBtn) return;
   var type = rebuildBtn.getAttribute("data-type");
   var id = rebuildBtn.getAttribute("data-id");
   var base = "/api/deck/" + encodeURIComponent(type) + "/" + encodeURIComponent(id);
-  // A unit-scoped review (#rebuild carries data-unit) rebuilds just that lesson's .apkg, not the merge.
-  var runit = rebuildBtn.getAttribute("data-unit");
-  var rebuildUrl = runit ? base + "/unit/" + encodeURIComponent(runit) + "/rebuild" : base + "/rebuild";
+  var rebuildUrl = base + "/rebuild"; // always the group package
+  var isDone = rebuildBtn.getAttribute("data-done") === "1";
   var status = document.getElementById("rebuild-status");
   var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
   var rowRef = function (el) {
@@ -165,13 +165,11 @@ export const DECK_EDIT_SCRIPT = `(function () {
     rebuildBtn.disabled = true; status.textContent = "rebuilding\\u2026";
     return fetch(rebuildUrl, { method: "POST" }).then(jsonp).then(function (x) {
       if (!x.ok) throw new Error(x.j.error || "rebuild failed");
-      status.innerHTML = "";
-      var a = document.createElement("a"); a.className = "dl"; a.href = x.j.downloadUrl; a.setAttribute("download", "");
-      a.textContent = "\\u2913 Download .apkg (" + x.j.noteCount + " cards)";
-      var p = document.createElement("span"); p.className = "path"; p.textContent = x.j.apkgPath;
-      status.appendChild(a); status.appendChild(p);
+      status.textContent = "\\u2713 rebuilt (" + x.j.noteCount + " cards)";
     }).catch(function (e) { status.textContent = "rebuild failed: " + e.message; }).finally(function () { rebuildBtn.disabled = false; });
   };
+  // After an edit: only rebuild the group if this lesson is already part of it (done).
+  var maybeRebuild = function () { return isDone ? rebuild() : Promise.resolve(); };
   rebuildBtn.addEventListener("click", rebuild);
   document.querySelectorAll("input.repl").forEach(function (inp) {
     inp.addEventListener("change", function () {
@@ -179,7 +177,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
       var r = rowRef(inp); var ext = (f.name.split(".").pop() || "mp3").toLowerCase();
       if (r.msg) r.msg.textContent = "uploading…";
       fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio?ext=" + encodeURIComponent(ext), { method: "POST", body: f })
-        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "upload failed"); swap(r.tr, x.j.mediaUrl); if (r.msg) r.msg.textContent = "\\u2713 replaced"; return rebuild(); })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "upload failed"); swap(r.tr, x.j.mediaUrl); if (r.msg) r.msg.textContent = "\\u2713 replaced"; return maybeRebuild(); })
         .catch(function (e) { if (r.msg) r.msg.textContent = e.message; });
       inp.value = "";
     });
@@ -200,7 +198,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
           var use = document.createElement("button"); use.textContent = "Use this";
           use.addEventListener("click", function () {
             fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio }) })
-              .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); swap(r.tr, y.j.mediaUrl); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return rebuild(); })
+              .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); swap(r.tr, y.j.mediaUrl); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
               .catch(function (e) { alert(e.message); });
           });
           row.appendChild(lab); row.appendChild(au); row.appendChild(use); list.appendChild(row);

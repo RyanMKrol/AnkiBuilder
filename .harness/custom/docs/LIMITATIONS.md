@@ -26,14 +26,17 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 ## ~~Dashboard editing unlocks only when EVERY unit of a deck has reached the audio stage~~ (RESOLVED)
 
 - **Resolved** by the unit-scoped review (`/review/:type/:id/:unit`): a lesson now edits when THAT
-  lesson is at the audio stage, independent of its siblings, and **Rebuild lesson** rebuilds just its
-  own `.apkg` (`rebuildRunDir`). So you can finalize a done chapter's audio while an earlier chapter is
-  still pre-audio. `renderReviewPage`'s `canEdit` is computed over the *filtered* units, so a
-  single-lesson view unlocks on its own.
+  lesson is at the audio stage, independent of its siblings. So you can finalize a done chapter's audio
+  while an earlier chapter is still pre-audio. `renderReviewPage`'s `canEdit` is computed over the
+  *filtered* units, so a single-lesson view unlocks on its own.
+- **One package per group, no per-lesson `.apkg`, no download.** Rebuilds always target the single
+  group package (`rebuildBookDir` merge of `done` lessons, or a template's own deck) — there is no
+  per-lesson build. The dashboard keeps that file current: marking a lesson done / reopening it, and
+  audio edits to an already-done lesson, rebuild the group (`rebuildGroupQuiet`, best-effort). The
+  server is local so there's no download route — import the on-disk `output/<…>/deck.apkg` directly.
 - **Residual (by design):** a *whole-deck* review (`/review/:type/:id`, no `:unit`) still only edits
-  when EVERY unit is at audio, and the *merged* deck build (`rebuildBookDir`) packages only `done`
-  lessons (409 if none). This is intentional — the merge is the shippable artifact and must not bake in
-  an un-finished lesson. Per-lesson work is the unit-scoped path.
+  when EVERY unit is at audio, and the merge packages only `done` lessons (409 if none). Intentional —
+  the merge is the shippable artifact and must not bake in an un-finished lesson.
 
 ## Switching the TTS model re-fetches every clip (cache is model-segmented)
 

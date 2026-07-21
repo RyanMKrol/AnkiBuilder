@@ -47,6 +47,10 @@ test("renderLessonSections emits collapsible sections, global numbering, and the
 });
 
 test("DECK_EDIT_SCRIPT auto-rebuilds the group after an edit, but only when the lesson is done", () => {
+  // context comes from #deckctx (no manual rebuild button anywhere)
+  assert.match(DECK_EDIT_SCRIPT, /getElementById\("deckctx"\)/);
+  assert.doesNotMatch(DECK_EDIT_SCRIPT, /getElementById\("rebuild"\)/);
+  assert.doesNotMatch(DECK_EDIT_SCRIPT, /addEventListener\("click", rebuild\)/);
   // both edit success paths chain into maybeRebuild() — a no-op unless data-done="1"
   assert.match(DECK_EDIT_SCRIPT, /"\\u2713 replaced"; return maybeRebuild\(\)/);
   assert.match(DECK_EDIT_SCRIPT, /"\\u2713 generated"; return maybeRebuild\(\)/);

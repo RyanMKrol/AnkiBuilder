@@ -509,10 +509,11 @@ the single package tracks the done-set:
   `<deckDir>/deck.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
   assembly the CLI's `deck --book-dir` uses, so a browser rebuild is byte-identical, and it packages
   **only done lessons** (409 if none are done). This is the ONLY rebuild endpoint — there is no
-  per-lesson rebuild and no per-lesson `.apkg`. The client (`DECK_EDIT_SCRIPT`) fires it from the
-  manual **Rebuild deck** button, and auto-fires it after an audio edit only when the lesson in view is
-  already done (`data-done="1"`), so finishing a fresh lesson doesn't trigger pointless whole-book
-  rebuilds. There is **no download route** — the file is served off the local disk directly.
+  per-lesson rebuild and no per-lesson `.apkg`. Rebuilds are **fully automatic — there is no manual
+  button**: `DECK_EDIT_SCRIPT` auto-fires this endpoint after every successful Replace/Generate, but
+  only when the lesson in view is already done (`#deckctx` `data-done="1"`), so finishing a fresh
+  lesson doesn't trigger pointless whole-book rebuilds (Mark done folds it in and rebuilds then). There
+  is **no download route** — the file is served off the local disk directly.
 
 Card targeting is by cards.json/corpus.json item `id`; all written filenames are server-generated +
 validated, and every write path is realpath-checked to stay inside `outputRoot`. Note the same

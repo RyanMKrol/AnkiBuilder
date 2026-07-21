@@ -493,14 +493,15 @@ test("read-only server 403s the translate write routes and hides the controls", 
 // Editor: upload / generate / select / rebuild / download (editable server).
 // ---------------------------------------------------------------------------
 
-test("editable deck page shows Replace/Generate/Rebuild controls", async () => {
+test("editable deck page shows Replace/Generate controls (rebuild is automatic, no button)", async () => {
   const root = fixture();
   try {
     await withServer(
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
-        assert.match(html, /Rebuild deck/);
+        assert.doesNotMatch(html, /Rebuild deck/); // no manual rebuild button
+        assert.match(html, /id="deckctx"[^>]*data-done="1"/); // edit ctx carries done → auto-rebuild
         assert.match(html, /class="repl"/);
         assert.match(html, /class="gen"/);
         assert.match(html, /data-card-id="a"/);
@@ -880,11 +881,11 @@ test("unit-scoped review renders ONE lesson editable at audio; out-of-range unit
         const one = await (await fetch(`${url}/review/book/mybook/0`)).text();
         assert.match(one, /Lesson One/);
         assert.doesNotMatch(one, /Lesson Two/); // filtered to the single unit
-        assert.match(one, /Rebuild deck/); // per-unit editable; rebuild always targets the group
-        assert.match(one, /data-done="1"/); // this lesson is done → audio edits auto-rebuild the group
-        // A whole-deck review is NOT editable while stages are mixed (no rebuild button).
+        assert.match(one, /class="repl"/); // per-unit editable (audio controls present)
+        assert.match(one, /id="deckctx"[^>]*data-done="1"/); // done → audio edits auto-rebuild the group
+        // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
-        assert.doesNotMatch(all, /Rebuild deck/);
+        assert.doesNotMatch(all, /class="repl"/);
         // An out-of-range unit has no lesson to show.
         assert.equal((await fetch(`${url}/review/book/mybook/9`)).status, 404);
       },

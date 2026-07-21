@@ -17,7 +17,7 @@ function fixture() {
   writeFileSync(
     join(book, "chapter-0", "cards.json"),
     JSON.stringify({
-      meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Lesson One" },
+      meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Lesson One", done: true },
       items: [
         {
           id: "a",
@@ -765,11 +765,35 @@ test("editor input errors: bad ext 400, oversized 413, unknown card 404, missing
   }
 });
 
-test("rebuild with a chapter missing cards.json returns 409", async () => {
+test("rebuild skips an in-progress chapter and merges only the done ones", async () => {
+  const root = fixture(); // mybook chapter-0 is done
+  try {
+    // add an in-progress (no cards.json) chapter — it must be skipped, not fail the whole rebuild
+    mkdirSync(join(root, "epubs/mybook/chapter-1"), { recursive: true });
+    await withServer(
+      root,
+      async (url) => {
+        const rb = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/rebuild`, { method: "POST" }),
+        );
+        assert.equal(rb.status, 200);
+        assert.equal(rb.body.noteCount, 2); // only chapter-0's two cards were merged
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("rebuild 409s when no lesson is marked done", async () => {
   const root = fixture();
   try {
-    // add an unbuilt chapter dir → rebuild's assembly throws → 409
-    mkdirSync(join(root, "epubs/mybook/chapter-1"), { recursive: true });
+    // strip the done flag from the only chapter → nothing finished to build → 409
+    const p = join(root, "epubs/mybook/chapter-0/cards.json");
+    const data = JSON.parse(readFileSync(p, "utf-8"));
+    delete data.meta.done;
+    writeFileSync(p, JSON.stringify(data));
     await withServer(
       root,
       async (url) => {

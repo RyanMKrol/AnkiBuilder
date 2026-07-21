@@ -7,9 +7,11 @@ import { Buffer } from "buffer";
 import { rebuildBookDir, rebuildRunDir } from "../../src/deck/rebuild.js";
 import { readApkg } from "../../src/deck/readApkg.js";
 
+// Units default to `done: true` (the merge only ships finished lessons); pass `done: false` to model an
+// in-progress lesson.
 function writeUnit(dir, meta, items, audio = {}) {
   mkdirSync(join(dir, "audio"), { recursive: true });
-  writeFileSync(join(dir, "cards.json"), JSON.stringify({ meta, items }));
+  writeFileSync(join(dir, "cards.json"), JSON.stringify({ meta: { done: true, ...meta }, items }));
   for (const [name, bytes] of Object.entries(audio)) writeFileSync(join(dir, "audio", name), bytes);
 }
 
@@ -75,20 +77,50 @@ test("rebuildBookDir uses loadCourseMeta for a lesson-sourced course (no epubHas
   }
 });
 
-test("rebuildBookDir throws the CLI-identical messages", () => {
+test("rebuildBookDir throws for no unit dirs, and for no finished (done) lessons", () => {
   const empty = mkdtempSync(join(tmpdir(), "rb-empty-"));
   try {
     assert.throws(
       () => rebuildBookDir(empty, { buildBookDeck: () => {} }),
       /no chapter-\*\/ or lesson-\*\//,
     );
+    // a unit dir with no cards.json is skipped (in progress) → nothing finished to build
     mkdirSync(join(empty, "chapter-0"));
     assert.throws(
       () => rebuildBookDir(empty, { buildBookDeck: () => {} }),
-      /cards\.json not found in .* run "translate"\/"audio"/,
+      /no finished lessons to build/,
     );
   } finally {
     rmSync(empty, { recursive: true, force: true });
+  }
+});
+
+test("rebuildBookDir merges only lessons marked done, skipping in-progress ones", () => {
+  const dir = mkdtempSync(join(tmpdir(), "rb-done-"));
+  try {
+    writeUnit(join(dir, "chapter-0"), { targetLanguage: "ja", chapterLabel: "Done", done: true }, [
+      { id: "a", english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" },
+    ]);
+    writeUnit(
+      join(dir, "chapter-1"),
+      { targetLanguage: "ja", chapterLabel: "InProgress", done: false },
+      [{ id: "b", english: "two", target: "に", pronunciation: "ni", category: "Numbers" }],
+    );
+    let received;
+    rebuildBookDir(dir, {
+      buildBookDeck: (chapterDecks) => (
+        (received = chapterDecks),
+        { noteCount: 1, chapterCount: chapterDecks.length }
+      ),
+      loadBookMeta: () => null,
+      loadCourseMeta: () => ({ name: "C" }),
+    });
+    assert.deepEqual(
+      received.map((c) => c.name),
+      ["Done"],
+    ); // the un-done lesson is excluded from the merge
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
   }
 });
 

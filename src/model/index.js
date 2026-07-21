@@ -82,6 +82,10 @@ const CARDS_SCHEMA = {
           enum: ["template", "epub", "manual"],
         },
         reviewed: { type: "boolean" },
+        // Final human sign-off that a lesson is finished and shippable, set via the dashboard's "Mark
+        // done" (distinct from `reviewed`, the corpus stage-1 gate). Only `done` lessons are merged
+        // into the book/course deck (`rebuildBookDir`) and shown under "Built" on the dashboard.
+        done: { type: "boolean" },
       },
     },
     items: {

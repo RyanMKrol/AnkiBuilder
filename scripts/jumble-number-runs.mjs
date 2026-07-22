@@ -43,7 +43,7 @@ const PROMPT = (rows) =>
     "adjacent run.",
     "",
     'Return ONLY a JSON object: {"runs": [["id","id",…], …]} — each inner array lists the ids of ONE run',
-    "in their current order. Return {\"runs\": []} if there are no ascending number runs.",
+    'in their current order. Return {"runs": []} if there are no ascending number runs.',
     "",
     "Cards:",
     JSON.stringify(
@@ -124,7 +124,9 @@ for (const file of files) {
   }
   const order = jumbleOrder(items, runs);
   runsShuffled++;
-  console.error(`${file}: jumbled ${runs.length} number run(s) (${runs.map((r) => r.length).join(", ")} cards)`);
+  console.error(
+    `${file}: jumbled ${runs.length} number run(s) (${runs.map((r) => r.length).join(", ")} cards)`,
+  );
   if (dry) {
     const map = new Map(items.map((i) => [i.id, i.english]));
     console.log("  " + order.map((id) => map.get(id)).join("  |  "));
@@ -152,5 +154,7 @@ function writeBackup(f) {
 }
 
 console.error(
-  dry ? `dry run — ${runsShuffled} unit(s) have a number run.` : `done — reordered ${changed} cards.json file(s).`,
+  dry
+    ? `dry run — ${runsShuffled} unit(s) have a number run.`
+    : `done — reordered ${changed} cards.json file(s).`,
 );

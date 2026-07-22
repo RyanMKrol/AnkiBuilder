@@ -150,7 +150,7 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
         {
           name: "Recognition",
           ord: 0,
-          qfmt: "{{Target}}<br>{{Audio}}",
+          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}<br>{{Audio}}',
           afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
@@ -163,7 +163,7 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
         {
           name: "Production",
           ord: 1,
-          qfmt: "{{English}}",
+          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}',
           afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
@@ -217,6 +217,14 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
 .hint {
   font-size: 14px;
   color: #888888;
+}
+.cat-chip {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a08a5a;
+  margin-bottom: 14px;
 }${fontDescriptor ? "\n" + languageFontCss(fontDescriptor) : ""}`,
       latexPre:
         "\\documentclass[12pt]{article}\\special{papersize=3in,5in}\\usepackage[utf8]{inputenc}\\usepackage{amssymb,amsmath}\\pagestyle{empty}\\setlength{\\parindent}{0in}\\begin{document}",

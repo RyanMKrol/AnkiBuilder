@@ -209,6 +209,15 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       const model = Object.values(models)[0];
       const templateNames = model.tmpls.map((t) => t.name);
       assert.deepStrictEqual(templateNames, ["Recognition", "Production"]);
+      // Category is shown on the FRONT of both cards (contextualizes the word out of its lesson).
+      for (const t of model.tmpls) {
+        assert.match(
+          t.qfmt,
+          /\{\{#Category\}\}<div class="cat-chip">\{\{Category\}\}<\/div>/,
+          `${t.name} front shows the category`,
+        );
+      }
+      assert.match(model.css, /\.cat-chip/); // …and the chip is styled
       assert.deepStrictEqual(
         model.flds.map((f) => f.name),
         ["Target", "Pronunciation", "English", "Category", "Hint", "Image", "Audio"],

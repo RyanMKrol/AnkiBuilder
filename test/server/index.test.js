@@ -481,9 +481,11 @@ test("editable deck page shows Replace/Generate controls (rebuild is automatic, 
     await withServer(
       root,
       async (url) => {
+        // A done lesson is view-only; Reopen pushes it back into review where the edit controls appear.
+        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(html, /Rebuild deck/); // no manual rebuild button
-        assert.match(html, /id="deckctx"[^>]*data-done="1"/); // edit ctx carries done → auto-rebuild
+        assert.match(html, /id="deckctx"[^>]*data-done="0"/); // reopened → in review
         assert.match(html, /class="repl"/);
         assert.match(html, /class="gen"/);
         assert.match(html, /data-card-id="a"/);
@@ -587,6 +589,8 @@ test("generate-kanji returns kanji variants for a ja deck; the button is shown",
     await withServer(
       root,
       async (url) => {
+        // The Generate (kanji) button renders on an editable (reopened) lesson; a done lesson is view-only.
+        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.match(html, /class="gen-kanji"/);
 
@@ -852,25 +856,35 @@ function addTranslateChapter(root) {
   );
 }
 
-test("unit-scoped review renders ONE lesson editable at audio; out-of-range unit 404s", async () => {
+test("unit-scoped review: a DONE lesson is view-only; Reopen makes it editable; out-of-range unit 404s", async () => {
   const root = fixture();
   addTranslateChapter(root); // ch1 is translate-stage — mixing stages
   try {
     await withServer(
       root,
       async (url) => {
-        // The done audio lesson edits on its own, regardless of the in-review sibling.
-        const one = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        // A DONE lesson opens read-only: header says View, players + a Reopen button, but NO audio-edit
+        // controls and NO exclude — you can't change a finished lesson without reopening it.
+        let one = await (await fetch(`${url}/review/book/mybook/0`)).text();
         assert.match(one, /Lesson One/);
         assert.doesNotMatch(one, /Lesson Two/); // filtered to the single unit
-        assert.match(one, /class="repl"/); // per-unit editable (audio controls present)
-        assert.match(one, /id="deckctx"[^>]*data-done="1"/); // done → audio edits auto-rebuild the group
-        assert.match(one, /<details class="lesson" open>/); // review opens the lesson expanded
-        assert.doesNotMatch(one, /Expand all/); // …with no expand/collapse chrome
-        assert.doesNotMatch(one, /Collapse all/);
-        // The audio review carries the Exclude control too (drop a card without the Corpus review).
-        assert.match(one, /input type="checkbox" class="excl"/);
+        assert.match(one, /View · anki-builder/); // view, not review
+        assert.match(one, /class="reopen"/); // the one action a finished lesson offers
+        assert.doesNotMatch(one, /class="repl"/); // no Replace/Generate
+        assert.doesNotMatch(one, /class="gen"/);
+        assert.doesNotMatch(one, /input type="checkbox" class="excl"/); // no exclude in view mode
+        assert.match(one, /<details class="lesson" open>/); // still expanded
+        assert.doesNotMatch(one, /Expand all/);
+
+        // Reopen pushes it back into the review flow — now editable, with Replace/Generate + Exclude.
+        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
+        one = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.match(one, /Review · anki-builder/);
+        assert.match(one, /class="repl"/); // audio controls now present
+        assert.match(one, /input type="checkbox" class="excl"/); // exclude now present
         assert.match(one, /input\.excl/); // …and the client script that wires it is loaded
+        assert.match(one, /id="deckctx"[^>]*data-done="0"/); // reopened → not done
+
         // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(all, /class="repl"/);

@@ -460,14 +460,17 @@ If you skip audio, the deck will still work — cards just won't have pronunciat
 **Review gate — the Review view's audio stage.** Open the lesson's own Review view
 (`/review/:type/:id/:unit`, or its **Review** link on the home page): once that lesson is at the audio
 stage it renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)**
-controls (see "Audio review happens in the dashboard" above for how the variant axes and the
-kana+kanji option work). A lesson edits on its own — you don't need its siblings finished. Play each
-card's default clip; for any that sound wrong, **Generate** fresh takes, audition them in the modal,
-and **Use this** to pick — each pick writes the card's `audio`. For a short string ElevenLabs
-mishandles even with a `reading`, **Replace** with a hand-made clip (uploads are stored as
-`<cardId>-user-<hash>.<ext>` and are NOT trimmed). Rebuilds are **fully automatic — there's no manual
-button**. Editing an already-**done** lesson auto-rebuilds the group package; while you're still
-finishing a not-yet-done lesson, edits don't rebuild (Mark done folds it in and rebuilds then).
+controls **and an Exclude checkbox** (see "Audio review happens in the dashboard" above for how the
+variant axes and the kana+kanji option work). A lesson edits on its own — you don't need its siblings
+finished. Play each card's default clip; for any that sound wrong, **Generate** fresh takes, audition
+them in the modal, and **Use this** to pick — each pick writes the card's `audio`. For a short string
+ElevenLabs mishandles even with a `reading`, **Replace** with a hand-made clip (uploads are stored as
+`<cardId>-user-<hash>.<ext>` and are NOT trimmed). **Exclude** drops a card straight from the audio
+review — no need to go back to the Corpus review (which is meant to be one-and-done); on an already-done
+lesson it rebuilds the deck immediately so the card leaves the `.apkg`, and un-checking re-includes it.
+Rebuilds are **fully automatic — there's no manual button**. Editing an already-**done** lesson
+auto-rebuilds the group package; while you're still finishing a not-yet-done lesson, edits don't rebuild
+(Mark done folds it in and rebuilds then).
 
 **Mark done — the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
 lesson (sets `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` (and

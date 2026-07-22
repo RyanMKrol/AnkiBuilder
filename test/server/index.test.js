@@ -868,6 +868,9 @@ test("unit-scoped review renders ONE lesson editable at audio; out-of-range unit
         assert.match(one, /<details class="lesson" open>/); // review opens the lesson expanded
         assert.doesNotMatch(one, /Expand all/); // …with no expand/collapse chrome
         assert.doesNotMatch(one, /Collapse all/);
+        // The audio review carries the Exclude control too (drop a card without the Corpus review).
+        assert.match(one, /input type="checkbox" class="excl"/);
+        assert.match(one, /input\.excl/); // …and the client script that wires it is loaded
         // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(all, /class="repl"/);

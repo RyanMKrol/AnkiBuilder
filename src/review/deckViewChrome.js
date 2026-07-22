@@ -234,13 +234,26 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
   if (!ctx) return;
   var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
   var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
-  document.querySelectorAll('tr[data-stage="translate"] input.excl').forEach(function (cb) {
+  // Excluding a card on an ALREADY-DONE lesson (from the audio review) must rebuild the group package so
+  // the card leaves the .apkg immediately — same auto-rebuild rule as an audio edit. On a not-yet-done
+  // lesson there's nothing to rebuild (Mark done folds the current, excluded-filtered state in).
+  var isDone = ctx.getAttribute("data-done") === "1";
+  var status = document.getElementById("rebuild-status");
+  var rebuildIfDone = function () {
+    if (!isDone) return Promise.resolve();
+    if (status) status.textContent = "rebuilding\\u2026";
+    return fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
+      if (status) status.textContent = x.ok ? "\\u2713 deck rebuilt (" + x.j.noteCount + " cards)" : "rebuild failed: " + (x.j.error || "");
+    });
+  };
+  // Exclude toggle — wired on BOTH the translate (Corpus) review and the audio review.
+  document.querySelectorAll("input.excl").forEach(function (cb) {
     cb.addEventListener("change", function () {
       var tr = cb.closest("tr");
       var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
       cb.disabled = true;
       fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/review/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
-        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); return rebuildIfDone(); })
         .catch(function (e) { cb.checked = !cb.checked; alert(e.message); })
         .finally(function () { cb.disabled = false; });
     });
@@ -371,9 +384,16 @@ const cardRow = (c, n, stage, ctx) => {
     `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +
     `${c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""}` +
     ` data-stage="${escapeHtml(stage)}"`;
+  // The audio-stage review gains an Exclude cell too, but only when editable (rowControl present) — the
+  // read-only Browse view / artifact pass no rowControl, so their audio table stays untouched. The
+  // translate table already carries its own excl cell inside spec.cells.
+  const auExcl =
+    stage === "audio" && ctx.rowControl
+      ? `\n  <td class="excl-cell">${rowExtra(ctx, "audio", c)}</td>`
+      : "";
   return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs}>
   <td class="num">${n}</td>
-  ${spec.cells(c, ctx)}
+  ${spec.cells(c, ctx)}${auExcl}
 </tr>`;
 };
 
@@ -403,9 +423,13 @@ export function renderLessonSections({
       const rows = s.cards.map((c) => cardRow(c, ++n, stage, ctx)).join("");
       const range = s.cards.length ? `${from}–${n}` : "—";
       const tools = sectionControl ? sectionControl(s) : "";
+      // Editable audio review adds a trailing Exclude column; keep it off the read-only audio layout.
+      const auExcl = stage === "audio" && !!ctx.rowControl;
+      const cols = spec.cols + (auExcl ? `<col class="c-excl">` : "");
+      const head = spec.head + (auExcl ? `<th></th>` : "");
       return `<details class="lesson"${open ? " open" : ""}><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
-  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="tbl tbl-${stage}"><colgroup>${spec.cols}</colgroup>
-  <thead><tr>${spec.head}</tr></thead>
+  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="tbl tbl-${stage}"><colgroup>${cols}</colgroup>
+  <thead><tr>${head}</tr></thead>
   <tbody>${rows}</tbody></table></div></details>`;
     })
     .join("\n");

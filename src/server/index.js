@@ -248,9 +248,12 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // editable — independent of the all-audio `canEdit` gate, which only governs audio editing + the
     // global rebuild. Only the combined review (`translate` file-stage) is editable; the pre-translate
     // `corpus` file-stage is read-only.
+    // Exclude is available on BOTH review stages: the translate (Corpus) review AND the audio review —
+    // so you can drop a card late without going back to the Corpus review (which is meant to be
+    // one-and-done). Excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT).
     const rowControl = editable
       ? (stage, c) =>
-          stage === "translate"
+          stage === "translate" || stage === "audio"
             ? `<label class="excl-l"><input type="checkbox" class="excl"${c.excluded ? " checked" : ""}> exclude</label>`
             : ""
       : undefined;
@@ -309,7 +312,9 @@ ${modal}
     // not needed here (it still drives the read-only Browse view below).
     const scripts = [];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
-    if (editable && hasReview) scripts.push(REVIEW_EDIT_SCRIPT);
+    // REVIEW_EDIT_SCRIPT wires the Exclude toggle (both stages) + the translate inline-edit cells, so
+    // load it whenever there's a reviewable stage in view — audio included (its Exclude column).
+    if (editable && (hasReview || hasAudio)) scripts.push(REVIEW_EDIT_SCRIPT);
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
     const script = scripts.join("\n");
     return page(`${deck.title} — review`, body, script);

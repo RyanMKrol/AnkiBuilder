@@ -47,8 +47,8 @@ table.tbl-translate{min-width:1160px}
 /* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
    would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
    crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */
-table.tbl-audio.tbl-wide{min-width:1320px}
-.tbl-audio.tbl-wide col.c-num{width:44px}.tbl-audio.tbl-wide col.c-en{width:210px}.tbl-audio.tbl-wide col.c-jp{width:190px}.tbl-audio.tbl-wide col.c-pron{width:150px}.tbl-audio.tbl-wide col.c-au{width:200px}.tbl-audio.tbl-wide col.c-note{width:200px}.tbl-audio.tbl-wide col.c-excl{width:96px}.tbl-audio.tbl-wide col.c-rnote{width:220px}
+table.tbl-audio.tbl-wide{min-width:1240px}
+.tbl-audio.tbl-wide col.c-num{width:44px}.tbl-audio.tbl-wide col.c-en{width:210px}.tbl-audio.tbl-wide col.c-jp{width:190px}.tbl-audio.tbl-wide col.c-pron{width:140px}.tbl-audio.tbl-wide col.c-au{width:150px}.tbl-audio.tbl-wide col.c-note{width:200px}.tbl-audio.tbl-wide col.c-excl{width:60px}.tbl-audio.tbl-wide col.c-rnote{width:246px}
 th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
@@ -115,7 +115,9 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .dblock.single.dbreopen .dblock-link{flex:1 1 auto;text-decoration:none;color:inherit;min-width:0}
 .dblock.single.dbreopen .dblock-link::after{content:"";position:absolute;inset:0}
 /* editor: per-row controls */
-.au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* One audio-edit button per line (Replace / Generate / Generate (kanji)) so they never wrap mid-row. */
+.au .ed{margin-top:6px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+.au .ed button,.au .ed label.btn{text-align:center;white-space:nowrap}
 .au .ed button,.au .ed label.btn{font:inherit;font-size:11px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 9px;cursor:pointer}
 .au .ed button:hover,.au .ed label.btn:hover{border-color:var(--accent)}
 .au .ed .msg{font-size:10.5px;color:var(--faint)}
@@ -141,7 +143,12 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .sec-tools .rev-msg,.sec-tools .done-msg{font-size:11px;color:var(--faint)}
 .sec-tools .done-badge{font-size:11px;font-weight:700;color:#5c7a52;text-transform:uppercase;letter-spacing:.04em}
 .sec-tools .hint{font-size:12px;color:var(--faint)}.sec-tools .hint code{font-family:var(--mono);font-size:11px}
-label.excl-l{display:inline-flex;gap:5px;align-items:center;margin-top:6px;font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+/* Exclude is a single compact icon button (the circled-slash glyph) — no wrapping text; .on = excluded. */
+.excl-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:16px;line-height:1;color:var(--soft);background:var(--card);border:1px solid var(--rule2);border-radius:8px;cursor:pointer}
+.excl-btn:hover{border-color:var(--accent);color:var(--accent)}
+.excl-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.excl-btn:disabled{opacity:.5;cursor:default}
+td.excl-cell{text-align:center}
 td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
 td.saved{background:rgba(122,59,54,.1)}`;
 
@@ -268,16 +275,25 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
       if (status) status.textContent = x.ok ? "\\u2713 deck rebuilt (" + x.j.noteCount + " cards)" : "rebuild failed: " + (x.j.error || "");
     });
   };
-  // Exclude toggle — wired on BOTH the translate (Corpus) review and the audio review.
-  document.querySelectorAll("input.excl").forEach(function (cb) {
-    cb.addEventListener("change", function () {
-      var tr = cb.closest("tr");
+  // Exclude toggle — a single icon button (⊘), wired on BOTH the translate (Corpus) review and the
+  // audio review. aria-pressed carries the state; clicking flips it.
+  document.querySelectorAll("button.excl-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var tr = btn.closest("tr");
       var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
-      cb.disabled = true;
-      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/review/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: cb.checked }) })
-        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); tr.classList.toggle("excluded", cb.checked); return rebuildIfDone(); })
-        .catch(function (e) { cb.checked = !cb.checked; alert(e.message); })
-        .finally(function () { cb.disabled = false; });
+      var next = btn.getAttribute("aria-pressed") !== "true";
+      btn.disabled = true;
+      fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/review/exclude", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ excluded: next }) })
+        .then(jsonp).then(function (x) {
+          if (!x.ok) throw new Error(x.j.error || "failed");
+          btn.setAttribute("aria-pressed", next ? "true" : "false");
+          btn.classList.toggle("on", next);
+          btn.title = next ? "Excluded — click to include" : "Exclude this card from the deck";
+          tr.classList.toggle("excluded", next);
+          return rebuildIfDone();
+        })
+        .catch(function (e) { alert(e.message); })
+        .finally(function () { btn.disabled = false; });
     });
   });
   document.querySelectorAll('tr[data-stage="translate"] td[data-field]').forEach(function (cell) {

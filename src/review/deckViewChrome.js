@@ -44,6 +44,11 @@ table.tbl-corpus{min-width:900px}
 .tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:260px}.tbl-corpus col.c-cat{width:150px}.tbl-corpus col.c-note{width:196px}.tbl-corpus col.c-flag{width:125px}
 table.tbl-translate{min-width:1160px}
 .tbl-translate col.c-num{width:44px}.tbl-translate col.c-en{width:210px}.tbl-translate col.c-cat{width:130px}.tbl-translate col.c-jp{width:200px}.tbl-translate col.c-pron{width:150px}.tbl-translate col.c-note{width:120px}.tbl-translate col.c-flag{width:106px}.tbl-translate col.c-excl{width:100px}
+/* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
+   would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
+   crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */
+table.tbl-audio.tbl-wide{min-width:1320px}
+.tbl-audio.tbl-wide col.c-num{width:44px}.tbl-audio.tbl-wide col.c-en{width:210px}.tbl-audio.tbl-wide col.c-jp{width:190px}.tbl-audio.tbl-wide col.c-pron{width:150px}.tbl-audio.tbl-wide col.c-au{width:200px}.tbl-audio.tbl-wide col.c-note{width:200px}.tbl-audio.tbl-wide col.c-excl{width:96px}.tbl-audio.tbl-wide col.c-rnote{width:220px}
 th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
@@ -441,8 +446,13 @@ export function renderLessonSections({
         (showReviewNote ? `<col class="c-rnote">` : "");
       const head =
         spec.head + (auExcl ? `<th></th>` : "") + (showReviewNote ? `<th>Review note</th>` : "");
+      // The audio table has an AUTO-width Note column; once the Exclude / Review-note columns are added
+      // it collapses to ~0 and its text breaks one char per line. `tbl-wide` gives that crowded case
+      // explicit px widths + a min-width so it scrolls in its .tw wrapper instead of crushing.
+      const wide = stage === "audio" && (auExcl || showReviewNote);
+      const tblClass = `tbl tbl-${stage}${wide ? " tbl-wide" : ""}`;
       return `<details class="lesson"${open ? " open" : ""}><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
-  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="tbl tbl-${stage}"><colgroup>${cols}</colgroup>
+  ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="${tblClass}"><colgroup>${cols}</colgroup>
   <thead><tr>${head}</tr></thead>
   <tbody>${rows}</tbody></table></div></details>`;
     })

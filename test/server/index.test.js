@@ -873,6 +873,7 @@ test("unit-scoped review: a DONE lesson is view-only; Reopen makes it editable; 
         assert.doesNotMatch(one, /class="repl"/); // no Replace/Generate
         assert.doesNotMatch(one, /class="gen"/);
         assert.doesNotMatch(one, /input type="checkbox" class="excl"/); // no exclude in view mode
+        assert.doesNotMatch(one, /Review note/); // the internal review column is hidden on a View
         assert.match(one, /<details class="lesson" open>/); // still expanded
         assert.doesNotMatch(one, /Expand all/);
 
@@ -882,6 +883,7 @@ test("unit-scoped review: a DONE lesson is view-only; Reopen makes it editable; 
         assert.match(one, /Review · anki-builder/);
         assert.match(one, /class="repl"/); // audio controls now present
         assert.match(one, /input type="checkbox" class="excl"/); // exclude now present
+        assert.match(one, /Review note/); // …and the internal Review-note column reappears in review
         assert.match(one, /input\.excl/); // …and the client script that wires it is loaded
         assert.match(one, /id="deckctx"[^>]*data-done="0"/); // reopened → not done
 

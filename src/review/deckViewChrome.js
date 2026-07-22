@@ -47,8 +47,12 @@ table.tbl-translate{min-width:1160px}
 /* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
    would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
    crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */
-table.tbl-audio.tbl-wide{min-width:1240px}
-.tbl-audio.tbl-wide col.c-num{width:44px}.tbl-audio.tbl-wide col.c-en{width:210px}.tbl-audio.tbl-wide col.c-jp{width:190px}.tbl-audio.tbl-wide col.c-pron{width:140px}.tbl-audio.tbl-wide col.c-au{width:150px}.tbl-audio.tbl-wide col.c-note{width:200px}.tbl-audio.tbl-wide col.c-excl{width:60px}.tbl-audio.tbl-wide col.c-rnote{width:246px}
+/* Audio review with the extra Exclude / Review-note columns. NO min-width — the table always fits the
+   viewport (width:100%): num / audio / exclude are fixed px (audio needs room for its player), and the
+   rest are PERCENTAGES so English/Japanese/Note/Review-note share the remaining space and the notes
+   just wrap into more lines rather than pushing the table off-screen. Percentages sum to ~72%, leaving
+   headroom for the ~268px of fixed columns at any reasonable width. */
+.tbl-audio.tbl-wide col.c-num{width:40px}.tbl-audio.tbl-wide col.c-en{width:15%}.tbl-audio.tbl-wide col.c-jp{width:14%}.tbl-audio.tbl-wide col.c-pron{width:10%}.tbl-audio.tbl-wide col.c-au{width:184px}.tbl-audio.tbl-wide col.c-note{width:15%}.tbl-audio.tbl-wide col.c-excl{width:44px}.tbl-audio.tbl-wide col.c-rnote{width:18%}
 th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
@@ -56,7 +60,8 @@ td.num{color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
 td.en{font-size:14px}.cat{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint);margin-top:3px}
 td.jp{font-family:var(--jp);font-size:21px;line-height:1.4}
 td.pron{font-family:var(--mono);font-size:12px;color:var(--soft)}
-td.au audio{height:30px;width:168px}.x{color:var(--faint)}
+/* Fill the audio column but never overflow it (which would spill the player onto the Note column). */
+td.au audio{height:30px;width:100%;max-width:168px}.x{color:var(--faint)}
 td.note{font-size:12px;color:var(--soft)}
 /* Review-only internal note (uncertainty / AI-suggestion rationale) — visually set apart (amber,
    italic) from the user-facing card Note so a reviewer never confuses the two. Never shown in the deck. */

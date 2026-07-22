@@ -99,8 +99,10 @@ test("built lesson has a single action opening the unit-scoped edit-audio view (
   try {
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
-      assert.match(home, /class="[^"]*\bsingle\b[^"]*" href="\/review\/book\/mybook\/0"/); // whole block is the link
-      assert.doesNotMatch(home, />Open</); // no separate Open button — the row itself is clickable
+      // A built single-unit deck: the block link opens the view, plus a Reopen button (edit via Reopen).
+      assert.match(home, /class="dblock-link" href="\/review\/book\/mybook\/0"/);
+      assert.match(home, /class="home-reopen"[^>]*data-unit="0"/);
+      assert.doesNotMatch(home, />Open</); // no separate Open button — the block itself is clickable
       assert.doesNotMatch(home, /\/deck\/book\/mybook/); // Browse is consolidated into the review view
     });
   } finally {
@@ -134,6 +136,14 @@ test("home page bifurcates decks into 'In review' and 'Built' sections with diff
       assert.doesNotMatch(home, /\/deck\/book\/wipbook/);
       // built lesson → its row links to the unit-scoped edit-audio view
       assert.match(home, /href="\/review\/book\/mybook\/0"/);
+      // …and carries a Reopen button (with its unit) so you can reopen from the home page
+      assert.match(
+        home,
+        /class="home-reopen"[^>]*data-type="book"[^>]*data-id="mybook"[^>]*data-unit="0"[^>]*>Reopen</,
+      );
+      assert.match(home, /button\.home-reopen/); // the wiring script is present
+      // an in-review lesson is NOT reopenable (nothing to reopen)
+      assert.doesNotMatch(home, /home-reopen[^>]*data-id="wipbook"/);
       // no separate Open/Review buttons — bifurcation is conveyed by the two sections above
       assert.doesNotMatch(home, />Open</);
       assert.doesNotMatch(home, />Review →</);

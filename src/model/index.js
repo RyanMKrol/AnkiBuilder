@@ -42,11 +42,20 @@ const CORPUS_SCHEMA = {
       type: "array",
       items: {
         type: "object",
-        required: ["id", "english", "category", "notes", "target"],
+        required: ["id", "english", "category", "target"],
         properties: {
           id: { type: "string" },
           english: { type: "string" },
           category: { type: "string", enum: CATEGORIES },
+          // User-facing contextual note SHOWN ON THE ANKI CARD (when to use it, how it differs from a
+          // similar sentence). Distinct from `reviewNote`, which is internal-only. Both are null when
+          // absent. `cardNote` is the successor to the legacy blended `notes` field.
+          cardNote: { type: ["string", "null"] },
+          // Internal review-only rationale — why an item is `uncertain` or `aiSuggested`. Shown ONLY at
+          // the dashboard review gates; NEVER embedded in the deck or shown in the read-only viewer.
+          reviewNote: { type: ["string", "null"] },
+          // Legacy blended note (superseded by cardNote/reviewNote). Kept optional so pre-split
+          // corpus.json still validates; the migration re-splits it into the two fields above.
           notes: { type: ["string", "null"] },
           target: { type: ["string", "null"] },
           // Optional spoken form: the target text with anything the romanizer/TTS
@@ -97,6 +106,11 @@ const CARDS_SCHEMA = {
           id: { type: "string" },
           english: { type: "string" },
           category: { type: "string" },
+          // User-facing contextual note shown on the Anki card + in the viewer + in review. See the
+          // corpus schema above. `reviewNote` is internal-only (review gates), never in the deck/viewer.
+          cardNote: { type: ["string", "null"] },
+          reviewNote: { type: ["string", "null"] },
+          // Legacy blended note, superseded by cardNote/reviewNote — kept optional for back-compat.
           notes: { type: "string" },
           target: { type: "string" },
           pronunciation: { type: "string" },

@@ -291,6 +291,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       sectionControl,
       // Review opens a lesson to work on it — render its cards expanded, no expand/collapse chrome.
       open: true,
+      // The internal Review-note column shows ONLY at the review gate, never in Browse/artifact/deck.
+      showReviewNote: true,
     });
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);

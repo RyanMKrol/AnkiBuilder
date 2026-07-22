@@ -53,6 +53,10 @@ td.jp{font-family:var(--jp);font-size:21px;line-height:1.4}
 td.pron{font-family:var(--mono);font-size:12px;color:var(--soft)}
 td.au audio{height:30px;width:168px}.x{color:var(--faint)}
 td.note{font-size:12px;color:var(--soft)}
+/* Review-only internal note (uncertainty / AI-suggestion rationale) — visually set apart (amber,
+   italic) from the user-facing card Note so a reviewer never confuses the two. Never shown in the deck. */
+col.c-rnote{width:220px}
+td.rnote{font-size:11.5px;color:#8a6a24;font-style:italic}
 td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--soft)}
 .badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:100px;border:1px solid var(--rule2);color:var(--soft);white-space:nowrap}
 .badge-drop{color:var(--accent);border-color:var(--accent)}
@@ -344,7 +348,7 @@ const STAGE_TABLES = {
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   <td class="au">${ctx.audioCell(c)}</td>
-  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
+  <td class="note">${c.cardNote ? escapeHtml(c.cardNote) : ""}</td>`,
   },
   // Pre-translate placeholder — READ-ONLY. A corpus.json-only lesson isn't reviewable yet (no target
   // to check); the combined Corpus review happens post-translate (the `translate` preset below). No
@@ -355,7 +359,7 @@ const STAGE_TABLES = {
     cells: (c) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
+  <td class="note">${c.cardNote ? escapeHtml(c.cardNote) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>`,
   },
@@ -371,7 +375,7 @@ const STAGE_TABLES = {
   <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
   <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
-  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
+  <td class="note">${c.cardNote ? escapeHtml(c.cardNote) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>
   <td class="excl-cell">${rowExtra(ctx, "translate", c)}</td>`,
@@ -391,9 +395,14 @@ const cardRow = (c, n, stage, ctx) => {
     stage === "audio" && ctx.rowControl
       ? `\n  <td class="excl-cell">${rowExtra(ctx, "audio", c)}</td>`
       : "";
+  // Internal review-only note (why a card is uncertain / AI-suggested). Rightmost column, and ONLY in
+  // the dashboard review (showReviewNote) — never the read-only Browse view / artifact / deck.
+  const rnote = ctx.showReviewNote
+    ? `\n  <td class="rnote">${c.reviewNote ? escapeHtml(c.reviewNote) : ""}</td>`
+    : "";
   return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs}>
   <td class="num">${n}</td>
-  ${spec.cells(c, ctx)}${auExcl}
+  ${spec.cells(c, ctx)}${auExcl}${rnote}
 </tr>`;
 };
 
@@ -412,8 +421,9 @@ export function renderLessonSections({
   rowControl,
   sectionControl,
   open = false,
+  showReviewNote = false,
 }) {
-  const ctx = { audioCell, rowControl };
+  const ctx = { audioCell, rowControl, showReviewNote };
   let n = startNumber - 1;
   const html = sections
     .map((s) => {
@@ -425,8 +435,12 @@ export function renderLessonSections({
       const tools = sectionControl ? sectionControl(s) : "";
       // Editable audio review adds a trailing Exclude column; keep it off the read-only audio layout.
       const auExcl = stage === "audio" && !!ctx.rowControl;
-      const cols = spec.cols + (auExcl ? `<col class="c-excl">` : "");
-      const head = spec.head + (auExcl ? `<th></th>` : "");
+      const cols =
+        spec.cols +
+        (auExcl ? `<col class="c-excl">` : "") +
+        (showReviewNote ? `<col class="c-rnote">` : "");
+      const head =
+        spec.head + (auExcl ? `<th></th>` : "") + (showReviewNote ? `<th>Review note</th>` : "");
       return `<details class="lesson"${open ? " open" : ""}><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
   ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="tbl tbl-${stage}"><colgroup>${cols}</colgroup>
   <thead><tr>${head}</tr></thead>

@@ -18,7 +18,7 @@ The data you extract here will become flashcards in an Anki deck used to learn t
 
 ## Handling Uncertainty
 
-If you're genuinely unsure whether something should be included, include it anyway and set `"uncertain": true` with a brief reason in `"notes"`, rather than silently deciding either way.
+If you're genuinely unsure whether something should be included, include it anyway and set `"uncertain": true` with a brief reason in `"reviewNote"` (the internal review field — see below), rather than silently deciding either way.
 
 ## Output Format
 
@@ -27,8 +27,15 @@ Respond with ONLY a single JSON array (no markdown fences, no prose before or af
 **Important: preserve textbook order.** Emit items in exactly the order they appear in the chapter, top to bottom — do not reorder them, do not group them by type (e.g. all vocabulary together, then all key sentences), and do not sort them any other way. The sequence in the output must match the sequence in the source file.
 
 ```
-{"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file — EXCEPT placeholder markers (〜, ～, ~), which must be resolved or stripped per Handling Placeholders below>", "reading": "<optional spoken form — include ONLY when target contains a numeral; see Numbers below>", "category": "<exactly one value from the category list below>", "notes": "<optional short context, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
+{"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file — EXCEPT placeholder markers (〜, ～, ~), which must be resolved or stripped per Handling Placeholders below>", "reading": "<optional spoken form — include ONLY when target contains a numeral; see Numbers below>", "category": "<exactly one value from the category list below>", "cardNote": "<optional, omit if none>", "reviewNote": "<optional, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
 ```
+
+**Two kinds of note — keep them strictly separate.** There is no single blended `notes` field; every note you write goes into exactly one of:
+
+- **`cardNote`** — LEARNER-FACING context that is SHOWN ON THE ANKI CARD. Use it for things a student studying this card wants: when/how to use the phrase, the register (casual vs polite), how it differs from a similar-looking card, or the relationship between two related words (e.g. "お + かし = おかし; the everyday form of the bare root かし"). Write it as helpful study context, not meta-commentary.
+- **`reviewNote`** — INTERNAL rationale for the human review gate ONLY; the learner NEVER sees it and it is never embedded in the deck. Use it for anything about whether the card should EXIST: why it's `uncertain`, why you added it as an `aiSuggested` gap, or source provenance/decisions ("not literally in this chapter", "translation inferred by combining にほん + じん", "placeholder filled with 'コーヒー' as a natural example — source shows only '〜を おねがいします'").
+
+A single item may set both, one, or neither. Rule of thumb: if it helps a learner **use** the card → `cardNote`; if it explains a decision **you** made about including/shaping the card → `reviewNote`.
 
 **Write the `english` side in natural sentence case.** Capitalize the first word (and proper nouns) as you would writing normal English — even for a bare vocabulary word or fragment. `"Department store"`, `"Coffee"`, `"How much?"`, `"By means of (particle)"`, `"That's right"` — never lowercased clips like `"department store"`, `"how much"`, or `"by means of (particle)"`. Punctuate full sentences and questions normally (`.` / `?`). This is only about the English gloss reading like real English; leave the `target` verbatim. **Capitalization is for English meaning text ONLY — never a romanization.** A romanized reading (romaji, pinyin, etc.) always stays lowercase; on the rare card whose `english` value is itself a reading rather than a meaning (e.g. a kana character card glossed `"ka"`), leave it lowercase — do not capitalize it.
 
@@ -42,15 +49,16 @@ Textbooks commonly write a grammar pattern or attachment point using a placehold
 
 **Never leave a placeholder character in the final `target`.** Decide per item, using your best judgment:
 
-- **The item IS the grammatical particle/suffix/prefix itself** — its English gloss describes the particle's own function or meaning (e.g. "Mr., Mrs., Ms., Miss" for さん, "(honorific prefix)" for お). Strip the placeholder and keep only the actual morpheme in `target` (e.g. `さん`, not `〜さん`; `お`, not `お〜`). Do NOT invent a concrete example to fill it — that would misrepresent a general-purpose particle as one specific case. Instead, record in `notes` whether it's a prefix or suffix and what it attaches to (e.g. "Suffix — attaches after a person's name"), since that's real information the stripped placeholder would otherwise lose.
-- **The item is a phrase-level usage pattern meant to be spoken as a complete unit** — its English gloss describes an action or request rather than a particle's own meaning (e.g. "please (get me…)"). Replace the placeholder with a natural, contextually-appropriate word or phrase, chosen using your best judgment — prefer reusing a word already introduced elsewhere in this chapter when a sensible one exists. Record exactly what you filled in and why in `notes` (e.g. "Placeholder filled with 'コーヒー' (coffee) as a natural example — not literally present in the source text at this point").
+- **The item IS the grammatical particle/suffix/prefix itself** — its English gloss describes the particle's own function or meaning (e.g. "Mr., Mrs., Ms., Miss" for さん, "(honorific prefix)" for お). Strip the placeholder and keep only the actual morpheme in `target` (e.g. `さん`, not `〜さん`; `お`, not `お〜`). Do NOT invent a concrete example to fill it — that would misrepresent a general-purpose particle as one specific case. Instead, record in **`cardNote`** whether it's a prefix or suffix and what it attaches to (e.g. "Suffix — attaches after a person's name"), since that's real learner-facing information the stripped placeholder would otherwise lose. (If you also want to note the source spelling, that provenance goes in `reviewNote`, e.g. "written 〜さん in the source".)
+- **The item is a phrase-level usage pattern meant to be spoken as a complete unit** — its English gloss describes an action or request rather than a particle's own meaning (e.g. "please (get me…)"). Replace the placeholder with a natural, contextually-appropriate word or phrase, chosen using your best judgment — prefer reusing a word already introduced elsewhere in this chapter when a sensible one exists. Record exactly what you filled in and why in **`reviewNote`** (e.g. "Placeholder filled with 'コーヒー' (coffee) as a natural example — not literally present in the source text at this point") — that's a decision you made, not something the learner needs.
 
 When genuinely unsure which of the two applies, prefer resolving it into a phrase over leaving a placeholder — an unresolved placeholder character is never a valid `target`.
 
 ## Example Output
 
-Showing a plain item, an item with a note, an uncertain item, an AI-suggested item, and both kinds
-of placeholder resolution:
+Showing a plain item, a card-note item, an uncertain item (reviewNote), an AI-suggested item
+(reviewNote), and both kinds of placeholder resolution — note how learner context goes to `cardNote`
+and inclusion/provenance rationale to `reviewNote`:
 
 ```json
 [
@@ -60,22 +68,22 @@ of placeholder resolution:
     "english": "I look forward to working with you.",
     "target": "よろしく おねがいします。",
     "category": "Greetings",
-    "notes": "Usually combined with はじめまして when being introduced"
+    "cardNote": "Usually combined with はじめまして when being introduced"
   },
   {
     "id": "nihonjin",
     "english": "Japanese (person)",
     "target": "にほんじん",
     "category": "Nationalities & Countries",
-    "notes": "Translation inferred by combining にほん + じん; not separately glossed in the source",
+    "reviewNote": "Translation inferred by combining にほん + じん; not separately glossed in the source",
     "uncertain": true
   },
   {
     "id": "arigatou-suggestion",
-    "english": "thank you",
+    "english": "Thank you",
     "target": "ありがとう",
     "category": "Greetings",
-    "notes": "Basic thanks — not present in this chapter's text, but a genuine gap for a learner at this level",
+    "reviewNote": "Basic thanks — not present in this chapter's text, but a genuine gap for a learner at this level",
     "aiSuggested": true
   },
   {
@@ -83,14 +91,15 @@ of placeholder resolution:
     "english": "Mr., Mrs., Ms., Miss",
     "target": "さん",
     "category": "Family & People",
-    "notes": "Suffix — attaches after a person's name (written 〜さん in the source)"
+    "cardNote": "Suffix — attaches after a person's name",
+    "reviewNote": "Written 〜さん in the source"
   },
   {
     "id": "onegaishimasu-pattern",
-    "english": "please (get me a coffee)",
+    "english": "Please (get me a coffee)",
     "target": "コーヒーを おねがいします",
     "category": "Grammar & Function Words",
-    "notes": "Placeholder filled with 'コーヒー' (coffee) as a natural example — the source shows only '〜を おねがいします'"
+    "reviewNote": "Placeholder filled with 'コーヒー' (coffee) as a natural example — the source shows only '〜を おねがいします'"
   }
 ]
 ```
@@ -121,7 +130,7 @@ If you open an image and it turns out to be decorative, that's a fine outcome �
 - Grammar explanation prose — paragraphs explaining a grammar rule, particle usage, or conjugation pattern in depth. (This does not include a short particle vocabulary entry — see above.)
 - Practice/drill exercises in full — anything instructing the learner to produce their own sentences by substituting into a pattern. These are for manual practice; do not extract them, including their "e.g." example lines.
 - Dialogue/conversation scripts in full — a modeled conversation between named speakers is for listening/rehearsal practice, not a flashcard source. Do not extract dialogue lines, reactions, or recap sentences, even ones that seem useful — treat the whole dialogue as off-limits for this test.
-- Supplementary/culture notes as standalone cards — fold a clarification into the "notes" field of the item it clarifies instead.
+- Supplementary/culture notes as standalone cards — fold a learner-facing clarification into the `cardNote` field of the item it clarifies instead.
 - Proper nouns naming a specific person (e.g. a surname like "Harris") or a specific organization/business (e.g. "ABC Foods," "Nozomi Department Store," real or fictitious) as standalone vocabulary. Country and city names ARE genuine vocabulary and should be extracted. A name inside a key sentence you're otherwise keeping should stay in that sentence — this only blocks a standalone "here's a name" card.
 
 ### Assigning category
@@ -130,12 +139,12 @@ Every item needs a `category` from the fixed list above — pick the one that be
 
 ## Step 2: Add Critical Gap Suggestions
 
-If, after Step 1, you believe there's a genuinely important word or sentence a learner at this chapter's level would need that the chapter's own text simply does not contain, you may add it — but it MUST be marked `"aiSuggested": true` with a one-line reason in `"notes"`.
+If, after Step 1, you believe there's a genuinely important word or sentence a learner at this chapter's level would need that the chapter's own text simply does not contain, you may add it — but it MUST be marked `"aiSuggested": true` with a one-line reason in `"reviewNote"`.
 
-**Every particle / function word deserves a worked example.** For each grammatical particle or function word you extracted as a vocabulary item in Step 1 (anything in `"Grammar & Function Words"` whose gloss describes its own function — e.g. が, は, を, も, と, で, から, まで, か), make sure the corpus contains at least one full **example sentence that actually uses that particle in context**. If the chapter already supplies one (a Key Sentence or example that uses it), that satisfies the requirement — do not duplicate it. If the chapter introduces the particle but gives NO sentence demonstrating it, add one yourself, marked `"aiSuggested": true`: a natural, level-appropriate sentence that reuses vocabulary already introduced in this chapter where possible, with a one-line `notes` naming the particle it illustrates. A learner should never meet a particle as a bare gloss with nothing showing it at work. (This is the one case where you DO add an example for a particle — distinct from the Step-1 rule above about not fabricating a filler to resolve a `〜` placeholder ON the particle's own vocabulary entry: here you're adding a SEPARATE example-sentence item, leaving the particle's own entry as the bare morpheme.)
+**Every particle / function word deserves a worked example.** For each grammatical particle or function word you extracted as a vocabulary item in Step 1 (anything in `"Grammar & Function Words"` whose gloss describes its own function — e.g. が, は, を, も, と, で, から, まで, か), make sure the corpus contains at least one full **example sentence that actually uses that particle in context**. If the chapter already supplies one (a Key Sentence or example that uses it), that satisfies the requirement — do not duplicate it. If the chapter introduces the particle but gives NO sentence demonstrating it, add one yourself, marked `"aiSuggested": true`: a natural, level-appropriate sentence that reuses vocabulary already introduced in this chapter where possible, with a one-line `reviewNote` naming the particle it illustrates (that's provenance for the reviewer, not learner context). A learner should never meet a particle as a bare gloss with nothing showing it at work. (This is the one case where you DO add an example for a particle — distinct from the Step-1 rule above about not fabricating a filler to resolve a `〜` placeholder ON the particle's own vocabulary entry: here you're adding a SEPARATE example-sentence item, leaving the particle's own entry as the bare morpheme.)
 
 ## Step 3: De-duplicate
 
 Across everything gathered in Steps 1 and 2, de-duplicate across the whole chapter — if the same word or sentence would otherwise appear twice, keep it once. Do not treat two genuinely different words as duplicates just because they're related (e.g. a country name and its nationality-form counterpart, like "Japan" and "Japanese (person)," are two separate real words, NOT duplicates of each other).
 
-**Related pairs need notes that explain the relationship, not just the two words side by side.** When you keep two items that are closely related — a bare root and its honorific-prefixed everyday form (e.g. かし/おかし), an affirmative/negative counterpart (e.g. です/じゃありません), singular/plural, casual/polite register, or similar — a reviewer seeing both in a flat list has no way to tell "genuinely different words that happen to look similar" apart from "a stray near-duplicate that should be merged" unless the notes say so explicitly. For each item in the pair, name which one it is (the base/root form vs. the derived/everyday form, the affirmative vs. the negative, etc.), name the other item by its English gloss so it's easy to find, and state the concrete rule connecting them (e.g. "お + かし = おかし"). Do this even when only one of the pair strictly needs the explanation — put a short cross-reference note on both sides so either card, seen alone, still makes sense.
+**Related pairs need a `cardNote` that explains the relationship, not just the two words side by side.** When you keep two items that are closely related — a bare root and its honorific-prefixed everyday form (e.g. かし/おかし), an affirmative/negative counterpart (e.g. です/じゃありません), singular/plural, casual/polite register, or similar — a learner (and a reviewer) seeing both in a flat list has no way to tell "genuinely different words that happen to look similar" apart from "a stray near-duplicate that should be merged" unless the `cardNote` says so explicitly. This relationship is genuinely useful study context, so it belongs in **`cardNote`** (not `reviewNote`). For each item in the pair, name which one it is (the base/root form vs. the derived/everyday form, the affirmative vs. the negative, etc.), name the other item by its English gloss so it's easy to find, and state the concrete rule connecting them (e.g. "お + かし = おかし"). Do this even when only one of the pair strictly needs the explanation — put a short cross-reference `cardNote` on both sides so either card, seen alone, still makes sense.

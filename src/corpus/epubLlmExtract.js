@@ -28,8 +28,10 @@ function validateItem(item, index) {
   if (!CATEGORIES.includes(item.category)) {
     throw new Error(`item ${index} has an invalid "category": ${JSON.stringify(item.category)}`);
   }
-  if (item.notes !== undefined && typeof item.notes !== "string") {
-    throw new Error(`item ${index} field "notes" must be a string when present`);
+  for (const noteField of ["cardNote", "reviewNote", "notes"]) {
+    if (item[noteField] !== undefined && typeof item[noteField] !== "string") {
+      throw new Error(`item ${index} field "${noteField}" must be a string when present`);
+    }
   }
   if (item.uncertain !== undefined && typeof item.uncertain !== "boolean") {
     throw new Error(`item ${index} field "uncertain" must be a boolean when present`);

@@ -17,17 +17,27 @@ test("assembleCorpusFromChapter() wraps extracted items into a schema-valid corp
   assert.strictEqual(corpus.meta.reviewed, false);
   assert.strictEqual(corpus.items.length, 1);
   assert.strictEqual(corpus.items[0].target, "こんにちは");
-  assert.strictEqual(corpus.items[0].notes, null);
+  assert.strictEqual(corpus.items[0].cardNote, null);
+  assert.strictEqual(corpus.items[0].reviewNote, null);
 });
 
-test("assembleCorpusFromChapter() preserves a real notes string instead of nulling it", () => {
+test("assembleCorpusFromChapter() carries cardNote/reviewNote; routes a legacy blended notes → reviewNote", () => {
   const corpus = assembleCorpusFromChapter({
     chapterFilePath: "/tmp/chapter.xhtml",
     targetLanguage: "Japanese",
     runClaude: () =>
       JSON.stringify([
         {
-          id: "hello",
+          id: "split",
+          english: "Please",
+          target: "おねがいします",
+          category: "Greetings",
+          cardNote: "polite request",
+          reviewNote: "source shows 〜を おねがいします",
+        },
+        // A legacy extractor that still emits a blended `notes` → routed to reviewNote (never leaks).
+        {
+          id: "legacy",
           english: "Hello",
           target: "こんにちは",
           category: "Greetings",
@@ -36,7 +46,10 @@ test("assembleCorpusFromChapter() preserves a real notes string instead of nulli
       ]),
   });
 
-  assert.strictEqual(corpus.items[0].notes, "a hint");
+  assert.strictEqual(corpus.items[0].cardNote, "polite request");
+  assert.strictEqual(corpus.items[0].reviewNote, "source shows 〜を おねがいします");
+  assert.strictEqual(corpus.items[1].cardNote, null);
+  assert.strictEqual(corpus.items[1].reviewNote, "a hint");
 });
 
 test("assembleCorpusFromChapter() preserves uncertain/aiSuggested flags when true, omits when false/absent", () => {

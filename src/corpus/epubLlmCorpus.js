@@ -27,7 +27,11 @@ export function assembleCorpusFromChapter({
       id: item.id,
       english: item.english,
       category: item.category,
-      notes: item.notes ?? null,
+      // Split note fields (superset shape, null when absent): cardNote → the Anki card + viewer +
+      // review; reviewNote → review gates only, never shown to a learner. A legacy blended `notes`
+      // (from an older prompt) is routed to reviewNote so nothing user-facing leaks unreviewed.
+      cardNote: item.cardNote ?? null,
+      reviewNote: item.reviewNote ?? item.notes ?? null,
       target: item.target ?? null,
     };
     // Only set when true — the schema treats these as optional flags, not

@@ -209,11 +209,17 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
     if (units.length === 0) return null;
 
-    // Audio editing (Replace/Generate + Rebuild) unlocks only when EVERY rendered unit is at the audio
-    // stage. Deck-level: a mixed book stays read-only. Unit-scoped: a single audio lesson is editable
-    // even when its siblings aren't — so you can finalize one lesson at a time.
-    const canEdit =
-      editable && units.length > 0 && units.every((u) => (u.stage || "audio") === "audio");
+    // A DONE lesson opens as a read-only VIEW (players you can listen to, plus a Reopen button) — no
+    // exclude, no Replace/Generate/rebuild. Editing requires Reopen first (which pushes it back into the
+    // review flow). So audio editing unlocks only when EVERY rendered unit is at the audio stage AND
+    // none is done. Deck-level: a mixed book stays read-only. Unit-scoped: a single in-review audio
+    // lesson is editable even when its siblings aren't — so you can finalize one lesson at a time.
+    const allAudio = units.every((u) => (u.stage || "audio") === "audio");
+    const anyDone = units.some((u) => u.done);
+    const allDone = units.every((u) => u.done);
+    const canEdit = editable && units.length > 0 && allAudio && !anyDone;
+    // "Viewing" = a finished (all-done) lesson opened read-only. The header + lede reflect view vs review.
+    const viewing = allDone;
 
     // `translate` file-stage = the combined Corpus review (editable: exclude / edit / mark reviewed).
     const hasReview = units.some((u) => (u.stage || "audio") === "translate");
@@ -251,9 +257,11 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // Exclude is available on BOTH review stages: the translate (Corpus) review AND the audio review —
     // so you can drop a card late without going back to the Corpus review (which is meant to be
     // one-and-done). Excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT).
+    // Exclude shows on the translate (Corpus) review always, and on the audio review ONLY while the
+    // lesson is in review (not done). A done lesson is view-only — Reopen it to exclude a card.
     const rowControl = editable
       ? (stage, c) =>
-          stage === "translate" || stage === "audio"
+          stage === "translate" || (stage === "audio" && !anyDone)
             ? `<label class="excl-l"><input type="checkbox" class="excl"${c.excluded ? " checked" : ""}> exclude</label>`
             : ""
       : undefined;
@@ -290,18 +298,20 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // Rebuilds are fully automatic (see DECK_EDIT_SCRIPT) — there's no manual button. `anyDone` tells
     // the client whether an audio edit should auto-rebuild (only when a lesson in view is already part
     // of the package); it's carried on #deckctx. The toolbar keeps just a status line for feedback.
-    const anyDone = units.some((u) => u.done);
     const toolbar = canEdit ? `<span id="rebuild-status" class="rb"></span>` : "";
     const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
       : "";
+    const lessonWord = `lesson${units.length === 1 ? "" : "s"}`;
     const lede = canEdit
-      ? `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from. Edits to a done lesson rebuild the deck's <code>.apkg</code> automatically — just re-import it.`
-      : `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, expanded below for review. <b>${withAudio}</b> have audio.`;
+      ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from, <b>Exclude</b> drops a card. Edits rebuild the deck's <code>.apkg</code> automatically — just re-import it.`
+      : viewing
+        ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, <b>${withAudio}</b> with audio. A finished ${units.length === 1 ? "lesson" : "set"} — read-only. Play any clip; <b>Reopen</b> a lesson to make changes.`
+        : `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, expanded below for review. <b>${withAudio}</b> have audio.`;
     const body = `<header><a class="back" href="/">← All decks</a>
-<div class="eyebrow" style="margin-top:12px">Review · anki-builder</div>
+<div class="eyebrow" style="margin-top:12px">${viewing ? "View" : "Review"} · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
-<p class="lede">${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a></p>
+<p class="lede">${lede}${viewing ? "" : ` <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`}</p>
 ${toolbar ? `<div class="bar">${toolbar}</div>` : ""}
 </header>
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
@@ -312,12 +322,14 @@ ${modal}
     // not needed here (it still drives the read-only Browse view below).
     const scripts = [];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
-    // REVIEW_EDIT_SCRIPT wires the Exclude toggle (both stages) + the translate inline-edit cells, so
-    // load it whenever there's a reviewable stage in view — audio included (its Exclude column).
-    if (editable && (hasReview || hasAudio)) scripts.push(REVIEW_EDIT_SCRIPT);
+    // REVIEW_EDIT_SCRIPT wires the Exclude toggle + the translate inline-edit cells. It's only needed
+    // where those controls render: the translate (Corpus) review, or an editable (in-review) audio
+    // review. A done, view-only lesson shows neither, so it isn't loaded there.
+    if (editable && (hasReview || canEdit)) scripts.push(REVIEW_EDIT_SCRIPT);
+    // MARK_DONE_SCRIPT wires Mark done AND Reopen, so it loads for any audio-stage lesson (done or not).
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
     const script = scripts.join("\n");
-    return page(`${deck.title} — review`, body, script);
+    return page(`${deck.title} — ${viewing ? "view" : "review"}`, body, script);
   }
 
   // The BROWSE view (/deck/:type/:id): a read-only look at a deck's cards + audio. No edit controls,

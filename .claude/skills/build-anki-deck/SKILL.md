@@ -466,11 +466,18 @@ finished. Play each card's default clip; for any that sound wrong, **Generate** 
 them in the modal, and **Use this** to pick — each pick writes the card's `audio`. For a short string
 ElevenLabs mishandles even with a `reading`, **Replace** with a hand-made clip (uploads are stored as
 `<cardId>-user-<hash>.<ext>` and are NOT trimmed). **Exclude** drops a card straight from the audio
-review — no need to go back to the Corpus review (which is meant to be one-and-done); on an already-done
-lesson it rebuilds the deck immediately so the card leaves the `.apkg`, and un-checking re-includes it.
-Rebuilds are **fully automatic — there's no manual button**. Editing an already-**done** lesson
-auto-rebuilds the group package; while you're still finishing a not-yet-done lesson, edits don't rebuild
-(Mark done folds it in and rebuilds then).
+review — no need to go back to the Corpus review (which is meant to be one-and-done). These edit
+controls only appear while the lesson is **in review** (not done). Rebuilds are **fully automatic —
+there's no manual button**: while you finish an in-review lesson, edits don't rebuild the package (it
+isn't in the deck yet); **Mark done** folds it in and rebuilds then.
+
+**A DONE lesson opens read-only (a VIEW, not the review).** Once a lesson is marked done, opening it
+(its home-page row, or `/review/:type/:id/:unit`) renders a **view**: inline players you can listen to,
+the header reads *View* (not *Review*), and the **only** action is **Reopen**. The Exclude checkbox and
+the Replace/Generate/Generate-(kanji) controls are gone — a finished lesson can't be edited in place.
+**Reopen** (which removes it from the merged `.apkg`) pushes it back into the review flow, restoring all
+those controls; then **Mark done** re-finalizes and rebuilds. So the edit path for a shipped lesson is
+always Reopen → change → Mark done.
 
 **Mark done — the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
 lesson (sets `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` (and
@@ -661,16 +668,18 @@ deck** button:
   audio. Requires `ELEVENLABS_API_KEY` (the server loads `.env` on start); pick the voice with
   `--voice` if the language has no default. Costs credits on every click (one call per variant, up to
   8) and doesn't touch `cards.json` until you pick.
+  These edit controls (Replace/Generate/Exclude) only appear on an **in-review** lesson — a **done**
+  lesson is view-only (see the audio-review section above), so you **Reopen** it first to edit.
 - **Rebuild (automatic, no button)** — there is **one `.apkg` per group** (the book/course merge of
   done lessons, or a template's own deck); rebuilds always target it (never a per-lesson file), **using
   the exact same assembly as `deck --book-dir`/`deck --run`** (shared `src/deck/rebuild.js`). It's
-  **fully automatic**: editing an already-**done** lesson auto-rebuilds the group, and **Mark done** /
-  **Reopen** rebuild it too — so the on-disk `output/<…>/deck.apkg` always tracks the done-set with no
-  manual step. There is **no download button** — the server is local, so just import the on-disk
-  `.apkg` into Anki (stable note GUIDs → updates in place).
+  **fully automatic**: **Mark done** / **Reopen** rebuild the group — so the on-disk
+  `output/<…>/deck.apkg` always tracks the done-set with no manual step. There is **no download
+  button** — the server is local, so just import the on-disk `.apkg` into Anki (stable note GUIDs →
+  updates in place).
 
-So a spot-check is just: Replace/Generate on a done lesson's row → (auto-rebuilds the group) → import
-the on-disk `.apkg`. Start with **`serve --read-only`** to disable all of this (the edit controls
+So a spot-check is just: **Reopen** a done lesson → Replace/Generate/Exclude on its row → **Mark done**
+(rebuilds the group) → import the on-disk `.apkg`. Start with **`serve --read-only`** to disable all of this (the edit controls
 disappear and the write routes 403). Edits write straight to `cards.json` + `audio/`; the previous
 clip is left on disk.
 

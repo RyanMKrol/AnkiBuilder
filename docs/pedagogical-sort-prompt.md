@@ -39,6 +39,19 @@ Apply these together, using your judgment — they are priorities, not a rigid a
    an item, leave it where it is. Prefer the smallest set of moves that satisfies the rules above over
    a gratuitous global reshuffle — a mostly-preserved order with the key sentences pushed after their
    vocabulary is exactly right.
+6. **Jumble a run of sequential numbers (the one deliberate reshuffle).** If several items teach a
+   sequence of numbers or counters in ascending order — e.g. 1, 2, 3, 4, 5; or いっぷん / にふん / さんぷん
+   (one/two/three minutes); or いちじ / にじ / さんじ (one/two/three o'clock) — do NOT leave them in that
+   ascending order. A learner drilling numbers in order memorizes _the position_ ("what comes next"),
+   not the number itself, and looks fluent until the numbers are shuffled in real life. So **shuffle the
+   number items among themselves into a clearly non-sequential order** (e.g. 3, 1, 5, 2, 4). Do this
+   ONLY within the run: keep the numbers **contiguous** as one block (principle 3 still applies — they
+   stay the "numbers" group) and **never interleave them with the surrounding non-number cards**. If a
+   section reads "dog, cat, horse, 1, 2, 3, 4, 5", leave dog/cat/horse exactly where they are and jumble
+   only the 1–5 among their own five positions. This is the single case where you reorder items with no
+   dependency reason to move — everywhere else, principle 5 (don't churn) still holds. Apply it to each
+   distinct number run separately (a minutes run and a separate o'clock run are each jumbled on their
+   own).
 
 ## Book-Wide Conventions
 

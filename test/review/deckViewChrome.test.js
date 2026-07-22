@@ -67,7 +67,7 @@ test("review surfaces AI-suggested / Uncertain at every stage (tick columns + No
       target: "いち",
       pronunciation: "ichi",
       category: "Numbers",
-      note: "a source note",
+      cardNote: "a source note",
       audio: null,
       aiSuggested: true,
     },
@@ -77,7 +77,7 @@ test("review surfaces AI-suggested / Uncertain at every stage (tick columns + No
       target: "に",
       pronunciation: "ni",
       category: "Numbers",
-      note: "",
+      cardNote: "",
       audio: null,
       uncertain: true,
     },
@@ -101,6 +101,41 @@ test("review surfaces AI-suggested / Uncertain at every stage (tick columns + No
     });
     assert.match(html, /AI-suggested/, `${stage} stage shows the AI-suggested badge`);
     assert.match(html, /Uncertain/, `${stage} stage shows the Uncertain badge`);
+  }
+});
+
+test("reviewNote is shown ONLY in the review (showReviewNote), never in the read-only render", () => {
+  const cards = [
+    {
+      id: "a",
+      english: "one",
+      target: "いち",
+      pronunciation: "ichi",
+      category: "Numbers",
+      cardNote: "user-facing context",
+      reviewNote: "possibly premature — taught later",
+      audio: null,
+    },
+  ];
+  for (const stage of ["corpus", "translate", "audio"]) {
+    // Review render: both the card Note AND the internal Review note appear.
+    const review = renderLessonSections({
+      sections: [{ leaf: "L", stage, cards }],
+      audioCell: () => "",
+      showReviewNote: true,
+    }).html;
+    assert.match(review, /Review note/, `${stage}: Review-note column header`);
+    assert.match(review, /possibly premature/, `${stage}: reviewNote shown in review`);
+    assert.match(review, /user-facing context/, `${stage}: cardNote shown in review`);
+
+    // Read-only render (Browse view / artifact): the internal reviewNote must NOT leak.
+    const ro = renderLessonSections({
+      sections: [{ leaf: "L", stage, cards }],
+      audioCell: () => "",
+    }).html;
+    assert.doesNotMatch(ro, /Review note/, `${stage}: no Review-note column when read-only`);
+    assert.doesNotMatch(ro, /possibly premature/, `${stage}: reviewNote never in read-only`);
+    assert.match(ro, /user-facing context/, `${stage}: cardNote still shown read-only`);
   }
 });
 

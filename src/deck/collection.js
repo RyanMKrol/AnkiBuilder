@@ -338,7 +338,9 @@ function fieldValue(card, name) {
     case "Category":
       return card.category || "";
     case "Hint":
-      return card.hint || "";
+      // The user-facing card note (context/usage). NEVER the internal reviewNote. `hint` is the legacy
+      // field name kept as a fallback for old cards.json that predate cardNote.
+      return card.cardNote || card.hint || "";
     case "Image":
       return card.image ? `<img src="${card.image}">` : "";
     case "Audio":

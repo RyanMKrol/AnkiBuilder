@@ -355,8 +355,9 @@ Target/Pronunciation are inline-editable (click a cell, edit, click away to save
 Uncertain are ✓ tick columns (persisted provenance); each row has an **Exclude** checkbox and each
 lesson a **Mark reviewed** button. This is the point to catch a translation with several unfamiliar
 variants before it becomes a pain to organise — fix or exclude it right here (or tell me the rows and
-I'll edit `cards.json`). Excluding a card writes a reversible `excluded` flag (the deck build drops
-it).
+I'll edit `cards.json`). Excluding a card writes a reversible `excluded` flag: the **`audio` stage
+skips excluded cards** (no TTS spent, `audio` cleared so no player shows) AND the **deck build drops
+them**. Un-excluding a card and re-running `audio` regenerates its clip.
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves

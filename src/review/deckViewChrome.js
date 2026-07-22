@@ -98,9 +98,22 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .urow .ulabel{flex:1 1 auto;font-size:13.5px}
 .urow .ustage{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
 .urow .ustage.done{color:#5c7a52;font-weight:700}
+/* A built row: the label link stretches over the whole row (click → open the view), while the Reopen
+   button sits above it (z-index) so it's independently clickable. */
+.urow-built{position:relative}
+.urow-built .urow-link{flex:1 1 auto;text-decoration:none;color:inherit;min-width:0}
+.urow-built .urow-link::after{content:"";position:absolute;inset:0}
+.urow-built .ustage.done{position:relative;z-index:1}
+.home-reopen{position:relative;z-index:1;font:inherit;font-size:11.5px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:3px 12px;cursor:pointer;white-space:nowrap}
+.home-reopen:hover{border-color:var(--accent)}
+.home-reopen:disabled{opacity:.6;cursor:default}
 /* A single-unit deck block is itself the link. */
 .dblock.single{display:block;text-decoration:none;color:inherit;cursor:pointer}
 .dblock.single:hover{border-color:var(--accent)}
+/* …unless it's built and gets a Reopen button: the block link stretches, the button sits above it. */
+.dblock.single.dbreopen{display:flex;align-items:center;gap:12px;position:relative}
+.dblock.single.dbreopen .dblock-link{flex:1 1 auto;text-decoration:none;color:inherit;min-width:0}
+.dblock.single.dbreopen .dblock-link::after{content:"";position:absolute;inset:0}
 /* editor: per-row controls */
 .au .ed{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .au .ed button,.au .ed label.btn{font:inherit;font-size:11px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 9px;cursor:pointer}
@@ -317,6 +330,23 @@ export const MARK_DONE_SCRIPT = `(function () {
   };
   wire("button.mark-done", "/done", "\\u2713 done");
   wire("button.reopen", "/reopen", "reopened");
+})();`;
+
+// Home-page Reopen buttons on built rows: each carries its own data-type/id/unit (no #deckctx). POSTs
+// reopen, then reloads so the lesson moves from Built → In review. The click is stopped so it doesn't
+// also follow the row's stretched view link. Vanilla JS, no ${}.
+export const HOME_REOPEN_SCRIPT = `(function () {
+  document.querySelectorAll("button.home-reopen").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var label = btn.textContent;
+      btn.disabled = true; btn.textContent = "reopening\\u2026";
+      var base = "/api/deck/" + encodeURIComponent(btn.getAttribute("data-type")) + "/" + encodeURIComponent(btn.getAttribute("data-id"));
+      fetch(base + "/unit/" + encodeURIComponent(btn.getAttribute("data-unit")) + "/reopen", { method: "POST" })
+        .then(function (r) { if (!r.ok) throw new Error("reopen failed"); location.reload(); })
+        .catch(function (err) { btn.disabled = false; btn.textContent = label; alert(err.message); });
+    });
+  });
 })();`;
 
 // The AI-suggested / Uncertain provenance badges (shown at EVERY review stage). `excluded` is not

@@ -11,6 +11,7 @@ import {
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
   MARK_DONE_SCRIPT,
+  HOME_REOPEN_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { ADAPTERS } from "./adapters/index.js";
 import {
@@ -154,14 +155,28 @@ export function createDeckServer({
         .join(" · ");
     const deckBlock = (deck, units, mode) => {
       const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span></div>`;
-      // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link.
-      if (deck.total === 1)
-        return `<a class="dblock single" href="${unitUrl(deck, units[0])}">${head}</a>`;
+      const reopenBtn = (u) =>
+        `<button type="button" class="home-reopen" data-type="${escapeHtml(deck.type)}" data-id="${escapeHtml(deck.id)}" data-unit="${escapeHtml(String(u.seq))}">Reopen</button>`;
+      // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link. When
+      // it's built, the block gets a Reopen button too (same stretched-link + button-above pattern).
+      if (deck.total === 1) {
+        const u = units[0];
+        if (mode === "built" && editable)
+          return `<div class="dblock single dbreopen"><a class="dblock-link" href="${unitUrl(deck, u)}">${head}</a>${reopenBtn(u)}</div>`;
+        return `<a class="dblock single" href="${unitUrl(deck, u)}">${head}</a>`;
+      }
       const rows = units
-        .map(
-          (u) =>
-            `<a class="urow" href="${unitUrl(deck, u)}"><span class="ulabel">${escapeHtml(u.label)}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span></a>`,
-        )
+        .map((u) => {
+          const url = unitUrl(deck, u);
+          const label = escapeHtml(u.label);
+          // A built row gets a Reopen button (editable server only) so a finished lesson can be pushed
+          // back into review straight from the home page — no need to open it first. The whole row still
+          // opens the view via a stretched link; the button sits above it (z-index) and stops the click.
+          if (mode === "built" && editable) {
+            return `<div class="urow urow-built"><a class="urow-link" href="${url}"><span class="ulabel">${label}</span></a><span class="ustage done">done</span>${reopenBtn(u)}</div>`;
+          }
+          return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span></a>`;
+        })
         .join("");
       return `<div class="dblock">${head}${rows}</div>`;
     };
@@ -193,7 +208,8 @@ export function createDeckServer({
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
 <p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p></header>
 ${section("grp-review", "In review", "Lessons still being built — corpus / translation / audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
-${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play its cards, tweak audio, or reopen it.", builtBlocks, builtCount)}`,
+${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play its cards, or Reopen it to edit.", builtBlocks, builtCount)}`,
+      editable ? HOME_REOPEN_SCRIPT : null,
     );
   }
 

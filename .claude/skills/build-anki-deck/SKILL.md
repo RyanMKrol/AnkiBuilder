@@ -226,6 +226,19 @@ a re-ordering (never adds/drops/rewrites a card) and fails open. The order you s
 review below **is** the study order the deck will use, so the review is your chance to sanity-check the
 sequence — if a sentence still lands before its vocabulary, tell me and I'll nudge it.
 
+**Jumble any run of sequential numbers — never leave 1, 2, 3, 4, 5… in ascending order.** When a source
+teaches a sequence of numbers or counters in order (plain 1–10, `いっぷん/にふん/さんぷん` minutes,
+`いちじ/にじ/さんじ` o'clock, floors, prices climbing by one, …), studying them in that order teaches the
+*position* — the learner recalls "what comes next" and looks fluent until the numbers show up shuffled
+in real life. So the numbers in such a run must be **shuffled into a non-sequential order**. The
+pedagogical-sort pass does this automatically (principle 6 in `docs/pedagogical-sort-prompt.md`), and
+you should apply it by hand whenever you author/reorder a corpus with numbers in it. Two rules keep it
+tidy: **(1) jumble ONLY within the number run** — keep those cards contiguous as their own numbers block
+and never interleave them with the surrounding non-number cards (a "dog, cat, horse, 1, 2, 3, 4, 5"
+section keeps dog/cat/horse put and only shuffles the 1–5 among their five slots); and **(2) each
+distinct run is jumbled on its own** (a minutes run and an o'clock run are shuffled separately). Keep
+`corpus.json` and `cards.json` in the same jumbled sequence so the reviews and deck stay aligned.
+
 **Every review stage reflects this one pedagogical order.** The sort runs once, at assemble, and the
 order flows straight through: `translate` and `audio` preserve the item order, so the corpus,
 translate, and audio review artifacts all present the cards in the same pedagogical sequence, and the

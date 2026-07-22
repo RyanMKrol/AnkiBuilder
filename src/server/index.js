@@ -278,7 +278,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const rowControl = editable
       ? (stage, c) =>
           stage === "translate" || (stage === "audio" && !anyDone)
-            ? `<label class="excl-l"><input type="checkbox" class="excl"${c.excluded ? " checked" : ""}> exclude</label>`
+            ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button>`
             : ""
       : undefined;
     const sectionControl = editable

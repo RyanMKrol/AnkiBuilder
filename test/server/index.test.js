@@ -324,7 +324,7 @@ test("pre-translate corpus section is read-only: no exclude, no Mark reviewed, a
       async (url) => {
         const html = await (await fetch(`${url}/review/book/cbook`)).text();
         assert.match(html, /data-stage="corpus"/);
-        assert.doesNotMatch(html, /class="excl"/); // no exclude checkbox pre-translation
+        assert.doesNotMatch(html, /class="excl-btn"/); // no exclude checkbox pre-translation
         assert.doesNotMatch(html, /Mark reviewed/); // the review gate is post-translation
         assert.match(html, /run <code>translate<\/code>/i); // hint to translate first
       },
@@ -375,7 +375,7 @@ test("Corpus review section is editable: exclude, editable target/pron cells, Ma
         assert.match(html, /data-stage="translate"/);
         assert.match(html, /data-field="target"/);
         assert.match(html, /data-field="pronunciation"/);
-        assert.match(html, /class="excl"/);
+        assert.match(html, /class="excl-btn"/);
         assert.match(html, /Mark reviewed/); // the combined review carries the sign-off button
         assert.match(html, /id="deckctx"/);
         // no audio-edit UI at this stage
@@ -463,7 +463,7 @@ test("read-only server 403s the Corpus review write routes and hides the control
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/tbook`)).text();
-        assert.doesNotMatch(html, /class="excl"/);
+        assert.doesNotMatch(html, /class="excl-btn"/);
         assert.doesNotMatch(html, /id="deckctx"/);
         assert.equal(
           (
@@ -882,7 +882,7 @@ test("unit-scoped review: a DONE lesson is view-only; Reopen makes it editable; 
         assert.match(one, /class="reopen"/); // the one action a finished lesson offers
         assert.doesNotMatch(one, /class="repl"/); // no Replace/Generate
         assert.doesNotMatch(one, /class="gen"/);
-        assert.doesNotMatch(one, /input type="checkbox" class="excl"/); // no exclude in view mode
+        assert.doesNotMatch(one, /class="excl-btn"/); // no exclude in view mode
         assert.doesNotMatch(one, /Review note/); // the internal review column is hidden on a View
         assert.match(one, /<details class="lesson" open>/); // still expanded
         assert.doesNotMatch(one, /Expand all/);
@@ -892,9 +892,9 @@ test("unit-scoped review: a DONE lesson is view-only; Reopen makes it editable; 
         one = await (await fetch(`${url}/review/book/mybook/0`)).text();
         assert.match(one, /Review · anki-builder/);
         assert.match(one, /class="repl"/); // audio controls now present
-        assert.match(one, /input type="checkbox" class="excl"/); // exclude now present
+        assert.match(one, /class="excl-btn"/); // exclude now present
         assert.match(one, /Review note/); // …and the internal Review-note column reappears in review
-        assert.match(one, /input\.excl/); // …and the client script that wires it is loaded
+        assert.match(one, /button\.excl-btn/); // …and the client script that wires it is loaded
         assert.match(one, /id="deckctx"[^>]*data-done="0"/); // reopened → not done
 
         // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).

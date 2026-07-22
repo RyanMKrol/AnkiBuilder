@@ -111,15 +111,26 @@ export async function generateAudio(
   const defaultTextFor = (item) =>
     altTransform ? altTransform(ttsTextFor(item)) : ttsTextFor(item);
 
+  // Excluded cards are dropped from the deck at build time (src/deck/index.js), so don't spend TTS on
+  // them here — and clear any `audio` they carry so the review shows no player and nothing lingers.
+  // The flag is reversible: un-excluding a card and re-running `audio` regenerates its clip.
   const uniqueTerms = new Set();
   for (const item of cards.items) {
+    if (item.excluded) continue;
     uniqueTerms.add(defaultTextFor(item));
   }
   const fetchedFiles = await fetchTermsToCache(uniqueTerms, audioDir, fetchCtx);
 
   const annotatedCards = {
     ...cards,
-    items: cards.items.map((item) => ({ ...item, audio: fetchedFiles.get(defaultTextFor(item)) })),
+    items: cards.items.map((item) => {
+      if (item.excluded) {
+        const rest = { ...item };
+        delete rest.audio;
+        return rest;
+      }
+      return { ...item, audio: fetchedFiles.get(defaultTextFor(item)) };
+    }),
   };
 
   return annotatedCards;

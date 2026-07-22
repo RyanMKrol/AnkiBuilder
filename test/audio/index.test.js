@@ -80,6 +80,46 @@ test("writes one MP3 per unique target term into voice-specific cache dir", asyn
   }
 });
 
+test("skips excluded cards: no TTS fetch, and their audio field is cleared", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([
+        { id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" },
+        // Excluded — must not be synthesized, and its stale audio must be dropped.
+        {
+          id: "x1",
+          english: "Drop me",
+          category: "Other",
+          target: "すてる",
+          excluded: true,
+          audio: "stale.mp3",
+        },
+      ]);
+
+      const calls = [];
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: async (term) => {
+          calls.push(term);
+          return Buffer.from("audio data");
+        },
+        libraryHomeDir: tmpDir,
+      });
+
+      // Only the active card is fetched — the excluded one is never sent to TTS.
+      assert.deepEqual(calls, ["こんにちは"]);
+      assert.ok(result.items[0].audio, "active card is annotated with audio");
+      assert.equal("audio" in result.items[1], false, "excluded card's audio is cleared");
+      assert.equal(result.items[1].excluded, true, "the exclusion flag is preserved");
+    });
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+});
+
 test("uses stable hash so same term yields same filename across runs", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";

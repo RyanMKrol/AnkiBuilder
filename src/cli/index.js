@@ -455,9 +455,11 @@ async function runAudio(flags, ctx) {
   // Only the DEFAULT (kana+。 for Japanese) clip is generated up front — every other variant is an
   // on-demand dashboard action. A run counts as "already done" once every card's default clip is on
   // disk (regeneration stays cheap: generateAudio only fetches cache misses).
+  // Excluded cards get no audio (generateAudio skips them), so only the ACTIVE cards gate "done".
+  const active = cards.items.filter((item) => !item.excluded);
   const alreadyDone =
-    cards.items.length > 0 &&
-    cards.items.every((item) => item.audio && existsSync(join(paths.audio, item.audio)));
+    active.length > 0 &&
+    active.every((item) => item.audio && existsSync(join(paths.audio, item.audio)));
 
   if (alreadyDone) {
     ctx.log(`audio already generated in ${paths.audio} — reusing`);

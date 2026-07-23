@@ -1,0 +1,11 @@
+#!/bin/sh
+# Pre-push guard — NEVER push code that would fail CI.
+# Runs the exact Definition-of-Done suite (format:check + lint + test + build), the local mirror of
+# .github/workflows/ci.yml, and blocks the push if anything fails. This is why CI should never go red
+# on a mechanical check like formatting or lint. Emergency bypass (avoid): git push --no-verify
+echo "pre-push: running CI checks (npm run ci)…"
+if ! npm run --silent ci; then
+  echo
+  echo "✗ pre-push blocked: CI checks failed. Fix them (or 'npm run format' for style), then push again."
+  exit 1
+fi

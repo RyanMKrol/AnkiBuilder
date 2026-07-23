@@ -11,3 +11,7 @@ package-lock.json
 .claude
 .github
 CLAUDE.md
+
+# Local Anki state backups — data, not formatted code.
+anki-backups
+anki-state-backup-*.json

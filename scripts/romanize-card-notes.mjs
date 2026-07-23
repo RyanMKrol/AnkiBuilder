@@ -24,9 +24,11 @@ function walk(dir, out = []) {
 }
 const files = explicit.length ? explicit : existsSync("output") ? walk("output") : [];
 
-// Non-Roman scripts a learner may not read: CJK (kana + kanji), Cyrillic, Hebrew, Arabic, Greek, Thai,
-// Hangul, Devanagari. If a cardNote contains any of these, it may need romanization.
-const NON_ROMAN = /[぀-ヿ㐀-鿿ｦ-ﾟЀ-ӿ֐-׿؀-ۿͰ-Ͽ฀-๿가-힣ऀ-ॿ]/;
+// Non-Roman scripts a learner may not read. Matched via Unicode script-property escapes (the `u` flag),
+// which are cleaner than manual code-point ranges and \u2014 unlike literal ranges that start on a combining
+// mark \u2014 don't trip eslint's no-misleading-character-class.
+const NON_ROMAN =
+  /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\p{Script=Hangul}\p{Script=Cyrillic}\p{Script=Hebrew}\p{Script=Arabic}\p{Script=Greek}\p{Script=Thai}\p{Script=Devanagari}]/u;
 
 const PROMPT = (rows, lang) =>
   [

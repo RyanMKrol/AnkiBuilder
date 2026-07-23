@@ -44,3 +44,7 @@
 .harness/.scope-gap-ignores/*
 !.harness/.scope-gap-ignores/.gitkeep
 # <<< implementation-harness managed <<<
+
+# Local Anki state backups (personal data — never commit)
+anki-backups/
+anki-state-backup-*.json

@@ -187,7 +187,16 @@ them, don't abandon the task:**
   - test — `npm test`
   - build — `npm run build`
 - Mirror any change to these verbatim in `.github/workflows/ci.yml`. CI is the authoritative gate.
-- Before pushing, the code should pass that full suite locally — it mirrors CI exactly.
+- **Never push anything that would fail CI — run the full suite locally first, every time.** The one
+  command is **`npm run ci`** (= `format:check && lint && test && build`, the exact CI Definition of
+  Done). CI going red on a mechanical check (formatting, lint) is a process failure that should never
+  happen: `npm run format` auto-fixes style, and `npm run ci` catches lint/test/build before they reach
+  the remote.
+- **This is enforced by a `pre-push` git hook** (`.githooks/pre-push`, wired via `core.hooksPath`, which
+  the `prepare` npm script sets on `npm install`). The hook runs `npm run ci` and **blocks the push** if
+  anything fails — so "push every commit" stays safe. Do **not** bypass it with `git push --no-verify`
+  except in a genuine, explained emergency. If you ever add a new check to CI, add it to the `ci` script
+  too so the hook stays a faithful mirror.
 - Tasks marked **🔒 needs-human** require the user (credentials, provisioning, anything
   spending real money or touching production). Do not attempt the human-gated portion
   yourself; prepare everything around it and hand off.

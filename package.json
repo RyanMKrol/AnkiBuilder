@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "test": "node --test",
     "build": "node -e \"process.exit(0)\"",
-    "serve": "node ./src/cli/bin.js serve"
+    "serve": "node ./src/cli/bin.js serve",
+    "ci": "npm run format:check && npm run lint && npm test && npm run build",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

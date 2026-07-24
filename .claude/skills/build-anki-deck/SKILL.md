@@ -619,27 +619,40 @@ If something looks wrong (missing translations, bad pronunciation, etc.), you ca
 - Re-run `anki-builder` commands to regenerate later stages
 - Stages are resumable — running a stage whose output already exists reuses it
 
-**Re-import updates in place but does NOT reorder.** Note GUIDs are the deterministic `card.id`, so
-re-importing a rebuilt deck updates each existing card's fields where it already sits — it never
-duplicates. But Anki keeps the existing cards' **positions and scheduling**, so a changed pedagogical
-order (e.g. after adding/removing/reordering cards, or the number-jumble) only takes effect on a
-**fresh** import. Delete the old deck in Anki first if you want the new order to apply; otherwise the
-field updates land but the old order stays.
+**Deliver changes to Anki with the deliver tool — don't drag-and-drop `.apkg`.** `scripts/deliver-to-anki.mjs`
+(module `src/anki/deliver.js`) pushes the on-disk corpus state into the running collection over
+AnkiConnect, deterministically and idempotently: it backs up every managed deck (with scheduling) + a
+note-type snapshot, force-syncs the note type to the code's canonical `noteTypeSpec` (fields/templates/CSS
+— the SAME definition the `.apkg` uses, exported from `src/deck/collection.js`), then updates each note's
+fields **in place by GUID** (`updateNoteFields` — touches only fields, never scheduling) and adds any new
+cards. Run it dry first to preview:
 
-**What re-import DOES vs. does NOT pick up (this trips people up):**
+```sh
+node scripts/deliver-to-anki.mjs --dry            # preview every managed deck (read-only)
+node scripts/deliver-to-anki.mjs                  # back up, then deliver
+node scripts/deliver-to-anki.mjs course:my-course # limit to one deck (type:id)
+```
 
-- **Field content** (a fixed translation, a new `hint`/`note`, romanized notes) → picked up **in
-  place** on a normal re-import, **keeping all scheduling**. Just re-import.
-- **Card ORDER** (the jumble, reordering) → NOT applied on update; needs a **fresh** import (delete the
-  deck first). Only matters for cards not yet started (scheduling, not position, drives review order).
-- **Note-type STRUCTURE** — new/changed card templates (e.g. the category chip, the front `hint`), CSS,
-  or a **new field** (like adding `Note`) → Anki keeps your EXISTING note type on a same-id import, so
-  these **silently don't apply**. Two ways to land them without losing progress: (a) **update the note
-  type in place via AnkiConnect** (`updateModelTemplates` / `updateModelStyling` / `modelFieldAdd` on
-  `AnkiBuilder <lang>` — one note type governs every project card, so one update restyles them all), OR
-  (b) delete the deck + note type and import fresh (loses scheduling — first take a scheduling-preserving
-  backup via AnkiConnect `exportPackage` with `includeSched:true`, or File → Export → `.colpkg`).
-  **Before any structural change or fresh import, snapshot the collection** so progress is recoverable.
+Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
+open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.
+
+Notes ↔ cards map by a durable `abid:<card.id>` tag; on the FIRST run un-tagged notes are matched by the
+Japanese `Target` (falling back to `English` for shared-Target pairs, then a prefix match if a gloss was
+edited since import), then stamped. Anything it can't resolve uniquely (a genuine duplicate, a
+too-changed card) is **reported as ambiguous and left alone — never guessed, never duplicated**.
+
+**What it does / doesn't do:**
+- **Field content** (translations, `hint`/`note`, romanized notes) and **note-type STRUCTURE** (new
+  field like `Note`, template/CSS changes, the category chip, the front `hint`) → both applied in place,
+  **scheduling preserved**. (Structure changes never land on a plain `.apkg` re-import — this tool is how
+  they reach Anki.)
+- **New cards** → added, with their audio if a clip exists on disk (generate audio in the dashboard
+  first; new cards without audio are added silent and flagged in the report).
+- **Card ORDER** (the jumble/reorder) → NOT delivered; new-card position can't be set in place and barely
+  matters for already-studied cards. A fresh import is the only way, and it's rarely worth the scheduling
+  reset.
+- **Deletions** → never automatic; a note whose card left the corpus is reported as `orphaned` for you to
+  remove by hand.
 
 ## Command Reference
 

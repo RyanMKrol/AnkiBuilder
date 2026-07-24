@@ -19,17 +19,14 @@ function readJson(path) {
  * dashboard's chapterNumber display order. Throws the same messages the CLI does when the dir has no
  * units or a unit lacks cards.json.
  */
-export function rebuildBookDir(
-  bookDir,
-  {
-    buildBookDeck = defaultBuildBookDeck,
-    loadBookMeta,
-    loadCourseMeta,
-    bookNameFallback = null,
-    now = Date.now,
-  } = {},
-) {
-  const outPath = join(bookDir, "deck.apkg");
+/**
+ * The FINISHED (human-marked `done`) units under a book/course dir, ordered by folder seq — the exact
+ * set of chapters/lessons that ship in the merged `.apkg`. Each entry is
+ * `{ name: chapterLabel, cards, audioDir, dir }`. Shared by `rebuildBookDir` (the .apkg path) and the
+ * AnkiConnect deliverer (`src/anki/deliver.js`), so both push the identical content. A lesson still in
+ * progress — no cards.json, or not marked done — is excluded. Throws when the dir has no unit folders.
+ */
+export function selectDoneChapterDecks(bookDir) {
   const chapterDirs = readdirSync(bookDir)
     .map((name) => name.match(BOOK_UNIT_DIR_PATTERN))
     .filter(Boolean)
@@ -40,9 +37,6 @@ export function rebuildBookDir(
     throw new Error(`no chapter-*/ or lesson-*/ directories found under ${bookDir}`);
   }
 
-  // Only FINISHED (human-marked `done`) lessons ship in the merged deck. A lesson still in progress —
-  // not translated yet (no cards.json), or translated/audio'd but not marked done — is excluded, so an
-  // un-reviewed lesson never gets baked into the package.
   const chapterDecks = [];
   let epubHash = null;
   for (const { dir } of chapterDirs) {
@@ -56,8 +50,38 @@ export function rebuildBookDir(
       name: cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`,
       cards,
       audioDir: existsSync(audioDir) ? audioDir : null,
+      dir,
     });
   }
+  return { chapterDecks, epubHash };
+}
+
+/**
+ * The Anki parent-deck name a book/course maps to — `bookMeta.title || .name`, with the same fallbacks
+ * `rebuildBookDir` bakes into the package. Shared so the deliverer targets the exact deck the `.apkg`
+ * import created.
+ */
+export function resolveBookName(
+  bookDir,
+  epubHash,
+  { loadBookMeta, loadCourseMeta, bookNameFallback = null } = {},
+) {
+  const bookMeta = epubHash ? loadBookMeta?.(epubHash) : loadCourseMeta?.(bookDir);
+  return bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
+}
+
+export function rebuildBookDir(
+  bookDir,
+  {
+    buildBookDeck = defaultBuildBookDeck,
+    loadBookMeta,
+    loadCourseMeta,
+    bookNameFallback = null,
+    now = Date.now,
+  } = {},
+) {
+  const outPath = join(bookDir, "deck.apkg");
+  const { chapterDecks, epubHash } = selectDoneChapterDecks(bookDir);
 
   if (chapterDecks.length === 0) {
     throw new Error(
@@ -65,8 +89,11 @@ export function rebuildBookDir(
     );
   }
 
-  const bookMeta = epubHash ? loadBookMeta?.(epubHash) : loadCourseMeta?.(bookDir);
-  const bookName = bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
+  const bookName = resolveBookName(bookDir, epubHash, {
+    loadBookMeta,
+    loadCourseMeta,
+    bookNameFallback,
+  });
   return buildBookDeck(chapterDecks, { outPath, bookName, now: now() });
 }
 

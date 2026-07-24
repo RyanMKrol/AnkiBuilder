@@ -403,12 +403,15 @@ card missing a category is a bug; if you author cards by hand, set one.
 **Run a whole-book TEACHABILITY / CROSS-REFERENCE pass after a book's lessons are built.** The
 extraction runs one chapter at a time, so it can only cross-reference within that chapter — genuinely
 useful comparisons that span lessons (おねがいします vs ください, the greeting time-chain, その vs それ)
-have to be added by a pass that sees the WHOLE book at once. After a book/course's chapters are
-assembled, run `scripts/enhance-card-notes.mjs <bookDir>` (Sonnet, `ANKI_BUILDER_TRANSLATE_EFFORT=high`):
-it feeds every lesson (each tagged with its lesson index) to the model and adds/rewrites back-`note`s
-with **backward-only** comparisons (per the rule above), leaving `hint`/`reviewNote` untouched and
-backing up each file. This is what turns a flat vocabulary list into a connected knowledge base where
-each card knows what came before it. (Companion one-off migrations for older decks live alongside it:
+have to be added by a pass that can see across lessons. After a book/course's chapters are
+assembled, run `scripts/enhance-card-notes.mjs <bookDir>` (Sonnet, `ANKI_BUILDER_TRANSLATE_EFFORT=high`).
+It runs **one pass PER LESSON**, each fed only that lesson **plus all EARLIER lessons** as context, and
+writes notes for the current lesson only — so cross-references are **structurally backward at the
+CHAPTER level** (the model literally never sees later lessons, so a forward reference — clarifying a card
+against something the learner hasn't met yet — is impossible, not merely discouraged). Within a lesson,
+cards may reference each other freely (it's one unit the learner studies together — the constraint is
+per-chapter, NOT per-card). It leaves `hint`/`reviewNote` untouched and backs up each file. This is what
+turns a flat vocabulary list into a connected knowledge base where each card knows what came before it. (Companion one-off migrations for older decks live alongside it:
 `split-front-hint.mjs` splits front hints out of the English, `romanize-card-notes.mjs` adds readings,
 `jumble-number-runs.mjs` de-sequences number runs — each reversible via a `.bak`.)
 

@@ -120,7 +120,7 @@ test("bookAdapter: lists the book, skips the unbuilt chapter, orders units by ch
       [1, 0],
     );
     assert.equal(deck.units[0].cards[0].audio, "a.mp3");
-    assert.equal(deck.units[0].cards[0].cardNote, ""); // no cardNote -> ""
+    assert.equal(deck.units[0].cards[0].note, ""); // no note -> ""
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

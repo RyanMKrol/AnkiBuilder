@@ -267,13 +267,13 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
         // pre-translate corpus section is READ-ONLY English + Note + provenance ticks (no Target, no Exclude)
         assert.match(
           html,
-          /<th>English<\/th><th>Category<\/th><th>Note<\/th><th class="ctr">AI-suggested<\/th><th class="ctr">Uncertain<\/th>/,
+          /<th>English<\/th><th>Category<\/th><th>Hint<\/th><th>Note<\/th><th class="ctr">AI-suggested<\/th><th class="ctr">Uncertain<\/th>/,
         );
         assert.match(html, /data-stage="corpus"/);
         // combined Corpus review section: English-first, Category, then Target + Pronunciation, Note, flags
         assert.match(
           html,
-          /<th>English<\/th><th>Category<\/th><th>Target<\/th><th>Pronunciation<\/th><th>Note<\/th>/,
+          /<th>English<\/th><th>Category<\/th><th>Target<\/th><th>Pronunciation<\/th><th>Hint<\/th><th>Note<\/th>/,
         );
         assert.match(html, /data-stage="translate"/);
         // not all-audio → the audio-edit UI + rebuild are absent

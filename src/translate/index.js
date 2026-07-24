@@ -572,9 +572,11 @@ export async function translateCorpus(
     const src = bySourceId.get(item.id);
     if (src?.uncertain) item.uncertain = true;
     if (src?.aiSuggested) item.aiSuggested = true;
-    // Carry both note kinds through: cardNote (user-facing, → the Anki card) and reviewNote (internal
-    // rationale, review-only). The assemble helpers still copy legacy `notes` for pre-split corpora.
-    if (src?.cardNote) item.cardNote = src.cardNote;
+    // Carry the note fields through: `hint` (front cue), `note` (back context, back-compat with the
+    // pre-rename `cardNote`), and `reviewNote` (internal, review-only).
+    if (src?.hint) item.hint = src.hint;
+    const backNote = src?.note ?? src?.cardNote;
+    if (backNote) item.note = backNote;
     if (src?.reviewNote) item.reviewNote = src.reviewNote;
   }
 

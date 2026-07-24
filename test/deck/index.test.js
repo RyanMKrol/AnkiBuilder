@@ -220,8 +220,17 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       assert.match(model.css, /\.cat-chip/); // …and the chip is styled
       assert.deepStrictEqual(
         model.flds.map((f) => f.name),
-        ["Target", "Pronunciation", "English", "Category", "Hint", "Image", "Audio"],
+        ["Target", "Pronunciation", "English", "Category", "Hint", "Note", "Image", "Audio"],
       );
+      // Hint is on the FRONT of both cards; Note is on the back.
+      for (const t of model.tmpls) {
+        assert.match(
+          t.qfmt,
+          /\{\{#Hint\}\}<div class="hint-front">\{\{Hint\}\}<\/div>/,
+          `${t.name} front`,
+        );
+        assert.match(t.afmt, /\{\{#Note\}\}.*\{\{Note\}\}/s, `${t.name} back shows Note`);
+      }
 
       const firstNote = noteRows[0];
       const fields = firstNote.flds.split("\x1f");
@@ -229,7 +238,8 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       assert.strictEqual(fields[1], "konnichiwa");
       assert.strictEqual(fields[2], "Hello");
       assert.strictEqual(fields[3], "Greetings");
-      assert.strictEqual(fields[4], "informal too");
+      assert.strictEqual(fields[4], "informal too"); // Hint field ← card.hint
+      assert.strictEqual(fields[5], ""); // Note field ← card.note (none here)
 
       const ords = cardRows
         .filter((c) => c.nid === firstNote.id)

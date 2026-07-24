@@ -696,3 +696,17 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   Anki's own backups, not this tool's.
 - **When to revisit:** add an opt-in `--prune` to delete orphans; a full `.colpkg` backup if AnkiConnect
   gains a reliable action; a fresh-import path if delivering order ever becomes important.
+
+### Deliver auto-syncs with AnkiWeb, but a schema change still needs one manual Upload click
+- **What:** the deliverer calls AnkiConnect `sync` before (pull) and after (push) each run. A
+  content-only delivery syncs incrementally with no prompt; a delivery that changes the note-type SCHEMA
+  (adds a field, edits a template/CSS) forces a one-way full sync that Anki gates behind its GUI
+  Upload/Download dialog. AnkiConnect's `sync` can't answer that dialog, so the user must click "Upload
+  to AnkiWeb" once. The report sets `schemaChanged` so the CLI/dashboard warns about it.
+- **Why:** AnkiConnect exposes only `sync` (no direction, no `fullUpload`), and the full-sync direction
+  is a deliberate GUI decision in Anki. Sync failures are non-fatal (offline / no AnkiWeb creds) so they
+  never block a local delivery.
+- **Impact:** one unavoidable manual click on the rare deliveries that change fields/templates; none on
+  the common content-only deliveries.
+- **When to revisit:** if AnkiConnect ever adds a directional full-sync action, drive it from
+  `schemaChanged` to make even structural deliveries fully hands-off.

@@ -636,6 +636,13 @@ node scripts/deliver-to-anki.mjs course:my-course # limit to one deck (type:id)
 Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
 open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.
 
+**It syncs with AnkiWeb automatically** (default; `--no-sync` to skip): a `sync` before delivery (pull — so
+a review done on another device merges in before the push) and a `sync` after (push local → remote). A
+content-only delivery syncs incrementally with no prompt. A **schema change** (adding a field, editing a
+template) is the exception: Anki forces a one-way full sync gated behind its GUI **Upload/Download**
+dialog, which AnkiConnect can't answer — the tool flags `schemaChanged` and you click **Upload to AnkiWeb**
+once. Schema changes are rare (only when `FIELD_NAMES`/templates/CSS change), so this is a one-off.
+
 Notes ↔ cards map by a durable `abid:<card.id>` tag; on the FIRST run un-tagged notes are matched by the
 Japanese `Target` (falling back to `English` for shared-Target pairs, then a prefix match if a gloss was
 edited since import), then stamped. Anything it can't resolve uniquely (a genuine duplicate, a

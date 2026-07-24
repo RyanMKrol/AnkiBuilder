@@ -294,6 +294,7 @@ export async function deliverToAnki(
   {
     client,
     dry = false,
+    sync = true,
     now = () => Date.now(),
     adapters = ADAPTERS,
     backupRoot = resolve("anki-backups"),
@@ -319,6 +320,10 @@ export async function deliverToAnki(
       title: d.title,
       skipped: d.skipped || null,
     })),
+    syncedBefore: null,
+    syncedAfter: null,
+    syncError: null,
+    schemaChanged: false,
     structure: [],
     content: [],
     backedUp: [],
@@ -332,7 +337,22 @@ export async function deliverToAnki(
   for (const d of deliverable) specsByModel.set(d.spec.modelName, d.spec);
   const ankiParents = [...new Set(deliverable.map((d) => d.ankiParent))];
 
-  // 2. BACKUP (before any write; fail-closed). Skipped on a dry run (a dry run writes nothing).
+  // 2. SYNC BEFORE (pull remote → local). A safety net: even if a review happened on another device,
+  // it merges in before we push, so the later clobbering upload can't silently drop it. Non-fatal —
+  // a sync failure (offline, no AnkiWeb creds) doesn't block the local delivery. Skipped on a dry run.
+  if (sync && !dry) {
+    try {
+      await client.sync();
+      report.syncedBefore = true;
+      log("synced with AnkiWeb (pulled) before delivery");
+    } catch (e) {
+      report.syncedBefore = false;
+      report.syncError = e.message;
+      log(`sync-before failed (continuing): ${e.message}`);
+    }
+  }
+
+  // 3. BACKUP (before any write; fail-closed). Skipped on a dry run (a dry run writes nothing).
   if (!dry) {
     const stamp = new Date(now()).toISOString().replace(/[:.]/g, "-");
     const backupDir = join(backupRoot, stamp);
@@ -362,16 +382,36 @@ export async function deliverToAnki(
     writeFileSync(join(backupDir, "models.json"), JSON.stringify(snap, null, 2) + "\n");
   }
 
-  // 3. STRUCTURE SYNC (per unique model)
+  // 4. STRUCTURE SYNC (per unique model)
   for (const [, spec] of specsByModel) {
     report.structure.push(await syncStructure(client, spec, dry));
     log(`structure synced: ${spec.modelName}`);
   }
+  // A structural change (new field / template / CSS) bumps Anki's schema, which forces a one-way full
+  // sync that Anki gates behind its GUI Upload/Download dialog — so the sync-after below can't complete
+  // it unattended and the user must click Upload once. Surface it so the CLI/UI can warn.
+  report.schemaChanged = report.structure.some(
+    (s) => s.createModel || s.addedFields.length || s.templates || s.css,
+  );
 
-  // 4. CONTENT SYNC (per deck)
+  // 5. CONTENT SYNC (per deck)
   for (const deck of deliverable) {
     report.content.push(await syncDeckContent(client, deck, dry));
     log(`content synced: ${deck.type}:${deck.id}`);
+  }
+
+  // 6. SYNC AFTER (push local → remote). Content-only deliveries sync incrementally with no prompt; a
+  // schema-changing one still needs the manual Upload click (see schemaChanged). Non-fatal.
+  if (sync && !dry) {
+    try {
+      await client.sync();
+      report.syncedAfter = true;
+      log("synced with AnkiWeb (pushed) after delivery");
+    } catch (e) {
+      report.syncedAfter = false;
+      report.syncError = report.syncError || e.message;
+      log(`sync-after failed: ${e.message}`);
+    }
   }
 
   return report;

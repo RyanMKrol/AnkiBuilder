@@ -6,18 +6,22 @@
 // idempotent: run it twice and the second run is a no-op. See src/anki/deliver.js.
 //
 // Usage:
-//   node --env-file=.env scripts/deliver-to-anki.mjs [--dry] [type:id ...]
-//     --dry           preview the plan; read-only, writes nothing (no backup either)
+//   node --env-file=.env scripts/deliver-to-anki.mjs [--dry] [--no-sync] [type:id ...]
+//     --dry           preview the plan; read-only, writes nothing (no backup, no sync)
+//     --no-sync       don't sync with AnkiWeb before/after (default: sync both)
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
-// Anki must be open with the AnkiConnect add-on. --env-file is only needed if you later add audio-
+// Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
+// after (push) — a content-only delivery syncs with no prompt; a schema change (new field/template)
+// still needs one manual "Upload to AnkiWeb" click. --env-file is only needed if you later add audio-
 // bearing cards; the deliver itself makes no ElevenLabs calls.
 import { createAnkiConnect } from "../src/anki/ankiConnect.js";
 import { deliverToAnki } from "../src/anki/deliver.js";
 
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
-const selectorArgs = args.filter((a) => a !== "--dry");
+const sync = !args.includes("--no-sync");
+const selectorArgs = args.filter((a) => a !== "--dry" && a !== "--no-sync");
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
       const [type, id] = a.split(":");
@@ -38,6 +42,7 @@ try {
   report = await deliverToAnki(outputRoot, selectors, {
     client,
     dry,
+    sync,
     log: (m) => console.error(`  ${m}`),
   });
 } catch (e) {
@@ -80,5 +85,26 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+}
+
+// --- AnkiWeb sync ---
+if (dry) {
+  line(`\nsync: skipped (dry run)`);
+  if (report.schemaChanged) {
+    line(`  note: this delivery changes the note-type schema — the real run's sync will need a`);
+    line(`  one-time manual "Upload to AnkiWeb" click in Anki (schema changes force a full sync).`);
+  }
+} else if (!sync) {
+  line(`\nsync: skipped (--no-sync) — sync manually in Anki when ready`);
+} else {
+  const s = (v) => (v === true ? "ok" : v === false ? "FAILED" : "skipped");
+  line(`\nsync: before=${s(report.syncedBefore)}, after=${s(report.syncedAfter)}`);
+  if (report.syncError) line(`  ⚠ ${report.syncError}`);
+  if (report.schemaChanged) {
+    line(
+      `  ⚠ schema changed (new field/template) — Anki needs a one-time manual "Upload to AnkiWeb"`,
+    );
+    line(`     click to finish the full sync. Future content-only deliveries sync automatically.`);
+  }
 }
 line();

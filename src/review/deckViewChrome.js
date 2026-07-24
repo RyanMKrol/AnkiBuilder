@@ -414,7 +414,11 @@ export const DELIVER_SCRIPT = `(function () {
       }
       set("Delivering\\u2026");
       var done = await post(false);
-      set("Delivered. " + summarize(done) + " Backup: " + done.backupDir);
+      var msg2 = "Delivered. " + summarize(done);
+      if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
+      else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
+      if (done.schemaChanged) msg2 += " Note-type changed: click 'Upload to AnkiWeb' in Anki to finish the full sync.";
+      set(msg2 + " Backup: " + done.backupDir);
     } catch (e) {
       set("Failed: " + e.message);
     }

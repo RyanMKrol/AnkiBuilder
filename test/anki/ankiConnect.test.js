@@ -47,6 +47,9 @@ test("typed helpers send the right action + params", async () => {
 
   await anki.addTags([1, 2], "abid:hello");
   assert.deepEqual(calls.at(-1).body.params, { notes: [1, 2], tags: "abid:hello" });
+
+  await anki.sync();
+  assert.deepEqual(calls.at(-1).body, { action: "sync", version: 6, params: {} });
 });
 
 test("invoke throws when AnkiConnect returns an error", async () => {

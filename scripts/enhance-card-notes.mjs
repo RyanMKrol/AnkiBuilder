@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Teachability pass over a deck's user-facing `cardNote`s. Feeds the LLM the WHOLE book/course at once
-// (all lessons) so it can cross-reference related cards across lessons — e.g. おねがいします vs ください
-// "when to use which". Rewrites weak notes and adds context/comparisons; leaves `reviewNote` (internal)
+// Teachability pass over a deck's back-of-card `note`s. Feeds the LLM the WHOLE book/course at once
+// (all lessons, each tagged with its lesson index) so it can cross-reference related cards — BACKWARD
+// only (a card references earlier/same lessons, never later ones the learner hasn't met). Rewrites weak
+// notes and adds context/comparisons; leaves `reviewNote` (internal)
 // untouched. Updates cards.json + corpus.json in lockstep; backs up each to <file>.pre-enhance.bak.
 //
 // Usage: node scripts/enhance-card-notes.mjs [--dry] <bookOrCourseDir> [<dir> ...]
@@ -34,18 +35,21 @@ function lessonFiles(dir) {
 const PROMPT = (cards) =>
   [
     "You improve the teachability of Anki flashcard notes for an English speaker learning Japanese.",
-    "Below is ONE deck's COMPLETE ordered card list. For cards where a note genuinely helps a learner,",
-    "produce an improved `cardNote` (the note shown on the card). Return notes ONLY for cards you add or",
-    "improve; omit cards you'd leave unchanged.",
+    "Below is ONE deck's COMPLETE card list, each tagged with the `lesson` it appears in (the learner",
+    "studies lessons in order). For cards where a note genuinely helps a learner, produce an improved",
+    "back-of-card `note`. Return notes ONLY for cards you add or improve; omit cards you'd leave unchanged.",
     "",
-    "What makes a good cardNote:",
-    "1. CROSS-REFERENCE closely-related cards that appear in THIS deck. When two cards are easily confused",
-    "   or closely related — near-synonyms with a nuance difference, similar forms, different politeness —",
-    "   put a note on EACH explaining when to use which, naming the other card by its meaning + Japanese",
-    "   with romaji. e.g. for おねがいします: \"A polite request ('I request of you'); softer/more formal than",
-    "   ください (kudasai), which is more of a direct 'please give me'.\"",
+    "What makes a good note:",
+    "1. CROSS-REFERENCE closely-related cards — near-synonyms with a nuance difference, similar forms,",
+    "   different politeness — explaining when to use which, naming the other card by its meaning +",
+    "   Japanese with romaji. e.g. for おねがいします: \"A polite request ('I request of you'); softer/more",
+    "   formal than ください (kudasai), a more direct 'please give me'.\"",
+    "   COMPARE BACKWARD ONLY: a card may reference another card ONLY if that other card is in the SAME or",
+    "   an EARLIER lesson (its `lesson` ≤ this card's). NEVER reference a later lesson — the learner hasn't",
+    "   met it yet. So the comparison goes on the LATER card of a pair: e.g. その (sono) in a later lesson",
+    "   references それ (sore) from an earlier lesson, not the other way around.",
     "2. USAGE & register: when/how to use it, casual vs polite, what a particle/suffix attaches to, how it",
-    "   differs from a look-alike card.",
+    "   differs from a look-alike card the learner has already seen.",
     "3. Rewrite weak or thin existing notes to be clearer and genuinely useful.",
     "4. Atomic cards (single words, particles, set expressions) benefit most. A full sentence rarely needs",
     "   a note — add one only for a specific, non-obvious point.",
@@ -56,17 +60,18 @@ const PROMPT = (cards) =>
     "- Natural sentence-case English. Only compare cards that actually appear in the list below.",
     "- Do not invent facts; if unsure, leave the card out.",
     "",
-    'Return ONLY JSON: {"notes":[{"id":"…","cardNote":"…"}, …]}',
+    'Return ONLY JSON: {"notes":[{"id":"…","note":"…"}, …]}',
     "",
     "Cards:",
     JSON.stringify(
       cards.map((c) => ({
         id: c.id,
+        lesson: c.__lesson,
         english: c.english,
         target: c.target,
         romaji: c.pronunciation || c.reading || "",
         category: c.category,
-        currentNote: c.cardNote || "",
+        currentNote: c.note || c.cardNote || "",
       })),
       null,
       2,
@@ -81,8 +86,8 @@ function parseNotes(text, idSet) {
   if (!Array.isArray(notes)) throw new Error("no `notes` array");
   const out = new Map();
   for (const n of notes) {
-    if (n && typeof n.id === "string" && typeof n.cardNote === "string" && idSet.has(n.id))
-      out.set(n.id, n.cardNote.trim());
+    if (n && typeof n.id === "string" && typeof n.note === "string" && idSet.has(n.id))
+      out.set(n.id, n.note.trim());
   }
   return out;
 }
@@ -93,7 +98,11 @@ for (const dir of dirs) {
     continue;
   }
   const units = lessonFiles(dir);
-  const allCards = units.flatMap((u) => u.data.items);
+  // Tag each card (a copy — don't mutate the stored item) with its 1-based lesson index, so the model
+  // can enforce backward-only cross-references (compare against earlier/same lessons only).
+  const allCards = units.flatMap((u, li) =>
+    u.data.items.map((it) => ({ ...it, __lesson: li + 1 })),
+  );
   const idSet = new Set(allCards.map((c) => c.id));
   console.error(
     `${dir}: ${allCards.length} cards across ${units.length} lesson(s) → asking the model…`,
@@ -112,9 +121,9 @@ for (const dir of dirs) {
     let shown = 0;
     for (const u of units)
       for (const it of u.data.items) {
-        if (!notes.has(it.id) || notes.get(it.id) === (it.cardNote || "")) continue;
+        if (!notes.has(it.id) || notes.get(it.id) === (it.note || "")) continue;
         console.log(`  [${it.english} / ${it.target}]`);
-        console.log(`     ${it.cardNote ? "was: " + it.cardNote : "(no note)"}`);
+        console.log(`     ${it.note ? "was: " + it.note : "(no note)"}`);
         console.log(`     now: ${notes.get(it.id)}`);
         if (++shown >= 30) {
           console.log("  …(dry preview capped at 30)");
@@ -128,8 +137,8 @@ for (const dir of dirs) {
   for (const u of units) {
     let changed = 0;
     for (const it of u.data.items) {
-      if (notes.has(it.id) && notes.get(it.id) !== (it.cardNote || "")) {
-        it.cardNote = notes.get(it.id);
+      if (notes.has(it.id) && notes.get(it.id) !== (it.note || "")) {
+        it.note = notes.get(it.id);
         changed++;
       }
     }
@@ -141,8 +150,8 @@ for (const dir of dirs) {
       const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
       let cc = 0;
       for (const it of corpus.items || []) {
-        if (notes.has(it.id) && notes.get(it.id) !== (it.cardNote ?? "")) {
-          it.cardNote = notes.get(it.id);
+        if (notes.has(it.id) && notes.get(it.id) !== (it.note ?? "")) {
+          it.note = notes.get(it.id);
           cc++;
         }
       }

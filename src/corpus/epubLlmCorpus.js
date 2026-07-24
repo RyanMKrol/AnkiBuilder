@@ -27,10 +27,12 @@ export function assembleCorpusFromChapter({
       id: item.id,
       english: item.english,
       category: item.category,
-      // Split note fields (superset shape, null when absent): cardNote → the Anki card + viewer +
-      // review; reviewNote → review gates only, never shown to a learner. A legacy blended `notes`
-      // (from an older prompt) is routed to reviewNote so nothing user-facing leaks unreviewed.
-      cardNote: item.cardNote ?? null,
+      // Note fields (superset shape, null when absent): `hint` → front-of-card cue; `note` → back-of-card
+      // context (both shown to the learner); `reviewNote` → review gates only, never shown. A legacy
+      // `cardNote` folds into `note`; a legacy blended `notes` routes to `reviewNote` so nothing
+      // user-facing leaks unreviewed.
+      hint: item.hint ?? null,
+      note: item.note ?? item.cardNote ?? null,
       reviewNote: item.reviewNote ?? item.notes ?? null,
       target: item.target ?? null,
     };

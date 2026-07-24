@@ -372,17 +372,26 @@ I'll edit `cards.json`). Excluding a card writes a reversible `excluded` flag: t
 skips excluded cards** (no TTS spent, `audio` cleared so no player shows) AND the **deck build drops
 them**. Un-excluding a card and re-running `audio` regenerates its clip.
 
-**Two note fields — and a `cardNote` that quotes the target script ALWAYS shows its pronunciation in
-brackets.** Every card carries two separate notes (see the review's **Note** + **Review note** columns):
-**`cardNote`** is user-facing context shown on the Anki card (when/how to use it, how it differs from a
-similar card, word relationships); **`reviewNote`** is internal rationale (why `uncertain` / why
-`aiSuggested`) shown ONLY at the review gate, never in the deck or viewer. When a **`cardNote`**
-references other {{TARGET}}-language text written in a **non-Roman script** (Japanese kana/kanji, but
-also Cyrillic, Hebrew, Arabic, Greek, …), **always follow that text immediately with its romanization
-in parentheses** — `はじめまして (hajimemashite)`, `お (o) + かし (kashi) = おかし (okashi)` — because a
-learner reading the note may not yet read the script. This is a `cardNote`-only rule (the learner sees
-it); `reviewNote` is internal and needs no romanization. The extraction prompt now enforces this
-(`docs/epub-extraction-prompt.md`); apply it by hand whenever you author or edit a `cardNote`.
+**Three note fields — front `hint`, back `note`, internal `reviewNote`.** Each card carries three
+distinct note fields (the review shows a **Hint** + **Note** + **Review note** column):
+- **`hint`** — a short FRONT-of-card cue (shown small/italic under the prompt on BOTH card templates)
+  that helps the learner produce/recall the answer. Its main job is **disambiguation**: when two cards
+  share a `target` (e.g. しつれいします (shitsurei shimasu) = both "excuse me, entering" and "goodbye,
+  formal"), the hint tells them apart. Textbook contextual parentheticals live here — "Excuse me. (said
+  when entering a room)" becomes `english` "Excuse me." + `hint` "said when entering a room". Keep
+  meaning-integral parentheticals like "(person)" in the `english`.
+- **`note`** — BACK-of-card context shown after answering (when/how to use it, register, how it differs
+  from a related card, cross-references). Renamed from the old `cardNote`.
+- **`reviewNote`** — internal rationale (why `uncertain` / why `aiSuggested`), shown ONLY at the review
+  gate, NEVER in the deck or viewer.
+
+**Any `hint`/`note` that quotes non-Roman target script ALWAYS shows its romanization in brackets** —
+`はじめまして (hajimemashite)`, `お (o) + かし (kashi) = おかし (okashi)` — because the learner may not
+yet read the script (this is a learner-facing rule; `reviewNote` is internal and needs none).
+**Back-note cross-references look BACKWARD only** — a card may compare itself to a card from the SAME or
+an EARLIER lesson, never a later one the learner hasn't met (so その (sono) references それ (sore) from
+an earlier lesson, not vice-versa). The extraction prompt enforces all of this
+(`docs/epub-extraction-prompt.md`); apply it by hand when you author or edit a `hint`/`note`.
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves

@@ -17,11 +17,12 @@ test("assembleCorpusFromChapter() wraps extracted items into a schema-valid corp
   assert.strictEqual(corpus.meta.reviewed, false);
   assert.strictEqual(corpus.items.length, 1);
   assert.strictEqual(corpus.items[0].target, "こんにちは");
-  assert.strictEqual(corpus.items[0].cardNote, null);
+  assert.strictEqual(corpus.items[0].hint, null);
+  assert.strictEqual(corpus.items[0].note, null);
   assert.strictEqual(corpus.items[0].reviewNote, null);
 });
 
-test("assembleCorpusFromChapter() carries cardNote/reviewNote; routes a legacy blended notes → reviewNote", () => {
+test("assembleCorpusFromChapter() carries hint/note/reviewNote; folds legacy cardNote→note, notes→reviewNote", () => {
   const corpus = assembleCorpusFromChapter({
     chapterFilePath: "/tmp/chapter.xhtml",
     targetLanguage: "Japanese",
@@ -32,24 +33,27 @@ test("assembleCorpusFromChapter() carries cardNote/reviewNote; routes a legacy b
           english: "Please",
           target: "おねがいします",
           category: "Greetings",
-          cardNote: "polite request",
+          hint: "when making a polite request",
+          note: "polite request",
           reviewNote: "source shows 〜を おねがいします",
         },
-        // A legacy extractor that still emits a blended `notes` → routed to reviewNote (never leaks).
+        // A legacy extractor that emits cardNote (→ note) and a blended `notes` (→ reviewNote).
         {
           id: "legacy",
           english: "Hello",
           target: "こんにちは",
           category: "Greetings",
-          notes: "a hint",
+          cardNote: "everyday greeting",
+          notes: "a review rationale",
         },
       ]),
   });
 
-  assert.strictEqual(corpus.items[0].cardNote, "polite request");
+  assert.strictEqual(corpus.items[0].hint, "when making a polite request");
+  assert.strictEqual(corpus.items[0].note, "polite request");
   assert.strictEqual(corpus.items[0].reviewNote, "source shows 〜を おねがいします");
-  assert.strictEqual(corpus.items[1].cardNote, null);
-  assert.strictEqual(corpus.items[1].reviewNote, "a hint");
+  assert.strictEqual(corpus.items[1].note, "everyday greeting"); // legacy cardNote → note
+  assert.strictEqual(corpus.items[1].reviewNote, "a review rationale"); // legacy notes → reviewNote
 });
 
 test("assembleCorpusFromChapter() preserves uncertain/aiSuggested flags when true, omits when false/absent", () => {

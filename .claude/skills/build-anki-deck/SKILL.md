@@ -393,6 +393,25 @@ an EARLIER lesson, never a later one the learner hasn't met (so その (sono) re
 an earlier lesson, not vice-versa). The extraction prompt enforces all of this
 (`docs/epub-extraction-prompt.md`); apply it by hand when you author or edit a `hint`/`note`.
 
+**`category` is REQUIRED on every card and is SHOWN ON THE CARD FRONT.** Category is never optional —
+the schema requires it, the extraction validates it against the fixed enum in `src/model/categories.js`
+(fall back to `"Other"` only when nothing fits), and the dictated-lesson path auto-assigns it. The deck
+build renders a small category chip on the FRONT of both templates (Recognition and Production), so a
+word is always studied *with* its domain — you don't recognize/produce a word cold, out of context. A
+card missing a category is a bug; if you author cards by hand, set one.
+
+**Run a whole-book TEACHABILITY / CROSS-REFERENCE pass after a book's lessons are built.** The
+extraction runs one chapter at a time, so it can only cross-reference within that chapter — genuinely
+useful comparisons that span lessons (おねがいします vs ください, the greeting time-chain, その vs それ)
+have to be added by a pass that sees the WHOLE book at once. After a book/course's chapters are
+assembled, run `scripts/enhance-card-notes.mjs <bookDir>` (Sonnet, `ANKI_BUILDER_TRANSLATE_EFFORT=high`):
+it feeds every lesson (each tagged with its lesson index) to the model and adds/rewrites back-`note`s
+with **backward-only** comparisons (per the rule above), leaving `hint`/`reviewNote` untouched and
+backing up each file. This is what turns a flat vocabulary list into a connected knowledge base where
+each card knows what came before it. (Companion one-off migrations for older decks live alongside it:
+`split-front-hint.mjs` splits front hints out of the English, `romanize-card-notes.mjs` adds readings,
+`jumble-number-runs.mjs` de-sequences number runs — each reversible via a `.bak`.)
+
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves
 the reviewed (excluded-filtered) corpus to the dedup library for later chapters' backward-dedup. Then
@@ -582,9 +601,24 @@ If something looks wrong (missing translations, bad pronunciation, etc.), you ca
 **Re-import updates in place but does NOT reorder.** Note GUIDs are the deterministic `card.id`, so
 re-importing a rebuilt deck updates each existing card's fields where it already sits — it never
 duplicates. But Anki keeps the existing cards' **positions and scheduling**, so a changed pedagogical
-order (e.g. after adding/removing/reordering cards) only takes effect on a **fresh** import. Delete the
-old deck in Anki first if you want the new order to apply; otherwise the field updates land but the
-old order stays.
+order (e.g. after adding/removing/reordering cards, or the number-jumble) only takes effect on a
+**fresh** import. Delete the old deck in Anki first if you want the new order to apply; otherwise the
+field updates land but the old order stays.
+
+**What re-import DOES vs. does NOT pick up (this trips people up):**
+
+- **Field content** (a fixed translation, a new `hint`/`note`, romanized notes) → picked up **in
+  place** on a normal re-import, **keeping all scheduling**. Just re-import.
+- **Card ORDER** (the jumble, reordering) → NOT applied on update; needs a **fresh** import (delete the
+  deck first). Only matters for cards not yet started (scheduling, not position, drives review order).
+- **Note-type STRUCTURE** — new/changed card templates (e.g. the category chip, the front `hint`), CSS,
+  or a **new field** (like adding `Note`) → Anki keeps your EXISTING note type on a same-id import, so
+  these **silently don't apply**. Two ways to land them without losing progress: (a) **update the note
+  type in place via AnkiConnect** (`updateModelTemplates` / `updateModelStyling` / `modelFieldAdd` on
+  `AnkiBuilder <lang>` — one note type governs every project card, so one update restyles them all), OR
+  (b) delete the deck + note type and import fresh (loses scheduling — first take a scheduling-preserving
+  backup via AnkiConnect `exportPackage` with `includeSched:true`, or File → Export → `.colpkg`).
+  **Before any structural change or fresh import, snapshot the collection** so progress is recoverable.
 
 ## Command Reference
 

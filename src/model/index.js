@@ -47,15 +47,20 @@ const CORPUS_SCHEMA = {
           id: { type: "string" },
           english: { type: "string" },
           category: { type: "string", enum: CATEGORIES },
-          // User-facing contextual note SHOWN ON THE ANKI CARD (when to use it, how it differs from a
-          // similar sentence). Distinct from `reviewNote`, which is internal-only. Both are null when
-          // absent. `cardNote` is the successor to the legacy blended `notes` field.
-          cardNote: { type: ["string", "null"] },
+          // FRONT-of-card cue that helps the learner produce/recall the right answer — a short
+          // disambiguator (e.g. "said when entering a room" for a card that shares its target with
+          // another). Shown small under the prompt on BOTH card templates. Distinct from `note`.
+          hint: { type: ["string", "null"] },
+          // BACK-of-card context shown after answering (when/how to use it, how it differs from a
+          // related card, cross-references). Renamed from `cardNote`. Internal-only rationale lives in
+          // `reviewNote` and is NEVER shown in the deck.
+          note: { type: ["string", "null"] },
           // Internal review-only rationale — why an item is `uncertain` or `aiSuggested`. Shown ONLY at
           // the dashboard review gates; NEVER embedded in the deck or shown in the read-only viewer.
           reviewNote: { type: ["string", "null"] },
-          // Legacy blended note (superseded by cardNote/reviewNote). Kept optional so pre-split
-          // corpus.json still validates; the migration re-splits it into the two fields above.
+          // Legacy aliases for `note`, kept optional so pre-rename corpus.json still validates; the
+          // migration folds `cardNote`/`notes` into `note` and splits out `hint`.
+          cardNote: { type: ["string", "null"] },
           notes: { type: ["string", "null"] },
           target: { type: ["string", "null"] },
           // Optional spoken form: the target text with anything the romanizer/TTS
@@ -106,11 +111,12 @@ const CARDS_SCHEMA = {
           id: { type: "string" },
           english: { type: "string" },
           category: { type: "string" },
-          // User-facing contextual note shown on the Anki card + in the viewer + in review. See the
-          // corpus schema above. `reviewNote` is internal-only (review gates), never in the deck/viewer.
+          // Back-of-card context (see corpus schema). Renamed from `cardNote`. `reviewNote` is
+          // internal-only (review gates), never in the deck/viewer.
+          note: { type: ["string", "null"] },
           cardNote: { type: ["string", "null"] },
           reviewNote: { type: ["string", "null"] },
-          // Legacy blended note, superseded by cardNote/reviewNote — kept optional for back-compat.
+          // Legacy blended note, superseded by note — kept optional for back-compat.
           notes: { type: "string" },
           target: { type: "string" },
           pronunciation: { type: "string" },
@@ -120,7 +126,9 @@ const CARDS_SCHEMA = {
           // face shows (e.g. kanji 二十一); `reading` is only what TTS pronounces
           // (にじゅういち), sidestepping ambiguous readings of logographic scripts.
           reading: { type: "string" },
-          hint: { type: "string" },
+          // FRONT-of-card cue (disambiguator) shown small under the prompt on both templates. Repurposed
+          // from the old rarely-used back-note fallback; the migration moves any legacy value into `note`.
+          hint: { type: ["string", "null"] },
           image: { type: "string" },
           audio: { type: "string" },
           // Legacy optional second recording. The audio stage no longer writes this (only the default

@@ -6,7 +6,17 @@ import { tmpdir } from "os";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
 
-const FIELD_NAMES = ["Target", "Pronunciation", "English", "Category", "Hint", "Image", "Audio"];
+// "Hint" is the FRONT-of-card cue (card.hint); "Note" is the BACK-of-card context (card.note).
+const FIELD_NAMES = [
+  "Target",
+  "Pronunciation",
+  "English",
+  "Category",
+  "Hint",
+  "Note",
+  "Image",
+  "Audio",
+];
 const FIELD_SEP = "\x1f";
 const DEFAULT_DECK_ID = 1;
 // The single-deck path's own deck (buildCollection) and the multi-deck path's book/
@@ -150,11 +160,11 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
         {
           name: "Recognition",
           ord: 0,
-          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}<br>{{Audio}}',
+          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}<br>{{Audio}}',
           afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
-{{#Hint}}<div class="field"><div class="field-label">Note</div><div class="hint">{{Hint}}</div></div>{{/Hint}}
+{{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
 {{#Image}}<div class="field">{{Image}}</div>{{/Image}}`,
           did: null,
           bqfmt: "",
@@ -163,11 +173,11 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
         {
           name: "Production",
           ord: 1,
-          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}',
+          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}',
           afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
-{{#Hint}}<div class="field"><div class="field-label">Note</div><div class="hint">{{Hint}}</div></div>{{/Hint}}
+{{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
 {{#Image}}<div class="field">{{Image}}</div>{{/Image}}
 {{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
           did: null,
@@ -214,9 +224,15 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
   font-weight: 400;
   color: #555555;
 }
-.hint {
+.note-back {
   font-size: 14px;
   color: #888888;
+}
+.hint-front {
+  font-size: 13px;
+  font-style: italic;
+  color: #9a9284;
+  margin-top: 8px;
 }
 .cat-chip {
   font-size: 11px;
@@ -346,9 +362,11 @@ function fieldValue(card, name) {
     case "Category":
       return card.category || "";
     case "Hint":
-      // The user-facing card note (context/usage). NEVER the internal reviewNote. `hint` is the legacy
-      // field name kept as a fallback for old cards.json that predate cardNote.
-      return card.cardNote || card.hint || "";
+      // FRONT-of-card cue (disambiguator). NEVER the internal reviewNote.
+      return card.hint || "";
+    case "Note":
+      // BACK-of-card context. `cardNote` is the pre-rename alias, kept for back-compat.
+      return card.note || card.cardNote || "";
     case "Image":
       return card.image ? `<img src="${card.image}">` : "";
     case "Audio":

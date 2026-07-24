@@ -35,15 +35,15 @@ a.plain{color:inherit;text-decoration:none}a.back{font-size:13px;color:var(--acc
 .bar button:hover{border-color:var(--accent)}
 table{width:100%;border-collapse:collapse;table-layout:fixed}
 thead th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:10px 12px 8px;border-bottom:1px solid var(--rule2);vertical-align:bottom;overflow-wrap:anywhere}
-col.c-num{width:48px}col.c-en{width:24%}col.c-jp{width:22%}col.c-pron{width:15%}col.c-au{width:180px}col.c-note{width:auto}
+col.c-num{width:48px}col.c-en{width:24%}col.c-jp{width:22%}col.c-pron{width:15%}col.c-au{width:180px}col.c-hint{width:150px}col.c-note{width:auto}
 col.c-cat{width:13%}col.c-flags{width:150px}col.c-flag{width:120px}col.c-excl{width:104px}
 /* Flag-bearing stages (corpus / translate) mix an auto NOTE column with several fixed-px columns; on a
    narrow viewport the auto column collapses to ~0 and its header spills onto the next one. Give every
    column a real px width and the table a min-width, so it scrolls in its .tw wrapper instead of crushing. */
-table.tbl-corpus{min-width:900px}
-.tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:260px}.tbl-corpus col.c-cat{width:150px}.tbl-corpus col.c-note{width:196px}.tbl-corpus col.c-flag{width:125px}
-table.tbl-translate{min-width:1160px}
-.tbl-translate col.c-num{width:44px}.tbl-translate col.c-en{width:210px}.tbl-translate col.c-cat{width:130px}.tbl-translate col.c-jp{width:200px}.tbl-translate col.c-pron{width:150px}.tbl-translate col.c-note{width:120px}.tbl-translate col.c-flag{width:106px}.tbl-translate col.c-excl{width:100px}
+table.tbl-corpus{min-width:1070px}
+.tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:240px}.tbl-corpus col.c-cat{width:140px}.tbl-corpus col.c-hint{width:170px}.tbl-corpus col.c-note{width:196px}.tbl-corpus col.c-flag{width:120px}
+table.tbl-translate{min-width:1310px}
+.tbl-translate col.c-num{width:44px}.tbl-translate col.c-en{width:200px}.tbl-translate col.c-cat{width:120px}.tbl-translate col.c-jp{width:190px}.tbl-translate col.c-pron{width:140px}.tbl-translate col.c-hint{width:150px}.tbl-translate col.c-note{width:120px}.tbl-translate col.c-flag{width:104px}.tbl-translate col.c-excl{width:96px}
 /* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
    would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
    crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */
@@ -52,7 +52,7 @@ table.tbl-translate{min-width:1160px}
    rest are PERCENTAGES so English/Japanese/Note/Review-note share the remaining space and the notes
    just wrap into more lines rather than pushing the table off-screen. Percentages sum to ~72%, leaving
    headroom for the ~268px of fixed columns at any reasonable width. */
-.tbl-audio.tbl-wide col.c-num{width:40px}.tbl-audio.tbl-wide col.c-en{width:15%}.tbl-audio.tbl-wide col.c-jp{width:14%}.tbl-audio.tbl-wide col.c-pron{width:10%}.tbl-audio.tbl-wide col.c-au{width:184px}.tbl-audio.tbl-wide col.c-note{width:15%}.tbl-audio.tbl-wide col.c-excl{width:44px}.tbl-audio.tbl-wide col.c-rnote{width:18%}
+.tbl-audio.tbl-wide col.c-num{width:40px}.tbl-audio.tbl-wide col.c-en{width:13%}.tbl-audio.tbl-wide col.c-jp{width:12%}.tbl-audio.tbl-wide col.c-pron{width:9%}.tbl-audio.tbl-wide col.c-au{width:184px}.tbl-audio.tbl-wide col.c-hint{width:12%}.tbl-audio.tbl-wide col.c-note{width:14%}.tbl-audio.tbl-wide col.c-excl{width:44px}.tbl-audio.tbl-wide col.c-rnote{width:16%}
 th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
@@ -63,6 +63,8 @@ td.pron{font-family:var(--mono);font-size:12px;color:var(--soft)}
 /* Fill the audio column but never overflow it (which would spill the player onto the Note column). */
 td.au audio{height:30px;width:100%;max-width:168px}.x{color:var(--faint)}
 td.note{font-size:12px;color:var(--soft)}
+/* Front-of-card hint (disambiguator) — italic + muted to set it apart from the back Note. */
+td.hint-col{font-size:12px;color:var(--faint);font-style:italic}
 /* Review-only internal note (uncertainty / AI-suggestion rationale) — visually set apart (amber,
    italic) from the user-facing card Note so a reviewer never confuses the two. Never shown in the deck. */
 col.c-rnote{width:220px}
@@ -397,25 +399,27 @@ const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
 const rowExtra = (ctx, stage, c) => (ctx.rowControl ? ctx.rowControl(stage, c) : "");
 const STAGE_TABLES = {
   audio: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-note">`,
-    head: `<th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Note</th>`,
+    cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-hint"><col class="c-note">`,
+    head: `<th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Hint</th><th>Note</th>`,
     cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}${inlineFlags(c)}</td>
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   <td class="au">${ctx.audioCell(c)}</td>
-  <td class="note">${c.cardNote ? escapeHtml(c.cardNote) : ""}</td>`,
+  <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
   // Pre-translate placeholder — READ-ONLY. A corpus.json-only lesson isn't reviewable yet (no target
   // to check); the combined Corpus review happens post-translate (the `translate` preset below). No
   // Exclude column here.
   corpus: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-note"><col class="c-flag"><col class="c-flag">`,
-    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th>`,
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-hint"><col class="c-note"><col class="c-flag"><col class="c-flag">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Hint</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th>`,
     cells: (c) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="note">${c.cardNote ? escapeHtml(c.cardNote) : ""}</td>
+  <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>`,
   },
@@ -424,14 +428,15 @@ const STAGE_TABLES = {
   // inline-editable Target / Pronunciation, then Note, the AI / Uncertain provenance ticks, and the
   // Exclude checkbox.
   translate: {
-    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-pron"><col class="c-note"><col class="c-flag"><col class="c-flag"><col class="c-excl">`,
-    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Pronunciation</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th><th></th>`,
+    cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-pron"><col class="c-hint"><col class="c-note"><col class="c-flag"><col class="c-flag"><col class="c-excl">`,
+    head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Pronunciation</th><th>Hint</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th><th></th>`,
     cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
   <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
-  <td class="note">${c.cardNote ? escapeHtml(c.cardNote) : ""}</td>
+  <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>
   <td class="excl-cell">${rowExtra(ctx, "translate", c)}</td>`,

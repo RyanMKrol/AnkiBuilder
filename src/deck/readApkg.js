@@ -93,12 +93,16 @@ export function readApkg(apkgPath, { readFile = readFileSync } = {}) {
       const audioData = audioName ? mediaByRealName.get(audioName) || null : null;
 
       if (!sectionsByName.has(deckName)) sectionsByName.set(deckName, []);
+      // New decks split Hint (front cue) from Note (back context). Older decks had only a "Hint" field
+      // that held the back note — so when there's no Note field, fall back to Hint for `note`.
+      const hasNote = f.Note !== undefined;
       sectionsByName.get(deckName).push({
         english: f.English || "",
         target: f.Target || "",
         pronunciation: f.Pronunciation || "",
         category: f.Category || "",
-        note: f.Hint || "",
+        hint: hasNote ? f.Hint || "" : "",
+        note: hasNote ? f.Note || "" : f.Hint || "",
         audioName,
         audioData,
       });

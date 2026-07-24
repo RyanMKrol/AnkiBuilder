@@ -421,9 +421,15 @@ tips, and — highest-value — **false-friend disambiguations**: a card that re
 already knows but in a different role, e.g. どこ (doko) "where is it?" vs どこの (doko no) "which place's /
 what make of" (それはどこのコーヒーカップですか), だれ (dare) "who" vs だれの (dare no) "whose", or a pronoun
 vs a determiner (それ (sore) "that one" vs その (sono) "that ___"). These are the cards a learner silently
-misreads, so a full sentence that hinges on one earns a note even though sentences usually don't. (Companion one-off migrations for older decks live alongside it:
+misreads, so a full sentence that hinges on one earns a note even though sentences usually don't. A note
+must ALWAYS add something the card doesn't already show — **never restate the card.** A note that just
+repeats the English gloss ("Where is the wine shop?") or re-gives the reading already in Pronunciation
+("First floor (read いっかい)") teaches nothing; most number/counter cards and self-evident sentences
+should have NO note. The extraction prompt is told not to emit these, and the enhance pass now DELETES a
+note that only restates its card. (Companion one-off migrations for older decks live alongside it:
 `split-front-hint.mjs` splits front hints out of the English, `romanize-card-notes.mjs` adds readings,
-`jumble-number-runs.mjs` de-sequences number runs — each reversible via a `.bak`.)
+`jumble-number-runs.mjs` de-sequences number runs, `strip-restatement-notes.mjs` clears notes that just
+echo the card — each reversible via a `.bak`.)
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves

@@ -65,6 +65,11 @@ const PROMPT = (cards, currentLesson) =>
     "5. Atomic cards (single words, particles, set expressions) benefit most. A full sentence usually needs",
     "   no note — but DO add one when the sentence hinges on a false-friend distinction (point 2) or another",
     "   specific, non-obvious point.",
+    "6. REMOVE useless notes. If a current-lesson card's existing note merely RESTATES the card — repeats",
+    '   the English gloss (e.g. note "Where is the wine shop?" on that same sentence) or re-gives the',
+    '   reading already shown (e.g. "First floor (read いっかい)") — and you have nothing genuinely useful to',
+    '   add, return it with an EMPTY note ("note": "") to delete it. A note must add to the lesson, never',
+    "   echo it. Most number/counter cards and self-evident sentences should end up with NO note.",
     "",
     "Rules:",
     "- ALWAYS follow any Japanese script in the note with its romaji in parentheses: はじめまして (hajimemashite).",
@@ -144,7 +149,8 @@ for (const dir of dirs) {
     let changed = 0;
     for (const it of currentUnit.data.items) {
       if (notes.has(it.id) && notes.get(it.id) !== (it.note || "")) {
-        it.note = notes.get(it.id);
+        // An empty returned note means "delete this restatement" → store null, not "".
+        it.note = notes.get(it.id) || null;
         changed++;
       }
     }
@@ -160,7 +166,7 @@ for (const dir of dirs) {
       let cc = 0;
       for (const it of corpus.items || []) {
         if (notes.has(it.id) && notes.get(it.id) !== (it.note ?? "")) {
-          it.note = notes.get(it.id);
+          it.note = notes.get(it.id) || null;
           cc++;
         }
       }

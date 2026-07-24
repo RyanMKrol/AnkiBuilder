@@ -146,55 +146,35 @@ CREATE INDEX ix_notes_csum on notes (csum);
 // `nowSeconds`: epoch SECONDS — every JSON-embedded `mod` field in this file (model,
 // deck, dconf) uses seconds, matching notes.mod/cards.mod, NOT the milliseconds used
 // by col.mod/col.scm or by note/card `id`s. See writeCollectionDb's own comment.
-function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
-  return {
-    [modelId]: {
-      id: modelId,
-      name: modelName,
-      type: 0,
-      mod: nowSeconds,
-      usn: -1,
-      sortf: 0,
-      did: DECK_ID,
-      tmpls: [
-        {
-          name: "Recognition",
-          ord: 0,
-          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}<br>{{Audio}}',
-          afmt: `{{FrontSide}}<hr id=answer>
+// The two card templates and the base CSS are the SINGLE SOURCE OF TRUTH for the note type's visual
+// structure, shared by the `.apkg` builder (`buildModel`) and the AnkiConnect deliverer
+// (`noteTypeSpec`). Keep them here so the two delivery paths can never drift. Templates carry only
+// `{name, qfmt, afmt}` — the shape AnkiConnect's `updateModelTemplates`/`createModel` accept; the
+// `.apkg` path adds the extra sqlite fields (`ord`, `did`, `bqfmt`, `bafmt`) in `buildModel`.
+const CARD_TEMPLATES = [
+  {
+    name: "Recognition",
+    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}<br>{{Audio}}',
+    afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
 {{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
 {{#Image}}<div class="field">{{Image}}</div>{{/Image}}`,
-          did: null,
-          bqfmt: "",
-          bafmt: "",
-        },
-        {
-          name: "Production",
-          ord: 1,
-          qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}',
-          afmt: `{{FrontSide}}<hr id=answer>
+  },
+  {
+    name: "Production",
+    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}',
+    afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
 {{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
 {{#Image}}<div class="field">{{Image}}</div>{{/Image}}
 {{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
-          did: null,
-          bqfmt: "",
-          bafmt: "",
-        },
-      ],
-      flds: FIELD_NAMES.map((name, ord) => ({
-        name,
-        ord,
-        sticky: false,
-        rtl: false,
-        font: "Arial",
-        size: 20,
-        media: [],
-      })),
-      css: `.card {
+  },
+];
+
+// Base note-type CSS. Per-language font CSS is appended at build time (see `modelCss`).
+const BASE_CSS = `.card {
   font-family: arial;
   font-size: 20px;
   text-align: center;
@@ -241,7 +221,59 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
   letter-spacing: 0.08em;
   color: #a08a5a;
   margin-bottom: 14px;
-}${fontDescriptor ? "\n" + languageFontCss(fontDescriptor) : ""}`,
+}`;
+
+// Base CSS + the language's embedded @font-face, if any. Identical for the .apkg and AnkiConnect paths.
+function modelCss(fontDescriptor) {
+  return `${BASE_CSS}${fontDescriptor ? "\n" + languageFontCss(fontDescriptor) : ""}`;
+}
+
+// The complete note-type definition for a target language, in AnkiConnect terms: the model name/id,
+// ordered fields, card templates ({name, qfmt, afmt}), and the full CSS. This is what the deliverer
+// pushes via createModel/updateModelTemplates/updateModelStyling, and what `buildModel` embeds into the
+// `.apkg`. One definition, two consumers — so a field/template/CSS change propagates to Anki on the
+// next deliver. `getFont` is injectable (tests turn font embedding off).
+function noteTypeSpec(targetLanguage, { getFont = getLanguageFont } = {}) {
+  const { modelId, modelName, fontDescriptor } = resolveModelSpec(targetLanguage, getFont);
+  return {
+    modelName,
+    modelId,
+    fields: [...FIELD_NAMES],
+    templates: CARD_TEMPLATES.map((t) => ({ name: t.name, qfmt: t.qfmt, afmt: t.afmt })),
+    css: modelCss(fontDescriptor),
+    fontDescriptor,
+  };
+}
+
+function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
+  return {
+    [modelId]: {
+      id: modelId,
+      name: modelName,
+      type: 0,
+      mod: nowSeconds,
+      usn: -1,
+      sortf: 0,
+      did: DECK_ID,
+      tmpls: CARD_TEMPLATES.map((t, ord) => ({
+        name: t.name,
+        ord,
+        qfmt: t.qfmt,
+        afmt: t.afmt,
+        did: null,
+        bqfmt: "",
+        bafmt: "",
+      })),
+      flds: FIELD_NAMES.map((name, ord) => ({
+        name,
+        ord,
+        sticky: false,
+        rtl: false,
+        font: "Arial",
+        size: 20,
+        media: [],
+      })),
+      css: modelCss(fontDescriptor),
       latexPre:
         "\\documentclass[12pt]{article}\\special{papersize=3in,5in}\\usepackage[utf8]{inputenc}\\usepackage{amssymb,amsmath}\\pagestyle{empty}\\setlength{\\parindent}{0in}\\begin{document}",
       latexPost: "\\end{document}",
@@ -536,4 +568,4 @@ export function buildMultiDeckCollection(
   });
 }
 
-export { FIELD_NAMES, languageLabel, languageModelId };
+export { FIELD_NAMES, languageLabel, languageModelId, noteTypeSpec, fieldValue };

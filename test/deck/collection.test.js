@@ -8,6 +8,8 @@ import {
   buildCollection,
   buildMultiDeckCollection,
   languageModelId,
+  noteTypeSpec,
+  FIELD_NAMES,
 } from "../../src/deck/collection.js";
 
 function withTempDb(bytes, fn) {
@@ -288,6 +290,37 @@ test("note type is per-language: ja → 'AnkiBuilder ja', a stable id, and the e
     const conf = JSON.parse(db.prepare("SELECT conf FROM col").get().conf);
     assert.equal(conf.curModel, languageModelId("ja"));
   });
+});
+
+test("noteTypeSpec exposes the fields in FIELD_NAMES order", () => {
+  assert.deepEqual(noteTypeSpec("ja").fields, FIELD_NAMES);
+});
+
+test("noteTypeSpec matches what buildCollection embeds — the two consumers can't drift", () => {
+  // The .apkg builder and the AnkiConnect deliverer both derive from noteTypeSpec's constants, so the
+  // model embedded in a built collection must equal the spec (name, css, templates, field order).
+  for (const lang of ["ja", "es"]) {
+    const spec = noteTypeSpec(lang);
+    const bytes = buildCollection(
+      { meta: { targetLanguage: lang }, items: cardsOf("Hello").items },
+      { deckName: "D", now: 1_700_000_000_000 },
+    );
+    withTempDb(bytes, (db) => {
+      const m = Object.values(JSON.parse(db.prepare("SELECT models FROM col").get().models))[0];
+      assert.equal(m.name, spec.modelName, `${lang} model name`);
+      assert.equal(m.css, spec.css, `${lang} css`);
+      assert.deepEqual(
+        m.tmpls.map((t) => ({ name: t.name, qfmt: t.qfmt, afmt: t.afmt })),
+        spec.templates,
+        `${lang} templates`,
+      );
+      assert.deepEqual(
+        m.flds.map((f) => f.name),
+        spec.fields,
+        `${lang} field order`,
+      );
+    });
+  }
 });
 
 test("note type is per-language: a language with no font → no @font-face and a distinct id", () => {

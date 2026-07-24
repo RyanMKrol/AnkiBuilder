@@ -12,7 +12,10 @@ import {
   REVIEW_EDIT_SCRIPT,
   MARK_DONE_SCRIPT,
   HOME_REOPEN_SCRIPT,
+  DELIVER_SCRIPT,
 } from "../review/deckViewChrome.js";
+import { createAnkiConnect } from "../anki/ankiConnect.js";
+import { deliverToAnki } from "../anki/deliver.js";
 import { ADAPTERS } from "./adapters/index.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
@@ -203,13 +206,19 @@ export function createDeckServer({
         ? `<div class="grp ${cls}"><h2>${title} <span class="gcount">${count}</span></h2><p class="ghint">${hint}</p>${blocks.join("")}</div>`
         : "";
 
+    // Deliver all built lessons to the live Anki collection via AnkiConnect (editable server only).
+    // Previews (dry run) and backs up before writing — see src/anki/deliver.js.
+    const deliverBar = editable
+      ? `<div class="deliverbar"><button type="button" id="deliver-anki">Deliver to Anki</button><span id="deliver-status" class="deliver-status"></span></div>`
+      : "";
+
     return page(
       "Decks — anki-builder",
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p></header>
+<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p>${deliverBar}</header>
 ${section("grp-review", "In review", "Lessons still being built — corpus / translation / audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
 ${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play its cards, or Reopen it to edit.", builtBlocks, builtCount)}`,
-      editable ? HOME_REOPEN_SCRIPT : null,
+      editable ? `${HOME_REOPEN_SCRIPT}\n${DELIVER_SCRIPT}` : null,
     );
   }
 
@@ -613,6 +622,20 @@ ${sectionHtml}
     sendJson(res, { noteCount: result.noteCount, apkgPath: adapter.deckFile(outputRoot, id) });
   }
 
+  // Deliver every managed deck's on-disk state to the live Anki collection via AnkiConnect. `?dry=1`
+  // previews the plan (read-only, no backup, no writes); otherwise it backs up, syncs the note type,
+  // and pushes note fields in place (scheduling preserved). Returns the structured report as JSON.
+  async function handleDeliver(req, res) {
+    const dry = new URL(req.url, "http://localhost").searchParams.get("dry") === "1";
+    let report;
+    try {
+      report = await deliverToAnki(outputRoot, "all", { client: createAnkiConnect(), dry });
+    } catch (e) {
+      throw httpError(502, e.message);
+    }
+    sendJson(res, report);
+  }
+
   // Best-effort rebuild of the group package, ignoring the "nothing done yet" case — so marking a
   // lesson done (or reopening one) keeps the on-disk package in step with the done-set without failing
   // the write when no lesson is done.
@@ -627,7 +650,12 @@ ${sectionHtml}
 
   // POST route dispatch under /api/deck/:type/:id/… . Returns true if it handled the request.
   async function routePost(req, res, seg) {
-    if (seg[0] !== "api" || seg[1] !== "deck") return false;
+    if (seg[0] !== "api") return false;
+    if (seg[1] === "anki" && seg[2] === "deliver" && seg.length === 3) {
+      await handleDeliver(req, res);
+      return true;
+    }
+    if (seg[1] !== "deck") return false;
     const [type, id] = [seg[2], seg[3]];
     if (seg[4] === "rebuild" && seg.length === 5) return (handleRebuild(res, type, id), true);
     if (seg[4] === "unit" && seg[6] === "review" && seg[7] === "reviewed" && seg.length === 8) {

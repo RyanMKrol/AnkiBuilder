@@ -666,3 +666,33 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   quality/size cost). Only ElevenLabs-generated clips are trimmed — manual dashboard uploads are not.
 - **When to revisit:** if under/over-trimming recurs, tune the `ANKI_BUILDER_TRIM_*` env knobs or add a
   start-trim / loudness-normalize pass; add a one-time backfill over existing on-disk clips if wanted.
+
+### Deliver-to-Anki matches notes by content on the first run (no GUID from AnkiConnect)
+- **What:** `src/anki/deliver.js` pushes corpus state to Anki via AnkiConnect using explicit
+  `updateNoteFields`/`addNotes` (not `.apkg` `importPackage`). `notesInfo` doesn't return a note's GUID
+  on the user's Anki, so notes are matched to cards by a durable `abid:<card.id>` tag — but that tag
+  only exists AFTER a first delivery stamps it. On the first run, un-tagged notes are matched by a
+  `Target` (then `English`, then prefix) fingerprint; anything not uniquely resolvable is reported
+  `ambiguous` and skipped.
+- **Why:** determinism. `.apkg` "update existing notes on import" is version/setting-dependent and
+  unpreviewable; explicit field writes touch only `notes.flds`, never scheduling, and make `--dry`
+  exact. Guessing a content match would risk overwriting the wrong note, so ambiguity fails closed.
+- **Impact:** a genuine duplicate (two cards sharing Target+English) or a card whose Target AND English
+  both changed since import stays `ambiguous` — not delivered until a human stamps its `abid` tag or
+  resolves it. Field-content and structure changes are otherwise applied in place with scheduling kept.
+- **When to revisit:** if AnkiConnect exposes GUIDs, key directly off `card.id`; add a small "resolve
+  ambiguous" helper (stamp the tag by hand-picked noteId) if the tail of ambiguous cards grows.
+
+### Deliver-to-Anki does not push card ORDER, delete orphans, or back up the whole collection
+- **What:** the deliverer never repositions new cards (order isn't delivered), never deletes an Anki
+  note whose card left the corpus (reported as `orphaned`), and backs up only the *managed* decks
+  (`exportPackage` with scheduling) + a note-type structure snapshot — not the whole collection.
+- **Why:** AnkiConnect can't cleanly reposition already-imported cards and order barely matters for
+  studied cards; deletion is irreversible and risks mis-mapping; a per-deck backup + structure snapshot
+  is enough to undo everything the tool itself can change, and Anki keeps its own automatic collection
+  backups.
+- **Impact:** a re-jumble/reorder only reaches Anki via a destructive fresh import (rarely worth it);
+  removed cards linger in Anki until deleted by hand; a catastrophe outside the managed decks relies on
+  Anki's own backups, not this tool's.
+- **When to revisit:** add an opt-in `--prune` to delete orphans; a full `.colpkg` backup if AnkiConnect
+  gains a reliable action; a fresh-import path if delivering order ever becomes important.

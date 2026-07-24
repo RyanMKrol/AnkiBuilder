@@ -113,6 +113,11 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .urow-built .ustage.done{position:relative;z-index:1}
 .home-reopen{position:relative;z-index:1;font:inherit;font-size:11.5px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:3px 12px;cursor:pointer;white-space:nowrap}
 .home-reopen:hover{border-color:var(--accent)}
+.deliverbar{margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#deliver-anki{font:inherit;font-size:13px;font-weight:600;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:6px 16px;cursor:pointer}
+#deliver-anki:hover{filter:brightness(1.06)}
+#deliver-anki:disabled{opacity:.55;cursor:default}
+.deliver-status{font-size:12.5px;color:var(--faint)}
 .home-reopen:disabled{opacity:.6;cursor:default}
 /* A single-unit deck block is itself the link. */
 .dblock.single{display:block;text-decoration:none;color:inherit;cursor:pointer}
@@ -369,6 +374,51 @@ export const HOME_REOPEN_SCRIPT = `(function () {
         .then(function (r) { if (!r.ok) throw new Error("reopen failed"); location.reload(); })
         .catch(function (err) { btn.disabled = false; btn.textContent = label; alert(err.message); });
     });
+  });
+})();`;
+
+// Home-page "Deliver to Anki" button: previews the plan (dry run), asks to confirm, then delivers.
+// Talks to POST /api/anki/deliver (?dry=1 for the preview). Synchronous fetch → status text, matching
+// the rest of the dashboard (no framework, no streaming).
+export const DELIVER_SCRIPT = `(function () {
+  var btn = document.getElementById("deliver-anki");
+  var status = document.getElementById("deliver-status");
+  if (!btn) return;
+  function set(m) { status.textContent = m; }
+  async function post(dry) {
+    var r = await fetch("/api/anki/deliver" + (dry ? "?dry=1" : ""), { method: "POST" });
+    var j = await r.json().catch(function () { return {}; });
+    if (!r.ok) throw new Error(j.error || ("HTTP " + r.status));
+    return j;
+  }
+  function summarize(rep) {
+    var upd = 0, add = 0, amb = 0;
+    rep.content.forEach(function (c) { upd += c.updated; add += c.added; amb += c.ambiguous.length; });
+    var struct = rep.structure.map(function (s) {
+      var ch = [];
+      if (s.createModel) ch.push("created");
+      if (s.addedFields.length) ch.push("+" + s.addedFields.join(","));
+      if (s.templates) ch.push("templates");
+      if (s.css) ch.push("css");
+      return s.model + ": " + (ch.length ? ch.join(", ") : "current");
+    }).join("; ");
+    return upd + " fields updated, " + add + " cards added" + (amb ? (", " + amb + " ambiguous (skipped)") : "") + ". Note type — " + struct + ".";
+  }
+  btn.addEventListener("click", async function () {
+    btn.disabled = true;
+    try {
+      set("Previewing\\u2026");
+      var plan = await post(true);
+      if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
+        set("Cancelled."); btn.disabled = false; return;
+      }
+      set("Delivering\\u2026");
+      var done = await post(false);
+      set("Delivered. " + summarize(done) + " Backup: " + done.backupDir);
+    } catch (e) {
+      set("Failed: " + e.message);
+    }
+    btn.disabled = false;
   });
 })();`;
 

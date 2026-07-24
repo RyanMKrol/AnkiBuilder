@@ -102,6 +102,15 @@ marking a lesson done (or reopening one) rebuilds it, and audio edits to an alre
 rebuild it too. There's **no download button**: the dashboard runs on your machine, so the `.apkg` is
 already on disk (`output/<…>/deck.apkg`) — import it into Anki directly.
 
+**Delivering updates to an existing collection: use the deliver tool, not drag-and-drop.** Once you
+already study these decks, re-importing an `.apkg` won't apply note-type structure changes (a new field,
+a template/CSS tweak) and you don't want to touch scheduling. `scripts/deliver-to-anki.mjs` (or the
+dashboard's **Deliver to Anki** button) pushes the on-disk state into a running Anki over AnkiConnect:
+it backs up first (with scheduling), force-syncs the note type to the code's definition, and updates
+each note's fields in place by GUID — deterministic, idempotent, scheduling preserved. Preview with
+`node scripts/deliver-to-anki.mjs --dry`. See the [skill](./.claude/skills/build-anki-deck/SKILL.md) for
+details.
+
 Start with `--read-only` to disable all editing (Review becomes read-only too).
 
 ```sh

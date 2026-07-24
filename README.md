@@ -107,7 +107,8 @@ already study these decks, re-importing an `.apkg` won't apply note-type structu
 a template/CSS tweak) and you don't want to touch scheduling. `scripts/deliver-to-anki.mjs` (or the
 dashboard's **Deliver to Anki** button) pushes the on-disk state into a running Anki over AnkiConnect:
 it backs up first (with scheduling), force-syncs the note type to the code's definition, and updates
-each note's fields in place by GUID — deterministic, idempotent, scheduling preserved. Preview with
+each note's fields in place by GUID — deterministic, idempotent, scheduling preserved. It also syncs with
+AnkiWeb before and after (default; `--no-sync` to skip). Preview with
 `node scripts/deliver-to-anki.mjs --dry`. See the [skill](./.claude/skills/build-anki-deck/SKILL.md) for
 details.
 

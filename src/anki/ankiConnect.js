@@ -39,6 +39,12 @@ export function createAnkiConnect({
     version: () => invoke("version"),
     deckNames: () => invoke("deckNames"),
 
+    // Sync the collection with AnkiWeb (same as the desktop Sync button). A content-only change syncs
+    // incrementally with no prompt; a SCHEMA change (new field, template edit) forces a one-way full
+    // sync that Anki gates behind its GUI Upload/Download dialog — AnkiConnect can't answer that, so a
+    // schema-changing delivery still needs one manual click.
+    sync: () => invoke("sync"),
+
     // --- note type (model) structure ---
     modelNames: () => invoke("modelNames"),
     createModel: (params) => invoke("createModel", params),

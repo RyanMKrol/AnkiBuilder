@@ -51,7 +51,10 @@ Apply these together, using your judgment — they are priorities, not a rigid a
    only the 1–5 among their own five positions. This is the single case where you reorder items with no
    dependency reason to move — everywhere else, principle 5 (don't churn) still holds. Apply it to each
    distinct number run separately (a minutes run and a separate o'clock run are each jumbled on their
-   own).
+   own). **This includes an _interleaved_ block where several counters climb in parallel** — e.g.
+   1-flat, 1-long, 1-general, 2-general, 3-flat, 3-long, 3-general, 4-flat, … Each counter's own values
+   still ascend, so a learner can predict the next number just as easily. Treat the whole interleaved
+   block as one run and shuffle it as a unit (don't leave each counter internally ascending).
 
 ## Book-Wide Conventions
 

@@ -236,8 +236,12 @@ you should apply it by hand whenever you author/reorder a corpus with numbers in
 tidy: **(1) jumble ONLY within the number run** — keep those cards contiguous as their own numbers block
 and never interleave them with the surrounding non-number cards (a "dog, cat, horse, 1, 2, 3, 4, 5"
 section keeps dog/cat/horse put and only shuffles the 1–5 among their five slots); and **(2) each
-distinct run is jumbled on its own** (a minutes run and an o'clock run are shuffled separately). Keep
-`corpus.json` and `cards.json` in the same jumbled sequence so the reviews and deck stay aligned.
+distinct run is jumbled on its own** (a minutes run and an o'clock run are shuffled separately). One
+trap: a run can be **interleaved by counter type** — e.g. `1-flat, 1-long, 1-general, 2-general, 3-flat,
+3-long, 3-general, 4-flat, …` (Japanese counters ～まい/～ほん/～つ taught side by side). No single counter
+forms a clean contiguous 1→10 run, so a naive detector skips it and the numbers stay predictable; treat
+the **whole interleaved block as one run** and shuffle it as a unit. Keep `corpus.json` and `cards.json`
+in the same jumbled sequence so the reviews and deck stay aligned.
 
 **Every review stage reflects this one pedagogical order.** The sort runs once, at assemble, and the
 order flows straight through: `translate` and `audio` preserve the item order, so the corpus,

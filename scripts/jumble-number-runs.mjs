@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-// One-off: de-sequence number runs in existing decks. For each unit, an LLM finds contiguous runs of
-// cards teaching ascending numbers/counters (1,2,3…; minutes; o'clock; …) and returns the full id
-// order with ONLY those runs shuffled — non-number cards keep their exact positions, and each run stays
-// contiguous. cards.json is reordered to match; corpus.json (a subset) is reordered to follow the same
+// One-off: de-sequence number runs in existing decks. For each unit, an LLM finds contiguous blocks of
+// number/counter cards — both plain ascending runs (1,2,3…; minutes; o'clock; …) AND interleaved blocks
+// where several counters climb in parallel (1-flat, 1-long, 1-general, 2-general, 3-flat…) — and returns
+// the full id order with ONLY those blocks shuffled. Non-number cards keep their exact positions, and
+// each block stays contiguous. cards.json is reordered to match; corpus.json (a subset) is reordered to follow the same
 // relative order. Backs up each changed file to <file>.pre-jumble.bak. See docs/pedagogical-sort-prompt.md
 // principle 6 / the SKILL "Jumble any run of sequential numbers" note.
 //
@@ -35,15 +36,23 @@ const looksNumber = (c) => NUMWORD.test(c.english || "") || /[0-9０-９]/.test(
 // to interleave sorted sub-lists). The actual shuffle is Fisher-Yates below.
 const PROMPT = (rows) =>
   [
-    "Below is one lesson's flashcards IN ORDER. Identify every CONTIGUOUS run of cards that teaches a",
-    "sequence of numbers or counters in ASCENDING order — e.g. 1,2,3,4,5; one/two/three minutes;",
-    "one/two/three o'clock; floors; climbing prices. A run is 2+ adjacent cards whose numeric values go",
-    "up. Treat separate counters as separate runs (a minutes run and an o'clock run are independent).",
-    "Do NOT include non-number cards, and do NOT include a lone number that isn't part of an ascending",
-    "adjacent run.",
+    "Below is one lesson's flashcards IN ORDER. Find every place where the card order lets a learner",
+    "PREDICT the next number instead of recalling it — those are what we shuffle. Return each as a run.",
+    "",
+    "A run is a MAXIMAL CONTIGUOUS block of 2+ adjacent number/counter cards (each teaching a number, a",
+    "count, a time, a floor, a price, etc.). Two shapes both count as ONE run:",
+    "  (a) a plain ascending sequence: 1,2,3,4,5; one/two/three minutes; one/two/three o'clock; climbing",
+    "      floors or prices.",
+    "  (b) an INTERLEAVED block where several counters climb in parallel — e.g. 1-flat, 1-long, 1-general,",
+    "      2-general, 3-flat, 3-long, 3-general, 4-flat, … — each counter's own values ascend even though",
+    "      the cards alternate counter type. Return the WHOLE interleaved block as ONE run (do NOT split it",
+    "      per counter), so the shuffle can break every counter's sequence at once.",
+    "",
+    "The cards in a run must be adjacent (contiguous) in the list. Do NOT include non-number cards, and do",
+    "NOT include a lone number card with no number/counter card beside it.",
     "",
     'Return ONLY a JSON object: {"runs": [["id","id",…], …]} — each inner array lists the ids of ONE run',
-    'in their current order. Return {"runs": []} if there are no ascending number runs.',
+    'in their current order. Return {"runs": []} if there is no such block.',
     "",
     "Cards:",
     JSON.stringify(

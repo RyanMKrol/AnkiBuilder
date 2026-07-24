@@ -411,7 +411,13 @@ CHAPTER level** (the model literally never sees later lessons, so a forward refe
 against something the learner hasn't met yet — is impossible, not merely discouraged). Within a lesson,
 cards may reference each other freely (it's one unit the learner studies together — the constraint is
 per-chapter, NOT per-card). It leaves `hint`/`reviewNote` untouched and backs up each file. This is what
-turns a flat vocabulary list into a connected knowledge base where each card knows what came before it. (Companion one-off migrations for older decks live alongside it:
+turns a flat vocabulary list into a connected knowledge base where each card knows what came before it.
+The pass writes three kinds of note: backward cross-references (near-synonyms, register), usage/register
+tips, and — highest-value — **false-friend disambiguations**: a card that reuses a form the learner
+already knows but in a different role, e.g. どこ (doko) "where is it?" vs どこの (doko no) "which place's /
+what make of" (それはどこのコーヒーカップですか), だれ (dare) "who" vs だれの (dare no) "whose", or a pronoun
+vs a determiner (それ (sore) "that one" vs その (sono) "that ___"). These are the cards a learner silently
+misreads, so a full sentence that hinges on one earns a note even though sentences usually don't. (Companion one-off migrations for older decks live alongside it:
 `split-front-hint.mjs` splits front hints out of the English, `romanize-card-notes.mjs` adds readings,
 `jumble-number-runs.mjs` de-sequences number runs — each reversible via a `.bak`.)
 

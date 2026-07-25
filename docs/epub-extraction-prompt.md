@@ -136,22 +136,34 @@ If you open an image and it turns out to be decorative, that's a fine outcome �
 
 **Every headword in a VOCABULARY block becomes an item.** A chapter usually has several such blocks, scattered between the exercises rather than gathered in one place — walk each one to its end and account for every entry in it. The only headwords you may leave out are the proper nouns covered under "What to skip entirely" below (a surname or a fictitious business used only to populate a drill). If you extract nothing for a headword, that is a miss, not an editorial choice.
 
-**A conjugation or paradigm table is vocabulary, even inside an EXERCISES section.** A table that lays
-one word out across its forms — present/past, affirmative/negative, plain/polite, singular/plural — and
-tells the learner to MEMORIZE them is reference material that happens to be printed among the
-exercises. It is not a substitution drill, and the "skip practice exercises" rule below does not reach
-it. Tell the two apart by the instruction: _"repeat the verbs below and memorize their forms"_ is a
-table to extract; _"make up sentences following the pattern of the example"_ is a drill to skip. When
-the table is large, you do not need every cell — extract the FULL set of forms for a few
-representative words rather than one form for many, since the point is that the learner sees a
-complete paradigm and can generalise it.
+**The EXERCISES section is a source of cards, not a no-go area.** It carries two different kinds of
+content and you have to tell them apart:
+
+- **Reference material printed among the drills** — above all a conjugation or paradigm table, laying
+  one word out across its forms (present/past, affirmative/negative, plain/polite). The instruction
+  gives it away: _"repeat the verbs below and memorize their forms"_ is reference; _"make up sentences
+  following the pattern of the example"_ is a drill. Extract reference material in full.
+- **The drills themselves** — extract the complete, self-contained model sentences (the `e.g.` lines),
+  and skip anything that is not a card on its own: bare substitution alternatives like
+  `1. (タクシーで) 2. (でんしゃで)`, lines with an unresolved blank, and empty answer slots.
+
+**Use your judgement about how much of it is worth having, because nothing downstream will trim it for
+you.** A later pass does de-duplicate practice cards, but it is forbidden from touching anything you
+extract — what you emit is the lesson. So apply the restraint yourself: **at most about two examples of
+any one sentence pattern**, chosen for variety of vocabulary and context rather than the first two you
+meet. For a large paradigm table the same idea applies in the other direction — the complete set of
+forms for a few representative words teaches the pattern; one form for every word does not.
+
+**When you are genuinely torn, extract it.** A surplus card costs the reviewer one click to exclude. A
+missing one is invisible: nothing downstream can flag content that was never emitted, and it will only
+surface if a human happens to notice the gap months later.
 
 **A form the chapter names as an EXCEPTION is high priority, never optional.** Grammar and Key-Sentence notes routinely teach a rule and then name the one form that breaks it — "the particle で is attached to the noun indicating the means of transportation… _but_ to say 'by foot,' use あるいて". That exception is the single most confusable item in the lesson, so it must become its own card, even when it appears only inside explanatory prose you would otherwise skip and only as a bare word elsewhere (a substitution-drill alternative, a table cell). Watch for the words _but_, _except_, _instead_, _irregular_ and _does not take_ in a grammar note: whatever follows them is a card.
 
 ### What to skip entirely
 
 - Grammar explanation prose — paragraphs explaining a grammar rule, particle usage, or conjugation pattern in depth. (This does not include a short particle vocabulary entry — see above.)
-- Practice/drill exercises in full — anything instructing the learner to produce their own sentences by substituting into a pattern. These are for manual practice; do not extract them, including their "e.g." example lines. **This does not cover a conjugation/paradigm table that happens to sit in the same section** — see the rule above; those are reference material and must be extracted.
+- The mechanical scaffolding of a practice drill — its numbered substitution alternatives, its blanks, its empty answer slots. The drill's own complete example sentences and any reference table beside them ARE extractable; see "The EXERCISES section is a source of cards" above.
 - Dialogue/conversation scripts in full — a modeled conversation between named speakers is for listening/rehearsal practice, not a flashcard source. Do not extract dialogue lines, reactions, or recap sentences, even ones that seem useful — treat the whole dialogue as off-limits for this test.
 - Supplementary/culture notes as standalone cards — fold a learner-facing clarification into the `note` field of the item it clarifies instead.
 - Proper nouns naming a specific person (e.g. a surname like "Harris") or a specific organization/business (e.g. "ABC Foods," "Nozomi Department Store," real or fictitious) as standalone vocabulary. Country and city names ARE genuine vocabulary and should be extracted. A name inside a key sentence you're otherwise keeping should stay in that sentence — this only blocks a standalone "here's a name" card.

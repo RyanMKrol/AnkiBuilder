@@ -1,4 +1,4 @@
-import { mkdirSync, renameSync, unlinkSync, writeFileSync, copyFileSync } from "fs";
+import { existsSync, mkdirSync, renameSync, unlinkSync, writeFileSync, copyFileSync } from "fs";
 import { promises as fsp } from "fs";
 import { dirname, join, basename } from "path";
 
@@ -74,6 +74,18 @@ export async function writeFileAtomicAsync(destPath, data, options) {
     }
     throw err;
   }
+}
+
+/**
+ * Snapshots `path` to `<path><suffix>` the FIRST time only. A pipeline pass that rewrites a file
+ * calls this before its write, so the pre-pass state stays recoverable — and re-running the pass
+ * can never overwrite the original snapshot with an already-modified one.
+ */
+export function backupFileOnce(path, suffix) {
+  const backupPath = path + suffix;
+  if (existsSync(backupPath)) return false;
+  copyFileAtomic(path, backupPath);
+  return true;
 }
 
 /**

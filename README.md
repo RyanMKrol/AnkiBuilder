@@ -9,17 +9,19 @@ studyable Anki deck, complete with translations, pronunciation guides, and spoke
 
 ## How it works
 
-Every deck moves through the same four CLI stages, with **two human review steps** in the local
-dashboard (`npm run serve`): a **Corpus** review (English + target + pronunciation, after `translate`)
-and an **Audio** review. The dashboard surfaces every run at its current stage and is where you
-exclude items, fix fields, and pick audio; the CLI advances a run to the next stage.
+Every deck moves through the same CLI stages, with **exactly two human review gates** in the local
+dashboard (`npm run serve`): a **Corpus** review (English + target + pronunciation) and an **Audio**
+review. Those two are the only states a lesson rests in — everything between assembling a lesson and
+its first review runs as one uninterrupted `prepare` stage, so a lesson is never left half-built and
+offered for review. The dashboard surfaces each lesson at its gate and is where you exclude items, fix
+fields, and pick audio; the CLI advances it.
 
-| Stage         | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **assemble**  | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. Writes the English corpus; `translate` runs right after (no review gate between them).                                                                                                                                                                                                                                                                  |
-| **translate** | Each term gets translated and given a pronunciation guide, via Claude. For an EPUB or dictated lesson, fill-in-the-blank drills are then mined into extra practice cards and semantically de-duped, so the card set is final before anyone reviews it. The **Corpus** review (English + target + pronunciation together) is the first human gate.                                                                                                      |
-| **audio**     | Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `reading` (a phonetic spelling in the target script) that TTS speaks instead of `target`. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front. |
-| **deck**      | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                 |
+| Stage        | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **assemble** | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. Writes the English corpus, then chains straight into `prepare`.                                                                                                                                                                                                                                                                                              |
+| **prepare**  | Everything between assembling and the first review, as one stage: translate each term and give it a pronunciation guide (via Claude); for an EPUB or dictated lesson, mine the source's fill-in-the-blank drills into extra practice cards and semantically de-dup them; then write each card's cross-lesson notes. Runs under one build claim so the card set is final — and complete — before anyone reviews it. The **Corpus** review is the first gate. |
+| **audio**    | Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `reading` (a phonetic spelling in the target script) that TTS speaks instead of `target`. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front.      |
+| **deck**     | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                      |
 
 For books and courses, each chapter/lesson goes through this individually and then gets merged
 into one deck with a sub-deck per chapter/lesson.
@@ -36,7 +38,7 @@ It drives the CLI commands below for you and knows when to pause for your review
 # --output-root files the deck under output/templates/<name>/<language>/.
 anki-builder assemble --output-root output --template travel-essentials --lang es
 RUN=output/templates/travel-essentials/es      # the dir assemble just resolved
-anki-builder translate --run "$RUN"            # runs right after assemble, no gate between
+# assemble already chained into `prepare`, so $RUN is translated and reviewable.
 # Corpus review in the dashboard (npm run serve): check the English AND the target +
 # pronunciation together, exclude/fix anything, then click "Mark reviewed" — that's the
 # gate `audio` checks (don't spend TTS credits on an un-reviewed lesson).
@@ -64,7 +66,7 @@ anki-builder assemble --output-root output --epub mybook.epub --chapter-number 1
 # For a later lesson of a book you've already worked on, pick it by slug instead of
 # re-locating the file — assemble reads the copy it kept:
 anki-builder assemble --output-root output --book <book-slug> --lesson "Lesson 4" --lang ja
-# ...translate, then Corpus-review in the dashboard, then audio for that lesson; repeat per lesson...
+# ...Corpus-review in the dashboard, then audio for that lesson; repeat per lesson...
 anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter into one deck
 ```
 
@@ -75,8 +77,9 @@ Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing sil
 ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
 
 Run the local dashboard (`npm run serve`). Readiness is tracked **per lesson (sub-deck)**, not per
-deck: a lesson passes **two review steps** (Corpus, then Audio) and becomes **Built** only when you
-click **Mark done** — the final human sign-off. The home page splits your lessons into two sections —
+deck: a lesson passes **two review gates** (Corpus, then Audio) and becomes **Built** only when you
+click **Mark done** — the final human sign-off. The home page splits your lessons into **Not finished**
+(a build that stopped before there was anything to review — re-run `assemble` to resume it),
 **In review** (each with a _Review_ action) and **Built · ready to study** (a single **Open** action)
 — with a deck's lessons grouped under its heading. A deck with some lessons done and others still in
 review appears (grouped) in **both** sections, so a finished lesson is never stranded behind an
@@ -192,18 +195,23 @@ npm run build
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō
       textbook face) so kana/kanji render the same on every client; `restyle-font` applies it to any
       existing `.apkg`, including third-party decks
-- [x] Review at every stage in the dashboard — corpus (exclude items / mark reviewed), translate
-      (exclude / inline-edit target + pronunciation), audio (audition + Generate variants, incl.
-      Japanese kana+kanji) — with write-back to the run's JSON. Replaces the old per-stage HTML
-      artifacts + `review`/`render-review` CLI commands
+- [x] Two review gates in the dashboard — **corpus** (exclude / inline-edit target + pronunciation /
+      mark reviewed) and **audio** (audition + Generate variants, incl. Japanese kana+kanji) — with
+      write-back to the run's JSON. Replaces the old per-stage HTML artifacts + `review`/`render-review`
+      CLI commands
 - [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
 - [x] `serve` — local deck-dashboard web app (Node builtins only) with two views per deck: a
-      **Review** view (`/review/...`) — the guided, editable per-stage workflow (corpus English-only →
-      translation → audio, with exclude / edit / mark-reviewed / generate / rebuild write-back and
+      **Review** view (`/review/...`) — the guided, editable workflow across the two gates (corpus →
+      audio, with exclude / edit / mark-reviewed / generate / rebuild write-back and
       AI-suggested/uncertain badges) — and a read-only **Browse** view (`/deck/...`) that streams audio
       over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
+- [x] `prepare` — translate → fill-in-the-blank enrichment → semantic de-dup → cross-lesson notes as
+      ONE stage, chained automatically from `assemble` (`--no-prepare` opts out), so a lesson has no
+      resting state between "assembled" and "reviewable". Idempotent and fail-open per step; keeps its
+      claim on failure so a crash shows as interrupted. A corpus-only run dir is `incomplete` — not a
+      review stage — and the dashboard files it under **Not finished**
 - [x] CLI orchestrator (resumable run directories)
 - [x] Build-aware dashboard — a lesson a CLI stage is currently writing renders read-only with a
       badge naming the stage, and the server refuses writes to it (409) so a stale browser tab can't

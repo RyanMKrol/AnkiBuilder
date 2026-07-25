@@ -1,4 +1,5 @@
 import { spawnSync } from "child_process";
+import { assertExternalCallAllowed } from "../util/testEnv.js";
 
 // Sonnet at medium effort was validated empirically this way: reading a whole
 // raw chapter file (no pre-split blocks) and extracting vocabulary/key
@@ -18,6 +19,7 @@ const DEFAULT_EFFORT = "medium";
  * runs.
  */
 export function runClaude(prompt) {
+  assertExternalCallAllowed("spawn `claude -p`");
   const model = process.env.ANKI_BUILDER_EPUB_LLM_MODEL || DEFAULT_MODEL;
   const effort = process.env.ANKI_BUILDER_EPUB_LLM_EFFORT || DEFAULT_EFFORT;
 

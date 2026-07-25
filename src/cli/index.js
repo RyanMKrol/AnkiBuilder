@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
-import { writeFileAtomic } from "../util/atomicWrite.js";
-import { withClaim } from "./runClaim.js";
-import { join, resolve } from "path";
+import { writeFileAtomic, backupFileOnce } from "../util/atomicWrite.js";
+import { withClaim, updateClaim } from "./runClaim.js";
+import { basename, dirname, join, resolve } from "path";
 import { Buffer } from "buffer";
 import {
   runPaths as defaultRunPaths,
@@ -49,6 +49,12 @@ import { sortItemsPedagogically as defaultSortItemsPedagogically } from "../corp
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
+import { mineFillInBlankCards as defaultMineFillInBlankCards } from "../cards/fillInBlank.js";
+import { dedupeByPattern as defaultDedupeByPattern } from "../cards/semanticDedup.js";
+import {
+  enhanceRunDirNotes as defaultEnhanceRunDirNotes,
+  lessonUnits as defaultLessonUnits,
+} from "../cards/crossLessonNotes.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
@@ -230,15 +236,28 @@ async function runAssemble(flags, ctx) {
 
   if (existsSync(paths.corpus)) {
     ctx.log(`corpus.json already exists at ${paths.corpus} — reusing`);
-    return;
+  } else {
+    // A FAILED assemble deliberately keeps its claim (clearOnFailure: false): the run dir was
+    // reserved up front but has no corpus.json yet, so the claim is the only thing that lets the
+    // retry reclaim this directory instead of leaking a fresh sequence number. See runClaim.js.
+    await withClaim(runDir, { stage: "assemble" }, () => assembleIntoRunDir(flags, ctx, runDir), {
+      clearOnFailure: false,
+    });
   }
 
-  // A FAILED assemble deliberately keeps its claim (clearOnFailure: false): the run dir was
-  // reserved up front but has no corpus.json yet, so the claim is the only thing that lets the
-  // retry reclaim this directory instead of leaking a fresh sequence number. See runClaim.js.
-  return withClaim(runDir, { stage: "assemble" }, () => assembleIntoRunDir(flags, ctx, runDir), {
-    clearOnFailure: false,
-  });
+  // corpus.json is NOT a place a lesson stops. Everything from here to the first human review —
+  // translate, drill enrichment, de-dup, cross-lesson notes — is one `prepare` stage, chained
+  // automatically so no lesson can be left sitting un-translated by a session that simply ended.
+  // Falling through the reuse branch above is what makes re-running `assemble` the resume command
+  // for a lesson whose prepare was interrupted.
+  if (flags["no-prepare"]) {
+    ctx.log(
+      "--no-prepare given — stopping at corpus.json. This lesson is NOT reviewable yet; " +
+        `run "prepare --run ${runDir}" to finish it.`,
+    );
+    return;
+  }
+  return runPrepare({ ...flags, run: runDir }, ctx);
 }
 
 async function assembleIntoRunDir(flags, ctx, runDir) {
@@ -461,6 +480,158 @@ async function runTranslateInner(flags, ctx) {
   if (errors.length > 0) {
     ctx.log(`${errors.length} item(s) failed to translate: ${errors.map((e) => e.id).join(", ")}`);
   }
+}
+
+const FIB_BACKUP_SUFFIX = ".pre-fib.bak";
+
+// Every earlier lesson's vocabulary, as grounding for the drill-writing pass: a practice sentence
+// may lean on anything the learner has already met, not just this lesson's own words. Empty string
+// for a run dir with no siblings (a template, or the first lesson of a book).
+function earlierLessonVocab(runDir, ctx) {
+  let units;
+  try {
+    units = ctx.lessonUnits(dirname(resolve(runDir)));
+  } catch {
+    return null;
+  }
+  const index = units.findIndex((unit) => unit.name === basename(resolve(runDir)));
+  const earlier = index === -1 ? [] : units.slice(0, index);
+  if (earlier.length === 0) return null;
+
+  return earlier
+    .map((unit) => {
+      const lines = unit.data.items
+        .filter((item) => !item.excluded)
+        .map((item) => `- ${item.english} — ${item.target}`)
+        .join("\n");
+      return `### ${unit.label}\n\n${lines}`;
+    })
+    .join("\n\n");
+}
+
+/**
+ * `prepare` — EVERYTHING between assemble and the first human review, as one stage:
+ * translate → fill-in-the-blank enrichment → semantic de-dup → cross-lesson notes.
+ *
+ * This exists so a lesson has no resting state between "assembled" and "reviewable". Those four
+ * steps all change what the reviewer will sign off on, so a lesson that stops partway through them
+ * is a half-built lesson, not a pipeline stage — and the dashboard says so rather than offering it
+ * for review. The claim is held across the whole span (its `stage` field naming the current step) and
+ * deliberately NOT cleared on failure, so a crash mid-prepare surfaces as "interrupted" instead of
+ * looking finished.
+ *
+ * Every step is idempotent and fails open, so re-running `prepare` on a partly-prepared lesson picks
+ * up where it stopped. A lesson already marked reviewed is left completely alone — growing or
+ * rewriting a card set someone has signed off on is the one thing this stage must never do.
+ */
+async function runPrepare(flags, ctx) {
+  if (!flags.run) {
+    throw new Error("--run <dir> is required");
+  }
+  return withClaim(flags.run, { stage: "prepare" }, () => runPrepareInner(flags, ctx), {
+    clearOnFailure: false,
+  });
+}
+
+async function runPrepareInner(flags, ctx) {
+  const runDir = flags.run;
+  const paths = ctx.runPaths(runDir);
+
+  if (!existsSync(paths.corpus)) {
+    throw new Error(`corpus.json not found at ${paths.corpus} — run "assemble" first`);
+  }
+
+  updateClaim(runDir, { stage: "translate" });
+  await runTranslateInner(flags, ctx);
+
+  const cards = readJson(paths.cards);
+  const meta = cards.meta || {};
+
+  if (meta.reviewed === true) {
+    ctx.log(
+      "prepare: this lesson is already marked reviewed — skipping enrichment and notes " +
+        "(they would change cards that have been signed off)",
+    );
+    return;
+  }
+
+  const targetLanguage = meta.targetLanguage;
+  // A template is a fixed vocabulary list: there are no drills to mine and no sibling lessons to
+  // cross-reference, so both enrichment and the note pass are no-ops for it by design.
+  const isTemplate = meta.sourceType === "template";
+
+  if (!isTemplate && meta.enriched !== true) {
+    updateClaim(runDir, { stage: "fill-in-the-blank" });
+
+    // The source document to mine drills from, for an --epub lesson. A dictated (--words) lesson has
+    // none, and composes its drills from the lesson's own patterns instead.
+    let chapterFilePath = null;
+    if (meta.epubHash && typeof meta.chapterNumber === "number") {
+      chapterFilePath =
+        typeof meta.lastChapterNumber === "number" && meta.lastChapterNumber > meta.chapterNumber
+          ? ctx.chapterRangeCachePath(meta.epubHash, meta.chapterNumber, meta.lastChapterNumber)
+          : ctx.chapterCachePath(meta.epubHash, meta.chapterNumber);
+    }
+
+    const mined = ctx.mineFillInBlankCards({
+      items: cards.items,
+      targetLanguage,
+      chapterFilePath,
+      earlierVocab: earlierLessonVocab(runDir, ctx),
+      log: ctx.log,
+    });
+
+    if (mined.added.length > 0) {
+      cards.items = mined.items;
+      ctx.log(`fill-in-the-blank: added ${mined.added.length} practice card(s)`);
+
+      updateClaim(runDir, { stage: "semantic-dedup" });
+      const deduped = ctx.dedupeByPattern({
+        items: cards.items,
+        targetLanguage,
+        patterns: mined.patterns,
+        log: ctx.log,
+      });
+      cards.items = deduped.items;
+      for (const { id, reason } of deduped.excluded) {
+        ctx.log(
+          `[dedup:semantic] excluded "${id}" — ${reason || "repeats a pattern the lesson covers"}`,
+        );
+      }
+      ctx.log(
+        `semantic de-dup: ${deduped.excluded.length} of ${mined.added.length} practice card(s) excluded as pattern repeats`,
+      );
+
+      backupFileOnce(paths.cards, FIB_BACKUP_SUFFIX);
+    }
+
+    // Marked even when nothing was mined: a lesson whose source has no usable drills has still BEEN
+    // through the pass, and re-running it on every prepare would just re-spend the model call.
+    cards.meta = { ...meta, enriched: true };
+    writeJson(paths.cards, cards);
+  }
+
+  if (!isTemplate && meta.notesEnhanced !== true) {
+    updateClaim(runDir, { stage: "cross-lesson-notes" });
+    const { changed, skipped } = ctx.enhanceRunDirNotes({
+      runDir,
+      targetLanguage,
+      log: ctx.log,
+    });
+    if (skipped) {
+      ctx.log(`cross-lesson notes: skipped — ${skipped}`);
+    } else {
+      ctx.log(`cross-lesson notes: wrote ${changed} note(s) for this lesson`);
+    }
+    // Re-read: the note pass rewrites cards.json itself, so the in-memory copy is stale.
+    const fresh = readJson(paths.cards);
+    fresh.meta = { ...fresh.meta, notesEnhanced: true };
+    writeJson(paths.cards, fresh);
+  }
+
+  ctx.log(
+    `prepare: ${runDir} is ready for the corpus review — open the dashboard ("npm run serve") and sign it off`,
+  );
 }
 
 async function runAudio(flags, ctx) {
@@ -760,6 +931,7 @@ async function runServe(flags, ctx) {
 
 const COMMANDS = {
   assemble: runAssemble,
+  prepare: runPrepare,
   translate: runTranslate,
   audio: runAudio,
   deck: runDeck,
@@ -803,6 +975,10 @@ export async function runCli(argv, deps = {}) {
     flagForwardConcerns = defaultFlagForwardConcerns,
     sortItemsPedagogically = defaultSortItemsPedagogically,
     translateCorpus = defaultTranslateCorpus,
+    mineFillInBlankCards = defaultMineFillInBlankCards,
+    dedupeByPattern = defaultDedupeByPattern,
+    enhanceRunDirNotes = defaultEnhanceRunDirNotes,
+    lessonUnits = defaultLessonUnits,
     generateAudio = defaultGenerateAudio,
     getDefaultVoice = defaultGetDefaultVoice,
     getAltAudioTransform = defaultGetAltAudioTransform,
@@ -864,6 +1040,10 @@ export async function runCli(argv, deps = {}) {
     flagForwardConcerns,
     sortItemsPedagogically,
     translateCorpus,
+    mineFillInBlankCards,
+    dedupeByPattern,
+    enhanceRunDirNotes,
+    lessonUnits,
     generateAudio,
     getDefaultVoice,
     getAltAudioTransform,

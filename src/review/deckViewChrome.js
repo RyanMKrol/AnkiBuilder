@@ -37,13 +37,13 @@ table{width:100%;border-collapse:collapse;table-layout:fixed}
 thead th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:10px 12px 8px;border-bottom:1px solid var(--rule2);vertical-align:bottom;overflow-wrap:anywhere}
 col.c-num{width:48px}col.c-en{width:24%}col.c-jp{width:22%}col.c-pron{width:15%}col.c-au{width:180px}col.c-hint{width:150px}col.c-note{width:auto}
 col.c-cat{width:13%}col.c-flags{width:150px}col.c-flag{width:120px}col.c-excl{width:104px}
-/* Flag-bearing stages (corpus / translate) mix an auto NOTE column with several fixed-px columns; on a
+/* Flag-bearing stages (incomplete / corpus) mix an auto NOTE column with several fixed-px columns; on a
    narrow viewport the auto column collapses to ~0 and its header spills onto the next one. Give every
    column a real px width and the table a min-width, so it scrolls in its .tw wrapper instead of crushing. */
-table.tbl-corpus{min-width:1070px}
-.tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:240px}.tbl-corpus col.c-cat{width:140px}.tbl-corpus col.c-hint{width:170px}.tbl-corpus col.c-note{width:196px}.tbl-corpus col.c-flag{width:120px}
-table.tbl-translate{min-width:1310px}
-.tbl-translate col.c-num{width:44px}.tbl-translate col.c-en{width:200px}.tbl-translate col.c-cat{width:120px}.tbl-translate col.c-jp{width:190px}.tbl-translate col.c-pron{width:140px}.tbl-translate col.c-hint{width:150px}.tbl-translate col.c-note{width:120px}.tbl-translate col.c-flag{width:104px}.tbl-translate col.c-excl{width:96px}
+table.tbl-incomplete{min-width:1070px}
+.tbl-incomplete col.c-num{width:44px}.tbl-incomplete col.c-en{width:240px}.tbl-incomplete col.c-cat{width:140px}.tbl-incomplete col.c-hint{width:170px}.tbl-incomplete col.c-note{width:196px}.tbl-incomplete col.c-flag{width:120px}
+table.tbl-corpus{min-width:1310px}
+.tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:200px}.tbl-corpus col.c-cat{width:120px}.tbl-corpus col.c-jp{width:190px}.tbl-corpus col.c-pron{width:140px}.tbl-corpus col.c-hint{width:150px}.tbl-corpus col.c-note{width:120px}.tbl-corpus col.c-flag{width:104px}.tbl-corpus col.c-excl{width:96px}
 /* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
    would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
    crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */
@@ -90,9 +90,15 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .grp h2 .gcount{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--faint);font-variant-numeric:tabular-nums}
 .ghint{font-size:12.5px;color:var(--soft);margin:6px 0 0}
 .grp-built h2{border-bottom-color:#5c7a52}
+/* "Not finished" — a build that stopped before there was anything to review. Warm-warning tone, so it
+   reads as a problem to clear rather than a third review step. */
+.grp-unfinished h2{border-bottom-color:#9a4f2a}
 .dblock{border:1px solid var(--rule2);border-radius:10px;background:var(--card);padding:14px 16px;margin-top:14px}
 .grp-review .dblock{border-left:3px solid var(--accent)}
 .grp-built .dblock{border-left:3px solid #5c7a52}
+.grp-unfinished .dblock{border-left:3px solid #9a4f2a}
+.grp-unfinished .urow .ustage{color:#9a4f2a;font-weight:700}
+.ghint code{font-family:var(--mono);font-size:11.5px}
 .dblock .dt{font-family:var(--serif);font-size:17px}
 .dblock .dm{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;margin-left:10px}
 .dbhead{display:flex;align-items:baseline;flex-wrap:wrap;margin-bottom:2px}
@@ -153,7 +159,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .modal-foot{display:flex;justify-content:flex-end;margin-top:16px}
 .modal-foot button{font:inherit;font-size:13px;color:var(--soft);background:none;border:1px solid var(--rule2);border-radius:8px;padding:6px 14px;cursor:pointer}
 .spin{font-size:13px;color:var(--soft)}
-/* editor: corpus/translate review controls */
+/* editor: corpus-review controls */
 .sec-tools{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--rule)}
 .sec-tools button{font:inherit;font-size:12px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:4px 12px;cursor:pointer}
 .sec-tools button:hover{border-color:var(--accent)}.sec-tools button:disabled{opacity:.5;cursor:default}
@@ -274,7 +280,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
 // Reads the deck type/id from #deckctx; per-row card id/unit from each <tr>'s data-* attributes.
 // Vanilla JS, no ${}. Handles: the per-row Exclude toggle, inline editing of the target/pronunciation
 // cells (contentEditable, saved on blur), and the per-section "Mark reviewed" button. All wired to
-// the `translate` file-stage rows (which carry the translated cards).
+// the `corpus`-review rows (which carry the translated cards).
 export const REVIEW_EDIT_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx) return;
@@ -292,7 +298,7 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
       if (status) status.textContent = x.ok ? "\\u2713 deck rebuilt (" + x.j.noteCount + " cards)" : "rebuild failed: " + (x.j.error || "");
     });
   };
-  // Exclude toggle — a single icon button (⊘), wired on BOTH the translate (Corpus) review and the
+  // Exclude toggle — a single icon button (⊘), wired on BOTH the Corpus review and the
   // audio review. aria-pressed carries the state; clicking flips it.
   document.querySelectorAll("button.excl-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -313,7 +319,7 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
         .finally(function () { btn.disabled = false; });
     });
   });
-  document.querySelectorAll('tr[data-stage="translate"] td[data-field]').forEach(function (cell) {
+  document.querySelectorAll('tr[data-stage="corpus"] td[data-field]').forEach(function (cell) {
     cell.contentEditable = "true"; cell.spellcheck = false;
     var orig = cell.textContent;
     cell.addEventListener("focus", function () { orig = cell.textContent; });
@@ -437,12 +443,12 @@ const aiBadge = `<span class="badge badge-ai">AI-suggested</span>`;
 const uncertainBadge = `<span class="badge badge-uncertain">Uncertain</span>`;
 const provenanceBadges = (c) =>
   [c.aiSuggested ? aiBadge : "", c.uncertain ? uncertainBadge : ""].filter(Boolean).join(" ");
-// Inline block under a card's English gloss (translate/audio stages, which have no Flags column).
+// Inline block under a card's English gloss (corpus/audio reviews, which have no Flags column).
 const inlineFlags = (c) => {
   const b = provenanceBadges(c);
   return b ? `<div class="rowflags">${b}</div>` : "";
 };
-// A centered ✓ (or —) for a boolean provenance column (corpus stage). An excluded row is already
+// A centered ✓ (or —) for a boolean provenance column. An excluded row is already
 // shown struck-through, so it isn't repeated as a badge here.
 const tick = (on) => (on ? `<span class="tick">✓</span>` : `<span class="x">—</span>`);
 const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
@@ -453,8 +459,8 @@ const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
 // Per-stage table shape: the <colgroup>, the <thead> row, and the trailing <td>s after the shared
 // leading `#` cell. The `audio` preset is byte-identical to the original layout (so the static
 // deck-view artifact and existing callers are unchanged). `ctx.audioCell(c)` is consulted by the
-// audio stage; `ctx.rowControl(stage, c)` (optional) injects an editor control into the corpus Flags
-// cell / translate Note cell — omitted for a read-only render.
+// audio stage; `ctx.rowControl(stage, c)` (optional) injects an editor control into a row's Exclude
+// cell — omitted for a read-only render.
 const rowExtra = (ctx, stage, c) => (ctx.rowControl ? ctx.rowControl(stage, c) : "");
 const STAGE_TABLES = {
   audio: {
@@ -468,10 +474,10 @@ const STAGE_TABLES = {
   <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
-  // Pre-translate placeholder — READ-ONLY. A corpus.json-only lesson isn't reviewable yet (no target
-  // to check); the combined Corpus review happens post-translate (the `translate` preset below). No
-  // Exclude column here.
-  corpus: {
+  // A lesson whose build never finished — corpus.json but no cards.json, so there is no target to
+  // check and nothing to sign off. READ-ONLY, and not one of the two review stages: it renders only so
+  // you can see what was extracted before re-running the build. No Exclude column here.
+  incomplete: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-hint"><col class="c-note"><col class="c-flag"><col class="c-flag">`,
     head: `<th class="num">#</th><th>English</th><th>Category</th><th>Hint</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th>`,
     cells: (c) =>
@@ -482,11 +488,11 @@ const STAGE_TABLES = {
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>`,
   },
-  // The combined "Corpus" review (first review step): English + target + pronunciation together, so
-  // you verify the list AND the translation at one gate. English-first, then Category, then the
-  // inline-editable Target / Pronunciation, then Note, the AI / Uncertain provenance ticks, and the
-  // Exclude checkbox.
-  translate: {
+  // The "Corpus" review — the FIRST of the two review stages: English + target + pronunciation
+  // together, so you verify the list AND the translation at one gate. English-first, then Category,
+  // then the inline-editable Target / Pronunciation, then Note, the AI / Uncertain provenance ticks,
+  // and the Exclude checkbox.
+  corpus: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-pron"><col class="c-hint"><col class="c-note"><col class="c-flag"><col class="c-flag"><col class="c-excl">`,
     head: `<th class="num">#</th><th>English</th><th>Category</th><th>Target</th><th>Pronunciation</th><th>Hint</th><th>Note</th><th class="ctr">AI-suggested</th><th class="ctr">Uncertain</th><th></th>`,
     cells: (c, ctx) =>
@@ -498,7 +504,7 @@ const STAGE_TABLES = {
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>
-  <td class="excl-cell">${rowExtra(ctx, "translate", c)}</td>`,
+  <td class="excl-cell">${rowExtra(ctx, "corpus", c)}</td>`,
   },
 };
 
@@ -510,7 +516,7 @@ const cardRow = (c, n, stage, ctx) => {
     ` data-stage="${escapeHtml(stage)}"`;
   // The audio-stage review gains an Exclude cell too, but only when editable (rowControl present) — the
   // read-only Browse view / artifact pass no rowControl, so their audio table stays untouched. The
-  // translate table already carries its own excl cell inside spec.cells.
+  // corpus table already carries its own excl cell inside spec.cells.
   const auExcl =
     stage === "audio" && ctx.rowControl
       ? `\n  <td class="excl-cell">${rowExtra(ctx, "audio", c)}</td>`
@@ -528,7 +534,7 @@ const cardRow = (c, n, stage, ctx) => {
 
 /**
  * Renders the deck's units as collapsible <details> sections (collapsed by default). Each section may
- * carry a `stage` (`corpus` | `translate` | `audio`, default `audio`) that picks its column layout; the
+ * carry a `stage` (`incomplete` | `corpus` | `audio`, default `audio`) that picks its column layout; the
  * `audio` layout uses the caller's `audioCell(card)`. Optional `rowControl(stage, card)` injects a
  * per-row editor control; optional `sectionControl(section)` a per-section toolbar (both omitted for a
  * read-only render). Numbering is global and continues from `startNumber`.

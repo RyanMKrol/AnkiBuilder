@@ -99,6 +99,11 @@ const CARDS_SCHEMA = {
         // done" (distinct from `reviewed`, the corpus stage-1 gate). Only `done` lessons are merged
         // into the book/course deck (`rebuildBookDir`) and shown under "Built" on the dashboard.
         done: { type: "boolean" },
+        // `prepare` step markers, so a re-run resumes rather than re-spending model calls (and never
+        // re-mines a lesson whose source simply had no drills). `enriched`: the fill-in-the-blank +
+        // semantic de-dup pass has run. `notesEnhanced`: the cross-lesson note pass has run.
+        enriched: { type: "boolean" },
+        notesEnhanced: { type: "boolean" },
       },
     },
     items: {

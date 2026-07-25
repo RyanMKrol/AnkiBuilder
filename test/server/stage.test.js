@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
-import { detectStage, loadStageData, deckStage } from "../../src/server/adapters/stage.js";
+import {
+  detectStage,
+  loadStageData,
+  deckStage,
+  INCOMPLETE,
+} from "../../src/server/adapters/stage.js";
 
 function runDir(setup) {
   const dir = mkdtempSync(join(tmpdir(), "stage-"));
@@ -28,14 +33,14 @@ test("detectStage: empty dir → null", () => {
   }
 });
 
-test("detectStage: corpus.json only → corpus", () => {
+test("detectStage: corpus.json only → incomplete (not a review stage)", () => {
   const dir = runDir((d) =>
     corpus(d, [{ id: "a", english: "one", category: "Numbers", target: null }]),
   );
   try {
-    assert.equal(detectStage(dir), "corpus");
+    assert.equal(detectStage(dir), INCOMPLETE);
     const data = loadStageData(dir);
-    assert.equal(data.stage, "corpus");
+    assert.equal(data.stage, INCOMPLETE);
     assert.equal(data.sourceFile, "corpus.json");
     assert.equal(data.items.length, 1);
   } finally {
@@ -43,7 +48,7 @@ test("detectStage: corpus.json only → corpus", () => {
   }
 });
 
-test("detectStage: cards.json with no audio → translate", () => {
+test("detectStage: cards.json with no audio → corpus (the first review)", () => {
   const dir = runDir((d) => {
     corpus(d, [{ id: "a", english: "one", category: "Numbers", target: "いち" }]);
     cards(d, [
@@ -51,7 +56,7 @@ test("detectStage: cards.json with no audio → translate", () => {
     ]);
   });
   try {
-    assert.equal(detectStage(dir), "translate");
+    assert.equal(detectStage(dir), "corpus");
     assert.equal(loadStageData(dir).sourceFile, "cards.json");
   } finally {
     rmSync(dir, { recursive: true, force: true });
@@ -81,10 +86,11 @@ test("detectStage: cards.json where any item has audio → audio", () => {
 
 test("deckStage: least-advanced stage across units, null when empty", () => {
   assert.equal(deckStage([]), null);
+  // An unfinished unit drags the whole deck below its review stages — it ranks under both.
   assert.equal(
-    deckStage([{ stage: "audio" }, { stage: "corpus" }, { stage: "translate" }]),
-    "corpus",
+    deckStage([{ stage: "audio" }, { stage: INCOMPLETE }, { stage: "corpus" }]),
+    INCOMPLETE,
   );
-  assert.equal(deckStage([{ stage: "audio" }, { stage: "translate" }]), "translate");
+  assert.equal(deckStage([{ stage: "audio" }, { stage: "corpus" }]), "corpus");
   assert.equal(deckStage([{ stage: "audio" }]), "audio");
 });

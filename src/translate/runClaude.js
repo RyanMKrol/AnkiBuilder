@@ -1,4 +1,5 @@
 import { spawnSync } from "child_process";
+import { assertExternalCallAllowed } from "../util/testEnv.js";
 
 // Pinned so translation quality is reproducible instead of inheriting whatever
 // the local Claude Code default happens to be. Sonnet at medium effort, matching
@@ -13,6 +14,7 @@ const DEFAULT_TRANSLATE_EFFORT = "medium";
  * returns its stdout. Injected as `runClaude` in tests so no real binary runs.
  */
 export function runClaude(prompt) {
+  assertExternalCallAllowed("spawn `claude -p`");
   const model = process.env.ANKI_BUILDER_TRANSLATE_MODEL || DEFAULT_TRANSLATE_MODEL;
   const effort = process.env.ANKI_BUILDER_TRANSLATE_EFFORT || DEFAULT_TRANSLATE_EFFORT;
   const result = spawnSync("claude", ["-p", prompt, "--model", model, "--effort", effort], {

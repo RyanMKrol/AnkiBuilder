@@ -134,10 +134,29 @@ own small flow that completes *before* you return to the deck build:
   one phrase per line, blank lines are fine — they're skipped) — `assemble --words` reads from a
   file, not inline text, so this file is how their dictated list gets in.
 
-### Step 2: Corpus Assembly
+### Step 2: Build the lesson — `assemble`, which runs the whole pre-review pipeline
 
-Once the source is decided, I'll assemble the corpus (the human review happens later, in Step 3, on
-the translated cards).
+Once the source is decided, one command builds the lesson all the way to its first review gate:
+
+```sh
+anki-builder assemble ...        # chains straight into `prepare`
+```
+
+`assemble` writes `corpus.json` and then **automatically chains into the `prepare` stage** —
+translate → fill-in-the-blank enrichment → semantic de-dup → cross-lesson notes — under a single
+build claim. There is **no stopping point in the middle**, by design: every one of those steps
+changes which cards exist or what they say, so a lesson that halts partway through them is a
+half-built lesson with nothing anyone can meaningfully sign off on.
+
+**Do not report a lesson to the user until `assemble` has returned.** Its last line is
+`prepare: <runDir> is ready for the corpus review` — that, not `wrote corpus with N item(s)`, is the
+point at which you hand over. If you only need the corpus (rare — a debugging run), pass
+`--no-prepare` and say plainly that the lesson isn't reviewable yet.
+
+If a build did stop partway (a crash, an interrupted session), **re-run the same `assemble` command**.
+It reuses the existing `corpus.json` and picks up the remaining `prepare` steps; each step records
+that it ran (`cards.meta.enriched`, `cards.meta.notesEnhanced`) so nothing is redone or re-charged.
+The dashboard lists such a lesson under **Not finished**, never under In review.
 
 **For a template**, pass `--output-root output` so the deck is filed under the organized
 `output/templates/<templateName>/<lang>/` tree (one folder per language). Templates are
@@ -340,33 +359,32 @@ running for the whole build:
 npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
-**There is no separate corpus review before translation any more** — the single human review (the
-**Corpus review**, Step 3.6 below) happens on the *translated* cards so you can verify the English AND
-the target + pronunciation at one gate. So after `assemble` writes `corpus.json`, move **straight on
-to `translate`** in the same turn (don't stop to ask "should I review the English first?"). A
-`corpus.json`-only lesson opened in the dashboard renders **read-only** with a "run `translate`" hint
-— it isn't reviewable until it's translated.
+**There are exactly TWO review gates, and a lesson only ever rests at one of them:**
 
-**That one gate must see the FINAL card set.** Everything that changes which cards exist *or what they
-say* — extraction, fill-in-the-blank mining (Step 3.5), the semantic de-dup pass, the cross-lesson note
-pass (Step 3.5c) — runs *before* the review opens, never after it. The pipeline order is therefore:
-`assemble` → `translate` → FIB + de-dup → cross-lesson notes → **corpus review** → `audio` → audio
-review → **Mark done**. A human should sign off once, on the complete lesson.
+| Gate                        | What you check                                     | Sign-off        |
+| --------------------------- | -------------------------------------------------- | --------------- |
+| **1 — Corpus** (Step 3)     | English + target + pronunciation, on the final cards | **Mark reviewed** |
+| **2 — Audio** (Step 4)      | Every card's clip                                    | **Mark done**   |
 
-**If a content step lives outside the `anki-builder` CLI, it still belongs in this list.** The
-cross-lesson note pass is a plain `node scripts/…` invocation with no stage gate enforcing it, which is
-exactly why it got skipped on lesson after lesson. Treat the numbered steps as the checklist: a lesson
-is not ready for review until every one of them has run.
+That's the whole state space. A lesson is either mid-build (the dashboard says *building* or
+*interrupted*, or lists it under **Not finished**), sitting at gate 1, sitting at gate 2, or done.
+There is no third review, and nothing to review before translation.
 
-### Step 3: Translation via Claude
+**Gate 1 must see the FINAL card set.** Everything that changes which cards exist *or what they say* —
+extraction, translation, fill-in-the-blank mining, the semantic de-dup pass, the cross-lesson note pass
+— runs inside `assemble`/`prepare`, before the review opens, never after it. The pipeline order is:
+`assemble` (→ `translate` → FIB + de-dup → cross-lesson notes) → **corpus review** → `audio` → **audio
+review** → **Mark done**. A human signs off once, on the complete lesson.
 
-Translate the corpus to the target language using `claude -p` (the local Claude tool):
+**This is enforced by the CLI, not by discipline.** Those content steps used to be separate commands
+and a loose `node scripts/…` invocation, which is exactly why they got skipped on lesson after lesson.
+They are now one `prepare` stage that `assemble` runs for you.
 
-```sh
-anki-builder translate --run <runDir>
-```
+#### What `prepare` does, step by step
 
-This:
+**Translation.** Each term is translated and given a pronunciation guide via `claude -p` (the local
+Claude tool). Available on its own as `anki-builder translate --run <runDir>` for a re-run, but you
+never need to invoke it by hand in a normal build. It:
 - Reads `corpus.json`
 - Generates translations and pronunciations for each phrase
 - Writes `cards.json` (the translated cards, ready for audio/images)
@@ -379,14 +397,9 @@ so the model returns the correct romanization in place, keeping the library's wh
 The fix lands directly in `pronunciation` (no flag/note). So garbled romaji should be rare now; if you
 still spot one in the translate review, tell me and I'll fix that card.
 
-**Do NOT stop for review here.** For an EPUB or real-life-lesson source, go straight into Step 3.5, so
-the drill cards are mined and de-duped *before* the human sees anything. For a template (no drills to
-mine), skip ahead to the Step 3.6 corpus review.
-
-### Step 3.5: Fill-in-the-blank enrichment (EPUB lessons)
-
-**For an EPUB or real-life-lesson source, this is an explicit pipeline step** (skip it for a template
-— a template is a fixed vocabulary list with no drills to mine). Textbook lessons contain
+**Fill-in-the-blank enrichment** (`src/cards/fillInBlank.js`, prompt in
+`docs/fill-in-blank-prompt.md`). Runs for an EPUB or real-life-lesson source; skipped for a template,
+which is a fixed vocabulary list with no drills to mine. Textbook lessons contain
 fill-in-the-blank drills and practice exercises whose example lines are a rich source of natural
 sentence cards. After translation, mine those patterns into extra **practice sentence cards**: resolve
 each blank into a concrete, level-appropriate word drawn from **already-introduced lesson vocabulary**
@@ -394,11 +407,11 @@ each blank into a concrete, level-appropriate word drawn from **already-introduc
 `target`/`reading`/`english`/`pronunciation`. Mark every such card `"fillInBlank": true` so it is
 **clearly delineated** in the reviews (badged, tinted) and targetable by the de-dup gate.
 
-**This runs BEFORE the corpus review, not after.** The FIB cards, their notes, and your keep/remove
-de-dup decisions are all things the human signs off on, so they must be in place by the time the
-review opens. Never show a reviewer a card set that is about to change underneath them: a lesson
-reviewed at 69 cards and then quietly grown to 79 has 10 cards that passed no gate, and any audio
-generated for them is credits spent on unreviewed content.
+**This runs BEFORE the corpus review, not after** — `prepare` guarantees the ordering. The FIB cards,
+their notes, and the de-dup decisions are all things the human signs off on, so they must be in place
+by the time the review opens. Never show a reviewer a card set that is about to change underneath
+them: a lesson reviewed at 69 cards and then quietly grown to 79 has 10 cards that passed no gate, and
+any audio generated for them is credits spent on unreviewed content.
 
 **Placement — a contiguous drill block at the END of the lesson.** Append the kept FIB cards after all
 of that lesson's vocabulary and textbook sentences; do **not** interleave them earlier. A drill only
@@ -407,52 +420,45 @@ lesson's dependency order intact (vocab → textbook sentences → practice dril
 pedagogical-order check expects. Keep each split Q&A pair adjacent (question card immediately followed
 by its answer card).
 
-Then, in the same step and **before** the cards go to review, apply the two content gates defined in
-the conventions above:
-
-1. **Semantic de-dup against the corpus** — group every card (corpus **and** FIB) by sentence pattern
-   and keep at most ~2 examples per pattern, favouring FIB that introduce a new pattern or new
-   vocabulary; remove pure pattern-repeats. Back up the removed cards; surface the keep/remove result
-   in the review for the human to push back on.
-2. **Split any combined question-and-answer line into two cards** — one question card, one answer card.
+**Semantic de-dup** (`src/cards/semanticDedup.js`, prompt in `docs/semantic-dedup-prompt.md`) then
+runs over the enriched set: it groups every card (source **and** FIB) by sentence pattern and keeps at
+most ~2 examples per pattern, favouring FIB that introduce a new pattern or new vocabulary. A redundant
+practice card is **excluded, not deleted** — `excluded: true` plus a `reviewNote` naming what already
+covers it — so the reviewer sees each call with its reasoning at gate 1 and can restore any card with
+one click. It only ever touches cards marked `fillInBlank`; source material is off limits.
 
 Check every FIB card against the lesson's **excluded** rows too: a drill sentence must not lean on
 vocabulary the reviewer has already dropped. Substitute an equivalent kept word instead (if `あした`
 was excluded, build the sentence on `らいしゅう`).
 
-The kept FIB cards are ordinary cards from here on. They go into the Step 3.6 corpus review alongside
+The kept FIB cards are ordinary cards from here on. They go into the Step 3 corpus review alongside
 every other card, badged by their `fillInBlank` flag, so the human vets the additions and your de-dup
 calls at the same single gate as the rest of the lesson.
 
-### Step 3.5c: Cross-lesson note pass (every book/course lesson)
+**Cross-lesson notes** (`src/cards/crossLessonNotes.js`, prompt in
+`docs/cross-lesson-note-prompt.md`). Runs for every lesson of a book or course; skipped for a template,
+which has no earlier lessons to reference. This is the step that turns a flat vocabulary list into a
+connected knowledge base where each card knows what came before it.
 
-**Run this for EVERY lesson of a book or course, before the review** (skip it for a template — there
-are no earlier lessons to reference):
+It runs **one pass per lesson**, fed that lesson **plus every earlier lesson** as context, and writes
+notes for the current lesson only. Cross-references are therefore **structurally backward**: the model
+literally never sees a later lesson, so referencing material the learner hasn't met is impossible
+rather than merely discouraged. Within a lesson, cards may reference each other freely — the constraint
+is per-lesson, not per-card. It leaves `hint`/`reviewNote` untouched and backs each file up once to
+`<file>.pre-enhance.bak`.
+
+For a one-off backfill across a whole book that's already been built, the same pass has a batch driver:
 
 ```sh
 ANKI_BUILDER_TRANSLATE_EFFORT=high node scripts/enhance-card-notes.mjs --only <unit> <bookDir>
 # e.g. … --only chapter-6 output/epubs/japanese-for-busy-people-book-1-kana
 ```
 
-`--only <unit>` writes just that lesson while still feeding **every earlier lesson** in as context, so
-the new lesson gets its backward cross-references without touching lessons already reviewed and done.
 **Never run the bare `<bookDir>` form on a book with finished lessons** — it rewrites their notes and
-overwrites their `.pre-enhance.bak` backups. That form is for a one-off backfill of a whole book only.
+overwrites their `.pre-enhance.bak` backups. You do NOT need this script for a new lesson; `prepare`
+already ran the pass for it.
 
-This is the step that turns a flat vocabulary list into a connected knowledge base, and it is easy to
-forget precisely because it lives outside the `anki-builder` CLI. Two rules keep it honest:
-
-- **It runs BEFORE the corpus review**, like FIB and de-dup. The notes it writes are learner-facing, so
-  they have to be in place for the human to sign off on. Running it after **Mark done** means either
-  shipping notes nobody reviewed or reopening a finished lesson.
-- **Check it actually ran.** A lesson that has been through the pass has a `cards.json.pre-enhance.bak`
-  beside its `cards.json` (unless the pass genuinely changed nothing). If a book's other lessons have
-  that file and the new one doesn't, the pass was skipped.
-
-Only after this, and the corpus review that follows it, do the cards flow into Step 4 (audio) and the
-deck.
-
-### Step 3.6: Corpus review — the one human gate before audio
+### Step 3: Gate 1 — the corpus review
 
 Open the deck's **Review** view (the **Review**
 link on the dashboard, `/review/...` — distinct from the read-only **Browse** view). Now that
@@ -495,12 +501,12 @@ build renders a small category chip on the FRONT of both templates (Recognition 
 word is always studied *with* its domain — you don't recognize/produce a word cold, out of context. A
 card missing a category is a bug; if you author cards by hand, set one.
 
-**The TEACHABILITY / CROSS-REFERENCE pass is a pipeline step (Step 3.5c), not an afterthought.** The
+**The TEACHABILITY / CROSS-REFERENCE pass is part of `prepare` (Step 2), not an afterthought.** The
 extraction runs one chapter at a time, so it can only cross-reference within that chapter — genuinely
 useful comparisons that span lessons (おねがいします vs ください, the greeting time-chain, その vs それ)
-have to be added by a pass that can see across lessons. Run
-`scripts/enhance-card-notes.mjs --only <unit> <bookDir>` (Sonnet, `ANKI_BUILDER_TRANSLATE_EFFORT=high`)
-for **every** lesson, as part of building it — see Step 3.5c. (Without `--only` it processes the whole
+have to be added by a pass that can see across lessons. It runs
+automatically inside `prepare` (Sonnet; raise it with `ANKI_BUILDER_TRANSLATE_EFFORT=high`)
+for **every** lesson, as part of building it — `prepare` does this for you. (Without `--only` it processes the whole
 book, which is the right form for a one-off backfill but **wrong** for a new lesson: it rewrites notes
 on lessons already reviewed and done, and clobbers their `.pre-enhance.bak` backups.)
 It runs **one pass PER LESSON**, each fed only that lesson **plus all EARLIER lessons** as context, and
@@ -537,7 +543,7 @@ must be final: extraction, FIB mining, and de-dup all done. If you later realize
 don't quietly append it — say so, add it, and send the reviewer back through the corpus review for the
 lesson, so no card ever reaches the deck without a human having seen it in these columns.
 
-### Step 4: Audio Generation
+### Step 4: Audio generation, then Gate 2 — the audio review
 
 If you want to generate audio (pronunciation recorded by ElevenLabs TTS):
 
@@ -619,7 +625,7 @@ the Replace/Generate/Generate-(kanji) controls are gone — a finished lesson ca
 those controls; then **Mark done** re-finalizes and rebuilds. So the edit path for a shipped lesson is
 always Reopen → change → Mark done.
 
-**Mark done — the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
+**Mark done — Gate 2, the final sign-off.** When a lesson's audio is finalized, click **Mark done** on that
 lesson (sets `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` (and
 the dashboard build) package **only `done` lessons**, so an un-finished lesson never ships. A done
 lesson moves to the dashboard's **Built** section; **Reopen** returns it to review to tweak.
@@ -744,7 +750,17 @@ anki-builder assemble --output-root output --words <path> --course "Intensive Ja
   --lesson-number <N> --lang ja [--lesson-label "Lesson <N>: <topic>"]
 ```
 
-### Translate
+### Prepare (everything between assemble and the first review)
+```sh
+anki-builder prepare --run <dir>
+```
+Translate → fill-in-the-blank enrichment → semantic de-dup → cross-lesson notes, under one build
+claim. **`assemble` runs this for you** — invoke it directly only to finish a lesson whose build was
+interrupted, or after an `assemble --no-prepare`. Idempotent: each step records that it ran, and a
+lesson already marked reviewed is left completely alone. On failure it deliberately keeps its claim,
+so a crash shows up as *interrupted* rather than looking finished.
+
+### Translate (one step of `prepare`)
 ```sh
 anki-builder translate --run <dir>
 anki-builder translate --run <dir> --simple-script   # constrain the target to the language's beginner script
@@ -790,14 +806,17 @@ won't apply), whereas a fresh note type (new id + name suffixed with the font) a
 Use it when re-importing a restyled version of a deck you've had before; skip it for a genuinely new
 deck.
 
-### Review a run (corpus / translate / audio)
+### Review a run (corpus, then audio)
 Review happens in the dashboard's **Review** view, not a CLI command:
 ```sh
-npm run serve   # open the printed URL → a deck's "Review" link (/review/...) → per-stage review UI
+npm run serve   # open the printed URL → a deck's "Review" link (/review/...) → the stage's review UI
 ```
-(Two review steps: the **Corpus** review shows English + target + pronunciation together (on the
-translated cards); the **Audio** review adds players + generate/pick. The read-only **Browse** link,
-`/deck/...`, is for looking at a finished deck.)
+Two gates, and a lesson badges as whichever it's sitting at: **`corpus`** shows English + target +
+pronunciation together, signed off with **Mark reviewed**; **`audio`** adds players + generate/pick,
+signed off with **Mark done**. A lesson whose build stopped before it had any cards badges
+**`incomplete`** and is listed under **Not finished**, not under In review — it renders read-only with
+the command that completes it. The read-only **Browse** link, `/deck/...`, is for looking at a finished
+deck.
 
 ### Browse a built deck (`.apkg`) as an artifact
 ```sh
@@ -929,11 +948,18 @@ whenever the audio-generation algorithm changes** — see the ⚠️ note under 
 ## Troubleshooting
 
 **"corpus.json already exists — reusing"**  
-The assemble stage found an existing corpus and skipped regeneration. To start fresh:
+Not an error — assemble found an existing corpus, skipped re-extracting it, and carried on into
+`prepare`. That's how re-running the same `assemble` command resumes a lesson whose build stopped
+partway. To genuinely start fresh:
 ```sh
-rm <runDir>/corpus.json
+rm <runDir>/corpus.json <runDir>/cards.json
 anki-builder assemble --run <dir> ...
 ```
+
+**A lesson shows as "incomplete" / sits under "Not finished" in the dashboard**  
+Its build stopped before it had any cards — corpus.json exists, cards.json doesn't. Re-run the same
+`anki-builder assemble` command for that lesson, or `anki-builder prepare --run <runDir>` directly.
+Nothing already done is redone.
 
 **"ELEVENLABS_API_KEY not set"**  
 Ensure `.env` is copied from `.env.example` and contains your key, or export it:

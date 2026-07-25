@@ -170,13 +170,13 @@ test("templateAdapter encodes id as name__lang and resolves its single unit + me
   }
 });
 
-test("bookAdapter surfaces corpus-only and translate-only chapters with their stage", () => {
+test("bookAdapter surfaces an unfinished chapter and a corpus-review chapter with their stage", () => {
   const root = mkdtempSync(join(tmpdir(), "deck-stage-"));
   try {
     const book = join(root, "epubs", "wip");
     mkdirSync(book, { recursive: true });
     writeFileSync(join(book, "book.json"), JSON.stringify({ title: "WIP", targetLanguage: "ja" }));
-    // chapter-0: corpus stage (corpus.json only)
+    // chapter-0: unfinished — corpus.json only, the build never reached cards.json
     mkdirSync(join(book, "chapter-0"), { recursive: true });
     writeFileSync(
       join(book, "chapter-0", "corpus.json"),
@@ -185,7 +185,7 @@ test("bookAdapter surfaces corpus-only and translate-only chapters with their st
         items: [{ id: "a", english: "one", category: "Numbers", target: null, aiSuggested: true }],
       }),
     );
-    // chapter-1: translate stage (cards.json, no audio)
+    // chapter-1: the corpus review (cards.json, no audio)
     mkdirSync(join(book, "chapter-1"), { recursive: true });
     writeFileSync(
       join(book, "chapter-1", "cards.json"),
@@ -199,17 +199,17 @@ test("bookAdapter surfaces corpus-only and translate-only chapters with their st
 
     const decks = bookAdapter.listDecks(root);
     assert.equal(decks[0].unitCount, 2);
-    assert.equal(decks[0].stage, "corpus"); // least-advanced unit
+    assert.equal(decks[0].stage, "incomplete"); // least-advanced unit
 
     const deck = bookAdapter.loadDeck(root, "wip");
     assert.deepEqual(
       deck.units.map((u) => [u.label, u.stage]),
       [
-        ["Ch1", "corpus"],
-        ["Ch2", "translate"],
+        ["Ch1", "incomplete"],
+        ["Ch2", "corpus"],
       ],
     );
-    // corpus card carries the review flags; translate card carries pronunciation
+    // the unfinished listing carries the review flags; the corpus-review card carries pronunciation
     assert.equal(deck.units[0].cards[0].aiSuggested, true);
     assert.equal(deck.units[1].cards[0].pronunciation, "ni");
   } finally {

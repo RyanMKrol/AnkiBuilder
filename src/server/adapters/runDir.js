@@ -5,6 +5,11 @@ import { join } from "path";
 // and mapping their items into stage-appropriate render shapes for the dashboard. (Stage detection and
 // the numbered-unit scan live in ./stage.js, which builds on these low-level readers.)
 
+// The non-stage a run dir sits in when its build stopped before cards.json — see ./stage.js, which
+// re-exports this. It lives here, the lower-level module, so the render-shape mapper below can name it
+// without importing its own importer.
+export const INCOMPLETE = "incomplete";
+
 function readJsonItems(runDir, file) {
   const path = join(runDir, file);
   if (!existsSync(path)) return null;
@@ -43,9 +48,9 @@ export function toRenderCard(item) {
   };
 }
 
-// A corpus.json item -> render shape for the corpus review (no pronunciation/audio yet; carries the
-// review flags so the page can badge them).
-export function toCorpusRenderCard(item) {
+// A corpus.json item -> render shape for an INCOMPLETE lesson's read-only listing (no pronunciation
+// or audio yet; carries the review flags so the page can badge them).
+export function toIncompleteRenderCard(item) {
   return {
     id: item.id,
     english: item.english || "",
@@ -61,8 +66,8 @@ export function toCorpusRenderCard(item) {
   };
 }
 
-// A post-translate cards.json item (pre-audio) -> render shape for the translate review.
-export function toTranslateRenderCard(item) {
+// A post-translate cards.json item (pre-audio) -> render shape for the Corpus review.
+export function toCorpusRenderCard(item) {
   return {
     id: item.id,
     english: item.english || "",
@@ -79,10 +84,10 @@ export function toTranslateRenderCard(item) {
   };
 }
 
-// The item -> render-card mapper for a given pipeline stage.
+// The item -> render-card mapper for a given stage (or the INCOMPLETE non-stage).
 export function renderCardForStage(stage) {
+  if (stage === INCOMPLETE) return toIncompleteRenderCard;
   if (stage === "corpus") return toCorpusRenderCard;
-  if (stage === "translate") return toTranslateRenderCard;
   return toRenderCard;
 }
 

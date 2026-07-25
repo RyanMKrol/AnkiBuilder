@@ -2,6 +2,7 @@ import { existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { INCOMPLETE, readCardsJson, readCorpusJson, renderCardForStage } from "./runDir.js";
 import { claimLiveness, readClaim } from "../../cli/runClaim.js";
+import { lessonReadiness } from "../../cards/readiness.js";
 
 // A lesson has exactly TWO stages, and both are human review gates:
 //
@@ -102,6 +103,9 @@ export function scanNumberedUnits(deckDir, prefix) {
       stage: data.stage,
       reviewed: !!meta.reviewed,
       done: !!meta.done,
+      // Whether the pre-review passes have all run. Surfaced per unit so the home page can keep an
+      // unfinished lesson out of "In review" and the review view can say what's still to run.
+      ...lessonReadiness(meta),
       building: build.building,
       interrupted: build.interrupted,
       claim: build.claim,

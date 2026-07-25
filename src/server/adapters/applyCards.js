@@ -3,6 +3,7 @@ import { writeFileAtomic } from "../../util/atomicWrite.js";
 import { join } from "path";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../../corpus/epubLibrary.js";
+import { lessonReadiness, describeReadiness } from "../../cards/readiness.js";
 import { httpError } from "../../util/httpError.js";
 
 // Write-back for the dashboard Corpus review — non-audio edits to cards.json (exclude a card, fix its
@@ -54,6 +55,20 @@ export function setCardExcluded(
 export function setLessonDone(runDir, done, { validateCards = defaultValidateCards } = {}) {
   const { cardsPath, data } = loadCards(runDir);
   data.meta = data.meta || {};
+
+  // The second gate checks its precondition the same way the first does. `done` is what puts a lesson
+  // into the merged .apkg and, from there, into the live Anki collection — so a lesson that never
+  // passed the corpus review must not be able to reach it. The UI only offers "Mark done" at the audio
+  // stage, but the endpoint is reachable without the UI (a stale tab, a stray request), and "the UI
+  // doesn't offer it" is exactly the kind of guarantee that turned out not to be one.
+  if (done && data.meta.reviewed !== true) {
+    throw httpError(
+      409,
+      `this lesson has not passed the corpus review, so it cannot be marked done — ` +
+        `marking it done would ship it into the deck. Review it first.`,
+    );
+  }
+
   if (done) data.meta.done = true;
   else delete data.meta.done;
   persist(cardsPath, data, validateCards);
@@ -70,6 +85,20 @@ export function markCardsReviewed(
   { validateCards = defaultValidateCards, saveChapterCorpus = defaultSaveChapterCorpus } = {},
 ) {
   const { cardsPath, data } = loadCards(runDir);
+
+  // The gate checks the lesson's STATE, not how it got here. A cards.json alone used to be enough to
+  // sign off — so a bare `translate`, a `prepare` that died after translate, or a lesson built before
+  // a pass existed all presented as final card sets when they weren't. Refusing here is what makes
+  // "the reviewer sees the finished lesson" true rather than merely intended.
+  const readiness = lessonReadiness(data.meta || {});
+  if (!readiness.ready) {
+    throw httpError(
+      409,
+      `this lesson is not ready to review — ${describeReadiness(readiness)}. ` +
+        `Run "anki-builder prepare --run ${runDir}" to finish it.`,
+    );
+  }
+
   data.meta = { ...(data.meta || {}), reviewed: true };
   persist(cardsPath, data, validateCards);
 

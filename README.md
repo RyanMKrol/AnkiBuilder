@@ -227,6 +227,11 @@ npm run build
       allocated, so a crashed build's claim lets the retry reclaim its own folder instead of leaking a
       fresh sequence number, and an accidental second run of the same chapter is refused outright
       rather than quietly building it twice
+- [x] Review gates that check state, not history — a lesson is only offered for review once every
+      pre-review pass has recorded a complete run, and only mergeable into the deck once it has passed
+      that review. Enforced in the write-back, the render and the home-page bucketing from one shared
+      verdict, so however a lesson got here (a bare `translate`, an interrupted `prepare`, a lesson
+      built before a pass existed) it cannot present as finished when it isn't
 - [x] Build lessons in order — `assemble` warns when an earlier lesson of the same book hasn't been
       marked reviewed, since the backward-dedup library is written by that sign-off; and `prepare`
       leaves its enrichment markers unset when the earlier lessons it reads aren't built yet, so a

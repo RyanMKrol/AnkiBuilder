@@ -513,6 +513,15 @@ async function runTranslateInner(flags, ctx) {
 
   writeJson(paths.cards, cards);
   ctx.log(`translated ${cards.items.length} item(s) to ${paths.cards}`);
+  // Translation alone does NOT make a lesson reviewable — the drill, de-dup and cross-reference
+  // passes all still have to run, and the dashboard holds the lesson back until they have. Say so
+  // here rather than leaving someone to wonder why the review offers no sign-off button.
+  if (!flags.__fromPrepare) {
+    ctx.log(
+      `translate: this lesson is NOT reviewable yet — run "prepare --run ${flags.run}" to finish it ` +
+        `(prepare runs translate itself, so it is the normal way in).`,
+    );
+  }
   if (errors.length > 0) {
     ctx.log(`${errors.length} item(s) failed to translate: ${errors.map((e) => e.id).join(", ")}`);
   }
@@ -635,7 +644,7 @@ async function runPrepareInner(flags, ctx) {
   }
 
   updateClaim(runDir, { stage: "translate" });
-  await runTranslateInner(flags, ctx);
+  await runTranslateInner({ ...flags, __fromPrepare: true }, ctx);
 
   const cards = readJson(paths.cards);
   const meta = cards.meta || {};

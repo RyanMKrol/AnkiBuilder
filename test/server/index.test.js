@@ -1242,3 +1242,57 @@ test("an audio-stage lesson is never held back by the readiness gate", async () 
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+// Held at the REVIEW gate, not the audio stage. The old placement meant the reviewer read wrong romaji
+// all the way through the lesson and only found out when the voice said the digits out loud.
+test("a lesson with a numeral and no reading is held out of review, naming the cards", async () => {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-num-"));
+  try {
+    const book = join(root, "epubs", "nbook");
+    mkdirSync(join(book, "chapter-0"), { recursive: true });
+    writeFileSync(
+      join(book, "book.json"),
+      JSON.stringify({ title: "N Book", targetLanguage: "ja" }),
+    );
+    writeFileSync(
+      join(book, "chapter-0", "cards.json"),
+      JSON.stringify({
+        meta: {
+          targetLanguage: "ja",
+          sourceType: "epub",
+          chapterNumber: 2,
+          chapterLabel: "Nch",
+          enriched: true,
+          notesEnhanced: true,
+        },
+        items: [
+          {
+            id: "y",
+            english: "In 2025",
+            category: "Other",
+            target: "2025ねんに",
+            pronunciation: "2025-nen ni",
+          },
+        ],
+      }),
+    );
+
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/nbook`)).text();
+        assert.doesNotMatch(html, /Mark reviewed/);
+        assert.match(html, /numeral that needs spelling out/);
+        assert.match(html, /2025ねんに/);
+        // …and signing off is refused even by a direct request.
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/nbook/unit/0/review/reviewed`, { method: "POST" }),
+        );
+        assert.equal(res.status, 409);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

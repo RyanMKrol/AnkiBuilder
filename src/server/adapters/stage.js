@@ -105,7 +105,7 @@ export function scanNumberedUnits(deckDir, prefix) {
       done: !!meta.done,
       // Whether the pre-review passes have all run. Surfaced per unit so the home page can keep an
       // unfinished lesson out of "In review" and the review view can say what's still to run.
-      ...lessonReadiness(meta),
+      ...lessonReadiness(meta, data.items),
       building: build.building,
       interrupted: build.interrupted,
       claim: build.claim,

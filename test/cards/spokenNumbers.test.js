@@ -15,7 +15,8 @@ test("flags a card whose target has a digit and no reading", () => {
     found.map((f) => f.id),
     ["a", "c"],
   );
-  assert.equal(found[0].cause, "no reading");
+  assert.match(found[0].cause, /no reading/);
+  assert.equal(found[0].field, "spoken");
 });
 
 test("a spelled-out reading clears it", () => {
@@ -49,4 +50,31 @@ test("a language with no TTS text transform is left alone", () => {
 test("the report names each card, its text and the cause", () => {
   const report = describeUnreadableNumbers(findUnreadableNumbers([card("a", "5じに")], "ja"));
   assert.match(report, /a: 5じに — no reading/);
+});
+
+// The romaji is what the learner reads to know how to SAY the card, so a digit in it is wrong on its
+// own terms. This arm also catches the stale case: a reading filled in later without regenerating the
+// romanization — which is exactly what happened after the first pass at this fix.
+test("a digit in the romaji is flagged even when the spoken text is clean", () => {
+  const [found] = findUnreadableNumbers(
+    [card("a", "2025ねんに", { reading: "にせんにじゅうごねんに", pronunciation: "2025-nen ni" })],
+    "ja",
+  );
+  assert.equal(found.field, "pronunciation");
+  assert.match(found.cause, /romaji still contains a digit/);
+});
+
+test("a card with a numeric target, a spelled-out reading and clean romaji passes", () => {
+  assert.deepEqual(
+    findUnreadableNumbers(
+      [
+        card("a", "13,000えん", {
+          reading: "いちまんさんぜんえん",
+          pronunciation: "ichiman sanzen'en",
+        }),
+      ],
+      "ja",
+    ),
+    [],
+  );
 });

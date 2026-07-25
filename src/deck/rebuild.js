@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
+import { withRebuildLock } from "./rebuildLock.js";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard
@@ -78,7 +79,7 @@ export function resolveBookName(
   return bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
 }
 
-export function rebuildBookDir(
+export async function rebuildBookDir(
   bookDir,
   {
     buildBookDeck = defaultBuildBookDeck,
@@ -87,6 +88,25 @@ export function rebuildBookDir(
     bookNameFallback = null,
     now = Date.now,
   } = {},
+) {
+  // Held only around the read of the done-set and the build itself — seconds, per book. It is
+  // NOT what keeps the package intact (the atomic rename does that); it stops a rebuild that
+  // started earlier from finishing later and publishing a done-set that is missing a lesson
+  // someone marked done in the meantime. A waiter re-reads the set and picks that lesson up.
+  return withRebuildLock(bookDir, () =>
+    rebuildBookDirLocked(bookDir, {
+      buildBookDeck,
+      loadBookMeta,
+      loadCourseMeta,
+      bookNameFallback,
+      now,
+    }),
+  );
+}
+
+function rebuildBookDirLocked(
+  bookDir,
+  { buildBookDeck, loadBookMeta, loadCourseMeta, bookNameFallback, now },
 ) {
   const outPath = join(bookDir, "deck.apkg");
   const { chapterDecks, epubHash } = selectDoneChapterDecks(bookDir);

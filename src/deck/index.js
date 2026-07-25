@@ -1,4 +1,5 @@
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
+import { existsSync, readFileSync, mkdirSync } from "fs";
+import { writeFileAtomic } from "../util/atomicWrite.js";
 import { join, dirname } from "path";
 import { Buffer } from "buffer";
 import { buildCollection, buildMultiDeckCollection } from "./collection.js";
@@ -101,7 +102,7 @@ export function buildDeck(
   const zipBytes = buildZip(zipEntries);
 
   mkdirSync(dirname(outPath), { recursive: true });
-  writeFileSync(outPath, zipBytes);
+  writeFileAtomic(outPath, zipBytes);
 
   return { outPath, noteCount: resolvedCards.items.length, mediaCount: mediaEntries.length };
 }
@@ -152,7 +153,7 @@ export function buildBookDeck(
   const zipBytes = buildZip(zipEntries);
 
   mkdirSync(dirname(outPath), { recursive: true });
-  writeFileSync(outPath, zipBytes);
+  writeFileAtomic(outPath, zipBytes);
 
   const noteCount = resolvedChapterDecks.reduce(
     (sum, chapter) => sum + chapter.cards.items.length,

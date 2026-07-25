@@ -791,3 +791,20 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** only reachable by hand-editing the cache. The repair is to delete the chapter file (or
   the whole cache — it is disposable and rebuilds from the EPUB).
 - **When to revisit:** if anything ever prunes the cache selectively rather than wholesale.
+
+### The deck rebuild lock is an optimization, not the safety property
+
+- **What:** `rebuildBookDir` takes a short `.rebuild.lock` (an `O_EXCL` dotfile) around reading the
+  done-set and building the package, waits up to 10s for a holder, and steals a lock whose pid is
+  dead or whose age exceeds 60s. It is per book/course and held for the seconds a rebuild takes.
+- **Why:** what actually guarantees nobody sees a half-written `.apkg` is the atomic rename, not the
+  lock. The lock closes a narrower hole: a rebuild that started earlier but finishes later would
+  otherwise publish a done-set missing a lesson marked done in the meantime. A waiter re-reads the
+  set and picks it up. Because the rename is the real protection, a lost or double-stolen lock is
+  safe rather than merely tolerable — which is why the stealing rules can be blunt.
+- **Impact:** `rebuildBookDir` is now async, so its callers await. A rebuild contending past 10s
+  returns 409 from the manual Rebuild button, and is silently skipped by the automatic rebuild that
+  follows Mark done (matching its existing best-effort contract).
+- **When to revisit:** if a book ever grows large enough that a rebuild exceeds the 60s TTL, raise
+  it — a live holder past its TTL will otherwise have its lock stolen mid-build. (Harmless, thanks to
+  the rename, but it wastes work.)

@@ -687,19 +687,18 @@ async function runPrepareInner(flags, ctx) {
   if (!isTemplate && meta.enriched !== true) {
     updateClaim(runDir, { stage: "fill-in-the-blank" });
 
-    // A previous degraded run left drills mined against a partial view of the book. Re-mining would
-    // APPEND a second block on top of them, so drop the old one first. Precise and safe: only
-    // AI-authored practice cards carry `fillInBlank`, and this whole branch is already skipped for a
-    // lesson someone has signed off.
-    if (meta.prepareDegraded) {
-      const stale = cards.items.filter((item) => item.fillInBlank).length;
-      if (stale > 0) {
-        cards.items = cards.items.filter((item) => !item.fillInBlank);
-        ctx.log(
-          `fill-in-the-blank: dropped ${stale} practice card(s) from an earlier run that could not ` +
-            `see this book's earlier lessons — re-mining them now`,
-        );
-      }
+    // Reaching here means this lesson has no `enriched` marker, so the pass is about to run — and
+    // mining APPENDS. Any practice cards already present therefore came from a run that never got
+    // marked: a degraded one, or a lesson built before the marker existed at all. Drop them rather
+    // than stack a second block on top. Precise and safe: only AI-authored practice cards carry
+    // `fillInBlank`, and this whole branch is already skipped for a lesson someone has signed off.
+    const stale = cards.items.filter((item) => item.fillInBlank).length;
+    if (stale > 0) {
+      cards.items = cards.items.filter((item) => !item.fillInBlank);
+      ctx.log(
+        `fill-in-the-blank: dropped ${stale} unmarked practice card(s) from an earlier run — ` +
+          `re-mining so the lesson ends up with exactly one drill block`,
+      );
     }
 
     // The source document to mine drills from, for an --epub lesson. A dictated (--words) lesson has

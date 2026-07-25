@@ -1850,7 +1850,7 @@ test("prepare: a repaired re-run redoes both passes without doubling the drill b
       1,
       "the thin run's drills must be replaced, not appended to",
     );
-    assert.match(logged.join("\n"), /dropped 1 practice card/);
+    assert.match(logged.join("\n"), /dropped 1 unmarked practice card/);
   });
 });
 
@@ -1944,5 +1944,47 @@ test("assemble: says nothing about ordering for a template", async () => {
       },
     );
     assert.doesNotMatch(logged.join("\n"), /WARNING/);
+  });
+});
+
+// A lesson built before the enrichment markers existed has drills but no `enriched` flag, so the
+// next prepare re-mines. Without dropping first, it would end up with two drill blocks.
+test("prepare: a lesson with unmarked drills is re-mined, not stacked on", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-1");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+    // Exactly the legacy shape: drills present, no enriched marker, no prepareDegraded.
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false, chapterNumber: 2 },
+        items: [
+          { id: "a", english: "One", category: "Numbers", target: "いち", pronunciation: "ichi" },
+          {
+            id: "old-fib",
+            english: "Old drill.",
+            category: "Numbers",
+            target: "ふるい",
+            pronunciation: "furui",
+            fillInBlank: true,
+          },
+        ],
+      }),
+    );
+
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      lessonSiblings: () => [sibling("chapter-0", 1), sibling("chapter-1", 2)],
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    const drills = cards.items.filter((i) => i.fillInBlank);
+    assert.equal(drills.length, 1, "one drill block, not two");
+    assert.equal(drills[0].id, "fib-1", "the freshly mined drill, not the legacy one");
+    assert.match(logged.join("\n"), /dropped 1 unmarked practice card/);
   });
 });

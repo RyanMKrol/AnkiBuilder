@@ -59,6 +59,34 @@ async function fetchTermsToCache(terms, audioDir, { fetchTts, voiceId, apiKey, l
   return fetched;
 }
 
+/**
+ * The exact text of a card's DEFAULT clip, and the filename that text hashes to.
+ *
+ * Exported so the audio stage's "already generated?" check can ask whether a card's stored clip still
+ * matches its CURRENT text, rather than only whether some file exists. Clip names are content
+ * addressed, so editing a `reading` after audio has run leaves the card pointing at a stale clip that
+ * is still on disk — which read as "already generated — reusing" and silently kept the old audio.
+ */
+export function defaultClipText(item, languageCode, altTransform) {
+  const text = normalizeTtsText(speechText(item), languageCode);
+  return altTransform ? altTransform(text) : text;
+}
+
+/**
+ * Does this filename look like a clip the audio STAGE generated — a bare content hash?
+ *
+ * Everything else a card can point at is a deliberate human choice and must never be regenerated over:
+ * a `-gen-` / `-genkanji-` variant auditioned and picked in the dashboard, or a Replace upload under
+ * its own name. Only a plain default take is ever a candidate for being stale.
+ */
+export function isDefaultClipFilename(filename) {
+  return typeof filename === "string" && /^[0-9a-f]{16}\.mp3$/.test(filename);
+}
+
+export function defaultClipFilename(item, languageCode, altTransform) {
+  return `${hashTerm(defaultClipText(item, languageCode, altTransform))}.mp3`;
+}
+
 export async function generateAudio(
   cards,
   {
@@ -97,11 +125,6 @@ export async function generateAudio(
   const languageCode = resolveIso639Code(cards.meta?.targetLanguage);
   const fetchCtx = { fetchTts, voiceId, apiKey, languageCode };
 
-  // The exact text sent to TTS (and used as the cache key): the card's spoken text with any
-  // language-specific normalization applied — for Japanese, spaces stripped so they aren't voiced
-  // as pauses. `target`/`reading` keep their editorial spaces for display; only the audio loses them.
-  const ttsTextFor = (item) => normalizeTtsText(speechText(item), languageCode);
-
   // The DEFAULT (and only up-front) take. For a language with a transform (Japanese appends 。), the
   // WITH-。 take is the default — a trailing 。 gives ElevenLabs a sentence boundary and fixes many
   // mis-rendered short/bare clips (lone kana, some numbers). Languages with no transform get the plain
@@ -109,8 +132,7 @@ export async function generateAudio(
   // DEMAND in the dashboard, not here. The displayed target/reading never carries a 。; the dot is
   // audio-only.
   const altTransform = getAltTransform(languageCode);
-  const defaultTextFor = (item) =>
-    altTransform ? altTransform(ttsTextFor(item)) : ttsTextFor(item);
+  const defaultTextFor = (item) => defaultClipText(item, languageCode, altTransform);
 
   // Excluded cards are dropped from the deck at build time (src/deck/index.js), so don't spend TTS on
   // them here — and clear any `audio` they carry so the review shows no player and nothing lingers.

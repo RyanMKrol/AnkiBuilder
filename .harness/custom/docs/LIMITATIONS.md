@@ -941,7 +941,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   operator who means it. Worth knowing that "the marker is set" means "something claimed the pass ran".
 - **When to revisit:** never, unless this stops being a local single-user tool.
 
-### A numeral reaching TTS is now caught deterministically, but nothing writes the reading for you
+### Numerals are auto-filled by a model, so the counter needs a human eye
 
 - **What:** `findUnreadableNumbers` (`src/cards/spokenNumbers.js`) checks two things — the spoken text
   handed to TTS, and the romaji the learner reads — and the REVIEW gate holds a lesson back until both
@@ -956,6 +956,26 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** the failure mode changes from "seven clips silently read in English, discovered by
   listening" to "the audio stage stops and names the cards". Someone still has to supply each reading
   by hand. Scoped by language via the TTS text transforms, so Spanish `2000 euros` is untouched.
-- **When to revisit:** if hand-filling readings becomes frequent, add a small LLM pass in `prepare`
-  that proposes them and marks the cards `uncertain` so the reviewer checks each one — proposing is
-  safe in a way that silently generating is not.
+- **Update:** that pass now exists (`src/cards/numberReadings.js`). `prepare` fills both fields and
+  marks every card it touches `uncertain` with a reviewNote, so the fix is proposed rather than
+  slipped in. What still needs a human is the COUNTER: 4がつ is しがつ, 9じ is くじ, 1ぷん is いっぷん,
+  and a plausible-but-wrong reading gets spoken aloud confidently. The `uncertain` badge is the whole
+  safeguard there.
+- **When to revisit:** if a wrong counter ever ships. A check against a table of known irregular
+  counter readings would catch the common ones deterministically, leaving the model only the cases a
+  table cannot cover.
+
+### A stale clip is detected by filename, which only works for clips the stage generated
+
+- **What:** the `audio` stage now treats a card's clip as current only if its filename still matches
+  the hash of the card's spoken text — so editing a `reading` and re-running regenerates just that
+  card. But it only applies the test to a bare `<hash>.mp3`. A `-gen-` / `-genkanji-` variant picked in
+  the dashboard, or a Replace upload, is never considered stale.
+- **Why:** those are deliberate human choices. An earlier version of this check compared every clip and
+  would have regenerated over 57 hand-picked takes across this repo's own book — destroying real work
+  to fix a cosmetic mismatch.
+- **Impact:** edit the text of a card whose audio you hand-picked, and the clip silently stays as it
+  was. That is the right default, but it is silent: nothing tells you the picked clip no longer matches
+  the card.
+- **When to revisit:** if that bites. The fix is to report it — "this card's chosen clip predates its
+  current text" at the audio review — rather than to regenerate it.

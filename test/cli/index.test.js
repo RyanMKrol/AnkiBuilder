@@ -2072,3 +2072,95 @@ test("audio: a spelled-out reading satisfies the guard", async () => {
     );
   });
 });
+
+test("prepare: spells out a numeral automatically rather than leaving it for the reviewer", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-1");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "ja", sourceType: "epub", reviewed: false, chapterNumber: 2 },
+        items: [
+          {
+            id: "y",
+            english: "In 2025",
+            category: "Other",
+            target: "2025ねんに",
+            pronunciation: "2025-nen ni",
+          },
+        ],
+      }),
+    );
+
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      lessonSiblings: () => [sibling("chapter-1", 2)],
+      fillNumberReadings: ({ items }) => {
+        items[0].reading = "にせんにじゅうごねんに";
+        items[0].pronunciation = "nisen nijūgonen ni";
+        items[0].uncertain = true;
+        return {
+          items,
+          fixed: [
+            {
+              id: "y",
+              target: "2025ねんに",
+              reading: items[0].reading,
+              pronunciation: items[0].pronunciation,
+            },
+          ],
+          remaining: [],
+        };
+      },
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.items[0].reading, "にせんにじゅうごねんに");
+    assert.equal(cards.items[0].pronunciation, "nisen nijūgonen ni");
+    assert.match(logged.join("\n"), /number readings: filled 1 card/);
+    assert.doesNotMatch(logged.join("\n"), /WARNING/);
+  });
+});
+
+test("prepare: warns about a numeral the auto-fix could not resolve", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-1");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "ja", sourceType: "epub", reviewed: false, chapterNumber: 2 },
+        items: [
+          {
+            id: "y",
+            english: "In 2025",
+            category: "Other",
+            target: "2025ねんに",
+            pronunciation: "2025-nen ni",
+          },
+        ],
+      }),
+    );
+
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      lessonSiblings: () => [sibling("chapter-1", 2)],
+      // The fail-open case: the pass ran and could not resolve it.
+      fillNumberReadings: ({ items }) => ({
+        items,
+        fixed: [],
+        remaining: [{ id: "y", target: "2025ねんに", cause: "no reading" }],
+      }),
+      log: (line) => logged.push(line),
+    });
+    assert.match(logged.join("\n"), /WARNING — 1 card\(s\) still have a numeral/);
+  });
+});

@@ -1988,3 +1988,87 @@ test("prepare: a lesson with unmarked drills is re-mined, not stacked on", async
     assert.match(logged.join("\n"), /dropped 1 unmarked practice card/);
   });
 });
+
+// The failure this guards: seven Lesson 7 cards had a numeral and no `reading`, so `speechText` sent
+// "2025ねんに" to ElevenLabs, which reads digits in whatever language it likes. The rule was in the
+// extraction prompt and nowhere else, so nothing caught it until the clips were listened to.
+test("audio: refuses to send a raw numeral to TTS, before spending anything", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "ja", sourceType: "epub", reviewed: true },
+        items: [
+          {
+            id: "ok",
+            english: "Hello",
+            category: "Greetings",
+            target: "こんにちは",
+            pronunciation: "konnichiwa",
+          },
+          {
+            id: "bad",
+            english: "In 2025",
+            category: "Other",
+            target: "2025ねんに",
+            pronunciation: "2025-nen ni",
+          },
+        ],
+      }),
+    );
+
+    let fetched = false;
+    await assert.rejects(
+      () =>
+        runCli(["audio", "--run", runDir, "--voice", "v1"], {
+          fetchTts: async () => {
+            fetched = true;
+            return Buffer.from("CLIP");
+          },
+          log: () => {},
+        }),
+      /would send a raw numeral/,
+    );
+    assert.equal(fetched, false, "it must refuse before any TTS call");
+  });
+});
+
+test("audio: a spelled-out reading satisfies the guard", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "ja", sourceType: "epub", reviewed: true },
+        items: [
+          {
+            id: "ok",
+            english: "In 2025",
+            category: "Other",
+            target: "2025ねんに",
+            reading: "にせんにじゅうごねんに",
+            pronunciation: "nisen nijūgo nen ni",
+          },
+        ],
+      }),
+    );
+    const originalKey = process.env.ELEVENLABS_API_KEY;
+    process.env.ELEVENLABS_API_KEY = "test-key";
+    try {
+      await runCli(["audio", "--run", runDir, "--voice", "v1"], {
+        fetchTts: async () => Buffer.from("CLIP"),
+        log: () => {},
+      });
+    } finally {
+      if (originalKey === undefined) delete process.env.ELEVENLABS_API_KEY;
+      else process.env.ELEVENLABS_API_KEY = originalKey;
+    }
+    assert.equal(
+      JSON.parse(readFileSync(paths.cards, "utf-8")).items[0].audio?.endsWith(".mp3"),
+      true,
+    );
+  });
+});

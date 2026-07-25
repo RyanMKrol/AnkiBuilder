@@ -50,6 +50,7 @@ import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corp
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
 import { mineFillInBlankCards as defaultMineFillInBlankCards } from "../cards/fillInBlank.js";
 import { dedupeByPattern as defaultDedupeByPattern } from "../cards/semanticDedup.js";
+import { findUnreadableNumbers, describeUnreadableNumbers } from "../cards/spokenNumbers.js";
 import {
   enhanceRunDirNotes as defaultEnhanceRunDirNotes,
   lessonSiblings as defaultLessonSiblings,
@@ -783,6 +784,18 @@ async function runPrepareInner(flags, ctx) {
     writeJson(paths.cards, fresh);
   }
 
+  const spoken = findUnreadableNumbers(
+    readJson(paths.cards).items,
+    resolveIso639Code(targetLanguage),
+  );
+  if (spoken.length > 0) {
+    ctx.log(
+      `prepare: WARNING — ${spoken.length} card(s) have a numeral with no spelled-out "reading", so ` +
+        `their romaji is wrong and the audio stage will refuse to run:\n` +
+        describeUnreadableNumbers(spoken),
+    );
+  }
+
   ctx.log(
     `prepare: ${runDir} is ready for the corpus review — open the dashboard ("npm run serve") and sign it off`,
   );
@@ -807,6 +820,23 @@ async function runAudioInner(flags, ctx) {
   if (cards.meta.reviewed !== true) {
     throw new Error(
       `cards.json at ${paths.cards} has not been reviewed yet — open the dashboard ("npm run serve"), review this lesson's corpus (English + target + pronunciation), and click "Mark reviewed" before generating audio`,
+    );
+  }
+
+  // A digit reaching TTS is always a bug: the voice reads it in whatever language it likes and the
+  // romanizer renders it literally. `reading` exists to prevent that, but it is optional and nothing
+  // generates it, so this is the check that makes it real. Placed BEFORE the voice lookup so it costs
+  // nothing and fires before a single credit is spent.
+  const unreadable = findUnreadableNumbers(
+    cards.items,
+    resolveIso639Code(cards.meta.targetLanguage),
+  );
+  if (unreadable.length > 0) {
+    throw new Error(
+      `${unreadable.length} card(s) would send a raw numeral to the TTS voice, which reads digits ` +
+        `unpredictably. Give each one a "reading" with the number spelled out in the target script ` +
+        `(e.g. 2025ねんに -> にせんにじゅうごねんに), then re-run:\n` +
+        describeUnreadableNumbers(unreadable),
     );
   }
 

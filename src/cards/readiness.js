@@ -1,3 +1,6 @@
+import { findUnreadableNumbers } from "./spokenNumbers.js";
+import { resolveIso639Code } from "../model/iso639.js";
+
 /**
  * Is a lesson finished enough for a human to review?
  *
@@ -42,12 +45,21 @@ const REQUIRED_PASSES = [
  *    and that has already happened. Without this, tightening the rule would retroactively unreview
  *    every lesson finished before the markers existed.
  */
-export function lessonReadiness(meta = {}) {
+export function lessonReadiness(meta = {}, items = null) {
   if (meta.reviewed === true || meta.sourceType === "template") {
-    return { ready: true, missing: [], reason: null };
+    return { ready: true, missing: [], reason: null, numberIssues: [] };
   }
 
   const missing = REQUIRED_PASSES.filter((pass) => meta[pass.key] !== true);
+
+  // A digit that has leaked into the spoken text or the romaji. Held at THIS gate rather than at the
+  // audio stage, which was the old placement and far too late: by then the lesson has been reviewed,
+  // and the reviewer has been reading wrong romaji the whole way through. Here the offending cards are
+  // on screen in front of them, and `reading`/`pronunciation` are both inline-editable — so fixing it
+  // clears the block on the next render, with nothing to re-run.
+  const numberIssues = items
+    ? findUnreadableNumbers(items, resolveIso639Code(meta.targetLanguage))
+    : [];
 
   // `prepareDegraded` means a pass DID run but against an incomplete view of the book — earlier
   // lessons that had no cards.json yet. Its markers are withheld for exactly that reason, so it
@@ -56,7 +68,12 @@ export function lessonReadiness(meta = {}) {
     ? `an earlier run could not see ${describeMissingLessons(meta.prepareDegraded)}`
     : null;
 
-  return { ready: missing.length === 0, missing, reason };
+  return {
+    ready: missing.length === 0 && numberIssues.length === 0,
+    missing,
+    reason,
+    numberIssues,
+  };
 }
 
 function describeMissingLessons(degraded) {
@@ -70,10 +87,16 @@ function describeMissingLessons(degraded) {
  * `lessonReadiness`, not the meta, so a caller that already has the verdict (the dashboard carries it
  * per unit) doesn't have to keep the raw meta around just to describe it.
  */
-export function describeReadiness({ missing = [], reason = null } = {}) {
-  // Derived from `missing` rather than the `ready` flag, so the two can never disagree and a caller
+export function describeReadiness({ missing = [], reason = null, numberIssues = [] } = {}) {
+  // Derived from the findings rather than the `ready` flag, so the two can never disagree and a caller
   // that passes a partial object still gets a sentence rather than a dangling fragment.
-  if (missing.length === 0) return "ready for review";
+  if (missing.length === 0 && numberIssues.length === 0) return "ready for review";
+  if (missing.length === 0) {
+    return (
+      `${numberIssues.length} card(s) have a numeral that needs spelling out in a "reading" — ` +
+      `the romaji and the audio are both wrong until they do`
+    );
+  }
   const passes = missing.map((pass) => pass.label).join(" and ");
   return reason ? `${passes} still to run — ${reason}` : `${passes} still to run`;
 }

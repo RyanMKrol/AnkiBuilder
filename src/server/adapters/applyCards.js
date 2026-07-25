@@ -90,7 +90,7 @@ export function markCardsReviewed(
   // sign off — so a bare `translate`, a `prepare` that died after translate, or a lesson built before
   // a pass existed all presented as final card sets when they weren't. Refusing here is what makes
   // "the reviewer sees the finished lesson" true rather than merely intended.
-  const readiness = lessonReadiness(data.meta || {});
+  const readiness = lessonReadiness(data.meta || {}, data.items);
   if (!readiness.ready) {
     throw httpError(
       409,

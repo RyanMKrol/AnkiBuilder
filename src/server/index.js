@@ -319,6 +319,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       ready: u.ready !== false,
       missing: u.missing || [],
       reason: u.reason || null,
+      numberIssues: u.numberIssues || [],
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
@@ -362,8 +363,13 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
             // gates the `audio` step. A lesson whose pre-review passes haven't all run gets no button
             // at all — signing it off would mean approving a card set that is still going to change.
             if (s.stage === "corpus") {
-              if (!s.ready)
+              if (!s.ready) {
+                // A numeral problem is fixable right here — `reading` and `pronunciation` are both
+                // inline-editable — so name the cards instead of sending them to the CLI.
+                if (s.numberIssues.length > 0 && s.missing.length === 0)
+                  return `<span class="hint">Not ready to review — ${escapeHtml(describeReadiness(s))}: ${s.numberIssues.map((n) => `<code>${escapeHtml(n.target)}</code>`).join(", ")}. Edit the Pronunciation cell to spell the number out, and this clears.</span>`;
                 return `<span class="hint">Not ready to review — ${escapeHtml(describeReadiness(s))}. Run <code>anki-builder prepare --run &lt;dir&gt;</code> to finish it.</span>`;
+              }
               return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
             }
             // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons

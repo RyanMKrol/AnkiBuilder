@@ -790,8 +790,9 @@ async function runPrepareInner(flags, ctx) {
   );
   if (spoken.length > 0) {
     ctx.log(
-      `prepare: WARNING — ${spoken.length} card(s) have a numeral with no spelled-out "reading", so ` +
-        `their romaji is wrong and the audio stage will refuse to run:\n` +
+      `prepare: WARNING — ${spoken.length} card(s) have a numeral that still reaches the romaji or the ` +
+        `spoken text. The review gate will hold this lesson back until each one has a "reading" with ` +
+        `the number spelled out (and a romaji to match):\n` +
         describeUnreadableNumbers(spoken),
     );
   }
@@ -823,9 +824,10 @@ async function runAudioInner(flags, ctx) {
     );
   }
 
-  // A digit reaching TTS is always a bug: the voice reads it in whatever language it likes and the
-  // romanizer renders it literally. `reading` exists to prevent that, but it is optional and nothing
-  // generates it, so this is the check that makes it real. Placed BEFORE the voice lookup so it costs
+  // Backstop. The review gate is where this is normally caught — early, with the cards on screen and
+  // the fields inline-editable. But that gate exempts an already-reviewed lesson (so tightening a rule
+  // never retroactively unreviews finished work), which leaves any lesson signed off BEFORE the check
+  // existed unprotected. This is the line that covers it. Placed before the voice lookup, so it costs
   // nothing and fires before a single credit is spent.
   const unreadable = findUnreadableNumbers(
     cards.items,

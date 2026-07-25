@@ -5,7 +5,7 @@ import { getTtsTextTransform } from "../audio/ttsText.js";
 const DIGIT = /[0-9０-９]/;
 
 /**
- * Cards whose spoken text still contains a digit.
+ * Cards where a digit has leaked into something a human or a voice will consume.
  *
  * The `reading` field exists precisely so it never does: a card shows `2025ねんに` on its face and
  * speaks `にせんにじゅうごねんに`, because a TTS voice handed a bare numeral reads it in whatever
@@ -14,8 +14,9 @@ const DIGIT = /[0-9０-９]/;
  * prompt asks for one and the model simply didn't, for seven cards of one lesson, and the first
  * anyone knew was hearing the clips.
  *
- * The check is deterministic and needs no model: a digit in the spoken text is always a bug, because
- * the whole point of `reading` is to have spelled it out.
+ * The check is deterministic and needs no model: a digit in either the spoken text or the romaji is
+ * always a bug, because the whole point of `reading` is to have spelled it out. `target` keeps its
+ * digits — `13,000えん` is the right thing to show on the card face.
  *
  * Scoped by language, via the same key as the TTS text transforms. For Japanese a numeral is
  * unspeakable; for Spanish `2000 euros` is exactly what the voice should receive, so a language with
@@ -25,21 +26,43 @@ export function findUnreadableNumbers(items, languageCode) {
   if (!getTtsTextTransform(languageCode)) return [];
   if (!Array.isArray(items)) return [];
 
-  return items
-    .filter((item) => !item.excluded)
-    .filter((item) => {
-      // What `speechText` would hand to TTS: the reading when set, else the target.
-      const spoken = typeof item.reading === "string" && item.reading ? item.reading : item.target;
-      return typeof spoken === "string" && DIGIT.test(spoken);
-    })
-    .map((item) => ({
-      id: item.id,
-      target: item.target,
-      reading: item.reading ?? null,
-      // Distinguishes "nobody wrote a reading" from "the reading itself still has a digit in it",
-      // which is a different mistake with a different fix.
-      cause: item.reading ? "reading still contains a digit" : "no reading",
-    }));
+  const offenders = [];
+  for (const item of items) {
+    if (item.excluded) continue;
+
+    // Two arms, because the same missing `reading` produces two separate faults and fixing one does
+    // not fix the other — as this repo found out by filling in seven readings, correcting the audio,
+    // and leaving seven wrong romaji on screen.
+    //
+    // 1. The SPOKEN text (`reading` when set, else `target`) — what `speechText` hands to TTS.
+    const spoken = typeof item.reading === "string" && item.reading ? item.reading : item.target;
+    if (typeof spoken === "string" && DIGIT.test(spoken)) {
+      offenders.push({
+        id: item.id,
+        target: item.target,
+        reading: item.reading ?? null,
+        field: "spoken",
+        // Distinguishes "nobody wrote a reading" from "the reading itself still has a digit in it",
+        // which is a different mistake with a different fix.
+        cause: item.reading ? "reading still contains a digit" : "no reading — TTS gets the digits",
+      });
+      continue;
+    }
+
+    // 2. The ROMAJI. This is what the learner actually reads to know how to say the card, so a digit
+    //    in it is wrong on its own terms, independently of what the voice received. It also catches
+    //    the stale case: a reading added later without regenerating the romanization.
+    if (typeof item.pronunciation === "string" && DIGIT.test(item.pronunciation)) {
+      offenders.push({
+        id: item.id,
+        target: item.target,
+        reading: item.reading ?? null,
+        field: "pronunciation",
+        cause: `romaji still contains a digit (${item.pronunciation})`,
+      });
+    }
+  }
+  return offenders;
 }
 
 /** A multi-line report naming each offending card, for a CLI error or a warning. */

@@ -943,10 +943,12 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 ### A numeral reaching TTS is now caught deterministically, but nothing writes the reading for you
 
-- **What:** `findUnreadableNumbers` (`src/cards/spokenNumbers.js`) fails the `audio` stage before any
-  credit is spent when a card's spoken text still contains a digit, and `prepare` warns about the same
-  thing earlier. What it does NOT do is produce the reading — that still comes from the extraction
-  prompt asking the model for one.
+- **What:** `findUnreadableNumbers` (`src/cards/spokenNumbers.js`) checks two things — the spoken text
+  handed to TTS, and the romaji the learner reads — and the REVIEW gate holds a lesson back until both
+  are clean, with `prepare` warning earlier still. The `audio` stage keeps the same check as a backstop,
+  because the review gate exempts an already-reviewed lesson and something has to cover one signed off
+  before the check existed. What none of it does is produce the reading — that still comes from the
+  extraction prompt asking the model for one.
 - **Why:** detecting the fault needs no judgement (a digit in Japanese spoken text is always wrong),
   but writing the reading does: 4がつ is しがつ, not よんがつ, and 1998ねん is
   せんきゅうひゃくきゅうじゅうはちねん. Guessing it in code would produce confidently wrong audio,

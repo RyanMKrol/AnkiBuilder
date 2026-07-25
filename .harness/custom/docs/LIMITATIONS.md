@@ -792,22 +792,25 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   the whole cache — it is disposable and rebuilds from the EPUB).
 - **When to revisit:** if anything ever prunes the cache selectively rather than wholesale.
 
-### The deck rebuild lock is an optimization, not the safety property
+### Two rebuilds can't interleave only because the rebuild path never yields
 
-- **What:** `rebuildBookDir` takes a short `.rebuild.lock` (an `O_EXCL` dotfile) around reading the
-  done-set and building the package, waits up to 10s for a holder, and steals a lock whose pid is
-  dead or whose age exceeds 60s. It is per book/course and held for the seconds a rebuild takes.
-- **Why:** what actually guarantees nobody sees a half-written `.apkg` is the atomic rename, not the
-  lock. The lock closes a narrower hole: a rebuild that started earlier but finishes later would
-  otherwise publish a done-set missing a lesson marked done in the meantime. A waiter re-reads the
-  set and picks it up. Because the rename is the real protection, a lost or double-stolen lock is
-  safe rather than merely tolerable — which is why the stealing rules can be blunt.
-- **Impact:** `rebuildBookDir` is now async, so its callers await. A rebuild contending past 10s
-  returns 409 from the manual Rebuild button, and is silently skipped by the automatic rebuild that
-  follows Mark done (matching its existing best-effort contract).
-- **When to revisit:** if a book ever grows large enough that a rebuild exceeds the 60s TTL, raise
-  it — a live holder past its TTL will otherwise have its lock stolen mid-build. (Harmless, thanks to
-  the rename, but it wastes work.)
+- **What:** `rebuildBookDir` reads the done-set and publishes `deck.apkg` with no `await` anywhere in
+  between — `readdirSync`/`readFileSync`, a synchronous `buildBookDeck`, then `writeFileAtomic` +
+  rename. Node cannot schedule a second rebuild between the read and the write, so the later of two
+  concurrently-requested rebuilds always observes every `done` flag written before it started.
+- **Why:** this used to be enforced by a per-book `.rebuild.lock`, removed with the rest of the
+  multi-process support. Two rebuilds can still be REQUESTED at once inside the dashboard (marking a
+  lesson done awaits its own rebuild, and that await is a yield point), so the property still has to
+  hold — it is just held by the code being synchronous rather than by a lock.
+- **Impact:** the no-yield property is now load-bearing and invisible. Making `buildBookDeck` (or
+  anything it calls) async would silently reintroduce the lost update: a rebuild publishing a done-set
+  missing a lesson finished while it ran. Separately, the cross-process case is no longer defended at
+  all — the dashboard rebuilding while `deck --book-dir` runs in a terminal can leave the `.apkg`
+  briefly missing a just-finished lesson. Never corrupt (the rename guarantees that), and the next
+  rebuild picks it up.
+- **When to revisit:** the moment anything on the rebuild path needs to be async — that is the trigger
+  to bring back a lock or an in-process queue, not a reason to make it async and hope. There is a
+  regression test in `test/deck/rebuild.test.js` that fails if the property is lost.
 
 ### "Building" is derived from a claim file, which can be left behind by a crash
 

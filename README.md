@@ -217,8 +217,9 @@ npm run build
       badge naming the stage, and the server refuses writes to it (409) so a stale browser tab can't
       clobber the run; a crashed build shows as interrupted and can be cleared. The audio stage merges
       its results into the current file rather than overwriting, so edits made while it ran survive
-- [x] Safe deck rebuilds — the merged `.apkg` is published by atomic rename, and a short per-book
-      lock stops a slow rebuild publishing a done-set that is missing a lesson finished in the meantime
+- [x] Safe deck rebuilds — the merged `.apkg` is published by atomic rename, so a reader never sees a
+      half-written package, and a rebuild reads the done-set and publishes in one event-loop turn, so
+      two dashboard-triggered rebuilds can't interleave
 - [x] Write-once chapter cache — an extracted chapter is published images-first, chapter-file-last
       and then reused, so concurrent builds sharing a book neither re-extract the same 30-50 files nor
       hand the extractor a chapter whose images haven't landed yet

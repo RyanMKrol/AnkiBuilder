@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, existsSync } from "fs";
+import { writeFileAtomic } from "../../util/atomicWrite.js";
 import { join } from "path";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../../corpus/epubLibrary.js";
@@ -28,7 +29,7 @@ function persist(cardsPath, data, validateCards) {
   } catch (e) {
     throw httpError(400, `invalid card data after edit: ${e.message}`);
   }
-  writeFileSync(cardsPath, JSON.stringify(data, null, 2));
+  writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
 }
 
 // Toggle a card's exclusion flag (reversible — a flag, not a delete). The deck build drops excluded

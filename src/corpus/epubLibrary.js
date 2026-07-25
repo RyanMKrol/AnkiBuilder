@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
-import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, readdirSync } from "fs";
+import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { join } from "path";
 import { libraryHome } from "../model/index.js";
 import { getBookTitle } from "./epubArchive.js";
@@ -38,7 +39,7 @@ export function loadBookMeta(epubHash, { libraryHomeDir } = {}) {
 export function saveBookSlug(epubHash, slug, { libraryHomeDir } = {}) {
   const path = bookMetaPath(epubHash, { libraryHomeDir });
   const meta = loadBookMeta(epubHash, { libraryHomeDir }) || { title: null, slug: null };
-  writeFileSync(path, JSON.stringify({ ...meta, slug }, null, 2));
+  writeFileAtomic(path, JSON.stringify({ ...meta, slug }, null, 2));
 }
 
 /**
@@ -55,12 +56,15 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
 
   const dest = join(dir, "book.epub");
   if (!existsSync(dest)) {
-    copyFileSync(epubPath, dest);
+    copyFileAtomic(epubPath, dest);
   }
 
   const metaPath = bookMetaPath(epubHash, { libraryHomeDir });
   if (!existsSync(metaPath)) {
-    writeFileSync(metaPath, JSON.stringify({ title: getBookTitle(epubPath), slug: null }, null, 2));
+    writeFileAtomic(
+      metaPath,
+      JSON.stringify({ title: getBookTitle(epubPath), slug: null }, null, 2),
+    );
   }
 
   return { epubHash };
@@ -111,7 +115,7 @@ function corpusPath(epubHash, chapterNumber, { libraryHomeDir } = {}) {
 export function saveChapterCorpus(epubHash, chapterNumber, corpus, { libraryHomeDir } = {}) {
   const dest = corpusPath(epubHash, chapterNumber, { libraryHomeDir });
   mkdirSync(join(dest, ".."), { recursive: true });
-  writeFileSync(dest, JSON.stringify(corpus, null, 2));
+  writeFileAtomic(dest, JSON.stringify(corpus, null, 2));
   return dest;
 }
 
@@ -176,6 +180,6 @@ export function loadBookConventions(epubHash, { libraryHomeDir } = {}) {
 export function saveBookConventions(epubHash, markdown, { libraryHomeDir } = {}) {
   const dest = conventionsPath(epubHash, { libraryHomeDir });
   mkdirSync(join(dest, ".."), { recursive: true });
-  writeFileSync(dest, markdown);
+  writeFileAtomic(dest, markdown);
   return dest;
 }

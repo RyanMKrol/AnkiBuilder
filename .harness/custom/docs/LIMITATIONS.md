@@ -710,3 +710,34 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   the common content-only deliveries.
 - **When to revisit:** if AnkiConnect ever adds a directional full-sync action, drive it from
   `schemaChanged` to make even structural deliveries fully hands-off.
+
+### Atomic writes protect concurrent readers, not power loss
+
+- **What:** `src/util/atomicWrite.js` publishes a file by writing a temp file in the destination's own
+  directory and `rename`-ing it into place, so a concurrent reader always sees a whole file. It does
+  **not** `fsync`. A power cut or kernel panic can still lose a write that the process believed had
+  landed.
+- **Why:** `rename(2)` is atomic with respect to other processes regardless of fsync, which is the
+  property that matters here — several files are written by one process while another reads them
+  (`cards.json` by a CLI stage vs the dashboard vs the deck rebuild; the reviewed-corpus dedup library
+  by "Mark reviewed" vs a concurrent assemble; the TTS cache by one run vs a copy into another run's
+  deck). fsync only adds crash durability, and on a 10 MB `.apkg` rebuild it costs real time on every
+  build for a failure mode that costs one re-run.
+- **Impact:** none in normal operation. After a hard crash a just-written file may be missing or stale;
+  re-run the stage.
+- **When to revisit:** never, unless these artifacts stop being cheaply reproducible from their inputs.
+
+### Some writes are deliberately left non-atomic
+
+- **What:** `restyle-font --out` and `view-deck --out` (`src/cli/index.js`), the delivery backup
+  (`src/anki/deliver.js`), and every `scripts/*.mjs` maintenance script still write directly.
+- **Why:** the two `--out` paths are arbitrary user-chosen destinations with no concurrent reader, and
+  rename is actively worse there — it replaces the inode, discarding any hardlinks/ACLs/xattrs set on an
+  existing destination, and fails `EXDEV` if the destination is on another volume. The delivery backup
+  writes into a freshly created timestamped directory with a single writer. The `scripts/` migrations
+  are run by hand, one at a time, never concurrently.
+- **Impact:** a torn file is possible at those sites only if you deliberately run two of them at once
+  against the same path.
+- **When to revisit:** if any script becomes part of an automated concurrent pipeline. (The cross-lesson
+  note pass is already a per-lesson pipeline step — if lessons start being built in parallel routinely,
+  revisit `scripts/enhance-card-notes.mjs` first, since it reads every sibling lesson's `cards.json`.)

@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, mkdirSync, existsSync } from "fs";
+import { writeFileAtomic } from "../../util/atomicWrite.js";
 import { join } from "path";
 import { createHash } from "crypto";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
@@ -29,7 +30,7 @@ function setCardAudio(runDir, cardId, filename, { validateCards = defaultValidat
   } catch (e) {
     throw httpError(400, `invalid card data after edit: ${e.message}`);
   }
-  writeFileSync(cardsPath, JSON.stringify(data, null, 2));
+  writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
   return { audio: filename };
 }
 
@@ -46,7 +47,7 @@ export function applyCardAudio(runDir, cardId, bytes, ext, deps = {}) {
   const filename = `${safeId}-user-${shortHash}.${cleanExt}`;
   if (!isSafeMediaFile(filename)) throw httpError(400, "could not derive a safe filename");
   mkdirSync(join(runDir, "audio"), { recursive: true });
-  writeFileSync(join(runDir, "audio", filename), bytes);
+  writeFileAtomic(join(runDir, "audio", filename), bytes);
   return setCardAudio(runDir, cardId, filename, deps);
 }
 

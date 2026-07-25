@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, mkdirSync, existsSync } from "fs";
+import { writeFileAtomic } from "../util/atomicWrite.js";
 import { join } from "path";
 import { createHash } from "crypto";
 import { hashTerm } from "./index.js";
@@ -35,7 +36,7 @@ export async function generateCardVariants(
     const bytes = await fetchTts(variant.ttsText, voiceId, apiKey, languageCode, model);
     const bytesHash = createHash("sha1").update(bytes).digest("hex").slice(0, 8);
     const filename = `${hashTerm(variant.ttsText)}-gen-${bytesHash}.mp3`;
-    writeFileSync(join(audioDir, filename), bytes);
+    writeFileAtomic(join(audioDir, filename), bytes);
     out.push({ label: variant.label, audio: filename });
   }
   return out;

@@ -19,6 +19,7 @@ import { createAnkiConnect } from "../anki/ankiConnect.js";
 import { deliverToAnki } from "../anki/deliver.js";
 import { ADAPTERS } from "./adapters/index.js";
 import { unitBuildState, INCOMPLETE } from "./adapters/stage.js";
+import { describeReadiness } from "../cards/readiness.js";
 import { clearClaim, describeClaim } from "../cli/runClaim.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
@@ -136,6 +137,8 @@ export function createDeckServer({
         label: u.label,
         stage: u.stage || "audio",
         done: !!u.done,
+        ready: u.ready !== false,
+        missing: u.missing || [],
         building: !!u.building,
         interrupted: !!u.interrupted,
         claim: u.claim || null,
@@ -174,7 +177,9 @@ export function createDeckServer({
             ? `<span class="ustage interrupted">interrupted</span>`
             : u.stage === INCOMPLETE
               ? `<span class="ustage">${INCOMPLETE}</span>`
-              : "";
+              : u.stage === "corpus" && !u.ready
+                ? `<span class="ustage">prepare unfinished</span>`
+                : "";
       if (deck.total === 1) {
         const u = units[0];
         if (mode === "built" && editable)
@@ -198,8 +203,15 @@ export function createDeckServer({
             return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage interrupted">interrupted</span></a>`;
           }
           // The badge IS the stage name — the two review stages are called `corpus` and `audio`
-          // everywhere: on disk, in the code, and here.
-          return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : escapeHtml(u.stage)}</span></a>`;
+          // everywhere: on disk, in the code, and here. A lesson held back for an un-run pass says
+          // which one instead, since "corpus" would imply it was waiting on the reviewer.
+          const badge =
+            mode === "built"
+              ? "done"
+              : u.stage === "corpus" && !u.ready
+                ? "prepare unfinished"
+                : escapeHtml(u.stage);
+          return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${badge}</span></a>`;
         })
         .join("");
       return `<div class="dblock">${head}${rows}</div>`;
@@ -215,9 +227,17 @@ export function createDeckServer({
     let reviewCount = 0;
     let builtCount = 0;
     for (const deck of withUnits) {
-      const unfinished = deck.units.filter((u) => u.stage === INCOMPLETE);
-      const inReview = deck.units.filter((u) => u.stage !== INCOMPLETE && !u.done);
-      const built = deck.units.filter((u) => u.stage !== INCOMPLETE && u.done);
+      // "Not finished" is about whether the PIPELINE has completed, not about which file exists: a
+      // lesson with no cards at all and a lesson whose enrichment passes never ran are the same kind
+      // of not-ready, and neither belongs in front of a reviewer. That keeps "In review" meaning
+      // exactly one thing — a lesson a human can actually sign off.
+      // Readiness gates the FIRST review only. A lesson at the audio stage is past that gate by
+      // definition (the audio stage refuses to run until it's signed off), so it is never held back
+      // here whatever its markers say.
+      const prepared = (u) => u.stage !== INCOMPLETE && (u.stage !== "corpus" || u.ready);
+      const unfinished = deck.units.filter((u) => !prepared(u) && !u.done);
+      const inReview = deck.units.filter((u) => prepared(u) && !u.done);
+      const built = deck.units.filter((u) => prepared(u) && u.done);
       if (unfinished.length) {
         unfinishedBlocks.push(deckBlock(deck, unfinished, "unfinished"));
         unfinishedCount += unfinished.length;
@@ -296,6 +316,9 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       seq: u.seq,
       reviewed: !!u.reviewed,
       done: !!u.done,
+      ready: u.ready !== false,
+      missing: u.missing || [],
+      reason: u.reason || null,
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
@@ -336,9 +359,13 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
             if (s.stage === INCOMPLETE)
               return `<span class="hint">This lesson's build didn't finish — no cards to review yet. Run <code>anki-builder prepare --run &lt;dir&gt;</code> (or re-run <code>assemble</code>) to complete it.</span>`;
             // Combined Corpus review (English + target + pronunciation): the first sign-off. `reviewed`
-            // gates the `audio` step.
-            if (s.stage === "corpus")
+            // gates the `audio` step. A lesson whose pre-review passes haven't all run gets no button
+            // at all — signing it off would mean approving a card set that is still going to change.
+            if (s.stage === "corpus") {
+              if (!s.ready)
+                return `<span class="hint">Not ready to review — ${escapeHtml(describeReadiness(s))}. Run <code>anki-builder prepare --run &lt;dir&gt;</code> to finish it.</span>`;
               return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
+            }
             // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
             // ship in the merged deck.
             if (s.stage === "audio")

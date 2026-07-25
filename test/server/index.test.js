@@ -25,7 +25,15 @@ function fixture() {
   writeFileSync(
     join(book, "chapter-0", "cards.json"),
     JSON.stringify({
-      meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Lesson One", done: true },
+      // A done lesson has necessarily passed BOTH gates, so the fixture carries `reviewed` too —
+      // "Mark done" now refuses a lesson that never passed the corpus review.
+      meta: {
+        targetLanguage: "ja",
+        chapterNumber: 1,
+        chapterLabel: "Lesson One",
+        reviewed: true,
+        done: true,
+      },
       items: [
         {
           id: "a",
@@ -123,7 +131,13 @@ test("home page splits decks into 'Not finished' / 'In review' / 'Built' with di
     writeFileSync(
       join(wip, "chapter-0", "cards.json"),
       JSON.stringify({
-        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "C1" },
+        meta: {
+          targetLanguage: "ja",
+          chapterNumber: 1,
+          chapterLabel: "C1",
+          enriched: true,
+          notesEnhanced: true,
+        },
         items: [
           { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
         ],
@@ -381,6 +395,10 @@ function translateFixture() {
         epubHash: "h1",
         chapterNumber: 2,
         chapterLabel: "Tch",
+        // A lesson at the corpus gate has been through `prepare`; without these markers it is
+        // correctly held back as unfinished (see the readiness tests below).
+        enriched: true,
+        notesEnhanced: true,
       },
       items: [
         { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
@@ -1092,4 +1110,135 @@ test("clearing a LIVE claim is refused", async () => {
     },
     editDeps,
   );
+});
+
+// ---------------------------------------------------------------------------
+// The readiness gate. A cards.json alone used to be enough to sign a lesson off, so a bare
+// `translate`, a `prepare` that died after translate, and a lesson built before a pass existed all
+// presented as final card sets. These pin the state check that replaced trusting the route.
+// ---------------------------------------------------------------------------
+
+function unpreparedFixture(meta = {}) {
+  const root = mkdtempSync(join(tmpdir(), "deck-srv-unprep-"));
+  const book = join(root, "epubs", "ubook");
+  mkdirSync(join(book, "chapter-0"), { recursive: true });
+  writeFileSync(join(book, "book.json"), JSON.stringify({ title: "U Book", targetLanguage: "ja" }));
+  writeFileSync(
+    join(book, "chapter-0", "cards.json"),
+    JSON.stringify({
+      // Exactly what `anki-builder translate --run <dir>` writes: real cards, no pass markers.
+      meta: {
+        targetLanguage: "ja",
+        sourceType: "epub",
+        epubHash: "h1",
+        chapterNumber: 2,
+        chapterLabel: "Uch",
+        ...meta,
+      },
+      items: [
+        { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+      ],
+    }),
+  );
+  return { root, book };
+}
+
+test("an unprepared lesson is refused at Mark reviewed, naming what still has to run", async () => {
+  const { root, book } = unpreparedFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/ubook/unit/0/review/reviewed`, { method: "POST" }),
+        );
+        assert.equal(res.status, 409);
+        assert.match(res.body.error, /not ready to review/);
+        assert.match(res.body.error, /fill-in-the-blank/);
+        assert.match(res.body.error, /anki-builder prepare/);
+        // …and it really didn't sign it off.
+        const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+        assert.notEqual(cards.meta.reviewed, true);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("an unprepared lesson offers no Mark reviewed button at all", async () => {
+  const { root } = unpreparedFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/ubook`)).text();
+        assert.doesNotMatch(html, /Mark reviewed/);
+        assert.match(html, /Not ready to review/);
+        assert.match(html, /anki-builder prepare --run/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("an unprepared lesson is listed under 'Not finished', not 'In review'", async () => {
+  const { root } = unpreparedFixture();
+  try {
+    await withServer(root, async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      const unfinished = home.slice(
+        home.indexOf('class="grp grp-unfinished"'),
+        home.indexOf('class="grp grp-review"') === -1
+          ? home.length
+          : home.indexOf('class="grp grp-review"'),
+      );
+      assert.match(unfinished, /U Book/);
+      assert.match(unfinished, /prepare unfinished/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a prepared lesson passes the gate and signs off normally", async () => {
+  const { root, book } = unpreparedFixture({ enriched: true, notesEnhanced: true });
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/ubook/unit/0/review/reviewed`, { method: "POST" }),
+        );
+        assert.equal(res.status, 200);
+        const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+        assert.equal(cards.meta.reviewed, true);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// Readiness gates the FIRST review only — a lesson at the audio stage is past it by definition.
+test("an audio-stage lesson is never held back by the readiness gate", async () => {
+  const { root, book } = unpreparedFixture();
+  try {
+    const cardsPath = join(book, "chapter-0", "cards.json");
+    const data = JSON.parse(readFileSync(cardsPath, "utf-8"));
+    data.items[0].audio = "a.mp3";
+    writeFileSync(cardsPath, JSON.stringify(data));
+
+    await withServer(root, async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      assert.doesNotMatch(home, /prepare unfinished/);
+      assert.match(home, /In review/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });

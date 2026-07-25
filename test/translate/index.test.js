@@ -9,12 +9,12 @@ function baseCorpus(items) {
   };
 }
 
-function untranslated(id, english, category, notes = null) {
-  return { id, english, category, notes, target: null };
+function untranslated(id, english, category, hint = null) {
+  return { id, english, category, hint, target: null };
 }
 
-function alreadyTranslated(id, english, category, target, notes = null) {
-  return { id, english, category, notes, target };
+function alreadyTranslated(id, english, category, target, hint = null) {
+  return { id, english, category, hint, target };
 }
 
 // Ids appear both in the fixed "Example Input"/"Example Output" blocks and in
@@ -301,7 +301,6 @@ test("library-path: a card's `reading` (spoken form) drives romanization and sur
         id: "price",
         english: "2,000 yen",
         category: "Shopping",
-        notes: null,
         target: "2,000えん",
         reading: "にせんえん",
       },
@@ -355,7 +354,7 @@ test("library-path: the model corrects a garbled library romanization in place (
 
   assert.equal(cards.items[0].pronunciation, "rokkai", "library value corrected in place");
   assert.ok(!cards.items[0].uncertain, "correction leaves no uncertain flag");
-  assert.equal(cards.items[0].notes, undefined);
+  assert.equal(cards.items[0].reviewNote, undefined);
 });
 
 test("no-library-path parity: an unconfigured language uses the original full-translation prompt unchanged", async () => {
@@ -427,7 +426,6 @@ test("ja: strips editorial spaces from the display target/reading (but keeps the
         id: "s1",
         english: "This is a French wine.",
         category: "Food",
-        notes: null,
         target: "これは フランスの ワインです。",
       },
     ],

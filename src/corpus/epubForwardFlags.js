@@ -96,12 +96,12 @@ function parseForwardFlagResponse(raw) {
   return parsed.flag;
 }
 
-function noteWithFlag(existingNotes, reason, laterChapterLabel) {
+function noteWithFlag(existingReviewNote, reason, laterChapterLabel) {
   const concern =
     laterChapterLabel !== undefined
       ? `Possibly premature — explicitly taught later in ${laterChapterLabel} (${reason})`
       : `Possibly premature — ${reason}`;
-  return existingNotes ? `${existingNotes} | ${concern}` : concern;
+  return existingReviewNote ? `${existingReviewNote} | ${concern}` : concern;
 }
 
 /**
@@ -199,7 +199,7 @@ export function flagForwardConcerns({
     return {
       ...item,
       uncertain: true,
-      notes: noteWithFlag(item.notes, entry.reason, laterChapterLabel),
+      reviewNote: noteWithFlag(item.reviewNote, entry.reason, laterChapterLabel),
     };
   });
 

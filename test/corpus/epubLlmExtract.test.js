@@ -41,7 +41,7 @@ test("extractChapterViaLlm() extracts a fenced block even with prose commentary 
   assert.strictEqual(items[0].id, "hello");
 });
 
-test("extractChapterViaLlm() preserves optional notes/uncertain/aiSuggested fields", () => {
+test("extractChapterViaLlm() preserves optional reviewNote/uncertain/aiSuggested fields", () => {
   const items = extractChapterViaLlm({
     ...BASE_ARGS,
     runClaude: () =>
@@ -51,7 +51,7 @@ test("extractChapterViaLlm() preserves optional notes/uncertain/aiSuggested fiel
           english: "Japanese (person)",
           target: "にほんじん",
           category: "Nationalities & Countries",
-          notes: "inferred, not separately glossed",
+          reviewNote: "inferred, not separately glossed",
           uncertain: true,
         },
         {

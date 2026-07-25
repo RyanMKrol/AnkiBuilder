@@ -22,7 +22,6 @@ test("assembleCorpusFromLessonWords() wraps a plain word list into a schema-vali
   assert.strictEqual(corpus.items[0].id, "good-morning");
   assert.strictEqual(corpus.items[0].category, "Greetings");
   assert.strictEqual(corpus.items[0].target, null);
-  assert.strictEqual(corpus.items[0].notes, null);
 
   assert.strictEqual(corpus.items[1].english, "China");
   assert.strictEqual(corpus.items[1].category, "Nationalities & Countries");

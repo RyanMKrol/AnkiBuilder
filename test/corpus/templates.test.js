@@ -79,10 +79,9 @@ test("every bundled template validates against corpus schema", () => {
   }
 });
 
-test("loadTemplate() normalizes every item to the superset shape (notes/target always present, nullable)", () => {
+test("loadTemplate() normalizes every item to the superset shape (target always present, nullable)", () => {
   const corpus = loadTemplate("travel-essentials", "Spanish");
   for (const item of corpus.items) {
-    assert("notes" in item, `item ${item.id} missing "notes" key`);
     assert("target" in item, `item ${item.id} missing "target" key`);
     assert.strictEqual(item.target, null, `template items should never have a pre-set target`);
   }

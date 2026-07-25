@@ -3,7 +3,7 @@ import assert from "node:assert";
 import { dedupBackward } from "../../src/corpus/epubDedup.js";
 
 function candidate(id, english, target) {
-  return { id, english, category: "Other", notes: null, target };
+  return { id, english, category: "Other", reviewNote: null, target };
 }
 
 test("dedupBackward() flags a case-insensitive english match, without dropping it", () => {
@@ -21,8 +21,8 @@ test("dedupBackward() flags a case-insensitive english match, without dropping i
   assert.equal(items.length, 1);
   assert.equal(items[0].id, "hello");
   assert.equal(items[0].uncertain, true);
-  assert.match(items[0].notes, /Possibly already taught/);
-  assert.match(items[0].notes, /Lesson 1/);
+  assert.match(items[0].reviewNote, /Possibly already taught/);
+  assert.match(items[0].reviewNote, /Lesson 1/);
   assert.equal(flagged.length, 1);
   assert.equal(flagged[0].matchedField, "english");
   assert.equal(flagged[0].matchedPriorItem.__chapterNumber, 1);
@@ -42,13 +42,13 @@ test("dedupBackward() flags an exact target match, without dropping it", () => {
 
   assert.equal(items.length, 1);
   assert.equal(items[0].uncertain, true);
-  assert.match(items[0].notes, /Possibly already taught/);
+  assert.match(items[0].reviewNote, /Possibly already taught/);
   assert.equal(flagged[0].matchedField, "target");
   assert.equal(flagged[0].matchedPriorItem.__chapterNumber, 2);
 });
 
-test("dedupBackward() appends to existing notes rather than overwriting them", () => {
-  const candidates = [{ ...candidate("hello", "Hello", "こんにちは"), notes: "informal too" }];
+test("dedupBackward() appends to an existing reviewNote rather than overwriting it", () => {
+  const candidates = [{ ...candidate("hello", "Hello", "こんにちは"), reviewNote: "informal too" }];
   const prior = [
     {
       ...candidate("hello-old", "hello", "こんにちは"),
@@ -60,7 +60,7 @@ test("dedupBackward() appends to existing notes rather than overwriting them", (
   const { items } = dedupBackward(candidates, prior);
 
   assert.equal(
-    items[0].notes,
+    items[0].reviewNote,
     "informal too | Possibly already taught — already introduced in Lesson 1 (matched on english)",
   );
 });

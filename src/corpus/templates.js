@@ -38,13 +38,11 @@ export function loadTemplate(name, targetLanguage) {
   // Template source files stay minimal (id/english/category only, no language) —
   // normalize to the superset item shape here rather than bulk-editing every
   // bundled template's JSON. Templates never come pre-translated, so target is
-  // always null; notes is backfilled to null only when the template doesn't set
-  // it. targetLanguage comes from the caller, not the file.
+  // always null. targetLanguage comes from the caller, not the file.
   const corpus = {
     meta: { ...raw.meta, targetLanguage, reviewed: raw.meta.reviewed ?? false },
     items: raw.items.map((item) => ({
       ...item,
-      notes: item.notes ?? null,
       target: item.target ?? null,
     })),
   };

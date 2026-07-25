@@ -80,7 +80,7 @@ export function markCardsReviewed(
         id: i.id,
         english: i.english,
         category: i.category,
-        notes: i.notes ?? null,
+        reviewNote: i.reviewNote ?? null,
         target: i.target ?? null,
         reading: i.reading,
         ...(i.uncertain ? { uncertain: true } : {}),

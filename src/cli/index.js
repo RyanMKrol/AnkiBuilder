@@ -51,11 +51,16 @@ import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js
 import { mineFillInBlankCards as defaultMineFillInBlankCards } from "../cards/fillInBlank.js";
 import { dedupeByPattern as defaultDedupeByPattern } from "../cards/semanticDedup.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../cards/spokenNumbers.js";
+import { fillNumberReadings as defaultFillNumberReadings } from "../cards/numberReadings.js";
 import {
   enhanceRunDirNotes as defaultEnhanceRunDirNotes,
   lessonSiblings as defaultLessonSiblings,
 } from "../cards/crossLessonNotes.js";
-import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
+import {
+  generateAudio as defaultGenerateAudio,
+  defaultClipFilename,
+  isDefaultClipFilename,
+} from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
 import { TTS_MODEL } from "../audio/ttsModel.js";
@@ -784,17 +789,40 @@ async function runPrepareInner(flags, ctx) {
     writeJson(paths.cards, fresh);
   }
 
-  const spoken = findUnreadableNumbers(
-    readJson(paths.cards).items,
-    resolveIso639Code(targetLanguage),
-  );
-  if (spoken.length > 0) {
+  // Last pass before the review, and the only one that runs on demand rather than always: spell out
+  // any numeral still sitting in a card's reading or romaji. Placed here so it covers everything the
+  // earlier passes produced, drills included, and so the reviewer is handed cards that are already as
+  // good as the pipeline can make them rather than a list of things to go and fix by hand.
+  const fresh = readJson(paths.cards);
+  const before = findUnreadableNumbers(fresh.items, resolveIso639Code(targetLanguage));
+  if (before.length > 0) {
+    updateClaim(runDir, { stage: "number-readings" });
     ctx.log(
-      `prepare: WARNING — ${spoken.length} card(s) have a numeral that still reaches the romaji or the ` +
-        `spoken text. The review gate will hold this lesson back until each one has a "reading" with ` +
-        `the number spelled out (and a romaji to match):\n` +
-        describeUnreadableNumbers(spoken),
+      `number readings: ${before.length} card(s) have a numeral to spell out — filling them in`,
     );
+    const { items, fixed, remaining } = ctx.fillNumberReadings({
+      items: fresh.items,
+      targetLanguage,
+      log: ctx.log,
+    });
+    if (fixed.length > 0) {
+      fresh.items = items;
+      writeJson(paths.cards, fresh);
+      for (const f of fixed) {
+        ctx.log(`  ${f.target} -> ${f.reading} (${f.pronunciation})`);
+      }
+      ctx.log(
+        `number readings: filled ${fixed.length} card(s), each flagged uncertain so you check the counter`,
+      );
+    }
+    if (remaining.length > 0) {
+      ctx.log(
+        `prepare: WARNING — ${remaining.length} card(s) still have a numeral that reaches the romaji ` +
+          `or the spoken text. The review gate holds this lesson back until each has a "reading" with ` +
+          `the number spelled out (and a romaji to match):\n` +
+          describeUnreadableNumbers(remaining),
+      );
+    }
   }
 
   ctx.log(
@@ -846,10 +874,32 @@ async function runAudioInner(flags, ctx) {
   // on-demand dashboard action. A run counts as "already done" once every card's default clip is on
   // disk (regeneration stays cheap: generateAudio only fetches cache misses).
   // Excluded cards get no audio (generateAudio skips them), so only the ACTIVE cards gate "done".
+  // "Already done" means every active card's clip is on disk AND still matches the card's CURRENT
+  // text. Clip names are a hash of the spoken text, so checking only that the file exists let an edited
+  // `reading` keep its old clip forever: the stale file was still there, so the stage reported
+  // "already generated — reusing" and never refetched. Comparing the name makes a text edit
+  // self-healing — re-run `audio` and only the changed cards are refetched.
+  const audioLanguageCode = resolveIso639Code(cards.meta.targetLanguage);
+  const altTransform = ctx.getAltAudioTransform(audioLanguageCode);
+  // Only a clip this stage generated can be stale. A `-gen-` variant the reviewer auditioned and
+  // picked, or a Replace upload, is a deliberate choice — regenerating over it would silently throw
+  // away their work, which is a far worse bug than the one this check exists to fix.
+  const clipIsCurrent = (item) =>
+    !isDefaultClipFilename(item.audio) ||
+    item.audio === defaultClipFilename(item, audioLanguageCode, altTransform);
   const active = cards.items.filter((item) => !item.excluded);
+  const stale = active.filter((item) => item.audio && !clipIsCurrent(item));
   const alreadyDone =
     active.length > 0 &&
-    active.every((item) => item.audio && existsSync(join(paths.audio, item.audio)));
+    active.every(
+      (item) => item.audio && existsSync(join(paths.audio, item.audio)) && clipIsCurrent(item),
+    );
+
+  if (stale.length > 0) {
+    ctx.log(
+      `audio: ${stale.length} card(s) have a clip that no longer matches their text — regenerating those`,
+    );
+  }
 
   if (alreadyDone) {
     ctx.log(`audio already generated in ${paths.audio} — reusing`);
@@ -1163,6 +1213,7 @@ export async function runCli(argv, deps = {}) {
     mineFillInBlankCards = defaultMineFillInBlankCards,
     dedupeByPattern = defaultDedupeByPattern,
     enhanceRunDirNotes = defaultEnhanceRunDirNotes,
+    fillNumberReadings = defaultFillNumberReadings,
     lessonSiblings = defaultLessonSiblings,
     generateAudio = defaultGenerateAudio,
     getDefaultVoice = defaultGetDefaultVoice,
@@ -1227,6 +1278,7 @@ export async function runCli(argv, deps = {}) {
     mineFillInBlankCards,
     dedupeByPattern,
     enhanceRunDirNotes,
+    fillNumberReadings,
     lessonSiblings,
     generateAudio,
     getDefaultVoice,

@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, mkdirSync, existsSync } from "fs";
+import { writeFileAtomic } from "../util/atomicWrite.js";
 import { join } from "path";
 import { createHash } from "crypto";
 import { hashTerm } from "./index.js";
@@ -53,7 +54,7 @@ export async function generateCardKanjiVariants(
     const bytes = await fetchTts(take.ttsText, voiceId, apiKey, languageCode, model);
     const bytesHash = createHash("sha1").update(bytes).digest("hex").slice(0, 8);
     const filename = `${hashTerm(take.ttsText)}-genkanji-${bytesHash}.mp3`;
-    writeFileSync(join(audioDir, filename), bytes);
+    writeFileAtomic(join(audioDir, filename), bytes);
     out.push({ label: take.label, audio: filename, kanji });
   }
   return out;

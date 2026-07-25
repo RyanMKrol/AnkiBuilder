@@ -205,6 +205,10 @@ npm run build
       over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
 - [x] CLI orchestrator (resumable run directories)
+- [x] Atomic artifact writes — every file that one process writes while another may be reading it
+      (`cards.json`, `corpus.json`, the TTS cache, the EPUB copies, the dedup library, the markers) is
+      published by writing a temp file beside it and renaming into place, so a reader never sees a
+      half-written file. Groundwork for building several lessons concurrently
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

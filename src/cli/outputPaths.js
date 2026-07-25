@@ -1,5 +1,6 @@
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync } from "fs";
 import { join } from "path";
+import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { slugify } from "../util/slugify.js";
 import { getBookTitle } from "../corpus/epubArchive.js";
 import { loadBookMeta, saveBookSlug, libraryEpubPath } from "../corpus/epubLibrary.js";
@@ -61,7 +62,7 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
   }
 
   mkdirSync(join(epubsRoot(outputRoot), candidate), { recursive: true });
-  writeFileSync(epubHashMarkerPath(outputRoot, candidate), epubHash);
+  writeFileAtomic(epubHashMarkerPath(outputRoot, candidate), epubHash);
   saveBookSlug(epubHash, candidate, opts);
   return candidate;
 }
@@ -101,10 +102,10 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
   const dest = join(dir, "book.epub");
   // Guard the self-copy: when picking an existing book, epubPath already IS this dest.
   if (!existsSync(dest)) {
-    copyFileSync(epubPath, dest);
+    copyFileAtomic(epubPath, dest);
   }
 
-  writeFileSync(
+  writeFileAtomic(
     bookMarkerPath(outputRoot, slug),
     JSON.stringify(
       { title: getBookTitle(dest) || null, slug, epubHash, targetLanguage: targetLanguage || null },
@@ -301,7 +302,7 @@ export function resolveCourseSlug(outputRoot, courseName, targetLanguage) {
   }
 
   mkdirSync(join(coursesRoot(outputRoot), candidate), { recursive: true });
-  writeFileSync(
+  writeFileAtomic(
     courseMarkerPath(outputRoot, candidate),
     JSON.stringify({ name: courseName, targetLanguage }, null, 2) + "\n",
   );

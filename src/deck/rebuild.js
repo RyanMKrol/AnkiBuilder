@@ -42,7 +42,15 @@ export function selectDoneChapterDecks(bookDir) {
   for (const { dir } of chapterDirs) {
     const cardsPath = join(dir, "cards.json");
     if (!existsSync(cardsPath)) continue;
-    const cards = readJson(cardsPath);
+    // An unreadable cards.json must never take down the whole rebuild: the likeliest cause is
+    // a lesson being written right now by a concurrent stage, and such a lesson is by
+    // definition not `done`, so it wasn't going into the package anyway.
+    let cards;
+    try {
+      cards = readJson(cardsPath);
+    } catch {
+      continue;
+    }
     if (cards.meta?.done !== true) continue;
     epubHash = epubHash || cards.meta?.epubHash;
     const audioDir = join(dir, "audio");

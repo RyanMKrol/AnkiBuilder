@@ -1,6 +1,7 @@
 import { createHash } from "crypto";
 import { join, resolve } from "path";
 import { promises as fs } from "fs";
+import { writeFileAtomicAsync } from "../util/atomicWrite.js";
 import { libraryHome } from "../model/index.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getAltAudioTransform } from "./altAudio.js";
@@ -52,7 +53,7 @@ async function fetchTermsToCache(terms, audioDir, { fetchTts, voiceId, apiKey, l
     }
 
     const mp3Data = await fetchTts(term, voiceId, apiKey, languageCode);
-    await fs.writeFile(filepath, mp3Data);
+    await writeFileAtomicAsync(filepath, mp3Data);
     fetched.set(term, filename);
   }
   return fetched;

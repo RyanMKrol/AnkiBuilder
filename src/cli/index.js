@@ -1,4 +1,5 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
+import { writeFileAtomic } from "../util/atomicWrite.js";
 import { join, resolve } from "path";
 import { Buffer } from "buffer";
 import {
@@ -87,8 +88,7 @@ function readJson(path) {
 }
 
 function writeJson(path, obj) {
-  mkdirSync(join(path, ".."), { recursive: true });
-  writeFileSync(path, JSON.stringify(obj, null, 2));
+  writeFileAtomic(path, JSON.stringify(obj, null, 2));
 }
 
 function resolveAssembleRunDir(flags, ctx) {

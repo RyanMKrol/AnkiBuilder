@@ -1,14 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync } from "fs";
 import { join } from "path";
 import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
-import {
-  claimLiveness,
-  claimMatches,
-  clearClaim,
-  describeClaim,
-  readClaim,
-  writeClaim,
-} from "./runClaim.js";
+import { claimLiveness, claimMatches, describeClaim, readClaim, writeClaim } from "./runClaim.js";
 import { slugify } from "../util/slugify.js";
 import { getBookTitle } from "../corpus/epubArchive.js";
 import { loadBookMeta, saveBookSlug, libraryEpubPath } from "../corpus/epubLibrary.js";
@@ -69,9 +62,9 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
     suffix++;
   }
 
-  // mkdirSync(recursive:true) never throws on collision, so two concurrent first-time
-  // assembles of DIFFERENT books whose titles slugify alike would both take this slug and
-  // the loser's hash marker would be overwritten. recursive:false makes it a CAS.
+  // mkdirSync(recursive:true) never throws on collision, so a second first-time assemble of a
+  // DIFFERENT book whose title slugifies alike would take this slug too and overwrite the first
+  // book's hash marker. recursive:false makes claiming the slug a compare-and-swap instead.
   mkdirSync(epubsRoot(outputRoot), { recursive: true });
   while (true) {
     try {
@@ -273,22 +266,6 @@ function resolveUnitRunDir({ parentDir, prefix, seqs, matchesCorpus, claimKey, l
       if (err.code !== "EEXIST") throw err;
       continue;
     }
-    // Both of us may have scanned before either wrote a claim, in which case we would each
-    // hold a different directory for the same chapter. Whoever finds the other's live claim
-    // backs out, so "the same unit is never built twice at once" is a real guarantee.
-    const duplicate = seqs
-      .map(dirFor)
-      .find(
-        (other) =>
-          claimMatches(readClaim(other), claimKey) && liveness(readClaim(other)) !== "stale",
-      );
-    if (duplicate) {
-      clearClaim(dir);
-      throw new Error(
-        `${label} is already being built (${describeClaim(readClaim(duplicate))}).\n` +
-          `Wait for it to finish, or if that process is gone, delete ${join(duplicate, "claim.json")}.`,
-      );
-    }
     return dir;
   }
   throw new Error(`could not allocate a run directory under ${parentDir} after 1000 attempts`);
@@ -310,24 +287,28 @@ function existingChapterSeqs(bookDir) {
  * Resolves the run directory for one (epubHash, chapterNumber) pair under
  * `outputRoot/epubs/<slug>/`, RESERVING it if it has to allocate a new one.
  *
- * Reservation is what makes concurrent builds safe. This used to compute `max(seq)+1` and
- * return the path WITHOUT creating it — but the directory then only appeared minutes later
+ * Reserving up front is what keeps a crashed build resumable. This used to compute `max(seq)+1`
+ * and return the path WITHOUT creating it — but the directory then only appeared minutes later
  * when corpus.json was written, after extraction, dedup, the forward-flag pass and the
- * pedagogical sort. Two runs started in that window both picked `chapter-7`, both paid for
- * the full extraction, and the second write silently destroyed the first.
+ * pedagogical sort, so nothing on disk said the chapter was already being worked on.
  *
- * `mkdirSync(dir, { recursive: false })` throws EEXIST if someone else got there first, so
- * it is a compare-and-swap the filesystem gives us for free — no lock to hold or leak.
+ * `mkdirSync(dir, { recursive: false })` throws EEXIST rather than silently succeeding, so the
+ * reservation is a compare-and-swap the filesystem gives us for free — no lock to hold or leak.
  *
  * The reuse ladder, per existing seq (see runClaim.js for why the claim exists):
  *   1. corpus.json matches this exact chapter  -> reuse it (unchanged behaviour, wins over all)
  *   2. a STALE claim matches                   -> reclaim; this is our own crashed attempt
- *   3. a LIVE claim matches                    -> throw; another process is building it now
+ *   3. a LIVE claim matches                    -> throw; a live build already owns this chapter
  *   4. otherwise                               -> not ours, skip
  *
  * Rule 2 is what preserves crash-resume: without it a reserved-but-empty directory would be
- * skipped forever and every retry would leak a new sequence number. Rule 3 turns "both runs
- * pay for the same chapter and one is destroyed" into an immediate, cheap error.
+ * skipped forever and every retry would leak a new sequence number.
+ *
+ * Rule 3 is a DOUBLE-RUN GUARD, not concurrency support — building several lessons at once is no
+ * longer a supported mode. It stays because the accident is easy: extraction is minutes of silence,
+ * so a run that looks stuck invites a second terminal, and without the guard the second run would
+ * allocate its own directory for the same chapter. Both would then write a corpus for it, the
+ * dashboard would list the chapter twice, and the merged .apkg would carry it twice.
  *
  * Gaps from a manually-deleted folder are still never backfilled.
  */
@@ -484,9 +465,11 @@ export function nextLessonNumber(outputRoot, courseSlug) {
 }
 
 /**
- * True when a course already has a lesson carrying this number. Used to refuse a
- * `--lesson-number` that is already taken, since two lessons dictated concurrently are both
- * told "next is N" by nextLessonNumber and would otherwise both build as "Lesson N".
+ * True when a course already has a lesson carrying this number. Used to refuse a `--lesson-number`
+ * that is already taken, so a second "Lesson N" can't be built over the first and merged into the
+ * deck as a duplicate sub-deck. `nextLessonNumber` only ever SUGGESTS a number, and the identity is
+ * chosen before the path is, so no filesystem primitive can catch this — the check has to be
+ * explicit. `--force` overrides it when building over an existing lesson is what you mean.
  */
 export function lessonNumberInUse(outputRoot, courseSlug, lessonNumber) {
   const courseDir = join(coursesRoot(outputRoot), courseSlug);

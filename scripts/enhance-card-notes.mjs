@@ -39,22 +39,37 @@ function lessonFiles(dir) {
     const f = join(dir, e.name, "cards.json");
     if (!existsSync(f)) continue;
     const data = JSON.parse(readFileSync(f, "utf-8"));
-    units.push({ file: f, name: e.name, num: data.meta?.chapterNumber ?? 0, data });
+    units.push({
+      file: f,
+      name: e.name,
+      num: data.meta?.chapterNumber ?? 0,
+      // The unit's OWN name, taken from whatever `chapterLabel` the source recorded — NOT its position
+      // in this list. Any un-numbered unit (front matter, an intro section, a supplement) shifts the
+      // two out of step, so a note that cites a position sends the learner to the wrong lesson. Cards
+      // are tagged with this, and the prompt requires notes to cite lessons exactly as tagged.
+      // Trimmed at the first ":" so a long title reduces to the citable name the learner sees.
+      label: (data.meta?.chapterLabel ?? e.name).split(":")[0].trim(),
+      data,
+    });
   }
   units.sort((a, b) => a.num - b.num || a.name.localeCompare(b.name));
   return units;
 }
 
-const PROMPT = (cards, currentLesson) =>
+const PROMPT = (cards, currentLabel, earlierLabels) =>
   [
     "You improve the teachability of Anki flashcard notes for an English speaker learning Japanese.",
-    `Below are the cards from lessons 1..${currentLesson} of a course (the learner studies lessons in`,
-    `order, so lessons 1..${currentLesson - 1} are ALREADY LEARNED and lesson ${currentLesson} is the`,
-    "CURRENT lesson being taught). Each card is tagged with its `lesson`.",
+    "Below are the cards from one course, listed in STUDY ORDER and tagged with the `lesson` they come",
+    `from. The learner has ALREADY LEARNED: ${earlierLabels.length ? earlierLabels.join(", ") : "(nothing — this is the first lesson)"}.`,
+    `The CURRENT lesson being taught is "${currentLabel}".`,
     "",
-    `Add or improve the back-of-card \`note\` ONLY for cards in lesson ${currentLesson} (the current`,
-    "lesson). The earlier lessons are shown purely as CONTEXT you may reference — do NOT write notes for",
+    `Add or improve the back-of-card \`note\` ONLY for cards whose lesson is "${currentLabel}". The`,
+    "earlier lessons are shown purely as CONTEXT you may reference — do NOT write notes for",
     "them. Return notes only for the current-lesson cards you add or improve; omit ones you'd leave alone.",
+    "",
+    'When a note refers to another lesson, name it EXACTLY as tagged (e.g. "from Lesson 4",',
+    '"from Frequently Used Expressions"). NEVER invent a lesson number or count positions in this list —',
+    "the tags are the book's own names and are the only correct way to cite a lesson.",
     "",
     "What makes a good note:",
     "1. CROSS-REFERENCE closely-related cards — near-synonyms with a nuance difference, similar forms,",
@@ -145,26 +160,30 @@ for (const dir of dirs) {
   // so a forward reference is structurally impossible (not just discouraged).
   for (let i = 0; i < units.length; i++) {
     const currentUnit = units[i];
-    const currentLesson = i + 1;
     // --only still walks the list (context is cumulative), but writes just the named unit.
     if (only && currentUnit.name !== only) continue;
+    // Cards carry the lesson's own name, never its position — see `label` in lessonFiles().
     const contextCards = units
       .slice(0, i + 1)
-      .flatMap((u, li) => u.data.items.map((it) => ({ ...it, __lesson: li + 1 })));
+      .flatMap((u) => u.data.items.map((it) => ({ ...it, __lesson: u.label })));
+    const earlierLabels = units.slice(0, i).map((u) => u.label);
     const currentIds = new Set(currentUnit.data.items.map((c) => c.id));
 
     let notes;
     try {
-      notes = parseNotes(runClaude(PROMPT(contextCards, currentLesson)), currentIds);
+      notes = parseNotes(
+        runClaude(PROMPT(contextCards, currentUnit.label, earlierLabels)),
+        currentIds,
+      );
     } catch (e) {
-      console.error(`  ${currentUnit.name} (lesson ${currentLesson}): FAILED (${e.message})`);
+      console.error(`  ${currentUnit.name} (${currentUnit.label}): FAILED (${e.message})`);
       continue;
     }
 
     if (dry) {
       for (const it of currentUnit.data.items) {
         if (!notes.has(it.id) || notes.get(it.id) === (it.note || "")) continue;
-        console.log(`  L${currentLesson} [${it.english} / ${it.target}]`);
+        console.log(`  [${currentUnit.label}] ${it.english} / ${it.target}`);
         console.log(`     ${it.note ? "was: " + it.note : "(no note)"}`);
         console.log(`     now: ${notes.get(it.id)}`);
       }
@@ -180,7 +199,7 @@ for (const dir of dirs) {
       }
     }
     if (!changed) {
-      console.error(`  ${currentUnit.name} (lesson ${currentLesson}): no change`);
+      console.error(`  ${currentUnit.name} (${currentUnit.label}): no change`);
       continue;
     }
     backup(currentUnit.file);
@@ -200,7 +219,7 @@ for (const dir of dirs) {
         writeFileSync(corpusPath, JSON.stringify(corpus, null, 2) + "\n");
       }
     }
-    console.error(`  ${currentUnit.name} (lesson ${currentLesson}): updated ${changed} note(s)`);
+    console.error(`  ${currentUnit.name} (${currentUnit.label}): updated ${changed} note(s)`);
   }
 }
 

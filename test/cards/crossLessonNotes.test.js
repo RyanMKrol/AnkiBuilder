@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
-import { enhanceLessonNotes, enhanceRunDirNotes } from "../../src/cards/crossLessonNotes.js";
+import {
+  enhanceLessonNotes,
+  enhanceRunDirNotes,
+  lessonSiblings,
+  lessonUnits,
+} from "../../src/cards/crossLessonNotes.js";
 
 // A two-lesson book. chapter-0 is "Lesson 1", chapter-1 is "Lesson 2".
 function book() {
@@ -173,6 +178,76 @@ test("enhanceRunDirNotes addresses the same pass by run directory", () => {
     });
     assert.equal(result.changed, 1);
     assert.equal(readCards(dir, "chapter-1").items[0].note, "By run dir.");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// lessonSiblings exists so a pass can tell "this is the first lesson" apart from "the earlier
+// lessons haven't been prepared yet" — a distinction lessonUnits structurally cannot make, because a
+// corpus-only lesson has no cards.json to find.
+test("lessonSiblings sees a corpus-only unit that lessonUnits cannot", () => {
+  const dir = book();
+  try {
+    // chapter-2 got as far as assemble and stopped: corpus.json, no cards.json.
+    mkdirSync(join(dir, "chapter-2"), { recursive: true });
+    writeFileSync(
+      join(dir, "chapter-2", "corpus.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 3, chapterLabel: "Lesson 3: Shops" },
+        items: [{ id: "d", english: "Shop", category: "Other", target: null }],
+      }),
+    );
+
+    const siblings = lessonSiblings(dir);
+    assert.deepEqual(
+      siblings.map((u) => [u.name, u.hasCards]),
+      [
+        ["chapter-0", true],
+        ["chapter-1", true],
+        ["chapter-2", false],
+      ],
+    );
+    // It still places correctly in study order, and carries its own label.
+    assert.equal(siblings[2].label, "Lesson 3");
+    assert.equal(siblings[2].number, 3);
+    assert.equal(siblings[2].data, null);
+
+    // lessonUnits keeps its existing contract: prepared lessons only.
+    assert.deepEqual(
+      lessonUnits(dir).map((u) => u.name),
+      ["chapter-0", "chapter-1"],
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("lessonSiblings surfaces each unit's reviewed/done flags", () => {
+  const dir = book();
+  try {
+    const file = join(dir, "chapter-0", "cards.json");
+    const data = JSON.parse(readFileSync(file, "utf-8"));
+    data.meta.reviewed = true;
+    data.meta.done = true;
+    writeFileSync(file, JSON.stringify(data));
+
+    const [first, second] = lessonSiblings(dir);
+    assert.deepEqual([first.reviewed, first.done], [true, true]);
+    assert.deepEqual([second.reviewed, second.done], [false, false]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("lessonSiblings skips a unit whose json is unreadable rather than throwing", () => {
+  const dir = book();
+  try {
+    writeFileSync(join(dir, "chapter-1", "cards.json"), "{ not json");
+    assert.deepEqual(
+      lessonSiblings(dir).map((u) => u.name),
+      ["chapter-0"],
+    );
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

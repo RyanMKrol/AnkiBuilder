@@ -10,7 +10,7 @@ import {
   existsSync,
 } from "fs";
 import { join } from "path";
-import { tmpdir } from "os";
+import { tmpdir, hostname } from "os";
 import { Buffer } from "buffer";
 import { startDeckServer } from "../../src/server/index.js";
 
@@ -979,4 +979,89 @@ test("homepage never shows a Download action", async () => {
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+// --- a lesson being built by a CLI stage is read-only ----------------------------------
+// Hiding the controls is only half of it: a browser tab opened before the build started will
+// still POST, so the server must refuse too. That refusal is what actually prevents the write.
+
+function writeClaimFile(root, claim) {
+  writeFileSync(
+    join(root, "epubs", "mybook", "chapter-0", "claim.json"),
+    JSON.stringify({ host: hostname(), startedAt: new Date().toISOString(), ...claim }),
+  );
+}
+
+test("a lesson with a LIVE claim renders read-only, badged, and refuses writes", async () => {
+  const root = fixture();
+  // Reopen it so it would otherwise be fully editable.
+  const cardsPath = join(root, "epubs", "mybook", "chapter-0", "cards.json");
+  const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+  delete cards.meta.done;
+  writeFileSync(cardsPath, JSON.stringify(cards));
+  writeClaimFile(root, { stage: "audio", pid: process.pid });
+
+  await withServer(
+    root,
+    async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      assert.match(home, /building \(audio\)/, "the home page must say which stage is running");
+
+      const page = await (await fetch(`${url}/review/book/mybook/0`)).text();
+      assert.match(page, /is being built \(audio/, "the review page must explain why it is locked");
+      assert.doesNotMatch(
+        page,
+        /<button[^>]*class="excl-btn/,
+        "no Exclude control while a stage is writing",
+      );
+
+      const res = await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/review/exclude`, {
+        method: "POST",
+      });
+      assert.equal(res.status, 409, "a stale tab's write must be refused, not silently applied");
+    },
+    editDeps,
+  );
+});
+
+test("a STALE claim leaves the lesson editable and offers to clear it", async () => {
+  const root = fixture();
+  const cardsPath = join(root, "epubs", "mybook", "chapter-0", "cards.json");
+  const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+  delete cards.meta.done;
+  writeFileSync(cardsPath, JSON.stringify(cards));
+  writeClaimFile(root, { stage: "assemble", pid: 999999 });
+
+  await withServer(
+    root,
+    async (url) => {
+      const page = await (await fetch(`${url}/review/book/mybook/0`)).text();
+      assert.match(page, /was interrupted/, "a crashed build must say so");
+      assert.match(page, /clear-claim/, "and offer a way to clear it");
+
+      const cleared = await fetch(`${url}/api/deck/book/mybook/unit/0/claim/clear`, {
+        method: "POST",
+      });
+      assert.equal(cleared.status, 200);
+      assert.equal(
+        existsSync(join(root, "epubs", "mybook", "chapter-0", "claim.json")),
+        false,
+        "a crash must never leave a lesson permanently locked",
+      );
+    },
+    editDeps,
+  );
+});
+
+test("clearing a LIVE claim is refused", async () => {
+  const root = fixture();
+  writeClaimFile(root, { stage: "audio", pid: process.pid });
+  await withServer(
+    root,
+    async (url) => {
+      const res = await fetch(`${url}/api/deck/book/mybook/unit/0/claim/clear`, { method: "POST" });
+      assert.equal(res.status, 409, "clearing a live claim would hand a second writer the lesson");
+    },
+    editDeps,
+  );
 });

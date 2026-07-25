@@ -205,6 +205,10 @@ npm run build
       over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
 - [x] CLI orchestrator (resumable run directories)
+- [x] Build-aware dashboard — a lesson a CLI stage is currently writing renders read-only with a
+      badge naming the stage, and the server refuses writes to it (409) so a stale browser tab can't
+      clobber the run; a crashed build shows as interrupted and can be cleared. The audio stage merges
+      its results into the current file rather than overwriting, so edits made while it ran survive
 - [x] Safe deck rebuilds — the merged `.apkg` is published by atomic rename, and a short per-book
       lock stops a slow rebuild publishing a done-set that is missing a lesson finished in the meantime
 - [x] Write-once chapter cache — an extracted chapter is published images-first, chapter-file-last

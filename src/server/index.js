@@ -13,10 +13,13 @@ import {
   MARK_DONE_SCRIPT,
   HOME_REOPEN_SCRIPT,
   DELIVER_SCRIPT,
+  CLEAR_CLAIM_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { createAnkiConnect } from "../anki/ankiConnect.js";
 import { deliverToAnki } from "../anki/deliver.js";
 import { ADAPTERS } from "./adapters/index.js";
+import { unitBuildState } from "./adapters/stage.js";
+import { clearClaim, describeClaim } from "../cli/runClaim.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
   readFontBytes as defaultReadFontBytes,
@@ -137,6 +140,9 @@ export function createDeckServer({
         label: u.label,
         stage: u.stage || "audio",
         done: !!u.done,
+        building: !!u.building,
+        interrupted: !!u.interrupted,
+        claim: u.claim || null,
       }));
       return {
         type: d.type,
@@ -162,11 +168,19 @@ export function createDeckServer({
         `<button type="button" class="home-reopen" data-type="${escapeHtml(deck.type)}" data-id="${escapeHtml(deck.id)}" data-unit="${escapeHtml(String(u.seq))}">Reopen</button>`;
       // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link. When
       // it's built, the block gets a Reopen button too (same stretched-link + button-above pattern).
+      // A single-lesson deck renders as one block with no per-unit row, so its build badge has
+      // to hang off the block itself or it would never be shown.
+      const buildBadge = (u) =>
+        u.building
+          ? `<span class="ustage building">building (${escapeHtml(u.claim?.stage || "?")})</span>`
+          : u.interrupted
+            ? `<span class="ustage interrupted">interrupted</span>`
+            : "";
       if (deck.total === 1) {
         const u = units[0];
         if (mode === "built" && editable)
-          return `<div class="dblock single dbreopen"><a class="dblock-link" href="${unitUrl(deck, u)}">${head}</a>${reopenBtn(u)}</div>`;
-        return `<a class="dblock single" href="${unitUrl(deck, u)}">${head}</a>`;
+          return `<div class="dblock single dbreopen"><a class="dblock-link" href="${unitUrl(deck, u)}">${head}</a>${buildBadge(u)}${reopenBtn(u)}</div>`;
+        return `<a class="dblock single" href="${unitUrl(deck, u)}">${head}${buildBadge(u)}</a>`;
       }
       const rows = units
         .map((u) => {
@@ -177,6 +191,12 @@ export function createDeckServer({
           // opens the view via a stretched link; the button sits above it (z-index) and stops the click.
           if (mode === "built" && editable) {
             return `<div class="urow urow-built"><a class="urow-link" href="${url}"><span class="ulabel">${label}</span></a><span class="ustage done">done</span>${reopenBtn(u)}</div>`;
+          }
+          if (u.building) {
+            return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage building">building (${escapeHtml(u.claim?.stage || "?")})</span></a>`;
+          }
+          if (u.interrupted) {
+            return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage interrupted">interrupted</span></a>`;
           }
           return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span></a>`;
         })
@@ -242,7 +262,10 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const allAudio = units.every((u) => (u.stage || "audio") === "audio");
     const anyDone = units.some((u) => u.done);
     const allDone = units.every((u) => u.done);
-    const canEdit = editable && units.length > 0 && allAudio && !anyDone;
+    // A lesson a CLI stage is actively writing renders READ-ONLY: the stage will rewrite
+    // cards.json when it finishes, so any edit made now would be silently discarded.
+    const anyBuilding = units.some((u) => u.building);
+    const canEdit = editable && units.length > 0 && allAudio && !anyDone && !anyBuilding;
     // "Viewing" = a finished (all-done) lesson opened read-only. The header + lede reflect view vs review.
     const viewing = allDone;
 
@@ -284,30 +307,32 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // one-and-done). Excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT).
     // Exclude shows on the translate (Corpus) review always, and on the audio review ONLY while the
     // lesson is in review (not done). A done lesson is view-only — Reopen it to exclude a card.
-    const rowControl = editable
-      ? (stage, c) =>
-          stage === "translate" || (stage === "audio" && !anyDone)
-            ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button>`
-            : ""
-      : undefined;
-    const sectionControl = editable
-      ? (s) => {
-          // Pre-translate: nothing to review yet — run `translate` to produce the reviewable cards.
-          if (s.stage === "corpus")
-            return `<span class="hint">Not translated yet — run <code>translate</code> to review this lesson.</span>`;
-          // Combined Corpus review (English + target + pronunciation): the first sign-off. `reviewed`
-          // gates the `audio` step.
-          if (s.stage === "translate")
-            return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
-          // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
-          // ship in the merged deck.
-          if (s.stage === "audio")
-            return s.done
-              ? `<span class="done-badge">✓ done</span> <button type="button" class="reopen" data-unit="${escapeHtml(String(s.seq))}">Reopen</button><span class="done-msg"></span>`
-              : `<button type="button" class="mark-done" data-unit="${escapeHtml(String(s.seq))}">Mark done</button><span class="done-msg"></span>`;
-          return "";
-        }
-      : undefined;
+    const rowControl =
+      editable && !anyBuilding
+        ? (stage, c) =>
+            stage === "translate" || (stage === "audio" && !anyDone)
+              ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button>`
+              : ""
+        : undefined;
+    const sectionControl =
+      editable && !anyBuilding
+        ? (s) => {
+            // Pre-translate: nothing to review yet — run `translate` to produce the reviewable cards.
+            if (s.stage === "corpus")
+              return `<span class="hint">Not translated yet — run <code>translate</code> to review this lesson.</span>`;
+            // Combined Corpus review (English + target + pronunciation): the first sign-off. `reviewed`
+            // gates the `audio` step.
+            if (s.stage === "translate")
+              return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
+            // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
+            // ship in the merged deck.
+            if (s.stage === "audio")
+              return s.done
+                ? `<span class="done-badge">✓ done</span> <button type="button" class="reopen" data-unit="${escapeHtml(String(s.seq))}">Reopen</button><span class="done-msg"></span>`
+                : `<button type="button" class="mark-done" data-unit="${escapeHtml(String(s.seq))}">Mark done</button><span class="done-msg"></span>`;
+            return "";
+          }
+        : undefined;
     const { html: sectionHtml } = renderLessonSections({
       sections,
       startNumber: 1,
@@ -336,10 +361,22 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       : viewing
         ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, <b>${withAudio}</b> with audio. A finished ${units.length === 1 ? "lesson" : "set"} — read-only. Play any clip; <b>Reopen</b> a lesson to make changes.`
         : `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, expanded below for review. <b>${withAudio}</b> have audio.`;
+    // Names the stage and when it started, so "why can't I edit this?" answers itself. A stale
+    // claim instead offers a Clear button — a crashed build must never leave a lesson stuck.
+    const buildBanner = units
+      .filter((u) => u.building || u.interrupted)
+      .map((u) =>
+        u.building
+          ? `<div class="build-banner">⚡ <b>${escapeHtml(u.label)}</b> is being built (${escapeHtml(u.claim?.stage || "?")}, started ${escapeHtml(u.claim?.startedAt || "?")}). Editing is disabled until it finishes.</div>`
+          : `<div class="build-banner interrupted">⚠ <b>${escapeHtml(u.label)}</b>: a ${escapeHtml(u.claim?.stage || "?")} build was interrupted (started ${escapeHtml(u.claim?.startedAt || "?")}). Editing is available again.${editable ? ` <button type="button" class="clear-claim" data-unit="${u.seq}">Clear</button>` : ""}</div>`,
+      )
+      .join("");
+
     const body = `<header><a class="back" href="/">← All decks</a>
 <div class="eyebrow" style="margin-top:12px">${viewing ? "View" : "Review"} · anki-builder</div>
 <h1>${escapeHtml(deck.title)}</h1>
 <p class="lede">${lede}${viewing ? "" : ` <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`}</p>
+${buildBanner}
 ${toolbar ? `<div class="bar">${toolbar}</div>` : ""}
 </header>
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
@@ -353,7 +390,8 @@ ${modal}
     // REVIEW_EDIT_SCRIPT wires the Exclude toggle + the translate inline-edit cells. It's only needed
     // where those controls render: the translate (Corpus) review, or an editable (in-review) audio
     // review. A done, view-only lesson shows neither, so it isn't loaded there.
-    if (editable && (hasReview || canEdit)) scripts.push(REVIEW_EDIT_SCRIPT);
+    if (editable && !anyBuilding && (hasReview || canEdit)) scripts.push(REVIEW_EDIT_SCRIPT);
+    if (buildBanner.includes("clear-claim")) scripts.push(CLEAR_CLAIM_SCRIPT);
     // MARK_DONE_SCRIPT wires Mark done AND Reopen, so it loads for any audio-stage lesson (done or not).
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
     const script = scripts.join("\n");
@@ -482,9 +520,25 @@ ${sectionHtml}
     return dir ? realWithinRoot(dir) : null;
   }
 
+  /**
+   * Refuses a write to a lesson a CLI stage is currently building. The rendered page already
+   * hides the controls, but a browser tab left open from before the build started will still
+   * POST — and this is the half that actually prevents the lost update.
+   */
+  function assertNotBuilding(runDir) {
+    const { building, claim } = unitBuildState(runDir);
+    if (building) {
+      throw httpError(
+        409,
+        `lesson is being built (${describeClaim(claim)}) — try again when it finishes`,
+      );
+    }
+  }
+
   async function handleUpload(req, res, type, id, unit, cardId, ext) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const bytes = await readBodyCapped(req, MAX_UPLOAD_BYTES);
     const { audio } = applyCardAudio(runDir, cardId, bytes, ext);
     sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
@@ -493,6 +547,7 @@ ${sectionHtml}
   async function handleGenerate(res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const adapter = adapterFor(type);
     const languageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
     const voiceId = voice || getDefaultVoice(languageCode);
@@ -522,6 +577,7 @@ ${sectionHtml}
   async function handleGenerateKanji(res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const adapter = adapterFor(type);
     const languageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
     const voiceId = voice || getDefaultVoice(languageCode);
@@ -553,12 +609,14 @@ ${sectionHtml}
   function handleCardsReviewed(res, type, id, unit) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     sendJson(res, markCardsReviewed(runDir, { saveChapterCorpus }));
   }
 
   async function handleLessonDone(res, type, id, unit, done) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const result = setLessonDone(runDir, done);
     // The done-set just changed — refresh the group package so it always matches (best-effort).
     await rebuildGroupQuiet(type, id);
@@ -568,6 +626,7 @@ ${sectionHtml}
   async function handleReviewExclude(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const body = await readBodyCapped(req, 64 * 1024);
     let excluded;
     try {
@@ -581,6 +640,7 @@ ${sectionHtml}
   async function handleReviewEdit(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const body = await readBodyCapped(req, 64 * 1024);
     let fields;
     try {
@@ -594,6 +654,7 @@ ${sectionHtml}
   async function handleSelect(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
     const body = await readBodyCapped(req, 64 * 1024);
     let filename;
     try {
@@ -666,6 +727,16 @@ ${sectionHtml}
     }
     if (seg[4] === "unit" && seg[6] === "done" && seg.length === 7) {
       await handleLessonDone(res, type, id, seg[5], true);
+      return true;
+    }
+    if (seg[4] === "unit" && seg[6] === "claim" && seg[7] === "clear" && seg.length === 8) {
+      const runDir = safeUnitDir(type, id, seg[5]);
+      if (!runDir) return notFound(res);
+      const { building, claim } = unitBuildState(runDir);
+      // Never clear a LIVE claim — that would hand a second writer the lesson mid-build.
+      if (building) throw httpError(409, `still building (${describeClaim(claim)})`);
+      clearClaim(runDir);
+      sendJson(res, { cleared: true });
       return true;
     }
     if (seg[4] === "unit" && seg[6] === "reopen" && seg.length === 7) {

@@ -1,6 +1,7 @@
 import { existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { readCardsJson, readCorpusJson, renderCardForStage } from "./runDir.js";
+import { claimLiveness, readClaim } from "../../cli/runClaim.js";
 
 // A run directory advances through three pipeline stages, detected purely from which json files it
 // carries: `corpus` (assemble → corpus.json only), `translate` (translate → cards.json, no audio yet),
@@ -56,6 +57,19 @@ export function deckStage(units) {
 // and returns the units ordered by `meta.chapterNumber` (tie-break: folder seq). Dirs that aren't runs
 // (no corpus.json/cards.json) are skipped. Each unit carries `seq` (its folder index — the stable media
 // key), a display `number`/`label`, its `stage`, and stage-appropriate render `cards`.
+/**
+ * "is a CLI stage running on this unit right now?" — read straight off the unit's claim.json,
+ * which the stages write and clear. A claim whose process is gone reads as `stale`: the lesson
+ * goes back to being editable and the UI says the build was interrupted, so a crash can never
+ * leave a lesson permanently read-only.
+ */
+export function unitBuildState(runDir) {
+  const claim = readClaim(runDir);
+  if (!claim) return { claim: null, building: false, interrupted: false };
+  const liveness = claimLiveness(claim);
+  return { claim, building: liveness !== "stale", interrupted: liveness === "stale" };
+}
+
 export function scanNumberedUnits(deckDir, prefix) {
   if (!existsSync(deckDir)) return [];
   const label = `${prefix[0].toUpperCase()}${prefix.slice(1)}`;
@@ -65,9 +79,11 @@ export function scanNumberedUnits(deckDir, prefix) {
     const m = entry.name.match(new RegExp(`^${prefix}-(\\d+)$`));
     if (!m) continue;
     const seq = Number(m[1]);
-    const data = loadStageData(join(deckDir, entry.name));
+    const runDir = join(deckDir, entry.name);
+    const data = loadStageData(runDir);
     if (!data) continue;
     const meta = data.meta || {};
+    const build = unitBuildState(runDir);
     const number = typeof meta.chapterNumber === "number" ? meta.chapterNumber : seq;
     units.push({
       seq,
@@ -76,6 +92,9 @@ export function scanNumberedUnits(deckDir, prefix) {
       stage: data.stage,
       reviewed: !!meta.reviewed,
       done: !!meta.done,
+      building: build.building,
+      interrupted: build.interrupted,
+      claim: build.claim,
       cards: data.items.map(renderCardForStage(data.stage)),
     });
   }

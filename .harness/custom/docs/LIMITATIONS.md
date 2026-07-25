@@ -808,3 +808,32 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if a book ever grows large enough that a rebuild exceeds the 60s TTL, raise
   it — a live holder past its TTL will otherwise have its lock stolen mid-build. (Harmless, thanks to
   the rename, but it wastes work.)
+
+### "Building" is derived from a claim file, which can be left behind by a crash
+
+- **What:** the dashboard renders a lesson read-only with a `building (<stage>)` badge whenever its
+  `claim.json` names a live process. A crash can leave that claim behind. It does not wedge the
+  lesson — a claim whose pid is gone reads as *stale*, so the lesson is editable again and the page
+  shows an "interrupted" notice plus a Clear button — but the file itself lingers until cleared or
+  until the next run of that stage reclaims it.
+- **Why:** the alternative was inferring "building" from stage markers and file mtimes, which needs
+  no lifecycle but cannot name the stage or its start time, and cannot tell "pending" from "running".
+  A liveness probe (`process.kill(pid, 0)`) is exact for the local single-machine case this targets,
+  and makes staleness self-healing rather than time-based.
+- **Impact:** a claim from ANOTHER host cannot be probed and is treated as live (conservative), so a
+  lesson built on a different machine over a shared filesystem would stay read-only there. Not a
+  supported setup — `output/` and `.anki-builder/` are local and gitignored.
+- **When to revisit:** if these directories are ever shared between machines, replace the pid probe
+  with a lease the owner renews.
+
+### The audio stage merges rather than overwrites, but only for the `audio` field
+
+- **What:** `runAudio` re-reads `cards.json` after the TTS pass and applies only each item's `audio`
+  filename onto the fresh copy, so dashboard edits made during the (minutes-long) stage survive.
+  Cards ADDED to the file mid-stage keep no audio, and a card deleted mid-stage stays deleted.
+- **Why:** the stage owns exactly one field. Anything more would need real conflict resolution, and
+  the review flow does not add or delete cards at that point.
+- **Impact:** none in the normal flow. The server also refuses writes to a lesson with a live claim
+  (409), so the overlap window is small in practice.
+- **When to revisit:** if a future stage ever writes more than one field of a file a human can edit
+  concurrently.

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { promises as fs } from "fs";
+import { promises as fs, readFileSync } from "fs";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import os from "os";
@@ -1437,4 +1437,47 @@ test("restyle-font: errors when the language has no configured font", async () =
       /no deck font is configured/,
     );
   });
+});
+
+// The audio stage reads cards.json, spends minutes on ElevenLabs, then writes back. The
+// dashboard is editable during exactly that window, so writing the stale in-memory object
+// would silently discard whatever the reviewer did while it ran. It must merge instead.
+test("audio: preserves dashboard edits made while the stage was running", async () => {
+  await withTempDir(async (runDir) =>
+    withTempDir(async (libraryHomeDir) => {
+      const paths = runPaths(runDir);
+      mkdirSync(runDir, { recursive: true });
+      writeFileSync(paths.cards, JSON.stringify(baseCards()));
+
+      const cacheDir = join(libraryHomeDir, "audio", "voice1", TTS_MODEL);
+      mkdirSync(cacheDir, { recursive: true });
+      writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
+
+      const generateAudio = (cards) => {
+        // Stand in for the reviewer excluding a card and fixing a translation in the dashboard
+        // while ElevenLabs is still working.
+        const onDisk = JSON.parse(readFileSync(paths.cards, "utf-8"));
+        onDisk.items[0].excluded = true;
+        onDisk.items[0].target = "edited-in-dashboard";
+        writeFileSync(paths.cards, JSON.stringify(onDisk));
+
+        return { ...cards, items: cards.items.map((item) => ({ ...item, audio: "hola.mp3" })) };
+      };
+
+      await runCli(["audio", "--run", runDir, "--voice", "voice1"], {
+        generateAudio,
+        libraryHome: () => libraryHomeDir,
+        log: () => {},
+      });
+
+      const written = JSON.parse(await fs.readFile(paths.cards, "utf-8"));
+      assert.equal(written.items[0].excluded, true, "the exclude made mid-stage must survive");
+      assert.equal(
+        written.items[0].target,
+        "edited-in-dashboard",
+        "the inline edit made mid-stage must survive",
+      );
+      assert.equal(written.items[0].audio, "hola.mp3", "and the generated audio must still land");
+    }),
+  );
 });

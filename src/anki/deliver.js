@@ -158,6 +158,29 @@ export async function syncStructure(client, spec, dry) {
   return out;
 }
 
+/**
+ * Creates any sub-deck a lesson needs that Anki doesn't have yet.
+ *
+ * `addNote` does not create its target deck — it fails outright with "deck was not found". Every
+ * lesson delivered before this existed happened to land in a deck an earlier `.apkg` import had
+ * already created, so the gap only shows up the first time a genuinely NEW lesson is delivered
+ * through this path rather than by importing the package by hand.
+ *
+ * Returns the names it created (or, on a dry run, would create) so the preview reports them.
+ */
+export async function ensureDecks(client, decks, dry) {
+  const existing = new Set(await client.deckNames());
+  const wanted = [...new Set(decks.flatMap((deck) => deck.units.map((unit) => unit.ankiDeck)))];
+  const missing = wanted.filter((name) => name && !existing.has(name));
+
+  if (!dry) {
+    for (const name of missing) {
+      await client.createDeck(name);
+    }
+  }
+  return missing;
+}
+
 // Content sync for one deck. Returns per-deck counters + lists.
 export async function syncDeckContent(client, deck, dry) {
   const r = {
@@ -326,6 +349,7 @@ export async function deliverToAnki(
     schemaChanged: false,
     structure: [],
     content: [],
+    createdDecks: [],
     backedUp: [],
   };
   if (deliverable.length === 0) {
@@ -394,13 +418,19 @@ export async function deliverToAnki(
     (s) => s.createModel || s.addedFields.length || s.templates || s.css,
   );
 
-  // 5. CONTENT SYNC (per deck)
+  // 5. DECKS — a lesson's sub-deck must exist before a note can be added to it.
+  report.createdDecks = await ensureDecks(client, deliverable, dry);
+  for (const name of report.createdDecks) {
+    log(`${dry ? "would create" : "created"} deck: ${name}`);
+  }
+
+  // 6. CONTENT SYNC (per deck)
   for (const deck of deliverable) {
     report.content.push(await syncDeckContent(client, deck, dry));
     log(`content synced: ${deck.type}:${deck.id}`);
   }
 
-  // 6. SYNC AFTER (push local → remote). Content-only deliveries sync incrementally with no prompt; a
+  // 7. SYNC AFTER (push local → remote). Content-only deliveries sync incrementally with no prompt; a
   // schema-changing one still needs the manual Upload click (see schemaChanged). Non-fatal.
   if (sync && !dry) {
     try {

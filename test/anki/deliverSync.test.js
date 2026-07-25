@@ -49,6 +49,8 @@ function orderingClient() {
       version: async () => rec("version", 6),
       sync: async () => rec("sync"),
       exportPackage: async () => rec("exportPackage", true),
+      deckNames: async () => rec("deckNames", []),
+      createDeck: async (name) => rec("createDeck", name),
       modelNames: async () => rec("modelNames", [SPEC.modelName]),
       modelFieldNames: async () => rec("modelFieldNames", [...fields]),
       modelFieldAdd: async (_m, f, i) => {

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert";
-import { syncStructure, syncDeckContent } from "../../src/anki/deliver.js";
+import { syncStructure, syncDeckContent, ensureDecks } from "../../src/anki/deliver.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
 
 const SPEC = noteTypeSpec("ja");
@@ -226,4 +226,43 @@ test("syncDeckContent dry run writes nothing", async () => {
   const r = await syncDeckContent(client, deck, true);
   assert.equal(r.updated, 1);
   assert.equal(calls.length, 0, "dry = no writes");
+});
+
+// addNote does not create its target deck — it fails with "deck was not found". Every lesson delivered
+// before this landed in a deck an earlier .apkg import had already created, so the gap only appeared
+// the first time a genuinely NEW lesson went through Deliver rather than a manual import.
+test("ensureDecks creates only the sub-decks Anki is missing", async () => {
+  const created = [];
+  const client = {
+    deckNames: async () => ["Book", "Book::Lesson 1"],
+    createDeck: async (name) => created.push(name),
+  };
+  const decks = [
+    {
+      units: [
+        { ankiDeck: "Book::Lesson 1" },
+        { ankiDeck: "Book::Lesson 2" },
+        { ankiDeck: "Book::Lesson 2" },
+      ],
+    },
+  ];
+
+  const missing = await ensureDecks(client, decks, false);
+  assert.deepEqual(
+    missing,
+    ["Book::Lesson 2"],
+    "existing decks are left alone, duplicates collapsed",
+  );
+  assert.deepEqual(created, ["Book::Lesson 2"]);
+});
+
+test("ensureDecks reports but does not create on a dry run", async () => {
+  const created = [];
+  const client = {
+    deckNames: async () => ["Book"],
+    createDeck: async (name) => created.push(name),
+  };
+  const missing = await ensureDecks(client, [{ units: [{ ankiDeck: "Book::Lesson 8" }] }], true);
+  assert.deepEqual(missing, ["Book::Lesson 8"]);
+  assert.deepEqual(created, [], "a dry run performs only reads");
 });

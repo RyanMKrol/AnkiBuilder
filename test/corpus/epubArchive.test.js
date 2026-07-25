@@ -1,6 +1,15 @@
 import test from "node:test";
 import assert from "node:assert";
-import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from "fs";
+import {
+  mkdtempSync,
+  writeFileSync,
+  readFileSync,
+  existsSync,
+  rmSync,
+  mkdirSync,
+  readdirSync,
+  statSync,
+} from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { Buffer } from "buffer";
@@ -491,5 +500,105 @@ test("getBookTitle() returns null for a blank <dc:title>", () => {
     });
 
     assert.equal(getBookTitle(epubPath), null);
+  });
+});
+
+// --- chapter cache: write-once, and the publish ORDER that makes it safe ----------------
+// The cache lives in one shared directory that three concurrent lesson builds all write to
+// (the forward-flag pass materializes every later chapter; the book-conventions pass every
+// chapter) while `claude -p` reads those same paths. The reader is an external process that
+// cannot be made to retry, so a half-published unit is unrecoverable.
+
+test("extractChapterToFile reuses an already-cached chapter instead of re-extracting", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      opfPath: "OEBPS/content.opf",
+      manifestItems: [{ id: "c1", href: "c1.xhtml" }],
+      spineIdrefs: ["c1"],
+      extraFiles: [{ name: "OEBPS/c1.xhtml", content: "<html><body>original</body></html>" }],
+    });
+    const dest = join(dir, "cache", "1.xhtml");
+
+    extractChapterToFile(epubPath, 1, dest);
+    writeFileSync(dest, "SENTINEL — must not be overwritten");
+    extractChapterToFile(epubPath, 1, dest);
+
+    assert.equal(
+      readFileSync(dest, "utf-8"),
+      "SENTINEL — must not be overwritten",
+      "a cached chapter must be reused, not re-extracted",
+    );
+  });
+});
+
+test("extractChapterToFile re-extracts a zero-length cache file", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      opfPath: "OEBPS/content.opf",
+      manifestItems: [{ id: "c1", href: "c1.xhtml" }],
+      spineIdrefs: ["c1"],
+      extraFiles: [{ name: "OEBPS/c1.xhtml", content: "<html><body>real content</body></html>" }],
+    });
+    const dest = join(dir, "cache", "1.xhtml");
+    mkdirSync(join(dir, "cache"), { recursive: true });
+    writeFileSync(dest, ""); // as an interrupted pre-atomic write could leave it
+
+    extractChapterToFile(epubPath, 1, dest);
+    assert.match(readFileSync(dest, "utf-8"), /real content/);
+  });
+});
+
+// The ordering guarantee the skip depends on: if the chapter file is there, its images are too.
+test("extractChapterToFile publishes referenced images before the chapter file", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      opfPath: "OEBPS/content.opf",
+      manifestItems: [
+        { id: "c1", href: "c1.xhtml" },
+        { id: "img1", href: "images/fig.png", mediaType: "image/png" },
+      ],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/c1.xhtml",
+          content: '<html><body><img src="images/fig.png"/>text</body></html>',
+        },
+        { name: "OEBPS/images/fig.png", content: "PNG BYTES" },
+      ],
+    });
+    const dest = join(dir, "cache", "1.xhtml");
+    extractChapterToFile(epubPath, 1, dest);
+
+    const imagePath = join(dir, "cache", "images", "fig.png");
+    assert.ok(existsSync(dest), "chapter file published");
+    assert.ok(existsSync(imagePath), "image published");
+    assert.equal(readFileSync(imagePath, "utf-8"), "PNG BYTES");
+
+    // The actual invariant: the chapter file must land LAST, so its existence means the whole
+    // unit is complete. Written the other way round, a concurrent process could see the
+    // chapter file and hand `claude -p` a path whose images were not on disk yet.
+    const imageAt = statSync(imagePath, { bigint: true }).mtimeNs;
+    const chapterAt = statSync(dest, { bigint: true }).mtimeNs;
+    assert.ok(
+      imageAt <= chapterAt,
+      `images must be published before the chapter file (image ${imageAt} vs chapter ${chapterAt})`,
+    );
+  });
+});
+
+test("extractChapterToFile leaves no temp files in the cache directory", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      opfPath: "OEBPS/content.opf",
+      manifestItems: [{ id: "c1", href: "c1.xhtml" }],
+      spineIdrefs: ["c1"],
+      extraFiles: [{ name: "OEBPS/c1.xhtml", content: "<html><body>x</body></html>" }],
+    });
+    const cacheDir = join(dir, "cache");
+    extractChapterToFile(epubPath, 1, join(cacheDir, "1.xhtml"));
+    assert.deepEqual(
+      readdirSync(cacheDir).filter((n) => n.includes(".tmp.")),
+      [],
+    );
   });
 });

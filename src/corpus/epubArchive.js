@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, mkdirSync, statSync } from "fs";
+import { writeFileAtomic } from "../util/atomicWrite.js";
 import { inflateRawSync } from "zlib";
 import { posix, dirname, join } from "path";
 
@@ -540,6 +541,25 @@ export function describeChapter(epubPath, number) {
 // (a dangling reference, an external URL, a data: URI) are skipped rather than failing
 // the whole chapter — most of a chapter's images are still real content even if one ref
 // is bad.
+/**
+ * A cached chapter file is immutable — its content is a pure function of (epubHash,
+ * chapterNumber), and the extractors publish it only after its images are on disk. So an
+ * existing non-empty file is always a COMPLETE extraction and can be reused as-is.
+ *
+ * This is what stops three concurrent lesson builds re-extracting the same 30-50 shared
+ * chapter files (the forward-flag pass materializes every LATER chapter, and the
+ * book-conventions pass every chapter) into one directory while all of them read it.
+ *
+ * The size check retires zero-length files left by earlier, non-atomic versions.
+ */
+function isCachedChapterFile(destPath) {
+  try {
+    return statSync(destPath).size > 0;
+  } catch {
+    return false;
+  }
+}
+
 const IMG_SRC_PATTERN = /<img\b[^>]*\bsrc="([^"]*)"/g;
 
 function isLocalRelativePath(src) {
@@ -562,8 +582,11 @@ function extractReferencedImages(entries, chapter, content, destPath) {
     }
 
     const localDest = join(destDir, src);
-    mkdirSync(dirname(localDest), { recursive: true });
-    writeFileSync(localDest, imageEntry.data);
+    // Unconditional (not existsSync-guarded) and atomic: an image path can be shared by two
+    // chapters, so two processes may write the same file at once. The bytes are a pure
+    // function of the EPUB, so last-writer-wins is harmless once each write is atomic —
+    // whereas an existsSync skip could hand a reader a half-written PNG.
+    writeFileAtomic(localDest, imageEntry.data);
   }
 }
 
@@ -574,10 +597,17 @@ function extractReferencedImages(entries, chapter, content, destPath) {
  * files (including images) by path, not inline content. Returns `destPath`.
  */
 export function extractChapterToFile(epubPath, number, destPath) {
+  if (isCachedChapterFile(destPath)) {
+    return destPath;
+  }
   const { entries, chapter, content } = loadChapterEntry(epubPath, number);
   mkdirSync(dirname(destPath), { recursive: true });
-  writeFileSync(destPath, content, "utf-8");
+  // Images FIRST, chapter file LAST. The chapter file's existence is the commit point for
+  // the whole unit, so the skip above can only ever skip a complete extraction. Written the
+  // other way round (as this was), a second process would see the chapter file, skip, and
+  // hand `claude -p` a path whose images had not been written yet.
   extractReferencedImages(entries, chapter, content, destPath);
+  writeFileAtomic(destPath, content, "utf-8");
   return destPath;
 }
 
@@ -597,6 +627,9 @@ export function extractChapterRangeToFile(epubPath, firstNumber, lastNumber, des
   if (lastNumber < firstNumber) {
     throw new Error(`Invalid chapter range ${firstNumber}-${lastNumber}: last is before first`);
   }
+  if (isCachedChapterFile(destPath)) {
+    return destPath;
+  }
   const { entries, chapters } = loadEpub(epubPath);
   mkdirSync(dirname(destPath), { recursive: true });
 
@@ -615,6 +648,7 @@ export function extractChapterRangeToFile(epubPath, firstNumber, lastNumber, des
     extractReferencedImages(entries, chapter, content, destPath);
   }
 
-  writeFileSync(destPath, parts.join("\n\n"), "utf-8");
+  // Images are already published by the loop above, so this is the commit point.
+  writeFileAtomic(destPath, parts.join("\n\n"), "utf-8");
   return destPath;
 }

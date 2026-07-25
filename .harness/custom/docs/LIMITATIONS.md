@@ -776,3 +776,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   already imported into Anki.
 - **Impact:** the reservation ladder in `outputPaths.js` exists only because of this choice.
 - **When to revisit:** only alongside a deliberate migration of the URL space and deck ordering.
+
+### A cached chapter file is trusted without checking its images
+
+- **What:** `extractChapterToFile`/`extractChapterRangeToFile` skip re-extracting when the cached
+  `.xhtml` exists and is non-empty. They do not verify that the images it references are still on
+  disk. If you delete an image out of `.anki-builder/epubs/<hash>/chapters/` but leave the chapter
+  file, extraction will keep skipping and the LLM will be handed a chapter whose `<img>` refs don't
+  resolve.
+- **Why:** the extractors publish images FIRST and the chapter file LAST, so the chapter file's
+  existence is the commit point for the whole unit — an interrupted extraction leaves no chapter file
+  and is simply redone. Given that, verifying every image on every call would be pure cost: the
+  forward-flag pass alone touches 30-50 chapters per lesson build.
+- **Impact:** only reachable by hand-editing the cache. The repair is to delete the chapter file (or
+  the whole cache — it is disposable and rebuilds from the EPUB).
+- **When to revisit:** if anything ever prunes the cache selectively rather than wholesale.

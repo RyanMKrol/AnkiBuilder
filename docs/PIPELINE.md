@@ -7,15 +7,22 @@ understand or modify the implementation.
 
 ## Pipeline stages
 
-`assemble` → `translate` → `audio` → `deck`, each stage reading/writing JSON in a run
+`assemble` → `prepare` → `audio` → `deck`, each stage reading/writing JSON in a run
 directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved chapter directory
 under a book-organized `output/` tree (`--output-root <dir>`; see [Output layout](#output-layout)).
+`prepare` is itself four passes (`translate` → fill-in-the-blank → semantic de-dup → cross-lesson
+notes) run under a single claim, and `assemble` chains into it automatically.
+
 **Review happens in the dashboard** (`serve`), not as a CLI stage — see
-[Deck dashboard](#deck-dashboard-serve). There are **two review steps**: the **Corpus** review
-(English + target + pronunciation, on `cards.json`) and the **Audio** review. `translate` runs right
-after `assemble` with **no** gate between them (so the Corpus review can show the translation); the
-one gate the CLI enforces is `audio`, which refuses to run until `cards.meta.reviewed` is set —
-the dashboard's Corpus-review "Mark reviewed".
+[Deck dashboard](#deck-dashboard-serve). There are exactly **two review gates**, and they are the only
+states a lesson rests in: the **Corpus** review (English + target + pronunciation, on `cards.json`,
+signed off with "Mark reviewed") and the **Audio** review (signed off with "Mark done"). The one gate
+the CLI enforces is `audio`, which refuses to run until `cards.meta.reviewed` is set.
+
+A run dir with `corpus.json` but no `cards.json` is **not** a stage — it is `INCOMPLETE`, a build that
+stopped partway through `prepare`. Every one of those passes changes what a reviewer would be signing
+off, so a lesson stopped among them has nothing reviewable in it. The dashboard lists it under "Not
+finished" rather than "In review", and re-running `assemble` (or `prepare` directly) completes it.
 
 ### `assemble`
 
@@ -171,9 +178,36 @@ filtered out, derived from the cards) into the local library (`src/corpus/epubLi
 (`markCardsReviewed` in `src/server/adapters/applyCards.js`). See
 [Deck dashboard](#deck-dashboard-serve) for the routes.
 
+### `prepare`
+
+Everything between `assemble` and the first human review, as one stage
+(`runPrepare`/`runPrepareInner` in `src/cli/index.js`):
+
+1. **translate** — the pass below, skipped when `cards.json` already exists.
+2. **fill-in-the-blank enrichment** (`src/cards/fillInBlank.js`) — mines the source's drills into
+   practice cards, appended as a contiguous block at the END and marked `fillInBlank` + `aiSuggested`.
+   Skipped for a `template` source.
+3. **semantic de-dup** (`src/cards/semanticDedup.js`) — excludes (never deletes) practice cards that
+   only repeat a pattern the lesson already covers, recording the reason in `reviewNote`.
+4. **cross-lesson notes** (`src/cards/crossLessonNotes.js`) — one backward-only pass over this lesson
+   with every earlier lesson as context. Skipped for a `template` source.
+
+`assemble` chains into it unless `--no-prepare` is given, which is what removes the un-translated
+resting state: falling through assemble's "corpus.json already exists — reusing" branch into `prepare`
+is also what makes re-running `assemble` the resume command for an interrupted build.
+
+Each pass is **idempotent** — `cards.meta.enriched` and `cards.meta.notesEnhanced` record that steps
+2–3 and 4 have run, so a re-run resumes instead of re-spending model calls (and never re-mines a lesson
+whose source simply had no usable drills). Each **fails open**: a model or parse error logs and leaves
+the cards as they were rather than blocking the build. A lesson already marked `reviewed` is skipped
+entirely — growing or rewriting a signed-off card set is the one thing this stage must never do.
+
+Unlike every other stage, `prepare` keeps its claim on failure (`clearOnFailure: false`), so a crash
+mid-prepare surfaces in the dashboard as _interrupted_ instead of looking finished.
+
 ### `translate`
 
-Runs right after `assemble` — there is **no review gate before it** (the review moved onto its
+Runs as the first pass of `prepare` — there is **no review gate before it** (the review moved onto its
 output). Items with `target: null` get a full translation; items with a real `target` already set
 (e.g. from the EPUB path) only ever get a pronunciation guide — the model cannot override a
 pre-existing target (see `src/translate/index.js`). The resulting `cards.json` is what the **Corpus
@@ -475,12 +509,13 @@ path-safety (filename regex + a `realpath`-within-`outputRoot` check) and suppor
 
 ### Dashboard editing (the Review view, `/review`, editable by default)
 
-The **Review view** (`renderReviewPage`) surfaces every unit at its **pipeline stage**
-(`src/server/adapters/stage.js` `detectStage`: `corpus.json` only → corpus; `cards.json`, no audio →
-translate; a card has audio → audio) and renders the stage-appropriate columns + review controls
-(the Browse view at `/deck` renders the same units read-only). The `translate` file-stage IS the
-combined **Corpus review** (labelled "corpus" in the UI); the `corpus` file-stage (pre-translate,
-transient) renders **read-only** with a "run `translate`" hint. Beyond the read routes, the server
+The **Review view** (`renderReviewPage`) surfaces every unit at its **stage**
+(`src/server/adapters/stage.js` `detectStage`: `cards.json` with no audio → `corpus`; a card has audio
+→ `audio`; `corpus.json` only → `INCOMPLETE`) and renders the stage-appropriate columns + review
+controls (the Browse view at `/deck` renders the same units read-only). The badge word IS the stage
+name — there is no remapping between what the code calls a stage and what the UI shows. An `INCOMPLETE`
+unit renders **read-only** with the command that completes its build, and is bucketed on the home page
+under "Not finished" rather than "In review". Beyond the read routes, the server
 (`src/server/index.js`) exposes, gated on `editable` (disable all editing with `serve --read-only`):
 
 **Corpus review** (`src/server/adapters/applyCards.js`) — the combined first review, on `cards.json`:

@@ -18,7 +18,7 @@ import {
 import { createAnkiConnect } from "../anki/ankiConnect.js";
 import { deliverToAnki } from "../anki/deliver.js";
 import { ADAPTERS } from "./adapters/index.js";
-import { unitBuildState } from "./adapters/stage.js";
+import { unitBuildState, INCOMPLETE } from "./adapters/stage.js";
 import { clearClaim, describeClaim } from "../cli/runClaim.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
@@ -113,10 +113,11 @@ export function createDeckServer({
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
-  // The home page splits by STATUS at the SUB-DECK (lesson) level: two sections — "In review" (lessons
-  // not yet marked done) and "Built" (done lessons) — with each deck's lessons grouped under its
-  // heading. A deck with lessons in both states appears (grouped) in both sections. Actions are
-  // per-lesson and link to the unit-scoped views.
+  // The home page splits by STATUS at the SUB-DECK (lesson) level: "Not finished" (the build stopped
+  // before there were any cards to review), "In review" (at one of the two review gates, not yet marked
+  // done) and "Built" (done lessons) — with each deck's lessons grouped under its heading. A deck with
+  // lessons in several states appears (grouped) in each. Actions are per-lesson and link to the
+  // unit-scoped views.
   function renderDashboard() {
     const decks = adapters.flatMap((a) => a.listDecks(outputRoot));
     if (decks.length === 0) {
@@ -127,11 +128,6 @@ export function createDeckServer({
       );
     }
     const enc = encodeURIComponent;
-    // Two review steps in the UI: the `translate` file-stage IS the combined "corpus" review (English +
-    // target + pronunciation); the pre-translate `corpus` file-stage is a transient "not translated yet".
-    const stageWord = (s) =>
-      s === "corpus" ? "not translated" : s === "translate" ? "corpus" : "audio";
-
     const withUnits = decks.map((d) => {
       const adapter = adapterFor(d.type);
       const full = adapter && adapter.loadDeck ? adapter.loadDeck(outputRoot, d.id) : null;
@@ -168,14 +164,17 @@ export function createDeckServer({
         `<button type="button" class="home-reopen" data-type="${escapeHtml(deck.type)}" data-id="${escapeHtml(deck.id)}" data-unit="${escapeHtml(String(u.seq))}">Reopen</button>`;
       // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link. When
       // it's built, the block gets a Reopen button too (same stretched-link + button-above pattern).
-      // A single-lesson deck renders as one block with no per-unit row, so its build badge has
+      // A single-lesson deck renders as one block with no per-unit row, so any badge that says this
+      // lesson is NOT simply sitting at a review — building, interrupted, or an unfinished build — has
       // to hang off the block itself or it would never be shown.
       const buildBadge = (u) =>
         u.building
           ? `<span class="ustage building">building (${escapeHtml(u.claim?.stage || "?")})</span>`
           : u.interrupted
             ? `<span class="ustage interrupted">interrupted</span>`
-            : "";
+            : u.stage === INCOMPLETE
+              ? `<span class="ustage">${INCOMPLETE}</span>`
+              : "";
       if (deck.total === 1) {
         const u = units[0];
         if (mode === "built" && editable)
@@ -198,19 +197,31 @@ export function createDeckServer({
           if (u.interrupted) {
             return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage interrupted">interrupted</span></a>`;
           }
-          return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : stageWord(u.stage)}</span></a>`;
+          // The badge IS the stage name — the two review stages are called `corpus` and `audio`
+          // everywhere: on disk, in the code, and here.
+          return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${mode === "built" ? "done" : escapeHtml(u.stage)}</span></a>`;
         })
         .join("");
       return `<div class="dblock">${head}${rows}</div>`;
     };
 
+    // Three buckets, and the first one is not a review. A lesson whose build stopped before cards.json
+    // has nothing to sign off — listing it under "In review" is what let a lesson with no translations
+    // masquerade as a reviewable deck. It gets its own section naming the command that finishes it.
+    const unfinishedBlocks = [];
     const reviewBlocks = [];
     const builtBlocks = [];
+    let unfinishedCount = 0;
     let reviewCount = 0;
     let builtCount = 0;
     for (const deck of withUnits) {
-      const inReview = deck.units.filter((u) => !u.done);
-      const built = deck.units.filter((u) => u.done);
+      const unfinished = deck.units.filter((u) => u.stage === INCOMPLETE);
+      const inReview = deck.units.filter((u) => u.stage !== INCOMPLETE && !u.done);
+      const built = deck.units.filter((u) => u.stage !== INCOMPLETE && u.done);
+      if (unfinished.length) {
+        unfinishedBlocks.push(deckBlock(deck, unfinished, "unfinished"));
+        unfinishedCount += unfinished.length;
+      }
       if (inReview.length) {
         reviewBlocks.push(deckBlock(deck, inReview, "review"));
         reviewCount += inReview.length;
@@ -235,16 +246,19 @@ export function createDeckServer({
     return page(
       "Decks — anki-builder",
       `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built.</p>${deliverBar}</header>
-${section("grp-review", "In review", "Lessons still being built — corpus / translation / audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
+<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built${unfinishedCount ? ` · <b>${unfinishedCount}</b> unfinished` : ""}.</p>${deliverBar}</header>
+${section("grp-unfinished", "Not finished", "These lessons stopped mid-build and have no cards to review yet. Re-run <code>anki-builder assemble</code> for the lesson (it picks up where it left off), or <code>anki-builder prepare --run &lt;dir&gt;</code> directly.", unfinishedBlocks, unfinishedCount)}
+${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
 ${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play its cards, or Reopen it to edit.", builtBlocks, builtCount)}`,
       editable ? `${HOME_REOPEN_SCRIPT}\n${DELIVER_SCRIPT}` : null,
     );
   }
 
-  // The REVIEW view (/review/:type/:id): the guided per-stage workflow — corpus (English-only) →
-  // translate → audio — with exclude / edit / mark-reviewed / generate / rebuild controls when the
-  // server is editable. (Browsing a finished deck read-only is renderDeckPage below.)
+  // The REVIEW view (/review/:type/:id): the guided per-stage workflow across the two review gates —
+  // corpus (English + target + pronunciation) then audio — with exclude / edit / mark-reviewed /
+  // generate / rebuild controls when the server is editable. A lesson whose build never finished
+  // (INCOMPLETE) renders read-only here with the command that completes it. (Browsing a finished deck
+  // read-only is renderDeckPage below.)
   function renderReviewPage(type, id, unit = null) {
     const adapter = adapterFor(type);
     const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
@@ -269,8 +283,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // "Viewing" = a finished (all-done) lesson opened read-only. The header + lede reflect view vs review.
     const viewing = allDone;
 
-    // `translate` file-stage = the combined Corpus review (editable: exclude / edit / mark reviewed).
-    const hasReview = units.some((u) => (u.stage || "audio") === "translate");
+    // The Corpus review — the first gate (editable: exclude / edit / mark reviewed).
+    const hasReview = units.some((u) => (u.stage || "audio") === "corpus");
     const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
@@ -300,29 +314,30 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     };
     // The Corpus review's write-back (exclude / inline edit) works per-section whenever the server is
     // editable — independent of the all-audio `canEdit` gate, which only governs audio editing + the
-    // global rebuild. Only the combined review (`translate` file-stage) is editable; the pre-translate
-    // `corpus` file-stage is read-only.
-    // Exclude is available on BOTH review stages: the translate (Corpus) review AND the audio review —
-    // so you can drop a card late without going back to the Corpus review (which is meant to be
-    // one-and-done). Excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT).
-    // Exclude shows on the translate (Corpus) review always, and on the audio review ONLY while the
-    // lesson is in review (not done). A done lesson is view-only — Reopen it to exclude a card.
+    // global rebuild. Both review stages are editable; an INCOMPLETE lesson is read-only (there is
+    // nothing to sign off on yet).
+    // Exclude is available on BOTH review stages: the Corpus review AND the audio review — so you can
+    // drop a card late without going back to the Corpus review (which is meant to be one-and-done).
+    // Excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT). Exclude shows on the
+    // Corpus review always, and on the audio review ONLY while the lesson is in review (not done). A
+    // done lesson is view-only — Reopen it to exclude a card.
     const rowControl =
       editable && !anyBuilding
         ? (stage, c) =>
-            stage === "translate" || (stage === "audio" && !anyDone)
+            stage === "corpus" || (stage === "audio" && !anyDone)
               ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button>`
               : ""
         : undefined;
     const sectionControl =
       editable && !anyBuilding
         ? (s) => {
-            // Pre-translate: nothing to review yet — run `translate` to produce the reviewable cards.
-            if (s.stage === "corpus")
-              return `<span class="hint">Not translated yet — run <code>translate</code> to review this lesson.</span>`;
+            // Not a review stage at all: the build stopped before cards.json existed, so there is
+            // nothing to sign off. Name the command that finishes it.
+            if (s.stage === INCOMPLETE)
+              return `<span class="hint">This lesson's build didn't finish — no cards to review yet. Run <code>anki-builder prepare --run &lt;dir&gt;</code> (or re-run <code>assemble</code>) to complete it.</span>`;
             // Combined Corpus review (English + target + pronunciation): the first sign-off. `reviewed`
             // gates the `audio` step.
-            if (s.stage === "translate")
+            if (s.stage === "corpus")
               return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
             // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
             // ship in the merged deck.
@@ -387,8 +402,8 @@ ${modal}
     // not needed here (it still drives the read-only Browse view below).
     const scripts = [];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
-    // REVIEW_EDIT_SCRIPT wires the Exclude toggle + the translate inline-edit cells. It's only needed
-    // where those controls render: the translate (Corpus) review, or an editable (in-review) audio
+    // REVIEW_EDIT_SCRIPT wires the Exclude toggle + the Corpus-review inline-edit cells. It's only
+    // needed where those controls render: the Corpus review, or an editable (in-review) audio
     // review. A done, view-only lesson shows neither, so it isn't loaded there.
     if (editable && !anyBuilding && (hasReview || canEdit)) scripts.push(REVIEW_EDIT_SCRIPT);
     if (buildBanner.includes("clear-claim")) scripts.push(CLEAR_CLAIM_SCRIPT);

@@ -837,3 +837,46 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   (409), so the overlap window is small in practice.
 - **When to revisit:** if a future stage ever writes more than one field of a file a human can edit
   concurrently.
+
+### `prepare` bundles four passes behind one claim, so a partial failure is invisible in the exit code
+
+- **What:** `prepare` runs translate → fill-in-the-blank → semantic de-dup → cross-lesson notes as one
+  stage. Every pass but translate **fails open**: a model or parse error logs a line and leaves the
+  cards as they were. So `prepare` can exit 0 having silently skipped drill enrichment or notes, and
+  the only trace is a log line the operator may not have watched.
+- **Why:** the alternative — failing the whole stage when an optional enrichment pass hiccups — would
+  leave the lesson un-translated and unreviewable over something cosmetic. Enrichment is genuinely
+  optional; translation is not, and it is the one pass that throws.
+- **Impact:** a lesson can reach the corpus review with no practice cards or no cross-lesson notes and
+  look identical to one that legitimately had no drills to mine. The `.pre-fib.bak` /
+  `.pre-enhance.bak` files beside `cards.json` are the on-disk tell, and `cards.meta.enriched` /
+  `notesEnhanced` mark that a pass *ran*, not that it *produced* anything.
+- **When to revisit:** if a skipped pass ever ships to a deck unnoticed. The fix would be a per-pass
+  outcome recorded in `cards.meta` (ran / failed / nothing-to-do) and surfaced as a banner at the
+  corpus review, rather than only in the CLI log.
+
+### An `INCOMPLETE` lesson is detected from file presence, not from a recorded build outcome
+
+- **What:** a run dir counts as unfinished purely because it has `corpus.json` and no `cards.json`.
+  Nothing records *why* — a crash, a Ctrl-C, an `--no-prepare` run, and a translate that threw all
+  look identical.
+- **Why:** file presence needs no bookkeeping and cannot itself go stale, which is what made the old
+  three-stage model wrong in the first place (it treated the absence of work as a kind of progress).
+  The claim file already covers the "and it died mid-run" case with an *interrupted* badge.
+- **Impact:** the dashboard can say a lesson is unfinished and how to finish it, but not what went
+  wrong. For a repeatable failure the operator has to re-run `prepare` and read the error.
+- **When to revisit:** if diagnosing failed builds after the fact becomes common — a `lastError` in
+  the claim (kept on failure, which `prepare` already does) would carry the reason.
+
+### The test-runner guard covers the LLM spawn, not the TTS fetch
+
+- **What:** `assertExternalCallAllowed` (`src/util/testEnv.js`) makes both `runClaude` wrappers refuse
+  to spawn `claude` under `node --test`. The ElevenLabs fetch has no equivalent guard; it relies on
+  every audio test injecting `fetchTts`.
+- **Why:** the leak that actually happened was an LLM one — `assemble` chaining into `prepare` made
+  every assemble test spawn a real translate call, silently and slowly. The audio path has always been
+  injected at every call site, so the same failure mode hasn't arisen there.
+- **Impact:** a future audio test that forgets to inject `fetchTts` would spend real TTS credits and
+  pass. Same class of bug as the one this guard was written for, one layer over.
+- **When to revisit:** next time `src/audio/` grows a call site, or the first time a test bill shows
+  up. `fetchElevenLabsTts` should call the same guard.

@@ -1,26 +1,36 @@
 import { existsSync, readdirSync } from "fs";
 import { join } from "path";
-import { readCardsJson, readCorpusJson, renderCardForStage } from "./runDir.js";
+import { INCOMPLETE, readCardsJson, readCorpusJson, renderCardForStage } from "./runDir.js";
 import { claimLiveness, readClaim } from "../../cli/runClaim.js";
 
-// A run directory advances through three pipeline stages, detected purely from which json files it
-// carries: `corpus` (assemble → corpus.json only), `translate` (translate → cards.json, no audio yet),
-// `audio` (audio stage → at least one card has an audio clip). The dashboard surfaces a run at
-// whatever stage it's in and renders the stage-appropriate review; the CLI still advances it.
+// A lesson has exactly TWO stages, and both are human review gates:
+//
+//   `corpus` — cards.json exists, no audio yet. The combined first review: English + target +
+//              pronunciation, signed off with "Mark reviewed" (the gate the `audio` CLI stage checks).
+//   `audio`  — at least one card has a clip. The second review, signed off with "Mark done".
+//
+// A run dir carrying corpus.json but NO cards.json is `INCOMPLETE`: its build stopped partway through
+// `prepare` (translate → drill enrichment → de-dup → notes), all of which change what a reviewer would
+// be signing off. That is a half-built lesson, not a stage — it is deliberately NOT in STAGE_ORDER, it
+// is never offered for review, and the dashboard files it under "Not finished" with the command that
+// completes it. Re-running `assemble` (which chains into `prepare`) is what clears it.
 
-export const STAGE_ORDER = ["corpus", "translate", "audio"];
-export const stageRank = (stage) => STAGE_ORDER.indexOf(stage);
+export { INCOMPLETE };
+export const STAGE_ORDER = ["corpus", "audio"];
+// INCOMPLETE ranks below every real stage, so a deck containing one reports as the least-advanced
+// thing it holds rather than claiming the review it hasn't reached.
+export const stageRank = (stage) => (stage === INCOMPLETE ? -1 : STAGE_ORDER.indexOf(stage));
 
 // Loads a run dir's stage + items in one pass: `{ stage, meta, items, sourceFile }`, or null when the
 // dir isn't a run at all (no corpus.json and no cards.json). cards.json presence decides
-// translate-vs-audio; corpus.json alone is `corpus`. `sourceFile` tells the write-back layer which
+// corpus-vs-audio; corpus.json alone is INCOMPLETE. `sourceFile` tells the write-back layer which
 // json to mutate. Robust to a run that has cards.json but never wrote corpus.json (test fixtures).
 export function loadStageData(runDir) {
   const cards = readCardsJson(runDir);
   if (cards) {
     const anyAudio = cards.items.some((i) => typeof i.audio === "string" && i.audio.length > 0);
     return {
-      stage: anyAudio ? "audio" : "translate",
+      stage: anyAudio ? "audio" : "corpus",
       meta: cards.meta || {},
       items: cards.items,
       sourceFile: "cards.json",
@@ -29,7 +39,7 @@ export function loadStageData(runDir) {
   const corpus = readCorpusJson(runDir);
   if (corpus) {
     return {
-      stage: "corpus",
+      stage: INCOMPLETE,
       meta: corpus.meta || {},
       items: corpus.items,
       sourceFile: "corpus.json",

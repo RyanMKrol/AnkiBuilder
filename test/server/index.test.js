@@ -110,10 +110,10 @@ test("built lesson has a single action opening the unit-scoped edit-audio view (
   }
 });
 
-test("home page bifurcates decks into 'In review' and 'Built' sections with different actions", async () => {
+test("home page splits decks into 'Not finished' / 'In review' / 'Built' with different actions", async () => {
   const root = fixture(); // mybook is all-audio → Built
   try {
-    // add an in-review book (corpus-only)
+    // an in-review book: cards.json, no audio yet → the corpus review
     const wip = join(root, "epubs", "wipbook");
     mkdirSync(join(wip, "chapter-0"), { recursive: true });
     writeFileSync(
@@ -121,16 +121,44 @@ test("home page bifurcates decks into 'In review' and 'Built' sections with diff
       JSON.stringify({ title: "WIP Book", targetLanguage: "ja" }),
     );
     writeFileSync(
-      join(wip, "chapter-0", "corpus.json"),
+      join(wip, "chapter-0", "cards.json"),
       JSON.stringify({
         meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "C1" },
+        items: [
+          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+        ],
+      }),
+    );
+    // an UNFINISHED book: corpus.json only, so its build never produced anything reviewable
+    const half = join(root, "epubs", "halfbook");
+    mkdirSync(join(half, "chapter-0"), { recursive: true });
+    writeFileSync(
+      join(half, "book.json"),
+      JSON.stringify({ title: "Half Book", targetLanguage: "ja" }),
+    );
+    writeFileSync(
+      join(half, "chapter-0", "corpus.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "H1" },
         items: [{ id: "a", english: "one", category: "Numbers", notes: null, target: null }],
       }),
     );
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
+      assert.match(home, /Not finished/);
       assert.match(home, /In review/);
       assert.match(home, /Built · ready to study/);
+      // the unfinished lesson is listed under "Not finished", NOT counted as in review, and its badge
+      // names the state rather than a review it hasn't reached
+      const unfinishedSection = home.slice(
+        home.indexOf('class="grp grp-unfinished"'),
+        home.indexOf('class="grp grp-review"'),
+      );
+      assert.match(unfinishedSection, /Half Book/);
+      assert.match(unfinishedSection, /incomplete/);
+      assert.doesNotMatch(unfinishedSection, /WIP Book/);
+      // …and the section says how to finish it
+      assert.match(home, /anki-builder prepare --run/);
       // in-review lesson → its row links to the unit-scoped /review (whole row is the link now)
       assert.match(home, /href="\/review\/book\/wipbook\/0"/);
       assert.doesNotMatch(home, /\/deck\/book\/wipbook/);
@@ -144,7 +172,7 @@ test("home page bifurcates decks into 'In review' and 'Built' sections with diff
       assert.match(home, /button\.home-reopen/); // the wiring script is present
       // an in-review lesson is NOT reopenable (nothing to reopen)
       assert.doesNotMatch(home, /home-reopen[^>]*data-id="wipbook"/);
-      // no separate Open/Review buttons — bifurcation is conveyed by the two sections above
+      // no separate Open/Review buttons — the split is conveyed by the sections above
       assert.doesNotMatch(home, />Open</);
       assert.doesNotMatch(home, />Review →</);
     });
@@ -235,7 +263,7 @@ test("empty output shows an empty-state, not a 500", async () => {
   }
 });
 
-test("a mixed-stage book renders corpus + translate sections read-only (no edit UI until all-audio)", async () => {
+test("a book mixing an unfinished lesson with a corpus-review lesson renders both read-only (no edit UI until all-audio)", async () => {
   const root = mkdtempSync(join(tmpdir(), "deck-srv-wip-"));
   try {
     const book = join(root, "epubs", "wip");
@@ -245,7 +273,7 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
     writeFileSync(
       join(book, "chapter-0", "corpus.json"),
       JSON.stringify({
-        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Corpus Ch" },
+        meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Unfinished Ch" },
         items: [{ id: "a", english: "one", category: "Numbers", target: "いち", reading: "いち" }],
       }),
     );
@@ -253,7 +281,7 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
     writeFileSync(
       join(book, "chapter-1", "cards.json"),
       JSON.stringify({
-        meta: { targetLanguage: "ja", chapterNumber: 2, chapterLabel: "Translate Ch" },
+        meta: { targetLanguage: "ja", chapterNumber: 2, chapterLabel: "Corpus Ch" },
         items: [
           { id: "b", english: "two", category: "Numbers", target: "に", pronunciation: "ni" },
         ],
@@ -264,18 +292,18 @@ test("a mixed-stage book renders corpus + translate sections read-only (no edit 
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/wip`)).text();
-        // pre-translate corpus section is READ-ONLY English + Note + provenance ticks (no Target, no Exclude)
+        // the unfinished lesson lists READ-ONLY English + Note + provenance ticks (no Target, no Exclude)
         assert.match(
           html,
           /<th>English<\/th><th>Category<\/th><th>Hint<\/th><th>Note<\/th><th class="ctr">AI-suggested<\/th><th class="ctr">Uncertain<\/th>/,
         );
-        assert.match(html, /data-stage="corpus"/);
-        // combined Corpus review section: English-first, Category, then Target + Pronunciation, Note, flags
+        assert.match(html, /data-stage="incomplete"/);
+        // Corpus review section: English-first, Category, then Target + Pronunciation, Note, flags
         assert.match(
           html,
           /<th>English<\/th><th>Category<\/th><th>Target<\/th><th>Pronunciation<\/th><th>Hint<\/th><th>Note<\/th>/,
         );
-        assert.match(html, /data-stage="translate"/);
+        assert.match(html, /data-stage="corpus"/);
         // not all-audio → the audio-edit UI + rebuild are absent
         assert.doesNotMatch(html, /Rebuild deck/);
         assert.doesNotMatch(html, /class="repl"/);
@@ -316,17 +344,17 @@ function corpusFixture() {
   return { root, book };
 }
 
-test("pre-translate corpus section is read-only: no exclude, no Mark reviewed, a run-translate hint", async () => {
+test("an unfinished lesson is read-only: no exclude, no Mark reviewed, and names the command that finishes it", async () => {
   const { root } = corpusFixture();
   try {
     await withServer(
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/cbook`)).text();
-        assert.match(html, /data-stage="corpus"/);
-        assert.doesNotMatch(html, /class="excl-btn"/); // no exclude checkbox pre-translation
-        assert.doesNotMatch(html, /Mark reviewed/); // the review gate is post-translation
-        assert.match(html, /run <code>translate<\/code>/i); // hint to translate first
+        assert.match(html, /data-stage="incomplete"/);
+        assert.doesNotMatch(html, /class="excl-btn"/); // nothing to exclude — there are no cards yet
+        assert.doesNotMatch(html, /Mark reviewed/); // neither review gate has been reached
+        assert.match(html, /anki-builder prepare --run/); // names the command that completes the build
       },
       editDeps,
     );
@@ -372,7 +400,7 @@ test("Corpus review section is editable: exclude, editable target/pron cells, Ma
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/tbook`)).text();
-        assert.match(html, /data-stage="translate"/);
+        assert.match(html, /data-stage="corpus"/);
         assert.match(html, /data-field="target"/);
         assert.match(html, /data-field="pronunciation"/);
         assert.match(html, /class="excl-btn"/);

@@ -45,12 +45,19 @@ function baseEpubCorpus() {
 // real `claude`. (Single-item corpora no-op in the real default, so those tests don't need this.)
 const passthroughSort = ({ items }) => ({ items, changed: false });
 
+// Every assemble-only test passes --no-prepare. `assemble` chains into `prepare` (translate → drills →
+// de-dup → notes) by default so no lesson can be left un-translated, and these tests are about what
+// assemble itself writes — the chain has its own tests at the bottom of this file.
+
 test("throws on unknown command", async () => {
   await assert.rejects(() => runCli(["bogus", "--run", "/tmp/x"]), /Unknown command/);
 });
 
 test("throws when --run is missing", async () => {
-  await assert.rejects(() => runCli(["assemble", "--template", "travel-essentials"]), /--run/);
+  await assert.rejects(
+    () => runCli(["assemble", "--no-prepare", "--template", "travel-essentials"]),
+    /--run/,
+  );
 });
 
 test("assemble: dispatches to loadTemplate and writes corpus.json", async () => {
@@ -61,10 +68,22 @@ test("assemble: dispatches to loadTemplate and writes corpus.json", async () => 
       return baseCorpus();
     };
 
-    await runCli(["assemble", "--run", runDir, "--template", "travel-essentials", "--lang", "es"], {
-      loadTemplate,
-      log: () => {},
-    });
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--template",
+        "travel-essentials",
+        "--lang",
+        "es",
+      ],
+      {
+        loadTemplate,
+        log: () => {},
+      },
+    );
 
     const paths = runPaths(runDir);
     assert(existsSync(paths.corpus));
@@ -82,7 +101,16 @@ test("assemble: --output-root + --template resolves output/templates/<name>/<lan
     };
 
     await runCli(
-      ["assemble", "--output-root", outputRoot, "--template", "numbers", "--lang", "ja"],
+      [
+        "assemble",
+        "--no-prepare",
+        "--output-root",
+        outputRoot,
+        "--template",
+        "numbers",
+        "--lang",
+        "ja",
+      ],
       { loadTemplate, log: () => {} },
     );
 
@@ -98,7 +126,7 @@ test("assemble: --output-root + --template requires --lang", async () => {
   await withTempDir(async (outputRoot) => {
     await assert.rejects(
       () =>
-        runCli(["assemble", "--output-root", outputRoot, "--template", "numbers"], {
+        runCli(["assemble", "--no-prepare", "--output-root", outputRoot, "--template", "numbers"], {
           loadTemplate: () => {
             throw new Error("loadTemplate should not be reached without --lang");
           },
@@ -113,7 +141,7 @@ test("assemble: throws when --template is given without --lang", async () => {
   await withTempDir(async (runDir) => {
     await assert.rejects(
       () =>
-        runCli(["assemble", "--run", runDir, "--template", "travel-essentials"], {
+        runCli(["assemble", "--no-prepare", "--run", runDir, "--template", "travel-essentials"], {
           loadTemplate: () => {
             throw new Error("loadTemplate should not be reached without --lang");
           },
@@ -133,7 +161,16 @@ test("assemble: dispatches to assembleCorpusFromChapter when --chapter is given"
     };
 
     await runCli(
-      ["assemble", "--run", runDir, "--chapter", "/tmp/chapter08.xhtml", "--lang", "es"],
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--chapter",
+        "/tmp/chapter08.xhtml",
+        "--lang",
+        "es",
+      ],
       { assembleCorpusFromChapter, log: () => {} },
     );
 
@@ -147,7 +184,7 @@ test("assemble: throws when --chapter is given without --lang", async () => {
   await withTempDir(async (runDir) => {
     await assert.rejects(
       () =>
-        runCli(["assemble", "--run", runDir, "--chapter", "/tmp/chapter08.xhtml"], {
+        runCli(["assemble", "--no-prepare", "--run", runDir, "--chapter", "/tmp/chapter08.xhtml"], {
           log: () => {},
         }),
       /--lang is required/,
@@ -188,6 +225,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--run",
         runDir,
         "--epub",
@@ -264,6 +302,7 @@ test("assemble: --lesson resolves a multi-file lesson, extracts the whole spine 
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--run",
         runDir,
         "--epub",
@@ -326,11 +365,14 @@ test("assemble: --list-lessons prints the book's lessons and exits without assem
       throw new Error("--list-lessons must not assemble anything");
     };
 
-    await runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--list-lessons"], {
-      listLessons,
-      assembleCorpusFromChapter,
-      log: (msg) => logs.push(msg),
-    });
+    await runCli(
+      ["assemble", "--no-prepare", "--run", runDir, "--epub", "/tmp/book.epub", "--list-lessons"],
+      {
+        listLessons,
+        assembleCorpusFromChapter,
+        log: (msg) => logs.push(msg),
+      },
+    );
 
     assert.ok(logs.some((m) => m.includes("Lesson 1: Meeting") && m.includes("spine 2-3")));
     assert.ok(!existsSync(runPaths(runDir).corpus));
@@ -365,6 +407,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--run",
         runDir,
         "--epub",
@@ -426,6 +469,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--run",
         runDir,
         "--epub",
@@ -474,6 +518,7 @@ test("assemble: --chapter takes precedence when both --chapter and --epub are gi
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--run",
         runDir,
         "--chapter",
@@ -498,9 +543,12 @@ test("assemble: throws when --epub is given without --chapter-number", async () 
   await withTempDir(async (runDir) => {
     await assert.rejects(
       () =>
-        runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--lang", "es"], {
-          log: () => {},
-        }),
+        runCli(
+          ["assemble", "--no-prepare", "--run", runDir, "--epub", "/tmp/book.epub", "--lang", "es"],
+          {
+            log: () => {},
+          },
+        ),
       /--chapter-number is required/,
     );
   });
@@ -510,9 +558,21 @@ test("assemble: throws when --epub is given without --lang", async () => {
   await withTempDir(async (runDir) => {
     await assert.rejects(
       () =>
-        runCli(["assemble", "--run", runDir, "--epub", "/tmp/book.epub", "--chapter-number", "1"], {
-          log: () => {},
-        }),
+        runCli(
+          [
+            "assemble",
+            "--no-prepare",
+            "--run",
+            runDir,
+            "--epub",
+            "/tmp/book.epub",
+            "--chapter-number",
+            "1",
+          ],
+          {
+            log: () => {},
+          },
+        ),
       /--lang is required/,
     );
   });
@@ -522,7 +582,16 @@ test("assemble: throws when --output-root is given with an unsupported source (-
   await assert.rejects(
     () =>
       runCli(
-        ["assemble", "--output-root", "/tmp/output", "--chapter", "/tmp/ch.xhtml", "--lang", "es"],
+        [
+          "assemble",
+          "--no-prepare",
+          "--output-root",
+          "/tmp/output",
+          "--chapter",
+          "/tmp/ch.xhtml",
+          "--lang",
+          "es",
+        ],
         {
           log: () => {},
         },
@@ -535,7 +604,16 @@ test("assemble: throws when --output-root is given without --chapter-number", as
   await assert.rejects(
     () =>
       runCli(
-        ["assemble", "--output-root", "/tmp/output", "--epub", "/tmp/book.epub", "--lang", "es"],
+        [
+          "assemble",
+          "--no-prepare",
+          "--output-root",
+          "/tmp/output",
+          "--epub",
+          "/tmp/book.epub",
+          "--lang",
+          "es",
+        ],
         {
           log: () => {},
         },
@@ -578,6 +656,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--output-root",
         outputRoot,
         "--epub",
@@ -666,6 +745,7 @@ test("assemble: --words resolves the run dir via resolveCourseSlug/resolveLesson
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--output-root",
         outputRoot,
         "--words",
@@ -709,6 +789,7 @@ test("assemble: --words --lesson-label overrides the default 'Lesson <N>' chapte
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--output-root",
         outputRoot,
         "--words",
@@ -752,9 +833,21 @@ test("assemble: --words requires --course, --lesson-number, and --lang", async (
 
     await assert.rejects(
       () =>
-        runCli(["assemble", "--output-root", outputRoot, "--words", wordsPath, "--lang", "ja"], {
-          log: () => {},
-        }),
+        runCli(
+          [
+            "assemble",
+            "--no-prepare",
+            "--output-root",
+            outputRoot,
+            "--words",
+            wordsPath,
+            "--lang",
+            "ja",
+          ],
+          {
+            log: () => {},
+          },
+        ),
       /--course <name> is required/,
     );
 
@@ -763,6 +856,7 @@ test("assemble: --words requires --course, --lesson-number, and --lang", async (
         runCli(
           [
             "assemble",
+            "--no-prepare",
             "--output-root",
             outputRoot,
             "--words",
@@ -833,6 +927,7 @@ test("assemble: logs one line per flagged item for both passes, not just a count
     await runCli(
       [
         "assemble",
+        "--no-prepare",
         "--run",
         runDir,
         "--epub",
@@ -899,7 +994,7 @@ test("assemble: is resumable — skips work when corpus.json already exists", as
       return baseCorpus();
     };
 
-    await runCli(["assemble", "--run", runDir, "--template", "travel-essentials"], {
+    await runCli(["assemble", "--no-prepare", "--run", runDir, "--template", "travel-essentials"], {
       loadTemplate,
       log: () => {},
     });
@@ -1480,4 +1575,196 @@ test("audio: preserves dashboard edits made while the stage was running", async 
       assert.equal(written.items[0].audio, "hola.mp3", "and the generated audio must still land");
     }),
   );
+});
+
+// ---------------------------------------------------------------------------
+// `prepare` — everything between assemble and the first human review, as ONE stage.
+// ---------------------------------------------------------------------------
+
+// Stubs for the four passes prepare runs, recording the order they fire in.
+function prepareDeps(calls, overrides = {}) {
+  return {
+    // Mirrors the real stage: cards.json inherits the corpus's meta verbatim.
+    translateCorpus: (corpus) => {
+      calls.push("translate");
+      return {
+        cards: { meta: corpus.meta, items: baseCards({ reviewed: false }).items },
+        errors: [],
+      };
+    },
+    mineFillInBlankCards: ({ items }) => {
+      calls.push("fib");
+      const added = [
+        {
+          id: "fib-1",
+          english: "Practice.",
+          category: "Greetings",
+          target: "Practica",
+          pronunciation: "prak-TEE-ka",
+          fillInBlank: true,
+          aiSuggested: true,
+        },
+      ];
+      return { items: [...items, ...added], added, patterns: { "fib-1": "[verb]" } };
+    },
+    dedupeByPattern: ({ items }) => {
+      calls.push("dedup");
+      return { items, excluded: [] };
+    },
+    enhanceRunDirNotes: () => {
+      calls.push("notes");
+      return { changed: 1 };
+    },
+    lessonUnits: () => [],
+    log: () => {},
+    ...overrides,
+  };
+}
+
+test("assemble chains straight into prepare — no un-translated resting state", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    const calls = [];
+    await runCli(["assemble", "--run", runDir, "--chapter", "/tmp/ch.xhtml", "--lang", "ja"], {
+      assembleCorpusFromChapter: () => baseEpubCorpus(),
+      ...prepareDeps(calls),
+    });
+
+    assert.ok(existsSync(paths.corpus));
+    assert.ok(existsSync(paths.cards)); // reviewable, not just assembled
+    assert.deepEqual(calls, ["translate", "fib", "dedup", "notes"]);
+  });
+});
+
+test("assemble --no-prepare stops at corpus.json and says the lesson isn't reviewable", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    const calls = [];
+    const logged = [];
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--template",
+        "travel-essentials",
+        "--lang",
+        "es",
+      ],
+      {
+        loadTemplate: () => baseCorpus({ reviewed: false }),
+        ...prepareDeps(calls),
+        log: (line) => logged.push(line),
+      },
+    );
+
+    assert.ok(existsSync(paths.corpus));
+    assert.equal(existsSync(paths.cards), false);
+    assert.deepEqual(calls, []);
+    assert.match(logged.join("\n"), /NOT reviewable yet/);
+  });
+});
+
+test("re-running assemble on an unfinished lesson resumes it through prepare", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    // The exact state a stopped build leaves behind: corpus.json, no cards.json.
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    let assembled = false;
+    await runCli(["assemble", "--run", runDir, "--chapter", "/tmp/ch.xhtml", "--lang", "ja"], {
+      assembleCorpusFromChapter: () => {
+        assembled = true;
+        return baseEpubCorpus();
+      },
+      ...prepareDeps(calls),
+    });
+
+    assert.equal(assembled, false); // the corpus is reused, not re-extracted
+    assert.ok(existsSync(paths.cards));
+    assert.deepEqual(calls, ["translate", "fib", "dedup", "notes"]);
+  });
+});
+
+test("prepare: marks each pass done so a re-run resumes instead of re-spending model calls", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.meta.enriched, true);
+    assert.equal(cards.meta.notesEnhanced, true);
+    assert.deepEqual(calls, ["translate", "fib", "dedup", "notes"]);
+
+    calls.length = 0;
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+    assert.deepEqual(calls, []); // translate skips on cards.json; the rest on their meta markers
+  });
+});
+
+test("prepare: leaves a lesson that has already been reviewed completely alone", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseCorpus()));
+    writeFileSync(paths.cards, JSON.stringify(baseCards({ reviewed: true })));
+
+    const calls = [];
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      log: (line) => logged.push(line),
+    });
+
+    // Growing or rewriting a signed-off card set is the one thing this stage must never do.
+    assert.deepEqual(calls, []);
+    assert.match(logged.join("\n"), /already marked reviewed/);
+  });
+});
+
+test("prepare: skips drills and notes for a template (no drills to mine, no sibling lessons)", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseCorpus({ reviewed: false })));
+
+    const calls = [];
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+    assert.deepEqual(calls, ["translate"]);
+  });
+});
+
+test("prepare: throws when there's no corpus to prepare", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () => runCli(["prepare", "--run", runDir], prepareDeps([])),
+      /corpus\.json not found/,
+    );
+  });
+});
+
+test("prepare: keeps its claim when it fails, so a crash reads as interrupted", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    await assert.rejects(
+      () =>
+        runCli(["prepare", "--run", runDir], {
+          ...prepareDeps([]),
+          translateCorpus: () => {
+            throw new Error("boom");
+          },
+        }),
+      /boom/,
+    );
+    assert.ok(existsSync(join(runDir, "claim.json")));
+  });
 });

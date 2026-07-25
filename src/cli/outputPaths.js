@@ -1,6 +1,14 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync } from "fs";
 import { join } from "path";
 import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
+import {
+  claimLiveness,
+  claimMatches,
+  clearClaim,
+  describeClaim,
+  readClaim,
+  writeClaim,
+} from "./runClaim.js";
 import { slugify } from "../util/slugify.js";
 import { getBookTitle } from "../corpus/epubArchive.js";
 import { loadBookMeta, saveBookSlug, libraryEpubPath } from "../corpus/epubLibrary.js";
@@ -61,7 +69,21 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
     suffix++;
   }
 
-  mkdirSync(join(epubsRoot(outputRoot), candidate), { recursive: true });
+  // mkdirSync(recursive:true) never throws on collision, so two concurrent first-time
+  // assembles of DIFFERENT books whose titles slugify alike would both take this slug and
+  // the loser's hash marker would be overwritten. recursive:false makes it a CAS.
+  mkdirSync(epubsRoot(outputRoot), { recursive: true });
+  while (true) {
+    try {
+      mkdirSync(join(epubsRoot(outputRoot), candidate), { recursive: false });
+      break;
+    } catch (err) {
+      if (err.code !== "EEXIST") throw err;
+      if (matchesHashMarker(outputRoot, candidate, epubHash)) break; // ours already
+      candidate = `${baseSlug}-${suffix}`;
+      suffix++;
+    }
+  }
   writeFileAtomic(epubHashMarkerPath(outputRoot, candidate), epubHash);
   saveBookSlug(epubHash, candidate, opts);
   return candidate;
@@ -198,6 +220,80 @@ export function resolveTemplateRunDir(outputRoot, templateName, lang) {
   return join(outputRoot, TEMPLATES_DIR, slugify(templateName), slugify(lang));
 }
 
+/**
+ * Shared body of the chapter/lesson allocators: the four-rule reuse ladder, then the
+ * mkdir compare-and-swap, then an immediate exclusive claim. See resolveChapterRunDir.
+ */
+function resolveUnitRunDir({ parentDir, prefix, seqs, matchesCorpus, claimKey, label, deps = {} }) {
+  const { liveness = claimLiveness } = deps;
+  const dirFor = (seq) => join(parentDir, `${prefix}-${seq}`);
+
+  for (const seq of seqs) {
+    const dir = dirFor(seq);
+    const corpusPath = join(dir, "corpus.json");
+    if (existsSync(corpusPath)) {
+      // An unreadable corpus.json means "not a match", never a fatal error — the likeliest
+      // cause is a concurrent write, and killing the allocation over it helps nobody.
+      let meta = null;
+      try {
+        meta = JSON.parse(readFileSync(corpusPath, "utf-8")).meta;
+      } catch {
+        continue;
+      }
+      if (matchesCorpus(meta)) return dir; // rule 1
+      continue;
+    }
+
+    const claim = readClaim(dir);
+    if (!claimMatches(claim, claimKey)) continue; // rule 4
+    if (liveness(claim) === "stale") {
+      writeClaim(dir, claimKey); // rule 2: our own crashed attempt — take it back
+      return dir;
+    }
+    throw new Error(
+      // rule 3
+      `${label} is already being built (${describeClaim(claim)}).\n` +
+        `Wait for it to finish, or if that process is gone, delete ${join(dir, "claim.json")}.`,
+    );
+  }
+
+  mkdirSync(parentDir, { recursive: true });
+  let seq = seqs.length > 0 ? Math.max(...seqs) + 1 : 0;
+  for (let attempt = 0; attempt < 1000; attempt++, seq++) {
+    const dir = dirFor(seq);
+    try {
+      mkdirSync(dir, { recursive: false });
+    } catch (err) {
+      if (err.code === "EEXIST") continue; // lost the race for this seq — try the next
+      throw err;
+    }
+    try {
+      writeClaim(dir, claimKey, { exclusive: true });
+    } catch (err) {
+      if (err.code !== "EEXIST") throw err;
+      continue;
+    }
+    // Both of us may have scanned before either wrote a claim, in which case we would each
+    // hold a different directory for the same chapter. Whoever finds the other's live claim
+    // backs out, so "the same unit is never built twice at once" is a real guarantee.
+    const duplicate = seqs
+      .map(dirFor)
+      .find(
+        (other) =>
+          claimMatches(readClaim(other), claimKey) && liveness(readClaim(other)) !== "stale",
+      );
+    if (duplicate) {
+      clearClaim(dir);
+      throw new Error(
+        `${label} is already being built (${describeClaim(readClaim(duplicate))}).\n` +
+          `Wait for it to finish, or if that process is gone, delete ${join(duplicate, "claim.json")}.`,
+      );
+    }
+    return dir;
+  }
+  throw new Error(`could not allocate a run directory under ${parentDir} after 1000 attempts`);
+}
+
 const CHAPTER_DIR_PATTERN = /^chapter-(\d+)$/;
 
 function existingChapterSeqs(bookDir) {
@@ -212,30 +308,40 @@ function existingChapterSeqs(bookDir) {
 
 /**
  * Resolves the run directory for one (epubHash, chapterNumber) pair under
- * `outputRoot/epubs/<slug>/` — reusing an existing `chapter-<seq>/` whose own corpus.json
- * already matches this exact chapter (same idempotency spirit as assemble's own
- * "corpus.json already exists — reusing", just at directory granularity), or else
- * allocating the next free sequential index (gaps from a manually-deleted folder are
- * never backfilled). Does not create the directory itself — the caller's own
- * corpus.json write does that, same as every other run dir today.
+ * `outputRoot/epubs/<slug>/`, RESERVING it if it has to allocate a new one.
+ *
+ * Reservation is what makes concurrent builds safe. This used to compute `max(seq)+1` and
+ * return the path WITHOUT creating it — but the directory then only appeared minutes later
+ * when corpus.json was written, after extraction, dedup, the forward-flag pass and the
+ * pedagogical sort. Two runs started in that window both picked `chapter-7`, both paid for
+ * the full extraction, and the second write silently destroyed the first.
+ *
+ * `mkdirSync(dir, { recursive: false })` throws EEXIST if someone else got there first, so
+ * it is a compare-and-swap the filesystem gives us for free — no lock to hold or leak.
+ *
+ * The reuse ladder, per existing seq (see runClaim.js for why the claim exists):
+ *   1. corpus.json matches this exact chapter  -> reuse it (unchanged behaviour, wins over all)
+ *   2. a STALE claim matches                   -> reclaim; this is our own crashed attempt
+ *   3. a LIVE claim matches                    -> throw; another process is building it now
+ *   4. otherwise                               -> not ours, skip
+ *
+ * Rule 2 is what preserves crash-resume: without it a reserved-but-empty directory would be
+ * skipped forever and every retry would leak a new sequence number. Rule 3 turns "both runs
+ * pay for the same chapter and one is destroyed" into an immediate, cheap error.
+ *
+ * Gaps from a manually-deleted folder are still never backfilled.
  */
-export function resolveChapterRunDir(outputRoot, slug, epubHash, chapterNumber) {
+export function resolveChapterRunDir(outputRoot, slug, epubHash, chapterNumber, deps = {}) {
   const bookDir = join(epubsRoot(outputRoot), slug);
-  const seqs = existingChapterSeqs(bookDir);
-
-  for (const seq of seqs) {
-    const corpusPath = join(bookDir, `chapter-${seq}`, "corpus.json");
-    if (!existsSync(corpusPath)) {
-      continue;
-    }
-    const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
-    if (corpus.meta?.epubHash === epubHash && corpus.meta?.chapterNumber === chapterNumber) {
-      return join(bookDir, `chapter-${seq}`);
-    }
-  }
-
-  const nextSeq = seqs.length > 0 ? Math.max(...seqs) + 1 : 0;
-  return join(bookDir, `chapter-${nextSeq}`);
+  return resolveUnitRunDir({
+    parentDir: bookDir,
+    prefix: "chapter",
+    seqs: existingChapterSeqs(bookDir),
+    matchesCorpus: (meta) => meta?.epubHash === epubHash && meta?.chapterNumber === chapterNumber,
+    claimKey: { kind: "chapter", epubHash, chapterNumber },
+    label: `chapter ${chapterNumber} of "${slug}"`,
+    deps,
+  });
 }
 
 function courseMarkerPath(outputRoot, slug) {
@@ -301,7 +407,19 @@ export function resolveCourseSlug(outputRoot, courseName, targetLanguage) {
     suffix++;
   }
 
-  mkdirSync(join(coursesRoot(outputRoot), candidate), { recursive: true });
+  // Same CAS as resolveBookSlug — see the comment there.
+  mkdirSync(coursesRoot(outputRoot), { recursive: true });
+  while (true) {
+    try {
+      mkdirSync(join(coursesRoot(outputRoot), candidate), { recursive: false });
+      break;
+    } catch (err) {
+      if (err.code !== "EEXIST") throw err;
+      if (existsSync(courseMarkerPath(outputRoot, candidate))) break; // already this course
+      candidate = `${baseSlug}-${suffix}`;
+      suffix++;
+    }
+  }
   writeFileAtomic(
     courseMarkerPath(outputRoot, candidate),
     JSON.stringify({ name: courseName, targetLanguage }, null, 2) + "\n",
@@ -329,23 +447,18 @@ function existingLessonSeqs(courseDir) {
  * as-is for a lesson's number — see the courseSlug comment on CORPUS_SCHEMA in
  * model/index.js), not a separate lessonNumber field.
  */
-export function resolveLessonRunDir(outputRoot, courseSlug, lessonNumber) {
+export function resolveLessonRunDir(outputRoot, courseSlug, lessonNumber, deps = {}) {
   const courseDir = join(coursesRoot(outputRoot), courseSlug);
-  const seqs = existingLessonSeqs(courseDir);
-
-  for (const seq of seqs) {
-    const corpusPath = join(courseDir, `lesson-${seq}`, "corpus.json");
-    if (!existsSync(corpusPath)) {
-      continue;
-    }
-    const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
-    if (corpus.meta?.courseSlug === courseSlug && corpus.meta?.chapterNumber === lessonNumber) {
-      return join(courseDir, `lesson-${seq}`);
-    }
-  }
-
-  const nextSeq = seqs.length > 0 ? Math.max(...seqs) + 1 : 0;
-  return join(courseDir, `lesson-${nextSeq}`);
+  return resolveUnitRunDir({
+    parentDir: courseDir,
+    prefix: "lesson",
+    seqs: existingLessonSeqs(courseDir),
+    matchesCorpus: (meta) =>
+      meta?.courseSlug === courseSlug && meta?.chapterNumber === lessonNumber,
+    claimKey: { kind: "lesson", courseSlug, chapterNumber: lessonNumber },
+    label: `lesson ${lessonNumber} of "${courseSlug}"`,
+    deps,
+  });
 }
 
 /**
@@ -368,4 +481,24 @@ export function nextLessonNumber(outputRoot, courseSlug) {
     }
   }
   return max + 1;
+}
+
+/**
+ * True when a course already has a lesson carrying this number. Used to refuse a
+ * `--lesson-number` that is already taken, since two lessons dictated concurrently are both
+ * told "next is N" by nextLessonNumber and would otherwise both build as "Lesson N".
+ */
+export function lessonNumberInUse(outputRoot, courseSlug, lessonNumber) {
+  const courseDir = join(coursesRoot(outputRoot), courseSlug);
+  for (const seq of existingLessonSeqs(courseDir)) {
+    const corpusPath = join(courseDir, `lesson-${seq}`, "corpus.json");
+    if (!existsSync(corpusPath)) continue;
+    try {
+      const meta = JSON.parse(readFileSync(corpusPath, "utf-8")).meta;
+      if (meta?.chapterNumber === lessonNumber) return true;
+    } catch {
+      /* unreadable — treat as not a match */
+    }
+  }
+  return false;
 }

@@ -205,6 +205,10 @@ npm run build
       over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
 - [x] CLI orchestrator (resumable run directories)
+- [x] Reserved run directories — a chapter/lesson folder is created and claimed the moment it is
+      allocated (filesystem compare-and-swap, no lock), so two builds started at once can never be
+      handed the same directory. A crashed build's claim lets the retry reclaim its folder; a chapter
+      another process is actively building is refused immediately rather than silently raced
 - [x] Atomic artifact writes — every file that one process writes while another may be reading it
       (`cards.json`, `corpus.json`, the TTS cache, the EPUB copies, the dedup library, the markers) is
       published by writing a temp file beside it and renaming into place, so a reader never sees a

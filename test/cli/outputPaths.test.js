@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert";
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, mkdirSync, rmSync } from "fs";
-import { tmpdir } from "os";
+import { tmpdir, hostname } from "os";
 import { join } from "path";
 import { registerEpub } from "../../src/corpus/epubLibrary.js";
 import {
@@ -11,6 +11,7 @@ import {
   resolveLessonRunDir,
   resolveTemplateRunDir,
   nextLessonNumber,
+  lessonNumberInUse,
   listCourses,
   loadCourseMeta,
   materializeBookInOutput,
@@ -19,6 +20,9 @@ import {
   resolveBookEpubPath,
 } from "../../src/cli/outputPaths.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+import { fileURLToPath } from "node:url";
 
 function withTempDirs(fn) {
   const outputRoot = mkdtempSync(join(tmpdir(), "output-root-"));
@@ -468,4 +472,206 @@ test("nextLessonNumber() suggests one past the highest existing lesson number", 
 
     assert.equal(nextLessonNumber(outputRoot, "my-course"), 3);
   });
+});
+
+// --- concurrency: run-directory reservation -------------------------------------------
+// resolveChapterRunDir used to compute max(seq)+1 and return the path WITHOUT creating it,
+// so two runs started before either wrote its corpus.json both got `chapter-7` and the
+// second silently destroyed the first. These pin the reservation that fixes it.
+
+const DEAD_PID = 999999;
+
+function writeRawClaim(dir, claim) {
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "claim.json"), JSON.stringify(claim, null, 2) + "\n");
+}
+
+test("resolveChapterRunDir reserves: two resolves with no corpus in between get different dirs", () => {
+  withTempDirs(({ outputRoot }) => {
+    const first = resolveChapterRunDir(outputRoot, "book", "hash", 10);
+    const second = resolveChapterRunDir(outputRoot, "book", "hash", 11);
+    assert.notEqual(first, second, "the second run must not be handed the first run's directory");
+    assert.ok(existsSync(first) && existsSync(second), "a reserved directory exists immediately");
+  });
+});
+
+test("resolveChapterRunDir still reuses a directory whose corpus matches the chapter", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = resolveChapterRunDir(outputRoot, "book", "hash", 10);
+    writeFileSync(
+      join(dir, "corpus.json"),
+      JSON.stringify({ meta: { epubHash: "hash", chapterNumber: 10 }, items: [] }),
+    );
+    assert.equal(resolveChapterRunDir(outputRoot, "book", "hash", 10), dir);
+  });
+});
+
+test("resolveChapterRunDir reclaims its own crashed attempt (stale claim, no corpus)", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = resolveChapterRunDir(outputRoot, "book", "hash", 10);
+    // Simulate the process having died mid-assemble: claim left behind, no corpus written.
+    writeRawClaim(dir, {
+      kind: "chapter",
+      epubHash: "hash",
+      chapterNumber: 10,
+      pid: DEAD_PID,
+      host: hostname(),
+      startedAt: new Date().toISOString(),
+    });
+    assert.equal(
+      resolveChapterRunDir(outputRoot, "book", "hash", 10),
+      dir,
+      "a retry must reuse the crashed attempt's directory, not leak a new sequence number",
+    );
+  });
+});
+
+test("resolveChapterRunDir refuses a chapter another live process is already building", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = resolveChapterRunDir(outputRoot, "book", "hash", 10);
+    writeRawClaim(dir, {
+      kind: "chapter",
+      epubHash: "hash",
+      chapterNumber: 10,
+      pid: process.pid,
+      host: hostname(),
+      startedAt: new Date().toISOString(),
+    });
+    assert.throws(
+      () => resolveChapterRunDir(outputRoot, "book", "hash", 10),
+      /already being built/,
+      "the second run must fail immediately rather than pay for the same extraction",
+    );
+  });
+});
+
+test("resolveChapterRunDir allocates normally when a live claim is for a DIFFERENT chapter", () => {
+  withTempDirs(({ outputRoot }) => {
+    const busy = resolveChapterRunDir(outputRoot, "book", "hash", 10);
+    writeRawClaim(busy, {
+      kind: "chapter",
+      epubHash: "hash",
+      chapterNumber: 10,
+      pid: process.pid,
+      host: hostname(),
+      startedAt: new Date().toISOString(),
+    });
+    const other = resolveChapterRunDir(outputRoot, "book", "hash", 11);
+    assert.notEqual(other, busy);
+  });
+});
+
+test("resolveChapterRunDir skips a pre-existing sequence number rather than reusing it", () => {
+  withTempDirs(({ outputRoot }) => {
+    const bookDir = join(outputRoot, "epubs", "book");
+    mkdirSync(join(bookDir, "chapter-3"), { recursive: true });
+    const dir = resolveChapterRunDir(outputRoot, "book", "hash", 1);
+    assert.equal(dir, join(bookDir, "chapter-4"));
+  });
+});
+
+test("resolveLessonRunDir reserves too", () => {
+  withTempDirs(({ outputRoot }) => {
+    const first = resolveLessonRunDir(outputRoot, "course", 1);
+    const second = resolveLessonRunDir(outputRoot, "course", 2);
+    assert.notEqual(first, second);
+    assert.ok(existsSync(first) && existsSync(second));
+  });
+});
+
+test("lessonNumberInUse reports a number a course has already built", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = resolveLessonRunDir(outputRoot, "course", 4);
+    assert.equal(lessonNumberInUse(outputRoot, "course", 4), false, "reserved but not yet built");
+    writeFileSync(
+      join(dir, "corpus.json"),
+      JSON.stringify({ meta: { courseSlug: "course", chapterNumber: 4 }, items: [] }),
+    );
+    assert.equal(lessonNumberInUse(outputRoot, "course", 4), true);
+    assert.equal(lessonNumberInUse(outputRoot, "course", 5), false);
+  });
+});
+
+test("resolveBookSlug gives two different books the same title different slugs", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir }) => {
+    const dirA = mkdtempSync(join(tmpdir(), "epub-a-"));
+    const dirB = mkdtempSync(join(tmpdir(), "epub-b-"));
+    try {
+      const epubA = buildFixtureEpub(dirA, {
+        opfPath: "OEBPS/content.opf",
+        manifestItems: [{ id: "c1", href: "c1.xhtml" }],
+        spineIdrefs: ["c1"],
+        dcTitles: ["Shared Title"],
+        extraFiles: [{ name: "OEBPS/c1.xhtml", content: "<html><body>A</body></html>" }],
+      });
+      const epubB = buildFixtureEpub(dirB, {
+        opfPath: "OEBPS/content.opf",
+        manifestItems: [{ id: "c1", href: "c1.xhtml" }],
+        spineIdrefs: ["c1"],
+        dcTitles: ["Shared Title"],
+        extraFiles: [
+          { name: "OEBPS/c1.xhtml", content: "<html><body>B — different bytes</body></html>" },
+        ],
+      });
+      const { epubHash: hashA } = registerEpub(epubA, { libraryHomeDir });
+      const { epubHash: hashB } = registerEpub(epubB, { libraryHomeDir });
+      assert.notEqual(hashA, hashB);
+
+      const slugA = resolveBookSlug(outputRoot, epubA, hashA, { libraryHomeDir });
+      const slugB = resolveBookSlug(outputRoot, epubB, hashB, { libraryHomeDir });
+      assert.notEqual(slugA, slugB, "a second book must not take the first book's folder");
+      assert.equal(
+        readFileSync(join(outputRoot, "epubs", slugA, ".epub-hash"), "utf-8").trim(),
+        hashA,
+      );
+      assert.equal(
+        readFileSync(join(outputRoot, "epubs", slugB, ".epub-hash"), "utf-8").trim(),
+        hashB,
+      );
+    } finally {
+      rmSync(dirA, { recursive: true, force: true });
+      rmSync(dirB, { recursive: true, force: true });
+    }
+  });
+});
+
+// Real processes, because the reservation is a filesystem compare-and-swap: an in-process
+// loop would never exercise two mkdirs racing for the same name.
+test("concurrent processes never reserve the same run directory twice", async () => {
+  const outputRoot = mkdtempSync(join(tmpdir(), "output-root-race-"));
+  try {
+    const childPath = join(outputRoot, "reserve.mjs");
+    const modulePath = fileURLToPath(new URL("../../src/cli/outputPaths.js", import.meta.url));
+    writeFileSync(
+      childPath,
+      `import { resolveLessonRunDir } from ${JSON.stringify(modulePath)};
+const [root, base, count] = [process.argv[2], Number(process.argv[3]), Number(process.argv[4])];
+const dirs = [];
+for (let i = 0; i < count; i++) dirs.push(resolveLessonRunDir(root, "course", base + i));
+process.stdout.write(JSON.stringify(dirs));
+`,
+    );
+
+    const PER_CHILD = 20;
+    const results = await Promise.all(
+      [0, 1, 2].map((n) =>
+        promisify(execFile)(process.execPath, [
+          childPath,
+          outputRoot,
+          String(n * PER_CHILD + 1),
+          String(PER_CHILD),
+        ]).then(({ stdout }) => JSON.parse(stdout)),
+      ),
+    );
+
+    const all = results.flat();
+    assert.equal(all.length, 3 * PER_CHILD);
+    assert.equal(
+      new Set(all).size,
+      all.length,
+      "two processes were handed the same run directory — reservation is not atomic",
+    );
+  } finally {
+    rmSync(outputRoot, { recursive: true, force: true });
+  }
 });

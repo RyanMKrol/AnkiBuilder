@@ -741,3 +741,38 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if any script becomes part of an automated concurrent pipeline. (The cross-lesson
   note pass is already a per-lesson pipeline step — if lessons start being built in parallel routinely,
   revisit `scripts/enhance-card-notes.mjs` first, since it reads every sibling lesson's `cards.json`.)
+
+### Run directories are reserved up front, which changes three behaviours
+
+- **What:** `resolveChapterRunDir`/`resolveLessonRunDir` now CREATE the directory they return
+  (`mkdirSync(recursive:false)` as a compare-and-swap) and drop a `claim.json` in it, instead of
+  returning a path that only materialized minutes later when `corpus.json` was written. Consequences:
+  (1) assembling a chapter another live process is already assembling is now a hard error instead of
+  two runs silently racing; (2) a crashed assemble leaves a directory containing only `claim.json`,
+  which the dashboard does not render at all (`scanNumberedUnits` skips units with no corpus/cards) —
+  the next run reclaims it, but until then it is invisible; (3) there is a microsecond window between
+  the `mkdir` and the claim write where a crash leaves a directory nothing will ever reclaim.
+- **Why:** the old allocator computed `max(seq)+1` and returned the path without creating it, so two
+  runs started before either wrote its corpus both chose the same folder, both paid for a full LLM
+  extraction, and the second write destroyed the first. A filesystem CAS fixes that with no lock to
+  hold or leak.
+- **Impact:** an orphan directory costs one wasted sequence number and is otherwise inert. The
+  "already being built" error is deliberate — failing in milliseconds beats failing after both runs
+  have paid for the same extraction.
+- **When to revisit:** if orphans accumulate in practice, add a `--prune-orphans` sweep. Do NOT
+  "fix" it by making the dashboard render claim-only directories; that means threading a new unit
+  shape through every adapter for a case the reuse ladder already handles.
+
+### Run directories keep their autoincrement `seq`, not the chapter number
+
+- **What:** run dirs stay `chapter-<seq>`/`lesson-<seq>`, so allocating one needs a compare-and-swap.
+  Naming them `chapter-<chapterNumber>` instead would have made allocation a plain idempotent
+  `mkdir(recursive:true)` and deleted the whole reservation mechanism.
+- **Why:** `seq` is load-bearing in three places — it is the stable key in the dashboard's URL space
+  (`/review/:type/:id/:seq`, `/media/...`), it is the canonical deck ordering key in
+  `selectDoneChapterDecks` (deliberately independent of the displayed chapter number), and two
+  different `--lesson` selections can resolve to the same first spine number and would collide on one
+  directory. Changing it would break existing bookmarks and re-order sub-decks inside `.apkg` files
+  already imported into Anki.
+- **Impact:** the reservation ladder in `outputPaths.js` exists only because of this choice.
+- **When to revisit:** only alongside a deliberate migration of the URL space and deck ordering.

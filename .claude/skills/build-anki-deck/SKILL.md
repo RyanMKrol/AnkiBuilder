@@ -166,6 +166,11 @@ anki-builder assemble --output-root output --words <wordsFile> \
   [--lesson-label "Lesson <N>: <topic>"]
 ```
 
+**A `--lesson-number` the course has already used is refused**, with the next free number in the
+error. `nextLessonNumber` only ever *suggests* a number, so two lessons prepared at the same time are
+both told "next is N" and would otherwise both build as "Lesson N" and merge into the deck as
+duplicate sub-decks. Pass `--force` if you genuinely mean to build over an existing lesson.
+
 This resolves (or creates) `output/courses/<course-slug>/lesson-<seq>/` — every item's `target` stays
 `null` here (there's no bilingual source text to translate from, unlike an EPUB chapter), so
 `translate` fills it in fresh just like it does for a template. Category assignment for each word

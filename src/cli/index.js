@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
 import { writeFileAtomic } from "../util/atomicWrite.js";
+import { withClaim } from "./runClaim.js";
 import { join, resolve } from "path";
 import { Buffer } from "buffer";
 import {
@@ -35,6 +36,8 @@ import {
   resolveChapterRunDir as defaultResolveChapterRunDir,
   resolveCourseSlug as defaultResolveCourseSlug,
   resolveLessonRunDir as defaultResolveLessonRunDir,
+  lessonNumberInUse as defaultLessonNumberInUse,
+  nextLessonNumber as defaultNextLessonNumber,
   resolveTemplateRunDir as defaultResolveTemplateRunDir,
   loadCourseMeta as defaultLoadCourseMeta,
   materializeBookInOutput as defaultMaterializeBookInOutput,
@@ -119,7 +122,19 @@ function resolveAssembleRunDir(flags, ctx) {
 
     const outputRoot = resolve(flags["output-root"]);
     const courseSlug = ctx.resolveCourseSlug(outputRoot, flags.course, flags.lang);
-    const runDir = ctx.resolveLessonRunDir(outputRoot, courseSlug, Number(flags["lesson-number"]));
+    const lessonNumber = Number(flags["lesson-number"]);
+    // Two lessons dictated at the same time are both told "next is N" by nextLessonNumber, and
+    // no filesystem primitive can catch that — the identity is chosen before the path is. So
+    // refuse a number this course has already used rather than quietly producing a second
+    // "Lesson N" that merges into the deck as a duplicate sub-deck.
+    if (!flags.force && ctx.lessonNumberInUse(outputRoot, courseSlug, lessonNumber)) {
+      throw new Error(
+        `lesson ${lessonNumber} already exists in course "${courseSlug}". ` +
+          `The next free number is ${ctx.nextLessonNumber(outputRoot, courseSlug)}. ` +
+          `Pass --force to build over the existing lesson.`,
+      );
+    }
+    const runDir = ctx.resolveLessonRunDir(outputRoot, courseSlug, lessonNumber);
     ctx.log(`resolved run directory: ${runDir}`);
     return runDir;
   }
@@ -218,6 +233,16 @@ async function runAssemble(flags, ctx) {
     return;
   }
 
+  // A FAILED assemble deliberately keeps its claim (clearOnFailure: false): the run dir was
+  // reserved up front but has no corpus.json yet, so the claim is the only thing that lets the
+  // retry reclaim this directory instead of leaking a fresh sequence number. See runClaim.js.
+  return withClaim(runDir, { stage: "assemble" }, () => assembleIntoRunDir(flags, ctx, runDir), {
+    clearOnFailure: false,
+  });
+}
+
+async function assembleIntoRunDir(flags, ctx, runDir) {
+  const paths = ctx.runPaths(runDir);
   let corpus;
   // Hoisted so the pedagogical-sort pass below can pass the book's conventions as grounding on the
   // --epub path (null for every other source).
@@ -403,6 +428,10 @@ async function runTranslate(flags, ctx) {
   if (!flags.run) {
     throw new Error("--run <dir> is required");
   }
+  return withClaim(flags.run, { stage: "translate" }, () => runTranslateInner(flags, ctx));
+}
+
+async function runTranslateInner(flags, ctx) {
   const paths = ctx.runPaths(flags.run);
 
   if (existsSync(paths.cards)) {
@@ -438,6 +467,10 @@ async function runAudio(flags, ctx) {
   if (!flags.run) {
     throw new Error("--run <dir> is required");
   }
+  return withClaim(flags.run, { stage: "audio" }, () => runAudioInner(flags, ctx));
+}
+
+async function runAudioInner(flags, ctx) {
   const paths = ctx.runPaths(flags.run);
 
   if (!existsSync(paths.cards)) {
@@ -528,6 +561,10 @@ async function runDeck(flags, ctx) {
   if (!flags.run) {
     throw new Error("--run <dir> is required");
   }
+  return withClaim(flags.run, { stage: "deck" }, () => runDeckInner(flags, ctx));
+}
+
+async function runDeckInner(flags, ctx) {
   const paths = ctx.runPaths(flags.run);
 
   if (existsSync(paths.deck)) {
@@ -730,6 +767,8 @@ export async function runCli(argv, deps = {}) {
     resolveChapterRunDir = defaultResolveChapterRunDir,
     resolveCourseSlug = defaultResolveCourseSlug,
     resolveLessonRunDir = defaultResolveLessonRunDir,
+    lessonNumberInUse = defaultLessonNumberInUse,
+    nextLessonNumber = defaultNextLessonNumber,
     resolveTemplateRunDir = defaultResolveTemplateRunDir,
     loadCourseMeta = defaultLoadCourseMeta,
     materializeBookInOutput = defaultMaterializeBookInOutput,
@@ -789,6 +828,8 @@ export async function runCli(argv, deps = {}) {
     resolveChapterRunDir,
     resolveCourseSlug,
     resolveLessonRunDir,
+    lessonNumberInUse,
+    nextLessonNumber,
     resolveTemplateRunDir,
     loadCourseMeta,
     materializeBookInOutput,

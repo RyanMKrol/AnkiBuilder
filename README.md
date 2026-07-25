@@ -205,6 +205,8 @@ npm run build
       over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
 - [x] CLI orchestrator (resumable run directories)
+- [x] Safe deck rebuilds — the merged `.apkg` is published by atomic rename, and a short per-book
+      lock stops a slow rebuild publishing a done-set that is missing a lesson finished in the meantime
 - [x] Write-once chapter cache — an extracted chapter is published images-first, chapter-file-last
       and then reused, so concurrent builds sharing a book neither re-extract the same 30-50 files nor
       hand the extractor a chapter whose images haven't landed yet

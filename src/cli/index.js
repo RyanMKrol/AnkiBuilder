@@ -541,7 +541,7 @@ async function runBookDeck(flags, ctx) {
   const bookDir = resolve(flags["book-dir"]);
   // Assembly + merge live in src/deck/rebuild.js (shared with the dashboard's Rebuild action). This
   // always rebuilds fresh — any upstream chapter change would otherwise leave a stale merged package.
-  const result = ctx.rebuildBookDir(bookDir, {
+  const result = await ctx.rebuildBookDir(bookDir, {
     buildBookDeck: ctx.buildBookDeck,
     loadBookMeta: ctx.loadBookMeta,
     loadCourseMeta: ctx.loadCourseMeta,

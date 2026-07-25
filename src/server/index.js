@@ -556,12 +556,12 @@ ${sectionHtml}
     sendJson(res, markCardsReviewed(runDir, { saveChapterCorpus }));
   }
 
-  function handleLessonDone(res, type, id, unit, done) {
+  async function handleLessonDone(res, type, id, unit, done) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
     const result = setLessonDone(runDir, done);
     // The done-set just changed — refresh the group package so it always matches (best-effort).
-    rebuildGroupQuiet(type, id);
+    await rebuildGroupQuiet(type, id);
     sendJson(res, result);
   }
 
@@ -608,15 +608,15 @@ ${sectionHtml}
   // Rebuild the single group package (the book/course merge of done lessons, or a template's own deck)
   // — the only .apkg per group. Never writes a per-lesson file. Shared by the manual "Rebuild deck"
   // button and by rebuildGroupQuiet below.
-  function handleRebuild(res, type, id) {
+  async function handleRebuild(res, type, id) {
     const adapter = adapterFor(type);
     if (!adapter || !adapter.rebuild) return notFound(res);
     if (!adapter.listDecks(outputRoot).some((d) => d.id === id)) return notFound(res);
     let result;
     try {
-      result = adapter.rebuild(outputRoot, id);
+      result = await adapter.rebuild(outputRoot, id);
     } catch (e) {
-      // No finished (done) lessons yet — the deck can't be merged.
+      // No finished (done) lessons yet, or another rebuild of this book holds the lock.
       throw httpError(409, e.message);
     }
     sendJson(res, { noteCount: result.noteCount, apkgPath: adapter.deckFile(outputRoot, id) });
@@ -639,12 +639,12 @@ ${sectionHtml}
   // Best-effort rebuild of the group package, ignoring the "nothing done yet" case — so marking a
   // lesson done (or reopening one) keeps the on-disk package in step with the done-set without failing
   // the write when no lesson is done.
-  function rebuildGroupQuiet(type, id) {
+  async function rebuildGroupQuiet(type, id) {
     const adapter = adapterFor(type);
     try {
-      adapter?.rebuild?.(outputRoot, id);
+      await adapter?.rebuild?.(outputRoot, id);
     } catch {
-      /* no done lessons (or nothing to build) — leave the package as-is */
+      /* no done lessons, or another rebuild is in progress — leave the package as-is */
     }
   }
 
@@ -657,15 +657,20 @@ ${sectionHtml}
     }
     if (seg[1] !== "deck") return false;
     const [type, id] = [seg[2], seg[3]];
-    if (seg[4] === "rebuild" && seg.length === 5) return (handleRebuild(res, type, id), true);
+    if (seg[4] === "rebuild" && seg.length === 5) {
+      await handleRebuild(res, type, id);
+      return true;
+    }
     if (seg[4] === "unit" && seg[6] === "review" && seg[7] === "reviewed" && seg.length === 8) {
       return (handleCardsReviewed(res, type, id, seg[5]), true);
     }
     if (seg[4] === "unit" && seg[6] === "done" && seg.length === 7) {
-      return (handleLessonDone(res, type, id, seg[5], true), true);
+      await handleLessonDone(res, type, id, seg[5], true);
+      return true;
     }
     if (seg[4] === "unit" && seg[6] === "reopen" && seg.length === 7) {
-      return (handleLessonDone(res, type, id, seg[5], false), true);
+      await handleLessonDone(res, type, id, seg[5], false);
+      return true;
     }
     if (seg[4] === "unit" && seg[6] === "card") {
       const [unit, cardId] = [seg[5], seg[7]];

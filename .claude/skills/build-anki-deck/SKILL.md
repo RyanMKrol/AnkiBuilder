@@ -342,10 +342,16 @@ to `translate`** in the same turn (don't stop to ask "should I review the Englis
 `corpus.json`-only lesson opened in the dashboard renders **read-only** with a "run `translate`" hint
 — it isn't reviewable until it's translated.
 
-**That one gate must see the FINAL card set.** Everything that changes which cards exist — extraction,
-fill-in-the-blank mining (Step 3.5), the semantic de-dup pass — runs *before* the review opens, never
-after it. The pipeline order is therefore: `assemble` → `translate` → FIB + de-dup → **corpus review**
-→ `audio` → audio review → **Mark done**. A human should sign off once, on the complete lesson.
+**That one gate must see the FINAL card set.** Everything that changes which cards exist *or what they
+say* — extraction, fill-in-the-blank mining (Step 3.5), the semantic de-dup pass, the cross-lesson note
+pass (Step 3.5c) — runs *before* the review opens, never after it. The pipeline order is therefore:
+`assemble` → `translate` → FIB + de-dup → cross-lesson notes → **corpus review** → `audio` → audio
+review → **Mark done**. A human should sign off once, on the complete lesson.
+
+**If a content step lives outside the `anki-builder` CLI, it still belongs in this list.** The
+cross-lesson note pass is a plain `node scripts/…` invocation with no stage gate enforcing it, which is
+exactly why it got skipped on lesson after lesson. Treat the numbered steps as the checklist: a lesson
+is not ready for review until every one of them has run.
 
 ### Step 3: Translation via Claude
 
@@ -411,8 +417,35 @@ was excluded, build the sentence on `らいしゅう`).
 
 The kept FIB cards are ordinary cards from here on. They go into the Step 3.6 corpus review alongside
 every other card, badged by their `fillInBlank` flag, so the human vets the additions and your de-dup
-calls at the same single gate as the rest of the lesson. Only after that sign-off do they flow into
-Step 4 (audio) and the deck.
+calls at the same single gate as the rest of the lesson.
+
+### Step 3.5c: Cross-lesson note pass (every book/course lesson)
+
+**Run this for EVERY lesson of a book or course, before the review** (skip it for a template — there
+are no earlier lessons to reference):
+
+```sh
+ANKI_BUILDER_TRANSLATE_EFFORT=high node scripts/enhance-card-notes.mjs --only <unit> <bookDir>
+# e.g. … --only chapter-6 output/epubs/japanese-for-busy-people-book-1-kana
+```
+
+`--only <unit>` writes just that lesson while still feeding **every earlier lesson** in as context, so
+the new lesson gets its backward cross-references without touching lessons already reviewed and done.
+**Never run the bare `<bookDir>` form on a book with finished lessons** — it rewrites their notes and
+overwrites their `.pre-enhance.bak` backups. That form is for a one-off backfill of a whole book only.
+
+This is the step that turns a flat vocabulary list into a connected knowledge base, and it is easy to
+forget precisely because it lives outside the `anki-builder` CLI. Two rules keep it honest:
+
+- **It runs BEFORE the corpus review**, like FIB and de-dup. The notes it writes are learner-facing, so
+  they have to be in place for the human to sign off on. Running it after **Mark done** means either
+  shipping notes nobody reviewed or reopening a finished lesson.
+- **Check it actually ran.** A lesson that has been through the pass has a `cards.json.pre-enhance.bak`
+  beside its `cards.json` (unless the pass genuinely changed nothing). If a book's other lessons have
+  that file and the new one doesn't, the pass was skipped.
+
+Only after this, and the corpus review that follows it, do the cards flow into Step 4 (audio) and the
+deck.
 
 ### Step 3.6: Corpus review — the one human gate before audio
 
@@ -457,11 +490,14 @@ build renders a small category chip on the FRONT of both templates (Recognition 
 word is always studied *with* its domain — you don't recognize/produce a word cold, out of context. A
 card missing a category is a bug; if you author cards by hand, set one.
 
-**Run a whole-book TEACHABILITY / CROSS-REFERENCE pass after a book's lessons are built.** The
+**The TEACHABILITY / CROSS-REFERENCE pass is a pipeline step (Step 3.5c), not an afterthought.** The
 extraction runs one chapter at a time, so it can only cross-reference within that chapter — genuinely
 useful comparisons that span lessons (おねがいします vs ください, the greeting time-chain, その vs それ)
-have to be added by a pass that can see across lessons. After a book/course's chapters are
-assembled, run `scripts/enhance-card-notes.mjs <bookDir>` (Sonnet, `ANKI_BUILDER_TRANSLATE_EFFORT=high`).
+have to be added by a pass that can see across lessons. Run
+`scripts/enhance-card-notes.mjs --only <unit> <bookDir>` (Sonnet, `ANKI_BUILDER_TRANSLATE_EFFORT=high`)
+for **every** lesson, as part of building it — see Step 3.5c. (Without `--only` it processes the whole
+book, which is the right form for a one-off backfill but **wrong** for a new lesson: it rewrites notes
+on lessons already reviewed and done, and clobbers their `.pre-enhance.bak` backups.)
 It runs **one pass PER LESSON**, each fed only that lesson **plus all EARLIER lessons** as context, and
 writes notes for the current lesson only — so cross-references are **structurally backward at the
 CHAPTER level** (the model literally never sees later lessons, so a forward reference — clarifying a card

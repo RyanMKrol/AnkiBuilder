@@ -5,14 +5,27 @@
 // for the current lesson only; leaves `hint`/`reviewNote` untouched. Updates cards.json + corpus.json
 // in lockstep; backs up each to <file>.pre-enhance.bak.
 //
-// Usage: node scripts/enhance-card-notes.mjs [--dry] <bookOrCourseDir> [<dir> ...]
+// Usage: node scripts/enhance-card-notes.mjs [--dry] [--only <unit>] <bookOrCourseDir> [<dir> ...]
+//
+// --only <unit> restricts which lessons get WRITTEN to the named unit folder (e.g. "chapter-6"),
+// while still feeding every earlier lesson in as context. This is the per-lesson pipeline form: a new
+// lesson gets its cross-references without re-running the pass over lessons already reviewed and done
+// (which would churn their notes and clobber their .pre-enhance.bak backups).
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { runClaude } from "../src/translate/runClaude.js";
 
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
-const dirs = args.filter((a) => a !== "--dry");
+const onlyAt = args.indexOf("--only");
+const only = onlyAt === -1 ? null : args[onlyAt + 1];
+if (onlyAt !== -1 && !only) {
+  console.error("--only needs a unit folder name (e.g. --only chapter-6)");
+  process.exit(1);
+}
+const dirs = args.filter(
+  (a, i) => a !== "--dry" && a !== "--only" && !(onlyAt !== -1 && i === onlyAt + 1),
+);
 if (dirs.length === 0) {
   console.error("give one or more book/course directories (e.g. output/epubs/<slug>)");
   process.exit(1);
@@ -115,7 +128,17 @@ for (const dir of dirs) {
     continue;
   }
   const units = lessonFiles(dir);
-  console.error(`${dir}: ${units.length} lesson(s) — one backward pass per lesson…`);
+  if (only && !units.some((u) => u.name === only)) {
+    console.error(
+      `skip (no unit "${only}" in ${dir}) — have: ${units.map((u) => u.name).join(", ")}`,
+    );
+    continue;
+  }
+  console.error(
+    only
+      ? `${dir}: writing "${only}" only, with ${units.findIndex((u) => u.name === only)} earlier lesson(s) as context…`
+      : `${dir}: ${units.length} lesson(s) — one backward pass per lesson…`,
+  );
 
   // PER-CHAPTER, cumulative-backward: process each lesson with ONLY that lesson + all EARLIER lessons as
   // context, and write notes for the current lesson only. The model literally never sees later lessons,
@@ -123,6 +146,8 @@ for (const dir of dirs) {
   for (let i = 0; i < units.length; i++) {
     const currentUnit = units[i];
     const currentLesson = i + 1;
+    // --only still walks the list (context is cumulative), but writes just the named unit.
+    if (only && currentUnit.name !== only) continue;
     const contextCards = units
       .slice(0, i + 1)
       .flatMap((u, li) => u.data.items.map((it) => ({ ...it, __lesson: li + 1 })));

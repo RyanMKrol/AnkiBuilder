@@ -178,6 +178,30 @@ filtered out, derived from the cards) into the local library (`src/corpus/epubLi
 (`markCardsReviewed` in `src/server/adapters/applyCards.js`). See
 [Deck dashboard](#deck-dashboard-serve) for the routes.
 
+### Build a book's lessons in order
+
+**A lesson's build reads the book's already-REVIEWED history, not its already-built history.** Three
+passes depend on earlier lessons, and they read two different things:
+
+| Pass                           | Reads                                                             | Written by                        |
+| ------------------------------ | ----------------------------------------------------------------- | --------------------------------- |
+| backward dedup (`assemble`)    | `.anki-builder/epubs/<hash>/corpora/<n>.json` for every lower `n` | the dashboard's **Mark reviewed** |
+| fill-in-the-blank (`prepare`)  | each earlier unit's `cards.json`                                  | `prepare` (translate)             |
+| cross-lesson notes (`prepare`) | each earlier unit's `cards.json`                                  | `prepare` (translate)             |
+
+So assembling lesson N before lesson N-1 has been **marked reviewed** means N's de-dup cannot see
+N-1 at all — every word N-1 already taught goes unflagged. And preparing lesson N before N-1 has
+been **built** means the drill and note passes treat N as though it opened the book.
+
+Neither is refused; both are reported. `assemble` warns and names the un-reviewed lessons
+(`warnIfBuiltOutOfOrder`), and `prepare` warns and, crucially, **leaves `cards.meta.enriched` /
+`notesEnhanced` unset** with a `prepareDegraded` breadcrumb, so re-running once the earlier lessons
+exist redoes the passes rather than skipping them (`lessonOrderContext`, `src/cli/index.js`).
+
+Building several lessons at once is not supported, and this is why: two lessons of one book are not
+independent units of work. Running them concurrently guarantees the later one is built against a
+history the earlier one hasn't finished writing.
+
 ### `prepare`
 
 Everything between `assemble` and the first human review, as one stage

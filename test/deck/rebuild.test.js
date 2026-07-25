@@ -2,7 +2,6 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
-import { setTimeout as delay } from "timers/promises";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
 import { rebuildBookDir, rebuildRunDir } from "../../src/deck/rebuild.js";
@@ -176,50 +175,25 @@ test("rebuildBookDir end-to-end embeds an updated clip in the real .apkg", async
   }
 });
 
-// The lost update the rebuild lock exists to prevent. Without it: rebuild #1 reads the
-// done-set {A}, lesson B is then marked done, rebuild #2 reads {A,B} and finishes FIRST,
-// and slow rebuild #1 then publishes {A} over the top — B silently missing from the deck.
-// With the lock, #2 cannot start until #1 is done, so it re-reads and picks B up.
-test("a rebuild that starts later cannot be overwritten by a slower one that started first", async () => {
-  const dir = mkdtempSync(join(tmpdir(), "rb-lock-"));
+// There is no rebuild lock any more, so the thing that stops two dashboard-triggered rebuilds
+// interleaving is that a rebuild reads the done-set and publishes the package WITHOUT ever yielding
+// to the event loop. This pins that property: if anything in the rebuild path ever becomes async the
+// package would not exist yet at this point, and the lost update the lock used to prevent comes
+// straight back. See the warning on rebuildBookDir.
+test("a rebuild reads and publishes in one event-loop turn \u2014 nothing can interleave", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "rb-sync-"));
   try {
     writeUnit(join(dir, "chapter-0"), { chapterLabel: "A" }, [
-      { id: "a", english: "A", target: "あ", category: "Other" },
+      { id: "a", english: "A", target: "\u3042", category: "Other" },
     ]);
 
-    const published = [];
-    let firstStarted;
-    const firstHasRead = new Promise((resolve) => {
-      firstStarted = resolve;
-    });
-
-    const slowBuild = async (chapterDecks) => {
-      firstStarted();
-      await delay(80);
-      published.push(chapterDecks.map((c) => c.name));
-      return { noteCount: chapterDecks.length };
-    };
-    const fastBuild = (chapterDecks) => {
-      published.push(chapterDecks.map((c) => c.name));
-      return { noteCount: chapterDecks.length };
-    };
-
-    const first = rebuildBookDir(dir, { buildBookDeck: slowBuild, bookNameFallback: "Book" });
-    await firstHasRead;
-
-    // B becomes done while the first rebuild is still in flight.
-    writeUnit(join(dir, "chapter-1"), { chapterLabel: "B" }, [
-      { id: "b", english: "B", target: "い", category: "Other" },
-    ]);
-    const second = rebuildBookDir(dir, { buildBookDeck: fastBuild, bookNameFallback: "Book" });
-
-    await Promise.all([first, second]);
-
-    assert.deepEqual(
-      published.at(-1),
-      ["A", "B"],
-      "the LAST package published must contain every done lesson",
+    const pending = rebuildBookDir(dir, { bookNameFallback: "Book" });
+    // Deliberately NOT awaited yet: the whole build already ran synchronously inside that call.
+    assert.ok(
+      existsSync(join(dir, "deck.apkg")),
+      "deck.apkg must exist before the returned promise is awaited",
     );
+    await pending;
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

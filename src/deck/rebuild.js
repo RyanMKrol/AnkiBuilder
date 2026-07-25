@@ -1,12 +1,12 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
-import { withRebuildLock } from "./rebuildLock.js";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
 
-// Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard
-// server's "Rebuild deck" action, so a rebuild triggered from the browser is byte-identical to the
-// CLI's. The build functions in ./index.js own the media-key integer constraint; this module only
-// assembles their inputs from a book/course dir or a single run dir.
+// Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
+// automatic rebuilds (Mark done / Reopen, and an audio or exclude edit on an already-done lesson), so
+// a rebuild triggered from the browser is byte-identical to the CLI's. The build functions in
+// ./index.js own the media-key integer constraint; this module only assembles their inputs from a
+// book/course dir or a single run dir.
 
 const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)$/;
 
@@ -14,12 +14,6 @@ function readJson(path) {
   return JSON.parse(readFileSync(path, "utf-8"));
 }
 
-/**
- * Merges every built chapter/lesson under `bookDir` into one `<bookDir>/deck.apkg`. Units are ordered
- * by FOLDER SEQ (chapter-0, chapter-1, …) — the deck build's canonical order, independent of the
- * dashboard's chapterNumber display order. Throws the same messages the CLI does when the dir has no
- * units or a unit lacks cards.json.
- */
 /**
  * The FINISHED (human-marked `done`) units under a book/course dir, ordered by folder seq — the exact
  * set of chapters/lessons that ship in the merged `.apkg`. Each entry is
@@ -79,6 +73,27 @@ export function resolveBookName(
   return bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
 }
 
+/**
+ * Merges the book's done lessons into `<bookDir>/deck.apkg`.
+ *
+ * ⚠️ **The body of this function must never `await`.** Two rebuilds can be REQUESTED concurrently in
+ * the dashboard — `handleLessonDone` awaits `rebuildGroupQuiet`, and that await is a yield point, so a
+ * second POST can be dispatched while the first is pending. What stops them interleaving is that
+ * everything below is synchronous: the done-set read (`readdirSync`/`readFileSync`), the package build
+ * (`buildBookDeck` is a plain function, `buildZip` is sync) and the publish (`writeFileAtomic` +
+ * rename) all complete in ONE event-loop turn. Node cannot schedule the second rebuild between the
+ * read and the write, so the later rebuild always sees every `done` flag written before it started.
+ *
+ * This used to be guaranteed by a per-book lock file instead. The lock was removed along with the rest
+ * of the multi-process support, which makes the no-yield property load-bearing rather than incidental:
+ * making `buildBookDeck` async would silently reintroduce the lost update (a rebuild publishing a
+ * done-set that is missing a lesson finished while it ran). Declared `async` only so callers are
+ * unchanged. See the regression test in test/deck/rebuild.test.js.
+ *
+ * Cross-process (the dashboard rebuilding while `deck --book-dir` runs in a terminal) is no longer
+ * defended: worst case the `.apkg` briefly misses a just-finished lesson. It is never corrupt — the
+ * atomic rename in ./index.js is what guarantees that — and the next rebuild picks the lesson up.
+ */
 export async function rebuildBookDir(
   bookDir,
   {
@@ -88,25 +103,6 @@ export async function rebuildBookDir(
     bookNameFallback = null,
     now = Date.now,
   } = {},
-) {
-  // Held only around the read of the done-set and the build itself — seconds, per book. It is
-  // NOT what keeps the package intact (the atomic rename does that); it stops a rebuild that
-  // started earlier from finishing later and publishing a done-set that is missing a lesson
-  // someone marked done in the meantime. A waiter re-reads the set and picks that lesson up.
-  return withRebuildLock(bookDir, () =>
-    rebuildBookDirLocked(bookDir, {
-      buildBookDeck,
-      loadBookMeta,
-      loadCourseMeta,
-      bookNameFallback,
-      now,
-    }),
-  );
-}
-
-function rebuildBookDirLocked(
-  bookDir,
-  { buildBookDeck, loadBookMeta, loadCourseMeta, bookNameFallback, now },
 ) {
   const outPath = join(bookDir, "deck.apkg");
   const { chapterDecks, epubHash } = selectDoneChapterDecks(bookDir);

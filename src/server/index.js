@@ -692,7 +692,7 @@ ${sectionHtml}
     try {
       result = await adapter.rebuild(outputRoot, id);
     } catch (e) {
-      // No finished (done) lessons yet, or another rebuild of this book holds the lock.
+      // No finished (done) lessons yet, or the book dir has no unit folders at all.
       throw httpError(409, e.message);
     }
     sendJson(res, { noteCount: result.noteCount, apkgPath: adapter.deckFile(outputRoot, id) });
@@ -720,7 +720,7 @@ ${sectionHtml}
     try {
       await adapter?.rebuild?.(outputRoot, id);
     } catch {
-      /* no done lessons, or another rebuild is in progress — leave the package as-is */
+      /* no done lessons yet — leave the package as-is */
     }
   }
 

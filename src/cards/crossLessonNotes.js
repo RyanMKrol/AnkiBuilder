@@ -23,8 +23,14 @@ function writeJson(path, obj) {
 }
 
 /**
- * Every lesson under a book/course dir that has a cards.json, ordered by `chapterNumber` (tie-break:
- * folder name) — i.e. in study order, which is the order the backward-only context depends on.
+ * Every unit under a book/course dir, ordered by `chapterNumber` (tie-break: folder name) — i.e. in
+ * study order, which is the order the backward-only context depends on.
+ *
+ * Includes units that have only got as far as `corpus.json`, flagged `hasCards: false`. That is the
+ * whole point of this function existing alongside `lessonUnits`: a half-built earlier lesson is
+ * INVISIBLE to a scan that requires cards.json, so a pass reading only prepared siblings cannot tell
+ * "this is the first lesson of the book" from "lesson 7 hasn't been prepared yet" — and would happily
+ * build lesson 8 as though it had no predecessors.
  *
  * Each unit carries the lesson's OWN name from `chapterLabel`, NOT its position in this list. An
  * un-numbered unit (front matter, an intro section, a supplement) shifts the two out of step, so a
@@ -32,23 +38,51 @@ function writeJson(path, obj) {
  * the prompt requires notes to cite lessons exactly as tagged. Trimmed at the first ":" so a long
  * title reduces to the citable name the learner sees.
  */
-export function lessonUnits(deckDir) {
+export function lessonSiblings(deckDir) {
   const units = [];
   for (const entry of readdirSync(deckDir, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     const file = join(deckDir, entry.name, "cards.json");
-    if (!existsSync(file)) continue;
-    const data = readJson(file);
+    const corpusFile = join(deckDir, entry.name, "corpus.json");
+    const hasCards = existsSync(file);
+    if (!hasCards && !existsSync(corpusFile)) continue;
+
+    // An unreadable json means "we can't place this unit", never a fatal error — it must not take
+    // down a build of a different lesson.
+    let data = null;
+    let meta = {};
+    try {
+      if (hasCards) {
+        data = readJson(file);
+        meta = data.meta ?? {};
+      } else {
+        meta = readJson(corpusFile).meta ?? {};
+      }
+    } catch {
+      continue;
+    }
+
     units.push({
       file,
       name: entry.name,
-      number: data.meta?.chapterNumber ?? 0,
-      label: (data.meta?.chapterLabel ?? entry.name).split(":")[0].trim(),
+      number: meta.chapterNumber ?? 0,
+      label: (meta.chapterLabel ?? entry.name).split(":")[0].trim(),
+      hasCards,
+      reviewed: !!meta.reviewed,
+      done: !!meta.done,
       data,
     });
   }
   units.sort((a, b) => a.number - b.number || a.name.localeCompare(b.name));
   return units;
+}
+
+/**
+ * The subset of `lessonSiblings` that has been through `translate` — the lessons whose cards can
+ * actually be fed to a pass as context. Every consumer that reads `unit.data` wants this one.
+ */
+export function lessonUnits(deckDir) {
+  return lessonSiblings(deckDir).filter((unit) => unit.hasCards);
 }
 
 export function renderCrossLessonNotePrompt({

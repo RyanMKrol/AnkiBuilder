@@ -104,6 +104,11 @@ const CARDS_SCHEMA = {
         // semantic de-dup pass has run. `notesEnhanced`: the cross-lesson note pass has run.
         enriched: { type: "boolean" },
         notesEnhanced: { type: "boolean" },
+        // Present INSTEAD of those markers when a pass ran without everything it needed — earlier
+        // lessons of the book that had no cards.json yet, so the drill and note passes could not see
+        // them. `{ at, reason, missing }`. Its presence is what makes a later `prepare` redo the
+        // passes rather than skip them, and drop the thin drill block instead of appending to it.
+        prepareDegraded: { type: "object" },
       },
     },
     items: {

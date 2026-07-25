@@ -134,6 +134,10 @@ If you open an image and it turns out to be decorative, that's a fine outcome �
 - Every vocabulary word or short phrase presented as an individual term with its translation — including particles and other short function words, wherever they're listed as vocabulary (not buried in a grammar explanation paragraph).
 - Every curated model/example sentence presented as one of the chapter's core spoken examples (often labeled "Key Sentences" or similar, often numbered, often the sentences the rest of the chapter refers back to).
 
+**Every headword in a VOCABULARY block becomes an item.** A chapter usually has several such blocks, scattered between the exercises rather than gathered in one place — walk each one to its end and account for every entry in it. The only headwords you may leave out are the proper nouns covered under "What to skip entirely" below (a surname or a fictitious business used only to populate a drill). If you extract nothing for a headword, that is a miss, not an editorial choice.
+
+**A form the chapter names as an EXCEPTION is high priority, never optional.** Grammar and Key-Sentence notes routinely teach a rule and then name the one form that breaks it — "the particle で is attached to the noun indicating the means of transportation… _but_ to say 'by foot,' use あるいて". That exception is the single most confusable item in the lesson, so it must become its own card, even when it appears only inside explanatory prose you would otherwise skip and only as a bare word elsewhere (a substitution-drill alternative, a table cell). Watch for the words _but_, _except_, _instead_, _irregular_ and _does not take_ in a grammar note: whatever follows them is a card.
+
 ### What to skip entirely
 
 - Grammar explanation prose — paragraphs explaining a grammar rule, particle usage, or conjugation pattern in depth. (This does not include a short particle vocabulary entry — see above.)

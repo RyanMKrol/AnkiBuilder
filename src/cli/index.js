@@ -25,7 +25,6 @@ import {
   registerEpub as defaultRegisterEpub,
   chapterCachePath as defaultChapterCachePath,
   chapterRangeCachePath as defaultChapterRangeCachePath,
-  saveChapterCorpus as defaultSaveChapterCorpus,
   loadPriorChapterItems as defaultLoadPriorChapterItems,
   loadBookConventions as defaultLoadBookConventions,
   saveBookConventions as defaultSaveBookConventions,
@@ -53,7 +52,7 @@ import { mineFillInBlankCards as defaultMineFillInBlankCards } from "../cards/fi
 import { dedupeByPattern as defaultDedupeByPattern } from "../cards/semanticDedup.js";
 import {
   enhanceRunDirNotes as defaultEnhanceRunDirNotes,
-  lessonUnits as defaultLessonUnits,
+  lessonSiblings as defaultLessonSiblings,
 } from "../cards/crossLessonNotes.js";
 import { generateAudio as defaultGenerateAudio } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
@@ -168,6 +167,41 @@ function resolveAssembleRunDir(flags, ctx) {
   return runDir;
 }
 
+/**
+ * Warns when a book's lessons are being built out of order.
+ *
+ * The backward de-dup library (`.anki-builder/epubs/<hash>/corpora/`) is written by the DASHBOARD's
+ * "Mark reviewed", never by a build. So a lesson's de-dup can only see lessons that have been signed
+ * off — not lessons that merely exist on disk. Assembling lesson 8 before lesson 7 is reviewed means
+ * everything lesson 7 taught goes unflagged as a repeat, silently, and there is nothing in the
+ * output afterwards that says so.
+ *
+ * Warn, never refuse: getting ahead on extraction is a legitimate thing to want, and the cost is
+ * duplicate cards a reviewer can still catch. Deliberately placed BEFORE the "corpus.json already
+ * exists" branch, so it costs nothing, fires ahead of the multi-minute extraction, and still fires on
+ * a resumed assemble that skips extraction entirely.
+ */
+function warnIfBuiltOutOfOrder(flags, ctx, runDir) {
+  // Only sources that live in a numbered book/course folder have an order to be out of. A template
+  // is one unit per language; a bare --run or --chapter has no siblings to reason about.
+  const ordered = flags["output-root"] && (flags.epub || flags.book || flags.words);
+  if (!ordered) return;
+
+  const ownNumber = Number(flags["chapter-number"] ?? flags["lesson-number"]);
+  const { unreviewed } = runDirOrderContext(runDir, ownNumber, ctx);
+  if (unreviewed.length === 0) return;
+
+  const named = unreviewed.map((unit) => `${unit.label} (${unit.name})`).join(", ");
+  ctx.log(
+    `assemble: WARNING — ${unreviewed.length} earlier lesson(s) of this book are not marked reviewed ` +
+      `yet: ${named}.\n` +
+      `  The backward de-dup library is written by the dashboard's "Mark reviewed", so this lesson's ` +
+      `de-dup can only see lessons that have been signed off. Building out of order means vocabulary ` +
+      `those lessons already taught will NOT be flagged as a repeat.\n` +
+      `  Review them first ("npm run serve"), or continue and accept the duplicates.`,
+  );
+}
+
 async function runAssemble(flags, ctx) {
   // `--book <slug>` builds a new chapter of a previously-worked EPUB straight from its
   // durable output copy — desugar it into the normal `--epub <path>` flow before anything
@@ -233,6 +267,8 @@ async function runAssemble(flags, ctx) {
     );
   }
   const paths = ctx.runPaths(runDir);
+
+  warnIfBuiltOutOfOrder(flags, ctx, runDir);
 
   if (existsSync(paths.corpus)) {
     ctx.log(`corpus.json already exists at ${paths.corpus} — reusing`);
@@ -484,29 +520,86 @@ async function runTranslateInner(flags, ctx) {
 
 const FIB_BACKUP_SUFFIX = ".pre-fib.bak";
 
-// Every earlier lesson's vocabulary, as grounding for the drill-writing pass: a practice sentence
-// may lean on anything the learner has already met, not just this lesson's own words. Empty string
-// for a run dir with no siblings (a template, or the first lesson of a book).
-function earlierLessonVocab(runDir, ctx) {
-  let units;
+/**
+ * Where a run directory sits among its book's other lessons, and whether the passes that read those
+ * lessons can actually see what they need.
+ *
+ * This is a status, not just a vocabulary string, because "no earlier lessons" has two completely
+ * different meanings and they used to collapse into one. Lesson 1 of a book genuinely has no
+ * predecessors. Lesson 8 whose earlier lessons stopped at `corpus.json` has seven — it just can't
+ * see them. Both used to read as "first", so lesson 8 was silently built as though it opened the
+ * book, and the enrichment markers then froze that in.
+ *
+ *   `unknown`  — can't place this lesson at all (no readable deck dir, no usable chapter number).
+ *                A bare `--run`, a template, a first-ever chapter whose book dir doesn't exist yet.
+ *   `first`    — genuinely the first lesson: no siblings other than this one.
+ *   `ok`       — every earlier sibling is prepared and readable.
+ *   `degraded` — earlier siblings exist but have no cards.json, so they are invisible to the passes.
+ *
+ * `vocab` is the drill pass's allowed-vocabulary grounding, built from the earlier lessons that ARE
+ * readable; `unreviewed` is what the assemble-time ordering warning reports on.
+ */
+function lessonOrderContext({ deckDir, unitName, ownNumber, ctx }) {
+  let siblings;
   try {
-    units = ctx.lessonUnits(dirname(resolve(runDir)));
+    siblings = ctx.lessonSiblings(deckDir);
   } catch {
-    return null;
+    return { status: "unknown", earlier: [], missing: [], unreviewed: [], vocab: null };
   }
-  const index = units.findIndex((unit) => unit.name === basename(resolve(runDir)));
-  const earlier = index === -1 ? [] : units.slice(0, index);
-  if (earlier.length === 0) return null;
 
-  return earlier
-    .map((unit) => {
-      const lines = unit.data.items
-        .filter((item) => !item.excluded)
-        .map((item) => `- ${item.english} — ${item.target}`)
-        .join("\n");
-      return `### ${unit.label}\n\n${lines}`;
-    })
-    .join("\n\n");
+  const others = siblings.filter((unit) => unit.name !== unitName);
+  if (others.length === 0) {
+    return { status: "first", earlier: [], missing: [], unreviewed: [], vocab: null };
+  }
+  if (!Number.isFinite(ownNumber)) {
+    return { status: "unknown", earlier: [], missing: [], unreviewed: [], vocab: null };
+  }
+
+  const earlier = others.filter((unit) => unit.number < ownNumber);
+  const missing = earlier.filter((unit) => !unit.hasCards);
+  // `data` is belt-and-braces: lessonSiblings always sets it alongside hasCards, but a unit that
+  // somehow arrives without it must be treated as unreadable rather than crash a different lesson.
+  const readable = earlier.filter((unit) => unit.hasCards && unit.data);
+  const unreviewed = earlier.filter((unit) => !unit.reviewed);
+
+  const status = missing.length > 0 ? "degraded" : earlier.length > 0 ? "ok" : "first";
+  const vocab = readable.length
+    ? readable
+        .map((unit) => {
+          const lines = unit.data.items
+            .filter((item) => !item.excluded)
+            .map((item) => `- ${item.english} — ${item.target}`)
+            .join("\n");
+          return `### ${unit.label}\n\n${lines}`;
+        })
+        .join("\n\n")
+    : null;
+
+  return { status, earlier, missing, unreviewed, vocab };
+}
+
+/**
+ * The breadcrumb left on a lesson whose enrichment ran without everything it needed. Its presence is
+ * what tells a later `prepare` that the un-set markers are deliberate — and what lets that run drop
+ * the previous, thinner drill block instead of appending a second one on top of it.
+ */
+function degradedMarker(order) {
+  return {
+    at: new Date().toISOString(),
+    reason: order.status,
+    missing: order.missing.map((unit) => unit.name),
+  };
+}
+
+/** `lessonOrderContext` for a run directory: the unit is the folder, the deck its parent. */
+function runDirOrderContext(runDir, ownNumber, ctx) {
+  const absolute = resolve(runDir);
+  return lessonOrderContext({
+    deckDir: dirname(absolute),
+    unitName: basename(absolute),
+    ownNumber,
+    ctx,
+  });
 }
 
 /**
@@ -560,8 +653,53 @@ async function runPrepareInner(flags, ctx) {
   // cross-reference, so both enrichment and the note pass are no-ops for it by design.
   const isTemplate = meta.sourceType === "template";
 
+  // Both remaining passes read this lesson's EARLIER siblings, so their result is only as complete
+  // as what those siblings have already written. Worked out once, up front, and used to decide both
+  // what to tell the operator and whether the result is worth marking done.
+  const order = isTemplate
+    ? { status: "unknown", earlier: [], missing: [], unreviewed: [], vocab: null }
+    : runDirOrderContext(runDir, meta.chapterNumber, ctx);
+  const complete = order.status === "ok" || order.status === "first";
+
+  if (!isTemplate) {
+    if (order.status === "degraded") {
+      ctx.log(
+        `prepare: WARNING — ${order.missing.length} earlier lesson(s) of this book have no cards.json yet ` +
+          `(${order.missing.map((u) => u.name).join(", ")}). The fill-in-the-blank and cross-lesson-note ` +
+          `passes only see PREPARED lessons, so this lesson is being built as if those did not exist. ` +
+          `Finish them first, then re-run "prepare --run ${runDir}" — both passes are deliberately left ` +
+          `un-marked so the re-run redoes them.`,
+      );
+    } else if (order.status === "unknown") {
+      ctx.log(
+        `prepare: could not place this lesson among its siblings — treating it as standalone. The ` +
+          `enrichment markers are left unset so a later run can redo the passes.`,
+      );
+    } else if (order.status === "first") {
+      ctx.log("prepare: no earlier lessons — building this as the first lesson of the book.");
+    } else {
+      ctx.log(
+        `prepare: ${order.earlier.length} earlier lesson(s) fed to the drill and note passes as context.`,
+      );
+    }
+  }
+
   if (!isTemplate && meta.enriched !== true) {
     updateClaim(runDir, { stage: "fill-in-the-blank" });
+
+    // Reaching here means this lesson has no `enriched` marker, so the pass is about to run — and
+    // mining APPENDS. Any practice cards already present therefore came from a run that never got
+    // marked: a degraded one, or a lesson built before the marker existed at all. Drop them rather
+    // than stack a second block on top. Precise and safe: only AI-authored practice cards carry
+    // `fillInBlank`, and this whole branch is already skipped for a lesson someone has signed off.
+    const stale = cards.items.filter((item) => item.fillInBlank).length;
+    if (stale > 0) {
+      cards.items = cards.items.filter((item) => !item.fillInBlank);
+      ctx.log(
+        `fill-in-the-blank: dropped ${stale} unmarked practice card(s) from an earlier run — ` +
+          `re-mining so the lesson ends up with exactly one drill block`,
+      );
+    }
 
     // The source document to mine drills from, for an --epub lesson. A dictated (--words) lesson has
     // none, and composes its drills from the lesson's own patterns instead.
@@ -577,7 +715,7 @@ async function runPrepareInner(flags, ctx) {
       items: cards.items,
       targetLanguage,
       chapterFilePath,
-      earlierVocab: earlierLessonVocab(runDir, ctx),
+      earlierVocab: order.vocab,
       log: ctx.log,
     });
 
@@ -605,9 +743,14 @@ async function runPrepareInner(flags, ctx) {
       backupFileOnce(paths.cards, FIB_BACKUP_SUFFIX);
     }
 
-    // Marked even when nothing was mined: a lesson whose source has no usable drills has still BEEN
-    // through the pass, and re-running it on every prepare would just re-spend the model call.
-    cards.meta = { ...meta, enriched: true };
+    // The marker means "this pass ran with everything it needed", NOT "this pass ran". Marked even
+    // when nothing was mined — a lesson whose source has no usable drills has still been through the
+    // pass, and re-running would just re-spend the model call. But NOT marked when the pass was
+    // flying blind, or a degraded result would be frozen in and no re-run could ever repair it.
+    cards.meta = complete
+      ? { ...meta, enriched: true, prepareDegraded: undefined }
+      : { ...meta, prepareDegraded: degradedMarker(order) };
+    if (cards.meta.prepareDegraded === undefined) delete cards.meta.prepareDegraded;
     writeJson(paths.cards, cards);
   }
 
@@ -625,7 +768,9 @@ async function runPrepareInner(flags, ctx) {
     }
     // Re-read: the note pass rewrites cards.json itself, so the in-memory copy is stale.
     const fresh = readJson(paths.cards);
-    fresh.meta = { ...fresh.meta, notesEnhanced: true };
+    fresh.meta = complete
+      ? { ...fresh.meta, notesEnhanced: true }
+      : { ...fresh.meta, prepareDegraded: degradedMarker(order) };
     writeJson(paths.cards, fresh);
   }
 
@@ -965,7 +1110,6 @@ export async function runCli(argv, deps = {}) {
     registerEpub = defaultRegisterEpub,
     chapterCachePath = defaultChapterCachePath,
     chapterRangeCachePath = defaultChapterRangeCachePath,
-    saveChapterCorpus = defaultSaveChapterCorpus,
     loadPriorChapterItems = defaultLoadPriorChapterItems,
     loadBookConventions = defaultLoadBookConventions,
     saveBookConventions = defaultSaveBookConventions,
@@ -978,7 +1122,7 @@ export async function runCli(argv, deps = {}) {
     mineFillInBlankCards = defaultMineFillInBlankCards,
     dedupeByPattern = defaultDedupeByPattern,
     enhanceRunDirNotes = defaultEnhanceRunDirNotes,
-    lessonUnits = defaultLessonUnits,
+    lessonSiblings = defaultLessonSiblings,
     generateAudio = defaultGenerateAudio,
     getDefaultVoice = defaultGetDefaultVoice,
     getAltAudioTransform = defaultGetAltAudioTransform,
@@ -1030,7 +1174,6 @@ export async function runCli(argv, deps = {}) {
     registerEpub,
     chapterCachePath,
     chapterRangeCachePath,
-    saveChapterCorpus,
     loadPriorChapterItems,
     loadBookConventions,
     saveBookConventions,
@@ -1043,7 +1186,7 @@ export async function runCli(argv, deps = {}) {
     mineFillInBlankCards,
     dedupeByPattern,
     enhanceRunDirNotes,
-    lessonUnits,
+    lessonSiblings,
     generateAudio,
     getDefaultVoice,
     getAltAudioTransform,

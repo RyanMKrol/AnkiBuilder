@@ -1615,7 +1615,7 @@ function prepareDeps(calls, overrides = {}) {
       calls.push("notes");
       return { changed: 1 };
     },
-    lessonUnits: () => [],
+    lessonSiblings: () => [],
     log: () => {},
     ...overrides,
   };
@@ -1766,5 +1766,225 @@ test("prepare: keeps its claim when it fails, so a crash reads as interrupted", 
       /boom/,
     );
     assert.ok(existsSync(join(runDir, "claim.json")));
+  });
+});
+
+// A sibling scan result shaped like lessonSiblings returns. `hasCards: false` is the case that
+// matters: an earlier lesson that stopped at assemble is invisible to the drill and note passes.
+function sibling(name, number, { hasCards = true, reviewed = false, items = [] } = {}) {
+  return {
+    file: `${name}/cards.json`,
+    name,
+    number,
+    label: `Lesson ${number}`,
+    hasCards,
+    reviewed,
+    done: false,
+    data: hasCards ? { meta: {}, items } : null,
+  };
+}
+
+// The lesson under test in these is "chapter-1", chapterNumber 2 (see baseEpubCorpus).
+const epubCorpusNumbered = () => ({
+  meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false, chapterNumber: 2 },
+  items: [{ id: "hello", english: "Hello", category: "Greetings", target: "こんにちは" }],
+});
+
+test("prepare: leaves the enrichment markers unset when an earlier lesson has no cards.json", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-1");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+
+    const calls = [];
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      lessonSiblings: () => [sibling("chapter-0", 1, { hasCards: false }), sibling("chapter-1", 2)],
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    // Both passes ran — they fail open, not closed — but neither is marked done, so a later run redoes them.
+    assert.deepEqual(calls, ["translate", "fib", "dedup", "notes"]);
+    assert.equal(cards.meta.enriched, undefined);
+    assert.equal(cards.meta.notesEnhanced, undefined);
+    assert.equal(cards.meta.prepareDegraded.reason, "degraded");
+    assert.deepEqual(cards.meta.prepareDegraded.missing, ["chapter-0"]);
+    assert.match(logged.join("\n"), /WARNING — 1 earlier lesson\(s\)/);
+  });
+});
+
+test("prepare: a repaired re-run redoes both passes without doubling the drill block", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-1");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+
+    // First run: the earlier lesson isn't prepared yet.
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      lessonSiblings: () => [sibling("chapter-0", 1, { hasCards: false }), sibling("chapter-1", 2)],
+    });
+    const first = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(first.items.filter((i) => i.fillInBlank).length, 1);
+
+    // Second run: chapter-0 has since been prepared.
+    const calls = [];
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      lessonSiblings: () => [sibling("chapter-0", 1), sibling("chapter-1", 2)],
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.deepEqual(calls, ["fib", "dedup", "notes"]); // translate skips: cards.json exists
+    assert.equal(cards.meta.enriched, true);
+    assert.equal(cards.meta.notesEnhanced, true);
+    assert.equal(cards.meta.prepareDegraded, undefined);
+    assert.equal(
+      cards.items.filter((i) => i.fillInBlank).length,
+      1,
+      "the thin run's drills must be replaced, not appended to",
+    );
+    assert.match(logged.join("\n"), /dropped 1 unmarked practice card/);
+  });
+});
+
+test("prepare: a genuine first lesson is marked done — an empty sibling list is not 'degraded'", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-0");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      lessonSiblings: () => [sibling("chapter-0", 2)],
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.meta.enriched, true);
+    assert.equal(cards.meta.notesEnhanced, true);
+    assert.equal(cards.meta.prepareDegraded, undefined);
+    assert.match(logged.join("\n"), /no earlier lessons/);
+  });
+});
+
+// The de-dup library is written by the dashboard's "Mark reviewed", not by a build, so a lesson's
+// backward de-dup can only see lessons that have been SIGNED OFF. Building out of order degrades it
+// silently, and nothing in the output afterwards says so — hence the warning.
+test("assemble: warns when an earlier lesson of the book is not marked reviewed", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-2");
+    mkdirSync(runDir, { recursive: true });
+    const logged = [];
+
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--output-root",
+        parent,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "9",
+        "--lang",
+        "ja",
+      ],
+      {
+        registerEpub: () => ({ epubHash: "hash" }),
+        resolveBookSlug: () => "book",
+        materializeBookInOutput: () => {},
+        resolveChapterRunDir: () => runDir,
+        assembleCorpusFromChapter: () => baseEpubCorpus(),
+        loadBookConventions: () => "conventions",
+        chapterCachePath: () => join(parent, "cache.xhtml"),
+        extractChapterToFile: () => join(parent, "cache.xhtml"),
+        describeChapter: () => "Lesson 9",
+        loadPriorChapterItems: () => [],
+        dedupBackward: (items) => ({ items, flagged: [] }),
+        flagForwardConcerns: ({ candidateItems }) => ({ items: candidateItems, flagged: [] }),
+        sortItemsPedagogically: passthroughSort,
+        lessonSiblings: () => [
+          sibling("chapter-0", 7, { reviewed: true }),
+          sibling("chapter-1", 8),
+          sibling("chapter-2", 9, { hasCards: false }),
+        ],
+        log: (line) => logged.push(line),
+      },
+    );
+
+    const out = logged.join("\n");
+    assert.match(out, /WARNING — 1 earlier lesson\(s\)/);
+    assert.match(out, /Lesson 8 \(chapter-1\)/);
+    assert.doesNotMatch(out, /Lesson 7/, "an already-reviewed lesson must not be reported");
+  });
+});
+
+test("assemble: says nothing about ordering for a template", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "templates", "t", "es");
+    const logged = [];
+    await runCli(
+      ["assemble", "--no-prepare", "--output-root", parent, "--template", "t", "--lang", "es"],
+      {
+        resolveTemplateRunDir: () => runDir,
+        loadTemplate: () => baseCorpus({ reviewed: false }),
+        lessonSiblings: () => {
+          throw new Error("a template has no book directory to scan");
+        },
+        log: (line) => logged.push(line),
+      },
+    );
+    assert.doesNotMatch(logged.join("\n"), /WARNING/);
+  });
+});
+
+// A lesson built before the enrichment markers existed has drills but no `enriched` flag, so the
+// next prepare re-mines. Without dropping first, it would end up with two drill blocks.
+test("prepare: a lesson with unmarked drills is re-mined, not stacked on", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-1");
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(epubCorpusNumbered()));
+    // Exactly the legacy shape: drills present, no enriched marker, no prepareDegraded.
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false, chapterNumber: 2 },
+        items: [
+          { id: "a", english: "One", category: "Numbers", target: "いち", pronunciation: "ichi" },
+          {
+            id: "old-fib",
+            english: "Old drill.",
+            category: "Numbers",
+            target: "ふるい",
+            pronunciation: "furui",
+            fillInBlank: true,
+          },
+        ],
+      }),
+    );
+
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      lessonSiblings: () => [sibling("chapter-0", 1), sibling("chapter-1", 2)],
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    const drills = cards.items.filter((i) => i.fillInBlank);
+    assert.equal(drills.length, 1, "one drill block, not two");
+    assert.equal(drills[0].id, "fib-1", "the freshly mined drill, not the legacy one");
+    assert.match(logged.join("\n"), /dropped 1 unmarked practice card/);
   });
 });

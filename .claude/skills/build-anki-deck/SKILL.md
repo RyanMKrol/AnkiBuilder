@@ -359,6 +359,20 @@ running for the whole build:
 npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
+**Build a book's lessons in ascending order, and mark each one reviewed before assembling the next.**
+A lesson's build reads what the book has already taught, from two different places: the backward-dedup
+library, which is written by the dashboard's **Mark reviewed** (not by the build), and each earlier
+lesson's `cards.json`, which is written by its `prepare`. So assembling Lesson 8 before Lesson 7 is
+reviewed means Lesson 8's de-dup cannot see Lesson 7 at all, and every word Lesson 7 taught goes
+unflagged as a repeat. Preparing Lesson 8 before Lesson 7 is even built means the drill and note passes
+treat Lesson 8 as the first lesson of the book.
+
+Neither is blocked — `assemble` and `prepare` both warn and carry on, and `prepare` deliberately leaves
+its enrichment markers unset so a re-run repairs the result once the earlier lessons are there. But the
+warnings are easy to scroll past, so treat the order as the rule: **finish and sign off lesson N before
+you assemble lesson N+1.** Never build two lessons of one book at the same time; they are not
+independent units of work.
+
 **There are exactly TWO review gates, and a lesson only ever rests at one of them:**
 
 | Gate                        | What you check                                     | Sign-off        |

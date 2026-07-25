@@ -205,6 +205,9 @@ npm run build
       over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
 - [x] CLI orchestrator (resumable run directories)
+- [x] Write-once chapter cache — an extracted chapter is published images-first, chapter-file-last
+      and then reused, so concurrent builds sharing a book neither re-extract the same 30-50 files nor
+      hand the extractor a chapter whose images haven't landed yet
 - [x] Reserved run directories — a chapter/lesson folder is created and claimed the moment it is
       allocated (filesystem compare-and-swap, no lock), so two builds started at once can never be
       handed the same directory. A crashed build's claim lets the retry reclaim its folder; a chapter

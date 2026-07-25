@@ -336,11 +336,16 @@ npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop
 ```
 
 **There is no separate corpus review before translation any more** — the single human review (the
-**Corpus review**, Step 3 below) happens on the *translated* cards so you can verify the English AND
+**Corpus review**, Step 3.6 below) happens on the *translated* cards so you can verify the English AND
 the target + pronunciation at one gate. So after `assemble` writes `corpus.json`, move **straight on
 to `translate`** in the same turn (don't stop to ask "should I review the English first?"). A
 `corpus.json`-only lesson opened in the dashboard renders **read-only** with a "run `translate`" hint
 — it isn't reviewable until it's translated.
+
+**That one gate must see the FINAL card set.** Everything that changes which cards exist — extraction,
+fill-in-the-blank mining (Step 3.5), the semantic de-dup pass — runs *before* the review opens, never
+after it. The pipeline order is therefore: `assemble` → `translate` → FIB + de-dup → **corpus review**
+→ `audio` → audio review → **Mark done**. A human should sign off once, on the complete lesson.
 
 ### Step 3: Translation via Claude
 
@@ -363,7 +368,55 @@ so the model returns the correct romanization in place, keeping the library's wh
 The fix lands directly in `pronunciation` (no flag/note). So garbled romaji should be rare now; if you
 still spot one in the translate review, tell me and I'll fix that card.
 
-**Corpus review — the one human gate before audio.** Open the deck's **Review** view (the **Review**
+**Do NOT stop for review here.** For an EPUB or real-life-lesson source, go straight into Step 3.5, so
+the drill cards are mined and de-duped *before* the human sees anything. For a template (no drills to
+mine), skip ahead to the Step 3.6 corpus review.
+
+### Step 3.5: Fill-in-the-blank enrichment (EPUB lessons)
+
+**For an EPUB or real-life-lesson source, this is an explicit pipeline step** (skip it for a template
+— a template is a fixed vocabulary list with no drills to mine). Textbook lessons contain
+fill-in-the-blank drills and practice exercises whose example lines are a rich source of natural
+sentence cards. After translation, mine those patterns into extra **practice sentence cards**: resolve
+each blank into a concrete, level-appropriate word drawn from **already-introduced lesson vocabulary**
+(never fabricate new words or grammar the lesson hasn't taught), producing a complete sentence with
+`target`/`reading`/`english`/`pronunciation`. Mark every such card `"fillInBlank": true` so it is
+**clearly delineated** in the reviews (badged, tinted) and targetable by the de-dup gate.
+
+**This runs BEFORE the corpus review, not after.** The FIB cards, their notes, and your keep/remove
+de-dup decisions are all things the human signs off on, so they must be in place by the time the
+review opens. Never show a reviewer a card set that is about to change underneath them: a lesson
+reviewed at 69 cards and then quietly grown to 79 has 10 cards that passed no gate, and any audio
+generated for them is credits spent on unreviewed content.
+
+**Placement — a contiguous drill block at the END of the lesson.** Append the kept FIB cards after all
+of that lesson's vocabulary and textbook sentences; do **not** interleave them earlier. A drill only
+ever reuses vocabulary the lesson has already introduced, so putting the whole block last keeps the
+lesson's dependency order intact (vocab → textbook sentences → practice drills) and is what the
+pedagogical-order check expects. Keep each split Q&A pair adjacent (question card immediately followed
+by its answer card).
+
+Then, in the same step and **before** the cards go to review, apply the two content gates defined in
+the conventions above:
+
+1. **Semantic de-dup against the corpus** — group every card (corpus **and** FIB) by sentence pattern
+   and keep at most ~2 examples per pattern, favouring FIB that introduce a new pattern or new
+   vocabulary; remove pure pattern-repeats. Back up the removed cards; surface the keep/remove result
+   in the review for the human to push back on.
+2. **Split any combined question-and-answer line into two cards** — one question card, one answer card.
+
+Check every FIB card against the lesson's **excluded** rows too: a drill sentence must not lean on
+vocabulary the reviewer has already dropped. Substitute an equivalent kept word instead (if `あした`
+was excluded, build the sentence on `らいしゅう`).
+
+The kept FIB cards are ordinary cards from here on. They go into the Step 3.6 corpus review alongside
+every other card, badged by their `fillInBlank` flag, so the human vets the additions and your de-dup
+calls at the same single gate as the rest of the lesson. Only after that sign-off do they flow into
+Step 4 (audio) and the deck.
+
+### Step 3.6: Corpus review — the one human gate before audio
+
+Open the deck's **Review** view (the **Review**
 link on the dashboard, `/review/...` — distinct from the read-only **Browse** view). Now that
 `cards.json` exists the unit renders the combined **Corpus review**: columns #, **English**,
 **Category**, **Target**, **Pronunciation** (romaji), **Note**, **AI-suggested**, **Uncertain**,
@@ -436,40 +489,12 @@ notes AND hints that just echo the card — each reversible via a `.bak`.)
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves
 the reviewed (excluded-filtered) corpus to the dedup library for later chapters' backward-dedup. Then
-move straight into Step 3.5 (for an EPUB/lesson source) or Step 4 in the same turn — marking reviewed
-IS the go-ahead.
+move straight into Step 4 in the same turn — marking reviewed IS the go-ahead.
 
-### Step 3.5: Fill-in-the-blank enrichment (EPUB lessons)
-
-**For an EPUB or real-life-lesson source, this is an explicit pipeline step** (skip it for a template
-— a template is a fixed vocabulary list with no drills to mine). Textbook lessons contain
-fill-in-the-blank drills and practice exercises whose example lines are a rich source of natural
-sentence cards. After translation, mine those patterns into extra **practice sentence cards**: resolve
-each blank into a concrete, level-appropriate word drawn from **already-introduced lesson vocabulary**
-(never fabricate new words or grammar the lesson hasn't taught), producing a complete sentence with
-`target`/`reading`/`english`/`pronunciation`. Mark every such card `"fillInBlank": true` so it is
-**clearly delineated** in the reviews (badged, tinted) and targetable by the de-dup gate.
-
-**Placement — a contiguous drill block at the END of the lesson.** Append the kept FIB cards after all
-of that lesson's vocabulary and textbook sentences; do **not** interleave them earlier. A drill only
-ever reuses vocabulary the lesson has already introduced, so putting the whole block last keeps the
-lesson's dependency order intact (vocab → textbook sentences → practice drills) and is what the
-pedagogical-order check expects. Keep each split Q&A pair adjacent (question card immediately followed
-by its answer card).
-
-Then, in the same step and **before** the cards go to audio, apply the two content gates defined in the
-conventions above:
-
-1. **Semantic de-dup against the corpus** — group every card (corpus **and** FIB) by sentence pattern
-   and keep at most ~2 examples per pattern, favouring FIB that introduce a new pattern or new
-   vocabulary; remove pure pattern-repeats. Back up the removed cards; surface the keep/remove result
-   in the review for the human to push back on.
-2. **Split any combined question-and-answer line into two cards** — one question card, one answer card.
-
-The kept FIB cards are ordinary cards from here on: they flow into Step 4 (audio — each gets the same
-default take) and the deck exactly like any other card. They show up in the dashboard's translate
-review alongside every other card (a `fillInBlank` flag marks them), so the human reviews the
-additions there before the build.
+**Nothing may be added to the lesson after this gate.** By the time you open the review, the card set
+must be final: extraction, FIB mining, and de-dup all done. If you later realize a card is missing,
+don't quietly append it — say so, add it, and send the reviewer back through the corpus review for the
+lesson, so no card ever reaches the deck without a human having seen it in these columns.
 
 ### Step 4: Audio Generation
 

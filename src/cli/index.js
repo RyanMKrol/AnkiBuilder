@@ -25,7 +25,6 @@ import {
   registerEpub as defaultRegisterEpub,
   chapterCachePath as defaultChapterCachePath,
   chapterRangeCachePath as defaultChapterRangeCachePath,
-  saveChapterCorpus as defaultSaveChapterCorpus,
   loadPriorChapterItems as defaultLoadPriorChapterItems,
   loadBookConventions as defaultLoadBookConventions,
   saveBookConventions as defaultSaveBookConventions,
@@ -168,6 +167,41 @@ function resolveAssembleRunDir(flags, ctx) {
   return runDir;
 }
 
+/**
+ * Warns when a book's lessons are being built out of order.
+ *
+ * The backward de-dup library (`.anki-builder/epubs/<hash>/corpora/`) is written by the DASHBOARD's
+ * "Mark reviewed", never by a build. So a lesson's de-dup can only see lessons that have been signed
+ * off — not lessons that merely exist on disk. Assembling lesson 8 before lesson 7 is reviewed means
+ * everything lesson 7 taught goes unflagged as a repeat, silently, and there is nothing in the
+ * output afterwards that says so.
+ *
+ * Warn, never refuse: getting ahead on extraction is a legitimate thing to want, and the cost is
+ * duplicate cards a reviewer can still catch. Deliberately placed BEFORE the "corpus.json already
+ * exists" branch, so it costs nothing, fires ahead of the multi-minute extraction, and still fires on
+ * a resumed assemble that skips extraction entirely.
+ */
+function warnIfBuiltOutOfOrder(flags, ctx, runDir) {
+  // Only sources that live in a numbered book/course folder have an order to be out of. A template
+  // is one unit per language; a bare --run or --chapter has no siblings to reason about.
+  const ordered = flags["output-root"] && (flags.epub || flags.book || flags.words);
+  if (!ordered) return;
+
+  const ownNumber = Number(flags["chapter-number"] ?? flags["lesson-number"]);
+  const { unreviewed } = runDirOrderContext(runDir, ownNumber, ctx);
+  if (unreviewed.length === 0) return;
+
+  const named = unreviewed.map((unit) => `${unit.label} (${unit.name})`).join(", ");
+  ctx.log(
+    `assemble: WARNING — ${unreviewed.length} earlier lesson(s) of this book are not marked reviewed ` +
+      `yet: ${named}.\n` +
+      `  The backward de-dup library is written by the dashboard's "Mark reviewed", so this lesson's ` +
+      `de-dup can only see lessons that have been signed off. Building out of order means vocabulary ` +
+      `those lessons already taught will NOT be flagged as a repeat.\n` +
+      `  Review them first ("npm run serve"), or continue and accept the duplicates.`,
+  );
+}
+
 async function runAssemble(flags, ctx) {
   // `--book <slug>` builds a new chapter of a previously-worked EPUB straight from its
   // durable output copy — desugar it into the normal `--epub <path>` flow before anything
@@ -233,6 +267,8 @@ async function runAssemble(flags, ctx) {
     );
   }
   const paths = ctx.runPaths(runDir);
+
+  warnIfBuiltOutOfOrder(flags, ctx, runDir);
 
   if (existsSync(paths.corpus)) {
     ctx.log(`corpus.json already exists at ${paths.corpus} — reusing`);
@@ -521,7 +557,9 @@ function lessonOrderContext({ deckDir, unitName, ownNumber, ctx }) {
 
   const earlier = others.filter((unit) => unit.number < ownNumber);
   const missing = earlier.filter((unit) => !unit.hasCards);
-  const readable = earlier.filter((unit) => unit.hasCards);
+  // `data` is belt-and-braces: lessonSiblings always sets it alongside hasCards, but a unit that
+  // somehow arrives without it must be treated as unreadable rather than crash a different lesson.
+  const readable = earlier.filter((unit) => unit.hasCards && unit.data);
   const unreviewed = earlier.filter((unit) => !unit.reviewed);
 
   const status = missing.length > 0 ? "degraded" : earlier.length > 0 ? "ok" : "first";
@@ -1073,7 +1111,6 @@ export async function runCli(argv, deps = {}) {
     registerEpub = defaultRegisterEpub,
     chapterCachePath = defaultChapterCachePath,
     chapterRangeCachePath = defaultChapterRangeCachePath,
-    saveChapterCorpus = defaultSaveChapterCorpus,
     loadPriorChapterItems = defaultLoadPriorChapterItems,
     loadBookConventions = defaultLoadBookConventions,
     saveBookConventions = defaultSaveBookConventions,
@@ -1138,7 +1175,6 @@ export async function runCli(argv, deps = {}) {
     registerEpub,
     chapterCachePath,
     chapterRangeCachePath,
-    saveChapterCorpus,
     loadPriorChapterItems,
     loadBookConventions,
     saveBookConventions,

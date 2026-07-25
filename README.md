@@ -220,17 +220,22 @@ npm run build
 - [x] Safe deck rebuilds — the merged `.apkg` is published by atomic rename, so a reader never sees a
       half-written package, and a rebuild reads the done-set and publishes in one event-loop turn, so
       two dashboard-triggered rebuilds can't interleave
-- [x] Write-once chapter cache — an extracted chapter is published images-first, chapter-file-last
-      and then reused, so concurrent builds sharing a book neither re-extract the same 30-50 files nor
-      hand the extractor a chapter whose images haven't landed yet
+- [x] Write-once chapter cache — an extracted chapter is published images-first, chapter-file-last and
+      then reused, so a re-run (or a later lesson of the same book) neither re-extracts the same 30-50
+      files nor hands the extractor a chapter whose images haven't landed yet
 - [x] Reserved run directories — a chapter/lesson folder is created and claimed the moment it is
-      allocated (filesystem compare-and-swap, no lock), so two builds started at once can never be
-      handed the same directory. A crashed build's claim lets the retry reclaim its folder; a chapter
-      another process is actively building is refused immediately rather than silently raced
-- [x] Atomic artifact writes — every file that one process writes while another may be reading it
-      (`cards.json`, `corpus.json`, the TTS cache, the EPUB copies, the dedup library, the markers) is
-      published by writing a temp file beside it and renaming into place, so a reader never sees a
-      half-written file. Groundwork for building several lessons concurrently
+      allocated, so a crashed build's claim lets the retry reclaim its own folder instead of leaking a
+      fresh sequence number, and an accidental second run of the same chapter is refused outright
+      rather than quietly building it twice
+- [x] Build lessons in order — `assemble` warns when an earlier lesson of the same book hasn't been
+      marked reviewed, since the backward-dedup library is written by that sign-off; and `prepare`
+      leaves its enrichment markers unset when the earlier lessons it reads aren't built yet, so a
+      re-run repairs the result instead of freezing a thin one in
+- [x] Atomic artifact writes — every file written while something else may be reading it (`cards.json`,
+      `corpus.json`, the TTS cache, the EPUB copies, the dedup library, the markers) is published by
+      writing a temp file beside it and renaming into place. The dashboard (`serve`) runs for the whole
+      of a build and `JSON.parse`s these files with no try/catch, so a torn read would be a hard
+      failure, not a glitch
 - [x] `build-anki-deck` conversational skill
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

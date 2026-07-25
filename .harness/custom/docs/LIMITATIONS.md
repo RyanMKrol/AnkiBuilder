@@ -718,10 +718,11 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   **not** `fsync`. A power cut or kernel panic can still lose a write that the process believed had
   landed.
 - **Why:** `rename(2)` is atomic with respect to other processes regardless of fsync, which is the
-  property that matters here — several files are written by one process while another reads them
-  (`cards.json` by a CLI stage vs the dashboard vs the deck rebuild; the reviewed-corpus dedup library
-  by "Mark reviewed" vs a concurrent assemble; the TTS cache by one run vs a copy into another run's
-  deck). fsync only adds crash durability, and on a 10 MB `.apkg` rebuild it costs real time on every
+  property that matters here — several files are written by one process while another reads them. That
+  is not about running two builds (which is no longer supported): the dashboard (`serve`) runs for the
+  whole of a build and reads and writes the same `cards.json` a CLI stage is writing, saves the
+  reviewed-corpus dedup library from "Mark reviewed" while an assemble may be reading it, and serves
+  clips out of the TTS cache while the audio stage writes into it. fsync only adds crash durability, and on a 10 MB `.apkg` rebuild it costs real time on every
   build for a failure mode that costs one re-run.
 - **Impact:** none in normal operation. After a hard crash a just-written file may be missing or stale;
   re-run the stage.
@@ -738,30 +739,28 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   are run by hand, one at a time, never concurrently.
 - **Impact:** a torn file is possible at those sites only if you deliberately run two of them at once
   against the same path.
-- **When to revisit:** if any script becomes part of an automated concurrent pipeline. (The cross-lesson
-  note pass is already a per-lesson pipeline step — if lessons start being built in parallel routinely,
-  revisit `scripts/enhance-card-notes.mjs` first, since it reads every sibling lesson's `cards.json`.)
+- **When to revisit:** if a script ever runs unattended alongside a build. The cross-lesson note pass
+  is the one to watch: it reads every sibling lesson's `cards.json`, so running the whole-book form of
+  `scripts/enhance-card-notes.mjs` while a lesson is being prepared reads that lesson mid-flight.
 
 ### Run directories are reserved up front, which changes three behaviours
 
-- **What:** `resolveChapterRunDir`/`resolveLessonRunDir` now CREATE the directory they return
-  (`mkdirSync(recursive:false)` as a compare-and-swap) and drop a `claim.json` in it, instead of
-  returning a path that only materialized minutes later when `corpus.json` was written. Consequences:
-  (1) assembling a chapter another live process is already assembling is now a hard error instead of
-  two runs silently racing; (2) a crashed assemble leaves a directory containing only `claim.json`,
-  which the dashboard does not render at all (`scanNumberedUnits` skips units with no corpus/cards) —
-  the next run reclaims it, but until then it is invisible; (3) there is a microsecond window between
-  the `mkdir` and the claim write where a crash leaves a directory nothing will ever reclaim.
-- **Why:** the old allocator computed `max(seq)+1` and returned the path without creating it, so two
-  runs started before either wrote its corpus both chose the same folder, both paid for a full LLM
-  extraction, and the second write destroyed the first. A filesystem CAS fixes that with no lock to
-  hold or leak.
-- **Impact:** an orphan directory costs one wasted sequence number and is otherwise inert. The
-  "already being built" error is deliberate — failing in milliseconds beats failing after both runs
-  have paid for the same extraction.
-- **When to revisit:** if orphans accumulate in practice, add a `--prune-orphans` sweep. Do NOT
-  "fix" it by making the dashboard render claim-only directories; that means threading a new unit
-  shape through every adapter for a case the reuse ladder already handles.
+- **What:** a chapter/lesson directory is created and claimed the moment it is allocated, rather than
+  appearing minutes later when `corpus.json` is written. So (1) assembling a chapter a live build
+  already owns is a hard error rather than two runs silently building it twice, (2) an empty reserved
+  directory is a normal state a retry reclaims, and (3) there is a microsecond window between the
+  `mkdir` and the claim write where a crash leaves a directory nothing will ever reclaim.
+- **Why:** the old allocator computed `max(seq)+1` and returned the path without creating it, so
+  nothing on disk recorded that a chapter was being worked on until the extraction finished. A
+  filesystem CAS fixes that with no lock to hold or leak.
+- **Impact:** (1) is a guard against a double-run, not concurrency support — building several lessons
+  at once is not a supported mode, but the accident is easy to have (extraction is minutes of silence,
+  so a stuck-looking run invites a second terminal) and the consequence without the guard is two
+  directories for one chapter, merged into the deck twice. (3) is rare and self-inflicted; deleting the
+  stray directory is the fix.
+- **When to revisit:** if run directories are ever renamed to `chapter-<chapterNumber>` instead of an
+  autoincrement seq (see the row below), the whole reuse ladder collapses into an idempotent
+  `mkdir(recursive:true)` and can be deleted.
 
 ### Run directories keep their autoincrement `seq`, not the chapter number
 
@@ -883,3 +882,34 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   pass. Same class of bug as the one this guard was written for, one layer over.
 - **When to revisit:** next time `src/audio/` grows a call site, or the first time a test bill shows
   up. `fetchElevenLabsTts` should call the same guard.
+
+### A lesson's build reads the book's REVIEWED history, so lessons must be built in order
+
+- **What:** backward de-dup reads the library at `.anki-builder/epubs/<hash>/corpora/`, which is
+  written by the dashboard's "Mark reviewed" and by nothing else. The drill and cross-lesson-note
+  passes read each earlier unit's `cards.json`, written by that lesson's own `prepare`. So a lesson
+  built before its predecessors are reviewed (or even built) silently sees less than it should.
+- **Why:** the de-dup library is deliberately the REVIEWED corpus — the point is to compare against
+  what a human actually kept, not against everything an extractor proposed. That makes a human action,
+  not a build step, the thing that publishes a lesson to its successors.
+- **Impact:** `assemble` and `prepare` both warn and continue rather than refusing, so getting ahead
+  on extraction stays possible; `prepare` additionally withholds its enrichment markers so a re-run
+  repairs the result. But a warning is easy to scroll past, and the de-dup half has no repair path
+  short of re-assembling the lesson. Measured on this repo's Japanese book: three reviewed lessons
+  that never reached the library cost 12 unflagged repeats across the next three lessons.
+- **When to revisit:** if building out of order becomes common, make `assemble` refuse without
+  `--force`. A deeper fix would decouple the library from the review — saving a provisional corpus at
+  `prepare` and replacing it at Mark reviewed — but that trades the "compare against what a human
+  kept" property away, so it needs thought rather than a patch.
+
+### `scripts/backfill-dedup-library.mjs` re-derives history rather than recovering it
+
+- **What:** the backfill rebuilds a missing library entry from the lesson's CURRENT `cards.json`, not
+  from what the lesson looked like when it was reviewed.
+- **Why:** there is no record of the latter. The library entry IS the record, and it's the thing that's
+  missing.
+- **Impact:** a lesson edited after review is backfilled in its edited state. For de-dup — exact-match
+  on `english`/`target` — that is almost always the same set, and being slightly newer is harmless.
+  It would matter if the entry were ever used for something order-sensitive.
+- **When to revisit:** if the library grows a second consumer that cares about the state at review
+  time rather than the current state.

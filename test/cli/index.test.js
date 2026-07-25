@@ -1875,3 +1875,74 @@ test("prepare: a genuine first lesson is marked done — an empty sibling list i
     assert.match(logged.join("\n"), /no earlier lessons/);
   });
 });
+
+// The de-dup library is written by the dashboard's "Mark reviewed", not by a build, so a lesson's
+// backward de-dup can only see lessons that have been SIGNED OFF. Building out of order degrades it
+// silently, and nothing in the output afterwards says so — hence the warning.
+test("assemble: warns when an earlier lesson of the book is not marked reviewed", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "chapter-2");
+    mkdirSync(runDir, { recursive: true });
+    const logged = [];
+
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--output-root",
+        parent,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "9",
+        "--lang",
+        "ja",
+      ],
+      {
+        registerEpub: () => ({ epubHash: "hash" }),
+        resolveBookSlug: () => "book",
+        materializeBookInOutput: () => {},
+        resolveChapterRunDir: () => runDir,
+        assembleCorpusFromChapter: () => baseEpubCorpus(),
+        loadBookConventions: () => "conventions",
+        chapterCachePath: () => join(parent, "cache.xhtml"),
+        extractChapterToFile: () => join(parent, "cache.xhtml"),
+        describeChapter: () => "Lesson 9",
+        loadPriorChapterItems: () => [],
+        dedupBackward: (items) => ({ items, flagged: [] }),
+        flagForwardConcerns: ({ candidateItems }) => ({ items: candidateItems, flagged: [] }),
+        sortItemsPedagogically: passthroughSort,
+        lessonSiblings: () => [
+          sibling("chapter-0", 7, { reviewed: true }),
+          sibling("chapter-1", 8),
+          sibling("chapter-2", 9, { hasCards: false }),
+        ],
+        log: (line) => logged.push(line),
+      },
+    );
+
+    const out = logged.join("\n");
+    assert.match(out, /WARNING — 1 earlier lesson\(s\)/);
+    assert.match(out, /Lesson 8 \(chapter-1\)/);
+    assert.doesNotMatch(out, /Lesson 7/, "an already-reviewed lesson must not be reported");
+  });
+});
+
+test("assemble: says nothing about ordering for a template", async () => {
+  await withTempDir(async (parent) => {
+    const runDir = join(parent, "templates", "t", "es");
+    const logged = [];
+    await runCli(
+      ["assemble", "--no-prepare", "--output-root", parent, "--template", "t", "--lang", "es"],
+      {
+        resolveTemplateRunDir: () => runDir,
+        loadTemplate: () => baseCorpus({ reviewed: false }),
+        lessonSiblings: () => {
+          throw new Error("a template has no book directory to scan");
+        },
+        log: (line) => logged.push(line),
+      },
+    );
+    assert.doesNotMatch(logged.join("\n"), /WARNING/);
+  });
+});

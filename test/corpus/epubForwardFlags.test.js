@@ -151,8 +151,8 @@ function buildFixtureEpub(dir, chapterCount, { titles = {} } = {}) {
   return epubPath;
 }
 
-function candidate(id, english, target, notes = null) {
-  return { id, english, category: "Other", notes, target };
+function candidate(id, english, target, reviewNote = null) {
+  return { id, english, category: "Other", reviewNote, target };
 }
 
 // --- renderForwardFlagPrompt ---
@@ -210,11 +210,11 @@ test("flagForwardConcerns() marks a flagged item uncertain and appends a note, w
     assert.equal(items.length, 1);
     assert.equal(items[0].id, "department-store");
     assert.equal(items[0].uncertain, true);
-    assert.match(items[0].notes, /Possibly premature/);
+    assert.match(items[0].reviewNote, /Possibly premature/);
     // Fixture chapter 3 has no <title> tag, so describeChapter() falls back to plain
     // numeric wording here — the human-label case is covered separately below.
-    assert.match(items[0].notes, /chapter 3/);
-    assert.match(items[0].notes, /taught as shopping vocabulary/);
+    assert.match(items[0].reviewNote, /chapter 3/);
+    assert.match(items[0].reviewNote, /taught as shopping vocabulary/);
 
     assert.equal(flagged.length, 1);
     assert.equal(flagged[0].laterChapter, 3);
@@ -245,13 +245,13 @@ test("flagForwardConcerns() resolves laterChapter to the later chapter's own hum
         }),
     });
 
-    assert.match(items[0].notes, /explicitly taught later in Lesson 3: Asking the Time/);
-    assert.doesNotMatch(items[0].notes, /taught later in chapter 3/);
+    assert.match(items[0].reviewNote, /explicitly taught later in Lesson 3: Asking the Time/);
+    assert.doesNotMatch(items[0].reviewNote, /taught later in chapter 3/);
     assert.equal(flagged[0].laterChapterLabel, "Lesson 3: Asking the Time");
   });
 });
 
-test("flagForwardConcerns() appends to an item's existing notes rather than overwriting them", () => {
+test("flagForwardConcerns() appends to an item's existing reviewNote rather than overwriting it", () => {
   withTempDir((dir) => {
     const epubPath = buildFixtureEpub(dir, 2);
     const candidates = [candidate("a", "A", "あ", "an existing note")];
@@ -266,7 +266,7 @@ test("flagForwardConcerns() appends to an item's existing notes rather than over
         JSON.stringify({ flag: [{ id: "a", reason: "too complex for this point" }] }),
     });
 
-    assert.match(items[0].notes, /^an existing note \| Possibly premature/);
+    assert.match(items[0].reviewNote, /^an existing note \| Possibly premature/);
   });
 });
 
@@ -286,8 +286,8 @@ test("flagForwardConcerns() omits chapter wording from the note when laterChapte
     });
 
     assert.equal(items[0].uncertain, true);
-    assert.doesNotMatch(items[0].notes, /taught later in chapter/);
-    assert.match(items[0].notes, /Possibly premature — uses grammar not yet introduced/);
+    assert.doesNotMatch(items[0].reviewNote, /taught later in chapter/);
+    assert.match(items[0].reviewNote, /Possibly premature — uses grammar not yet introduced/);
     assert.equal(flagged[0].laterChapter, undefined);
   });
 });

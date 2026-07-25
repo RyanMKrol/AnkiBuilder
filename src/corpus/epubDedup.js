@@ -1,6 +1,6 @@
-function noteWithMatch(existingNotes, chapterLabel, matchedField) {
+function noteWithMatch(existingReviewNote, chapterLabel, matchedField) {
   const concern = `Possibly already taught — already introduced in ${chapterLabel} (matched on ${matchedField})`;
-  return existingNotes ? `${existingNotes} | ${concern}` : concern;
+  return existingReviewNote ? `${existingReviewNote} | ${concern}` : concern;
 }
 
 /**
@@ -44,7 +44,7 @@ export function dedupBackward(candidateItems, priorItems) {
     return {
       ...item,
       uncertain: true,
-      notes: noteWithMatch(item.notes, match.__chapterLabel, matchedField),
+      reviewNote: noteWithMatch(item.reviewNote, match.__chapterLabel, matchedField),
     };
   });
 

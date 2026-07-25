@@ -4,7 +4,7 @@ import { validateCorpus } from "../model/index.js";
 /**
  * Extracts ONE chapter file via the LLM extractor and wraps the result into a
  * schema-valid corpus.json object — normalizing each item to the superset
- * shape (`notes`/`target` always present, `null` when absent; `uncertain`/
+ * shape (`target` always present, `null` when absent; `uncertain`/
  * `aiSuggested` carried through when the extractor set them, omitted
  * otherwise) and setting `meta.reviewed: false`, since a freshly assembled
  * corpus has not been through the review stage yet.

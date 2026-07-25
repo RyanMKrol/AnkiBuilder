@@ -44,7 +44,7 @@ function validateItem(item, index) {
 /**
  * Extracts a flashcard-worthy item list from ONE chapter file by having the
  * model read it directly (no pre-split text blocks). Returns the parsed and
- * validated item array: { id, english, target, category, notes?, uncertain?, aiSuggested? }.
+ * validated item array: { id, english, target, category, reviewNote?, uncertain?, aiSuggested? }.
  *
  * This is the extraction primitive only — it does not write corpus.json/
  * cards.json, generate pronunciation, or handle more than one chapter. See

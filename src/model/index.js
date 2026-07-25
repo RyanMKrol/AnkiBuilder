@@ -58,10 +58,9 @@ const CORPUS_SCHEMA = {
           // Internal review-only rationale — why an item is `uncertain` or `aiSuggested`. Shown ONLY at
           // the dashboard review gates; NEVER embedded in the deck or shown in the read-only viewer.
           reviewNote: { type: ["string", "null"] },
-          // Legacy aliases for `note`, kept optional so pre-rename corpus.json still validates; the
-          // migration folds `cardNote`/`notes` into `note` and splits out `hint`.
+          // Legacy alias for `note`, kept optional so pre-rename corpus.json still validates; the
+          // migration folds `cardNote` into `note` and splits out `hint`.
           cardNote: { type: ["string", "null"] },
-          notes: { type: ["string", "null"] },
           target: { type: ["string", "null"] },
           // Optional spoken form: the target text with anything the romanizer/TTS
           // mishandles (notably digits — kuroshiro leaves "2,000えん" as "2 , 000 en",
@@ -116,8 +115,6 @@ const CARDS_SCHEMA = {
           note: { type: ["string", "null"] },
           cardNote: { type: ["string", "null"] },
           reviewNote: { type: ["string", "null"] },
-          // Legacy blended note, superseded by note — kept optional for back-compat.
-          notes: { type: "string" },
           target: { type: "string" },
           pronunciation: { type: "string" },
           // Optional phonetic spelling in the target language's own native script

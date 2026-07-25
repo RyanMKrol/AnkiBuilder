@@ -29,10 +29,10 @@ export function renderPedagogicalSortPrompt({
 } = {}) {
   const template = readFileSync(templatePath, "utf-8");
   // Only the fields the ordering decision needs — keep the prompt payload lean.
-  const itemData = items.map(({ id, english, target, category, notes }) => {
+  const itemData = items.map(({ id, english, target, category, hint }) => {
     const entry = { id, english, target };
     if (category) entry.category = category;
-    if (notes) entry.notes = notes;
+    if (hint) entry.hint = hint;
     return entry;
   });
 

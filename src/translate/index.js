@@ -24,8 +24,8 @@ function chunk(items, size) {
 function buildFullTranslationPrompt(items, targetLanguage) {
   const inputData = items.map((item) => {
     const entry = { id: item.id, english: item.english };
-    if (item.notes) {
-      entry.notes = item.notes;
+    if (item.hint) {
+      entry.hint = item.hint;
     }
     return entry;
   });
@@ -43,7 +43,7 @@ function buildFullTranslationPrompt(items, targetLanguage) {
     "",
     "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
     "- `english` (string): the English phrase to translate.",
-    "- `notes` (string, optional): context or a hint about how this phrase is used, taken from the source material.",
+    "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
     "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
     "",
     "### Example Input",
@@ -51,7 +51,7 @@ function buildFullTranslationPrompt(items, targetLanguage) {
     JSON.stringify(
       [
         { id: "hello", english: "Hello" },
-        { id: "cheese", english: "Cheese", notes: "as in the food, not a smile" },
+        { id: "cheese", english: "Cheese", hint: "as in the food, not a smile" },
       ],
       null,
       2,
@@ -104,8 +104,8 @@ function buildFullTranslationPrompt(items, targetLanguage) {
 export function buildTargetOnlyPrompt(items, targetLanguage, { targetScriptRule = null } = {}) {
   const inputData = items.map((item) => {
     const entry = { id: item.id, english: item.english };
-    if (item.notes) {
-      entry.notes = item.notes;
+    if (item.hint) {
+      entry.hint = item.hint;
     }
     return entry;
   });
@@ -123,7 +123,7 @@ export function buildTargetOnlyPrompt(items, targetLanguage, { targetScriptRule 
     "",
     "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
     "- `english` (string): the English phrase to translate.",
-    "- `notes` (string, optional): context or a hint about how this phrase is used, taken from the source material.",
+    "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
     "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
     "",
     "### Example Input",
@@ -131,7 +131,7 @@ export function buildTargetOnlyPrompt(items, targetLanguage, { targetScriptRule 
     JSON.stringify(
       [
         { id: "hello", english: "Hello" },
-        { id: "cheese", english: "Cheese", notes: "as in the food, not a smile" },
+        { id: "cheese", english: "Cheese", hint: "as in the food, not a smile" },
       ],
       null,
       2,
@@ -186,8 +186,8 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
     // Pronounce the spoken form when set (e.g. kana にせんえん) rather than the display
     // `target` (e.g. "2,000えん") — keeps this LLM/fallback path in step with the library romanizer.
     const entry = { id: item.id, english: item.english, target: item.reading || item.target };
-    if (item.notes) {
-      entry.notes = item.notes;
+    if (item.hint) {
+      entry.hint = item.hint;
     }
     return entry;
   });
@@ -208,12 +208,12 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
     "- `english` (string): the English phrase, given for context only.",
     `- \`target\` (string): the final ${targetLanguage} translation.`,
     "  - Already correct — do not change it, and do not return it.",
-    "- `notes` (string, optional): context or a hint about how this phrase is used, taken from the source material.",
+    "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
     "",
     "### Example Input",
     "```json",
     JSON.stringify(
-      [{ id: "cheese", english: "Cheese", target: "Fromage", notes: "as in the food" }],
+      [{ id: "cheese", english: "Cheese", target: "Fromage", hint: "as in the food" }],
       null,
       2,
     ),
@@ -322,9 +322,6 @@ function assembleFullCard(item, entry) {
     target: entry.target,
     pronunciation: entry.pronunciation,
   };
-  if (item.notes) {
-    card.notes = item.notes;
-  }
   if (entry.hint) {
     card.hint = entry.hint;
   }
@@ -341,9 +338,6 @@ function assembleTargetOnlyCard(item, entry) {
     category: item.category,
     target: entry.target,
   };
-  if (item.notes) {
-    card.notes = item.notes;
-  }
   if (entry.hint) {
     card.hint = entry.hint;
   }
@@ -365,9 +359,6 @@ function assemblePronunciationOnlyCard(item, entry) {
     target: item.target,
     pronunciation,
   };
-  if (item.notes) {
-    card.notes = item.notes;
-  }
   if (item.reading) {
     card.reading = item.reading;
   }
@@ -426,9 +417,6 @@ function toPartialCard(item) {
     category: item.category,
     target: item.target,
   };
-  if (item.notes) {
-    card.notes = item.notes;
-  }
   // Carry the spoken form onto the card so the audio stage speaks it and the
   // romanizer romanized it (see romanizeAndEvaluate).
   if (item.reading) {

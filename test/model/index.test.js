@@ -18,14 +18,13 @@ test("validateCorpus - valid corpus passes validation", () => {
         id: "1",
         english: "hello",
         category: "Greetings",
-        notes: null,
         target: null,
       },
       {
         id: "2",
         english: "goodbye",
         category: "Greetings",
-        notes: "formal",
+        hint: "formal",
         target: null,
       },
     ],
@@ -44,7 +43,6 @@ test("validateCorpus - accepts an optional `reading` (spoken form) on an item", 
         id: "price",
         english: "2,000 yen",
         category: "Shopping",
-        notes: null,
         target: "2,000えん",
         reading: "にせんえん",
       },
@@ -56,7 +54,7 @@ test("validateCorpus - accepts an optional `reading` (spoken form) on an item", 
   });
 });
 
-test("validateCorpus - notes/target may be a real string instead of null", () => {
+test("validateCorpus - target may be a real string instead of null", () => {
   const validCorpus = {
     meta: { targetLanguage: "ja", sourceType: "epub" },
     items: [
@@ -64,7 +62,7 @@ test("validateCorpus - notes/target may be a real string instead of null", () =>
         id: "1",
         english: "hello",
         category: "Greetings",
-        notes: "a hint",
+        hint: "a hint",
         target: "こんにちは",
       },
     ],
@@ -75,7 +73,7 @@ test("validateCorpus - notes/target may be a real string instead of null", () =>
   });
 });
 
-test("validateCorpus - missing notes/target fails validation (must be present, even if null)", () => {
+test("validateCorpus - missing target fails validation (must be present, even if null)", () => {
   const invalidCorpus = {
     meta: { targetLanguage: "es", sourceType: "template" },
     items: [{ id: "1", english: "hello", category: "Greetings" }],
@@ -85,14 +83,14 @@ test("validateCorpus - missing notes/target fails validation (must be present, e
     () => {
       validateCorpus(invalidCorpus);
     },
-    (err) => /notes|target/.test(err.message),
+    (err) => /target/.test(err.message),
   );
 });
 
 test("validateCorpus - a non-null, non-string target fails validation", () => {
   const invalidCorpus = {
     meta: { targetLanguage: "es", sourceType: "template" },
-    items: [{ id: "1", english: "hello", category: "Greetings", notes: null, target: 5 }],
+    items: [{ id: "1", english: "hello", category: "Greetings", target: 5 }],
   };
 
   assert.throws(
@@ -106,9 +104,7 @@ test("validateCorpus - a non-null, non-string target fails validation", () => {
 test("validateCorpus - a category outside the enum fails validation", () => {
   const invalidCorpus = {
     meta: { targetLanguage: "es", sourceType: "template" },
-    items: [
-      { id: "1", english: "hello", category: "Not A Real Category", notes: null, target: null },
-    ],
+    items: [{ id: "1", english: "hello", category: "Not A Real Category", target: null }],
   };
 
   assert.throws(

@@ -21,7 +21,7 @@ async function withTempDir(fn) {
 function baseCorpus({ reviewed = true } = {}) {
   return {
     meta: { targetLanguage: "es", sourceType: "template", reviewed },
-    items: [{ id: "a1", english: "Hello", category: "Greetings", notes: null, target: null }],
+    items: [{ id: "a1", english: "Hello", category: "Greetings", target: null }],
   };
 }
 
@@ -37,9 +37,7 @@ function baseCards({ reviewed = true } = {}) {
 function baseEpubCorpus() {
   return {
     meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false },
-    items: [
-      { id: "hello", english: "Hello", category: "Greetings", notes: null, target: "こんにちは" },
-    ],
+    items: [{ id: "hello", english: "Hello", category: "Greetings", target: "こんにちは" }],
   };
 }
 
@@ -653,14 +651,12 @@ test("assemble: --words resolves the run dir via resolveCourseSlug/resolveLesson
             id: "good-morning",
             english: "Good morning",
             category: "Greetings",
-            notes: null,
             target: null,
           },
           {
             id: "china",
             english: "China",
             category: "Nationalities & Countries",
-            notes: null,
             target: null,
           },
         ],
@@ -736,7 +732,6 @@ test("assemble: --words --lesson-label overrides the default 'Lesson <N>' chapte
               id: "good-morning",
               english: "Good morning",
               category: "Greetings",
-              notes: null,
               target: null,
             },
           ],
@@ -794,9 +789,9 @@ test("assemble: logs one line per flagged item for both passes, not just a count
     const assembleCorpusFromChapter = () => ({
       meta: { targetLanguage: "Japanese", sourceType: "epub", reviewed: false },
       items: [
-        { id: "old-item", english: "Old", category: "Other", notes: null, target: "古い" },
-        { id: "later-item", english: "Later", category: "Other", notes: null, target: "後で" },
-        { id: "keep-item", english: "Keep", category: "Other", notes: null, target: "保つ" },
+        { id: "old-item", english: "Old", category: "Other", target: "古い" },
+        { id: "later-item", english: "Later", category: "Other", target: "後で" },
+        { id: "keep-item", english: "Keep", category: "Other", target: "保つ" },
       ],
     });
     const loadPriorChapterItems = () => [
@@ -804,7 +799,6 @@ test("assemble: logs one line per flagged item for both passes, not just a count
         id: "prior",
         english: "Old",
         category: "Other",
-        notes: null,
         target: "古い",
         __chapterNumber: 1,
         __chapterLabel: "Lesson 1: Meeting",
@@ -814,7 +808,7 @@ test("assemble: logs one line per flagged item for both passes, not just a count
     const dedupBackward = (items, priorItems) => ({
       items: items.map((item, index) =>
         index === 0
-          ? { ...item, uncertain: true, notes: "Possibly already taught — matched Lesson 1" }
+          ? { ...item, uncertain: true, reviewNote: "Possibly already taught — matched Lesson 1" }
           : item,
       ),
       flagged: [{ item: items[0], matchedField: "english", matchedPriorItem: priorItems[0] }],
@@ -822,7 +816,7 @@ test("assemble: logs one line per flagged item for both passes, not just a count
     const flagForwardConcerns = ({ candidateItems }) => ({
       items: candidateItems.map((item, index) =>
         index === 1
-          ? { ...item, uncertain: true, notes: "Possibly premature — taught later" }
+          ? { ...item, uncertain: true, reviewNote: "Possibly premature — taught later" }
           : item,
       ),
       flagged: [

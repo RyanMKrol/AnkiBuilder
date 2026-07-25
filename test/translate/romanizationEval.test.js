@@ -101,7 +101,7 @@ test("correction: the model's pronunciation replaces the library's, with no unce
     "uses the model's correction, not the library value",
   );
   assert.ok(!cards[0].uncertain, "no uncertain flag — the correction is the resolution");
-  assert.equal(cards[0].notes, undefined, "no 'possibly incorrect' note is appended");
+  assert.equal(cards[0].reviewNote, undefined, "no 'possibly incorrect' note is appended");
 });
 
 test("correction: the prompt shows the model the spoken `reading`, not a digit/kanji display target", async () => {

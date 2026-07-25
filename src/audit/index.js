@@ -150,7 +150,7 @@ export function renderReviewTable(items) {
       12,
       Math.min(20, Math.max(...items.map((i) => (i.target || "").length)) * 1.2),
     ),
-    notes: Math.max(10, Math.min(30, Math.max(...items.map((i) => (i.notes || "").length)))),
+    notes: Math.max(10, Math.min(30, Math.max(...items.map((i) => (i.reviewNote || "").length)))),
   };
 
   const lines = [];
@@ -179,7 +179,7 @@ export function renderReviewTable(items) {
       padRight(item.english || "", columnWidths.english),
       padRight(item.category || "", columnWidths.category),
       padRight(item.target || "", columnWidths.target),
-      padRight(item.notes || "", columnWidths.notes),
+      padRight(item.reviewNote || "", columnWidths.notes),
     ].join(" | ");
     lines.push(row);
   });

@@ -111,7 +111,6 @@ export function assembleCorpusFromLessonWords({
     id: uniqueId(english, usedIds),
     english,
     category: "Other",
-    notes: null,
     target: null,
   }));
 

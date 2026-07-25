@@ -533,7 +533,17 @@ async function runAudioInner(flags, ctx) {
     }
   }
 
-  writeJson(paths.cards, annotated);
+  // Merge, don't overwrite. `cards` was read minutes ago, before the ElevenLabs pass; the
+  // dashboard is editable during exactly that window (a lesson at the translate stage), so
+  // writing the stale in-memory object back would silently discard any exclude, inline edit
+  // or Replace-audio the reviewer did while this ran. Re-read and apply only what this stage
+  // owns: each item's `audio` filename.
+  const fresh = readJson(paths.cards);
+  const generated = new Map(annotated.items.map((item) => [item.id, item.audio ?? null]));
+  for (const item of fresh.items) {
+    if (generated.has(item.id)) item.audio = generated.get(item.id);
+  }
+  writeJson(paths.cards, fresh);
   ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);
 }
 

@@ -105,6 +105,11 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .urow .ulabel{flex:1 1 auto;font-size:13.5px}
 .urow .ustage{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
 .urow .ustage.done{color:#5c7a52;font-weight:700}
+.urow .ustage.building{color:#8a6d1f;font-weight:700}
+.urow .ustage.interrupted{color:#9a4f2a;font-weight:700}
+.build-banner{margin:12px 0;padding:10px 12px;border-radius:6px;background:#fdf6e3;border:1px solid #e8d9a8;font-size:13px;line-height:1.5}
+.build-banner.interrupted{background:#fdf0ea;border-color:#e8c3ae}
+.build-banner .clear-claim{margin-left:8px;font-size:12px;padding:2px 8px;cursor:pointer}
 /* A built row: the label link stretches over the whole row (click → open the view), while the Reopen
    button sits above it (z-index) so it's independently clickable. */
 .urow-built{position:relative}
@@ -569,3 +574,16 @@ export function renderLessonSections({
     .join("\n");
   return { html, endNumber: n };
 }
+
+// Clears a STALE build claim (the server refuses if the build is actually still live), so a
+// crashed build never leaves a lesson wedged.
+export const CLEAR_CLAIM_SCRIPT = `
+document.querySelectorAll(".clear-claim").forEach((btn) => {
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    const res = await fetch(location.pathname.replace(/\\/review\\//, "/api/deck/").replace(/\\/([^/]+)$/, "/unit/$1/claim/clear"), { method: "POST" });
+    if (res.ok) location.reload();
+    else { btn.disabled = false; btn.textContent = "Could not clear"; }
+  });
+});
+`;

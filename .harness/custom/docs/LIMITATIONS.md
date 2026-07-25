@@ -913,3 +913,30 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   It would matter if the entry were ever used for something order-sensitive.
 - **When to revisit:** if the library grows a second consumer that cares about the state at review
   time rather than the current state.
+
+### Readiness is inferred from markers, so a pass that lies about itself is undetectable
+
+- **What:** `lessonReadiness` trusts `cards.meta.enriched` / `notesEnhanced`. Those are set by
+  `prepare` when the pass had complete inputs — but "the pass ran with what it needed" is not the same
+  as "the pass produced something good". A drill pass that returned nothing usable still marks itself
+  complete, because a lesson whose source genuinely has no drills must not re-run forever.
+- **Why:** the alternative is asserting on output (at least N drills, at least N notes), which would
+  block legitimate lessons — plenty of chapters have no usable drills, and most cards should end up
+  with no note at all.
+- **Impact:** the gate catches a pass that never RAN, which is the failure that actually happened
+  repeatedly. It cannot catch a pass that ran and fell open. The `[dedup:semantic]` and
+  `fill-in-the-blank:` log lines are the only signal for that, and nobody reads logs after the fact.
+- **When to revisit:** if a fail-open pass ever ships something wrong unnoticed. The fix is to record
+  each pass's OUTCOME in meta (ran / failed / nothing-to-do) rather than a boolean, and surface a
+  "this lesson has no drills — is that right?" note at the review.
+
+### The gate can be bypassed by hand-editing cards.json
+
+- **What:** setting `"enriched": true` in a `cards.json` by hand makes a lesson reviewable without the
+  pass having run. Same for `"reviewed": true` and the done gate.
+- **Why:** these files are plain local JSON in a gitignored directory, deliberately hand-editable —
+  that's how several of this repo's own repairs were done. A tamper-proof marker would need signing,
+  which is absurd for a single-user local tool.
+- **Impact:** none in normal use; the gate is there to catch a pipeline that didn't finish, not an
+  operator who means it. Worth knowing that "the marker is set" means "something claimed the pass ran".
+- **When to revisit:** never, unless this stops being a local single-user tool.

@@ -359,6 +359,15 @@ running for the whole build:
 npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
+**A lesson that hasn't been through every pre-review pass can't be reviewed — the dashboard enforces
+it.** You won't see a **Mark reviewed** button on a lesson whose drill, de-dup or cross-lesson-note
+pass hasn't recorded a complete run; it says what's still to run and sits under **Not finished**
+instead. So you never have to verify the pipeline ran by hand, and I can't hand you a half-built
+lesson that looks final. If you land on that message, `anki-builder prepare --run <dir>` finishes it.
+(A template is exempt — it has no drills to mine and no sibling lessons, so those passes correctly
+never run.) The same applies at the second gate: a lesson that hasn't passed the corpus review can't
+be marked done, because done is what ships it into the deck.
+
 **Build a book's lessons in ascending order, and mark each one reviewed before assembling the next.**
 A lesson's build reads what the book has already taught, from two different places: the backward-dedup
 library, which is written by the dashboard's **Mark reviewed** (not by the build), and each earlier

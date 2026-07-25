@@ -165,6 +165,32 @@ explicitly `null` when the source path can't populate them, plus two optional fl
 through when the extractor sets them: `uncertain` (the model wasn't sure the item belonged) and
 `aiSuggested` (a critical-gap item the model added itself, not present in the source).
 
+### The review gates check state, not history
+
+A lesson is only offered for review once **every pre-review pass has recorded a complete run**.
+`lessonReadiness(cards.meta)` (`src/cards/readiness.js`) is the single answer, a pure function of the
+meta so the CLI, the dashboard's render and its write-back cannot disagree. It requires
+`enriched` (drills + semantic de-dup) and `notesEnhanced` (cross-lesson notes), both set by `prepare`
+only when the pass had everything it needed.
+
+It is enforced in three places, all reading the same verdict:
+
+- `markCardsReviewed` refuses with a 409 naming what is still to run
+- the review view withholds the **Mark reviewed** button entirely
+- the home page files the lesson under **Not finished**, so "In review" means exactly one thing
+
+Two carve-outs: a **template** is always ready (no source drills, no sibling lessons — `prepare` skips
+both passes by design), and an **already-reviewed** lesson stays ready, so tightening the rule never
+retroactively unreviews finished work.
+
+The second gate has its own precondition: `setLessonDone` refuses a lesson that has not passed the
+corpus review, because `done` is what puts a lesson into the merged `.apkg` and from there into the
+live Anki collection.
+
+This replaces trusting the route. Previously any `cards.json` was reviewable, so a bare
+`anki-builder translate --run <dir>`, a `prepare` that died after translate, and a lesson built before
+a pass existed all rendered identically to a finished lesson.
+
 ### Corpus review (in the dashboard)
 
 There is no `review` CLI command — the **Corpus review** is performed in the dashboard, on the

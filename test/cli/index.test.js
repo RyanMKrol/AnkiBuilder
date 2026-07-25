@@ -6,7 +6,7 @@ import { join } from "path";
 import os from "os";
 import { Buffer } from "buffer";
 import { runCli } from "../../src/cli/index.js";
-import { runPaths } from "../../src/model/index.js";
+import { runPaths, validateCards } from "../../src/model/index.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
 async function withTempDir(fn) {
@@ -2162,5 +2162,58 @@ test("prepare: warns about a numeral the auto-fix could not resolve", async () =
       log: (line) => logged.push(line),
     });
     assert.match(logged.join("\n"), /WARNING — 1 card\(s\) still have a numeral/);
+  });
+});
+
+// generateAudio removes `audio` from an excluded card. The merge used to write `audio: null` back in
+// its place, which the cards schema rejects — so the NEXT write to that lesson failed validation and
+// Mark done, exclude and every inline edit stopped working on it.
+test("audio: an excluded card ends with no audio key, not a null one", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(
+      paths.cards,
+      JSON.stringify({
+        meta: { targetLanguage: "ja", sourceType: "epub", reviewed: true },
+        items: [
+          {
+            id: "dropped",
+            english: "Ah",
+            category: "Other",
+            target: "あ",
+            pronunciation: "a",
+            excluded: true,
+            audio: "stale.mp3",
+          },
+          {
+            id: "kept",
+            english: "Hello",
+            category: "Greetings",
+            target: "こんにちは",
+            pronunciation: "konnichiwa",
+          },
+        ],
+      }),
+    );
+
+    const originalKey = process.env.ELEVENLABS_API_KEY;
+    process.env.ELEVENLABS_API_KEY = "test-key";
+    try {
+      await runCli(["audio", "--run", runDir, "--voice", "v1"], {
+        fetchTts: async () => Buffer.from("CLIP"),
+        log: () => {},
+      });
+    } finally {
+      if (originalKey === undefined) delete process.env.ELEVENLABS_API_KEY;
+      else process.env.ELEVENLABS_API_KEY = originalKey;
+    }
+
+    const written = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    const dropped = written.items.find((i) => i.id === "dropped");
+    assert.equal("audio" in dropped, false, "an excluded card must have no audio key at all");
+    assert.equal(typeof written.items.find((i) => i.id === "kept").audio, "string");
+    // The whole point: the file must still be writable afterwards.
+    assert.doesNotThrow(() => validateCards(written));
   });
 });

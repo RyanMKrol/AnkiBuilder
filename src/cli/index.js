@@ -945,10 +945,18 @@ async function runAudioInner(flags, ctx) {
   // writing the stale in-memory object back would silently discard any exclude, inline edit
   // or Replace-audio the reviewer did while this ran. Re-read and apply only what this stage
   // owns: each item's `audio` filename.
+  //
+  // DELETE rather than null out. generateAudio removes `audio` from an excluded card, and writing
+  // `audio: null` back in its place produced a file the cards schema rejects (`audio` must be a
+  // string) — which then failed validation on the NEXT write, blocking Mark done, exclude and every
+  // inline edit on that lesson. "Has no audio" is an absent key, the same shape generateAudio emits.
   const fresh = readJson(paths.cards);
-  const generated = new Map(annotated.items.map((item) => [item.id, item.audio ?? null]));
+  const generated = new Map(annotated.items.map((item) => [item.id, item.audio]));
   for (const item of fresh.items) {
-    if (generated.has(item.id)) item.audio = generated.get(item.id);
+    if (!generated.has(item.id)) continue;
+    const audio = generated.get(item.id);
+    if (typeof audio === "string" && audio) item.audio = audio;
+    else delete item.audio;
   }
   writeJson(paths.cards, fresh);
   ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);

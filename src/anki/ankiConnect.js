@@ -38,6 +38,10 @@ export function createAnkiConnect({
     // --- diagnostics ---
     version: () => invoke("version"),
     deckNames: () => invoke("deckNames"),
+    // `addNote` does NOT create a missing deck — it fails with "deck was not found". Creating one is
+    // idempotent in AnkiConnect (an existing name just returns its id), so this is safe to call for
+    // every target deck.
+    createDeck: (deck) => invoke("createDeck", { deck }),
 
     // Sync the collection with AnkiWeb (same as the desktop Sync button). A content-only change syncs
     // incrementally with no prompt; a SCHEMA change (new field, template edit) forces a one-way full

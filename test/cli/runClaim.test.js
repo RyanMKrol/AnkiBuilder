@@ -220,3 +220,74 @@ test("a claim written by withClaim is valid JSON on disk", () => {
     });
   });
 });
+
+// A run directory is reserved with an identity claim ({kind, epubHash, chapterNumber}) minutes
+// before its corpus.json exists. withClaim used to REPLACE that with a bare {stage}, which quietly
+// disabled both reuse rules that depend on claimMatches: a retry after a crash could no longer
+// recognize its own directory, and the double-run guard could never fire.
+test("withClaim preserves the reservation's identity fields", () => {
+  withTempDir((dir) => {
+    writeClaim(dir, { kind: "chapter", epubHash: "hash", chapterNumber: 7 });
+
+    withClaim(dir, { stage: "assemble" }, () => {
+      const claim = readClaim(dir);
+      assert.equal(claim.stage, "assemble");
+      assert.ok(
+        claimMatches(claim, { kind: "chapter", epubHash: "hash", chapterNumber: 7 }),
+        "the reservation identity must survive the stage claim",
+      );
+    });
+  });
+});
+
+test("withClaim refuses a claim held by a DIFFERENT live process, but not by this one", () => {
+  withTempDir((dir) => {
+    // pid 1 always exists (process.kill(1, 0) throws EPERM, which reads as alive).
+    writeFileSync(
+      claimPath(dir),
+      JSON.stringify({ version: 1, stage: "prepare", pid: 1, host: hostname() }) + "\n",
+    );
+    assert.throws(
+      () => withClaim(dir, { stage: "audio" }, () => {}),
+      /is already being built/,
+      "a live claim owned by another process must not be taken over",
+    );
+
+    // Our own live claim is the normal case: reservation writes one just before the stage runs.
+    writeClaim(dir, { kind: "chapter", epubHash: "hash", chapterNumber: 7 });
+    assert.doesNotThrow(() => withClaim(dir, { stage: "assemble" }, () => {}));
+  });
+});
+
+test("Ctrl-C during a clearOnFailure:false stage keeps the claim, like a hard kill", () => {
+  withTempDir((dir) => {
+    writeClaim(dir, { kind: "chapter", epubHash: "hash", chapterNumber: 7 });
+    const before = process.listeners("SIGINT").length;
+    try {
+      withClaim(
+        dir,
+        { stage: "assemble" },
+        () => {
+          // Reach in and run the handler withClaim installed, which is what a real SIGINT does —
+          // minus the re-kill, which would take the test runner down with it.
+          const handler = process.listeners("SIGINT")[before];
+          assert.ok(handler, "withClaim must install a SIGINT handler");
+          const kill = process.kill;
+          process.kill = () => {};
+          try {
+            handler("SIGINT");
+          } finally {
+            process.kill = kill;
+          }
+          assert.ok(
+            existsSync(claimPath(dir)),
+            "interrupting a stage that keeps its claim on failure must not delete it",
+          );
+        },
+        { clearOnFailure: false },
+      );
+    } finally {
+      process.removeAllListeners("SIGINT");
+    }
+  });
+});

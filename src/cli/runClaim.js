@@ -129,12 +129,36 @@ export function describeClaim(claim) {
  * TRUE, because its directory is already identified by corpus.json/cards.json.
  */
 export function withClaim(runDir, fields, fn, { clearOnFailure = true } = {}) {
-  writeClaim(runDir, fields);
+  const existing = readClaim(runDir);
 
-  // A claim must not outlive its process even when the process is killed mid-stage.
+  // Refuse to take over a claim a DIFFERENT live process holds. The run-dir reuse ladder
+  // (outputPaths.js rule 3) can't catch this case, because rule 1 — corpus.json matches — wins
+  // before the claim is ever consulted: re-running `assemble` for a chapter that already has a
+  // corpus while its `prepare` is still running would otherwise put two processes on the same
+  // cards.json. Same-pid is always allowed: the reservation writes a live claim milliseconds
+  // before the stage's own withClaim runs.
+  if (existing && existing.pid !== process.pid && claimLiveness(existing) !== "stale") {
+    throw new Error(
+      `${runDir} is already being built (${describeClaim(existing)}).\n` +
+        `Wait for it to finish, or if that process is gone, delete ${claimPath(runDir)}.`,
+    );
+  }
+
+  // MERGE, don't replace. A run directory is reserved with an identity claim
+  // ({kind, epubHash, chapterNumber}) and only gets its corpus.json minutes later; if a stage
+  // overwrote that with a bare {stage}, `claimMatches` would fail for the rest of the build and
+  // BOTH ladder rules that depend on it would silently stop working — the retry after a crash
+  // could no longer recognize its own directory (leaking a fresh sequence number every time), and
+  // the double-run guard would never fire. Keeping the identity is what makes them real.
+  writeClaim(runDir, { ...(existing ?? {}), ...fields });
+
+  // A claim must not outlive its process even when the process is killed mid-stage. Ctrl-C is a
+  // FAILURE, though, so it honours `clearOnFailure` exactly like a thrown error does — otherwise
+  // interrupting an assemble would delete the very claim its retry needs to reclaim the directory,
+  // making Ctrl-C strictly worse than a hard kill.
   const release = () => clearClaim(runDir);
   const onSignal = (signal) => {
-    release();
+    if (clearOnFailure) release();
     process.removeListener("exit", release);
     process.kill(process.pid, signal);
   };

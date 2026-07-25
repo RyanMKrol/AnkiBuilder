@@ -19,6 +19,7 @@ import {
   listBooks,
   resolveBookEpubPath,
 } from "../../src/cli/outputPaths.js";
+import { withClaim, readClaim } from "../../src/cli/runClaim.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
@@ -518,6 +519,37 @@ test("resolveChapterRunDir reclaims its own crashed attempt (stale claim, no cor
       host: hostname(),
       startedAt: new Date().toISOString(),
     });
+    assert.equal(
+      resolveChapterRunDir(outputRoot, "book", "hash", 10),
+      dir,
+      "a retry must reuse the crashed attempt's directory, not leak a new sequence number",
+    );
+  });
+});
+
+// The test whose absence hid a real bug for two commits. Every test above hand-writes its claim
+// with writeRawClaim, so none of them exercised what a REAL assemble does: reserve the directory,
+// then immediately wrap the stage in withClaim. withClaim used to replace the reservation's claim
+// with a bare {stage}, erasing the identity these rules match on — so the reclaim below silently
+// leaked a new sequence number in production while the hand-written tests stayed green.
+test("a crashed stage's directory is reclaimed even though withClaim rewrote its claim", () => {
+  withTempDirs(({ outputRoot }) => {
+    const dir = resolveChapterRunDir(outputRoot, "book", "hash", 10);
+    assert.throws(
+      () =>
+        withClaim(
+          dir,
+          { stage: "assemble" },
+          () => {
+            throw new Error("crashed mid-extraction");
+          },
+          { clearOnFailure: false },
+        ),
+      /crashed mid-extraction/,
+    );
+    // The process that wrote it is "gone": re-stamp the surviving claim with a dead pid.
+    writeRawClaim(dir, { ...readClaim(dir), pid: DEAD_PID });
+
     assert.equal(
       resolveChapterRunDir(outputRoot, "book", "hash", 10),
       dir,

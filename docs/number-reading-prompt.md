@@ -31,6 +31,10 @@ Your job is to supply both, for each card listed, with every number written out.
    - A number and the counter it modifies are one word, but a long number breaks at its thousand /
      ten-thousand groups: `ichiman sanzen'en`, `nisen nijūgonen`, `jūninichi`.
    - Everything that is not part of the number keeps the spacing it already has.
+   - A number and its counter are joined by a HYPHEN: `jūni-nichi`, `shi-gatsu`, `go-ji`,
+     `nijūgo-nen`, `ip-pon`, `san-gai`. Never fuse them into one token — `jūninichi` reads as if it
+     contains an "ichi" that is not there. An ordinary word that merely looks like a counter keeps its
+     spelling: にほん "Japan" is `nihon`, not `ni-hon`.
 4. **Leave the card's meaning alone.** Do not translate, re-word, or fix anything else about it.
 
 ## Cards

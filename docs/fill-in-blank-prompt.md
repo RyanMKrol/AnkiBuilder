@@ -47,10 +47,16 @@ word instead.
    never a lowercased clip.
 6. **Write the target the way the deck does.** No trailing `。` (the audio stage adds one itself where
    the language wants it) and no editorial word-separation spaces. Keep any mid-sentence `、`.
-7. **Spell out digits in `reading`.** When a sentence contains a numeral (a price, a floor, a time),
+7. **Get the counter's own reading right — they are frequently irregular.** A number's reading changes
+   with the counter that follows it, and guessing produces a card that is spoken aloud confidently and
+   wrongly. In Japanese: April is しがつ, never よんがつ; July is しちがつ; 9 o'clock is くじ, not
+   きゅうじ; 1 minute is いっぷん. If the source gives the reading in brackets — textbooks routinely
+   print `４がつ（しがつ）` — use that, and if you are unsure of one, leave the number out of the
+   sentence rather than guess.
+8. **Spell out digits in `reading`.** When a sentence contains a numeral (a price, a floor, a time),
    set `reading` to the sentence with that number written out in {{TARGET_LANGUAGE}}'s own script. It
    drives both the romanization and the audio, both of which mishandle raw digits.
-8. **Aim for {{TARGET_COUNT}} cards or fewer.** Quality over volume — returning nothing at all is a
+9. **Aim for {{TARGET_COUNT}} cards or fewer.** Quality over volume — returning nothing at all is a
    valid answer for a lesson whose source has no usable drills.
 
 ## Earlier lessons

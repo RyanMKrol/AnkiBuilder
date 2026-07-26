@@ -588,7 +588,7 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const bytes = await readBodyCapped(req, MAX_UPLOAD_BYTES);
-    const { audio } = applyCardAudio(runDir, cardId, bytes, ext);
+    const { audio } = await applyCardAudio(runDir, cardId, bytes, ext);
     sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
   }
 

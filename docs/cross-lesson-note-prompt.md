@@ -55,6 +55,14 @@ tags are the book's own names and are the only correct way to cite a lesson.
 - Keep each note concise (1–2 sentences), concrete, and about USING the card — not restating its
   meaning.
 - Natural sentence-case English. Only reference cards that actually appear in the list below.
+- **When you name another card, use the gloss THAT CARD carries — never your own knowledge of the
+  word.** Every card in the list below shows the `english` the learner actually sees; that is the only
+  meaning they have been taught. A word usually means more than the book has covered so far, and
+  reaching for the fuller meaning is the easiest way to write a note that is true in general and wrong
+  here. こちら (kochira) does mean "this way" in ordinary Japanese — but if the card in the list glosses
+  it "this one (polite for 'this person')", then that is what the learner knows, and a note calling it
+  "this way" sends them back to a card that says something else while quietly teaching a sense they
+  have never met. If a card's own gloss will not support the point you want to make, drop the point.
 - Do not invent facts; if unsure, leave the card out.
 
 ## Output Format

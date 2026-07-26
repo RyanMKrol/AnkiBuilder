@@ -342,7 +342,10 @@ normalized text.
 **Trailing-silence trim (`src/audio/trimSilence.js`).** ElevenLabs leaves ~0.3s of silence plus a tiny
 end artifact ("blip") on every clip. Every clip returned by `fetchElevenLabsTts` (the single choke
 point — so both the build stage and the dashboard's Generate) is passed through `trimTrailingSilence`
-before it's cached/hashed: ffmpeg `silencedetect` locates the last real speech segment (≥
+before it's cached/hashed, **and so is a hand-uploaded Replace** (`applyCardAudio`), so an uploaded
+clip never sits next to generated ones that had their silence removed. Because the trimmer re-encodes
+to mp3, an upload it actually changed is stored as `.mp3` regardless of what it arrived as — writing
+mp3 bytes under a `.wav` name would be a worse bug than not trimming. The mechanism: ffmpeg `silencedetect` locates the last real speech segment (≥
 `minSpeechSec`, so a short trailing blip is skipped and a genuine mid-clip pause is preserved) and the
 clip is cut at the **midpoint of the trailing silence** (never at the speech edge — the buffer scales
 with the silence, with `padSec` as a floor, so the final sound is never clipped) and re-encoded.

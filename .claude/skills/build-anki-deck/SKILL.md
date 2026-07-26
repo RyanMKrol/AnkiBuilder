@@ -586,7 +586,7 @@ This:
 - Trims each clip's trailing silence + end "blip" (`src/audio/trimSilence.js`) — **best-effort, needs an
   optional system `ffmpeg`** (`brew install ffmpeg`); without it, clips just keep their trailing silence
   (one warning, then a silent no-op). Off with `ANKI_BUILDER_TRIM_AUDIO=0`. Applies to every
-  ElevenLabs-generated clip (build stage + dashboard Generate); manual dashboard uploads are untouched
+  clip that reaches a card — the build stage, the dashboard's Generate, and a hand-uploaded Replace alike, so an uploaded clip never sits next to generated ones with silence they had removed. A trimmed upload is stored as `.mp3`, since trimming re-encodes
 - Caches audio in `.anki-builder/audio/<voiceId>/<model>/` (gitignored; **segmented by model** so a
   model switch never reuses a stale clip) so reruns are fast
 - Copies audio files into the run directory

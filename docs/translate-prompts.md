@@ -362,13 +362,21 @@ Respond with ONLY a JSON array. One object per input item:
 ## Important
 - Return the final, correct `pronunciation` for EVERY item — never leave a known-wrong value in place.
 - Romanize a single word as a single token (no spurious internal spaces); double the consonant for a
-  sokuon (ろっかい → `rokkai`, not `ro tsu kai`); keep natural word spacing in a full sentence.
+  sokuon (ろっかい → `rok-kai`, not `ro tsu kai`); keep natural word spacing in a full sentence.
+- **Hyphenate a number from its counter**: `jūni-nichi`, never `jūninichi`. Fusing them produces strings
+  a learner cannot parse — `jūichinichi` (11th) and `jūninichi` (12th) differ only in where the morpheme
+  boundary falls, and `nichi` ends in the same three letters as `ichi`, so the fused 12th reads as if it
+  contains a "one" that is not there. Applies to every number+counter compound — days, months, o'clock,
+  minutes, floors, people, yen, flat/long/general objects — including the sound-changed forms:
+  `ip-pon`, `jup-pun`, `rop-pon`, `san-bon`, `san-gai`, `rok-kai`. **Do NOT hyphenate an ordinary word
+  that merely looks like one**: にほん "Japan" is `nihon`, not `ni-hon`; くつ "shoes" is `kutsu`, not
+  `ku-tsu`. The meaning decides, not the spelling.
 - Include every id exactly once. No markdown fences, no text around the JSON array.
 
 ### Example Output
 ```json
 [
-  { "id": "sixth-floor", "pronunciation": "rokkai" },
+  { "id": "sixth-floor", "pronunciation": "rok-kai" },
   { "id": "hello", "pronunciation": "konnichiwa" }
 ]
 ```

@@ -91,7 +91,10 @@ Field by field:
 - `category` (string): reuse one of the categories already present on the lesson's cards.
 - `target` (string): the {{TARGET_LANGUAGE}} sentence, as the card face shows it.
 - `reading` (string, optional): the spoken form — set it only when it differs from `target` (rule 7).
-- `pronunciation` (string): the romanization of the spoken form.
+- `pronunciation` (string): the romanization of the spoken form. **A number and its counter are joined
+  by a hyphen** — `jūni-nichi`, `shi-gatsu`, `go-ji`, `ip-pon` — never fused into one token, since
+  `jūninichi` reads as though it contains an "ichi" that is not there. An ordinary word that merely
+  looks like a counter keeps its spelling: にほん "Japan" is `nihon`, not `ni-hon`.
 - `note` (string, optional): a short back-of-card note, only when there is something genuinely useful
   to say about using the sentence. Omit it rather than restating the English.
 - `sourcePattern` (string): the sentence frame this card drills, written as a short skeleton with the

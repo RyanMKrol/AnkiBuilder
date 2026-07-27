@@ -6,7 +6,7 @@ import { validateCards as defaultValidateCards } from "../../model/index.js";
 import { httpError } from "../../util/httpError.js";
 import { autoTrim } from "../../audio/trimSilence.js";
 import { trimToRange as defaultTrimToRange } from "../../audio/trimToRange.js";
-import { cleanupChain, isCleanupName } from "../../audio/cleanupFilter.js";
+import { cleanupChain, isCleanupName, resolveCleanupName } from "../../audio/cleanupFilter.js";
 import { AUDIO_FIELDS, deriveCardAudio } from "../../audio/index.js";
 import { isSafeMediaFile } from "./runDir.js";
 
@@ -50,7 +50,12 @@ function setCardTakes(runDir, cardId, takes, { validateCards = defaultValidateCa
     throw httpError(400, `invalid card data after edit: ${e.message}`);
   }
   writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
-  return { audio: item.audio, audioTrim: item.audioTrim || null };
+  return {
+    audio: item.audio,
+    audioOriginal: item.audioOriginal || null,
+    audioTrim: item.audioTrim || null,
+    audioFilter: item.audioFilter || null,
+  };
 }
 
 // A card's audio state, with every take cleared. Spread over a `takes` object so a writer that
@@ -93,7 +98,14 @@ export async function applyCardAudio(runDir, cardId, bytes, ext, deps = {}) {
   return setCardTakes(
     runDir,
     cardId,
-    { ...clearedTakes(), audioOriginal: original, audioAuto, audioFilter: filter || null },
+    {
+      ...clearedTakes(),
+      audioOriginal: original,
+      audioAuto,
+      // Record the chain that was actually applied, not just an explicit override — otherwise a
+      // default-cleaned upload looks un-cleaned to the modal and to scripts/clean-audio.mjs.
+      audioFilter: resolveCleanupName(filter),
+    },
     deps,
   );
 }
@@ -111,7 +123,12 @@ export function selectCardAudio(runDir, cardId, filename, original = null, deps 
   return setCardTakes(
     runDir,
     cardId,
-    { ...clearedTakes(), audioOriginal: original || filename, audioAuto: filename },
+    {
+      ...clearedTakes(),
+      audioOriginal: original || filename,
+      audioAuto: filename,
+      audioFilter: resolveCleanupName(deps.filter),
+    },
     deps,
   );
 }

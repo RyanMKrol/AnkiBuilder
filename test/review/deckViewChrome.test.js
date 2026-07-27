@@ -261,3 +261,24 @@ test("AUDIO_TRIM_SCRIPT opens the handles at the current trim, preferring a hand
     /addEventListener\("error", function \(\) \{ use\(st\.duration\); \}\)/,
   );
 });
+
+// Replace and Generate install a whole NEW recording, so everything the editor reads off the row goes
+// stale at once: the original it cuts from, any hand-trim range, and the cleanup chain.
+test("DECK_EDIT_SCRIPT refreshes the whole row after Replace and after Generate", () => {
+  // "td.au" alone matches the ORIGINAL column first (it renders in front), so the in-use swap has to
+  // exclude it — otherwise a Replace updates the wrong player and In use keeps the previous take.
+  assert.match(DECK_EDIT_SCRIPT, /put\(tr, "td\.au:not\(\.au-orig\)", url\)/);
+  assert.match(DECK_EDIT_SCRIPT, /put\(tr, "td\.au\.au-orig", j\.originalUrl\)/);
+  assert.equal(
+    /querySelector\("td\.au"\)/.test(DECK_EDIT_SCRIPT),
+    false,
+    "an unqualified td.au query would hit the Original column",
+  );
+  // The editor reads the source clip straight off the row, so it must be repointed.
+  assert.match(DECK_EDIT_SCRIPT, /setAttribute\("data-original-url", j\.originalUrl\)/);
+  // The server clears a hand trim on a new recording (it described the previous one) — the row must
+  // follow, or reopening the editor would restore a range belonging to audio that is gone.
+  assert.match(DECK_EDIT_SCRIPT, /removeAttribute\("data-trim-start"\)/);
+  // Both write paths go through it, not just one.
+  assert.equal((DECK_EDIT_SCRIPT.match(/refreshRow\(r\.tr, /g) || []).length, 2);
+});

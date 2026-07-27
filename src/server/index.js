@@ -14,6 +14,7 @@ import {
   HOME_REOPEN_SCRIPT,
   DELIVER_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
+  AUDIO_TRIM_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { createAnkiConnect } from "../anki/ankiConnect.js";
 import { deliverToAnki } from "../anki/deliver.js";
@@ -25,7 +26,12 @@ import {
   getLanguageFont as defaultGetLanguageFont,
   readFontBytes as defaultReadFontBytes,
 } from "../deck/fontLibrary.js";
-import { applyCardAudio, selectCardAudio } from "./adapters/applyCardAudio.js";
+import {
+  applyCardAudio,
+  selectCardAudio,
+  trimCardAudio,
+  revertCardAudio,
+} from "./adapters/applyCardAudio.js";
 import {
   setCardExcluded,
   editCard,
@@ -37,6 +43,7 @@ import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
+import { trimToRange as defaultTrimToRange } from "../audio/trimToRange.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { resolveIso639Code as defaultResolveIso639Code } from "../model/iso639.js";
 import { httpError } from "../util/httpError.js";
@@ -116,6 +123,10 @@ export function createDeckServer({
   // to ffmpeg — a test that used it would be slow and would pass or fail on whether the machine
   // happens to have ffmpeg installed. Undefined means "use the real trimmer".
   trim = undefined,
+  // The reviewer's explicit [start, end] cut. Also ffmpeg, so also injectable — and unlike `trim` it
+  // deliberately THROWS on failure, because a hand-placed edit that silently did nothing would tell
+  // the reviewer their cut landed when the card still holds the untrimmed clip.
+  trimToRange = defaultTrimToRange,
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
@@ -330,17 +341,30 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
         unit: u.seq,
         stage: u.stage || "audio",
         audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
+        // The take the trim editor cuts from. Falls back to the shipping clip for cards generated
+        // before originals were kept — still trimmable, just not widenable past the automatic cut.
+        originalUrl: c.audioOriginal
+          ? mediaUrl(type, id, u.seq, c.audioOriginal)
+          : c.audio
+            ? mediaUrl(type, id, u.seq, c.audio)
+            : null,
       })),
     }));
+    // Replace / Generate mint a NEW recording, so they live with the Original — that column is what
+    // they change. Trim only ever re-cuts an existing one, so it sits with the clip it produces.
     const editControls = canEdit
       ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button>${isJa ? `<button type="button" class="gen-kanji">Generate (kanji)</button>` : ""}<span class="msg"></span></div>`
       : "";
-    const audioCell = (c) => {
-      const player = c.audioUrl
-        ? `<audio controls preload="none" src="${c.audioUrl}"></audio>`
-        : `<span class="x">—</span>`;
-      return player + editControls;
-    };
+    const player = (url) =>
+      url ? `<audio controls preload="none" src="${url}"></audio>` : `<span class="x">—</span>`;
+    const audioCell = (c) =>
+      player(c.audioUrl) +
+      (canEdit && c.originalUrl
+        ? `<div class="ed"><button type="button" class="trim">Trim…</button></div>`
+        : "");
+    // Only the editable review shows the Original column; passing undefined leaves the read-only
+    // Browse view and the view-deck artifact with their single audio column, exactly as before.
+    const originalCell = canEdit ? (c) => player(c.originalUrl) + editControls : undefined;
     // The Corpus review's write-back (exclude / inline edit) works per-section whenever the server is
     // editable — independent of the all-audio `canEdit` gate, which only governs audio editing + the
     // global rebuild. Both review stages are editable; an INCOMPLETE lesson is read-only (there is
@@ -390,6 +414,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       sections,
       startNumber: 1,
       audioCell,
+      originalCell,
       rowControl,
       sectionControl,
       // Review opens a lesson to work on it — render its cards expanded, no expand/collapse chrome.
@@ -406,7 +431,13 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // of the package); it's carried on #deckctx. The toolbar keeps just a status line for feedback.
     const toolbar = canEdit ? `<span id="rebuild-status" class="rb"></span>` : "";
     const modal = canEdit
-      ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>`
+      ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>
+<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Trim audio</h3><p class="sub">This is the card's <b>original</b> recording. Drag the edges to choose what to keep — the shaded parts are cut. Applying replaces the clip in use; the original is never changed.</p>
+<div class="wfwrap"><canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div><div class="wfplay"></div><div class="wfhandle start"></div><div class="wfhandle end"></div></div>
+<div class="trimtimes"><span>Start <b class="t-start">—</b></span><span>End <b class="t-end">—</b></span><span>Keeping <b class="t-kept">—</b></span></div>
+<div class="trimbar"><button type="button" class="trim-play-sel">▶ Selection</button><button type="button" class="trim-play-all">▶ Original</button><button type="button" class="trim-snap">Snap to speech</button><span class="trim-msg"></span></div>
+<div class="trimbar"><button type="button" class="trim-apply primary">Apply</button><button type="button" class="trim-revert" hidden>Revert to automatic</button><button type="button" class="trim-close">Cancel</button></div>
+<p class="trimnote">Automatic trimming only ever cuts the end of a clip, so leading silence always survives it — and a cut that went too far can only be recovered here, from the original.</p></div></div>`
       : "";
     const lessonWord = `lesson${units.length === 1 ? "" : "s"}`;
     const lede = canEdit
@@ -440,6 +471,8 @@ ${modal}
     // not needed here (it still drives the read-only Browse view below).
     const scripts = [];
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
+    // The trim editor lives in the same editable audio review as Replace/Generate.
+    if (canEdit) scripts.push(AUDIO_TRIM_SCRIPT);
     // REVIEW_EDIT_SCRIPT wires the Exclude toggle + the Corpus-review inline-edit cells. It's only
     // needed where those controls render: the Corpus review, or an editable (in-review) audio
     // review. A done, view-only lesson shows neither, so it isn't loaded there.
@@ -727,6 +760,29 @@ ${sectionHtml}
     });
   }
 
+  async function handleTrim(req, res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    const body = await readBodyCapped(req, 64 * 1024);
+    let start, end;
+    try {
+      ({ start, end } = JSON.parse(body.toString("utf-8")));
+    } catch {
+      throw httpError(400, "invalid JSON body");
+    }
+    const { audio } = trimCardAudio(runDir, cardId, Number(start), Number(end), { trimToRange });
+    sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
+  }
+
+  function handleTrimRevert(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    const { audio } = revertCardAudio(runDir, cardId);
+    sendJson(res, { audio, mediaUrl: audio ? mediaUrl(type, id, unit, audio) : null });
+  }
+
   // Rebuild the single group package (the book/course merge of done lessons, or a template's own deck)
   // — the only .apkg per group. Never writes a per-lesson file. Shared by the manual "Rebuild deck"
   // button and by rebuildGroupQuiet below.
@@ -822,6 +878,13 @@ ${sectionHtml}
       if (seg[8] === "audio" && seg[9] === "select" && seg.length === 10) {
         await handleSelect(req, res, type, id, unit, cardId);
         return true;
+      }
+      if (seg[8] === "audio" && seg[9] === "trim" && seg.length === 10) {
+        await handleTrim(req, res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "audio" && seg[9] === "trim" && seg[10] === "revert" && seg.length === 11) {
+        return (handleTrimRevert(res, type, id, unit, cardId), true);
       }
       if (seg[8] === "review" && seg[9] === "exclude" && seg.length === 10) {
         await handleReviewExclude(req, res, type, id, unit, cardId);

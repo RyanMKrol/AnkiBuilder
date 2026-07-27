@@ -196,6 +196,11 @@ npm run build
       permanent — it only ever cuts the end, so leading silence always survived and an over-eager cut
       was unrecoverable. A card now carries `audioOriginal` / `audioAuto` / `audioManual`, and the
       `audio` the deck embeds is derived from them
+- [x] Manual trim editor in the audio review — the table shows **Original** (with Replace / Generate)
+      beside **In use** (the auto-trimmed take, or your hand cut), and **Trim…** opens a waveform with
+      draggable start/end handles, snap-to-speech, and selection playback. Every cut is made from the
+      original, so the handles drag freely in both directions — including back out past where the
+      automatic trim landed — and "revert to automatic" is always one click away
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō

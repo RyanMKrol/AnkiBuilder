@@ -53,6 +53,14 @@ table.tbl-corpus{min-width:1310px}
    just wrap into more lines rather than pushing the table off-screen. Percentages sum to ~72%, leaving
    headroom for the ~268px of fixed columns at any reasonable width. */
 .tbl-audio.tbl-wide col.c-num{width:40px}.tbl-audio.tbl-wide col.c-en{width:13%}.tbl-audio.tbl-wide col.c-jp{width:12%}.tbl-audio.tbl-wide col.c-pron{width:9%}.tbl-audio.tbl-wide col.c-au{width:184px}.tbl-audio.tbl-wide col.c-hint{width:12%}.tbl-audio.tbl-wide col.c-note{width:14%}.tbl-audio.tbl-wide col.c-excl{width:44px}.tbl-audio.tbl-wide col.c-rnote{width:16%}
+/* The audio REVIEW carries two audio columns (Original, In use). That's ~368px of fixed width before
+   num/exclude, so the percentage columns are trimmed to keep the whole table inside a normal window
+   rather than pushing it into the .tw wrapper's horizontal scroll. */
+.tbl-audio.tbl-twoau col.c-en{width:11%}.tbl-audio.tbl-twoau col.c-jp{width:10%}.tbl-audio.tbl-twoau col.c-pron{width:7%}.tbl-audio.tbl-twoau col.c-hint{width:9%}.tbl-audio.tbl-twoau col.c-note{width:11%}.tbl-audio.tbl-twoau col.c-rnote{width:12%}
+/* The Original column is supporting evidence, not the answer — muted so the eye lands on In use. */
+td.au-orig{background:rgba(0,0,0,.018)}
+td.au-orig audio{opacity:.72}
+td.au-orig audio:hover{opacity:1}
 th.ctr,td.ctr{text-align:center}.tick{color:#5c7a52;font-weight:700}
 tbody td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
 tbody tr:hover td{background:rgba(122,59,54,.045)}
@@ -159,6 +167,29 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .modal-foot{display:flex;justify-content:flex-end;margin-top:16px}
 .modal-foot button{font:inherit;font-size:13px;color:var(--soft);background:none;border:1px solid var(--rule2);border-radius:8px;padding:6px 14px;cursor:pointer}
 .spin{font-size:13px;color:var(--soft)}
+/* editor: the manual trim modal (waveform + draggable start/end handles) */
+#trim-modal .modal-box{max-width:780px}
+.wfwrap{position:relative;height:150px;margin:6px 0 10px;border:1px solid var(--rule2);border-radius:8px;background:var(--card);overflow:hidden;touch-action:none;user-select:none}
+.wfwrap canvas{display:block;width:100%;height:100%}
+/* The DISCARDED regions are shaded, so the clip you keep is the part shown plainly. */
+.wfcut{position:absolute;top:0;bottom:0;background:rgba(35,32,28,.42);pointer-events:none}
+.wfhandle{position:absolute;top:0;bottom:0;width:11px;margin-left:-5px;cursor:ew-resize;background:transparent}
+.wfhandle::before{content:"";position:absolute;top:0;bottom:0;left:4px;width:3px;background:var(--accent)}
+.wfhandle::after{content:"";position:absolute;top:50%;left:0;width:11px;height:26px;margin-top:-13px;border-radius:3px;background:var(--accent)}
+.wfhandle:hover::after,.wfhandle.drag::after{filter:brightness(1.25)}
+/* Playhead — only visible while auditioning. */
+.wfplay{position:absolute;top:0;bottom:0;width:1px;background:#2f6f4f;pointer-events:none;display:none}
+.wfplay.on{display:block}
+.trimtimes{display:flex;gap:18px;font-family:var(--mono);font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+.trimtimes b{color:var(--ink);font-weight:600}
+.trimbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.trimbar button{font:inherit;font-size:12.5px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:5px 13px;cursor:pointer}
+.trimbar button:hover{border-color:var(--accent)}
+.trimbar button:disabled{opacity:.5;cursor:default}
+.trimbar button.primary{color:#fff;background:var(--accent);border-color:var(--accent)}
+.trimbar .trim-msg{font-size:12px;color:var(--faint);margin-left:auto}
+.trimbar .trim-msg.err{color:var(--accent)}
+.trimnote{font-size:12px;color:var(--faint);margin:10px 0 0}
 /* editor: corpus-review controls */
 .sec-tools{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--rule)}
 .sec-tools button{font:inherit;font-size:12px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:4px 12px;cursor:pointer}
@@ -274,6 +305,244 @@ export const DECK_EDIT_SCRIPT = `(function () {
   document.querySelectorAll("button.gen-kanji").forEach(function (btn) { btn.addEventListener("click", function () { openGen(btn, "/generate-kanji"); }); });
   modal.querySelector(".close").addEventListener("click", closeModal);
   modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+})();`;
+
+// Client wiring for the manual trim editor (included when the audio review is editable). Opens a modal
+// showing the card's ORIGINAL take as a waveform with draggable start/end handles; Apply cuts that
+// range server-side and the result becomes the clip that ships.
+//
+// The waveform is computed here rather than server-side: the browser already has to fetch the mp3 to
+// play it, and decodeAudioData gives the samples for free — no dependency, no extra round trip, no
+// peaks file to keep in step with the audio. One clip is decoded per modal open, so a lesson with
+// forty cards doesn't decode forty mp3s to render a page.
+//
+// Vanilla JS, no template literals / ${} (it's embedded in one). Reads deck ctx from #deckctx and each
+// row's card id / unit / original URL / saved range from its data-* attributes.
+export const AUDIO_TRIM_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  var modal = document.getElementById("trim-modal");
+  if (!ctx || !modal) return;
+  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
+  var isDone = ctx.getAttribute("data-done") === "1";
+  var status = document.getElementById("rebuild-status");
+  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  var PAD = 0.08;        // matches the automatic trim's padSec
+  var SPEECH = 0.01;     // amplitude ~= the automatic trim's -40dB noise floor
+  var MIN_RANGE = 0.05;  // the server refuses anything shorter
+
+  var wrap = modal.querySelector(".wfwrap");
+  var canvas = modal.querySelector("canvas");
+  var cutL = modal.querySelector(".wfcut.left");
+  var cutR = modal.querySelector(".wfcut.right");
+  var hStart = modal.querySelector(".wfhandle.start");
+  var hEnd = modal.querySelector(".wfhandle.end");
+  var playhead = modal.querySelector(".wfplay");
+  var tStart = modal.querySelector(".t-start");
+  var tEnd = modal.querySelector(".t-end");
+  var tKept = modal.querySelector(".t-kept");
+  var msg = modal.querySelector(".trim-msg");
+  var applyBtn = modal.querySelector(".trim-apply");
+  var revertBtn = modal.querySelector(".trim-revert");
+  var audio = new Audio();
+  var st = null;
+
+  var fmt = function (n) { return n.toFixed(2) + "s"; };
+  var say = function (t, err) { msg.textContent = t || ""; msg.classList.toggle("err", !!err); };
+
+  var draw = function () {
+    var dpr = window.devicePixelRatio || 1;
+    var w = wrap.clientWidth, h = wrap.clientHeight;
+    canvas.width = Math.max(1, Math.round(w * dpr));
+    canvas.height = Math.max(1, Math.round(h * dpr));
+    var g = canvas.getContext("2d");
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    var data = st.samples, mid = h / 2, step = data.length / w;
+    g.strokeStyle = "#7a3b36";
+    g.lineWidth = 1;
+    g.beginPath();
+    for (var x = 0; x < w; x++) {
+      var from = Math.floor(x * step), to = Math.min(data.length, Math.floor((x + 1) * step));
+      var lo = 0, hi = 0;
+      for (var i = from; i < to; i++) { var v = data[i]; if (v < lo) lo = v; if (v > hi) hi = v; }
+      g.moveTo(x + 0.5, mid - hi * mid * 0.92);
+      g.lineTo(x + 0.5, mid - lo * mid * 0.92);
+    }
+    g.stroke();
+    g.strokeStyle = "rgba(35,32,28,.18)";
+    g.beginPath(); g.moveTo(0, mid); g.lineTo(w, mid); g.stroke();
+  };
+
+  var paint = function () {
+    var a = (st.start / st.duration) * 100, b = (st.end / st.duration) * 100;
+    cutL.style.left = "0%"; cutL.style.width = a + "%";
+    cutR.style.left = b + "%"; cutR.style.width = (100 - b) + "%";
+    hStart.style.left = a + "%"; hEnd.style.left = b + "%";
+    tStart.textContent = fmt(st.start);
+    tEnd.textContent = fmt(st.end);
+    tKept.textContent = fmt(st.end - st.start);
+  };
+
+  // Where speech starts and stops, by the same standard the automatic trim uses — but applied to BOTH
+  // ends, which is the half it never does. A starting point to nudge, not a decision.
+  var snap = function () {
+    var d = st.samples, rate = st.rate, win = 256;
+    var first = -1, last = -1;
+    for (var i = 0; i + win <= d.length; i += win) {
+      var sum = 0;
+      for (var j = i; j < i + win; j++) sum += d[j] * d[j];
+      if (Math.sqrt(sum / win) > SPEECH) { if (first < 0) first = i; last = i + win; }
+    }
+    if (first < 0) { say("no speech found \\u2014 leaving the selection as it is", true); return; }
+    st.start = Math.max(0, first / rate - PAD);
+    st.end = Math.min(st.duration, last / rate + PAD);
+    paint();
+    say("");
+  };
+
+  var stop = function () { audio.pause(); playhead.classList.remove("on"); };
+  var tick = function () {
+    if (audio.paused) { playhead.classList.remove("on"); return; }
+    if (st.limit != null && audio.currentTime >= st.limit) { stop(); return; }
+    playhead.classList.add("on");
+    playhead.style.left = (audio.currentTime / st.duration) * 100 + "%";
+    window.requestAnimationFrame(tick);
+  };
+  var play = function (from, to) {
+    stop();
+    st.limit = to;
+    audio.currentTime = from;
+    audio.play().then(function () { window.requestAnimationFrame(tick); }).catch(function (e) { say(e.message, true); });
+  };
+
+  var drag = function (handle, which) {
+    handle.addEventListener("pointerdown", function (e) {
+      e.preventDefault();
+      handle.setPointerCapture(e.pointerId);
+      handle.classList.add("drag");
+      var move = function (ev) {
+        var box = wrap.getBoundingClientRect();
+        var t = ((ev.clientX - box.left) / box.width) * st.duration;
+        t = Math.max(0, Math.min(st.duration, t));
+        if (which === "start") st.start = Math.min(t, st.end - MIN_RANGE);
+        else st.end = Math.max(t, st.start + MIN_RANGE);
+        st.start = Math.max(0, st.start);
+        st.end = Math.min(st.duration, st.end);
+        paint();
+      };
+      var up = function () {
+        handle.classList.remove("drag");
+        handle.removeEventListener("pointermove", move);
+        handle.removeEventListener("pointerup", up);
+        handle.removeEventListener("pointercancel", up);
+      };
+      handle.addEventListener("pointermove", move);
+      handle.addEventListener("pointerup", up);
+      handle.addEventListener("pointercancel", up);
+    });
+  };
+  drag(hStart, "start");
+  drag(hEnd, "end");
+
+  var close = function () { stop(); modal.hidden = true; st = null; };
+
+  var open = function (btn) {
+    var tr = btn.closest("tr");
+    var url = tr.getAttribute("data-original-url");
+    if (!url) { window.alert("This card has no audio to trim."); return; }
+    modal.hidden = false;
+    say("loading\\u2026");
+    applyBtn.disabled = true;
+    revertBtn.hidden = tr.getAttribute("data-trim-start") == null;
+    st = { row: tr, cid: tr.getAttribute("data-card-id"), unit: tr.getAttribute("data-unit"), limit: null };
+    audio.src = url;
+    window.fetch(url)
+      .then(function (r) { return r.arrayBuffer(); })
+      .then(function (buf) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        return new AC().decodeAudioData(buf);
+      })
+      .then(function (decoded) {
+        if (!st) return;
+        st.samples = decoded.getChannelData(0);
+        st.rate = decoded.sampleRate;
+        st.duration = decoded.duration;
+        // Reopening a trimmed card restores the range it was cut with, so a selection that came out a
+        // shade tight is nudged rather than re-found by ear.
+        var s = parseFloat(tr.getAttribute("data-trim-start"));
+        var e = parseFloat(tr.getAttribute("data-trim-end"));
+        st.start = isFinite(s) ? Math.max(0, s) : 0;
+        st.end = isFinite(e) ? Math.min(st.duration, e) : st.duration;
+        if (st.end - st.start < MIN_RANGE) { st.start = 0; st.end = st.duration; }
+        draw();
+        paint();
+        applyBtn.disabled = false;
+        say("");
+      })
+      .catch(function (e) { say("could not read this clip: " + e.message, true); });
+  };
+
+  var maybeRebuild = function () {
+    if (!isDone) return Promise.resolve();
+    if (status) status.textContent = "rebuilding\\u2026";
+    return window.fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
+      if (status) status.textContent = x.ok ? "\\u2713 deck rebuilt (" + x.j.noteCount + " cards)" : "rebuild failed: " + (x.j.error || "");
+    });
+  };
+
+  // Swap the IN USE player only — the Original column keeps playing the untouched take.
+  var swapInUse = function (tr, url) {
+    var cell = tr.querySelector("td.au:not(.au-orig)");
+    var a = cell.querySelector("audio");
+    if (a) { a.src = url; return; }
+    var na = document.createElement("audio"); na.controls = true; na.preload = "none"; na.src = url;
+    var x = cell.querySelector(".x");
+    if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
+  };
+
+  var post = function (path, body) {
+    return window.fetch(base + "/unit/" + encodeURIComponent(st.unit) + "/card/" + encodeURIComponent(st.cid) + path,
+      body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : { method: "POST" })
+      .then(jsonp);
+  };
+
+  applyBtn.addEventListener("click", function () {
+    applyBtn.disabled = true;
+    say("trimming\\u2026");
+    var row = st.row, start = st.start, end = st.end;
+    post("/audio/trim", { start: start, end: end }).then(function (x) {
+      if (!x.ok) throw new Error(x.j.error || "trim failed");
+      swapInUse(row, x.j.mediaUrl);
+      row.setAttribute("data-trim-start", String(start));
+      row.setAttribute("data-trim-end", String(end));
+      close();
+      return maybeRebuild();
+    }).catch(function (e) { say(e.message, true); applyBtn.disabled = false; });
+  });
+
+  revertBtn.addEventListener("click", function () {
+    revertBtn.disabled = true;
+    say("reverting\\u2026");
+    var row = st.row;
+    post("/audio/trim/revert").then(function (x) {
+      if (!x.ok) throw new Error(x.j.error || "revert failed");
+      if (x.j.mediaUrl) swapInUse(row, x.j.mediaUrl);
+      row.removeAttribute("data-trim-start");
+      row.removeAttribute("data-trim-end");
+      close();
+      return maybeRebuild();
+    }).catch(function (e) { say(e.message, true); }).finally(function () { revertBtn.disabled = false; });
+  });
+
+  modal.querySelector(".trim-play-sel").addEventListener("click", function () { play(st.start, st.end); });
+  modal.querySelector(".trim-play-all").addEventListener("click", function () { play(0, null); });
+  modal.querySelector(".trim-snap").addEventListener("click", function () { snap(); });
+  modal.querySelector(".trim-close").addEventListener("click", close);
+  modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+  document.querySelectorAll("button.trim").forEach(function (btn) {
+    btn.addEventListener("click", function () { open(btn); });
+  });
 })();`;
 
 // Client wiring for the combined Corpus review (included when the first-review section is editable).
@@ -470,7 +739,7 @@ const STAGE_TABLES = {
       `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}${inlineFlags(c)}</td>
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
-  <td class="au">${ctx.audioCell(c)}</td>
+  ${ctx.originalCell ? `<td class="au au-orig">${ctx.originalCell(c)}</td>\n  ` : ""}<td class="au">${ctx.audioCell(c)}</td>
   <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
@@ -510,10 +779,20 @@ const STAGE_TABLES = {
 
 const cardRow = (c, n, stage, ctx) => {
   const spec = STAGE_TABLES[stage] || STAGE_TABLES.audio;
+  // The trim editor reads its source clip and any saved range straight off the row, so opening the
+  // modal costs no extra request. Only emitted where the editor is wired (originalCell present).
+  const trimAttrs =
+    ctx.originalCell && c.originalUrl
+      ? ` data-original-url="${escapeHtml(c.originalUrl)}"` +
+        (c.audioTrim && Number.isFinite(c.audioTrim.start) && Number.isFinite(c.audioTrim.end)
+          ? ` data-trim-start="${escapeHtml(String(c.audioTrim.start))}" data-trim-end="${escapeHtml(String(c.audioTrim.end))}"`
+          : "")
+      : "";
   const attrs =
     `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +
     `${c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""}` +
-    ` data-stage="${escapeHtml(stage)}"`;
+    ` data-stage="${escapeHtml(stage)}"` +
+    trimAttrs;
   // The audio-stage review gains an Exclude cell too, but only when editable (rowControl present) — the
   // read-only Browse view / artifact pass no rowControl, so their audio table stays untouched. The
   // corpus table already carries its own excl cell inside spec.cells.
@@ -538,18 +817,24 @@ const cardRow = (c, n, stage, ctx) => {
  * `audio` layout uses the caller's `audioCell(card)`. Optional `rowControl(stage, card)` injects a
  * per-row editor control; optional `sectionControl(section)` a per-section toolbar (both omitted for a
  * read-only render). Numbering is global and continues from `startNumber`.
+ *
+ * Optional `originalCell(card)` adds a SECOND audio column, in front of the shipping one, showing the
+ * card's untouched take. Only the dashboard's audio review passes it: the read-only Browse view and the
+ * `view-deck` artifact are about what the deck sounds like, not how it got there, so they keep exactly
+ * one audio column and render byte-identically to before.
  * @returns {{ html: string, endNumber: number }}
  */
 export function renderLessonSections({
   sections,
   startNumber = 1,
   audioCell,
+  originalCell,
   rowControl,
   sectionControl,
   open = false,
   showReviewNote = false,
 }) {
-  const ctx = { audioCell, rowControl, showReviewNote };
+  const ctx = { audioCell, originalCell, rowControl, showReviewNote };
   let n = startNumber - 1;
   const html = sections
     .map((s) => {
@@ -561,17 +846,26 @@ export function renderLessonSections({
       const tools = sectionControl ? sectionControl(s) : "";
       // Editable audio review adds a trailing Exclude column; keep it off the read-only audio layout.
       const auExcl = stage === "audio" && !!ctx.rowControl;
+      // …and a leading Original column, so the reviewer can hear what the trim was applied to. It goes
+      // in front of the shipping clip's column, which the `audio` spec already declares.
+      const auOrig = stage === "audio" && !!ctx.originalCell;
+      const specCols = auOrig
+        ? spec.cols.replace('<col class="c-au">', '<col class="c-au"><col class="c-au">')
+        : spec.cols;
+      const specHead = auOrig
+        ? spec.head.replace("<th>Audio</th>", "<th>Original</th><th>In use</th>")
+        : spec.head;
       const cols =
-        spec.cols +
+        specCols +
         (auExcl ? `<col class="c-excl">` : "") +
         (showReviewNote ? `<col class="c-rnote">` : "");
       const head =
-        spec.head + (auExcl ? `<th></th>` : "") + (showReviewNote ? `<th>Review note</th>` : "");
+        specHead + (auExcl ? `<th></th>` : "") + (showReviewNote ? `<th>Review note</th>` : "");
       // The audio table has an AUTO-width Note column; once the Exclude / Review-note columns are added
       // it collapses to ~0 and its text breaks one char per line. `tbl-wide` gives that crowded case
       // explicit px widths + a min-width so it scrolls in its .tw wrapper instead of crushing.
       const wide = stage === "audio" && (auExcl || showReviewNote);
-      const tblClass = `tbl tbl-${stage}${wide ? " tbl-wide" : ""}`;
+      const tblClass = `tbl tbl-${stage}${wide ? " tbl-wide" : ""}${auOrig ? " tbl-twoau" : ""}`;
       return `<details class="lesson"${open ? " open" : ""}><summary><span class="st">${escapeHtml(s.leaf)}</span><span class="cnt">${s.cards.length} cards · ${range}</span></summary>
   ${tools ? `<div class="sec-tools">${tools}</div>\n  ` : ""}<div class="tw"><table class="${tblClass}"><colgroup>${cols}</colgroup>
   <thead><tr>${head}</tr></thead>

@@ -4,7 +4,12 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSyn
 import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
-import { applyCardAudio, selectCardAudio } from "../../src/server/adapters/applyCardAudio.js";
+import {
+  applyCardAudio,
+  selectCardAudio,
+  trimCardAudio,
+  revertCardAudio,
+} from "../../src/server/adapters/applyCardAudio.js";
 
 function runDir() {
   const dir = mkdtempSync(join(tmpdir(), "upload-"));
@@ -225,6 +230,155 @@ test("selecting a variant whose original is missing from the run dir is refused"
       () => selectCardAudio(dir, "a", "v-gen-1234.mp3", "v-gen-1234.orig.mp3"),
       /not found/,
     );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// --- the manual trim ------------------------------------------------------------------------------
+
+// Fake cutter: records what it was handed and returns a marker naming the range, so a test can tell
+// WHICH take a cut was made from without decoding audio.
+function fakeCut(calls) {
+  return (bytes, start, end) => {
+    calls.push({ source: bytes.toString(), start, end });
+    return Buffer.from("CUT(" + bytes.toString() + "," + start + "-" + end + ")");
+  };
+}
+
+// Sets up a card that has been through the audio stage: an untouched original plus the trimmed take.
+function trimmableCard(dir) {
+  mkdirSync(join(dir, "audio"), { recursive: true });
+  writeFileSync(join(dir, "audio", "take.orig.mp3"), "FULL-LENGTH");
+  writeFileSync(join(dir, "audio", "take.mp3"), "AUTO");
+  const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+  Object.assign(cards.items[0], {
+    audio: "take.mp3",
+    audioOriginal: "take.orig.mp3",
+    audioAuto: "take.mp3",
+  });
+  writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+  return dir;
+}
+
+test("a hand trim cuts the ORIGINAL and ships the result, leaving the other takes alone", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const calls = [];
+    trimCardAudio(dir, "a", 0.2, 1.4, { trimToRange: fakeCut(calls) });
+
+    assert.deepEqual(calls, [{ source: "FULL-LENGTH", start: 0.2, end: 1.4 }]);
+    const card = cardOf(dir);
+    assert.match(card.audioManual, /^a-manual-[0-9a-f]{8}\.mp3$/);
+    assert.deepEqual(card.audioTrim, { start: 0.2, end: 1.4 });
+    assert.equal(card.audio, card.audioManual, "the hand cut wins the derive");
+    assert.equal(card.audioOriginal, "take.orig.mp3", "the original is untouched");
+    assert.equal(
+      card.audioAuto,
+      "take.mp3",
+      "the automatic take is kept, so revert needs no re-cut",
+    );
+    assert.equal(readFileSync(join(dir, "audio", card.audio), "utf-8"), "CUT(FULL-LENGTH,0.2-1.4)");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// The whole point of keeping the original. Re-cutting the PREVIOUS cut would compound the edits, so a
+// selection made slightly too tight could only ever get tighter — the handles would be one-way.
+test("re-trimming cuts the original again, not the previous cut", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const calls = [];
+    const cut = { trimToRange: fakeCut(calls) };
+    trimCardAudio(dir, "a", 0.5, 1.0, cut);
+    trimCardAudio(dir, "a", 0.1, 1.9, cut); // widened back out, past the first cut on both sides
+
+    assert.deepEqual(
+      calls.map((c) => c.source),
+      ["FULL-LENGTH", "FULL-LENGTH"],
+      "both cuts are made from the full-length take",
+    );
+    const card = cardOf(dir);
+    assert.deepEqual(card.audioTrim, { start: 0.1, end: 1.9 });
+    assert.equal(readFileSync(join(dir, "audio", card.audio), "utf-8"), "CUT(FULL-LENGTH,0.1-1.9)");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("reverting drops the hand cut and falls back to the automatic take", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    trimCardAudio(dir, "a", 0.2, 1.4, { trimToRange: fakeCut([]) });
+    revertCardAudio(dir, "a");
+
+    const card = cardOf(dir);
+    assert.equal("audioManual" in card, false);
+    assert.equal("audioTrim" in card, false);
+    assert.equal(card.audio, "take.mp3");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// A clip generated before originals were kept has no `audioOriginal`. It can still be trimmed — just
+// not widened back out past what the automatic trim already removed.
+test("a card with no original is trimmed from its shipping clip", () => {
+  const dir = runDir();
+  try {
+    mkdirSync(join(dir, "audio"), { recursive: true });
+    writeFileSync(join(dir, "audio", "legacy.mp3"), "ALREADY-TRIMMED");
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audio = "legacy.mp3";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    const calls = [];
+    trimCardAudio(dir, "a", 0, 0.9, { trimToRange: fakeCut(calls) });
+    assert.equal(calls[0].source, "ALREADY-TRIMMED");
+    assert.equal(cardOf(dir).audio, cardOf(dir).audioManual);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// Failing open here would tell the reviewer their cut landed while the card still holds the old clip.
+test("a cutter failure surfaces as an error and leaves the card untouched", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    assert.throws(
+      () =>
+        trimCardAudio(dir, "a", 0.2, 1.4, {
+          trimToRange: () => {
+            throw new Error("ffmpeg is required to trim audio but was not found");
+          },
+        }),
+      /ffmpeg is required to trim audio/,
+    );
+    const card = cardOf(dir);
+    assert.equal("audioManual" in card, false);
+    assert.equal(card.audio, "take.mp3", "the card still ships what it shipped before");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("trimming a card with no audio at all is refused", () => {
+  const dir = runDir();
+  try {
+    assert.throws(() => trimCardAudio(dir, "a", 0, 1, { trimToRange: fakeCut([]) }), /no audio/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("trimming a card whose source is missing from disk is refused", () => {
+  const dir = runDir();
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioOriginal = "vanished.orig.mp3";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+    assert.throws(() => trimCardAudio(dir, "a", 0, 1, { trimToRange: fakeCut([]) }), /not found/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

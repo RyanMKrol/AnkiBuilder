@@ -190,6 +190,12 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .trimbar .trim-msg{font-size:12px;color:var(--faint);margin-left:auto}
 .trimbar .trim-msg.err{color:var(--accent)}
 .trimnote{font-size:12px;color:var(--faint);margin:10px 0 0}
+.cleanbar{border-top:1px solid var(--rule);padding-top:10px;margin-top:14px}
+.cleanbar .cleanlabel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:4px}
+.cleanbar .clean-btn{text-transform:capitalize}
+.cleanbar .clean-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.cleanbar .clean-msg{font-size:12px;color:var(--faint);margin-left:auto}
+.cleanbar .clean-msg.err{color:var(--accent)}
 /* editor: corpus-review controls */
 .sec-tools{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--rule)}
 .sec-tools button{font:inherit;font-size:12px;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:4px 12px;cursor:pointer}
@@ -454,6 +460,8 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
     say("loading\\u2026");
     applyBtn.disabled = true;
     revertBtn.hidden = tr.getAttribute("data-trim-start") == null;
+    markFilter(tr.getAttribute("data-filter"));
+    modal.querySelector(".clean-msg").textContent = "";
     st = { row: tr, cid: tr.getAttribute("data-card-id"), unit: tr.getAttribute("data-unit"), limit: null };
     audio.src = url;
     window.fetch(url)
@@ -534,6 +542,37 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
     }).catch(function (e) { say(e.message, true); }).finally(function () { revertBtn.disabled = false; });
   });
 
+  var markFilter = function (name) {
+    modal.querySelectorAll(".clean-btn").forEach(function (b) {
+      b.classList.toggle("on", b.getAttribute("data-filter") === (name || "standard"));
+    });
+  };
+  modal.querySelectorAll(".clean-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var name = btn.getAttribute("data-filter");
+      var cmsg = modal.querySelector(".clean-msg");
+      var row = st.row;
+      modal.querySelectorAll(".clean-btn").forEach(function (b) { b.disabled = true; });
+      cmsg.textContent = "re-cleaning\u2026"; cmsg.classList.remove("err");
+      post("/audio/clean", { filter: name }).then(function (x) {
+        if (!x.ok) throw new Error(x.j.error || "clean failed");
+        swapInUse(row, x.j.mediaUrl);
+        row.setAttribute("data-filter", name);
+        // Re-cleaning re-derives from the original, so a saved hand trim is re-cut under the new
+        // chain rather than dropped — keep the row's stored range in step with what came back.
+        if (x.j.audioTrim) {
+          row.setAttribute("data-trim-start", String(x.j.audioTrim.start));
+          row.setAttribute("data-trim-end", String(x.j.audioTrim.end));
+        } else {
+          row.removeAttribute("data-trim-start"); row.removeAttribute("data-trim-end");
+        }
+        markFilter(name);
+        cmsg.textContent = "\u2713 " + name;
+        return maybeRebuild();
+      }).catch(function (e) { cmsg.textContent = e.message; cmsg.classList.add("err"); })
+        .finally(function () { modal.querySelectorAll(".clean-btn").forEach(function (b) { b.disabled = false; }); });
+    });
+  });
   modal.querySelector(".trim-play-sel").addEventListener("click", function () { play(st.start, st.end); });
   modal.querySelector(".trim-play-all").addEventListener("click", function () { play(0, null); });
   modal.querySelector(".trim-snap").addEventListener("click", function () { snap(); });
@@ -786,7 +825,8 @@ const cardRow = (c, n, stage, ctx) => {
       ? ` data-original-url="${escapeHtml(c.originalUrl)}"` +
         (c.audioTrim && Number.isFinite(c.audioTrim.start) && Number.isFinite(c.audioTrim.end)
           ? ` data-trim-start="${escapeHtml(String(c.audioTrim.start))}" data-trim-end="${escapeHtml(String(c.audioTrim.end))}"`
-          : "")
+          : "") +
+        (c.audioFilter ? ` data-filter="${escapeHtml(c.audioFilter)}"` : "")
       : "";
   const attrs =
     `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +

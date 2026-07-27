@@ -1487,3 +1487,62 @@ test("the trim routes are refused on a read-only server", async () => {
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("the trim modal offers the cleanup chains, and POST audio/clean switches one", async () => {
+  const root = reviewableFixture();
+  const cardsPath = join(root, "epubs/mybook/chapter-0/cards.json");
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        for (const chain of ["standard", "gentle", "aggressive"]) {
+          assert.match(html, new RegExp(`data-filter="${chain}"`), `${chain} button rendered`);
+        }
+
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/clean`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ filter: "aggressive" }),
+          }),
+        );
+        assert.equal(res.status, 200);
+        assert.equal(
+          JSON.parse(readFileSync(cardsPath, "utf-8")).items[0].audioFilter,
+          "aggressive",
+        );
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// Chain names reach an ffmpeg command line. They're looked up in a fixed table and a raw filter string
+// is never accepted, so a request can't inject arbitrary ffmpeg filters (or shell metacharacters).
+test("audio/clean refuses anything that isn't a known chain name", async () => {
+  const root = reviewableFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        for (const bad of ["asubcut=cutoff=1", "; rm -rf /", "", null, 42]) {
+          const res = await asJson(
+            await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/clean`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ filter: bad }),
+            }),
+          );
+          assert.equal(res.status, 400, `rejected: ${JSON.stringify(bad)}`);
+          assert.match(res.body.error, /unknown cleanup filter/);
+        }
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

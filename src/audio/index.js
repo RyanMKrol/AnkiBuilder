@@ -18,7 +18,14 @@ export function hashTerm(term) {
  * step with the schema by forgetting one — an orphaned `audioManual` would keep pointing `audio` at a
  * clip of text the card no longer has.
  */
-export const AUDIO_FIELDS = ["audio", "audioOriginal", "audioAuto", "audioManual", "audioTrim"];
+export const AUDIO_FIELDS = [
+  "audio",
+  "audioOriginal",
+  "audioAuto",
+  "audioManual",
+  "audioTrim",
+  "audioFilter",
+];
 
 /**
  * The clip a card actually ships, given its stored takes: a hand-cut range wins over the automatic

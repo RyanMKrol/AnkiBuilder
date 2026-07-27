@@ -31,6 +31,7 @@ import {
   selectCardAudio,
   trimCardAudio,
   revertCardAudio,
+  recleanCardAudio,
 } from "./adapters/applyCardAudio.js";
 import {
   setCardExcluded,
@@ -44,6 +45,7 @@ import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
 import { trimToRange as defaultTrimToRange } from "../audio/trimToRange.js";
+import { cleanupNames, isCleanupName } from "../audio/cleanupFilter.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { resolveIso639Code as defaultResolveIso639Code } from "../model/iso639.js";
 import { httpError } from "../util/httpError.js";
@@ -436,8 +438,16 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
 <div class="wfwrap"><canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div><div class="wfplay"></div><div class="wfhandle start"></div><div class="wfhandle end"></div></div>
 <div class="trimtimes"><span>Start <b class="t-start">—</b></span><span>End <b class="t-end">—</b></span><span>Keeping <b class="t-kept">—</b></span></div>
 <div class="trimbar"><button type="button" class="trim-play-sel">▶ Selection</button><button type="button" class="trim-play-all">▶ Original</button><button type="button" class="trim-snap">Snap to speech</button><span class="trim-msg"></span></div>
+<div class="trimbar cleanbar"><span class="cleanlabel">Noise cleanup</span>${cleanupNames()
+          .map(
+            (n) =>
+              `<button type="button" class="clean-btn" data-filter="${escapeHtml(n)}">${escapeHtml(n)}</button>`,
+          )
+          .join(
+            "",
+          )}<button type="button" class="clean-btn" data-filter="off">off</button><span class="clean-msg"></span></div>
 <div class="trimbar"><button type="button" class="trim-apply primary">Apply</button><button type="button" class="trim-revert" hidden>Revert to automatic</button><button type="button" class="trim-close">Cancel</button></div>
-<p class="trimnote">Automatic trimming only ever cuts the end of a clip, so leading silence always survives it — and a cut that went too far can only be recovered here, from the original.</p></div></div>`
+<p class="trimnote">Automatic trimming only ever cuts the end of a clip, so leading silence always survives it — and a cut that went too far can only be recovered here, from the original. <b>Noise cleanup</b> runs before the trim and is applied to the clip in use, not to the original above — switch chains if the default leaves rumble behind or thins the voice.</p></div></div>`
       : "";
     const lessonWord = `lesson${units.length === 1 ? "" : "s"}`;
     const lede = canEdit
@@ -783,6 +793,31 @@ ${sectionHtml}
     sendJson(res, { audio, mediaUrl: audio ? mediaUrl(type, id, unit, audio) : null });
   }
 
+  // Re-derive a card's takes under a different noise-cleanup chain. Always from the untouched
+  // original, so switching chains never stacks one filter on another.
+  async function handleClean(req, res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    const body = await readBodyCapped(req, 64 * 1024);
+    let filter;
+    try {
+      ({ filter } = JSON.parse(body.toString("utf-8")));
+    } catch {
+      throw httpError(400, "invalid JSON body");
+    }
+    // Chains are selected BY NAME and looked up in a fixed table — a request can never supply a raw
+    // ffmpeg filter string, which would otherwise reach a command line.
+    if (!isCleanupName(filter) && String(filter).toLowerCase() !== "off") {
+      throw httpError(400, `unknown cleanup filter: ${JSON.stringify(filter)}`);
+    }
+    const { audio, audioTrim } = await recleanCardAudio(runDir, cardId, filter, {
+      trim,
+      trimToRange,
+    });
+    sendJson(res, { audio, audioTrim, filter, mediaUrl: mediaUrl(type, id, unit, audio) });
+  }
+
   // Rebuild the single group package (the book/course merge of done lessons, or a template's own deck)
   // — the only .apkg per group. Never writes a per-lesson file. Shared by the manual "Rebuild deck"
   // button and by rebuildGroupQuiet below.
@@ -877,6 +912,10 @@ ${sectionHtml}
       }
       if (seg[8] === "audio" && seg[9] === "select" && seg.length === 10) {
         await handleSelect(req, res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "audio" && seg[9] === "clean" && seg.length === 10) {
+        await handleClean(req, res, type, id, unit, cardId);
         return true;
       }
       if (seg[8] === "audio" && seg[9] === "trim" && seg.length === 10) {

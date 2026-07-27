@@ -201,6 +201,12 @@ npm run build
       draggable start/end handles, snap-to-speech, and selection playback. Every cut is made from the
       original, so the handles drag freely in both directions — including back out past where the
       automatic trim landed — and "revert to automatic" is always one click away
+- [x] Background-noise cleanup, on by default. ElevenLabs clips carry low-frequency rumble under the
+      voice (~94% of the noise energy sits below 80 Hz), which a steep low-cut removes without touching
+      speech. It runs BEFORE the trim, because the rumble is loud enough to defeat silence detection
+      and make the trim give up. Three chains (`standard` / `gentle` / `aggressive`) are selectable per
+      card in the trim modal for the occasional clip the default handles badly;
+      `ANKI_BUILDER_AUDIO_CLEANUP` sets the default or turns it off
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō

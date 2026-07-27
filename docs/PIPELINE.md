@@ -384,11 +384,25 @@ instead of decaying. Measured on this project's decks, a substantial share of Ja
 with speech running to the final sample and no trailing silence at all.
 
 The fix is to give the model something it is ALLOWED to truncate: `ででで` is appended to Japanese TTS
-text (after the `。` transform), so whatever gets clipped is the marker rather than the card's words.
+text, so whatever gets clipped is the marker rather than the card's words.
 The marker is cut back off before the clip ships. It is part of the text SENT and therefore part of the
 cache key, so a marked clip is never reused as an unmarked one. Japanese only — it relies on ja being
 written without spaces and on で being a clean repeated syllable no card ends with three of. Off with
 `ANKI_BUILDER_TTS_END_MARKER=0`.
+
+**The marker is `。ででで`, and the `。` is load-bearing.** It is what makes the model treat the marker
+as a separate utterance and leave a gap in front of it — and that gap is what makes the marker findable
+at all. Measured: `はちじ。ででで` leaves a 1.12s gap and strips cleanly, while `はちじででで` leaves 0.24s
+and is not recognised, so the clip ships the marker AND all its silence (0.82s becomes 3.20s). `ふん`
+without the dot came back as a single 0.96s segment with no separation whatever.
+
+That `。` used to be a per-language "alt audio" transform appended to the card's TEXT, which also made
+every Japanese card offer a with-dot / without-dot pair of takes. It existed to work around clipping and
+mis-rendered short clips; the marker covers both. Folding the dot into the marker produces a
+byte-identical string, so that whole module was deleted with no change to what is sent and no cache
+invalidation. `cardAudioVariants` keeps its other two axes — brackets and commas — because those choose
+WHICH WORDS are spoken (`おつかれさま（でした）` with or without the optional part) rather than working around
+a TTS defect.
 
 Removing it takes **two independent checks**, and both must agree:
 

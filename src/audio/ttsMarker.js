@@ -13,7 +13,16 @@
 // open syllable that no real card ends with three of; neither assumption transfers automatically to
 // another language, and a wrong guess would put audible nonsense on the end of every card.
 
-export const TTS_END_MARKER = "ででで";
+// The `。` is part of the MARKER, not of the card's text. It is what makes the model treat the marker
+// as a separate little utterance and leave a gap in front of it — and that gap is what makes the
+// marker findable and removable. Measured: `はちじ。ででで` leaves a 1.12s gap and strips cleanly, while
+// `はちじででで` leaves 0.24s and is not recognised at all (so the clip ships the marker AND its
+// silence). Dropping the dot does not simplify anything; it breaks the mechanism.
+//
+// This absorbs what used to be a per-language "alt audio" transform that appended `。` to the text and
+// offered a with-/without-dot pair of takes. That existed to work around clipping and mis-rendered
+// short clips; the marker covers both, and the dot now has exactly one job, here.
+export const TTS_END_MARKER = "。ででで";
 
 /** Languages whose TTS text gets the marker. */
 const MARKED_LANGUAGES = new Set(["ja"]);

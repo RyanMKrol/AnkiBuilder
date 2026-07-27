@@ -1453,7 +1453,7 @@ test("deck --book-dir: discovers lesson-*/cards.json in seq order and uses the c
   });
 });
 
-test("audio: copies the default clip into the run dir and threads the real alt transform (for the with-。 default)", async () => {
+test("audio: copies the default clip into the run dir and writes no legacy alt field", async () => {
   await withTempDir(async (runDir) =>
     withTempDir(async (libraryHomeDir) => {
       const paths = runPaths(runDir);
@@ -1480,11 +1480,10 @@ test("audio: copies the default clip into the run dir and threads the real alt t
         log: () => {},
       });
 
-      // the real alt-transform lookup is still threaded through — it builds the with-。 DEFAULT clip,
-      // even though there's no separate alt pass any more (ja → a function, en → undefined)
-      assert.equal(typeof receivedOpts.getAltTransform("ja"), "function");
-      assert.equal(receivedOpts.getAltTransform("en"), undefined);
-      // only the default clip lands in the run's audio dir; no altAudio field is written
+      // The stage no longer threads an alt-audio transform: the with-。 / no-。 pair is gone, and the
+      // 。 now lives inside the end marker (src/audio/ttsMarker.js).
+      assert.equal("getAltTransform" in receivedOpts, false);
+      // only the default clip lands in the run's audio dir; no legacy altAudio field is written
       assert(existsSync(join(paths.audio, "def.mp3")));
       const written = JSON.parse(await fs.readFile(paths.cards, "utf-8"));
       assert.equal(written.items[0].audio, "def.mp3");

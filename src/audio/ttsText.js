@@ -1,5 +1,5 @@
 // Per-language normalization of the text actually sent to TTS (the "spoken text"), keyed by ISO
-// 639-1 code — mirrors voiceLibrary.js / altAudio.js.
+// 639-1 code — mirrors voiceLibrary.js / ttsMarker.js.
 //
 // Japanese (and other space-free scripts) are written without spaces. Any spaces in a card's
 // `target`/`reading` are editorial — we add them so a learner can parse the phrase — but ElevenLabs

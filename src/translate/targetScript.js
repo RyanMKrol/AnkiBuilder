@@ -1,6 +1,6 @@
 // Per-language "simplified target script" rules — for a beginner who hasn't learned a language's full
 // writing system yet and wants the card face in its simpler/learner script. This is the language
-// plug-in layer (same pattern as voiceLibrary / altAudio / romanizationLibraries / fontLibrary): the
+// plug-in layer (same pattern as voiceLibrary / romanizationLibraries / fontLibrary): the
 // translate core stays script-agnostic and just injects whatever instruction string this returns for
 // the target language when the `--simple-script` option is on. A language with no entry → no-op.
 //

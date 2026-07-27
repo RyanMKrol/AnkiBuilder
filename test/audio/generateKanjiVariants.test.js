@@ -63,20 +63,21 @@ test("generates fresh -genkanji- takes from the kanji orthography and returns th
       // two-file path (a trim that actually cut something).
       trim: async () => Buffer.from("trimmed"),
     });
-    // two takes: no 。 and with 。, synthesized from the KANJI text (not the kana)
+    // ONE take, synthesized from the KANJI text (not the kana). There used to be a no-。 / with-。
+    // pair here; the end marker replaced what the dot was working around.
     assert.deepEqual(
       out.map((v) => v.label),
-      ["kanji", "kanji · 。"],
+      ["kanji"],
     );
     // Japanese TTS text carries the throwaway end marker (src/audio/ttsMarker.js), which the trim
     // cuts back off — so the model truncates the marker rather than the card's words.
-    assert.deepEqual(calls, ["十時から六時ででで", "十時から六時。ででで"]);
+    assert.deepEqual(calls, ["十時から六時。ででで"]);
     assert.ok(out.every((v) => v.kanji === "十時から六時"));
     assert.ok(out.every((v) => /-genkanji-[0-9a-f]{8}\.mp3$/.test(v.audio)));
     // Each take keeps its untouched original beside the trimmed clip the reviewer auditions, so a
     // pick stays re-trimmable from the full-length recording.
     assert.ok(out.every((v) => /-genkanji-[0-9a-f]{8}\.orig\.mp3$/.test(v.original)));
-    assert.equal(readdirSync(join(dir, "audio")).length, 4);
+    assert.equal(readdirSync(join(dir, "audio")).length, 2);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

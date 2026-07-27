@@ -4,7 +4,6 @@ import { promises as fs } from "fs";
 import { writeFileAtomicAsync } from "../util/atomicWrite.js";
 import { libraryHome } from "../model/index.js";
 import { resolveIso639Code } from "../model/iso639.js";
-import { getAltAudioTransform } from "./altAudio.js";
 import { normalizeTtsText } from "./ttsText.js";
 import { TTS_MODEL } from "./ttsModel.js";
 import { autoTrim } from "./trimSilence.js";
@@ -121,12 +120,12 @@ async function fetchTermsToCache(
  * addressed, so editing a `reading` after audio has run leaves the card pointing at a stale clip that
  * is still on disk — which read as "already generated — reusing" and silently kept the old audio.
  */
-export function defaultClipText(item, languageCode, altTransform) {
+export function defaultClipText(item, languageCode) {
   const text = normalizeTtsText(speechText(item), languageCode);
   // The throwaway end marker is part of the text SENT, so it is part of the cache key too — a clip
   // generated with it is a different recording from one generated without, and must not be reused
   // across the change.
-  return withEndMarker(altTransform ? altTransform(text) : text, languageCode);
+  return withEndMarker(text, languageCode);
 }
 
 /**
@@ -151,8 +150,8 @@ export function isStageOriginalFilename(filename) {
   return typeof filename === "string" && /^[0-9a-f]{16}\.orig\.mp3$/.test(filename);
 }
 
-export function defaultOriginalFilename(item, languageCode, altTransform) {
-  return `${hashTerm(defaultClipText(item, languageCode, altTransform))}.orig.mp3`;
+export function defaultOriginalFilename(item, languageCode) {
+  return `${hashTerm(defaultClipText(item, languageCode))}.orig.mp3`;
 }
 
 /**
@@ -169,20 +168,13 @@ export function isStageOwnedCard(item) {
   return !item.audio || isDefaultClipFilename(item.audio);
 }
 
-export function defaultClipFilename(item, languageCode, altTransform) {
-  return `${hashTerm(defaultClipText(item, languageCode, altTransform))}.mp3`;
+export function defaultClipFilename(item, languageCode) {
+  return `${hashTerm(defaultClipText(item, languageCode))}.mp3`;
 }
 
 export async function generateAudio(
   cards,
-  {
-    voiceId,
-    fetchTts = null,
-    libraryHomeDir = null,
-    getAltTransform = getAltAudioTransform,
-    model = TTS_MODEL,
-    trim = undefined,
-  } = {},
+  { voiceId, fetchTts = null, libraryHomeDir = null, model = TTS_MODEL, trim = undefined } = {},
 ) {
   if (!voiceId) {
     throw new Error("voiceId is required");
@@ -219,14 +211,10 @@ export async function generateAudio(
     marker: usesEndMarker(languageCode),
   };
 
-  // The DEFAULT (and only up-front) take. For a language with a transform (Japanese appends 。), the
-  // WITH-。 take is the default — a trailing 。 gives ElevenLabs a sentence boundary and fixes many
-  // mis-rendered short/bare clips (lone kana, some numbers). Languages with no transform get the plain
-  // take. Every OTHER variant — the no-。 take, comma/bracket forms, and kana+kanji — is generated ON
-  // DEMAND in the dashboard, not here. The displayed target/reading never carries a 。; the dot is
-  // audio-only.
-  const altTransform = getAltTransform(languageCode);
-  const defaultTextFor = (item) => defaultClipText(item, languageCode, altTransform);
+  // The DEFAULT (and only up-front) take. Comma/bracket forms and kana+kanji are generated ON DEMAND
+  // in the dashboard, not here. Japanese text gets the end marker appended (./ttsMarker.js), which the
+  // trim cuts back off; the displayed target/reading never carries it.
+  const defaultTextFor = (item) => defaultClipText(item, languageCode);
 
   // Excluded cards are dropped from the deck at build time (src/deck/index.js), so don't spend TTS on
   // them here — and clear any `audio` they carry so the review shows no player and nothing lingers.

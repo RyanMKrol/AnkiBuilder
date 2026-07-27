@@ -64,7 +64,6 @@ import {
   AUDIO_FIELDS,
 } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
-import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
 import { TTS_MODEL } from "../audio/ttsModel.js";
 import { fetchElevenLabsTts as defaultFetchTts } from "../audio/elevenLabsTts.js";
 import {
@@ -882,7 +881,6 @@ async function runAudioInner(flags, ctx) {
   // "already generated — reusing" and never refetched. Comparing the name makes a text edit
   // self-healing — re-run `audio` and only the changed cards are refetched.
   const audioLanguageCode = resolveIso639Code(cards.meta.targetLanguage);
-  const altTransform = ctx.getAltAudioTransform(audioLanguageCode);
   // Only a clip this stage generated can be stale. A `-gen-` variant the reviewer auditioned and
   // picked, or a Replace upload, is a deliberate choice — regenerating over it would silently throw
   // away their work, which is a far worse bug than the one this check exists to fix.
@@ -892,8 +890,8 @@ async function runAudioInner(flags, ctx) {
   const clipIsCurrent = (item) =>
     !isStageOwnedCard(item) ||
     (item.audioOriginal
-      ? item.audioOriginal === defaultOriginalFilename(item, audioLanguageCode, altTransform)
-      : item.audio === defaultClipFilename(item, audioLanguageCode, altTransform));
+      ? item.audioOriginal === defaultOriginalFilename(item, audioLanguageCode)
+      : item.audio === defaultClipFilename(item, audioLanguageCode));
   const active = cards.items.filter((item) => !item.excluded);
   const stale = active.filter((item) => item.audio && !clipIsCurrent(item));
   const alreadyDone =
@@ -930,8 +928,6 @@ async function runAudioInner(flags, ctx) {
     voiceId,
     fetchTts: ctx.fetchTts,
     libraryHomeDir: ctx.libraryHome(),
-    // The default (kana+。) take still uses the alt-audio transform; there's no separate alt pass.
-    getAltTransform: ctx.getAltAudioTransform,
   });
 
   mkdirSync(paths.audio, { recursive: true });
@@ -1249,7 +1245,6 @@ export async function runCli(argv, deps = {}) {
     lessonSiblings = defaultLessonSiblings,
     generateAudio = defaultGenerateAudio,
     getDefaultVoice = defaultGetDefaultVoice,
-    getAltAudioTransform = defaultGetAltAudioTransform,
     buildDeck = defaultBuildDeck,
     buildBookDeck = defaultBuildBookDeck,
     rebuildBookDir = defaultRebuildBookDir,
@@ -1314,7 +1309,6 @@ export async function runCli(argv, deps = {}) {
     lessonSiblings,
     generateAudio,
     getDefaultVoice,
-    getAltAudioTransform,
     buildDeck,
     buildBookDeck,
     rebuildBookDir,

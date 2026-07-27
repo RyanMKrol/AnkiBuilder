@@ -190,6 +190,12 @@ npm run build
       while a spelled-out `reading` (`にせんえん`) drives BOTH the romaji pronunciation and the audio,
       since digits break the romanizer and TTS
 - [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `reading` when set; default take only — Japanese default appends `。`, other variants generated on demand in the dashboard; per-language TTS text normalization — Japanese strips editorial spaces so they aren't voiced as pauses)
+- [x] Every clip keeps its untouched original beside the auto-trimmed take (`<hash>.orig.mp3` next to
+      `<hash>.mp3`, and the same pair for Generate previews and Replace uploads). The trailing-silence
+      trim used to run inside the ElevenLabs fetch and throw the raw take away, which made its mistakes
+      permanent — it only ever cuts the end, so leading silence always survived and an over-eager cut
+      was unrecoverable. A card now carries `audioOriginal` / `audioAuto` / `audioManual`, and the
+      `audio` the deck embeds is derived from them
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō

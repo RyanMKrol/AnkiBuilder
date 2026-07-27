@@ -177,3 +177,19 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
     rmSync(dir, { recursive: true, force: true });
   }
 }
+
+/**
+ * Derives the auto-trimmed take from a raw clip, reporting whether the trim actually altered it.
+ *
+ * Every producer of audio (the build stage, the dashboard's Generate, a Replace upload) keeps the raw
+ * take and stores this derived one beside it, so they all need the same "did it change?" answer:
+ * `trimTrailingSilence` fails open by returning its input, and a buffer that came back byte-identical
+ * means the trim was a no-op — no second file worth writing, and no re-encode to account for.
+ *
+ * @returns {Promise<{ auto: Buffer, changed: boolean }>}
+ */
+export async function autoTrim(raw, { trim = trimTrailingSilence } = {}) {
+  const auto = await trim(raw);
+  const changed = auto !== raw && !auto.equals(raw);
+  return { auto: changed ? auto : raw, changed };
+}

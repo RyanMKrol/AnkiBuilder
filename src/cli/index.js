@@ -60,6 +60,7 @@ import {
   generateAudio as defaultGenerateAudio,
   defaultClipFilename,
   isDefaultClipFilename,
+  AUDIO_FIELDS,
 } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
 import { getAltAudioTransform as defaultGetAltAudioTransform } from "../audio/altAudio.js";
@@ -931,12 +932,16 @@ async function runAudioInner(flags, ctx) {
   // Must match generateAudio's model-segmented cache path (audio/<voiceId>/<model>/).
   const cacheDir = join(ctx.libraryHome(), "audio", voiceId, TTS_MODEL);
   // Copy each card's default clip from the cache into the run's audio/ dir; the deck build reads
-  // files from there. Other variants are generated on demand in the dashboard, not copied here.
+  // files from there. The untouched original comes too — the dashboard's trim editor re-cuts from it,
+  // and it's what the review shows beside the trimmed take. Other variants are generated on demand in
+  // the dashboard, not copied here.
   for (const item of annotated.items) {
-    if (!item.audio) continue;
-    const dest = join(paths.audio, item.audio);
-    if (!existsSync(dest)) {
-      copyFileSync(join(cacheDir, item.audio), dest);
+    for (const name of [item.audio, item.audioOriginal]) {
+      if (!name) continue;
+      const dest = join(paths.audio, name);
+      if (!existsSync(dest)) {
+        copyFileSync(join(cacheDir, name), dest);
+      }
     }
   }
 
@@ -951,12 +956,25 @@ async function runAudioInner(flags, ctx) {
   // string) — which then failed validation on the NEXT write, blocking Mark done, exclude and every
   // inline edit on that lesson. "Has no audio" is an absent key, the same shape generateAudio emits.
   const fresh = readJson(paths.cards);
-  const generated = new Map(annotated.items.map((item) => [item.id, item.audio]));
+  const generated = new Map(annotated.items.map((item) => [item.id, item]));
   for (const item of fresh.items) {
-    if (!generated.has(item.id)) continue;
-    const audio = generated.get(item.id);
-    if (typeof audio === "string" && audio) item.audio = audio;
-    else delete item.audio;
+    const next = generated.get(item.id);
+    if (!next) continue;
+    // An excluded card ships nothing, whatever its clip's provenance — drop the lot.
+    if (item.excluded) {
+      for (const field of AUDIO_FIELDS) delete item[field];
+      continue;
+    }
+    // Only overwrite a clip THIS stage owns. A `-gen-` variant the reviewer auditioned and picked, a
+    // Replace upload, or a `-manual-` hand cut is a deliberate choice; regenerating over it would
+    // silently throw their work away — the same rule `clipIsCurrent` applies on the read side, which
+    // until now was enforced when DECIDING to run but not when writing the results back.
+    if (item.audio && !isDefaultClipFilename(item.audio)) continue;
+    for (const field of AUDIO_FIELDS) {
+      const value = next[field];
+      if (value == null || value === "") delete item[field];
+      else item[field] = value;
+    }
   }
   writeJson(paths.cards, fresh);
   ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);

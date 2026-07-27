@@ -1542,13 +1542,21 @@ test("audio: preserves dashboard edits made while the stage was running", async 
     withTempDir(async (libraryHomeDir) => {
       const paths = runPaths(runDir);
       mkdirSync(runDir, { recursive: true });
-      writeFileSync(paths.cards, JSON.stringify(baseCards()));
+      const cards = baseCards();
+      cards.items.push({
+        id: "a2",
+        english: "Goodbye",
+        category: "Greetings",
+        target: "Adios",
+        pronunciation: "ah-DYOS",
+      });
+      writeFileSync(paths.cards, JSON.stringify(cards));
 
       const cacheDir = join(libraryHomeDir, "audio", "voice1", TTS_MODEL);
       mkdirSync(cacheDir, { recursive: true });
       writeFileSync(join(cacheDir, "hola.mp3"), Buffer.from("mp3-bytes"));
 
-      const generateAudio = (cards) => {
+      const generateAudio = (input) => {
         // Stand in for the reviewer excluding a card and fixing a translation in the dashboard
         // while ElevenLabs is still working.
         const onDisk = JSON.parse(readFileSync(paths.cards, "utf-8"));
@@ -1556,7 +1564,7 @@ test("audio: preserves dashboard edits made while the stage was running", async 
         onDisk.items[0].target = "edited-in-dashboard";
         writeFileSync(paths.cards, JSON.stringify(onDisk));
 
-        return { ...cards, items: cards.items.map((item) => ({ ...item, audio: "hola.mp3" })) };
+        return { ...input, items: input.items.map((item) => ({ ...item, audio: "hola.mp3" })) };
       };
 
       await runCli(["audio", "--run", runDir, "--voice", "voice1"], {
@@ -1572,7 +1580,15 @@ test("audio: preserves dashboard edits made while the stage was running", async 
         "edited-in-dashboard",
         "the inline edit made mid-stage must survive",
       );
-      assert.equal(written.items[0].audio, "hola.mp3", "and the generated audio must still land");
+      // The stage read `cards` before that exclude landed, so it generated a clip for a card the
+      // reviewer has since dropped. The merge reads the exclusion off DISK, so the clip is discarded
+      // rather than reinstated on a card that ships nothing.
+      assert.equal(
+        "audio" in written.items[0],
+        false,
+        "a card excluded mid-stage gets no audio written back",
+      );
+      assert.equal(written.items[1].audio, "hola.mp3", "and the generated audio must still land");
     }),
   );
 });

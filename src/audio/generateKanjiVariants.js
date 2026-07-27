@@ -6,6 +6,7 @@ import { hashTerm } from "./index.js";
 import { normalizeTtsText } from "./ttsText.js";
 import { getAltAudioTransform } from "./altAudio.js";
 import { fetchElevenLabsTts } from "./elevenLabsTts.js";
+import { autoTrim } from "./trimSilence.js";
 import { TTS_MODEL } from "./ttsModel.js";
 import { generateCardKanji } from "./kanjiOrthography.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
@@ -27,6 +28,7 @@ export async function generateCardKanjiVariants(
     fetchTts = fetchElevenLabsTts,
     runClaude = defaultRunClaude,
     model = TTS_MODEL,
+    trim,
   } = {},
 ) {
   if (languageCode !== "ja") throw httpError(422, "kanji variants are Japanese-only");
@@ -51,11 +53,16 @@ export async function generateCardKanjiVariants(
   mkdirSync(audioDir, { recursive: true });
   const out = [];
   for (const take of takes) {
-    const bytes = await fetchTts(take.ttsText, voiceId, apiKey, languageCode, model);
-    const bytesHash = createHash("sha1").update(bytes).digest("hex").slice(0, 8);
-    const filename = `${hashTerm(take.ttsText)}-genkanji-${bytesHash}.mp3`;
-    writeFileAtomic(join(audioDir, filename), bytes);
-    out.push({ label: take.label, audio: filename, kanji });
+    const raw = await fetchTts(take.ttsText, voiceId, apiKey, languageCode, model);
+    // Both takes are kept (see generateVariants): the auto-trimmed one is what "Use this" applies,
+    // the original is what the trim editor re-cuts from.
+    const { auto, changed } = await autoTrim(raw, { trim });
+    const stem = `${hashTerm(take.ttsText)}-genkanji-${createHash("sha1").update(raw).digest("hex").slice(0, 8)}`;
+    const original = `${stem}.orig.mp3`;
+    writeFileAtomic(join(audioDir, original), raw);
+    const audio = changed ? `${stem}.mp3` : original;
+    if (changed) writeFileAtomic(join(audioDir, audio), auto);
+    out.push({ label: take.label, audio, original, kanji });
   }
   return out;
 }

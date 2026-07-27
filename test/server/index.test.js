@@ -61,6 +61,9 @@ const editDeps = {
   getDefaultVoice: () => "voice1",
   fetchTts: async (text) => Buffer.from("TTS:" + text),
   getApiKey: () => "test-key",
+  // Stubbed so these end-to-end tests neither shell out to ffmpeg nor depend on it being installed.
+  // Prefixing rather than replacing keeps each clip's bytes traceable to the take it came from.
+  trim: async (bytes) => Buffer.from("CUT:" + bytes.toString()),
 };
 
 async function withServer(root, fn, opts = fontDeps) {
@@ -572,11 +575,21 @@ test("upload writes a new clip, updates cards.json, and /media serves the new by
         const cards = JSON.parse(
           readFileSync(join(root, "epubs/mybook/chapter-0/cards.json"), "utf-8"),
         );
-        assert.equal(cards.items.find((i) => i.id === "b").audio, up.body.audio);
+        const card = cards.items.find((i) => i.id === "b");
+        assert.equal(card.audio, up.body.audio);
 
+        // The card ships the trimmed take…
         const media = await fetch(`${url}${up.body.mediaUrl}`);
         assert.equal(media.status, 200);
-        assert.equal(await media.text(), "NEW-BYTES");
+        assert.equal(await media.text(), "CUT:NEW-BYTES");
+
+        // …while the upload itself is kept verbatim, so the review can play it and a hand trim can
+        // re-cut the full-length recording.
+        const original = await fetch(
+          `${url}/media/book/mybook/0/${encodeURIComponent(card.audioOriginal)}`,
+        );
+        assert.equal(original.status, 200);
+        assert.equal(await original.text(), "NEW-BYTES");
       },
       editDeps,
     );

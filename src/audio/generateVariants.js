@@ -5,6 +5,7 @@ import { createHash } from "crypto";
 import { hashTerm } from "./index.js";
 import { cardAudioVariants } from "./variants.js";
 import { fetchElevenLabsTts } from "./elevenLabsTts.js";
+import { autoTrim } from "./trimSilence.js";
 import { TTS_MODEL } from "./ttsModel.js";
 import { httpError } from "../util/httpError.js";
 
@@ -18,7 +19,7 @@ import { httpError } from "../util/httpError.js";
 export async function generateCardVariants(
   runDir,
   cardId,
-  { voiceId, apiKey, languageCode, fetchTts = fetchElevenLabsTts, model = TTS_MODEL } = {},
+  { voiceId, apiKey, languageCode, fetchTts = fetchElevenLabsTts, model = TTS_MODEL, trim } = {},
 ) {
   const cardsPath = join(runDir, "cards.json");
   if (!existsSync(cardsPath)) throw httpError(404, "cards.json not found for this deck unit");
@@ -33,11 +34,18 @@ export async function generateCardVariants(
   mkdirSync(audioDir, { recursive: true });
   const out = [];
   for (const variant of variants) {
-    const bytes = await fetchTts(variant.ttsText, voiceId, apiKey, languageCode, model);
-    const bytesHash = createHash("sha1").update(bytes).digest("hex").slice(0, 8);
-    const filename = `${hashTerm(variant.ttsText)}-gen-${bytesHash}.mp3`;
-    writeFileAtomic(join(audioDir, filename), bytes);
-    out.push({ label: variant.label, audio: filename });
+    const raw = await fetchTts(variant.ttsText, voiceId, apiKey, languageCode, model);
+    // Both takes are kept, named off the RAW bytes so a preview's two files always share a stem and a
+    // re-roll of the same text still lands on fresh names. The auto-trimmed take is what "Use this"
+    // applies; the original is what the trim editor re-cuts from.
+    const { auto, changed } = await autoTrim(raw, { trim });
+    const stem = `${hashTerm(variant.ttsText)}-gen-${createHash("sha1").update(raw).digest("hex").slice(0, 8)}`;
+    const original = `${stem}.orig.mp3`;
+    writeFileAtomic(join(audioDir, original), raw);
+    // A trim that changed nothing needs no second file — the original IS the take that ships.
+    const audio = changed ? `${stem}.mp3` : original;
+    if (changed) writeFileAtomic(join(audioDir, audio), auto);
+    out.push({ label: variant.label, audio, original });
   }
   return out;
 }

@@ -7,9 +7,29 @@ import { resolveIso639Code } from "../model/iso639.js";
 import { getAltAudioTransform } from "./altAudio.js";
 import { normalizeTtsText } from "./ttsText.js";
 import { TTS_MODEL } from "./ttsModel.js";
+import { autoTrim } from "./trimSilence.js";
 
 export function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
+}
+
+/**
+ * Every audio field a card can carry. Listed once so "clear this card's audio" can never drift out of
+ * step with the schema by forgetting one — an orphaned `audioManual` would keep pointing `audio` at a
+ * clip of text the card no longer has.
+ */
+export const AUDIO_FIELDS = ["audio", "audioOriginal", "audioAuto", "audioManual", "audioTrim"];
+
+/**
+ * The clip a card actually ships, given its stored takes: a hand-cut range wins over the automatic
+ * trim, which wins over the untouched original.
+ *
+ * `audio` stays the single field the deck build, the `.apkg` rebuild and AnkiConnect delivery read —
+ * they never learn about the others. This is the one place that decides what it points at, so a
+ * reviewer's manual cut and a fallback to the original follow the same rule everywhere.
+ */
+export function deriveCardAudio(item) {
+  return item.audioManual || item.audioAuto || item.audioOriginal || undefined;
 }
 
 // The text actually handed to TTS (and used as the audio cache key) for a card:
@@ -39,22 +59,47 @@ async function fileExists(path) {
 }
 
 // Fetches every term in `terms` into `audioDir`, keyed by its `hashTerm` filename, skipping any
-// already cached. Returns a Map of term -> filename. Shared by the default and alt passes so both
-// reuse the exact same hash/cache/fetch behaviour.
-async function fetchTermsToCache(terms, audioDir, { fetchTts, voiceId, apiKey, languageCode }) {
+// already cached. Returns a Map of term -> `{ audio, original }`, where `audio` is the auto-trimmed
+// clip that ships and `original` the untouched take beside it (null when the entry predates
+// originals). Shared by the default and alt passes so both reuse the exact same hash/cache/fetch
+// behaviour.
+//
+// `<hash>.mp3` keeps its long-standing meaning — the trimmed clip the deck embeds — so every existing
+// cache entry, and `isDefaultClipFilename`'s staleness rule, are untouched. The raw take is a new
+// `<hash>.orig.mp3` sibling, which makes its ABSENCE mean exactly one thing: that entry was written
+// before originals were kept. Nothing already on disk is silently reinterpreted.
+async function fetchTermsToCache(
+  terms,
+  audioDir,
+  { fetchTts, voiceId, apiKey, languageCode, trim },
+) {
   const fetched = new Map();
   for (const term of terms) {
-    const filename = `${hashTerm(term)}.mp3`;
+    const base = hashTerm(term);
+    const filename = `${base}.mp3`;
+    const original = `${base}.orig.mp3`;
     const filepath = resolve(join(audioDir, filename));
+    const origPath = resolve(join(audioDir, original));
 
     if (await fileExists(filepath)) {
-      fetched.set(term, filename);
+      // Cached. A pre-originals entry has no sibling — report it absent rather than refetching, which
+      // would spend credits re-rolling a take (ElevenLabs is non-deterministic) purely to recover an
+      // original we had already chosen to discard.
+      fetched.set(term, {
+        audio: filename,
+        original: (await fileExists(origPath)) ? original : null,
+      });
       continue;
     }
 
-    const mp3Data = await fetchTts(term, voiceId, apiKey, languageCode);
-    await writeFileAtomicAsync(filepath, mp3Data);
-    fetched.set(term, filename);
+    const raw = await fetchTts(term, voiceId, apiKey, languageCode);
+    const { auto } = await autoTrim(raw, { trim });
+    // Original FIRST. Crashing between the two writes must leave the SHIPPING clip missing (so the
+    // next run refetches and self-heals), never an orphaned shipping clip whose absent sibling would
+    // permanently read as "this entry predates originals".
+    await writeFileAtomicAsync(origPath, raw);
+    await writeFileAtomicAsync(filepath, auto);
+    fetched.set(term, { audio: filename, original });
   }
   return fetched;
 }
@@ -95,6 +140,7 @@ export async function generateAudio(
     libraryHomeDir = null,
     getAltTransform = getAltAudioTransform,
     model = TTS_MODEL,
+    trim = undefined,
   } = {},
 ) {
   if (!voiceId) {
@@ -123,7 +169,7 @@ export async function generateAudio(
   // it always has. Resolved once per call, not per term, since it's the same corpus-wide
   // targetLanguage for every item.
   const languageCode = resolveIso639Code(cards.meta?.targetLanguage);
-  const fetchCtx = { fetchTts, voiceId, apiKey, languageCode };
+  const fetchCtx = { fetchTts, voiceId, apiKey, languageCode, trim };
 
   // The DEFAULT (and only up-front) take. For a language with a transform (Japanese appends 。), the
   // WITH-。 take is the default — a trailing 。 gives ElevenLabs a sentence boundary and fixes many
@@ -149,10 +195,19 @@ export async function generateAudio(
     items: cards.items.map((item) => {
       if (item.excluded) {
         const rest = { ...item };
-        delete rest.audio;
+        for (const field of AUDIO_FIELDS) delete rest[field];
         return rest;
       }
-      return { ...item, audio: fetchedFiles.get(defaultTextFor(item)) };
+      const clip = fetchedFiles.get(defaultTextFor(item));
+      const next = { ...item, audio: clip.audio, audioAuto: clip.audio };
+      if (clip.original) next.audioOriginal = clip.original;
+      else delete next.audioOriginal;
+      // A regenerated card is speaking NEW text, so any hand-cut range the reviewer applied describes
+      // a clip that no longer exists. Carrying it forward would point `audio` at a stale `-manual-`
+      // file — the old words, kept because a start/end pair happened to survive the regeneration.
+      delete next.audioManual;
+      delete next.audioTrim;
+      return next;
     }),
   };
 

@@ -5,6 +5,7 @@ import { createHash } from "crypto";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
 import { httpError } from "../../util/httpError.js";
 import { autoTrim } from "../../audio/trimSilence.js";
+import { trimToRange as defaultTrimToRange } from "../../audio/trimToRange.js";
 import { AUDIO_FIELDS, deriveCardAudio } from "../../audio/index.js";
 import { isSafeMediaFile } from "./runDir.js";
 
@@ -112,4 +113,60 @@ export function selectCardAudio(runDir, cardId, filename, original = null, deps 
     { ...clearedTakes(), audioOriginal: original || filename, audioAuto: filename },
     deps,
   );
+}
+
+/**
+ * The clip a manual trim cuts from: always the untouched original when the card has one.
+ *
+ * Falls back to the shipping clip for cards generated before originals were kept. Those can still be
+ * hand-trimmed — just not widened back out past whatever the automatic trim already removed, because
+ * that audio no longer exists anywhere.
+ */
+export function cardTrimSource(item) {
+  return item.audioOriginal || item.audio || null;
+}
+
+// Cut a reviewer's hand-placed [start, end] range out of the card's ORIGINAL and ship the result.
+//
+// Always from the original, never from the previous cut: re-trimming a cut clip would compound the
+// edits, so a selection made slightly too tight could only ever get tighter and the reviewer would
+// have to regenerate to escape it. Cutting from the full-length take every time is what makes the
+// editor's handles freely draggable in both directions — including back out past where the automatic
+// trim landed, which is the entire reason the original is kept.
+export function trimCardAudio(runDir, cardId, start, end, deps = {}) {
+  const { trimToRange = defaultTrimToRange } = deps;
+  const { data } = loadCards(runDir);
+  const item = (data.items || []).find((i) => i.id === cardId);
+  if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
+
+  const source = cardTrimSource(item);
+  if (!source) throw httpError(422, "this card has no audio to trim");
+  if (!isSafeMediaFile(source)) throw httpError(400, "invalid source filename");
+  const sourcePath = join(runDir, "audio", source);
+  if (!existsSync(sourcePath)) throw httpError(404, `audio ${JSON.stringify(source)} not found`);
+
+  let cut;
+  try {
+    cut = trimToRange(readFileSync(sourcePath), start, end);
+  } catch (e) {
+    // Unlike the automatic trim, an explicit edit that can't be applied must SAY so — a silent no-op
+    // would tell the reviewer their cut landed when the card still holds the untrimmed clip.
+    throw httpError(422, e.message);
+  }
+
+  const safeId = String(cardId).replace(/[^A-Za-z0-9._-]/g, "_");
+  const filename = `${safeId}-manual-${createHash("sha1").update(cut).digest("hex").slice(0, 8)}.mp3`;
+  if (!isSafeMediaFile(filename)) throw httpError(400, "could not derive a safe filename");
+  writeFileAtomic(join(runDir, "audio", filename), cut);
+
+  // Only the manual fields move. The original and the automatic take stay exactly as they are, so
+  // "revert to automatic" is a delete rather than a regeneration.
+  return setCardTakes(runDir, cardId, { audioManual: filename, audioTrim: { start, end } }, deps);
+}
+
+// Drop a card's hand cut, falling back to the automatic take. The cut file is left on disk — it costs
+// tens of KB, never reaches the deck, and keeping it means an accidental revert is undone by
+// re-applying the same range rather than by re-cutting audio the reviewer already approved.
+export function revertCardAudio(runDir, cardId, deps = {}) {
+  return setCardTakes(runDir, cardId, { audioManual: null, audioTrim: null }, deps);
 }

@@ -1025,3 +1025,32 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   to be re-made explicitly (Generate, or Replace) — re-running the stage won't do it.
 - **When to revisit:** if this bites, the fix is a dashboard warning on a card whose hand-picked clip no
   longer matches its text, not a change to the overwrite rule.
+
+## The manual trim needs ffmpeg, and unlike every other trim it fails loudly
+
+- **What:** `src/audio/trimToRange.js` throws when ffmpeg is missing or the cut fails, and the endpoint
+  answers 422 with the reason. Its sibling `trimTrailingSilence` does the opposite — no ffmpeg, or any
+  error, silently returns the input unchanged.
+- **Why:** the automatic trim runs unattended during a build, where breaking the whole audio stage over
+  a cosmetic nicety would be worse than skipping it. A manual trim is the opposite situation: a reviewer
+  has dragged a selection and pressed Apply. A silent no-op tells them their edit landed when the card
+  still holds the untrimmed clip, and they'd go on to sign the lesson off believing it was fixed.
+- **Impact:** on a machine with no ffmpeg the audio build still works (untrimmed), but the Trim button
+  reports an error every time instead of degrading. That's deliberate, though it does mean ffmpeg is a
+  real requirement for the trim editor rather than an optional nicety.
+- **When to revisit:** only if a pure-JS mp3 cutter ever becomes worth the dependency — the ffmpeg
+  dependency is shared with the automatic trim either way.
+
+## A hand-cut clip is kept forever, and the range can outlive the audio it described
+
+- **What:** reverting a manual trim clears `audioManual`/`audioTrim` but leaves the cut `.mp3` on disk.
+  Separately, `audioTrim` is only cleared by the writers that install a NEW recording (the audio stage,
+  Replace, Generate-pick) — nothing re-validates that a saved range still fits its original.
+- **Why:** keeping the file means an accidental revert is undone by re-applying the same range rather
+  than re-cutting audio the reviewer already approved, and the file is tens of KB and never reaches the
+  deck. The range is bounded on load (clamped to the decoded duration, and reset to the full clip if it
+  comes out shorter than the minimum), so a stale one degrades to "the whole clip" rather than an error.
+- **Impact:** a run dir accumulates one orphaned `-manual-` file per reverted trim. Negligible per
+  lesson; unbounded in principle if someone trims and reverts repeatedly.
+- **When to revisit:** if run dirs get noticeably cluttered, sweep `-manual-` files no card references
+  when a lesson is marked done.

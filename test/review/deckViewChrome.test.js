@@ -5,6 +5,7 @@ import {
   fontFaceRule,
   renderLessonSections,
   DECK_EDIT_SCRIPT,
+  AUDIO_TRIM_SCRIPT,
 } from "../../src/review/deckViewChrome.js";
 
 test("fontFaceRule builds base64 or url @font-face, and is empty when no font is given", () => {
@@ -144,4 +145,95 @@ test("DECK_VIEW_CSS carries the shared palette and collapsible-lesson styling", 
   assert.match(DECK_VIEW_CSS, /--accent:#7a3b36/);
   assert.match(DECK_VIEW_CSS, /\.lesson>summary/);
   assert.doesNotMatch(DECK_VIEW_CSS, /@font-face/); // font rule is prepended by the caller
+});
+
+// --- the Original audio column --------------------------------------------------------------------
+
+const audioSection = (card) => [
+  {
+    leaf: "Lesson 1",
+    stage: "audio",
+    cards: [
+      {
+        id: "a",
+        unit: 0,
+        english: "one",
+        target: "いち",
+        pronunciation: "ichi",
+        audio: "a.mp3",
+        ...card,
+      },
+    ],
+  },
+];
+
+test("originalCell adds a second audio column, in FRONT of the shipping one", () => {
+  const { html } = renderLessonSections({
+    sections: audioSection({ originalUrl: "/media/a.orig.mp3" }),
+    audioCell: () => "IN-USE",
+    originalCell: () => "ORIGINAL",
+  });
+
+  assert.match(html, /<th>Original<\/th><th>In use<\/th>/);
+  assert.equal(/<th>Audio<\/th>/.test(html), false);
+  assert.match(html, /ORIGINAL[^]*IN-USE/, "the original comes first");
+  assert.match(
+    html,
+    /<colgroup><col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-au">/,
+  );
+  assert.match(html, /class="tbl tbl-audio[^"]*tbl-twoau"/);
+  assert.match(html, /data-original-url="\/media\/a\.orig\.mp3"/);
+});
+
+// Browse and the view-deck artifact are about what the deck sounds like, not how it got there. They
+// pass no originalCell, and their markup must be exactly what it always was.
+test("without originalCell the audio table is unchanged — one column, no trim attributes", () => {
+  const { html } = renderLessonSections({
+    sections: audioSection({
+      originalUrl: "/media/a.orig.mp3",
+      audioTrim: { start: 0.2, end: 1.4 },
+    }),
+    audioCell: () => "IN-USE",
+  });
+
+  assert.match(html, /<th>Audio<\/th>/);
+  assert.equal(/<th>Original<\/th>/.test(html), false);
+  assert.equal(/tbl-twoau/.test(html), false);
+  assert.equal(/data-original-url/.test(html), false);
+  assert.equal(/data-trim-start/.test(html), false);
+});
+
+test("a saved trim range rides on the row so reopening the editor restores the selection", () => {
+  const { html } = renderLessonSections({
+    sections: audioSection({
+      originalUrl: "/media/a.orig.mp3",
+      audioTrim: { start: 0.2, end: 1.4 },
+    }),
+    audioCell: () => "IN-USE",
+    originalCell: () => "ORIGINAL",
+  });
+  assert.match(html, /data-trim-start="0\.2" data-trim-end="1\.4"/);
+});
+
+test("a card with no original gets no trim attributes, so the editor is never offered nothing to cut", () => {
+  const { html } = renderLessonSections({
+    sections: audioSection({ originalUrl: null }),
+    audioCell: () => "IN-USE",
+    originalCell: () => "ORIGINAL",
+  });
+  assert.equal(/data-original-url/.test(html), false);
+});
+
+test("AUDIO_TRIM_SCRIPT cuts from the original and posts the range, never the rendered waveform", () => {
+  // The waveform is a client-side view of the original; only the [start, end] pair is sent, so the
+  // server always re-cuts from the real file rather than trusting anything the browser computed.
+  assert.match(AUDIO_TRIM_SCRIPT, /data-original-url/);
+  assert.match(AUDIO_TRIM_SCRIPT, /"\/audio\/trim"/);
+  assert.match(AUDIO_TRIM_SCRIPT, /post\("\/audio\/trim", \{ start: start, end: end \}\)/);
+  assert.match(AUDIO_TRIM_SCRIPT, /"\/audio\/trim\/revert"/);
+  // It must swap ONLY the In use player — the Original column keeps playing the untouched take.
+  assert.match(AUDIO_TRIM_SCRIPT, /td\.au:not\(\.au-orig\)/);
+  // Embedded in a template literal, so a stray backtick or ${} would break the whole page.
+  assert.equal(AUDIO_TRIM_SCRIPT.includes("`"), false);
+  assert.equal(AUDIO_TRIM_SCRIPT.includes("${"), false);
 });

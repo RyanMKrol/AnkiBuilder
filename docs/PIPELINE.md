@@ -609,7 +609,43 @@ stage — independent of its siblings; a whole-deck `/review/:type/:id` edits on
 audio). An audio-stage lesson also shows **Mark done** (`.../unit/:unit/done`) / **Reopen**
 (`.../unit/:unit/reopen`) — `setLessonDone` in `applyCards.js` sets/clears `cards.meta.done`, the final
 sign-off that gates the merge; both handlers then `rebuildGroupQuiet` (best-effort group rebuild) so
-the single package tracks the done-set:
+the single package tracks the done-set.
+
+The editable audio review carries **two audio columns**, so the transformation is on screen rather than
+implied:
+
+| Column       | Plays                                                         | Controls                                                                                         |
+| ------------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Original** | `audioOriginal` — the untouched take                          | Replace · Generate · Generate (kanji) — these mint a NEW recording, which is what that column is |
+| **In use**   | `audio` — the auto-trimmed take, or the hand cut once applied | Trim…                                                                                            |
+
+Both columns are gated on `canEdit`, via `renderLessonSections`' optional `originalCell` hook (the same
+mechanism the Exclude column uses). The read-only **Browse** view and the `view-deck` artifact are about
+what the deck sounds like, not how it got there, so they pass no `originalCell` and render exactly one
+audio column, byte-identically to before.
+
+**The trim editor** (`AUDIO_TRIM_SCRIPT`). **Trim…** opens a modal showing the card's ORIGINAL as a
+waveform with draggable start/end handles, a **Snap to speech** starting point, and selection/original
+playback. The waveform is computed client-side — the browser already fetches the mp3 to play it and
+`decodeAudioData` gives the samples for free, so there's no dependency, no extra round trip and no peaks
+file to keep in step. One clip is decoded per modal open, not one per row.
+
+Only the `{ start, end }` pair is sent; the server re-cuts from the real file with
+`src/audio/trimToRange.js`, so nothing the browser computed is trusted. That cutter uses an OUTPUT-side
+`-ss` (after `-i`) for sample accuracy and expresses length as `-t <duration>` — what `-to` measures
+against depends on whether `-ss` was an input or output option, so the pair is a genuine footgun.
+
+Crucially the cut is **always made from the original, never from the previous cut**: re-trimming a cut
+clip would compound the edits, so a selection made slightly too tight could only ever get tighter and
+the handles would be one-way. Cutting from the full-length take every time is what lets a reviewer drag
+the end handle back OUT past where the automatic trim landed — the whole reason originals are kept.
+`audioTrim` stores the applied range so reopening the modal restores the selection.
+
+Unlike every other trim in this codebase, `trimToRange` **throws** rather than failing open. A reviewer
+who drags a selection, presses Apply and gets a silent no-op has been told their edit landed when it
+didn't, and would sign the lesson off believing the clip was fixed.
+
+The audio-review write endpoints:
 
 - `POST …/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a replacement clip
   (`applyCardAudio`, 10 MB cap). Stored as the card's new original with the trimmed take derived from
@@ -623,6 +659,11 @@ the single package tracks the done-set:
   kanji text for the audition modal.
 - `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`). Body carries
   `{ audio, original }` so the pick brings its own untouched take along and stays re-trimmable.
+- `POST …/card/:cardId/audio/trim` — body `{ start, end }` in seconds. Cuts that range out of
+  `audioOriginal` (`trimCardAudio`), writes `<cardId>-manual-<hash>.mp3`, and sets `audioManual` +
+  `audioTrim`. 422 with the reason if the range is nonsensical or ffmpeg can't apply it.
+- `POST …/card/:cardId/audio/trim/revert` — drop the hand cut (`revertCardAudio`); `audio` falls back to
+  `audioAuto`. The cut file is left on disk, so re-applying the same range costs nothing.
 - `POST /api/deck/:type/:id/rebuild` (`handleRebuild`) — regenerate the **single group package**
   `<deckDir>/deck.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
   assembly the CLI's `deck --book-dir` uses, so a browser rebuild is byte-identical, and it packages

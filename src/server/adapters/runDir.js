@@ -42,6 +42,11 @@ export function toRenderCard(item) {
     note: item.note || item.cardNote || "",
     reviewNote: item.reviewNote || "",
     audio: item.audio || null,
+    // The untouched take, and the hand cut applied to it. The review shows the original beside the
+    // shipping clip and pre-fills the trim editor's handles from the saved range.
+    audioOriginal: item.audioOriginal || null,
+    audioManual: item.audioManual || null,
+    audioTrim: item.audioTrim || null,
     excluded: !!item.excluded,
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,

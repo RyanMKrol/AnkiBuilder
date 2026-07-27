@@ -1309,3 +1309,181 @@ test("a lesson with a numeral and no reading is held out of review, naming the c
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+// --- the manual trim editor -----------------------------------------------------------------------
+
+// The fixture's lesson is `done`, so it opens read-only. Reopening puts it back in review, which is
+// where the audio-editing controls (and the trim editor) live.
+function reviewableFixture() {
+  const root = fixture();
+  const path = join(root, "epubs/mybook/chapter-0/cards.json");
+  const cards = JSON.parse(readFileSync(path, "utf-8"));
+  cards.meta.done = false;
+  Object.assign(cards.items[0], {
+    audio: "a.mp3",
+    audioOriginal: "a.orig.mp3",
+    audioAuto: "a.mp3",
+  });
+  writeFileSync(path, JSON.stringify(cards));
+  writeFileSync(
+    join(root, "epubs/mybook/chapter-0/audio/a.orig.mp3"),
+    Buffer.from("FULL-LENGTH-A"),
+  );
+  return root;
+}
+
+test("the audio review shows Original and In use columns, and offers Trim on a card with audio", async () => {
+  const root = reviewableFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.match(html, /<th>Original<\/th><th>In use<\/th>/);
+        // Replace/Generate mint a new recording, so they belong to the Original column; Trim re-cuts
+        // an existing one, so it belongs to the clip it produces.
+        assert.match(html, /class="au au-orig"[^]*?Replace[^]*?<td class="au">/);
+        assert.match(html, /<button type="button" class="trim">/);
+        assert.match(html, /id="trim-modal"/);
+        assert.match(html, /data-original-url="[^"]*a\.orig\.mp3"/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// The read-only views are about what the deck sounds like, not how it got there.
+test("Browse stays a single audio column with no trim controls", async () => {
+  const root = reviewableFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/deck/book/mybook/0`)).text();
+        assert.match(html, /<th>Audio<\/th>/);
+        assert.equal(/<th>Original<\/th>/.test(html), false);
+        assert.equal(/class="trim"/.test(html), false);
+        assert.equal(/id="trim-modal"/.test(html), false);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a done lesson opens read-only — no trim editor until it's reopened", async () => {
+  const root = fixture(); // still done
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const html = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.equal(/class="trim"/.test(html), false);
+        assert.equal(/id="trim-modal"/.test(html), false);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("POST audio/trim cuts the original and points the card at the result; revert undoes it", async () => {
+  const root = reviewableFixture();
+  const cardsPath = join(root, "epubs/mybook/chapter-0/cards.json");
+  try {
+    const cut = [];
+    await withServer(
+      root,
+      async (url) => {
+        const trimmed = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/trim`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ start: 0.2, end: 1.4 }),
+          }),
+        );
+        assert.equal(trimmed.status, 200);
+        assert.match(trimmed.body.audio, /^a-manual-[0-9a-f]{8}\.mp3$/);
+        assert.deepEqual(cut, [{ source: "FULL-LENGTH-A", start: 0.2, end: 1.4 }]);
+
+        const card = JSON.parse(readFileSync(cardsPath, "utf-8")).items[0];
+        assert.equal(card.audio, trimmed.body.audio);
+        assert.deepEqual(card.audioTrim, { start: 0.2, end: 1.4 });
+
+        const media = await fetch(`${url}${trimmed.body.mediaUrl}`);
+        assert.equal(await media.text(), "CUT:FULL-LENGTH-A");
+
+        // Reopening the page now pre-fills the editor with the range that was applied.
+        const html = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.match(html, /data-trim-start="0\.2" data-trim-end="1\.4"/);
+
+        const reverted = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/trim/revert`, {
+            method: "POST",
+          }),
+        );
+        assert.equal(reverted.status, 200);
+        assert.equal(reverted.body.audio, "a.mp3", "back to the automatic take");
+        assert.equal("audioTrim" in JSON.parse(readFileSync(cardsPath, "utf-8")).items[0], false);
+      },
+      {
+        ...editDeps,
+        trimToRange: (bytes, start, end) => {
+          cut.push({ source: bytes.toString(), start, end });
+          return Buffer.from("CUT:" + bytes.toString());
+        },
+      },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a cut that can't be applied answers with the reason, not a silent success", async () => {
+  const root = reviewableFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/trim`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ start: 1.5, end: 0.5 }),
+          }),
+        );
+        assert.equal(res.status, 422);
+        assert.match(res.body.error, /too short/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("the trim routes are refused on a read-only server", async () => {
+  const root = reviewableFixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        for (const path of ["/audio/trim", "/audio/trim/revert"]) {
+          const res = await fetch(`${url}/api/deck/book/mybook/unit/0/card/a${path}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ start: 0, end: 1 }),
+          });
+          assert.equal(res.status, 403);
+        }
+      },
+      { ...editDeps, editable: false },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

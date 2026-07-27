@@ -150,8 +150,13 @@ for (const dir of runDirs) {
         // A card with no original points at a clip that was ALREADY trimmed once. Trimming it again
         // would cut into a tail the first pass deliberately kept — the same compounding this project
         // avoids everywhere else — so those get cleaning only.
+        // `marker` must be carried through: a clip generated with the throwaway `。ででで` end marker
+        // (src/audio/ttsMarker.js) needs it stripped before the trim can find any trailing silence at
+        // all. Omitting the flag doesn't merely skip the strip — it defeats the whole trim, because
+        // the un-stripped marker IS the clip's last speech, so there is nothing after it to cut and
+        // the card ships its full-length original.
         const { auto } = hasOriginal
-          ? await autoTrim(raw, { cleanup: filter })
+          ? await autoTrim(raw, { cleanup: filter, marker: !!item.audioMarked })
           : { auto: cleanOnly(raw, cleanupChain(filter)) };
 
         const stem = source.replace(/\.orig\.[A-Za-z0-9]+$/, "").replace(/\.[A-Za-z0-9]+$/, "");

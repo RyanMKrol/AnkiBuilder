@@ -11,22 +11,21 @@ import {
   isStageOwnedCard,
   defaultClipFilename,
 } from "../../src/audio/index.js";
-import { getAltAudioTransform } from "../../src/audio/altAudio.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
-// The core-mechanics tests below (dedup, caching, hashing, reading-vs-target) exercise the DEFAULT
-// recording pass. Since baseCards is tagged `ja` — which has an alt-audio transform — the alt pass
-// would double every fetch/file count and muddy those assertions. Default alt OFF here so they stay
-// focused; a test can re-enable it by passing its own `getAltTransform`. The alt pass has its own
-// dedicated tests at the bottom of this file.
+// The core-mechanics tests below (dedup, caching, hashing, reading-vs-target) exercise the default
+// recording pass — the only one there is; the with-。 / no-。 pair the alt-audio transform used to
+// produce is gone, replaced by the end marker.
 //
 // The trim is stubbed to a no-op by default too. generateAudio derives each card's trimmed take
 // itself now, and the real trimmer SHELLS OUT to ffmpeg — which would make these tests slow and
 // dependent on whether the machine happens to have it installed. Tests that care about the trim pass
 // their own; see "keeps the untouched original beside the trimmed take" below.
-// Japanese TTS text carries a throwaway end marker (src/audio/ttsMarker.js) so ElevenLabs
-// truncates that instead of the card's actual words. It is part of the text SENT and so part
-// of the cache key, which is why the expected strings and hashes below include it.
+// Japanese TTS text carries a throwaway end marker (src/audio/ttsMarker.js) — `。ででで` — so
+// ElevenLabs truncates that instead of the card's actual words. It is part of the text SENT and so
+// part of the cache key, which is why the expected strings and hashes below include it. The `。` is
+// part of the MARKER, not of the card's text: it is what makes the model leave a gap in front of the
+// marker, which is what makes the marker findable and removable.
 const noTrim = async (bytes) => bytes;
 
 // Every cached term is two files — the shipping clip and its untouched `.orig.mp3` sibling. Tests
@@ -35,7 +34,7 @@ const noTrim = async (bytes) => bytes;
 const shippingClips = (files) => files.filter((f) => !f.endsWith(".orig.mp3"));
 
 function generateAudio(cards, opts = {}) {
-  return generateAudioImpl(cards, { getAltTransform: () => undefined, trim: noTrim, ...opts });
+  return generateAudioImpl(cards, { trim: noTrim, ...opts });
 }
 
 function baseCards(items) {
@@ -79,7 +78,7 @@ test("writes one MP3 per unique target term into voice-specific cache dir", asyn
       });
 
       assert.equal(calls.length, 2);
-      assert.deepEqual(new Set(calls), new Set(["こんにちはででで", "さようならででで"]));
+      assert.deepEqual(new Set(calls), new Set(["こんにちは。ででで", "さようなら。ででで"]));
 
       // Cache is segmented by model: audio/<voiceId>/<model>/
       const audioDir = resolve(join(tmpDir, "audio", "voice123", "test-model"));
@@ -131,7 +130,7 @@ test("skips excluded cards: no TTS fetch, and their audio field is cleared", asy
       });
 
       // Only the active card is fetched — the excluded one is never sent to TTS.
-      assert.deepEqual(calls, ["こんにちはででで"]);
+      assert.deepEqual(calls, ["こんにちは。ででで"]);
       assert.ok(result.items[0].audio, "active card is annotated with audio");
       assert.equal("audio" in result.items[1], false, "excluded card's audio is cleared");
       assert.equal(result.items[1].excluded, true, "the exclusion flag is preserved");
@@ -253,7 +252,7 @@ test("handles multiple cards with duplicate target terms", async () => {
       });
 
       assert.equal(calls.length, 2);
-      assert.deepEqual(new Set(calls), new Set(["こんにちはででで", "さようならででで"]));
+      assert.deepEqual(new Set(calls), new Set(["こんにちは。ででで", "さようなら。ででで"]));
 
       assert.equal(result.items[0].audio, result.items[1].audio);
       assert.notEqual(result.items[0].audio, result.items[2].audio);
@@ -548,7 +547,7 @@ test("speaks `reading` instead of `target` when a card carries one", async () =>
         libraryHomeDir: tmpDir,
       });
 
-      assert.deepEqual(calls, ["にじゅういちででで"]);
+      assert.deepEqual(calls, ["にじゅういち。ででで"]);
       // The card still carries its kanji target untouched; only what was spoken changed.
       assert.equal(result.items[0].target, "二十一");
       assert.equal(result.items[0].reading, "にじゅういち");
@@ -625,7 +624,7 @@ test("falls back to `target` when `reading` is an empty string", async () => {
         libraryHomeDir: tmpDir,
       });
 
-      assert.deepEqual(calls, ["こんにちはででで"]);
+      assert.deepEqual(calls, ["こんにちは。ででで"]);
     });
   } finally {
     if (originalKey) {
@@ -637,7 +636,7 @@ test("falls back to `target` when `reading` is an empty string", async () => {
 });
 
 // ---------------------------------------------------------------------------
-// Default take (the ONLY clip generated up front — see src/audio/altAudio.js). For a language with a
+// Default take (the ONLY clip generated up front). For a language with a
 // transform (Japanese appends 。) the default IS the with-。 take; there is no second "alt" pass any
 // more (the no-。 take and every other variant are on-demand dashboard actions). These call the real
 // implementation with the real ja transform, overriding the no-alt default the wrapper applies.
@@ -665,7 +664,6 @@ test("default: a ja card's default is the with-。 clip, and NO alt clip is gene
         return Buffer.from(`audio for ${term}`);
       },
       libraryHomeDir: tmpDir,
-      getAltTransform: getAltAudioTransform,
       trim: noTrim,
     });
 
@@ -688,7 +686,6 @@ test("default: language with no transform yields no altAudio field", async () =>
       voiceId: "voice123",
       fetchTts: async () => Buffer.from("x"),
       libraryHomeDir: tmpDir,
-      getAltTransform: () => undefined,
       trim: noTrim,
     });
     assert.ok(result.items[0].audio);
@@ -706,7 +703,6 @@ test("default: the clip is cached — a second run makes zero calls", async () =
         return Buffer.from(`audio for ${term}`);
       },
       libraryHomeDir: tmpDir,
-      getAltTransform: getAltAudioTransform,
       trim: noTrim,
     });
 
@@ -733,7 +729,6 @@ test("default: the clip is built from the spoken text (reading when present)", a
         return Buffer.from("x");
       },
       libraryHomeDir: tmpDir,
-      getAltTransform: getAltAudioTransform,
       trim: noTrim,
     });
     assert.deepEqual(
@@ -803,7 +798,6 @@ test("ja: the text sent to TTS (and cache key) has spaces stripped, though targe
         return Buffer.from("x");
       },
       libraryHomeDir: tmpDir,
-      getAltTransform: getAltAudioTransform,
       trim: noTrim,
     });
     // default only, space-free; the with-。 default appends 。 to the already-。-terminated text.

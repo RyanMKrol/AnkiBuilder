@@ -30,7 +30,7 @@ export function readCorpusJson(runDir) {
 }
 
 // An audio-stage cards.json item -> the render-card shape used by deckViewChrome. The deck embeds the
-// chosen take in `audio`; `altAudio` is a review-only concept and is dropped (the dashboard shows one).
+// chosen take in `audio`; the legacy `altAudio` field is dropped (nothing writes it any more).
 export function toRenderCard(item) {
   return {
     id: item.id,

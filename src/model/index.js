@@ -166,9 +166,10 @@ const CARDS_SCHEMA = {
           // (src/audio/ttsMarker.js) still on it. Anything re-deriving takes from that original has to
           // strip the marker again, so it needs to know the marker is there.
           audioMarked: { type: "boolean" },
-          // Legacy optional second recording. The audio stage no longer writes this (only the default
-          // clip is generated up front; the no-。 take and other variants are on-demand dashboard
-          // actions), but the field is kept so cards.json from older runs still validate. Never
+          // Legacy optional second recording, from when Japanese cards were generated as a with-。 /
+          // no-。 pair. That machinery is gone — the end marker (src/audio/ttsMarker.js) replaced what
+          // the dot was working around — and nothing writes this any more. The field stays only so
+          // cards.json from older runs still validates; 40 files on disk still carry it. Never
           // embedded by the deck build — only `audio` is.
           altAudio: { type: "string" },
           uncertain: { type: "boolean" },

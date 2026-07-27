@@ -189,7 +189,7 @@ npm run build
 - [x] Spoken-form `reading` field — numbers stay as digits in `target` (natural display, e.g. `2,000えん`)
       while a spelled-out `reading` (`にせんえん`) drives BOTH the romaji pronunciation and the audio,
       since digits break the romanizer and TTS
-- [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `reading` when set; default take only — Japanese default appends `。`, other variants generated on demand in the dashboard; per-language TTS text normalization — Japanese strips editorial spaces so they aren't voiced as pauses)
+- [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `reading` when set; default take only, other variants generated on demand in the dashboard; per-language TTS text normalization — Japanese strips editorial spaces so they aren't voiced as pauses)
 - [x] Every clip keeps its untouched original beside the auto-trimmed take (`<hash>.orig.mp3` next to
       `<hash>.mp3`, and the same pair for Generate previews and Replace uploads). The trailing-silence
       trim used to run inside the ElevenLabs fetch and throw the raw take away, which made its mistakes

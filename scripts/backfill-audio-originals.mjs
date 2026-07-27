@@ -37,7 +37,6 @@ import {
   isStageOwnedCard,
   deriveCardAudio,
 } from "../src/audio/index.js";
-import { getAltAudioTransform } from "../src/audio/altAudio.js";
 import { usesEndMarker } from "../src/audio/ttsMarker.js";
 import { fetchElevenLabsTts } from "../src/audio/elevenLabsTts.js";
 import { autoTrim } from "../src/audio/trimSilence.js";
@@ -138,7 +137,6 @@ for (const dir of runDirs) {
   const cardsPath = join(dir, "cards.json");
   const data = JSON.parse(readFileSync(cardsPath, "utf-8"));
   const languageCode = resolveIso639Code(data.meta?.targetLanguage);
-  const altTransform = getAltAudioTransform(languageCode);
   const voiceId = getDefaultVoice(languageCode);
   if (!voiceId) {
     console.error(`! ${dir}: no default voice for ${data.meta?.targetLanguage} — skipped`);
@@ -158,7 +156,7 @@ for (const dir of runDirs) {
       continue;
     }
 
-    const term = defaultClipText(item, languageCode, altTransform);
+    const term = defaultClipText(item, languageCode);
     const { audio, original, cacheDir } = await takesFor(term, voiceId, languageCode);
 
     if (apply) {

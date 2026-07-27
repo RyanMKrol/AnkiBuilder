@@ -6,7 +6,7 @@
 //   2. A trailing sentence-final 。 is stripped — a card never ends in a period by default. This is a
 //      deliberate deck-style choice: the terminal 。 measurably changes ElevenLabs' prosody, so the
 //      DEFAULT audio is generated from the dot-less text and the WITH-dot take is always produced as
-//      the alt (src/audio/altAudio.js appends 。). A mid-string 。 (two sentences) is left intact.
+//      the audio (src/audio/ttsMarker.js appends its own). A mid-string 。 (two sentences) is left intact.
 // This governs the DISPLAYED Japanese (card face, reading, reviews); the audio stage also strips
 // spaces for TTS separately (see src/audio/ttsText.js).
 const SPACE_FREE_LANGUAGES = new Set(["ja"]);

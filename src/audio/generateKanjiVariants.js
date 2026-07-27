@@ -4,7 +4,6 @@ import { join } from "path";
 import { createHash } from "crypto";
 import { hashTerm } from "./index.js";
 import { normalizeTtsText } from "./ttsText.js";
-import { getAltAudioTransform } from "./altAudio.js";
 import { fetchElevenLabsTts } from "./elevenLabsTts.js";
 import { autoTrim } from "./trimSilence.js";
 import { withEndMarker, usesEndMarker } from "./ttsMarker.js";
@@ -44,11 +43,9 @@ export async function generateCardKanjiVariants(
   const base = normalizeTtsText(kanji, languageCode);
   if (!base) throw httpError(422, "kanji orthography was empty");
 
-  const altTransform = getAltAudioTransform(languageCode);
-  const takes = [
-    { label: "kanji", ttsText: base },
-    ...(altTransform ? [{ label: "kanji · 。", ttsText: altTransform(base) }] : []),
-  ];
+  // One take. There used to be a with-/without-。 pair here for the same reason the audio stage had
+  // one; the end marker replaced it, and the 。 now lives inside the marker.
+  const takes = [{ label: "kanji", ttsText: base }];
 
   const audioDir = join(runDir, "audio");
   mkdirSync(audioDir, { recursive: true });

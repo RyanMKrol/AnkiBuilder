@@ -617,13 +617,14 @@ test("generate makes a FRESH TTS call per variant every time (no cache), without
           await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/generate`, { method: "POST" }),
         );
         assert.equal(gen.status, 200);
-        assert.equal(gen.body.variants.length, 2); // plain ja card → no 。 / with 。
-        assert.equal(ttsCalls, 2); // one fresh ElevenLabs call per variant
+        // A plain card has nothing to choose between now the with-。 / no-。 pair is gone.
+        assert.equal(gen.body.variants.length, 1);
+        assert.equal(ttsCalls, 1); // one fresh ElevenLabs call per variant
         // fresh clips are named distinctly (never the built hash(text).mp3), so they can't clobber it
         assert.match(gen.body.variants[0].audio, /-gen-[0-9a-f]{8}\.mp3$/);
         // a second generate calls TTS again — no cache reuse
         await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/generate`, { method: "POST" });
-        assert.equal(ttsCalls, 4);
+        assert.equal(ttsCalls, 2);
         // stubbed clip is reachable
         assert.equal((await fetch(`${url}${gen.body.variants[0].mediaUrl}`)).status, 200);
         // generation did not mutate cards.json
@@ -669,7 +670,7 @@ test("generate-kanji returns kanji variants for a ja deck; the button is shown",
           }),
         );
         assert.equal(gen.status, 200);
-        assert.equal(gen.body.variants.length, 2); // no 。 / with 。
+        assert.equal(gen.body.variants.length, 1); // one kanji take, no dot pair
         assert.equal(gen.body.variants[0].kanji, "一"); // from the stubbed runClaude
         assert.match(gen.body.variants[0].audio, /-genkanji-[0-9a-f]{8}\.mp3$/);
         assert.equal((await fetch(`${url}${gen.body.variants[0].mediaUrl}`)).status, 200);

@@ -1,6 +1,5 @@
 import { speechText } from "./index.js";
 import { normalizeTtsText } from "./ttsText.js";
-import { getAltAudioTransform } from "./altAudio.js";
 
 // Computes the set of audio "takes" we normally offer for a card — the Cartesian product of the
 // applicable with/without axes, matching what the build-anki-deck skill describes and what the
@@ -8,10 +7,14 @@ import { getAltAudioTransform } from "./altAudio.js";
 // text (`speechText` = reading||target, run through `normalizeTtsText`):
 //   - brackets: full (keep the bracketed content) vs short (drop it)   — only if the text has （…）/(...)
 //   - comma:    with 、 vs without                                       — only if the text has 、
-//   - dot:      no 。 vs with 。 (the language's alt-audio transform)     — only for languages with one
-// Result: min 1 (a plain card in a language with no dot transform) up to 8 (dot × comma × brackets),
-// each `{ label, ttsText }`. `ttsText` is the exact string handed to TTS — the dot variants line up
-// byte-for-byte with the audio stage's own default/alt clips, so they hit the same on-disk cache.
+// Result: min 1 (a card with neither brackets nor commas) up to 4 (comma × brackets), each
+// `{ label, ttsText }`. `ttsText` is the spoken text BEFORE the Japanese end marker is appended — the
+// caller adds that, so a variant and the audio stage's own clip hash the same way.
+//
+// There used to be a third axis offering the text with and without a trailing 。. That existed to work
+// around ElevenLabs clipping and mis-rendering short clips; the end marker (./ttsMarker.js) handles
+// both, and the 。 is now part of the marker rather than a choice about the card's text — so there is
+// no longer a meaningful "with dot / without dot" take to pick between.
 
 const BRACKET_RE = /[（(]([^)）]*)[)）]/;
 
@@ -27,7 +30,6 @@ export function cardAudioVariants(card, languageCode) {
       ]
     : [{ label: null, text: base }];
 
-  const altTransform = getAltAudioTransform(languageCode);
   const out = [];
   const seen = new Set();
   for (const bracket of bracketForms) {
@@ -38,19 +40,10 @@ export function cardAudioVariants(card, languageCode) {
         ]
       : [{ label: null, text: bracket.text }];
     for (const comma of commaForms) {
-      const dotForms = altTransform
-        ? [
-            { label: "no 。", text: comma.text },
-            { label: "。", text: altTransform(comma.text) },
-          ]
-        : [{ label: null, text: comma.text }];
-      for (const dot of dotForms) {
-        if (seen.has(dot.text)) continue;
-        seen.add(dot.text);
-        const label =
-          [bracket.label, comma.label, dot.label].filter(Boolean).join(" · ") || "default";
-        out.push({ label, ttsText: dot.text });
-      }
+      if (seen.has(comma.text)) continue;
+      seen.add(comma.text);
+      const label = [bracket.label, comma.label].filter(Boolean).join(" · ") || "default";
+      out.push({ label, ttsText: comma.text });
     }
   }
   return out;

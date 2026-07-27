@@ -475,17 +475,42 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
         st.samples = decoded.getChannelData(0);
         st.rate = decoded.sampleRate;
         st.duration = decoded.duration;
-        // Reopening a trimmed card restores the range it was cut with, so a selection that came out a
-        // shade tight is nudged rather than re-found by ear.
+        // Where the handles start. A hand cut is authoritative — reopening restores the exact range it
+        // was made with, so a selection that came out a shade tight is nudged rather than re-found by
+        // ear. Otherwise fall back to where the AUTOMATIC trim currently sits, which matters because
+        // trimming happens by default: opening on the full original would misrepresent every card as
+        // untrimmed, and dragging from there would silently undo the automatic cut.
+        //
+        // The automatic trim only ever removes from the END, never the start, so its range is exactly
+        // [0, length of the clip in use] — derivable from the page with no stored value, which is what
+        // makes this work for clips built before the editor existed.
         var s = parseFloat(tr.getAttribute("data-trim-start"));
         var e = parseFloat(tr.getAttribute("data-trim-end"));
-        st.start = isFinite(s) ? Math.max(0, s) : 0;
-        st.end = isFinite(e) ? Math.min(st.duration, e) : st.duration;
-        if (st.end - st.start < MIN_RANGE) { st.start = 0; st.end = st.duration; }
-        draw();
-        paint();
-        applyBtn.disabled = false;
-        say("");
+        var settle = function (start, end) {
+          if (!st) return;
+          st.start = Math.max(0, start);
+          st.end = Math.min(st.duration, end);
+          if (st.end - st.start < MIN_RANGE) { st.start = 0; st.end = st.duration; }
+          draw();
+          paint();
+          applyBtn.disabled = false;
+          say("");
+        };
+        if (isFinite(s) && isFinite(e)) { settle(s, e); return; }
+        var inUse = tr.querySelector("td.au:not(.au-orig) audio");
+        if (!inUse || !inUse.getAttribute("src")) { settle(0, st.duration); return; }
+        // Metadata only — the length is all we need, and decoding a second clip per open would be
+        // wasted work.
+        var probe = new Audio();
+        probe.preload = "metadata";
+        var done = false;
+        var use = function (end) { if (!done) { done = true; settle(0, end); } };
+        probe.addEventListener("loadedmetadata", function () {
+          use(isFinite(probe.duration) && probe.duration > 0 ? probe.duration : st.duration);
+        });
+        // A clip that won't report its length must not leave the editor stuck with no handles.
+        probe.addEventListener("error", function () { use(st.duration); });
+        probe.src = inUse.getAttribute("src");
       })
       .catch(function (e) { say("could not read this clip: " + e.message, true); });
   };

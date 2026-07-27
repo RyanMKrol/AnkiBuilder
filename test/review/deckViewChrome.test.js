@@ -237,3 +237,27 @@ test("AUDIO_TRIM_SCRIPT cuts from the original and posts the range, never the re
   assert.equal(AUDIO_TRIM_SCRIPT.includes("`"), false);
   assert.equal(AUDIO_TRIM_SCRIPT.includes("${"), false);
 });
+
+// Trimming happens by DEFAULT, so opening the editor on the full original would misrepresent every
+// card as untrimmed — and dragging from there would silently undo the automatic cut. The automatic
+// trim only ever removes from the end, so its range is [0, length of the clip in use], which the
+// editor derives from the page rather than from a stored value. That's what makes it work for clips
+// built before the editor existed.
+test("AUDIO_TRIM_SCRIPT opens the handles at the current trim, preferring a hand cut", () => {
+  // A saved hand cut is authoritative and short-circuits before any probing.
+  assert.match(
+    AUDIO_TRIM_SCRIPT,
+    /if \(isFinite\(s\) && isFinite\(e\)\) \{ settle\(s, e\); return; \}/,
+  );
+  // Otherwise measure the in-use clip — metadata only, no second decode per open.
+  assert.match(AUDIO_TRIM_SCRIPT, /td\.au:not\(\.au-orig\) audio/);
+  assert.match(AUDIO_TRIM_SCRIPT, /preload = "metadata"/);
+  assert.match(AUDIO_TRIM_SCRIPT, /loadedmetadata/);
+  // The start edge is always 0 when derived — the automatic trim never cuts the front.
+  assert.match(AUDIO_TRIM_SCRIPT, /settle\(0, /);
+  // A clip that won't report its length must not leave the editor with no handles at all.
+  assert.match(
+    AUDIO_TRIM_SCRIPT,
+    /addEventListener\("error", function \(\) \{ use\(st\.duration\); \}\)/,
+  );
+});

@@ -229,7 +229,10 @@ test("AUDIO_TRIM_SCRIPT cuts from the original and posts the range, never the re
   // server always re-cuts from the real file rather than trusting anything the browser computed.
   assert.match(AUDIO_TRIM_SCRIPT, /data-original-url/);
   assert.match(AUDIO_TRIM_SCRIPT, /"\/audio\/trim"/);
-  assert.match(AUDIO_TRIM_SCRIPT, /post\("\/audio\/trim", \{ start: start, end: end \}\)/);
+  assert.match(
+    AUDIO_TRIM_SCRIPT,
+    /postTo\(range, "\/audio\/trim", \{ start: range\.start, end: range\.end \}\)/,
+  );
   assert.match(AUDIO_TRIM_SCRIPT, /"\/audio\/trim\/revert"/);
   // It must swap ONLY the In use player — the Original column keeps playing the untouched take.
   assert.match(AUDIO_TRIM_SCRIPT, /td\.au:not\(\.au-orig\)/);
@@ -281,4 +284,31 @@ test("DECK_EDIT_SCRIPT refreshes the whole row after Replace and after Generate"
   assert.match(DECK_EDIT_SCRIPT, /removeAttribute\("data-trim-start"\)/);
   // Both write paths go through it, not just one.
   assert.equal((DECK_EDIT_SCRIPT.match(/refreshRow\(r\.tr, /g) || []).length, 2);
+});
+
+// The editor applies on release rather than behind an Apply button, so the In use player always
+// matches what the handles say.
+test("AUDIO_TRIM_SCRIPT commits on drag release, not on every pointermove", () => {
+  // One ffmpeg cut per drag. Committing from `move` would be one per pixel.
+  assert.match(
+    AUDIO_TRIM_SCRIPT,
+    /handle\.removeEventListener\("pointercancel", up\);\s*\n\s*commit\(\);/,
+  );
+  assert.equal(/pointermove", commit/.test(AUDIO_TRIM_SCRIPT), false);
+  // Snap changes the range deliberately too — but only commits when it actually moved something.
+  assert.match(AUDIO_TRIM_SCRIPT, /if \(snap\(\)\) commit\(\)/);
+  // There is no Apply button left to press.
+  assert.equal(/trim-apply/.test(AUDIO_TRIM_SCRIPT), false);
+});
+
+test("AUDIO_TRIM_SCRIPT survives the modal being closed mid-apply, and still reports failure", () => {
+  // The request target is captured up front, so closing the modal can't orphan an in-flight write.
+  assert.match(AUDIO_TRIM_SCRIPT, /var range = \{ row: st\.row, start: st\.start, end: st\.end/);
+  assert.match(AUDIO_TRIM_SCRIPT, /postTo\(range, /);
+  // A failure written only into a hidden modal would never be seen, so it also lands on the row.
+  assert.match(AUDIO_TRIM_SCRIPT, /rowSay\(range\.row, "trim failed: " \+ e\.message\)/);
+  // Overlapping drags collapse to the latest position instead of racing.
+  assert.match(AUDIO_TRIM_SCRIPT, /if \(inFlight\) \{ queued = range; return; \}/);
+  // A failed range must be retryable — otherwise the dedupe guard would swallow the second attempt.
+  assert.match(AUDIO_TRIM_SCRIPT, /lastSent = null;/);
 });

@@ -676,9 +676,17 @@ the handles would be one-way. Cutting from the full-length take every time is wh
 the end handle back OUT past where the automatic trim landed — the whole reason originals are kept.
 `audioTrim` stores the applied range so reopening the modal restores the selection.
 
+Each drag is applied **as soon as you let go** — on `pointerup`, never on `pointermove`, so a drag
+costs one ffmpeg cut rather than one per pixel. Overlapping drags collapse to the latest position
+instead of racing, and the previous `-manual-` clip is deleted as the new one lands (a manual file is
+named for its own card, so nothing else can reference it) — otherwise iterating on an edge would leave
+a dead file per nudge. Everything a request needs is captured before it goes out, so closing the modal
+mid-flight cannot orphan it; failures are reported on the ROW as well as in the modal, since a modal
+that has been closed can't show anything.
+
 Unlike every other trim in this codebase, `trimToRange` **throws** rather than failing open. A reviewer
-who drags a selection, presses Apply and gets a silent no-op has been told their edit landed when it
-didn't, and would sign the lesson off believing the clip was fixed.
+who drags a selection and gets a silent no-op has been told their edit landed when it didn't, and would
+sign the lesson off believing the clip was fixed.
 
 The audio-review write endpoints:
 

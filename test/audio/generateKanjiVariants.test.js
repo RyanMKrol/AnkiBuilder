@@ -68,7 +68,9 @@ test("generates fresh -genkanji- takes from the kanji orthography and returns th
       out.map((v) => v.label),
       ["kanji", "kanji · 。"],
     );
-    assert.deepEqual(calls, ["十時から六時", "十時から六時。"]);
+    // Japanese TTS text carries the throwaway end marker (src/audio/ttsMarker.js), which the trim
+    // cuts back off — so the model truncates the marker rather than the card's words.
+    assert.deepEqual(calls, ["十時から六時ででで", "十時から六時。ででで"]);
     assert.ok(out.every((v) => v.kanji === "十時から六時"));
     assert.ok(out.every((v) => /-genkanji-[0-9a-f]{8}\.mp3$/.test(v.audio)));
     // Each take keeps its untouched original beside the trimmed clip the reviewer auditions, so a

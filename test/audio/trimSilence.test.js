@@ -6,6 +6,7 @@ import {
   computeTrimPoint,
   trimTrailingSilence,
   autoTrim,
+  markerSegment,
   __resetFfmpegCache,
 } from "../../src/audio/trimSilence.js";
 import { fetchElevenLabsTts } from "../../src/audio/elevenLabsTts.js";
@@ -315,4 +316,75 @@ test("computeTrimPoint: the pad is configurable, for a voice with a longer decay
   const stderr = `  Duration: 00:00:02.00\nsilence_start: 1.0\nsilence_end: 2.0`;
   assert.equal(computeTrimPoint(stderr, { padSec: 0.35 }), 1.35);
   assert.equal(computeTrimPoint(stderr, { padSec: 0.05 }), 1.05);
+});
+
+// --- stripping the throwaway end marker -----------------------------------------------------------
+
+// Taken from a real generated clip (よろしくおねがいします。ででで): speech 0.07-1.41, then a 1.15s gap,
+// then the marker 2.56-3.20 running to the end.
+const MARKER_STDERR = `  Duration: 00:00:03.20
+silence_start: 0
+silence_end: 0.07
+silence_start: 1.41
+silence_end: 2.56`;
+
+test("markerSegment picks the short, clearly separated trailing segment", () => {
+  assert.deepEqual(
+    markerSegment([
+      [0, 1.0],
+      [1.6, 2.0],
+    ]),
+    [1.6, 2.0],
+  );
+});
+
+test("markerSegment refuses a trailing segment that is too long to be the marker", () => {
+  assert.equal(
+    markerSegment([
+      [0, 1.0],
+      [1.6, 3.0],
+    ]),
+    null,
+  );
+});
+
+// A phrase with a natural pause before its final word looks superficially similar. Requiring a real
+// gap is the first of the two guards; the pulse-shape veto is the second.
+test("markerSegment refuses one that runs on from the speech before it", () => {
+  assert.equal(
+    markerSegment([
+      [0, 1.0],
+      [1.1, 1.5],
+    ]),
+    null,
+  );
+});
+
+test("markerSegment refuses to strip the only segment there is", () => {
+  assert.equal(markerSegment([[0, 1.0]]), null);
+  assert.equal(markerSegment([]), null);
+});
+
+// Left in place, the marker IS the last real speech — so the trim finds nothing after it to cut and
+// gives up entirely, shipping the marker. Dropping it first is what makes the clip trimmable at all.
+test("computeTrimPoint with dropTrailing measures the pad from the REAL words", () => {
+  assert.equal(computeTrimPoint(MARKER_STDERR), null, "marker intact: nothing to trim after it");
+  assert.equal(
+    computeTrimPoint(MARKER_STDERR, { dropTrailing: true }),
+    1.61,
+    "1.41 + the 0.2s pad",
+  );
+});
+
+test("the cut never runs past the start of the marker it just dropped", () => {
+  // A pad wider than the gap would otherwise eat into the marker itself.
+  assert.equal(computeTrimPoint(MARKER_STDERR, { dropTrailing: true, padSec: 5 }), 2.56);
+});
+
+test("autoTrim passes the marker flag through to the trimmer", async () => {
+  const seen = [];
+  const trim = async (bytes, opts) => (seen.push(!!opts.marker), bytes);
+  await autoTrim(Buffer.from("x"), { trim });
+  await autoTrim(Buffer.from("x"), { trim, marker: true });
+  assert.deepEqual(seen, [false, true]);
 });

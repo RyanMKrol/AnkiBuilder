@@ -113,6 +113,7 @@ export async function applyCardAudio(runDir, cardId, bytes, ext, deps = {}) {
 // Point a card at an existing clip already present in the run's audio/ (a generated variant). The
 // variant's own untouched take comes along as the card's new original, so a pick stays re-trimmable.
 export function selectCardAudio(runDir, cardId, filename, original = null, deps = {}) {
+  const { marked = false } = deps;
   const names = original ? [filename, original] : [filename];
   for (const name of names) {
     if (!isSafeMediaFile(name)) throw httpError(400, "invalid audio filename");
@@ -128,6 +129,7 @@ export function selectCardAudio(runDir, cardId, filename, original = null, deps 
       audioOriginal: original || filename,
       audioAuto: filename,
       audioFilter: resolveCleanupName(deps.filter),
+      audioMarked: marked || null,
     },
     deps,
   );
@@ -242,7 +244,13 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
   if (!existsSync(sourcePath)) throw httpError(404, `audio ${JSON.stringify(source)} not found`);
   const raw = readFileSync(sourcePath);
 
-  const { auto } = await autoTrim(raw, { ...(trim ? { trim } : {}), cleanup: filter });
+  const { auto } = await autoTrim(raw, {
+    ...(trim ? { trim } : {}),
+    cleanup: filter,
+    // The original still carries the end marker, so re-deriving from it has to cut the
+    // marker back off — otherwise switching cleanup chains would reintroduce it.
+    marker: !!item.audioMarked,
+  });
   const stem = source.replace(/\.orig\.[A-Za-z0-9]+$/, "").replace(/\.[A-Za-z0-9]+$/, "");
   const audioAuto = `${stem}.${filter}.mp3`;
   if (!isSafeMediaFile(audioAuto)) throw httpError(400, "could not derive a safe filename");

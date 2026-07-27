@@ -5,7 +5,12 @@ import { join, resolve } from "path";
 import os from "os";
 import { Buffer } from "buffer";
 import { createHash } from "crypto";
-import { generateAudio as generateAudioImpl, deriveCardAudio } from "../../src/audio/index.js";
+import {
+  generateAudio as generateAudioImpl,
+  deriveCardAudio,
+  isStageOwnedCard,
+  defaultClipFilename,
+} from "../../src/audio/index.js";
 import { getAltAudioTransform } from "../../src/audio/altAudio.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
@@ -19,6 +24,9 @@ import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 // itself now, and the real trimmer SHELLS OUT to ffmpeg — which would make these tests slow and
 // dependent on whether the machine happens to have it installed. Tests that care about the trim pass
 // their own; see "keeps the untouched original beside the trimmed take" below.
+// Japanese TTS text carries a throwaway end marker (src/audio/ttsMarker.js) so ElevenLabs
+// truncates that instead of the card's actual words. It is part of the text SENT and so part
+// of the cache key, which is why the expected strings and hashes below include it.
 const noTrim = async (bytes) => bytes;
 
 // Every cached term is two files — the shipping clip and its untouched `.orig.mp3` sibling. Tests
@@ -71,7 +79,7 @@ test("writes one MP3 per unique target term into voice-specific cache dir", asyn
       });
 
       assert.equal(calls.length, 2);
-      assert.deepEqual(new Set(calls), new Set(["こんにちは", "さようなら"]));
+      assert.deepEqual(new Set(calls), new Set(["こんにちはででで", "さようならででで"]));
 
       // Cache is segmented by model: audio/<voiceId>/<model>/
       const audioDir = resolve(join(tmpDir, "audio", "voice123", "test-model"));
@@ -123,7 +131,7 @@ test("skips excluded cards: no TTS fetch, and their audio field is cleared", asy
       });
 
       // Only the active card is fetched — the excluded one is never sent to TTS.
-      assert.deepEqual(calls, ["こんにちは"]);
+      assert.deepEqual(calls, ["こんにちはででで"]);
       assert.ok(result.items[0].audio, "active card is annotated with audio");
       assert.equal("audio" in result.items[1], false, "excluded card's audio is cleared");
       assert.equal(result.items[1].excluded, true, "the exclusion flag is preserved");
@@ -245,7 +253,7 @@ test("handles multiple cards with duplicate target terms", async () => {
       });
 
       assert.equal(calls.length, 2);
-      assert.deepEqual(new Set(calls), new Set(["こんにちは", "さようなら"]));
+      assert.deepEqual(new Set(calls), new Set(["こんにちはででで", "さようならででで"]));
 
       assert.equal(result.items[0].audio, result.items[1].audio);
       assert.notEqual(result.items[0].audio, result.items[2].audio);
@@ -540,7 +548,7 @@ test("speaks `reading` instead of `target` when a card carries one", async () =>
         libraryHomeDir: tmpDir,
       });
 
-      assert.deepEqual(calls, ["にじゅういち"]);
+      assert.deepEqual(calls, ["にじゅういちででで"]);
       // The card still carries its kanji target untouched; only what was spoken changed.
       assert.equal(result.items[0].target, "二十一");
       assert.equal(result.items[0].reading, "にじゅういち");
@@ -617,7 +625,7 @@ test("falls back to `target` when `reading` is an empty string", async () => {
         libraryHomeDir: tmpDir,
       });
 
-      assert.deepEqual(calls, ["こんにちは"]);
+      assert.deepEqual(calls, ["こんにちはででで"]);
     });
   } finally {
     if (originalKey) {
@@ -664,9 +672,9 @@ test("default: a ja card's default is the with-。 clip, and NO alt clip is gene
     // Mirrors hashTerm in src/audio/index.js.
     const clip = (t) => `${createHash("sha256").update(t).digest("hex").slice(0, 16)}.mp3`;
     const item = result.items[0];
-    assert.equal(item.audio, clip("はちじ。"), "default take is the with-。 clip");
+    assert.equal(item.audio, clip("はちじ。ででで"), "default take is the with-。 clip");
     assert.equal("altAudio" in item, false, "no altAudio field — the up-front alt pass is gone");
-    assert.deepEqual(calls, ["はちじ。"], "only the with-。 default is fetched");
+    assert.deepEqual(calls, ["はちじ。ででで"], "only the with-。 default is fetched");
 
     const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123", TTS_MODEL)));
     assert.equal(shippingClips(files).length, 1, "only the default clip is cached");
@@ -728,7 +736,11 @@ test("default: the clip is built from the spoken text (reading when present)", a
       getAltTransform: getAltAudioTransform,
       trim: noTrim,
     });
-    assert.deepEqual(calls, ["いち。"], "speaks the reading's 。 variant, not the kanji target");
+    assert.deepEqual(
+      calls,
+      ["いち。ででで"],
+      "speaks the reading's 。 variant, not the kanji target",
+    );
   });
 });
 
@@ -797,7 +809,7 @@ test("ja: the text sent to TTS (and cache key) has spaces stripped, though targe
     // default only, space-free; the with-。 default appends 。 to the already-。-terminated text.
     assert.deepEqual(
       calls,
-      ["これはフランスのワインです。。"],
+      ["これはフランスのワインです。。ででで"],
       "spaces stripped before TTS; the with-。 default appends 。 to the stripped text",
     );
   } finally {
@@ -968,4 +980,49 @@ test("deriveCardAudio: a hand cut beats the automatic trim, which beats the orig
     "a clip the trim left alone ships as-is",
   );
   assert.equal(deriveCardAudio({}), undefined, "a card with no takes has no audio at all");
+});
+
+// --- which cards the audio stage owns --------------------------------------------------------------
+// Provenance lives on the ORIGINAL, not the shipping clip. `audio` is a derived artifact whose name
+// encodes the processing applied, so it changes when the cleanup changes — asking it "did the stage
+// make this?" broke the moment every clip was renamed to <hash>.standard.mp3, which silently told the
+// stage that all 1179 cards were hand-picked and none could ever be regenerated.
+
+test("isStageOwnedCard judges on the original, not on the processed shipping clip", () => {
+  const stage = { audioOriginal: "9f8e7d6c5b4a3210.orig.mp3", audioAuto: "9f8e7d6c5b4a3210.mp3" };
+  assert.equal(isStageOwnedCard(stage), true);
+  // Same card after a cleanup sweep renamed the shipping clip — still the stage's.
+  assert.equal(isStageOwnedCard({ ...stage, audio: "9f8e7d6c5b4a3210.standard.mp3" }), true);
+});
+
+test("isStageOwnedCard leaves a human's choice alone", () => {
+  for (const original of [
+    "9f8e7d6c5b4a3210-gen-ab12cd34.orig.mp3",
+    "9f8e7d6c5b4a3210-genkanji-ab12cd34.orig.mp3",
+    "a1-user-ab12cd34.orig.mp3",
+  ]) {
+    assert.equal(isStageOwnedCard({ audioOriginal: original }), false, original);
+  }
+  // A hand trim is a deliberate placement, whatever the original's provenance.
+  assert.equal(
+    isStageOwnedCard({
+      audioOriginal: "9f8e7d6c5b4a3210.orig.mp3",
+      audioManual: "a1-manual-x.mp3",
+    }),
+    false,
+  );
+});
+
+test("isStageOwnedCard falls back to the clip name for cards that predate originals", () => {
+  assert.equal(isStageOwnedCard({ audio: "9f8e7d6c5b4a3210.mp3" }), true);
+  assert.equal(isStageOwnedCard({ audio: "a1-user-ab12cd34.mp3" }), false);
+  assert.equal(isStageOwnedCard({}), true, "a card with no audio yet is the stage's to fill");
+  assert.equal(isStageOwnedCard(null), false);
+});
+
+test("the marker is part of the cache key, so a marked clip is never reused as an unmarked one", () => {
+  const item = { target: "はちじ" };
+  const marked = defaultClipFilename(item, "ja", (t) => t + "。");
+  const plain = defaultClipFilename(item, "es", (t) => t + "。");
+  assert.notEqual(marked, plain);
 });

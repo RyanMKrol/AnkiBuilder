@@ -321,7 +321,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
           var au = document.createElement("audio"); au.controls = true; au.preload = "none"; au.src = v.mediaUrl;
           var use = document.createElement("button"); use.textContent = "Use this";
           use.addEventListener("click", function () {
-            fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio, original: v.original || null }) })
+            fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio, original: v.original || null, marked: !!v.marked }) })
               .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); refreshRow(r.tr, y.j); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
               .catch(function (e) { alert(e.message); });
           });

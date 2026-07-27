@@ -675,6 +675,7 @@ ${sectionHtml}
         label: v.label,
         audio: v.audio,
         original: v.original,
+        marked: v.marked,
         mediaUrl: mediaUrl(type, id, unit, v.audio),
       })),
     });
@@ -708,6 +709,7 @@ ${sectionHtml}
         label: v.label,
         audio: v.audio,
         original: v.original,
+        marked: v.marked,
         kanji: v.kanji,
         mediaUrl: mediaUrl(type, id, unit, v.audio),
       })),
@@ -764,13 +766,13 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const body = await readBodyCapped(req, 64 * 1024);
-    let filename, original;
+    let filename, original, marked;
     try {
-      ({ audio: filename, original = null } = JSON.parse(body.toString("utf-8")));
+      ({ audio: filename, original = null, marked = false } = JSON.parse(body.toString("utf-8")));
     } catch {
       throw httpError(400, "invalid JSON body");
     }
-    const takes = selectCardAudio(runDir, cardId, filename, original);
+    const takes = selectCardAudio(runDir, cardId, filename, original, { marked });
     sendJson(res, { ...takes, ...takeUrls(type, id, unit, takes) });
   }
 

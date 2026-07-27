@@ -7,7 +7,7 @@
 //
 // The fix is to give the model something it is ALLOWED to truncate. `ででで` after the real text means
 // whatever gets clipped is the marker, not the content, and the real phrase gets its natural ending.
-// The marker is then cut back off (see `markerSegment` in ./trimSilence.js) before the clip ships.
+// The marker is then cut back off (see `markerCandidates` in ./trimSilence.js) before the clip ships.
 //
 // Japanese only. It leans on ja being written without spaces and on で being a clean, repeated
 // open syllable that no real card ends with three of; neither assumption transfers automatically to

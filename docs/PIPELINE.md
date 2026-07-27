@@ -406,24 +406,30 @@ a TTS defect.
 
 Removing it takes **two independent checks**, and both must agree:
 
-- **Position** (`markerSegment`) picks the candidate: the last speech segment, at most 1.0s long, behind
-  a gap of at least 0.3s. Across 12 generated clips this was right every time — genuine pauses inside a
-  phrase measured up to 0.72s, while every observed marker sat behind a gap of 0.82s or more.
-  It then walks **backwards** over up to two more short segments to cover the case where the voice
-  renders the three `で` as separate utterances rather than one blob, which `silencedetect` reports as
-  three segments. Reading only the last of them showed the shape check a single `で` — one pulse, below
-  the 2–4 range — so the veto fired and the whole marker shipped; that hit 39 cards across this
-  project's decks, concentrated in the short single-mora lessons where the voice has most room to draw
-  the marker out. The run is capped at three, since `。ででで` never has more. Extending the run needs
-  only a 0.15s gap rather than the full 0.3s, because the `。` pause opening the marker is the
-  _narrowest_ gap in it (0.25s measured) while the gaps between the `で` themselves ran to ~0.9s.
-- **Shape** (`src/audio/pulseShape.js`) vetoes: the marker is one syllable three times, so its amplitude
-  envelope rises and falls 2–4 times. "Exactly three" was deliberately NOT required — it identified the
-  marker only 11 times in 12 (one clip merged two で into a single 0.245s pulse), which would leave
-  audible nonsense on roughly one card in six. And shape alone can't decide: real speech read as three
-  pulses in 2 of 6 held-out clips.
+- **Position** (`markerCandidates`) proposes the windows the marker could occupy, longest first. The
+  voice renders the three `で` either as one blob or as up to three separate utterances, and
+  `silencedetect` splits the latter into three segments — so how many segments the marker occupies
+  isn't knowable from position alone. Each candidate is a trailing run of at most three segments (`。
+ででで` never has more), each at most 1.0s long. A LONE trailing segment must still sit behind a 0.3s
+  gap, the original rule and the only evidence it isn't just the phrase's last word; extending a run
+  needs only 0.15s.
+- **Shape** (`src/audio/pulseShape.js`) then **decides between the candidates**, not merely vetoes the
+  one: the marker is one syllable three times, so its amplitude envelope rises and falls 2–4 times, and
+  a window that has swallowed a real word reads as more. The first candidate to pass wins. "Exactly
+  three" was deliberately NOT required — it identified the marker only 11 times in 12 (one clip merged
+  two で into a single 0.245s pulse), which would leave audible nonsense on roughly one card in six.
 
-If either check says no, nothing is cut. A reviewer then hears a stray marker and fixes it by hand,
+**Why shape has to choose, rather than a gap threshold.** The gaps do not separate the two cases. On
+`ら` the pause opening the marker is 0.25s while the `で` sit ~0.9s apart; on `あれはわにです` the opening
+pause is 1.09s and the `で` sit ~0.28s apart. So the same ~0.28s gap means "inside the marker" on one
+clip and "the marker starts here" on the other, and no threshold reads both correctly. Selecting by
+shape does: on `じゅっかい` the two-segment window reads as 5 pulses and is rejected, leaving the correct
+one-segment window; on `あれはわにです` the one-segment window reads as 1 pulse and is rejected, leaving
+the correct three-segment one. Taking only the last segment — the original behaviour — shipped the
+whole marker on 39 cards, concentrated in the short single-mora lessons where the voice has most room
+to draw it out.
+
+If no candidate passes, nothing is cut. A reviewer then hears a stray marker and fixes it by hand,
 which is a far better failure than silently cutting the words off a card. Note that an unstripped
 marker also defeats the trim entirely (the marker becomes the last speech, so there is nothing after it
 to cut), so the failure is loud rather than subtle. `audioMarked` records that a card's original still

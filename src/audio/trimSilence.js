@@ -82,39 +82,45 @@ const MARKER_MIN_SPLIT_GAP_SEC = 0.15;
 const MARKER_MAX_SYLLABLES = 3;
 
 /**
- * The window spanning the trailing speech that looks like the appended end marker, as `[from, to]`,
- * or null.
+ * Every window the appended marker could plausibly occupy, as `[from, to]`, **longest first**.
  *
- * A RUN, not a single segment. ElevenLabs voices ででで either as one blob or as three separate
- * utterances up to a second apart, and `silencedetect` splits the latter into three segments. Reading
- * only the last of them handed `looksLikeMarker` a lone で — one pulse, outside MARKER_PULSE_RANGE —
- * so the veto fired, nothing was cut, and the entire marker shipped on the card. Measured across this
- * project's decks that hit 39 cards, concentrated in the short single-mora lessons where the voice has
- * the most room to draw the marker out.
+ * A RUN, not a single segment. ElevenLabs voices ででで either as one blob or as up to three separate
+ * utterances, and `silencedetect` splits the latter into three segments — so how many segments the
+ * marker occupies is not knowable from position alone.
  *
- * Position only — whether it also SOUNDS like a repeated syllable is `looksLikeMarker`'s job, and the
- * caller must ask both. Splitting them keeps this testable without decoding audio.
+ * Nor can the GAPS settle it, which is why this returns candidates rather than an answer. Measured on
+ * this project's clips, the pause opening the marker ranges from 0.25s (ら, where the で then sit ~0.9s
+ * apart) to 1.09s (あれはわにです, where they sit ~0.28s apart) — so the same 0.28s gap has to be read as
+ * "inside the marker" on one clip and "this is where the marker starts" on another. No threshold does
+ * both. The caller resolves it by asking `looksLikeMarker` about each window in turn and taking the
+ * first that passes: on じゅっかい the two-segment window reads as 5 pulses and is rejected, leaving the
+ * correct one-segment window; on あれはわにです the one-segment window reads as 1 pulse and is rejected,
+ * leaving the correct three-segment one.
+ *
+ * Position only — whether a window SOUNDS like a repeated syllable is `looksLikeMarker`'s job. Keeping
+ * them apart is what makes this testable without decoding audio.
  */
-export function markerSegment(speech) {
-  if (!speech || speech.length < 2) return null; // nothing to fall back on if we dropped it
+export function markerCandidates(speech) {
+  if (!speech || speech.length < 2) return []; // nothing to fall back on if we dropped it
 
-  // The last segment still has to earn it on its own, exactly as before: short, and standing clearly
-  // apart from the speech in front of it.
   const lastIndex = speech.length - 1;
-  const last = speech[lastIndex];
-  if (last[1] - last[0] > MARKER_MAX_SEC) return null;
-  if (last[0] - speech[lastIndex - 1][1] < MARKER_MIN_GAP_SEC) return null;
+  const windows = [];
+  // Walk back from the end, stopping at index 1 either way so there is always real content left.
+  for (let first = lastIndex; first > 0 && speech.length - first <= MARKER_MAX_SYLLABLES; first--) {
+    const [start, end] = speech[first];
+    if (end - start > MARKER_MAX_SEC) break; // too long to be one で — and so is anything before it
+    const gap = start - speech[first - 1][1];
+    if (gap < MARKER_MIN_SPLIT_GAP_SEC) break; // runs on from the speech before it
 
-  // Then walk back over any further で the voice split off. Stops at index 1 either way, so there is
-  // always real content left to keep.
-  let first = lastIndex;
-  for (let i = lastIndex - 1; i > 0 && speech.length - i <= MARKER_MAX_SYLLABLES; i--) {
-    const [start, end] = speech[i];
-    if (end - start > MARKER_MAX_SEC) break; // too long to be one で
-    if (start - speech[i - 1][1] < MARKER_MIN_SPLIT_GAP_SEC) break; // runs on from what precedes it
-    first = i;
+    // A LONE trailing segment must stand clearly apart, exactly as it always had to — that gap is the
+    // only evidence it isn't just the phrase's last word. A multi-syllable run carries its own
+    // evidence (a repeated syllable is a shape, not a position), so it needs no more than a
+    // detectable pause.
+    if (gap >= (first === lastIndex ? MARKER_MIN_GAP_SEC : MARKER_MIN_SPLIT_GAP_SEC)) {
+      windows.push([start, speech[lastIndex][1]]);
+    }
   }
-  return [speech[first][0], last[1]];
+  return windows.reverse(); // longest first
 }
 
 // Parses ffmpeg's silencedetect stderr and returns the seconds to trim the clip TO, or null (no-op).
@@ -133,11 +139,11 @@ export function computeTrimPoint(stderr, opts = {}) {
 
   // Drop the appended marker before deciding anything, so the pad is measured from the end of the
   // REAL words. The caller only sets this once the segment has also passed the pulse-shape veto.
-  if (opts.dropTrailing) {
-    const marker = markerSegment(speech);
-    // Drops the WHOLE run the marker was split into, not just its last segment — otherwise one or two
-    // stray で survive and, since they end the clip, the trim then finds no trailing silence at all.
-    if (marker) speech = speech.filter(([start]) => start < marker[0] - 1e-6);
+  // `dropFrom` is the start of the window the caller settled on. Everything from there on goes —
+  // the whole run, not just its last segment, since a surviving で ends the clip and leaves the trim
+  // with no trailing silence to measure against.
+  if (opts.dropFrom != null) {
+    speech = speech.filter(([start]) => start < opts.dropFrom - 1e-6);
   }
 
   // Content ends at the LAST speech segment that's actually speech (≥ minSpeechSec); a short trailing
@@ -253,22 +259,28 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
     ]);
     if (detect.error) return mp3Buffer;
 
-    // Two independent checks before the marker is cut. POSITION picks the candidate — the trailing
-    // run of short segments, each standing behind a clear gap. SHAPE then vetoes: the marker is one
-    // syllable three times, so its envelope rises and falls 2-4 times across that whole window. If
-    // either says no, nothing is dropped and a reviewer hears a stray marker, which is a far better
-    // failure than silently cutting the words off a card.
-    let dropTrailing = false;
+    // Two checks before the marker is cut, and both still have to agree. POSITION proposes the
+    // windows the marker could occupy; SHAPE decides between them — the marker is one syllable three
+    // times, so its envelope rises and falls 2-4 times across the whole window, where a window that
+    // has swallowed a real word reads as more. Taking the LONGEST window that passes strips every
+    // syllable of a split marker; a window that has overreached is rejected on pulse count and the
+    // next-shorter one is tried. If none pass, nothing is dropped and a reviewer hears a stray
+    // marker, which is a far better failure than silently cutting the words off a card.
+    let dropFrom = null;
     if (marker) {
       const parsed = parseSegments(detect.stderr || "");
-      const segment = parsed && markerSegment(parsed.speech);
-      dropTrailing = !!segment && looksLikeMarker(inPath, segment[0], segment[1]);
+      for (const [from, to] of parsed ? markerCandidates(parsed.speech) : []) {
+        if (looksLikeMarker(inPath, from, to)) {
+          dropFrom = from;
+          break;
+        }
+      }
     }
 
     const trimTo = computeTrimPoint(detect.stderr || "", {
       minSpeechSec: cfg.minSpeechSec,
       padSec: cfg.padSec,
-      dropTrailing,
+      dropFrom,
     });
     // Nothing to cut. When cleaning is on there is still work to do — the cleaned audio is the point,
     // trimming was only ever the other half — so fall through to the encode with the filter alone.

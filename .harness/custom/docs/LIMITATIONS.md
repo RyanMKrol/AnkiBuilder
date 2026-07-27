@@ -1135,6 +1135,26 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** on any voice or TTS-model change. Re-derive the parameters against a fresh sample
   rather than assuming they carry over; the grid-search approach is quick to repeat.
 
+## The end-marker cut is capped at three syllables, and can't repair clips already cached
+
+- **What:** `markerSegment` walks backwards over a trailing RUN of short segments rather than taking
+  only the last one, because the voice sometimes renders `ででで` as three separate utterances ~0.9s
+  apart. The run is hard-capped at three segments, and joining one needs only a 0.15s gap where the
+  final segment still needs the full 0.3s.
+- **Why:** the cap is the one thing keeping "walk backwards over short segments" from eating a real
+  phrase — `。ででで` is exactly three syllables, so anything beyond that is somebody's words. The looser
+  join gap is forced by measurement: the `。` pause opening the marker is the narrowest gap in the whole
+  run, so reusing the 0.3s figure there stopped the walk after one syllable and reproduced the original
+  bug.
+- **Impact:** two directions. A phrase genuinely ending in up to three short, clearly separated words
+  could now be over-cut — but only if the pulse-shape veto also passes, so it still needs both guards
+  wrong at once. And this fixes only FUTURE renders: the audio cache keys on `(voice, model, text)` and
+  encodes nothing about processing, so every clip cached before this change still carries its marker on
+  reuse. Roughly 39 cards across the existing decks are in that state.
+- **When to revisit:** if a marker ever renders as four or more segments, or a voice change moves the
+  `。` gap. To repair the existing decks, `rm -rf .anki-builder/audio` and re-run `audio` for the
+  affected lessons — there is no in-place re-processing path, by design.
+
 ## Provenance moved to the original's filename, and the old test failed silently
 
 - **What:** `isStageOwnedCard` decides whether the audio stage may regenerate a card. It reads the

@@ -24,6 +24,7 @@
 // Usage: node scripts/clean-audio.mjs [--apply] [--filter <name>] [--run <dir>]
 //   --apply         actually write (default reports what would change)
 //   --filter <name> cleanup chain: standard (default) | gentle | aggressive
+//   --force         re-derive even cards already on this chain (use after a trim-rule change)
 //   --run <dir>     limit to one run dir (repeatable); default is every lesson under output/
 
 import {
@@ -48,6 +49,9 @@ import { writeFileAtomic } from "../src/util/atomicWrite.js";
 
 const args = process.argv.slice(2);
 const apply = args.includes("--apply");
+// Cards are normally skipped once they are on the requested chain. `--force` re-derives them
+// anyway, which is what you want after the TRIM rule changes rather than the cleanup.
+const force = args.includes("--force");
 const pick = (flag) => {
   const i = args.indexOf(flag);
   return i >= 0 ? args[i + 1] : null;
@@ -125,7 +129,7 @@ for (const dir of runDirs) {
 
   for (const item of data.items || []) {
     if (item.excluded || !item.audio) continue;
-    if (item.audioFilter === filter) {
+    if (item.audioFilter === filter && !force) {
       skipped++;
       continue;
     }

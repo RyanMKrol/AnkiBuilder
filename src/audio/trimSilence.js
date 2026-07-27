@@ -20,7 +20,7 @@ const DEFAULTS = {
   silenceDb: -40, // silencedetect noise floor (dB)
   minSilenceSec: 0.15, // silencedetect: minimum silence run to register
   minSpeechSec: 0.2, // a speech segment shorter than this is a blip/noise, not real content
-  padSec: 0.08, // MINIMUM tail kept after speech (the cut targets the silence midpoint; this is a floor)
+  padSec: 0.2, // tail kept after the last speech, capped by however much silence there actually is
 };
 const MP3_QUALITY = "2"; // libmp3lame -q:a (VBR, ~190 kbps)
 const MIN_SHORTEN_SEC = 0.05; // don't re-encode for a negligible gain
@@ -72,17 +72,25 @@ export function computeTrimPoint(stderr, opts = {}) {
   }
   if (contentEnd == null) return null;
 
-  // Cut partway INTO the trailing silence, not at the speech edge — a buffer that scales with the
-  // silence so we never clip the final sound. Target the MIDPOINT of the silence immediately after the
-  // last real speech; keep at least `padSec` of tail for a very short silence. Everything past that
-  // (the rest of the silence, the blip, and any further silence) is discarded.
+  // Keep a FIXED `padSec` of tail after the last real speech, capped by however much silence is
+  // actually there. Everything past that (the rest of the silence, the blip, and any further silence)
+  // is discarded.
+  //
+  // This used to target the MIDPOINT of the trailing silence, on the theory that a buffer scaling with
+  // the silence could never clip the final sound. It was far too generous: trailing silence on this
+  // project's clips runs to a median of 0.87s, so the midpoint rule left ~0.44s of dead air on a
+  // typical card and 0.79s on the worst — very audible on a flashcard heard hundreds of times.
+  //
+  // A fixed pad is safe because the thing it has to cover is small and bounded: the decaying tail of
+  // the voice that sits BELOW silencedetect's -40 dB threshold. Measured across 75 clips (comparing
+  // where speech ends at -40 dB against -55 dB) that tail is a median of 0.046s and never exceeded
+  // 0.191s — so 0.2s clears every clip, where 0.15s would have clipped one.
   const trailingSilence =
     silences.find(([s]) => Math.abs(s - contentEnd) < 1e-6) ||
     silences.find(([s]) => s >= contentEnd - 1e-6);
   if (!trailingSilence) return null; // speech runs to EOF — nothing trailing to trim
   const silenceEnd = trailingSilence[1];
-  const buffer = Math.max((silenceEnd - contentEnd) / 2, padSec);
-  const trimTo = Math.min(contentEnd + buffer, silenceEnd, duration);
+  const trimTo = Math.min(contentEnd + padSec, silenceEnd, duration);
 
   if (duration - trimTo < minShortenSec) return null; // negligible gain
   if (trimTo < minPlausibleSec) return null; // implausibly short → likely all-silence

@@ -14,12 +14,12 @@ import { fetchElevenLabsTts } from "../../src/audio/elevenLabsTts.js";
 // Pure parser — no ffmpeg, no I/O.
 // ---------------------------------------------------------------------------
 
-test("computeTrimPoint: discards the trailing blip + silence, cuts at the midpoint of the trailing silence", () => {
+test("computeTrimPoint: discards the trailing blip + silence, keeping a fixed pad after speech", () => {
   const stderr = `  Duration: 00:00:01.35, start: 0.0, bitrate: 48 kb/s
 [silencedetect @ 0x1] silence_start: 1.0
 [silencedetect @ 0x1] silence_end: 1.3 | silence_duration: 0.3`;
   // speech [0,1.0] (real) → silence [1.0,1.3] → blip [1.3,1.35] (0.05s < minSpeech) skipped
-  assert.equal(computeTrimPoint(stderr), 1.15); // midpoint of [1.0,1.3]
+  assert.equal(computeTrimPoint(stderr), 1.2); // 1.0 + the 0.2s pad
 });
 
 test("computeTrimPoint: no trailing silence → null (negligible shorten)", () => {
@@ -40,8 +40,8 @@ test("computeTrimPoint: a genuine mid-clip pause is preserved", () => {
 [silencedetect] silence_end: 0.7
 [silencedetect] silence_start: 1.4
 [silencedetect] silence_end: 1.7`;
-  // speech [0,0.5], [0.7,1.4] (both real); last real speech ends 1.4 → midpoint of [1.4,1.7]
-  assert.equal(computeTrimPoint(stderr), 1.55);
+  // speech [0,0.5], [0.7,1.4] (both real); last real speech ends 1.4 → 1.4 + 0.2
+  assert.equal(computeTrimPoint(stderr), 1.6);
 });
 
 test("computeTrimPoint: no Duration line → null", () => {
@@ -51,8 +51,8 @@ test("computeTrimPoint: no Duration line → null", () => {
 test("computeTrimPoint: trailing silence running to EOF (unclosed silence_start)", () => {
   const stderr = `  Duration: 00:00:01.50
 [silencedetect] silence_start: 1.0`;
-  // silence [1.0, 1.5(EOF)]; speech [0,1.0] real → midpoint of [1.0,1.5]
-  assert.equal(computeTrimPoint(stderr), 1.25);
+  // silence [1.0, 1.5(EOF)]; speech [0,1.0] real → 1.0 + 0.2
+  assert.equal(computeTrimPoint(stderr), 1.2);
 });
 
 // ---------------------------------------------------------------------------
@@ -287,4 +287,32 @@ test("autoTrim applies the configured cleanup, and 'off' trims without cleaning"
   assert.match(seen[0], /asubcut|highpass/, "default chain applied when none is named");
   assert.equal(seen[1], null, "'off' means trim only");
   assert.match(seen[2], /highpass=f=100/, "a named chain is passed through");
+});
+
+// --- how much tail the cut leaves ------------------------------------------------------------------
+
+// The pad used to be a FLOOR under "half the trailing silence", which scaled with the silence and so
+// left ~0.44s of dead air on a typical clip here (median trailing silence 0.87s) and 0.79s at worst.
+// It is now a fixed target instead, so a long silence no longer buys itself a long tail.
+test("computeTrimPoint: the tail kept does not grow with the length of the silence", () => {
+  const clip = (dur, speechEnd, silEnd) =>
+    `  Duration: 00:00:0${dur}.00\nsilence_start: ${speechEnd}\nsilence_end: ${silEnd}`;
+  // Same speech, wildly different silences — the kept tail is identical.
+  assert.equal(computeTrimPoint(clip(2, 1.0, 2.0)), 1.2);
+  assert.equal(computeTrimPoint(clip(5, 1.0, 5.0)), 1.2);
+  assert.equal(computeTrimPoint(clip(9, 1.0, 9.0)), 1.2);
+});
+
+// The pad is a target, not a promise: a clip with less silence than the pad keeps what it has rather
+// than the cut running past the silence into whatever follows.
+test("computeTrimPoint: the pad is capped by the silence actually present", () => {
+  const stderr = `  Duration: 00:00:01.50\nsilence_start: 1.0\nsilence_end: 1.10\nsilence_start: 1.20\nsilence_end: 1.50`;
+  // Only 0.10s of silence after speech, so the cut lands on its end — never past it.
+  assert.equal(computeTrimPoint(stderr), 1.1);
+});
+
+test("computeTrimPoint: the pad is configurable, for a voice with a longer decay", () => {
+  const stderr = `  Duration: 00:00:02.00\nsilence_start: 1.0\nsilence_end: 2.0`;
+  assert.equal(computeTrimPoint(stderr, { padSec: 0.35 }), 1.35);
+  assert.equal(computeTrimPoint(stderr, { padSec: 0.05 }), 1.05);
 });

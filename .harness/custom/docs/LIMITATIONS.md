@@ -1054,3 +1054,21 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   lesson; unbounded in principle if someone trims and reverts repeatedly.
 - **When to revisit:** if run dirs get noticeably cluttered, sweep `-manual-` files no card references
   when a lesson is marked done.
+
+## Backfilling originals can't just re-run the `audio` stage
+
+- **What:** giving already-built cards an `audioOriginal` needs `scripts/backfill-audio-originals.mjs`,
+  not `rm -rf .anki-builder/audio` plus a re-run of `audio`. Two things defeat the obvious route:
+  `alreadyDone` checks the RUN DIR rather than the cache, so with every clip still sitting there the
+  stage reports "already generated — reusing" and does nothing; and the stage's copy loop is
+  `if (!existsSync(dest))`, so even forced past that it would leave the run dir's OLD trimmed clip in
+  place while adding a NEW `.orig.mp3` from a different generation — a mismatched pair where the
+  review's Original column plays a different recording than In use.
+- **Why:** both behaviours are right for the stage itself (don't re-spend credits on work already done;
+  don't clobber files that are already correct). They're simply wrong for a backfill, which has to
+  replace a card's two takes *together* so they always come from one recording.
+- **Impact:** the backfill is a separate, explicitly-invoked tool. It's dry by default, skips
+  hand-picked clips (a `-gen-` pick or Replace upload — regenerating those would discard the reviewer's
+  work), and costs one call per unique spoken term.
+- **When to revisit:** if the stage ever grows a `--force` flag, make sure it replaces both takes
+  together rather than only the missing one.

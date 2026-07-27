@@ -365,6 +365,69 @@ test("markerSegment refuses to strip the only segment there is", () => {
   assert.equal(markerSegment([]), null);
 });
 
+// The bug this guards: ElevenLabs often voices ででで as three utterances a second apart, so
+// silencedetect reports three segments. Reading only the last one showed the pulse check a lone で,
+// which vetoed the cut and shipped the whole marker. Measured from a real clip (hira-ra, ら).
+test("markerSegment spans the whole run when the marker is voiced as separate syllables", () => {
+  assert.deepEqual(
+    markerSegment([
+      [0, 0.932],
+      [1.185, 1.489],
+      [2.299, 2.617],
+      [3.541, 3.84],
+    ]),
+    [1.185, 3.84],
+  );
+});
+
+test("markerSegment never takes more syllables than the marker has", () => {
+  // Five short, well-separated segments. `。ででで` is only ever three, so the run stops there and the
+  // two earliest segments are left alone however marker-shaped they look.
+  assert.deepEqual(
+    markerSegment([
+      [0, 0.4],
+      [0.8, 1.2],
+      [1.6, 2.0],
+      [2.4, 2.8],
+      [3.2, 3.6],
+    ]),
+    [1.6, 3.6],
+  );
+});
+
+test("markerSegment stops the run at a segment too long to be a で", () => {
+  assert.deepEqual(
+    markerSegment([
+      [0, 0.5],
+      [1.0, 2.4], // real speech — 1.4s
+      [2.9, 3.2],
+    ]),
+    [2.9, 3.2],
+  );
+});
+
+// A three-segment marker, all of it after the real words end at 0.93.
+const SPLIT_MARKER_STDERR = `  Duration: 00:00:03.84
+silence_start: 0.932
+silence_end: 1.185
+silence_start: 1.489
+silence_end: 2.299
+silence_start: 2.617
+silence_end: 3.541`;
+
+test("computeTrimPoint drops every segment of a split marker, not just the last", () => {
+  assert.equal(
+    computeTrimPoint(SPLIT_MARKER_STDERR),
+    null,
+    "marker intact: speech runs to EOF, nothing to trim",
+  );
+  assert.equal(
+    computeTrimPoint(SPLIT_MARKER_STDERR, { dropTrailing: true }),
+    1.132,
+    "0.932 + the 0.2s pad — measured from the real words, not from a surviving で",
+  );
+});
+
 // Left in place, the marker IS the last real speech — so the trim finds nothing after it to cut and
 // gives up entirely, shipping the marker. Dropping it first is what makes the clip trimmable at all.
 test("computeTrimPoint with dropTrailing measures the pad from the REAL words", () => {

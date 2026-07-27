@@ -71,20 +71,50 @@ export function parseSegments(stderr) {
 // so the check stays about "is this separated at all", with the pulse-shape veto doing the real work.
 const MARKER_MAX_SEC = 1.0;
 const MARKER_MIN_GAP_SEC = 0.3;
+// Gap needed to join one more syllable onto an already-identified marker. Deliberately lower than
+// MARKER_MIN_GAP_SEC: the `。` pause opening the marker measured 0.25s on this project's clips, while
+// the gaps BETWEEN the で ran to ~0.9s — so the run's leading edge is the narrowest gap in it, and
+// demanding the full standing-apart distance there would cut the run short. This is a floor, not a
+// real filter: a gap only exists where silencedetect already found `minSilenceSec` of silence.
+const MARKER_MIN_SPLIT_GAP_SEC = 0.15;
+// The marker is `。ででで` (./ttsMarker.js) — three で and no more, so a trailing run longer than this
+// is somebody's actual words and must not be touched.
+const MARKER_MAX_SYLLABLES = 3;
 
 /**
- * The trailing speech segment that looks like the appended end marker, or null.
+ * The window spanning the trailing speech that looks like the appended end marker, as `[from, to]`,
+ * or null.
+ *
+ * A RUN, not a single segment. ElevenLabs voices ででで either as one blob or as three separate
+ * utterances up to a second apart, and `silencedetect` splits the latter into three segments. Reading
+ * only the last of them handed `looksLikeMarker` a lone で — one pulse, outside MARKER_PULSE_RANGE —
+ * so the veto fired, nothing was cut, and the entire marker shipped on the card. Measured across this
+ * project's decks that hit 39 cards, concentrated in the short single-mora lessons where the voice has
+ * the most room to draw the marker out.
  *
  * Position only — whether it also SOUNDS like a repeated syllable is `looksLikeMarker`'s job, and the
  * caller must ask both. Splitting them keeps this testable without decoding audio.
  */
 export function markerSegment(speech) {
   if (!speech || speech.length < 2) return null; // nothing to fall back on if we dropped it
-  const last = speech[speech.length - 1];
-  const previous = speech[speech.length - 2];
+
+  // The last segment still has to earn it on its own, exactly as before: short, and standing clearly
+  // apart from the speech in front of it.
+  const lastIndex = speech.length - 1;
+  const last = speech[lastIndex];
   if (last[1] - last[0] > MARKER_MAX_SEC) return null;
-  if (last[0] - previous[1] < MARKER_MIN_GAP_SEC) return null;
-  return last;
+  if (last[0] - speech[lastIndex - 1][1] < MARKER_MIN_GAP_SEC) return null;
+
+  // Then walk back over any further で the voice split off. Stops at index 1 either way, so there is
+  // always real content left to keep.
+  let first = lastIndex;
+  for (let i = lastIndex - 1; i > 0 && speech.length - i <= MARKER_MAX_SYLLABLES; i--) {
+    const [start, end] = speech[i];
+    if (end - start > MARKER_MAX_SEC) break; // too long to be one で
+    if (start - speech[i - 1][1] < MARKER_MIN_SPLIT_GAP_SEC) break; // runs on from what precedes it
+    first = i;
+  }
+  return [speech[first][0], last[1]];
 }
 
 // Parses ffmpeg's silencedetect stderr and returns the seconds to trim the clip TO, or null (no-op).
@@ -105,7 +135,9 @@ export function computeTrimPoint(stderr, opts = {}) {
   // REAL words. The caller only sets this once the segment has also passed the pulse-shape veto.
   if (opts.dropTrailing) {
     const marker = markerSegment(speech);
-    if (marker) speech = speech.slice(0, -1);
+    // Drops the WHOLE run the marker was split into, not just its last segment — otherwise one or two
+    // stray で survive and, since they end the clip, the trim then finds no trailing silence at all.
+    if (marker) speech = speech.filter(([start]) => start < marker[0] - 1e-6);
   }
 
   // Content ends at the LAST speech segment that's actually speech (≥ minSpeechSec); a short trailing
@@ -221,9 +253,9 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
     ]);
     if (detect.error) return mp3Buffer;
 
-    // Two independent checks before the marker is cut. POSITION picks the candidate — the last
-    // segment, short, standing behind a clear gap — and was right on every clip measured. SHAPE then
-    // vetoes: the marker is one syllable three times, so its envelope rises and falls 2-4 times. If
+    // Two independent checks before the marker is cut. POSITION picks the candidate — the trailing
+    // run of short segments, each standing behind a clear gap. SHAPE then vetoes: the marker is one
+    // syllable three times, so its envelope rises and falls 2-4 times across that whole window. If
     // either says no, nothing is dropped and a reviewer hears a stray marker, which is a far better
     // failure than silently cutting the words off a card.
     let dropTrailing = false;

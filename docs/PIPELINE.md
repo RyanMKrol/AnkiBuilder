@@ -409,6 +409,14 @@ Removing it takes **two independent checks**, and both must agree:
 - **Position** (`markerSegment`) picks the candidate: the last speech segment, at most 1.0s long, behind
   a gap of at least 0.3s. Across 12 generated clips this was right every time — genuine pauses inside a
   phrase measured up to 0.72s, while every observed marker sat behind a gap of 0.82s or more.
+  It then walks **backwards** over up to two more short segments to cover the case where the voice
+  renders the three `で` as separate utterances rather than one blob, which `silencedetect` reports as
+  three segments. Reading only the last of them showed the shape check a single `で` — one pulse, below
+  the 2–4 range — so the veto fired and the whole marker shipped; that hit 39 cards across this
+  project's decks, concentrated in the short single-mora lessons where the voice has most room to draw
+  the marker out. The run is capped at three, since `。ででで` never has more. Extending the run needs
+  only a 0.15s gap rather than the full 0.3s, because the `。` pause opening the marker is the
+  _narrowest_ gap in it (0.25s measured) while the gaps between the `で` themselves ran to ~0.9s.
 - **Shape** (`src/audio/pulseShape.js`) vetoes: the marker is one syllable three times, so its amplitude
   envelope rises and falls 2–4 times. "Exactly three" was deliberately NOT required — it identified the
   marker only 11 times in 12 (one clip merged two で into a single 0.245s pulse), which would leave

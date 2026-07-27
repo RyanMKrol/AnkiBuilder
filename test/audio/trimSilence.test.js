@@ -6,7 +6,7 @@ import {
   computeTrimPoint,
   trimTrailingSilence,
   autoTrim,
-  markerSegment,
+  markerCandidates,
   __resetFfmpegCache,
 } from "../../src/audio/trimSilence.js";
 import { fetchElevenLabsTts } from "../../src/audio/elevenLabsTts.js";
@@ -328,85 +328,111 @@ silence_end: 0.07
 silence_start: 1.41
 silence_end: 2.56`;
 
-test("markerSegment picks the short, clearly separated trailing segment", () => {
+test("markerCandidates offers the short, clearly separated trailing segment", () => {
   assert.deepEqual(
-    markerSegment([
+    markerCandidates([
       [0, 1.0],
       [1.6, 2.0],
     ]),
-    [1.6, 2.0],
+    [[1.6, 2.0]],
   );
 });
 
-test("markerSegment refuses a trailing segment that is too long to be the marker", () => {
-  assert.equal(
-    markerSegment([
+test("markerCandidates refuses a trailing segment that is too long to be the marker", () => {
+  assert.deepEqual(
+    markerCandidates([
       [0, 1.0],
       [1.6, 3.0],
     ]),
-    null,
+    [],
   );
 });
 
-// A phrase with a natural pause before its final word looks superficially similar. Requiring a real
-// gap is the first of the two guards; the pulse-shape veto is the second.
-test("markerSegment refuses one that runs on from the speech before it", () => {
-  assert.equal(
-    markerSegment([
+// A phrase with a natural pause before its final word looks superficially similar. A LONE trailing
+// segment still has to stand clearly apart; the pulse-shape check is the second guard.
+test("markerCandidates refuses one that runs on from the speech before it", () => {
+  assert.deepEqual(
+    markerCandidates([
       [0, 1.0],
       [1.1, 1.5],
     ]),
-    null,
+    [],
   );
 });
 
-test("markerSegment refuses to strip the only segment there is", () => {
-  assert.equal(markerSegment([[0, 1.0]]), null);
-  assert.equal(markerSegment([]), null);
+test("markerCandidates refuses to strip the only segment there is", () => {
+  assert.deepEqual(markerCandidates([[0, 1.0]]), []);
+  assert.deepEqual(markerCandidates([]), []);
 });
 
-// The bug this guards: ElevenLabs often voices ででで as three utterances a second apart, so
-// silencedetect reports three segments. Reading only the last one showed the pulse check a lone で,
-// which vetoed the cut and shipped the whole marker. Measured from a real clip (hira-ra, ら).
-test("markerSegment spans the whole run when the marker is voiced as separate syllables", () => {
+// Measured from a real clip (hira-ra, ら): the voice drew the three で ~0.9s apart, so silencedetect
+// reported them as three segments. Reading only the last showed the shape check a lone で — one pulse,
+// below the 2-4 range — so the veto fired and the whole marker shipped.
+test("markerCandidates offers the whole run, longest first, for a split marker", () => {
   assert.deepEqual(
-    markerSegment([
+    markerCandidates([
       [0, 0.932],
       [1.185, 1.489],
       [2.299, 2.617],
       [3.541, 3.84],
     ]),
-    [1.185, 3.84],
+    [
+      [1.185, 3.84],
+      [2.299, 3.84],
+      [3.541, 3.84],
+    ],
   );
 });
 
-test("markerSegment never takes more syllables than the marker has", () => {
-  // Five short, well-separated segments. `。ででで` is only ever three, so the run stops there and the
-  // two earliest segments are left alone however marker-shaped they look.
+// The opening pause can be NARROWER than the gaps inside the marker (0.25s vs ~0.9s above), and on
+// another clip wider (1.09s vs ~0.28s). So the lone-segment window is sometimes inadmissible while a
+// longer one is fine — measured from あれはわにです, whose final gap is 0.286s.
+test("markerCandidates still offers longer runs when the last segment alone is too close", () => {
   assert.deepEqual(
-    markerSegment([
+    markerCandidates([
+      [0, 0.623],
+      [1.234, 1.957],
+      [3.045, 3.348],
+      [3.626, 3.847],
+      [4.134, 4.4],
+    ]),
+    [
+      [3.045, 4.4],
+      [3.626, 4.4],
+    ],
+  );
+});
+
+test("markerCandidates never offers more syllables than the marker has", () => {
+  // Five short, well-separated segments. `。ででで` is only ever three, so the run stops there.
+  assert.deepEqual(
+    markerCandidates([
       [0, 0.4],
       [0.8, 1.2],
       [1.6, 2.0],
       [2.4, 2.8],
       [3.2, 3.6],
     ]),
-    [1.6, 3.6],
+    [
+      [1.6, 3.6],
+      [2.4, 3.6],
+      [3.2, 3.6],
+    ],
   );
 });
 
-test("markerSegment stops the run at a segment too long to be a で", () => {
+test("markerCandidates stops the run at a segment too long to be a で", () => {
   assert.deepEqual(
-    markerSegment([
+    markerCandidates([
       [0, 0.5],
-      [1.0, 2.4], // real speech — 1.4s
+      [1.0, 2.4], // real speech - 1.4s
       [2.9, 3.2],
     ]),
-    [2.9, 3.2],
+    [[2.9, 3.2]],
   );
 });
 
-// A three-segment marker, all of it after the real words end at 0.93.
+// A three-segment marker, all of it after the real words end at 0.932.
 const SPLIT_MARKER_STDERR = `  Duration: 00:00:03.84
 silence_start: 0.932
 silence_end: 1.185
@@ -422,26 +448,22 @@ test("computeTrimPoint drops every segment of a split marker, not just the last"
     "marker intact: speech runs to EOF, nothing to trim",
   );
   assert.equal(
-    computeTrimPoint(SPLIT_MARKER_STDERR, { dropTrailing: true }),
+    computeTrimPoint(SPLIT_MARKER_STDERR, { dropFrom: 1.185 }),
     1.132,
-    "0.932 + the 0.2s pad — measured from the real words, not from a surviving で",
+    "0.932 + the 0.2s pad - measured from the real words, not from a surviving で",
   );
 });
 
-// Left in place, the marker IS the last real speech — so the trim finds nothing after it to cut and
+// Left in place, the marker IS the last real speech - so the trim finds nothing after it to cut and
 // gives up entirely, shipping the marker. Dropping it first is what makes the clip trimmable at all.
-test("computeTrimPoint with dropTrailing measures the pad from the REAL words", () => {
+test("computeTrimPoint with dropFrom measures the pad from the REAL words", () => {
   assert.equal(computeTrimPoint(MARKER_STDERR), null, "marker intact: nothing to trim after it");
-  assert.equal(
-    computeTrimPoint(MARKER_STDERR, { dropTrailing: true }),
-    1.61,
-    "1.41 + the 0.2s pad",
-  );
+  assert.equal(computeTrimPoint(MARKER_STDERR, { dropFrom: 1.6 }), 1.61, "1.41 + the 0.2s pad");
 });
 
 test("the cut never runs past the start of the marker it just dropped", () => {
   // A pad wider than the gap would otherwise eat into the marker itself.
-  assert.equal(computeTrimPoint(MARKER_STDERR, { dropTrailing: true, padSec: 5 }), 2.56);
+  assert.equal(computeTrimPoint(MARKER_STDERR, { dropFrom: 1.6, padSec: 5 }), 2.56);
 });
 
 test("autoTrim passes the marker flag through to the trimmer", async () => {

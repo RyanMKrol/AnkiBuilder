@@ -1135,25 +1135,28 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** on any voice or TTS-model change. Re-derive the parameters against a fresh sample
   rather than assuming they carry over; the grid-search approach is quick to repeat.
 
-## The end-marker cut is capped at three syllables, and can't repair clips already cached
+## Which window is the end marker is decided by pulse count, because no gap threshold works
 
-- **What:** `markerSegment` walks backwards over a trailing RUN of short segments rather than taking
-  only the last one, because the voice sometimes renders `ででで` as three separate utterances ~0.9s
-  apart. The run is hard-capped at three segments, and joining one needs only a 0.15s gap where the
-  final segment still needs the full 0.3s.
-- **Why:** the cap is the one thing keeping "walk backwards over short segments" from eating a real
-  phrase — `。ででで` is exactly three syllables, so anything beyond that is somebody's words. The looser
-  join gap is forced by measurement: the `。` pause opening the marker is the narrowest gap in the whole
-  run, so reusing the 0.3s figure there stopped the walk after one syllable and reproduced the original
-  bug.
-- **Impact:** two directions. A phrase genuinely ending in up to three short, clearly separated words
-  could now be over-cut — but only if the pulse-shape veto also passes, so it still needs both guards
-  wrong at once. And this fixes only FUTURE renders: the audio cache keys on `(voice, model, text)` and
-  encodes nothing about processing, so every clip cached before this change still carries its marker on
-  reuse. Roughly 39 cards across the existing decks are in that state.
+- **What:** `markerCandidates` returns up to three trailing windows (longest first) instead of one
+  answer, and the pulse-shape check picks the first that passes. A lone trailing segment still needs
+  the original 0.3s standing-apart gap; extending a run needs only 0.15s, and a run is capped at three
+  segments.
+- **Why:** the gaps genuinely don't separate the cases. On `ら` the pause opening the marker is 0.25s
+  while the `で` sit ~0.9s apart; on `あれはわにです` it is 1.09s and the `で` sit ~0.28s apart. A single
+  threshold has to read ~0.28s as "inside the marker" on one clip and "marker starts here" on the
+  other. Shape can tell them apart — a window that has swallowed a real word reads as 5 pulses rather
+  than 2–4 — so selection moved there, and position was demoted to proposing candidates.
+- **Impact:** the veto is no longer a pure safety net; it now chooses, so a mis-selection cuts a real
+  word rather than merely leaving a marker audible. Preferring the LONGEST passing window is the risky
+  direction: a phrase ending in up to three short, well-separated words whose longest window happens to
+  read 2–4 pulses would be over-cut. The three-segment cap and the 1.0s per-segment limit bound it, and
+  it only applies to clips generated WITH a marker. Costs up to three ffmpeg decodes per clip instead
+  of one. Measured over lesson-3's 89 clips: 8 fixed, 81 byte-identical, none over-cut.
 - **When to revisit:** if a marker ever renders as four or more segments, or a voice change moves the
-  `。` gap. To repair the existing decks, `rm -rf .anki-builder/audio` and re-run `audio` for the
-  affected lessons — there is no in-place re-processing path, by design.
+  pulse shape. Note the fix applies to future renders only — the audio cache keys on
+  `(voice, model, text)` and encodes nothing about processing. To repair existing decks WITHOUT
+  respending credits, run `scripts/clean-audio.mjs --apply --force`, which re-derives the shipping take
+  from each card's kept `.orig.mp3`; dropping the cache and re-running `audio` refetches instead.
 
 ## Provenance moved to the original's filename, and the old test failed silently
 

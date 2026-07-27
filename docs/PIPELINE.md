@@ -348,6 +348,36 @@ ffmpeg isn't installed (a one-time warning) or any step fails or the result isn'
 returned unchanged — the audio build never breaks. Off with `ANKI_BUILDER_TRIM_AUDIO=0`; thresholds via
 `ANKI_BUILDER_TRIM_SILENCE_DB` / `_MIN_SILENCE_SEC` / `_MIN_SPEECH_SEC` / `_PAD_SEC`.
 
+**Background-noise cleanup (`src/audio/cleanupFilter.js`).** ElevenLabs clips carry low-frequency
+rumble under the voice. Measured across this project's own decks, the noise floor in a clip's silence
+sits around -37 to -51 dBFS where clean audio is below -70, and **~94% of that energy is below 80 Hz**
+— it reads as a low whoosh, not a hiss. Speech has nothing down there (a Japanese TTS voice's
+fundamental is comfortably above 100 Hz), so a steep low-cut removes it without touching anything
+audible. `asubcut` (a high-order Butterworth) is the workhorse: at the same corner frequency a
+20th-order cut attenuates 50 Hz by ~60 dB where two cascaded 2-pole `highpass` stages manage ~24 dB.
+
+Three chains, picked by ear against measurements over 14 clips spanning every deck:
+
+| chain                | noise    | voice peak | worst voice | notes                                                          |
+| -------------------- | -------- | ---------- | ----------- | -------------------------------------------------------------- |
+| `standard` (default) | -35.0 dB | -0.94 dB   | -3.20 dB    | low-cut + FFT denoise + downward expander                      |
+| `gentle`             | -21.1 dB | -0.19 dB   | -2.90 dB    | plain highpass + light denoise; least invasive                 |
+| `aggressive`         | -29.1 dB | -0.69 dB   | -5.70 dB    | 130 Hz corner — cleans LESS than standard and costs more voice |
+
+`aggressive` is not the strongest cleaner despite the name; its higher corner cuts into the
+fundamental of lower-pitched clips. Both alternatives exist as escape hatches for the occasional clip
+the default handles badly, selectable per card in the trim modal and stored on the card as
+`audioFilter` so a later re-trim re-applies the same one. `ANKI_BUILDER_AUDIO_CLEANUP` sets the
+default (or `off` to disable), and chains are only ever selected BY NAME from a fixed table — a
+request can never supply a raw ffmpeg filter string that would reach a command line.
+
+**Cleanup runs BEFORE the trim, in the same pass.** Not cosmetic ordering: rumble peaks around -38 dB,
+above `silencedetect`'s -40 dB threshold, so on a noisy clip the trailing "silence" reads as sound and
+the trim gives up entirely — measured at roughly 1 clip in 16 on this project's decks. The chain is
+prepended to BOTH of `trimTrailingSilence`'s ffmpeg invocations (the detect pass and the cut pass)
+rather than cleaning into a temp file that is then trimmed, so detection sees cleaned audio while the
+output stays a SINGLE encode from the original instead of two stacked lossy generations.
+
 **Both takes are kept.** The trim used to run inside `fetchElevenLabsTts` — the single choke point — so
 every clip arrived pre-trimmed and the raw take was discarded before it reached disk. That made the
 algorithm's mistakes permanent and invisible: it only ever cuts the END, so leading silence survives
@@ -664,6 +694,10 @@ The audio-review write endpoints:
   `audioTrim`. 422 with the reason if the range is nonsensical or ffmpeg can't apply it.
 - `POST …/card/:cardId/audio/trim/revert` — drop the hand cut (`revertCardAudio`); `audio` falls back to
   `audioAuto`. The cut file is left on disk, so re-applying the same range costs nothing.
+- `POST …/card/:cardId/audio/clean` — body `{ filter }`, one of the chain names. Re-derives the card's
+  takes under a different cleanup chain (`recleanCardAudio`), always from the untouched original so
+  chains can never stack on one another; a saved hand trim is re-cut under the new chain rather than
+  dropped. 400 on any name that isn't in the table.
 - `POST /api/deck/:type/:id/rebuild` (`handleRebuild`) — regenerate the **single group package**
   `<deckDir>/deck.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
   assembly the CLI's `deck --book-dir` uses, so a browser rebuild is byte-identical, and it packages

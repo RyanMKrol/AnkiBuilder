@@ -5,6 +5,7 @@ import { Buffer } from "buffer";
 import {
   computeTrimPoint,
   trimTrailingSilence,
+  autoTrim,
   __resetFfmpegCache,
 } from "../../src/audio/trimSilence.js";
 import { fetchElevenLabsTts } from "../../src/audio/elevenLabsTts.js";
@@ -186,4 +187,104 @@ test("fetchElevenLabsTts pipes the response bytes through trimTrailingSilence", 
     if (original === undefined) delete process.env.ANKI_BUILDER_TRIM_AUDIO;
     else process.env.ANKI_BUILDER_TRIM_AUDIO = original;
   }
+});
+
+// --- noise cleanup, applied before the trim -------------------------------------------------------
+
+// Rumble peaks around -38 dB, ABOVE silencedetect's -40 dB threshold, so on a noisy clip the trailing
+// "silence" reads as sound and the trim gives up. Cleaning has to happen before detection, not after,
+// or the trim is deciding based on audio nobody will ever hear.
+test("the cleanup filter is prepended to the DETECT pass, not just the cut", async () => {
+  const calls = [];
+  const runFfmpeg = (args) => {
+    calls.push(args);
+    if (args.includes("-version")) return { status: 0, stderr: "" };
+    if (args.includes("null")) {
+      return {
+        status: 0,
+        stderr: "Duration: 00:00:02.00\nsilence_start: 1.20\nsilence_end: 2.00\n",
+      };
+    }
+    writeFileSync(args[args.length - 1], "CUT");
+    return { status: 0, stderr: "" };
+  };
+  __resetFfmpegCache();
+  await trimTrailingSilence(Buffer.from("x".repeat(500)), {
+    runFfmpeg,
+    env: {},
+    cleanup: "asubcut=cutoff=110:order=20",
+  });
+
+  const detect = calls.find((a) => a.includes("null"));
+  const af = detect[detect.indexOf("-af") + 1];
+  assert.match(af, /^asubcut=cutoff=110:order=20,silencedetect/);
+});
+
+test("the cut pass carries the same filter, so the output is one encode from the original", async () => {
+  const calls = [];
+  const runFfmpeg = (args) => {
+    calls.push(args);
+    if (args.includes("-version")) return { status: 0, stderr: "" };
+    if (args.includes("null"))
+      return {
+        status: 0,
+        stderr: "Duration: 00:00:02.00\nsilence_start: 1.20\nsilence_end: 2.00\n",
+      };
+    writeFileSync(args[args.length - 1], "CUT");
+    return { status: 0, stderr: "" };
+  };
+  __resetFfmpegCache();
+  await trimTrailingSilence(Buffer.from("x".repeat(500)), {
+    runFfmpeg,
+    env: {},
+    cleanup: "highpass=f=100",
+  });
+  const cut = calls.find((a) => a.includes("-y"));
+  assert.equal(cut[cut.indexOf("-af") + 1], "highpass=f=100");
+  // One ffmpeg encode, from the input file — not a cleaned temp file that was then trimmed.
+  assert.equal(calls.filter((a) => a.includes("-c:a")).length, 1);
+});
+
+// With cleaning on there is work to do even when nothing needs cutting, so the "nothing to trim" and
+// "result isn't smaller" early-outs must not skip the encode and silently drop the cleanup.
+test("a clip with no trailing silence is still cleaned", async () => {
+  const runFfmpeg = (args) => {
+    if (args.includes("-version")) return { status: 0, stderr: "" };
+    if (args.includes("null")) return { status: 0, stderr: "Duration: 00:00:02.00\n" }; // no silence
+    writeFileSync(args[args.length - 1], "CLEANED-BUT-NOT-CUT");
+    return { status: 0, stderr: "" };
+  };
+  __resetFfmpegCache();
+  const out = await trimTrailingSilence(Buffer.from("x".repeat(500)), {
+    runFfmpeg,
+    env: {},
+    cleanup: "highpass=f=100",
+  });
+  assert.equal(out.toString(), "CLEANED-BUT-NOT-CUT");
+});
+
+test("with no cleanup, a clip with no trailing silence is returned untouched as before", async () => {
+  const runFfmpeg = (args) => {
+    if (args.includes("-version")) return { status: 0, stderr: "" };
+    if (args.includes("null")) return { status: 0, stderr: "Duration: 00:00:02.00\n" };
+    writeFileSync(args[args.length - 1], "SHOULD-NOT-BE-USED");
+    return { status: 0, stderr: "" };
+  };
+  __resetFfmpegCache();
+  const input = Buffer.from("x".repeat(500));
+  assert.equal(await trimTrailingSilence(input, { runFfmpeg, env: {}, cleanup: null }), input);
+});
+
+test("autoTrim applies the configured cleanup, and 'off' trims without cleaning", async () => {
+  const seen = [];
+  const trim = async (bytes, opts) => {
+    seen.push(opts?.cleanup ?? null);
+    return bytes;
+  };
+  await autoTrim(Buffer.from("x"), { trim });
+  await autoTrim(Buffer.from("x"), { trim, cleanup: "off" });
+  await autoTrim(Buffer.from("x"), { trim, cleanup: "gentle" });
+  assert.match(seen[0], /asubcut|highpass/, "default chain applied when none is named");
+  assert.equal(seen[1], null, "'off' means trim only");
+  assert.match(seen[2], /highpass=f=100/, "a named chain is passed through");
 });

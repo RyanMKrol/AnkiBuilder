@@ -6,6 +6,7 @@ import { validateCards as defaultValidateCards } from "../../model/index.js";
 import { httpError } from "../../util/httpError.js";
 import { autoTrim } from "../../audio/trimSilence.js";
 import { trimToRange as defaultTrimToRange } from "../../audio/trimToRange.js";
+import { cleanupChain, isCleanupName } from "../../audio/cleanupFilter.js";
 import { AUDIO_FIELDS, deriveCardAudio } from "../../audio/index.js";
 import { isSafeMediaFile } from "./runDir.js";
 
@@ -61,7 +62,7 @@ const clearedTakes = () => Object.fromEntries(AUDIO_FIELDS.map((field) => [field
 // at the result. Filenames carry the card id + a hash of the RAW bytes: disjoint from the audio
 // stage's hash(text).mp3 clips, and cache-bustable (a new upload → new names → fresh /media URLs).
 export async function applyCardAudio(runDir, cardId, bytes, ext, deps = {}) {
-  const { trim } = deps;
+  const { trim, filter } = deps;
   const cleanExt = String(ext || "").toLowerCase();
   if (!EXT_ALLOWLIST.has(cleanExt)) {
     throw httpError(400, `unsupported audio extension: ${JSON.stringify(ext)}`);
@@ -75,7 +76,7 @@ export async function applyCardAudio(runDir, cardId, bytes, ext, deps = {}) {
   // The trimmer re-encodes to mp3, so the derived take is always .mp3 whatever the upload arrived as
   // — writing mp3 bytes under a .wav name would be a worse bug than not trimming at all. The original
   // keeps its uploaded extension, under a `.orig.` infix so an .mp3 upload's two files can't collide.
-  const { auto, changed } = await autoTrim(bytes, trim ? { trim } : {});
+  const { auto, changed } = await autoTrim(bytes, { ...(trim ? { trim } : {}), cleanup: filter });
 
   const safeId = String(cardId).replace(/[^A-Za-z0-9._-]/g, "_");
   const stem = `${safeId}-user-${createHash("sha1").update(bytes).digest("hex").slice(0, 8)}`;
@@ -92,7 +93,7 @@ export async function applyCardAudio(runDir, cardId, bytes, ext, deps = {}) {
   return setCardTakes(
     runDir,
     cardId,
-    { ...clearedTakes(), audioOriginal: original, audioAuto },
+    { ...clearedTakes(), audioOriginal: original, audioAuto, audioFilter: filter || null },
     deps,
   );
 }
@@ -134,7 +135,7 @@ export function cardTrimSource(item) {
 // editor's handles freely draggable in both directions — including back out past where the automatic
 // trim landed, which is the entire reason the original is kept.
 export function trimCardAudio(runDir, cardId, start, end, deps = {}) {
-  const { trimToRange = defaultTrimToRange } = deps;
+  const { trimToRange = defaultTrimToRange, filter } = deps;
   const { data } = loadCards(runDir);
   const item = (data.items || []).find((i) => i.id === cardId);
   if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
@@ -145,9 +146,13 @@ export function trimCardAudio(runDir, cardId, start, end, deps = {}) {
   const sourcePath = join(runDir, "audio", source);
   if (!existsSync(sourcePath)) throw httpError(404, `audio ${JSON.stringify(source)} not found`);
 
+  // The cut comes off the untouched original, so the noise cleanup has to be re-applied here or the
+  // reviewer's hand trim would quietly reintroduce the rumble the automatic take had removed. Use the
+  // chain this card was built with, so trimming never silently changes which filter is in force.
+  const chain = filter ?? item.audioFilter ?? undefined;
   let cut;
   try {
-    cut = trimToRange(readFileSync(sourcePath), start, end);
+    cut = trimToRange(readFileSync(sourcePath), start, end, { cleanup: cleanupChain(chain) });
   } catch (e) {
     // Unlike the automatic trim, an explicit edit that can't be applied must SAY so — a silent no-op
     // would tell the reviewer their cut landed when the card still holds the untrimmed clip.
@@ -161,7 +166,66 @@ export function trimCardAudio(runDir, cardId, start, end, deps = {}) {
 
   // Only the manual fields move. The original and the automatic take stay exactly as they are, so
   // "revert to automatic" is a delete rather than a regeneration.
-  return setCardTakes(runDir, cardId, { audioManual: filename, audioTrim: { start, end } }, deps);
+  return setCardTakes(
+    runDir,
+    cardId,
+    {
+      audioManual: filename,
+      audioTrim: { start, end },
+      ...(filter ? { audioFilter: filter } : {}),
+    },
+    deps,
+  );
+}
+
+/**
+ * Rebuild a card's takes with a different noise-cleanup chain.
+ *
+ * The dashboard's escape hatch for the occasional clip the default chain handles badly — too little
+ * cleaning, or a thinned voice. Always re-derived from the untouched ORIGINAL, never from the current
+ * take, so switching chains can't stack one filter on top of another (which would compound the
+ * artefacts each is trying to avoid, and make the result depend on the order you clicked the buttons).
+ *
+ * A hand trim is preserved: its stored range is re-cut from the original under the new chain, so
+ * changing the cleanup doesn't silently throw away the reviewer's edit.
+ */
+export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
+  const { trim, trimToRange = defaultTrimToRange } = deps;
+  if (!isCleanupName(filter) && cleanupChain(filter) !== null) {
+    throw httpError(400, `unknown cleanup filter: ${JSON.stringify(filter)}`);
+  }
+  const { data } = loadCards(runDir);
+  const item = (data.items || []).find((i) => i.id === cardId);
+  if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
+
+  const source = item.audioOriginal;
+  if (!source) throw httpError(422, "this card has no untouched original to re-clean from");
+  if (!isSafeMediaFile(source)) throw httpError(400, "invalid source filename");
+  const sourcePath = join(runDir, "audio", source);
+  if (!existsSync(sourcePath)) throw httpError(404, `audio ${JSON.stringify(source)} not found`);
+  const raw = readFileSync(sourcePath);
+
+  const { auto } = await autoTrim(raw, { ...(trim ? { trim } : {}), cleanup: filter });
+  const stem = source.replace(/\.orig\.[A-Za-z0-9]+$/, "").replace(/\.[A-Za-z0-9]+$/, "");
+  const audioAuto = `${stem}.${filter}.mp3`;
+  if (!isSafeMediaFile(audioAuto)) throw httpError(400, "could not derive a safe filename");
+  writeFileAtomic(join(runDir, "audio", audioAuto), auto);
+
+  const takes = { audioAuto, audioFilter: filter, audioManual: null, audioTrim: null };
+  if (item.audioTrim && Number.isFinite(item.audioTrim.start)) {
+    const { start, end } = item.audioTrim;
+    try {
+      const cut = trimToRange(raw, start, end, { cleanup: cleanupChain(filter) });
+      const safeId = String(cardId).replace(/[^A-Za-z0-9._-]/g, "_");
+      const name = `${safeId}-manual-${createHash("sha1").update(cut).digest("hex").slice(0, 8)}.mp3`;
+      writeFileAtomic(join(runDir, "audio", name), cut);
+      takes.audioManual = name;
+      takes.audioTrim = { start, end };
+    } catch (e) {
+      throw httpError(422, `re-cleaned, but could not re-apply the saved trim: ${e.message}`);
+    }
+  }
+  return setCardTakes(runDir, cardId, takes, deps);
 }
 
 // Drop a card's hand cut, falling back to the automatic take. The cut file is left on disk — it costs

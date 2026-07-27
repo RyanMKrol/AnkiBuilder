@@ -9,6 +9,7 @@ import {
   selectCardAudio,
   trimCardAudio,
   revertCardAudio,
+  recleanCardAudio,
 } from "../../src/server/adapters/applyCardAudio.js";
 
 function runDir() {
@@ -239,10 +240,13 @@ test("selecting a variant whose original is missing from the run dir is refused"
 
 // Fake cutter: records what it was handed and returns a marker naming the range, so a test can tell
 // WHICH take a cut was made from without decoding audio.
+// The cleanup chain is baked into the output the way the real cutter's would be, so a different chain
+// yields different bytes — and therefore a different content-addressed filename, as in production.
 function fakeCut(calls) {
-  return (bytes, start, end) => {
-    calls.push({ source: bytes.toString(), start, end });
-    return Buffer.from("CUT(" + bytes.toString() + "," + start + "-" + end + ")");
+  return (bytes, start, end, opts = {}) => {
+    calls.push({ source: bytes.toString(), start, end, cleanup: opts.cleanup ?? null });
+    const tag = opts.cleanup ? opts.cleanup.slice(0, 12) : "none";
+    return Buffer.from("CUT(" + bytes.toString() + "," + start + "-" + end + "," + tag + ")");
   };
 }
 
@@ -267,7 +271,14 @@ test("a hand trim cuts the ORIGINAL and ships the result, leaving the other take
     const calls = [];
     trimCardAudio(dir, "a", 0.2, 1.4, { trimToRange: fakeCut(calls) });
 
-    assert.deepEqual(calls, [{ source: "FULL-LENGTH", start: 0.2, end: 1.4 }]);
+    assert.equal(calls.length, 1);
+    assert.deepEqual(
+      { source: calls[0].source, start: calls[0].start, end: calls[0].end },
+      { source: "FULL-LENGTH", start: 0.2, end: 1.4 },
+    );
+    // A hand cut comes off the untouched original, so the cleanup has to be re-applied here or the
+    // trim would quietly reintroduce the rumble the automatic take had removed.
+    assert.match(calls[0].cleanup, /asubcut|highpass/, "the cut is cleaned too");
     const card = cardOf(dir);
     assert.match(card.audioManual, /^a-manual-[0-9a-f]{8}\.mp3$/);
     assert.deepEqual(card.audioTrim, { start: 0.2, end: 1.4 });
@@ -278,7 +289,10 @@ test("a hand trim cuts the ORIGINAL and ships the result, leaving the other take
       "take.mp3",
       "the automatic take is kept, so revert needs no re-cut",
     );
-    assert.equal(readFileSync(join(dir, "audio", card.audio), "utf-8"), "CUT(FULL-LENGTH,0.2-1.4)");
+    assert.match(
+      readFileSync(join(dir, "audio", card.audio), "utf-8"),
+      /^CUT\(FULL-LENGTH,0\.2-1\.4,/,
+    );
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -301,7 +315,10 @@ test("re-trimming cuts the original again, not the previous cut", () => {
     );
     const card = cardOf(dir);
     assert.deepEqual(card.audioTrim, { start: 0.1, end: 1.9 });
-    assert.equal(readFileSync(join(dir, "audio", card.audio), "utf-8"), "CUT(FULL-LENGTH,0.1-1.9)");
+    assert.match(
+      readFileSync(join(dir, "audio", card.audio), "utf-8"),
+      /^CUT\(FULL-LENGTH,0\.1-1\.9,/,
+    );
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -379,6 +396,103 @@ test("trimming a card whose source is missing from disk is refused", () => {
     cards.items[0].audioOriginal = "vanished.orig.mp3";
     writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
     assert.throws(() => trimCardAudio(dir, "a", 0, 1, { trimToRange: fakeCut([]) }), /not found/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// --- switching the noise-cleanup chain -------------------------------------------------------------
+
+test("re-cleaning re-derives from the ORIGINAL, so chains never stack on each other", async () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const seen = [];
+    await recleanCardAudio(dir, "a", "aggressive", {
+      trim: async (bytes) => {
+        seen.push(bytes.toString());
+        return Buffer.from("CLEANED");
+      },
+    });
+    // Not "AUTO" — re-cleaning an already-cleaned take would compound the filters, and the result
+    // would depend on the order the reviewer happened to click the buttons.
+    assert.deepEqual(seen, ["FULL-LENGTH"]);
+    const card = cardOf(dir);
+    assert.equal(card.audioFilter, "aggressive");
+    assert.equal(card.audioOriginal, "take.orig.mp3", "the original is never touched");
+    assert.equal(card.audio, card.audioAuto);
+    assert.equal(readFileSync(join(dir, "audio", card.audio), "utf-8"), "CLEANED");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// Switching chains must not silently discard a hand cut the reviewer already made.
+test("re-cleaning re-applies a saved hand trim under the new chain", async () => {
+  const dir = trimmableCard(runDir());
+  try {
+    trimCardAudio(dir, "a", 0.3, 1.2, { trimToRange: fakeCut([]) });
+    const before = cardOf(dir).audioManual;
+
+    const cuts = [];
+    await recleanCardAudio(dir, "a", "gentle", {
+      trim: async () => Buffer.from("CLEANED"),
+      trimToRange: fakeCut(cuts),
+    });
+
+    const card = cardOf(dir);
+    assert.deepEqual(card.audioTrim, { start: 0.3, end: 1.2 }, "the range survives the switch");
+    assert.equal(cuts[0].source, "FULL-LENGTH", "and is re-cut from the original");
+    assert.equal(card.audio, card.audioManual, "the hand cut still wins the derive");
+    assert.notEqual(card.audioManual, before, "under a new chain it is a new file");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a card with no untouched original cannot be re-cleaned", async () => {
+  const dir = runDir();
+  try {
+    mkdirSync(join(dir, "audio"), { recursive: true });
+    writeFileSync(join(dir, "audio", "legacy.mp3"), "OLD");
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audio = "legacy.mp3";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+    await assert.rejects(() => recleanCardAudio(dir, "a", "gentle", {}), /no untouched original/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// The chain names reach an ffmpeg command line, so only names from the fixed table are accepted.
+test("an unknown cleanup name is refused before anything runs", async () => {
+  const dir = trimmableCard(runDir());
+  try {
+    await assert.rejects(
+      () => recleanCardAudio(dir, "a", "asubcut=cutoff=1; rm -rf /", {}),
+      /unknown cleanup filter/,
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// A hand trim is cut from the untouched original, so without re-applying the cleanup it would quietly
+// reintroduce the rumble the automatic take had removed.
+test("a hand trim re-applies the card's own cleanup chain", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioFilter = "aggressive";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    let opts = null;
+    trimCardAudio(dir, "a", 0.2, 1.4, {
+      trimToRange: (bytes, start, end, o) => {
+        opts = o;
+        return Buffer.from("CUT");
+      },
+    });
+    assert.match(opts.cleanup, /asubcut=cutoff=130/, "the card's own chain, not the default");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

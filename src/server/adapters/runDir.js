@@ -47,6 +47,7 @@ export function toRenderCard(item) {
     audioOriginal: item.audioOriginal || null,
     audioManual: item.audioManual || null,
     audioTrim: item.audioTrim || null,
+    audioFilter: item.audioFilter || null,
     excluded: !!item.excluded,
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,

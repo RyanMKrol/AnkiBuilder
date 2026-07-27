@@ -156,6 +156,12 @@ const CARDS_SCHEMA = {
           // The `{ start, end }` seconds behind `audioManual`, kept so reopening the editor restores
           // the previous selection instead of making the reviewer re-find it by ear.
           audioTrim: { type: "object" },
+          // Which background-noise cleanup chain produced this card's takes (see
+          // src/audio/cleanupFilter.js): normally the default, or whichever one a reviewer picked in
+          // the dashboard when the default misbehaved on that particular clip. Stored so a later
+          // re-trim re-applies the SAME cleanup rather than silently reverting the card to the
+          // default, and so the review can show which one is in force.
+          audioFilter: { type: "string" },
           // Legacy optional second recording. The audio stage no longer writes this (only the default
           // clip is generated up front; the no-。 take and other variants are on-demand dashboard
           // actions), but the field is kept so cards.json from older runs still validate. Never

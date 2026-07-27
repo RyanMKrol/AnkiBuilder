@@ -1072,3 +1072,32 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   work), and costs one call per unique spoken term.
 - **When to revisit:** if the stage ever grows a `--force` flag, make sure it replaces both takes
   together rather than only the missing one.
+
+## Noise cleanup is tuned to one voice family, and the corner frequency is the risk
+
+- **What:** the cleanup chains cut everything below 110–130 Hz. That is safe for the Japanese voices
+  this project ships, whose fundamental sits comfortably above it, and it is where ~94% of the
+  measured noise energy lives. A deeper voice — a male speaker, or another language — could have
+  fundamental energy inside the stop band, and the filter would thin it.
+- **Why:** the noise is genuinely low-frequency, so a low-cut is the surgical fix; a spectral denoiser
+  alone bought only 1–2 dB where the low-cut gives 12+. Picking a corner necessarily means picking a
+  voice range.
+- **Impact:** the `aggressive` chain (130 Hz) already shows this — measured across 14 clips it costs up
+  to 5.7 dB of voice peak on the lowest-pitched ones, which is why it is NOT the default despite the
+  name. Adding a low-voiced language without re-tuning would degrade its audio.
+- **When to revisit:** when a non-Japanese voice is added. The fix is a per-language corner frequency
+  rather than the single global set; `ANKI_BUILDER_AUDIO_CLEANUP` and the per-card picker are the
+  stopgaps until then.
+
+## A few clips are barely improved by any chain, because their noise isn't low-frequency
+
+- **What:** in the measurement sweep, one clip (`ア`) improved by only 2–6 dB under every chain while
+  its neighbours improved by 30–46 dB.
+- **Why:** the chains target sub-100 Hz rumble, which is what the noise turned out to be on almost
+  every clip. A clip whose noise sits higher up the spectrum is out of their reach, and the broadband
+  denoisers that would catch it (`afftdn`, `anlmdn`) measurably risk smearing consonants.
+- **Impact:** a small number of cards stay noisier than the rest. They are audible outliers rather
+  than a systemic problem.
+- **When to revisit:** if these become annoying, `arnndn` (RNN speech denoiser) is the next step up in
+  ffmpeg — but it needs a third-party model file committed to the repo, which is a supply-chain
+  decision rather than a purely technical one.

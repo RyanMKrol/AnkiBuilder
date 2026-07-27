@@ -23,10 +23,14 @@ function defaultRunFfmpeg(args) {
 /**
  * Returns `mp3Buffer` cut down to the range `[start, end]` (seconds), re-encoded to mp3.
  *
+ * `opts.cleanup` is an ffmpeg filter fragment (see ./cleanupFilter.js) applied in the SAME pass as the
+ * cut. A hand trim is made from the card's untouched original, so without this the reviewer's cut
+ * would silently reintroduce the background noise that the automatic take had removed.
+ *
  * @throws if the range is nonsensical, ffmpeg is missing, or the cut fails.
  */
 export function trimToRange(mp3Buffer, start, end, opts = {}) {
-  const { runFfmpeg = defaultRunFfmpeg } = opts;
+  const { runFfmpeg = defaultRunFfmpeg, cleanup = null } = opts;
 
   if (!Buffer.isBuffer(mp3Buffer) || mp3Buffer.length === 0) {
     throw new Error("no audio to trim");
@@ -61,6 +65,7 @@ export function trimToRange(mp3Buffer, start, end, opts = {}) {
       String(start),
       "-t",
       String(end - start),
+      ...(cleanup ? ["-af", cleanup] : []),
       "-c:a",
       "libmp3lame",
       "-q:a",

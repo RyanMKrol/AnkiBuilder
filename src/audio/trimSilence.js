@@ -3,11 +3,18 @@ import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from "fs
 import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
+import { cleanupChain } from "./cleanupFilter.js";
 
 // Best-effort trimming of the trailing silence + tiny end artifact ("blip") ElevenLabs leaves on every
-// clip. Applied centrally at the fetch choke point (src/audio/elevenLabsTts.js), so every generated
-// clip is cleaned. Uses ffmpeg; if ffmpeg is absent or ANY step fails, the ORIGINAL clip is returned
-// unchanged — the audio build never breaks. Off with ANKI_BUILDER_TRIM_AUDIO=0.
+// clip, optionally preceded by background-noise cleanup (./cleanupFilter.js) in the same pass. Every
+// producer of audio goes through `autoTrim` below — the build stage, the dashboard's Generate, a
+// Replace upload — so a clip is treated identically however it arrived. Uses ffmpeg; if ffmpeg is
+// absent or ANY step fails, the ORIGINAL clip is returned unchanged and the audio build never breaks.
+// Off with ANKI_BUILDER_TRIM_AUDIO=0; cleanup off with ANKI_BUILDER_AUDIO_CLEANUP=off.
+//
+// The noise cleanup runs BEFORE silence detection, not after. Rumble peaks around -38 dB, above
+// silencedetect's -40 dB threshold, so on a noisy clip the trailing "silence" reads as sound and the
+// trim gives up — measured on this project's own decks, that happens to roughly 1 clip in 16.
 
 const DEFAULTS = {
   silenceDb: -40, // silencedetect noise floor (dB)
@@ -112,9 +119,17 @@ function isFfmpegAvailable(runFfmpeg) {
 /**
  * Returns `mp3Buffer` with its trailing silence + end blip trimmed, or the original buffer unchanged
  * on any failure (ffmpeg missing, error, or a result that isn't smaller). Never throws.
+ *
+ * `opts.cleanup` is an ffmpeg filter fragment (see ./cleanupFilter.js) prepended to BOTH passes.
+ * Ordering matters and is deliberate: background rumble peaks around -38 dB, which is ABOVE
+ * `silencedetect`'s -40 dB threshold, so on a noisy clip the "silence" never registers as silent and
+ * the trim gives up entirely. Cleaning first is what makes the detection honest. Prepending to both
+ * passes (rather than cleaning into a temp file and trimming that) keeps the output a SINGLE encode
+ * from the original — cleaning and cutting in one step instead of stacking two lossy generations.
  */
 export async function trimTrailingSilence(mp3Buffer, opts = {}) {
-  const { runFfmpeg = defaultRunFfmpeg, env = process.env } = opts;
+  const { runFfmpeg = defaultRunFfmpeg, env = process.env, cleanup = null } = opts;
+  const pre = cleanup ? `${cleanup},` : "";
 
   const toggle = env.ANKI_BUILDER_TRIM_AUDIO;
   if (toggle === "0" || toggle === "false") return mp3Buffer;
@@ -139,7 +154,7 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
       "-i",
       inPath,
       "-af",
-      `silencedetect=noise=${cfg.silenceDb}dB:d=${cfg.minSilenceSec}`,
+      `${pre}silencedetect=noise=${cfg.silenceDb}dB:d=${cfg.minSilenceSec}`,
       "-f",
       "null",
       "-",
@@ -150,15 +165,17 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
       minSpeechSec: cfg.minSpeechSec,
       padSec: cfg.padSec,
     });
-    if (trimTo == null) return mp3Buffer;
+    // Nothing to cut. When cleaning is on there is still work to do — the cleaned audio is the point,
+    // trimming was only ever the other half — so fall through to the encode with the filter alone.
+    if (trimTo == null && !cleanup) return mp3Buffer;
 
     const cut = runFfmpeg([
       "-hide_banner",
       "-y",
       "-i",
       inPath,
-      "-to",
-      String(trimTo),
+      ...(trimTo == null ? [] : ["-to", String(trimTo)]),
+      ...(pre ? ["-af", cleanup] : []),
       "-c:a",
       "libmp3lame",
       "-q:a",
@@ -168,8 +185,11 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
     if (cut.error || cut.status !== 0 || !existsSync(outPath)) return mp3Buffer;
 
     const trimmed = readFileSync(outPath);
-    // Sanity gate: a trim that didn't shrink the clip is wrong / not worth the re-encode.
-    if (!trimmed || trimmed.length === 0 || trimmed.length >= mp3Buffer.length) return mp3Buffer;
+    if (!trimmed || trimmed.length === 0) return mp3Buffer;
+    // Sanity gate: a trim that didn't shrink the clip is wrong / not worth the re-encode. It only
+    // applies when trimming is the ONLY thing happening — a cleaned clip legitimately comes back the
+    // same length (or larger, if the source was more heavily compressed than our encode).
+    if (!cleanup && trimmed.length >= mp3Buffer.length) return mp3Buffer;
     return trimmed;
   } catch {
     return mp3Buffer;
@@ -179,17 +199,21 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
 }
 
 /**
- * Derives the auto-trimmed take from a raw clip, reporting whether the trim actually altered it.
+ * Derives the shipping take from a raw clip — background cleanup, then the trailing-silence trim, in
+ * one encode — reporting whether it actually altered the bytes.
  *
  * Every producer of audio (the build stage, the dashboard's Generate, a Replace upload) keeps the raw
  * take and stores this derived one beside it, so they all need the same "did it change?" answer:
  * `trimTrailingSilence` fails open by returning its input, and a buffer that came back byte-identical
- * means the trim was a no-op — no second file worth writing, and no re-encode to account for.
+ * means nothing happened — no second file worth writing, and no re-encode to account for.
+ *
+ * `cleanup` names a chain from ./cleanupFilter.js; omit it for the configured default, or pass
+ * `"off"` to trim without cleaning.
  *
  * @returns {Promise<{ auto: Buffer, changed: boolean }>}
  */
-export async function autoTrim(raw, { trim = trimTrailingSilence } = {}) {
-  const auto = await trim(raw);
+export async function autoTrim(raw, { trim = trimTrailingSilence, cleanup } = {}) {
+  const auto = await trim(raw, { cleanup: cleanupChain(cleanup) });
   const changed = auto !== raw && !auto.equals(raw);
   return { auto: changed ? auto : raw, changed };
 }

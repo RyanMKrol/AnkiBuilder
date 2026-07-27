@@ -370,7 +370,6 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
   var tEnd = modal.querySelector(".t-end");
   var tKept = modal.querySelector(".t-kept");
   var msg = modal.querySelector(".trim-msg");
-  var applyBtn = modal.querySelector(".trim-apply");
   var revertBtn = modal.querySelector(".trim-revert");
   var audio = new Audio();
   var st = null;
@@ -422,11 +421,12 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
       for (var j = i; j < i + win; j++) sum += d[j] * d[j];
       if (Math.sqrt(sum / win) > SPEECH) { if (first < 0) first = i; last = i + win; }
     }
-    if (first < 0) { say("no speech found \\u2014 leaving the selection as it is", true); return; }
+    if (first < 0) { say("no speech found \\u2014 leaving the selection as it is", true); return false; }
     st.start = Math.max(0, first / rate - PAD);
     st.end = Math.min(st.duration, last / rate + PAD);
     paint();
     say("");
+    return true;
   };
 
   var stop = function () { audio.pause(); playhead.classList.remove("on"); };
@@ -464,6 +464,7 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
         handle.removeEventListener("pointermove", move);
         handle.removeEventListener("pointerup", up);
         handle.removeEventListener("pointercancel", up);
+        commit();
       };
       handle.addEventListener("pointermove", move);
       handle.addEventListener("pointerup", up);
@@ -481,7 +482,6 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
     if (!url) { window.alert("This card has no audio to trim."); return; }
     modal.hidden = false;
     say("loading\\u2026");
-    applyBtn.disabled = true;
     revertBtn.hidden = tr.getAttribute("data-trim-start") == null;
     markFilter(tr.getAttribute("data-filter"));
     modal.querySelector(".clean-msg").textContent = "";
@@ -516,7 +516,6 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
           if (st.end - st.start < MIN_RANGE) { st.start = 0; st.end = st.duration; }
           draw();
           paint();
-          applyBtn.disabled = false;
           say("");
         };
         if (isFinite(s) && isFinite(e)) { settle(s, e); return; }
@@ -556,25 +555,57 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
     if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
   };
 
+  var postTo = function (t, path, body) {
+    return window.fetch(base + "/unit/" + encodeURIComponent(t.unit) + "/card/" + encodeURIComponent(t.cid) + path,
+      body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : { method: "POST" })
+      .then(jsonp);
+  };
   var post = function (path, body) {
     return window.fetch(base + "/unit/" + encodeURIComponent(st.unit) + "/card/" + encodeURIComponent(st.cid) + path,
       body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : { method: "POST" })
       .then(jsonp);
   };
 
-  applyBtn.addEventListener("click", function () {
-    applyBtn.disabled = true;
-    say("trimming\\u2026");
-    var row = st.row, start = st.start, end = st.end;
-    post("/audio/trim", { start: start, end: end }).then(function (x) {
+  // Applying is automatic: a drag lands the moment you let go, so the In use player is always what the
+  // handles say. The cut is the only thing that could be lost by walking away, and doing it on release
+  // (never on pointermove) keeps it to ONE ffmpeg cut per drag rather than one per pixel.
+  //
+  // Everything the request needs is captured up front, so closing the modal mid-flight cannot orphan
+  // it — the row still updates when it lands. A FAILURE, though, would be written into a hidden modal
+  // and never seen, so errors also go to the row's own message span.
+  var inFlight = false, queued = null, lastSent = null;
+  var rowSay = function (tr, text) {
+    var m = tr.querySelector(".msg");
+    if (m) m.textContent = text;
+  };
+  var commit = function () {
+    if (!st) return;
+    var range = { row: st.row, start: st.start, end: st.end, unit: st.unit, cid: st.cid };
+    if (inFlight) { queued = range; return; }        // land the latest position, not every one
+    if (lastSent && lastSent.row === range.row &&
+        lastSent.start === range.start && lastSent.end === range.end) return;
+    inFlight = true;
+    lastSent = range;
+    say("applying\\u2026");
+    postTo(range, "/audio/trim", { start: range.start, end: range.end }).then(function (x) {
       if (!x.ok) throw new Error(x.j.error || "trim failed");
-      swapInUse(row, x.j.mediaUrl);
-      row.setAttribute("data-trim-start", String(start));
-      row.setAttribute("data-trim-end", String(end));
-      close();
+      swapInUse(range.row, x.j.mediaUrl);
+      range.row.setAttribute("data-trim-start", String(range.start));
+      range.row.setAttribute("data-trim-end", String(range.end));
+      revertBtn.hidden = false;
+      say("\\u2713 applied");
+      rowSay(range.row, "");
       return maybeRebuild();
-    }).catch(function (e) { say(e.message, true); applyBtn.disabled = false; });
-  });
+    }).catch(function (e) {
+      lastSent = null;                                // let the same range be retried
+      say(e.message, true);
+      // Visible even if the modal was closed while this was in the air.
+      rowSay(range.row, "trim failed: " + e.message);
+    }).finally(function () {
+      inFlight = false;
+      if (queued) { var q = queued; queued = null; st && (st.start = q.start, st.end = q.end); commit(); }
+    });
+  };
 
   revertBtn.addEventListener("click", function () {
     revertBtn.disabled = true;
@@ -623,7 +654,7 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
   });
   modal.querySelector(".trim-play-sel").addEventListener("click", function () { play(st.start, st.end); });
   modal.querySelector(".trim-play-all").addEventListener("click", function () { play(0, null); });
-  modal.querySelector(".trim-snap").addEventListener("click", function () { snap(); });
+  modal.querySelector(".trim-snap").addEventListener("click", function () { if (snap()) commit(); });
   modal.querySelector(".trim-close").addEventListener("click", close);
   modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });

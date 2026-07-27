@@ -434,7 +434,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const toolbar = canEdit ? `<span id="rebuild-status" class="rb"></span>` : "";
     const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>
-<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Edit audio</h3><p class="sub">This is the card's <b>original</b> recording, with the edges set to where the clip in use is currently trimmed. Drag them to change what is kept — the shaded parts are cut. Applying replaces the clip in use; the original is never changed.</p>
+<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Edit audio</h3><p class="sub">This is the card's <b>original</b> recording, with the edges set to where the clip in use is currently trimmed. Drag them to change what is kept — the shaded parts are cut. Each drag is applied as soon as you let go, replacing the clip in use; the original is never changed.</p>
 <div class="wfwrap"><canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div><div class="wfplay"></div><div class="wfhandle start"></div><div class="wfhandle end"></div></div>
 <div class="trimtimes"><span>Start <b class="t-start">—</b></span><span>End <b class="t-end">—</b></span><span>Keeping <b class="t-kept">—</b></span></div>
 <div class="trimbar"><button type="button" class="trim-play-sel">▶ Selection</button><button type="button" class="trim-play-all">▶ Original</button><button type="button" class="trim-snap">Snap to speech</button><span class="trim-msg"></span></div>
@@ -446,7 +446,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
           .join(
             "",
           )}<button type="button" class="clean-btn" data-filter="off">off</button><span class="clean-msg"></span></div>
-<div class="trimbar"><button type="button" class="trim-apply primary">Apply</button><button type="button" class="trim-revert" hidden>Revert to automatic</button><button type="button" class="trim-close">Cancel</button></div>
+<div class="trimbar"><button type="button" class="trim-revert" hidden>Revert to automatic</button><button type="button" class="trim-close primary">Close</button></div>
 <p class="trimnote">Automatic trimming only ever cuts the end of a clip, so leading silence always survives it — and a cut that went too far can only be recovered here, from the original. <b>Noise cleanup</b> runs before the trim and is applied to the clip in use, not to the original above — switch chains if the default leaves rumble behind or thins the voice.</p></div></div>`
       : "";
     const lessonWord = `lesson${units.length === 1 ? "" : "s"}`;

@@ -1,4 +1,4 @@
-import { readFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, rmSync } from "fs";
 import { writeFileAtomic } from "../../util/atomicWrite.js";
 import { join } from "path";
 import { createHash } from "crypto";
@@ -144,6 +144,25 @@ export function cardTrimSource(item) {
   return item.audioOriginal || item.audio || null;
 }
 
+/**
+ * Delete the hand cut a card is moving away from.
+ *
+ * Manual clips are named `<cardId>-manual-<hash>.mp3`, so one is only ever referenced by the card that
+ * produced it — once that card points somewhere else, nothing can reach it. This matters because the
+ * editor re-cuts on every drag: without it, nudging an edge a dozen times leaves a dozen dead files in
+ * the run dir. Best-effort; a file that won't delete is litter, not a failure worth surfacing.
+ */
+function dropSupersededManual(runDir, item, keep) {
+  const old = item.audioManual;
+  if (!old || old === keep || !isSafeMediaFile(old) || !/-manual-[0-9a-f]{8}\.mp3$/.test(old))
+    return;
+  try {
+    rmSync(join(runDir, "audio", old), { force: true });
+  } catch {
+    /* leave it behind rather than fail the edit */
+  }
+}
+
 // Cut a reviewer's hand-placed [start, end] range out of the card's ORIGINAL and ship the result.
 //
 // Always from the original, never from the previous cut: re-trimming a cut clip would compound the
@@ -180,6 +199,7 @@ export function trimCardAudio(runDir, cardId, start, end, deps = {}) {
   const filename = `${safeId}-manual-${createHash("sha1").update(cut).digest("hex").slice(0, 8)}.mp3`;
   if (!isSafeMediaFile(filename)) throw httpError(400, "could not derive a safe filename");
   writeFileAtomic(join(runDir, "audio", filename), cut);
+  dropSupersededManual(runDir, item, filename);
 
   // Only the manual fields move. The original and the automatic take stay exactly as they are, so
   // "revert to automatic" is a delete rather than a regeneration.
@@ -236,6 +256,7 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
       const safeId = String(cardId).replace(/[^A-Za-z0-9._-]/g, "_");
       const name = `${safeId}-manual-${createHash("sha1").update(cut).digest("hex").slice(0, 8)}.mp3`;
       writeFileAtomic(join(runDir, "audio", name), cut);
+      dropSupersededManual(runDir, item, name);
       takes.audioManual = name;
       takes.audioTrim = { start, end };
     } catch (e) {

@@ -378,6 +378,35 @@ prepended to BOTH of `trimTrailingSilence`'s ffmpeg invocations (the detect pass
 rather than cleaning into a temp file that is then trimmed, so detection sees cleaned audio while the
 output stays a SINGLE encode from the original instead of two stacked lossy generations.
 
+**Japanese end marker (`src/audio/ttsMarker.js`).** ElevenLabs frequently clips the end of an
+utterance — it usually gets the last mora out, but the release is cut short so the clip ends abruptly
+instead of decaying. Measured on this project's decks, a substantial share of Japanese clips came back
+with speech running to the final sample and no trailing silence at all.
+
+The fix is to give the model something it is ALLOWED to truncate: `ででで` is appended to Japanese TTS
+text (after the `。` transform), so whatever gets clipped is the marker rather than the card's words.
+The marker is cut back off before the clip ships. It is part of the text SENT and therefore part of the
+cache key, so a marked clip is never reused as an unmarked one. Japanese only — it relies on ja being
+written without spaces and on で being a clean repeated syllable no card ends with three of. Off with
+`ANKI_BUILDER_TTS_END_MARKER=0`.
+
+Removing it takes **two independent checks**, and both must agree:
+
+- **Position** (`markerSegment`) picks the candidate: the last speech segment, at most 1.0s long, behind
+  a gap of at least 0.3s. Across 12 generated clips this was right every time — genuine pauses inside a
+  phrase measured up to 0.72s, while every observed marker sat behind a gap of 0.82s or more.
+- **Shape** (`src/audio/pulseShape.js`) vetoes: the marker is one syllable three times, so its amplitude
+  envelope rises and falls 2–4 times. "Exactly three" was deliberately NOT required — it identified the
+  marker only 11 times in 12 (one clip merged two で into a single 0.245s pulse), which would leave
+  audible nonsense on roughly one card in six. And shape alone can't decide: real speech read as three
+  pulses in 2 of 6 held-out clips.
+
+If either check says no, nothing is cut. A reviewer then hears a stray marker and fixes it by hand,
+which is a far better failure than silently cutting the words off a card. Note that an unstripped
+marker also defeats the trim entirely (the marker becomes the last speech, so there is nothing after it
+to cut), so the failure is loud rather than subtle. `audioMarked` records that a card's original still
+carries the marker, so a later cleanup switch or re-trim strips it too.
+
 **Both takes are kept.** The trim used to run inside `fetchElevenLabsTts` — the single choke point — so
 every clip arrived pre-trimmed and the raw take was discarded before it reached disk. That made the
 algorithm's mistakes permanent and invisible: it only ever cuts the END, so leading silence survives

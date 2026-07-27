@@ -59,7 +59,8 @@ import {
 import {
   generateAudio as defaultGenerateAudio,
   defaultClipFilename,
-  isDefaultClipFilename,
+  defaultOriginalFilename,
+  isStageOwnedCard,
   AUDIO_FIELDS,
 } from "../audio/index.js";
 import { getDefaultVoice as defaultGetDefaultVoice } from "../audio/voiceLibrary.js";
@@ -885,9 +886,14 @@ async function runAudioInner(flags, ctx) {
   // Only a clip this stage generated can be stale. A `-gen-` variant the reviewer auditioned and
   // picked, or a Replace upload, is a deliberate choice — regenerating over it would silently throw
   // away their work, which is a far worse bug than the one this check exists to fix.
+  // A clip is "current" if this stage doesn't own it (a human chose it) or if it was generated from
+  // the card's CURRENT text. Compared on the original's name rather than the shipping clip's, because
+  // the shipping name also encodes the cleanup applied and so changes without the text changing.
   const clipIsCurrent = (item) =>
-    !isDefaultClipFilename(item.audio) ||
-    item.audio === defaultClipFilename(item, audioLanguageCode, altTransform);
+    !isStageOwnedCard(item) ||
+    (item.audioOriginal
+      ? item.audioOriginal === defaultOriginalFilename(item, audioLanguageCode, altTransform)
+      : item.audio === defaultClipFilename(item, audioLanguageCode, altTransform));
   const active = cards.items.filter((item) => !item.excluded);
   const stale = active.filter((item) => item.audio && !clipIsCurrent(item));
   const alreadyDone =
@@ -969,7 +975,7 @@ async function runAudioInner(flags, ctx) {
     // Replace upload, or a `-manual-` hand cut is a deliberate choice; regenerating over it would
     // silently throw their work away — the same rule `clipIsCurrent` applies on the read side, which
     // until now was enforced when DECIDING to run but not when writing the results back.
-    if (item.audio && !isDefaultClipFilename(item.audio)) continue;
+    if (item.audio && !isStageOwnedCard(item)) continue;
     for (const field of AUDIO_FIELDS) {
       const value = next[field];
       if (value == null || value === "") delete item[field];

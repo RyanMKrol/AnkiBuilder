@@ -8,6 +8,7 @@ import { getAltAudioTransform } from "./altAudio.js";
 import { normalizeTtsText } from "./ttsText.js";
 import { TTS_MODEL } from "./ttsModel.js";
 import { autoTrim } from "./trimSilence.js";
+import { withEndMarker, usesEndMarker } from "./ttsMarker.js";
 
 export function hashTerm(term) {
   return createHash("sha256").update(term).digest("hex").slice(0, 16);
@@ -25,6 +26,7 @@ export const AUDIO_FIELDS = [
   "audioManual",
   "audioTrim",
   "audioFilter",
+  "audioMarked",
 ];
 
 /**
@@ -78,7 +80,7 @@ async function fileExists(path) {
 async function fetchTermsToCache(
   terms,
   audioDir,
-  { fetchTts, voiceId, apiKey, languageCode, trim },
+  { fetchTts, voiceId, apiKey, languageCode, trim, marker = false },
 ) {
   const fetched = new Map();
   for (const term of terms) {
@@ -100,7 +102,7 @@ async function fetchTermsToCache(
     }
 
     const raw = await fetchTts(term, voiceId, apiKey, languageCode);
-    const { auto } = await autoTrim(raw, { trim });
+    const { auto } = await autoTrim(raw, { trim, marker });
     // Original FIRST. Crashing between the two writes must leave the SHIPPING clip missing (so the
     // next run refetches and self-heals), never an orphaned shipping clip whose absent sibling would
     // permanently read as "this entry predates originals".
@@ -121,7 +123,10 @@ async function fetchTermsToCache(
  */
 export function defaultClipText(item, languageCode, altTransform) {
   const text = normalizeTtsText(speechText(item), languageCode);
-  return altTransform ? altTransform(text) : text;
+  // The throwaway end marker is part of the text SENT, so it is part of the cache key too — a clip
+  // generated with it is a different recording from one generated without, and must not be reused
+  // across the change.
+  return withEndMarker(altTransform ? altTransform(text) : text, languageCode);
 }
 
 /**
@@ -133,6 +138,35 @@ export function defaultClipText(item, languageCode, altTransform) {
  */
 export function isDefaultClipFilename(filename) {
   return typeof filename === "string" && /^[0-9a-f]{16}\.mp3$/.test(filename);
+}
+
+/**
+ * Does this filename look like the audio stage's untouched ORIGINAL — `<hash(text)>.orig.mp3`?
+ *
+ * Provenance now lives on the original, not on the shipping clip. `audio` is a derived artifact whose
+ * name encodes the processing applied (`<hash>.standard.mp3`, `<cardId>-manual-<...>.mp3`), so asking
+ * "did the stage make this?" of `audio` stopped working the moment cleanup renamed everything.
+ */
+export function isStageOriginalFilename(filename) {
+  return typeof filename === "string" && /^[0-9a-f]{16}\.orig\.mp3$/.test(filename);
+}
+
+export function defaultOriginalFilename(item, languageCode, altTransform) {
+  return `${hashTerm(defaultClipText(item, languageCode, altTransform))}.orig.mp3`;
+}
+
+/**
+ * Is this card's audio the audio stage's to regenerate?
+ *
+ * No if a human chose it: a `-gen-` variant they auditioned and picked, a Replace upload, or a hand
+ * trim they placed. Those are deliberate work and regenerating over them would silently discard it.
+ * Judged on the ORIGINAL's name plus the absence of a manual cut — see `isStageOriginalFilename` for
+ * why the shipping clip's name can no longer answer this.
+ */
+export function isStageOwnedCard(item) {
+  if (!item || item.audioManual) return false;
+  if (item.audioOriginal) return isStageOriginalFilename(item.audioOriginal);
+  return !item.audio || isDefaultClipFilename(item.audio);
 }
 
 export function defaultClipFilename(item, languageCode, altTransform) {
@@ -176,7 +210,14 @@ export async function generateAudio(
   // it always has. Resolved once per call, not per term, since it's the same corpus-wide
   // targetLanguage for every item.
   const languageCode = resolveIso639Code(cards.meta?.targetLanguage);
-  const fetchCtx = { fetchTts, voiceId, apiKey, languageCode, trim };
+  const fetchCtx = {
+    fetchTts,
+    voiceId,
+    apiKey,
+    languageCode,
+    trim,
+    marker: usesEndMarker(languageCode),
+  };
 
   // The DEFAULT (and only up-front) take. For a language with a transform (Japanese appends 。), the
   // WITH-。 take is the default — a trailing 。 gives ElevenLabs a sentence boundary and fixes many
@@ -207,6 +248,10 @@ export async function generateAudio(
       }
       const clip = fetchedFiles.get(defaultTextFor(item));
       const next = { ...item, audio: clip.audio, audioAuto: clip.audio };
+      // Recorded so anything that later re-derives this card's takes from its original — a cleanup
+      // switch, a re-trim — knows the original still has the marker on the end and strips it too.
+      if (usesEndMarker(languageCode)) next.audioMarked = true;
+      else delete next.audioMarked;
       if (clip.original) next.audioOriginal = clip.original;
       else delete next.audioOriginal;
       // A regenerated card is speaking NEW text, so any hand-cut range the reviewer applied describes

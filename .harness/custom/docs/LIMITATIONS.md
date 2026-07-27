@@ -1116,3 +1116,36 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   audio column silently broke `swap`, because `td.au` began matching the Original column first.
 - **When to revisit:** if a third write path appears, fold the refresh into a single helper both the
   server response shape and the client agree on, rather than remembering to call it.
+
+## The Japanese end marker is tuned to one voice, and both its guards are empirical
+
+- **What:** `ででで` is appended to Japanese TTS text and cut back off before the clip ships. Removing it
+  relies on two thresholds derived from 12 generated clips of a single voice: the position rule (last
+  segment, ≤1.0s, behind a ≥0.3s gap) and the pulse-shape veto (2–4 pulses, with a hysteresis/smoothing
+  set found by grid search). Neither is a principled constant.
+- **Why:** the alternative is trusting the position rule alone, which has no way to tell a marker from a
+  short final word after a pause. The shape veto is what makes the failure mode safe. But "what a
+  repeated syllable looks like" genuinely depends on the voice's articulation and pacing, so the numbers
+  had to come from measurement rather than theory.
+- **Impact:** a different Japanese voice — or a change to ElevenLabs' model — could move the pulse shape
+  enough that the veto starts refusing valid markers. That failure is loud (a stray ででで is audible,
+  and it also defeats the trim so the clip keeps all its silence) rather than silent, which is the
+  direction it was designed to fail in. The dangerous direction, cutting real speech, needs BOTH guards
+  to be wrong at once.
+- **When to revisit:** on any voice or TTS-model change. Re-derive the parameters against a fresh sample
+  rather than assuming they carry over; the grid-search approach is quick to repeat.
+
+## Provenance moved to the original's filename, and the old test failed silently
+
+- **What:** `isStageOwnedCard` decides whether the audio stage may regenerate a card. It reads the
+  ORIGINAL's name, because the shipping clip's name encodes the processing applied and changes whenever
+  that processing does.
+- **Why:** the previous test asked `isDefaultClipFilename(item.audio)`. When the cleanup sweep renamed
+  every shipping clip to `<hash>.standard.mp3`, that test began answering "hand-picked" for all 1179
+  cards — so the stage considered every clip current and would never have regenerated one after a text
+  edit. Nothing failed; it just quietly stopped working, and was only caught because a backfill dry run
+  reported an implausible zero.
+- **Impact:** any future naming change to derived clips must not touch `<hash>.orig.mp3`, or the same
+  class of silent failure returns.
+- **When to revisit:** if derived-clip naming changes again, add a test asserting a stage card is still
+  recognised after the rename — the existing ones now cover exactly that case.

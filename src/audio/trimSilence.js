@@ -4,6 +4,7 @@ import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
 import { cleanupChain } from "./cleanupFilter.js";
+import { looksLikeMarker as defaultLooksLikeMarker } from "./pulseShape.js";
 
 // Best-effort trimming of the trailing silence + tiny end artifact ("blip") ElevenLabs leaves on every
 // clip, optionally preceded by background-noise cleanup (./cleanupFilter.js) in the same pass. Every
@@ -33,14 +34,14 @@ function envFloat(env, name, dflt) {
   return Number.isFinite(n) ? n : dflt;
 }
 
-// Parses ffmpeg's silencedetect stderr and returns the seconds to trim the clip TO, or null (no-op).
-// Exported for unit testing without ffmpeg.
-export function computeTrimPoint(stderr, opts = {}) {
-  const minSpeechSec = opts.minSpeechSec ?? DEFAULTS.minSpeechSec;
-  const padSec = opts.padSec ?? DEFAULTS.padSec;
-  const minShortenSec = opts.minShortenSec ?? MIN_SHORTEN_SEC;
-  const minPlausibleSec = opts.minPlausibleSec ?? MIN_PLAUSIBLE_SEC;
-
+/**
+ * Parses ffmpeg's silencedetect stderr into `{ duration, silences, speech }`, where speech is the
+ * complement of the detected silences over [0, duration].
+ *
+ * Exported so the marker check (below) can reason about the segments before a trim point is chosen,
+ * and so all of it stays unit-testable without ffmpeg.
+ */
+export function parseSegments(stderr) {
   const durationMatch = /Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)/.exec(stderr);
   if (!durationMatch) return null;
   const duration =
@@ -54,7 +55,6 @@ export function computeTrimPoint(stderr, opts = {}) {
     Math.min(duration, i < ends.length ? ends[i] : duration), // unclosed trailing silence → EOF
   ]);
 
-  // Speech = the complement of the silence intervals over [0, duration].
   const speech = [];
   let cursor = 0;
   for (const [start, end] of silences) {
@@ -62,7 +62,51 @@ export function computeTrimPoint(stderr, opts = {}) {
     cursor = Math.max(cursor, end);
   }
   if (cursor < duration) speech.push([cursor, duration]);
+  return { duration, silences, speech };
+}
+
+// A trailing segment can only be the appended marker if it is short and stands clearly apart from the
+// speech before it. Genuine pauses INSIDE a phrase measured up to 0.72s on this project's clips, while
+// every observed marker sat behind a gap of 0.82s or more — but the threshold is set well below that
+// so the check stays about "is this separated at all", with the pulse-shape veto doing the real work.
+const MARKER_MAX_SEC = 1.0;
+const MARKER_MIN_GAP_SEC = 0.3;
+
+/**
+ * The trailing speech segment that looks like the appended end marker, or null.
+ *
+ * Position only — whether it also SOUNDS like a repeated syllable is `looksLikeMarker`'s job, and the
+ * caller must ask both. Splitting them keeps this testable without decoding audio.
+ */
+export function markerSegment(speech) {
+  if (!speech || speech.length < 2) return null; // nothing to fall back on if we dropped it
+  const last = speech[speech.length - 1];
+  const previous = speech[speech.length - 2];
+  if (last[1] - last[0] > MARKER_MAX_SEC) return null;
+  if (last[0] - previous[1] < MARKER_MIN_GAP_SEC) return null;
+  return last;
+}
+
+// Parses ffmpeg's silencedetect stderr and returns the seconds to trim the clip TO, or null (no-op).
+// Exported for unit testing without ffmpeg.
+export function computeTrimPoint(stderr, opts = {}) {
+  const minSpeechSec = opts.minSpeechSec ?? DEFAULTS.minSpeechSec;
+  const padSec = opts.padSec ?? DEFAULTS.padSec;
+  const minShortenSec = opts.minShortenSec ?? MIN_SHORTEN_SEC;
+  const minPlausibleSec = opts.minPlausibleSec ?? MIN_PLAUSIBLE_SEC;
+
+  const parsed = parseSegments(stderr);
+  if (!parsed) return null;
+  const { duration, silences } = parsed;
+  let speech = parsed.speech;
   if (speech.length === 0) return null;
+
+  // Drop the appended marker before deciding anything, so the pad is measured from the end of the
+  // REAL words. The caller only sets this once the segment has also passed the pulse-shape veto.
+  if (opts.dropTrailing) {
+    const marker = markerSegment(speech);
+    if (marker) speech = speech.slice(0, -1);
+  }
 
   // Content ends at the LAST speech segment that's actually speech (≥ minSpeechSec); a short trailing
   // blip is skipped, and a genuine mid-clip pause is preserved (the real speech after it qualifies).
@@ -136,7 +180,15 @@ function isFfmpegAvailable(runFfmpeg) {
  * from the original — cleaning and cutting in one step instead of stacking two lossy generations.
  */
 export async function trimTrailingSilence(mp3Buffer, opts = {}) {
-  const { runFfmpeg = defaultRunFfmpeg, env = process.env, cleanup = null } = opts;
+  const {
+    runFfmpeg = defaultRunFfmpeg,
+    env = process.env,
+    cleanup = null,
+    // Set when this clip was generated with the throwaway end marker (./ttsMarker.js), so the trim
+    // knows to cut it back off. Injectable veto so tests don't have to decode real audio.
+    marker = false,
+    looksLikeMarker = defaultLooksLikeMarker,
+  } = opts;
   const pre = cleanup ? `${cleanup},` : "";
 
   const toggle = env.ANKI_BUILDER_TRIM_AUDIO;
@@ -169,9 +221,22 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
     ]);
     if (detect.error) return mp3Buffer;
 
+    // Two independent checks before the marker is cut. POSITION picks the candidate — the last
+    // segment, short, standing behind a clear gap — and was right on every clip measured. SHAPE then
+    // vetoes: the marker is one syllable three times, so its envelope rises and falls 2-4 times. If
+    // either says no, nothing is dropped and a reviewer hears a stray marker, which is a far better
+    // failure than silently cutting the words off a card.
+    let dropTrailing = false;
+    if (marker) {
+      const parsed = parseSegments(detect.stderr || "");
+      const segment = parsed && markerSegment(parsed.speech);
+      dropTrailing = !!segment && looksLikeMarker(inPath, segment[0], segment[1]);
+    }
+
     const trimTo = computeTrimPoint(detect.stderr || "", {
       minSpeechSec: cfg.minSpeechSec,
       padSec: cfg.padSec,
+      dropTrailing,
     });
     // Nothing to cut. When cleaning is on there is still work to do — the cleaned audio is the point,
     // trimming was only ever the other half — so fall through to the encode with the filter alone.
@@ -220,8 +285,8 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
  *
  * @returns {Promise<{ auto: Buffer, changed: boolean }>}
  */
-export async function autoTrim(raw, { trim = trimTrailingSilence, cleanup } = {}) {
-  const auto = await trim(raw, { cleanup: cleanupChain(cleanup) });
+export async function autoTrim(raw, { trim = trimTrailingSilence, cleanup, marker = false } = {}) {
+  const auto = await trim(raw, { cleanup: cleanupChain(cleanup), marker });
   const changed = auto !== raw && !auto.equals(raw);
   return { auto: changed ? auto : raw, changed };
 }

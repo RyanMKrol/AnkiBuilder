@@ -162,6 +162,10 @@ const CARDS_SCHEMA = {
           // re-trim re-applies the SAME cleanup rather than silently reverting the card to the
           // default, and so the review can show which one is in force.
           audioFilter: { type: "string" },
+          // True when this card's `audioOriginal` was generated with the throwaway Japanese end marker
+          // (src/audio/ttsMarker.js) still on it. Anything re-deriving takes from that original has to
+          // strip the marker again, so it needs to know the marker is there.
+          audioMarked: { type: "boolean" },
           // Legacy optional second recording. The audio stage no longer writes this (only the default
           // clip is generated up front; the no-。 take and other variants are on-demand dashboard
           // actions), but the field is kept so cards.json from older runs still validate. Never

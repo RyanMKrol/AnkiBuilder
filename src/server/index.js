@@ -362,7 +362,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const audioCell = (c) =>
       player(c.audioUrl) +
       (canEdit && c.originalUrl
-        ? `<div class="ed"><button type="button" class="trim">Trim…</button></div>`
+        ? `<div class="ed"><button type="button" class="trim">Edit</button></div>`
         : "");
     // Only the editable review shows the Original column; passing undefined leaves the read-only
     // Browse view and the view-deck artifact with their single audio column, exactly as before.
@@ -434,7 +434,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const toolbar = canEdit ? `<span id="rebuild-status" class="rb"></span>` : "";
     const modal = canEdit
       ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>
-<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Trim audio</h3><p class="sub">This is the card's <b>original</b> recording. Drag the edges to choose what to keep — the shaded parts are cut. Applying replaces the clip in use; the original is never changed.</p>
+<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Edit audio</h3><p class="sub">This is the card's <b>original</b> recording, with the edges set to where the clip in use is currently trimmed. Drag them to change what is kept — the shaded parts are cut. Applying replaces the clip in use; the original is never changed.</p>
 <div class="wfwrap"><canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div><div class="wfplay"></div><div class="wfhandle start"></div><div class="wfhandle end"></div></div>
 <div class="trimtimes"><span>Start <b class="t-start">—</b></span><span>End <b class="t-end">—</b></span><span>Keeping <b class="t-kept">—</b></span></div>
 <div class="trimbar"><button type="button" class="trim-play-sel">▶ Selection</button><button type="button" class="trim-play-all">▶ Original</button><button type="button" class="trim-snap">Snap to speech</button><span class="trim-msg"></span></div>

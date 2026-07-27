@@ -654,9 +654,14 @@ mechanism the Exclude column uses). The read-only **Browse** view and the `view-
 what the deck sounds like, not how it got there, so they pass no `originalCell` and render exactly one
 audio column, byte-identically to before.
 
-**The trim editor** (`AUDIO_TRIM_SCRIPT`). **Trim…** opens a modal showing the card's ORIGINAL as a
+**The audio editor** (`AUDIO_TRIM_SCRIPT`). **Edit** opens a modal showing the card's ORIGINAL as a
 waveform with draggable start/end handles, a **Snap to speech** starting point, and selection/original
-playback. The waveform is computed client-side — the browser already fetches the mp3 to play it and
+playback. The handles open at where the clip is CURRENTLY trimmed, not at the ends of the original:
+trimming happens by default, so opening on the full clip would misrepresent every card as untrimmed
+and dragging from there would silently undo the automatic cut. A saved hand cut is authoritative;
+otherwise the range is derived as `[0, length of the clip in use]` — exact, because the automatic trim
+only ever removes from the end — which needs no stored value and so works for clips built before the
+editor existed. The waveform is computed client-side — the browser already fetches the mp3 to play it and
 `decodeAudioData` gives the samples for free, so there's no dependency, no extra round trip and no peaks
 file to keep in step. One clip is decoded per modal open, not one per row.
 

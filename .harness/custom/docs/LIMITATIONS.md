@@ -1101,3 +1101,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if these become annoying, `arnndn` (RNN speech denoiser) is the next step up in
   ffmpeg — but it needs a third-party model file committed to the repo, which is a supply-chain
   decision rather than a purely technical one.
+
+## The review row carries editor state in data-* attributes, and every writer must keep it current
+
+- **What:** the audio editor reads its source clip, saved trim range and cleanup chain straight off the
+  `<tr>` (`data-original-url`, `data-trim-start/end`, `data-filter`) so opening the modal costs no
+  extra request. The cost is that EVERY write which changes a card's audio has to refresh those
+  attributes, or the editor silently operates on the previous recording.
+- **Why:** the alternative is a fetch per modal open. For a lesson of a hundred rows that is a hundred
+  potential round trips to avoid one class of staleness bug; server-rendered attributes match how the
+  rest of this dashboard works (card id, unit, stage are all carried the same way).
+- **Impact:** a new write path that forgets `refreshRow` reintroduces the bug, and it is invisible
+  until someone opens the editor after a Replace. It has already happened once: adding the second
+  audio column silently broke `swap`, because `td.au` began matching the Original column first.
+- **When to revisit:** if a third write path appears, fold the refresh into a single helper both the
+  server response shape and the client agree on, rather than remembering to call it.

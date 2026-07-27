@@ -255,12 +255,35 @@ export const DECK_EDIT_SCRIPT = `(function () {
     return { tr: tr, cid: tr.getAttribute("data-card-id"), unit: tr.getAttribute("data-unit"),
              msg: tr.querySelector(".msg") };
   };
-  var swap = function (tr, url) {
-    var cell = tr.querySelector("td.au");
+  // Put a clip into one of a row's two audio cells. The selector matters: "td.au" alone matches the
+  // Original column FIRST (it is rendered in front), so an unqualified query would swap the wrong
+  // player and leave the In use column showing the previous take.
+  var put = function (tr, sel, url) {
+    var cell = tr.querySelector(sel);
+    if (!cell || !url) return;
     var a = cell.querySelector("audio");
     if (a) { a.src = url; return; }
     var na = document.createElement("audio"); na.controls = true; na.preload = "none"; na.src = url;
     var x = cell.querySelector(".x"); if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
+  };
+  var swap = function (tr, url) { put(tr, "td.au:not(.au-orig)", url); };
+  // Replace and Generate install a whole NEW recording, so everything the editor reads off the row is
+  // now stale: the original it would cut from, any hand-trim range (the server clears it — it
+  // described the PREVIOUS recording), and the cleanup chain. Refresh the lot, or the editor silently
+  // goes on offering the old take.
+  var refreshRow = function (tr, j) {
+    swap(tr, j.mediaUrl);
+    put(tr, "td.au.au-orig", j.originalUrl);
+    if (j.originalUrl) tr.setAttribute("data-original-url", j.originalUrl);
+    if (j.audioTrim) {
+      tr.setAttribute("data-trim-start", String(j.audioTrim.start));
+      tr.setAttribute("data-trim-end", String(j.audioTrim.end));
+    } else {
+      tr.removeAttribute("data-trim-start");
+      tr.removeAttribute("data-trim-end");
+    }
+    if (j.audioFilter) tr.setAttribute("data-filter", j.audioFilter);
+    else tr.removeAttribute("data-filter");
   };
   var rebuild = function () {
     setStatus("rebuilding\\u2026");
@@ -278,7 +301,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
       var r = rowRef(inp); var ext = (f.name.split(".").pop() || "mp3").toLowerCase();
       if (r.msg) r.msg.textContent = "uploading…";
       fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio?ext=" + encodeURIComponent(ext), { method: "POST", body: f })
-        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "upload failed"); swap(r.tr, x.j.mediaUrl); if (r.msg) r.msg.textContent = "\\u2713 replaced"; return maybeRebuild(); })
+        .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "upload failed"); refreshRow(r.tr, x.j); if (r.msg) r.msg.textContent = "\\u2713 replaced"; return maybeRebuild(); })
         .catch(function (e) { if (r.msg) r.msg.textContent = e.message; });
       inp.value = "";
     });
@@ -299,7 +322,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
           var use = document.createElement("button"); use.textContent = "Use this";
           use.addEventListener("click", function () {
             fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio, original: v.original || null }) })
-              .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); swap(r.tr, y.j.mediaUrl); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
+              .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); refreshRow(r.tr, y.j); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
               .catch(function (e) { alert(e.message); });
           });
           row.appendChild(lab); row.appendChild(au); row.appendChild(use); list.appendChild(row);

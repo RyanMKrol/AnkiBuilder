@@ -1546,3 +1546,49 @@ test("audio/clean refuses anything that isn't a known chain name", async () => {
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+// The editor cuts from whatever `data-original-url` points at, so a write that installs a new
+// recording has to hand back the new original — not just the clip that ships.
+test("Replace and Generate-select both report the new original, and clear a stale hand trim", async () => {
+  const root = reviewableFixture();
+  const cardsPath = join(root, "epubs/mybook/chapter-0/cards.json");
+  try {
+    // Start from a card that already carries a hand cut against the OLD recording.
+    const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+    Object.assign(cards.items[0], {
+      audioManual: "a-manual-old.mp3",
+      audioTrim: { start: 0.1, end: 1.0 },
+      audio: "a-manual-old.mp3",
+    });
+    writeFileSync(cardsPath, JSON.stringify(cards));
+    writeFileSync(join(root, "epubs/mybook/chapter-0/audio/a-manual-old.mp3"), "OLD-CUT");
+
+    await withServer(
+      root,
+      async (url) => {
+        const up = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio?ext=mp3`, {
+            method: "POST",
+            body: Buffer.from("BRAND-NEW"),
+          }),
+        );
+        assert.equal(up.status, 200);
+        assert.ok(up.body.originalUrl, "the new original is reported so the row can be repointed");
+        assert.match(up.body.originalUrl, /a-user-[0-9a-f]{8}\.orig\.mp3$/);
+        assert.notEqual(up.body.originalUrl, up.body.mediaUrl);
+        assert.equal(up.body.audioTrim, null, "the old hand trim is gone");
+        assert.equal(up.body.audioFilter, "standard", "the chain actually applied is recorded");
+
+        // …and the original URL really serves the uploaded bytes, not the previous recording.
+        assert.equal(await (await fetch(`${url}${up.body.originalUrl}`)).text(), "BRAND-NEW");
+
+        const card = JSON.parse(readFileSync(cardsPath, "utf-8")).items[0];
+        assert.equal("audioManual" in card, false);
+        assert.equal("audioTrim" in card, false);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

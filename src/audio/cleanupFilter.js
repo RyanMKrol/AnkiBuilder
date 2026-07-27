@@ -60,6 +60,19 @@ export function cleanupChain(name = null, env = process.env) {
   return CLEANUP_CHAINS[key] ?? CLEANUP_CHAINS[DEFAULT_CLEANUP];
 }
 
+/**
+ * The NAME of the chain `cleanupChain` would resolve to — `"off"` when cleaning is disabled.
+ *
+ * `cleanupChain` returns the filter string, which is what ffmpeg needs but useless for recording on a
+ * card or lighting up the right button in the modal. This is the same resolution, reported by name.
+ */
+export function resolveCleanupName(name = null, env = process.env) {
+  const requested = name ?? env.ANKI_BUILDER_AUDIO_CLEANUP ?? DEFAULT_CLEANUP;
+  const key = String(requested).toLowerCase();
+  if (cleanupChain(key, env) === null) return "off";
+  return Object.hasOwn(CLEANUP_CHAINS, key) ? key : DEFAULT_CLEANUP;
+}
+
 /** The chain names a reviewer can pick between in the dashboard. */
 export function cleanupNames() {
   return Object.keys(CLEANUP_CHAINS);

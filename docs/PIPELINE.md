@@ -694,6 +694,13 @@ The audio-review write endpoints:
   kanji text for the audition modal.
 - `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`). Body carries
   `{ audio, original }` so the pick brings its own untouched take along and stays re-trimmable.
+
+Both of those install a whole NEW recording, so both answer with the full set of takes plus
+`mediaUrl` AND `originalUrl` (`takeUrls`). The client repoints the row's `data-original-url`, swaps
+BOTH players, and drops the stale `data-trim-*`; without that the editor would go on offering the
+previous recording to cut from. Note the in-use swap must select `td.au:not(.au-orig)` — a bare
+`td.au` matches the Original column, which renders first.
+
 - `POST …/card/:cardId/audio/trim` — body `{ start, end }` in seconds. Cuts that range out of
   `audioOriginal` (`trimCardAudio`), writes `<cardId>-manual-<hash>.mp3`, and sets `audioManual` +
   `audioTrim`. 422 with the reason if the range is nonsensical or ffmpeg can't apply it.

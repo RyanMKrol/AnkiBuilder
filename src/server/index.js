@@ -606,6 +606,14 @@ ${sectionHtml}
     }
   }
 
+  // The /media URLs for a write's resulting takes. Replace and Generate install a NEW recording, so a
+  // row has to be told about BOTH clips — the editor reads the original straight off the row, and
+  // without this it would go on offering the previous take to cut from.
+  const takeUrls = (type, id, unit, takes) => ({
+    mediaUrl: takes.audio ? mediaUrl(type, id, unit, takes.audio) : null,
+    originalUrl: takes.audioOriginal ? mediaUrl(type, id, unit, takes.audioOriginal) : null,
+  });
+
   const mediaUrl = (type, id, unit, file) =>
     `/media/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(String(unit))}/${encodeURIComponent(file)}`;
 
@@ -636,8 +644,8 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const bytes = await readBodyCapped(req, MAX_UPLOAD_BYTES);
-    const { audio } = await applyCardAudio(runDir, cardId, bytes, ext, { trim });
-    sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
+    const takes = await applyCardAudio(runDir, cardId, bytes, ext, { trim });
+    sendJson(res, { ...takes, ...takeUrls(type, id, unit, takes) });
   }
 
   async function handleGenerate(res, type, id, unit, cardId) {
@@ -762,12 +770,8 @@ ${sectionHtml}
     } catch {
       throw httpError(400, "invalid JSON body");
     }
-    const { audio } = selectCardAudio(runDir, cardId, filename, original);
-    sendJson(res, {
-      audio,
-      mediaUrl: mediaUrl(type, id, unit, audio),
-      originalUrl: original ? mediaUrl(type, id, unit, original) : null,
-    });
+    const takes = selectCardAudio(runDir, cardId, filename, original);
+    sendJson(res, { ...takes, ...takeUrls(type, id, unit, takes) });
   }
 
   async function handleTrim(req, res, type, id, unit, cardId) {

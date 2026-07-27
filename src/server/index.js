@@ -111,6 +111,11 @@ export function createDeckServer({
   getApiKey = () => process.env.ELEVENLABS_API_KEY,
   saveChapterCorpus = defaultSaveChapterCorpus,
   runClaude = defaultRunClaude,
+  // The automatic trailing-silence trim, applied to every clip this server stores (uploads and
+  // generated variants alike). Injected like every other collaborator because the real one SHELLS OUT
+  // to ffmpeg — a test that used it would be slow and would pass or fail on whether the machine
+  // happens to have ffmpeg installed. Undefined means "use the real trimmer".
+  trim = undefined,
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
 
@@ -588,7 +593,7 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const bytes = await readBodyCapped(req, MAX_UPLOAD_BYTES);
-    const { audio } = await applyCardAudio(runDir, cardId, bytes, ext);
+    const { audio } = await applyCardAudio(runDir, cardId, bytes, ext, { trim });
     sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
   }
 
@@ -612,11 +617,13 @@ ${sectionHtml}
       apiKey,
       languageCode,
       fetchTts,
+      trim,
     });
     sendJson(res, {
       variants: variants.map((v) => ({
         label: v.label,
         audio: v.audio,
+        original: v.original,
         mediaUrl: mediaUrl(type, id, unit, v.audio),
       })),
     });
@@ -643,11 +650,13 @@ ${sectionHtml}
       languageCode,
       fetchTts,
       runClaude,
+      trim,
     });
     sendJson(res, {
       variants: variants.map((v) => ({
         label: v.label,
         audio: v.audio,
+        original: v.original,
         kanji: v.kanji,
         mediaUrl: mediaUrl(type, id, unit, v.audio),
       })),
@@ -704,14 +713,18 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const body = await readBodyCapped(req, 64 * 1024);
-    let filename;
+    let filename, original;
     try {
-      filename = JSON.parse(body.toString("utf-8")).audio;
+      ({ audio: filename, original = null } = JSON.parse(body.toString("utf-8")));
     } catch {
       throw httpError(400, "invalid JSON body");
     }
-    const { audio } = selectCardAudio(runDir, cardId, filename);
-    sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
+    const { audio } = selectCardAudio(runDir, cardId, filename, original);
+    sendJson(res, {
+      audio,
+      mediaUrl: mediaUrl(type, id, unit, audio),
+      originalUrl: original ? mediaUrl(type, id, unit, original) : null,
+    });
   }
 
   // Rebuild the single group package (the book/course merge of done lessons, or a template's own deck)

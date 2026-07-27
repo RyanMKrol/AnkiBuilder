@@ -1,13 +1,19 @@
 import { Buffer } from "buffer";
 import { TTS_MODEL } from "./ttsModel.js";
-import { trimTrailingSilence } from "./trimSilence.js";
 
 const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
 
-// Fetches one TTS clip from ElevenLabs and returns its mp3 bytes as a Buffer. `languageCode` is only
-// ever a real ISO 639-1 code or null (see resolveIso639Code) — omitted from the request body when
-// null so ElevenLabs falls back to its own language auto-detection. Shared by the audio stage (via
-// the CLI) and the dashboard's on-demand variant generation.
+// Fetches one TTS clip from ElevenLabs and returns its RAW, untouched mp3 bytes as a Buffer.
+// `languageCode` is only ever a real ISO 639-1 code or null (see resolveIso639Code) — omitted from
+// the request body when null so ElevenLabs falls back to its own language auto-detection. Shared by
+// the audio stage (via the CLI) and the dashboard's on-demand variant generation.
+//
+// Trimming deliberately does NOT happen here. It used to: this was the single choke point, so every
+// clip arrived pre-trimmed and the raw take was discarded before it ever reached disk. That made the
+// trim algorithm's mistakes permanent and invisible — it only ever cuts the END, and when it cut too
+// early the clipped audio was simply gone. Callers now keep BOTH takes (`<hash>.orig.mp3` next to
+// `<hash>.mp3`) and derive the trimmed one with `autoTrim`, so the review can show the original
+// beside the shipping clip and a human can re-cut from the full-length take.
 export async function fetchElevenLabsTts(
   text,
   voiceId,
@@ -32,9 +38,5 @@ export async function fetchElevenLabsTts(
     throw new Error(`ElevenLabs TTS request failed: ${response.status} ${response.statusText}`);
   }
 
-  // Central post-process: trim the trailing silence + end blip ElevenLabs leaves on every clip
-  // (best-effort — a no-op if ffmpeg is absent). This is the single choke point, so both the audio
-  // build stage and the dashboard's Generate get cleaned clips.
-  const bytes = Buffer.from(await response.arrayBuffer());
-  return await trimTrailingSilence(bytes);
+  return Buffer.from(await response.arrayBuffer());
 }

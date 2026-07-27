@@ -507,3 +507,67 @@ test("runPaths - resolves relative paths correctly", () => {
   assert.ok(paths.audio.startsWith("/"), "paths should be absolute");
   assert.ok(paths.deck.startsWith("/"), "paths should be absolute");
 });
+
+// --- the audio takes ------------------------------------------------------------------------------
+// `audio` is the only field the deck build reads; the three takes behind it (and the saved trim
+// range) live alongside it so the review can show the original, the automatic trim and a hand cut.
+
+test("validateCards - accepts a card's full set of audio takes", () => {
+  validateCards({
+    meta: { targetLanguage: "ja", sourceType: "epub" },
+    items: [
+      {
+        id: "a1",
+        english: "Hello",
+        category: "Greetings",
+        target: "こんにちは",
+        pronunciation: "konnichiwa",
+        audio: "a1-manual-ab12cd34.mp3",
+        audioOriginal: "9f8e7d6c5b4a3210.orig.mp3",
+        audioAuto: "9f8e7d6c5b4a3210.mp3",
+        audioManual: "a1-manual-ab12cd34.mp3",
+        audioTrim: { start: 0.24, end: 1.86 },
+      },
+    ],
+  });
+});
+
+test("validateCards - a non-string audioOriginal fails validation", () => {
+  assert.throws(
+    () =>
+      validateCards({
+        meta: { targetLanguage: "ja", sourceType: "epub" },
+        items: [
+          {
+            id: "a1",
+            english: "Hello",
+            category: "Greetings",
+            target: "こんにちは",
+            pronunciation: "konnichiwa",
+            audioOriginal: 42,
+          },
+        ],
+      }),
+    /audioOriginal.*must be of type string/,
+  );
+});
+
+test("validateCards - an unknown audio-ish field is still rejected", () => {
+  assert.throws(
+    () =>
+      validateCards({
+        meta: { targetLanguage: "ja", sourceType: "epub" },
+        items: [
+          {
+            id: "a1",
+            english: "Hello",
+            category: "Greetings",
+            target: "こんにちは",
+            pronunciation: "konnichiwa",
+            audioSource: "typo-of-audioOriginal.mp3",
+          },
+        ],
+      }),
+    /Unexpected property/,
+  );
+});

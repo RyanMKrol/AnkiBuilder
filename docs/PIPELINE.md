@@ -340,21 +340,41 @@ etc.) have no transform and are sent unchanged. The `。` default transform comp
 normalized text.
 
 **Trailing-silence trim (`src/audio/trimSilence.js`).** ElevenLabs leaves ~0.3s of silence plus a tiny
-end artifact ("blip") on every clip. Every clip returned by `fetchElevenLabsTts` (the single choke
-point — so both the build stage and the dashboard's Generate) is passed through `trimTrailingSilence`
-before it's cached/hashed, **and so is a hand-uploaded Replace** (`applyCardAudio`), so an uploaded
-clip never sits next to generated ones that had their silence removed. Because the trimmer re-encodes
-to mp3, an upload it actually changed is stored as `.mp3` regardless of what it arrived as — writing
-mp3 bytes under a `.wav` name would be a worse bug than not trimming. The mechanism: ffmpeg `silencedetect` locates the last real speech segment (≥
-`minSpeechSec`, so a short trailing blip is skipped and a genuine mid-clip pause is preserved) and the
-clip is cut at the **midpoint of the trailing silence** (never at the speech edge — the buffer scales
-with the silence, with `padSec` as a floor, so the final sound is never clipped) and re-encoded.
-Because trimming happens before the
-`generateVariants` bytes-hash, a re-rolled preview reflects the trimmed audio. **Best-effort:** if
-ffmpeg isn't installed (a one-time warning) or any step fails or the result isn't smaller, the original
-clip is used unchanged — the audio build never breaks. Off with `ANKI_BUILDER_TRIM_AUDIO=0`; thresholds
-via `ANKI_BUILDER_TRIM_SILENCE_DB` / `_MIN_SILENCE_SEC` / `_MIN_SPEECH_SEC` / `_PAD_SEC`. Manual uploads
-via the dashboard are NOT trimmed (only ElevenLabs-generated clips).
+end artifact ("blip") on every clip. The mechanism: ffmpeg `silencedetect` locates the last real speech
+segment (≥ `minSpeechSec`, so a short trailing blip is skipped and a genuine mid-clip pause is
+preserved) and the clip is cut at the **midpoint of the trailing silence** (never at the speech edge —
+the buffer scales with the silence, with `padSec` as a floor) and re-encoded. **Best-effort:** if
+ffmpeg isn't installed (a one-time warning) or any step fails or the result isn't smaller, the input is
+returned unchanged — the audio build never breaks. Off with `ANKI_BUILDER_TRIM_AUDIO=0`; thresholds via
+`ANKI_BUILDER_TRIM_SILENCE_DB` / `_MIN_SILENCE_SEC` / `_MIN_SPEECH_SEC` / `_PAD_SEC`.
+
+**Both takes are kept.** The trim used to run inside `fetchElevenLabsTts` — the single choke point — so
+every clip arrived pre-trimmed and the raw take was discarded before it reached disk. That made the
+algorithm's mistakes permanent and invisible: it only ever cuts the END, so leading silence survives
+every clip by design, and when it cut too early the clipped audio was simply gone. `fetchElevenLabsTts`
+now returns the raw bytes and each producer derives the trimmed take itself with `autoTrim`, storing
+the pair side by side:
+
+| Where                 | Untouched take                     | Trimmed take                |
+| --------------------- | ---------------------------------- | --------------------------- |
+| audio cache / run dir | `<hash>.orig.mp3`                  | `<hash>.mp3`                |
+| Generate preview      | `<hash>-gen-<bytes>.orig.mp3`      | `<hash>-gen-<bytes>.mp3`    |
+| Replace upload        | `<cardId>-user-<bytes>.orig.<ext>` | `<cardId>-user-<bytes>.mp3` |
+
+`<hash>.mp3` keeps its long-standing meaning (the trimmed clip the deck embeds), so existing caches and
+`isDefaultClipFilename`'s staleness rule are untouched, and a MISSING `.orig.mp3` means exactly one
+thing: that clip predates this change. Those cards get an original again the next time they're
+regenerated or replaced; nothing already on disk is reinterpreted, and a missing original never
+triggers a refetch (that would spend credits re-rolling a non-deterministic voice, changing how an
+already-approved card sounds). The cache writes the original FIRST, so a crash mid-write leaves the
+shipping clip missing and self-heals on the next run rather than orphaning a clip whose absent sibling
+would read as "predates originals" forever.
+
+Because the trimmer re-encodes to mp3, a take it actually changed is stored as `.mp3` regardless of
+what it arrived as — writing mp3 bytes under a `.wav` name would be a worse bug than not trimming. An
+upload the trim left alone is stored once, under its own extension, and ships as-is. Uploads and
+generated clips go through the identical path, so a hand-uploaded Replace never sits next to generated
+clips that had their silence removed.
 
 `generateAudio` fetches only the default clip per card (cache misses only). The legacy `altAudio`
 field is no longer written — switching a Japanese card to its plain no-`。` take is now an on-demand
@@ -592,15 +612,17 @@ sign-off that gates the merge; both handlers then `rebuildGroupQuiet` (best-effo
 the single package tracks the done-set:
 
 - `POST …/card/:cardId/audio?ext=<mp3|m4a|ogg|wav>` — raw-body upload of a replacement clip
-  (`applyCardAudio`, `<cardId>-user-<hash>.<ext>`, 10 MB cap). Uploads are NOT trimmed.
+  (`applyCardAudio`, 10 MB cap). Stored as the card's new original with the trimmed take derived from
+  it, exactly like a generated clip; any manual trim from the previous recording is cleared.
 - `POST …/card/:cardId/generate` — FRESH ElevenLabs takes of the card's variant axes
-  (`generateCardVariants` + `src/audio/variants.js`), written `…-gen-<hash>.mp3`; no cache reuse; does
-  not modify cards.json.
+  (`generateCardVariants` + `src/audio/variants.js`), written `…-gen-<hash>.mp3` with their
+  `.orig.mp3` originals; no cache reuse; does not modify cards.json.
 - `POST …/card/:cardId/generate-kanji` — **Japanese only** (422 otherwise). Generates a kanji
   orthography from the kana reading via `runClaude` (`src/audio/kanjiOrthography.js`) and synthesizes
   fresh takes from it (`generateCardKanjiVariants`, `…-genkanji-<hash>.mp3`); returns the produced
   kanji text for the audition modal.
-- `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`).
+- `POST …/card/:cardId/audio/select` — apply a generated variant (`selectCardAudio`). Body carries
+  `{ audio, original }` so the pick brings its own untouched take along and stays re-trimmable.
 - `POST /api/deck/:type/:id/rebuild` (`handleRebuild`) — regenerate the **single group package**
   `<deckDir>/deck.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
   assembly the CLI's `deck --book-dir` uses, so a browser rebuild is byte-identical, and it packages

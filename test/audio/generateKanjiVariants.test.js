@@ -59,6 +59,9 @@ test("generates fresh -genkanji- takes from the kanji orthography and returns th
         calls.push(text);
         return Buffer.from("clip:" + text);
       },
+      // Stubbed — the real trimmer shells out to ffmpeg. Returning different bytes exercises the
+      // two-file path (a trim that actually cut something).
+      trim: async () => Buffer.from("trimmed"),
     });
     // two takes: no 。 and with 。, synthesized from the KANJI text (not the kana)
     assert.deepEqual(
@@ -68,7 +71,10 @@ test("generates fresh -genkanji- takes from the kanji orthography and returns th
     assert.deepEqual(calls, ["十時から六時", "十時から六時。"]);
     assert.ok(out.every((v) => v.kanji === "十時から六時"));
     assert.ok(out.every((v) => /-genkanji-[0-9a-f]{8}\.mp3$/.test(v.audio)));
-    assert.equal(readdirSync(join(dir, "audio")).length, 2);
+    // Each take keeps its untouched original beside the trimmed clip the reviewer auditions, so a
+    // pick stays re-trimmable from the full-length recording.
+    assert.ok(out.every((v) => /-genkanji-[0-9a-f]{8}\.orig\.mp3$/.test(v.original)));
+    assert.equal(readdirSync(join(dir, "audio")).length, 4);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

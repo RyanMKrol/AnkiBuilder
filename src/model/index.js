@@ -137,7 +137,25 @@ const CARDS_SCHEMA = {
           // from the old rarely-used back-note fallback; the migration moves any legacy value into `note`.
           hint: { type: ["string", "null"] },
           image: { type: "string" },
+          // The clip the deck embeds. Always DERIVED from the three takes below by `deriveCardAudio`
+          // (manual cut > automatic trim > original), never set independently — the deck build, the
+          // .apkg rebuild and AnkiConnect delivery read only this field and know nothing of the rest.
           audio: { type: "string" },
+          // The raw, untouched take exactly as it arrived from the TTS voice or a Replace upload.
+          // Never modified, and the source every trim re-cuts from — which is what lets a hand cut
+          // reach audio the automatic trim removed. Absent on clips generated before originals were
+          // kept; those cards get an original again the next time they're regenerated or replaced.
+          audioOriginal: { type: "string" },
+          // The automatic trailing-silence trim of `audioOriginal` (src/audio/trimSilence.js). The
+          // default take: what ships unless a reviewer applies a manual cut. Equal to `audioOriginal`
+          // when the trim changed nothing.
+          audioAuto: { type: "string" },
+          // A reviewer's hand-cut range, applied in the dashboard's trim editor. Present only once
+          // applied; removing it falls back to `audioAuto`, so "revert to automatic" is a delete.
+          audioManual: { type: "string" },
+          // The `{ start, end }` seconds behind `audioManual`, kept so reopening the editor restores
+          // the previous selection instead of making the reviewer re-find it by ear.
+          audioTrim: { type: "object" },
           // Legacy optional second recording. The audio stage no longer writes this (only the default
           // clip is generated up front; the no-。 take and other variants are on-demand dashboard
           // actions), but the field is kept so cards.json from older runs still validate. Never

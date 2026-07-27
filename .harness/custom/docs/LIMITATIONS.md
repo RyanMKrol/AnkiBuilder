@@ -979,3 +979,49 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   the card.
 - **When to revisit:** if that bites. The fix is to report it — "this card's chosen clip predates its
   current text" at the audio review — rather than to regenerate it.
+
+## Clips generated before originals were kept can never get one back
+
+- **What:** the trailing-silence trim used to run inside `fetchElevenLabsTts`, so the raw take was
+  discarded before it ever reached disk. Every clip cached or copied before that changed exists only in
+  its trimmed form. Those cards have no `audioOriginal`, the review has nothing longer to show beside
+  the shipping clip, and a hand trim can only cut further in — never back out past what the algorithm
+  already removed. The absence of a `.orig.mp3` sibling is what marks them.
+- **Why:** the alternative was to refetch on a missing original, which spends ElevenLabs credits on
+  every affected card AND re-rolls a non-deterministic voice — so cards the reviewer already approved
+  would come back sounding different. Silently changing approved audio to backfill a file is worse than
+  leaving the gap visible.
+- **Impact:** on an existing deck, the over-trim failure mode stays unfixable until those cards are
+  regenerated. Regenerating is a deliberate, explicit act: `rm -rf .anki-builder/audio` and re-run the
+  `audio` stage, accepting the credit cost and the changed takes. Replace and Generate also mint a real
+  original for a single card, which is the cheap per-card escape hatch.
+- **When to revisit:** not really revisitable — the bytes are gone. If it ever matters at scale, the
+  fix is a one-off backfill script the owner runs knowingly, not automatic recovery.
+
+## Every clip is stored twice
+
+- **What:** the cache and each run's `audio/` now hold both `<hash>.orig.mp3` and `<hash>.mp3`. The
+  original is written even when the trim changed nothing, so the two files can be byte-identical.
+- **Why:** an always-present sibling is what makes its ABSENCE mean exactly one thing ("this clip
+  predates originals"). Writing it conditionally would conflate "the trim was a no-op" with "there is no
+  original", and the review would have no way to tell a reviewer which one they're looking at.
+- **Impact:** roughly 2x audio disk in `.anki-builder/audio` and in every run dir. A clip is tens of KB,
+  so a large book is single-digit MB either way — but it does double, and the cache is not pruned.
+  Only the shipping clip is embedded in the `.apkg`; originals never reach the deck.
+- **When to revisit:** if the local library ever gets large enough to matter, prune `.orig.mp3` files
+  for lessons already marked done — they're only needed while a lesson is still being reviewed.
+
+## Regenerating never overwrites a hand-picked clip, even when the card's text changed
+
+- **What:** the `audio` stage writes its results back only for cards whose current clip is one it owns
+  (a bare `<hash>.mp3`). A card pointing at a Replace upload, a `-gen-` pick or a `-manual-` hand cut is
+  skipped entirely, so editing such a card's `reading` and re-running `audio` leaves its audio saying
+  the old text.
+- **Why:** the opposite default is worse. Regenerating over a clip the reviewer deliberately chose
+  silently destroys their work, and they'd have no signal it happened; a clip that lags a text edit is
+  at least audible when they play it. This also matches `clipIsCurrent`, which has always exempted
+  hand-picked clips from the staleness check on the read side — the write side now agrees.
+- **Impact:** after editing the text of a card whose audio was hand-picked or hand-trimmed, the clip has
+  to be re-made explicitly (Generate, or Replace) — re-running the stage won't do it.
+- **When to revisit:** if this bites, the fix is a dashboard warning on a card whose hand-picked clip no
+  longer matches its text, not a change to the overwrite rule.

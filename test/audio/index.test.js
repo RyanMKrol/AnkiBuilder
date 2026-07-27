@@ -5,7 +5,7 @@ import { join, resolve } from "path";
 import os from "os";
 import { Buffer } from "buffer";
 import { createHash } from "crypto";
-import { generateAudio as generateAudioImpl } from "../../src/audio/index.js";
+import { generateAudio as generateAudioImpl, deriveCardAudio } from "../../src/audio/index.js";
 import { getAltAudioTransform } from "../../src/audio/altAudio.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
@@ -14,8 +14,20 @@ import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 // would double every fetch/file count and muddy those assertions. Default alt OFF here so they stay
 // focused; a test can re-enable it by passing its own `getAltTransform`. The alt pass has its own
 // dedicated tests at the bottom of this file.
+//
+// The trim is stubbed to a no-op by default too. generateAudio derives each card's trimmed take
+// itself now, and the real trimmer SHELLS OUT to ffmpeg — which would make these tests slow and
+// dependent on whether the machine happens to have it installed. Tests that care about the trim pass
+// their own; see "keeps the untouched original beside the trimmed take" below.
+const noTrim = async (bytes) => bytes;
+
+// Every cached term is two files — the shipping clip and its untouched `.orig.mp3` sibling. Tests
+// asserting "one clip per term" mean the shipping ones, so count those rather than raw directory
+// entries, and keep saying what they were always about.
+const shippingClips = (files) => files.filter((f) => !f.endsWith(".orig.mp3"));
+
 function generateAudio(cards, opts = {}) {
-  return generateAudioImpl(cards, { getAltTransform: () => undefined, ...opts });
+  return generateAudioImpl(cards, { getAltTransform: () => undefined, trim: noTrim, ...opts });
 }
 
 function baseCards(items) {
@@ -64,7 +76,9 @@ test("writes one MP3 per unique target term into voice-specific cache dir", asyn
       // Cache is segmented by model: audio/<voiceId>/<model>/
       const audioDir = resolve(join(tmpDir, "audio", "voice123", "test-model"));
       const files = await fs.readdir(audioDir);
-      assert.equal(files.length, 2);
+      // Two takes per term: the shipping <hash>.mp3 and its untouched <hash>.orig.mp3 sibling.
+      assert.equal(files.length, 4);
+      assert.equal(files.filter((f) => f.endsWith(".orig.mp3")).length, 2);
 
       for (const file of files) {
         const content = await fs.readFile(resolve(join(audioDir, file)), "utf8");
@@ -570,7 +584,7 @@ test("audio cache key follows the spoken text: same target + different reading =
 
       const audioDir = resolve(join(tmpDir, "audio", "voice123", TTS_MODEL));
       const files = await fs.readdir(audioDir);
-      assert.equal(files.length, 2);
+      assert.equal(shippingClips(files).length, 2);
     });
   } finally {
     if (originalKey) {
@@ -644,6 +658,7 @@ test("default: a ja card's default is the with-。 clip, and NO alt clip is gene
       },
       libraryHomeDir: tmpDir,
       getAltTransform: getAltAudioTransform,
+      trim: noTrim,
     });
 
     // Mirrors hashTerm in src/audio/index.js.
@@ -654,7 +669,7 @@ test("default: a ja card's default is the with-。 clip, and NO alt clip is gene
     assert.deepEqual(calls, ["はちじ。"], "only the with-。 default is fetched");
 
     const files = await fs.readdir(resolve(join(tmpDir, "audio", "voice123", TTS_MODEL)));
-    assert.equal(files.length, 1, "only the default clip is cached");
+    assert.equal(shippingClips(files).length, 1, "only the default clip is cached");
   });
 });
 
@@ -666,6 +681,7 @@ test("default: language with no transform yields no altAudio field", async () =>
       fetchTts: async () => Buffer.from("x"),
       libraryHomeDir: tmpDir,
       getAltTransform: () => undefined,
+      trim: noTrim,
     });
     assert.ok(result.items[0].audio);
     assert.equal("altAudio" in result.items[0], false, "no altAudio key at all");
@@ -683,6 +699,7 @@ test("default: the clip is cached — a second run makes zero calls", async () =
       },
       libraryHomeDir: tmpDir,
       getAltTransform: getAltAudioTransform,
+      trim: noTrim,
     });
 
     const first = [];
@@ -709,6 +726,7 @@ test("default: the clip is built from the spoken text (reading when present)", a
       },
       libraryHomeDir: tmpDir,
       getAltTransform: getAltAudioTransform,
+      trim: noTrim,
     });
     assert.deepEqual(calls, ["いち。"], "speaks the reading's 。 variant, not the kanji target");
   });
@@ -745,8 +763,8 @@ test("cache is segmented by model — the same text under two models does not co
     assert.equal(r1.items[0].audio, r2.items[0].audio);
     const aFiles = await fs.readdir(resolve(join(tmpDir, "audio", "v", "model-a")));
     const bFiles = await fs.readdir(resolve(join(tmpDir, "audio", "v", "model-b")));
-    assert.equal(aFiles.length, 1);
-    assert.equal(bFiles.length, 1);
+    assert.equal(shippingClips(aFiles).length, 1);
+    assert.equal(shippingClips(bFiles).length, 1);
   } finally {
     if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
     else delete process.env.ELEVENLABS_API_KEY;
@@ -774,6 +792,7 @@ test("ja: the text sent to TTS (and cache key) has spaces stripped, though targe
       },
       libraryHomeDir: tmpDir,
       getAltTransform: getAltAudioTransform,
+      trim: noTrim,
     });
     // default only, space-free; the with-。 default appends 。 to the already-。-terminated text.
     assert.deepEqual(
@@ -786,4 +805,167 @@ test("ja: the text sent to TTS (and cache key) has spaces stripped, though targe
     else delete process.env.ELEVENLABS_API_KEY;
     await fs.rm(tmpDir, { recursive: true, force: true });
   }
+});
+
+// --- keeping the original take -------------------------------------------------------------------
+// The automatic trim only ever cuts the END of a clip, and it used to run at the ElevenLabs fetch —
+// so the untouched take was discarded before it reached disk and the trim's mistakes were permanent.
+// Both takes are now cached side by side.
+
+test("keeps the untouched original beside the trimmed take, and ships the trimmed one", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
+    const result = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts: async () => Buffer.from("RAW-full-length-take"),
+      libraryHomeDir: tmpDir,
+      model: "m",
+      trim: async () => Buffer.from("CUT"),
+    });
+
+    const item = result.items[0];
+    assert.ok(item.audioOriginal.endsWith(".orig.mp3"), "original is the .orig.mp3 sibling");
+    assert.equal(item.audioAuto, item.audio, "the trimmed take is what ships by default");
+    assert.notEqual(item.audioOriginal, item.audio);
+
+    const audioDir = resolve(join(tmpDir, "audio", "v", "m"));
+    assert.equal(
+      await fs.readFile(join(audioDir, item.audioOriginal), "utf8"),
+      "RAW-full-length-take",
+      "the original is stored verbatim — nothing is cut from it",
+    );
+    assert.equal(await fs.readFile(join(audioDir, item.audio), "utf8"), "CUT");
+  });
+});
+
+test("caches an original even when the trim changed nothing, so 'no sibling' can only mean 'predates originals'", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
+    const result = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts: async () => Buffer.from("x"),
+      libraryHomeDir: tmpDir,
+      model: "m",
+      trim: noTrim,
+    });
+
+    const files = await fs.readdir(resolve(join(tmpDir, "audio", "v", "m")));
+    assert.equal(files.length, 2, "both takes on disk even though they are byte-identical");
+    assert.ok(result.items[0].audioOriginal);
+  });
+});
+
+test("a cache entry with no .orig.mp3 sibling reports no original — and is NOT refetched for one", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([{ id: "a1", english: "eight", category: "Time", target: "はちじ" }]);
+    const audioDir = resolve(join(tmpDir, "audio", "v", "m"));
+
+    // Stand in for a cache written before originals were kept: the shipping clip, no sibling.
+    const first = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts: async () => Buffer.from("x"),
+      libraryHomeDir: tmpDir,
+      model: "m",
+      trim: noTrim,
+    });
+    await fs.rm(join(audioDir, first.items[0].audioOriginal));
+
+    let calls = 0;
+    const result = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts: async () => {
+        calls++;
+        return Buffer.from("x");
+      },
+      libraryHomeDir: tmpDir,
+      model: "m",
+      trim: noTrim,
+    });
+
+    // Refetching would spend credits re-rolling a non-deterministic voice purely to recover a take we
+    // had already chosen to throw away — and would change how an approved card sounds.
+    assert.equal(calls, 0, "a missing original never triggers a refetch");
+    assert.equal("audioOriginal" in result.items[0], false);
+    assert.ok(result.items[0].audio, "the card still ships its cached clip");
+  });
+});
+
+test("regenerating a card drops a stale manual trim, which described the previous original", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([
+      {
+        id: "a1",
+        english: "eight",
+        category: "Time",
+        target: "はちじ",
+        audioManual: "a1-manual-deadbeef.mp3",
+        audioTrim: { start: 0.2, end: 1.4 },
+      },
+    ]);
+    const result = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts: async () => Buffer.from("x"),
+      libraryHomeDir: tmpDir,
+      trim: noTrim,
+    });
+
+    const item = result.items[0];
+    assert.equal("audioManual" in item, false, "the hand cut is dropped, not carried forward");
+    assert.equal("audioTrim" in item, false);
+    assert.equal(item.audio, item.audioAuto, "the card falls back to the fresh automatic take");
+  });
+});
+
+test("an excluded card is stripped of every audio field, not just `audio`", async () => {
+  await withKey(async (tmpDir) => {
+    const cards = baseCards([
+      {
+        id: "x1",
+        english: "drop",
+        category: "Other",
+        target: "すてる",
+        excluded: true,
+        audio: "stale.mp3",
+        audioOriginal: "stale.orig.mp3",
+        audioAuto: "stale.mp3",
+        audioManual: "stale-manual.mp3",
+        audioTrim: { start: 0, end: 1 },
+      },
+      { id: "a1", english: "keep", category: "Other", target: "のこす" },
+    ]);
+    const result = await generateAudio(cards, {
+      voiceId: "v",
+      fetchTts: async () => Buffer.from("x"),
+      libraryHomeDir: tmpDir,
+      trim: noTrim,
+    });
+
+    for (const field of ["audio", "audioOriginal", "audioAuto", "audioManual", "audioTrim"]) {
+      assert.equal(field in result.items[0], false, field + " is cleared on an excluded card");
+    }
+  });
+});
+
+// --- which take actually ships --------------------------------------------------------------------
+
+test("deriveCardAudio: a hand cut beats the automatic trim, which beats the original", () => {
+  const takes = {
+    audioOriginal: "raw.orig.mp3",
+    audioAuto: "auto.mp3",
+    audioManual: "manual.mp3",
+  };
+  assert.equal(deriveCardAudio(takes), "manual.mp3");
+
+  assert.equal(
+    deriveCardAudio({ audioOriginal: takes.audioOriginal, audioAuto: takes.audioAuto }),
+    "auto.mp3",
+    "without a hand cut, the automatic trim ships",
+  );
+
+  assert.equal(
+    deriveCardAudio({ audioOriginal: "raw.orig.mp3" }),
+    "raw.orig.mp3",
+    "a clip the trim left alone ships as-is",
+  );
+  assert.equal(deriveCardAudio({}), undefined, "a card with no takes has no audio at all");
 });

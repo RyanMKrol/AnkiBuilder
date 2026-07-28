@@ -105,6 +105,7 @@ export function renderCrossLessonNotePrompt({
         romaji: card.pronunciation || card.reading || "",
         category: card.category,
         currentNote: card.note || card.cardNote || "",
+        currentHint: card.hint || "",
       })),
       null,
       2,
@@ -112,33 +113,55 @@ export function renderCrossLessonNotePrompt({
   });
 }
 
-function parseNotes(raw, allowedIds) {
+/**
+ * `id → { note?, hint? }` for the entries the model returned.
+ *
+ * A field is only present in the returned object when the model actually sent it, which is what makes
+ * "say nothing about the hint" mean LEAVE IT ALONE rather than "clear it". An explicit `""` still
+ * means delete, exactly as it does for a note — that's how a restatement gets removed.
+ */
+function parseEdits(raw, allowedIds) {
   const parsed = JSON.parse(extractJsonObjectText(raw));
   if (!parsed || !Array.isArray(parsed.notes)) {
     throw new Error('model response must be a JSON object with a "notes" array');
   }
-  const notes = new Map();
-  for (const note of parsed.notes) {
-    if (
-      note &&
-      typeof note.id === "string" &&
-      typeof note.note === "string" &&
-      allowedIds.has(note.id)
-    )
-      notes.set(note.id, note.note.trim());
+  const edits = new Map();
+  for (const entry of parsed.notes) {
+    if (!entry || typeof entry.id !== "string" || !allowedIds.has(entry.id)) continue;
+    const edit = {};
+    if (typeof entry.note === "string") edit.note = entry.note.trim();
+    if (typeof entry.hint === "string") edit.hint = entry.hint.trim();
+    if (Object.keys(edit).length) edits.set(entry.id, edit);
   }
-  return notes;
+  return edits;
+}
+
+/** The fields this pass owns, and whether the model's edit actually changes the card. */
+const EDITABLE = ["note", "hint"];
+
+function differs(item, edit) {
+  return EDITABLE.some((field) => field in edit && edit[field] !== (item[field] || ""));
+}
+
+function applyEdit(item, edit) {
+  // An empty returned value means "delete this restatement" → store null, not "".
+  for (const field of EDITABLE) if (field in edit) item[field] = edit[field] || null;
 }
 
 /**
- * Writes back-of-card notes for ONE lesson, fed that lesson plus every EARLIER lesson of the same
- * book/course as context. Cross-references are therefore structurally BACKWARD-only: the model never
- * sees a later lesson, so it cannot reference material the learner hasn't met — that's a property of
- * what it's shown, not a rule it's asked to follow.
+ * Writes back-of-card notes — and, where two cards collide on one English gloss, front-of-card hints —
+ * for ONE lesson, fed that lesson plus every EARLIER lesson of the same book/course as context.
+ * Cross-references are therefore structurally BACKWARD-only: the model never sees a later lesson, so it
+ * cannot reference material the learner hasn't met — that's a property of what it's shown, not a rule
+ * it's asked to follow.
  *
- * Writes the current lesson only, leaving `hint`/`reviewNote` untouched, and keeps corpus.json in
- * lockstep with cards.json. Each file is backed up once to `<file>.pre-enhance.bak` before its first
- * rewrite.
+ * `hint` is in scope here because a gloss collision is only VISIBLE across lessons: two cards reading
+ * "How many people?" with different answers are unremarkable inside their own chapters and unstudiable
+ * side by side in one deck. This is the only pass that sees far enough to catch it. A hint is still
+ * written only when the model returns one, so lessons it says nothing about keep the hints they have.
+ *
+ * Writes the current lesson only, leaving `reviewNote` untouched, and keeps corpus.json in lockstep
+ * with cards.json. Each file is backed up once to `<file>.pre-enhance.bak` before its first rewrite.
  *
  * Returns `{ changed, skipped }` — `changed` is how many notes were written, `skipped` a reason
  * string when the pass didn't run at all (a lone lesson with no siblings, an unknown unit). Fails
@@ -170,9 +193,9 @@ export function enhanceLessonNotes({
   const earlierLabels = units.slice(0, index).map((unit) => unit.label);
   const currentIds = new Set(current.data.items.map((item) => item.id));
 
-  let notes;
+  let edits;
   try {
-    notes = parseNotes(
+    edits = parseEdits(
       runClaude(
         renderCrossLessonNotePrompt({
           cards: contextCards,
@@ -189,13 +212,17 @@ export function enhanceLessonNotes({
   }
 
   const pending = current.data.items.filter(
-    (item) => notes.has(item.id) && notes.get(item.id) !== (item.note || ""),
+    (item) => edits.has(item.id) && differs(item, edits.get(item.id)),
   );
   if (dry) {
     for (const item of pending) {
+      const edit = edits.get(item.id);
       log(`  [${current.label}] ${item.english} / ${item.target}`);
-      log(`     ${item.note ? "was: " + item.note : "(no note)"}`);
-      log(`     now: ${notes.get(item.id)}`);
+      for (const field of EDITABLE) {
+        if (!(field in edit)) continue;
+        log(`     ${item[field] ? `was ${field}: ` + item[field] : `(no ${field})`}`);
+        log(`     now ${field}: ${edit[field]}`);
+      }
     }
     return { changed: pending.length };
   }
@@ -203,22 +230,19 @@ export function enhanceLessonNotes({
     return { changed: 0 };
   }
 
-  for (const item of pending) {
-    // An empty returned note means "delete this restatement" → store null, not "".
-    item.note = notes.get(item.id) || null;
-  }
+  for (const item of pending) applyEdit(item, edits.get(item.id));
   backupFileOnce(current.file, BACKUP_SUFFIX);
   writeJson(current.file, current.data);
 
-  // corpus.json carries the same notes; keep the two in lockstep so a later re-translate or a
+  // corpus.json carries the same notes/hints; keep the two in lockstep so a later re-translate or a
   // corpus-derived save doesn't resurrect the pre-enhancement text.
   const corpusPath = join(deckDir, current.name, "corpus.json");
   if (existsSync(corpusPath)) {
     const corpus = readJson(corpusPath);
     let corpusChanged = 0;
     for (const item of corpus.items || []) {
-      if (notes.has(item.id) && notes.get(item.id) !== (item.note ?? "")) {
-        item.note = notes.get(item.id) || null;
+      if (edits.has(item.id) && differs(item, edits.get(item.id))) {
+        applyEdit(item, edits.get(item.id));
         corpusChanged++;
       }
     }

@@ -1177,3 +1177,34 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   class of silent failure returns.
 - **When to revisit:** if derived-clip naming changes again, add a test asserting a stage card is still
   recognised after the rename — the existing ones now cover exactly that case.
+
+## The cross-lesson pass now writes `hint`, and nothing detects a gloss collision it misses
+
+- **What:** `enhanceLessonNotes` used to own `note` only, leaving `hint` entirely to extraction. It now
+  writes `hint` as well, but only when the model chooses to return one. There is no programmatic check
+  that every same-gloss pair in a deck actually ended up with hints on both sides.
+- **Why:** a gloss collision (two cards reachable from one English prompt with different answers) is
+  structurally invisible to the extraction, which sees a single chapter at a time. The cross-lesson pass
+  is the only one fed the whole book, so it is the only place the pair can be seen at all. Making it
+  return `hint` was a much smaller change than teaching a second pass to read every lesson.
+- **Impact:** collision coverage is model judgment, not a gate. A pair the model doesn't notice ships
+  as two identical-looking cards, and the learner discovers it by failing one. The collisions fixed by
+  hand in the JBP Book 1 deck were found with an ad-hoc script that groups every card by normalized
+  `english` and by `target` and reports any group with more than one distinct answer — that grouping is
+  cheap and deterministic, and would make a good `audit` check if this recurs.
+- **When to revisit:** if a review turns up same-gloss pairs the pass left unhinted, promote the
+  grouping script into `src/audit/` and fail the readiness check on an unhinted collision.
+
+## `hint` is now written by two passes, and the second one wins
+
+- **What:** extraction sets `hint` from the source's contextual parentheticals; the cross-lesson pass
+  can now overwrite it. An omitted `hint` in the model's response leaves the existing value alone, and
+  only an explicit `""` clears it, so the common case is safe — but a returned hint silently replaces a
+  hand-written one.
+- **Why:** the alternative, never letting the later pass touch an existing hint, would have made it
+  impossible to fix a hint that is wrong precisely because extraction couldn't see the colliding card.
+- **Impact:** a hint edited by hand between `prepare` and review can be overwritten by a re-run of the
+  pass. `<file>.pre-enhance.bak` is the recovery path, and a lesson already marked `reviewed` is skipped
+  entirely, so this only bites in the pre-review window.
+- **When to revisit:** if hand-edited hints start getting clobbered in practice, add a `hintLocked`
+  flag (or reuse the reviewed marker at card granularity) rather than reverting the capability.

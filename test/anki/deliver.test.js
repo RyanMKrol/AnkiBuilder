@@ -1,6 +1,11 @@
 import test from "node:test";
 import assert from "node:assert";
-import { syncStructure, syncDeckContent, ensureDecks } from "../../src/anki/deliver.js";
+import {
+  syncStructure,
+  syncDeckContent,
+  ensureDecks,
+  assertUniqueCardIds,
+} from "../../src/anki/deliver.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
 
 const SPEC = noteTypeSpec("ja");
@@ -265,4 +270,53 @@ test("ensureDecks reports but does not create on a dry run", async () => {
   const missing = await ensureDecks(client, [{ units: [{ ankiDeck: "Book::Lesson 8" }] }], true);
   assert.deepEqual(missing, ["Book::Lesson 8"]);
   assert.deepEqual(created, [], "a dry run performs only reads");
+});
+
+// `abid:<card.id>` is the note key deck-wide, so a repeated id maps two cards onto ONE note and the
+// later one silently wins. Refusing is the only safe move: whether the pair is one card taught twice
+// or two cards that collided is a judgment about the source, not something the code can infer.
+test("assertUniqueCardIds refuses a deck whose card ids repeat across units", () => {
+  const deck = {
+    type: "book",
+    id: "b",
+    units: [
+      { ankiDeck: "Book::Lesson 6", cards: [{ id: "ni-particle" }, { id: "kara-particle" }] },
+      { ankiDeck: "Book::Lesson 7", cards: [{ id: "ni-particle" }] },
+    ],
+  };
+  assert.throws(
+    () => assertUniqueCardIds(deck),
+    (e) => {
+      assert.match(e.message, /duplicate card ids/);
+      assert.match(e.message, /ni-particle \(Book::Lesson 6, Book::Lesson 7\)/);
+      // Only the repeated id is named.
+      assert.doesNotMatch(e.message, /kara-particle/);
+      return true;
+    },
+  );
+});
+
+test("assertUniqueCardIds passes a deck with distinct ids", () => {
+  const deck = {
+    type: "book",
+    id: "b",
+    units: [
+      { ankiDeck: "Book::Lesson 6", cards: [{ id: "ni-particle" }] },
+      { ankiDeck: "Book::Lesson 7", cards: [{ id: "ni-particle-time" }] },
+    ],
+  };
+  assert.doesNotThrow(() => assertUniqueCardIds(deck));
+});
+
+test("syncDeckContent refuses before touching Anki when ids repeat", async () => {
+  const deck = deckWith([{ id: "dup" }, { id: "dup" }]);
+  const calls = [];
+  const client = new Proxy(
+    {},
+    {
+      get: (_t, name) => () => (calls.push(name), []),
+    },
+  );
+  await assert.rejects(() => syncDeckContent(client, deck, true), /duplicate card ids/);
+  assert.deepEqual(calls, []); // nothing was asked of Anki
 });

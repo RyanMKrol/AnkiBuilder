@@ -1208,3 +1208,22 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   entirely, so this only bites in the pre-review window.
 - **When to revisit:** if hand-edited hints start getting clobbered in practice, add a `hintLocked`
   flag (or reuse the reviewed marker at card granularity) rather than reverting the capability.
+
+## A card id is unique per DECK, not per lesson, and nothing said so until it broke
+
+- **What:** `syncDeckContent` now calls `assertUniqueCardIds` and throws rather than delivering a deck
+  whose card ids repeat across units.
+- **Why:** the durable note key is the `abid:<card.id>` tag, and it is looked up in one deck-wide map.
+  Two lessons naming a card the same thing therefore resolved to a single Anki note, which the loop
+  updated twice, last write winning. JBP Book 1 carried ten such pairs from the day delivery shipped:
+  seven were one word taught in two lessons (おはようございます, あした, きょう, あさごはん, ばんごはん),
+  and three were genuinely different cards that collided (`yasumi` = "break" and "vacation",
+  `to-particle` = "and" and "with", `ni-particle` = direction and time). For those three the learner
+  studied one sense and never saw the other, including the cross-lesson notes written to distinguish
+  them. Nothing failed; the counters just reported one update instead of two.
+- **Impact:** id uniqueness is now a delivery precondition, so a deck that has drifted stops the
+  delivery rather than losing half a pair. The extraction still assigns ids per chapter with no
+  knowledge of its siblings, so a fresh collision is entirely possible; it will surface as a refusal at
+  delivery, which is late but at least loud.
+- **When to revisit:** if collisions recur often, move the check earlier — a readiness gate or a
+  `prepare` post-pass could catch it at build time, when the fix is cheap, instead of at delivery.

@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
+import { deckPathForDir } from "./deckFileName.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
 // automatic rebuilds (Mark done / Reopen, and an audio or exclude edit on an already-done lesson), so
@@ -74,7 +75,7 @@ export function resolveBookName(
 }
 
 /**
- * Merges the book's done lessons into `<bookDir>/deck.apkg`.
+ * Merges the book's done lessons into the book dir's package (`src/deck/deckFileName.js` names it).
  *
  * ⚠️ **The body of this function must never `await`.** Two rebuilds can be REQUESTED concurrently in
  * the dashboard — `handleLessonDone` awaits `rebuildGroupQuiet`, and that await is a yield point, so a
@@ -104,7 +105,7 @@ export async function rebuildBookDir(
     now = Date.now,
   } = {},
 ) {
-  const outPath = join(bookDir, "deck.apkg");
+  const outPath = deckPathForDir(bookDir);
   const { chapterDecks, epubHash } = selectDoneChapterDecks(bookDir);
 
   if (chapterDecks.length === 0) {
@@ -122,7 +123,7 @@ export async function rebuildBookDir(
 }
 
 /**
- * Rebuilds a single run directory's `<runDir>/deck.apkg` (template / one-off). Mirrors the CLI's
+ * Rebuilds a single run directory's package (template / one-off). Mirrors the CLI's
  * `deck --run` build branch, but ALWAYS rebuilds (no resumable "already exists → reuse" guard, which
  * stays in the CLI wrapper) — the dashboard rebuild must reflect the latest edits.
  */
@@ -134,7 +135,7 @@ export function rebuildRunDir(runDir, { buildDeck = defaultBuildDeck, deckName =
   const cards = readJson(cardsPath);
   const audioDir = join(runDir, "audio");
   return buildDeck(cards, {
-    outPath: join(runDir, "deck.apkg"),
+    outPath: deckPathForDir(runDir),
     audioDir: existsSync(audioDir) ? audioDir : null,
     deckName,
   });

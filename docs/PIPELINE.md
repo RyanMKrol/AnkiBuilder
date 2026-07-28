@@ -482,6 +482,31 @@ built clip, and neither touches `cards.json` until you pick a take.
 
 ### `deck`
 
+**What the package is called (`src/deck/deckFileName.js`).** A built `.apkg` is named after the deck
+it contains, not `deck.apkg` — otherwise every package is indistinguishable the moment it leaves its
+folder, and picking the right one in a downloads directory or Anki's import dialog means reading the
+path. The name is derived from the directory PATH alone, never from a title read out of a metadata
+file: the writer and any reader looking for the same package compute it independently, so they cannot
+disagree and no failed lookup can invent a different name. The folder slugs are already derived from
+the human names (a book's from its `<dc:title>`, a course's from its name), so naming after the folder
+IS naming after the EPUB or course, canonicalized once at assemble time rather than twice.
+
+| directory                          | package                       |
+| ---------------------------------- | ----------------------------- |
+| `output/epubs/<book-slug>/`        | `<book-slug>.apkg`            |
+| `output/courses/<course-slug>/`    | `<course-slug>.apkg`          |
+| `output/templates/<name>/<lang>/`  | `<name>-<lang>.apkg`          |
+| `output/…/<course-slug>/lesson-3/` | `<course-slug>-lesson-3.apkg` |
+| any other run dir                  | `<folder>.apkg`               |
+
+The last two shapes fold their parent in because their own basename identifies nothing — every course
+has a `lesson-3`, every template a `ja`. Readers go through `resolveDeckPathForDir`, which prefers the
+named file but falls back to a `deck.apkg` left by an older build, so a deck built before this
+convention stays readable whether or not `scripts/rename-deck-packages.mjs` has been run. That script
+is the one-off migration (dry by default, `--apply` to rename); it only renames, never rebuilds, and
+the Anki deck names inside each package are untouched, so importing a renamed file updates the same
+decks as before and scheduling is unaffected.
+
 Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows
 `Target` and autoplays `Audio` — the target-language listening/recall direction — answer reveals
 `English`) and **Production** (question shows `English`, answer reveals
@@ -498,7 +523,7 @@ file goes into the deck's media (`embedLanguageFont`, `src/deck/index.js`) and t
 the scoped `@font-face` + `.card` rule (`languageFontCss`), so kana/kanji render in the textbook font
 on every client while Latin stays Latin. (`restyle-font` applies the same to third-party decks.)
 
-- `--run <dir>`: the ordinary one-chapter/one-lesson mode — one `cards.json` in, one `deck.apkg`
+- `--run <dir>`: the ordinary one-chapter/one-lesson mode — one `cards.json` in, one `.apkg`
   out.
 - `--book-dir <dir>`: the book/course-level merge mode — scans `<dir>/chapter-*/cards.json` AND
   `<dir>/lesson-*/cards.json` (in ascending folder-seq order; an EPUB book only ever has the
@@ -507,7 +532,7 @@ on every client while Latin stays Latin. (`restyle-font` applies the same to thi
   a lesson not yet translated or not marked done is **skipped**, so an un-reviewed lesson never gets
   baked into the package (`rebuildBookDir`, `src/deck/rebuild.js`). If no lesson is done it errors
   clearly. The finished lessons merge into a SINGLE
-  `<dir>/deck.apkg`, each as its own real Anki sub-deck (`Book/Course Title::Chapter/Lesson
+  `<dir>/<slug>.apkg`, each as its own real Anki sub-deck (`Book/Course Title::Chapter/Lesson
 Label`, via `buildMultiDeckCollection`) nested under one parent deck named for the book or
   course (title looked up from the local library by the first chapter's `epubHash`, or from the
   course folder's own `course.json` marker when there's no `epubHash` — `loadCourseMeta`,
@@ -578,7 +603,7 @@ output/epubs/<book-slug>/
                                   #   discovery (the course.json analogue for books)
   chapter-0/corpus.json, cards.json, audio/    # ordinary per-chapter artifacts,
   chapter-1/...                                               #   unchanged in shape
-  deck.apkg                      # single merged book-level package (`deck --book-dir`)
+  <book-slug>.apkg               # single merged book-level package (`deck --book-dir`)
 ```
 
 `chapter-<seq>` is a simple sequential index scoped to that book folder (`0`, `1`, `2`, ...) —
@@ -608,7 +633,7 @@ output/courses/<course-slug>/
                                   #   course-name fallback and by listCourses for course discovery
   lesson-0/corpus.json, cards.json, audio/    # ordinary per-lesson artifacts,
   lesson-1/...                                               #   same shape as a chapter's
-  deck.apkg                      # single merged course-level package (`deck --book-dir`)
+  <course-slug>.apkg             # single merged course-level package (`deck --book-dir`)
 ```
 
 `lesson-<seq>` is likewise a simple sequential folder index, unrelated to the lesson number you
@@ -624,7 +649,7 @@ A `--template`-sourced deck assembled via `assemble --output-root <dir>` lands u
 ```
 output/templates/<template-name>/<language>/
   corpus.json, cards.json, audio/    # ordinary per-run artifacts, same shape
-  deck.apkg                                          # this deck's final package (`deck --run`)
+  <template>-<lang>.apkg                             # this deck's final package (`deck --run`)
 ```
 
 Unlike a book or course, a template yields exactly one unit per `(template, language)`, so the
@@ -779,7 +804,7 @@ previous recording to cut from. Note the in-use swap must select `td.au:not(.au-
   chains can never stack on one another; a saved hand trim is re-cut under the new chain rather than
   dropped. 400 on any name that isn't in the table.
 - `POST /api/deck/:type/:id/rebuild` (`handleRebuild`) — regenerate the **single group package**
-  `<deckDir>/deck.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
+  `<deckDir>/<name>.apkg` via `adapter.rebuild` → `rebuildBookDir` (`src/deck/rebuild.js`) — the **same**
   assembly the CLI's `deck --book-dir` uses, so a browser rebuild is byte-identical, and it packages
   **only done lessons** (409 if none are done). This is the ONLY rebuild endpoint — there is no
   per-lesson rebuild and no per-lesson `.apkg`. Rebuilds are **fully automatic — there is no manual

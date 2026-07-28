@@ -725,7 +725,7 @@ test("generate-kanji is hidden and 422s for a non-Japanese deck", async () => {
   }
 });
 
-test("rebuild writes the single group deck.apkg (no per-lesson file, no download route)", async () => {
+test("rebuild writes the single named group package (no per-lesson file, no download route)", async () => {
   const root = fixture();
   try {
     await withServer(
@@ -741,12 +741,12 @@ test("rebuild writes the single group deck.apkg (no per-lesson file, no download
         );
         assert.equal(rb.status, 200);
         assert.equal(rb.body.noteCount, 2);
-        assert.match(rb.body.apkgPath, /mybook[/\\]deck\.apkg$/);
+        assert.match(rb.body.apkgPath, /mybook[/\\]mybook\.apkg$/);
         assert.equal(rb.body.downloadUrl, undefined); // download removed entirely
 
         // the group package lands at the book root, and NO per-lesson file is written
-        assert.ok(statSync(join(root, "epubs/mybook/deck.apkg")).size > 0);
-        assert.equal(existsSync(join(root, "epubs/mybook/chapter-0/deck.apkg")), false);
+        assert.ok(statSync(join(root, "epubs/mybook/mybook.apkg")).size > 0);
+        assert.equal(existsSync(join(root, "epubs/mybook/chapter-0/mybook-chapter-0.apkg")), false);
 
         // the download routes are gone
         assert.equal((await fetch(`${url}/download/book/mybook/deck.apkg`)).status, 404);
@@ -1015,11 +1015,11 @@ test("Mark done rebuilds the group package so the single .apkg tracks the done-s
     await withServer(
       root,
       async (url) => {
-        assert.equal(existsSync(join(root, "epubs/mybook/deck.apkg")), false);
+        assert.equal(existsSync(join(root, "epubs/mybook/mybook.apkg")), false);
         const done = await fetch(`${url}/api/deck/book/mybook/unit/0/done`, { method: "POST" });
         assert.equal(done.status, 200);
         // the group package now exists (the newly-done lesson was folded in server-side)
-        assert.ok(statSync(join(root, "epubs/mybook/deck.apkg")).size > 0);
+        assert.ok(statSync(join(root, "epubs/mybook/mybook.apkg")).size > 0);
       },
       editDeps,
     );

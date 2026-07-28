@@ -5,6 +5,7 @@ import { loadBookMeta } from "../../corpus/epubLibrary.js";
 import { rebuildBookDir } from "../../deck/rebuild.js";
 import { isSafeMediaFile } from "./runDir.js";
 import { scanNumberedUnits, deckStage } from "./stage.js";
+import { resolveDeckPathForDir } from "../../deck/deckFileName.js";
 
 // Adapter for lesson-sourced course decks: output/courses/<slug>/lesson-N/. Structurally identical to
 // the book adapter (units are lessons instead of chapters), reusing scanNumberedUnits.
@@ -50,7 +51,7 @@ export const courseAdapter = {
   },
 
   deckFile(outputRoot, id) {
-    return join(courseDir(outputRoot, id), "deck.apkg");
+    return resolveDeckPathForDir(courseDir(outputRoot, id));
   },
 
   rebuild(outputRoot, id) {

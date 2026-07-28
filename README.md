@@ -103,7 +103,7 @@ merge of **only done lessons** (`deck --book-dir`, or the dashboard rebuild), so
 is never packaged into the shippable deck. The dashboard keeps that file current automatically —
 marking a lesson done (or reopening one) rebuilds it, and audio edits to an already-done lesson
 rebuild it too. There's **no download button**: the dashboard runs on your machine, so the `.apkg` is
-already on disk (`output/<…>/deck.apkg`) — import it into Anki directly.
+already on disk (`output/<…>/<deck-name>.apkg`) — import it into Anki directly.
 
 **Delivering updates to an existing collection: use the deliver tool, not drag-and-drop.** Once you
 already study these decks, re-importing an `.apkg` won't apply note-type structure changes (a new field,
@@ -128,7 +128,7 @@ Or render a single finished deck to a self-contained, shareable HTML page (audio
 auto-split into parts for a large deck):
 
 ```sh
-anki-builder view-deck --apkg output/epubs/<book-slug>/deck.apkg
+anki-builder view-deck --apkg output/epubs/<book-slug>/<book-slug>.apkg
 ```
 
 For the full command reference (every flag, every source type), see the skill's
@@ -136,14 +136,14 @@ For the full command reference (every flag, every source type), see the skill's
 
 ## Where things live
 
-- Each run's artifacts (`corpus.json`, `cards.json`, `deck.apkg`) live in its run
+- Each run's artifacts (`corpus.json`, `cards.json`, `<name>.apkg`) live in its run
   directory, wherever you pointed `--run`. (Review happens live in the dashboard, not as a per-stage
   HTML file.)
 - Every source type lives under its own reserved folder of `output/` when you pass `--output-root`:
   EPUB books under `output/epubs/<book-slug>/`, lesson-based courses under
-  `output/courses/<course-slug>/` (each one folder per chapter/lesson, plus a merged `deck.apkg` at
+  `output/courses/<course-slug>/` (each one folder per chapter/lesson, plus a merged `<slug>.apkg` at
   the top), and bundled templates under `output/templates/<template-name>/<language>/` (one folder
-  per language, its `deck.apkg` right inside — no merge step, since there's only ever one unit per
+  per language, its `<template>-<lang>.apkg` right inside — no merge step, since there's only ever one unit per
   language).
 - An EPUB book folder also keeps its own copy of the source file (`book.epub`) and a `book.json`
   marker, so it's a self-contained record of a book you've worked on. That's what lets you build a

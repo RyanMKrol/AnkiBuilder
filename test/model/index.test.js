@@ -496,7 +496,7 @@ test("runPaths - returns conventional paths for a run directory", () => {
   assert.strictEqual(paths.corpus, resolve("/tmp/run-123/corpus.json"));
   assert.strictEqual(paths.cards, resolve("/tmp/run-123/cards.json"));
   assert.strictEqual(paths.audio, resolve("/tmp/run-123/audio"));
-  assert.strictEqual(paths.deck, resolve("/tmp/run-123/deck.apkg"));
+  assert.strictEqual(paths.deck, resolve("/tmp/run-123/run-123.apkg"));
 });
 
 test("runPaths - resolves relative paths correctly", () => {

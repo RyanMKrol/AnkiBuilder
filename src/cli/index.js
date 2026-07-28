@@ -79,6 +79,7 @@ import { restyleApkgBuffer as defaultRestyleApkgBuffer } from "../deck/restyleFo
 import { renderDeckViewPage as defaultRenderDeckViewPage } from "../review/renderDeckViewPage.js";
 import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
 import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
+import { deckPathForDir } from "../deck/deckFileName.js";
 
 function parseFlags(args) {
   const flags = {};
@@ -994,7 +995,7 @@ async function runBookDeck(flags, ctx) {
   });
 
   ctx.log(
-    `built book deck with ${result.noteCount} note(s) across ${result.chapterCount} chapter(s) at ${join(bookDir, "deck.apkg")}`,
+    `built book deck with ${result.noteCount} note(s) across ${result.chapterCount} chapter(s) at ${deckPathForDir(bookDir)}`,
   );
 }
 
@@ -1013,7 +1014,7 @@ async function runDeckInner(flags, ctx) {
   const paths = ctx.runPaths(flags.run);
 
   if (existsSync(paths.deck)) {
-    ctx.log(`deck.apkg already exists at ${paths.deck} — reusing`);
+    ctx.log(`${basename(paths.deck)} already exists at ${paths.deck} — reusing`);
     return;
   }
 

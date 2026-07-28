@@ -8,6 +8,7 @@ import { Buffer } from "buffer";
 import { runCli } from "../../src/cli/index.js";
 import { runPaths, validateCards } from "../../src/model/index.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
+import { deckPathForDir } from "../../src/deck/deckFileName.js";
 
 async function withTempDir(fn) {
   const tmpDir = await fs.mkdtemp(join(os.tmpdir(), "cli-test-"));
@@ -1345,7 +1346,7 @@ test("deck --book-dir: discovers chapter-*/cards.json in seq order and merges vi
     assert.equal(receivedChapterDecks[0].name, "Lesson 1: Meeting");
     assert.equal(receivedChapterDecks[1].name, "Lesson 2: Possession");
     assert.equal(receivedOpts.bookName, "Japanese for Busy People");
-    assert.equal(receivedOpts.outPath, join(bookDir, "deck.apkg"));
+    assert.equal(receivedOpts.outPath, deckPathForDir(bookDir));
   });
 });
 
@@ -1376,7 +1377,7 @@ test("deck --book-dir: always rebuilds, even when deck.apkg already exists", asy
       epubHash: "hash123",
       items: [{ id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" }],
     });
-    writeFileSync(join(bookDir, "deck.apkg"), Buffer.from("stale-apkg"));
+    writeFileSync(deckPathForDir(bookDir), Buffer.from("stale-apkg"));
 
     let called = false;
     const buildBookDeck = (chapterDecks, opts) => {

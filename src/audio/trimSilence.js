@@ -77,6 +77,14 @@ const MARKER_MIN_GAP_SEC = 0.3;
 // demanding the full standing-apart distance there would cut the run short. This is a floor, not a
 // real filter: a gap only exists where silencedetect already found `minSilenceSec` of silence.
 const MARKER_MIN_SPLIT_GAP_SEC = 0.15;
+// Width cap for a segment JOINED to an existing run — i.e. one that must be a single で on its own.
+// A lone trailing segment may be up to MARKER_MAX_SEC because it can hold all three で at once, but
+// once we are walking back over separately-voiced syllables each one has to be syllable-sized.
+// Measured: a single で runs 0.22-0.32s, while the real-speech segments this walk wrongly swallowed
+// (いろの in はいいろの, なんですか in あれはなんですか, じゅっ/かい in じゅっかい) run 0.39-0.98s. Nothing
+// observed falls in between, and erring low fails safe — an unstripped marker is audible, a cut word
+// is not.
+const MARKER_SYLLABLE_MAX_SEC = 0.35;
 // The marker is `。ででで` (./ttsMarker.js) — three で and no more, so a trailing run longer than this
 // is somebody's actual words and must not be touched.
 const MARKER_MAX_SYLLABLES = 3;
@@ -108,7 +116,9 @@ export function markerCandidates(speech) {
   // Walk back from the end, stopping at index 1 either way so there is always real content left.
   for (let first = lastIndex; first > 0 && speech.length - first <= MARKER_MAX_SYLLABLES; first--) {
     const [start, end] = speech[first];
-    if (end - start > MARKER_MAX_SEC) break; // too long to be one で — and so is anything before it
+    // The last segment may hold the whole marker; anything joined to it must be one syllable.
+    const maxWidth = first === lastIndex ? MARKER_MAX_SEC : MARKER_SYLLABLE_MAX_SEC;
+    if (end - start > maxWidth) break; // too long to be one で — and so is anything before it
     const gap = start - speech[first - 1][1];
     if (gap < MARKER_MIN_SPLIT_GAP_SEC) break; // runs on from the speech before it
 

@@ -404,20 +404,47 @@ test("markerCandidates still offers longer runs when the last segment alone is t
 });
 
 test("markerCandidates never offers more syllables than the marker has", () => {
-  // Five short, well-separated segments. `。ででで` is only ever three, so the run stops there.
+  // Six syllable-width, well-separated segments. `。ででで` is only ever three, so the run stops there.
   assert.deepEqual(
     markerCandidates([
-      [0, 0.4],
-      [0.8, 1.2],
-      [1.6, 2.0],
-      [2.4, 2.8],
-      [3.2, 3.6],
+      [0, 0.3],
+      [0.65, 0.95],
+      [1.3, 1.6],
+      [1.95, 2.25],
+      [2.6, 2.9],
+      [3.25, 3.55],
     ]),
     [
-      [1.6, 3.6],
-      [2.4, 3.6],
-      [3.2, 3.6],
+      [1.95, 3.55],
+      [2.6, 3.55],
+      [3.25, 3.55],
     ],
+  );
+});
+
+// The over-cut this guards. On はいいろの the voice said はい / いろの with a 0.56s gap, and いろの is
+// short enough and separated enough to look like another で — so the run swallowed it and the card
+// shipped as just "はい". A single で measures 0.22-0.32s; the real-speech segments wrongly taken here
+// measured 0.39-0.98s, with nothing in between.
+test("markerCandidates will not extend a run over a segment too wide to be one syllable", () => {
+  assert.deepEqual(
+    markerCandidates([
+      [0, 0.38], // はい
+      [0.94, 1.42], // いろの - 0.48s, too wide to be a single で
+      [2.26, 2.8], // the marker, all three で merged
+    ]),
+    [[2.26, 2.8]],
+  );
+});
+
+// ...but the LAST segment may still be up to MARKER_MAX_SEC, since it can hold all three で at once.
+test("markerCandidates still allows a wide lone segment holding the whole marker", () => {
+  assert.deepEqual(
+    markerCandidates([
+      [0, 1.0],
+      [1.6, 2.4], // 0.8s - too wide for one syllable, fine for three
+    ]),
+    [[1.6, 2.4]],
   );
 });
 

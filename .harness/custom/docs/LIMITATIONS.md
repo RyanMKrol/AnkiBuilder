@@ -1147,11 +1147,16 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   other. Shape can tell them apart — a window that has swallowed a real word reads as 5 pulses rather
   than 2–4 — so selection moved there, and position was demoted to proposing candidates.
 - **Impact:** the veto is no longer a pure safety net; it now chooses, so a mis-selection cuts a real
-  word rather than merely leaving a marker audible. Preferring the LONGEST passing window is the risky
-  direction: a phrase ending in up to three short, well-separated words whose longest window happens to
-  read 2–4 pulses would be over-cut. The three-segment cap and the 1.0s per-segment limit bound it, and
-  it only applies to clips generated WITH a marker. Costs up to three ffmpeg decodes per clip instead
-  of one. Measured over lesson-3's 89 clips: 8 fixed, 81 byte-identical, none over-cut.
+  word rather than merely leaving a marker audible. That is not hypothetical — it shipped and had to be
+  fixed. Preferring the LONGEST passing window over-cut 3 of lesson-3's 89 clips: はいいろの came back as
+  just "はい" because the voice paused 0.56s mid-word and `いろの` looked like another `で`. Per-segment
+  pulse count does NOT separate the two (a real segment and a single `で` both read as 1 pulse); WIDTH
+  does, so a segment joined to a run is now capped at 0.35s. Residual risk is a real final word that is
+  BOTH syllable-width and behind a gap. Costs up to three ffmpeg decodes per clip instead of one.
+  Re-measured over all 89: marker stripped on 89, speech intact on 89.
+- **Watch for:** verifying a trim by trailing silence and total-cut alone will NOT catch over-cutting —
+  that check passed all 89 while three were truncated. Compare retained speech against the target's
+  mora count (~0.13s/mora is a safe floor) instead.
 - **When to revisit:** if a marker ever renders as four or more segments, or a voice change moves the
   pulse shape. Note the fix applies to future renders only — the audio cache keys on
   `(voice, model, text)` and encodes nothing about processing. To repair existing decks WITHOUT

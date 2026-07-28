@@ -410,9 +410,12 @@ Removing it takes **two independent checks**, and both must agree:
   voice renders the three `で` either as one blob or as up to three separate utterances, and
   `silencedetect` splits the latter into three segments — so how many segments the marker occupies
   isn't knowable from position alone. Each candidate is a trailing run of at most three segments (`。
-ででで` never has more), each at most 1.0s long. A LONE trailing segment must still sit behind a 0.3s
-  gap, the original rule and the only evidence it isn't just the phrase's last word; extending a run
-  needs only 0.15s.
+ででで` never has more). A LONE trailing segment must sit behind a 0.3s gap — the original rule, and
+  the only evidence it isn't just the phrase's last word — and may be up to 1.0s wide, since it can
+  hold all three `で` at once. A segment JOINED to a run needs only a 0.15s gap but must be at most
+  **0.35s** wide, because it has to be a single `で` on its own: measured, one `で` runs 0.22–0.32s
+  while the real-speech segments this walk otherwise swallowed (`いろの` in はいいろの, `なんですか` in
+  あれはなんですか, `かい` in じゅっかい) run 0.39–0.98s, with nothing in between.
 - **Shape** (`src/audio/pulseShape.js`) then **decides between the candidates**, not merely vetoes the
   one: the marker is one syllable three times, so its amplitude envelope rises and falls 2–4 times, and
   a window that has swallowed a real word reads as more. The first candidate to pass wins. "Exactly

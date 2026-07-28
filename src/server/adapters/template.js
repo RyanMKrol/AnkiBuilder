@@ -3,6 +3,7 @@ import { join } from "path";
 import { rebuildRunDir } from "../../deck/rebuild.js";
 import { renderCardForStage, isSafeMediaFile } from "./runDir.js";
 import { loadStageData } from "./stage.js";
+import { resolveDeckPathForDir } from "../../deck/deckFileName.js";
 
 // Adapter for bundled-template decks: output/templates/<name>/<lang>/. Unlike books/courses there is
 // NO chapter/lesson sublevel — the language folder IS the run dir — so a template deck has a single
@@ -84,7 +85,7 @@ export const templateAdapter = {
 
   deckFile(outputRoot, id) {
     const parts = splitId(id);
-    return parts ? join(templateRunDir(outputRoot, parts.name, parts.lang), "deck.apkg") : null;
+    return parts ? resolveDeckPathForDir(templateRunDir(outputRoot, parts.name, parts.lang)) : null;
   },
 
   rebuild(outputRoot, id) {

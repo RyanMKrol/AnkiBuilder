@@ -5,6 +5,7 @@ import { loadBookMeta } from "../../corpus/epubLibrary.js";
 import { rebuildBookDir } from "../../deck/rebuild.js";
 import { isSafeMediaFile } from "./runDir.js";
 import { scanNumberedUnits, deckStage } from "./stage.js";
+import { resolveDeckPathForDir } from "../../deck/deckFileName.js";
 
 // Adapter for EPUB-book decks: output/epubs/<slug>/chapter-N/. The deck `id` is the book slug; each
 // unit is a chapter, ordered by pedagogical chapter number.
@@ -53,7 +54,7 @@ export const bookAdapter = {
   },
 
   deckFile(outputRoot, id) {
-    return join(bookDir(outputRoot, id), "deck.apkg");
+    return resolveDeckPathForDir(bookDir(outputRoot, id));
   },
 
   rebuild(outputRoot, id) {

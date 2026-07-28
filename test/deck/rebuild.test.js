@@ -6,6 +6,7 @@ import { tmpdir } from "os";
 import { Buffer } from "buffer";
 import { rebuildBookDir, rebuildRunDir } from "../../src/deck/rebuild.js";
 import { readApkg } from "../../src/deck/readApkg.js";
+import { deckPathForDir } from "../../src/deck/deckFileName.js";
 
 // Units default to `done: true` (the merge only ships finished lessons); pass `done: false` to model an
 // in-progress lesson.
@@ -50,7 +51,7 @@ test("rebuildBookDir assembles chapters by FOLDER SEQ, names from chapterLabel, 
       ["Alpha", "Beta"],
     ); // folder seq, not chapterNumber
     assert.equal(received.opts.bookName, "My Book");
-    assert.equal(received.opts.outPath, join(dir, "deck.apkg"));
+    assert.equal(received.opts.outPath, deckPathForDir(dir));
     assert.equal(result.chapterCount, 2);
   } finally {
     rmSync(dir, { recursive: true, force: true });
@@ -134,7 +135,7 @@ test("rebuildRunDir builds a single run dir (template)", () => {
     rebuildRunDir(dir, {
       buildDeck: (cards, opts) => ((received = { cards, opts }), { noteCount: 1, mediaCount: 0 }),
     });
-    assert.equal(received.opts.outPath, join(dir, "deck.apkg"));
+    assert.equal(received.opts.outPath, deckPathForDir(dir));
     assert.equal(received.opts.audioDir, join(dir, "audio"));
     assert.equal(received.cards.items[0].target, "ゼロ");
   } finally {
@@ -166,8 +167,8 @@ test("rebuildBookDir end-to-end embeds an updated clip in the real .apkg", async
       loadCourseMeta: () => ({ name: "E2E" }),
     });
     assert.equal(result.noteCount, 1);
-    assert.ok(existsSync(join(dir, "deck.apkg")));
-    const deck = readApkg(join(dir, "deck.apkg"));
+    assert.ok(existsSync(deckPathForDir(dir)));
+    const deck = readApkg(deckPathForDir(dir));
     const card = deck.sections[0].cards.find((c) => c.english === "hi");
     assert.deepEqual(Buffer.from(card.audioData), clip);
   } finally {
@@ -190,8 +191,8 @@ test("a rebuild reads and publishes in one event-loop turn \u2014 nothing can in
     const pending = rebuildBookDir(dir, { bookNameFallback: "Book" });
     // Deliberately NOT awaited yet: the whole build already ran synchronously inside that call.
     assert.ok(
-      existsSync(join(dir, "deck.apkg")),
-      "deck.apkg must exist before the returned promise is awaited",
+      existsSync(deckPathForDir(dir)),
+      "the package must exist before the returned promise is awaited",
     );
     await pending;
   } finally {

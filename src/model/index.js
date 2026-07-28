@@ -1,6 +1,7 @@
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { CATEGORIES } from "./categories.js";
+import { deckPathForDir } from "../deck/deckFileName.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url)); // src/model/
 const REPO_ROOT = resolve(join(MODULE_DIR, "..", ".."));
@@ -354,6 +355,6 @@ export function runPaths(runDir) {
     corpus: resolve(join(resolvedRunDir, "corpus.json")),
     cards: resolve(join(resolvedRunDir, "cards.json")),
     audio: resolve(join(resolvedRunDir, "audio")),
-    deck: resolve(join(resolvedRunDir, "deck.apkg")),
+    deck: resolve(deckPathForDir(resolvedRunDir)),
   };
 }

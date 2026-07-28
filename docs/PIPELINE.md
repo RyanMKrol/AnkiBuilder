@@ -240,7 +240,12 @@ Everything between `assemble` and the first human review, as one stage
 3. **semantic de-dup** (`src/cards/semanticDedup.js`) — excludes (never deletes) practice cards that
    only repeat a pattern the lesson already covers, recording the reason in `reviewNote`.
 4. **cross-lesson notes** (`src/cards/crossLessonNotes.js`) — one backward-only pass over this lesson
-   with every earlier lesson as context. Skipped for a `template` source.
+   with every earlier lesson as context. It writes back-of-card `note`s, plus a front-of-card `hint` on
+   the cards that need one to be studiable at all: two cards reachable from the SAME English prompt with
+   different answers (なんにん (nan-nin) and なんめいさまですか (nanmeisama desu ka), both glossed "How
+   many people?"). That collision is invisible inside a single chapter, so this whole-book pass is the
+   only place it can be caught. `hint` is written only when the model returns one, so cards it says
+   nothing about keep the hints they have. Skipped for a `template` source.
 
 `assemble` chains into it unless `--no-prepare` is given, which is what removes the un-translated
 resting state: falling through assemble's "corpus.json already exists — reusing" branch into `prepare`

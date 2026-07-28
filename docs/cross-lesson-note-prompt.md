@@ -9,9 +9,10 @@ You improve the teachability of Anki flashcard notes for an English speaker lear
 The learner has ALREADY LEARNED: {{EARLIER_LESSONS}}.
 The CURRENT lesson being taught is "{{CURRENT_LESSON}}".
 
-Add or improve the back-of-card `note` ONLY for cards whose lesson is "{{CURRENT_LESSON}}". The
-earlier lessons are shown purely as CONTEXT you may reference — do NOT write notes for them. Return
-notes only for the current-lesson cards you add or improve; omit ones you'd leave alone.
+Add or improve the back-of-card `note` — and, in the one case described under "Colliding cards" below,
+the front-of-card `hint` — ONLY for cards whose lesson is "{{CURRENT_LESSON}}". The earlier lessons are
+shown purely as CONTEXT you may reference — do NOT write notes for them. Return entries only for the
+current-lesson cards you add or improve; omit ones you'd leave alone.
 
 When a note refers to another lesson, name it EXACTLY as tagged (e.g. "from Lesson 4", "from
 Frequently Used Expressions"). NEVER invent a lesson number or count positions in this list — the
@@ -41,7 +42,26 @@ tags are the book's own names and are the only correct way to cite a lesson.
 5. **Atomic cards** (single words, particles, set expressions) benefit most. A full sentence usually
    needs no note — but DO add one when the sentence hinges on a false-friend distinction (point 2) or
    another specific, non-obvious point.
-6. **REMOVE useless notes.** If a current-lesson card's existing note merely RESTATES the card —
+6. **COLLIDING CARDS — the one case where you also set a `hint`.** Two cards in this list can share the
+   same English gloss while having completely different answers, or share one `target` while carrying
+   two glosses. On a Production card the learner sees only the English, so two cards both reading "How
+   many people?" are the same question with two different right answers — unstudiable, and they fail a
+   card they actually knew. Whenever you spot such a pair (one may be in an earlier lesson; you only
+   write the current-lesson side), give the current-lesson card a SHORT front-of-card `hint` naming
+   which one is wanted, plus a `note` explaining the relationship. e.g. なんめいさまですか (nanmeisama
+   desu ka), sitting against an earlier なんにん (nan-nin, "how many people"), takes the hint
+   `what a restaurant asks a customer`, and a note explaining it is the polite form staff use to a
+   customer. Cases to scan for: a polite/plain register pair, a noun vs its noun+する verb form (both
+   glossed "Work"), two particles glossed with the same English, and a number that sounds like an
+   ordinary word (さん (san) "3" vs さん (san) "Mr., Mrs., Ms., Miss"). A hint must be a few words of
+   WHEN/WHERE/WHY and must NEVER restate the gloss or hand over the reading. Do NOT return a `hint` on
+   any other card — a card with no collision needs none, and omitting the field leaves the existing
+   hint untouched.
+7. **IRREGULAR members of a counter or conjugation series earn a note**, even though number and counter
+   cards normally get none. The learner has just been taught a pattern these break: ひとり (hitori) and
+   ふたり (futari) take no にん (nin) counter at all; よにん (yo-nin) uses よ (yo), not よん (yon). Say
+   what the regular pattern would predict and how this one departs from it.
+8. **REMOVE useless notes.** If a current-lesson card's existing note merely RESTATES the card —
    repeats the English gloss (e.g. note "Where is the wine shop?" on that same sentence) or re-gives
    the reading already shown (e.g. "First floor (read いっかい)") — and you have nothing genuinely
    useful to add, return it with an EMPTY note (`"note": ""`) to delete it. A note must add to the
@@ -67,7 +87,10 @@ tags are the book's own names and are the only correct way to cite a lesson.
 
 ## Output Format
 
-Return ONLY JSON: `{"notes":[{"id":"…","note":"…"}, …]}`
+Return ONLY JSON: `{"notes":[{"id":"…","note":"…","hint":"…"}, …]}`
+
+`hint` is OPTIONAL and belongs only on a colliding card (point 6). Omit it everywhere else — an
+omitted field is left exactly as it is, while `""` DELETES the existing value.
 
 ## Cards
 

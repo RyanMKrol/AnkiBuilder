@@ -331,6 +331,30 @@ items yourself (e.g. AI suggestions on a dictated lesson), set `aiSuggested: tru
 visibly delineated. Reviewing a flagged item does **not** clear the flag; it's informational
 provenance, kept indefinitely.
 
+**Every `Grammar & Function Words` card needs a worked example somewhere in the lesson.** This is not
+just a particle rule. Any card whose gloss describes a form's *function* rather than a meaning you can
+picture (particles が, は, を, も, と, で, から, まで, か; copulas and polite forms like でございます;
+suffixes and prefixes; conjunctions; question words) has to be met somewhere as a full sentence that
+actually uses it. A bare gloss like "(polite form of です)" teaches nothing on its own: the learner can
+recite the card and still have no idea what a sentence containing it looks like. So for each such card,
+check the lesson for a sentence card whose `target` contains that form. If the chapter supplies one
+(a Key Sentence, a dialogue line, a Speaking Practice exchange), that satisfies it, and you add nothing.
+If the chapter introduces the form but demonstrates it nowhere, add the example yourself as a separate
+card marked `"aiSuggested": true`, reusing vocabulary already introduced, with a `reviewNote` naming
+the form it illustrates. The form's own vocabulary entry still stays the bare morpheme; the example is
+an additional card, never a rewrite of the entry.
+
+Two things make this easy to get wrong. First, chapters often DO demonstrate the form, but only inside
+a section the extraction skips (the Speaking Practice dialogue is the usual culprit), so the sentence
+exists in the book and simply never became a card. Look there before inventing one. Second, one example
+shows the form; two show the *pattern*. Where a form generalizes (でございます works for any business
+naming itself), prefer the book's own sentence plus one built from earlier vocabulary, so the learner
+sees it is a slot and not a fixed phrase.
+
+Audit an existing deck for this the same way: list every `Grammar & Function Words` card whose `target`
+is a bare morpheme, and check whether any longer `target` in the deck contains it. The gaps are real
+bugs, not stylistic preferences.
+
 **Fill-in-the-blank (FIB) cards must be semantically de-duped against the corpus.** When AI-generated
 fill-in-the-blank practice sentences are added (marked `"fillInBlank": true`, mixed into the lesson
 and clearly delineated in reviews), they are prone to **pattern overlap** — regenerating a sentence
@@ -467,7 +491,9 @@ It runs **one pass per lesson**, fed that lesson **plus every earlier lesson** a
 notes for the current lesson only. Cross-references are therefore **structurally backward**: the model
 literally never sees a later lesson, so referencing material the learner hasn't met is impossible
 rather than merely discouraged. Within a lesson, cards may reference each other freely — the constraint
-is per-lesson, not per-card. It leaves `hint`/`reviewNote` untouched and backs each file up once to
+is per-lesson, not per-card. It writes `note` on any card it improves and `hint` only on a card that
+collides with another card's English gloss (see the collision rule above); a card it returns no `hint`
+for keeps whatever hint it already had. It leaves `reviewNote` untouched and backs each file up once to
 `<file>.pre-enhance.bak`.
 
 For a one-off backfill across a whole book that's already been built, the same pass has a batch driver:
@@ -517,6 +543,34 @@ an EARLIER lesson, never a later one the learner hasn't met (so その (sono) re
 an earlier lesson, not vice-versa). The extraction prompt enforces all of this
 (`docs/epub-extraction-prompt.md`); apply it by hand when you author or edit a `hint`/`note`.
 
+**Two cards that share an English gloss MUST each carry a `hint`.** A `hint` is usually optional. It
+stops being optional the moment two cards in the same DECK (not just the same lesson) can be reached
+by the same English prompt with different answers. On a Production card the learner sees only the
+English, so two cards reading "How many people?" are literally the same question with two different
+right answers, and the only honest way to study either one is a front-of-card cue saying which is
+wanted: なんにん (nan-nin) gets "the plain, everyday way to ask", なんめいさまですか (nanmeisama desu
+ka) gets "what a restaurant asks a customer". Without that the learner is guessing, then failing a
+card they actually knew. The same applies in reverse when one `target` carries two glosses
+(すみません (sumimasen) = "Excuse me." / "I'm sorry."). Pair the hint with a `note` on the back that
+explains the *relationship* (which is politer, which register, which one answers the other), because
+the hint only has room to point.
+
+The collision is easy to miss during a single-lesson build, since the two cards often live in
+different chapters and neither pass ever sees both. Check for it deck-wide: group every card by its
+normalized English and by its `target`, and any group with more than one distinct answer needs hints.
+Common shapes in a Japanese course: a polite/plain register pair (なんにん (nan-nin) vs なんめいさま
+(nanmeisama), じゃ (ja) vs では (dewa), はい (hai) vs ええ (ē)), a noun and its noun+します verb
+(しごと (shigoto) "Work" vs しごとをします (shigoto o shimasu) "Work"), two particles glossed with the
+same English, and a number that sounds like a word (さん (san) "3" vs さん (san) "Mr., Mrs., Ms.,
+Miss"; ほん (hon) "Book" vs the ほん (hon) long-object counter).
+
+**Irregular members of a counter series each earn a `note`.** Number and counter cards usually want
+no note at all, but the ones that BREAK the series are the exception, because the learner has just
+been taught a pattern that these violate. ひとり (hitori) and ふたり (futari) take no にん (nin) at
+all; よにん (yo-nin) uses よ (yo) and not よん (yon); とお (tō) is the one general-object number with
+no つ (tsu). Say what the regular pattern would predict and why this one does not follow it, and
+name the counter card the exception belongs to.
+
 **`category` is REQUIRED on every card and is SHOWN ON THE CARD FRONT.** Category is never optional —
 the schema requires it, the extraction validates it against the fixed enum in `src/model/categories.js`
 (fall back to `"Other"` only when nothing fits), and the dictated-lesson path auto-assigns it. The deck
@@ -537,7 +591,7 @@ writes notes for the current lesson only — so cross-references are **structura
 CHAPTER level** (the model literally never sees later lessons, so a forward reference — clarifying a card
 against something the learner hasn't met yet — is impossible, not merely discouraged). Within a lesson,
 cards may reference each other freely (it's one unit the learner studies together — the constraint is
-per-chapter, NOT per-card). It leaves `hint`/`reviewNote` untouched and backs up each file. This is what
+per-chapter, NOT per-card). It leaves `reviewNote` untouched and backs up each file. This is what
 turns a flat vocabulary list into a connected knowledge base where each card knows what came before it.
 The pass writes three kinds of note: backward cross-references (near-synonyms, register), usage/register
 tips, and — highest-value — **false-friend disambiguations**: a card that reuses a form the learner

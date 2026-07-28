@@ -102,6 +102,93 @@ test('an empty returned note deletes a restatement (stored as null, not "")', ()
   }
 });
 
+// A gloss collision is only visible ACROSS lessons, so this pass is the only one that can catch it —
+// hence it, alone, may write the front-of-card hint that makes two same-gloss cards studiable.
+test("writes a front hint when the model returns one", () => {
+  const dir = book();
+  try {
+    enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-1",
+      runClaude: () =>
+        JSON.stringify({
+          notes: [{ id: "b", note: "Contrast おねがいします.", hint: "asking for a thing" }],
+        }),
+    });
+    const card = readCards(dir, "chapter-1").items[0];
+    assert.equal(card.hint, "asking for a thing");
+    assert.equal(card.note, "Contrast おねがいします.");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("an omitted hint leaves an existing one alone; an empty one deletes it", () => {
+  const dir = book();
+  try {
+    const file = join(dir, "chapter-1", "cards.json");
+    const seed = JSON.parse(readFileSync(file, "utf-8"));
+    seed.items[0].hint = "hand-written, keep me";
+    writeFileSync(file, JSON.stringify(seed));
+
+    // No `hint` key at all → untouched.
+    enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-1",
+      runClaude: () => JSON.stringify({ notes: [{ id: "b", note: "Just the note." }] }),
+    });
+    assert.equal(readCards(dir, "chapter-1").items[0].hint, "hand-written, keep me");
+
+    // An explicit empty string → cleared, stored as null like an emptied note.
+    enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-1",
+      runClaude: () => JSON.stringify({ notes: [{ id: "b", hint: "" }] }),
+    });
+    assert.equal(readCards(dir, "chapter-1").items[0].hint, null);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a hint-only change still counts as pending work", () => {
+  const dir = book();
+  try {
+    const result = enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-1",
+      runClaude: () => JSON.stringify({ notes: [{ id: "b", hint: "asking for a thing" }] }),
+    });
+    assert.equal(result.changed, 1);
+    assert.equal(readCards(dir, "chapter-1").items[0].hint, "asking for a thing");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("the prompt shows each card's existing hint, so the model can leave it alone", () => {
+  const dir = book();
+  try {
+    const file = join(dir, "chapter-1", "cards.json");
+    const seed = JSON.parse(readFileSync(file, "utf-8"));
+    seed.items[0].hint = "asking for a thing";
+    writeFileSync(file, JSON.stringify(seed));
+
+    let prompt = "";
+    enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-1",
+      runClaude: (p) => {
+        prompt = p;
+        return JSON.stringify({ notes: [] });
+      },
+    });
+    assert.match(prompt, /"currentHint": "asking for a thing"/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("backs the lesson up once, and never overwrites the original snapshot", () => {
   const dir = book();
   try {

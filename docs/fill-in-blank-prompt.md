@@ -37,27 +37,44 @@ word instead.
 3. **One prompt, one response.** Never put a question and its answer on the same card. A source line
    like "When is the presentation? — It's at 3:00 today." becomes TWO cards: the question, and the
    answer. Keep the pair adjacent in the order you return them.
-4. **New patterns beat repetition.** Prefer drills that exercise a sentence frame or a
+4. **An ANSWER card must carry its question as a `hint`.** The pair you just split is studied shuffled,
+   weeks apart — the answer card comes up alone, with nothing on it to say what was asked. "It's at
+   3:00 today." is unanswerable in that state. So every answer half gets a short front `hint` naming
+   the question it replies to: `"answering when the presentation is"`, `"answering where the vacuum
+cleaner is"`. The hint states the QUESTION and never leaks the answer — for a card answering "Where
+   is the computer?" the hint is "answering where the computer is", never "it's in the basement".
+5. **The `english` must render the WHOLE `target`, including a topic the target states.** Splitting a
+   drill tempts you to write the answer the way a person would say it in conversation, dropping what
+   the question already established. That is right only when the TARGET drops it too. If the target
+   keeps the topic, the English must keep it:
+   - `パーティーはごじです` → "The party is at 5:00." ✅ — target says パーティーは, so English says "the
+     party". Writing "It's at 5:00." ❌ makes the card unproducible: nothing in the prompt tells the
+     learner to reach for パーティーは.
+   - `にちようびです` → "It's on Sunday." ✅ — the target drops the topic too, so the English may. This
+     card still needs the rule-4 hint.
+     Check every answer card by reading the English alone and asking whether it could produce that exact
+     target. If it could not, the English is missing something the target has.
+6. **New patterns beat repetition.** Prefer drills that exercise a sentence frame or a
    vocabulary/context combination the lesson's existing cards do not already cover. Several
    near-identical siblings (the same frame with the noun swapped) are worth far less than one example
    of each of several frames — a later pass will delete the repeats, so returning them wastes the
    slot.
-5. **Natural sentence-case English.** The `english` reads as ordinary written English: capitalized
+7. **Natural sentence-case English.** The `english` reads as ordinary written English: capitalized
    first letter, sentence punctuation on a full sentence (`Is this a pen?`, `It's at three o'clock.`),
    never a lowercased clip.
-6. **Write the target the way the deck does.** No trailing `。` (the audio stage adds one itself where
+8. **Write the target the way the deck does.** No trailing `。` (the audio stage adds one itself where
    the language wants it) and no editorial word-separation spaces. Keep any mid-sentence `、`.
-7. **Get the counter's own reading right — they are frequently irregular.** A number's reading changes
+9. **Get the counter's own reading right — they are frequently irregular.** A number's reading changes
    with the counter that follows it, and guessing produces a card that is spoken aloud confidently and
    wrongly. In Japanese: April is しがつ, never よんがつ; July is しちがつ; 9 o'clock is くじ, not
    きゅうじ; 1 minute is いっぷん. If the source gives the reading in brackets — textbooks routinely
    print `４がつ（しがつ）` — use that, and if you are unsure of one, leave the number out of the
    sentence rather than guess.
-8. **Spell out digits in `reading`.** When a sentence contains a numeral (a price, a floor, a time),
-   set `reading` to the sentence with that number written out in {{TARGET_LANGUAGE}}'s own script. It
-   drives both the romanization and the audio, both of which mishandle raw digits.
-9. **Aim for {{TARGET_COUNT}} cards or fewer.** Quality over volume — returning nothing at all is a
-   valid answer for a lesson whose source has no usable drills.
+10. **Spell out digits in `reading`.** When a sentence contains a numeral (a price, a floor, a time),
+    set `reading` to the sentence with that number written out in {{TARGET_LANGUAGE}}'s own script. It
+    drives both the romanization and the audio, both of which mishandle raw digits.
+11. **Aim for {{TARGET_COUNT}} cards or fewer.** Quality over volume — returning nothing at all is a
+    valid answer for a lesson whose source has no usable drills.
 
 ## Earlier lessons
 
@@ -77,6 +94,7 @@ Return ONLY a JSON object. No prose, no explanation.
       "target": "しんかんせんでいきます",
       "reading": "しんかんせんでいきます",
       "pronunciation": "shinkansen de ikimasu",
+      "hint": "answering how you are getting to Osaka",
       "note": "で (de) marks the means of transport — the vehicle you go BY.",
       "sourcePattern": "[transport] で いきます"
     }
@@ -95,6 +113,9 @@ Field by field:
   by a hyphen** — `jūni-nichi`, `shi-gatsu`, `go-ji`, `ip-pon` — never fused into one token, since
   `jūninichi` reads as though it contains an "ichi" that is not there. An ordinary word that merely
   looks like a counter keeps its spelling: にほん "Japan" is `nihon`, not `ni-hon`.
+- `hint` (string, optional): a short FRONT-of-card cue, shown with the prompt. REQUIRED on the answer
+  half of a question/answer pair (rule 4), naming the question it replies to. Omit it on a card that
+  stands on its own. Never restate the English and never leak the answer.
 - `note` (string, optional): a short back-of-card note, only when there is something genuinely useful
   to say about using the sentence. Omit it rather than restating the English.
 - `sourcePattern` (string): the sentence frame this card drills, written as a short skeleton with the

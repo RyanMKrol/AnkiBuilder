@@ -1227,3 +1227,21 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   delivery, which is late but at least loud.
 - **When to revisit:** if collisions recur often, move the check earlier — a readiness gate or a
   `prepare` post-pass could catch it at build time, when the fix is cheap, instead of at delivery.
+
+## An answer card's context lives in a hint, and the hint is a judgment the model has to make
+
+- **What:** `mineFillInBlankCards` now carries `hint` through (it silently dropped it before) and logs a
+  warning naming any produced card whose English is answer-shaped and has no hint. The prompt requires
+  the hint on every answer half of a split Q/A pair, and requires the `english` to render whatever topic
+  the `target` states.
+- **Why:** rule 3 has always told the pass to split "When is the presentation? — It's at 3:00 today."
+  into two cards. Nothing said the answer card had to remain answerable once separated. In JBP Book 1
+  that produced eleven answer cards with no trace of their question, and one, `パーティーはごじです`
+  glossed "It's at 5:00.", where the English could not have produced the target at all.
+- **Impact:** the warning is a log line at build time, not a gate, and it only recognizes a leading
+  pronoun stand-in ("It's", "That's", "They're"). An answer phrased any other way ("From 12:30 to
+  1:30.") passes unremarked. The deeper check — does this English produce this target — is not
+  automatable here and stays a review-gate judgment.
+- **When to revisit:** if un-hinted answer cards keep appearing, promote the warning to a readiness
+  check, and consider having the pass return the question card's id alongside the answer so the link is
+  data rather than prose.

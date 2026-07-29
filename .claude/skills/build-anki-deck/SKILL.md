@@ -564,6 +564,25 @@ Common shapes in a Japanese course: a polite/plain register pair (なんにん (
 same English, and a number that sounds like a word (さん (san) "3" vs さん (san) "Mr., Mrs., Ms.,
 Miss"; ほん (hon) "Book" vs the ほん (hon) long-object counter).
 
+**An ANSWER card must be answerable alone.** Textbook drills and dialogues are question/answer pairs,
+and the pipeline splits them into two cards that are then studied shuffled, weeks apart. The answer
+card arrives with no memory of the question, so two things have to hold.
+
+First, the `english` must be able to produce the whole `target`. `パーティーはごじです` glossed "It's at
+5:00." cannot: the target states its topic, the English doesn't, and nothing in the prompt tells the
+learner to reach for パーティーは. Gloss it "The party is at 5:00." Dropping the topic in English is
+correct ONLY when the target drops it too (`にちようびです` → "It's on Sunday."). The check is
+mechanical: read the English alone and ask whether it could yield that exact target.
+
+Second, an elliptical answer card needs a `hint` naming the question it replies to — "answering where
+the computer is", "answering when the presentation is". State the QUESTION, never leak the answer.
+Without it "It's on Sunday." is a card with no discoverable right answer.
+
+This is enforced where the pairs are made: `docs/fill-in-blank-prompt.md` rules 4 and 5, with `hint`
+carried through by `src/cards/fillInBlank.js`, which also logs a warning naming any answer-shaped card
+that came back without one. Audit an existing deck by listing cards whose English starts with a
+pronoun stand-in ("It's", "That's", "They're") and checking each for a hint.
+
 **Irregular members of a counter series each earn a `note`.** Number and counter cards usually want
 no note at all, but the ones that BREAK the series are the exception, because the learner has just
 been taught a pattern that these violate. ひとり (hitori) and ふたり (futari) take no にん (nin) at

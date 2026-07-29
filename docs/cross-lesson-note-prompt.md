@@ -85,7 +85,10 @@ tags are the book's own names and are the only correct way to cite a lesson.
     the reading already shown (e.g. "First floor (read いっかい)") — and you have nothing genuinely
     useful to add, return it with an EMPTY note (`"note": ""`) to delete it. A note must add to the
     lesson, never echo it. Most number/counter cards and self-evident sentences should end up with NO
-    note.
+    note. **This does NOT override point 4.** An ordinary noun looks like it needs no note and, in a
+    language that inflects it unpredictably, needs one more than anything else on the card — the gender
+    and plural are not "self-evident", they are simply absent from the card face. "Bare noun, no note"
+    is the right instinct only for a language with nothing of the sort to state.
 
 ## Rules
 

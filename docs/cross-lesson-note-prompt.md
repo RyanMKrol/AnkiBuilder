@@ -38,11 +38,30 @@ tags are the book's own names and are the only correct way to cite a lesson.
    into a modifier of the noun."
 3. **USAGE & register**: when/how to use it, casual vs polite, what a particle/suffix attaches to, how
    it differs from a look-alike card the learner has already seen.
-4. **Rewrite weak or thin existing notes** on current-lesson cards to be clearer and genuinely useful.
-5. **Atomic cards** (single words, particles, set expressions) benefit most. A full sentence usually
+4. **INFLECTION the learner cannot predict from the card face.** Where {{TARGET_LANGUAGE}} marks a
+   grammatical property that English does not, and the card face alone does not reveal it, the note is
+   the only place the learner will ever learn it. This is usually the single highest-value note on a
+   plain noun. Cover it when the language has it, and skip it entirely when it does not:
+   - **Grammatical gender and plural**, when neither is predictable from the word's shape. Give the
+     gender and the actual plural form, not a rule — `cheie (f.), pl. chei`. A learner who memorizes
+     only the singular has learned half the word.
+   - **An irregular or exceptional form** of a pattern the lesson just taught (see the counter-series
+     point below for the general shape of this).
+   - **Which register the card is in**, when the language forces a choice English does not: a
+     formal/familiar second person (Romanian _dumneavoastră_ vs _tu_, French _vous_ vs _tu_, German
+     _Sie_ vs _du_), or a politeness level. Say which one this card uses and when the learner would
+     switch. Greetings and any business or introduction phrase need this most.
+   - **A letter or mark an English speaker will misread**, noted on the FIRST card that introduces each
+     one rather than repeated on every card that contains it, and only when the writing system needs it.
+5. **TRUE and FALSE COGNATES with English**, when the languages are related enough for the learner's
+   instinct to be worth calibrating. Say which words look English and are not, and which really do
+   transfer, so the learner knows when to trust the guess. Skip this for a language where no English
+   speaker would be tempted.
+6. **Rewrite weak or thin existing notes** on current-lesson cards to be clearer and genuinely useful.
+7. **Atomic cards** (single words, particles, set expressions) benefit most. A full sentence usually
    needs no note — but DO add one when the sentence hinges on a false-friend distinction (point 2) or
    another specific, non-obvious point.
-6. **COLLIDING CARDS — the one case where you also set a `hint`.** Two cards in this list can share the
+8. **COLLIDING CARDS — the one case where you also set a `hint`.** Two cards in this list can share the
    same English gloss while having completely different answers, or share one `target` while carrying
    two glosses. On a Production card the learner sees only the English, so two cards both reading "How
    many people?" are the same question with two different right answers — unstudiable, and they fail a
@@ -57,16 +76,16 @@ tags are the book's own names and are the only correct way to cite a lesson.
    WHEN/WHERE/WHY and must NEVER restate the gloss or hand over the reading. Do NOT return a `hint` on
    any other card — a card with no collision needs none, and omitting the field leaves the existing
    hint untouched.
-7. **IRREGULAR members of a counter or conjugation series earn a note**, even though number and counter
+9. **IRREGULAR members of a counter or conjugation series earn a note**, even though number and counter
    cards normally get none. The learner has just been taught a pattern these break: ひとり (hitori) and
    ふたり (futari) take no にん (nin) counter at all; よにん (yo-nin) uses よ (yo), not よん (yon). Say
    what the regular pattern would predict and how this one departs from it.
-8. **REMOVE useless notes.** If a current-lesson card's existing note merely RESTATES the card —
-   repeats the English gloss (e.g. note "Where is the wine shop?" on that same sentence) or re-gives
-   the reading already shown (e.g. "First floor (read いっかい)") — and you have nothing genuinely
-   useful to add, return it with an EMPTY note (`"note": ""`) to delete it. A note must add to the
-   lesson, never echo it. Most number/counter cards and self-evident sentences should end up with NO
-   note.
+10. **REMOVE useless notes.** If a current-lesson card's existing note merely RESTATES the card —
+    repeats the English gloss (e.g. note "Where is the wine shop?" on that same sentence) or re-gives
+    the reading already shown (e.g. "First floor (read いっかい)") — and you have nothing genuinely
+    useful to add, return it with an EMPTY note (`"note": ""`) to delete it. A note must add to the
+    lesson, never echo it. Most number/counter cards and self-evident sentences should end up with NO
+    note.
 
 ## Rules
 
@@ -89,7 +108,7 @@ tags are the book's own names and are the only correct way to cite a lesson.
 
 Return ONLY JSON: `{"notes":[{"id":"…","note":"…","hint":"…"}, …]}`
 
-`hint` is OPTIONAL and belongs only on a colliding card (point 6). Omit it everywhere else — an
+`hint` is OPTIONAL and belongs only on a colliding card (point 8). Omit it everywhere else — an
 omitted field is left exactly as it is, while `""` DELETES the existing value.
 
 ## Cards

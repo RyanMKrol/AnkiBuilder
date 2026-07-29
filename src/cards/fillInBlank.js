@@ -83,6 +83,13 @@ function isUsable(card) {
 }
 
 /**
+ * English that supplies no subject of its own, so the card only makes sense as a reply to something.
+ * Deliberately narrow — a leading pronoun stand-in is the shape that actually goes wrong, and a looser
+ * test flags ordinary self-contained sentences ("It's 10am in Tokyo.") that need no hint at all.
+ */
+const ANSWER_SHAPED = /^\s*(it['’]s|it is|that['’]s|they['’]re|they are|he['’]s|she['’]s)\b/i;
+
+/**
  * Mines fill-in-the-blank practice cards out of a lesson's source material (or, for a dictated
  * lesson with no source, out of the lesson's own patterns) and appends them to the card list as a
  * contiguous drill block at the END — a drill only ever reuses vocabulary the lesson has already
@@ -154,6 +161,10 @@ export function mineFillInBlankCards({
       target: normalizeDisplayText(card.target.trim(), displayLang),
       pronunciation: card.pronunciation.trim(),
       note: typeof card.note === "string" && card.note.trim() ? card.note.trim() : null,
+      // A mined drill is half of a Q/A pair, and the answer half is studied on its own. "It's at 5:00."
+      // is unanswerable without the question that set the topic, so the answer card carries it as a
+      // front hint. Dropping `hint` here is what made the prompt unable to fix that.
+      hint: typeof card.hint === "string" && card.hint.trim() ? card.hint.trim() : null,
       // Provenance: these are AI-authored practice cards, not source material. `aiSuggested` is what
       // the dashboard badges at every gate; `fillInBlank` is what the de-dup pass targets.
       fillInBlank: true,
@@ -173,6 +184,14 @@ export function mineFillInBlankCards({
       "fill-in-the-blank: no usable practice cards produced — leaving the lesson's cards as they are",
     );
     return empty;
+  }
+
+  const contextless = added.filter((item) => !item.hint && ANSWER_SHAPED.test(item.english));
+  if (contextless.length) {
+    log(
+      `fill-in-the-blank: ${contextless.length} answer card(s) have no hint naming the question they ` +
+        `answer — they will be studied without it: ${contextless.map((i) => `${i.id} ("${i.english}")`).join(", ")}`,
+    );
   }
 
   return { items: [...items, ...added], added, patterns };

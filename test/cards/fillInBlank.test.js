@@ -132,3 +132,45 @@ test("the prompt tells the model to read the source file, or to compose from the
   // Every placeholder resolves — renderPromptTemplate throws otherwise.
   assert.doesNotMatch(withoutSource, /\{\{[A-Z_]+\}\}/);
 });
+
+// A mined drill is half a Q/A pair, and the answer half is studied alone. Carrying the question as a
+// front hint is the only thing that makes it answerable — and the pass used to drop `hint` outright.
+test("carries a hint through, so an answer card can name the question it replies to", () => {
+  const result = mineFillInBlankCards({
+    items,
+    targetLanguage: "ja",
+    runClaude: reply([{ ...drill, hint: "answering how you are getting to Osaka" }]),
+  });
+  assert.equal(result.items[2].hint, "answering how you are getting to Osaka");
+});
+
+test("a card with no hint gets an explicit null, not a missing field", () => {
+  const result = mineFillInBlankCards({ items, targetLanguage: "ja", runClaude: reply([drill]) });
+  assert.equal(result.items[2].hint, null);
+});
+
+test("warns about answer-shaped cards that came back with no hint", () => {
+  const logged = [];
+  mineFillInBlankCards({
+    items,
+    targetLanguage: "ja",
+    log: (line) => logged.push(line),
+    runClaude: reply([
+      { ...drill, id: "fib-bare", english: "It's at 5:00." },
+      { ...drill, id: "fib-hinted", english: "It's on Sunday.", hint: "answering what day it is" },
+      { ...drill, id: "fib-standalone", english: "I'm going by Shinkansen." },
+    ]),
+  });
+  const warning = logged.find((l) => l.includes("no hint naming the question"));
+  assert.ok(warning, "expected a warning about the un-hinted answer card");
+  assert.match(warning, /fib-bare/);
+  // The hinted answer and the self-contained sentence are both fine.
+  assert.doesNotMatch(warning, /fib-hinted/);
+  assert.doesNotMatch(warning, /fib-standalone/);
+});
+
+test("the prompt asks for the question as a hint on an answer card", () => {
+  const prompt = renderFillInBlankPrompt({ cards: items, targetLanguage: "ja" });
+  assert.match(prompt, /ANSWER card must carry its question as a `hint`/);
+  assert.match(prompt, /must render the WHOLE `target`/);
+});

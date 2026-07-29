@@ -4,6 +4,7 @@
 // every time. `--voice` always overrides this when given explicitly.
 export const DEFAULT_VOICES = {
   ja: "3JDquces8E8bkmvbh6Bc",
+  ro: "gPPH6SLdL8XSX6GNJ40G",
 };
 
 /**

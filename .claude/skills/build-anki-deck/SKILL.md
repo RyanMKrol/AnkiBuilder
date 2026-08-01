@@ -666,19 +666,30 @@ a standard step of building any chapter.
 
 The additions roughly double a lesson. Folding them into the base lesson makes the first encounter
 with a new chapter enormous, which is exactly how a learner burns out on a deck. So the drills ship as
-their own unit, nested under the lesson in Anki:
+their own unit, a SIBLING of the lesson in Anki:
 
 ```
 Japanese for Busy People Book 1: Kana
-├── Lesson 5: Shopping (2): Two Bottles of That Wine, Please      ← the base lesson, unchanged size
-│   └── Extras                                                    ← the drill unit
-└── Lesson 6: Going Places (1): Where Are You Going?
-    └── Extras
+├── Lesson 5: Shopping (2): Two Bottles of That Wine, Please             ← the base lesson, unchanged size
+├── Lesson 5: Shopping (2): Two Bottles of That Wine, Please (Extras)    ← the drill unit
+├── Lesson 6: Going Places (1): Where Are You Going?
+└── Lesson 6: Going Places (1): Where Are You Going? (Extras)
 ```
 
-Anki gives every deck its own new-cards-per-day limit, so the learner can meet a chapter at a
-comfortable pace and turn its drills up (or off) independently. The base lesson stays exactly the size
-the normal pipeline produced.
+**⚠️ NEVER nest the extras unit under its lesson (`Book::Lesson 5::Extras`). Anki studies a parent
+deck TOGETHER WITH every deck beneath it.** A nested drill unit means clicking Lesson 5 also serves
+all of its drills, with no way to study the lesson alone — which destroys the entire reason the drills
+were split out. It looks tidier in the deck list and is completely wrong. This was built nested first,
+shipped, and had to be undone after the cards were already in a live collection; the deck-name
+builders now refuse to emit a second level at all (`buildMultiDecks` in `src/deck/collection.js`).
+
+As siblings the two decks each study, rate-limit and suspend independently, and they still sort next
+to each other because the lesson's name is a prefix of the extras name. Anki gives every deck its own
+new-cards-per-day limit, so a learner can meet a chapter at a comfortable pace and turn its drills up
+(or off) on their own. The base lesson stays exactly the size the normal pipeline produced.
+
+The same warning applies to any future unit type (a listening unit, a review unit): give it a sibling
+deck with a suffixed name, never a child deck.
 
 **On disk** the drill unit is a sibling folder of its lesson, suffixed `-extras`:
 
@@ -690,9 +701,11 @@ output/epubs/<book-slug>/
 
 Its `cards.meta` carries:
 - `chapterNumber` — **the same number as the base lesson**, so it sorts immediately after it everywhere.
-- `chapterLabel` — its display name in the dashboard, `"<base label> (Extras)"`.
-- `baseChapterLabel` — the base lesson's label. This is what the merge nests under, producing
-  `Book::<baseChapterLabel>::Extras`. Set it or the unit ships beside its lesson instead of under it.
+- `chapterLabel` — `"<base label> (Extras)"`. This IS the Anki deck name (one level under the book,
+  like every other unit) as well as the dashboard's display name, so the suffix is what keeps the two
+  decks distinguishable and adjacent.
+- `baseChapterLabel` — the base lesson's label, recorded so the pairing is discoverable. It does not
+  affect the deck name; see the warning above about never nesting.
 - **NO `epubHash`.** The dedup library is keyed by `(epubHash, chapterNumber)`, so an extras unit
   carrying one would overwrite its base lesson's entry the moment it is marked reviewed, corrupting
   every later chapter's backward-dedup.

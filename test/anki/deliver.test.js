@@ -321,7 +321,7 @@ test("syncDeckContent refuses before touching Anki when ids repeat", async () =>
   assert.deepEqual(calls, []); // nothing was asked of Anki
 });
 
-test("resolveDecks nests an Extras unit instead of splicing its name segments", async () => {
+test("resolveDecks puts an Extras unit beside its lesson, one level under the parent", async () => {
   const { resolveDecks } = await import("../../src/anki/deliver.js");
   const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("fs");
   const { join } = await import("path");
@@ -364,10 +364,10 @@ test("resolveDecks nests an Extras unit instead of splicing its name segments", 
     const names = decks[0].units.map((u) => u.ankiDeck);
     assert.deepEqual(
       names.map((n) => n.split("::").slice(1).join("::")),
-      ["Lesson 1", "Lesson 1::Extras"],
+      ["Lesson 1", "Lesson 1 (Extras)"],
     );
-    // The regression: an array name used to stringify with a comma into one flat deck.
-    assert.ok(!names.some((n) => n.includes(",")), names.join(" | "));
+    // Anki studies a parent with its children, so no unit may sit deeper than one level.
+    for (const n of names) assert.ok(n.split("::").length <= 2, n);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

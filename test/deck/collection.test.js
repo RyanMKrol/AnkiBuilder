@@ -340,10 +340,12 @@ test("note type is per-language: a language with no font → no @font-face and a
   );
 });
 
-test("buildMultiDeckCollection nests a chapter whose name is an array of segments", () => {
+test("buildMultiDeckCollection keeps an extras unit a SIBLING of its lesson, not a child", () => {
+  // Anki studies a parent deck together with everything under it, so nesting the drills would make
+  // the lesson unstudyable on its own. The two sit side by side and sort adjacent.
   const chapterDecks = [
     { name: "Lesson 5: Shopping", cards: cardsOf("Wine") },
-    { name: ["Lesson 5: Shopping", "Extras"], cards: cardsOf("Two bottles") },
+    { name: "Lesson 5: Shopping (Extras)", cards: cardsOf("Two bottles") },
   ];
 
   const bytes = buildMultiDeckCollection(chapterDecks, {
@@ -360,43 +362,15 @@ test("buildMultiDeckCollection nests a chapter whose name is an array of segment
       "Default",
       "Japanese for Busy People",
       "Japanese for Busy People::Lesson 5: Shopping",
-      "Japanese for Busy People::Lesson 5: Shopping::Extras",
+      "Japanese for Busy People::Lesson 5: Shopping (Extras)",
     ]);
+    // No deck may sit more than one level under the book.
+    for (const n of names) assert.ok(n.split("::").length <= 2, n);
   });
 });
 
-test("buildMultiDeckCollection creates the intermediate deck when a nested chapter's parent isn't in the build", () => {
-  // The base lesson was reopened, so only its extras unit is `done`. Anki derives the tree from
-  // names, so the parent row has to exist anyway or the collection imports inconsistent.
-  const chapterDecks = [{ name: ["Lesson 5: Shopping", "Extras"], cards: cardsOf("Two bottles") }];
-
-  const bytes = buildMultiDeckCollection(chapterDecks, {
-    bookName: "Japanese for Busy People",
-    now: 1_700_000_000_000,
-  });
-
-  withTempDb(bytes, (db) => {
-    const decks = JSON.parse(db.prepare("SELECT decks FROM col").get().decks);
-    const names = Object.values(decks)
-      .map((d) => d.name)
-      .sort();
-    assert.deepEqual(names, [
-      "Default",
-      "Japanese for Busy People",
-      "Japanese for Busy People::Lesson 5: Shopping",
-      "Japanese for Busy People::Lesson 5: Shopping::Extras",
-    ]);
-    // The implicit parent must hold no cards — only the extras deck does.
-    const parent = Object.values(decks).find(
-      (d) => d.name === "Japanese for Busy People::Lesson 5: Shopping",
-    );
-    const count = db.prepare("SELECT COUNT(*) AS n FROM cards WHERE did = ?").get(parent.id).n;
-    assert.equal(count, 0);
-  });
-});
-
-test("buildMultiDeckCollection sanitizes '::' inside a segment so a label can't invent a nesting level", () => {
-  const chapterDecks = [{ name: ["Lesson 5::Sneaky", "Extras"], cards: cardsOf("Wine") }];
+test("buildMultiDeckCollection sanitizes '::' in a label so no chapter can nest itself", () => {
+  const chapterDecks = [{ name: "Lesson 5::Extras", cards: cardsOf("Wine") }];
 
   const bytes = buildMultiDeckCollection(chapterDecks, {
     bookName: "Book",
@@ -406,7 +380,7 @@ test("buildMultiDeckCollection sanitizes '::' inside a segment so a label can't 
   withTempDb(bytes, (db) => {
     const decks = JSON.parse(db.prepare("SELECT decks FROM col").get().decks);
     const names = Object.values(decks).map((d) => d.name);
-    assert.ok(names.includes("Book::Lesson 5-Sneaky::Extras"));
-    assert.ok(!names.some((n) => n.includes("Lesson 5::Sneaky")));
+    assert.ok(names.includes("Book::Lesson 5-Extras"));
+    for (const n of names) assert.ok(n.split("::").length <= 2, n);
   });
 });

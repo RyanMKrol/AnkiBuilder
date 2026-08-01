@@ -13,7 +13,7 @@
 
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join, resolve, dirname } from "path";
-import { noteTypeSpec, fieldValue, FIELD_NAMES, deckPathSegments } from "../deck/collection.js";
+import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
 import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
@@ -84,11 +84,9 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       resolveBookName(bookDir, epubHash, { loadBookMeta, loadCourseMeta }),
     );
     const units = chapterDecks.map((cd) => ({
-      // `cd.name` is a chapter label OR an array of segments for a unit that nests (an Extras drill
-      // unit sits at `Book::<lesson>::Extras`). Built through the SAME helper the .apkg uses, because
-      // stringifying the array here spliced the segments with a comma and delivered a nested unit as
-      // one flat, mis-named deck.
-      ankiDeck: [ankiParent, ...deckPathSegments(cd.name)].join("::"),
+      // One level under the parent, always — `cd.name` is a plain chapter label, including for an
+      // extras unit, whose label already carries its " (Extras)" suffix. See buildMultiDecks.
+      ankiDeck: `${ankiParent}::${sanitizeSeg(cd.name)}`,
       audioDir: cd.audioDir,
       cards: (cd.cards.items || []).filter((it) => !it.excluded),
     }));

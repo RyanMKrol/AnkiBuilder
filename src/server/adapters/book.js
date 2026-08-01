@@ -12,6 +12,9 @@ import { resolveDeckPathForDir } from "../../deck/deckFileName.js";
 
 const bookDir = (outputRoot, slug) => join(outputRoot, "epubs", slug);
 
+// The only shapes a unit token may take: `12` (a chapter) or `12-extras` (that chapter's drill unit).
+const UNIT_PATTERN = /^\d+(-extras)?$/;
+
 export const bookAdapter = {
   type: "book",
 
@@ -39,17 +42,20 @@ export const bookAdapter = {
     };
   },
 
-  // `unit` is a chapter folder seq; the file must be a plain audio filename. Returns null (=> 404)
-  // when either is unsafe or the file doesn't exist; the server also enforces a realpath-in-root check.
+  // `unit` is a chapter folder seq — digits, optionally suffixed `-extras` for a lesson's drill
+  // unit. The pattern is the path-traversal guard as well as a validity check, so it stays an
+  // anchored whitelist with no separators or dots; the file must be a plain audio filename. Returns
+  // null (=> 404) when either is unsafe or the file doesn't exist; the server also enforces a
+  // realpath-in-root check.
   resolveMedia(outputRoot, id, unit, file) {
-    if (!/^\d+$/.test(String(unit)) || !isSafeMediaFile(file)) return null;
+    if (!UNIT_PATTERN.test(String(unit)) || !isSafeMediaFile(file)) return null;
     const path = join(bookDir(outputRoot, id), `chapter-${unit}`, "audio", file);
     return existsSync(path) ? path : null;
   },
 
   // The run dir owning a card's cards.json + audio/, for edits. null on unsafe/unknown unit.
   unitDir(outputRoot, id, unit) {
-    if (!/^\d+$/.test(String(unit))) return null;
+    if (!UNIT_PATTERN.test(String(unit))) return null;
     return join(bookDir(outputRoot, id), `chapter-${unit}`);
   },
 

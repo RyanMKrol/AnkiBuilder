@@ -9,7 +9,14 @@ import { deckPathForDir } from "./deckFileName.js";
 // ./index.js own the media-key integer constraint; this module only assembles their inputs from a
 // book/course dir or a single run dir.
 
-const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)$/;
+// A unit folder is `chapter-<seq>` / `lesson-<seq>`, optionally suffixed `-extras`. An extras unit
+// holds the generated drill cards for its base lesson and ships as a sub-deck NESTED under it
+// (`Book::Lesson 5::Extras`), so the base lesson stays the size it always was and the drills can be
+// suspended or rate-limited on their own.
+const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)(-extras)?$/;
+
+// The label an extras sub-deck takes under its base lesson.
+export const EXTRAS_SEGMENT = "Extras";
 
 function readJson(path) {
   return JSON.parse(readFileSync(path, "utf-8"));
@@ -26,8 +33,10 @@ export function selectDoneChapterDecks(bookDir) {
   const chapterDirs = readdirSync(bookDir)
     .map((name) => name.match(BOOK_UNIT_DIR_PATTERN))
     .filter(Boolean)
-    .map((m) => ({ seq: Number(m[1]), dir: join(bookDir, m[0]) }))
-    .sort((a, b) => a.seq - b.seq);
+    .map((m) => ({ seq: Number(m[1]), extras: Boolean(m[2]), dir: join(bookDir, m[0]) }))
+    // An extras unit sorts immediately after the lesson it belongs to, so the sub-deck order in the
+    // package matches the order they're studied in.
+    .sort((a, b) => a.seq - b.seq || Number(a.extras) - Number(b.extras));
 
   if (chapterDirs.length === 0) {
     throw new Error(`no chapter-*/ or lesson-*/ directories found under ${bookDir}`);
@@ -35,7 +44,7 @@ export function selectDoneChapterDecks(bookDir) {
 
   const chapterDecks = [];
   let epubHash = null;
-  for (const { dir } of chapterDirs) {
+  for (const { dir, extras } of chapterDirs) {
     const cardsPath = join(dir, "cards.json");
     if (!existsSync(cardsPath)) continue;
     // An unreadable cards.json must never take down the whole rebuild: the likeliest cause is
@@ -50,11 +59,15 @@ export function selectDoneChapterDecks(bookDir) {
     if (cards.meta?.done !== true) continue;
     epubHash = epubHash || cards.meta?.epubHash;
     const audioDir = join(dir, "audio");
+    const label = cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`;
     chapterDecks.push({
-      name: cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`,
+      // An extras unit nests under its base lesson's own label — `meta.baseChapterLabel` — so the two
+      // sit together in Anki. Falling back to its own label keeps a hand-made extras unit working.
+      name: extras ? [cards.meta?.baseChapterLabel || label, EXTRAS_SEGMENT] : label,
       cards,
       audioDir: existsSync(audioDir) ? audioDir : null,
       dir,
+      extras,
     });
   }
   return { chapterDecks, epubHash };

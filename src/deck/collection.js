@@ -312,6 +312,21 @@ function buildDecks(nowSeconds, deckName) {
   };
 }
 
+// A chapter's deck name is a PATH of segments under the book, not one string: `"Lesson 5"` sits at
+// `Book::Lesson 5`, while `["Lesson 5", "Extras"]` sits at `Book::Lesson 5::Extras`. Nesting has to
+// be structural rather than a "::" the caller writes into a label, because sanitizeDeckNameSegment
+// deliberately strips "::" out of every segment so a book or lesson title containing one can never
+// invent a nesting level by accident. Passing the segments separately is what keeps both true: a
+// label stays inert, and a caller that means to nest says so.
+const deckPathSegments = (name) =>
+  (Array.isArray(name) ? name : [name]).map(sanitizeDeckNameSegment);
+
+// Ancestor deck rows live above the per-chapter id block so they can never collide with
+// chapterDeckId(index). A nested chapter needs every ancestor to exist as its own row — Anki derives
+// the tree from names, and an orphaned "A::B::C" with no "A::B" row imports into an inconsistent
+// collection.
+const ANCESTOR_DECK_ID_BASE = 900_000;
+
 // The book/parent deck holds no cards itself — Anki's client aggregates due counts
 // under it purely from the "::" name prefix on its chapter sub-decks, no data
 // modeling needed beyond giving the parent name its own row.
@@ -321,10 +336,28 @@ function buildMultiDecks(nowSeconds, bookName, chapterNames) {
     [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", nowSeconds),
     [BOOK_DECK_ID]: deckRow(BOOK_DECK_ID, book, nowSeconds),
   };
+  // Every full deck name that carries cards, so implicit ancestors can be told apart from them.
+  const owned = new Set();
   chapterNames.forEach((chapterName, index) => {
     const id = chapterDeckId(index);
-    decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(chapterName)}`, nowSeconds);
+    const full = [book, ...deckPathSegments(chapterName)].join("::");
+    decks[id] = deckRow(id, full, nowSeconds);
+    owned.add(full);
   });
+
+  // Fill in any intermediate deck a nested chapter implies but no chapter itself owns — e.g. an
+  // "Extras" sub-deck whose base lesson isn't in this build because it was reopened.
+  let ancestorId = ANCESTOR_DECK_ID_BASE;
+  for (const full of [...owned]) {
+    const parts = full.split("::");
+    for (let depth = 1; depth < parts.length; depth++) {
+      const ancestor = parts.slice(0, depth).join("::");
+      if (owned.has(ancestor) || ancestor === book) continue;
+      owned.add(ancestor);
+      decks[ancestorId] = deckRow(ancestorId, ancestor, nowSeconds);
+      ancestorId++;
+    }
+  }
   return decks;
 }
 
@@ -544,6 +577,11 @@ export function buildCollection(cards, { deckName, now, getFont = getLanguageFon
  * chapter label only, `"${bookName}::${chapterLabel}"` composition happens here, not
  * by the caller. Every card's `did` points at its own chapter's sub-deck — never the
  * parent/Default, which hold no cards.
+ *
+ * A chapter's `name` may also be an ARRAY of segments to nest it deeper:
+ * `["Lesson 5", "Extras"]` becomes `Book::Lesson 5::Extras`. Any intermediate deck that no chapter
+ * owns is created for you. See `deckPathSegments` for why nesting is expressed this way instead of
+ * writing "::" into the label.
  */
 export function buildMultiDeckCollection(
   chapterDecks,

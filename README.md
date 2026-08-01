@@ -151,6 +151,13 @@ For the full command reference (every flag, every source type), see the skill's
   marker, so it's a self-contained record of a book you've worked on. That's what lets you build a
   later chapter with `--book <book-slug>` (no need to re-find the original `.epub`), and lets the
   skill offer a list of previously-worked books to pick from.
+- A chapter may also have an **extras** unit beside it, `chapter-<n>-extras/`, holding the drill cards
+  built from the same chapter (the skill's Step 3b). It is an ordinary unit with its own two review
+  gates, but it ships **nested under** its base lesson rather than beside it, as
+  `Book::<lesson label>::Extras`. That keeps the base lesson the size the normal pipeline produced
+  while giving the drills their own Anki deck, with their own new-cards-per-day limit. The nesting
+  comes from `cards.meta.baseChapterLabel`; an extras unit deliberately carries **no** `epubHash`, so
+  marking it reviewed can't overwrite its base lesson's entry in the dedup library.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   (gitignored) so re-runs don't redo expensive work.
 

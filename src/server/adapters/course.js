@@ -12,6 +12,9 @@ import { resolveDeckPathForDir } from "../../deck/deckFileName.js";
 
 const courseDir = (outputRoot, slug) => join(outputRoot, "courses", slug);
 
+// The only shapes a unit token may take: `3` (a lesson) or `3-extras` (that lesson's drill unit).
+const UNIT_PATTERN = /^\d+(-extras)?$/;
+
 export const courseAdapter = {
   type: "course",
 
@@ -40,13 +43,13 @@ export const courseAdapter = {
   },
 
   resolveMedia(outputRoot, id, unit, file) {
-    if (!/^\d+$/.test(String(unit)) || !isSafeMediaFile(file)) return null;
+    if (!UNIT_PATTERN.test(String(unit)) || !isSafeMediaFile(file)) return null;
     const path = join(courseDir(outputRoot, id), `lesson-${unit}`, "audio", file);
     return existsSync(path) ? path : null;
   },
 
   unitDir(outputRoot, id, unit) {
-    if (!/^\d+$/.test(String(unit))) return null;
+    if (!UNIT_PATTERN.test(String(unit))) return null;
     return join(courseDir(outputRoot, id), `lesson-${unit}`);
   },
 

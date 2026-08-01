@@ -153,12 +153,13 @@ For the full command reference (every flag, every source type), see the skill's
   skill offer a list of previously-worked books to pick from.
 - A chapter may also have an **extras** unit beside it, `chapter-<n>-extras/`, holding the drill cards
   built from the same chapter (the skill's Step 3b). It is an ordinary unit with its own two review
-  gates. It ships as a **sibling** of its base lesson, `Book::<lesson label> (Extras)`, never nested
-  under it: Anki studies a parent deck together with everything beneath it, so a nested drill unit
-  would make the lesson impossible to study on its own. Side by side, the two decks sort adjacent and
-  each gets its own new-cards-per-day limit, which keeps the base lesson the size the normal pipeline
-  produced. An extras unit deliberately carries **no** `epubHash`, so marking it reviewed can't
-  overwrite its base lesson's entry in the dedup library.
+  gates. It ships as a **sibling** of its base lesson under a shared, card-less grouping deck
+  (`Book::Lesson 5::Shopping (2)…` and `Book::Lesson 5::Shopping (2)… (Extras)`), so you can study
+  the lesson alone, the drills alone, or both by clicking the group. A deck that holds cards is never
+  given children: Anki studies a parent together with everything beneath it, so a card-holding parent
+  could not be studied on its own. `src/deck/deckPath.js` decides the path for the `.apkg` and for
+  AnkiConnect delivery alike. An extras unit deliberately carries **no** `epubHash`, so marking it
+  reviewed can't overwrite its base lesson's entry in the dedup library.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   (gitignored) so re-runs don't redo expensive work.
 

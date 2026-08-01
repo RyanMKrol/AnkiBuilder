@@ -62,12 +62,17 @@ test("buildMultiDeckCollection produces Default + one book deck + one sub-deck p
     const names = Object.values(decks)
       .map((d) => d.name)
       .sort();
+    // Each "Lesson N: Title" label groups under its own "Lesson N" deck (see deckPath.js), so a
+    // lesson and its extras unit can sit together. The grouping decks hold no cards.
     assert.deepEqual(names, [
       "Default",
       "Japanese for Busy People",
-      "Japanese for Busy People::Lesson 1: Meeting",
-      "Japanese for Busy People::Lesson 2: Possession",
-      "Japanese for Busy People::Lesson 3: Time",
+      "Japanese for Busy People::Lesson 1",
+      "Japanese for Busy People::Lesson 1::Meeting",
+      "Japanese for Busy People::Lesson 2",
+      "Japanese for Busy People::Lesson 2::Possession",
+      "Japanese for Busy People::Lesson 3",
+      "Japanese for Busy People::Lesson 3::Time",
     ]);
   });
 });
@@ -340,16 +345,15 @@ test("note type is per-language: a language with no font → no @font-face and a
   );
 });
 
-test("buildMultiDeckCollection keeps an extras unit a SIBLING of its lesson, not a child", () => {
-  // Anki studies a parent deck together with everything under it, so nesting the drills would make
-  // the lesson unstudyable on its own. The two sit side by side and sort adjacent.
+test("buildMultiDeckCollection groups a lesson and its extras under a card-less grouping deck", () => {
   const chapterDecks = [
-    { name: "Lesson 5: Shopping", cards: cardsOf("Wine") },
-    { name: "Lesson 5: Shopping (Extras)", cards: cardsOf("Two bottles") },
+    { name: "Frequently Used Expressions", cards: cardsOf("Hello") },
+    { name: "Lesson 1: Meeting: Nice to Meet You", cards: cardsOf("Pen") },
+    { name: "Lesson 1: Meeting: Nice to Meet You (Extras)", cards: cardsOf("Clock") },
   ];
 
   const bytes = buildMultiDeckCollection(chapterDecks, {
-    bookName: "Japanese for Busy People",
+    bookName: "JBP",
     now: 1_700_000_000_000,
   });
 
@@ -360,27 +364,24 @@ test("buildMultiDeckCollection keeps an extras unit a SIBLING of its lesson, not
       .sort();
     assert.deepEqual(names, [
       "Default",
-      "Japanese for Busy People",
-      "Japanese for Busy People::Lesson 5: Shopping",
-      "Japanese for Busy People::Lesson 5: Shopping (Extras)",
+      "JBP",
+      "JBP::Frequently Used Expressions",
+      "JBP::Lesson 1",
+      "JBP::Lesson 1::Meeting: Nice to Meet You",
+      "JBP::Lesson 1::Meeting: Nice to Meet You (Extras)",
     ]);
-    // No deck may sit more than one level under the book.
-    for (const n of names) assert.ok(n.split("::").length <= 2, n);
-  });
-});
 
-test("buildMultiDeckCollection sanitizes '::' in a label so no chapter can nest itself", () => {
-  const chapterDecks = [{ name: "Lesson 5::Extras", cards: cardsOf("Wine") }];
-
-  const bytes = buildMultiDeckCollection(chapterDecks, {
-    bookName: "Book",
-    now: 1_700_000_000_000,
-  });
-
-  withTempDb(bytes, (db) => {
-    const decks = JSON.parse(db.prepare("SELECT decks FROM col").get().decks);
-    const names = Object.values(decks).map((d) => d.name);
-    assert.ok(names.includes("Book::Lesson 5-Extras"));
-    for (const n of names) assert.ok(n.split("::").length <= 2, n);
+    // THE invariant: a deck that holds cards must have no children, or Anki cannot study it alone.
+    const counts = new Map();
+    for (const d of Object.values(decks)) {
+      counts.set(d.name, db.prepare("SELECT COUNT(*) AS n FROM cards WHERE did = ?").get(d.id).n);
+    }
+    for (const [name, n] of counts) {
+      if (n === 0) continue;
+      const kids = [...counts.keys()].filter((o) => o.startsWith(`${name}::`));
+      assert.deepEqual(kids, [], `${name} holds ${n} cards and must not have children`);
+    }
+    // The grouping deck itself is empty.
+    assert.equal(counts.get("JBP::Lesson 1"), 0);
   });
 });

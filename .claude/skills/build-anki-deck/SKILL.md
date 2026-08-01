@@ -666,30 +666,32 @@ a standard step of building any chapter.
 
 The additions roughly double a lesson. Folding them into the base lesson makes the first encounter
 with a new chapter enormous, which is exactly how a learner burns out on a deck. So the drills ship as
-their own unit, a SIBLING of the lesson in Anki:
+their own unit, a SIBLING of the lesson under a shared grouping deck:
 
 ```
 Japanese for Busy People Book 1: Kana
-├── Lesson 5: Shopping (2): Two Bottles of That Wine, Please             ← the base lesson, unchanged size
-├── Lesson 5: Shopping (2): Two Bottles of That Wine, Please (Extras)    ← the drill unit
-├── Lesson 6: Going Places (1): Where Are You Going?
-└── Lesson 6: Going Places (1): Where Are You Going? (Extras)
+├── Frequently Used Expressions                          ← ungrouped label: stays one level up
+└── Lesson 5                                             ← grouping deck, HOLDS NO CARDS
+    ├── Shopping (2): Two Bottles of That Wine, Please           ← the base lesson, unchanged size
+    └── Shopping (2): Two Bottles of That Wine, Please (Extras)  ← the drill unit
 ```
 
-**⚠️ NEVER nest the extras unit under its lesson (`Book::Lesson 5::Extras`). Anki studies a parent
-deck TOGETHER WITH every deck beneath it.** A nested drill unit means clicking Lesson 5 also serves
-all of its drills, with no way to study the lesson alone — which destroys the entire reason the drills
-were split out. It looks tidier in the deck list and is completely wrong. This was built nested first,
-shipped, and had to be undone after the cards were already in a live collection; the deck-name
-builders now refuse to emit a second level at all (`buildMultiDecks` in `src/deck/collection.js`).
+This gives all three study modes: the lesson alone, the drills alone, or both together by clicking
+the group. Anki gives every deck its own new-cards-per-day limit, so a learner can meet a chapter at
+a comfortable pace and turn its drills up (or off) on their own.
 
-As siblings the two decks each study, rate-limit and suspend independently, and they still sort next
-to each other because the lesson's name is a prefix of the extras name. Anki gives every deck its own
-new-cards-per-day limit, so a learner can meet a chapter at a comfortable pace and turn its drills up
-(or off) on their own. The base lesson stays exactly the size the normal pipeline produced.
+**⚠️ THE RULE: a deck that HOLDS CARDS must never have children.** Anki studies a parent deck
+together with every deck beneath it, so a card-holding parent can never be studied on its own. This
+was first built with the drills nested under the LESSON deck (`Book::Lesson 5::Extras`), which made
+Lesson 5 unstudyable without its drills — the exact opposite of why they were split out. It looked
+tidier and was completely wrong, and it had to be undone after the cards were in a live collection.
+Grouping decks are fine *because they hold nothing*.
 
-The same warning applies to any future unit type (a listening unit, a review unit): give it a sibling
-deck with a suffixed name, never a child deck.
+`src/deck/deckPath.js` owns this: `unitDeckSegments(label)` splits a `"Lesson N: Title"` label into
+`["Lesson N", "Title"]`, and a label with no such prefix stays one level up. It is called by BOTH the
+`.apkg` builder and the AnkiConnect deliverer — deriving the deck name in two places is what once
+delivered a unit into a differently-named deck than the package created. Any new unit type goes
+through that one function too.
 
 **On disk** the drill unit is a sibling folder of its lesson, suffixed `-extras`:
 

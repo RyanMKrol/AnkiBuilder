@@ -5,6 +5,7 @@ import { join } from "path";
 import { tmpdir } from "os";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
+import { unitDeckSegments, groupingSegments } from "./deckPath.js";
 
 // "Hint" is the FRONT-of-card cue (card.hint); "Note" is the BACK-of-card context (card.note).
 const FIELD_NAMES = [
@@ -26,6 +27,8 @@ const DEFAULT_DECK_ID = 1;
 const DECK_ID = 2;
 const BOOK_DECK_ID = 2;
 const chapterDeckId = (index) => BOOK_DECK_ID + 1 + index;
+// Grouping-deck ids live well above the per-chapter ids so the two ranges can never overlap.
+const GROUPING_DECK_ID_BASE = 900_000;
 
 // Anki uses a literal "::" in a deck's own name to signal nesting (e.g.
 // "Book::Chapter 2") — sanitize any occurrence out of a book/chapter name so it can't
@@ -316,12 +319,12 @@ function buildDecks(nowSeconds, deckName) {
 // under it purely from the "::" name prefix on its chapter sub-decks, no data
 // modeling needed beyond giving the parent name its own row.
 //
-// Every chapter sits at exactly ONE level under the book, and there is deliberately no way for a
-// caller to nest one deeper: `sanitizeDeckNameSegment` strips "::" out of each name, so a lesson
-// title containing one cannot invent a level. That restriction is load-bearing rather than tidiness.
-// Anki studies a parent deck TOGETHER WITH every deck beneath it, so a second level would silently
-// merge two units that exist precisely to be studied apart — see the extras-unit note in
-// src/deck/rebuild.js.
+// A unit may sit one level deeper, under a GROUPING deck ("Lesson 1"), so a lesson and its extras
+// unit nest together — see src/deck/deckPath.js, which owns that decision for both delivery paths.
+// Grouping decks are emitted here as empty rows: no card's `did` ever points at one, because Anki
+// studies a parent together with its children and a card-holding parent could not be studied alone.
+// `sanitizeDeckNameSegment` still runs per segment, so a label containing "::" cannot invent a level
+// of its own.
 function buildMultiDecks(nowSeconds, bookName, chapterNames) {
   const book = sanitizeDeckNameSegment(bookName);
   const decks = {
@@ -330,7 +333,14 @@ function buildMultiDecks(nowSeconds, bookName, chapterNames) {
   };
   chapterNames.forEach((chapterName, index) => {
     const id = chapterDeckId(index);
-    decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(chapterName)}`, nowSeconds);
+    const path = unitDeckSegments(chapterName).map(sanitizeDeckNameSegment).join("::");
+    decks[id] = deckRow(id, `${book}::${path}`, nowSeconds);
+  });
+  // The card-less grouping decks. Their ids sit above the per-chapter block so they can never
+  // collide with chapterDeckId(index).
+  groupingSegments(chapterNames).forEach((group, i) => {
+    const id = GROUPING_DECK_ID_BASE + i;
+    decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(group)}`, nowSeconds);
   });
   return decks;
 }
@@ -552,8 +562,9 @@ export function buildCollection(cards, { deckName, now, getFont = getLanguageFon
  * by the caller. Every card's `did` points at its own chapter's sub-deck — never the
  * parent/Default, which hold no cards.
  *
- * Every chapter lands exactly one level under the book; nesting deeper is not supported on purpose,
- * because Anki studies a parent deck together with its descendants. See `buildMultiDecks`.
+ * A chapter may sit under a card-less GROUPING deck (`Book::Lesson 1::Meeting…`) so a lesson and its
+ * extras unit nest together — src/deck/deckPath.js decides that, for this and for AnkiConnect
+ * delivery alike. No card ever lands in a grouping deck.
  */
 export function buildMultiDeckCollection(
   chapterDecks,

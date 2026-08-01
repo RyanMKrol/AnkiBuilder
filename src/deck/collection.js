@@ -606,4 +606,14 @@ export function buildMultiDeckCollection(
   });
 }
 
-export { FIELD_NAMES, languageLabel, languageModelId, noteTypeSpec, fieldValue };
+export {
+  FIELD_NAMES,
+  languageLabel,
+  languageModelId,
+  noteTypeSpec,
+  fieldValue,
+  // Exported so the AnkiConnect deliverer names a deck exactly the way the .apkg builder does. Both
+  // consume `selectDoneChapterDecks`, whose `name` is a string OR an array of segments, and a
+  // deliverer that stringified the array flattened a nested Extras unit into one comma-spliced deck.
+  deckPathSegments,
+};

@@ -652,8 +652,8 @@ lesson, so no card ever reaches the deck without a human having seen it in these
 
 ### Step 3b: The extras pass — build the lesson's drill unit (EVERY chapter, always)
 
-**Run this for every chapter of a book, right after its base lesson passes Gate 1.** A textbook
-chapter always teaches far more than the extraction turns into cards. Two things get lost every time:
+**Run this for every chapter of a book (and every lesson of a course), right after the base unit
+passes Gate 1.** A textbook chapter always teaches far more than the extraction turns into cards. Two things get lost every time:
 the chapter's own spoken material (Target Dialogue, Speaking Practice, Short Dialogues), which the
 extraction skips while mining the vocabulary tables dry; and any sense of *coverage*, so a lesson ends
 up with forty bare nouns that appear in no sentence, a particle taught with one example, and a
@@ -693,6 +693,13 @@ Grouping decks are fine *because they hold nothing*.
 delivered a unit into a differently-named deck than the package created. Any new unit type goes
 through that one function too.
 
+**The grouping depends on the label, so give a unit a `"Lesson N: Title"` label.** An EPUB's own
+table of contents already does this (`"Lesson 5: Shopping (2): …"`). A **course** built from dictated
+words does NOT: `--lesson-label` defaults to a bare `"Lesson 5"`, which has no title to group with, so
+the lesson and its extras end up as two flat siblings instead of nesting. If a course is going to get
+extras units, pass a real title — `--lesson-label "Lesson 5: Ordering Food"` — when you assemble it.
+On disk a course's drill unit is `lesson-<n>-extras/`, exactly mirroring `chapter-<n>-extras/`.
+
 **On disk** the drill unit is a sibling folder of its lesson, suffixed `-extras`:
 
 ```
@@ -703,9 +710,10 @@ output/epubs/<book-slug>/
 
 Its `cards.meta` carries:
 - `chapterNumber` — **the same number as the base lesson**, so it sorts immediately after it everywhere.
-- `chapterLabel` — `"<base label> (Extras)"`. This IS the Anki deck name (one level under the book,
-  like every other unit) as well as the dashboard's display name, so the suffix is what keeps the two
-  decks distinguishable and adjacent.
+- `chapterLabel` — `"<base label> (Extras)"`. This is both the dashboard's display name and what the
+  Anki deck path is derived from, so the `" (Extras)"` suffix is what keeps the two decks distinct.
+  Because the base label already starts `"Lesson N: "`, the suffixed label groups under the SAME
+  `"Lesson N"` deck as its lesson, which is the whole mechanism — see `unitDeckSegments` above.
 - `baseChapterLabel` — the base lesson's label, recorded so the pairing is discoverable. It does not
   affect the deck name; see the warning above about never nesting.
 - **NO `epubHash`.** The dedup library is keyed by `(epubHash, chapterNumber)`, so an extras unit
@@ -773,12 +781,45 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    than one distinct answer needs a `hint` on each card. Fix the ones the pass introduced; report
    pre-existing ones rather than inventing wording for cards the human already signed off.
 
+#### Order the unit: shuffle, then hoist its foundations
+
+An extras unit must NOT ship in the order it was built. The cards come out grouped by how they were
+made — each Q&A pair adjacent, each contrast set adjacent, one coverage job after another — and that
+grouping is a crutch. A learner who has just seen "Is this a key?" can predict that the next card is
+"Yes, it's a key" and answers from position rather than knowledge. Run two passes, in this order.
+
+**1. Shuffle the whole unit.** This is safe *only* because of the rule enforced when the cards were
+written: every elliptical answer carries a `hint` naming the question it replies to, so no card
+depends on its neighbour. If that rule was skipped, fix the hints before shuffling, not after.
+**Seed the shuffle.** An unseeded one re-orders the deck on every re-run, and card order is what a
+fresh `.apkg` import turns into new-card position.
+
+**2. Hoist the unit's foundations to the front.** A card is foundational when at least **2 other
+cards in the same unit contain its target verbatim**: `おしえてください` sits inside
+`〜をおしえてください`, `きません` inside a full negative sentence. Meeting the atom before the
+molecules is the same atoms-first principle the pedagogical sort applies at assemble. Order the
+hoisted cards **shortest first**, which both puts the most atomic material first and guarantees a
+substring is never introduced after a card that contains it.
+
+Two kinds of false positive must be filtered out, or the front of the deck fills with noise:
+
+- **Elliptical answers.** `くじからです` ("It opens at 9:00.") is a substring of several longer
+  sentences but teaches nothing alone; it is a reply, not a building block. Identify these by the
+  authoring rule above: their `hint` starts with "answering".
+- **Fragments ending in a bare particle.** `ささきさんは` is a name plus a topic marker, so it
+  prefixes every sentence about that person for a boring grammatical reason. The card is fine; it
+  just isn't a foundation.
+
+A unit with no shared atoms legitimately hoists nothing — don't force it.
+
+Keep `corpus.json` in the SAME order as `cards.json`, or the reviews and the deck disagree.
+
 #### Reviewing and shipping it
 
 The extras unit has no audio when created, so it lands at the **corpus stage**, which is the right
 place: Target and Pronunciation are inline-editable there. Set `reviewed: true` only once the human has
 actually signed it off. Then Step 4 generates audio for it exactly like any other unit, and **Mark
-done** folds it into the package as the nested sub-deck.
+done** folds it into the package as its own sub-deck beside the lesson.
 
 Build the extras unit for chapter N **before** moving on to chapter N+1, same as the base lessons.
 
@@ -907,10 +948,12 @@ anki-builder deck --book-dir output/courses/<course-slug>  # a lesson-sourced co
 ```
 
 This scans every `chapter-*/cards.json` AND `lesson-*/cards.json` under that folder (a given
-folder only ever has one or the other) and writes a single `<that-folder>/deck.apkg` containing
-all of them, each as its own real Anki sub-deck (`Book/Course Title::Chapter/Lesson Label`) nested
-under one parent deck named for the book (from the EPUB library) or the course (from its
-`course.json` marker). Run this once after all of that book's/course's units are individually
+folder only ever has one or the other), **including the `-extras` drill units**, and writes a single
+`<that-folder>/deck.apkg` containing all of them, each as its own real Anki sub-deck under one parent
+deck named for the book (from the EPUB library) or the course (from its `course.json` marker). Each
+unit's path within that parent comes from `unitDeckSegments` (`src/deck/deckPath.js`), so a
+`"Lesson N: Title"` label nests as `Parent::Lesson N::Title` with its extras unit beside it, and any
+other label sits directly under the parent. Only `done` units are included. Run this once after all of that book's/course's units are individually
 complete — and again any time you add or change one, since (unlike the per-unit `deck --run`
 command) this always rebuilds from scratch rather than reusing a stale merge. Skip this step
 entirely for template/manual decks — there's only ever one unit, so the `deck.apkg` from Step 5 is
@@ -1169,6 +1212,7 @@ A lesson-sourced course assembled via `--words --output-root` mirrors this exact
 output/courses/<course-slug>/
   course.json             # { name, targetLanguage } — written on first use of this course
   lesson-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
+  lesson-0-extras/...     # the lesson's drill unit (Step 3b), if it has one
   lesson-1/...
   deck.apkg               # built by `deck --book-dir output/courses/<course-slug>` (Step 6)
 ```

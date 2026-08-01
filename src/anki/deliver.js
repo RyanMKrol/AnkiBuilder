@@ -14,6 +14,7 @@
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join, resolve, dirname } from "path";
 import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
+import { unitDeckSegments } from "../deck/deckPath.js";
 import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
@@ -84,9 +85,9 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       resolveBookName(bookDir, epubHash, { loadBookMeta, loadCourseMeta }),
     );
     const units = chapterDecks.map((cd) => ({
-      // One level under the parent, always — `cd.name` is a plain chapter label, including for an
-      // extras unit, whose label already carries its " (Extras)" suffix. See buildMultiDecks.
-      ankiDeck: `${ankiParent}::${sanitizeSeg(cd.name)}`,
+      // Built from the SAME function the .apkg uses, so the package and AnkiConnect can never name
+      // the same unit differently — they once did, and cards landed in a deck of the wrong name.
+      ankiDeck: [ankiParent, ...unitDeckSegments(cd.name).map(sanitizeSeg)].join("::"),
       audioDir: cd.audioDir,
       cards: (cd.cards.items || []).filter((it) => !it.excluded),
     }));

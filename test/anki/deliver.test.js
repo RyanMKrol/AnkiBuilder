@@ -321,7 +321,7 @@ test("syncDeckContent refuses before touching Anki when ids repeat", async () =>
   assert.deepEqual(calls, []); // nothing was asked of Anki
 });
 
-test("resolveDecks puts an Extras unit beside its lesson, one level under the parent", async () => {
+test("resolveDecks groups a lesson and its extras under the same grouping deck", async () => {
   const { resolveDecks } = await import("../../src/anki/deliver.js");
   const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("fs");
   const { join } = await import("path");
@@ -353,10 +353,14 @@ test("resolveDecks puts an Extras unit beside its lesson, one level under the pa
         }),
       );
     };
-    unit("chapter-0", { chapterNumber: 1, chapterLabel: "Lesson 1" }, "a");
+    unit("chapter-0", { chapterNumber: 1, chapterLabel: "Lesson 1: Meeting" }, "a");
     unit(
       "chapter-0-extras",
-      { chapterNumber: 1, chapterLabel: "Lesson 1 (Extras)", baseChapterLabel: "Lesson 1" },
+      {
+        chapterNumber: 1,
+        chapterLabel: "Lesson 1: Meeting (Extras)",
+        baseChapterLabel: "Lesson 1: Meeting",
+      },
       "b",
     );
 
@@ -364,10 +368,10 @@ test("resolveDecks puts an Extras unit beside its lesson, one level under the pa
     const names = decks[0].units.map((u) => u.ankiDeck);
     assert.deepEqual(
       names.map((n) => n.split("::").slice(1).join("::")),
-      ["Lesson 1", "Lesson 1 (Extras)"],
+      ["Lesson 1::Meeting", "Lesson 1::Meeting (Extras)"],
     );
-    // Anki studies a parent with its children, so no unit may sit deeper than one level.
-    for (const n of names) assert.ok(n.split("::").length <= 2, n);
+    // Both units are LEAVES: neither is a prefix of the other, so neither can swallow the other.
+    for (const a of names) for (const b of names) assert.ok(a === b || !b.startsWith(`${a}::`));
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

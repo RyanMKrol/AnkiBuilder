@@ -13,7 +13,7 @@
 
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join, resolve, dirname } from "path";
-import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
+import { noteTypeSpec, fieldValue, FIELD_NAMES, deckPathSegments } from "../deck/collection.js";
 import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
@@ -48,7 +48,9 @@ const fingerprint = (target, english) => `${norm(target)}\x1f${norm(english)}`;
 const noteField = (n, name) => n.fields?.[name]?.value ?? "";
 
 // Resolve selectors → managed decks with their Anki names, spec, and deliverable units (disk-only).
-function resolveDecks(outputRoot, selectors, adapters) {
+// Exported for tests: this is where a unit's Anki deck NAME is decided, and getting that wrong
+// delivers cards into the wrong deck without any error to notice.
+export function resolveDecks(outputRoot, selectors, adapters) {
   const wanted =
     !selectors || selectors === "all" || selectors.length === 0
       ? listAllDecks(outputRoot, adapters).map((d) => ({ type: d.type, id: d.id }))
@@ -82,7 +84,11 @@ function resolveDecks(outputRoot, selectors, adapters) {
       resolveBookName(bookDir, epubHash, { loadBookMeta, loadCourseMeta }),
     );
     const units = chapterDecks.map((cd) => ({
-      ankiDeck: `${ankiParent}::${sanitizeSeg(cd.name)}`,
+      // `cd.name` is a chapter label OR an array of segments for a unit that nests (an Extras drill
+      // unit sits at `Book::<lesson>::Extras`). Built through the SAME helper the .apkg uses, because
+      // stringifying the array here spliced the segments with a comma and delivered a nested unit as
+      // one flat, mis-named deck.
+      ankiDeck: [ankiParent, ...deckPathSegments(cd.name)].join("::"),
       audioDir: cd.audioDir,
       cards: (cd.cards.items || []).filter((it) => !it.excluded),
     }));

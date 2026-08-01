@@ -320,3 +320,55 @@ test("syncDeckContent refuses before touching Anki when ids repeat", async () =>
   await assert.rejects(() => syncDeckContent(client, deck, true), /duplicate card ids/);
   assert.deepEqual(calls, []); // nothing was asked of Anki
 });
+
+test("resolveDecks nests an Extras unit instead of splicing its name segments", async () => {
+  const { resolveDecks } = await import("../../src/anki/deliver.js");
+  const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("fs");
+  const { join } = await import("path");
+  const { tmpdir } = await import("os");
+
+  const root = mkdtempSync(join(tmpdir(), "deliver-extras-"));
+  try {
+    const bookDir = join(root, "epubs", "bk");
+    mkdirSync(bookDir, { recursive: true });
+    writeFileSync(
+      join(bookDir, "book.json"),
+      JSON.stringify({ title: "Bk", slug: "bk", epubHash: null, targetLanguage: "ja" }),
+    );
+    const unit = (name, meta, id) => {
+      mkdirSync(join(bookDir, name), { recursive: true });
+      writeFileSync(
+        join(bookDir, name, "cards.json"),
+        JSON.stringify({
+          meta: { done: true, targetLanguage: "ja", ...meta },
+          items: [
+            {
+              id,
+              english: "One",
+              target: "\u3044\u3061",
+              pronunciation: "ichi",
+              category: "Numbers",
+            },
+          ],
+        }),
+      );
+    };
+    unit("chapter-0", { chapterNumber: 1, chapterLabel: "Lesson 1" }, "a");
+    unit(
+      "chapter-0-extras",
+      { chapterNumber: 1, chapterLabel: "Lesson 1 (Extras)", baseChapterLabel: "Lesson 1" },
+      "b",
+    );
+
+    const decks = resolveDecks(root, [{ type: "book", id: "bk" }]);
+    const names = decks[0].units.map((u) => u.ankiDeck);
+    assert.deepEqual(
+      names.map((n) => n.split("::").slice(1).join("::")),
+      ["Lesson 1", "Lesson 1::Extras"],
+    );
+    // The regression: an array name used to stringify with a comma into one flat deck.
+    assert.ok(!names.some((n) => n.includes(",")), names.join(" | "));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

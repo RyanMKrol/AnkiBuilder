@@ -1282,3 +1282,21 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if the sweep is ever forgotten in practice, fold it into a command rather than
   leaving it as a documented step, the same way the old loose `node scripts/…` content passes became
   `prepare`.
+
+## A deck built here is never more than one level under its book
+
+- **What:** `buildMultiDecks` (`src/deck/collection.js`) emits `Book::<unit label>` and nothing
+  deeper, and `sanitizeDeckNameSegment` strips `::` out of every label so a unit cannot nest itself.
+  A unit that belongs WITH another (a chapter's extras drills) is a sibling with a suffixed name,
+  `Lesson 5: … (Extras)`, not a child.
+- **Why:** Anki studies a parent deck together with every deck beneath it. A child deck therefore
+  cannot be excluded from its parent's study session, so nesting two units silently merges them for
+  exactly the learner who wanted them apart. The extras units were built nested first and shipped
+  that way; the flaw only showed up in the Anki deck list, after 480 cards were already in a live
+  collection and had to be moved.
+- **Impact:** deck names carry the relationship instead of the tree, so they get long
+  (`Lesson 5: Shopping (2): Two Bottles of That Wine, Please (Extras)`). Grouping is by name prefix,
+  which means a rename of a base lesson silently un-pairs it from its extras. There is also no single
+  switch to suspend all extras at once, which nesting under a shared parent would have given.
+- **When to revisit:** only if Anki gains a way to study a parent deck excluding its children. Until
+  then this is a constraint of the target application, not a choice worth re-examining.

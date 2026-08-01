@@ -153,11 +153,12 @@ For the full command reference (every flag, every source type), see the skill's
   skill offer a list of previously-worked books to pick from.
 - A chapter may also have an **extras** unit beside it, `chapter-<n>-extras/`, holding the drill cards
   built from the same chapter (the skill's Step 3b). It is an ordinary unit with its own two review
-  gates, but it ships **nested under** its base lesson rather than beside it, as
-  `Book::<lesson label>::Extras`. That keeps the base lesson the size the normal pipeline produced
-  while giving the drills their own Anki deck, with their own new-cards-per-day limit. The nesting
-  comes from `cards.meta.baseChapterLabel`; an extras unit deliberately carries **no** `epubHash`, so
-  marking it reviewed can't overwrite its base lesson's entry in the dedup library.
+  gates. It ships as a **sibling** of its base lesson, `Book::<lesson label> (Extras)`, never nested
+  under it: Anki studies a parent deck together with everything beneath it, so a nested drill unit
+  would make the lesson impossible to study on its own. Side by side, the two decks sort adjacent and
+  each gets its own new-cards-per-day limit, which keeps the base lesson the size the normal pipeline
+  produced. An extras unit deliberately carries **no** `epubHash`, so marking it reviewed can't
+  overwrite its base lesson's entry in the dedup library.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   (gitignored) so re-runs don't redo expensive work.
 

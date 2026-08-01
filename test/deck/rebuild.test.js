@@ -200,7 +200,7 @@ test("a rebuild reads and publishes in one event-loop turn \u2014 nothing can in
   }
 });
 
-test("rebuildBookDir nests an extras unit under its base lesson and orders it right after", async () => {
+test("rebuildBookDir orders an extras unit right after its base lesson, as a sibling", async () => {
   const dir = mkdtempSync(join(tmpdir(), "rb-extras-"));
   try {
     writeUnit(
@@ -213,7 +213,7 @@ test("rebuildBookDir nests an extras unit under its base lesson and orders it ri
       {
         targetLanguage: "ja",
         chapterNumber: 1,
-        chapterLabel: "Lesson 1 Extras",
+        chapterLabel: "Lesson 1 (Extras)",
         baseChapterLabel: "Lesson 1",
       },
       [
@@ -244,7 +244,7 @@ test("rebuildBookDir nests an extras unit under its base lesson and orders it ri
 
     assert.deepEqual(
       received.map((c) => c.name),
-      ["Lesson 1", ["Lesson 1", "Extras"], "Lesson 2"],
+      ["Lesson 1", "Lesson 1 (Extras)", "Lesson 2"],
     );
   } finally {
     rmSync(dir, { recursive: true, force: true });
@@ -265,7 +265,7 @@ test("rebuildBookDir skips an extras unit that isn't done", async () => {
         done: false,
         targetLanguage: "ja",
         chapterNumber: 1,
-        chapterLabel: "Lesson 1 Extras",
+        chapterLabel: "Lesson 1 (Extras)",
         baseChapterLabel: "Lesson 1",
       },
       [

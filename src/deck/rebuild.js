@@ -10,13 +10,16 @@ import { deckPathForDir } from "./deckFileName.js";
 // book/course dir or a single run dir.
 
 // A unit folder is `chapter-<seq>` / `lesson-<seq>`, optionally suffixed `-extras`. An extras unit
-// holds the generated drill cards for its base lesson and ships as a sub-deck NESTED under it
-// (`Book::Lesson 5::Extras`), so the base lesson stays the size it always was and the drills can be
-// suspended or rate-limited on their own.
+// holds the generated drill cards for its base lesson.
+//
+// It ships as a SIBLING of that lesson, never nested under it. Anki studies a parent deck together
+// with everything beneath it, so a nested `Book::Lesson 5::Extras` makes it impossible to study
+// Lesson 5 on its own — clicking the lesson pulls in all its drills, which is the exact opposite of
+// why the drills were split out. As siblings, `Book::Lesson 5` and `Book::Lesson 5 (Extras)` each
+// study and rate-limit independently, and sort next to each other because one name prefixes the
+// other. The unit's own `chapterLabel` already carries the " (Extras)" suffix, so its deck name is
+// just its label like any other unit's.
 const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)(-extras)?$/;
-
-// The label an extras sub-deck takes under its base lesson.
-export const EXTRAS_SEGMENT = "Extras";
 
 function readJson(path) {
   return JSON.parse(readFileSync(path, "utf-8"));
@@ -59,11 +62,8 @@ export function selectDoneChapterDecks(bookDir) {
     if (cards.meta?.done !== true) continue;
     epubHash = epubHash || cards.meta?.epubHash;
     const audioDir = join(dir, "audio");
-    const label = cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`;
     chapterDecks.push({
-      // An extras unit nests under its base lesson's own label — `meta.baseChapterLabel` — so the two
-      // sit together in Anki. Falling back to its own label keeps a hand-made extras unit working.
-      name: extras ? [cards.meta?.baseChapterLabel || label, EXTRAS_SEGMENT] : label,
+      name: cards.meta?.chapterLabel || `Chapter ${chapterDecks.length + 1}`,
       cards,
       audioDir: existsSync(audioDir) ? audioDir : null,
       dir,

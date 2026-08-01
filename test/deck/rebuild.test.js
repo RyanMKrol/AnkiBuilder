@@ -199,3 +199,101 @@ test("a rebuild reads and publishes in one event-loop turn \u2014 nothing can in
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("rebuildBookDir nests an extras unit under its base lesson and orders it right after", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "rb-extras-"));
+  try {
+    writeUnit(
+      join(dir, "chapter-0"),
+      { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Lesson 1", epubHash: "h1" },
+      [{ id: "a", english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" }],
+    );
+    writeUnit(
+      join(dir, "chapter-0-extras"),
+      {
+        targetLanguage: "ja",
+        chapterNumber: 1,
+        chapterLabel: "Lesson 1 Extras",
+        baseChapterLabel: "Lesson 1",
+      },
+      [
+        {
+          id: "a2",
+          english: "one more",
+          target: "いちです",
+          pronunciation: "ichi desu",
+          category: "Numbers",
+        },
+      ],
+    );
+    writeUnit(
+      join(dir, "chapter-1"),
+      { targetLanguage: "ja", chapterNumber: 2, chapterLabel: "Lesson 2", epubHash: "h1" },
+      [{ id: "b", english: "two", target: "に", pronunciation: "ni", category: "Numbers" }],
+    );
+
+    let received;
+    await rebuildBookDir(dir, {
+      buildBookDeck: (chapterDecks, opts) => {
+        received = chapterDecks;
+        return { outPath: opts.outPath, noteCount: 3, chapterCount: 3, mediaCount: 0 };
+      },
+      loadBookMeta: () => ({ title: "Book" }),
+      loadCourseMeta: () => null,
+    });
+
+    assert.deepEqual(
+      received.map((c) => c.name),
+      ["Lesson 1", ["Lesson 1", "Extras"], "Lesson 2"],
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("rebuildBookDir skips an extras unit that isn't done", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "rb-extras-undone-"));
+  try {
+    writeUnit(
+      join(dir, "chapter-0"),
+      { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Lesson 1", epubHash: "h1" },
+      [{ id: "a", english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" }],
+    );
+    writeUnit(
+      join(dir, "chapter-0-extras"),
+      {
+        done: false,
+        targetLanguage: "ja",
+        chapterNumber: 1,
+        chapterLabel: "Lesson 1 Extras",
+        baseChapterLabel: "Lesson 1",
+      },
+      [
+        {
+          id: "a2",
+          english: "one more",
+          target: "いちです",
+          pronunciation: "ichi desu",
+          category: "Numbers",
+        },
+      ],
+    );
+
+    let received;
+    await rebuildBookDir(dir, {
+      buildBookDeck: (chapterDecks, opts) => {
+        received = chapterDecks;
+        return { outPath: opts.outPath, noteCount: 1, chapterCount: 1, mediaCount: 0 };
+      },
+      loadBookMeta: () => ({ title: "Book" }),
+      loadCourseMeta: () => null,
+    });
+
+    assert.deepEqual(
+      received.map((c) => c.name),
+      ["Lesson 1"],
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

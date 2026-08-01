@@ -1245,3 +1245,40 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if un-hinted answer cards keep appearing, promote the warning to a readiness
   check, and consider having the pass return the question card's id alongside the answer so the link is
   data rather than prose.
+
+## An extras unit is keyed by folder-name suffix, not by a first-class unit type
+
+- **What:** a chapter's drill unit is a sibling folder suffixed `-extras` (`chapter-5-extras/`), and
+  everything that enumerates units recognizes it by that suffix: `BOOK_UNIT_DIR_PATTERN` in
+  `src/deck/rebuild.js`, the folder regex in `scanNumberedUnits`, and the `UNIT_PATTERN` whitelist in
+  the book/course server adapters. Its dashboard unit key is the suffix verbatim (`"5-extras"`), a
+  string where a base lesson's is a number.
+- **Why:** the alternative was a real unit-type field plus a seq allocator that could mint distinct
+  numbers for two units of the same chapter. That is a much wider change (allocation, claims, the
+  media key, every URL) for a distinction the filesystem already expresses unambiguously. The suffix
+  keeps `unitDir` a straight `${prefix}-${seq}` join, so no path assembly changed anywhere.
+- **Impact:** three regexes now have to agree, and they are in three files. A fourth place that
+  enumerates units and is written to expect only digits will silently skip extras units rather than
+  fail loudly. The mixed number/string `seq` also means any new sort over units must not do
+  `a.seq - b.seq` (NaN); sort on `number` then the `extras` flag, as `scanNumberedUnits` does. The
+  unit-token regex is also the path-traversal guard, so it must stay an anchored whitelist.
+- **When to revisit:** if a third kind of unit appears (a review unit, a listening unit), promote it
+  to a real unit type with its own allocator rather than adding a second suffix. Two suffixes in these
+  regexes would be the point where this stops paying for itself.
+
+## The extras pass can't see later chapters, so cross-chapter duplicates are caught after the fact
+
+- **What:** the Step 3b extras pass runs one agent per chapter, fed that chapter plus every EARLIER
+  one. It therefore cannot know what a LATER chapter already teaches, and will happily propose a card
+  for a word Lesson 8 has covered while working on Lesson 3.
+- **Why:** the backward-only context is deliberate and load-bearing everywhere else in the pipeline
+  (it is what makes a forward reference structurally impossible rather than merely discouraged).
+  Giving the extras pass full-book context to solve duplicates would reintroduce exactly the failure
+  mode the rest of the design works to prevent.
+- **Impact:** duplicates are real and must be swept up by a separate whole-book pass after the merge
+  (group every card by `target`; keep the earliest, exclude the later). On the first run across eight
+  chapters this caught 7 duplicate groups. If that sweep is skipped, the deck ships two cards with
+  the same answer and the learner meets both.
+- **When to revisit:** if the sweep is ever forgotten in practice, fold it into a command rather than
+  leaving it as a documented step, the same way the old loose `node scripts/…` content passes became
+  `prepare`.

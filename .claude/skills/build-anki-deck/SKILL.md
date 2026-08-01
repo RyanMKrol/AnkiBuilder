@@ -417,6 +417,17 @@ That's the whole state space. A lesson is either mid-build (the dashboard says *
 *interrupted*, or lists it under **Not finished**), sitting at gate 1, sitting at gate 2, or done.
 There is no third review, and nothing to review before translation.
 
+**Each chapter produces TWO units, and each goes through both gates on its own.** After the base
+lesson clears gate 1, **Step 3b** builds its *extras* unit: the drill cards mined and constructed from
+the same chapter, shipped as a separate sub-deck nested under the lesson so the base lesson never
+grows. That unit is a first-class lesson with its own corpus review, its own audio, and its own
+**Mark done**. So the full arc for one chapter is:
+
+`assemble` → **corpus review** → `audio` → **audio review** → **Mark done**
+&nbsp;&nbsp;&nbsp;&nbsp;↳ then **Step 3b** builds `chapter-N-extras`, which repeats the same arc.
+
+Step 3b is a standard step of building a chapter, not an optional extra. Do not skip it.
+
 **Gate 1 must see the FINAL card set.** Everything that changes which cards exist *or what they say* —
 extraction, translation, fill-in-the-blank mining, the semantic de-dup pass, the cross-lesson note pass
 — runs inside `assemble`/`prepare`, before the review opens, never after it. The pipeline order is:
@@ -638,6 +649,123 @@ move straight into Step 4 in the same turn — marking reviewed IS the go-ahead.
 must be final: extraction, FIB mining, and de-dup all done. If you later realize a card is missing,
 don't quietly append it — say so, add it, and send the reviewer back through the corpus review for the
 lesson, so no card ever reaches the deck without a human having seen it in these columns.
+
+### Step 3b: The extras pass — build the lesson's drill unit (EVERY chapter, always)
+
+**Run this for every chapter of a book, right after its base lesson passes Gate 1.** A textbook
+chapter always teaches far more than the extraction turns into cards. Two things get lost every time:
+the chapter's own spoken material (Target Dialogue, Speaking Practice, Short Dialogues), which the
+extraction skips while mining the vocabulary tables dry; and any sense of *coverage*, so a lesson ends
+up with forty bare nouns that appear in no sentence, a particle taught with one example, and a
+conjugation chart that is carded half-way. The result reads complete and drills badly.
+
+The extras pass fixes both. It is not optional polish, and it is not a one-off migration: treat it as
+a standard step of building any chapter.
+
+#### Why it is a SEPARATE unit, not more cards in the lesson
+
+The additions roughly double a lesson. Folding them into the base lesson makes the first encounter
+with a new chapter enormous, which is exactly how a learner burns out on a deck. So the drills ship as
+their own unit, nested under the lesson in Anki:
+
+```
+Japanese for Busy People Book 1: Kana
+├── Lesson 5: Shopping (2): Two Bottles of That Wine, Please      ← the base lesson, unchanged size
+│   └── Extras                                                    ← the drill unit
+└── Lesson 6: Going Places (1): Where Are You Going?
+    └── Extras
+```
+
+Anki gives every deck its own new-cards-per-day limit, so the learner can meet a chapter at a
+comfortable pace and turn its drills up (or off) independently. The base lesson stays exactly the size
+the normal pipeline produced.
+
+**On disk** the drill unit is a sibling folder of its lesson, suffixed `-extras`:
+
+```
+output/epubs/<book-slug>/
+  chapter-5/          cards.json, audio/, …     ← base lesson
+  chapter-5-extras/   cards.json, audio/, …     ← its drills
+```
+
+Its `cards.meta` carries:
+- `chapterNumber` — **the same number as the base lesson**, so it sorts immediately after it everywhere.
+- `chapterLabel` — its display name in the dashboard, `"<base label> (Extras)"`.
+- `baseChapterLabel` — the base lesson's label. This is what the merge nests under, producing
+  `Book::<baseChapterLabel>::Extras`. Set it or the unit ships beside its lesson instead of under it.
+- **NO `epubHash`.** The dedup library is keyed by `(epubHash, chapterNumber)`, so an extras unit
+  carrying one would overwrite its base lesson's entry the moment it is marked reviewed, corrupting
+  every later chapter's backward-dedup.
+
+Everything else works unchanged: the dashboard lists it as its own reviewable unit, it has its own two
+gates, and `deck --book-dir` merges it only once it is `done`.
+
+#### How to run the pass
+
+Give **one subagent per chapter**, and run **two waves**. Wave 2 must receive wave 1's output so the
+two do not collide.
+
+**Wave 1 — what the book prints and the deck missed.** Read the chapter text and propose the
+sentences and questions the book itself contains that never became a card. Prefer the book's wording
+verbatim. The Target Dialogue and Speaking Practice sections are where the misses concentrate: check
+them first, every time.
+
+**Wave 2 — systematic coverage.** This wave constructs sentences, which is expected and sanctioned.
+Three jobs, and let the counts decide the size:
+1. **Particles.** For every particle the chapter uses, aim for at least three genuinely different
+   examples (different slot, different vocabulary, at least one in question form). Where a particle
+   contrasts with one already known (は/が, に/で, へ/に, を/が), write a **minimal pair**: two
+   sentences differing only in the particle, each with a `note` naming the contrast. These are the
+   highest-value cards the pass produces.
+2. **Vocabulary.** Every content word in the chapter's vocabulary that appears in no sentence gets
+   one, built only from vocabulary already introduced.
+3. **Forms.** Whatever the chapter teaches (です/じゃありません/ですか, ます/ません/ました/ませんでした,
+   〜から〜まで). Supply a contrast set **on fixed vocabulary** so the transformation is visible rather
+   than three unrelated sentences.
+
+Extraction of the chapter text: `extractChapterToFile(epubPath, n, dest)` in `src/corpus/epubArchive.js`.
+Strip the XHTML to plain text before handing it to an agent, or it burns context on markup.
+
+#### Rules the pass must not break
+
+Everything from Step 3 still applies (kana-only for a kana deck, sentence-case English, no editorial
+spaces, no terminal `。`, a `reading` for any numeral, hints on English-gloss collisions, split Q&A,
+an answer card that is answerable alone). On top of those:
+
+- **Only vocabulary and grammar from this chapter or an EARLIER one.** Feed each agent an index of
+  every card from all previous chapters. This is the rule most likely to be broken and the most
+  damaging when it is.
+- **Never use a form the chapter has not reached.** An agent that reaches for past tense in Lesson 4
+  because it is natural Japanese has produced a card the learner cannot study.
+- **Mark every card `aiSuggested: true`** with a `reviewNote` saying which job it serves and whether
+  it was lifted from the book (name the section) or constructed.
+- **Do not add bare vocabulary cards, numbers, or counter recitations.** Those are already
+  over-drilled. Deliver a missing word inside a sentence.
+- **Vary the frame, not just the noun.** Ten sentences on one pattern with interchangeable nouns is
+  padding, not practice.
+
+#### The gate that catches what the agents cannot
+
+Each agent sees earlier chapters but **not later ones**, so a card added to Lesson 3 can duplicate one
+that already exists in Lesson 8. The agents structurally cannot catch this. After merging, always run:
+
+1. **A cross-chapter duplicate check.** Group every card in the whole book by `target`. Any group
+   spanning two units where one side is new is a duplicate. Keep the EARLIEST occurrence and exclude
+   the later one with a `reviewNote` explaining the call. Before excluding a **question**, confirm its
+   answer card carries a `hint` naming the question, or you strand it. Excluding an **answer** is
+   always safe, because a question card is answerable alone.
+2. **A deck-wide collision audit.** Group by normalized `english` and by `target`. Any group with more
+   than one distinct answer needs a `hint` on each card. Fix the ones the pass introduced; report
+   pre-existing ones rather than inventing wording for cards the human already signed off.
+
+#### Reviewing and shipping it
+
+The extras unit has no audio when created, so it lands at the **corpus stage**, which is the right
+place: Target and Pronunciation are inline-editable there. Set `reviewed: true` only once the human has
+actually signed it off. Then Step 4 generates audio for it exactly like any other unit, and **Mark
+done** folds it into the package as the nested sub-deck.
+
+Build the extras unit for chapter N **before** moving on to chapter N+1, same as the base lessons.
 
 ### Step 4: Audio generation, then Gate 2 — the audio review
 
@@ -1013,7 +1141,9 @@ output/epubs/<book-slug>/
   book.epub               # copy of the source EPUB, kept so `--book <slug>` can build later chapters
   book.json               # { title, slug, epubHash, targetLanguage } — powers listBooks discovery
   chapter-0/corpus.json, cards.json, audio/, review-*.html, deck.apkg
+  chapter-0-extras/...    # the chapter's drill unit (Step 3b) — ships nested UNDER chapter-0
   chapter-1/...
+  chapter-1-extras/...
   deck.apkg              # built by `deck --book-dir output/epubs/<book-slug>` (Step 6)
 ```
 

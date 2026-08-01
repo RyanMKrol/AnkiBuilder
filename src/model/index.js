@@ -96,6 +96,11 @@ const CARDS_SCHEMA = {
           enum: ["template", "epub", "manual"],
         },
         reviewed: { type: "boolean" },
+        // Set on an EXTRAS unit (a `chapter-<n>-extras` / `lesson-<n>-extras` folder): the label of
+        // the base lesson whose drills it holds. The merge nests the unit under that lesson rather
+        // than beside it, so it ships as `Book::<baseChapterLabel>::Extras` while `chapterLabel`
+        // stays the unit's own display name. See src/deck/rebuild.js.
+        baseChapterLabel: { type: "string" },
         // Final human sign-off that a lesson is finished and shippable, set via the dashboard's "Mark
         // done" (distinct from `reviewed`, the corpus stage-1 gate). Only `done` lessons are merged
         // into the book/course deck (`rebuildBookDir`) and shown under "Built" on the dashboard.

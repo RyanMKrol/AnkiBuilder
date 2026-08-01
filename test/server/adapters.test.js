@@ -226,3 +226,19 @@ test("listAllDecks aggregates every format", () => {
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("the book adapter accepts an extras unit token but still refuses traversal", async () => {
+  const { bookAdapter } = await import("../../src/server/adapters/book.js");
+  // Valid shapes resolve to their folder.
+  assert.equal(bookAdapter.unitDir("/out", "slug", "5-extras"), "/out/epubs/slug/chapter-5-extras");
+  assert.equal(bookAdapter.unitDir("/out", "slug", "5"), "/out/epubs/slug/chapter-5");
+  // Anything else is rejected outright — the pattern is the traversal guard.
+  for (const bad of ["../evil", "5/../..", "5-extras/x", "5-Extras", "-extras", "5-extra", ""]) {
+    assert.equal(
+      bookAdapter.unitDir("/out", "slug", bad),
+      null,
+      `should reject ${JSON.stringify(bad)}`,
+    );
+    assert.equal(bookAdapter.resolveMedia("/out", "slug", bad, "a.mp3"), null);
+  }
+});

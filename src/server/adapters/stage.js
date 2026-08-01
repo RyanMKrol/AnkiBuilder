@@ -87,17 +87,22 @@ export function scanNumberedUnits(deckDir, prefix) {
   const units = [];
   for (const entry of readdirSync(deckDir, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
-    const m = entry.name.match(new RegExp(`^${prefix}-(\\d+)$`));
+    const m = entry.name.match(new RegExp(`^${prefix}-(\\d+)(-extras)?$`));
     if (!m) continue;
-    const seq = Number(m[1]);
+    const extras = Boolean(m[2]);
+    // `seq` is the unit's key everywhere — the review URL, the media URL, the write-back's target
+    // dir — so an extras unit needs one distinct from its base lesson's. It is the folder suffix
+    // verbatim ("5-extras"), which keeps `unitDir` a straight `${prefix}-${seq}` join.
+    const seq = extras ? `${m[1]}-extras` : Number(m[1]);
     const runDir = join(deckDir, entry.name);
     const data = loadStageData(runDir);
     if (!data) continue;
     const meta = data.meta || {};
     const build = unitBuildState(runDir);
-    const number = typeof meta.chapterNumber === "number" ? meta.chapterNumber : seq;
+    const number = typeof meta.chapterNumber === "number" ? meta.chapterNumber : Number(m[1]);
     units.push({
       seq,
+      extras,
       number,
       label: meta.chapterLabel || `${label} ${number}`,
       stage: data.stage,
@@ -112,6 +117,14 @@ export function scanNumberedUnits(deckDir, prefix) {
       cards: data.items.map(renderCardForStage(data.stage)),
     });
   }
-  units.sort((a, b) => a.number - b.number || a.seq - b.seq);
+  // Same order the package uses: by chapter number, then a lesson before its own extras. `seq` is a
+  // string for extras units, so the folder index is compared numerically via `number` first and the
+  // extras flag breaks the tie — never `a.seq - b.seq`, which would be NaN.
+  units.sort(
+    (a, b) =>
+      a.number - b.number ||
+      Number(a.extras) - Number(b.extras) ||
+      String(a.seq).localeCompare(String(b.seq)),
+  );
   return units;
 }

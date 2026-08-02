@@ -411,6 +411,11 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     const backward = ctx.dedupBackward(
       corpus.items,
       ctx.loadPriorChapterItems(epubHash, chapterNumber),
+      {
+        // Candidates here still carry editorial spaces / trailing 。 (display normalization runs
+        // later), while the stored library is post-normalization — the dedup normalizes both sides.
+        languageCode: resolveIso639Code(flags.lang),
+      },
     );
     for (const { item, matchedField, matchedPriorItem } of backward.flagged) {
       ctx.log(

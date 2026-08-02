@@ -137,13 +137,15 @@ export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir 
     return [];
   }
 
-  const items = [];
-  for (const filename of readdirSync(dir)) {
-    const match = filename.match(/^(\d+)\.json$/);
-    if (!match) {
-      continue;
-    }
+  // Numeric order, not readdir's lexicographic order (which puts "10.json" before "2.json"),
+  // so when a term appears in several earlier chapters the flag names the earliest one.
+  const chapterFiles = readdirSync(dir)
+    .map((filename) => ({ filename, match: filename.match(/^(\d+)\.json$/) }))
+    .filter((f) => f.match)
+    .sort((a, b) => Number(a.match[1]) - Number(b.match[1]));
 
+  const items = [];
+  for (const { filename, match } of chapterFiles) {
     const storedChapterNumber = Number(match[1]);
     if (storedChapterNumber >= chapterNumber) {
       continue;

@@ -223,6 +223,30 @@ test("loadPriorChapterItems() only includes chapters strictly before the given n
   });
 });
 
+test("loadPriorChapterItems() returns chapters in numeric order, not lexicographic", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    for (const n of [10, 2, 1]) {
+      saveChapterCorpus(
+        "book1",
+        n,
+        baseCorpus([
+          { id: `c${n}`, english: `C${n}`, category: "Other", notes: null, target: null },
+        ]),
+        { libraryHomeDir },
+      );
+    }
+
+    const prior = loadPriorChapterItems("book1", 11, { libraryHomeDir });
+
+    // Lexicographic readdir order would yield 1, 10, 2 — dedup attribution depends on
+    // chapter order, so the load must sort numerically.
+    assert.deepEqual(
+      prior.map((i) => i.__chapterNumber),
+      [1, 2, 10],
+    );
+  });
+});
+
 test("saveChapterCorpus() is an idempotent overwrite — re-reviewing replaces the entry", () => {
   withTempDir(({ libraryHomeDir }) => {
     saveChapterCorpus(

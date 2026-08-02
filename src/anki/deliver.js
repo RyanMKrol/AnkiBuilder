@@ -11,7 +11,7 @@
 // All effects go through an injected AnkiConnect client (see ./ankiConnect.js) and the injected `now`,
 // so the whole thing is unit-testable with a fake client and no running Anki.
 
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync, readdirSync, rmSync } from "fs";
 import { join, resolve, dirname } from "path";
 import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
@@ -104,6 +104,62 @@ export function resolveDecks(outputRoot, selectors, adapters) {
     decks.push({ type, id, title: info.title, targetLanguage, spec, ankiParent, units, bookDir });
   }
   return decks;
+}
+
+/**
+ * Prune old backup snapshots under `backupRoot`, keeping the newest `keepRecent` plus the newest
+ * snapshot of each older ISO-ish week. Every deliver adds a full-scheduling `.apkg` per deck (the
+ * backup dir had grown to ~780 MB across 41 runs with nothing ever removed); recent history is
+ * what a panic restore reaches for, older history only needs coarse granularity.
+ */
+export function pruneBackups(
+  backupRoot,
+  { keepRecent = Number(process.env.ANKI_BUILDER_BACKUP_KEEP) || 10, log = () => {} } = {},
+) {
+  let entries;
+  try {
+    entries = readdirSync(backupRoot, { withFileTypes: true });
+  } catch {
+    return { deleted: [] };
+  }
+  const stamps = entries
+    .filter((e) => e.isDirectory() && /^\d{4}-\d{2}-\d{2}T/.test(e.name))
+    .map((e) => e.name)
+    .sort()
+    .reverse(); // newest first — the stamp format sorts chronologically
+
+  const weekKey = (stamp) => {
+    const date = new Date(`${stamp.slice(0, 10)}T00:00:00Z`);
+    const jan1 = Date.UTC(date.getUTCFullYear(), 0, 1);
+    return `${date.getUTCFullYear()}-w${Math.floor((date.getTime() - jan1) / (7 * 86_400_000))}`;
+  };
+
+  const keep = new Set(stamps.slice(0, keepRecent));
+  const seenWeeks = new Set([...keep].map(weekKey));
+  for (const stamp of stamps.slice(keepRecent)) {
+    const week = weekKey(stamp);
+    if (!seenWeeks.has(week)) {
+      seenWeeks.add(week);
+      keep.add(stamp); // newest snapshot of an older week survives
+    }
+  }
+
+  const deleted = [];
+  for (const stamp of stamps) {
+    if (keep.has(stamp)) continue;
+    try {
+      rmSync(join(backupRoot, stamp), { recursive: true, force: true });
+      deleted.push(stamp);
+    } catch {
+      // A snapshot that won't delete is disk litter, not a deliver failure.
+    }
+  }
+  if (deleted.length > 0) {
+    log(
+      `pruned ${deleted.length} old backup snapshot(s) — keeping the last ${keepRecent} plus one per older week`,
+    );
+  }
+  return { deleted };
 }
 
 // Marker written beside a deck's merged .apkg after a real (non-dry) deliver. Once a collection is
@@ -458,6 +514,13 @@ export async function deliverToAnki(
       };
     }
     writeFileSync(join(backupDir, "models.json"), JSON.stringify(snap, null, 2) + "\n");
+    // Manifest: the REAL deck name behind each .apkg. `safeFile` mangles names, so a restore
+    // could not otherwise know which live deck to delete before importing.
+    writeFileSync(
+      join(backupDir, "manifest.json"),
+      JSON.stringify({ decks: report.backedUp }, null, 2) + "\n",
+    );
+    pruneBackups(backupRoot, { log });
   }
 
   // 4. STRUCTURE SYNC (per unique model)

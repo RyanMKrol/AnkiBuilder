@@ -1,8 +1,8 @@
 import { existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { rebuildRunDir } from "../../deck/rebuild.js";
-import { renderCardForStage, isSafeMediaFile } from "./runDir.js";
-import { loadStageData } from "./stage.js";
+import { isSafeMediaFile } from "./runDir.js";
+import { loadStageData, decorateUnit } from "./stage.js";
 import { resolveDeckPathForDir } from "../../deck/deckFileName.js";
 
 // Adapter for bundled-template decks: output/templates/<name>/<lang>/. Unlike books/courses there is
@@ -50,23 +50,16 @@ export const templateAdapter = {
   loadDeck(outputRoot, id) {
     const parts = splitId(id);
     if (!parts) return null;
-    const data = loadStageData(templateRunDir(outputRoot, parts.name, parts.lang));
+    const runDir = templateRunDir(outputRoot, parts.name, parts.lang);
+    const data = loadStageData(runDir);
     if (!data) return null;
     const title = `${parts.name} (${parts.lang})`;
     return {
       title,
       targetLanguage: data.meta?.targetLanguage ?? parts.lang,
-      units: [
-        {
-          seq: "0",
-          number: 1,
-          label: title,
-          stage: data.stage,
-          reviewed: !!data.meta?.reviewed,
-          done: !!data.meta?.done,
-          cards: data.items.map(renderCardForStage(data.stage)),
-        },
-      ],
+      // Same decoration as book/course units (readiness + live build state), so a template being
+      // written by a CLI stage renders read-only with the building badge like everything else.
+      units: [{ seq: "0", number: 1, label: title, ...decorateUnit(runDir, data) }],
     };
   },
 

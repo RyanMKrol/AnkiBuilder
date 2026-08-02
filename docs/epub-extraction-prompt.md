@@ -4,7 +4,7 @@ Read the file at this exact path yourself using your Read tool — it is the raw
 
 {{CHAPTER_FILE_PATH}}
 
-Use the file's structure (headings, CSS classes, tag nesting) as signal for what kind of content each part is. Go through the ENTIRE file top to bottom — do not skip any part of it.
+Use the file's structure (headings, CSS classes, tag nesting) as signal for what kind of content each part is. Go through the ENTIRE file top to bottom — do not skip any part of it. If the file is long enough that your Read tool would otherwise truncate it (e.g. a default line-count limit), issue additional reads with an offset to cover the rest of the same file — never treat a partial read as if you'd read the whole thing. This matters doubly for a multi-file lesson: the file may be several spine files concatenated (separated by `<!-- anki-builder: spine chapter N -->` comments), and a truncated read silently drops the later files' content entirely.
 
 ## Book-Wide Conventions
 
@@ -135,6 +135,12 @@ If you open an image and it turns out to be decorative, that's a fine outcome �
 - Every curated model/example sentence presented as one of the chapter's core spoken examples (often labeled "Key Sentences" or similar, often numbered, often the sentences the rest of the chapter refers back to).
 
 **Every headword in a VOCABULARY block becomes an item.** A chapter usually has several such blocks, scattered between the exercises rather than gathered in one place — walk each one to its end and account for every entry in it. The only headwords you may leave out are the proper nouns covered under "What to skip entirely" below (a surname or a fictitious business used only to populate a drill). If you extract nothing for a headword, that is a miss, not an editorial choice.
+
+**A vocabulary block's indented sub-rows are headwords too.** Textbooks often break a compound entry into its parts on indented rows beneath it (e.g. under おかし: `お〜 (honorific prefix)`, `かし (sweets)`; under もういちど: `もう (more)`, `いちど (one time)`). Those morpheme/word breakdowns are real, individually-glossed vocabulary — extract each one as its own item (applying the placeholder rules to any 〜), alongside the compound, with a `note` tying the parts to the whole. Skipping them because they look like annotations of the parent row is a miss.
+
+**A ／-separated pair of readings teaches TWO readings — never silently keep just the first.** Number and counter charts routinely print alternate readings with a slash: `0 ゼロ／れい`, `4 よん／し`, `7 なな／しち`, `9 きゅう／く`, `3:30 さんじさんじゅっぷん／さんじはん`. Both sides are taught content, and dropping the second silently loses a reading the book explicitly teaches (the learner then never meets れい, し, しち, く at all). Emit the FIRST/primary reading as the item's `target`, and record the alternate in the same item's `note` — e.g. `note: "Also read れい (rei) — both readings are in everyday use."` When the book treats the alternate as a full headword of its own (its own row or gloss, not just a slashed variant), give it its own item instead.
+
+**An item printed on THIS chapter's chart belongs to THIS chapter.** A reference chart (numbers, counters, time words) sometimes ends on an entry that feels like the next lesson's topic — e.g. a 1-100 chart whose last row is 100. If the chart in front of you prints it, extract it here; do not defer it to the chapter where the topic is "properly" covered, because nothing downstream can recover a row you skipped.
 
 **The EXERCISES section is a source of cards, not a no-go area.** It carries two different kinds of
 content and you have to tell them apart:

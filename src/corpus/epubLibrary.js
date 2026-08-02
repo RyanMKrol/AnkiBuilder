@@ -185,3 +185,28 @@ export function saveBookConventions(epubHash, markdown, { libraryHomeDir } = {})
   writeFileAtomic(dest, markdown);
   return dest;
 }
+
+function taughtIndexPath(epubHash, { libraryHomeDir } = {}) {
+  return join(bookDir(epubHash, { libraryHomeDir }), "taught-index.json");
+}
+
+/**
+ * Loads the once-per-book taught-content index (chapter → what it introduces),
+ * if the index pass has already run for this book. Returns null when nothing's
+ * cached yet. Keyed by content hash like everything else in the library, so a
+ * changed EPUB naturally re-indexes.
+ */
+export function loadTaughtIndex(epubHash, { libraryHomeDir } = {}) {
+  const path = taughtIndexPath(epubHash, { libraryHomeDir });
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
+}
+
+/**
+ * Saves the taught-content index — idempotent overwrite. Returns the path written.
+ */
+export function saveTaughtIndex(epubHash, index, { libraryHomeDir } = {}) {
+  const dest = taughtIndexPath(epubHash, { libraryHomeDir });
+  mkdirSync(join(dest, ".."), { recursive: true });
+  writeFileAtomic(dest, JSON.stringify(index, null, 2));
+  return dest;
+}

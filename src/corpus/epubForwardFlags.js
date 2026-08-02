@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile, describeChapter } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
+import { ensureTaughtIndex as defaultEnsureTaughtIndex } from "./epubTaughtIndex.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -11,6 +12,11 @@ const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 // a plain, human-editable Markdown file meant to be tuned by hand.
 const DEFAULT_TEMPLATE_PATH = resolve(
   join(MODULE_DIR, "..", "..", "docs", "epub-forward-flag-prompt.md"),
+);
+// The index-based variant: judges from the once-per-book taught-content index
+// instead of having the model re-read every later chapter on every assemble.
+const INDEX_TEMPLATE_PATH = resolve(
+  join(MODULE_DIR, "..", "..", "docs", "epub-forward-flag-index-prompt.md"),
 );
 
 const NO_BOOK_CONVENTIONS = "(no book-wide conventions available for this source)";
@@ -40,6 +46,34 @@ export function renderForwardFlagPrompt({
     ITEM_COUNT: String(candidateItems.length),
     CANDIDATE_ITEMS_JSON: JSON.stringify(candidateData, null, 2),
     LATER_CHAPTER_FILE_PATHS: laterChapterFilePaths.map((path) => `- ${path}`).join("\n"),
+    BOOK_CONVENTIONS: bookConventions || NO_BOOK_CONVENTIONS,
+  });
+
+  const unresolved = rendered.match(/\{\{[A-Z_]+\}\}/);
+  if (unresolved) {
+    throw new Error(`Prompt template has an unresolved placeholder: ${unresolved[0]}`);
+  }
+
+  return rendered;
+}
+
+export function renderForwardFlagIndexPrompt({
+  targetLanguage,
+  chapterNumber,
+  candidateItems,
+  laterChaptersIndex,
+  bookConventions = null,
+  templatePath = INDEX_TEMPLATE_PATH,
+} = {}) {
+  const template = readFileSync(templatePath, "utf-8");
+  const candidateData = candidateItems.map(({ id, english, target }) => ({ id, english, target }));
+
+  const rendered = substitute(template, {
+    TARGET_LANGUAGE: targetLanguage,
+    CHAPTER_NUMBER: String(chapterNumber),
+    ITEM_COUNT: String(candidateItems.length),
+    CANDIDATE_ITEMS_JSON: JSON.stringify(candidateData, null, 2),
+    LATER_CHAPTERS_INDEX_JSON: JSON.stringify(laterChaptersIndex, null, 2),
     BOOK_CONVENTIONS: bookConventions || NO_BOOK_CONVENTIONS,
   });
 
@@ -105,12 +139,15 @@ function noteWithFlag(existingReviewNote, reason, laterChapterLabel) {
 }
 
 /**
- * Forward-looking, LLM-driven, non-destructive review. Materializes every
- * later chapter of the book to a cache file (shared with the current-chapter
- * extraction cache — see epubLibrary.js's chapterCachePath) and asks a
- * Sonnet-medium model to flag which candidate items look premature for this
- * point in the book — either because a later chapter explicitly re-teaches
- * them, or because they rely on grammar/vocabulary not yet introduced.
+ * Forward-looking, LLM-driven, non-destructive review. Asks a Sonnet-medium
+ * model to flag which candidate items look premature for this point in the
+ * book — either because a later chapter explicitly re-teaches them, or
+ * because they rely on grammar/vocabulary not yet introduced. The model
+ * judges from the once-per-book taught-content index (epubTaughtIndex.js,
+ * built lazily and cached under the EPUB hash); when that index can't be
+ * built it falls back to the original behavior of materializing every later
+ * chapter (shared cache — see epubLibrary.js's chapterCachePath) and having
+ * the model read them directly.
  * Flagged items are never removed: they come back with `uncertain: true` and
  * a "Possibly premature — ..." note appended, so the human reviewer sees and
  * decides, rather than the item silently vanishing before review.
@@ -134,6 +171,7 @@ export function flagForwardConcerns({
   bookConventions = null,
   log = () => {},
   runClaude = defaultRunClaude,
+  ensureTaughtIndex = defaultEnsureTaughtIndex,
   libraryHomeDir,
 } = {}) {
   if (candidateItems.length === 0) {
@@ -148,25 +186,56 @@ export function flagForwardConcerns({
     return { items: candidateItems, flagged: [] };
   }
 
-  const epubHash = hashEpubFile(epubPath);
-  const laterChapterFilePaths = laterChapters.map((chapter) => {
-    const dest = chapterCachePath(epubHash, chapter.number, { libraryHomeDir });
-    return extractChapterToFile(epubPath, chapter.number, dest);
-  });
-
   const lastChapterNumber = chapters[chapters.length - 1].number;
-  log(
-    `forward flag pass: checking ${candidateItems.length} item(s) against chapters ` +
-      `${chapterNumber + 1}-${lastChapterNumber}`,
-  );
 
-  const prompt = renderForwardFlagPrompt({
+  // Preferred path: consult the once-per-book taught-content index (built and cached on
+  // first need) instead of materializing and re-reading every later chapter per assemble.
+  // When the index can't be built, fall back to the legacy whole-chapters read below —
+  // never a silent quality downgrade to "no flags".
+  const taughtIndex = ensureTaughtIndex({
+    epubPath,
     targetLanguage,
-    chapterNumber,
-    candidateItems,
-    laterChapterFilePaths,
-    bookConventions,
+    runClaude,
+    libraryHomeDir,
+    log,
   });
+
+  let prompt;
+  if (taughtIndex) {
+    const laterChaptersIndex = taughtIndex.chapters.filter(
+      (entry) => entry.chapter > chapterNumber,
+    );
+    log(
+      `forward flag pass: checking ${candidateItems.length} item(s) against the taught index ` +
+        `of chapters ${chapterNumber + 1}-${lastChapterNumber}`,
+    );
+    prompt = renderForwardFlagIndexPrompt({
+      targetLanguage,
+      chapterNumber,
+      candidateItems,
+      laterChaptersIndex,
+      bookConventions,
+    });
+  } else {
+    const epubHash = hashEpubFile(epubPath);
+    const laterChapterFilePaths = laterChapters.map((chapter) => {
+      const dest = chapterCachePath(epubHash, chapter.number, { libraryHomeDir });
+      return extractChapterToFile(epubPath, chapter.number, dest);
+    });
+
+    log(
+      `forward flag pass: checking ${candidateItems.length} item(s) against chapters ` +
+        `${chapterNumber + 1}-${lastChapterNumber} (no taught index — reading chapters directly)`,
+    );
+
+    prompt = renderForwardFlagPrompt({
+      targetLanguage,
+      chapterNumber,
+      candidateItems,
+      laterChapterFilePaths,
+      bookConventions,
+    });
+  }
 
   let flagEntries;
   try {

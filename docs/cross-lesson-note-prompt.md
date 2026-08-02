@@ -4,7 +4,10 @@
 
 You improve the teachability of Anki flashcard notes for an English speaker learning
 {{TARGET_LANGUAGE}}. Below are the cards from one course, listed in STUDY ORDER and tagged with the
-`lesson` they come from.
+`lesson` they come from — in two tiers. The `## Cards` list carries the CURRENT lesson and its
+immediate predecessors in full detail. The `## Earlier-lessons digest` carries every older lesson
+reduced to `lesson`/`english`/`target` — that is everything you need from them: which glosses and
+target forms the learner has already met, for cross-references and for spotting collisions.
 
 The learner has ALREADY LEARNED: {{EARLIER_LESSONS}}.
 The CURRENT lesson being taught is "{{CURRENT_LESSON}}".
@@ -96,7 +99,8 @@ tags are the book's own names and are the only correct way to cite a lesson.
   はじめまして (hajimemashite).
 - Keep each note concise (1–2 sentences), concrete, and about USING the card — not restating its
   meaning.
-- Natural sentence-case English. Only reference cards that actually appear in the list below.
+- Natural sentence-case English. Only reference cards that actually appear in the lists below (the
+  full list or the digest).
 - **When you name another card, use the gloss THAT CARD carries — never your own knowledge of the
   word.** Every card in the list below shows the `english` the learner actually sees; that is the only
   meaning they have been taught. A word usually means more than the book has covered so far, and
@@ -114,8 +118,14 @@ Return ONLY JSON: `{"notes":[{"id":"…","note":"…","hint":"…"}, …]}`
 `hint` is OPTIONAL and belongs only on a colliding card (point 8). Omit it everywhere else — an
 omitted field is left exactly as it is, while `""` DELETES the existing value.
 
-## Cards
+## Cards (current lesson + immediate predecessors, full detail)
 
 ```json
 {{CARDS_JSON}}
+```
+
+## Earlier-lessons digest (gloss + target only; `[]` when there are none older)
+
+```json
+{{EARLIER_DIGEST_JSON}}
 ```

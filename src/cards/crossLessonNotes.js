@@ -14,6 +14,10 @@ const DEFAULT_TEMPLATE_PATH = resolve(
 const NO_EARLIER_LESSONS = "(nothing — this is the first lesson)";
 const BACKUP_SUFFIX = ".pre-enhance.bak";
 
+// How many lessons (current + immediate predecessors) go into the prompt in FULL detail;
+// everything older is digested to lesson/english/target. See enhanceLessonNotes.
+const RECENT_CONTEXT_LESSONS = 3;
+
 function readJson(path) {
   return JSON.parse(readFileSync(path, "utf-8"));
 }
@@ -87,6 +91,7 @@ export function lessonUnits(deckDir) {
 
 export function renderCrossLessonNotePrompt({
   cards,
+  earlierDigest = [],
   currentLabel,
   earlierLabels,
   targetLanguage,
@@ -110,6 +115,7 @@ export function renderCrossLessonNotePrompt({
       null,
       2,
     ),
+    EARLIER_DIGEST_JSON: JSON.stringify(earlierDigest, null, 2),
   });
 }
 
@@ -150,10 +156,11 @@ function applyEdit(item, edit) {
 
 /**
  * Writes back-of-card notes — and, where two cards collide on one English gloss, front-of-card hints —
- * for ONE lesson, fed that lesson plus every EARLIER lesson of the same book/course as context.
- * Cross-references are therefore structurally BACKWARD-only: the model never sees a later lesson, so it
- * cannot reference material the learner hasn't met — that's a property of what it's shown, not a rule
- * it's asked to follow.
+ * for ONE lesson, fed that lesson plus every EARLIER lesson of the same book/course as context: the
+ * nearest RECENT_CONTEXT_LESSONS in full, everything older as a gloss+target digest (see the
+ * two-tier comment in the body). Cross-references are therefore structurally BACKWARD-only: the model
+ * never sees a later lesson, so it cannot reference material the learner hasn't met — that's a
+ * property of what it's shown, not a rule it's asked to follow.
  *
  * `hint` is in scope here because a gloss collision is only VISIBLE across lessons: two cards reading
  * "How many people?" with different answers are unremarkable inside their own chapters and unstudiable
@@ -188,9 +195,23 @@ export function enhanceLessonNotes({
   const current = units[index];
   const language = targetLanguage || current.data.meta?.targetLanguage || "the target language";
   // Cards carry the lesson's own name, never its position — see lessonUnits().
+  //
+  // Two-tier context: the current lesson plus its immediate predecessors go in FULL (notes,
+  // hints, romaji — the material the model actively works against), while every older lesson is
+  // reduced to a gloss+target digest. Sending every earlier lesson's full cards grew the prompt
+  // quadratically over a book, and the older lessons' role here is only "what glosses/targets has
+  // the learner met" — cross-references and collision checks both work from gloss + target.
+  const recentStart = Math.max(0, index + 1 - RECENT_CONTEXT_LESSONS);
   const contextCards = units
-    .slice(0, index + 1)
+    .slice(recentStart, index + 1)
     .flatMap((unit) => unit.data.items.map((item) => ({ ...item, __lesson: unit.label })));
+  const earlierDigest = units.slice(0, recentStart).flatMap((unit) =>
+    unit.data.items.map((item) => ({
+      lesson: unit.label,
+      english: item.english,
+      target: item.target,
+    })),
+  );
   const earlierLabels = units.slice(0, index).map((unit) => unit.label);
   const currentIds = new Set(current.data.items.map((item) => item.id));
 
@@ -200,6 +221,7 @@ export function enhanceLessonNotes({
       runClaude(
         renderCrossLessonNotePrompt({
           cards: contextCards,
+          earlierDigest,
           currentLabel: current.label,
           earlierLabels,
           targetLanguage: language,

@@ -81,6 +81,30 @@ export function unitBuildState(runDir) {
   return { claim, building: liveness !== "stale", interrupted: liveness === "stale" };
 }
 
+/**
+ * The stage-derived decoration EVERY adapter's units share: stage, review/done flags, readiness,
+ * live build state, and stage-appropriate render cards. Extracted because the template adapter
+ * once built its single unit by hand and missed the build-state fields — so a template being
+ * built rendered edit controls that bounced off 409s, and an interrupted template build could
+ * never be cleared from the UI.
+ */
+export function decorateUnit(runDir, data) {
+  const meta = data.meta || {};
+  const build = unitBuildState(runDir);
+  return {
+    stage: data.stage,
+    reviewed: !!meta.reviewed,
+    done: !!meta.done,
+    // Whether the pre-review passes have all run. Surfaced per unit so the home page can keep an
+    // unfinished lesson out of "In review" and the review view can say what's still to run.
+    ...lessonReadiness(meta, data.items),
+    building: build.building,
+    interrupted: build.interrupted,
+    claim: build.claim,
+    cards: data.items.map(renderCardForStage(data.stage)),
+  };
+}
+
 export function scanNumberedUnits(deckDir, prefix) {
   if (!existsSync(deckDir)) return [];
   const label = `${prefix[0].toUpperCase()}${prefix.slice(1)}`;
@@ -98,23 +122,13 @@ export function scanNumberedUnits(deckDir, prefix) {
     const data = loadStageData(runDir);
     if (!data) continue;
     const meta = data.meta || {};
-    const build = unitBuildState(runDir);
     const number = typeof meta.chapterNumber === "number" ? meta.chapterNumber : Number(m[1]);
     units.push({
       seq,
       extras,
       number,
       label: meta.chapterLabel || `${label} ${number}`,
-      stage: data.stage,
-      reviewed: !!meta.reviewed,
-      done: !!meta.done,
-      // Whether the pre-review passes have all run. Surfaced per unit so the home page can keep an
-      // unfinished lesson out of "In review" and the review view can say what's still to run.
-      ...lessonReadiness(meta, data.items),
-      building: build.building,
-      interrupted: build.interrupted,
-      claim: build.claim,
-      cards: data.items.map(renderCardForStage(data.stage)),
+      ...decorateUnit(runDir, data),
     });
   }
   // Same order the package uses: by chapter number, then a lesson before its own extras. `seq` is a

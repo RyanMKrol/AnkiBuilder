@@ -761,9 +761,11 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const result = setLessonDone(runDir, done);
-    // The done-set just changed — refresh the group package so it always matches (best-effort).
-    await rebuildGroupQuiet(type, id);
-    sendJson(res, result);
+    // The done-set just changed — refresh the group package so it always matches. A REAL rebuild
+    // failure rides back on the response: reporting success while the shipping .apkg stayed stale
+    // is exactly the divergence the auto-rebuild exists to prevent.
+    const { rebuildError } = await rebuildGroupQuiet(type, id);
+    sendJson(res, { ...result, rebuildError });
   }
 
   async function handleReviewExclude(req, res, type, id, unit, cardId) {
@@ -894,15 +896,19 @@ ${sectionHtml}
     sendJson(res, report);
   }
 
-  // Best-effort rebuild of the group package, ignoring the "nothing done yet" case — so marking a
-  // lesson done (or reopening one) keeps the on-disk package in step with the done-set without failing
-  // the write when no lesson is done.
+  // Best-effort rebuild of the group package, tolerating only the BENIGN cases — no lesson done
+  // yet (reopening the last one), or no unit folders at all — so marking a lesson done (or
+  // reopening one) keeps the on-disk package in step without failing the write. Every other
+  // failure is a real build error the caller must surface: it used to be swallowed here, so Mark
+  // done reported success while the shipping .apkg silently stayed stale.
   async function rebuildGroupQuiet(type, id) {
     const adapter = adapterFor(type);
     try {
       await adapter?.rebuild?.(outputRoot, id);
-    } catch {
-      /* no done lessons yet — leave the package as-is */
+      return { rebuildError: null };
+    } catch (e) {
+      const benign = /no finished lessons|no chapter-\*\/|directories found/.test(e.message || "");
+      return { rebuildError: benign ? null : e.message || "rebuild failed" };
     }
   }
 

@@ -26,6 +26,14 @@ test("a bare translate output is not reviewable", () => {
   assert.equal(lessonReadiness(meta).ready, false);
 });
 
+test("recorded translate errors hold a lesson back even when every pass is marked", () => {
+  const meta = { ...prepared, translateErrors: [{ id: "bye", error: "missing an entry" }] };
+  const verdict = lessonReadiness(meta);
+  assert.equal(verdict.ready, false);
+  assert.equal(verdict.translateErrors.length, 1);
+  assert.match(describeReadiness(verdict), /1 item\(s\) failed to translate/);
+});
+
 test("a template is always ready — it has no drills to mine and no siblings to reference", () => {
   assert.equal(lessonReadiness({ sourceType: "template" }).ready, true);
   assert.deepEqual(lessonReadiness({ sourceType: "template" }).missing, []);

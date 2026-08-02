@@ -160,6 +160,53 @@ test("keeps errors per-item: a missing entry drops only that item", async () => 
   assert.match(errors[0].error, /missing an entry/);
 });
 
+test("retries the failed subset once, merging recovered items back in corpus order", async () => {
+  const corpus = baseCorpus([
+    untranslated("hello", "Hello", "Greetings"),
+    untranslated("bye", "Goodbye", "Greetings"),
+    untranslated("thanks", "Thanks", "Greetings"),
+  ]);
+
+  const sentBatches = [];
+  const { cards, errors } = await translateCorpus(corpus, {
+    runClaude: (prompt) => {
+      sentBatches.push(extractInputDataIds(prompt));
+      if (sentBatches.length === 1) {
+        // First call: "bye" is missing from the response.
+        return JSON.stringify([
+          { id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" },
+          { id: "thanks", target: "Merci", pronunciation: "mer-SEE" },
+        ]);
+      }
+      return JSON.stringify([{ id: "bye", target: "Au revoir", pronunciation: "oh ruh-VWAR" }]);
+    },
+  });
+
+  assert.deepEqual(errors, []);
+  assert.deepEqual(sentBatches[1], ["bye"]); // retry carries ONLY the failed item
+  // The recovered card sits in its corpus position, not appended at the end.
+  assert.deepEqual(
+    cards.items.map((c) => c.id),
+    ["hello", "bye", "thanks"],
+  );
+});
+
+test("an item that fails both attempts surfaces as an error", async () => {
+  const corpus = baseCorpus([untranslated("hello", "Hello", "Greetings")]);
+
+  let calls = 0;
+  const { cards, errors } = await translateCorpus(corpus, {
+    runClaude: () => {
+      calls++;
+      return "not json at all";
+    },
+  });
+
+  assert.equal(calls, 2); // one retry, then give up
+  assert.equal(cards.items.length, 0);
+  assert.equal(errors.length, 1);
+});
+
 test("surfaces a wholly-malformed batch response as an error for every item in it", async () => {
   const corpus = baseCorpus([
     untranslated("hello", "Hello", "Greetings"),

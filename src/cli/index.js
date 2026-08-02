@@ -505,7 +505,51 @@ async function runTranslateInner(flags, ctx) {
   const paths = ctx.runPaths(flags.run);
 
   if (existsSync(paths.cards)) {
-    ctx.log(`cards.json already exists at ${paths.cards} — reusing`);
+    const existing = readJson(paths.cards);
+    const pending = Array.isArray(existing.meta?.translateErrors)
+      ? existing.meta.translateErrors
+      : [];
+    if (pending.length === 0) {
+      ctx.log(`cards.json already exists at ${paths.cards} — reusing`);
+      return;
+    }
+    // A previous run left errored items behind. Without this, "cards.json already exists" froze
+    // the failure in permanently — every re-run short-circuited and the missing cards never came
+    // back. Retry JUST the errored subset and merge the successes in at their corpus positions.
+    ctx.log(
+      `translate: retrying ${pending.length} item(s) that failed last time: ` +
+        pending.map((e) => e.id).join(", "),
+    );
+    const corpus = readJson(paths.corpus);
+    const pendingIds = new Set(pending.map((e) => e.id));
+    const subCorpus = { ...corpus, items: corpus.items.filter((item) => pendingIds.has(item.id)) };
+    const { cards: retried, errors } = await ctx.translateCorpus(subCorpus, {
+      simpleScript: !!flags["simple-script"],
+    });
+
+    const byId = new Map(existing.items.map((item) => [item.id, item]));
+    for (const item of retried.items) {
+      byId.set(item.id, item);
+    }
+    const orderById = new Map(corpus.items.map((item, index) => [item.id, index]));
+    existing.items = [...byId.values()].sort(
+      (a, b) =>
+        (orderById.get(a.id) ?? Number.MAX_SAFE_INTEGER) -
+        (orderById.get(b.id) ?? Number.MAX_SAFE_INTEGER),
+    );
+    existing.meta = { ...existing.meta };
+    if (errors.length > 0) {
+      existing.meta.translateErrors = errors;
+    } else {
+      delete existing.meta.translateErrors;
+    }
+    writeJson(paths.cards, existing);
+    ctx.log(
+      errors.length > 0
+        ? `translate: ${errors.length} item(s) STILL failing — the lesson stays blocked from review: ` +
+            errors.map((e) => e.id).join(", ")
+        : `translate: recovered all ${retried.items.length} previously-failed item(s)`,
+    );
     return;
   }
 
@@ -526,6 +570,12 @@ async function runTranslateInner(flags, ctx) {
     simpleScript: !!flags["simple-script"],
   });
 
+  // Errored items are RECORDED on the file, not just logged: readiness blocks the review while any
+  // are present, and the re-run path above retries exactly this subset instead of short-circuiting.
+  if (errors.length > 0) {
+    cards.meta = { ...cards.meta, translateErrors: errors };
+  }
+
   writeJson(paths.cards, cards);
   ctx.log(`translated ${cards.items.length} item(s) to ${paths.cards}`);
   // Translation alone does NOT make a lesson reviewable — the drill, de-dup and cross-reference
@@ -538,7 +588,10 @@ async function runTranslateInner(flags, ctx) {
     );
   }
   if (errors.length > 0) {
-    ctx.log(`${errors.length} item(s) failed to translate: ${errors.map((e) => e.id).join(", ")}`);
+    ctx.log(
+      `${errors.length} item(s) failed to translate (after one retry): ` +
+        `${errors.map((e) => e.id).join(", ")} — recorded in cards.json; re-run to retry them`,
+    );
   }
 }
 
@@ -663,6 +716,17 @@ async function runPrepareInner(flags, ctx) {
 
   const cards = readJson(paths.cards);
   const meta = cards.meta || {};
+
+  // Enriching an incompletely-translated lesson would mine drills and write notes against a card
+  // set with holes in it. Stop here instead — the markers stay unset, readiness keeps the lesson
+  // out of review, and re-running prepare retries the errored items first.
+  if (Array.isArray(meta.translateErrors) && meta.translateErrors.length > 0) {
+    ctx.log(
+      `prepare: stopping — ${meta.translateErrors.length} item(s) failed to translate. ` +
+        `Re-run "prepare --run ${runDir}" to retry them; enrichment runs once translation is complete.`,
+    );
+    return;
+  }
 
   if (meta.reviewed === true) {
     ctx.log(

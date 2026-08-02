@@ -38,7 +38,7 @@ test("cuts with an output-side -ss and a -t duration", () => {
 
   // Same encoder settings as the automatic trim, so re-cutting doesn't quietly change quality.
   assert.equal(args[args.indexOf("-c:a") + 1], "libmp3lame");
-  assert.equal(args[args.indexOf("-q:a") + 1], "2");
+  assert.equal(args[args.indexOf("-q:a") + 1], "4");
 });
 
 test("refuses a range that isn't two finite numbers", () => {

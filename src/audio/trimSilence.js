@@ -23,7 +23,9 @@ const DEFAULTS = {
   minSpeechSec: 0.2, // a speech segment shorter than this is a blip/noise, not real content
   padSec: 0.2, // tail kept after the last speech, capped by however much silence there actually is
 };
-const MP3_QUALITY = "2"; // libmp3lame -q:a (VBR, ~190 kbps)
+// libmp3lame -q:a. The ElevenLabs source is 128 kbps; re-encoding it at q2 (~190 kbps VBR) just
+// inflated deck size for nothing, so target roughly the source's own quality instead.
+const MP3_QUALITY = "4"; // VBR, ~165 kbps ceiling — comfortably transparent for a 128 kbps source
 const MIN_SHORTEN_SEC = 0.05; // don't re-encode for a negligible gain
 const MIN_PLAUSIBLE_SEC = 0.3; // never trim to below this (guards an all-silence clip)
 
@@ -236,8 +238,13 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
     // knows to cut it back off. Injectable veto so tests don't have to decode real audio.
     marker = false,
     looksLikeMarker = defaultLooksLikeMarker,
+    // Out-of-band report channel: when a marker-bearing clip goes through, `flags.markerStripped`
+    // records whether the marker was actually found and cut. A stuck marker lands in the durable
+    // cache and is only ever caught by ear otherwise — see autoTrim.
+    flags = null,
   } = opts;
   const pre = cleanup ? `${cleanup},` : "";
+  if (marker && flags) flags.markerStripped = false;
 
   const toggle = env.ANKI_BUILDER_TRIM_AUDIO;
   if (toggle === "0" || toggle === "false") return mp3Buffer;
@@ -285,6 +292,7 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
           break;
         }
       }
+      if (dropFrom != null && flags) flags.markerStripped = true;
     }
 
     const trimTo = computeTrimPoint(detect.stderr || "", {
@@ -337,10 +345,20 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
  * `cleanup` names a chain from ./cleanupFilter.js; omit it for the configured default, or pass
  * `"off"` to trim without cleaning.
  *
- * @returns {Promise<{ auto: Buffer, changed: boolean }>}
+ * `markerStuck` is true when the clip was generated WITH the end marker but the trim could not
+ * find and cut it — the marker survives into the shipping clip and only ears would catch it, so
+ * the caller should surface a flag for the reviewer. Only the real trimmer reports it (an
+ * injected test trim leaves the report unset, which reads as "not stuck").
+ *
+ * @returns {Promise<{ auto: Buffer, changed: boolean, markerStuck: boolean }>}
  */
 export async function autoTrim(raw, { trim = trimTrailingSilence, cleanup, marker = false } = {}) {
-  const auto = await trim(raw, { cleanup: cleanupChain(cleanup), marker });
+  const flags = {};
+  const auto = await trim(raw, { cleanup: cleanupChain(cleanup), marker, flags });
   const changed = auto !== raw && !auto.equals(raw);
-  return { auto: changed ? auto : raw, changed };
+  return {
+    auto: changed ? auto : raw,
+    changed,
+    markerStuck: Boolean(marker) && flags.markerStripped === false,
+  };
 }

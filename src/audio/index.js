@@ -26,6 +26,7 @@ export const AUDIO_FIELDS = [
   "audioTrim",
   "audioFilter",
   "audioMarked",
+  "audioMarkerStuck",
 ];
 
 /**
@@ -112,13 +113,13 @@ async function fetchTermsToCache(
         }
 
         const raw = await fetchTts(term, voiceId, apiKey, languageCode);
-        const { auto } = await autoTrim(raw, { trim, marker });
+        const { auto, markerStuck } = await autoTrim(raw, { trim, marker });
         // Original FIRST. Crashing between the two writes must leave the SHIPPING clip missing (so
         // the next run refetches and self-heals), never an orphaned shipping clip whose absent
         // sibling would permanently read as "this entry predates originals".
         await writeFileAtomicAsync(origPath, raw);
         await writeFileAtomicAsync(filepath, auto);
-        fetched.set(term, { audio: filename, original });
+        fetched.set(term, { audio: filename, original, markerStuck });
       } catch (error) {
         // First failure wins; the flag stops every worker pulling new terms, and what already
         // landed in the cache stays valid for the retry run.
@@ -173,6 +174,21 @@ export function isStageOriginalFilename(filename) {
 
 export function defaultOriginalFilename(item, languageCode) {
   return `${hashTerm(defaultClipText(item, languageCode))}.orig.mp3`;
+}
+
+/**
+ * Does this filename name a take a GENERATION path produced (the audio stage's content-addressed
+ * clips, or a dashboard Generate / Generate (kanji) preview)? Those are the takes that carried the
+ * TTS end marker when the language uses one — which is how the server derives a card's
+ * `audioMarked` from provenance instead of trusting the client to report it.
+ */
+export function isGeneratedTakeFilename(filename) {
+  return (
+    typeof filename === "string" &&
+    (isDefaultClipFilename(filename) ||
+      isStageOriginalFilename(filename) ||
+      /-gen(kanji)?-[0-9a-f]{8}\.(orig\.)?mp3$/.test(filename))
+  );
 }
 
 /**
@@ -271,6 +287,11 @@ export async function generateAudio(
       // switch, a re-trim — knows the original still has the marker on the end and strips it too.
       if (usesEndMarker(languageCode)) next.audioMarked = true;
       else delete next.audioMarked;
+      // The trim could not find/cut the end marker, so it survives into the shipping clip — a
+      // failure only ears would otherwise catch. Badged in the audio review; cleared whenever the
+      // reviewer installs different audio (all setters spread the full AUDIO_FIELDS).
+      if (clip.markerStuck) next.audioMarkerStuck = true;
+      else delete next.audioMarkerStuck;
       if (clip.original) next.audioOriginal = clip.original;
       else delete next.audioOriginal;
       // A regenerated card is speaking NEW text, so any hand-cut range the reviewer applied describes

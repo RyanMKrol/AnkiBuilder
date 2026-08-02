@@ -500,3 +500,27 @@ test("autoTrim passes the marker flag through to the trimmer", async () => {
   await autoTrim(Buffer.from("x"), { trim, marker: true });
   assert.deepEqual(seen, [false, true]);
 });
+
+test("autoTrim reports a stuck marker when the trimmer says the strip did not happen", async () => {
+  const stuckTrim = async (bytes, opts) => {
+    if (opts.marker && opts.flags) opts.flags.markerStripped = false;
+    return bytes;
+  };
+  const stuck = await autoTrim(Buffer.from("x"), { trim: stuckTrim, marker: true });
+  assert.equal(stuck.markerStuck, true);
+
+  const strippedTrim = async (bytes, opts) => {
+    if (opts.marker && opts.flags) opts.flags.markerStripped = true;
+    return Buffer.from("cut");
+  };
+  const ok = await autoTrim(Buffer.from("x"), { trim: strippedTrim, marker: true });
+  assert.equal(ok.markerStuck, false);
+
+  // A trimmer that never reports (an injected test stub, or the ffmpeg-missing early return path
+  // in old builds) reads as NOT stuck — the flag only fires on a positive "could not strip".
+  const silentTrim = async (bytes) => bytes;
+  const unknown = await autoTrim(Buffer.from("x"), { trim: silentTrim, marker: true });
+  assert.equal(unknown.markerStuck, false);
+  const noMarker = await autoTrim(Buffer.from("x"), { trim: stuckTrim, marker: false });
+  assert.equal(noMarker.markerStuck, false);
+});

@@ -172,6 +172,10 @@ const CARDS_SCHEMA = {
           // (src/audio/ttsMarker.js) still on it. Anything re-deriving takes from that original has to
           // strip the marker again, so it needs to know the marker is there.
           audioMarked: { type: "boolean" },
+          // True when the automatic trim could NOT find and cut the end marker off this card's
+          // shipping clip — the marker survives, audibly, and only ears would otherwise catch it.
+          // Badged in the audio review; cleared when the reviewer installs different audio.
+          audioMarkerStuck: { type: "boolean" },
           // Legacy optional second recording, from when Japanese cards were generated as a with-。 /
           // no-。 pair. That machinery is gone — the end marker (src/audio/ttsMarker.js) replaced what
           // the dot was working around — and nothing writes this any more. The field stays only so

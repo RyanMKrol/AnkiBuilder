@@ -12,6 +12,8 @@ export default [
         console: "readonly",
         URL: "readonly",
         fetch: "readonly",
+        AbortSignal: "readonly",
+        globalThis: "readonly",
       },
     },
   },

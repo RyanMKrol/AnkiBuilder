@@ -99,5 +99,18 @@ test("the prompt carries the card's current state and the irregular-counter warn
   const prompt = renderNumberReadingPrompt({ cards: numeric(), targetLanguage: "ja" });
   assert.match(prompt, /"currentPronunciation": "2025-nen ni"/);
   assert.match(prompt, /しがつ/);
+  assert.match(prompt, /macrons/); // ja romanization style rules injected
+  assert.match(prompt, /joined by a HYPHEN/);
+  assert.doesNotMatch(prompt, /\{\{[A-Z_]+\}\}/);
+});
+
+test("a language with no configured rules gets a neutral prompt, not Japanese prose", () => {
+  const prompt = renderNumberReadingPrompt({
+    cards: [{ id: "a", english: "2000 euros", target: "2000 euros", pronunciation: null }],
+    targetLanguage: "Spanish",
+  });
+  assert.doesNotMatch(prompt, /しがつ/);
+  assert.doesNotMatch(prompt, /macrons/);
+  assert.match(prompt, /Match the deck's existing romanization style/);
   assert.doesNotMatch(prompt, /\{\{[A-Z_]+\}\}/);
 });

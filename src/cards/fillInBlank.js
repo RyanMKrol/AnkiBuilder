@@ -5,6 +5,7 @@ import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTempl
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { runClaude as defaultRunClaude } from "../corpus/epubLlmRunClaude.js";
+import { getLanguagePromptRules } from "../translate/languageRules.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -56,12 +57,17 @@ export function renderFillInBlankPrompt({
     return entry;
   });
 
+  // Per-language fragments (languageRules.js): the template itself stays language-neutral.
+  const rules = getLanguagePromptRules(resolveIso639Code(targetLanguage));
   return renderPromptTemplate(templatePath, {
     TARGET_LANGUAGE: targetLanguage,
     SOURCE_INSTRUCTION: chapterFilePath ? SOURCE_FROM_FILE(chapterFilePath) : SOURCE_NONE,
     CARDS_JSON: JSON.stringify(cardData, null, 2),
     EARLIER_VOCAB: earlierVocab || NO_EARLIER_VOCAB,
     TARGET_COUNT: String(targetCount),
+    COUNTER_EXAMPLES: rules.counterExamples ?? "",
+    COUNTER_HYPHEN_RULE:
+      rules.counterHyphenRule ?? "Follow the language's standard romanization conventions.",
   });
 }
 

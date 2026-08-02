@@ -4,6 +4,7 @@ import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTempl
 import { findUnreadableNumbers } from "./spokenNumbers.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { getLanguagePromptRules } from "../translate/languageRules.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -22,8 +23,19 @@ export function renderNumberReadingPrompt({
   targetLanguage,
   templatePath = DEFAULT_TEMPLATE_PATH,
 } = {}) {
+  // Per-language fragments (languageRules.js): the template itself stays language-neutral.
+  const rules = getLanguagePromptRules(resolveIso639Code(targetLanguage));
+  const styleRules = rules.numberReadingStyle?.length
+    ? rules.numberReadingStyle
+    : ["Match the deck's existing romanization style for this language."];
   return renderPromptTemplate(templatePath, {
     TARGET_LANGUAGE: targetLanguage,
+    COUNTER_EXAMPLES: rules.counterExamples ?? "",
+    // The placeholder sits on an already-indented template line, so the first bullet needs no
+    // indent of its own; the rest align under it.
+    ROMANIZATION_STYLE_RULES: styleRules
+      .map((rule, index) => (index === 0 ? `- ${rule}` : `   - ${rule}`))
+      .join("\n"),
     CARDS_JSON: JSON.stringify(
       cards.map((card) => ({
         id: card.id,

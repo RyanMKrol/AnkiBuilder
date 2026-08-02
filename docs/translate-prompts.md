@@ -4,6 +4,8 @@
 
 **Spoken form (`reading`).** Anywhere the target text is romanized or pronounced, an item's optional `reading` is used in place of `target` when set (`reading ?? target`) — the romanization library romanizes it, and the pronunciation-only prompt is handed it as the text to pronounce. This is how a number card displays digits (`target: "2,000えん"`) but pronounces/romanizes the spelled-out spoken form (`reading: "にせんえん"`), since digits break both the romanizer and TTS. The `reading` is carried through onto the resulting card for the audio stage. See `src/model/index.js` (schema) and `src/translate/romanizationEval.js`.
 
+**Per-language style rules.** Both translation prompts inject any register/orthography rules the target language defines in `src/translate/languageRules.js` (`translationStyle`, keyed by ISO 639-1 code) as extra bullets under the `target` field — for Japanese that means defaulting generated translations to the polite です／ます register and textbook phrasing. The `--simple-script` flag separately injects the language's script constraint from `src/translate/targetScript.js`. The prompt cores stay language-neutral; a language with no rules gets no extra bullets.
+
 **Which prompts run depends on whether the target language has a configured romanization library** (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code):
 
 - **No library configured** (the original design, unchanged): the two prompts below — full-translation and pronunciation-only — both ask the model for `pronunciation` directly.

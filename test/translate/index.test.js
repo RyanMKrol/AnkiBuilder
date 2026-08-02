@@ -61,6 +61,33 @@ test("drops corpus items marked excluded before translating", async () => {
   assert.ok(!sentIds.includes("drop"), "excluded item is never sent to the model");
 });
 
+test("Japanese translations get the register/style rules; other languages get none", async () => {
+  const jaCorpus = {
+    meta: { targetLanguage: "ja", sourceType: "manual" },
+    items: [untranslated("hello", "Hello", "Greetings")],
+  };
+
+  let jaPrompt = "";
+  await translateCorpus(jaCorpus, {
+    // Force the model-translation path so the prompt is observable without kuroshiro.
+    getRomanizationLibrary: () => undefined,
+    runClaude: (prompt) => {
+      jaPrompt = prompt;
+      return JSON.stringify([{ id: "hello", target: "こんにちは", pronunciation: "konnichiwa" }]);
+    },
+  });
+  assert.match(jaPrompt, /です／ます register/);
+
+  let frPrompt = "";
+  await translateCorpus(baseCorpus([untranslated("hello", "Hello", "Greetings")]), {
+    runClaude: (prompt) => {
+      frPrompt = prompt;
+      return JSON.stringify([{ id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" }]);
+    },
+  });
+  assert.doesNotMatch(frPrompt, /です／ます/);
+});
+
 test("buildTargetOnlyPrompt injects a supplied target-script rule verbatim (script-agnostic core)", () => {
   const items = [{ id: "a", english: "Wallet" }];
   const rule = "MADE-UP RULE: write the target in squiggles only.";

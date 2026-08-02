@@ -20,7 +20,9 @@ export const bookAdapter = {
 
   listDecks(outputRoot) {
     return listBooks(outputRoot).map((b) => {
-      const units = scanNumberedUnits(bookDir(outputRoot, b.slug), "chapter");
+      const units = scanNumberedUnits(bookDir(outputRoot, b.slug), "chapter", {
+        includeCards: false,
+      });
       return {
         type: "book",
         id: b.slug,
@@ -32,13 +34,13 @@ export const bookAdapter = {
     });
   },
 
-  loadDeck(outputRoot, id) {
+  loadDeck(outputRoot, id, { includeCards = true } = {}) {
     const book = listBooks(outputRoot).find((b) => b.slug === id);
     if (!book) return null;
     return {
       title: book.title || id,
       targetLanguage: book.targetLanguage,
-      units: scanNumberedUnits(bookDir(outputRoot, id), "chapter"),
+      units: scanNumberedUnits(bookDir(outputRoot, id), "chapter", { includeCards }),
     };
   },
 

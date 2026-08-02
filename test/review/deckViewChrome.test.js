@@ -4,6 +4,7 @@ import {
   DECK_VIEW_CSS,
   fontFaceRule,
   renderLessonSections,
+  DASH_PRELUDE_SCRIPT,
   DECK_EDIT_SCRIPT,
   AUDIO_TRIM_SCRIPT,
 } from "../../src/review/deckViewChrome.js";
@@ -55,9 +56,11 @@ test("DECK_EDIT_SCRIPT auto-rebuilds the group after an edit, but only when the 
   // both edit success paths chain into maybeRebuild() — a no-op unless data-done="1"
   assert.match(DECK_EDIT_SCRIPT, /"\\u2713 replaced"; return maybeRebuild\(\)/);
   assert.match(DECK_EDIT_SCRIPT, /"\\u2713 generated"; return maybeRebuild\(\)/);
-  assert.match(DECK_EDIT_SCRIPT, /isDone \? rebuild\(\) : Promise\.resolve\(\)/);
+  // the rebuild-if-done rule now lives ONCE, in the shared prelude, and the script consumes it
+  assert.match(DECK_EDIT_SCRIPT, /maybeRebuild = A\.maybeRebuild/);
+  assert.match(DASH_PRELUDE_SCRIPT, /isDone \? rebuild\(\) : Promise\.resolve\(\)/);
   // rebuild always targets the single group package (never a per-lesson file)
-  assert.match(DECK_EDIT_SCRIPT, /var rebuildUrl = base \+ "\/rebuild"/);
+  assert.match(DASH_PRELUDE_SCRIPT, /base \+ "\/rebuild"/);
 });
 
 test("review surfaces AI-suggested / Uncertain at every stage (tick columns + Note at corpus, badges elsewhere)", () => {
@@ -270,7 +273,8 @@ test("AUDIO_TRIM_SCRIPT opens the handles at the current trim, preferring a hand
 test("DECK_EDIT_SCRIPT refreshes the whole row after Replace and after Generate", () => {
   // "td.au" alone matches the ORIGINAL column first (it renders in front), so the in-use swap has to
   // exclude it — otherwise a Replace updates the wrong player and In use keeps the previous take.
-  assert.match(DECK_EDIT_SCRIPT, /put\(tr, "td\.au:not\(\.au-orig\)", url\)/);
+  // The put/swap helpers live ONCE in the shared prelude now; the script consumes them.
+  assert.match(DASH_PRELUDE_SCRIPT, /putAudio\(tr, "td\.au:not\(\.au-orig\)", url\)/);
   assert.match(DECK_EDIT_SCRIPT, /put\(tr, "td\.au\.au-orig", j\.originalUrl\)/);
   assert.equal(
     /querySelector\("td\.au"\)/.test(DECK_EDIT_SCRIPT),
@@ -303,7 +307,7 @@ test("AUDIO_TRIM_SCRIPT commits on drag release, not on every pointermove", () =
 
 test("AUDIO_TRIM_SCRIPT survives the modal being closed mid-apply, and still reports failure", () => {
   // The request target is captured up front, so closing the modal can't orphan an in-flight write.
-  assert.match(AUDIO_TRIM_SCRIPT, /var range = \{ row: st\.row, start: st\.start, end: st\.end/);
+  assert.match(AUDIO_TRIM_SCRIPT, /sendRange\(\{ row: st\.row, start: st\.start, end: st\.end/);
   assert.match(AUDIO_TRIM_SCRIPT, /postTo\(range, /);
   // A failure written only into a hidden modal would never be seen, so it also lands on the row.
   assert.match(AUDIO_TRIM_SCRIPT, /rowSay\(range\.row, "trim failed: " \+ e\.message\)/);
@@ -311,4 +315,8 @@ test("AUDIO_TRIM_SCRIPT survives the modal being closed mid-apply, and still rep
   assert.match(AUDIO_TRIM_SCRIPT, /if \(inFlight\) \{ queued = range; return; \}/);
   // A failed range must be retryable — otherwise the dedupe guard would swallow the second attempt.
   assert.match(AUDIO_TRIM_SCRIPT, /lastSent = null;/);
+  // The queued replay goes through sendRange with its own captured state, NEVER back through st —
+  // closing the modal nulls st, and the old replay dropped the final drag that way.
+  assert.match(AUDIO_TRIM_SCRIPT, /queued = null; sendRange\(q\)/);
+  assert.equal(/st && \(st\.start = q\.start/.test(AUDIO_TRIM_SCRIPT), false);
 });

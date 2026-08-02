@@ -20,7 +20,9 @@ export const courseAdapter = {
 
   listDecks(outputRoot) {
     return listCourses(outputRoot).map((c) => {
-      const units = scanNumberedUnits(courseDir(outputRoot, c.slug), "lesson");
+      const units = scanNumberedUnits(courseDir(outputRoot, c.slug), "lesson", {
+        includeCards: false,
+      });
       return {
         type: "course",
         id: c.slug,
@@ -32,13 +34,13 @@ export const courseAdapter = {
     });
   },
 
-  loadDeck(outputRoot, id) {
+  loadDeck(outputRoot, id, { includeCards = true } = {}) {
     const course = listCourses(outputRoot).find((c) => c.slug === id);
     if (!course) return null;
     return {
       title: course.name || id,
       targetLanguage: course.targetLanguage,
-      units: scanNumberedUnits(courseDir(outputRoot, id), "lesson"),
+      units: scanNumberedUnits(courseDir(outputRoot, id), "lesson", { includeCards }),
     };
   },
 

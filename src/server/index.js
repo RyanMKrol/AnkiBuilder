@@ -7,6 +7,7 @@ import {
   DECK_VIEW_CSS,
   fontFaceRule,
   renderLessonSections,
+  DASH_PRELUDE_SCRIPT,
   EXPAND_COLLAPSE_SCRIPT,
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
@@ -96,6 +97,14 @@ function isLocalHostHeader(host) {
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 
+// Matches applyCardAudio's upload EXT_ALLOWLIST; anything else on disk falls back to audio/mpeg.
+const MEDIA_CONTENT_TYPES = {
+  mp3: "audio/mpeg",
+  m4a: "audio/mp4",
+  ogg: "audio/ogg",
+  wav: "audio/wav",
+};
+
 // Reads a request body into a Buffer, capping memory at `cap`. On overflow it STOPS buffering but
 // keeps draining the stream to its end (rather than destroying the socket, which resets the client
 // mid-upload), then rejects 413 — so the client reliably receives the error response.
@@ -164,7 +173,10 @@ export function createDeckServer({
     const enc = encodeURIComponent;
     const withUnits = decks.map((d) => {
       const adapter = adapterFor(d.type);
-      const full = adapter && adapter.loadDeck ? adapter.loadDeck(outputRoot, d.id) : null;
+      // Status rows only — skip materializing a render card for every item of every lesson.
+      const full = adapter?.loadDeck
+        ? adapter.loadDeck(outputRoot, d.id, { includeCards: false })
+        : null;
       const units = ((full && full.units) || []).map((u) => ({
         seq: u.seq,
         label: u.label,
@@ -406,7 +418,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       editable && !anyBuilding
         ? (stage, c) =>
             stage === "corpus" || (stage === "audio" && !anyDone)
-              ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button>`
+              ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
               : ""
         : undefined;
     const sectionControl =
@@ -516,6 +528,9 @@ ${modal}
     if (buildBanner.includes("clear-claim")) scripts.push(CLEAR_CLAIM_SCRIPT);
     // MARK_DONE_SCRIPT wires Mark done AND Reopen, so it loads for any audio-stage lesson (done or not).
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
+    // The shared prelude (window.__ab) must load before any of the scripts above — they all lean
+    // on it for jsonp / the rebuild-if-done helper / audio-cell swaps.
+    if (scripts.length > 0) scripts.unshift(DASH_PRELUDE_SCRIPT);
     const script = scripts.join("\n");
     return page(`${deck.title} — ${viewing ? "view" : "review"}`, body, script);
   }
@@ -594,17 +609,33 @@ ${sectionHtml}
     }
     if (!stat.isFile()) return notFound(res);
 
+    // Replace uploads keep their real extension (.wav/.m4a/.ogg) — serving those as audio/mpeg
+    // makes some browsers refuse to play them. Derive the type from what's actually on disk.
+    const contentType = MEDIA_CONTENT_TYPES[real.split(".").pop().toLowerCase()] || "audio/mpeg";
+
     const range = req.headers.range;
     const match = range && /^bytes=(\d*)-(\d*)$/.exec(range);
     if (match) {
-      const start = match[1] === "" ? 0 : Number(match[1]);
-      const end = match[2] === "" ? stat.size - 1 : Number(match[2]);
+      let start, end;
+      if (match[1] === "") {
+        // Suffix form (`bytes=-500` = the LAST 500 bytes) — previously misread as bytes 0-500.
+        const suffix = Number(match[2]);
+        if (!Number.isInteger(suffix) || suffix <= 0) {
+          res.writeHead(416, { "Content-Range": `bytes */${stat.size}` });
+          return res.end();
+        }
+        start = Math.max(0, stat.size - suffix);
+        end = stat.size - 1;
+      } else {
+        start = Number(match[1]);
+        end = match[2] === "" ? stat.size - 1 : Number(match[2]);
+      }
       if (!Number.isInteger(start) || !Number.isInteger(end) || start > end || end >= stat.size) {
         res.writeHead(416, { "Content-Range": `bytes */${stat.size}` });
         return res.end();
       }
       res.writeHead(206, {
-        "Content-Type": "audio/mpeg",
+        "Content-Type": contentType,
         "Content-Range": `bytes ${start}-${end}/${stat.size}`,
         "Accept-Ranges": "bytes",
         "Content-Length": end - start + 1,
@@ -613,7 +644,7 @@ ${sectionHtml}
     }
 
     res.writeHead(200, {
-      "Content-Type": "audio/mpeg",
+      "Content-Type": contentType,
       "Content-Length": stat.size,
       "Accept-Ranges": "bytes",
     });

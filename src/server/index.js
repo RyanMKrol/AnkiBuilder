@@ -42,6 +42,8 @@ import {
 import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
+import { isGeneratedTakeFilename } from "../audio/index.js";
+import { usesEndMarker } from "../audio/ttsMarker.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
 import { trimToRange as defaultTrimToRange } from "../audio/trimToRange.js";
@@ -656,7 +658,7 @@ ${sectionHtml}
     sendJson(res, { ...takes, ...takeUrls(type, id, unit, takes) });
   }
 
-  async function handleGenerate(res, type, id, unit, cardId) {
+  async function handleGenerate(req, res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
@@ -671,12 +673,24 @@ ${sectionHtml}
         503,
         "ELEVENLABS_API_KEY is not set — start the server with the key available",
       );
+    // Optional body: {"labels": ["kanji+comma"]} re-rolls just those takes (one credit each)
+    // instead of the whole set. An empty body keeps the original generate-everything behavior.
+    let labels = null;
+    const body = await readBodyCapped(req, 64 * 1024);
+    if (body.length > 0) {
+      try {
+        ({ labels = null } = JSON.parse(body.toString("utf-8")));
+      } catch {
+        throw httpError(400, "invalid JSON body");
+      }
+    }
     const variants = await generateCardVariants(runDir, cardId, {
       voiceId,
       apiKey,
       languageCode,
       fetchTts,
       trim,
+      labels,
     });
     sendJson(res, {
       variants: variants.map((v) => ({
@@ -774,12 +788,18 @@ ${sectionHtml}
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     const body = await readBodyCapped(req, 64 * 1024);
-    let filename, original, marked;
+    let filename, original;
     try {
-      ({ audio: filename, original = null, marked = false } = JSON.parse(body.toString("utf-8")));
+      ({ audio: filename, original = null } = JSON.parse(body.toString("utf-8")));
     } catch {
       throw httpError(400, "invalid JSON body");
     }
+    // `audioMarked` drives later marker strips (a re-clean, a re-trim), so it's derived from the
+    // take's PROVENANCE — a generated filename in a marker-using language — never trusted from the
+    // client, where a stale or hand-crafted value would poison every later re-derive.
+    const adapter = adapterFor(type);
+    const languageCode = resolveIso639Code(adapter?.deckLanguage?.(outputRoot, id));
+    const marked = usesEndMarker(languageCode) && isGeneratedTakeFilename(original ?? filename);
     const takes = selectCardAudio(runDir, cardId, filename, original, { marked });
     sendJson(res, { ...takes, ...takeUrls(type, id, unit, takes) });
   }
@@ -917,7 +937,7 @@ ${sectionHtml}
         return true;
       }
       if (seg[8] === "generate" && seg.length === 9) {
-        await handleGenerate(res, type, id, unit, cardId);
+        await handleGenerate(req, res, type, id, unit, cardId);
         return true;
       }
       if (seg[8] === "generate-kanji" && seg.length === 9) {

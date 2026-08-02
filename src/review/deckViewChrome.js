@@ -81,6 +81,7 @@ td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:va
 .badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:100px;border:1px solid var(--rule2);color:var(--soft);white-space:nowrap}
 .badge-drop{color:var(--accent);border-color:var(--accent)}
 .badge-ai{color:#3f6f6a;border-color:#3f6f6a}.badge-uncertain{color:#8a6a24;border-color:#8a6a24}
+.badge-marker{color:#8a2a24;border-color:#8a2a24}
 .rowflags{margin-top:4px;display:flex;gap:5px;flex-wrap:wrap}
 tr.row.excluded td{color:var(--faint);text-decoration:line-through}
 .tw{overflow-x:auto}
@@ -308,25 +309,49 @@ export const DECK_EDIT_SCRIPT = `(function () {
   });
   var modal = document.getElementById("gen-modal");
   var closeModal = function () { modal.hidden = true; modal.querySelector(".vlist").innerHTML = ""; };
+  var fetchVariants = function (r, path, labels) {
+    var opts = { method: "POST" };
+    if (labels && labels.length && path === "/generate") {
+      opts.headers = { "Content-Type": "application/json" };
+      opts.body = JSON.stringify({ labels: labels });
+    }
+    return fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + path, opts)
+      .then(jsonp).then(function (x) {
+        if (!x.ok) throw new Error(x.j.error || "generation failed");
+        return x.j.variants;
+      });
+  };
+  var variantRow = function (r, path, v) {
+    var row = document.createElement("div"); row.className = "vrow";
+    var lab = document.createElement("span"); lab.className = "vlabel"; lab.textContent = v.kanji ? v.label + " — " + v.kanji : v.label;
+    var au = document.createElement("audio"); au.controls = true; au.preload = "none"; au.src = v.mediaUrl;
+    var use = document.createElement("button"); use.textContent = "Use this";
+    use.addEventListener("click", function () {
+      fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio, original: v.original || null }) })
+        .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); refreshRow(r.tr, y.j); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
+        .catch(function (e) { alert(e.message); });
+    });
+    // A fresh roll of THIS take alone — one credit — replacing only this row.
+    var reroll = document.createElement("button"); reroll.textContent = "Re-roll";
+    reroll.addEventListener("click", function () {
+      reroll.disabled = true; reroll.textContent = "\\u2026";
+      fetchVariants(r, path, [v.label]).then(function (variants) {
+        var fresh = null;
+        variants.forEach(function (nv) { if (nv.label === v.label) fresh = nv; });
+        if (!fresh && variants.length === 1) fresh = variants[0];
+        if (fresh) row.replaceWith(variantRow(r, path, fresh));
+        else throw new Error("no matching take came back");
+      }).catch(function (e) { reroll.disabled = false; reroll.textContent = "Re-roll"; alert(e.message); });
+    });
+    row.appendChild(lab); row.appendChild(au); row.appendChild(use); row.appendChild(reroll);
+    return row;
+  };
   var openGen = function (btn, path) {
     var r = rowRef(btn); modal.hidden = false;
     var list = modal.querySelector(".vlist"); list.innerHTML = '<div class="spin">Generating variants via ElevenLabs\\u2026</div>';
-    fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + path, { method: "POST" })
-      .then(jsonp).then(function (x) {
-        if (!x.ok) throw new Error(x.j.error || "generation failed");
+    fetchVariants(r, path, null).then(function (variants) {
         list.innerHTML = "";
-        x.j.variants.forEach(function (v) {
-          var row = document.createElement("div"); row.className = "vrow";
-          var lab = document.createElement("span"); lab.className = "vlabel"; lab.textContent = v.kanji ? v.label + " — " + v.kanji : v.label;
-          var au = document.createElement("audio"); au.controls = true; au.preload = "none"; au.src = v.mediaUrl;
-          var use = document.createElement("button"); use.textContent = "Use this";
-          use.addEventListener("click", function () {
-            fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio, original: v.original || null, marked: !!v.marked }) })
-              .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); refreshRow(r.tr, y.j); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
-              .catch(function (e) { alert(e.message); });
-          });
-          row.appendChild(lab); row.appendChild(au); row.appendChild(use); list.appendChild(row);
-        });
+        variants.forEach(function (v) { list.appendChild(variantRow(r, path, v)); });
       })
       .catch(function (e) { list.innerHTML = '<div class="spin"></div>'; list.firstChild.textContent = e.message; });
   };
@@ -828,8 +853,17 @@ export const DELIVER_SCRIPT = `(function () {
 // included here — an excluded row is already shown struck-through.
 const aiBadge = `<span class="badge badge-ai">AI-suggested</span>`;
 const uncertainBadge = `<span class="badge badge-uncertain">Uncertain</span>`;
+// The automatic trim could not cut the TTS end marker off this card's clip — it is audible in the
+// shipping take until the reviewer replaces or re-generates the audio.
+const markerStuckBadge = `<span class="badge badge-marker">Marker audible</span>`;
 const provenanceBadges = (c) =>
-  [c.aiSuggested ? aiBadge : "", c.uncertain ? uncertainBadge : ""].filter(Boolean).join(" ");
+  [
+    c.aiSuggested ? aiBadge : "",
+    c.uncertain ? uncertainBadge : "",
+    c.audioMarkerStuck ? markerStuckBadge : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 // Inline block under a card's English gloss (corpus/audio reviews, which have no Flags column).
 const inlineFlags = (c) => {
   const b = provenanceBadges(c);

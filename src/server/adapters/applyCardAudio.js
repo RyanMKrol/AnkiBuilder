@@ -165,6 +165,22 @@ function dropSupersededManual(runDir, item, keep) {
   }
 }
 
+// Same idea for a chain-switch: reclean writes `<stem>.<chain>.mp3` per switch, and the take the
+// card is moving away from is unreachable once the card points elsewhere. Only ever a file whose
+// suffix names a real cleanup chain — never the stage's bare `<hash>.mp3` (shared with the cache)
+// and never an original.
+function dropSupersededChainTake(runDir, item, keep) {
+  const old = item.audioAuto;
+  if (!old || old === keep || !isSafeMediaFile(old)) return;
+  const chain = /\.([a-z]+)\.mp3$/.exec(old)?.[1];
+  if (!chain || !isCleanupName(chain)) return;
+  try {
+    rmSync(join(runDir, "audio", old), { force: true });
+  } catch {
+    /* leave it behind rather than fail the edit */
+  }
+}
+
 // Cut a reviewer's hand-placed [start, end] range out of the card's ORIGINAL and ship the result.
 //
 // Always from the original, never from the previous cut: re-trimming a cut clip would compound the
@@ -255,6 +271,7 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
   const audioAuto = `${stem}.${filter}.mp3`;
   if (!isSafeMediaFile(audioAuto)) throw httpError(400, "could not derive a safe filename");
   writeFileAtomic(join(runDir, "audio", audioAuto), auto);
+  dropSupersededChainTake(runDir, item, audioAuto);
 
   const takes = { audioAuto, audioFilter: filter, audioManual: null, audioTrim: null };
   if (item.audioTrim && Number.isFinite(item.audioTrim.start)) {

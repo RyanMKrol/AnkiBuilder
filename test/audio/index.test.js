@@ -319,6 +319,41 @@ test("handles multiple cards with duplicate target terms", async () => {
   }
 });
 
+test("flags a card whose end marker survived the trim, and only that card", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([
+        { id: "ok", english: "Hello", category: "Greetings", target: "こんにちは" },
+        { id: "stuck", english: "Ra", category: "Other", target: "ら" },
+      ]);
+
+      // The real trimmer reports via opts.flags; this stub fails the strip for one clip only.
+      const trim = async (bytes, opts) => {
+        if (opts.marker && opts.flags) {
+          opts.flags.markerStripped = !bytes.toString().includes("STUCK");
+        }
+        return bytes;
+      };
+
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: async (term) =>
+          Buffer.from(term.startsWith("ら") ? "STUCK-bytes" : "clean-bytes"),
+        libraryHomeDir: tmpDir,
+        trim,
+      });
+
+      assert.equal("audioMarkerStuck" in result.items[0], false);
+      assert.equal(result.items[1].audioMarkerStuck, true);
+    });
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+});
+
 test("annotates each card with its audio filename", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";

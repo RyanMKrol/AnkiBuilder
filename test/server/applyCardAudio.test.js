@@ -1,6 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSync } from "fs";
+import {
+  mkdtempSync,
+  mkdirSync,
+  writeFileSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  existsSync,
+} from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
@@ -421,6 +429,25 @@ test("re-cleaning re-derives from the ORIGINAL, so chains never stack on each ot
     assert.equal(card.audioOriginal, "take.orig.mp3", "the original is never touched");
     assert.equal(card.audio, card.audioAuto);
     assert.equal(readFileSync(join(dir, "audio", card.audio), "utf-8"), "CLEANED");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("switching chains deletes the take the card is moving away from, never the stage clip", async () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const noopTrim = async () => Buffer.from("CLEANED");
+    await recleanCardAudio(dir, "a", "gentle", { trim: noopTrim });
+    assert.ok(existsSync(join(dir, "audio", "take.gentle.mp3")));
+    // The stage's own take (no chain suffix) survives — it's shared with the durable cache.
+    assert.ok(existsSync(join(dir, "audio", "take.mp3")));
+
+    await recleanCardAudio(dir, "a", "aggressive", { trim: noopTrim });
+    assert.ok(existsSync(join(dir, "audio", "take.aggressive.mp3")));
+    // The previous chain's take is unreachable once the card points elsewhere — deleted, not litter.
+    assert.equal(existsSync(join(dir, "audio", "take.gentle.mp3")), false);
+    assert.ok(existsSync(join(dir, "audio", "take.orig.mp3")), "the original is never touched");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

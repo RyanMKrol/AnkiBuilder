@@ -20,7 +20,18 @@ import { httpError } from "../util/httpError.js";
 export async function generateCardVariants(
   runDir,
   cardId,
-  { voiceId, apiKey, languageCode, fetchTts = fetchElevenLabsTts, model = TTS_MODEL, trim } = {},
+  {
+    voiceId,
+    apiKey,
+    languageCode,
+    fetchTts = fetchElevenLabsTts,
+    model = TTS_MODEL,
+    trim,
+    // Optional label allowlist: re-roll ONE take (one credit) instead of the full set. Every
+    // Generate click used to re-roll all takes even when the reviewer wanted a fresh roll of a
+    // single one that sounded off.
+    labels = null,
+  } = {},
 ) {
   const cardsPath = join(runDir, "cards.json");
   if (!existsSync(cardsPath)) throw httpError(404, "cards.json not found for this deck unit");
@@ -28,8 +39,15 @@ export async function generateCardVariants(
   const item = (data.items || []).find((i) => i.id === cardId);
   if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
 
-  const variants = cardAudioVariants(item, languageCode);
+  let variants = cardAudioVariants(item, languageCode);
   if (variants.length === 0) throw httpError(422, "card has no spoken text to generate from");
+  if (Array.isArray(labels) && labels.length > 0) {
+    const wanted = new Set(labels);
+    variants = variants.filter((variant) => wanted.has(variant.label));
+    if (variants.length === 0) {
+      throw httpError(422, `no variant matches the requested label(s): ${labels.join(", ")}`);
+    }
+  }
 
   const audioDir = join(runDir, "audio");
   mkdirSync(audioDir, { recursive: true });

@@ -13,7 +13,7 @@ import { Buffer } from "buffer";
 // their edit landed when it didn't — they'd go on to sign the lesson off believing the clip was fixed.
 // Every failure here throws, and the endpoint turns it into a real error on screen.
 
-const MP3_QUALITY = "2"; // libmp3lame -q:a — matches trimSilence.js, so a re-cut doesn't change quality
+const MP3_QUALITY = "4"; // libmp3lame -q:a — matches trimSilence.js, so a re-cut doesn't change quality
 const MIN_RANGE_SEC = 0.05; // below this there is no audible clip left to keep
 
 function defaultRunFfmpeg(args) {

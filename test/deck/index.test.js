@@ -507,6 +507,66 @@ test("buildDeck drops cards marked excluded (translate-review exclusion)", async
   });
 });
 
+test("buildDeck refuses duplicate card ids (guids collapse to one note at import)", async () => {
+  await withTempDir(async (tmpDir) => {
+    const outPath = join(tmpDir, "deck.apkg");
+    const cards = baseCards([
+      { id: "dup", english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" },
+      { id: "dup", english: "won", target: "かち", pronunciation: "kachi", category: "Other" },
+    ]);
+    assert.throws(() => buildDeck(cards, { outPath }), /duplicate card ids/);
+  });
+});
+
+test("buildDeck allows a duplicate id when one copy is excluded (it never ships)", async () => {
+  await withTempDir(async (tmpDir) => {
+    const outPath = join(tmpDir, "deck.apkg");
+    const cards = baseCards([
+      { id: "dup", english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" },
+      {
+        id: "dup",
+        english: "one (old)",
+        target: "いち",
+        pronunciation: "ichi",
+        category: "Numbers",
+        excluded: true,
+      },
+    ]);
+    const result = buildDeck(cards, { outPath });
+    assert.strictEqual(result.noteCount, 1);
+  });
+});
+
+test("buildBookDeck refuses card ids that repeat across chapters, naming both", async () => {
+  await withTempDir(async (tmpDir) => {
+    const outPath = join(tmpDir, "book.apkg");
+    const chapterDecks = [
+      {
+        name: "Lesson 1",
+        cards: baseCards([
+          { id: "hello", english: "Hello", target: "こんにちは", category: "Greetings" },
+        ]),
+        audioDir: null,
+      },
+      {
+        name: "Lesson 2",
+        cards: baseCards([
+          { id: "hello", english: "Hello again", target: "こんにちは", category: "Greetings" },
+        ]),
+        audioDir: null,
+      },
+    ];
+    assert.throws(
+      () => buildBookDeck(chapterDecks, { outPath, bookName: "My Book" }),
+      (e) => {
+        assert.match(e.message, /duplicate card ids/);
+        assert.match(e.message, /hello \(Lesson 1, Lesson 2\)/);
+        return true;
+      },
+    );
+  });
+});
+
 test("buildDeck embeds only the default audio, never altAudio", async () => {
   await withTempDir(async (tmpDir) => {
     const audioDir = join(tmpDir, "audio");

@@ -16,7 +16,10 @@ import { join, resolve, dirname } from "path";
 import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
 import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
-import { shippableCards } from "../deck/shippableCards.js";
+import {
+  shippableCards,
+  assertUniqueCardIds as assertUniqueCardIdsAcross,
+} from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
@@ -188,33 +191,14 @@ export async function ensureDecks(client, decks, dry) {
 }
 
 /**
- * Every card id in a deck, or a throw naming the ones that repeat.
- *
- * `abid:<card.id>` is the durable note key, and it is scoped to the DECK, not the unit — so two units
- * that happen to name a card the same thing both resolve to one Anki note, and whichever is visited
- * last silently overwrites the other. The learner then studies one of the two cards and never sees the
- * other, with nothing anywhere reporting a problem. The JBP Book 1 deck carried ten such pairs
- * (`ni-particle` in two lessons, `yasumi` meaning "break" in one and "vacation" in another) for as long
- * as delivery had existed.
- *
- * This refuses instead, because there is no safe interpretation: whether the pair is one card taught
- * twice (drop a copy) or two cards that collided (re-id the later one) is a judgment about the source
- * material that only a human can make.
+ * Every card id in a deck, or a throw naming the ones that repeat. `abid:<card.id>` is the
+ * durable note key, scoped to the DECK, not the unit — the shared check (and the story of why
+ * it exists) lives in `src/deck/shippableCards.js`, next to the `.apkg` path's identical guard.
  */
 export function assertUniqueCardIds(deck) {
-  const seen = new Map();
-  for (const unit of deck.units) {
-    for (const card of unit.cards) {
-      if (!seen.has(card.id)) seen.set(card.id, []);
-      seen.get(card.id).push(unit.ankiDeck ?? "?");
-    }
-  }
-  const clashes = [...seen.entries()].filter(([, where]) => where.length > 1);
-  if (!clashes.length) return;
-  const detail = clashes.map(([id, where]) => `${id} (${where.join(", ")})`).join("; ");
-  throw new Error(
-    `${deck.type}:${deck.id} has duplicate card ids, which would map two cards onto one Anki note: ` +
-      `${detail}. Delete the redundant card, or give the later one its own id, then re-run.`,
+  assertUniqueCardIdsAcross(
+    deck.units.map((unit) => ({ label: unit.ankiDeck, items: unit.cards })),
+    `${deck.type}:${deck.id}`,
   );
 }
 

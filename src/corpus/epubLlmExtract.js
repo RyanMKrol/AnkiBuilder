@@ -33,6 +33,9 @@ function validateItem(item, index) {
       throw new Error(`item ${index} field "${noteField}" must be a string when present`);
     }
   }
+  if (item.reading !== undefined && typeof item.reading !== "string") {
+    throw new Error(`item ${index} field "reading" must be a string when present`);
+  }
   if (item.uncertain !== undefined && typeof item.uncertain !== "boolean") {
     throw new Error(`item ${index} field "uncertain" must be a boolean when present`);
   }
@@ -44,7 +47,7 @@ function validateItem(item, index) {
 /**
  * Extracts a flashcard-worthy item list from ONE chapter file by having the
  * model read it directly (no pre-split text blocks). Returns the parsed and
- * validated item array: { id, english, target, category, reviewNote?, uncertain?, aiSuggested? }.
+ * validated item array: { id, english, target, category, reading?, reviewNote?, uncertain?, aiSuggested? }.
  *
  * This is the extraction primitive only — it does not write corpus.json/
  * cards.json, generate pronunciation, or handle more than one chapter. See

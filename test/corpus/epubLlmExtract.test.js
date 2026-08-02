@@ -120,6 +120,39 @@ test("extractChapterViaLlm() throws when uncertain is present but not a boolean"
   }, /"uncertain" must be a boolean/);
 });
 
+test("extractChapterViaLlm() accepts an optional reading, throws when it is not a string", () => {
+  const items = extractChapterViaLlm({
+    ...BASE_ARGS,
+    runClaude: () =>
+      JSON.stringify([
+        {
+          id: "yen-2000",
+          english: "2,000 yen",
+          target: "2,000えん",
+          category: "Money",
+          reading: "にせんえん",
+        },
+      ]),
+  });
+  assert.strictEqual(items[0].reading, "にせんえん");
+
+  assert.throws(() => {
+    extractChapterViaLlm({
+      ...BASE_ARGS,
+      runClaude: () =>
+        JSON.stringify([
+          {
+            id: "hello",
+            english: "Hello",
+            target: "こんにちは",
+            category: "Greetings",
+            reading: 42,
+          },
+        ]),
+    });
+  }, /"reading" must be a string/);
+});
+
 test("extractChapterViaLlm() passes the rendered prompt (with resolved path) to runClaude", () => {
   let capturedPrompt = null;
   extractChapterViaLlm({

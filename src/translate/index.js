@@ -4,6 +4,7 @@ import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { runClaude as defaultRunClaude } from "./runClaude.js";
 import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./romanizationLibraries.js";
 import { getSimpleScriptRule as defaultGetSimpleScriptRule } from "./targetScript.js";
+import { getLanguagePromptRules as defaultGetLanguagePromptRules } from "./languageRules.js";
 import { romanizeAndEvaluate } from "./romanizationEval.js";
 
 // Max corpus items per `claude -p` invocation. Unbounded — a lesson's worth of items goes in a
@@ -21,7 +22,7 @@ function chunk(items, size) {
   return batches;
 }
 
-function buildFullTranslationPrompt(items, targetLanguage) {
+function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } = {}) {
   const inputData = items.map((item) => {
     const entry = { id: item.id, english: item.english };
     if (item.hint) {
@@ -64,6 +65,9 @@ function buildFullTranslationPrompt(items, targetLanguage) {
     "",
     "- `id` (string): the SAME id as the corresponding input item.",
     `- \`target\` (string): the translation into ${targetLanguage}.`,
+    // Language-supplied style/register rules (see languageRules.js). The core stays
+    // language-neutral — it just injects the strings.
+    ...styleRules.map((rule) => `  - ${rule}`),
     `- \`pronunciation\` (string): a pronunciation guide for \`target\`, readable by an English speaker unfamiliar with ${targetLanguage}.`,
     `  - If ${targetLanguage} has a standard, widely-used romanization or transliteration system (e.g. romaji for Japanese, pinyin for Mandarin Chinese), use that system instead of inventing a phonetic spelling.`,
     '  - Otherwise, fall back to a phonetic respelling using English spelling and stress conventions (e.g. "bohn-ZHOOR").',
@@ -101,7 +105,11 @@ function buildFullTranslationPrompt(items, targetLanguage) {
 // being anchored by having already seen the model's own (about-to-be-superseded) guess.
 // `targetScriptRule` (optional) is a language-supplied instruction constraining the SCRIPT the target
 // is written in (see targetScript.js). The core is script-agnostic — it just injects the string.
-export function buildTargetOnlyPrompt(items, targetLanguage, { targetScriptRule = null } = {}) {
+export function buildTargetOnlyPrompt(
+  items,
+  targetLanguage,
+  { targetScriptRule = null, styleRules = [] } = {},
+) {
   const inputData = items.map((item) => {
     const entry = { id: item.id, english: item.english };
     if (item.hint) {
@@ -145,6 +153,7 @@ export function buildTargetOnlyPrompt(items, targetLanguage, { targetScriptRule 
     "- `id` (string): the SAME id as the corresponding input item.",
     `- \`target\` (string): the translation into ${targetLanguage}.`,
     ...(targetScriptRule ? [`  - ${targetScriptRule}`] : []),
+    ...styleRules.map((rule) => `  - ${rule}`),
     "- `hint` (string, optional): a short usage hint.",
     "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
     "",
@@ -371,7 +380,10 @@ function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) 
   const attempt = (attemptItems) => {
     const attemptErrors = [];
     for (const batch of chunk(attemptItems, BATCH_SIZE)) {
-      const prompt = buildPrompt(batch, targetLanguage, { targetScriptRule });
+      const prompt = buildPrompt(batch, targetLanguage, {
+        targetScriptRule,
+        styleRules: ctx.styleRules ?? [],
+      });
 
       let entries;
       try {
@@ -475,6 +487,7 @@ export async function translateCorpus(
     runClaude = defaultRunClaude,
     getRomanizationLibrary = defaultGetRomanizationLibrary,
     getSimpleScriptRule = defaultGetSimpleScriptRule,
+    getLanguagePromptRules = defaultGetLanguagePromptRules,
     log = () => {},
     simpleScript = false,
   } = {},
@@ -494,6 +507,9 @@ export async function translateCorpus(
   // Optional per-language script constraint on the generated target (e.g. Japanese kana-only) —
   // resolved from the language plug-in when --simple-script is on; null (no-op) otherwise.
   const targetScriptRule = simpleScript && languageCode ? getSimpleScriptRule(languageCode) : null;
+  // Per-language register/style rules for GENERATED translations (languageRules.js) — always on
+  // for a language that defines them, since they encode how this deck's textbook teaches.
+  const styleRules = (languageCode && getLanguagePromptRules(languageCode).translationStyle) || [];
 
   let items;
 
@@ -506,7 +522,7 @@ export async function translateCorpus(
         validateEntry: validateTargetOnlyEntry,
         assembleCard: assembleTargetOnlyCard,
       },
-      { runClaude, targetLanguage, items: translated, errors, targetScriptRule },
+      { runClaude, targetLanguage, items: translated, errors, targetScriptRule, styleRules },
     );
 
     const partials = [...translated, ...needsPronunciationOnly.map(toPartialCard)];
@@ -537,7 +553,7 @@ export async function translateCorpus(
     errors.push(...result.errors);
   } else {
     items = [];
-    const ctx = { runClaude, targetLanguage, items, errors, targetScriptRule };
+    const ctx = { runClaude, targetLanguage, items, errors, targetScriptRule, styleRules };
 
     processGroup(
       needsFullTranslation,

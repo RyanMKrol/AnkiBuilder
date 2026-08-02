@@ -65,11 +65,10 @@ cleaner is"`. The hint states the QUESTION and never leaks the answer — for a 
 8. **Write the target the way the deck does.** No trailing `。` (the audio stage adds one itself where
    the language wants it) and no editorial word-separation spaces. Keep any mid-sentence `、`.
 9. **Get the counter's own reading right — they are frequently irregular.** A number's reading changes
-   with the counter that follows it, and guessing produces a card that is spoken aloud confidently and
-   wrongly. In Japanese: April is しがつ, never よんがつ; July is しちがつ; 9 o'clock is くじ, not
-   きゅうじ; 1 minute is いっぷん. If the source gives the reading in brackets — textbooks routinely
-   print `４がつ（しがつ）` — use that, and if you are unsure of one, leave the number out of the
-   sentence rather than guess.
+   with the counter or measure word that follows it, and guessing produces a card that is spoken
+   aloud confidently and wrongly. {{COUNTER_EXAMPLES}} If the source gives the reading in brackets —
+   textbooks routinely print the spoken form in parentheses after the digits — use that, and if you
+   are unsure of one, leave the number out of the sentence rather than guess.
 10. **Spell out digits in `reading`.** When a sentence contains a numeral (a price, a floor, a time),
     set `reading` to the sentence with that number written out in {{TARGET_LANGUAGE}}'s own script. It
     drives both the romanization and the audio, both of which mishandle raw digits.
@@ -109,10 +108,7 @@ Field by field:
 - `category` (string): reuse one of the categories already present on the lesson's cards.
 - `target` (string): the {{TARGET_LANGUAGE}} sentence, as the card face shows it.
 - `reading` (string, optional): the spoken form — set it only when it differs from `target` (rule 7).
-- `pronunciation` (string): the romanization of the spoken form. **A number and its counter are joined
-  by a hyphen** — `jūni-nichi`, `shi-gatsu`, `go-ji`, `ip-pon` — never fused into one token, since
-  `jūninichi` reads as though it contains an "ichi" that is not there. An ordinary word that merely
-  looks like a counter keeps its spelling: にほん "Japan" is `nihon`, not `ni-hon`.
+- `pronunciation` (string): the romanization of the spoken form. {{COUNTER_HYPHEN_RULE}}
 - `hint` (string, optional): a short FRONT-of-card cue, shown with the prompt. REQUIRED on the answer
   half of a question/answer pair (rule 4), naming the question it replies to. Omit it on a card that
   stands on its own. Never restate the English and never leak the answer.

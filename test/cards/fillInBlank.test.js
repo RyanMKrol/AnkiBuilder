@@ -146,6 +146,18 @@ test("the prompt tells the model to read the source file, or to compose from the
   assert.doesNotMatch(withoutSource, /\{\{[A-Z_]+\}\}/);
 });
 
+test("the prompt injects the language's counter rules for ja, neutral text otherwise", () => {
+  const ja = renderFillInBlankPrompt({ cards: items, targetLanguage: "ja" });
+  assert.match(ja, /しがつ/); // irregular-counter examples
+  assert.match(ja, /joined by a HYPHEN/); // shared hyphen convention
+
+  const es = renderFillInBlankPrompt({ cards: items, targetLanguage: "Spanish" });
+  assert.doesNotMatch(es, /しがつ/);
+  assert.doesNotMatch(es, /HYPHEN/);
+  assert.match(es, /standard romanization conventions/);
+  assert.doesNotMatch(es, /\{\{[A-Z_]+\}\}/);
+});
+
 // A mined drill is half a Q/A pair, and the answer half is studied alone. Carrying the question as a
 // front hint is the only thing that makes it answerable — and the pass used to drop `hint` outright.
 test("carries a hint through, so an answer card can name the question it replies to", () => {

@@ -19,21 +19,12 @@ Your job is to supply both, for each card listed, with every number written out.
    with each numeral spelled out in {{TARGET_LANGUAGE}}'s script — not just the number on its own.
    `2025ねんに` becomes `にせんにじゅうごねんに`, not `にせんにじゅうご`.
 2. **Use the reading the counter actually takes.** This is the whole reason a model is doing this
-   rather than a regex: the correct form is often irregular and depends on the counter that follows.
-   In Japanese, 4がつ is **しがつ** (not よんがつ), 7がつ is **しちがつ**, 9じ is **くじ** (not
-   きゅうじ), 1ぷん is **いっぷん**. Get the counter right; a plausible-but-wrong reading is worse
-   than no card, because it will be spoken aloud confidently.
+   rather than a regex: the correct form is often irregular and depends on the counter or measure
+   word that follows. {{COUNTER_EXAMPLES}} Get the counter right; a plausible-but-wrong reading is
+   worse than no card, because it will be spoken aloud confidently.
 3. **`pronunciation` is the romanization of the `reading` you just wrote**, and must match the deck's
    existing style:
-   - Long vowels take macrons: `jūji`, `tōkyō`, `nijūgo`.
-   - ん before a vowel takes an apostrophe: `sanzen'en`.
-   - A number and its counter are joined by a HYPHEN: `jūni-nichi`, `shi-gatsu`, `go-ji`,
-     `nijūgo-nen`, `ip-pon`, `san-gai`. Never fuse them into one token — `jūninichi` reads as if it
-     contains an "ichi" that is not there. An ordinary word that merely looks like a counter keeps its
-     spelling: にほん "Japan" is `nihon`, not `ni-hon`. (Same convention as the practice-card pass.)
-   - A long number breaks at its thousand / ten-thousand groups, with the counter hyphenated to the
-     final group: `ichiman sanzen-en`, `nisen nijūgo-nen`.
-   - Everything that is not part of the number keeps the spacing it already has.
+   {{ROMANIZATION_STYLE_RULES}}
 4. **Leave the card's meaning alone.** Do not translate, re-word, or fix anything else about it.
 
 ## Cards

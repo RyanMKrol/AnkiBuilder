@@ -221,7 +221,10 @@ npm run build
       card in the trim modal for the occasional clip the default handles badly;
       `ANKI_BUILDER_AUDIO_CLEANUP` sets the default or turns it off
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
-      auto-embeds the language's font, e.g. Japanese → Klee One)
+      auto-embeds the language's font, e.g. Japanese → Klee One). The note type carries night-mode
+      CSS, HTML-escapes text fields, stores the card's spoken `reading` as a real field (not yet
+      rendered), and keeps the English hint off the Recognition front (it's part of that card's
+      answer — it shows on the back instead)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō
       textbook face) so kana/kanji render the same on every client; `restyle-font` applies it to any
       existing `.apkg`, including third-party decks

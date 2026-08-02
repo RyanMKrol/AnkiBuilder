@@ -77,12 +77,13 @@ test("syncStructure adds the missing Note field, updates templates + CSS", async
     css: ".card{}",
   });
   const out = await syncStructure(client, SPEC, false);
-  assert.deepEqual(out.addedFields, ["Note"]);
+  assert.deepEqual(out.addedFields, ["Note", "Reading"]);
   assert.equal(out.templates, true);
   assert.equal(out.css, true);
   assert.deepEqual(state.fields, SPEC.fields, "Note landed at index 5 → order matches spec");
   assert.ok(!names(calls).includes("modelFieldReposition"), "clean insert needs no reposition");
   assert.deepEqual(names(calls).sort(), [
+    "modelFieldAdd",
     "modelFieldAdd",
     "updateModelStyling",
     "updateModelTemplates",
@@ -108,7 +109,7 @@ test("syncStructure dry run writes nothing but reports the plan", async () => {
     css: ".card{}",
   });
   const out = await syncStructure(client, SPEC, true);
-  assert.deepEqual(out.addedFields, ["Note"]);
+  assert.deepEqual(out.addedFields, ["Note", "Reading"]);
   assert.equal(out.css, true);
   assert.equal(calls.length, 0, "dry = no writes");
 });

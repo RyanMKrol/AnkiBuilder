@@ -792,6 +792,9 @@ export const MARK_DONE_SCRIPT = `(function () {
   };
   wire("button.mark-done", "/done", "\\u2713 done");
   wire("button.reopen", "/reopen", "reopened");
+  // Sends a mis-clicked corpus sign-off back to the corpus gate (and drops the lesson's dedup
+  // library entry server-side) — the corpus-review mirror of Reopen.
+  wire("button.unreview", "/review/unreviewed", "sent back to corpus review");
 })();`;
 
 // Home-page Reopen buttons on built rows: each carries its own data-type/id/unit (no #deckctx). POSTs

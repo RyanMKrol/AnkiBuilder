@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
-import { setCardExcluded, editCard, setLessonDone } from "../../src/server/adapters/applyCards.js";
+import {
+  setCardExcluded,
+  editCard,
+  setLessonDone,
+  unmarkCardsReviewed,
+} from "../../src/server/adapters/applyCards.js";
 
 function runDir(items, meta = {}) {
   const dir = mkdtempSync(join(tmpdir(), "applycards-"));
@@ -32,6 +37,44 @@ test("setLessonDone sets meta.done and clears it on reopen", () => {
     assert.equal(read(dir).meta.done, true);
     setLessonDone(dir, false);
     assert.equal("done" in read(dir).meta, false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("unmarkCardsReviewed withdraws the sign-off and drops the dedup-library entry", () => {
+  const dir = runDir([card("a")], { ...reviewed, epubHash: "hash123", chapterNumber: 4 });
+  try {
+    const removed = [];
+    const out = unmarkCardsReviewed(dir, {
+      removeChapterCorpus: (hash, chapter) => (removed.push([hash, chapter]), true),
+    });
+    assert.deepEqual(out, { reviewed: false });
+    assert.equal("reviewed" in read(dir).meta, false);
+    // The library holds only signed-off chapters — the entry goes with the sign-off.
+    assert.deepEqual(removed, [["hash123", 4]]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("unmarkCardsReviewed never touches the library for a unit without an epubHash (extras)", () => {
+  const dir = runDir([card("a")], reviewed);
+  try {
+    const removed = [];
+    unmarkCardsReviewed(dir, { removeChapterCorpus: (...args) => removed.push(args) });
+    assert.deepEqual(removed, []);
+    assert.equal("reviewed" in read(dir).meta, false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("unmarkCardsReviewed refuses while the lesson is done — Reopen first", () => {
+  const dir = runDir([card("a")], { ...reviewed, done: true });
+  try {
+    assert.throws(() => unmarkCardsReviewed(dir, { removeChapterCorpus: () => {} }), /Reopen/);
+    assert.equal(read(dir).meta.reviewed, true, "the sign-off stays intact");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

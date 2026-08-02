@@ -2,7 +2,10 @@ import { readFileSync, existsSync } from "fs";
 import { writeFileAtomic } from "../../util/atomicWrite.js";
 import { join } from "path";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
-import { saveChapterCorpus as defaultSaveChapterCorpus } from "../../corpus/epubLibrary.js";
+import {
+  saveChapterCorpus as defaultSaveChapterCorpus,
+  removeChapterCorpus as defaultRemoveChapterCorpus,
+} from "../../corpus/epubLibrary.js";
 import { lessonReadiness, describeReadiness } from "../../cards/readiness.js";
 import { httpError } from "../../util/httpError.js";
 
@@ -119,6 +122,36 @@ export function markCardsReviewed(
     saveChapterCorpus(epubHash, chapterNumber, { meta: data.meta, items });
   }
   return { reviewed: true };
+}
+
+// Withdraw a lesson's corpus sign-off — the reverse of markCardsReviewed, for the mis-click that
+// used to require hand-editing JSON (while `done` always had Reopen). Refuses while the lesson is
+// still `done`: done means "in the shipping deck", and un-reviewing underneath that would leave a
+// lesson shipping without a valid review chain — Reopen first. For an EPUB source the lesson's
+// dedup-library entry is removed too, since the library holds only signed-off chapters. (An extras
+// unit carries no epubHash, so its unreview can never touch its base lesson's library entry.)
+export function unmarkCardsReviewed(
+  runDir,
+  { validateCards = defaultValidateCards, removeChapterCorpus = defaultRemoveChapterCorpus } = {},
+) {
+  const { cardsPath, data } = loadCards(runDir);
+  data.meta = data.meta || {};
+
+  if (data.meta.done === true) {
+    throw httpError(
+      409,
+      "this lesson is marked done (it ships in the deck) — Reopen it first, then Unreview.",
+    );
+  }
+
+  delete data.meta.reviewed;
+  persist(cardsPath, data, validateCards);
+
+  const { epubHash, chapterNumber } = data.meta;
+  if (epubHash && chapterNumber != null) {
+    removeChapterCorpus(epubHash, chapterNumber);
+  }
+  return { reviewed: false };
 }
 
 // Edit a card's text fields. Only the whitelisted fields are ever written, and each is coerced to a

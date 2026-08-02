@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { readFileSync, existsSync, mkdirSync, readdirSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, readdirSync, rmSync } from "fs";
 import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { join } from "path";
 import { libraryHome } from "../model/index.js";
@@ -117,6 +117,19 @@ export function saveChapterCorpus(epubHash, chapterNumber, corpus, { libraryHome
   mkdirSync(join(dest, ".."), { recursive: true });
   writeFileAtomic(dest, JSON.stringify(corpus, null, 2));
   return dest;
+}
+
+/**
+ * Removes a chapter's saved (reviewed) corpus from the dedup library — the write-side of the
+ * dashboard's Unreview: the library holds only SIGNED-OFF chapters, and a lesson whose sign-off
+ * was withdrawn must stop feeding later chapters' backward dedup. Idempotent; missing entry is a
+ * no-op. Returns true when an entry was actually removed.
+ */
+export function removeChapterCorpus(epubHash, chapterNumber, { libraryHomeDir } = {}) {
+  const path = corpusPath(epubHash, chapterNumber, { libraryHomeDir });
+  if (!existsSync(path)) return false;
+  rmSync(path, { force: true });
+  return true;
 }
 
 /**

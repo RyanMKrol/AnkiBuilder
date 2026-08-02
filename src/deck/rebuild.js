@@ -52,11 +52,14 @@ export function selectDoneChapterDecks(bookDir) {
     if (!existsSync(cardsPath)) continue;
     // An unreadable cards.json must never take down the whole rebuild: the likeliest cause is
     // a lesson being written right now by a concurrent stage, and such a lesson is by
-    // definition not `done`, so it wasn't going into the package anyway.
+    // definition not `done`, so it wasn't going into the package anyway. But never silently —
+    // if a DONE lesson's file were truly corrupt, it would otherwise just vanish from the
+    // package with nothing anywhere saying so.
     let cards;
     try {
       cards = readJson(cardsPath);
-    } catch {
+    } catch (e) {
+      console.error(`[rebuild] skipping unreadable ${cardsPath}: ${e.message}`);
       continue;
     }
     if (cards.meta?.done !== true) continue;

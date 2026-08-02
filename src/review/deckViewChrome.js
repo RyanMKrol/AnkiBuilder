@@ -774,7 +774,18 @@ export const MARK_DONE_SCRIPT = `(function () {
         var msg = btn.parentNode.querySelector(".done-msg");
         btn.disabled = true; if (msg) msg.textContent = "saving\\u2026";
         fetch(base + "/unit/" + encodeURIComponent(unit) + path, { method: "POST" })
-          .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); if (msg) msg.textContent = okText; setTimeout(function () { location.reload(); }, 500); })
+          .then(jsonp).then(function (x) {
+            if (!x.ok) throw new Error(x.j.error || "failed");
+            if (x.j.rebuildError) {
+              // The mark landed but the group .apkg did NOT rebuild — say so and stay on the page
+              // (an auto-reload would wipe the message and the stale package would go unnoticed).
+              if (msg) msg.textContent = okText + " — but deck rebuild FAILED: " + x.j.rebuildError;
+              btn.disabled = false;
+              return;
+            }
+            if (msg) msg.textContent = okText;
+            setTimeout(function () { location.reload(); }, 500);
+          })
           .catch(function (e) { if (msg) msg.textContent = e.message; btn.disabled = false; });
       });
     });

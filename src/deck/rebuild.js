@@ -152,7 +152,12 @@ function readGuidNamespace(bookDir) {
     if (!existsSync(markerPath)) continue;
     try {
       return readJson(markerPath).guidNamespace ?? null;
-    } catch {
+    } catch (e) {
+      // A namespaced book whose marker won't read would silently ship BARE guids — which import
+      // as brand-new notes into a collection keyed on the namespaced ones. Loud, then bare.
+      console.error(
+        `[rebuild] could not read ${markerPath} (${e.message}) — building with un-namespaced guids`,
+      );
       return null;
     }
   }

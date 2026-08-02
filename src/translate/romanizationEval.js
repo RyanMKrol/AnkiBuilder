@@ -136,7 +136,7 @@ function assembleCard(item, correction) {
  * model omits, keeps the library's romanization rather than being dropped — a real (if imperfect)
  * value beats none.
  */
-function correctRomanizations(items, { targetLanguage, runClaude }) {
+function correctRomanizations(items, { targetLanguage, runClaude, log = () => {} }) {
   const cards = [];
 
   for (const batch of chunk(items, BATCH_SIZE)) {
@@ -150,8 +150,13 @@ function correctRomanizations(items, { targetLanguage, runClaude }) {
           correctionById.set(correction.id, correction);
         }
       }
-    } catch {
-      correctionById = new Map(); // fail open — every item below keeps the library value
+    } catch (error) {
+      // Fail open — every item below keeps the library value — but SAY so: the library's known
+      // failure modes (mis-split words, literal "tsu" for っ) go uncorrected for this whole batch.
+      correctionById = new Map();
+      log(
+        `romanization eval: failed (${error.message}) — keeping the library romanization for ${batch.length} item(s)`,
+      );
     }
 
     for (const item of batch) {
@@ -198,7 +203,7 @@ export async function romanizeAndEvaluate(
     }
   }
 
-  const corrected = correctRomanizations(romanized, { targetLanguage, runClaude });
+  const corrected = correctRomanizations(romanized, { targetLanguage, runClaude, log });
   const { items: fallbackCards, errors } = fallback(needsFallback);
 
   return { items: [...corrected, ...fallbackCards], errors };

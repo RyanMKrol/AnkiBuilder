@@ -15,8 +15,15 @@ function readJsonItems(runDir, file) {
   if (!existsSync(path)) return null;
   try {
     const data = JSON.parse(readFileSync(path, "utf-8"));
-    return data && Array.isArray(data.items) ? data : null;
-  } catch {
+    if (!data || !Array.isArray(data.items)) {
+      console.error(`[dashboard] ${path} has no items array — unit hidden until it is fixed`);
+      return null;
+    }
+    return data;
+  } catch (e) {
+    // Never silent: a null here makes the unit VANISH from the dashboard, and for a torn or
+    // corrupt file "my lesson disappeared" with no trace is far worse than a log line.
+    console.error(`[dashboard] skipping unreadable ${path}: ${e.message}`);
     return null;
   }
 }

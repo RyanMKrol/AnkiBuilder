@@ -1,4 +1,4 @@
-import { runClaudeWithPrompt } from "../util/runClaude.js";
+import { runClaudeWithPrompt, runClaudeWithPromptAsync } from "../util/runClaude.js";
 
 /**
  * Default runner for the translate-family passes (translation, romanization eval,
@@ -10,6 +10,17 @@ import { runClaudeWithPrompt } from "../util/runClaude.js";
  */
 export function runClaude(prompt) {
   return runClaudeWithPrompt(prompt, {
+    scopeEnvPrefix: "ANKI_BUILDER_TRANSLATE",
+    maxBuffer: 10 * 1024 * 1024,
+  });
+}
+
+/**
+ * Async twin, for server-side callers (the dashboard's single-threaded HTTP handler must
+ * never run a blocking model call — see runClaudeWithPromptAsync).
+ */
+export function runClaudeAsync(prompt) {
+  return runClaudeWithPromptAsync(prompt, {
     scopeEnvPrefix: "ANKI_BUILDER_TRANSLATE",
     maxBuffer: 10 * 1024 * 1024,
   });

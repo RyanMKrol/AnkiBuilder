@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { runClaudeWithPrompt } from "../../src/util/runClaude.js";
+import { EventEmitter } from "node:events";
+import { runClaudeWithPrompt, runClaudeWithPromptAsync } from "../../src/util/runClaude.js";
 
 // The core refuses to run under the test runner unless explicitly allowed — these tests
 // inject a fake spawn, so lift the refusal around each call and restore afterwards.
@@ -144,4 +145,80 @@ test("refuses to spawn without the explicit opt-out under the test runner", () =
     /refusing to spawn/,
   );
   assert.equal(spawned, false);
+});
+
+// --- async twin ---
+
+function fakeChild({ code = 0, stdout = "", stderr = "", neverClose = false } = {}) {
+  const child = new EventEmitter();
+  child.stdout = new EventEmitter();
+  child.stderr = new EventEmitter();
+  child.killed = false;
+  child.kill = () => {
+    child.killed = true;
+  };
+  child.stdin = {
+    on: () => {},
+    end: (input) => {
+      child.promptReceived = input;
+      if (neverClose) return;
+      queueMicrotask(() => {
+        if (stdout) child.stdout.emit("data", stdout);
+        if (stderr) child.stderr.emit("data", stderr);
+        child.emit("close", code);
+      });
+    },
+  };
+  return child;
+}
+
+test("async: resolves stdout and passes the prompt on stdin", async () => {
+  await withEnv({}, async () => {
+    let child;
+    const out = await runClaudeWithPromptAsync("ASYNC PROMPT", {
+      spawnImpl: (cmd, args) => {
+        assert.equal(cmd, "claude");
+        assert.ok(!args.includes("ASYNC PROMPT"));
+        child = fakeChild({ stdout: "async result" });
+        return child;
+      },
+    });
+    assert.equal(out, "async result");
+    assert.equal(child.promptReceived, "ASYNC PROMPT");
+  });
+});
+
+test("async: retries once on a non-zero exit, then surfaces the last error", async () => {
+  await withEnv({}, async () => {
+    let calls = 0;
+    await assert.rejects(
+      () =>
+        runClaudeWithPromptAsync("p", {
+          spawnImpl: () => {
+            calls++;
+            return fakeChild({ code: 1, stderr: `boom ${calls}` });
+          },
+        }),
+      /exited with status 1: boom 2/,
+    );
+    assert.equal(calls, 2);
+  });
+});
+
+test("async: a hung child is killed at the timeout and reported", async () => {
+  await withEnv({ ANKI_BUILDER_LLM_TIMEOUT_MS: "30" }, async () => {
+    const children = [];
+    await assert.rejects(
+      () =>
+        runClaudeWithPromptAsync("p", {
+          spawnImpl: () => {
+            const child = fakeChild({ neverClose: true });
+            children.push(child);
+            return child;
+          },
+        }),
+      /timed out after 30 ms/,
+    );
+    assert.ok(children.every((child) => child.killed));
+  });
 });

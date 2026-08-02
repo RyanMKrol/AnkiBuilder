@@ -88,6 +88,56 @@ test("a later lesson is never shown to the model", () => {
   }
 });
 
+test("older lessons appear only as a gloss+target digest; recent ones in full", () => {
+  // Five lessons; enhancing the last one. With 3 recent-context lessons, chapters 3-5 are
+  // full-detail and chapters 1-2 fall into the digest.
+  const dir = mkdtempSync(join(tmpdir(), "notes-digest-"));
+  try {
+    for (let n = 1; n <= 5; n++) {
+      mkdirSync(join(dir, `chapter-${n}`), { recursive: true });
+      writeFileSync(
+        join(dir, `chapter-${n}`, "cards.json"),
+        JSON.stringify({
+          meta: { targetLanguage: "ja", chapterNumber: n, chapterLabel: `Lesson ${n}: Things` },
+          items: [
+            {
+              id: `w${n}`,
+              english: `Word ${n}`,
+              target: `たんご${n}`,
+              pronunciation: `tango-${n}`,
+              note: `existing note ${n}`,
+            },
+          ],
+        }),
+      );
+    }
+
+    let prompt = "";
+    enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-5",
+      runClaude: (p) => {
+        prompt = p;
+        return JSON.stringify({ notes: [] });
+      },
+    });
+
+    // Recent lessons (3, 4, 5) carry full card fields.
+    assert.match(prompt, /"id": "w5"/);
+    assert.match(prompt, /"id": "w3"/);
+    // Older lessons (1, 2) appear — but only as lesson/english/target, no id/romaji/notes.
+    assert.match(prompt, /"english": "Word 1"/);
+    assert.match(prompt, /"target": "たんご1"/);
+    assert.doesNotMatch(prompt, /"id": "w1"/);
+    assert.doesNotMatch(prompt, /existing note 1/);
+    assert.doesNotMatch(prompt, /tango-1/);
+    // Every earlier lesson is still named as already-learned.
+    assert.match(prompt, /ALREADY LEARNED: Lesson 1, Lesson 2, Lesson 3, Lesson 4/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('an empty returned note deletes a restatement (stored as null, not "")', () => {
   const dir = book();
   try {

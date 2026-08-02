@@ -1320,3 +1320,22 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if premature items start slipping through the corpus review unflagged, spot
   check the index's entries for the chapters involved; the fix is regenerating (delete the file) or
   hand-editing the index, not reverting to the O(n squared) reads.
+
+## Lesson classification and the final nav entry's range are convention-bound
+
+- **What:** two next-book assumptions live in the lesson-selection layer. `classifyLesson`
+  (`src/corpus/epubLessons.js`) recognizes unit/lesson/quiz/front-matter by English regexes
+  (`^unit`, `^lesson`, `quiz|review|test`), so a TOC titled in another language (a Japanese-published
+  book's TOC, or any non-English textbook) classifies every entry as `other`. And the last nav
+  entry's spine range extends to the end of the spine (`listExternalChapters`,
+  `src/corpus/epubArchive.js`), so a book whose nav omits back matter folds glossary/index files
+  into the final lesson's extraction range.
+- **Why:** both are deliberate simplicity for the one book actually being built. Classification is
+  cosmetic (a `(type)` tag in `--list-lessons` output), and this book's nav covers its back matter,
+  so neither assumption has bitten.
+- **Impact:** on a mismatched next book, `--list-lessons` mislabels entry types (selection by number
+  or label still works), and the final lesson of a nav-truncated book would extract with appended
+  back matter, inflating that one corpus.
+- **When to revisit:** at the second real book. Fix classification against that book's actual TOC
+  conventions (or drop the type tag), and bound the final entry's range by the nav's own last
+  covered file rather than the spine end.

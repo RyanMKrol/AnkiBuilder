@@ -1,33 +1,16 @@
-import { spawnSync } from "child_process";
-import { assertExternalCallAllowed } from "../util/testEnv.js";
-
-// Pinned so translation quality is reproducible instead of inheriting whatever
-// the local Claude Code default happens to be. Sonnet at medium effort, matching
-// every other LLM pass in this toolset (see ../corpus/epubLlmRunClaude.js) — one
-// model/effort across the whole pipeline. Override per run with
-// ANKI_BUILDER_TRANSLATE_MODEL / ANKI_BUILDER_TRANSLATE_EFFORT.
-const DEFAULT_TRANSLATE_MODEL = "claude-sonnet-5";
-const DEFAULT_TRANSLATE_EFFORT = "medium";
+import { runClaudeWithPrompt } from "../util/runClaude.js";
 
 /**
- * Default runner: invokes the local `claude -p` CLI with the given prompt and
- * returns its stdout. Injected as `runClaude` in tests so no real binary runs.
+ * Default runner for the translate-family passes (translation, romanization eval,
+ * semantic de-dup, cross-lesson notes, number readings, kanji orthography). Thin
+ * wrapper over the shared core (src/util/runClaude.js — stdin prompt, timeout, one
+ * retry); the legacy ANKI_BUILDER_TRANSLATE_MODEL/EFFORT pair still wins over the
+ * unified ANKI_BUILDER_LLM_MODEL/EFFORT. Injected as `runClaude` in tests so no
+ * real binary runs.
  */
 export function runClaude(prompt) {
-  assertExternalCallAllowed("spawn `claude -p`");
-  const model = process.env.ANKI_BUILDER_TRANSLATE_MODEL || DEFAULT_TRANSLATE_MODEL;
-  const effort = process.env.ANKI_BUILDER_TRANSLATE_EFFORT || DEFAULT_TRANSLATE_EFFORT;
-  const result = spawnSync("claude", ["-p", prompt, "--model", model, "--effort", effort], {
-    encoding: "utf-8",
+  return runClaudeWithPrompt(prompt, {
+    scopeEnvPrefix: "ANKI_BUILDER_TRANSLATE",
     maxBuffer: 10 * 1024 * 1024,
   });
-
-  if (result.error) {
-    throw result.error;
-  }
-  if (result.status !== 0) {
-    throw new Error(`claude -p exited with status ${result.status}: ${result.stderr}`);
-  }
-
-  return result.stdout;
 }

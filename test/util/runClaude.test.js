@@ -1,0 +1,147 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { runClaudeWithPrompt } from "../../src/util/runClaude.js";
+
+// The core refuses to run under the test runner unless explicitly allowed — these tests
+// inject a fake spawn, so lift the refusal around each call and restore afterwards.
+function withEnv(overrides, fn) {
+  const saved = {};
+  for (const [key, value] of Object.entries({
+    ANKI_BUILDER_ALLOW_LLM_IN_TESTS: "1",
+    ...overrides,
+  })) {
+    saved[key] = process.env[key];
+    if (value === undefined) delete process.env[key];
+    else process.env[key] = value;
+  }
+  try {
+    return fn();
+  } finally {
+    for (const [key, value] of Object.entries(saved)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+}
+
+const ok = (stdout = "OK") => ({ status: 0, stdout, stderr: "" });
+
+test("passes the prompt on stdin, never argv", () => {
+  withEnv({}, () => {
+    const calls = [];
+    const out = runClaudeWithPrompt("THE PROMPT", {
+      spawn: (cmd, args, opts) => {
+        calls.push({ cmd, args, opts });
+        return ok("result text");
+      },
+    });
+
+    assert.equal(out, "result text");
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].cmd, "claude");
+    assert.equal(calls[0].opts.input, "THE PROMPT");
+    assert.ok(!calls[0].args.includes("THE PROMPT"));
+    assert.ok(calls[0].opts.timeout > 0);
+  });
+});
+
+test("model/effort precedence: scope pair > unified pair > default", () => {
+  const argsFor = (env) =>
+    withEnv(env, () => {
+      let seen;
+      runClaudeWithPrompt("p", {
+        scopeEnvPrefix: "ANKI_BUILDER_TRANSLATE",
+        spawn: (cmd, args) => {
+          seen = args;
+          return ok();
+        },
+      });
+      return seen;
+    });
+
+  const defaults = argsFor({
+    ANKI_BUILDER_TRANSLATE_MODEL: undefined,
+    ANKI_BUILDER_TRANSLATE_EFFORT: undefined,
+    ANKI_BUILDER_LLM_MODEL: undefined,
+    ANKI_BUILDER_LLM_EFFORT: undefined,
+  });
+  assert.deepEqual(defaults, ["-p", "--model", "claude-sonnet-5", "--effort", "medium"]);
+
+  const unified = argsFor({
+    ANKI_BUILDER_TRANSLATE_MODEL: undefined,
+    ANKI_BUILDER_TRANSLATE_EFFORT: undefined,
+    ANKI_BUILDER_LLM_MODEL: "claude-opus-5",
+    ANKI_BUILDER_LLM_EFFORT: "high",
+  });
+  assert.deepEqual(unified, ["-p", "--model", "claude-opus-5", "--effort", "high"]);
+
+  const scoped = argsFor({
+    ANKI_BUILDER_TRANSLATE_MODEL: "claude-haiku-4-5-20251001",
+    ANKI_BUILDER_TRANSLATE_EFFORT: undefined,
+    ANKI_BUILDER_LLM_MODEL: "claude-opus-5",
+    ANKI_BUILDER_LLM_EFFORT: "high",
+  });
+  assert.deepEqual(scoped, ["-p", "--model", "claude-haiku-4-5-20251001", "--effort", "high"]);
+});
+
+test("retries once on failure, then succeeds", () => {
+  withEnv({}, () => {
+    let calls = 0;
+    const out = runClaudeWithPrompt("p", {
+      spawn: () => {
+        calls++;
+        return calls === 1 ? { status: 1, stdout: "", stderr: "transient" } : ok("second try");
+      },
+    });
+
+    assert.equal(calls, 2);
+    assert.equal(out, "second try");
+  });
+});
+
+test("throws the last error once the retry is exhausted", () => {
+  withEnv({}, () => {
+    let calls = 0;
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => {
+            calls++;
+            return { status: 1, stdout: "", stderr: `boom ${calls}` };
+          },
+        }),
+      /exited with status 1: boom 2/,
+    );
+    assert.equal(calls, 2);
+  });
+});
+
+test("maps a spawn timeout to a clear error naming the ceiling", () => {
+  withEnv({ ANKI_BUILDER_LLM_TIMEOUT_MS: "1234" }, () => {
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => ({
+            error: Object.assign(new Error("spawnSync ETIMEDOUT"), { code: "ETIMEDOUT" }),
+          }),
+        }),
+      /timed out after 1234 ms/,
+    );
+  });
+});
+
+test("refuses to spawn without the explicit opt-out under the test runner", () => {
+  // No withEnv here — the refusal must fire before any spawn happens.
+  let spawned = false;
+  assert.throws(
+    () =>
+      runClaudeWithPrompt("p", {
+        spawn: () => {
+          spawned = true;
+          return ok();
+        },
+      }),
+    /refusing to spawn/,
+  );
+  assert.equal(spawned, false);
+});

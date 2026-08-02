@@ -125,16 +125,42 @@ on English-gloss collisions, split Q&A, an answer card that is answerable alone)
 Each agent sees earlier chapters but **not later ones**, so a card added to Lesson 3 can duplicate one
 that already exists in Lesson 8. The agents structurally cannot catch this. After merging, always run:
 
-1. **A cross-chapter duplicate check.** Group every card in the whole book by `target`. Any group
-   spanning two units where one side is new is a duplicate. Keep the EARLIEST occurrence and exclude
-   the later one with a `reviewNote` explaining the call. Before excluding a **question**, confirm its
-   answer card carries a `hint` naming the question, or you strand it. Excluding an **answer** is
-   always safe, because a question card is answerable alone.
-2. **A deck-wide collision audit.** Group by normalized `english` and by `target`. Any group with more
-   than one distinct answer needs a `hint` on each card. Fix the ones the pass introduced; report
-   pre-existing ones rather than inventing wording for cards the human already signed off.
+1. **A cross-chapter duplicate check** — run the script, don't re-derive it:
+
+   ```sh
+   node scripts/extras-duplicate-check.mjs output/epubs/<book-slug>            # report
+   node scripts/extras-duplicate-check.mjs output/epubs/<book-slug> --apply   # exclude later copies
+   ```
+
+   It groups every card in the whole book by `target`, keeps the EARLIEST occurrence, and (with
+   `--apply`) excludes later ones with a `reviewNote` naming the keeper. It refuses to touch
+   reviewed/done units without `--force`, and it always SKIPS a duplicate that looks like a
+   question: excluding a question can strand an elliptical answer whose `hint` names it, so
+   resolve those by hand (excluding an answer is always safe, because a question card is
+   answerable alone).
+2. **A deck-wide collision audit** — also scripted:
+
+   ```sh
+   node scripts/extras-collision-audit.mjs output/epubs/<book-slug>
+   ```
+
+   It groups by normalized `english` and by `target` and lists every group with more than one
+   distinct answer, flagging members with no `hint` (exit 2 when any are missing). It is
+   report-only: fix the collisions the pass introduced, and report pre-existing ones rather than
+   inventing wording for cards the human already signed off.
 
 ## Order the unit: shuffle, then hoist its foundations
+
+Run the script rather than hand-rolling it:
+
+```sh
+node scripts/extras-order.mjs output/epubs/<book-slug>/chapter-<n>-extras            # preview
+node scripts/extras-order.mjs output/epubs/<book-slug>/chapter-<n>-extras --apply    # write
+```
+
+It applies both passes below (seeded shuffle, then hoist), keeps `corpus.json` in the same order,
+defaults the seed to the unit folder name so re-runs are stable, and refuses a reviewed/done unit
+without `--force`. The rationale, so you can sanity-check its output:
 
 An extras unit must NOT ship in the order it was built. The cards come out grouped by how they were
 made — each Q&A pair adjacent, each contrast set adjacent, one coverage job after another — and that

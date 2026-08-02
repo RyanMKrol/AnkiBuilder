@@ -1,7 +1,7 @@
 import http from "node:http";
 import { Buffer } from "buffer";
-import { createReadStream, statSync, realpathSync } from "fs";
-import { resolve, sep } from "path";
+import { createReadStream, statSync, realpathSync, existsSync } from "fs";
+import { resolve, sep, join as pathJoin, dirname as pathDirname } from "path";
 import {
   escapeHtml,
   DECK_VIEW_CSS,
@@ -17,7 +17,7 @@ import {
   AUDIO_TRIM_SCRIPT,
 } from "../review/deckViewChrome.js";
 import { createAnkiConnect } from "../anki/ankiConnect.js";
-import { deliverToAnki } from "../anki/deliver.js";
+import { deliverToAnki, DELIVERED_MARKER } from "../anki/deliver.js";
 import { ADAPTERS } from "./adapters/index.js";
 import { unitBuildState, INCOMPLETE } from "./adapters/stage.js";
 import { describeReadiness } from "../cards/readiness.js";
@@ -171,6 +171,13 @@ export function createDeckServer({
         interrupted: !!u.interrupted,
         claim: u.claim || null,
       }));
+      // A deck delivered over AnkiConnect carries a marker beside its .apkg (see deliver.js):
+      // re-importing the package into that collection would create duplicate notes, so the
+      // heading warns before anyone reaches for drag-and-drop.
+      const deckFile = adapter?.deckFile ? adapter.deckFile(outputRoot, d.id) : null;
+      const managed = deckFile
+        ? existsSync(pathJoin(pathDirname(deckFile), DELIVERED_MARKER))
+        : false;
       return {
         type: d.type,
         id: d.id,
@@ -178,6 +185,7 @@ export function createDeckServer({
         lang: d.targetLanguage,
         total: units.length,
         units,
+        managed,
       };
     });
 
@@ -190,7 +198,10 @@ export function createDeckServer({
         .filter(Boolean)
         .join(" · ");
     const deckBlock = (deck, units, mode) => {
-      const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span></div>`;
+      const managedChip = deck.managed
+        ? `<span class="dm" title="Delivered via AnkiConnect — push updates with Deliver to Anki. Re-importing the .apkg into that collection creates duplicate notes.">· AnkiConnect-managed</span>`
+        : "";
+      const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span>${managedChip}</div>`;
       const reopenBtn = (u) =>
         `<button type="button" class="home-reopen" data-type="${escapeHtml(deck.type)}" data-id="${escapeHtml(deck.id)}" data-unit="${escapeHtml(String(u.seq))}">Reopen</button>`;
       // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link. When

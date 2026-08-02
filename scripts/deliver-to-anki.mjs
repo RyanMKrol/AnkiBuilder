@@ -77,6 +77,7 @@ if (report.structure.length) {
 }
 
 line("\ncontent:");
+let ambiguousTotal = 0;
 for (const c of report.content) {
   line(
     `  ${c.deck}: ${c.updated} updated, ${c.added} added, ${c.skipped} unchanged, ${c.tagged} tagged`,
@@ -85,6 +86,7 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  ambiguousTotal += c.ambiguous.length;
 }
 
 // --- AnkiWeb sync ---
@@ -108,3 +110,13 @@ if (dry) {
   }
 }
 line();
+
+// Ambiguous cards' edits never land until a human resolves them — an exit-0 run buried that in the
+// scroll, so those cards silently drifted from the on-disk state forever. Fail the run instead.
+if (ambiguousTotal > 0) {
+  console.error(
+    `deliver finished with ${ambiguousTotal} ambiguous card(s) skipped — resolve them (see ⚠ lines ` +
+      `above) and re-run; until then those cards' edits are NOT in Anki.`,
+  );
+  process.exit(2);
+}

@@ -42,6 +42,12 @@ const htmlDecode = (s) =>
     .replace(/&#39;/g, "'")
     .replace(/&nbsp;/g, " ");
 
+// Escape a value interpolated into an Anki search's quoted term. `"` would end the term early,
+// `*`/`_` are wildcards even inside quotes, and `\` is the escape character itself — a book title
+// carrying any of them either broke findNotes or over-matched, and that query feeds the
+// first-run fingerprint bootstrap.
+const escapeSearchTerm = (s) => String(s).replace(/([\\"*_])/g, "\\$1");
+
 const sameField = (ankiValue, computed) => htmlDecode(ankiValue) === htmlDecode(computed);
 const norm = (s) =>
   htmlDecode(s)
@@ -95,9 +101,35 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       audioDir: cd.audioDir,
       cards: shippableCards(cd.cards),
     }));
-    decks.push({ type, id, title: info.title, targetLanguage, spec, ankiParent, units });
+    decks.push({ type, id, title: info.title, targetLanguage, spec, ankiParent, units, bookDir });
   }
   return decks;
+}
+
+// Marker written beside a deck's merged .apkg after a real (non-dry) deliver. Once a collection is
+// AnkiConnect-managed, drag-and-drop importing the .apkg again CREATES DUPLICATES: notes added via
+// addNote carry random guids, so the package's copies of those cards don't match and import as new.
+// The dashboard reads this to warn next to the deck.
+export const DELIVERED_MARKER = "anki-delivered.json";
+
+function writeDeliveredMarker(deck) {
+  if (!deck.bookDir) return;
+  try {
+    writeFileSync(
+      join(deck.bookDir, DELIVERED_MARKER),
+      JSON.stringify(
+        {
+          note: "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
+          ankiParent: deck.ankiParent,
+          lastDeliveredAt: new Date().toISOString(),
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+  } catch {
+    // The marker is advisory; a failed write must not fail the deliver.
+  }
 }
 
 // Idempotent structure sync for one model. Reads current state; writes only the delta (unless dry).
@@ -216,7 +248,7 @@ export async function syncDeckContent(client, deck, dry) {
     ambiguous: [],
     orphaned: [],
   };
-  const query = `deck:"${deck.ankiParent}" note:"${deck.spec.modelName}"`;
+  const query = `deck:"${escapeSearchTerm(deck.ankiParent)}" note:"${escapeSearchTerm(deck.spec.modelName)}"`;
   const noteIds = await client.findNotes(query);
   const infos = noteIds.length ? await client.notesInfo(noteIds) : [];
 
@@ -449,6 +481,7 @@ export async function deliverToAnki(
   // 6. CONTENT SYNC (per deck)
   for (const deck of deliverable) {
     report.content.push(await syncDeckContent(client, deck, dry));
+    if (!dry) writeDeliveredMarker(deck);
     log(`content synced: ${deck.type}:${deck.id}`);
   }
 

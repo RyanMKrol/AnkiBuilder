@@ -54,10 +54,19 @@ Four sources:
   library, and automatically runs two passes before writing `corpus.json` — both non-destructive:
   a backward pass (`dedupBackward`, `src/corpus/epubDedup.js`) flags anything that exact-matches
   (case-insensitive `english`, or exact `target`) an item already introduced in an earlier
-  (reviewed) chapter of the same book, deterministically and with zero API cost; a forward pass
+  (reviewed) chapter of the same book, deterministically and with zero API cost (both sides of the
+  target comparison are display-normalized first, so editorial spaces / a trailing `。` never defeat
+  the match); a forward pass
   (`flagForwardConcerns`, `src/corpus/epubForwardFlags.js`) asks a Sonnet-medium model to flag
   anything that looks premature, either because a later chapter explicitly re-teaches it or
-  because it relies on grammar/vocabulary the book hasn't introduced yet. Neither pass ever drops
+  because it relies on grammar/vocabulary the book hasn't introduced yet. The forward pass judges
+  from a once-per-book **taught-content index** (`src/corpus/epubTaughtIndex.js`): one whole-book
+  model pass, built lazily on first need and cached as `taught-index.json` under the book's hash
+  dir, recording what each chapter introduces. The per-lesson forward call then hands the model
+  that compact index instead of re-materializing every later chapter (which repeated a
+  near-whole-book read on each assemble). Index coverage is verified mechanically (every spine
+  chapter must appear, or the build is rejected); when the index can't be built the pass falls back
+  to the original read-the-later-chapters behavior. Neither pass ever drops
   an item — each flagged item comes back with `uncertain: true` and a note appended (`"Possibly
 already taught — ..."` for a backward match, `"Possibly premature — ..."` for a forward one), so
   the corpus review gate is where the human actually decides, rather than the item silently

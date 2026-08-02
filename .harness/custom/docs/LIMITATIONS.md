@@ -1301,3 +1301,22 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   it, orphaning its extras under the old group name until both are renamed together.
 - **When to revisit:** if a second book's labels don't match the convention, replace the regex with an
   explicit `meta.deckGroup` field rather than widening the pattern.
+
+## The forward-flag pass judges from a compact index, not the later chapters' full text
+
+- **What:** `flagForwardConcerns` no longer has the model re-read every later chapter on each
+  assemble. A one-time whole-book pass (`src/corpus/epubTaughtIndex.js`) records what each chapter
+  introduces into `taught-index.json` under the book's hash dir, and the per-lesson forward call
+  hands the model that index instead. The legacy read-everything path survives only as the fallback
+  when the index cannot be built.
+- **Why:** the old shape was O(n squared) over a book's build: an early lesson of this 57-file book
+  asked one model call to read roughly 50 files (about 1.9 MB), and that repeated for every lesson.
+  The conventions pass had already proven the read-once-cache-forever shape.
+- **Impact:** flag quality now depends on the index's fidelity. A subtle re-teaching the index pass
+  summarized away is invisible to the per-lesson call, where the old path could in principle have
+  caught it by re-reading the chapter. Coverage is verified mechanically (every spine chapter must
+  appear or the index is rejected), but entry quality is not. The index is keyed by content hash, so
+  a changed EPUB re-indexes; a hand-edited index is trusted as-is.
+- **When to revisit:** if premature items start slipping through the corpus review unflagged, spot
+  check the index's entries for the chapters involved; the fix is regenerating (delete the file) or
+  hand-editing the index, not reverting to the O(n squared) reads.

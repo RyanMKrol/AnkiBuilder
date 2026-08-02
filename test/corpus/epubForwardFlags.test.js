@@ -5,7 +5,11 @@ import { tmpdir } from "os";
 import { join } from "path";
 import { deflateRawSync } from "zlib";
 import { Buffer } from "buffer";
-import { flagForwardConcerns, renderForwardFlagPrompt } from "../../src/corpus/epubForwardFlags.js";
+import {
+  flagForwardConcerns,
+  renderForwardFlagPrompt,
+  renderForwardFlagIndexPrompt,
+} from "../../src/corpus/epubForwardFlags.js";
 
 // --- Synthetic .epub fixture builder (mirrors test/corpus/epubArchive.test.js) ---
 
@@ -186,7 +190,94 @@ test("renderForwardFlagPrompt() substitutes bookConventions when given", () => {
   assert.match(rendered, /Some book-wide convention notes\./);
 });
 
+test("renderForwardFlagIndexPrompt() substitutes every placeholder, embedding the index JSON", () => {
+  const rendered = renderForwardFlagIndexPrompt({
+    targetLanguage: "Japanese",
+    chapterNumber: 2,
+    candidateItems: [candidate("a", "A", "あ")],
+    laterChaptersIndex: [
+      { chapter: 3, label: "Lesson 3", teaches: ["shopping-places vocabulary: デパート"] },
+    ],
+    bookConventions: "Some conventions.",
+  });
+
+  assert.doesNotMatch(rendered, /\{\{[A-Z_]+\}\}/);
+  assert.match(rendered, /"chapter": 3/);
+  assert.match(rendered, /shopping-places vocabulary/);
+  assert.match(rendered, /Some conventions\./);
+});
+
 // --- flagForwardConcerns ---
+
+test("flagForwardConcerns() consults the taught index when available, not the chapter files", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 3);
+    const candidates = [candidate("department-store", "department store", "デパート")];
+    const prompts = [];
+
+    const { items, flagged } = flagForwardConcerns({
+      candidateItems: candidates,
+      epubPath,
+      chapterNumber: 1,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      ensureTaughtIndex: () => ({
+        chapters: [
+          { chapter: 1, label: null, teaches: [] },
+          { chapter: 2, label: null, teaches: ["greetings"] },
+          { chapter: 3, label: "Lesson 3", teaches: ["shopping-places vocabulary: デパート"] },
+        ],
+      }),
+      runClaude: (prompt) => {
+        prompts.push(prompt);
+        return JSON.stringify({
+          flag: [
+            { id: "department-store", laterChapter: 3, reason: "taught as shopping vocabulary" },
+          ],
+        });
+      },
+    });
+
+    assert.equal(prompts.length, 1);
+    // The prompt carries the LATER chapters' index slice (not the current chapter's entry,
+    // and not later-chapter file paths to read).
+    assert.match(prompts[0], /shopping-places vocabulary/);
+    assert.match(prompts[0], /"chapter": 2/);
+    assert.doesNotMatch(prompts[0], /"chapter": 1,/);
+    assert.doesNotMatch(prompts[0], /chapters\/3\.xhtml/);
+    assert.equal(items[0].uncertain, true);
+    assert.equal(flagged[0].laterChapter, 3);
+  });
+});
+
+test("flagForwardConcerns() falls back to reading chapters directly when the index is unavailable", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 3);
+    const candidates = [candidate("a", "A", "あ")];
+    const prompts = [];
+    const logs = [];
+
+    const { items } = flagForwardConcerns({
+      candidateItems: candidates,
+      epubPath,
+      chapterNumber: 1,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      log: (msg) => logs.push(msg),
+      ensureTaughtIndex: () => null,
+      runClaude: (prompt) => {
+        prompts.push(prompt);
+        return JSON.stringify({ flag: [] });
+      },
+    });
+
+    assert.equal(prompts.length, 1);
+    assert.match(prompts[0], /chapters\/2\.xhtml/);
+    assert.match(prompts[0], /chapters\/3\.xhtml/);
+    assert.deepEqual(items, candidates);
+    assert.ok(logs.some((msg) => msg.includes("no taught index")));
+  });
+});
 
 test("flagForwardConcerns() marks a flagged item uncertain and appends a note, without dropping it", () => {
   withTempDir((dir) => {

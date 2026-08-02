@@ -23,7 +23,8 @@ export function renderPromptTemplate(templatePath, values) {
 /**
  * Pulls the JSON object out of a model response. The model is asked for bare JSON but may wrap it in
  * a markdown fence or preface it with prose, so prefer a fenced block and otherwise take the span
- * from the first "{" to the last "}". Mirrors the parsing in epubForwardFlags/pedagogicalSort.
+ * from the first "{" to the last "}". Shared by every pass that parses a JSON object response
+ * (epubTaughtIndex, epubForwardFlags, pedagogicalSort, and callers here).
  */
 export function extractJsonObjectText(raw) {
   const fenceMatch = raw.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);

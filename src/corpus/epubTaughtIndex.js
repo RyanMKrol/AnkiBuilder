@@ -4,6 +4,7 @@ import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath, loadTaughtIndex, saveTaughtIndex } from "./epubLibrary.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { extractJsonObjectText } from "../util/promptTemplate.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -48,20 +49,6 @@ export function renderTaughtIndexPrompt({
   }
 
   return rendered;
-}
-
-// Same fence-or-brace-span tolerance as the forward-flag response parser.
-function extractJsonObjectText(raw) {
-  const fenceMatch = raw.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
-  if (fenceMatch) {
-    return fenceMatch[1];
-  }
-  const firstBrace = raw.indexOf("{");
-  const lastBrace = raw.lastIndexOf("}");
-  if (firstBrace !== -1 && lastBrace > firstBrace) {
-    return raw.slice(firstBrace, lastBrace + 1);
-  }
-  return raw.trim();
 }
 
 /**

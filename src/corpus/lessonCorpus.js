@@ -2,18 +2,12 @@ import { CATEGORIES } from "../model/categories.js";
 import { validateCorpus } from "../model/index.js";
 import { slugify } from "../util/slugify.js";
 import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { chunk } from "../util/chunk.js";
+import { stripMarkdownFence } from "../util/markdownFence.js";
 
 // Unbounded — one call for the whole lesson, same reasoning as translate/index.js's own BATCH_SIZE
 // (every LLM pass is pinned to Sonnet at medium effort, which handles a whole lesson in one shot).
 const BATCH_SIZE = Infinity;
-
-function chunk(items, size) {
-  const batches = [];
-  for (let i = 0; i < items.length; i += size) {
-    batches.push(items.slice(i, i + size));
-  }
-  return batches;
-}
 
 function uniqueId(english, usedIds) {
   const base = slugify(english, { maxLength: 40 });
@@ -69,11 +63,6 @@ function buildCategorizePrompt(items) {
     JSON.stringify(items, null, 2),
     "```",
   ].join("\n");
-}
-
-function stripMarkdownFence(text) {
-  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
-  return match ? match[1] : text;
 }
 
 function parseCategoryBatch(raw) {

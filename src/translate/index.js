@@ -6,6 +6,8 @@ import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./roman
 import { getSimpleScriptRule as defaultGetSimpleScriptRule } from "./targetScript.js";
 import { getLanguagePromptRules as defaultGetLanguagePromptRules } from "./languageRules.js";
 import { romanizeAndEvaluate } from "./romanizationEval.js";
+import { chunk } from "../util/chunk.js";
+import { stripMarkdownFence } from "../util/markdownFence.js";
 
 // Max corpus items per `claude -p` invocation. Unbounded — a lesson's worth of items goes in a
 // SINGLE call now that every LLM pass is pinned to Sonnet at medium effort (a capable model handles
@@ -13,14 +15,6 @@ import { romanizeAndEvaluate } from "./romanizationEval.js";
 // across independent batches). Each of the two groups below (full-translation vs. pronunciation-only)
 // is still a call of its own, since they're different tasks on different item sets.
 const BATCH_SIZE = Infinity;
-
-function chunk(items, size) {
-  const batches = [];
-  for (let i = 0; i < items.length; i += size) {
-    batches.push(items.slice(i, i + size));
-  }
-  return batches;
-}
 
 function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } = {}) {
   const inputData = items.map((item) => {
@@ -263,14 +257,6 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
     JSON.stringify(inputData, null, 2),
     "```",
   ].join("\n");
-}
-
-// The model is asked for raw JSON but occasionally wraps it in a markdown code
-// fence (```json ... ```) anyway — strip that before parsing rather than
-// failing the whole batch over formatting.
-function stripMarkdownFence(text) {
-  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
-  return match ? match[1] : text;
 }
 
 function parseBatch(raw) {

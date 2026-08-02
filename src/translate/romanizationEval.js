@@ -1,17 +1,11 @@
 import { runClaude as defaultRunClaude } from "./runClaude.js";
+import { chunk } from "../util/chunk.js";
+import { stripMarkdownFence } from "../util/markdownFence.js";
 
-// Duplicated from index.js (rather than imported) to avoid a circular module dependency —
-// index.js imports romanizeAndEvaluate from here, so this module can't import back from index.js.
 // Same batch size/semantics as the rest of the translate stage: unbounded, i.e. one call per group.
+// (A const of its own rather than imported from index.js because index.js imports
+// romanizeAndEvaluate from here, so this module can't import back from index.js.)
 const BATCH_SIZE = Infinity;
-
-function chunk(items, size) {
-  const batches = [];
-  for (let i = 0; i < items.length; i += size) {
-    batches.push(items.slice(i, i + size));
-  }
-  return batches;
-}
 
 function buildRomanizationPrompt(items, targetLanguage) {
   const inputData = items.map((item) => ({
@@ -93,11 +87,6 @@ function buildRomanizationPrompt(items, targetLanguage) {
     JSON.stringify(inputData, null, 2),
     "```",
   ].join("\n");
-}
-
-function stripMarkdownFence(text) {
-  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
-  return match ? match[1] : text;
 }
 
 function parseEvalBatch(raw) {

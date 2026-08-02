@@ -105,12 +105,14 @@ resulting `cards.json`. This is independent of the romaji (which keeps its own s
 the audio-side space strip (`src/audio/ttsText.js`). Languages whose spaces/terminal punctuation are
 meaningful (Spanish, French, …) are untouched.
 
-The stripped display text is dot-less, but the `。` lives on in the **audio**: the per-language
-transform (`src/audio/altAudio.js`, ja appends `。`) produces the **with-dot** take, and that take is
-the single **default** clip embedded in the deck, while the displayed face/reading stays dot-less. The
-terminal `。` measurably steadies ElevenLabs' prosody (it anchors a sentence boundary), which is why
-with-dot is the default. The plain dot-less take is no longer pre-generated as a second recording —
-it's one of the on-demand variants you can synthesize and switch to in the dashboard's audio review.
+The stripped display text is dot-less, but the `。` lives on in the **audio**, via the TTS end
+marker (`src/audio/ttsMarker.js`): for a marker-using language (Japanese) the text sent to
+ElevenLabs gets `。ででで` appended, so the voice reads the card with sentence-final prosody — the
+`。` anchors a sentence boundary, which measurably steadies short/bare clips — and the throwaway
+ででで syllables absorb ElevenLabs' end-of-clip artifacts. The automatic trim then finds and cuts
+the marker back off the clip (with a "Marker audible" review badge on the rare card where it
+cannot). The displayed face/reading stays dot-less throughout; there is no separate with-dot /
+without-dot take to choose between.
 
 The `--epub` source has two ways to choose _what_ to assemble.
 `--epub <path> --lesson <selector> --lang <language>` (or `--book <slug> --lesson ...`) is the
@@ -169,10 +171,14 @@ tool when they sit in a content section. For the `--epub` path, `extractChapterT
 `<img src>` tags reference, at the same relative path from the cached chapter file that the src
 attribute encodes from the original chapter file inside the archive — so those references resolve
 to real files on disk instead of a directory that was never unpacked. All three paths produce the
-same superset item shape: `{ id, english, category, notes, target }`, with `notes`/`target`
-explicitly `null` when the source path can't populate them, plus two optional flags carried
-through when the extractor sets them: `uncertain` (the model wasn't sure the item belonged) and
-`aiSuggested` (a critical-gap item the model added itself, not present in the source).
+same superset item shape: `{ id, english, category, hint, note, reviewNote, target }` — the three
+note fields are strictly separated (`hint` front-of-card cue, `note` back-of-card context,
+`reviewNote` internal review-only rationale; a legacy blended `notes` folds into `reviewNote`) —
+with the note fields and `target` explicitly `null` when the source path can't populate them, plus
+an optional `reading` (the spoken form, when the target carries a numeral) and two optional flags
+carried through when the extractor sets them: `uncertain` (the model wasn't sure the item
+belonged) and `aiSuggested` (a critical-gap item the model added itself, not present in the
+source).
 
 ### The review gates check state, not history
 
@@ -335,14 +341,13 @@ different one. `--voice
 `DEFAULT_VOICES`, keyed by the same ISO 639-1 code) — an explicit `--voice` always overrides it;
 with neither, the stage still throws asking for one.
 
-**Default take only (per-language transform).** The stage generates exactly ONE clip per card — the
-default (`audio`). For a language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS`, that
-default is the _transformed_ take: Japanese appends a `。`, because a trailing full stop gives
-ElevenLabs a sentence boundary and empirically fixes many mis-rendered short/bare clips (lone kana,
-some numbers). Languages with no transform get the plain take. Every OTHER variant — the no-`。` take,
-comma/bracket forms, and kana+kanji — is generated **on demand** in the dashboard (see the audio
-review below), not up front. The displayed `target`/`reading` never carries a `。`; the dot is
-audio-only.
+**Default take only (end marker per language).** The stage generates exactly ONE clip per card — the
+default (`audio`). For a marker-using language (`src/audio/ttsMarker.js`'s `MARKED_LANGUAGES`,
+Japanese today) the text sent to TTS carries the `。ででで` end marker described above, and the trim
+strips it from the recording. Every OTHER variant — comma/bracket forms and kana+kanji — is
+generated **on demand** in the dashboard (see the audio review below), not up front; the variant
+set is comma × brackets (1 to 4 takes, `src/audio/variants.js`). The displayed `target`/`reading`
+never carries a `。`; the sentence-final prosody is audio-only.
 
 **Per-language TTS text normalization (`src/audio/ttsText.js`'s `normalizeTtsText`).** The exact text
 sent to TTS (and used as the cache key) is the card's spoken text run through a per-language
@@ -481,10 +486,11 @@ generated clips go through the identical path, so a hand-uploaded Replace never 
 clips that had their silence removed.
 
 `generateAudio` fetches only the default clip per card (cache misses only). The legacy `altAudio`
-field is no longer written — switching a Japanese card to its plain no-`。` take is now an on-demand
-dashboard action (the **Generate** button synthesizes the no-`。` / comma / bracket variants to
-audition and pick), not a pre-baked second recording. The schema still tolerates `altAudio` on cards
-from older runs; the deck build never embeds it.
+field is no longer written — the **Generate** button synthesizes fresh comma/bracket variants
+(1 to 4 takes, `src/audio/variants.js`; per-take Re-roll costs one credit) to audition and pick,
+not a pre-baked second recording. There is no with-`。` / no-`。` choice any more — every take gets
+the sentence-final prosody via the end marker. The schema still tolerates `altAudio` on cards from
+older runs; the deck build never embeds it.
 
 A second on-demand action, **Generate (kanji)** (Japanese decks only — `src/audio/generateKanjiVariants.js`),
 addresses ElevenLabs mis-parsing all-kana input: it first asks Claude (`src/audio/kanjiOrthography.js`,

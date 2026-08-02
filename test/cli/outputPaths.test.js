@@ -155,7 +155,26 @@ test("materializeBookInOutput() copies the EPUB into the book folder and writes 
       slug,
       epubHash,
       targetLanguage: "ja",
+      guidNamespace: slug, // a NEW book dir gets namespaced .apkg guids from day one
     });
+  });
+});
+
+test("materializeBookInOutput() never invents a guidNamespace for a pre-namespace book", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+
+    // Simulate a marker written before guid namespacing existed: field absent. Namespacing an
+    // existing book's guids would orphan its live scheduling on the next import.
+    const markerPath = join(outputRoot, "epubs", slug, "book.json");
+    const marker = JSON.parse(readFileSync(markerPath, "utf-8"));
+    delete marker.guidNamespace;
+    writeFileSync(markerPath, JSON.stringify(marker, null, 2));
+
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+    assert.equal(loadBookMarker(join(outputRoot, "epubs", slug)).guidNamespace, null);
   });
 });
 
@@ -355,6 +374,7 @@ test("resolveCourseSlug() creates output/courses/<slug>/ and writes a course.jso
     assert.deepEqual(loadCourseMeta(join(outputRoot, "courses", slug)), {
       name: "Intensive Japanese 1",
       targetLanguage: "ja",
+      guidNamespace: slug, // a NEW course gets namespaced .apkg guids from day one
     });
   });
 });
@@ -388,7 +408,12 @@ test("listCourses() returns every course.json-marked folder, ignoring plain (e.g
     const courses = listCourses(outputRoot);
 
     assert.deepEqual(courses, [
-      { slug: "intensive-japanese-1", name: "Intensive Japanese 1", targetLanguage: "ja" },
+      {
+        slug: "intensive-japanese-1",
+        name: "Intensive Japanese 1",
+        targetLanguage: "ja",
+        guidNamespace: "intensive-japanese-1",
+      },
     ]);
   });
 });

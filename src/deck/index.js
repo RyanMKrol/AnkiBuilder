@@ -120,7 +120,16 @@ export function buildDeck(
  */
 export function buildBookDeck(
   chapterDecks,
-  { outPath, bookName, now = Date.now(), getFont = getLanguageFont, readFont = readFontBytes } = {},
+  {
+    outPath,
+    bookName,
+    now = Date.now(),
+    getFont = getLanguageFont,
+    readFont = readFontBytes,
+    // `<namespace>/<card.id>` note guids for books/courses created after the namespace existed
+    // (their dir marker carries it); null keeps the legacy bare-card.id guids. See rebuild.js.
+    guidNamespace = null,
+  } = {},
 ) {
   if (!outPath) {
     throw new Error("outPath is required");
@@ -153,6 +162,7 @@ export function buildBookDeck(
     bookName,
     now,
     getFont,
+    guidNamespace,
   });
 
   const zipEntries = [

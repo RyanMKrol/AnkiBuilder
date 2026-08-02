@@ -553,6 +553,50 @@ test("buildDeck allows a duplicate id when one copy is excluded (it never ships)
   });
 });
 
+test("buildBookDeck namespaces note guids when asked; bare card ids otherwise", async () => {
+  await withTempDir(async (tmpDir) => {
+    const chapterDecks = [
+      {
+        name: "Lesson 1",
+        cards: baseCards([
+          { id: "hello", english: "Hello", target: "こんにちは", category: "Greetings" },
+        ]),
+        audioDir: null,
+      },
+    ];
+    let guidRead = 0;
+    const readGuids = async (apkgPath) => {
+      const bytes = await fs.readFile(apkgPath);
+      const dbBytes = extractZipEntry(bytes, "collection.anki2");
+      const dbPath = join(tmpDir, `guids-${guidRead++}.anki2`);
+      await fs.writeFile(dbPath, dbBytes);
+      const db = new DatabaseSync(dbPath);
+      try {
+        return db
+          .prepare("SELECT guid FROM notes")
+          .all()
+          .map((r) => r.guid);
+      } finally {
+        db.close();
+      }
+    };
+
+    const bare = join(tmpDir, "bare.apkg");
+    buildBookDeck(chapterDecks, { outPath: bare, bookName: "My Book" });
+    assert.deepEqual(await readGuids(bare), ["hello"]);
+
+    const spaced = join(tmpDir, "spaced.apkg");
+    buildBookDeck(chapterDecks, {
+      outPath: spaced,
+      bookName: "My Book",
+      guidNamespace: "my-book",
+    });
+    // Anki matches guids collection-wide: the namespace keeps a second book's "hello"
+    // from overwriting this one's note at import.
+    assert.deepEqual(await readGuids(spaced), ["my-book/hello"]);
+  });
+});
+
 test("buildBookDeck refuses card ids that repeat across chapters, naming both", async () => {
   await withTempDir(async (tmpDir) => {
     const outPath = join(tmpDir, "book.apkg");

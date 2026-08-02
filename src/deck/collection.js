@@ -477,7 +477,15 @@ function fieldValue(card, name) {
 // `mod` field is epoch SECONDS in Anki's actual schema. Passing the millisecond value
 // there produces a modification time ~1000x in the future, which is the kind of
 // out-of-range timestamp Anki's importer rejects.
-function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeconds, modelId) {
+function insertNotesAndCards(
+  insertNote,
+  insertCard,
+  chapterGroups,
+  now,
+  nowSeconds,
+  modelId,
+  guidNamespace = null,
+) {
   let position = 1;
   chapterGroups.forEach(({ deckId, cards }, chapterIndex) => {
     if (cards.items.length > MAX_ITEMS_PER_CHAPTER) {
@@ -492,9 +500,13 @@ function insertNotesAndCards(insertNote, insertCard, chapterGroups, now, nowSeco
       const flds = FIELD_NAMES.map((name) => fieldValue(card, name)).join(FIELD_SEP);
       const sortField = fieldValue(card, FIELD_NAMES[0]);
 
+      // Anki matches guids COLLECTION-wide, so a bare card.id from one book collides with the
+      // same slug in another. Namespaced (`<namespace>/<card.id>`) for books/courses created
+      // after the namespace existed; older decks keep bare ids — rewriting theirs would orphan
+      // live scheduling. See materializeBookInOutput.
       insertNote.run(
         noteId,
-        card.id,
+        guidNamespace ? `${guidNamespace}/${card.id}` : card.id,
         modelId,
         nowSeconds,
         flds,
@@ -526,6 +538,7 @@ function writeCollectionDb({
   nowSeconds,
   chapterGroups,
   modelSpec,
+  guidNamespace = null,
 }) {
   const tmpDir = mkdtempSync(join(tmpdir(), "anki-builder-collection-"));
   const dbPath = join(tmpDir, "collection.anki2");
@@ -562,6 +575,7 @@ function writeCollectionDb({
         now,
         nowSeconds,
         modelSpec.modelId,
+        guidNamespace,
       );
     } finally {
       db.close();
@@ -607,7 +621,7 @@ export function buildCollection(cards, { deckName, now, getFont = getLanguageFon
  */
 export function buildMultiDeckCollection(
   chapterDecks,
-  { bookName, now, getFont = getLanguageFont },
+  { bookName, now, getFont = getLanguageFont, guidNamespace = null },
 ) {
   const nowSeconds = Math.floor(now / 1000);
   const chapterNames = chapterDecks.map((c) => c.name);
@@ -625,6 +639,7 @@ export function buildMultiDeckCollection(
     nowSeconds,
     chapterGroups,
     modelSpec: resolveModelSpec(chapterDecks[0]?.cards?.meta?.targetLanguage, getFont),
+    guidNamespace,
   });
 }
 

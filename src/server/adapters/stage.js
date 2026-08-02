@@ -88,7 +88,7 @@ export function unitBuildState(runDir) {
  * built rendered edit controls that bounced off 409s, and an interrupted template build could
  * never be cleared from the UI.
  */
-export function decorateUnit(runDir, data) {
+export function decorateUnit(runDir, data, { includeCards = true } = {}) {
   const meta = data.meta || {};
   const build = unitBuildState(runDir);
   return {
@@ -101,11 +101,13 @@ export function decorateUnit(runDir, data) {
     building: build.building,
     interrupted: build.interrupted,
     claim: build.claim,
-    cards: data.items.map(renderCardForStage(data.stage)),
+    // The home page and listDecks only need per-unit STATE; materializing a render card for every
+    // item of every lesson just to show a status row was most of the home page's IO.
+    ...(includeCards ? { cards: data.items.map(renderCardForStage(data.stage)) } : { cards: [] }),
   };
 }
 
-export function scanNumberedUnits(deckDir, prefix) {
+export function scanNumberedUnits(deckDir, prefix, { includeCards = true } = {}) {
   if (!existsSync(deckDir)) return [];
   const label = `${prefix[0].toUpperCase()}${prefix.slice(1)}`;
   const units = [];
@@ -128,7 +130,7 @@ export function scanNumberedUnits(deckDir, prefix) {
       extras,
       number,
       label: meta.chapterLabel || `${label} ${number}`,
-      ...decorateUnit(runDir, data),
+      ...decorateUnit(runDir, data, { includeCards }),
     });
   }
   // Same order the package uses: by chapter number, then a lesson before its own extras. `seq` is a

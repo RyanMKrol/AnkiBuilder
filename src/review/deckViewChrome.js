@@ -234,6 +234,54 @@ export const EXPAND_COLLAPSE_SCRIPT = `(function () {
 // Client wiring for the editor (only included when the dashboard is editable). Reads the deck
 // type/id/done from #deckctx; per-row card id/unit from each <tr>'s data-* attributes. Vanilla JS, no
 // template literals / ${} (it's embedded in a template literal). Handles: Replace (raw upload) and
+// Shared client prelude — the tiny helpers every dashboard script leans on, defined ONCE as
+// window.__ab. Each script used to carry its own copy of `jsonp` (five of them) and the
+// rebuild-if-done helper (three), which is exactly how the copies drift apart. Loaded FIRST on any
+// page that loads the scripts below; on the home page (no #deckctx) `base`/`maybeRebuild` are
+// inert and only `jsonp` is used.
+export const DASH_PRELUDE_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  var status = document.getElementById("rebuild-status");
+  var base = ctx ? "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id")) : null;
+  var isDone = !!ctx && ctx.getAttribute("data-done") === "1";
+  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  var setStatus = function (t) { if (status) status.textContent = t; };
+  var rebuild = function () {
+    setStatus("rebuilding\\u2026");
+    return window.fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
+      if (!x.ok) throw new Error(x.j.error || "rebuild failed");
+      setStatus("\\u2713 deck rebuilt (" + x.j.noteCount + " cards)");
+    }).catch(function (e) { setStatus("rebuild failed: " + e.message); });
+  };
+  // Put a clip into one of a row's two audio cells. The selector matters: "td.au" alone matches
+  // the Original column FIRST (it is rendered in front), so an unqualified query would swap the
+  // wrong player and leave the In use column showing the previous take.
+  var putAudio = function (tr, sel, url) {
+    var cell = tr.querySelector(sel);
+    if (!cell || !url) return;
+    var a = cell.querySelector("audio");
+    if (a) { a.src = url; return; }
+    var na = document.createElement("audio"); na.controls = true; na.preload = "none"; na.src = url;
+    var x = cell.querySelector(".x"); if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
+  };
+  // Write into a row's own message span — the non-blocking alternative to alert().
+  var rowMsg = function (tr, text) {
+    var m = tr && tr.querySelector(".msg");
+    if (m) m.textContent = text || "";
+  };
+  window.__ab = {
+    jsonp: jsonp,
+    base: base,
+    setStatus: setStatus,
+    rebuild: rebuild,
+    // After an edit: auto-rebuild the group, but only if this lesson is already part of it (done).
+    maybeRebuild: function () { return isDone ? rebuild() : Promise.resolve(); },
+    putAudio: putAudio,
+    swapInUse: function (tr, url) { putAudio(tr, "td.au:not(.au-orig)", url); },
+    rowMsg: rowMsg
+  };
+})();`;
+
 // Generate (ElevenLabs variants in a modal → Use this). There is ONE package per group (the book/course
 // merge, or a template's own deck) and rebuilds are FULLY AUTOMATIC — no manual button. After every
 // successful edit the group auto-rebuilds, but ONLY when this lesson is already done (data-done="1"),
@@ -242,32 +290,14 @@ export const EXPAND_COLLAPSE_SCRIPT = `(function () {
 // — the dashboard is local, the .apkg is already on disk.
 export const DECK_EDIT_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
-  if (!ctx) return;
-  var type = ctx.getAttribute("data-type");
-  var id = ctx.getAttribute("data-id");
-  var base = "/api/deck/" + encodeURIComponent(type) + "/" + encodeURIComponent(id);
-  var rebuildUrl = base + "/rebuild"; // always the group package
-  var isDone = ctx.getAttribute("data-done") === "1";
-  var status = document.getElementById("rebuild-status");
-  var setStatus = function (t) { if (status) status.textContent = t; };
-  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  if (!ctx || !window.__ab) return;
+  var A = window.__ab;
+  var base = A.base, jsonp = A.jsonp, put = A.putAudio, swap = A.swapInUse, maybeRebuild = A.maybeRebuild;
   var rowRef = function (el) {
     var tr = el.closest("tr");
     return { tr: tr, cid: tr.getAttribute("data-card-id"), unit: tr.getAttribute("data-unit"),
              msg: tr.querySelector(".msg") };
   };
-  // Put a clip into one of a row's two audio cells. The selector matters: "td.au" alone matches the
-  // Original column FIRST (it is rendered in front), so an unqualified query would swap the wrong
-  // player and leave the In use column showing the previous take.
-  var put = function (tr, sel, url) {
-    var cell = tr.querySelector(sel);
-    if (!cell || !url) return;
-    var a = cell.querySelector("audio");
-    if (a) { a.src = url; return; }
-    var na = document.createElement("audio"); na.controls = true; na.preload = "none"; na.src = url;
-    var x = cell.querySelector(".x"); if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
-  };
-  var swap = function (tr, url) { put(tr, "td.au:not(.au-orig)", url); };
   // Replace and Generate install a whole NEW recording, so everything the editor reads off the row is
   // now stale: the original it would cut from, any hand-trim range (the server clears it — it
   // described the PREVIOUS recording), and the cleanup chain. Refresh the lot, or the editor silently
@@ -286,16 +316,6 @@ export const DECK_EDIT_SCRIPT = `(function () {
     if (j.audioFilter) tr.setAttribute("data-filter", j.audioFilter);
     else tr.removeAttribute("data-filter");
   };
-  var rebuild = function () {
-    setStatus("rebuilding\\u2026");
-    return fetch(rebuildUrl, { method: "POST" }).then(jsonp).then(function (x) {
-      if (!x.ok) throw new Error(x.j.error || "rebuild failed");
-      setStatus("\\u2713 deck rebuilt (" + x.j.noteCount + " cards)");
-    }).catch(function (e) { setStatus("rebuild failed: " + e.message); });
-  };
-  // After an edit: auto-rebuild the group, but only if this lesson is already part of it (done). A
-  // not-yet-done lesson isn't in the deck, so Mark done is what folds it in (and rebuilds then).
-  var maybeRebuild = function () { return isDone ? rebuild() : Promise.resolve(); };
   document.querySelectorAll("input.repl").forEach(function (inp) {
     inp.addEventListener("change", function () {
       var f = inp.files[0]; if (!f) return;
@@ -329,7 +349,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
     use.addEventListener("click", function () {
       fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/select", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: v.audio, original: v.original || null }) })
         .then(jsonp).then(function (y) { if (!y.ok) throw new Error(y.j.error || "select failed"); refreshRow(r.tr, y.j); closeModal(); if (r.msg) r.msg.textContent = "\\u2713 generated"; return maybeRebuild(); })
-        .catch(function (e) { alert(e.message); });
+        .catch(function (e) { closeModal(); A.rowMsg(r.tr, "select failed: " + e.message); });
     });
     // A fresh roll of THIS take alone — one credit — replacing only this row.
     var reroll = document.createElement("button"); reroll.textContent = "Re-roll";
@@ -341,7 +361,7 @@ export const DECK_EDIT_SCRIPT = `(function () {
         if (!fresh && variants.length === 1) fresh = variants[0];
         if (fresh) row.replaceWith(variantRow(r, path, fresh));
         else throw new Error("no matching take came back");
-      }).catch(function (e) { reroll.disabled = false; reroll.textContent = "Re-roll"; alert(e.message); });
+      }).catch(function (e) { reroll.disabled = false; reroll.textContent = "Re-roll"; lab.textContent = v.label + " — re-roll failed: " + e.message; });
     });
     row.appendChild(lab); row.appendChild(au); row.appendChild(use); row.appendChild(reroll);
     return row;
@@ -359,6 +379,8 @@ export const DECK_EDIT_SCRIPT = `(function () {
   document.querySelectorAll("button.gen-kanji").forEach(function (btn) { btn.addEventListener("click", function () { openGen(btn, "/generate-kanji"); }); });
   modal.querySelector(".close").addEventListener("click", closeModal);
   modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+  // Same affordance as the trim modal.
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 })();`;
 
 // Client wiring for the manual trim editor (included when the audio review is editable). Opens a modal
@@ -376,10 +398,9 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   var modal = document.getElementById("trim-modal");
   if (!ctx || !modal) return;
-  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
-  var isDone = ctx.getAttribute("data-done") === "1";
-  var status = document.getElementById("rebuild-status");
-  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  if (!window.__ab) return;
+  var A = window.__ab;
+  var base = A.base, jsonp = A.jsonp, maybeRebuild = A.maybeRebuild, swapInUse = A.swapInUse;
   var PAD = 0.08;        // matches the automatic trim's padSec
   var SPEECH = 0.01;     // amplitude ~= the automatic trim's -40dB noise floor
   var MIN_RANGE = 0.05;  // the server refuses anything shorter
@@ -562,24 +583,6 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
       .catch(function (e) { say("could not read this clip: " + e.message, true); });
   };
 
-  var maybeRebuild = function () {
-    if (!isDone) return Promise.resolve();
-    if (status) status.textContent = "rebuilding\\u2026";
-    return window.fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
-      if (status) status.textContent = x.ok ? "\\u2713 deck rebuilt (" + x.j.noteCount + " cards)" : "rebuild failed: " + (x.j.error || "");
-    });
-  };
-
-  // Swap the IN USE player only — the Original column keeps playing the untouched take.
-  var swapInUse = function (tr, url) {
-    var cell = tr.querySelector("td.au:not(.au-orig)");
-    var a = cell.querySelector("audio");
-    if (a) { a.src = url; return; }
-    var na = document.createElement("audio"); na.controls = true; na.preload = "none"; na.src = url;
-    var x = cell.querySelector(".x");
-    if (x) { x.replaceWith(na); } else { cell.insertBefore(na, cell.firstChild); }
-  };
-
   var postTo = function (t, path, body) {
     return window.fetch(base + "/unit/" + encodeURIComponent(t.unit) + "/card/" + encodeURIComponent(t.cid) + path,
       body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : { method: "POST" })
@@ -603,9 +606,10 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
     var m = tr.querySelector(".msg");
     if (m) m.textContent = text;
   };
-  var commit = function () {
-    if (!st) return;
-    var range = { row: st.row, start: st.start, end: st.end, unit: st.unit, cid: st.cid };
+  // The send path works ENTIRELY from its captured range, never from st — closing the modal
+  // nulls st, and the old replay went back through commit(), so the final drag before a quick
+  // close was silently dropped while the previous cut stayed applied.
+  var sendRange = function (range) {
     if (inFlight) { queued = range; return; }        // land the latest position, not every one
     if (lastSent && lastSent.row === range.row &&
         lastSent.start === range.start && lastSent.end === range.end) return;
@@ -628,8 +632,12 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
       rowSay(range.row, "trim failed: " + e.message);
     }).finally(function () {
       inFlight = false;
-      if (queued) { var q = queued; queued = null; st && (st.start = q.start, st.end = q.end); commit(); }
+      if (queued) { var q = queued; queued = null; sendRange(q); }
     });
+  };
+  var commit = function () {
+    if (!st) return;
+    sendRange({ row: st.row, start: st.start, end: st.end, unit: st.unit, cid: st.cid });
   };
 
   revertBtn.addEventListener("click", function () {
@@ -695,21 +703,13 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
 // the `corpus`-review rows (which carry the translated cards).
 export const REVIEW_EDIT_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
-  if (!ctx) return;
-  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
-  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  if (!ctx || !window.__ab) return;
+  var A = window.__ab;
+  var base = A.base, jsonp = A.jsonp;
   // Excluding a card on an ALREADY-DONE lesson (from the audio review) must rebuild the group package so
   // the card leaves the .apkg immediately — same auto-rebuild rule as an audio edit. On a not-yet-done
   // lesson there's nothing to rebuild (Mark done folds the current, excluded-filtered state in).
-  var isDone = ctx.getAttribute("data-done") === "1";
-  var status = document.getElementById("rebuild-status");
-  var rebuildIfDone = function () {
-    if (!isDone) return Promise.resolve();
-    if (status) status.textContent = "rebuilding\\u2026";
-    return fetch(base + "/rebuild", { method: "POST" }).then(jsonp).then(function (x) {
-      if (status) status.textContent = x.ok ? "\\u2713 deck rebuilt (" + x.j.noteCount + " cards)" : "rebuild failed: " + (x.j.error || "");
-    });
-  };
+  var rebuildIfDone = A.maybeRebuild;
   // Exclude toggle — a single icon button (⊘), wired on BOTH the Corpus review and the
   // audio review. aria-pressed carries the state; clicking flips it.
   document.querySelectorAll("button.excl-btn").forEach(function (btn) {
@@ -725,9 +725,10 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
           btn.classList.toggle("on", next);
           btn.title = next ? "Excluded — click to include" : "Exclude this card from the deck";
           tr.classList.toggle("excluded", next);
+          A.rowMsg(tr, "");
           return rebuildIfDone();
         })
-        .catch(function (e) { alert(e.message); })
+        .catch(function (e) { A.rowMsg(tr, e.message); })
         .finally(function () { btn.disabled = false; });
     });
   });
@@ -744,7 +745,7 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
       var body = {}; body[cell.getAttribute("data-field")] = val;
       fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/review/edit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
         .then(jsonp).then(function (x) { if (!x.ok) throw new Error(x.j.error || "failed"); cell.textContent = val; orig = val; cell.classList.add("saved"); setTimeout(function () { cell.classList.remove("saved"); }, 800); })
-        .catch(function (e) { cell.textContent = orig; alert(e.message); });
+        .catch(function (e) { cell.textContent = orig; A.rowMsg(tr, "edit failed: " + e.message); });
     });
   });
   document.querySelectorAll("button.mark-rev").forEach(function (btn) {
@@ -764,9 +765,8 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
 // success so the lesson moves between In review / Built. Vanilla JS, no ${}.
 export const MARK_DONE_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
-  if (!ctx) return;
-  var base = "/api/deck/" + encodeURIComponent(ctx.getAttribute("data-type")) + "/" + encodeURIComponent(ctx.getAttribute("data-id"));
-  var jsonp = function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); };
+  if (!ctx || !window.__ab) return;
+  var base = window.__ab.base, jsonp = window.__ab.jsonp;
   var wire = function (sel, path, okText) {
     document.querySelectorAll(sel).forEach(function (btn) {
       btn.addEventListener("click", function () {

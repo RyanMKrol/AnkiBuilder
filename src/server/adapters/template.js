@@ -47,7 +47,7 @@ export const templateAdapter = {
     return decks;
   },
 
-  loadDeck(outputRoot, id) {
+  loadDeck(outputRoot, id, { includeCards = true } = {}) {
     const parts = splitId(id);
     if (!parts) return null;
     const runDir = templateRunDir(outputRoot, parts.name, parts.lang);
@@ -59,7 +59,9 @@ export const templateAdapter = {
       targetLanguage: data.meta?.targetLanguage ?? parts.lang,
       // Same decoration as book/course units (readiness + live build state), so a template being
       // written by a CLI stage renders read-only with the building badge like everything else.
-      units: [{ seq: "0", number: 1, label: title, ...decorateUnit(runDir, data) }],
+      units: [
+        { seq: "0", number: 1, label: title, ...decorateUnit(runDir, data, { includeCards }) },
+      ],
     };
   },
 

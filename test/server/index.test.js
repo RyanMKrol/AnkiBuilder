@@ -12,6 +12,7 @@ import {
 import { join } from "path";
 import { tmpdir, hostname } from "os";
 import { Buffer } from "buffer";
+import { request as httpRequest } from "node:http";
 import { startDeckServer } from "../../src/server/index.js";
 
 function fixture() {
@@ -248,6 +249,49 @@ test("path traversal, unknown routes, and non-GET are rejected", async () => {
       assert.equal((await fetch(`${url}/`, { method: "POST" })).status, 404); // non-write POST route
       assert.equal((await fetch(`${url}/`, { method: "PUT" })).status, 405); // unsupported method
     });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("server binds loopback only and refuses writes with a foreign Host header", async () => {
+  const root = fixture();
+  try {
+    const { server, url } = await startDeckServer({ port: 0, outputRoot: root, ...fontDeps });
+    try {
+      // Loopback bind: the dashboard can write into a live Anki collection, so it must not
+      // be reachable from the LAN.
+      assert.equal(server.address().address, "127.0.0.1");
+
+      // A DNS-rebinding page reaches 127.0.0.1 but carries the attacker's hostname in Host.
+      // fetch() refuses to override Host (a forbidden header), so issue the raw request.
+      const reboundStatus = await new Promise((resolvePromise, reject) => {
+        const req = httpRequest(
+          {
+            host: "127.0.0.1",
+            port: server.address().port,
+            path: "/",
+            method: "POST",
+            headers: { host: "evil.example.com" },
+          },
+          (res) => {
+            res.resume();
+            resolvePromise(res.statusCode);
+          },
+        );
+        req.on("error", reject);
+        req.end();
+      });
+      assert.equal(reboundStatus, 403);
+
+      // Same-machine requests (Host: localhost/127.0.0.1, any port) still route normally —
+      // this unknown write route falls through to 404, not 403.
+      assert.equal((await fetch(`${url}/`, { method: "POST" })).status, 404);
+      const viaIp = await fetch(`http://127.0.0.1:${server.address().port}/`, { method: "POST" });
+      assert.equal(viaIp.status, 404);
+    } finally {
+      server.close();
+    }
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

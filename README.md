@@ -124,7 +124,9 @@ npm run serve                 # then open the printed http://localhost:… URL (
 npm run serve -- --read-only  # browse only, no editing
 ```
 
-(`npm run serve` is just `anki-builder serve`; pass a different port with `npm run serve -- --port 5000`.)
+(`npm run serve` is just `anki-builder serve`; pass a different port with `npm run serve -- --port 5000`.
+The server binds to `127.0.0.1` only and refuses writes whose Host header isn't localhost, since the
+dashboard can edit run files and push into a live Anki collection.)
 
 Or render a single finished deck to a self-contained, shareable HTML page (audio embedded inline;
 auto-split into parts for a large deck):

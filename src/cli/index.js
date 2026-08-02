@@ -770,32 +770,46 @@ async function runPrepareInner(flags, ctx) {
     // The marker means "this pass ran with everything it needed", NOT "this pass ran". Marked even
     // when nothing was mined — a lesson whose source has no usable drills has still been through the
     // pass, and re-running would just re-spend the model call. But NOT marked when the pass was
-    // flying blind, or a degraded result would be frozen in and no re-run could ever repair it.
-    cards.meta = complete
-      ? { ...meta, enriched: true, prepareDegraded: undefined }
-      : { ...meta, prepareDegraded: degradedMarker(order) };
-    if (cards.meta.prepareDegraded === undefined) delete cards.meta.prepareDegraded;
-    writeJson(paths.cards, cards);
+    // flying blind, or a degraded result would be frozen in and no re-run could ever repair it —
+    // and NOT marked when the pass itself FAILED (a model/parse error), or a transient outage
+    // would permanently skip this lesson's drills.
+    if (mined.failed) {
+      ctx.log(
+        "fill-in-the-blank: pass failed — enrichment marker left unset so a re-run retries it",
+      );
+    } else {
+      cards.meta = complete
+        ? { ...meta, enriched: true, prepareDegraded: undefined }
+        : { ...meta, prepareDegraded: degradedMarker(order) };
+      if (cards.meta.prepareDegraded === undefined) delete cards.meta.prepareDegraded;
+      writeJson(paths.cards, cards);
+    }
   }
 
   if (!isTemplate && meta.notesEnhanced !== true) {
     updateClaim(runDir, { stage: "cross-lesson-notes" });
-    const { changed, skipped } = ctx.enhanceRunDirNotes({
+    const { changed, skipped, failed } = ctx.enhanceRunDirNotes({
       runDir,
       targetLanguage,
       log: ctx.log,
     });
     if (skipped) {
       ctx.log(`cross-lesson notes: skipped — ${skipped}`);
-    } else {
+    } else if (!failed) {
       ctx.log(`cross-lesson notes: wrote ${changed} note(s) for this lesson`);
     }
-    // Re-read: the note pass rewrites cards.json itself, so the in-memory copy is stale.
-    const fresh = readJson(paths.cards);
-    fresh.meta = complete
-      ? { ...fresh.meta, notesEnhanced: true }
-      : { ...fresh.meta, prepareDegraded: degradedMarker(order) };
-    writeJson(paths.cards, fresh);
+    if (failed) {
+      // A failed pass is not a completed pass: leave notesEnhanced unset so a re-run retries,
+      // rather than freezing a transient outage in as "done".
+      ctx.log("cross-lesson notes: pass failed — marker left unset so a re-run retries it");
+    } else {
+      // Re-read: the note pass rewrites cards.json itself, so the in-memory copy is stale.
+      const fresh = readJson(paths.cards);
+      fresh.meta = complete
+        ? { ...fresh.meta, notesEnhanced: true }
+        : { ...fresh.meta, prepareDegraded: degradedMarker(order) };
+      writeJson(paths.cards, fresh);
+    }
   }
 
   // Last pass before the review, and the only one that runs on demand rather than always: spell out

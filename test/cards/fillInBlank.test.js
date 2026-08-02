@@ -100,6 +100,19 @@ test("fails open on a malformed response, leaving the lesson untouched", () => {
   assert.deepEqual(result.items, items);
   assert.equal(result.added.length, 0);
   assert.match(logged.join("\n"), /fill-in-the-blank: failed/);
+  // The failure is REPORTED, not just logged — the caller must not set its done-marker.
+  assert.equal(result.failed, true);
+});
+
+test("a source with no usable drills is a completed pass, not a failure", () => {
+  const result = mineFillInBlankCards({
+    items,
+    targetLanguage: "ja",
+    log: () => {},
+    runClaude: () => JSON.stringify({ cards: [] }),
+  });
+  assert.deepEqual(result.items, items);
+  assert.equal(result.failed, undefined);
 });
 
 test("skips (without calling the model) when the named source file is missing", () => {

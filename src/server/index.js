@@ -80,6 +80,14 @@ const notFound = (res) =>
   sendHtml(res, page("Not found", `<header><h1>404 — not found</h1></header>`), 404);
 const forbidden = (res, message = "forbidden") => sendJson(res, { error: message }, 403);
 
+// True when a request's Host header names this machine (localhost / loopback IP, any port).
+// Used to refuse writes from DNS-rebinding pages, whose Host is the attacker's hostname.
+function isLocalHostHeader(host) {
+  if (!host) return false;
+  const name = host.startsWith("[") ? host.slice(1, host.indexOf("]")) : host.replace(/:\d+$/, "");
+  return name === "localhost" || name === "127.0.0.1" || name === "::1";
+}
+
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 
 // Reads a request body into a Buffer, capping memory at `cap`. On overflow it STOPS buffering but
@@ -975,6 +983,12 @@ ${sectionHtml}
       if (req.method === "POST") {
         if (!editable)
           return forbidden(res, "editing is disabled (server started with --read-only)");
+        // The server only binds loopback, but a malicious page could still reach it via DNS
+        // rebinding (a hostname that resolves to 127.0.0.1). Such a request carries the
+        // attacker's hostname in the Host header, so refusing non-local Hosts on every
+        // state-changing route closes that hole.
+        if (!isLocalHostHeader(req.headers.host))
+          return forbidden(res, "writes are only accepted from localhost");
         if (await routePost(req, res, seg)) return;
         return notFound(res);
       }
@@ -991,11 +1005,13 @@ ${sectionHtml}
  * Binds the deck server and resolves once it's listening.
  * @returns {Promise<{ server: import('node:http').Server, url: string }>}
  */
-export function startDeckServer({ port = 4321, ...opts } = {}) {
+export function startDeckServer({ port = 4321, host = "127.0.0.1", ...opts } = {}) {
   const server = http.createServer(createDeckServer(opts));
   return new Promise((resolvePromise, reject) => {
     server.once("error", reject);
-    server.listen(port, () => {
+    // Loopback only: the dashboard edits run files and can push into a live Anki collection
+    // over AnkiConnect, so it must never be reachable from the LAN.
+    server.listen(port, host, () => {
       const address = server.address();
       resolvePromise({ server, url: `http://localhost:${address.port}` });
     });

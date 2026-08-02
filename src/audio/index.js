@@ -76,39 +76,60 @@ async function fileExists(path) {
 // cache entry, and `isDefaultClipFilename`'s staleness rule, are untouched. The raw take is a new
 // `<hash>.orig.mp3` sibling, which makes its ABSENCE mean exactly one thing: that entry was written
 // before originals were kept. Nothing already on disk is silently reinterpreted.
+// How many uncached terms fetch at once. A 50-card lesson used to be 50 strictly sequential round
+// trips; a small pool cuts the wall time severalfold without hammering the API. Cache writes are
+// per-file atomic, and terms are distinct, so concurrent workers never touch the same files.
+const CONCURRENT_TTS_FETCHES = 4;
+
 async function fetchTermsToCache(
   terms,
   audioDir,
   { fetchTts, voiceId, apiKey, languageCode, trim, marker = false },
 ) {
   const fetched = new Map();
-  for (const term of terms) {
-    const base = hashTerm(term);
-    const filename = `${base}.mp3`;
-    const original = `${base}.orig.mp3`;
-    const filepath = resolve(join(audioDir, filename));
-    const origPath = resolve(join(audioDir, original));
+  const queue = [...terms];
+  let failure = null;
 
-    if (await fileExists(filepath)) {
-      // Cached. A pre-originals entry has no sibling — report it absent rather than refetching, which
-      // would spend credits re-rolling a take (ElevenLabs is non-deterministic) purely to recover an
-      // original we had already chosen to discard.
-      fetched.set(term, {
-        audio: filename,
-        original: (await fileExists(origPath)) ? original : null,
-      });
-      continue;
+  const worker = async () => {
+    while (queue.length > 0 && !failure) {
+      const term = queue.shift();
+      try {
+        const base = hashTerm(term);
+        const filename = `${base}.mp3`;
+        const original = `${base}.orig.mp3`;
+        const filepath = resolve(join(audioDir, filename));
+        const origPath = resolve(join(audioDir, original));
+
+        if (await fileExists(filepath)) {
+          // Cached. A pre-originals entry has no sibling — report it absent rather than refetching,
+          // which would spend credits re-rolling a take (ElevenLabs is non-deterministic) purely to
+          // recover an original we had already chosen to discard.
+          fetched.set(term, {
+            audio: filename,
+            original: (await fileExists(origPath)) ? original : null,
+          });
+          continue;
+        }
+
+        const raw = await fetchTts(term, voiceId, apiKey, languageCode);
+        const { auto } = await autoTrim(raw, { trim, marker });
+        // Original FIRST. Crashing between the two writes must leave the SHIPPING clip missing (so
+        // the next run refetches and self-heals), never an orphaned shipping clip whose absent
+        // sibling would permanently read as "this entry predates originals".
+        await writeFileAtomicAsync(origPath, raw);
+        await writeFileAtomicAsync(filepath, auto);
+        fetched.set(term, { audio: filename, original });
+      } catch (error) {
+        // First failure wins; the flag stops every worker pulling new terms, and what already
+        // landed in the cache stays valid for the retry run.
+        failure ??= error;
+      }
     }
+  };
 
-    const raw = await fetchTts(term, voiceId, apiKey, languageCode);
-    const { auto } = await autoTrim(raw, { trim, marker });
-    // Original FIRST. Crashing between the two writes must leave the SHIPPING clip missing (so the
-    // next run refetches and self-heals), never an orphaned shipping clip whose absent sibling would
-    // permanently read as "this entry predates originals".
-    await writeFileAtomicAsync(origPath, raw);
-    await writeFileAtomicAsync(filepath, auto);
-    fetched.set(term, { audio: filename, original });
-  }
+  // `terms` may be any iterable (a Set in practice) — size the pool off the materialized queue.
+  await Promise.all(Array.from({ length: Math.min(CONCURRENT_TTS_FETCHES, queue.length) }, worker));
+  if (failure) throw failure;
   return fetched;
 }
 

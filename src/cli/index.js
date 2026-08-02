@@ -390,11 +390,13 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
             chapterNumber,
             lastChapterNumber,
             ctx.chapterRangeCachePath(epubHash, chapterNumber, lastChapterNumber),
+            { log: ctx.log },
           )
         : ctx.extractChapterToFile(
             flags.epub,
             chapterNumber,
             ctx.chapterCachePath(epubHash, chapterNumber),
+            { log: ctx.log },
           );
 
     corpus = ctx.assembleCorpusFromChapter({

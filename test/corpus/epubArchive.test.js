@@ -140,6 +140,62 @@ test("extractChapterToFile() also extracts images the chapter references, at the
   });
 });
 
+test("extractChapterToFile() extracts SVG-wrapped images (<image xlink:href> and plain href)", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content:
+            "<html><body>" +
+            '<svg xmlns="http://www.w3.org/2000/svg"><image xlink:href="../images/page.jpg" width="100" height="100"/></svg>' +
+            '<svg><image href="../images/chart.png"/></svg>' +
+            "</body></html>",
+        },
+        { name: "OEBPS/images/page.jpg", content: "fake-page-bytes" },
+        { name: "OEBPS/images/chart.png", content: "fake-chart-bytes" },
+      ],
+    });
+
+    const destPath = join(dir, "cache", "chapters", "1.xhtml");
+    extractChapterToFile(epubPath, 1, destPath);
+
+    assert.equal(
+      readFileSync(join(dir, "cache", "images", "page.jpg"), "utf-8"),
+      "fake-page-bytes",
+    );
+    assert.equal(
+      readFileSync(join(dir, "cache", "images", "chart.png"), "utf-8"),
+      "fake-chart-bytes",
+    );
+  });
+});
+
+test("extractChapterToFile() logs each image reference it cannot resolve, instead of silence", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "xhtml/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch01.xhtml",
+          content: '<html><body><img src="../images/missing.jpg"/>text</body></html>',
+        },
+      ],
+    });
+
+    const logged = [];
+    const destPath = join(dir, "cache", "chapters", "1.xhtml");
+    extractChapterToFile(epubPath, 1, destPath, { log: (msg) => logged.push(msg) });
+
+    assert.equal(logged.length, 1);
+    assert.match(logged[0], /missing\.jpg/);
+    assert.match(logged[0], /skipped/);
+  });
+});
+
 test("extractChapterRangeToFile() concatenates an inclusive spine range in reading order, one marker per file", () => {
   withTempDir((dir) => {
     const epubPath = buildFixtureEpub(dir, {

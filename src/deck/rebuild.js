@@ -132,7 +132,28 @@ export async function rebuildBookDir(
     loadCourseMeta,
     bookNameFallback,
   });
-  return buildBookDeck(chapterDecks, { outPath, bookName, now: now() });
+  return buildBookDeck(chapterDecks, {
+    outPath,
+    bookName,
+    now: now(),
+    guidNamespace: readGuidNamespace(bookDir),
+  });
+}
+
+// The book/course dir's own marker records whether this deck's `.apkg` guids are namespaced
+// (`<namespace>/<card.id>`), decided once at the dir's creation — see materializeBookInOutput.
+// A pre-namespace marker lacks the field → bare guids, exactly as those decks always shipped.
+function readGuidNamespace(bookDir) {
+  for (const marker of ["book.json", "course.json"]) {
+    const markerPath = join(bookDir, marker);
+    if (!existsSync(markerPath)) continue;
+    try {
+      return readJson(markerPath).guidNamespace ?? null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
 }
 
 /**

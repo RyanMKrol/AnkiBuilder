@@ -120,10 +120,31 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
     copyFileAtomic(epubPath, dest);
   }
 
+  // `.apkg` note guids are `<guidNamespace>/<card.id>` when set — Anki matches guids
+  // COLLECTION-wide, so two books both shipping a bare `konnichiwa` guid would overwrite each
+  // other's note on import. Decided once, at the book dir's FIRST materialization, and preserved
+  // verbatim on every refresh after that: changing an existing book's guids would orphan its live
+  // scheduling, so a book that started bare (the pre-namespace era) stays bare forever.
+  const markerPath = bookMarkerPath(outputRoot, slug);
+  let guidNamespace = slug;
+  if (existsSync(markerPath)) {
+    try {
+      guidNamespace = JSON.parse(readFileSync(markerPath, "utf-8")).guidNamespace ?? null;
+    } catch {
+      guidNamespace = null;
+    }
+  }
+
   writeFileAtomic(
-    bookMarkerPath(outputRoot, slug),
+    markerPath,
     JSON.stringify(
-      { title: getBookTitle(dest) || null, slug, epubHash, targetLanguage: targetLanguage || null },
+      {
+        title: getBookTitle(dest) || null,
+        slug,
+        epubHash,
+        targetLanguage: targetLanguage || null,
+        guidNamespace,
+      },
       null,
       2,
     ) + "\n",
@@ -403,7 +424,9 @@ export function resolveCourseSlug(outputRoot, courseName, targetLanguage) {
   }
   writeFileAtomic(
     courseMarkerPath(outputRoot, candidate),
-    JSON.stringify({ name: courseName, targetLanguage }, null, 2) + "\n",
+    // guidNamespace: see materializeBookInOutput — set once at creation for collection-wide
+    // guid uniqueness; a pre-namespace course's marker simply lacks the field and stays bare.
+    JSON.stringify({ name: courseName, targetLanguage, guidNamespace: candidate }, null, 2) + "\n",
   );
   return candidate;
 }

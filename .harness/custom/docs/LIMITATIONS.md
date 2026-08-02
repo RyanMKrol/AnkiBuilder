@@ -1339,3 +1339,19 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** at the second real book. Fix classification against that book's actual TOC
   conventions (or drop the type tag), and bound the final entry's range by the nav's own last
   covered file rather than the spine end.
+
+## The current book's .apkg guids are bare card ids, unprotected across books
+
+- **What:** `.apkg` note guids are the semantic card slugs (`konnichiwa`), and Anki matches guids
+  COLLECTION-wide on import. Books and courses created after guid namespacing landed carry a
+  `guidNamespace` in their dir marker and ship `<namespace>/<card.id>` guids; the JFBP Book 1 deck
+  (and any other pre-namespace dir) keeps bare guids forever.
+- **Why:** rewriting an existing book's guids would make every one of its notes look new on the
+  next import, orphaning the live collection's scheduling. The cutover is therefore
+  creation-time-only, recorded once in the dir marker and never changed.
+- **Impact:** if a second Japanese book ever ships a card whose id collides with a JFBP one
+  (`konnichiwa` is likely), importing the second book's `.apkg` into the same collection would
+  overwrite the JFBP note. The AnkiConnect deliver path is deck-scoped (`abid:` tags) and safe.
+- **When to revisit:** before importing a second book's `.apkg` into the live collection, check for
+  id overlaps with the JFBP deck (the deliver path's duplicate-id guard shows the shape of the
+  check). New books are protected automatically.

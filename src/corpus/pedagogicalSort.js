@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { extractJsonObjectText } from "../util/promptTemplate.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -49,24 +50,6 @@ export function renderPedagogicalSortPrompt({
   }
 
   return rendered;
-}
-
-// The model is asked for a bare JSON object but may wrap it in a markdown fence or preface it
-// with prose. Prefer a fenced block; otherwise take the span from the first "{" to the last "}"
-// rather than requiring the entire response to be JSON. Mirrors epubForwardFlags.js.
-function extractJsonObjectText(raw) {
-  const fenceMatch = raw.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
-  if (fenceMatch) {
-    return fenceMatch[1];
-  }
-
-  const firstBrace = raw.indexOf("{");
-  const lastBrace = raw.lastIndexOf("}");
-  if (firstBrace !== -1 && lastBrace > firstBrace) {
-    return raw.slice(firstBrace, lastBrace + 1);
-  }
-
-  return raw.trim();
 }
 
 function parseSortResponse(raw) {

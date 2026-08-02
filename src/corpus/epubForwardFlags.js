@@ -5,6 +5,7 @@ import { listChapters, extractChapterToFile, describeChapter } from "./epubArchi
 import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
 import { ensureTaughtIndex as defaultEnsureTaughtIndex } from "./epubTaughtIndex.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { extractJsonObjectText } from "../util/promptTemplate.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -83,27 +84,6 @@ export function renderForwardFlagIndexPrompt({
   }
 
   return rendered;
-}
-
-// The model is asked for raw JSON but may deviate: wrapping it in a markdown
-// fence, or prefacing it with a plain-prose sentence and no fence at all
-// (e.g. "Confirmed — chapter 56 is the glossary... {"flag": []}"). Handle
-// both: prefer a fenced block if present, otherwise take the span from the
-// first "{" to the last "}" rather than requiring the ENTIRE response to be
-// JSON, since that's what actually shows up when a model narrates first.
-function extractJsonObjectText(raw) {
-  const fenceMatch = raw.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
-  if (fenceMatch) {
-    return fenceMatch[1];
-  }
-
-  const firstBrace = raw.indexOf("{");
-  const lastBrace = raw.lastIndexOf("}");
-  if (firstBrace !== -1 && lastBrace > firstBrace) {
-    return raw.slice(firstBrace, lastBrace + 1);
-  }
-
-  return raw.trim();
 }
 
 function parseForwardFlagResponse(raw) {

@@ -1,4 +1,4 @@
-import { spawnSync } from "child_process";
+import { spawnSync, spawn } from "child_process";
 import { assertExternalCallAllowed } from "./testEnv.js";
 
 // One core for every `claude -p` call in the pipeline. Sonnet at medium effort was
@@ -82,4 +82,90 @@ function invokeOnce(prompt, { model, effort, timeout, maxBuffer, spawn }) {
   }
 
   return result.stdout;
+}
+
+/**
+ * Async twin of `runClaudeWithPrompt` — same stdin prompt, timeout, one retry and env
+ * resolution, but built on `spawn` so it never blocks the event loop. This is what a
+ * SERVER-side caller must use: the dashboard runs one single-threaded HTTP handler, and a
+ * spawnSync model call in it froze every page, player and edit for the duration.
+ */
+export async function runClaudeWithPromptAsync(
+  prompt,
+  { scopeEnvPrefix, maxBuffer = 20 * 1024 * 1024, spawnImpl = spawn } = {},
+) {
+  assertExternalCallAllowed("spawn `claude -p`");
+
+  const env = process.env;
+  const model = firstSet(
+    scopeEnvPrefix ? env[`${scopeEnvPrefix}_MODEL`] : undefined,
+    env.ANKI_BUILDER_LLM_MODEL,
+    DEFAULT_MODEL,
+  );
+  const effort = firstSet(
+    scopeEnvPrefix ? env[`${scopeEnvPrefix}_EFFORT`] : undefined,
+    env.ANKI_BUILDER_LLM_EFFORT,
+    DEFAULT_EFFORT,
+  );
+  const timeout = Number(env.ANKI_BUILDER_LLM_TIMEOUT_MS) || DEFAULT_TIMEOUT_MS;
+
+  let lastError;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      return await invokeOnceAsync(prompt, { model, effort, timeout, maxBuffer, spawnImpl });
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError;
+}
+
+function invokeOnceAsync(prompt, { model, effort, timeout, maxBuffer, spawnImpl }) {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawnImpl("claude", ["-p", "--model", model, "--effort", effort], {
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+
+    let stdout = "";
+    let stderr = "";
+    let settled = false;
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      child.kill("SIGKILL");
+      reject(new Error(`claude -p timed out after ${timeout} ms`));
+    }, timeout);
+
+    const fail = (error) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      reject(error);
+    };
+
+    child.on("error", fail);
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk;
+      if (stdout.length > maxBuffer) {
+        child.kill("SIGKILL");
+        fail(new Error("claude -p stdout exceeded maxBuffer"));
+      }
+    });
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk;
+    });
+    child.on("close", (code) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      if (code !== 0) {
+        reject(new Error(`claude -p exited with status ${code}: ${stderr}`));
+      } else {
+        resolvePromise(stdout);
+      }
+    });
+
+    child.stdin.on("error", () => {}); // a dead child mustn't crash the writer
+    child.stdin.end(prompt);
+  });
 }

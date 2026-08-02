@@ -39,7 +39,7 @@ export async function generateCardKanjiVariants(
   const item = (data.items || []).find((i) => i.id === cardId);
   if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
 
-  const kanji = generateCardKanji(item, { runClaude });
+  const kanji = await generateCardKanji(item, { runClaude });
   const base = normalizeTtsText(kanji, languageCode);
   if (!base) throw httpError(422, "kanji orthography was empty");
 

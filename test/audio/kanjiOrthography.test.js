@@ -21,17 +21,23 @@ test("buildKanjiOrthographyPrompt falls back to target when there's no reading",
   assert.match(p, /こんにちは/);
 });
 
-test("generateCardKanji parses the kanji string (and strips a code fence)", () => {
+test("generateCardKanji parses the kanji string (and strips a code fence)", async () => {
   const item = { id: "s", english: "x", reading: "じゅうじ", target: "１０じ" };
-  assert.equal(generateCardKanji(item, { runClaude: () => '{ "kanji": "十時" }' }), "十時");
+  assert.equal(await generateCardKanji(item, { runClaude: () => '{ "kanji": "十時" }' }), "十時");
+  // An async runner (the server-side default) works the same.
   assert.equal(
-    generateCardKanji(item, { runClaude: () => '```json\n{ "kanji": "十時" }\n```' }),
+    await generateCardKanji(item, {
+      runClaude: async () => '```json\n{ "kanji": "十時" }\n```',
+    }),
     "十時",
   );
 });
 
-test("generateCardKanji throws on invalid JSON or a missing kanji field", () => {
+test("generateCardKanji throws on invalid JSON or a missing kanji field", async () => {
   const item = { id: "s", english: "x", reading: "a", target: "a" };
-  assert.throws(() => generateCardKanji(item, { runClaude: () => "not json" }), /not valid JSON/);
-  assert.throws(() => generateCardKanji(item, { runClaude: () => "{}" }), /no `kanji`/);
+  await assert.rejects(
+    () => generateCardKanji(item, { runClaude: () => "not json" }),
+    /not valid JSON/,
+  );
+  await assert.rejects(() => generateCardKanji(item, { runClaude: () => "{}" }), /no `kanji`/);
 });

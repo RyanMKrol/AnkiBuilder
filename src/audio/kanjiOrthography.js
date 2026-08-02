@@ -1,4 +1,4 @@
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runClaudeAsync as defaultRunClaude } from "../translate/runClaude.js";
 
 // Generates a natural kanji+kana orthography for a Japanese card, purely as an alternate TEXT to feed
 // TTS. ElevenLabs mis-parses all-kana input (it's out-of-distribution vs. natural Japanese writing —
@@ -45,9 +45,12 @@ export function buildKanjiOrthographyPrompt(item) {
 }
 
 // Runs the conversion for one card and returns the kanji orthography string. Throws on an unusable
-// response (the caller surfaces it as a generation error). `runClaude` is injectable for tests.
-export function generateCardKanji(item, { runClaude = defaultRunClaude } = {}) {
-  const raw = runClaude(buildKanjiOrthographyPrompt(item));
+// response (the caller surfaces it as a generation error). `runClaude` is injectable for tests
+// (sync or async — the result is awaited either way). Async by default because this runs inside
+// the dashboard's single-threaded HTTP handler, where a spawnSync model call froze every page,
+// player and edit for the duration of the generation.
+export async function generateCardKanji(item, { runClaude = defaultRunClaude } = {}) {
+  const raw = await runClaude(buildKanjiOrthographyPrompt(item));
   let parsed;
   try {
     parsed = JSON.parse(stripFence(String(raw).trim()).trim());

@@ -7,6 +7,7 @@ import {
   syncStructure,
   syncDeckContent,
   ensureDecks,
+  removeLegacyDeckShells,
   assertUniqueCardIds,
   pruneBackups,
 } from "../../src/anki/deliver.js";
@@ -427,4 +428,57 @@ test("resolveDecks groups a lesson and its extras under the same grouping deck",
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks", async () => {
+  const existing = [
+    "Book",
+    "Book::Lesson 5",
+    "Book::Lesson 5::Shopping (2)", // managed (grouped) — holds the real cards
+    "Book::Lesson 5: Shopping (2)", // legacy flat shell — empty
+    "Book::Lesson 5: Shopping (2)::Extras", // oldest-scheme child — empty
+    "Book::Lesson 6: Going Places", // legacy shell that somehow still holds cards
+    "Book::Frequently Used Expressions", // ungrouped label — flat IS the real deck
+  ];
+  const deleted = [];
+  const queries = [];
+  const client = {
+    deckNames: async () => existing,
+    findCards: async (query) => {
+      queries.push(query);
+      return query.includes("Lesson 6") ? [111] : [];
+    },
+    invoke: async (action, params) => {
+      assert.equal(action, "deleteDecks");
+      assert.equal(params.cardsToo, true);
+      deleted.push(...params.decks);
+    },
+  };
+  const decks = [
+    {
+      ankiParent: "Book",
+      units: [
+        { ankiDeck: "Book::Lesson 5::Shopping (2)", label: "Lesson 5: Shopping (2)" },
+        { ankiDeck: "Book::Lesson 6::Going Places", label: "Lesson 6: Going Places" },
+        {
+          ankiDeck: "Book::Frequently Used Expressions",
+          label: "Frequently Used Expressions",
+        },
+      ],
+    },
+  ];
+
+  const logs = [];
+  const removed = await removeLegacyDeckShells(client, decks, { log: (m) => logs.push(m) });
+
+  // Child shell first, then the flat shell; the card-holding Lesson 6 shell is left alone,
+  // and the ungrouped-label deck is never treated as legacy.
+  assert.deepEqual(removed, [
+    "Book::Lesson 5: Shopping (2)::Extras",
+    "Book::Lesson 5: Shopping (2)",
+  ]);
+  assert.deepEqual(deleted, removed);
+  assert.ok(logs.some((m) => m.includes("still holds 1 card(s)")));
+  // Emptiness was actually checked, with the deck name escaped into the query.
+  assert.ok(queries.every((q) => q.startsWith('deck:"')));
 });

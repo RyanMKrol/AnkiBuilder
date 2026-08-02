@@ -98,6 +98,7 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       // Built from the SAME function the .apkg uses, so the package and AnkiConnect can never name
       // the same unit differently — they once did, and cards landed in a deck of the wrong name.
       ankiDeck: [ankiParent, ...unitDeckSegments(cd.name).map(sanitizeSeg)].join("::"),
+      label: cd.name,
       audioDir: cd.audioDir,
       cards: shippableCards(cd.cards),
     }));
@@ -276,6 +277,48 @@ export async function ensureDecks(client, decks, dry) {
     }
   }
   return missing;
+}
+
+/**
+ * Deletes EMPTY leftover decks whose name is the UNGROUPED (pre-grouping-scheme) form of a
+ * managed unit — `Book::Lesson 5: Title` where the real deck is `Book::Lesson 5::Title` — plus
+ * the `::Extras` child the oldest scheme nested under it.
+ *
+ * These shells date from the earlier deck-naming eras and, once deleted locally, keep coming
+ * back whenever an AnkiWeb sync resolves in the server's favor (a "Download" choice, or a
+ * deletion that never got uploaded before the next pull). Sweeping them on every deliver makes
+ * the cleanup converge no matter which way a sync went.
+ *
+ * Strictly conservative: only names derived from a managed unit's own label, only when the deck
+ * exists, is not itself a managed deck, and holds ZERO cards (children included). A shell that
+ * somehow contains cards is reported and left alone.
+ */
+export async function removeLegacyDeckShells(client, decks, { log = () => {} } = {}) {
+  const existing = new Set(await client.deckNames());
+  const managed = new Set(decks.flatMap((deck) => deck.units.map((unit) => unit.ankiDeck)));
+  const removed = [];
+
+  for (const deck of decks) {
+    for (const unit of deck.units) {
+      const flat = `${deck.ankiParent}::${sanitizeSeg(unit.label)}`;
+      // An ungrouped label (e.g. "Frequently Used Expressions") IS its real deck — nothing legacy.
+      if (flat === unit.ankiDeck) continue;
+      // Child first, then the parent, so the parent's count reflects what's actually left.
+      for (const legacy of [`${flat}::Extras`, flat]) {
+        if (!existing.has(legacy) || managed.has(legacy)) continue;
+        const cards = await client.findCards(`deck:"${escapeSearchTerm(legacy)}"`);
+        if (cards.length > 0) {
+          log(`legacy deck "${legacy}" still holds ${cards.length} card(s) — left alone`);
+          continue;
+        }
+        await client.invoke("deleteDecks", { decks: [legacy], cardsToo: true });
+        existing.delete(legacy);
+        removed.push(legacy);
+        log(`removed empty legacy deck: ${legacy}`);
+      }
+    }
+  }
+  return removed;
 }
 
 /**
@@ -460,6 +503,7 @@ export async function deliverToAnki(
     structure: [],
     content: [],
     createdDecks: [],
+    removedLegacyDecks: [],
     backedUp: [],
   };
   if (deliverable.length === 0) {
@@ -537,6 +581,9 @@ export async function deliverToAnki(
 
   // 5. DECKS — a lesson's sub-deck must exist before a note can be added to it.
   report.createdDecks = await ensureDecks(client, deliverable, dry);
+  // Sweep the empty pre-grouping-era deck shells every run — a wrong-direction AnkiWeb sync can
+  // resurrect them after a hand deletion, and re-cleaning here makes the cleanup converge.
+  report.removedLegacyDecks = dry ? [] : await removeLegacyDeckShells(client, deliverable, { log });
   for (const name of report.createdDecks) {
     log(`${dry ? "would create" : "created"} deck: ${name}`);
   }

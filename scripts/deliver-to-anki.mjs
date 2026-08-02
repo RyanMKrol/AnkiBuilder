@@ -76,6 +76,11 @@ if (report.structure.length) {
   }
 }
 
+if (report.removedLegacyDecks?.length) {
+  line(`\nswept ${report.removedLegacyDecks.length} empty legacy deck shell(s):`);
+  for (const name of report.removedLegacyDecks) line(`  - ${name}`);
+}
+
 line("\ncontent:");
 let ambiguousTotal = 0;
 for (const c of report.content) {

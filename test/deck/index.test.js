@@ -220,15 +220,31 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       assert.match(model.css, /\.cat-chip/); // …and the chip is styled
       assert.deepStrictEqual(
         model.flds.map((f) => f.name),
-        ["Target", "Pronunciation", "English", "Category", "Hint", "Note", "Image", "Audio"],
+        [
+          "Target",
+          "Pronunciation",
+          "English",
+          "Category",
+          "Hint",
+          "Note",
+          "Image",
+          "Audio",
+          "Reading",
+        ],
       );
-      // Hint is on the FRONT of both cards; Note is on the back.
+      // Hint fronts only the Production card — on Recognition (Target→English) an English hint is
+      // part of the answer, so there it shows on the back. Note is on the back of both.
       for (const t of model.tmpls) {
-        assert.match(
-          t.qfmt,
-          /\{\{#Hint\}\}<div class="hint-front">\{\{Hint\}\}<\/div>/,
-          `${t.name} front`,
-        );
+        if (t.name === "Production") {
+          assert.match(
+            t.qfmt,
+            /\{\{#Hint\}\}<div class="hint-front">\{\{Hint\}\}<\/div>/,
+            `${t.name} front`,
+          );
+        } else {
+          assert.doesNotMatch(t.qfmt, /\{\{Hint\}\}/, `${t.name} front must not leak the hint`);
+          assert.match(t.afmt, /\{\{#Hint\}\}/, `${t.name} back shows the hint as context`);
+        }
         assert.match(t.afmt, /\{\{#Note\}\}.*\{\{Note\}\}/s, `${t.name} back shows Note`);
       }
 

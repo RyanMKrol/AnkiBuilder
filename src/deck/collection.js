@@ -8,6 +8,10 @@ import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
 import { unitDeckSegments, groupingSegments } from "./deckPath.js";
 
 // "Hint" is the FRONT-of-card cue (card.hint); "Note" is the BACK-of-card context (card.note).
+// "Reading" is the card's spoken form (kana for a kanji-bearing target) — stored as a real field
+// now so the kanji era needs no note-type migration; the templates don't render it yet.
+// New fields append at the END: the AnkiConnect deliverer force-syncs structure by adding missing
+// fields, and appending keeps every existing note's field order stable.
 const FIELD_NAMES = [
   "Target",
   "Pronunciation",
@@ -17,6 +21,7 @@ const FIELD_NAMES = [
   "Note",
   "Image",
   "Audio",
+  "Reading",
 ];
 const FIELD_SEP = "\x1f";
 const DEFAULT_DECK_ID = 1;
@@ -157,9 +162,12 @@ CREATE INDEX ix_notes_csum on notes (csum);
 const CARD_TEMPLATES = [
   {
     name: "Recognition",
-    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}<br>{{Audio}}',
+    // No {{Hint}} on this front: the hint is an English cue ("said when entering a room"), which
+    // on a Target→English card is a piece of the answer. It shows on the BACK instead, as context.
+    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}<br>{{Audio}}',
     afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
+{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
 {{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
 {{#Image}}<div class="field">{{Image}}</div>{{/Image}}`,
@@ -224,6 +232,26 @@ const BASE_CSS = `.card {
   letter-spacing: 0.08em;
   color: #a08a5a;
   margin-bottom: 14px;
+}
+/* Anki's night mode stamps .night_mode (newer clients) or .nightMode (older) on the card. */
+.card.night_mode, .card.nightMode {
+  color: #e8e6e3;
+  background-color: #2c2c2e;
+}
+.night_mode .field-label, .nightMode .field-label {
+  color: #6fb5b0;
+}
+.night_mode .pron, .nightMode .pron {
+  color: #b8b5b0;
+}
+.night_mode .note-back, .nightMode .note-back {
+  color: #a3a09a;
+}
+.night_mode .hint-front, .nightMode .hint-front {
+  color: #a89f8d;
+}
+.night_mode .cat-chip, .nightMode .cat-chip {
+  color: #c2ab77;
 }`;
 
 // Base CSS + the language's embedded @font-face, if any. Identical for the .apkg and AnkiConnect paths.
@@ -400,22 +428,33 @@ function fieldChecksum(sortField) {
   return parseInt(digest.slice(0, 8), 16) & 0x7fffffff;
 }
 
+// Anki renders field values as HTML, so a gloss containing `&` or `<` mis-renders unless escaped.
+// Text fields are escaped once here — the single point both delivery paths share — while Image and
+// Audio stay raw (their values ARE markup). The deliverer's field comparison html-decodes both
+// sides before comparing, so escaping here keeps re-runs a no-op.
+function escapeFieldText(value) {
+  return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 function fieldValue(card, name) {
   switch (name) {
     case "Target":
-      return card.target || "";
+      return escapeFieldText(card.target || "");
     case "Pronunciation":
-      return card.pronunciation || "";
+      return escapeFieldText(card.pronunciation || "");
     case "English":
-      return card.english || "";
+      return escapeFieldText(card.english || "");
     case "Category":
-      return card.category || "";
+      return escapeFieldText(card.category || "");
     case "Hint":
       // FRONT-of-card cue (disambiguator). NEVER the internal reviewNote.
-      return card.hint || "";
+      return escapeFieldText(card.hint || "");
     case "Note":
       // BACK-of-card context. `cardNote` is the pre-rename alias, kept for back-compat.
-      return card.note || card.cardNote || "";
+      return escapeFieldText(card.note || card.cardNote || "");
+    case "Reading":
+      // The spoken form (kana for a kanji target) — stored, not yet rendered by the templates.
+      return escapeFieldText(card.reading || "");
     case "Image":
       return card.image ? `<img src="${card.image}">` : "";
     case "Audio":

@@ -190,6 +190,23 @@ test("syncDeckContent: update-by-tag, fingerprint-bootstrap+tag, add-new, skip-n
   assert.deepEqual(addNote.slice(1), ["Course::L1", ["abid:c"]]);
 });
 
+test("syncDeckContent escapes quotes and wildcards in the findNotes query", async () => {
+  const queries = [];
+  const { client } = fakeClient({ notes: [] });
+  const rawFindNotes = client.findNotes;
+  client.findNotes = async (query) => {
+    queries.push(query);
+    return rawFindNotes(query);
+  };
+  const deck = deckWith([{ id: "a", target: "あ", english: "Ah" }]);
+  deck.ankiParent = 'My "Best" Book *2*';
+  await syncDeckContent(client, deck, true);
+
+  assert.equal(queries.length, 1);
+  // `"` would end the quoted term early; `*`/`_` are wildcards even inside quotes.
+  assert.match(queries[0], /deck:"My \\"Best\\" Book \\\*2\\\*"/);
+});
+
 test("syncDeckContent: a Target present in Anki is never added as a duplicate", async () => {
   // Two same-Target notes whose glosses were edited since import (parenthetical moved to the hint).
   // The corpus glosses are prefixes of the Anki glosses → each resolves uniquely, none is duplicated.

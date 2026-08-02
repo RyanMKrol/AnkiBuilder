@@ -240,9 +240,16 @@ export async function generateAudio(
   // Excluded cards are dropped from the deck at build time (src/deck/index.js), so don't spend TTS on
   // them here — and clear any `audio` they carry so the review shows no player and nothing lingers.
   // The flag is reversible: un-excluding a card and re-running `audio` regenerates its clip.
+  //
+  // Hand-picked cards (a `-gen-` variant the reviewer auditioned, a Replace upload, a manual trim
+  // with its shipping clip) are not this stage's to touch AT ALL: no fetch (the take would only be
+  // discarded), no annotation. This makes a full re-run of `audio` safe by construction — the
+  // CLI's write-back guard is the belt, this is the braces. Same rule as that guard: a card with
+  // NO shipping clip is regenerated whatever stale fields it carries.
+  const handPicked = (item) => item.audio && !isStageOwnedCard(item);
   const uniqueTerms = new Set();
   for (const item of cards.items) {
-    if (item.excluded) continue;
+    if (item.excluded || handPicked(item)) continue;
     uniqueTerms.add(defaultTextFor(item));
   }
   const fetchedFiles = await fetchTermsToCache(uniqueTerms, audioDir, fetchCtx);
@@ -254,6 +261,9 @@ export async function generateAudio(
         const rest = { ...item };
         for (const field of AUDIO_FIELDS) delete rest[field];
         return rest;
+      }
+      if (handPicked(item)) {
+        return item;
       }
       const clip = fetchedFiles.get(defaultTextFor(item));
       const next = { ...item, audio: clip.audio, audioAuto: clip.audio };

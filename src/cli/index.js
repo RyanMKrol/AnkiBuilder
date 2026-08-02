@@ -1065,8 +1065,13 @@ async function runAudioInner(flags, ctx) {
     for (const name of [item.audio, item.audioOriginal]) {
       if (!name) continue;
       const dest = join(paths.audio, name);
-      if (!existsSync(dest)) {
-        copyFileSync(join(cacheDir, name), dest);
+      if (existsSync(dest)) continue;
+      // A hand-picked card comes back from generateAudio untouched; its clips live in the run's
+      // audio/ dir already (a Replace upload, a picked variant), never in the cache — only copy
+      // what the cache actually holds.
+      const src = join(cacheDir, name);
+      if (existsSync(src)) {
+        copyFileSync(src, dest);
       }
     }
   }

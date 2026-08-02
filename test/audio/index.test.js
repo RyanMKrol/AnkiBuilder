@@ -141,6 +141,59 @@ test("skips excluded cards: no TTS fetch, and their audio field is cleared", asy
   }
 });
 
+test("leaves hand-picked cards alone on a re-run: no fetch, fields untouched", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    await withTempDir(async (tmpDir) => {
+      const picked = {
+        id: "p1",
+        english: "Picked",
+        category: "Other",
+        target: "えらんだ",
+        // A dashboard-picked Generate variant — not the stage's to regenerate.
+        audio: "abcd1234-gen-9f9f9f9f.mp3",
+        audioOriginal: "abcd1234-gen-9f9f9f9f.orig.mp3",
+      };
+      const trimmed = {
+        id: "m1",
+        english: "Hand-cut",
+        category: "Other",
+        target: "きった",
+        audio: "m1-manual-1-2.mp3",
+        audioAuto: "deadbeefdeadbeef.mp3",
+        audioOriginal: "deadbeefdeadbeef.orig.mp3",
+        audioManual: "m1-manual-1-2.mp3",
+        audioTrim: { start: 0.1, end: 1.2 },
+      };
+      const cards = baseCards([
+        { id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" },
+        picked,
+        trimmed,
+      ]);
+
+      const calls = [];
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: async (term) => {
+          calls.push(term);
+          return Buffer.from("audio data");
+        },
+        libraryHomeDir: tmpDir,
+      });
+
+      // Only the stage-owned card is synthesized; the hand-picked ones cost nothing.
+      assert.deepEqual(calls, ["こんにちは。ででで"]);
+      // And they come back byte-for-byte untouched — including the manual trim.
+      assert.deepEqual(result.items[1], picked);
+      assert.deepEqual(result.items[2], trimmed);
+    });
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+});
+
 test("uses stable hash so same term yields same filename across runs", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";

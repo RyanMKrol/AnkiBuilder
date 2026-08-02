@@ -47,6 +47,68 @@ test("dedupBackward() flags an exact target match, without dropping it", () => {
   assert.equal(flagged[0].matchedPriorItem.__chapterNumber, 2);
 });
 
+test("dedupBackward() matches targets across display normalization (spaces, trailing 。)", () => {
+  // Fresh candidates arrive pre-normalization (editorial spaces, trailing 。) while the stored
+  // library mixes post-normalization entries and older ones saved with the 。 intact.
+  const candidates = [
+    candidate("greet", "Good morning", "おはよう ございます。"),
+    candidate("thanks", "Thanks so much", "どうも ありがとう"),
+  ];
+  const prior = [
+    {
+      ...candidate("greet-old", "morning greeting", "おはようございます"),
+      __chapterNumber: 1,
+      __chapterLabel: "Lesson 1",
+    },
+    {
+      ...candidate("thanks-old", "many thanks", "どうもありがとう。"),
+      __chapterNumber: 2,
+      __chapterLabel: "Lesson 2",
+    },
+  ];
+
+  const { flagged } = dedupBackward(candidates, prior, { languageCode: "ja" });
+
+  assert.equal(flagged.length, 2);
+  assert.equal(flagged[0].matchedField, "target");
+  assert.equal(flagged[0].matchedPriorItem.__chapterNumber, 1);
+  assert.equal(flagged[1].matchedField, "target");
+  assert.equal(flagged[1].matchedPriorItem.__chapterNumber, 2);
+});
+
+test("dedupBackward() without a languageCode keeps the exact-match behavior", () => {
+  const candidates = [candidate("greet", "Good morning", "おはよう ございます。")];
+  const prior = [
+    {
+      ...candidate("greet-old", "morning greeting", "おはようございます"),
+      __chapterNumber: 1,
+      __chapterLabel: "Lesson 1",
+    },
+  ];
+
+  const { flagged } = dedupBackward(candidates, prior);
+  assert.equal(flagged.length, 0);
+});
+
+test("dedupBackward() attributes a term taught twice to the chapter that introduced it", () => {
+  const candidates = [candidate("hello", "Hello", "こんにちは")];
+  const prior = [
+    {
+      ...candidate("hello-first", "hello", "こんにちは"),
+      __chapterNumber: 1,
+      __chapterLabel: "Lesson 1",
+    },
+    {
+      ...candidate("hello-again", "hello", "こんにちは"),
+      __chapterNumber: 3,
+      __chapterLabel: "Lesson 3",
+    },
+  ];
+
+  const { flagged } = dedupBackward(candidates, prior, { languageCode: "ja" });
+  assert.equal(flagged[0].matchedPriorItem.__chapterNumber, 1);
+});
+
 test("dedupBackward() appends to an existing reviewNote rather than overwriting it", () => {
   const candidates = [{ ...candidate("hello", "Hello", "こんにちは"), reviewNote: "informal too" }];
   const prior = [

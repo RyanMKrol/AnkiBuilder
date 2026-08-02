@@ -1,3 +1,5 @@
+import { normalizeDisplayText } from "../model/scriptSpacing.js";
+
 function noteWithMatch(existingReviewNote, chapterLabel, matchedField) {
   const concern = `Possibly already taught — already introduced in ${chapterLabel} (matched on ${matchedField})`;
   return existingReviewNote ? `${existingReviewNote} | ${concern}` : concern;
@@ -17,21 +19,33 @@ function noteWithMatch(existingReviewNote, chapterLabel, matchedField) {
  * original (pre-annotation) item plus which field matched and the prior item it
  * matched, for logging. Matched items are never removed — the human reviewer sees
  * and decides, same philosophy as the forward pass (flagForwardConcerns).
+ *
+ * `languageCode` (ISO 639-1) makes the target comparison normalization-proof: fresh
+ * candidates arrive BEFORE the CLI's display normalization (editorial spaces, trailing
+ * 。 intact) while the stored library was saved after it — and older library entries
+ * predate the normalization entirely — so both sides are passed through
+ * `normalizeDisplayText` before comparing. Identity for languages with real spaces.
  */
-export function dedupBackward(candidateItems, priorItems) {
+export function dedupBackward(candidateItems, priorItems, { languageCode } = {}) {
+  const targetKey = (target) => normalizeDisplayText(target.trim(), languageCode);
+  // First occurrence wins: priorItems arrive in chapter order, so a term taught in several
+  // earlier chapters is attributed to the chapter that introduced it.
   const priorEnglish = new Map();
   const priorTarget = new Map();
   for (const prior of priorItems) {
-    priorEnglish.set(prior.english.trim().toLowerCase(), prior);
-    if (prior.target) {
-      priorTarget.set(prior.target.trim(), prior);
+    const englishKey = prior.english.trim().toLowerCase();
+    if (!priorEnglish.has(englishKey)) {
+      priorEnglish.set(englishKey, prior);
+    }
+    if (prior.target && !priorTarget.has(targetKey(prior.target))) {
+      priorTarget.set(targetKey(prior.target), prior);
     }
   }
 
   const flagged = [];
   const items = candidateItems.map((item) => {
     const englishMatch = priorEnglish.get(item.english.trim().toLowerCase());
-    const targetMatch = item.target ? priorTarget.get(item.target.trim()) : undefined;
+    const targetMatch = item.target ? priorTarget.get(targetKey(item.target)) : undefined;
     const match = englishMatch ?? targetMatch;
 
     if (!match) {

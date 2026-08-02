@@ -523,6 +523,37 @@ test("buildDeck drops cards marked excluded (translate-review exclusion)", async
   });
 });
 
+test("buildDeck HTML-escapes text fields so & and < render literally in Anki", async () => {
+  await withTempDir(async (tmpDir) => {
+    const outPath = join(tmpDir, "deck.apkg");
+    const cards = baseCards([
+      {
+        id: "amp",
+        english: "Bread & butter <daily>",
+        target: "パン&バター",
+        pronunciation: "pan & bataa",
+        category: "Food",
+        note: "a < b",
+      },
+    ]);
+    buildDeck(cards, { outPath });
+
+    const dbBytes = extractZipEntry(await fs.readFile(outPath), "collection.anki2");
+    const dbPath = join(tmpDir, "escaped.anki2");
+    await fs.writeFile(dbPath, dbBytes);
+    const db = new DatabaseSync(dbPath);
+    try {
+      const { flds } = db.prepare("SELECT flds FROM notes").get();
+      assert.match(flds, /Bread &amp; butter &lt;daily&gt;/);
+      assert.match(flds, /パン&amp;バター/);
+      assert.match(flds, /a &lt; b/);
+      assert.doesNotMatch(flds, /<daily>/);
+    } finally {
+      db.close();
+    }
+  });
+});
+
 test("buildDeck refuses duplicate card ids (guids collapse to one note at import)", async () => {
   await withTempDir(async (tmpDir) => {
     const outPath = join(tmpDir, "deck.apkg");

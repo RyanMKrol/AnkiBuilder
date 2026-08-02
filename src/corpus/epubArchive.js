@@ -561,14 +561,19 @@ function isCachedChapterFile(destPath) {
 }
 
 const IMG_SRC_PATTERN = /<img\b[^>]*\bsrc="([^"]*)"/g;
+// EPUBs very commonly wrap a full-page or scanned image as <svg><image xlink:href="..."/></svg>
+// (the standard cover/scanned-page idiom); EPUB3 also allows a plain href on <image>.
+const SVG_IMAGE_HREF_PATTERN = /<image\b[^>]*\b(?:xlink:)?href="([^"]*)"/g;
 
 function isLocalRelativePath(src) {
   return Boolean(src) && !/^([a-z]+:)?\/\//i.test(src) && !src.startsWith("data:");
 }
 
-function extractReferencedImages(entries, chapter, content, destPath) {
+function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
   const srcs = new Set(
-    [...content.matchAll(IMG_SRC_PATTERN)].map((m) => m[1]).filter(isLocalRelativePath),
+    [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
+      .map((m) => m[1])
+      .filter(isLocalRelativePath),
   );
 
   const chapterDir = posix.dirname(chapter.href);
@@ -578,6 +583,9 @@ function extractReferencedImages(entries, chapter, content, destPath) {
     const archivePath = posix.normalize(posix.join(chapterDir, src));
     const imageEntry = entries.find((e) => e.name === archivePath);
     if (!imageEntry) {
+      // A dangling ref is tolerated (the extraction prompt just won't find the file), but
+      // never silent — the model is told to open images, so a missing one is a real gap.
+      log(`[epub] image referenced by ${chapter.href} not in archive, skipped: ${src}`);
       continue;
     }
 
@@ -593,10 +601,11 @@ function extractReferencedImages(entries, chapter, content, destPath) {
 /**
  * Extracts chapter `number`'s content to a real file on disk at `destPath`
  * (creating parent directories as needed), along with every image it
- * references via `<img src>` — for handing to `runClaude`, which reads
- * files (including images) by path, not inline content. Returns `destPath`.
+ * references via `<img src>` or an SVG-wrapped `<image xlink:href>` — for
+ * handing to `runClaude`, which reads files (including images) by path, not
+ * inline content. Returns `destPath`.
  */
-export function extractChapterToFile(epubPath, number, destPath) {
+export function extractChapterToFile(epubPath, number, destPath, { log } = {}) {
   if (isCachedChapterFile(destPath)) {
     return destPath;
   }
@@ -606,7 +615,7 @@ export function extractChapterToFile(epubPath, number, destPath) {
   // the whole unit, so the skip above can only ever skip a complete extraction. Written the
   // other way round (as this was), a second process would see the chapter file, skip, and
   // hand `claude -p` a path whose images had not been written yet.
-  extractReferencedImages(entries, chapter, content, destPath);
+  extractReferencedImages(entries, chapter, content, destPath, log);
   writeFileAtomic(destPath, content, "utf-8");
   return destPath;
 }
@@ -623,7 +632,13 @@ export function extractChapterToFile(epubPath, number, destPath) {
  * where a lesson's files share one directory); a cross-directory `src` collision is the
  * same tolerated edge as a single dangling image ref.
  */
-export function extractChapterRangeToFile(epubPath, firstNumber, lastNumber, destPath) {
+export function extractChapterRangeToFile(
+  epubPath,
+  firstNumber,
+  lastNumber,
+  destPath,
+  { log } = {},
+) {
   if (lastNumber < firstNumber) {
     throw new Error(`Invalid chapter range ${firstNumber}-${lastNumber}: last is before first`);
   }
@@ -645,7 +660,7 @@ export function extractChapterRangeToFile(epubPath, firstNumber, lastNumber, des
     }
     const content = contentEntry.data.toString("utf-8");
     parts.push(`<!-- anki-builder: spine chapter ${number} (${chapter.href}) -->\n${content}`);
-    extractReferencedImages(entries, chapter, content, destPath);
+    extractReferencedImages(entries, chapter, content, destPath, log);
   }
 
   // Images are already published by the loop above, so this is the commit point.

@@ -16,6 +16,7 @@ import { join, resolve, dirname } from "path";
 import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
 import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
+import { shippableCards } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
@@ -89,7 +90,7 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       // the same unit differently — they once did, and cards landed in a deck of the wrong name.
       ankiDeck: [ankiParent, ...unitDeckSegments(cd.name).map(sanitizeSeg)].join("::"),
       audioDir: cd.audioDir,
-      cards: (cd.cards.items || []).filter((it) => !it.excluded),
+      cards: shippableCards(cd.cards),
     }));
     decks.push({ type, id, title: info.title, targetLanguage, spec, ankiParent, units });
   }

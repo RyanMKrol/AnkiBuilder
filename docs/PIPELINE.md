@@ -507,10 +507,8 @@ IS naming after the EPUB or course, canonicalized once at assemble time rather t
 The last two shapes fold their parent in because their own basename identifies nothing — every course
 has a `lesson-3`, every template a `ja`. Readers go through `resolveDeckPathForDir`, which prefers the
 named file but falls back to a `deck.apkg` left by an older build, so a deck built before this
-convention stays readable whether or not `scripts/rename-deck-packages.mjs` has been run. That script
-is the one-off migration (dry by default, `--apply` to rename); it only renames, never rebuilds, and
-the Anki deck names inside each package are untouched, so importing a renamed file updates the same
-decks as before and scheduling is unaffected.
+convention is still readable. The one-off script that renamed existing packages has been removed now
+that every package on disk uses the new names; the fallback stays because it costs nothing.
 
 Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows
 `Target` and autoplays `Audio` — the target-language listening/recall direction — answer reveals

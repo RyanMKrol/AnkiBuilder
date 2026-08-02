@@ -17,7 +17,11 @@ import { slugify } from "../util/slugify.js";
 
 export const LEGACY_DECK_FILENAME = "deck.apkg";
 
-const UNIT_DIR_PATTERN = /^(?:chapter|lesson)-\d+$/;
+// Matches the `-extras` suffix too. A unit dir's own basename never identifies anything by itself,
+// and that is just as true of `chapter-3-extras` as of `chapter-3`: without the parent folded in,
+// every book in the output tree would produce the same `chapter-3-extras.apkg`. Keep this in step
+// with the same pattern in src/deck/rebuild.js and src/server/adapters/stage.js.
+const UNIT_DIR_PATTERN = /^(?:chapter|lesson)-\d+(?:-extras)?$/;
 const TEMPLATES_SEGMENT = "templates";
 
 /**

@@ -5,6 +5,7 @@ import { Buffer } from "buffer";
 import { buildCollection, buildMultiDeckCollection } from "./collection.js";
 import { buildZip } from "./zip.js";
 import { getLanguageFont, readFontBytes } from "./fontLibrary.js";
+import { shippableCards } from "./shippableCards.js";
 import { resolveIso639Code } from "../model/iso639.js";
 
 // Embeds the deck's per-language font file (if the language has one configured — see fontLibrary.js)
@@ -36,25 +37,22 @@ function embedLanguageFont(targetLanguage, media, mediaEntries, counter, getFont
 // mutable `{ next }` object threaded across every chapter's call in buildBookDeck, so
 // numbering stays globally sequential with no resets and no prefixes.
 function resolveChapterAudio(cards, audioDir, media, mediaEntries, counter) {
-  // Cards marked excluded in the dashboard translate review are dropped from the built deck.
-  const items = cards.items
-    .filter((item) => !item.excluded)
-    .map((item) => {
-      if (!item.audio) {
-        return { ...item, audio: undefined };
-      }
-      const audioPath = audioDir ? join(audioDir, item.audio) : null;
-      if (!audioPath || !existsSync(audioPath)) {
-        return { ...item, audio: undefined };
-      }
+  const items = shippableCards(cards).map((item) => {
+    if (!item.audio) {
+      return { ...item, audio: undefined };
+    }
+    const audioPath = audioDir ? join(audioDir, item.audio) : null;
+    if (!audioPath || !existsSync(audioPath)) {
+      return { ...item, audio: undefined };
+    }
 
-      const key = String(counter.next);
-      counter.next++;
-      media[key] = item.audio;
-      mediaEntries.push({ name: key, data: readFileSync(audioPath) });
+    const key = String(counter.next);
+    counter.next++;
+    media[key] = item.audio;
+    mediaEntries.push({ name: key, data: readFileSync(audioPath) });
 
-      return item;
-    });
+    return item;
+  });
 
   return { ...cards, items };
 }

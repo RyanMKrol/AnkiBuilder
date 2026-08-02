@@ -87,3 +87,14 @@ test("with neither present it returns the path a build would write", () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("deckIdentityForDir folds the parent in for an extras unit too", () => {
+  // Without this, every book's extras dir yields the same "chapter-3-extras.apkg".
+  assert.equal(deckIdentityForDir("/o/epubs/mybook/chapter-3-extras"), "mybook-chapter-3-extras");
+  assert.equal(
+    deckIdentityForDir("/o/courses/mycourse/lesson-2-extras"),
+    "mycourse-lesson-2-extras",
+  );
+  // And the plain form still works.
+  assert.equal(deckIdentityForDir("/o/epubs/mybook/chapter-3"), "mybook-chapter-3");
+});

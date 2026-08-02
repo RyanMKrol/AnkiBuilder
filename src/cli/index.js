@@ -1,4 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { parseEnv } from "util";
 import { writeFileAtomic, backupFileOnce } from "../util/atomicWrite.js";
 import { withClaim, updateClaim } from "./runClaim.js";
 import { basename, dirname, join, resolve } from "path";
@@ -80,6 +82,26 @@ import { renderDeckViewPage as defaultRenderDeckViewPage } from "../review/rende
 import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
 import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
 import { deckPathForDir } from "../deck/deckFileName.js";
+
+const CLI_MODULE_DIR = dirname(fileURLToPath(import.meta.url));
+const PACKAGE_ROOT = resolve(CLI_MODULE_DIR, "..", "..");
+
+// Loads the package root's .env for EVERY command, never overriding variables already set in the
+// environment. The bin.js shebang's `--env-file-if-exists=.env` resolves against the CWD, so
+// running the CLI from any other directory silently lost the ElevenLabs key (and `npm run serve`
+// needed its own ad-hoc loader).
+function loadRootEnv() {
+  const envPath = join(PACKAGE_ROOT, ".env");
+  if (!existsSync(envPath)) return;
+  try {
+    const parsed = parseEnv(readFileSync(envPath, "utf-8"));
+    for (const [key, value] of Object.entries(parsed)) {
+      if (!(key in process.env)) process.env[key] = value;
+    }
+  } catch {
+    // Malformed .env — leave the environment as-is; a missing key reports at its point of use.
+  }
+}
 
 function parseFlags(args) {
   const flags = {};
@@ -574,6 +596,22 @@ async function runTranslateInner(flags, ctx) {
   // are present, and the re-run path above retries exactly this subset instead of short-circuiting.
   if (errors.length > 0) {
     cards.meta = { ...cards.meta, translateErrors: errors };
+  }
+
+  // For a source whose targets are GENERATED (template / dictated lesson), the assemble-time
+  // pedagogical sort could only see English — the targets were still null. Re-sort now that the
+  // real sentences exist, so atoms-before-molecules is judged on the target text. EPUB corpora
+  // carried their targets at assemble time and keep that order. Fail-open like the original sort.
+  if (!flags["no-sort"] && corpus.meta.sourceType !== "epub" && errors.length === 0) {
+    const sortResult = ctx.sortItemsPedagogically({
+      items: cards.items,
+      targetLanguage: corpus.meta.targetLanguage,
+      log: ctx.log,
+    });
+    cards.items = sortResult.items;
+    if (sortResult.changed) {
+      ctx.log("pedagogical sort: re-ordered the translated cards now that targets exist");
+    }
   }
 
   writeJson(paths.cards, cards);
@@ -1252,13 +1290,6 @@ async function runServe(flags, ctx) {
   if (!Number.isInteger(port) || port < 0 || port > 65535) {
     throw new Error(`--port must be a valid port number (got ${JSON.stringify(flags.port)})`);
   }
-  // Load .env if present so the Generate button's ElevenLabs key is available even when the server is
-  // launched via `node`/`npm run serve` (which don't apply bin.js's shebang --env-file loader).
-  try {
-    process.loadEnvFile?.(resolve(".env"));
-  } catch {
-    // no .env — Generate will report the missing key if used
-  }
   const editable = !flags["read-only"];
   const { url } = await ctx.startDeckServer({
     port,
@@ -1343,6 +1374,10 @@ export async function runCli(argv, deps = {}) {
     startDeckServer = defaultStartDeckServer,
     log = console.log,
   } = deps;
+
+  // Every command gets the root .env (audio needs the ElevenLabs key, serve's Generate button
+  // too) — resolved against the package, not the CWD.
+  loadRootEnv();
 
   const [command, ...rest] = argv;
   const handler = COMMANDS[command];

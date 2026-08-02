@@ -1724,6 +1724,69 @@ test("prepare: marks each pass done so a re-run resumes instead of re-spending m
   });
 });
 
+test("translate: re-sorts a generated-target source once targets exist; leaves epub order alone", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = {
+      meta: { targetLanguage: "ja", sourceType: "manual" },
+      items: [
+        { id: "a", english: "A", category: "Greetings", hint: null, target: null },
+        { id: "b", english: "B", category: "Greetings", hint: null, target: null },
+      ],
+    };
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    let sortedWith = null;
+    await runCli(["translate", "--run", runDir], {
+      translateCorpus: (c) => ({
+        cards: {
+          meta: c.meta,
+          items: [
+            { id: "a", english: "A", category: "Greetings", target: "あ" },
+            { id: "b", english: "B", category: "Greetings", target: "ぼ" },
+          ],
+        },
+        errors: [],
+      }),
+      sortItemsPedagogically: ({ items }) => {
+        sortedWith = items.map((i) => i.target);
+        return { items: [...items].reverse(), changed: true };
+      },
+    });
+
+    // The sort ran AFTER translation, over the real targets, and its order was written.
+    assert.deepEqual(sortedWith, ["あ", "ぼ"]);
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.deepEqual(
+      cards.items.map((i) => i.id),
+      ["b", "a"],
+    );
+  });
+});
+
+test("translate: an epub source is NOT re-sorted (its assemble-time sort saw the targets)", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    let sortCalled = false;
+    await runCli(["translate", "--run", runDir], {
+      translateCorpus: (c) => ({
+        cards: { meta: c.meta, items: baseCards({ reviewed: false }).items },
+        errors: [],
+      }),
+      sortItemsPedagogically: () => {
+        sortCalled = true;
+        return { items: [], changed: false };
+      },
+    });
+
+    assert.equal(sortCalled, false);
+  });
+});
+
 test("translate: records failed items on cards.json and a re-run retries ONLY that subset", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

@@ -20,6 +20,15 @@ function readCentralDirectoryEntries(buffer, eocdOffset) {
   const entryCount = buffer.readUInt16LE(eocdOffset + 10);
   const centralDirectoryOffset = buffer.readUInt32LE(eocdOffset + 16);
 
+  // ZIP64 archives put sentinel values here and move the real numbers to a separate
+  // ZIP64 EOCD record this reader doesn't implement. Without this check they would
+  // "parse" into a wrong entry count / offset and fail somewhere misleading.
+  if (entryCount === 0xffff || centralDirectoryOffset === 0xffffffff) {
+    throw new Error(
+      "Unsupported zip/epub file: ZIP64 format (very large archive) is not supported",
+    );
+  }
+
   const entries = [];
   let offset = centralDirectoryOffset;
   for (let i = 0; i < entryCount; i++) {
@@ -27,6 +36,7 @@ function readCentralDirectoryEntries(buffer, eocdOffset) {
       throw new Error("Invalid zip/epub file: malformed central directory entry");
     }
 
+    const flags = buffer.readUInt16LE(offset + 8);
     const method = buffer.readUInt16LE(offset + 10);
     const compressedSize = buffer.readUInt32LE(offset + 20);
     const nameLength = buffer.readUInt16LE(offset + 28);
@@ -34,6 +44,19 @@ function readCentralDirectoryEntries(buffer, eocdOffset) {
     const commentLength = buffer.readUInt16LE(offset + 32);
     const localHeaderOffset = buffer.readUInt32LE(offset + 42);
     const name = buffer.toString("utf-8", offset + 46, offset + 46 + nameLength);
+
+    // General-purpose bit 0 marks an encrypted entry (DRM'd EPUBs). Decompressing its
+    // ciphertext would fail with a cryptic inflate error pointing nowhere near the cause.
+    if (flags & 0x1) {
+      throw new Error(
+        `Unsupported zip/epub file: entry "${name}" is encrypted (DRM-protected EPUBs cannot be read)`,
+      );
+    }
+    if (compressedSize === 0xffffffff) {
+      throw new Error(
+        "Unsupported zip/epub file: ZIP64 format (very large archive) is not supported",
+      );
+    }
 
     entries.push({ name, method, compressedSize, localHeaderOffset });
     offset += 46 + nameLength + extraLength + commentLength;
@@ -83,10 +106,13 @@ function findTags(xml, tagName) {
 
 function parseAttrs(attrString) {
   const attrs = {};
-  const pattern = /([a-zA-Z:_-]+)\s*=\s*"([^"]*)"/g;
+  // Either quote style — single-quoted attributes are valid XML and real EPUB tooling
+  // produces them; matching only double quotes made such a book parse to zero manifest
+  // items ("no chapters") with no diagnostic pointing at the real cause.
+  const pattern = /([a-zA-Z:_-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
   let match;
   while ((match = pattern.exec(attrString)) !== null) {
-    attrs[match[1]] = match[2];
+    attrs[match[1]] = match[2] ?? match[3];
   }
   return attrs;
 }
@@ -149,7 +175,21 @@ function parseOpfDocument(opfXml, opfDir) {
   return { chapters, manifestItems, tocId };
 }
 
+// Parsed-book memo, keyed by path and validated by mtime+size. Every public function
+// here starts from loadEpub, and a single assemble calls several of them (listChapters,
+// getBookTitle, describeChapter, extractChapterToFile, ...) — without the memo each
+// call re-read and re-inflated EVERY entry of the archive. Two books is plenty: one
+// being assembled plus one being browsed.
+const parsedBookCache = new Map();
+const PARSED_BOOK_CACHE_MAX = 2;
+
 function loadEpub(epubPath) {
+  const { mtimeMs, size } = statSync(epubPath);
+  const cached = parsedBookCache.get(epubPath);
+  if (cached && cached.mtimeMs === mtimeMs && cached.size === size) {
+    return cached.book;
+  }
+
   const buffer = readFileSync(epubPath);
   const entries = readZipEntries(buffer);
 
@@ -163,7 +203,12 @@ function loadEpub(epubPath) {
   const opfXml = opfEntry.data.toString("utf-8");
   const { chapters, manifestItems, tocId } = parseOpfDocument(opfXml, opfDir);
 
-  return { entries, chapters, opfDir, manifestItems, tocId, opfXml };
+  const book = { entries, chapters, opfDir, manifestItems, tocId, opfXml };
+  parsedBookCache.set(epubPath, { mtimeMs, size, book });
+  if (parsedBookCache.size > PARSED_BOOK_CACHE_MAX) {
+    parsedBookCache.delete(parsedBookCache.keys().next().value);
+  }
+  return book;
 }
 
 /**
@@ -289,7 +334,7 @@ function isolateNavToc(xhtml) {
   return null;
 }
 
-const NAV_A_TAG_PATTERN = /<a\b[^>]*\bhref="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g;
+const NAV_A_TAG_PATTERN = /<a\b[^>]*\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')[^>]*>([\s\S]*?)<\/a>/g;
 
 // Returns the toc <nav>'s <a href="...">Label</a> entries in document order — nesting
 // (a sub-<ol> under one <li> for sub-sections) is deliberately NOT tracked structurally,
@@ -304,8 +349,8 @@ function parseNavXhtmlToc(xhtml) {
 
   const entries = [];
   for (const m of tocXml.matchAll(NAV_A_TAG_PATTERN)) {
-    const href = m[1];
-    const label = decodeHtmlEntities(m[2].replace(/<[^>]+>/g, "")).trim();
+    const href = m[1] ?? m[2];
+    const label = decodeHtmlEntities(m[3].replace(/<[^>]+>/g, "")).trim();
     if (href && label) {
       entries.push({ href, label });
     }
@@ -347,13 +392,13 @@ function parseNcxNavMap(ncxXml) {
     const slice = navMapXml.slice(start, end);
 
     const labelMatch = /<navLabel>\s*<text>([^<]*)<\/text>/i.exec(slice);
-    const contentMatch = /<content\b[^>]*\bsrc="([^"]*)"/i.exec(slice);
+    const contentMatch = /<content\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(slice);
     if (!labelMatch || !contentMatch) {
       continue;
     }
 
     const label = decodeHtmlEntities(labelMatch[1]).trim();
-    const href = contentMatch[1];
+    const href = contentMatch[1] ?? contentMatch[2];
     if (label && href) {
       entries.push({ href, label });
     }
@@ -560,10 +605,10 @@ function isCachedChapterFile(destPath) {
   }
 }
 
-const IMG_SRC_PATTERN = /<img\b[^>]*\bsrc="([^"]*)"/g;
+const IMG_SRC_PATTERN = /<img\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
 // EPUBs very commonly wrap a full-page or scanned image as <svg><image xlink:href="..."/></svg>
 // (the standard cover/scanned-page idiom); EPUB3 also allows a plain href on <image>.
-const SVG_IMAGE_HREF_PATTERN = /<image\b[^>]*\b(?:xlink:)?href="([^"]*)"/g;
+const SVG_IMAGE_HREF_PATTERN = /<image\b[^>]*\b(?:xlink:)?href\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
 
 function isLocalRelativePath(src) {
   return Boolean(src) && !/^([a-z]+:)?\/\//i.test(src) && !src.startsWith("data:");
@@ -572,7 +617,7 @@ function isLocalRelativePath(src) {
 function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
   const srcs = new Set(
     [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
-      .map((m) => m[1])
+      .map((m) => m[1] ?? m[2])
       .filter(isLocalRelativePath),
   );
 

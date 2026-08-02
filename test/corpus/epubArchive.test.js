@@ -658,3 +658,114 @@ test("extractChapterToFile leaves no temp files in the cache directory", () => {
     );
   });
 });
+
+test("listChapters() parses an EPUB whose XML uses single-quoted attributes", () => {
+  withTempDir((dir) => {
+    const container = `<?xml version='1.0'?>
+<container version='1.0' xmlns='urn:oasis:names:tc:opendocument:xmlns:container'>
+  <rootfiles>
+    <rootfile full-path='OEBPS/content.opf' media-type='application/oebps-package+xml'/>
+  </rootfiles>
+</container>`;
+    const opf = `<?xml version='1.0'?>
+<package version='3.0' xmlns='http://www.idpf.org/2007/opf'>
+  <manifest>
+    <item id='ch1' href='text/ch01.xhtml' media-type='application/xhtml+xml'/>
+  </manifest>
+  <spine>
+    <itemref idref='ch1'/>
+  </spine>
+</package>`;
+    const epubPath = join(dir, "single-quoted.epub");
+    writeFileSync(
+      epubPath,
+      buildZip([
+        { name: "META-INF/container.xml", content: container },
+        { name: "OEBPS/content.opf", content: opf },
+        {
+          name: "OEBPS/text/ch01.xhtml",
+          content: "<html><body><img src='../images/pic.jpg'/>One</body></html>",
+        },
+        { name: "OEBPS/images/pic.jpg", content: "fake-jpeg" },
+      ]),
+    );
+
+    const { chapters } = listChapters(epubPath);
+    assert.equal(chapters.length, 1);
+    assert.equal(chapters[0].href, "OEBPS/text/ch01.xhtml");
+
+    // Single-quoted <img src> resolves too.
+    const destPath = join(dir, "cache", "chapters", "1.xhtml");
+    extractChapterToFile(epubPath, 1, destPath);
+    assert.equal(readFileSync(join(dir, "cache", "images", "pic.jpg"), "utf-8"), "fake-jpeg");
+  });
+});
+
+function findEocdOffset(zipBuffer) {
+  for (let i = zipBuffer.length - 22; i >= 0; i--) {
+    if (zipBuffer.readUInt32LE(i) === 0x06054b50) return i;
+  }
+  throw new Error("no EOCD in fixture zip");
+}
+
+test("listChapters() rejects an encrypted (DRM) entry with a clear error, not an inflate failure", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "text/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/text/ch01.xhtml", content: "<html><body>One</body></html>" }],
+    });
+
+    // Flip general-purpose bit 0 (encrypted) on the first central-directory entry.
+    const bytes = readFileSync(epubPath);
+    const centralDirOffset = bytes.readUInt32LE(findEocdOffset(bytes) + 16);
+    bytes.writeUInt16LE(bytes.readUInt16LE(centralDirOffset + 8) | 0x1, centralDirOffset + 8);
+    const patched = join(dir, "encrypted.epub");
+    writeFileSync(patched, bytes);
+
+    assert.throws(() => listChapters(patched), /encrypted/);
+  });
+});
+
+test("listChapters() rejects a ZIP64 archive with a clear error instead of misparsing", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "ch1", href: "text/ch01.xhtml" }],
+      spineIdrefs: ["ch1"],
+      extraFiles: [{ name: "OEBPS/text/ch01.xhtml", content: "<html><body>One</body></html>" }],
+    });
+
+    // A ZIP64 EOCD stores 0xFFFF in the 16-bit entry count as a "look elsewhere" sentinel.
+    const bytes = readFileSync(epubPath);
+    bytes.writeUInt16LE(0xffff, findEocdOffset(bytes) + 10);
+    const patched = join(dir, "zip64.epub");
+    writeFileSync(patched, bytes);
+
+    assert.throws(() => listChapters(patched), /ZIP64/);
+  });
+});
+
+test("loadEpub memo: repeated calls reuse the parsed book until the file changes on disk", () => {
+  withTempDir((dir) => {
+    const build = (bodyText) =>
+      buildFixtureEpub(dir, {
+        manifestItems: [{ id: "ch1", href: "text/ch01.xhtml" }],
+        spineIdrefs: ["ch1"],
+        extraFiles: [
+          { name: "OEBPS/text/ch01.xhtml", content: `<html><body>${bodyText}</body></html>` },
+        ],
+        dcTitles: [bodyText],
+      });
+
+    const epubPath = build("First");
+    const first = listChapters(epubPath);
+    const second = listChapters(epubPath);
+    // Same underlying parsed book — the archive was not re-read/re-inflated.
+    assert.strictEqual(first.chapters, second.chapters);
+    assert.equal(getBookTitle(epubPath), "First");
+
+    // Rewrite the file (content + size change): the memo must notice and re-parse.
+    build("Second edition");
+    assert.equal(getBookTitle(epubPath), "Second edition");
+  });
+});

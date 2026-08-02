@@ -9,6 +9,7 @@ import {
   registerEpub,
   chapterCachePath,
   saveChapterCorpus,
+  removeChapterCorpus,
   loadPriorChapterItems,
   loadBookConventions,
   saveBookConventions,
@@ -328,5 +329,20 @@ test("loadBookConventions() keeps different books separate", () => {
 
     assert.equal(loadBookConventions("bookA", { libraryHomeDir }), "# Book A conventions");
     assert.equal(loadBookConventions("bookB", { libraryHomeDir }), "# Book B conventions");
+  });
+});
+
+test("removeChapterCorpus() deletes a saved entry and is a no-op when absent", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    saveChapterCorpus(
+      "book1",
+      3,
+      baseCorpus([{ id: "a", english: "A", category: "Other", notes: null, target: "あ" }]),
+      { libraryHomeDir },
+    );
+
+    assert.equal(removeChapterCorpus("book1", 3, { libraryHomeDir }), true);
+    assert.deepEqual(loadPriorChapterItems("book1", 4, { libraryHomeDir }), []);
+    assert.equal(removeChapterCorpus("book1", 3, { libraryHomeDir }), false); // idempotent
   });
 });

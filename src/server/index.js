@@ -38,8 +38,12 @@ import {
   editCard,
   setLessonDone,
   markCardsReviewed,
+  unmarkCardsReviewed,
 } from "./adapters/applyCards.js";
-import { saveChapterCorpus as defaultSaveChapterCorpus } from "../corpus/epubLibrary.js";
+import {
+  saveChapterCorpus as defaultSaveChapterCorpus,
+  removeChapterCorpus as defaultRemoveChapterCorpus,
+} from "../corpus/epubLibrary.js";
 import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
 import { isGeneratedTakeFilename } from "../audio/index.js";
@@ -129,6 +133,7 @@ export function createDeckServer({
   voice = null,
   getApiKey = () => process.env.ELEVENLABS_API_KEY,
   saveChapterCorpus = defaultSaveChapterCorpus,
+  removeChapterCorpus = defaultRemoveChapterCorpus,
   runClaude = defaultRunClaude,
   // The automatic trailing-silence trim, applied to every clip this server stores (uploads and
   // generated variants alike). Injected like every other collaborator because the real one SHELLS OUT
@@ -429,7 +434,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
             if (s.stage === "audio")
               return s.done
                 ? `<span class="done-badge">✓ done</span> <button type="button" class="reopen" data-unit="${escapeHtml(String(s.seq))}">Reopen</button><span class="done-msg"></span>`
-                : `<button type="button" class="mark-done" data-unit="${escapeHtml(String(s.seq))}">Mark done</button><span class="done-msg"></span>`;
+                : `<button type="button" class="mark-done" data-unit="${escapeHtml(String(s.seq))}">Mark done</button> <button type="button" class="unreview" data-unit="${escapeHtml(String(s.seq))}">Unreview</button><span class="done-msg"></span>`;
             return "";
           }
         : undefined;
@@ -756,6 +761,13 @@ ${sectionHtml}
     sendJson(res, markCardsReviewed(runDir, { saveChapterCorpus }));
   }
 
+  function handleCardsUnreviewed(res, type, id, unit) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    sendJson(res, unmarkCardsReviewed(runDir, { removeChapterCorpus }));
+  }
+
   async function handleLessonDone(res, type, id, unit, done) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -923,6 +935,10 @@ ${sectionHtml}
     const [type, id] = [seg[2], seg[3]];
     if (seg[4] === "rebuild" && seg.length === 5) {
       await handleRebuild(res, type, id);
+      return true;
+    }
+    if (seg[4] === "unit" && seg[6] === "review" && seg[7] === "unreviewed" && seg.length === 8) {
+      handleCardsUnreviewed(res, type, id, seg[5]);
       return true;
     }
     if (seg[4] === "unit" && seg[6] === "review" && seg[7] === "reviewed" && seg.length === 8) {

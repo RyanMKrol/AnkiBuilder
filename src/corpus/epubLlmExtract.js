@@ -5,14 +5,25 @@ import { CATEGORIES } from "../model/categories.js";
 // The model is told to respond with ONLY a JSON array, but in practice two
 // deviations have both been observed for real: the whole response wrapped in
 // a ```json fence, and — from Haiku specifically — prose commentary before a
-// fenced block ("Now I'll extract... ```json\n[...]\n```"). Searching for a
-// fenced block anywhere in the text (not just at the very start/end) handles
-// both; a response with no fence at all is treated as already being raw JSON.
+// fenced block ("Now I'll extract... ```json\n[...]\n```"). Searching for the
+// first fenced block whose content is array-shaped (not just the first fence —
+// a preamble can carry an incidental fence of its own) handles both. With no
+// array-shaped fence, take the span from the first "[" to the last "]" (the
+// prose-then-bare-JSON case, mirroring the object-side helper in
+// epubForwardFlags.js); only a response with neither is treated as raw JSON.
 function extractJsonArrayText(raw) {
-  const fenceMatch = raw.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
-  if (fenceMatch) {
-    return fenceMatch[1];
+  const fences = [...raw.matchAll(/```(?:json)?\s*\n([\s\S]*?)\n```/g)];
+  const arrayFence = fences.find((m) => m[1].trim().startsWith("["));
+  if (arrayFence) {
+    return arrayFence[1];
   }
+
+  const firstBracket = raw.indexOf("[");
+  const lastBracket = raw.lastIndexOf("]");
+  if (firstBracket !== -1 && lastBracket > firstBracket) {
+    return raw.slice(firstBracket, lastBracket + 1);
+  }
+
   return raw.trim();
 }
 

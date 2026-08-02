@@ -41,6 +41,31 @@ test("extractChapterViaLlm() extracts a fenced block even with prose commentary 
   assert.strictEqual(items[0].id, "hello");
 });
 
+test("extractChapterViaLlm() skips a non-array preamble fence and finds the real payload fence", () => {
+  const items = extractChapterViaLlm({
+    ...BASE_ARGS,
+    runClaude: () =>
+      "The chapter mentions a pattern like:\n\n```\n〜を おねがいします\n```\n\nHere are the cards:\n\n" +
+      '```json\n[{"id": "hello", "english": "Hello", "target": "こんにちは", "category": "Greetings"}]\n```',
+  });
+
+  assert.strictEqual(items.length, 1);
+  assert.strictEqual(items[0].id, "hello");
+});
+
+test("extractChapterViaLlm() falls back to the first-[ to last-] span when prose surrounds bare JSON", () => {
+  const items = extractChapterViaLlm({
+    ...BASE_ARGS,
+    runClaude: () =>
+      "Confirmed — extracting now.\n" +
+      '[{"id": "hello", "english": "Hello", "target": "こんにちは", "category": "Greetings"}]\n' +
+      "That covers the chapter.",
+  });
+
+  assert.strictEqual(items.length, 1);
+  assert.strictEqual(items[0].id, "hello");
+});
+
 test("extractChapterViaLlm() preserves optional reviewNote/uncertain/aiSuggested fields", () => {
   const items = extractChapterViaLlm({
     ...BASE_ARGS,

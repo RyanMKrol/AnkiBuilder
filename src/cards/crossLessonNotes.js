@@ -163,9 +163,10 @@ function applyEdit(item, edit) {
  * Writes the current lesson only, leaving `reviewNote` untouched, and keeps corpus.json in lockstep
  * with cards.json. Each file is backed up once to `<file>.pre-enhance.bak` before its first rewrite.
  *
- * Returns `{ changed, skipped }` — `changed` is how many notes were written, `skipped` a reason
- * string when the pass didn't run at all (a lone lesson with no siblings, an unknown unit). Fails
- * open on a model/parse error: logs and returns `changed: 0`.
+ * Returns `{ changed, skipped, failed? }` — `changed` is how many notes were written, `skipped` a
+ * reason string when the pass didn't run at all (a lone lesson with no siblings, an unknown unit).
+ * Fails open on a model/parse error: logs and returns `changed: 0, failed: true` so the caller
+ * leaves its done-marker unset and a re-run retries.
  */
 export function enhanceLessonNotes({
   deckDir,
@@ -208,7 +209,9 @@ export function enhanceLessonNotes({
     );
   } catch (error) {
     log(`cross-lesson notes: failed (${error.message}) — leaving this lesson's notes as they are`);
-    return { changed: 0 };
+    // Not the same as "nothing to change": the caller must leave notesEnhanced unset so a
+    // re-run retries, rather than freezing a transient outage in as a completed pass.
+    return { changed: 0, failed: true };
   }
 
   const pending = current.data.items.filter(

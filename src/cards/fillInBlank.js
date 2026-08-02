@@ -98,12 +98,13 @@ const ANSWER_SHAPED = /^\s*(it['’]s|it is|that['’]s|they['’]re|they are|he
  * Every produced card is marked `fillInBlank: true` so the reviews can badge it and the semantic
  * de-dup pass can target it.
  *
- * Returns `{ items, added, patterns }`: `items` is the full card list with the drills appended,
- * `added` the drill cards alone, and `patterns` an id → sentence-frame map for the de-dup pass to
- * group on (the frame is prompt-only scaffolding and is never persisted to cards.json).
+ * Returns `{ items, added, patterns, failed? }`: `items` is the full card list with the drills
+ * appended, `added` the drill cards alone, and `patterns` an id → sentence-frame map for the de-dup
+ * pass to group on (the frame is prompt-only scaffolding and is never persisted to cards.json).
  *
  * Fails open: any parse/shape/thrown error logs a warning naming the actual failure and returns the
- * cards untouched, never blocking the build.
+ * cards untouched with `failed: true`, never blocking the build — the flag tells the caller to leave
+ * its enrichment marker unset so a re-run retries, instead of freezing the failure in as "done".
  */
 export function mineFillInBlankCards({
   items,
@@ -138,7 +139,10 @@ export function mineFillInBlankCards({
     produced = parseCardsResponse(runClaude(prompt));
   } catch (error) {
     log(`fill-in-the-blank: failed (${error.message}) — leaving the lesson's cards as they are`);
-    return empty;
+    // `failed` distinguishes "the model call broke" from "the source has no usable drills":
+    // the caller must NOT set its done-marker for a failure, or a transient outage would
+    // permanently skip this lesson's drills (the marker short-circuits every later run).
+    return { ...empty, failed: true };
   }
 
   const displayLang = resolveIso639Code(targetLanguage);

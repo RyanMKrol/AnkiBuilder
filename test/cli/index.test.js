@@ -1724,6 +1724,64 @@ test("prepare: marks each pass done so a re-run resumes instead of re-spending m
   });
 });
 
+test("prepare: a FAILED mining pass leaves enriched unset, so a re-run retries it", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      mineFillInBlankCards: ({ items }) => {
+        calls.push("fib");
+        return { items, added: [], patterns: {}, failed: true };
+      },
+      log: (line) => logged.push(line),
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.meta.enriched, undefined); // NOT frozen in as done
+    assert.equal(cards.meta.notesEnhanced, true); // the notes pass still ran and completed
+    assert.match(logged.join("\n"), /marker left unset/);
+
+    // The re-run retries mining (and only mining — notes are already marked).
+    calls.length = 0;
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+    assert.deepEqual(calls, ["fib", "dedup"]);
+    const after = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(after.meta.enriched, true);
+  });
+});
+
+test("prepare: a FAILED notes pass leaves notesEnhanced unset, so a re-run retries it", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      enhanceRunDirNotes: () => {
+        calls.push("notes");
+        return { changed: 0, failed: true };
+      },
+    });
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.meta.enriched, true);
+    assert.equal(cards.meta.notesEnhanced, undefined); // NOT frozen in as done
+
+    calls.length = 0;
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+    assert.deepEqual(calls, ["notes"]);
+    const after = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(after.meta.notesEnhanced, true);
+  });
+});
+
 test("prepare: leaves a lesson that has already been reviewed completely alone", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

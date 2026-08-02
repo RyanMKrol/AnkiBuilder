@@ -240,6 +240,8 @@ test("fails open on a malformed response", () => {
     });
     assert.equal(result.changed, 0);
     assert.match(logged.join("\n"), /cross-lesson notes: failed/);
+    // The failure is REPORTED, not just logged — the caller must not set notesEnhanced.
+    assert.equal(result.failed, true);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

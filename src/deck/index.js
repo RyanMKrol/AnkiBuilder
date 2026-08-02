@@ -5,7 +5,7 @@ import { Buffer } from "buffer";
 import { buildCollection, buildMultiDeckCollection } from "./collection.js";
 import { buildZip } from "./zip.js";
 import { getLanguageFont, readFontBytes } from "./fontLibrary.js";
-import { shippableCards } from "./shippableCards.js";
+import { shippableCards, assertUniqueCardIds } from "./shippableCards.js";
 import { resolveIso639Code } from "../model/iso639.js";
 
 // Embeds the deck's per-language font file (if the language has one configured — see fontLibrary.js)
@@ -83,10 +83,17 @@ export function buildDeck(
   const mediaEntries = [];
   const counter = { next: 0 };
   const resolvedCards = resolveChapterAudio(cards, audioDir, media, mediaEntries, counter);
+  // The collection writes each card's id as the note guid, so a repeated id would silently
+  // collapse two cards into one note at import. Same guard as the AnkiConnect path.
+  const resolvedName = deckName || resolvedCards.meta?.targetLanguage || "AnkiBuilder Deck";
+  assertUniqueCardIds(
+    [{ label: resolvedName, items: resolvedCards.items }],
+    `deck "${resolvedName}"`,
+  );
   embedLanguageFont(cards.meta?.targetLanguage, media, mediaEntries, counter, getFont, readFont);
 
   const collectionBytes = buildCollection(resolvedCards, {
-    deckName: deckName || resolvedCards.meta?.targetLanguage || "AnkiBuilder Deck",
+    deckName: resolvedName,
     now,
     getFont,
   });
@@ -127,6 +134,12 @@ export function buildBookDeck(
     name: chapter.name,
     cards: resolveChapterAudio(chapter.cards, chapter.audioDir, media, mediaEntries, counter),
   }));
+  // Note guids are card ids, and Anki matches guids collection-wide — so the check spans every
+  // chapter of the merged package, not each chapter alone. Same guard as the AnkiConnect path.
+  assertUniqueCardIds(
+    resolvedChapterDecks.map((chapter) => ({ label: chapter.name, items: chapter.cards.items })),
+    `book "${bookName}"`,
+  );
   embedLanguageFont(
     chapterDecks[0]?.cards?.meta?.targetLanguage,
     media,

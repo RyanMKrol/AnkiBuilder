@@ -47,10 +47,15 @@ const REQUIRED_PASSES = [
  */
 export function lessonReadiness(meta = {}, items = null) {
   if (meta.reviewed === true || meta.sourceType === "template") {
-    return { ready: true, missing: [], reason: null, numberIssues: [] };
+    return { ready: true, missing: [], reason: null, numberIssues: [], translateErrors: [] };
   }
 
   const missing = REQUIRED_PASSES.filter((pass) => meta[pass.key] !== true);
+
+  // Items that never translated (recorded by the translate stage after its retry). A reviewer
+  // signing off a lesson with holes in it would be approving a card set that isn't final —
+  // re-running prepare retries exactly these items.
+  const translateErrors = Array.isArray(meta.translateErrors) ? meta.translateErrors : [];
 
   // A digit that has leaked into the spoken text or the romaji. Held at THIS gate rather than at the
   // audio stage, which was the old placement and far too late: by then the lesson has been reviewed,
@@ -69,10 +74,11 @@ export function lessonReadiness(meta = {}, items = null) {
     : null;
 
   return {
-    ready: missing.length === 0 && numberIssues.length === 0,
+    ready: missing.length === 0 && numberIssues.length === 0 && translateErrors.length === 0,
     missing,
     reason,
     numberIssues,
+    translateErrors,
   };
 }
 
@@ -87,9 +93,20 @@ function describeMissingLessons(degraded) {
  * `lessonReadiness`, not the meta, so a caller that already has the verdict (the dashboard carries it
  * per unit) doesn't have to keep the raw meta around just to describe it.
  */
-export function describeReadiness({ missing = [], reason = null, numberIssues = [] } = {}) {
+export function describeReadiness({
+  missing = [],
+  reason = null,
+  numberIssues = [],
+  translateErrors = [],
+} = {}) {
   // Derived from the findings rather than the `ready` flag, so the two can never disagree and a caller
   // that passes a partial object still gets a sentence rather than a dangling fragment.
+  if (translateErrors.length > 0) {
+    return (
+      `${translateErrors.length} item(s) failed to translate — ` +
+      `re-run prepare to retry them before reviewing`
+    );
+  }
   if (missing.length === 0 && numberIssues.length === 0) return "ready for review";
   if (missing.length === 0) {
     return (

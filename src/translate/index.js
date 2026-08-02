@@ -368,42 +368,58 @@ function assemblePronunciationOnlyCard(item, entry) {
 function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) {
   const { runClaude, targetLanguage, items, errors, targetScriptRule } = ctx;
 
-  for (const batch of chunk(group, BATCH_SIZE)) {
-    const prompt = buildPrompt(batch, targetLanguage, { targetScriptRule });
+  const attempt = (attemptItems) => {
+    const attemptErrors = [];
+    for (const batch of chunk(attemptItems, BATCH_SIZE)) {
+      const prompt = buildPrompt(batch, targetLanguage, { targetScriptRule });
 
-    let entries;
-    try {
-      entries = parseBatch(runClaude(prompt));
-    } catch (error) {
-      // The whole batch response is unusable — surface an error for every item
-      // in it rather than writing bad cards.
-      for (const item of batch) {
-        errors.push({ id: item.id, error: error.message });
-      }
-      continue;
-    }
-
-    const byId = new Map();
-    for (const entry of entries) {
-      if (entry && typeof entry === "object" && typeof entry.id === "string") {
-        byId.set(entry.id, entry);
-      }
-    }
-
-    for (const item of batch) {
-      const entry = byId.get(item.id);
+      let entries;
       try {
-        if (entry === undefined) {
-          throw new Error("model response missing an entry for this item");
-        }
-        validateEntry(entry);
+        entries = parseBatch(runClaude(prompt));
       } catch (error) {
-        errors.push({ id: item.id, error: error.message });
+        // The whole batch response is unusable — surface an error for every item
+        // in it rather than writing bad cards.
+        for (const item of batch) {
+          attemptErrors.push({ item, error: error.message });
+        }
         continue;
       }
 
-      items.push(assembleCard(item, entry));
+      const byId = new Map();
+      for (const entry of entries) {
+        if (entry && typeof entry === "object" && typeof entry.id === "string") {
+          byId.set(entry.id, entry);
+        }
+      }
+
+      for (const item of batch) {
+        const entry = byId.get(item.id);
+        try {
+          if (entry === undefined) {
+            throw new Error("model response missing an entry for this item");
+          }
+          validateEntry(entry);
+        } catch (error) {
+          attemptErrors.push({ item, error: error.message });
+          continue;
+        }
+
+        items.push(assembleCard(item, entry));
+      }
     }
+    return attemptErrors;
+  };
+
+  // With one unbatched call per group, a single unparseable response used to error EVERY item of
+  // the lesson at once — and stay that way. Retry just the failed subset once (a smaller, fresh
+  // call); only items that fail both attempts surface as errors.
+  const firstAttemptErrors = attempt(group);
+  if (firstAttemptErrors.length === 0) {
+    return;
+  }
+  const retryErrors = attempt(firstAttemptErrors.map(({ item }) => item));
+  for (const { item, error } of retryErrors) {
+    errors.push({ id: item.id, error });
   }
 }
 
@@ -567,6 +583,16 @@ export async function translateCorpus(
     if (backNote) item.note = backNote;
     if (src?.reviewNote) item.reviewNote = src.reviewNote;
   }
+
+  // Cards follow corpus (study) order, whatever order the group/retry passes pushed them in —
+  // a retried item would otherwise land at the end of its group instead of its own position.
+  // Stable sort: anything not in the corpus (defensive) keeps its relative position at the end.
+  const orderById = new Map(corpus.items.map((item, index) => [item.id, index]));
+  items.sort(
+    (a, b) =>
+      (orderById.get(a.id) ?? Number.MAX_SAFE_INTEGER) -
+      (orderById.get(b.id) ?? Number.MAX_SAFE_INTEGER),
+  );
 
   const cards = {
     meta: corpus.meta,

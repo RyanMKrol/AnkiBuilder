@@ -1724,6 +1724,86 @@ test("prepare: marks each pass done so a re-run resumes instead of re-spending m
   });
 });
 
+test("translate: records failed items on cards.json and a re-run retries ONLY that subset", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = baseEpubCorpus();
+    corpus.items = [
+      { id: "a", english: "A", category: "Greetings", hint: null, target: null },
+      { id: "b", english: "B", category: "Greetings", hint: null, target: null },
+    ];
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    // First run: "b" fails to translate.
+    await runCli(["translate", "--run", runDir], {
+      translateCorpus: (c) => ({
+        cards: {
+          meta: c.meta,
+          items: [{ id: "a", english: "A", category: "Greetings", target: "あ" }],
+        },
+        errors: [{ id: "b", error: "missing an entry" }],
+      }),
+    });
+
+    let cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.deepEqual(cards.meta.translateErrors, [{ id: "b", error: "missing an entry" }]);
+
+    // Re-run: only "b" is sent, the recovered card merges in at its corpus position,
+    // and the error record clears.
+    const sentIds = [];
+    await runCli(["translate", "--run", runDir], {
+      translateCorpus: (c) => {
+        sentIds.push(...c.items.map((i) => i.id));
+        return {
+          cards: {
+            meta: c.meta,
+            items: [{ id: "b", english: "B", category: "Greetings", target: "ぼ" }],
+          },
+          errors: [],
+        };
+      },
+    });
+
+    assert.deepEqual(sentIds, ["b"]);
+    cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.meta.translateErrors, undefined);
+    assert.deepEqual(
+      cards.items.map((i) => i.id),
+      ["a", "b"],
+    );
+  });
+});
+
+test("prepare: stops before enrichment while translate errors remain", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      translateCorpus: (c) => {
+        calls.push("translate");
+        return {
+          cards: { meta: c.meta, items: [] },
+          errors: [{ id: "hello", error: "not valid JSON" }],
+        };
+      },
+      log: (line) => logged.push(line),
+    });
+
+    // Only translate ran; the enrichment passes never fired and no markers were written.
+    assert.deepEqual(calls, ["translate"]);
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(cards.meta.enriched, undefined);
+    assert.equal(cards.meta.notesEnhanced, undefined);
+    assert.match(logged.join("\n"), /prepare: stopping/);
+  });
+});
+
 test("prepare: a FAILED mining pass leaves enriched unset, so a re-run retries it", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

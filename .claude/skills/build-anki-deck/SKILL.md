@@ -635,10 +635,9 @@ cue (WHEN/WHERE/WHY it's used), never restate the gloss. A note that just repeat
 re-gives the reading already in Pronunciation ("First floor (read いっかい)") teaches nothing — on a
 recognition card a restating hint even hands over the answer; most number/counter cards and self-evident
 sentences should have NO note or hint. The extraction prompt is told not to emit these, and the enhance
-pass now DELETES a note that only restates its card. (Companion one-off migrations for older decks live
-alongside it: `split-front-hint.mjs` splits front hints out of the English, `romanize-card-notes.mjs`
-adds readings, `jumble-number-runs.mjs` de-sequences number runs, `strip-restatement-notes.mjs` clears
-notes AND hints that just echo the card — each reversible via a `.bak`.)
+pass now DELETES a note that only restates its card. (Two companion migrations for older decks remain
+in `scripts/`, each reversible via a `.bak`: `jumble-number-runs.mjs` de-sequences number runs, and
+`strip-restatement-notes.mjs` clears notes and hints that just echo the card.)
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves

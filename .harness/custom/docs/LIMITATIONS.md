@@ -1057,8 +1057,9 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 ## Backfilling originals can't just re-run the `audio` stage
 
-- **What:** giving already-built cards an `audioOriginal` needs `scripts/backfill-audio-originals.mjs`,
-  not `rm -rf .anki-builder/audio` plus a re-run of `audio`. Two things defeat the obvious route:
+- **What:** giving already-built cards an `audioOriginal` needed a dedicated one-off script, not
+  `rm -rf .anki-builder/audio` plus a re-run of `audio`. (That script has since been removed: every
+  card on disk now has an original. Kept here because the reasoning still applies if it recurs.) Two things defeat the obvious route:
   `alreadyDone` checks the RUN DIR rather than the cache, so with every clip still sitting there the
   stage reports "already generated — reusing" and does nothing; and the stage's copy loop is
   `if (!existsSync(dest))`, so even forced past that it would leave the run dir's OLD trimmed clip in

@@ -1,10 +1,14 @@
 import test from "node:test";
 import assert from "node:assert";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, existsSync } from "fs";
+import { join } from "path";
+import { tmpdir } from "os";
 import {
   syncStructure,
   syncDeckContent,
   ensureDecks,
   assertUniqueCardIds,
+  pruneBackups,
 } from "../../src/anki/deliver.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
 
@@ -188,6 +192,36 @@ test("syncDeckContent: update-by-tag, fingerprint-bootstrap+tag, add-new, skip-n
   assert.deepEqual(addTags.slice(1), [[2], "abid:b"], "the fingerprint match is tagged");
   const addNote = calls.find((c) => c[0] === "addNote");
   assert.deepEqual(addNote.slice(1), ["Course::L1", ["abid:c"]]);
+});
+
+test("pruneBackups keeps the newest N plus one snapshot per older week", async () => {
+  const root = mkdtempSync(join(tmpdir(), "backup-prune-"));
+  try {
+    // Three same-week older snapshots, one much older, plus four recent ones. keepRecent=3.
+    const stamps = [
+      "2026-07-28T10-00-00-000Z",
+      "2026-07-27T10-00-00-000Z",
+      "2026-07-26T10-00-00-000Z",
+      "2026-07-20T10-00-00-000Z", // older: newest of its week → kept
+      "2026-07-19T10-00-00-000Z", // same week → pruned
+      "2026-07-18T09-00-00-000Z", // same week → pruned
+      "2026-06-01T10-00-00-000Z", // its own week → kept
+    ];
+    for (const stamp of stamps) {
+      mkdirSync(join(root, stamp), { recursive: true });
+      writeFileSync(join(root, stamp, "deck.apkg"), "bytes");
+    }
+    mkdirSync(join(root, "not-a-snapshot"));
+
+    const { deleted } = pruneBackups(root, { keepRecent: 3 });
+
+    assert.deepEqual(deleted.sort(), ["2026-07-18T09-00-00-000Z", "2026-07-19T10-00-00-000Z"]);
+    assert.ok(existsSync(join(root, "2026-07-20T10-00-00-000Z")));
+    assert.ok(existsSync(join(root, "2026-06-01T10-00-00-000Z")));
+    assert.ok(existsSync(join(root, "not-a-snapshot")), "non-snapshot dirs are never touched");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test("syncDeckContent escapes quotes and wildcards in the findNotes query", async () => {

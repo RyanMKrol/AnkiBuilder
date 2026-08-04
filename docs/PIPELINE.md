@@ -686,7 +686,12 @@ lands wherever you point it, unchanged.
 two sections — **In review** (lessons where `cards.meta.done !== true`, each with a _Review_ action)
 and **Built · ready to study** (done lessons → a single **Open** action) — with a deck's lessons
 grouped under its heading. A deck with lessons in both states appears (grouped) in **both** sections,
-so a finished lesson is never stranded behind an in-progress sibling. There is **no download action** —
+so a finished lesson is never stranded behind an in-progress sibling. Every page shares one chrome
+(`pageChrome` in `pages.js`): the full header plus a slim `.topbar` that pins once the header
+scrolls out, carrying the back link, the page title, and (editable servers) the **Deliver to Anki**
+button. Deliver is global — it pushes every managed deck over AnkiConnect from whichever page you
+press it on (`DELIVER_SCRIPT` is class-wired, one flow driving both button instances). There is
+**no download action** —
 the server is local, so the single group `.apkg` is already on disk. A built lesson's **Open** goes to
 the unit-scoped Review view: the audio-review page is a superset of read-only Browse (same cards +
 inline players, plus Replace/Generate and Mark done), so it's the one default view — not a

@@ -111,7 +111,9 @@ already on disk (`output/<…>/<deck-name>.apkg`) — import it into Anki direct
 **Delivering updates to an existing collection: use the deliver tool, not drag-and-drop.** Once you
 already study these decks, re-importing an `.apkg` won't apply note-type structure changes (a new field,
 a template/CSS tweak) and you don't want to touch scheduling. `scripts/deliver-to-anki.mjs` (or the
-dashboard's **Deliver to Anki** button) pushes the on-disk state into a running Anki over AnkiConnect:
+dashboard's **Deliver to Anki** button, which lives in the header of every dashboard page: a slim
+bar pins to the top as you scroll, keeping navigation and Deliver in reach without going back to
+the home page) pushes the on-disk state into a running Anki over AnkiConnect:
 it backs up first (with scheduling), force-syncs the note type to the code's definition, and updates
 each note's fields in place by GUID — deterministic, idempotent, scheduling preserved. It also syncs with
 AnkiWeb before and after (default; `--no-sync` to skip). Preview with

@@ -126,10 +126,18 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .build-banner.interrupted{background:#fdf0ea;border-color:#e8c3ae}
 .build-banner .clear-claim{margin-left:8px;font-size:12px;padding:2px 8px;cursor:pointer}
 .deliverbar{margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-#deliver-anki{font:inherit;font-size:13px;font-weight:600;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:6px 16px;cursor:pointer}
-#deliver-anki:hover{filter:brightness(1.06)}
-#deliver-anki:disabled{opacity:.55;cursor:default}
+.deliver-anki{font:inherit;font-size:13px;font-weight:600;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:6px 16px;cursor:pointer}
+.deliver-anki:hover{filter:brightness(1.06)}
+.deliver-anki:disabled{opacity:.55;cursor:default}
 .deliver-status{font-size:12.5px;color:var(--faint)}
+/* The slim pinned bar: fixed at the top, hidden until STICKY_HEADER_SCRIPT reveals it once the full
+   header scrolls out. z-index above the stretched-link rows (1), below the modals (20). */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;gap:14px;padding:9px 4vw;background:var(--paper);border-bottom:1px solid var(--rule2);transform:translateY(-100%);transition:transform .15s ease}
+.topbar.on{transform:translateY(0)}
+.topbar a.back{flex:0 0 auto;white-space:nowrap}
+.topbar .tb-title{font-family:var(--serif);font-size:15px;flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .deliver-anki{flex:0 0 auto;font-size:12px;padding:4px 12px}
+.topbar .deliver-status{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* A single-unit deck block is itself the link. */
 .dblock.single{display:block;text-decoration:none;color:inherit;cursor:pointer}
 .dblock.single:hover{border-color:var(--accent)}
@@ -218,6 +226,7 @@ export {
   AUDIO_TRIM_SCRIPT,
   REVIEW_EDIT_SCRIPT,
   MARK_DONE_SCRIPT,
+  STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
 } from "./clientScripts.js";

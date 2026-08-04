@@ -578,14 +578,30 @@ export const MARK_DONE_SCRIPT = `(function () {
   wire("button.unreview", "/review/unreviewed", "sent back to corpus review");
 })();`;
 
-// Home-page "Deliver to Anki" button: previews the plan (dry run), asks to confirm, then delivers.
-// Talks to POST /api/anki/deliver (?dry=1 for the preview). Synchronous fetch → status text, matching
-// the rest of the dashboard (no framework, no streaming).
+// Reveals the .topbar (the slim fixed bar with back link / title / Deliver) once the full <header>
+// scrolls out of view, so navigation and Deliver stay reachable on a long card table. An
+// IntersectionObserver on the header — no scroll listeners. Vanilla JS, no ${}.
+export const STICKY_HEADER_SCRIPT = `(function () {
+  var bar = document.querySelector(".topbar");
+  var header = document.querySelector("header");
+  if (!bar || !header || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (entries) {
+    bar.classList.toggle("on", !entries[0].isIntersecting);
+  }).observe(header);
+})();`;
+
+// The "Deliver to Anki" buttons (page header + topbar, on every page): previews the plan (dry run),
+// asks to confirm, then delivers. Talks to POST /api/anki/deliver (?dry=1 for the preview).
+// Class-wired because the button renders twice per page — every instance disables while a deliver
+// is in flight, and every .deliver-status span shows the same message. Synchronous fetch → status
+// text, matching the rest of the dashboard (no framework, no streaming).
 export const DELIVER_SCRIPT = `(function () {
-  var btn = document.getElementById("deliver-anki");
-  var status = document.getElementById("deliver-status");
-  if (!btn) return;
-  function set(m) { status.textContent = m; }
+  var btns = Array.prototype.slice.call(document.querySelectorAll("button.deliver-anki"));
+  if (!btns.length) return;
+  function set(m) {
+    document.querySelectorAll(".deliver-status").forEach(function (s) { s.textContent = m; });
+  }
+  function lock(on) { btns.forEach(function (b) { b.disabled = on; }); }
   async function post(dry) {
     var r = await fetch("/api/anki/deliver" + (dry ? "?dry=1" : ""), { method: "POST" });
     var j = await r.json().catch(function () { return {}; });
@@ -605,25 +621,27 @@ export const DELIVER_SCRIPT = `(function () {
     }).join("; ");
     return upd + " fields updated, " + add + " cards added" + (amb ? (", " + amb + " ambiguous (skipped)") : "") + ". Note type — " + struct + ".";
   }
-  btn.addEventListener("click", async function () {
-    btn.disabled = true;
-    try {
-      set("Previewing\\u2026");
-      var plan = await post(true);
-      if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
-        set("Cancelled."); btn.disabled = false; return;
+  btns.forEach(function (btn) {
+    btn.addEventListener("click", async function () {
+      lock(true);
+      try {
+        set("Previewing\\u2026");
+        var plan = await post(true);
+        if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
+          set("Cancelled."); lock(false); return;
+        }
+        set("Delivering\\u2026");
+        var done = await post(false);
+        var msg2 = "Delivered. " + summarize(done);
+        if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
+        else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
+        if (done.schemaChanged) msg2 += " Note-type changed: click 'Upload to AnkiWeb' in Anki to finish the full sync.";
+        set(msg2 + " Backup: " + done.backupDir);
+      } catch (e) {
+        set("Failed: " + e.message);
       }
-      set("Delivering\\u2026");
-      var done = await post(false);
-      var msg2 = "Delivered. " + summarize(done);
-      if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
-      else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
-      if (done.schemaChanged) msg2 += " Note-type changed: click 'Upload to AnkiWeb' in Anki to finish the full sync.";
-      set(msg2 + " Backup: " + done.backupDir);
-    } catch (e) {
-      set("Failed: " + e.message);
-    }
-    btn.disabled = false;
+      lock(false);
+    });
   });
 })();`;
 

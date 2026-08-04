@@ -193,6 +193,39 @@ test("home page splits decks into 'Not finished' / 'In review' / 'Built' with di
   }
 });
 
+test("shared chrome: every page carries the topbar, and an editable server the Deliver button (both bars)", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const home = await (await fetch(`${url}/`)).text();
+        // Home topbar: page title, NO back link (it is the root).
+        assert.match(home, /<div class="topbar"><span class="tb-title">Your decks<\/span>/);
+        // Deliver renders twice — once in the full header's deliverbar, once in the topbar.
+        assert.equal((home.match(/class="deliver-anki"/g) || []).length, 2);
+        assert.match(home, /IntersectionObserver/); // the sticky-bar script is wired
+
+        const review = await (await fetch(`${url}/review/book/mybook`)).text();
+        assert.match(
+          review,
+          /<div class="topbar"><a class="back" href="\/">← All decks<\/a><span class="tb-title">My Book<\/span>/,
+        );
+        assert.equal((review.match(/class="deliver-anki"/g) || []).length, 2);
+        assert.match(review, /IntersectionObserver/);
+
+        const browse = await (await fetch(`${url}/deck/book/mybook`)).text();
+        assert.match(browse, /<div class="topbar"><a class="back" href="\/">/);
+        assert.equal((browse.match(/class="deliver-anki"/g) || []).length, 2);
+        assert.match(browse, /IntersectionObserver/);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("browse view (/deck) is read-only even on an editable server, and links to Review", async () => {
   const root = fixture();
   try {
@@ -804,6 +837,9 @@ test("read-only server hides the edit UI and 403s the write routes", async () =>
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(html, /Rebuild deck/);
         assert.doesNotMatch(html, /class="repl"/);
+        // No Deliver button either — but the topbar chrome still renders.
+        assert.doesNotMatch(html, /class="deliver-anki"/);
+        assert.match(html, /class="topbar"/);
         assert.equal(
           (await fetch(`${url}/api/deck/book/mybook/rebuild`, { method: "POST" })).status,
           403,

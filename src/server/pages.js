@@ -13,6 +13,7 @@ import {
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
   MARK_DONE_SCRIPT,
+  STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
   AUDIO_TRIM_SCRIPT,
@@ -24,6 +25,30 @@ import { cleanupNames } from "../audio/cleanupFilter.js";
 import { page } from "./respond.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
+
+// The shared page chrome: the full <header> (back link, eyebrow, title, lede, deliver bar, plus any
+// page-specific extras) preceded by the .topbar — a slim fixed bar STICKY_HEADER_SCRIPT reveals once
+// the header scrolls out, keeping navigation and Deliver reachable on a long table. The Deliver
+// button renders in BOTH bars; DELIVER_SCRIPT is class-wired and drives every instance at once.
+function pageChrome({
+  title,
+  eyebrow,
+  ledeHtml,
+  backHref = null,
+  deliver = false,
+  extraHtml = "",
+}) {
+  const deliverBtn = deliver
+    ? `<button type="button" class="deliver-anki">Deliver to Anki</button><span class="deliver-status"></span>`
+    : "";
+  const back = backHref ? `<a class="back" href="${backHref}">← All decks</a>` : "";
+  const topbar = `<div class="topbar">${back}<span class="tb-title">${escapeHtml(title)}</span>${deliverBtn}</div>`;
+  return `${topbar}
+<header>${back ? `${back}\n` : ""}<div class="eyebrow"${back ? ' style="margin-top:12px"' : ""}>${eyebrow}</div>
+<h1>${escapeHtml(title)}</h1>
+<p class="lede">${ledeHtml}</p>${deliver ? `\n<div class="deliverbar">${deliverBtn}</div>` : ""}${extraHtml}
+</header>`;
+}
 
 export function createPageRenderers({
   outputRoot,
@@ -43,8 +68,12 @@ export function createPageRenderers({
     if (decks.length === 0) {
       return page(
         "Decks — anki-builder",
-        `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede">No decks found under <code>${escapeHtml(outputRoot)}</code>. Assemble one first, then reload this page.</p></header>`,
+        pageChrome({
+          title: "Your decks",
+          eyebrow: "Deck dashboard · anki-builder",
+          ledeHtml: `No decks found under <code>${escapeHtml(outputRoot)}</code>. Assemble one first, then reload this page.`,
+        }),
+        STICKY_HEADER_SCRIPT,
       );
     }
     const enc = encodeURIComponent;
@@ -181,18 +210,18 @@ export function createPageRenderers({
 
     // Deliver all built lessons to the live Anki collection via AnkiConnect (editable server only).
     // Previews (dry run) and backs up before writing — see src/anki/deliver.js.
-    const deliverBar = editable
-      ? `<div class="deliverbar"><button type="button" id="deliver-anki">Deliver to Anki</button><span id="deliver-status" class="deliver-status"></span></div>`
-      : "";
-
     return page(
       "Decks — anki-builder",
-      `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built${unfinishedCount ? ` · <b>${unfinishedCount}</b> unfinished` : ""}.</p>${deliverBar}</header>
+      `${pageChrome({
+        title: "Your decks",
+        eyebrow: "Deck dashboard · anki-builder",
+        ledeHtml: `<b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built${unfinishedCount ? ` · <b>${unfinishedCount}</b> unfinished` : ""}.`,
+        deliver: editable,
+      })}
 ${section("grp-unfinished", "Not finished", "These lessons stopped mid-build and have no cards to review yet. Re-run <code>anki-builder assemble</code> for the lesson (it picks up where it left off), or <code>anki-builder prepare --run &lt;dir&gt;</code> directly.", unfinishedBlocks, unfinishedCount)}
 ${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
 ${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}`,
-      editable ? DELIVER_SCRIPT : null,
+      [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null].filter(Boolean).join("\n"),
     );
   }
 
@@ -364,13 +393,14 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       )
       .join("");
 
-    const body = `<header><a class="back" href="/">← All decks</a>
-<div class="eyebrow" style="margin-top:12px">Review · anki-builder</div>
-<h1>${escapeHtml(deck.title)}</h1>
-<p class="lede">${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a></p>
-${buildBanner}
-${toolbar ? `<div class="bar">${toolbar}</div>` : ""}
-</header>
+    const body = `${pageChrome({
+      title: deck.title,
+      eyebrow: "Review · anki-builder",
+      ledeHtml: `${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`,
+      backHref: "/",
+      deliver: editable,
+      extraHtml: `\n${buildBanner}${toolbar ? `\n<div class="bar">${toolbar}</div>` : ""}`,
+    })}
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
 ${sectionHtml}
 ${modal}
@@ -390,6 +420,10 @@ ${modal}
     // The shared prelude (window.__ab) must load before any of the scripts above — they all lean
     // on it for jsonp / the rebuild-if-done helper / audio-cell swaps.
     if (scripts.length > 0) scripts.unshift(DASH_PRELUDE_SCRIPT);
+    // The chrome scripts go after the prelude logic — neither needs window.__ab, and pushing them
+    // here keeps the prelude keyed to the editor scripts alone.
+    scripts.push(STICKY_HEADER_SCRIPT);
+    if (editable) scripts.push(DELIVER_SCRIPT);
     const script = scripts.join("\n");
     return page(`${deck.title} — review`, body, script);
   }
@@ -422,15 +456,23 @@ ${modal}
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
-    const body = `<header><a class="back" href="/">← All decks</a>
-<div class="eyebrow" style="margin-top:12px">Browse · anki-builder</div>
-<h1>${escapeHtml(deck.title)}</h1>
-<p class="lede"><b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a></p>
-<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>
-</header>
+    const body = `${pageChrome({
+      title: deck.title,
+      eyebrow: "Browse · anki-builder",
+      ledeHtml: `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a>`,
+      backHref: "/",
+      deliver: editable,
+      extraHtml: `\n<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>`,
+    })}
 ${sectionHtml}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
-    return page(`${deck.title} — browse`, body, EXPAND_COLLAPSE_SCRIPT);
+    return page(
+      `${deck.title} — browse`,
+      body,
+      [EXPAND_COLLAPSE_SCRIPT, STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null]
+        .filter(Boolean)
+        .join("\n"),
+    );
   }
 
   return { renderDashboard, renderReviewPage, renderDeckPage };

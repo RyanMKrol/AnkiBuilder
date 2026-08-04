@@ -542,9 +542,9 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
   });
 })();`;
 
-// Client wiring for the lesson-level "Mark done" / "Reopen" buttons (the final sign-off in the audio
-// review, and reopening a done lesson). Reads deck ctx from #deckctx; unit from data-unit. Reloads on
-// success so the lesson moves between In review / Built. Vanilla JS, no ${}.
+// Client wiring for the lesson-level "Mark done" / "Unreview" buttons (the final sign-off in the
+// audio review, and the corpus-gate rollback). Reads deck ctx from #deckctx; unit from data-unit.
+// Reloads on success so the lesson moves between In review / Built. Vanilla JS, no ${}.
 export const MARK_DONE_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx || !window.__ab) return;
@@ -573,27 +573,9 @@ export const MARK_DONE_SCRIPT = `(function () {
     });
   };
   wire("button.mark-done", "/done", "\\u2713 done");
-  wire("button.reopen", "/reopen", "reopened");
   // Sends a mis-clicked corpus sign-off back to the corpus gate (and drops the lesson's dedup
-  // library entry server-side) — the corpus-review mirror of Reopen.
+  // library entry server-side).
   wire("button.unreview", "/review/unreviewed", "sent back to corpus review");
-})();`;
-
-// Home-page Reopen buttons on built rows: each carries its own data-type/id/unit (no #deckctx). POSTs
-// reopen, then reloads so the lesson moves from Built → In review. The click is stopped so it doesn't
-// also follow the row's stretched view link. Vanilla JS, no ${}.
-export const HOME_REOPEN_SCRIPT = `(function () {
-  document.querySelectorAll("button.home-reopen").forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault(); e.stopPropagation();
-      var label = btn.textContent;
-      btn.disabled = true; btn.textContent = "reopening\\u2026";
-      var base = "/api/deck/" + encodeURIComponent(btn.getAttribute("data-type")) + "/" + encodeURIComponent(btn.getAttribute("data-id"));
-      fetch(base + "/unit/" + encodeURIComponent(btn.getAttribute("data-unit")) + "/reopen", { method: "POST" })
-        .then(function (r) { if (!r.ok) throw new Error("reopen failed"); location.reload(); })
-        .catch(function (err) { btn.disabled = false; btn.textContent = label; alert(err.message); });
-    });
-  });
 })();`;
 
 // Home-page "Deliver to Anki" button: previews the plan (dry run), asks to confirm, then delivers.

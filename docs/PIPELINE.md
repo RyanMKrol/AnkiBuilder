@@ -689,8 +689,9 @@ grouped under its heading. A deck with lessons in both states appears (grouped) 
 so a finished lesson is never stranded behind an in-progress sibling. There is **no download action** —
 the server is local, so the single group `.apkg` is already on disk. A built lesson's **Open** goes to
 the unit-scoped Review view: the audio-review page is a superset of read-only Browse (same cards +
-inline players, plus Replace/Generate and Mark done/Reopen), so it's the one default view — not a
-separate Browse. Actions are per-lesson and link to the **unit-scoped** views:
+inline players, plus Replace/Generate and Mark done), so it's the one default view — not a
+separate Browse. A done lesson opens into the same editable review; done gates delivery, not
+editing. Actions are per-lesson and link to the **unit-scoped** views:
 
 - **Browse** — `GET /deck/:type/:id` (whole deck) or `GET /deck/:type/:id/:unit` (one lesson)
   (`renderDeckPage`, `unit` filters `deck.units` to that lesson): a **read-only** look at a deck's
@@ -739,10 +740,11 @@ button:
 
 **Audio review** (a unit-scoped review `/review/:type/:id/:unit` edits when THAT lesson is at the audio
 stage — independent of its siblings; a whole-deck `/review/:type/:id` edits only when EVERY unit is at
-audio). An audio-stage lesson also shows **Mark done** (`.../unit/:unit/done`) / **Reopen**
-(`.../unit/:unit/reopen`) — `setLessonDone` in `applyCards.js` sets/clears `cards.meta.done`, the final
-sign-off that gates the merge; both handlers then `rebuildGroupQuiet` (best-effort group rebuild) so
-the single package tracks the done-set.
+audio; `done` never blocks editing). A not-yet-done audio lesson shows **Mark done**
+(`.../unit/:unit/done`) — `setLessonDone` in `applyCards.js` sets `cards.meta.done`, the final
+sign-off that gates the merge; the handler then `rebuildGroupQuiet` (best-effort group rebuild) so
+the single package tracks the done-set. A done lesson shows a badge instead; there is no un-done
+control (clear `meta.done` by hand if a lesson must be pulled from the shipping deck).
 
 The editable audio review carries **two audio columns**, so the transformation is on screen rather than
 implied:

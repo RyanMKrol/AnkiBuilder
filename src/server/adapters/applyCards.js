@@ -52,9 +52,10 @@ export function setCardExcluded(
   return { excluded: !!excluded };
 }
 
-// Set/clear the lesson's final "done" sign-off (cards.meta.done) — the audio-review "Mark done" /
-// "Reopen". Only `done` lessons are merged into the book/course deck. Deleting the key on reopen keeps
-// cards.json clean (undefined = not done).
+// Set/clear the lesson's final "done" sign-off (cards.meta.done) — the audio-review "Mark done".
+// Only `done` lessons are merged into the book/course deck. The clearing form has no UI (done
+// lessons stay editable); it exists as the programmatic escape hatch, and deleting the key rather
+// than writing `false` keeps cards.json clean (undefined = not done).
 export function setLessonDone(runDir, done, { validateCards = defaultValidateCards } = {}) {
   const { cardsPath, data } = loadCards(runDir);
   data.meta = data.meta || {};
@@ -125,9 +126,9 @@ export function markCardsReviewed(
 }
 
 // Withdraw a lesson's corpus sign-off — the reverse of markCardsReviewed, for the mis-click that
-// used to require hand-editing JSON (while `done` always had Reopen). Refuses while the lesson is
-// still `done`: done means "in the shipping deck", and un-reviewing underneath that would leave a
-// lesson shipping without a valid review chain — Reopen first. For an EPUB source the lesson's
+// used to require hand-editing JSON. Refuses while the lesson is `done`: done means "in the
+// shipping deck", and un-reviewing underneath that would leave a lesson shipping without a valid
+// review chain (clearing `done` itself is a hand edit). For an EPUB source the lesson's
 // dedup-library entry is removed too, since the library holds only signed-off chapters. (An extras
 // unit carries no epubHash, so its unreview can never touch its base lesson's library entry.)
 export function unmarkCardsReviewed(
@@ -140,7 +141,7 @@ export function unmarkCardsReviewed(
   if (data.meta.done === true) {
     throw httpError(
       409,
-      "this lesson is marked done (it ships in the deck) — Reopen it first, then Unreview.",
+      "this lesson is marked done (it ships in the deck), so it can no longer be sent back to the corpus review.",
     );
   }
 

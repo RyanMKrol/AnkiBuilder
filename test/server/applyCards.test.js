@@ -30,7 +30,7 @@ const card = (id, over = {}) => ({
   ...over,
 });
 
-test("setLessonDone sets meta.done and clears it on reopen", () => {
+test("setLessonDone sets meta.done and the clearing form removes the key", () => {
   const dir = runDir([card("a")], reviewed);
   try {
     setLessonDone(dir, true);
@@ -70,10 +70,10 @@ test("unmarkCardsReviewed never touches the library for a unit without an epubHa
   }
 });
 
-test("unmarkCardsReviewed refuses while the lesson is done — Reopen first", () => {
+test("unmarkCardsReviewed refuses while the lesson is done", () => {
   const dir = runDir([card("a")], { ...reviewed, done: true });
   try {
-    assert.throws(() => unmarkCardsReviewed(dir, { removeChapterCorpus: () => {} }), /Reopen/);
+    assert.throws(() => unmarkCardsReviewed(dir, { removeChapterCorpus: () => {} }), /marked done/);
     assert.equal(read(dir).meta.reviewed, true, "the sign-off stays intact");
   } finally {
     rmSync(dir, { recursive: true, force: true });
@@ -121,7 +121,7 @@ test("setLessonDone refuses to mark an unreviewed lesson done", () => {
   try {
     assert.throws(() => setLessonDone(dir, true), /has not passed the corpus review/);
     assert.equal("done" in read(dir).meta, false);
-    // Reopening one is always allowed — it only ever removes the flag.
+    // Clearing is always allowed — it only ever removes the flag.
     assert.doesNotThrow(() => setLessonDone(dir, false));
   } finally {
     rmSync(dir, { recursive: true, force: true });

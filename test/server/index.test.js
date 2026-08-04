@@ -111,9 +111,9 @@ test("built lesson has a single action opening the unit-scoped edit-audio view (
   try {
     await withServer(root, async (url) => {
       const home = await (await fetch(`${url}/`)).text();
-      // A built single-unit deck: the block link opens the view, plus a Reopen button (edit via Reopen).
-      assert.match(home, /class="dblock-link" href="\/review\/book\/mybook\/0"/);
-      assert.match(home, /class="home-reopen"[^>]*data-unit="0"/);
+      // A built single-unit deck: the whole block is the link into the (always-editable) review.
+      assert.match(home, /class="dblock single" href="\/review\/book\/mybook\/0"/);
+      assert.doesNotMatch(home, /home-reopen/); // reopen is gone — done lessons are editable directly
       assert.doesNotMatch(home, />Open</); // no separate Open button — the block itself is clickable
       assert.doesNotMatch(home, /\/deck\/book\/mybook/); // Browse is consolidated into the review view
     });
@@ -182,14 +182,8 @@ test("home page splits decks into 'Not finished' / 'In review' / 'Built' with di
       assert.doesNotMatch(home, /\/deck\/book\/wipbook/);
       // built lesson → its row links to the unit-scoped edit-audio view
       assert.match(home, /href="\/review\/book\/mybook\/0"/);
-      // …and carries a Reopen button (with its unit) so you can reopen from the home page
-      assert.match(
-        home,
-        /class="home-reopen"[^>]*data-type="book"[^>]*data-id="mybook"[^>]*data-unit="0"[^>]*>Reopen</,
-      );
-      assert.match(home, /button\.home-reopen/); // the wiring script is present
-      // an in-review lesson is NOT reopenable (nothing to reopen)
-      assert.doesNotMatch(home, /home-reopen[^>]*data-id="wipbook"/);
+      // …with no Reopen button anywhere: done lessons open straight into the editable review
+      assert.doesNotMatch(home, /home-reopen/);
       // no separate Open/Review buttons — the split is conveyed by the sections above
       assert.doesNotMatch(home, />Open</);
       assert.doesNotMatch(home, />Review →</);
@@ -584,11 +578,10 @@ test("editable deck page shows Replace/Generate controls (rebuild is automatic, 
     await withServer(
       root,
       async (url) => {
-        // A done lesson is view-only; Reopen pushes it back into review where the edit controls appear.
-        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
+        // A done lesson opens straight into the editable review — no reopen step.
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.doesNotMatch(html, /Rebuild deck/); // no manual rebuild button
-        assert.match(html, /id="deckctx"[^>]*data-done="0"/); // reopened → in review
+        assert.match(html, /id="deckctx"[^>]*data-done="1"/); // done → edits auto-rebuild the package
         assert.match(html, /class="repl"/);
         assert.match(html, /class="gen"/);
         assert.match(html, /data-card-id="a"/);
@@ -703,8 +696,7 @@ test("generate-kanji returns kanji variants for a ja deck; the button is shown",
     await withServer(
       root,
       async (url) => {
-        // The Generate (kanji) button renders on an editable (reopened) lesson; a done lesson is view-only.
-        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
+        // The Generate (kanji) button renders directly — a done lesson is editable like any other.
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.match(html, /class="gen-kanji"/);
 
@@ -877,7 +869,7 @@ test("editor input errors: bad ext 400, oversized 413, unknown card 404, missing
   }
 });
 
-test("audio review: Mark done sets meta.done and shows Reopen; Reopen clears it", async () => {
+test("audio review: Mark done sets meta.done and shows the done badge; the reopen route is gone", async () => {
   const root = fixture();
   const p = join(root, "epubs/mybook/chapter-0/cards.json");
   // start not-done so the "Mark done" button shows
@@ -890,7 +882,7 @@ test("audio review: Mark done sets meta.done and shows Reopen; Reopen clears it"
       async (url) => {
         const html = await (await fetch(`${url}/review/book/mybook`)).text();
         assert.match(html, /class="mark-done"/);
-        assert.doesNotMatch(html, /class="reopen"/);
+        assert.doesNotMatch(html, /class="done-badge"/);
 
         const done = await asJson(
           await fetch(`${url}/api/deck/book/mybook/unit/0/done`, { method: "POST" }),
@@ -898,11 +890,16 @@ test("audio review: Mark done sets meta.done and shows Reopen; Reopen clears it"
         assert.equal(done.status, 200);
         assert.equal(JSON.parse(readFileSync(p, "utf-8")).meta.done, true);
 
+        // Done shows as a badge — no Reopen button, and the edit controls stay.
         const html2 = await (await fetch(`${url}/review/book/mybook`)).text();
-        assert.match(html2, /class="reopen"/);
+        assert.match(html2, /class="done-badge"/);
+        assert.doesNotMatch(html2, /class="reopen"/);
+        assert.match(html2, /class="repl"/);
 
-        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
-        assert.equal("done" in JSON.parse(readFileSync(p, "utf-8")).meta, false);
+        // The reopen endpoint no longer exists, and hitting it changes nothing.
+        const gone = await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
+        assert.equal(gone.status, 404);
+        assert.equal(JSON.parse(readFileSync(p, "utf-8")).meta.done, true);
       },
       editDeps,
     );
@@ -970,36 +967,30 @@ function addTranslateChapter(root) {
   );
 }
 
-test("unit-scoped review: a DONE lesson is view-only; Reopen makes it editable; out-of-range unit 404s", async () => {
+test("unit-scoped review: a DONE lesson stays fully editable; out-of-range unit 404s", async () => {
   const root = fixture();
   addTranslateChapter(root); // ch1 is translate-stage — mixing stages
   try {
     await withServer(
       root,
       async (url) => {
-        // A DONE lesson opens read-only: header says View, players + a Reopen button, but NO audio-edit
-        // controls and NO exclude — you can't change a finished lesson without reopening it.
-        let one = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        // A DONE lesson opens straight into the editable review: Replace/Generate, trim editor,
+        // exclude, Review-note column — the done badge just marks its delivery state.
+        const one = await (await fetch(`${url}/review/book/mybook/0`)).text();
         assert.match(one, /Lesson One/);
         assert.doesNotMatch(one, /Lesson Two/); // filtered to the single unit
-        assert.match(one, /View · anki-builder/); // view, not review
-        assert.match(one, /class="reopen"/); // the one action a finished lesson offers
-        assert.doesNotMatch(one, /class="repl"/); // no Replace/Generate
-        assert.doesNotMatch(one, /class="gen"/);
-        assert.doesNotMatch(one, /class="excl-btn"/); // no exclude in view mode
-        assert.doesNotMatch(one, /Review note/); // the internal review column is hidden on a View
+        assert.match(one, /Review · anki-builder/); // always the review, never a read-only View
+        assert.match(one, /class="done-badge"/); // done state is shown…
+        assert.doesNotMatch(one, /class="reopen"/); // …but there is nothing to reopen
+        assert.match(one, /class="repl"/); // Replace/Generate present
+        assert.match(one, /class="gen"/);
+        assert.match(one, /class="excl-btn"/); // exclude present
+        assert.match(one, /Review note/); // the internal review column shows too
+        assert.match(one, /id="trim-modal"/); // trim editor available
+        assert.match(one, /button\.excl-btn/); // the client script that wires exclude is loaded
+        assert.match(one, /id="deckctx"[^>]*data-done="1"/); // done → edits auto-rebuild
         assert.match(one, /<details class="lesson" open>/); // still expanded
         assert.doesNotMatch(one, /Expand all/);
-
-        // Reopen pushes it back into the review flow — now editable, with Replace/Generate + Exclude.
-        await fetch(`${url}/api/deck/book/mybook/unit/0/reopen`, { method: "POST" });
-        one = await (await fetch(`${url}/review/book/mybook/0`)).text();
-        assert.match(one, /Review · anki-builder/);
-        assert.match(one, /class="repl"/); // audio controls now present
-        assert.match(one, /class="excl-btn"/); // exclude now present
-        assert.match(one, /Review note/); // …and the internal Review-note column reappears in review
-        assert.match(one, /button\.excl-btn/); // …and the client script that wires it is loaded
-        assert.match(one, /id="deckctx"[^>]*data-done="0"/); // reopened → not done
 
         // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
@@ -1098,11 +1089,8 @@ function writeClaimFile(root, claim) {
 
 test("a lesson with a LIVE claim renders read-only, badged, and refuses writes", async () => {
   const root = fixture();
-  // Reopen it so it would otherwise be fully editable.
-  const cardsPath = join(root, "epubs", "mybook", "chapter-0", "cards.json");
-  const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
-  delete cards.meta.done;
-  writeFileSync(cardsPath, JSON.stringify(cards));
+  // The fixture's lesson is done — which no longer blocks editing — so a live claim is the only
+  // thing locking it here: building must override the always-editable rule.
   writeClaimFile(root, { stage: "audio", pid: process.pid });
 
   await withServer(
@@ -1357,8 +1345,8 @@ test("a lesson with a numeral and no reading is held out of review, naming the c
 
 // --- the manual trim editor -----------------------------------------------------------------------
 
-// The fixture's lesson is `done`, so it opens read-only. Reopening puts it back in review, which is
-// where the audio-editing controls (and the trim editor) live.
+// The fixture's lesson, un-done and given an original take — the richest editing setup (a done
+// lesson is just as editable; this one also exercises the Original column's fallback-free path).
 function reviewableFixture() {
   const root = fixture();
   const path = join(root, "epubs/mybook/chapter-0/cards.json");
@@ -1419,15 +1407,15 @@ test("Browse stays a single audio column with no trim controls", async () => {
   }
 });
 
-test("a done lesson opens read-only — no trim editor until it's reopened", async () => {
+test("a done lesson still offers the trim editor — done no longer locks editing", async () => {
   const root = fixture(); // still done
   try {
     await withServer(
       root,
       async (url) => {
         const html = await (await fetch(`${url}/review/book/mybook/0`)).text();
-        assert.equal(/class="trim"/.test(html), false);
-        assert.equal(/id="trim-modal"/.test(html), false);
+        assert.equal(/class="trim"/.test(html), true);
+        assert.equal(/id="trim-modal"/.test(html), true);
       },
       editDeps,
     );

@@ -275,11 +275,11 @@ export function createDeckServer({
     sendJson(res, unmarkCardsReviewed(runDir, { removeChapterCorpus }));
   }
 
-  async function handleLessonDone(res, type, id, unit, done) {
+  async function handleLessonDone(res, type, id, unit) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
-    const result = setLessonDone(runDir, done);
+    const result = setLessonDone(runDir, true);
     // The done-set just changed — refresh the group package so it always matches. A REAL rebuild
     // failure rides back on the response: reporting success while the shipping .apkg stayed stale
     // is exactly the divergence the auto-rebuild exists to prevent.
@@ -416,8 +416,8 @@ export function createDeckServer({
   }
 
   // Best-effort rebuild of the group package, tolerating only the BENIGN cases — no lesson done
-  // yet (reopening the last one), or no unit folders at all — so marking a lesson done (or
-  // reopening one) keeps the on-disk package in step without failing the write. Every other
+  // yet, or no unit folders at all — so marking a lesson done (or an edit to a done lesson)
+  // keeps the on-disk package in step without failing the write. Every other
   // failure is a real build error the caller must surface: it used to be swallowed here, so Mark
   // done reported success while the shipping .apkg silently stayed stale.
   async function rebuildGroupQuiet(type, id) {
@@ -452,7 +452,7 @@ export function createDeckServer({
       return (handleCardsReviewed(res, type, id, seg[5]), true);
     }
     if (seg[4] === "unit" && seg[6] === "done" && seg.length === 7) {
-      await handleLessonDone(res, type, id, seg[5], true);
+      await handleLessonDone(res, type, id, seg[5]);
       return true;
     }
     if (seg[4] === "unit" && seg[6] === "claim" && seg[7] === "clear" && seg.length === 8) {
@@ -463,10 +463,6 @@ export function createDeckServer({
       if (building) throw httpError(409, `still building (${describeClaim(claim)})`);
       clearClaim(runDir);
       sendJson(res, { cleared: true });
-      return true;
-    }
-    if (seg[4] === "unit" && seg[6] === "reopen" && seg.length === 7) {
-      await handleLessonDone(res, type, id, seg[5], false);
       return true;
     }
     if (seg[4] === "unit" && seg[6] === "card") {

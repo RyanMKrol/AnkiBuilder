@@ -4,7 +4,7 @@ import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } 
 import { deckPathForDir } from "./deckFileName.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
-// automatic rebuilds (Mark done / Reopen, and an audio or exclude edit on an already-done lesson), so
+// automatic rebuilds (Mark done, and an audio or exclude edit on an already-done lesson), so
 // a rebuild triggered from the browser is byte-identical to the CLI's. The build functions in
 // ./index.js own the media-key integer constraint; this module only assembles their inputs from a
 // book/course dir or a single run dir.

@@ -13,7 +13,7 @@ import {
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
   MARK_DONE_SCRIPT,
-  HOME_REOPEN_SCRIPT,
+  STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
   AUDIO_TRIM_SCRIPT,
@@ -25,6 +25,30 @@ import { cleanupNames } from "../audio/cleanupFilter.js";
 import { page } from "./respond.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
+
+// The shared page chrome: the full <header> (back link, eyebrow, title, lede, deliver bar, plus any
+// page-specific extras) preceded by the .topbar — a slim fixed bar STICKY_HEADER_SCRIPT reveals once
+// the header scrolls out, keeping navigation and Deliver reachable on a long table. The Deliver
+// button renders in BOTH bars; DELIVER_SCRIPT is class-wired and drives every instance at once.
+function pageChrome({
+  title,
+  eyebrow,
+  ledeHtml,
+  backHref = null,
+  deliver = false,
+  extraHtml = "",
+}) {
+  const deliverBtn = deliver
+    ? `<button type="button" class="deliver-anki">Deliver to Anki</button><span class="deliver-status"></span>`
+    : "";
+  const back = backHref ? `<a class="back" href="${backHref}">← All decks</a>` : "";
+  const topbar = `<div class="topbar">${back}<span class="tb-title">${escapeHtml(title)}</span>${deliverBtn}</div>`;
+  return `${topbar}
+<header>${back ? `${back}\n` : ""}<div class="eyebrow"${back ? ' style="margin-top:12px"' : ""}>${eyebrow}</div>
+<h1>${escapeHtml(title)}</h1>
+<p class="lede">${ledeHtml}</p>${deliver ? `\n<div class="deliverbar">${deliverBtn}</div>` : ""}${extraHtml}
+</header>`;
+}
 
 export function createPageRenderers({
   outputRoot,
@@ -44,8 +68,12 @@ export function createPageRenderers({
     if (decks.length === 0) {
       return page(
         "Decks — anki-builder",
-        `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede">No decks found under <code>${escapeHtml(outputRoot)}</code>. Assemble one first, then reload this page.</p></header>`,
+        pageChrome({
+          title: "Your decks",
+          eyebrow: "Deck dashboard · anki-builder",
+          ledeHtml: `No decks found under <code>${escapeHtml(outputRoot)}</code>. Assemble one first, then reload this page.`,
+        }),
+        STICKY_HEADER_SCRIPT,
       );
     }
     const enc = encodeURIComponent;
@@ -85,7 +113,7 @@ export function createPageRenderers({
     });
 
     // Every lesson row / single-unit block links to the unit-scoped review (a superset of read-only
-    // browse: cards + inline players, plus Replace/Generate and Mark done/Reopen). The WHOLE row is the
+    // browse: cards + inline players, plus Replace/Generate and Mark done). The WHOLE row is the
     // link (see .urow / .dblock.single in the CSS) — there's no separate Open/Review button.
     const unitUrl = (deck, u) => `/review/${enc(deck.type)}/${enc(deck.id)}/${enc(u.seq)}`;
     const deckMeta = (deck) =>
@@ -97,10 +125,7 @@ export function createPageRenderers({
         ? `<span class="dm" title="Delivered via AnkiConnect — push updates with Deliver to Anki. Re-importing the .apkg into that collection creates duplicate notes.">· AnkiConnect-managed</span>`
         : "";
       const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span>${managedChip}</div>`;
-      const reopenBtn = (u) =>
-        `<button type="button" class="home-reopen" data-type="${escapeHtml(deck.type)}" data-id="${escapeHtml(deck.id)}" data-unit="${escapeHtml(String(u.seq))}">Reopen</button>`;
-      // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link. When
-      // it's built, the block gets a Reopen button too (same stretched-link + button-above pattern).
+      // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link.
       // A single-lesson deck renders as one block with no per-unit row, so any badge that says this
       // lesson is NOT simply sitting at a review — building, interrupted, or an unfinished build — has
       // to hang off the block itself or it would never be shown.
@@ -116,20 +141,12 @@ export function createPageRenderers({
                 : "";
       if (deck.total === 1) {
         const u = units[0];
-        if (mode === "built" && editable)
-          return `<div class="dblock single dbreopen"><a class="dblock-link" href="${unitUrl(deck, u)}">${head}</a>${buildBadge(u)}${reopenBtn(u)}</div>`;
         return `<a class="dblock single" href="${unitUrl(deck, u)}">${head}${buildBadge(u)}</a>`;
       }
       const rows = units
         .map((u) => {
           const url = unitUrl(deck, u);
           const label = escapeHtml(u.label);
-          // A built row gets a Reopen button (editable server only) so a finished lesson can be pushed
-          // back into review straight from the home page — no need to open it first. The whole row still
-          // opens the view via a stretched link; the button sits above it (z-index) and stops the click.
-          if (mode === "built" && editable) {
-            return `<div class="urow urow-built"><a class="urow-link" href="${url}"><span class="ulabel">${label}</span></a><span class="ustage done">done</span>${reopenBtn(u)}</div>`;
-          }
           if (u.building) {
             return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage building">building (${escapeHtml(u.claim?.stage || "?")})</span></a>`;
           }
@@ -193,18 +210,18 @@ export function createPageRenderers({
 
     // Deliver all built lessons to the live Anki collection via AnkiConnect (editable server only).
     // Previews (dry run) and backs up before writing — see src/anki/deliver.js.
-    const deliverBar = editable
-      ? `<div class="deliverbar"><button type="button" id="deliver-anki">Deliver to Anki</button><span id="deliver-status" class="deliver-status"></span></div>`
-      : "";
-
     return page(
       "Decks — anki-builder",
-      `<header><div class="eyebrow">Deck dashboard · anki-builder</div><h1>Your decks</h1>
-<p class="lede"><b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built${unfinishedCount ? ` · <b>${unfinishedCount}</b> unfinished` : ""}.</p>${deliverBar}</header>
+      `${pageChrome({
+        title: "Your decks",
+        eyebrow: "Deck dashboard · anki-builder",
+        ledeHtml: `<b>${reviewCount}</b> lesson${reviewCount === 1 ? "" : "s"} in review · <b>${builtCount}</b> built${unfinishedCount ? ` · <b>${unfinishedCount}</b> unfinished` : ""}.`,
+        deliver: editable,
+      })}
 ${section("grp-unfinished", "Not finished", "These lessons stopped mid-build and have no cards to review yet. Re-run <code>anki-builder assemble</code> for the lesson (it picks up where it left off), or <code>anki-builder prepare --run &lt;dir&gt;</code> directly.", unfinishedBlocks, unfinishedCount)}
 ${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
-${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play its cards, or Reopen it to edit.", builtBlocks, builtCount)}`,
-      editable ? `${HOME_REOPEN_SCRIPT}\n${DELIVER_SCRIPT}` : null,
+${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}`,
+      [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null].filter(Boolean).join("\n"),
     );
   }
 
@@ -222,20 +239,18 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
     if (units.length === 0) return null;
 
-    // A DONE lesson opens as a read-only VIEW (players you can listen to, plus a Reopen button) — no
-    // exclude, no Replace/Generate/rebuild. Editing requires Reopen first (which pushes it back into the
-    // review flow). So audio editing unlocks only when EVERY rendered unit is at the audio stage AND
-    // none is done. Deck-level: a mixed book stays read-only. Unit-scoped: a single in-review audio
-    // lesson is editable even when its siblings aren't — so you can finalize one lesson at a time.
+    // A lesson is ALWAYS open for editing — done or not. `done` only gates delivery / .apkg
+    // inclusion, never the tools. Audio editing unlocks when EVERY rendered unit is at the audio
+    // stage. Deck-level: a mixed book stays non-editable at the deck URL. Unit-scoped: a single
+    // audio lesson is editable even when its siblings aren't — so you can work one lesson at a time.
     const allAudio = units.every((u) => (u.stage || "audio") === "audio");
+    // `anyDone` no longer locks anything; it tells the client (via #deckctx) that edits must
+    // auto-rebuild the .apkg, and flavors the lede.
     const anyDone = units.some((u) => u.done);
-    const allDone = units.every((u) => u.done);
     // A lesson a CLI stage is actively writing renders READ-ONLY: the stage will rewrite
     // cards.json when it finishes, so any edit made now would be silently discarded.
     const anyBuilding = units.some((u) => u.building);
-    const canEdit = editable && units.length > 0 && allAudio && !anyDone && !anyBuilding;
-    // "Viewing" = a finished (all-done) lesson opened read-only. The header + lede reflect view vs review.
-    const viewing = allDone;
+    const canEdit = editable && units.length > 0 && allAudio && !anyBuilding;
 
     // The Corpus review — the first gate (editable: exclude / edit / mark reviewed).
     const hasReview = units.some((u) => (u.stage || "audio") === "corpus");
@@ -289,13 +304,11 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // nothing to sign off on yet).
     // Exclude is available on BOTH review stages: the Corpus review AND the audio review — so you can
     // drop a card late without going back to the Corpus review (which is meant to be one-and-done).
-    // Excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT). Exclude shows on the
-    // Corpus review always, and on the audio review ONLY while the lesson is in review (not done). A
-    // done lesson is view-only — Reopen it to exclude a card.
+    // Done lessons included: excluding a done lesson's card rebuilds the deck (see REVIEW_EDIT_SCRIPT).
     const rowControl =
       editable && !anyBuilding
         ? (stage, c) =>
-            stage === "corpus" || (stage === "audio" && !anyDone)
+            stage === "corpus" || stage === "audio"
               ? `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
               : ""
         : undefined;
@@ -319,11 +332,11 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
               }
               return `<button type="button" class="mark-rev" data-unit="${escapeHtml(String(s.seq))}">Mark reviewed</button><span class="rev-msg">${s.reviewed ? "✓ reviewed" : ""}</span>`;
             }
-            // Audio stage: the final "Mark done" sign-off (or Reopen a done lesson). Only done lessons
-            // ship in the merged deck.
+            // Audio stage: the final "Mark done" sign-off. Only done lessons ship in the merged
+            // deck — but a done lesson stays fully editable; the badge just names its state.
             if (s.stage === "audio")
               return s.done
-                ? `<span class="done-badge">✓ done</span> <button type="button" class="reopen" data-unit="${escapeHtml(String(s.seq))}">Reopen</button><span class="done-msg"></span>`
+                ? `<span class="done-badge">✓ done</span><span class="done-msg"></span>`
                 : `<button type="button" class="mark-done" data-unit="${escapeHtml(String(s.seq))}">Mark done</button> <button type="button" class="unreview" data-unit="${escapeHtml(String(s.seq))}">Unreview</button><span class="done-msg"></span>`;
             return "";
           }
@@ -337,9 +350,9 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       sectionControl,
       // Review opens a lesson to work on it — render its cards expanded, no expand/collapse chrome.
       open: true,
-      // The internal Review-note column shows ONLY while actually reviewing (not on a done lesson's
-      // read-only View), and never in Browse/artifact/deck.
-      showReviewNote: !viewing,
+      // The internal Review-note column always shows on the review page (done lessons are editable
+      // too), and never in Browse/artifact/deck.
+      showReviewNote: true,
     });
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);
@@ -367,10 +380,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       : "";
     const lessonWord = `lesson${units.length === 1 ? "" : "s"}`;
     const lede = canEdit
-      ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from, <b>Exclude</b> drops a card. Edits rebuild the deck's <code>.apkg</code> automatically — just re-import it.`
-      : viewing
-        ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, <b>${withAudio}</b> with audio. A finished ${units.length === 1 ? "lesson" : "set"} — read-only. Play any clip; <b>Reopen</b> a lesson to make changes.`
-        : `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, expanded below for review. <b>${withAudio}</b> have audio.`;
+      ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from, <b>Exclude</b> drops a card. Edits rebuild the deck's <code>.apkg</code> automatically${anyDone ? ` — this ${units.length === 1 ? "lesson is" : "set includes lessons"} marked <b>done</b>, so edits reach the shipping deck.` : " — just re-import it."}`
+      : `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}, expanded below for review. <b>${withAudio}</b> have audio.`;
     // Names the stage and when it started, so "why can't I edit this?" answers itself. A stale
     // claim instead offers a Clear button — a crashed build must never leave a lesson stuck.
     const buildBanner = units
@@ -382,13 +393,14 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       )
       .join("");
 
-    const body = `<header><a class="back" href="/">← All decks</a>
-<div class="eyebrow" style="margin-top:12px">${viewing ? "View" : "Review"} · anki-builder</div>
-<h1>${escapeHtml(deck.title)}</h1>
-<p class="lede">${lede}${viewing ? "" : ` <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`}</p>
-${buildBanner}
-${toolbar ? `<div class="bar">${toolbar}</div>` : ""}
-</header>
+    const body = `${pageChrome({
+      title: deck.title,
+      eyebrow: "Review · anki-builder",
+      ledeHtml: `${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`,
+      backHref: "/",
+      deliver: editable,
+      extraHtml: `\n${buildBanner}${toolbar ? `\n<div class="bar">${toolbar}</div>` : ""}`,
+    })}
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
 ${sectionHtml}
 ${modal}
@@ -400,17 +412,20 @@ ${modal}
     // The trim editor lives in the same editable audio review as Replace/Generate.
     if (canEdit) scripts.push(AUDIO_TRIM_SCRIPT);
     // REVIEW_EDIT_SCRIPT wires the Exclude toggle + the Corpus-review inline-edit cells. It's only
-    // needed where those controls render: the Corpus review, or an editable (in-review) audio
-    // review. A done, view-only lesson shows neither, so it isn't loaded there.
+    // needed where those controls render: the Corpus review, or an editable audio review.
     if (editable && !anyBuilding && (hasReview || canEdit)) scripts.push(REVIEW_EDIT_SCRIPT);
     if (buildBanner.includes("clear-claim")) scripts.push(CLEAR_CLAIM_SCRIPT);
-    // MARK_DONE_SCRIPT wires Mark done AND Reopen, so it loads for any audio-stage lesson (done or not).
+    // MARK_DONE_SCRIPT wires Mark done + Unreview, so it loads for any audio-stage lesson.
     if (editable && hasAudio) scripts.push(MARK_DONE_SCRIPT);
     // The shared prelude (window.__ab) must load before any of the scripts above — they all lean
     // on it for jsonp / the rebuild-if-done helper / audio-cell swaps.
     if (scripts.length > 0) scripts.unshift(DASH_PRELUDE_SCRIPT);
+    // The chrome scripts go after the prelude logic — neither needs window.__ab, and pushing them
+    // here keeps the prelude keyed to the editor scripts alone.
+    scripts.push(STICKY_HEADER_SCRIPT);
+    if (editable) scripts.push(DELIVER_SCRIPT);
     const script = scripts.join("\n");
-    return page(`${deck.title} — ${viewing ? "view" : "review"}`, body, script);
+    return page(`${deck.title} — review`, body, script);
   }
 
   // The BROWSE view (/deck/:type/:id): a read-only look at a deck's cards + audio. No edit controls,
@@ -441,15 +456,23 @@ ${modal}
 
     const total = units.reduce((n, u) => n + u.cards.length, 0);
     const withAudio = units.reduce((n, u) => n + u.cards.filter((c) => c.audio).length, 0);
-    const body = `<header><a class="back" href="/">← All decks</a>
-<div class="eyebrow" style="margin-top:12px">Browse · anki-builder</div>
-<h1>${escapeHtml(deck.title)}</h1>
-<p class="lede"><b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a></p>
-<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>
-</header>
+    const body = `${pageChrome({
+      title: deck.title,
+      eyebrow: "Browse · anki-builder",
+      ledeHtml: `<b>${total}</b> cards across <b>${units.length}</b> lesson${units.length === 1 ? "" : "s"}, <b>${withAudio}</b> with audio. Read-only. <a class="back" href="/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Review / edit →</a>`,
+      backHref: "/",
+      deliver: editable,
+      extraHtml: `\n<div class="bar"><button type="button" id="xall">Expand all</button><button type="button" id="call">Collapse all</button></div>`,
+    })}
 ${sectionHtml}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
-    return page(`${deck.title} — browse`, body, EXPAND_COLLAPSE_SCRIPT);
+    return page(
+      `${deck.title} — browse`,
+      body,
+      [EXPAND_COLLAPSE_SCRIPT, STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null]
+        .filter(Boolean)
+        .join("\n"),
+    );
   }
 
   return { renderDashboard, renderReviewPage, renderDeckPage };

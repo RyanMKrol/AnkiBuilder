@@ -93,7 +93,10 @@ audio-editing are one page, not two. The two views behind them:
   ElevenLabs variants to audition and pick — including, for Japanese, **Generate (kanji)**, which
   turns the card's kana reading into natural kanji+kana orthography that ElevenLabs voices more
   naturally than all-kana), then **Mark done**. A lesson edits at the audio stage on its own,
-  independent of its siblings' stages. AI-suggested / uncertain items are badged at every step.
+  independent of its siblings' stages. **Marking a lesson done never locks it**: done only decides
+  what ships (the merged `.apkg` and AnkiConnect delivery include done lessons only), and a done
+  lesson keeps every edit tool, with each edit rebuilding the package automatically. AI-suggested /
+  uncertain items are badged at every step.
 - **Browse** (`/deck/:type/:id`, or `/deck/:type/:id/:unit` for one lesson) — a **read-only** look
   at a finished deck: collapsible lessons, audio played inline (served over HTTP, so no size limit).
   No editing.
@@ -101,14 +104,16 @@ audio-editing are one page, not two. The two views behind them:
 There is **one `.apkg` per group** (a book/course, or a template) — never a per-lesson file. It's the
 merge of **only done lessons** (`deck --book-dir`, or the dashboard rebuild), so an in-review lesson
 is never packaged into the shippable deck. The dashboard keeps that file current automatically —
-marking a lesson done (or reopening one) rebuilds it, and audio edits to an already-done lesson
+marking a lesson done rebuilds it, and audio edits to an already-done lesson
 rebuild it too. There's **no download button**: the dashboard runs on your machine, so the `.apkg` is
 already on disk (`output/<…>/<deck-name>.apkg`) — import it into Anki directly.
 
 **Delivering updates to an existing collection: use the deliver tool, not drag-and-drop.** Once you
 already study these decks, re-importing an `.apkg` won't apply note-type structure changes (a new field,
 a template/CSS tweak) and you don't want to touch scheduling. `scripts/deliver-to-anki.mjs` (or the
-dashboard's **Deliver to Anki** button) pushes the on-disk state into a running Anki over AnkiConnect:
+dashboard's **Deliver to Anki** button, which lives in the header of every dashboard page: a slim
+bar pins to the top as you scroll, keeping navigation and Deliver in reach without going back to
+the home page) pushes the on-disk state into a running Anki over AnkiConnect:
 it backs up first (with scheduling), force-syncs the note type to the code's definition, and updates
 each note's fields in place by GUID — deterministic, idempotent, scheduling preserved. It also syncs with
 AnkiWeb before and after (default; `--no-sync` to skip). Preview with

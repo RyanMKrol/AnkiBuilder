@@ -542,9 +542,9 @@ export const REVIEW_EDIT_SCRIPT = `(function () {
   });
 })();`;
 
-// Client wiring for the lesson-level "Mark done" / "Reopen" buttons (the final sign-off in the audio
-// review, and reopening a done lesson). Reads deck ctx from #deckctx; unit from data-unit. Reloads on
-// success so the lesson moves between In review / Built. Vanilla JS, no ${}.
+// Client wiring for the lesson-level "Mark done" / "Unreview" buttons (the final sign-off in the
+// audio review, and the corpus-gate rollback). Reads deck ctx from #deckctx; unit from data-unit.
+// Reloads on success so the lesson moves between In review / Built. Vanilla JS, no ${}.
 export const MARK_DONE_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx || !window.__ab) return;
@@ -573,37 +573,35 @@ export const MARK_DONE_SCRIPT = `(function () {
     });
   };
   wire("button.mark-done", "/done", "\\u2713 done");
-  wire("button.reopen", "/reopen", "reopened");
   // Sends a mis-clicked corpus sign-off back to the corpus gate (and drops the lesson's dedup
-  // library entry server-side) — the corpus-review mirror of Reopen.
+  // library entry server-side).
   wire("button.unreview", "/review/unreviewed", "sent back to corpus review");
 })();`;
 
-// Home-page Reopen buttons on built rows: each carries its own data-type/id/unit (no #deckctx). POSTs
-// reopen, then reloads so the lesson moves from Built → In review. The click is stopped so it doesn't
-// also follow the row's stretched view link. Vanilla JS, no ${}.
-export const HOME_REOPEN_SCRIPT = `(function () {
-  document.querySelectorAll("button.home-reopen").forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault(); e.stopPropagation();
-      var label = btn.textContent;
-      btn.disabled = true; btn.textContent = "reopening\\u2026";
-      var base = "/api/deck/" + encodeURIComponent(btn.getAttribute("data-type")) + "/" + encodeURIComponent(btn.getAttribute("data-id"));
-      fetch(base + "/unit/" + encodeURIComponent(btn.getAttribute("data-unit")) + "/reopen", { method: "POST" })
-        .then(function (r) { if (!r.ok) throw new Error("reopen failed"); location.reload(); })
-        .catch(function (err) { btn.disabled = false; btn.textContent = label; alert(err.message); });
-    });
-  });
+// Reveals the .topbar (the slim fixed bar with back link / title / Deliver) once the full <header>
+// scrolls out of view, so navigation and Deliver stay reachable on a long card table. An
+// IntersectionObserver on the header — no scroll listeners. Vanilla JS, no ${}.
+export const STICKY_HEADER_SCRIPT = `(function () {
+  var bar = document.querySelector(".topbar");
+  var header = document.querySelector("header");
+  if (!bar || !header || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (entries) {
+    bar.classList.toggle("on", !entries[0].isIntersecting);
+  }).observe(header);
 })();`;
 
-// Home-page "Deliver to Anki" button: previews the plan (dry run), asks to confirm, then delivers.
-// Talks to POST /api/anki/deliver (?dry=1 for the preview). Synchronous fetch → status text, matching
-// the rest of the dashboard (no framework, no streaming).
+// The "Deliver to Anki" buttons (page header + topbar, on every page): previews the plan (dry run),
+// asks to confirm, then delivers. Talks to POST /api/anki/deliver (?dry=1 for the preview).
+// Class-wired because the button renders twice per page — every instance disables while a deliver
+// is in flight, and every .deliver-status span shows the same message. Synchronous fetch → status
+// text, matching the rest of the dashboard (no framework, no streaming).
 export const DELIVER_SCRIPT = `(function () {
-  var btn = document.getElementById("deliver-anki");
-  var status = document.getElementById("deliver-status");
-  if (!btn) return;
-  function set(m) { status.textContent = m; }
+  var btns = Array.prototype.slice.call(document.querySelectorAll("button.deliver-anki"));
+  if (!btns.length) return;
+  function set(m) {
+    document.querySelectorAll(".deliver-status").forEach(function (s) { s.textContent = m; });
+  }
+  function lock(on) { btns.forEach(function (b) { b.disabled = on; }); }
   async function post(dry) {
     var r = await fetch("/api/anki/deliver" + (dry ? "?dry=1" : ""), { method: "POST" });
     var j = await r.json().catch(function () { return {}; });
@@ -623,25 +621,27 @@ export const DELIVER_SCRIPT = `(function () {
     }).join("; ");
     return upd + " fields updated, " + add + " cards added" + (amb ? (", " + amb + " ambiguous (skipped)") : "") + ". Note type — " + struct + ".";
   }
-  btn.addEventListener("click", async function () {
-    btn.disabled = true;
-    try {
-      set("Previewing\\u2026");
-      var plan = await post(true);
-      if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
-        set("Cancelled."); btn.disabled = false; return;
+  btns.forEach(function (btn) {
+    btn.addEventListener("click", async function () {
+      lock(true);
+      try {
+        set("Previewing\\u2026");
+        var plan = await post(true);
+        if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
+          set("Cancelled."); lock(false); return;
+        }
+        set("Delivering\\u2026");
+        var done = await post(false);
+        var msg2 = "Delivered. " + summarize(done);
+        if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
+        else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
+        if (done.schemaChanged) msg2 += " Note-type changed: click 'Upload to AnkiWeb' in Anki to finish the full sync.";
+        set(msg2 + " Backup: " + done.backupDir);
+      } catch (e) {
+        set("Failed: " + e.message);
       }
-      set("Delivering\\u2026");
-      var done = await post(false);
-      var msg2 = "Delivered. " + summarize(done);
-      if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
-      else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
-      if (done.schemaChanged) msg2 += " Note-type changed: click 'Upload to AnkiWeb' in Anki to finish the full sync.";
-      set(msg2 + " Backup: " + done.backupDir);
-    } catch (e) {
-      set("Failed: " + e.message);
-    }
-    btn.disabled = false;
+      lock(false);
+    });
   });
 })();`;
 

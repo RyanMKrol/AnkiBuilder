@@ -48,7 +48,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   *filtered* units, so a single-lesson view unlocks on its own.
 - **One package per group, no per-lesson `.apkg`, no download.** Rebuilds always target the single
   group package (`rebuildBookDir` merge of `done` lessons, or a template's own deck) — there is no
-  per-lesson build. The dashboard keeps that file current: marking a lesson done / reopening it, and
+  per-lesson build. The dashboard keeps that file current: marking a lesson done, and
   audio edits to an already-done lesson, rebuild the group (`rebuildGroupQuiet`, best-effort). The
   server is local so there's no download route — import the on-disk `output/<…>/deck.apkg` directly.
 - **Residual (by design):** a *whole-deck* review (`/review/:type/:id`, no `:unit`) still only edits
@@ -1355,3 +1355,17 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** before importing a second book's `.apkg` into the live collection, check for
   id overlaps with the JFBP deck (the deliver path's duplicate-id guard shows the shape of the
   check). New books are protected automatically.
+
+## No un-done control in the dashboard (clearing meta.done is a hand edit)
+
+- **What:** the review UI can mark a lesson done but offers nothing to clear the flag. The old
+  Reopen button was removed when done lessons became fully editable, and no replacement was added.
+  `setLessonDone(runDir, false)` still exists in `applyCards.js` as the programmatic path; the only
+  user-facing route is editing the lesson's `cards.json` by hand.
+- **Why:** deliberate. Reopen existed only to unlock editing, and that job is gone: done gates
+  delivery and `.apkg` inclusion, not the tools. Pulling a finished lesson back out of the shipping
+  deck is rare enough that a button for it would mostly invite accidental unshipping.
+- **Impact:** removing a lesson from the shippable deck means deleting `meta.done` from its
+  `cards.json` and rebuilding (any dashboard edit, or `/api/deck/:type/:id/rebuild`, triggers it).
+- **When to revisit:** if un-shipping a lesson turns out to happen with any regularity, add a small
+  guarded control (confirm dialog) rather than resurrecting the old read-only flow.

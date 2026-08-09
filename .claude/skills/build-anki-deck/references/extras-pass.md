@@ -105,8 +105,8 @@ Strip the XHTML to plain text before handing it to an agent, or it burns context
 ## Rules the pass must not break
 
 Everything in [card-authoring-rules.md](card-authoring-rules.md) still applies (kana-only for a kana
-deck, sentence-case English, no editorial spaces, no terminal `。`, a `reading` for any numeral, hints
-on English-gloss collisions, split Q&A, an answer card that is answerable alone). On top of those:
+deck, sentence-case English, no editorial spaces, no terminal `。`, a `reading` for any numeral, a scene
+or hint on every collision, split Q&A, an answer card that is answerable alone). On top of those:
 
 - **Only vocabulary and grammar from this chapter or an EARLIER one.** Feed each agent an index of
   every card from all previous chapters. This is the rule most likely to be broken and the most
@@ -135,7 +135,7 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    It groups every card in the whole book by `target`, keeps the EARLIEST occurrence, and (with
    `--apply`) excludes later ones with a `reviewNote` naming the keeper. It refuses to touch
    reviewed/done units without `--force`, and it always SKIPS a duplicate that looks like a
-   question: excluding a question can strand an elliptical answer whose `hint` names it, so
+   question: excluding a question can strand an elliptical answer whose `scene` names it, so
    resolve those by hand (excluding an answer is always safe, because a question card is
    answerable alone).
 2. **A deck-wide collision audit** — also scripted:
@@ -145,7 +145,7 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    ```
 
    It groups by normalized `english` and by `target` and lists every group with more than one
-   distinct answer, flagging members with no `hint` (exit 2 when any are missing). It is
+   distinct answer, flagging members with neither `scene` nor `hint` (exit 2 when any are missing). It is
    report-only: fix the collisions the pass introduced, and report pre-existing ones rather than
    inventing wording for cards the human already signed off.
 
@@ -168,8 +168,8 @@ grouping is a crutch. A learner who has just seen "Is this a key?" can predict t
 "Yes, it's a key" and answers from position rather than knowledge. Run two passes, in this order.
 
 **1. Shuffle the whole unit.** This is safe *only* because of the rule enforced when the cards were
-written: every elliptical answer carries a `hint` naming the question it replies to, so no card
-depends on its neighbour. If that rule was skipped, fix the hints before shuffling, not after.
+written: every elliptical answer carries a `scene` naming the question it replies to, so no card
+depends on its neighbour. If that rule was skipped, fix the scenes before shuffling, not after.
 **Seed the shuffle.** An unseeded one re-orders the deck on every re-run, and card order is what a
 fresh `.apkg` import turns into new-card position.
 
@@ -184,7 +184,7 @@ Two kinds of false positive must be filtered out, or the front of the deck fills
 
 - **Elliptical answers.** `くじからです` ("It opens at 9:00.") is a substring of several longer
   sentences but teaches nothing alone; it is a reply, not a building block. Identify these by the
-  authoring rule above: their `hint` starts with "answering".
+  authoring rule above: their `scene` starts with "answering".
 - **Fragments ending in a bare particle.** `ささきさんは` is a name plus a topic marker, so it
   prefixes every sentence about that person for a boring grammatical reason. The card is fine; it
   just isn't a foundation.

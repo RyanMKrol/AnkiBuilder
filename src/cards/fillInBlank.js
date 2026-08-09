@@ -173,8 +173,14 @@ export function mineFillInBlankCards({
       note: typeof card.note === "string" && card.note.trim() ? card.note.trim() : null,
       // A mined drill is half of a Q/A pair, and the answer half is studied on its own. "It's at 5:00."
       // is unanswerable without the question that set the topic, so the answer card carries it as a
-      // front hint. Dropping `hint` here is what made the prompt unable to fix that.
-      hint: typeof card.hint === "string" && card.hint.trim() ? card.hint.trim() : null,
+      // front `scene` (shown on the front of BOTH directions). Older prompt output returned it under
+      // `hint`; accept either so a re-run against a cached response still lands the cue.
+      scene:
+        typeof card.scene === "string" && card.scene.trim()
+          ? card.scene.trim()
+          : typeof card.hint === "string" && card.hint.trim()
+            ? card.hint.trim()
+            : null,
       // Provenance: these are AI-authored practice cards, not source material. `aiSuggested` is what
       // the dashboard badges at every gate; `fillInBlank` is what the de-dup pass targets.
       fillInBlank: true,
@@ -196,10 +202,10 @@ export function mineFillInBlankCards({
     return empty;
   }
 
-  const contextless = added.filter((item) => !item.hint && ANSWER_SHAPED.test(item.english));
+  const contextless = added.filter((item) => !item.scene && ANSWER_SHAPED.test(item.english));
   if (contextless.length) {
     log(
-      `fill-in-the-blank: ${contextless.length} answer card(s) have no hint naming the question they ` +
+      `fill-in-the-blank: ${contextless.length} answer card(s) have no scene naming the question they ` +
         `answer — they will be studied without it: ${contextless.map((i) => `${i.id} ("${i.english}")`).join(", ")}`,
     );
   }

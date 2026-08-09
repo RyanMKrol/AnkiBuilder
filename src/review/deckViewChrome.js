@@ -73,6 +73,8 @@ td.au audio{height:30px;width:100%;max-width:168px}.x{color:var(--faint)}
 td.note{font-size:12px;color:var(--soft)}
 /* Front-of-card hint (disambiguator) — italic + muted to set it apart from the back Note. */
 td.hint-col{font-size:12px;color:var(--faint);font-style:italic}
+/* Scene cue (front of BOTH directions) — slightly stronger than the hint below it. */
+td.hint-col .scene-cue{color:var(--soft)}
 /* Review-only internal note (uncertainty / AI-suggestion rationale) — visually set apart (amber,
    italic) from the user-facing card Note so a reviewer never confuses the two. Never shown in the deck. */
 col.c-rnote{width:220px}
@@ -265,6 +267,9 @@ const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
 // audio stage; `ctx.rowControl(stage, c)` (optional) injects an editor control into a row's Exclude
 // cell — omitted for a read-only render.
 const rowExtra = (ctx, stage, c) => (ctx.rowControl ? ctx.rowControl(stage, c) : "");
+// Scene (front of both directions) stacked above Hint (Production front only) in the shared column.
+const hintCell = (c) =>
+  `<td class="hint-col">${c.scene ? `<div class="scene-cue" title="Scene — front of both directions">${escapeHtml(c.scene)}</div>` : ""}${c.hint ? escapeHtml(c.hint) : ""}</td>`;
 const STAGE_TABLES = {
   audio: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-hint"><col class="c-note">`,
@@ -274,7 +279,7 @@ const STAGE_TABLES = {
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   ${ctx.originalCell ? `<td class="au au-orig">${ctx.originalCell(c)}</td>\n  ` : ""}<td class="au">${ctx.audioCell(c)}</td>
-  <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
+  ${hintCell(c)}
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>`,
   },
   // A lesson whose build never finished — corpus.json but no cards.json, so there is no target to
@@ -286,7 +291,7 @@ const STAGE_TABLES = {
     cells: (c) =>
       `<td class="en">${escapeHtml(c.english)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
+  ${hintCell(c)}
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>`,
@@ -303,7 +308,7 @@ const STAGE_TABLES = {
   <td class="cat-col">${escapeHtml(c.category)}</td>
   <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
   <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
-  <td class="hint-col">${c.hint ? escapeHtml(c.hint) : ""}</td>
+  ${hintCell(c)}
   <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
   <td class="ctr">${tick(c.aiSuggested)}</td>
   <td class="ctr">${tick(c.uncertain)}</td>

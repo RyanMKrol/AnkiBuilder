@@ -45,7 +45,7 @@ the note or the card, or remove the duplicate) and re-run.
 
 ## What it does / doesn't do
 
-- **Field content** (translations, `hint`/`note`, romanized notes) and **note-type STRUCTURE** (new
+- **Field content** (translations, `scene`/`hint`/`note`, romanized notes) and **note-type STRUCTURE** (new
   field like `Note`, template/CSS changes, the category chip, the front `hint`) → both applied in place,
   **scheduling preserved**. (Structure changes never land on a plain `.apkg` re-import — this tool is how
   they reach Anki.)

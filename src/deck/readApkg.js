@@ -102,6 +102,7 @@ export function readApkg(apkgPath, { readFile = readFileSync } = {}) {
         pronunciation: f.Pronunciation || "",
         category: f.Category || "",
         hint: hasNote ? f.Hint || "" : "",
+        scene: f.Scene || "",
         note: hasNote ? f.Note || "" : f.Hint || "",
         audioName,
         audioData,

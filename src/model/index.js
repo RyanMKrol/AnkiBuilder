@@ -48,10 +48,14 @@ const CORPUS_SCHEMA = {
           id: { type: "string" },
           english: { type: "string" },
           category: { type: "string", enum: CATEGORIES },
-          // FRONT-of-card cue that helps the learner produce/recall the right answer — a short
-          // disambiguator (e.g. "said when entering a room" for a card that shares its target with
-          // another). Shown small under the prompt on BOTH card templates. Distinct from `note`.
+          // English-side disambiguator (e.g. "the object you read" for a card whose English prompt
+          // collides with another's). Shown on the Production (English→Target) front only — on the
+          // Recognition front it would give the answer away, so there it shows on the back.
           hint: { type: ["string", "null"] },
+          // Situation cue (e.g. "answering whose bag this is", "the wine is already under
+          // discussion") — the context without which the sentence is ambiguous. Shown on the FRONT
+          // of BOTH directions; must never contain or paraphrase the answer. Distinct from `hint`.
+          scene: { type: ["string", "null"] },
           // BACK-of-card context shown after answering (when/how to use it, how it differs from a
           // related card, cross-references). Renamed from `cardNote`. Internal-only rationale lives in
           // `reviewNote` and is NEVER shown in the deck.
@@ -139,9 +143,13 @@ const CARDS_SCHEMA = {
           // face shows (e.g. kanji 二十一); `reading` is only what TTS pronounces
           // (にじゅういち), sidestepping ambiguous readings of logographic scripts.
           reading: { type: "string" },
-          // FRONT-of-card cue (disambiguator) shown small under the prompt on both templates. Repurposed
-          // from the old rarely-used back-note fallback; the migration moves any legacy value into `note`.
+          // English-side disambiguator, shown on the Production front and the Recognition BACK only
+          // (on a Target→English front it is a piece of the answer). Repurposed from the old
+          // rarely-used back-note fallback; the migration moves any legacy value into `note`.
           hint: { type: ["string", "null"] },
+          // Situation cue shown small on the FRONT of BOTH templates ("answering whose bag this
+          // is"). Sets the scene without revealing the answer; see the corpus schema.
+          scene: { type: ["string", "null"] },
           image: { type: "string" },
           // The clip the deck embeds. Always DERIVED from the three takes below by `deriveCardAudio`
           // (manual cut > automatic trim > original), never set independently — the deck build, the

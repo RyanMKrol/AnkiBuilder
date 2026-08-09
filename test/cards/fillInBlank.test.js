@@ -159,22 +159,32 @@ test("the prompt injects the language's counter rules for ja, neutral text other
 });
 
 // A mined drill is half a Q/A pair, and the answer half is studied alone. Carrying the question as a
-// front hint is the only thing that makes it answerable — and the pass used to drop `hint` outright.
-test("carries a hint through, so an answer card can name the question it replies to", () => {
+// front scene is the only thing that makes it answerable — and the pass used to drop it outright.
+test("carries a scene through, so an answer card can name the question it replies to", () => {
+  const result = mineFillInBlankCards({
+    items,
+    targetLanguage: "ja",
+    runClaude: reply([{ ...drill, scene: "answering how you are getting to Osaka" }]),
+  });
+  assert.equal(result.items[2].scene, "answering how you are getting to Osaka");
+});
+
+// Cached/older prompt responses returned the question cue under `hint`; it still lands as the scene.
+test("accepts a legacy hint-shaped response as the scene", () => {
   const result = mineFillInBlankCards({
     items,
     targetLanguage: "ja",
     runClaude: reply([{ ...drill, hint: "answering how you are getting to Osaka" }]),
   });
-  assert.equal(result.items[2].hint, "answering how you are getting to Osaka");
+  assert.equal(result.items[2].scene, "answering how you are getting to Osaka");
 });
 
-test("a card with no hint gets an explicit null, not a missing field", () => {
+test("a card with no scene gets an explicit null, not a missing field", () => {
   const result = mineFillInBlankCards({ items, targetLanguage: "ja", runClaude: reply([drill]) });
-  assert.equal(result.items[2].hint, null);
+  assert.equal(result.items[2].scene, null);
 });
 
-test("warns about answer-shaped cards that came back with no hint", () => {
+test("warns about answer-shaped cards that came back with no scene", () => {
   const logged = [];
   mineFillInBlankCards({
     items,
@@ -182,20 +192,20 @@ test("warns about answer-shaped cards that came back with no hint", () => {
     log: (line) => logged.push(line),
     runClaude: reply([
       { ...drill, id: "fib-bare", english: "It's at 5:00." },
-      { ...drill, id: "fib-hinted", english: "It's on Sunday.", hint: "answering what day it is" },
+      { ...drill, id: "fib-scened", english: "It's on Sunday.", scene: "answering what day it is" },
       { ...drill, id: "fib-standalone", english: "I'm going by Shinkansen." },
     ]),
   });
-  const warning = logged.find((l) => l.includes("no hint naming the question"));
-  assert.ok(warning, "expected a warning about the un-hinted answer card");
+  const warning = logged.find((l) => l.includes("no scene naming the question"));
+  assert.ok(warning, "expected a warning about the scene-less answer card");
   assert.match(warning, /fib-bare/);
-  // The hinted answer and the self-contained sentence are both fine.
-  assert.doesNotMatch(warning, /fib-hinted/);
+  // The scened answer and the self-contained sentence are both fine.
+  assert.doesNotMatch(warning, /fib-scened/);
   assert.doesNotMatch(warning, /fib-standalone/);
 });
 
-test("the prompt asks for the question as a hint on an answer card", () => {
+test("the prompt asks for the question as a scene on an answer card", () => {
   const prompt = renderFillInBlankPrompt({ cards: items, targetLanguage: "ja" });
-  assert.match(prompt, /ANSWER card must carry its question as a `hint`/);
+  assert.match(prompt, /ANSWER card must carry its question as a `scene`/);
   assert.match(prompt, /must render the WHOLE `target`/);
 });

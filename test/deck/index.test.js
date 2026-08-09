@@ -158,6 +158,7 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
         target: "こんにちは",
         pronunciation: "konnichiwa",
         hint: "informal too",
+        scene: "greeting a colleague in the morning",
       },
       {
         id: "c2",
@@ -230,11 +231,18 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
           "Image",
           "Audio",
           "Reading",
+          "Scene",
         ],
       );
       // Hint fronts only the Production card — on Recognition (Target→English) an English hint is
-      // part of the answer, so there it shows on the back. Note is on the back of both.
+      // part of the answer, so there it shows on the back. Scene (the situation cue) fronts BOTH
+      // directions. Note is on the back of both.
       for (const t of model.tmpls) {
+        assert.match(
+          t.qfmt,
+          /\{\{#Scene\}\}<div class="hint-front">\{\{Scene\}\}<\/div>/,
+          `${t.name} front shows the scene`,
+        );
         if (t.name === "Production") {
           assert.match(
             t.qfmt,
@@ -256,6 +264,7 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       assert.strictEqual(fields[3], "Greetings");
       assert.strictEqual(fields[4], "informal too"); // Hint field ← card.hint
       assert.strictEqual(fields[5], ""); // Note field ← card.note (none here)
+      assert.strictEqual(fields[9], "greeting a colleague in the morning"); // Scene field ← card.scene
 
       const ords = cardRows
         .filter((c) => c.nid === firstNote.id)

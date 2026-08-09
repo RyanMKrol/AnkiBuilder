@@ -7,7 +7,11 @@ import { resolveIso639Code } from "../model/iso639.js";
 import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
 import { unitDeckSegments, groupingSegments } from "./deckPath.js";
 
-// "Hint" is the FRONT-of-card cue (card.hint); "Note" is the BACK-of-card context (card.note).
+// "Scene" (card.scene) sets the situation — the question just asked, the thing under discussion —
+// and renders on the FRONT of BOTH directions: it never contains the answer, only the context
+// without which the sentence is ambiguous. "Hint" (card.hint) is the Production-front-only
+// disambiguator (an English cue like "the object you read") — on a Target→English front it would
+// give the answer away, so it shows there only on the back. "Note" is the BACK-of-card context.
 // "Reading" is the card's spoken form (kana for a kanji-bearing target) — stored as a real field
 // now so the kanji era needs no note-type migration; the templates don't render it yet.
 // New fields append at the END: the AnkiConnect deliverer force-syncs structure by adding missing
@@ -22,6 +26,7 @@ const FIELD_NAMES = [
   "Image",
   "Audio",
   "Reading",
+  "Scene",
 ];
 const FIELD_SEP = "\x1f";
 const DEFAULT_DECK_ID = 1;
@@ -162,9 +167,10 @@ CREATE INDEX ix_notes_csum on notes (csum);
 const CARD_TEMPLATES = [
   {
     name: "Recognition",
-    // No {{Hint}} on this front: the hint is an English cue ("said when entering a room"), which
-    // on a Target→English card is a piece of the answer. It shows on the BACK instead, as context.
-    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}<br>{{Audio}}',
+    // {{Scene}} on this front, {{Hint}} only on the back: the hint is an English cue ("said when
+    // entering a room"), which on a Target→English card is a piece of the answer, while the scene
+    // is the situation ("answering whose bag this is") without which the sentence is ambiguous.
+    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}{{#Scene}}<div class="hint-front">{{Scene}}</div>{{/Scene}}<br>{{Audio}}',
     afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
 {{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}
@@ -174,7 +180,7 @@ const CARD_TEMPLATES = [
   },
   {
     name: "Production",
-    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}',
+    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}{{#Scene}}<div class="hint-front">{{Scene}}</div>{{/Scene}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}',
     afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
 {{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
@@ -455,6 +461,9 @@ function fieldValue(card, name) {
     case "Reading":
       // The spoken form (kana for a kanji target) — stored, not yet rendered by the templates.
       return escapeFieldText(card.reading || "");
+    case "Scene":
+      // Situation cue, shown on the FRONT of both directions. Never contains the answer.
+      return escapeFieldText(card.scene || "");
     case "Image":
       return card.image ? `<img src="${card.image}">` : "";
     case "Audio":

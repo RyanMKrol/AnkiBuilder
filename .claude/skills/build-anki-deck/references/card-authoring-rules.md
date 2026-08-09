@@ -158,21 +158,29 @@ answer card, each with its own `target`/`reading`/`english`/`pronunciation` and 
 Japanese splits on the internal `。`, the English on the `?`). Keep both marked `fillInBlank` when they
 came from a drill. This holds for any source, not just FIB.
 
-## The three note fields: `hint`, `note`, `reviewNote`
+## The four note fields: `scene`, `hint`, `note`, `reviewNote`
 
-**Three note fields — front `hint`, back `note`, internal `reviewNote`.** Each card carries three
-distinct note fields (the review shows a **Hint** + **Note** + **Review note** column):
+**Four note fields: front-of-both `scene`, Production-front `hint`, back `note`, internal
+`reviewNote`.** Each card carries four distinct note fields (the review shows the scene and hint
+stacked in one column, plus **Note** + **Review note**):
 
-- **`hint`** — a short FRONT-of-card cue (shown small/italic under the prompt on BOTH card templates)
-  that helps the learner produce/recall the answer. Its main job is **disambiguation**: when two cards
-  share a `target` (e.g. しつれいします (shitsurei shimasu) = both "excuse me, entering" and "goodbye,
-  formal"), the hint tells them apart. Textbook contextual parentheticals live here — "Excuse me. (said
-  when entering a room)" becomes `english` "Excuse me." + `hint` "said when entering a room". Keep
-  meaning-integral parentheticals like "(person)" in the `english`.
-- **`note`** — BACK-of-card context shown after answering (when/how to use it, register, how it differs
-  from a related card, cross-references). Renamed from the old `cardNote`.
-- **`reviewNote`** — internal rationale (why `uncertain` / why `aiSuggested`), shown ONLY at the review
-  gate, NEVER in the deck or viewer.
+- **`scene`** (shown small/italic under the prompt on the front of BOTH card directions) sets the
+  situation the sentence lives in: the question just asked, who is speaking, what is already under
+  discussion. It exists because an elliptical reply or a context-bound set phrase is unanswerable
+  without it in EITHER direction ("answering whose bag this is", "the wine is already under
+  discussion, so it is not named", "said when entering another person's room"). Because it renders
+  before the learner answers on both sides, a scene must never contain or paraphrase the answer.
+  Textbook contextual parentheticals live here: "Excuse me. (said when entering a room)" becomes
+  `english` "Excuse me." + `scene` "said when entering a room".
+- **`hint`** (shown on the Production front only; on the Recognition front it is part of the answer,
+  so there it renders on the back) tells apart two cards whose ENGLISH prompt collides, by
+  describing the target word itself: meaning ("the object you read"), register ("warm but casual"),
+  or form ("use the へ (e) direction particle"). If the cue describes the situation rather than the
+  word, it is a `scene`, not a `hint`.
+- **`note`**: BACK-of-card context shown after answering (when/how to use it, register, how it
+  differs from a related card, cross-references). Renamed from the old `cardNote`.
+- **`reviewNote`**: internal rationale (why `uncertain` / why `aiSuggested`), shown ONLY at the
+  review gate, NEVER in the deck or viewer.
 
 **Any `hint`/`note` that quotes non-Roman target script ALWAYS shows its romanization in brackets** —
 `はじめまして (hajimemashite)`, `お (o) + かし (kashi) = おかし (okashi)` — because the learner may not
@@ -182,23 +190,26 @@ an EARLIER lesson, never a later one the learner hasn't met (so その (sono) re
 an earlier lesson, not vice-versa). The extraction prompt enforces all of this
 (`docs/epub-extraction-prompt.md`); apply it by hand when you author or edit a `hint`/`note`.
 
-## Hints are mandatory on an English-gloss or target collision
+## A cue is mandatory on an English-gloss or target collision
 
-**Two cards that share an English gloss MUST each carry a `hint`.** A `hint` is usually optional. It
-stops being optional the moment two cards in the same DECK (not just the same lesson) can be reached
-by the same English prompt with different answers. On a Production card the learner sees only the
-English, so two cards reading "How many people?" are literally the same question with two different
-right answers, and the only honest way to study either one is a front-of-card cue saying which is
-wanted: なんにん (nan-nin) gets "the plain, everyday way to ask", なんめいさまですか (nanmeisama desu
-ka) gets "what a restaurant asks a customer". Without that the learner is guessing, then failing a
-card they actually knew. The same applies in reverse when one `target` carries two glosses
-(すみません (sumimasen) = "Excuse me." / "I'm sorry."). Pair the hint with a `note` on the back that
-explains the *relationship* (which is politer, which register, which one answers the other), because
-the hint only has room to point.
+**Two cards that share an English gloss MUST each carry a `hint` (or a `scene`), and two cards that
+share a `target` MUST each carry a `scene`.** Cues are usually optional. They stop being optional
+the moment two cards in the same DECK (not just the same lesson) can be reached by the same prompt
+with different answers. On a Production card the learner sees only the English, so two cards reading
+"How many people?" are literally the same question with two different right answers, and the only
+honest way to study either one is a front cue saying which is wanted: なんにん (nan-nin) gets "the
+plain, everyday way to ask", なんめいさまですか (nanmeisama desu ka) gets "what a restaurant asks a
+customer". The reverse collision, one `target` with two glosses (すみません (sumimasen) = "Excuse
+me." / "I'm sorry."), bites on the RECOGNITION front, which only a `scene` can fix (a `hint` doesn't
+render there before answering). Situational scenes are ideal ("getting someone's attention" /
+"apologizing for a mistake"); for a grammar word or counter where any cue partially points at the
+answer ("counting, not the particle"), a small leak is the accepted price of an answerable card.
+Pair the cue with a `note` on the back that explains the *relationship* (which is politer, which
+register, which one answers the other), because the front cue only has room to point.
 
 The collision is easy to miss during a single-lesson build, since the two cards often live in
 different chapters and neither pass ever sees both. Check for it deck-wide: group every card by its
-normalized English and by its `target`, and any group with more than one distinct answer needs hints.
+normalized English and by its `target`, and any group with more than one distinct answer needs cues.
 Common shapes in a Japanese course: a polite/plain register pair (なんにん (nan-nin) vs なんめいさま
 (nanmeisama), じゃ (ja) vs では (dewa), はい (hai) vs ええ (ē)), a noun and its noun+します verb
 (しごと (shigoto) "Work" vs しごとをします (shigoto o shimasu) "Work"), two particles glossed with the
@@ -217,14 +228,14 @@ learner to reach for パーティーは. Gloss it "The party is at 5:00." Droppi
 correct ONLY when the target drops it too (`にちようびです` → "It's on Sunday."). The check is
 mechanical: read the English alone and ask whether it could yield that exact target.
 
-Second, an elliptical answer card needs a `hint` naming the question it replies to — "answering where
+Second, an elliptical answer card needs a `scene` naming the question it replies to: "answering where
 the computer is", "answering when the presentation is". State the QUESTION, never leak the answer.
 Without it "It's on Sunday." is a card with no discoverable right answer.
 
-This is enforced where the pairs are made: `docs/fill-in-blank-prompt.md` rules 4 and 5, with `hint`
+This is enforced where the pairs are made: `docs/fill-in-blank-prompt.md` rules 4 and 5, with `scene`
 carried through by `src/cards/fillInBlank.js`, which also logs a warning naming any answer-shaped card
 that came back without one. Audit an existing deck by listing cards whose English starts with a
-pronoun stand-in ("It's", "That's", "They're") and checking each for a hint.
+pronoun stand-in ("It's", "That's", "They're") and checking each for a scene.
 
 ## Irregular members of a counter series each earn a `note`
 

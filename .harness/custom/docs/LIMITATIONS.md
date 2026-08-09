@@ -1369,3 +1369,20 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `cards.json` and rebuilding (any dashboard edit, or `/api/deck/:type/:id/rebuild`, triggers it).
 - **When to revisit:** if un-shipping a lesson turns out to happen with any regularity, add a small
   guarded control (confirm dialog) rather than resurrecting the old read-only flow.
+
+## Scene cues on ambiguous single-word cards partially reveal the answer (by design)
+
+- **What:** the `Scene` field renders on the front of BOTH card directions. For sentence cards a
+  scene names the question just asked and reveals nothing. For an ambiguous single-word card
+  (に "2" vs the direction particle, ほん "Book" vs the counter), any cue that disambiguates the
+  Recognition front necessarily points partway at the answer ("counting, not the particle").
+  Three degenerate pairs were left with no scene at all because no non-revealing wording exists and
+  their glosses barely differ: です ("To be" vs "Is / am / are"), ばん ("Evening" vs the number
+  suffix), and ばんごはん ("Dinner" twice).
+- **Why:** an answerable-but-easier card beats an unanswerable one; the Production direction keeps
+  full rigor because definitional hints stay off the Recognition front (they show on its back).
+- **Impact:** a handful of Recognition cards are softer tests than a purist would like, and the
+  three skipped pairs still show identical Recognition fronts with different expected answers.
+- **When to revisit:** if the です / ばん / ばんごはん pairs cause real study friction, merge each
+  pair into one card with a combined gloss instead of inventing a leaky scene. The migration's
+  pre-change state is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.

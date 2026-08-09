@@ -578,9 +578,11 @@ export async function translateCorpus(
     const src = bySourceId.get(item.id);
     if (src?.uncertain) item.uncertain = true;
     if (src?.aiSuggested) item.aiSuggested = true;
-    // Carry the note fields through: `hint` (front cue), `note` (back context, back-compat with the
-    // pre-rename `cardNote`), and `reviewNote` (internal, review-only).
+    // Carry the note fields through: `hint` (Production-front disambiguator), `scene` (situation
+    // cue, front of both directions), `note` (back context, back-compat with the pre-rename
+    // `cardNote`), and `reviewNote` (internal, review-only).
     if (src?.hint) item.hint = src.hint;
+    if (src?.scene) item.scene = src.scene;
     const backNote = src?.note ?? src?.cardNote;
     if (backNote) item.note = backNote;
     if (src?.reviewNote) item.reviewNote = src.reviewNote;

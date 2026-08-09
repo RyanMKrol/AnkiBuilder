@@ -232,8 +232,10 @@ npm run build
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One). The note type carries night-mode
       CSS, HTML-escapes text fields, stores the card's spoken `reading` as a real field (not yet
-      rendered), and keeps the English hint off the Recognition front (it's part of that card's
-      answer — it shows on the back instead)
+      rendered), and splits the front cue in two: `Scene` (the situation, e.g. "answering whose bag
+      this is", shown on the front of BOTH directions and never containing the answer) and `Hint` (an
+      English-side disambiguator like "the object you read", shown on the Production front only; on
+      the Recognition front it is part of the answer, so there it shows on the back)
 - [x] Per-language deck font — embeds a script-appropriate font (Japanese → Klee One, a Kyōkashō
       textbook face) so kana/kanji render the same on every client; `restyle-font` applies it to any
       existing `.apkg`, including third-party decks

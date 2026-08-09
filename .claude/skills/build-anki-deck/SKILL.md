@@ -12,7 +12,7 @@ files below; load one when its topic comes up.
 ## Reference files
 
 - [references/card-authoring-rules.md](references/card-authoring-rules.md): every rule about card
-  content and card-set shape (glosses, hints/notes, collisions, number readings, ordering, the
+  content and card-set shape (glosses, scenes/hints/notes, collisions, number readings, ordering, the
   cross-lesson note pass). Load it whenever you author, edit, or audit cards.
 - [references/extras-pass.md](references/extras-pass.md): the full Step 3b procedure for building a
   lesson's extras (drill) unit. Load it before running that pass.
@@ -198,12 +198,12 @@ What `prepare` runs, in order (details and prompts per pass are in
 3. **Semantic de-dup** (`src/cards/semanticDedup.js`): keeps at most ~2 examples per sentence
    pattern; redundant FIB cards are excluded (not deleted) with a `reviewNote`, restorable at gate 1.
 4. **Cross-lesson notes** (`src/cards/crossLessonNotes.js`): one pass per lesson, fed only earlier
-   lessons, writing backward cross-references, usage notes, and collision hints.
+   lessons, writing backward cross-references, usage notes, and collision cues.
 
 The corpus comes out **pedagogically sorted** (atoms before molecules; `--no-sort` keeps raw order),
 with any run of sequential numbers jumbled, and that one order flows through every stage, review, and
 the deck. Full ordering rules, and every card-content rule (sentence-case English, no editorial
-spaces or terminal `。`, `reading` for numerals, provenance flags, hint/note/reviewNote, collisions,
+spaces or terminal `。`, `reading` for numerals, provenance flags, scene/hint/note/reviewNote, collisions,
 Q&A splits, worked examples for grammar cards): [card-authoring-rules](references/card-authoring-rules.md).
 
 ## Step 3: Gate 1 — the corpus review
@@ -219,7 +219,7 @@ reversible `excluded` flag: the `audio` stage skips excluded cards (no TTS spent
 drops them.
 
 What to check, beyond reading the columns: the card-content rules in
-[card-authoring-rules](references/card-authoring-rules.md). The ones most often violated: hints on
+[card-authoring-rules](references/card-authoring-rules.md). The ones most often violated: a scene or hint on
 any English-gloss or target collision, answer cards answerable alone, notes/hints that restate the
 card (delete these), missing `reading` on numerals, and study order (a sentence landing before its
 vocabulary).

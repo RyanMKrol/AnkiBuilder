@@ -37,12 +37,13 @@ word instead.
 3. **One prompt, one response.** Never put a question and its answer on the same card. A source line
    like "When is the presentation? — It's at 3:00 today." becomes TWO cards: the question, and the
    answer. Keep the pair adjacent in the order you return them.
-4. **An ANSWER card must carry its question as a `hint`.** The pair you just split is studied shuffled,
-   weeks apart — the answer card comes up alone, with nothing on it to say what was asked. "It's at
-   3:00 today." is unanswerable in that state. So every answer half gets a short front `hint` naming
+4. **An ANSWER card must carry its question as a `scene`.** The pair you just split is studied shuffled,
+   weeks apart, so the answer card comes up alone, with nothing on it to say what was asked. "It's at
+   3:00 today." is unanswerable in that state. So every answer half gets a short front `scene` naming
    the question it replies to: `"answering when the presentation is"`, `"answering where the vacuum
-cleaner is"`. The hint states the QUESTION and never leaks the answer — for a card answering "Where
-   is the computer?" the hint is "answering where the computer is", never "it's in the basement".
+cleaner is"`. The scene is shown on the front of BOTH card directions, states the QUESTION and never
+   leaks the answer: for a card answering "Where is the computer?" the scene is "answering where the
+   computer is", never "it's in the basement".
 5. **The `english` must render the WHOLE `target`, including a topic the target states.** Splitting a
    drill tempts you to write the answer the way a person would say it in conversation, dropping what
    the question already established. That is right only when the TARGET drops it too. If the target
@@ -51,7 +52,7 @@ cleaner is"`. The hint states the QUESTION and never leaks the answer — for a 
      party". Writing "It's at 5:00." ❌ makes the card unproducible: nothing in the prompt tells the
      learner to reach for パーティーは.
    - `にちようびです` → "It's on Sunday." ✅ — the target drops the topic too, so the English may. This
-     card still needs the rule-4 hint.
+     card still needs the rule-4 scene.
      Check every answer card by reading the English alone and asking whether it could produce that exact
      target. If it could not, the English is missing something the target has.
 6. **New patterns beat repetition.** Prefer drills that exercise a sentence frame or a
@@ -93,7 +94,7 @@ Return ONLY a JSON object. No prose, no explanation.
       "target": "しんかんせんでいきます",
       "reading": "しんかんせんでいきます",
       "pronunciation": "shinkansen de ikimasu",
-      "hint": "answering how you are getting to Osaka",
+      "scene": "answering how you are getting to Osaka",
       "note": "で (de) marks the means of transport — the vehicle you go BY.",
       "sourcePattern": "[transport] で いきます"
     }
@@ -109,9 +110,9 @@ Field by field:
 - `target` (string): the {{TARGET_LANGUAGE}} sentence, as the card face shows it.
 - `reading` (string, optional): the spoken form — set it only when it differs from `target` (rule 7).
 - `pronunciation` (string): the romanization of the spoken form. {{COUNTER_HYPHEN_RULE}}
-- `hint` (string, optional): a short FRONT-of-card cue, shown with the prompt. REQUIRED on the answer
-  half of a question/answer pair (rule 4), naming the question it replies to. Omit it on a card that
-  stands on its own. Never restate the English and never leak the answer.
+- `scene` (string, optional): a short situation cue, shown on the front of BOTH card directions.
+  REQUIRED on the answer half of a question/answer pair (rule 4), naming the question it replies to.
+  Omit it on a card that stands on its own. Never restate the English and never leak the answer.
 - `note` (string, optional): a short back-of-card note, only when there is something genuinely useful
   to say about using the sentence. Omit it rather than restating the English.
 - `sourcePattern` (string): the sentence frame this card drills, written as a short skeleton with the

@@ -87,7 +87,11 @@ export function findCollisions(units) {
           id: item.id,
           english: item.english,
           target: item.target,
-          hasHint: typeof item.hint === "string" && item.hint.trim().length > 0,
+          // Either cue disambiguates a colliding face: `hint` on the Production front, `scene` on
+          // the front of both directions.
+          hasHint:
+            (typeof item.hint === "string" && item.hint.trim().length > 0) ||
+            (typeof item.scene === "string" && item.scene.trim().length > 0),
         })),
       });
     }
@@ -128,8 +132,8 @@ const TRAILING_PARTICLES = new Set(["は", "が", "を", "に", "で", "へ", "�
  * hoisted to the front, shortest first (atoms before the molecules that contain them).
  *
  * A card is foundational when at least `minContainers` other cards' targets contain its target
- * verbatim — excluding elliptical answers (hint starts with "answering": a reply, not a building
- * block) and fragments ending in a bare particle. A unit with no shared atoms hoists nothing.
+ * verbatim — excluding elliptical answers (scene or hint starts with "answering": a reply, not a
+ * building block) and fragments ending in a bare particle. A unit with no shared atoms hoists nothing.
  *
  * Pure: returns a NEW array; `seed` must be supplied by the caller (default it to something
  * stable like the unit folder name — an unseeded shuffle would re-order the deck every re-run,
@@ -149,7 +153,8 @@ export function orderExtrasUnit(items, { seed, minContainers = 2 } = {}) {
     const target = normalizeTarget(item.target);
     if (item.excluded || target.length < 2) return false;
     if (TRAILING_PARTICLES.has(target[target.length - 1])) return false;
-    if (typeof item.hint === "string" && /^answering\b/i.test(item.hint.trim())) return false;
+    const cue = [item.scene, item.hint].find((v) => typeof v === "string" && v.trim());
+    if (cue && /^answering\b/i.test(cue.trim())) return false;
     const containers = items.filter(
       (other) =>
         other !== item && !other.excluded && normalizeTarget(other.target).includes(target),

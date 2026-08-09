@@ -39,7 +39,7 @@ function validateItem(item, index) {
   if (!CATEGORIES.includes(item.category)) {
     throw new Error(`item ${index} has an invalid "category": ${JSON.stringify(item.category)}`);
   }
-  for (const noteField of ["hint", "note", "cardNote", "reviewNote", "notes"]) {
+  for (const noteField of ["scene", "hint", "note", "cardNote", "reviewNote", "notes"]) {
     if (item[noteField] !== undefined && typeof item[noteField] !== "string") {
       throw new Error(`item ${index} field "${noteField}" must be a string when present`);
     }

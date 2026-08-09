@@ -27,10 +27,12 @@ export function assembleCorpusFromChapter({
       id: item.id,
       english: item.english,
       category: item.category,
-      // Note fields (superset shape, null when absent): `hint` → front-of-card cue; `note` → back-of-card
-      // context (both shown to the learner); `reviewNote` → review gates only, never shown. A legacy
-      // `cardNote` folds into `note`; a legacy blended `notes` routes to `reviewNote` so nothing
-      // user-facing leaks unreviewed.
+      // Note fields (superset shape, null when absent): `scene` → situation cue, front of both card
+      // directions; `hint` → Production-front disambiguator; `note` → back-of-card context (all shown
+      // to the learner); `reviewNote` → review gates only, never shown. A legacy `cardNote` folds
+      // into `note`; a legacy blended `notes` routes to `reviewNote` so nothing user-facing leaks
+      // unreviewed.
+      scene: item.scene ?? null,
       hint: item.hint ?? null,
       note: item.note ?? item.cardNote ?? null,
       reviewNote: item.reviewNote ?? item.notes ?? null,

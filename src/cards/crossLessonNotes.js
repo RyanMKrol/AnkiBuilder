@@ -111,6 +111,7 @@ export function renderCrossLessonNotePrompt({
         category: card.category,
         currentNote: card.note || card.cardNote || "",
         currentHint: card.hint || "",
+        currentScene: card.scene || "",
       })),
       null,
       2,

@@ -22,6 +22,9 @@ function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } =
     if (item.hint) {
       entry.hint = item.hint;
     }
+    if (item.scene) {
+      entry.scene = item.scene;
+    }
     return entry;
   });
 
@@ -40,6 +43,8 @@ function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } =
     "- `english` (string): the English phrase to translate.",
     "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
     "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
+    "- `scene` (string, optional): the situation the phrase is used in (e.g. the question it answers).",
+    "  - Also NOT a translation — use it only to pick the natural phrasing for that situation.",
     "",
     "### Example Input",
     "```json",
@@ -109,6 +114,9 @@ export function buildTargetOnlyPrompt(
     if (item.hint) {
       entry.hint = item.hint;
     }
+    if (item.scene) {
+      entry.scene = item.scene;
+    }
     return entry;
   });
 
@@ -127,6 +135,8 @@ export function buildTargetOnlyPrompt(
     "- `english` (string): the English phrase to translate.",
     "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
     "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
+    "- `scene` (string, optional): the situation the phrase is used in (e.g. the question it answers).",
+    "  - Also NOT a translation — use it only to pick the natural phrasing for that situation.",
     "",
     "### Example Input",
     "```json",
@@ -192,6 +202,9 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
     if (item.hint) {
       entry.hint = item.hint;
     }
+    if (item.scene) {
+      entry.scene = item.scene;
+    }
     return entry;
   });
 
@@ -212,6 +225,7 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
     `- \`target\` (string): the final ${targetLanguage} translation.`,
     "  - Already correct — do not change it, and do not return it.",
     "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
+    "- `scene` (string, optional): the situation the phrase is used in, given for context only.",
     "",
     "### Example Input",
     "```json",

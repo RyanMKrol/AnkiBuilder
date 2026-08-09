@@ -76,7 +76,10 @@ tags are the book's own names and are the only correct way to cite a lesson.
    customer. Cases to scan for: a polite/plain register pair, a noun vs its noun+する verb form (both
    glossed "Work"), two particles glossed with the same English, and a number that sounds like an
    ordinary word (さん (san) "3" vs さん (san) "Mr., Mrs., Ms., Miss"). A hint must be a few words of
-   WHEN/WHERE/WHY and must NEVER restate the gloss or hand over the reading. Do NOT return a `hint` on
+   WHEN/WHERE/WHY and must NEVER restate the gloss or hand over the reading. The hint renders on the
+   English→target front only. Some cards also carry a `currentScene` (a situation cue shown on the
+   front of BOTH directions): if the scene already tells the colliding pair apart, the card needs no
+   hint, and a hint must never just repeat the scene. Do NOT return a `hint` on
    any other card — a card with no collision needs none, and omitting the field leaves the existing
    hint untouched.
 9. **IRREGULAR members of a counter or conjugation series earn a note**, even though number and counter

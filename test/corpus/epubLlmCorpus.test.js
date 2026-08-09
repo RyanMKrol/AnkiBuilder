@@ -17,12 +17,13 @@ test("assembleCorpusFromChapter() wraps extracted items into a schema-valid corp
   assert.strictEqual(corpus.meta.reviewed, false);
   assert.strictEqual(corpus.items.length, 1);
   assert.strictEqual(corpus.items[0].target, "こんにちは");
+  assert.strictEqual(corpus.items[0].scene, null);
   assert.strictEqual(corpus.items[0].hint, null);
   assert.strictEqual(corpus.items[0].note, null);
   assert.strictEqual(corpus.items[0].reviewNote, null);
 });
 
-test("assembleCorpusFromChapter() carries hint/note/reviewNote; folds legacy cardNote→note, notes→reviewNote", () => {
+test("assembleCorpusFromChapter() carries scene/hint/note/reviewNote; folds legacy cardNote→note, notes→reviewNote", () => {
   const corpus = assembleCorpusFromChapter({
     chapterFilePath: "/tmp/chapter.xhtml",
     targetLanguage: "Japanese",
@@ -33,6 +34,7 @@ test("assembleCorpusFromChapter() carries hint/note/reviewNote; folds legacy car
           english: "Please",
           target: "おねがいします",
           category: "Greetings",
+          scene: "asking a shop assistant for an item",
           hint: "when making a polite request",
           note: "polite request",
           reviewNote: "source shows 〜を おねがいします",
@@ -49,6 +51,7 @@ test("assembleCorpusFromChapter() carries hint/note/reviewNote; folds legacy car
       ]),
   });
 
+  assert.strictEqual(corpus.items[0].scene, "asking a shop assistant for an item");
   assert.strictEqual(corpus.items[0].hint, "when making a polite request");
   assert.strictEqual(corpus.items[0].note, "polite request");
   assert.strictEqual(corpus.items[0].reviewNote, "source shows 〜を おねがいします");

@@ -111,7 +111,12 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .grp-unfinished .urow .ustage{color:#9a4f2a;font-weight:700}
 .ghint code{font-family:var(--mono);font-size:11.5px}
 .dblock .dt{font-family:var(--serif);font-size:17px}
+.dblock a.dt{color:inherit;text-decoration:none}
+.dblock a.dt:hover{color:var(--accent);text-decoration:underline}
 .dblock .dm{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;margin-left:10px}
+/* Whole-deck spot-check link: the deck-level review with every lesson's cards on one page. */
+.dball{margin-left:auto;font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap}
+.dball:hover{text-decoration:underline}
 .dbhead{display:flex;align-items:baseline;flex-wrap:wrap;margin-bottom:2px}
 /* Each lesson row IS the link — the whole row is clickable (no separate Open/Review button).
    Symmetric vertical padding (no lopsided margin) so the label sits centred between the row rules. */

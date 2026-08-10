@@ -249,7 +249,9 @@ npm run build
       **Review** view (`/review/...`) — the guided, editable workflow across the two gates (corpus →
       audio, with exclude / edit / mark-reviewed / generate / rebuild write-back and
       AI-suggested/uncertain badges) — and a read-only **Browse** view (`/deck/...`) that streams audio
-      over HTTP with no size cap. Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
+      over HTTP with no size cap. A multi-lesson deck's home-page heading links to the deck-level
+      review (every lesson's cards on one page, editable in place) for whole-book spot checks.
+      Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
 - [x] `prepare` — translate → fill-in-the-blank enrichment → semantic de-dup → cross-lesson notes as
       ONE stage, chained automatically from `assemble` (`--no-prepare` opts out), so a lesson has no

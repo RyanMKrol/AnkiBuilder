@@ -124,7 +124,16 @@ export function createPageRenderers({
       const managedChip = deck.managed
         ? `<span class="dm" title="Delivered via AnkiConnect — push updates with Deliver to Anki. Re-importing the .apkg into that collection creates duplicate notes.">· AnkiConnect-managed</span>`
         : "";
-      const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span>${managedChip}</div>`;
+      // A multi-unit deck's heading links to the deck-level review — every lesson's cards on one
+      // page, editable in place — for whole-book spot checks. (Single-unit decks skip this: the
+      // block itself already links to the same place.)
+      const allUrl = `/review/${enc(deck.type)}/${enc(deck.id)}`;
+      const titleHtml =
+        deck.total > 1
+          ? `<a class="dt" href="${allUrl}" title="Open every lesson's cards on one page">${escapeHtml(deck.title)}</a>`
+          : `<span class="dt">${escapeHtml(deck.title)}</span>`;
+      const allLink = deck.total > 1 ? `<a class="dball" href="${allUrl}">All cards →</a>` : "";
+      const head = `<div class="dbhead">${titleHtml}<span class="dm">${deckMeta(deck)}</span>${managedChip}${allLink}</div>`;
       // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link.
       // A single-lesson deck renders as one block with no per-unit row, so any badge that says this
       // lesson is NOT simply sitting at a review — building, interrupted, or an unfinished build — has

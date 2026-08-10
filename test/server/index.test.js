@@ -116,6 +116,36 @@ test("built lesson has a single action opening the unit-scoped edit-audio view (
       assert.doesNotMatch(home, /home-reopen/); // reopen is gone — done lessons are editable directly
       assert.doesNotMatch(home, />Open</); // no separate Open button — the block itself is clickable
       assert.doesNotMatch(home, /\/deck\/book\/mybook/); // Browse is consolidated into the review view
+      assert.doesNotMatch(home, /class="dball"/); // no all-cards link — the block IS the whole deck
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("multi-lesson deck heading links to the deck-level review (all cards on one page); single-unit decks don't", async () => {
+  const root = fixture(); // mybook: single unit → no heading link (the block itself is the link)
+  try {
+    // second chapter → mybook becomes multi-unit, so its heading gains the all-cards link
+    const ch = join(root, "epubs", "mybook", "chapter-1");
+    mkdirSync(ch, { recursive: true });
+    writeFileSync(
+      join(ch, "cards.json"),
+      JSON.stringify({
+        meta: {
+          targetLanguage: "ja",
+          chapterNumber: 2,
+          chapterLabel: "Lesson Two",
+          reviewed: true,
+          done: true,
+        },
+        items: [{ id: "c", english: "three", target: "さん", pronunciation: "san" }],
+      }),
+    );
+    await withServer(root, async (url) => {
+      const home = await (await fetch(`${url}/`)).text();
+      assert.match(home, /<a class="dt" href="\/review\/book\/mybook"/); // title is the link
+      assert.match(home, /class="dball" href="\/review\/book\/mybook">All cards/);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });

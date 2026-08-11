@@ -193,6 +193,27 @@ A unit with no shared atoms legitimately hoists nothing — don't force it.
 
 Keep `corpus.json` in the SAME order as `cards.json`, or the reviews and the deck disagree.
 
+## Run `prepare` on the unit, or the review gate stays shut
+
+Authoring the unit's files is not the last build step. The readiness gate
+(`src/cards/readiness.js`) holds every non-template unit out of review until `prepare`'s two pass
+markers (`enriched`, `notesEnhanced`) are set, and a hand-authored extras unit has neither. The
+dashboard will say "Not ready to review" and hide the Mark reviewed button. So after the audits and
+ordering, always run:
+
+```sh
+anki-builder prepare --run output/epubs/<book-slug>/chapter-<n>-extras
+```
+
+What it does to an extras unit, concretely: the translate step no-ops (cards.json already exists and
+is complete); the fill-in-the-blank miner runs with no chapter file (extras meta has no `epubHash`),
+so it composes a handful of drills from the unit's own patterns, and its semantic de-dup usually
+excludes most of them as repeats of ground the pass already drilled; the cross-lesson note pass adds
+backward references, backing up first. None of your cards are dropped or rewritten (only
+`fillInBlank`-marked cards are ever touched by the de-dup). Afterwards, re-run the duplicate check
+and collision audit on the grown unit, and re-run `extras-order.mjs` with a NEW seed so any surviving
+mined cards fold into the shuffle instead of sitting as a predictable block at the end.
+
 ## Reviewing and shipping it
 
 The extras unit has no audio when created, so it lands at the **corpus stage**, which is the right

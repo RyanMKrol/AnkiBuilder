@@ -80,7 +80,9 @@ async function fileExists(path) {
 // How many uncached terms fetch at once. A 50-card lesson used to be 50 strictly sequential round
 // trips; a small pool cuts the wall time severalfold without hammering the API. Cache writes are
 // per-file atomic, and terms are distinct, so concurrent workers never touch the same files.
-const CONCURRENT_TTS_FETCHES = 4;
+// Capped at 3: the ElevenLabs subscription allows 3 concurrent requests, and a 4th in flight
+// gets a hard 429 that aborts the run.
+const CONCURRENT_TTS_FETCHES = 3;
 
 async function fetchTermsToCache(
   terms,

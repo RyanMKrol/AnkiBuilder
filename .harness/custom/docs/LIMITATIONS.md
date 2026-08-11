@@ -1386,3 +1386,15 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if the です / ばん / ばんごはん pairs cause real study friction, merge each
   pair into one card with a combined gloss instead of inventing a leaky scene. The migration's
   pre-change state is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.
+
+## TTS fetch pool is pinned to the ElevenLabs plan's concurrency cap
+
+- **What:** `CONCURRENT_TTS_FETCHES` in `src/audio/index.js` is a hardcoded 3, matching the
+  current ElevenLabs subscription's 3-concurrent-request limit. The pool was 4, and the 4th
+  in-flight request drew a hard 429 that aborted every `audio` run.
+- **Why:** the API rejects (not queues) requests over the plan cap, and the audio stage treats the
+  first fetch failure as fatal by design, so the pool must sit at or under the plan limit.
+- **Impact:** audio generation walks a lesson slightly slower than it could on a bigger plan, and
+  the constant silently under-uses a plan upgrade.
+- **When to revisit:** if the ElevenLabs plan changes, update the constant to the new concurrency
+  limit (or make it an env knob if plans start changing often).

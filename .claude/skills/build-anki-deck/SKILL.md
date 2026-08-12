@@ -249,9 +249,16 @@ each can be studied alone. The extras unit is a first-class lesson with its own 
 The full procedure (the two-wave subagent process, the rules the pass must not break, the
 duplicate/collision audits, and the seeded shuffle + hoist ordering) is in
 [references/extras-pass.md](references/extras-pass.md). Load that file and follow it; do not run the
-pass from memory. One rule worth restating here because it shaped the design: **a deck that holds
-cards must never have children** (Anki can't study a card-holding parent alone), which is why extras
-are a sibling under an empty grouping deck, never nested under the lesson.
+pass from memory. Two rules worth restating here because they shaped the design:
+
+- **A deck that holds cards must never have children** (Anki can't study a card-holding parent
+  alone), which is why extras are a sibling under an empty grouping deck, never nested under the
+  lesson.
+- **Look at the chapter's images, and audit any paradigm cell by cell.** Every upstream stage reads
+  only text, so teaching material the publisher shipped as a picture (usually a grammar table) is
+  invisible to the whole pipeline and reads as though the chapter never taught it. And when a chapter
+  teaches a paradigm, check every cell of it against the whole deck rather than trusting a glance.
+  Both procedures are in [extras-pass](references/extras-pass.md).
 
 Build the extras unit for chapter N before moving on to chapter N+1.
 

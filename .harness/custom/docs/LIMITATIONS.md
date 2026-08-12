@@ -1398,3 +1398,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   the constant silently under-uses a plan upgrade.
 - **When to revisit:** if the ElevenLabs plan changes, update the constant to the new concurrency
   limit (or make it an env knob if plans start changing often).
+
+## The collision audit judges cues per FACE, so a hint no longer passes a target group
+
+- **What:** `findCollisions` used to accept a `hint` OR a `scene` for both collision faces. A hint
+  renders on the Production front only (on a Recognition card it is part of the answer and shows on
+  the back), so target-face groups were passing the audit while still being unanswerable. It now
+  demands a `scene` for target groups; English-gloss groups still accept either cue.
+- **Why:** the audit's whole purpose is "can a learner answer this card", and that question has a
+  different answer per direction. A single permissive check made the audit report a clean deck that
+  was not clean.
+- **Impact:** the stricter rule surfaces pre-existing target collisions that previously read as
+  "hint ok", so a book audited before this change can newly report work to do (it found one on the
+  first run here). Exit code 2 now fires on cases that used to exit 0.
+- **When to revisit:** if the card templates ever change which fields render on which front, this
+  per-face rule has to move with them, since it encodes the template layout in a script.

@@ -50,7 +50,7 @@ test("cross-chapter duplicates: a question is marked so --apply can refuse it", 
   assert.equal(groups[0].duplicates[0].isQuestion, true);
 });
 
-test("collision audit: groups with more than one distinct answer, flagging missing hints", () => {
+test("collision audit: groups with more than one distinct answer, flagging missing cues", () => {
   const { byEnglish, byTarget } = findCollisions([
     unit("chapter-2", [
       card("polite", "How many people?", "なんめいさまですか", { hint: "what staff ask" }),
@@ -62,13 +62,43 @@ test("collision audit: groups with more than one distinct answer, flagging missi
   assert.equal(byEnglish.length, 1);
   assert.equal(byEnglish[0].key, "how many people");
   assert.deepEqual(
-    byEnglish[0].members.map((m) => [m.id, m.hasHint]),
+    byEnglish[0].members.map((m) => [m.id, m.hasCue]),
     [
       ["polite", true],
       ["plain", false],
     ],
   );
   assert.equal(byTarget.length, 0);
+});
+
+test("collision audit: a hint satisfies the Production face but never the Recognition face", () => {
+  // Same target, two glosses: the collision is on the Recognition front, where a `hint` renders
+  // only after answering. Only a `scene` counts there, while either cue counts on Production.
+  const { byEnglish, byTarget } = findCollisions([
+    unit("chapter-3", [
+      card("hinted", "Evening", "ばん", { hint: "the time of day" }),
+      card("scened", "Number…", "ばん", { scene: "labelling something by its number" }),
+      card("gloss-a", "Really", "ほんとうに", { hint: "goes before an adjective" }),
+      card("gloss-b", "Really", "ほんとうですか"),
+    ]),
+  ]);
+
+  assert.deepEqual(
+    byTarget[0].members.map((m) => [m.id, m.hasCue]),
+    [
+      ["hinted", false],
+      ["scened", true],
+    ],
+    "a hint must not pass a target collision",
+  );
+  assert.deepEqual(
+    byEnglish[0].members.map((m) => [m.id, m.hasCue]),
+    [
+      ["gloss-a", true],
+      ["gloss-b", false],
+    ],
+    "a hint does pass an English-gloss collision",
+  );
 });
 
 test("collision audit: trailing punctuation and case never split a group", () => {

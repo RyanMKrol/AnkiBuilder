@@ -186,9 +186,16 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    ```
 
    It groups by normalized `english` and by `target` and lists every group with more than one
-   distinct answer, flagging members with neither `scene` nor `hint` (exit 2 when any are missing). It is
+   distinct answer, flagging any member with no cue **on the face it actually collides on**: a
+   `hint` or a `scene` for an English-gloss group, a `scene` ONLY for a target group, since a hint
+   renders on the back of a Recognition card (exit 2 when any are missing). It is
    report-only: fix the collisions the pass introduced, and report pre-existing ones rather than
    inventing wording for cards the human already signed off.
+
+   Run it at the end of every chapter, not only when an extras unit is in flight: collisions
+   accumulate across lessons and no single-lesson pass can see them. Before wording a cue, check the
+   two glosses actually differ, since some collisions are duplicates that want excluding instead.
+   Both points are in [card-authoring-rules](card-authoring-rules.md).
 
 ## Order the unit: shuffle, then hoist its foundations
 

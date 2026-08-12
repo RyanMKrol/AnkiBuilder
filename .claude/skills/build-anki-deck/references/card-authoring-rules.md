@@ -216,6 +216,26 @@ Common shapes in a Japanese course: a polite/plain register pair (なんにん (
 same English, and a number that sounds like a word (さん (san) "3" vs さん (san) "Mr., Mrs., Ms.,
 Miss"; ほん (hon) "Book" vs the ほん (hon) long-object counter).
 
+**Run `scripts/extras-collision-audit.mjs <bookDir>` at the end of EVERY chapter, not only during an
+extras pass.** Collisions are the one defect class that grows as the deck grows: each new lesson
+reuses forms the earlier ones already glossed, so a book gains a couple of them per chapter and no
+single-lesson pass can see any of them. Left alone they compound, and they get more expensive to fix
+as the units they live in are signed off. The audit is seconds; run it before the unit goes `done`
+and fix what it names while the cards are still open.
+
+Two traps when you act on its output:
+
+- **A `hint` cannot fix a target collision.** It renders on the Production front only; on the
+  Recognition front it belongs to the answer and shows on the back, after the learner has already
+  had to answer. Only a `scene` renders before the answer on both faces. The audit enforces this
+  asymmetry (target groups demand a `scene`), but apply it by hand too whenever you word a cue.
+- **Not every collision is a sense distinction; some are duplicates.** Two cards with the same
+  target and glosses that mean the same thing ("To be (copula)" vs "Is / am / are (copula)") are one
+  card entered twice, and writing a cue there invents a difference the language does not have. Read
+  both glosses before wording anything: if you cannot state what separates them, exclude the later
+  one (keeping the earliest occurrence, as the duplicate-check script does) and the collision
+  disappears. A card the backward de-dup already flagged `uncertain` is the usual suspect.
+
 ## An answer card must be answerable alone
 
 **An ANSWER card must be answerable alone.** Textbook drills and dialogues are question/answer pairs,

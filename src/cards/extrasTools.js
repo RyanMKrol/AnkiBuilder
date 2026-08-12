@@ -58,14 +58,16 @@ export function findCrossChapterDuplicates(units) {
   return groups;
 }
 
+const filled = (value) => typeof value === "string" && value.trim().length > 0;
+
 /**
  * Deck-wide collision audit: groups whose shared face has more than one distinct answer, so each
- * member needs a `hint` to stay studiable. Two directions: same English gloss with different
+ * member needs a front cue to stay studiable. Two directions: same English gloss with different
  * targets (a Production card's face), and same target with different glosses (Recognition).
  * Report-only by design — pre-existing collisions on signed-off cards are for a human to word.
  */
 export function findCollisions(units) {
-  const collect = (keyOf, valueOf) => {
+  const collect = (keyOf, valueOf, cueAccepted) => {
     const map = new Map();
     for (const unit of units) {
       for (const item of unit.items) {
@@ -87,11 +89,14 @@ export function findCollisions(units) {
           id: item.id,
           english: item.english,
           target: item.target,
-          // Either cue disambiguates a colliding face: `hint` on the Production front, `scene` on
-          // the front of both directions.
-          hasHint:
-            (typeof item.hint === "string" && item.hint.trim().length > 0) ||
-            (typeof item.scene === "string" && item.scene.trim().length > 0),
+          // `hasCue` answers "is this member disambiguated on the face this group collides on",
+          // and the two faces do NOT accept the same cue. A `scene` renders on the front of BOTH
+          // directions, so it always counts. A `hint` renders on the Production front only — on
+          // the Recognition front it is part of the answer and shows on the back, which is too
+          // late to help. So a hint fixes an English-gloss collision and CANNOT fix a target one.
+          // Accepting either everywhere is what once let a shelf of unanswerable Recognition cards
+          // pass this audit as "hint ok".
+          hasCue: cueAccepted(item),
         })),
       });
     }
@@ -99,13 +104,17 @@ export function findCollisions(units) {
   };
 
   return {
+    // Production face: the learner sees the English, so either cue is visible before answering.
     byEnglish: collect(
       (item) => normalizeEnglish(item.english),
       (item) => normalizeTarget(item.target),
+      (item) => filled(item.hint) || filled(item.scene),
     ),
+    // Recognition face: only `scene` renders before the answer, so only `scene` counts.
     byTarget: collect(
       (item) => normalizeTarget(item.target),
       (item) => normalizeEnglish(item.english),
+      (item) => filled(item.scene),
     ),
   };
 }

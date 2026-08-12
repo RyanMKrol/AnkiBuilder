@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 // Deck-wide collision audit for the extras pass (extras-pass.md, "The gate that catches what the
 // agents cannot"). Groups every card in the book by normalized English gloss and by target; any
-// group with more than one distinct answer is unstudiable without a hint on each member (two
+// group with more than one distinct answer is unstudiable without a front cue on each member (two
 // Production cards both reading "How many people?" are one question with two right answers).
 //
 // Report-only by design: fix the collisions the extras pass introduced, and report pre-existing
 // ones on signed-off cards to the human rather than inventing wording for them.
 //
 // Usage: node scripts/extras-collision-audit.mjs <book-dir>
-// Exit 0 when every collision member has a hint; exit 2 when any is missing one.
+// Exit 0 when every collision member carries a cue that renders on the face it collides on
+// (hint or scene for an English-gloss group; scene ONLY for a target group, since a hint shows
+// on the back of a Recognition card); exit 2 when any is missing one.
 import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
 import { findCollisions } from "../src/cards/extrasTools.js";
@@ -33,29 +35,34 @@ const units = readdirSync(bookDir)
   .filter(Boolean);
 
 const { byEnglish, byTarget } = findCollisions(units);
-let missingHints = 0;
+let missingCues = 0;
 
-const report = (label, collisions) => {
+const report = (label, collisions, missingLabel) => {
   if (collisions.length === 0) return;
   console.log(`\n== collisions by ${label} ==`);
   for (const group of collisions) {
     console.log(`"${group.key}"`);
     for (const m of group.members) {
-      const flag = m.hasHint ? "hint ok" : "MISSING HINT";
-      if (!m.hasHint) missingHints++;
+      const flag = m.hasCue ? "cue ok" : missingLabel;
+      if (!m.hasCue) missingCues++;
       console.log(`  ${m.unit}/${m.id}: "${m.english}" / ${m.target} — ${flag}`);
     }
   }
 };
 
-report("English gloss (Production face)", byEnglish);
-report("target (Recognition face)", byTarget);
+report("English gloss (Production face)", byEnglish, "MISSING HINT (or scene)");
+// A hint is not offered as an option here: it renders on the back of a Recognition card, after
+// the learner has already had to answer.
+report("target (Recognition face)", byTarget, "MISSING SCENE");
 
 if (byEnglish.length === 0 && byTarget.length === 0) {
   console.log("no collisions found");
-} else if (missingHints === 0) {
-  console.log("\nevery collision member carries a hint — nothing to fix");
+} else if (missingCues === 0) {
+  console.log("\nevery collision member carries a cue that renders on the colliding face");
 } else {
-  console.log(`\n${missingHints} card(s) in collision groups have no hint — add one to each`);
+  console.log(
+    `\n${missingCues} card(s) in collision groups have no cue on the face they collide on — ` +
+      `add a hint (English-gloss groups) or a scene (target groups) to each`,
+  );
 }
-process.exit(missingHints > 0 ? 2 : 0);
+process.exit(missingCues > 0 ? 2 : 0);

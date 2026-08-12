@@ -102,6 +102,47 @@ Three jobs, and let the counts decide the size:
 Extraction of the chapter text: `extractChapterToFile(epubPath, n, dest)` in `src/corpus/epubArchive.js`.
 Strip the XHTML to plain text before handing it to an agent, or it burns context on markup.
 
+## First, look at the chapter's IMAGES (the pipeline never has)
+
+**Before either wave, grep the chapter's raw XHTML for `<img>` and LOOK at anything that isn't
+decoration.** Every stage upstream of you works on text: the extraction, the drill miner and the note
+pass all read the stripped-out plain text, so a table, chart or worked example that the publisher
+shipped as a picture is invisible to the entire pipeline. It does not appear as a gap; it appears as
+though the chapter never taught that material. Publishers do this constantly for grid-shaped content,
+which is exactly the content that carries a grammar paradigm.
+
+```sh
+grep -o '<img[^>]*>' <chapter>.xhtml                       # find them; alt text is usually empty
+unzip -o -j <book>.epub '*<ImageName>*' -d <scratchpad>/imgs   # pull the ones near teaching prose
+```
+
+Then **read the extracted files** (the Read tool renders images) and transcribe what they teach into
+the Wave 2 brief. Two cheap signals that an image is load-bearing rather than decorative: it sits
+directly under an exercise or grammar heading whose text then runs out (a heading followed by nothing
+is the giveaway), and it is referenced by prose that has no visible referent. Judge by position, not
+by filename.
+
+## Audit a paradigm across the WHOLE deck, cell by cell
+
+When a chapter teaches a **paradigm** (a form that varies over a closed set of slots: present/past ×
+affirmative/negative, plain/polite, a counter series, a case or gender table), do not eyeball whether
+it "feels covered". Enumerate the grid, then check every cell against **every card in the book**, not
+just this chapter's, because earlier lessons often fill part of it and later gaps are invisible from
+inside one unit. Write the check as a script over all `chapter-*/cards.json` targets rather than
+reading tables by eye; substring matching on the inflected form is enough, and it takes a minute.
+
+Report the result as a grid before authoring anything, and let the misses drive the Wave 2 forms
+brief. Expect real holes: the passes that built earlier lessons never saw the paradigm as a paradigm,
+so coverage tends to be lumpy (every cell for one or two words, one cell for the rest).
+
+**Deliver the missing cells as sentences, never as table rows.** A paradigm table with a dozen entries
+is a recitation list, and carding it directly produces exactly the padding this pass exists to avoid:
+the learner memorises the table's rhythm instead of the transformation. Use **fixed frames**, one
+sentence per cell with only the inflection changing, so the transformation is the sole variable; give
+the irregular members a `note` naming what the regular pattern would predict and why it breaks; and
+spend a card on any member that looks like it belongs to another class (a な-adjective that ends in
+い, a noun that takes an unexpected counter), since that is where a learner silently goes wrong.
+
 ## Rules the pass must not break
 
 Everything in [card-authoring-rules.md](card-authoring-rules.md) still applies (kana-only for a kana

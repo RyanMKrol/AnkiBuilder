@@ -72,6 +72,30 @@ Its `cards.meta` carries:
   carrying one would overwrite its base lesson's entry the moment it is marked reviewed, corrupting
   every later chapter's backward-dedup.
 
+**Do NOT build `corpus.meta` by copying `cards.meta`.** They are different schemas, and the corpus one
+is `additionalProperties: false`, so `baseChapterLabel` (a cards-only field) makes `corpus.json`
+invalid the moment it is copied across. Every extras unit built before this was written carried it,
+because copying the whole meta object is the obvious thing to do and nothing ever complained: the
+corpus schema is only enforced on the `assemble` path, which a hand-authored unit never takes. Build
+`corpus.meta` explicitly from the fields the corpus schema declares, and likewise keep card fields
+that only exist on the cards side (`reading`, `pronunciation`, `audio*`, `aiSuggested`) out of corpus
+items.
+
+**Give every field the type the schema declares, and NEVER a `null` placeholder.** Only `note`,
+`cardNote`, `reviewNote`, `hint` and `scene` accept `null`. Everything else is a plain `string`, which
+means an absent value must be an ABSENT KEY — `"reading": null` fails validation. A hand-authored unit
+is the one place this bites, because it skips the translate stage that would otherwise shape the
+fields, and the failure surfaces late and unhelpfully: the dashboard refuses the review click with
+`invalid card data after edit: Property reading in items[0] must be of type string`, naming one field
+of one item, so fixing it one message at a time is a trap. Check the whole unit at once:
+
+```sh
+npm run validate:decks        # every corpus.json/cards.json under output/, against src/model
+```
+
+Run that before handing over the review link, not after the reviewer hits a wall. It is not part of
+`npm run ci` because `/output` is gitignored, so CI has no deck data to check.
+
 Everything else works unchanged: the dashboard lists it as its own reviewable unit, it has its own two
 gates, and `deck --book-dir` merges it only once it is `done`.
 

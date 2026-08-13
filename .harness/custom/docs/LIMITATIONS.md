@@ -1413,3 +1413,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   first run here). Exit code 2 now fires on cases that used to exit 0.
 - **When to revisit:** if the card templates ever change which fields render on which front, this
   per-face rule has to move with them, since it encodes the template layout in a script.
+
+## Anki deck names carry a zero-padded lesson number
+
+- **What:** `unitDeckSegments` pads a label's lesson number to two digits when deriving the Anki
+  deck name (`Lesson 9: Title` -> deck `Lesson 09::Title`). The unit's label is untouched
+  everywhere else, so `cards.json`, the dashboard and the card faces still read "Lesson 9".
+- **Why:** Anki sorts sibling decks as text, with no natural-number sort and no manual ordering, so
+  an unpadded deck list runs 1, 10, 11, 2, 3. Padding is the only lever available.
+- **Impact:** two digits caps a book at 99 lessons before the sort breaks again, and the deck list
+  reads "Lesson 01" where the book says "Lesson 1". Any collection created before this change needs
+  the one-shot `scripts/migrate-deck-numbering.mjs` (create + changeDeck + delete the empty
+  original, since AnkiConnect has no rename action), or delivery will file new cards in the padded
+  deck while old cards sit in the unpadded one.
+- **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
+  case the padding can be dropped and migrated the same way.

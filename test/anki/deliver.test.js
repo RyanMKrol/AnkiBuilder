@@ -293,15 +293,15 @@ test("syncDeckContent dry run writes nothing", async () => {
 test("ensureDecks creates only the sub-decks Anki is missing", async () => {
   const created = [];
   const client = {
-    deckNames: async () => ["Book", "Book::Lesson 1"],
+    deckNames: async () => ["Book", "Book::Lesson 01"],
     createDeck: async (name) => created.push(name),
   };
   const decks = [
     {
       units: [
-        { ankiDeck: "Book::Lesson 1" },
-        { ankiDeck: "Book::Lesson 2" },
-        { ankiDeck: "Book::Lesson 2" },
+        { ankiDeck: "Book::Lesson 01" },
+        { ankiDeck: "Book::Lesson 02" },
+        { ankiDeck: "Book::Lesson 02" },
       ],
     },
   ];
@@ -309,10 +309,10 @@ test("ensureDecks creates only the sub-decks Anki is missing", async () => {
   const missing = await ensureDecks(client, decks, false);
   assert.deepEqual(
     missing,
-    ["Book::Lesson 2"],
+    ["Book::Lesson 02"],
     "existing decks are left alone, duplicates collapsed",
   );
-  assert.deepEqual(created, ["Book::Lesson 2"]);
+  assert.deepEqual(created, ["Book::Lesson 02"]);
 });
 
 test("ensureDecks reports but does not create on a dry run", async () => {
@@ -321,8 +321,8 @@ test("ensureDecks reports but does not create on a dry run", async () => {
     deckNames: async () => ["Book"],
     createDeck: async (name) => created.push(name),
   };
-  const missing = await ensureDecks(client, [{ units: [{ ankiDeck: "Book::Lesson 8" }] }], true);
-  assert.deepEqual(missing, ["Book::Lesson 8"]);
+  const missing = await ensureDecks(client, [{ units: [{ ankiDeck: "Book::Lesson 08" }] }], true);
+  assert.deepEqual(missing, ["Book::Lesson 08"]);
   assert.deepEqual(created, [], "a dry run performs only reads");
 });
 
@@ -334,15 +334,15 @@ test("assertUniqueCardIds refuses a deck whose card ids repeat across units", ()
     type: "book",
     id: "b",
     units: [
-      { ankiDeck: "Book::Lesson 6", cards: [{ id: "ni-particle" }, { id: "kara-particle" }] },
-      { ankiDeck: "Book::Lesson 7", cards: [{ id: "ni-particle" }] },
+      { ankiDeck: "Book::Lesson 06", cards: [{ id: "ni-particle" }, { id: "kara-particle" }] },
+      { ankiDeck: "Book::Lesson 07", cards: [{ id: "ni-particle" }] },
     ],
   };
   assert.throws(
     () => assertUniqueCardIds(deck),
     (e) => {
       assert.match(e.message, /duplicate card ids/);
-      assert.match(e.message, /ni-particle \(Book::Lesson 6, Book::Lesson 7\)/);
+      assert.match(e.message, /ni-particle \(Book::Lesson 06, Book::Lesson 07\)/);
       // Only the repeated id is named.
       assert.doesNotMatch(e.message, /kara-particle/);
       return true;
@@ -355,8 +355,8 @@ test("assertUniqueCardIds passes a deck with distinct ids", () => {
     type: "book",
     id: "b",
     units: [
-      { ankiDeck: "Book::Lesson 6", cards: [{ id: "ni-particle" }] },
-      { ankiDeck: "Book::Lesson 7", cards: [{ id: "ni-particle-time" }] },
+      { ankiDeck: "Book::Lesson 06", cards: [{ id: "ni-particle" }] },
+      { ankiDeck: "Book::Lesson 07", cards: [{ id: "ni-particle-time" }] },
     ],
   };
   assert.doesNotThrow(() => assertUniqueCardIds(deck));
@@ -422,7 +422,7 @@ test("resolveDecks groups a lesson and its extras under the same grouping deck",
     const names = decks[0].units.map((u) => u.ankiDeck);
     assert.deepEqual(
       names.map((n) => n.split("::").slice(1).join("::")),
-      ["Lesson 1::Meeting", "Lesson 1::Meeting (Extras)"],
+      ["Lesson 01::Meeting", "Lesson 01::Meeting (Extras)"],
     );
     // Both units are LEAVES: neither is a prefix of the other, so neither can swallow the other.
     for (const a of names) for (const b of names) assert.ok(a === b || !b.startsWith(`${a}::`));
@@ -434,8 +434,8 @@ test("resolveDecks groups a lesson and its extras under the same grouping deck",
 test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks", async () => {
   const existing = [
     "Book",
-    "Book::Lesson 5",
-    "Book::Lesson 5::Shopping (2)", // managed (grouped) — holds the real cards
+    "Book::Lesson 05",
+    "Book::Lesson 05::Shopping (2)", // managed (grouped) — holds the real cards
     "Book::Lesson 5: Shopping (2)", // legacy flat shell — empty
     "Book::Lesson 5: Shopping (2)::Extras", // oldest-scheme child — empty
     "Book::Lesson 6: Going Places", // legacy shell that somehow still holds cards
@@ -459,8 +459,8 @@ test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks",
     {
       ankiParent: "Book",
       units: [
-        { ankiDeck: "Book::Lesson 5::Shopping (2)", label: "Lesson 5: Shopping (2)" },
-        { ankiDeck: "Book::Lesson 6::Going Places", label: "Lesson 6: Going Places" },
+        { ankiDeck: "Book::Lesson 05::Shopping (2)", label: "Lesson 5: Shopping (2)" },
+        { ankiDeck: "Book::Lesson 06::Going Places", label: "Lesson 6: Going Places" },
         {
           ankiDeck: "Book::Frequently Used Expressions",
           label: "Frequently Used Expressions",

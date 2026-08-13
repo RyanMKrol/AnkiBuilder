@@ -67,12 +67,12 @@ test("buildMultiDeckCollection produces Default + one book deck + one sub-deck p
     assert.deepEqual(names, [
       "Default",
       "Japanese for Busy People",
-      "Japanese for Busy People::Lesson 1",
-      "Japanese for Busy People::Lesson 1::Meeting",
-      "Japanese for Busy People::Lesson 2",
-      "Japanese for Busy People::Lesson 2::Possession",
-      "Japanese for Busy People::Lesson 3",
-      "Japanese for Busy People::Lesson 3::Time",
+      "Japanese for Busy People::Lesson 01",
+      "Japanese for Busy People::Lesson 01::Meeting",
+      "Japanese for Busy People::Lesson 02",
+      "Japanese for Busy People::Lesson 02::Possession",
+      "Japanese for Busy People::Lesson 03",
+      "Japanese for Busy People::Lesson 03::Time",
     ]);
   });
 });
@@ -93,8 +93,8 @@ test("buildMultiDeckCollection assigns every card's did to its own chapter's sub
     const idByName = Object.fromEntries(Object.values(decks).map((d) => [d.name, d.id]));
     const defaultId = idByName["Default"];
     const bookId = idByName["Book"];
-    const lesson1Id = idByName["Book::Lesson 1"];
-    const lesson2Id = idByName["Book::Lesson 2"];
+    const lesson1Id = idByName["Book::Lesson 01"];
+    const lesson2Id = idByName["Book::Lesson 02"];
 
     const notes = db.prepare("SELECT id, flds FROM notes ORDER BY id").all();
     const lesson1NoteIds = notes
@@ -366,9 +366,9 @@ test("buildMultiDeckCollection groups a lesson and its extras under a card-less 
       "Default",
       "JBP",
       "JBP::Frequently Used Expressions",
-      "JBP::Lesson 1",
-      "JBP::Lesson 1::Meeting: Nice to Meet You",
-      "JBP::Lesson 1::Meeting: Nice to Meet You (Extras)",
+      "JBP::Lesson 01",
+      "JBP::Lesson 01::Meeting: Nice to Meet You",
+      "JBP::Lesson 01::Meeting: Nice to Meet You (Extras)",
     ]);
 
     // THE invariant: a deck that holds cards must have no children, or Anki cannot study it alone.
@@ -382,6 +382,6 @@ test("buildMultiDeckCollection groups a lesson and its extras under a card-less 
       assert.deepEqual(kids, [], `${name} holds ${n} cards and must not have children`);
     }
     // The grouping deck itself is empty.
-    assert.equal(counts.get("JBP::Lesson 1"), 0);
+    assert.equal(counts.get("JBP::Lesson 01"), 0);
   });
 });

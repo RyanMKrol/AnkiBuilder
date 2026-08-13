@@ -53,6 +53,36 @@ That's the whole state space. A lesson is either mid-build (the dashboard says *
 *interrupted*, or lists it under **Not finished**), sitting at gate 1, sitting at gate 2, or done.
 There is no third review, and nothing to review before translation.
 
+**Never hand over a gate and stop. Arm a watcher and continue by yourself when the sign-off lands.**
+Handing over a review link and then waiting to be told "I've reviewed it" costs the user a message
+every single time, twice per unit, four times per chapter. Instead, the moment you give them a review
+link, start a background watcher that polls the flag the dashboard writes and exits once it is set.
+Its completion notification is your cue to carry straight on: generate the audio after gate 1, and
+after gate 2 run the extras pass, or the merge, or whatever the arc calls for next.
+
+```sh
+# One notification when the flag flips. `run_in_background: true`; the exit IS the signal.
+for i in $(seq 1 120); do
+  node -e "process.exit(require('./<runDir>/cards.json').meta.reviewed===true?0:1)" && \
+    exec node src/cli/bin.js audio --run <runDir>
+  sleep 15
+done
+echo "timed out after 30 minutes with no sign-off"; exit 1
+```
+
+Watch `meta.reviewed` after gate 1 and `meta.done` after gate 2. Rules that keep this honest:
+
+- **It waits for the human; it never replaces them.** The watcher only ever observes the flag the
+  reviewer's own click writes. Setting a review flag yourself to unblock a stage defeats the gate
+  that exists to keep unseen cards out of the deck. If a stage refuses because a unit is unreviewed,
+  that is the system working.
+- **Always bound the wait** and say what happens on timeout, so an unattended session ends with a
+  clear message rather than a process that quietly lingers.
+- **Tell the user it is armed** when you hand over the link, so they know the next step runs on its
+  own and no follow-up message is needed.
+- Use a background `until`/poll loop for this, not the Monitor tool: you want exactly one
+  notification when the state flips, which is what a command that exits on the condition gives you.
+
 **Each chapter produces TWO units, and each goes through both gates on its own.** After the base
 lesson clears gate 1, Step 3b builds its *extras* unit: drill cards from the same chapter, shipped as
 a separate sub-deck beside the lesson. The full arc for one chapter:

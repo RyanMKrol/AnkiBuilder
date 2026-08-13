@@ -184,6 +184,26 @@ pass shows no **Mark reviewed** button and sits under **Not finished** with the 
 it (`anki-builder prepare --run <dir>`). Templates are exempt from the drill/notes passes (nothing to
 mine, no siblings).
 
+**While the build runs, sweep the chapter's IMAGES. This is a required step of every EPUB build,
+not an optional check.** Every stage of the pipeline reads the stripped-out plain text, so any
+teaching material the publisher shipped as a picture (grammar tables above all, but also exercises
+whose alternatives live in the artwork) is invisible to all of it, and the result reads exactly like
+a chapter that never taught that material. Nothing downstream can notice what was never extracted,
+so if you skip this the gap is silent. It costs about thirty seconds:
+
+```sh
+grep -o '<img[^>]*>' <chapter>.xhtml                          # decoration is inline; figures are class="fill"
+unzip -o -j <book>.epub '*<ImageName>*' -d <scratchpad>/imgs   # pull the ones near teaching prose
+```
+
+Read the extracted files (the Read tool renders images) and judge each by POSITION, not filename: a
+figure sitting under a heading whose text then runs out, or referenced by prose with no visible
+referent, is load-bearing; an illustration whose labels already appear in the text is decoration.
+**Report what you find WITH the review link**, so the reviewer signs off gate 1 knowing whether the
+chapter taught anything the cards cannot have covered. Transcribe any load-bearing figure into the
+Step 3b brief, and audit any paradigm it contains cell by cell. Full procedure, including the
+paradigm audit: [extras-pass](references/extras-pass.md).
+
 What `prepare` runs, in order (details and prompts per pass are in
 [card-authoring-rules](references/card-authoring-rules.md) and the `docs/*-prompt.md` files):
 

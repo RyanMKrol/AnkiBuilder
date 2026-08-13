@@ -104,8 +104,12 @@ Strip the XHTML to plain text before handing it to an agent, or it burns context
 
 ## First, look at the chapter's IMAGES (the pipeline never has)
 
-**Before either wave, grep the chapter's raw XHTML for `<img>` and LOOK at anything that isn't
-decoration.** Every stage upstream of you works on text: the extraction, the drill miner and the note
+This sweep is a **required step of the BUILD** ([SKILL.md](../SKILL.md) Step 2), run while
+`assemble` is still working so the finding reaches the reviewer with the gate-1 link. It is repeated
+here because this is the pass that acts on it: if you arrive at an extras unit and no image sweep was
+reported for the chapter, do it now before either wave.
+
+**Grep the chapter's raw XHTML for `<img>` and LOOK at anything that isn't decoration.** Every stage upstream of you works on text: the extraction, the drill miner and the note
 pass all read the stripped-out plain text, so a table, chart or worked example that the publisher
 shipped as a picture is invisible to the entire pipeline. It does not appear as a gap; it appears as
 though the chapter never taught that material. Publishers do this constantly for grid-shaped content,

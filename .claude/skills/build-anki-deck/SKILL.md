@@ -121,15 +121,25 @@ Use the `AskUserQuestion` tool to ask which source to build from:
    a deck in any language.
 3. **Your own EPUB**: path to an .epub file on your machine.
 
-Then disambiguate with follow-up questions specific to that source:
+Then disambiguate with follow-up questions specific to that source. **Every one of these is a real
+question to the user, never something you infer from the state of `output/`.** Reading the on-disk
+state tells you what the OPTIONS are; it never tells you which one they want. A build costs LLM and
+TTS credits and lands in a deck they study daily, so guessing wrong is expensive in both.
 
-- **Which book? (EPUB)** Before asking for a file path, list the EPUBs already worked on by calling
-  `listBooks(outputRoot)` (`src/cli/outputPaths.js`) and offer each (labelled by `title`) as an
-  option, plus "a new EPUB (I'll give a path)". Every `--epub` build keeps a copy of the source file
-  in the book's output folder, so an existing book builds with `--book <book-slug>` and no path. If
-  `listBooks` returns nothing, just ask for a path. Either way, ask which target language.
-- **Which lesson? (EPUB)** Select by the book's OWN table of contents, never a raw spine index: an
-  EPUB "chapter number" is just a content file's position, and a lesson can span several files. Run
+- **Which book? (EPUB) — always ask, even when there is exactly one.** List the EPUBs already worked
+  on by calling `listBooks(outputRoot)` (`src/cli/outputPaths.js`) and offer each (labelled by
+  `title`) as an option, **always alongside "a new EPUB (I'll give a path)"**. A single existing book
+  is not an answer: the user may well be starting a second one, and that option has to be on the
+  table every time. Every `--epub` build keeps a copy of the source file in the book's output folder,
+  so an existing book builds with `--book <book-slug>` and no path. If `listBooks` returns nothing,
+  just ask for a path. Either way, ask which target language.
+- **Which lesson? (EPUB) — always ask, and never assume "the next one".** Having picked an existing
+  book, the chapters already on disk make it obvious which lesson comes next, and that inference is
+  exactly the one to resist: the user may want to rebuild an earlier lesson, skip ahead, or jump to a
+  section out of order. Present the choice; you can flag which lesson is next in sequence as a
+  suggestion, but the user picks. Select by the book's OWN table of contents, never a raw spine
+  index: an EPUB "chapter number" is just a content file's position, and a lesson can span several
+  files. Run
   `anki-builder assemble --output-root output {--epub <path> | --book <slug>} --list-lessons --lang <lang>`
   (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and offer the `lesson`-typed entries as
   options; pass the chosen `label` (or `[number]`) to `assemble --lesson`. Fall back to

@@ -60,17 +60,29 @@ link, start a background watcher that polls the flag the dashboard writes and ex
 Its completion notification is your cue to carry straight on: generate the audio after gate 1, and
 after gate 2 run the extras pass, or the merge, or whatever the arc calls for next.
 
+**Use the Monitor tool, so the watcher is VISIBLE in the conversation.** A plain background poll
+loop works but is silent until the moment it fires, which leaves the reviewer with no evidence that
+anything is waiting on them; they end up asking whether it is running, which is the message the
+watcher existed to save. Monitor turns each stdout line into a message in the thread, so announce
+when it arms, tick occasionally while waiting, and announce when it fires. Emit and then EXIT, so the
+watch ends with the event instead of lingering.
+
 ```sh
-# One notification when the flag flips. `run_in_background: true`; the exit IS the signal.
+RUN=<runDir>
+echo "⏳ watching <unit> for Mark reviewed (gate 1): checking every 15s, giving up after 30m"
 for i in $(seq 1 120); do
-  node -e "process.exit(require('./<runDir>/cards.json').meta.reviewed===true?0:1)" && \
-    exec node src/cli/bin.js audio --run <runDir>
+  if node -e "process.exit(require('./$RUN/cards.json').meta.reviewed===true?0:1)" 2>/dev/null; then
+    echo "✅ <unit> marked REVIEWED, picking it up now"; exit 0
+  fi
+  [ $((i % 20)) -eq 0 ] && echo "⏳ still waiting ($((i / 4)) min elapsed)"
   sleep 15
 done
-echo "timed out after 30 minutes with no sign-off"; exit 1
+echo "⚠️ gave up after 30 min with no sign-off"; exit 1
 ```
 
-Watch `meta.reviewed` after gate 1 and `meta.done` after gate 2. Rules that keep this honest:
+Keep the heartbeat sparse (every few minutes, not every poll): a monitor that floods the thread gets
+stopped automatically. Watch `meta.reviewed` after gate 1 and `meta.done` after gate 2. Rules that
+keep this honest:
 
 - **It waits for the human; it never replaces them.** The watcher only ever observes the flag the
   reviewer's own click writes. Setting a review flag yourself to unblock a stage defeats the gate
@@ -80,8 +92,8 @@ Watch `meta.reviewed` after gate 1 and `meta.done` after gate 2. Rules that keep
   clear message rather than a process that quietly lingers.
 - **Tell the user it is armed** when you hand over the link, so they know the next step runs on its
   own and no follow-up message is needed.
-- Use a background `until`/poll loop for this, not the Monitor tool: you want exactly one
-  notification when the state flips, which is what a command that exits on the condition gives you.
+- If a stage should run the instant the flag flips, `exec` it from inside the loop instead of just
+  exiting; the stage's own output then becomes the closing event.
 
 **Each chapter produces TWO units, and each goes through both gates on its own.** After the base
 lesson clears gate 1, Step 3b builds its *extras* unit: drill cards from the same chapter, shipped as

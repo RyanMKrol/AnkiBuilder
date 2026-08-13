@@ -513,6 +513,19 @@ anki-builder deck --book-dir output/epubs/<book-slug>       # merge a book (done
 anki-builder deck --book-dir output/courses/<course-slug>   # merge a course
 ```
 
+### Validate every deck's JSON against the schemas
+
+```sh
+npm run validate:decks              # or: node scripts/validate-decks.mjs [output-root]
+```
+
+Checks every `corpus.json`/`cards.json` under `output/` against `src/model/index.js` and exits
+non-zero on the first invalid file, listing them all. Worth running after any hand-edit and before
+handing over a review link — a hand-authored unit (an extras unit above all) skips the stages that
+would normally shape its fields, and the dashboard only reports the breakage one field at a time when
+the reviewer clicks a gate. Deliberately NOT part of `npm run ci`: `/output` is gitignored, so CI has
+no deck data to check.
+
 ### Restyle a deck's font
 
 ```sh

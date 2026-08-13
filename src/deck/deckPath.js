@@ -26,16 +26,32 @@
 // A label with no such prefix (a course's bare "Lesson 1", a book's "Frequently Used Expressions")
 // has nothing to group with and stays one level under the parent.
 
-const GROUPED_LABEL = /^((?:Lesson|Chapter|Unit)\s+\d+)\s*:\s*(.+)$/;
+const GROUPED_LABEL = /^(Lesson|Chapter|Unit)\s+(\d+)\s*:\s*(.+)$/;
+// A label that is ONLY a numbered prefix, with no title to group with: a course's bare "Lesson 3".
+// It stays a single segment, but its number still needs padding, because it is a sibling deck in
+// exactly the same Anki list as a book's grouping decks and sorts by the same rules.
+const BARE_NUMBERED_LABEL = /^(Lesson|Chapter|Unit)\s+(\d+)$/;
+
+// Anki sorts sibling decks as TEXT, with no natural-number sort and no manual ordering, so an
+// unpadded "Lesson 10" files between "Lesson 1" and "Lesson 2". Padding the number to two digits
+// is the only thing that puts a deck list in lesson order. It applies to the DECK NAME only: the
+// unit's own label is untouched everywhere else (cards.json, the dashboard, the card faces), so
+// this is purely how the deck is filed in Anki.
+//
+// Two digits covers a 99-lesson book. Already-wide numbers pass through unchanged, and re-padding
+// an already-padded label is a no-op, so the function stays idempotent.
+const padLessonNumber = (digits) => digits.padStart(2, "0");
 
 /**
- * `["Lesson 1", "Meeting: Nice to Meet You"]` for a grouped label, else `["<label>"]`.
+ * `["Lesson 01", "Meeting: Nice to Meet You"]` for a grouped label, else `["<label>"]`.
  * Segments are returned raw; the caller sanitizes them for its own target.
  */
 export function unitDeckSegments(label) {
   const text = String(label ?? "").trim();
   const m = GROUPED_LABEL.exec(text);
-  return m ? [m[1], m[2]] : [text];
+  if (m) return [`${m[1]} ${padLessonNumber(m[2])}`, m[3]];
+  const bare = BARE_NUMBERED_LABEL.exec(text);
+  return bare ? [`${bare[1]} ${padLessonNumber(bare[2])}`] : [text];
 }
 
 /**

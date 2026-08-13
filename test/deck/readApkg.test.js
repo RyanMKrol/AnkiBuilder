@@ -62,7 +62,7 @@ test("readApkg groups cards under their sub-decks for a merged book, in book ord
     buildBookDeck(
       [
         {
-          name: "Lesson 1",
+          name: "Lesson 01",
           cards: {
             meta: { targetLanguage: "ja" },
             items: [
@@ -77,7 +77,7 @@ test("readApkg groups cards under their sub-decks for a merged book, in book ord
           },
         },
         {
-          name: "Lesson 2",
+          name: "Lesson 02",
           cards: {
             meta: { targetLanguage: "ja" },
             items: [
@@ -93,7 +93,7 @@ test("readApkg groups cards under their sub-decks for a merged book, in book ord
     assert.equal(deck.title, "My Book");
     assert.deepEqual(
       deck.sections.map((s) => s.leaf),
-      ["Lesson 1", "Lesson 2"],
+      ["Lesson 01", "Lesson 02"],
     );
     assert.equal(deck.totalCards, 2);
   } finally {

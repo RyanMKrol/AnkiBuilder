@@ -133,7 +133,16 @@ affirmative/negative, plain/polite, a counter series, a case or gender table), d
 it "feels covered". Enumerate the grid, then check every cell against **every card in the book**, not
 just this chapter's, because earlier lessons often fill part of it and later gaps are invisible from
 inside one unit. Write the check as a script over all `chapter-*/cards.json` targets rather than
-reading tables by eye; substring matching on the inflected form is enough, and it takes a minute.
+reading tables by eye; it takes a minute.
+
+**Do not trust a bare substring match, and sanity-check the hits before you report them.** For an
+adjective table it is usually safe, because `おおきくないです` appears in nothing else. For a verb
+paradigm it is badly wrong: `いました` matches inside `かいました`, `ちがいます` contains `が` + `います`,
+and `ありません` sits inside the copula's `じゃありません`, so a naive audit of あります/います reports
+almost full coverage of a paradigm the deck barely touches. Require the form in **predicate position**
+(preceded by a particle such as が, は, も, に, or the start of the string), exclude the longer forms
+of the same paradigm when testing a shorter one, and then **read the matching cards** before believing
+the result. If a cell's only "hit" is a word you did not expect, it is a false positive.
 
 Report the result as a grid before authoring anything, and let the misses drive the Wave 2 forms
 brief. Expect real holes: the passes that built earlier lessons never saw the paradigm as a paradigm,
@@ -183,6 +192,16 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    question: excluding a question can strand an elliptical answer whose `scene` names it, so
    resolve those by hand (excluding an answer is always safe, because a question card is
    answerable alone).
+
+   **Run this at the end of every chapter, not only during an extras pass.** It is the same rule the
+   collision audit follows, and for the same reason: a duplicate is created by a LATER lesson
+   re-teaching an earlier one's word, so no single-lesson pass can see it. There is a second, sharper
+   reason to catch it early. When two cards share a `target` they very often share a generated `id`
+   too, and a card id becomes the Anki note guid, so the book build **refuses to package the deck at
+   all** rather than collapse two cards onto one note. That refusal fires at **Mark done**, which is
+   the worst moment: the corpus review has already passed, the unit is signed off, and fixing it
+   means editing a finished unit. Running the check while the lesson is still at gate 1 turns the
+   same problem into one tick of an Exclude box.
 2. **A deck-wide collision audit** — also scripted:
 
    ```sh

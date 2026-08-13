@@ -18,7 +18,10 @@ const args = process.argv.slice(2);
 const apply = args.includes("--apply");
 const force = args.includes("--force");
 const seedIndex = args.indexOf("--seed");
-const positional = args.filter((a, i) => !a.startsWith("--") && i !== seedIndex + 1);
+// Guard the -1: with no --seed, seedIndex + 1 is 0, which would drop argv[0] — the run dir itself —
+// and the script could then only ever run WITH --seed, i.e. never in its documented default form.
+const seedValueIndex = seedIndex >= 0 ? seedIndex + 1 : -1;
+const positional = args.filter((a, i) => !a.startsWith("--") && i !== seedValueIndex);
 const runDir = resolve(positional[0] || "");
 const seed = seedIndex >= 0 ? args[seedIndex + 1] : basename(runDir);
 

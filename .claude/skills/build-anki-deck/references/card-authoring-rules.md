@@ -28,6 +28,30 @@ keeps its own punctuation.) The displayed face and reading never carry a `。` a
 the audio stage appends a throwaway end marker (`。ででで`) to the *spoken* text only, and the trim cuts
 it back off. See [audio-pipeline.md](audio-pipeline.md) for how that works.
 
+## Never card a SCHEMATIC pattern; card a real sentence instead
+
+**A card's `target` must be something a person could actually say.** Textbook vocabulary lists print
+grammar patterns as schematics, with a placeholder standing in for the slot: `だれも…〜ません`,
+`〜から〜まで`, `〜って なんですか`. Those are fine on the page, and useless as a card. The `…` and `〜`
+are not language, so the TTS voice reads the placeholders or stumbles over them and the clip is
+meaningless; the romaji comes out as `dare mo … ~ masen`; and the Production face asks the learner to
+produce a notation they cannot say or type. The extraction lifts these verbatim because they sit in
+the vocabulary list looking exactly like every other entry, so check for them: a `target` containing
+`…`, `〜`, `~` or `...` is almost always this bug.
+
+Deliver the pattern the way every other rule here says to, **as a worked sentence with the slot
+filled**: `だれもいません` teaches `だれも + negative` better than the schematic ever could. So:
+
+- If the deck already teaches the pattern in a real sentence (it usually does, in the same lesson),
+  **exclude the schematic row** and move any genuinely useful content off its `note` onto the real
+  card, checking that no other card's note points back at the row you just dropped.
+- If nothing demonstrates the pattern yet, replace the schematic with a sentence built from
+  vocabulary already introduced, marked `aiSuggested` with a `reviewNote` saying it stands in for the
+  book's pattern entry.
+
+The gloss is worth fixing at the same time. A schematic row usually carries a bare label ("No one")
+that no longer matches once the card is a sentence ("There is no one.").
+
 ## Pedagogical order, and the number-run jumble
 
 The items in `corpus.json` are **already pedagogically sorted** — as the last step of `assemble`, a

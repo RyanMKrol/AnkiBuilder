@@ -68,10 +68,13 @@ when it arms, tick occasionally while waiting, and announce when it fires. Emit 
 watch ends with the event instead of lingering.
 
 ```sh
-RUN=<runDir>
+RUN=/abs/path/to/<runDir>          # ABSOLUTE. see "cannot-read is not not-yet" below
 echo "⏳ watching <unit> for Mark reviewed (gate 1): checking every 15s, giving up after 30m"
 for i in $(seq 1 120); do
-  if node -e "process.exit(require('./$RUN/cards.json').meta.reviewed===true?0:1)" 2>/dev/null; then
+  if [ ! -r "$RUN/cards.json" ]; then
+    echo "🛑 BUG: cannot read $RUN/cards.json — this watcher can never fire. Stopping."; exit 2
+  fi
+  if node -e "process.exit(require('$RUN/cards.json').meta.reviewed===true?0:1)"; then
     echo "✅ <unit> marked REVIEWED, picking it up now"; exit 0
   fi
   [ $((i % 20)) -eq 0 ] && echo "⏳ still waiting ($((i / 4)) min elapsed)"
@@ -83,6 +86,16 @@ echo "⚠️ gave up after 30 min with no sign-off"; exit 1
 Keep the heartbeat sparse (every few minutes, not every poll): a monitor that floods the thread gets
 stopped automatically. Watch `meta.reviewed` after gate 1 and `meta.done` after gate 2. Rules that
 keep this honest:
+
+- **"Cannot read the file" must never look like "not signed off yet."** This is the one bug that
+  silently defeats the whole mechanism, and it has actually happened: a watcher armed with a
+  RELATIVE `RUN` path, after an earlier `cd` had moved the shell's persistent working directory, so
+  every poll threw `MODULE_NOT_FOUND`. A `2>/dev/null` swallowed the error and the non-zero exit was
+  indistinguishable from "still waiting". The reviewer clicked **Mark reviewed**, nothing happened,
+  and they had to send exactly the message the watcher was supposed to save. Two rules, both in the
+  snippet above: **always give `RUN` an absolute path** (the shell's cwd persists across calls and
+  drifts the moment anything does a `cd`), and **probe readability separately**, failing LOUD and
+  early rather than polling a path that can never resolve. Do not add `2>/dev/null` back.
 
 - **It waits for the human; it never replaces them.** The watcher only ever observes the flag the
   reviewer's own click writes. Setting a review flag yourself to unblock a stage defeats the gate

@@ -375,8 +375,26 @@ rebuild button; **Mark done** folds the lesson into the group package and rebuil
 **Mark done — Gate 2, the final sign-off.** When the audio is finalized, click **Mark done** (sets
 `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` and the
 dashboard package only `done` lessons. A **done** lesson opens read-only (a VIEW: players, header
-says *View*, only action **Reopen**); the edit path for a shipped lesson is always Reopen → change →
+says *View*, only action **Reopen**); the edit path for a shipped lesson is Reopen → change →
 Mark done (Reopen removes it from the merged `.apkg`, Mark done re-finalizes and rebuilds).
+
+**The exception: a FIELD-ONLY fix across many done units, edited on disk.** A deck-wide correction
+(adding disambiguation cues to a dozen colliding cards, excluding a duplicate that breaks the build)
+can touch ten units at once, and reopening and re-finalizing each one is a lot of ceremony for a
+change that alters no card's existence. For that case, edit `cards.json` and `corpus.json` directly
+and rebuild once at the end. The boundary that makes it safe:
+
+- **Field edits and exclusions only.** Changing `hint`, `scene`, `note`, `english` or `target`, or
+  setting `excluded`, is fine. **Adding a card is not**, ever: a new card has to be seen at the
+  corpus review, so that still means Reopen (or catching it before sign-off).
+- **Back the file up first** (`<file>.pre-<reason>.bak`, the convention the migrations use) and keep
+  `cards.json` and `corpus.json` in step, since the review reads one and the build the other.
+- **Rebuild by hand afterwards**: `deck --book-dir <bookDir>`. Nothing triggers it for you, because
+  no unit changed state, so the merged `.apkg` silently keeps the old content until you do.
+- **Re-run the audits** (collision, duplicate) before rebuilding; a cue you just wrote may be the
+  thing the audit was waiting for, and an exclusion can change what collides.
+- **Expect orphans on the next delivery.** A card excluded after it has already reached Anki leaves
+  a note behind. `deliver-to-anki` reports it and never deletes it, so removing it is a manual step.
 
 ## Step 5: Deck build
 

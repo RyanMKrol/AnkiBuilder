@@ -643,7 +643,8 @@ function assertBookQueryResolves(deck, noteIds) {
     `"${deck.ankiParent}" has been delivered before (${DELIVERED_MARKER} says so, last on ` +
       `${deck.marker.lastDeliveredAt ?? "an unrecorded date"}) but the lookup found ZERO notes ` +
       `under it. The likeliest cause by far is that the deck was RENAMED in Anki: this tool finds ` +
-      `notes by the parent deck's name, and the name it expects is "${deck.marker.ankiParent}". ` +
+      `notes by the parent deck's name, and the name it expects is ` +
+      `"${deck.marker.ankiParent ?? deck.ankiParent}". ` +
       `Continuing would re-add every card in this collection as a new note with no scheduling. ` +
       `Rename the deck back, or update the collection's title so the two agree, then re-run.`,
   );
@@ -1030,6 +1031,18 @@ export async function deliverToAnki(
   if (deliverable.length === 0) {
     log("no deliverable decks (none marked done / all skipped)");
     return report;
+  }
+
+  // An unreadable delivered marker disables BOTH guards that key on it — the rename abort and the
+  // fail-closed baseline — and it disables them silently, which is the one thing this layer may
+  // never do. "Never delivered" and "the delivery record is corrupt" must not behave the same.
+  for (const deck of deliverable) {
+    if (!deck.markerUnreadable) continue;
+    throw new Error(
+      `${join(deck.bookDir, DELIVERED_MARKER)} will not parse (${deck.markerUnreadable}), so ` +
+        `whether this collection is already in Anki — and which cards were in it — is unknown. ` +
+        `Both delivery guards read that file. Fix or remove it before delivering.`,
+    );
   }
 
   const specsByModel = new Map();

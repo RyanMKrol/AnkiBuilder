@@ -234,3 +234,22 @@ test("a real deliver records the delivered card ids as the next run's baseline",
     rmSync(backupRoot, { recursive: true, force: true });
   }
 });
+
+test("an unreadable delivered marker stops the deliver rather than disabling both guards", async () => {
+  const { root, dir } = fixture();
+  const backupRoot = mkdtempSync(join(tmpdir(), "deliver-guards-backup-"));
+  try {
+    writeFileSync(join(dir, "anki-delivered.json"), "{ not json");
+    await assert.rejects(
+      () => deliverToAnki(root, "all", { client: liveClient(), backupRoot, sync: false }),
+      (error) => {
+        assert.match(error.message, /will not parse/);
+        assert.match(error.message, /Both delivery guards read that file/);
+        return true;
+      },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+    rmSync(backupRoot, { recursive: true, force: true });
+  }
+});

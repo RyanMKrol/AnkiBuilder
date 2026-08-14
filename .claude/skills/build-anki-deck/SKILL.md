@@ -9,6 +9,12 @@ This skill guides you through building a complete Anki flashcard deck for vocabu
 file is the workflow spine: the steps, the commands, and the gates. Depth lives in the reference
 files below; load one when its topic comes up.
 
+**This file is normative for operator procedure.** When SKILL.md and any other document disagree
+about what to DO — the order of steps, which command to run, what a gate means — SKILL.md wins and
+the other document is wrong and should be fixed. `docs/PIPELINE.md` is authoritative for the
+complementary question of how the code is wired internally; `README.md` for what is currently
+implemented. If SKILL.md disagrees with the CODE, the code wins: fix the doc in that same commit.
+
 ## Reference files
 
 - [references/card-authoring-rules.md](references/card-authoring-rules.md): every rule about card
@@ -474,7 +480,7 @@ anki-builder deck --run <runDir> [--name "My Deck"]
 
 Reads `cards.json`, assembles a two-template Anki deck (Recognition + Production), includes audio if
 present, and writes the package into the run directory. **A package is named after what it contains,
-not `deck.apkg`** (`src/deck/deckFileName.js`): a template language dir builds `<template>-<lang>.apkg`,
+not the legacy `deck.apkg`** (`src/deck/deckFileName.js`): a template language dir builds `<template>-<lang>.apkg`,
 a one-off run dir `<folder>.apkg`. For a template/manual source this is the final artifact. Chapter
 and lesson units do not build one at all — they ship inside their collection's package (Step 6).
 

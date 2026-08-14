@@ -50,7 +50,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   group package (`rebuildBookDir` merge of `done` lessons, or a template's own deck) — there is no
   per-lesson build. The dashboard keeps that file current: marking a lesson done, and
   audio edits to an already-done lesson, rebuild the group (`rebuildGroupQuiet`, best-effort). The
-  server is local so there's no download route — import the on-disk `output/<…>/deck.apkg` directly.
+  server is local so there's no download route — import the collection's on-disk `.apkg` directly.
 - **Residual (by design):** a *whole-deck* review (`/review/:type/:id`, no `:unit`) still only edits
   when EVERY unit is at audio, and the merge packages only `done` lessons (409 if none). Intentional —
   the merge is the shippable artifact and must not bake in an un-finished lesson.
@@ -492,16 +492,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `output/<courseSlug>/lesson-*/`, since there's no by-EPUB-hash library entry to read from —
   `resolveLessonRunDir` already knows how to enumerate a course's lesson folders).
 
-## Lesson word-list categorization is a single unverified Haiku pass, unlike EPUB extraction
+## Lesson word-list categorization is a single unverified model pass, unlike EPUB extraction
 
-- **What:** `assembleCorpusFromLessonWords` assigns each item's `category` via one batched Haiku
-  call with no evaluation/verification step — contrast with the library-first romanization
-  pipeline's Haiku-eval-over-a-library's-output pattern, or the EPUB path's two dedicated dedup
-  passes. A wrong category here has no automated check at all; it silently ships as whatever the
-  model returned (or `"Other"` on a parse failure).
+- **What:** `assembleCorpusFromLessonWords` assigns each item's `category` via one batched
+  `claude -p` call with no evaluation/verification step — contrast with the romanization pipeline's
+  library-first-then-eval pattern, or the EPUB path's two dedicated dedup passes. A wrong category
+  here has no automated check at all; it silently ships as whatever the model returned (or
+  `"Other"` on a parse failure). (This entry, and the code comment beside the pass, both said
+  "Haiku" until 2026-08. No pass in this project has ever run Haiku: every `claude -p` call goes
+  through `src/util/runClaude.js`, which defaults to Sonnet at medium effort.)
 - **Why:** category assignment for a already-curated, user-dictated word list is a much lower-
   stakes judgment call than translation correctness or romanization accuracy — the corpus review
-  gate (`render-review --stage corpus`, the same gate every other source goes through) is a cheap,
+  gate (the dashboard corpus review, the same gate every other source goes through) is a cheap,
   fast place for a human to catch and fix a wrong category, and this project's own category enum
   (`src/model/categories.js`) is itself documented as a first-cut list "revisit if it proves too
   coarse or fine in practice" — adding a second model pass to verify a coarse categorization judgment
@@ -514,7 +516,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if miscategorization turns out to be common enough in practice to be an
   actual review-burden problem, consider a lightweight self-consistency check (e.g. asking the
   model to re-categorize with the full category list restated and comparing) rather than a full
-  Haiku-eval-style second pass.
+  eval-style second pass.
 
 ## Per-card `reading` is still not auto-generated — but a missing one can no longer reach TTS
 
@@ -793,7 +795,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 
 ### Two rebuilds can't interleave only because the rebuild path never yields
 
-- **What:** `rebuildBookDir` reads the done-set and publishes `deck.apkg` with no `await` anywhere in
+- **What:** `rebuildBookDir` reads the done-set and publishes the collection package with no `await` anywhere in
   between — `readdirSync`/`readFileSync`, a synchronous `buildBookDeck`, then `writeFileAtomic` +
   rename. Node cannot schedule a second rebuild between the read and the write, so the later of two
   concurrently-requested rebuilds always observes every `done` flag written before it started.
@@ -902,10 +904,12 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `prepare` and replacing it at Mark reviewed — but that trades the "compare against what a human
   kept" property away, so it needs thought rather than a patch.
 
-### `scripts/backfill-dedup-library.mjs` re-derives history rather than recovering it
+### Rebuilding a missing dedup-library entry re-derives history rather than recovering it
 
-- **What:** the backfill rebuilds a missing library entry from the lesson's CURRENT `cards.json`, not
-  from what the lesson looked like when it was reviewed.
+- **Status:** the script this described (`backfill-dedup-library.mjs`, once in `scripts/`) was
+  deleted; the reasoning is kept because it applies to any future backfill.
+- **What:** a backfill can only rebuild a missing library entry from the lesson's CURRENT
+  `cards.json`, not from what the lesson looked like when it was reviewed.
 - **Why:** there is no record of the latter. The library entry IS the record, and it's the thing that's
   missing.
 - **Impact:** a lesson edited after review is backfilled in its edited state. For de-dup — exact-match

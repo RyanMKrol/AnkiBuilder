@@ -206,6 +206,11 @@ stacked in one column, plus **Note** + **Review note**):
 - **`reviewNote`**: internal rationale (why `uncertain` / why `aiSuggested`), shown ONLY at the
   review gate, NEVER in the deck or viewer.
 
+(A one-off migration for decks built before this split, `scripts/split-front-hint.mjs`, moves
+disambiguation parentheticals out of `english` into `hint` and renames the old `cardNote` to `note`,
+book by book, backing up to `.pre-hint.bak`. Every deck on disk has been through it; it is kept for a
+deck restored from an old backup.)
+
 **Any `hint`/`note` that quotes non-Roman target script ALWAYS shows its romanization in brackets** —
 `はじめまして (hajimemashite)`, `お (o) + かし (kashi) = おかし (okashi)` — because the learner may not
 yet read the script (this is a learner-facing rule; `reviewNote` is internal and needs none).

@@ -80,7 +80,9 @@ function parseCategoryBatch(raw) {
  * bilingual source text to extract a translation from, so every item's `target` stays
  * null here, exactly like a freshly-loaded template — ready for the normal translate
  * stage to fill in. The only per-item judgment call this makes is category assignment,
- * via a small batched Haiku pass. Mirrors the rest of this project's "flag/fail open,
+ * via a small batched `claude -p` pass on the pipeline's shared model (Sonnet at medium
+ * effort by default — see src/util/runClaude.js; no pass in this project runs Haiku,
+ * whatever older comments say). Mirrors the rest of this project's "flag/fail open,
  * never block" idiom: a batch that fails to parse, or returns no valid category for an
  * item, defaults that item to "Other" rather than failing assembly — the corpus review
  * stage (same as every other source) is where a wrong category actually gets fixed.

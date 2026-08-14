@@ -63,59 +63,55 @@ after gate 2 run the extras pass, or the merge, or whatever the arc calls for ne
 **Use the Monitor tool, so the watcher is VISIBLE in the conversation.** A plain background poll
 loop works but is silent until the moment it fires, which leaves the reviewer with no evidence that
 anything is waiting on them; they end up asking whether it is running, which is the message the
-watcher existed to save. Monitor turns each stdout line into a message in the thread, so announce
-when it arms, tick occasionally while waiting, and announce when it fires. Emit and then EXIT, so the
-watch ends with the event instead of lingering.
+watcher existed to save. Monitor turns each stdout line into a message in the thread, and the script
+below announces when it arms, ticks every few minutes while waiting, and announces when it fires,
+then exits — so the watch ends with the event instead of lingering.
 
 ```sh
-RUN=/abs/path/to/<runDir>          # ABSOLUTE. see "cannot-read is not not-yet" below
-echo "⏳ watching <unit> for Mark reviewed (gate 1): checking every 15s, giving up after 30m"
-for i in $(seq 1 120); do
-  if [ ! -r "$RUN/cards.json" ]; then
-    echo "🛑 BUG: cannot read $RUN/cards.json — this watcher can never fire. Stopping."; exit 2
-  fi
-  if node -e "process.exit(require('$RUN/cards.json').meta.reviewed===true?0:1)"; then
-    echo "✅ <unit> marked REVIEWED, picking it up now"; exit 0
-  fi
-  [ $((i % 20)) -eq 0 ] && echo "⏳ still waiting ($((i / 4)) min elapsed)"
-  sleep 15
-done
-echo "⚠️ gave up after 30 min with no sign-off"; exit 1
+node scripts/await-review.mjs <runDir> --gate 1     # wait for Mark reviewed
+node scripts/await-review.mjs <runDir> --gate 2     # wait for Mark done AND its rebuild
+#   --timeout 30m   how long to wait before giving up (default 30m)
+#   --interval 15s  how often to poll (default 15s)
 ```
 
-Keep the heartbeat sparse (every few minutes, not every poll): a monitor that floods the thread gets
-stopped automatically. Watch `meta.reviewed` after gate 1 and `meta.done` after gate 2. Rules that
-keep this honest:
+Exit codes, so you know what happened without reading the log: **0** signed off (at gate 2, and the
+collection package really did rebuild), **1** timed out with no sign-off, **2** the unit could not be
+read — a bug, this watch could never have fired, **3** gate 2 only: marked done but the package is
+missing or older than `cards.json`, so the rebuild FAILED. To run the next stage the instant the flag
+flips, chain it: `node scripts/await-review.mjs "$RUN" --gate 1 && anki-builder audio --run "$RUN"`.
+
+Use the script; do not hand-roll a poll loop. It encodes four rules, each of which was learned by
+getting it wrong in a real build:
 
 - **"Cannot read the file" must never look like "not signed off yet."** This is the one bug that
   silently defeats the whole mechanism, and it has actually happened: a watcher armed with a
-  RELATIVE `RUN` path, after an earlier `cd` had moved the shell's persistent working directory, so
+  RELATIVE run path, after an earlier `cd` had moved the shell's persistent working directory, so
   every poll threw `MODULE_NOT_FOUND`. A `2>/dev/null` swallowed the error and the non-zero exit was
   indistinguishable from "still waiting". The reviewer clicked **Mark reviewed**, nothing happened,
-  and they had to send exactly the message the watcher was supposed to save. Two rules, both in the
-  snippet above: **always give `RUN` an absolute path** (the shell's cwd persists across calls and
-  drifts the moment anything does a `cd`), and **probe readability separately**, failing LOUD and
-  early rather than polling a path that can never resolve. Do not add `2>/dev/null` back.
+  and they had to send exactly the message the watcher was supposed to save. So the script resolves
+  the path to an absolute one and prints it on its first line (a wrong path is visible immediately,
+  not never), and it treats unreadable as its own state, exiting 2 rather than polling a path that
+  can never resolve. Pass an absolute `<runDir>` anyway, since the shell's cwd drifts.
 - **After gate 2, the flag is not the outcome — CHECK THE REBUILD.** `Mark done` does two things:
-  it sets `meta.done`, and it rebuilds the group `.apkg`. A watcher polling only `meta.done` reports
-  success on the first even when the second FAILED, because the flag really did flip. That has
-  happened: a duplicate card id made the package build refuse, the dashboard showed
+  it sets `meta.done`, and it rebuilds the collection package. A watcher polling only `meta.done`
+  reports success on the first even when the second FAILED, because the flag really did flip. That
+  has happened: a duplicate card id made the package build refuse, the dashboard showed
   `✓ done — but deck rebuild FAILED`, and the watcher announced the unit was done and moved on. So
-  a gate-2 watcher must confirm the artifact, not the checkbox:
+  `--gate 2` compares the package's mtime against `cards.json` and exits 3 when it is older or
+  missing. It derives the package path from the collection directory itself, so a mistyped slug
+  cannot make a stale package look fresh. More generally: when a click triggers work, watch the
+  work's *artifact*, not the click.
+- **It waits for the human; it never replaces them.** The script only reads. Setting a review flag
+  yourself to unblock a stage defeats the gate that exists to keep unseen cards out of the deck. If a
+  stage refuses because a unit is unreviewed, that is the system working.
+- **The wait is bounded and the heartbeat is sparse.** An unattended session ends with a clear
+  timeout message rather than a process that quietly lingers, and a monitor that prints every poll
+  floods the thread and gets stopped automatically — which is the one failure a watcher cannot
+  report. Tell the user it is armed when you hand over the link, so they know the next step runs on
+  its own and no follow-up message is needed.
 
-  ```sh
-  if node -e "process.exit(require('$RUN/cards.json').meta.done===true?0:1)"; then
-    APKG=<bookDir>/<book-slug>.apkg
-    if [ "$APKG" -nt "$RUN/cards.json" ]; then
-      echo "✅ marked DONE and the package rebuilt"; exit 0
-    fi
-    echo "⚠️ marked DONE but the package is OLDER than cards.json — the rebuild FAILED"; exit 3
-  fi
-  ```
+One more thing to do before you hand the link over, which is not the watcher's job:
 
-  More generally: when a click triggers work, watch the work's *artifact*, not the click. A green
-  flag that means "the button worked" is not the same claim as "the thing the button starts
-  succeeded", and conflating them is the same mistake as treating silence as success.
 - **Run `npm run preflight` BEFORE you hand over a review link.** It is the deterministic sweep
   (schema, duplicate card ids, uncued collisions, cross-unit duplicate targets, stuck audio
   markers) and it exists because these kept being caught by a human, or by a build refusing at the
@@ -123,17 +119,6 @@ keep this honest:
   Anki note guid, so a clash makes the package build refuse outright, and that refusal used to fire
   only at **Mark done** — after both reviews had been signed off. Preflight moves it to before
   anyone has looked at the unit, when it is still a one-line edit.
-
-- **It waits for the human; it never replaces them.** The watcher only ever observes the flag the
-  reviewer's own click writes. Setting a review flag yourself to unblock a stage defeats the gate
-  that exists to keep unseen cards out of the deck. If a stage refuses because a unit is unreviewed,
-  that is the system working.
-- **Always bound the wait** and say what happens on timeout, so an unattended session ends with a
-  clear message rather than a process that quietly lingers.
-- **Tell the user it is armed** when you hand over the link, so they know the next step runs on its
-  own and no follow-up message is needed.
-- If a stage should run the instant the flag flips, `exec` it from inside the loop instead of just
-  exiting; the stage's own output then becomes the closing event.
 
 **Each chapter produces TWO units, and each goes through both gates on its own.** After the base
 lesson clears gate 1, Step 3b builds its *extras* unit: drill cards from the same chapter, shipped as
@@ -552,6 +537,30 @@ schema validation, **duplicate card ids** (a clash makes the package build refus
 surface only at Mark done, after both gates were signed off), uncued collisions, cross-unit
 duplicate targets (reported, never auto-applied), and clips flagged marker-audible. Run it at the
 end of a build, before you post the link.
+
+### Wait for a review gate
+
+```sh
+node scripts/await-review.mjs <runDir> --gate 1 [--timeout 30m] [--interval 15s]
+node scripts/await-review.mjs <runDir> --gate 2
+```
+
+Polls the flag the reviewer's click writes and exits when it lands: `meta.reviewed` at gate 1,
+`meta.done` plus a genuinely rebuilt collection package at gate 2. Read-only. Exit 0 signed off,
+1 timed out, 2 the unit could not be read, 3 done but the package did not rebuild. The reasoning
+behind each of those is in [The shape of the workflow](#the-shape-of-the-workflow) above.
+
+### Un-ship a unit (undo a Mark done)
+
+```sh
+node scripts/undone-unit.mjs <runDir> [--force] [--no-rebuild]
+```
+
+Backs up `cards.json`, clears `meta.done`, and rebuilds the collection package without the unit.
+There is no dashboard button for this — done lessons stay fully editable, so nothing needed one —
+and this is the reviewed replacement for editing the JSON by hand. `--force` is required when the
+collection has been delivered to Anki, because **it never touches Anki**: notes already delivered
+stay in the live collection with their scheduling, and only the package changes.
 
 ### Validate every deck's JSON against the schemas
 

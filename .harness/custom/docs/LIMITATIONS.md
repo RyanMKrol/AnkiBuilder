@@ -1428,3 +1428,31 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   deck while old cards sit in the unpadded one.
 - **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
   case the padding can be dropped and migrated the same way.
+
+## Un-shipping a unit changes the package, never the live Anki collection
+
+- **What:** `scripts/undone-unit.mjs` backs up `cards.json`, clears `meta.done` and rebuilds the
+  collection package. It does not talk to Anki, so notes already delivered stay in the live
+  collection with their scheduling; the unit simply stops being in the next package.
+- **Why:** removing delivered notes is a destructive, unrecoverable act on a deck the user studies
+  daily, and it is a different decision from "this unit is not finished after all". `deliver-to-anki`
+  already reports orphans and refuses to delete them, for the same reason.
+- **Impact:** after un-shipping a delivered unit, its cards keep coming up in study until someone
+  removes them in Anki by hand. The script requires `--force` on a collection carrying
+  `anki-delivered.json` so the gap is stated at the moment it matters, not discovered later.
+- **Status:** open
+- **When to revisit:** if un-shipping delivered units becomes common, give the deliverer an opt-in
+  `--suspend-orphans` (already specified for the exclusion case) and point this script at it.
+
+## The review watcher polls; it does not subscribe
+
+- **What:** `scripts/await-review.mjs` re-reads `cards.json` every 15 seconds rather than watching
+  the file. Its resolution is therefore one poll interval, and a sign-off during a long `--interval`
+  is noticed late.
+- **Why:** `fs.watch` semantics differ per platform and miss atomic-rename publishes on some of
+  them — and every writer here publishes by rename. A poll cannot miss an event it can re-derive
+  from the file's current contents.
+- **Impact:** up to `--interval` of latency after a click, and one `stat` + `JSON.parse` per poll on
+  a file of a few hundred KB. Negligible next to a human clicking a button.
+- **Status:** open
+- **When to revisit:** only if a watcher is ever needed for something with a real latency budget.

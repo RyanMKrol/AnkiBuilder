@@ -1,0 +1,524 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 18,
+    "chapterLabel": "Lesson 4: Shopping (1): How Much Is This?"
+  },
+  "items": [
+    {
+      "id": "irasshaimase",
+      "english": "May I help you?, Welcome.",
+      "category": "Greetings",
+      "target": "いらっしゃいませ",
+      "note": "Used in shops etc. to welcome customers; literally means \"Please come in.\""
+    },
+    {
+      "id": "sore",
+      "english": "that one",
+      "category": "Grammar & Function Words",
+      "target": "それ",
+      "note": "Demonstrative pronoun — indicates something near the listener (see これ (kore)/あれ (are))"
+    },
+    {
+      "id": "misete-kudasai",
+      "english": "please show me",
+      "category": "Shopping",
+      "target": "みせてください",
+      "note": "みせて (misete) is the て-form of みせる (miseru, 'to show'), so みせてください (misete kudasai) follows the same [て-form + ください] pattern as ちょっとまってください (chotto matte kudasai) from an earlier lesson; say [thing] を (o) みせてください to ask a shop to let you look closer at it."
+    },
+    {
+      "id": "ikura",
+      "english": "how much",
+      "category": "Money",
+      "target": "いくら",
+      "note": "Used mostly in いくらですか (ikura desu ka), 'how much is it?' — pair it with これ/それ/あれ (kore/sore/are) as the subject, e.g. これはいくらですか (kore wa ikura desu ka)."
+    },
+    {
+      "id": "sanzen-en",
+      "english": "3,000 yen",
+      "category": "Money",
+      "target": "3,000えん(さんぜんえん)"
+    },
+    {
+      "id": "en-suffix",
+      "english": "…yen",
+      "category": "Money",
+      "target": "えん",
+      "note": "Suffix — attaches directly after a number (written 〜えん (en) in the source), e.g. 3,000えん (3,000en)"
+    },
+    {
+      "id": "are",
+      "english": "that one over there",
+      "category": "Grammar & Function Words",
+      "target": "あれ",
+      "note": "Demonstrative pronoun — indicates something distant from both speaker and listener (see これ (kore)/それ (sore))"
+    },
+    {
+      "id": "mo-particle",
+      "english": "also, too, either (particle)",
+      "category": "Grammar & Function Words",
+      "target": "も",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don't Take Photos (も (\"also/too\") is re-taught as a dedicated numbered GRAMMAR point later in the book, explicitly explaining that が/は/を can be replaced by も to add the \"also\" meaning)",
+      "note": "Replaces は (wa) or が (ga) on the noun it marks (not added alongside them) to mean 'also/too'; contrast と (to), which just connects two nouns rather than adding meaning to one."
+    },
+    {
+      "id": "ja",
+      "english": "well then",
+      "category": "Grammar & Function Words",
+      "target": "じゃ",
+      "note": "This じゃ (ja, 'well then') is a filler word marking a conclusion — not the same じゃ in じゃありません (ja arimasen) from an earlier lesson, which is a contraction of では (dewa) plus the negative; same sound, different job.",
+      "hint": "the casual contraction"
+    },
+    {
+      "id": "kudasai",
+      "english": "please give me",
+      "category": "Grammar & Function Words",
+      "target": "ください",
+      "note": "\"noun を (o) ください (kudasai)\" used when shopping or ordering; compare おねがいします (onegaishimasu), which can also be used to request an action or service"
+    },
+    {
+      "id": "tablet",
+      "english": "tablet",
+      "category": "Technology & Communication",
+      "target": "タブレット"
+    },
+    {
+      "id": "ks1-sore-smartphone",
+      "english": "That is a smartphone.",
+      "category": "Technology & Communication",
+      "target": "それはスマホです"
+    },
+    {
+      "id": "ks1-are-tablet",
+      "english": "That one over there is a tablet.",
+      "category": "Technology & Communication",
+      "target": "あれはタブレットです"
+    },
+    {
+      "id": "ks2-kore-3000en",
+      "english": "This one is 3,000 yen.",
+      "category": "Money",
+      "target": "これは3,000えんです"
+    },
+    {
+      "id": "ks2-are-mo-3000en",
+      "english": "That one over there is also 3,000 yen.",
+      "category": "Money",
+      "target": "あれも3,000えんです",
+      "note": "Uses the particle も (mo) (also/too)."
+    },
+    {
+      "id": "ks3-kore-kudasai",
+      "english": "I would like this one, please.",
+      "category": "Shopping",
+      "target": "これをください"
+    },
+    {
+      "id": "curry",
+      "english": "curry",
+      "category": "Food",
+      "target": "カレー"
+    },
+    {
+      "id": "to-particle",
+      "english": "and (particle)",
+      "category": "Grammar & Function Words",
+      "target": "と",
+      "note": "Connects two or more nouns only — cannot connect verbs, adjectives, or clauses",
+      "scene": "joining two nouns into a list"
+    },
+    {
+      "id": "salad",
+      "english": "salad",
+      "category": "Food",
+      "target": "サラダ"
+    },
+    {
+      "id": "ks4-curry-salad",
+      "english": "I would like curry and salad, please.",
+      "category": "Food",
+      "target": "カレーとサラダをおねがいします"
+    },
+    {
+      "id": "mo-example-umbrella",
+      "english": "This is not my umbrella.",
+      "category": "Shopping",
+      "target": "これはわたしのかさじゃありません"
+    },
+    {
+      "id": "mo-example-mine",
+      "english": "That is not mine either.",
+      "category": "Shopping",
+      "target": "それもわたしのじゃありません",
+      "note": "Uses the particle も (mo) (…either) in a negative sentence."
+    },
+    {
+      "id": "terebi",
+      "english": "television",
+      "category": "Technology & Communication",
+      "target": "テレビ"
+    },
+    {
+      "id": "pasokon",
+      "english": "(personal) computer",
+      "category": "Technology & Communication",
+      "target": "パソコン"
+    },
+    {
+      "id": "reizouko",
+      "english": "refrigerator",
+      "category": "Home & Household",
+      "target": "れいぞうこ"
+    },
+    {
+      "id": "eakon",
+      "english": "air conditioner",
+      "category": "Home & Household",
+      "target": "エアコン"
+    },
+    {
+      "id": "denshi-renji",
+      "english": "microwave oven",
+      "category": "Home & Household",
+      "target": "でんしレンジ"
+    },
+    {
+      "id": "coffee",
+      "english": "coffee",
+      "category": "Food",
+      "target": "コーヒー"
+    },
+    {
+      "id": "koucha",
+      "english": "(black) tea",
+      "category": "Food",
+      "target": "こうちゃ"
+    },
+    {
+      "id": "juice",
+      "english": "juice",
+      "category": "Food",
+      "target": "ジュース"
+    },
+    {
+      "id": "sandwich",
+      "english": "sandwich",
+      "category": "Food",
+      "target": "サンドイッチ"
+    },
+    {
+      "id": "num-20000",
+      "english": "20,000",
+      "category": "Numbers",
+      "target": "にまん"
+    },
+    {
+      "id": "num-700",
+      "english": "700",
+      "category": "Numbers",
+      "target": "ななひゃく"
+    },
+    {
+      "id": "num-40000",
+      "english": "40,000",
+      "category": "Numbers",
+      "target": "よんまん"
+    },
+    {
+      "id": "num-100",
+      "english": "100",
+      "category": "Numbers",
+      "target": "ひゃく",
+      "note": "100 stands alone as ひゃく (hyaku), no いち (ichi, 'one') prefix needed, unlike 10,000, which requires いちまん (ichiman) rather than just まん (man)."
+    },
+    {
+      "id": "num-30000",
+      "english": "30,000",
+      "category": "Numbers",
+      "target": "さんまん"
+    },
+    {
+      "id": "num-90000",
+      "english": "90,000",
+      "category": "Numbers",
+      "target": "きゅうまん"
+    },
+    {
+      "id": "num-60000",
+      "english": "60,000",
+      "category": "Numbers",
+      "target": "ろくまん"
+    },
+    {
+      "id": "num-7000",
+      "english": "7,000",
+      "category": "Numbers",
+      "target": "ななせん"
+    },
+    {
+      "id": "num-500",
+      "english": "500",
+      "category": "Numbers",
+      "target": "ごひゃく"
+    },
+    {
+      "id": "num-300",
+      "english": "300",
+      "category": "Numbers",
+      "target": "さんびゃく",
+      "note": "300 changes ひゃく (hyaku) to びゃく (byaku) after さん (san), giving さんびゃく (sanbyaku) rather than さんひゃく (sanhyaku); the same kind of sound shift happens in 600 (ろっぴゃく, roppyaku) and 800 (はっぴゃく, happyaku)."
+    },
+    {
+      "id": "num-2000",
+      "english": "2,000",
+      "category": "Numbers",
+      "target": "にせん"
+    },
+    {
+      "id": "num-6000",
+      "english": "6,000",
+      "category": "Numbers",
+      "target": "ろくせん"
+    },
+    {
+      "id": "num-10000",
+      "english": "10,000",
+      "category": "Numbers",
+      "target": "いちまん",
+      "note": "10,000 needs the いち (ichi, 'one') prefix, いちまん (ichiman), unlike 100 or 1,000, which stand alone as ひゃく (hyaku) and せん (sen) without it."
+    },
+    {
+      "id": "num-8000",
+      "english": "8,000",
+      "category": "Numbers",
+      "target": "はっせん",
+      "note": "8,000 doubles the consonant: はち (hachi) + せん (sen) becomes はっせん (hassen), not はちせん (hachisen). A similar shift happens in 3,000 (さんぜん, sanzen) and in hundreds like 600 (ろっぴゃく, roppyaku)."
+    },
+    {
+      "id": "num-50000",
+      "english": "50,000",
+      "category": "Numbers",
+      "target": "ごまん"
+    },
+    {
+      "id": "num-4000",
+      "english": "4,000",
+      "category": "Numbers",
+      "target": "よんせん"
+    },
+    {
+      "id": "num-400",
+      "english": "400",
+      "category": "Numbers",
+      "target": "よんひゃく"
+    },
+    {
+      "id": "num-900",
+      "english": "900",
+      "category": "Numbers",
+      "target": "きゅうひゃく"
+    },
+    {
+      "id": "num-800",
+      "english": "800",
+      "category": "Numbers",
+      "target": "はっぴゃく",
+      "note": "800 doubles the consonant and shifts ひゃく (hyaku) to ぴゃく (pyaku): はち (hachi) + ひゃく (hyaku) becomes はっぴゃく (happyaku). The same kind of shift happens in 300 (さんびゃく, sanbyaku) and 600 (ろっぴゃく, roppyaku)."
+    },
+    {
+      "id": "num-70000",
+      "english": "70,000",
+      "category": "Numbers",
+      "target": "ななまん"
+    },
+    {
+      "id": "num-200",
+      "english": "200",
+      "category": "Numbers",
+      "target": "にひゃく"
+    },
+    {
+      "id": "num-9000",
+      "english": "9,000",
+      "category": "Numbers",
+      "target": "きゅうせん"
+    },
+    {
+      "id": "num-80000",
+      "english": "80,000",
+      "category": "Numbers",
+      "target": "はちまん"
+    },
+    {
+      "id": "num-600",
+      "english": "600",
+      "category": "Numbers",
+      "target": "ろっぴゃく",
+      "note": "600 doubles the consonant and shifts ひゃく (hyaku) to ぴゃく (pyaku): ろく (roku) + ひゃく (hyaku) becomes ろっぴゃく (roppyaku), not ろくひゃく (rokuhyaku). The same kind of shift happens in 300 (さんびゃく, sanbyaku) and 800 (はっぴゃく, happyaku)."
+    },
+    {
+      "id": "num-1000",
+      "english": "1,000",
+      "category": "Numbers",
+      "target": "せん"
+    },
+    {
+      "id": "num-5000",
+      "english": "5,000",
+      "category": "Numbers",
+      "target": "ごせん"
+    },
+    {
+      "id": "num-3000",
+      "english": "3,000",
+      "category": "Numbers",
+      "target": "さんぜん",
+      "note": "せん (sen) shifts to ぜん (zen) after さん (san): さん (san) + せん (sen) becomes さんぜん (sanzen), a similar sound change to 8,000 (はっせん, hassen). Compare さんぜんえん (sanzen'en, '3,000 yen'), which adds the えん (en) counter."
+    },
+    {
+      "id": "num-1829",
+      "english": "1,829",
+      "category": "Numbers",
+      "target": "せんはっぴゃくにじゅうきゅう",
+      "note": "Example showing intermediate numbers are built by combining component numbers"
+    },
+    {
+      "id": "num-135",
+      "english": "135",
+      "category": "Numbers",
+      "target": "ひゃくさんじゅうご",
+      "note": "Example showing intermediate numbers are built by combining component numbers"
+    },
+    {
+      "id": "num-1trillion",
+      "english": "1,000,000,000,000 (one trillion)",
+      "category": "Numbers",
+      "target": "いっちょう",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "note": "ちょう (chō) is the counting unit for one trillion"
+    },
+    {
+      "id": "num-100billion",
+      "english": "100,000,000,000 (one hundred billion)",
+      "category": "Numbers",
+      "target": "せんおく",
+      "reviewNote": "From the PLUS ONE large-number chart"
+    },
+    {
+      "id": "num-100million",
+      "english": "100,000,000 (one hundred million)",
+      "category": "Numbers",
+      "target": "いちおく",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "note": "おく (oku) is the counting unit for 100,000,000"
+    },
+    {
+      "id": "num-1billion",
+      "english": "1,000,000,000 (one billion)",
+      "category": "Numbers",
+      "target": "じゅうおく",
+      "reviewNote": "From the PLUS ONE large-number chart"
+    },
+    {
+      "id": "num-10billion",
+      "english": "10,000,000,000 (ten billion)",
+      "category": "Numbers",
+      "target": "ひゃくおく",
+      "reviewNote": "From the PLUS ONE large-number chart"
+    },
+    {
+      "id": "ten-decimal",
+      "english": "decimal point",
+      "category": "Numbers",
+      "target": "てん",
+      "note": "てん (ten) marks the decimal point when reading a number aloud, so each digit after it is read individually, e.g. れいてんなな (rei ten nana), '0.7', rather than as a whole number."
+    },
+    {
+      "id": "num-0.7",
+      "english": "0.7",
+      "category": "Numbers",
+      "target": "れいてんなな",
+      "note": "Example of reading a decimal: れい (rei) (zero) + てん (ten) (point) + なな (nana) (seven)"
+    },
+    {
+      "id": "bun-fraction",
+      "english": "part (used in fractions)",
+      "category": "Numbers",
+      "target": "ぶん",
+      "note": "ぶん (bun) marks the denominator in a fraction, spoken as [denominator]ぶんの (bun no) [numerator], e.g. にぶんのいち (nibun no ichi), '1/2'."
+    },
+    {
+      "id": "num-1-2",
+      "english": "1/2 (one half)",
+      "category": "Numbers",
+      "target": "にぶんのいち",
+      "note": "Example fraction reading: denominator + ぶんの (bun no) + numerator"
+    },
+    {
+      "id": "seoul",
+      "english": "Seoul",
+      "category": "Nationalities & Countries",
+      "target": "ソウル"
+    },
+    {
+      "id": "orange-juice",
+      "english": "orange juice",
+      "category": "Food",
+      "target": "オレンジジュース"
+    },
+    {
+      "id": "chocolate-cake",
+      "english": "chocolate cake",
+      "category": "Food",
+      "target": "チョコレートケーキ"
+    },
+    {
+      "id": "ballpoint-pen",
+      "english": "ballpoint pen",
+      "category": "School & Education",
+      "target": "ボールペン"
+    },
+    {
+      "id": "mechanical-pencil",
+      "english": "mechanical pencil",
+      "category": "School & Education",
+      "target": "シャーペン",
+      "note": "Colloquial shortening of シャープペンシル (shāpupenshiru)"
+    },
+    {
+      "id": "toaster",
+      "english": "toaster",
+      "category": "Home & Household",
+      "target": "トースター"
+    },
+    {
+      "id": "card",
+      "english": "credit card",
+      "category": "Money",
+      "target": "カード",
+      "note": "カード (kaado) here means a payment/credit card specifically — a business card is めいし (meishi) from an earlier lesson, not カード."
+    },
+    {
+      "id": "de-particle",
+      "english": "by means of (particle)",
+      "category": "Grammar & Function Words",
+      "target": "で",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (で as instrumental/means particle is re-taught as its own dedicated GRAMMAR point in later lessons (\"means で\" and \"transportation で\"), so this same item resurfaces as a formal teaching moment after chapter 18)",
+      "note": "Used to state a means or method, e.g. カードで (kaado de) おねがいします (onegaishimasu) (\"by credit card, please\")",
+      "scene": "paying, or doing something by a method"
+    },
+    {
+      "id": "de-example-card",
+      "english": "By credit card, please.",
+      "category": "Money",
+      "target": "カードでおねがいします",
+      "aiSuggested": true,
+      "reviewNote": "AI-suggested example sentence using the particle で (means/method)."
+    }
+  ]
+}

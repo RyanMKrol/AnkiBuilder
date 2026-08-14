@@ -1428,3 +1428,24 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   deck while old cards sit in the unpadded one.
 - **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
   case the padding can be dropped and migrated the same way.
+
+## The state snapshot in git is JSON-only, so it protects nothing an audio change could destroy
+
+- **What:** `output/` and `.anki-builder/` are now partly tracked (`cards.json`, `corpus.json`,
+  `book.json`, `course.json`, `anki-delivered.json`, `.preflight-accepted.json`, the dedup
+  `corpora/`, `conventions.md`, `taught-index.json`) so months of hand review are recoverable. The
+  140 MB audio cache, the per-unit `audio/` dirs, extracted images, `.apkg` files and `.bak` files
+  stay untracked. The single exception is the seven marker-audible clips plus their `.orig.mp3`
+  originals, pulled in explicitly by filename.
+- **Why:** the unrecoverable half is 3 MB of JSON; the rest is either large, binary, regenerable, or
+  re-buyable. Tracking 422 MB of mp3 in git would make every clone and every commit expensive, and
+  git handles binary blobs badly. The seven clips are named literally rather than globbed because a
+  glob that drifted would pull in 3,610 paid clips.
+- **Impact:** any statement of the form "WS0 protects this" is false for audio. If a regeneration or
+  a re-trim destroys a clip, recovery rests on that clip's `.orig.mp3` sibling in the unit dir (or
+  on paying ElevenLabs again), not on git. Also: `git status` now walks the whole of `output/`, so it
+  is measurably slower than it was, and a new artifact kind under `output/` is untracked by default
+  until someone adds a re-include line.
+- **When to revisit:** if audio ever becomes genuinely unrecoverable (an `.orig.mp3` goes missing, or
+  a voice is retired at ElevenLabs), revisit with a real out-of-band backup rather than by widening
+  the git globs.

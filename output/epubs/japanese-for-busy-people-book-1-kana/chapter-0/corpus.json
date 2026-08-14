@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 11,
+    "chapterLabel": "Frequently Used Expressions"
+  },
+  "items": [
+    {
+      "id": "ohayou-gozaimasu",
+      "english": "Good morning.",
+      "category": "Greetings",
+      "target": "おはようございます",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 6: Going Places (1): Where Are You Going? (re-taught as a dedicated VOCABULARY entry)",
+      "note": "Used any time before around 10:00 A.M.; after that switch to こんにちは (konnichiwa), and in the evening use こんばんは (konbanwa)."
+    },
+    {
+      "id": "konnichiwa",
+      "english": "Hello. / Good afternoon.",
+      "category": "Greetings",
+      "target": "こんにちは",
+      "note": "A neutral daytime greeting used from about 10:00 A.M. until sundown — earlier use おはようございます (ohayou gozaimasu); after dark switch to こんばんは (konbanwa)."
+    },
+    {
+      "id": "konbanwa",
+      "english": "Good evening.",
+      "category": "Greetings",
+      "target": "こんばんは",
+      "note": "Used once it gets dark, taking over from こんにちは (konnichiwa) as the day's greeting."
+    },
+    {
+      "id": "ja-mata",
+      "english": "See you.",
+      "category": "Greetings",
+      "target": "じゃ、また",
+      "note": "A casual 'see you' between friends or peers; for a more formal parting use さようなら (sayounara) or しつれいします (shitsurei shimasu)."
+    },
+    {
+      "id": "sayounara",
+      "english": "Good-bye.",
+      "category": "Greetings",
+      "target": "さようなら",
+      "note": "A fairly formal, somewhat final-sounding goodbye — less common between close friends or family who expect to meet again soon. Compare the casual じゃ、また (ja, mata) or the workplace おつかれさまでした (otsukaresama deshita).",
+      "hint": "the plain everyday good-bye, not a workplace phrase"
+    },
+    {
+      "id": "shitsurei-shimasu-entering",
+      "english": "Excuse me.",
+      "category": "Greetings",
+      "target": "しつれいします",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 7: Going Places (2): I'm Going by Shinkansen (re-taught as a dedicated VOCABULARY entry, \"Excuse me.\")",
+      "note": "Said when entering another person's room. The identical phrase しつれいします (shitsurei shimasu) is also used to mean 'good-bye' on formal occasions (see that card) — context tells the listener which meaning is meant.",
+      "scene": "said when entering another person's room"
+    },
+    {
+      "id": "shitsurei-shimasu-leaving",
+      "english": "Good-bye.",
+      "category": "Greetings",
+      "target": "しつれいします",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 6: Going Places (1): Where Are You Going? (re-taught as a dedicated VOCABULARY entry, \"Good bye.\")",
+      "note": "Said on formal occasions when leaving, e.g. a meeting. The identical phrase しつれいします (shitsurei shimasu) is also used when entering someone's room (see that card) — context tells the listener which meaning is meant.",
+      "scene": "said on formal occasions"
+    },
+    {
+      "id": "osaki-ni-shitsurei-shimasu",
+      "english": "Good-bye.",
+      "category": "Greetings",
+      "target": "おさきにしつれいします",
+      "note": "Said by the person leaving work before their colleagues; the colleagues who remain reply with おつかれさまでした (otsukaresama deshita) to the one leaving.",
+      "scene": "said when leaving the office before other people"
+    },
+    {
+      "id": "otsukaresama-deshita",
+      "english": "Good-bye.",
+      "category": "Greetings",
+      "target": "おつかれさま（でした）",
+      "note": "Said by colleagues staying behind to a colleague who is leaving the office — the reply to おさきにしつれいします (osaki ni shitsurei shimasu). （でした）(deshita) is the polite past-tense ending: おつかれさまでした (otsukaresama deshita) is the fuller, formal version, while おつかれさま (otsukaresama) alone is the casual short form.",
+      "scene": "said when your colleague leaves the office before you"
+    },
+    {
+      "id": "douzo",
+      "english": "Please.",
+      "category": "Greetings",
+      "target": "どうぞ",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (re-taught as a dedicated VOCABULARY entry, \"Please (have one).\")",
+      "note": "Used when offering or handing something to someone, like 'here you go' — it accompanies an offer, not a request for something yourself.",
+      "scene": "offering something to someone"
+    },
+    {
+      "id": "arigatou-gozaimasu",
+      "english": "Thank you.",
+      "category": "Greetings",
+      "target": "ありがとうございます",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (re-taught as a dedicated VOCABULARY entry, \"Thank you.\")",
+      "note": "The standard, all-purpose polite 'thank you' — safe in almost any situation, from shops to business settings.",
+      "hint": "the polite full-length form, for a stranger or a superior"
+    },
+    {
+      "id": "iie-not-at-all",
+      "english": "Not at all.",
+      "category": "Greetings",
+      "target": "いいえ",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 1: Meeting: Nice to Meet You (re-taught as a dedicated VOCABULARY entry, \"no.\")",
+      "note": "A polite way to deflect thanks or a compliment, roughly 'not at all' or 'don't mention it' — not a direct answer to a yes/no question.",
+      "scene": "downplaying thanks just received"
+    },
+    {
+      "id": "itadakimasu",
+      "english": "(said before eating a meal)",
+      "category": "Food",
+      "target": "いただきます",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 10: Describing Things: It's Delicious (re-taught as a dedicated VOCABULARY entry)",
+      "note": "Said before eating, even when dining alone, often with hands pressed together; paired with ごちそうさま（でした） (gochisousama (deshita)) said after finishing the meal.",
+      "scene": "about to start eating"
+    },
+    {
+      "id": "gochisousama-deshita",
+      "english": "(said after eating a meal)",
+      "category": "Food",
+      "target": "ごちそうさま（でした）",
+      "note": "Set phrase spoken after finishing a meal, thanking the preparer or host. （でした）(deshita) is the polite past-tense ending: ごちそうさまでした (gochisousama deshita) is the fuller, formal version, while ごちそうさま (gochisousama) alone is the casual short form."
+    },
+    {
+      "id": "sumimasen-excuse-me",
+      "english": "Excuse me.",
+      "category": "Greetings",
+      "target": "すみません",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 1: Meeting: Nice to Meet You (re-taught as a dedicated VOCABULARY entry, \"Excuse me.\")",
+      "note": "Used to get someone's attention, e.g. calling over a waiter or approaching a stranger for help; the same word すみません (sumimasen) also means 'I'm sorry' (see that card) — context makes clear which is meant.",
+      "scene": "getting someone's attention"
+    },
+    {
+      "id": "sumimasen-sorry",
+      "english": "I'm sorry.",
+      "category": "Greetings",
+      "target": "すみません",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 14: Giving and Receiving: I Received It from My Friend (the closely related すみませんでした gets its own VOCABULARY entry glossed \"I'm sorry (for what I did a while ago)\" — a near-exact re-teaching of this sense despite the slightly different surface string, worth the reviewer's judgment)",
+      "note": "The same word すみません (sumimasen) used to get someone's attention (see that card); here it's a mild, everyday apology.",
+      "scene": "apologizing for a mistake"
+    },
+    {
+      "id": "chotto-matte-kudasai",
+      "english": "Wait just a moment, please.",
+      "category": "Grammar & Function Words",
+      "target": "ちょっとまってください",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (re-taught as a dedicated KEY SENTENCES entry, \"Please wait a moment.\")",
+      "note": "ちょっと (chotto, 'a little') softens the request; まって is the て-form of まつ (matsu, 'to wait') plus ください (kudasai). ください attaches directly onto a verb's て-form for a fairly direct ask; contrast もういちどおねがいします (mou ichido onegaishimasu), which uses the standalone, slightly softer おねがいします instead."
+    },
+    {
+      "id": "mou-ichido-onegaishimasu",
+      "english": "Once more, please.",
+      "category": "Grammar & Function Words",
+      "target": "もういちどおねがいします",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (re-taught as a dedicated VOCABULARY entry, \"One more time, please.\")",
+      "note": "もういちど (mou ichido, 'one more time') + おねがいします (onegaishimasu) politely asks for something to be repeated. おねがいします stands alone as a somewhat softer, more general request word than ください (kudasai) in ちょっとまってください (chotto matte kudasai), which attaches directly to a verb's て-form."
+    }
+  ]
+}

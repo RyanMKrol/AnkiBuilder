@@ -1,0 +1,654 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 25,
+    "chapterLabel": "Lesson 8: Doing Things (1): I’m Going to Eat Tempura"
+  },
+  "items": [
+    {
+      "id": "shuumatsu",
+      "english": "Weekend",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 16: Making an Invitation: Shall We Go Together? (explicitly re-taught as a dedicated Key Sentence entry)",
+      "target": "しゅうまつ",
+      "uncertain": true
+    },
+    {
+      "id": "nani",
+      "english": "What",
+      "category": "Grammar & Function Words",
+      "hint": null,
+      "note": "Plain 'what,' distinct from なんの (nan no) 'what kind of' seen with なんじ (nanji, 'what time') and なんにん (nannin, 'how many people') — なに (nani) alone asks about an unspecified thing, as in なにをしますか (nani o shimasu ka), 'what will you do?'",
+      "reviewNote": null,
+      "target": "なに"
+    },
+    {
+      "id": "particle-wo",
+      "english": "Object marker (particle)",
+      "category": "Grammar & Function Words",
+      "hint": null,
+      "note": "を (o) marks a direct object, a different job from お (o), the honorific prefix from Lesson 1 (おくに, okuni) — same-sounding syllable, unrelated grammar.",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (explicitly re-taught as its own dedicated vocabulary-table row (with its own grammar cross-reference))",
+      "target": "を",
+      "uncertain": true
+    },
+    {
+      "id": "shimasu",
+      "english": "Do",
+      "category": "Other",
+      "hint": "the general-purpose \"do\" — tennis, study, shopping, work",
+      "note": null,
+      "reviewNote": null,
+      "target": "します"
+    },
+    {
+      "id": "particle-de-place",
+      "english": "At, in, on (particle marking place or event of an action)",
+      "category": "Grammar & Function Words",
+      "hint": null,
+      "note": "This で (de) marks WHERE an action happens (レストランでたべます, resutoran de tabemasu, 'eat at a restaurant') — a different job from Lesson 4/7's で (de) marking means/method (カードで, kaado de, 'by card'; バスで, basu de, 'by bus'), and from Lesson 6's で (de) marking a state ('alone', ひとりで, hitori de). Same particle, three distinct roles.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "で",
+      "uncertain": true,
+      "scene": "marking where the action happens"
+    },
+    {
+      "id": "tenpura",
+      "english": "Tempura",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (explicitly re-taught as a dedicated Key Sentence entry)",
+      "target": "てんぷら",
+      "uncertain": true
+    },
+    {
+      "id": "tabemasu",
+      "english": "Eat",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たべます"
+    },
+    {
+      "id": "ii-desu-ne",
+      "english": "That's good.",
+      "category": "Emotions & Feelings",
+      "hint": null,
+      "note": "Used to express admiration or praise for something someone said or did.",
+      "reviewNote": null,
+      "target": "いいですね"
+    },
+    {
+      "id": "kabuki",
+      "english": "Kabuki",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": "A traditional Japanese performing art performed by male actors.",
+      "reviewNote": null,
+      "target": "かぶき"
+    },
+    {
+      "id": "mimasu",
+      "english": "See",
+      "category": "Other",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "みます"
+    },
+    {
+      "id": "tenisu-wo-shimasu",
+      "english": "Play tennis",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "テニスをします"
+    },
+    {
+      "id": "ks1-tennis-tomorrow",
+      "english": "Smith-san will play tennis tomorrow.",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはあしたテニスをします"
+    },
+    {
+      "id": "nanimo",
+      "english": "Nothing (used with a negative verb)",
+      "category": "Grammar & Function Words",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Written なにも 〜ません in the source vocabulary table; placeholder stripped to the bare word per convention.",
+      "target": "なにも"
+    },
+    {
+      "id": "tabemasendeshita",
+      "english": "Did not eat",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たべませんでした"
+    },
+    {
+      "id": "nanimo-tabemasendeshita",
+      "english": "Didn't eat anything",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なにもたべませんでした"
+    },
+    {
+      "id": "tabemashita",
+      "english": "Ate",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たべました"
+    },
+    {
+      "id": "asagohan",
+      "english": "Breakfast",
+      "category": "Food",
+      "hint": null,
+      "note": "あさ (asa, \"morning\") + ごはん (gohan, \"meal/rice\"). Compare ひるごはん (hirugohan, \"lunch\") and ばんごはん (bangohan, \"dinner\") — all three share the ごはん suffix with a different time-of-day prefix.",
+      "reviewNote": "Not glossed in the running text; identified from the WORD POWER food illustration (Page_076_Image_0001.jpg), item ① — a clock reading A.M. above a breakfast plate (egg, toast, coffee). | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "target": "あさごはん",
+      "uncertain": true
+    },
+    {
+      "id": "bangohan",
+      "english": "Dinner, supper",
+      "category": "Food",
+      "hint": null,
+      "note": "ばん (ban, \"evening\") + ごはん (gohan, \"meal/rice\"). Compare あさごはん (asagohan, \"breakfast\") and ひるごはん (hirugohan, \"lunch\").",
+      "reviewNote": "Not glossed as a standalone word in the running text (only appears inside KS2 and the phrase なにも たべませんでした); identified as item ③ in the WORD POWER food illustration (Page_076_Image_0001.jpg), a clock reading P.M. above a fish set meal. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "target": "ばんごはん",
+      "uncertain": true
+    },
+    {
+      "id": "hirugohan",
+      "english": "Lunch",
+      "category": "Food",
+      "hint": null,
+      "note": "ひる (hiru, \"noon\") + ごはん (gohan, \"meal/rice\"). Compare あさごはん (asagohan, \"breakfast\") and ばんごはん (bangohan, \"dinner\").",
+      "reviewNote": null,
+      "target": "ひるごはん"
+    },
+    {
+      "id": "raamen",
+      "english": "Ramen (Chinese noodle)",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ラーメン"
+    },
+    {
+      "id": "osushi",
+      "english": "Sushi",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (explicitly re-taught as a dedicated Key Sentence entry)",
+      "target": "(お)すし",
+      "uncertain": true
+    },
+    {
+      "id": "suteeki",
+      "english": "Steak",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ステーキ"
+    },
+    {
+      "id": "suupu",
+      "english": "Soup",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スープ"
+    },
+    {
+      "id": "nihonshu",
+      "english": "Sake (Japanese rice liquor)",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にほんしゅ"
+    },
+    {
+      "id": "ocha",
+      "english": "Green tea",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おちゃ"
+    },
+    {
+      "id": "mizu",
+      "english": "Water",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "みず"
+    },
+    {
+      "id": "aisukuriimu",
+      "english": "Ice cream",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "アイスクリーム"
+    },
+    {
+      "id": "nomimasu",
+      "english": "Drink",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "のみます"
+    },
+    {
+      "id": "ks2-ate-supper",
+      "english": "Smith-san ate supper at a restaurant yesterday.",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはきのうレストランでばんごはんをたべました"
+    },
+    {
+      "id": "ks3-ate-nothing",
+      "english": "Emma-san did not eat anything at the party.",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "エマさんはパーティーでなにもたべませんでした"
+    },
+    {
+      "id": "kaimasu",
+      "english": "Buy",
+      "category": "Shopping",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "かいます"
+    },
+    {
+      "id": "yomimasu",
+      "english": "Read",
+      "category": "Other",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "よみます"
+    },
+    {
+      "id": "kikimasu",
+      "english": "Listen to",
+      "category": "Other",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ききます",
+      "scene": "putting on music or a recording"
+    },
+    {
+      "id": "benkyou-wo-shimasu",
+      "english": "Study",
+      "category": "School & Education",
+      "hint": null,
+      "note": "Follows the general [noun] + を (o) + します (shimasu) pattern from テニスをします (tenisu o shimasu, 'play tennis') and しごとをします (shigoto o shimasu, 'work') this lesson — します supplies 'do,' the noun supplies the activity.",
+      "reviewNote": null,
+      "target": "べんきょうをします"
+    },
+    {
+      "id": "kaimono-wo-shimasu",
+      "english": "Shop",
+      "category": "Shopping",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "かいものをします"
+    },
+    {
+      "id": "shigoto-wo-shimasu",
+      "english": "Work",
+      "category": "Work & Occupations",
+      "hint": "the verb — \"to work\"",
+      "note": "しごと (shigoto, 'work') is the same noun from Lesson 3's しごとはくじからごじまでです (shigoto wa kuji kara goji made desu, 'work is from 9:00 to 5:00'); here it combines with を (o) + します (shimasu) to form the verb 'to work'.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "target": "しごとをします",
+      "uncertain": true
+    },
+    {
+      "id": "tabemasen",
+      "english": "Do not eat",
+      "category": "Food",
+      "hint": null,
+      "note": "All the lesson's verbs take the same four forms: ます (masu) → ません (masen) → ました (mashita) → ませんでした (masendeshita).",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "たべません"
+    },
+    {
+      "id": "nomimasen",
+      "english": "Do not drink",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "のみません"
+    },
+    {
+      "id": "nomimashita",
+      "english": "Drank",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "のみました"
+    },
+    {
+      "id": "nomimasendeshita",
+      "english": "Did not drink",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "のみませんでした"
+    },
+    {
+      "id": "shimasen",
+      "english": "Do not do",
+      "category": "Other",
+      "hint": "the general-purpose \"do\" — tennis, study, shopping, work",
+      "note": null,
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "しません"
+    },
+    {
+      "id": "shimashita",
+      "english": "Did",
+      "category": "Other",
+      "hint": "the general-purpose \"do\" — tennis, study, shopping, work",
+      "note": null,
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "しました"
+    },
+    {
+      "id": "shimasendeshita",
+      "english": "Did not do",
+      "category": "Other",
+      "hint": "the general-purpose \"do\" — tennis, study, shopping, work",
+      "note": null,
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "しませんでした"
+    },
+    {
+      "id": "nin-suffix",
+      "english": "…people (counter)",
+      "category": "Numbers",
+      "hint": null,
+      "note": "Attaches to a number to count people: さんにん (san-nin, 'three people'), ごにん (go-nin, 'five people'). One and two break the pattern completely — ひとり (hitori) and ふたり (futari) — and four uses よ (yo) rather than よん (yon): よにん (yo-nin).",
+      "reviewNote": "Written 〜にん in the source.",
+      "target": "にん"
+    },
+    {
+      "id": "nannin",
+      "english": "How many people",
+      "category": "Numbers",
+      "hint": "the plain, everyday way to ask",
+      "note": "なん (nan, 'how many') + the counter にん (nin, '…people'). Restaurant and hotel staff ask a customer the same question with the polite なんめいさまですか (nanmeisama desu ka) — see that card.",
+      "reviewNote": null,
+      "target": "なんにん"
+    },
+    {
+      "id": "sannin",
+      "english": "Three people",
+      "category": "Numbers",
+      "note": null,
+      "reviewNote": "Not in the running text; taken from the WORD POWER \"Numbers of people\" illustration (Page_077_Image_0001.jpg).",
+      "target": "さんにん",
+      "scene": "the bare count, not an answer to a question"
+    },
+    {
+      "id": "hitori",
+      "english": "One person",
+      "category": "Numbers",
+      "note": "Irregular — it takes no にん (nin) counter at all (never いちにん). ふたり (futari, 'two people') behaves the same way; the regular pattern resumes at さんにん (san-nin, 'three people'). This is the same ひとり (hitori) inside Lesson 6's ひとりで (hitori de, 'alone').",
+      "reviewNote": null,
+      "target": "ひとり",
+      "scene": "the bare count, not an answer to a question"
+    },
+    {
+      "id": "gonin",
+      "english": "Five people",
+      "category": "Numbers",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Not in the running text; taken from the WORD POWER \"Numbers of people\" illustration (Page_077_Image_0001.jpg).",
+      "target": "ごにん"
+    },
+    {
+      "id": "futari",
+      "english": "Two people",
+      "category": "Numbers",
+      "note": "Irregular like ひとり (hitori, 'one person') — no にん (nin) counter (never ににん). From three upward the regular pattern resumes: さんにん (san-nin, 'three people').",
+      "reviewNote": null,
+      "target": "ふたり",
+      "scene": "the bare count, not an answer to a question"
+    },
+    {
+      "id": "yonin",
+      "english": "Four people",
+      "category": "Numbers",
+      "hint": null,
+      "note": "Four uses よ (yo) here, not よん (yon) — never よんにん. The same shortening as Lesson 3's よじ (yo-ji, '4:00, four o'clock').",
+      "reviewNote": "Not in the running text; taken from the WORD POWER \"Numbers of people\" illustration (Page_077_Image_0001.jpg).",
+      "target": "よにん"
+    },
+    {
+      "id": "eiga",
+      "english": "Movie",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "えいが"
+    },
+    {
+      "id": "ongaku",
+      "english": "Music",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おんがく"
+    },
+    {
+      "id": "rajio",
+      "english": "Radio",
+      "category": "Technology & Communication",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ラジオ"
+    },
+    {
+      "id": "nyuusu",
+      "english": "News",
+      "category": "Technology & Communication",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ニュース"
+    },
+    {
+      "id": "baa",
+      "english": "Bar",
+      "category": "Food",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "バー"
+    },
+    {
+      "id": "konbini",
+      "english": "Convenience store",
+      "category": "Shopping",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "コンビニ"
+    },
+    {
+      "id": "toshokan",
+      "english": "Library",
+      "category": "School & Education",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "としょかん"
+    },
+    {
+      "id": "nanmeisama-desu-ka",
+      "english": "How many people?",
+      "category": "Numbers",
+      "note": "The polite form of this lesson's なんにん (nan-nin, 'how many people') — the book glosses it exactly that way. めいさま (meisama) is an honorific counter for people you are serving, so staff use it about YOU and you never use it about your own group. Answer with the plain counter: ふたりです (futari desu), 'two people.'",
+      "reviewNote": null,
+      "target": "なんめいさまですか",
+      "scene": "what a restaurant asks a customer"
+    },
+    {
+      "id": "gorufu-wo-shimasu",
+      "english": "Play golf",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ゴルフをします"
+    },
+    {
+      "id": "hakone",
+      "english": "Hakone (popular travel destination southwest of Tokyo)",
+      "category": "Travel & Tourism",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "はこね"
+    },
+    {
+      "id": "tenisukooto",
+      "english": "Tennis court",
+      "category": "Sports & Hobbies",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "テニスコート"
+    },
+    {
+      "id": "degozaimasu",
+      "english": "(polite form of です)",
+      "category": "Grammar & Function Words",
+      "hint": null,
+      "note": "A more formal です (desu), heard from shop or business staff — compare ございます (gozaimasu) inside ありがとうございます (arigatou gozaimasu) from Frequently Used Expressions, a related but different polite form.",
+      "reviewNote": "Written 〜でございます in the source.",
+      "target": "でございます"
+    },
+    {
+      "id": "tenmasa-degozaimasu",
+      "english": "This is Tenmasa.",
+      "category": "Food",
+      "note": "でございます (degozaimasu) in use: a business naming itself on the phone. てんまさ (Tenmasa) is the tempura restaurant in this lesson's dialogue. The everyday form would be てんまさです (tenmasa desu) — でございます (degozaimasu) is what staff say to a customer.",
+      "reviewNote": "From this lesson's Speaking Practice dialogue — the only place the chapter actually uses でございます.",
+      "target": "てんまさでございます",
+      "scene": "a restaurant answering the phone"
+    },
+    {
+      "id": "nozomi-depaato-degozaimasu",
+      "english": "This is the Nozomi Department Store.",
+      "category": "Shopping",
+      "note": "The same でございます (degozaimasu) pattern as てんまさでございます (tenmasa de gozaimasu), with のぞみデパート (Nozomi Depaato) from Lesson 1 — any business names itself this way when it picks up the phone.",
+      "reviewNote": "AI-suggested: a second worked example of でございます built from vocabulary already introduced (のぞみデパート, Lesson 1), so the pattern generalizes beyond the one fictitious restaurant name.",
+      "target": "のぞみデパートでございます",
+      "aiSuggested": true,
+      "scene": "a shop answering the phone"
+    },
+    {
+      "id": "yoyaku",
+      "english": "Reservation",
+      "category": "Travel & Tourism",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "よやく"
+    },
+    {
+      "id": "wakarimasu",
+      "english": "Understand, see, get it",
+      "category": "Other",
+      "hint": null,
+      "note": "The affirmative of Lesson 2's わかりません (wakarimasen, 'I don't know') — one verb, opposite polarity. Japanese reaches for it where English would say 'know' as well as 'understand'.",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (explicitly re-taught as a dedicated vocabulary-table row and a Key Sentence entry)",
+      "target": "わかります",
+      "uncertain": true
+    },
+    {
+      "id": "wakarimashita",
+      "english": "Understood, I see, I understand",
+      "category": "Other",
+      "hint": null,
+      "note": "Past form of わかります (wakarimasu, 'understand, see, get it'). Japanese answers in the PAST tense at the moment of understanding where English uses the present — say わかりました (wakarimashita), not わかります, for 'got it'.",
+      "reviewNote": null,
+      "target": "わかりました"
+    },
+    {
+      "id": "onamae",
+      "english": "Your name",
+      "category": "Other",
+      "hint": null,
+      "note": "お (o, honorific prefix) + なまえ (namae, 'name') from Lesson 2 — same pattern as おくに (okuni, 'your country') and おでんわばんごう (odenwa bangou) below: always someone else's, never your own.",
+      "reviewNote": null,
+      "target": "おなまえ"
+    },
+    {
+      "id": "odenwabangou",
+      "english": "Your phone number",
+      "category": "Technology & Communication",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おでんわばんごう"
+    },
+    {
+      "id": "furiimaaketto",
+      "english": "Flea market",
+      "category": "Shopping",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "フリーマーケット"
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "chapterNumber": 15,
+    "chapterLabel": "Lesson 2: Possession: Whose Pen Is This? (Extras)",
+    "reviewed": true
+  },
+  "items": [
+    {
+      "id": "nan",
+      "english": "What",
+      "category": "Grammar & Function Words",
+      "target": "なん",
+      "hint": "the form used before です (desu) and counters, as in なんじ (nanji)",
+      "note": "The question word that fills the same slot as a noun: これはとけいです (kore wa tokei desu) becomes これはなんですか (kore wa nan desu ka). Sits alongside だれ (dare, 'who') from this lesson.",
+      "reviewNote": "From the VOCABULARY block after EXERCISE III (p. 13), where the book introduces なん = 'what'. The deck already has だれ and だれの but this word is missing entirely, even though the exercise built on it is a whole section.",
+      "aiSuggested": true
+    },
+    {
+      "id": "oshiete-kudasai",
+      "english": "Please tell me",
+      "category": "Other",
+      "target": "おしえてください",
+      "hint": null,
+      "note": "Attaches to a noun with を (o): [thing]をおしえてください (o oshiete kudasai). Narrower than おねがいします (onegaishimasu), which can request an object, a service or a person — this one asks specifically for information.",
+      "reviewNote": "From the VOCABULARY block after EXERCISE VII-B (p. 14), where the book teaches 〜を おしえてください. Missing from the deck entirely despite an exercise section and a Speaking Practice dialogue being built on it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-dare-no-meishi-desu-ka",
+      "english": "Whose business card is this?",
+      "category": "Work & Occupations",
+      "target": "これはだれのめいしですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE VI-C pattern (p. 14). Coverage job: vocabulary — めいし exists only as a bare noun, and a business card is the most natural thing in the lesson to ask ownership of.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hai-kagi-desu",
+      "english": "Yes, it's a key.",
+      "category": "Home & Household",
+      "target": "はい、かぎです",
+      "note": "これは (kore wa) drops out of the answer — both speakers are already looking at the thing.",
+      "reviewNote": "Constructed on the EXERCISE II-A model answer. Coverage job: form — the affirmative short answer, paired with the question above.",
+      "aiSuggested": true,
+      "scene": "answering whether the object in front of you is a key"
+    },
+    {
+      "id": "megane-wa-watashi-no-ja-arimasen",
+      "english": "The glasses aren't mine.",
+      "category": "Clothing",
+      "target": "めがねはわたしのじゃありません",
+      "hint": null,
+      "note": "Minimal pair with めがねはなかむらさんのです (megane wa nakamura san no desu): the topic is unchanged and only the owner and です (desu) / じゃありません (ja arimasen) move.",
+      "reviewNote": "Constructed. Coverage job: vocabulary — a second frame for めがね, and the only card showing the elliptical possessive negated after a noun topic rather than after これ.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nozomi-depaato-no-denwa-bangou",
+      "english": "The Nozomi Department Store's telephone number is 03-3459-9620.",
+      "category": "Technology & Communication",
+      "target": "のぞみデパートのでんわばんごうはゼロさんのさんよんごきゅうのきゅうろくにゼロです",
+      "hint": null,
+      "note": "Every hyphen in the written number becomes の (no) and each digit is read separately. In phone numbers 0 is read ゼロ (zero), not れい (rei).",
+      "reviewNote": "Lifted from SPEAKING PRACTICE 2 (p. 16), read out using the WORD POWER footnote's own pronunciation of that exact number. Coverage job: form — the answer half of the question above, and the second worked example of the の-for-hyphen convention.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-kagi-desu-ka",
+      "english": "Is this a key?",
+      "category": "Home & Household",
+      "target": "これはかぎですか",
+      "hint": null,
+      "note": "Member 3 of the set, and a minimal pair with これはかぎです (kore wa kagi desu): か (ka) is the only difference. Japanese does not reorder words to ask a question.",
+      "reviewNote": "Constructed on the EXERCISE II-A pattern. Coverage job: form — the question member of the かぎ set, and the clearest possible demonstration of the か particle.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-kaisha-no-denwa-desu",
+      "english": "This is the company phone.",
+      "category": "Technology & Communication",
+      "target": "これはかいしゃのでんわです",
+      "hint": null,
+      "note": "の (no) links two things rather than a person and a thing here — 'the phone belonging to the company', the same shape as かいしゃのなまえ (kaisha no namae).",
+      "reviewNote": "Constructed. Coverage job: vocabulary — でんわ on its own has no sentence anywhere; every existing card uses it only inside でんわばんごう.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nakamura-san-no-desu",
+      "english": "It's Nakamura-san's.",
+      "category": "Work & Occupations",
+      "target": "なかむらさんのです",
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE VI-C model answer (p. 14). Coverage job: vocabulary — the reply half of the めいし question, kept as its own card per the question/answer rule.",
+      "aiSuggested": true,
+      "scene": "answering whose business card this is"
+    },
+    {
+      "id": "hai-sasaki-san-no-desu",
+      "english": "Yes, it's Sasaki-san's.",
+      "category": "Money",
+      "target": "はい、ささきさんのです",
+      "note": "さいふ (saifu) vanishes from the answer and の (no) carries the possession by itself — this is GRAMMAR 3's noun-omission rule in its most common shape.",
+      "reviewNote": "Lifted from the EXERCISE VI-A model answer (p. 14), with さいふ substituted for めがね to keep the contrast set on one noun. Coverage job: form — the affirmative elliptical possessive answer.",
+      "aiSuggested": true,
+      "scene": "answering whether the wallet is Sasaki-san's"
+    },
+    {
+      "id": "ema-san-no-desu",
+      "english": "It's Emma-san's.",
+      "category": "Other",
+      "target": "エマさんのです",
+      "note": null,
+      "reviewNote": "EXERCISE VII example dialogue, Nakamura's final line (p. 15). The answer half of だれのですか, and the only third-person possessive short answer in the chapter. Split into its own card per the question/answer rule.",
+      "aiSuggested": true,
+      "scene": "answering whose pen it is"
+    },
+    {
+      "id": "kore-wa-sasaki-san-no-sumaho-desu-ka",
+      "english": "Is this Sasaki-san's smartphone?",
+      "category": "Technology & Communication",
+      "target": "これはささきさんのスマホですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Lifted verbatim from EXERCISE VI-B item 1 (p. 14). Coverage job: vocabulary — スマホ had no sentence anywhere in the deck.",
+      "aiSuggested": true
+    },
+    {
+      "id": "saa-wakarimasen",
+      "english": "Well, I don't know.",
+      "category": "Other",
+      "target": "さあ、わかりません",
+      "hint": "prefaced by a hesitation sound",
+      "note": "さあ (sā) signals that the speaker is hesitating before admitting they can't answer — it softens the bare わかりません (wakarimasen), which on its own can land abruptly.",
+      "reviewNote": "Target Dialogue, Suzuki's reply (p. 9), explained in NOTES 1. The deck has the bare わかりません card (`wakarimasen`) but not the full reply the book actually teaches, and さあ is listed in the chapter VOCABULARY with a pointer to its own NOTES entry. Hint added because the English is close to the existing `wakarimasen` card.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nihon-no-okashi-desu",
+      "english": "They're Japanese sweets.",
+      "category": "Food",
+      "target": "にほんのおかしです",
+      "note": null,
+      "reviewNote": "SPEAKING PRACTICE 1, Nakamura's reply (p. 16). Split from これはなんですか as its own card. The deck has にほんのおかし as a bare noun phrase (`nihon-no-okashi`) but never as an answer, so the hint keeps the two prompts distinct.",
+      "aiSuggested": true,
+      "scene": "answering what the snacks in the break room are"
+    },
+    {
+      "id": "kore-wa-tokei-desu-ka",
+      "english": "Is this a watch?",
+      "category": "Other",
+      "target": "これはとけいですか",
+      "hint": null,
+      "note": "Completes the trio with これはとけいです (kore wa tokei desu) and これはとけいじゃありません (kore wa tokei ja arimasen), which the deck already carries as statements.",
+      "reviewNote": "Lifted from EXERCISE II-B item 2 (p. 12). Coverage job: form — the deck holds both Key Sentence statements on とけい but never the question, so the transformation is only two thirds visible.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-sasaki-san-no-saifu-desu-ka",
+      "english": "Is this Sasaki-san's wallet?",
+      "category": "Money",
+      "target": "これはささきさんのさいふですか",
+      "hint": null,
+      "note": "Member 3 of the possessive set. Both short answers below reply to this one.",
+      "reviewNote": "Constructed on the EXERCISE VI-B pattern (これはスミスさんのさいふですか, p. 14). Coverage job: form — the question member of the possessive contrast set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-dare-no-kaban-desu-ka",
+      "english": "Whose bag is this?",
+      "category": "Other",
+      "target": "これはだれのかばんですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE VI-C pattern (p. 14); かばん is also the object of the lesson's listening exercise (p. 15). Coverage job: vocabulary — かばん had no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-watashi-no-desu",
+      "english": "No, it's mine.",
+      "category": "Technology & Communication",
+      "target": "いいえ、わたしのです",
+      "note": "A denial doesn't have to use じゃありません (ja arimasen) — naming the real owner does the job on its own.",
+      "reviewNote": "Constructed as the reply to the EXERCISE VI-B question above. Coverage job: form — the deck models いいえ + negative and はい + affirmative, but never いいえ followed by a positive correction, which is what people actually say.",
+      "aiSuggested": true,
+      "scene": "answering whether the smartphone belongs to Sasaki-san"
+    },
+    {
+      "id": "sasaki-san-no-desu",
+      "english": "It's Sasaki-san's.",
+      "category": "Other",
+      "target": "ささきさんのです",
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE VI-C model answer (p. 14). Coverage job: vocabulary — the reply half of the かばん question, split out as its own card.",
+      "aiSuggested": true,
+      "scene": "answering whose bag this is"
+    },
+    {
+      "id": "denwa-bangou-o-oshiete-kudasai",
+      "english": "Please tell me Smith-san's telephone number.",
+      "category": "Technology & Communication",
+      "target": "スミスさんのでんわばんごうをおしえてください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISE VII-B example, A's line (p. 14); the same request appears in SPEAKING PRACTICE 2 with のぞみデパート in place of the name. A practical, high-frequency request sentence that the deck omits along with the whole exercise section it comes from.",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-tokei-ja-arimasen",
+      "english": "No, it isn't a watch.",
+      "category": "Other",
+      "target": "いいえ、とけいじゃありません",
+      "note": null,
+      "reviewNote": "Lifted from EXERCISE II-B item 2 (p. 12), the answer the exercise expects. Coverage job: form — the negative short answer against the とけい question above.",
+      "aiSuggested": true,
+      "scene": "answering whether the object is a watch"
+    },
+    {
+      "id": "megane-wa-nakamura-san-no-desu",
+      "english": "The glasses are Nakamura-san's.",
+      "category": "Clothing",
+      "target": "めがねはなかむらさんのです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the p. 15 listening-exercise pattern (かばんは〜のです). Coverage job: vocabulary — めがね had no sentence; the object-as-topic frame is used here rather than another これは question.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hai-hon-desu",
+      "english": "Yes, it's a book.",
+      "category": "Other",
+      "target": "はい、ほんです",
+      "note": null,
+      "reviewNote": "EXERCISE II-A example, B's line (p. 12). The affirmative short answer, split from its question. The deck currently gives the learner no model for how to answer a yes/no question at all.",
+      "aiSuggested": true,
+      "scene": "answering whether the object is a book"
+    },
+    {
+      "id": "hai-watashi-no-desu",
+      "english": "Yes, it's mine.",
+      "category": "Other",
+      "target": "はい、わたしのです",
+      "note": null,
+      "reviewNote": "Target Dialogue, Tanaka's reply (p. 9). Close to the existing `kore-watashino` (これはわたしのです, 'This is mine.') but is the elliptical answer form with はい, which is what the exercises drill; hint added to keep the two apart.",
+      "aiSuggested": true,
+      "scene": "answering whether the pen is yours"
+    },
+    {
+      "id": "kaisha-no-namae-o-oshiete-kudasai",
+      "english": "Please tell me the name of your company.",
+      "category": "Work & Occupations",
+      "target": "かいしゃのなまえをおしえてください",
+      "hint": null,
+      "note": "を (o) marks what you are asking for; the の (no) inside かいしゃのなまえ (kaisha no namae) just links the two nouns.",
+      "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14), swapping the phone number for another item from the same business-card list. Coverage jobs: vocabulary (かいしゃのなまえ had no sentence) and particle (を, which had a single example).",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-nihon-no-kasa-desu",
+      "english": "This is a Japanese umbrella.",
+      "category": "Weather & Nature",
+      "target": "これはにほんのかさです",
+      "hint": null,
+      "note": "にほんの (nihon no) says where a thing is from, not who owns it — the same の (no) as in にほんのおかし (nihon no okashi), and quite different from わたしの (watashi no).",
+      "reviewNote": "Constructed on the にほんのおかし model from SPEAKING PRACTICE 1. Coverage job: particle — の's origin sense exists in the deck only inside a bare noun phrase, never in a full sentence alongside the possessive の it contrasts with.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-kagi-ja-arimasen",
+      "english": "This isn't a key.",
+      "category": "Home & Household",
+      "target": "これはかぎじゃありません",
+      "hint": null,
+      "note": "Member 2 of the set. Only です (desu) changes — nothing else in the sentence moves.",
+      "reviewNote": "Constructed on the EXERCISE I-B pattern. Coverage job: form — the negative member of the かぎ contrast set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-hon-desu-ka",
+      "english": "Is this a book?",
+      "category": "Other",
+      "target": "これはほんですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISE II-A example (p. 12). The plain yes/no これは〜ですか question — the most basic thing the chapter drills, and the deck has only the statement form (これはとけいです).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fairu-wa-tanaka-san-no-desu",
+      "english": "The file is Tanaka-san's.",
+      "category": "Work & Occupations",
+      "target": "ファイルはたなかさんのです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the p. 15 listening-exercise pattern. Coverage job: vocabulary — ファイル had no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-fairu-desu-ka",
+      "english": "Is this a file?",
+      "category": "Work & Occupations",
+      "target": "これはファイルですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE II-B pattern (p. 12). Coverage job: vocabulary — a second frame for ファイル, and the setup for the negative answer below.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-watashi-no-denwa-ja-arimasen",
+      "english": "This isn't my phone.",
+      "category": "Technology & Communication",
+      "target": "これはわたしのでんわじゃありません",
+      "hint": null,
+      "note": "でんわ (denwa) is the telephone itself; the number is でんわばんごう (denwa bangō). Keep them apart — one is an object you can hold, the other is information.",
+      "reviewNote": "Constructed. Coverage job: vocabulary — gives でんわ a second frame, and the note pins down the でんわ / でんわばんごう distinction the deck's bare nouns leave to guesswork.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumisu-san-no-juusho-o-oshiete-kudasai",
+      "english": "Please tell me Smith-san's address.",
+      "category": "Home & Household",
+      "target": "スミスさんのじゅうしょをおしえてください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14), substituting じゅうしょ for でんわばんごう as the book's own drill instructs. Coverage jobs: vocabulary (じゅうしょ had no sentence) and particle (を with a possessed object).",
+      "aiSuggested": true
+    },
+    {
+      "id": "hai-sou-desu-kaisha",
+      "english": "Yes, that's right.",
+      "category": "Grammar & Function Words",
+      "target": "はい、そうです",
+      "note": "Confirms a whole yes/no question without repeating any of it, so it works where the noun-repeating answer (はい、〜です) would be clumsy.",
+      "reviewNote": "Duplicate of td-hai-sou-desu in Lesson 1, which teaches the same はい、そうです (hai, sō desu) reply. Its question card stays and stands alone.",
+      "aiSuggested": true,
+      "excluded": true,
+      "scene": "confirming that Tanaka-san works for the Nozomi Department Store"
+    },
+    {
+      "id": "kore-wa-sasaki-san-no-meeru-adoresu-desu",
+      "english": "This is Sasaki-san's email address.",
+      "category": "Technology & Communication",
+      "target": "これはささきさんのメールアドレスです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job: vocabulary — the statement counterpart to the request above, so the word is practised both as something you ask for and as something you point at.",
+      "aiSuggested": true
+    },
+    {
+      "id": "dare-no-desu-ka",
+      "english": "Whose is it?",
+      "category": "Other",
+      "target": "だれのですか",
+      "hint": null,
+      "note": "The short form of これはだれのペンですか (kore wa dare no pen desu ka) — when everyone can see the object, the noun drops out and only 〜の (no) is left.",
+      "reviewNote": "EXERCISE VII example dialogue, Smith's third line (p. 15). This is the noun-dropping half of GRAMMAR 3 ('in cases when the noun is obvious from the situation, the noun may be omitted') and the deck has no question that demonstrates it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "meeru-adoresu-o-oshiete-kudasai",
+      "english": "Please tell me your email address.",
+      "category": "Technology & Communication",
+      "target": "メールアドレスをおしえてください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14) with another item from the same business-card list. Coverage jobs: vocabulary (メールアドレス had no sentence) and particle (を, fourth example).",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-fairu-ja-arimasen",
+      "english": "No, it isn't a file.",
+      "category": "Work & Occupations",
+      "target": "いいえ、ファイルじゃありません",
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE II-B model answer (p. 12). Coverage job: vocabulary — the reply half of the ファイル question.",
+      "aiSuggested": true,
+      "scene": "answering whether the object is a file"
+    },
+    {
+      "id": "tanaka-san-no-kaisha-wa-nozomi-depaato-desu",
+      "english": "Tanaka-san's company is the Nozomi Department Store.",
+      "category": "Work & Occupations",
+      "target": "たなかさんのかいしゃはのぞみデパートです",
+      "hint": null,
+      "note": "は (wa) marks the whole phrase たなかさんのかいしゃ (tanaka san no kaisha) as the topic — a の (no) phrase can sit in the topic slot just as easily as a single word.",
+      "reviewNote": "Constructed; the fact comes from Lesson 1's こちらはのぞみデパートのたなかさんです. Coverage jobs: vocabulary (かいしゃ had no sentence) and particle (は with a multi-word topic, and a topic that isn't これ).",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-sumisu-san-no-desu",
+      "english": "This is Smith-san's.",
+      "category": "Other",
+      "target": "これはスミスさんのです",
+      "hint": null,
+      "note": "これはスミスさんのとけいです (kore wa sumisu san no tokei desu) with the noun dropped. The deck already shows the same pair for わたし (watashi): わたしのペン (watashi no pen) becomes わたしの (watashi no).",
+      "reviewNote": "Constructed as the minimal-pair partner of Key Sentence 3. Coverage job: particle — の with the noun present versus の standing alone, on identical vocabulary and an identical owner, which is the single hardest idea in this lesson.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-watashi-no-juusho-desu",
+      "english": "This is my address.",
+      "category": "Home & Household",
+      "target": "これはわたしのじゅうしょです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed — the thing you say while handing over a business card, which is what this lesson's WORD POWER section is about. Coverage job: vocabulary — the statement counterpart to the request above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-sasaki-san-no-saifu-desu",
+      "english": "This is Sasaki-san's wallet.",
+      "category": "Money",
+      "target": "これはささきさんのさいふです",
+      "hint": null,
+      "note": "Member 1 of a set built on [owner] の [thing]. The whole possessive phrase behaves like a single noun, so です (desu), じゃありません (ja arimasen) and か (ka) attach to it exactly as they do to かぎ (kagi).",
+      "reviewNote": "Constructed on the EXERCISE V pattern (これはスミスさんのほんです). Coverage jobs: vocabulary (さいふ had no sentence) and form (opens the possessive contrast set).",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumisu-san-no-denwa-bangou-wa",
+      "english": "Smith-san's telephone number is 080-1234-5678.",
+      "category": "Technology & Communication",
+      "target": "スミスさんのでんわばんごうはゼロはちゼロのいちにさんよんのごろくななはちです",
+      "hint": null,
+      "note": "Phone numbers are read digit by digit with の (no) standing in for each hyphen — between the area code and the exchange, and between the exchange and the last four digits. 0 is normally read ゼロ (zero) rather than れい (rei).",
+      "reviewNote": "EXERCISE VII-A example (p. 14). All ten digits have their own cards but nothing shows how they are strung together, and the の-for-hyphen convention (stated in the WORD POWER footnote) is untaught. This is the only card that puts the numbers to work.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-sasaki-san-no-kaban-desu",
+      "english": "This is Sasaki-san's bag.",
+      "category": "Other",
+      "target": "これはささきさんのかばんです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISE V pattern (p. 13). Coverage job: particle — paired deliberately with the next card, which states the same fact with a different topic.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-dare-no-pen-desu-ka",
+      "english": "Whose pen is this?",
+      "category": "Other",
+      "target": "これはだれのペンですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Target Dialogue, Nakamura's opening line (p. 9). This is the lesson's title sentence and the deck does not contain it, or any question at all. Book wording verbatim.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nozomi-depaato-desu",
+      "english": "It's the Nozomi Department Store.",
+      "category": "Work & Occupations",
+      "target": "のぞみデパートです",
+      "note": null,
+      "reviewNote": "Constructed as the reply to the request above. Coverage job: vocabulary — an answer to 〜をおしえてください is a bare noun + です, which no card currently models.",
+      "aiSuggested": true,
+      "scene": "answering what your company is called"
+    },
+    {
+      "id": "kore-wa-kagi-desu",
+      "english": "This is a key.",
+      "category": "Home & Household",
+      "target": "これはかぎです",
+      "hint": null,
+      "note": "Member 1 of a three-way set on one word: swap です (desu) for じゃありません (ja arimasen) to deny it, or add か (ka) to ask it.",
+      "reviewNote": "Constructed, though かぎ is the book's own substitution word in EXERCISE I-A. Coverage job: form — supplies the です / じゃありません / ですか transformation on a single noun. Also the first sentence anywhere in the deck to use かぎ.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaban-wa-sasaki-san-no-desu",
+      "english": "The bag is Sasaki-san's.",
+      "category": "Other",
+      "target": "かばんはささきさんのです",
+      "hint": null,
+      "note": "Same fact as これはささきさんのかばんです (kore wa sasaki san no kaban desu), but は (wa) makes かばん (kaban) itself the topic — what you say when the bag is already what everyone is talking about.",
+      "reviewNote": "Lifted from the listening exercise on p. 15 (かばんは＿＿のです). Coverage job: particle — every は sentence in the deck so far has これ or a person as its topic; this is the first with an ordinary object, and it is a minimal pair with the card above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-nozomi-depaato-no-meishi-desu",
+      "english": "This is a Nozomi Department Store business card.",
+      "category": "Work & Occupations",
+      "target": "これはのぞみデパートのめいしです",
+      "hint": null,
+      "note": "の (no) here is affiliation, not ownership — the same use as こちらはのぞみデパートのたなかさんです (kochira wa nozomi depāto no tanaka san desu) in the previous lesson.",
+      "reviewNote": "Constructed. Coverage job: particle — every other の card in this lesson means 'belongs to a person'; this one shows the organisation-の-thing sense the learner already met with people.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-sasaki-san-no-saifu-ja-arimasen",
+      "english": "This isn't Sasaki-san's wallet.",
+      "category": "Money",
+      "target": "これはささきさんのさいふじゃありません",
+      "hint": null,
+      "note": "Member 2 of the possessive set — the negative lands on です (desu) at the very end, never on の (no).",
+      "reviewNote": "Constructed. Coverage job: form — no card in the deck negates a possessive noun phrase in full (the wave-1 いいえ、わたしのじゃありません is the elliptical version).",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-watashi-no-ja-arimasen",
+      "english": "No, it isn't mine.",
+      "category": "Other",
+      "target": "いいえ、わたしのじゃありません",
+      "note": null,
+      "reviewNote": "Target Dialogue, Smith's reply (p. 9), and reused verbatim as Nakamura's line in EXERCISE VII. The deck teaches じゃありません as a bare suffix and in これはとけいじゃありません, but never with the possessive 〜の, which is this chapter's actual subject.",
+      "aiSuggested": true,
+      "scene": "answering whether the pen is yours"
+    },
+    {
+      "id": "tanaka-san-no-kaisha-wa-nozomi-depaato-desu-ka",
+      "english": "Is Tanaka-san's company the Nozomi Department Store?",
+      "category": "Work & Occupations",
+      "target": "たなかさんのかいしゃはのぞみデパートですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job: particle — the brief asks for at least one question-form example per particle, and every existing は question in the deck starts with これ or a bare name.",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-kasa-ja-arimasen",
+      "english": "No, it isn't an umbrella.",
+      "category": "Other",
+      "target": "いいえ、かさじゃありません",
+      "note": null,
+      "reviewNote": "EXERCISE II-B example, B's line (p. 12). The negative short answer — the topic drops out and only the noun + じゃありません remains, which no existing card shows.",
+      "aiSuggested": true,
+      "scene": "answering whether the object is an umbrella"
+    },
+    {
+      "id": "iie-sasaki-san-no-ja-arimasen",
+      "english": "No, it isn't Sasaki-san's.",
+      "category": "Money",
+      "target": "いいえ、ささきさんのじゃありません",
+      "note": "The negative counterpart of はい、ささきさんのです (hai, sasaki san no desu) — same ellipsis, opposite answer.",
+      "reviewNote": "Lifted from the EXERCISE VI-B model answer (p. 14). Coverage job: form — completes the four-way possessive paradigm on one noun.",
+      "aiSuggested": true,
+      "scene": "answering whether the wallet is Sasaki-san's"
+    },
+    {
+      "id": "kore-wa-nan-desu-ka",
+      "english": "What is this?",
+      "category": "Other",
+      "target": "これはなんですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISE III example (p. 13) and SPEAKING PRACTICE 1, Smith's opening line (p. 16). One of the most useful sentences a beginner can own and it appears twice in the chapter, yet neither it nor its なん is anywhere in the deck.",
+      "aiSuggested": true
+    },
+    {
+      "id": "namae-o-oshiete-kudasai",
+      "english": "Please tell me your name.",
+      "category": "Other",
+      "target": "なまえをおしえてください",
+      "hint": null,
+      "note": "Asking about someone else's name you would normally add the polite お (o) prefix — おなまえ (onamae) — the same prefix seen in おくに (okuni) and おかし (okashi).",
+      "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14). Coverage jobs: vocabulary (なまえ appears only inside かいしゃのなまえ, never in a sentence) and particle (を with a bare noun object).",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumisu-san-no-desu-ka",
+      "english": "Is it yours, Smith-san?",
+      "category": "Other",
+      "target": "スミスさんのですか",
+      "hint": null,
+      "note": "Japanese has a word for 'you' — あなた (anata) — but it is rarely used outside the family and never with someone of higher status. Address people by surname + さん (san) or by job title instead, which is why 'yours' comes out as スミスさんの (sumisu san no).",
+      "reviewNote": "Target Dialogue, Suzuki's second line (p. 9), with the あなた point from NOTES 2. Nothing in the deck teaches the you-becomes-a-name substitution, which is one of the two things this chapter's NOTES section exists to explain. Also the deck's only 〜のです example is a statement, never a question.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-kasa-desu-ka",
+      "english": "Is this an umbrella?",
+      "category": "Other",
+      "target": "これはかさですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISE II-B example, A's line (p. 12). Included as the setup for the negative short answer below, which is the card that actually earns its place; the question itself is the second example of this pattern.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nozomi-depaato-no-denwa-bangou-wa-nan-desu-ka",
+      "english": "What is the Nozomi Department Store's telephone number?",
+      "category": "Technology & Communication",
+      "target": "のぞみデパートのでんわばんごうはなんですか",
+      "hint": null,
+      "note": "なん (nan) asks for a value here rather than an identity. The softer, more usual way to ask is 〜をおしえてください (o oshiete kudasai).",
+      "reviewNote": "Constructed by analogy from これはなんですか (EXERCISE III) plus SPEAKING PRACTICE 2, which asks the same thing with おしえてください. Coverage job: form — the deck's only なんですか sentence starts with これ, so なん is never seen after a real topic.",
+      "aiSuggested": true
+    },
+    {
+      "id": "tanaka-san-kore-wa-tanaka-san-no-pen-desu-ka",
+      "english": "Tanaka-san, is this your pen?",
+      "category": "Other",
+      "target": "たなかさん、これはたなかさんのペンですか",
+      "hint": null,
+      "note": "The name is repeated rather than replaced by 'you' — see the スミスさんのですか (sumisu san no desu ka) card for why あなた (anata) is avoided.",
+      "reviewNote": "Target Dialogue, Nakamura's line to Tanaka (p. 9). Book wording verbatim, vocative included. Pairs with the だれの question as the named-owner version of the same pattern; the deck has neither.",
+      "aiSuggested": true
+    },
+    {
+      "id": "watashi-no-namae-wa-sumisu-desu",
+      "english": "My name is Smith.",
+      "category": "Other",
+      "target": "わたしのなまえはスミスです",
+      "hint": null,
+      "note": "Spells out what （わたしは）スミスです ((watashi wa) sumisu desu) from the previous lesson leaves implied; in real introductions the shorter version is far more common.",
+      "reviewNote": "Constructed as the reply to なまえをおしえてください. Coverage job: vocabulary — puts なまえ in a sentence, and shows a の-phrase as the topic of a は sentence.",
+      "aiSuggested": true
+    }
+  ]
+}

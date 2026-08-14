@@ -1,0 +1,766 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 17,
+    "chapterLabel": "Lesson 3: Asking the Time: What Time Is It?",
+    "done": true
+  },
+  "items": [
+    {
+      "id": "mise",
+      "english": "Restaurant, shop",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "みせ"
+    },
+    {
+      "id": "hito",
+      "english": "Person, employee",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "ひと"
+    },
+    {
+      "id": "mise-no-hito",
+      "english": "Restaurant employee",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "みせのひと"
+    },
+    {
+      "id": "ranchitaimu",
+      "english": "Lunchtime",
+      "category": "Time",
+      "reviewNote": "Source spelling appears to be missing ン (likely a typo/OCR artifact for ランチタイム, 'lunchtime')",
+      "target": "ランチタイム"
+    },
+    {
+      "id": "nanji",
+      "english": "What time",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "なんじ"
+    },
+    {
+      "id": "kara-particle",
+      "english": "From (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "から"
+    },
+    {
+      "id": "han-suffix",
+      "english": "…thirty, half past (hour)",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "はん"
+    },
+    {
+      "id": "juuichi-ji-han",
+      "english": "11:30, eleven-thirty, half past eleven",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅういちじはん"
+    },
+    {
+      "id": "made-particle",
+      "english": "Until (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "まで"
+    },
+    {
+      "id": "ni-ji-han",
+      "english": "2:30, two-thirty, half past two",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にじはん"
+    },
+    {
+      "id": "rasuto-oodaa",
+      "english": "Last order",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ラストオーダー"
+    },
+    {
+      "id": "ni-ji",
+      "english": "2:00, two o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にじ"
+    },
+    {
+      "id": "ima",
+      "english": "Now",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いま"
+    },
+    {
+      "id": "san-ji",
+      "english": "3:00, three o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじ"
+    },
+    {
+      "id": "ks1-ima-sanji",
+      "english": "It is 3:00 now.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いまさんじです"
+    },
+    {
+      "id": "shigoto",
+      "english": "Work",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しごと"
+    },
+    {
+      "id": "ku-ji",
+      "english": "9:00, nine o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "くじ"
+    },
+    {
+      "id": "go-ji",
+      "english": "5:00, five o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごじ"
+    },
+    {
+      "id": "ks2-shigoto-kuji-goji",
+      "english": "Work is from 9:00 to 5:00.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しごとはくじからごじまでです"
+    },
+    {
+      "id": "kaigi",
+      "english": "Meeting",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "かいぎ"
+    },
+    {
+      "id": "ashita",
+      "english": "Tomorrow",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "あした"
+    },
+    {
+      "id": "yo-ji",
+      "english": "4:00, four o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "よじ"
+    },
+    {
+      "id": "ks3-kaigi-ashita-yoji",
+      "english": "The meeting is tomorrow, from 4:00.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "かいぎはあしたのよじからです"
+    },
+    {
+      "id": "suupaa",
+      "english": "Supermarket",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "スーパー"
+    },
+    {
+      "id": "resutoran",
+      "english": "Restaurant",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "レストラン"
+    },
+    {
+      "id": "jimu",
+      "english": "Gym",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ジム"
+    },
+    {
+      "id": "hiru",
+      "english": "Noon",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ひる"
+    },
+    {
+      "id": "yasumi",
+      "english": "Break, time off",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "やすみ"
+    },
+    {
+      "id": "hiruyasumi",
+      "english": "Lunch break",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "ひるやすみ"
+    },
+    {
+      "id": "paatii",
+      "english": "Party",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "パーティー"
+    },
+    {
+      "id": "nanajuu-70",
+      "english": "70",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ななじゅう"
+    },
+    {
+      "id": "nijuuichi-21",
+      "english": "21",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅういち"
+    },
+    {
+      "id": "juuroku-16",
+      "english": "16",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうろく"
+    },
+    {
+      "id": "rokujuu-60",
+      "english": "60",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろくじゅう"
+    },
+    {
+      "id": "nijuusan-23",
+      "english": "23",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうさん"
+    },
+    {
+      "id": "juusan-13",
+      "english": "13",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうさん"
+    },
+    {
+      "id": "juunana-17",
+      "english": "17",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうなな"
+    },
+    {
+      "id": "sanjuu-30",
+      "english": "30",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんじゅう"
+    },
+    {
+      "id": "juuni-12",
+      "english": "12",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうに"
+    },
+    {
+      "id": "juu-10",
+      "english": "10",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅう"
+    },
+    {
+      "id": "nijuunana-27",
+      "english": "27",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうなな"
+    },
+    {
+      "id": "nijuugo-25",
+      "english": "25",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうご"
+    },
+    {
+      "id": "hachijuu-80",
+      "english": "80",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はちじゅう"
+    },
+    {
+      "id": "nijuu-20",
+      "english": "20",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅう"
+    },
+    {
+      "id": "nijuuhachi-28",
+      "english": "28",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうはち"
+    },
+    {
+      "id": "kyuujuu-90",
+      "english": "90",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅうじゅう"
+    },
+    {
+      "id": "nijuuni-22",
+      "english": "22",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうに"
+    },
+    {
+      "id": "nijuuroku-26",
+      "english": "26",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうろく"
+    },
+    {
+      "id": "gojuu-50",
+      "english": "50",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ごじゅう"
+    },
+    {
+      "id": "juuyon-14",
+      "english": "14",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうよん"
+    },
+    {
+      "id": "nijuukyuu-29",
+      "english": "29",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうきゅう"
+    },
+    {
+      "id": "juugo-15",
+      "english": "15",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうご"
+    },
+    {
+      "id": "juukyuu-19",
+      "english": "19",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうきゅう"
+    },
+    {
+      "id": "yonjuu-40",
+      "english": "40",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よんじゅう"
+    },
+    {
+      "id": "nijuuyon-24",
+      "english": "24",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅうよん"
+    },
+    {
+      "id": "juuhachi-18",
+      "english": "18",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうはち"
+    },
+    {
+      "id": "juuichi-11",
+      "english": "11",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅういち"
+    },
+    {
+      "id": "roku-ji",
+      "english": "6:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ろくじ"
+    },
+    {
+      "id": "juuni-ji-time",
+      "english": "12:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅうにじ"
+    },
+    {
+      "id": "juu-ji",
+      "english": "10:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅうじ"
+    },
+    {
+      "id": "ichi-ji",
+      "english": "1:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いちじ"
+    },
+    {
+      "id": "hachi-ji",
+      "english": "8:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "はちじ"
+    },
+    {
+      "id": "shichi-ji",
+      "english": "7:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "しちじ"
+    },
+    {
+      "id": "juuichi-ji-time",
+      "english": "11:00",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅういちじ"
+    },
+    {
+      "id": "san-ji-yonjuugo-fun",
+      "english": "3:45",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじよんじゅうごふん"
+    },
+    {
+      "id": "san-ji-sanjuugo-fun",
+      "english": "3:35",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじさんじゅうごふん"
+    },
+    {
+      "id": "san-ji-go-fun",
+      "english": "3:05",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじごふん"
+    },
+    {
+      "id": "san-ji-nijuugo-fun",
+      "english": "3:25",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじにじゅうごふん"
+    },
+    {
+      "id": "san-ji-juugo-fun",
+      "english": "3:15",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじじゅうごふん"
+    },
+    {
+      "id": "san-ji-gojuugo-fun",
+      "english": "3:55",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじごじゅうごふん"
+    },
+    {
+      "id": "san-ji-sanjuppun-han",
+      "english": "3:30",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじはん"
+    },
+    {
+      "id": "san-ji-yonjuppun",
+      "english": "3:40",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじよんじゅっぷん"
+    },
+    {
+      "id": "san-ji-juppun",
+      "english": "3:10",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじじゅっぷん"
+    },
+    {
+      "id": "san-ji-gojuppun",
+      "english": "3:50",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじごじゅっぷん"
+    },
+    {
+      "id": "san-ji-nijuppun",
+      "english": "3:20",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじにじゅっぷん"
+    },
+    {
+      "id": "gozen-yoji",
+      "english": "4:00 A.M.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごぜんよじ"
+    },
+    {
+      "id": "gogo-kuji",
+      "english": "9:00 P.M.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごごくじ"
+    },
+    {
+      "id": "ji-suffix",
+      "english": "…o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じ"
+    },
+    {
+      "id": "fun-pun-suffix",
+      "english": "…minute(s)",
+      "category": "Time",
+      "reviewNote": "Possibly premature — explicitly re-taught later in Lesson 20: Going Places (3): How Do You Go There?, as a dedicated WORD POWER 'Periods' vocabulary entry (〜ふん／ぷん(かん)) in the duration sense, distinct from ch17's clock-time sense",
+      "target": "ふん"
+    },
+    {
+      "id": "gozen",
+      "english": "A.M., in the morning",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごぜん"
+    },
+    {
+      "id": "gogo",
+      "english": "P.M., in the afternoon",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごご"
+    },
+    {
+      "id": "kyou",
+      "english": "Today",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "きょう"
+    },
+    {
+      "id": "happii-awaa",
+      "english": "Happy hour",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ハッピーアワー"
+    },
+    {
+      "id": "itsu",
+      "english": "When",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いつ"
+    },
+    {
+      "id": "purezen",
+      "english": "Presentation",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "プレゼン"
+    },
+    {
+      "id": "konsaato",
+      "english": "Concert",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "コンサート"
+    },
+    {
+      "id": "asa",
+      "english": "Morning",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "あさ"
+    },
+    {
+      "id": "gohan",
+      "english": "Meal, cooked rice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ごはん"
+    },
+    {
+      "id": "asagohan",
+      "english": "Breakfast",
+      "category": "Food",
+      "reviewNote": "Possibly premature — explicitly re-taught later in Lesson 8: Doing Things (1): I'm Going to Eat Tempura, as a dedicated WORD POWER 'Food and drink' vocabulary entry alongside ひるごはん/ばんごはん",
+      "target": "あさごはん"
+    },
+    {
+      "id": "furonto",
+      "english": "Reception desk",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "フロント"
+    },
+    {
+      "id": "ban",
+      "english": "Evening",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ばん"
+    },
+    {
+      "id": "bangohan",
+      "english": "Evening meal, dinner, supper",
+      "category": "Food",
+      "reviewNote": "Possibly premature — explicitly re-taught later in Lesson 8: Doing Things (1): I'm Going to Eat Tempura, as a dedicated WORD POWER 'Food and drink' vocabulary entry alongside あさごはん/ひるごはん",
+      "target": "ばんごはん"
+    },
+    {
+      "id": "puuru",
+      "english": "Swimming pool",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "プール"
+    },
+    {
+      "id": "sou-desu-ka",
+      "english": "I see. / Is that so?",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "そうですか"
+    },
+    {
+      "id": "doumo-arigatou",
+      "english": "Thank you.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "どうもありがとう"
+    },
+    {
+      "id": "fib-c3-gym-open-7",
+      "english": "The gym is open until 7:00.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank drill (state closing time); filled the time blank with 7:00 using chapter vocabulary ジム.",
+      "target": "ジムは７じまでです",
+      "reading": "ジムはしちじまでです"
+    },
+    {
+      "id": "fib-c3-restaurant-open-8",
+      "english": "The restaurant is open from 8:00.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank drill (state opening time); filled with 8:00 using chapter vocabulary レストラン.",
+      "target": "レストランは８じからです",
+      "reading": "レストランははちじからです"
+    },
+    {
+      "id": "fib-c3-supermarket-10-6",
+      "english": "The supermarket is open from 10:00 to 6:00.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank drill (state opening and closing times); filled with 10:00/6:00 using chapter vocabulary スーパー.",
+      "target": "スーパーは１０じから６じまでです",
+      "reading": "スーパーはじゅうじからろくじまでです"
+    },
+    {
+      "id": "fib-c3-meeting-end-q",
+      "english": "What time does the meeting end?",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer closing time); filled with かいぎ and 4:30. Split from Q&A card fib-c3-meeting-end-430 (question half).",
+      "target": "かいぎはなんじまでですか",
+      "reading": "かいぎはなんじまでですか"
+    },
+    {
+      "id": "fib-c3-meeting-end-a",
+      "english": "It ends at 4:30.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer closing time); filled with かいぎ and 4:30. Split from Q&A card fib-c3-meeting-end-430 (answer half).",
+      "target": "よじはんまでです",
+      "reading": "よじはんまでです"
+    },
+    {
+      "id": "fib-c3-lunch-break-q",
+      "english": "What time is the lunch break, from and to?",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer opening and closing times); filled with ひるやすみ and 12:30/1:30. Split from Q&A card fib-c3-lunch-break-1230-130 (question half).",
+      "target": "ひるやすみはなんじからなんじまでですか",
+      "reading": "ひるやすみはなんじからなんじまでですか"
+    },
+    {
+      "id": "fib-c3-lunch-break-a",
+      "english": "It's from 12:30 to 1:30.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer opening and closing times); filled with ひるやすみ and 12:30/1:30. Split from Q&A card fib-c3-lunch-break-1230-130 (answer half).",
+      "target": "じゅうにじはんからいちじはんまでです",
+      "reading": "じゅうにじはんからいちじはんまでです"
+    },
+    {
+      "id": "fib-c3-presentation-q",
+      "english": "When is the presentation?",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with プレゼン and today at 3:00. Split from Q&A card fib-c3-presentation-today-3 (question half).",
+      "target": "プレゼンはいつですか",
+      "reading": "プレゼンはいつですか"
+    },
+    {
+      "id": "fib-c3-presentation-a",
+      "english": "It's at 3:00 today.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with プレゼン and today at 3:00. Split from Q&A card fib-c3-presentation-today-3 (answer half).",
+      "target": "きょうのさんじからです",
+      "reading": "きょうのさんじからです"
+    },
+    {
+      "id": "fib-c3-party-q",
+      "english": "When is the party?",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with パーティー and tomorrow at 5:00. Split from Q&A card fib-c3-party-tomorrow-5 (question half).",
+      "target": "パーティーはいつですか",
+      "reading": "パーティーはいつですか"
+    },
+    {
+      "id": "fib-c3-party-a",
+      "english": "It's at 5:00 tomorrow.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with パーティー and tomorrow at 5:00. Split from Q&A card fib-c3-party-tomorrow-5 (answer half).",
+      "target": "あしたのごじからです",
+      "reading": "あしたのごじからです"
+    }
+  ]
+}

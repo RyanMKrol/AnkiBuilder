@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 34,
+    "chapterLabel": "Lesson 14: Giving and Receiving: I Received It from My Friend (Extras)"
+  },
+  "items": [
+    {
+      "id": "x14b-senshuu-shucchou-arimashita",
+      "english": "Smith-san had a business trip last week.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはせんしゅうしゅっちょうがありました",
+      "note": "\"Have\" in the past is ありました. The thing had keeps が in every tense.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: arimasu-have)."
+    },
+    {
+      "id": "x14b-tsuma-iyaringu-moraimashita",
+      "english": "My wife received some earrings from Nakamura-san.",
+      "category": "Other",
+      "target": "つまはなかむらさんにイヤリングをもらいました",
+      "note": "The same event as なかむらさんはつまにイヤリングをくれました, told from the receiver's side. くれます puts the giver first; もらいます puts the receiver first and marks the giver with に.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-suteki-na-baggu-doko-de",
+      "english": "It's a lovely bag. Where did you buy it?",
+      "category": "Clothing",
+      "target": "すてきなバッグですね。どこでかいましたか",
+      "scene": "complimenting something a friend is carrying",
+      "note": "The natural follow-up to a compliment. どこで, not どこに: で marks the place where an action happens.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary)."
+    },
+    {
+      "id": "x14b-nakamura-hana-kuremashita",
+      "english": "Nakamura-san gave me some flowers.",
+      "category": "Other",
+      "target": "なかむらさんはわたしにはなをくれました",
+      "note": "Minimal pair with わたしはなかむらさんにはなをあげました. Same event shape, opposite direction. Because the flowers come TO me, Japanese swaps the verb: なかむらさんはわたしにはなをあげました is wrong, and it is the classic beginner mistake here.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-kinou-yotei-arimasendeshita",
+      "english": "I didn't have any plans yesterday.",
+      "category": "Time",
+      "target": "わたしはきのうよていがありませんでした",
+      "note": "よていがありません is how you say you're free. Note ありませんでした, not じゃありませんでした: this is the verb あります, not です.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: arimasu-have)."
+    },
+    {
+      "id": "x14-nakamura-emma-sukaafu-kashimashita",
+      "english": "Nakamura-san lent her scarf to Emma-san.",
+      "category": "Other",
+      "target": "なかむらさんはエマさんにスカーフをかしました",
+      "note": "With かします the に marks the person who gets the loan.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE (closing summary line)."
+    },
+    {
+      "id": "x14b-haha-seetaa-moraimasu",
+      "english": "I get a sweater from my mother for my birthday.",
+      "category": "Clothing",
+      "target": "わたしはたんじょうびにははにセーターをもらいます",
+      "note": "Present-tense もらいます for a regular, repeated event. The に after はは still marks the giver, exactly as it does in the past tense.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14b-kuruma-kashimasu-ashita",
+      "english": "Nakamura-san is going to lend Emma-san her car tomorrow.",
+      "category": "Other",
+      "target": "なかむらさんはあしたエマさんにくるまをかします",
+      "note": "The lend/borrow pair in the present. Compare エマさんはあしたなかむらさんにくるまをかります, which is this same event from the borrower's side.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14b-chokoreeto-agemasendeshita",
+      "english": "Smith-san didn't give Lisa-san any chocolate.",
+      "category": "Other",
+      "target": "スミスさんはリサさんにチョコレートをあげませんでした",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14b-kuruma-ga-arimasu-have",
+      "english": "I have a car.",
+      "category": "Other",
+      "target": "わたしはくるまがあります",
+      "note": "The same あります you learned for \"there is\", but with a person as the topic it means \"have\". わたしは names the owner and くるまが the thing owned.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: arimasu-have)."
+    },
+    {
+      "id": "x14-suteki-na-sukaafu-desune",
+      "english": "It's a lovely scarf!",
+      "category": "Clothing",
+      "target": "すてきなスカーフですね",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "x14b-okane-karimasendeshita",
+      "english": "Emma-san didn't borrow any money from Nakamura-san.",
+      "category": "Money",
+      "target": "エマさんはなかむらさんにおかねをかりませんでした",
+      "note": "Mirror of なかむらさんはエマさんにおかねをかしませんでした, the same non-event described from the other side.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14-dare-ni-moraimashita-q",
+      "english": "Who did he receive it from?",
+      "category": "Other",
+      "target": "だれにもらいましたか",
+      "scene": "asking a follow-up question about a gift someone has just mentioned",
+      "note": "だれに, not だれから — with もらいます the giver is marked by に.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES: Listen and answer (2)."
+    },
+    {
+      "id": "x14b-yubiwa-moraimashita-ni",
+      "english": "Smith-san's wife received a ring from him.",
+      "category": "Other",
+      "target": "おくさんはスミスさんにゆびわをもらいました",
+      "note": "Minimal pair with スミスさんはおくさんにゆびわをあげました. The identical に marks the RECEIVER with あげます but the GIVER with もらいます: the verb, not the particle, tells you which way the ring travelled.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "x14b-watashi-hana-agemashita",
+      "english": "I gave Nakamura-san some flowers.",
+      "category": "Other",
+      "target": "わたしはなかむらさんにはなをあげました",
+      "note": "あげます is the verb for a thing moving AWAY from the speaker. The に marks the person who received it. Flip the direction, make わたし the receiver, and あげます becomes impossible; that case needs くれます.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-konban-yakusoku-arimasu",
+      "english": "Nakamura-san has an appointment this evening.",
+      "category": "Time",
+      "target": "なかむらさんはこんばんやくそくがあります",
+      "note": "やくそくがあります is the normal way to say you're already booked. The time word sits between the topic and the thing you have, with no particle of its own.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: arimasu-have)."
+    },
+    {
+      "id": "x14-asatte-gogo-jikan-arimasu",
+      "english": "Smith-san has time the day after tomorrow afternoon.",
+      "category": "Time",
+      "target": "スミスさんはあさってのごごじかんがあります",
+      "note": "じかんが あります is how you say \"have time / be free\".",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES: State someone's schedule."
+    },
+    {
+      "id": "x14b-burausu-depaato-kaimashita",
+      "english": "Emma-san bought a new blouse at a department store yesterday.",
+      "category": "Clothing",
+      "target": "エマさんはきのうデパートであたらしいブラウスをかいました",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary)."
+    },
+    {
+      "id": "x14-doumo-sumimasendeshita",
+      "english": "I'm very sorry.",
+      "category": "Greetings",
+      "target": "どうもすみませんでした",
+      "scene": "apologizing again for something you just did",
+      "note": "どうも intensifies the apology; the past form すみませんでした is for something already done.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1."
+    },
+    {
+      "id": "x14b-chiketto-ga-arimasu",
+      "english": "Nakamura-san has a concert ticket.",
+      "category": "Other",
+      "target": "なかむらさんはコンサートのチケットがあります",
+      "note": "Watch the particle swap on one and the same noun: with あげます/もらいます the ticket takes を (チケットをもらいました), but with あります in the \"have\" sense it takes が.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "x14b-douryou-omiyage-agemasu",
+      "english": "Smith-san is going to give his colleagues a Kyoto souvenir tomorrow.",
+      "category": "Other",
+      "target": "スミスさんはあしたどうりょうにきょうとのおみやげをあげます",
+      "note": "Same frame as あげました but in the present, which reads as a future plan.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14-tanjoubi-nani-moraimashita-q",
+      "english": "What did Smith-san receive for his birthday?",
+      "category": "Other",
+      "target": "スミスさんはたんじょうびになにをもらいましたか",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES: Listen and answer (1)."
+    },
+    {
+      "id": "x14-chotto-samui-desune",
+      "english": "It's a bit cold here.",
+      "category": "Weather & Nature",
+      "target": "ちょっとさむいですね",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "x14-ee-daijoubu-desu",
+      "english": "Yes, I'm fine.",
+      "category": "Greetings",
+      "target": "ええ、だいじょうぶです",
+      "scene": "answering だいじょうぶですか after someone bumps into you",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1."
+    },
+    {
+      "id": "x14b-kuruma-karimasu-ashita",
+      "english": "Emma-san is going to borrow a car from Nakamura-san tomorrow.",
+      "category": "Other",
+      "target": "エマさんはあしたなかむらさんにくるまをかります",
+      "note": "Mirror of なかむらさんはあしたエマさんにくるまをかします. Only the two names and the verb swap; everything else in the frame holds still.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14b-emma-chiketto-kuremashita",
+      "english": "Emma-san gave me a concert ticket.",
+      "category": "Other",
+      "target": "エマさんはわたしにコンサートのチケットをくれました",
+      "note": "くれました, not あげました. The test is simple: if わたし is the one receiving, the verb has to be くれます.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-risa-chokoreeto-kuremashita",
+      "english": "Lisa-san gave me some chocolate for Valentine's Day.",
+      "category": "Other",
+      "target": "リサさんはバレンタインデーにわたしにチョコレートをくれました",
+      "note": "Two に doing different jobs: the first marks the occasion, the second marks the receiver. A receiver of わたし forces くれました over あげました.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-yubiwa-agemashita-ni",
+      "english": "Smith-san gave his wife a ring.",
+      "category": "Other",
+      "target": "スミスさんはおくさんにゆびわをあげました",
+      "note": "With あげます the に marks the person who RECEIVES, and を marks the thing that changes hands.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "x14-kore-douzo",
+      "english": "Here, please take this.",
+      "category": "Greetings",
+      "target": "これ、どうぞ",
+      "scene": "offering someone an object",
+      "note": "Said while holding the thing out. はい、どうぞ (Lesson 4) is the general \"here you go\"; これ、どうぞ points at the specific item.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "x14-sukaafu-ga-arimasu-yo",
+      "english": "Oh, I have a scarf.",
+      "category": "Other",
+      "target": "あ、スカーフがありますよ",
+      "note": "The chapter's first use of あります as \"have\": the thing owned takes が, not を. よ flags it as news to the listener.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "x14-ashita-no-yoru-jikan-arimasuka",
+      "english": "Do you have time tomorrow evening?",
+      "category": "Time",
+      "target": "あしたのよるじかんがありますか",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from SPEAKING PRACTICE."
+    },
+    {
+      "id": "x14b-okane-kashimasendeshita",
+      "english": "Nakamura-san didn't lend Emma-san any money.",
+      "category": "Money",
+      "target": "なかむらさんはエマさんにおかねをかしませんでした",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "x14b-okane-ga-arimasen",
+      "english": "I don't have any money.",
+      "category": "Money",
+      "target": "わたしはおかねがありません",
+      "note": "The thing you have (or lack) takes が, never を: おかねをありません is wrong.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: arimasu-have)."
+    },
+    {
+      "id": "x14b-chichi-okane-kuremasu",
+      "english": "My father gives me money for my birthday.",
+      "category": "Family & People",
+      "target": "ちちはたんじょうびにわたしにおかねをくれます",
+      "note": "Plain present くれます for something that happens every year. The direction rule does not depend on tense: the money comes to me, so あげます is still impossible.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-tsuma-iyaringu-kuremashita",
+      "english": "Nakamura-san gave my wife some earrings.",
+      "category": "Other",
+      "target": "なかむらさんはつまにイヤリングをくれました",
+      "note": "くれます covers the speaker's whole side, not only the speaker. A gift to my wife, my family or my colleague still counts as coming towards me, so it is くれました and not あげました.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: kuremasu)."
+    },
+    {
+      "id": "x14b-kekkonkinenbi-nekkuresu-agemasu",
+      "english": "I'm going to give my wife a necklace for our wedding anniversary.",
+      "category": "Other",
+      "target": "わたしはけっこんきねんびにつまにネックレスをあげます",
+      "note": "あげます is correct here because the necklace leaves the speaker. Present-tense ます also covers a plan for the future.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    }
+  ]
+}

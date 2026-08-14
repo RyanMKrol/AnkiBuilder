@@ -1,0 +1,537 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 32,
+    "chapterLabel": "Lesson 12: Asking about Places: What Is at Nikko?",
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "ni-particle-location",
+      "english": "In, on, at (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "に",
+      "uncertain": true
+    },
+    {
+      "id": "ga-particle-subject",
+      "english": "Subject marker (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "target": "が",
+      "uncertain": true
+    },
+    {
+      "id": "arimasu-inanimate",
+      "english": "Be, exist",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あります"
+    },
+    {
+      "id": "otera-temple",
+      "english": "Temple",
+      "category": "Travel & Tourism",
+      "reviewNote": "Source shows this headword as \"(お)てら\" with the prefix in parentheses.",
+      "target": "おてら"
+    },
+    {
+      "id": "ya-particle-and",
+      "english": "And, and so on (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
+      "target": "や",
+      "uncertain": true
+    },
+    {
+      "id": "jinja-shrine",
+      "english": "Shinto shrine",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "じんじゃ"
+    },
+    {
+      "id": "onsen-hot-spring",
+      "english": "Hot spring",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "おんせん"
+    },
+    {
+      "id": "onsen-tte-nandesuka",
+      "english": "What is an onsen?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Placeholder 〜って なんですか filled with おんせん — this is literally how the chapter's own dialogue uses the pattern.",
+      "target": "おんせんってなんですか"
+    },
+    {
+      "id": "supa-spa",
+      "english": "Spa",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "スパ"
+    },
+    {
+      "id": "yo-particle-emphasis",
+      "english": "Emphasis particle (calls attention to new information)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "よ"
+    },
+    {
+      "id": "nihon-no-supa-desu-yo",
+      "english": "It's a Japanese spa.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "にほんのスパですよ"
+    },
+    {
+      "id": "ikkai-uketsuke-arimasu",
+      "english": "There is an information desk on the first floor.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "1かいにうけつけがあります",
+      "reading": "いっかいにうけつけがあります"
+    },
+    {
+      "id": "imasu-animate",
+      "english": "Be, exist",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "います"
+    },
+    {
+      "id": "onna-no-hito-woman",
+      "english": "Woman",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おんなのひと"
+    },
+    {
+      "id": "onna-female",
+      "english": "Female, woman",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おんな"
+    },
+    {
+      "id": "uketsuke-onna-imasu",
+      "english": "There is a woman at the information desk.",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "うけつけにおんなのひとがいます"
+    },
+    {
+      "id": "table-noun",
+      "english": "Table",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "テーブル"
+    },
+    {
+      "id": "ue-on-above",
+      "english": "On, above",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "うえ"
+    },
+    {
+      "id": "hana-flower",
+      "english": "Flower",
+      "category": "Home & Household",
+      "reviewNote": "Numbered item ⑩ in the WORD POWER 'Things in a hotel room' list; no standalone vocab entry — translation inferred from the Key Sentence テーブルの うえに はなが あります (there are flowers on the table). | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "target": "はな",
+      "uncertain": true
+    },
+    {
+      "id": "table-ue-hana-arimasu",
+      "english": "There are flowers on the table.",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "テーブルのうえにはながあります"
+    },
+    {
+      "id": "nikko-otera-jinja-arimasu",
+      "english": "At Nikko, there are temples, shrines, and other sights.",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "にっこうにおてらやじんじゃがあります"
+    },
+    {
+      "id": "ikkai-ginkou-conveni-to",
+      "english": "There is a bank and a convenience store on the first floor (and nothing else).",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "1かいにぎんこうとコンビニがあります",
+      "reading": "いっかいにぎんこうとコンビニがあります"
+    },
+    {
+      "id": "yuubinkyoku-post-office",
+      "english": "Post office",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ゆうびんきょく"
+    },
+    {
+      "id": "kaigishitsu-meeting-room",
+      "english": "Meeting room",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "かいぎしつ"
+    },
+    {
+      "id": "chuushajou-parking-lot",
+      "english": "Parking lot",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ちゅうしゃじょう"
+    },
+    {
+      "id": "heya-room",
+      "english": "Room",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "へや"
+    },
+    {
+      "id": "denki-potto-kettle",
+      "english": "Electric kettle",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "でんきポット"
+    },
+    {
+      "id": "beddo-bed",
+      "english": "Bed",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ベッド"
+    },
+    {
+      "id": "tsukue-desk",
+      "english": "Desk",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "つくえ"
+    },
+    {
+      "id": "isu-chair",
+      "english": "Chair",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "いす"
+    },
+    {
+      "id": "gomibako-trash-basket",
+      "english": "Trash basket",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ごみばこ"
+    },
+    {
+      "id": "sofaa-sofa",
+      "english": "Sofa",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ソファー"
+    },
+    {
+      "id": "reizouko-refrigerator",
+      "english": "Refrigerator",
+      "category": "Home & Household",
+      "reviewNote": "Numbered item ② in the WORD POWER 'Things in a hotel room' image list, but never given an English gloss anywhere in this chapter's text — translation supplied from general knowledge. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english)",
+      "target": "れいぞうこ",
+      "uncertain": true
+    },
+    {
+      "id": "taki-waterfall",
+      "english": "Waterfall",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "たき"
+    },
+    {
+      "id": "mizuumi-lake",
+      "english": "Lake",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "みずうみ"
+    },
+    {
+      "id": "kamakura",
+      "english": "Kamakura (historic area south of Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": "From the chapter's final VOCABULARY block (the one before SPEAKING PRACTICE), which the extraction skipped entirely. Added by hand at the corpus review; it is the book's own vocabulary, not an AI suggestion. Used as a substitution alternative in the last dialogue exercise.",
+      "target": "かまくら"
+    },
+    {
+      "id": "teema-paaku",
+      "english": "Theme park",
+      "category": "Travel & Tourism",
+      "reviewNote": "From the chapter's final VOCABULARY block (the one before SPEAKING PRACTICE), which the extraction skipped entirely. Added by hand at the corpus review; it is the book's own vocabulary, not an AI suggestion. Used as a substitution alternative (テーマパークやおんせん) in the last dialogue exercise.",
+      "target": "テーマパーク"
+    },
+    {
+      "id": "shita-under",
+      "english": "Under",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "した"
+    },
+    {
+      "id": "naka-inside",
+      "english": "Inside",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "なか"
+    },
+    {
+      "id": "mae-in-front",
+      "english": "In front",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "まえ"
+    },
+    {
+      "id": "ushiro-behind",
+      "english": "Behind",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "うしろ"
+    },
+    {
+      "id": "tonari-next-to",
+      "english": "Next to",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "となり"
+    },
+    {
+      "id": "chikaku-near",
+      "english": "Vicinity, near",
+      "category": "Directions",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (ちかく reappears in a dedicated vicinity/location vocabulary list (as この ちかく), suggesting it's formally retaught rather than just reused)",
+      "target": "ちかく",
+      "uncertain": true
+    },
+    {
+      "id": "otoko-no-hito-man",
+      "english": "Man",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おとこのひと"
+    },
+    {
+      "id": "otoko-male",
+      "english": "Male, man",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おとこ"
+    },
+    {
+      "id": "ikkai-nani-ga-arimasuka",
+      "english": "What is there on the first floor?",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "1かいになにがありますか",
+      "reading": "いっかいになにがありますか"
+    },
+    {
+      "id": "ginkou-ga-arimasu",
+      "english": "There is a bank.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ぎんこうがあります"
+    },
+    {
+      "id": "ryokan-japanese-inn",
+      "english": "Japanese inn",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "りょかん"
+    },
+    {
+      "id": "sobaya-soba-shop",
+      "english": "Soba shop",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "そばや"
+    },
+    {
+      "id": "soba-noodle",
+      "english": "Soba (buckwheat noodle)",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "そば"
+    },
+    {
+      "id": "ryokan-chikaku-nani-arimasuka",
+      "english": "What is near the Japanese inn?",
+      "category": "Travel & Tourism",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (built on ちかく, which reappears in a dedicated vicinity/location vocabulary list (この ちかく), suggesting it's formally retaught rather than just reused)",
+      "target": "りょかんのちかくになにがありますか",
+      "uncertain": true
+    },
+    {
+      "id": "ookii-mizuumi-ya-taki",
+      "english": "There are a big lake, waterfall, and other things.",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "おおきいみずうみやたきがあります"
+    },
+    {
+      "id": "hikidashi-drawer",
+      "english": "Drawer",
+      "category": "Home & Household",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (ひきだし is explicitly re-taught as a dedicated office-supplies vocabulary entry)",
+      "target": "ひきだし",
+      "uncertain": true
+    },
+    {
+      "id": "poketto-pocket",
+      "english": "Pocket",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ポケット"
+    },
+    {
+      "id": "dare-mo-masen-no-one",
+      "english": "No one",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "だれも…〜ません"
+    },
+    {
+      "id": "hikidashi-naka-nani-arimasuka",
+      "english": "What is in the drawer?",
+      "category": "Home & Household",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (built on ひきだし, which is explicitly re-taught as a dedicated office-supplies vocabulary entry)",
+      "target": "ひきだしのなかになにがありますか",
+      "uncertain": true
+    },
+    {
+      "id": "nanimo-arimasen",
+      "english": "There is nothing.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "なにもありません"
+    },
+    {
+      "id": "tonari-no-heya-dare-imasuka",
+      "english": "Who is in the next room?",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "となりのへやにだれがいますか"
+    },
+    {
+      "id": "dare-mo-imasen",
+      "english": "There is no one.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "だれもいません"
+    },
+    {
+      "id": "nichiyoubi-kuruma-hakone",
+      "english": "On Sunday, I'm going to Hakone by car.",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "にちようびにくるまではこねにいきます"
+    },
+    {
+      "id": "goa-place",
+      "english": "Goa (state in India)",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ゴア"
+    },
+    {
+      "id": "kyoukai-church",
+      "english": "Church",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "きょうかい"
+    },
+    {
+      "id": "biichi-beach",
+      "english": "Beach",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ビーチ"
+    },
+    {
+      "id": "cashew-nuts",
+      "english": "Cashew nuts",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カシューナッツ"
+    },
+    {
+      "id": "indo-no-doko-desuka",
+      "english": "Where in India (specifically)?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "インドのどこですか"
+    },
+    {
+      "id": "fib-tsukue-shita-gomibako",
+      "english": "There is a trash basket under the desk.",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "つくえのしたにごみばこがあります",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-raja-uchi-indo-doko-desuka",
+      "english": "Where in India is Raja-san's home?",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "らじゃさんのうちはインドのどこですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-goa-desu",
+      "english": "It's Goa.",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ゴアです",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-donna-tokoro-desuka",
+      "english": "What kind of place is it?",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "どんなところですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-goa-donna-tokoro-answer",
+      "english": "It's a quiet place. There are old churches, pretty beaches, and other sights.",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "しずかなところです。ふるいきょうかいやきれいなビーチがあります",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-nani-ga-yuumei-desuka",
+      "english": "What is famous?",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "なにがゆうめいですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-cashew-nuts-yuumei",
+      "english": "Cashew nuts are famous.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カシューナッツがゆうめいです",
+      "aiSuggested": true
+    }
+  ]
+}

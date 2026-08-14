@@ -1,0 +1,636 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 19,
+    "chapterLabel": "Lesson 5: Shopping (2): Two Bottles of That Wine, Please"
+  },
+  "items": [
+    {
+      "id": "wine",
+      "english": "Wine",
+      "category": "Food",
+      "target": "ワイン"
+    },
+    {
+      "id": "wine-shop",
+      "english": "Wine shop",
+      "category": "Shopping",
+      "target": "ワインショップ"
+    },
+    {
+      "id": "doko",
+      "english": "Where",
+      "category": "Grammar & Function Words",
+      "target": "どこ",
+      "note": "Plain 'where'; どちら (dochira) is the more polite equivalent, e.g. when asking about someone's country of origin."
+    },
+    {
+      "id": "doko-example",
+      "english": "Where is the wine shop?",
+      "category": "Grammar & Function Words",
+      "target": "ワインショップはどこですか",
+      "aiSuggested": true,
+      "reviewNote": "The chapter's only example for どこ appears inside the skipped TARGET DIALOGUE, so this example was added separately.",
+      "note": null
+    },
+    {
+      "id": "information-desk",
+      "english": "Information desk",
+      "category": "Shopping",
+      "target": "インフォメーション",
+      "note": "A store or building's information counter for directions and questions; contrast うけつけ (uketsuke) from an earlier lesson, the more general word for a reception desk in offices or hospitals."
+    },
+    {
+      "id": "chika",
+      "english": "Basement",
+      "category": "Directions",
+      "target": "ちか",
+      "note": "Precedes a floor counter to specify a level below ground, e.g. ちか１かい (chika ikkai), 'basement 1st floor' — see that card."
+    },
+    {
+      "id": "chika-ikkai",
+      "english": "First-floor basement",
+      "category": "Directions",
+      "target": "ちか１かい",
+      "reading": "ちかいっかい"
+    },
+    {
+      "id": "ikkai-sub",
+      "english": "First floor",
+      "category": "Directions",
+      "target": "１かい",
+      "reading": "いっかい",
+      "note": null
+    },
+    {
+      "id": "sono",
+      "english": "That",
+      "category": "Grammar & Function Words",
+      "target": "その",
+      "note": "その (sono) modifies a following noun ('that ___'); unlike それ (sore) from an earlier lesson, which stands alone as a pronoun ('that one'), その can't be used by itself. Compare この (kono) and あの (ano) for the same pronoun-vs-determiner pattern with これ (kore) and あれ (are)."
+    },
+    {
+      "id": "france",
+      "english": "France",
+      "category": "Nationalities & Countries",
+      "target": "フランス"
+    },
+    {
+      "id": "two-hon",
+      "english": "Two (long objects)",
+      "category": "Numbers",
+      "target": "２ほん",
+      "reading": "にほん",
+      "note": "Counter ほん (hon)/ぼん (bon)/ぽん (pon) for long, slender objects like bottles. Watch this one by ear: にほん (ni-hon) here is 'two long objects', identical in sound to にほん (nihon, 'Japan') from Lesson 1."
+    },
+    {
+      "id": "fifth-floor",
+      "english": "Fifth floor",
+      "category": "Directions",
+      "target": "５かい",
+      "reading": "ごかい"
+    },
+    {
+      "id": "two-mai",
+      "english": "Two (flat objects)",
+      "category": "Numbers",
+      "target": "２まい",
+      "reading": "にまい",
+      "note": "Counter まい (mai) for thin, flat objects."
+    },
+    {
+      "id": "ks1-restaurant-floor",
+      "english": "The restaurant is on the 5th floor.",
+      "category": "Directions",
+      "target": "レストランは５かいです",
+      "reading": "レストランはごかいです"
+    },
+    {
+      "id": "kono",
+      "english": "This",
+      "category": "Grammar & Function Words",
+      "target": "この",
+      "note": "この (kono) modifies a following noun ('this ___'); unlike これ (kore) from an earlier lesson, which stands alone as a pronoun ('this one'), この can't be used by itself. Compare その (sono) and あの (ano) for the same pattern with それ (sore) and あれ (are)."
+    },
+    {
+      "id": "tshirt",
+      "english": "T-shirt",
+      "category": "Clothing",
+      "target": "Tシャツ"
+    },
+    {
+      "id": "ks2-tshirt-price",
+      "english": "This T-shirt is 2,000 yen.",
+      "category": "Clothing",
+      "target": "このTシャツは2,000えんです",
+      "reading": "このTシャツはにせんえんです"
+    },
+    {
+      "id": "ano",
+      "english": "That (over there)",
+      "category": "Grammar & Function Words",
+      "target": "あの",
+      "note": "あの (ano) modifies a following noun ('that ___ over there'); unlike あれ (are) from an earlier lesson, which stands alone as a pronoun ('that one over there'), あの can't be used by itself. Compare この (kono) and その (sono) for the same pattern with これ (kore) and それ (sore)."
+    },
+    {
+      "id": "blue",
+      "english": "Blue",
+      "category": "Colors",
+      "target": "あおい",
+      "note": "A regular い-adjective placed directly before its noun, e.g. あおいTシャツ (aoi tii-shatsu); unlike あか (aka) or しろ (shiro), あお never drops its い to form a special wine compound — there's no あおワイン."
+    },
+    {
+      "id": "ks3-blue-tshirt-price",
+      "english": "That blue T-shirt over there is 3,000 yen.",
+      "category": "Clothing",
+      "target": "あのあおいTシャツは3,000えんです",
+      "reading": "あのあおいTシャツはさんぜんえんです"
+    },
+    {
+      "id": "ks4-wine-from-france",
+      "english": "This is a wine from France.",
+      "target": "これはフランスのワインです",
+      "category": "Food",
+      "reviewNote": "Same Japanese sentence as the paired card, split to show both valid English translations.",
+      "hint": null,
+      "note": null
+    },
+    {
+      "id": "ks5-two-bottles-wine",
+      "english": "I would like two bottles of that wine, please.",
+      "category": "Shopping",
+      "target": "そのワインを２ほんください",
+      "reading": "そのワインをにほんください"
+    },
+    {
+      "id": "mai-suffix",
+      "english": "(Counter for flat objects)",
+      "category": "Grammar & Function Words",
+      "target": "まい",
+      "note": "Suffix — attaches after a number (written 〜まい (mai))."
+    },
+    {
+      "id": "hon-suffix-hon",
+      "english": "(Counter for long objects — ほん)",
+      "category": "Grammar & Function Words",
+      "target": "ほん",
+      "note": "Base reading of the long-object counter — after に (ni) (2), よん (yon) (4), ご (go) (5), なな (nana) (7), きゅう (kyuu) (9). Same sound and spelling as ほん (hon, 'Book') from Lesson 2 — two unrelated words that happen to share a form.",
+      "scene": "counting slender things"
+    },
+    {
+      "id": "hon-suffix-bon",
+      "english": "(Counter for long objects — ぼん)",
+      "category": "Grammar & Function Words",
+      "target": "ぼん",
+      "note": "Voiced (dakuten) form of the long-object counter — after さん (san) (3), e.g. さんぼん (sanbon)."
+    },
+    {
+      "id": "hon-suffix-pon",
+      "english": "(Counter for long objects — ぽん)",
+      "category": "Grammar & Function Words",
+      "target": "ぽん",
+      "note": "Plosive (handakuten) form — after いっ (ip) (1), ろっ (rop) (6), はっ (hap) (8), じゅっ (jup) (10), e.g. いっぽん (ippon)."
+    },
+    {
+      "id": "tsu-suffix",
+      "english": "(Counter for general objects)",
+      "target": "つ",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "note": "Suffix — the general-purpose counter, used when no specific counter fits. Attaches to the native-Japanese numerals (ひと〜 (hito), ふた〜 (futa), みっ〜 (mit) → ひとつ (hitotsu), ふたつ (futatsu), みっつ (mittsu)). Written 〜つ (tsu)."
+    },
+    {
+      "id": "counter-mai-9",
+      "english": "Nine (flat objects)",
+      "category": "Numbers",
+      "target": "きゅうまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-3",
+      "english": "Three (general objects)",
+      "category": "Numbers",
+      "target": "みっつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-10",
+      "english": "Ten (long objects)",
+      "category": "Numbers",
+      "target": "じゅっぽん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-5",
+      "english": "Five (long objects)",
+      "category": "Numbers",
+      "target": "ごほん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-6",
+      "english": "Six (long objects)",
+      "category": "Numbers",
+      "target": "ろっぽん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-7",
+      "english": "Seven (long objects)",
+      "category": "Numbers",
+      "target": "ななほん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-6",
+      "english": "Six (flat objects)",
+      "category": "Numbers",
+      "target": "ろくまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-1",
+      "english": "One (long objects)",
+      "category": "Numbers",
+      "target": "いっぽん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-5",
+      "english": "Five (flat objects)",
+      "category": "Numbers",
+      "target": "ごまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-10",
+      "english": "Ten (flat objects)",
+      "category": "Numbers",
+      "target": "じゅうまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-10",
+      "english": "Ten (general objects)",
+      "category": "Numbers",
+      "target": "とお",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "note": "Two irregularities at once: the vowel is long — とお (tō), not the と (to) 'And (particle)' from Lesson 4 — and it is the only number in this series that drops the つ (tsu) ending, unlike ここのつ (kokonotsu, 'Nine (general objects)')."
+    },
+    {
+      "id": "counter-hon-3",
+      "english": "Three (long objects)",
+      "category": "Numbers",
+      "target": "さんぼん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-8",
+      "english": "Eight (general objects)",
+      "category": "Numbers",
+      "target": "やっつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-2",
+      "english": "Two (general objects)",
+      "category": "Numbers",
+      "target": "ふたつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II). まい/ほん forms for 2 already covered by the ２まい/２ほん cards."
+    },
+    {
+      "id": "counter-hon-8",
+      "english": "Eight (long objects)",
+      "category": "Numbers",
+      "target": "はっぽん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-4",
+      "english": "Four (general objects)",
+      "category": "Numbers",
+      "target": "よっつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-4",
+      "english": "Four (flat objects)",
+      "category": "Numbers",
+      "target": "よんまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-9",
+      "english": "Nine (long objects)",
+      "category": "Numbers",
+      "target": "きゅうほん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-hon-4",
+      "english": "Four (long objects)",
+      "category": "Numbers",
+      "target": "よんほん",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-9",
+      "english": "Nine (general objects)",
+      "category": "Numbers",
+      "target": "ここのつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-1",
+      "english": "One (flat objects)",
+      "category": "Numbers",
+      "target": "いちまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-5",
+      "english": "Five (general objects)",
+      "category": "Numbers",
+      "target": "いつつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-7",
+      "english": "Seven (flat objects)",
+      "category": "Numbers",
+      "target": "ななまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-3",
+      "english": "Three (flat objects)",
+      "category": "Numbers",
+      "target": "さんまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-6",
+      "english": "Six (general objects)",
+      "category": "Numbers",
+      "target": "むっつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-7",
+      "english": "Seven (general objects)",
+      "category": "Numbers",
+      "target": "ななつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-mai-8",
+      "english": "Eight (flat objects)",
+      "category": "Numbers",
+      "target": "はちまい",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "counter-tsu-1",
+      "english": "One (general objects)",
+      "category": "Numbers",
+      "target": "ひとつ",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+    },
+    {
+      "id": "red",
+      "english": "Red",
+      "category": "Colors",
+      "target": "あかい",
+      "note": "Base adjective form; compare あかワイン (aka wain) (red wine), which is NOT あかい ワイン (akai wain) — see that card for the exception."
+    },
+    {
+      "id": "black",
+      "english": "Black",
+      "category": "Colors",
+      "target": "くろい",
+      "note": "くろい (kuroi) is a regular い-adjective placed before its noun, e.g. くろいくつ (kuroi kutsu, 'black shoes'). Unlike あか (aka) and しろ (shiro), くろ has no special wine compound — there's no くろワイン."
+    },
+    {
+      "id": "white",
+      "english": "White",
+      "category": "Colors",
+      "target": "しろい",
+      "note": "Like あか (aka) in あかワイン (akawain, 'red wine'), しろ drops its い before ワイン: しろワイン (shirowain), 'white wine' — but keeps the full しろい form as a regular adjective before any other noun."
+    },
+    {
+      "id": "beer",
+      "english": "Beer",
+      "category": "Food",
+      "target": "ビール"
+    },
+    {
+      "id": "dish-plate",
+      "english": "Dish, plate",
+      "category": "Home & Household",
+      "target": "(お)さら",
+      "reviewNote": "Shown in plain parentheses (not the wave-dash 〜 convention) rather than as a separate sub-entry.",
+      "note": "お (o) is an optional polite prefix."
+    },
+    {
+      "id": "glass",
+      "english": "Glass",
+      "category": "Home & Household",
+      "target": "コップ",
+      "note": "コップ (koppu) is the general word for a drinking glass or cup; contrast マグカップ (magukappu), a mug specifically, and コーヒーカップ (koohii kappu), a coffee cup typically served with a saucer."
+    },
+    {
+      "id": "apple",
+      "english": "Apple",
+      "category": "Food",
+      "target": "りんご"
+    },
+    {
+      "id": "big-large",
+      "english": "Big, large",
+      "category": "Other",
+      "target": "おおきい"
+    },
+    {
+      "id": "small",
+      "english": "Small",
+      "category": "Other",
+      "target": "ちいさい"
+    },
+    {
+      "id": "kai-suffix",
+      "english": "(Counter for floors — かい)",
+      "category": "Grammar & Function Words",
+      "target": "かい",
+      "note": "Base reading of the floor counter — after most numbers (1 いっ (ik), 2 に (ni), 4 よん (yon), 5 ご (go), 6 ろっ (rok) …), e.g. ごかい (gokai) (5th floor)."
+    },
+    {
+      "id": "gai-suffix",
+      "english": "(Counter for floors — がい)",
+      "category": "Grammar & Function Words",
+      "target": "がい",
+      "note": "Voiced (dakuten) form of the floor counter — after さん (san) (3), e.g. さんがい (sangai) (3rd floor)."
+    },
+    {
+      "id": "fourth-floor",
+      "english": "Fourth floor",
+      "category": "Directions",
+      "target": "よんかい"
+    },
+    {
+      "id": "second-floor",
+      "english": "Second floor",
+      "category": "Directions",
+      "target": "にかい"
+    },
+    {
+      "id": "third-floor",
+      "english": "Third floor",
+      "category": "Directions",
+      "target": "さんがい",
+      "note": "Uses the voiced がい (gai) form after さん (san) — さんがい (sangai) — rather than the plain かい (kai) counter used after most other numbers."
+    },
+    {
+      "id": "sixth-floor",
+      "english": "Sixth floor",
+      "category": "Directions",
+      "target": "ろっかい"
+    },
+    {
+      "id": "vacuum-cleaner",
+      "english": "Vacuum cleaner",
+      "category": "Home & Household",
+      "target": "そうじき"
+    },
+    {
+      "id": "mug",
+      "english": "Mug",
+      "category": "Home & Household",
+      "target": "マグカップ",
+      "note": "Specifically a mug (from English 'mug cup'); contrast the more general コップ (koppu, glass/cup) and コーヒーカップ (kōhīkappu), a coffee cup typically served with a saucer."
+    },
+    {
+      "id": "switzerland",
+      "english": "Switzerland",
+      "category": "Nationalities & Countries",
+      "target": "スイス"
+    },
+    {
+      "id": "camera",
+      "english": "Camera",
+      "category": "Technology & Communication",
+      "target": "カメラ"
+    },
+    {
+      "id": "beef",
+      "english": "Beef",
+      "category": "Food",
+      "target": "ぎゅうにく"
+    },
+    {
+      "id": "shoes",
+      "english": "Shoes",
+      "category": "Clothing",
+      "target": "くつ"
+    },
+    {
+      "id": "italy",
+      "english": "Italy",
+      "category": "Nationalities & Countries",
+      "target": "イタリア"
+    },
+    {
+      "id": "cheese",
+      "english": "Cheese",
+      "category": "Food",
+      "target": "チーズ"
+    },
+    {
+      "id": "mikan-orange",
+      "english": "Mikan orange",
+      "category": "Food",
+      "target": "みかん",
+      "note": "A mikan is a satsuma / Japanese mandarin — a small, sweet, seedless, easy-to-peel citrus, extremely popular in Japan and a winter staple."
+    },
+    {
+      "id": "red-wine",
+      "english": "Red wine",
+      "category": "Food",
+      "target": "あかワイン",
+      "note": "Fixed compound noun, NOT あかい ワイン (akai wain). Contrast the regular い-adjective+noun pattern, which keeps the い: あかい シャツ (akai shatsu) (“red shirt”), あおい Tシャツ (aoi T-shatsu) (“blue T-shirt”). Only these set colour-compounds drop it: あかワイン (aka wain) (“red wine”), しろワイン (shiro wain) (“white wine”)."
+    },
+    {
+      "id": "coffee-cup",
+      "english": "Coffee cup",
+      "category": "Home & Household",
+      "target": "コーヒーカップ"
+    },
+    {
+      "id": "towel",
+      "english": "Towel",
+      "category": "Home & Household",
+      "target": "タオル"
+    },
+    {
+      "id": "dore",
+      "english": "Which one (of three or more things)",
+      "category": "Grammar & Function Words",
+      "target": "どれ",
+      "note": "どちら (dochira) is used instead when choosing between only two items."
+    },
+    {
+      "id": "dore-example",
+      "english": "Which one is the red shirt?",
+      "category": "Grammar & Function Words",
+      "target": "あかいシャツはどれですか",
+      "aiSuggested": true,
+      "reviewNote": "The chapter's only example for どれ appears inside the skipped SPEAKING PRACTICE dialogue, so this example was added separately.",
+      "note": null
+    },
+    {
+      "id": "cheesecake",
+      "english": "Cheese cake",
+      "category": "Food",
+      "target": "チーズケーキ"
+    },
+    {
+      "id": "apple-pie",
+      "english": "Apple pie",
+      "category": "Food",
+      "target": "アップルパイ"
+    },
+    {
+      "id": "restroom",
+      "english": "Restroom",
+      "category": "Home & Household",
+      "target": "おてあらい",
+      "note": "Carries the honorific お (o) prefix seen earlier on おくに (okuni, 'your country'); おてあらい (otearai, literally 'hand-washing place') is the standard polite way to say restroom/toilet."
+    },
+    {
+      "id": "achira",
+      "english": "Over there",
+      "category": "Grammar & Function Words",
+      "target": "あちら",
+      "note": "Polite form of あそこ (asoko); used for a place distant from both speaker and listener.",
+      "hint": "polite form"
+    },
+    {
+      "id": "achira-example",
+      "english": "The restroom is over there.",
+      "category": "Grammar & Function Words",
+      "target": "おてあらいはあちらです",
+      "aiSuggested": true,
+      "reviewNote": "The chapter's only example for あちら appears inside the skipped SPEAKING PRACTICE dialogue, so this example was added separately.",
+      "note": null
+    },
+    {
+      "id": "doumo",
+      "english": "Thanks.",
+      "category": "Greetings",
+      "target": "どうも",
+      "note": "A casual, shortened 'thanks' dropped from どうもありがとう (doumo arigatou) — the fuller どうもありがとう or the more formal ありがとうございます (arigatou gozaimasu) from Frequently Used Expressions are better in polite settings."
+    }
+  ]
+}

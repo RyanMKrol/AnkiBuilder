@@ -1,0 +1,879 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 23,
+    "chapterLabel": "Lesson 7: Going Places (2): I’m Going by Shinkansen"
+  },
+  "items": [
+    {
+      "id": "a-interjection",
+      "english": "Ah, oh",
+      "category": "Other",
+      "hint": null,
+      "note": "Expresses having just noticed something; also used to get someone's attention.",
+      "reviewNote": null,
+      "target": "あ"
+    },
+    {
+      "id": "shucchou",
+      "english": "Business trip",
+      "category": "Work & Occupations",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しゅっちょう"
+    },
+    {
+      "id": "ee-yes",
+      "english": "Yes",
+      "category": "Greetings",
+      "hint": "the softer, more conversational yes",
+      "note": "A softer way of saying はい (hai).",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
+      "target": "ええ",
+      "uncertain": true
+    },
+    {
+      "id": "kinyoubi",
+      "english": "Friday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "きんようび"
+    },
+    {
+      "id": "ni-particle-time",
+      "english": "At, in, on (particle)",
+      "category": "Grammar & Function Words",
+      "hint": null,
+      "note": "Marks a specific point in time when something happens (5じに, きんようびに) — a different job from the に (ni) that marks a destination with motion verbs like いきます (ikimasu)/きます (kimasu) from an earlier lesson (ぎんこうにいきます, ginkou ni ikimasu, 'go to the bank'). Relative time words like きょう or らいしゅう take no particle at all.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "target": "に",
+      "uncertain": true,
+      "scene": "marking a point in time"
+    },
+    {
+      "id": "kaerimasu",
+      "english": "Return, come back",
+      "category": "Travel & Tourism",
+      "hint": null,
+      "note": "To return home or to a base location; like いきます (ikimasu) and きます (kimasu) from an earlier lesson, it takes に (ni)/へ (e) to mark the destination, e.g. うちにかえります (uchi ni kaerimasu), 'go home.'",
+      "reviewNote": null,
+      "target": "かえります"
+    },
+    {
+      "id": "hikouki",
+      "english": "Airplane",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ひこうき"
+    },
+    {
+      "id": "de-particle-transport",
+      "english": "By means of (particle)",
+      "category": "Grammar & Function Words",
+      "note": "Attaches to a noun naming a means of transportation, e.g. バスで (basu de, \"by bus\"). To ask by what means, use なんで (nande) — see that card.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english) | Excluded as a duplicate of chapter-4/de-particle, which teaches the same word with the same meaning and is the earlier occurrence.",
+      "target": "で",
+      "uncertain": true,
+      "scene": "getting somewhere — by bus, by train",
+      "excluded": true
+    },
+    {
+      "id": "shinkansen",
+      "english": "Superexpress train, Shinkansen",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しんかんせん"
+    },
+    {
+      "id": "itterasshai",
+      "english": "Have a good trip., Have a good day.",
+      "category": "Greetings",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "いってらっしゃい"
+    },
+    {
+      "id": "shigatsu-april",
+      "english": "April",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しがつ"
+    },
+    {
+      "id": "ks1-emma-april",
+      "english": "Emma-san came to Japan in April.",
+      "category": "Travel & Tourism",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "エマさんは４がつににほんにきました",
+      "reading": "エマさんはしがつににほんにきました"
+    },
+    {
+      "id": "ks2-smith-shinkansen",
+      "english": "Smith-san is going to Osaka by Shinkansen.",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはしんかんせんでおおさかにいきます"
+    },
+    {
+      "id": "yokka-4th",
+      "english": "4th, fourth (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "よっか"
+    },
+    {
+      "id": "youka-8th",
+      "english": "8th, eighth (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ようか"
+    },
+    {
+      "id": "ks3-4th-or-8th",
+      "english": "Is the meeting on the 4th or on the 8th?",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "かいぎはよっかですか、ようかですか"
+    },
+    {
+      "id": "5ji-ni",
+      "english": "At 5:00",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "5じに",
+      "reading": "ごじに"
+    },
+    {
+      "id": "doyoubi-ni",
+      "english": "On Saturday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "どようびに"
+    },
+    {
+      "id": "12nichi-ni",
+      "english": "On the twelfth",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "12にちに",
+      "reading": "じゅうににちに"
+    },
+    {
+      "id": "2025nen-ni",
+      "english": "In 2025",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "2025ねんに",
+      "reading": "にせんにじゅうごねんに"
+    },
+    {
+      "id": "densha",
+      "english": "Train",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "でんしゃ"
+    },
+    {
+      "id": "chikatetsu",
+      "english": "Subway",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ちかてつ"
+    },
+    {
+      "id": "kuruma",
+      "english": "Car",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "くるま"
+    },
+    {
+      "id": "takushii",
+      "english": "Taxi",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "タクシー"
+    },
+    {
+      "id": "baiku",
+      "english": "Motorbike",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "バイク"
+    },
+    {
+      "id": "jitensha",
+      "english": "Bicycle",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じてんしゃ"
+    },
+    {
+      "id": "basu-de",
+      "english": "By bus",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "バスで"
+    },
+    {
+      "id": "takushii-de",
+      "english": "By taxi",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "タクシーで"
+    },
+    {
+      "id": "aruite",
+      "english": "On foot, walking",
+      "category": "Transport",
+      "hint": null,
+      "note": "Unlike バスで (basu de) or タクシーで (takushii de), \"on foot\" takes no で — あるいてきました (aruite kimashita), \"I came on foot\".",
+      "reviewNote": "Recovered after the corpus review: a VOCABULARY headword of the source lesson that the extraction missed. The lesson's own grammar note names it as the exception to で.",
+      "target": "あるいて"
+    },
+    {
+      "id": "nande-ikimasuka",
+      "english": "How will you go?",
+      "category": "Transport",
+      "hint": null,
+      "note": "なんで (nande) also means \"why\" in colloquial speech; なにで (nani de) can be used instead when asking about means of transportation, to avoid confusion.",
+      "reviewNote": null,
+      "target": "なんでいきますか"
+    },
+    {
+      "id": "basu-de-ikimasu",
+      "english": "I'll go by bus.",
+      "category": "Transport",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "バスでいきます"
+    },
+    {
+      "id": "nen-suffix",
+      "english": "The year… (suffix)",
+      "category": "Time",
+      "hint": null,
+      "note": "Suffix — attaches after a number to name a specific year, e.g. 1998ねん (1998, \"the year 1998\").",
+      "reviewNote": null,
+      "target": "ねん"
+    },
+    {
+      "id": "1998nen",
+      "english": "The year 1998",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "1998ねん",
+      "reading": "せんきゅうひゃくきゅうじゅうはちねん"
+    },
+    {
+      "id": "2022nen",
+      "english": "The year 2022",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "2022ねん",
+      "reading": "にせんにじゅうにねん"
+    },
+    {
+      "id": "youbi-suffix",
+      "english": "Day of the week (suffix)",
+      "category": "Time",
+      "hint": null,
+      "note": "Suffix — attaches after a day name (げつ, か, すい, もく, きん, ど, にち) to form the full weekday word, e.g. げつようび (getsuyoubi, \"Monday\").",
+      "reviewNote": null,
+      "target": "ようび"
+    },
+    {
+      "id": "suiyoubi",
+      "english": "Wednesday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "すいようび"
+    },
+    {
+      "id": "nichiyoubi",
+      "english": "Sunday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にちようび"
+    },
+    {
+      "id": "mokuyoubi",
+      "english": "Thursday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "もくようび"
+    },
+    {
+      "id": "getsuyoubi",
+      "english": "Monday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "げつようび"
+    },
+    {
+      "id": "doyoubi",
+      "english": "Saturday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "どようび"
+    },
+    {
+      "id": "kayoubi",
+      "english": "Tuesday",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "かようび"
+    },
+    {
+      "id": "gatsu-suffix",
+      "english": "Month (suffix)",
+      "category": "Time",
+      "hint": null,
+      "note": "Suffix — attaches after a number to name a month, e.g. しがつ (shigatsu, \"April\"). This chapter spells months out in hiragana, but elsewhere in the book they're written with numerals, e.g. 1がつ for January.",
+      "reviewNote": null,
+      "target": "がつ"
+    },
+    {
+      "id": "hachigatsu",
+      "english": "August",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "はちがつ"
+    },
+    {
+      "id": "ichigatsu",
+      "english": "January",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "いちがつ"
+    },
+    {
+      "id": "kugatsu",
+      "english": "September",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "くがつ"
+    },
+    {
+      "id": "nigatsu",
+      "english": "February",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にがつ"
+    },
+    {
+      "id": "juugatsu",
+      "english": "October",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうがつ"
+    },
+    {
+      "id": "sangatsu",
+      "english": "March",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "さんがつ"
+    },
+    {
+      "id": "juuichigatsu",
+      "english": "November",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅういちがつ"
+    },
+    {
+      "id": "gogatsu",
+      "english": "May",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ごがつ"
+    },
+    {
+      "id": "juunigatsu",
+      "english": "December",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうにがつ"
+    },
+    {
+      "id": "rokugatsu",
+      "english": "June",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ろくがつ"
+    },
+    {
+      "id": "shichigatsu",
+      "english": "July",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しちがつ"
+    },
+    {
+      "id": "nichi-suffix",
+      "english": "Day (suffix)",
+      "category": "Time",
+      "hint": null,
+      "note": "Suffix — attaches after a number to name a day of the month (from the 11th onward), e.g. じゅういちにち (juuichinichi, \"the 11th\"). This chapter spells days out in hiragana, but elsewhere in the book they're written with numerals, e.g. 11にち for the eleventh.",
+      "reviewNote": null,
+      "target": "にち"
+    },
+    {
+      "id": "juuhachinichi-18th",
+      "english": "18th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうはちにち"
+    },
+    {
+      "id": "tsuitachi-1st",
+      "english": "1st (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": "Days 1st–10th of the month have irregular readings that must be memorized individually; from the 11th onward the pattern becomes regular: number + にち (nichi, \"day\").",
+      "reviewNote": null,
+      "target": "ついたち"
+    },
+    {
+      "id": "juukunichi-19th",
+      "english": "19th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうくにち"
+    },
+    {
+      "id": "futsuka-2nd",
+      "english": "2nd (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ふつか"
+    },
+    {
+      "id": "hatsuka-20th",
+      "english": "20th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": "Irregular reading — not にじゅうにち.",
+      "reviewNote": null,
+      "target": "はつか"
+    },
+    {
+      "id": "mikka-3rd",
+      "english": "3rd (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "みっか"
+    },
+    {
+      "id": "nijuuichinichi-21st",
+      "english": "21st (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅういちにち"
+    },
+    {
+      "id": "itsuka-5th",
+      "english": "5th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "いつか"
+    },
+    {
+      "id": "nijuuninichi-22nd",
+      "english": "22nd (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうににち"
+    },
+    {
+      "id": "muika-6th",
+      "english": "6th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "むいか"
+    },
+    {
+      "id": "nijuusannichi-23rd",
+      "english": "23rd (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうさんにち"
+    },
+    {
+      "id": "nanoka-7th",
+      "english": "7th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なのか"
+    },
+    {
+      "id": "nijuuyokka-24th",
+      "english": "24th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": "Irregular — built from よっか (yokka, \"4th\") rather than the regular にじゅうよんにち pattern.",
+      "reviewNote": null,
+      "target": "にじゅうよっか"
+    },
+    {
+      "id": "kokonoka-9th",
+      "english": "9th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ここのか"
+    },
+    {
+      "id": "nijuugonichi-25th",
+      "english": "25th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうごにち"
+    },
+    {
+      "id": "tooka-10th",
+      "english": "10th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "とおか"
+    },
+    {
+      "id": "nijuurokunichi-26th",
+      "english": "26th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうろくにち"
+    },
+    {
+      "id": "juuichinichi-11th",
+      "english": "11th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅういちにち"
+    },
+    {
+      "id": "nijuushichinichi-27th",
+      "english": "27th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうしちにち"
+    },
+    {
+      "id": "juuninichi-12th",
+      "english": "12th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうににち"
+    },
+    {
+      "id": "nijuuhachinichi-28th",
+      "english": "28th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうはちにち"
+    },
+    {
+      "id": "juusannichi-13th",
+      "english": "13th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうさんにち"
+    },
+    {
+      "id": "nijuukunichi-29th",
+      "english": "29th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にじゅうくにち"
+    },
+    {
+      "id": "juuyokka-14th",
+      "english": "14th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": "Irregular — built from よっか (yokka, \"4th\") rather than the regular じゅうよんにち pattern.",
+      "reviewNote": null,
+      "target": "じゅうよっか"
+    },
+    {
+      "id": "sanjuunichi-30th",
+      "english": "30th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "さんじゅうにち"
+    },
+    {
+      "id": "juugonichi-15th",
+      "english": "15th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうごにち"
+    },
+    {
+      "id": "sanjuuichinichi-31st",
+      "english": "31st (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "さんじゅういちにち"
+    },
+    {
+      "id": "juurokunichi-16th",
+      "english": "16th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうろくにち"
+    },
+    {
+      "id": "juushichinichi-17th",
+      "english": "17th (of the month)",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "じゅうしちにち"
+    },
+    {
+      "id": "omatsuri",
+      "english": "Festival",
+      "category": "Other",
+      "hint": null,
+      "note": "The お is an optional honorific prefix; both まつり and おまつり are heard.",
+      "reviewNote": null,
+      "target": "(お)まつり"
+    },
+    {
+      "id": "nangatsu",
+      "english": "What month",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なんがつ"
+    },
+    {
+      "id": "nannichi",
+      "english": "What day",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なんにち"
+    },
+    {
+      "id": "nanyoubi",
+      "english": "What day of the week",
+      "category": "Time",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なんようび"
+    },
+    {
+      "id": "tanjoubi",
+      "english": "Birthday",
+      "category": "Family & People",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たんじょうび"
+    },
+    {
+      "id": "natsu",
+      "english": "Summer",
+      "category": "Weather & Nature",
+      "hint": null,
+      "note": "Combines with やすみ (yasumi, \"vacation\") to form なつやすみ (natsuyasumi, \"summer vacation\").",
+      "reviewNote": null,
+      "target": "なつ"
+    },
+    {
+      "id": "yasumi-vacation",
+      "english": "Vacation, day off",
+      "category": "Time",
+      "note": "Here やすみ (yasumi) means a vacation or day off, as in なつやすみ (natsuyasumi, 'summer vacation') — a longer break than the やすみ in ひるやすみ (hiruyasumi, 'lunch break') from an earlier lesson, which is just a pause during the workday.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "target": "やすみ",
+      "uncertain": true,
+      "scene": "a longer stretch away from work"
+    },
+    {
+      "id": "natsuyasumi",
+      "english": "Summer vacation",
+      "category": "Time",
+      "hint": null,
+      "note": "Built from なつ (natsu, \"summer\") + やすみ (yasumi, \"vacation\").",
+      "reviewNote": null,
+      "target": "なつやすみ"
+    },
+    {
+      "id": "ryokou",
+      "english": "Trip",
+      "category": "Travel & Tourism",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "りょこう"
+    },
+    {
+      "id": "hoteru",
+      "english": "Hotel",
+      "category": "Travel & Tourism",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ホテル"
+    },
+    {
+      "id": "okake-kudasai",
+      "english": "Please have a seat.",
+      "category": "Greetings",
+      "hint": null,
+      "note": "Uses お (o) + verb stem + ください (kudasai), a more formal request pattern than the て-form + ください seen in みせてください (misete kudasai) or ちょっとまってください (chotto matte kudasai) from earlier lessons.",
+      "reviewNote": null,
+      "target": "おかけください"
+    },
+    {
+      "id": "e-interjection",
+      "english": "What?, Huh?",
+      "category": "Other",
+      "hint": null,
+      "note": "An utterance expressing uncertainty about what one just heard, often used when surprised — as in え？よっかですか、ようかですか。(e? yokka desu ka, youka desu ka?, \"What? Is it the 4th or the 8th?\").",
+      "reviewNote": null,
+      "target": "え？"
+    }
+  ]
+}

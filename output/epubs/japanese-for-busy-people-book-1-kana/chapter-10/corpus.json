@@ -1,0 +1,691 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 29,
+    "chapterLabel": "Lesson 10: Describing Things: It’s Delicious"
+  },
+  "items": [
+    {
+      "id": "ikaga-desu-ka",
+      "english": "How about...?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Used to politely offer something, often food or drink — \"thing は いかがですか\" means \"Would you like...?\" or \"How about some...?\"",
+      "reviewNote": null,
+      "target": "いかがですか"
+    },
+    {
+      "id": "itadakimasu-accept",
+      "english": "Yes, thank you. (I'll gladly accept.)",
+      "category": "Greetings",
+      "scene": "accepting something you have just been offered",
+      "hint": null,
+      "note": "A different use of いただきます from the one already learned in Frequently Used Expressions, said before starting a meal — here it means happily accepting something offered, like food or a gift.",
+      "reviewNote": "Possibly already taught — already introduced in Frequently Used Expressions (matched on target)",
+      "target": "いただきます",
+      "uncertain": true
+    },
+    {
+      "id": "kirei",
+      "english": "Pretty, beautiful, clean",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective — takes な when directly modifying a noun, e.g. きれいな はな (kirei na hana, \"pretty flower\"); as a predicate it's きれいです.",
+      "reviewNote": null,
+      "target": "きれい"
+    },
+    {
+      "id": "totemo",
+      "english": "Very",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "See the card \"What a very old clock!\" for とても used with an adjective. Similar to ほんとうに ('really', below) — both intensify an adjective, とても leaning toward 'very' and ほんとうに toward genuine emphasis.",
+      "reviewNote": null,
+      "target": "とても"
+    },
+    {
+      "id": "oishii",
+      "english": "Delicious, tasty",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おいしい"
+    },
+    {
+      "id": "omoshiroi",
+      "english": "Interesting",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おもしろい"
+    },
+    {
+      "id": "benri",
+      "english": "Convenient",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective — becomes べんりな before a noun.",
+      "reviewNote": null,
+      "target": "べんり"
+    },
+    {
+      "id": "atarashii",
+      "english": "New, fresh",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あたらしい"
+    },
+    {
+      "id": "yuumei",
+      "english": "Famous",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective — becomes ゆうめいな before a noun (see \"Smith-san went to a famous restaurant yesterday.\").",
+      "reviewNote": null,
+      "target": "ゆうめい"
+    },
+    {
+      "id": "ks1-omoshiroi",
+      "english": "This book is interesting.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "このほんはおもしろいです"
+    },
+    {
+      "id": "ks2-benri",
+      "english": "Tokyo's subway is convenient.",
+      "category": "Transport",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "とうきょうのちかてつはべんりです"
+    },
+    {
+      "id": "ks3-atarashii-pasokon",
+      "english": "Smith-san bought a new computer.",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはあたらしいパソコンをかいました"
+    },
+    {
+      "id": "ks4-yuumei-restaurant",
+      "english": "Smith-san went to a famous restaurant yesterday.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはきのうゆうめいなレストランにいきました"
+    },
+    {
+      "id": "yokunai-irregular",
+      "english": "Not good.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Irregular negative of いい (ii, good). Regular い-adjectives negate by dropping the final い and adding くない (e.g. たかい → たかくない), but いい becomes よくない instead of the expected いくない.",
+      "reviewNote": "Drawn from the adjective conjugation table in GRAMMAR §1, which marks this form as an exception, not from a standalone VOCABULARY row.",
+      "target": "よくないです"
+    },
+    {
+      "id": "ookii",
+      "english": "Big, large",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english) | Excluded as a duplicate of chapter-5/big-large, which teaches the same word with the same meaning and is the earlier occurrence.",
+      "target": "おおきい",
+      "uncertain": true,
+      "excluded": true
+    },
+    {
+      "id": "chiisai",
+      "english": "Small",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english) | Excluded as a duplicate of chapter-5/small, which teaches the same word with the same meaning and is the earlier occurrence.",
+      "target": "ちいさい",
+      "uncertain": true,
+      "excluded": true
+    },
+    {
+      "id": "ii",
+      "english": "Good, nice",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Its negative form is irregular: よくないです (not いくない) — see the \"Not good.\" card.",
+      "reviewNote": "いい isn't given its own VOCABULARY row in this chapter; extracted from the adjective conjugation table since it's a core い-adjective needed to explain the irregular negative よくない.",
+      "target": "いい"
+    },
+    {
+      "id": "takai",
+      "english": "Expensive",
+      "category": "Money",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たかい"
+    },
+    {
+      "id": "yasui",
+      "english": "Inexpensive",
+      "category": "Money",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "やすい"
+    },
+    {
+      "id": "furui",
+      "english": "Old",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ふるい"
+    },
+    {
+      "id": "warui",
+      "english": "Bad",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "わるい"
+    },
+    {
+      "id": "atsui",
+      "english": "Hot",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あつい"
+    },
+    {
+      "id": "samui",
+      "english": "Cold",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "さむい"
+    },
+    {
+      "id": "atatakai",
+      "english": "Warm",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あたたかい"
+    },
+    {
+      "id": "suzushii",
+      "english": "Cool",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "すずしい"
+    },
+    {
+      "id": "nigiyaka",
+      "english": "Lively",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective — becomes にぎやかな before a noun.",
+      "reviewNote": null,
+      "target": "にぎやか"
+    },
+    {
+      "id": "shizuka",
+      "english": "Quiet",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective — becomes しずかな before a noun.",
+      "reviewNote": null,
+      "target": "しずか"
+    },
+    {
+      "id": "tokyo-atsui-q",
+      "english": "Is Tokyo hot?",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "とうきょうはあついですか"
+    },
+    {
+      "id": "tokyo-atsukunai-a",
+      "english": "No, it isn't hot.",
+      "category": "Weather & Nature",
+      "scene": "answering whether Tokyo is hot",
+      "hint": null,
+      "note": "い-adjective negative: drop the final い and add くない (あつい → あつくない).",
+      "reviewNote": null,
+      "target": "いいえ、あつくないです"
+    },
+    {
+      "id": "obento",
+      "english": "Box lunch, bento",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "Often preceded by the optional honorific prefix お, giving おべんとう — both forms are common.",
+      "reviewNote": "Source shows this as \"(お)べんとう\", with お in parentheses marking it as an optional honorific prefix (distinct from the 〜 attachment-point notation).",
+      "target": "べんとう"
+    },
+    {
+      "id": "sydney",
+      "english": "Sydney",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "シドニー"
+    },
+    {
+      "id": "mt-fuji",
+      "english": "Mt. Fuji",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ふじさん"
+    },
+    {
+      "id": "hana-flower",
+      "english": "Flower",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "はな"
+    },
+    {
+      "id": "e-painting",
+      "english": "Painting, picture",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "A different え from Lesson 7's え？ ('What?, Huh?', an exclamation of surprise) — this え is a plain noun meaning 'picture, painting.'",
+      "reviewNote": null,
+      "target": "え"
+    },
+    {
+      "id": "e-yuumei-q",
+      "english": "Is this picture famous?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "このえはゆうめいですか"
+    },
+    {
+      "id": "e-yuumei-a",
+      "english": "No, it isn't famous.",
+      "category": "Other",
+      "scene": "answering whether the picture is famous",
+      "hint": null,
+      "note": "な-adjective negative: ゆうめい + じゃありません (a more formal variant is ゆうめいではありません).",
+      "reviewNote": null,
+      "target": "いいえ、ゆうめいじゃありません"
+    },
+    {
+      "id": "ringo",
+      "english": "Apple",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Taken from the image accompanying Exercise VII item 3 — not glossed in any vocabulary table in this chapter. | Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english) | Excluded as a duplicate of chapter-5/apple, which teaches the same word with the same meaning and is the earlier occurrence.",
+      "target": "りんご",
+      "uncertain": true,
+      "excluded": true
+    },
+    {
+      "id": "cake",
+      "english": "Cake",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ケーキ"
+    },
+    {
+      "id": "sweater",
+      "english": "Sweater",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "セーター"
+    },
+    {
+      "id": "smith-bought-old-clock",
+      "english": "Smith-san bought an old clock.",
+      "category": "Shopping",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはふるいとけいをかいました"
+    },
+    {
+      "id": "smith-bought-small-cake",
+      "english": "Smith-san bought a small cake.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Filled in from the item-1 illustration accompanying this drill (ちいさい ケーキ), which pairs a cake picture with the word \"small\".",
+      "target": "スミスさんはちいさいケーキをかいました"
+    },
+    {
+      "id": "smith-bought-expensive-sweater",
+      "english": "Smith-san bought an expensive sweater.",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Filled in from the item-2 illustration accompanying this drill (たかい セーター), which pairs a sweater picture with the word \"expensive\".",
+      "target": "スミスさんはたかいセーターをかいました"
+    },
+    {
+      "id": "smith-bought-delicious-apple",
+      "english": "Smith-san bought a delicious apple.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Filled in from the item-3 illustration accompanying this drill (おいしい りんご), which pairs an apple picture with the word \"delicious\".",
+      "target": "スミスさんはおいしいりんごをかいました"
+    },
+    {
+      "id": "roppongi",
+      "english": "Roppongi (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ろっぽんぎ"
+    },
+    {
+      "id": "okinawa",
+      "english": "Okinawa (islands in southern Japan)",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おきなわ"
+    },
+    {
+      "id": "umi",
+      "english": "Ocean",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "うみ"
+    },
+    {
+      "id": "apuri",
+      "english": "Application",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "アプリ"
+    },
+    {
+      "id": "nikko-place",
+      "english": "Nikko (scenic area north of Tokyo)",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にっこう"
+    },
+    {
+      "id": "donna",
+      "english": "What kind of",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "See \"What kind of place is Nikko?\" for どんな used with a noun.",
+      "reviewNote": null,
+      "target": "どんな"
+    },
+    {
+      "id": "tokoro",
+      "english": "Place",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Distinct from ばしょ (basho, 'location') from Lesson 9 — ところ describes what kind of place somewhere is (どんなところですか, 'what kind of place is it?'), while ばしょ asks for a specific spot's whereabouts.",
+      "reviewNote": null,
+      "target": "ところ"
+    },
+    {
+      "id": "nikko-going",
+      "english": "I'm going to Nikko this weekend.",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しゅうまつににっこうにいきます"
+    },
+    {
+      "id": "nikko-donna-tokoro",
+      "english": "What kind of place is Nikko?",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": "どんな + noun asks \"what kind of ___?\" — a general pattern, not limited to places.",
+      "reviewNote": null,
+      "target": "にっこうはどんなところですか"
+    },
+    {
+      "id": "nikko-kirei-tokoro",
+      "english": "It's a pretty place.",
+      "category": "Travel & Tourism",
+      "scene": "describing what kind of place Nikko is",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 12: Asking about Places: What Is at Nikko? (ends with sentence-final よ, which is explicitly taught as a dedicated grammar point later in the book)",
+      "target": "きれいなところですよ",
+      "uncertain": true
+    },
+    {
+      "id": "asakusa",
+      "english": "Asakusa (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あさくさ"
+    },
+    {
+      "id": "odaiba",
+      "english": "Odaiba (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おだいば"
+    },
+    {
+      "id": "ookii-uchi-ne",
+      "english": "What a big house!",
+      "category": "Home & Household",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おおきいうちですね"
+    },
+    {
+      "id": "omoshiroi-e-ne",
+      "english": "What an interesting picture!",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おもしろいえですね"
+    },
+    {
+      "id": "totemo-furui-tokei-ne",
+      "english": "What a very old clock!",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Shows とても (very) placed directly before the adjective it intensifies.",
+      "reviewNote": null,
+      "target": "とてもふるいとけいですね"
+    },
+    {
+      "id": "kyou-samui-ne",
+      "english": "It's cold today, isn't it?",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "きょうはさむいですね"
+    },
+    {
+      "id": "hontouni",
+      "english": "Really",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": "the adverb that goes before an adjective",
+      "note": "See \"Yeah, it's really cold.\" for ほんとうに used with an adjective.",
+      "reviewNote": null,
+      "target": "ほんとうに"
+    },
+    {
+      "id": "hontouni-samui-ne",
+      "english": "Yeah, it's really cold.",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": "Shows ほんとうに (really) placed directly before the adjective it intensifies.",
+      "reviewNote": null,
+      "target": "ええ、ほんとうにさむいですね"
+    },
+    {
+      "id": "tenki",
+      "english": "Weather",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "てんき"
+    },
+    {
+      "id": "donata",
+      "english": "Who (polite word for だれ)",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "More polite than だれ (dare, \"who\"), which you may already know — used here when respectfully asking who's at the door.",
+      "reviewNote": null,
+      "target": "どなた"
+    },
+    {
+      "id": "chotto",
+      "english": "A little bit",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ちょっと"
+    },
+    {
+      "id": "machimasu",
+      "english": "Wait",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Plain/dictionary form of まってください (please wait) — て-form (まって) + ください makes the polite request.",
+      "reviewNote": null,
+      "target": "まちます"
+    },
+    {
+      "id": "matte-kudasai",
+      "english": "Please wait",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "て-form of まちます (wait) + ください — see that card for the plain dictionary form.",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (uses て-form + ください, a request pattern this book doesn't formally introduce until later (て-form itself in ch. 42, then the ください request pattern explicitly in ch. 43))",
+      "target": "まってください",
+      "uncertain": true
+    },
+    {
+      "id": "ojama-shimasu",
+      "english": "May I come in?",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": "Customary expression used when entering someone's home or private space as a guest.",
+      "reviewNote": null,
+      "target": "おじゃまします"
+    }
+  ]
+}

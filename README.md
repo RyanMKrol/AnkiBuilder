@@ -172,7 +172,19 @@ For the full command reference (every flag, every source type), see the skill's
   AnkiConnect delivery alike. An extras unit deliberately carries **no** `epubHash`, so marking it
   reviewed can't overwrite its base lesson's entry in the dedup library.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
-  (gitignored) so re-runs don't redo expensive work.
+  so re-runs don't redo expensive work. The audio cache, the extracted chapters and the extracted
+  images are gitignored; the dedup corpora and the two cached LLM artifacts are not (see below).
+- **The hand-reviewed JSON is version-controlled.** `output/` and `.anki-builder/` are mostly
+  gitignored, but the files that hold human review are deliberately tracked: every `cards.json`,
+  `corpus.json`, `book.json`, `course.json`, `anki-delivered.json` and `.preflight-accepted.json`
+  under `output/`, plus `.anki-builder/epubs/*/corpora/`, `conventions.md` and `taught-index.json`.
+  Those files exist on one disk and cannot be regenerated, so a bad `--apply` or a stray `rm` is
+  recoverable from git. Audio, images, `.apkg` files and `.bak` files stay untracked; the only
+  audio in git is the seven marker-audible clips and their `.orig.mp3` originals. Recovering any
+  other clip means re-billing ElevenLabs or restoring its `.orig.mp3` sibling by hand. The
+  `.gitignore` mechanics are fiddly on purpose (an excluded directory is never descended into, so
+  the re-include lines have a required order) and there's a comment there explaining how to verify
+  a change.
 
 The exact folder layouts and caching rules are documented in
 [`docs/PIPELINE.md`](./docs/PIPELINE.md).

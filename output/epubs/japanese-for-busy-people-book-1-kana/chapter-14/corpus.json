@@ -1,0 +1,770 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 34,
+    "chapterLabel": "Lesson 14: Giving and Receiving: I Received It from My Friend"
+  },
+  "items": [
+    {
+      "id": "scarf",
+      "english": "Scarf",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スカーフ"
+    },
+    {
+      "id": "arimasu-have",
+      "english": "Have",
+      "category": "Other",
+      "scene": "about owning something",
+      "hint": null,
+      "note": "あります (arimasu) is the same word glossed \"be, exist\" for locations in Lesson 12 — here it expresses possession, literally \"a meeting exists [for me],\" so the thing had takes が (ga), not を (wo).",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "target": "あります",
+      "uncertain": true
+    },
+    {
+      "id": "arimasen",
+      "english": "Do not have",
+      "category": "Other",
+      "target": "ありません",
+      "note": "The verb negative. Do not confuse it with じゃありません, the negative of です — that one negates \"is/are\", this one negates \"there is / have\"."
+    },
+    {
+      "id": "arimashita",
+      "english": "Had",
+      "category": "Other",
+      "target": "ありました"
+    },
+    {
+      "id": "arimasendeshita",
+      "english": "Did not have",
+      "category": "Other",
+      "target": "ありませんでした",
+      "note": "ありませんでした, not じゃありませんでした — the latter is the past negative of です."
+    },
+    {
+      "id": "iindesuka",
+      "english": "Are you sure?",
+      "category": "Other",
+      "scene": "used to confirm an offer that seems too generous or unexpected",
+      "hint": null,
+      "note": "Said when someone makes an unexpected offer, to check they really mean it.",
+      "reviewNote": null,
+      "target": "いいんですか"
+    },
+    {
+      "id": "kara-particle-because",
+      "english": "Because (particle)",
+      "category": "Grammar & Function Words",
+      "scene": "at the end of a clause, before another statement",
+      "hint": null,
+      "note": "Suffix — attaches after an explanatory clause to give a reason (clause + から (kara)).",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target) | Possibly premature — explicitly taught later in Lesson 16: Making an Invitation: Shall We Go Together? (から is used here as a clause-final reason particle, which chapter 38 explicitly teaches as a dedicated grammar point (\"reason pattern: clause1から、clause2\")) | Id renamed from kara-particle: chapter-3 already uses that id for から \"From\", and a card id becomes the Anki note guid, so the shared id blocked the package build.",
+      "target": "から",
+      "uncertain": true
+    },
+    {
+      "id": "samukunai-kara-example",
+      "english": "[Because] I am not cold.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example for the particle から, quoted from NOTES 2 (originally part of the Target Dialogue). | Possibly premature — explicitly taught later in Lesson 16: Making an Invitation: Shall We Go Together? (example sentence uses clause-final から for giving a reason, which is formally taught as a grammar point in chapter 38, not before)",
+      "target": "わたしはさむくないですから",
+      "uncertain": true
+    },
+    {
+      "id": "suteki",
+      "english": "Lovely, nice",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Na-adjective — takes な before a noun, e.g. すてきな スカーフ (a lovely scarf).",
+      "reviewNote": null,
+      "target": "すてき"
+    },
+    {
+      "id": "ni-from-particle",
+      "english": "From (particle)",
+      "category": "Grammar & Function Words",
+      "scene": "used with もらいます",
+      "hint": "the particle that marks the giver with もらいます",
+      "note": "Marks the giver with もらいます (moraimasu, 'receive from'); with あげます (agemasu) the same に (ni) marks the receiver instead — see GRAMMAR 1–2.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "target": "に",
+      "uncertain": true
+    },
+    {
+      "id": "moraimasu",
+      "english": "Receive",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Takes に (ni) for the giver — the opposite direction from あげます (agemasu, give), which takes に for the receiver.",
+      "reviewNote": null,
+      "target": "もらいます"
+    },
+    {
+      "id": "kashimasu",
+      "english": "Lend, loan",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "The opposite of かります (karimasu, borrow, this lesson) — かします (kashimasu) is the lender's side of the transaction.",
+      "reviewNote": null,
+      "target": "かします"
+    },
+    {
+      "id": "kashimasen",
+      "english": "Do not lend",
+      "category": "Other",
+      "target": "かしません"
+    },
+    {
+      "id": "kashimashita",
+      "english": "Lent",
+      "category": "Other",
+      "target": "かしました"
+    },
+    {
+      "id": "kashimasendeshita",
+      "english": "Did not lend",
+      "category": "Other",
+      "target": "かしませんでした"
+    },
+    {
+      "id": "agemasu",
+      "english": "Give",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Takes に (ni) for the receiver. Cannot be used when the receiver is the speaker — use くれます (kuremasu), this lesson's exception form, instead.",
+      "reviewNote": null,
+      "target": "あげます"
+    },
+    {
+      "id": "ks1-ageru-hana",
+      "english": "Smith-san gave Nakamura-san some flowers.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはなかむらさんにはなをあげました"
+    },
+    {
+      "id": "ks2-morau-hana",
+      "english": "Nakamura-san received flowers from Smith-san.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Compare with the previous card: あげました (agemashita) and もらいました (moraimashita) describe the same event from the giver's and receiver's side — the に (ni) marks the receiver with あげます but the giver with もらいます.",
+      "reviewNote": null,
+      "target": "なかむらさんはスミスさんにはなをもらいました"
+    },
+    {
+      "id": "ks3-kaigi-arimasu",
+      "english": "Smith-san has a meeting tomorrow.",
+      "category": "Work & Occupations",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはあしたかいぎがあります"
+    },
+    {
+      "id": "kuremasu-exception",
+      "english": "Give (to me) (exception form of あげます)",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "あげます (agemasu) cannot be used when someone gives something to the speaker — use くれます (kuremasu) instead.",
+      "reviewNote": "Named as an exception to あげます in GRAMMAR 1; not otherwise glossed as a headword in this chapter.",
+      "target": "くれます"
+    },
+    {
+      "id": "kuremasu-example",
+      "english": "A friend gave me a scarf.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "The chapter names くれます as the required exception when the receiver is the speaker but never demonstrates it in a sentence — added a worked example reusing スカーフ and ともだち from this chapter.",
+      "target": "ともだちがわたしにスカーフをくれました",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-futatsu-arimasu",
+      "english": "Smith-san has two meetings tomorrow.",
+      "category": "Work & Occupations",
+      "scene": null,
+      "hint": null,
+      "note": "When counting with あります (arimasu), the number goes directly after が (ga) with no extra particle: noun が [number] あります.",
+      "reviewNote": null,
+      "target": "スミスさんはあしたかいぎが２つあります",
+      "reading": "スミスさんはあしたかいぎがふたつあります"
+    },
+    {
+      "id": "seetaa",
+      "english": "Sweater",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english) | Excluded as a duplicate of chapter-10/sweater — same word, same gloss, earlier occurrence.",
+      "target": "セーター",
+      "uncertain": true,
+      "excluded": true
+    },
+    {
+      "id": "kyouto-omiyage",
+      "english": "Kyoto souvenir",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": "おみやげ (omiyage) means souvenir/gift; きょうと (Kyouto) is the city Kyoto.",
+      "reviewNote": null,
+      "target": "きょうとのおみやげ"
+    },
+    {
+      "id": "karimasu",
+      "english": "Borrow",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "The opposite of かします (kashimasu, lend).",
+      "reviewNote": null,
+      "target": "かります"
+    },
+    {
+      "id": "karimasen",
+      "english": "Do not borrow",
+      "category": "Other",
+      "target": "かりません"
+    },
+    {
+      "id": "karimashita",
+      "english": "Borrowed",
+      "category": "Other",
+      "target": "かりました"
+    },
+    {
+      "id": "karimasendeshita",
+      "english": "Did not borrow",
+      "category": "Other",
+      "target": "かりませんでした"
+    },
+    {
+      "id": "iyaringu",
+      "english": "Earrings",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "イヤリング"
+    },
+    {
+      "id": "nekkuresu",
+      "english": "Necklace",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ネックレス"
+    },
+    {
+      "id": "yubiwa",
+      "english": "Ring",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ゆびわ"
+    },
+    {
+      "id": "burausu",
+      "english": "Blouse",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ブラウス"
+    },
+    {
+      "id": "baggu",
+      "english": "Bag",
+      "category": "Clothing",
+      "scene": null,
+      "hint": "a fashion bag like a purse or tote (loanword)",
+      "note": "\"Bag\" was already かばん (Lesson 2) and ふくろ (Lesson 5, a wrapping/paper bag) — バッグ (baggu) is the katakana loanword for a fashion bag like a purse or tote.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on english)",
+      "target": "バッグ",
+      "uncertain": true
+    },
+    {
+      "id": "chiketto",
+      "english": "Ticket",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "チケット"
+    },
+    {
+      "id": "mafuraa",
+      "english": "Muffler, scarf",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": "A second word for scarf, alongside スカーフ (sukaafu) — both mean the same thing.",
+      "reviewNote": null,
+      "target": "マフラー"
+    },
+    {
+      "id": "nekutai",
+      "english": "Tie",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ネクタイ"
+    },
+    {
+      "id": "okane",
+      "english": "Money",
+      "category": "Money",
+      "scene": null,
+      "hint": null,
+      "note": "The お is an optional honorific prefix (written (お)かね in the source). かね (kane) alone also means money, but おかね (okane) is the everyday form.",
+      "reviewNote": null,
+      "target": "おかね"
+    },
+    {
+      "id": "yotei",
+      "english": "Schedule, plan",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "よてい"
+    },
+    {
+      "id": "yakusoku",
+      "english": "Appointment, promise",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "やくそく"
+    },
+    {
+      "id": "jikan",
+      "english": "Time",
+      "category": "Time",
+      "scene": "on its own, as a noun",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "target": "じかん",
+      "uncertain": true
+    },
+    {
+      "id": "agemasen",
+      "english": "Do not give",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あげません"
+    },
+    {
+      "id": "agemashita",
+      "english": "Gave",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あげました"
+    },
+    {
+      "id": "agemasendeshita",
+      "english": "Did not give",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "あげませんでした"
+    },
+    {
+      "id": "moraimasen",
+      "english": "Do not receive",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "もらいません"
+    },
+    {
+      "id": "moraimashita",
+      "english": "Received",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "もらいました"
+    },
+    {
+      "id": "moraimasendeshita",
+      "english": "Did not receive",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "もらいませんでした"
+    },
+    {
+      "id": "ageru-omoshiroihon-a",
+      "english": "Smith-san gave Nakamura-san an interesting book.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはなかむらさんにおもしろいほんをあげました"
+    },
+    {
+      "id": "morau-omoshiroihon-b",
+      "english": "Nakamura-san received an interesting book from Smith-san.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なかむらさんはスミスさんにおもしろいほんをもらいました"
+    },
+    {
+      "id": "kasu-kasa-a",
+      "english": "Nakamura-san lent Smith-san an umbrella.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なかむらさんはスミスさんにかさをかしました"
+    },
+    {
+      "id": "kariru-kasa-b",
+      "english": "Smith-san borrowed an umbrella from Nakamura-san.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはなかむらさんにかさをかりました"
+    },
+    {
+      "id": "concert-ticket-q",
+      "english": "Who did Smith-san give the concert ticket to?",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": "コンサート (konsaato, 'concert') + チケット (chiketto, 'ticket') = コンサートの チケット ('concert ticket').",
+      "reviewNote": null,
+      "target": "スミスさんはだれにコンサートのチケットをあげましたか"
+    },
+    {
+      "id": "concert-ticket-a",
+      "english": "He gave it to Nakamura-san.",
+      "category": "Other",
+      "scene": "answering who Smith-san gave the concert ticket to",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なかむらさんにあげました"
+    },
+    {
+      "id": "wine-received-q",
+      "english": "What did Nakamura-san receive from Smith-san?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なかむらさんはスミスさんになにをもらいましたか"
+    },
+    {
+      "id": "wine-received-a",
+      "english": "She received wine.",
+      "category": "Food",
+      "scene": "answering what Nakamura-san received from Smith-san",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ワインをもらいました"
+    },
+    {
+      "id": "chocolate",
+      "english": "Chocolate",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "チョコレート"
+    },
+    {
+      "id": "christmas-vocab",
+      "english": "Christmas",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "クリスマス"
+    },
+    {
+      "id": "christmas-necktie-a",
+      "english": "Lisa-san gave Smith-san a necktie for Christmas.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "リサさんはクリスマスにスミスさんにネクタイをあげました"
+    },
+    {
+      "id": "christmas-necktie-b",
+      "english": "Smith-san received a necktie from Lisa-san for Christmas.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはクリスマスにリサさんにネクタイをもらいました"
+    },
+    {
+      "id": "christmas-what-gave-q",
+      "english": "What did Lisa-san give Smith-san for Christmas?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "リサさんはクリスマスにスミスさんになにをあげましたか"
+    },
+    {
+      "id": "christmas-what-gave-a",
+      "english": "She gave him a necktie.",
+      "category": "Other",
+      "scene": "answering what Lisa-san gave Smith-san for Christmas",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ネクタイをあげました"
+    },
+    {
+      "id": "christmas-when-received-q",
+      "english": "When did Smith-san receive the necktie from Lisa-san?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはいつリサさんにネクタイをもらいましたか"
+    },
+    {
+      "id": "christmas-when-received-a",
+      "english": "He received it at Christmas.",
+      "category": "Other",
+      "scene": "answering when Smith-san received the necktie from Lisa-san",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "クリスマスにもらいました"
+    },
+    {
+      "id": "valentines-day",
+      "english": "Valentine's Day",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "バレンタインデー"
+    },
+    {
+      "id": "valentine-what-received-q",
+      "english": "What did Smith-san receive from Lisa-san on Valentine's Day?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはバレンタインデーにリサさんになにをもらいましたか"
+    },
+    {
+      "id": "valentine-what-received-a",
+      "english": "He didn't receive anything.",
+      "category": "Other",
+      "scene": "answering what Smith-san received from Lisa-san on Valentine's Day",
+      "hint": null,
+      "note": "なにも (nanimo, 'nothing/not anything') + a negative verb is the set way to say 'nothing at all' — なにも もらいませんでした (nanimo moraimasendeshita) = 'received nothing.'",
+      "reviewNote": null,
+      "target": "なにももらいませんでした"
+    },
+    {
+      "id": "konban",
+      "english": "This evening",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "こんばん"
+    },
+    {
+      "id": "isogashii-q",
+      "english": "Smith-san, are you busy tomorrow?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさん、あしたはいそがしいですか"
+    },
+    {
+      "id": "isogashii-a",
+      "english": "Yes, I'm busy. [Because] I have a meeting.",
+      "category": "Work & Occupations",
+      "scene": null,
+      "hint": null,
+      "note": "A second example of から (kara, 'because') attaching after a reason clause — compare with わたしは さむくないですから (watashi wa samukunai desu kara, 'because I'm not cold').",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 16: Making an Invitation: Shall We Go Together? (answer uses clause-final から (かいぎが ありますから) to give a reason, a construction formally taught only in chapter 38)",
+      "target": "はい、いそがしいです。かいぎがありますから",
+      "uncertain": true
+    },
+    {
+      "id": "yoru",
+      "english": "Night",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "よる"
+    },
+    {
+      "id": "kekkon",
+      "english": "Wedding, marriage",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Combines with きねんび (kinenbi, anniversary) to form けっこんきねんび (kekkonkinenbi, wedding anniversary).",
+      "reviewNote": null,
+      "target": "けっこん"
+    },
+    {
+      "id": "kinenbi",
+      "english": "Anniversary",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Combines with けっこん (kekkon, wedding) to form けっこんきねんび (kekkonkinenbi, wedding anniversary).",
+      "reviewNote": null,
+      "target": "きねんび"
+    },
+    {
+      "id": "kekkonkinenbi",
+      "english": "Wedding anniversary",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Compound of けっこん (kekkon, wedding/marriage) + きねんび (kinenbi, anniversary).",
+      "reviewNote": null,
+      "target": "けっこんきねんび"
+    },
+    {
+      "id": "yoku",
+      "english": "Well",
+      "category": "Other",
+      "scene": "about how skillfully",
+      "hint": null,
+      "note": "よく (yoku) also means \"often\" (Lesson 9, frequency); here it's the manner adverb \"well,\" as in よく にあいますね (yoku niaimasu ne, \"it suits you well\").",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
+      "target": "よく",
+      "uncertain": true
+    },
+    {
+      "id": "niaimasu",
+      "english": "Suit, look good on",
+      "category": "Clothing",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にあいます"
+    },
+    {
+      "id": "yoku-niaimasune",
+      "english": "It suits you well.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Made of よく (yoku, well) + にあいます (niaimasu, suit/look good on).",
+      "reviewNote": null,
+      "target": "よくにあいますね"
+    },
+    {
+      "id": "itai",
+      "english": "Ouch!",
+      "category": "Body & Health",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "いたい!"
+    },
+    {
+      "id": "daijoubu-desuka",
+      "english": "Are you all right?",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "だいじょうぶですか"
+    },
+    {
+      "id": "sumimasendeshita",
+      "english": "I'm sorry (for what I did a while ago).",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": "Past-tense form of すみません, used to apologize for something that already happened rather than something happening now.",
+      "reviewNote": null,
+      "target": "すみませんでした"
+    }
+  ]
+}

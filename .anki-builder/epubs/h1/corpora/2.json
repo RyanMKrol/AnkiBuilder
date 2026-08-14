@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "epubHash": "h1",
+    "chapterNumber": 2,
+    "chapterLabel": "Uch",
+    "enriched": true,
+    "notesEnhanced": true,
+    "reviewed": true
+  },
+  "items": [
+    {
+      "id": "a",
+      "english": "one",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "いち"
+    }
+  ]
+}

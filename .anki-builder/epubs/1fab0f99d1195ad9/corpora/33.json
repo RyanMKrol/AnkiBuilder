@@ -1,0 +1,517 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 33,
+    "chapterLabel": "Lesson 13: Asking for a Place: Where Is It?",
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "kono-chikaku",
+      "english": "Vicinity, near here",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "このちかく"
+    },
+    {
+      "id": "ya-suffix",
+      "english": "Shop, store (suffix)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Not given its own headword row; extracted from the recurring 〜や shop-suffix pattern across this lesson's vocabulary and NOTES 1's explicit discussion of 〜や denoting \"shop\". | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
+      "target": "や",
+      "uncertain": true
+    },
+    {
+      "id": "osobayasan",
+      "english": "Soba shop",
+      "category": "Shopping",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "target": "おそばやさん",
+      "uncertain": true
+    },
+    {
+      "id": "asoko",
+      "english": "Over there",
+      "category": "Directions",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english)",
+      "target": "あそこ",
+      "uncertain": true
+    },
+    {
+      "id": "sorekara",
+      "english": "Also",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "それから"
+    },
+    {
+      "id": "sorekara-example",
+      "english": "Tanaka-san is Japanese. He is also a student.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Example demonstrating それから as a connecting word — the chapter's own use of それから appears only inside the TARGET DIALOGUE, which is off-limits dialogue script, and no other section demonstrates it.",
+      "target": "たなかさんはにほんじんです。それから、がくせいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "chikai",
+      "english": "Near, close",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ちかい"
+    },
+    {
+      "id": "tooi",
+      "english": "Far",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "とおい"
+    },
+    {
+      "id": "tooi-example",
+      "english": "The airport is far from the station.",
+      "category": "Directions",
+      "reviewNote": "とおい otherwise appears only inside the off-limits TARGET DIALOGUE; this mirrors the ちかい pattern (place1は place2から ちかい／とおいです, GRAMMAR 3) with the opposite adjective.",
+      "target": "くうこうはえきからとおいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "okyakusan",
+      "english": "Guest, customer",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おきゃくさん"
+    },
+    {
+      "id": "takushii-noriba",
+      "english": "Taxi stand",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "タクシーのりば"
+    },
+    {
+      "id": "ks1-chairs",
+      "english": "There are six chairs in the meeting room.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "かいぎしつにいすが６つあります",
+      "reading": "かいぎしつにいすがむっつあります"
+    },
+    {
+      "id": "ks2-guests",
+      "english": "There are four guests in the meeting room.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "かいぎしつにおきゃくさんが４にんいます",
+      "reading": "かいぎしつにおきゃくさんがよにんいます"
+    },
+    {
+      "id": "ks3-taxi-stand",
+      "english": "The taxi stand is in front of the station.",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "タクシーのりばはえきのまえです"
+    },
+    {
+      "id": "ks4-smith-floor",
+      "english": "Smith-san is on the second floor.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "スミスさんは２かいにいます",
+      "reading": "スミスさんはにかいにいます"
+    },
+    {
+      "id": "ks5-house-near",
+      "english": "Smith-san's house is near the station.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "スミスさんのうちはえきからちかいです"
+    },
+    {
+      "id": "grammar2-1-restaurant-exist",
+      "english": "There is a restaurant on the first floor.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "1かいにレストランがあります",
+      "reading": "いっかいにレストランがあります"
+    },
+    {
+      "id": "grammar2-2-restaurant-topic",
+      "english": "The restaurant is on the first floor.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "レストランは1かいにあります",
+      "reading": "レストランはいっかいにあります"
+    },
+    {
+      "id": "grammar2-3-restaurant-desu",
+      "english": "The restaurant is on the first floor.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "レストランは1かいです",
+      "reading": "レストランはいっかいです"
+    },
+    {
+      "id": "basu-noriba",
+      "english": "Bus terminal",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "バスのりば"
+    },
+    {
+      "id": "kouban",
+      "english": "Police box",
+      "category": "Emergencies",
+      "reviewNote": null,
+      "target": "こうばん"
+    },
+    {
+      "id": "byouin",
+      "english": "Hospital, clinic",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "びょういん"
+    },
+    {
+      "id": "honya",
+      "english": "Bookstore",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ほんや"
+    },
+    {
+      "id": "pan",
+      "english": "Bread",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "パン"
+    },
+    {
+      "id": "panya",
+      "english": "Bakery",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "パンや"
+    },
+    {
+      "id": "raamenya",
+      "english": "Ramen shop",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ラーメンや"
+    },
+    {
+      "id": "keshigomu",
+      "english": "Eraser",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "けしゴム"
+    },
+    {
+      "id": "enpitsu",
+      "english": "Pencil",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "えんぴつ"
+    },
+    {
+      "id": "hasami",
+      "english": "Scissors",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "はさみ"
+    },
+    {
+      "id": "clear-file",
+      "english": "Clear file",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "クリアファイル"
+    },
+    {
+      "id": "hikidashi",
+      "english": "Drawer",
+      "category": "Home & Household",
+      "reviewNote": "No English gloss is given anywhere in this chapter's text (it appears only as a WORD POWER illustration caption); meaning inferred from common usage and from its contextual use in an EXERCISES model sentence, \"ひきだしの なかに ペンが 5ほん あります\" (There are five pens in the drawer). | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "target": "ひきだし",
+      "uncertain": true
+    },
+    {
+      "id": "cabinet",
+      "english": "Cabinet",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "キャビネット"
+    },
+    {
+      "id": "koko",
+      "english": "Here",
+      "category": "Directions",
+      "reviewNote": "No English gloss is given anywhere in this chapter's text (it appears only as a WORD POWER illustration caption); meaning inferred from the common ko-so-a demonstrative sense, paired with そこ (\"there\") and あそこ (\"over there\"), which ARE glossed elsewhere in this chapter. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english)",
+      "target": "ここ",
+      "uncertain": true
+    },
+    {
+      "id": "soko",
+      "english": "There",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "そこ"
+    },
+    {
+      "id": "kurippu",
+      "english": "Paper clip",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "クリップ"
+    },
+    {
+      "id": "takusan",
+      "english": "Many, much",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "たくさん"
+    },
+    {
+      "id": "ko",
+      "english": "Child",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "こ"
+    },
+    {
+      "id": "onnanoko",
+      "english": "Girl",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おんなのこ"
+    },
+    {
+      "id": "otokonoko",
+      "english": "Boy",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おとこのこ"
+    },
+    {
+      "id": "ikutsu",
+      "english": "How many",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "いくつ"
+    },
+    {
+      "id": "apple-count-q",
+      "english": "How many apples are there on the table?",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "テーブルのうえにりんごがいくつありますか"
+    },
+    {
+      "id": "apple-count-a",
+      "english": "There are two.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "２つあります",
+      "reading": "ふたつあります"
+    },
+    {
+      "id": "fork",
+      "english": "Fork",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "フォーク"
+    },
+    {
+      "id": "nanbon",
+      "english": "How many (long, thin objects)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "なんぼん"
+    },
+    {
+      "id": "nanbon-example",
+      "english": "How many pencils are there?",
+      "category": "School & Education",
+      "reviewNote": "Example demonstrating なんぼん — the chapter's own use appears only inside an unfilled EXERCISES blank.",
+      "target": "えんぴつがなんぼんありますか",
+      "aiSuggested": true
+    },
+    {
+      "id": "nanmai",
+      "english": "How many (flat objects)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "なんまい"
+    },
+    {
+      "id": "nanmai-example",
+      "english": "How many clear files are there?",
+      "category": "School & Education",
+      "reviewNote": "Example demonstrating なんまい — the chapter's own use appears only inside an unfilled EXERCISES blank.",
+      "target": "クリアファイルがなんまいありますか",
+      "aiSuggested": true
+    },
+    {
+      "id": "hanaya",
+      "english": "Florist",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "はなや"
+    },
+    {
+      "id": "shachoushitsu",
+      "english": "President's office",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しゃちょうしつ"
+    },
+    {
+      "id": "toshokan-near-station",
+      "english": "The library is near the station.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "としょかんはえきからちかいです"
+    },
+    {
+      "id": "kumanojinja",
+      "english": "Kumano Shrine",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "くまのじんじゃ"
+    },
+    {
+      "id": "booto-noriba",
+      "english": "Boat dock",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ボートのりば"
+    },
+    {
+      "id": "basutei",
+      "english": "Bus stop",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "バスてい"
+    },
+    {
+      "id": "sugu-soko",
+      "english": "Right over there",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "すぐそこ"
+    },
+    {
+      "id": "pen-drawer-example",
+      "english": "There are five pens in the drawer.",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ひきだしのなかにペンが5ほんあります",
+      "reading": "ひきだしのなかにペンがごほんあります"
+    },
+    {
+      "id": "goro",
+      "english": "About (time)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ごろ"
+    },
+    {
+      "id": "goro-example",
+      "english": "The meeting is around 3:00.",
+      "category": "Time",
+      "reviewNote": "Example demonstrating 〜ごろ — the chapter's own use appears only inside the SPEAKING PRACTICE dialogue script, which is off-limits for card extraction.",
+      "target": "かいぎは3じごろです",
+      "reading": "かいぎはさんじごろです",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-meishi-desk-count",
+      "english": "There are six business cards on the desk.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "つくえのうえにめいしが6まいあります",
+      "reading": "つくえのうえにめいしがろくまいあります",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-kurippu-drawer-count",
+      "english": "There are three paper clips in the drawer.",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ひきだしのなかにクリップが3つあります",
+      "reading": "ひきだしのなかにクリップがみっつあります",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-otokonohito-park-count",
+      "english": "There are three men in the park.",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "こうえんにおとこのひとが3にんいます",
+      "reading": "こうえんにおとこのひとがさんにんいます",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-fork-table-count-q",
+      "english": "How many forks are there on the table?",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "テーブルのうえにフォークがなんぼんありますか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-fork-table-count-a",
+      "english": "There are ten.",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "10ほんあります",
+      "reading": "じゅっぽんあります",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-hanaya-tonari-byouin",
+      "english": "The florist is next to the hospital.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "はなやはびょういんのとなりにあります",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tanakasan-doko-q",
+      "english": "Where is Tanaka-san?",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "たなかさんはどこにいますか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tanakasan-doko-a",
+      "english": "He's in the president's office.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しゃちょうしつにいます",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-kumano-chikai-q",
+      "english": "Is Kumano Shrine near here?",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "くまのじんじゃはここからちかいですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-kumano-chikai-a",
+      "english": "No, it's a little far. It's about 20 minutes by bus.",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "いいえ、ちょっととおいです。バスで20ぷんぐらいです",
+      "reading": "いいえ、ちょっととおいです。バスでにじゅっぷんぐらいです",
+      "aiSuggested": true
+    }
+  ]
+}

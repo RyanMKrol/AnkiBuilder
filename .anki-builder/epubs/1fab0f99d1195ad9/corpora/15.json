@@ -1,0 +1,341 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 15,
+    "chapterLabel": "Lesson 2: Possession: Whose Pen Is This?"
+  },
+  "items": [
+    {
+      "id": "kore",
+      "english": "this one",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "これ"
+    },
+    {
+      "id": "dareno",
+      "english": "whose",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "だれの"
+    },
+    {
+      "id": "dare",
+      "english": "who",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "だれ"
+    },
+    {
+      "id": "pen",
+      "english": "pen",
+      "category": "Other",
+      "notes": null,
+      "target": "ペン"
+    },
+    {
+      "id": "wakarimasen",
+      "english": "I don't know",
+      "category": "Other",
+      "notes": "From さあ、わかりません — さあ expresses hesitation before answering",
+      "target": "わかりません"
+    },
+    {
+      "id": "watashino",
+      "english": "my, mine",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "わたしの"
+    },
+    {
+      "id": "desu-suffix-ch15",
+      "english": "is / am / are (copula, affirmative)",
+      "category": "Grammar & Function Words",
+      "notes": "Affirmative counterpart to じゃありません below — see GRAMMAR 2 (already introduced in Lesson 1, repeated here to sit alongside its negative form)",
+      "target": "です"
+    },
+    {
+      "id": "ja-arimasen",
+      "english": "is not / are not",
+      "category": "Grammar & Function Words",
+      "notes": "Negative form of です (source shows 〜じゃありません); じゃ is more informal than では but otherwise the same",
+      "target": "じゃありません"
+    },
+    {
+      "id": "ks1-tokei",
+      "english": "This is a watch.",
+      "category": "Other",
+      "notes": null,
+      "target": "これは とけいです。"
+    },
+    {
+      "id": "ks2-tokei-nai",
+      "english": "This is not a watch.",
+      "category": "Other",
+      "notes": null,
+      "target": "これは とけいじゃありません。"
+    },
+    {
+      "id": "ks3-smith-tokei",
+      "english": "This is Smith-san's watch.",
+      "category": "Other",
+      "notes": null,
+      "target": "これは スミスさんの とけいです。"
+    },
+    {
+      "id": "kore-watashi-pen",
+      "english": "This is my pen.",
+      "category": "Other",
+      "notes": null,
+      "target": "これは わたしの ペンです。"
+    },
+    {
+      "id": "kore-watashino",
+      "english": "This is mine.",
+      "category": "Other",
+      "notes": null,
+      "target": "これは わたしのです。"
+    },
+    {
+      "id": "deshita",
+      "english": "was",
+      "category": "Grammar & Function Words",
+      "notes": "Past affirmative form of です (source shows 〜でした)",
+      "target": "でした"
+    },
+    {
+      "id": "ja-arimasen-deshita",
+      "english": "was not",
+      "category": "Grammar & Function Words",
+      "notes": "Past negative form of です (source shows 〜じゃありませんでした); ではありませんでした is the less-informal equivalent",
+      "target": "じゃありませんでした"
+    },
+    {
+      "id": "tokei",
+      "english": "watch, clock",
+      "category": "Other",
+      "notes": null,
+      "target": "とけい"
+    },
+    {
+      "id": "num-0",
+      "english": "0",
+      "category": "Numbers",
+      "notes": null,
+      "target": "ゼロ"
+    },
+    {
+      "id": "num-1",
+      "english": "1",
+      "category": "Numbers",
+      "notes": null,
+      "target": "いち"
+    },
+    {
+      "id": "num-2",
+      "english": "2",
+      "category": "Numbers",
+      "notes": null,
+      "target": "に"
+    },
+    {
+      "id": "num-3",
+      "english": "3",
+      "category": "Numbers",
+      "notes": null,
+      "target": "さん"
+    },
+    {
+      "id": "num-4",
+      "english": "4",
+      "category": "Numbers",
+      "notes": null,
+      "target": "よん"
+    },
+    {
+      "id": "num-5",
+      "english": "5",
+      "category": "Numbers",
+      "notes": null,
+      "target": "ご"
+    },
+    {
+      "id": "num-6",
+      "english": "6",
+      "category": "Numbers",
+      "notes": null,
+      "target": "ろく"
+    },
+    {
+      "id": "num-7",
+      "english": "7",
+      "category": "Numbers",
+      "notes": null,
+      "target": "なな"
+    },
+    {
+      "id": "num-8",
+      "english": "8",
+      "category": "Numbers",
+      "notes": null,
+      "target": "はち"
+    },
+    {
+      "id": "num-9",
+      "english": "9",
+      "category": "Numbers",
+      "notes": null,
+      "target": "きゅう"
+    },
+    {
+      "id": "meishi",
+      "english": "business card",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "めいし"
+    },
+    {
+      "id": "kaisha-no-namae",
+      "english": "company name",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "かいしゃの なまえ"
+    },
+    {
+      "id": "kaisha",
+      "english": "company",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "かいしゃ"
+    },
+    {
+      "id": "namae",
+      "english": "name",
+      "category": "Other",
+      "notes": null,
+      "target": "なまえ"
+    },
+    {
+      "id": "juusho",
+      "english": "address",
+      "category": "Home & Household",
+      "notes": null,
+      "target": "じゅうしょ"
+    },
+    {
+      "id": "denwa-bangou",
+      "english": "telephone number",
+      "category": "Technology & Communication",
+      "notes": null,
+      "target": "でんわばんごう"
+    },
+    {
+      "id": "denwa",
+      "english": "telephone",
+      "category": "Technology & Communication",
+      "notes": null,
+      "target": "でんわ"
+    },
+    {
+      "id": "bangou",
+      "english": "number",
+      "category": "Numbers",
+      "notes": null,
+      "target": "ばんごう"
+    },
+    {
+      "id": "mail-address",
+      "english": "mail address",
+      "category": "Technology & Communication",
+      "notes": null,
+      "target": "メールアドレス"
+    },
+    {
+      "id": "kaban",
+      "english": "bag",
+      "category": "Other",
+      "notes": null,
+      "target": "かばん"
+    },
+    {
+      "id": "sumaho",
+      "english": "smart phone",
+      "category": "Technology & Communication",
+      "notes": null,
+      "target": "スマホ"
+    },
+    {
+      "id": "megane",
+      "english": "glasses",
+      "category": "Clothing",
+      "notes": null,
+      "target": "めがね"
+    },
+    {
+      "id": "kagi",
+      "english": "key",
+      "category": "Home & Household",
+      "notes": null,
+      "target": "かぎ"
+    },
+    {
+      "id": "saifu",
+      "english": "wallet",
+      "category": "Money",
+      "notes": null,
+      "target": "さいふ"
+    },
+    {
+      "id": "file",
+      "english": "file",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "ファイル"
+    },
+    {
+      "id": "hon",
+      "english": "book",
+      "category": "School & Education",
+      "notes": null,
+      "target": "ほん"
+    },
+    {
+      "id": "kasa",
+      "english": "umbrella",
+      "category": "Weather & Nature",
+      "notes": null,
+      "target": "かさ"
+    },
+    {
+      "id": "nihon-no-okashi",
+      "english": "Japanese sweets",
+      "category": "Food",
+      "notes": null,
+      "target": "にほんの おかし"
+    },
+    {
+      "id": "okashi",
+      "english": "sweets",
+      "category": "Food",
+      "notes": "The everyday form of \"sweets\" — has the honorific お prefix attached (お + かし = おかし). This is the word you'll actually hear and say in conversation; see \"kashi\" for the bare root it's built from.",
+      "target": "おかし"
+    },
+    {
+      "id": "mou-ichido",
+      "english": "one more time",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "もう いちど"
+    },
+    {
+      "id": "onegaishimasu",
+      "english": "please (lit. \"I request you\")",
+      "category": "Greetings",
+      "notes": null,
+      "target": "おねがいします"
+    }
+  ]
+}

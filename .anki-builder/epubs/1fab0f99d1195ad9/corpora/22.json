@@ -1,0 +1,471 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 22,
+    "chapterLabel": "Lesson 6: Going Places (1): Where Are You Going?"
+  },
+  "items": [
+    {
+      "id": "shisha",
+      "english": "Branch (office of a company)",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "ししゃ"
+    },
+    {
+      "id": "tokyo-shisha",
+      "english": "Tokyo branch",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "とうきょうししゃ"
+    },
+    {
+      "id": "sochira",
+      "english": "There (where you are)",
+      "category": "Directions",
+      "notes": null,
+      "target": "そちら"
+    },
+    {
+      "id": "ni-particle",
+      "english": "To (particle, indicates direction of movement)",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "に",
+      "uncertain": true
+    },
+    {
+      "id": "ikimasu",
+      "english": "Go",
+      "category": "Travel & Tourism",
+      "notes": "Possibly premature — explicitly taught later in Lesson 7: Going Places (2): I’m Going by Shinkansen (explicitly re-taught as a dedicated vocabulary/Key-Sentence item (\"スミスさんは しんかんせんで おおさかに いきます\"))",
+      "target": "いきます",
+      "uncertain": true
+    },
+    {
+      "id": "ne-particle",
+      "english": "Right?, isn't it? (particle)",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly premature — explicitly taught later in Lesson 9: Doing Things (2): Do You Often Come Here? (explicitly re-taught as its own dedicated vocabulary entry)",
+      "target": "ね",
+      "uncertain": true
+    },
+    {
+      "id": "ne-example",
+      "english": "The meeting is from 1:00, right?",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "かいぎは１じからですね",
+      "aiSuggested": true
+    },
+    {
+      "id": "hitoride",
+      "english": "Alone",
+      "category": "Other",
+      "notes": null,
+      "target": "ひとりで"
+    },
+    {
+      "id": "kimasu",
+      "english": "Come",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "きます"
+    },
+    {
+      "id": "to-particle",
+      "english": "With, together with (particle)",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "と"
+    },
+    {
+      "id": "dewa",
+      "english": "Well then",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "では"
+    },
+    {
+      "id": "osaka",
+      "english": "Osaka (city in western Japan)",
+      "category": "Travel & Tourism",
+      "notes": "Possibly premature — explicitly taught later in Lesson 7: Going Places (2): I’m Going by Shinkansen (explicitly re-taught in the same Key Sentence as いきます (\"...おおさかに いきます\"))",
+      "target": "おおさか",
+      "uncertain": true
+    },
+    {
+      "id": "osaka-shisha",
+      "english": "Osaka branch",
+      "category": "Work & Occupations",
+      "notes": "Possibly premature — explicitly taught later in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (the exact phrase おおさかししゃ is explicitly re-taught in a dedicated Key Sentence)",
+      "target": "おおさかししゃ",
+      "uncertain": true
+    },
+    {
+      "id": "ks1-bank-tomorrow",
+      "english": "Smith-san is going to the bank tomorrow.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "スミスさんはあしたぎんこうにいきます"
+    },
+    {
+      "id": "senshuu",
+      "english": "Last week",
+      "category": "Time",
+      "notes": null,
+      "target": "せんしゅう"
+    },
+    {
+      "id": "ikimashita",
+      "english": "Went",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "いきました"
+    },
+    {
+      "id": "ks2-osaka-last-week",
+      "english": "Smith-san went to Osaka last week.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "スミスさんはせんしゅうおおさかにいきました"
+    },
+    {
+      "id": "tomodachi",
+      "english": "Friend",
+      "category": "Family & People",
+      "notes": null,
+      "target": "ともだち"
+    },
+    {
+      "id": "ks3-restaurant-friend",
+      "english": "Smith-san went to a restaurant with a friend yesterday.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "スミスさんはきのうともだちとレストランにいきました"
+    },
+    {
+      "id": "kyonen",
+      "english": "Last year",
+      "category": "Time",
+      "notes": null,
+      "target": "きょねん"
+    },
+    {
+      "id": "kara-particle",
+      "english": "From (particle)",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (explicitly re-taught in a dedicated Key Sentence using the same \"from\" sense (\"place1から place2まで ... かかります\"), matching the meaning taught here)",
+      "target": "から",
+      "uncertain": true
+    },
+    {
+      "id": "kimashita",
+      "english": "Came",
+      "category": "Travel & Tourism",
+      "notes": "Possibly premature — explicitly taught later in Lesson 7: Going Places (2): I’m Going by Shinkansen (explicitly re-taught as a dedicated Key Sentence (\"エマさんは ４がつに にほんに きました\"))",
+      "target": "きました",
+      "uncertain": true
+    },
+    {
+      "id": "ks4-came-from-america",
+      "english": "Smith-san came from the United States last year.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "スミスさんはきょねんアメリカからきました"
+    },
+    {
+      "id": "kyouto",
+      "english": "Kyoto",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "きょうと"
+    },
+    {
+      "id": "grammar-kyoto-question",
+      "english": "Smith-san, will you go to Kyoto tomorrow?",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "スミスさんはあしたきょうとにいきますか"
+    },
+    {
+      "id": "grammar-yes-will-go",
+      "english": "Yes, (I) will go.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "はい、いきます"
+    },
+    {
+      "id": "grammar-no-will-not-go",
+      "english": "No, (I) will not go.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "いいえ、いきません"
+    },
+    {
+      "id": "grammar-party-ni-e",
+      "english": "Smith-san is going to the party.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "スミスさんはパーティーに／へいきます"
+    },
+    {
+      "id": "kuukou",
+      "english": "Airport",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "くうこう"
+    },
+    {
+      "id": "eki",
+      "english": "Station",
+      "category": "Travel & Tourism",
+      "notes": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (explicitly re-taught as a dedicated Key Sentence item (\"タクシーのりばは えきの まえに あります\" / \"うちは えきから ちかいです\"))",
+      "target": "えき",
+      "uncertain": true
+    },
+    {
+      "id": "kouen",
+      "english": "Park",
+      "category": "Travel & Tourism",
+      "notes": "Possibly premature — explicitly taught later in Lesson 16: Making an Invitation: Shall We Go Together? (explicitly re-taught as a dedicated Key Sentence item (\"こうえんで ひるごはんを たべませんか\"))",
+      "target": "こうえん",
+      "uncertain": true
+    },
+    {
+      "id": "uchi",
+      "english": "House, home",
+      "category": "Home & Household",
+      "notes": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (explicitly re-taught as a dedicated Key Sentence item (\"スミスさんの うちは えきから ちかいです\"))",
+      "target": "うち",
+      "uncertain": true
+    },
+    {
+      "id": "konshuu",
+      "english": "This week",
+      "category": "Time",
+      "notes": null,
+      "target": "こんしゅう"
+    },
+    {
+      "id": "raishuu",
+      "english": "Next week",
+      "category": "Time",
+      "notes": null,
+      "target": "らいしゅう"
+    },
+    {
+      "id": "sengetsu",
+      "english": "Last month",
+      "category": "Time",
+      "notes": null,
+      "target": "せんげつ"
+    },
+    {
+      "id": "kongetsu",
+      "english": "This month",
+      "category": "Time",
+      "notes": null,
+      "target": "こんげつ"
+    },
+    {
+      "id": "raigetsu",
+      "english": "Next month",
+      "category": "Time",
+      "notes": null,
+      "target": "らいげつ"
+    },
+    {
+      "id": "kotoshi",
+      "english": "This year",
+      "category": "Time",
+      "notes": null,
+      "target": "ことし"
+    },
+    {
+      "id": "rainen",
+      "english": "Next year",
+      "category": "Time",
+      "notes": null,
+      "target": "らいねん"
+    },
+    {
+      "id": "douryou",
+      "english": "Colleague, coworker",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "どうりょう"
+    },
+    {
+      "id": "joushi",
+      "english": "Boss, superior",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "じょうし"
+    },
+    {
+      "id": "kazoku",
+      "english": "Family",
+      "category": "Family & People",
+      "notes": null,
+      "target": "かぞく"
+    },
+    {
+      "id": "gakusei",
+      "english": "Student",
+      "category": "School & Education",
+      "notes": null,
+      "target": "がくせい"
+    },
+    {
+      "id": "asatte",
+      "english": "Day after tomorrow",
+      "category": "Time",
+      "notes": null,
+      "target": "あさって"
+    },
+    {
+      "id": "honkon",
+      "english": "Hong Kong",
+      "category": "Nationalities & Countries",
+      "notes": null,
+      "target": "ホンコン"
+    },
+    {
+      "id": "ototoi",
+      "english": "Day before yesterday",
+      "category": "Time",
+      "notes": null,
+      "target": "おととい"
+    },
+    {
+      "id": "tokyo-eki",
+      "english": "Tokyo Station",
+      "category": "Travel & Tourism",
+      "notes": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (the exact phrase とうきょうえき is explicitly re-taught in a dedicated Key Sentence)",
+      "target": "とうきょうえき",
+      "uncertain": true
+    },
+    {
+      "id": "ginza",
+      "english": "Ginza (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "ぎんざ"
+    },
+    {
+      "id": "hokkaido",
+      "english": "Hokkaido (island in northern Japan)",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "ほっかいどう"
+    },
+    {
+      "id": "yokohama",
+      "english": "Yokohama (city near Tokyo)",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "よこはま"
+    },
+    {
+      "id": "intern",
+      "english": "Intern",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "インターン"
+    },
+    {
+      "id": "no-apposition",
+      "english": "(particle expressing apposition — 'X who is a Y')",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "target": "の",
+      "uncertain": true
+    },
+    {
+      "id": "no-apposition-example",
+      "english": "This is Raja-san, the intern.",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "こちらはインターンのラジャさんです",
+      "aiSuggested": true
+    },
+    {
+      "id": "tachi-suffix",
+      "english": "(plural for people)",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "たち"
+    },
+    {
+      "id": "hitotachi",
+      "english": "People",
+      "category": "Family & People",
+      "notes": null,
+      "target": "ひとたち"
+    },
+    {
+      "id": "tachi-example",
+      "english": "I'm going to the park with (my) friends.",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "ともだちたちとこうえんにいきます",
+      "aiSuggested": true
+    },
+    {
+      "id": "basu",
+      "english": "Bus",
+      "category": "Transport",
+      "notes": null,
+      "target": "バス"
+    },
+    {
+      "id": "shibuya",
+      "english": "Shibuya (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "notes": null,
+      "target": "しぶや"
+    },
+    {
+      "id": "untenshu",
+      "english": "Driver",
+      "category": "Work & Occupations",
+      "notes": null,
+      "target": "うんてんしゅ"
+    },
+    {
+      "id": "dono",
+      "english": "Which (of three or more things)",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "どの"
+    },
+    {
+      "id": "ga-particle",
+      "english": "(particle, marks the grammatical subject)",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly premature — explicitly taught later in Lesson 12: Asking about Places: What Is at Nikko? (explicitly re-taught as a dedicated vocabulary entry marking a new-information subject before あります/います — the same core grammar function taught here with いきます)",
+      "target": "が",
+      "uncertain": true
+    },
+    {
+      "id": "ban-suffix",
+      "english": "Number… (suffix for number)",
+      "category": "Grammar & Function Words",
+      "notes": null,
+      "target": "ばん"
+    },
+    {
+      "id": "ga-example",
+      "english": "The No. 6 bus goes there.",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly premature — explicitly taught later in Lesson 12: Asking about Places: What Is at Nikko? (the が-marks-new-subject construction this example demonstrates is explicitly re-taught as its own grammar point/vocab entry later)",
+      "target": "6ばんのバスがいきます",
+      "uncertain": true,
+      "aiSuggested": true
+    }
+  ]
+}

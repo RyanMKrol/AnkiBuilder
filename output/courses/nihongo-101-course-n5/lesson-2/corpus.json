@@ -1,0 +1,663 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "manual",
+    "reviewed": false,
+    "courseSlug": "nihongo-101-course-n5",
+    "chapterNumber": 2,
+    "chapterLabel": "Lesson 2"
+  },
+  "items": [
+    {
+      "id": "bag",
+      "english": "Bag",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "glasses",
+      "english": "Glasses",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "wallet",
+      "english": "Wallet",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "book",
+      "english": "Book",
+      "category": "School & Education",
+      "target": null,
+      "note": "A book for reading; contrast ノート (nōto), a notebook for writing in."
+    },
+    {
+      "id": "pen",
+      "english": "Pen",
+      "category": "School & Education",
+      "target": null
+    },
+    {
+      "id": "smartphone",
+      "english": "Smartphone",
+      "category": "Technology & Communication",
+      "target": null,
+      "note": "Refers specifically to a smartphone; けいたい (keitai) is the broader, older word for mobile phone in general."
+    },
+    {
+      "id": "key",
+      "english": "Key",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "file",
+      "english": "File",
+      "category": "School & Education",
+      "target": null
+    },
+    {
+      "id": "umbrella",
+      "english": "Umbrella",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "is-this-a-pen",
+      "english": "Is this a pen?",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "A yes/no question — answer with はい (hai, 'yes') or いいえ (īe, 'no'), both from lesson 1."
+    },
+    {
+      "id": "this-is-not-a-pen",
+      "english": "This is not a pen.",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "じゃありません (ja arimasen) negates です (desu); casual speech often shortens this to じゃない (ja nai)."
+    },
+    {
+      "id": "this-is-my-pen",
+      "english": "This is my pen.",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "の (no) marks possession between two nouns — わたしの (watashi no) means 'my', literally 'of me'."
+    },
+    {
+      "id": "this-is-not-my-pen",
+      "english": "This is not my pen.",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "Combines の (no) for possession, as in これはわたしのペンです (kore wa watashi no pen desu), with the じゃありません (ja arimasen) negation from これはペンじゃありません (kore wa pen ja arimasen)."
+    },
+    {
+      "id": "food",
+      "english": "Food",
+      "category": "Food",
+      "target": null,
+      "note": "Built from たべる (taberu, 'to eat') + もの (mono, 'thing'); のみもの (nomimono, drink) follows the same pattern from のむ (nomu, 'to drink')."
+    },
+    {
+      "id": "drink",
+      "english": "Drink",
+      "category": "Food",
+      "target": null,
+      "note": "Built from のむ (nomu, 'to drink') + もの (mono, 'thing'), the same pattern as たべもの (tabemono, food) from たべる (taberu, 'to eat')."
+    },
+    {
+      "id": "celebrity",
+      "english": "Celebrity",
+      "category": "Family & People",
+      "target": null
+    },
+    {
+      "id": "sport",
+      "english": "Sport",
+      "category": "Sports & Hobbies",
+      "target": null
+    },
+    {
+      "id": "animal",
+      "english": "Animal",
+      "category": "Animals",
+      "target": null
+    },
+    {
+      "id": "expensive",
+      "english": "Expensive",
+      "category": "Money",
+      "target": null,
+      "note": "Also means 'tall / high' — たかい ビル (takai biru) is a tall building."
+    },
+    {
+      "id": "cheap",
+      "english": "Cheap",
+      "category": "Money",
+      "target": null,
+      "note": "The opposite of たかい (takai, expensive); describes a low price, not a low quality."
+    },
+    {
+      "id": "one-minute",
+      "english": "One minute",
+      "category": "Time",
+      "target": null,
+      "note": "Irregular reading for '1 minute' — いち (ichi) becomes いっ (ip) before ふん (fun)."
+    },
+    {
+      "id": "nine-minutes",
+      "english": "Nine minutes",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "six-minutes",
+      "english": "Six minutes",
+      "category": "Time",
+      "target": null,
+      "note": "Irregular reading for '6 minutes' — ろく (roku) becomes ろっ (rop) before ふん (fun), not ろくふん (rokufun)."
+    },
+    {
+      "id": "three-minutes",
+      "english": "Three minutes",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "seven-minutes",
+      "english": "Seven minutes",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "two-minutes",
+      "english": "Two minutes",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "ten-minutes",
+      "english": "Ten minutes",
+      "category": "Time",
+      "target": null,
+      "note": "Irregular reading for '10 minutes' — じゅう (jū) becomes じゅっ (jup) before ふん (fun); じっぷん (jippun) is an accepted alternate reading."
+    },
+    {
+      "id": "four-minutes",
+      "english": "Four minutes",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "eight-minutes",
+      "english": "Eight minutes",
+      "category": "Time",
+      "target": null,
+      "note": "Irregular reading for '8 minutes' — はち (hachi) becomes はっ (hap) before ふん (fun), not はちふん (hachifun)."
+    },
+    {
+      "id": "five-minutes",
+      "english": "Five minutes",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "eight-oclock",
+      "english": "Eight o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "seven-oclock",
+      "english": "Seven o'clock",
+      "category": "Time",
+      "target": null,
+      "note": "Uses しち (shichi) for 7 rather than なな (nana) — an exception among the o'clock readings."
+    },
+    {
+      "id": "three-oclock",
+      "english": "Three o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "one-oclock",
+      "english": "One o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "six-oclock",
+      "english": "Six o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "five-oclock",
+      "english": "Five o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "eleven-oclock",
+      "english": "Eleven o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "ten-oclock",
+      "english": "Ten o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "two-oclock",
+      "english": "Two o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "twelve-oclock",
+      "english": "Twelve o'clock",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "am-in-the-morning",
+      "english": "AM (in the morning)",
+      "category": "Time",
+      "target": null,
+      "note": "Placed before the time, e.g. ごぜんごじ (gozen goji, '5 AM'); ごご (gogo) is the PM counterpart."
+    },
+    {
+      "id": "pm-in-the-afternoon",
+      "english": "PM (in the afternoon)",
+      "category": "Time",
+      "target": null,
+      "note": "Placed before the time, e.g. ごごくじ (gogo kuji, '9 PM'); ごぜん (gozen) is the AM counterpart."
+    },
+    {
+      "id": "5-am",
+      "english": "5 AM",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "9-pm",
+      "english": "9 PM",
+      "category": "Time",
+      "target": null,
+      "note": "9 o'clock is irregular: く (ku), not きゅう (kyū), giving くじ (kuji) — きゅう (kyū) appears instead in きゅうふん (kyūfun, nine minutes) earlier in this lesson."
+    },
+    {
+      "id": "what",
+      "english": "What",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "The standalone word for 'what'; before です (desu) and many counters/particles it shifts to なん (nan), as in なんですか (nan desu ka, 'what is it?')."
+    },
+    {
+      "id": "who",
+      "english": "Who",
+      "category": "Grammar & Function Words",
+      "target": null
+    },
+    {
+      "id": "where",
+      "english": "Where",
+      "category": "Grammar & Function Words",
+      "target": null
+    },
+    {
+      "id": "why",
+      "english": "Why",
+      "category": "Grammar & Function Words",
+      "target": null
+    },
+    {
+      "id": "when",
+      "english": "When",
+      "category": "Grammar & Function Words",
+      "target": null
+    },
+    {
+      "id": "how",
+      "english": "How",
+      "category": "Grammar & Function Words",
+      "target": null
+    },
+    {
+      "id": "about-approximately",
+      "english": "About (approximately)",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "Attaches to a quantity or duration for 'about/approximately' (money, minutes, etc.); for a specific point in time, use ごろ (goro) instead."
+    },
+    {
+      "id": "about-ten-minutes-approx",
+      "english": "It's about ten minutes.",
+      "category": "Time",
+      "note": null,
+      "target": "じゅっぷんぐらいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "around-a-time",
+      "english": "Around (a time)",
+      "category": "Grammar & Function Words",
+      "target": null,
+      "note": "Attaches after a specific time for 'around/at about', e.g. さんじごろ (sanji goro, 'around 3 o'clock'); for quantities or durations use ぐらい (gurai) instead."
+    },
+    {
+      "id": "around-one-oclock-now",
+      "english": "It's around one o'clock now.",
+      "category": "Time",
+      "note": null,
+      "target": "いまいちじごろです",
+      "aiSuggested": true
+    },
+    {
+      "id": "what-time-is-it-now",
+      "english": "What time is it now?",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "its-9-01-now",
+      "english": "It's 9:01 now.",
+      "category": "Time",
+      "target": null,
+      "note": "Combines くじ (kuji), the irregular '9 o'clock' reading (く/ku, not きゅう/kyū) seen in ごごくじ (gogo kuji), with いっぷん (ippun), the irregular '1 minute' reading from earlier in this lesson."
+    },
+    {
+      "id": "from-what-time-to-what-time-is-the-gym-o",
+      "english": "From what time to what time is the gym open?",
+      "category": "Time",
+      "target": null,
+      "note": "から (kara, 'from') and まで (made, 'to/until') bracket a range — here a time range, but the same から〜まで (kara~made) pattern works for places and dates too."
+    },
+    {
+      "id": "what-time-is-it-now-in-the-uk",
+      "english": "What time is it now in the UK?",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "what-time-is-it-now-in-france",
+      "english": "What time is it now in France?",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "tomorrow",
+      "english": "Tomorrow",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "today",
+      "english": "Today",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "yesterday",
+      "english": "Yesterday",
+      "category": "Time",
+      "target": null
+    },
+    {
+      "id": "how-are-you",
+      "english": "How are you?",
+      "category": "Greetings",
+      "target": null
+    },
+    {
+      "id": "im-well",
+      "english": "I'm well.",
+      "category": "Greetings",
+      "target": null
+    },
+    {
+      "id": "im-not-well",
+      "english": "I'm not well.",
+      "category": "Greetings",
+      "target": null,
+      "note": "じゃないです (ja nai desu) negates げんきです the same way じゃありません (ja arimasen) negates です in これはペンじゃありません (kore wa pen ja arimasen), but blends the plain negative じゃない (ja nai) with です for a slightly more casual feel than the formal-sounding じゃありません."
+    },
+    {
+      "id": "congratulations",
+      "english": "Congratulations!",
+      "category": "Greetings",
+      "target": null
+    },
+    {
+      "id": "toy",
+      "english": "Toy",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "ladybird",
+      "english": "Ladybird",
+      "category": "Animals",
+      "target": null
+    },
+    {
+      "id": "watch",
+      "english": "Watch",
+      "category": "Other",
+      "target": null
+    },
+    {
+      "id": "mobile-phone",
+      "english": "Mobile phone",
+      "category": "Technology & Communication",
+      "target": null,
+      "note": "Short for けいたいでんわ (keitai denwa, 'mobile phone'); スマホ (sumaho) refers specifically to a smartphone, not phones generally."
+    },
+    {
+      "id": "hiragana-sa",
+      "english": "Hiragana \"sa\"",
+      "category": "School & Education",
+      "target": null,
+      "uncertain": true
+    },
+    {
+      "id": "hiragana-ki",
+      "english": "Hiragana \"ki\"",
+      "category": "School & Education",
+      "target": null,
+      "uncertain": true
+    },
+    {
+      "id": "notebook",
+      "english": "Notebook",
+      "category": "School & Education",
+      "target": null,
+      "note": "A blank notebook for writing in; contrast ほん (hon), a book for reading."
+    },
+    {
+      "id": "water",
+      "english": "Water",
+      "category": "Food",
+      "target": null
+    },
+    {
+      "id": "personal-computer",
+      "english": "Personal computer",
+      "category": "Technology & Communication",
+      "target": null
+    },
+    {
+      "id": "mouse-computer",
+      "english": "Mouse (computer)",
+      "category": "Technology & Communication",
+      "target": null
+    },
+    {
+      "id": "remote-control",
+      "english": "Remote control",
+      "category": "Technology & Communication",
+      "target": null
+    },
+    {
+      "id": "ring",
+      "english": "Ring",
+      "category": "Clothing",
+      "target": null
+    },
+    {
+      "id": "table",
+      "english": "Table",
+      "category": "Home & Household",
+      "target": null,
+      "note": "A Western-style table, e.g. for dining; contrast つくえ (tsukue), a desk or work surface."
+    },
+    {
+      "id": "desk",
+      "english": "Desk",
+      "category": "Home & Household",
+      "target": null,
+      "note": "A desk or work/study surface; contrast テーブル (tēburu), a general (often dining) table."
+    },
+    {
+      "id": "chair",
+      "english": "Chair",
+      "category": "Home & Household",
+      "target": null
+    },
+    {
+      "id": "amazing",
+      "english": "Amazing!",
+      "category": "Emotions & Feelings",
+      "target": null
+    },
+    {
+      "id": "basketball",
+      "english": "Basketball",
+      "category": "Sports & Hobbies",
+      "target": null
+    },
+    {
+      "id": "football",
+      "english": "Football",
+      "category": "Sports & Hobbies",
+      "target": null
+    },
+    {
+      "id": "tennis",
+      "english": "Tennis",
+      "category": "Sports & Hobbies",
+      "target": null
+    },
+    {
+      "id": "baseball",
+      "english": "Baseball",
+      "category": "Sports & Hobbies",
+      "target": null
+    },
+    {
+      "id": "table-tennis",
+      "english": "Table tennis",
+      "category": "Sports & Hobbies",
+      "target": null
+    },
+    {
+      "id": "lion",
+      "english": "Lion",
+      "category": "Animals",
+      "target": null
+    },
+    {
+      "id": "dog",
+      "english": "Dog",
+      "category": "Animals",
+      "target": null
+    },
+    {
+      "id": "cat",
+      "english": "Cat",
+      "category": "Animals",
+      "target": null
+    },
+    {
+      "id": "green-tea",
+      "english": "Green tea",
+      "category": "Food",
+      "target": null,
+      "note": "The everyday, default word for tea in Japanese; it refers to green tea unless another kind is specified, e.g. こうちゃ (kōcha, black tea)."
+    },
+    {
+      "id": "black-tea",
+      "english": "Black tea",
+      "category": "Food",
+      "target": null,
+      "note": "Refers to black/Western-style tea, in contrast to おちゃ (ocha), the everyday word that defaults to green tea."
+    },
+    {
+      "id": "cute",
+      "english": "Cute",
+      "category": "Emotions & Feelings",
+      "target": null
+    },
+    {
+      "id": "water-bottle",
+      "english": "Water bottle",
+      "category": "Home & Household",
+      "target": null,
+      "note": "The bottle/container itself, not the water inside it (みず, mizu)."
+    },
+    {
+      "id": "tasty",
+      "english": "Tasty",
+      "category": "Food",
+      "target": null
+    },
+    {
+      "id": "work",
+      "english": "Work",
+      "category": "Work & Occupations",
+      "target": null
+    },
+    {
+      "id": "meat",
+      "english": "Meat",
+      "category": "Food",
+      "target": null
+    },
+    {
+      "id": "cloth",
+      "english": "Cloth",
+      "category": "Clothing",
+      "target": null,
+      "note": "The raw fabric or material itself; contrast ふく (fuku), the finished clothes made from it."
+    },
+    {
+      "id": "box",
+      "english": "Box",
+      "category": "Home & Household",
+      "target": null
+    },
+    {
+      "id": "clothes",
+      "english": "Clothes",
+      "category": "Clothing",
+      "target": null,
+      "note": "Finished garments; contrast ぬの (nuno), the raw fabric they're made from."
+    },
+    {
+      "id": "fire",
+      "english": "Fire",
+      "category": "Emergencies",
+      "target": null
+    },
+    {
+      "id": "star",
+      "english": "Star",
+      "category": "Weather & Nature",
+      "target": null
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 11,
+    "chapterLabel": "Frequently Used Expressions"
+  },
+  "items": [
+    {
+      "id": "ohayou-gozaimasu",
+      "english": "Good morning.",
+      "category": "Greetings",
+      "notes": "Possibly premature — explicitly taught later in Lesson 6: Going Places (1): Where Are You Going? (explicitly re-taught as a dedicated VOCABULARY entry)",
+      "target": "おはようございます。",
+      "uncertain": true
+    },
+    {
+      "id": "konnichiwa",
+      "english": "Hello. / Good afternoon.",
+      "category": "Greetings",
+      "notes": "A rather informal greeting used from about 10:00 A.M. until sundown",
+      "target": "こんにちは。"
+    },
+    {
+      "id": "konbanwa",
+      "english": "Good evening.",
+      "category": "Greetings",
+      "notes": null,
+      "target": "こんばんは。"
+    },
+    {
+      "id": "ja-mata",
+      "english": "See you.",
+      "category": "Greetings",
+      "notes": null,
+      "target": "じゃ、また。"
+    },
+    {
+      "id": "sayounara",
+      "english": "Good-bye.",
+      "category": "Greetings",
+      "notes": null,
+      "target": "さようなら。"
+    },
+    {
+      "id": "shitsurei-shimasu-entering",
+      "english": "Excuse me. (said when entering another person's room)",
+      "category": "Greetings",
+      "notes": "Said when entering another person's room | Possibly premature — explicitly taught later in Lesson 7: Going Places (2): I’m Going by Shinkansen (explicitly re-taught as a dedicated VOCABULARY entry (\"Excuse me.\"))",
+      "target": "しつれいします。",
+      "uncertain": true
+    },
+    {
+      "id": "shitsurei-shimasu-leaving",
+      "english": "Good-bye. (said on formal occasions)",
+      "category": "Greetings",
+      "notes": "Said on formal occasions, e.g. leaving a meeting | Possibly premature — explicitly taught later in Lesson 6: Going Places (1): Where Are You Going? (explicitly re-taught as a dedicated VOCABULARY entry (\"Good bye.\"))",
+      "target": "しつれいします。",
+      "uncertain": true
+    },
+    {
+      "id": "osaki-ni-shitsurei-shimasu",
+      "english": "Good-bye. (said when leaving the office before other people)",
+      "category": "Greetings",
+      "notes": null,
+      "target": "おさきに しつれいします。"
+    },
+    {
+      "id": "otsukaresama-deshita",
+      "english": "Good-bye. (said when your colleague leaves the office before you)",
+      "category": "Greetings",
+      "notes": null,
+      "target": "おつかれさま（でした）。"
+    },
+    {
+      "id": "douzo",
+      "english": "Please. (offering something to someone)",
+      "category": "Greetings",
+      "notes": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"Please (have one).\"))",
+      "target": "どうぞ。",
+      "uncertain": true
+    },
+    {
+      "id": "arigatou-gozaimasu",
+      "english": "Thank you.",
+      "category": "Greetings",
+      "notes": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"Thank you.\"))",
+      "target": "ありがとうございます。",
+      "uncertain": true
+    },
+    {
+      "id": "iie-not-at-all",
+      "english": "Not at all.",
+      "category": "Greetings",
+      "notes": "Polite response when thanked or when declining an offer of help/politeness | Possibly premature — explicitly taught later in Lesson 1: Meeting: Nice to Meet You (explicitly re-taught as a dedicated VOCABULARY entry (\"no.\"))",
+      "target": "いいえ。",
+      "uncertain": true
+    },
+    {
+      "id": "itadakimasu",
+      "english": "(said before eating a meal)",
+      "category": "Food",
+      "notes": "Set phrase spoken before starting a meal | Possibly premature — explicitly taught later in Lesson 10: Describing Things: It’s Delicious (explicitly re-taught as a dedicated VOCABULARY entry)",
+      "target": "いただきます。",
+      "uncertain": true
+    },
+    {
+      "id": "gochisousama-deshita",
+      "english": "(said after eating a meal)",
+      "category": "Food",
+      "notes": "Set phrase spoken after finishing a meal, thanking the preparer/host",
+      "target": "ごちそうさま（でした）。"
+    },
+    {
+      "id": "sumimasen-excuse-me",
+      "english": "Excuse me.",
+      "category": "Greetings",
+      "notes": "Used to get someone's attention, e.g. calling a waiter | Possibly premature — explicitly taught later in Lesson 1: Meeting: Nice to Meet You (explicitly re-taught as a dedicated VOCABULARY entry (\"Excuse me.\"))",
+      "target": "すみません。",
+      "uncertain": true
+    },
+    {
+      "id": "sumimasen-sorry",
+      "english": "I'm sorry.",
+      "category": "Greetings",
+      "notes": "Same phrase as excuse me, used here to apologize | Possibly premature — explicitly taught later in Lesson 14: Giving and Receiving: I Received It from My Friend (the closely related form すみませんでした gets its own dedicated VOCABULARY entry glossed \"I'm sorry (for what I did a while ago)\" — a near-exact re-teaching of this item's sense, worth the reviewer's judgment even though the surface string differs slightly)",
+      "target": "すみません。",
+      "uncertain": true
+    },
+    {
+      "id": "chotto-matte-kudasai",
+      "english": "Wait just a moment, please.",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (explicitly re-taught as a dedicated KEY SENTENCES entry (\"Please wait a moment.\"))",
+      "target": "ちょっと まってください。",
+      "uncertain": true
+    },
+    {
+      "id": "mou-ichido-onegaishimasu",
+      "english": "Once more, please.",
+      "category": "Grammar & Function Words",
+      "notes": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"One more time, please.\"))",
+      "target": "もう いちど おねがいします。",
+      "uncertain": true
+    }
+  ]
+}

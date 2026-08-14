@@ -15,3 +15,11 @@ CLAUDE.md
 # Local Anki state backups — data, not formatted code.
 anki-backups
 anki-state-backup-*.json
+
+# Pipeline state: hand-reviewed decks and the dedup library. Now partly git-tracked (see the
+# .gitignore comment), which is the only reason Prettier can see them at all. They are DATA, written
+# by the pipeline's own writers, and `prettier --write .` must never rewrite them: a reformat would
+# make every future pipeline write show up as a whole-file diff, and would touch reviewed content
+# that only a human is allowed to change.
+output
+.anki-builder

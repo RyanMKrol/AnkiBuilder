@@ -411,6 +411,83 @@ test("trimming a card whose source is missing from disk is refused", () => {
   }
 });
 
+// --- the marker verdict follows the clip that ships ------------------------------------------------
+
+// `audioMarkerStuck` described the take the audio stage produced, and nothing but a whole new
+// recording ever cleared it — so a reviewer who fixed the clip by hand (exactly what the badge asks
+// for) left the card asserting a fault it no longer had. All seven live instances were that.
+test("a hand trim clears a stuck marker it cut away", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioMarked = true;
+    cards.items[0].audioMarkerStuck = true;
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    trimCardAudio(dir, "a", 0, 1.2, {
+      trimToRange: fakeCut([]),
+      findMarker: () => null, // the cut carries no marker
+    });
+    assert.equal("audioMarkerStuck" in cardOf(dir), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a hand trim that did not cut the marker away keeps the flag", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioMarked = true;
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    trimCardAudio(dir, "a", 0, 1.2, {
+      trimToRange: fakeCut([]),
+      findMarker: () => [1.0, 1.2],
+    });
+    assert.equal(cardOf(dir).audioMarkerStuck, true);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// Reverting re-installs the automatic take — the one the trim may have failed on — so a card that
+// was hand-cut clear of a stuck marker is stuck again the moment the cut is dropped.
+test("reverting a hand cut restores the automatic take's marker verdict", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioMarked = true;
+    cards.items[0].audioManual = "a-manual-11111111.mp3";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+    writeFileSync(join(dir, "audio", "a-manual-11111111.mp3"), "CUT");
+
+    revertCardAudio(dir, "a", { findMarker: () => [1.0, 1.4] });
+    assert.equal(cardOf(dir).audioMarkerStuck, true);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// A card whose language never used the marker can never be carrying one, so no detection runs.
+test("an unmarked take is never asked about the marker", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    let asked = 0;
+    trimCardAudio(dir, "a", 0, 1.2, {
+      trimToRange: fakeCut([]),
+      findMarker: () => {
+        asked++;
+        return [0, 1];
+      },
+    });
+    assert.equal(asked, 0);
+    assert.equal("audioMarkerStuck" in cardOf(dir), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 // --- what text a clip was generated from (src/audio/textHash.js) -----------------------------------
 
 // A picked variant is named after the text it was generated from, so the pick can record what the

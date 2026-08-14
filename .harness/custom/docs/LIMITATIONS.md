@@ -2418,3 +2418,39 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** once the live stale count has been observed over a few chapters. If it stays
   at or near zero, promoting the check to ACK (accept-or-fix, not a hard block) is the next rung —
   the exit action and its provenance fields already exist, which is what a promotion needs.
+
+## A cleared marker-stuck flag rests on where the cut landed, not on the detector
+
+- **What:** `scripts/audit-marker-stuck.mjs` clears `audioMarkerStuck` only when the reviewer's hand
+  cut ends at or before the start of the original's trailing run of separated speech — the only place
+  an appended marker can be — and the detector also finds nothing in the shipping clip. The detector's
+  own verdict is never enough on its own.
+- **Why:** these are precisely the clips the detector failed on; that failure is what set the flag.
+  Measured on the seven live instances, all of whose originals certainly carry the marker,
+  `findEndMarker` locates it in exactly one. Clearing a flag on "the detector found nothing" would be
+  reasoning from a known-blind instrument.
+- **Impact:** a clip fixed some other way — regenerated, replaced, or hand-cut with no `audioTrim`
+  recorded — cannot be cleared by this tool even when it is genuinely clean. It reports those as
+  unproven and leaves them flagged, which is the safe direction but means the count can stick above
+  zero for a reason that is not a bad clip. All seven live instances cleared; none is currently in
+  that state.
+- **Status:** open
+- **Verified by:** `node scripts/audit-marker-stuck.mjs`
+- **When to revisit:** if the ACK count starts holding non-zero on cards nobody can clear. The next
+  rung would be storing the marker window on the card at generation time, so "was it cut away" stops
+  depending on re-detecting it later.
+
+## Marker detection is re-run on every hand trim, re-clean and revert
+
+- **What:** installing or dropping a hand cut now re-asks whether the shipping take carries the end
+  marker, which is one `silencedetect` pass plus up to three short decodes per action.
+- **Why:** the flag has to describe the clip that ships, or it goes on asserting a fault the reviewer
+  has already fixed — which is what happened to all seven live instances for months.
+- **Impact:** an Apply in the trim editor now costs an extra ffmpeg round trip (tens of milliseconds
+  on these clip lengths). Only for a take generated with the marker; a non-Japanese card never pays
+  it. If ffmpeg is missing the detection returns "no marker", same fail-open rule as the trim itself,
+  so an absent ffmpeg silently clears flags rather than keeping them.
+- **Status:** open
+- **When to revisit:** if the editor starts feeling slow on Apply, or if a machine without ffmpeg is
+  ever used for review — the fail-open direction is wrong for that case and would need a third state
+  ("could not tell") rather than a boolean.

@@ -353,6 +353,12 @@ operator has to override on the day it lands is worse than no gate.
       permanent — it only ever cuts the end, so leading silence always survived and an over-eager cut
       was unrecoverable. A card now carries `audioOriginal` / `audioAuto` / `audioManual`, and the
       `audio` the deck embeds is derived from them
+- [x] The "marker audible" flag follows the clip that actually ships. It used to describe the take
+      the audio stage produced and could only ever be cleared by a whole new recording — so a
+      reviewer who fixed the clip by hand, which is exactly what the badge asks for, left the card
+      asserting a fault it no longer had. Installing, re-cleaning or reverting a hand cut now re-asks
+      the question of the shipping take, and `scripts/audit-marker-stuck.mjs` re-checks the existing
+      ones. All seven live instances had already been hand-cut clear; none needed regenerating
 - [x] Every clip records what text it was generated from (`audioTextHash`), read off the take's own
       content-addressed filename and never computed from the card. The audio stage's staleness check
       exempted every hand-picked, uploaded or hand-trimmed clip — about 200 live cards — so editing a

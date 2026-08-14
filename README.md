@@ -223,6 +223,18 @@ Two related refusals live in the code rather than in test-author discipline: `li
 to a throwaway tmpdir under `node --test`, and `fetchElevenLabsTts` throws instead of calling the
 paid API when a test forgets to inject a `fetchImpl`.
 
+Before and after editing any prompt in `docs/`, run its eval fixture and read the diff:
+
+```sh
+node scripts/eval-pass.mjs --list             # the five fixtures and what each one reads
+node scripts/eval-pass.mjs extraction         # offline, replays a recorded response, spends nothing
+node scripts/eval-pass.mjs extraction --live  # against the real model
+```
+
+It never passes or fails: extraction is generative, so the output is a diff against the human-reviewed
+corpus for a person to judge. CI only ever runs the offline mode, and `--live` is blocked outright
+under `node --test`. See [Per-pass eval fixtures](./docs/PIPELINE.md#per-pass-eval-fixtures).
+
 Anything under `scripts/` that rewrites a unit's `cards.json` or `corpus.json` goes through
 `writeUnitJson` (`src/util/unitWrite.js`): validate the document, snapshot the old file to
 `<file>.pre-<reason>-<YYYYMMDDHHmm>.bak`, write atomically, then re-read and validate what landed.

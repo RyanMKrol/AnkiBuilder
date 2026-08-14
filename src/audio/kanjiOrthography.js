@@ -1,4 +1,4 @@
-import { runClaudeAsync as defaultRunClaude } from "../translate/runClaude.js";
+import { runKanjiOrthographyClaude as defaultRunClaude } from "../translate/runClaude.js";
 
 // Generates a natural kanji+kana orthography for a Japanese card, purely as an alternate TEXT to feed
 // TTS. ElevenLabs mis-parses all-kana input (it's out-of-distribution vs. natural Japanese writing —

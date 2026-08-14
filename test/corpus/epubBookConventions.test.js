@@ -8,6 +8,11 @@ import { Buffer } from "buffer";
 import {
   renderBookConventionsPrompt,
   analyzeBookConventions,
+  batchChapters,
+  chapterAnchor,
+  mergeConventionDocuments,
+  normalizeAnchor,
+  verifyChapterCoverage,
 } from "../../src/corpus/epubBookConventions.js";
 import { hashEpubFile, chapterCachePath } from "../../src/corpus/epubLibrary.js";
 
@@ -134,7 +139,10 @@ function buildFixtureEpub(dir, chapterCount) {
     const href = `text/ch${i}.xhtml`;
     manifestItems.push({ id, href });
     spineIdrefs.push(id);
-    extraFiles.push({ name: `OEBPS/${href}`, content: `<html><body>Chapter ${i}</body></html>` });
+    extraFiles.push({
+      name: `OEBPS/${href}`,
+      content: `<html><head><title>Lesson ${i}: Doing &amp; Things</title></head><body>Chapter ${i}</body></html>`,
+    });
   }
 
   const epubPath = join(dir, "book.epub");
@@ -199,7 +207,7 @@ test("analyzeBookConventions() asks the model to read every chapter, not a subse
   });
 });
 
-test("analyzeBookConventions() returns the model's raw markdown unchanged", () => {
+test("analyzeBookConventions() returns the model's markdown, headings and all", () => {
   withTempDir((dir) => {
     const epubPath = buildFixtureEpub(dir, 2);
     const markdown = "# Japanese Book Conventions\n\n## Placeholder Notation\nUses 〜.\n";
@@ -211,7 +219,9 @@ test("analyzeBookConventions() returns the model's raw markdown unchanged", () =
       runClaude: () => markdown,
     });
 
-    assert.equal(result, markdown);
+    assert.match(result, /^# Japanese Book Conventions/);
+    assert.match(result, /## Placeholder Notation/);
+    assert.match(result, /Uses 〜\./);
   });
 });
 
@@ -232,4 +242,162 @@ test("analyzeBookConventions() materializes every chapter to the shared extracti
       assert.ok(existsSync(cachePath), `expected chapter ${i} to be cached at ${cachePath}`);
     }
   });
+});
+
+// --- Batching, the coverage anchor, and the merge (WS8) ---
+
+test("analyzeBookConventions() batches over chapter ranges instead of one whole-book call", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 7);
+    const prompts = [];
+
+    analyzeBookConventions({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      chaptersPerBatch: 3,
+      runClaude: (prompt) => {
+        prompts.push(prompt);
+        return "# Japanese Book Conventions\n\n## Placeholder Notation\nNone.\n";
+      },
+    });
+
+    assert.equal(prompts.length, 3, "7 chapters at 3 per batch is 3 calls");
+    assert.match(prompts[0], /3 chapter files/);
+    assert.match(prompts[2], /1 chapter files/);
+    // Each batch is told about its own chapters only — that is what keeps a batch inside its ceiling.
+    assert.match(prompts[0], /1\.xhtml/);
+    assert.doesNotMatch(prompts[0], /5\.xhtml/);
+    assert.match(prompts[2], /7\.xhtml/);
+  });
+});
+
+test("every batch's answer survives the merge, labelled with the chapters it came from", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 4);
+    let call = 0;
+
+    const merged = analyzeBookConventions({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      chaptersPerBatch: 2,
+      runClaude: () => {
+        call++;
+        return `# Japanese Book Conventions\n\n## Placeholder Notation\nBatch ${call} says 〜.\n\n## Other Notes\nNote ${call}.\n`;
+      },
+    });
+
+    assert.equal(call, 2);
+    assert.match(merged, /Batch 1 says 〜\./);
+    assert.match(merged, /Batch 2 says 〜\./);
+    assert.match(merged, /\*\*Chapters 1-2:\*\*/);
+    assert.match(merged, /\*\*Chapters 3-4:\*\*/);
+    // One copy of each heading, not one per batch.
+    assert.equal(merged.match(/^## Placeholder Notation$/gm).length, 1);
+    assert.equal(merged.match(/^## Other Notes$/gm).length, 1);
+  });
+});
+
+test("a batch that skipped a chapter is REPORTED, and never blocks the pass", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 3);
+    const logs = [];
+
+    const merged = analyzeBookConventions({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      log: (line) => logs.push(line),
+      // Quotes chapter 1's title and chapter 3's, but never chapter 2's.
+      runClaude: () =>
+        "# Japanese Book Conventions\n\n## Coverage\n" +
+        '- a: "Lesson 1: Doing & Things"\n- c: "Lesson 3: Doing & Things"\n',
+    });
+
+    assert.ok(merged.length > 0, "the pass still returns a document");
+    const coverage = logs.find((line) => line.includes("COVERAGE SHORTFALL"));
+    assert.ok(coverage, `expected a shortfall line, saw: ${logs.join(" | ")}`);
+    assert.match(coverage, /2 of 3 chapter anchor\(s\) quoted back/);
+    assert.match(coverage, /NOT evidenced: 2/);
+  });
+});
+
+test("a full-coverage batch reports coverage without the shortfall marker", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 2);
+    const logs = [];
+
+    analyzeBookConventions({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      log: (line) => logs.push(line),
+      runClaude: () =>
+        "# C\n\n## Coverage\n" +
+        '- a: "Lesson 1: Doing & Things"\n- b: "Lesson 2: Doing & Things"\n',
+    });
+
+    assert.ok(!logs.some((line) => line.includes("COVERAGE SHORTFALL")));
+    assert.ok(logs.some((line) => line.includes("2 of 2 chapter anchor(s) quoted back")));
+  });
+});
+
+test("normalizeAnchor forgives the ways the two sides legitimately differ", () => {
+  assert.equal(normalizeAnchor("Lesson&nbsp;7: A &amp; B"), "lesson 7: a & b");
+  assert.equal(normalizeAnchor("  Lesson 7:\n  A & B  "), "lesson 7: a & b");
+  assert.equal(normalizeAnchor("<span>Lesson</span> 7"), "lesson 7");
+  assert.equal(normalizeAnchor("&#x30A2;"), "ア");
+  assert.equal(normalizeAnchor(undefined), "");
+});
+
+test("chapterAnchor reads the <title>, and is empty rather than throwing when there is none", () => {
+  withTempDir((dir) => {
+    const withTitle = join(dir, "a.xhtml");
+    writeFileSync(withTitle, "<html><head><title>Lesson 9: Going</title></head><body/></html>");
+    assert.equal(chapterAnchor(withTitle), "lesson 9: going");
+
+    const without = join(dir, "b.xhtml");
+    writeFileSync(without, "<html><body>no head</body></html>");
+    assert.equal(chapterAnchor(without), "");
+
+    assert.equal(chapterAnchor(join(dir, "missing.xhtml")), "");
+  });
+});
+
+test("verifyChapterCoverage separates 'not evidenced' from 'nothing to check against'", () => {
+  const result = verifyChapterCoverage('read "lesson one" carefully', [
+    { number: 1, anchor: "lesson one" },
+    { number: 2, anchor: "lesson two" },
+    { number: 3, anchor: "" },
+  ]);
+  assert.deepEqual(result.evidenced, [1]);
+  assert.deepEqual(result.unevidenced, [2]);
+  assert.deepEqual(result.noAnchor, [3]);
+});
+
+test("verifyChapterCoverage flags a title two chapters share, since one quote covers both", () => {
+  const result = verifyChapterCoverage('"lesson seven"', [
+    { number: 1, anchor: "lesson seven" },
+    { number: 2, anchor: "lesson seven" },
+  ]);
+  assert.deepEqual(result.ambiguous, [1, 2]);
+  assert.deepEqual(result.evidenced, [1, 2]);
+});
+
+test("batchChapters splits into consecutive runs and keeps the remainder", () => {
+  assert.deepEqual(batchChapters([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]]);
+  assert.deepEqual(batchChapters([], 2), []);
+  assert.deepEqual(batchChapters([1, 2], 10), [[1, 2]]);
+});
+
+test("mergeConventionDocuments keeps first-seen heading order and drops empty sections", () => {
+  const merged = mergeConventionDocuments([
+    { label: "1-2", markdown: "# T\n\n## A\nalpha\n\n## B\nbeta\n" },
+    { label: "3-4", markdown: "# T\n\n## B\nbeta two\n\n## C\ngamma\n\n## D\n\n" },
+  ]);
+  const headings = merged.match(/^## .+$/gm);
+  assert.deepEqual(headings, ["## A", "## B", "## C"]);
+  assert.match(merged, /^# T$/m);
+  assert.match(merged, /beta two/);
 });

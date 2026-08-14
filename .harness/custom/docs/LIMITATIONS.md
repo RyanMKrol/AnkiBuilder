@@ -2067,3 +2067,17 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** when preflight has scopes, storing the coverage block per unit would let the
   gap be reported at review time instead of only in the build log.
+
+## The romanization style hook exists but is empty
+
+- **What:** `docs/romanization-prompt.md` takes a `{{ROMANIZATION_STYLE_RULES}}` fragment from
+  `languageRules.js`'s `romanizationStyle`. No language sets it, so today it renders as nothing.
+- **Why:** the move of the four translate prompts into `docs/` had to stay a move. Pinning a Hepburn
+  spec is a separate, opinionated change (the deck's romanization drifts per batch: trailing periods
+  100% in some units and 0% in others, `-san` hyphenated 32/32 in one unit and spaced 40/40 in the
+  next), and mixing it into the move would have made both harder to judge.
+- **Impact:** the drift is unchanged until something fills the fragment in. The hook makes that a
+  one-place edit rather than four.
+- **Status:** open — the hook is deliberate groundwork, not an oversight.
+- **When to revisit:** the pinned-Hepburn work. Fill `romanizationStyle` for `ja` and every prompt
+  that romanizes inherits it.

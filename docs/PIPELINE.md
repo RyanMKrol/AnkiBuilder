@@ -461,8 +461,18 @@ directly in `pronunciation` — no `uncertain` flag or note; the fix IS the reso
 malformed/missing response keeps the library value). With no library configured, the
 model is asked for `pronunciation` directly, preferring a standard romanization system when one
 exists and falling back to a phonetic respelling otherwise, unchanged from before this distinction
-existed. See [`translate-prompts.md`](./translate-prompts.md) for the full templates and
-[`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) for the dependency
+existed.
+
+All four of these prompts are hand-editable Markdown templates in `docs/`, rendered through
+`renderPromptTemplate`: [`translate-full-prompt.md`](./translate-full-prompt.md),
+[`translate-target-only-prompt.md`](./translate-target-only-prompt.md),
+[`translate-pronunciation-prompt.md`](./translate-pronunciation-prompt.md) and
+[`romanization-prompt.md`](./romanization-prompt.md). They were string arrays inside
+`src/translate/` until the 2026-08 move, which made them the only prompts requiring a code change to
+edit and the only ones with no automated contract; `test/docs/promptTemplates.test.js` now pins each
+one's placeholders and output contract. [`translate-prompts.md`](./translate-prompts.md) says which
+prompt runs when and which language fragments each takes, and
+[`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) covers the dependency
 trade-offs this introduces.
 
 **Optional simplified target script (`--simple-script`).** A language may define a beginner/learner

@@ -8,16 +8,27 @@ import { getLanguagePromptRules as defaultGetLanguagePromptRules } from "./langu
 import { romanizeAndEvaluate } from "./romanizationEval.js";
 import { chunk } from "../util/chunk.js";
 import { stripMarkdownFence } from "../util/markdownFence.js";
+import { renderPromptTemplate } from "../util/promptTemplate.js";
+import { fileURLToPath } from "url";
+import { dirname, join, resolve } from "path";
 
-// Max corpus items per `claude -p` invocation. Unbounded — a lesson's worth of items goes in a
-// SINGLE call now that every LLM pass is pinned to Sonnet at medium effort (a capable model handles
-// a whole lesson in one shot, and one call keeps translations self-consistent instead of split
-// across independent batches). Each of the two groups below (full-translation vs. pronunciation-only)
-// is still a call of its own, since they're different tasks on different item sets.
-const BATCH_SIZE = Infinity;
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
-function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } = {}) {
-  const inputData = items.map((item) => {
+// The three translate prompts live in docs/ (not src/) like every other prompt in the pipeline:
+// plain, human-editable Markdown. They touch EVERY card in every deck and were the only prompts a
+// human could not edit without a code change, which is how their hand-maintained transcript in
+// docs/translate-prompts.md drifted from what was actually being sent. Now the transcript points at
+// the templates instead of copying them, and test/docs/promptTemplates.test.js holds each one to its
+// placeholders and its output contract.
+const PROMPT_DIR = resolve(join(MODULE_DIR, "..", "..", "docs"));
+const FULL_TEMPLATE_PATH = join(PROMPT_DIR, "translate-full-prompt.md");
+const TARGET_ONLY_TEMPLATE_PATH = join(PROMPT_DIR, "translate-target-only-prompt.md");
+const PRONUNCIATION_TEMPLATE_PATH = join(PROMPT_DIR, "translate-pronunciation-prompt.md");
+
+// The English-side payload every translate prompt sends: the id, the gloss, and the two optional
+// cues. Shared so the three prompts cannot disagree about what the model is shown.
+function englishInputData(items) {
+  return items.map((item) => {
     const entry = { id: item.id, english: item.english };
     if (item.hint) {
       entry.hint = item.hint;
@@ -27,75 +38,35 @@ function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } =
     }
     return entry;
   });
+}
 
-  return [
-    "# Task: Translate Flashcards",
-    "",
-    "## Overview",
-    "You are translating flashcards for a language-learning deck.",
-    `Target language: ${targetLanguage}.`,
-    "You will be given a JSON array of English phrases and must translate each one, producing both a translation and a pronunciation guide.",
-    "",
-    "## Input Format",
-    "The input is a JSON array of objects, one per flashcard:",
-    "",
-    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
-    "- `english` (string): the English phrase to translate.",
-    "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
-    "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
-    "- `scene` (string, optional): the situation the phrase is used in (e.g. the question it answers).",
-    "  - Also NOT a translation — use it only to pick the natural phrasing for that situation.",
-    "",
-    "### Example Input",
-    "```json",
-    JSON.stringify(
-      [
-        { id: "hello", english: "Hello" },
-        { id: "cheese", english: "Cheese", hint: "as in the food, not a smile" },
-      ],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Output Format",
-    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
-    "Produce exactly one object per input item:",
-    "",
-    "- `id` (string): the SAME id as the corresponding input item.",
-    `- \`target\` (string): the translation into ${targetLanguage}.`,
-    // Language-supplied style/register rules (see languageRules.js). The core stays
-    // language-neutral — it just injects the strings.
-    ...styleRules.map((rule) => `  - ${rule}`),
-    `- \`pronunciation\` (string): a pronunciation guide for \`target\`, readable by an English speaker unfamiliar with ${targetLanguage}.`,
-    `  - If ${targetLanguage} has a standard, widely-used romanization or transliteration system (e.g. romaji for Japanese, pinyin for Mandarin Chinese), use that system instead of inventing a phonetic spelling.`,
-    '  - Otherwise, fall back to a phonetic respelling using English spelling and stress conventions (e.g. "bohn-ZHOOR").',
-    "- `hint` (string, optional): a short usage hint.",
-    "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
-    "",
-    "### Example Output",
-    "```json",
-    JSON.stringify(
-      [
-        { id: "hello", target: "Bonjour", pronunciation: "bohn-ZHOOR" },
-        { id: "cheese", target: "Fromage", pronunciation: "froh-MAHZH", hint: "casual, singular" },
-      ],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Important",
-    "- Include every id from the input exactly once.",
-    "  - Order does not matter.",
-    "- Do not wrap the response in markdown code fences.",
-    "- Do not include any text before or after the JSON array.",
-    "",
-    `## Input Data (${items.length} item(s) to translate)`,
-    "```json",
-    JSON.stringify(inputData, null, 2),
-    "```",
-  ].join("\n");
+// A language fragment rendered as sub-bullets under the `target` bullet, or "" when the language has
+// none configured (see languageRules.js — the core prompt stays language-neutral).
+//
+// The placeholder sits on an already-indented template line, so the FIRST bullet needs no indent of
+// its own and the rest align under it. Same convention as the number-reading prompt.
+function indentedBullets(rules) {
+  return rules.map((rule, index) => (index === 0 ? `- ${rule}` : `  - ${rule}`)).join("\n");
+}
+
+// Max corpus items per `claude -p` invocation. Unbounded — a lesson's worth of items goes in a
+// SINGLE call now that every LLM pass is pinned to Sonnet at medium effort (a capable model handles
+// a whole lesson in one shot, and one call keeps translations self-consistent instead of split
+// across independent batches). Each of the two groups below (full-translation vs. pronunciation-only)
+// is still a call of its own, since they're different tasks on different item sets.
+const BATCH_SIZE = Infinity;
+
+export function buildFullTranslationPrompt(
+  items,
+  targetLanguage,
+  { styleRules = [], templatePath = FULL_TEMPLATE_PATH } = {},
+) {
+  return renderPromptTemplate(templatePath, {
+    TARGET_LANGUAGE: targetLanguage,
+    STYLE_RULES: indentedBullets(styleRules),
+    ITEM_COUNT: String(items.length),
+    INPUT_JSON: JSON.stringify(englishInputData(items), null, 2),
+  });
 }
 
 // Used instead of buildFullTranslationPrompt when a real romanization library (see
@@ -107,94 +78,31 @@ function buildFullTranslationPrompt(items, targetLanguage, { styleRules = [] } =
 export function buildTargetOnlyPrompt(
   items,
   targetLanguage,
-  { targetScriptRule = null, styleRules = [] } = {},
+  { targetScriptRule = null, styleRules = [], templatePath = TARGET_ONLY_TEMPLATE_PATH } = {},
 ) {
-  const inputData = items.map((item) => {
-    const entry = { id: item.id, english: item.english };
-    if (item.hint) {
-      entry.hint = item.hint;
-    }
-    if (item.scene) {
-      entry.scene = item.scene;
-    }
-    return entry;
+  return renderPromptTemplate(templatePath, {
+    TARGET_LANGUAGE: targetLanguage,
+    // Rendered as a sub-bullet of `target` when the language has a script constraint, and as
+    // nothing at all when it does not.
+    TARGET_SCRIPT_RULE: targetScriptRule ? `- ${targetScriptRule}` : "",
+    TARGET_SCRIPT_REMINDER: targetScriptRule
+      ? "- Apply the target-script constraint above to EVERY `target`."
+      : "",
+    STYLE_RULES: indentedBullets(styleRules),
+    ITEM_COUNT: String(items.length),
+    INPUT_JSON: JSON.stringify(englishInputData(items), null, 2),
   });
-
-  return [
-    "# Task: Translate Flashcards",
-    "",
-    "## Overview",
-    "You are translating flashcards for a language-learning deck.",
-    `Target language: ${targetLanguage}.`,
-    "You will be given a JSON array of English phrases and must translate each one.",
-    "",
-    "## Input Format",
-    "The input is a JSON array of objects, one per flashcard:",
-    "",
-    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
-    "- `english` (string): the English phrase to translate.",
-    "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
-    "  - This is NOT a translation — use it only to disambiguate meaning or tone.",
-    "- `scene` (string, optional): the situation the phrase is used in (e.g. the question it answers).",
-    "  - Also NOT a translation — use it only to pick the natural phrasing for that situation.",
-    "",
-    "### Example Input",
-    "```json",
-    JSON.stringify(
-      [
-        { id: "hello", english: "Hello" },
-        { id: "cheese", english: "Cheese", hint: "as in the food, not a smile" },
-      ],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Output Format",
-    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
-    "Produce exactly one object per input item:",
-    "",
-    "- `id` (string): the SAME id as the corresponding input item.",
-    `- \`target\` (string): the translation into ${targetLanguage}.`,
-    ...(targetScriptRule ? [`  - ${targetScriptRule}`] : []),
-    ...styleRules.map((rule) => `  - ${rule}`),
-    "- `hint` (string, optional): a short usage hint.",
-    "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
-    "",
-    "Do not include a `pronunciation` key — pronunciation is produced separately for this language.",
-    "",
-    "### Example Output",
-    "```json",
-    JSON.stringify(
-      [
-        { id: "hello", target: "Bonjour" },
-        { id: "cheese", target: "Fromage", hint: "casual, singular" },
-      ],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Important",
-    ...(targetScriptRule ? ["- Apply the target-script constraint above to EVERY `target`."] : []),
-    "- Include every id from the input exactly once.",
-    "  - Order does not matter.",
-    "- Do not include a `pronunciation` key in your response.",
-    "- Do not wrap the response in markdown code fences.",
-    "- Do not include any text before or after the JSON array.",
-    "",
-    `## Input Data (${items.length} item(s) to translate)`,
-    "```json",
-    JSON.stringify(inputData, null, 2),
-    "```",
-  ].join("\n");
 }
 
 // For items that already have a trusted target (e.g. extracted directly from a
 // bilingual source rather than invented). The model is only ever asked for a
 // pronunciation guide here — never a translation — so it has no opportunity to
 // second-guess or alter a target we already trust.
-function buildPronunciationOnlyPrompt(items, targetLanguage) {
+export function buildPronunciationOnlyPrompt(
+  items,
+  targetLanguage,
+  { templatePath = PRONUNCIATION_TEMPLATE_PATH } = {},
+) {
   const inputData = items.map((item) => {
     // Pronounce the spoken form when set (e.g. kana にせんえん) rather than the display
     // `target` (e.g. "2,000えん") — keeps this LLM/fallback path in step with the library romanizer.
@@ -208,69 +116,11 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
     return entry;
   });
 
-  return [
-    "# Task: Produce Pronunciation Guides",
-    "",
-    "## Overview",
-    "You are producing pronunciation guides for flashcards in a language-learning deck.",
-    `Target language: ${targetLanguage}.`,
-    "Each item below already has a correct, final translation — do NOT alter, correct, retranslate, or comment on it in any way.",
-    "Only produce a pronunciation guide for the given `target` text.",
-    "",
-    "## Input Format",
-    "The input is a JSON array of objects, one per flashcard:",
-    "",
-    "- `id` (string): a unique identifier for this item — reuse it unchanged in your response.",
-    "- `english` (string): the English phrase, given for context only.",
-    `- \`target\` (string): the final ${targetLanguage} translation.`,
-    "  - Already correct — do not change it, and do not return it.",
-    "- `hint` (string, optional): context about how this phrase is used, taken from the source material.",
-    "- `scene` (string, optional): the situation the phrase is used in, given for context only.",
-    "",
-    "### Example Input",
-    "```json",
-    JSON.stringify(
-      [{ id: "cheese", english: "Cheese", target: "Fromage", hint: "as in the food" }],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Output Format",
-    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
-    "Produce exactly one object per input item:",
-    "",
-    "- `id` (string): the SAME id as the corresponding input item.",
-    `- \`pronunciation\` (string): a pronunciation guide for the given \`target\`, readable by an English speaker unfamiliar with ${targetLanguage}.`,
-    `  - If ${targetLanguage} has a standard, widely-used romanization or transliteration system (e.g. romaji for Japanese, pinyin for Mandarin Chinese), use that system instead of inventing a phonetic spelling.`,
-    '  - Otherwise, fall back to a phonetic respelling using English spelling and stress conventions (e.g. "froh-MAHZH").',
-    "- `hint` (string, optional): a short usage hint.",
-    "  - Only include this key when you have something worth adding — omit it entirely otherwise.",
-    "",
-    "Do not include a `target` key at all — the translation is already final and is not requested back.",
-    "",
-    "### Example Output",
-    "```json",
-    JSON.stringify(
-      [{ id: "cheese", pronunciation: "froh-MAHZH", hint: "casual, singular" }],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Important",
-    "- Do NOT alter, correct, retranslate, or comment on the given target in any way.",
-    "- Include every id from the input exactly once.",
-    "  - Order does not matter.",
-    "- Do not include a `target` key in your response.",
-    "- Do not wrap the response in markdown code fences.",
-    "- Do not include any text before or after the JSON array.",
-    "",
-    `## Input Data (${items.length} item(s))`,
-    "```json",
-    JSON.stringify(inputData, null, 2),
-    "```",
-  ].join("\n");
+  return renderPromptTemplate(templatePath, {
+    TARGET_LANGUAGE: targetLanguage,
+    ITEM_COUNT: String(items.length),
+    INPUT_JSON: JSON.stringify(inputData, null, 2),
+  });
 }
 
 function parseBatch(raw) {

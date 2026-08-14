@@ -103,8 +103,9 @@ controls. A lesson edits on its own; you don't need its siblings finished.
 
 Picking a take writes the card's `audio`. There is no per-stage HTML artifact: the dashboard IS the
 audio-review surface, and the currently selected clip is simply the one playing inline on the card.
-These edit controls only appear while the lesson is in review (not done); a done lesson opens as a
-read-only view whose only action is **Reopen** (see SKILL.md Step 4 for the gate flow).
+These edit controls stay available after **Mark done** — a done lesson opens straight into the same
+editable review, since done gates what ships rather than what you can touch (see SKILL.md Step 4 for
+the gate flow, and for the one thing that does need a script: un-shipping the unit).
 
 ## Voice choice
 

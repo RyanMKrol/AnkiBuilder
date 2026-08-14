@@ -5,7 +5,18 @@ limitation/trade-off rows go** (golden rule 5): when a change introduces a trade
 limitation, add a row **here** — not in the pristine `docs/LIMITATIONS.md`, which is plugin-owned and
 refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/custom/CLAUDE.md`.)
 
-Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*.
+Each row: what it is, *why* it was chosen, its **impact**, **status**, and *when to revisit*.
+
+**Every entry carries a `**Status:**` line** — `open`, `resolved <what resolved it>`, or
+`superseded by <entry>`. Without it an entry has no way to stop being true, and this file is long
+enough that a resolved limitation reads exactly like a live one. Fix the status in the same commit
+that changes the situation.
+
+**An entry that asserts a fact about live data also carries `**Verified by:** <command>`** — the
+command that re-derives the claim — instead of freezing a count in prose. Counts rot: three entries
+here were measurably false when this convention was introduced, and a false limitation is worse than
+a missing one, because it closes a question that is still open. If no command can re-derive a claim,
+say when it was measured rather than stating it as a standing fact.
 
 ## The Corpus review translates every item before you can exclude it
 
@@ -20,6 +31,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   For a typical lesson this is a handful of items — negligible — but a very large corpus with many
   throw-away rows pays for translating all of them. The old English-only gate (which let you drop items
   *before* paying to translate them) is gone.
+- **Status:** open
 - **When to revisit:** if translate cost on large corpora becomes a real concern, consider an optional
   lightweight pre-pass exclusion (by id, no UI) before `translate`, keeping the combined review as the
   primary gate.
@@ -37,6 +49,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   library pass for a feature used a few times per deck.
 - **Impact:** each kanji generation spends a Claude call + TTS credits; a wrong-reading kanji is
   possible and only caught by listening. It's an on-demand spot-fix, not a bulk transform.
+- **Status:** open
 - **When to revisit:** if kanji variants get used at scale, add a round-trip check (romanize the kanji
   via kuroshiro, compare to the kana reading, auto-discard on mismatch) before offering the take.
 
@@ -50,10 +63,11 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   group package (`rebuildBookDir` merge of `done` lessons, or a template's own deck) — there is no
   per-lesson build. The dashboard keeps that file current: marking a lesson done, and
   audio edits to an already-done lesson, rebuild the group (`rebuildGroupQuiet`, best-effort). The
-  server is local so there's no download route — import the on-disk `output/<…>/deck.apkg` directly.
+  server is local so there's no download route — import the collection's on-disk `.apkg` directly.
 - **Residual (by design):** a *whole-deck* review (`/review/:type/:id`, no `:unit`) still only edits
   when EVERY unit is at audio, and the merge packages only `done` lessons (409 if none). Intentional —
   the merge is the shippable artifact and must not bake in an un-finished lesson.
+- **Status:** resolved by the unit-scoped review (`/review/:type/:id/:unit`), described in this entry
 
 ## Switching the TTS model re-fetches every clip (cache is model-segmented)
 
@@ -66,6 +80,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   different audio, so they must not collide on one hash.
 - **Impact:** a model switch re-bills the whole corpus's audio (a few cents per lesson at 1
   credit/char) and leaves orphaned clips under the old `<model>/` dir.
+- **Status:** open
 - **When to revisit:** if orphaned caches pile up, add a `deck audio --prune-models` or a cache GC that
   drops model dirs no longer referenced by any `cards.json`.
 
@@ -82,6 +97,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   (`reading` is just "the spoken form") even though numbers are the only trigger in practice today.
 - **Impact:** a mis-read number reaches the review looking plausible; if the reviewer misses it, the
   card's pronunciation guide and audio are wrong while the (correct) digit display looks fine.
+- **Status:** open
 - **When to revisit:** if wrong readings recur, add a deterministic number→kana speller (per language,
   with counter tables) to generate/verify `reading` instead of trusting the extraction LLM.
 
@@ -102,6 +118,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** one unparseable response now fails the *whole* group's translation at once (there are no
   smaller batches to partially succeed); re-running re-spends the call. For a lesson-sized corpus this
   is one call, so the blast radius is a single lesson, not the toolset.
+- **Status:** open
 - **When to revisit:** if whole-group failures recur, add per-item retry (re-invoke `runClaude` for
   just the ids missing from the response) instead of requiring a full re-run; and if a corpus ever grows
   large enough to strain a single call's context/output, reintroduce a (larger) batch cap.
@@ -120,6 +137,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** the order isn't reproducible run-over-run, and a wrong call (a sentence before its
   vocabulary) is possible; it's caught at the corpus review gate, which shows the sorted order for a
   human to approve/nudge. The order is cached in `corpus.json` once written, so it's stable after that.
+- **Status:** open
 - **When to revisit:** if reproducibility matters or the LLM mis-orders often, add a deterministic
   guardrail (flag any sentence landing before a substring-matched component vocab) or replace the pass
   with a rules-based sort (bucket by length/type; sentences after their matched vocabulary).
@@ -138,6 +156,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   comparatively mechanical.
 - **Impact:** building a deck from a real textbook still requires running `assemble`/`review` once
   per chapter by hand — there's no single-command "build my whole book" path yet.
+- **Status:** open
 - **When to revisit:** when that's actually annoying enough to be worth a `--epub <path> --all`
   (or similar) loop over `listChapters(...).chapters`.
 
@@ -154,6 +173,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** low in practice — real-world EPUBs are near-universally produced by consistent tooling
   (Calibre, Sigil, publisher pipelines) that emits plain, well-formed `container.xml`/OPF documents —
   but a hand-authored or unusually-generated EPUB could misparse silently rather than erroring.
+- **Status:** open
 - **When to revisit:** if a real EPUB is found to misparse — add a targeted case to the scanner
   rather than reaching for a full parser unless several distinct cases pile up.
 
@@ -175,6 +195,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   be noticed during `review` instead; conversely, an exact match that IS a legitimate re-teach
   (rather than a true duplicate) now shows up as a flagged row the reviewer must actively dismiss,
   rather than vanishing invisibly.
+- **Status:** open
 - **When to revisit:** if near-duplicate leakage across chapters proves common in practice — would
   need a semantic-similarity check (embeddings or an LLM call), a real cost/complexity step up from
   the current pure-function pass.
@@ -197,6 +218,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   candidate item list changing? both are plausible and neither was worth the complexity yet).
 - **Impact:** real latency/cost that scales with how early you are in a long book — chapter 1 of a
   20-chapter book means the model reads chapters 2 through 20 on every `assemble` call for chapter 1.
+- **Status:** open
 - **When to revisit:** if this cost/latency becomes a real practical annoyance — cache the forward
   pass's `{items, flagged}` result keyed by (epubHash, chapterNumber, a hash of the candidate item
   ids), invalidated whenever any later chapter's registry entry changes.
@@ -241,6 +263,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
     via `listExternalChapters`'s `log` callback).
   - Same hand-rolled-scanner caveat as OPF parsing: CDATA, comments containing tag-like text, or
     unusual whitespace/attribute ordering could misparse silently.
+- **Status:** open
 - **When to revisit:** if a real book is found where nested-nav flattening produces confusingly
   fine-grained labels, or where the same-spine-file collapse drops a label a reviewer actually
   wanted to see — consider representing external chapters as a tree instead of a flat list, or
@@ -265,6 +288,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   compatibility contract, so no deprecation shim was added). The corpus's `targetLanguage` is now
   whatever `--lang` supplies (typically an ISO code like `es`, consistent with the other sources),
   not the full name `"Spanish"` the old template baked in.
+- **Status:** open
 - **When to revisit:** if a template ever genuinely needs a default language (e.g. one so
   language-specific it's meaningless in another), reintroduce an *optional* `meta.targetLanguage`
   that `--lang` overrides, rather than making it required-in-file again.
@@ -281,6 +305,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   languages — that data doesn't exist yet.
 - **Impact:** some items may end up in `"Other"` more than intended, or a category may prove too
   broad/narrow once used against real textbook content.
+- **Status:** open
 - **When to revisit:** after running the LLM extractor across several real chapters — check the
   `"Other"` rate and whether any category is doing too much or too little work, then adjust
   `CATEGORIES` (this is a single, centrally-imported list, so renaming/splitting an entry is a
@@ -307,6 +332,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   "this came from a real deterministic library" / "this is the model's own attempt at a standard
   system" / "this is just a rough phonetic hint" from the card alone — all render identically in
   the Anki template.
+- **Status:** open
 - **When to revisit:** if a deck's presentation ever wants to treat these differently (e.g. show
   library-backed romanization more prominently), split `pronunciation` into a
   `romanization`/`phonetic` pair on `CARDS_SCHEMA` and have both the library path and the model
@@ -342,6 +368,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** `npm ci` now installs real third-party packages instead of dev-tooling only;
   `node_modules` gains kuromoji's ~41MB dictionary specifically (only paid once per process, per
   Node's module cache, and never paid at all for a run in an unconfigured language).
+- **Status:** open
 - **When to revisit:** if a future maintainer wants to shrink the Japanese dependency further,
   investigate whether a lighter kanji-aware alternative to `kuromoji` has emerged — none was found
   during this feature's own research (`wanakana` is lighter but kana-only, insufficient for real
@@ -368,6 +395,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** for a long book, this is the single most expensive/slowest step in first-time
   processing (one call reading dozens of files) and its correctness has no automated check —
   only the resulting corpus quality on later chapters serves as an indirect signal.
+- **Status:** open
 - **When to revisit:** if a very long book's conventions pass turns out unreliable or too
   slow/costly in practice — switch to a representative-chapter sample (first, a few middle,
   last, plus any chapter self-identified as exercise-heavy) instead of reading every chapter, or
@@ -398,6 +426,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a book that embeds significant content in images could still silently under-extract if
   the model skips an image it should have opened — this would look identical to "this chapter
   genuinely has little vocabulary," with no automatic signal that content was missed.
+- **Status:** open
 - **When to revisit:** if a real run is later found to have silently skipped image content despite
   this guidance, add a deterministic check — e.g. flag any chapter where the source has `<img>` tags
   in content sections but the extractor returned few/no items, so a human is prompted to check
@@ -416,6 +445,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a large deck (many dozens of cards) can produce a large HTML file that's slow to
   generate/publish/open as a Claude Artifact. There's no automatic warning when this happens —
   it has to be noticed by whoever runs `render-review`.
+- **Status:** open
 - **When to revisit:** if a real deck's audio review artifact becomes noticeably slow or fails to
   publish, add a `--chunk-size <n>` flag to `render-review` that splits the audio stage's output
   into `review-audio-1.html`, `review-audio-2.html`, etc.
@@ -440,6 +470,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   a generic, unhelpful error — three real format bugs shipped invisibly until a human tried a real
   import. There is still no automated test that runs a real Anki import in CI (that would require the
   `anki` Python package as a dev dependency, which hasn't been added).
+- **Status:** open
 - **When to revisit:** if another silent `.apkg`-format bug surfaces, consider adding a scripted
   real-import smoke test (via a pinned `anki` Python package, shelled out to from a test or a
   standalone verification script) to the Definition of Done, rather than relying on structural
@@ -464,6 +495,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a corpus/cards file with `targetLanguage: "Japanese"` (rather than `"ja"`) gets no
   `language_code` sent — TTS still works via ElevenLabs' auto-detection, just without the extra
   hint, so this is a missed *improvement*, not a broken *pipeline*.
+- **Status:** open
 - **When to revisit:** if a real run's `targetLanguage` value turns out to commonly be a full name
   rather than a code, add a small, explicit name→code map for the common cases actually seen,
   rather than attempting a general natural-language lookup.
@@ -486,22 +518,25 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a real-life course that revisits vocabulary across lessons (common in language
   teaching) will get duplicate cards across the merged course deck, with no automated signal
   during assembly — only a human skimming the corpus review page would catch it.
+- **Status:** open
 - **When to revisit:** if a real course's merged deck turns out to have noticeable duplicate cards
   across lessons, add an exact-string backward-dedup pass scoped to `--words` assembly (mirroring
   `dedupBackward`'s matching logic, but reading prior lessons' `corpus.json` files directly from
   `output/<courseSlug>/lesson-*/`, since there's no by-EPUB-hash library entry to read from —
   `resolveLessonRunDir` already knows how to enumerate a course's lesson folders).
 
-## Lesson word-list categorization is a single unverified Haiku pass, unlike EPUB extraction
+## Lesson word-list categorization is a single unverified model pass, unlike EPUB extraction
 
-- **What:** `assembleCorpusFromLessonWords` assigns each item's `category` via one batched Haiku
-  call with no evaluation/verification step — contrast with the library-first romanization
-  pipeline's Haiku-eval-over-a-library's-output pattern, or the EPUB path's two dedicated dedup
-  passes. A wrong category here has no automated check at all; it silently ships as whatever the
-  model returned (or `"Other"` on a parse failure).
+- **What:** `assembleCorpusFromLessonWords` assigns each item's `category` via one batched
+  `claude -p` call with no evaluation/verification step — contrast with the romanization pipeline's
+  library-first-then-eval pattern, or the EPUB path's two dedicated dedup passes. A wrong category
+  here has no automated check at all; it silently ships as whatever the model returned (or
+  `"Other"` on a parse failure). (This entry, and the code comment beside the pass, both said
+  "Haiku" until 2026-08. No pass in this project has ever run Haiku: every `claude -p` call goes
+  through `src/util/runClaude.js`, which defaults to Sonnet at medium effort.)
 - **Why:** category assignment for a already-curated, user-dictated word list is a much lower-
   stakes judgment call than translation correctness or romanization accuracy — the corpus review
-  gate (`render-review --stage corpus`, the same gate every other source goes through) is a cheap,
+  gate (the dashboard corpus review, the same gate every other source goes through) is a cheap,
   fast place for a human to catch and fix a wrong category, and this project's own category enum
   (`src/model/categories.js`) is itself documented as a first-cut list "revisit if it proves too
   coarse or fine in practice" — adding a second model pass to verify a coarse categorization judgment
@@ -511,10 +546,11 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   wrong category slipping through the EPUB extraction path's own single-pass categorization (that
   path has no dedicated category-verification step either), just called out explicitly here since
   this is a newer, less-exercised path.
+- **Status:** open
 - **When to revisit:** if miscategorization turns out to be common enough in practice to be an
   actual review-burden problem, consider a lightweight self-consistency check (e.g. asking the
   model to re-categorize with the full category list restated and comparing) rather than a full
-  Haiku-eval-style second pass.
+  eval-style second pass.
 
 ## Per-card `reading` is still not auto-generated — but a missing one can no longer reach TTS
 
@@ -535,6 +571,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** logographic-script decks (Japanese, Chinese) only get correct spoken audio if a
   `reading` is injected before the audio stage; there's no one-command path from a dictated/EPUB
   Japanese corpus to reading-driven audio yet.
+- **Status:** open
 - **When to revisit:** when adding reading generation to `translate` — surface `reading` in the
   translate review artifact and validate it (ideally a deterministic generator for numerics, LLM +
   review for open vocabulary) so the whole pipeline can produce reading-driven audio unattended.
@@ -558,6 +595,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   moved; the persisted book slug in `.anki-builder/` and the `.epub-hash`/`course.json` markers all
   still match once the folder is in the new location, so a manual move is sufficient — nothing needs
   regenerating.
+- **Status:** open
 - **When to revisit:** if this reorg ever ships to users with real populated `output/` trees, add a
   one-shot `migrate-output` helper (or a lazy "found a flat `<slug>/` with a marker — relocating it
   under `<segment>/`" fallback in the resolvers) instead of a manual move.
@@ -586,6 +624,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   silently merged into its predecessor; for a TOC-less book, only the raw spine-index path is
   available. No case produces *wrong* content silently for the multi-file span itself — the gap is
   strictly "can't address finer than a file" and "can't select at all without a TOC".
+- **Status:** open
 - **When to revisit:** if a real book is hit where a lesson boundary falls mid-file (add a warning
   when consecutive nav entries collapse to one spine file, then fragment-level slicing), or where the
   EPUB has no nav document (add the LLM-only structure-inference fallback). A `--list-lessons` that
@@ -605,6 +644,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   configured language. The `。` transform is a blunt heuristic — it helps short clips but isn't
   guaranteed better for every card (e.g. a card whose target already ends in `。` gets a doubled
   `。。`), which is exactly why it's an opt-in *alt* per card, never the silent default.
+- **Status:** open
 - **When to revisit:** if cost matters, `audio --no-alt` skips the pass for a run; longer term,
   generate alt clips lazily (only for rows the review actually flags) instead of for every card, and
   make the transform smarter (skip cards already ending in sentence punctuation).
@@ -624,6 +664,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   use, and parsing zstd/protobuf exports is a much bigger lift.
 - **Impact:** +~1.9 MB per Japanese deck; a very new third-party `.apkg` can't be restyled until
   re-exported in the classic format (Anki can do this).
+- **Status:** open
 - **When to revisit:** subset the font to the glyphs a deck actually uses (needs a subsetter) to
   shrink it; add `anki21b` support to `restyle-font` if a real deck needs it.
 
@@ -637,6 +678,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   single-user local tool.
 - **Impact:** can't point the dashboard at a loose downloaded `.apkg`; not safe to expose on a shared
   network as-is.
+- **Status:** open
 - **When to revisit:** add an `apkg.js` adapter (buffer-backed media route, since `readApkg` returns
   in-memory audio) behind the same interface if browsing arbitrary packages is wanted; add auth/bind
   options before exposing beyond localhost.
@@ -651,6 +693,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   set is the whole point of the feature and fresh renderings are the point of a re-roll.
 - **Impact:** `audio/` accumulates unreferenced files over many edits; a same-card double-submit could
   keep the earlier pick; a careless Generate spends a handful of credits.
+- **Status:** open
 - **When to revisit:** add a "prune unreferenced audio" pass; a per-run-dir write lock if concurrent
   editing ever matters; a confirm/estimate before Generate, or a per-card generate cap, if credit cost becomes a concern.
 
@@ -664,6 +707,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** without `brew install ffmpeg` clips keep their trailing silence + blip (one warning, then
   a silent no-op). The fixed thresholds may under/over-trim an unusual clip; pass 2 re-encodes (tiny
   quality/size cost). Only ElevenLabs-generated clips are trimmed — manual dashboard uploads are not.
+- **Status:** open
 - **When to revisit:** if under/over-trimming recurs, tune the `ANKI_BUILDER_TRIM_*` env knobs or add a
   start-trim / loudness-normalize pass; add a one-time backfill over existing on-disk clips if wanted.
 
@@ -680,6 +724,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a genuine duplicate (two cards sharing Target+English) or a card whose Target AND English
   both changed since import stays `ambiguous` — not delivered until a human stamps its `abid` tag or
   resolves it. Field-content and structure changes are otherwise applied in place with scheduling kept.
+- **Status:** open
 - **When to revisit:** if AnkiConnect exposes GUIDs, key directly off `card.id`; add a small "resolve
   ambiguous" helper (stamp the tag by hand-picked noteId) if the tail of ambiguous cards grows.
 
@@ -694,6 +739,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a re-jumble/reorder only reaches Anki via a destructive fresh import (rarely worth it);
   removed cards linger in Anki until deleted by hand; a catastrophe outside the managed decks relies on
   Anki's own backups, not this tool's.
+- **Status:** open
 - **When to revisit:** add an opt-in `--prune` to delete orphans; a full `.colpkg` backup if AnkiConnect
   gains a reliable action; a fresh-import path if delivering order ever becomes important.
 
@@ -708,6 +754,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   never block a local delivery.
 - **Impact:** one unavoidable manual click on the rare deliveries that change fields/templates; none on
   the common content-only deliveries.
+- **Status:** open
 - **When to revisit:** if AnkiConnect ever adds a directional full-sync action, drive it from
   `schemaChanged` to make even structural deliveries fully hands-off.
 
@@ -726,6 +773,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   build for a failure mode that costs one re-run.
 - **Impact:** none in normal operation. After a hard crash a just-written file may be missing or stale;
   re-run the stage.
+- **Status:** open
 - **When to revisit:** never, unless these artifacts stop being cheaply reproducible from their inputs.
 
 ### Some writes are deliberately left non-atomic
@@ -739,6 +787,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   are run by hand, one at a time, never concurrently.
 - **Impact:** a torn file is possible at those sites only if you deliberately run two of them at once
   against the same path.
+- **Status:** open
 - **When to revisit:** if a script ever runs unattended alongside a build. The cross-lesson note pass
   is the one to watch: it reads every sibling lesson's `cards.json`, so running the whole-book form of
   `scripts/enhance-card-notes.mjs` while a lesson is being prepared reads that lesson mid-flight.
@@ -758,6 +807,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   so a stuck-looking run invites a second terminal) and the consequence without the guard is two
   directories for one chapter, merged into the deck twice. (3) is rare and self-inflicted; deleting the
   stray directory is the fix.
+- **Status:** open
 - **When to revisit:** if run directories are ever renamed to `chapter-<chapterNumber>` instead of an
   autoincrement seq (see the row below), the whole reuse ladder collapses into an idempotent
   `mkdir(recursive:true)` and can be deleted.
@@ -774,6 +824,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   directory. Changing it would break existing bookmarks and re-order sub-decks inside `.apkg` files
   already imported into Anki.
 - **Impact:** the reservation ladder in `outputPaths.js` exists only because of this choice.
+- **Status:** open
 - **When to revisit:** only alongside a deliberate migration of the URL space and deck ordering.
 
 ### A cached chapter file is trusted without checking its images
@@ -789,11 +840,12 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   forward-flag pass alone touches 30-50 chapters per lesson build.
 - **Impact:** only reachable by hand-editing the cache. The repair is to delete the chapter file (or
   the whole cache — it is disposable and rebuilds from the EPUB).
+- **Status:** open
 - **When to revisit:** if anything ever prunes the cache selectively rather than wholesale.
 
 ### Two rebuilds can't interleave only because the rebuild path never yields
 
-- **What:** `rebuildBookDir` reads the done-set and publishes `deck.apkg` with no `await` anywhere in
+- **What:** `rebuildBookDir` reads the done-set and publishes the collection package with no `await` anywhere in
   between — `readdirSync`/`readFileSync`, a synchronous `buildBookDeck`, then `writeFileAtomic` +
   rename. Node cannot schedule a second rebuild between the read and the write, so the later of two
   concurrently-requested rebuilds always observes every `done` flag written before it started.
@@ -807,6 +859,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   all — the dashboard rebuilding while `deck --book-dir` runs in a terminal can leave the `.apkg`
   briefly missing a just-finished lesson. Never corrupt (the rename guarantees that), and the next
   rebuild picks it up.
+- **Status:** open
 - **When to revisit:** the moment anything on the rebuild path needs to be async — that is the trigger
   to bring back a lock or an in-process queue, not a reason to make it async and hope. There is a
   regression test in `test/deck/rebuild.test.js` that fails if the property is lost.
@@ -825,6 +878,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a claim from ANOTHER host cannot be probed and is treated as live (conservative), so a
   lesson built on a different machine over a shared filesystem would stay read-only there. Not a
   supported setup — `output/` and `.anki-builder/` are local and gitignored.
+- **Status:** open
 - **When to revisit:** if these directories are ever shared between machines, replace the pid probe
   with a lease the owner renews.
 
@@ -837,6 +891,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   the review flow does not add or delete cards at that point.
 - **Impact:** none in the normal flow. The server also refuses writes to a lesson with a live claim
   (409), so the overlap window is small in practice.
+- **Status:** open
 - **When to revisit:** if a future stage ever writes more than one field of a file a human can edit
   concurrently.
 
@@ -853,6 +908,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   look identical to one that legitimately had no drills to mine. The `.pre-fib.bak` /
   `.pre-enhance.bak` files beside `cards.json` are the on-disk tell, and `cards.meta.enriched` /
   `notesEnhanced` mark that a pass *ran*, not that it *produced* anything.
+- **Status:** open
 - **When to revisit:** if a skipped pass ever ships to a deck unnoticed. The fix would be a per-pass
   outcome recorded in `cards.meta` (ran / failed / nothing-to-do) and surfaced as a banner at the
   corpus review, rather than only in the CLI log.
@@ -867,6 +923,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   The claim file already covers the "and it died mid-run" case with an *interrupted* badge.
 - **Impact:** the dashboard can say a lesson is unfinished and how to finish it, but not what went
   wrong. For a repeatable failure the operator has to re-run `prepare` and read the error.
+- **Status:** open
 - **When to revisit:** if diagnosing failed builds after the fact becomes common — a `lastError` in
   the claim (kept on failure, which `prepare` already does) would carry the reason.
 
@@ -880,6 +937,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   injected at every call site, so the same failure mode hasn't arisen there.
 - **Impact:** a future audio test that forgets to inject `fetchTts` would spend real TTS credits and
   pass. Same class of bug as the one this guard was written for, one layer over.
+- **Status:** open
 - **When to revisit:** next time `src/audio/` grows a call site, or the first time a test bill shows
   up. `fetchElevenLabsTts` should call the same guard.
 
@@ -897,15 +955,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   repairs the result. But a warning is easy to scroll past, and the de-dup half has no repair path
   short of re-assembling the lesson. Measured on this repo's Japanese book: three reviewed lessons
   that never reached the library cost 12 unflagged repeats across the next three lessons.
+- **Status:** open
 - **When to revisit:** if building out of order becomes common, make `assemble` refuse without
   `--force`. A deeper fix would decouple the library from the review — saving a provisional corpus at
   `prepare` and replacing it at Mark reviewed — but that trades the "compare against what a human
   kept" property away, so it needs thought rather than a patch.
 
-### `scripts/backfill-dedup-library.mjs` re-derives history rather than recovering it
+### Rebuilding a missing dedup-library entry re-derives history rather than recovering it
 
-- **What:** the backfill rebuilds a missing library entry from the lesson's CURRENT `cards.json`, not
-  from what the lesson looked like when it was reviewed.
+- **Status:** the script this described (`backfill-dedup-library.mjs`, once in `scripts/`) was
+  deleted; the reasoning is kept because it applies to any future backfill.
+- **What:** a backfill can only rebuild a missing library entry from the lesson's CURRENT
+  `cards.json`, not from what the lesson looked like when it was reviewed.
 - **Why:** there is no record of the latter. The library entry IS the record, and it's the thing that's
   missing.
 - **Impact:** a lesson edited after review is backfilled in its edited state. For de-dup — exact-match
@@ -926,6 +987,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** the gate catches a pass that never RAN, which is the failure that actually happened
   repeatedly. It cannot catch a pass that ran and fell open. The `[dedup:semantic]` and
   `fill-in-the-blank:` log lines are the only signal for that, and nobody reads logs after the fact.
+- **Status:** open
 - **When to revisit:** if a fail-open pass ever ships something wrong unnoticed. The fix is to record
   each pass's OUTCOME in meta (ran / failed / nothing-to-do) rather than a boolean, and surface a
   "this lesson has no drills — is that right?" note at the review.
@@ -939,6 +1001,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   which is absurd for a single-user local tool.
 - **Impact:** none in normal use; the gate is there to catch a pipeline that didn't finish, not an
   operator who means it. Worth knowing that "the marker is set" means "something claimed the pass ran".
+- **Status:** open
 - **When to revisit:** never, unless this stops being a local single-user tool.
 
 ### Numerals are auto-filled by a model, so the counter needs a human eye
@@ -961,6 +1024,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   slipped in. What still needs a human is the COUNTER: 4がつ is しがつ, 9じ is くじ, 1ぷん is いっぷん,
   and a plausible-but-wrong reading gets spoken aloud confidently. The `uncertain` badge is the whole
   safeguard there.
+- **Status:** open
 - **When to revisit:** if a wrong counter ever ships. A check against a table of known irregular
   counter readings would catch the common ones deterministically, leaving the model only the cases a
   table cannot cover.
@@ -977,6 +1041,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** edit the text of a card whose audio you hand-picked, and the clip silently stays as it
   was. That is the right default, but it is silent: nothing tells you the picked clip no longer matches
   the card.
+- **Status:** open
 - **When to revisit:** if that bites. The fix is to report it — "this card's chosen clip predates its
   current text" at the audio review — rather than to regenerate it.
 
@@ -995,6 +1060,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   regenerated. Regenerating is a deliberate, explicit act: `rm -rf .anki-builder/audio` and re-run the
   `audio` stage, accepting the credit cost and the changed takes. Replace and Generate also mint a real
   original for a single card, which is the cheap per-card escape hatch.
+- **Status:** open
 - **When to revisit:** not really revisitable — the bytes are gone. If it ever matters at scale, the
   fix is a one-off backfill script the owner runs knowingly, not automatic recovery.
 
@@ -1008,6 +1074,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** roughly 2x audio disk in `.anki-builder/audio` and in every run dir. A clip is tens of KB,
   so a large book is single-digit MB either way — but it does double, and the cache is not pruned.
   Only the shipping clip is embedded in the `.apkg`; originals never reach the deck.
+- **Status:** open
 - **When to revisit:** if the local library ever gets large enough to matter, prune `.orig.mp3` files
   for lessons already marked done — they're only needed while a lesson is still being reviewed.
 
@@ -1023,6 +1090,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   hand-picked clips from the staleness check on the read side — the write side now agrees.
 - **Impact:** after editing the text of a card whose audio was hand-picked or hand-trimmed, the clip has
   to be re-made explicitly (Generate, or Replace) — re-running the stage won't do it.
+- **Status:** open
 - **When to revisit:** if this bites, the fix is a dashboard warning on a card whose hand-picked clip no
   longer matches its text, not a change to the overwrite rule.
 
@@ -1038,6 +1106,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** on a machine with no ffmpeg the audio build still works (untrimmed), but the Trim button
   reports an error every time instead of degrading. That's deliberate, though it does mean ffmpeg is a
   real requirement for the trim editor rather than an optional nicety.
+- **Status:** open
 - **When to revisit:** only if a pure-JS mp3 cutter ever becomes worth the dependency — the ffmpeg
   dependency is shared with the automatic trim either way.
 
@@ -1052,6 +1121,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   comes out shorter than the minimum), so a stale one degrades to "the whole clip" rather than an error.
 - **Impact:** a run dir accumulates one orphaned `-manual-` file per reverted trim. Negligible per
   lesson; unbounded in principle if someone trims and reverts repeatedly.
+- **Status:** open
 - **When to revisit:** if run dirs get noticeably cluttered, sweep `-manual-` files no card references
   when a lesson is marked done.
 
@@ -1071,6 +1141,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** the backfill is a separate, explicitly-invoked tool. It's dry by default, skips
   hand-picked clips (a `-gen-` pick or Replace upload — regenerating those would discard the reviewer's
   work), and costs one call per unique spoken term.
+- **Status:** resolved — every card on disk has an original and the one-off script was deleted; kept because the reasoning applies to any future backfill
 - **When to revisit:** if the stage ever grows a `--force` flag, make sure it replaces both takes
   together rather than only the missing one.
 
@@ -1086,6 +1157,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** the `aggressive` chain (130 Hz) already shows this — measured across 14 clips it costs up
   to 5.7 dB of voice peak on the lowest-pitched ones, which is why it is NOT the default despite the
   name. Adding a low-voiced language without re-tuning would degrade its audio.
+- **Status:** open
 - **When to revisit:** when a non-Japanese voice is added. The fix is a per-language corner frequency
   rather than the single global set; `ANKI_BUILDER_AUDIO_CLEANUP` and the per-card picker are the
   stopgaps until then.
@@ -1099,6 +1171,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   denoisers that would catch it (`afftdn`, `anlmdn`) measurably risk smearing consonants.
 - **Impact:** a small number of cards stay noisier than the rest. They are audible outliers rather
   than a systemic problem.
+- **Status:** open
 - **When to revisit:** if these become annoying, `arnndn` (RNN speech denoiser) is the next step up in
   ffmpeg — but it needs a third-party model file committed to the repo, which is a supply-chain
   decision rather than a purely technical one.
@@ -1115,6 +1188,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a new write path that forgets `refreshRow` reintroduces the bug, and it is invisible
   until someone opens the editor after a Replace. It has already happened once: adding the second
   audio column silently broke `swap`, because `td.au` began matching the Original column first.
+- **Status:** open
 - **When to revisit:** if a third write path appears, fold the refresh into a single helper both the
   server response shape and the client agree on, rather than remembering to call it.
 
@@ -1133,6 +1207,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   and it also defeats the trim so the clip keeps all its silence) rather than silent, which is the
   direction it was designed to fail in. The dangerous direction, cutting real speech, needs BOTH guards
   to be wrong at once.
+- **Status:** open
 - **When to revisit:** on any voice or TTS-model change. Re-derive the parameters against a fresh sample
   rather than assuming they carry over; the grid-search approach is quick to repeat.
 
@@ -1158,6 +1233,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Watch for:** verifying a trim by trailing silence and total-cut alone will NOT catch over-cutting —
   that check passed all 89 while three were truncated. Compare retained speech against the target's
   mora count (~0.13s/mora is a safe floor) instead.
+- **Status:** open
 - **When to revisit:** if a marker ever renders as four or more segments, or a voice change moves the
   pulse shape. Note the fix applies to future renders only — the audio cache keys on
   `(voice, model, text)` and encodes nothing about processing. To repair existing decks WITHOUT
@@ -1176,6 +1252,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   reported an implausible zero.
 - **Impact:** any future naming change to derived clips must not touch `<hash>.orig.mp3`, or the same
   class of silent failure returns.
+- **Status:** open
 - **When to revisit:** if derived-clip naming changes again, add a test asserting a stage card is still
   recognised after the rename — the existing ones now cover exactly that case.
 
@@ -1193,6 +1270,8 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   hand in the JBP Book 1 deck were found with an ad-hoc script that groups every card by normalized
   `english` and by `target` and reports any group with more than one distinct answer — that grouping is
   cheap and deterministic, and would make a good `audit` check if this recurs.
+- **Status:** open
+- **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>`
 - **When to revisit:** if a review turns up same-gloss pairs the pass left unhinted, promote the
   grouping script into `src/audit/` and fail the readiness check on an unhinted collision.
 
@@ -1207,6 +1286,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** a hint edited by hand between `prepare` and review can be overwritten by a re-run of the
   pass. `<file>.pre-enhance.bak` is the recovery path, and a lesson already marked `reviewed` is skipped
   entirely, so this only bites in the pre-review window.
+- **Status:** open
 - **When to revisit:** if hand-edited hints start getting clobbered in practice, add a `hintLocked`
   flag (or reuse the reviewed marker at card granularity) rather than reverting the capability.
 
@@ -1226,6 +1306,8 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   delivery rather than losing half a pair. The extraction still assigns ids per chapter with no
   knowledge of its siblings, so a fresh collision is entirely possible; it will surface as a refusal at
   delivery, which is late but at least loud.
+- **Status:** open
+- **Verified by:** `npm run preflight` (duplicate card ids)
 - **When to revisit:** if collisions recur often, move the check earlier — a readiness gate or a
   `prepare` post-pass could catch it at build time, when the fix is cheap, instead of at delivery.
 
@@ -1243,6 +1325,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   pronoun stand-in ("It's", "That's", "They're"). An answer phrased any other way ("From 12:30 to
   1:30.") passes unremarked. The deeper check — does this English produce this target — is not
   automatable here and stays a review-gate judgment.
+- **Status:** open
 - **When to revisit:** if un-hinted answer cards keep appearing, promote the warning to a readiness
   check, and consider having the pass return the question card's id alongside the answer so the link is
   data rather than prose.
@@ -1263,6 +1346,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   fail loudly. The mixed number/string `seq` also means any new sort over units must not do
   `a.seq - b.seq` (NaN); sort on `number` then the `extras` flag, as `scanNumberedUnits` does. The
   unit-token regex is also the path-traversal guard, so it must stay an anchored whitelist.
+- **Status:** open
 - **When to revisit:** if a third kind of unit appears (a review unit, a listening unit), promote it
   to a real unit type with its own allocator rather than adding a second suffix. Two suffixes in these
   regexes would be the point where this stops paying for itself.
@@ -1280,6 +1364,8 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   (group every card by `target`; keep the earliest, exclude the later). On the first run across eight
   chapters this caught 7 duplicate groups. If that sweep is skipped, the deck ships two cards with
   the same answer and the learner meets both.
+- **Status:** open
+- **Verified by:** `node scripts/extras-duplicate-check.mjs <collection-dir>`
 - **When to revisit:** if the sweep is ever forgotten in practice, fold it into a command rather than
   leaving it as a documented step, the same way the old loose `node scripts/…` content passes became
   `prepare`.
@@ -1299,6 +1385,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `unitDeckSegments`, so a book whose TOC labels its units differently gets no grouping and falls back
   to one flat level. That is a silent degradation, not an error. Renaming a base lesson also re-groups
   it, orphaning its extras under the old group name until both are renamed together.
+- **Status:** open
 - **When to revisit:** if a second book's labels don't match the convention, replace the regex with an
   explicit `meta.deckGroup` field rather than widening the pattern.
 
@@ -1317,6 +1404,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   caught it by re-reading the chapter. Coverage is verified mechanically (every spine chapter must
   appear or the index is rejected), but entry quality is not. The index is keyed by content hash, so
   a changed EPUB re-indexes; a hand-edited index is trusted as-is.
+- **Status:** open
 - **When to revisit:** if premature items start slipping through the corpus review unflagged, spot
   check the index's entries for the chapters involved; the fix is regenerating (delete the file) or
   hand-editing the index, not reverting to the O(n squared) reads.
@@ -1336,6 +1424,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** on a mismatched next book, `--list-lessons` mislabels entry types (selection by number
   or label still works), and the final lesson of a nav-truncated book would extract with appended
   back matter, inflating that one corpus.
+- **Status:** open
 - **When to revisit:** at the second real book. Fix classification against that book's actual TOC
   conventions (or drop the type tag), and bound the final entry's range by the nav's own last
   covered file rather than the spine end.
@@ -1352,6 +1441,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** if a second Japanese book ever ships a card whose id collides with a JFBP one
   (`konnichiwa` is likely), importing the second book's `.apkg` into the same collection would
   overwrite the JFBP note. The AnkiConnect deliver path is deck-scoped (`abid:` tags) and safe.
+- **Status:** open
 - **When to revisit:** before importing a second book's `.apkg` into the live collection, check for
   id overlaps with the JFBP deck (the deliver path's duplicate-id guard shows the shape of the
   check). New books are protected automatically.
@@ -1367,6 +1457,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   deck is rare enough that a button for it would mostly invite accidental unshipping.
 - **Impact:** removing a lesson from the shippable deck means deleting `meta.done` from its
   `cards.json` and rebuilding (any dashboard edit, or `/api/deck/:type/:id/rebuild`, triggers it).
+- **Status:** open — still no UI control; `scripts/undone-unit.mjs` is now the reviewed way to do it outside the dashboard
 - **When to revisit:** if un-shipping a lesson turns out to happen with any regularity, add a small
   guarded control (confirm dialog) rather than resurrecting the old read-only flow.
 
@@ -1376,16 +1467,23 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   scene names the question just asked and reveals nothing. For an ambiguous single-word card
   (に "2" vs the direction particle, ほん "Book" vs the counter), any cue that disambiguates the
   Recognition front necessarily points partway at the answer ("counting, not the particle").
-  Three degenerate pairs were left with no scene at all because no non-revealing wording exists and
-  their glosses barely differ: です ("To be" vs "Is / am / are"), ばん ("Evening" vs the number
-  suffix), and ばんごはん ("Dinner" twice).
+  Three degenerate pairs were left with no scene at all at the time of the scene migration, because
+  no non-revealing wording existed and their glosses barely differed: です ("To be" vs
+  "Is / am / are"), ばん ("Evening" vs the number suffix), and ばんごはん ("Dinner" twice).
 - **Why:** an answerable-but-easier card beats an unanswerable one; the Production direction keeps
   full rigor because definitional hints stay off the Recognition front (they show on its back).
-- **Impact:** a handful of Recognition cards are softer tests than a purist would like, and the
-  three skipped pairs still show identical Recognition fronts with different expected answers.
-- **When to revisit:** if the です / ばん / ばんごはん pairs cause real study friction, merge each
-  pair into one card with a combined gloss instead of inventing a leaky scene. The migration's
-  pre-change state is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.
+- **Impact:** a handful of Recognition cards are softer tests than a purist would like. **The three
+  named pairs are no longer among them** (checked 2026-08-14 against the live deck): the second です
+  card (`desu-suffix-ch15`) and the duplicate ばんごはん (`chapter-3-extras`) are both excluded, so
+  neither pair exists any more, and both ばん cards now carry a scene ("the time of day" /
+  "labelling something by its number"). The general trade-off stands; the examples do not, which is
+  why this row now points at a command instead of a count.
+- **Status:** open (the design trade-off), with all three cited instances resolved
+- **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>` — it lists every group
+  sharing a gloss or a target and flags members with no cue on the face they collide on
+- **When to revisit:** if a future uncued pair causes real study friction, merge it into one card
+  with a combined gloss instead of inventing a leaky scene. The scene migration's pre-change state
+  is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.
 
 ## TTS fetch pool is pinned to the ElevenLabs plan's concurrency cap
 
@@ -1396,6 +1494,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   first fetch failure as fatal by design, so the pool must sit at or under the plan limit.
 - **Impact:** audio generation walks a lesson slightly slower than it could on a bigger plan, and
   the constant silently under-uses a plan upgrade.
+- **Status:** open
 - **When to revisit:** if the ElevenLabs plan changes, update the constant to the new concurrency
   limit (or make it an env knob if plans start changing often).
 
@@ -1411,6 +1510,8 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **Impact:** the stricter rule surfaces pre-existing target collisions that previously read as
   "hint ok", so a book audited before this change can newly report work to do (it found one on the
   first run here). Exit code 2 now fires on cases that used to exit 0.
+- **Status:** open
+- **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>`
 - **When to revisit:** if the card templates ever change which fields render on which front, this
   per-face rule has to move with them, since it encodes the template layout in a script.
 
@@ -1426,6 +1527,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   the one-shot `scripts/migrate-deck-numbering.mjs` (create + changeDeck + delete the empty
   original, since AnkiConnect has no rename action), or delivery will file new cards in the padded
   deck while old cards sit in the unpadded one.
+- **Status:** open
 - **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
   case the padding can be dropped and migrated the same way.
 
@@ -1446,6 +1548,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   on paying ElevenLabs again), not on git. Also: `git status` now walks the whole of `output/`, so it
   is measurably slower than it was, and a new artifact kind under `output/` is untracked by default
   until someone adds a re-include line.
+- **Status:** open
 - **When to revisit:** if audio ever becomes genuinely unrecoverable (an `.orig.mp3` goes missing, or
   a voice is retired at ElevenLabs), revisit with a real out-of-band backup rather than by widening
   the git globs.
@@ -1463,6 +1566,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   suite-wide durable-write guard is the backstop for that gap, not this redirect. Test processes no
   longer share a library, so a test that expected one file's dedup registry to be visible to another
   file would now fail (none does today).
+- **Status:** open
 - **When to revisit:** if a second test runner is adopted, add its env marker to the same guard.
   Covering `NODE_ENV=test` safely needs a signal that separates "under a test runner" from
   "someone's shell profile", and no such signal exists.
@@ -1481,6 +1585,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   through `npm test` (a bare `node --test`, an editor's test runner, a future CI step that calls the
   binary directly) is unguarded. The guard also cannot say WHICH test wrote the file, only that the
   run did, so diagnosing means bisecting.
+- **Status:** open
 - **When to revisit:** if a stealth write is ever suspected, hash the JSON files only (about 3 MB)
   and keep size/mtime for the rest. If the suite ever legitimately needs to write into these trees,
   add an allowlist rather than widening the escape hatch.
@@ -1502,6 +1607,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   script cannot name one; find them by glob. `writeUnitJson` also standardizes on a trailing
   newline, so the first write by `extras-order` / `extras-duplicate-check` after this change adds
   one to a file that lacked it (matching every other writer, and every file currently on disk).
+- **Status:** open
 - **When to revisit:** if the backups become a nuisance, wire `prune-baks.mjs` into preflight as a
   report line rather than making it automatic. Deleting a restore point should stay a decision.
 
@@ -1517,6 +1623,7 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `cards.json` is tracked, which is why this was judged safe to defer.
   `references/card-authoring-rules.md` also claims a re-run "overwrites their `.pre-enhance.bak`
   backups", which is not what `backupFileOnce` does; the file is kept, not overwritten.
+- **Status:** open
 - **When to revisit:** switch it to `backupFileStamped` next time that file is open, and fix the doc
   sentence in the same commit.
 
@@ -1534,5 +1641,73 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   doing so forever. Provenance only becomes complete for exclusions made from here on. A card
   excluded by a script and later re-included and re-excluded by a human reads as human, which is
   correct but loses the earlier history (there is no exclusion log, only a current state).
+- **Status:** open
 - **When to revisit:** if the unattributed count ever needs to go to zero, it has to be a human
   reading each one, not a migration script.
+
+## Un-shipping a unit changes the package, never the live Anki collection
+
+- **What:** `scripts/undone-unit.mjs` backs up `cards.json`, clears `meta.done` and rebuilds the
+  collection package. It does not talk to Anki, so notes already delivered stay in the live
+  collection with their scheduling; the unit simply stops being in the next package.
+- **Why:** removing delivered notes is a destructive, unrecoverable act on a deck the user studies
+  daily, and it is a different decision from "this unit is not finished after all". `deliver-to-anki`
+  already reports orphans and refuses to delete them, for the same reason.
+- **Impact:** after un-shipping a delivered unit, its cards keep coming up in study until someone
+  removes them in Anki by hand. The script requires `--force` on a collection carrying
+  `anki-delivered.json` so the gap is stated at the moment it matters, not discovered later.
+- **Status:** open
+- **When to revisit:** if un-shipping delivered units becomes common, give the deliverer an opt-in
+  `--suspend-orphans` (already specified for the exclusion case) and point this script at it.
+
+## The review watcher polls; it does not subscribe
+
+- **What:** `scripts/await-review.mjs` re-reads `cards.json` every 15 seconds rather than watching
+  the file. Its resolution is therefore one poll interval, and a sign-off during a long `--interval`
+  is noticed late.
+- **Why:** `fs.watch` semantics differ per platform and miss atomic-rename publishes on some of
+  them — and every writer here publishes by rename. A poll cannot miss an event it can re-derive
+  from the file's current contents.
+- **Impact:** up to `--interval` of latency after a click, and one `stat` + `JSON.parse` per poll on
+  a file of a few hundred KB. Negligible next to a human clicking a button.
+- **Status:** open
+- **When to revisit:** only if a watcher is ever needed for something with a real latency budget.
+
+## `finalize-extras` bakes the extras tail's ORDER into code, but not its steps
+
+- **What:** `src/cards/finalizeExtras.js` names six commands and the order to run them in. It spawns
+  each as a child process and prints its output, rather than calling the underlying functions.
+- **Why:** the reports are the product. Each of those tools already prints something a human has to
+  read and judge, and re-implementing that reporting in a chainer would fork it — the drift this
+  project keeps paying for. Spawning keeps exactly one implementation of each step.
+- **Impact:** a step's output cannot be inspected programmatically (the chain only sees exit codes),
+  and adding a step means editing the plan as well as writing the tool. The plan is unit tested for
+  order and for the absence of `--apply`, so the part that has actually gone wrong in production is
+  the part that is pinned.
+- **Status:** open
+- **When to revisit:** if a step ever needs a decision made FROM another step's findings, that step
+  belongs in `src/` behind a function, not in the chain.
+
+## The template path has never been built end to end, and three blind spots meet there
+
+- **What:** no deck has ever been built from a bundled template and taken all the way into Anki.
+  `output/templates/` is empty (only a `.DS_Store`), so the path with zero worked examples is also
+  the path with the fewest checks: `lessonReadiness` returns ready unconditionally for
+  `sourceType: "template"` (no `enriched`/`notesEnhanced` markers to wait for, since neither pass
+  applies), and nothing anywhere verifies that a `.apkg` this project builds actually imports.
+- **Why:** every real deck so far has been an EPUB book or a dictated course, so the template path
+  has had no demand. The readiness exemption is correct on its own terms — a template has no drills
+  to mine and no siblings to cross-reference — it just means a template unit passes the gate having
+  been through nothing.
+- **Impact:** the three gaps compound. A template deck could be built, reviewed, packaged and
+  imported with a structural fault that no check here would have caught, and there is no known-good
+  example to compare it against. This is the shape of failure the rest of this file is about: an
+  absent check reads exactly like a passing one.
+- **Status:** open — transplanted from harness task T011 ("End-to-end: build a real travel deck +
+  verify in Anki", the loop's only never-run task) when the loop was retired, 2026-08-14. The task
+  is gone; the risk it pointed at is not.
+- **When to revisit:** the next time a template deck is built for real, treat it as the acceptance
+  run — build from `travel-essentials` or `numbers` for one language, generate audio with a real
+  key, import the `.apkg`, and check both card directions render and the audio plays — and record
+  the result here. Cheaper still: when a headless `.apkg` import verifier exists, make that first
+  worked template deck its fixture, which closes all three gaps at once.

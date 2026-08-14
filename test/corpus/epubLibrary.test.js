@@ -9,6 +9,7 @@ import {
   registerEpub,
   chapterCachePath,
   CACHE_VERSION,
+  resolveLabelDecoding,
   describeBookCache,
   clearBookCache,
   saveChapterCorpus,
@@ -19,6 +20,7 @@ import {
   loadBookMeta,
   saveBookSlug,
 } from "../../src/corpus/epubLibrary.js";
+import { LABEL_DECODING_CURRENT } from "../../src/corpus/epubArchive.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
 
 function withTempDir(fn) {
@@ -108,9 +110,12 @@ test("registerEpub() writes book.json with the EPUB's title and a null slug", ()
 
     const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
 
+    // The label-decoding version is stamped once, here — a book registered from now on gets
+    // the current decoder, and one registered before this existed stays on v1 forever.
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Japanese for Busy People",
       slug: null,
+      labelDecoding: LABEL_DECODING_CURRENT,
     });
   });
 });
@@ -121,7 +126,11 @@ test("registerEpub() writes a null title when the EPUB has no <dc:title>", () =>
 
     const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
 
-    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), { title: null, slug: null });
+    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
+      title: null,
+      slug: null,
+      labelDecoding: LABEL_DECODING_CURRENT,
+    });
   });
 });
 
@@ -136,6 +145,7 @@ test("registerEpub() does not overwrite book.json on a second call", () => {
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Original Title",
       slug: "original-title",
+      labelDecoding: LABEL_DECODING_CURRENT,
     });
   });
 });
@@ -156,6 +166,7 @@ test("saveBookSlug()/loadBookMeta() round-trip and preserve the stored title", (
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Some Book Title",
       slug: "some-book-title",
+      labelDecoding: LABEL_DECODING_CURRENT,
     });
   });
 });
@@ -472,5 +483,43 @@ test("clearBookCache() refuses an unknown cache kind rather than silently cleari
       () => clearBookCache(epubHash, { kinds: ["corpora"], libraryHomeDir }),
       /corpora/,
     );
+  });
+});
+
+test("resolveLabelDecoding() gives a never-registered book the current decoder", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["New Book"]));
+    assert.equal(
+      resolveLabelDecoding(epubPath, { libraryHomeDir }),
+      LABEL_DECODING_CURRENT,
+      "a book with no marker has no decks to break",
+    );
+  });
+});
+
+test("resolveLabelDecoding() freezes a book registered before the marker existed at v1", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Delivered Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    // Rewrite book.json the way it looks for a book registered before this field existed.
+    writeFileSync(
+      join(libraryHomeDir, "epubs", epubHash, "book.json"),
+      JSON.stringify({ title: "Delivered Book", slug: "delivered-book" }),
+    );
+
+    // Its labels flow into deck names that already hold notes with scheduling.
+    assert.equal(resolveLabelDecoding(epubPath, { libraryHomeDir }), 1);
+  });
+});
+
+test("saveBookSlug() preserves the label-decoding marker", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["New Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    saveBookSlug(epubHash, "new-book", { libraryHomeDir });
+
+    assert.equal(resolveLabelDecoding(epubPath, { libraryHomeDir }), LABEL_DECODING_CURRENT);
   });
 });

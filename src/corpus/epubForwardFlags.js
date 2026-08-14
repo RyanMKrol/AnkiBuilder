@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile, describeChapter } from "./epubArchive.js";
-import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
+import { hashEpubFile, chapterCachePath, resolveLabelDecoding } from "./epubLibrary.js";
 import { ensureTaughtIndex as defaultEnsureTaughtIndex } from "./epubTaughtIndex.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { extractJsonObjectText } from "../util/promptTemplate.js";
@@ -238,7 +238,11 @@ export function flagForwardConcerns({
     // itself, since that's cheap and deterministic to resolve from the chapter it's
     // naming anyway.
     const laterChapterLabel =
-      entry.laterChapter !== undefined ? describeChapter(epubPath, entry.laterChapter) : undefined;
+      entry.laterChapter !== undefined
+        ? describeChapter(epubPath, entry.laterChapter, {
+            labelDecoding: resolveLabelDecoding(epubPath, { libraryHomeDir }),
+          })
+        : undefined;
     flagged.push({
       item,
       reason: entry.reason,

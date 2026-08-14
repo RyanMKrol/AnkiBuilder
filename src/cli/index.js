@@ -22,6 +22,7 @@ import {
 import {
   registerEpub as defaultRegisterEpub,
   hashEpubFile as defaultHashEpubFile,
+  resolveLabelDecoding as defaultResolveLabelDecoding,
   describeBookCache as defaultDescribeBookCache,
   clearBookCache as defaultClearBookCache,
   chapterCachePath as defaultChapterCachePath,
@@ -162,6 +163,7 @@ export async function runCli(argv, deps = {}) {
     formatShapeReport = defaultFormatShapeReport,
     registerEpub = defaultRegisterEpub,
     hashEpubFile = defaultHashEpubFile,
+    resolveLabelDecoding = defaultResolveLabelDecoding,
     describeBookCache = defaultDescribeBookCache,
     clearBookCache = defaultClearBookCache,
     chapterCachePath = defaultChapterCachePath,
@@ -235,6 +237,7 @@ export async function runCli(argv, deps = {}) {
     formatShapeReport,
     registerEpub,
     hashEpubFile,
+    resolveLabelDecoding,
     describeBookCache,
     clearBookCache,
     chapterCachePath,

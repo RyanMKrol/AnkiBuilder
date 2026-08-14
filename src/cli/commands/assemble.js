@@ -136,7 +136,11 @@ export async function runAssemble(flags, ctx) {
     if (!flags.epub) {
       throw new Error("--list-lessons requires --epub <path> or --book <slug>");
     }
-    const lessons = ctx.listLessons(flags.epub, { log: ctx.log });
+    // Which decoder this book's labels get is a property of the BOOK, stamped at
+    // registration and frozen thereafter — a label becomes a live Anki deck name, and a deck
+    // rename in Anki is a new deck with none of the scheduling.
+    const labelDecoding = ctx.resolveLabelDecoding(flags.epub);
+    const lessons = ctx.listLessons(flags.epub, { log: ctx.log, labelDecoding });
     if (lessons.length === 0) {
       ctx.log(
         "no navigation document found — this EPUB doesn't declare its own lessons; " +
@@ -155,7 +159,9 @@ export async function runAssemble(flags, ctx) {
     // before any pass has been paid for — a book whose every nav entry silently swallows
     // files, or whose labels collide, prints an entirely reasonable-looking list above.
     const cache = ctx.describeBookCache(ctx.hashEpubFile(flags.epub));
-    for (const line of ctx.formatShapeReport(ctx.buildShapeReport(flags.epub, { cache }))) {
+    for (const line of ctx.formatShapeReport(
+      ctx.buildShapeReport(flags.epub, { cache, labelDecoding }),
+    )) {
       ctx.log(line);
     }
     return;
@@ -167,7 +173,10 @@ export async function runAssemble(flags, ctx) {
   // corpus all key on it exactly as before), and the resolved range is stashed for the epub
   // assemble branch to extract in full. An explicit --chapter-number wins (manual override).
   if (flags.epub && flags.lesson && !flags["chapter-number"]) {
-    const lesson = ctx.resolveLesson(flags.epub, flags.lesson, { log: ctx.log });
+    const lesson = ctx.resolveLesson(flags.epub, flags.lesson, {
+      log: ctx.log,
+      labelDecoding: ctx.resolveLabelDecoding(flags.epub),
+    });
     flags["chapter-number"] = String(lesson.firstChapterNumber);
     flags.resolvedLesson = lesson;
     const range =
@@ -315,7 +324,11 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       targetLanguage: flags.lang,
       bookConventions,
     });
-    const chapterLabel = lesson ? lesson.label : ctx.describeChapter(flags.epub, chapterNumber);
+    const chapterLabel = lesson
+      ? lesson.label
+      : ctx.describeChapter(flags.epub, chapterNumber, {
+          labelDecoding: ctx.resolveLabelDecoding(flags.epub),
+        });
     corpus.meta = { ...corpus.meta, epubHash, chapterNumber, chapterLabel };
     if (lastChapterNumber > chapterNumber) {
       corpus.meta.lastChapterNumber = lastChapterNumber;

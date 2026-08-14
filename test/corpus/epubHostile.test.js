@@ -8,6 +8,7 @@ import { buildFixtureEpub, buildZip, containerXml } from "../support/epubFixture
 import { listExternalChapters, extractChapterToFile } from "../../src/corpus/epubArchive.js";
 import { listLessons, resolveLesson } from "../../src/corpus/epubLessons.js";
 import { buildShapeReport } from "../../src/corpus/epubShapeReport.js";
+import { unitDeckSegments } from "../../src/deck/deckPath.js";
 
 // The hostile-EPUB suite. Every case here is a shape a real book in the wild has, that the
 // parser used to accept SILENTLY — producing a plausible-looking lesson list that did not
@@ -539,5 +540,85 @@ test("hostile: a book that degrades on every axis at once still produces a repor
     assert.ok(report.lessons.some((l) => l.swallowed > 0));
     assert.ok(report.imageCollisions.length > 0);
     assert.ok(report.warnings.length >= 6);
+  });
+});
+
+// --- Label decoding (WS2 item 6). Gated per book: a label becomes a live Anki deck name, and
+// renaming a deck in Anki is not a rename — it is a new deck, with the old notes and all their
+// scheduling left in the old one. So the better decoder applies to NEW books only. ---
+
+function entityBook(dir, label) {
+  return buildFixtureEpub(dir, {
+    manifestItems: [
+      { id: "nav", href: "nav.xhtml", properties: "nav" },
+      { id: "c1", href: "ch1.xhtml" },
+    ],
+    spineIdrefs: ["c1"],
+    extraFiles: [
+      {
+        name: "OEBPS/nav.xhtml",
+        content: `<html><body><nav epub:type="toc"><ol><li><a href="ch1.xhtml">${label}</a></li></ol></nav></body></html>`,
+      },
+      { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+    ],
+  });
+}
+
+test("hostile: numeric and hex character references decode under the current label decoder", () => {
+  withTempDir((dir) => {
+    const epubPath = entityBook(dir, "Lesson 1 &#8212; Greetings &#x2026; &amp; more");
+
+    assert.deepEqual(
+      listExternalChapters(epubPath, { labelDecoding: 2 }).map((c) => c.label),
+      ["Lesson 1 — Greetings … & more"],
+    );
+    // Frozen for a book that already has decks: the entity reaches the deck name verbatim,
+    // exactly as it does today, rather than silently becoming a different deck.
+    assert.deepEqual(
+      listExternalChapters(epubPath, { labelDecoding: 1 }).map((c) => c.label),
+      ["Lesson 1 &#8212; Greetings &#x2026; & more"],
+    );
+  });
+});
+
+test("hostile: an inline-element split label keeps the space between its parts", () => {
+  withTempDir((dir) => {
+    const epubPath = entityBook(dir, "<span>Lesson</span><span>5</span>: Greetings");
+
+    const [lesson] = listLessons(epubPath, { labelDecoding: 2 });
+    assert.equal(lesson.label, "Lesson 5: Greetings");
+    // The space is what lets deckPath see a grouped label at all: "Lesson5: Greetings" is one
+    // flat deck, "Lesson 5: Greetings" nests under a padded grouping deck.
+    assert.deepEqual(unitDeckSegments(lesson.label), ["Lesson 05", "Greetings"]);
+
+    const [frozen] = listLessons(epubPath, { labelDecoding: 1 });
+    assert.equal(frozen.label, "Lesson5: Greetings");
+  });
+});
+
+test("hostile: a ruby-annotated nav label keeps the base text and drops the reading", () => {
+  withTempDir((dir) => {
+    const epubPath = entityBook(
+      dir,
+      "<ruby>漢<rp>(</rp><rt>かん</rt><rp>)</rp>字<rp>(</rp><rt>じ</rt><rp>)</rp></ruby>",
+    );
+
+    // Interleaving the readings into the label (漢かん字じ) is silent and wrong; the base text
+    // is what a person reading the contents page sees.
+    assert.deepEqual(
+      listExternalChapters(epubPath, { labelDecoding: 2 }).map((c) => c.label),
+      ["漢字"],
+    );
+  });
+});
+
+test("hostile: an unknown entity is left visible rather than turned into a replacement character", () => {
+  withTempDir((dir) => {
+    const epubPath = entityBook(dir, "Lesson 1 &notarealentity; &#99999999999;");
+
+    assert.deepEqual(
+      listExternalChapters(epubPath, { labelDecoding: 2 }).map((c) => c.label),
+      ["Lesson 1 &notarealentity; &#99999999999;"],
+    );
   });
 });

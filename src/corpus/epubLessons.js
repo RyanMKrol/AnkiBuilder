@@ -38,8 +38,8 @@ export function classifyLesson(label) {
  * document — callers should treat that as "this book can't be selected by lesson; fall
  * back to --chapter-number," not as an error.
  */
-export function listLessons(epubPath, { log = () => {} } = {}) {
-  return listExternalChapters(epubPath, { log }).map((chapter, index) => ({
+export function listLessons(epubPath, { log = () => {}, labelDecoding = 1 } = {}) {
+  return listExternalChapters(epubPath, { log, labelDecoding }).map((chapter, index) => ({
     number: index + 1,
     label: chapter.label,
     type: classifyLesson(chapter.label),
@@ -74,8 +74,8 @@ function assertForwardRange(lesson) {
  * nav document, the ordinal is out of range, or a label match is missing/ambiguous — so a
  * mistyped lesson fails loudly instead of silently assembling the wrong content.
  */
-export function resolveLesson(epubPath, selector, { log = () => {} } = {}) {
-  const lessons = listLessons(epubPath, { log });
+export function resolveLesson(epubPath, selector, { log = () => {}, labelDecoding = 1 } = {}) {
+  const lessons = listLessons(epubPath, { log, labelDecoding });
   if (lessons.length === 0) {
     throw new Error(
       "this EPUB has no navigation document, so its lessons can't be listed or selected by name — " +

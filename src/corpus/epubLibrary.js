@@ -3,7 +3,7 @@ import { readFileSync, existsSync, mkdirSync, readdirSync, rmSync, statSync } fr
 import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { join, sep } from "path";
 import { libraryHome } from "../model/index.js";
-import { getBookTitle } from "./epubArchive.js";
+import { getBookTitle, LABEL_DECODING_CURRENT } from "./epubArchive.js";
 
 // Same sha256 + hex + 16-char-truncation convention as src/audio/index.js's
 // hashTerm, applied to file bytes rather than a term string.
@@ -61,13 +61,40 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
 
   const metaPath = bookMetaPath(epubHash, { libraryHomeDir });
   if (!existsSync(metaPath)) {
+    // The label-decoding version is stamped ONCE, here, and never changed for a book that
+    // already has a marker — see resolveLabelDecoding.
     writeFileAtomic(
       metaPath,
-      JSON.stringify({ title: getBookTitle(epubPath), slug: null }, null, 2),
+      JSON.stringify(
+        { title: getBookTitle(epubPath), slug: null, labelDecoding: LABEL_DECODING_CURRENT },
+        null,
+        2,
+      ),
     );
   }
 
   return { epubHash };
+}
+
+/**
+ * Which label-decoding version applies to this book — the gate that keeps a better decoder
+ * away from a book whose decks already exist.
+ *
+ * A chapter label flows through `unitDeckSegments` into a live Anki deck name, and a deck
+ * rename in Anki is not a rename: it is a new deck, and the existing notes stay in the old one
+ * with all their scheduling. So the rule is not "use the best decoder", it is:
+ *
+ *   - a book with NO marker yet (never registered) is new: current version.
+ *   - a book whose marker carries a version: that version, forever.
+ *   - a book registered BEFORE this existed (a marker with no version): v1, frozen.
+ *
+ * Migrating an already-delivered book is a deliberate, previewed, one-time re-file — never a
+ * side effect of a decoder improvement.
+ */
+export function resolveLabelDecoding(epubPath, { libraryHomeDir } = {}) {
+  const meta = loadBookMeta(hashEpubFile(epubPath), { libraryHomeDir });
+  if (!meta) return LABEL_DECODING_CURRENT;
+  return meta.labelDecoding ?? 1;
 }
 
 /**

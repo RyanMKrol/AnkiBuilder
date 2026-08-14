@@ -238,6 +238,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -315,6 +316,7 @@ test("assemble: --lesson resolves a multi-file lesson, extracts the whole spine 
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         resolveLesson,
         chapterRangeCachePath,
         extractChapterRangeToFile,
@@ -372,6 +374,7 @@ test("assemble: --list-lessons prints the book's lessons and exits without assem
         listLessons,
         assembleCorpusFromChapter,
         hashEpubFile: () => "stubhash",
+        resolveLabelDecoding: () => 1,
         describeBookCache: () => ({ registered: false, epubHash: "stubhash" }),
         buildShapeReport: () => ({ stub: true }),
         formatShapeReport: () => ["shape report:", "  WARN: something is off"],
@@ -427,6 +430,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -489,6 +493,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -676,6 +681,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         resolveBookSlug,
         materializeBookInOutput,
         resolveChapterRunDir,
@@ -947,6 +953,7 @@ test("assemble: logs one line per flagged item for both passes, not just a count
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -2124,6 +2131,7 @@ test("assemble: warns when an earlier lesson of the book is not marked reviewed"
       ],
       {
         registerEpub: () => ({ epubHash: "hash" }),
+        resolveLabelDecoding: () => 1,
         resolveBookSlug: () => "book",
         materializeBookInOutput: () => {},
         resolveChapterRunDir: () => runDir,

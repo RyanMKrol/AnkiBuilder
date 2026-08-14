@@ -179,6 +179,26 @@ Four things used to disappear without a word, all of them in `src/corpus/epubArc
 - **Anchors the parser could not read.** The gap between how many entries the nav document declares
   and how many parsed is logged and reported.
 
+### Label decoding is versioned per book
+
+A chapter label is not just text a person reads: `unitDeckSegments` turns it into a live Anki deck
+name, and renaming a deck in Anki is not a rename — it is a new deck, and the existing notes stay in
+the old one with all their scheduling. So the decoder that produces labels is **versioned per book**,
+stamped once into `book.json` at registration by `registerEpub` and read back by
+`resolveLabelDecoding` (`src/corpus/epubLibrary.js`).
+
+- **v1** — the five original entities (`&amp;` `&lt;` `&gt;` `&quot;` `&#39;`), tags removed with
+  nothing in their place. Any book registered before this existed stays here forever.
+- **v2** — full numeric (`&#8212;`), hex (`&#x2026;`) and common named entity decoding; a space
+  where an inline tag was, so `<span>Lesson</span><span>5</span>` is "Lesson 5" rather than
+  "Lesson5" (which also defeats `deckPath`'s grouped-label regex, flattening the deck); ruby
+  annotations dropped from labels, so `漢<rt>かん</rt>字` is 漢字 and not 漢かん字. `&nbsp;` becomes
+  an ordinary space, since a non-breaking space in a deck name is invisible and unsearchable.
+
+Migrating an already-delivered book to v2 is a deliberate, previewed, one-time re-file — never a
+side effect of the decoder improving. An unknown entity is left visible (`&notarealentity;`) rather
+than turned into a replacement character: a visible oddity is a better bug report than a silent one.
+
 For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
 the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
 (`getBookTitle`/`slugify`, falling back to the book's content hash when there's no title), then

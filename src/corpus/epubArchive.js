@@ -253,7 +253,7 @@ export function getBookTitle(epubPath) {
   if (!match) {
     return null;
   }
-  const title = decodeHtmlEntities(match[1].replace(/<[^>]+>/g, "")).trim();
+  const title = decodeLabelMarkup(match[1], LABEL_DECODING_CURRENT);
   return title || null;
 }
 
@@ -291,6 +291,88 @@ function decodeHtmlEntities(text) {
   return text.replace(/&(amp|lt|gt|quot|#39);/g, (_, name) => HTML_ENTITIES[name]);
 }
 
+// The five entities above are what the original decoder knew, which is why a perfectly
+// ordinary label like "Lesson 1 &#8212; Greetings" reached the deck name verbatim, em-dash
+// entity and all. This handles numeric and hex character references plus the named entities
+// that actually turn up in book titles.
+//
+// `nbsp` deliberately becomes an ordinary space: the label becomes an Anki deck name, and a
+// non-breaking space there is invisible, unsearchable and impossible to retype.
+const NAMED_ENTITIES = {
+  amp: "&",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  nbsp: " ",
+  mdash: "—",
+  ndash: "–",
+  hellip: "…",
+  ldquo: "“",
+  rdquo: "”",
+  lsquo: "‘",
+  rsquo: "’",
+  middot: "·",
+  times: "×",
+  deg: "°",
+};
+
+function decodeEntitiesFull(text) {
+  return text.replace(/&(#[xX][0-9a-fA-F]+|#\d+|[a-zA-Z]+);/g, (match, body) => {
+    if (body[0] === "#") {
+      const codePoint =
+        body[1] === "x" || body[1] === "X"
+          ? Number.parseInt(body.slice(2), 16)
+          : Number.parseInt(body.slice(1), 10);
+      // An out-of-range or unparseable reference is left exactly as written rather than
+      // turned into a replacement character — a visible &#99999999; is a better bug report.
+      if (!Number.isFinite(codePoint) || codePoint < 0 || codePoint > 0x10ffff) return match;
+      try {
+        return String.fromCodePoint(codePoint);
+      } catch {
+        return match;
+      }
+    }
+    const named = NAMED_ENTITIES[body];
+    return named === undefined ? match : named;
+  });
+}
+
+/**
+ * Label decoding is VERSIONED, per book, because a label is not just something a person reads:
+ * it flows through unitDeckSegments into a live Anki deck name, and renaming a deck in Anki is
+ * not a rename — it is a new deck, with the old notes and all their scheduling left behind in
+ * the old one. So a book that has already been delivered keeps version 1 forever, and the
+ * better decoder applies to books registered from now on. See resolveLabelDecoding.
+ *
+ * v1: the five original entities, tags removed with nothing in their place.
+ * v2: full entity decoding; a SPACE where an inline tag was, so `<span>Lesson</span><span>5</span>`
+ *     is "Lesson 5" and not "Lesson5" (which also defeats deckPath's grouped-label regex); and
+ *     ruby annotations dropped, so 漢<rt>かん</rt>字 is 漢字 rather than 漢かん字.
+ */
+export const LABEL_DECODING_CURRENT = 2;
+
+function decodeLabelMarkup(raw, labelDecoding) {
+  if (labelDecoding < 2) {
+    return decodeHtmlEntities(raw.replace(/<[^>]+>/g, "")).trim();
+  }
+  const withoutRuby = raw
+    .replace(/<rt\b[^>]*>[\s\S]*?<\/rt>/gi, "")
+    .replace(/<rp\b[^>]*>[\s\S]*?<\/rp>/gi, "");
+  return (
+    decodeEntitiesFull(withoutRuby.replace(/<[^>]+>/g, " "))
+      .replace(/\s+/g, " ")
+      // The space that replaced a tag is right between "Lesson" and "5"; it is also right
+      // before the ":" that followed `</span>`. Tidying it back off punctuation is what keeps
+      // "<span>Lesson</span><span>5</span>: Greetings" reading as a human wrote it. This also
+      // normalises a label that was authored with a space before its colon — a cosmetic
+      // change, and one only a newly-registered book can ever see.
+      .replace(/\s+([,;:.!?)\]])/g, "$1")
+      .replace(/([([])\s+/g, "$1")
+      .trim()
+  );
+}
+
 // EPUB chapter <title> tags commonly follow "<page title>, <book title>" — the book
 // title repeats identically on every chapter and carries no per-chapter information, so
 // it's dropped by keeping only the text before the first comma. Within what's left, a
@@ -300,8 +382,8 @@ function decodeHtmlEntities(text) {
 // a label, and this needs to read naturally as a short human-facing chapter reference.
 // This is the FALLBACK tier used only when the EPUB has no usable navigation document —
 // see listExternalChapters() below for the preferred, spec-grounded source.
-function shortenChapterTitle(rawTitle) {
-  const pageTitle = decodeHtmlEntities(rawTitle).split(",")[0].trim();
+function shortenChapterTitle(rawTitle, labelDecoding) {
+  const pageTitle = decodeLabelMarkup(rawTitle, labelDecoding).split(",")[0].trim();
   const segments = pageTitle
     .split(":")
     .map((s) => s.trim())
@@ -309,10 +391,10 @@ function shortenChapterTitle(rawTitle) {
   return segments.slice(0, 2).join(": ");
 }
 
-function describeChapterFromTitleTag(epubPath, number) {
+function describeChapterFromTitleTag(epubPath, number, labelDecoding) {
   const { content } = loadChapterEntry(epubPath, number);
   const match = stripInertMarkup(content).match(TITLE_TAG_PATTERN);
-  const shortened = match ? shortenChapterTitle(match[1]) : "";
+  const shortened = match ? shortenChapterTitle(match[1], labelDecoding) : "";
   return shortened || `chapter ${number}`;
 }
 
@@ -363,7 +445,7 @@ const NAV_A_TAG_PATTERN = /<a\b[^>]*\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')[^>]*>([
 // non-greedy `</a>` match ran past.
 const NAV_A_OPEN_PATTERN = /<a\b/g;
 
-function parseNavXhtmlToc(xhtml) {
+function parseNavXhtmlToc(xhtml, labelDecoding) {
   const tocXml = isolateNavToc(xhtml);
   if (!tocXml) {
     return { entries: [], declaredCount: 0 };
@@ -372,7 +454,7 @@ function parseNavXhtmlToc(xhtml) {
   const entries = [];
   for (const m of tocXml.matchAll(NAV_A_TAG_PATTERN)) {
     const href = m[1] ?? m[2];
-    const label = decodeHtmlEntities(m[3].replace(/<[^>]+>/g, "")).trim();
+    const label = decodeLabelMarkup(m[3], labelDecoding);
     if (href && label) {
       entries.push({ href, label });
     }
@@ -407,7 +489,7 @@ function isolateNavMap(ncxXml) {
 const NCX_LABEL_PATTERN = /<navLabel\b[^>]*>\s*<text\b[^>]*>([\s\S]*?)<\/text>/i;
 const NCX_CONTENT_PATTERN = /<content\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)')/i;
 
-function parseNcxNavMap(ncxXml) {
+function parseNcxNavMap(ncxXml, labelDecoding) {
   const navMapXml = isolateNavMap(ncxXml);
   if (!navMapXml) {
     return { entries: [], declaredCount: 0, skipped: [] };
@@ -423,9 +505,7 @@ function parseNcxNavMap(ncxXml) {
 
     const labelMatch = NCX_LABEL_PATTERN.exec(slice);
     const contentMatch = NCX_CONTENT_PATTERN.exec(slice);
-    const label = labelMatch
-      ? decodeHtmlEntities(labelMatch[1].replace(/<[^>]+>/g, "")).trim()
-      : "";
+    const label = labelMatch ? decodeLabelMarkup(labelMatch[1], labelDecoding) : "";
     const href = contentMatch ? (contentMatch[1] ?? contentMatch[2]) : "";
 
     if (!label || !href) {
@@ -493,12 +573,15 @@ function resolveHrefToSpinePosition(href, baseDir, chapters) {
 // <spine toc="..."> or a media-type fallback) — returns null if neither exists, isn't
 // found in the archive, or parses to zero entries, so the caller can fall through to the
 // <title>-tag heuristic.
-function resolveNavSource(entries, manifestItems, tocId) {
+function resolveNavSource(entries, manifestItems, tocId, labelDecoding) {
   const navItem = findManifestItemByProperty(manifestItems, "nav");
   if (navItem) {
     const navEntry = entries.find((e) => e.name === navItem.href);
     if (navEntry) {
-      const parsed = parseNavXhtmlToc(stripInertMarkup(navEntry.data.toString("utf-8")));
+      const parsed = parseNavXhtmlToc(
+        stripInertMarkup(navEntry.data.toString("utf-8")),
+        labelDecoding,
+      );
       if (parsed.entries.length > 0) {
         return {
           rawEntries: parsed.entries,
@@ -515,7 +598,10 @@ function resolveNavSource(entries, manifestItems, tocId) {
   if (ncxItem) {
     const ncxEntry = entries.find((e) => e.name === ncxItem.href);
     if (ncxEntry) {
-      const parsed = parseNcxNavMap(stripInertMarkup(ncxEntry.data.toString("utf-8")));
+      const parsed = parseNcxNavMap(
+        stripInertMarkup(ncxEntry.data.toString("utf-8")),
+        labelDecoding,
+      );
       if (parsed.entries.length > 0) {
         return {
           rawEntries: parsed.entries,
@@ -550,7 +636,7 @@ function resolveNavSource(entries, manifestItems, tocId) {
 // the raw positions the nav actually named. listExternalChapters keeps only the ranges —
 // the diagnostics exist for the shape report, which is the whole point of WS2: the drops
 // were always happening, they were just never counted anywhere a human could see them.
-function analyzeExternalChapters(book, { log = () => {} } = {}) {
+function analyzeExternalChapters(book, { log = () => {}, labelDecoding = 1 } = {}) {
   const { entries, chapters, manifestItems, tocId } = book;
 
   const empty = {
@@ -564,7 +650,7 @@ function analyzeExternalChapters(book, { log = () => {} } = {}) {
     rawCount: 0,
   };
 
-  const resolved = resolveNavSource(entries, manifestItems, tocId);
+  const resolved = resolveNavSource(entries, manifestItems, tocId, labelDecoding);
   if (!resolved) {
     return empty;
   }
@@ -667,8 +753,8 @@ function analyzeExternalChapters(book, { log = () => {} } = {}) {
   };
 }
 
-export function listExternalChapters(epubPath, { log = () => {} } = {}) {
-  return analyzeExternalChapters(loadEpub(epubPath), { log }).ranges;
+export function listExternalChapters(epubPath, { log = () => {}, labelDecoding = 1 } = {}) {
+  return analyzeExternalChapters(loadEpub(epubPath), { log, labelDecoding }).ranges;
 }
 
 // listExternalChapters() itself stays pure/uncached (so tests and any other caller get
@@ -680,11 +766,14 @@ export function listExternalChapters(epubPath, { log = () => {} } = {}) {
 // one book.
 const externalChaptersCache = new Map();
 
-function listExternalChaptersCached(epubPath) {
-  if (!externalChaptersCache.has(epubPath)) {
-    externalChaptersCache.set(epubPath, listExternalChapters(epubPath));
+function listExternalChaptersCached(epubPath, labelDecoding) {
+  // Keyed on the decoding version too: the labels are its output, so a memo that ignored it
+  // would hand one book's frozen labels to another book's build in the same process.
+  const key = `${labelDecoding}\u0000${epubPath}`;
+  if (!externalChaptersCache.has(key)) {
+    externalChaptersCache.set(key, listExternalChapters(epubPath, { labelDecoding }));
   }
-  return externalChaptersCache.get(epubPath);
+  return externalChaptersCache.get(key);
 }
 
 /**
@@ -699,8 +788,8 @@ function listExternalChaptersCached(epubPath) {
  * wording when even that yields nothing — so callers can drop the result
  * straight into an "in ___" phrase no matter which tier answered.
  */
-export function describeChapter(epubPath, number) {
-  const externalChapters = listExternalChaptersCached(epubPath);
+export function describeChapter(epubPath, number, { labelDecoding = 1 } = {}) {
+  const externalChapters = listExternalChaptersCached(epubPath, labelDecoding);
   const match = externalChapters.find(
     (chapter) => number >= chapter.firstChapterNumber && number <= chapter.lastChapterNumber,
   );
@@ -708,7 +797,7 @@ export function describeChapter(epubPath, number) {
     return match.label;
   }
 
-  return describeChapterFromTitleTag(epubPath, number);
+  return describeChapterFromTitleTag(epubPath, number, labelDecoding);
 }
 
 // The image-aware extraction prompt (docs/epub-extraction-prompt.md) tells the model to
@@ -948,7 +1037,7 @@ function detectNonUtf8(content) {
  * collapsed duplicate, a spine file no nav entry ever named), and a book that degrades on
  * every axis currently looks exactly like a book that parses cleanly.
  */
-export function inspectEpubStructure(epubPath) {
+export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
   const book = loadEpub(epubPath);
   const { entries, chapters } = book;
   const byName = new Map(entries.map((entry) => [entry.name, entry]));
@@ -977,7 +1066,7 @@ export function inspectEpubStructure(epubPath) {
     };
   });
 
-  const nav = analyzeExternalChapters(book);
+  const nav = analyzeExternalChapters(book, { labelDecoding });
   const namedPositions = new Set(nav.named);
   const invertedIndexes = new Set(nav.inverted.map((entry) => entry.index));
 
@@ -1009,7 +1098,7 @@ export function inspectEpubStructure(epubPath) {
     .map((file) => ({
       number: file.number,
       href: file.href,
-      fallbackLabel: describeChapterFromTitleTag(epubPath, file.number),
+      fallbackLabel: describeChapterFromTitleTag(epubPath, file.number, labelDecoding),
     }));
 
   // Two different archive entries landing on one cache path: the same relative filename

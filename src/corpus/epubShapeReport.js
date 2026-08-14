@@ -42,8 +42,8 @@ function rangeText(first, last) {
  * Read-only and free. Everything it reports is a degradation that happens today without any
  * message at all.
  */
-export function buildShapeReport(epubPath, { cache = null } = {}) {
-  const inspection = inspectEpubStructure(epubPath);
+export function buildShapeReport(epubPath, { cache = null, labelDecoding = 1 } = {}) {
+  const inspection = inspectEpubStructure(epubPath, { labelDecoding });
 
   const lessons = inspection.lessons.map((lesson) => ({
     ...lesson,

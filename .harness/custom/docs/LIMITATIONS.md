@@ -1554,3 +1554,28 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   `.epub-hash` file in the book's output folder) before clearing anything.
 - **When to revisit:** if this gets used often, accept `--book <slug> --output-root <dir>` and
   resolve through `resolveBookEpubPath` the way `assemble` already does.
+
+## The entity decoder is new-books-only, and the existing book stays on v1 forever
+
+- **What:** `resolveLabelDecoding` returns the version stamped in the book's `book.json`. A book
+  registered before that field existed reports v1 and keeps the old five-entity decoder, including
+  its "Lesson5" tag-stripping, for good.
+- **Why:** a label becomes a live Anki deck name. Changing it does not rename the deck; it creates a
+  new one, leaving every existing note and its scheduling behind in the old deck. The re-file path
+  that could migrate an existing book does not exist yet and is opt-in and previewed when it does.
+- **Impact:** the delivered book keeps whatever its labels currently are, correct or not, until
+  someone runs that migration deliberately. Two books in the same library can decode labels
+  differently, which is intended but will read as an inconsistency to anyone who does not know why.
+- **When to revisit:** when the previewed one-time re-file exists and has been proven on a probe
+  profile. Migrating means bumping the marker for that one book and re-delivering.
+
+## v2 label decoding tidies spaces around punctuation
+
+- **What:** after replacing an inline tag with a space, v2 removes the space before `,;:.!?)]` and
+  after `([`.
+- **Why:** the space that correctly separates "Lesson" from "5" is the same space that would sit
+  before the ":" that followed `</span>`. Without the tidy, "Lesson 5 : Greetings" reaches the deck.
+- **Impact:** a label deliberately authored with a space before its colon is normalised too. Cosmetic,
+  and only a newly-registered book can see it.
+- **When to revisit:** if a language turns up where a space before punctuation is meaningful (French
+  typography uses one before `:` and `?`), this needs to be language-aware.

@@ -1,7 +1,7 @@
 import { CATEGORIES } from "../model/categories.js";
 import { validateCorpus } from "../model/index.js";
 import { slugify } from "../util/slugify.js";
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runCategorizeClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { chunk } from "../util/chunk.js";
 import { stripMarkdownFence } from "../util/markdownFence.js";
 

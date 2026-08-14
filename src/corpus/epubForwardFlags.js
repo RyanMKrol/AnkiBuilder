@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile, describeChapter } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
 import { ensureTaughtIndex as defaultEnsureTaughtIndex } from "./epubTaughtIndex.js";
-import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { runForwardFlagsClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { extractJsonObjectText } from "../util/promptTemplate.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -156,10 +156,15 @@ export function flagForwardConcerns({
   targetLanguage,
   bookConventions = null,
   log = () => {},
-  runClaude = defaultRunClaude,
+  // Deliberately undefined-by-default rather than defaulted here: the taught-index build below is a
+  // DIFFERENT pass with its own pinning (see epubLlmRunClaude.js), and defaulting here would have
+  // forwarded this pass's runner into it, silently pinning a whole-book read to the flag pass's
+  // knobs. An injected stub is still forwarded, which is what tests rely on.
+  runClaude,
   ensureTaughtIndex = defaultEnsureTaughtIndex,
   libraryHomeDir,
 } = {}) {
+  const runFlagClaude = runClaude ?? defaultRunClaude;
   if (candidateItems.length === 0) {
     return { items: candidateItems, flagged: [] };
   }
@@ -225,7 +230,7 @@ export function flagForwardConcerns({
 
   let flagEntries;
   try {
-    flagEntries = parseForwardFlagResponse(runClaude(prompt));
+    flagEntries = parseForwardFlagResponse(runFlagClaude(prompt));
   } catch (error) {
     log(`forward flag pass: failed (${error.message}) — leaving all items unflagged by this pass`);
     return { items: candidateItems, flagged: [] };

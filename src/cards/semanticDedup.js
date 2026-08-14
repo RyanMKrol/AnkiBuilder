@@ -1,7 +1,7 @@
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runSemanticDedupClaude as defaultRunClaude } from "../translate/runClaude.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 

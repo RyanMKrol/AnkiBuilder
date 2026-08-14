@@ -1557,3 +1557,44 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** add a second and third chapter fixture (early and late) when a prompt edit ever
   disagrees with the chapter-25 result, and persist the mined pattern map if the de-dup fixture is
   ever used to justify a model downgrade.
+
+## Per-pass pinning is thirteen more env scopes, and the defaults are calibrated on one book
+
+- **What:** every model pass now resolves its model, effort and timeout through its own
+  `ANKI_BUILDER_<PASS>_*` triple before its family's and the unified pair. Extraction defaults to
+  effort `high` with a 25-minute ceiling, cross-lesson notes to 20 minutes, conventions and the
+  taught index to 15.
+- **Why:** one knob covered chapter extraction (silent, unrecoverable misses) and the pedagogical
+  sort (mechanically validated, fails open), so tuning either re-tuned the other. The timeout had to
+  move with the scope or raising effort would just have converted a quality knob into a mid-pass
+  abort.
+- **Impact:** thirteen scopes is more surface than one, and nothing enforces that a pass's runner
+  matches its scope name beyond the wiring itself. The raised ceilings are wall-clock numbers
+  measured against one book (a 57-chapter Japanese textbook) on one machine; a much longer chapter
+  could still hit 25 minutes, and the failure then looks like a timeout rather than "this chapter is
+  too big for one call". Extraction at `high` also costs more per chapter than it did, and nothing
+  measures whether the extra effort is buying anything except the eval fixture, run by hand.
+- **When to revisit:** run the extraction fixture at medium and at high on the same chapter and
+  compare, rather than assuming. If a timeout is ever hit legitimately, split the chapter rather than
+  raising the number again.
+
+## The conventions merge is structural, and its coverage check only reports
+
+- **What:** the whole-book conventions pass now runs in batches of 12 chapters. Each batch's response
+  must quote every one of its chapters' `<title>` back, checked against the cached file, and the
+  batch documents are merged by grouping them under one copy of each `##` heading with a
+  "**Chapters 13-24:**" label per block.
+- **Why:** the pass used to take all 57 chapters in one call under a 10-minute ceiling and
+  self-certify that it had read them all. Batching gives it a partial-progress path and a per-range
+  blame. The merge is structural rather than a second model call because a blending pass would be one
+  more place the book's conventions could be quietly rewritten, and the range labels are worth
+  keeping anyway.
+- **Impact:** two things. (1) The merged document repeats itself: five batches means up to five
+  blocks under "Placeholder Notation", and the extraction prompt embeds the whole thing, so the
+  grounding text is longer and partly redundant. (2) The coverage check never fails the run. A batch
+  that quotes no anchors at all still produces a document, with a `[COVERAGE SHORTFALL]` line in the
+  log that nobody is required to read. That is the deliberate trade from the ruling: hard-failing the
+  one pass that onboards a book on a fragile anchor trades a silent gap for a hard block.
+- **When to revisit:** if the merged document grows unwieldy, add a single de-duplicating pass over
+  the merged text rather than merging at generation time. If shortfall lines turn out to be common
+  and real, surface them in preflight rather than only in the assemble log.

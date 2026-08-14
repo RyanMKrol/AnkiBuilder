@@ -3,7 +3,7 @@ import { fileURLToPath } from "url";
 import { basename, dirname, join, resolve } from "path";
 import { writeFileAtomic, backupFileOnce } from "../util/atomicWrite.js";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runCrossLessonClaude as defaultRunClaude } from "../translate/runClaude.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 

@@ -222,3 +222,116 @@ test("async: a hung child is killed at the timeout and reported", async () => {
     assert.ok(children.every((child) => child.killed));
   });
 });
+
+// ---------------------------------------------------------------------------
+// Per-pass scopes. The pass's own scope wins over its family's, which wins over the unified pair,
+// which wins over the pass's own built-in default — and the TIMEOUT resolves down the same chain,
+// which is the point: raising a slow pass's effort without its timeout would turn a quality knob
+// into a mid-pass abort.
+// ---------------------------------------------------------------------------
+
+function pinningFor(env, options) {
+  return withEnv(env, () => {
+    let seen;
+    let opts;
+    runClaudeWithPrompt("p", {
+      ...options,
+      spawn: (cmd, args, spawnOpts) => {
+        seen = args;
+        opts = spawnOpts;
+        return ok();
+      },
+    });
+    return { model: seen[2], effort: seen[4], timeout: opts.timeout };
+  });
+}
+
+const CLEAR = {
+  ANKI_BUILDER_EXTRACT_MODEL: undefined,
+  ANKI_BUILDER_EXTRACT_EFFORT: undefined,
+  ANKI_BUILDER_EXTRACT_TIMEOUT_MS: undefined,
+  ANKI_BUILDER_EPUB_LLM_MODEL: undefined,
+  ANKI_BUILDER_EPUB_LLM_EFFORT: undefined,
+  ANKI_BUILDER_EPUB_LLM_TIMEOUT_MS: undefined,
+  ANKI_BUILDER_LLM_MODEL: undefined,
+  ANKI_BUILDER_LLM_EFFORT: undefined,
+  ANKI_BUILDER_LLM_TIMEOUT_MS: undefined,
+};
+
+const SCOPED = {
+  scopeEnvPrefix: ["ANKI_BUILDER_EXTRACT", "ANKI_BUILDER_EPUB_LLM"],
+  defaults: { effort: "high", timeoutMs: 1_500_000 },
+};
+
+test("a pass's own built-in default applies when nothing is set in the environment", () => {
+  const pinning = pinningFor(CLEAR, SCOPED);
+  assert.equal(pinning.model, "claude-sonnet-5");
+  assert.equal(pinning.effort, "high");
+  assert.equal(pinning.timeout, 1_500_000);
+});
+
+test("the family scope still moves a pass that has its own scope — nothing already set breaks", () => {
+  const pinning = pinningFor(
+    { ...CLEAR, ANKI_BUILDER_EPUB_LLM_MODEL: "claude-haiku-4-5-20251001" },
+    SCOPED,
+  );
+  assert.equal(pinning.model, "claude-haiku-4-5-20251001");
+});
+
+test("the pass's own scope beats its family's", () => {
+  const pinning = pinningFor(
+    {
+      ...CLEAR,
+      ANKI_BUILDER_EXTRACT_MODEL: "claude-opus-5",
+      ANKI_BUILDER_EPUB_LLM_MODEL: "claude-haiku-4-5-20251001",
+      ANKI_BUILDER_LLM_MODEL: "claude-sonnet-5",
+    },
+    SCOPED,
+  );
+  assert.equal(pinning.model, "claude-opus-5");
+});
+
+test("an env setting beats the pass's built-in default, at every level", () => {
+  assert.equal(pinningFor({ ...CLEAR, ANKI_BUILDER_LLM_EFFORT: "low" }, SCOPED).effort, "low");
+  assert.equal(pinningFor({ ...CLEAR, ANKI_BUILDER_EPUB_LLM_EFFORT: "low" }, SCOPED).effort, "low");
+  assert.equal(pinningFor({ ...CLEAR, ANKI_BUILDER_EXTRACT_EFFORT: "low" }, SCOPED).effort, "low");
+});
+
+test("the timeout resolves down the same chain as model and effort", () => {
+  assert.equal(pinningFor({ ...CLEAR, ANKI_BUILDER_LLM_TIMEOUT_MS: "111" }, SCOPED).timeout, 111);
+  assert.equal(
+    pinningFor(
+      { ...CLEAR, ANKI_BUILDER_LLM_TIMEOUT_MS: "111", ANKI_BUILDER_EPUB_LLM_TIMEOUT_MS: "222" },
+      SCOPED,
+    ).timeout,
+    222,
+  );
+  assert.equal(
+    pinningFor(
+      {
+        ...CLEAR,
+        ANKI_BUILDER_LLM_TIMEOUT_MS: "111",
+        ANKI_BUILDER_EPUB_LLM_TIMEOUT_MS: "222",
+        ANKI_BUILDER_EXTRACT_TIMEOUT_MS: "333",
+      },
+      SCOPED,
+    ).timeout,
+    333,
+  );
+});
+
+test("a pass with no built-in timeout still gets the shared 10-minute floor", () => {
+  const pinning = pinningFor(CLEAR, {
+    scopeEnvPrefix: ["ANKI_BUILDER_SORT", "ANKI_BUILDER_EPUB_LLM"],
+  });
+  assert.equal(pinning.timeout, 10 * 60 * 1000);
+  assert.equal(pinning.effort, "medium");
+});
+
+test("a plain string scopeEnvPrefix still works, so an old call site is untouched", () => {
+  const pinning = pinningFor(
+    { ...CLEAR, ANKI_BUILDER_EPUB_LLM_MODEL: "claude-opus-5" },
+    { scopeEnvPrefix: "ANKI_BUILDER_EPUB_LLM" },
+  );
+  assert.equal(pinning.model, "claude-opus-5");
+});

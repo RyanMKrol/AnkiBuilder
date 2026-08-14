@@ -1,5 +1,5 @@
 import { renderExtractionPrompt } from "./epubLlmPrompt.js";
-import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { runExtractionClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { CATEGORIES } from "../model/categories.js";
 
 // The model is told to respond with ONLY a JSON array, but in practice two

@@ -9,7 +9,7 @@ import { autoTrim } from "./trimSilence.js";
 import { withEndMarker, usesEndMarker } from "./ttsMarker.js";
 import { TTS_MODEL } from "./ttsModel.js";
 import { generateCardKanji } from "./kanjiOrthography.js";
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runKanjiOrthographyClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { httpError } from "../util/httpError.js";
 
 // On-demand "kana+kanji" audio-variant generation for one card, for the dashboard's Generate (kanji)

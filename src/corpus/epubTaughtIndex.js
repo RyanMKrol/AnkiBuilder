@@ -3,7 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath, loadTaughtIndex, saveTaughtIndex } from "./epubLibrary.js";
-import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { runTaughtIndexClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { extractJsonObjectText } from "../util/promptTemplate.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));

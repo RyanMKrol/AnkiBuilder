@@ -10,8 +10,12 @@ import {
 import { sortItemsPedagogically } from "../corpus/pedagogicalSort.js";
 import { assembleCorpusFromLessonWords } from "../corpus/lessonCorpus.js";
 import { dedupeByPattern } from "../cards/semanticDedup.js";
-import { runClaude as epubLlmRunClaude } from "../corpus/epubLlmRunClaude.js";
-import { runClaude as translateRunClaude } from "../translate/runClaude.js";
+import {
+  runExtractionClaude,
+  runForwardFlagsClaude,
+  runPedagogicalSortClaude,
+} from "../corpus/epubLlmRunClaude.js";
+import { runCategorizeClaude, runSemanticDedupClaude } from "../translate/runClaude.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { diffItemSets, orderDisagreement } from "./itemSetDiff.js";
 import { formatItemSetReport, formatIdSetReport } from "./report.js";
@@ -103,7 +107,7 @@ const extractionFixture = {
   pass: "chapter extraction",
   module: "src/corpus/epubLlmExtract.js",
   prompt: "docs/epub-extraction-prompt.md",
-  liveRunClaude: epubLlmRunClaude,
+  liveRunClaude: runExtractionClaude,
   describe() {
     const chapterPath = join(FIXTURE_DIR, "chapters", `${REFERENCE_CHAPTER}.xhtml`);
     return [
@@ -167,7 +171,7 @@ const forwardFlagsFixture = {
   pass: "forward flag (premature-item) review",
   module: "src/corpus/epubForwardFlags.js",
   prompt: "docs/epub-forward-flag-index-prompt.md",
-  liveRunClaude: epubLlmRunClaude,
+  liveRunClaude: runForwardFlagsClaude,
   describe() {
     return [
       `input:     the ${REFERENCE_CHAPTER}.json items + ${bookPath("taught-index.json")}`,
@@ -237,7 +241,7 @@ const sortFixture = {
   pass: "pedagogical sort",
   module: "src/corpus/pedagogicalSort.js",
   prompt: "docs/pedagogical-sort-prompt.md",
-  liveRunClaude: epubLlmRunClaude,
+  liveRunClaude: runPedagogicalSortClaude,
   describe() {
     return [
       `input:     the ${REFERENCE_CHAPTER}.json items, deterministically shuffled`,
@@ -301,7 +305,7 @@ const categoriesFixture = {
   pass: "lesson-word category assignment",
   module: "src/corpus/lessonCorpus.js",
   prompt: "(inline, buildCategorizePrompt)",
-  liveRunClaude: translateRunClaude,
+  liveRunClaude: runCategorizeClaude,
   describe() {
     return [
       `input:     the English glosses of ${bookPath("corpora", `${REFERENCE_CHAPTER}.json`)}`,
@@ -361,7 +365,7 @@ const dedupFixture = {
   pass: "semantic de-dup",
   module: "src/cards/semanticDedup.js",
   prompt: "docs/semantic-dedup-prompt.md",
-  liveRunClaude: translateRunClaude,
+  liveRunClaude: runSemanticDedupClaude,
   deckPath: repoPath("output", "epubs", "japanese-for-busy-people-book-1-kana", "chapter-10"),
   describe() {
     return [

@@ -613,6 +613,62 @@ and `taught-index.json` (see the `.gitignore` re-include block). They are months
 two expensive one-time model passes, and they are what the eval fixtures below read as their
 reference data.
 
+## Model passes: pinning, env scopes and timeouts
+
+Every `claude -p` call in the pipeline goes through `runClaudeWithPrompt` (`src/util/runClaude.js`):
+prompt on stdin, a hard timeout, one retry. What differs per pass is the **pinning** — model, effort
+and timeout — and each pass now has its own knobs rather than sharing one with a pass whose blast
+radius is nothing like it. Chapter extraction, whose misses are silent and unrecoverable, used to
+share a knob with the pedagogical sort, which is a permutation that is checked mechanically and fails
+open.
+
+Resolution order, most specific wins:
+
+```
+ANKI_BUILDER_<PASS>_MODEL   →  ANKI_BUILDER_<FAMILY>_MODEL   →  ANKI_BUILDER_LLM_MODEL
+ANKI_BUILDER_<PASS>_EFFORT  →  ANKI_BUILDER_<FAMILY>_EFFORT  →  ANKI_BUILDER_LLM_EFFORT
+ANKI_BUILDER_<PASS>_TIMEOUT_MS → ANKI_BUILDER_<FAMILY>_TIMEOUT_MS → ANKI_BUILDER_LLM_TIMEOUT_MS
+```
+
+…then the pass's own built-in default, then Sonnet / medium / 10 minutes. The two family prefixes
+(`ANKI_BUILDER_EPUB_LLM`, `ANKI_BUILDER_TRANSLATE`) still work exactly as before, so anything you
+already set keeps moving the passes it always moved.
+
+**The timeout travels with the scope, and that is load-bearing.** Effort and wall clock are the same
+decision. Raising a slow agentic pass to `high` under a shared 10-minute ceiling does not buy quality,
+it buys a hard mid-pass abort with a misleading error, after the money is spent.
+
+| pass                | module                              | prompt                                   | model / effort              | env scope                      | batched?                                        | typical wall clock |
+| ------------------- | ----------------------------------- | ---------------------------------------- | --------------------------- | ------------------------------ | ----------------------------------------------- | ------------------ |
+| chapter extraction  | `src/corpus/epubLlmExtract.js`      | `docs/epub-extraction-prompt.md`         | sonnet / **high**, 25 min   | `ANKI_BUILDER_EXTRACT`         | no — one call per chapter                       | 4-8 min            |
+| book conventions    | `src/corpus/epubBookConventions.js` | `docs/epub-book-conventions-prompt.md`   | sonnet / medium, 15 min     | `ANKI_BUILDER_CONVENTIONS`     | **yes** — chapter ranges, merged                | 3-6 min per batch  |
+| taught index        | `src/corpus/epubTaughtIndex.js`     | `docs/epub-taught-index-prompt.md`       | sonnet / medium, 15 min     | `ANKI_BUILDER_TAUGHT_INDEX`    | no — once per book                              | 3-8 min            |
+| forward flags       | `src/corpus/epubForwardFlags.js`    | `docs/epub-forward-flag-index-prompt.md` | sonnet / medium, 10 min     | `ANKI_BUILDER_FORWARD_FLAGS`   | no                                              | 30-90 s            |
+| pedagogical sort    | `src/corpus/pedagogicalSort.js`     | `docs/pedagogical-sort-prompt.md`        | sonnet / medium, 10 min     | `ANKI_BUILDER_SORT`            | no                                              | 30-90 s            |
+| fill-in-the-blank   | `src/cards/fillInBlank.js`          | `docs/fill-in-blank-prompt.md`           | sonnet / medium, 10 min     | `ANKI_BUILDER_FILL_BLANK`      | no                                              | 1-3 min            |
+| translation         | `src/translate/index.js`            | `docs/translate-prompts.md`              | sonnet / medium, 10 min     | `ANKI_BUILDER_TRANSLATE`       | one call per group; retry halves the failed set | 1-4 min            |
+| romanization eval   | `src/translate/romanizationEval.js` | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_ROMANIZATION`    | yes                                             | 30-90 s            |
+| category assignment | `src/corpus/lessonCorpus.js`        | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_CATEGORIZE`      | yes                                             | 20-60 s            |
+| semantic de-dup     | `src/cards/semanticDedup.js`        | `docs/semantic-dedup-prompt.md`          | sonnet / medium, 10 min     | `ANKI_BUILDER_DEDUP`           | no                                              | 30-90 s            |
+| number readings     | `src/cards/numberReadings.js`       | `docs/number-reading-prompt.md`          | sonnet / medium, 10 min     | `ANKI_BUILDER_NUMBER_READINGS` | no                                              | 20-60 s            |
+| cross-lesson notes  | `src/cards/crossLessonNotes.js`     | `docs/cross-lesson-note-prompt.md`       | sonnet / medium, **20 min** | `ANKI_BUILDER_CROSS_LESSON`    | no — one call, prompt grows with book progress  | 2-6 min            |
+| kanji orthography   | `src/audio/kanjiOrthography.js`     | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_KANJI`           | no — per card, on demand                        | 5-15 s             |
+
+Family fallbacks: everything in the first six rows also honors `ANKI_BUILDER_EPUB_LLM_*`; everything
+in the last seven also honors `ANKI_BUILDER_TRANSLATE_*`.
+
+Two of those defaults are deliberate departures from Sonnet-medium-10-minutes:
+
+- **Extraction runs at `high`.** It is the only pass whose failure is both silent and unrecoverable,
+  and it is agentic — the model reads the chapter file itself, against several competing inclusion
+  rules, which is exactly where effort buys reading discipline. Its ceiling goes to 25 minutes to
+  match: a measured live run of one mid-book chapter at medium already took over four minutes.
+- **The conventions pass is batched.** It used to hand the model all 57 chapter files in one call
+  under a 10-minute cap and then self-certify ("All 57 chapter files were read in full") with no
+  partial-progress path — the silent-degradation signature, in the artifact that then steers every
+  chapter extraction. It now runs over chapter ranges and merges, and each batch has to quote a
+  per-chapter anchor that is verified against the cached file (see below).
+
 ## Per-pass eval fixtures
 
 Every prompt in `docs/` is edited by hand, and nothing else in the repo can tell an improvement from

@@ -57,6 +57,10 @@ export function toRenderCard(item) {
     audioTrim: item.audioTrim || null,
     audioFilter: item.audioFilter || null,
     excluded: !!item.excluded,
+    // Who excluded it. "" means a human decision or a file written before provenance
+    // existed; a script name means a sweep, which is the case a reviewer should re-check.
+    excludedBy: item.excludedBy || "",
+    excludedReason: item.excludedReason || "",
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,
   };
@@ -78,6 +82,10 @@ export function toIncompleteRenderCard(item) {
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,
     excluded: !!item.excluded,
+    // Who excluded it. "" means a human decision or a file written before provenance
+    // existed; a script name means a sweep, which is the case a reviewer should re-check.
+    excludedBy: item.excludedBy || "",
+    excludedReason: item.excludedReason || "",
   };
 }
 
@@ -95,6 +103,10 @@ export function toCorpusRenderCard(item) {
     note: item.note || item.cardNote || "",
     reviewNote: item.reviewNote || "",
     excluded: !!item.excluded,
+    // Who excluded it. "" means a human decision or a file written before provenance
+    // existed; a script name means a sweep, which is the case a reviewer should re-check.
+    excludedBy: item.excludedBy || "",
+    excludedReason: item.excludedReason || "",
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,
   };

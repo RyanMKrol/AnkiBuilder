@@ -86,6 +86,12 @@ export function dedupeByPattern({
     const pattern = typeof entry.pattern === "string" ? entry.pattern.trim() : "";
     const reason = typeof entry.reason === "string" ? entry.reason.trim() : "";
     item.excluded = true;
+    // Provenance: this is a machine judgement, not a reviewed one. `reviewNote` already carries the
+    // prose, but it is free text a human also writes into, so it cannot be counted or filtered on.
+    item.excludedBy = "semantic-dedup";
+    item.excludedReason = [pattern ? `pattern: ${pattern}` : "", reason]
+      .filter(Boolean)
+      .join(" — ");
     item.reviewNote = [
       "Excluded by the semantic de-dup pass.",
       pattern ? `Pattern: ${pattern}.` : "",

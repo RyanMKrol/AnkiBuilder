@@ -82,6 +82,17 @@ const CORPUS_SCHEMA = {
           // UI (a toggle, not a delete); `translate` drops excluded items when it builds cards.json,
           // and the dedup-library copy saved at review time omits them too.
           excluded: { type: "boolean" },
+          // Who excluded it, and why. A script's `--apply` exclusion used to be byte-identical to a
+          // human's reviewed decision, which made 95 excluded cards unauditable: nobody could tell a
+          // judgement call from a sweep, and the extras duplicate check alone false-positives on
+          // roughly a third of the groups it reports. BOTH FIELDS ARE OPTIONAL, and absent means
+          // human-or-legacy — every file written before this existed stays valid, and a human
+          // exclusion made in the dashboard is still allowed to say nothing.
+          //
+          // `excludedBy` is "human" or the script's name (e.g. "extras-duplicate-check").
+          // `excludedReason` is one short line: what the tool concluded, in its own words.
+          excludedBy: { type: "string" },
+          excludedReason: { type: ["string", "null"] },
         },
         additionalProperties: false,
       },
@@ -204,6 +215,17 @@ const CARDS_SCHEMA = {
           // Set by the dashboard translate review to drop a card from the built deck (reversible
           // flag, not a delete). The deck build skips excluded cards.
           excluded: { type: "boolean" },
+          // Who excluded it, and why. A script's `--apply` exclusion used to be byte-identical to a
+          // human's reviewed decision, which made 95 excluded cards unauditable: nobody could tell a
+          // judgement call from a sweep, and the extras duplicate check alone false-positives on
+          // roughly a third of the groups it reports. BOTH FIELDS ARE OPTIONAL, and absent means
+          // human-or-legacy — every file written before this existed stays valid, and a human
+          // exclusion made in the dashboard is still allowed to say nothing.
+          //
+          // `excludedBy` is "human" or the script's name (e.g. "extras-duplicate-check").
+          // `excludedReason` is one short line: what the tool concluded, in its own words.
+          excludedBy: { type: "string" },
+          excludedReason: { type: ["string", "null"] },
         },
         additionalProperties: false,
       },

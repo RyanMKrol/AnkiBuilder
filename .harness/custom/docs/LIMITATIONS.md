@@ -1519,3 +1519,20 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   backups", which is not what `backupFileOnce` does; the file is kept, not overwritten.
 - **When to revisit:** switch it to `backupFileStamped` next time that file is open, and fix the doc
   sentence in the same commit.
+
+## Exclusion provenance is optional, so the 100 exclusions already on disk stay unattributable
+
+- **What:** cards and corpus items now carry optional `excludedBy` ("human" or a script/pass name)
+  and `excludedReason`. Absent means human-or-legacy. `setCardExcluded` (the dashboard toggle),
+  `semanticDedup` and `extras-duplicate-check --apply` stamp them; preflight counts them per unit;
+  the dashboard review badges a script-authored exclusion above the card's review note.
+- **Why:** making the fields required would invalidate every file written before they existed, which
+  is 100 excluded cards across two delivered collections. Backfilling them would be worse: there is
+  no record of which of those were reviewed decisions and which were sweeps, so any value written now
+  would be a guess presented as provenance.
+- **Impact:** preflight reports those 100 as "unattributed (pre-provenance or human)" and will keep
+  doing so forever. Provenance only becomes complete for exclusions made from here on. A card
+  excluded by a script and later re-included and re-excluded by a human reads as human, which is
+  correct but loses the earlier history (there is no exclusion log, only a current state).
+- **When to revisit:** if the unattributed count ever needs to go to zero, it has to be a human
+  reading each one, not a migration script.

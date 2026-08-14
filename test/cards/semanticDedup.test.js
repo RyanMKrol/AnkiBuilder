@@ -94,3 +94,21 @@ test("fails open on a malformed response, keeping every practice card", () => {
   assert.ok(result.items.every((i) => !i.excluded));
   assert.match(logged.join("\n"), /semantic de-dup: failed/);
 });
+
+// The pass is a machine judgement. `reviewNote` carries the prose, but it is free text a human also
+// writes into, so provenance needs its own field to be countable.
+test("stamps machine provenance on every card it excludes", () => {
+  const items = lesson();
+  dedupeByPattern({
+    items,
+    targetLanguage: "ja",
+    runClaude: reply([{ id: "fib-2", pattern: "[person] は [place] から", reason: "Third one." }]),
+  });
+
+  const excluded = items.find((i) => i.id === "fib-2");
+  assert.equal(excluded.excludedBy, "semantic-dedup");
+  assert.match(excluded.excludedReason, /pattern: \[person\] は \[place\] から — Third one\./);
+
+  const untouched = items.find((i) => i.id === "fib-1");
+  assert.equal("excludedBy" in untouched, false);
+});

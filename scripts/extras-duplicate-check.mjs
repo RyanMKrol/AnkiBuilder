@@ -77,6 +77,10 @@ for (const group of groups) {
     const unit = units.find((u) => u.unit === dup.unit);
     const item = unit.items.find((i) => i.id === dup.id);
     item.excluded = true;
+    // Provenance: this tool false-positives on roughly a third of the groups it reports, so its
+    // exclusions must stay tellable apart from a human's reviewed ones long after the run.
+    item.excludedBy = "extras-duplicate-check";
+    item.excludedReason = `duplicate of ${group.keeper.unit}/${group.keeper.id} ("${group.target}")`;
     const note = `Duplicate — same target already taught as ${group.keeper.unit}/${group.keeper.id} (excluded by extras-duplicate-check)`;
     item.reviewNote = item.reviewNote ? `${item.reviewNote} | ${note}` : note;
     unit.dirty = true;

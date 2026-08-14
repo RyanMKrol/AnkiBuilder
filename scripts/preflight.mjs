@@ -161,7 +161,34 @@ for (const dir of collectionDirs()) {
     console.log("  ✓ spacing       display text normalized for the script");
   }
 
-  // 6. Audio markers — heuristic, so a note rather than a failure.
+  // 6. Exclusion provenance — report-only. An exclusion a script applied is a machine judgement, and
+  //    the tools that make them false-positive often enough that the set is worth re-reading; a
+  //    human's reviewed decision is not. Cards written before `excludedBy` existed report as
+  //    unattributed, which is honest: nobody can now say which they were.
+  const excludedTotal = units.reduce((n, u) => n + u.items.filter((i) => i.excluded).length, 0);
+  if (excludedTotal > 0) {
+    const byScript = new Map();
+    let unattributed = 0;
+    for (const unit of units) {
+      for (const item of unit.items) {
+        if (!item.excluded) continue;
+        if (!item.excludedBy) unattributed++;
+        else if (item.excludedBy !== "human") {
+          const key = `${unit.unit} (${item.excludedBy})`;
+          byScript.set(key, (byScript.get(key) || 0) + 1);
+        }
+      }
+    }
+    const scripted = [...byScript.values()].reduce((n, c) => n + c, 0);
+    console.log(
+      `  · exclusions    ${excludedTotal} excluded card(s): ${scripted} script-authored, ` +
+        `${unattributed} unattributed (pre-provenance or human)`,
+    );
+    for (const [key, count] of [...byScript].sort())
+      console.log(`      ${key}: ${count} — re-read before shipping`);
+  }
+
+  // 7. Audio markers — heuristic, so a note rather than a failure.
   const stuck = units.flatMap((u) =>
     u.items.filter((i) => i.audioMarkerStuck && !i.excluded).map((i) => `${u.unit}/${i.id}`),
   );

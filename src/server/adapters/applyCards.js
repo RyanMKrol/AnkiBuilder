@@ -46,8 +46,17 @@ export function setCardExcluded(
 ) {
   const { cardsPath, data } = loadCards(runDir);
   const item = findItem(data, cardId);
-  if (excluded) item.excluded = true;
-  else delete item.excluded;
+  if (excluded) {
+    item.excluded = true;
+    // Provenance, so a reviewed decision is distinguishable from a script sweep. No reason: the
+    // dashboard toggle carries none, and inventing one would be worse than saying nothing.
+    item.excludedBy = "human";
+    delete item.excludedReason;
+  } else {
+    delete item.excluded;
+    delete item.excludedBy;
+    delete item.excludedReason;
+  }
   persist(cardsPath, data, validateCards);
   return { excluded: !!excluded };
 }

@@ -44,8 +44,8 @@ import { autoTrim } from "../src/audio/trimSilence.js";
 import { trimToRange } from "../src/audio/trimToRange.js";
 import { cleanupChain, isCleanupName, DEFAULT_CLEANUP } from "../src/audio/cleanupFilter.js";
 import { deriveCardAudio } from "../src/audio/index.js";
-import { validateCards } from "../src/model/index.js";
 import { writeFileAtomic } from "../src/util/atomicWrite.js";
+import { writeUnitJson } from "../src/util/unitWrite.js";
 
 const args = process.argv.slice(2);
 const apply = args.includes("--apply");
@@ -198,8 +198,7 @@ for (const dir of runDirs) {
   if (changed > 0) {
     lessons++;
     if (apply) {
-      validateCards(data);
-      writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
+      writeUnitJson(cardsPath, data, { reason: "clean-audio" });
     }
     console.log(`${apply ? "✓" : "would clean"} ${dir}: ${changed} card(s)`);
   }

@@ -4,13 +4,17 @@
 // where several counters climb in parallel (1-flat, 1-long, 1-general, 2-general, 3-flat…) — and returns
 // the full id order with ONLY those blocks shuffled. Non-number cards keep their exact positions, and
 // each block stays contiguous. cards.json is reordered to match; corpus.json (a subset) is reordered to follow the same
-// relative order. Backs up each changed file to <file>.pre-jumble.bak. See docs/pedagogical-sort-prompt.md
+// relative order. Backs up each changed file to <file>.pre-jumble-<stamp>.bak. See docs/pedagogical-sort-prompt.md
 // principle 6 / the SKILL "Jumble any run of sequential numbers" note.
 //
 // Usage: node scripts/jumble-number-runs.mjs [--dry] [file ...]   (no files → scans output/ cards.json)
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
+import { readFileSync, existsSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { runClaude } from "../src/translate/runClaude.js";
+import { writeUnitJson } from "../src/util/unitWrite.js";
+
+// Tag in the stamped backup name: <file>.pre-jumble-<YYYYMMDDHHmm>.bak
+const REASON = "jumble";
 
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
@@ -143,8 +147,7 @@ for (const file of files) {
   }
 
   cards.items = reorder(items, order);
-  writeBackup(file);
-  writeFileSync(file, JSON.stringify(cards, null, 2) + "\n");
+  writeUnitJson(file, cards, { reason: REASON });
   changed++;
 
   // Keep corpus.json (a subset — no fill-in-blank cards) in the same relative order.
@@ -152,14 +155,8 @@ for (const file of files) {
   if (existsSync(corpusPath)) {
     const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
     corpus.items = reorder(corpus.items || [], order);
-    writeBackup(corpusPath);
-    writeFileSync(corpusPath, JSON.stringify(corpus, null, 2) + "\n");
+    writeUnitJson(corpusPath, corpus, { reason: REASON });
   }
-}
-
-function writeBackup(f) {
-  const bak = f + ".pre-jumble.bak";
-  if (!existsSync(bak)) writeFileSync(bak, readFileSync(f));
 }
 
 console.error(

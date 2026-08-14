@@ -88,6 +88,37 @@ export function backupFileOnce(path, suffix) {
   return true;
 }
 
+/** Local-time YYYYMMDDHHmm, the stamp `backupFileStamped` puts in a backup filename. */
+function minuteStamp(now) {
+  const pad = (n) => String(n).padStart(2, "0");
+  return (
+    `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}` +
+    `${pad(now.getHours())}${pad(now.getMinutes())}`
+  );
+}
+
+/**
+ * Snapshots `path` to `<path>.pre-<reason>-<YYYYMMDDHHmm>.bak` and returns the backup path.
+ *
+ * The difference from `backupFileOnce` is which state you can get back to. `backupFileOnce` keeps
+ * the FIRST snapshot forever, so the second run of a tool has no restore point for the state it
+ * actually found: undoing it means rolling all the way back past the first run's work as well.
+ * Every run gets its own stamp here, so any single run is reversible on its own.
+ *
+ * Two runs within the same minute would land on the same name, so a `-2`, `-3`, … suffix is added
+ * rather than overwriting. Overwriting is the exact failure this function exists to prevent.
+ *
+ * `scripts/prune-baks.mjs` is the other half of the deal: stamped backups accumulate, so something
+ * has to age them out.
+ */
+export function backupFileStamped(path, reason, now = new Date()) {
+  const base = `${path}.pre-${reason}-${minuteStamp(now)}`;
+  let backupPath = `${base}.bak`;
+  for (let n = 2; existsSync(backupPath); n++) backupPath = `${base}-${n}.bak`;
+  copyFileAtomic(path, backupPath);
+  return backupPath;
+}
+
 /**
  * Copies `srcPath` to `destPath` atomically. Used for the multi-MB EPUB copies, where an
  * `existsSync`-then-`copyFileSync` from two concurrent first-time assembles of the same

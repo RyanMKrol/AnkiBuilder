@@ -1484,3 +1484,38 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if a stealth write is ever suspected, hash the JSON files only (about 3 MB)
   and keep size/mtime for the rest. If the suite ever legitimately needs to write into these trees,
   add an allowlist rather than widening the escape hatch.
+
+## Stamped .bak backups trade disk for reversibility, and nothing prunes them automatically
+
+- **What:** every `scripts/` write to a unit's `cards.json` / `corpus.json` now snapshots the old
+  file to `<file>.pre-<reason>-<YYYYMMDDHHmm>.bak` through `writeUnitJson`
+  (`src/util/unitWrite.js`), instead of `backupFileOnce`'s single first-run snapshot. Two runs
+  inside one minute get `-2`, `-3` suffixes rather than overwriting. `scripts/prune-baks.mjs` keeps
+  the newest N per unit, and always the newest backup of each individual file so a unit can never
+  end up with a corpus restore point and no cards one.
+- **Why:** an unstamped backup answers "what did this file look like before the tool ever ran",
+  which is the wrong question after the second run. There were already 330 backups (~10 MB) under
+  `output/` from the unstamped era, and re-running a tool silently left the state it found
+  unrecoverable.
+- **Impact:** backups now grow one pair per run per unit instead of one pair ever, and pruning is a
+  manual step nobody is prompted to take. Backup filenames are no longer predictable, so a doc or
+  script cannot name one; find them by glob. `writeUnitJson` also standardizes on a trailing
+  newline, so the first write by `extras-order` / `extras-duplicate-check` after this change adds
+  one to a file that lacked it (matching every other writer, and every file currently on disk).
+- **When to revisit:** if the backups become a nuisance, wire `prune-baks.mjs` into preflight as a
+  report line rather than making it automatic. Deleting a restore point should stay a decision.
+
+## `src/cards/crossLessonNotes.js` still uses the unstamped, first-run-only backup
+
+- **What:** the `prepare` pass and `scripts/enhance-card-notes.mjs` share
+  `enhanceLessonNotes`, which backs up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
+  writer was left on the old convention while the six `scripts/` writers moved to stamped backups.
+- **Why:** it sits on the `prepare` pipeline path rather than in `scripts/`, and other in-flight work
+  edits the same file. Changing it was out of scope for the change that introduced stamping.
+- **Impact:** re-running the enhance pass over a lesson keeps only the pre-first-run snapshot, so the
+  state the second run found is not recoverable from a `.bak`. It is recoverable from git now that
+  `cards.json` is tracked, which is why this was judged safe to defer.
+  `references/card-authoring-rules.md` also claims a re-run "overwrites their `.pre-enhance.bak`
+  backups", which is not what `backupFileOnce` does; the file is kept, not overwritten.
+- **When to revisit:** switch it to `backupFileStamped` next time that file is open, and fix the doc
+  sentence in the same commit.

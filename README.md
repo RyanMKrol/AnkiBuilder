@@ -212,6 +212,14 @@ Two related refusals live in the code rather than in test-author discipline: `li
 to a throwaway tmpdir under `node --test`, and `fetchElevenLabsTts` throws instead of calling the
 paid API when a test forgets to inject a `fetchImpl`.
 
+Anything under `scripts/` that rewrites a unit's `cards.json` or `corpus.json` goes through
+`writeUnitJson` (`src/util/unitWrite.js`): validate the document, snapshot the old file to
+`<file>.pre-<reason>-<YYYYMMDDHHmm>.bak`, write atomically, then re-read and validate what landed.
+The timestamp is the point. An unstamped `.bak` gives you the state before the _first_ run of a tool
+and nothing else, so undoing the second run means throwing away the first run's work too. Stamped
+backups accumulate, so `node scripts/prune-baks.mjs` (dry by default, `--apply` to delete, `--keep N`
+per unit) ages them out.
+
 ## Learn more
 
 - [`docs/PIPELINE.md`](./docs/PIPELINE.md) — how each stage works internally: dedup logic, prompt

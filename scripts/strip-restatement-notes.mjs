@@ -6,13 +6,17 @@
 // card glossed "This is a wine from France.") or re-gives the reading already in Pronunciation teaches
 // nothing and is noise — on a recognition card a restating hint even hands over the answer. This clears
 // any such field (sets it to null) in cards.json + corpus.json, backing up each changed file to
-// <file>.pre-strip.bak. It only removes PURE restatements; a field that restates and THEN adds a real
+// <file>.pre-strip-<stamp>.bak. It only removes PURE restatements; a field that restates and THEN adds a real
 // point is left alone (trim those by hand). See docs/epub-extraction-prompt.md ("never restate the card")
 // and the enhance pass, which also clears restatement notes going forward.
 //
 // Usage: node scripts/strip-restatement-notes.mjs [--dry] [file ...]   (no files → scans output/ cards.json)
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
+import { readFileSync, existsSync, readdirSync } from "fs";
 import { join, dirname } from "path";
+import { writeUnitJson } from "../src/util/unitWrite.js";
+
+// Tag in the stamped backup name: <file>.pre-strip-<YYYYMMDDHHmm>.bak
+const REASON = "strip";
 
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
@@ -118,8 +122,7 @@ for (const file of files) {
   };
 
   if (apply(cards.items)) {
-    writeBackup(file);
-    writeFileSync(file, JSON.stringify(cards, null, 2) + "\n");
+    writeUnitJson(file, cards, { reason: REASON });
     filesChanged++;
   }
   for (const m of todo.values()) {
@@ -132,15 +135,9 @@ for (const file of files) {
   if (existsSync(corpusPath)) {
     const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
     if (apply(corpus.items || [])) {
-      writeBackup(corpusPath);
-      writeFileSync(corpusPath, JSON.stringify(corpus, null, 2) + "\n");
+      writeUnitJson(corpusPath, corpus, { reason: REASON });
     }
   }
-}
-
-function writeBackup(f) {
-  const bak = f + ".pre-strip.bak";
-  if (!existsSync(bak)) writeFileSync(bak, readFileSync(f));
 }
 
 console.error(

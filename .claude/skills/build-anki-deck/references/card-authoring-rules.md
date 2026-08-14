@@ -6,6 +6,14 @@ the fill-in-the-blank miner, the cross-lesson note pass, the extras pass, and yo
 edit cards by hand. The workflow spine ([SKILL.md](../SKILL.md)) states each rule once, briefly; this
 file is the canonical, full statement.
 
+**Scope, once, for the whole file.** Every rule here, and every audit it tells you to run, applies
+WITHIN ONE COLLECTION: one book under `output/epubs/<slug>/`, one course under
+`output/courses/<slug>/`, one template under `output/templates/<name>/<lang>/`. Where a rule says
+"the deck" or "deck-wide", it means that one collection and all of its lessons and `-extras` units.
+It never means two of them together. Two collections are two separate products and are never
+overlapped, compared, cued against each other, or considered in reference to each other, even though
+the learner may study both on the same day. See CLAUDE.md, "Collections are isolated".
+
 ## English glosses read as natural sentence-case English
 
 **Every English gloss reads as natural sentence-case English — capitalized, never a lowercased clip.**
@@ -242,13 +250,21 @@ Pair the cue with a `note` on the back that explains the *relationship* (which i
 register, which one answers the other), because the front cue only has room to point.
 
 The collision is easy to miss during a single-lesson build, since the two cards often live in
-different chapters and neither pass ever sees both. Check for it deck-wide: group every card by its
-normalized English and by its `target`, and any group with more than one distinct answer needs cues.
+different chapters and neither pass ever sees both. Check for it across the WHOLE COLLECTION, and
+only that collection: group every card in this one book or course by its normalized English and by
+its `target`, and any group with more than one distinct answer needs cues.
+
 Common shapes in a Japanese course: a polite/plain register pair (なんにん (nan-nin) vs なんめいさま
 (nanmeisama), じゃ (ja) vs では (dewa), はい (hai) vs ええ (ē)), a noun and its noun+します verb
 (しごと (shigoto) "Work" vs しごとをします (shigoto o shimasu) "Work"), two particles glossed with the
 same English, and a number that sounds like a word (さん (san) "3" vs さん (san) "Mr., Mrs., Ms.,
 Miss"; ほん (hon) "Book" vs the ほん (hon) long-object counter).
+
+**The boundary is the collection.** A card in a DIFFERENT book or course is a different product, and
+is never cued against, compared with, or considered alongside this one, even though the learner may
+study both decks on the same morning. That is a deliberate rule, not an oversight; see CLAUDE.md,
+"Collections are isolated". Within this collection every lesson and every `-extras` unit is in scope,
+which is exactly what `extras-collision-audit.mjs <bookDir>` reads.
 
 **Run `scripts/extras-collision-audit.mjs <bookDir>` at the end of EVERY chapter, not only during an
 extras pass.** Collisions are the one defect class that grows as the deck grows: each new lesson
@@ -313,7 +329,9 @@ card missing a category is a bug; if you author cards by hand, set one.
 
 **Cross-lesson notes** (`src/cards/crossLessonNotes.js`, prompt in
 `docs/cross-lesson-note-prompt.md`) run for every lesson of a book or course; skipped for a template,
-which has no earlier lessons to reference. This is the step that turns a flat vocabulary list into a
+which has no earlier lessons to reference. "Cross-lesson" means **within one collection**: the pass
+sees this book's or course's own earlier lessons and nothing else. It never reaches into another
+book or course, because collections are isolated (CLAUDE.md). This is the step that turns a flat vocabulary list into a
 connected knowledge base where each card knows what came before it. The extraction runs one chapter at
 a time, so it can only cross-reference within that chapter — genuinely useful comparisons that span
 lessons (おねがいします vs ください, the greeting time-chain, その vs それ) have to be added by a pass

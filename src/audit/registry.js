@@ -9,13 +9,20 @@ import { loadUnits, scanWorkspace, describeCollectionDir } from "./units.js";
  *   `unit`        runs once per unit directory. Sees one unit.
  *   `collection`  runs once per book / course / template deck. Sees all of that collection's units
  *                 and its package.
- *   `workspace`   runs once for the whole output root. Sees every collection at once.
+ *   `workspace`   runs once for the whole output root, and may iterate collections to apply
+ *                 PER-COLLECTION logic (a whole-tree shape report, say). It must NEVER compare one
+ *                 collection's cards against another's.
  *
- * The third one is why this exists. Three separate findings — card ids shared between two delivered
- * collections, colliding prompts across decks, dedup-library completeness — were homeless, because
- * every checker in the repo took a single book directory and there was nowhere to put a question
- * about two of them. Anki interleaves every deck studied that day and matches note guids
- * COLLECTION-wide, so "unique within this book" was never the property that mattered.
+ * ⚠️ COLLECTIONS ARE ISOLATED (owner ruling, 2026-08-14; stated in CLAUDE.md). Two decks built from
+ * two different sources are two separate products, and nothing here may overlap them, compare them,
+ * cue them against each other, or consider one in reference to the other. Three workspace-scope
+ * checks that did exactly that were written, merged, and then removed. Within a single collection,
+ * cross-referencing between its lessons and extras is unchanged and correct: that is one product
+ * being made coherent with itself.
+ *
+ * The `workspace` scope stays because a legitimate whole-tree question exists (coverage, shape, "is
+ * this directory anybody's?"), but it is not the loophole. If a check you are writing needs to read
+ * a second collection's cards to answer its question, it is the wrong check.
  *
  * ── TIER ─────────────────────────────────────────────────────────────────────────────────────────
  *

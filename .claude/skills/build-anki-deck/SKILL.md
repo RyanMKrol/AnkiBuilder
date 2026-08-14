@@ -614,11 +614,15 @@ mean "I did not look", and it reports in three tiers:
   schematic `〜` in a shipped target, an `-extras` unit that would overwrite its base chapter's
   dedup-library entry, a reviewed chapter missing from that library, a foreign `.apkg` in a
   collection folder, and a package older than a done unit's `cards.json`.
-- **ACK** blocks only while instances are unreviewed: card ids shared between two bare-guid
-  collections, and English prompts two delivered decks answer differently. Judge each one, then
-  `--accept` it with a note.
+- **ACK** blocks only while instances are unreviewed. Nothing is ACK-tier today; when a check earns
+  the tier, judge each instance and then `--accept` it with a note.
 - **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, marker-audible clips,
-  cross-deck gloss differences, and the template path's readiness/enrichment exemptions.
+  and the template path's readiness/enrichment exemptions.
+
+Every check reads ONE collection. **Collections are isolated:** two decks built from two different
+sources are separate products, and preflight never compares them, cues one against the other, or
+reports them in reference to each other. Cross-referencing WITHIN a collection (a book's lessons and
+its extras) is unchanged and is the whole point of the duplicate and collision checks.
 
 Run it at the end of a build, before you post the link, and run `npm run check` before a deliver.
 

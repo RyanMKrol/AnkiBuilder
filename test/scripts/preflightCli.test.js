@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "child_process";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
-import { makeOutputRoot, writeUnit, writeMarker, writeRaw, card } from "../audit/fixture.js";
+import { makeOutputRoot, writeUnit, writeRaw, card } from "../audit/fixture.js";
 
 /**
  * End-to-end tests for the two `scripts/` entry points, against a THROWAWAY output root.
@@ -74,34 +74,31 @@ test("preflight exits 1 on a FAIL finding and names the unit", () => {
   }
 });
 
-test("preflight exits 1 on an unreviewed ACK finding, and 0 once it is accepted", () => {
+/**
+ * There is deliberately no end-to-end ACK case here: after the collection-isolation ruling
+ * (2026-08-14) the registry has no ACK-tier check left, because the only two were the
+ * cross-collection comparisons that ruling removed. The tier, the acceptance file and the
+ * --accept plumbing are all still live and are covered in-process, with a synthetic check, in
+ * test/audit/registry.test.js. What is asserted here is the CLI half that has no other home: that
+ * --accept parses, reports honestly when there is nothing to accept, and exits 0.
+ */
+test("--accept says so when there is nothing to accept, and never invents a finding", () => {
   const { root, cleanup } = fixtureRoot();
   try {
-    // Two bare-guid collections sharing an id with DIFFERENT content: the live `scarf` case.
-    writeMarker(root, "epubs/book", "book.json", { slug: "book" });
-    writeMarker(root, "courses/course", "course.json", { name: "course" });
-    writeUnit(root, "epubs/book/chapter-3", { items: [card("scarf", { target: "スカーフ" })] });
-    writeUnit(root, "courses/course/lesson-2", { items: [card("scarf", { target: "マフラー" })] });
+    const { status, stdout } = run("preflight.mjs", ["--all", root, "--accept", "--note", "x"]);
+    assert.equal(status, 0);
+    assert.match(stdout, /nothing to accept — no unreviewed ACK findings/);
+  } finally {
+    cleanup();
+  }
+});
 
-    const first = run("preflight.mjs", ["--all", root, "--only", "cross-collection-ids"]);
-    assert.equal(first.status, 1);
-    assert.match(first.stdout, /1 UNREVIEWED/);
-
-    const accept = run("preflight.mjs", [
-      "--all",
-      root,
-      "--only",
-      "cross-collection-ids",
-      "--accept",
-      "--note",
-      "known",
-    ]);
-    assert.equal(accept.status, 0);
-    assert.match(accept.stdout, /accepted 1 finding/);
-
-    const second = run("preflight.mjs", ["--all", root, "--only", "cross-collection-ids"]);
-    assert.equal(second.status, 0, second.stdout);
-    assert.match(second.stdout, /all acknowledged/);
+test("no ACK-tier check is registered, so preflight cannot ask for a cross-collection judgement", () => {
+  const { root, cleanup } = fixtureRoot();
+  try {
+    const { stdout } = run("preflight.mjs", ["--all", root, "--verbose"]);
+    assert.doesNotMatch(stdout, /\[ACK\]/);
+    assert.doesNotMatch(stdout, /cross-collection|cross-deck/);
   } finally {
     cleanup();
   }
@@ -110,9 +107,15 @@ test("preflight exits 1 on an unreviewed ACK finding, and 0 once it is accepted"
 test("preflight --scope runs only that scope's checks", () => {
   const { root, cleanup } = fixtureRoot();
   try {
-    const { stdout } = run("preflight.mjs", ["--all", root, "--scope", "workspace"]);
-    assert.doesNotMatch(stdout, /── epubs?\/?book/);
-    assert.match(stdout, /check\(s\) declared/);
+    const unitOnly = run("preflight.mjs", ["--all", root, "--scope", "unit", "--verbose"]);
+    assert.match(unitOnly.stdout, /✓ schema/);
+    assert.doesNotMatch(unitOnly.stdout, /card ids/, "card-ids is collection scope");
+
+    // `workspace` selects nothing today: the only workspace-scope checks compared two collections,
+    // and collections are isolated. The scope itself stays as a mechanism.
+    const workspace = run("preflight.mjs", ["--all", root, "--scope", "workspace", "--verbose"]);
+    assert.match(workspace.stdout, /0 check\(s\) declared/);
+    assert.equal(workspace.status, 0);
   } finally {
     cleanup();
   }

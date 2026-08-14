@@ -257,14 +257,17 @@ Three things make it a gate rather than a wall of text:
   the unit. Four hand-copied regexes used to answer this question, each with a slightly different
   idea of the answer; preflight's could not match a template unit at all, so a template deck was
   skipped in silence and the run still printed "preflight clean".
-- **Three scopes.** A check declares `unit`, `collection` or `workspace`. The last one is why the
-  module exists: card ids shared between two decks, and prompts that collide across decks, are
-  questions about the whole output root, and nothing in the repo could ask them.
+- **Three scopes.** A check declares `unit`, `collection` or `workspace`. Every check that exists
+  today is one of the first two, and that is a rule, not an accident: **collections are isolated**
+  (see CLAUDE.md). Two decks built from two different sources are two separate products, and nothing
+  compares them. A `workspace` check may walk the whole tree to apply per-collection logic; it must
+  never read a second collection's cards to answer its question.
 - **Three tiers.** `FAIL` blocks. `ACK` blocks only while instances are _unreviewed_. An instance is
   acknowledged with `preflight --accept`, recorded in the collection's own tracked
   `.preflight-accepted.json`, and still reported afterwards as a standing count. `INFO` never affects
   the exit code. A number that has been non-zero on every run since it was written teaches the
-  operator to skim past it, which is what the ACK tier exists to stop.
+  operator to skim past it, which is what the ACK tier exists to stop. Nothing is ACK-tier right now;
+  the tier and its acceptance file stay for the checks that will need them.
 
 Every run opens with a coverage line (collections by kind, units by shape, directories nobody could
 place, checks skipped for want of input), so "clean" can never mean "I did not look".
@@ -273,8 +276,8 @@ place, checks skipped for want of input), so "clean" can never mean "I did not l
 npm run preflight                      # every collection under output/
 node scripts/preflight.mjs <dir>       # one book / course / template deck
 node scripts/preflight.mjs --all --verbose        # print passing checks too
-node scripts/preflight.mjs --all --scope workspace
-node scripts/preflight.mjs --all --accept --note "same word, taught in both books"
+node scripts/preflight.mjs --all --scope unit     # one scope
+node scripts/preflight.mjs --all --accept --note "why this instance is fine"
 ```
 
 `npm run validate:decks` is now `preflight --schema-only` through the same loader, so the two

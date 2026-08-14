@@ -1,16 +1,17 @@
 /**
  * Do two English glosses say the same thing?
  *
- * Shared by the cross-deck report (which uses it to keep wording differences out of a list a human
- * has to read) and by `extras-duplicate-check --apply` (which uses it to refuse a group whose
- * members are not obviously the same card).
+ * Used by `extras-duplicate-check --apply`, to refuse a group whose members are not obviously the
+ * same card. WITHIN ONE COLLECTION only: the duplicate check takes a single book or course dir, and
+ * comparing two collections' cards is not something this project does (see CLAUDE.md, "Collections
+ * are isolated").
  *
- * Deliberately shallow: a report-noise filter and a safety brake, not a synonym engine. It
- * lowercases, drops parenthetical asides and `___` blanks, splits on commas and slashes into
- * alternatives, unifies written and numeric ordinals, drops a leading article and strips a trailing
- * plural. Two glosses agree when their alternative sets intersect. "Big" and "Big, large" agree;
- * "Car park" and "Parking lot" do not, and should not — that is a real difference in what two decks
- * teach, whoever ends up judging it.
+ * Deliberately shallow: a safety brake, not a synonym engine. It lowercases, drops parenthetical
+ * asides and `___` blanks, splits on commas and slashes into alternatives, unifies written and
+ * numeric ordinals, drops a leading article and strips a trailing plural. Two glosses agree when
+ * their alternative sets intersect. "Big" and "Big, large" agree; "Car park" and "Parking lot" do
+ * not, and should not — that is a real difference in what the two cards teach, and the tool has no
+ * business excluding one on its own.
  */
 
 const ORDINALS = {

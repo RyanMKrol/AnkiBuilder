@@ -316,15 +316,24 @@ paradigm audit: [extras-pass](references/extras-pass.md).
 **Also diff the chapter's VOCABULARY entries against the built cards, for the same reason.** The
 extraction can skip a whole vocabulary block silently, and nothing downstream notices: a chapter is
 simply short a few words, which looks like a chapter that had fewer words. It happens most often to
-the LAST block before a section boundary. The check is a script, not a read-through: pull every
-`Japanese word` + `English gloss` pair out of the chapter text and report any whose word appears in
-no card's `target`.
+the LAST block before a section boundary. The check is a script, not a read-through:
 
-Expect a couple of false positives and check each by hand rather than adding blindly. A word the book
-prints with optional parts, `(お)てら`, will not string-match the card `おてら` that already exists.
-A genuine miss looks different: the word is nowhere in the deck at all, and usually its neighbours in
-the same block are missing too. Add real misses **before** the reviewer signs off, since gate 1 is
-the last moment a card can be added without sending the lesson back through it.
+```sh
+node scripts/vocab-coverage.mjs <chapterFile> <unitDir>
+```
+
+`<chapterFile>` is the cached chapter XHTML the extraction model itself read
+(`.anki-builder/epubs/<hash>/chapters/<n>.xhtml`); `<unitDir>` is the folder holding `cards.json`.
+It pulls every headword + gloss out of the chapter's `<table class="voca">` blocks, sub-rows
+included, and reports the ones no card's `target` contains.
+
+Expect a couple of false positives and check each by hand rather than adding blindly. The script
+already resolves the two conventions that cause most of them (a word printed with optional parts,
+`(お)てら`, matches the card `おてら`; an attachment-point `〜` is notation, not card text) and prints
+the nearest card target beside each report, which usually explains it. A genuine miss looks
+different: no near-match at all, and its block-mates are usually missing too. Add real misses
+**before** the reviewer signs off, since gate 1 is the last moment a card can be added without
+sending the lesson back through it.
 
 What `prepare` runs, in order (details and prompts per pass are in
 [card-authoring-rules](references/card-authoring-rules.md) and the `docs/*-prompt.md` files):

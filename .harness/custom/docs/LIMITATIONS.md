@@ -1800,3 +1800,38 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if reviewed chapters start showing more than about one exception each, tighten
   the wording or make the reviewNote a required, greppable prefix so the count is mechanical.
+
+## vocab-coverage is not wired into preflight yet
+
+- **What:** `scripts/vocab-coverage.mjs` and `scripts/paradigm-grid.mjs` exist, with their matching
+  rules in `src/cards/vocabCoverage.js` / `src/cards/paradigmGrid.js` behind tests. The plan also
+  calls for vocab-coverage to run inside `preflight` for EPUB units; it does not yet.
+- **Why:** preflight today prints six checks plus two report lines that have never once been zero,
+  with no severity tiers and no way to tell a check that matched nothing from one that passed. Adding
+  another report line to that base was ruled "wallpaper" (skill-review R19), and the scope/severity
+  substrate it should land on has not merged yet. The check also needs the cached chapter XHTML, so
+  its scope is genuinely different from every existing preflight check: it reads the book's cache, not
+  the unit.
+- **Impact:** the vocabulary diff only runs when someone runs it, which is the same as before except
+  that the rules are now fixed and tested instead of re-derived per chapter. SKILL.md Step 2 names the
+  command at the point in the procedure where it is due.
+- **Status:** open — deliberate deferral, waiting on the preflight check registry.
+- **When to revisit:** as soon as preflight has scopes and severity tiers, register vocab-coverage as
+  an EPUB-unit check that resolves the chapter file from `meta.epubHash` + `meta.chapterNumber` and
+  reports at the ACK tier (it has known, human-checkable false positives).
+
+## The paradigm audit cannot tell a particle from the same kana inside a word
+
+- **What:** `matchesInPredicatePosition` requires a form to start the string or follow a particle
+  (が, は, も, に and the other common ones), and excludes the paradigm's own longer cells
+  automatically. It still counts `ちがいます` as a hit for `います`, because ち + が + います is
+  indistinguishable from a real particle without a tokenizer.
+- **Why:** the alternative is a morphological analyzer (kuromoji is already a transitive dependency
+  via kuroshiro), which is a much larger change than this check is worth, and would introduce its own
+  segmentation errors on beginner all-kana text.
+- **Impact:** a cell can read as covered when its only hit is a false positive. The script prints
+  every hit with its card so the documented "read the matching cards" step is one glance, and a cell's
+  `notForms` records a confusable permanently once someone finds it.
+- **Status:** open
+- **When to revisit:** if `notForms` lists start repeating across chapters, that is the signal that a
+  tokenizer would pay for itself.

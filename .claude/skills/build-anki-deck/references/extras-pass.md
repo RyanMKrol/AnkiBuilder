@@ -164,17 +164,43 @@ When a chapter teaches a **paradigm** (a form that varies over a closed set of s
 affirmative/negative, plain/polite, a counter series, a case or gender table), do not eyeball whether
 it "feels covered". Enumerate the grid, then check every cell against **every card in the book**, not
 just this chapter's, because earlier lessons often fill part of it and later gaps are invisible from
-inside one unit. Write the check as a script over all `chapter-*/cards.json` targets rather than
-reading tables by eye; it takes a minute.
+inside one unit.
+
+You author the grid; the matching is a script:
+
+```sh
+node scripts/paradigm-grid.mjs <bookDir> --grid <spec.json> [--hits]
+```
+
+The spec is a small JSON file you write for the chapter, because knowing WHICH paradigm it teaches is
+judgement:
+
+```json
+{
+  "name": "あります / います",
+  "cells": [
+    { "label": "inanimate affirmative", "form": "あります" },
+    { "label": "inanimate negative", "form": "ありません" },
+    { "label": "animate affirmative", "form": "います", "notForms": ["ちがいます"] }
+  ]
+}
+```
+
+It reads every unit's `cards.json` (extras included), applies the two matching rules below, and prints
+each cell with its hit count; `--hits` prints the matching cards themselves.
 
 **Do not trust a bare substring match, and sanity-check the hits before you report them.** For an
 adjective table it is usually safe, because `おおきくないです` appears in nothing else. For a verb
 paradigm it is badly wrong: `いました` matches inside `かいました`, `ちがいます` contains `が` + `います`,
 and `ありません` sits inside the copula's `じゃありません`, so a naive audit of あります/います reports
-almost full coverage of a paradigm the deck barely touches. Require the form in **predicate position**
-(preceded by a particle such as が, は, も, に, or the start of the string), exclude the longer forms
-of the same paradigm when testing a shorter one, and then **read the matching cards** before believing
-the result. If a cell's only "hit" is a word you did not expect, it is a false positive.
+almost full coverage of a paradigm the deck barely touches. The script does two of these for you: it
+requires the form in **predicate position** (preceded by a particle such as が, は, も, に, or the
+start of the string) and excludes the paradigm's own longer forms automatically, derived from the
+grid's other cells. What it cannot do is tell a real particle from the same kana inside a word
+(`ちがいます` is ち + が + います to any string matcher), which is what a cell's `notForms` is for:
+record a confusable once and nobody rediscovers it. So **read the matching cards** (`--hits`) before
+believing the result. If a cell's only hit is a word you did not expect, it is a false positive: add
+it to that cell's `notForms` and re-run.
 
 Report the result as a grid before authoring anything, and let the misses drive the Wave 2 forms
 brief. Expect real holes: the passes that built earlier lessons never saw the paradigm as a paradigm,

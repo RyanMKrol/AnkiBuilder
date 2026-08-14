@@ -703,6 +703,29 @@ with-`。` takes from THAT text and shows the produced kanji in the audition mod
 write content-addressed preview files (`-gen-` / `-genkanji-` infixes) that never collide with the
 built clip, and neither touches `cards.json` until you pick a take.
 
+**Kanji-orthography TTS, opt-in per unit (`meta.kanjiTts` + `ttsKanji`).** ElevenLabs mis-parses
+all-kana Japanese — it is out of distribution against how the language is actually written — so a
+kanji+kana form often voices more naturally. Two separate things control it, and keeping them apart
+is the point:
+
+- **`ttsKanji` on a card** is the orthography itself, produced by
+  `scripts/generate-kanji-tts.mjs --run <unit-dir> --apply` (one model call per card, no TTS). It is
+  never rendered: the learner sees `target`, exactly as with `ttsText`. The audio review shows it
+  under the kana so a human can read the conversions.
+- **`meta.kanjiTts` on a unit** is whether the voice actually reads it, set at unit creation with
+  `translate --kanji-tts`. `clipSourceText` consults it; nothing else does.
+
+The split exists because kana→kanji is ONE-TO-MANY (はし is 橋 / 箸 / 端, いま is 今 / 居間), so a
+conversion can put a different word in the audio of a card whose kana face gives the learner no way
+to notice. Storing the text first makes that catchable on screen, for free, before a credit is spent.
+
+Opt-in **per unit**, never globally: `defaultClipText` feeds both the ElevenLabs cache key and the
+staleness filename, so flipping it for Japanese wholesale would invalidate every existing ja clip
+(paid refetches, discarded trim tuning) while hand-touched cards stayed exempt from regeneration —
+a silently mixed-orthography deck. Whether it is worth doing at all is unmeasured;
+`scripts/kanji-tts-ab.mjs` is the blind A/B that would settle it, written and never run (it spends
+credits, which is the owner's call).
+
 **What text a clip actually says (`audioTextHash`, `src/audio/textHash.js`).** The stage's own
 staleness rule (`clipIsCurrent` in `src/cli/commands/audio.js`) asks whether the card's stored clip
 name still matches a hash of its current text — but it short-circuits to "current" whenever

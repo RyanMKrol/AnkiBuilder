@@ -289,6 +289,9 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
         // clip is exempt from the audio stage's own staleness check forever, so this is the only
         // place ~200 live cards are ever asked the question. Badge only — nothing here blocks.
         audioTextState: audioTextState(c, deckLanguageCode, { kanjiTts: !!u.kanjiTts }).state,
+        // Whether this unit is actually VOICED from its kanji, so the review can say "spoken as"
+        // only when that is true rather than implying a clip says something it does not.
+        kanjiTts: !!u.kanjiTts,
         audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
         // The take the trim editor cuts from. Falls back to the shipping clip for cards generated
         // before originals were kept — still trimmable, just not widenable past the automatic cut.

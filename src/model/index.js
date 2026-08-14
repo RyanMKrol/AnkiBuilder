@@ -141,6 +141,12 @@ const CARDS_SCHEMA = {
         // them. `{ at, reason, missing }`. Its presence is what makes a later `prepare` redo the
         // passes rather than skip them, and drop the thin drill block instead of appending to it.
         prepareDegraded: { type: "object" },
+        // Opt-in: this unit's TTS input is each card's kanji orthography (`ttsKanji`) rather than
+        // its kana. Set at unit creation (`translate --kanji-tts`) and per unit, never globally —
+        // the value feeds the ElevenLabs cache key, so flipping it for Japanese wholesale would
+        // invalidate ~1,700 paid clips while hand-touched cards stayed exempt from regeneration,
+        // leaving a silently mixed-orthography deck. See src/audio/index.js `clipSourceText`.
+        kanjiTts: { type: "boolean" },
       },
     },
     items: {
@@ -169,6 +175,13 @@ const CARDS_SCHEMA = {
           // rendered on any card face. `target` is what the learner sees (e.g. kanji 二十一);
           // `ttsText` is only what TTS pronounces (にじゅういち). See generateAudio / speechText.
           ttsText: { type: "string" },
+          // The card's kana text rewritten in natural kanji+kana orthography, PURELY as alternate TTS
+          // input (src/audio/kanjiOrthography.js). ElevenLabs mis-parses all-kana Japanese — it is out
+          // of distribution against how the language is actually written — so a kanji form often
+          // voices more naturally. Never rendered: the learner sees `target`, exactly as with
+          // `ttsText`. It is only SPOKEN when the unit has opted in via `meta.kanjiTts`; stored
+          // otherwise so the review can show it and a human can veto it before anything is generated.
+          ttsKanji: { type: "string" },
           // English-side disambiguator, shown on the Production front and the Recognition BACK only
           // (on a Target→English front it is a piece of the answer). Repurposed from the old
           // rarely-used back-note fallback; the migration moves any legacy value into `note`.

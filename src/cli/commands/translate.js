@@ -87,6 +87,21 @@ export async function runTranslateInner(flags, ctx) {
     cards.meta = { ...cards.meta, translateErrors: errors };
   }
 
+  // `--kanji-tts` opts this unit into having its audio generated from each card's kanji orthography
+  // (`ttsKanji`) rather than its kana. Recorded at unit CREATION, and per unit, because the value
+  // feeds the ElevenLabs cache key: flipping it for Japanese wholesale would invalidate every
+  // existing ja clip — paid refetches, discarded trim tuning — while hand-touched cards stayed
+  // exempt from regeneration, leaving a silently mixed-orthography deck. The orthography itself is
+  // filled in separately (scripts/generate-kanji-tts.mjs) so a human reads it before it is spoken.
+  if (flags["kanji-tts"]) {
+    cards.meta = { ...cards.meta, kanjiTts: true };
+    ctx.log(
+      "translate: this unit will be voiced from its kanji orthography — run " +
+        `"node scripts/generate-kanji-tts.mjs --run ${flags.run} --apply" before "audio", or every ` +
+        "card falls back to its kana.",
+    );
+  }
+
   // For a source whose targets are GENERATED (template / dictated lesson), the assemble-time
   // pedagogical sort could only see English — the targets were still null. Re-sort now that the
   // real sentences exist, so atoms-before-molecules is judged on the target text. EPUB corpora

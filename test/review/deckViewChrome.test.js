@@ -152,6 +152,35 @@ test("the audio review badges a stuck end marker and a clip whose text has chang
   assert.equal(html.match(/badge-stale/g).length, 1);
 });
 
+// kana→kanji is one-to-many, so a conversion can put a different word in the audio of a card whose
+// kana face gives the learner no way to notice. Showing the two together is where that is catchable.
+test("the audio review shows the kanji the voice reads, and says so only when it does", () => {
+  const base = {
+    id: "a",
+    english: "now",
+    target: "いま",
+    pronunciation: "ima",
+    category: "Other",
+    audio: "a.mp3",
+    ttsKanji: "今",
+  };
+  const stored = renderLessonSections({
+    sections: [{ leaf: "L", stage: "audio", cards: [base] }],
+    audioCell: () => "",
+  }).html;
+  assert.match(stored, /kanji 今/);
+  assert.doesNotMatch(stored, /spoken as/, "the unit is still voiced from the kana");
+
+  const spoken = renderLessonSections({
+    sections: [{ leaf: "L", stage: "audio", cards: [{ ...base, kanjiTts: true }] }],
+    audioCell: () => "",
+  }).html;
+  assert.match(spoken, /spoken as 今/);
+
+  // The learner's face is unchanged either way — the kana target is still what renders.
+  for (const html of [stored, spoken]) assert.match(html, /いま/);
+});
+
 test("reviewNote is shown ONLY in the review (showReviewNote), never in the read-only render", () => {
   const cards = [
     {

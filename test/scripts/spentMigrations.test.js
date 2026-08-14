@@ -46,6 +46,8 @@ const STANDING = [
   "paradigm-grid.mjs",
   "clean-audio.mjs",
   "audit-marker-stuck.mjs",
+  "generate-kanji-tts.mjs",
+  "kanji-tts-ab.mjs",
   "prune-baks.mjs",
   "test-with-write-guard.mjs",
   "verify-apkg-import.mjs",

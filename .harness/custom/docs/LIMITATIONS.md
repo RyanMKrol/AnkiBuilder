@@ -2454,3 +2454,41 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if the editor starts feeling slow on Apply, or if a machine without ffmpeg is
   ever used for review — the fail-open direction is wrong for that case and would need a third state
   ("could not tell") rather than a boolean.
+
+## Kanji-orthography TTS is opt-in and unmeasured — the A/B has never been run
+
+- **What:** a unit can be voiced from each card's kanji orthography (`meta.kanjiTts` + `ttsKanji`)
+  instead of its kana. The machinery is complete: the conversion pass, the per-unit flag, the review
+  surfacing, and `scripts/kanji-tts-ab.mjs`, which is the blind A/B that would decide whether it is
+  worth using. Nothing in the live tree has the flag set, and the A/B has never been run.
+- **Why:** running it costs ElevenLabs credits (two takes per sampled card, 60 for the default
+  sample), which is the owner's call and not something an agent should spend. Building the harness
+  costs nothing, and the parts that are easy to get wrong — the sample weighting toward
+  homophone-bearing cards, the blinding, the scoring — are exactly the parts worth pinning down in
+  advance. `--spend` is deliberately not wired to a generator, so no code path in this repo reaches
+  ElevenLabs without someone having just written the call.
+- **Impact:** the codebase's claim that kanji voices more naturally is still just a claim, and the
+  cost side of it — how often kana→kanji picks the wrong word — has no number at all. Until both
+  exist, the flag is a capability nobody should turn on by default. The one-to-many risk is real and
+  undetectable by the learner: the card face is kana, so a clip saying 箸 where the card means 橋
+  sounds perfectly fluent.
+- **Status:** open — built, documented, never run.
+- **When to revisit:** whenever the owner is willing to spend the ~60 takes. Step 2 of the procedure
+  (reading the conversions on screen) is free and worth doing first on its own: the visible mis-pick
+  rate is half the answer and might settle it without any audio at all.
+
+## Nothing has changed for units that already exist
+
+- **What:** `translate --kanji-tts` records the flag at unit CREATION. There is no command to flip it
+  on a unit that already has audio.
+- **Why:** `defaultClipText` feeds both the ElevenLabs cache key and the staleness filename, so
+  flipping it on an existing ja unit would invalidate every clip in it — paid refetches, discarded
+  trim tuning — while hand-touched cards stayed exempt from regeneration, leaving a unit voiced half
+  in kana and half in kanji with nothing saying which is which.
+- **Impact:** trying kanji TTS on the existing book means a new unit, not a switch. The staleness
+  comparison deliberately accepts BOTH flag states (`expectedAudioTextHashes`), so hand-editing the
+  flag onto a unit badges nothing — but it would silently change what the next `audio` run generates
+  and re-bill it, which is precisely the mixed-orthography outcome. Do not hand-edit it.
+- **Status:** open
+- **When to revisit:** if the A/B comes back positive and the owner wants an existing unit converted.
+  That needs a previewed migration that regenerates the whole unit at once, not a flag flip.

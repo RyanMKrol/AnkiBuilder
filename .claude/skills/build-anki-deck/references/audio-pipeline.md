@@ -101,7 +101,8 @@ controls. A lesson edits on its own; you don't need its siblings finished.
 - **Generate (kanji)**: Japanese only. Converts the card's kana reading into natural kanji+kana
   orthography (which ElevenLabs voices more naturally than all-kana) and synthesizes takes from THAT
   text; the modal shows the produced kanji so you can sanity-check the reading before picking
-  (`src/audio/generateKanjiVariants.js`).
+  (`src/audio/generateKanjiVariants.js`). This is the per-card version; see "Kanji TTS for a whole
+  unit" below for the reviewable one.
 - **Edit (manual trim)**: opens a modal showing the card's ORIGINAL take as a waveform with draggable
   start/end handles; each drag is applied server-side and the cut becomes the clip that ships. The
   original is never changed, so a cut that went too far is always recoverable here. This is also
@@ -114,6 +115,34 @@ audio-review surface, and the currently selected clip is simply the one playing 
 These edit controls stay available after **Mark done** — a done lesson opens straight into the same
 editable review, since done gates what ships rather than what you can touch (see SKILL.md Step 4 for
 the gate flow, and for the one thing that does need a script: un-shipping the unit).
+
+## Kanji TTS for a whole unit (opt-in, and not yet proven worth it)
+
+The per-card **Generate (kanji)** button converts, synthesizes and offers a take in one click, so the
+orthography only ever exists inside that interaction: nothing is stored, nothing can be read in bulk,
+and the only way to catch a bad conversion is by ear, after paying for it.
+
+Two things split that apart, and they are deliberately separate:
+
+| What                                                 | Command                                                  | Effect                                                        |
+| ---------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
+| Convert a unit's cards, store the orthography         | `node scripts/generate-kanji-tts.mjs --run <dir> --apply` | fills `ttsKanji`; one model call per card, no TTS, speaks nothing |
+| Have the voice actually read it                       | `translate --kanji-tts` at unit creation                  | sets `meta.kanjiTts`; `audio` then generates from the kanji     |
+
+Converting is a TEXT question: cheap, and wrong in ways a literate reader can see on screen. The
+audio review shows each card's `ttsKanji` under its kana — "kanji …" while the unit is still voiced
+from the kana, "spoken as …" once it is not. Read them. kana→kanji is one-to-many (はし is 橋 / 箸 /
+端, いま is 今 / 居間), so a mis-pick puts a different word in the audio of a card whose kana face
+gives the learner no way to notice.
+
+**The flag is set at unit creation and there is no way to flip it on an existing unit, on purpose.**
+The value feeds the ElevenLabs cache key, so flipping it would re-bill every clip in the unit while
+hand-touched cards stayed exempt from regeneration, leaving a unit voiced half in kana and half in
+kanji. Trying kanji TTS on the existing book means a new unit, not a switch.
+
+**Whether it is worth doing at all is unmeasured.** `scripts/kanji-tts-ab.mjs` is the blind A/B that
+would settle it — read the procedure at the top of that file. It has never been run, because running
+it spends credits.
 
 ## Voice choice
 

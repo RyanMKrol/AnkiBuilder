@@ -86,6 +86,10 @@ td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:va
 .badge-ai{color:#3f6f6a;border-color:#3f6f6a}.badge-uncertain{color:#8a6a24;border-color:#8a6a24}
 .badge-marker{color:#8a2a24;border-color:#8a2a24}
 .badge-stale{color:#8a2a24;border-color:#8a2a24}
+/* The kanji orthography TTS reads instead of the kana. Never a card face — see spokenKanji().
+   Muted while it is only stored for review; in the accent colour once the unit is voiced from it. */
+.tts-kanji{margin-top:3px;font-size:12px;color:var(--faint);font-family:var(--jp)}
+.tts-kanji.on{color:var(--accent)}
 .rowflags{margin-top:4px;display:flex;gap:5px;flex-wrap:wrap}
 tr.row.excluded td{color:var(--faint);text-decoration:line-through}
 .tw{overflow-x:auto}
@@ -293,6 +297,21 @@ const exclusionProvenance = (c) => {
   const reason = c.excludedReason ? ` — ${escapeHtml(c.excludedReason)}` : "";
   return `<div class="excl-by" title="Excluded by a script, not a reviewed decision — worth a second look">⊘ ${escapeHtml(c.excludedBy)}${reason}</div>`;
 };
+/**
+ * The kanji orthography the voice reads, shown under the (kana) target it is derived from.
+ *
+ * Never a card face — the learner sees `target` and always has. It is here because kana→kanji is
+ * one-to-many (はし is bridge, chopsticks or edge; いま is now or living-room), so a conversion can
+ * silently put a different word in the audio of a card whose face gives the reader no way to notice.
+ * Reading the two side by side is the only cheap place that is catchable. Shown whenever a card
+ * carries one; labelled "spoken as" only when the unit is actually voiced from it, so the review
+ * never implies a clip says something it does not.
+ */
+const spokenKanji = (c) => {
+  if (!c.ttsKanji) return "";
+  const spoken = c.kanjiTts === true;
+  return `<div class="tts-kanji${spoken ? " on" : ""}" title="${spoken ? "The voice reads this, not the kana above" : "Stored for review — this unit is still voiced from the kana"}">${spoken ? "spoken as" : "kanji"} ${escapeHtml(c.ttsKanji)}</div>`;
+};
 // Scene (front of both directions) stacked above Hint (Production front only) in the shared column.
 const hintCell = (c) =>
   `<td class="hint-col">${c.scene ? `<div class="scene-cue" title="Scene — front of both directions">${escapeHtml(c.scene)}</div>` : ""}${c.hint ? escapeHtml(c.hint) : ""}</td>`;
@@ -302,7 +321,7 @@ const STAGE_TABLES = {
     head: `<th class="num">#</th><th>English</th><th>Japanese</th><th>Romaji</th><th>Audio</th><th>Hint</th><th>Note</th>`,
     cells: (c, ctx) =>
       `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}${inlineFlags(c)}</td>
-  <td class="jp">${escapeHtml(c.target)}</td>
+  <td class="jp">${escapeHtml(c.target)}${spokenKanji(c)}</td>
   <td class="pron">${escapeHtml(c.pronunciation)}</td>
   ${ctx.originalCell ? `<td class="au au-orig">${ctx.originalCell(c)}</td>\n  ` : ""}<td class="au">${ctx.audioCell(c)}</td>
   ${hintCell(c)}

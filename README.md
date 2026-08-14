@@ -353,6 +353,14 @@ operator has to override on the day it lands is worse than no gate.
       permanent — it only ever cuts the end, so leading silence always survived and an over-eager cut
       was unrecoverable. A card now carries `audioOriginal` / `audioAuto` / `audioManual`, and the
       `audio` the deck embeds is derived from them
+- [x] Kanji-orthography TTS as a per-unit opt-in. ElevenLabs mis-parses all-kana Japanese, so a
+      kanji+kana form often voices more naturally — but kana→kanji is one-to-many, and a mis-pick
+      puts a different word in the audio of a card whose kana face gives the learner no way to
+      notice. So the conversion is stored on the card (`ttsKanji`, shown in the audio review, free to
+      read and correct) separately from whether the voice reads it (`translate --kanji-tts`, set at
+      unit creation because the value feeds the TTS cache key). Whether it is worth doing is still
+      unmeasured: `scripts/kanji-tts-ab.mjs` is the blind A/B that would settle it, written and not
+      run
 - [x] The "marker audible" flag follows the clip that actually ships. It used to describe the take
       the audio stage produced and could only ever be cleared by a whole new recording — so a
       reviewer who fixed the clip by hand, which is exactly what the badge asks for, left the card

@@ -116,6 +116,42 @@ fresh one instead of checking against a stale one.
 - **Deletions** → never automatic; a note whose card left the corpus is reported as `orphaned` for you to
   remove by hand.
 
+## Two opt-in steps: `--refile` and `--suspend-orphans`
+
+Both are off by default, both preview under `--dry`, and **both refuse to run today** because the
+live-Anki probes that would say what they do to a card in a filtered deck have never been answered
+(see the results table below). The preview is not gated: it reads and prints.
+
+```sh
+node scripts/deliver-to-anki.mjs --dry --refile           # every move it WOULD make
+node scripts/deliver-to-anki.mjs --dry --suspend-orphans  # every note it WOULD suspend
+```
+
+**`--refile`** moves a delivered card whose current deck no longer matches its unit's deck name. It
+is the only way a `chapterLabel` correction reaches an existing book without splitting one chapter
+across two decks, because renaming a deck in Anki makes a NEW deck. It is opt-in rather than
+automatic because deck membership selects the options preset, which is the scheduling behaviour: a
+silent re-file changes how the cards are studied. Two skips, both reported:
+
+- a card in a **filtered deck** (non-zero `odid`). Anki's `deck:` search matches such a card by its
+  HOME deck while `cardsInfo` reports the filtered one, so it reads as "deck differs" and a move
+  would yank it out of a custom-study session mid-review.
+- a card **outside this collection's own deck tree**. Inside the tree, a differing deck means a
+  stale unit name. Outside it, somebody put that card there deliberately.
+
+**`--suspend-orphans`** suspends and tags (`ab-orphaned`) delivered notes whose card id has left the
+corpus — today they are only listed. Suspending keeps the card, its interval and its whole revlog,
+and one click reverses it; leaving it is a card you drill forever, and deleting it destroys history.
+
+### The one-time deck-name migration
+
+The plan is to run the re-file exactly once, deliberately, against the existing book after the entity
+decoding fix changes its deck labels. The sequence, when the probes are in:
+
+1. `node scripts/deliver-to-anki.mjs --dry --refile book:<slug>` and read every proposed move.
+2. Confirm the moves are the rename you expect, and that the skipped list is only filtered cards.
+3. Re-run without `--dry`. The pre-delivery backup covers you; the restore path is above.
+
 ## Backups
 
 Before any real delivery (never on `--dry`), the tool snapshots every managed deck into

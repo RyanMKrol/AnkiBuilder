@@ -25,6 +25,13 @@
 //                     consent to a delivery that ADDS more than 200 notes to one collection. A run
 //                     that big is either a first delivery or a matching failure, and they look the
 //                     same from here. Preview with --dry first.
+//     --refile        move delivered cards whose deck no longer matches their unit's deck name (the
+//                     only way a chapterLabel fix reaches an existing book without splitting a
+//                     chapter across two decks). Off by default. With --dry it PREVIEWS every move;
+//                     the run itself is refused until the changeDeck probe has been answered.
+//     --suspend-orphans
+//                     suspend and tag delivered notes whose card left the corpus, instead of just
+//                     listing them. Same shape: --dry previews, the run waits on the suspend probe.
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
 // Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
@@ -40,6 +47,8 @@ const sync = !args.includes("--no-sync");
 const allowModelChange = args.includes("--allow-model-change");
 const allowTemplateAdd = args.includes("--allow-template-add");
 const allowBulkAdd = args.includes("--allow-bulk-add");
+const refile = args.includes("--refile");
+const suspendOrphans = args.includes("--suspend-orphans");
 const selectorArgs = args.filter((a) => !a.startsWith("--"));
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
@@ -64,6 +73,8 @@ try {
     allowModelChange,
     allowTemplateAdd,
     allowBulkAdd,
+    refile,
+    suspendOrphans,
     sync,
     log: (m) => console.error(`  ${m}`),
   });
@@ -122,6 +133,20 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  if (c.refiled) {
+    line(
+      `     refile: ${c.refiled.moves.length} move(s), ${c.refiled.skipped.length} left alone` +
+        `${c.refiled.applied ? "" : " (not applied)"}`,
+    );
+    for (const m of c.refiled.moves) line(`       ${m.card}: "${m.from}" → "${m.to}"`);
+    for (const s of c.refiled.skipped) line(`       ${s.card}: "${s.from}" — ${s.reason}`);
+  }
+  if (c.suspendedOrphans) {
+    line(
+      `     suspend-orphans: ${c.suspendedOrphans.orphans.length} note(s)` +
+        `${c.suspendedOrphans.applied ? "" : " (not applied)"}`,
+    );
+  }
   if (c.baseline) {
     line(
       c.baseline.armed

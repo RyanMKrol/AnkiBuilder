@@ -758,12 +758,92 @@ export async function planDeckContent(client, deck) {
   return { ops, ambiguous, orphaned, baseline, noteById };
 }
 
+/** The tag a `--suspend-orphans` run leaves, so a human can find (and reverse) exactly this set. */
+export const ORPHAN_TAG = "ab-orphaned";
+
+/**
+ * THE RE-FILE PLAN — every card that would move, and every card that deliberately would not.
+ *
+ * Deck membership is not cosmetic: it selects the options preset, which is the scheduling behaviour
+ * (per-day limits, sibling burying) the rest of this work is about. So a re-file is opt-in, and this
+ * function computes the whole thing as a preview before anything moves. Reads only.
+ *
+ * Two skips, both deliberate:
+ *
+ *  - a card in a FILTERED deck (non-zero `odid`). Anki's `deck:` search matches such a card by its
+ *    HOME deck while `getDecks`/`cardsInfo` report the FILTERED one, so it reads as "deck differs"
+ *    and would be yanked out of a custom-study session mid-review. Whether `changeDeck` even leaves
+ *    it coherent is one of the unanswered probe questions.
+ *  - a card sitting OUTSIDE this collection's own deck tree. Inside the tree, a differing deck means
+ *    a stale unit name (which is what re-filing is for). Outside it, it means somebody deliberately
+ *    put that card somewhere, and this tool does not know better.
+ */
+export async function planRefile(client, deck, plan) {
+  const matched = plan.ops.filter((op) => op.kind !== "add");
+  const cardIds = matched.flatMap((op) => plan.noteById.get(op.noteId)?.cards ?? []);
+  if (cardIds.length === 0) return { moves: [], skipped: [] };
+
+  const byDeck = (await client.getDecks(cardIds)) ?? {};
+  const deckOf = new Map();
+  for (const [name, ids] of Object.entries(byDeck)) for (const id of ids) deckOf.set(id, name);
+
+  const inCollection = (name) =>
+    name === deck.ankiParent || String(name).startsWith(`${deck.ankiParent}::`);
+
+  const candidates = [];
+  for (const op of matched) {
+    for (const cardId of plan.noteById.get(op.noteId)?.cards ?? []) {
+      const from = deckOf.get(cardId);
+      if (!from || from === op.unit.ankiDeck) continue;
+      candidates.push({ cardId, from, to: op.unit.ankiDeck, card: op.card.id, noteId: op.noteId });
+    }
+  }
+  if (candidates.length === 0) return { moves: [], skipped: [] };
+
+  // odid is the only way to tell a filtered card from an ordinary one, and it needs the fuller read.
+  const info = (await client.cardsInfo(candidates.map((c) => c.cardId))) ?? [];
+  const odidOf = new Map(info.map((c) => [c.cardId, c.odid ?? 0]));
+
+  const moves = [];
+  const skipped = [];
+  for (const candidate of candidates) {
+    if ((odidOf.get(candidate.cardId) ?? 0) !== 0) {
+      skipped.push({ ...candidate, reason: "in a filtered deck (non-zero odid) — left alone" });
+    } else if (!inCollection(candidate.from)) {
+      skipped.push({ ...candidate, reason: `outside "${deck.ankiParent}" — left alone` });
+    } else {
+      moves.push(candidate);
+    }
+  }
+  return { moves, skipped };
+}
+
+/**
+ * The orphan plan: delivered notes whose card id is no longer in the corpus, with their card ids.
+ *
+ * Suspending is the right retirement for these. The card, its interval and its whole revlog survive,
+ * and one click reverses it — whereas leaving it is a card the learner drills forever, and deleting
+ * it destroys history this project's first rule is about.
+ */
+export function planSuspendOrphans(plan) {
+  return plan.orphaned.map((orphan) => ({
+    ...orphan,
+    cardIds: plan.noteById.get(orphan.noteId)?.cards ?? [],
+  }));
+}
+
 /**
  * Content sync for one deck: plan (reads only), check the ceiling, then write. Returns per-deck
  * counters + lists.
  */
 export async function syncDeckContent(client, deck, dry, options = {}) {
-  const { maxAdds = DEFAULT_MAX_ADDS, allowBulkAdd = false, log = () => {} } = options;
+  const {
+    maxAdds = DEFAULT_MAX_ADDS,
+    allowBulkAdd = false,
+    refile = false,
+    suspendOrphans = false,
+    log = () => {},
+  } = options;
   const plan = await planDeckContent(client, deck);
 
   const r = {
@@ -778,6 +858,8 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
     orphaned: plan.orphaned,
     baseline: plan.baseline,
     deliveredCardIds: [],
+    refiled: null,
+    suspendedOrphans: null,
   };
 
   const adds = plan.ops.filter((op) => op.kind === "add");
@@ -824,6 +906,53 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
     r.deliveredCardIds.push(op.card.id);
   }
 
+  // ── the two OPT-IN steps, both previewed, both refused until the probes have answered ──────────
+  //
+  // The preview is not gated: it reads and prints. The RUN is, because both of these are live
+  // writes to a card's scheduling state whose behaviour on a card in a filtered deck nobody has
+  // established. `assertProbeEvidence` names the missing evidence rather than failing vaguely.
+  if (refile) {
+    const { moves, skipped } = await planRefile(client, deck, plan);
+    r.refiled = { moves, skipped, applied: false };
+    for (const move of moves) {
+      log(`refile: card ${move.cardId} (${move.card}) "${move.from}" → "${move.to}"`);
+    }
+    for (const skip of skipped) {
+      log(`refile: SKIPPED card ${skip.cardId} (${skip.card}) in "${skip.from}" — ${skip.reason}`);
+    }
+    if (!dry && moves.length) {
+      assertProbeEvidence("refile");
+      const byTarget = new Map();
+      for (const move of moves) {
+        if (!byTarget.has(move.to)) byTarget.set(move.to, []);
+        byTarget.get(move.to).push(move.cardId);
+      }
+      for (const [target, ids] of byTarget) await client.changeDeck(ids, target);
+      r.refiled.applied = true;
+    }
+  }
+
+  if (suspendOrphans) {
+    const orphans = planSuspendOrphans(plan);
+    r.suspendedOrphans = { orphans, applied: false };
+    for (const orphan of orphans) {
+      log(
+        `suspend-orphans: note ${orphan.noteId} (${orphan.card}) — ${orphan.cardIds.length} card(s), ` +
+          `tagged ${ORPHAN_TAG}`,
+      );
+    }
+    if (!dry && orphans.length) {
+      assertProbeEvidence("suspend-orphans");
+      const ids = orphans.flatMap((orphan) => orphan.cardIds);
+      if (ids.length) await client.suspend(ids);
+      await client.addTags(
+        orphans.map((orphan) => orphan.noteId),
+        ORPHAN_TAG,
+      );
+      r.suspendedOrphans.applied = true;
+    }
+  }
+
   return r;
 }
 
@@ -857,6 +986,10 @@ export async function deliverToAnki(
     // they look identical from here, so it asks.
     maxAdds = DEFAULT_MAX_ADDS,
     allowBulkAdd = false,
+    // Opt-in, previewed, and refused until the live probes have answered what they do. See
+    // syncDeckContent's two opt-in steps.
+    refile = false,
+    suspendOrphans = false,
     sync = true,
     now = () => Date.now(),
     adapters = ADAPTERS,
@@ -990,7 +1123,13 @@ export async function deliverToAnki(
 
   // 6. CONTENT SYNC (per deck)
   for (const deck of deliverable) {
-    const result = await syncDeckContent(client, deck, dry, { maxAdds, allowBulkAdd, log });
+    const result = await syncDeckContent(client, deck, dry, {
+      maxAdds,
+      allowBulkAdd,
+      refile,
+      suspendOrphans,
+      log,
+    });
     report.content.push(result);
     if (!dry) {
       // The marker write happens AFTER the notes are written, so it must never throw: that would

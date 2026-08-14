@@ -5,13 +5,19 @@ internally — file formats, caching, dedup logic, prompt wiring. If you just wa
 see the [README](../README.md) and the `build-anki-deck` skill instead; come here when you need to
 understand or modify the implementation.
 
+**This file describes how the code is wired, and carries no procedure.** Anything that tells an
+operator what to do, in what order, or when to stop and wait for a human belongs in
+`.claude/skills/build-anki-deck/SKILL.md`, which is normative for that; if a procedure has ended up
+here, move it rather than maintaining it twice. This file's job is to stay true to the code.
+
 ## Pipeline stages
 
 `assemble` → `prepare` → `audio` → `deck`, each stage reading/writing JSON in a run
 directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved chapter directory
 under a book-organized `output/` tree (`--output-root <dir>`; see [Output layout](#output-layout)).
-`prepare` is itself four passes (`translate` → fill-in-the-blank → semantic de-dup → cross-lesson
-notes) run under a single claim, and `assemble` chains into it automatically.
+`prepare` is itself five passes (`translate` → fill-in-the-blank → semantic de-dup → cross-lesson
+notes → number readings, the last running only when a card still has a digit in its reading or
+romaji) run under a single claim, and `assemble` chains into it automatically.
 
 **Review happens in the dashboard** (`serve`), not as a CLI stage — see
 [Deck dashboard](#deck-dashboard-serve). There are exactly **two review gates**, and they are the only
@@ -306,6 +312,9 @@ The field was called `reading` until the 2026-08 rename. `reading` read like a d
 the deck's own Anki note type has a field of that name, so the two were easy to confuse; nothing
 renders either one. The Anki field is still named "Reading" (the live collection was not touched)
 and `src/deck/collection.js`'s `fieldValue` maps `ttsText` onto it in one line.
+`scripts/migrate-reading-to-ttstext.mjs` did the one-time data migration (key rename only, no value
+touched, through `writeUnitJson`); it is kept so the change is auditable and re-runnable against any
+older unit that turns up, and it is a no-op on a file that has already been migrated.
 
 Prompts are Markdown-structured (Overview / Input Format /
 Example Input / Output Format / Example Output / Important / Input Data). How `pronunciation` gets
@@ -519,7 +528,7 @@ built clip, and neither touches `cards.json` until you pick a take.
 ### `deck`
 
 **What the package is called (`src/deck/deckFileName.js`).** A built `.apkg` is named after the deck
-it contains, not `deck.apkg` — otherwise every package is indistinguishable the moment it leaves its
+it contains, not the legacy `deck.apkg` — otherwise every package is indistinguishable the moment it leaves its
 folder, and picking the right one in a downloads directory or Anki's import dialog means reading the
 path. The name is derived from the directory PATH alone, never from a title read out of a metadata
 file: the writer and any reader looking for the same package compute it independently, so they cannot
@@ -537,7 +546,7 @@ IS naming after the EPUB or course, canonicalized once at assemble time rather t
 
 The last two shapes fold their parent in because their own basename identifies nothing — every course
 has a `lesson-3`, every template a `ja`. Readers go through `resolveDeckPathForDir`, which prefers the
-named file but falls back to a `deck.apkg` left by an older build, so a deck built before this
+named file but falls back to the legacy `deck.apkg` left by an older build, so a deck built before this
 convention is still readable. The one-off script that renamed existing packages has been removed now
 that every package on disk uses the new names; the fallback stays because it costs nothing.
 

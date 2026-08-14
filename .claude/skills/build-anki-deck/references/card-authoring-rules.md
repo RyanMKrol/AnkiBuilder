@@ -341,8 +341,39 @@ Without it "It's on Sunday." is a card with no discoverable right answer.
 
 This is enforced where the pairs are made: `docs/fill-in-blank-prompt.md` rules 4 and 5, with `scene`
 carried through by `src/cards/fillInBlank.js`, which also logs a warning naming any answer-shaped card
-that came back without one. Audit an existing deck by listing cards whose English starts with a
-pronoun stand-in ("It's", "That's", "They're") and checking each for a scene.
+that came back without one. Over a finished deck, `npm run preflight`'s **`answerable-alone`** check
+does the same sweep: every card whose English starts with a pronoun stand-in ("It's", "That's",
+"They're") and carries no `scene`. It is INFO and never blocks, because some of them really are
+producible on their own — the shape is mechanical, the verdict is yours. Both read the same predicate
+(`src/cards/faceQuality.js`), so the pass and the audit cannot disagree about what the rule is.
+
+## A Production face is one prompt, not a paragraph
+
+**Keep the `english` under 60 characters, or ship the card Recognition-only.** A Production card asks
+the learner to produce the entire target from the entire English. Past about a sentence that stops
+being one prompt: the live deck's longest is "Nice to meet you. I am Raja of the University of Tokyo.
+I look forward to working with you." at 91 characters, which is three sentences and one expected
+answer. There are exactly two honest fixes, and both are yours to choose: **split** it into the cards
+it really is, or **suspend the Production direction** for it (`dirSuspended: [1]`) and let it be a
+Recognition card, which is what it was always going to be studied as.
+
+`npm run preflight`'s **`production-length`** check lists them (INFO; 31 live cards on the book
+today). The ceiling lives in `src/cards/faceQuality.js` as `PRODUCTION_FACE_MAX_CHARS`.
+
+## Watch for a sentence frame drilled with only a name swapped
+
+**Three or more cards that are the same sentence with a different name or number in it are a drill
+bank, not three cards.** `Smith-san, what country are you from?` / `Chan-san, …` / `Raja-san, …` gives
+the learner one thing to learn and three cards to answer it with, and the third is answered from
+working memory. Usually two of them earn their place and the rest do not; occasionally all of them do,
+because the swapped slot IS the drill.
+
+`npm run preflight`'s **`near-siblings`** check reports them, and it is deliberately narrow: only
+frames that still carry three ordinary words once names and numbers are blanked out, and only when
+every member fills the slots differently. That narrowness is the whole point — a blanket "these look
+alike" check groups `Yes` / `No` / `Germany` under one frame, reports 270 cards, and fires on the
+counter series (`Nine minutes` / `Six minutes`) that a lesson exists to teach. On the live book the
+narrow version names 7 frames over 24 cards.
 
 ## Irregular members of a counter series each earn a `note`
 

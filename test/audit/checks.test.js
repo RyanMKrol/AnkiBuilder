@@ -497,3 +497,82 @@ test("inline romaji: an unresolvable quote is counted as unchecked, not as a pas
     cleanup();
   }
 });
+
+test("answerable alone: a reply-shaped English with no scene is named, one with a scene is not", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("bare", { english: "It's the 3rd floor." }),
+        card("cued", { english: "It's the 3rd floor.", scene: "answering which floor" }),
+        card("standalone", { english: "The lift is over there." }),
+      ],
+    });
+    const found = messages(runOnly(root, "answerable-alone"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /bare/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("production length: only a face at or over the ceiling is named", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    const long = "Nice to meet you. I am Brown of the Bank of London. I look forward to it.";
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("short", { english: "Good morning." }), card("long", { english: long })],
+    });
+    const [result] = runOnly(root, "production-length");
+    assert.equal(result.findings.length, 1);
+    assert.match(result.findings[0].message, /long/);
+    assert.ok(result.notes.some((n) => /Recognition-only/.test(n)));
+  } finally {
+    cleanup();
+  }
+});
+
+// The narrowing is the check. A blanket "these three look alike" groups every one-word vocab card in
+// the deck and fires on the counter series a lesson exists to teach.
+test("near siblings: a swapped-name sentence frame is named; vocab and counter series are not", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("a", { english: "Smith-san, what country are you from?" }),
+        card("b", { english: "Chan-san, what country are you from?" }),
+        card("c", { english: "Raja-san, what country are you from?" }),
+        // one-word vocab: no frame survives the slot blanking
+        card("d", { english: "Germany" }),
+        card("e", { english: "China" }),
+        card("f", { english: "Spain" }),
+        // a counter series: two words, under the frame floor
+        card("g", { english: "Nine minutes" }),
+        card("h", { english: "Six minutes" }),
+        card("i", { english: "Three minutes" }),
+      ],
+    });
+    const found = messages(runOnly(root, "near-siblings"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /3× "◇, what country are you from\?"/);
+  } finally {
+    cleanup();
+  }
+});
+
+// Identical slots mean the same card entered twice, which the duplicates check already reports.
+test("near siblings: three cards filling the frame identically are not a sibling group", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("a", { english: "Smith-san, what country are you from?" }),
+        card("b", { english: "Smith-san, what country are you from?" }),
+        card("c", { english: "Smith-san, what country are you from?" }),
+      ],
+    });
+    assert.deepEqual(messages(runOnly(root, "near-siblings")), []);
+  } finally {
+    cleanup();
+  }
+});

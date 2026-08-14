@@ -349,6 +349,12 @@ operator has to override on the day it lands is worse than no gate.
       are marked taught-but-not-linted and named in the report instead of reading as checked. The
       inline `(roman)` spellings inside a note or hint are separately checked against that same
       collection's own audited `pronunciation` field (`inline-romaji`)
+- [x] The three card-quality rules the authoring doc states in prose are now mechanically detected
+      (`src/cards/faceQuality.js`, reported by `preflight` at INFO): `answerable-alone` (English that
+      reads as a reply with no `scene` naming the question), `production-length` (a Production face at
+      or over 60 characters — split it, or ship it Recognition-only), and `near-siblings` (one
+      sentence frame drilled 3+ times with only a name or number swapped). All three detect a shape;
+      whether the shape is a defect stays the reviewer's call
 - [x] Spoken-form `ttsText` field (renamed from `reading`, 2026-08) — the text TTS speaks instead of the
       target whenever the written target would be misread, never rendered on any card face. Numbers stay
       as digits in `target` (natural display, e.g. `2,000えん`) while a spelled-out `ttsText`

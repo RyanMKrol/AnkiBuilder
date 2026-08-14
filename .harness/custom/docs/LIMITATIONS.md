@@ -2430,6 +2430,24 @@ say when it was measured rather than stating it as a standing fact.
   count for that unit does not fall to zero, the injected spec is not reaching the model.
 - **Verified by:** `node scripts/preflight.mjs --all --only romaji-style,inline-romaji --verbose`
 
+## The near-sibling check is tuned to one deck's English, on two thresholds
+
+- **What:** `near-siblings` groups cards by blanking digit runs and Capitalised words out of the
+  `english`, then reports a frame with 3+ members that still carries 3+ ordinary words. Both numbers
+  (`MIN_FRAME_WORDS`, the group floor) were chosen by running the alternatives over the live book.
+- **Why:** the untuned version is useless: at a 1-word floor the frame `◇` groups every one-word
+  vocab card in the deck and reports 270 of them, and it fires on `Nine minutes` / `Six minutes`,
+  which is a counter series a lesson exists to teach, not a near-sibling group. At 3 words it names 7
+  frames over 24 cards, all of them real.
+- **Impact:** the slot detector is English-shaped (a Capitalised word is a proper noun) and would
+  behave differently on a deck whose `english` is not English, or one that sentence-cases every
+  gloss. It is also blind to a frame varying by an ordinary lowercase noun (`I drink coffee` /
+  `I drink tea`), which is a real near-sibling shape it will never report.
+- **Status:** open
+- **When to revisit:** if a second collection's report is either empty or enormous, the thresholds
+  are wrong for it and belong per-collection rather than as module constants.
+- **Verified by:** `node scripts/preflight.mjs --all --only near-siblings --verbose`
+
 ## Two pinned romanization rules are taught but not linted
 
 - **What:** `proper-noun-casing` and `n-apostrophe` carry `detect: null`. Nothing checks them.

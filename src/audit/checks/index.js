@@ -14,6 +14,7 @@ import { vocabCoverageCheck } from "./vocab.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
 import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
+import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "./cardQuality.js";
 
 /**
  * Every check, in report order.
@@ -37,10 +38,13 @@ export const ALL_CHECKS = [
   placeholderTargetCheck,
   sourceTypeCheck,
   romajiStyleCheck,
+  answerableAloneCheck,
+  productionLengthCheck,
   // collection scope
   cardIdsCheck,
   collisionsCheck,
   inlineRomanizationCheck,
+  nearSiblingsCheck,
   chapterNumberCheck,
   extrasLibraryWriteCheck,
   libraryCompletenessCheck,

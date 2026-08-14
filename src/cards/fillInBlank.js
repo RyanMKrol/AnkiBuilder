@@ -7,6 +7,7 @@ import { resolveIso639Code } from "../model/iso639.js";
 import { runFillInBlankClaude as defaultRunClaude } from "../corpus/epubLlmRunClaude.js";
 import { getLanguagePromptRules } from "../translate/languageRules.js";
 import { formatStyleRules } from "../translate/romajiStyle.js";
+import { isContextlessAnswer } from "./faceQuality.js";
 import { renderCardFacesBlock } from "../deck/cardFaces.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -99,13 +100,6 @@ function isUsable(card) {
     (field) => typeof card[field] === "string" && card[field].trim().length > 0,
   );
 }
-
-/**
- * English that supplies no subject of its own, so the card only makes sense as a reply to something.
- * Deliberately narrow — a leading pronoun stand-in is the shape that actually goes wrong, and a looser
- * test flags ordinary self-contained sentences ("It's 10am in Tokyo.") that need no hint at all.
- */
-const ANSWER_SHAPED = /^\s*(it['’]s|it is|that['’]s|they['’]re|they are|he['’]s|she['’]s)\b/i;
 
 /**
  * Mines fill-in-the-blank practice cards out of a lesson's source material (or, for a dictated
@@ -214,7 +208,7 @@ export function mineFillInBlankCards({
     return empty;
   }
 
-  const contextless = added.filter((item) => !item.scene && ANSWER_SHAPED.test(item.english));
+  const contextless = added.filter(isContextlessAnswer);
   if (contextless.length) {
     log(
       `fill-in-the-blank: ${contextless.length} answer card(s) have no scene naming the question they ` +

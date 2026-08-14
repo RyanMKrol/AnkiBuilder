@@ -2078,35 +2078,39 @@ say when it was measured rather than stating it as a standing fact.
 
 ## `.preflight-accepted.json` records the decision, not the evidence for it
 
-- **What:** an ACK acknowledgement is keyed on `(checkId, findingKey)`, e.g.
-  `cross-collection-ids` + `identical/pen`. It stores the message as it read at the time, plus a
-  timestamp and an optional note. It does NOT store a hash of the card content the finding was about.
+- **What:** an ACK acknowledgement is keyed on `(checkId, findingKey)`, e.g. a check id plus
+  `chapter-3/some-card-id`. It stores the message as it read at the time, plus a timestamp and an
+  optional note. It does NOT store a hash of the card content the finding was about.
 - **Why:** hashing the content would mean every legitimate edit to an accepted card silently
   un-accepts it, and the operator would meet the same finding again with no way to tell an edit from
   a regression. Keying on identity keeps "I have looked at this pair" true across ordinary editing.
-- **Impact:** if an accepted pair later changes into a genuinely different problem under the same
-  key (the two `pen` cards stop being byte-identical, say), the acknowledgement still covers it and
-  the finding stays quiet. The finding keys are chosen to make this narrow (the identical/differing
-  classification is part of the key for cross-collection ids, so that particular drift DOES re-red),
-  but the general hole is real.
+- **Impact:** if an accepted card later changes into a genuinely different problem under the same
+  key, the acknowledgement still covers it and the finding stays quiet. A check can narrow this by
+  folding the distinguishing fact into the key itself, but the general hole is real. No check is
+  ACK-tier today (the only two were the cross-collection comparisons removed by the isolation
+  ruling), so the hole is currently theoretical and the machinery is waiting for its first real user.
 - **Status:** open
-- **When to revisit:** if a finding class turns out to change meaning under a stable key, fold the
-  distinguishing fact into the key, as `identical/` vs `differs/` already does.
+- **When to revisit:** when the first ACK-tier check lands. If its findings can change meaning under
+  a stable key, fold the distinguishing fact into the key.
 
-## Cross-deck gloss agreement is a shallow string normalizer, not a synonym engine
+## Gloss agreement is a shallow string normalizer, not a synonym engine
 
 - **What:** `glossAlternatives` lowercases, drops parentheticals and `___` blanks, splits on commas
   and slashes, unifies ordinals, strips a leading article and a trailing plural. Two glosses agree if
   their alternative sets intersect.
-- **Why:** the check's first run reported 99 findings, ~85 of which were one card taught in two books
-  with slightly different wording ("Big" vs "Big, large", "4th floor" vs "Fourth floor"). A report
-  that noisy trains the operator to skim it. A real synonym engine would need a dictionary and would
-  bring its own wrong answers.
+- **Why:** it is a safety brake on `extras-duplicate-check --apply`, which must refuse a group whose
+  members are not obviously the same card. Ordinary wording differences ("Big" vs "Big, large", "4th
+  floor" vs "Fourth floor") must not read as a disagreement, and a real synonym engine would need a
+  dictionary and would bring its own wrong answers. It was originally written for a cross-deck report
+  as well; that report was removed by the collection-isolation ruling, and this is the surviving,
+  strictly within-collection user.
 - **Impact:** genuinely equivalent glosses that share no words still read as a difference ("Car park"
-  vs "Parking lot"), and glosses that share a word but mean different things read as agreement. The
-  check is INFO precisely because of this: it is a pointer for a human, never a gate.
+  vs "Parking lot"), so `--apply` refuses a pair it could safely have excluded, and glosses that share
+  a word but mean different things read as agreement. Failing toward REFUSING is the right direction
+  for a tool whose output a human reads anyway.
 - **Status:** open
-- **When to revisit:** only if the Recognition-direction list is ever promoted above INFO.
+- **When to revisit:** only if `--apply` is ever asked to carry more weight than "propose, human
+  disposes". It should not be.
 
 ## Preflight is not in `npm run ci`, and deliberately not in the pre-push hook
 
@@ -2185,3 +2189,38 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if the friction is what people notice rather than the distinction, derive the
   lists from the headers themselves (spent = has the marker) and keep only the "no standing tool is
   marked spent" half.
+
+## Collections are isolated, so nothing detects a bare-guid overlap between two decks
+
+- **What:** an owner ruling on 2026-08-14 established that two collections (one book, one course, one
+  template) are two separate products and must never be overlapped, compared, cued against each
+  other, or considered in reference to each other. Three preflight checks that did exactly that
+  (`cross-collection-ids`, `cross-deck-prompts`, `cross-deck-glosses`) had already been written,
+  tested and merged. They were removed on branch `ws1-isolation`, along with WS4 item 8, which
+  existed only to resolve their findings.
+- **Why:** the checks were built on the observation that Anki interleaves every deck studied that day
+  and matches note guids collection-wide. That observation is true, and it is not the rule this
+  project follows. A deck is authored, reviewed and shipped as one product; making one product's
+  wording answer for another's turns every new deck into a re-review of every old one, and the cue
+  it would ask for ("say which scarf you mean") is a cue the learner of either deck alone does not
+  need.
+- **Impact:** the one mechanical concern the removed checks also covered now has nothing watching it.
+  Both live collections ship BARE guids, decided once at each folder's creation and deliberately
+  frozen there. If both are ever `.apkg`-imported into the same Anki collection, notes sharing an id
+  overwrite each other silently. That was measurable at the time of the ruling (ten shared ids, nine
+  byte-identical, one differing: スカーフ vs マフラー, both glossed "Scarf"). It is now unwatched by
+  design, because detecting it requires reading two collections' cards together.
+- **Mitigation, and it needs no comparison:** per-deck guid namespacing (WS6 item 5) makes the
+  overlap impossible by construction, and is decided per collection at creation with no reference to
+  any other. Alongside it, the delivery runbook rule: never `.apkg`-import a bare-guid deck into a
+  collection that already holds another bare-guid deck. In-place AnkiConnect delivery is unaffected,
+  because it matches on the `abid:` tag rather than the guid, and it is the normal path for a deck
+  the owner already studies.
+- **Status:** open
+- **Verified by:** `node scripts/preflight.mjs --all` reports no cross-collection findings by
+  construction; `grep -rn "guidNamespace" output/*/*/book.json output/*/*/course.json` shows which
+  collections are bare.
+- **When to revisit:** when WS6 item 5 lands guid namespacing for new collections, note here that new
+  decks are safe by construction and that the two pre-namespace decks stay bare forever (renaming an
+  existing deck's guids would orphan its live scheduling). Do not revisit by reintroducing a content
+  comparison.

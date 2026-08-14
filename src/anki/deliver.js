@@ -193,6 +193,11 @@ function writeDeliveredMarker(deck) {
 /**
  * Every deck whose cards use a note type, and how many cards that is.
  *
+ * NOT a cross-collection comparison of the kind CLAUDE.md's "Collections are isolated" rule forbids:
+ * it reads no card content and compares no two collections. It reads the LIVE Anki collection to
+ * find out how far one write reaches. It is, in fact, what enforces isolation on this path, because
+ * without it delivering one deck silently rewrites another deck's card faces.
+ *
  * The blast radius of a template or CSS edit, measured before it happens. The note type is keyed on
  * LANGUAGE alone (`AnkiBuilder ja`, see resolveModelSpec in src/deck/collection.js), so it is shared
  * by every deck of that language: delivering the course rewrites the book's card faces too. That

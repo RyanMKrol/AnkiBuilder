@@ -264,75 +264,47 @@ test("template exemptions are reported as a decision, with their reason", () => 
   }
 });
 
-test("cross-collection ids: differing content is the hazard, identical content is a standing note", () => {
+/**
+ * There is no test here for a check that compares two collections, because there is no such check.
+ * Collections are isolated (owner ruling, 2026-08-14; see CLAUDE.md). Three checks that compared
+ * card ids, prompts and glosses ACROSS collections were written, merged, and then removed. This test
+ * is what stops them coming back by accident.
+ */
+test("no check reads a second collection: every check is unit- or collection-scoped", () => {
+  const workspaceChecks = ALL_CHECKS.filter((check) => check.scope === "workspace");
+  assert.deepEqual(
+    workspaceChecks.map((check) => check.id),
+    [],
+    "a workspace-scope check may iterate collections for per-collection logic, but adding one here " +
+      "means someone has to confirm it does not compare two collections' cards. Collections are " +
+      "isolated: they are separate products and must never be overlapped, compared or cued against " +
+      "each other.",
+  );
+});
+
+test("two collections that share a card id and differ in content are BOTH clean", () => {
+  // The live shape the removed check reported: the same id shipped by two bare-guid collections
+  // with different targets. Within each collection nothing is wrong, and that is now the whole
+  // question preflight asks.
   const { root, cleanup } = makeOutputRoot();
   try {
-    // Both markers omit guidNamespace — the pre-namespace shape both live collections carry.
     writeMarker(root, "epubs/book", "book.json", { slug: "book" });
     writeMarker(root, "courses/course", "course.json", { name: "course" });
-    writeUnit(root, "epubs/book/chapter-1", {
-      items: [card("scarf", { target: "スカーフ" }), card("pen", { target: "ペン" })],
-    });
-    writeUnit(root, "courses/course/lesson-1", {
-      items: [card("scarf", { target: "マフラー" }), card("pen", { target: "ペン" })],
-    });
-
-    const [result] = runOnly(root, "cross-collection-ids");
-    assert.equal(result.findings.length, 2);
-    assert.match(result.findings[0].key, /^differs\/scarf$/);
-    assert.match(result.findings[0].message, /DIFFERENT content/);
-    assert.match(result.findings[1].key, /^identical\/pen$/);
-  } finally {
-    cleanup();
-  }
-});
-
-test("cross-collection ids: a namespaced collection cannot collide, so the check skips", () => {
-  const { root, cleanup } = makeOutputRoot();
-  try {
-    writeMarker(root, "epubs/book", "book.json", { slug: "book", guidNamespace: "book" });
-    writeMarker(root, "courses/course", "course.json", { name: "course" });
-    writeUnit(root, "epubs/book/chapter-1", { items: [card("x")] });
-    writeUnit(root, "courses/course/lesson-1", { items: [card("x")] });
-    assert.match(runOnly(root, "cross-collection-ids")[0].skipped, /bare guids/);
-  } finally {
-    cleanup();
-  }
-});
-
-test("cross-deck prompts: only DELIVERED collections are interleaved", () => {
-  const { root, cleanup } = makeOutputRoot();
-  try {
-    writeUnit(root, "epubs/book/chapter-1", {
-      items: [card("a", { english: "Scarf", target: "スカーフ" })],
-    });
-    writeUnit(root, "courses/course/lesson-1", {
-      items: [card("b", { english: "Scarf", target: "マフラー" })],
-    });
-    assert.match(runOnly(root, "cross-deck-prompts")[0].skipped, /delivered collection/);
-
-    writeMarker(root, "epubs/book", "anki-delivered.json", { note: "x" });
-    writeMarker(root, "courses/course", "anki-delivered.json", { note: "x" });
-    const found = messages(runOnly(root, "cross-deck-prompts"));
-    assert.equal(found.length, 2);
-    assert.match(found[0], /uncued PRODUCTION prompt/);
-  } finally {
-    cleanup();
-  }
-});
-
-test("cross-deck prompts: a cue on the colliding face clears it", () => {
-  const { root, cleanup } = makeOutputRoot();
-  try {
     writeMarker(root, "epubs/book", "anki-delivered.json", { note: "x" });
     writeMarker(root, "courses/course", "anki-delivered.json", { note: "x" });
     writeUnit(root, "epubs/book/chapter-1", {
-      items: [card("a", { english: "Scarf", target: "スカーフ", hint: "the woolly one" })],
+      items: [card("scarf", { target: "スカーフ", english: "Scarf" })],
     });
     writeUnit(root, "courses/course/lesson-1", {
-      items: [card("b", { english: "Scarf", target: "マフラー", hint: "the fashion one" })],
+      items: [card("scarf", { target: "マフラー", english: "Scarf" })],
     });
-    assert.equal(messages(runOnly(root, "cross-deck-prompts")).length, 0);
+    const { results, failCount, unreviewedCount } = audit({ outputRoot: root, checks: ALL_CHECKS });
+    assert.equal(failCount, 0);
+    assert.equal(unreviewedCount, 0);
+    assert.deepEqual(
+      results.flatMap((r) => r.findings.map((f) => f.message)),
+      [],
+    );
   } finally {
     cleanup();
   }

@@ -10,7 +10,7 @@
 //   node scripts/preflight.mjs --all [output-root]       every collection under the root
 //   node scripts/preflight.mjs <collection-dir>          one book / course / template deck
 //   node scripts/preflight.mjs --all --schema-only       just the schema pass (validate-decks)
-//   node scripts/preflight.mjs --all --scope workspace   only the cross-collection checks
+//   node scripts/preflight.mjs --all --scope unit        only the per-unit checks
 //   node scripts/preflight.mjs --all --only card-ids     one check by id
 //   node scripts/preflight.mjs --all --verbose           print passing checks too
 //   node scripts/preflight.mjs --all --accept [--note …] record the unreviewed ACK findings

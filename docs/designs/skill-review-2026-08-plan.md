@@ -181,3 +181,61 @@ Every note-type/CSS change gates on WS1 item 6's model-diff guard.
 - Probe results (WS1 item 10) are recorded in `references/deliver.md` before any gated item ships.
 - The eval fixtures (WS8 item 2) are the before/after evidence for every WS3 prompt change.
 - Empirical acceptance for the priority goal: `scripts/epub-probe.mjs` run against the Betrayer novel must surface every degradation the adversarial agent found manually (unreachable spine 1, 0/35 lesson classification, swallowed files, label collision).
+
+---
+
+## Owner ruling: collection isolation (2026-08-14)
+
+**Appended after the fact. The sections above are the plan as it was approved and executed, and they
+are left unedited on purpose: this addendum is what changed, not a rewrite of what was decided.**
+
+### The ruling
+
+Completely different Anki decks (collections: the JBP book, the Nihongo course, a bundled template)
+must be processed in **complete isolation**. They must never overlap, be compared, be cued against
+each other, or be considered in reference to each other in any way.
+
+Within a single collection, cross-referencing remains correct and unchanged. A book's lessons and its
+`-extras` units are one product being made coherent with itself, so the backward dedup library, the
+cross-lesson note pass, the duplicate check and the collision audit all stay exactly as the plan
+describes them. The boundary is the collection, not the lesson.
+
+### What this overturns
+
+The plan's whole "the deck boundary is not the interference boundary" thread is withdrawn. The
+reasoning behind it (Anki interleaves every deck studied that day, and matches note guids
+collection-wide) was factually right about Anki and wrong about what this project should do with two
+separate products. The owner studies both decks; they are still two decks.
+
+**WS1 item 4 (workspace-scope checks): the two content checks were REMOVED after landing.**
+`cross-collection-ids`, `cross-deck-prompts` and `cross-deck-glosses` were written, tested, merged,
+and then deleted on branch `ws1-isolation`. The third part of that item, the stray-`.apkg` check,
+stays: it reads one collection's own folder and compares nothing.
+
+**WS4 item 8 (hand-cue the scarf pair and the 10 uncued cross-deck ambiguities): DROPPED from Wave 3.** It exists only to resolve findings that are no longer findings. `スカーフ` in the book and
+`マフラー` in the course are two products' cards; neither is cued against the other, and neither
+needs to be.
+
+**Rulings affected.** "Severity of the cross-deck card-id / bare-guid collision (qa-2)" and the
+finding behind it (learner-1, 47 cross-deck target dupes and 10 uncued English prompts) are
+superseded in their prescription, not in their observation. The observation is still true and is now
+simply not something this project acts on.
+
+### What survives, and how it is handled
+
+One mechanical concern outlives the ruling: two collections that both ship **bare guids** can
+overwrite each other's notes if both are `.apkg`-imported into the same Anki collection, because Anki
+matches guids collection-wide. That is a packaging property, not a content comparison, and the
+mitigation needs no comparison at all:
+
+- per-deck guid namespacing (WS6 item 5), which is decided per collection at its creation, and
+- the runbook rule that a bare-guid deck is never `.apkg`-imported into a collection already holding
+  another bare-guid deck.
+
+Neither requires reading a second collection's cards, and neither is permitted to.
+
+### Where the rule now lives
+
+`CLAUDE.md` golden rule 7, `src/audit/registry.js` and `src/audit/checks/index.js` (with a test that
+fails if a workspace-scope check is added without review), `references/card-authoring-rules.md`
+(scope stated once for the whole file), and an entry in `.harness/custom/docs/LIMITATIONS.md`.

@@ -38,6 +38,13 @@
  *       300 cards, and it is cards the probes move and suspend.
  *   (d) no deck matches any `ankiParent` recorded in a delivered marker on disk.
  *
+ * (d) reads every collection's marker, and that is NOT a cross-collection comparison of the kind the
+ * isolation rule forbids (CLAUDE.md, "Collections are isolated"). It reads each collection's own
+ * deck NAME, independently, and asks one question of the live Anki profile: "is any of these here?"
+ * No collection is compared against another, and no card content is read at all. The rule exists to
+ * keep two products from being authored against each other; this is the guard that keeps an
+ * experiment away from all of them.
+ *
  * ── WHAT IS DELIBERATELY NOT AUTOMATED ───────────────────────────────────────────────────────────
  *
  * Creating, resetting and deleting the `ANKIBUILDER-PROBE` profile are HUMAN steps, documented in

@@ -191,7 +191,21 @@ tool when they sit in a content section. For the `--epub` path, `extractChapterT
 (`src/corpus/epubArchive.js`) makes this possible by also extracting every image the chapter's
 `<img src>` tags reference, at the same relative path from the cached chapter file that the src
 attribute encodes from the original chapter file inside the archive — so those references resolve
-to real files on disk instead of a directory that was never unpacked. All three paths produce the
+to real files on disk instead of a directory that was never unpacked.
+
+**The extraction response is an ENVELOPE, and its coverage half is checked.** The model replies with
+`{ items, coverage }`, where `coverage` is `{ imagesOpened, imagesSkippedAsDecorative, concerns }`:
+its own account of which images it opened, which it dismissed without opening, and anything that
+stopped it covering the chapter fully. `referencedImageSrcs` (`src/corpus/epubArchive.js`, the same
+function that decides which images get written to disk) gives the set the chapter actually
+references, and `diffImageCoverage` reports every image in neither list, matching on basename since
+the model reports the path it resolved. Each unaccounted-for image and each stated concern is logged
+as a WARNING and nothing more: the model's account of its own work is evidence, not proof, and an
+extraction is not worth discarding over a side-channel. A **bare array** is still accepted forever
+(older cached responses, smaller models, partial answers), and reported as "coverage unknown" rather
+than treated as full coverage. The gap this closes: a chapter the model could not read produced
+exactly the output shape of a chapter with nothing in it — `taught-index.json` records
+`teaches: []` for the two image-only kana chapters, indistinguishable from "read it, nothing taught". All three paths produce the
 same superset item shape: `{ id, english, category, hint, note, reviewNote, target }` — the three
 note fields are strictly separated (`hint` front-of-card cue, `note` back-of-card context,
 `reviewNote` internal review-only rationale; a legacy blended `notes` folds into `reviewNote`) —

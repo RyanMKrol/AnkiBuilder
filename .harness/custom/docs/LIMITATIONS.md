@@ -1835,3 +1835,20 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if `notForms` lists start repeating across chapters, that is the signal that a
   tokenizer would pay for itself.
+
+## The extraction coverage report is self-reported, and only its image half is checked
+
+- **What:** extraction now answers with `{ items, coverage }`, where coverage names the images the
+  model opened, the ones it dismissed as decorative, and any concerns. The image lists are diffed
+  against the chapter's real referenced-image set and every gap is logged; `concerns` is logged
+  verbatim.
+- **Why:** a chapter the model could not read produced the same output shape as a chapter with
+  nothing in it. Something had to make the difference visible, and the image set is the one part of
+  the claim the code can check independently.
+- **Impact:** a model that lists an image as opened without opening it passes the check. `concerns`
+  is not checked at all, by construction: an empty list is a claim, not evidence. The warnings go to
+  the assemble log, which nobody reads after the fact, so this helps whoever is watching the build
+  and nobody else. Nothing yet surfaces it at a review gate.
+- **Status:** open
+- **When to revisit:** when preflight has scopes, storing the coverage block per unit would let the
+  gap be reported at review time instead of only in the build log.

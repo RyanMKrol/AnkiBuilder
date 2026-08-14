@@ -614,12 +614,28 @@ function isLocalRelativePath(src) {
   return Boolean(src) && !/^([a-z]+:)?\/\//i.test(src) && !src.startsWith("data:");
 }
 
+/**
+ * Every local image src a chapter's markup references, `<img src>` and SVG-wrapped
+ * `<image xlink:href>` alike, de-duplicated and in document order.
+ *
+ * Exported because two callers need the same set for different reasons: this module writes each one
+ * to disk beside the chapter file, and the extraction coverage check
+ * (src/corpus/epubLlmExtract.js) diffs it against the images the model says it opened. Deriving the
+ * set twice would let the two drift, and a coverage check that disagrees with reality about what
+ * exists is worse than no check.
+ */
+export function referencedImageSrcs(content) {
+  return [
+    ...new Set(
+      [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
+        .map((m) => m[1] ?? m[2])
+        .filter(isLocalRelativePath),
+    ),
+  ];
+}
+
 function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
-  const srcs = new Set(
-    [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
-      .map((m) => m[1] ?? m[2])
-      .filter(isLocalRelativePath),
-  );
+  const srcs = referencedImageSrcs(content);
 
   const chapterDir = posix.dirname(chapter.href);
   const destDir = dirname(destPath);

@@ -18,7 +18,8 @@ const DOCS = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "
 const TEMPLATES = {
   "epub-extraction-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CHAPTER_FILE_PATH", "BOOK_CONVENTIONS", "CATEGORY_LIST"],
-    outputContract: /JSON array/,
+    // The envelope: items plus the model's own account of what it read.
+    outputContract: /"items"[\s\S]*"coverage"/,
   },
   "epub-book-conventions-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CHAPTER_COUNT", "CHAPTER_FILE_PATHS"],

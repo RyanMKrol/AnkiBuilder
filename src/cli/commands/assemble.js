@@ -259,6 +259,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     corpus = ctx.assembleCorpusFromChapter({
       chapterFilePath: flags.chapter,
       targetLanguage: flags.lang,
+      log: ctx.log,
     });
   } else if (flags.epub) {
     if (!flags["chapter-number"]) {
@@ -325,6 +326,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       chapterFilePath,
       targetLanguage: flags.lang,
       bookConventions,
+      log: ctx.log,
     });
     const chapterLabel = lesson ? lesson.label : ctx.describeChapter(flags.epub, chapterNumber);
     corpus.meta = { ...corpus.meta, epubHash, chapterNumber, chapterLabel };

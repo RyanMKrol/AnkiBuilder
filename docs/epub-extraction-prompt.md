@@ -18,7 +18,22 @@ If you're genuinely unsure whether something should be included, include it anyw
 
 ## Output Format
 
-Respond with ONLY a single JSON array (no markdown fences, no prose before or after). One object per flashcard:
+Respond with ONLY a single JSON object (no markdown fences, no prose before or after), with two keys: `items`, the flashcards, and `coverage`, an account of what you read.
+
+```
+{"items": [ ...one object per flashcard, see below... ],
+ "coverage": {
+   "imagesOpened": ["<every image file you actually opened and looked at, by path>"],
+   "imagesSkippedAsDecorative": ["<every image you decided was decorative WITHOUT opening it>"],
+   "concerns": ["<anything that stopped you covering this chapter fully, one short line each>"]
+ }}
+```
+
+**`coverage` is checked, so it must be true.** Every image this chapter references is known from its markup, and your two image lists are diffed against that set: an image in neither list is reported as unaccounted for. An image you opened goes in `imagesOpened` whatever you concluded about it; one you dismissed on position or filename alone goes in `imagesSkippedAsDecorative`. Do not list an image as opened that you did not open.
+
+**`concerns` is where an incomplete read becomes visible.** A chapter you could not fully read must not produce the same output as a chapter with little in it: say so instead. A file too long to read in full, a chart you could not make out, a section whose content is clearly in an image you could not resolve, a conflict between these rules and the book conventions at the end of this prompt — one line each. An empty `concerns` list is a claim that nothing got in your way.
+
+One object per flashcard, inside `items`:
 
 **Important: preserve textbook order.** Emit items in exactly the order they appear in the chapter, top to bottom — do not reorder them, do not group them by type (e.g. all vocabulary together, then all key sentences), and do not sort them any other way. The sequence in the output must match the sequence in the source file.
 
@@ -43,14 +58,16 @@ An item may set any combination. Rule of thumb: sets the SITUATION the sentence 
 
 ## Handling Placeholders
 
-Textbooks commonly write a grammar pattern or attachment point using a placeholder-like character — e.g. 〜さん, お〜, 〜を おねがいします. These are typographical conventions, not part of the spoken word, and can appear as any of several near-identical characters depending on how the source was digitized: 〜 (wave dash), ～ (fullwidth tilde), or a plain ~. Treat all of these as the same placeholder marker.
+Textbooks commonly write a grammar pattern or attachment point using a placeholder-like character — e.g. 〜さん, お〜, 〜を おねがいします. These are typographical conventions, not part of the spoken word, and can appear as any of several near-identical characters depending on how the source was digitized: 〜 (wave dash), ～ (fullwidth tilde), or a plain ~. Treat all of these as the same placeholder marker. **An ellipsis is one too**: `…`, `⋯` and a run of `...` mark a slot exactly as a wave dash does, and are just as unspeakable in a `target`.
 
 **Never leave a placeholder character in the final `target`.** Decide per item, using your best judgment:
 
 - **The item IS the grammatical particle/suffix/prefix itself** — its English gloss describes the particle's own function or meaning (e.g. "Mr., Mrs., Ms., Miss" for さん, "(honorific prefix)" for お). Strip the placeholder and keep only the actual morpheme in `target` (e.g. `さん`, not `〜さん`; `お`, not `お〜`). Do NOT invent a concrete example to fill it — that would misrepresent a general-purpose particle as one specific case. Instead, record in **`note`** whether it's a prefix or suffix and what it attaches to (e.g. "Suffix — attaches after a person's name"), since that's real learner-facing information the stripped placeholder would otherwise lose. (If you also want to note the source spelling, that provenance goes in `reviewNote`, e.g. "written 〜さん in the source".)
 - **The item is a phrase-level usage pattern meant to be spoken as a complete unit** — its English gloss describes an action or request rather than a particle's own meaning (e.g. "please (get me…)"). Replace the placeholder with a natural, contextually-appropriate word or phrase, chosen using your best judgment — prefer reusing a word already introduced elsewhere in this chapter when a sensible one exists. Record exactly what you filled in and why in **`reviewNote`** (e.g. "Placeholder filled with 'コーヒー' (coffee) as a natural example — not literally present in the source text at this point") — that's a decision you made, not something the learner needs.
 
-When genuinely unsure which of the two applies, prefer resolving it into a phrase over leaving a placeholder — an unresolved placeholder character is never a valid `target`.
+- **The pattern has TWO slots, spread across the phrase** — a discontinuous pattern like `X…〜Y`, `〜から〜まで`, `だれも…〜ません`, `いつも…〜ます`. Both slots belong to one construction, so resolve BOTH into a single natural utterance rather than filling one and leaving the other: `だれも…〜ません` becomes `だれもいません` ("There is no one."), `〜から〜まで` becomes something like `くじからごじまで` ("from 9:00 to 5:00"). Half-resolving is the failure to avoid — a `target` with one slot filled and one placeholder left is not something a person can say, and the TTS voice reads the leftover marker aloud. Record the source spelling in **`reviewNote`** (e.g. "source prints だれも…〜ません; both slots resolved into one sentence"), and fix the gloss to match the sentence you built: a schematic row's bare label ("No one") stops being right once the card is a sentence ("There is no one.").
+
+When genuinely unsure which of these applies, prefer resolving it into a phrase over leaving a placeholder — an unresolved placeholder character is never a valid `target`.
 
 ## Example Output
 
@@ -110,6 +127,21 @@ and inclusion/provenance rationale to `reviewNote`:
 ]
 ```
 
+...and the whole response wraps those items in the envelope:
+
+```json
+{
+  "items": [ ... the items above ... ],
+  "coverage": {
+    "imagesOpened": ["images/Page_076_Image_0001.jpg", "images/Page_077_Image_0002.jpg"],
+    "imagesSkippedAsDecorative": ["images/banner.jpg"],
+    "concerns": [
+      "The kana chart on the second page is an image I could not read clearly; its rows may be under-extracted."
+    ]
+  }
+}
+```
+
 ## Step 1: Extract
 
 Evaluate BOTH the English and the {{TARGET_LANGUAGE}} text; do not favor one language when deciding what counts as content.
@@ -162,6 +194,10 @@ missing one is invisible: nothing downstream can flag content that was never emi
 surface if a human happens to notice the gap months later.
 
 **A form the chapter names as an EXCEPTION is high priority, never optional.** Grammar and Key-Sentence notes routinely teach a rule and then name the one form that breaks it — "the particle で is attached to the noun indicating the means of transportation… _but_ to say 'by foot,' use あるいて". That exception is the single most confusable item in the lesson, so it must become its own card, even when it appears only inside explanatory prose you would otherwise skip and only as a bare word elsewhere (a substitution-drill alternative, a table cell). Watch for the words _but_, _except_, _instead_, _irregular_ and _does not take_ in a grammar note: whatever follows them is a card.
+
+**A numbered picture-caption list is a vocabulary block** (this book calls them WORD POWER). A thematic set presented as an illustration per item with a numbered caption — ①②③ or ❶❷❸ beside a word — is real, taught vocabulary, and the numbering makes it look like a drill when it is not. Extract **every** label in the list, not the ones you recognize: a partial list is the silent miss this rule exists to stop. Where the caption gives the word but the chapter's vocabulary box does not gloss it, supply the English yourself, set `"uncertain": true`, and name the list in `reviewNote` (e.g. "WORD POWER food illustration ⑦; gloss supplied, not in the voc-box"). Where the labels sit inside the image rather than the markup, open the image and read them.
+
+**Ruby annotations: `<rt>` is the publisher's own reading, and it belongs in `ttsText`.** Japanese textbooks mark readings with ruby markup — `<ruby>漢字<rt>かんじ</rt></ruby>` (sometimes with `<rp>` fallback parens around it). The base text is what the learner sees, so it is the `target`; the `<rt>` content is an authoritative reading from the publisher, which is exactly what `ttsText` is for. So: base text into `target`, `<rt>` content into `ttsText`, and **never** merge the two into one string. `漢字かんじ` as a target is wrong in a way nothing downstream can undo. Where a sentence has several ruby annotations, `ttsText` is the whole sentence with each base replaced by its reading. Where the base is already phonetic and the ruby only repeats it, omit `ttsText`. Drop `<rp>` parens entirely — they are print fallback, not content.
 
 ### What to skip entirely
 

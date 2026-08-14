@@ -1603,3 +1603,29 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   all, where the alternative is "no navigation document found".
 - **When to revisit:** if a real book is mis-swept. Resolving `xmlns:*` declarations properly is the
   fix, and it is the point at which the hand-rolled scanner starts costing more than it saves.
+
+## The archive-layout mirror for the chapter cache is deferred, and why
+
+- **What:** the plan's follow-on to the collision detector was to mirror the archive layout under the
+  cache root (chapter at `<cache>/<archive path>`, images at their own mirrored archive paths), which
+  is isomorphic to the zip and so preserves every `<img src>` relationship exactly. It is NOT done;
+  only the detectors shipped.
+- **Why:** the obstacle is not the mirroring, it is who can compute the path.
+  `src/cli/commands/prepare.js` resolves the chapter file from `meta.epubHash` and
+  `meta.chapterNumber` alone, with no EPUB path in scope — and a mirrored path is a function of the
+  archive, so that call site cannot derive it without either opening the library's EPUB copy (this
+  reader inflates every entry eagerly, so that is a full 90 MB unpack purely to compute a path) or a
+  new sidecar index written at extraction time and read back here. The range cache
+  (`<first>-<last>.xhtml`) also has no single archive directory to mirror into. Landing it half-right
+  is the one failure the ruling calls out as invisible: `extractReferencedImages` logs only MISSING
+  archive entries, `isCachedChapterFile` then treats the chapter as a complete extraction forever,
+  and no test exercises image reading because it only happens inside a paid LLM pass.
+- **Impact:** the collision stays possible by construction on a book with the standard
+  Sigil/InDesign layout. It is detected two ways — statically in the shape report before any spend,
+  and by byte-compare at write time — but the second write still wins.
+- **When to revisit:** with the hostile fixtures now in place, the missing piece is the path
+  contract. Decide between a sidecar `cache-v<N>/index.json` (chapterNumber → relative path, written
+  at extraction) and passing an EPUB path down to `prepare`; then bump `CACHE_VERSION`, move the
+  containment root from "one level up from the chapter file" to an explicit mirror root, and give the
+  range cache a home. Note that a per-chapter subdirectory is NOT a shortcut: with the standard
+  `../images/foo.png` layout it isolates nothing.

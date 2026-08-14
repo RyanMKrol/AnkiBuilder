@@ -4,11 +4,10 @@ import { syncDeckContent } from "../../src/anki/deliver.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
 
 /**
- * Pins the SCOPE of the delivery note lookup, ahead of the change that splits it.
+ * Pins the SCOPE of the delivery note lookup, now that it is two queries rather than one.
  *
- * The delivered-note index is built from ONE query, and the plan splits it in two: the durable
- * `abid:` key stays BOOK-WIDE, while the first-run Target/Target+English fingerprint indexes narrow
- * to the unit being delivered (which closes a cross-bind on 17 confirmed repeated targets).
+ * The durable `abid:` key is read BOOK-WIDE; the first-run Target/Target+English fingerprint indexes
+ * are read per UNIT (which closes a cross-bind on 17 confirmed repeated targets).
  *
  * These tests exist because narrowing the WRONG half is unrecoverable. `abid:<card.id>` is the only
  * durable link between a card on disk and a note in Anki. Narrow that query to a unit's sub-deck and
@@ -16,8 +15,8 @@ import { noteTypeSpec } from "../../src/deck/collection.js";
  * index — the deliverer then sees an unmatched card and ADDS it, so the learner gets a fresh
  * duplicate with no scheduling while the matured original sits there orphaned. Nothing reports it.
  *
- * Written now, against today's single book-wide query, so the split has a guard already in place
- * rather than one written by whoever performs it.
+ * They were written against the single-query version, before the split, so the split had a guard
+ * already in place rather than one written by whoever performed it.
  */
 
 const SPEC = noteTypeSpec("ja");
@@ -69,7 +68,7 @@ const deck = (units) => ({
   units,
 });
 
-test("the note lookup is scoped to the BOOK's parent deck, never to one unit's sub-deck", async () => {
+test("the DURABLE lookup is the book-wide one; the fingerprint lookups are per unit", async () => {
   const queries = [];
   const { client: c } = client([], { queries });
   await syncDeckContent(
@@ -80,10 +79,66 @@ test("the note lookup is scoped to the BOOK's parent deck, never to one unit's s
     ]),
     true,
   );
-  assert.equal(queries.length, 1, "one query for the whole delivery, not one per unit");
+  // The FIRST query is the abid index's, and it sees the whole book. Anything narrower here is the
+  // unrecoverable mistake this file exists to catch.
   assert.match(queries[0], /deck:"My Book"/);
   assert.doesNotMatch(queries[0], /Lesson 01/);
   assert.doesNotMatch(queries[0], /Lesson 02/);
+  // Then one fingerprint query per unit, each scoped to that unit's own sub-deck.
+  assert.equal(queries.length, 3, "one book-wide query plus one per unit");
+  assert.match(queries[1], /deck:"My Book::Lesson 01::Meeting"/);
+  assert.match(queries[2], /deck:"My Book::Lesson 02::Shopping"/);
+});
+
+test("a repeated target in another unit is NOT adopted by this unit's card", async () => {
+  // The cross-bind the split closes: 17 targets repeat across this book's units, and a book-wide
+  // fingerprint index let a unit's card claim another unit's note by spelling alone — silently
+  // rebinding two units' cards to each other's notes on the first run.
+  const notes = [
+    note(1, { target: "はい", english: "Yes" }), // lives in Lesson 01
+    note(2, { target: "はい", english: "Yes" }), // lives in Lesson 02
+  ];
+  const byDeck = {
+    'deck:"My Book"': [1, 2],
+    'deck:"My Book::Lesson 01"': [1],
+    'deck:"My Book::Lesson 02"': [2],
+  };
+  const calls = [];
+  const c = {
+    findNotes: async (q) => byDeck[q.split(" note:")[0]] ?? [],
+    notesInfo: async (ids) => notes.filter((n) => ids.includes(n.noteId)),
+    updateNoteFields: async (id) => calls.push(["updateNoteFields", id]),
+    addTags: async (ids, tags) => calls.push(["addTags", ids, tags]),
+    addNote: async () => calls.push(["addNote"]),
+    storeMediaFile: async () => {},
+  };
+
+  const report = await syncDeckContent(
+    c,
+    deck([
+      {
+        ankiDeck: "My Book::Lesson 01",
+        audioDir: null,
+        cards: [{ id: "yes-1", target: "はい", english: "Yes", note: "one" }],
+      },
+      {
+        ankiDeck: "My Book::Lesson 02",
+        audioDir: null,
+        cards: [{ id: "yes-2", target: "はい", english: "Yes", note: "two" }],
+      },
+    ]),
+    false,
+  );
+
+  assert.equal(report.added, 0);
+  assert.equal(report.updated, 2, "each unit adopted the note in its OWN deck");
+  assert.deepEqual(
+    calls.filter((c) => c[0] === "addTags").map((c) => [c[1][0], c[2]]),
+    [
+      [1, "abid:yes-1"],
+      [2, "abid:yes-2"],
+    ],
+  );
 });
 
 test("an abid-tagged note is matched even when it now lives under a DIFFERENT unit's sub-deck", async () => {

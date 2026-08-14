@@ -22,7 +22,7 @@ import {
   assertUniqueCardIds as assertUniqueCardIdsAcross,
 } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
-import { DELIVERED_MARKER } from "./deliveredMarker.js";
+import { DELIVERED_MARKER, readDeliveredMarker } from "./deliveredMarker.js";
 import { assertProbeEvidence } from "./probeEvidence.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
@@ -105,7 +105,21 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       audioDir: cd.audioDir,
       cards: shippableCards(cd.cards),
     }));
-    decks.push({ type, id, title: info.title, targetLanguage, spec, ankiParent, units, bookDir });
+    // The collection's OWN delivered marker: what the last deliver recorded about this collection,
+    // and nothing about any other. It is what the rename guard and the fail-closed baseline read.
+    const marker = readDeliveredMarker(bookDir);
+    decks.push({
+      type,
+      id,
+      title: info.title,
+      targetLanguage,
+      spec,
+      ankiParent,
+      units,
+      bookDir,
+      marker: marker?.unreadable ? null : marker,
+      markerUnreadable: marker?.unreadable ?? null,
+    });
   }
   return decks;
 }
@@ -174,23 +188,61 @@ export function pruneBackups(
 // module now (./deliveredMarker.js) rather than here.
 export { DELIVERED_MARKER };
 
-function writeDeliveredMarker(deck) {
-  if (!deck.bookDir) return;
-  try {
+const MARKER_NOTE =
+  "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import " +
+  "the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.";
+
+/**
+ * Writes the delivered marker, including the BASELINE the next run's fail-closed check reads.
+ *
+ * `deliveredCardIds` is the set of card ids this deliver resolved to a real note in Anki. The next
+ * deliver looks every one of them up by `abid:` and aborts if a large fraction has vanished, which
+ * is what a book rename looks like from the inside: the query returns nothing, every card reads as
+ * new, and the run would otherwise re-add the whole book with fresh scheduling.
+ *
+ * ⚠️ FAIL-LOUD, NEVER THROWING. This used to be a best-effort write inside a try with an empty
+ * catch ("the marker is advisory"), and a gate on the largest unbounded-damage path in the delivery
+ * layer must not inherit an error-swallowing writer. But it runs AFTER the notes have been written,
+ * so throwing here would report a failure for a delivery that actually happened. Instead: on a
+ * failure it tries to leave a DISARMED marker (no baseline), so the next run bootstraps rather than
+ * trusting a stale one, and the outcome is returned for the caller to report prominently.
+ */
+function writeDeliveredMarker(deck, { cardIds = [] } = {}) {
+  if (!deck.bookDir) return { ok: true, skipped: "no book dir" };
+  const path = join(deck.bookDir, DELIVERED_MARKER);
+  const write = (extra) =>
     writeFileSync(
-      join(deck.bookDir, DELIVERED_MARKER),
+      path,
       JSON.stringify(
         {
-          note: "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
+          note: MARKER_NOTE,
           ankiParent: deck.ankiParent,
           lastDeliveredAt: new Date().toISOString(),
+          ...extra,
         },
         null,
         2,
       ) + "\n",
     );
-  } catch {
-    // The marker is advisory; a failed write must not fail the deliver.
+
+  try {
+    write({ deliveredCardIds: [...cardIds].sort() });
+    return { ok: true, armed: true, count: cardIds.length, path };
+  } catch (error) {
+    try {
+      // No baseline recorded → the next run bootstraps (see assertDeliveredBaseline). A stale
+      // baseline would be worse than none: it would arm a gate against a set nobody can vouch for.
+      write({ deliveredCardIds: null, baselineDisarmedBecause: error.message });
+      return { ok: false, armed: false, disarmed: true, error: error.message, path };
+    } catch (second) {
+      return {
+        ok: false,
+        armed: false,
+        disarmed: false,
+        error: `${error.message}; ${second.message}`,
+        path,
+      };
+    }
   }
 }
 
@@ -493,43 +545,164 @@ export function assertUniqueCardIds(deck) {
   );
 }
 
-// Content sync for one deck. Returns per-deck counters + lists.
-export async function syncDeckContent(client, deck, dry) {
-  assertUniqueCardIds(deck);
-  const r = {
-    deck: `${deck.type}:${deck.id}`,
-    updated: 0,
-    added: 0,
-    skipped: 0,
-    tagged: 0,
-    addedWithoutAudio: 0,
-    addedCards: [],
-    ambiguous: [],
-    orphaned: [],
-  };
-  const query = `deck:"${escapeSearchTerm(deck.ankiParent)}" note:"${escapeSearchTerm(deck.spec.modelName)}"`;
-  const noteIds = await client.findNotes(query);
+/**
+ * How many notes one deliver may ADD to a collection before it wants to be asked twice.
+ *
+ * An add is the expensive mistake in this layer: a note added where one should have been matched is
+ * a duplicate with no scheduling, sitting beside a matured original. The number that turns a bad
+ * match into a catastrophe is the SIZE of the run, so the size is what the ceiling is on. A first
+ * delivery of a whole book legitimately exceeds it — that is the case where you read the dry run and
+ * then say so with `--allow-bulk-add`.
+ */
+export const DEFAULT_MAX_ADDS = 200;
+
+/**
+ * The fraction of a recorded baseline that may fail to resolve before a deliver refuses to run.
+ *
+ * Not zero: a note deleted by hand in Anki is a legitimate, ordinary thing, and a gate that fires on
+ * one missing note would be turned off within a week. It fires on the shape of a disaster — most of
+ * the book, or all of it.
+ */
+export const MAX_UNRESOLVED_BASELINE = 0.1;
+
+/**
+ * THE BOOTSTRAP INDEXES, AND WHY THEY ARE READ FROM TWO DIFFERENT QUERIES.
+ *
+ * `byAbid` comes from ONE BOOK-WIDE query and must never be narrowed. `abid:<card.id>` is the only
+ * durable link between a card on disk and a note in Anki; narrow that lookup to the unit's own
+ * sub-deck and a delivered note the learner moved, or one sitting under a differently-named
+ * sub-deck, falls out of the index. The card then reads as new and the loop adds it —
+ * `allowDuplicate: true`, fresh guid, fresh scheduling — while merely printing the matured original
+ * under `orphaned`. That is the exact damage this whole layer exists to prevent, so the query stays
+ * book-wide and this comment is the reason it may not be "simplified".
+ *
+ * `byTarget` / `byTargetEnglish` are the FIRST-RUN fingerprint indexes, used once to adopt notes
+ * that predate the abid tag, and they ARE scoped to the unit being delivered. Book-wide they
+ * cross-bind: 17 targets repeat across this book's units, so a unit's card can adopt another unit's
+ * note by spelling alone. Scoping them costs one findNotes per unit and closes that.
+ */
+async function buildIndexes(client, deck) {
+  const model = escapeSearchTerm(deck.spec.modelName);
+  const bookQuery = `deck:"${escapeSearchTerm(deck.ankiParent)}" note:"${model}"`;
+  const noteIds = (await client.findNotes(bookQuery)) ?? [];
   const infos = noteIds.length ? await client.notesInfo(noteIds) : [];
 
-  // Two indexes for the first-run bootstrap: by Target (the Japanese — the field that almost never
-  // changes, so it survives English-gloss edits), and by Target+English (to break Target collisions,
-  // e.g. two cards sharing a sentence). Abid-tagged notes are the durable key on every later run.
   const noteById = new Map();
   const byAbid = new Map();
-  const byTarget = new Map();
-  const byTargetEnglish = new Map();
-  const push = (map, key, id) => (map.has(key) ? map.get(key).push(id) : map.set(key, [id]));
   for (const n of infos) {
     noteById.set(n.noteId, n);
     const abid = (n.tags || []).find((t) => t.startsWith(ABID));
     if (abid) byAbid.set(abid.slice(ABID.length), n.noteId);
-    push(byTarget, norm(noteField(n, "Target")), n.noteId);
-    push(byTargetEnglish, fingerprint(noteField(n, "Target"), noteField(n, "English")), n.noteId);
   }
 
-  const used = new Set();
-  const corpusIds = new Set();
+  // One fingerprint index per unit, from that unit's own sub-deck. `deck:` matches a filtered card
+  // by its HOME deck, so a card pulled into a custom-study session is still found here.
+  const byUnit = new Map();
   for (const unit of deck.units) {
+    const unitIds =
+      (await client.findNotes(`deck:"${escapeSearchTerm(unit.ankiDeck)}" note:"${model}"`)) ?? [];
+    const unitInfos = unitIds.filter((id) => noteById.has(id)).map((id) => noteById.get(id));
+    // A note under the unit's deck that the book-wide query did not see cannot exist (the unit deck
+    // is inside the book deck), but a differently-configured collection could return one; read it
+    // rather than assume.
+    for (const id of unitIds) {
+      if (noteById.has(id)) continue;
+      const [info] = (await client.notesInfo([id])) ?? [];
+      if (info) {
+        noteById.set(id, info);
+        unitInfos.push(info);
+      }
+    }
+    const byTarget = new Map();
+    const byTargetEnglish = new Map();
+    const push = (map, key, id) => (map.has(key) ? map.get(key).push(id) : map.set(key, [id]));
+    for (const n of unitInfos) {
+      push(byTarget, norm(noteField(n, "Target")), n.noteId);
+      push(byTargetEnglish, fingerprint(noteField(n, "Target"), noteField(n, "English")), n.noteId);
+    }
+    byUnit.set(unit, { byTarget, byTargetEnglish });
+  }
+
+  return { noteIds, noteById, byAbid, byUnit };
+}
+
+/**
+ * THE RENAME GUARD.
+ *
+ * `ankiParent` is the book's human-editable title. Rename the deck in Anki and the book-wide query
+ * matches nothing, every card reads as new, and a routine deliver re-inserts the entire book as
+ * fresh notes with no scheduling — while the pre-delivery backup records a success, because
+ * AnkiConnect returns `result: false` without an error for a deck that does not exist.
+ *
+ * The marker is what makes this detectable: it says this collection HAS been delivered, under this
+ * parent name. Marker present and zero notes found is not a first run, it is a lookup that broke.
+ */
+function assertBookQueryResolves(deck, noteIds) {
+  if (!deck.marker || noteIds.length > 0) return;
+  throw new Error(
+    `"${deck.ankiParent}" has been delivered before (${DELIVERED_MARKER} says so, last on ` +
+      `${deck.marker.lastDeliveredAt ?? "an unrecorded date"}) but the lookup found ZERO notes ` +
+      `under it. The likeliest cause by far is that the deck was RENAMED in Anki: this tool finds ` +
+      `notes by the parent deck's name, and the name it expects is "${deck.marker.ankiParent}". ` +
+      `Continuing would re-add every card in this collection as a new note with no scheduling. ` +
+      `Rename the deck back, or update the collection's title so the two agree, then re-run.`,
+  );
+}
+
+/**
+ * THE FAIL-CLOSED BASELINE.
+ *
+ * `deliveredCardIds` in the marker is the set of cards the last deliver resolved to a real note. If
+ * a large fraction of them no longer resolves by `abid:`, something has happened to the collection
+ * that this run's matching cannot be trusted through.
+ *
+ * THE BOOTSTRAP RULE, stated explicitly: a marker with no `deliveredCardIds` field — which is both
+ * live collections until their next deliver — RECORDS the baseline and asserts nothing. The gate
+ * arms from the second run. Without that, the check would either be red on the day it landed or
+ * tuned so loose it never fires, which is the trap it exists to avoid.
+ */
+function assertDeliveredBaseline(deck, byAbid) {
+  const recorded = deck.marker?.deliveredCardIds;
+  if (!Array.isArray(recorded) || recorded.length === 0) {
+    return { armed: false, reason: "no baseline recorded yet — this run records one" };
+  }
+  const unresolved = recorded.filter((id) => !byAbid.has(id));
+  const fraction = unresolved.length / recorded.length;
+  if (unresolved.length && (fraction === 1 || fraction > MAX_UNRESOLVED_BASELINE)) {
+    throw new Error(
+      `${unresolved.length} of ${recorded.length} previously-delivered card(s) ` +
+        `(${Math.round(fraction * 100)}%) no longer resolve to a note in "${deck.ankiParent}". ` +
+        `The last deliver recorded them; this run cannot find them. Something happened to the ` +
+        `collection — a rename, a deleted deck, a restore from an older backup — and continuing ` +
+        `would re-add them as new notes with no scheduling. First missing: ` +
+        `${unresolved.slice(0, 5).join(", ")}${unresolved.length > 5 ? ", …" : ""}.`,
+    );
+  }
+  return { armed: true, recorded: recorded.length, unresolved: unresolved.length };
+}
+
+/**
+ * Resolves every card in a deck to an operation, WITHOUT writing anything.
+ *
+ * Separated from the execution so the whole run can be counted before any of it happens: the add
+ * ceiling, the `--refile` preview and the fail-closed baseline all need to know the shape of the
+ * whole delivery, and a check that fires halfway through a run of writes is not a gate.
+ */
+export async function planDeckContent(client, deck) {
+  assertUniqueCardIds(deck);
+  const { noteIds, noteById, byAbid, byUnit } = await buildIndexes(client, deck);
+  assertBookQueryResolves(deck, noteIds);
+  const baseline = assertDeliveredBaseline(deck, byAbid);
+
+  const ops = [];
+  const ambiguous = [];
+  const orphaned = [];
+  const corpusIds = new Set();
+  const used = new Set();
+  const abidNoteIds = new Set(byAbid.values());
+
+  for (const unit of deck.units) {
+    const { byTarget } = byUnit.get(unit) ?? { byTarget: new Map() };
     for (const card of unit.cards) {
       corpusIds.add(card.id);
       const fields = Object.fromEntries(FIELD_NAMES.map((f) => [f, fieldValue(card, f)]));
@@ -537,7 +710,7 @@ export async function syncDeckContent(client, deck, dry) {
       let noteId = byAbid.get(card.id);
       let stamp = false;
       if (noteId == null) {
-        const free = (id) => !used.has(id) && !byAbidHas(byAbid, id);
+        const free = (id) => !used.has(id) && !abidNoteIds.has(id);
         const tgtMatches = (byTarget.get(norm(card.target)) || []).filter(free);
         if (tgtMatches.length === 1) {
           noteId = tgtMatches[0];
@@ -548,6 +721,7 @@ export async function syncDeckContent(client, deck, dry) {
           let pick = tgtMatches.filter((id) => norm(noteField(noteById.get(id), "English")) === ce);
           // Fall back to a prefix match: a gloss edited since import (e.g. a parenthetical moved to the
           // hint, so the Anki gloss is the corpus gloss + extra) still resolves if it's the only one.
+          // Unit-scoped like the index it filters, so the fallback can no longer reach across units.
           if (pick.length !== 1) {
             pick = tgtMatches.filter((id) => {
               const ne = norm(noteField(noteById.get(id), "English"));
@@ -559,7 +733,7 @@ export async function syncDeckContent(client, deck, dry) {
             stamp = true;
           } else {
             // Can't pick exactly one same-Target note → AMBIGUOUS. Report it; never add a duplicate.
-            r.ambiguous.push({ card: card.id, english: card.english });
+            ambiguous.push({ card: card.id, english: card.english });
             continue;
           }
         }
@@ -570,45 +744,88 @@ export async function syncDeckContent(client, deck, dry) {
         used.add(noteId);
         const n = noteById.get(noteId);
         const differs = FIELD_NAMES.some((f) => !sameField(noteField(n, f), fields[f]));
-        if (differs) {
-          await maybeStoreMedia(client, card, unit, dry);
-          if (!dry) await client.updateNoteFields(noteId, fields);
-          r.updated++;
-        } else {
-          r.skipped++;
-        }
-        if (stamp) {
-          if (!dry) await client.addTags([noteId], `${ABID}${card.id}`);
-          r.tagged++;
-        }
+        ops.push({ kind: differs ? "update" : "skip", noteId, card, unit, fields, stamp, note: n });
       } else {
-        const hadAudio = await maybeStoreMedia(client, card, unit, dry);
-        if (!hadAudio) r.addedWithoutAudio++;
-        if (!dry) {
-          await client.addNote({
-            deckName: unit.ankiDeck,
-            modelName: deck.spec.modelName,
-            fields,
-            tags: [`${ABID}${card.id}`],
-            options: { allowDuplicate: true },
-          });
-        }
-        r.added++;
-        r.addedCards.push({ card: card.id, english: card.english, deck: unit.ankiDeck });
+        ops.push({ kind: "add", card, unit, fields });
       }
     }
   }
 
   for (const [cid, nid] of byAbid) {
-    if (!corpusIds.has(cid)) r.orphaned.push({ card: cid, noteId: nid });
+    if (!corpusIds.has(cid)) orphaned.push({ card: cid, noteId: nid });
   }
-  return r;
+
+  return { ops, ambiguous, orphaned, baseline, noteById };
 }
 
-const byAbidHas = (byAbid, noteId) => {
-  for (const v of byAbid.values()) if (v === noteId) return true;
-  return false;
-};
+/**
+ * Content sync for one deck: plan (reads only), check the ceiling, then write. Returns per-deck
+ * counters + lists.
+ */
+export async function syncDeckContent(client, deck, dry, options = {}) {
+  const { maxAdds = DEFAULT_MAX_ADDS, allowBulkAdd = false, log = () => {} } = options;
+  const plan = await planDeckContent(client, deck);
+
+  const r = {
+    deck: `${deck.type}:${deck.id}`,
+    updated: 0,
+    added: 0,
+    skipped: 0,
+    tagged: 0,
+    addedWithoutAudio: 0,
+    addedCards: [],
+    ambiguous: plan.ambiguous,
+    orphaned: plan.orphaned,
+    baseline: plan.baseline,
+    deliveredCardIds: [],
+  };
+
+  const adds = plan.ops.filter((op) => op.kind === "add");
+  if (adds.length > maxAdds) {
+    const message =
+      `this deliver would ADD ${adds.length} note(s) to "${deck.ankiParent}", over the ceiling of ` +
+      `${maxAdds}. A run this size is either a first delivery or a matching failure, and the two ` +
+      `look identical from here. Preview it with --dry, and if the additions are what you mean, ` +
+      `re-run with --allow-bulk-add.`;
+    if (!dry && !allowBulkAdd) throw new Error(message);
+    log(message);
+  }
+
+  for (const op of plan.ops) {
+    if (op.kind === "add") {
+      const hadAudio = await maybeStoreMedia(client, op.card, op.unit, dry);
+      if (!hadAudio) r.addedWithoutAudio++;
+      if (!dry) {
+        await client.addNote({
+          deckName: op.unit.ankiDeck,
+          modelName: deck.spec.modelName,
+          fields: op.fields,
+          tags: [`${ABID}${op.card.id}`],
+          options: { allowDuplicate: true },
+        });
+      }
+      r.added++;
+      r.addedCards.push({ card: op.card.id, english: op.card.english, deck: op.unit.ankiDeck });
+      r.deliveredCardIds.push(op.card.id);
+      continue;
+    }
+
+    if (op.kind === "update") {
+      await maybeStoreMedia(client, op.card, op.unit, dry);
+      if (!dry) await client.updateNoteFields(op.noteId, op.fields);
+      r.updated++;
+    } else {
+      r.skipped++;
+    }
+    if (op.stamp) {
+      if (!dry) await client.addTags([op.noteId], `${ABID}${op.card.id}`);
+      r.tagged++;
+    }
+    r.deliveredCardIds.push(op.card.id);
+  }
+
+  return r;
+}
 
 // Store a card's audio file into Anki's media (idempotent). Returns true if the card had an audio file.
 async function maybeStoreMedia(client, card, unit, dry) {
@@ -636,6 +853,10 @@ export async function deliverToAnki(
     // Explicit consent to ADD a card template to that shared note type. Dormant: even with this,
     // the add is refused until the live probes have answered what it does (probeEvidence.js).
     allowTemplateAdd = false,
+    // The add ceiling. A run bigger than this is either a first delivery or a matching failure, and
+    // they look identical from here, so it asks.
+    maxAdds = DEFAULT_MAX_ADDS,
+    allowBulkAdd = false,
     sync = true,
     now = () => Date.now(),
     adapters = ADAPTERS,
@@ -671,6 +892,7 @@ export async function deliverToAnki(
     createdDecks: [],
     removedLegacyDecks: [],
     backedUp: [],
+    markerWrites: [],
   };
   if (deliverable.length === 0) {
     log("no deliverable decks (none marked done / all skipped)");
@@ -705,7 +927,17 @@ export async function deliverToAnki(
     for (const parent of ankiParents) {
       const path = resolve(join(backupDir, `${safeFile(parent)}.apkg`));
       try {
-        await client.exportPackage(parent, path, true);
+        // A FALSY result is a failure. AnkiConnect answers `{result: false, error: null}` for a deck
+        // that does not exist — no throw, nothing to catch — so a backup of a renamed or missing
+        // deck used to record a success and hand the delivery a fail-closed guarantee it did not
+        // have. This is the one line that made the backup real.
+        const ok = await client.exportPackage(parent, path, true);
+        if (ok === false || ok == null) {
+          throw new Error(
+            `AnkiConnect reported no export (result: ${JSON.stringify(ok)}) — the usual cause is ` +
+              `that no deck is named "${parent}" any more`,
+          );
+        }
         report.backedUp.push({ deck: parent, path });
       } catch (e) {
         throw new Error(
@@ -758,8 +990,25 @@ export async function deliverToAnki(
 
   // 6. CONTENT SYNC (per deck)
   for (const deck of deliverable) {
-    report.content.push(await syncDeckContent(client, deck, dry));
-    if (!dry) writeDeliveredMarker(deck);
+    const result = await syncDeckContent(client, deck, dry, { maxAdds, allowBulkAdd, log });
+    report.content.push(result);
+    if (!dry) {
+      // The marker write happens AFTER the notes are written, so it must never throw: that would
+      // report a failure for a delivery that already happened. It reports instead, loudly, and
+      // leaves a disarmed baseline rather than a stale one.
+      const marker = writeDeliveredMarker(deck, { cardIds: result.deliveredCardIds });
+      report.markerWrites.push({ deck: `${deck.type}:${deck.id}`, ...marker });
+      if (!marker.ok) {
+        log(
+          `⚠ could not record the delivery baseline for ${deck.type}:${deck.id} (${marker.error}). ` +
+            (marker.disarmed
+              ? `The marker now records NO baseline, so the next deliver bootstraps one instead of ` +
+                `trusting a stale one — the fail-closed check is not armed until then.`
+              : `The marker could not be written at all; the next deliver may be checking against a ` +
+                `stale baseline. Fix the file before delivering again.`),
+        );
+      }
+    }
     log(`content synced: ${deck.type}:${deck.id}`);
   }
 

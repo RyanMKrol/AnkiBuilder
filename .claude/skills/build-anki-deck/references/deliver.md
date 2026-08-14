@@ -60,10 +60,47 @@ Japanese `Target` (falling back to `English` for shared-Target pairs, then a pre
 edited since import), then stamped. Anything it can't resolve uniquely (a genuine duplicate, a
 too-changed card) is **reported as ambiguous and left alone — never guessed, never duplicated**.
 
+The two lookups have deliberately different scopes, and the difference is load-bearing:
+
+- the **`abid:` index is read BOOK-WIDE** and must never be narrowed. It is the only durable link
+  between a card on disk and a note in Anki, so a delivered note you moved, or one under a
+  differently-named sub-deck, still has to be findable. Narrow it and that note falls out of the
+  index, the card reads as new, and the tool adds a duplicate with fresh scheduling beside a matured
+  original it merely prints as `orphaned`.
+- the **first-run fingerprint indexes are read PER UNIT**. Book-wide they cross-bind: 17 targets
+  repeat across this book's units, so a unit's card could adopt another unit's note by spelling
+  alone.
+
 **Ambiguous skips fail the run.** When any cards were skipped as ambiguous, the script exits non-zero
 (exit code 2) after printing a `⚠ ambiguous (skipped)` line per card, so a scripted or agent-driven
 delivery cannot quietly report success while cards were left undelivered. Resolve the ambiguity (fix
 the note or the card, or remove the duplicate) and re-run.
+
+## The four guards on a routine deliver
+
+None of these is optional and none can be turned off with a flag alone. They exist because the same
+routine command, run against a collection something has happened to, is how the whole book gets
+re-inserted as fresh notes with no scheduling.
+
+1. **The rename guard.** The tool finds notes by the parent deck's NAME, which is the book title and
+   is editable in Anki. If `anki-delivered.json` says this collection was delivered and the lookup
+   finds ZERO notes under that name, the run **aborts** and says the deck was probably renamed.
+   Before this, that case read as "a brand-new collection" and re-added everything.
+2. **The fail-closed baseline.** Every real deliver records `deliveredCardIds` in the marker: the
+   cards it resolved to a real note. The next run looks each one up by its `abid:` tag and aborts if
+   more than 10% (or all) have vanished. A collection whose marker has no `deliveredCardIds` yet —
+   both of yours, until their next deliver — **records the baseline and asserts nothing**. The gate
+   arms from the second run.
+3. **The add ceiling.** More than 200 additions to one collection needs `--allow-bulk-add`. A run
+   that size is either a first delivery or a matching failure, and they look identical from here.
+   `--dry` previews the number without refusing.
+4. **A falsy backup is a failed backup.** AnkiConnect answers `{result: false}` with no error when
+   the deck it was asked to export does not exist, so a backup of a renamed deck used to record a
+   success. The delivery now aborts before touching anything.
+
+If the marker write itself fails after a delivery, the run does not fail (the notes are already
+written) — it prints a warning and leaves the marker with NO baseline, so the next run bootstraps a
+fresh one instead of checking against a stale one.
 
 ## What it does / doesn't do
 

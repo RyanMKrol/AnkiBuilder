@@ -21,6 +21,10 @@
 //                     to existing cards have never been run (src/anki/probeEvidence.js). Without
 //                     it, a spec template with no live counterpart stops the deliver and tells you
 //                     to add the card type by hand in Anki first.
+//     --allow-bulk-add
+//                     consent to a delivery that ADDS more than 200 notes to one collection. A run
+//                     that big is either a first delivery or a matching failure, and they look the
+//                     same from here. Preview with --dry first.
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
 // Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
@@ -35,6 +39,7 @@ const dry = args.includes("--dry");
 const sync = !args.includes("--no-sync");
 const allowModelChange = args.includes("--allow-model-change");
 const allowTemplateAdd = args.includes("--allow-template-add");
+const allowBulkAdd = args.includes("--allow-bulk-add");
 const selectorArgs = args.filter((a) => !a.startsWith("--"));
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
@@ -58,6 +63,7 @@ try {
     dry,
     allowModelChange,
     allowTemplateAdd,
+    allowBulkAdd,
     sync,
     log: (m) => console.error(`  ${m}`),
   });
@@ -116,7 +122,25 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  if (c.baseline) {
+    line(
+      c.baseline.armed
+        ? `     baseline: ${c.baseline.recorded} recorded, ${c.baseline.unresolved} unresolved`
+        : `     baseline: ${c.baseline.reason}`,
+    );
+  }
   ambiguousTotal += c.ambiguous.length;
+}
+
+for (const m of report.markerWrites ?? []) {
+  if (m.ok || m.skipped) continue;
+  line(
+    `\n⚠ ${m.deck}: could not record the delivery baseline (${m.error}). ` +
+      (m.disarmed
+        ? `The marker records NO baseline, so the next deliver bootstraps one rather than trusting ` +
+          `a stale one — the fail-closed check is unarmed until then.`
+        : `The marker could not be written at all. Fix ${m.path} before delivering again.`),
+  );
 }
 
 // --- AnkiWeb sync ---

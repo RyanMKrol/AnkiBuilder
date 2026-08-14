@@ -243,9 +243,15 @@ test("syncDeckContent escapes quotes and wildcards in the findNotes query", asyn
   deck.ankiParent = 'My "Best" Book *2*';
   await syncDeckContent(client, deck, true);
 
-  assert.equal(queries.length, 1);
+  // One book-wide query (the durable abid index) plus one per unit (the fingerprint index), and
+  // EVERY one of them has to escape the name it interpolates.
+  assert.equal(queries.length, 2);
   // `"` would end the quoted term early; `*`/`_` are wildcards even inside quotes.
   assert.match(queries[0], /deck:"My \\"Best\\" Book \\\*2\\\*"/);
+  assert.ok(
+    queries.every((q) => !/[^\\]"[^"]*[*]/.test(q)),
+    "no unescaped wildcard survives",
+  );
 });
 
 test("syncDeckContent: a Target present in Anki is never added as a duplicate", async () => {

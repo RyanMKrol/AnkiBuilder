@@ -1459,3 +1459,31 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   book over 2x warns even if the passes would have coped.
 - **When to revisit:** when a second book of a materially different size has been through the
   whole-book passes, replace the factor with the observed limit.
+
+## An inverted nav range is clamped to one file, not repaired
+
+- **What:** when a nav document lists an entry pointing backwards, the range arithmetic in
+  `analyzeExternalChapters` yields something like spine 5-2. It is clamped to spine 5-5 and logged;
+  `resolveLesson` then asserts the invariant.
+- **Why:** the true extent of that lesson is unknowable from a nav document that is not in reading
+  order. A one-file lesson is at least a true statement; the alternatives are a range that throws
+  mid-build or one that silently poisons the forward-flag pass.
+- **Impact:** a lesson on such a book may be missing spine files, and only the warning says so. The
+  operator has to fall back to explicit `--chapter-number` builds for that book.
+- **When to revisit:** if a real book turns up with an out-of-order nav, sorting the resolved
+  positions before computing ranges is the obvious next step — but it changes ordinals, so it needs
+  that real book to test against.
+
+## Comment stripping is textual, not a parser
+
+- **What:** `stripInertMarkup` removes `<!--...-->` and `<![CDATA[...]]>` spans with a regex before
+  every scan.
+- **Why:** the hand-rolled scanner stays (the review ruled the parser's failures are policy, not
+  parsing), and this is the smallest change that stops a commented-out anchor becoming a phantom
+  lesson.
+- **Impact:** a literal `<!--` inside an attribute value or a string would truncate wrongly, and
+  nested comment-like sequences are not handled. Neither is legal XML, so the exposure is malformed
+  books only. It also means a `<!-- -->`-wrapped `<img>` is no longer extracted, which is correct
+  but is a behaviour change for any book relying on commented-out images.
+- **When to revisit:** if a book ever parses to zero manifest items or zero nav entries, check this
+  first — it is the only step that rewrites the source before scanning.

@@ -49,6 +49,23 @@ export function listLessons(epubPath, { log = () => {} } = {}) {
   }));
 }
 
+// The one invariant every consumer of a resolved lesson assumes and none of them checks: a
+// lesson's spine range runs forwards. An inverted range (from a nav document that is not in
+// reading order) makes extractChapterRangeToFile throw twenty minutes into a build, makes
+// assemble fall back to single-file extraction, and makes flagForwardConcerns treat the
+// lesson's own files as later chapters. listExternalChapters clamps and warns, so reaching
+// this throw means something downstream of it built a lesson by hand — fail at the gate.
+function assertForwardRange(lesson) {
+  if (lesson.lastChapterNumber < lesson.firstChapterNumber) {
+    throw new Error(
+      `lesson "${lesson.label}" resolved to an inverted spine range ` +
+        `${lesson.firstChapterNumber}-${lesson.lastChapterNumber} — this book's navigation ` +
+        `document is not in reading order (see --list-lessons)`,
+    );
+  }
+  return lesson;
+}
+
 /**
  * Resolves a `--lesson` selector to exactly one lesson. A purely-numeric selector is the
  * nav-list ordinal (the `[number]` from `--list-lessons`); anything else is a
@@ -81,7 +98,7 @@ export function resolveLesson(epubPath, selector, { log = () => {} } = {}) {
         `--lesson ${n} is out of range — this book has ${lessons.length} nav entries (see --list-lessons)`,
       );
     }
-    return byNumber;
+    return assertForwardRange(byNumber);
   }
 
   const needle = raw.toLowerCase();
@@ -96,5 +113,5 @@ export function resolveLesson(epubPath, selector, { log = () => {} } = {}) {
         " (use a more specific string or the [number] from --list-lessons)",
     );
   }
-  return matches[0];
+  return assertForwardRange(matches[0]);
 }

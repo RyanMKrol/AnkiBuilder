@@ -80,6 +80,13 @@ export function buildShapeReport(epubPath) {
         "name a raw --chapter-number",
     );
   }
+  if (inspection.nav.unparsed) {
+    warnings.push(
+      `the ${inspection.nav.source} navigation document declares ${inspection.nav.unparsed} more ` +
+        `entr(ies) than this parser could read — those lessons cannot be selected at all, and ` +
+        `every --lesson ordinal after them is shifted`,
+    );
+  }
   if (inspection.nav.unresolved.length) {
     warnings.push(
       `${inspection.nav.unresolved.length} nav entr(ies) point at no spine file and were dropped: ` +

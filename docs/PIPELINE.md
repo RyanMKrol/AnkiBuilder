@@ -156,6 +156,27 @@ size warning for a book materially larger than the one book this pipeline is pro
 Warnings are advisory, never a gate — every one of them describes a book that still builds, just
 not the way its own table of contents suggests. Run the probe before spending a pass on a new book.
 
+### What the nav parser now refuses to drop quietly
+
+Four things used to disappear without a word, all of them in `src/corpus/epubArchive.js`:
+
+- **NCX labels with attributes or inline markup.** `<navLabel xml:lang="en">` or
+  `<text><span>Lesson 1</span></text>` is what a real EPUB2 toolchain emits, and the old bare-shape
+  match dropped every such navPoint. This is the live path: an EPUB2 book resolves source `ncx`.
+  Each skipped navPoint is now logged with its reason.
+- **Comments and CDATA.** `stripInertMarkup` runs before every scan (container, OPF, nav, NCX,
+  `<title>`, image srcs). A commented-out nav anchor used to become a phantom lesson, which shifts
+  every ordinal after it, so `--lesson 7` builds lesson 6. A commented-out `<item properties="nav">`
+  could be picked as the navigation document. Chapter content written to disk is still raw: the
+  extraction model reads the real file.
+- **Inverted ranges.** A nav document not in reading order produces arithmetic like spine 5-2.
+  `extractChapterRangeToFile` throws on it, `assemble` falls back to single-file extraction, and
+  `flagForwardConcerns` treats the lesson's own files as later chapters. The range is now clamped to
+  the entry's own file and logged loudly, and `resolveLesson` asserts the invariant so a
+  hand-constructed lesson fails at the gate rather than mid-build.
+- **Anchors the parser could not read.** The gap between how many entries the nav document declares
+  and how many parsed is logged and reported.
+
 For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
 the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
 (`getBookTitle`/`slugify`, falling back to the book's content hash when there's no title), then

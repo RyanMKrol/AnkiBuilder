@@ -10,6 +10,7 @@ import {
   chapterNumberCheck,
 } from "./collection.js";
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
+import { vocabCoverageCheck } from "./vocab.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
 
@@ -40,6 +41,7 @@ export const ALL_CHECKS = [
   chapterNumberCheck,
   extrasLibraryWriteCheck,
   libraryCompletenessCheck,
+  vocabCoverageCheck,
   strayPackageCheck,
   packageFreshnessCheck,
   duplicatesCheck,

@@ -71,7 +71,8 @@ The items are a JSON array of objects, in the order they were extracted from the
 - `english` (string): the English side.
 - `target` (string): the {{TARGET_LANGUAGE}} side — read this to spot which items are built from which.
 - `category` (string, optional): the item's topic, useful for keeping related items grouped.
-- `notes` (string, optional): any extra context.
+- `hint` (string, optional): an English-side disambiguator, describing the target word's meaning, register or form.
+- `scene` (string, optional): the situation the item is used in (e.g. the question it answers) — useful for spotting a question/answer pair that should stay together.
 
 ## Output Format
 

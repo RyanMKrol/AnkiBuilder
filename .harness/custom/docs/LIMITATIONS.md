@@ -2224,3 +2224,171 @@ say when it was measured rather than stating it as a standing fact.
   decks are safe by construction and that the two pre-namespace decks stay bare forever (renaming an
   existing deck's guids would orphan its live scheduling). Do not revisit by reintroducing a content
   comparison.
+
+## The cached-artifact drift check compares prompt TEMPLATES, not rendered prompts
+
+- **What:** `conventions.md` and `taught-index.json` now carry a `<artifact>.meta.json` recording the
+  prompt path, a sha256 of the prompt **template file**, the model/effort, chapter count and
+  timestamp. `assemble` (conventions) and `ensureTaughtIndex` (taught index) WARN when that hash no
+  longer matches the template on disk.
+- **Why:** the rendered prompt embeds absolute chapter paths from the machine that produced it, so
+  hashing the rendered text would report drift every time the checkout moved, and a warning that
+  fires constantly is a warning nobody reads. The template is what a human edits.
+- **Impact:** drift that comes from something OTHER than a template edit is invisible: a changed
+  per-language rules fragment, a different chapter set, a model upgrade. The recorded model/effort
+  and chapter count make two of those checkable by eye, but nothing compares them automatically.
+  Both artifacts already on disk have no meta sibling, so they warn about the absence instead, which
+  is the correct answer (nobody can say which prompt produced them) and will keep firing until they
+  are regenerated.
+- **Status:** open — landing-day WARN on both live artifacts is expected, not a bug.
+- **When to revisit:** if a non-template input ever starts changing the artifact's meaning, add it to
+  the hash rather than widening the warning.
+
+## The conventions/extraction precedence is stated in prose, and nothing enforces it
+
+- **What:** the extraction prompt now renders `{{BOOK_CONVENTIONS}}` AFTER its own rules, with an
+  explicit statement that the conventions are authoritative about markup and location only, and that
+  the rules above win on any conflict about what to extract. The conventions prompt was reworded to
+  describe drill markup structurally and to classify reference tables printed inside exercise
+  sections as reference material.
+- **Why:** the conflict that cost chapter 12 its paradigm forms was a policy sentence in a cached
+  artifact outranking a prompt rule edited a month later. Prompt ordering plus an explicit precedence
+  rule is the direct fix; enforcing it mechanically would mean parsing free-form prose.
+- **Impact:** a future conventions run can still emit policy language ("skip the EXERCISES section")
+  and a model can still follow it. The precedence sentence and the ordering make that less likely,
+  not impossible, and the only detector remains a human noticing missing cards.
+- **Status:** open
+- **When to revisit:** when the extraction eval fixture (WS8) can be run against a deliberately
+  policy-heavy conventions doc, that becomes the real test of whether the precedence rule holds.
+
+## The dialogue ban is now narrow, which trades a hard rule for a judgement call
+
+- **What:** the extraction prompt banned extracting the dialogue outright while Step 2 required every
+  function word to have a demonstrating sentence, and dialogue is often where that sentence lives. The
+  two rules were mutually unsatisfiable, and the corpus shows the model breaking the ban to satisfy
+  Step 2 (にほんのスパですよ is a verbatim dialogue line, extracted to serve the particle よ). The ban
+  is now "do not mine the dialogue as a script", with a single stated exception for the chapter's only
+  demonstration of a required function word, marked with a `reviewNote` naming the form.
+- **Why:** the ban is what had to give. A function word with no sentence showing it at work is a card
+  a learner can recite and cannot use, and the extras pass re-mines the same dialogue afterwards
+  anyway, so the ban was not even holding the line it claimed to.
+- **Impact:** "the ONLY demonstration in the chapter" is a judgement the model makes with the whole
+  chapter in front of it and nobody checks. A model that reads it loosely can justify several dialogue
+  lines per chapter. The `reviewNote` is the only detector, and it is a human one.
+- **Status:** open
+- **When to revisit:** if reviewed chapters start showing more than about one exception each, tighten
+  the wording or make the reviewNote a required, greppable prefix so the count is mechanical.
+
+## vocab-coverage reports at INFO, and only where the chapter cache exists
+
+- **What:** the vocabulary diff runs two ways: `scripts/vocab-coverage.mjs <chapterFile> <unitDir>`
+  for one unit, and a `vocab-coverage` check in preflight (`src/audit/checks/vocab.js`) over every
+  base unit of an EPUB collection. The matching lives in `src/cards/vocabCoverage.js` behind tests.
+  The check is INFO, and it SKIPS rather than passes when a unit's chapter file is not cached.
+- **Why:** INFO because the check has known false positives that only a human can dismiss (a book
+  prints its vocabulary in ways no string match resolves), and the standing rule is that a blocking
+  check ships with the fix or the ACK for its live instances. Nobody has looked at a live count yet:
+  the chapter cache is a free re-inflate of the EPUB and is untracked, so it is absent in a fresh
+  clone and in every worktree, and this check has never been run against real chapters.
+- **Impact:** the check contributes nothing to the exit code, and on a machine without the chapter
+  cache it reports a skip line rather than a number. The skip is the honest answer, but it means the
+  gate is only real on the machine that built the book.
+- **Status:** open — INFO on purpose, pending a live count.
+- **When to revisit:** run `npm run preflight` on the machine holding the chapter cache, read the
+  findings once, then either fix them or promote the check to ACK in the same commit that accepts
+  the residue.
+
+## The paradigm audit cannot tell a particle from the same kana inside a word
+
+- **What:** `matchesInPredicatePosition` requires a form to start the string or follow a particle
+  (が, は, も, に and the other common ones), and excludes the paradigm's own longer cells
+  automatically. It still counts `ちがいます` as a hit for `います`, because ち + が + います is
+  indistinguishable from a real particle without a tokenizer.
+- **Why:** the alternative is a morphological analyzer (kuromoji is already a transitive dependency
+  via kuroshiro), which is a much larger change than this check is worth, and would introduce its own
+  segmentation errors on beginner all-kana text.
+- **Impact:** a cell can read as covered when its only hit is a false positive. The script prints
+  every hit with its card so the documented "read the matching cards" step is one glance, and a cell's
+  `notForms` records a confusable permanently once someone finds it.
+- **Status:** open
+- **When to revisit:** if `notForms` lists start repeating across chapters, that is the signal that a
+  tokenizer would pay for itself.
+
+## The extraction coverage report is self-reported, and only its image half is checked
+
+- **What:** extraction now answers with `{ items, coverage }`, where coverage names the images the
+  model opened, the ones it dismissed as decorative, and any concerns. The image lists are diffed
+  against the chapter's real referenced-image set and every gap is logged; `concerns` is logged
+  verbatim.
+- **Why:** a chapter the model could not read produced the same output shape as a chapter with
+  nothing in it. Something had to make the difference visible, and the image set is the one part of
+  the claim the code can check independently.
+- **Impact:** a model that lists an image as opened without opening it passes the check. `concerns`
+  is not checked at all, by construction: an empty list is a claim, not evidence. The warnings go to
+  the assemble log, which nobody reads after the fact, so this helps whoever is watching the build
+  and nobody else. Nothing yet surfaces it at a review gate.
+- **Status:** open
+- **When to revisit:** when preflight has scopes, storing the coverage block per unit would let the
+  gap be reported at review time instead of only in the build log.
+
+## The romanization style hook exists but is empty
+
+- **What:** `docs/romanization-prompt.md` takes a `{{ROMANIZATION_STYLE_RULES}}` fragment from
+  `languageRules.js`'s `romanizationStyle`. No language sets it, so today it renders as nothing.
+- **Why:** the move of the four translate prompts into `docs/` had to stay a move. Pinning a Hepburn
+  spec is a separate, opinionated change (the deck's romanization drifts per batch: trailing periods
+  100% in some units and 0% in others, `-san` hyphenated 32/32 in one unit and spaced 40/40 in the
+  next), and mixing it into the move would have made both harder to judge.
+- **Impact:** the drift is unchanged until something fills the fragment in. The hook makes that a
+  one-place edit rather than four.
+- **Status:** open — the hook is deliberate groundwork, not an oversight.
+- **When to revisit:** the pinned-Hepburn work. Fill `romanizationStyle` for `ja` and every prompt
+  that romanizes inherits it.
+
+## Two new categories exist, but no card has been recategorized
+
+- **What:** `"Descriptions & Qualities"` and `"Everyday Objects"` are in `src/model/categories.js`,
+  and both the corpus and the cards schema now hold `category` to that enum (the cards schema had it
+  as a bare string, so a value the corpus schema would have rejected could still reach the deck and
+  the Recognition front's category chip). The extraction prompt and the authoring rules tell an
+  author to try the two new categories before `"Other"`, and state that a worked example takes the
+  category of the form it demonstrates.
+- **Why:** recategorizing the 222 live `"Other"` cards is a content edit on reviewed, delivered
+  material, one card at a time, and it is a different decision from making the categories available.
+- **Impact:** the live deck's `"Other"` bucket is exactly as big as it was. The categories only apply
+  to what is authored from here, and the two rules only bind a model that reads the prompt.
+- **Status:** open
+- **When to revisit:** alongside any pass that is already rewriting those cards. The category chip
+  renders on the Recognition front, so a recategorization is visible to the learner and belongs
+  behind a review gate rather than in a sweep.
+
+## The card-faces block is one hard-coded example card
+
+- **What:** `{{CARD_FACES}}` renders both directions from the real `CARD_TEMPLATES` with one example
+  card filled in (a greeting with every optional field populated).
+- **Why:** one filled example is what makes the faces concrete, and rendering the model's actual item
+  would mean rendering the prompt per item rather than once.
+- **Impact:** the example is a short greeting, so it does not show what a long sentence card or an
+  image card looks like, and a rule about a face that only misbehaves at length is still invisible.
+  The renderer takes a card argument, so a second example is a one-line change if it earns its place.
+- **Status:** open
+- **When to revisit:** if a length-related authoring rule (a FIB length ceiling, say) needs the model
+  to see the failure it is being warned about.
+
+## The extraction eval fixture has no images, so it cannot measure image-borne extraction
+
+- **What:** `test/fixtures/evals/chapters/25.xhtml` references about 50 images, and none of them are
+  checked in (`test/fixtures/evals/` holds only `chapters/` and `recorded/`). A live eval run
+  therefore cannot open a single one.
+- **Why:** found while running the fixture's before/after procedure over the WS3 prompt edits. The
+  coverage envelope is what surfaced it: the model reported 0 images opened, 50 skipped, and named
+  the specific chart it could not read.
+- **Impact:** the eval systematically under-measures anything image-borne, which is precisely the
+  content class this book hides its paradigms and counter charts in. In both the before and after
+  runs the same three cards were missing (さんにん, よにん, ごにん) and the after run's `concerns`
+  correctly predicted them from the unopenable "Numbers of people" chart. A prompt change that
+  improved image handling would score as no change at all.
+- **Status:** open — the fixture is otherwise sound; this is one missing directory.
+- **When to revisit:** check the chapter's images in beside it (they are already in the book's cache
+  under `.anki-builder/epubs/<hash>/`), or have the fixture point the extractor at the cached chapter
+  path instead of the copy under `test/fixtures/`.

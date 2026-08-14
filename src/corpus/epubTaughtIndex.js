@@ -2,17 +2,31 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile } from "./epubArchive.js";
-import { hashEpubFile, chapterCachePath, loadTaughtIndex, saveTaughtIndex } from "./epubLibrary.js";
+import {
+  hashEpubFile,
+  chapterCachePath,
+  loadTaughtIndex,
+  saveTaughtIndex,
+  taughtIndexPath,
+} from "./epubLibrary.js";
 import { runTaughtIndexClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { extractJsonObjectText } from "../util/promptTemplate.js";
+import { buildArtifactMeta, promptDriftWarning } from "./artifactMeta.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
 // Lives in docs/ (not src/) for the same reason as the other prompts — a
 // plain, human-editable Markdown file meant to be tuned by hand.
-const DEFAULT_TEMPLATE_PATH = resolve(
+export const TAUGHT_INDEX_PROMPT_PATH = resolve(
   join(MODULE_DIR, "..", "..", "docs", "epub-taught-index-prompt.md"),
 );
+const DEFAULT_TEMPLATE_PATH = TAUGHT_INDEX_PROMPT_PATH;
+
+// See epubBookConventions.js — the env prefixes and defaults this pass's runner honors
+// (runTaughtIndexClaude), narrowest first, recorded in the artifact's provenance. Keep them in step
+// with the runner: a provenance record that lies is worse than none.
+const SCOPE_ENV_PREFIX = ["ANKI_BUILDER_TAUGHT_INDEX", "ANKI_BUILDER_EPUB_LLM"];
+const SCOPE_DEFAULTS = { timeoutMs: 15 * 60 * 1000 };
 
 function substitute(template, values) {
   let rendered = template;
@@ -121,6 +135,14 @@ export function ensureTaughtIndex({
 
   const cached = loadTaughtIndex(epubHash, { libraryHomeDir });
   if (cached) {
+    // Same rule as the conventions doc: report that the cached index predates the current prompt,
+    // never rebuild it here. See src/corpus/artifactMeta.js.
+    const drift = promptDriftWarning(
+      taughtIndexPath(epubHash, { libraryHomeDir }),
+      DEFAULT_TEMPLATE_PATH,
+      { label: "taught index" },
+    );
+    if (drift) log(`WARNING — ${drift}`);
     return cached;
   }
 
@@ -144,7 +166,15 @@ export function ensureTaughtIndex({
       chapters.map((chapter) => chapter.number),
     );
 
-    saveTaughtIndex(epubHash, index, { libraryHomeDir });
+    saveTaughtIndex(epubHash, index, {
+      libraryHomeDir,
+      meta: buildArtifactMeta({
+        templatePath: DEFAULT_TEMPLATE_PATH,
+        scopeEnvPrefix: SCOPE_ENV_PREFIX,
+        defaults: SCOPE_DEFAULTS,
+        chapterCount: chapterFilePaths.length,
+      }),
+    });
     return index;
   } catch (error) {
     log(`taught index: build failed (${error.message}) — not cached`);

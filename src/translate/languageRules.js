@@ -38,6 +38,13 @@ export const LANGUAGE_PROMPT_RULES = {
         "to the final group: `ichiman sanzen-en`, `nisen nijūgo-nen`.",
       "Everything that is not part of the number keeps the spacing it already has.",
     ],
+    // `romanizationStyle` (the romanization-correction prompt's {{ROMANIZATION_STYLE_RULES}}) has no
+    // entry yet, deliberately. It is the single place a pinned Hepburn spec belongs: the deck's
+    // romanization drifts per batch today (trailing periods 100% in some units and 0% in others,
+    // -san hyphenated 32/32 in one unit and spaced 40/40 in the next), and the fix is one style
+    // constant fed to every prompt that romanizes, not four prompts each describing the style again.
+    // Add it here and all four inherit it.
+    //
     // Concrete irregular-counter examples (number-reading rule 2, fill-in-the-blank rule 9).
     counterExamples:
       "In Japanese: April is しがつ, never よんがつ; July is しちがつ; 9 o'clock is くじ, not " +

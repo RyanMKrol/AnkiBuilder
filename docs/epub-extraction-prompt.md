@@ -6,11 +6,7 @@ Read the file at this exact path yourself using your Read tool — it is the raw
 
 Use the file's structure (headings, CSS classes, tag nesting) as signal for what kind of content each part is. Go through the ENTIRE file top to bottom — do not skip any part of it. If the file is long enough that your Read tool would otherwise truncate it (e.g. a default line-count limit), issue additional reads with an offset to cover the rest of the same file — never treat a partial read as if you'd read the whole thing. This matters doubly for a multi-file lesson: the file may be several spine files concatenated (separated by `<!-- anki-builder: spine chapter N -->` comments), and a truncated read silently drops the later files' content entirely.
 
-## Book-Wide Conventions
-
-{{BOOK_CONVENTIONS}}
-
-Use this as grounding for how THIS book specifically formats placeholders, content, and exercises — apply it alongside (not instead of) the general guidance below.
+A **Book-Wide Conventions** section sits at the END of this prompt. It describes how THIS book marks things up, and it is there to help you FIND things. It never decides what you extract: the rules below do. Read the rules first.
 
 ## Why
 
@@ -22,7 +18,22 @@ If you're genuinely unsure whether something should be included, include it anyw
 
 ## Output Format
 
-Respond with ONLY a single JSON array (no markdown fences, no prose before or after). One object per flashcard:
+Respond with ONLY a single JSON object (no markdown fences, no prose before or after), with two keys: `items`, the flashcards, and `coverage`, an account of what you read.
+
+```
+{"items": [ ...one object per flashcard, see below... ],
+ "coverage": {
+   "imagesOpened": ["<every image file you actually opened and looked at, by path>"],
+   "imagesSkippedAsDecorative": ["<every image you decided was decorative WITHOUT opening it>"],
+   "concerns": ["<anything that stopped you covering this chapter fully, one short line each>"]
+ }}
+```
+
+**`coverage` is checked, so it must be true.** Every image this chapter references is known from its markup, and your two image lists are diffed against that set: an image in neither list is reported as unaccounted for. An image you opened goes in `imagesOpened` whatever you concluded about it; one you dismissed on position or filename alone goes in `imagesSkippedAsDecorative`. Do not list an image as opened that you did not open.
+
+**`concerns` is where an incomplete read becomes visible.** A chapter you could not fully read must not produce the same output as a chapter with little in it: say so instead. A file too long to read in full, a chart you could not make out, a section whose content is clearly in an image you could not resolve, a conflict between these rules and the book conventions at the end of this prompt — one line each. An empty `concerns` list is a claim that nothing got in your way.
+
+One object per flashcard, inside `items`:
 
 **Important: preserve textbook order.** Emit items in exactly the order they appear in the chapter, top to bottom — do not reorder them, do not group them by type (e.g. all vocabulary together, then all key sentences), and do not sort them any other way. The sequence in the output must match the sequence in the source file.
 
@@ -30,7 +41,11 @@ Respond with ONLY a single JSON array (no markdown fences, no prose before or af
 {"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file — EXCEPT placeholder markers (〜, ～, ~), which must be resolved or stripped per Handling Placeholders below>", "ttsText": "<optional — what TTS speaks instead of target when the written target would be misread; see Spoken form below>", "category": "<exactly one value from the category list below>", "scene": "<optional, omit if none>", "hint": "<optional, omit if none>", "note": "<optional, omit if none>", "reviewNote": "<optional, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
 ```
 
-**Three note fields — keep them strictly separate.** There is no single blended `notes` field; every note you write goes into exactly one of:
+## What a card looks like
+
+{{CARD_FACES}}
+
+**Four note fields — keep them strictly separate.** There is no single blended `notes` field; every note you write goes into exactly one of:
 
 - **`scene`** — a short situation cue shown on the FRONT of BOTH card directions: the question just asked, who is speaking, or what is already under discussion. Use it whenever the sentence is ambiguous or unanswerable without its context: an elliptical reply ("answering whose bag this is", "the wine is already under discussion, so it is not named"), a set phrase tied to a moment ("said when entering another person's room", "answering the phone"), or one word of an ambiguous pair ("counting, not the particle"). Because it renders on both fronts, a scene must NEVER contain or paraphrase the answer in either direction: it sets the stage and stops there. Keep scenes in English, short (a few words).
 - **`hint`** — a short English-side disambiguator shown ONLY on the Production (English→{{TARGET_LANGUAGE}}) front; on the Recognition front it would hand over the answer, so there it shows on the back. Its job is telling apart two cards whose ENGLISH prompt collides ("the object you read" vs the counter; "warm but casual" vs the formal thank-you) by describing the target word's meaning, register, or form. **A `hint` must ADD context the card doesn't already show — NEVER restate the English gloss or the reading.** A hint like `phrased as "wine from France"` on the card glossed "This is a wine from France." adds nothing, so **omit it.** If the cue you want to write describes the SITUATION rather than the word itself, it belongs in `scene`, not `hint`. Do NOT move meaning-integral parentheticals like "(person)" or "(honorific prefix)" — those stay in `english`.
@@ -47,14 +62,16 @@ An item may set any combination. Rule of thumb: sets the SITUATION the sentence 
 
 ## Handling Placeholders
 
-Textbooks commonly write a grammar pattern or attachment point using a placeholder-like character — e.g. 〜さん, お〜, 〜を おねがいします. These are typographical conventions, not part of the spoken word, and can appear as any of several near-identical characters depending on how the source was digitized: 〜 (wave dash), ～ (fullwidth tilde), or a plain ~. Treat all of these as the same placeholder marker.
+Textbooks commonly write a grammar pattern or attachment point using a placeholder-like character — e.g. 〜さん, お〜, 〜を おねがいします. These are typographical conventions, not part of the spoken word, and can appear as any of several near-identical characters depending on how the source was digitized: 〜 (wave dash), ～ (fullwidth tilde), or a plain ~. Treat all of these as the same placeholder marker. **An ellipsis is one too**: `…`, `⋯` and a run of `...` mark a slot exactly as a wave dash does, and are just as unspeakable in a `target`.
 
 **Never leave a placeholder character in the final `target`.** Decide per item, using your best judgment:
 
 - **The item IS the grammatical particle/suffix/prefix itself** — its English gloss describes the particle's own function or meaning (e.g. "Mr., Mrs., Ms., Miss" for さん, "(honorific prefix)" for お). Strip the placeholder and keep only the actual morpheme in `target` (e.g. `さん`, not `〜さん`; `お`, not `お〜`). Do NOT invent a concrete example to fill it — that would misrepresent a general-purpose particle as one specific case. Instead, record in **`note`** whether it's a prefix or suffix and what it attaches to (e.g. "Suffix — attaches after a person's name"), since that's real learner-facing information the stripped placeholder would otherwise lose. (If you also want to note the source spelling, that provenance goes in `reviewNote`, e.g. "written 〜さん in the source".)
 - **The item is a phrase-level usage pattern meant to be spoken as a complete unit** — its English gloss describes an action or request rather than a particle's own meaning (e.g. "please (get me…)"). Replace the placeholder with a natural, contextually-appropriate word or phrase, chosen using your best judgment — prefer reusing a word already introduced elsewhere in this chapter when a sensible one exists. Record exactly what you filled in and why in **`reviewNote`** (e.g. "Placeholder filled with 'コーヒー' (coffee) as a natural example — not literally present in the source text at this point") — that's a decision you made, not something the learner needs.
 
-When genuinely unsure which of the two applies, prefer resolving it into a phrase over leaving a placeholder — an unresolved placeholder character is never a valid `target`.
+- **The pattern has TWO slots, spread across the phrase** — a discontinuous pattern like `X…〜Y`, `〜から〜まで`, `だれも…〜ません`, `いつも…〜ます`. Both slots belong to one construction, so resolve BOTH into a single natural utterance rather than filling one and leaving the other: `だれも…〜ません` becomes `だれもいません` ("There is no one."), `〜から〜まで` becomes something like `くじからごじまで` ("from 9:00 to 5:00"). Half-resolving is the failure to avoid — a `target` with one slot filled and one placeholder left is not something a person can say, and the TTS voice reads the leftover marker aloud. Record the source spelling in **`reviewNote`** (e.g. "source prints だれも…〜ません; both slots resolved into one sentence"), and fix the gloss to match the sentence you built: a schematic row's bare label ("No one") stops being right once the card is a sentence ("There is no one.").
+
+When genuinely unsure which of these applies, prefer resolving it into a phrase over leaving a placeholder — an unresolved placeholder character is never a valid `target`.
 
 ## Example Output
 
@@ -114,6 +131,21 @@ and inclusion/provenance rationale to `reviewNote`:
 ]
 ```
 
+...and the whole response wraps those items in the envelope:
+
+```json
+{
+  "items": [ ... the items above ... ],
+  "coverage": {
+    "imagesOpened": ["images/Page_076_Image_0001.jpg", "images/Page_077_Image_0002.jpg"],
+    "imagesSkippedAsDecorative": ["images/banner.jpg"],
+    "concerns": [
+      "The kana chart on the second page is an image I could not read clearly; its rows may be under-extracted."
+    ]
+  }
+}
+```
+
 ## Step 1: Extract
 
 Evaluate BOTH the English and the {{TARGET_LANGUAGE}} text; do not favor one language when deciding what counts as content.
@@ -167,17 +199,23 @@ surface if a human happens to notice the gap months later.
 
 **A form the chapter names as an EXCEPTION is high priority, never optional.** Grammar and Key-Sentence notes routinely teach a rule and then name the one form that breaks it — "the particle で is attached to the noun indicating the means of transportation… _but_ to say 'by foot,' use あるいて". That exception is the single most confusable item in the lesson, so it must become its own card, even when it appears only inside explanatory prose you would otherwise skip and only as a bare word elsewhere (a substitution-drill alternative, a table cell). Watch for the words _but_, _except_, _instead_, _irregular_ and _does not take_ in a grammar note: whatever follows them is a card.
 
+**A numbered picture-caption list is a vocabulary block** (this book calls them WORD POWER). A thematic set presented as an illustration per item with a numbered caption — ①②③ or ❶❷❸ beside a word — is real, taught vocabulary, and the numbering makes it look like a drill when it is not. Extract **every** label in the list, not the ones you recognize: a partial list is the silent miss this rule exists to stop. Where the caption gives the word but the chapter's vocabulary box does not gloss it, supply the English yourself, set `"uncertain": true`, and name the list in `reviewNote` (e.g. "WORD POWER food illustration ⑦; gloss supplied, not in the voc-box"). Where the labels sit inside the image rather than the markup, open the image and read them.
+
+**Ruby annotations: `<rt>` is the publisher's own reading, and it belongs in `ttsText`.** Japanese textbooks mark readings with ruby markup — `<ruby>漢字<rt>かんじ</rt></ruby>` (sometimes with `<rp>` fallback parens around it). The base text is what the learner sees, so it is the `target`; the `<rt>` content is an authoritative reading from the publisher, which is exactly what `ttsText` is for. So: base text into `target`, `<rt>` content into `ttsText`, and **never** merge the two into one string. `漢字かんじ` as a target is wrong in a way nothing downstream can undo. Where a sentence has several ruby annotations, `ttsText` is the whole sentence with each base replaced by its reading. Where the base is already phonetic and the ruby only repeats it, omit `ttsText`. Drop `<rp>` parens entirely — they are print fallback, not content.
+
 ### What to skip entirely
 
 - Grammar explanation prose — paragraphs explaining a grammar rule, particle usage, or conjugation pattern in depth. (This does not include a short particle vocabulary entry — see above.)
 - The mechanical scaffolding of a practice drill — its numbered substitution alternatives, its blanks, its empty answer slots. The drill's own complete example sentences and any reference table beside them ARE extractable; see "The EXERCISES section is a source of cards" above.
-- Dialogue/conversation scripts in full — a modeled conversation between named speakers is for listening/rehearsal practice, not a flashcard source. Do not extract dialogue lines, reactions, or recap sentences, even ones that seem useful — treat the whole dialogue as off-limits for this test.
+- **The dialogue, as a script.** A modeled conversation between named speakers is for listening and rehearsal practice, so do NOT walk it line by line turning its turns into cards: not its reactions, not its recap sentences, not the lines that merely seem useful. **One exception, and only one:** when the dialogue holds the chapter's ONLY sentence demonstrating a function word that Step 2 requires an example for, extract that single line, and give it a `reviewNote` naming the form it illustrates (e.g. `"the only sentence in the chapter using よ"`). That is the whole exception. It is not a licence to mine the dialogue for good sentences: if the form is demonstrated anywhere else in the chapter, use that instead, and if two dialogue lines demonstrate it, take one. The reason the ban bends here rather than Step 2 giving way is that a function word with no sentence showing it at work is a card a learner can recite and cannot use.
 - Supplementary/culture notes as standalone cards — fold a learner-facing clarification into the `note` field of the item it clarifies instead.
 - Proper nouns naming a specific person (e.g. a surname like "Harris") or a specific organization/business (e.g. "ABC Foods," "Nozomi Department Store," real or fictitious) as standalone vocabulary. Country and city names ARE genuine vocabulary and should be extracted. A name inside a key sentence you're otherwise keeping should stay in that sentence — this only blocks a standalone "here's a name" card.
 
 ### Assigning category
 
-Every item needs a `category` from the fixed list above — pick the one that best matches the item's topic (not its grammatical role). A vocabulary word and a full sentence about the same topic get the same category (e.g. a food-related sentence and the word "rice" both get `"Food"`). Use `"Grammar & Function Words"` for particles/conjunctions/question markers, and `"Other"` only when nothing else genuinely fits.
+Every item needs a `category` from the fixed list above — pick the one that best matches the item's topic (not its grammatical role). A vocabulary word and a full sentence about the same topic get the same category (e.g. a food-related sentence and the word "rice" both get `"Food"`). Use `"Grammar & Function Words"` for particles/conjunctions/question markers, and `"Other"` only when nothing else genuinely fits — before reaching for it, check `"Descriptions & Qualities"` (adjectives and descriptive words: big, cheap, delicious, quiet) and `"Everyday Objects"` (ordinary things that belong to no narrower topic: pen, key, umbrella, bag), which between them cover most of what used to land in `"Other"`.
+
+**A worked example takes the category of the FORM it demonstrates, not of the words it is built from.** A sentence written to show the particle `よ` at work is `"Grammar & Function Words"`, even though it is about coffee: the card exists to teach the particle, and a learner meeting it in the Food pile learns the wrong lesson about why it is there. This applies to every Step-2 example sentence and to any in-chapter sentence you extract specifically because it is the one demonstration of a function word. Only when the sentence is in the chapter as ordinary content, and merely happens to contain the form, does it take its own topic.
 
 ## Step 2: Add Critical Gap Suggestions
 
@@ -187,7 +225,7 @@ If, after Step 1, you believe there's a genuinely important word or sentence a l
 
 Work through it in this order:
 
-1. **Look for a sentence the chapter already supplies.** A Key Sentence, a grammar example, a drill's worked example, or a line of a dialogue that contains the form all satisfy the requirement, and you must NOT duplicate it. Check the SPEAKING PRACTICE / dialogue sections specifically: they are the usual home of the one sentence that demonstrates a polite or set form, and they are easy to skim past because they read as narrative rather than as a vocabulary list.
+1. **Look for a sentence you have ALREADY extracted in Step 1.** A Key Sentence, a grammar example or a drill's worked example that contains the form satisfies the requirement, and you must NOT duplicate it. A dialogue line satisfies it only once you have extracted that line under the dialogue exception in "What to skip entirely" above — an unextracted line is not in the corpus and demonstrates nothing to the learner. Check the SPEAKING PRACTICE / dialogue sections specifically when nothing else demonstrates the form: they are the usual home of the one sentence that shows a polite or set form at work, and they are easy to skim past because they read as narrative rather than as a vocabulary list.
 2. **If the chapter introduces the form but demonstrates it nowhere, write the example yourself**, marked `"aiSuggested": true`: a natural, level-appropriate sentence reusing vocabulary already introduced in this chapter (or an earlier one) where possible, with a one-line `reviewNote` naming the form it illustrates (provenance for the reviewer, not learner context).
 3. **Where the form generalizes, two examples beat one.** One sentence shows the form; a second, built on different vocabulary, shows that it is a slot rather than a fixed phrase. Prefer the chapter's own sentence plus one of your own.
 
@@ -202,3 +240,13 @@ Across everything gathered in Steps 1 and 2, de-duplicate across the whole chapt
 **An ANSWER line from a dialogue or drill needs a `scene`, and an `english` that matches how much the `target` says.** Chapters are full of question/answer exchanges, and an answer extracted as its own card is studied alone, shuffled, long after the question. Two rules follow. (1) The `english` must be able to produce the whole `target`: if the target states its topic, so must the English — `パーティーはごじです` is "The party is at 5:00.", NOT "It's at 5:00.", because nothing in that shorter gloss would make a learner write パーティーは. Dropping the topic in English is right only when the target drops it too (`にちようびです` → "It's on Sunday."). Read the English on its own and ask whether it could yield exactly that target; if not, it is missing something. (2) An answer that IS elliptical on both sides needs a `scene` naming the question it replies to — "answering where the computer is", "answering when the presentation is" — stating the question and never leaking the answer. Otherwise the card has no discoverable right answer.
 
 **A `note` when a card reuses a form the learner already knows but with a different meaning or function (a "false friend within what they know").** A learner who has met a word will read it the way they first learned it, so a card that reuses that surface form in a new role trips them up unless the `note` calls it out. Name the familiar form, its familiar meaning, and how THIS use differs. The classic case is a question word taking の: どこ (doko) alone asks a location ("where is it?"), but どこの (doko no) asks origin or make — "which place's / what brand of" (as in それはどこのコーヒーカップですか, "where is that coffee cup from?"); likewise だれ (dare) "who" → だれの (dare no) "whose", なに (nani) "what" → なんの (nan no) "what kind of". Other cases: a pronoun vs a determiner (それ (sore) "that one" → その (sono) "that ___" before a noun), the same kana serving as a different particle, or a counter reused for a different kind of thing. Only within this chapter can you see part of the pair; the whole-book teachability pass (below) adds these across chapters, backward-only.
+
+## Book-Wide Conventions
+
+The notes below were written by a separate whole-book pass that read every chapter of THIS book once. They describe the book's MARKUP: how it marks a placeholder, what a content section looks like, what a drill section looks like, which chapters carry teaching content inside images.
+
+**Precedence — read this before you read the notes.** The conventions are authoritative about MARKUP and about WHERE things are. They are never authoritative about WHAT TO EXTRACT. Where anything below disagrees with the rules earlier in this prompt about what counts as content, what to extract in full, or what to skip, **the rules above win, every time.** If the notes call a section "exercise material" and the rules above say that shape (say, a conjugation or paradigm table printed among the drills) is reference material to extract in full, extract it in full and note the disagreement in that item's `reviewNote`.
+
+This ordering is not a formality. The notes are cached: they were written once, months before this run, by a pass that could not see the rules you have just read. A rule edited last week loses to a note written in July unless it is stated, so it is stated here.
+
+{{BOOK_CONVENTIONS}}

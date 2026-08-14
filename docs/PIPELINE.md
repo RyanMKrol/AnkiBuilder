@@ -89,6 +89,21 @@ already taught — ..."` for a backward match, `"Possibly premature — ..."` fo
   instead of each chapter re-inferring the book's conventions from just its own content. Manual
   `--chapter` mode has no book identity to cache this under, so it doesn't get this context.
 
+  **Precedence, and how the cache is kept honest.** The conventions doc is authoritative about
+  MARKUP and about where things are. It is never authoritative about what to extract: on any
+  conflict the extraction prompt's own rules win, and the conventions block is rendered at the END
+  of the extraction prompt, after those rules, saying so. This is not theoretical. The cached doc
+  for the one book built so far (14 Jul) names a chapter's paradigm image as exercise material to
+  skip, while the extraction prompt (9 Aug) uses that exact shape as its worked example of
+  "reference material, extract in full"; the chapter shipped none of those eight forms. A cached
+  artifact silently outranking a prompt edited a month later is the failure, so both cached
+  artifacts (conventions.md, taught-index.json) now carry a sibling `<artifact>.meta.json` with the
+  prompt path, a sha256 of the prompt TEMPLATE, the model and effort that ran it, the chapter count,
+  and a timestamp (`src/corpus/artifactMeta.js`). When the template's hash no longer matches, the
+  next `assemble` prints a WARNING naming the drift. It never regenerates: that is a paid whole-book
+  pass and a judgement call, so it stays a human decision. An artifact cached before this existed has
+  no meta sibling and warns about that instead of staying silent.
+
 **Pedagogical sort (every source).** As the final step before writing `corpus.json` — for _every_
 source, not just EPUB — `assemble` re-orders the items for learning flow via `sortItemsPedagogically`
 (`src/corpus/pedagogicalSort.js`): a Sonnet-medium `claude -p` pass that returns the items
@@ -252,10 +267,21 @@ itself; `loadPriorChapterItems` carries a saved chapter's label forward as `__ch
 Both the `--chapter` and `--epub` paths call the same extractor (`src/corpus/epubLlmCorpus.js` /
 `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet at medium effort by default). The
 prompt template lives at [`epub-extraction-prompt.md`](./epub-extraction-prompt.md), parameterized
-by target language, chapter file path, and the canonical category list
-(`src/model/categories.js`) — it also instructs the model not to rule out images as a content
-source purely because their `alt` text is empty, and to open image files directly with its Read
-tool when they sit in a content section. For the `--epub` path, `extractChapterToFile`
+by target language, chapter file path, the canonical category list (`src/model/categories.js`) and
+`{{CARD_FACES}}` — it also instructs the model not to rule out images as a content source purely
+because their `alt` text is empty, and to open image files directly with its Read tool when they sit
+in a content section.
+
+**`{{CARD_FACES}}` shows the authoring model what a card looks like** (`src/deck/cardFaces.js`): both
+fronts and both backs, rendered from the real `CARD_TEMPLATES` with one example card filled in, and
+injected into the extraction and fill-in-the-blank prompts. It is generated, never retyped, so it
+cannot drift from the templates. The reason it exists: the field semantics were defined entirely by
+prose about a rendering the model had never seen, which is why the three most valuable authoring
+rules (the scene must not leak the answer, the hint must not restate the gloss, a note must add
+something the card does not already show) were claims about a rendered front no surface showed
+anyone. A leaky scene is obvious on a face and invisible in a JSON row. `CARD_TEMPLATES` lives in
+`src/deck/cardTemplates.js` rather than `collection.js` so rendering a prompt does not open a sqlite
+database. For the `--epub` path, `extractChapterToFile`
 (`src/corpus/epubArchive.js`) makes this possible by also extracting every image the chapter's
 `<img src>` tags reference, at the same relative path from the cached chapter file that the src
 attribute encodes from the original chapter file inside the archive — so those references resolve
@@ -277,6 +303,20 @@ with nothing to show for it. Three detectors guard it (all in `extractReferenced
   `<image href="the-real-page.jpg">`. A copied SVG is re-scanned one level deep and what it
   references is copied too, and every copied SVG is logged so the shape report's SVG count can be
   read as "these may be wrappers".
+
+**The extraction response is an ENVELOPE, and its coverage half is checked.** The model replies with
+`{ items, coverage }`, where `coverage` is `{ imagesOpened, imagesSkippedAsDecorative, concerns }`:
+its own account of which images it opened, which it dismissed without opening, and anything that
+stopped it covering the chapter fully. `referencedImageSrcs` (`src/corpus/epubArchive.js`, the same
+function that decides which images get written to disk) gives the set the chapter actually
+references, and `diffImageCoverage` reports every image in neither list, matching on basename since
+the model reports the path it resolved. Each unaccounted-for image and each stated concern is logged
+as a WARNING and nothing more: the model's account of its own work is evidence, not proof, and an
+extraction is not worth discarding over a side-channel. A **bare array** is still accepted forever
+(older cached responses, smaller models, partial answers), and reported as "coverage unknown" rather
+than treated as full coverage. The gap this closes: a chapter the model could not read produced
+exactly the output shape of a chapter with nothing in it — `taught-index.json` records
+`teaches: []` for the two image-only kana chapters, indistinguishable from "read it, nothing taught".
 
 All three paths produce the
 same superset item shape: `{ id, english, category, hint, note, reviewNote, target }` — the three
@@ -451,8 +491,18 @@ directly in `pronunciation` — no `uncertain` flag or note; the fix IS the reso
 malformed/missing response keeps the library value). With no library configured, the
 model is asked for `pronunciation` directly, preferring a standard romanization system when one
 exists and falling back to a phonetic respelling otherwise, unchanged from before this distinction
-existed. See [`translate-prompts.md`](./translate-prompts.md) for the full templates and
-[`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) for the dependency
+existed.
+
+All four of these prompts are hand-editable Markdown templates in `docs/`, rendered through
+`renderPromptTemplate`: [`translate-full-prompt.md`](./translate-full-prompt.md),
+[`translate-target-only-prompt.md`](./translate-target-only-prompt.md),
+[`translate-pronunciation-prompt.md`](./translate-pronunciation-prompt.md) and
+[`romanization-prompt.md`](./romanization-prompt.md). They were string arrays inside
+`src/translate/` until the 2026-08 move, which made them the only prompts requiring a code change to
+edit and the only ones with no automated contract; `test/docs/promptTemplates.test.js` now pins each
+one's placeholders and output contract. [`translate-prompts.md`](./translate-prompts.md) says which
+prompt runs when and which language fragments each takes, and
+[`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) covers the dependency
 trade-offs this introduces.
 
 **Optional simplified target script (`--simple-script`).** A language may define a beginner/learner
@@ -759,7 +809,9 @@ always relative to the repo itself, regardless of which directory you invoke the
                                                      #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
+  epubs/<epubHash>/conventions.md.meta.json     # which prompt/model/effort produced it, and when
   epubs/<epubHash>/taught-index.json            # one-time whole-book taught-content index
+  epubs/<epubHash>/taught-index.json.meta.json  # same provenance record, for that index
 ```
 
 Three of those are **tracked in git** rather than ignored — the reviewed corpora, `conventions.md`
@@ -778,8 +830,10 @@ an older version is orphaned, never deleted behind your back. (v1 was the flat
 `<book>/chapters/` + `<book>/images/` layout.)
 
 Only the free zip-inflate cache is versioned. `conventions.md` and `taught-index.json` are outputs
-of paid whole-book passes and are never invalidated automatically; nothing records which prompt
-version produced them, so their timestamp is the only provenance there is.
+of paid whole-book passes and are never invalidated automatically. Each one does carry a
+`<artifact>.meta.json` sibling naming the prompt template (by path and sha256), the model, the
+effort and the chapter count that produced it, so a later run can say the artifact predates the
+current prompt. It says so and stops there: regenerating is a paid pass and a judgement call.
 
 ```sh
 anki-builder epub cache <hash>                    # what is cached, and when it was generated
@@ -825,8 +879,8 @@ it buys a hard mid-pass abort with a misleading error, after the money is spent.
 | forward flags       | `src/corpus/epubForwardFlags.js`    | `docs/epub-forward-flag-index-prompt.md` | sonnet / medium, 10 min     | `ANKI_BUILDER_FORWARD_FLAGS`   | no                                              | 30-90 s            |
 | pedagogical sort    | `src/corpus/pedagogicalSort.js`     | `docs/pedagogical-sort-prompt.md`        | sonnet / medium, 10 min     | `ANKI_BUILDER_SORT`            | no                                              | 30-90 s            |
 | fill-in-the-blank   | `src/cards/fillInBlank.js`          | `docs/fill-in-blank-prompt.md`           | sonnet / medium, 10 min     | `ANKI_BUILDER_FILL_BLANK`      | no                                              | 1-3 min            |
-| translation         | `src/translate/index.js`            | `docs/translate-prompts.md`              | sonnet / medium, 10 min     | `ANKI_BUILDER_TRANSLATE`       | one call per group; retry halves the failed set | 1-4 min            |
-| romanization eval   | `src/translate/romanizationEval.js` | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_ROMANIZATION`    | yes                                             | 30-90 s            |
+| translation         | `src/translate/index.js`            | `docs/translate-*-prompt.md` (three)     | sonnet / medium, 10 min     | `ANKI_BUILDER_TRANSLATE`       | one call per group; retry halves the failed set | 1-4 min            |
+| romanization eval   | `src/translate/romanizationEval.js` | `docs/romanization-prompt.md`            | sonnet / medium, 10 min     | `ANKI_BUILDER_ROMANIZATION`    | yes                                             | 30-90 s            |
 | category assignment | `src/corpus/lessonCorpus.js`        | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_CATEGORIZE`      | yes                                             | 20-60 s            |
 | semantic de-dup     | `src/cards/semanticDedup.js`        | `docs/semantic-dedup-prompt.md`          | sonnet / medium, 10 min     | `ANKI_BUILDER_DEDUP`           | no                                              | 30-90 s            |
 | number readings     | `src/cards/numberReadings.js`       | `docs/number-reading-prompt.md`          | sonnet / medium, 10 min     | `ANKI_BUILDER_NUMBER_READINGS` | no                                              | 20-60 s            |
@@ -896,8 +950,8 @@ Some mechanics worth knowing before you add a fixture:
   renames freely, which would report an unchanged chapter as total churn. Items pair on the
   display-normalized `target` first (so editorial spaces or a trailing `。` never split a match), then
   on `english` for the leftovers (so a resolved placeholder still pairs with its reference).
-- **The spoken-form field is read under either name** (`reading` or `ttsText`), so a rename of that
-  field does not show up as a chapter-wide diff.
+- **The spoken-form field is read under either name** (`ttsText`, and the pre-2026-08 `reading`), so
+  a recording or a corpus predating that rename does not diff as a change to every spoken form.
 - **CI never spends money.** The suite only ever runs the recorded mode, and `--live` is hard-blocked
   under `node --test` by `assertExternalCallAllowed` (`src/util/testEnv.js`).
 - The chapter `.xhtml` under `test/fixtures/evals/chapters/` is committed because the extracted-chapter

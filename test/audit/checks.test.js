@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdirSync, utimesSync, writeFileSync } from "fs";
 import { join } from "path";
 import { ALL_CHECKS, audit } from "../../src/audit/index.js";
+import { CACHE_VERSION } from "../../src/corpus/epubLibrary.js";
 import { makeOutputRoot, writeUnit, writeMarker, writeRaw, card } from "./fixture.js";
 
 /** Runs one check by id and returns its result rows. */
@@ -307,5 +308,87 @@ test("two collections that share a card id and differ in content are BOTH clean"
     );
   } finally {
     cleanup();
+  }
+});
+
+// --- vocab coverage ---
+//
+// The failure it names: extraction drops a whole vocabulary block, and the chapter simply looks like
+// a chapter with fewer words in it.
+
+const VOCA_CHAPTER = `<div class="voc-box"><table class="voca">
+  <tr><td>\u304e\u3093\u3053\u3046</td><td>bank</td></tr>
+  <tr><td>(\u304a)\u3066\u3089</td><td>temple</td></tr>
+  <tr><td>\u307e\u3063\u305f\u304f\u306a\u3044\u3053\u3068\u3070</td><td>a word no card teaches</td></tr>
+</table></div>`;
+
+function writeCachedChapter(libraryRoot, epubHash, number, html) {
+  const dir = join(libraryRoot, "epubs", epubHash, `cache-v${CACHE_VERSION}`, "chapters");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, `${number}.xhtml`), html);
+}
+
+test("vocab coverage: a headword no card teaches is named, with its nearest card", () => {
+  const { root, cleanup } = makeOutputRoot();
+  const library = makeOutputRoot();
+  try {
+    writeCachedChapter(library.root, "h", 11, VOCA_CHAPTER);
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
+      items: [
+        card("a", { target: "\u304e\u3093\u3053\u3046\u306b\u3044\u304d\u307e\u3059" }),
+        card("b", { target: "\u304a\u3066\u3089" }),
+      ],
+    });
+
+    const found = messages(runOnly(root, "vocab-coverage", { libraryHomeDir: library.root }));
+    assert.equal(found.length, 1, "only the headword nothing covers");
+    assert.match(found[0], /\u307e\u3063\u305f\u304f\u306a\u3044\u3053\u3068\u3070/);
+  } finally {
+    cleanup();
+    library.cleanup();
+  }
+});
+
+test("vocab coverage: an -extras unit is not diffed against its base chapter's vocabulary", () => {
+  const { root, cleanup } = makeOutputRoot();
+  const library = makeOutputRoot();
+  try {
+    writeCachedChapter(library.root, "h", 11, VOCA_CHAPTER);
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
+      items: [
+        card("a", { target: "\u304e\u3093\u3053\u3046" }),
+        card("b", { target: "\u304a\u3066\u3089" }),
+      ],
+    });
+    writeUnit(root, "epubs/book/chapter-1-extras", {
+      meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
+      items: [card("drill", { target: "\u304e\u3093\u3053\u3046\u306b\u3044\u304d\u307e\u3059" })],
+    });
+
+    const found = messages(runOnly(root, "vocab-coverage", { libraryHomeDir: library.root }));
+    assert.equal(found.length, 1, "the extras unit adds no second copy of the report");
+  } finally {
+    cleanup();
+    library.cleanup();
+  }
+});
+
+// A check that reports "all covered" for files it never opened is the exact failure the audit module
+// exists to prevent, and the chapter cache is untracked — a fresh clone has none of it.
+test("vocab coverage: no cached chapter file is a SKIP, never a pass", () => {
+  const { root, cleanup } = makeOutputRoot();
+  const empty = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
+      items: [card("a")],
+    });
+    const [result] = runOnly(root, "vocab-coverage", { libraryHomeDir: empty.root });
+    assert.match(result.skipped, /no cached chapter file/);
+  } finally {
+    cleanup();
+    empty.cleanup();
   }
 });

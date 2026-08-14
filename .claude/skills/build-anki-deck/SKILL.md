@@ -314,7 +314,12 @@ Then open the files that matter (the Read tool renders images) and judge each by
 filename and not by what conventions.md called it: a figure sitting under a heading whose text then
 runs out, or referenced by prose with no visible referent, is load-bearing; an illustration whose
 labels already appear in the text is decoration. Being unnamed in `conventions.md` is an absence, not
-a verdict — that pass read 57 files in one call and can have missed one.
+a verdict — that pass read 57 files in one call and can have missed one. `conventions.md` describes
+the book's MARKUP and where things are; it never decides what gets extracted, and the extraction
+prompt says so in as many words. It is also cached for the life of the book, so `assemble` warns when
+the prompt that produced it has been edited since (the sibling `conventions.md.meta.json` records
+which version ran). Nothing regenerates it automatically — that is a paid whole-book pass, so deleting
+the file is a deliberate choice you make, not something the build does for you.
 **Report what you find WITH the review link**, so the reviewer signs off gate 1 knowing whether the
 chapter taught anything the cards cannot have covered. Transcribe any load-bearing figure into the
 Step 3b brief, and audit any paradigm it contains cell by cell. Full procedure, including the
@@ -323,15 +328,28 @@ paradigm audit: [extras-pass](references/extras-pass.md).
 **Also diff the chapter's VOCABULARY entries against the built cards, for the same reason.** The
 extraction can skip a whole vocabulary block silently, and nothing downstream notices: a chapter is
 simply short a few words, which looks like a chapter that had fewer words. It happens most often to
-the LAST block before a section boundary. The check is a script, not a read-through: pull every
-`Japanese word` + `English gloss` pair out of the chapter text and report any whose word appears in
-no card's `target`.
+the LAST block before a section boundary. The check is a script, not a read-through:
 
-Expect a couple of false positives and check each by hand rather than adding blindly. A word the book
-prints with optional parts, `(お)てら`, will not string-match the card `おてら` that already exists.
-A genuine miss looks different: the word is nowhere in the deck at all, and usually its neighbours in
-the same block are missing too. Add real misses **before** the reviewer signs off, since gate 1 is
-the last moment a card can be added without sending the lesson back through it.
+```sh
+node scripts/vocab-coverage.mjs <chapterFile> <unitDir>
+```
+
+`preflight` runs the same diff across every base unit of the book (at INFO, and skipping any unit
+whose chapter is not cached), so a whole-book answer comes free with the gate. Run the script when
+you want one unit's answer while the chapter is in front of you.
+
+`<chapterFile>` is the cached chapter XHTML the extraction model itself read
+(`.anki-builder/epubs/<hash>/chapters/<n>.xhtml`); `<unitDir>` is the folder holding `cards.json`.
+It pulls every headword + gloss out of the chapter's `<table class="voca">` blocks, sub-rows
+included, and reports the ones no card's `target` contains.
+
+Expect a couple of false positives and check each by hand rather than adding blindly. The script
+already resolves the two conventions that cause most of them (a word printed with optional parts,
+`(お)てら`, matches the card `おてら`; an attachment-point `〜` is notation, not card text) and prints
+the nearest card target beside each report, which usually explains it. A genuine miss looks
+different: no near-match at all, and its block-mates are usually missing too. Add real misses
+**before** the reviewer signs off, since gate 1 is the last moment a card can be added without
+sending the lesson back through it.
 
 What `prepare` runs, in order (details and prompts per pass are in
 [card-authoring-rules](references/card-authoring-rules.md) and the `docs/*-prompt.md` files):

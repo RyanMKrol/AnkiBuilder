@@ -28,5 +28,10 @@ export const CATEGORIES = [
   "Nationalities & Countries",
   "Shopping",
   "Grammar & Function Words",
+  // Added 2026-08. "Other" was the second-largest bucket in the one book built so far (222 cards),
+  // and most of it was adjectives and ordinary objects that had nowhere topical to go. A bucket that
+  // big says nothing about what a card is, and the review surfaces group by category.
+  "Descriptions & Qualities",
+  "Everyday Objects",
   "Other",
 ];

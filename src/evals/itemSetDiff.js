@@ -80,10 +80,10 @@ function pairOn(refEntries, candEntries, keyOf, matched) {
 /**
  * The spoken form of an item, under EITHER field name.
  *
- * The field is being renamed `reading` → `ttsText` in a parallel workstream, and the tracked
- * reference corpora are rewritten by that rename while a freshly-run pass may still emit the old
- * name (or the other way round, mid-migration). Reading both means the diff reports on the CONTENT
- * rather than reporting the rename itself as a chapter-wide change.
+ * The field was renamed `reading` → `ttsText` (2026-08); every tracked corpus was migrated with it,
+ * and the current prompt asks for `ttsText`. The old name is still read here because a RECORDED
+ * response predating the rename, or a corpus restored from an older backup, would otherwise diff as
+ * a chapter-wide change to every spoken form. Reading both keeps the diff about CONTENT.
  */
 export function spokenTextOf(item) {
   if (typeof item?.ttsText === "string") return item.ttsText;

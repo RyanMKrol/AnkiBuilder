@@ -4,14 +4,23 @@ import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
 import { runBookConventionsClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { buildArtifactMeta } from "./artifactMeta.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
 // Lives in docs/ (not src/) for the same reason as the other prompts — a
 // plain, human-editable Markdown file meant to be tuned by hand.
-const DEFAULT_TEMPLATE_PATH = resolve(
+export const BOOK_CONVENTIONS_PROMPT_PATH = resolve(
   join(MODULE_DIR, "..", "..", "docs", "epub-book-conventions-prompt.md"),
 );
+const DEFAULT_TEMPLATE_PATH = BOOK_CONVENTIONS_PROMPT_PATH;
+
+// The env prefixes and defaults this pass's runner honors (runBookConventionsClaude,
+// src/corpus/epubLlmRunClaude.js), narrowest first — recorded in the artifact's provenance so the
+// meta says which model actually produced the cached doc, not which one is configured today. Keep
+// these in step with the runner; a provenance record that lies is worse than none.
+const SCOPE_ENV_PREFIX = ["ANKI_BUILDER_CONVENTIONS", "ANKI_BUILDER_EPUB_LLM"];
+const SCOPE_DEFAULTS = { timeoutMs: 15 * 60 * 1000 };
 
 /**
  * How many chapter files go into one conventions call.
@@ -229,8 +238,10 @@ export function mergeConventionDocuments(batches) {
  * mergeConventionDocuments). Each batch's response is checked against a deterministic per-chapter
  * anchor and the shortfall is LOGGED, not thrown (see verifyChapterCoverage).
  *
- * Returns the merged Markdown text — this pass produces prose, not structured data, so there is
- * nothing to parse.
+ * Returns `{ markdown, meta }`: the merged prose (this pass produces prose, not structured data, so
+ * there is nothing to parse) plus the provenance record to cache beside it. The caller hands `meta`
+ * to `saveBookConventions`, which writes `conventions.md.meta.json`; a later assemble compares it
+ * against the prompt as it stands then and WARNS when the doc predates a prompt edit.
  */
 export function analyzeBookConventions({
   epubPath,
@@ -271,5 +282,13 @@ export function analyzeBookConventions({
     documents.push({ label, markdown });
   }
 
-  return mergeConventionDocuments(documents);
+  return {
+    markdown: mergeConventionDocuments(documents),
+    meta: buildArtifactMeta({
+      templatePath: DEFAULT_TEMPLATE_PATH,
+      scopeEnvPrefix: SCOPE_ENV_PREFIX,
+      defaults: SCOPE_DEFAULTS,
+      chapterCount: materialized.length,
+    }),
+  };
 }

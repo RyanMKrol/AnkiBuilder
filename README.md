@@ -324,7 +324,20 @@ operator has to override on the day it lands is worse than no gate.
 - [x] Project scaffold, CI
 - [x] Pipeline data contracts + run-directory conventions
 - [x] Bundled template corpora (language-agnostic; `travel-essentials`, `numbers`)
-- [x] EPUB → candidate corpus extraction (with dedup + convention-awareness)
+- [x] EPUB → candidate corpus extraction (with dedup + convention-awareness). The response is an
+      envelope, `{ items, coverage }`: the model reports which images it opened and which it dismissed
+      as decorative, diffed against the set the chapter really references, so a chapter it could not
+      read no longer looks like a chapter with nothing in it. The prompt carries `{{CARD_FACES}}` —
+      both card fronts and backs rendered from the real templates — so the rules about what a front
+      may reveal are checkable rather than imagined
+- [x] Coverage checks for what extraction can silently drop: `scripts/vocab-coverage.mjs` (the
+      chapter's own vocabulary headwords vs the built cards) and `scripts/paradigm-grid.mjs` (a
+      grammar paradigm audited cell by cell across the whole collection, in predicate position and
+      excluding the paradigm's own longer forms)
+- [x] Cached whole-book artifacts carry provenance — `conventions.md.meta.json` /
+      `taught-index.json.meta.json` record the prompt (with a hash), model, effort and chapter count,
+      and a later `assemble` warns when the prompt has been edited since. Nothing regenerates
+      automatically: that is a paid pass and a judgement call
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
 - [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)

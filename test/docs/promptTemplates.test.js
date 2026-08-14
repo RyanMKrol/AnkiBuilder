@@ -17,8 +17,15 @@ const DOCS = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "
 // removing any of these means the corresponding pass is flying blind.
 const TEMPLATES = {
   "epub-extraction-prompt.md": {
-    placeholders: ["TARGET_LANGUAGE", "CHAPTER_FILE_PATH", "BOOK_CONVENTIONS", "CATEGORY_LIST"],
-    outputContract: /JSON array/,
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "BOOK_CONVENTIONS",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+    ],
+    // The envelope: items plus the model's own account of what it read.
+    outputContract: /"items"[\s\S]*"coverage"/,
   },
   "epub-book-conventions-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CHAPTER_COUNT", "CHAPTER_FILE_PATHS"],
@@ -58,6 +65,7 @@ const TEMPLATES = {
       "TARGET_COUNT",
       "COUNTER_EXAMPLES",
       "COUNTER_HYPHEN_RULE",
+      "CARD_FACES",
     ],
     outputContract: /"cards"/,
   },
@@ -81,6 +89,32 @@ const TEMPLATES = {
   "semantic-dedup-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CARDS_JSON"],
   },
+  // The four prompts that used to be string arrays inside src/translate/. They touch every card in
+  // every deck, and until they moved here nobody could edit one without a code change and nothing
+  // held them to a contract.
+  "translate-full-prompt.md": {
+    placeholders: ["TARGET_LANGUAGE", "STYLE_RULES", "ITEM_COUNT", "INPUT_JSON"],
+    outputContract: /"pronunciation"/,
+  },
+  "translate-target-only-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "TARGET_SCRIPT_RULE",
+      "TARGET_SCRIPT_REMINDER",
+      "STYLE_RULES",
+      "ITEM_COUNT",
+      "INPUT_JSON",
+    ],
+    outputContract: /Do not include a `pronunciation` key/,
+  },
+  "translate-pronunciation-prompt.md": {
+    placeholders: ["TARGET_LANGUAGE", "ITEM_COUNT", "INPUT_JSON"],
+    outputContract: /Do not include a `target` key/,
+  },
+  "romanization-prompt.md": {
+    placeholders: ["TARGET_LANGUAGE", "ROMANIZATION_STYLE_RULES", "ITEM_COUNT", "INPUT_JSON"],
+    outputContract: /"pronunciation"/,
+  },
 };
 
 for (const [file, contract] of Object.entries(TEMPLATES)) {
@@ -102,8 +136,9 @@ test("every *-prompt.md template in docs/ is covered by this golden check", () =
   const promptFiles = readdirSync(DOCS).filter(
     (f) => f.endsWith("-prompt.md") || f.endsWith("-prompts.md"),
   );
-  // translate-prompts.md is a hand-maintained MIRROR of prompts that live in code, not a
-  // rendered template — it has no placeholders to pin.
+  // translate-prompts.md is the prose GUIDE to the translate family (which prompt runs when, and
+  // why), not a rendered template — it has no placeholders to pin. The prompts it used to
+  // transcribe are now real templates in this map, which is what stopped the transcript drifting.
   const uncovered = promptFiles.filter((f) => f !== "translate-prompts.md" && !TEMPLATES[f]);
   assert.deepEqual(uncovered, [], "add new templates to the TEMPLATES map above");
 });

@@ -128,7 +128,10 @@ const extractionFixture = {
     const drills = drillIds(REFERENCE_CHAPTER);
     const referenceItems = reference.items.filter((item) => !drills.has(item.id));
 
-    const candidate = extractChapterViaLlm({
+    // The extractor answers with an envelope now (items plus the model's own coverage report); the
+    // eval compares ITEMS. The coverage half is reported below, because "which images did it open"
+    // is exactly the kind of thing a before/after is for.
+    const { items: candidate, coverage } = extractChapterViaLlm({
       chapterFilePath: join(FIXTURE_DIR, "chapters", `${REFERENCE_CHAPTER}.xhtml`),
       targetLanguage: reference.targetLanguage,
       bookConventions: loadConventions(),
@@ -143,6 +146,12 @@ const extractionFixture = {
       report: [
         `reference excludes ${drills.size} fill-in-the-blank drill(s) a later pass mined ` +
           `(extraction never produces those).`,
+        coverage
+          ? `coverage: ${coverage.imagesOpened.length} image(s) opened, ` +
+            `${coverage.imagesSkippedAsDecorative.length} skipped as decorative, ` +
+            `${coverage.concerns.length} concern(s)` +
+            coverage.concerns.map((c) => `\n  - ${c}`).join("")
+          : "coverage: none reported (the response was a bare item array)",
         "",
         formatItemSetReport(diff, {
           referenceLabel: "reviewed",

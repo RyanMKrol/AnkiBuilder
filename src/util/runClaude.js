@@ -31,8 +31,12 @@ function firstSet(...values) {
  * shared with the effort knob turns a quality decision into a hard mid-pass abort with a misleading
  * error: raise a slow agentic pass to `high` under a 10-minute cap and it stops finishing, having
  * spent the money. Timeout travels with the scope it belongs to.
+ *
+ * Exported because a cached whole-book artifact records the model and effort that produced it
+ * (src/corpus/artifactMeta.js), and a record derived from a second copy of this resolution order
+ * would drift from the real one.
  */
-function resolvePinning(scopeEnvPrefix, defaults = {}) {
+export function resolvePinning(scopeEnvPrefix, defaults = {}) {
   const env = process.env;
   const prefixes = (Array.isArray(scopeEnvPrefix) ? scopeEnvPrefix : [scopeEnvPrefix]).filter(
     Boolean,

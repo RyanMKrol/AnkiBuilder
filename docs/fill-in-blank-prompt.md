@@ -11,6 +11,10 @@ These cards are shown to a human reviewer before anything is built, badged as AI
 so a card you are unsure about costs a moment's glance. A card built on vocabulary the learner has
 not met costs them a broken lesson, so the vocabulary rule below is absolute.
 
+## What a card looks like
+
+{{CARD_FACES}}
+
 ## Source
 
 {{SOURCE_INSTRUCTION}}
@@ -92,7 +96,7 @@ Return ONLY a JSON object. No prose, no explanation.
     {
       "id": "fib-shinkansen-de-ikimasu",
       "english": "I'm going by Shinkansen.",
-      "category": "Travel",
+      "category": "Travel & Tourism",
       "target": "しんかんせんでいきます",
       "ttsText": "しんかんせんでいきます",
       "pronunciation": "shinkansen de ikimasu",

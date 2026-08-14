@@ -136,15 +136,20 @@ suffixes and prefixes; conjunctions; question words) has to be met somewhere as 
 actually uses it. A bare gloss like "(polite form of です)" teaches nothing on its own: the learner can
 recite the card and still have no idea what a sentence containing it looks like. So for each such card,
 check the lesson for a sentence card whose `target` contains that form. If the chapter supplies one
-(a Key Sentence, a dialogue line, a Speaking Practice exchange), that satisfies it, and you add nothing.
+(a Key Sentence, a grammar example, a drill's worked example), that satisfies it, and you add nothing.
+A DIALOGUE line satisfies it only if it has actually been extracted as a card: extraction does not
+mine the dialogue as a script, and it takes a line only under the one exception (the chapter's only
+demonstration of a function word Step 2 requires an example for, carrying a `reviewNote` naming that
+form). A line still sitting in the book demonstrates nothing to the learner.
 If the chapter introduces the form but demonstrates it nowhere, add the example yourself as a separate
 card marked `"aiSuggested": true`, reusing vocabulary already introduced, with a `reviewNote` naming
 the form it illustrates. The form's own vocabulary entry still stays the bare morpheme; the example is
 an additional card, never a rewrite of the entry.
 
 Two things make this easy to get wrong. First, chapters often DO demonstrate the form, but only inside
-a section the extraction skips (the Speaking Practice dialogue is the usual culprit), so the sentence
-exists in the book and simply never became a card. Look there before inventing one. Second, one example
+the dialogue, which extraction does not mine, so the sentence exists in the book and never became a
+card. Look there before inventing one: that single line is exactly what the dialogue exception is for,
+and the book's own sentence beats one you write. Second, one example
 shows the form; two show the *pattern*. Where a form generalizes (でございます works for any business
 naming itself), prefer the book's own sentence plus one built from earlier vocabulary, so the learner
 sees it is a slot and not a fixed phrase.
@@ -319,11 +324,22 @@ name the counter card the exception belongs to.
 ## `category` is required and shown on the card front
 
 **`category` is REQUIRED on every card and is SHOWN ON THE CARD FRONT.** Category is never optional —
-the schema requires it, the extraction validates it against the fixed enum in `src/model/categories.js`
-(fall back to `"Other"` only when nothing fits), and the dictated-lesson path auto-assigns it. The deck
-build renders a small category chip on the FRONT of both templates (Recognition and Production), so a
-word is always studied *with* its domain — you don't recognize/produce a word cold, out of context. A
-card missing a category is a bug; if you author cards by hand, set one.
+both schemas require it and hold it to the fixed enum in `src/model/categories.js`, the extraction
+validates it too, and the dictated-lesson path auto-assigns it. The deck build renders a small
+category chip on the FRONT of both templates (Recognition and Production), so a word is always
+studied *with* its domain — you don't recognize/produce a word cold, out of context. A card missing a
+category is a bug; if you author cards by hand, set one.
+
+Two rules about WHICH one:
+
+- **Before reaching for `"Other"`, try `"Descriptions & Qualities"`** (adjectives and descriptive
+  words: big, cheap, delicious, quiet) **or `"Everyday Objects"`** (ordinary things belonging to no
+  narrower topic: pen, key, umbrella, bag). Those two were added because `"Other"` had grown into the
+  second-largest bucket in the book, and a bucket that big says nothing about what a card is.
+- **A worked example takes the category of the FORM it demonstrates, not of the words it is built
+  from.** A sentence written to show the particle よ at work is `"Grammar & Function Words"` even
+  though it is about coffee: the card exists to teach the particle. A sentence that is in the chapter
+  as ordinary content and merely happens to contain the form takes its own topic.
 
 ## The cross-lesson note pass (teachability / cross-reference)
 

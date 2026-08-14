@@ -1,13 +1,32 @@
+import { fileURLToPath } from "url";
+import { dirname, join, resolve } from "path";
 import { runRomanizationClaude as defaultRunClaude } from "./runClaude.js";
+import { getLanguagePromptRules } from "./languageRules.js";
+import { resolveIso639Code } from "../model/iso639.js";
+import { renderPromptTemplate } from "../util/promptTemplate.js";
 import { chunk } from "../util/chunk.js";
 import { stripMarkdownFence } from "../util/markdownFence.js";
+
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
+
+// Lives in docs/ (not src/) like every other prompt in the pipeline: a plain, human-editable
+// Markdown file. This one touches EVERY card in every deck and used to be the only prompt a human
+// could not edit without a code change, which is exactly how its hand-maintained transcript in
+// docs/translate-prompts.md drifted from the prompt actually being sent.
+const DEFAULT_TEMPLATE_PATH = resolve(
+  join(MODULE_DIR, "..", "..", "docs", "romanization-prompt.md"),
+);
 
 // Same batch size/semantics as the rest of the translate stage: unbounded, i.e. one call per group.
 // (A const of its own rather than imported from index.js because index.js imports
 // romanizeAndEvaluate from here, so this module can't import back from index.js.)
 const BATCH_SIZE = Infinity;
 
-function buildRomanizationPrompt(items, targetLanguage) {
+export function buildRomanizationPrompt(
+  items,
+  targetLanguage,
+  { templatePath = DEFAULT_TEMPLATE_PATH, languageCode = null } = {},
+) {
   const inputData = items.map((item) => ({
     id: item.id,
     english: item.english,
@@ -17,76 +36,20 @@ function buildRomanizationPrompt(items, targetLanguage) {
     libraryRomanization: item.libraryPronunciation,
   }));
 
-  return [
-    "# Task: Produce the Correct Romanization",
-    "",
-    "## Overview",
-    `Each flashcard has a ${targetLanguage} \`target\` text and a \`libraryRomanization\` — a romanization`,
-    "produced by a deterministic library. That library is a useful starting point but is frequently",
-    "WRONG: it mis-splits a single word into pieces with spurious spaces, mishandles the Japanese small",
-    'っ (sokuon) by emitting a literal "tsu" instead of doubling the next consonant, and falls back to',
-    "spelling out unfamiliar kana letter-by-letter. Your job is to return the CORRECT romanization for",
-    "each item — keep the library's value when it is already right, and fix it when it is wrong. You are",
-    "the final authority on the romanization.",
-    "",
-    "## Input Format",
-    "The input is a JSON array of objects, one per flashcard:",
-    "",
-    "- `id` (string): a unique identifier — reuse it unchanged in your response.",
-    "- `english` (string): the English phrase, for meaning context.",
-    `- \`target\` (string): the ${targetLanguage} text to romanize.`,
-    "- `libraryRomanization` (string): the library's attempt — a starting point, often wrong.",
-    "",
-    "### Example Input",
-    "```json",
-    JSON.stringify(
-      [
-        {
-          id: "sixth-floor",
-          english: "Sixth floor",
-          target: "ろっかい",
-          libraryRomanization: "ro tsu kai",
-        },
-        { id: "hello", english: "Hello", target: "こんにちは", libraryRomanization: "konnichiwa" },
-      ],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    "## Output Format",
-    "Respond with ONLY a JSON array (no markdown fences, no extra prose, no commentary before or after it).",
-    "Produce exactly one object per input item:",
-    "",
-    "- `id` (string): the SAME id as the corresponding input item.",
-    `- \`pronunciation\` (string): the correct romanization of \`target\`, using the standard system for`,
-    `  ${targetLanguage} (Hepburn for Japanese, pinyin for Mandarin, etc.) — the library's value if it is`,
-    "  already correct, otherwise your corrected version.",
-    "",
-    "## Important",
-    "- Return the final, correct `pronunciation` for EVERY item — never leave a known-wrong value in place.",
-    "- Romanize a single word as a single token (no spurious internal spaces); double the consonant for a",
-    "  sokuon (ろっかい → `rokkai`, not `ro tsu kai`); keep natural word spacing in a full sentence.",
-    "- Include every id from the input exactly once. Order does not matter.",
-    "- Do not wrap the response in markdown code fences, and include no text before or after the JSON array.",
-    "",
-    "### Example Output",
-    "```json",
-    JSON.stringify(
-      [
-        { id: "sixth-floor", pronunciation: "rokkai" },
-        { id: "hello", pronunciation: "konnichiwa" },
-      ],
-      null,
-      2,
-    ),
-    "```",
-    "",
-    `## Input Data (${items.length} item(s) to romanize)`,
-    "```json",
-    JSON.stringify(inputData, null, 2),
-    "```",
-  ].join("\n");
+  // Per-language style fragment, same plug-in shape as every other prompt (languageRules.js). No
+  // language sets `romanizationStyle` yet; it is the single place a pinned Hepburn spec belongs, so
+  // that all four prompts that romanize can be fed from one string instead of drifting apart.
+  const rules = getLanguagePromptRules(languageCode ?? resolveIso639Code(targetLanguage));
+  const styleRules = rules.romanizationStyle ?? [];
+
+  return renderPromptTemplate(templatePath, {
+    TARGET_LANGUAGE: targetLanguage,
+    // The placeholder sits in an already-flush "## Important" bullet list, so each rule is a
+    // plain top-level bullet. Empty for a language with no configured style.
+    ROMANIZATION_STYLE_RULES: styleRules.map((rule) => `- ${rule}`).join("\n"),
+    ITEM_COUNT: String(items.length),
+    INPUT_JSON: JSON.stringify(inputData, null, 2),
+  });
 }
 
 function parseEvalBatch(raw) {

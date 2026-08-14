@@ -4,6 +4,7 @@ import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { join, sep } from "path";
 import { libraryHome } from "../model/index.js";
 import { getBookTitle, LABEL_DECODING_CURRENT } from "./epubArchive.js";
+import { writeArtifactMeta } from "./artifactMeta.js";
 
 // Same sha256 + hex + 16-char-truncation convention as src/audio/index.js's
 // hashTerm, applied to file bytes rather than a term string.
@@ -225,7 +226,11 @@ export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir 
   return items;
 }
 
-function conventionsPath(epubHash, { libraryHomeDir } = {}) {
+/**
+ * Where a book's cached conventions doc lives. Exported so a caller can ask
+ * `promptDriftWarning` (src/corpus/artifactMeta.js) about it without re-deriving the path.
+ */
+export function bookConventionsPath(epubHash, { libraryHomeDir } = {}) {
   return join(bookDir(epubHash, { libraryHomeDir }), "conventions.md");
 }
 
@@ -235,22 +240,29 @@ function conventionsPath(epubHash, { libraryHomeDir } = {}) {
  * yet (e.g. the first assemble for this book hasn't happened).
  */
 export function loadBookConventions(epubHash, { libraryHomeDir } = {}) {
-  const path = conventionsPath(epubHash, { libraryHomeDir });
+  const path = bookConventionsPath(epubHash, { libraryHomeDir });
   return existsSync(path) ? readFileSync(path, "utf-8") : null;
 }
 
 /**
  * Saves the book-wide conventions doc for a book — idempotent overwrite,
  * same as saveChapterCorpus. Returns the path written.
+ *
+ * `meta` is the provenance record (buildArtifactMeta): which prompt, model and effort produced
+ * this doc, and when. It is written to a `<artifact>.meta.json` sibling so a later assemble can
+ * say that the cached doc predates the current prompt, which is exactly the drift that cost this
+ * project a chapter's worth of cards.
  */
-export function saveBookConventions(epubHash, markdown, { libraryHomeDir } = {}) {
-  const dest = conventionsPath(epubHash, { libraryHomeDir });
+export function saveBookConventions(epubHash, markdown, { libraryHomeDir, meta } = {}) {
+  const dest = bookConventionsPath(epubHash, { libraryHomeDir });
   mkdirSync(join(dest, ".."), { recursive: true });
   writeFileAtomic(dest, markdown);
+  if (meta) writeArtifactMeta(dest, meta);
   return dest;
 }
 
-function taughtIndexPath(epubHash, { libraryHomeDir } = {}) {
+/** Where a book's cached taught-content index lives. Exported for the same reason as above. */
+export function taughtIndexPath(epubHash, { libraryHomeDir } = {}) {
   return join(bookDir(epubHash, { libraryHomeDir }), "taught-index.json");
 }
 
@@ -267,11 +279,13 @@ export function loadTaughtIndex(epubHash, { libraryHomeDir } = {}) {
 
 /**
  * Saves the taught-content index — idempotent overwrite. Returns the path written.
+ * `meta` is the same provenance record as saveBookConventions takes.
  */
-export function saveTaughtIndex(epubHash, index, { libraryHomeDir } = {}) {
+export function saveTaughtIndex(epubHash, index, { libraryHomeDir, meta } = {}) {
   const dest = taughtIndexPath(epubHash, { libraryHomeDir });
   mkdirSync(join(dest, ".."), { recursive: true });
   writeFileAtomic(dest, JSON.stringify(index, null, 2));
+  if (meta) writeArtifactMeta(dest, meta);
   return dest;
 }
 

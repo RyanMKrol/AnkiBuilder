@@ -264,7 +264,7 @@ test("tolerates a batch response wrapped in a markdown code fence", async () => 
 });
 
 test("sends the whole full-translation group in a single `claude -p` call", async () => {
-  const items = Array.from({ length: 25 }, (_, i) => untranslated(`w${i}`, `word ${i}`, "Misc"));
+  const items = Array.from({ length: 25 }, (_, i) => untranslated(`w${i}`, `word ${i}`, "Other"));
   const corpus = baseCorpus(items);
 
   const batchSizes = [];
@@ -284,7 +284,7 @@ test("sends the whole full-translation group in a single `claude -p` call", asyn
 
 test("sends the whole pronunciation-only group in a single `claude -p` call, independently", async () => {
   const items = Array.from({ length: 12 }, (_, i) =>
-    alreadyTranslated(`w${i}`, `word ${i}`, "Misc", `t-${i}`),
+    alreadyTranslated(`w${i}`, `word ${i}`, "Other", `t-${i}`),
   );
   const corpus = baseCorpus(items);
 

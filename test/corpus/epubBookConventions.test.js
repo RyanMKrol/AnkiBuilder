@@ -219,9 +219,32 @@ test("analyzeBookConventions() returns the model's markdown, headings and all", 
       runClaude: () => markdown,
     });
 
-    assert.match(result, /^# Japanese Book Conventions/);
-    assert.match(result, /## Placeholder Notation/);
-    assert.match(result, /Uses 〜\./);
+    assert.match(result.markdown, /^# Japanese Book Conventions/);
+    assert.match(result.markdown, /## Placeholder Notation/);
+    assert.match(result.markdown, /Uses 〜\./);
+  });
+});
+
+// The provenance record cached beside conventions.md. Without it, a doc written months ago and a
+// prompt edited last week are indistinguishable, which is exactly how this book lost a chapter's
+// paradigm forms.
+test("analyzeBookConventions() returns the provenance record to cache beside the doc", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 4);
+
+    const { meta } = analyzeBookConventions({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () => "# conventions",
+    });
+
+    assert.match(meta.promptPath, /epub-book-conventions-prompt\.md$/);
+    assert.match(meta.promptSha256, /^[0-9a-f]{64}$/);
+    assert.equal(meta.chapterCount, 4);
+    assert.ok(meta.model);
+    assert.ok(meta.effort);
+    assert.ok(Date.parse(meta.generatedAt));
   });
 });
 
@@ -277,7 +300,7 @@ test("every batch's answer survives the merge, labelled with the chapters it cam
     const epubPath = buildFixtureEpub(dir, 4);
     let call = 0;
 
-    const merged = analyzeBookConventions({
+    const { markdown: merged } = analyzeBookConventions({
       epubPath,
       targetLanguage: "Japanese",
       libraryHomeDir: dir,
@@ -304,7 +327,7 @@ test("a batch that skipped a chapter is REPORTED, and never blocks the pass", ()
     const epubPath = buildFixtureEpub(dir, 3);
     const logs = [];
 
-    const merged = analyzeBookConventions({
+    const { markdown: merged } = analyzeBookConventions({
       epubPath,
       targetLanguage: "Japanese",
       libraryHomeDir: dir,

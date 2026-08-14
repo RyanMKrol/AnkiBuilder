@@ -931,9 +931,12 @@ function isLocalRelativePath(src) {
 
 // The image sources one chapter file references, in document order, de-duplicated — the
 // single definition of "what this chapter's <img>/<image> tags point at", shared by the
-// extractor (which copies them) and the shape report (which counts and collision-checks
-// them without writing anything).
-function referencedImageSrcs(rawContent) {
+// extractor (which copies them), the shape report (which counts and collision-checks them
+// without writing anything), and the extraction coverage check
+// (src/corpus/epubLlmExtract.js, which diffs the set against the images the model says it
+// opened). Deriving that set a second time would let the two drift, and a coverage check that
+// disagrees with reality about what exists is worse than no check.
+export function referencedImageSrcs(rawContent) {
   const content = stripInertMarkup(rawContent);
   return new Set(
     [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]

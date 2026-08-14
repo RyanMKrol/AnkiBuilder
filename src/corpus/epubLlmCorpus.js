@@ -14,12 +14,17 @@ export function assembleCorpusFromChapter({
   targetLanguage,
   bookConventions,
   runClaude,
+  log = () => {},
 } = {}) {
-  const rawItems = extractChapterViaLlm({
+  // `log` carries the extractor's coverage warnings (images the model never accounted for, concerns
+  // it raised) out to the CLI. They are the only signal that separates "read the chapter, found
+  // little" from "could not read the chapter", so they must not die in here.
+  const { items: rawItems } = extractChapterViaLlm({
     chapterFilePath,
     targetLanguage,
     bookConventions,
     runClaude,
+    log,
   });
 
   const items = rawItems.map((item) => {

@@ -10,6 +10,9 @@ import { listTemplates } from "../../corpus/templates.js";
 import { normalizeDisplayText } from "../../model/scriptSpacing.js";
 import { writeJson, runDirOrderContext } from "./shared.js";
 import { runPrepare } from "./prepare.js";
+import { bookConventionsPath } from "../../corpus/epubLibrary.js";
+import { BOOK_CONVENTIONS_PROMPT_PATH } from "../../corpus/epubBookConventions.js";
+import { promptDriftWarning } from "../../corpus/artifactMeta.js";
 
 function resolveAssembleRunDir(flags, ctx) {
   if (!flags["output-root"]) {
@@ -274,6 +277,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     corpus = ctx.assembleCorpusFromChapter({
       chapterFilePath: flags.chapter,
       targetLanguage: flags.lang,
+      log: ctx.log,
     });
   } else if (flags.epub) {
     if (!flags["chapter-number"]) {
@@ -287,15 +291,30 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     const { epubHash } = ctx.registerEpub(flags.epub);
 
     bookConventions = ctx.loadBookConventions(epubHash);
-    if (!bookConventions) {
+    if (bookConventions) {
+      // The cached doc is months old by the time a book is half-built, and it competes with a
+      // prompt that has been edited since. Say so; never rebuild it here (a paid whole-book pass
+      // and a judgement call). See src/corpus/artifactMeta.js.
+      const drift = promptDriftWarning(
+        bookConventionsPath(epubHash),
+        BOOK_CONVENTIONS_PROMPT_PATH,
+        { label: "book conventions" },
+      );
+      if (drift) ctx.log(`WARNING — ${drift}`);
+    } else {
       ctx.log(
         `no cached book conventions for epub ${epubHash} — running a one-time whole-book analysis pass`,
       );
-      bookConventions = ctx.analyzeBookConventions({
+      const analyzed = ctx.analyzeBookConventions({
         epubPath: flags.epub,
         targetLanguage: flags.lang,
       });
-      ctx.saveBookConventions(epubHash, bookConventions);
+      // `{ markdown, meta }` since the provenance record landed; a plain string is still accepted,
+      // because an injected test double (and any older caller) returns one.
+      const markdown = typeof analyzed === "string" ? analyzed : analyzed.markdown;
+      const meta = typeof analyzed === "string" ? null : analyzed.meta;
+      bookConventions = markdown;
+      ctx.saveBookConventions(epubHash, bookConventions, meta ? { meta } : {});
       ctx.log(`saved book conventions to the local library (epub ${epubHash})`);
     }
 
@@ -325,6 +344,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       chapterFilePath,
       targetLanguage: flags.lang,
       bookConventions,
+      log: ctx.log,
     });
     const chapterLabel = lesson
       ? lesson.label

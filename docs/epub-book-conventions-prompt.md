@@ -6,6 +6,8 @@ Read EVERY chapter file listed below yourself, using your Read tool, in order. R
 
 You are NOT extracting vocabulary here. A separate process extracts flashcard vocabulary one chapter at a time; your job is to characterize the STRUCTURAL CONVENTIONS this specific book uses, so that process can be told what to expect before it starts, instead of re-guessing these conventions from scratch on every single chapter.
 
+**Your scope is markup and location, never policy.** Describe how the book marks things up and where each kind of thing sits. Do NOT say what the extraction pass should extract, skip, ignore or prioritize: that pass has its own rules, they are edited more often than this document is regenerated, and yours is cached for months. A sentence here telling it to skip something will still be telling it that long after the rule changed. This has already cost one chapter its content. So write "drills in this book sit under a heading `EXERCISES` and use `<ol class=\"drill\">`", not "skip the EXERCISES section".
+
 ## Why
 
 Different textbooks format the same kind of content differently — how they mark a fill-in-the-blank placeholder, how they visually distinguish real teaching content from practice drills, how they label key/model sentences. A per-chapter extraction pass only ever sees one chapter at a time and has to infer these conventions fresh every call, which risks being slow, inconsistent between chapters, or simply wrong when a convention only becomes clear by seeing it repeat across several chapters. Your job is to do that inference ONCE, thoroughly, across the whole book, and write it down clearly enough that a future process can rely on it without re-deriving it.
@@ -19,13 +21,14 @@ Different textbooks format the same kind of content differently — how they mar
   Give real examples you found for each, with the exact characters used.
 
 - **Content markup**: what does a genuine teaching section look like structurally — vocabulary lists, key/model sentences, dialogue? Note recurring CSS classes, heading patterns, or tag structures that reliably signal "this is real content."
-- **Exercise/drill markup**: what does a practice exercise or drill section look like structurally, that should be SKIPPED rather than extracted? Note how to distinguish it from genuine content.
+- **Exercise/drill markup**: what does a practice exercise or drill section look like structurally, and how is it distinguishable from a content section by markup alone? Give the headings, classes and tag structures. Say what the markup IS; the extraction pass decides what to do with it.
+  - **Reference material printed INSIDE an exercise section**: textbooks routinely print a conjugation or paradigm table (one word laid out across its forms: present/past, affirmative/negative, plain/polite), or a chart of numbers, counters or times, among the drills. It is often markup-identical to a drill and is not one — it is reference material, and the instruction usually gives it away (_"repeat the verbs below and memorize their forms"_ is reference; _"make up sentences following the pattern of the example"_ is a drill). Wherever you find this, name the chapter and describe it as **reference material inside an exercise section**, never as part of the drill.
 - **Image-embedded content**: some textbooks put real teaching content inside raster images (a scanned/illustrated page) instead of as extractable text — the underlying `<img>` tag's `alt` text is usually empty or missing, so this is easy to miss by reading markup alone. Whenever a chapter has images sitting inside or right next to a content heading (not a purely decorative banner or a tiny inline icon), open the actual image file yourself with your Read tool and look at it — do not assume it's decorative just because there's no alt text. Classify what you find into:
   - **Content-bearing images** — the image itself IS the vocabulary/phrase/translation content (e.g. an illustrated "frequently used expressions" page with the target-language phrase, its English gloss, and a usage note all drawn into the picture). These are genuine extraction targets that the per-chapter pass cannot reach by reading text alone.
   - **Reference charts/tables as images** — kana charts, conjugation tables, grammar-pattern tables rendered as a picture rather than an HTML table.
   - **Labeled diagrams/photos** — a diagram, map, or photo with a label that is itself real vocabulary (e.g. a floor plan with room names, a photo captioned with a food's name).
-  - **Decorative/illustrative images** — art that accompanies a section but carries no unique text of its own (generic line drawings, mood illustrations). Skip these — no action needed downstream.
-  - **Inline functional icons** — small in-line markers like an audio-clip icon (e.g. `class="inline height_1-0em"` next to a heading). These are UI furniture, not content — note the pattern so the extraction pass doesn't waste time opening them.
+  - **Decorative/illustrative images** — art that accompanies a section but carries no unique text of its own (generic line drawings, mood illustrations). Note the recurring pattern so the extraction pass recognizes one when it sees it.
+  - **Inline functional icons** — small in-line markers like an audio-clip icon (e.g. `class="inline height_1-0em"` next to a heading). These are UI furniture, not content — note the pattern so the extraction pass recognizes them without opening each one.
 
   For every chapter/section you find with content-bearing or reference-chart images, name it explicitly (chapter file + a short description of what's in the image) so the per-chapter extraction pass knows in advance to open those specific images rather than discovering the gap by producing an empty/near-empty item list.
 
@@ -62,8 +65,11 @@ Respond with a single Markdown document (no other commentary before or after it)
 ## Content Section Markers
 ...
 
-## Exercise Section Markers (skip these)
-...
+## Exercise Section Markers
+Describe the markup only.
+
+### Reference Material Inside Exercise Sections
+Name each chapter where a paradigm/conjugation table or reference chart is printed among the drills, and describe it. Say nothing about what should be done with it.
 
 ## Image-Embedded Content
 List each chapter/section that has content-bearing or reference-chart images (name the chapter file and describe what's in the image). Separately note any recurring decorative or inline-icon image patterns worth ignoring, so the extraction pass isn't surprised by them either.

@@ -205,21 +205,32 @@ export const audioMarkerCheck = defineCheck({
   id: "audio-markers",
   title: "audio markers",
   scope: "collection",
-  tier: "INFO",
-  // Heuristic, so a note rather than a failure. WS5 item 2 triages the live instances and decides
-  // whether this earns promotion to the ACK tier.
+  tier: "ACK",
+  /**
+   * A clip shipping with the TTS end marker still audible on the end of it.
+   *
+   * This was the report's other permanently non-zero line: "7 clip(s) flagged marker-audible",
+   * printed before "preflight clean", every run, for months. All seven had in fact been fixed —
+   * the flag described the take the audio stage produced rather than the hand cut that shipped —
+   * and the count carried no information at all, which is exactly how a number becomes wallpaper.
+   *
+   * ACK rather than INFO now that it can go to zero: an unreviewed instance blocks, and the way to
+   * clear it is to fix the clip (re-trim it in the dashboard, or run
+   * `scripts/audit-marker-stuck.mjs --apply` if the flag is stale) or to say out loud that this one
+   * is acceptable. ACK rather than FAIL because the detection is a heuristic with a real
+   * false-positive rate, and a gate you have to override on a wrong answer is how a --force habit
+   * starts. Green on live data the day it landed.
+   */
   run({ units }) {
-    const stuck = units.flatMap((unit) =>
+    const findings = units.flatMap((unit) =>
       shipped(unit)
         .filter((item) => item.audioMarkerStuck)
-        .map((item) => `${unit.name}/${item.id}`),
+        .map((item) => ({
+          key: `${unit.name}/${item.id}`,
+          message: `${unit.name}/${item.id} ships a clip with the TTS end marker audible — re-trim it, or accept it`,
+        })),
     );
-    return {
-      notes: stuck.length
-        ? [`${stuck.length} clip(s) flagged marker-audible: ${stuck.join(", ")}`]
-        : [],
-      summary: `${stuck.length} marker-audible clip(s)`,
-    };
+    return { findings, summary: "no clip ships an audible end marker" };
   },
 });
 

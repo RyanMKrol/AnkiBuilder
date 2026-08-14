@@ -42,6 +42,14 @@ The trim then cuts the marker back off before the clip ships. When it cannot fin
 marker, the card gets an `audioMarkerStuck` flag, badged **Marker audible** in the audio review, so
 you know to re-generate or hand-trim that clip rather than ship audible nonsense.
 
+The flag describes the clip that SHIPS, not the take the stage happened to produce, so hand-trimming
+the marker away clears it — installing, re-cleaning or reverting a hand cut re-asks the question of
+the new shipping take. It did not always: for months the seven flagged cards had all been hand-cut
+clear and went on being reported anyway. `node scripts/audit-marker-stuck.mjs` re-checks the flagged
+cards against the audio on disk and `--apply` clears the ones that are stale; it will not clear a
+flag on the detector's say-so alone, because these are exactly the clips the detector failed on. The
+count is an **ACK**-tier preflight check, so a genuine instance blocks until it is fixed or accepted.
+
 This marker absorbed what used to be a per-language transform that appended a bare `。` to the
 spoken text and offered paired takes with and without it. That machinery is gone: there is no such
 take to choose any more, the displayed face and reading never carry a `。`, and the character's one

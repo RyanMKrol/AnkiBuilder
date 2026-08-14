@@ -1,0 +1,818 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 26,
+    "chapterLabel": "Lesson 9: Doing Things (2): Do You Often Come Here?"
+  },
+  "items": [
+    {
+      "id": "sama-suffix",
+      "english": "Mr., Mrs., Ms., Miss (more polite than さん)",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Suffix — attaches after a person's name; more formal/polite than さん (san).",
+      "reviewNote": "Written 〜さま in the source.",
+      "target": "さま"
+    },
+    {
+      "id": "suzuki-sama",
+      "english": "Mr. Suzuki",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "さま (sama) is more polite than さん (san) — used for customers, guests, or in formal business address, not with someone you know casually.",
+      "reviewNote": null,
+      "target": "すずきさま"
+    },
+    {
+      "id": "douzo-kochira-e",
+      "english": "Please come in.",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "どうぞこちらへ"
+    },
+    {
+      "id": "ii-nice",
+      "english": "Nice, good",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "The plain adjective inside Lesson 8's いいですね (ii desu ne, 'That's good') — いい alone just means 'nice, good.'",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 10: Describing Things: It’s Delicious (いい is formally taught as part of the い-adjective class (with its irregular よくないです conjugation called out) only in chapter 29's い-adjectives vocabulary set — here it's used as a bare vocab item ahead of that)",
+      "target": "いい",
+      "uncertain": true
+    },
+    {
+      "id": "ne-particle",
+      "english": "Right?, isn't it? (sentence-final particle)",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "The same ね as Lesson 6's かいぎは１じからですね (kaigi wa ichiji kara desu ne) — softens a statement and invites agreement, like English 'right?'",
+      "reviewNote": "Source gloss only cross-references Lesson 6 Notes 2 ('particle; see L6, NOTES 2, p. 51'); note content added for learner usability. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "target": "ね",
+      "uncertain": true
+    },
+    {
+      "id": "yoku-often",
+      "english": "Often",
+      "category": "Grammar & Function Words",
+      "scene": "about how frequently",
+      "hint": null,
+      "note": "This lesson's frequency scale, most to least: いつも (itsumo, 'always') > よく (here) > ときどき (tokidoki, 'sometimes') > あまり…ません (amari, 'not often') > ぜんぜん…ません (zenzen, 'not at all').",
+      "reviewNote": null,
+      "target": "よく"
+    },
+    {
+      "id": "tokidoki-sometimes",
+      "english": "Sometimes",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Middle of this lesson's frequency scale — see よく (yoku, 'often') for the full ranking from いつも down to ぜんぜん.",
+      "reviewNote": null,
+      "target": "ときどき"
+    },
+    {
+      "id": "koko-here",
+      "english": "Here",
+      "category": "Directions",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ここ"
+    },
+    {
+      "id": "ni-particle-target",
+      "english": "(particle marking the person or thing an action is directed at)",
+      "category": "Grammar & Function Words",
+      "scene": "marking who a call, e-mail or greeting is aimed at",
+      "hint": null,
+      "note": "Marks the person or thing an action targets (あいます 'meet', おしえます 'tell', おくります 'send') — a different job from Lesson 6's に marking where movement ends (ぎんこうにいきます) and Lesson 7's に marking a point in time (げつようびに).",
+      "reviewNote": "Source gloss only cross-references GRAMMAR 1, 2, p. 85. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "に",
+      "uncertain": true
+    },
+    {
+      "id": "aimasu-meet",
+      "english": "Meet",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Takes に (ni) for the person met, as in たなかさんにあいます — not と (to, 'with') from Lesson 6, which marks doing something together.",
+      "reviewNote": null,
+      "target": "あいます"
+    },
+    {
+      "id": "hontou-desu-ka",
+      "english": "Really?",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": "the whole question you say back when surprised",
+      "note": null,
+      "reviewNote": null,
+      "target": "ほんとうですか"
+    },
+    {
+      "id": "ya-suffix",
+      "english": "(suffix for shop or restaurant)",
+      "category": "Grammar & Function Words",
+      "scene": "attached to what a shop sells, naming the shop",
+      "hint": null,
+      "note": "Suffix — attaches after a food or goods name to mean 'the shop that sells it,' e.g. てんぷらや (tenpuraya), 'tempura restaurant.'",
+      "reviewNote": "Written 〜や in the source.",
+      "target": "や"
+    },
+    {
+      "id": "tenpuraya",
+      "english": "Tempura restaurant",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "てんぷら (tempura) + や (ya, shop/restaurant suffix).",
+      "reviewNote": null,
+      "target": "てんぷらや"
+    },
+    {
+      "id": "basho-location",
+      "english": "Location",
+      "category": "Directions",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ばしょ"
+    },
+    {
+      "id": "oshiemasu-tell",
+      "english": "Tell, teach",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Same root as Lesson 2's おしえてください (oshiete kudasai, 'please tell me'); the person told is marked by に, not を.",
+      "reviewNote": null,
+      "target": "おしえます"
+    },
+    {
+      "id": "mainichi-everyday",
+      "english": "Every day",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "まい (mai, 'every') + にち (nichi, 'day'). The same まい prefix appears on まいあさ (maiasa, 'every morning'), まいばん (maiban, 'every evening'), and まいしゅう (maishū, 'every week') below.",
+      "reviewNote": null,
+      "target": "まいにち"
+    },
+    {
+      "id": "amari-not-often",
+      "english": "Not often, not very",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Used together with a negative verb ending (あまり…〜ません). See: エマさんは あまり テレビを みません (Emma-san does not watch television very often).",
+      "reviewNote": null,
+      "target": "あまり"
+    },
+    {
+      "id": "ks1-meet-tomorrow",
+      "english": "Smith-san will meet Tanaka-san tomorrow.",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはあしたたなかさんにあいます"
+    },
+    {
+      "id": "ks2-told-location",
+      "english": "Smith-san told Suzuki-san the location of the restaurant.",
+      "category": "Directions",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはすずきさんにレストランのばしょをおしえました"
+    },
+    {
+      "id": "ks3-drinks-coffee",
+      "english": "Smith-san drinks coffee every day.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはまいにちコーヒーをのみます"
+    },
+    {
+      "id": "ks4-not-watch-tv",
+      "english": "Emma-san does not watch television very often.",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": "あまり (amari) pairs with a negative verb ending to mean 'not very often, not very'.",
+      "reviewNote": null,
+      "target": "エマさんはあまりテレビをみません"
+    },
+    {
+      "id": "denwa-o-shimasu",
+      "english": "Telephone (someone)",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": "Follows Lesson 8's [noun]を[します] pattern (テニスをします, tenisu o shimasu); the person called is marked by に, not を — スミスさんはたなかさんにでんわをします.",
+      "reviewNote": null,
+      "target": "でんわをします"
+    },
+    {
+      "id": "okurimasu-send",
+      "english": "Send",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": "Like あいます (aimasu, 'meet') and おしえます (oshiemasu, 'tell') above, the recipient is marked by に, not を — スミスさんはたなかさんにメールをおくります.",
+      "reviewNote": null,
+      "target": "おくります"
+    },
+    {
+      "id": "kikimasu-ask",
+      "english": "Ask",
+      "category": "Other",
+      "scene": "getting information from a person",
+      "hint": "getting information from a person, not listening to audio",
+      "note": "Same target as Lesson 8's ききます (kikimasu), 'listen to' — this one means asking a question, and takes に for the person asked (だれにききますか), not the thing heard.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target)",
+      "target": "ききます",
+      "uncertain": true
+    },
+    {
+      "id": "go-prefix",
+      "english": "(Honorific prefix)",
+      "category": "Grammar & Function Words",
+      "scene": "politely referring to someone else's family member",
+      "hint": "attaches before a noun like かぞく (family) or しゅじん (husband)",
+      "note": "A different ご (go) from this lesson's language suffix (にほんご, nihongo, 'Japanese') — same sound, unrelated: this one is a prefix showing respect for someone else's things, e.g. ごかぞく (gokazoku).",
+      "reviewNote": "Written ご〜 in the source. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
+      "target": "ご",
+      "uncertain": true
+    },
+    {
+      "id": "gokazoku",
+      "english": "(Another person's) family",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "ご (go, honorific prefix) + かぞく (kazoku, 'family') from Lesson 6 — the plain かぞく there was neutral; this ご- form is specifically about someone else's family, never your own.",
+      "reviewNote": null,
+      "target": "ごかぞく"
+    },
+    {
+      "id": "otousan",
+      "english": "(Another person's) father",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "The everyday word for one's own father is ちち (chichi) — see that card.",
+      "reviewNote": null,
+      "target": "おとうさん"
+    },
+    {
+      "id": "okaasan",
+      "english": "(Another person's) mother",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "The everyday word for one's own mother is はは (haha) — see that card.",
+      "reviewNote": null,
+      "target": "おかあさん"
+    },
+    {
+      "id": "okusan",
+      "english": "(Another person's) wife",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Someone else's wife — for your own wife, use つま (tsuma) below, never おくさん about yourself.",
+      "reviewNote": null,
+      "target": "おくさん"
+    },
+    {
+      "id": "chichi",
+      "english": "(My) father",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Used for one's own father; when talking about someone else's father, use おとうさん (otousan) instead.",
+      "reviewNote": null,
+      "target": "ちち"
+    },
+    {
+      "id": "haha",
+      "english": "(My) mother",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Used for one's own mother; when talking about someone else's mother, use おかあさん (okaasan) instead.",
+      "reviewNote": null,
+      "target": "はは"
+    },
+    {
+      "id": "tsuma-wife",
+      "english": "(My) wife",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Also read かない (kanai) — both mean 'my wife'; use おくさん (okusan) for someone else's wife.",
+      "reviewNote": null,
+      "target": "つま"
+    },
+    {
+      "id": "goshujin",
+      "english": "(Another person's) husband",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Someone else's husband — for your own husband, use おっと (otto) below, never ごしゅじん about yourself.",
+      "reviewNote": null,
+      "target": "ごしゅじん"
+    },
+    {
+      "id": "otto-husband",
+      "english": "(My) husband",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": "Also read しゅじん (shujin) — both mean 'my husband'; use ごしゅじん (goshujin) for someone else's husband.",
+      "reviewNote": null,
+      "target": "おっと"
+    },
+    {
+      "id": "maiasa",
+      "english": "Every morning",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "まい (mai, 'every') + あさ (asa, 'morning') — see まいにち (mainichi, 'every day') above for the pattern.",
+      "reviewNote": null,
+      "target": "まいあさ"
+    },
+    {
+      "id": "maiban",
+      "english": "Every evening",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "まい (mai, 'every') + ばん (ban, 'evening') — see まいにち (mainichi, 'every day') above for the pattern.",
+      "reviewNote": null,
+      "target": "まいばん"
+    },
+    {
+      "id": "maishuu",
+      "english": "Every week",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "まい (mai, 'every') + しゅう (shū) — the same しゅう as Lesson 6's せんしゅう (last week), こんしゅう (this week), らいしゅう (next week).",
+      "reviewNote": null,
+      "target": "まいしゅう"
+    },
+    {
+      "id": "itsumo-always",
+      "english": "Always",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "The top of this lesson's frequency scale — see よく (yoku, 'often') for the full ranking down to ぜんぜん (zenzen, 'not at all').",
+      "reviewNote": null,
+      "target": "いつも"
+    },
+    {
+      "id": "zenzen-not-at-all",
+      "english": "Not at all",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": "the adverb that forces a negative verb after it",
+      "note": "Used with a negative verb ending (ぜんぜん…〜ません); the bottom of this lesson's frequency scale — see よく (yoku, 'often') for the full ranking.",
+      "reviewNote": null,
+      "target": "ぜんぜん"
+    },
+    {
+      "id": "zenzen-example",
+      "english": "Emma-san does not drink coffee at all.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "The chapter glosses ぜんぜん…〜ません but never uses it in a full example sentence; added to show the pattern, reusing コーヒー and のみます from KS3.",
+      "target": "エマさんはぜんぜんコーヒーをのみません",
+      "aiSuggested": true
+    },
+    {
+      "id": "denwa-example",
+      "english": "Smith-san telephones Tanaka-san.",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはたなかさんにでんわをします"
+    },
+    {
+      "id": "meeru",
+      "english": "E-mail",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "メール"
+    },
+    {
+      "id": "mail-example",
+      "english": "Smith-san sends Tanaka-san an e-mail.",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはたなかさんにメールをおくります"
+    },
+    {
+      "id": "shachou",
+      "english": "President (of a company)",
+      "category": "Work & Occupations",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しゃちょう"
+    },
+    {
+      "id": "go-language-suffix",
+      "english": "Language",
+      "category": "Grammar & Function Words",
+      "scene": "naming a language after a country name",
+      "hint": "attaches after a country's name, not before a noun",
+      "note": "A different ご (go) from this lesson's honorific prefix (ごかぞく, gokazoku) — same sound, unrelated: this one names a language, attaching after a country's name.",
+      "reviewNote": "Written 〜ご in the source. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "ご",
+      "uncertain": true
+    },
+    {
+      "id": "nihongo",
+      "english": "Japanese (language)",
+      "category": "Nationalities & Countries",
+      "scene": null,
+      "hint": null,
+      "note": "にほん (Nihon, Japan) + ご (go, language).",
+      "reviewNote": null,
+      "target": "にほんご"
+    },
+    {
+      "id": "gakkou-school",
+      "english": "School",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "がっこう"
+    },
+    {
+      "id": "dare-ni-denwa-q",
+      "english": "Whom will Smith-san telephone?",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはだれにでんわをしますか"
+    },
+    {
+      "id": "dare-ni-denwa-a",
+      "english": "He'll call Nakamura-san.",
+      "category": "Technology & Communication",
+      "scene": "answering whom Smith-san will telephone",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なかむらさんにします"
+    },
+    {
+      "id": "doko-ni-mail-q",
+      "english": "Where will Smith-san send the e-mail?",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはどこにメールをおくりますか"
+    },
+    {
+      "id": "doko-ni-mail-a",
+      "english": "He'll send it to the bank.",
+      "category": "Technology & Communication",
+      "scene": "answering where Smith-san will send the e-mail",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ぎんこうにおくります"
+    },
+    {
+      "id": "denwabangou-suggestion",
+      "english": "Phone number",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Used repeatedly in this chapter's example sentences (EX III, IV, X) but never given its own vocabulary entry. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "でんわばんごう",
+      "aiSuggested": true,
+      "uncertain": true
+    },
+    {
+      "id": "ask-phone-number",
+      "english": "Smith-san asked Nakamura-san for his phone number.",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": "ききます (kikimasu, 'ask') vs おしえます (oshiemasu, 'tell') below — same でんわばんごう(を) pattern, opposite direction of information.",
+      "reviewNote": null,
+      "target": "スミスさんはなかむらさんにでんわばんごうをききました"
+    },
+    {
+      "id": "tell-phone-number",
+      "english": "Nakamura-san told Smith-san his phone number.",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": "Contrasts with the previous card: ききます (kikimasu) 'ask' vs おしえます (oshiemasu) 'tell' — same でんわばんごう(を) pattern, opposite direction of information.",
+      "reviewNote": null,
+      "target": "なかむらさんはスミスさんにでんわばんごうをおしえました"
+    },
+    {
+      "id": "meet-monday-4",
+      "english": "Smith-san will meet Suzuki-san at Tokyo station at 4:00 on Monday.",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "Adds this lesson's target-marking に to the established word order: person は — day/time に — place で — target に — verb, stacking three に's with different jobs in one sentence.",
+      "reviewNote": null,
+      "target": "スミスさんはげつようびの４じにとうきょうえきですずきさんにあいます",
+      "reading": "スミスさんはげつようびのよじにとうきょうえきですずきさんにあいます"
+    },
+    {
+      "id": "sanpo-o-shimasu",
+      "english": "Take a walk",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": "Follows Lesson 8's [noun]を[します] pattern (テニスをします, tenisu o shimasu) — さんぽ (sanpo, 'walk') supplies the activity.",
+      "reviewNote": null,
+      "target": "さんぽをします"
+    },
+    {
+      "id": "kato-walk-everyday",
+      "english": "Kato-san takes a walk every day.",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "かとうさんはまいにちさんぽをします"
+    },
+    {
+      "id": "rooma-rome",
+      "english": "Rome",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ローマ"
+    },
+    {
+      "id": "sapporo",
+      "english": "Sapporo (city on the island of Hokkaido)",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "さっぽろ"
+    },
+    {
+      "id": "yoguruto",
+      "english": "Yogurt",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ヨーグルト"
+    },
+    {
+      "id": "yasai-vegetable",
+      "english": "Vegetable",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "やさい"
+    },
+    {
+      "id": "yasai-juusu",
+      "english": "Vegetable juice",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "やさい (yasai, vegetable) + ジュース (juusu, juice).",
+      "reviewNote": null,
+      "target": "やさいジュース"
+    },
+    {
+      "id": "hon-book-suggestion",
+      "english": "Book",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Used in this chapter's よく...ますか drill (EX VII) but not given its own vocabulary entry. Note: ほん is also a counter for long cylindrical objects (see ２ほん elsewhere in this chapter) — this card is the noun 'book'. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on english)",
+      "target": "ほん",
+      "aiSuggested": true,
+      "uncertain": true
+    },
+    {
+      "id": "yomimasu-read-suggestion",
+      "english": "Read",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Used in this chapter's よく...ますか drill (EX VII) but not given its own vocabulary entry. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "target": "よみます",
+      "aiSuggested": true,
+      "uncertain": true
+    },
+    {
+      "id": "yoku-hon-q",
+      "english": "Does Smith-san often read books?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはよくほんをよみますか"
+    },
+    {
+      "id": "yoku-hon-a",
+      "english": "Yes, he often does.",
+      "category": "Other",
+      "scene": "answering whether Smith-san often reads books",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "はい、よくよみます"
+    },
+    {
+      "id": "gurasu-glass",
+      "english": "Glass, wine glass",
+      "category": "Food",
+      "scene": null,
+      "hint": "a wine glass specifically, not the everyday コップ from Lesson 5",
+      "note": "A stemmed glass, typically for wine, unlike the everyday tumbler-type コップ (koppu) from Lesson 5 — English 'glass' covers both, Japanese distinguishes them.",
+      "reviewNote": null,
+      "target": "グラス"
+    },
+    {
+      "id": "beer-order",
+      "english": "Two bottles of beer, please.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "ほん (hon) here counts bottles of beer — the same long-object counter from Lesson 5 (ワインを２ほん), just extended to beer.",
+      "reviewNote": null,
+      "target": "ビールを２ほんおねがいします",
+      "reading": "ビールをにほんおねがいします"
+    },
+    {
+      "id": "kondo-next",
+      "english": "Next, next time",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "A general 'next time' — unlike Lesson 6's specific らいしゅう (next week), らいげつ (next month), らいねん (next year), こんど doesn't say which unit of time.",
+      "reviewNote": null,
+      "target": "こんど"
+    },
+    {
+      "id": "weekend-plans-q",
+      "english": "What will you do next weekend?",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "こんどのしゅうまつになにをしますか"
+    },
+    {
+      "id": "shibuya-library-a",
+      "english": "I will go to the Shibuya Library.",
+      "category": "School & Education",
+      "scene": "answering what Emma will do next weekend",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しぶやとしょかんにいきます"
+    },
+    {
+      "id": "yoku-library-q",
+      "english": "Do you often go to the Shibuya Library, Emma-san?",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "エマさんはよくしぶやとしょかんにいきますか"
+    },
+    {
+      "id": "yoku-library-a",
+      "english": "Yes, I often go.",
+      "category": "School & Education",
+      "scene": "answering whether Emma often goes to the Shibuya Library",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "はい、よくいきます"
+    },
+    {
+      "id": "osusume",
+      "english": "Recommendation",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "おすすめ"
+    },
+    {
+      "id": "kochira-polite-this",
+      "english": "This one (polite for これ)",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": "used for an item, not a person",
+      "note": "The same こちら as Lesson 1's polite word for 'this person,' but here extended to polite これ (for things) — shop staff use it either way, e.g. こちらです ('here you are').",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "target": "こちら",
+      "uncertain": true
+    },
+    {
+      "id": "onomimono",
+      "english": "Beverage",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "お (o, honorific prefix) + のみもの (nomimono, beverage); the お is often included in polite speech, e.g. by restaurant staff.",
+      "reviewNote": null,
+      "target": "おのみもの"
+    },
+    {
+      "id": "namabiiru",
+      "english": "Draft beer",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "なまビール"
+    },
+    {
+      "id": "okaikei",
+      "english": "Bill, check",
+      "category": "Money",
+      "scene": null,
+      "hint": null,
+      "note": "お (o, honorific prefix) + かいけい (kaikei, bill/check).",
+      "reviewNote": null,
+      "target": "おかいけい"
+    },
+    {
+      "id": "betsubetsu-ni",
+      "english": "Separately",
+      "category": "Money",
+      "scene": null,
+      "hint": null,
+      "note": "Said in a restaurant when each person wants to pay their own share, e.g. べつべつに おねがいします ('separately, please').",
+      "reviewNote": null,
+      "target": "べつべつに"
+    }
+  ]
+}

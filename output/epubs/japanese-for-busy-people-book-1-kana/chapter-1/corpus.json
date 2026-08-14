@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 14,
+    "chapterLabel": "Lesson 1: Meeting: Nice to Meet You"
+  },
+  "items": [
+    {
+      "id": "depaato",
+      "english": "department store",
+      "category": "Shopping",
+      "target": "デパート"
+    },
+    {
+      "id": "no-particle",
+      "english": "of; 's (possessive/affiliation particle)",
+      "category": "Grammar & Function Words",
+      "target": "の",
+      "note": "Marks belonging/affiliation between two nouns, ordered [owner] の [thing]: see のぞみデパートのたなかさん (Nozomi Depaato no Tanaka-san), '(the) Tanaka-san of Nozomi Department Store,' in this lesson's introduction sentence.",
+      "scene": "marking whose thing it is"
+    },
+    {
+      "id": "san-suffix-ch14",
+      "english": "Mr., Mrs., Ms., Miss",
+      "category": "Family & People",
+      "target": "さん",
+      "reviewNote": "Written 〜さん in the source",
+      "note": "Suffix — attaches after a person's name; cannot be used after one's own name",
+      "hint": "the polite title placed after a name",
+      "scene": "attached to a person's name"
+    },
+    {
+      "id": "desu-suffix",
+      "english": "to be (copula)",
+      "category": "Grammar & Function Words",
+      "target": "です",
+      "reviewNote": "Written 〜です in the source",
+      "note": "Suffix — attaches directly after a noun with no space to state what someone or something is; means 'is/am/are'. Example: (わたしは (watashi wa)) スミスです (sumisu desu)。 — '[I am] Smith.'"
+    },
+    {
+      "id": "ka-particle",
+      "english": "question marker particle",
+      "category": "Grammar & Function Words",
+      "target": "か",
+      "note": "Added to the very end of a です (desu) sentence to turn it into a yes/no question, with no change to word order, e.g. アメリカじんですか (amerikajin desu ka), 'Is (he) American?' — unlike English, you don't invert word order or add a helper word."
+    },
+    {
+      "id": "hai",
+      "english": "yes",
+      "category": "Grammar & Function Words",
+      "target": "はい",
+      "note": "A plain 'yes,' confirming a yes/no question; compare そうです (sou desu), which affirms a specific statement outright rather than just answering yes.",
+      "hint": "the standard, neutral yes"
+    },
+    {
+      "id": "sou-desu",
+      "english": "that's right",
+      "category": "Grammar & Function Words",
+      "target": "そうです",
+      "note": "Confirms or affirms a statement outright ('that's right') — a direct answer, not just an acknowledgment of what you heard."
+    },
+    {
+      "id": "hajimemashite",
+      "english": "Nice to meet you.",
+      "category": "Greetings",
+      "target": "はじめまして",
+      "note": "Said once, at the very first meeting with someone — never again after that. Typically followed by stating your name + です (desu), then よろしくおねがいします (yoroshiku onegaishimasu)."
+    },
+    {
+      "id": "yoroshiku-onegaishimasu",
+      "english": "I look forward to working with you.",
+      "category": "Greetings",
+      "target": "よろしくおねがいします",
+      "note": "Said right after introducing yourself, usually preceded by はじめまして (hajimemashite) and your name + です (desu); the person you're greeting replies with こちらこそ (kochirakoso), 'likewise.' Here おねがいします is fused into a set greeting idiom, not the standalone request use seen in もういちどおねがいします (mou ichido onegaishimasu, 'once more, please') from the earlier lesson."
+    },
+    {
+      "id": "kochirakoso",
+      "english": "same here",
+      "category": "Greetings",
+      "target": "こちらこそ",
+      "note": "A polite reply to よろしくおねがいします (yoroshiku onegaishimasu), meaning 'likewise' / 'the pleasure is mine' — said back after the other person says it to you."
+    },
+    {
+      "id": "wa-particle",
+      "english": "topic marker particle",
+      "category": "Grammar & Function Words",
+      "target": "は",
+      "note": "Follows noun 1, marking it as the sentence topic; similar to 'as for' in English. Example: スミスさんは (sumisu-san wa) アメリカじんです (amerika jin desu)。 — 'As for Smith-san, (he) is American.' (i.e. 'Smith-san is American.')"
+    },
+    {
+      "id": "kochira",
+      "english": "this one (polite for 'this person')",
+      "category": "Grammar & Function Words",
+      "target": "こちら",
+      "note": "Polite way to say 'this person' when introducing someone, as in こちらは…です (kochira wa … desu), 'this is …'."
+    },
+    {
+      "id": "watashi",
+      "english": "I",
+      "category": "Grammar & Function Words",
+      "target": "わたし",
+      "note": "Used freely regardless of politeness level. Contrast あなた (anata, 'you'), which is used far less than English 'you' — addressing someone by name + さん (san) is usually preferred instead."
+    },
+    {
+      "id": "iie",
+      "english": "no",
+      "category": "Grammar & Function Words",
+      "target": "いいえ",
+      "hint": "a plain 'no' answer",
+      "note": "A plain 'no', answering a yes/no question. The same word is also used to politely wave off thanks or praise — see いいえ used for 'Not at all'.",
+      "scene": "answering a yes-or-no question"
+    },
+    {
+      "id": "amerika",
+      "english": "United States",
+      "category": "Nationalities & Countries",
+      "target": "アメリカ"
+    },
+    {
+      "id": "amerikajin",
+      "english": "American (person)",
+      "category": "Nationalities & Countries",
+      "target": "アメリカじん",
+      "note": "じん (jin) attaches to a country name to mean 'a person of that country' — the same pattern gives イギリスじん (igirisujin), ドイツじん (doitsujin), ちゅうごくじん (chuugokujin), and more."
+    },
+    {
+      "id": "igirisu",
+      "english": "United Kingdom",
+      "category": "Nationalities & Countries",
+      "target": "イギリス"
+    },
+    {
+      "id": "igirisujin",
+      "english": "British (person)",
+      "category": "Nationalities & Countries",
+      "target": "イギリスじん"
+    },
+    {
+      "id": "doitsu",
+      "english": "Germany",
+      "category": "Nationalities & Countries",
+      "target": "ドイツ"
+    },
+    {
+      "id": "doitsujin",
+      "english": "German (person)",
+      "category": "Nationalities & Countries",
+      "target": "ドイツじん",
+      "uncertain": true,
+      "reviewNote": "Translation inferred by combining ドイツ + じん; not separately glossed in the source"
+    },
+    {
+      "id": "chuugoku",
+      "english": "China",
+      "category": "Nationalities & Countries",
+      "target": "ちゅうごく"
+    },
+    {
+      "id": "chuugokujin",
+      "english": "Chinese (person)",
+      "category": "Nationalities & Countries",
+      "target": "ちゅうごくじん",
+      "uncertain": true,
+      "reviewNote": "Translation inferred by combining ちゅうごく + じん; not separately glossed in the source"
+    },
+    {
+      "id": "nihon",
+      "english": "Japan",
+      "category": "Nationalities & Countries",
+      "target": "にほん"
+    },
+    {
+      "id": "nihonjin",
+      "english": "Japanese (person)",
+      "category": "Nationalities & Countries",
+      "target": "にほんじん",
+      "uncertain": true,
+      "reviewNote": "Translation inferred by combining にほん + じん; not separately glossed in the source"
+    },
+    {
+      "id": "oosutoraria",
+      "english": "Australia",
+      "category": "Nationalities & Countries",
+      "target": "オーストラリア"
+    },
+    {
+      "id": "oosutorariajin",
+      "english": "Australian (person)",
+      "category": "Nationalities & Countries",
+      "target": "オーストラリアじん",
+      "uncertain": true,
+      "reviewNote": "Translation inferred by combining オーストラリア + じん; not separately glossed in the source"
+    },
+    {
+      "id": "indo",
+      "english": "India",
+      "category": "Nationalities & Countries",
+      "target": "インド"
+    },
+    {
+      "id": "indojin",
+      "english": "Indian (person)",
+      "category": "Nationalities & Countries",
+      "target": "インドじん",
+      "uncertain": true,
+      "reviewNote": "Translation inferred by combining インド + じん; not separately glossed in the source"
+    },
+    {
+      "id": "berurin",
+      "english": "Berlin",
+      "category": "Nationalities & Countries",
+      "target": "ベルリン"
+    },
+    {
+      "id": "rondon",
+      "english": "London",
+      "category": "Nationalities & Countries",
+      "target": "ロンドン"
+    },
+    {
+      "id": "toukyou",
+      "english": "Tokyo",
+      "category": "Nationalities & Countries",
+      "target": "とうきょう"
+    },
+    {
+      "id": "wa-particle-example",
+      "english": "Tanaka-san is Japanese.",
+      "category": "Nationalities & Countries",
+      "target": "たなかさんはにほんじんです",
+      "aiSuggested": true,
+      "reviewNote": "Added as a dedicated example of the topic-marker は — mirrors this chapter's own Key Sentence 1 pattern (Name + は + nationality + です), using different vocabulary already in this lesson"
+    },
+    {
+      "id": "ks1-smith-american",
+      "english": "Smith-san is an American.",
+      "category": "Nationalities & Countries",
+      "target": "スミスさんはアメリカじんです"
+    },
+    {
+      "id": "ks2-smith-american-q",
+      "english": "Is Smith-san an American?",
+      "category": "Nationalities & Countries",
+      "target": "スミスさんはアメリカじんですか"
+    },
+    {
+      "id": "eg-yes-american",
+      "english": "Yes, (he is) American.",
+      "category": "Nationalities & Countries",
+      "target": "はい、アメリカじんです"
+    },
+    {
+      "id": "eg-no-british",
+      "english": "No, (he is) British.",
+      "category": "Nationalities & Countries",
+      "target": "いいえ、イギリスじんです"
+    },
+    {
+      "id": "ks4-i-am-smith",
+      "english": "[I am] Smith.",
+      "category": "Greetings",
+      "target": "(わたしは)スミスです"
+    },
+    {
+      "id": "ks3-tanaka-nozomi",
+      "english": "This is Tanaka-san of the Nozomi Department Store.",
+      "category": "Work & Occupations",
+      "target": "こちらはのぞみデパートのたなかさんです",
+      "note": "こちらは (kochira wa) introduces someone, and のぞみデパートの (Nozomi Depaato no) shows affiliation with の (no), following the [company] の [person] pattern."
+    },
+    {
+      "id": "ginkou",
+      "english": "bank",
+      "category": "Work & Occupations",
+      "target": "ぎんこう"
+    },
+    {
+      "id": "daigaku",
+      "english": "university, college",
+      "category": "Work & Occupations",
+      "target": "だいがく"
+    },
+    {
+      "id": "taishikan",
+      "english": "embassy",
+      "category": "Work & Occupations",
+      "target": "たいしかん"
+    },
+    {
+      "id": "anata",
+      "english": "you",
+      "category": "Grammar & Function Words",
+      "target": "あなた",
+      "note": "Direct 'you' is used far less in Japanese than in English — addressing someone by name + さん (san) is usually more natural and polite than あなた (anata)."
+    },
+    {
+      "id": "kuni",
+      "english": "country",
+      "category": "Nationalities & Countries",
+      "target": "くに",
+      "note": "Plain word for 'country.' Add the honorific prefix お (o) and it becomes おくに (okuni), 'your country' — see that card and お (o) itself — used to ask about someone else's home country, never your own."
+    },
+    {
+      "id": "o-prefix",
+      "english": "(honorific prefix)",
+      "category": "Grammar & Function Words",
+      "target": "お",
+      "uncertain": false,
+      "reviewNote": "Written お〜 in the source",
+      "note": "Prefix — attaches before a noun as an honorific. Example, from this chapter's own Target Dialogue: スミスさん (sumisu-san)、おくには (o-kuni wa) どちらですか (dochira desu ka)。 — 'Smith-san, what country are you from?' (お (o) + くに (kuni) = 'your country'.)",
+      "hint": "the prefix on native words like なまえ (namae) and みやげ (miyage)"
+    },
+    {
+      "id": "okuni",
+      "english": "your country",
+      "category": "Nationalities & Countries",
+      "target": "おくに",
+      "note": "お (o) + くに (kuni, 'country') — the honorific prefix makes this specifically 'your country' (or a third person's), never your own. Heard in おくにはどちらですか (okuni wa dochira desu ka), 'What country are you from?'"
+    },
+    {
+      "id": "dochira",
+      "english": "where (polite word for どこ)",
+      "category": "Grammar & Function Words",
+      "target": "どちら",
+      "note": "Polite word for 'where,' used here to ask about someone's home country: おくにはどちらですか (okuni wa dochira desu ka), 'What country are you from?'"
+    },
+    {
+      "id": "o-prefix-example",
+      "english": "Smith-san, what country are you from?",
+      "category": "Nationalities & Countries",
+      "target": "スミスさん、おくにはどちらですか",
+      "reviewNote": "Drawn directly from this chapter's own Target Dialogue",
+      "note": "Demonstrates the honorific お (o) attaching to くに (kuni) ('country') to form おくに (okuni) ('your country')"
+    },
+    {
+      "id": "onegaishimasu-pattern-ch14",
+      "english": "please (I'd like to see Tanaka-san)",
+      "category": "Grammar & Function Words",
+      "target": "たなかさんをおねがいします",
+      "reviewNote": "Placeholder filled with 'たなかさん', the exact example given in the chapter's own NOTES section (source shows only '〜を おねがいします')",
+      "note": "Here おねがいします (onegaishimasu) follows a person's name + を (o) to ask a receptionist to call them over, e.g. たなかさんをおねがいします (Tanaka-san o onegaishimasu); contrast もういちどおねがいします (mou ichido onegaishimasu) from the earlier lesson, where おねがいします stands alone after the request word instead."
+    },
+    {
+      "id": "uketsuke",
+      "english": "reception desk, receptionist",
+      "category": "Work & Occupations",
+      "target": "うけつけ",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 12: Asking about Places: What Is at Nikko? (explicitly re-taught in the ch.32 WORD POWER 'Parts of a building' numbered vocabulary list, item ①)",
+      "note": "A general-purpose reception desk — used for offices, hospitals, or building entrances."
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "manual",
+    "reviewed": true,
+    "chapterNumber": 1,
+    "chapterLabel": "Lesson 1",
+    "courseSlug": "intensive-japanese-1"
+  },
+  "items": [
+    {
+      "id": "irl-l1-01",
+      "english": "Good morning",
+      "category": "Greetings",
+      "target": "おはようございます",
+      "note": "Used any time before roughly late morning; casual speech drops ございます (gozaimasu) to just おはよう (ohayō) among friends and family."
+    },
+    {
+      "id": "irl-l1-02",
+      "english": "Good afternoon",
+      "category": "Greetings",
+      "target": "こんにちは",
+      "note": "The generic daytime greeting, used from around late morning through the afternoon; it can also serve as a general 'hello', e.g. when visiting someone."
+    },
+    {
+      "id": "irl-l1-03",
+      "english": "Good Evening",
+      "category": "Greetings",
+      "target": "こんばんは",
+      "note": "Used once it starts getting dark, roughly evening onward — the evening counterpart to こんにちは (konnichiwa)."
+    },
+    {
+      "id": "irl-l1-04",
+      "english": "Goodbye.",
+      "category": "Greetings",
+      "target": "さようなら",
+      "note": "A more formal or definitive goodbye than じゃあまた (jaa mata); it can suggest you won't see the person again soon, so it's less used for everyday partings.",
+      "scene": "said on formal occasions"
+    },
+    {
+      "id": "irl-l1-05",
+      "english": "Goodbye.",
+      "category": "Greetings",
+      "target": "じゃあまた",
+      "note": "A casual goodbye for someone you expect to see again soon; さようなら (sayōnara) is more formal and can sound more final.",
+      "scene": "casual, said to friends"
+    },
+    {
+      "id": "irl-l1-06",
+      "english": "Sorry / Excuse me",
+      "category": "Greetings",
+      "target": "すみません",
+      "note": "Covers apology, 'excuse me' to get someone's attention, and even a casual thank-you for trouble taken — the meaning shifts with context."
+    },
+    {
+      "id": "irl-l1-07",
+      "english": "Nice to meet you.",
+      "category": "Greetings",
+      "target": "はじめまして",
+      "hint": "said when first meeting someone",
+      "note": "Used only at the very start of meeting someone for the first time; よろしくおねがいします (yoroshiku onegaishimasu) usually follows to close the introduction."
+    },
+    {
+      "id": "irl-l1-08",
+      "english": "Nice to meet you.",
+      "category": "Greetings",
+      "target": "よろしくおねがいします",
+      "note": "Said right after はじめまして (hajimemashite) to close a first introduction; roughly 'please treat me well going forward', with no direct English equivalent.",
+      "scene": "said at the end of an introduction"
+    },
+    {
+      "id": "irl-l1-09",
+      "english": "China",
+      "category": "Nationalities & Countries",
+      "target": "ちゅうごく"
+    },
+    {
+      "id": "irl-l1-10",
+      "english": "Spain",
+      "category": "Nationalities & Countries",
+      "target": "スペイン"
+    },
+    {
+      "id": "irl-l1-11",
+      "english": "Italy",
+      "category": "Nationalities & Countries",
+      "target": "イタリア"
+    },
+    {
+      "id": "irl-l1-12",
+      "english": "Turkey",
+      "category": "Nationalities & Countries",
+      "target": "トルコ"
+    },
+    {
+      "id": "irl-l1-13",
+      "english": "France",
+      "category": "Nationalities & Countries",
+      "target": "フランス"
+    },
+    {
+      "id": "irl-l1-14",
+      "english": "Korea",
+      "category": "Nationalities & Countries",
+      "target": "かんこく"
+    },
+    {
+      "id": "irl-l1-15",
+      "english": "Japan",
+      "category": "Nationalities & Countries",
+      "target": "にほん"
+    },
+    {
+      "id": "irl-l1-16",
+      "english": "UK",
+      "category": "Nationalities & Countries",
+      "target": "イギリス"
+    },
+    {
+      "id": "irl-l1-17",
+      "english": "Thailand",
+      "category": "Nationalities & Countries",
+      "target": "タイ"
+    },
+    {
+      "id": "irl-l1-18",
+      "english": "USA",
+      "category": "Nationalities & Countries",
+      "target": "アメリカ"
+    },
+    {
+      "id": "irl-l1-19",
+      "english": "French Person",
+      "category": "Nationalities & Countries",
+      "target": "フランスじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; フランス (furansu) alone is just the country."
+    },
+    {
+      "id": "irl-l1-20",
+      "english": "Chinese Person",
+      "category": "Nationalities & Countries",
+      "target": "ちゅうごくじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; ちゅうごく (chūgoku) alone is just the country."
+    },
+    {
+      "id": "irl-l1-21",
+      "english": "Korean Person",
+      "category": "Nationalities & Countries",
+      "target": "かんこくじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; かんこく (kankoku) alone is just the country."
+    },
+    {
+      "id": "irl-l1-22",
+      "english": "English Person",
+      "category": "Nationalities & Countries",
+      "target": "イギリスじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; イギリス (igirisu) alone is just the country."
+    },
+    {
+      "id": "irl-l1-23",
+      "english": "Yes",
+      "category": "Grammar & Function Words",
+      "target": "はい"
+    },
+    {
+      "id": "irl-l1-24",
+      "english": "No",
+      "category": "Grammar & Function Words",
+      "target": "いいえ"
+    },
+    {
+      "id": "irl-l1-25",
+      "english": "I don't know",
+      "category": "Grammar & Function Words",
+      "target": "わかりません",
+      "note": "Also covers 'I don't understand'; it's the negative form of わかります (wakarimasu, 'to understand/know')."
+    },
+    {
+      "id": "irl-l1-26",
+      "english": "Is Jack French?",
+      "category": "Nationalities & Countries",
+      "target": "ジャックさんはフランスじんですか？"
+    },
+    {
+      "id": "irl-l1-27",
+      "english": "Is Ryan English?",
+      "category": "Nationalities & Countries",
+      "target": "ライアンさんはイギリスじんですか？"
+    },
+    {
+      "id": "irl-l1-28",
+      "english": "This is Ryan from England",
+      "category": "Nationalities & Countries",
+      "target": "こちらはイギリスのライアンです",
+      "note": "Here の (no) links country and name ('Ryan of England'); contrast with -じん (jin), which turns the country itself into a nationality noun, as in イギリスじん (igirisu jin)."
+    },
+    {
+      "id": "irl-l1-29",
+      "english": "Where are you from?",
+      "category": "Nationalities & Countries",
+      "target": "しゅっしんはどこですか？",
+      "note": "Asks generally where someone is from (hometown/origin) — an open-ended alternative to directly guessing nationality with ~さんは[country]じんですか, like ジャックさんはフランスじんですか (Jakku san wa furansu jin desu ka?) in this lesson."
+    },
+    {
+      "id": "irl-l1-30",
+      "english": "Nice to meet you, my name is Ryan",
+      "category": "Greetings",
+      "target": "はじめまして。ライアンです"
+    },
+    {
+      "id": "irl-l1-31",
+      "english": "I am from England",
+      "category": "Nationalities & Countries",
+      "target": "わたしはイギリスじんです"
+    },
+    {
+      "id": "irl-l1-32",
+      "english": "Cook",
+      "category": "Work & Occupations",
+      "target": "コック"
+    },
+    {
+      "id": "irl-l1-33",
+      "english": "Doctor",
+      "category": "Work & Occupations",
+      "target": "いしゃ",
+      "note": "The occupation noun for doctor; when addressing or talking about a doctor directly, use せんせい (sensei) instead, just as with teachers."
+    },
+    {
+      "id": "irl-l1-34",
+      "english": "Teacher",
+      "category": "Work & Occupations",
+      "target": "せんせい",
+      "note": "Also used directly as a title of address for teachers, doctors, and other professionals (e.g. saying 先生 to or about them instead of their name), not just as the occupation noun."
+    },
+    {
+      "id": "irl-l1-35",
+      "english": "Student",
+      "category": "School & Education",
+      "target": "がくせい",
+      "note": "がくせい (gakusei) is only the occupation/category noun for 'student'; unlike せんせい (sensei) 'teacher' from this lesson, it's never used as a term of direct address — you'd address a student by name + さん (san), not がくせいさん."
+    },
+    {
+      "id": "irl-l1-36",
+      "english": "Engineer",
+      "category": "Work & Occupations",
+      "target": "エンジニア"
+    },
+    {
+      "id": "irl-l1-38",
+      "english": "What is it?",
+      "category": "Grammar & Function Words",
+      "target": "なんですか",
+      "note": "Uses なん (nan), the form なに (nani) takes before です (desu) and many counters/particles."
+    },
+    {
+      "id": "irl-l1-37",
+      "english": "What is James's mobile phone number?",
+      "category": "Technology & Communication",
+      "target": "ジェームズさんのけいたいばんごうはなんですか",
+      "note": "Uses なん (nan), the form なに (nani) takes before です (desu) — the same pattern explained under なんですか (nan desu ka) earlier in this lesson."
+    },
+    {
+      "id": "irl-l1-39",
+      "english": "My phone number is [number]",
+      "category": "Technology & Communication",
+      "target": "わたしのけいたいばんごうは[number]です"
+    },
+    {
+      "id": "irl-l1-46",
+      "english": "Address",
+      "category": "Home & Household",
+      "target": "じゅうしょ",
+      "note": "Uses の (no) to link to an owner, e.g. ホテルのじゅうしょ (hoteru no jūsho, 'the hotel's address') or わたしのじゅうしょ (watashi no jūsho, 'my address') — the same の pattern as こちらはイギリスのライアンです (kochira wa igirisu no raian desu)."
+    },
+    {
+      "id": "irl-l1-40",
+      "english": "Where is the hotel address?",
+      "category": "Travel & Tourism",
+      "target": "ホテルのじゅうしょはどこですか"
+    },
+    {
+      "id": "irl-l1-41",
+      "english": "My address is...",
+      "category": "Home & Household",
+      "target": "わたしのじゅうしょは"
+    },
+    {
+      "id": "irl-l1-42",
+      "english": "The hotel address is",
+      "category": "Travel & Tourism",
+      "target": "ホテルのじゅうしょは"
+    },
+    {
+      "id": "irl-l1-43",
+      "english": "How much is it?",
+      "category": "Money",
+      "target": "いくらですか",
+      "note": "いくら (ikura) is the question word for price/amount specifically; contrast なん (nan) 'what' (なんですか, nan desu ka) and どこ (doko) 'where' (as in しゅっしんはどこですか, shusshin wa doko desu ka?) — each targets a different kind of unknown."
+    },
+    {
+      "id": "irl-l1-44",
+      "english": "Business card",
+      "category": "Work & Occupations",
+      "target": "めいし",
+      "note": "A business card exchanged when meeting someone professionally for the first time, often alongside はじめまして (hajimemashite) and よろしくおねがいします (yoroshiku onegaishimasu)."
+    },
+    {
+      "id": "irl-l1-45",
+      "english": "Name",
+      "category": "Other",
+      "target": "なまえ",
+      "note": "The general word for 'name'; it's what you give right after はじめまして (hajimemashite), as in はじめまして。ライアンです。(hajimemashite. Raian desu.), and what's printed on a めいし (meishi, business card)."
+    }
+  ]
+}

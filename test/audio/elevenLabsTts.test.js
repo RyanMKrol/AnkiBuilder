@@ -124,3 +124,29 @@ test("a 5xx retries and the last error surfaces when all attempts fail", async (
   );
   assert.equal(calls, 2);
 });
+
+// ElevenLabs bills per character, so an un-injected call from a test spends real money and reports
+// success. Same refusal `runClaudeWithPrompt` makes for `claude -p`.
+test("refuses to reach the real API from a test with no injected fetch", async () => {
+  await assert.rejects(() => fetchElevenLabsTts("hi", "voice", "key", "ja"), /ElevenLabs/);
+});
+
+test("an explicit opt-out env var lifts the ElevenLabs refusal", async () => {
+  const previous = process.env.ANKI_BUILDER_ALLOW_LLM_IN_TESTS;
+  const originalFetch = globalThis.fetch;
+  process.env.ANKI_BUILDER_ALLOW_LLM_IN_TESTS = "1";
+  // Swap the global AFTER lifting the refusal, so the call is proven to get past the guard rather
+  // than past the identity check.
+  globalThis.fetch = async () => okResponse("PAST-THE-GUARD");
+  try {
+    const buf = await fetchElevenLabsTts("hi", "voice", "key", "ja", "eleven_v3", {
+      fetchImpl: globalThis.fetch,
+      wait: noWait,
+    });
+    assert.equal(buf.toString(), "PAST-THE-GUARD");
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (previous === undefined) delete process.env.ANKI_BUILDER_ALLOW_LLM_IN_TESTS;
+    else process.env.ANKI_BUILDER_ALLOW_LLM_IN_TESTS = previous;
+  }
+});

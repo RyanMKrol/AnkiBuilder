@@ -1,0 +1,669 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 19,
+    "chapterLabel": "Lesson 5: Shopping (2): Two Bottles of That Wine, Please",
+    "done": true
+  },
+  "items": [
+    {
+      "id": "wine",
+      "english": "Wine",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ワイン"
+    },
+    {
+      "id": "wine-shop",
+      "english": "Wine shop",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ワインショップ"
+    },
+    {
+      "id": "doko",
+      "english": "Where",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どこ"
+    },
+    {
+      "id": "doko-example",
+      "english": "Where is the wine shop?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Worked example for どこ (where) — chapter's only example is inside the skipped TARGET DIALOGUE.",
+      "target": "ワインショップはどこですか"
+    },
+    {
+      "id": "information-desk",
+      "english": "Information desk",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "インフォメーション"
+    },
+    {
+      "id": "chika",
+      "english": "Basement",
+      "category": "Directions",
+      "reviewNote": "Sub-entry of ちか１かい (first-floor basement).",
+      "target": "ちか"
+    },
+    {
+      "id": "chika-ikkai",
+      "english": "First-floor basement",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ちか１かい",
+      "reading": "ちかいっかい"
+    },
+    {
+      "id": "ikkai-sub",
+      "english": "First floor",
+      "category": "Directions",
+      "reviewNote": "Sub-entry of ちか１かい (first-floor basement).",
+      "target": "１かい",
+      "reading": "いっかい"
+    },
+    {
+      "id": "sono",
+      "english": "That",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "その"
+    },
+    {
+      "id": "france",
+      "english": "France",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "フランス"
+    },
+    {
+      "id": "two-hon",
+      "english": "Two (long objects)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "２ほん",
+      "reading": "にほん"
+    },
+    {
+      "id": "fifth-floor",
+      "english": "Fifth floor",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "５かい",
+      "reading": "ごかい"
+    },
+    {
+      "id": "two-mai",
+      "english": "Two (flat objects)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "２まい",
+      "reading": "にまい"
+    },
+    {
+      "id": "ks1-restaurant-floor",
+      "english": "The restaurant is on the 5th floor.",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "レストランは５かいです",
+      "reading": "レストランはごかいです"
+    },
+    {
+      "id": "kono",
+      "english": "This",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "この"
+    },
+    {
+      "id": "tshirt",
+      "english": "T-shirt",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "Tシャツ"
+    },
+    {
+      "id": "ks2-tshirt-price",
+      "english": "This T-shirt is 2,000 yen.",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "このTシャツは2,000えんです",
+      "reading": "このTシャツはにせんえんです"
+    },
+    {
+      "id": "ano",
+      "english": "That (over there)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あの"
+    },
+    {
+      "id": "blue",
+      "english": "Blue",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "あおい"
+    },
+    {
+      "id": "ks3-blue-tshirt-price",
+      "english": "That blue T-shirt over there is 3,000 yen.",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "あのあおいTシャツは3,000えんです",
+      "reading": "あのあおいTシャツはさんぜんえんです"
+    },
+    {
+      "id": "ks4-wine-from-france",
+      "english": "This is a wine from France.",
+      "category": "Food",
+      "reviewNote": "Same Japanese sentence as the paired card.",
+      "target": "これはフランスのワインです"
+    },
+    {
+      "id": "ks4-french-wine",
+      "english": "This is a French wine.",
+      "category": "Food",
+      "reviewNote": "Same Japanese sentence as the paired card.",
+      "target": "これはフランスのワインです"
+    },
+    {
+      "id": "ks5-two-bottles-wine",
+      "english": "I would like two bottles of that wine, please.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "そのワインを２ほんください",
+      "reading": "そのワインをにほんください"
+    },
+    {
+      "id": "counter-mai-9",
+      "english": "Nine (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "きゅうまい"
+    },
+    {
+      "id": "counter-tsu-3",
+      "english": "Three (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "みっつ"
+    },
+    {
+      "id": "counter-hon-10",
+      "english": "Ten (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "じゅっぽん"
+    },
+    {
+      "id": "counter-hon-5",
+      "english": "Five (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ごほん"
+    },
+    {
+      "id": "counter-hon-6",
+      "english": "Six (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ろっぽん"
+    },
+    {
+      "id": "counter-hon-7",
+      "english": "Seven (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ななほん",
+      "uncertain": true
+    },
+    {
+      "id": "counter-mai-6",
+      "english": "Six (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ろくまい",
+      "uncertain": true
+    },
+    {
+      "id": "counter-hon-1",
+      "english": "One (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "いっぽん"
+    },
+    {
+      "id": "counter-mai-5",
+      "english": "Five (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ごまい"
+    },
+    {
+      "id": "counter-mai-10",
+      "english": "Ten (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "じゅうまい"
+    },
+    {
+      "id": "counter-tsu-10",
+      "english": "Ten (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "とお"
+    },
+    {
+      "id": "counter-hon-3",
+      "english": "Three (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "さんぼん"
+    },
+    {
+      "id": "counter-tsu-8",
+      "english": "Eight (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "やっつ"
+    },
+    {
+      "id": "counter-tsu-2",
+      "english": "Two (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II). まい/ほん forms for 2 already covered by the ２まい/２ほん cards.",
+      "target": "ふたつ"
+    },
+    {
+      "id": "counter-hon-8",
+      "english": "Eight (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "はっぽん"
+    },
+    {
+      "id": "counter-tsu-4",
+      "english": "Four (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "よっつ"
+    },
+    {
+      "id": "counter-mai-4",
+      "english": "Four (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "よんまい"
+    },
+    {
+      "id": "counter-hon-9",
+      "english": "Nine (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "きゅうほん"
+    },
+    {
+      "id": "counter-hon-4",
+      "english": "Four (long objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "よんほん"
+    },
+    {
+      "id": "counter-tsu-9",
+      "english": "Nine (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ここのつ"
+    },
+    {
+      "id": "counter-mai-1",
+      "english": "One (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "いちまい"
+    },
+    {
+      "id": "counter-tsu-5",
+      "english": "Five (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "いつつ"
+    },
+    {
+      "id": "counter-mai-7",
+      "english": "Seven (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ななまい",
+      "uncertain": true
+    },
+    {
+      "id": "counter-mai-3",
+      "english": "Three (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "さんまい"
+    },
+    {
+      "id": "counter-tsu-6",
+      "english": "Six (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "むっつ"
+    },
+    {
+      "id": "counter-tsu-7",
+      "english": "Seven (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ななつ"
+    },
+    {
+      "id": "counter-mai-8",
+      "english": "Eight (flat objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "はちまい"
+    },
+    {
+      "id": "counter-tsu-1",
+      "english": "One (general objects)",
+      "category": "Numbers",
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "target": "ひとつ"
+    },
+    {
+      "id": "red",
+      "english": "Red",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "あかい"
+    },
+    {
+      "id": "black",
+      "english": "Black",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "くろい"
+    },
+    {
+      "id": "white",
+      "english": "White",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "しろい"
+    },
+    {
+      "id": "beer",
+      "english": "Beer",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ビール"
+    },
+    {
+      "id": "dish-plate",
+      "english": "Dish, plate",
+      "category": "Home & Household",
+      "reviewNote": "Shown in plain parentheses (not the wave-dash 〜 convention) rather than a separate sub-entry.",
+      "target": "(お)さら"
+    },
+    {
+      "id": "glass",
+      "english": "Glass",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "コップ"
+    },
+    {
+      "id": "apple",
+      "english": "Apple",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "りんご"
+    },
+    {
+      "id": "big-large",
+      "english": "Big, large",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "おおきい"
+    },
+    {
+      "id": "small",
+      "english": "Small",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ちいさい"
+    },
+    {
+      "id": "fourth-floor",
+      "english": "Fourth floor",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "よんかい"
+    },
+    {
+      "id": "second-floor",
+      "english": "Second floor",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "にかい"
+    },
+    {
+      "id": "third-floor",
+      "english": "Third floor",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "さんがい"
+    },
+    {
+      "id": "sixth-floor",
+      "english": "Sixth floor",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ろっかい"
+    },
+    {
+      "id": "vacuum-cleaner",
+      "english": "Vacuum cleaner",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "そうじき"
+    },
+    {
+      "id": "mug",
+      "english": "Mug",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "マグカップ"
+    },
+    {
+      "id": "switzerland",
+      "english": "Switzerland",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "スイス"
+    },
+    {
+      "id": "camera",
+      "english": "Camera",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "カメラ"
+    },
+    {
+      "id": "beef",
+      "english": "Beef",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ぎゅうにく"
+    },
+    {
+      "id": "shoes",
+      "english": "Shoes",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "くつ"
+    },
+    {
+      "id": "italy",
+      "english": "Italy",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "イタリア"
+    },
+    {
+      "id": "cheese",
+      "english": "Cheese",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チーズ"
+    },
+    {
+      "id": "mikan-orange",
+      "english": "Mikan orange",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "みかん"
+    },
+    {
+      "id": "red-wine",
+      "english": "Red wine",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "あかワイン"
+    },
+    {
+      "id": "coffee-cup",
+      "english": "Coffee cup",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "コーヒーカップ"
+    },
+    {
+      "id": "towel",
+      "english": "Towel",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "タオル"
+    },
+    {
+      "id": "dore",
+      "english": "Which one (of three or more things)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どれ"
+    },
+    {
+      "id": "dore-example",
+      "english": "Which one is the red shirt?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Worked example for どれ (which one) — chapter's only example is inside the skipped SPEAKING PRACTICE dialogue.",
+      "target": "あかいシャツはどれですか"
+    },
+    {
+      "id": "cheesecake",
+      "english": "Cheese cake",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チーズケーキ"
+    },
+    {
+      "id": "apple-pie",
+      "english": "Apple pie",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "アップルパイ"
+    },
+    {
+      "id": "restroom",
+      "english": "Restroom",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "おてあらい"
+    },
+    {
+      "id": "achira",
+      "english": "Over there",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あちら"
+    },
+    {
+      "id": "achira-example",
+      "english": "The restroom is over there.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Worked example for あちら (over there) — chapter's only example is inside the skipped SPEAKING PRACTICE dialogue.",
+      "target": "おてあらいはあちらです"
+    },
+    {
+      "id": "doumo",
+      "english": "Thanks.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "どうも"
+    },
+    {
+      "id": "fib-c5-vacuum-where",
+      "english": "Where is the vacuum cleaner?",
+      "category": "Directions",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 1); filled with そうじき (vacuum cleaner).",
+      "target": "そうじきはどこですか"
+    },
+    {
+      "id": "fib-c5-vacuum-third-floor",
+      "english": "It's on the third floor.",
+      "category": "Directions",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 1); filled with さんがい (third floor).",
+      "target": "さんがいです"
+    },
+    {
+      "id": "fib-c5-pc-where",
+      "english": "Where is the computer?",
+      "category": "Directions",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 1); filled with パソコン (personal computer).",
+      "target": "パソコンはどこですか"
+    },
+    {
+      "id": "fib-c5-pc-basement-first-floor",
+      "english": "It's in the first-floor basement.",
+      "category": "Directions",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 1); filled with ちかいっかい (first-floor basement).",
+      "target": "ちかいっかいです"
+    },
+    {
+      "id": "fib-c5-coffee-cup-price-q",
+      "english": "Excuse me, how much is that coffee cup?",
+      "category": "Shopping",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 7); filled with コーヒーカップ (coffee cup).",
+      "target": "すみません。そのコーヒーカップはいくらですか"
+    },
+    {
+      "id": "fib-c5-coffee-cup-origin-q",
+      "english": "Where is that coffee cup from?",
+      "category": "Shopping",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 7); filled with コーヒーカップ (coffee cup).",
+      "target": "それはどこのコーヒーカップですか"
+    },
+    {
+      "id": "fib-c5-coffee-cup-origin-a",
+      "english": "It's from England.",
+      "category": "Nationalities & Countries",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 7); filled with イギリス (England).",
+      "target": "イギリスのです"
+    },
+    {
+      "id": "fib-c5-coffee-cup-quantity",
+      "english": "Then please give me six of those.",
+      "category": "Shopping",
+      "reviewNote": "Fill-in-the-blank drill (Exercise 7); filled with むっつ (six, general objects).",
+      "target": "それをむっつください"
+    }
+  ]
+}

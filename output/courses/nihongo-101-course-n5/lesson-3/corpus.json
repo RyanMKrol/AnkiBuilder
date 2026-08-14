@@ -1,0 +1,535 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "manual",
+    "reviewed": false,
+    "courseSlug": "nihongo-101-course-n5",
+    "chapterNumber": 3,
+    "chapterLabel": "Lesson 3"
+  },
+  "items": [
+    {
+      "id": "to-swim",
+      "english": "To swim",
+      "category": "Sports & Hobbies",
+      "target": "およぐ",
+      "hint": "the everyday verb — the physical action",
+      "note": "The default word for swimming anywhere: a pool, the sea, a dog swimming. Compare すいえいをします (suiei o shimasu), which frames it as a sport."
+    },
+    {
+      "id": "to-swim-2",
+      "english": "To swim",
+      "category": "Sports & Hobbies",
+      "target": "すいえいをします",
+      "hint": "as a sport or hobby",
+      "note": "すいえい (suiei) is swimming as a discipline — lessons, clubs, competitions. しゅみは すいえい です (shumi wa suiei desu) = 'my hobby is swimming'."
+    },
+    {
+      "id": "one-more-time-please",
+      "english": "One more time, please.",
+      "category": "Greetings",
+      "target": "もういちどおねがいします",
+      "note": "Built from おねがいします (onegaishimasu), already used for よろしくおねがいします (yoroshiku onegaishimasu). もう いちど (mō ichido) = 'one more time'."
+    },
+    {
+      "id": "this-one",
+      "english": "This one",
+      "category": "Grammar & Function Words",
+      "target": "これ",
+      "note": "Stands alone as a pronoun. When a noun follows, switch to この (kono): この ほん (kono hon).",
+      "hint": "plain"
+    },
+    {
+      "id": "that-one",
+      "english": "That one",
+      "category": "Grammar & Function Words",
+      "target": "それ",
+      "note": "Near the listener, not near you: これ (kore) is by you, あれ (are) is far from both.",
+      "hint": "plain"
+    },
+    {
+      "id": "that-one-over-there",
+      "english": "That one over there",
+      "category": "Grammar & Function Words",
+      "target": "あれ",
+      "note": "Away from both of you. これ (kore) is by me, それ (sore) is by you, あれ (are) is over there.",
+      "hint": "plain"
+    },
+    {
+      "id": "this-one-polite",
+      "english": "This one",
+      "category": "Grammar & Function Words",
+      "target": "こちら",
+      "hint": "polite",
+      "note": "Also means 'this way / this direction'. Already met in こちらは イギリスの ライアンです (kochira wa Igirisu no Ryan desu), where it introduces a person politely."
+    },
+    {
+      "id": "that-one-polite",
+      "english": "That one",
+      "category": "Grammar & Function Words",
+      "target": "そちら",
+      "hint": "polite",
+      "note": "Polite counterpart of それ (sore); also 'that way'."
+    },
+    {
+      "id": "that-one-over-there-polite",
+      "english": "That one over there",
+      "category": "Grammar & Function Words",
+      "target": "あちら",
+      "hint": "polite",
+      "note": "Polite counterpart of あれ (are); also 'over that way'."
+    },
+    {
+      "id": "this",
+      "english": "This ___",
+      "category": "Grammar & Function Words",
+      "target": "この",
+      "hint": "followed by a noun",
+      "note": "Never stands alone — これ (kore) is the one that does. この かばん (kono kaban) = 'this bag'."
+    },
+    {
+      "id": "that",
+      "english": "That ___",
+      "category": "Grammar & Function Words",
+      "target": "その",
+      "hint": "followed by a noun",
+      "note": "Pairs with それ (sore) the way この (kono) pairs with これ (kore)."
+    },
+    {
+      "id": "that-over-there",
+      "english": "That ___ over there",
+      "category": "Grammar & Function Words",
+      "target": "あの",
+      "hint": "followed by a noun",
+      "note": "Pairs with あれ (are). あの ひと (ano hito) = 'that person over there'."
+    },
+    {
+      "id": "topic-particle-wa",
+      "english": "Topic particle \"wa\"",
+      "category": "Grammar & Function Words",
+      "target": "は",
+      "note": "Written は but pronounced わ (wa) when it marks the topic — the single most common reading trap in kana."
+    },
+    {
+      "id": "i-am-a-student",
+      "english": "I am a student.",
+      "category": "School & Education",
+      "target": "わたしはがくせいです",
+      "note": "The は here is read わ (wa). がくせい (gakusei) was introduced with the other occupations."
+    },
+    {
+      "id": "object-particle-o",
+      "english": "Object particle \"o\"",
+      "category": "Grammar & Function Words",
+      "target": "を",
+      "note": "Pronounced お (o). It only ever appears as a particle — never inside a word."
+    },
+    {
+      "id": "i-eat-sushi",
+      "english": "I eat sushi.",
+      "category": "Food",
+      "target": "すしをたべます",
+      "note": "を (o) marks what the verb acts on: すし (sushi) is the thing being eaten."
+    },
+    {
+      "id": "sweets",
+      "english": "Sweets",
+      "category": "Food",
+      "target": "おかし",
+      "note": "Covers sweets, snacks and confectionery generally."
+    },
+    {
+      "id": "fish",
+      "english": "Fish",
+      "category": "Food",
+      "target": "さかな",
+      "note": "The animal and the food alike."
+    },
+    {
+      "id": "beef",
+      "english": "Beef",
+      "category": "Food",
+      "target": "ぎゅうにく",
+      "note": "ぎゅう (gyū) 'cow' + にく (niku) 'meat'. Same pattern builds とりにく (toriniku) 'chicken'."
+    },
+    {
+      "id": "vegetables",
+      "english": "Vegetables",
+      "category": "Food",
+      "target": "やさい"
+    },
+    {
+      "id": "peach",
+      "english": "Peach",
+      "category": "Food",
+      "target": "もも"
+    },
+    {
+      "id": "pizza",
+      "english": "Pizza",
+      "category": "Food",
+      "target": "ピザ"
+    },
+    {
+      "id": "beer",
+      "english": "Beer",
+      "category": "Food",
+      "target": "ビール",
+      "note": "Contrast ビル (biru), an office building — the long-vowel ー is the only thing telling them apart."
+    },
+    {
+      "id": "plastic-bottle",
+      "english": "Plastic bottle",
+      "category": "Home & Household",
+      "target": "ペットボトル",
+      "note": "Wasei-eigo from 'PET bottle' — a disposable plastic drinks bottle, not a pet's bottle."
+    },
+    {
+      "id": "pretty",
+      "english": "Pretty",
+      "category": "Other",
+      "target": "きれいな",
+      "hint": "also 'clean, tidy'",
+      "note": "A な-adjective despite ending in い: きれいな へや (kirei na heya). Means both 'pretty' and 'clean'."
+    },
+    {
+      "id": "cool",
+      "english": "Cool",
+      "category": "Other",
+      "target": "かっこいい",
+      "note": "Irregular: negative かっこよくない (kakko yokunai), past かっこよかった (kakko yokatta)."
+    },
+    {
+      "id": "small",
+      "english": "Small",
+      "category": "Other",
+      "target": "ちいさい"
+    },
+    {
+      "id": "big",
+      "english": "Big",
+      "category": "Other",
+      "target": "おおきい",
+      "note": "Spelled おお (ō), not おう — one of the few words that keeps おお."
+    },
+    {
+      "id": "spicy",
+      "english": "Spicy",
+      "category": "Food",
+      "target": "からい"
+    },
+    {
+      "id": "long",
+      "english": "Long",
+      "category": "Other",
+      "target": "ながい"
+    },
+    {
+      "id": "clear",
+      "english": "Clear",
+      "category": "Other",
+      "target": "とうめいな",
+      "note": "A な-adjective: とうめいな コップ (tōmei na koppu) = 'a clear glass'. The final い belongs to めい, it isn't an い-adjective ending."
+    },
+    {
+      "id": "yellow",
+      "english": "Yellow",
+      "category": "Colors",
+      "target": "きいろい",
+      "note": "One of only two colours that work both ways: きいろい シャツ (kiiroi shatsu) and きいろの シャツ (kiiro no shatsu) are both correct."
+    },
+    {
+      "id": "brown",
+      "english": "Brown",
+      "category": "Colors",
+      "target": "ちゃいろい",
+      "note": "Literally 'tea-colour'. Like きいろ (kiiro), it takes either form: ちゃいろい くつ (chairoi kutsu) or ちゃいろの くつ (chairo no kutsu)."
+    },
+    {
+      "id": "green",
+      "english": "Green",
+      "category": "Colors",
+      "target": "みどりの",
+      "note": "みどり (midori) is a noun, so it needs の to describe something: みどりの くるま (midori no kuruma). There is no みどりい."
+    },
+    {
+      "id": "white",
+      "english": "White",
+      "category": "Colors",
+      "target": "しろい",
+      "aiSuggested": true,
+      "reviewNote": "Added to answer your question about which colours need の. しろ is NOT の-only — しろい is a normal い-adjective.",
+      "note": "Only four colours have a native い-form: あかい (akai), あおい (aoi), しろい (shiroi), くろい (kuroi). Everything else needs の."
+    },
+    {
+      "id": "black",
+      "english": "Black",
+      "category": "Colors",
+      "target": "くろい",
+      "aiSuggested": true,
+      "reviewNote": "Added to answer your question about which colours need の. くろ is NOT の-only — くろい is a normal い-adjective.",
+      "note": "くろい くつ (kuroi kutsu) = 'black shoes'. Directly modifies the noun, unlike みどりの (midori no)."
+    },
+    {
+      "id": "purple",
+      "english": "Purple",
+      "category": "Colors",
+      "target": "むらさきの",
+      "aiSuggested": true,
+      "reviewNote": "Added as a second example of a colour that only works with の, per your question.",
+      "note": "A noun like みどり (midori), so it needs の: むらさきの はな (murasaki no hana). There is no むらさきい."
+    },
+    {
+      "id": "pink",
+      "english": "Pink",
+      "category": "Colors",
+      "target": "ピンクの",
+      "aiSuggested": true,
+      "reviewNote": "Added as an example of a loanword colour, which is always の-only.",
+      "note": "Loanword colours are always nouns: ピンクの かばん (pinku no kaban)."
+    },
+    {
+      "id": "orange",
+      "english": "Orange",
+      "category": "Colors",
+      "target": "オレンジの",
+      "aiSuggested": true,
+      "reviewNote": "Added as an example of a loanword colour, which is always の-only.",
+      "note": "The colour and the fruit share the word. オレンジの ぼうし (orenji no bōshi)."
+    },
+    {
+      "id": "grey",
+      "english": "Grey",
+      "category": "Colors",
+      "target": "はいいろの",
+      "aiSuggested": true,
+      "reviewNote": "Added as a further の-only colour; グレー (gurē) is the equally common loanword form.",
+      "note": "Literally 'ash colour'. グレー (gurē) is the loanword alternative and is just as common."
+    },
+    {
+      "id": "sweatshirt",
+      "english": "Sweatshirt",
+      "category": "Clothing",
+      "target": "トレーナー",
+      "note": "Wasei-eigo. Not a 'trainer' (a person) and not British 'trainers' (shoes) — it's a crewneck sweatshirt."
+    },
+    {
+      "id": "hoodie",
+      "english": "Hoodie",
+      "category": "Clothing",
+      "target": "パーカー",
+      "note": "Not an English 'parka' (a heavy winter coat) — パーカー (pākā) is a hooded sweatshirt."
+    },
+    {
+      "id": "scarf",
+      "english": "Scarf",
+      "category": "Clothing",
+      "target": "マフラー",
+      "note": "Not the English 'muffler' (a car part) — in clothing it's a winter neck scarf."
+    },
+    {
+      "id": "belt",
+      "english": "Belt",
+      "category": "Clothing",
+      "target": "ベルト"
+    },
+    {
+      "id": "hat",
+      "english": "Hat",
+      "category": "Clothing",
+      "target": "ぼうし",
+      "note": "Covers hats and caps alike. Note the long vowel: ぼう (bō), not ぼ."
+    },
+    {
+      "id": "socks",
+      "english": "Socks",
+      "category": "Clothing",
+      "target": "くつした",
+      "note": "くつ (kutsu) 'shoe' + した (shita) 'under'."
+    },
+    {
+      "id": "three-books",
+      "english": "Three books",
+      "category": "Numbers",
+      "target": "さんさつ",
+      "note": "No sound change — it stays さ (sa), unlike the floor counter where さんがい (sangai) does shift."
+    },
+    {
+      "id": "one-book",
+      "english": "One book",
+      "category": "Numbers",
+      "target": "いっさつ",
+      "note": "さつ (satsu) counts bound things — books, magazines, notebooks. いち (ichi) shortens to いっ (i-) here."
+    },
+    {
+      "id": "two-books",
+      "english": "Two books",
+      "category": "Numbers",
+      "target": "にさつ"
+    },
+    {
+      "id": "which-floor",
+      "english": "Which floor?",
+      "category": "Directions",
+      "target": "なんがいですか",
+      "note": "Textbooks teach なんがい (nangai). なんかい (nankai) is also heard, but it collides with 'how many times'."
+    },
+    {
+      "id": "4th-floor",
+      "english": "4th floor",
+      "category": "Directions",
+      "target": "よんかい",
+      "note": "よん (yon), never し (shi), for this counter."
+    },
+    {
+      "id": "9th-floor",
+      "english": "9th floor",
+      "category": "Directions",
+      "target": "きゅうかい",
+      "note": "きゅう (kyū), not く (ku), for this counter."
+    },
+    {
+      "id": "2nd-floor",
+      "english": "2nd floor",
+      "category": "Directions",
+      "target": "にかい"
+    },
+    {
+      "id": "7th-floor",
+      "english": "7th floor",
+      "category": "Directions",
+      "target": "ななかい"
+    },
+    {
+      "id": "10th-floor",
+      "english": "10th floor",
+      "category": "Directions",
+      "target": "じゅっかい",
+      "note": "じゅう (jū) shortens to じゅっ (ju-)."
+    },
+    {
+      "id": "1st-floor",
+      "english": "1st floor",
+      "category": "Directions",
+      "target": "いっかい",
+      "note": "Japanese counts from street level, so いっかい (ikkai) is the British ground floor. The British 'first floor' is にかい (nikai)."
+    },
+    {
+      "id": "6th-floor",
+      "english": "6th floor",
+      "category": "Directions",
+      "target": "ろっかい",
+      "note": "ろく (roku) shortens to ろっ (ro-)."
+    },
+    {
+      "id": "3rd-floor",
+      "english": "3rd floor",
+      "category": "Directions",
+      "target": "さんがい",
+      "note": "The one that changes sound: か becomes が. さんかい (sankai) would mean 'three times', not 'third floor'."
+    },
+    {
+      "id": "8th-floor",
+      "english": "8th floor",
+      "category": "Directions",
+      "target": "はっかい",
+      "note": "はち (hachi) shortens to はっ (ha-)."
+    },
+    {
+      "id": "5th-floor",
+      "english": "5th floor",
+      "category": "Directions",
+      "target": "ごかい"
+    },
+    {
+      "id": "car-park",
+      "english": "Car park",
+      "category": "Directions",
+      "target": "ちゅうしゃじょう",
+      "note": "じょう (jō) marks a place or ground — the same ending turns up in other venue words."
+    },
+    {
+      "id": "pharmacy",
+      "english": "Pharmacy",
+      "category": "Directions",
+      "target": "やっきょく"
+    },
+    {
+      "id": "rooftop",
+      "english": "Rooftop",
+      "category": "Directions",
+      "target": "おくじょう",
+      "note": "Shares the じょう (jō) 'place' ending with ちゅうしゃじょう (chūshajō)."
+    },
+    {
+      "id": "restroom",
+      "english": "Restroom",
+      "category": "Directions",
+      "target": "おてあらい",
+      "note": "Literally 'hand-washing place' (お + てあらい, o + tearai) — the polite word for a toilet."
+    },
+    {
+      "id": "town",
+      "english": "Town",
+      "category": "Directions",
+      "target": "まち"
+    },
+    {
+      "id": "ear",
+      "english": "Ear",
+      "category": "Body & Health",
+      "target": "みみ"
+    },
+    {
+      "id": "eye",
+      "english": "Eye",
+      "category": "Body & Health",
+      "target": "め"
+    },
+    {
+      "id": "insect",
+      "english": "Insect",
+      "category": "Animals",
+      "target": "むし",
+      "note": "Turns up inside てんとうむし (tentōmushi), 'ladybird'."
+    },
+    {
+      "id": "snow",
+      "english": "Snow",
+      "category": "Weather & Nature",
+      "target": "ゆき"
+    },
+    {
+      "id": "side",
+      "english": "Side",
+      "category": "Directions",
+      "target": "よこ",
+      "note": "A position word: ~の よこ (no yoko) = 'beside ~'. いすの よこ (isu no yoko) = 'next to the chair'."
+    },
+    {
+      "id": "camera",
+      "english": "Camera",
+      "category": "Technology & Communication",
+      "target": "カメラ"
+    },
+    {
+      "id": "camel",
+      "english": "Camel",
+      "category": "Animals",
+      "target": "らくだ"
+    },
+    {
+      "id": "squirrel",
+      "english": "Squirrel",
+      "category": "Animals",
+      "target": "りす"
+    },
+    {
+      "id": "crocodile",
+      "english": "Crocodile",
+      "category": "Animals",
+      "target": "わに",
+      "note": "Japanese doesn't split crocodile from alligator — わに (wani) covers both."
+    }
+  ]
+}

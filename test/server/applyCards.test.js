@@ -93,6 +93,23 @@ test("setCardExcluded toggles the flag (reversible) and rejects unknown ids", ()
   }
 });
 
+// A script sweep and a reviewed decision used to be byte-identical on disk, which is what made the
+// excluded set unauditable.
+test("setCardExcluded stamps a human exclusion, and un-excluding clears the provenance", () => {
+  const dir = runDir([card("a", { excluded: true, excludedBy: "extras-duplicate-check" })]);
+  try {
+    setCardExcluded(dir, "a", true);
+    assert.equal(read(dir).items[0].excludedBy, "human");
+
+    setCardExcluded(dir, "a", false);
+    const item = read(dir).items[0];
+    assert.equal("excludedBy" in item, false, "a stale author must not outlive the exclusion");
+    assert.equal("excludedReason" in item, false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("editCard writes only whitelisted fields (target/pronunciation/reading), ignoring the rest", () => {
   const dir = runDir([card("a", { target: "いち", pronunciation: "ichi" })]);
   try {

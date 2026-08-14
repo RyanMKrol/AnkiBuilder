@@ -1,0 +1,671 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 33,
+    "chapterLabel": "Lesson 13: Asking for a Place: Where Is It? (Extras)"
+  },
+  "items": [
+    {
+      "id": "wa-sobaichi-oishii",
+      "english": "Yes, Sobaichi is good.",
+      "category": "Food",
+      "target": "はい、そばいちはおいしいです",
+      "scene": "answering \"そばいちは おいしいですか\", where the shop is already under discussion",
+      "hint": null,
+      "note": "The flip side of そばいちが おいしいです. With は, the shop is already known and おいしいです is the new information; with が, the shop itself is the news (NOTES 2).",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "wa-booto-noriba-doko",
+      "english": "Where is the boat dock?",
+      "category": "Transport",
+      "target": "ボートのりばはどこですか",
+      "scene": null,
+      "hint": null,
+      "note": "The short form of ボートのりばは どこに ありますか. Once you are asking about a known thing's location, に あります can drop to plain です (GRAMMAR 2), the same shortening as いま どこですか.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "hasami-soko",
+      "english": "The scissors are right there next to you.",
+      "category": "School & Education",
+      "target": "はさみはそこにあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with the ここ and あそこ versions. そこ is not simply \"there\", it means the spot near the LISTENER. This is the one learners get wrong, because English \"there\" covers both そこ and あそこ.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+    },
+    {
+      "id": "ex-cabinet-key-doko-q",
+      "english": "Where is the key to the cabinet?",
+      "category": "Work & Occupations",
+      "target": "キャビネットのかぎはどこにありますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+    },
+    {
+      "id": "smith-office-imasendeshita",
+      "english": "Smith-san wasn't in the president's office.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはしゃちょうしつにいませんでした",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-boat-dock-chikai-a",
+      "english": "Yes, it's close. It's about five minutes on foot.",
+      "category": "Transport",
+      "target": "はい、ちかいです。あるいて5ふんぐらいです",
+      "scene": "answering whether the boat dock is near here",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (Talk about how close a certain place is to where you are now)."
+    },
+    {
+      "id": "td-sobaichi-ga-oishii",
+      "english": "Yes, there is. The Sobaichi shop is good.",
+      "category": "Food",
+      "target": "ええ。そばいちがおいしいですよ",
+      "scene": "answering \"この ちかくに おいしい おそばやさんが ありますか\" by naming a good soba shop",
+      "hint": null,
+      "note": "が (not は) marks そばいち because the shop is new information to the listener; そばいちは おいしいです would instead make おいしいです the new part (NOTES 2).",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "ex-restaurant-men-count-a",
+      "english": "There is one.",
+      "category": "Family & People",
+      "target": "ひとりいます",
+      "scene": "answering how many men are in the restaurant",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES B (Ask and answer how many people are in a certain place)."
+    },
+    {
+      "id": "koko-ni-imasu-a",
+      "english": "Yes, he's here with me.",
+      "category": "Work & Occupations",
+      "target": "はい、ここにいます",
+      "scene": "answering \"たなかさんは そこに いますか\" on the phone",
+      "hint": null,
+      "note": "The same spot is そこ for the person asking and ここ for the person answering. ここ／そこ／あそこ are chosen from whoever is currently speaking, not fixed to the place itself.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+    },
+    {
+      "id": "ex-park-many-boys",
+      "english": "There are a lot of boys in the park.",
+      "category": "Family & People",
+      "target": "こうえんにおとこのこがたくさんいます",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES B (State how many people are in a certain place)."
+    },
+    {
+      "id": "mo-ramenya-chikaku",
+      "english": "There is also a ramen shop near here.",
+      "category": "Food",
+      "target": "このちかくにラーメンやもあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with この ちかくに ラーメンやが あります. も replaces が outright to add \"as well\", you never say ラーメンやもが.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ga-panya-pan-oishii",
+      "english": "The bakery's bread is good.",
+      "category": "Food",
+      "target": "パンやのパンがおいしいです",
+      "scene": null,
+      "hint": null,
+      "note": "が is not only for あります／います. In 〜が おいしいです the part before が is what is new to the listener, so this picks out whose bread is the good one (NOTES 2). の links the shop to what it sells.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "td-sobaichi-otera-mae-desu",
+      "english": "Sobaichi is in front of that temple.",
+      "category": "Directions",
+      "target": "そばいちはあのおてらのまえです",
+      "scene": null,
+      "hint": "contracted with です instead of に あります",
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "sp-ima-doko-q",
+      "english": "Where are you now, Suzuki-san?",
+      "category": "Work & Occupations",
+      "target": "すずきさん、いまどこですか",
+      "scene": null,
+      "hint": null,
+      "note": "いま どこですか is the short form of いま どこに いますか — with a person, the place +です contraction works the same way it does for things (GRAMMAR 2).",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2."
+    },
+    {
+      "id": "soko-enpitsu-q",
+      "english": "Is there a pencil there next to you?",
+      "category": "School & Education",
+      "target": "そこにえんぴつがありますか",
+      "scene": null,
+      "hint": null,
+      "note": "そこ picks out the listener's side of the room, so this asks about what is within reach of the person you are speaking to.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+    },
+    {
+      "id": "smith-office-imasen",
+      "english": "Smith-san isn't in the president's office.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはしゃちょうしつにいません",
+      "scene": null,
+      "hint": null,
+      "note": "Plain negative existence for a person. Different from だれも いません (there is no one), which needs the だれも construction.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "smith-office-imashita",
+      "english": "Smith-san was in the president's office.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはしゃちょうしつにいました",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-basutei-chikai-a",
+      "english": "Yes, it's close. It's right over there.",
+      "category": "Transport",
+      "target": "はい、ちかいです。すぐそこです",
+      "scene": "answering whether the bus stop is near here",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (Talk about how close a certain place is to where you are now)."
+    },
+    {
+      "id": "ex-honya-doko-a",
+      "english": "It's next to the ramen shop.",
+      "category": "Shopping",
+      "target": "ラーメンやのとなりにあります",
+      "scene": "answering where the bookstore is",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+    },
+    {
+      "id": "ex-cabinet-key-doko-a",
+      "english": "It's in that drawer over there.",
+      "category": "Work & Occupations",
+      "target": "あのひきだしのなかにあります",
+      "scene": "answering where the key to the cabinet is",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+    },
+    {
+      "id": "td-asoko-ni-otera",
+      "english": "There is a temple over there, right?",
+      "category": "Directions",
+      "target": "あそこにおてらがありますね",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "ex-honya-doko-q",
+      "english": "Where is the bookstore?",
+      "category": "Shopping",
+      "target": "ほんやはどこにありますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+    },
+    {
+      "id": "no-hotel-chikaku-byouin-q",
+      "english": "Is there a hospital near the hotel?",
+      "category": "Body & Health",
+      "target": "ホテルのちかくにびょういんがありますか",
+      "scene": null,
+      "hint": null,
+      "note": "ちかく is a noun, so it needs の in front of it: ホテルの ちかく, literally \"the hotel's vicinity\".",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "smith-office-imasu",
+      "english": "Smith-san is in the president's office.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはしゃちょうしつにいます",
+      "scene": null,
+      "hint": null,
+      "note": "The same four-way set for people. います is used instead of あります because Smith-san is a person; the next three cards change only that verb.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-cups-table-count-a",
+      "english": "There are four.",
+      "category": "Home & Household",
+      "target": "4つあります",
+      "scene": "answering how many glasses are on the table",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer how many of a certain object are on a certain place)."
+    },
+    {
+      "id": "sp-nozomi-file-doko-q",
+      "english": "Where is the file for Nozomi Department Store?",
+      "category": "Work & Occupations",
+      "target": "のぞみデパートのファイルはどこにありますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1."
+    },
+    {
+      "id": "no-london-bank-file",
+      "english": "The Bank of London file is in that drawer over there.",
+      "category": "Work & Occupations",
+      "target": "ロンドンぎんこうのファイルはあのひきだしのなかにあります",
+      "scene": null,
+      "hint": null,
+      "note": "Two different jobs for の in one sentence: ロンドンぎんこうの ファイル is which file it is, and ひきだしの なか is a position phrase.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ex-park-one-girl",
+      "english": "There is one girl in the park.",
+      "category": "Family & People",
+      "target": "こうえんにおんなのこがひとりいます",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES B (State how many people are in a certain place)."
+    },
+    {
+      "id": "hasami-asoko",
+      "english": "The scissors are over there, away from both of us.",
+      "category": "School & Education",
+      "target": "はさみはあそこにあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with the ここ and そこ versions. あそこ is the only one of the three that is away from both people: pick it when the thing is near neither you nor the person you are talking to.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+    },
+    {
+      "id": "ex-kato-uchi-kaisha-tooi",
+      "english": "Kato-san's house is far from the office.",
+      "category": "Directions",
+      "target": "かとうさんのうちはかいしゃからとおいです",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (State whether the place you are now is near/distant from a certain place)."
+    },
+    {
+      "id": "kara-kuukou-eki-contrast",
+      "english": "The airport is far from here, but the station is close.",
+      "category": "Directions",
+      "target": "くうこうはここからとおいですが、えきはちかいです",
+      "scene": null,
+      "hint": null,
+      "note": "The second half drops ここから because the reference point is already established: once the から phrase is understood, you do not repeat it.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "sp-nanji-goro-kaerimasu-q",
+      "english": "About what time will you get back to the office?",
+      "category": "Time",
+      "target": "なんじごろかいしゃにかえりますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2."
+    },
+    {
+      "id": "kagi-drawer-arimashita",
+      "english": "The key was in the drawer.",
+      "category": "Home & Household",
+      "target": "かぎはひきだしのなかにありました",
+      "scene": null,
+      "hint": null,
+      "note": "Past existence: あります takes the same ました ending as any other verb.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-boat-dock-chikai-q",
+      "english": "Is the boat dock near here?",
+      "category": "Transport",
+      "target": "ボートのりばはここからちかいですか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (Talk about how close a certain place is to where you are now)."
+    },
+    {
+      "id": "tanaka-soko-imasu-q",
+      "english": "Is Tanaka-san there with you?",
+      "category": "Work & Occupations",
+      "target": "たなかさんはそこにいますか",
+      "scene": null,
+      "hint": null,
+      "note": "Over the phone, そこ means wherever the other person is. You could never use ここ here, that would be asking whether Tanaka-san is standing next to yourself.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+    },
+    {
+      "id": "wa-kouban-eki-mae",
+      "english": "The police box is in front of the station.",
+      "category": "Emergencies",
+      "target": "こうばんはえきのまえにあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with えきの まえに こうばんが あります, differing only in は versus が. The police box is already known, so it becomes the topic with は and the location is the new part. Only this は version can be shortened to こうばんは えきの まえです.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ni-sasaki-kaigishitsu-q",
+      "english": "Is Sasaki-san in the meeting room now?",
+      "category": "Work & Occupations",
+      "target": "ささきさんはいまかいぎしつにいますか",
+      "scene": null,
+      "hint": null,
+      "note": "に marks where someone exists. It is the same に you use for a destination with いきます, but here it goes with います and means \"in / at\", not \"to\".",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "sp-ima-nozomi-ni-imasu",
+      "english": "I'm at the Nozomi Department Store now.",
+      "category": "Work & Occupations",
+      "target": "いまのぞみデパートにいます",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2."
+    },
+    {
+      "id": "td-doko-ni-arimasu-q",
+      "english": "Where is it?",
+      "category": "Directions",
+      "target": "どこにありますか",
+      "scene": "asking where the soba shop the salesperson just recommended is",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "ni-uketsuke-okyakusan",
+      "english": "There are a lot of guests at the reception desk.",
+      "category": "Family & People",
+      "target": "うけつけにおきゃくさんがたくさんいます",
+      "scene": null,
+      "hint": null,
+      "note": "たくさん sits where a number and counter would, and like a number it takes no particle after it.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "wa-honya-panya-contrast",
+      "english": "The bookstore is in front of the station. The bakery is next to the hospital.",
+      "category": "Shopping",
+      "target": "ほんやはえきのまえです。パンやはびょういんのとなりです",
+      "scene": null,
+      "hint": null,
+      "note": "Two は topics in a row set the two shops against each other. This is what は is for, announcing which thing you are about to give information about.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ga-ramenya-chikaku",
+      "english": "There is a ramen shop near here.",
+      "category": "Food",
+      "target": "このちかくにラーメンやがあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with この ちかくに ラーメンやも あります, differing only in が versus も.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "td-soba-nearby-q",
+      "english": "Excuse me. Is there a good soba shop nearby?",
+      "category": "Directions",
+      "target": "すみません。このちかくにおいしいおそばやさんがありますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "no-clearfile-tanaka",
+      "english": "That clear file is Tanaka-san's.",
+      "category": "School & Education",
+      "target": "そのクリアファイルはたなかさんのです",
+      "scene": null,
+      "hint": null,
+      "note": "Here の stands in for the noun itself, so たなかさんの means \"Tanaka-san's one\" and you do not repeat クリアファイル. その points at something near the listener, matching そこ.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "kagi-drawer-arimasen",
+      "english": "The key isn't in the drawer.",
+      "category": "Home & Household",
+      "target": "かぎはひきだしのなかにありません",
+      "scene": null,
+      "hint": null,
+      "note": "Negative existence: nothing about the frame changes, あります just takes the ません ending you already use on other verbs. The topic stays は, it does not switch back to が.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-panya-uchi-chikai",
+      "english": "The bakery is near my house.",
+      "category": "Directions",
+      "target": "パンやはうちからちかいです",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (State whether the place you are now is near/distant from a certain place)."
+    },
+    {
+      "id": "ni-keshigomu-shita",
+      "english": "The eraser is under the clear file.",
+      "category": "School & Education",
+      "target": "けしゴムはクリアファイルのしたにあります",
+      "scene": null,
+      "hint": null,
+      "note": "に attaches to the whole position phrase クリアファイルの した, not to クリアファイル on its own.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "kagi-drawer-arimasu",
+      "english": "The key is in the drawer.",
+      "category": "Home & Household",
+      "target": "かぎはひきだしのなかにあります",
+      "scene": null,
+      "hint": null,
+      "note": "The base form of a four-way set. The key is already known to both of you, so it is the topic with は and the location is the new part (GRAMMAR 2). The next three cards keep every word the same and change only あります.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-park-two-women",
+      "english": "There are two women in the park.",
+      "category": "Family & People",
+      "target": "こうえんにおんなのひとがふたりいます",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES B (State how many people are in a certain place)."
+    },
+    {
+      "id": "ex-plates-table-count-q",
+      "english": "How many plates are there on the table?",
+      "category": "Home & Household",
+      "target": "テーブルのうえにおさらがなんまいありますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer how many of a certain object are on a certain place)."
+    },
+    {
+      "id": "kara-yuubinkyoku-kaisha-q",
+      "english": "Is the post office near the office?",
+      "category": "Directions",
+      "target": "ゆうびんきょくはかいしゃからちかいですか",
+      "scene": null,
+      "hint": null,
+      "note": "With ちかい and とおい, the place you are measuring FROM takes から, even though English says \"near the office\" with no \"from\".",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ex-plates-table-count-a",
+      "english": "There are five.",
+      "category": "Home & Household",
+      "target": "5まいあります",
+      "scene": "answering how many plates are on the table",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer how many of a certain object are on a certain place)."
+    },
+    {
+      "id": "hasami-koko",
+      "english": "The scissors are here next to me.",
+      "category": "School & Education",
+      "target": "はさみはここにあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with はさみは そこに あります and はさみは あそこに あります. ここ is the speaker's own spot, where I am, not just \"close by\".",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+    },
+    {
+      "id": "ga-takushii-basu-noriba",
+      "english": "There are a taxi stand and a bus terminal in front of the station.",
+      "category": "Transport",
+      "target": "えきのまえにタクシーのりばとバスのりばがあります",
+      "scene": null,
+      "hint": null,
+      "note": "と joins the two nouns into one unit, and a single が follows the whole list.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ex-cups-table-count-q",
+      "english": "How many glasses are there on the table?",
+      "category": "Home & Household",
+      "target": "テーブルのうえにコップがいくつありますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer how many of a certain object are on a certain place)."
+    },
+    {
+      "id": "ex-parking-next-to-konbini",
+      "english": "The parking lot is next to the convenience store.",
+      "category": "Directions",
+      "target": "ちゅうしゃじょうはコンビニのとなりにあります",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES (State where a facility or store is located)."
+    },
+    {
+      "id": "kara-kumano-taki",
+      "english": "Kumano Shrine is far from the waterfall.",
+      "category": "Travel & Tourism",
+      "target": "くまのじんじゃはたきからとおいです",
+      "scene": null,
+      "hint": null,
+      "note": "から does not have to be where you are standing. Both points here are landmarks somewhere else (GRAMMAR 3).",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "kagi-drawer-arimasendeshita",
+      "english": "The key wasn't in the drawer.",
+      "category": "Home & Household",
+      "target": "かぎはひきだしのなかにありませんでした",
+      "scene": null,
+      "hint": null,
+      "note": "Past negative. Note this is ありませんでした, the verb ending, not じゃありませんでした, which is the negative past of です.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "ex-file-drawer-takusan",
+      "english": "There are a lot of files in the drawer.",
+      "category": "School & Education",
+      "target": "ひきだしのなかにファイルがたくさんあります",
+      "scene": null,
+      "hint": null,
+      "note": "たくさん sits in the same slot as a number + counter, and like a number it takes no particle after it.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (State how many of a certain object are in a certain place)."
+    },
+    {
+      "id": "sp-3ji-ni-kaerimasu-a",
+      "english": "I'll be back at 3 o'clock.",
+      "category": "Time",
+      "target": "3じにかえります",
+      "scene": "answering about what time Suzuki-san will get back to the office",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2."
+    },
+    {
+      "id": "td-taki-chikai-q",
+      "english": "Also, is this waterfall near here?",
+      "category": "Travel & Tourism",
+      "target": "それから、このたきはここからちかいですか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "td-sobaichi-otera-mae-ni-arimasu",
+      "english": "Sobaichi is in front of the temple.",
+      "category": "Directions",
+      "target": "そばいちはおてらのまえにあります",
+      "scene": null,
+      "hint": "using に あります (not contracted)",
+      "note": "The closing line of the dialogue says the same thing as そばいちは あの おてらの まえです — once the location is established, place に あります can be shortened to place です (GRAMMAR 2).",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+    },
+    {
+      "id": "sp-nozomi-file-koko-a",
+      "english": "It's here. Here you go.",
+      "category": "Work & Occupations",
+      "target": "ここにあります。どうぞ",
+      "scene": "answering where the Nozomi Department Store file is, while handing it over",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1."
+    },
+    {
+      "id": "ga-kouban-eki-mae",
+      "english": "There is a police box in front of the station.",
+      "category": "Emergencies",
+      "target": "えきのまえにこうばんがあります",
+      "scene": null,
+      "hint": null,
+      "note": "Minimal pair with こうばんは えきの まえに あります, differing only in が versus は. が here introduces the police box as something new to the listener, so this answers \"what is in front of the station?\" (GRAMMAR 2).",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+    },
+    {
+      "id": "ex-restaurant-men-count-q",
+      "english": "How many men are there in the restaurant?",
+      "category": "Family & People",
+      "target": "レストランにおとこのひとがなんにんいますか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES B (Ask and answer how many people are in a certain place)."
+    },
+    {
+      "id": "ex-basutei-chikai-q",
+      "english": "Is the bus stop near here?",
+      "category": "Transport",
+      "target": "バスていはここからちかいですか",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (Talk about how close a certain place is to where you are now)."
+    }
+  ]
+}

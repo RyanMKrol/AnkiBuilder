@@ -1,0 +1,603 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "chapterNumber": 17,
+    "chapterLabel": "Lesson 3: Asking the Time: What Time Is It? (Extras)",
+    "reviewed": true
+  },
+  "items": [
+    {
+      "id": "td-lunchtime-end-q",
+      "english": "What time does it end?",
+      "category": "Time",
+      "target": "なんじまでですか",
+      "note": null,
+      "reviewNote": "Target Dialogue, Smith's follow-up. Collides in family with the existing fib-c3-meeting-end-q (かいぎはなんじまでですか), but this is the topicless follow-up form, which the deck never shows — in a real exchange you drop the topic on the second question. Marked medium so it is easy to prune if that feels too close.",
+      "aiSuggested": true,
+      "scene": "no topic named — you already asked about lunchtime"
+    },
+    {
+      "id": "yasumi-ashita-a",
+      "english": "It's tomorrow.",
+      "category": "Time",
+      "target": "あしたです",
+      "note": "いつですか (itsu desu ka) can be answered with a day on its own — it does not demand a clock time the way なんじですか (nan-ji desu ka) does.",
+      "reviewNote": "Constructed answer to yasumi-itsu-q. Every existing いつ answer in the deck gives an hour, so the learner has never seen いつ answered with a day alone, which is half of what the question is for.",
+      "aiSuggested": true,
+      "scene": "answering when the day off is"
+    },
+    {
+      "id": "ima-nanji-a",
+      "english": "It's 3:00.",
+      "category": "Time",
+      "target": "さんじです",
+      "note": null,
+      "reviewNote": "EXERCISES II model dialogue, B's reply. Split from ima-nanji-q. English is close to the existing ks1-ima-sanji ('It is 3:00 now.') and san-ji ('3:00, three o'clock'), so this card carries a hint; the owner may want to hint san-ji as well.",
+      "aiSuggested": true,
+      "scene": "answering what time it is now, without いま (ima)"
+    },
+    {
+      "id": "depaato-nanji-made-q",
+      "english": "What time does the department store close?",
+      "category": "Shopping",
+      "target": "デパートはなんじまでですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES III-B and IV-A, which both re-use デパート (depāto). Vocabulary job: デパート is a Lesson 1 word that this lesson leans on but that has had no sentence of its own since Lesson 1.",
+      "aiSuggested": true
+    },
+    {
+      "id": "furonto-q",
+      "english": "What time is the reception desk open, from and to?",
+      "category": "Time",
+      "target": "フロントはなんじからなんじまでですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: フロント (furonto) appears in the chapter only as a speaker label in EXERCISES VI, never inside a sentence, so the learner meets the word but never uses it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-lunchtime-start-q",
+      "english": "Excuse me. What time does lunchtime start?",
+      "category": "Time",
+      "target": "すみません。ランチタイムはなんじからですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Target Dialogue, Smith's first question. The deck has no 〜はなんじからですか question at all, only the まで version (fib-c3-meeting-end-q), so the opening-time question is a complete gap. Verbatim from the book, including the すみません (sumimasen) opener that makes it usable with a stranger.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-itsu-q",
+      "english": "When is the meeting?",
+      "category": "Work & Occupations",
+      "target": "かいぎはいつですか",
+      "hint": null,
+      "note": "いつ (itsu) asks which occasion, なんじ (nan-ji) asks for the clock time — かいぎはなんじですか (kaigi wa nan-ji desu ka) assumes you already know the day.",
+      "reviewNote": "EXERCISES V model dialogue, lifted verbatim rather than constructed. Particle job: いつ (itsu) has two examples in the deck and the book's own model sentence is not among them.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hotel-asagohan-q",
+      "english": "Excuse me. What time does breakfast start?",
+      "category": "Time",
+      "target": "すみません。あさごはんはなんじからですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISES VI model dialogue (Smith asking the hotel front desk) — a section that produced no cards. This is the second and last 〜はなんじからですか example; it is the practical one the book flags in Active Communication ('ask about the business hours of a facility').",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-ashita-kuji-a",
+      "english": "It's from 9:00 tomorrow.",
+      "category": "Work & Occupations",
+      "target": "あしたのくじからです",
+      "note": "GRAMMAR 3: the larger unit leads. あした (ashita) comes first, then the hour, joined by の (no).",
+      "reviewNote": "EXERCISES V model answer, lifted verbatim, split from kaigi-itsu-q. Particle job: の (no) linking a day to an hour, the pattern GRAMMAR 3 exists to teach.",
+      "aiSuggested": true,
+      "scene": "answering when the meeting is"
+    },
+    {
+      "id": "ima-kuji-ja-arimasen",
+      "english": "It isn't 9:00 now.",
+      "category": "Time",
+      "target": "いまくじじゃありません",
+      "hint": null,
+      "note": "じゃありません (ja arimasen) negates a time exactly as it negates a noun in これはとけいじゃありません (kore wa tokei ja arimasen) from Lesson 2. Member 2 of the set begun by いまくじです (ima ku-ji desu).",
+      "reviewNote": "Constructed. Form job: member 2 of the contrast set. No card in the deck negates a time, so the learner has no model for saying a clock reading is wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-ichiji-sanji-a",
+      "english": "It's from 1:00 to 3:00.",
+      "category": "Time",
+      "target": "いちじからさんじまでです",
+      "note": null,
+      "reviewNote": "EXERCISES IV-C model answer, split from kaigi-nanji-kara-made-q. English mirrors the existing fib-c3-lunch-break-a wording but with different times, and the hint names a different question, so the two stay distinguishable.",
+      "aiSuggested": true,
+      "scene": "answering what hours the meeting runs"
+    },
+    {
+      "id": "ima-kuji-hai-a",
+      "english": "Yes, it's 9:00.",
+      "category": "Time",
+      "target": "はい、くじです",
+      "note": null,
+      "reviewNote": "Constructed answer to ima-kuji-desu-ka. Form job: the はい、〜です reply shape from Lesson 1 (はい、アメリカじんです) has never been applied to a time.",
+      "aiSuggested": true,
+      "scene": "answering yes to whether it is 9:00 now"
+    },
+    {
+      "id": "paatii-shichiji-juuji",
+      "english": "The party is from 7:00 to 10:00.",
+      "category": "Time",
+      "target": "パーティーはしちじからじゅうじまでです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: パーティー (pātī) appears in the deck only with いつ (itsu) and never with clock times, so the learner never sees an event given a span rather than a start.",
+      "aiSuggested": true
+    },
+    {
+      "id": "london-ima-nanji-a",
+      "english": "It's 8:30 in the morning.",
+      "category": "Time",
+      "target": "ごぜんはちじはんです",
+      "note": null,
+      "reviewNote": "SPEAKING PRACTICE 1, Nakamura's reply, split from london-ima-nanji-q. Also the deck's first sentence using ごぜん (gozen), which until now existed only as a bare word and in the bare time ごぜんよじ.",
+      "aiSuggested": true,
+      "scene": "answering what time it is in London"
+    },
+    {
+      "id": "mise-no-hito-kochira",
+      "english": "This is the shop's employee.",
+      "category": "Family & People",
+      "target": "こちらはみせのひとです",
+      "hint": null,
+      "note": "の (no) joins みせ (mise) to ひと (hito) the same way it joins a company to a person in こちらはのぞみデパートのたなかさんです (kochira wa nozomi depāto no tanaka san desu) from Lesson 1.",
+      "reviewNote": "Constructed. Vocabulary job: ひと (hito) and みせのひと (mise no hito) exist only as bare word cards. Uses Lesson 1's こちらは… introduction frame, so no grammar beyond what the learner has.",
+      "aiSuggested": true
+    },
+    {
+      "id": "suupaa-gogo-rokuji-made",
+      "english": "The supermarket closes at 6:00 P.M.",
+      "category": "Shopping",
+      "target": "スーパーはごごろくじまでです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Particle job: まで (made) as a standalone statement — the deck has that shape only for ジム; everywhere else まで arrives already wrapped inside a から〜まで sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sou-desu-ka-doumo",
+      "english": "I see. Thank you.",
+      "category": "Greetings",
+      "target": "そうですか。どうもありがとう",
+      "hint": null,
+      "note": null,
+      "reviewNote": "SPEAKING PRACTICE 1, lifted verbatim — Sasaki's closing turn. Vocabulary job: そうですか (sō desu ka) and どうもありがとう (dōmo arigatō) exist as separate word cards but never as the single closing turn the dialogue actually uses, which is how the learner will need them.",
+      "aiSuggested": true
+    },
+    {
+      "id": "puuru-gozen-hachiji-a",
+      "english": "It opens at 8:00 A.M.",
+      "category": "Time",
+      "target": "ごぜんはちじからです",
+      "note": null,
+      "reviewNote": "Constructed answer to puuru-nanji-kara-q, from the book's own 8:00 A.M. cue. Also only the second sentence anywhere in the deck to use ごぜん (gozen).",
+      "aiSuggested": true,
+      "scene": "answering what time the pool opens"
+    },
+    {
+      "id": "td-last-order-a",
+      "english": "It's 2:00.",
+      "category": "Time",
+      "target": "にじです",
+      "note": null,
+      "reviewNote": "Target Dialogue, split from td-last-order-q. English collides with the existing vocabulary card ni-ji ('2:00, two o'clock') — this one carries a hint; ni-ji should get one too (e.g. 'the bare clock time') if the owner wants both reachable cleanly.",
+      "aiSuggested": true,
+      "scene": "answering what time the last order is"
+    },
+    {
+      "id": "resutoran-gozen-juuichiji-a",
+      "english": "It opens at 11:00 A.M.",
+      "category": "Food",
+      "target": "ごぜんじゅういちじからです",
+      "note": null,
+      "reviewNote": "Constructed answer to resutoran-nanji-kara-q. Given as an A.M. time on purpose so it neither repeats the wave-1 じゅういちじはんからです nor leaves ごぜん (gozen) with only two sentences.",
+      "aiSuggested": true,
+      "scene": "answering what time the restaurant opens"
+    },
+    {
+      "id": "kyou-no-kaigi-nanji-q",
+      "english": "What time is today's meeting?",
+      "category": "Time",
+      "target": "きょうのかいぎはなんじですか",
+      "hint": null,
+      "note": "きょうの (kyō no) attaches the day to the noun after it, so は (wa) ends up marking the whole phrase きょうのかいぎ (kyō no kaigi) as the topic.",
+      "reviewNote": "Constructed. Vocabulary job: きょう (kyō) appears in exactly one sentence in the deck, and only as an answer. Also the deck's second-ever plain 〜はなんじですか question.",
+      "aiSuggested": true
+    },
+    {
+      "id": "rasuto-oodaa-niji-desu",
+      "english": "The last order is at 2:00.",
+      "category": "Food",
+      "target": "ラストオーダーはにじです",
+      "hint": null,
+      "note": "Plain です (desu) pins an event to one moment. からです (kara desu) would mean it opens then and carries on, as in ジムはごぜんくじからです (jimu wa gozen ku-ji kara desu).",
+      "reviewNote": "Constructed from the Target Dialogue's closing exchange. Form job: apart from いま (ima) sentences, the deck has no 〜は timeです statement at all — every event card uses から or まで, so the simplest form of the pattern is missing.",
+      "aiSuggested": true
+    },
+    {
+      "id": "yasumi-itsu-q",
+      "english": "When is your day off?",
+      "category": "Time",
+      "target": "やすみはいつですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the EXERCISES V 〜はいつですか frame. Vocabulary job: やすみ (yasumi) is carded as a word but only ever occurs inside ひるやすみ (hiruyasumi).",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-nanji-kara-made-q",
+      "english": "What time does the meeting run from and until?",
+      "category": "Time",
+      "target": "かいぎはなんじからなんじまでですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISES IV-C model dialogue, verbatim. The deck has this pattern once (fib-c3-lunch-break-q), so this is the second and last example. Quiz 1, part II item 4 asks the learner to produce exactly this pattern from scratch, so one worked example is thin.",
+      "aiSuggested": true
+    },
+    {
+      "id": "purezen-ashita-gozen",
+      "english": "The presentation is from 10:00 A.M. tomorrow.",
+      "category": "Work & Occupations",
+      "target": "プレゼンはあしたのごぜんじゅうじからです",
+      "hint": null,
+      "note": "Three time words stack biggest first — あした (ashita), then ごぜん (gozen), then the hour — and only the day takes の (no).",
+      "reviewNote": "Constructed. Particle job: の (no) between time expressions had three examples, all day + plain hour. This is the only one where a ごぜん/ごご word sits inside the の phrase, which is where learners tend to put の in the wrong place.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-juuniji-han",
+      "english": "It's 12:30 now.",
+      "category": "Time",
+      "target": "いまじゅうにじはんです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Form job: the (いま) timeです pattern of GRAMMAR 1 exists once, in Key Sentence 1, and only on the hour — 〜はん (han) never appears in an いま (ima) sentence, though half the exercise cues use it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "london-ima-nanji-q",
+      "english": "What time is it in London now?",
+      "category": "Time",
+      "target": "ロンドンはいまなんじですか",
+      "hint": null,
+      "note": "When you ask the time somewhere else, the place name becomes the topic with は (wa). Compare the plain いまなんじですか (ima nan-ji desu ka), which asks about where you are.",
+      "reviewNote": "SPEAKING PRACTICE 1 — a section with no cards at all. GRAMMAR 1 explicitly teaches that a geographical name is made the topic with は, and this was the only worked example of it. Quiz 1 item 2 tests this exact sentence. ロンドン comes from Lesson 1.",
+      "aiSuggested": true
+    },
+    {
+      "id": "shigoto-kuji-kara",
+      "english": "Work starts at 9:00.",
+      "category": "Work & Occupations",
+      "target": "しごとはくじからです",
+      "hint": null,
+      "note": "Key Sentence 2, しごとはくじからごじまでです (shigoto wa ku-ji kara go-ji made desu), is this sentence with its closing half added.",
+      "reviewNote": "Constructed. Particle job: から (kara) on its own with しごと, and the first half of a minimal pair with shigoto-goji-made in which only the particle changes.",
+      "aiSuggested": true
+    },
+    {
+      "id": "asagohan",
+      "english": "Breakfast",
+      "category": "Food",
+      "target": "あさごはん",
+      "hint": null,
+      "note": "あさ (asa), morning, + ごはん (gohan), meal — the same compounding as ひるやすみ (hiruyasumi) from this lesson.",
+      "reviewNote": "Duplicate of the established あさごはん (asagohan) card in Lesson 8. The Lesson 3 sentences that use the word still teach it.",
+      "aiSuggested": true,
+      "excluded": true
+    },
+    {
+      "id": "toukyou-ima-gogo-yoji-han",
+      "english": "It's 4:30 P.M. in Tokyo now.",
+      "category": "Time",
+      "target": "とうきょうはいまごごよじはんです",
+      "hint": null,
+      "note": "GRAMMAR 1: naming another place makes it the topic with は (wa). Set it against ロンドンはいまごぜんはちじはんです (rondon wa ima gozen hachi-ji han desu) — the same moment, the opposite half of the day.",
+      "reviewNote": "Constructed from SPEAKING PRACTICE 1, where Tokyo is 4:30 and London is 8:30 A.M. Particle job: は (wa) over a geographical topic had a single example, and this gives it a ごぜん/ごご minimal pair on the same clock moment.",
+      "aiSuggested": true
+    },
+    {
+      "id": "resutoran-gogo-juuichiji-a",
+      "english": "It's open until 11:00 P.M.",
+      "category": "Time",
+      "target": "ごごじゅういちじまでです",
+      "note": "ごぜん (gozen) and ごご (gogo) go before the hour, the opposite of English A.M./P.M.",
+      "reviewNote": "EXERCISES IV-B model answer, split from resutoran-nanji-made-q. ごご (gogo) existed only as a bare word and in the bare time ごごくじ — this is its first appearance inside a sentence, which is where the word-order point actually bites.",
+      "aiSuggested": true,
+      "scene": "answering what time the restaurant closes"
+    },
+    {
+      "id": "mise-kuji-kara-a",
+      "english": "It opens at 9:00.",
+      "category": "Time",
+      "target": "くじからです",
+      "note": null,
+      "reviewNote": "Constructed answer to mise-nanji-kara-q, split per the Q/A rule. Elliptical in both languages, so the hint names the question without leaking the hour.",
+      "aiSuggested": true,
+      "scene": "answering what time the shop opens"
+    },
+    {
+      "id": "ginkou-gozen-kuji-kara",
+      "english": "The bank opens at 9:00 A.M.",
+      "category": "Money",
+      "target": "ぎんこうはごぜんくじからです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES IV-A item 2 (ぎんこう, 9:00). Particle job: から (kara) with a Lesson 1 noun the lesson explicitly re-uses; ぎんこう (ginkō) has had no sentence of its own since it was introduced.",
+      "aiSuggested": true
+    },
+    {
+      "id": "happii-awaa-a",
+      "english": "It's from 4:00 to 7:00.",
+      "category": "Time",
+      "target": "よじからしちじまでです",
+      "note": null,
+      "reviewNote": "Constructed answer to happii-awaa-q, using the book's own 4:00–7:00 cue. Elliptical, so it carries a hint naming the question.",
+      "aiSuggested": true,
+      "scene": "answering what hours happy hour runs"
+    },
+    {
+      "id": "shigoto-goji-made",
+      "english": "Work ends at 5:00.",
+      "category": "Work & Occupations",
+      "target": "しごとはごじまでです",
+      "hint": null,
+      "note": "The same sentence as しごとはくじからです (shigoto wa ku-ji kara desu) with one thing changed: から (kara) marks where a stretch of time begins, まで (made) where it ends.",
+      "reviewNote": "Constructed. Particle job: the second half of the から/まで minimal pair. Every other から card and まで card in the deck uses a different topic, so the particle itself was never the variable.",
+      "aiSuggested": true
+    },
+    {
+      "id": "bangohan-rokuji-kara",
+      "english": "Dinner starts at 6:00.",
+      "category": "Food",
+      "target": "ばんごはんはろくじからです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES VI item 1 (ばんごはん, 6:00). Vocabulary job: ばんごはん (bangohan) is chapter vocabulary that arrives as a word card only in the wave-1 proposal — this is its first and only use in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-nanji-q",
+      "english": "What time is it now?",
+      "category": "Time",
+      "target": "いまなんじですか",
+      "hint": null,
+      "note": "No topic is needed when asking the current time — GRAMMAR 1 notes that the present time takes no subject, and いま (ima) is simply added adverbially.",
+      "reviewNote": "EXERCISES II model dialogue (also SPEAKING PRACTICE 1). This is the question the lesson is named after and it is missing from the deck entirely — the deck has いまさんじです (the answer) but never the question.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumisu-purezen-a",
+      "english": "It's from 3:00 P.M. today.",
+      "category": "Work & Occupations",
+      "target": "きょうのごごさんじからです",
+      "note": null,
+      "reviewNote": "Constructed answer to sumisu-purezen-itsu-q. Close in shape to the existing きょうのさんじからです (fib-c3-presentation-a) but with ごご (gogo) inside the の phrase; if the owner wants the two cleanly separated, fib-c3-presentation-a could use a hint of its own.",
+      "aiSuggested": true,
+      "scene": "answering when Smith-san's presentation is"
+    },
+    {
+      "id": "sumisu-purezen-itsu-q",
+      "english": "When is Smith-san's presentation?",
+      "category": "Work & Occupations",
+      "target": "スミスさんのプレゼンはいつですか",
+      "hint": null,
+      "note": "Two jobs for の (no) sit side by side in this lesson: possession in スミスさんのプレゼン (sumisu san no purezen) and time-linking in あしたのくじ (ashita no ku-ji).",
+      "reviewNote": "Constructed, using the book's own cast. Particle job: の (no) in its Lesson 1 possessive sense combined with this lesson's いつ (itsu) question — no card puts a person and an event's timing in one sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "bangohan",
+      "english": "Dinner",
+      "category": "Food",
+      "target": "ばんごはん",
+      "hint": null,
+      "note": "ばん (ban), evening, + ごはん (gohan), meal. Pairs with あさごはん (asagohan), breakfast.",
+      "reviewNote": "Duplicate of the established ばんごはん (bangohan) card in Lesson 8. The Lesson 3 sentences that use the word still teach it.",
+      "aiSuggested": true,
+      "excluded": true
+    },
+    {
+      "id": "asa-no-kaigi",
+      "english": "The morning meeting starts at 9:00.",
+      "category": "Work & Occupations",
+      "target": "あさのかいぎはくじからです",
+      "hint": null,
+      "note": "の (no) can hang a part of the day on a noun as well as on a clock time: あさのかいぎ (asa no kaigi) beside あしたのよじ (ashita no yo-ji) from Key Sentence 3.",
+      "reviewNote": "Constructed. Vocabulary job: あさ (asa) is a card but is used nowhere except inside the compound あさごはん (asagohan). Puts it in the から frame the lesson already drills.",
+      "aiSuggested": true
+    },
+    {
+      "id": "jimu-gozen-kuji-kara",
+      "english": "The gym opens at 9:00 A.M.",
+      "category": "Time",
+      "target": "ジムはごぜんくじからです",
+      "hint": null,
+      "note": "Pairs with ジムはしちじまでです (jimu wa shichi-ji made desu): から (kara) gives the opening time, まで (made) the closing time, and the topic never changes.",
+      "reviewNote": "Constructed from EXERCISES VI item 3 (ジム, 9:00 A.M.). Vocabulary job: the deck's only ジム sentence is a まで statement, so this topic had never been seen with から, and ごぜん (gozen) had never appeared in a statement.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-lunchtime-summary",
+      "english": "Lunchtime is from 11:30 to 2:30.",
+      "category": "Time",
+      "target": "ランチタイムはじゅういちじはんからにじはんまでです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Target Dialogue, closing summary line. The deck's only full から〜まで statements are the Key Sentence しごとはくじからごじまでです and a fill-in-the-blank about a supermarket; neither uses half-hours, and 〜はん (han) inside a から〜まで sentence never appears. Verbatim from the book.",
+      "aiSuggested": true
+    },
+    {
+      "id": "depaato-gogo-hachiji-a",
+      "english": "It closes at 8:00 P.M.",
+      "category": "Shopping",
+      "target": "ごごはちじまでです",
+      "note": null,
+      "reviewNote": "Constructed answer to depaato-nanji-made-q, from the book's own 8:00 cue in EXERCISES III-B, made explicit as P.M. Adds a second ごご (gogo) sentence to the lesson.",
+      "aiSuggested": true,
+      "scene": "answering what time the department store closes"
+    },
+    {
+      "id": "td-lunchtime-start-a",
+      "english": "It starts at 11:30.",
+      "category": "Time",
+      "target": "じゅういちじはんからです",
+      "note": null,
+      "reviewNote": "Target Dialogue, the shop's reply. Split from the question per the Q/A rule. The topic is dropped in both the Japanese and the English, so the card is answerable alone with the hint naming the question.",
+      "aiSuggested": true,
+      "scene": "answering what time lunchtime starts"
+    },
+    {
+      "id": "puuru-nanji-kara-q",
+      "english": "Excuse me. What time does the pool open?",
+      "category": "Time",
+      "target": "すみません。プールはなんじからですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES VI item 2 (プール, 8:00 A.M.), which the book leaves as a blank for the learner. Vocabulary job: プール (pūru) had no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-kuji-iie-a",
+      "english": "No, it isn't 9:00.",
+      "category": "Time",
+      "target": "いいえ、くじじゃありません",
+      "note": null,
+      "reviewNote": "Constructed answer to ima-kuji-desu-ka, the negative reply. Form job: completes the yes/no pair on the いいえ、〜じゃありません shape from Lesson 1.",
+      "aiSuggested": true,
+      "scene": "answering no to whether it is 9:00 now"
+    },
+    {
+      "id": "td-last-order-q",
+      "english": "What time is the last order?",
+      "category": "Time",
+      "target": "ラストオーダーはなんじですか",
+      "hint": null,
+      "note": "Plain 〜はなんじですか asks the time an event happens. Use から (kara) or まで (made) instead when you want the start or the end of a stretch of time, as in ランチタイムはなんじからですか (ranchitaimu wa nan-ji kara desu ka).",
+      "reviewNote": "Target Dialogue. The deck teaches なんじ (nan-ji) as vocabulary and the から/まで questions via fill-in-the-blank drills, but has no plain 〜はなんじですか sentence anywhere, which is the most basic use of the word.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hotel-asagohan-a",
+      "english": "It starts at 7:00.",
+      "category": "Time",
+      "target": "しちじからです",
+      "note": null,
+      "reviewNote": "EXERCISES VI, the front desk's reply, split from hotel-asagohan-q. Also the deck's only sentence use of しちじ (shichi-ji).",
+      "aiSuggested": true,
+      "scene": "answering what time breakfast starts"
+    },
+    {
+      "id": "furonto-a",
+      "english": "It's open from 7:00 A.M. to 11:00 P.M.",
+      "category": "Time",
+      "target": "ごぜんしちじからごごじゅういちじまでです",
+      "note": "ごぜん (gozen) and ごご (gogo) each sit in front of their own hour, so a span can cross midday without any extra word.",
+      "reviewNote": "Constructed answer to furonto-q. Form job as well as vocabulary: this is the only sentence in the lesson carrying both ごぜん and ごご, which is where their placement before the hour actually matters.",
+      "aiSuggested": true,
+      "scene": "answering the reception desk's opening hours"
+    },
+    {
+      "id": "konsaato-kyou-rokuji",
+      "english": "The concert starts at 6:00 today.",
+      "category": "Time",
+      "target": "コンサートはきょうのろくじからです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES V item 3 (コンサート, きょうの6じ). Vocabulary job: コンサート (konsāto) had no sentence; written as a statement rather than another いつですか pair so the frame is not repeated a third time.",
+      "aiSuggested": true
+    },
+    {
+      "id": "mise-nanji-kara-q",
+      "english": "What time does the shop open?",
+      "category": "Time",
+      "target": "みせはなんじからですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: みせ (mise) is the first word of the chapter's vocabulary and appears in no sentence card at all. Built on the lesson's own 〜はなんじからですか frame from EXERCISES IV-A.",
+      "aiSuggested": true
+    },
+    {
+      "id": "happii-awaa-q",
+      "english": "What time is happy hour, from and to?",
+      "category": "Time",
+      "target": "ハッピーアワーはなんじからなんじまでですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES IV-C item 2 (ハッピーアワー, 4:00–7:00). Vocabulary job: ハッピーアワー (happī awā) is taught in the chapter vocabulary and used in no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "resutoran-nanji-kara-q",
+      "english": "What time does the restaurant open?",
+      "category": "Food",
+      "target": "レストランはなんじからですか",
+      "hint": null,
+      "note": "Minimal pair with レストランはなんじまでですか (resutoran wa nan-ji made desu ka): swapping から (kara) for まで (made) is the whole difference between asking when a place opens and when it shuts.",
+      "reviewNote": "Constructed from EXERCISES IV-A item 1 (レストラン). Particle job: the から/まで contrast in question form on a single topic — the deck's から questions and まで questions all sit on different nouns, so the contrast is never visible.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kyou-no-kaigi-a",
+      "english": "It starts at 2:30.",
+      "category": "Time",
+      "target": "にじはんからです",
+      "note": null,
+      "reviewNote": "Constructed answer to kyou-no-kaigi-nanji-q. Also puts 〜はん (han) into a short から reply, a shape the deck only has at 11:30 and 4:30.",
+      "aiSuggested": true,
+      "scene": "answering what time today's meeting is"
+    },
+    {
+      "id": "td-lunchtime-end-a",
+      "english": "It goes until 2:30.",
+      "category": "Time",
+      "target": "にじはんまでです",
+      "note": null,
+      "reviewNote": "Target Dialogue, the shop's reply, split from td-lunchtime-end-q. English matches the book's own gloss and drops the topic exactly as the Japanese does.",
+      "aiSuggested": true,
+      "scene": "answering what time lunchtime ends"
+    },
+    {
+      "id": "resutoran-nanji-made-q",
+      "english": "What time does the restaurant close?",
+      "category": "Time",
+      "target": "レストランはなんじまでですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISES IV-B model dialogue, verbatim. Included mainly to carry its answer, which is the only ごご (gogo) sentence in the chapter. Same family as the existing fib-c3-meeting-end-q, but with a different topic and a P.M. answer.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-kuji-desu",
+      "english": "It's 9:00 now.",
+      "category": "Time",
+      "target": "いまくじです",
+      "hint": null,
+      "note": "Member 1 of a です / じゃありません / ですか set built on one time, so the change is in the ending and nothing else.",
+      "reviewNote": "Constructed. Form job: opens the affirmative / negative / question contrast set. The negative and the yes/no question come from Lessons 1–2, and this lesson never re-applies them to a time, so the set is assembled here.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-kuji-desu-ka",
+      "english": "Is it 9:00 now?",
+      "category": "Time",
+      "target": "いまくじですか",
+      "hint": null,
+      "note": "Member 3 of the set: か (ka) turns いまくじです (ima ku-ji desu) into a yes/no question, unlike なんじですか (nan-ji desu ka), which asks for the time itself.",
+      "reviewNote": "Constructed. Form job: member 3 of the contrast set, and the deck's only yes/no か question in this lesson — every other か card is an information question.",
+      "aiSuggested": true
+    }
+  ]
+}

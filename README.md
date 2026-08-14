@@ -172,7 +172,19 @@ For the full command reference (every flag, every source type), see the skill's
   AnkiConnect delivery alike. An extras unit deliberately carries **no** `epubHash`, so marking it
   reviewed can't overwrite its base lesson's entry in the dedup library.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
-  (gitignored) so re-runs don't redo expensive work.
+  so re-runs don't redo expensive work. The audio cache, the extracted chapters and the extracted
+  images are gitignored; the dedup corpora and the two cached LLM artifacts are not (see below).
+- **The hand-reviewed JSON is version-controlled.** `output/` and `.anki-builder/` are mostly
+  gitignored, but the files that hold human review are deliberately tracked: every `cards.json`,
+  `corpus.json`, `book.json`, `course.json`, `anki-delivered.json` and `.preflight-accepted.json`
+  under `output/`, plus `.anki-builder/epubs/*/corpora/`, `conventions.md` and `taught-index.json`.
+  Those files exist on one disk and cannot be regenerated, so a bad `--apply` or a stray `rm` is
+  recoverable from git. Audio, images, `.apkg` files and `.bak` files stay untracked; the only
+  audio in git is the seven marker-audible clips and their `.orig.mp3` originals. Recovering any
+  other clip means re-billing ElevenLabs or restoring its `.orig.mp3` sibling by hand. The
+  `.gitignore` mechanics are fiddly on purpose (an excluded directory is never descended into, so
+  the re-include lines have a required order) and there's a comment there explaining how to verify
+  a change.
 
 The exact folder layouts and caching rules are documented in
 [`docs/PIPELINE.md`](./docs/PIPELINE.md).
@@ -188,6 +200,25 @@ npm run lint
 npm test
 npm run build
 ```
+
+`npm test` runs `node --test` through `scripts/test-with-write-guard.mjs`, which snapshots
+`output/`, `.anki-builder/` and `anki-backups/` before the suite and diffs them after. The run fails,
+naming the paths, if the suite changed anything in them, even when every test passed. The suite has
+no business writing into hand-reviewed decks, the dedup library or the owner's Anki backups; it once
+did, and stayed green for months. Set `ANKI_BUILDER_ALLOW_DURABLE_WRITES=1` for the rare deliberate
+case.
+
+Two related refusals live in the code rather than in test-author discipline: `libraryHome()` resolves
+to a throwaway tmpdir under `node --test`, and `fetchElevenLabsTts` throws instead of calling the
+paid API when a test forgets to inject a `fetchImpl`.
+
+Anything under `scripts/` that rewrites a unit's `cards.json` or `corpus.json` goes through
+`writeUnitJson` (`src/util/unitWrite.js`): validate the document, snapshot the old file to
+`<file>.pre-<reason>-<YYYYMMDDHHmm>.bak`, write atomically, then re-read and validate what landed.
+The timestamp is the point. An unstamped `.bak` gives you the state before the _first_ run of a tool
+and nothing else, so undoing the second run means throwing away the first run's work too. Stamped
+backups accumulate, so `node scripts/prune-baks.mjs` (dry by default, `--apply` to delete, `--keep N`
+per unit) ages them out.
 
 ## Learn more
 

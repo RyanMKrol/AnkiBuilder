@@ -437,7 +437,9 @@ and rebuild once at the end. The boundary that makes it safe:
 - **Field edits and exclusions only.** Changing `hint`, `scene`, `note`, `english` or `target`, or
   setting `excluded`, is fine. **Adding a card is not**, ever: a new card has to be seen at the
   corpus review, so that still means Reopen (or catching it before sign-off).
-- **Back the file up first** (`<file>.pre-<reason>.bak`, the convention the migrations use) and keep
+- **Back the file up first** (`<file>.pre-<reason>-<YYYYMMDDHHmm>.bak`, the convention the migrations
+  use — the stamp is what stops a second run of a tool overwriting the first run's restore point;
+  `scripts/prune-baks.mjs` ages them out) and keep
   `cards.json` and `corpus.json` in step, since the review reads one and the build the other.
 - **Rebuild by hand afterwards**: `deck --book-dir <bookDir>`. Nothing triggers it for you, because
   no unit changed state, so the merged `.apkg` silently keeps the old content until you do.

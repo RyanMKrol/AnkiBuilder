@@ -1,0 +1,597 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 18,
+    "chapterLabel": "Lesson 4: Shopping (1): How Much Is This?",
+    "done": true
+  },
+  "items": [
+    {
+      "id": "irasshaimase",
+      "english": "May I help you?, Welcome.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "いらっしゃいませ"
+    },
+    {
+      "id": "sore",
+      "english": "That one",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "それ"
+    },
+    {
+      "id": "misete-kudasai",
+      "english": "Please show me",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "みせてください"
+    },
+    {
+      "id": "ikura",
+      "english": "How much",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "いくら"
+    },
+    {
+      "id": "sanzen-en",
+      "english": "3,000 yen",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "さんぜんえん"
+    },
+    {
+      "id": "en-suffix",
+      "english": "…yen",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "えん"
+    },
+    {
+      "id": "are",
+      "english": "That one over there",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あれ"
+    },
+    {
+      "id": "mo-particle",
+      "english": "Also, too, either (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don't Take Photos (も (\"also/too\") is re-taught as a dedicated numbered GRAMMAR point later in the book, explicitly explaining that が/は/を can be replaced by も to add the \"also\" meaning)",
+      "target": "も"
+    },
+    {
+      "id": "ja",
+      "english": "Well then",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "じゃ"
+    },
+    {
+      "id": "kudasai",
+      "english": "Please give me",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ください"
+    },
+    {
+      "id": "tablet",
+      "english": "Tablet",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "タブレット"
+    },
+    {
+      "id": "ks1-sore-smartphone",
+      "english": "That is a smartphone.",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "それはスマホです"
+    },
+    {
+      "id": "ks1-are-tablet",
+      "english": "That one over there is a tablet.",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "あれはタブレットです"
+    },
+    {
+      "id": "ks2-kore-3000en",
+      "english": "This one is 3,000 yen.",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "これはさんぜんえんです"
+    },
+    {
+      "id": "ks2-are-mo-3000en",
+      "english": "That one over there is also 3,000 yen.",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "あれもさんぜんえんです"
+    },
+    {
+      "id": "ks3-kore-kudasai",
+      "english": "I would like this one, please.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "これをください"
+    },
+    {
+      "id": "curry",
+      "english": "Curry",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カレー"
+    },
+    {
+      "id": "to-particle",
+      "english": "And (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "と"
+    },
+    {
+      "id": "salad",
+      "english": "Salad",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "サラダ"
+    },
+    {
+      "id": "ks4-curry-salad",
+      "english": "I would like curry and salad, please.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カレーとサラダをおねがいします"
+    },
+    {
+      "id": "mo-example-umbrella",
+      "english": "This is not my umbrella.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "これはわたしのかさじゃありません"
+    },
+    {
+      "id": "mo-example-mine",
+      "english": "That is not mine either.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "それもわたしのじゃありません"
+    },
+    {
+      "id": "terebi",
+      "english": "Television",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "テレビ"
+    },
+    {
+      "id": "pasokon",
+      "english": "(Personal) computer",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "パソコン"
+    },
+    {
+      "id": "reizouko",
+      "english": "Refrigerator",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "れいぞうこ"
+    },
+    {
+      "id": "eakon",
+      "english": "Air conditioner",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "エアコン"
+    },
+    {
+      "id": "denshi-renji",
+      "english": "Microwave oven",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "でんしレンジ"
+    },
+    {
+      "id": "coffee",
+      "english": "Coffee",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "コーヒー"
+    },
+    {
+      "id": "koucha",
+      "english": "(Black) tea",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "こうちゃ"
+    },
+    {
+      "id": "juice",
+      "english": "Juice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ジュース"
+    },
+    {
+      "id": "sandwich",
+      "english": "Sandwich",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "サンドイッチ"
+    },
+    {
+      "id": "num-20000",
+      "english": "20,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にまん"
+    },
+    {
+      "id": "num-700",
+      "english": "700",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ななひゃく"
+    },
+    {
+      "id": "num-40000",
+      "english": "40,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よんまん"
+    },
+    {
+      "id": "num-100",
+      "english": "100",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ひゃく"
+    },
+    {
+      "id": "num-30000",
+      "english": "30,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんまん"
+    },
+    {
+      "id": "num-90000",
+      "english": "90,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅうまん"
+    },
+    {
+      "id": "num-60000",
+      "english": "60,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろくまん"
+    },
+    {
+      "id": "num-7000",
+      "english": "7,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ななせん"
+    },
+    {
+      "id": "num-500",
+      "english": "500",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ごひゃく"
+    },
+    {
+      "id": "num-300",
+      "english": "300",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんびゃく"
+    },
+    {
+      "id": "num-2000",
+      "english": "2,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にせん"
+    },
+    {
+      "id": "num-6000",
+      "english": "6,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろくせん"
+    },
+    {
+      "id": "num-10000",
+      "english": "10,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "いちまん"
+    },
+    {
+      "id": "num-8000",
+      "english": "8,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はっせん"
+    },
+    {
+      "id": "num-50000",
+      "english": "50,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ごまん"
+    },
+    {
+      "id": "num-4000",
+      "english": "4,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よんせん"
+    },
+    {
+      "id": "num-400",
+      "english": "400",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よんひゃく"
+    },
+    {
+      "id": "num-900",
+      "english": "900",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅうひゃく"
+    },
+    {
+      "id": "num-800",
+      "english": "800",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はっぴゃく"
+    },
+    {
+      "id": "num-70000",
+      "english": "70,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ななまん"
+    },
+    {
+      "id": "num-200",
+      "english": "200",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にひゃく"
+    },
+    {
+      "id": "num-9000",
+      "english": "9,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅうせん"
+    },
+    {
+      "id": "num-80000",
+      "english": "80,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はちまん"
+    },
+    {
+      "id": "num-600",
+      "english": "600",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろっぴゃく"
+    },
+    {
+      "id": "num-1000",
+      "english": "1,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "せん"
+    },
+    {
+      "id": "num-5000",
+      "english": "5,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ごせん"
+    },
+    {
+      "id": "num-3000",
+      "english": "3,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんぜん"
+    },
+    {
+      "id": "num-1829",
+      "english": "1,829",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "せんはっぴゃくにじゅうきゅう"
+    },
+    {
+      "id": "num-135",
+      "english": "135",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ひゃくさんじゅうご"
+    },
+    {
+      "id": "num-1trillion",
+      "english": "1,000,000,000,000 (one trillion)",
+      "category": "Numbers",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "target": "いっちょう"
+    },
+    {
+      "id": "num-100billion",
+      "english": "100,000,000,000 (one hundred billion)",
+      "category": "Numbers",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "target": "せんおく"
+    },
+    {
+      "id": "num-100million",
+      "english": "100,000,000 (one hundred million)",
+      "category": "Numbers",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "target": "いちおく"
+    },
+    {
+      "id": "num-1billion",
+      "english": "1,000,000,000 (one billion)",
+      "category": "Numbers",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "target": "じゅうおく"
+    },
+    {
+      "id": "num-10billion",
+      "english": "10,000,000,000 (ten billion)",
+      "category": "Numbers",
+      "reviewNote": "From the PLUS ONE large-number chart",
+      "target": "ひゃくおく"
+    },
+    {
+      "id": "ten-decimal",
+      "english": "Decimal point",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "てん"
+    },
+    {
+      "id": "num-0.7",
+      "english": "0.7",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "れいてんなな"
+    },
+    {
+      "id": "bun-fraction",
+      "english": "Part (used in fractions)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ぶん"
+    },
+    {
+      "id": "num-1-2",
+      "english": "1/2 (one half)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にぶんのいち"
+    },
+    {
+      "id": "seoul",
+      "english": "Seoul",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ソウル"
+    },
+    {
+      "id": "orange-juice",
+      "english": "Orange juice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "オレンジジュース"
+    },
+    {
+      "id": "chocolate-cake",
+      "english": "Chocolate cake",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チョコレートケーキ"
+    },
+    {
+      "id": "ballpoint-pen",
+      "english": "Ballpoint pen",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ボールペン"
+    },
+    {
+      "id": "mechanical-pencil",
+      "english": "Mechanical pencil",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "シャーペン"
+    },
+    {
+      "id": "toaster",
+      "english": "Toaster",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "トースター"
+    },
+    {
+      "id": "card",
+      "english": "Credit card",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "カード"
+    },
+    {
+      "id": "de-particle",
+      "english": "By means of (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (で as instrumental/means particle is re-taught as its own dedicated GRAMMAR point in later lessons (\"means で\" and \"transportation で\"), so this same item resurfaces as a formal teaching moment after chapter 18)",
+      "target": "で"
+    },
+    {
+      "id": "de-example-card",
+      "english": "By credit card, please.",
+      "category": "Money",
+      "reviewNote": "AI-suggested example sentence.",
+      "target": "カードでおねがいします"
+    },
+    {
+      "id": "fib-c4-tokyo-seoul-10am",
+      "english": "It's 10am in Tokyo. It's also 10am in Seoul.",
+      "category": "Time",
+      "reviewNote": "Fill-in-the-blank drill (item 4 of the 'noun も' substitution exercise); filled blank with とうきょう/ごぜん10じ/ソウル as given, reusing chapter vocab ソウル.",
+      "target": "とうきょうはごぜん10じです。ソウルもごぜん10じです",
+      "reading": "とうきょうはごぜんじゅうじです。ソウルもごぜんじゅうじです"
+    },
+    {
+      "id": "fib-c4-also-7000-yen-q",
+      "english": "Is that one over there also 7,000 yen?",
+      "category": "Money",
+      "reviewNote": "Fill-in-the-blank dialogue drill (item 1, price-substitution exercise); filled blank with 7,000えん as given.",
+      "target": "あれも7,000えんですか",
+      "reading": "あれもななせんえんですか"
+    },
+    {
+      "id": "fib-c4-ballpoint-pen-q",
+      "english": "Is that one over there a ballpoint pen?",
+      "category": "Shopping",
+      "reviewNote": "Fill-in-the-blank dialogue drill (item 1 of 'talk about an item and ask its price'); filled blank with ボールペン, chapter vocab.",
+      "target": "あれはボールペンですか"
+    },
+    {
+      "id": "fib-c4-mechanical-pencil-a",
+      "english": "No, it's a mechanical pencil.",
+      "category": "Shopping",
+      "reviewNote": "Fill-in-the-blank dialogue drill (item 1 answer); filled blank with シャーペン, chapter vocab.",
+      "target": "いいえ、シャーペンです"
+    },
+    {
+      "id": "fib-c4-13000-yen-price",
+      "english": "It's 13,000 yen.",
+      "category": "Money",
+      "reviewNote": "Fill-in-the-blank dialogue drill (item 2 final price line); filled blank with 13,000えん as given.",
+      "target": "13,000えんです",
+      "reading": "いちまんさんぜんえんです"
+    }
+  ]
+}

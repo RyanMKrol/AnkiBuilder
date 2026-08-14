@@ -11,7 +11,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "test": "node --test",
+    "test": "node scripts/test-with-write-guard.mjs",
     "build": "node -e \"process.exit(0)\"",
     "serve": "node ./src/cli/bin.js serve",
     "ci": "npm run format:check && npm run lint && npm test && npm run build",

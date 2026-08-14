@@ -1428,3 +1428,111 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   deck while old cards sit in the unpadded one.
 - **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
   case the padding can be dropped and migrated the same way.
+
+## The state snapshot in git is JSON-only, so it protects nothing an audio change could destroy
+
+- **What:** `output/` and `.anki-builder/` are now partly tracked (`cards.json`, `corpus.json`,
+  `book.json`, `course.json`, `anki-delivered.json`, `.preflight-accepted.json`, the dedup
+  `corpora/`, `conventions.md`, `taught-index.json`) so months of hand review are recoverable. The
+  140 MB audio cache, the per-unit `audio/` dirs, extracted images, `.apkg` files and `.bak` files
+  stay untracked. The single exception is the seven marker-audible clips plus their `.orig.mp3`
+  originals, pulled in explicitly by filename.
+- **Why:** the unrecoverable half is 3 MB of JSON; the rest is either large, binary, regenerable, or
+  re-buyable. Tracking 422 MB of mp3 in git would make every clone and every commit expensive, and
+  git handles binary blobs badly. The seven clips are named literally rather than globbed because a
+  glob that drifted would pull in 3,610 paid clips.
+- **Impact:** any statement of the form "WS0 protects this" is false for audio. If a regeneration or
+  a re-trim destroys a clip, recovery rests on that clip's `.orig.mp3` sibling in the unit dir (or
+  on paying ElevenLabs again), not on git. Also: `git status` now walks the whole of `output/`, so it
+  is measurably slower than it was, and a new artifact kind under `output/` is untracked by default
+  until someone adds a re-include line.
+- **When to revisit:** if audio ever becomes genuinely unrecoverable (an `.orig.mp3` goes missing, or
+  a voice is retired at ElevenLabs), revisit with a real out-of-band backup rather than by widening
+  the git globs.
+
+## The test-runner library redirect keys on NODE_TEST_CONTEXT, not on isTestEnv()
+
+- **What:** `libraryHome()` returns a throwaway tmpdir when `NODE_TEST_CONTEXT` is set (with
+  `ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS=1` as the deliberate escape). It does NOT use
+  `isTestEnv()`, which also returns true for `NODE_ENV === "test"`.
+- **Why:** a real deck build run from a shell that exports `NODE_ENV=test` would silently write its
+  library into /tmp and look like it had lost the dedup registry. That failure is worse, hits real
+  data instead of test data, and is much harder to diagnose than the leak being fixed.
+- **Impact:** the `NODE_ENV=test` case is still uncovered. So is anything that writes to the library
+  outside `node --test`: a hand-run script, or a child process that loses the env var. The
+  suite-wide durable-write guard is the backstop for that gap, not this redirect. Test processes no
+  longer share a library, so a test that expected one file's dedup registry to be visible to another
+  file would now fail (none does today).
+- **When to revisit:** if a second test runner is adopted, add its env marker to the same guard.
+  Covering `NODE_ENV=test` safely needs a signal that separates "under a test runner" from
+  "someone's shell profile", and no such signal exists.
+
+## The durable-write guard compares (size, mtime), and only wraps `node --test`
+
+- **What:** `scripts/test-with-write-guard.mjs` snapshots every path under `output/`,
+  `.anki-builder/` and `anki-backups/` before and after the suite and fails the run on any
+  difference. The stamp per path is size plus mtime, not a content hash, and the check happens in
+  the wrapper process, not inside the tests.
+- **Why:** the three trees hold ~20,000 files and over 500 MB. Hashing them twice a run would cost
+  more than the suite itself. node:test has no cross-process global hook and `node --test` runs ~75
+  separate processes, so a per-process check would mean roughly a million stat calls per run.
+- **Impact:** a write that preserves both size and mtime is invisible to the guard (no plausible
+  accident does this, but a deliberate one would). Anything that runs the suite without going
+  through `npm test` (a bare `node --test`, an editor's test runner, a future CI step that calls the
+  binary directly) is unguarded. The guard also cannot say WHICH test wrote the file, only that the
+  run did, so diagnosing means bisecting.
+- **When to revisit:** if a stealth write is ever suspected, hash the JSON files only (about 3 MB)
+  and keep size/mtime for the rest. If the suite ever legitimately needs to write into these trees,
+  add an allowlist rather than widening the escape hatch.
+
+## Stamped .bak backups trade disk for reversibility, and nothing prunes them automatically
+
+- **What:** every `scripts/` write to a unit's `cards.json` / `corpus.json` now snapshots the old
+  file to `<file>.pre-<reason>-<YYYYMMDDHHmm>.bak` through `writeUnitJson`
+  (`src/util/unitWrite.js`), instead of `backupFileOnce`'s single first-run snapshot. Two runs
+  inside one minute get `-2`, `-3` suffixes rather than overwriting. `scripts/prune-baks.mjs` keeps
+  the newest N per unit, and always the newest backup of each individual file so a unit can never
+  end up with a corpus restore point and no cards one.
+- **Why:** an unstamped backup answers "what did this file look like before the tool ever ran",
+  which is the wrong question after the second run. There were already 330 backups (~10 MB) under
+  `output/` from the unstamped era, and re-running a tool silently left the state it found
+  unrecoverable.
+- **Impact:** backups now grow one pair per run per unit instead of one pair ever, and pruning is a
+  manual step nobody is prompted to take. Backup filenames are no longer predictable, so a doc or
+  script cannot name one; find them by glob. `writeUnitJson` also standardizes on a trailing
+  newline, so the first write by `extras-order` / `extras-duplicate-check` after this change adds
+  one to a file that lacked it (matching every other writer, and every file currently on disk).
+- **When to revisit:** if the backups become a nuisance, wire `prune-baks.mjs` into preflight as a
+  report line rather than making it automatic. Deleting a restore point should stay a decision.
+
+## `src/cards/crossLessonNotes.js` still uses the unstamped, first-run-only backup
+
+- **What:** the `prepare` pass and `scripts/enhance-card-notes.mjs` share
+  `enhanceLessonNotes`, which backs up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
+  writer was left on the old convention while the six `scripts/` writers moved to stamped backups.
+- **Why:** it sits on the `prepare` pipeline path rather than in `scripts/`, and other in-flight work
+  edits the same file. Changing it was out of scope for the change that introduced stamping.
+- **Impact:** re-running the enhance pass over a lesson keeps only the pre-first-run snapshot, so the
+  state the second run found is not recoverable from a `.bak`. It is recoverable from git now that
+  `cards.json` is tracked, which is why this was judged safe to defer.
+  `references/card-authoring-rules.md` also claims a re-run "overwrites their `.pre-enhance.bak`
+  backups", which is not what `backupFileOnce` does; the file is kept, not overwritten.
+- **When to revisit:** switch it to `backupFileStamped` next time that file is open, and fix the doc
+  sentence in the same commit.
+
+## Exclusion provenance is optional, so the 100 exclusions already on disk stay unattributable
+
+- **What:** cards and corpus items now carry optional `excludedBy` ("human" or a script/pass name)
+  and `excludedReason`. Absent means human-or-legacy. `setCardExcluded` (the dashboard toggle),
+  `semanticDedup` and `extras-duplicate-check --apply` stamp them; preflight counts them per unit;
+  the dashboard review badges a script-authored exclusion above the card's review note.
+- **Why:** making the fields required would invalidate every file written before they existed, which
+  is 100 excluded cards across two delivered collections. Backfilling them would be worse: there is
+  no record of which of those were reviewed decisions and which were sweeps, so any value written now
+  would be a guess presented as provenance.
+- **Impact:** preflight reports those 100 as "unattributed (pre-provenance or human)" and will keep
+  doing so forever. Provenance only becomes complete for exclusions made from here on. A card
+  excluded by a script and later re-included and re-excluded by a human reads as human, which is
+  correct but loses the earlier history (there is no exclusion log, only a current state).
+- **When to revisit:** if the unattributed count ever needs to go to zero, it has to be a human
+  reading each one, not a migration script.

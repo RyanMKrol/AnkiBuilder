@@ -4,11 +4,54 @@
 /build
 *.log
 
-# anki-builder book/chapter output directories (generated corpus/cards/deck artifacts, not source)
-/output
+# anki-builder book/chapter output directories. The generated bulk (audio, images, .apkg, .bak) stays
+# out of git. The hand-reviewed JSON does not: it is months of human review living on exactly one
+# disk, with no backup anywhere, and roughly forty planned changes mutate inside it.
+#
+# READ THIS BEFORE EDITING THE LINES BELOW. Git never descends into an excluded DIRECTORY, so a plain
+# "/output" entry makes every "!" line under it match nothing, silently. That is why the exclusion is
+# written as "/output/**" (the contents) followed immediately by "!/output/**/" (a directory
+# re-include). The directory re-include MUST stay above the file re-includes. Check any edit with:
+#   git check-ignore -v output/epubs/<slug>/chapter-9/cards.json   # expect: no match
+#   git status --porcelain                                         # expect: no audio, images, .apkg, .bak
+/output/**
+!/output/**/
+!/output/**/cards.json
+!/output/**/corpus.json
+!/output/**/book.json
+!/output/**/course.json
+!/output/**/anki-delivered.json
+# Written only by an explicit `preflight --accept`. Tracked before it first exists, because the
+# acknowledgement state is the whole reason the ACK tier means anything.
+!/output/**/.preflight-accepted.json
 
-# anki-builder local library (audio cache, EPUB registry) — durable but never pushed
-/.anki-builder
+# The seven clips that ship with the TTS end marker still audible, plus the untouched `.orig.mp3`
+# take each one is re-trimmed from. Listed literally, one path per file, on purpose: audio recovery
+# rests on these siblings, and a glob here would pull the 140 MB of paid clips into git by accident.
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-9-extras/audio/p9-iie-zenzen-yomimasen-manual-daf6f42c.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-9-extras/audio/18adc561ac8374a8.orig.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-9-extras/audio/v9-otosan-ni-denwa-manual-e0097d77.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-9-extras/audio/10f44c7631223997.orig.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-10/audio/hontouni-samui-ne-manual-40d6d328.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-10/audio/67c14d4b32ae5b63.orig.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-12/audio/nihon-no-supa-desu-yo-manual-4e58bc88.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-12/audio/933366bb52db4672.orig.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-13-extras/audio/koko-ni-imasu-a-manual-09ead4b6.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-13-extras/audio/86c8609d100b5509.orig.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-14/audio/kuremasu-exception-manual-4033a8dc.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-14/audio/3fce50eb744ca9f4.orig.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-14/audio/karimasendeshita-manual-8cebd6f7.mp3
+!/output/epubs/japanese-for-busy-people-book-1-kana/chapter-14/audio/bec9e4ba7edc6fe0.orig.mp3
+
+# anki-builder local library (audio cache, EPUB registry). Same mechanics as /output above, same
+# ordering rule. Tracked: the dedup corpora every later chapter is deduped against, and the two
+# cached artifacts a paid LLM pass produced (conventions, taught-index). The audio cache, the
+# extracted chapters and the extracted images stay untracked.
+/.anki-builder/**
+!/.anki-builder/**/
+!/.anki-builder/epubs/*/corpora/**
+!/.anki-builder/epubs/*/conventions.md
+!/.anki-builder/epubs/*/taught-index.json
 
 # Environment / local
 .env

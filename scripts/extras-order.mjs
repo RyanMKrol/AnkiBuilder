@@ -10,9 +10,10 @@
 //                                                           unit folder name, so re-runs and
 //                                                           re-imports keep one stable order)
 //   ... --force                                             allow a reviewed/done unit
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join, resolve, basename } from "path";
 import { orderExtrasUnit } from "../src/cards/extrasTools.js";
+import { writeUnitJson } from "../src/util/unitWrite.js";
 
 const args = process.argv.slice(2);
 const apply = args.includes("--apply");
@@ -58,7 +59,8 @@ if (!apply) {
 }
 
 cards.items = items;
-writeFileSync(cardsPath, JSON.stringify(cards, null, 2));
+const cardsWrite = writeUnitJson(cardsPath, cards, { reason: "extras-order" });
+if (cardsWrite.backup) console.log(`\nbackup: ${cardsWrite.backup}`);
 
 // corpus.json must follow, or the reviews and the deck disagree on order.
 const corpusPath = join(runDir, "corpus.json");
@@ -70,7 +72,8 @@ if (existsSync(corpusPath)) {
       (orderById.get(a.id) ?? Number.MAX_SAFE_INTEGER) -
       (orderById.get(b.id) ?? Number.MAX_SAFE_INTEGER),
   );
-  writeFileSync(corpusPath, JSON.stringify(corpus, null, 2));
+  const corpusWrite = writeUnitJson(corpusPath, corpus, { reason: "extras-order" });
+  if (corpusWrite.backup) console.log(`backup: ${corpusWrite.backup}`);
   console.log("\nwrote cards.json and corpus.json (same order)");
 } else {
   console.log("\nwrote cards.json (no corpus.json present)");

@@ -1,0 +1,665 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 30,
+    "chapterLabel": "Lesson 11: Describing Impressions: It Was Beautiful"
+  },
+  "items": [
+    {
+      "id": "noborimasu",
+      "english": "Climb",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "のぼります"
+    },
+    {
+      "id": "dou",
+      "english": "How (in question)",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Used in どうでしたか (dou deshita ka), \"How was it?\"",
+      "reviewNote": null,
+      "target": "どう"
+    },
+    {
+      "id": "dou-deshita-ka",
+      "english": "How was it?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "どう (dou) means \"how\"; でしたか is the past-tense question form of です.",
+      "reviewNote": null,
+      "target": "どうでしたか"
+    },
+    {
+      "id": "kirei-deshita",
+      "english": "It was beautiful.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "きれい (kirei) is a な-adjective; きれいでした is its plain past form. Compare きれいです (kirei desu), \"it is beautiful\" (present).",
+      "reviewNote": null,
+      "target": "きれいでした"
+    },
+    {
+      "id": "shashin",
+      "english": "Photo",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "しゃしん"
+    },
+    {
+      "id": "torimasu-photo",
+      "english": "Take (a photo)",
+      "category": "Other",
+      "scene": null,
+      "hint": "used with しゃしんを (photo) as the object",
+      "note": "Combined as しゃしんを とります (shashin wo torimasu), \"take a photo.\"",
+      "reviewNote": null,
+      "target": "とります"
+    },
+    {
+      "id": "dono-kurai",
+      "english": "How long",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Asks for a duration or amount; commonly answered with a ぐらい (gurai) phrase, e.g. 5ふんぐらい (gofun gurai), \"about 5 minutes.\"",
+      "reviewNote": null,
+      "target": "どのくらい"
+    },
+    {
+      "id": "arukimasu",
+      "english": "Walk",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary/plain form of the verb; different from あるいて (aruite, \"on foot\") from Lesson 7, the adverbial form used to say how you traveled, e.g. あるいてうちにかえりました (walked home).",
+      "reviewNote": null,
+      "target": "あるきます"
+    },
+    {
+      "id": "jikan-suffix",
+      "english": "(Number of) hours",
+      "category": "Time",
+      "scene": "after a number, as in 2じかん",
+      "hint": null,
+      "note": "Suffix — attaches after a number to count hours, e.g. ８じかん (hachi jikan), \"8 hours.\"",
+      "reviewNote": "Written 〜じかん in the source | Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (じかん is formally taught as part of the dedicated time-period counters set later, not just incidental vocabulary here)",
+      "target": "じかん",
+      "uncertain": true
+    },
+    {
+      "id": "hachi-jikan",
+      "english": "8 hours",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (じかん as an hours counter is formally taught as part of the time-period counter set later)",
+      "target": "８じかん",
+      "reading": "はちじかん",
+      "uncertain": true
+    },
+    {
+      "id": "gurai",
+      "english": "About (amount)",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Suffix — attaches after an amount of time, money, or people to mean \"about\" or \"approximately.\" May also be pronounced くらい (kurai).",
+      "reviewNote": "Written 〜ぐらい in the source",
+      "target": "ぐらい"
+    },
+    {
+      "id": "taihen-na",
+      "english": "Hard, tough",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective meaning hard or tough, as in an arduous experience; たいへんでした (taihen deshita) is its plain past form. Contrast むずかしい (muzukashii), \"difficult\" in the sense of intellectually hard.",
+      "reviewNote": null,
+      "target": "たいへん"
+    },
+    {
+      "id": "taihen-deshita",
+      "english": "It was hard.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たいへんでした"
+    },
+    {
+      "id": "ga-but",
+      "english": "But (particle)",
+      "category": "Grammar & Function Words",
+      "scene": "joining two contrasting clauses",
+      "hint": null,
+      "note": "Joins two clauses, translated as \"but.\" Worked example: きのうは いそがしかったですが、きょうは ひまです (Yesterday I was busy, but today I am free).",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "target": "が",
+      "uncertain": true
+    },
+    {
+      "id": "tanoshii",
+      "english": "Fun, pleasant, enjoyable",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": null,
+      "note": "い-adjective; たのしかったです (tanoshikatta desu) is its plain past form.",
+      "reviewNote": null,
+      "target": "たのしい"
+    },
+    {
+      "id": "tanoshikatta-desu",
+      "english": "It was fun, it was enjoyable.",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "たのしかったです"
+    },
+    {
+      "id": "misemasu",
+      "english": "Show",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Easily confused with みます (mimasu, \"see, watch\", Lesson 8) — みせます (misemasu) means \"show,\" not \"see.\"",
+      "reviewNote": null,
+      "target": "みせます"
+    },
+    {
+      "id": "gofun-gurai",
+      "english": "About 5 minutes",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from NOTES 1 illustrating 〜ぐらい (about/approximately)",
+      "target": "5ふんぐらい",
+      "reading": "ごふんぐらい"
+    },
+    {
+      "id": "sen-en-gurai",
+      "english": "About 1,000 yen",
+      "category": "Money",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from NOTES 1 illustrating 〜ぐらい (about/approximately)",
+      "target": "1,000えんぐらい",
+      "reading": "せんえんぐらい"
+    },
+    {
+      "id": "smith-depaato-kaimasen",
+      "english": "Smith-san went to the department store, but he did not buy anything.",
+      "category": "Shopping",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スミスさんはデパートにいきましたが、なにもかいませんでした"
+    },
+    {
+      "id": "ookii-desu",
+      "english": "It is big.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart (image) — regular い-adjective, present affirmative",
+      "target": "おおきいです"
+    },
+    {
+      "id": "ookikunai-desu",
+      "english": "It is not big.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart — regular い-adjective, present negative",
+      "target": "おおきくないです"
+    },
+    {
+      "id": "ookikatta-desu",
+      "english": "It was big.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "い-adjective past: drop the final い and add かったです — おおきい (ōkii) → おおきかったです (ōkikatta desu). Contrast the irregular いい (ii, good), whose past is よかったです, not いかったです.",
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart — regular い-adjective, past affirmative",
+      "target": "おおきかったです"
+    },
+    {
+      "id": "ookikunakatta-desu",
+      "english": "It was not big.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "い-adjective past negative: drop the final い and add くなかったです — おおきい (ōkii) → おおきくなかったです (ōkikunakatta desu).",
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart — regular い-adjective, past negative",
+      "target": "おおきくなかったです"
+    },
+    {
+      "id": "ii-desu",
+      "english": "It is good, it is nice.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "いい (ii) conjugates irregularly — its negative and past forms are built from よく, not いく.",
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart",
+      "target": "いいです"
+    },
+    {
+      "id": "yokunai-desu",
+      "english": "It is not good.",
+      "category": "Other",
+      "scene": "irregular negative of いい (good)",
+      "hint": null,
+      "note": "Exceptional inflection — いい (ii, good) does not become いくないです; the negative stem is よく (yoku), not いく.",
+      "reviewNote": "Excluded as a duplicate: chapter-10 already teaches よくないです (\"Not good.\"). The backward de-dup flagged this at build time as already introduced; keeping both made an unanswerable Recognition collision. The earliest occurrence is kept.",
+      "target": "よくないです",
+      "uncertain": true,
+      "excluded": true
+    },
+    {
+      "id": "yokatta-desu-good",
+      "english": "It was good.",
+      "category": "Other",
+      "scene": "describing how something you experienced turned out",
+      "hint": null,
+      "note": "Exceptional inflection — the past of いい (ii, good) uses the stem よ (yo), not いい. This same form is also used idiomatically to mean \"I'm glad to hear that\" — see よかったです later in this deck.",
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart",
+      "target": "よかったです"
+    },
+    {
+      "id": "yokunakatta-desu",
+      "english": "It was not good.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Exceptional inflection — past negative of いい (ii, good), built from よく (yoku) rather than いく (iku).",
+      "reviewNote": "From the GRAMMAR adjective-conjugation chart",
+      "target": "よくなかったです"
+    },
+    {
+      "id": "kirei-desu",
+      "english": "It is beautiful, it is pretty.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective, present affirmative; compare きれいでした (kirei deshita), \"it was beautiful.\"",
+      "reviewNote": null,
+      "target": "きれいです"
+    },
+    {
+      "id": "kirei-ja-arimasen",
+      "english": "It is not beautiful.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "きれいじゃありません"
+    },
+    {
+      "id": "kirei-ja-arimasen-deshita",
+      "english": "It was not beautiful.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective negative past behaves like a noun + copula: きれい + じゃありませんでした, the same negative-past ending as Lesson 2's じゃありませんでした — no くない form.",
+      "reviewNote": null,
+      "target": "きれいじゃありませんでした"
+    },
+    {
+      "id": "samukatta-desu",
+      "english": "It was cold.",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": "Same form used in the key sentence きのうは さむかったです (Yesterday, it was cold).",
+      "reviewNote": null,
+      "target": "さむかったです"
+    },
+    {
+      "id": "nigiyaka-deshita",
+      "english": "It was lively.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Same form used in the key sentence きのうの おまつりは にぎやかでした (Yesterday's festival was lively).",
+      "reviewNote": null,
+      "target": "にぎやかでした"
+    },
+    {
+      "id": "kinou-samukatta",
+      "english": "Yesterday, it was cold.",
+      "category": "Weather & Nature",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "きのうはさむかったです"
+    },
+    {
+      "id": "kantan-na",
+      "english": "Easy, simple",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective, written かんたん(な) (kantan na) — な appears before a noun but not before です.",
+      "reviewNote": null,
+      "target": "かんたん"
+    },
+    {
+      "id": "hima-na",
+      "english": "Free, not busy",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective — see the contrast example きのうは いそがしかったですが、きょうは ひまです (Yesterday I was busy, but today I am free).",
+      "reviewNote": null,
+      "target": "ひま"
+    },
+    {
+      "id": "omatsuri",
+      "english": "Festival",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Same まつり (matsuri, \"festival\") already met as (お)まつり in Lesson 7 — お is an optional honorific prefix, both おまつり and まつり are common.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on english)",
+      "target": "おまつり",
+      "uncertain": true
+    },
+    {
+      "id": "konsaato",
+      "english": "Concert",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Same word already met as コンサート in Lesson 3.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "target": "コンサート",
+      "uncertain": true
+    },
+    {
+      "id": "tsumaranai",
+      "english": "Boring, uninteresting",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "つまらない"
+    },
+    {
+      "id": "muzukashii",
+      "english": "Difficult",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "むずかしい"
+    },
+    {
+      "id": "isogashii",
+      "english": "Busy",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "いそがしい"
+    },
+    {
+      "id": "kurasu",
+      "english": "Class",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "クラス"
+    },
+    {
+      "id": "kinou-omatsuri-nigiyaka",
+      "english": "Yesterday's festival was lively.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "きのうのおまつりはにぎやかでした"
+    },
+    {
+      "id": "kinou-omatsuri-nigiyaka-nakatta",
+      "english": "Yesterday's festival was not lively.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from EXERCISES II-D demonstrating the negative past form of にぎやか (nigiyaka, lively).",
+      "target": "きのうのおまつりはにぎやかじゃありませんでした"
+    },
+    {
+      "id": "deeto",
+      "english": "Date",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "デート"
+    },
+    {
+      "id": "kinou-date-tanoshikunakatta",
+      "english": "Yesterday's date wasn't fun.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from EXERCISES II-B demonstrating the negative past form of たのしい (tanoshii, fun).",
+      "target": "きのうのデートはたのしくなかったです"
+    },
+    {
+      "id": "eiga-omoshirokatta-ka",
+      "english": "Was the movie interesting?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from EXERCISES III-A.",
+      "target": "えいがはおもしろかったですか"
+    },
+    {
+      "id": "amari-tanoshikunakatta",
+      "english": "It wasn't very fun.",
+      "category": "Other",
+      "scene": "answering how the party was",
+      "hint": null,
+      "note": "あまり (amari) with a negative predicate means \"not very.\"",
+      "reviewNote": "Worked example from EXERCISES III-B.",
+      "target": "あまりたのしくなかったです"
+    },
+    {
+      "id": "seeru",
+      "english": "Sale",
+      "category": "Shopping",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "セール"
+    },
+    {
+      "id": "kinou-isogashii-kyou-hima",
+      "english": "Yesterday I was busy, but today I am free.",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from EXERCISES IV demonstrating が (ga) \"but\" joining two clauses. | Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (uses は on both きのう and きょう specifically for contrast between two clauses, which is called out as a dedicated grammar point (\"は for contrast\") only later)",
+      "target": "きのうはいそがしかったですが、きょうはひまです",
+      "uncertain": true
+    },
+    {
+      "id": "shumatsu-nani-shimashita-ka",
+      "english": "Smith-san, what did you do over the weekend?",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from EXERCISES V.",
+      "target": "スミスさん、しゅうまつになにをしましたか"
+    },
+    {
+      "id": "sukii-wo-shimasu",
+      "english": "Ski",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スキーをします"
+    },
+    {
+      "id": "hokkaido-sukii-shimashita",
+      "english": "I skied in Hokkaido.",
+      "category": "Sports & Hobbies",
+      "scene": "answering what was done over the weekend",
+      "hint": null,
+      "note": "で (de) here marks Hokkaido as the place where the action happened.",
+      "reviewNote": null,
+      "target": "ほっかいどうでスキーをしました"
+    },
+    {
+      "id": "tesuto",
+      "english": "Test",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "テスト"
+    },
+    {
+      "id": "sorosoro",
+      "english": "In a little while",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "そろそろ"
+    },
+    {
+      "id": "sorosoro-shitsurei-shimasu",
+      "english": "I need to be going in a little while.",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": "Set phrase used when the time has come to leave a place you are visiting.",
+      "reviewNote": null,
+      "target": "そろそろしつれいします"
+    },
+    {
+      "id": "doumo-arigatou-gozaimashita",
+      "english": "Thank you very much (for today).",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": "The past tense of ありがとうございます (arigatou gozaimasu) is used when thanking someone for something that has already ended.",
+      "reviewNote": null,
+      "target": "どうもありがとうございました"
+    },
+    {
+      "id": "dou-itashimashite",
+      "english": "You're welcome.",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "どういたしまして"
+    },
+    {
+      "id": "watashitachi",
+      "english": "We",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "わたし (I) + たち, the plural suffix from Lesson 6 also seen in ひとたち (hitotachi, \"people\") — together, \"we.\"",
+      "reviewNote": null,
+      "target": "わたしたち"
+    },
+    {
+      "id": "mata",
+      "english": "Again",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "また"
+    },
+    {
+      "id": "kite-kudasai",
+      "english": "Please come",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": "て-form of きます (kimasu, \"come\", Lesson 6) + ください, the same polite-request pattern as まってください (matte kudasai, Lesson 10).",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (same て-form + ください request construction, not formally taught as a grammar point until later)",
+      "target": "きてください",
+      "uncertain": true
+    },
+    {
+      "id": "mata-kite-kudasai",
+      "english": "Please come again.",
+      "category": "Greetings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (uses て-form + ください (polite imperative request), a construction not formally taught until later — the て-form itself is introduced in ch. 42 and this exact 〜てください pattern is a dedicated grammar point in ch. 43)",
+      "target": "またきてください",
+      "uncertain": true
+    },
+    {
+      "id": "omiyage",
+      "english": "Souvenir",
+      "category": "Shopping",
+      "scene": null,
+      "hint": null,
+      "note": "お (o) is an honorific prefix on みやげ (miyage); written (お)みやげ in the source.",
+      "reviewNote": null,
+      "target": "おみやげ"
+    },
+    {
+      "id": "yokatta-desu-glad",
+      "english": "I'm glad to hear that.",
+      "category": "Emotions & Feelings",
+      "scene": "hearing a positive response after giving a present or offering advice",
+      "hint": null,
+      "note": "Idiomatic use of よかったです (yokatta desu) — literally the past tense of いい (ii, good), \"it was good,\" but used here as a set reaction meaning \"I'm glad to hear that.\"",
+      "reviewNote": null,
+      "target": "よかったです"
+    }
+  ]
+}

@@ -219,6 +219,14 @@ filtered out, derived from the cards) into the local library (`src/corpus/epubLi
 (`markCardsReviewed` in `src/server/adapters/applyCards.js`). See
 [Deck dashboard](#deck-dashboard-serve) for the routes.
 
+Every exclusion carries its provenance: optional `excludedBy` (`"human"`, or the name of the script
+or pass that applied it) and `excludedReason`. Both are optional and absent means human-or-legacy, so
+files written before the fields existed still validate. It matters because the machine exclusions are
+the ones worth re-reading: `extras-duplicate-check --apply` false-positives on roughly a third of the
+groups it reports, and on disk its sweep used to look exactly like a reviewed decision. The dashboard
+review badges a script-authored exclusion above the card's review note, and `npm run preflight`
+reports the per-unit counts.
+
 ### Build a book's lessons in order
 
 **A lesson's build reads the book's already-REVIEWED history, not its already-built history.** Three

@@ -1,0 +1,606 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 17,
+    "chapterLabel": "Lesson 3: Asking the Time: What Time Is It?"
+  },
+  "items": [
+    {
+      "id": "mise",
+      "english": "restaurant, shop",
+      "category": "Shopping",
+      "target": "みせ",
+      "note": "Sub-entry under みせの ひと (mise no hito) (restaurant employee) — みせ (mise) means 'restaurant/shop' on its own"
+    },
+    {
+      "id": "hito",
+      "english": "person, employee",
+      "category": "Family & People",
+      "target": "ひと",
+      "note": "Sub-entry under みせの ひと (mise no hito) (restaurant employee) — ひと (hito) means 'person' on its own"
+    },
+    {
+      "id": "mise-no-hito",
+      "english": "restaurant employee",
+      "category": "Work & Occupations",
+      "target": "みせのひと",
+      "note": "みせの (mise no) + ひと (hito) follows the same [owner] の [thing] pattern as のぞみデパートのたなかさん (Nozomi Depaato no Tanaka-san) from Lesson 1 - here の (no) marks affiliation with the shop rather than personal possession."
+    },
+    {
+      "id": "ranchitaimu",
+      "english": "lunchtime",
+      "category": "Time",
+      "target": "ランチタイム",
+      "reviewNote": "Source spelling appears to be missing ン (likely a typo/OCR artifact for ランチタイム, 'lunchtime')"
+    },
+    {
+      "id": "nanji",
+      "english": "what time",
+      "category": "Time",
+      "target": "なんじ",
+      "note": "なんじ (nanji, 'what time') asks for a specific clock time, e.g. なんじですか (nanji desu ka), 'what time is it?' — contrast the broader いつ (itsu, 'when'), which asks about a date or time in general rather than an exact hour."
+    },
+    {
+      "id": "kara-particle",
+      "english": "from (particle)",
+      "category": "Grammar & Function Words",
+      "target": "から",
+      "note": "Marks a starting point in time or place ('from'); pairs with まで (made, 'until') to state a range, as in しごとはくじからごじまでです (shigoto wa kuji kara goji made desu), 'work is from 9:00 to 5:00.'",
+      "scene": "a starting time"
+    },
+    {
+      "id": "han-suffix",
+      "english": "…thirty, half past (hour)",
+      "category": "Time",
+      "target": "はん",
+      "note": "Suffix — attaches after an hour to mean 'half past' (written 〜はん (han) in the source). さんじはん (sanjihan, '3:30') is the natural way to say the half hour, more idiomatic than spelling it out as さんじさんじゅっぷん (sanji sanjuppun) with ふん/ぷん (fun/pun)."
+    },
+    {
+      "id": "juuichi-ji-han",
+      "english": "11:30, eleven-thirty, half past eleven",
+      "category": "Time",
+      "target": "じゅういちじはん"
+    },
+    {
+      "id": "made-particle",
+      "english": "until (particle)",
+      "category": "Grammar & Function Words",
+      "target": "まで",
+      "note": "Marks an ending point in time or place ('until'); pairs with から (kara, 'from') to state a range, as in しごとはくじからごじまでです (shigoto wa kuji kara goji made desu), 'work is from 9:00 to 5:00.'"
+    },
+    {
+      "id": "ni-ji-han",
+      "english": "2:30, two-thirty, half past two",
+      "category": "Time",
+      "target": "にじはん"
+    },
+    {
+      "id": "rasuto-oodaa",
+      "english": "last order",
+      "category": "Food",
+      "target": "ラストオーダー",
+      "note": "Katakana loanword from English 'last order' - the deadline for placing a food or drink order before a restaurant's kitchen or bar closes, often stated with まで (made, 'until')."
+    },
+    {
+      "id": "ni-ji",
+      "english": "2:00, two o'clock",
+      "category": "Time",
+      "target": "にじ",
+      "scene": "the bare clock reading, not an answer to a question"
+    },
+    {
+      "id": "ima",
+      "english": "now",
+      "category": "Time",
+      "target": "いま"
+    },
+    {
+      "id": "san-ji",
+      "english": "3:00, three o'clock",
+      "category": "Time",
+      "target": "さんじ",
+      "scene": "the bare clock reading, not an answer to a question"
+    },
+    {
+      "id": "ks1-ima-sanji",
+      "english": "It is 3:00 now.",
+      "category": "Time",
+      "target": "いまさんじです"
+    },
+    {
+      "id": "shigoto",
+      "english": "work",
+      "category": "Work & Occupations",
+      "target": "しごと",
+      "hint": "the noun"
+    },
+    {
+      "id": "ku-ji",
+      "english": "9:00, nine o'clock",
+      "category": "Time",
+      "target": "くじ",
+      "note": "Uses く (ku), not きゅう (kyuu) from Lesson 2's number card - 9:00 is an irregular hour reading; most hours simply add じ (ji) to the cardinal number, as in はちじ (hachiji, 8:00)."
+    },
+    {
+      "id": "go-ji",
+      "english": "5:00, five o'clock",
+      "category": "Time",
+      "target": "ごじ"
+    },
+    {
+      "id": "ks2-shigoto-kuji-goji",
+      "english": "Work is from 9:00 to 5:00.",
+      "category": "Work & Occupations",
+      "target": "しごとはくじからごじまでです"
+    },
+    {
+      "id": "kaigi",
+      "english": "meeting",
+      "category": "Work & Occupations",
+      "target": "かいぎ"
+    },
+    {
+      "id": "ashita",
+      "english": "tomorrow",
+      "category": "Time",
+      "target": "あした"
+    },
+    {
+      "id": "yo-ji",
+      "english": "4:00, four o'clock",
+      "category": "Time",
+      "target": "よじ",
+      "note": "Uses よ (yo), not よん (yon) from Lesson 2's number card - 4:00 is an irregular hour reading; most hours simply add じ (ji) to the cardinal number, as in ろくじ (rokuji, 6:00)."
+    },
+    {
+      "id": "ks3-kaigi-ashita-yoji",
+      "english": "The meeting is tomorrow, from 4:00.",
+      "category": "Work & Occupations",
+      "target": "かいぎはあしたのよじからです",
+      "note": "あしたの (ashita no) links two time expressions - 'tomorrow's 4:00' - extending の (no) beyond marking possession/affiliation, as in のぞみデパートのたなかさん (Nozomi Depaato no Tanaka-san) from Lesson 1, to connect a day to a specific time within it."
+    },
+    {
+      "id": "suupaa",
+      "english": "supermarket",
+      "category": "Shopping",
+      "target": "スーパー"
+    },
+    {
+      "id": "resutoran",
+      "english": "restaurant",
+      "category": "Food",
+      "target": "レストラン"
+    },
+    {
+      "id": "jimu",
+      "english": "gym",
+      "category": "Sports & Hobbies",
+      "target": "ジム"
+    },
+    {
+      "id": "hiru",
+      "english": "noon",
+      "category": "Time",
+      "target": "ひる",
+      "note": "Sub-entry under ひるやすみ (hiru yasumi) (lunch break) — ひる (hiru) means 'noon' on its own"
+    },
+    {
+      "id": "yasumi",
+      "english": "break, time off",
+      "category": "Work & Occupations",
+      "target": "やすみ",
+      "note": "Sub-entry under ひるやすみ (hiru yasumi) (lunch break) — やすみ (yasumi) means 'break/time off' on its own",
+      "scene": "a pause during the day"
+    },
+    {
+      "id": "hiruyasumi",
+      "english": "lunch break",
+      "category": "Work & Occupations",
+      "target": "ひるやすみ"
+    },
+    {
+      "id": "paatii",
+      "english": "party",
+      "category": "Other",
+      "target": "パーティー"
+    },
+    {
+      "id": "nanajuu-70",
+      "english": "70",
+      "category": "Numbers",
+      "target": "ななじゅう"
+    },
+    {
+      "id": "nijuuichi-21",
+      "english": "21",
+      "category": "Numbers",
+      "target": "にじゅういち"
+    },
+    {
+      "id": "juuroku-16",
+      "english": "16",
+      "category": "Numbers",
+      "target": "じゅうろく"
+    },
+    {
+      "id": "rokujuu-60",
+      "english": "60",
+      "category": "Numbers",
+      "target": "ろくじゅう"
+    },
+    {
+      "id": "nijuusan-23",
+      "english": "23",
+      "category": "Numbers",
+      "target": "にじゅうさん"
+    },
+    {
+      "id": "juusan-13",
+      "english": "13",
+      "category": "Numbers",
+      "target": "じゅうさん"
+    },
+    {
+      "id": "juunana-17",
+      "english": "17",
+      "category": "Numbers",
+      "target": "じゅうなな"
+    },
+    {
+      "id": "sanjuu-30",
+      "english": "30",
+      "category": "Numbers",
+      "target": "さんじゅう"
+    },
+    {
+      "id": "juuni-12",
+      "english": "12",
+      "category": "Numbers",
+      "target": "じゅうに"
+    },
+    {
+      "id": "juu-10",
+      "english": "10",
+      "category": "Numbers",
+      "target": "じゅう"
+    },
+    {
+      "id": "nijuunana-27",
+      "english": "27",
+      "category": "Numbers",
+      "target": "にじゅうなな"
+    },
+    {
+      "id": "nijuugo-25",
+      "english": "25",
+      "category": "Numbers",
+      "target": "にじゅうご"
+    },
+    {
+      "id": "hachijuu-80",
+      "english": "80",
+      "category": "Numbers",
+      "target": "はちじゅう"
+    },
+    {
+      "id": "nijuu-20",
+      "english": "20",
+      "category": "Numbers",
+      "target": "にじゅう"
+    },
+    {
+      "id": "nijuuhachi-28",
+      "english": "28",
+      "category": "Numbers",
+      "target": "にじゅうはち"
+    },
+    {
+      "id": "kyuujuu-90",
+      "english": "90",
+      "category": "Numbers",
+      "target": "きゅうじゅう"
+    },
+    {
+      "id": "nijuuni-22",
+      "english": "22",
+      "category": "Numbers",
+      "target": "にじゅうに"
+    },
+    {
+      "id": "nijuuroku-26",
+      "english": "26",
+      "category": "Numbers",
+      "target": "にじゅうろく"
+    },
+    {
+      "id": "gojuu-50",
+      "english": "50",
+      "category": "Numbers",
+      "target": "ごじゅう"
+    },
+    {
+      "id": "juuyon-14",
+      "english": "14",
+      "category": "Numbers",
+      "target": "じゅうよん"
+    },
+    {
+      "id": "nijuukyuu-29",
+      "english": "29",
+      "category": "Numbers",
+      "target": "にじゅうきゅう"
+    },
+    {
+      "id": "juugo-15",
+      "english": "15",
+      "category": "Numbers",
+      "target": "じゅうご"
+    },
+    {
+      "id": "juukyuu-19",
+      "english": "19",
+      "category": "Numbers",
+      "target": "じゅうきゅう"
+    },
+    {
+      "id": "yonjuu-40",
+      "english": "40",
+      "category": "Numbers",
+      "target": "よんじゅう"
+    },
+    {
+      "id": "nijuuyon-24",
+      "english": "24",
+      "category": "Numbers",
+      "target": "にじゅうよん"
+    },
+    {
+      "id": "juuhachi-18",
+      "english": "18",
+      "category": "Numbers",
+      "target": "じゅうはち"
+    },
+    {
+      "id": "juuichi-11",
+      "english": "11",
+      "category": "Numbers",
+      "target": "じゅういち"
+    },
+    {
+      "id": "roku-ji",
+      "english": "6:00",
+      "category": "Time",
+      "target": "ろくじ"
+    },
+    {
+      "id": "juuni-ji-time",
+      "english": "12:00",
+      "category": "Time",
+      "target": "じゅうにじ"
+    },
+    {
+      "id": "juu-ji",
+      "english": "10:00",
+      "category": "Time",
+      "target": "じゅうじ"
+    },
+    {
+      "id": "ichi-ji",
+      "english": "1:00",
+      "category": "Time",
+      "target": "いちじ"
+    },
+    {
+      "id": "hachi-ji",
+      "english": "8:00",
+      "category": "Time",
+      "target": "はちじ"
+    },
+    {
+      "id": "shichi-ji",
+      "english": "7:00",
+      "category": "Time",
+      "target": "しちじ",
+      "note": "Uses しち (shichi), not なな (nana) from Lesson 2's number card - 7:00 keeps an older reading of 7 instead of the everyday cardinal number used elsewhere."
+    },
+    {
+      "id": "juuichi-ji-time",
+      "english": "11:00",
+      "category": "Time",
+      "target": "じゅういちじ"
+    },
+    {
+      "id": "san-ji-yonjuugo-fun",
+      "english": "3:45",
+      "category": "Time",
+      "target": "さんじよんじゅうごふん"
+    },
+    {
+      "id": "san-ji-sanjuugo-fun",
+      "english": "3:35",
+      "category": "Time",
+      "target": "さんじさんじゅうごふん"
+    },
+    {
+      "id": "san-ji-go-fun",
+      "english": "3:05",
+      "category": "Time",
+      "target": "さんじごふん"
+    },
+    {
+      "id": "san-ji-nijuugo-fun",
+      "english": "3:25",
+      "category": "Time",
+      "target": "さんじにじゅうごふん"
+    },
+    {
+      "id": "san-ji-juugo-fun",
+      "english": "3:15",
+      "category": "Time",
+      "target": "さんじじゅうごふん"
+    },
+    {
+      "id": "san-ji-gojuugo-fun",
+      "english": "3:55",
+      "category": "Time",
+      "target": "さんじごじゅうごふん"
+    },
+    {
+      "id": "san-ji-sanjuppun-han",
+      "english": "3:30",
+      "category": "Time",
+      "target": "さんじはん"
+    },
+    {
+      "id": "san-ji-yonjuppun",
+      "english": "3:40",
+      "category": "Time",
+      "target": "さんじよんじゅっぷん"
+    },
+    {
+      "id": "san-ji-juppun",
+      "english": "3:10",
+      "category": "Time",
+      "target": "さんじじゅっぷん"
+    },
+    {
+      "id": "san-ji-gojuppun",
+      "english": "3:50",
+      "category": "Time",
+      "target": "さんじごじゅっぷん"
+    },
+    {
+      "id": "san-ji-nijuppun",
+      "english": "3:20",
+      "category": "Time",
+      "target": "さんじにじゅっぷん"
+    },
+    {
+      "id": "gozen-yoji",
+      "english": "4:00 A.M.",
+      "category": "Time",
+      "target": "ごぜんよじ"
+    },
+    {
+      "id": "gogo-kuji",
+      "english": "9:00 P.M.",
+      "category": "Time",
+      "target": "ごごくじ"
+    },
+    {
+      "id": "ji-suffix",
+      "english": "…o'clock",
+      "category": "Time",
+      "target": "じ",
+      "note": "Suffix — attaches after a number to form the hour (written 〜じ (ji) in the source)"
+    },
+    {
+      "id": "fun-pun-suffix",
+      "english": "…minute(s)",
+      "category": "Time",
+      "target": "ふん",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (re-taught as a dedicated WORD POWER 'Periods' vocabulary entry (〜ふん／ぷん(かん)) in the duration sense, distinct from ch17's clock-time sense)",
+      "note": "Suffix — attaches after a number to form minutes; alternates between ふん (fun) and ぷん (pun) depending on the preceding sound (written 〜ふん／ぷん (fun/pun) in the source)"
+    },
+    {
+      "id": "gozen",
+      "english": "A.M., in the morning",
+      "category": "Time",
+      "target": "ごぜん",
+      "note": "ごぜん (gozen, 'A.M.') precedes the hour to disambiguate a 12-hour time, e.g. ごぜんよじ (gozen yoji), '4:00 A.M.' — paired with ごご (gogo, 'P.M.') for afternoon/evening hours."
+    },
+    {
+      "id": "gogo",
+      "english": "P.M., in the afternoon",
+      "category": "Time",
+      "target": "ごご",
+      "note": "ごご (gogo, 'P.M.') precedes the hour to disambiguate a 12-hour time, e.g. ごごくじ (gogo kuji), '9:00 P.M.' — paired with ごぜん (gozen, 'A.M.') for morning hours."
+    },
+    {
+      "id": "kyou",
+      "english": "today",
+      "category": "Time",
+      "target": "きょう"
+    },
+    {
+      "id": "happii-awaa",
+      "english": "happy hour",
+      "category": "Food",
+      "target": "ハッピーアワー"
+    },
+    {
+      "id": "itsu",
+      "english": "when",
+      "category": "Grammar & Function Words",
+      "target": "いつ",
+      "note": "いつ (itsu, 'when') asks broadly about a date or time, e.g. パーティーはいつですか (paatii wa itsu desu ka), 'when is the party?' — contrast なんじ (nanji, 'what time'), which asks specifically for a clock hour."
+    },
+    {
+      "id": "purezen",
+      "english": "presentation",
+      "category": "Work & Occupations",
+      "target": "プレゼン"
+    },
+    {
+      "id": "konsaato",
+      "english": "concert",
+      "category": "Sports & Hobbies",
+      "target": "コンサート"
+    },
+    {
+      "id": "asa",
+      "english": "morning",
+      "category": "Time",
+      "target": "あさ",
+      "note": "Sub-entry under あさごはん (asagohan) (breakfast) — あさ (asa) means 'morning' on its own"
+    },
+    {
+      "id": "gohan",
+      "english": "meal, cooked rice",
+      "category": "Food",
+      "target": "ごはん",
+      "note": "Sub-entry under あさごはん (asagohan) (breakfast) — ごはん (gohan) means 'meal/cooked rice' on its own"
+    },
+    {
+      "id": "furonto",
+      "english": "reception desk",
+      "category": "Travel & Tourism",
+      "target": "フロント",
+      "note": "Used specifically for a hotel's front desk (from English 'front'); うけつけ (uketsuke) is the more general word for a reception desk elsewhere."
+    },
+    {
+      "id": "ban",
+      "english": "evening",
+      "category": "Time",
+      "target": "ばん",
+      "note": "Sub-entry under ばんごはん (bangohan) (dinner) — ばん (ban) means 'evening' on its own",
+      "scene": "the time of day"
+    },
+    {
+      "id": "puuru",
+      "english": "swimming pool",
+      "category": "Sports & Hobbies",
+      "target": "プール"
+    },
+    {
+      "id": "sou-desu-ka",
+      "english": "I see. / Is that so?",
+      "category": "Greetings",
+      "target": "そうですか",
+      "note": "Comments on what someone just told you, rather than confirming your own statement like そうです (sou desu) does. Falling intonation = 'I see' (acknowledging what you heard); rising intonation = 'Is that so? / Really?' (a genuine question)."
+    },
+    {
+      "id": "doumo-arigatou",
+      "english": "Thank you.",
+      "category": "Greetings",
+      "target": "どうもありがとう",
+      "uncertain": true,
+      "note": "どうも (doumo) adds emphasis (\"thanks a lot\"). This plain どうもありがとう (doumo arigatou) is warm but casual — fine for friendly, everyday thanks (e.g. to shop staff). Use the more formal ありがとうございます (arigatou gozaimasu) in polite or business settings; combine them as どうもありがとうございます (doumo arigatou gozaimasu) to be extra polite.",
+      "hint": "warm but casual"
+    }
+  ]
+}

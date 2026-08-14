@@ -14,9 +14,10 @@
 // keeper. A later occurrence that looks like a QUESTION is skipped even under --apply (excluding a
 // question can strand an elliptical answer whose hint names it — resolve those by hand); excluding
 // an answer is always safe.
-import { readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
 import { findCrossChapterDuplicates } from "../src/cards/extrasTools.js";
+import { writeUnitJson } from "../src/util/unitWrite.js";
 
 const args = process.argv.slice(2);
 const apply = args.includes("--apply");
@@ -76,6 +77,10 @@ for (const group of groups) {
     const unit = units.find((u) => u.unit === dup.unit);
     const item = unit.items.find((i) => i.id === dup.id);
     item.excluded = true;
+    // Provenance: this tool false-positives on roughly a third of the groups it reports, so its
+    // exclusions must stay tellable apart from a human's reviewed ones long after the run.
+    item.excludedBy = "extras-duplicate-check";
+    item.excludedReason = `duplicate of ${group.keeper.unit}/${group.keeper.id} ("${group.target}")`;
     const note = `Duplicate — same target already taught as ${group.keeper.unit}/${group.keeper.id} (excluded by extras-duplicate-check)`;
     item.reviewNote = item.reviewNote ? `${item.reviewNote} | ${note}` : note;
     unit.dirty = true;
@@ -85,7 +90,10 @@ for (const group of groups) {
 
 if (apply) {
   for (const unit of units) {
-    if (unit.dirty) writeFileSync(unit.path, JSON.stringify(unit.data, null, 2));
+    if (unit.dirty) {
+      const { backup } = writeUnitJson(unit.path, unit.data, { reason: "extras-dupes" });
+      console.log(`  wrote ${unit.path}${backup ? ` (backup: ${backup})` : ""}`);
+    }
   }
   console.log(`\nexcluded ${excluded} duplicate(s); skipped ${skipped} (see above)`);
 } else {

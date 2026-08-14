@@ -79,6 +79,7 @@ td.hint-col .scene-cue{color:var(--soft)}
    italic) from the user-facing card Note so a reviewer never confuses the two. Never shown in the deck. */
 col.c-rnote{width:220px}
 td.rnote{font-size:11.5px;color:#8a6a24;font-style:italic}
+td.rnote .excl-by{font-style:normal;font-weight:600;color:#a33;margin-bottom:2px}
 td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--soft)}
 .badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:100px;border:1px solid var(--rule2);color:var(--soft);white-space:nowrap}
 .badge-drop{color:var(--accent);border-color:var(--accent)}
@@ -272,6 +273,19 @@ const jpOrDash = (v) => (v ? escapeHtml(v) : `<span class="x">—</span>`);
 // audio stage; `ctx.rowControl(stage, c)` (optional) injects an editor control into a row's Exclude
 // cell — omitted for a read-only render.
 const rowExtra = (ctx, stage, c) => (ctx.rowControl ? ctx.rowControl(stage, c) : "");
+/**
+ * Who excluded this card, rendered above its review note.
+ *
+ * An exclusion made by a script used to be byte-identical on disk to one a human decided, which made
+ * the excluded set unauditable — and the extras duplicate check false-positives on roughly a third
+ * of the groups it reports. Only SCRIPT exclusions are badged: "human" and the legacy absent case
+ * are the normal state and would be noise on every row.
+ */
+const exclusionProvenance = (c) => {
+  if (!c.excluded || !c.excludedBy || c.excludedBy === "human") return "";
+  const reason = c.excludedReason ? ` — ${escapeHtml(c.excludedReason)}` : "";
+  return `<div class="excl-by" title="Excluded by a script, not a reviewed decision — worth a second look">⊘ ${escapeHtml(c.excludedBy)}${reason}</div>`;
+};
 // Scene (front of both directions) stacked above Hint (Production front only) in the shared column.
 const hintCell = (c) =>
   `<td class="hint-col">${c.scene ? `<div class="scene-cue" title="Scene — front of both directions">${escapeHtml(c.scene)}</div>` : ""}${c.hint ? escapeHtml(c.hint) : ""}</td>`;
@@ -348,7 +362,7 @@ const cardRow = (c, n, stage, ctx) => {
   // Internal review-only note (why a card is uncertain / AI-suggested). Rightmost column, and ONLY in
   // the dashboard review (showReviewNote) — never the read-only Browse view / artifact / deck.
   const rnote = ctx.showReviewNote
-    ? `\n  <td class="rnote">${c.reviewNote ? escapeHtml(c.reviewNote) : ""}</td>`
+    ? `\n  <td class="rnote">${exclusionProvenance(c)}${c.reviewNote ? escapeHtml(c.reviewNote) : ""}</td>`
     : "";
   return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs}>
   <td class="num">${n}</td>

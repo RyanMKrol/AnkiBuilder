@@ -320,3 +320,34 @@ test("AUDIO_TRIM_SCRIPT survives the modal being closed mid-apply, and still rep
   assert.match(AUDIO_TRIM_SCRIPT, /queued = null; sendRange\(q\)/);
   assert.equal(/st && \(st\.start = q\.start/.test(AUDIO_TRIM_SCRIPT), false);
 });
+
+test("a script-authored exclusion is badged in the review; a human one is not", () => {
+  const base = { english: "one", target: "いち", pronunciation: "ichi", category: "Numbers" };
+  const render = (card) =>
+    renderLessonSections({
+      sections: [{ leaf: "L", stage: "corpus", cards: [card] }],
+      audioCell: () => "",
+      showReviewNote: true,
+    }).html;
+
+  const scripted = render({
+    ...base,
+    id: "a",
+    excluded: true,
+    excludedBy: "extras-duplicate-check",
+    excludedReason: 'duplicate of chapter-3/x ("いち")',
+  });
+  assert.match(scripted, /excl-by/);
+  assert.match(scripted, /extras-duplicate-check/);
+  assert.match(scripted, /duplicate of chapter-3\/x/);
+
+  // A reviewed decision is the normal case; badging it would put noise on every excluded row.
+  assert.doesNotMatch(render({ ...base, id: "b", excluded: true, excludedBy: "human" }), /excl-by/);
+  // As is a legacy exclusion with no provenance at all.
+  assert.doesNotMatch(render({ ...base, id: "c", excluded: true }), /excl-by/);
+  // And provenance left on a card that is no longer excluded must not render.
+  assert.doesNotMatch(
+    render({ ...base, id: "d", excludedBy: "extras-duplicate-check" }),
+    /excl-by/,
+  );
+});

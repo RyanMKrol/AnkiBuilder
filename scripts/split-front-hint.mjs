@@ -3,12 +3,16 @@
 // cards are visible together): an LLM moves DISAMBIGUATION parentheticals out of `english` into `hint`
 // (and generates a hint for cards that share a target but have none), leaving meaning-integral
 // parentheticals like "(person)" in the gloss. Also mechanically renames legacy `cardNote` -> `note`.
-// Updates cards.json + corpus.json in lockstep; backs up to <file>.pre-hint.bak.
+// Updates cards.json + corpus.json in lockstep; backs up to <file>.pre-hint-<stamp>.bak.
 //
 // Usage: node scripts/split-front-hint.mjs [--dry] <bookOrCourseDir> [<dir> ...]
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
+import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { runClaude } from "../src/translate/runClaude.js";
+import { writeUnitJson } from "../src/util/unitWrite.js";
+
+// Tag in the stamped backup name: <file>.pre-hint-<YYYYMMDDHHmm>.bak
+const REASON = "hint";
 
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
@@ -133,8 +137,7 @@ for (const dir of dirs) {
     }
     const renamed = dry ? 0 : renameCardNote(u.data.items);
     if (dry || (hintChanges === 0 && engChanges === 0 && renamed === 0)) continue;
-    backup(u.file);
-    writeFileSync(u.file, JSON.stringify(u.data, null, 2) + "\n");
+    writeUnitJson(u.file, u.data, { reason: REASON });
     // corpus.json in the same folder (subset): apply hint/english + rename there too.
     const corpusPath = join(dir, u.name, "corpus.json");
     if (existsSync(corpusPath)) {
@@ -145,16 +148,10 @@ for (const dir of dirs) {
         if (r?.english?.trim()) it.english = r.english.trim();
       }
       renameCardNote(corpus.items || []);
-      backup(corpusPath);
-      writeFileSync(corpusPath, JSON.stringify(corpus, null, 2) + "\n");
+      writeUnitJson(corpusPath, corpus, { reason: REASON });
     }
     console.error(
       `  ${u.name}: ${hintChanges} hint(s), ${engChanges} english cleaned, ${renamed} note rename(s)`,
     );
   }
-}
-
-function backup(f) {
-  const bak = f + ".pre-hint.bak";
-  if (!existsSync(bak)) writeFileSync(bak, readFileSync(f));
 }

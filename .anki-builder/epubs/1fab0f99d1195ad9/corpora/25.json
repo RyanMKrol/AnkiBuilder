@@ -1,0 +1,586 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 25,
+    "chapterLabel": "Lesson 8: Doing Things (1): I’m Going to Eat Tempura",
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "shuumatsu",
+      "english": "Weekend",
+      "category": "Time",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 16: Making an Invitation: Shall We Go Together? (explicitly re-taught as a dedicated Key Sentence entry)",
+      "target": "しゅうまつ",
+      "uncertain": true
+    },
+    {
+      "id": "nani",
+      "english": "What",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "なに"
+    },
+    {
+      "id": "particle-wo",
+      "english": "Object marker (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (explicitly re-taught as its own dedicated vocabulary-table row (with its own grammar cross-reference))",
+      "target": "を",
+      "uncertain": true
+    },
+    {
+      "id": "shimasu",
+      "english": "Do",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "します"
+    },
+    {
+      "id": "td-shuumatsu-nani-shimasu",
+      "english": "What are you going to do over the weekend?",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "しゅうまつになにをしますか"
+    },
+    {
+      "id": "particle-de-place",
+      "english": "At, in, on (particle marking place or event of an action)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "で",
+      "uncertain": true
+    },
+    {
+      "id": "tenpura",
+      "english": "Tempura",
+      "category": "Food",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (explicitly re-taught as a dedicated Key Sentence entry)",
+      "target": "てんぷら",
+      "uncertain": true
+    },
+    {
+      "id": "tabemasu",
+      "english": "Eat",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "たべます"
+    },
+    {
+      "id": "ii-desu-ne",
+      "english": "That's good.",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "いいですね"
+    },
+    {
+      "id": "kabuki",
+      "english": "Kabuki",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "かぶき"
+    },
+    {
+      "id": "mimasu",
+      "english": "See",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "みます"
+    },
+    {
+      "id": "tenisu-wo-shimasu",
+      "english": "Play tennis",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "テニスをします"
+    },
+    {
+      "id": "ks1-tennis-tomorrow",
+      "english": "Smith-san will play tennis tomorrow.",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "スミスさんはあしたテニスをします"
+    },
+    {
+      "id": "nanimo",
+      "english": "Nothing (used with a negative verb)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Written なにも 〜ません in the source vocabulary table; placeholder stripped to the bare word per convention.",
+      "target": "なにも"
+    },
+    {
+      "id": "tabemasendeshita",
+      "english": "Did not eat",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "たべませんでした"
+    },
+    {
+      "id": "nanimo-tabemasendeshita",
+      "english": "Didn't eat anything",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "なにもたべませんでした"
+    },
+    {
+      "id": "tabemashita",
+      "english": "Ate",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "たべました"
+    },
+    {
+      "id": "asagohan",
+      "english": "Breakfast",
+      "category": "Food",
+      "reviewNote": "Not glossed in the running text; identified from the WORD POWER food illustration (Page_076_Image_0001.jpg), item ① — a clock reading A.M. above a breakfast plate (egg, toast, coffee). | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "target": "あさごはん",
+      "uncertain": true
+    },
+    {
+      "id": "bangohan",
+      "english": "Dinner, supper",
+      "category": "Food",
+      "reviewNote": "Not glossed as a standalone word in the running text (only appears inside KS2 and the phrase なにも たべませんでした); identified as item ③ in the WORD POWER food illustration (Page_076_Image_0001.jpg), a clock reading P.M. above a fish set meal. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "target": "ばんごはん",
+      "uncertain": true
+    },
+    {
+      "id": "hirugohan",
+      "english": "Lunch",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ひるごはん"
+    },
+    {
+      "id": "raamen",
+      "english": "Ramen (Chinese noodle)",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ラーメン"
+    },
+    {
+      "id": "osushi",
+      "english": "Sushi",
+      "category": "Food",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (explicitly re-taught as a dedicated Key Sentence entry)",
+      "target": "(お)すし",
+      "uncertain": true
+    },
+    {
+      "id": "suteeki",
+      "english": "Steak",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ステーキ"
+    },
+    {
+      "id": "suupu",
+      "english": "Soup",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "スープ"
+    },
+    {
+      "id": "nihonshu",
+      "english": "Sake (Japanese rice liquor)",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "にほんしゅ"
+    },
+    {
+      "id": "ocha",
+      "english": "Green tea",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "おちゃ"
+    },
+    {
+      "id": "mizu",
+      "english": "Water",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "みず"
+    },
+    {
+      "id": "aisukuriimu",
+      "english": "Ice cream",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "アイスクリーム"
+    },
+    {
+      "id": "nomimasu",
+      "english": "Drink",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "のみます"
+    },
+    {
+      "id": "ks2-ate-supper",
+      "english": "Smith-san ate supper at a restaurant yesterday.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "スミスさんはきのうレストランでばんごはんをたべました"
+    },
+    {
+      "id": "ks3-ate-nothing",
+      "english": "Emma-san did not eat anything at the party.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "エマさんはパーティーでなにもたべませんでした"
+    },
+    {
+      "id": "kaimasu",
+      "english": "Buy",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "かいます"
+    },
+    {
+      "id": "yomimasu",
+      "english": "Read",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "よみます"
+    },
+    {
+      "id": "kikimasu",
+      "english": "Listen to",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ききます"
+    },
+    {
+      "id": "benkyou-wo-shimasu",
+      "english": "Study",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "べんきょうをします"
+    },
+    {
+      "id": "kaimono-wo-shimasu",
+      "english": "Shop",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "かいものをします"
+    },
+    {
+      "id": "shigoto-wo-shimasu",
+      "english": "Work",
+      "category": "Work & Occupations",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "target": "しごとをします",
+      "uncertain": true
+    },
+    {
+      "id": "tabemasen",
+      "english": "Do not eat",
+      "category": "Food",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "たべません"
+    },
+    {
+      "id": "nomimasen",
+      "english": "Do not drink",
+      "category": "Food",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "のみません"
+    },
+    {
+      "id": "nomimashita",
+      "english": "Drank",
+      "category": "Food",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "のみました"
+    },
+    {
+      "id": "nomimasendeshita",
+      "english": "Did not drink",
+      "category": "Food",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "のみませんでした"
+    },
+    {
+      "id": "shimasen",
+      "english": "Do not do",
+      "category": "Other",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "しません"
+    },
+    {
+      "id": "shimashita",
+      "english": "Did",
+      "category": "Other",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "しました"
+    },
+    {
+      "id": "shimasendeshita",
+      "english": "Did not do",
+      "category": "Other",
+      "reviewNote": "From this lesson's verb-conjugation exercise (present/past, affirmative/negative), which the extraction did not capture.",
+      "target": "しませんでした"
+    },
+    {
+      "id": "nin-suffix",
+      "english": "…people (counter)",
+      "category": "Numbers",
+      "reviewNote": "Written 〜にん in the source.",
+      "target": "にん"
+    },
+    {
+      "id": "nannin",
+      "english": "How many people",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "なんにん"
+    },
+    {
+      "id": "sannin",
+      "english": "Three people",
+      "category": "Numbers",
+      "reviewNote": "Not in the running text; taken from the WORD POWER \"Numbers of people\" illustration (Page_077_Image_0001.jpg).",
+      "target": "さんにん"
+    },
+    {
+      "id": "hitori",
+      "english": "One person",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ひとり"
+    },
+    {
+      "id": "gonin",
+      "english": "Five people",
+      "category": "Numbers",
+      "reviewNote": "Not in the running text; taken from the WORD POWER \"Numbers of people\" illustration (Page_077_Image_0001.jpg).",
+      "target": "ごにん"
+    },
+    {
+      "id": "futari",
+      "english": "Two people",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ふたり"
+    },
+    {
+      "id": "yonin",
+      "english": "Four people",
+      "category": "Numbers",
+      "reviewNote": "Not in the running text; taken from the WORD POWER \"Numbers of people\" illustration (Page_077_Image_0001.jpg).",
+      "target": "よにん"
+    },
+    {
+      "id": "eiga",
+      "english": "Movie",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "えいが"
+    },
+    {
+      "id": "ongaku",
+      "english": "Music",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "おんがく"
+    },
+    {
+      "id": "rajio",
+      "english": "Radio",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "ラジオ"
+    },
+    {
+      "id": "nyuusu",
+      "english": "News",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "ニュース"
+    },
+    {
+      "id": "baa",
+      "english": "Bar",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "バー"
+    },
+    {
+      "id": "konbini",
+      "english": "Convenience store",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "コンビニ"
+    },
+    {
+      "id": "toshokan",
+      "english": "Library",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "としょかん"
+    },
+    {
+      "id": "nanmeisama-desu-ka",
+      "english": "How many people?",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "なんめいさまですか"
+    },
+    {
+      "id": "gorufu-wo-shimasu",
+      "english": "Play golf",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ゴルフをします"
+    },
+    {
+      "id": "hakone",
+      "english": "Hakone (popular travel destination southwest of Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "はこね"
+    },
+    {
+      "id": "tenisukooto",
+      "english": "Tennis court",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "テニスコート"
+    },
+    {
+      "id": "degozaimasu",
+      "english": "(polite form of です)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Written 〜でございます in the source.",
+      "target": "でございます"
+    },
+    {
+      "id": "yoyaku",
+      "english": "Reservation",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "よやく"
+    },
+    {
+      "id": "wakarimasu",
+      "english": "Understand, see, get it",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (explicitly re-taught as a dedicated vocabulary-table row and a Key Sentence entry)",
+      "target": "わかります",
+      "uncertain": true
+    },
+    {
+      "id": "wakarimashita",
+      "english": "Understood, I see, I understand",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "わかりました"
+    },
+    {
+      "id": "onamae",
+      "english": "Your name",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "おなまえ"
+    },
+    {
+      "id": "odenwabangou",
+      "english": "Your phone number",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "おでんわばんごう"
+    },
+    {
+      "id": "furiimaaketto",
+      "english": "Flea market",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "フリーマーケット"
+    },
+    {
+      "id": "fib-suzuki-mimasu-kabuki",
+      "english": "Suzuki-san will watch kabuki.",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "すずきさんはかぶきをみます",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-suzuki-kikimasu-nyuusu",
+      "english": "Suzuki-san will listen to the news.",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "すずきさんはニュースをききます",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-suzuki-resutoran-biiru",
+      "english": "Suzuki-san will drink beer at a restaurant.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "すずきさんはレストランでビールをのみます",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-suzuki-suupaa-mizu",
+      "english": "Suzuki-san will buy water at the supermarket.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "すずきさんはスーパーでみずをかいます",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-omatsuri-nani-kaimashitaka",
+      "english": "What did you buy at the festival?",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "おまつりでなにをかいましたか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-nanimo-kaimasendeshita",
+      "english": "I didn't buy anything.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "なにもかいませんでした",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-sannin-desu",
+      "english": "Three people.",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんにんです",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tomodachi-gorufu-shimashita",
+      "english": "I played golf with a friend.",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ともだちとゴルフをしました",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-doko-de-shimashitaka",
+      "english": "Where did you do it?",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "どこでしましたか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-ginza-depaato-de-shimashita",
+      "english": "I did it at the department store in Ginza.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ぎんざのデパートでしました",
+      "aiSuggested": true
+    }
+  ]
+}

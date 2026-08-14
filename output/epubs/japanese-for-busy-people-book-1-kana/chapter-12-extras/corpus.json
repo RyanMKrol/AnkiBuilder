@@ -1,0 +1,464 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "chapterNumber": 32,
+    "chapterLabel": "Lesson 12: Asking about Places: What Is at Nikko? (Extras)"
+  },
+  "items": [
+    {
+      "id": "ex12-mizuumi-ya-onsen-ga-arimasu",
+      "english": "There are lakes, hot springs, and other sights.",
+      "category": "Travel & Tourism",
+      "target": "みずうみやおんせんがあります",
+      "scene": "answering what there is to see at Hakone",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7, the printed example dialogue, Kato's reply. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "ex12-onsen-mo-arimasu",
+      "english": "There are also hot springs.",
+      "category": "Travel & Tourism",
+      "target": "おんせんもあります",
+      "note": "も (mo) pushes が (ga) out: a noun cannot carry both, so おんせんが becomes おんせんも.",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, second half of Nakamura's reply. The lesson's only も + あります example."
+    },
+    {
+      "id": "ex12-yonkai-ni-dare-ga-imasu-ka",
+      "english": "Who is on the fourth floor?",
+      "category": "Family & People",
+      "target": "4かいにだれがいますか",
+      "reading": "よんかいにだれがいますか",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 6B alternative 1, completed on the printed example となりのへやにだれがいますか."
+    },
+    {
+      "id": "ex12-sangai-ni-dare-ga-imasu-ka",
+      "english": "Who is on the third floor?",
+      "category": "Family & People",
+      "target": "3がいにだれがいますか",
+      "reading": "さんがいにだれがいますか",
+      "note": "3がい (san-gai), not 3かい: the か of the counter voices to が after さん.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3B dialogue 2. さんがい is carded as a Lesson 5 counter but never in a sentence."
+    },
+    {
+      "id": "ex12-onna-no-hito-ga-imasu",
+      "english": "There is a woman there.",
+      "category": "Family & People",
+      "target": "おんなのひとがいます",
+      "scene": "answering who is in the parking lot",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3B dialogue 1, B's line. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "v12-hoteru-no-ushiro-ni-kouen-ga-arimasu",
+      "english": "There is a park behind the hotel.",
+      "category": "Travel & Tourism",
+      "target": "ホテルのうしろにこうえんがあります",
+      "note": "まえ (mae) and うしろ (ushiro) are an opposite pair, the front-to-back version of what うえ (ue) and した (shita) do vertically.",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary job: うしろ was the only Positions word with no sentence anywhere in the index or Wave 1. Constructed."
+    },
+    {
+      "id": "ex12-tsukue-no-ue-ni-nani-ga-arimasu-ka",
+      "english": "What is on the desk?",
+      "category": "Home & Household",
+      "target": "つくえのうえになにがありますか",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 6A alternative 1, completed on the printed example ひきだしのなかになにがありますか."
+    },
+    {
+      "id": "ex12-nichiyoubi-ni-kuruma-de-odaiba-ni-ikimasu",
+      "english": "On Sunday, I'm going to Odaiba by car.",
+      "category": "Travel & Tourism",
+      "target": "にちようびにくるまでおだいばにいきます",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7 dialogue 2, completed on the printed example."
+    },
+    {
+      "id": "ex12-kaigishitsu-ni-dare-ga-imasu-ka",
+      "english": "Who is in the meeting room?",
+      "category": "Family & People",
+      "target": "かいぎしつにだれがいますか",
+      "note": "かいぎしつ (kaigishitsu) takes に (ni) directly with no の (no) in front, because it is already a place noun rather than a position word.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 6B alternative 2."
+    },
+    {
+      "id": "ex12-ryokan-no-mae-ni-nani-ga-arimasu-ka",
+      "english": "What is in front of the Japanese inn?",
+      "category": "Travel & Tourism",
+      "target": "りょかんのまえになにがありますか",
+      "note": "まえ (mae) covers both 'in front of' in space and 'before' in time.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 5 dialogue 2, completed on the printed example."
+    },
+    {
+      "id": "p12-tenpura-tte-nan-desu-ka",
+      "english": "What is tempura?",
+      "category": "Food",
+      "target": "てんぷらってなんですか",
+      "note": "って (tte) is a casual contraction that picks up a word you have just heard and marks it as the thing you are asking about. It stands in for は (wa) here; the formal equivalent is とはなんですか (to wa nan desu ka).",
+      "aiSuggested": true,
+      "reviewNote": "Pattern job: a second instance of the chapter's ってなんですか frame, on てんぷら from Lesson 8, so the pattern reads as a slot rather than being welded to おんせん. Constructed."
+    },
+    {
+      "id": "ex12-uketsuke-ni-otoko-no-hito-ga-imasu",
+      "english": "There is a man at the information desk.",
+      "category": "Family & People",
+      "target": "うけつけにおとこのひとがいます",
+      "note": "おとこのひと (otoko no hito) is the neutral way to say 'man'; おとこ (otoko) alone can sound blunt.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 2B alternative 1, completed on the printed example うけつけにおんなのひとがいます."
+    },
+    {
+      "id": "ex12-yonkai-ni-nani-ga-arimasu-ka",
+      "english": "What is there on the fourth floor?",
+      "category": "Directions",
+      "target": "4かいになにがありますか",
+      "reading": "よんかいになにがありますか",
+      "note": "4かい is read よんかい (yon-kai), never しかい (shi-kai).",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3A dialogue 2, completed on the printed example."
+    },
+    {
+      "id": "ex12-teeburu-no-shita-ni-nani-ga-arimasu-ka",
+      "english": "What is under the table?",
+      "category": "Home & Household",
+      "target": "テーブルのしたになにがありますか",
+      "note": "テーブル (tēburu) is a low or dining table, while つくえ (tsukue) is a desk you work at.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 6A alternative 2. した is carded as a bare position word only."
+    },
+    {
+      "id": "ex12-yuubinkyoku-ga-arimasu",
+      "english": "There is a post office.",
+      "category": "Directions",
+      "target": "ゆうびんきょくがあります",
+      "scene": "answering what is on the second floor of the building",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3A dialogue 1, B's line. Elliptical, so it carries a scene. Only the ぎんこう answer was carded."
+    },
+    {
+      "id": "ex12-poketto-no-naka-ni-nani-ga-arimasu-ka",
+      "english": "What is in the pocket?",
+      "category": "Home & Household",
+      "target": "ポケットのなかになにがありますか",
+      "note": "なか (naka) works for the inside of anything with an inside, from a pocket to a whole building.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 6A alternative 3. ポケット is carded as bare vocabulary only."
+    },
+    {
+      "id": "v12-beddo-no-shita-ni-kaban-ga-arimasu",
+      "english": "There is a bag under the bed.",
+      "category": "Home & Household",
+      "target": "ベッドのしたにかばんがあります",
+      "note": "A ベッド (beddo) is the Western-style bed of a hotel room, as opposed to a ふとん (futon), the bedding laid out on the floor in a Japanese-style room.",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary job: ベッド appeared only as a bare WORD POWER item. Constructed."
+    },
+    {
+      "id": "ex12-uketsuke-ni-tanaka-san-ga-imasu",
+      "english": "Tanaka-san is at the information desk.",
+      "category": "Family & People",
+      "target": "うけつけにたなかさんがいます",
+      "note": "います (imasu) is required because たなかさん is animate; あります (arimasu) would be wrong for a person.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 2B alternative 2. The deck has no います sentence with a named person."
+    },
+    {
+      "id": "ex12-kaigishitsu-ga-arimasu",
+      "english": "There is a meeting room.",
+      "category": "Directions",
+      "target": "かいぎしつがあります",
+      "scene": "answering what is on the fourth floor of the building",
+      "note": "かいぎしつ (kaigishitsu) is かいぎ (kaigi, 'meeting') from Lesson 3 plus しつ (shitsu, 'room').",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3A dialogue 2, B's line. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "ex12-konbini-no-mae-ni-dare-ga-imasu-ka",
+      "english": "Who is in front of the convenience store?",
+      "category": "Family & People",
+      "target": "コンビニのまえにだれがいますか",
+      "note": "コンビニ (konbini) is clipped from コンビニエンスストア (konbiniensu sutoa).",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 6B alternative 3. The deck has コンビニ from Lesson 8 but no sentence pairing it with a position word."
+    },
+    {
+      "id": "ex12-doyoubi-ni-ema-san-to-nikkou-ni-ikimasu",
+      "english": "On Saturday, I'm going to Nikko with Emma-san.",
+      "category": "Travel & Tourism",
+      "target": "どようびにエマさんとにっこうにいきます",
+      "note": "にっこう (nikkō) is a mountain temple town about two hours north of Tokyo, a standard weekend trip.",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Nakamura's opening line, which sets up the whole lesson."
+    },
+    {
+      "id": "ex12-chiisai-kouen-ga-arimasu",
+      "english": "There is a small park.",
+      "category": "Travel & Tourism",
+      "target": "ちいさいこうえんがあります",
+      "scene": "answering what is in front of the Japanese inn",
+      "note": "An い-adjective sits straight in front of its noun with no linking particle, unlike a な-adjective.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 5 dialogue 2, B's line. The small park comes from the exercise ILLUSTRATION, opposite the large lake in the example answer. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "p12-eki-no-chikaku-ni-yuubinkyoku-mo-arimasu",
+      "english": "There is also a post office near the station.",
+      "category": "Directions",
+      "target": "えきのちかくにゆうびんきょくもあります",
+      "note": "も (mo) marks the post office as an addition to something already mentioned. With ゆうびんきょくが (yūbinkyoku ga) instead, it would be presented as the first piece of news.",
+      "aiSuggested": true,
+      "reviewNote": "Particle job: the deck's only も + あります is the elliptical おんせんもあります, with no place phrase. This gives the full placeに + noun も + あります frame. Constructed."
+    },
+    {
+      "id": "v12-kinou-sobaya-de-soba-o-tabemashita",
+      "english": "I ate soba at a soba shop yesterday.",
+      "category": "Food",
+      "target": "きのうそばやでそばをたべました",
+      "note": "そば (soba) is a thin buckwheat noodle, darker and firmer than うどん (udon), the thick white wheat one.",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary job: そば is listed on its own in the chapter vocabulary but appeared in no sentence, only inside the compound そばや. Constructed."
+    },
+    {
+      "id": "p12-kaigishitsu-ni-sumisu-san-mo-imasu",
+      "english": "Smith-san is also in the meeting room.",
+      "category": "Family & People",
+      "target": "かいぎしつにスミスさんもいます",
+      "note": "も (mo) pushes out が (ga) for animate subjects exactly as it does for inanimate ones, so もいます (mo imasu) and もあります (mo arimasu) behave the same way.",
+      "aiSuggested": true,
+      "reviewNote": "Particle job: も + います was completely empty across the index and Wave 1, which only had も + あります. Constructed."
+    },
+    {
+      "id": "ex12-nikkou-ni-nani-ga-arimasu-ka",
+      "english": "What is there at Nikko?",
+      "category": "Travel & Tourism",
+      "target": "にっこうになにがありますか",
+      "note": "なにが, not なにを (nani o) — with あります (arimasu) the thing that exists is marked by が (ga), never by the object particle を (o).",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Raja's question. The deck has 1かいになにがありますか but not the title question of this lesson."
+    },
+    {
+      "id": "ex12-hakone-ni-nani-ga-arimasu-ka",
+      "english": "What is there at Hakone?",
+      "category": "Travel & Tourism",
+      "target": "はこねになにがありますか",
+      "note": "はこね (hakone) is a hot-spring area southwest of Tokyo, known for its views of Mt. Fuji.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7, the printed example dialogue, Smith's line."
+    },
+    {
+      "id": "ex12-nikai-ni-nani-ga-arimasu-ka",
+      "english": "What is there on the second floor?",
+      "category": "Directions",
+      "target": "2かいになにがありますか",
+      "reading": "にかいになにがありますか",
+      "note": "2かい is read にかい (ni-kai); the same counter voices to さんがい (san-gai) after 3.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3A dialogue 1, completed on the printed example 1かいになにがありますか."
+    },
+    {
+      "id": "ex12-teemapaaku-ya-onsen-ga-arimasu",
+      "english": "There are theme parks, hot springs, and other sights.",
+      "category": "Travel & Tourism",
+      "target": "テーマパークやおんせんがあります",
+      "scene": "answering what there is to see at Odaiba",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7 dialogue 2, Kato's reply. Elliptical, so it carries a scene. Uses テーマパーク, one of the two vocabulary items the extraction had skipped."
+    },
+    {
+      "id": "ex12-nikkou-ni-mizuumi-ga-arimasu",
+      "english": "There is a lake at Nikko.",
+      "category": "Travel & Tourism",
+      "target": "にっこうにみずうみがあります",
+      "note": "みずうみ (mizuumi) is an inland lake; うみ (umi) from Lesson 10 is the sea.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 2A alternative 2, completed on the printed example."
+    },
+    {
+      "id": "ex12-kamakura-ni-nani-ga-arimasu-ka",
+      "english": "What is there at Kamakura?",
+      "category": "Travel & Tourism",
+      "target": "かまくらになにがありますか",
+      "note": "かまくら (kamakura) was Japan's capital in the 12th and 13th centuries and is an easy day trip from Tokyo.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7 dialogue 1, Smith's line."
+    },
+    {
+      "id": "ex12-odaiba-ni-nani-ga-arimasu-ka",
+      "english": "What is there at Odaiba?",
+      "category": "Travel & Tourism",
+      "target": "おだいばになにがありますか",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7 dialogue 2, Smith's line. Lesson 10 carded おだいばはどんなところですか but not this question."
+    },
+    {
+      "id": "ex12-tanaka-san-ga-imasu",
+      "english": "Tanaka-san is there.",
+      "category": "Family & People",
+      "target": "たなかさんがいます",
+      "scene": "answering who is at the information desk",
+      "note": "が (ga) marks たなかさん as exactly the piece of information the questioner was missing.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3B, the printed example answer. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "v12-heya-ni-denki-potto-ga-arimasu",
+      "english": "There is an electric kettle in the room.",
+      "category": "Home & Household",
+      "target": "へやにでんきポットがあります",
+      "note": "A でんきポット (denki potto) is a plug-in dispenser that keeps water hot all day, not a stovetop kettle you boil once. Hotel rooms and offices in Japan nearly always have one.",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary job: でんきポット appeared only as a bare WORD POWER item. Constructed."
+    },
+    {
+      "id": "ex12-uketsuke-ni-dare-ga-imasu-ka",
+      "english": "Who is at the information desk?",
+      "category": "Family & People",
+      "target": "うけつけにだれがいますか",
+      "note": "だれが (dare ga), not だれは: a question word is always the new information, so it takes が (ga).",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3B, the printed example question, the lesson's model だれが question."
+    },
+    {
+      "id": "ex12-sobaya-ga-arimasu-w1",
+      "english": "There is a soba shop.",
+      "category": "Travel & Tourism",
+      "target": "そばやがあります",
+      "scene": "answering what is next to the Japanese inn",
+      "note": "そばや (sobaya) is そば (soba) plus the shop suffix や (ya) from Lesson 9, the same one in てんぷらや (tenpuraya).",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 5 dialogue 1, B's line. This alternative is drawn in the exercise ILLUSTRATION rather than spelled out in prose. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "ex12-ookii-otera-ya-jinja-ga-arimasu",
+      "english": "There are large temples, shrines, and other sights.",
+      "category": "Travel & Tourism",
+      "target": "おおきいおてらやじんじゃがあります",
+      "scene": "answering what there is to see at Nikko",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Nakamura's reply. Elliptical, so it carries a scene. Near-cousin of the Key Sentence にっこうにおてらやじんじゃがあります, which keeps にっこうに and drops おおきい."
+    },
+    {
+      "id": "v12-tsukue-no-mae-ni-isu-ga-arimasu",
+      "english": "There is a chair in front of the desk.",
+      "category": "Home & Household",
+      "target": "つくえのまえにいすがあります",
+      "note": "いす (isu) covers any chair or seat, including one on a train. A sofa is not counted as an いす: it gets its own word, ソファー (sofā).",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary job: いす appeared only as a bare WORD POWER item. Constructed."
+    },
+    {
+      "id": "f12-kyonen-eki-no-mae-ni-konbini-ga-arimashita",
+      "english": "Last year there was a convenience store in front of the station.",
+      "category": "Directions",
+      "target": "きょねんえきのまえにコンビニがありました",
+      "note": "あります (arimasu) is an ordinary ます-verb, so its past is built exactly like たべました (tabemashita) and いきました (ikimashita) in Lesson 8.",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: ありました, the past affirmative cell of the chapter's verb table (an image in the EPUB). Constructed. Fixed frame shared with the ありませんでした card that follows, so the ending is the only variable."
+    },
+    {
+      "id": "ex12-sumisu-san-ga-imasu",
+      "english": "Smith-san is there.",
+      "category": "Family & People",
+      "target": "スミスさんがいます",
+      "scene": "answering who is on the third floor",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3B dialogue 2, B's line. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "f12-kinou-kaigishitsu-ni-tanaka-san-ga-imasen-deshita",
+      "english": "Yesterday Tanaka-san was not in the meeting room.",
+      "category": "Family & People",
+      "target": "きのうかいぎしつにたなかさんがいませんでした",
+      "note": "Swap たなかさんが (tanaka-san ga) for だれも (dare mo) and you get だれもいませんでした (dare mo imasen deshita), 'nobody was there', the past of the だれもいません (dare mo imasen) in this lesson's exercises.",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: いませんでした, the past negative cell of the います row. Constructed. Same frame as the いました card above."
+    },
+    {
+      "id": "f12-kinou-kaigishitsu-ni-tanaka-san-ga-imashita",
+      "english": "Yesterday Tanaka-san was in the meeting room.",
+      "category": "Family & People",
+      "target": "きのうかいぎしつにたなかさんがいました",
+      "note": "います (imasu) is for animate subjects only, so people, animals and insects. A kettle or a building in the same slot would take ありました (arimashita).",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: いました, the past affirmative cell of the います row. Constructed. Fixed frame shared with the いませんでした card that follows."
+    },
+    {
+      "id": "ex12-chuushajou-ni-dare-ga-imasu-ka",
+      "english": "Who is in the parking lot?",
+      "category": "Family & People",
+      "target": "ちゅうしゃじょうにだれがいますか",
+      "note": "ちゅうしゃ (chūsha) alone means parking, so ちゅうしゃじょう is literally a parking place.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 3B dialogue 1, completed on the printed example."
+    },
+    {
+      "id": "ex12-ryokan-no-tonari-ni-nani-ga-arimasu-ka",
+      "english": "What is next to the Japanese inn?",
+      "category": "Travel & Tourism",
+      "target": "りょかんのとなりになにがありますか",
+      "note": "となり (tonari) means immediately beside or next door, while ちかく (chikaku) is a looser 'somewhere nearby'.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 5 dialogue 1, completed on the printed example りょかんのちかくになにがありますか."
+    },
+    {
+      "id": "f12-kyonen-eki-no-mae-ni-konbini-ga-arimasen-deshita",
+      "english": "Last year there was no convenience store in front of the station.",
+      "category": "Directions",
+      "target": "きょねんえきのまえにコンビニがありませんでした",
+      "note": "The past negative is ありませんでした (arimasen deshita). There is no ありませんかった: the なかった (nakatta) ending from Lesson 11 belongs to い-adjectives, not to verbs.",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: ありませんでした, the past negative cell of the chapter's verb table. Constructed. Same frame as the ありました card above."
+    },
+    {
+      "id": "ex12-nikkou-ni-jinja-ga-arimasu",
+      "english": "There is a shrine at Nikko.",
+      "category": "Travel & Tourism",
+      "target": "にっこうにじんじゃがあります",
+      "note": "じんじゃ (jinja) is a Shinto shrine, while おてら (otera) is a Buddhist temple. Nikko is known for having both.",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 2A alternative 1, completed on the printed example にっこうにおてらがあります."
+    },
+    {
+      "id": "v12-sofaa-no-chikaku-ni-terebi-ga-arimasu",
+      "english": "There is a television near the sofa.",
+      "category": "Home & Household",
+      "target": "ソファーのちかくにテレビがあります",
+      "note": "ソファー (sofā) is also written ソファ without the long mark; the two spellings are the same word.",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary job: ソファー appeared only as a bare WORD POWER item. Constructed."
+    },
+    {
+      "id": "ex12-nichiyoubi-ni-kuruma-de-kamakura-ni-ikimasu",
+      "english": "On Sunday, I'm going to Kamakura by car.",
+      "category": "Travel & Tourism",
+      "target": "にちようびにくるまでかまくらにいきます",
+      "note": "くるまで (kuruma de) uses the で (de) of means from Lesson 7, the same one in しんかんせんで (shinkansen de).",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7 dialogue 1, completed on the printed example. Only the はこね version is carded."
+    },
+    {
+      "id": "ex12-reizouko-no-naka-ni-mizu-ga-arimasu",
+      "english": "There is water in the refrigerator.",
+      "category": "Home & Household",
+      "target": "れいぞうこのなかにみずがあります",
+      "note": "みず (mizu) is plain cold water; hot water has its own word, おゆ (oyu).",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 4 alternative 2, completed on the printed example テーブルのうえにはながあります."
+    },
+    {
+      "id": "ex12-jinja-ya-otera-ga-arimasu",
+      "english": "There are shrines, temples, and other sights.",
+      "category": "Travel & Tourism",
+      "target": "じんじゃやおてらがあります",
+      "scene": "answering what there is to see at Kamakura",
+      "aiSuggested": true,
+      "reviewNote": "EXERCISE 7 dialogue 1, Kato's reply. Elliptical, so it carries a scene. Reverses the noun order of the Key Sentence にっこうにおてらやじんじゃがあります."
+    }
+  ]
+}

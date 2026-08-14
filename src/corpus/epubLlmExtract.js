@@ -90,7 +90,9 @@ function validateItem(item, index) {
  * chapters, and nothing distinguishes that from "read it, found nothing".
  */
 export function diffImageCoverage(chapterHtml, coverage) {
-  const referenced = referencedImageSrcs(chapterHtml);
+  // `referencedImageSrcs` returns a Set (its other callers iterate it); an array is what the report
+  // wants, and the order is the markup's own, which is the order a reader would check them in.
+  const referenced = [...referencedImageSrcs(chapterHtml)];
   if (!coverage) {
     return { referenced, accountedFor: [], unaccountedFor: referenced, reported: false };
   }

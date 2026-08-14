@@ -238,6 +238,7 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -315,6 +316,7 @@ test("assemble: --lesson resolves a multi-file lesson, extracts the whole spine 
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         resolveLesson,
         chapterRangeCachePath,
         extractChapterRangeToFile,
@@ -371,11 +373,19 @@ test("assemble: --list-lessons prints the book's lessons and exits without assem
       {
         listLessons,
         assembleCorpusFromChapter,
+        hashEpubFile: () => "stubhash",
+        resolveLabelDecoding: () => 1,
+        describeBookCache: () => ({ registered: false, epubHash: "stubhash" }),
+        buildShapeReport: () => ({ stub: true }),
+        formatShapeReport: () => ["shape report:", "  WARN: something is off"],
         log: (msg) => logs.push(msg),
       },
     );
 
     assert.ok(logs.some((m) => m.includes("Lesson 1: Meeting") && m.includes("spine 2-3")));
+    // The shape report is the half that says whether the book will WORK, so it prints at the
+    // same moment as the list a person picks from.
+    assert.ok(logs.some((m) => m.includes("WARN: something is off")));
     assert.ok(!existsSync(runPaths(runDir).corpus));
   });
 });
@@ -420,6 +430,7 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -482,6 +493,7 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -669,6 +681,7 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         resolveBookSlug,
         materializeBookInOutput,
         resolveChapterRunDir,
@@ -940,6 +953,7 @@ test("assemble: logs one line per flagged item for both passes, not just a count
       ],
       {
         registerEpub,
+        resolveLabelDecoding: () => 1,
         chapterCachePath,
         extractChapterToFile,
         assembleCorpusFromChapter,
@@ -2117,6 +2131,7 @@ test("assemble: warns when an earlier lesson of the book is not marked reviewed"
       ],
       {
         registerEpub: () => ({ epubHash: "hash" }),
+        resolveLabelDecoding: () => 1,
         resolveBookSlug: () => "book",
         materializeBookInOutput: () => {},
         resolveChapterRunDir: () => runDir,
@@ -2433,4 +2448,92 @@ test("audio: an excluded card ends with no audio key, not a null one", async () 
     // The whole point: the file must still be writable afterwards.
     assert.doesNotThrow(() => validateCards(written));
   });
+});
+
+test("epub cache: reports a book's cached artifacts and clears nothing without --clear", async () => {
+  const logs = [];
+  let cleared = null;
+
+  await runCli(["epub", "cache", "abc123"], {
+    describeBookCache: () => ({
+      registered: true,
+      epubHash: "abc123",
+      dir: "/lib/epubs/abc123",
+      cacheVersion: 2,
+      chapters: { present: true, files: 12, generatedAt: "2026-07-01T10:00:00.000Z" },
+      conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      taughtIndex: { present: false },
+      reviewedCorpora: 5,
+      staleRoots: [],
+    }),
+    clearBookCache: (...args) => {
+      cleared = args;
+      return [];
+    },
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.ok(logs.some((m) => m.includes("cache version: v2")));
+  assert.ok(logs.some((m) => m.includes("conventions.md: generated 2026-07-14")));
+  assert.ok(logs.some((m) => m.includes("reviewed corpora: 5")));
+  assert.equal(cleared, null, "reporting must never delete");
+});
+
+test("epub cache --clear defaults to the free chapter cache, never the paid artifacts", async () => {
+  const logs = [];
+  let kinds = null;
+
+  await runCli(["epub", "cache", "--clear", "abc123"], {
+    describeBookCache: () => ({
+      registered: true,
+      epubHash: "abc123",
+      dir: "/lib/epubs/abc123",
+      cacheVersion: 2,
+      chapters: { present: true, files: 3, generatedAt: null },
+      conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      taughtIndex: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      reviewedCorpora: 5,
+      staleRoots: [],
+    }),
+    clearBookCache: (hash, options) => {
+      kinds = options.kinds;
+      return ["/lib/epubs/abc123/cache-v2"];
+    },
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.deepEqual(kinds, ["chapters"]);
+  assert.ok(logs.some((m) => m.includes("corpora/ untouched")));
+});
+
+test("epub cache --clear --conventions asks for the paid artifact by name", async () => {
+  let kinds = null;
+
+  await runCli(["epub", "cache", "abc123", "--clear", "--conventions", "--taught-index"], {
+    describeBookCache: () => ({
+      registered: true,
+      epubHash: "abc123",
+      dir: "/lib/epubs/abc123",
+      cacheVersion: 2,
+      chapters: { present: false, files: 0, generatedAt: null },
+      conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      taughtIndex: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      reviewedCorpora: 0,
+      staleRoots: [],
+    }),
+    clearBookCache: (hash, options) => {
+      kinds = options.kinds;
+      return [];
+    },
+    log: () => {},
+  });
+
+  assert.deepEqual(kinds, ["conventions", "taught-index"]);
+});
+
+test("epub cache without a hash fails rather than guessing a book", async () => {
+  await assert.rejects(
+    runCli(["epub", "cache"], { describeBookCache: () => ({}), log: () => {} }),
+    /needs a book hash/,
+  );
 });

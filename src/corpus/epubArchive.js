@@ -1,7 +1,7 @@
 import { readFileSync, mkdirSync, statSync } from "fs";
 import { writeFileAtomic } from "../util/atomicWrite.js";
 import { inflateRawSync } from "zlib";
-import { posix, dirname, join } from "path";
+import { posix, dirname, join, resolve, sep } from "path";
 
 const EOCD_SIGNATURE = 0x06054b50;
 const CENTRAL_DIRECTORY_SIGNATURE = 0x02014b50;
@@ -104,6 +104,20 @@ function findTags(xml, tagName) {
   return [...xml.matchAll(pattern)].map((m) => m[1]);
 }
 
+// Markup that is present in the file but is NOT part of the document: comments, and CDATA
+// sections (whose contents are script/style text, not elements). Every scanner in this file
+// is a regex over raw source, so without this a commented-out `<a href>` in a nav document
+// becomes a phantom lesson — which shifts every ordinal after it, so `--lesson 7` silently
+// builds lesson 6 — and a commented-out `<item properties="nav">` can be selected as the
+// navigation document.
+//
+// Applied ONLY to text being scanned. Chapter content written to disk stays raw: the
+// extraction model reads the real file, and stripping anything from it would change what a
+// paid pass sees.
+function stripInertMarkup(xml) {
+  return xml.replace(/<!--[\s\S]*?-->/g, " ").replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, " ");
+}
+
 function parseAttrs(attrString) {
   const attrs = {};
   // Either quote style — single-quoted attributes are valid XML and real EPUB tooling
@@ -127,7 +141,7 @@ function parseContainerXml(entries) {
     throw new Error(`Not a valid EPUB: ${CONTAINER_PATH} not found`);
   }
 
-  const xml = containerEntry.data.toString("utf-8");
+  const xml = stripInertMarkup(containerEntry.data.toString("utf-8"));
   const [rootfileAttrs] = findTags(xml, "rootfile");
   if (!rootfileAttrs) {
     throw new Error(`Not a valid EPUB: no <rootfile> found in ${CONTAINER_PATH}`);
@@ -139,6 +153,56 @@ function parseContainerXml(entries) {
   }
 
   return fullPath;
+}
+
+// The zip-level encryption flag (general-purpose bit 0, checked in the central directory)
+// catches only zip-encrypted archives. Adobe ADEPT — the DRM on most retail EPUBs — leaves the
+// zip itself perfectly readable and records the encryption in META-INF/encryption.xml instead,
+// so an ADEPT book parses "successfully" into ciphertext and would hand 40+ files of garbage to
+// a paid whole-book pass.
+//
+// The check is narrow ON PURPOSE. IDPF and Adobe font obfuscation use this same file on
+// completely readable books, so the presence of encryption.xml means nothing by itself: only an
+// encrypted SPINE DOCUMENT is DRM as far as this tool is concerned. Namespace prefixes are
+// arbitrary in XML (`enc:`, `e:`, none), so the element name is matched prefix-agnostically.
+const ENCRYPTION_PATH = "META-INF/encryption.xml";
+const CIPHER_REFERENCE_PATTERN =
+  /<(?:[A-Za-z0-9_.-]+:)?CipherReference\b[^>]*\bURI\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+
+function assertSpineNotEncrypted(entries, chapters) {
+  const encryptionEntry = entries.find((e) => e.name === ENCRYPTION_PATH);
+  if (!encryptionEntry) {
+    return;
+  }
+
+  const xml = stripInertMarkup(encryptionEntry.data.toString("utf-8"));
+  const spineHrefs = new Set(chapters.map((chapter) => chapter.href));
+  const encryptedSpineFiles = [];
+  for (const match of xml.matchAll(CIPHER_REFERENCE_PATTERN)) {
+    const raw = match[1] ?? match[2];
+    if (!raw) continue;
+    // URIs in encryption.xml are relative to the archive ROOT, and are commonly
+    // percent-encoded even when the OPF's own hrefs for the same files are not.
+    let decoded;
+    try {
+      decoded = decodeURIComponent(raw);
+    } catch {
+      decoded = raw;
+    }
+    const archivePath = posix.normalize(decoded.replace(/^\//, ""));
+    if (spineHrefs.has(archivePath)) {
+      encryptedSpineFiles.push(archivePath);
+    }
+  }
+
+  if (encryptedSpineFiles.length > 0) {
+    throw new Error(
+      `Unsupported EPUB: DRM-protected — ${ENCRYPTION_PATH} encrypts ` +
+        `${encryptedSpineFiles.length} of this book's ${chapters.length} spine document(s), ` +
+        `starting with "${encryptedSpineFiles[0]}". The zip itself reads fine, so without this ` +
+        `check the book would parse "successfully" into ciphertext.`,
+    );
+  }
 }
 
 // Reading order is defined by <spine>'s <itemref idref="..."> list, resolved through
@@ -200,8 +264,11 @@ function loadEpub(epubPath) {
   }
 
   const opfDir = posix.dirname(opfPath);
-  const opfXml = opfEntry.data.toString("utf-8");
+  // Stripped once, here: everything downstream (manifest, spine, <dc:title>) scans this
+  // string, and a commented-out <item> must never be selectable as a real manifest item.
+  const opfXml = stripInertMarkup(opfEntry.data.toString("utf-8"));
   const { chapters, manifestItems, tocId } = parseOpfDocument(opfXml, opfDir);
+  assertSpineNotEncrypted(entries, chapters);
 
   const book = { entries, chapters, opfDir, manifestItems, tocId, opfXml };
   parsedBookCache.set(epubPath, { mtimeMs, size, book });
@@ -237,7 +304,7 @@ export function getBookTitle(epubPath) {
   if (!match) {
     return null;
   }
-  const title = decodeHtmlEntities(match[1].replace(/<[^>]+>/g, "")).trim();
+  const title = decodeLabelMarkup(match[1], LABEL_DECODING_CURRENT);
   return title || null;
 }
 
@@ -275,6 +342,88 @@ function decodeHtmlEntities(text) {
   return text.replace(/&(amp|lt|gt|quot|#39);/g, (_, name) => HTML_ENTITIES[name]);
 }
 
+// The five entities above are what the original decoder knew, which is why a perfectly
+// ordinary label like "Lesson 1 &#8212; Greetings" reached the deck name verbatim, em-dash
+// entity and all. This handles numeric and hex character references plus the named entities
+// that actually turn up in book titles.
+//
+// `nbsp` deliberately becomes an ordinary space: the label becomes an Anki deck name, and a
+// non-breaking space there is invisible, unsearchable and impossible to retype.
+const NAMED_ENTITIES = {
+  amp: "&",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  nbsp: " ",
+  mdash: "—",
+  ndash: "–",
+  hellip: "…",
+  ldquo: "“",
+  rdquo: "”",
+  lsquo: "‘",
+  rsquo: "’",
+  middot: "·",
+  times: "×",
+  deg: "°",
+};
+
+function decodeEntitiesFull(text) {
+  return text.replace(/&(#[xX][0-9a-fA-F]+|#\d+|[a-zA-Z]+);/g, (match, body) => {
+    if (body[0] === "#") {
+      const codePoint =
+        body[1] === "x" || body[1] === "X"
+          ? Number.parseInt(body.slice(2), 16)
+          : Number.parseInt(body.slice(1), 10);
+      // An out-of-range or unparseable reference is left exactly as written rather than
+      // turned into a replacement character — a visible &#99999999; is a better bug report.
+      if (!Number.isFinite(codePoint) || codePoint < 0 || codePoint > 0x10ffff) return match;
+      try {
+        return String.fromCodePoint(codePoint);
+      } catch {
+        return match;
+      }
+    }
+    const named = NAMED_ENTITIES[body];
+    return named === undefined ? match : named;
+  });
+}
+
+/**
+ * Label decoding is VERSIONED, per book, because a label is not just something a person reads:
+ * it flows through unitDeckSegments into a live Anki deck name, and renaming a deck in Anki is
+ * not a rename — it is a new deck, with the old notes and all their scheduling left behind in
+ * the old one. So a book that has already been delivered keeps version 1 forever, and the
+ * better decoder applies to books registered from now on. See resolveLabelDecoding.
+ *
+ * v1: the five original entities, tags removed with nothing in their place.
+ * v2: full entity decoding; a SPACE where an inline tag was, so `<span>Lesson</span><span>5</span>`
+ *     is "Lesson 5" and not "Lesson5" (which also defeats deckPath's grouped-label regex); and
+ *     ruby annotations dropped, so 漢<rt>かん</rt>字 is 漢字 rather than 漢かん字.
+ */
+export const LABEL_DECODING_CURRENT = 2;
+
+function decodeLabelMarkup(raw, labelDecoding) {
+  if (labelDecoding < 2) {
+    return decodeHtmlEntities(raw.replace(/<[^>]+>/g, "")).trim();
+  }
+  const withoutRuby = raw
+    .replace(/<rt\b[^>]*>[\s\S]*?<\/rt>/gi, "")
+    .replace(/<rp\b[^>]*>[\s\S]*?<\/rp>/gi, "");
+  return (
+    decodeEntitiesFull(withoutRuby.replace(/<[^>]+>/g, " "))
+      .replace(/\s+/g, " ")
+      // The space that replaced a tag is right between "Lesson" and "5"; it is also right
+      // before the ":" that followed `</span>`. Tidying it back off punctuation is what keeps
+      // "<span>Lesson</span><span>5</span>: Greetings" reading as a human wrote it. This also
+      // normalises a label that was authored with a space before its colon — a cosmetic
+      // change, and one only a newly-registered book can ever see.
+      .replace(/\s+([,;:.!?)\]])/g, "$1")
+      .replace(/([([])\s+/g, "$1")
+      .trim()
+  );
+}
+
 // EPUB chapter <title> tags commonly follow "<page title>, <book title>" — the book
 // title repeats identically on every chapter and carries no per-chapter information, so
 // it's dropped by keeping only the text before the first comma. Within what's left, a
@@ -284,8 +433,8 @@ function decodeHtmlEntities(text) {
 // a label, and this needs to read naturally as a short human-facing chapter reference.
 // This is the FALLBACK tier used only when the EPUB has no usable navigation document —
 // see listExternalChapters() below for the preferred, spec-grounded source.
-function shortenChapterTitle(rawTitle) {
-  const pageTitle = decodeHtmlEntities(rawTitle).split(",")[0].trim();
+function shortenChapterTitle(rawTitle, labelDecoding) {
+  const pageTitle = decodeLabelMarkup(rawTitle, labelDecoding).split(",")[0].trim();
   const segments = pageTitle
     .split(":")
     .map((s) => s.trim())
@@ -293,10 +442,10 @@ function shortenChapterTitle(rawTitle) {
   return segments.slice(0, 2).join(": ");
 }
 
-function describeChapterFromTitleTag(epubPath, number) {
+function describeChapterFromTitleTag(epubPath, number, labelDecoding) {
   const { content } = loadChapterEntry(epubPath, number);
-  const match = content.match(TITLE_TAG_PATTERN);
-  const shortened = match ? shortenChapterTitle(match[1]) : "";
+  const match = stripInertMarkup(content).match(TITLE_TAG_PATTERN);
+  const shortened = match ? shortenChapterTitle(match[1], labelDecoding) : "";
   return shortened || `chapter ${number}`;
 }
 
@@ -319,10 +468,23 @@ function findTagOccurrences(xml, tagName) {
 // list. epub:type is itself a space-separated token list (rarely, but validly,
 // "toc landmarks" etc.), so this token-matches rather than doing an exact-string
 // comparison.
-function isolateNavToc(xhtml) {
+// Strict: the spec-blessed `epub:type="toc"`. Loose: ANY attribute whose name is `type` or ends
+// in `:type` (the `epub` prefix is only a convention — a conformant book may bind the same
+// namespace to any prefix), plus ARIA's `role="doc-toc"`. The loose form is used only by the
+// last-resort sweep, so a book that already resolves keeps resolving exactly as before.
+function isTocNav(attrs, loose) {
+  const hasToc = (value) => (value || "").split(/\s+/).includes("toc");
+  if (hasToc(attrs["epub:type"])) return true;
+  if (!loose) return false;
+  for (const [name, value] of Object.entries(attrs)) {
+    if ((name === "type" || name.endsWith(":type")) && hasToc(value)) return true;
+  }
+  return (attrs.role || "").split(/\s+/).includes("doc-toc");
+}
+
+function isolateNavToc(xhtml, { loose = false } = {}) {
   for (const tag of findTagOccurrences(xhtml, "nav")) {
-    const epubTypeTokens = (tag.attrs["epub:type"] || "").split(/\s+/);
-    if (!epubTypeTokens.includes("toc")) {
+    if (!isTocNav(tag.attrs, loose)) {
       continue;
     }
     const closeIndex = xhtml.indexOf("</nav>", tag.end);
@@ -341,21 +503,27 @@ const NAV_A_TAG_PATTERN = /<a\b[^>]*\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')[^>]*>([
 // only sequence is: a <ol><li> tree read top-to-bottom already IS book reading order
 // regardless of depth, and building a real tree here would be a step up in parsing
 // complexity this codebase has consistently avoided (see findTags()'s own comment).
-function parseNavXhtmlToc(xhtml) {
-  const tocXml = isolateNavToc(xhtml);
+// Every `<a` inside the toc block, whether or not this parser could turn it into an entry.
+// The gap between this count and the entries actually produced is the silent drop the shape
+// report names: an anchor with no href, an anchor whose label is markup-only, an anchor the
+// non-greedy `</a>` match ran past.
+const NAV_A_OPEN_PATTERN = /<a\b/g;
+
+function parseNavXhtmlToc(xhtml, labelDecoding, { loose = false } = {}) {
+  const tocXml = isolateNavToc(xhtml, { loose });
   if (!tocXml) {
-    return [];
+    return { entries: [], declaredCount: 0 };
   }
 
   const entries = [];
   for (const m of tocXml.matchAll(NAV_A_TAG_PATTERN)) {
     const href = m[1] ?? m[2];
-    const label = decodeHtmlEntities(m[3].replace(/<[^>]+>/g, "")).trim();
+    const label = decodeLabelMarkup(m[3], labelDecoding);
     if (href && label) {
       entries.push({ href, label });
     }
   }
-  return entries;
+  return { entries, declaredCount: [...tocXml.matchAll(NAV_A_OPEN_PATTERN)].length };
 }
 
 function isolateNavMap(ncxXml) {
@@ -378,32 +546,49 @@ function isolateNavMap(ncxXml) {
 // own data, never a descendant's. This produces one entry per navPoint, parent and child
 // alike, flattened into one list in document order (same flattening philosophy as the
 // nav.xhtml <ol> case above).
-function parseNcxNavMap(ncxXml) {
+// <navLabel> and <text> both routinely carry attributes (xml:lang, class, id) and <text> can
+// wrap its label in inline markup — an NCX produced by any real toolchain does at least one
+// of these. Matching the bare `<navLabel>\s*<text>` shape dropped every such navPoint
+// silently, and this is the LIVE path: an EPUB2 book resolves source "ncx".
+const NCX_LABEL_PATTERN = /<navLabel\b[^>]*>\s*<text\b[^>]*>([\s\S]*?)<\/text>/i;
+const NCX_CONTENT_PATTERN = /<content\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)')/i;
+
+function parseNcxNavMap(ncxXml, labelDecoding) {
   const navMapXml = isolateNavMap(ncxXml);
   if (!navMapXml) {
-    return [];
+    return { entries: [], declaredCount: 0, skipped: [] };
   }
 
   const navPointStarts = [...navMapXml.matchAll(/<navPoint\b[^>]*>/g)].map((m) => m.index);
   const entries = [];
+  const skipped = [];
   for (let i = 0; i < navPointStarts.length; i++) {
     const start = navPointStarts[i];
     const end = i + 1 < navPointStarts.length ? navPointStarts[i + 1] : navMapXml.length;
     const slice = navMapXml.slice(start, end);
 
-    const labelMatch = /<navLabel>\s*<text>([^<]*)<\/text>/i.exec(slice);
-    const contentMatch = /<content\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(slice);
-    if (!labelMatch || !contentMatch) {
+    const labelMatch = NCX_LABEL_PATTERN.exec(slice);
+    const contentMatch = NCX_CONTENT_PATTERN.exec(slice);
+    const label = labelMatch ? decodeLabelMarkup(labelMatch[1], labelDecoding) : "";
+    const href = contentMatch ? (contentMatch[1] ?? contentMatch[2]) : "";
+
+    if (!label || !href) {
+      skipped.push({
+        index: i + 1,
+        reason:
+          !label && !href
+            ? "no <navLabel><text> and no <content src>"
+            : !label
+              ? "no <navLabel><text>"
+              : "no <content src>",
+        label,
+        href,
+      });
       continue;
     }
-
-    const label = decodeHtmlEntities(labelMatch[1]).trim();
-    const href = contentMatch[1] ?? contentMatch[2];
-    if (label && href) {
-      entries.push({ href, label });
-    }
+    entries.push({ href, label });
   }
-  return entries;
+  return { entries, declaredCount: navPointStarts.length, skipped };
 }
 
 // properties is a space-separated token list (e.g. properties="nav scripted") — must
@@ -452,14 +637,23 @@ function resolveHrefToSpinePosition(href, baseDir, chapters) {
 // <spine toc="..."> or a media-type fallback) — returns null if neither exists, isn't
 // found in the archive, or parses to zero entries, so the caller can fall through to the
 // <title>-tag heuristic.
-function resolveNavSource(entries, manifestItems, tocId) {
+function resolveNavSource(entries, manifestItems, tocId, labelDecoding) {
   const navItem = findManifestItemByProperty(manifestItems, "nav");
   if (navItem) {
     const navEntry = entries.find((e) => e.name === navItem.href);
     if (navEntry) {
-      const rawEntries = parseNavXhtmlToc(navEntry.data.toString("utf-8"));
-      if (rawEntries.length > 0) {
-        return { rawEntries, baseDir: posix.dirname(navItem.href), source: "nav" };
+      const parsed = parseNavXhtmlToc(
+        stripInertMarkup(navEntry.data.toString("utf-8")),
+        labelDecoding,
+      );
+      if (parsed.entries.length > 0) {
+        return {
+          rawEntries: parsed.entries,
+          declaredCount: parsed.declaredCount,
+          skipped: [],
+          baseDir: posix.dirname(navItem.href),
+          source: "nav",
+        };
       }
     }
   }
@@ -468,10 +662,44 @@ function resolveNavSource(entries, manifestItems, tocId) {
   if (ncxItem) {
     const ncxEntry = entries.find((e) => e.name === ncxItem.href);
     if (ncxEntry) {
-      const rawEntries = parseNcxNavMap(ncxEntry.data.toString("utf-8"));
-      if (rawEntries.length > 0) {
-        return { rawEntries, baseDir: posix.dirname(ncxItem.href), source: "ncx" };
+      const parsed = parseNcxNavMap(
+        stripInertMarkup(ncxEntry.data.toString("utf-8")),
+        labelDecoding,
+      );
+      if (parsed.entries.length > 0) {
+        return {
+          rawEntries: parsed.entries,
+          declaredCount: parsed.declaredCount,
+          skipped: parsed.skipped,
+          baseDir: posix.dirname(ncxItem.href),
+          source: "ncx",
+        };
       }
+    }
+  }
+
+  // LAST RESORT, after both spec-blessed tiers have failed: sweep every XHTML manifest item for
+  // a nav block that a differently-bound namespace prefix (or an ARIA role) hid from the tiers
+  // above. Without it, a conformant book with a perfectly good table of contents gets told
+  // "no navigation document found" and the operator is pushed onto raw spine indices. It runs
+  // only when nothing else resolved, so no book that works today changes behaviour.
+  for (const item of manifestItems) {
+    const isXhtml =
+      item.mediaType === "application/xhtml+xml" || /\.x?html?$/i.test(item.href || "");
+    if (!isXhtml) continue;
+    const entry = entries.find((e) => e.name === item.href);
+    if (!entry) continue;
+    const parsed = parseNavXhtmlToc(stripInertMarkup(entry.data.toString("utf-8")), labelDecoding, {
+      loose: true,
+    });
+    if (parsed.entries.length > 0) {
+      return {
+        rawEntries: parsed.entries,
+        declaredCount: parsed.declaredCount,
+        skipped: [],
+        baseDir: posix.dirname(item.href),
+        source: "nav-sweep",
+      };
     }
   }
 
@@ -491,47 +719,131 @@ function resolveNavSource(entries, manifestItems, tocId) {
  * real spine file — callers should treat that as "fall back to the <title>-tag
  * heuristic," not as an error.
  */
-export function listExternalChapters(epubPath, { log = () => {} } = {}) {
-  const { entries, chapters, manifestItems, tocId } = loadEpub(epubPath);
+// The whole nav-document analysis in one pass: the spine-position ranges
+// listExternalChapters returns, PLUS everything that was dropped along the way (entries
+// whose href resolved nowhere, entries collapsed onto an earlier entry's spine file) and
+// the raw positions the nav actually named. listExternalChapters keeps only the ranges —
+// the diagnostics exist for the shape report, which is the whole point of WS2: the drops
+// were always happening, they were just never counted anywhere a human could see them.
+function analyzeExternalChapters(book, { log = () => {}, labelDecoding = 1 } = {}) {
+  const { entries, chapters, manifestItems, tocId } = book;
 
-  const resolved = resolveNavSource(entries, manifestItems, tocId);
+  const empty = {
+    source: null,
+    ranges: [],
+    unresolved: [],
+    collapsed: [],
+    inverted: [],
+    unparsed: 0,
+    named: [],
+    rawCount: 0,
+  };
+
+  const resolved = resolveNavSource(entries, manifestItems, tocId, labelDecoding);
   if (!resolved) {
-    return [];
+    return empty;
   }
-  const { rawEntries, baseDir, source } = resolved;
+  const { rawEntries, baseDir, source, declaredCount, skipped } = resolved;
+
+  // The navigation document declared more entries than this parser turned into entries.
+  // Every one of those is a lesson a person can read in the book's own table of contents and
+  // cannot select here, and every one of them shifts the ordinals of the entries after it.
+  const unparsed = Math.max(0, declaredCount - rawEntries.length);
+  if (unparsed > 0) {
+    log(
+      `listExternalChapters: the ${source} navigation document declares ${declaredCount} entr(ies) ` +
+        `but only ${rawEntries.length} parsed — ${unparsed} were dropped, which shifts every ` +
+        `--lesson ordinal after them`,
+    );
+  }
+  for (const drop of skipped) {
+    log(`listExternalChapters: navPoint #${drop.index} skipped (${drop.reason})`);
+  }
 
   const positioned = [];
+  const unresolved = [];
   for (const { href, label } of rawEntries) {
     const spinePosition = resolveHrefToSpinePosition(href, baseDir, chapters);
     if (spinePosition == null) {
       log(
         `listExternalChapters: "${label}" (href "${href}") did not resolve to a spine file — skipped`,
       );
+      unresolved.push({ label, href });
       continue;
     }
     positioned.push({ label, spinePosition });
   }
 
   const deduped = [];
+  const collapsed = [];
   for (const entry of positioned) {
     const prev = deduped[deduped.length - 1];
     if (prev && prev.spinePosition === entry.spinePosition) {
+      collapsed.push({
+        label: entry.label,
+        spinePosition: entry.spinePosition,
+        keptLabel: prev.label,
+      });
       continue;
     }
     deduped.push(entry);
   }
 
+  const named = positioned.map((entry) => entry.spinePosition);
   if (deduped.length === 0) {
-    return [];
+    return {
+      ...empty,
+      source,
+      unresolved,
+      collapsed,
+      unparsed,
+      named,
+      rawCount: rawEntries.length,
+    };
   }
 
+  // A nav document is ASSUMED to list its entries in reading order — every range here ends
+  // one file before the next entry begins. When it doesn't (a nav entry pointing backwards),
+  // that arithmetic produces an inverted range like 5-2, which extractChapterRangeToFile
+  // rejects and every other consumer silently degrades on: assemble falls back to
+  // single-file extraction, and flagForwardConcerns treats the lesson's own files as "later
+  // chapters" and flags its own vocabulary as taught later. Clamp to the entry's own file
+  // and say so loudly — the range is unknowable, but a one-file lesson is at least true.
   const lastSpineNumber = chapters[chapters.length - 1].number;
-  return deduped.map((entry, i) => ({
-    label: entry.label,
-    firstChapterNumber: entry.spinePosition,
-    lastChapterNumber: i + 1 < deduped.length ? deduped[i + 1].spinePosition - 1 : lastSpineNumber,
+  const inverted = [];
+  const ranges = deduped.map((entry, i) => {
+    const rawLast = i + 1 < deduped.length ? deduped[i + 1].spinePosition - 1 : lastSpineNumber;
+    const lastChapterNumber = Math.max(entry.spinePosition, rawLast);
+    if (rawLast < entry.spinePosition) {
+      inverted.push({ index: i + 1, label: entry.label, first: entry.spinePosition, rawLast });
+      log(
+        `listExternalChapters: "${entry.label}" produced an INVERTED spine range ` +
+          `${entry.spinePosition}-${rawLast} — the ${source} navigation document is not in reading ` +
+          `order. Clamped to spine ${entry.spinePosition} alone; this lesson may be missing files.`,
+      );
+    }
+    return {
+      label: entry.label,
+      firstChapterNumber: entry.spinePosition,
+      lastChapterNumber,
+      source,
+    };
+  });
+
+  return {
     source,
-  }));
+    ranges,
+    unresolved,
+    collapsed,
+    inverted,
+    unparsed,
+    named,
+    rawCount: rawEntries.length,
+  };
+}
+
+export function listExternalChapters(epubPath, { log = () => {}, labelDecoding = 1 } = {}) {
+  return analyzeExternalChapters(loadEpub(epubPath), { log, labelDecoding }).ranges;
 }
 
 // listExternalChapters() itself stays pure/uncached (so tests and any other caller get
@@ -543,11 +855,14 @@ export function listExternalChapters(epubPath, { log = () => {} } = {}) {
 // one book.
 const externalChaptersCache = new Map();
 
-function listExternalChaptersCached(epubPath) {
-  if (!externalChaptersCache.has(epubPath)) {
-    externalChaptersCache.set(epubPath, listExternalChapters(epubPath));
+function listExternalChaptersCached(epubPath, labelDecoding) {
+  // Keyed on the decoding version too: the labels are its output, so a memo that ignored it
+  // would hand one book's frozen labels to another book's build in the same process.
+  const key = `${labelDecoding}\u0000${epubPath}`;
+  if (!externalChaptersCache.has(key)) {
+    externalChaptersCache.set(key, listExternalChapters(epubPath, { labelDecoding }));
   }
-  return externalChaptersCache.get(epubPath);
+  return externalChaptersCache.get(key);
 }
 
 /**
@@ -562,8 +877,8 @@ function listExternalChaptersCached(epubPath) {
  * wording when even that yields nothing — so callers can drop the result
  * straight into an "in ___" phrase no matter which tier answered.
  */
-export function describeChapter(epubPath, number) {
-  const externalChapters = listExternalChaptersCached(epubPath);
+export function describeChapter(epubPath, number, { labelDecoding = 1 } = {}) {
+  const externalChapters = listExternalChaptersCached(epubPath, labelDecoding);
   const match = externalChapters.find(
     (chapter) => number >= chapter.firstChapterNumber && number <= chapter.lastChapterNumber,
   );
@@ -571,7 +886,7 @@ export function describeChapter(epubPath, number) {
     return match.label;
   }
 
-  return describeChapterFromTitleTag(epubPath, number);
+  return describeChapterFromTitleTag(epubPath, number, labelDecoding);
 }
 
 // The image-aware extraction prompt (docs/epub-extraction-prompt.md) tells the model to
@@ -614,24 +929,112 @@ function isLocalRelativePath(src) {
   return Boolean(src) && !/^([a-z]+:)?\/\//i.test(src) && !src.startsWith("data:");
 }
 
-/**
- * Every local image src a chapter's markup references, `<img src>` and SVG-wrapped
- * `<image xlink:href>` alike, de-duplicated and in document order.
- *
- * Exported because two callers need the same set for different reasons: this module writes each one
- * to disk beside the chapter file, and the extraction coverage check
- * (src/corpus/epubLlmExtract.js) diffs it against the images the model says it opened. Deriving the
- * set twice would let the two drift, and a coverage check that disagrees with reality about what
- * exists is worse than no check.
- */
-export function referencedImageSrcs(content) {
-  return [
-    ...new Set(
-      [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
-        .map((m) => m[1] ?? m[2])
-        .filter(isLocalRelativePath),
-    ),
-  ];
+// The image sources one chapter file references, in document order, de-duplicated — the
+// single definition of "what this chapter's <img>/<image> tags point at", shared by the
+// extractor (which copies them), the shape report (which counts and collision-checks them
+// without writing anything), and the extraction coverage check
+// (src/corpus/epubLlmExtract.js, which diffs the set against the images the model says it
+// opened). Deriving that set a second time would let the two drift, and a coverage check that
+// disagrees with reality about what exists is worse than no check.
+export function referencedImageSrcs(rawContent) {
+  const content = stripInertMarkup(rawContent);
+  return new Set(
+    [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
+      .map((m) => m[1] ?? m[2])
+      .filter(isLocalRelativePath),
+  );
+}
+
+// Which chapter last wrote each image path in THIS process, so a collision can name both
+// sides rather than just the one it caught. Process-scoped only (one CLI invocation
+// processes one book); a collision between two separate runs still reports the dest and the
+// incoming chapter, which is enough to find it.
+const imageWriteProvenance = new Map();
+
+function isInside(root, candidate) {
+  return candidate === root || candidate.startsWith(root + sep);
+}
+
+// One image asset: found in the archive, contained, byte-compared, written, and — when it is
+// an SVG — re-scanned for the raster image it wraps.
+//
+// `containmentRoot` is the book's own cache directory (chapters/ lives directly under it).
+// `src` comes from the archive and `../` in it is not filtered anywhere, so without this a
+// crafted zip could write through the cache into repo source. Legitimate `../images/foo.png`
+// (the standard Sigil layout) stays inside the book directory and is unaffected.
+function copyImageAsset(entries, { archivePath, destPath, referrer, containmentRoot, log, depth }) {
+  // Containment is checked FIRST, before the archive is even consulted: a path that escapes
+  // is worth naming whether or not this particular zip carries the entry to go with it.
+  const resolvedDest = resolve(destPath);
+  if (!isInside(containmentRoot, resolvedDest)) {
+    log(
+      `[epub] REFUSED image "${archivePath}" referenced by ${referrer}: its path escapes the book's ` +
+        `cache directory (${containmentRoot}) and would write to ${resolvedDest}`,
+    );
+    return;
+  }
+
+  const imageEntry = entries.find((e) => e.name === archivePath);
+  if (!imageEntry) {
+    // A dangling ref is tolerated (the extraction prompt just won't find the file), but
+    // never silent — the model is told to open images, so a missing one is a real gap.
+    log(`[epub] image referenced by ${referrer} not in archive, skipped: ${archivePath}`);
+    return;
+  }
+
+  // THE COLLISION. Every chapter's images land in one shared chapters/ directory, so two
+  // chapters in different archive directories referencing the same relative filename
+  // overwrite each other — and a swapped image is swapped card content, because the
+  // extraction model opens these files by path. Byte-compare so identical images (the common,
+  // harmless case) stay quiet and genuinely different bytes are named.
+  let existing = null;
+  try {
+    existing = readFileSync(resolvedDest);
+  } catch {
+    existing = null;
+  }
+  if (existing && !existing.equals(imageEntry.data)) {
+    const previous = imageWriteProvenance.get(resolvedDest);
+    log(
+      `[epub] IMAGE COLLISION at ${resolvedDest}: "${archivePath}" (referenced by ${referrer}) ` +
+        `has different bytes from ` +
+        (previous
+          ? `"${previous.archivePath}" (referenced by ${previous.referrer})`
+          : `what is already there`) +
+        ` — one overwrites the other, and the extraction model reads whichever wins`,
+    );
+  }
+
+  // Unconditional (not existsSync-guarded) and atomic: an image path can be shared by two
+  // chapters, so two processes may write the same file at once. The bytes are a pure
+  // function of the EPUB, so last-writer-wins is harmless once each write is atomic —
+  // whereas an existsSync skip could hand a reader a half-written PNG.
+  writeFileAtomic(resolvedDest, imageEntry.data);
+  imageWriteProvenance.set(resolvedDest, { archivePath, referrer });
+
+  // An .svg is very often a wrapper whose whole content is <image href="the-real-page.jpg">.
+  // Copying only the wrapper leaves the model reading an XML file that points at a raster
+  // image that is not on disk. One level of nesting is enough for the wrapper idiom and
+  // cannot loop.
+  if (/\.svg$/i.test(archivePath)) {
+    log(
+      `[epub] copied SVG "${archivePath}" (referenced by ${referrer}) — an SVG is often a wrapper`,
+    );
+    if (depth < 1) {
+      const svgDir = posix.dirname(archivePath);
+      const svgDestDir = dirname(resolvedDest);
+      for (const nested of referencedImageSrcs(imageEntry.data.toString("utf-8"))) {
+        copyImageAsset(entries, {
+          archivePath: posix.normalize(posix.join(svgDir, nested)),
+          destPath: join(svgDestDir, nested),
+          referrer: `${referrer} via ${archivePath}`,
+          containmentRoot,
+          log,
+          depth: depth + 1,
+        });
+      }
+    }
+  }
 }
 
 function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
@@ -639,23 +1042,19 @@ function extractReferencedImages(entries, chapter, content, destPath, log = () =
 
   const chapterDir = posix.dirname(chapter.href);
   const destDir = dirname(destPath);
+  // chapters/ sits directly under the book's cache directory, so its parent is the boundary
+  // every extracted asset must stay inside.
+  const containmentRoot = resolve(destDir, "..");
 
   for (const src of srcs) {
-    const archivePath = posix.normalize(posix.join(chapterDir, src));
-    const imageEntry = entries.find((e) => e.name === archivePath);
-    if (!imageEntry) {
-      // A dangling ref is tolerated (the extraction prompt just won't find the file), but
-      // never silent — the model is told to open images, so a missing one is a real gap.
-      log(`[epub] image referenced by ${chapter.href} not in archive, skipped: ${src}`);
-      continue;
-    }
-
-    const localDest = join(destDir, src);
-    // Unconditional (not existsSync-guarded) and atomic: an image path can be shared by two
-    // chapters, so two processes may write the same file at once. The bytes are a pure
-    // function of the EPUB, so last-writer-wins is harmless once each write is atomic —
-    // whereas an existsSync skip could hand a reader a half-written PNG.
-    writeFileAtomic(localDest, imageEntry.data);
+    copyImageAsset(entries, {
+      archivePath: posix.normalize(posix.join(chapterDir, src)),
+      destPath: join(destDir, src),
+      referrer: chapter.href,
+      containmentRoot,
+      log,
+      depth: 0,
+    });
   }
 }
 
@@ -679,6 +1078,167 @@ export function extractChapterToFile(epubPath, number, destPath, { log } = {}) {
   extractReferencedImages(entries, chapter, content, destPath, log);
   writeFileAtomic(destPath, content, "utf-8");
   return destPath;
+}
+
+// Everything that is not prose: script/style bodies (whose contents are code, not text a
+// reader ever sees) and then every remaining tag. Used ONLY for measuring how much readable
+// text a spine file carries — never for anything written to disk, which stays raw xhtml.
+function strippedTextLength(content) {
+  const text = stripInertMarkup(content)
+    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<[^>]+>/g, " ");
+  return decodeHtmlEntities(text).replace(/\s+/g, " ").trim().length;
+}
+
+// The on-disk destination extractReferencedImages() would write `src` to, expressed
+// relative to the chapters/ cache root — i.e. exactly what `join(destDir, src)` produces,
+// minus the machine-specific prefix. Two chapters in different archive directories that
+// reference the same relative filename produce the SAME key here, which is the collision
+// this reports (see the ruling on WS2 item 3a).
+function cacheRelativeImageDest(src) {
+  return posix.normalize(posix.join(".", src));
+}
+
+// Every chapter in this module is decoded as UTF-8 and written back out as UTF-8, which is
+// right for the overwhelming majority of EPUBs and silently destructive for the rest: a
+// Shift_JIS or EUC-JP chapter decodes to replacement characters, gets written to the cache in
+// that state, and hands the extraction model a file of garbage that still looks like a
+// chapter. Two independent signals, because either alone misses cases: the XML declaration's
+// own encoding, and U+FFFD in the decoded text.
+const XML_ENCODING_PATTERN = /<\?xml\b[^>]*\bencoding\s*=\s*(?:"([^"]*)"|'([^']*)')/i;
+
+function detectNonUtf8(content) {
+  const declared = (XML_ENCODING_PATTERN.exec(content.slice(0, 200)) || []).slice(1).find(Boolean);
+  const replacementChars = (content.match(/�/g) || []).length;
+  const declaredNonUtf8 = Boolean(declared) && !/^utf-?8$/i.test(declared);
+  return {
+    declared: declared ?? null,
+    replacementChars,
+    isNonUtf8: declaredNonUtf8 || replacementChars > 0,
+  };
+}
+
+/**
+ * A read-only structural survey of an EPUB: the spine, the navigation document and what it
+ * named, the images every chapter references, and the collisions those images would produce
+ * in the shared `chapters/` cache directory. Writes nothing and spends nothing — it is the
+ * data behind `scripts/epub-probe.mjs` and the `--list-lessons` shape report.
+ *
+ * Everything here is already computed somewhere in this module; the point of gathering it in
+ * one place is that each of these degradations is silent today (an unresolvable nav href, a
+ * collapsed duplicate, a spine file no nav entry ever named), and a book that degrades on
+ * every axis currently looks exactly like a book that parses cleanly.
+ */
+export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
+  const book = loadEpub(epubPath);
+  const { entries, chapters } = book;
+  const byName = new Map(entries.map((entry) => [entry.name, entry]));
+
+  const spine = chapters.map((chapter) => {
+    const entry = byName.get(chapter.href);
+    const content = entry ? entry.data.toString("utf-8") : "";
+    const images = [...referencedImageSrcs(content)].map((src) => {
+      const archivePath = posix.normalize(posix.join(posix.dirname(chapter.href), src));
+      return {
+        src,
+        archivePath,
+        present: byName.has(archivePath),
+        dest: cacheRelativeImageDest(src),
+        isSvg: /\.svg$/i.test(archivePath),
+      };
+    });
+    return {
+      number: chapter.number,
+      href: chapter.href,
+      present: Boolean(entry),
+      bytes: entry ? entry.data.length : 0,
+      textLength: strippedTextLength(content),
+      encoding: detectNonUtf8(content),
+      images,
+    };
+  });
+
+  const nav = analyzeExternalChapters(book, { labelDecoding });
+  const namedPositions = new Set(nav.named);
+  const invertedIndexes = new Set(nav.inverted.map((entry) => entry.index));
+
+  const lessons = nav.ranges.map((range, index) => {
+    const filesInRange = range.lastChapterNumber - range.firstChapterNumber + 1;
+    let namedInRange = 0;
+    for (let n = range.firstChapterNumber; n <= range.lastChapterNumber; n++) {
+      if (namedPositions.has(n)) namedInRange++;
+    }
+    return {
+      number: index + 1,
+      label: range.label,
+      firstChapterNumber: range.firstChapterNumber,
+      lastChapterNumber: range.lastChapterNumber,
+      filesInRange,
+      namedInRange,
+      swallowed: Math.max(0, filesInRange - namedInRange),
+      // The range above is already clamped; this records that the nav's own arithmetic
+      // produced an inverted one, which the clamp hides everywhere else.
+      monotonic: !invertedIndexes.has(index + 1),
+    };
+  });
+
+  // A spine file before the FIRST nav entry is addressable by --chapter-number but by no
+  // --lesson selector at all, because every nav range starts at or after that first entry.
+  const firstCovered = nav.ranges.length ? nav.ranges[0].firstChapterNumber : Infinity;
+  const unreachable = spine
+    .filter((file) => file.number < firstCovered)
+    .map((file) => ({
+      number: file.number,
+      href: file.href,
+      fallbackLabel: describeChapterFromTitleTag(epubPath, file.number, labelDecoding),
+    }));
+
+  // Two different archive entries landing on one cache path: the same relative filename
+  // referenced from chapters that live in different archive directories.
+  const destOwners = new Map();
+  for (const file of spine) {
+    for (const image of file.images) {
+      if (!image.present) continue;
+      if (!destOwners.has(image.dest)) destOwners.set(image.dest, []);
+      destOwners
+        .get(image.dest)
+        .push({ chapterHref: file.href, src: image.src, archivePath: image.archivePath });
+    }
+  }
+  const imageCollisions = [...destOwners.entries()]
+    .map(([dest, refs]) => ({
+      dest,
+      archivePaths: [...new Set(refs.map((ref) => ref.archivePath))],
+      refs,
+    }))
+    .filter((collision) => collision.archivePaths.length > 1);
+
+  const allImages = spine.flatMap((file) => file.images);
+  return {
+    epubPath,
+    title: getBookTitle(epubPath),
+    spine,
+    nav: {
+      source: nav.source,
+      rawCount: nav.rawCount,
+      unparsed: nav.unparsed,
+      unresolved: nav.unresolved,
+      collapsed: nav.collapsed,
+      inverted: nav.inverted,
+    },
+    lessons,
+    unreachable,
+    imageCollisions,
+    totals: {
+      spineCount: spine.length,
+      contentBytes: spine.reduce((sum, file) => sum + file.bytes, 0),
+      imageRefs: allImages.length,
+      distinctImages: new Set(allImages.filter((i) => i.present).map((i) => i.archivePath)).size,
+      missingImages: allImages.filter((image) => !image.present).length,
+      svgImages: allImages.filter((image) => image.isSvg).length,
+      nonUtf8Files: spine.filter((file) => file.encoding.isNonUtf8).length,
+    },
+  };
 }
 
 /**

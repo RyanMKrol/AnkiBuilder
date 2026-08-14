@@ -155,6 +155,89 @@ mistaken for "taught later". `--list-lessons` prints the book's lessons (number,
 label) and exits. A book with no usable nav document has no selectable lessons — `--list-lessons`
 says so and the raw `--chapter-number` path remains the fallback.
 
+### The shape report
+
+`--list-lessons` also prints a **shape report** (`src/corpus/epubShapeReport.js`), and the same
+report is available standalone as `node scripts/epub-probe.mjs <book.epub>` (add `--json` for the
+raw structure, and the probe prints the per-entry and per-file detail the CLI summary omits). Both
+are read-only: they open the archive, count, and print. Nothing is registered, extracted or spent.
+
+The report exists because an EPUB that the parser handles badly looks exactly like one it handles
+well: nothing throws, and every degradation is a silent fallback. It reports the nav source (`nav`
+vs `ncx` vs none), the spine size, and per nav entry: its spine range, how many files in that range
+the nav actually **named** (the rest are swallowed into the entry above them), the
+`classifyLesson` type as an annotation, and the Anki deck path `unitDeckSegments` turns its label
+into. Then the things that have no other reporting at all — nav entries that resolve to no spine
+file, entries collapsed onto an earlier entry's file, spine files falling before the first nav entry
+(reachable only by `--chapter-number`, never by `--lesson`), labels that collide with each other or
+with a `describeChapter` `<title>` fallback, image filenames from different archive directories that
+resolve to one path in the shared `chapters/` cache, per-file text length against image count,
+chapters that are not UTF-8 (this reader decodes and caches every chapter as UTF-8, so their text
+would reach the model mangled), and a size warning for a book materially larger than the one book
+this pipeline is proven on.
+
+Warnings are advisory, never a gate — every one of them describes a book that still builds, just
+not the way its own table of contents suggests. Run the probe before spending a pass on a new book.
+
+### What the nav parser now refuses to drop quietly
+
+Four things used to disappear without a word, all of them in `src/corpus/epubArchive.js`:
+
+- **NCX labels with attributes or inline markup.** `<navLabel xml:lang="en">` or
+  `<text><span>Lesson 1</span></text>` is what a real EPUB2 toolchain emits, and the old bare-shape
+  match dropped every such navPoint. This is the live path: an EPUB2 book resolves source `ncx`.
+  Each skipped navPoint is now logged with its reason.
+- **Comments and CDATA.** `stripInertMarkup` runs before every scan (container, OPF, nav, NCX,
+  `<title>`, image srcs). A commented-out nav anchor used to become a phantom lesson, which shifts
+  every ordinal after it, so `--lesson 7` builds lesson 6. A commented-out `<item properties="nav">`
+  could be picked as the navigation document. Chapter content written to disk is still raw: the
+  extraction model reads the real file.
+- **Inverted ranges.** A nav document not in reading order produces arithmetic like spine 5-2.
+  `extractChapterRangeToFile` throws on it, `assemble` falls back to single-file extraction, and
+  `flagForwardConcerns` treats the lesson's own files as later chapters. The range is now clamped to
+  the entry's own file and logged loudly, and `resolveLesson` asserts the invariant so a
+  hand-constructed lesson fails at the gate rather than mid-build.
+- **Anchors the parser could not read.** The gap between how many entries the nav document declares
+  and how many parsed is logged and reported.
+
+### DRM, and how the navigation document is found
+
+Two rejections and three discovery tiers, all in `src/corpus/epubArchive.js`:
+
+- **Zip-level encryption** (general-purpose bit 0) throws while walking the central directory.
+- **`META-INF/encryption.xml`** throws only when an encrypted `<CipherReference URI>` names a
+  **spine document**. Adobe ADEPT (the DRM on most retail EPUBs) leaves the zip perfectly readable,
+  so without this a retail book parses "successfully" into ciphertext and hands 40+ garbage files to
+  a paid whole-book pass. The check is narrow on purpose: IDPF and Adobe **font obfuscation** use
+  this same file on completely readable books, so the file's presence alone means nothing.
+
+Navigation discovery tries, in order: the OPF manifest item with `properties="nav"` (EPUB3), then
+`toc.ncx` via `<spine toc="...">` or the NCX media type (EPUB2), then — last resort — a sweep of
+every XHTML manifest item for a `<nav>` whose `*:type` token list includes `toc` (prefix-agnostic;
+the `epub` prefix is only a convention) or whose `role` is `doc-toc`. The sweep runs only when both
+spec-blessed tiers came up empty, so no book that resolves today changes behaviour, and it reports
+`source: "nav-sweep"` so the probe says how the book was actually resolved.
+
+### Label decoding is versioned per book
+
+A chapter label is not just text a person reads: `unitDeckSegments` turns it into a live Anki deck
+name, and renaming a deck in Anki is not a rename — it is a new deck, and the existing notes stay in
+the old one with all their scheduling. So the decoder that produces labels is **versioned per book**,
+stamped once into `book.json` at registration by `registerEpub` and read back by
+`resolveLabelDecoding` (`src/corpus/epubLibrary.js`).
+
+- **v1** — the five original entities (`&amp;` `&lt;` `&gt;` `&quot;` `&#39;`), tags removed with
+  nothing in their place. Any book registered before this existed stays here forever.
+- **v2** — full numeric (`&#8212;`), hex (`&#x2026;`) and common named entity decoding; a space
+  where an inline tag was, so `<span>Lesson</span><span>5</span>` is "Lesson 5" rather than
+  "Lesson5" (which also defeats `deckPath`'s grouped-label regex, flattening the deck); ruby
+  annotations dropped from labels, so `漢<rt>かん</rt>字` is 漢字 and not 漢かん字. `&nbsp;` becomes
+  an ordinary space, since a non-breaking space in a deck name is invisible and unsearchable.
+
+Migrating an already-delivered book to v2 is a deliberate, previewed, one-time re-file — never a
+side effect of the decoder improving. An unknown entity is left visible (`&notarealentity;`) rather
+than turned into a replacement character: a visible oddity is a better bug report than a silent one.
+
 For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
 the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
 (`getBookTitle`/`slugify`, falling back to the book's content hash when there's no title), then
@@ -193,6 +276,23 @@ tool when they sit in a content section. For the `--epub` path, `extractChapterT
 attribute encodes from the original chapter file inside the archive — so those references resolve
 to real files on disk instead of a directory that was never unpacked.
 
+That path is not decorative: the model opens these files, so a wrong image is wrong card content
+with nothing to show for it. Three detectors guard it (all in `extractReferencedImages` /
+`copyImageAsset`):
+
+- **Collision byte-compare.** Every chapter's images land in one shared `chapters/` directory, so
+  two chapters in different archive directories referencing the same relative filename (the standard
+  Sigil/InDesign layout) overwrite each other. On write, differing bytes are logged loudly naming
+  both archive paths, both referring chapters, and the shared destination; identical bytes stay
+  quiet. The count is also computed statically in the shape report, before any extraction.
+- **Containment.** An image `src` comes from the archive and `../` in it is unfiltered, so a crafted
+  zip could write through the cache into repo source. Any destination resolving outside the book's
+  own cache directory is refused and logged. A legitimate `../images/foo.png` is unaffected.
+- **SVG wrappers.** An `.svg` is very often a wrapper whose whole content is
+  `<image href="the-real-page.jpg">`. A copied SVG is re-scanned one level deep and what it
+  references is copied too, and every copied SVG is logged so the shape report's SVG count can be
+  read as "these may be wrappers".
+
 **The extraction response is an ENVELOPE, and its coverage half is checked.** The model replies with
 `{ items, coverage }`, where `coverage` is `{ imagesOpened, imagesSkippedAsDecorative, concerns }`:
 its own account of which images it opened, which it dismissed without opening, and anything that
@@ -205,7 +305,9 @@ extraction is not worth discarding over a side-channel. A **bare array** is stil
 (older cached responses, smaller models, partial answers), and reported as "coverage unknown" rather
 than treated as full coverage. The gap this closes: a chapter the model could not read produced
 exactly the output shape of a chapter with nothing in it — `taught-index.json` records
-`teaches: []` for the two image-only kana chapters, indistinguishable from "read it, nothing taught". All three paths produce the
+`teaches: []` for the two image-only kana chapters, indistinguishable from "read it, nothing taught".
+
+All three paths produce the
 same superset item shape: `{ id, english, category, hint, note, reviewNote, target }` — the three
 note fields are strictly separated (`hint` front-of-card cue, `note` back-of-card context,
 `reviewNote` internal review-only rationale; a legacy blended `notes` folds into `reviewNote`) —
@@ -646,16 +748,43 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
   epubs/<epubHash>/book.json                    # { title, slug } — title from <dc:title>, slug
                                                  #   filled in lazily on first --output-root use
-  epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
-  epubs/<epubHash>/images/<...>                     # images the cached chapters reference,
+  epubs/<epubHash>/cache-v<N>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
+  epubs/<epubHash>/cache-v<N>/images/<...>          # images the cached chapters reference,
                                                      #   at whatever relative path their own
                                                      #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
   epubs/<epubHash>/conventions.md.meta.json     # which prompt/model/effort produced it, and when
-  epubs/<epubHash>/taught-index.json            # one-time whole-book "what each chapter teaches"
+  epubs/<epubHash>/taught-index.json            # one-time whole-book taught-content index
   epubs/<epubHash>/taught-index.json.meta.json  # same provenance record, for that index
 ```
+
+### Cache versioning and clearing
+
+`CACHE_VERSION` (`src/corpus/epubLibrary.js`) names the `cache-v<N>` root. Bump it whenever
+chapter extraction or image resolution changes: a cached chapter file is treated as a COMPLETE
+extraction forever, which is what makes a parser fix inert for a book already read once. The
+chapter file sits one level inside the versioned root so an image's own `../images/foo.png` still
+resolves within it — a bump therefore invalidates chapters and their images together. Output from
+an older version is orphaned, never deleted behind your back. (v1 was the flat
+`<book>/chapters/` + `<book>/images/` layout.)
+
+Only the free zip-inflate cache is versioned. `conventions.md` and `taught-index.json` are outputs
+of paid whole-book passes and are never invalidated automatically. Each one does carry a
+`<artifact>.meta.json` sibling naming the prompt template (by path and sha256), the model, the
+effort and the chapter count that produced it, so a later run can say the artifact predates the
+current prompt. It says so and stops there: regenerating is a paid pass and a judgement call.
+
+```sh
+anki-builder epub cache <hash>                    # what is cached, and when it was generated
+anki-builder epub cache <hash> --clear            # chapters only (free to rebuild)
+anki-builder epub cache <hash> --clear --conventions --taught-index --dry
+```
+
+`--clear` takes the free chapter cache by default; the paid artifacts must be named. `corpora/` is
+never touched, whatever is asked for, and the refusal is checked at the point of deletion rather
+than assumed from how the target list was built — it holds human-reviewed chapters that no amount
+of compute can rebuild, one directory away from everything the command does delete.
 
 ## Output layout
 

@@ -268,16 +268,23 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
 1. **A cross-chapter duplicate check** — run the script, don't re-derive it:
 
    ```sh
-   node scripts/extras-duplicate-check.mjs output/epubs/<book-slug>            # report
-   node scripts/extras-duplicate-check.mjs output/epubs/<book-slug> --apply   # exclude later copies
+   node scripts/extras-duplicate-check.mjs output/epubs/<book-slug>
    ```
 
-   It groups every card in the whole book by `target`, keeps the EARLIEST occurrence, and (with
-   `--apply`) excludes later ones with a `reviewNote` naming the keeper. It refuses to touch
-   reviewed/done units without `--force`, and it always SKIPS a duplicate that looks like a
-   question: excluding a question can strand an elliptical answer whose `scene` names it, so
-   resolve those by hand (excluding an answer is always safe, because a question card is
-   answerable alone).
+   It groups every card in the whole book by `target` and reports each group that spans more than
+   one unit, keeping the EARLIEST occurrence as the keeper.
+
+   **Read the report and decide card by card. Do NOT reach for `--apply`.** The script's grouping is
+   correct and its judgement is not: a shared `target` is just as likely to be two genuinely
+   different senses of one word as it is a real duplicate. On this book, `に` groups all five of its
+   particle senses with the NUMBER 2, and picking the earliest occurrence keeps the number and
+   excludes every particle. `さん` keeps the number 3 over the honorific; `ご` keeps the number 5.
+   Roughly a third of the groups it reports are cards that should stay.
+
+   `--apply` still exists for the case where you have read the report and every group really is a
+   duplicate, and it refuses reviewed/done units without `--force`. It is not a step in this
+   procedure. Excluding a card that is the only teaching of a sense removes it from the deck with
+   nothing to say it is gone.
 
    **Run this at the end of every chapter, not only during an extras pass.** It is the same rule the
    collision audit follows, and for the same reason: a duplicate is created by a LATER lesson

@@ -126,6 +126,18 @@ One more thing to do before you hand the link over, which is not the watcher's j
   only at **Mark done** — after both reviews had been signed off. Preflight moves it to before
   anyone has looked at the unit, when it is still a one-line edit.
 
+  **Read the three tiers, don't just read the exit code.** `FAIL` blocks: fix it. `ACK` is a real
+  finding whose resolution is a judgement, and it blocks only while instances are _unreviewed_ —
+  decide each one, then record the decision with `node scripts/preflight.mjs --all --accept --note
+  "<why>"`, which writes the collection's `.preflight-accepted.json`. `INFO` never blocks. Never
+  accept a finding you have not actually looked at: the whole point of the tier is that the number
+  it prints is instances nobody has judged yet.
+
+- **Run `npm run check` before a DELIVER**, not just before a review link. It is
+  `ci && validate:decks && preflight` — the full gate over both tracked code and on-disk deck state.
+  (It is deliberately not in the `pre-push` hook: that would couple `git push` to deck state that
+  is not in git.)
+
 **Each chapter produces TWO units, and each goes through both gates on its own.** Once the base
 lesson is **done** (gate 2), Step 3b builds its *extras* unit: drill cards from the same chapter,
 shipped as a separate sub-deck beside the lesson. The full arc for one chapter:
@@ -321,6 +333,10 @@ the LAST block before a section boundary. The check is a script, not a read-thro
 ```sh
 node scripts/vocab-coverage.mjs <chapterFile> <unitDir>
 ```
+
+`preflight` runs the same diff across every base unit of the book (at INFO, and skipping any unit
+whose chapter is not cached), so a whole-book answer comes free with the gate. Run the script when
+you want one unit's answer while the chapter is in front of you.
 
 `<chapterFile>` is the cached chapter XHTML the extraction model itself read
 (`.anki-builder/epubs/<hash>/chapters/<n>.xhtml`); `<unitDir>` is the folder holding `cards.json`.
@@ -600,15 +616,50 @@ anki-builder deck --book-dir output/courses/<course-slug>   # merge a course
 ### Preflight a collection before handing over a review link
 
 ```sh
-npm run preflight                                  # every book + course under output/
-node scripts/preflight.mjs <book-or-course-dir>    # just one
+npm run preflight                                    # every collection under output/
+node scripts/preflight.mjs <collection-dir>          # just one (book, course, or templates/<n>/<lang>)
+node scripts/preflight.mjs --all --verbose           # print the checks that passed too
+node scripts/preflight.mjs --all --accept --note "…" # record the ACK findings you have judged
+npm run check                                        # ci + validate:decks + preflight, before a deliver
 ```
 
-Runs every deterministic pre-review check in one command and exits non-zero on any failure:
-schema validation, **duplicate card ids** (a clash makes the package build refuse, and it used to
-surface only at Mark done, after both gates were signed off), uncued collisions, cross-unit
-duplicate targets (reported, never auto-applied), and clips flagged marker-audible. Run it at the
-end of a build, before you post the link.
+Runs every deterministic check in one command. It opens with a **coverage header** naming what it
+looked at (collections by kind, units by shape, anything it could not place), so "clean" can never
+mean "I did not look", and it reports in three tiers:
+
+- **FAIL** blocks. Schema, duplicate card ids (a clash makes the package build refuse, and it used
+  to surface only at Mark done), uncued collisions, editorial spacing in a hand-authored unit, a
+  schematic `〜` in a shipped target, an `-extras` unit that would overwrite its base chapter's
+  dedup-library entry, a reviewed chapter missing from that library, a foreign `.apkg` in a
+  collection folder, and a package older than a done unit's `cards.json`.
+- **ACK** blocks only while instances are unreviewed. Nothing is ACK-tier today; when a check earns
+  the tier, judge each instance and then `--accept` it with a note.
+- **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, marker-audible clips,
+  and the template path's readiness/enrichment exemptions.
+
+Every check reads ONE collection. **Collections are isolated:** two decks built from two different
+sources are separate products, and preflight never compares them, cues one against the other, or
+reports them in reference to each other. Cross-referencing WITHIN a collection (a book's lessons and
+its extras) is unchanged and is the whole point of the duplicate and collision checks.
+
+Run it at the end of a build, before you post the link, and run `npm run check` before a deliver.
+
+### Verify an `.apkg` actually imports (new source types, and any package-format change)
+
+```sh
+node scripts/verify-apkg-import.mjs --smoke                     # check the setup works
+node scripts/verify-apkg-import.mjs output/epubs/<slug>/<slug>.apkg --expect-notes 1234
+```
+
+Imports the package into a **throwaway** Anki collection using the pinned `anki` Python package in a
+virtualenv it bootstraps itself. No running Anki, nothing on port 8765. It reports the note/deck/
+note-type counts that actually landed, plus what a re-import does (guid match vs duplicate) and what
+happens to the deck-options preset with id 1. Three shipped `.apkg` format bugs passed every
+synthetic check in this repo because nothing ever ran a real import; this is that.
+
+Not part of `npm run ci` or `npm run check` — it needs a Python toolchain and a one-time wheel
+download. Run it for the first-ever build of a new source type, and after any change to how packages
+are written.
 
 ### Finalize an extras unit
 

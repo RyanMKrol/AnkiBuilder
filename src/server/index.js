@@ -43,6 +43,7 @@ import { httpError } from "../util/httpError.js";
 import { sendHtml, sendJson, notFound, forbidden } from "./respond.js";
 import { createPageRenderers } from "./pages.js";
 import { createMediaRoutes } from "./mediaRoutes.js";
+import { rebuildGroupQuiet } from "./rebuildSignal.js";
 
 // Local deck-dashboard server. Lists every built deck (via the format adapters) and renders per-deck
 // collapsible lesson views in the same editorial style as the deck-view artifact — but serving audio
@@ -283,7 +284,7 @@ export function createDeckServer({
     // The done-set just changed — refresh the group package so it always matches. A REAL rebuild
     // failure rides back on the response: reporting success while the shipping .apkg stayed stale
     // is exactly the divergence the auto-rebuild exists to prevent.
-    const { rebuildError } = await rebuildGroupQuiet(type, id);
+    const { rebuildError } = await rebuildGroup(type, id);
     sendJson(res, { ...result, rebuildError });
   }
 
@@ -386,7 +387,7 @@ export function createDeckServer({
 
   // Rebuild the single group package (the book/course merge of done lessons, or a template's own deck)
   // — the only .apkg per group. Never writes a per-lesson file. Shared by the manual "Rebuild deck"
-  // button and by rebuildGroupQuiet below.
+  // button and by the Mark-done rebuild below.
   async function handleRebuild(res, type, id) {
     const adapter = adapterFor(type);
     if (!adapter || !adapter.rebuild) return notFound(res);
@@ -415,21 +416,10 @@ export function createDeckServer({
     sendJson(res, report);
   }
 
-  // Best-effort rebuild of the group package, tolerating only the BENIGN cases — no lesson done
-  // yet, or no unit folders at all — so marking a lesson done (or an edit to a done lesson)
-  // keeps the on-disk package in step without failing the write. Every other
-  // failure is a real build error the caller must surface: it used to be swallowed here, so Mark
-  // done reported success while the shipping .apkg silently stayed stale.
-  async function rebuildGroupQuiet(type, id) {
-    const adapter = adapterFor(type);
-    try {
-      await adapter?.rebuild?.(outputRoot, id);
-      return { rebuildError: null };
-    } catch (e) {
-      const benign = /no finished lessons|no chapter-\*\/|directories found/.test(e.message || "");
-      return { rebuildError: benign ? null : e.message || "rebuild failed" };
-    }
-  }
+  // Mark done refreshes the group package; a REAL rebuild failure rides back on the response so the
+  // reviewer sees it. The benign/real split and the message itself live in ./rebuildSignal.js,
+  // behind a test, because that string is the only in-band signal both human gates depend on.
+  const rebuildGroup = (type, id) => rebuildGroupQuiet(outputRoot, adapterFor(type), id);
 
   // POST route dispatch under /api/deck/:type/:id/… . Returns true if it handled the request.
   async function routePost(req, res, seg) {

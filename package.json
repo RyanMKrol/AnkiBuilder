@@ -17,7 +17,8 @@
     "ci": "npm run format:check && npm run lint && npm test && npm run build",
     "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
     "validate:decks": "node scripts/validate-decks.mjs",
-    "preflight": "node scripts/preflight.mjs --all"
+    "preflight": "node scripts/preflight.mjs --all",
+    "check": "npm run ci && npm run validate:decks && npm run preflight"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

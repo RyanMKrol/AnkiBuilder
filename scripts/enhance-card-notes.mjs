@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+//
+// SPENT: 2026-08-14 — a one-off MIGRATION, not a standing tool.
+// the whole-book note backfill ran once; new lessons get notes from prepare. It is kept for the record, and because re-reading
+// what a migration actually did is the only way to understand the shape of the data it left
+// behind. Do not run it as part of any procedure: it is not in SKILL.md's per-chapter flow, and
+// it will re-apply a decision that has already been made and reviewed.
+//
 // Whole-book backfill of back-of-card `note`s: one backward pass PER LESSON, each fed only that
 // lesson + all EARLIER lessons as context. The per-lesson logic lives in src/cards/crossLessonNotes.js
 // and is the same code the `prepare` CLI stage runs for a single new lesson — this script is just the

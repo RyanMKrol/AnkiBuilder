@@ -1,202 +1,92 @@
 #!/usr/bin/env node
 // Every deterministic check that should pass BEFORE a unit is handed to a human reviewer, in one
-// command. Run it at the end of a build, before you post the review link.
+// command. Run it at the end of a build, before you post the review link, and before a deliver.
 //
-// Why this exists: each of these checks already existed, but they were run ad hoc and one of them
-// (duplicate card ids) only ever ran inside the DECK BUILD — which happens at Mark done, after the
-// corpus review and the audio review have both been signed off. A card id becomes the Anki note
-// guid, so a clash makes the build refuse to package the deck at all, and the refusal therefore
-// surfaced at the latest, most expensive possible moment. Checking it up front turns a
-// re-open-and-re-review into an edit before anyone has looked at the unit.
+// This file is arg parsing, a scope filter and a printer. The checks themselves — and the loader,
+// scope model and severity tiers they hang off — live in src/audit/, behind unit tests. Adding a
+// check is one `defineCheck` plus one line in src/audit/checks/index.js; nothing here changes.
 //
 // Usage:
-//   node scripts/preflight.mjs <book-or-course-dir>     one collection
-//   node scripts/preflight.mjs --all [output-root]      every collection under the root
+//   node scripts/preflight.mjs --all [output-root]       every collection under the root
+//   node scripts/preflight.mjs <collection-dir>          one book / course / template deck
+//   node scripts/preflight.mjs --all --schema-only       just the schema pass (validate-decks)
+//   node scripts/preflight.mjs --all --scope unit        only the per-unit checks
+//   node scripts/preflight.mjs --all --only card-ids     one check by id
+//   node scripts/preflight.mjs --all --verbose           print passing checks too
+//   node scripts/preflight.mjs --all --accept [--note …] record the unreviewed ACK findings
 //
-// Exit 0 when every check passes, 1 when any fails.
-import { readFileSync, readdirSync, existsSync, statSync } from "fs";
-import { join, resolve, basename } from "path";
-import { validateCards, validateCorpus } from "../src/model/index.js";
-import { findCollisions, findCrossChapterDuplicates } from "../src/cards/extrasTools.js";
-import { assertUniqueCardIds } from "../src/deck/shippableCards.js";
-import { normalizeDisplayText, isSpaceFreeLanguage } from "../src/model/scriptSpacing.js";
+// Exit 0 when nothing blocks. Exit 1 on any FAIL finding, or any ACK finding nobody has accepted.
+import {
+  ALL_CHECKS,
+  SCHEMA_ONLY_CHECKS,
+  SCOPES,
+  acceptFindings,
+  audit,
+  formatReport,
+} from "../src/audit/index.js";
 
 const args = process.argv.slice(2);
-const all = args.includes("--all");
-const positional = args.filter((a) => !a.startsWith("--"));
-
-function collectionDirs() {
-  if (!all) return [resolve(positional[0] || "")];
-  const root = resolve(positional[0] || "output");
-  const dirs = [];
-  for (const group of ["epubs", "courses"]) {
-    const groupDir = join(root, group);
-    if (!existsSync(groupDir)) continue;
-    for (const name of readdirSync(groupDir)) {
-      const dir = join(groupDir, name);
-      if (statSync(dir).isDirectory()) dirs.push(dir);
-    }
-  }
-  return dirs;
-}
-
-// Units in study order: a lesson before its extras, so "the earliest occurrence is the keeper"
-// means what a reader expects.
-function loadUnits(dir) {
-  return readdirSync(dir)
-    .map((name) => name.match(/^(chapter|lesson)-(\d+)(-extras)?$/))
-    .filter(Boolean)
-    .map((m) => ({ name: m[0], number: Number(m[2]), extras: Boolean(m[3]) }))
-    .sort((a, b) => a.number - b.number || Number(a.extras) - Number(b.extras))
-    .map(({ name }) => {
-      const path = join(dir, name, "cards.json");
-      if (!existsSync(path)) return null;
-      const data = JSON.parse(readFileSync(path, "utf-8"));
-      return {
-        unit: name,
-        label: data.meta?.chapterLabel ?? name,
-        items: data.items ?? [],
-        meta: data.meta ?? {},
-      };
-    })
-    .filter(Boolean);
-}
-
-let failed = 0;
-const fail = (msg) => {
-  failed++;
-  console.log(`  ✗ ${msg}`);
+const has = (flag) => args.includes(flag);
+const valueOf = (flag) => {
+  const index = args.indexOf(flag);
+  return index >= 0 ? args[index + 1] : null;
 };
+// A flag's VALUE is not a positional argument.
+const flagValues = new Set(
+  ["--scope", "--only", "--note"].map((flag) => valueOf(flag)).filter(Boolean),
+);
+const positional = args.filter((arg) => !arg.startsWith("--") && !flagValues.has(arg));
 
-for (const dir of collectionDirs()) {
-  if (!existsSync(dir)) {
-    console.error(`no such directory: ${dir}`);
-    process.exit(1);
-  }
-  console.log(`\n── ${basename(dir)} ${"─".repeat(Math.max(0, 56 - basename(dir).length))}`);
-  const units = loadUnits(dir);
-  if (!units.length) {
-    console.log("  (no units)");
-    continue;
-  }
-
-  // 1. Schema — a hand-authored unit skips the stages that would otherwise shape its fields.
-  let bad = 0;
-  for (const unit of units) {
-    for (const [file, validate] of [
-      ["cards.json", validateCards],
-      ["corpus.json", validateCorpus],
-    ]) {
-      const path = join(dir, unit.unit, file);
-      if (!existsSync(path)) continue;
-      try {
-        validate(JSON.parse(readFileSync(path, "utf-8")));
-      } catch (error) {
-        fail(`schema  ${unit.unit}/${file}: ${error.message}`);
-        bad++;
-      }
-    }
-  }
-  if (!bad) console.log(`  ✓ schema        ${units.length} unit(s) valid`);
-
-  // 2. Duplicate card ids — the one that used to surface only at Mark done. Checked across
-  //    EVERY unit, not just done ones, so a clash is caught while the new unit is still editable.
-  try {
-    assertUniqueCardIds(
-      units.map((u) => ({ label: u.unit, items: u.items.filter((i) => !i.excluded) })),
-      basename(dir),
-    );
-    console.log("  ✓ card ids      unique across all units");
-  } catch (error) {
-    fail(`card ids  ${error.message}`);
-  }
-
-  // 3. Collisions — a shared face with two different answers is unstudiable without a cue.
-  //    An English-gloss group accepts a hint OR a scene; a target group needs a SCENE, because a
-  //    hint renders on the back of a Recognition card, after the learner has already answered.
-  //    `hasCue` already encodes that per group, so just trust it.
-  const { byEnglish, byTarget } = findCollisions(units);
-  const uncued = [...byEnglish, ...byTarget].flatMap((group) =>
-    group.members.filter((m) => !m.hasCue).map((m) => ({ ...m, key: group.key })),
-  );
-  if (uncued.length) {
-    fail(`collisions  ${uncued.length} card(s) with no cue on the colliding face:`);
-    for (const m of uncued) console.log(`      ${m.unit}/${m.id}  "${m.english}" / ${m.target}`);
-  } else {
-    console.log("  ✓ collisions    every member cued on the colliding face");
-  }
-
-  // 4. Duplicate targets — reported, never auto-applied: whether a pair is one word taught twice
-  //    or two senses that share a spelling is a judgment about the source material.
-  const dupes = findCrossChapterDuplicates(units);
+if (has("--help")) {
   console.log(
-    `  · duplicates    ${dupes.length} target group(s) spanning units (review, don't auto-exclude)`,
+    [
+      "usage: preflight.mjs --all [output-root] | <collection-dir>",
+      "  --schema-only       run the schema check only (what validate-decks is)",
+      "  --scope <s>         one of: " + SCOPES.join(", "),
+      "  --only <id>         a single check id (comma-separated for several)",
+      "  --verbose           print passing checks as well as findings",
+      "  --accept [--note]   record every unreviewed ACK finding in .preflight-accepted.json",
+    ].join("\n"),
   );
-
-  // 5. Display normalization — for a space-free script (Japanese) a stored target must carry no
-  //    editorial spaces and no trailing 。. The pipeline normalizes during translate, so ONLY
-  //    hand-authored units (extras) can drift; chapter-13-extras shipped 66 spaced cards this way
-  //    and rendered 分かち書き word-separation the deck deliberately strips.
-  const unnormalized = [];
-  for (const unit of units) {
-    const lang = unit.meta?.targetLanguage ?? "ja";
-    if (!isSpaceFreeLanguage(lang)) continue;
-    for (const item of unit.items) {
-      if (item.excluded) continue;
-      for (const field of ["target", "ttsText"]) {
-        const value = item[field];
-        if (typeof value !== "string") continue;
-        if (normalizeDisplayText(value, lang) !== value)
-          unnormalized.push(`${unit.unit}/${item.id}.${field}`);
-      }
-    }
-  }
-  if (unnormalized.length) {
-    fail(
-      `spacing  ${unnormalized.length} field(s) carry editorial spaces or a trailing 。: ` +
-        unnormalized.slice(0, 8).join(", ") +
-        (unnormalized.length > 8 ? ` … +${unnormalized.length - 8} more` : ""),
-    );
-  } else {
-    console.log("  ✓ spacing       display text normalized for the script");
-  }
-
-  // 6. Exclusion provenance — report-only. An exclusion a script applied is a machine judgement, and
-  //    the tools that make them false-positive often enough that the set is worth re-reading; a
-  //    human's reviewed decision is not. Cards written before `excludedBy` existed report as
-  //    unattributed, which is honest: nobody can now say which they were.
-  const excludedTotal = units.reduce((n, u) => n + u.items.filter((i) => i.excluded).length, 0);
-  if (excludedTotal > 0) {
-    const byScript = new Map();
-    let unattributed = 0;
-    for (const unit of units) {
-      for (const item of unit.items) {
-        if (!item.excluded) continue;
-        if (!item.excludedBy) unattributed++;
-        else if (item.excludedBy !== "human") {
-          const key = `${unit.unit} (${item.excludedBy})`;
-          byScript.set(key, (byScript.get(key) || 0) + 1);
-        }
-      }
-    }
-    const scripted = [...byScript.values()].reduce((n, c) => n + c, 0);
-    console.log(
-      `  · exclusions    ${excludedTotal} excluded card(s): ${scripted} script-authored, ` +
-        `${unattributed} unattributed (pre-provenance or human)`,
-    );
-    for (const [key, count] of [...byScript].sort())
-      console.log(`      ${key}: ${count} — re-read before shipping`);
-  }
-
-  // 7. Audio markers — heuristic, so a note rather than a failure.
-  const stuck = units.flatMap((u) =>
-    u.items.filter((i) => i.audioMarkerStuck && !i.excluded).map((i) => `${u.unit}/${i.id}`),
-  );
-  if (stuck.length)
-    console.log(
-      `  · audio         ${stuck.length} clip(s) flagged marker-audible: ${stuck.join(", ")}`,
-    );
+  process.exit(0);
 }
 
-console.log(failed ? `\n${failed} check(s) FAILED` : "\npreflight clean");
-process.exit(failed ? 1 : 0);
+const all = has("--all");
+const scope = valueOf("--scope");
+const only = valueOf("--only");
+
+const result = audit({
+  outputRoot: all ? positional[0] || "output" : "output",
+  collectionDir: all ? null : positional[0],
+  checks: has("--schema-only") ? SCHEMA_ONLY_CHECKS : ALL_CHECKS,
+  scopes: scope ? [scope] : SCOPES,
+  only: only ? only.split(",") : null,
+});
+
+if (!all && !positional[0]) {
+  console.error("usage: preflight.mjs --all [output-root] | <collection-dir>  (--help for more)");
+  process.exit(1);
+}
+
+// An empty output root is not a failure. A fresh clone has no deck state at all, and a command that
+// found nothing must never be indistinguishable from one that found something broken.
+if (result.workspace.missing || result.workspace.collections.length === 0) {
+  console.log(`(no collections found under ${result.workspace.root})`);
+  process.exit(0);
+}
+
+for (const line of formatReport(result, { verbose: has("--verbose") })) console.log(line);
+
+if (has("--accept")) {
+  const written = acceptFindings(result.results, { note: valueOf("--note") });
+  const added = written.reduce((n, w) => n + w.added, 0);
+  console.log(
+    added
+      ? `\naccepted ${added} finding(s) into ${written.length} acknowledgement file(s):\n` +
+          written.map((w) => `  ${w.path}  (+${w.added})`).join("\n")
+      : "\nnothing to accept — no unreviewed ACK findings",
+  );
+  process.exit(0);
+}
+
+process.exit(result.exitCode);

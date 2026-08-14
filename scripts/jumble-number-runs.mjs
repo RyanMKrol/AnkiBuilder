@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+//
+// SPENT: 2026-08-14 — a one-off MIGRATION, not a standing tool.
+// the number-run de-sequencing ran once over the existing decks. It is kept for the record, and because re-reading
+// what a migration actually did is the only way to understand the shape of the data it left
+// behind. Do not run it as part of any procedure: it is not in SKILL.md's per-chapter flow, and
+// it will re-apply a decision that has already been made and reviewed.
+//
 // One-off: de-sequence number runs in existing decks. For each unit, an LLM finds contiguous blocks of
 // number/counter cards — both plain ascending runs (1,2,3…; minutes; o'clock; …) AND interleaved blocks
 // where several counters climb in parallel (1-flat, 1-long, 1-general, 2-general, 3-flat…) — and returns

@@ -9,6 +9,12 @@
 //   node --env-file=.env scripts/deliver-to-anki.mjs [--dry] [--no-sync] [type:id ...]
 //     --dry           preview the plan; read-only, writes nothing (no backup, no sync)
 //     --no-sync       don't sync with AnkiWeb before/after (default: sync both)
+//     --allow-model-change
+//                     consent to rewriting the shared note type's card templates or CSS. The note
+//                     type is per LANGUAGE, so that write reaches every deck of that language at
+//                     once and forces a manual one-way AnkiWeb sync. Without this flag such a
+//                     delivery is refused. Preview it with --dry first: the dry run prints a
+//                     unified diff of live vs built plus every deck the change would reach.
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
 // Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
@@ -21,7 +27,8 @@ import { deliverToAnki } from "../src/anki/deliver.js";
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
 const sync = !args.includes("--no-sync");
-const selectorArgs = args.filter((a) => a !== "--dry" && a !== "--no-sync");
+const allowModelChange = args.includes("--allow-model-change");
+const selectorArgs = args.filter((a) => !a.startsWith("--"));
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
       const [type, id] = a.split(":");
@@ -42,6 +49,7 @@ try {
   report = await deliverToAnki(outputRoot, selectors, {
     client,
     dry,
+    allowModelChange,
     sync,
     log: (m) => console.error(`  ${m}`),
   });
@@ -73,6 +81,14 @@ if (report.structure.length) {
       s.css && "css",
     ].filter(Boolean);
     line(`  ${s.model}: ${changes.length ? changes.join(", ") : "already current"}`);
+    if (s.modelChange) {
+      const { usage } = s.modelChange;
+      line(
+        `     ⚠ this rewrites the note type shared by ${usage.cards} card(s) in ` +
+          `${usage.decks.length} deck(s): ${usage.decks.join(", ")}`,
+      );
+      if (dry) line(`     re-run with --allow-model-change to apply it (diff printed above)`);
+    }
   }
 }
 

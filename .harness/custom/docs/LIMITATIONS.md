@@ -2058,6 +2058,172 @@ say when it was measured rather than stating it as a standing fact.
   by about 1%) stays deferred until the headless import verifier exists and passes on a memoized
   package — the payoff is 22 entries out of 1,914 against re-entering the one code path whose last
   reasonable-looking change produced a package Anki rejected while passing every test.
+## Package freshness is an mtime comparison, so a byte-identical rewrite reads as stale
+
+- **What:** `preflight`'s `package-freshness` check FAILs when a done unit's `cards.json` is newer
+  than the collection's `.apkg`. It compares modification times; it does not open the package.
+- **Why:** the only content-true alternative is to unzip the `.apkg`, read its SQLite collection and
+  diff the notes against `cards.json`, which is a second implementation of the deck writer living
+  next to the first, and drift between the two would be a false all-clear. mtime is the signal that
+  is actually available, and the remedy for a false positive is the same as for a true one: rebuild,
+  which is cheap and idempotent.
+- **Impact:** anything that rewrites a `cards.json` without changing it (a `git checkout`, a restore
+  from a `.bak`, a fresh clone) turns the check red for every collection until the packages are
+  rebuilt. It is red on landing day for exactly this reason. A false positive costs one command; it
+  never causes a wrong belief, because "we cannot show the package matches" is the honest state.
+- **Status:** open
+- **When to revisit:** if the rebuild-on-false-positive habit becomes routine enough to be annoying,
+  stamp a build receipt (source file hashes) into the collection dir at build time and compare that
+  instead. Wait until WS1 item 9's import verifier exists, since it already opens packages.
+
+## `.preflight-accepted.json` records the decision, not the evidence for it
+
+- **What:** an ACK acknowledgement is keyed on `(checkId, findingKey)`, e.g. a check id plus
+  `chapter-3/some-card-id`. It stores the message as it read at the time, plus a timestamp and an
+  optional note. It does NOT store a hash of the card content the finding was about.
+- **Why:** hashing the content would mean every legitimate edit to an accepted card silently
+  un-accepts it, and the operator would meet the same finding again with no way to tell an edit from
+  a regression. Keying on identity keeps "I have looked at this pair" true across ordinary editing.
+- **Impact:** if an accepted card later changes into a genuinely different problem under the same
+  key, the acknowledgement still covers it and the finding stays quiet. A check can narrow this by
+  folding the distinguishing fact into the key itself, but the general hole is real. No check is
+  ACK-tier today (the only two were the cross-collection comparisons removed by the isolation
+  ruling), so the hole is currently theoretical and the machinery is waiting for its first real user.
+- **Status:** open
+- **When to revisit:** when the first ACK-tier check lands. If its findings can change meaning under
+  a stable key, fold the distinguishing fact into the key.
+
+## Gloss agreement is a shallow string normalizer, not a synonym engine
+
+- **What:** `glossAlternatives` lowercases, drops parentheticals and `___` blanks, splits on commas
+  and slashes, unifies ordinals, strips a leading article and a trailing plural. Two glosses agree if
+  their alternative sets intersect.
+- **Why:** it is a safety brake on `extras-duplicate-check --apply`, which must refuse a group whose
+  members are not obviously the same card. Ordinary wording differences ("Big" vs "Big, large", "4th
+  floor" vs "Fourth floor") must not read as a disagreement, and a real synonym engine would need a
+  dictionary and would bring its own wrong answers. It was originally written for a cross-deck report
+  as well; that report was removed by the collection-isolation ruling, and this is the surviving,
+  strictly within-collection user.
+- **Impact:** genuinely equivalent glosses that share no words still read as a difference ("Car park"
+  vs "Parking lot"), so `--apply` refuses a pair it could safely have excluded, and glosses that share
+  a word but mean different things read as agreement. Failing toward REFUSING is the right direction
+  for a tool whose output a human reads anyway.
+- **Status:** open
+- **When to revisit:** only if `--apply` is ever asked to carry more weight than "propose, human
+  disposes". It should not be.
+
+## Preflight is not in `npm run ci`, and deliberately not in the pre-push hook
+
+- **What:** `npm run ci` (which the pre-push hook runs) stays format/lint/test/build. Preflight and
+  `validate:decks` are the separate `npm run check`, run by hand.
+- **Why:** `npm run ci` asserts on tracked state and passes in a fresh clone. Preflight asserts on
+  `output/`, whose bulk is gitignored and untracked. Wiring it into the hook couples `git push` to
+  unversioned deck state, is a no-op in CI and a fresh clone by construction, and would block a README
+  typo behind a deck rebuild whose only escape is `--no-verify`.
+- **Impact:** the deterministic gate is only as reliable as the habit of running it. Nothing forces
+  it before a review link is handed over or before a deliver; the skill doc says to, and that is all.
+- **Status:** open
+- **When to revisit:** if the gate is skipped in practice, add the preflight half to the hook as
+  ADVISORY: print, never contribute a non-zero exit.
+
+## The `.apkg` import verifier needs Python, so it can never be part of the automatic gate
+
+- **What:** `scripts/verify-apkg-import.mjs` shells out to the pinned `anki` Python package in a
+  virtualenv it bootstraps under `.anki-builder/verify-venv/`. It is not in `npm run ci` and not in
+  `npm run check`.
+- **Why:** it is the only tool here that can disagree with our own `.apkg` writer, because it runs a
+  real import rather than another assertion written by the same repo. But it needs a Python
+  toolchain and a one-time wheel download, and `npm run ci` has to stay green in a fresh clone on a
+  machine with neither.
+- **Impact:** a package-format regression is caught only when someone remembers to run it. It is
+  documented as a Definition-of-Done step for the first-ever build of a new source type and for any
+  change to how packages are written, and that documentation is the whole enforcement. Its
+  end-to-end test is env-gated (`ANKI_BUILDER_VERIFY_APKG=1`) and skips cleanly otherwise, so the
+  suite reports "skipped", never "passed", when Python is absent.
+- **Status:** open
+- **When to revisit:** if CI ever gains a Python-capable job, run the smoke target there. Do not add
+  it to the pre-push hook: that couples `git push` to a network fetch.
+
+## The behaviour probes are written, tested and NEVER RUN, so five delivery answers are still blank
+
+- **What:** `scripts/anki-behaviour-probe.mjs` and `src/anki/behaviourProbe.js` exist, are covered by
+  17 tests driving an injected fake client, and have never touched a live collection. The results
+  table in `references/deliver.md` reads "not yet run" in every row.
+- **Why:** running them needs a human to create the `ANKIBUILDER-PROBE` profile, its sentinel deck
+  and a filtered deck inside it, and to have that profile open. Creating, resetting and deleting
+  that profile stay human steps forever: a script that can delete a profile is a script that can
+  delete the wrong profile, and no interlock makes that safe.
+- **Impact:** anything gated on a probe answer stays blocked. Per-card direction suspension and the
+  one-time deck-name re-file both cite these results, and neither may ship on a guess. The
+  interlock's own correctness is tested, but "the interlock refuses the owner's real collection" is
+  tested against a fake, not against the real one.
+- **Status:** open
+- **When to revisit:** the moment the probe profile exists. Run `--check` first (it writes nothing),
+  then `--run`, then fill in the table with the date.
+
+## `suspend`, `unsuspend` and `changeDeck` are in the client with no shipping caller
+
+- **What:** three new AnkiConnect actions were added to `src/anki/ankiConnect.js` for the probes.
+  Nothing in the delivery path calls them.
+- **Why:** the probes need them, and a probe script that reached past the shared client to build its
+  own HTTP calls would be a second, unreviewed way to write to a live collection.
+- **Impact:** the client now exposes three scheduling-mutating calls that no test of the delivery
+  path constrains. A future change could reach for one without the consent machinery that
+  `changeDeck` and `suspend` are supposed to carry. The comment above them says so; nothing enforces
+  it.
+- **Status:** open
+- **When to revisit:** when per-card direction suspension lands, route both through the same
+  consent-and-preview path the model-change guard uses, and delete this row.
+
+## Spent migrations are marked in place, not moved to `scripts/migrations/`
+
+- **What:** a one-off migration carries a `// SPENT: <date>` header saying not to run it. It stays in
+  `scripts/`. `test/scripts/spentMigrations.test.js` requires every `.mjs` in `scripts/` to be listed
+  as either a standing tool or a spent migration.
+- **Why:** moving the files would break every doc reference, every muscle-memory path, and the
+  docs-integrity test, for a distinction that only has to be visible at the top of the file.
+- **Impact:** the classification lives in a test's two arrays, so adding a script to `scripts/` makes
+  the suite red until it is classified. That is deliberate friction, but it is friction: a worker
+  adding a script has to touch a file in `test/` they were not otherwise editing.
+- **Status:** open
+- **When to revisit:** if the friction is what people notice rather than the distinction, derive the
+  lists from the headers themselves (spent = has the marker) and keep only the "no standing tool is
+  marked spent" half.
+
+## Collections are isolated, so nothing detects a bare-guid overlap between two decks
+
+- **What:** an owner ruling on 2026-08-14 established that two collections (one book, one course, one
+  template) are two separate products and must never be overlapped, compared, cued against each
+  other, or considered in reference to each other. Three preflight checks that did exactly that
+  (`cross-collection-ids`, `cross-deck-prompts`, `cross-deck-glosses`) had already been written,
+  tested and merged. They were removed on branch `ws1-isolation`, along with WS4 item 8, which
+  existed only to resolve their findings.
+- **Why:** the checks were built on the observation that Anki interleaves every deck studied that day
+  and matches note guids collection-wide. That observation is true, and it is not the rule this
+  project follows. A deck is authored, reviewed and shipped as one product; making one product's
+  wording answer for another's turns every new deck into a re-review of every old one, and the cue
+  it would ask for ("say which scarf you mean") is a cue the learner of either deck alone does not
+  need.
+- **Impact:** the one mechanical concern the removed checks also covered now has nothing watching it.
+  Both live collections ship BARE guids, decided once at each folder's creation and deliberately
+  frozen there. If both are ever `.apkg`-imported into the same Anki collection, notes sharing an id
+  overwrite each other silently. That was measurable at the time of the ruling (ten shared ids, nine
+  byte-identical, one differing: スカーフ vs マフラー, both glossed "Scarf"). It is now unwatched by
+  design, because detecting it requires reading two collections' cards together.
+- **Mitigation, and it needs no comparison:** per-deck guid namespacing (WS6 item 5) makes the
+  overlap impossible by construction, and is decided per collection at creation with no reference to
+  any other. Alongside it, the delivery runbook rule: never `.apkg`-import a bare-guid deck into a
+  collection that already holds another bare-guid deck. In-place AnkiConnect delivery is unaffected,
+  because it matches on the `abid:` tag rather than the guid, and it is the normal path for a deck
+  the owner already studies.
+- **Status:** open
+- **Verified by:** `node scripts/preflight.mjs --all` reports no cross-collection findings by
+  construction; `grep -rn "guidNamespace" output/*/*/book.json output/*/*/course.json` shows which
+  collections are bare.
+- **When to revisit:** when WS6 item 5 lands guid namespacing for new collections, note here that new
+  decks are safe by construction and that the two pre-namespace decks stay bare forever (renaming an
+  existing deck's guids would orphan its live scheduling). Do not revisit by reintroducing a content
+  comparison.
 
 ## The cached-artifact drift check compares prompt TEMPLATES, not rendered prompts
 
@@ -2113,24 +2279,24 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if reviewed chapters start showing more than about one exception each, tighten
   the wording or make the reviewNote a required, greppable prefix so the count is mechanical.
 
-## vocab-coverage is not wired into preflight yet
+## vocab-coverage reports at INFO, and only where the chapter cache exists
 
-- **What:** `scripts/vocab-coverage.mjs` and `scripts/paradigm-grid.mjs` exist, with their matching
-  rules in `src/cards/vocabCoverage.js` / `src/cards/paradigmGrid.js` behind tests. The plan also
-  calls for vocab-coverage to run inside `preflight` for EPUB units; it does not yet.
-- **Why:** preflight today prints six checks plus two report lines that have never once been zero,
-  with no severity tiers and no way to tell a check that matched nothing from one that passed. Adding
-  another report line to that base was ruled "wallpaper" (skill-review R19), and the scope/severity
-  substrate it should land on has not merged yet. The check also needs the cached chapter XHTML, so
-  its scope is genuinely different from every existing preflight check: it reads the book's cache, not
-  the unit.
-- **Impact:** the vocabulary diff only runs when someone runs it, which is the same as before except
-  that the rules are now fixed and tested instead of re-derived per chapter. SKILL.md Step 2 names the
-  command at the point in the procedure where it is due.
-- **Status:** open — deliberate deferral, waiting on the preflight check registry.
-- **When to revisit:** as soon as preflight has scopes and severity tiers, register vocab-coverage as
-  an EPUB-unit check that resolves the chapter file from `meta.epubHash` + `meta.chapterNumber` and
-  reports at the ACK tier (it has known, human-checkable false positives).
+- **What:** the vocabulary diff runs two ways: `scripts/vocab-coverage.mjs <chapterFile> <unitDir>`
+  for one unit, and a `vocab-coverage` check in preflight (`src/audit/checks/vocab.js`) over every
+  base unit of an EPUB collection. The matching lives in `src/cards/vocabCoverage.js` behind tests.
+  The check is INFO, and it SKIPS rather than passes when a unit's chapter file is not cached.
+- **Why:** INFO because the check has known false positives that only a human can dismiss (a book
+  prints its vocabulary in ways no string match resolves), and the standing rule is that a blocking
+  check ships with the fix or the ACK for its live instances. Nobody has looked at a live count yet:
+  the chapter cache is a free re-inflate of the EPUB and is untracked, so it is absent in a fresh
+  clone and in every worktree, and this check has never been run against real chapters.
+- **Impact:** the check contributes nothing to the exit code, and on a machine without the chapter
+  cache it reports a skip line rather than a number. The skip is the honest answer, but it means the
+  gate is only real on the machine that built the book.
+- **Status:** open — INFO on purpose, pending a live count.
+- **When to revisit:** run `npm run preflight` on the machine holding the chapter cache, read the
+  findings once, then either fix them or promote the check to ACK in the same commit that accepts
+  the residue.
 
 ## The paradigm audit cannot tell a particle from the same kana inside a word
 

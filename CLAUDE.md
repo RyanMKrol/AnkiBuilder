@@ -110,6 +110,27 @@ production default under tests). Here "production state" is concrete and irrepla
 has already cost something. Tests use a tmpdir fixture; no test ever contacts AnkiConnect (port
 8765), ElevenLabs, or spawns `claude`.
 
+### 7. Collections are isolated
+
+A **collection** is one deck's worth of source material: one book under `output/epubs/<slug>/`, one
+course under `output/courses/<slug>/`, one bundled template under `output/templates/<name>/<lang>/`.
+Two collections are two separate products. Process them in **complete isolation**.
+
+Nothing may overlap them, compare them, cue one against the other, dedup across them, or report one
+in reference to the other. No check, script, prompt, pass or doc may take two collections' cards and
+look at them together. If a question can only be answered by reading a second collection's content,
+it is the wrong question.
+
+**Within** a single collection, cross-referencing is unchanged and is the point: a book's lessons and
+its `-extras` units are one product being made coherent with itself, so the backward dedup library,
+the cross-lesson note pass, the duplicate check and the collision audit all stay exactly as they are.
+The boundary is the collection, not the lesson.
+
+This was an owner ruling on 2026-08-14, after three cross-collection checks had already been written
+and merged. They were removed. See the addendum in `docs/designs/skill-review-2026-08-plan.md` and
+the entry in `.harness/custom/docs/LIMITATIONS.md` for the one mechanical concern that survives it
+and how that concern is handled without any content comparison.
+
 ## Standard workflow for a change
 
 1. `git checkout main && git pull` — **always** sync `main` first, so the new branch is based

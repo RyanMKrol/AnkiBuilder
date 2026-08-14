@@ -1449,3 +1449,20 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if audio ever becomes genuinely unrecoverable (an `.orig.mp3` goes missing, or
   a voice is retired at ElevenLabs), revisit with a real out-of-band backup rather than by widening
   the git globs.
+
+## The test-runner library redirect keys on NODE_TEST_CONTEXT, not on isTestEnv()
+
+- **What:** `libraryHome()` returns a throwaway tmpdir when `NODE_TEST_CONTEXT` is set (with
+  `ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS=1` as the deliberate escape). It does NOT use
+  `isTestEnv()`, which also returns true for `NODE_ENV === "test"`.
+- **Why:** a real deck build run from a shell that exports `NODE_ENV=test` would silently write its
+  library into /tmp and look like it had lost the dedup registry. That failure is worse, hits real
+  data instead of test data, and is much harder to diagnose than the leak being fixed.
+- **Impact:** the `NODE_ENV=test` case is still uncovered. So is anything that writes to the library
+  outside `node --test`: a hand-run script, or a child process that loses the env var. The
+  suite-wide durable-write guard is the backstop for that gap, not this redirect. Test processes no
+  longer share a library, so a test that expected one file's dedup registry to be visible to another
+  file would now fail (none does today).
+- **When to revisit:** if a second test runner is adopted, add its env marker to the same guard.
+  Covering `NODE_ENV=test` safely needs a signal that separates "under a test runner" from
+  "someone's shell profile", and no such signal exists.

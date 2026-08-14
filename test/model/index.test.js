@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert";
 import { fileURLToPath } from "url";
+import { tmpdir } from "os";
 import { dirname, join, resolve } from "path";
 import { validateCorpus, validateCards, libraryHome, runPaths } from "../../src/model/index.js";
 
@@ -476,11 +477,33 @@ test("validateCards - optional fields are allowed", () => {
   });
 });
 
-test("libraryHome - resolves to <repo-root>/.anki-builder", () => {
+// This used to assert the un-redirected path, which is exactly how `npm test` came to write a fake
+// EPUB registry and four stub clips into the real library. The contract is now the opposite one.
+test("libraryHome - redirects to a throwaway tmpdir under the test runner", () => {
   const path = libraryHome();
-  const expected = resolve(join(REPO_ROOT, ".anki-builder"));
 
-  assert.strictEqual(path, expected);
+  assert.ok(process.env.NODE_TEST_CONTEXT, "this test is meaningless outside `node --test`");
+  assert.ok(
+    !path.startsWith(resolve(REPO_ROOT)),
+    `expected a tmpdir outside the checkout, got ${path}`,
+  );
+  assert.ok(path.startsWith(resolve(tmpdir())), `expected a path under os.tmpdir(), got ${path}`);
+  assert.ok(
+    path.includes(`anki-builder-test-${process.ppid}`),
+    `expected the suite-scoped parent in ${path}`,
+  );
+  assert.strictEqual(libraryHome(), path, "same process must get the same scratch dir");
+});
+
+test("libraryHome - resolves to <repo-root>/.anki-builder with the explicit escape set", () => {
+  const previous = process.env.ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS;
+  process.env.ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS = "1";
+  try {
+    assert.strictEqual(libraryHome(), resolve(join(REPO_ROOT, ".anki-builder")));
+  } finally {
+    if (previous === undefined) delete process.env.ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS;
+    else process.env.ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS = previous;
+  }
 });
 
 test("libraryHome - resolves path correctly", () => {

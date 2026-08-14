@@ -1,4 +1,6 @@
 import { fileURLToPath } from "url";
+import { rmSync, rmdirSync } from "fs";
+import { tmpdir } from "os";
 import { dirname, join, resolve } from "path";
 import { CATEGORIES } from "./categories.js";
 import { deckPathForDir } from "../deck/deckFileName.js";
@@ -360,9 +362,55 @@ export function validateCards(obj) {
   return true;
 }
 
+// Memoized so every call in one test process gets the same scratch dir, and so the exit handler
+// that cleans it up is registered exactly once.
+let scratchLibraryHome = null;
+
+/**
+ * A throwaway library for this test process, under one parent shared by the whole suite run.
+ *
+ * `node --test` runs each test file in its own child, so a naive per-process tmpdir scatters ~75
+ * directories across /tmp per `npm test`. `process.ppid` is the runner that spawned them all, which
+ * gives every child the same parent directory to sit under. Each process still gets its own subdir:
+ * they run concurrently, and a shared library would let one test file's dedup registry leak into
+ * another's. The exit handler removes this process's own dir and then tries to remove the parent,
+ * which succeeds for whichever process happens to exit last.
+ */
+function scratchLibraryHomeDir() {
+  if (scratchLibraryHome) return scratchLibraryHome;
+  const parent = resolve(join(tmpdir(), `anki-builder-test-${process.ppid}`));
+  scratchLibraryHome = join(parent, String(process.pid));
+  process.on("exit", () => {
+    try {
+      rmSync(scratchLibraryHome, { recursive: true, force: true });
+      rmdirSync(parent); // throws while other processes still have dirs here; that is fine.
+    } catch {
+      // Best effort. A leftover tmpdir is noise, never a correctness problem.
+    }
+  });
+  return scratchLibraryHome;
+}
+
 // All durable cross-run state (audio cache, EPUB registry) lives inside this
-// checkout, gitignored — never in $HOME, never committed. See .gitignore.
+// checkout — never in $HOME. Most of it is gitignored; see .gitignore for the
+// hand-reviewed parts that are not.
+//
+// Under the test runner this resolves to a throwaway tmpdir instead. `npm test` used to write
+// straight into the real library: a fake EPUB registry under `epubs/h1/` and four 4-byte stub clips
+// in the audio cache, sitting beside three real voice caches holding 3,610 paid clips. Every writer
+// (saveChapterCorpus, removeChapterCorpus, registerEpub, the audio cache) resolves through this one
+// function, so the redirect belongs here rather than in each of them — otherwise safety depends on
+// every future test author remembering to inject a stub, which is exactly the assumption
+// assertExternalCallAllowed already exists to reject.
+//
+// The trigger is NODE_TEST_CONTEXT and ONLY that. isTestEnv() also returns true for
+// NODE_ENV === "test", and a real deck build run from a shell that exports NODE_ENV=test would
+// silently write its library into /tmp and look like it had lost the dedup registry — a worse and
+// far more confusing failure than the one being fixed here.
 export function libraryHome() {
+  if (process.env.NODE_TEST_CONTEXT && !process.env.ANKI_BUILDER_ALLOW_REAL_LIBRARY_IN_TESTS) {
+    return scratchLibraryHomeDir();
+  }
   return resolve(join(REPO_ROOT, ".anki-builder"));
 }
 

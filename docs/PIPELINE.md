@@ -150,8 +150,10 @@ into. Then the things that have no other reporting at all — nav entries that r
 file, entries collapsed onto an earlier entry's file, spine files falling before the first nav entry
 (reachable only by `--chapter-number`, never by `--lesson`), labels that collide with each other or
 with a `describeChapter` `<title>` fallback, image filenames from different archive directories that
-resolve to one path in the shared `chapters/` cache, per-file text length against image count, and a
-size warning for a book materially larger than the one book this pipeline is proven on.
+resolve to one path in the shared `chapters/` cache, per-file text length against image count,
+chapters that are not UTF-8 (this reader decodes and caches every chapter as UTF-8, so their text
+would reach the model mangled), and a size warning for a book materially larger than the one book
+this pipeline is proven on.
 
 Warnings are advisory, never a gate — every one of them describes a book that still builds, just
 not the way its own table of contents suggests. Run the probe before spending a pass on a new book.

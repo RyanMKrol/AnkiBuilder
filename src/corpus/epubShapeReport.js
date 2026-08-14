@@ -169,6 +169,19 @@ export function buildShapeReport(epubPath) {
         `around the real raster image, which the model cannot read from the wrapper alone`,
     );
   }
+  const nonUtf8 = inspection.spine.filter((file) => file.encoding.isNonUtf8);
+  if (nonUtf8.length) {
+    warnings.push(
+      `${nonUtf8.length} spine file(s) are not UTF-8 — this reader decodes and caches every chapter ` +
+        `as UTF-8, so their text reaches the extraction model mangled: ` +
+        nonUtf8
+          .map(
+            (f) =>
+              `${f.number} (${f.encoding.declared ? `declared ${f.encoding.declared}` : `${f.encoding.replacementChars} undecodable byte(s)`})`,
+          )
+          .join(", "),
+    );
+  }
   if (thinFiles.length) {
     warnings.push(
       `${thinFiles.length} spine file(s) carry under ${THIN_TEXT_CHARS} characters of text but do ` +

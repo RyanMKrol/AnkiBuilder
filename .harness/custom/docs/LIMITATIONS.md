@@ -1515,3 +1515,17 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   third. No known book does this.
 - **When to revisit:** if an SVG-heavy book turns up where images are still missing after
   extraction — the copied-SVG log lines are the trail.
+
+## A non-UTF-8 chapter is reported, not transcoded
+
+- **What:** `detectNonUtf8` flags a spine file whose XML declaration names a non-UTF-8 encoding or
+  whose decoded text contains replacement characters. Nothing converts it; the reader still decodes
+  and caches every chapter as UTF-8.
+- **Why:** transcoding means either a dependency or a hand-rolled decoder for a set of legacy
+  Japanese and Chinese encodings, on evidence of exactly zero books. Reporting it turns a silent
+  mojibake extraction into a visible refusal to proceed.
+- **Impact:** such a book can still be built and will produce garbage cards; only the shape report
+  says why. The two signals also miss a file that is validly UTF-8-decodable but was authored in a
+  different encoding without declaring it (rare, and undetectable without heuristics).
+- **When to revisit:** the first time a real book trips this, transcode with `TextDecoder` (which
+  Node ships with full ICU for) at read time, keyed on the declared encoding.

@@ -918,6 +918,25 @@ function cacheRelativeImageDest(src) {
   return posix.normalize(posix.join(".", src));
 }
 
+// Every chapter in this module is decoded as UTF-8 and written back out as UTF-8, which is
+// right for the overwhelming majority of EPUBs and silently destructive for the rest: a
+// Shift_JIS or EUC-JP chapter decodes to replacement characters, gets written to the cache in
+// that state, and hands the extraction model a file of garbage that still looks like a
+// chapter. Two independent signals, because either alone misses cases: the XML declaration's
+// own encoding, and U+FFFD in the decoded text.
+const XML_ENCODING_PATTERN = /<\?xml\b[^>]*\bencoding\s*=\s*(?:"([^"]*)"|'([^']*)')/i;
+
+function detectNonUtf8(content) {
+  const declared = (XML_ENCODING_PATTERN.exec(content.slice(0, 200)) || []).slice(1).find(Boolean);
+  const replacementChars = (content.match(/�/g) || []).length;
+  const declaredNonUtf8 = Boolean(declared) && !/^utf-?8$/i.test(declared);
+  return {
+    declared: declared ?? null,
+    replacementChars,
+    isNonUtf8: declaredNonUtf8 || replacementChars > 0,
+  };
+}
+
 /**
  * A read-only structural survey of an EPUB: the spine, the navigation document and what it
  * named, the images every chapter references, and the collisions those images would produce
@@ -953,6 +972,7 @@ export function inspectEpubStructure(epubPath) {
       present: Boolean(entry),
       bytes: entry ? entry.data.length : 0,
       textLength: strippedTextLength(content),
+      encoding: detectNonUtf8(content),
       images,
     };
   });
@@ -1035,6 +1055,7 @@ export function inspectEpubStructure(epubPath) {
       distinctImages: new Set(allImages.filter((i) => i.present).map((i) => i.archivePath)).size,
       missingImages: allImages.filter((image) => !image.present).length,
       svgImages: allImages.filter((image) => image.isSvg).length,
+      nonUtf8Files: spine.filter((file) => file.encoding.isNonUtf8).length,
     },
   };
 }

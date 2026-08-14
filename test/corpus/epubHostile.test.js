@@ -3,6 +3,7 @@ import assert from "node:assert";
 import { mkdtempSync, rmSync, writeFileSync, existsSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join, dirname } from "path";
+import { Buffer } from "buffer";
 import { buildFixtureEpub, buildZip, containerXml } from "../support/epubFixtures.js";
 import { listExternalChapters, extractChapterToFile } from "../../src/corpus/epubArchive.js";
 import { listLessons, resolveLesson } from "../../src/corpus/epubLessons.js";
@@ -412,5 +413,131 @@ test("hostile: an SVG wrapper's own referenced image is copied too, and the SVG 
       "real-page-bytes",
     );
     assert.ok(logged.some((m) => m.includes("copied SVG") && m.includes("page.svg")));
+  });
+});
+
+test("hostile: two nav entries pointing at one spine file collapse, and the drop is reported", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "nav", href: "nav.xhtml", properties: "nav" },
+        { id: "c1", href: "ch1.xhtml" },
+        { id: "c2", href: "ch2.xhtml" },
+      ],
+      spineIdrefs: ["c1", "c2"],
+      extraFiles: [
+        {
+          name: "OEBPS/nav.xhtml",
+          content:
+            '<html><body><nav epub:type="toc"><ol>' +
+            // Two human chapters inside one file, addressed by fragment. There is no
+            // addressing finer than a spine position, so the second is unreachable.
+            '<li><a href="ch1.xhtml#part1">Lesson 1: Greetings</a></li>' +
+            '<li><a href="ch1.xhtml#part2">Lesson 2: Numbers</a></li>' +
+            '<li><a href="ch2.xhtml">Lesson 3: Time</a></li>' +
+            "</ol></nav></body></html>",
+        },
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+        { name: "OEBPS/ch2.xhtml", content: page("Lesson 3") },
+      ],
+    });
+
+    const lessons = listLessons(epubPath);
+    assert.deepEqual(
+      lessons.map((l) => l.label),
+      ["Lesson 1: Greetings", "Lesson 3: Time"],
+    );
+
+    const report = buildShapeReport(epubPath);
+    assert.equal(report.nav.collapsed.length, 1);
+    assert.equal(report.nav.collapsed[0].label, "Lesson 2: Numbers");
+    assert.ok(report.warnings.some((w) => w.includes("collapsed away")));
+  });
+});
+
+test("hostile: a chapter that is not UTF-8 is reported rather than cached as mojibake", () => {
+  withTempDir((dir) => {
+    // Shift_JIS bytes for 日本語, which are not valid UTF-8 — this reader decodes every
+    // chapter as UTF-8 and writes the result back out, so the model would read replacement
+    // characters where the teaching content should be.
+    const shiftJisBody = Buffer.from([0x93, 0xfa, 0x96, 0x7b, 0x8c, 0xea]);
+    const chapterBytes = Buffer.concat([
+      Buffer.from(
+        '<?xml version="1.0" encoding="Shift_JIS"?><html><head><title>Lesson 1</title></head><body><p>',
+        "utf-8",
+      ),
+      shiftJisBody,
+      Buffer.from("</p></body></html>", "utf-8"),
+    ]);
+
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "nav", href: "nav.xhtml", properties: "nav" },
+        { id: "c1", href: "ch1.xhtml" },
+      ],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/nav.xhtml",
+          content:
+            '<html><body><nav epub:type="toc"><ol><li><a href="ch1.xhtml">Lesson 1: Greetings</a></li></ol></nav></body></html>',
+        },
+        { name: "OEBPS/ch1.xhtml", content: chapterBytes },
+      ],
+    });
+
+    const report = buildShapeReport(epubPath);
+    assert.equal(report.totals.nonUtf8Files, 1);
+    assert.equal(report.spine[0].encoding.declared, "Shift_JIS");
+    assert.ok(report.spine[0].encoding.replacementChars > 0);
+    assert.ok(report.warnings.some((w) => w.includes("not UTF-8")));
+  });
+});
+
+test("hostile: a book that degrades on every axis at once still produces a report, never a throw", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "ncx", href: "toc.ncx", mediaType: "application/x-dtbncx+xml" },
+        { id: "cover", href: "cover.xhtml" },
+        { id: "c1", href: "one/ch1.xhtml" },
+        { id: "c2", href: "one/ch2.xhtml" },
+        { id: "c3", href: "two/ch3.xhtml" },
+      ],
+      spineIdrefs: ["cover", "c1", "c2", "c3"],
+      spineToc: "ncx",
+      extraFiles: [
+        {
+          name: "OEBPS/toc.ncx",
+          content: ncxDoc([
+            // Attributes on navLabel/text, a dangling href, a swallowed file, and an entry
+            // whose label collides with the cover's <title> fallback.
+            navPoint("n1", "Cover", "one/ch1.xhtml", { attrs: ' xml:lang="en"' }),
+            navPoint("n2", "Nowhere", "gone.xhtml"),
+            navPoint("n3", "Twenty-Three", "two/ch3.xhtml"),
+            '<navPoint id="n4"><navLabel><text>No content src</text></navLabel></navPoint>',
+          ]),
+        },
+        { name: "OEBPS/cover.xhtml", content: page("Cover", '<img src="fig.png"/>') },
+        { name: "OEBPS/one/ch1.xhtml", content: page("One", '<img src="fig.png"/>') },
+        { name: "OEBPS/one/ch2.xhtml", content: page("Two") },
+        { name: "OEBPS/two/ch3.xhtml", content: page("Three", '<img src="fig.png"/>') },
+        { name: "OEBPS/fig.png", content: "cover-figure" },
+        { name: "OEBPS/one/fig.png", content: "one-figure" },
+        { name: "OEBPS/two/fig.png", content: "two-figure" },
+      ],
+    });
+
+    const report = buildShapeReport(epubPath);
+
+    // Nothing throws; everything is counted.
+    assert.equal(report.nav.source, "ncx");
+    assert.equal(report.nav.unparsed, 1, "the navPoint with no content src");
+    assert.equal(report.nav.unresolved.length, 1, "the dangling href");
+    assert.equal(report.unreachable.length, 1, "the cover, before the first nav entry");
+    assert.equal(report.labelCollisions.length, 1, '"Cover" from two places');
+    assert.ok(report.lessons.some((l) => l.swallowed > 0));
+    assert.ok(report.imageCollisions.length > 0);
+    assert.ok(report.warnings.length >= 6);
   });
 });

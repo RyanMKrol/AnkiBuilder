@@ -227,9 +227,9 @@ function assemblePronunciationOnlyCard(item, entry) {
 function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) {
   const { runClaude, targetLanguage, items, errors, targetScriptRule } = ctx;
 
-  const attempt = (attemptItems) => {
+  const attempt = (attemptItems, batchSize) => {
     const attemptErrors = [];
-    for (const batch of chunk(attemptItems, BATCH_SIZE)) {
+    for (const batch of chunk(attemptItems, batchSize)) {
       const prompt = buildPrompt(batch, targetLanguage, {
         targetScriptRule,
         styleRules: ctx.styleRules ?? [],
@@ -273,13 +273,21 @@ function processGroup(group, { buildPrompt, validateEntry, assembleCard }, ctx) 
   };
 
   // With one unbatched call per group, a single unparseable response used to error EVERY item of
-  // the lesson at once — and stay that way. Retry just the failed subset once (a smaller, fresh
-  // call); only items that fail both attempts surface as errors.
-  const firstAttemptErrors = attempt(group);
+  // the lesson at once — and stay that way. Retry just the failed subset once; only items that fail
+  // both attempts surface as errors.
+  const firstAttemptErrors = attempt(group, BATCH_SIZE);
   if (firstAttemptErrors.length === 0) {
     return;
   }
-  const retryErrors = attempt(firstAttemptErrors.map(({ item }) => item));
+
+  // HALVE the failed set on the retry. With BATCH_SIZE = Infinity the first attempt is one call for
+  // the whole group, so when the whole response is unusable (the common case — a truncated or
+  // unparseable reply) the failed subset IS the group, and a same-sized retry re-sends a byte-for-byte
+  // identical prompt. That fails the same way, deterministically, having spent a second full-size call
+  // to learn nothing. Two half-size prompts are a genuinely different request: they fit where one did
+  // not, and a response that breaks now costs only half the lesson.
+  const failedItems = firstAttemptErrors.map(({ item }) => item);
+  const retryErrors = attempt(failedItems, Math.max(1, Math.ceil(failedItems.length / 2)));
   for (const { item, error } of retryErrors) {
     errors.push({ id: item.id, error });
   }

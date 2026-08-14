@@ -40,6 +40,14 @@ If a convention only shows up in some chapters, say so and name which ones, rath
 
 You must actually read every one of the {{CHAPTER_COUNT}} chapter files listed above using your Read tool — do not guess or extrapolate from a subset. This also means reading each chapter file in its entirety, not just its first page or first portion — a chapter file you only partially read counts as unread for the parts you skipped. If you are genuinely unable to read all of a chapter, or all of the chapters (e.g. a hard limit is reached), say exactly which chapters — and which parts of them — you did and didn't read in the `## Coverage` section of your output, rather than silently presenting partial coverage as complete.
 
+**Evidence, not assurance.** In the `## Coverage` section, emit exactly one line per chapter file listed above, in the same order, quoting that file's own `<title>` element verbatim:
+
+```
+- <chapter file path>: "<the exact text inside that file's <title> tag>"
+```
+
+Each quote is checked against the file it names. This exists because a claim like "all chapter files were read in full" costs nothing to write and cannot be checked, whereas a chapter's title cannot be guessed from its filename. A chapter you could not read gets its line too, with `(not read)` and a one-line reason instead of a title — that is a useful answer; a quiet omission is not. Getting a quote wrong does not fail the run; it is reported so a person knows which parts of this document rest on less than a full read.
+
 ## Output Format
 
 Respond with a single Markdown document (no other commentary before or after it) using this structure:
@@ -70,5 +78,8 @@ List each chapter/section that has content-bearing or reference-chart images (na
 ...
 
 ## Coverage
-Which chapters were actually read — should be all {{CHAPTER_COUNT}}, unless noted otherwise above.
+One line per chapter file, in the listed order, quoting that file's <title> verbatim:
+- /path/to/23.xhtml: "Lesson 7: Doing Things (1)"
+- /path/to/24.xhtml: "Lesson 7: Practice"
+...all {{CHAPTER_COUNT}} of them. Use `(not read)` plus a one-line reason for any you could not read.
 ```

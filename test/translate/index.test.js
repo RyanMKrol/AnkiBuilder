@@ -526,3 +526,49 @@ test("ja: strips editorial spaces from the display target/ttsText (but keeps the
   });
   assert.equal(esCards.items[0].target, "buenos días", "es target keeps its spaces");
 });
+
+test("a wholly-failed group is HALVED on the retry, not re-sent as the identical prompt", async () => {
+  const corpus = baseCorpus([
+    untranslated("a", "Alpha", "Greetings"),
+    untranslated("b", "Bravo", "Greetings"),
+    untranslated("c", "Charlie", "Greetings"),
+    untranslated("d", "Delta", "Greetings"),
+  ]);
+
+  const sentBatches = [];
+  const { cards, errors } = await translateCorpus(corpus, {
+    runClaude: (prompt) => {
+      sentBatches.push(extractInputDataIds(prompt));
+      // The first call is the whole group and comes back truncated — the exact case where a
+      // same-sized retry would re-send a byte-for-byte identical prompt and fail identically.
+      if (sentBatches.length === 1) return "{ truncated";
+      const ids = sentBatches[sentBatches.length - 1];
+      return JSON.stringify(ids.map((id) => ({ id, target: `T-${id}`, pronunciation: `p-${id}` })));
+    },
+  });
+
+  assert.deepEqual(sentBatches[0], ["a", "b", "c", "d"]);
+  assert.equal(sentBatches.length, 3, "the retry is two half-size calls, not one full-size one");
+  assert.deepEqual(sentBatches[1], ["a", "b"]);
+  assert.deepEqual(sentBatches[2], ["c", "d"]);
+  assert.deepEqual(errors, []);
+  assert.deepEqual(
+    cards.items.map((c) => c.id),
+    ["a", "b", "c", "d"],
+  );
+});
+
+test("halving still terminates on a single failed item", async () => {
+  const corpus = baseCorpus([untranslated("only", "Only", "Greetings")]);
+
+  let calls = 0;
+  const { errors } = await translateCorpus(corpus, {
+    runClaude: () => {
+      calls++;
+      return "not json at all";
+    },
+  });
+
+  assert.equal(calls, 2, "one attempt, one retry — a one-item set cannot halve further");
+  assert.equal(errors.length, 1);
+});

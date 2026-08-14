@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from "fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
 import {
@@ -24,11 +24,30 @@ function book() {
     );
   };
   unit("chapter-0", 1, "Lesson 1: Meeting", [
-    { id: "a", english: "Please", target: "おねがいします", pronunciation: "onegaishimasu" },
+    {
+      id: "a",
+      english: "Please",
+      target: "おねがいします",
+      pronunciation: "onegaishimasu",
+      category: "Greetings",
+    },
   ]);
   unit("chapter-1", 2, "Lesson 2: Shopping", [
-    { id: "b", english: "Please give me", target: "ください", pronunciation: "kudasai" },
-    { id: "c", english: "One", target: "いち", pronunciation: "ichi", note: "One (read いち)" },
+    {
+      id: "b",
+      english: "Please give me",
+      target: "ください",
+      pronunciation: "kudasai",
+      category: "Shopping",
+    },
+    {
+      id: "c",
+      english: "One",
+      target: "いち",
+      pronunciation: "ichi",
+      category: "Numbers",
+      note: "One (read いち)",
+    },
   ]);
   return dir;
 }
@@ -239,25 +258,64 @@ test("the prompt shows each card's existing hint, so the model can leave it alon
   }
 });
 
-test("backs the lesson up once, and never overwrites the original snapshot", () => {
+test("every run gets its OWN stamped backup, so any single run is reversible on its own", () => {
   const dir = book();
   try {
-    const bak = join(dir, "chapter-1", "cards.json.pre-enhance.bak");
+    const baks = () =>
+      readdirSync(join(dir, "chapter-1"))
+        .filter((name) => name.startsWith("cards.json.pre-enhance-") && name.endsWith(".bak"))
+        .sort();
+
     enhanceLessonNotes({
       deckDir: dir,
       unitName: "chapter-1",
       runClaude: () => JSON.stringify({ notes: [{ id: "b", note: "First." }] }),
     });
-    assert.ok(existsSync(bak));
-    const original = readFileSync(bak, "utf-8");
+    assert.equal(baks().length, 1);
+    const first = JSON.parse(readFileSync(join(dir, "chapter-1", baks()[0]), "utf-8"));
+    assert.equal(first.items[0].note, undefined, "the first snapshot is the pre-enhancement state");
 
     enhanceLessonNotes({
       deckDir: dir,
       unitName: "chapter-1",
       runClaude: () => JSON.stringify({ notes: [{ id: "b", note: "Second." }] }),
     });
-    assert.equal(readFileSync(bak, "utf-8"), original); // still the PRE-enhancement state
+    const after = baks();
+    assert.equal(after.length, 2, "the second run does not clobber the first run's restore point");
+    // Both states are recoverable: the pre-enhancement one AND the one the second run found.
+    const notes = after.map(
+      (name) => JSON.parse(readFileSync(join(dir, "chapter-1", name), "utf-8")).items[0].note,
+    );
+    assert.deepEqual([...notes].sort(), ["First.", undefined]);
     assert.equal(readCards(dir, "chapter-1").items[0].note, "Second.");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a note written while the model call ran is not clobbered by the stale snapshot", () => {
+  const dir = book();
+  try {
+    const cardsPath = join(dir, "chapter-1", "cards.json");
+    const result = enhanceLessonNotes({
+      deckDir: dir,
+      unitName: "chapter-1",
+      runClaude: () => {
+        // Stand-in for the dashboard: someone excludes a card and edits another while the
+        // multi-minute call is in flight. The pass read this file before any of that happened.
+        const live = JSON.parse(readFileSync(cardsPath, "utf-8"));
+        live.items[1].excluded = true;
+        live.items[1].english = "One (edited during the pass)";
+        writeFileSync(cardsPath, JSON.stringify(live));
+        return JSON.stringify({ notes: [{ id: "b", note: "From the model." }] });
+      },
+    });
+
+    assert.equal(result.changed, 1);
+    const after = readCards(dir, "chapter-1");
+    assert.equal(after.items[0].note, "From the model.", "the pass still wrote what it owns");
+    assert.equal(after.items[1].excluded, true, "the concurrent exclude survived");
+    assert.equal(after.items[1].english, "One (edited during the pass)");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

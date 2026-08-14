@@ -1,6 +1,6 @@
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
-import { runClaude as defaultRunClaude } from "./runClaude.js";
+import { runRomanizationClaude as defaultRunClaude } from "./runClaude.js";
 import { getLanguagePromptRules } from "./languageRules.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { renderPromptTemplate } from "../util/promptTemplate.js";

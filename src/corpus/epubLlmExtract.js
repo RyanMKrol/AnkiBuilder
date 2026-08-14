@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { basename } from "path";
 import { renderExtractionPrompt } from "./epubLlmPrompt.js";
-import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { runExtractionClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { referencedImageSrcs } from "./epubArchive.js";
 import { CATEGORIES } from "../model/categories.js";
 

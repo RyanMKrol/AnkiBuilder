@@ -2,7 +2,7 @@ import { createHash } from "crypto";
 import { existsSync, readFileSync } from "fs";
 import { relative, resolve } from "path";
 import { writeFileAtomic } from "../util/atomicWrite.js";
-import { resolveModelAndEffort } from "../util/runClaude.js";
+import { resolvePinning } from "../util/runClaude.js";
 
 // A cached LLM artifact (conventions.md, taught-index.json) is produced once per book by a paid
 // pass and then silently outranks every later prompt edit. That is not hypothetical: this book's
@@ -30,17 +30,18 @@ export function hashPromptTemplate(templatePath) {
 }
 
 /**
- * The provenance record for an artifact about to be cached. `scopeEnvPrefix` is the same legacy
- * env-pair prefix the pass hands `runClaude`, so the recorded model/effort is what actually ran
- * rather than the built-in default.
+ * The provenance record for an artifact about to be cached. `scopeEnvPrefix` and `defaults` are
+ * the same ones the pass's own runner uses (src/corpus/epubLlmRunClaude.js), so the recorded
+ * model and effort are what actually ran rather than the pipeline-wide default.
  */
 export function buildArtifactMeta({
   templatePath,
   scopeEnvPrefix,
+  defaults,
   chapterCount,
   now = new Date(),
 }) {
-  const { model, effort } = resolveModelAndEffort(scopeEnvPrefix);
+  const { model, effort } = resolvePinning(scopeEnvPrefix, defaults);
   const repoRelative = relative(resolve(process.cwd()), resolve(templatePath));
   return {
     promptPath: repoRelative.startsWith("..") ? resolve(templatePath) : repoRelative,

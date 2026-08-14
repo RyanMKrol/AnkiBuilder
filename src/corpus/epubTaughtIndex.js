@@ -9,7 +9,7 @@ import {
   saveTaughtIndex,
   taughtIndexPath,
 } from "./epubLibrary.js";
-import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { runTaughtIndexClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { extractJsonObjectText } from "../util/promptTemplate.js";
 import { buildArtifactMeta, promptDriftWarning } from "./artifactMeta.js";
 
@@ -22,9 +22,11 @@ export const TAUGHT_INDEX_PROMPT_PATH = resolve(
 );
 const DEFAULT_TEMPLATE_PATH = TAUGHT_INDEX_PROMPT_PATH;
 
-// See epubBookConventions.js — the env-pair prefix this pass's runner honors, recorded in the
-// artifact's provenance.
-const SCOPE_ENV_PREFIX = "ANKI_BUILDER_EPUB_LLM";
+// See epubBookConventions.js — the env prefixes and defaults this pass's runner honors
+// (runTaughtIndexClaude), narrowest first, recorded in the artifact's provenance. Keep them in step
+// with the runner: a provenance record that lies is worse than none.
+const SCOPE_ENV_PREFIX = ["ANKI_BUILDER_TAUGHT_INDEX", "ANKI_BUILDER_EPUB_LLM"];
+const SCOPE_DEFAULTS = { timeoutMs: 15 * 60 * 1000 };
 
 function substitute(template, values) {
   let rendered = template;
@@ -169,6 +171,7 @@ export function ensureTaughtIndex({
       meta: buildArtifactMeta({
         templatePath: DEFAULT_TEMPLATE_PATH,
         scopeEnvPrefix: SCOPE_ENV_PREFIX,
+        defaults: SCOPE_DEFAULTS,
         chapterCount: chapterFilePaths.length,
       }),
     });

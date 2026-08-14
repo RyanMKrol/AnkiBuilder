@@ -431,6 +431,25 @@ entirely — growing or rewriting a signed-off card set is the one thing this st
 Unlike every other stage, `prepare` keeps its claim on failure (`clearOnFailure: false`), so a crash
 mid-prepare surfaces in the dashboard as _interrupted_ instead of looking finished.
 
+**Every pass here merges, it never overwrites.** Each one reads `cards.json`, spends minutes in a
+model call, and writes back — and the dashboard is editable for that whole window, since a lesson at
+the translate stage is exactly what someone reviews while `prepare` is still running. Writing back
+the object read at the start would silently discard any exclude or inline edit made in between.
+`mergeIntoCardsFile` (`src/cards/mergeIntoCardsFile.js`) is the shared path: re-read the file, apply
+only the fields the calling pass owns (plus its own appends, removals and meta markers), then write
+through `writeUnitJson` — validate, stamped backup, atomic write, re-read and validate. What each
+pass owns:
+
+| pass                                | owns                                                                                                                                                        |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| fill-in-the-blank + semantic de-dup | the drill block: stale drills removed, mined drills appended (already carrying the de-dup pass's exclusion marks), `meta.enriched` / `meta.prepareDegraded` |
+| cross-lesson notes                  | `note` and `hint` on this lesson's cards, plus the same fields in `corpus.json`                                                                             |
+| number readings                     | `ttsText`, `pronunciation`, `uncertain`, `reviewNote` on the cards it fixed                                                                                 |
+| audio (a later stage)               | each item's audio filenames — its own merge, with extra rules about clips the reviewer chose by hand                                                        |
+
+The backups are STAMPED (`cards.json.pre-prepare-fib-<YYYYMMDDHHmm>.bak`), so a second run of a pass
+does not clobber the restore point for the state it actually found.
+
 ### `translate`
 
 Runs as the first pass of `prepare` — there is **no review gate before it** (the review moved onto its
@@ -493,6 +512,13 @@ by ISO code — Japanese → "kana only, no kanji"). When `translate --simple-sc
 prompt; the translate core is script-agnostic (it just forwards the instruction string), and a language
 with no rule ignores the flag. This is the same per-language plug-in pattern as voices / alt-audio /
 romanization / fonts — nothing language-specific lives in the core.
+
+**The retry halves the failed set.** Each group goes to the model as one unbatched call, so when the
+whole response is unusable — truncated, unparseable — every item in the group fails at once. Retrying
+that set at the same size would rebuild a byte-for-byte identical prompt and fail identically, having
+spent a second full-size call to learn nothing. The retry therefore sends it as two half-size prompts,
+which is a genuinely different request: it fits where one did not, and a response that still breaks
+costs only half the lesson. Only items that fail both attempts surface in `meta.translateErrors`.
 
 **Provenance flags carry forward.** The corpus's `aiSuggested` / `uncertain` flags are copied onto the
 translated card by `translateCorpus` (matched by `id`), so they persist into `cards.json` and every
@@ -736,6 +762,14 @@ Label`, via `buildMultiDeckCollection`) nested under one parent deck named for t
   between runs (a re-translated chapter, a newly added one, regenerated audio), and reusing a
   stale merge would be a correctness footgun for a recompute this cheap.
 
+**The zip builder refuses past 65,535 entries.** `buildZip` (`src/deck/zip.js`) writes a plain
+no-zip64 archive, and the end-of-central-directory record holds the entry count in a uint16. Past
+65,535 that count wraps, and what comes out is still a structurally valid zip that any reader
+trusting the EOCD opens happily — just missing 65,536 entries. A `.apkg` is exactly that kind of
+consumer, so the corruption would surface as cards that quietly never arrived rather than as an
+import error. It throws instead. Current decks run to roughly 1,900 entries, so this guards a future
+that has not happened; the point is that its failure mode is invisible.
+
 ### `restyle-font`
 
 `restyle-font --apkg <path> --lang <code> [--out <path>]` embeds a language's configured deck font
@@ -780,6 +814,11 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/taught-index.json.meta.json  # same provenance record, for that index
 ```
 
+Three of those are **tracked in git** rather than ignored — the reviewed corpora, `conventions.md`
+and `taught-index.json` (see the `.gitignore` re-include block). They are months of human review and
+two expensive one-time model passes, and they are what the eval fixtures below read as their
+reference data.
+
 ### Cache versioning and clearing
 
 `CACHE_VERSION` (`src/corpus/epubLibrary.js`) names the `cache-v<N>` root. Bump it whenever
@@ -806,6 +845,118 @@ anki-builder epub cache <hash> --clear --conventions --taught-index --dry
 never touched, whatever is asked for, and the refusal is checked at the point of deletion rather
 than assumed from how the target list was built — it holds human-reviewed chapters that no amount
 of compute can rebuild, one directory away from everything the command does delete.
+
+## Model passes: pinning, env scopes and timeouts
+
+Every `claude -p` call in the pipeline goes through `runClaudeWithPrompt` (`src/util/runClaude.js`):
+prompt on stdin, a hard timeout, one retry. What differs per pass is the **pinning** — model, effort
+and timeout — and each pass now has its own knobs rather than sharing one with a pass whose blast
+radius is nothing like it. Chapter extraction, whose misses are silent and unrecoverable, used to
+share a knob with the pedagogical sort, which is a permutation that is checked mechanically and fails
+open.
+
+Resolution order, most specific wins:
+
+```
+ANKI_BUILDER_<PASS>_MODEL   →  ANKI_BUILDER_<FAMILY>_MODEL   →  ANKI_BUILDER_LLM_MODEL
+ANKI_BUILDER_<PASS>_EFFORT  →  ANKI_BUILDER_<FAMILY>_EFFORT  →  ANKI_BUILDER_LLM_EFFORT
+ANKI_BUILDER_<PASS>_TIMEOUT_MS → ANKI_BUILDER_<FAMILY>_TIMEOUT_MS → ANKI_BUILDER_LLM_TIMEOUT_MS
+```
+
+…then the pass's own built-in default, then Sonnet / medium / 10 minutes. The two family prefixes
+(`ANKI_BUILDER_EPUB_LLM`, `ANKI_BUILDER_TRANSLATE`) still work exactly as before, so anything you
+already set keeps moving the passes it always moved.
+
+**The timeout travels with the scope, and that is load-bearing.** Effort and wall clock are the same
+decision. Raising a slow agentic pass to `high` under a shared 10-minute ceiling does not buy quality,
+it buys a hard mid-pass abort with a misleading error, after the money is spent.
+
+| pass                | module                              | prompt                                   | model / effort              | env scope                      | batched?                                        | typical wall clock |
+| ------------------- | ----------------------------------- | ---------------------------------------- | --------------------------- | ------------------------------ | ----------------------------------------------- | ------------------ |
+| chapter extraction  | `src/corpus/epubLlmExtract.js`      | `docs/epub-extraction-prompt.md`         | sonnet / **high**, 25 min   | `ANKI_BUILDER_EXTRACT`         | no — one call per chapter                       | 4-8 min            |
+| book conventions    | `src/corpus/epubBookConventions.js` | `docs/epub-book-conventions-prompt.md`   | sonnet / medium, 15 min     | `ANKI_BUILDER_CONVENTIONS`     | **yes** — chapter ranges, merged                | 3-6 min per batch  |
+| taught index        | `src/corpus/epubTaughtIndex.js`     | `docs/epub-taught-index-prompt.md`       | sonnet / medium, 15 min     | `ANKI_BUILDER_TAUGHT_INDEX`    | no — once per book                              | 3-8 min            |
+| forward flags       | `src/corpus/epubForwardFlags.js`    | `docs/epub-forward-flag-index-prompt.md` | sonnet / medium, 10 min     | `ANKI_BUILDER_FORWARD_FLAGS`   | no                                              | 30-90 s            |
+| pedagogical sort    | `src/corpus/pedagogicalSort.js`     | `docs/pedagogical-sort-prompt.md`        | sonnet / medium, 10 min     | `ANKI_BUILDER_SORT`            | no                                              | 30-90 s            |
+| fill-in-the-blank   | `src/cards/fillInBlank.js`          | `docs/fill-in-blank-prompt.md`           | sonnet / medium, 10 min     | `ANKI_BUILDER_FILL_BLANK`      | no                                              | 1-3 min            |
+| translation         | `src/translate/index.js`            | `docs/translate-*-prompt.md` (three)     | sonnet / medium, 10 min     | `ANKI_BUILDER_TRANSLATE`       | one call per group; retry halves the failed set | 1-4 min            |
+| romanization eval   | `src/translate/romanizationEval.js` | `docs/romanization-prompt.md`            | sonnet / medium, 10 min     | `ANKI_BUILDER_ROMANIZATION`    | yes                                             | 30-90 s            |
+| category assignment | `src/corpus/lessonCorpus.js`        | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_CATEGORIZE`      | yes                                             | 20-60 s            |
+| semantic de-dup     | `src/cards/semanticDedup.js`        | `docs/semantic-dedup-prompt.md`          | sonnet / medium, 10 min     | `ANKI_BUILDER_DEDUP`           | no                                              | 30-90 s            |
+| number readings     | `src/cards/numberReadings.js`       | `docs/number-reading-prompt.md`          | sonnet / medium, 10 min     | `ANKI_BUILDER_NUMBER_READINGS` | no                                              | 20-60 s            |
+| cross-lesson notes  | `src/cards/crossLessonNotes.js`     | `docs/cross-lesson-note-prompt.md`       | sonnet / medium, **20 min** | `ANKI_BUILDER_CROSS_LESSON`    | no — one call, prompt grows with book progress  | 2-6 min            |
+| kanji orthography   | `src/audio/kanjiOrthography.js`     | inline                                   | sonnet / medium, 10 min     | `ANKI_BUILDER_KANJI`           | no — per card, on demand                        | 5-15 s             |
+
+Family fallbacks: everything in the first six rows also honors `ANKI_BUILDER_EPUB_LLM_*`; everything
+in the last seven also honors `ANKI_BUILDER_TRANSLATE_*`.
+
+Two of those defaults are deliberate departures from Sonnet-medium-10-minutes:
+
+- **Extraction runs at `high`.** It is the only pass whose failure is both silent and unrecoverable,
+  and it is agentic — the model reads the chapter file itself, against several competing inclusion
+  rules, which is exactly where effort buys reading discipline. Its ceiling goes to 25 minutes to
+  match: a measured live run of one mid-book chapter at medium already took over four minutes.
+- **The conventions pass is batched.** It used to hand the model all 57 chapter files in one call
+  under a 10-minute cap and then self-certify ("All 57 chapter files were read in full") with no
+  partial-progress path — the silent-degradation signature, in the artifact that then steers every
+  chapter extraction. It now runs over chapter ranges and merges, and each batch has to quote a
+  per-chapter anchor that is verified against the cached file (see below).
+
+## Per-pass eval fixtures
+
+Every prompt in `docs/` is edited by hand, and nothing else in the repo can tell an improvement from
+a regression. Chapter extraction is the worst case: an item the prompt stops picking up is never seen
+by anyone again, so a narrowed rule or a reworded precedence line can cost a whole class of cards and
+leave no trace downstream. The fixtures exist so that a prompt edit is an **observed** change rather
+than a plausible one.
+
+```sh
+node scripts/eval-pass.mjs --list                    # what fixtures exist and what each one reads
+node scripts/eval-pass.mjs extraction                # offline: replay a recorded response, spend nothing
+node scripts/eval-pass.mjs extraction --live         # against the real model, at the pass's own pinning
+node scripts/eval-pass.mjs extraction --live --save  # ... and store the response as the new recording
+```
+
+The before/after workflow around a prompt edit:
+
+```sh
+node scripts/eval-pass.mjs extraction --live > /tmp/before.txt
+$EDITOR docs/epub-extraction-prompt.md
+node scripts/eval-pass.mjs extraction --live > /tmp/after.txt
+diff /tmp/before.txt /tmp/after.txt
+```
+
+| fixture         | pass                            | module                           | input                                                                 | reference                                                           |
+| --------------- | ------------------------------- | -------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `extraction`    | chapter extraction              | `src/corpus/epubLlmExtract.js`   | `test/fixtures/evals/chapters/25.xhtml` + the book's `conventions.md` | the reviewed `corpora/25.json`, minus the drills a later pass mined |
+| `forward-flags` | premature-item review           | `src/corpus/epubForwardFlags.js` | the same chapter's items + `taught-index.json`                        | the items the reviewer left flagged `uncertain`                     |
+| `sort`          | pedagogical sort                | `src/corpus/pedagogicalSort.js`  | those items in a fixed shuffle                                        | the reviewed order of `corpora/25.json`                             |
+| `categories`    | lesson-word category assignment | `src/corpus/lessonCorpus.js`     | the English glosses only                                              | the reviewed category on each item                                  |
+| `dedup`         | semantic de-dup                 | `src/cards/semanticDedup.js`     | `chapter-10/cards.json` with its exclusions undone                    | the practice cards that run excluded                                |
+
+**It never passes or fails.** Extraction is generative: two good runs disagree about a handful of
+borderline items, so an exact-match assertion would either sit permanently red or force the prompt to
+be tuned toward one historical sample. The output is evidence for a person to read. The exit code
+says whether the fixture ran, never whether the result was good.
+
+Some mechanics worth knowing before you add a fixture:
+
+- **The replay seam is `runClaude`, and the recording is the model's raw stdout** — not the parsed
+  result. That is what makes the offline mode worth having: a replay still runs the pass's own
+  fence-stripping, JSON parse, schema validation and merge logic, so the free run exercises
+  everything except the network. A recording with fewer responses than the pass now asks for throws,
+  rather than reading as a quiet zero-diff.
+- **Matching is by content, never by `id`.** Ids are model-authored slugs that a rewritten prompt
+  renames freely, which would report an unchanged chapter as total churn. Items pair on the
+  display-normalized `target` first (so editorial spaces or a trailing `。` never split a match), then
+  on `english` for the leftovers (so a resolved placeholder still pairs with its reference).
+- **The spoken-form field is read under either name** (`reading` or `ttsText`), so a rename of that
+  field does not show up as a chapter-wide diff.
+- **CI never spends money.** The suite only ever runs the recorded mode, and `--live` is hard-blocked
+  under `node --test` by `assertExternalCallAllowed` (`src/util/testEnv.js`).
+- The chapter `.xhtml` under `test/fixtures/evals/chapters/` is committed because the extracted-chapter
+  cache is not tracked and a fixture with no input is not a fixture. This is a private repo; see
+  `.harness/custom/docs/LIMITATIONS.md`.
 
 ## Output layout
 

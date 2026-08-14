@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from "fs";
 import { writeFileAtomic } from "../../util/atomicWrite.js";
-import { join } from "path";
+import { basename, join } from "path";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
 import {
   saveChapterCorpus as defaultSaveChapterCorpus,
@@ -14,6 +14,27 @@ import { httpError } from "../../util/httpError.js";
 // item by `id`. (Audio edits live in applyCardAudio.js.)
 
 const EDITABLE_FIELDS = ["target", "pronunciation", "ttsText"];
+
+/**
+ * Is this run dir an `-extras` unit, and therefore banned from touching the dedup library?
+ *
+ * The library is keyed purely on `(epubHash, chapterNumber)`, and a unit shares its `chapterNumber`
+ * with its own `-extras` sibling by design: chapter-13 and chapter-13-extras are both 33 today,
+ * because the extras unit holds the drills for that same chapter. So an extras unit that carries an
+ * `epubHash` owns no key of its own. Signing it off would write its drill cards OVER the base
+ * chapter's dedup entry, and every later chapter of the book would then be deduped against the
+ * drills instead of the lesson, silently. Withdrawing the sign-off is worse still: it would DELETE
+ * the base chapter's entry outright.
+ *
+ * What has saved the live book so far is an accident of authoring, not a rule: no extras unit
+ * happens to carry an `epubHash`, because assemble writes that field and an extras unit is
+ * hand-authored. One copied `meta` block is all it would take. The refusal lives here, at the only
+ * two callers that write to the library, and preflight's `extras-library-write` check asserts the
+ * precondition never arises in the first place.
+ */
+function isExtrasRunDir(runDir) {
+  return /-extras$/.test(basename(String(runDir).replace(/[/\\]+$/, "")));
+}
 
 function loadCards(runDir) {
   const cardsPath = join(runDir, "cards.json");
@@ -116,7 +137,7 @@ export function markCardsReviewed(
   persist(cardsPath, data, validateCards);
 
   const { epubHash, chapterNumber } = data.meta;
-  if (epubHash && chapterNumber != null) {
+  if (epubHash && chapterNumber != null && !isExtrasRunDir(runDir)) {
     const items = data.items
       .filter((i) => !i.excluded)
       .map((i) => ({
@@ -138,8 +159,9 @@ export function markCardsReviewed(
 // used to require hand-editing JSON. Refuses while the lesson is `done`: done means "in the
 // shipping deck", and un-reviewing underneath that would leave a lesson shipping without a valid
 // review chain (clearing `done` itself is a hand edit). For an EPUB source the lesson's
-// dedup-library entry is removed too, since the library holds only signed-off chapters. (An extras
-// unit carries no epubHash, so its unreview can never touch its base lesson's library entry.)
+// dedup-library entry is removed too, since the library holds only signed-off chapters. An extras
+// unit is refused outright: it shares its base chapter's library key, so removing "its" entry would
+// delete the base chapter's. See isExtrasRunDir.
 export function unmarkCardsReviewed(
   runDir,
   { validateCards = defaultValidateCards, removeChapterCorpus = defaultRemoveChapterCorpus } = {},
@@ -158,7 +180,7 @@ export function unmarkCardsReviewed(
   persist(cardsPath, data, validateCards);
 
   const { epubHash, chapterNumber } = data.meta;
-  if (epubHash && chapterNumber != null) {
+  if (epubHash && chapterNumber != null && !isExtrasRunDir(runDir)) {
     removeChapterCorpus(epubHash, chapterNumber);
   }
   return { reviewed: false };

@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+//
+// SPENT: 2026-08-14 — a one-off MIGRATION, not a standing tool.
+// the front-hint / back-note split ran once per collection. It is kept for the record, and because re-reading
+// what a migration actually did is the only way to understand the shape of the data it left
+// behind. Do not run it as part of any procedure: it is not in SKILL.md's per-chapter flow, and
+// it will re-apply a decision that has already been made and reviewed.
+//
 // Migration for the front-hint / back-note split. Per book/course (all lessons at once, so same-target
 // cards are visible together): an LLM moves DISAMBIGUATION parentheticals out of `english` into `hint`
 // (and generates a hint for cards that share a target but have none), leaving meaning-integral

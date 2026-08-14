@@ -4,10 +4,15 @@ import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } 
 import { deckPathForDir } from "./deckFileName.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
-// automatic rebuilds (Mark done, and an audio or exclude edit on an already-done lesson), so
-// a rebuild triggered from the browser is byte-identical to the CLI's. The build functions in
-// ./index.js own the media-key integer constraint; this module only assembles their inputs from a
-// book/course dir or a single run dir.
+// automatic rebuild, so a rebuild triggered from the browser is byte-identical to the CLI's. The
+// build functions in ./index.js own the media-key integer constraint; this module only assembles
+// their inputs from a book/course dir or a single run dir.
+//
+// ⚠️ The dashboard rebuilds at "Mark done" and NOWHERE ELSE. `rebuildGroupQuiet` has exactly one
+// caller (`handleLessonDone`, src/server/index.js). This comment used to claim that an audio or
+// exclude edit on an already-done lesson rebuilt too; it does not, and neither does any script that
+// rewrites a `cards.json`. So a done lesson CAN drift from the packaged deck, and the thing that
+// reports it is preflight's `package-freshness` check — not this module, and not the dashboard.
 
 // A unit folder is `chapter-<seq>` / `lesson-<seq>`, optionally suffixed `-extras`. An extras unit
 // holds the generated drill cards for its base lesson.

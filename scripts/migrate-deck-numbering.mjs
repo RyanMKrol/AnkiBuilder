@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+//
+// SPENT: 2026-08-14 — a one-off MIGRATION, not a standing tool.
+// the zero-padded deck rename ran once, on the two live collections. It is kept for the record, and because re-reading
+// what a migration actually did is the only way to understand the shape of the data it left
+// behind. Do not run it as part of any procedure: it is not in SKILL.md's per-chapter flow, and
+// it will re-apply a decision that has already been made and reviewed.
+//
 // One-shot migration: rename managed lesson decks to the zero-padded scheme ("Lesson 9" ->
 // "Lesson 09"), which is the only way Anki's text sort keeps a deck list in lesson order.
 //

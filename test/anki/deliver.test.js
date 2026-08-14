@@ -56,6 +56,9 @@ function fakeClient({
         state.css = c;
       },
       createModel: async (p) => write("createModel", p.modelName),
+      // Reads the model-change guard uses to measure the blast radius before a template/CSS write.
+      findCards: async () => [11, 22],
+      getDecks: async () => ({ "Book::Lesson 01": [11], "Course::Lesson 02": [22] }),
       findNotes: async () => notes.map((n) => n.noteId),
       notesInfo: async (ids) => notes.filter((n) => ids.includes(n.noteId)),
       updateNoteFields: async (id) => write("updateNoteFields", id),
@@ -81,7 +84,7 @@ test("syncStructure adds the missing Note field, updates templates + CSS", async
     },
     css: ".card{}",
   });
-  const out = await syncStructure(client, SPEC, false);
+  const out = await syncStructure(client, SPEC, false, { allowModelChange: true });
   assert.deepEqual(out.addedFields, ["Note", "Reading", "Scene"]);
   assert.equal(out.templates, true);
   assert.equal(out.css, true);
@@ -105,6 +108,7 @@ test("syncStructure is a no-op when the model already matches the spec", async (
     addedFields: [],
     templates: false,
     css: false,
+    modelChange: null,
   });
   assert.equal(calls.length, 0, "no writes on a matched model");
 });

@@ -96,7 +96,9 @@ function resolveAssembleRunDir(flags, ctx) {
 function warnIfBuiltOutOfOrder(flags, ctx, runDir) {
   // Only sources that live in a numbered book/course folder have an order to be out of. A template
   // is one unit per language; a bare --run or --chapter has no siblings to reason about.
-  const ordered = flags["output-root"] && (flags.epub || flags.book || flags.words);
+  // `flags.book` is not tested here on purpose: runAssemble desugars `--book <slug>` into
+  // `flags.epub` before anything downstream reads it, so by the time this runs a book IS an epub.
+  const ordered = flags["output-root"] && (flags.epub || flags.words);
   if (!ordered) return;
 
   const ownNumber = Number(flags["chapter-number"] ?? flags["lesson-number"]);

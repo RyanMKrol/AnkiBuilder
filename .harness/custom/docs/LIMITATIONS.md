@@ -2058,3 +2058,130 @@ say when it was measured rather than stating it as a standing fact.
   by about 1%) stays deferred until the headless import verifier exists and passes on a memoized
   package — the payoff is 22 entries out of 1,914 against re-entering the one code path whose last
   reasonable-looking change produced a package Anki rejected while passing every test.
+## Package freshness is an mtime comparison, so a byte-identical rewrite reads as stale
+
+- **What:** `preflight`'s `package-freshness` check FAILs when a done unit's `cards.json` is newer
+  than the collection's `.apkg`. It compares modification times; it does not open the package.
+- **Why:** the only content-true alternative is to unzip the `.apkg`, read its SQLite collection and
+  diff the notes against `cards.json`, which is a second implementation of the deck writer living
+  next to the first, and drift between the two would be a false all-clear. mtime is the signal that
+  is actually available, and the remedy for a false positive is the same as for a true one: rebuild,
+  which is cheap and idempotent.
+- **Impact:** anything that rewrites a `cards.json` without changing it (a `git checkout`, a restore
+  from a `.bak`, a fresh clone) turns the check red for every collection until the packages are
+  rebuilt. It is red on landing day for exactly this reason. A false positive costs one command; it
+  never causes a wrong belief, because "we cannot show the package matches" is the honest state.
+- **Status:** open
+- **When to revisit:** if the rebuild-on-false-positive habit becomes routine enough to be annoying,
+  stamp a build receipt (source file hashes) into the collection dir at build time and compare that
+  instead. Wait until WS1 item 9's import verifier exists, since it already opens packages.
+
+## `.preflight-accepted.json` records the decision, not the evidence for it
+
+- **What:** an ACK acknowledgement is keyed on `(checkId, findingKey)`, e.g.
+  `cross-collection-ids` + `identical/pen`. It stores the message as it read at the time, plus a
+  timestamp and an optional note. It does NOT store a hash of the card content the finding was about.
+- **Why:** hashing the content would mean every legitimate edit to an accepted card silently
+  un-accepts it, and the operator would meet the same finding again with no way to tell an edit from
+  a regression. Keying on identity keeps "I have looked at this pair" true across ordinary editing.
+- **Impact:** if an accepted pair later changes into a genuinely different problem under the same
+  key (the two `pen` cards stop being byte-identical, say), the acknowledgement still covers it and
+  the finding stays quiet. The finding keys are chosen to make this narrow (the identical/differing
+  classification is part of the key for cross-collection ids, so that particular drift DOES re-red),
+  but the general hole is real.
+- **Status:** open
+- **When to revisit:** if a finding class turns out to change meaning under a stable key, fold the
+  distinguishing fact into the key, as `identical/` vs `differs/` already does.
+
+## Cross-deck gloss agreement is a shallow string normalizer, not a synonym engine
+
+- **What:** `glossAlternatives` lowercases, drops parentheticals and `___` blanks, splits on commas
+  and slashes, unifies ordinals, strips a leading article and a trailing plural. Two glosses agree if
+  their alternative sets intersect.
+- **Why:** the check's first run reported 99 findings, ~85 of which were one card taught in two books
+  with slightly different wording ("Big" vs "Big, large", "4th floor" vs "Fourth floor"). A report
+  that noisy trains the operator to skim it. A real synonym engine would need a dictionary and would
+  bring its own wrong answers.
+- **Impact:** genuinely equivalent glosses that share no words still read as a difference ("Car park"
+  vs "Parking lot"), and glosses that share a word but mean different things read as agreement. The
+  check is INFO precisely because of this: it is a pointer for a human, never a gate.
+- **Status:** open
+- **When to revisit:** only if the Recognition-direction list is ever promoted above INFO.
+
+## Preflight is not in `npm run ci`, and deliberately not in the pre-push hook
+
+- **What:** `npm run ci` (which the pre-push hook runs) stays format/lint/test/build. Preflight and
+  `validate:decks` are the separate `npm run check`, run by hand.
+- **Why:** `npm run ci` asserts on tracked state and passes in a fresh clone. Preflight asserts on
+  `output/`, whose bulk is gitignored and untracked. Wiring it into the hook couples `git push` to
+  unversioned deck state, is a no-op in CI and a fresh clone by construction, and would block a README
+  typo behind a deck rebuild whose only escape is `--no-verify`.
+- **Impact:** the deterministic gate is only as reliable as the habit of running it. Nothing forces
+  it before a review link is handed over or before a deliver; the skill doc says to, and that is all.
+- **Status:** open
+- **When to revisit:** if the gate is skipped in practice, add the preflight half to the hook as
+  ADVISORY: print, never contribute a non-zero exit.
+
+## The `.apkg` import verifier needs Python, so it can never be part of the automatic gate
+
+- **What:** `scripts/verify-apkg-import.mjs` shells out to the pinned `anki` Python package in a
+  virtualenv it bootstraps under `.anki-builder/verify-venv/`. It is not in `npm run ci` and not in
+  `npm run check`.
+- **Why:** it is the only tool here that can disagree with our own `.apkg` writer, because it runs a
+  real import rather than another assertion written by the same repo. But it needs a Python
+  toolchain and a one-time wheel download, and `npm run ci` has to stay green in a fresh clone on a
+  machine with neither.
+- **Impact:** a package-format regression is caught only when someone remembers to run it. It is
+  documented as a Definition-of-Done step for the first-ever build of a new source type and for any
+  change to how packages are written, and that documentation is the whole enforcement. Its
+  end-to-end test is env-gated (`ANKI_BUILDER_VERIFY_APKG=1`) and skips cleanly otherwise, so the
+  suite reports "skipped", never "passed", when Python is absent.
+- **Status:** open
+- **When to revisit:** if CI ever gains a Python-capable job, run the smoke target there. Do not add
+  it to the pre-push hook: that couples `git push` to a network fetch.
+
+## The behaviour probes are written, tested and NEVER RUN, so five delivery answers are still blank
+
+- **What:** `scripts/anki-behaviour-probe.mjs` and `src/anki/behaviourProbe.js` exist, are covered by
+  17 tests driving an injected fake client, and have never touched a live collection. The results
+  table in `references/deliver.md` reads "not yet run" in every row.
+- **Why:** running them needs a human to create the `ANKIBUILDER-PROBE` profile, its sentinel deck
+  and a filtered deck inside it, and to have that profile open. Creating, resetting and deleting
+  that profile stay human steps forever: a script that can delete a profile is a script that can
+  delete the wrong profile, and no interlock makes that safe.
+- **Impact:** anything gated on a probe answer stays blocked. Per-card direction suspension and the
+  one-time deck-name re-file both cite these results, and neither may ship on a guess. The
+  interlock's own correctness is tested, but "the interlock refuses the owner's real collection" is
+  tested against a fake, not against the real one.
+- **Status:** open
+- **When to revisit:** the moment the probe profile exists. Run `--check` first (it writes nothing),
+  then `--run`, then fill in the table with the date.
+
+## `suspend`, `unsuspend` and `changeDeck` are in the client with no shipping caller
+
+- **What:** three new AnkiConnect actions were added to `src/anki/ankiConnect.js` for the probes.
+  Nothing in the delivery path calls them.
+- **Why:** the probes need them, and a probe script that reached past the shared client to build its
+  own HTTP calls would be a second, unreviewed way to write to a live collection.
+- **Impact:** the client now exposes three scheduling-mutating calls that no test of the delivery
+  path constrains. A future change could reach for one without the consent machinery that
+  `changeDeck` and `suspend` are supposed to carry. The comment above them says so; nothing enforces
+  it.
+- **Status:** open
+- **When to revisit:** when per-card direction suspension lands, route both through the same
+  consent-and-preview path the model-change guard uses, and delete this row.
+
+## Spent migrations are marked in place, not moved to `scripts/migrations/`
+
+- **What:** a one-off migration carries a `// SPENT: <date>` header saying not to run it. It stays in
+  `scripts/`. `test/scripts/spentMigrations.test.js` requires every `.mjs` in `scripts/` to be listed
+  as either a standing tool or a spent migration.
+- **Why:** moving the files would break every doc reference, every muscle-memory path, and the
+  docs-integrity test, for a distinction that only has to be visible at the top of the file.
+- **Impact:** the classification lives in a test's two arrays, so adding a script to `scripts/` makes
+  the suite red until it is classified. That is deliberate friction, but it is friction: a worker
+  adding a script has to touch a file in `test/` they were not otherwise editing.
+- **Status:** open
+- **When to revisit:** if the friction is what people notice rather than the distinction, derive the
+  lists from the headers themselves (spent = has the marker) and keep only the "no standing tool is
+  marked spent" half.

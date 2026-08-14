@@ -57,7 +57,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "ちか１かい",
-      "reading": "ちかいっかい"
+      "ttsText": "ちかいっかい"
     },
     {
       "id": "ikkai-sub",
@@ -65,7 +65,7 @@
       "category": "Directions",
       "reviewNote": "Sub-entry of ちか１かい (first-floor basement).",
       "target": "１かい",
-      "reading": "いっかい"
+      "ttsText": "いっかい"
     },
     {
       "id": "sono",
@@ -87,7 +87,7 @@
       "category": "Numbers",
       "reviewNote": null,
       "target": "２ほん",
-      "reading": "にほん"
+      "ttsText": "にほん"
     },
     {
       "id": "fifth-floor",
@@ -95,7 +95,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "５かい",
-      "reading": "ごかい"
+      "ttsText": "ごかい"
     },
     {
       "id": "two-mai",
@@ -103,7 +103,7 @@
       "category": "Numbers",
       "reviewNote": null,
       "target": "２まい",
-      "reading": "にまい"
+      "ttsText": "にまい"
     },
     {
       "id": "ks1-restaurant-floor",
@@ -111,7 +111,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "レストランは５かいです",
-      "reading": "レストランはごかいです"
+      "ttsText": "レストランはごかいです"
     },
     {
       "id": "kono",
@@ -133,7 +133,7 @@
       "category": "Clothing",
       "reviewNote": null,
       "target": "このTシャツは2,000えんです",
-      "reading": "このTシャツはにせんえんです"
+      "ttsText": "このTシャツはにせんえんです"
     },
     {
       "id": "ano",
@@ -155,7 +155,7 @@
       "category": "Clothing",
       "reviewNote": null,
       "target": "あのあおいTシャツは3,000えんです",
-      "reading": "あのあおいTシャツはさんぜんえんです"
+      "ttsText": "あのあおいTシャツはさんぜんえんです"
     },
     {
       "id": "ks4-wine-from-france",
@@ -177,7 +177,7 @@
       "category": "Shopping",
       "reviewNote": null,
       "target": "そのワインを２ほんください",
-      "reading": "そのワインをにほんください"
+      "ttsText": "そのワインをにほんください"
     },
     {
       "id": "counter-mai-9",

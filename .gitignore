@@ -52,6 +52,10 @@
 !/.anki-builder/epubs/*/corpora/**
 !/.anki-builder/epubs/*/conventions.md
 !/.anki-builder/epubs/*/taught-index.json
+# ...but not a tool's stamped backup of a corpus file. The corpora/** re-include above is a glob, so
+# without this line every writeUnitJson backup lands in git. The tracked file's own history is the
+# restore point now, which is what makes the .bak disposable.
+/.anki-builder/epubs/*/corpora/*.bak
 
 # Environment / local
 .env

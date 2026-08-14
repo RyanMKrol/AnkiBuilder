@@ -49,7 +49,7 @@ async function runAudioInner(flags, ctx) {
   if (unreadable.length > 0) {
     throw new Error(
       `${unreadable.length} card(s) would send a raw numeral to the TTS voice, which reads digits ` +
-        `unpredictably. Give each one a "reading" with the number spelled out in the target script ` +
+        `unpredictably. Give each one a "ttsText" with the number spelled out in the target script ` +
         `(e.g. 2025ねんに -> にせんにじゅうごねんに), then re-run:\n` +
         describeUnreadableNumbers(unreadable),
     );
@@ -61,7 +61,7 @@ async function runAudioInner(flags, ctx) {
   // Excluded cards get no audio (generateAudio skips them), so only the ACTIVE cards gate "done".
   // "Already done" means every active card's clip is on disk AND still matches the card's CURRENT
   // text. Clip names are a hash of the spoken text, so checking only that the file exists let an edited
-  // `reading` keep its old clip forever: the stale file was still there, so the stage reported
+  // `ttsText` keep its old clip forever: the stale file was still there, so the stage reported
   // "already generated — reusing" and never refetched. Comparing the name makes a text edit
   // self-healing — re-run `audio` and only the changed cards are refetched.
   const audioLanguageCode = resolveIso639Code(cards.meta.targetLanguage);

@@ -55,14 +55,14 @@
       "english": "First-floor basement",
       "category": "Directions",
       "target": "ちか１かい",
-      "reading": "ちかいっかい"
+      "ttsText": "ちかいっかい"
     },
     {
       "id": "ikkai-sub",
       "english": "First floor",
       "category": "Directions",
       "target": "１かい",
-      "reading": "いっかい",
+      "ttsText": "いっかい",
       "note": null
     },
     {
@@ -83,7 +83,7 @@
       "english": "Two (long objects)",
       "category": "Numbers",
       "target": "２ほん",
-      "reading": "にほん",
+      "ttsText": "にほん",
       "note": "Counter ほん (hon)/ぼん (bon)/ぽん (pon) for long, slender objects like bottles. Watch this one by ear: にほん (ni-hon) here is 'two long objects', identical in sound to にほん (nihon, 'Japan') from Lesson 1."
     },
     {
@@ -91,14 +91,14 @@
       "english": "Fifth floor",
       "category": "Directions",
       "target": "５かい",
-      "reading": "ごかい"
+      "ttsText": "ごかい"
     },
     {
       "id": "two-mai",
       "english": "Two (flat objects)",
       "category": "Numbers",
       "target": "２まい",
-      "reading": "にまい",
+      "ttsText": "にまい",
       "note": "Counter まい (mai) for thin, flat objects."
     },
     {
@@ -106,7 +106,7 @@
       "english": "The restaurant is on the 5th floor.",
       "category": "Directions",
       "target": "レストランは５かいです",
-      "reading": "レストランはごかいです"
+      "ttsText": "レストランはごかいです"
     },
     {
       "id": "kono",
@@ -126,7 +126,7 @@
       "english": "This T-shirt is 2,000 yen.",
       "category": "Clothing",
       "target": "このTシャツは2,000えんです",
-      "reading": "このTシャツはにせんえんです"
+      "ttsText": "このTシャツはにせんえんです"
     },
     {
       "id": "ano",
@@ -147,7 +147,7 @@
       "english": "That blue T-shirt over there is 3,000 yen.",
       "category": "Clothing",
       "target": "あのあおいTシャツは3,000えんです",
-      "reading": "あのあおいTシャツはさんぜんえんです"
+      "ttsText": "あのあおいTシャツはさんぜんえんです"
     },
     {
       "id": "ks4-wine-from-france",
@@ -163,7 +163,7 @@
       "english": "I would like two bottles of that wine, please.",
       "category": "Shopping",
       "target": "そのワインを２ほんください",
-      "reading": "そのワインをにほんください"
+      "ttsText": "そのワインをにほんください"
     },
     {
       "id": "mai-suffix",

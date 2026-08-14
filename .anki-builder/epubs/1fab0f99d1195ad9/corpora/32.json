@@ -96,7 +96,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "1かいにうけつけがあります",
-      "reading": "いっかいにうけつけがあります"
+      "ttsText": "いっかいにうけつけがあります"
     },
     {
       "id": "imasu-animate",
@@ -168,7 +168,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "1かいにぎんこうとコンビニがあります",
-      "reading": "いっかいにぎんこうとコンビニがあります"
+      "ttsText": "いっかいにぎんこうとコンビニがあります"
     },
     {
       "id": "yuubinkyoku-post-office",
@@ -339,7 +339,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "1かいになにがありますか",
-      "reading": "いっかいになにがありますか"
+      "ttsText": "いっかいになにがありますか"
     },
     {
       "id": "ginkou-ga-arimasu",

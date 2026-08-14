@@ -223,7 +223,7 @@ async function runPrepareInner(flags, ctx) {
   }
 
   // Last pass before the review, and the only one that runs on demand rather than always: spell out
-  // any numeral still sitting in a card's reading or romaji. Placed here so it covers everything the
+  // any numeral still sitting in a card's ttsText or romaji. Placed here so it covers everything the
   // earlier passes produced, drills included, and so the reviewer is handed cards that are already as
   // good as the pipeline can make them rather than a list of things to go and fix by hand.
   const fresh = readJson(paths.cards);
@@ -242,7 +242,7 @@ async function runPrepareInner(flags, ctx) {
       fresh.items = items;
       writeJson(paths.cards, fresh);
       for (const f of fixed) {
-        ctx.log(`  ${f.target} -> ${f.reading} (${f.pronunciation})`);
+        ctx.log(`  ${f.target} -> ${f.ttsText} (${f.pronunciation})`);
       }
       ctx.log(
         `number readings: filled ${fixed.length} card(s), each flagged uncertain so you check the counter`,
@@ -251,7 +251,7 @@ async function runPrepareInner(flags, ctx) {
     if (remaining.length > 0) {
       ctx.log(
         `prepare: WARNING — ${remaining.length} card(s) still have a numeral that reaches the romaji ` +
-          `or the spoken text. The review gate holds this lesson back until each has a "reading" with ` +
+          `or the spoken text. The review gate holds this lesson back until each has a "ttsText" with ` +
           `the number spelled out (and a romaji to match):\n` +
           describeUnreadableNumbers(remaining),
       );

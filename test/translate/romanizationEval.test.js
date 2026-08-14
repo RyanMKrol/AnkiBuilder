@@ -14,15 +14,15 @@ function noopFallback(items) {
   return { items: items.map((i) => ({ ...i, pronunciation: "FALLBACK" })), errors: [] };
 }
 
-test("romanizes the spoken `reading` (not the display `target`) when set, and keeps reading on the card", async () => {
-  // target is the digit display form; reading is the spelled-out spoken form.
+test("romanizes the spoken `ttsText` (not the display `target`) when set, and keeps ttsText on the card", async () => {
+  // target is the digit display form; ttsText is the spelled-out spoken form.
   const items = [
     {
       id: "price",
       english: "2,000 yen",
       category: "Shopping",
       target: "2,000えん",
-      reading: "にせんえん",
+      ttsText: "にせんえん",
     },
   ];
   let romanizedText = null;
@@ -38,17 +38,17 @@ test("romanizes the spoken `reading` (not the display `target`) when set, and ke
     fallback: noopFallback,
   });
 
-  assert.equal(romanizedText, "にせんえん", "should romanize the reading, not the digit target");
+  assert.equal(romanizedText, "にせんえん", "should romanize the ttsText, not the digit target");
   assert.equal(cards[0].pronunciation, "nisen en");
   assert.equal(cards[0].target, "2,000えん", "display target is preserved");
   assert.equal(
-    cards[0].reading,
+    cards[0].ttsText,
     "にせんえん",
-    "reading survives onto the card for the audio stage",
+    "ttsText survives onto the card for the audio stage",
   );
 });
 
-test("falls back to `target` for romanization when no reading is set", async () => {
+test("falls back to `target` for romanization when no ttsText is set", async () => {
   const items = [partialCard("cat", "cat", "猫")];
   let romanizedText = null;
   const libraryEntry = workingLibraryEntry(async (text) => {
@@ -104,14 +104,14 @@ test("correction: the model's pronunciation replaces the library's, with no unce
   assert.equal(cards[0].reviewNote, undefined, "no 'possibly incorrect' note is appended");
 });
 
-test("correction: the prompt shows the model the spoken `reading`, not a digit/kanji display target", async () => {
+test("correction: the prompt shows the model the spoken `ttsText`, not a digit/kanji display target", async () => {
   const items = [
     {
       id: "price",
       english: "2,000 yen",
       category: "Shopping",
       target: "2,000えん",
-      reading: "にせんえん",
+      ttsText: "にせんえん",
     },
   ];
   const libraryEntry = workingLibraryEntry(async () => "ni se n e n");
@@ -127,7 +127,7 @@ test("correction: the prompt shows the model the spoken `reading`, not a digit/k
     fallback: noopFallback,
   });
 
-  assert.match(prompt, /にせんえん/, "the reading is shown as the text to romanize");
+  assert.match(prompt, /にせんえん/, "the ttsText is shown as the text to romanize");
   assert.doesNotMatch(
     prompt,
     /2,000えん/,

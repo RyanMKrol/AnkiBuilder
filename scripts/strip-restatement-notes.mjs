@@ -83,7 +83,7 @@ for (const file of files) {
   for (const it of cards.items || []) {
     const mark = {};
     if (isRestatementNote(it.note, it.english, it.target)) mark.note = true;
-    if (isRestatementHint(it.hint, it.english, it.target, it.pronunciation || it.reading))
+    if (isRestatementHint(it.hint, it.english, it.target, it.pronunciation || it.ttsText))
       mark.hint = true;
     if (mark.note || mark.hint) todo.set(it.id, mark);
   }

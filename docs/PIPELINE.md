@@ -5,13 +5,19 @@ internally — file formats, caching, dedup logic, prompt wiring. If you just wa
 see the [README](../README.md) and the `build-anki-deck` skill instead; come here when you need to
 understand or modify the implementation.
 
+**This file describes how the code is wired, and carries no procedure.** Anything that tells an
+operator what to do, in what order, or when to stop and wait for a human belongs in
+`.claude/skills/build-anki-deck/SKILL.md`, which is normative for that; if a procedure has ended up
+here, move it rather than maintaining it twice. This file's job is to stay true to the code.
+
 ## Pipeline stages
 
 `assemble` → `prepare` → `audio` → `deck`, each stage reading/writing JSON in a run
 directory (`--run <dir>`) — or, for an `--epub`-sourced run, an auto-resolved chapter directory
 under a book-organized `output/` tree (`--output-root <dir>`; see [Output layout](#output-layout)).
-`prepare` is itself four passes (`translate` → fill-in-the-blank → semantic de-dup → cross-lesson
-notes) run under a single claim, and `assemble` chains into it automatically.
+`prepare` is itself five passes (`translate` → fill-in-the-blank → semantic de-dup → cross-lesson
+notes → number readings, the last running only when a card still has a digit in its reading or
+romaji) run under a single claim, and `assemble` chains into it automatically.
 
 **Review happens in the dashboard** (`serve`), not as a CLI stage — see
 [Deck dashboard](#deck-dashboard-serve). There are exactly **two review gates**, and they are the only
@@ -96,7 +102,7 @@ fails open — any parse/shape error leaves the extracted order untouched and lo
 corpus is what the review gate then shows, so the human is always the final check on the sequence.
 
 **Space-free scripts — normalize the display text (`src/model/scriptSpacing.js`, `normalizeDisplayText`).**
-For a language written without spaces between words (Japanese today), a card's stored `target`/`reading`
+For a language written without spaces between words (Japanese today), a card's stored `target`/`ttsText`
 is normalized so the deck renders natural script: **(1)** editorial spaces are stripped (the JBP kana
 textbook uses 分かち書き word-separation as a beginner aid, which isn't part of real written Japanese),
 and **(2)** a trailing sentence-final `。` is stripped — **a card never ends in a period by default**. A
@@ -111,7 +117,7 @@ ElevenLabs gets `。ででで` appended, so the voice reads the card with senten
 `。` anchors a sentence boundary, which measurably steadies short/bare clips — and the throwaway
 ででで syllables absorb ElevenLabs' end-of-clip artifacts. The automatic trim then finds and cuts
 the marker back off the clip (with a "Marker audible" review badge on the rare card where it
-cannot). The displayed face/reading stays dot-less throughout; there is no separate with-dot /
+cannot). The displayed face and `target` stay dot-less throughout; there is no separate with-dot /
 without-dot take to choose between.
 
 The `--epub` source has two ways to choose _what_ to assemble.
@@ -133,6 +139,89 @@ and the forward pass checks chapters _after_ that last file so the lesson's own 
 mistaken for "taught later". `--list-lessons` prints the book's lessons (number, type, spine range,
 label) and exits. A book with no usable nav document has no selectable lessons — `--list-lessons`
 says so and the raw `--chapter-number` path remains the fallback.
+
+### The shape report
+
+`--list-lessons` also prints a **shape report** (`src/corpus/epubShapeReport.js`), and the same
+report is available standalone as `node scripts/epub-probe.mjs <book.epub>` (add `--json` for the
+raw structure, and the probe prints the per-entry and per-file detail the CLI summary omits). Both
+are read-only: they open the archive, count, and print. Nothing is registered, extracted or spent.
+
+The report exists because an EPUB that the parser handles badly looks exactly like one it handles
+well: nothing throws, and every degradation is a silent fallback. It reports the nav source (`nav`
+vs `ncx` vs none), the spine size, and per nav entry: its spine range, how many files in that range
+the nav actually **named** (the rest are swallowed into the entry above them), the
+`classifyLesson` type as an annotation, and the Anki deck path `unitDeckSegments` turns its label
+into. Then the things that have no other reporting at all — nav entries that resolve to no spine
+file, entries collapsed onto an earlier entry's file, spine files falling before the first nav entry
+(reachable only by `--chapter-number`, never by `--lesson`), labels that collide with each other or
+with a `describeChapter` `<title>` fallback, image filenames from different archive directories that
+resolve to one path in the shared `chapters/` cache, per-file text length against image count,
+chapters that are not UTF-8 (this reader decodes and caches every chapter as UTF-8, so their text
+would reach the model mangled), and a size warning for a book materially larger than the one book
+this pipeline is proven on.
+
+Warnings are advisory, never a gate — every one of them describes a book that still builds, just
+not the way its own table of contents suggests. Run the probe before spending a pass on a new book.
+
+### What the nav parser now refuses to drop quietly
+
+Four things used to disappear without a word, all of them in `src/corpus/epubArchive.js`:
+
+- **NCX labels with attributes or inline markup.** `<navLabel xml:lang="en">` or
+  `<text><span>Lesson 1</span></text>` is what a real EPUB2 toolchain emits, and the old bare-shape
+  match dropped every such navPoint. This is the live path: an EPUB2 book resolves source `ncx`.
+  Each skipped navPoint is now logged with its reason.
+- **Comments and CDATA.** `stripInertMarkup` runs before every scan (container, OPF, nav, NCX,
+  `<title>`, image srcs). A commented-out nav anchor used to become a phantom lesson, which shifts
+  every ordinal after it, so `--lesson 7` builds lesson 6. A commented-out `<item properties="nav">`
+  could be picked as the navigation document. Chapter content written to disk is still raw: the
+  extraction model reads the real file.
+- **Inverted ranges.** A nav document not in reading order produces arithmetic like spine 5-2.
+  `extractChapterRangeToFile` throws on it, `assemble` falls back to single-file extraction, and
+  `flagForwardConcerns` treats the lesson's own files as later chapters. The range is now clamped to
+  the entry's own file and logged loudly, and `resolveLesson` asserts the invariant so a
+  hand-constructed lesson fails at the gate rather than mid-build.
+- **Anchors the parser could not read.** The gap between how many entries the nav document declares
+  and how many parsed is logged and reported.
+
+### DRM, and how the navigation document is found
+
+Two rejections and three discovery tiers, all in `src/corpus/epubArchive.js`:
+
+- **Zip-level encryption** (general-purpose bit 0) throws while walking the central directory.
+- **`META-INF/encryption.xml`** throws only when an encrypted `<CipherReference URI>` names a
+  **spine document**. Adobe ADEPT (the DRM on most retail EPUBs) leaves the zip perfectly readable,
+  so without this a retail book parses "successfully" into ciphertext and hands 40+ garbage files to
+  a paid whole-book pass. The check is narrow on purpose: IDPF and Adobe **font obfuscation** use
+  this same file on completely readable books, so the file's presence alone means nothing.
+
+Navigation discovery tries, in order: the OPF manifest item with `properties="nav"` (EPUB3), then
+`toc.ncx` via `<spine toc="...">` or the NCX media type (EPUB2), then — last resort — a sweep of
+every XHTML manifest item for a `<nav>` whose `*:type` token list includes `toc` (prefix-agnostic;
+the `epub` prefix is only a convention) or whose `role` is `doc-toc`. The sweep runs only when both
+spec-blessed tiers came up empty, so no book that resolves today changes behaviour, and it reports
+`source: "nav-sweep"` so the probe says how the book was actually resolved.
+
+### Label decoding is versioned per book
+
+A chapter label is not just text a person reads: `unitDeckSegments` turns it into a live Anki deck
+name, and renaming a deck in Anki is not a rename — it is a new deck, and the existing notes stay in
+the old one with all their scheduling. So the decoder that produces labels is **versioned per book**,
+stamped once into `book.json` at registration by `registerEpub` and read back by
+`resolveLabelDecoding` (`src/corpus/epubLibrary.js`).
+
+- **v1** — the five original entities (`&amp;` `&lt;` `&gt;` `&quot;` `&#39;`), tags removed with
+  nothing in their place. Any book registered before this existed stays here forever.
+- **v2** — full numeric (`&#8212;`), hex (`&#x2026;`) and common named entity decoding; a space
+  where an inline tag was, so `<span>Lesson</span><span>5</span>` is "Lesson 5" rather than
+  "Lesson5" (which also defeats `deckPath`'s grouped-label regex, flattening the deck); ruby
+  annotations dropped from labels, so `漢<rt>かん</rt>字` is 漢字 and not 漢かん字. `&nbsp;` becomes
+  an ordinary space, since a non-breaking space in a deck name is invisible and unsearchable.
+
+Migrating an already-delivered book to v2 is a deliberate, previewed, one-time re-file — never a
+side effect of the decoder improving. An unknown entity is left visible (`&notarealentity;`) rather
+than turned into a replacement character: a visible oddity is a better bug report than a silent one.
 
 For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
 the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
@@ -170,12 +259,31 @@ tool when they sit in a content section. For the `--epub` path, `extractChapterT
 (`src/corpus/epubArchive.js`) makes this possible by also extracting every image the chapter's
 `<img src>` tags reference, at the same relative path from the cached chapter file that the src
 attribute encodes from the original chapter file inside the archive — so those references resolve
-to real files on disk instead of a directory that was never unpacked. All three paths produce the
+to real files on disk instead of a directory that was never unpacked.
+
+That path is not decorative: the model opens these files, so a wrong image is wrong card content
+with nothing to show for it. Three detectors guard it (all in `extractReferencedImages` /
+`copyImageAsset`):
+
+- **Collision byte-compare.** Every chapter's images land in one shared `chapters/` directory, so
+  two chapters in different archive directories referencing the same relative filename (the standard
+  Sigil/InDesign layout) overwrite each other. On write, differing bytes are logged loudly naming
+  both archive paths, both referring chapters, and the shared destination; identical bytes stay
+  quiet. The count is also computed statically in the shape report, before any extraction.
+- **Containment.** An image `src` comes from the archive and `../` in it is unfiltered, so a crafted
+  zip could write through the cache into repo source. Any destination resolving outside the book's
+  own cache directory is refused and logged. A legitimate `../images/foo.png` is unaffected.
+- **SVG wrappers.** An `.svg` is very often a wrapper whose whole content is
+  `<image href="the-real-page.jpg">`. A copied SVG is re-scanned one level deep and what it
+  references is copied too, and every copied SVG is logged so the shape report's SVG count can be
+  read as "these may be wrappers".
+
+All three paths produce the
 same superset item shape: `{ id, english, category, hint, note, reviewNote, target }` — the three
 note fields are strictly separated (`hint` front-of-card cue, `note` back-of-card context,
 `reviewNote` internal review-only rationale; a legacy blended `notes` folds into `reviewNote`) —
 with the note fields and `target` explicitly `null` when the source path can't populate them, plus
-an optional `reading` (the spoken form, when the target carries a numeral) and two optional flags
+an optional `ttsText` (what TTS speaks when the written target would be misread) and two optional flags
 carried through when the extractor sets them: `uncertain` (the model wasn't sure the item
 belonged) and `aiSuggested` (a critical-gap item the model added itself, not present in the
 source).
@@ -291,15 +399,26 @@ output). Items with `target: null` get a full translation; items with a real `ta
 pre-existing target (see `src/translate/index.js`). The resulting `cards.json` is what the **Corpus
 review** operates on.
 
-**Spoken form (`reading`).** An item may carry an optional `reading` — a spoken version of the
-target with anything the romanizer/TTS mishandles spelled out in the target language's own script.
-The one case that needs it today is **numbers**: kuroshiro leaves a digit verbatim (`2,000えん` →
-`2 , 000 en`) and ElevenLabs may read it as an English number, so extraction keeps the digits in
-`target` (natural card display) and emits `reading: "にせんえん"`. When present, `reading` drives BOTH
-the romaji `pronunciation` (the romanizer/pronunciation prompt romanizes `reading ?? target`) and
-the `audio` (the audio stage's `speechText` speaks `reading ?? target`); the deck still shows
-`target`. Absent a `reading`, everything falls back to `target` exactly as before, so only
-number-bearing cards are affected. Prompts are Markdown-structured (Overview / Input Format /
+**Spoken form (`ttsText`).** `ttsText` is the text TTS speaks instead of the target whenever the
+written target would be misread (numerals AND kanji-bearing targets); it is never rendered on any
+card face. It is the target rewritten in the language's own phonetic script, with whatever the
+romanizer or the voice mishandles spelled out. The case that needs it today is **numbers**:
+kuroshiro leaves a digit verbatim (`2,000えん` → `2 , 000 en`) and ElevenLabs may read it as an
+English number, so extraction keeps the digits in `target` (natural card display) and emits
+`ttsText: "にせんえん"`. When present, `ttsText` drives BOTH the romaji `pronunciation` (the
+romanizer and pronunciation prompt romanize `ttsText ?? target`) and the `audio` (the audio stage's
+`speechText` speaks `ttsText ?? target`); the deck still shows `target`. Absent a `ttsText`,
+everything falls back to `target`, so only cards that need it are affected.
+
+The field was called `reading` until the 2026-08 rename. `reading` read like a display field, and
+the deck's own Anki note type has a field of that name, so the two were easy to confuse; nothing
+renders either one. The Anki field is still named "Reading" (the live collection was not touched)
+and `src/deck/collection.js`'s `fieldValue` maps `ttsText` onto it in one line.
+`scripts/migrate-reading-to-ttstext.mjs` did the one-time data migration (key rename only, no value
+touched, through `writeUnitJson`); it is kept so the change is auditable and re-runnable against any
+older unit that turns up, and it is a no-op on a file that has already been migrated.
+
+Prompts are Markdown-structured (Overview / Input Format /
 Example Input / Output Format / Example Output / Important / Input Data). How `pronunciation` gets
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,
@@ -354,12 +473,12 @@ default (`audio`). For a marker-using language (`src/audio/ttsMarker.js`'s `MARK
 Japanese today) the text sent to TTS carries the `。ででで` end marker described above, and the trim
 strips it from the recording. Every OTHER variant — comma/bracket forms and kana+kanji — is
 generated **on demand** in the dashboard (see the audio review below), not up front; the variant
-set is comma × brackets (1 to 4 takes, `src/audio/variants.js`). The displayed `target`/`reading`
+set is comma × brackets (1 to 4 takes, `src/audio/variants.js`). The displayed `target`/`ttsText`
 never carries a `。`; the sentence-final prosody is audio-only.
 
 **Per-language TTS text normalization (`src/audio/ttsText.js`'s `normalizeTtsText`).** The exact text
 sent to TTS (and used as the cache key) is the card's spoken text run through a per-language
-normalizer. Japanese strips whitespace: `target`/`reading` keep their editorial spaces for the learner
+normalizer. Japanese strips whitespace: `target`/`ttsText` keep their editorial spaces for the learner
 (これは フランスの ワインです。), but the audio is generated from the space-free form
 (これはフランスのワインです。) — because ElevenLabs voices each space as an audible pause (a spaced clip
 runs ~20-25% longer than its unspaced twin). Languages whose spaces are real word boundaries (Spanish,
@@ -511,7 +630,7 @@ built clip, and neither touches `cards.json` until you pick a take.
 ### `deck`
 
 **What the package is called (`src/deck/deckFileName.js`).** A built `.apkg` is named after the deck
-it contains, not `deck.apkg` — otherwise every package is indistinguishable the moment it leaves its
+it contains, not the legacy `deck.apkg` — otherwise every package is indistinguishable the moment it leaves its
 folder, and picking the right one in a downloads directory or Anki's import dialog means reading the
 path. The name is derived from the directory PATH alone, never from a title read out of a metadata
 file: the writer and any reader looking for the same package compute it independently, so they cannot
@@ -529,7 +648,7 @@ IS naming after the EPUB or course, canonicalized once at assemble time rather t
 
 The last two shapes fold their parent in because their own basename identifies nothing — every course
 has a `lesson-3`, every template a `ja`. Readers go through `resolveDeckPathForDir`, which prefers the
-named file but falls back to a `deck.apkg` left by an older build, so a deck built before this
+named file but falls back to the legacy `deck.apkg` left by an older build, so a deck built before this
 convention is still readable. The one-off script that renamed existing packages has been removed now
 that every package on disk uses the new names; the fallback stays because it costs nothing.
 
@@ -600,18 +719,45 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
   epubs/<epubHash>/book.json                    # { title, slug } — title from <dc:title>, slug
                                                  #   filled in lazily on first --output-root use
-  epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
-  epubs/<epubHash>/images/<...>                     # images the cached chapters reference,
+  epubs/<epubHash>/cache-v<N>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
+  epubs/<epubHash>/cache-v<N>/images/<...>          # images the cached chapters reference,
                                                      #   at whatever relative path their own
                                                      #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
+  epubs/<epubHash>/taught-index.json            # one-time whole-book taught-content index
 ```
 
 Three of those are **tracked in git** rather than ignored — the reviewed corpora, `conventions.md`
 and `taught-index.json` (see the `.gitignore` re-include block). They are months of human review and
 two expensive one-time model passes, and they are what the eval fixtures below read as their
 reference data.
+
+### Cache versioning and clearing
+
+`CACHE_VERSION` (`src/corpus/epubLibrary.js`) names the `cache-v<N>` root. Bump it whenever
+chapter extraction or image resolution changes: a cached chapter file is treated as a COMPLETE
+extraction forever, which is what makes a parser fix inert for a book already read once. The
+chapter file sits one level inside the versioned root so an image's own `../images/foo.png` still
+resolves within it — a bump therefore invalidates chapters and their images together. Output from
+an older version is orphaned, never deleted behind your back. (v1 was the flat
+`<book>/chapters/` + `<book>/images/` layout.)
+
+Only the free zip-inflate cache is versioned. `conventions.md` and `taught-index.json` are outputs
+of paid whole-book passes and are never invalidated automatically; nothing records which prompt
+version produced them, so their timestamp is the only provenance there is.
+
+```sh
+anki-builder epub cache <hash>                    # what is cached, and when it was generated
+anki-builder epub cache <hash> --clear            # chapters only (free to rebuild)
+anki-builder epub cache <hash> --clear --conventions --taught-index --dry
+```
+
+`--clear` takes the free chapter cache by default; the paid artifacts must be named. `corpora/` is
+never touched, whatever is asked for, and the refusal is checked at the point of deletion rather
+than assumed from how the target list was built — it holds human-reviewed chapters that no amount
+of compute can rebuild, one directory away from everything the command does delete.
+
 
 ## Model passes: pinning, env scopes and timeouts
 
@@ -862,7 +1008,7 @@ button:
 
 - `POST …/unit/:unit/card/:cardId/review/exclude` `{excluded}` — toggle the card's reversible
   `excluded` flag (the deck build drops excluded cards).
-- `POST …/unit/:unit/card/:cardId/review/edit` `{target?,pronunciation?,reading?}` — whitelisted
+- `POST …/unit/:unit/card/:cardId/review/edit` `{target?,pronunciation?,ttsText?}` — whitelisted
   field edit.
 - `POST …/unit/:unit/review/reviewed` — set `cards.meta.reviewed: true` (the gate `audio` checks);
   for an EPUB source, also `saveChapterCorpus` the excluded-filtered corpus (derived from the cards)

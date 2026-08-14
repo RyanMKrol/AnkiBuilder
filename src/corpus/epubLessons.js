@@ -15,7 +15,7 @@ import { listExternalChapters } from "./epubArchive.js";
 // the human label, never a gate — selection works on any entry regardless of type. `unit`
 // is checked before `lesson` only for ordering clarity; the regexes are mutually exclusive
 // on their anchors anyway.
-function classifyLesson(label) {
+export function classifyLesson(label) {
   const l = label.trim().toLowerCase();
   if (/^unit\b/.test(l)) return "unit";
   if (/^lesson\b/.test(l)) return "lesson";
@@ -38,8 +38,8 @@ function classifyLesson(label) {
  * document — callers should treat that as "this book can't be selected by lesson; fall
  * back to --chapter-number," not as an error.
  */
-export function listLessons(epubPath, { log = () => {} } = {}) {
-  return listExternalChapters(epubPath, { log }).map((chapter, index) => ({
+export function listLessons(epubPath, { log = () => {}, labelDecoding = 1 } = {}) {
+  return listExternalChapters(epubPath, { log, labelDecoding }).map((chapter, index) => ({
     number: index + 1,
     label: chapter.label,
     type: classifyLesson(chapter.label),
@@ -47,6 +47,23 @@ export function listLessons(epubPath, { log = () => {} } = {}) {
     lastChapterNumber: chapter.lastChapterNumber,
     source: chapter.source,
   }));
+}
+
+// The one invariant every consumer of a resolved lesson assumes and none of them checks: a
+// lesson's spine range runs forwards. An inverted range (from a nav document that is not in
+// reading order) makes extractChapterRangeToFile throw twenty minutes into a build, makes
+// assemble fall back to single-file extraction, and makes flagForwardConcerns treat the
+// lesson's own files as later chapters. listExternalChapters clamps and warns, so reaching
+// this throw means something downstream of it built a lesson by hand — fail at the gate.
+function assertForwardRange(lesson) {
+  if (lesson.lastChapterNumber < lesson.firstChapterNumber) {
+    throw new Error(
+      `lesson "${lesson.label}" resolved to an inverted spine range ` +
+        `${lesson.firstChapterNumber}-${lesson.lastChapterNumber} — this book's navigation ` +
+        `document is not in reading order (see --list-lessons)`,
+    );
+  }
+  return lesson;
 }
 
 /**
@@ -57,8 +74,8 @@ export function listLessons(epubPath, { log = () => {} } = {}) {
  * nav document, the ordinal is out of range, or a label match is missing/ambiguous — so a
  * mistyped lesson fails loudly instead of silently assembling the wrong content.
  */
-export function resolveLesson(epubPath, selector, { log = () => {} } = {}) {
-  const lessons = listLessons(epubPath, { log });
+export function resolveLesson(epubPath, selector, { log = () => {}, labelDecoding = 1 } = {}) {
+  const lessons = listLessons(epubPath, { log, labelDecoding });
   if (lessons.length === 0) {
     throw new Error(
       "this EPUB has no navigation document, so its lessons can't be listed or selected by name — " +
@@ -81,7 +98,7 @@ export function resolveLesson(epubPath, selector, { log = () => {} } = {}) {
         `--lesson ${n} is out of range — this book has ${lessons.length} nav entries (see --list-lessons)`,
       );
     }
-    return byNumber;
+    return assertForwardRange(byNumber);
   }
 
   const needle = raw.toLowerCase();
@@ -96,5 +113,5 @@ export function resolveLesson(epubPath, selector, { log = () => {} } = {}) {
         " (use a more specific string or the [number] from --list-lessons)",
     );
   }
-  return matches[0];
+  return assertForwardRange(matches[0]);
 }

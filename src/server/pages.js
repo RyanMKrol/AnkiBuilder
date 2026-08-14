@@ -333,7 +333,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
             // at all — signing it off would mean approving a card set that is still going to change.
             if (s.stage === "corpus") {
               if (!s.ready) {
-                // A numeral problem is fixable right here — `reading` and `pronunciation` are both
+                // A numeral problem is fixable right here — `ttsText` and `pronunciation` are both
                 // inline-editable — so name the cards instead of sending them to the CLI.
                 if (s.numberIssues.length > 0 && s.missing.length === 0)
                   return `<span class="hint">Not ready to review — ${escapeHtml(describeReadiness(s))}: ${s.numberIssues.map((n) => `<code>${escapeHtml(n.target)}</code>`).join(", ")}. Edit the Pronunciation cell to spell the number out, and this clears.</span>`;

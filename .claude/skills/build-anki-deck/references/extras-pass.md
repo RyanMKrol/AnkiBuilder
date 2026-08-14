@@ -3,8 +3,11 @@
 This is the full operating procedure for the extras pass summarized in
 [SKILL.md](../SKILL.md) Step 3b. Load it whenever you are about to build an extras unit.
 
-**Run this for every chapter of a book (and every lesson of a course), right after the base unit
-passes Gate 1.** A textbook chapter always teaches far more than the extraction turns into cards. Two things get lost every time:
+**Run this for every chapter of a book (and every lesson of a course), once the base unit is DONE
+(gate 2).** The audits below diff the new cards against the base unit's card set, and a gate-2
+exclusion changes that set — so extras authored while the lesson is still in review are audited
+against a card set that no longer exists. A textbook chapter always teaches far more than the
+extraction turns into cards. Two things get lost every time:
 the chapter's own spoken material (Target Dialogue, Speaking Practice, Short Dialogues), which the
 extraction skips while mining the vocabulary tables dry; and any sense of *coverage*, so a lesson ends
 up with forty bare nouns that appear in no sentence, a particle taught with one example, and a
@@ -78,12 +81,12 @@ invalid the moment it is copied across. Every extras unit built before this was 
 because copying the whole meta object is the obvious thing to do and nothing ever complained: the
 corpus schema is only enforced on the `assemble` path, which a hand-authored unit never takes. Build
 `corpus.meta` explicitly from the fields the corpus schema declares, and likewise keep card fields
-that only exist on the cards side (`reading`, `pronunciation`, `audio*`, `aiSuggested`) out of corpus
+that only exist on the cards side (`ttsText`, `pronunciation`, `audio*`, `aiSuggested`) out of corpus
 items.
 
 **Give every field the type the schema declares, and NEVER a `null` placeholder.** Only `note`,
 `cardNote`, `reviewNote`, `hint` and `scene` accept `null`. Everything else is a plain `string`, which
-means an absent value must be an ABSENT KEY — `"reading": null` fails validation. A hand-authored unit
+means an absent value must be an ABSENT KEY — `"ttsText": null` fails validation. A hand-authored unit
 is the one place this bites, because it skips the translate stage that would otherwise shape the
 fields, and the failure surfaces late and unhelpfully: the dashboard refuses the review click with
 `invalid card data after edit: Property reading in items[0] must be of type string`, naming one field
@@ -126,25 +129,30 @@ Three jobs, and let the counts decide the size:
 Extraction of the chapter text: `extractChapterToFile(epubPath, n, dest)` in `src/corpus/epubArchive.js`.
 Strip the XHTML to plain text before handing it to an agent, or it burns context on markup.
 
-## First, look at the chapter's IMAGES (the pipeline never has)
+## First, look at the chapter's IMAGES (nothing records whether extraction did)
 
 This sweep is a **required step of the BUILD** ([SKILL.md](../SKILL.md) Step 2), run while
 `assemble` is still working so the finding reaches the reviewer with the gate-1 link. It is repeated
 here because this is the pass that acts on it: if you arrive at an extras unit and no image sweep was
 reported for the chapter, do it now before either wave.
 
-**Grep the chapter's raw XHTML for `<img>` and LOOK at anything that isn't decoration.** Every stage upstream of you works on text: the extraction, the drill miner and the note
-pass all read the stripped-out plain text, so a table, chart or worked example that the publisher
-shipped as a picture is invisible to the entire pipeline. It does not appear as a gap; it appears as
-though the chapter never taught that material. Publishers do this constantly for grid-shaped content,
-which is exactly the content that carries a grammar paradigm.
+**Find the chapter's images and LOOK at anything that isn't decoration.** The extraction pass is
+given them (the images are written beside the cached chapter file, and its prompt tells it to open
+each one), but nothing records what it opened or what it concluded — so a table it skipped and a
+chapter that had no table produce identical output. Every stage after it (the drill miner, the note
+pass) genuinely does read text only. Either way the failure looks the same: not a gap, but a chapter
+that appears never to have taught the material. Publishers do this constantly for grid-shaped
+content, which is exactly the content that carries a grammar paradigm.
 
 ```sh
-grep -o '<img[^>]*>' <chapter>.xhtml                       # find them; alt text is usually empty
-unzip -o -j <book>.epub '*<ImageName>*' -d <scratchpad>/imgs   # pull the ones near teaching prose
+node scripts/chapter-images.mjs <runDir>     # or: <epubHash> <chapterNumber>
 ```
 
-Then **read the extracted files** (the Read tool renders images) and transcribe what they teach into
+The images are already on disk in the book's cache, written next to the cached chapter file when the
+chapter was extracted — there is nothing to unzip. The script prints each one's path and quotes the
+book's `conventions.md` where it names the file.
+
+Then **read the files that matter** (the Read tool renders images) and transcribe what they teach into
 the Wave 2 brief. Two cheap signals that an image is load-bearing rather than decorative: it sits
 directly under an exercise or grammar heading whose text then runs out (a heading followed by nothing
 is the giveaway), and it is referenced by prose that has no visible referent. Judge by position, not
@@ -183,7 +191,7 @@ spend a card on any member that looks like it belongs to another class (a な-ad
 ## Rules the pass must not break
 
 Everything in [card-authoring-rules.md](card-authoring-rules.md) still applies (kana-only for a kana
-deck, sentence-case English, no editorial spaces, no terminal `。`, a `reading` for any numeral, a scene
+deck, sentence-case English, no editorial spaces, no terminal `。`, a `ttsText` for any numeral, a scene
 or hint on every collision, split Q&A, an answer card that is answerable alone). On top of those:
 
 - **Only vocabulary and grammar from this chapter or an EARLIER one.** Feed each agent an index of
@@ -197,6 +205,34 @@ or hint on every collision, split Q&A, an answer card that is answerable alone).
   over-drilled. Deliver a missing word inside a sentence.
 - **Vary the frame, not just the noun.** Ten sentences on one pattern with interchangeable nouns is
   padding, not practice.
+
+## Finalize the unit: one command, in the order that matters
+
+Once the cards are authored and merged into the unit, the rest of the pass is a fixed sequence with
+real ordering constraints, and it is a sequence that has been got wrong in production more than once.
+Run it as one command:
+
+```sh
+node scripts/finalize-extras.mjs output/epubs/<book-slug>/chapter-<n>-extras
+#   --seed <text>   override the re-order seed        --dry   print the plan without running it
+```
+
+It runs, in this order, printing every report in full:
+
+1. **`prepare`** — first, because it GROWS the unit (see below). Auditing or ordering before it
+   measures a card set that is about to change. ⚠️ It spends model credits.
+2. **the cross-chapter duplicate check** — report only, never `--apply`.
+3. **the deck-wide collision audit** — report only, by design.
+4. **`extras-order --apply`** with a fresh seed, so the cards `prepare` just mined fold into the
+   shuffle instead of sitting as a predictable block at the end.
+5. **`validate-decks`**, then **`preflight`** on the collection, so the last things that run see the
+   unit exactly as the reviewer will.
+
+**It applies nothing except the ordering, and it decides nothing.** Which reported duplicate is real,
+how to word a missing cue, whether an exclusion should be reversed: all of that is yours, and it
+exits 2 to say a report is waiting for you rather than to say something is broken. The sections below
+are the reasoning behind each step, and how to judge what it prints — read them, that is what they
+are for.
 
 ## The gate that catches what the agents cannot
 
@@ -293,8 +329,8 @@ Keep `corpus.json` in the SAME order as `cards.json`, or the reviews and the dec
 Authoring the unit's files is not the last build step. The readiness gate
 (`src/cards/readiness.js`) holds every non-template unit out of review until `prepare`'s two pass
 markers (`enriched`, `notesEnhanced`) are set, and a hand-authored extras unit has neither. The
-dashboard will say "Not ready to review" and hide the Mark reviewed button. So after the audits and
-ordering, always run:
+dashboard will say "Not ready to review" and hide the Mark reviewed button. `finalize-extras` runs it
+FIRST for exactly this reason; on its own it is:
 
 ```sh
 anki-builder prepare --run output/epubs/<book-slug>/chapter-<n>-extras
@@ -305,9 +341,10 @@ is complete); the fill-in-the-blank miner runs with no chapter file (extras meta
 so it composes a handful of drills from the unit's own patterns, and its semantic de-dup usually
 excludes most of them as repeats of ground the pass already drilled; the cross-lesson note pass adds
 backward references, backing up first. None of your cards are dropped or rewritten (only
-`fillInBlank`-marked cards are ever touched by the de-dup). Afterwards, re-run the duplicate check
-and collision audit on the grown unit, and re-run `extras-order.mjs` with a NEW seed so any surviving
-mined cards fold into the shuffle instead of sitting as a predictable block at the end.
+`fillInBlank`-marked cards are ever touched by the de-dup). That growth is why the audits and the
+ordering run AFTER it, and why the re-order needs a new seed: the surviving mined cards must fold
+into the shuffle instead of sitting as a predictable block at the end. `finalize-extras` does that
+sequencing; running the steps by hand means doing it in that order yourself.
 
 ## Reviewing and shipping it
 

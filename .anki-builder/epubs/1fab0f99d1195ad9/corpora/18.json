@@ -561,7 +561,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank drill (item 4 of the 'noun も' substitution exercise); filled blank with とうきょう/ごぜん10じ/ソウル as given, reusing chapter vocab ソウル.",
       "target": "とうきょうはごぜん10じです。ソウルもごぜん10じです",
-      "reading": "とうきょうはごぜんじゅうじです。ソウルもごぜんじゅうじです"
+      "ttsText": "とうきょうはごぜんじゅうじです。ソウルもごぜんじゅうじです"
     },
     {
       "id": "fib-c4-also-7000-yen-q",
@@ -569,7 +569,7 @@
       "category": "Money",
       "reviewNote": "Fill-in-the-blank dialogue drill (item 1, price-substitution exercise); filled blank with 7,000えん as given.",
       "target": "あれも7,000えんですか",
-      "reading": "あれもななせんえんですか"
+      "ttsText": "あれもななせんえんですか"
     },
     {
       "id": "fib-c4-ballpoint-pen-q",
@@ -591,7 +591,7 @@
       "category": "Money",
       "reviewNote": "Fill-in-the-blank dialogue drill (item 2 final price line); filled blank with 13,000えん as given.",
       "target": "13,000えんです",
-      "reading": "いちまんさんぜんえんです"
+      "ttsText": "いちまんさんぜんえんです"
     }
   ]
 }

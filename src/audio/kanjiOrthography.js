@@ -3,7 +3,7 @@ import { runKanjiOrthographyClaude as defaultRunClaude } from "../translate/runC
 // Generates a natural kanji+kana orthography for a Japanese card, purely as an alternate TEXT to feed
 // TTS. ElevenLabs mis-parses all-kana input (it's out-of-distribution vs. natural Japanese writing —
 // e.g. スーパーは１０じから６じまでです only voiced correctly once kanji was introduced), so a kanji form
-// often reads more naturally. This is audio-only: the learner still sees the kana `target`/`reading`.
+// often reads more naturally. This is audio-only: the learner still sees the kana `target`/`ttsText`.
 // The reading is PINNED — the model must not change how the sentence is pronounced, only the script —
 // and the human auditions the result before picking it, so a bad conversion is caught by ear.
 
@@ -16,7 +16,7 @@ export function buildKanjiOrthographyPrompt(item) {
   const input = {
     id: item.id,
     english: item.english,
-    reading: item.reading || item.target,
+    ttsText: item.ttsText || item.target,
     target: item.target,
   };
   return [

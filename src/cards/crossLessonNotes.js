@@ -107,7 +107,7 @@ export function renderCrossLessonNotePrompt({
         lesson: card.__lesson,
         english: card.english,
         target: card.target,
-        romaji: card.pronunciation || card.reading || "",
+        romaji: card.pronunciation || card.ttsText || "",
         category: card.category,
         currentNote: card.note || card.cardNote || "",
         currentHint: card.hint || "",

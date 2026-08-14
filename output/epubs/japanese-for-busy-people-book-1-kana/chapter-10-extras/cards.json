@@ -182,7 +182,7 @@
       "category": "Shopping",
       "target": "こちらは6,500えんです",
       "pronunciation": "kochira wa rokusen gohyaku en desu",
-      "reading": "こちらはろくせんごひゃくえんです",
+      "ttsText": "こちらはろくせんごひゃくえんです",
       "hint": "shopkeeper's polite こちら (kochira), not これ (kore)",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 2, verbatim (shopkeeper offering a cheaper bowl). Hint added because the English alone would also produce the chapter-4 pattern これは〜えんです (kore wa ~en desu); this line shows polite こちら for an item.",

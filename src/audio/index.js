@@ -42,12 +42,12 @@ export function deriveCardAudio(item) {
 }
 
 // The text actually handed to TTS (and used as the audio cache key) for a card:
-// the card's `reading` when it's a non-empty string, otherwise its `target`. This
+// the card's `ttsText` when it's a non-empty string, otherwise its `target`. This
 // is what lets a Japanese deck show kanji on the face (`target`) while speaking an
-// unambiguous kana `reading` — for languages whose target is already phonetic, no
-// `reading` is set and `target` is spoken exactly as before.
+// unambiguous kana `ttsText` — for languages whose target is already phonetic, no
+// `ttsText` is set and `target` is spoken exactly as before.
 export function speechText(item) {
-  return typeof item.reading === "string" && item.reading.length > 0 ? item.reading : item.target;
+  return typeof item.ttsText === "string" && item.ttsText.length > 0 ? item.ttsText : item.target;
 }
 
 async function ensureDir(dir) {
@@ -141,7 +141,7 @@ async function fetchTermsToCache(
  *
  * Exported so the audio stage's "already generated?" check can ask whether a card's stored clip still
  * matches its CURRENT text, rather than only whether some file exists. Clip names are content
- * addressed, so editing a `reading` after audio has run leaves the card pointing at a stale clip that
+ * addressed, so editing a `ttsText` after audio has run leaves the card pointing at a stale clip that
  * is still on disk — which read as "already generated — reusing" and silently kept the old audio.
  */
 export function defaultClipText(item, languageCode) {
@@ -252,7 +252,7 @@ export async function generateAudio(
 
   // The DEFAULT (and only up-front) take. Comma/bracket forms and kana+kanji are generated ON DEMAND
   // in the dashboard, not here. Japanese text gets the end marker appended (./ttsMarker.js), which the
-  // trim cuts back off; the displayed target/reading never carries it.
+  // trim cuts back off; the displayed target/ttsText never carries it.
   const defaultTextFor = (item) => defaultClipText(item, languageCode);
 
   // Excluded cards are dropped from the deck at build time (src/deck/index.js), so don't spend TTS on

@@ -143,7 +143,7 @@ for (const dir of collectionDirs()) {
     if (!isSpaceFreeLanguage(lang)) continue;
     for (const item of unit.items) {
       if (item.excluded) continue;
-      for (const field of ["target", "reading"]) {
+      for (const field of ["target", "ttsText"]) {
         const value = item[field];
         if (typeof value !== "string") continue;
         if (normalizeDisplayText(value, lang) !== value)

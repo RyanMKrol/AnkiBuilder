@@ -355,6 +355,14 @@ operator has to override on the day it lands is worse than no gate.
       or over 60 characters — split it, or ship it Recognition-only), and `near-siblings` (one
       sentence frame drilled 3+ times with only a name or number swapped). All three detect a shape;
       whether the shape is a defect stays the reviewer's call
+- [x] Card-face fixes (a note-type SPEC change: reaching a live collection needs
+      `deliver --dry` then `--allow-model-change`). Both prompts are wrapped in `.prompt` at the
+      answer's 26px/600, so the string the learner has to decode is no longer 20px as a question and
+      26px bold as an answer; `.note-back` and the cue styles clear WCAG AA in light mode (they were
+      3.5:1 and 3.1:1, computed and asserted in `test/deck/cardStyles.test.js`); the category chip is
+      gone from the Recognition front, where it was an uncontrolled answer cue on 2,150 fronts, 86%
+      of which have no scene; scene and hint get distinct treatment instead of two identical
+      unlabelled grey lines. `Reading` is still rendered by nothing, deliberately
 - [x] A notes truth-check at Gate 1 (`note-claims`): every note asserting a decomposition,
       derivation, distinction or identity, with — for each target-script form the claim names —
       whether this collection teaches a card for it. Deterministic list, human verdict. Every other

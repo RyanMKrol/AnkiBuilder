@@ -399,14 +399,20 @@ all; よにん (yo-nin) uses よ (yo) and not よん (yon); とお (tō) is the 
 no つ (tsu). Say what the regular pattern would predict and why this one does not follow it, and
 name the counter card the exception belongs to.
 
-## `category` is required and shown on the card front
+## `category` is required, and shown on the Production front only
 
-**`category` is REQUIRED on every card and is SHOWN ON THE CARD FRONT.** Category is never optional —
-both schemas require it and hold it to the fixed enum in `src/model/categories.js`, the extraction
-validates it too, and the dictated-lesson path auto-assigns it. The deck build renders a small
-category chip on the FRONT of both templates (Recognition and Production), so a word is always
-studied *with* its domain — you don't recognize/produce a word cold, out of context. A card missing a
-category is a bug; if you author cards by hand, set one.
+**`category` is REQUIRED on every card.** It is never optional — both schemas require it and hold it
+to the fixed enum in `src/model/categories.js`, the extraction validates it too, and the
+dictated-lesson path auto-assigns it. A card missing a category is a bug; if you author cards by
+hand, set one.
+
+**The chip renders on the PRODUCTION front only.** It used to render on both. On a Recognition front
+it is an uncontrolled answer cue: "Shopping" sitting above a bare デパート narrows the answer more
+than any `scene` the collision doctrine would let you write, on 2,150 fronts, 86% of which carry no
+scene at all — so the cue you are forbidden from writing was being supplied automatically. On the
+Production front the learner is already reading the English, so the chip adds context without
+answering anything, and the card is still studied *with* its domain in the direction where that
+helps.
 
 Two rules about WHICH one:
 

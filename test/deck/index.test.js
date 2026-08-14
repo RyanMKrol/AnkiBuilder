@@ -210,13 +210,20 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       const model = Object.values(models)[0];
       const templateNames = model.tmpls.map((t) => t.name);
       assert.deepStrictEqual(templateNames, ["Recognition", "Production"]);
-      // Category is shown on the FRONT of both cards (contextualizes the word out of its lesson).
+      // The category chip is on the PRODUCTION front only. On a Recognition front it is an
+      // uncontrolled answer cue ("Shopping" over a bare デパート) — stronger than any scene the
+      // collision doctrine would permit, on a front that 86% of the time has no scene at all.
+      const chip = /\{\{#Category\}\}<div class="cat-chip">\{\{Category\}\}<\/div>/;
+      const byName = Object.fromEntries(model.tmpls.map((t) => [t.name, t]));
+      assert.doesNotMatch(
+        byName.Recognition.qfmt,
+        chip,
+        "Recognition front must not cue the answer",
+      );
+      assert.match(byName.Production.qfmt, chip, "Production front keeps the chip");
+      // The string to be decoded is wrapped on both fronts, so it can be sized like the answer.
       for (const t of model.tmpls) {
-        assert.match(
-          t.qfmt,
-          /\{\{#Category\}\}<div class="cat-chip">\{\{Category\}\}<\/div>/,
-          `${t.name} front shows the category`,
-        );
+        assert.match(t.qfmt, /<div class="prompt">/, `${t.name} front wraps its prompt`);
       }
       assert.match(model.css, /\.cat-chip/); // …and the chip is styled
       assert.deepStrictEqual(
@@ -237,16 +244,18 @@ test("buildDeck produces a collection.anki2 with expected notes, cards, template
       // Hint fronts only the Production card — on Recognition (Target→English) an English hint is
       // part of the answer, so there it shows on the back. Scene (the situation cue) fronts BOTH
       // directions. Note is on the back of both.
+      // Scene and hint carry DIFFERENT classes: on the Production front they stack, and two
+      // identical unlabelled grey lines is exactly where the learner cannot tell them apart.
       for (const t of model.tmpls) {
         assert.match(
           t.qfmt,
-          /\{\{#Scene\}\}<div class="hint-front">\{\{Scene\}\}<\/div>/,
+          /\{\{#Scene\}\}<div class="scene">\{\{Scene\}\}<\/div>/,
           `${t.name} front shows the scene`,
         );
         if (t.name === "Production") {
           assert.match(
             t.qfmt,
-            /\{\{#Hint\}\}<div class="hint-front">\{\{Hint\}\}<\/div>/,
+            /\{\{#Hint\}\}<div class="hint">\{\{Hint\}\}<\/div>/,
             `${t.name} front`,
           );
         } else {

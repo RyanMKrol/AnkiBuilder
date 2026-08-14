@@ -2430,6 +2430,40 @@ say when it was measured rather than stating it as a standing fact.
   count for that unit does not fall to zero, the injected spec is not reaching the model.
 - **Verified by:** `node scripts/preflight.mjs --all --only romaji-style,inline-romaji --verbose`
 
+## The card-face fixes are landed in code but not in the live collection
+
+- **What:** the note type's templates and CSS changed (prompt sizing, WCAG AA colours, no category
+  chip on the Recognition front, distinct scene/hint styling). The two live collections still render
+  the OLD faces, and will until someone runs a deliver with `--allow-model-change`.
+- **Why:** the note type is keyed on language alone, so pushing it rewrites the card faces of both
+  delivered decks at once and flips Anki's schema, forcing a one-way full AnkiWeb sync the owner has
+  to complete by hand through a GUI dialog. That is a decision, not a build step. `deliver --dry`
+  prints the whole diff plus the deck and card counts it reaches.
+- **Impact:** code and live collection disagree about what a card looks like, deliberately, until the
+  owner consents. Anything reading the live note type (a `--dry` diff, the probe script) will report
+  a difference; that is the guard working, not a fault.
+- **Status:** open — awaiting one `deliver --dry` review and an `--allow-model-change` run.
+- **When to revisit:** at the next deliver of either collection.
+- **Verified by:** `node src/cli/bin.js deliver --book-dir <collection> --dry`
+
+## The Japanese font rule was narrowed differently from the plan
+
+- **What:** the plan asked for the webfont to be scoped "to the target rather than `.card`".
+  `languageFontCss` still targets `.card`; what changed is its Latin fallback, from
+  `"Helvetica Neue", Helvetica, Arial, sans-serif` to `arial` (the card's own stack).
+- **Why:** the `@font-face` already carries a `unicode-range` covering only kana, kanji and CJK
+  punctuation, so the font can never render a Latin glyph no matter which selector it is on — the
+  scoping the plan wanted is already there, per glyph. Narrowing the SELECTOR to the prompt and
+  answer elements would have stripped the textbook face from the Japanese quoted inside a `note` or a
+  `scene`, which the learner reads too. The real defect was the fallback: registering a Japanese font
+  silently restyled every Latin string on the card.
+- **Impact:** none on the target script. Latin text on a `ja` card now renders in `arial` (what
+  BASE_CSS asks for) rather than Helvetica Neue.
+- **Status:** open — recorded because it is a deliberate deviation from an approved plan item, not
+  because anything is wrong.
+- **When to revisit:** if a language is ever configured whose font has no `unicode-range`, the
+  `.card` selector stops being safe and the narrowing becomes necessary after all.
+
 ## The notes truth-check finds claims, it cannot judge them
 
 - **What:** `note-claims` lists every note asserting a decomposition, derivation, distinction or

@@ -50,6 +50,18 @@ function forBrowser(html, card, mediaUrl) {
     );
 }
 
+/**
+ * Whether a rendered face shows the learner anything at all.
+ *
+ * Deliberately looks past the markup: the templates wrap the prompt in a `<div class="prompt">`, so
+ * a card with an empty Target still produces non-empty HTML while producing a blank card. In Anki a
+ * front that renders to nothing is an EMPTY card, and Tools → Empty Cards deletes it along with its
+ * interval and its review log — so this is the one thing on the page worth shouting about.
+ */
+function hasVisibleContent(html) {
+  return /<img\b/.test(html) || html.replace(/<[^>]*>/g, "").trim().length > 0;
+}
+
 const escapeAttr = (value) =>
   String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
@@ -165,7 +177,9 @@ export function renderCardFacesPage(
       `<div class="faces-row">`,
       ...faces.map((face) =>
         faceBlock(face, {
-          front: face.front || `<span class="faces-empty">(this front renders empty)</span>`,
+          front: hasVisibleContent(face.front)
+            ? face.front
+            : `<span class="faces-empty">(this front renders empty)</span>`,
           back: face.back,
         }),
       ),

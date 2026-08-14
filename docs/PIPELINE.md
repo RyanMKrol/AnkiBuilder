@@ -740,14 +740,39 @@ named file but falls back to the legacy `deck.apkg` left by an older build, so a
 convention is still readable. The one-off script that renamed existing packages has been removed now
 that every package on disk uses the new names; the fallback stays because it costs nothing.
 
-Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows
-`Target` and autoplays `Audio` — the target-language listening/recall direction — answer reveals
-`English`) and **Production** (question shows `English`, answer reveals
-`Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions play the
-target-language audio; Recognition plays it on the question side, since that's the direction meant
-to exercise listening comprehension, not just script recognition.
+Builds a two-template Anki note type: **Recognition** (ordinal 0 — question shows `Target` and
+autoplays `Audio`, the target-language listening/recall direction; answer reveals `English`) and
+**Production** (ordinal 1 — question shows `English`, answer reveals `Target`/`Pronunciation`/`Audio`
+for the native-pronunciation check). Both directions play the target-language audio; Recognition
+plays it on the question side, since that's the direction meant to exercise listening comprehension,
+not just script recognition. The ordinals are a contract, not a detail — a card's `dirSuspended`
+names them.
 
-The note type is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
+The note type is assembled by `src/deck/collection.js` out of three modules, each the single source
+for its half: `cardTemplates.js` (the two `{name, qfmt, afmt}` templates), `cardStyles.js` (the CSS)
+and `noteFields.js` (the field list and the card → field mapping). They are separate because
+`collection.js` opens a sqlite database at import time, and the surfaces that only DESCRIBE a card —
+the authoring prompts' `{{CARD_FACES}}` block, the reviewer's card-face preview — must not pay for
+that to do it.
+
+**What each face shows, and why.** `scene` renders on the front of BOTH directions (it sets the
+situation and must never leak the answer either way); `hint` renders on the Production front and the
+Recognition BACK (it describes the target word, which on a Target→English front IS the answer); the
+category chip renders on the **Production front only** — on a Recognition front it is an uncontrolled
+answer cue, stronger than any scene the collision doctrine permits, on 2,150 fronts of which 86% have
+no scene at all. `Reading` (the note type's field holding `ttsText`) is rendered by NO template, on
+purpose. The prompt on either front is wrapped in `.prompt` and set at the answer's 26px/600, because
+the same sentence used to render at 20px as a question and 26px bold as an answer — sizing the harder
+direction smaller. Every text style clears WCAG AA against both the light and night-mode backgrounds,
+computed and asserted in `test/deck/cardStyles.test.js` rather than eyeballed.
+
+⚠️ **Any edit to those templates or that CSS is a change to a SHARED note type.** It is keyed on
+language alone, so the next deliver of any deck in that language rewrites the card faces of every
+other deck using it and flips Anki's schema, forcing a one-way full AnkiWeb sync the owner completes
+by hand. `deliver --dry` prints the unified diff plus every deck and card count it reaches;
+`--allow-model-change` is the consent step (`syncStructure`, `src/anki/deliver.js`).
+
+It is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
 `AnkiBuilder ja`) with a stable, language-derived id (`languageModelId`). Anki keys note types by
 id, so every deck of a language shares ONE note type — no pile-up of duplicates on repeated imports
 — and different languages never collide. When the language has a configured deck font

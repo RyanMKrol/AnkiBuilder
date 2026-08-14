@@ -62,11 +62,35 @@ test("ttsText never appears on any face", () => {
 
 test("an empty optional field renders no empty element at all", () => {
   const bare = recognition(card());
-  assert.doesNotMatch(bare.front, /hint-front/);
+  assert.doesNotMatch(bare.front, /class="scene"/);
   assert.doesNotMatch(bare.back, /note-back/);
   const full = recognition(card({ scene: "s", note: "n" }));
-  assert.match(full.front, /hint-front/);
+  assert.match(full.front, /class="scene"/);
   assert.match(full.back, /note-back/);
+});
+
+// The category chip is an uncontrolled answer cue on a Recognition front ("Shopping" above a bare
+// デパート), and 86% of those fronts carry no scene at all. On the Production front the learner is
+// already reading the English, so it costs nothing there.
+test("the category chip is on the Production front only", () => {
+  const c = card();
+  assert.doesNotMatch(recognition(c).front, /cat-chip/);
+  assert.match(production(c).front, /cat-chip/);
+});
+
+// The prompt is the string the learner has to decode. It used to render at 20px as a question and
+// 26px bold as an answer, which made the harder direction the smaller one.
+test("both prompts are wrapped so they can be sized like the answer", () => {
+  assert.match(recognition(card()).front, /<div class="prompt">しつれいします<\/div>/);
+  assert.match(production(card()).front, /<div class="prompt">Excuse me\.<\/div>/);
+});
+
+// A wrapped-but-empty prompt is still an EMPTY card in Anki, and the markup no longer says so.
+test("a front whose only content is an empty wrapper counts as empty", () => {
+  const html = renderCardFacesPage([{ id: "hollow", target: "", english: "", scene: "" }], {
+    title: "T",
+  });
+  assert.match(html, /this front renders empty/);
 });
 
 test("Anki media notation becomes something a browser can show", () => {

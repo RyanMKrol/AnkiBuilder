@@ -308,11 +308,22 @@ name the counter card the exception belongs to.
 ## `category` is required and shown on the card front
 
 **`category` is REQUIRED on every card and is SHOWN ON THE CARD FRONT.** Category is never optional —
-the schema requires it, the extraction validates it against the fixed enum in `src/model/categories.js`
-(fall back to `"Other"` only when nothing fits), and the dictated-lesson path auto-assigns it. The deck
-build renders a small category chip on the FRONT of both templates (Recognition and Production), so a
-word is always studied *with* its domain — you don't recognize/produce a word cold, out of context. A
-card missing a category is a bug; if you author cards by hand, set one.
+both schemas require it and hold it to the fixed enum in `src/model/categories.js`, the extraction
+validates it too, and the dictated-lesson path auto-assigns it. The deck build renders a small
+category chip on the FRONT of both templates (Recognition and Production), so a word is always
+studied *with* its domain — you don't recognize/produce a word cold, out of context. A card missing a
+category is a bug; if you author cards by hand, set one.
+
+Two rules about WHICH one:
+
+- **Before reaching for `"Other"`, try `"Descriptions & Qualities"`** (adjectives and descriptive
+  words: big, cheap, delicious, quiet) **or `"Everyday Objects"`** (ordinary things belonging to no
+  narrower topic: pen, key, umbrella, bag). Those two were added because `"Other"` had grown into the
+  second-largest bucket in the book, and a bucket that big says nothing about what a card is.
+- **A worked example takes the category of the FORM it demonstrates, not of the words it is built
+  from.** A sentence written to show the particle よ at work is `"Grammar & Function Words"` even
+  though it is about coffee: the card exists to teach the particle. A sentence that is in the chapter
+  as ordinary content and merely happens to contain the form takes its own topic.
 
 ## The cross-lesson note pass (teachability / cross-reference)
 

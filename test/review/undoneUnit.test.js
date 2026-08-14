@@ -20,7 +20,7 @@ const card = {
   id: "hon",
   english: "Book",
   target: "ほん",
-  category: "Everyday Life",
+  category: "Everyday Objects",
   pronunciation: "hon",
 };
 

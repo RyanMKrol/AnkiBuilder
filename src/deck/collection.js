@@ -6,6 +6,7 @@ import { tmpdir } from "os";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
 import { unitDeckSegments, groupingSegments } from "./deckPath.js";
+import { CARD_TEMPLATES } from "./cardTemplates.js";
 
 // "Scene" (card.scene) sets the situation — the question just asked, the thing under discussion —
 // and renders on the FRONT of BOTH directions: it never contains the answer, only the context
@@ -161,37 +162,6 @@ CREATE INDEX ix_notes_csum on notes (csum);
 // `nowSeconds`: epoch SECONDS — every JSON-embedded `mod` field in this file (model,
 // deck, dconf) uses seconds, matching notes.mod/cards.mod, NOT the milliseconds used
 // by col.mod/col.scm or by note/card `id`s. See writeCollectionDb's own comment.
-// The two card templates and the base CSS are the SINGLE SOURCE OF TRUTH for the note type's visual
-// structure, shared by the `.apkg` builder (`buildModel`) and the AnkiConnect deliverer
-// (`noteTypeSpec`). Keep them here so the two delivery paths can never drift. Templates carry only
-// `{name, qfmt, afmt}` — the shape AnkiConnect's `updateModelTemplates`/`createModel` accept; the
-// `.apkg` path adds the extra sqlite fields (`ord`, `did`, `bqfmt`, `bafmt`) in `buildModel`.
-const CARD_TEMPLATES = [
-  {
-    name: "Recognition",
-    // {{Scene}} on this front, {{Hint}} only on the back: the hint is an English cue ("said when
-    // entering a room"), which on a Target→English card is a piece of the answer, while the scene
-    // is the situation ("answering whose bag this is") without which the sentence is ambiguous.
-    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{Target}}{{#Scene}}<div class="hint-front">{{Scene}}</div>{{/Scene}}<br>{{Audio}}',
-    afmt: `{{FrontSide}}<hr id=answer>
-<div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
-{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}
-{{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
-{{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
-{{#Image}}<div class="field">{{Image}}</div>{{/Image}}`,
-  },
-  {
-    name: "Production",
-    qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}{{English}}{{#Scene}}<div class="hint-front">{{Scene}}</div>{{/Scene}}{{#Hint}}<div class="hint-front">{{Hint}}</div>{{/Hint}}',
-    afmt: `{{FrontSide}}<hr id=answer>
-<div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
-{{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
-{{#Note}}<div class="field"><div class="field-label">Note</div><div class="note-back">{{Note}}</div></div>{{/Note}}
-{{#Image}}<div class="field">{{Image}}</div>{{/Image}}
-{{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
-  },
-];
-
 // Base note-type CSS. Per-language font CSS is appended at build time (see `modelCss`).
 const BASE_CSS = `.card {
   font-family: arial;

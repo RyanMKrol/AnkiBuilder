@@ -182,7 +182,7 @@ test("validateCorpus - missing english field fails validation", () => {
     items: [
       {
         id: "1",
-        category: "greetings",
+        category: "Greetings",
       },
     ],
   };
@@ -227,7 +227,7 @@ test("validateCorpus - missing meta field fails validation", () => {
       {
         id: "1",
         english: "hello",
-        category: "greetings",
+        category: "Greetings",
       },
     ],
   };
@@ -289,14 +289,14 @@ test("validateCards - valid cards object passes validation", () => {
       {
         id: "1",
         english: "hello",
-        category: "greetings",
+        category: "Greetings",
         target: "hola",
         pronunciation: "OH-lah",
       },
       {
         id: "2",
         english: "goodbye",
-        category: "greetings",
+        category: "Greetings",
         target: "adiós",
         pronunciation: "ah-dee-OHS",
         hint: "sounds like 'a-dee-oh-s'",
@@ -391,7 +391,7 @@ test("validateCards - missing target field fails validation", () => {
       {
         id: "1",
         english: "hello",
-        category: "greetings",
+        category: "Greetings",
         pronunciation: "OH-lah",
       },
     ],
@@ -417,7 +417,7 @@ test("validateCards - missing pronunciation field fails validation", () => {
       {
         id: "1",
         english: "hello",
-        category: "greetings",
+        category: "Greetings",
         target: "hola",
       },
     ],
@@ -442,7 +442,7 @@ test("validateCards - missing english field fails validation", () => {
     items: [
       {
         id: "1",
-        category: "greetings",
+        category: "Greetings",
         target: "hola",
         pronunciation: "OH-lah",
       },
@@ -465,7 +465,7 @@ test("validateCards - optional fields are allowed", () => {
       {
         id: "1",
         english: "hello",
-        category: "greetings",
+        category: "Greetings",
         target: "hola",
         pronunciation: "OH-lah",
       },

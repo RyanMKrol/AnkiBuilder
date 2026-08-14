@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { CATEGORIES } from "../model/categories.js";
+import { renderCardFacesBlock } from "../deck/cardFaces.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -25,7 +26,8 @@ const NO_BOOK_CONVENTIONS = "(no book-wide conventions available for this source
 /**
  * Renders the LLM chapter-extraction prompt from the Markdown template,
  * substituting {{TARGET_LANGUAGE}}, {{CHAPTER_FILE_PATH}}, {{CATEGORY_LIST}},
- * and {{BOOK_CONVENTIONS}}. `bookConventions` is optional — when omitted
+ * {{BOOK_CONVENTIONS}} and {{CARD_FACES}} (the real rendered card faces, so the
+ * model can see what it is writing into rather than only reading about it). `bookConventions` is optional — when omitted
  * (e.g. the manual --chapter path, which has no book identity to look
  * conventions up under), a plain fallback string is substituted instead of
  * leaving a gap.
@@ -50,6 +52,7 @@ export function renderExtractionPrompt({
     CHAPTER_FILE_PATH: resolve(chapterFilePath),
     CATEGORY_LIST: categoryList.join(", "),
     BOOK_CONVENTIONS: bookConventions || NO_BOOK_CONVENTIONS,
+    CARD_FACES: renderCardFacesBlock(),
   });
 
   const unresolved = rendered.match(/\{\{[A-Z_]+\}\}/);

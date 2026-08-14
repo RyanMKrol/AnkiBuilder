@@ -2081,3 +2081,33 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open — the hook is deliberate groundwork, not an oversight.
 - **When to revisit:** the pinned-Hepburn work. Fill `romanizationStyle` for `ja` and every prompt
   that romanizes inherits it.
+
+## Two new categories exist, but no card has been recategorized
+
+- **What:** `"Descriptions & Qualities"` and `"Everyday Objects"` are in `src/model/categories.js`,
+  and both the corpus and the cards schema now hold `category` to that enum (the cards schema had it
+  as a bare string, so a value the corpus schema would have rejected could still reach the deck and
+  the Recognition front's category chip). The extraction prompt and the authoring rules tell an
+  author to try the two new categories before `"Other"`, and state that a worked example takes the
+  category of the form it demonstrates.
+- **Why:** recategorizing the 222 live `"Other"` cards is a content edit on reviewed, delivered
+  material, one card at a time, and it is a different decision from making the categories available.
+- **Impact:** the live deck's `"Other"` bucket is exactly as big as it was. The categories only apply
+  to what is authored from here, and the two rules only bind a model that reads the prompt.
+- **Status:** open
+- **When to revisit:** alongside any pass that is already rewriting those cards. The category chip
+  renders on the Recognition front, so a recategorization is visible to the learner and belongs
+  behind a review gate rather than in a sweep.
+
+## The card-faces block is one hard-coded example card
+
+- **What:** `{{CARD_FACES}}` renders both directions from the real `CARD_TEMPLATES` with one example
+  card filled in (a greeting with every optional field populated).
+- **Why:** one filled example is what makes the faces concrete, and rendering the model's actual item
+  would mean rendering the prompt per item rather than once.
+- **Impact:** the example is a short greeting, so it does not show what a long sentence card or an
+  image card looks like, and a rule about a face that only misbehaves at length is still invisible.
+  The renderer takes a card argument, so a second example is a one-line change if it earns its place.
+- **Status:** open
+- **When to revisit:** if a length-related authoring rule (a FIB length ceiling, say) needs the model
+  to see the failure it is being warned about.

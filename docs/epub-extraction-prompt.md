@@ -41,7 +41,11 @@ One object per flashcard, inside `items`:
 {"id": "<short slug>", "english": "<English side>", "target": "<{{TARGET_LANGUAGE}} text, verbatim from the file — EXCEPT placeholder markers (〜, ～, ~), which must be resolved or stripped per Handling Placeholders below>", "ttsText": "<optional — what TTS speaks instead of target when the written target would be misread; see Spoken form below>", "category": "<exactly one value from the category list below>", "scene": "<optional, omit if none>", "hint": "<optional, omit if none>", "note": "<optional, omit if none>", "reviewNote": "<optional, omit if none>", "uncertain": <true, only if genuinely unsure this item should be included — omit otherwise>, "aiSuggested": <true, only if this is a critical-gap suggestion you added yourself, not something literally in the file — omit otherwise>}
 ```
 
-**Three note fields — keep them strictly separate.** There is no single blended `notes` field; every note you write goes into exactly one of:
+## What a card looks like
+
+{{CARD_FACES}}
+
+**Four note fields — keep them strictly separate.** There is no single blended `notes` field; every note you write goes into exactly one of:
 
 - **`scene`** — a short situation cue shown on the FRONT of BOTH card directions: the question just asked, who is speaking, or what is already under discussion. Use it whenever the sentence is ambiguous or unanswerable without its context: an elliptical reply ("answering whose bag this is", "the wine is already under discussion, so it is not named"), a set phrase tied to a moment ("said when entering another person's room", "answering the phone"), or one word of an ambiguous pair ("counting, not the particle"). Because it renders on both fronts, a scene must NEVER contain or paraphrase the answer in either direction: it sets the stage and stops there. Keep scenes in English, short (a few words).
 - **`hint`** — a short English-side disambiguator shown ONLY on the Production (English→{{TARGET_LANGUAGE}}) front; on the Recognition front it would hand over the answer, so there it shows on the back. Its job is telling apart two cards whose ENGLISH prompt collides ("the object you read" vs the counter; "warm but casual" vs the formal thank-you) by describing the target word's meaning, register, or form. **A `hint` must ADD context the card doesn't already show — NEVER restate the English gloss or the reading.** A hint like `phrased as "wine from France"` on the card glossed "This is a wine from France." adds nothing, so **omit it.** If the cue you want to write describes the SITUATION rather than the word itself, it belongs in `scene`, not `hint`. Do NOT move meaning-integral parentheticals like "(person)" or "(honorific prefix)" — those stay in `english`.
@@ -209,7 +213,9 @@ surface if a human happens to notice the gap months later.
 
 ### Assigning category
 
-Every item needs a `category` from the fixed list above — pick the one that best matches the item's topic (not its grammatical role). A vocabulary word and a full sentence about the same topic get the same category (e.g. a food-related sentence and the word "rice" both get `"Food"`). Use `"Grammar & Function Words"` for particles/conjunctions/question markers, and `"Other"` only when nothing else genuinely fits.
+Every item needs a `category` from the fixed list above — pick the one that best matches the item's topic (not its grammatical role). A vocabulary word and a full sentence about the same topic get the same category (e.g. a food-related sentence and the word "rice" both get `"Food"`). Use `"Grammar & Function Words"` for particles/conjunctions/question markers, and `"Other"` only when nothing else genuinely fits — before reaching for it, check `"Descriptions & Qualities"` (adjectives and descriptive words: big, cheap, delicious, quiet) and `"Everyday Objects"` (ordinary things that belong to no narrower topic: pen, key, umbrella, bag), which between them cover most of what used to land in `"Other"`.
+
+**A worked example takes the category of the FORM it demonstrates, not of the words it is built from.** A sentence written to show the particle `よ` at work is `"Grammar & Function Words"`, even though it is about coffee: the card exists to teach the particle, and a learner meeting it in the Food pile learns the wrong lesson about why it is there. This applies to every Step-2 example sentence and to any in-chapter sentence you extract specifically because it is the one demonstration of a function word. Only when the sentence is in the chapter as ordinary content, and merely happens to contain the form, does it take its own topic.
 
 ## Step 2: Add Critical Gap Suggestions
 

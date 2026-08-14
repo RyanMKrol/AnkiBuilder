@@ -17,7 +17,13 @@ const DOCS = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "
 // removing any of these means the corresponding pass is flying blind.
 const TEMPLATES = {
   "epub-extraction-prompt.md": {
-    placeholders: ["TARGET_LANGUAGE", "CHAPTER_FILE_PATH", "BOOK_CONVENTIONS", "CATEGORY_LIST"],
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "BOOK_CONVENTIONS",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+    ],
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
@@ -59,6 +65,7 @@ const TEMPLATES = {
       "TARGET_COUNT",
       "COUNTER_EXAMPLES",
       "COUNTER_HYPHEN_RULE",
+      "CARD_FACES",
     ],
     outputContract: /"cards"/,
   },

@@ -6,6 +6,7 @@ import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { runClaude as defaultRunClaude } from "../corpus/epubLlmRunClaude.js";
 import { getLanguagePromptRules } from "../translate/languageRules.js";
+import { renderCardFacesBlock } from "../deck/cardFaces.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -60,6 +61,9 @@ export function renderFillInBlankPrompt({
   // Per-language fragments (languageRules.js): the template itself stays language-neutral.
   const rules = getLanguagePromptRules(resolveIso639Code(targetLanguage));
   return renderPromptTemplate(templatePath, {
+    // The real rendered card faces (src/deck/cardFaces.js), so "the scene must not leak the answer"
+    // is a claim the model can check instead of imagine.
+    CARD_FACES: renderCardFacesBlock(),
     TARGET_LANGUAGE: targetLanguage,
     SOURCE_INSTRUCTION: chapterFilePath ? SOURCE_FROM_FILE(chapterFilePath) : SOURCE_NONE,
     CARDS_JSON: JSON.stringify(cardData, null, 2),

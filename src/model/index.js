@@ -151,7 +151,12 @@ const CARDS_SCHEMA = {
         properties: {
           id: { type: "string" },
           english: { type: "string" },
-          category: { type: "string" },
+          // Same closed vocabulary as the corpus schema. It was a bare string here, so a category the
+          // corpus schema would have rejected could still reach a card, the deck, and the Recognition
+          // front's category chip — the one place a wrong category is visible to the learner. Every
+          // category on disk today is already in the list; this makes that a rule rather than a
+          // coincidence.
+          category: { type: "string", enum: CATEGORIES },
           // Back-of-card context (see corpus schema). Renamed from `cardNote`. `reviewNote` is
           // internal-only (review gates), never in the deck/viewer.
           note: { type: ["string", "null"] },

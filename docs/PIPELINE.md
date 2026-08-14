@@ -267,10 +267,21 @@ itself; `loadPriorChapterItems` carries a saved chapter's label forward as `__ch
 Both the `--chapter` and `--epub` paths call the same extractor (`src/corpus/epubLlmCorpus.js` /
 `src/corpus/epubLlmExtract.js` — `claude -p`, pinned to Sonnet at medium effort by default). The
 prompt template lives at [`epub-extraction-prompt.md`](./epub-extraction-prompt.md), parameterized
-by target language, chapter file path, and the canonical category list
-(`src/model/categories.js`) — it also instructs the model not to rule out images as a content
-source purely because their `alt` text is empty, and to open image files directly with its Read
-tool when they sit in a content section. For the `--epub` path, `extractChapterToFile`
+by target language, chapter file path, the canonical category list (`src/model/categories.js`) and
+`{{CARD_FACES}}` — it also instructs the model not to rule out images as a content source purely
+because their `alt` text is empty, and to open image files directly with its Read tool when they sit
+in a content section.
+
+**`{{CARD_FACES}}` shows the authoring model what a card looks like** (`src/deck/cardFaces.js`): both
+fronts and both backs, rendered from the real `CARD_TEMPLATES` with one example card filled in, and
+injected into the extraction and fill-in-the-blank prompts. It is generated, never retyped, so it
+cannot drift from the templates. The reason it exists: the field semantics were defined entirely by
+prose about a rendering the model had never seen, which is why the three most valuable authoring
+rules (the scene must not leak the answer, the hint must not restate the gloss, a note must add
+something the card does not already show) were claims about a rendered front no surface showed
+anyone. A leaky scene is obvious on a face and invisible in a JSON row. `CARD_TEMPLATES` lives in
+`src/deck/cardTemplates.js` rather than `collection.js` so rendering a prompt does not open a sqlite
+database. For the `--epub` path, `extractChapterToFile`
 (`src/corpus/epubArchive.js`) makes this possible by also extracting every image the chapter's
 `<img src>` tags reference, at the same relative path from the cached chapter file that the src
 attribute encodes from the original chapter file inside the archive — so those references resolve

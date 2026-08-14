@@ -61,6 +61,12 @@ anki-builder assemble --output-root output --epub mybook.epub --list-lessons --l
 # it's worth reading before anything is built. The same report standalone, with per-file
 # detail (read-only, no LLM or TTS spend, nothing registered):
 node scripts/epub-probe.mjs mybook.epub
+# What a book has cached and when it was generated — a parser or prompt fix is inert for a
+# book whose artifacts already exist. --clear takes the free chapter cache by default; the
+# paid whole-book passes must be named; corpora/ is never touched. <hash> is the directory
+# name under .anki-builder/epubs/.
+anki-builder epub cache <hash>
+anki-builder epub cache <hash> --clear
 anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
 # --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
 # right span of spine files (however many), and extracts them all as one unit.

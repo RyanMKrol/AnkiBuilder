@@ -21,6 +21,9 @@ import {
 } from "../corpus/epubShapeReport.js";
 import {
   registerEpub as defaultRegisterEpub,
+  hashEpubFile as defaultHashEpubFile,
+  describeBookCache as defaultDescribeBookCache,
+  clearBookCache as defaultClearBookCache,
   chapterCachePath as defaultChapterCachePath,
   chapterRangeCachePath as defaultChapterRangeCachePath,
   loadPriorChapterItems as defaultLoadPriorChapterItems,
@@ -76,6 +79,7 @@ import { runDeck } from "./commands/deck.js";
 import { runRestyleFont } from "./commands/restyleFont.js";
 import { runViewDeck } from "./commands/viewDeck.js";
 import { runServe } from "./commands/serve.js";
+import { runEpub } from "./commands/epub.js";
 
 const CLI_MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = resolve(CLI_MODULE_DIR, "..", "..");
@@ -98,18 +102,23 @@ function loadRootEnv() {
 }
 
 function parseFlags(args) {
-  const flags = {};
+  // Bare arguments land in `_` (only the `epub` subcommand reads them today). An argument
+  // consumed as a preceding flag's value is never a positional, so this cannot change how any
+  // existing command parses.
+  const flags = { _: [] };
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg.startsWith("--")) {
-      const key = arg.slice(2);
-      const next = args[i + 1];
-      if (next === undefined || next.startsWith("--")) {
-        flags[key] = true;
-      } else {
-        flags[key] = next;
-        i++;
-      }
+    if (!arg.startsWith("--")) {
+      flags._.push(arg);
+      continue;
+    }
+    const key = arg.slice(2);
+    const next = args[i + 1];
+    if (next === undefined || next.startsWith("--")) {
+      flags[key] = true;
+    } else {
+      flags[key] = next;
+      i++;
     }
   }
   return flags;
@@ -124,6 +133,7 @@ const COMMANDS = {
   "restyle-font": runRestyleFont,
   "view-deck": runViewDeck,
   serve: runServe,
+  epub: runEpub,
 };
 
 export async function runCli(argv, deps = {}) {
@@ -151,6 +161,9 @@ export async function runCli(argv, deps = {}) {
     buildShapeReport = defaultBuildShapeReport,
     formatShapeReport = defaultFormatShapeReport,
     registerEpub = defaultRegisterEpub,
+    hashEpubFile = defaultHashEpubFile,
+    describeBookCache = defaultDescribeBookCache,
+    clearBookCache = defaultClearBookCache,
     chapterCachePath = defaultChapterCachePath,
     chapterRangeCachePath = defaultChapterRangeCachePath,
     loadPriorChapterItems = defaultLoadPriorChapterItems,
@@ -221,6 +234,9 @@ export async function runCli(argv, deps = {}) {
     buildShapeReport,
     formatShapeReport,
     registerEpub,
+    hashEpubFile,
+    describeBookCache,
+    clearBookCache,
     chapterCachePath,
     chapterRangeCachePath,
     loadPriorChapterItems,

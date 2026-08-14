@@ -17,6 +17,7 @@
 import { existsSync } from "fs";
 import { resolve } from "path";
 import { buildShapeReport, formatShapeReport } from "../src/corpus/epubShapeReport.js";
+import { hashEpubFile, describeBookCache } from "../src/corpus/epubLibrary.js";
 
 const args = process.argv.slice(2);
 const json = args.includes("--json");
@@ -35,7 +36,10 @@ if (!existsSync(epubPath)) {
 
 let report;
 try {
-  report = buildShapeReport(epubPath);
+  // Reading the library is read-only and tells the operator whether this book's artifacts
+  // predate the code about to run. `describeBookCache` on an unregistered book just reports
+  // "not registered"; nothing is created.
+  report = buildShapeReport(epubPath, { cache: describeBookCache(hashEpubFile(epubPath)) });
 } catch (error) {
   // A throw here is the GOOD case — the parser's loud rejections (ZIP64, an encrypted spine
   // document, a missing container.xml) are exactly what this probe exists to surface early.

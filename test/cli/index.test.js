@@ -371,6 +371,8 @@ test("assemble: --list-lessons prints the book's lessons and exits without assem
       {
         listLessons,
         assembleCorpusFromChapter,
+        hashEpubFile: () => "stubhash",
+        describeBookCache: () => ({ registered: false, epubHash: "stubhash" }),
         buildShapeReport: () => ({ stub: true }),
         formatShapeReport: () => ["shape report:", "  WARN: something is off"],
         log: (msg) => logs.push(msg),
@@ -2438,4 +2440,92 @@ test("audio: an excluded card ends with no audio key, not a null one", async () 
     // The whole point: the file must still be writable afterwards.
     assert.doesNotThrow(() => validateCards(written));
   });
+});
+
+test("epub cache: reports a book's cached artifacts and clears nothing without --clear", async () => {
+  const logs = [];
+  let cleared = null;
+
+  await runCli(["epub", "cache", "abc123"], {
+    describeBookCache: () => ({
+      registered: true,
+      epubHash: "abc123",
+      dir: "/lib/epubs/abc123",
+      cacheVersion: 2,
+      chapters: { present: true, files: 12, generatedAt: "2026-07-01T10:00:00.000Z" },
+      conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      taughtIndex: { present: false },
+      reviewedCorpora: 5,
+      staleRoots: [],
+    }),
+    clearBookCache: (...args) => {
+      cleared = args;
+      return [];
+    },
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.ok(logs.some((m) => m.includes("cache version: v2")));
+  assert.ok(logs.some((m) => m.includes("conventions.md: generated 2026-07-14")));
+  assert.ok(logs.some((m) => m.includes("reviewed corpora: 5")));
+  assert.equal(cleared, null, "reporting must never delete");
+});
+
+test("epub cache --clear defaults to the free chapter cache, never the paid artifacts", async () => {
+  const logs = [];
+  let kinds = null;
+
+  await runCli(["epub", "cache", "--clear", "abc123"], {
+    describeBookCache: () => ({
+      registered: true,
+      epubHash: "abc123",
+      dir: "/lib/epubs/abc123",
+      cacheVersion: 2,
+      chapters: { present: true, files: 3, generatedAt: null },
+      conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      taughtIndex: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      reviewedCorpora: 5,
+      staleRoots: [],
+    }),
+    clearBookCache: (hash, options) => {
+      kinds = options.kinds;
+      return ["/lib/epubs/abc123/cache-v2"];
+    },
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.deepEqual(kinds, ["chapters"]);
+  assert.ok(logs.some((m) => m.includes("corpora/ untouched")));
+});
+
+test("epub cache --clear --conventions asks for the paid artifact by name", async () => {
+  let kinds = null;
+
+  await runCli(["epub", "cache", "abc123", "--clear", "--conventions", "--taught-index"], {
+    describeBookCache: () => ({
+      registered: true,
+      epubHash: "abc123",
+      dir: "/lib/epubs/abc123",
+      cacheVersion: 2,
+      chapters: { present: false, files: 0, generatedAt: null },
+      conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      taughtIndex: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+      reviewedCorpora: 0,
+      staleRoots: [],
+    }),
+    clearBookCache: (hash, options) => {
+      kinds = options.kinds;
+      return [];
+    },
+    log: () => {},
+  });
+
+  assert.deepEqual(kinds, ["conventions", "taught-index"]);
+});
+
+test("epub cache without a hash fails rather than guessing a book", async () => {
+  await assert.rejects(
+    runCli(["epub", "cache"], { describeBookCache: () => ({}), log: () => {} }),
+    /needs a book hash/,
+  );
 });

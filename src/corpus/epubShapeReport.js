@@ -42,7 +42,7 @@ function rangeText(first, last) {
  * Read-only and free. Everything it reports is a degradation that happens today without any
  * message at all.
  */
-export function buildShapeReport(epubPath) {
+export function buildShapeReport(epubPath, { cache = null } = {}) {
   const inspection = inspectEpubStructure(epubPath);
 
   const lessons = inspection.lessons.map((lesson) => ({
@@ -207,7 +207,30 @@ export function buildShapeReport(epubPath) {
     );
   }
 
-  return { ...inspection, lessons, labelCollisions, thinFiles, warnings };
+  // A book whose artifacts already exist behaves like an older version of this tool, so what
+  // is cached (and when) belongs beside what the book contains. Optional: callers without a
+  // library to consult (a probe of a file that was never registered) pass nothing.
+  if (cache && cache.registered) {
+    const stale = [];
+    if (cache.conventions.present) stale.push("conventions.md");
+    if (cache.taughtIndex.present) stale.push("taught-index.json");
+    if (cache.chapters.present) stale.push("extracted chapters");
+    if (stale.length) {
+      warnings.push(
+        `this book already has cached artifacts (${stale.join(", ")}) — every parser and prompt ` +
+          `fix since they were written is inert until they are cleared ` +
+          `(anki-builder epub cache ${cache.epubHash} --clear)`,
+      );
+    }
+    if (cache.staleRoots.length) {
+      warnings.push(
+        `extraction output from an older cache version is still on disk (${cache.staleRoots.join(", ")}) ` +
+          `— it is unused, and epub cache --clear removes it`,
+      );
+    }
+  }
+
+  return { ...inspection, cache, lessons, labelCollisions, thinFiles, warnings };
 }
 
 /**
@@ -232,6 +255,14 @@ export function formatShapeReport(report, { detail = false } = {}) {
       `${totals.missingImages} missing, ${totals.svgImages} SVG, ` +
       `${report.imageCollisions.length} filename collision(s)`,
   );
+  if (report.cache && report.cache.registered) {
+    lines.push(
+      `  cache: v${report.cache.cacheVersion}, ${report.cache.chapters.files} extracted file(s), ` +
+        `conventions.md ${report.cache.conventions.present ? report.cache.conventions.generatedAt : "not generated"}, ` +
+        `taught-index.json ${report.cache.taughtIndex.present ? report.cache.taughtIndex.generatedAt : "not generated"}, ` +
+        `${report.cache.reviewedCorpora} reviewed corpus file(s)`,
+    );
+  }
 
   if (detail) {
     lines.push("  nav entries (type is an annotation, never a filter):");

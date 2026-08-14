@@ -1,7 +1,7 @@
 import { createHash } from "crypto";
-import { readFileSync, existsSync, mkdirSync, readdirSync, rmSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, readdirSync, rmSync, statSync } from "fs";
 import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
-import { join } from "path";
+import { join, sep } from "path";
 import { libraryHome } from "../model/index.js";
 import { getBookTitle } from "./epubArchive.js";
 
@@ -81,12 +81,36 @@ export function libraryEpubPath(epubHash, { libraryHomeDir } = {}) {
 }
 
 /**
+ * The extraction cache's format version. Bump it whenever chapter extraction or image
+ * resolution changes, so the next build re-derives instead of re-reading files produced by
+ * the old code — a cached chapter file is treated as a COMPLETE extraction forever, which is
+ * what makes every parser fix inert for a book that has already been read once.
+ *
+ * v1 was the flat `<book>/chapters/<n>.xhtml` + `<book>/images/...` layout. v2 moves the whole
+ * extraction unit under one versioned root so a bump invalidates chapters and their images
+ * together; the old directories are simply orphaned, and `epub cache --clear` removes them.
+ *
+ * Only the FREE zip-inflate cache lives here. The paid artifacts (corpora, conventions.md,
+ * taught-index.json) are not versioned by this and are never invalidated behind your back.
+ */
+export const CACHE_VERSION = 2;
+
+/**
+ * The root of one book's versioned extraction cache. Chapter files sit one level inside it,
+ * so an image's own `../images/foo.png` still resolves within this root — which is also the
+ * containment boundary extractChapterToFile enforces.
+ */
+export function bookCacheRoot(epubHash, { libraryHomeDir } = {}) {
+  return join(bookDir(epubHash, { libraryHomeDir }), `cache-v${CACHE_VERSION}`);
+}
+
+/**
  * The cache file path a given (epubHash, chapterNumber) pair's raw content
  * should be extracted to — shared by the "current chapter" extraction in
  * assemble and the "later chapter" reads in the forward flag pass.
  */
 export function chapterCachePath(epubHash, chapterNumber, { libraryHomeDir } = {}) {
-  return join(bookDir(epubHash, { libraryHomeDir }), "chapters", `${chapterNumber}.xhtml`);
+  return join(bookCacheRoot(epubHash, { libraryHomeDir }), "chapters", `${chapterNumber}.xhtml`);
 }
 
 /**
@@ -97,7 +121,7 @@ export function chapterCachePath(epubHash, chapterNumber, { libraryHomeDir } = {
  */
 export function chapterRangeCachePath(epubHash, firstNumber, lastNumber, { libraryHomeDir } = {}) {
   return join(
-    bookDir(epubHash, { libraryHomeDir }),
+    bookCacheRoot(epubHash, { libraryHomeDir }),
     "chapters",
     `${firstNumber}-${lastNumber}.xhtml`,
   );
@@ -222,4 +246,138 @@ export function saveTaughtIndex(epubHash, index, { libraryHomeDir } = {}) {
   mkdirSync(join(dest, ".."), { recursive: true });
   writeFileAtomic(dest, JSON.stringify(index, null, 2));
   return dest;
+}
+
+// The three caches a book accumulates, and which of them cost money to rebuild. The
+// distinction is the whole point of both functions below: chapters are a free zip inflate,
+// conventions.md and taught-index.json are outputs of paid whole-book LLM passes, and
+// corpora/ is the human-reviewed dedup registry that is not a cache at all.
+const CACHE_KINDS = {
+  chapters: { label: "chapters", paid: false },
+  conventions: { label: "conventions.md", paid: true },
+  "taught-index": { label: "taught-index.json", paid: true },
+};
+
+function newestMtime(dir) {
+  let newest = null;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    const stamp = entry.isDirectory() ? newestMtime(path) : statSync(path).mtime.toISOString();
+    if (stamp && (!newest || stamp > newest)) newest = stamp;
+  }
+  return newest;
+}
+
+function countFiles(dir) {
+  let count = 0;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    count += entry.isDirectory() ? countFiles(join(dir, entry.name)) : 1;
+  }
+  return count;
+}
+
+/**
+ * What is cached for a book right now, and when it was generated — the provenance half of the
+ * shape report. Every parser and prompt fix is inert for a book whose artifacts already exist,
+ * so "this conventions.md was written in July" is the fact that explains a build behaving like
+ * an older version of this tool.
+ *
+ * Note honestly: nothing records WHICH prompt version produced the paid artifacts, so the
+ * timestamp is the only provenance there is.
+ */
+export function describeBookCache(epubHash, { libraryHomeDir } = {}) {
+  const dir = bookDir(epubHash, { libraryHomeDir });
+  if (!existsSync(dir)) {
+    return { registered: false, cacheVersion: CACHE_VERSION, epubHash };
+  }
+
+  const cacheRoot = bookCacheRoot(epubHash, { libraryHomeDir });
+  const corpora = join(dir, "corpora");
+  const describeFile = (path) =>
+    existsSync(path)
+      ? { present: true, generatedAt: statSync(path).mtime.toISOString() }
+      : { present: false };
+
+  // Any cache-v* directory that is not the current one is output of an older extractor, kept
+  // only so nothing is deleted behind your back.
+  const staleRoots = readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^cache-v\d+$/.test(entry.name))
+    .map((entry) => entry.name)
+    .filter((name) => name !== `cache-v${CACHE_VERSION}`);
+  if (existsSync(join(dir, "chapters"))) staleRoots.push("chapters (pre-versioning)");
+
+  return {
+    registered: true,
+    epubHash,
+    dir,
+    cacheVersion: CACHE_VERSION,
+    chapters: existsSync(cacheRoot)
+      ? { present: true, files: countFiles(cacheRoot), generatedAt: newestMtime(cacheRoot) }
+      : { present: false, files: 0, generatedAt: null },
+    conventions: describeFile(join(dir, "conventions.md")),
+    taughtIndex: describeFile(join(dir, "taught-index.json")),
+    reviewedCorpora: existsSync(corpora) ? countFiles(corpora) : 0,
+    staleRoots,
+  };
+}
+
+/**
+ * Deletes a book's rebuildable caches. `kinds` is any of "chapters", "conventions",
+ * "taught-index"; the default is chapters alone, because that is the only one that costs
+ * nothing to rebuild — the other two are outputs of paid whole-book passes and must be asked
+ * for by name.
+ *
+ * `corpora/` is NEVER touched, whatever is passed. It is the human-reviewed dedup registry:
+ * signed-off chapters that cannot be regenerated by any amount of compute, sitting one
+ * directory away from everything here. That adjacency is exactly why the only recourse today
+ * is an improvised `rm -rf`, and why this function refuses rather than trusting the caller.
+ *
+ * Returns the list of removed paths (and, when `dryRun`, the list it would remove).
+ */
+export function clearBookCache(
+  epubHash,
+  { kinds = ["chapters"], dryRun = false, libraryHomeDir } = {},
+) {
+  const dir = bookDir(epubHash, { libraryHomeDir });
+  if (!existsSync(dir)) {
+    throw new Error(`no book registered under hash "${epubHash}" (looked in ${dir})`);
+  }
+
+  const unknown = kinds.filter((kind) => !(kind in CACHE_KINDS));
+  if (unknown.length) {
+    throw new Error(
+      `unknown cache kind(s): ${unknown.join(", ")} — valid kinds are ${Object.keys(CACHE_KINDS).join(", ")}`,
+    );
+  }
+
+  const targets = [];
+  if (kinds.includes("chapters")) {
+    // Every cache-v* root plus the pre-versioning flat layout: all of it is a free re-inflate.
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      if (/^cache-v\d+$/.test(entry.name) || entry.name === "chapters" || entry.name === "images") {
+        targets.push(join(dir, entry.name));
+      }
+    }
+  }
+  if (kinds.includes("conventions")) targets.push(join(dir, "conventions.md"));
+  if (kinds.includes("taught-index")) targets.push(join(dir, "taught-index.json"));
+
+  const corpora = join(dir, "corpora");
+  for (const target of targets) {
+    // Belt and braces: the paths above are constructed, not user-supplied, but this is the one
+    // directory whose loss is unrecoverable, so the refusal is checked at the point of deletion
+    // rather than assumed from how the list was built.
+    if (target === corpora || target.startsWith(corpora + sep)) {
+      throw new Error(
+        `refusing to delete ${target}: corpora/ holds human-reviewed chapters and is never a cache`,
+      );
+    }
+  }
+
+  const removed = targets.filter((target) => existsSync(target));
+  if (!dryRun) {
+    for (const target of removed) rmSync(target, { recursive: true, force: true });
+  }
+  return removed;
 }

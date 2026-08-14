@@ -154,7 +154,8 @@ export async function runAssemble(flags, ctx) {
     // work". The shape report does, at the one moment a person is looking at this book and
     // before any pass has been paid for — a book whose every nav entry silently swallows
     // files, or whose labels collide, prints an entirely reasonable-looking list above.
-    for (const line of ctx.formatShapeReport(ctx.buildShapeReport(flags.epub))) {
+    const cache = ctx.describeBookCache(ctx.hashEpubFile(flags.epub));
+    for (const line of ctx.formatShapeReport(ctx.buildShapeReport(flags.epub, { cache }))) {
       ctx.log(line);
     }
     return;

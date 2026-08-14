@@ -1529,3 +1529,28 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   different encoding without declaring it (rare, and undetectable without heuristics).
 - **When to revisit:** the first time a real book trips this, transcode with `TextDecoder` (which
   Node ships with full ICU for) at read time, keyed on the declared encoding.
+
+## Bumping CACHE_VERSION orphans the old extraction, it does not migrate it
+
+- **What:** `CACHE_VERSION` moved the extraction cache from `<book>/chapters/` + `<book>/images/`
+  to `<book>/cache-v2/{chapters,images}/`. The v1 directories are left on disk, unused, until
+  `epub cache <hash> --clear` removes them.
+- **Why:** deleting anything inside `.anki-builder/epubs/<hash>/` automatically is exactly the
+  behaviour this workstream is trying to make impossible — `corpora/` is one directory away. An
+  orphan costs disk; a wrong automatic delete costs the dedup registry.
+- **Impact:** the already-built book re-inflates its 57 chapters and 727 images on the next build
+  (free, seconds) and keeps ~90 MB of stale v1 output until cleared by hand. Every version bump
+  repeats this.
+- **When to revisit:** if the orphan count ever matters, `epub cache --clear` could grow a
+  `--stale-only` mode that removes non-current cache roots and nothing else.
+
+## The `epub cache` command takes a hash, not a book slug
+
+- **What:** `anki-builder epub cache <hash>` is keyed on the 16-char content hash, the directory
+  name under `.anki-builder/epubs/`.
+- **Why:** the hash is the library's own key and the only identifier that is unambiguous. A slug
+  is a property of one output tree, so resolving one here would mean taking `--output-root` too.
+- **Impact:** the operator has to look the hash up (`ls .anki-builder/epubs/`, or read the
+  `.epub-hash` file in the book's output folder) before clearing anything.
+- **When to revisit:** if this gets used often, accept `--book <slug> --output-root <dir>` and
+  resolve through `resolveBookEpubPath` the way `assemble` already does.

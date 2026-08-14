@@ -656,13 +656,39 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
   epubs/<epubHash>/book.json                    # { title, slug } — title from <dc:title>, slug
                                                  #   filled in lazily on first --output-root use
-  epubs/<epubHash>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
-  epubs/<epubHash>/images/<...>                     # images the cached chapters reference,
+  epubs/<epubHash>/cache-v<N>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
+  epubs/<epubHash>/cache-v<N>/images/<...>          # images the cached chapters reference,
                                                      #   at whatever relative path their own
                                                      #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
+  epubs/<epubHash>/taught-index.json            # one-time whole-book taught-content index
 ```
+
+### Cache versioning and clearing
+
+`CACHE_VERSION` (`src/corpus/epubLibrary.js`) names the `cache-v<N>` root. Bump it whenever
+chapter extraction or image resolution changes: a cached chapter file is treated as a COMPLETE
+extraction forever, which is what makes a parser fix inert for a book already read once. The
+chapter file sits one level inside the versioned root so an image's own `../images/foo.png` still
+resolves within it — a bump therefore invalidates chapters and their images together. Output from
+an older version is orphaned, never deleted behind your back. (v1 was the flat
+`<book>/chapters/` + `<book>/images/` layout.)
+
+Only the free zip-inflate cache is versioned. `conventions.md` and `taught-index.json` are outputs
+of paid whole-book passes and are never invalidated automatically; nothing records which prompt
+version produced them, so their timestamp is the only provenance there is.
+
+```sh
+anki-builder epub cache <hash>                    # what is cached, and when it was generated
+anki-builder epub cache <hash> --clear            # chapters only (free to rebuild)
+anki-builder epub cache <hash> --clear --conventions --taught-index --dry
+```
+
+`--clear` takes the free chapter cache by default; the paid artifacts must be named. `corpora/` is
+never touched, whatever is asked for, and the refusal is checked at the point of deletion rather
+than assumed from how the target list was built — it holds human-reviewed chapters that no amount
+of compute can rebuild, one directory away from everything the command does delete.
 
 ## Output layout
 

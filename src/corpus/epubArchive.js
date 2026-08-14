@@ -155,6 +155,56 @@ function parseContainerXml(entries) {
   return fullPath;
 }
 
+// The zip-level encryption flag (general-purpose bit 0, checked in the central directory)
+// catches only zip-encrypted archives. Adobe ADEPT — the DRM on most retail EPUBs — leaves the
+// zip itself perfectly readable and records the encryption in META-INF/encryption.xml instead,
+// so an ADEPT book parses "successfully" into ciphertext and would hand 40+ files of garbage to
+// a paid whole-book pass.
+//
+// The check is narrow ON PURPOSE. IDPF and Adobe font obfuscation use this same file on
+// completely readable books, so the presence of encryption.xml means nothing by itself: only an
+// encrypted SPINE DOCUMENT is DRM as far as this tool is concerned. Namespace prefixes are
+// arbitrary in XML (`enc:`, `e:`, none), so the element name is matched prefix-agnostically.
+const ENCRYPTION_PATH = "META-INF/encryption.xml";
+const CIPHER_REFERENCE_PATTERN =
+  /<(?:[A-Za-z0-9_.-]+:)?CipherReference\b[^>]*\bURI\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+
+function assertSpineNotEncrypted(entries, chapters) {
+  const encryptionEntry = entries.find((e) => e.name === ENCRYPTION_PATH);
+  if (!encryptionEntry) {
+    return;
+  }
+
+  const xml = stripInertMarkup(encryptionEntry.data.toString("utf-8"));
+  const spineHrefs = new Set(chapters.map((chapter) => chapter.href));
+  const encryptedSpineFiles = [];
+  for (const match of xml.matchAll(CIPHER_REFERENCE_PATTERN)) {
+    const raw = match[1] ?? match[2];
+    if (!raw) continue;
+    // URIs in encryption.xml are relative to the archive ROOT, and are commonly
+    // percent-encoded even when the OPF's own hrefs for the same files are not.
+    let decoded;
+    try {
+      decoded = decodeURIComponent(raw);
+    } catch {
+      decoded = raw;
+    }
+    const archivePath = posix.normalize(decoded.replace(/^\//, ""));
+    if (spineHrefs.has(archivePath)) {
+      encryptedSpineFiles.push(archivePath);
+    }
+  }
+
+  if (encryptedSpineFiles.length > 0) {
+    throw new Error(
+      `Unsupported EPUB: DRM-protected — ${ENCRYPTION_PATH} encrypts ` +
+        `${encryptedSpineFiles.length} of this book's ${chapters.length} spine document(s), ` +
+        `starting with "${encryptedSpineFiles[0]}". The zip itself reads fine, so without this ` +
+        `check the book would parse "successfully" into ciphertext.`,
+    );
+  }
+}
+
 // Reading order is defined by <spine>'s <itemref idref="..."> list, resolved through
 // <manifest>'s id -> href map — NOT by the order <item> tags happen to be declared in
 // the manifest. hrefs are relative to the OPF's own directory inside the archive, not
@@ -218,6 +268,7 @@ function loadEpub(epubPath) {
   // string, and a commented-out <item> must never be selectable as a real manifest item.
   const opfXml = stripInertMarkup(opfEntry.data.toString("utf-8"));
   const { chapters, manifestItems, tocId } = parseOpfDocument(opfXml, opfDir);
+  assertSpineNotEncrypted(entries, chapters);
 
   const book = { entries, chapters, opfDir, manifestItems, tocId, opfXml };
   parsedBookCache.set(epubPath, { mtimeMs, size, book });
@@ -417,10 +468,23 @@ function findTagOccurrences(xml, tagName) {
 // list. epub:type is itself a space-separated token list (rarely, but validly,
 // "toc landmarks" etc.), so this token-matches rather than doing an exact-string
 // comparison.
-function isolateNavToc(xhtml) {
+// Strict: the spec-blessed `epub:type="toc"`. Loose: ANY attribute whose name is `type` or ends
+// in `:type` (the `epub` prefix is only a convention — a conformant book may bind the same
+// namespace to any prefix), plus ARIA's `role="doc-toc"`. The loose form is used only by the
+// last-resort sweep, so a book that already resolves keeps resolving exactly as before.
+function isTocNav(attrs, loose) {
+  const hasToc = (value) => (value || "").split(/\s+/).includes("toc");
+  if (hasToc(attrs["epub:type"])) return true;
+  if (!loose) return false;
+  for (const [name, value] of Object.entries(attrs)) {
+    if ((name === "type" || name.endsWith(":type")) && hasToc(value)) return true;
+  }
+  return (attrs.role || "").split(/\s+/).includes("doc-toc");
+}
+
+function isolateNavToc(xhtml, { loose = false } = {}) {
   for (const tag of findTagOccurrences(xhtml, "nav")) {
-    const epubTypeTokens = (tag.attrs["epub:type"] || "").split(/\s+/);
-    if (!epubTypeTokens.includes("toc")) {
+    if (!isTocNav(tag.attrs, loose)) {
       continue;
     }
     const closeIndex = xhtml.indexOf("</nav>", tag.end);
@@ -445,8 +509,8 @@ const NAV_A_TAG_PATTERN = /<a\b[^>]*\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')[^>]*>([
 // non-greedy `</a>` match ran past.
 const NAV_A_OPEN_PATTERN = /<a\b/g;
 
-function parseNavXhtmlToc(xhtml, labelDecoding) {
-  const tocXml = isolateNavToc(xhtml);
+function parseNavXhtmlToc(xhtml, labelDecoding, { loose = false } = {}) {
+  const tocXml = isolateNavToc(xhtml, { loose });
   if (!tocXml) {
     return { entries: [], declaredCount: 0 };
   }
@@ -611,6 +675,31 @@ function resolveNavSource(entries, manifestItems, tocId, labelDecoding) {
           source: "ncx",
         };
       }
+    }
+  }
+
+  // LAST RESORT, after both spec-blessed tiers have failed: sweep every XHTML manifest item for
+  // a nav block that a differently-bound namespace prefix (or an ARIA role) hid from the tiers
+  // above. Without it, a conformant book with a perfectly good table of contents gets told
+  // "no navigation document found" and the operator is pushed onto raw spine indices. It runs
+  // only when nothing else resolved, so no book that works today changes behaviour.
+  for (const item of manifestItems) {
+    const isXhtml =
+      item.mediaType === "application/xhtml+xml" || /\.x?html?$/i.test(item.href || "");
+    if (!isXhtml) continue;
+    const entry = entries.find((e) => e.name === item.href);
+    if (!entry) continue;
+    const parsed = parseNavXhtmlToc(stripInertMarkup(entry.data.toString("utf-8")), labelDecoding, {
+      loose: true,
+    });
+    if (parsed.entries.length > 0) {
+      return {
+        rawEntries: parsed.entries,
+        declaredCount: parsed.declaredCount,
+        skipped: [],
+        baseDir: posix.dirname(item.href),
+        source: "nav-sweep",
+      };
     }
   }
 

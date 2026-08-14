@@ -179,6 +179,24 @@ Four things used to disappear without a word, all of them in `src/corpus/epubArc
 - **Anchors the parser could not read.** The gap between how many entries the nav document declares
   and how many parsed is logged and reported.
 
+### DRM, and how the navigation document is found
+
+Two rejections and three discovery tiers, all in `src/corpus/epubArchive.js`:
+
+- **Zip-level encryption** (general-purpose bit 0) throws while walking the central directory.
+- **`META-INF/encryption.xml`** throws only when an encrypted `<CipherReference URI>` names a
+  **spine document**. Adobe ADEPT (the DRM on most retail EPUBs) leaves the zip perfectly readable,
+  so without this a retail book parses "successfully" into ciphertext and hands 40+ garbage files to
+  a paid whole-book pass. The check is narrow on purpose: IDPF and Adobe **font obfuscation** use
+  this same file on completely readable books, so the file's presence alone means nothing.
+
+Navigation discovery tries, in order: the OPF manifest item with `properties="nav"` (EPUB3), then
+`toc.ncx` via `<spine toc="...">` or the NCX media type (EPUB2), then — last resort — a sweep of
+every XHTML manifest item for a `<nav>` whose `*:type` token list includes `toc` (prefix-agnostic;
+the `epub` prefix is only a convention) or whose `role` is `doc-toc`. The sweep runs only when both
+spec-blessed tiers came up empty, so no book that resolves today changes behaviour, and it reports
+`source: "nav-sweep"` so the probe says how the book was actually resolved.
+
 ### Label decoding is versioned per book
 
 A chapter label is not just text a person reads: `unitDeckSegments` turns it into a live Anki deck

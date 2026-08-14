@@ -1579,3 +1579,27 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   and only a newly-registered book can see it.
 - **When to revisit:** if a language turns up where a space before punctuation is meaningful (French
   typography uses one before `:` and `?`), this needs to be language-aware.
+
+## DRM detection is a spine-document test, not a DRM test
+
+- **What:** `assertSpineNotEncrypted` throws only when `META-INF/encryption.xml` names a spine
+  document in a `<CipherReference URI>`. Anything else encrypted (fonts, images, stylesheets) passes.
+- **Why:** IDPF and Adobe font obfuscation write to the same file on completely readable books, so
+  rejecting on the file's presence would refuse books that work. The spine documents are what the
+  extraction model reads, so they are the only thing whose encryption stops this tool cold.
+- **Impact:** a book whose *images* are encrypted but whose text is not will parse and extract, and
+  the images will be garbage the model reads anyway. Nothing warns about that today.
+- **When to revisit:** if an encrypted-images book turns up, widen the check to warn (not throw) on
+  any encrypted entry that a chapter references.
+
+## The nav sweep matches attribute names, not namespaces
+
+- **What:** the last-resort discovery tier accepts any attribute named `type` or ending in `:type`
+  whose token list includes `toc`, plus `role="doc-toc"`.
+- **Why:** the hand-rolled scanner has no namespace resolution (the review ruled it stays), and the
+  `epub:` prefix is only a convention — a conformant book may bind the namespace to any prefix.
+- **Impact:** a `<nav>` carrying some unrelated `type="toc"` attribute would be accepted. It runs
+  only after both spec-blessed tiers fail, so the exposure is books that have no discoverable nav at
+  all, where the alternative is "no navigation document found".
+- **When to revisit:** if a real book is mis-swept. Resolving `xmlns:*` declarations properly is the
+  fix, and it is the point at which the hand-rolled scanner starts costing more than it saves.

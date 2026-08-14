@@ -622,3 +622,156 @@ test("hostile: an unknown entity is left visible rather than turned into a repla
     );
   });
 });
+
+// --- DRM and nav discovery (WS2 item 7) ---
+
+test("hostile: encryption.xml naming a spine document is rejected as DRM", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "c1", href: "ch1.xhtml" },
+        { id: "c2", href: "ch2.xhtml" },
+      ],
+      spineIdrefs: ["c1", "c2"],
+      extraFiles: [
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+        { name: "OEBPS/ch2.xhtml", content: page("Lesson 2") },
+        {
+          name: "META-INF/encryption.xml",
+          content:
+            '<?xml version="1.0"?><encryption xmlns="urn:oasis:names:tc:opendocument:xmlns:container">' +
+            '<enc:EncryptedData xmlns:enc="http://www.w3.org/2001/04/xmlenc#">' +
+            '<enc:CipherData><enc:CipherReference URI="OEBPS/ch2.xhtml"/></enc:CipherData>' +
+            "</enc:EncryptedData></encryption>",
+        },
+      ],
+    });
+
+    // The zip itself is perfectly readable — which is exactly why this book would otherwise
+    // parse "successfully" and hand ciphertext to a paid whole-book pass.
+    assert.throws(() => listExternalChapters(epubPath), /DRM-protected/);
+  });
+});
+
+test("hostile: encryption.xml covering only fonts is NOT treated as DRM", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "nav", href: "nav.xhtml", properties: "nav" },
+        { id: "c1", href: "ch1.xhtml" },
+      ],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/nav.xhtml",
+          content:
+            '<html><body><nav epub:type="toc"><ol><li><a href="ch1.xhtml">Lesson 1: Greetings</a></li></ol></nav></body></html>',
+        },
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+        { name: "OEBPS/fonts/obfuscated.otf", content: "font-bytes" },
+        {
+          name: "META-INF/encryption.xml",
+          content:
+            '<?xml version="1.0"?><encryption><EncryptedData>' +
+            '<EncryptionMethod Algorithm="http://www.idpf.org/2008/embedding"/>' +
+            '<CipherData><CipherReference URI="OEBPS/fonts/obfuscated.otf"/></CipherData>' +
+            "</EncryptedData></encryption>",
+        },
+      ],
+    });
+
+    // Font obfuscation uses the same file on completely readable books. Rejecting on the
+    // file's mere presence would refuse books that work.
+    assert.deepEqual(
+      listExternalChapters(epubPath).map((c) => c.label),
+      ["Lesson 1: Greetings"],
+    );
+  });
+});
+
+test("hostile: a toc nav bound to a different namespace prefix is found by the last-resort sweep", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        // No properties="nav", no NCX: both spec-blessed tiers come up empty.
+        { id: "toc", href: "toc.xhtml" },
+        { id: "c1", href: "ch1.xhtml" },
+      ],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/toc.xhtml",
+          content:
+            '<html xmlns:ops="http://www.idpf.org/2007/ops"><body>' +
+            '<nav ops:type="toc"><ol><li><a href="ch1.xhtml">Lesson 1: Greetings</a></li></ol></nav>' +
+            "</body></html>",
+        },
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+      ],
+    });
+
+    const chapters = listExternalChapters(epubPath);
+    assert.deepEqual(
+      chapters.map((c) => c.label),
+      ["Lesson 1: Greetings"],
+    );
+    // Reported distinctly, so the probe says how the book was resolved rather than implying it
+    // declared its nav the spec-blessed way.
+    assert.equal(chapters[0].source, "nav-sweep");
+  });
+});
+
+test("hostile: a toc nav identified only by role=doc-toc is found by the sweep", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "toc", href: "toc.xhtml" },
+        { id: "c1", href: "ch1.xhtml" },
+      ],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/toc.xhtml",
+          content:
+            '<html><body><nav role="doc-toc"><ol><li><a href="ch1.xhtml">Lesson 1: Greetings</a></li></ol></nav></body></html>',
+        },
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+      ],
+    });
+
+    assert.deepEqual(
+      listExternalChapters(epubPath).map((c) => c.label),
+      ["Lesson 1: Greetings"],
+    );
+  });
+});
+
+test("hostile: the sweep never overrides a book that already resolves the spec-blessed way", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "nav", href: "nav.xhtml", properties: "nav" },
+        { id: "other", href: "other.xhtml" },
+        { id: "c1", href: "ch1.xhtml" },
+      ],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/nav.xhtml",
+          content:
+            '<html><body><nav epub:type="toc"><ol><li><a href="ch1.xhtml">Declared</a></li></ol></nav></body></html>',
+        },
+        {
+          name: "OEBPS/other.xhtml",
+          content:
+            '<html><body><nav role="doc-toc"><ol><li><a href="ch1.xhtml">Swept</a></li></ol></nav></body></html>',
+        },
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+      ],
+    });
+
+    const chapters = listExternalChapters(epubPath);
+    assert.equal(chapters[0].label, "Declared");
+    assert.equal(chapters[0].source, "nav");
+  });
+});

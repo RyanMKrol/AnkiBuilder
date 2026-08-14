@@ -142,7 +142,6 @@ export async function runAssemble(flags, ctx) {
         "no navigation document found — this EPUB doesn't declare its own lessons; " +
           "use --chapter-number <spine index> instead",
       );
-      return;
     }
     for (const lesson of lessons) {
       const range =
@@ -150,6 +149,13 @@ export async function runAssemble(flags, ctx) {
           ? `${lesson.firstChapterNumber}-${lesson.lastChapterNumber}`
           : `${lesson.firstChapterNumber}`;
       ctx.log(`[${lesson.number}] (${lesson.type}) spine ${range}: ${lesson.label}`);
+    }
+    // The lesson list alone answers "what can I select"; it does not answer "will this book
+    // work". The shape report does, at the one moment a person is looking at this book and
+    // before any pass has been paid for — a book whose every nav entry silently swallows
+    // files, or whose labels collide, prints an entirely reasonable-looking list above.
+    for (const line of ctx.formatShapeReport(ctx.buildShapeReport(flags.epub))) {
+      ctx.log(line);
     }
     return;
   }

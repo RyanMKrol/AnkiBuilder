@@ -134,6 +134,28 @@ mistaken for "taught later". `--list-lessons` prints the book's lessons (number,
 label) and exits. A book with no usable nav document has no selectable lessons — `--list-lessons`
 says so and the raw `--chapter-number` path remains the fallback.
 
+### The shape report
+
+`--list-lessons` also prints a **shape report** (`src/corpus/epubShapeReport.js`), and the same
+report is available standalone as `node scripts/epub-probe.mjs <book.epub>` (add `--json` for the
+raw structure, and the probe prints the per-entry and per-file detail the CLI summary omits). Both
+are read-only: they open the archive, count, and print. Nothing is registered, extracted or spent.
+
+The report exists because an EPUB that the parser handles badly looks exactly like one it handles
+well: nothing throws, and every degradation is a silent fallback. It reports the nav source (`nav`
+vs `ncx` vs none), the spine size, and per nav entry: its spine range, how many files in that range
+the nav actually **named** (the rest are swallowed into the entry above them), the
+`classifyLesson` type as an annotation, and the Anki deck path `unitDeckSegments` turns its label
+into. Then the things that have no other reporting at all — nav entries that resolve to no spine
+file, entries collapsed onto an earlier entry's file, spine files falling before the first nav entry
+(reachable only by `--chapter-number`, never by `--lesson`), labels that collide with each other or
+with a `describeChapter` `<title>` fallback, image filenames from different archive directories that
+resolve to one path in the shared `chapters/` cache, per-file text length against image count, and a
+size warning for a book materially larger than the one book this pipeline is proven on.
+
+Warnings are advisory, never a gate — every one of them describes a book that still builds, just
+not the way its own table of contents suggests. Run the probe before spending a pass on a new book.
+
 For an `--epub` source, pass `--output-root <dir>` instead of `--run <dir>` and `assemble` picks
 the run directory itself: it derives a filesystem-safe slug from the book's own `<dc:title>`
 (`getBookTitle`/`slugify`, falling back to the book's content hash when there's no title), then

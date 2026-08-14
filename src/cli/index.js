@@ -16,6 +16,10 @@ import {
   resolveLesson as defaultResolveLesson,
 } from "../corpus/epubLessons.js";
 import {
+  buildShapeReport as defaultBuildShapeReport,
+  formatShapeReport as defaultFormatShapeReport,
+} from "../corpus/epubShapeReport.js";
+import {
   registerEpub as defaultRegisterEpub,
   chapterCachePath as defaultChapterCachePath,
   chapterRangeCachePath as defaultChapterRangeCachePath,
@@ -144,6 +148,8 @@ export async function runCli(argv, deps = {}) {
     describeChapter = defaultDescribeChapter,
     listLessons = defaultListLessons,
     resolveLesson = defaultResolveLesson,
+    buildShapeReport = defaultBuildShapeReport,
+    formatShapeReport = defaultFormatShapeReport,
     registerEpub = defaultRegisterEpub,
     chapterCachePath = defaultChapterCachePath,
     chapterRangeCachePath = defaultChapterRangeCachePath,
@@ -212,6 +218,8 @@ export async function runCli(argv, deps = {}) {
     describeChapter,
     listLessons,
     resolveLesson,
+    buildShapeReport,
+    formatShapeReport,
     registerEpub,
     chapterCachePath,
     chapterRangeCachePath,

@@ -1428,3 +1428,34 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   deck while old cards sit in the unpadded one.
 - **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
   case the padding can be dropped and migrated the same way.
+
+<!-- WS2 (EPUB ingestion robustness) — appended as one block, newest last. -->
+
+## The EPUB shape report warns, it never gates
+
+- **What:** `buildShapeReport` (`src/corpus/epubShapeReport.js`), printed by `--list-lessons` and
+  `scripts/epub-probe.mjs`, reports unreachable spine files, swallowed files, label collisions,
+  image-filename collisions and picture-only pages as WARN lines. Nothing refuses to build, and the
+  probe exits 0 even with warnings.
+- **Why:** every one of these books still builds; the report describes a book whose own table of
+  contents does not mean what the pipeline assumes. A gate here would refuse the one book already
+  proven to work (it swallows a spine file and has a 94-character picture page), which is the fastest
+  way to teach an operator to ignore the output.
+- **Impact:** a person who does not read the report gets exactly today's silence. The report is only
+  as useful as the moment it prints, which is why it is folded into `--list-lessons` rather than
+  living in a separate command nobody runs.
+- **When to revisit:** once a second book has actually been built end to end, some of these
+  (unreachable spine 1, a nav that names none of its own files) may be safe to promote to a hard
+  refusal for a book with no build history.
+
+## The size thresholds are "twice the one proven book", not a measurement
+
+- **What:** `SIZE_WARN` in `src/corpus/epubShapeReport.js` warns above 114 spine files, 4 MB of
+  content or 1,454 distinct images — double the figures for Japanese for Busy People Book 1.
+- **Why:** the whole-book passes (conventions, taught-index) read every file inside one timeout, and
+  the only evidence about what fits is that one book. Doubling it is a deliberate round number, not
+  an observed ceiling.
+- **Impact:** a book between 1x and 2x the proven size passes silently and may still time out; a
+  book over 2x warns even if the passes would have coped.
+- **When to revisit:** when a second book of a materially different size has been through the
+  whole-book passes, replace the factor with the observed limit.

@@ -56,6 +56,11 @@ anki-builder deck --run "$RUN" --name "Travel Spanish"
 # to line up with a lesson — a lesson can span several files, and dividers/quizzes/front
 # matter are their own files. First list the book's lessons, then pick one:
 anki-builder assemble --output-root output --epub mybook.epub --list-lessons --lang ja
+# --list-lessons also prints a shape report: what the book's own table of contents does and
+# does not cover, and every silent degradation the parser is about to accept. For a new book
+# it's worth reading before anything is built. The same report standalone, with per-file
+# detail (read-only, no LLM or TTS spend, nothing registered):
+node scripts/epub-probe.mjs mybook.epub
 anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
 # --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
 # right span of spine files (however many), and extracts them all as one unit.

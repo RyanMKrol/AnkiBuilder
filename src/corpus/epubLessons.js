@@ -15,7 +15,7 @@ import { listExternalChapters } from "./epubArchive.js";
 // the human label, never a gate — selection works on any entry regardless of type. `unit`
 // is checked before `lesson` only for ordering clarity; the regexes are mutually exclusive
 // on their anchors anyway.
-function classifyLesson(label) {
+export function classifyLesson(label) {
   const l = label.trim().toLowerCase();
   if (/^unit\b/.test(l)) return "unit";
   if (/^lesson\b/.test(l)) return "lesson";

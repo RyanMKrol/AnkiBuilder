@@ -371,11 +371,16 @@ test("assemble: --list-lessons prints the book's lessons and exits without assem
       {
         listLessons,
         assembleCorpusFromChapter,
+        buildShapeReport: () => ({ stub: true }),
+        formatShapeReport: () => ["shape report:", "  WARN: something is off"],
         log: (msg) => logs.push(msg),
       },
     );
 
     assert.ok(logs.some((m) => m.includes("Lesson 1: Meeting") && m.includes("spine 2-3")));
+    // The shape report is the half that says whether the book will WORK, so it prints at the
+    // same moment as the list a person picks from.
+    assert.ok(logs.some((m) => m.includes("WARN: something is off")));
     assert.ok(!existsSync(runPaths(runDir).corpus));
   });
 });

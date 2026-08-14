@@ -491,47 +491,68 @@ function resolveNavSource(entries, manifestItems, tocId) {
  * real spine file — callers should treat that as "fall back to the <title>-tag
  * heuristic," not as an error.
  */
-export function listExternalChapters(epubPath, { log = () => {} } = {}) {
-  const { entries, chapters, manifestItems, tocId } = loadEpub(epubPath);
+// The whole nav-document analysis in one pass: the spine-position ranges
+// listExternalChapters returns, PLUS everything that was dropped along the way (entries
+// whose href resolved nowhere, entries collapsed onto an earlier entry's spine file) and
+// the raw positions the nav actually named. listExternalChapters keeps only the ranges —
+// the diagnostics exist for the shape report, which is the whole point of WS2: the drops
+// were always happening, they were just never counted anywhere a human could see them.
+function analyzeExternalChapters(book, { log = () => {} } = {}) {
+  const { entries, chapters, manifestItems, tocId } = book;
 
   const resolved = resolveNavSource(entries, manifestItems, tocId);
   if (!resolved) {
-    return [];
+    return { source: null, ranges: [], unresolved: [], collapsed: [], named: [], rawCount: 0 };
   }
   const { rawEntries, baseDir, source } = resolved;
 
   const positioned = [];
+  const unresolved = [];
   for (const { href, label } of rawEntries) {
     const spinePosition = resolveHrefToSpinePosition(href, baseDir, chapters);
     if (spinePosition == null) {
       log(
         `listExternalChapters: "${label}" (href "${href}") did not resolve to a spine file — skipped`,
       );
+      unresolved.push({ label, href });
       continue;
     }
     positioned.push({ label, spinePosition });
   }
 
   const deduped = [];
+  const collapsed = [];
   for (const entry of positioned) {
     const prev = deduped[deduped.length - 1];
     if (prev && prev.spinePosition === entry.spinePosition) {
+      collapsed.push({
+        label: entry.label,
+        spinePosition: entry.spinePosition,
+        keptLabel: prev.label,
+      });
       continue;
     }
     deduped.push(entry);
   }
 
+  const named = positioned.map((entry) => entry.spinePosition);
   if (deduped.length === 0) {
-    return [];
+    return { source, ranges: [], unresolved, collapsed, named, rawCount: rawEntries.length };
   }
 
   const lastSpineNumber = chapters[chapters.length - 1].number;
-  return deduped.map((entry, i) => ({
+  const ranges = deduped.map((entry, i) => ({
     label: entry.label,
     firstChapterNumber: entry.spinePosition,
     lastChapterNumber: i + 1 < deduped.length ? deduped[i + 1].spinePosition - 1 : lastSpineNumber,
     source,
   }));
+
+  return { source, ranges, unresolved, collapsed, named, rawCount: rawEntries.length };
+}
+
+export function listExternalChapters(epubPath, { log = () => {} } = {}) {
+  return analyzeExternalChapters(loadEpub(epubPath), { log }).ranges;
 }
 
 // listExternalChapters() itself stays pure/uncached (so tests and any other caller get
@@ -614,12 +635,20 @@ function isLocalRelativePath(src) {
   return Boolean(src) && !/^([a-z]+:)?\/\//i.test(src) && !src.startsWith("data:");
 }
 
-function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
-  const srcs = new Set(
+// The image sources one chapter file references, in document order, de-duplicated — the
+// single definition of "what this chapter's <img>/<image> tags point at", shared by the
+// extractor (which copies them) and the shape report (which counts and collision-checks
+// them without writing anything).
+function referencedImageSrcs(content) {
+  return new Set(
     [...content.matchAll(IMG_SRC_PATTERN), ...content.matchAll(SVG_IMAGE_HREF_PATTERN)]
       .map((m) => m[1] ?? m[2])
       .filter(isLocalRelativePath),
   );
+}
+
+function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
+  const srcs = referencedImageSrcs(content);
 
   const chapterDir = posix.dirname(chapter.href);
   const destDir = dirname(destPath);
@@ -663,6 +692,141 @@ export function extractChapterToFile(epubPath, number, destPath, { log } = {}) {
   extractReferencedImages(entries, chapter, content, destPath, log);
   writeFileAtomic(destPath, content, "utf-8");
   return destPath;
+}
+
+// Everything that is not prose: script/style bodies (whose contents are code, not text a
+// reader ever sees) and then every remaining tag. Used ONLY for measuring how much readable
+// text a spine file carries — never for anything written to disk, which stays raw xhtml.
+function strippedTextLength(content) {
+  const text = content
+    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<[^>]+>/g, " ");
+  return decodeHtmlEntities(text).replace(/\s+/g, " ").trim().length;
+}
+
+// The on-disk destination extractReferencedImages() would write `src` to, expressed
+// relative to the chapters/ cache root — i.e. exactly what `join(destDir, src)` produces,
+// minus the machine-specific prefix. Two chapters in different archive directories that
+// reference the same relative filename produce the SAME key here, which is the collision
+// this reports (see the ruling on WS2 item 3a).
+function cacheRelativeImageDest(src) {
+  return posix.normalize(posix.join(".", src));
+}
+
+/**
+ * A read-only structural survey of an EPUB: the spine, the navigation document and what it
+ * named, the images every chapter references, and the collisions those images would produce
+ * in the shared `chapters/` cache directory. Writes nothing and spends nothing — it is the
+ * data behind `scripts/epub-probe.mjs` and the `--list-lessons` shape report.
+ *
+ * Everything here is already computed somewhere in this module; the point of gathering it in
+ * one place is that each of these degradations is silent today (an unresolvable nav href, a
+ * collapsed duplicate, a spine file no nav entry ever named), and a book that degrades on
+ * every axis currently looks exactly like a book that parses cleanly.
+ */
+export function inspectEpubStructure(epubPath) {
+  const book = loadEpub(epubPath);
+  const { entries, chapters } = book;
+  const byName = new Map(entries.map((entry) => [entry.name, entry]));
+
+  const spine = chapters.map((chapter) => {
+    const entry = byName.get(chapter.href);
+    const content = entry ? entry.data.toString("utf-8") : "";
+    const images = [...referencedImageSrcs(content)].map((src) => {
+      const archivePath = posix.normalize(posix.join(posix.dirname(chapter.href), src));
+      return {
+        src,
+        archivePath,
+        present: byName.has(archivePath),
+        dest: cacheRelativeImageDest(src),
+        isSvg: /\.svg$/i.test(archivePath),
+      };
+    });
+    return {
+      number: chapter.number,
+      href: chapter.href,
+      present: Boolean(entry),
+      bytes: entry ? entry.data.length : 0,
+      textLength: strippedTextLength(content),
+      images,
+    };
+  });
+
+  const nav = analyzeExternalChapters(book);
+  const namedPositions = new Set(nav.named);
+
+  const lessons = nav.ranges.map((range, index) => {
+    const filesInRange = range.lastChapterNumber - range.firstChapterNumber + 1;
+    let namedInRange = 0;
+    for (let n = range.firstChapterNumber; n <= range.lastChapterNumber; n++) {
+      if (namedPositions.has(n)) namedInRange++;
+    }
+    return {
+      number: index + 1,
+      label: range.label,
+      firstChapterNumber: range.firstChapterNumber,
+      lastChapterNumber: range.lastChapterNumber,
+      filesInRange,
+      namedInRange,
+      swallowed: Math.max(0, filesInRange - namedInRange),
+      monotonic: range.lastChapterNumber >= range.firstChapterNumber,
+    };
+  });
+
+  // A spine file before the FIRST nav entry is addressable by --chapter-number but by no
+  // --lesson selector at all, because every nav range starts at or after that first entry.
+  const firstCovered = nav.ranges.length ? nav.ranges[0].firstChapterNumber : Infinity;
+  const unreachable = spine
+    .filter((file) => file.number < firstCovered)
+    .map((file) => ({
+      number: file.number,
+      href: file.href,
+      fallbackLabel: describeChapterFromTitleTag(epubPath, file.number),
+    }));
+
+  // Two different archive entries landing on one cache path: the same relative filename
+  // referenced from chapters that live in different archive directories.
+  const destOwners = new Map();
+  for (const file of spine) {
+    for (const image of file.images) {
+      if (!image.present) continue;
+      if (!destOwners.has(image.dest)) destOwners.set(image.dest, []);
+      destOwners
+        .get(image.dest)
+        .push({ chapterHref: file.href, src: image.src, archivePath: image.archivePath });
+    }
+  }
+  const imageCollisions = [...destOwners.entries()]
+    .map(([dest, refs]) => ({
+      dest,
+      archivePaths: [...new Set(refs.map((ref) => ref.archivePath))],
+      refs,
+    }))
+    .filter((collision) => collision.archivePaths.length > 1);
+
+  const allImages = spine.flatMap((file) => file.images);
+  return {
+    epubPath,
+    title: getBookTitle(epubPath),
+    spine,
+    nav: {
+      source: nav.source,
+      rawCount: nav.rawCount,
+      unresolved: nav.unresolved,
+      collapsed: nav.collapsed,
+    },
+    lessons,
+    unreachable,
+    imageCollisions,
+    totals: {
+      spineCount: spine.length,
+      contentBytes: spine.reduce((sum, file) => sum + file.bytes, 0),
+      imageRefs: allImages.length,
+      distinctImages: new Set(allImages.filter((i) => i.present).map((i) => i.archivePath)).size,
+      missingImages: allImages.filter((image) => !image.present).length,
+      svgImages: allImages.filter((image) => image.isSvg).length,
+    },
+  };
 }
 
 /**

@@ -22,6 +22,7 @@ import {
   assertUniqueCardIds as assertUniqueCardIdsAcross,
 } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
+import { DELIVERED_MARKER } from "./deliveredMarker.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
 
@@ -167,8 +168,10 @@ export function pruneBackups(
 // Marker written beside a deck's merged .apkg after a real (non-dry) deliver. Once a collection is
 // AnkiConnect-managed, drag-and-drop importing the .apkg again CREATES DUPLICATES: notes added via
 // addNote carry random guids, so the package's copies of those cards don't match and import as new.
-// The dashboard reads this to warn next to the deck.
-export const DELIVERED_MARKER = "anki-delivered.json";
+// The dashboard reads this to warn next to the deck, and `src/audit/state.js` reads it as the
+// `delivered` state every mutation guard keys on — which is why the filename lives in its own leaf
+// module now (./deliveredMarker.js) rather than here.
+export { DELIVERED_MARKER };
 
 function writeDeliveredMarker(deck) {
   if (!deck.bookDir) return;

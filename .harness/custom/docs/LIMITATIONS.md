@@ -2392,3 +2392,24 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** check the chapter's images in beside it (they are already in the book's cache
   under `.anki-builder/epubs/<hash>/`), or have the fixture point the extractor at the cached chapter
   path instead of the copy under `test/fixtures/`.
+
+<!-- WS6 -->
+
+## "Delivered" is a collection-level fact, so a unit's delivered state is inferred
+
+- **What:** `anki-delivered.json` records that a COLLECTION was pushed to Anki, not which units were
+  in that push. `unitState()` therefore answers `delivered` for a unit by narrowing the collection's
+  marker: a unit must be `done` and in a current package before it can count, and when the marker
+  records `deliveredCardIds` the answer is exact — a unit is delivered iff one of its own card ids is
+  in that baseline.
+- **Why:** the precise answer only exists for deliveries made after `deliveredCardIds` landed. For
+  the two collections delivered before it, the marker holds only `{note, ankiParent,
+  lastDeliveredAt}`, so the honest fallback is to treat every done unit of a delivered collection as
+  delivered. Guessing the other way would hand a mutating tool a free pass over live cards.
+- **Impact:** on a pre-baseline marker, a done unit that was never actually pushed (added after the
+  last deliver) reads as delivered and asks for `--force-delivered` it does not strictly need. That
+  is the safe direction of the error, and it self-corrects on the next real deliver, which records
+  the baseline.
+- **Status:** open — self-resolving on the next deliver of each collection.
+- **When to revisit:** once both live markers carry `deliveredCardIds`, the fallback branch in
+  `markerCoversUnit` is dead code for this workspace and could become a warning instead.

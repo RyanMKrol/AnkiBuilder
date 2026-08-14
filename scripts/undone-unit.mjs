@@ -8,41 +8,58 @@
 //
 // Usage:
 //   node scripts/undone-unit.mjs <run-dir>            back up, clear meta.done, rebuild
-//   ... --force                                       required when the collection is delivered
+//   ... --force-delivered                             required when the collection is DELIVERED
 //   ... --no-rebuild                                  clear the flag only (you rebuild later)
+//
+// The delivered consent used to be spelled `--force`. It is its own flag now, everywhere: `--force`
+// across these tools means "yes, touch a signed-off unit" (which un-doning always does, so this tool
+// never asks), and `--force-delivered` means "yes, the cards are live in Anki". See src/audit/state.js.
 //
 // ⚠️ It never touches Anki. Cards already delivered stay in the live collection with their
 // scheduling; clearing `done` only removes the unit from the NEXT package build. Removing delivered
-// notes is a separate human decision.
+// notes is a separate human decision — which is exactly why the delivered case has its own flag.
 import { existsSync } from "fs";
-import { basename, join, resolve } from "path";
+import { join, resolve } from "path";
 import { undoneUnit } from "../src/review/undoneUnit.js";
 import { packageDirForUnit } from "../src/review/gateState.js";
+import { assertMutationAllowed, MutationRefused } from "../src/audit/state.js";
 import { rebuildBookDir, rebuildRunDir } from "../src/deck/rebuild.js";
 import { loadBookMeta } from "../src/corpus/epubLibrary.js";
 import { loadCourseMeta } from "../src/cli/outputPaths.js";
 
 const args = process.argv.slice(2);
-const force = args.includes("--force");
+const forceDelivered = args.includes("--force-delivered");
 const rebuild = !args.includes("--no-rebuild");
 const positional = args.filter((a) => !a.startsWith("--"));
 const runDir = resolve(positional[0] || "");
 
 if (!positional[0] || !existsSync(join(runDir, "cards.json"))) {
-  console.error("usage: undone-unit.mjs <run-dir> [--force] [--no-rebuild]");
+  console.error("usage: undone-unit.mjs <run-dir> [--force-delivered] [--no-rebuild]");
+  process.exit(1);
+}
+
+// A bare `--force` is refused rather than ignored: it used to BE the delivered consent here, so
+// silently accepting it would let an old invocation edit a live collection while believing it had
+// asked for permission.
+if (args.includes("--force")) {
+  console.error(
+    "--force no longer grants the delivered consent here — it is --force-delivered now (the two " +
+      "consents are separate across all these tools). Re-run with --force-delivered if that is what " +
+      "you mean.",
+  );
   process.exit(1);
 }
 
 const collectionDir = packageDirForUnit(runDir);
 
-// A delivered collection is the case the red line is about: its cards are in a deck being studied
-// daily. Un-shipping a unit there is legitimate, but it must be a decision, not a reflex.
-if (existsSync(join(collectionDir, "anki-delivered.json")) && !force) {
-  console.error(
-    `${basename(collectionDir)} has already been delivered to Anki. Clearing "done" removes this ` +
-      `unit from the package but NOT from the live collection — those notes stay, with their ` +
-      `scheduling. Re-run with --force if that is what you want.`,
-  );
+// The state module decides this now, not a hand-rolled existsSync: `done` is a claim about the
+// package and `delivered` is a claim about a collection somebody studies daily, and they earn
+// separate consents. This script is the one that already knew that; the rule is shared now.
+try {
+  assertMutationAllowed(runDir, { force: true, forceDelivered, action: "un-done" });
+} catch (e) {
+  if (!(e instanceof MutationRefused)) throw e;
+  console.error(e.message);
   process.exit(1);
 }
 

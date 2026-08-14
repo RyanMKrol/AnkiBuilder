@@ -21,6 +21,15 @@ import { writeAccepted } from "./accepted.js";
 export { ALL_CHECKS, SCHEMA_ONLY_CHECKS, loadWorkspace, runChecks, formatReport, SCOPES, TIERS };
 export { defineCheck } from "./registry.js";
 export * from "./units.js";
+export {
+  STATE_KEYS,
+  MutationRefused,
+  assertMutationAllowed,
+  collectionState,
+  collectionDirForUnit,
+  describeState,
+  unitState,
+} from "./state.js";
 export { ACCEPTED_FILENAME, acceptedPath, readAccepted } from "./accepted.js";
 
 /**

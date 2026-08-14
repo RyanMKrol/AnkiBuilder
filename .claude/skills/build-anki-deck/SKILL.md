@@ -693,14 +693,21 @@ scripts/check-done.mjs <runDir>` runs the same gate-2 check once and exits 0 / 1
 ### Un-ship a unit (undo a Mark done)
 
 ```sh
-node scripts/undone-unit.mjs <runDir> [--force] [--no-rebuild]
+node scripts/undone-unit.mjs <runDir> [--force-delivered] [--no-rebuild]
 ```
 
 Backs up `cards.json`, clears `meta.done`, and rebuilds the collection package without the unit.
 There is no dashboard button for this — done lessons stay fully editable, so nothing needed one —
-and this is the reviewed replacement for editing the JSON by hand. `--force` is required when the
-collection has been delivered to Anki, because **it never touches Anki**: notes already delivered
-stay in the live collection with their scheduling, and only the package changes.
+and this is the reviewed replacement for editing the JSON by hand. `--force-delivered` is required
+when the collection has been delivered to Anki, because **it never touches Anki**: notes already
+delivered stay in the live collection with their scheduling, and only the package changes.
+
+That flag name is the same across every tool that writes into a unit. `--force` means "yes, change a
+unit a human signed off"; `--force-delivered` means "yes, and those cards are already in the live
+collection". They are separate consents because they have different consequences, and one flag
+covering both is how "re-order this finished unit" turned into "edit the deck I studied this
+morning". The states themselves (`authored`, `reviewed`, `done`, `packaged`, `delivered`) are
+computed in one place, `src/audit/state.js`.
 
 ### Validate every deck's JSON against the schemas
 

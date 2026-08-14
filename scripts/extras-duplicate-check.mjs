@@ -8,6 +8,8 @@
 //   node scripts/extras-duplicate-check.mjs <book-dir>            report only (the documented step)
 //   node scripts/extras-duplicate-check.mjs <book-dir> --apply    exclude, narrowly (see below)
 //   ... --apply --force                                           also touch reviewed/done units
+//   ... --apply --force --force-delivered                         also when the collection is
+//                                                                 DELIVERED (see src/audit/state.js)
 //
 // REPORT-ONLY IS THE DOCUMENTED PATH. The grouping is mechanical and correct; the judgement is not.
 // A shared target is as often two senses of one word as it is a duplicate: on the live book the
@@ -23,15 +25,36 @@ import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
 import { findCrossChapterDuplicates } from "../src/cards/extrasTools.js";
 import { planDuplicateExclusions } from "../src/cards/duplicatePlan.js";
+import { collectionState, MutationRefused, assertMutationAllowed } from "../src/audit/state.js";
 import { writeUnitJson } from "../src/util/unitWrite.js";
 
 const args = process.argv.slice(2);
 const apply = args.includes("--apply");
 const force = args.includes("--force");
+const forceDelivered = args.includes("--force-delivered");
 const bookDir = resolve(args.find((a) => !a.startsWith("--")) || "");
 if (!bookDir || !existsSync(bookDir)) {
-  console.error("usage: extras-duplicate-check.mjs <book-dir> [--apply] [--force]");
+  console.error(
+    "usage: extras-duplicate-check.mjs <book-dir> [--apply] [--force] [--force-delivered]",
+  );
   process.exit(1);
+}
+
+// An exclusion on a DELIVERED collection is the case with no undo: the card is already in Anki, so
+// excluding it here only stops the next deliver from updating it — the learner keeps drilling it
+// forever unless somebody suspends it by hand. Its own consent, separate from --force.
+if (apply) {
+  try {
+    assertMutationAllowed(collectionState(bookDir), {
+      force: true, // the per-unit reviewed/done refusal is planDuplicateExclusions' job, below
+      forceDelivered,
+      action: "exclude cards in",
+    });
+  } catch (e) {
+    if (!(e instanceof MutationRefused)) throw e;
+    console.error(e.message);
+    process.exit(1);
+  }
 }
 
 const units = readdirSync(bookDir)

@@ -1467,18 +1467,23 @@ say when it was measured rather than stating it as a standing fact.
   scene names the question just asked and reveals nothing. For an ambiguous single-word card
   (に "2" vs the direction particle, ほん "Book" vs the counter), any cue that disambiguates the
   Recognition front necessarily points partway at the answer ("counting, not the particle").
-  Three degenerate pairs were left with no scene at all because no non-revealing wording exists and
-  their glosses barely differ: です ("To be" vs "Is / am / are"), ばん ("Evening" vs the number
-  suffix), and ばんごはん ("Dinner" twice).
+  Three degenerate pairs were left with no scene at all at the time of the scene migration, because
+  no non-revealing wording existed and their glosses barely differed: です ("To be" vs
+  "Is / am / are"), ばん ("Evening" vs the number suffix), and ばんごはん ("Dinner" twice).
 - **Why:** an answerable-but-easier card beats an unanswerable one; the Production direction keeps
   full rigor because definitional hints stay off the Recognition front (they show on its back).
-- **Impact:** a handful of Recognition cards are softer tests than a purist would like, and the
-  three skipped pairs still show identical Recognition fronts with different expected answers.
-- **Status:** open
-- **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>`
-- **When to revisit:** if the です / ばん / ばんごはん pairs cause real study friction, merge each
-  pair into one card with a combined gloss instead of inventing a leaky scene. The migration's
-  pre-change state is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.
+- **Impact:** a handful of Recognition cards are softer tests than a purist would like. **The three
+  named pairs are no longer among them** (checked 2026-08-14 against the live deck): the second です
+  card (`desu-suffix-ch15`) and the duplicate ばんごはん (`chapter-3-extras`) are both excluded, so
+  neither pair exists any more, and both ばん cards now carry a scene ("the time of day" /
+  "labelling something by its number"). The general trade-off stands; the examples do not, which is
+  why this row now points at a command instead of a count.
+- **Status:** open (the design trade-off), with all three cited instances resolved
+- **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>` — it lists every group
+  sharing a gloss or a target and flags members with no cue on the face they collide on
+- **When to revisit:** if a future uncued pair causes real study friction, merge it into one card
+  with a combined gloss instead of inventing a leaky scene. The scene migration's pre-change state
+  is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.
 
 ## TTS fetch pool is pinned to the ElevenLabs plan's concurrency cap
 
@@ -1568,3 +1573,27 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if a step ever needs a decision made FROM another step's findings, that step
   belongs in `src/` behind a function, not in the chain.
+
+## The template path has never been built end to end, and three blind spots meet there
+
+- **What:** no deck has ever been built from a bundled template and taken all the way into Anki.
+  `output/templates/` is empty (only a `.DS_Store`), so the path with zero worked examples is also
+  the path with the fewest checks: `lessonReadiness` returns ready unconditionally for
+  `sourceType: "template"` (no `enriched`/`notesEnhanced` markers to wait for, since neither pass
+  applies), and nothing anywhere verifies that a `.apkg` this project builds actually imports.
+- **Why:** every real deck so far has been an EPUB book or a dictated course, so the template path
+  has had no demand. The readiness exemption is correct on its own terms — a template has no drills
+  to mine and no siblings to cross-reference — it just means a template unit passes the gate having
+  been through nothing.
+- **Impact:** the three gaps compound. A template deck could be built, reviewed, packaged and
+  imported with a structural fault that no check here would have caught, and there is no known-good
+  example to compare it against. This is the shape of failure the rest of this file is about: an
+  absent check reads exactly like a passing one.
+- **Status:** open — transplanted from harness task T011 ("End-to-end: build a real travel deck +
+  verify in Anki", the loop's only never-run task) when the loop was retired, 2026-08-14. The task
+  is gone; the risk it pointed at is not.
+- **When to revisit:** the next time a template deck is built for real, treat it as the acceptance
+  run — build from `travel-essentials` or `numbers` for one language, generate audio with a real
+  key, import the `.apkg`, and check both card directions render and the audio plays — and record
+  the result here. Cheaper still: when a headless `.apkg` import verifier exists, make that first
+  worked template deck its fixture, which closes all three gaps at once.

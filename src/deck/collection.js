@@ -4,33 +4,16 @@ import { mkdtempSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
 import { resolveIso639Code } from "../model/iso639.js";
-import { getLanguageFont, languageFontCss } from "./fontLibrary.js";
+import { getLanguageFont } from "./fontLibrary.js";
 import { unitDeckSegments, groupingSegments } from "./deckPath.js";
 import { CARD_TEMPLATES } from "./cardTemplates.js";
+import { modelCss } from "./cardStyles.js";
+import { FIELD_NAMES, fieldValue } from "./noteFields.js";
 
-// "Scene" (card.scene) sets the situation — the question just asked, the thing under discussion —
-// and renders on the FRONT of BOTH directions: it never contains the answer, only the context
-// without which the sentence is ambiguous. "Hint" (card.hint) is the Production-front-only
-// disambiguator (an English cue like "the object you read") — on a Target→English front it would
-// give the answer away, so it shows there only on the back. "Note" is the BACK-of-card context.
-// "Reading" holds the card's `ttsText` (see fieldValue below), stored as a real field so the kanji
-// era needs no note-type migration. NO template renders it, and none is meant to: `ttsText` is TTS
-// input, not something a learner reads. The Anki field keeps its old name on purpose. The JSON
-// field was renamed; the live note type was not.
-// New fields append at the END: the AnkiConnect deliverer force-syncs structure by adding missing
-// fields, and appending keeps every existing note's field order stable.
-const FIELD_NAMES = [
-  "Target",
-  "Pronunciation",
-  "English",
-  "Category",
-  "Hint",
-  "Note",
-  "Image",
-  "Audio",
-  "Reading",
-  "Scene",
-];
+// The note type's three halves each live in their own module, because collection.js opens a sqlite
+// database at import time and the surfaces that only describe a card (the authoring prompts, the
+// card-face preview) must not pay for that: ./cardTemplates.js (structure), ./cardStyles.js (CSS),
+// ./noteFields.js (the fields and the card → field mapping). This file assembles them into a model.
 const FIELD_SEP = "\x1f";
 const DEFAULT_DECK_ID = 1;
 // The single-deck path's own deck (buildCollection) and the multi-deck path's book/
@@ -162,80 +145,6 @@ CREATE INDEX ix_notes_csum on notes (csum);
 // `nowSeconds`: epoch SECONDS — every JSON-embedded `mod` field in this file (model,
 // deck, dconf) uses seconds, matching notes.mod/cards.mod, NOT the milliseconds used
 // by col.mod/col.scm or by note/card `id`s. See writeCollectionDb's own comment.
-// Base note-type CSS. Per-language font CSS is appended at build time (see `modelCss`).
-const BASE_CSS = `.card {
-  font-family: arial;
-  font-size: 20px;
-  text-align: center;
-  color: black;
-  background-color: white;
-}
-.field {
-  margin-bottom: 14px;
-}
-.field:last-child {
-  margin-bottom: 0;
-}
-.field-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #1f6f6b;
-  margin-bottom: 3px;
-}
-.answer {
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1.3;
-}
-.pron {
-  font-size: 16px;
-  font-weight: 400;
-  color: #555555;
-}
-.note-back {
-  font-size: 14px;
-  color: #888888;
-}
-.hint-front {
-  font-size: 13px;
-  font-style: italic;
-  color: #9a9284;
-  margin-top: 8px;
-}
-.cat-chip {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #a08a5a;
-  margin-bottom: 14px;
-}
-/* Anki's night mode stamps .night_mode (newer clients) or .nightMode (older) on the card. */
-.card.night_mode, .card.nightMode {
-  color: #e8e6e3;
-  background-color: #2c2c2e;
-}
-.night_mode .field-label, .nightMode .field-label {
-  color: #6fb5b0;
-}
-.night_mode .pron, .nightMode .pron {
-  color: #b8b5b0;
-}
-.night_mode .note-back, .nightMode .note-back {
-  color: #a3a09a;
-}
-.night_mode .hint-front, .nightMode .hint-front {
-  color: #a89f8d;
-}
-.night_mode .cat-chip, .nightMode .cat-chip {
-  color: #c2ab77;
-}`;
-
-// Base CSS + the language's embedded @font-face, if any. Identical for the .apkg and AnkiConnect paths.
-function modelCss(fontDescriptor) {
-  return `${BASE_CSS}${fontDescriptor ? "\n" + languageFontCss(fontDescriptor) : ""}`;
-}
 
 // The complete note-type definition for a target language, in AnkiConnect terms: the model name/id,
 // ordered fields, card templates ({name, qfmt, afmt}), and the full CSS. This is what the deliverer
@@ -404,49 +313,6 @@ function buildConf(curDeck, activeDecks, modelId) {
 function fieldChecksum(sortField) {
   const digest = createHash("sha1").update(sortField, "utf-8").digest("hex");
   return parseInt(digest.slice(0, 8), 16) & 0x7fffffff;
-}
-
-// Anki renders field values as HTML, so a gloss containing `&` or `<` mis-renders unless escaped.
-// Text fields are escaped once here — the single point both delivery paths share — while Image and
-// Audio stay raw (their values ARE markup). The deliverer's field comparison html-decodes both
-// sides before comparing, so escaping here keeps re-runs a no-op.
-function escapeFieldText(value) {
-  return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-function fieldValue(card, name) {
-  switch (name) {
-    case "Target":
-      return escapeFieldText(card.target || "");
-    case "Pronunciation":
-      return escapeFieldText(card.pronunciation || "");
-    case "English":
-      return escapeFieldText(card.english || "");
-    case "Category":
-      return escapeFieldText(card.category || "");
-    case "Hint":
-      // FRONT-of-card cue (disambiguator). NEVER the internal reviewNote.
-      return escapeFieldText(card.hint || "");
-    case "Note":
-      // BACK-of-card context. `cardNote` is the pre-rename alias, kept for back-compat.
-      return escapeFieldText(card.note || card.cardNote || "");
-    case "Reading":
-      // THE ONE PLACE the pipeline's `ttsText` becomes Anki's "Reading" field. The JSON field was
-      // renamed (`reading` -> `ttsText`) so its name states its contract; the ANKI field keeps the
-      // name "Reading" deliberately, because renaming a field on a live note type rewrites every
-      // note in both delivered collections for zero benefit (nothing renders it). Both the .apkg
-      // build and the AnkiConnect deliver come through here, so this line is the whole mapping.
-      return escapeFieldText(card.ttsText || "");
-    case "Scene":
-      // Situation cue, shown on the FRONT of both directions. Never contains the answer.
-      return escapeFieldText(card.scene || "");
-    case "Image":
-      return card.image ? `<img src="${card.image}">` : "";
-    case "Audio":
-      return card.audio ? `[sound:${card.audio}]` : "";
-    default:
-      return "";
-  }
 }
 
 // `chapterGroups`: [{ deckId, cards }], one entry per chapter (a single-entry array

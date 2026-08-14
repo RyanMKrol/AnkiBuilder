@@ -398,11 +398,23 @@ exclude it here (or tell me the rows and I'll edit `cards.json`). Excluding a ca
 reversible `excluded` flag: the `audio` stage skips excluded cards (no TTS spent) and the deck build
 drops them.
 
+**Open the Card faces view too** (the "Card faces →" link in the review lede, or `/faces/...` with
+the same path). It renders every card through the deck's real templates and real CSS — both
+directions, front and back, click a header to flip. Read the two FRONTS side by side before you
+accept a `scene` or a `hint`: `scene` shows on BOTH fronts, so it must not leak the answer in either
+direction, while `hint` shows only on the Production front. It is read-only and touches nothing.
+
 What to check, beyond reading the columns: the card-content rules in
 [card-authoring-rules](references/card-authoring-rules.md). The ones most often violated: a scene or hint on
 any English-gloss or target collision, answer cards answerable alone, notes/hints that restate the
 card (delete these), missing `ttsText` on numerals, and study order (a sentence landing before its
 vocabulary).
+
+Run `npm run preflight` before you hand over the link. Its INFO checks name what the columns cannot:
+`answerable-alone` (a reply-shaped English with no scene), `production-length` (a Production face
+over 60 characters), `near-siblings` (one sentence frame drilled three times with a swapped name),
+`romaji-style` and `inline-romaji`. Each names a shape and leaves the verdict to you; re-run with
+`--verbose` to see the actual cards.
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves

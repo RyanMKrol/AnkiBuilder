@@ -1079,6 +1079,19 @@ editing. Actions are per-lesson and link to the **unit-scoped** views:
   [Dashboard editing](#dashboard-editing-serve-editable-by-default) below). Corpus is English-only,
   translate adds target + romaji, audio adds players + generate/pick + **Mark done**; provenance flags
   badge on every stage. An out-of-range `:unit` (no matching lesson) 404s.
+- **Card faces** — `GET /faces/:type/:id` (whole deck) or `GET /faces/:type/:id/:unit` (one lesson)
+  (`renderFacesPage`, linked from the Review lede): every card rendered through the note type's real
+  `qfmt`/`afmt` (`src/deck/cardTemplates.js`) and real CSS (`src/deck/cardStyles.js`), against the
+  real field mapping (`src/deck/noteFields.js`) — both directions, front and back, flippable per card
+  or all at once. This is a **render, not a reimplementation**: `src/deck/cardFacePreview.js` restates
+  nothing a template says, so a template edit changes the preview in the same commit, and it shares
+  its Mustache subset with the authoring prompts' `{{CARD_FACES}}` block. The three most valuable
+  rules in `references/card-authoring-rules.md` (answerable alone, a scene must not leak the answer,
+  a hint belongs on the Production front) are all claims about a rendered FRONT, and nothing showed
+  that front to anyone before this. **Read-only**: it renders the note type, never pushes it, so it
+  is not behind `deliver --allow-model-change`. `[sound:x]` and `<img>` become a chip or a real
+  `/media/...` image, and a card whose front renders EMPTY is called out by name (an empty front is
+  an empty card, which Anki's Tools → Empty Cards deletes along with its scheduling).
 
 Discovery is pluggable through a **format-adapter registry** (`src/server/adapters/`). Each adapter
 (`book`, `course`, `template`) implements `listDecks(outputRoot)`, `loadDeck(outputRoot, id)`, and

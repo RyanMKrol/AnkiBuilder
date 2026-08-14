@@ -12,6 +12,12 @@ import {
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
 import { vocabCoverageCheck } from "./vocab.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
+import {
+  collectionStateCheck,
+  corpusDriftCheck,
+  readinessExemptionsCheck,
+  unitMarkerCheck,
+} from "./state.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
 
 /**
@@ -35,7 +41,11 @@ export const ALL_CHECKS = [
   spacingCheck,
   placeholderTargetCheck,
   sourceTypeCheck,
+  corpusDriftCheck,
   // collection scope
+  collectionStateCheck,
+  readinessExemptionsCheck,
+  unitMarkerCheck,
   cardIdsCheck,
   collisionsCheck,
   chapterNumberCheck,

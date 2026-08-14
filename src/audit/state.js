@@ -115,7 +115,11 @@ export function unitState(runDir, { collection = null } = {}) {
   const isOwnCollection = collectionDir === dir;
   const shipped = flags.done || (isOwnCollection && flags.authored);
   const packaged = shipped && state.packaged;
-  const delivered = packaged && state.delivered && markerCoversUnit(state.marker, flags.cardIds);
+  // NOT gated on `packaged`. Delivery reads cards.json over AnkiConnect and never opens the package,
+  // so a deleted or never-built .apkg says nothing about whether these cards are in Anki — and
+  // reading "no package" as "not delivered" would drop the guard on exactly the collections that
+  // have one.
+  const delivered = shipped && state.delivered && markerCoversUnit(state.marker, flags.cardIds);
 
   return {
     dir,

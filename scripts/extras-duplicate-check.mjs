@@ -25,6 +25,7 @@ import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
 import { findCrossChapterDuplicates } from "../src/cards/extrasTools.js";
 import { planDuplicateExclusions } from "../src/cards/duplicatePlan.js";
+import { mirrorExclusions } from "../src/cards/corpusMirror.js";
 import { collectionState, MutationRefused, assertMutationAllowed } from "../src/audit/state.js";
 import { writeUnitJson } from "../src/util/unitWrite.js";
 
@@ -118,10 +119,23 @@ const skipped = refuse.length;
 
 if (apply) {
   for (const unit of units) {
-    if (unit.dirty) {
-      const { backup } = writeUnitJson(unit.path, unit.data, { reason: "extras-dupes" });
-      console.log(`  wrote ${unit.path}${backup ? ` (backup: ${backup})` : ""}`);
-    }
+    if (!unit.dirty) continue;
+    const { backup } = writeUnitJson(unit.path, unit.data, { reason: "extras-dupes" });
+    console.log(`  wrote ${unit.path}${backup ? ` (backup: ${backup})` : ""}`);
+
+    // Mirror the exclusions into corpus.json, the way extras-order already mirrors ORDER. Without
+    // this the corpus review keeps offering an item the deck will never ship, and the dedup library
+    // saved from that corpus keeps reporting it as taught.
+    const corpusPath = join(bookDir, unit.unit, "corpus.json");
+    if (!existsSync(corpusPath)) continue;
+    const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
+    const { changed, ids } = mirrorExclusions(unit.items, corpus.items || []);
+    if (!changed) continue;
+    const corpusWrite = writeUnitJson(corpusPath, corpus, { reason: "extras-dupes" });
+    console.log(
+      `  mirrored ${ids.length} exclusion(s) into ${corpusPath}` +
+        `${corpusWrite.backup ? ` (backup: ${corpusWrite.backup})` : ""}`,
+    );
   }
   console.log(`\nexcluded ${excluded} duplicate(s); skipped ${skipped} (see above)`);
 } else {

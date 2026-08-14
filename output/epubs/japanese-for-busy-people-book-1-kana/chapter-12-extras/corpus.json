@@ -29,7 +29,7 @@
       "english": "Who is on the fourth floor?",
       "category": "Family & People",
       "target": "4かいにだれがいますか",
-      "reading": "よんかいにだれがいますか",
+      "ttsText": "よんかいにだれがいますか",
       "aiSuggested": true,
       "reviewNote": "EXERCISE 6B alternative 1, completed on the printed example となりのへやにだれがいますか."
     },
@@ -38,7 +38,7 @@
       "english": "Who is on the third floor?",
       "category": "Family & People",
       "target": "3がいにだれがいますか",
-      "reading": "さんがいにだれがいますか",
+      "ttsText": "さんがいにだれがいますか",
       "note": "3がい (san-gai), not 3かい: the か of the counter voices to が after さん.",
       "aiSuggested": true,
       "reviewNote": "EXERCISE 3B dialogue 2. さんがい is carded as a Lesson 5 counter but never in a sentence."
@@ -118,7 +118,7 @@
       "english": "What is there on the fourth floor?",
       "category": "Directions",
       "target": "4かいになにがありますか",
-      "reading": "よんかいになにがありますか",
+      "ttsText": "よんかいになにがありますか",
       "note": "4かい is read よんかい (yon-kai), never しかい (shi-kai).",
       "aiSuggested": true,
       "reviewNote": "EXERCISE 3A dialogue 2, completed on the printed example."
@@ -256,7 +256,7 @@
       "english": "What is there on the second floor?",
       "category": "Directions",
       "target": "2かいになにがありますか",
-      "reading": "にかいになにがありますか",
+      "ttsText": "にかいになにがありますか",
       "note": "2かい is read にかい (ni-kai); the same counter voices to さんがい (san-gai) after 3.",
       "aiSuggested": true,
       "reviewNote": "EXERCISE 3A dialogue 1, completed on the printed example 1かいになにがありますか."

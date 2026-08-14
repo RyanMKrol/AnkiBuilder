@@ -70,9 +70,11 @@ cleaner is"`. The scene is shown on the front of BOTH card directions, states th
    aloud confidently and wrongly. {{COUNTER_EXAMPLES}} If the source gives the reading in brackets —
    textbooks routinely print the spoken form in parentheses after the digits — use that, and if you
    are unsure of one, leave the number out of the sentence rather than guess.
-10. **Spell out digits in `reading`.** When a sentence contains a numeral (a price, a floor, a time),
-    set `reading` to the sentence with that number written out in {{TARGET_LANGUAGE}}'s own script. It
-    drives both the romanization and the audio, both of which mishandle raw digits.
+10. **Spell out digits in `ttsText`.** `ttsText` is the text TTS speaks instead of the target
+    whenever the written target would be misread (numerals AND kanji-bearing targets); it is never
+    rendered on any card face. When a sentence contains a numeral (a price, a floor, a time), set
+    `ttsText` to the whole sentence with that number written out in {{TARGET_LANGUAGE}}'s own script.
+    It drives both the romanization and the audio, both of which mishandle raw digits.
 11. **Aim for {{TARGET_COUNT}} cards or fewer.** Quality over volume — returning nothing at all is a
     valid answer for a lesson whose source has no usable drills.
 
@@ -92,7 +94,7 @@ Return ONLY a JSON object. No prose, no explanation.
       "english": "I'm going by Shinkansen.",
       "category": "Travel",
       "target": "しんかんせんでいきます",
-      "reading": "しんかんせんでいきます",
+      "ttsText": "しんかんせんでいきます",
       "pronunciation": "shinkansen de ikimasu",
       "scene": "answering how you are getting to Osaka",
       "note": "で (de) marks the means of transport — the vehicle you go BY.",
@@ -108,7 +110,8 @@ Field by field:
 - `english` (string): the English side, sentence case.
 - `category` (string): reuse one of the categories already present on the lesson's cards.
 - `target` (string): the {{TARGET_LANGUAGE}} sentence, as the card face shows it.
-- `reading` (string, optional): the spoken form — set it only when it differs from `target` (rule 7).
+- `ttsText` (string, optional): what TTS speaks instead of `target` — set it only when the written
+  `target` would be misread (rule 10). Never rendered on a card face.
 - `pronunciation` (string): the romanization of the spoken form. {{COUNTER_HYPHEN_RULE}}
 - `scene` (string, optional): a short situation cue, shown on the front of BOTH card directions.
   REQUIRED on the answer half of a question/answer pair (rule 4), naming the question it replies to.

@@ -210,7 +210,7 @@
       "note": "When counting with あります (arimasu), the number goes directly after が (ga) with no extra particle: noun が [number] あります.",
       "reviewNote": null,
       "target": "スミスさんはあしたかいぎが２つあります",
-      "reading": "スミスさんはあしたかいぎがふたつあります"
+      "ttsText": "スミスさんはあしたかいぎがふたつあります"
     },
     {
       "id": "seetaa",

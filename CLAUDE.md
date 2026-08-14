@@ -2,8 +2,9 @@
 
 This file defines how Claude should behave when making changes in this repository.
 Follow these conventions on **every** task unless the user explicitly says otherwise in
-the current conversation. They are the coding-conventions rulebook; the **build harness**
-that drives autonomous runs is described in [`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md).
+the current conversation. They are the coding-conventions rulebook. The autonomous build
+harness that used to drive this repo is **retired** — see [The harness is
+retired](#the-harness-is-retired) at the end of this file for what that means in practice.
 
 ## Project orientation
 
@@ -11,14 +12,17 @@ that drives autonomous runs is described in [`.harness/docs/HARNESS.md`](./.harn
 sources and generates Anki deck files (e.g. `.apkg`). It is a batch tool with no long-lived
 process and no visual surface.
 
-- **What it is / what you're building:** see `README.md` and (if present) `PLAN.md` or
-  `.harness/docs/designs/`. `README.md` is the source of truth for **what is currently
-  implemented** — read it first to understand the present state.
-- **What's planned:** `TASKS.json` is the implementation backlog, executed one atomic task
-  at a time by a **single sequential loop** (`.harness/scripts/loop.sh`; see
-  [`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md)).
-- **How it's built:** [`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md) is the authoritative design of
-  the autonomous build harness — the Ralph loop, its Definition of Done, and its gates.
+- **What it is / what you're building:** see `README.md` and `docs/designs/`. `README.md` is
+  the source of truth for **what is currently implemented** — read it first to understand the
+  present state.
+- **How to build a deck with it** (the operator procedure, and the file most worth reading
+  before touching anything user-facing): `.claude/skills/build-anki-deck/SKILL.md`, which is
+  normative for procedure. `docs/PIPELINE.md` covers how the code is wired.
+- **What's planned:** two files, and they ARE the planning loop.
+  [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md) is the live one:
+  every trade-off, bottleneck and known gap, each with a `**Status:**`, and it is what the work
+  keeps being driven by. `.harness/tracking/IDEAS.jsonl` is the zero-ceremony inbox for anything
+  not yet thought through. A larger piece of work gets a design doc under `docs/designs/`.
 
 ## Golden rules
 
@@ -27,23 +31,21 @@ process and no visual surface.
 - Never commit directly to `main`. Always `git pull` (or `git fetch`) first, then create a
   fresh branch off the latest `main` for **each atomic task**. Branches are what keep the
   CI gate and clean rollback possible.
-- Suggested branch naming: `tNNN` (e.g. `t014`) for backlog tasks — this is what the loop
-  expects — or `<type>/<short-slug>` (e.g. `fix/reconnect`) for off-backlog work.
+- Branch naming: `<type>/<short-slug>` (e.g. `fix/reconnect`, `feat/preflight-spacing`).
 - Keep each branch scoped to one logical unit of work; don't bundle unrelated changes.
 
 ### 2. Merge it yourself — no pull requests
 
 - This project **doesn't use pull requests**. When the work is complete and **green**,
-  integrate the branch into `main` and push. Under the autonomous harness, the *loop* does
-  this for you (it fast-forwards `main` on green CI); when working by hand:
+  integrate the branch into `main` and push:
   ```sh
   git checkout main && git pull          # sync
   git merge --no-ff <branch>             # integrate the task
   git push                               # publish main
   git branch -d <branch>                 # clean up (also delete remote if pushed)
   ```
-- Merge only when the change passes the Definition of Done ([`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md) §5)
-  and only when the work was asked for — don't merge speculative changes.
+- Merge only when `npm run ci` is green and only when the work was asked for — don't merge
+  speculative changes.
 
 ### 3. Every change updates the documentation
 
@@ -51,16 +53,17 @@ Treat docs as part of "done," not an afterthought. Keep docs in lockstep with th
 the same commit** — never as a follow-up. A task is **done when its branch is integrated into
 `main`** (code + docs both updated). On every change:
 
-- **`README.md`** — update the implementation-status section in the same commit so it always
-  reflects what the code does, IF you're working by hand (outside the harness). Under the
-  autonomous loop (either isolation variant), the LOOP is the sole writer of
-  `.harness/tracking/TASKS.json` `"status"` — it flips a task to `"done"` itself, in a follow-up
-  commit, once the build clears the structural checks and the audit gate. Never set `"status"`
-  yourself while working on a harness-driven task; doing so trips the scope gate.
-- **`TASKS.json`** — if working BY HAND (no harness / no loop running), set the task's `"status"`
-  to `"done"` in the same commit as the work, same as any other doc update.
-- **`PLAN.md` / design docs** — update only if the change alters the design or an
-  architectural decision. Day-to-day implementation usually doesn't touch them.
+- **`README.md`** — update the implementation-status section in the same commit, so it always
+  reflects what the code does.
+- **`.claude/skills/build-anki-deck/`** — if the change alters what an operator does or sees,
+  the skill is where that lives, and it is normative for procedure. A change that makes SKILL.md
+  wrong is not finished.
+- **`docs/PIPELINE.md`** — if the change alters how the stages are wired.
+- **`.harness/custom/docs/LIMITATIONS.md`** — see golden rule 5. If the change RESOLVES an
+  existing entry, update that entry's `**Status:**` in the same commit; a resolved limitation
+  left reading as live is the same failure as a missing one.
+- **design docs** (`docs/designs/`) — only if the change alters the design or an architectural
+  decision. Day-to-day implementation usually doesn't touch them.
 - If a change introduces a convention or decision worth remembering, note it here in
   `CLAUDE.md`.
 
@@ -72,110 +75,82 @@ the same commit** — never as a follow-up. A task is **done when its branch is 
 
 ### 4a. Commit + push as you go — uncommitted work is NOT durable here (non-negotiable)
 
-The in-place loop **hard-resets the working tree to `origin/main` (`git reset --hard`) between every
-attempt** — so any uncommitted work in the checkout while a run is in progress can be discarded. (At
-*startup* it refuses to run on a dirty tree rather than touch it, but once running it resets between
-attempts.) So any uncommitted work — notably a `/implementation-harness-convert-ideas` sweep that just
-authored a batch of new tasks, or a hand-edit to `TASKS.json` — is **not safe** until it's committed.
-**Treat "uncommitted" as "not durable."** When a discrete unit of work is done (a conversion sweep, a
-backlog edit, a recovery), **commit and push it immediately**, don't leave it sitting in the tree
-across a session. (The `mark-*.sh` and `consolidate-ideas.sh` tools already commit+push for you; the
-risk is hand-edits and multi-step flows that don't.)
+Work here often runs several agents at once, each in its own worktree, and any of them can be
+stopped, restarted or discarded. A worktree that is thrown away takes its uncommitted changes with
+it, and nothing anywhere else has a copy. **Treat "uncommitted" as "not durable."** When a discrete
+unit of work is done — a doc sweep, a new script with its tests, a recovery — **commit and push it
+immediately**, don't leave it sitting in the tree across a session.
 
 ### 5. Every change records its trade-offs & limitations
 
 - When a change introduces or reveals a design **trade-off**, **bottleneck**, or known
   **limitation**, add a row to [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md)
-  **in the same commit** — what it is, *why* it was chosen, its **impact**, and *when to revisit*. (Record
-  it in the `custom/` **overlay**, not the plugin-owned `.harness/docs/LIMITATIONS.md`, which is refreshed
-  on harness upgrade — see `.harness/custom/CLAUDE.md`.)
+  **in the same commit** — what it is, *why* it was chosen, its **impact**, its `**Status:**`, and
+  *when to revisit*. If the row asserts a fact about live data, give it a `**Verified by:**` command
+  that re-derives that fact instead of freezing a count in prose. (Record it in the `custom/`
+  **overlay**, not the plugin-owned `.harness/docs/LIMITATIONS.md`.)
 - That file is the single place to evaluate the design's compromises later without
   re-deriving them from the code. A capped scope, a hardcoded assumption, an "un-handled for
-  now" — that's exactly what belongs there.
+  now" — that's exactly what belongs there. **It is also this project's planning loop**: what
+  gets built next comes from reading it, so an entry that is stale, or missing, quietly steers
+  the work wrong.
 
 ### 6. Tests never touch production state
 
-A task's Definition-of-Done **test** run must execute against a **scratch / throwaway** resource —
+Every **test** run must execute against a **scratch / throwaway** resource —
 a temp database, a fake or sandboxed endpoint, a tmp working dir — **never** the project's real
 database, live services, or real data/output files. A test that mutates production state can
 corrupt the running product, and the usual culprit is a stray *direct* test invocation
-(`pytest path/to/x`, `node --test foo`, `cargo test x`) run outside the normal harness env.
+(`pytest path/to/x`, `node --test foo`) run outside the normal test env.
 **Build the guard into the code, not into discipline:** detect a test context from the environment
 and **redirect to a scratch resource** (e.g. an `isTestEnv()` / `resolveXxxPath()` that refuses the
-production default under tests). This matters most under the **in-place loop variant**
-([`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md) §6), which works directly in the primary checkout and shares
-the live local DB / daemon — there a leaky test pollutes real state immediately.
-
-### 7. Backlog tasks carry facets (difficulty auto-tuning)
-
-Every BUILDABLE task you add to `TASKS.json` MUST carry a `"facets": { "layer": …, "workType": …,
-"risk": [...] }` object, with values chosen ONLY from `facets.json`'s controlled vocabulary (use the
-task's `scope` paths to pick the `layer`). The loop's policy reads facets to choose each task's
-STARTING model/effort from escalation history; the cold-start prior is the `harness.env`
-`MODEL`/`EFFORT` floor. **Never add per-task `model`/`effort` fields — the loop ignores them**
-(facets are the only per-task difficulty signal). `needs-human` (gated) tasks are **carved out** —
-they get NO facets. Author through the
-add-to-backlog skill when it's available (it assigns facets + runs the poor-fit / layer-evolution
-gate), but the rule holds even on a direct `TASKS.json` edit: a buildable task without facets gets
-no auto-tuning, and the loop **pre-flight WARNs** about facet-less buildable tasks. This same
-mandate is restated in **`.harness/CLAUDE.md`**, which loads whenever you work inside `.harness/`
-(i.e. exactly when authoring `TASKS.json`), so the rule surfaces at the authoring moment. (See
-[`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md) and `.harness/docs/designs/difficulty-autotune.md`.)
+production default under tests). Here "production state" is concrete and irreplaceable: `output/`
+(hand-reviewed decks, some already delivered to a collection the user studies daily) and
+`.anki-builder/` (the dedup library and thousands of paid TTS clips). A test that writes into either
+has already cost something. Tests use a tmpdir fixture; no test ever contacts AnkiConnect (port
+8765), ElevenLabs, or spawns `claude`.
 
 ## Standard workflow for a change
 
 1. `git checkout main && git pull` — **always** sync `main` first, so the new branch is based
-   on the latest work and never a stale local `main`. *(Under the harness the loop reads
-   `origin/main` and works in an isolation worktree — you don't switch branches yourself.)*
-2. Create a fresh branch off `main` (or, under the harness, work in the worktree/branch the
-   loop already checked out for you).
-3. Read `README.md` (current state) and the relevant `TASKS.json` entry.
-4. Make the change, keeping it atomic and within the task's `Scope:`.
-5. Update docs in the same commit: `README.md`, `TASKS.json`, `.harness/docs/LIMITATIONS.md` (any new
-   trade-off, golden rule 5), and design docs / `CLAUDE.md` if applicable.
-6. **Verify the Definition of Done** ([`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md) §5): your
-   project's format/lint/test/build all pass, integration/empirical checks where the task
-   asks, docs in lockstep.
-7. Commit on the branch and push. Don't merge by hand under the harness — the loop watches
-   CI and integrates on green. Working manually, merge per golden rule 2 once green.
+   on the latest work and never a stale local `main`.
+2. Create a fresh branch off `main`.
+3. Read `README.md` (current state), `SKILL.md` if the change is anywhere near the operator
+   procedure, and the LIMITATIONS entries the change touches.
+4. Make the change, keeping it atomic.
+5. Update docs in the same commit (golden rule 3), including any LIMITATIONS entry the change
+   creates or resolves.
+6. **Run `npm run ci`.** Format, lint, test and build all pass, plus whatever empirical check the
+   change calls for (`npm run validate:decks`, `npm run preflight`) — those two are deliberately
+   not in CI, because `/output` is gitignored and CI has no deck data.
+7. Commit on the branch, push, then merge per golden rule 2 once green.
 
-## Before you start a task — prerequisites & gates
+## Before you start — check the ground is real
 
-- **Every attempt is fully COLD — do NOT read prior worklogs or resume partial work.** The harness
-  measures whether a model can build the task *from the spec alone, in one cold pass* — that signal
-  drives the difficulty calibration and the audit gate (see [`.harness/docs/designs/audit-verification.md`](./.harness/docs/designs/audit-verification.md)).
-  So each attempt starts blank: build only from the task's `spec` (`## Do` / `## Done when`), `scope`,
-  and `verify`. **Never** read `worklog/TNNN.md` as guidance and **never** continue a previous
-  attempt's partial work — the worklog is append-only, **for humans/observability only**. If a task
-  can't be done in one cold pass, it is **mis-sized and should be split, not resumed.**
-- **Verify prerequisites are real.** Each `Depends on:` task must be `done` **and actually
-  merged into `main`**. Don't trust a status box — confirm the functions/types/modules you
-  need actually exist and build. If a prereq is half-done, stop and finish/flag it rather
-  than working around it.
-- **Respect the gate.** Tasks marked **🔒 needs-human** need a one-time human step — prepare
-  everything around it and record `failed:blocked`, never auto-complete it. (To require review of a
-  deliverable before dependents proceed, that's a paired `needs-human` review task — see HARNESS.md §9.)
-- **Record outcomes in the worklog.** On finishing or failing, append a dated entry: what you
-  did, checks run, and (on failure) `failed:soft` (transient/retryable) or `failed:blocked`
-  (needs-human / unmet prereq — do not retry).
+- **Verify what you are building on actually exists.** Don't trust a doc, a plan or a status line:
+  confirm the functions, files and behaviour you depend on are really there. This whole project's
+  signature failure is that an absent thing reads exactly like a working one — that applies to the
+  prose describing it too. If something you need is half-done, say so rather than working around it.
+- **Anything spending real money or touching production is a human step.** Delivering to the live
+  Anki collection, spending TTS credits at scale, deleting anything under `output/` or
+  `.anki-builder/`: prepare everything around it, then hand off. Never contact AnkiConnect
+  (port 8765) or ElevenLabs from a test or a check.
 
 ## Working alongside other agents
 
-Single-flight means the loop moves `main` only when *it* does, so you rarely race. But the
-machine is shared and `main` can still move under you (another agent, a manual merge). If your
-fast-forward to `main` is rejected, or `git merge origin/main` reports conflicts — **resolve
-them, don't abandon the task:**
+Larger pieces of work run as several agents in parallel, one per workstream, each in its own
+worktree on its own branch. `main` moves under you. If your fast-forward is rejected, or
+`git merge origin/main` reports conflicts — **resolve them, don't abandon the work:**
 
 1. **Resolve on your own branch** (`git fetch origin && git merge origin/main`), preserving
-   **both sides' intent** — union docs/status rows (keep every task's ✅), union dependency /
-   manifest lines, and *integrate* (never discard) code changes. Read the other commit's
-   `TASKS.json` spec + `worklog/` to understand what it was doing.
-2. **Re-run the full Definition of Done** on the merged result. A resolution that builds but
-   fails a test — yours *or* theirs — is not done. For lockfile conflicts, resolve the
-   manifest first, then regenerate a consistent lock.
-3. **Re-validate your own task still holds** on the merged code before you push.
-4. **Be discoverable.** Clear `TNNN: <summary>` commit message, and commit your
-   `worklog/TNNN.md` so the next agent can read your intent.
+   **both sides' intent** — union doc sections and manifest lines, and *integrate* (never discard)
+   code changes. Read the other commit's message and its diff to understand what it was doing.
+2. **Re-run `npm run ci`** on the merged result. A resolution that builds but fails a test — yours
+   *or* theirs — is not done. For lockfile conflicts, resolve the manifest first, then regenerate a
+   consistent lock.
+3. **Re-check your own change still holds** on the merged code before you push.
+4. **Be discoverable.** A clear commit message saying what changed and why, so the next agent
+   reading `git log` can tell.
 
 ## Tooling notes
 
@@ -197,6 +172,27 @@ them, don't abandon the task:**
   anything fails — so "push every commit" stays safe. Do **not** bypass it with `git push --no-verify`
   except in a genuine, explained emergency. If you ever add a new check to CI, add it to the `ci` script
   too so the hook stays a faithful mirror.
-- Tasks marked **🔒 needs-human** require the user (credentials, provisioning, anything
-  spending real money or touching production). Do not attempt the human-gated portion
-  yourself; prepare everything around it and hand off.
+- Two checks are deliberately NOT in CI, because `/output` is gitignored and CI has no deck data:
+  `npm run validate:decks` (every deck's JSON against the schemas) and `npm run preflight` (the
+  deterministic pre-review sweep). Run them by hand after touching deck data or the schemas.
+
+## The harness is retired
+
+This repo was built by an autonomous implementation harness (`.harness/`, a single sequential
+`loop.sh` over a `TASKS.json` backlog). **It is retired.** Its ledger stopped on 2026-07-13; the 535
+commits since then were all made by hand or by ordinary agent sessions, and its last remaining task
+was never run. Keeping it described as the way work happens here made this file describe a process
+nobody follows.
+
+What that means:
+
+- **Do not run `.harness/scripts/loop.sh` or `supervise.sh`**, and do not author new `TASKS.json`
+  tasks. `TASKS.json`, `tasks/` and `worklog/` are a historical record of how the project was built,
+  kept because they are exactly that; nothing reads them.
+- **`.harness/custom/docs/LIMITATIONS.md` + `.harness/tracking/IDEAS.jsonl` are the planning loop.**
+  Limitations are the live list of what is wrong or deferred and each carries a `**Status:**`; the
+  ideas inbox is where an unshaped thought goes (one JSON row: `{id, title, description,
+  capturedAt}`). Both live under `.harness/` for the same reason as the record: that is where they
+  already were, and moving them would break more references than it fixes.
+- Anything big enough to need sequencing gets a design doc in `docs/designs/` and, if it is being
+  built by several agents, one branch per workstream.

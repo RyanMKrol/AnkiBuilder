@@ -63,7 +63,7 @@ const PROMPT = (cards) =>
         id: c.id,
         english: c.english,
         target: c.target,
-        romaji: c.pronunciation || c.reading || "",
+        romaji: c.pronunciation || c.ttsText || "",
         category: c.category,
       })),
       null,

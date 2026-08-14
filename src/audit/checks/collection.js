@@ -117,7 +117,7 @@ export const spacingCheck = defineCheck({
     if (!isSpaceFreeLanguage(lang)) return { findings: [], summary: `${lang}: not space-free` };
     const findings = [];
     for (const item of shipped(unit)) {
-      for (const field of ["target", "reading"]) {
+      for (const field of ["target", "ttsText"]) {
         const value = item[field];
         if (typeof value !== "string") continue;
         if (normalizeDisplayText(value, lang) !== value) {

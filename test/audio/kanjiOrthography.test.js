@@ -9,7 +9,7 @@ test("buildKanjiOrthographyPrompt converts the reading (spoken form) and asks fo
   const p = buildKanjiOrthographyPrompt({
     id: "s",
     english: "10 to 6",
-    reading: "じゅうじからろくじ",
+    ttsText: "じゅうじからろくじ",
     target: "１０じから６じ",
   });
   assert.match(p, /じゅうじからろくじ/); // the reading is what we convert
@@ -22,7 +22,7 @@ test("buildKanjiOrthographyPrompt falls back to target when there's no reading",
 });
 
 test("generateCardKanji parses the kanji string (and strips a code fence)", async () => {
-  const item = { id: "s", english: "x", reading: "じゅうじ", target: "１０じ" };
+  const item = { id: "s", english: "x", ttsText: "じゅうじ", target: "１０じ" };
   assert.equal(await generateCardKanji(item, { runClaude: () => '{ "kanji": "十時" }' }), "十時");
   // An async runner (the server-side default) works the same.
   assert.equal(
@@ -34,7 +34,7 @@ test("generateCardKanji parses the kanji string (and strips a code fence)", asyn
 });
 
 test("generateCardKanji throws on invalid JSON or a missing kanji field", async () => {
-  const item = { id: "s", english: "x", reading: "a", target: "a" };
+  const item = { id: "s", english: "x", ttsText: "a", target: "a" };
   await assert.rejects(
     () => generateCardKanji(item, { runClaude: () => "not json" }),
     /not valid JSON/,

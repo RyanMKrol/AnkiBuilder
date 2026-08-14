@@ -16,12 +16,12 @@ its first review runs as one uninterrupted `prepare` stage, so a lesson is never
 offered for review. The dashboard surfaces each lesson at its gate and is where you exclude items, fix
 fields, and pick audio; the CLI advances it.
 
-| Stage        | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **assemble** | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. Writes the English corpus, then chains straight into `prepare`.                                                                                                                                                                                                                                                                                              |
-| **prepare**  | Everything between assembling and the first review, as one stage: translate each term and give it a pronunciation guide (via Claude); for an EPUB or dictated lesson, mine the source's fill-in-the-blank drills into extra practice cards and semantically de-dup them; then write each card's cross-lesson notes. Runs under one build claim so the card set is final — and complete — before anyone reviews it. The **Corpus** review is the first gate. |
-| **audio**    | Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `reading` (a phonetic spelling in the target script) that TTS speaks instead of `target`. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front.      |
-| **deck**     | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                      |
+| Stage        | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **assemble** | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. Writes the English corpus, then chains straight into `prepare`.                                                                                                                                                                                                                                                                                                                              |
+| **prepare**  | Everything between assembling and the first review, as one stage: translate each term and give it a pronunciation guide (via Claude); for an EPUB or dictated lesson, mine the source's fill-in-the-blank drills into extra practice cards and semantically de-dup them; then write each card's cross-lesson notes. Runs under one build claim so the card set is final — and complete — before anyone reviews it. The **Corpus** review is the first gate.                                 |
+| **audio**    | Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `ttsText` (a phonetic spelling in the target script) that TTS speaks instead of `target`; it is never rendered on a card face. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front. |
+| **deck**     | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 For books and courses, each chapter/lesson goes through this individually and then gets merged
 into one deck with a sub-deck per chapter/lesson.
@@ -56,6 +56,17 @@ anki-builder deck --run "$RUN" --name "Travel Spanish"
 # to line up with a lesson — a lesson can span several files, and dividers/quizzes/front
 # matter are their own files. First list the book's lessons, then pick one:
 anki-builder assemble --output-root output --epub mybook.epub --list-lessons --lang ja
+# --list-lessons also prints a shape report: what the book's own table of contents does and
+# does not cover, and every silent degradation the parser is about to accept. For a new book
+# it's worth reading before anything is built. The same report standalone, with per-file
+# detail (read-only, no LLM or TTS spend, nothing registered):
+node scripts/epub-probe.mjs mybook.epub
+# What a book has cached and when it was generated — a parser or prompt fix is inert for a
+# book whose artifacts already exist. --clear takes the free chapter cache by default; the
+# paid whole-book passes must be named; corpora/ is never touched. <hash> is the directory
+# name under .anki-builder/epubs/.
+anki-builder epub cache <hash>
+anki-builder epub cache <hash> --clear
 anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
 # --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
 # right span of spine files (however many), and extracts them all as one unit.
@@ -281,10 +292,12 @@ operator has to override on the day it lands is worse than no gate.
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
 - [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)
-- [x] Spoken-form `reading` field — numbers stay as digits in `target` (natural display, e.g. `2,000えん`)
-      while a spelled-out `reading` (`にせんえん`) drives BOTH the romaji pronunciation and the audio,
-      since digits break the romanizer and TTS
-- [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `reading` when set; default take only, other variants generated on demand in the dashboard; per-language TTS text normalization — Japanese strips editorial spaces so they aren't voiced as pauses)
+- [x] Spoken-form `ttsText` field (renamed from `reading`, 2026-08) — the text TTS speaks instead of the
+      target whenever the written target would be misread, never rendered on any card face. Numbers stay
+      as digits in `target` (natural display, e.g. `2,000えん`) while a spelled-out `ttsText`
+      (`にせんえん`) drives BOTH the romaji pronunciation and the audio, since digits break the romanizer
+      and TTS
+- [x] Audio stage (ElevenLabs `eleven_v3`, cache segmented by model; speaks the per-card `ttsText` when set; default take only, other variants generated on demand in the dashboard; per-language TTS text normalization — Japanese strips editorial spaces so they aren't voiced as pauses)
 - [x] Every clip keeps its untouched original beside the auto-trimmed take (`<hash>.orig.mp3` next to
       `<hash>.mp3`, and the same pair for Generate previews and Replace uploads). The trailing-silence
       trim used to run inside the ElevenLabs fetch and throw the raw take away, which made its mistakes
@@ -304,7 +317,7 @@ operator has to override on the day it lands is worse than no gate.
       `ANKI_BUILDER_AUDIO_CLEANUP` sets the default or turns it off
 - [x] `.apkg` deck builder (two-template model; per-language `AnkiBuilder <lang>` note type that
       auto-embeds the language's font, e.g. Japanese → Klee One). The note type carries night-mode
-      CSS, HTML-escapes text fields, stores the card's spoken `reading` as a real field (not yet
+      CSS, HTML-escapes text fields, stores the card's `ttsText` in a note field named `Reading` (deliberately never
       rendered), and splits the front cue in two: `Scene` (the situation, e.g. "answering whose bag
       this is", shown on the front of BOTH directions and never containing the answer) and `Hint` (an
       English-side disambiguator like "the object you read", shown on the Production front only; on

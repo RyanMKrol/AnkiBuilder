@@ -133,7 +133,7 @@
       "note": null,
       "reviewNote": null,
       "target": "かいぎしつにいすが６つあります",
-      "reading": "かいぎしつにいすがむっつあります"
+      "ttsText": "かいぎしつにいすがむっつあります"
     },
     {
       "id": "ks2-guests",
@@ -144,7 +144,7 @@
       "note": null,
       "reviewNote": null,
       "target": "かいぎしつにおきゃくさんが４にんいます",
-      "reading": "かいぎしつにおきゃくさんがよにんいます"
+      "ttsText": "かいぎしつにおきゃくさんがよにんいます"
     },
     {
       "id": "ks3-taxi-stand",
@@ -165,7 +165,7 @@
       "note": null,
       "reviewNote": null,
       "target": "スミスさんは２かいにいます",
-      "reading": "スミスさんはにかいにいます"
+      "ttsText": "スミスさんはにかいにいます"
     },
     {
       "id": "ks5-house-near",
@@ -186,7 +186,7 @@
       "note": "Contrast with \"The restaurant is on the first floor,\" which uses は because the restaurant is already the established topic (see GRAMMAR 2).",
       "reviewNote": null,
       "target": "1かいにレストランがあります",
-      "reading": "いっかいにレストランがあります"
+      "ttsText": "いっかいにレストランがあります"
     },
     {
       "id": "grammar2-2-restaurant-topic",
@@ -197,7 +197,7 @@
       "note": "The restaurant's existence is already known, so the topic marker は replaces が; contrast with the が あります version, which introduces the restaurant as new information. Compare also the shorter contracted version below using です.",
       "reviewNote": null,
       "target": "レストランは1かいにあります",
-      "reading": "レストランはいっかいにあります"
+      "ttsText": "レストランはいっかいにあります"
     },
     {
       "id": "grammar2-3-restaurant-desu",
@@ -208,7 +208,7 @@
       "note": "A shortened version that replaces に あります with です once the restaurant's existence and location are already established; this contraction is not possible for the が あります existence statement (see GRAMMAR 2).",
       "reviewNote": null,
       "target": "レストランは1かいです",
-      "reading": "レストランはいっかいです"
+      "ttsText": "レストランはいっかいです"
     },
     {
       "id": "basu-noriba",
@@ -443,7 +443,7 @@
       "note": null,
       "reviewNote": null,
       "target": "２つあります",
-      "reading": "ふたつあります"
+      "ttsText": "ふたつあります"
     },
     {
       "id": "fork",
@@ -576,7 +576,7 @@
       "note": null,
       "reviewNote": null,
       "target": "ひきだしのなかにペンが5ほんあります",
-      "reading": "ひきだしのなかにペンがごほんあります"
+      "ttsText": "ひきだしのなかにペンがごほんあります"
     },
     {
       "id": "goro",
@@ -597,7 +597,7 @@
       "note": null,
       "reviewNote": "Example demonstrating 〜ごろ — the chapter's own use appears only inside the SPEAKING PRACTICE dialogue script, which is off-limits for card extraction.",
       "target": "かいぎは3じごろです",
-      "reading": "かいぎはさんじごろです",
+      "ttsText": "かいぎはさんじごろです",
       "aiSuggested": true
     }
   ]

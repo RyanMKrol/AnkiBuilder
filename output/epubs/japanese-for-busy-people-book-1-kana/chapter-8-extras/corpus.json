@@ -102,7 +102,7 @@
       "english": "Please make it for 7:00 on Saturday.",
       "category": "Time",
       "target": "どようびの７じにおねがいします",
-      "reading": "どようびのしちじにおねがいします",
+      "ttsText": "どようびのしちじにおねがいします",
       "note": "の (no) joins the day to the time — the same construction as Lesson 3's あしたのよじから (ashita no yo-ji kara, 'from 4:00 tomorrow'). に (ni) then marks the whole thing as the appointed time.",
       "reviewNote": "From SPEAKING PRACTICE 1, p. 80. Combines Lesson 7's どようびに, Lesson 3's clock times and Lesson 3's day-の-time joining into one real utterance, and nothing in the deck does that. Follows sp-yoyaku-o-onegaishimasu so the reservation call stays in order.",
       "aiSuggested": true,

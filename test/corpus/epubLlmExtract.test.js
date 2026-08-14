@@ -145,7 +145,7 @@ test("extractChapterViaLlm() throws when uncertain is present but not a boolean"
   }, /"uncertain" must be a boolean/);
 });
 
-test("extractChapterViaLlm() accepts an optional reading, throws when it is not a string", () => {
+test("extractChapterViaLlm() accepts an optional ttsText, throws when it is not a string", () => {
   const items = extractChapterViaLlm({
     ...BASE_ARGS,
     runClaude: () =>
@@ -155,11 +155,11 @@ test("extractChapterViaLlm() accepts an optional reading, throws when it is not 
           english: "2,000 yen",
           target: "2,000えん",
           category: "Money",
-          reading: "にせんえん",
+          ttsText: "にせんえん",
         },
       ]),
   });
-  assert.strictEqual(items[0].reading, "にせんえん");
+  assert.strictEqual(items[0].ttsText, "にせんえん");
 
   assert.throws(() => {
     extractChapterViaLlm({
@@ -171,11 +171,11 @@ test("extractChapterViaLlm() accepts an optional reading, throws when it is not 
             english: "Hello",
             target: "こんにちは",
             category: "Greetings",
-            reading: 42,
+            ttsText: 42,
           },
         ]),
     });
-  }, /"reading" must be a string/);
+  }, /"ttsText" must be a string/);
 });
 
 test("extractChapterViaLlm() passes the rendered prompt (with resolved path) to runClaude", () => {

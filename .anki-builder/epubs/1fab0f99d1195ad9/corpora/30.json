@@ -80,7 +80,7 @@
       "category": "Time",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (じかん as an hours counter is formally taught as part of the time-period counter set later)",
       "target": "８じかん",
-      "reading": "はちじかん",
+      "ttsText": "はちじかん",
       "uncertain": true
     },
     {
@@ -139,7 +139,7 @@
       "category": "Time",
       "reviewNote": "Worked example from NOTES 1 illustrating 〜ぐらい (about/approximately)",
       "target": "5ふんぐらい",
-      "reading": "ごふんぐらい"
+      "ttsText": "ごふんぐらい"
     },
     {
       "id": "sen-en-gurai",
@@ -147,7 +147,7 @@
       "category": "Money",
       "reviewNote": "Worked example from NOTES 1 illustrating 〜ぐらい (about/approximately)",
       "target": "1,000えんぐらい",
-      "reading": "せんえんぐらい"
+      "ttsText": "せんえんぐらい"
     },
     {
       "id": "smith-depaato-kaimasen",

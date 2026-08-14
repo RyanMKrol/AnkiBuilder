@@ -12,7 +12,7 @@ touches. Implementation detail beyond this lives in [docs/PIPELINE.md](../../../
 - Requires `ELEVENLABS_API_KEY` in your environment (or `.env`).
 - Refuses to run until the lesson's corpus review is signed off (`cards.meta.reviewed`), so TTS
   credits are never spent on unreviewed content. It also refuses while any card would send a raw
-  numeral to the TTS voice (a numeral needs a spelled-out `reading`; see
+  numeral to the TTS voice (a numeral needs a spelled-out `ttsText`; see
   [card-authoring-rules.md](card-authoring-rules.md)).
 - Reads `cards.json`, fetches one default clip per card from ElevenLabs, trims and cleans it, copies
   the files into the run directory's `audio/`, and writes the `audio` references back to `cards.json`.
@@ -26,7 +26,7 @@ same cost).
 
 **Text normalization:** the spoken text is normalized per language before sending
 (`src/audio/ttsText.js`). Japanese strips editorial spaces so ElevenLabs doesn't voice them as
-pauses; `target`/`reading` keep their spaces for display, only the audio drops them.
+pauses; `target`/`ttsText` keep their spaces for display, only the audio drops them.
 
 ## The Japanese end marker: `。ででで`
 
@@ -78,7 +78,7 @@ controls. A lesson edits on its own; you don't need its siblings finished.
   (`<cardId>-user-<hash>`), trimmed like any generated clip, and set as the card's `audio`.
 - **Generate**: synthesize the card's variant takes FRESH via ElevenLabs and audition them in a
   modal, then **Use this** to pick one. The variants (`src/audio/variants.js`) are the Cartesian
-  product of two with/without axes, applied to the spoken text only (the displayed `target`/`reading`
+  product of two with/without axes, applied to the spoken text only (the displayed `target`/`ttsText`
   keeps its punctuation):
   - **Comma**: with vs without a mid-sentence `、` (only for a card containing one, e.g. じゃ、また).
   - **Brackets**: full vs short spoken form for a card with an optional bracketed part
@@ -103,8 +103,9 @@ controls. A lesson edits on its own; you don't need its siblings finished.
 
 Picking a take writes the card's `audio`. There is no per-stage HTML artifact: the dashboard IS the
 audio-review surface, and the currently selected clip is simply the one playing inline on the card.
-These edit controls only appear while the lesson is in review (not done); a done lesson opens as a
-read-only view whose only action is **Reopen** (see SKILL.md Step 4 for the gate flow).
+These edit controls stay available after **Mark done** — a done lesson opens straight into the same
+editable review, since done gates what ships rather than what you can touch (see SKILL.md Step 4 for
+the gate flow, and for the one thing that does need a script: un-shipping the unit).
 
 ## Voice choice
 
@@ -149,12 +150,12 @@ auditioned and picked in the dashboard, a Replace upload, a manual trim) is not 
 at all: no fetch, no overwrite (`isStageOwnedCard` in `src/audio/index.js`). Ownership is judged on
 the card's stored ORIGINAL (`<hash>.orig.mp3` means the stage made it) plus the absence of a manual
 cut, and a card with no shipping clip at all is regenerated whatever stale fields it carries. So
-adding a card, editing a `reading`, or re-running after a cache drop never clobbers hand-picked
+adding a card, editing a `ttsText`, or re-running after a cache drop never clobbers hand-picked
 takes. The deck embeds whatever is in each card's `audio`; that field is the source of truth for its
 final take.
 
 One related subtlety the stage handles for you: clip names are content-addressed, so editing a
-`reading` after audio has run leaves the card pointing at a stale clip that still exists on disk. The
+`ttsText` after audio has run leaves the card pointing at a stale clip that still exists on disk. The
 stage compares the stored clip against the card's CURRENT text rather than only checking that a file
 exists, so the edited card gets fresh audio on the next run instead of silently keeping the old
 recording.

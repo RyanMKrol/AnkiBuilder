@@ -98,7 +98,7 @@
       "category": "Work & Occupations",
       "reviewNote": null,
       "target": "かいぎしつにいすが６つあります",
-      "reading": "かいぎしつにいすがむっつあります"
+      "ttsText": "かいぎしつにいすがむっつあります"
     },
     {
       "id": "ks2-guests",
@@ -106,7 +106,7 @@
       "category": "Work & Occupations",
       "reviewNote": null,
       "target": "かいぎしつにおきゃくさんが４にんいます",
-      "reading": "かいぎしつにおきゃくさんがよにんいます"
+      "ttsText": "かいぎしつにおきゃくさんがよにんいます"
     },
     {
       "id": "ks3-taxi-stand",
@@ -121,7 +121,7 @@
       "category": "Work & Occupations",
       "reviewNote": null,
       "target": "スミスさんは２かいにいます",
-      "reading": "スミスさんはにかいにいます"
+      "ttsText": "スミスさんはにかいにいます"
     },
     {
       "id": "ks5-house-near",
@@ -136,7 +136,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "1かいにレストランがあります",
-      "reading": "いっかいにレストランがあります"
+      "ttsText": "いっかいにレストランがあります"
     },
     {
       "id": "grammar2-2-restaurant-topic",
@@ -144,7 +144,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "レストランは1かいにあります",
-      "reading": "レストランはいっかいにあります"
+      "ttsText": "レストランはいっかいにあります"
     },
     {
       "id": "grammar2-3-restaurant-desu",
@@ -152,7 +152,7 @@
       "category": "Directions",
       "reviewNote": null,
       "target": "レストランは1かいです",
-      "reading": "レストランはいっかいです"
+      "ttsText": "レストランはいっかいです"
     },
     {
       "id": "basu-noriba",
@@ -316,7 +316,7 @@
       "category": "Food",
       "reviewNote": null,
       "target": "２つあります",
-      "reading": "ふたつあります"
+      "ttsText": "ふたつあります"
     },
     {
       "id": "fork",
@@ -410,7 +410,7 @@
       "category": "Home & Household",
       "reviewNote": null,
       "target": "ひきだしのなかにペンが5ほんあります",
-      "reading": "ひきだしのなかにペンがごほんあります"
+      "ttsText": "ひきだしのなかにペンがごほんあります"
     },
     {
       "id": "goro",
@@ -425,7 +425,7 @@
       "category": "Time",
       "reviewNote": "Example demonstrating 〜ごろ — the chapter's own use appears only inside the SPEAKING PRACTICE dialogue script, which is off-limits for card extraction.",
       "target": "かいぎは3じごろです",
-      "reading": "かいぎはさんじごろです",
+      "ttsText": "かいぎはさんじごろです",
       "aiSuggested": true
     },
     {
@@ -434,7 +434,7 @@
       "category": "Work & Occupations",
       "reviewNote": null,
       "target": "つくえのうえにめいしが6まいあります",
-      "reading": "つくえのうえにめいしがろくまいあります",
+      "ttsText": "つくえのうえにめいしがろくまいあります",
       "aiSuggested": true
     },
     {
@@ -443,7 +443,7 @@
       "category": "School & Education",
       "reviewNote": null,
       "target": "ひきだしのなかにクリップが3つあります",
-      "reading": "ひきだしのなかにクリップがみっつあります",
+      "ttsText": "ひきだしのなかにクリップがみっつあります",
       "aiSuggested": true
     },
     {
@@ -452,7 +452,7 @@
       "category": "Family & People",
       "reviewNote": null,
       "target": "こうえんにおとこのひとが3にんいます",
-      "reading": "こうえんにおとこのひとがさんにんいます",
+      "ttsText": "こうえんにおとこのひとがさんにんいます",
       "aiSuggested": true
     },
     {
@@ -469,7 +469,7 @@
       "category": "Home & Household",
       "reviewNote": null,
       "target": "10ほんあります",
-      "reading": "じゅっぽんあります",
+      "ttsText": "じゅっぽんあります",
       "aiSuggested": true
     },
     {
@@ -510,7 +510,7 @@
       "category": "Travel & Tourism",
       "reviewNote": null,
       "target": "いいえ、ちょっととおいです。バスで20ぷんぐらいです",
-      "reading": "いいえ、ちょっととおいです。バスでにじゅっぷんぐらいです",
+      "ttsText": "いいえ、ちょっととおいです。バスでにじゅっぷんぐらいです",
       "aiSuggested": true
     }
   ]

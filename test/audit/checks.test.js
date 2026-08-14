@@ -392,3 +392,108 @@ test("vocab coverage: no cached chapter file is a SKIP, never a pass", () => {
     empty.cleanup();
   }
 });
+
+test("romaji style: a card breaking the pinned spec is named with the rule it breaks", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("clean", { pronunciation: "konnichiwa" }),
+        card("period", { pronunciation: "konnichiwa." }),
+        card("labial", { pronunciation: "kombini" }),
+      ],
+    });
+    const found = messages(runOnly(root, "romaji-style"));
+    assert.equal(found.length, 2);
+    assert.ok(found.some((m) => /no-terminal-punctuation/.test(m)));
+    assert.ok(found.some((m) => /n-before-labial/.test(m)));
+  } finally {
+    cleanup();
+  }
+});
+
+test("romaji style: an EXCLUDED card is not linted, and a non-ja deck is not linted at all", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("dropped", { pronunciation: "kombini.", excluded: true })],
+    });
+    writeUnit(root, "epubs/spanish/chapter-1", {
+      meta: { targetLanguage: "es" },
+      items: [card("hola", { pronunciation: "hola." })],
+    });
+    assert.deepEqual(messages(runOnly(root, "romaji-style")), []);
+  } finally {
+    cleanup();
+  }
+});
+
+// The finding key is per-card AND per-rule: accepting one deviation must not blanket-accept the next.
+test("romaji style: one card breaking two rules produces two separately-keyed findings", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("both", { pronunciation: "kombini desu." })],
+    });
+    const keys = runOnly(root, "romaji-style").flatMap((r) => r.findings.map((f) => f.key));
+    assert.deepEqual(keys.sort(), [
+      "chapter-1/both::n-before-labial",
+      "chapter-1/both::no-terminal-punctuation",
+    ]);
+  } finally {
+    cleanup();
+  }
+});
+
+test("inline romaji: a note's parenthetical is checked against this deck's own pronunciation", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("ohayou", { target: "おはよう", pronunciation: "ohayō" })],
+    });
+    writeUnit(root, "epubs/book/chapter-2", {
+      items: [
+        card("agree", { note: "compare おはよう (ohayou), the casual one" }),
+        card("fine", { note: "compare おはよう (ohayō), the casual one" }),
+      ],
+    });
+    const found = messages(runOnly(root, "inline-romaji"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /this deck's own card says "ohayō"/);
+  } finally {
+    cleanup();
+  }
+});
+
+// Case, spaces and hyphens are the romaji-style check's business, not this one's — otherwise every
+// honorific in the deck would be reported twice.
+test("inline romaji: a spelling differing only in case or spacing is not a disagreement", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("tanaka", { target: "たなかさん", pronunciation: "Tanaka-san" })],
+    });
+    writeUnit(root, "epubs/book/chapter-2", {
+      items: [card("ref", { note: "as in たなかさん (tanaka san)" })],
+    });
+    assert.deepEqual(messages(runOnly(root, "inline-romaji")), []);
+  } finally {
+    cleanup();
+  }
+});
+
+// A quoted string with no card of its own has no ground truth here. Reporting that count is the
+// difference between "checked and clean" and "could not check".
+test("inline romaji: an unresolvable quote is counted as unchecked, not as a pass", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("only", { note: "the ～ます (masu) ending" })],
+    });
+    const [result] = runOnly(root, "inline-romaji");
+    assert.equal(result.findings.length, 0);
+    assert.ok(result.notes.some((n) => /no card for/.test(n)));
+  } finally {
+    cleanup();
+  }
+});

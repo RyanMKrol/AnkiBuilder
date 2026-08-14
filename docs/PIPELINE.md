@@ -505,6 +505,18 @@ prompt runs when and which language fragments each takes, and
 [`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) covers the dependency
 trade-offs this introduces.
 
+**One pinned romanization spec, three prompts, one lint.** `src/translate/romajiStyle.js` holds the
+target language's romanization style as `{ id, rule, detect }` triples: `rule` is the prose injected
+verbatim into every prompt that produces a `pronunciation` (the romanization-correction pass, the
+number-reading pass, the fill-in-the-blank pass, via `languageRules.js`'s `romanizationStyle`), and
+`detect` is what `preflight`'s `romaji-style` check runs over the finished cards. Prose and detector
+live in the same object so a rule cannot be linted without being taught, or taught without being
+checked. A rule that no regex can decide (proper-noun casing; a missing ん apostrophe) carries
+`detect: null` and the check names it as taught-but-not-linted rather than letting it read as
+checked. Before this constant existed, four passes each described the style in their own words and
+the output drifted per batch — a trailing ASCII period on 253 cards, `-san` hyphenated in one unit
+and spaced in the next, `kombini` beside `konbini`.
+
 **Optional simplified target script (`--simple-script`).** A language may define a beginner/learner
 script constraint in the language plug-in `src/translate/targetScript.js` (`getSimpleScriptRule`, keyed
 by ISO code — Japanese → "kana only, no kanji"). When `translate --simple-script` is passed,

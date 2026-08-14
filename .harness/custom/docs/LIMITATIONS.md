@@ -2392,3 +2392,55 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** check the chapter's images in beside it (they are already in the book's cache
   under `.anki-builder/epubs/<hash>/`), or have the fixture point the extractor at the cached chapter
   path instead of the copy under `test/fixtures/`.
+
+<!-- WS4 -->
+
+## The pinned romanization spec is stated for Japanese only, and lands red on 412 live cards
+
+- **What:** `src/translate/romajiStyle.js` pins one romanization style per language, and only `ja`
+  has one. A language with no entry gets no rules in its prompts and no lint — `lintRomaji` returns
+  `[]`, `romanizationStyleRules` returns `[]`, and the romanization prompt's style bullet renders
+  empty. The other library-configured languages (zh, ko, ru, he, hi, ar) romanize with nothing pinned.
+- **Why:** the deck being built is Japanese, and inventing a pinyin or Hangul-romanization spec
+  nobody has looked at would be worse than an honest gap: a wrong pinned rule is injected into every
+  prompt and linted against every card.
+- **Impact:** the drift the spec exists to stop (per-batch style flips) is still possible in any
+  non-Japanese deck, silently. Adding a language is one entry in `ROMAJI_STYLES` and everything else
+  picks it up.
+- **Status:** open
+- **When to revisit:** the first non-Japanese deck that gets past a review gate.
+- **Verified by:** `node -e "import('./src/translate/romajiStyle.js').then(m=>console.log(Object.keys(m.ROMAJI_STYLES)))"`
+
+## The romaji lint is INFO-tier and will stay non-zero for a long time
+
+- **What:** `romaji-style` reports 412 of 2,150 shipped cards on the day it lands (trailing ASCII
+  punctuation ×253, a spaced honorific ×179, a fused counter ×6, a missing macron ×6, `mb`/`mp` ×5,
+  `wo` ×1). `inline-romaji` reports a further 135 notes whose parenthetical spelling disagrees with
+  the same collection's own audited `pronunciation`.
+- **Why:** every hit is real, but the FIX is a paid pass over the card, not a rewrite rule — `dou` →
+  `dō` is safe right up until the word is 同. Promoting either check to FAIL would block every review
+  on 547 pre-existing findings, which is exactly how a gate becomes an override habit. ACK was
+  rejected too: acknowledging 547 instances one by one is a worse use of the operator than reading a
+  count.
+- **Impact:** a permanently non-zero INFO line, which is the failure mode the tier system was built
+  to name. It is tolerable only because the count is per-unit and drops as batches get re-run; if it
+  is still 400 in six months, that is a signal the fix pass never happened.
+- **Status:** open
+- **When to revisit:** after the first re-run of the romanization pass over a delivered unit — if the
+  count for that unit does not fall to zero, the injected spec is not reaching the model.
+- **Verified by:** `node scripts/preflight.mjs --all --only romaji-style,inline-romaji --verbose`
+
+## Two pinned romanization rules are taught but not linted
+
+- **What:** `proper-noun-casing` and `n-apostrophe` carry `detect: null`. Nothing checks them.
+- **Why:** neither is decidable from the romanization alone. A capital in first position is right for
+  `Tanaka-san` and wrong for `Hai, wakarimashita`, and a missing ん apostrophe leaves the same letters
+  behind whether the kana was ん+や or に+ょ. A detector for either would report noise forever, and
+  this repo's signature failure is a check that cannot see something reading exactly like one that
+  looked and found nothing.
+- **Impact:** the deck's proper-noun casing is genuinely inconsistent right now (`Sumisu-san` and
+  `sumisu-san` both ship) and nothing will catch it. The check names both rules in its report rather
+  than letting them read as checked.
+- **Status:** open
+- **When to revisit:** if a proper-noun list for the collection ever exists (the extraction pass
+  could emit one), `proper-noun-casing` becomes checkable against it.

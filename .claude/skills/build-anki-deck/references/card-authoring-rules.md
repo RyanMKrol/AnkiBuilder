@@ -113,6 +113,38 @@ shows up as wrong romaji there — if a number's pronunciation looks off, tell m
 `ttsText`. (The `audio` stage refuses to run while any card would send a raw numeral to the TTS
 voice, so a missing `ttsText` surfaces before credits are spent.)
 
+## The romanization style is pinned, and linted
+
+**`pronunciation` follows ONE pinned style, and hand-authored cards follow it too.** The field renders
+on the back of both card directions, so a deck that spells `konbini` in one lesson and `kombini` in
+the next is teaching two spellings of one word. The style below is the single source: it is injected
+verbatim into every prompt that produces a romanization (the romanization-correction pass, the
+number-reading pass and the fill-in-the-blank pass), and `npm run preflight` lints the finished cards
+against it. Anything you write by hand — an extras card, a fixed-up `pronunciation` in the dashboard —
+is held to the same list.
+
+The rules live in `src/translate/romajiStyle.js` (`JA_ROMAJI_STYLE`) and are copied here so you can
+read them without opening the code. A test fails if the two ever disagree, so this copy cannot drift:
+
+- Long vowels take a MACRON, never a doubled vowel and never a trailing `u`: `tōkyō`, `ginkō`, `yūmei`, `tanjōbi`, `dō`, `rāmen`, `ōsutoraria`. Never `ginkou`, `yuumei`, `dou`, `raamen`.
+- Two long vowels keep their doubled spelling: えい stays `ei` (`sensei`, `kirei`, `eiga`) and いい stays `ii` (`ōkii`, `oishii`, `atarashii`). A vowel that begins a new morpheme is not a long vowel either: みずうみ is `mizuumi`, not `mizūmi`.
+- ん is always `n`, never `m`, including before b/p/m: `konbini`, `konbanwa`, `sanpo`, `tenpura`, `shinbun`. (Traditional Hepburn writes `m` there; this deck does not.)
+- ん before a vowel or `y` takes an apostrophe, so the syllable break is unambiguous: `sen'en`, `kin'yōbi`, `pan'ya`, `tan'i`. Without it `kinyōbi` reads as きにょうび.
+- Particles are written as they are SPOKEN: を is `o`, topic は is `wa`, direction へ is `e`. `hon o yomimasu`, `watashi wa`, `gakkō e ikimasu` — never `wo`, `ha` or `he`.
+- The small っ doubles the following consonant (`kitte`, `gakkō`, `zasshi`), and becomes `tch` before ち (`matcha`). Never spell it as a literal `tsu`. The doubling survives the counter hyphen below: ろっかい is `rok-kai`.
+- A romanization NEVER ends in `.`, `!` or `?`. 。／！／？ are marks of the written target, not sounds the learner says: `ohayō gozaimasu`, not `ohayō gozaimasu.` A 、 inside the sentence stays a comma, and a target running two sentences together separates them with a period and a space.
+- Only proper nouns are capitalised — personal names, place names, company names: `Tanaka-san`, `Tōkyō`, `Nihon`, `Nozomi Depāto`. Everything else is lowercase, INCLUDING the first word of the romanization, because a romanization is a pronunciation guide and not a sentence.
+- An honorific or title suffix attaches to the name with a HYPHEN, never a space and never fused: `Tanaka-san`, `Sumisu-sensei`, `Yamada-sama`, `Kumano-jinja`. `tanaka san` reads as two words.
+- A number and its counter are joined by a HYPHEN: `jūni-nichi`, `shi-gatsu`, `go-ji`, `nijūgo-nen`, `ip-pon`, `san-gai`. Never fuse them into one token — `jūninichi` reads as if it contains an "ichi" that is not there. An ordinary word that merely looks like a counter keeps its spelling: にほん "Japan" is `nihon`, not `ni-hon`. The NATIVE ひとつ series is one word and never hyphenates: `hitotsu`, `futatsu`, `mittsu`, `yottsu`, `muttsu` — not `mit-tsu`.
+
+Two of these are taught but not linted, because a regex cannot decide them: proper-noun casing (a
+capital in first position is right for `Tanaka-san` and wrong for `Hai, wakarimashita`) and the
+missing ん apostrophe (the same letters whether the kana was ん+や or に+ょ). Those two are on you.
+
+The lint is INFO-tier and reports, it never rewrites. Fixing a romanization correctly is the
+romanization pass's job: `dou` → `dō` is safe right up until the word is 同 and the fix has to know
+which.
+
 ## Provenance flags: `aiSuggested` and `uncertain`
 
 **Provenance flags are core, persisted, and shown at EVERY review stage.** Two boolean fields track

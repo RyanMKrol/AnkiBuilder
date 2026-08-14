@@ -64,7 +64,7 @@ const TEMPLATES = {
       "EARLIER_VOCAB",
       "TARGET_COUNT",
       "COUNTER_EXAMPLES",
-      "COUNTER_HYPHEN_RULE",
+      "ROMANIZATION_STYLE_RULES",
       "CARD_FACES",
     ],
     outputContract: /"cards"/,

@@ -6,6 +6,7 @@ import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { runFillInBlankClaude as defaultRunClaude } from "../corpus/epubLlmRunClaude.js";
 import { getLanguagePromptRules } from "../translate/languageRules.js";
+import { formatStyleRules } from "../translate/romajiStyle.js";
 import { renderCardFacesBlock } from "../deck/cardFaces.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -70,8 +71,15 @@ export function renderFillInBlankPrompt({
     EARLIER_VOCAB: earlierVocab || NO_EARLIER_VOCAB,
     TARGET_COUNT: String(targetCount),
     COUNTER_EXAMPLES: rules.counterExamples ?? "",
-    COUNTER_HYPHEN_RULE:
-      rules.counterHyphenRule ?? "Follow the language's standard romanization conventions.",
+    // The same pinned spec the romanization and number-reading passes get, and the same one
+    // scripts/preflight.mjs lints the result against (src/translate/romajiStyle.js). A language with
+    // no pinned style falls back to one honest sentence rather than to silence.
+    ROMANIZATION_STYLE_RULES: formatStyleRules(
+      rules.romanizationStyle?.length
+        ? rules.romanizationStyle
+        : ["Follow the language's standard romanization conventions."],
+      { indent: "  " },
+    ),
   });
 }
 

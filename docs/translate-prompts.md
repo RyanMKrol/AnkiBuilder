@@ -41,9 +41,23 @@ prompt with a missing input.
 - **1a only**: `{{TARGET_SCRIPT_RULE}}` and `{{TARGET_SCRIPT_REMINDER}}` — the `--simple-script`
   constraint from `src/translate/targetScript.js`, as a sub-bullet and as an `## Important` line.
   Both empty when the language has no constraint.
-- **3 only**: `{{ROMANIZATION_STYLE_RULES}}` — the per-language romanization style
-  (`languageRules.js`, `romanizationStyle`). No language sets it yet; it is the hook a single pinned
-  Hepburn spec plugs into, so that every prompt that romanizes can be fed from one string.
+- **3 only**: `{{ROMANIZATION_STYLE_RULES}}` — the **pinned romanization spec** for the target
+  language, from `src/translate/romajiStyle.js` (`ROMAJI_STYLES`, surfaced through
+  `languageRules.js`'s `romanizationStyle`). For Japanese that is modified Hepburn as this deck
+  writes it: macrons for long vowels, `ei`/`ii` kept doubled, ん always `n` (so `konbini`, never
+  `kombini`), the ん apostrophe, particles spelled as spoken, the sokuon, no terminal ASCII
+  punctuation, proper-noun-only capitals, hyphenated honorifics, hyphenated counters.
+
+  The same array is injected into the number-reading prompt and the fill-in-the-blank prompt, and
+  `scripts/preflight.mjs`'s `romaji-style` check lints the finished cards against the very same
+  rules — one constant, three prompts, one lint. Before that constant existed each pass described
+  the style in its own words and the result drifted per batch: a trailing period on 253 cards
+  (100% of chapter-2/3/4-extras, 0% of chapters 6-13), `-san` hyphenated 32/32 in one unit and
+  spaced 40/40 in the next, `kombini` beside `konbini`.
+
+  Two rules in the spec are marked as taught-but-not-linted (proper-noun casing and a missing ん
+  apostrophe), because neither is decidable from the romanization alone. The check reports them by
+  name rather than letting them read as checked.
 
 ## Design notes
 
@@ -68,3 +82,4 @@ The library-first design (§1a/§3) resolves the underlying ambiguity _internall
 - `src/translate/romanizationLibraries.js`: the per-language library config (`ROMANIZATION_LIBRARIES`, `getRomanizationLibrary`)
 - `src/translate/romanization/*.js`: one adapter per configured language, each a uniform `async romanize(targetText) => string`
 - `src/translate/romanizationEval.js`: `buildRomanizationPrompt`, `correctRomanizations`, `romanizeAndEvaluate` (§3)
+- `src/translate/romajiStyle.js`: the pinned per-language romanization spec (`JA_ROMAJI_STYLE`) — the prose the prompts are taught AND the detector preflight lints with, in one object per rule

@@ -13,6 +13,7 @@ import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js"
 import { vocabCoverageCheck } from "./vocab.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
+import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
 
 /**
  * Every check, in report order.
@@ -35,9 +36,11 @@ export const ALL_CHECKS = [
   spacingCheck,
   placeholderTargetCheck,
   sourceTypeCheck,
+  romajiStyleCheck,
   // collection scope
   cardIdsCheck,
   collisionsCheck,
+  inlineRomanizationCheck,
   chapterNumberCheck,
   extrasLibraryWriteCheck,
   libraryCompletenessCheck,

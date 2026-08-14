@@ -267,7 +267,9 @@ Three things make it a gate rather than a wall of text:
   `.preflight-accepted.json`, and still reported afterwards as a standing count. `INFO` never affects
   the exit code. A number that has been non-zero on every run since it was written teaches the
   operator to skim past it, which is what the ACK tier exists to stop. Nothing is ACK-tier right now;
-  the tier and its acceptance file stay for the checks that will need them.
+  the tier and its acceptance file stay for the checks that will need them. An INFO check's findings
+  are COUNTED in the default report and LISTED under `--verbose`: the list is the whole value of a
+  reporting check, and 400 lines of it by default is the wallpaper the tiers exist to prevent.
 
 Every run opens with a coverage line (collections by kind, units by shape, directories nobody could
 place, checks skipped for want of input), so "clean" can never mean "I did not look".
@@ -341,6 +343,12 @@ operator has to override on the day it lands is worse than no gate.
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
 - [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)
+- [x] One pinned romanization spec per language (`src/translate/romajiStyle.js`): each rule is the
+      prose injected into all three romanizing prompts AND the detector `preflight`'s `romaji-style`
+      check runs, in the same object, so neither can drift from the other. Rules no regex can decide
+      are marked taught-but-not-linted and named in the report instead of reading as checked. The
+      inline `(roman)` spellings inside a note or hint are separately checked against that same
+      collection's own audited `pronunciation` field (`inline-romaji`)
 - [x] Spoken-form `ttsText` field (renamed from `reading`, 2026-08) — the text TTS speaks instead of the
       target whenever the written target would be misread, never rendered on any card face. Numbers stay
       as digits in `target` (natural display, e.g. `2,000えん`) while a spelled-out `ttsText`

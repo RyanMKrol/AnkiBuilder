@@ -246,6 +246,21 @@ stacked in one column, plus **Note** + **Review note**):
   before the learner answers on both sides, a scene must never contain or paraphrase the answer.
   Textbook contextual parentheticals live here: "Excuse me. (said when entering a room)" becomes
   `english` "Excuse me." + `scene` "said when entering a room".
+
+  **The parenthetical convention, stated once.** A textbook parenthetical goes to one of two places,
+  and which one depends entirely on whether the TARGET drops the same thing:
+
+  - **It stays in `english`** when it restores a subject, object or topic the target drops too.
+    `にちようびです` glossed "(The party) is on Sunday." keeps its parenthetical, because the Japanese
+    is elliptical in exactly the same way and the parenthetical is part of the meaning. Stripping it
+    would leave "It's on Sunday." — an English sentence that cannot yield that target.
+  - **It moves to `scene`** when it describes the SITUATION rather than the sentence: who is speaking,
+    what was just asked, when the phrase is used. "Excuse me. (said when entering a room)" →
+    `english` "Excuse me." + `scene` "said when entering a room".
+
+  The test is one question: does the target drop it too? If yes it is meaning and belongs in the
+  gloss; if no it is context and belongs in the scene. Never both, and never a parenthetical in
+  `english` that a reader would take as a stage direction.
 - **`hint`** (shown on the Production front only; on the Recognition front it is part of the answer,
   so there it renders on the back) tells apart two cards whose ENGLISH prompt collides, by
   describing the target word itself: meaning ("the object you read"), register ("warm but casual"),

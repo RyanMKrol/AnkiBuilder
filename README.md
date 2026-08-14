@@ -355,6 +355,11 @@ operator has to override on the day it lands is worse than no gate.
       or over 60 characters — split it, or ship it Recognition-only), and `near-siblings` (one
       sentence frame drilled 3+ times with only a name or number swapped). All three detect a shape;
       whether the shape is a defect stays the reviewer's call
+- [x] A notes truth-check at Gate 1 (`note-claims`): every note asserting a decomposition,
+      derivation, distinction or identity, with — for each target-script form the claim names —
+      whether this collection teaches a card for it. Deterministic list, human verdict. Every other
+      note check in the repo is structural, and a shipped note teaching a false morphological
+      analysis survived all of them
 - [x] A card-face preview at the review gate (`/faces/<type>/<id>[/<unit>]`, linked from the review
       page): every card rendered through the note type's REAL `qfmt`/`afmt` and REAL CSS, both
       directions, front and back, flippable per card or all at once. The three most valuable

@@ -576,3 +576,67 @@ test("near siblings: three cards filling the frame identically are not a sibling
     cleanup();
   }
 });
+
+// The live case this check exists for: a shipped note presents なんじ and なんにん as instances of
+// なんの, which is false, and なんの has no card anywhere in the deck.
+test("note claims: a decomposition naming a form the deck never teaches is named as such", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("nanji", { target: "なんじ" }), card("nannin", { target: "なんにん" })],
+    });
+    writeUnit(root, "epubs/book/chapter-2", {
+      items: [
+        card("nani", {
+          target: "なに",
+          note: "Plain 'what', distinct from なんの (nan no), seen with なんじ and なんにん.",
+        }),
+      ],
+    });
+    const found = messages(runOnly(root, "note-claims"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /asserts a distinction/);
+    assert.match(found[0], /「なんの」/);
+    assert.doesNotMatch(
+      found[0],
+      /「なんじ」/,
+      "a form the deck DOES teach is not reported as missing",
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+// The whole collection is the deck being made coherent with itself — a claim resolved by a sibling
+// -extras unit is resolved.
+test("note claims: a claim whose forms all have cards says so instead of going quiet", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1-extras", {
+      items: [card("kashi", { target: "かし" }), card("okashi", { target: "おかし" })],
+    });
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("sweet", { target: "おかし", note: "お + かし (kashi) = おかし (okashi)." })],
+    });
+    const found = messages(runOnly(root, "note-claims"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /every form it names has a card here/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("note claims: an ordinary note is not a claim, and reviewNote is never read", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("plain", { note: "Said when you meet someone for the first time." }),
+        card("internal", { reviewNote: "built from たべる (taberu) + もの (mono)" }),
+      ],
+    });
+    assert.deepEqual(messages(runOnly(root, "note-claims")), []);
+  } finally {
+    cleanup();
+  }
+});

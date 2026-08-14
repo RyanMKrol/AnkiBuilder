@@ -2430,6 +2430,24 @@ say when it was measured rather than stating it as a standing fact.
   count for that unit does not fall to zero, the injected spec is not reaching the model.
 - **Verified by:** `node scripts/preflight.mjs --all --only romaji-style,inline-romaji --verbose`
 
+## The notes truth-check finds claims, it cannot judge them
+
+- **What:** `note-claims` lists every note asserting a decomposition, derivation, distinction or
+  identity, and says which of the target-script forms it names have no card in this collection. It
+  never says whether the claim is TRUE. 122 findings on the two live decks.
+- **Why:** whether お + かし = おかし is a fact about Japanese. A checker that guessed would be a
+  fourth pass that looks like it verified something, which is precisely how the false なんの analysis
+  survived extraction, the cross-lesson note pass, the corpus review and Mark done.
+- **Impact:** the whole value depends on a human reading the list at Gate 1, so it is written into
+  SKILL.md as a required step rather than left as a report line. The patterns are also English-shaped
+  and Japanese-shaped: "the て-form of" and "X + Y" are what THIS deck's notes look like, and a claim
+  worded some other way ("shortened from", "an older reading of") is not detected at all. The
+  function-morpheme allowlist (particles and the honorific prefix) is likewise Japanese-only.
+- **Status:** open
+- **When to revisit:** when a claim gets through that the patterns should have caught, add the wording
+  rather than loosening an existing pattern.
+- **Verified by:** `node scripts/preflight.mjs --all --only note-claims --verbose`
+
 ## The near-sibling check is tuned to one deck's English, on two thresholds
 
 - **What:** `near-siblings` groups cards by blanking digit runs and Capitalised words out of the

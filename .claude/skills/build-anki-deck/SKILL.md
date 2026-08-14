@@ -416,6 +416,26 @@ over 60 characters), `near-siblings` (one sentence frame drilled three times wit
 `romaji-style` and `inline-romaji`. Each names a shape and leaves the verdict to you; re-run with
 `--verbose` to see the actual cards.
 
+**Read every note the `note-claims` check lists, and decide whether it is TRUE.** This is a required
+step of Gate 1, not an optional one. Every other note check in this project is structural — does the
+note exist, does it restate the gloss, does it carry a romanization, does it point backwards — and
+none of them asks whether what the note says is correct. A shipped card currently teaches a false
+morphological analysis (なんじ and なんにん presented as instances of なんの) that got through
+extraction, the cross-lesson note pass, the corpus review and Mark done, because nothing in that
+chain was ever looking.
+
+```sh
+node scripts/preflight.mjs --all --only note-claims --verbose
+```
+
+It lists every note asserting a decomposition, derivation, distinction or identity — "X + Y", "the
+て-form of X", "distinct from X", "the same word as X" — and, for each target-script form the claim
+names, whether this collection teaches a card for it. **Start with the ones that name a form the deck
+has no card for**: those are either a legitimate etymology aside or an invented root, and the two look
+identical in a JSON row. The check produces the list and stops there on purpose; whether お + かし =
+おかし is a fact about Japanese, and no amount of code decides it. Fix or delete a note you cannot
+confirm — an unverifiable note is worth less than none, because the learner has no way to know.
+
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves
 the reviewed (excluded-filtered) corpus to the dedup library for later chapters' backward-dedup. Then

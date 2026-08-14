@@ -2208,3 +2208,21 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if a length-related authoring rule (a FIB length ceiling, say) needs the model
   to see the failure it is being warned about.
+
+## The extraction eval fixture has no images, so it cannot measure image-borne extraction
+
+- **What:** `test/fixtures/evals/chapters/25.xhtml` references about 50 images, and none of them are
+  checked in (`test/fixtures/evals/` holds only `chapters/` and `recorded/`). A live eval run
+  therefore cannot open a single one.
+- **Why:** found while running the fixture's before/after procedure over the WS3 prompt edits. The
+  coverage envelope is what surfaced it: the model reported 0 images opened, 50 skipped, and named
+  the specific chart it could not read.
+- **Impact:** the eval systematically under-measures anything image-borne, which is precisely the
+  content class this book hides its paradigms and counter charts in. In both the before and after
+  runs the same three cards were missing (さんにん, よにん, ごにん) and the after run's `concerns`
+  correctly predicted them from the unopenable "Numbers of people" chart. A prompt change that
+  improved image handling would score as no change at all.
+- **Status:** open — the fixture is otherwise sound; this is one missing directory.
+- **When to revisit:** check the chapter's images in beside it (they are already in the book's cache
+  under `.anki-builder/epubs/<hash>/`), or have the fixture point the extractor at the cached chapter
+  path instead of the copy under `test/fixtures/`.

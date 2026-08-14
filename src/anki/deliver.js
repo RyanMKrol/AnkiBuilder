@@ -698,9 +698,24 @@ export async function planDeckContent(client, deck) {
   const ops = [];
   const ambiguous = [];
   const orphaned = [];
+  const addsMatchingElsewhere = [];
   const corpusIds = new Set();
   const used = new Set();
   const abidNoteIds = new Set(byAbid.values());
+
+  // A BOOK-WIDE target index, used for nothing but reporting. Unit-scoping the fingerprint indexes
+  // is right — it stops a unit's card adopting another unit's note by spelling alone — but it opens
+  // one window on a FIRST run: an un-tagged note sitting under an old deck name is no longer in any
+  // unit's index, so its card falls through to `add` and the learner gets a duplicate beside the
+  // matured original. Adding may well be correct (17 targets legitimately repeat across units), so
+  // this does not refuse; it names every add that a note elsewhere in the book could have matched,
+  // which is the difference between a decision and an accident.
+  const byTargetAnywhere = new Map();
+  for (const n of noteById.values()) {
+    const key = norm(noteField(n, "Target"));
+    if (byTargetAnywhere.has(key)) byTargetAnywhere.get(key).push(n.noteId);
+    else byTargetAnywhere.set(key, [n.noteId]);
+  }
 
   for (const unit of deck.units) {
     const { byTarget } = byUnit.get(unit) ?? { byTarget: new Map() };
@@ -748,6 +763,17 @@ export async function planDeckContent(client, deck) {
         ops.push({ kind: differs ? "update" : "skip", noteId, card, unit, fields, stamp, note: n });
       } else {
         ops.push({ kind: "add", card, unit, fields });
+        const elsewhere = (byTargetAnywhere.get(norm(card.target)) || []).filter(
+          (id) => !used.has(id) && !abidNoteIds.has(id),
+        );
+        if (elsewhere.length) {
+          addsMatchingElsewhere.push({
+            card: card.id,
+            english: card.english,
+            deck: unit.ankiDeck,
+            noteIds: elsewhere,
+          });
+        }
       }
     }
   }
@@ -756,7 +782,7 @@ export async function planDeckContent(client, deck) {
     if (!corpusIds.has(cid)) orphaned.push({ card: cid, noteId: nid });
   }
 
-  return { ops, ambiguous, orphaned, baseline, noteById };
+  return { ops, ambiguous, orphaned, addsMatchingElsewhere, baseline, noteById };
 }
 
 /** The tag a `--suspend-orphans` run leaves, so a human can find (and reverse) exactly this set. */
@@ -857,11 +883,21 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
     addedCards: [],
     ambiguous: plan.ambiguous,
     orphaned: plan.orphaned,
+    addsMatchingElsewhere: plan.addsMatchingElsewhere,
     baseline: plan.baseline,
     deliveredCardIds: [],
     refiled: null,
     suspendedOrphans: null,
   };
+
+  for (const add of plan.addsMatchingElsewhere) {
+    log(
+      `⚠ adding "${add.card}" ("${add.english}") to ${add.deck}, but an untagged note with the same ` +
+        `Target already exists elsewhere in this book (note ${add.noteIds.join(", ")}). If that note ` +
+        `IS this card, it is under the wrong deck and this add makes a duplicate — check it before ` +
+        `a real run, and use --refile if the deck name is what moved.`,
+    );
+  }
 
   const adds = plan.ops.filter((op) => op.kind === "add");
   if (adds.length > maxAdds) {

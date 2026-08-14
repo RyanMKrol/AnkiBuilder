@@ -87,6 +87,12 @@ The two lookups have deliberately different scopes, and the difference is load-b
   repeat across this book's units, so a unit's card could adopt another unit's note by spelling
   alone.
 
+That scoping opens one window, and the report closes it: on a first run an untagged note sitting
+under an OLD deck name is in no unit's index, so its card would be added rather than adopted. Any add
+that an untagged note elsewhere in the book could have matched is printed with the note id. Adding
+may well be right (those 17 repeats are real), so it is a warning to read, not a refusal — and if the
+deck NAME is what moved, `--refile` is the fix.
+
 **Ambiguous skips fail the run.** When any cards were skipped as ambiguous, the script exits non-zero
 (exit code 2) after printing a `⚠ ambiguous (skipped)` line per card, so a scripted or agent-driven
 delivery cannot quietly report success while cards were left undelivered. Resolve the ambiguity (fix

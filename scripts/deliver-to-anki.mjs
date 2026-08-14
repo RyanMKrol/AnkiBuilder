@@ -133,6 +133,12 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  for (const a of c.addsMatchingElsewhere ?? []) {
+    line(
+      `     ⚠ adding ${a.card} ("${a.english}"), but an untagged note with the same Target sits ` +
+        `elsewhere in this book (note ${a.noteIds.join(", ")}) — check before a real run`,
+    );
+  }
   if (c.refiled) {
     line(
       `     refile: ${c.refiled.moves.length} move(s), ${c.refiled.skipped.length} left alone` +

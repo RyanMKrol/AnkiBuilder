@@ -189,6 +189,44 @@ test("the abid index spans units, so one unit's card can match a note tagged in 
   assert.equal(report.added, 0);
 });
 
+test("an add that an untagged note ELSEWHERE in the book could have matched is reported", async () => {
+  // The one window unit-scoping the fingerprint indexes opens: on a first run, an untagged note
+  // sitting under an OLD deck name is in no unit's index, so its card falls through to `add` and
+  // duplicates it. Adding may be correct (targets legitimately repeat across units), so this is a
+  // loud report rather than a refusal — the difference between a decision and an accident.
+  const notes = [note(1, { target: "はい", english: "Yes" })]; // under a deck no unit claims
+  const byDeck = { 'deck:"My Book"': [1], 'deck:"My Book::Lesson 01"': [] };
+  const lines = [];
+  const c = {
+    findNotes: async (q) => byDeck[q.split(" note:")[0]] ?? [],
+    notesInfo: async (ids) => notes.filter((n) => ids.includes(n.noteId)),
+    addNote: async () => 500,
+    addTags: async () => {},
+    updateNoteFields: async () => {},
+    storeMediaFile: async () => {},
+  };
+
+  const report = await syncDeckContent(
+    c,
+    deck([
+      {
+        ankiDeck: "My Book::Lesson 01",
+        audioDir: null,
+        cards: [{ id: "yes", target: "はい", english: "Yes" }],
+      },
+    ]),
+    true,
+    { log: (m) => lines.push(m) },
+  );
+
+  assert.equal(report.added, 1);
+  assert.deepEqual(
+    report.addsMatchingElsewhere.map((a) => [a.card, a.noteIds]),
+    [["yes", [1]]],
+  );
+  assert.match(lines.join("\n"), /same Target already exists elsewhere in this book/);
+});
+
 test("a corpus card whose note vanished from the book is ORPHANED, never silently re-added", async () => {
   // The other half of the same invariant. An abid-tagged note that no corpus card claims is a
   // report line for a human; a corpus card whose note is gone must not turn into a fresh add

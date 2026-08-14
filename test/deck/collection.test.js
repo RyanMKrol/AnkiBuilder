@@ -144,7 +144,11 @@ test("buildMultiDeckCollection never collides note/card ids across chapters, eve
   });
 });
 
-test("buildMultiDeckCollection's card position/due increases monotonically across chapter boundaries", () => {
+test("new-card positions interleave within a chapter, and chapters stay in book order", () => {
+  // `due` on a new card is its place in the new-card queue. A note's two cards used to be written
+  // back to back, so a fresh import introduced both directions of the same note in one session and
+  // the second was answered from working memory. Within a chapter the Recognition cards now come
+  // first and the Production cards after, which puts the chapter's whole width between siblings.
   const chapterDecks = [
     { name: "Lesson 1", cards: cardsOf("A", "B") },
     { name: "Lesson 2", cards: cardsOf("C", "D") },
@@ -156,15 +160,40 @@ test("buildMultiDeckCollection's card position/due increases monotonically acros
   });
 
   withTempDb(bytes, (db) => {
-    const dues = db
-      .prepare("SELECT due FROM cards ORDER BY id")
-      .all()
-      .map((c) => c.due);
-    const sorted = [...dues].sort((a, b) => a - b);
-    assert.deepEqual(dues, sorted, "due/position must increase monotonically insertion order");
+    const cards = db.prepare("SELECT id, nid, ord, did, due FROM cards ORDER BY id").all();
+    const dues = cards.map((c) => c.due);
     assert.equal(new Set(dues).size, dues.length, "every card gets a distinct position");
+
+    // Chapter blocks do not overlap, and the earlier chapter comes first.
+    const byDeck = new Map();
+    for (const card of cards) {
+      const block = byDeck.get(card.did) ?? { min: Infinity, max: -Infinity };
+      byDeck.set(card.did, {
+        min: Math.min(block.min, card.due),
+        max: Math.max(block.max, card.due),
+      });
+    }
+    const blocks = [...byDeck.entries()].sort((a, b) => a[0] - b[0]).map(([, block]) => block);
+    assert.equal(blocks.length, 2);
+    assert.ok(blocks[0].max < blocks[1].min, "chapter 1's whole block precedes chapter 2's");
+
+    // A note's two directions are two items apart, not adjacent.
+    for (const [, pair] of groupBy(cards, (c) => c.nid)) {
+      const [recognition, production] = pair.sort((a, b) => a.ord - b.ord);
+      assert.equal(production.due - recognition.due, 2, "separated by the chapter's item count");
+    }
   });
 });
+
+function groupBy(items, key) {
+  const out = new Map();
+  for (const item of items) {
+    const k = key(item);
+    if (!out.has(k)) out.set(k, []);
+    out.get(k).push(item);
+  }
+  return out;
+}
 
 test("buildMultiDeckCollection sanitizes a literal '::' in the book name or a chapter label", () => {
   const chapterDecks = [{ name: "Weird::Chapter", cards: cardsOf("A") }];

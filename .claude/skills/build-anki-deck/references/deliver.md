@@ -116,6 +116,26 @@ fresh one instead of checking against a stale one.
 - **Deletions** → never automatic; a note whose card left the corpus is reported as `orphaned` for you to
   remove by hand.
 
+## Deck options: turn on sibling burying by hand, once
+
+**This is the one setting in this file that has to be clicked in Anki, and it is worth more than
+anything the tool can do for you.** Every note here makes two cards, Recognition and Production.
+With burying off they come up in the same session, so the second is answered from working memory
+rather than recalled — roughly halving what a two-direction note teaches.
+
+In Anki: open the deck's options (the gear beside the book deck > **Options**), and under **Burying**
+tick **Bury new siblings** and **Bury review siblings**. Do it on the preset the book decks use;
+Anki applies a preset to every deck assigned to it, so one edit covers the whole book.
+
+The `.apkg` cannot do this for you on a deck you already have. **AnkiConnect never writes deck
+options**, so nothing the deliver tool does touches your scheduling settings, and both of your
+collections were delivered that way. The package's own options are fresh-import hygiene only: it
+ships a preset named `anki-builder` (id 1000001) with burying already on, and every deck it builds
+points at that one — deliberately NOT at `Default` (id 1), which is a preset your collection already
+has and which would push our choices onto every deck we never built. The package also interleaves
+new-card positions so a note's two directions are not adjacent in the new queue even before burying
+is on.
+
 ## Two opt-in steps: `--refile` and `--suspend-orphans`
 
 Both are off by default, both preview under `--dry`, and **both refuse to run today** because the

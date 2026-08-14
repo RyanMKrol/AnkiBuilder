@@ -303,7 +303,7 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
   };
 }
 
-function deckRow(id, name, nowSeconds) {
+function deckRow(id, name, nowSeconds, conf = ANKI_BUILDER_DCONF_ID) {
   return {
     id,
     name,
@@ -317,15 +317,19 @@ function deckRow(id, name, nowSeconds) {
     browserCollapsed: true,
     desc: "",
     dyn: 0,
-    conf: 1,
+    conf,
     extendNew: 0,
     extendRev: 0,
   };
 }
 
+// The Default deck row is the one row that is NOT ours, so it keeps pointing at preset 1.
+const defaultDeckRow = (nowSeconds) =>
+  deckRow(DEFAULT_DECK_ID, "Default", nowSeconds, DEFAULT_DCONF_ID);
+
 function buildDecks(nowSeconds, deckName) {
   return {
-    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", nowSeconds),
+    [DEFAULT_DECK_ID]: defaultDeckRow(nowSeconds),
     [DECK_ID]: deckRow(DECK_ID, deckName, nowSeconds),
   };
 }
@@ -343,7 +347,7 @@ function buildDecks(nowSeconds, deckName) {
 function buildMultiDecks(nowSeconds, bookName, chapterNames) {
   const book = sanitizeDeckNameSegment(bookName);
   const decks = {
-    [DEFAULT_DECK_ID]: deckRow(DEFAULT_DECK_ID, "Default", nowSeconds),
+    [DEFAULT_DECK_ID]: defaultDeckRow(nowSeconds),
     [BOOK_DECK_ID]: deckRow(BOOK_DECK_ID, book, nowSeconds),
   };
   chapterNames.forEach((chapterName, index) => {
@@ -360,10 +364,30 @@ function buildMultiDecks(nowSeconds, bookName, chapterNames) {
   return decks;
 }
 
+/**
+ * The deck-options presets the `.apkg` carries.
+ *
+ * Two rows, and which one our decks point at is the whole point:
+ *
+ *   id 1 "Default" — Anki's STOCK preset, reproduced value for value. Every collection already has
+ *     a preset with this id and name, and an import lands on it, so this row must never carry an
+ *     opinion. Editing it would push our scheduling choices onto the importing collection's own
+ *     Default, which is every deck they have that we never built.
+ *   id 1000001 "anki-builder" — OURS, and the only one any deck we build points at. Deck-scoped by
+ *     id and by name, so it cannot collide with the owner's Default either way.
+ *
+ * ⚠️ These settings only reach a deck created by IMPORTING this package. The AnkiConnect deliverer
+ * never writes dconf, so for the two collections already delivered, the bury setting below changes
+ * nothing — that fix is the one line in references/deliver.md telling you to tick it in Anki. This
+ * is fresh-import hygiene.
+ */
+const DEFAULT_DCONF_ID = 1;
+const ANKI_BUILDER_DCONF_ID = 1_000_001;
+
 function buildDconf(nowSeconds) {
   return {
-    1: {
-      id: 1,
+    [DEFAULT_DCONF_ID]: {
+      id: DEFAULT_DCONF_ID,
       mod: nowSeconds,
       name: "Default",
       usn: -1,
@@ -380,6 +404,31 @@ function buildDconf(nowSeconds) {
         perDay: 20,
       },
       rev: { bury: false, ease4: 1.3, ivlFct: 1, maxIvl: 36500, perDay: 200, hardFactor: 1.2 },
+      lapse: { delays: [10], leechAction: 1, leechFails: 8, minInt: 1, mult: 0 },
+      dyn: false,
+    },
+    [ANKI_BUILDER_DCONF_ID]: {
+      id: ANKI_BUILDER_DCONF_ID,
+      mod: nowSeconds,
+      name: "anki-builder",
+      usn: -1,
+      maxTaken: 60,
+      autoplay: true,
+      timer: 0,
+      replayq: true,
+      new: {
+        // BURY SIBLINGS. Every note here makes two cards, Recognition and Production, and without
+        // burying they come up in the same session — the second one answered from working memory
+        // rather than recalled, which turns a two-direction note into roughly one direction of
+        // learning. Burying holds the sibling over to the next day.
+        bury: true,
+        delays: [1, 10],
+        initialFactor: 2500,
+        ints: [1, 4, 0],
+        order: 1,
+        perDay: 20,
+      },
+      rev: { bury: true, ease4: 1.3, ivlFct: 1, maxIvl: 36500, perDay: 200, hardFactor: 1.2 },
       lapse: { delays: [10], leechAction: 1, leechFails: 8, minInt: 1, mult: 0 },
       dyn: false,
     },
@@ -489,6 +538,17 @@ function insertNotesAndCards(
       );
     }
 
+    // NEW-CARD POSITIONS ARE INTERLEAVED WITHIN A CHAPTER: every Recognition card of this chapter,
+    // then every Production card. `due` on a new card is its position in the new-card queue, and
+    // writing a note's two cards back to back (n, n+1) meant a fresh import introduced both
+    // directions of the same note in the same session — the second answered from working memory.
+    // Burying siblings is the real fix and it is a per-deck SETTING (see buildDconf); this makes the
+    // shipped order not depend on it. Chapters still come in book order: the counter runs across
+    // them, and a chapter's block is contiguous.
+    const chapterBase = position;
+    const itemCount = cards.items.length;
+    position += itemCount * 2;
+
     cards.items.forEach((card, itemIndex) => {
       const noteId = now + chapterIndex * CHAPTER_ID_BLOCK + itemIndex * 10;
       const flds = FIELD_NAMES.map((name) => fieldValue(card, name)).join(FIELD_SEP);
@@ -510,8 +570,14 @@ function insertNotesAndCards(
 
       for (let ord = 0; ord < 2; ord++) {
         const cardId = noteId + ord + 1;
-        insertCard.run(cardId, noteId, deckId, ord, nowSeconds, position);
-        position++;
+        insertCard.run(
+          cardId,
+          noteId,
+          deckId,
+          ord,
+          nowSeconds,
+          chapterBase + ord * itemCount + itemIndex,
+        );
       }
     });
   });

@@ -5,18 +5,24 @@
 // target and reports groups spanning two or more units.
 //
 // Usage:
-//   node scripts/extras-duplicate-check.mjs <book-dir>            report only
-//   node scripts/extras-duplicate-check.mjs <book-dir> --apply    exclude later occurrences
-//                                                                 (unreviewed units only)
+//   node scripts/extras-duplicate-check.mjs <book-dir>            report only (the documented step)
+//   node scripts/extras-duplicate-check.mjs <book-dir> --apply    exclude, narrowly (see below)
 //   ... --apply --force                                           also touch reviewed/done units
 //
-// --apply keeps the EARLIEST occurrence and excludes later ones with a reviewNote naming the
-// keeper. A later occurrence that looks like a QUESTION is skipped even under --apply (excluding a
-// question can strand an elliptical answer whose hint names it — resolve those by hand); excluding
-// an answer is always safe.
+// REPORT-ONLY IS THE DOCUMENTED PATH. The grouping is mechanical and correct; the judgement is not.
+// A shared target is as often two senses of one word as it is a duplicate: on the live book the
+// particle group for the smallest particles collapses onto a NUMBER card that happens to share the
+// spelling, and keeping the earliest occurrence keeps the number and drops every particle sense.
+// See references/extras-pass.md for the worked cases.
+//
+// What --apply may exclude is decided by planDuplicateExclusions in src/cards/duplicatePlan.js, not
+// here: the duplicate has to be glossed the same as the keeper, must not look like a question
+// (excluding one can strand an elliptical answer whose hint names it), and must not live in a
+// reviewed/done unit without --force. Everything else is printed for a human to judge.
 import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
 import { findCrossChapterDuplicates } from "../src/cards/extrasTools.js";
+import { planDuplicateExclusions } from "../src/cards/duplicatePlan.js";
 import { writeUnitJson } from "../src/util/unitWrite.js";
 
 const args = process.argv.slice(2);
@@ -55,27 +61,25 @@ if (groups.length === 0) {
   process.exit(0);
 }
 
-let excluded = 0;
-let skipped = 0;
+const { exclude, refuse } = planDuplicateExclusions(groups, { force });
+const refusedFor = new Map(refuse.map((r) => [`${r.duplicate.unit}/${r.duplicate.id}`, r.reason]));
+
 for (const group of groups) {
-  console.log(`\n"${group.target}" — keeper: ${group.keeper.unit}/${group.keeper.id}`);
+  console.log(
+    `\n"${group.target}" — keeper: ${group.keeper.unit}/${group.keeper.id} ("${group.keeper.english}")`,
+  );
   for (const dup of group.duplicates) {
-    const guarded = (dup.reviewed || dup.done) && !force;
-    const question = dup.isQuestion;
-    const verdict = !apply
-      ? "would exclude"
-      : question
-        ? "SKIPPED (question — check its answer cards' hints, then exclude by hand)"
-        : guarded
-          ? "SKIPPED (unit is reviewed/done — re-run with --force to touch it)"
-          : "excluded";
+    const reason = refusedFor.get(`${dup.unit}/${dup.id}`);
+    const verdict = reason ? `KEPT (${reason})` : apply ? "excluded" : "would exclude";
     console.log(`  ${dup.unit}/${dup.id} ("${dup.english}") → ${verdict}`);
-    if (!apply || question || guarded) {
-      if (apply) skipped++;
-      continue;
-    }
-    const unit = units.find((u) => u.unit === dup.unit);
-    const item = unit.items.find((i) => i.id === dup.id);
+  }
+}
+
+let excluded = 0;
+if (apply) {
+  for (const { group, duplicate } of exclude) {
+    const unit = units.find((u) => u.unit === duplicate.unit);
+    const item = unit.items.find((i) => i.id === duplicate.id);
     item.excluded = true;
     // Provenance: this tool false-positives on roughly a third of the groups it reports, so its
     // exclusions must stay tellable apart from a human's reviewed ones long after the run.
@@ -87,6 +91,7 @@ for (const group of groups) {
     excluded++;
   }
 }
+const skipped = refuse.length;
 
 if (apply) {
   for (const unit of units) {
@@ -98,7 +103,9 @@ if (apply) {
   console.log(`\nexcluded ${excluded} duplicate(s); skipped ${skipped} (see above)`);
 } else {
   console.log(
-    `\n${groups.length} duplicate group(s) — re-run with --apply to exclude the later occurrences`,
+    `\n${groups.length} duplicate group(s); ${exclude.length} of ${exclude.length + refuse.length} ` +
+      `later occurrence(s) are safe to auto-exclude. Read the report and decide: a shared target ` +
+      `is as often two senses of one word as it is a duplicate.`,
   );
 }
 process.exit(groups.length > 0 && !apply ? 2 : 0);

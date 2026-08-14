@@ -15,6 +15,7 @@ import { existsSync, mkdirSync, writeFileSync, readdirSync, rmSync } from "fs";
 import { join, resolve, dirname } from "path";
 import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
+import { unifiedDiff } from "../util/unifiedDiff.js";
 import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
 import {
   shippableCards,
@@ -189,14 +190,74 @@ function writeDeliveredMarker(deck) {
   }
 }
 
-// Idempotent structure sync for one model. Reads current state; writes only the delta (unless dry).
-export async function syncStructure(client, spec, dry) {
+/**
+ * Every deck whose cards use a note type, and how many cards that is.
+ *
+ * The blast radius of a template or CSS edit, measured before it happens. The note type is keyed on
+ * LANGUAGE alone (`AnkiBuilder ja`, see resolveModelSpec in src/deck/collection.js), so it is shared
+ * by every deck of that language: delivering the course rewrites the book's card faces too. That
+ * sharing is correct and stays, but it must be visible at the moment of the write rather than
+ * discovered afterwards.
+ */
+export async function modelUsage(client, modelName) {
+  const cardIds = (await client.findCards(`"note:${modelName}"`)) ?? [];
+  if (!cardIds.length) return { cards: 0, decks: [] };
+  const byDeck = (await client.getDecks(cardIds)) ?? {};
+  return { cards: cardIds.length, decks: Object.keys(byDeck).sort() };
+}
+
+/**
+ * Renders what a template/CSS change is about to overwrite, as a unified diff plus the decks it
+ * reaches. Reads only.
+ */
+export async function describeModelChange(client, spec, { liveTemplates, liveCss }) {
+  const sections = [];
+  for (const template of spec.templates) {
+    const live = liveTemplates?.[template.name];
+    for (const [side, liveText, specText] of [
+      ["Front", live?.Front, template.qfmt],
+      ["Back", live?.Back, template.afmt],
+    ]) {
+      const diff = unifiedDiff(liveText ?? "", specText ?? "", {
+        label: `${spec.modelName} / ${template.name} / ${side}`,
+      });
+      if (diff) sections.push(diff);
+    }
+  }
+  const cssDiff = unifiedDiff(liveCss ?? "", spec.css ?? "", { label: `${spec.modelName} / CSS` });
+  if (cssDiff) sections.push(cssDiff);
+
+  const usage = await modelUsage(client, spec.modelName);
+  return { diff: sections.join("\n\n"), usage };
+}
+
+/**
+ * Idempotent structure sync for one model. Reads current state; writes only the delta (unless dry).
+ *
+ * ⚠️ THE MODEL-CHANGE GUARD. A template or CSS write here is not a per-deck change. The note type is
+ * named for the LANGUAGE, so `AnkiBuilder ja` is the note type of every Japanese deck in the
+ * collection — delivering the three-lesson course rewrites the card faces of the 2,000-card book at
+ * the same time. It also flips Anki's schema, which forces a one-way full AnkiWeb sync the owner has
+ * to complete by hand through a GUI dialog AnkiConnect cannot answer.
+ *
+ * So a template/CSS change is refused unless it is asked for. `--dry` prints the unified diff of
+ * what is live against what this build would write, plus every deck using the model and how many
+ * cards that is; a real deliver needs `--allow-model-change`. Adding a FIELD, and creating the model
+ * from scratch, are not gated: neither can silently change what an existing card looks like.
+ *
+ * WS6's `modelTemplateAdd` path must route through this same guard when it lands. A template ADD is
+ * also a schema-modifying write on the shared model and forces the same manual sync; its own local
+ * warning is not the same thing as a refusal.
+ */
+export async function syncStructure(client, spec, dry, { allowModelChange = false, log } = {}) {
+  const say = log ?? (() => {});
   const out = {
     model: spec.modelName,
     createModel: false,
     addedFields: [],
     templates: false,
     css: false,
+    modelChange: null,
   };
   const models = await client.modelNames();
   if (!models.includes(spec.modelName)) {
@@ -231,27 +292,47 @@ export async function syncStructure(client, spec, dry) {
     }
   }
 
-  // Templates.
+  // Templates and styling — read BOTH before writing EITHER, so the guard below sees the whole
+  // change at once rather than refusing halfway through it.
   const liveT = await client.modelTemplates(spec.modelName);
   const tmplChanged = spec.templates.some((t) => {
     const live = liveT?.[t.name];
     return !live || live.Front !== t.qfmt || live.Back !== t.afmt;
   });
-  if (tmplChanged) {
-    out.templates = true;
-    if (!dry) {
+  const liveCss = (await client.modelStyling(spec.modelName))?.css ?? "";
+  const cssChanged = liveCss !== spec.css;
+
+  if (tmplChanged || cssChanged) {
+    out.templates = tmplChanged;
+    out.css = cssChanged;
+    out.modelChange = await describeModelChange(client, spec, { liveTemplates: liveT, liveCss });
+    const { diff, usage } = out.modelChange;
+    say(
+      `model change on "${spec.modelName}" (${tmplChanged ? "templates" : ""}${
+        tmplChanged && cssChanged ? " + " : ""
+      }${cssChanged ? "CSS" : ""}) reaches ${usage.cards} card(s) in ${usage.decks.length} deck(s):\n` +
+        usage.decks.map((d) => `  ${d}`).join("\n") +
+        (diff ? `\n${diff}` : ""),
+    );
+    if (!dry && !allowModelChange) {
+      throw new Error(
+        `refusing to rewrite the note type "${spec.modelName}": this delivery changes ` +
+          `${[tmplChanged && "card templates", cssChanged && "CSS"].filter(Boolean).join(" and ")}, ` +
+          `which applies to all ${usage.cards} card(s) across ${usage.decks.length} deck(s) using ` +
+          `that note type, and forces a one-way full AnkiWeb sync you have to complete by hand. ` +
+          `Preview it with --dry, then re-run with --allow-model-change if that is what you mean.`,
+      );
+    }
+  }
+
+  if (!dry) {
+    if (tmplChanged) {
       await client.updateModelTemplates(
         spec.modelName,
         Object.fromEntries(spec.templates.map((t) => [t.name, { Front: t.qfmt, Back: t.afmt }])),
       );
     }
-  }
-
-  // Styling.
-  const liveCss = (await client.modelStyling(spec.modelName))?.css ?? "";
-  if (liveCss !== spec.css) {
-    out.css = true;
-    if (!dry) await client.updateModelStyling(spec.modelName, spec.css);
+    if (cssChanged) await client.updateModelStyling(spec.modelName, spec.css);
   }
   return out;
 }
@@ -470,6 +551,9 @@ export async function deliverToAnki(
   {
     client,
     dry = false,
+    // Explicit consent for a write that reaches every deck sharing the language's note type. See
+    // syncStructure's guard. A dry run never needs it: a dry run writes nothing.
+    allowModelChange = false,
     sync = true,
     now = () => Date.now(),
     adapters = ADAPTERS,
@@ -569,7 +653,7 @@ export async function deliverToAnki(
 
   // 4. STRUCTURE SYNC (per unique model)
   for (const [, spec] of specsByModel) {
-    report.structure.push(await syncStructure(client, spec, dry));
+    report.structure.push(await syncStructure(client, spec, dry, { allowModelChange, log }));
     log(`structure synced: ${spec.modelName}`);
   }
   // A structural change (new field / template / CSS) bumps Anki's schema, which forces a one-way full

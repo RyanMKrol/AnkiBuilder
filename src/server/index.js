@@ -415,11 +415,15 @@ export function createDeckServer({
     sendJson(res, report);
   }
 
-  // Best-effort rebuild of the group package, tolerating only the BENIGN cases — no lesson done
-  // yet, or no unit folders at all — so marking a lesson done (or an edit to a done lesson)
-  // keeps the on-disk package in step without failing the write. Every other
-  // failure is a real build error the caller must surface: it used to be swallowed here, so Mark
-  // done reported success while the shipping .apkg silently stayed stale.
+  // Best-effort rebuild of the group package, tolerating only the BENIGN cases (no lesson done yet,
+  // or no unit folders at all) so marking a lesson done keeps the on-disk package in step without
+  // failing the write. Every other failure is a real build error the caller must surface: it used to
+  // be swallowed here, so Mark done reported success while the shipping .apkg silently stayed stale.
+  //
+  // ⚠️ MARK DONE IS THE ONLY CALLER. An exclude, an edit or an audio change on an already-done
+  // lesson does NOT rebuild — this comment claimed it did, and so did src/deck/rebuild.js, which
+  // made both files assert a safety property neither provides. The staleness that leaves behind is
+  // reported by preflight's `package-freshness` check instead of being silently absent.
   async function rebuildGroupQuiet(type, id) {
     const adapter = adapterFor(type);
     try {

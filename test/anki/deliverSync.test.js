@@ -62,6 +62,8 @@ function orderingClient() {
       updateModelTemplates: async () => rec("updateModelTemplates"),
       modelStyling: async () => rec("modelStyling", { css: "old" }),
       updateModelStyling: async () => rec("updateModelStyling"),
+      findCards: async () => rec("findCards", [1, 2, 3]),
+      getDecks: async () => rec("getDecks", { "My Course::Lesson 01": [1, 2, 3] }),
       findNotes: async () => rec("findNotes", []),
       notesInfo: async () => rec("notesInfo", []),
       addNote: async () => rec("addNote", 1),
@@ -79,6 +81,9 @@ test("deliverToAnki syncs before backup and after content, and flags the schema 
     const report = await deliverToAnki(root, "all", {
       client,
       dry: false,
+      // This fixture starts from a note type whose templates and CSS differ from the spec, so the
+      // model-change guard applies. These tests are about sync ORDER, not about consent.
+      allowModelChange: true,
       now: () => 0,
       backupRoot: join(root, "backups"),
     });
@@ -122,6 +127,7 @@ test("deliverToAnki honours sync:false", async () => {
       client,
       dry: false,
       sync: false,
+      allowModelChange: true,
       now: () => 0,
       backupRoot: join(root, "backups"),
     });

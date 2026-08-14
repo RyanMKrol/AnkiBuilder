@@ -68,6 +68,10 @@ export function createAnkiConnect({
     notesInfo: (notes) => invoke("notesInfo", { notes }),
     findCards: (query) => invoke("findCards", { query }),
     cardsInfo: (cards) => invoke("cardsInfo", { cards }),
+    // `{ "<deck name>": [cardId, ...] }` for the cards given. Far cheaper than `cardsInfo` when the
+    // only question is WHICH DECKS a set of cards is spread across, which is what the model-change
+    // guard needs before it rewrites a note type shared by every deck of a language.
+    getDecks: (cards) => invoke("getDecks", { cards }),
     addNote: (note) => invoke("addNote", { note }),
     updateNoteFields: (id, fields) => invoke("updateNoteFields", { note: { id, fields } }),
     addTags: (notes, tags) => invoke("addTags", { notes, tags }),

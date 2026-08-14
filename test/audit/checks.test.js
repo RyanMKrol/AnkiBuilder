@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { mkdirSync, utimesSync, writeFileSync } from "fs";
 import { join } from "path";
 import { ALL_CHECKS, audit } from "../../src/audit/index.js";
-import { glossAlternatives } from "../../src/audit/checks/workspace.js";
 import { makeOutputRoot, writeUnit, writeMarker, writeRaw, card } from "./fixture.js";
 
 /** Runs one check by id and returns its result rows. */
@@ -337,25 +336,4 @@ test("cross-deck prompts: a cue on the colliding face clears it", () => {
   } finally {
     cleanup();
   }
-});
-
-test("gloss normalization keeps wording differences out of the cross-deck report", () => {
-  const same = [
-    ["Big", "Big, large"],
-    ["4th floor", "Fourth floor"],
-    ["This one", "This one (polite for 'this person')"],
-    ["Vegetables", "Vegetable"],
-    ["Once more, please.", "Once more please"],
-    ["The bag", "Bag"],
-  ];
-  for (const [a, b] of same) {
-    const left = glossAlternatives(a);
-    assert.ok(
-      [...glossAlternatives(b)].some((alt) => left.has(alt)),
-      `${a} should agree with ${b}`,
-    );
-  }
-  // Deliberately shallow: a genuinely different English word still reads as a difference.
-  const left = glossAlternatives("Car park");
-  assert.ok(![...glossAlternatives("Parking lot")].some((alt) => left.has(alt)));
 });

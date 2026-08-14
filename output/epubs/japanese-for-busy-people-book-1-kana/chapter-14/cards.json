@@ -277,7 +277,6 @@
       "audioOriginal": "3fce50eb744ca9f4.orig.mp3",
       "audioAuto": "3fce50eb744ca9f4.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
       "audioManual": "kuremasu-exception-manual-4033a8dc.mp3",
       "audioTrim": {
         "start": 0,
@@ -384,7 +383,6 @@
       "audioOriginal": "bec9e4ba7edc6fe0.orig.mp3",
       "audioAuto": "bec9e4ba7edc6fe0.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
       "audioManual": "karimasendeshita-manual-8cebd6f7.mp3",
       "audioTrim": {
         "start": 0,

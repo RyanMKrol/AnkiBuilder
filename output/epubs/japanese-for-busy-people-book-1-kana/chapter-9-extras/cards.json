@@ -157,7 +157,6 @@
       "audioOriginal": "18adc561ac8374a8.orig.mp3",
       "audioAuto": "18adc561ac8374a8.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
       "audioManual": "p9-iie-zenzen-yomimasen-manual-daf6f42c.mp3",
       "audioTrim": {
         "start": 0,
@@ -995,7 +994,6 @@
       "audioOriginal": "10f44c7631223997.orig.mp3",
       "audioAuto": "10f44c7631223997.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
       "audioManual": "v9-otosan-ni-denwa-manual-e0097d77.mp3",
       "audioTrim": {
         "start": 0,

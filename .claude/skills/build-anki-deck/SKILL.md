@@ -96,6 +96,33 @@ keep this honest:
   snippet above: **always give `RUN` an absolute path** (the shell's cwd persists across calls and
   drifts the moment anything does a `cd`), and **probe readability separately**, failing LOUD and
   early rather than polling a path that can never resolve. Do not add `2>/dev/null` back.
+- **After gate 2, the flag is not the outcome — CHECK THE REBUILD.** `Mark done` does two things:
+  it sets `meta.done`, and it rebuilds the group `.apkg`. A watcher polling only `meta.done` reports
+  success on the first even when the second FAILED, because the flag really did flip. That has
+  happened: a duplicate card id made the package build refuse, the dashboard showed
+  `✓ done — but deck rebuild FAILED`, and the watcher announced the unit was done and moved on. So
+  a gate-2 watcher must confirm the artifact, not the checkbox:
+
+  ```sh
+  if node -e "process.exit(require('$RUN/cards.json').meta.done===true?0:1)"; then
+    APKG=<bookDir>/<book-slug>.apkg
+    if [ "$APKG" -nt "$RUN/cards.json" ]; then
+      echo "✅ marked DONE and the package rebuilt"; exit 0
+    fi
+    echo "⚠️ marked DONE but the package is OLDER than cards.json — the rebuild FAILED"; exit 3
+  fi
+  ```
+
+  More generally: when a click triggers work, watch the work's *artifact*, not the click. A green
+  flag that means "the button worked" is not the same claim as "the thing the button starts
+  succeeded", and conflating them is the same mistake as treating silence as success.
+- **Run `npm run preflight` BEFORE you hand over a review link.** It is the deterministic sweep
+  (schema, duplicate card ids, uncued collisions, cross-unit duplicate targets, stuck audio
+  markers) and it exists because these kept being caught by a human, or by a build refusing at the
+  worst moment, rather than by a check. The duplicate-id case is the sharpest: a card id becomes the
+  Anki note guid, so a clash makes the package build refuse outright, and that refusal used to fire
+  only at **Mark done** — after both reviews had been signed off. Preflight moves it to before
+  anyone has looked at the unit, when it is still a one-line edit.
 
 - **It waits for the human; it never replaces them.** The watcher only ever observes the flag the
   reviewer's own click writes. Setting a review flag yourself to unblock a stage defeats the gate
@@ -512,6 +539,19 @@ anki-builder deck --run <dir> --name "Travel Spanish"
 anki-builder deck --book-dir output/epubs/<book-slug>       # merge a book (done units only)
 anki-builder deck --book-dir output/courses/<course-slug>   # merge a course
 ```
+
+### Preflight a collection before handing over a review link
+
+```sh
+npm run preflight                                  # every book + course under output/
+node scripts/preflight.mjs <book-or-course-dir>    # just one
+```
+
+Runs every deterministic pre-review check in one command and exits non-zero on any failure:
+schema validation, **duplicate card ids** (a clash makes the package build refuse, and it used to
+surface only at Mark done, after both gates were signed off), uncued collisions, cross-unit
+duplicate targets (reported, never auto-applied), and clips flagged marker-audible. Run it at the
+end of a build, before you post the link.
 
 ### Validate every deck's JSON against the schemas
 

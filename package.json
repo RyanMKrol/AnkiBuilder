@@ -16,7 +16,8 @@
     "serve": "node ./src/cli/bin.js serve",
     "ci": "npm run format:check && npm run lint && npm test && npm run build",
     "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
-    "validate:decks": "node scripts/validate-decks.mjs"
+    "validate:decks": "node scripts/validate-decks.mjs",
+    "preflight": "node scripts/preflight.mjs --all"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

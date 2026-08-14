@@ -17,6 +17,29 @@ function firstSet(...values) {
 }
 
 /**
+ * Which model and effort a call with this scope prefix would use right now. Most specific wins:
+ * the caller's legacy scope pair (e.g. ANKI_BUILDER_TRANSLATE_MODEL), then the unified
+ * ANKI_BUILDER_LLM_MODEL / ANKI_BUILDER_LLM_EFFORT, then the built-in Sonnet-medium default.
+ *
+ * Exported because a cached artifact records the model that produced it (src/corpus/artifactMeta.js),
+ * and a record derived from a second copy of this resolution order would drift from the real one.
+ */
+export function resolveModelAndEffort(scopeEnvPrefix, env = process.env) {
+  return {
+    model: firstSet(
+      scopeEnvPrefix ? env[`${scopeEnvPrefix}_MODEL`] : undefined,
+      env.ANKI_BUILDER_LLM_MODEL,
+      DEFAULT_MODEL,
+    ),
+    effort: firstSet(
+      scopeEnvPrefix ? env[`${scopeEnvPrefix}_EFFORT`] : undefined,
+      env.ANKI_BUILDER_LLM_EFFORT,
+      DEFAULT_EFFORT,
+    ),
+  };
+}
+
+/**
  * Invokes the local `claude -p` CLI with the given prompt and returns its stdout.
  *
  * - The prompt rides on STDIN, not argv — several prompts embed whole card sets plus
@@ -40,16 +63,7 @@ export function runClaudeWithPrompt(
   assertExternalCallAllowed("spawn `claude -p`");
 
   const env = process.env;
-  const model = firstSet(
-    scopeEnvPrefix ? env[`${scopeEnvPrefix}_MODEL`] : undefined,
-    env.ANKI_BUILDER_LLM_MODEL,
-    DEFAULT_MODEL,
-  );
-  const effort = firstSet(
-    scopeEnvPrefix ? env[`${scopeEnvPrefix}_EFFORT`] : undefined,
-    env.ANKI_BUILDER_LLM_EFFORT,
-    DEFAULT_EFFORT,
-  );
+  const { model, effort } = resolveModelAndEffort(scopeEnvPrefix, env);
   const timeout = Number(env.ANKI_BUILDER_LLM_TIMEOUT_MS) || DEFAULT_TIMEOUT_MS;
 
   let lastError;
@@ -97,16 +111,7 @@ export async function runClaudeWithPromptAsync(
   assertExternalCallAllowed("spawn `claude -p`");
 
   const env = process.env;
-  const model = firstSet(
-    scopeEnvPrefix ? env[`${scopeEnvPrefix}_MODEL`] : undefined,
-    env.ANKI_BUILDER_LLM_MODEL,
-    DEFAULT_MODEL,
-  );
-  const effort = firstSet(
-    scopeEnvPrefix ? env[`${scopeEnvPrefix}_EFFORT`] : undefined,
-    env.ANKI_BUILDER_LLM_EFFORT,
-    DEFAULT_EFFORT,
-  );
+  const { model, effort } = resolveModelAndEffort(scopeEnvPrefix, env);
   const timeout = Number(env.ANKI_BUILDER_LLM_TIMEOUT_MS) || DEFAULT_TIMEOUT_MS;
 
   let lastError;

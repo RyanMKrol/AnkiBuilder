@@ -6,11 +6,7 @@ Read the file at this exact path yourself using your Read tool — it is the raw
 
 Use the file's structure (headings, CSS classes, tag nesting) as signal for what kind of content each part is. Go through the ENTIRE file top to bottom — do not skip any part of it. If the file is long enough that your Read tool would otherwise truncate it (e.g. a default line-count limit), issue additional reads with an offset to cover the rest of the same file — never treat a partial read as if you'd read the whole thing. This matters doubly for a multi-file lesson: the file may be several spine files concatenated (separated by `<!-- anki-builder: spine chapter N -->` comments), and a truncated read silently drops the later files' content entirely.
 
-## Book-Wide Conventions
-
-{{BOOK_CONVENTIONS}}
-
-Use this as grounding for how THIS book specifically formats placeholders, content, and exercises — apply it alongside (not instead of) the general guidance below.
+A **Book-Wide Conventions** section sits at the END of this prompt. It describes how THIS book marks things up, and it is there to help you FIND things. It never decides what you extract: the rules below do. Read the rules first.
 
 ## Why
 
@@ -202,3 +198,13 @@ Across everything gathered in Steps 1 and 2, de-duplicate across the whole chapt
 **An ANSWER line from a dialogue or drill needs a `scene`, and an `english` that matches how much the `target` says.** Chapters are full of question/answer exchanges, and an answer extracted as its own card is studied alone, shuffled, long after the question. Two rules follow. (1) The `english` must be able to produce the whole `target`: if the target states its topic, so must the English — `パーティーはごじです` is "The party is at 5:00.", NOT "It's at 5:00.", because nothing in that shorter gloss would make a learner write パーティーは. Dropping the topic in English is right only when the target drops it too (`にちようびです` → "It's on Sunday."). Read the English on its own and ask whether it could yield exactly that target; if not, it is missing something. (2) An answer that IS elliptical on both sides needs a `scene` naming the question it replies to — "answering where the computer is", "answering when the presentation is" — stating the question and never leaking the answer. Otherwise the card has no discoverable right answer.
 
 **A `note` when a card reuses a form the learner already knows but with a different meaning or function (a "false friend within what they know").** A learner who has met a word will read it the way they first learned it, so a card that reuses that surface form in a new role trips them up unless the `note` calls it out. Name the familiar form, its familiar meaning, and how THIS use differs. The classic case is a question word taking の: どこ (doko) alone asks a location ("where is it?"), but どこの (doko no) asks origin or make — "which place's / what brand of" (as in それはどこのコーヒーカップですか, "where is that coffee cup from?"); likewise だれ (dare) "who" → だれの (dare no) "whose", なに (nani) "what" → なんの (nan no) "what kind of". Other cases: a pronoun vs a determiner (それ (sore) "that one" → その (sono) "that ___" before a noun), the same kana serving as a different particle, or a counter reused for a different kind of thing. Only within this chapter can you see part of the pair; the whole-book teachability pass (below) adds these across chapters, backward-only.
+
+## Book-Wide Conventions
+
+The notes below were written by a separate whole-book pass that read every chapter of THIS book once. They describe the book's MARKUP: how it marks a placeholder, what a content section looks like, what a drill section looks like, which chapters carry teaching content inside images.
+
+**Precedence — read this before you read the notes.** The conventions are authoritative about MARKUP and about WHERE things are. They are never authoritative about WHAT TO EXTRACT. Where anything below disagrees with the rules earlier in this prompt about what counts as content, what to extract in full, or what to skip, **the rules above win, every time.** If the notes call a section "exercise material" and the rules above say that shape (say, a conjugation or paradigm table printed among the drills) is reference material to extract in full, extract it in full and note the disagreement in that item's `reviewNote`.
+
+This ordering is not a formality. The notes are cached: they were written once, months before this run, by a pass that could not see the rules you have just read. A rule edited last week loses to a note written in July unless it is stated, so it is stated here.
+
+{{BOOK_CONVENTIONS}}

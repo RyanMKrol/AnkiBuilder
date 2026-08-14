@@ -1746,3 +1746,39 @@ say when it was measured rather than stating it as a standing fact.
   failure mode.
 - **Status:** open
 - **When to revisit:** when WS1's audit scopes land, the library copy is a natural third scope to add.
+
+## The cached-artifact drift check compares prompt TEMPLATES, not rendered prompts
+
+- **What:** `conventions.md` and `taught-index.json` now carry a `<artifact>.meta.json` recording the
+  prompt path, a sha256 of the prompt **template file**, the model/effort, chapter count and
+  timestamp. `assemble` (conventions) and `ensureTaughtIndex` (taught index) WARN when that hash no
+  longer matches the template on disk.
+- **Why:** the rendered prompt embeds absolute chapter paths from the machine that produced it, so
+  hashing the rendered text would report drift every time the checkout moved, and a warning that
+  fires constantly is a warning nobody reads. The template is what a human edits.
+- **Impact:** drift that comes from something OTHER than a template edit is invisible: a changed
+  per-language rules fragment, a different chapter set, a model upgrade. The recorded model/effort
+  and chapter count make two of those checkable by eye, but nothing compares them automatically.
+  Both artifacts already on disk have no meta sibling, so they warn about the absence instead, which
+  is the correct answer (nobody can say which prompt produced them) and will keep firing until they
+  are regenerated.
+- **Status:** open — landing-day WARN on both live artifacts is expected, not a bug.
+- **When to revisit:** if a non-template input ever starts changing the artifact's meaning, add it to
+  the hash rather than widening the warning.
+
+## The conventions/extraction precedence is stated in prose, and nothing enforces it
+
+- **What:** the extraction prompt now renders `{{BOOK_CONVENTIONS}}` AFTER its own rules, with an
+  explicit statement that the conventions are authoritative about markup and location only, and that
+  the rules above win on any conflict about what to extract. The conventions prompt was reworded to
+  describe drill markup structurally and to classify reference tables printed inside exercise
+  sections as reference material.
+- **Why:** the conflict that cost chapter 12 its paradigm forms was a policy sentence in a cached
+  artifact outranking a prompt rule edited a month later. Prompt ordering plus an explicit precedence
+  rule is the direct fix; enforcing it mechanically would mean parsing free-form prose.
+- **Impact:** a future conventions run can still emit policy language ("skip the EXERCISES section")
+  and a model can still follow it. The precedence sentence and the ordering make that less likely,
+  not impossible, and the only detector remains a human noticing missing cards.
+- **Status:** open
+- **When to revisit:** when the extraction eval fixture (WS8) can be run against a deliberately
+  policy-heavy conventions doc, that becomes the real test of whether the precedence rule holds.

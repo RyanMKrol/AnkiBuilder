@@ -211,7 +211,30 @@ test("analyzeBookConventions() returns the model's raw markdown unchanged", () =
       runClaude: () => markdown,
     });
 
-    assert.equal(result, markdown);
+    assert.equal(result.markdown, markdown);
+  });
+});
+
+// The provenance record cached beside conventions.md. Without it, a doc written months ago and a
+// prompt edited last week are indistinguishable, which is exactly how this book lost a chapter's
+// paradigm forms.
+test("analyzeBookConventions() returns the provenance record to cache beside the doc", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, 4);
+
+    const { meta } = analyzeBookConventions({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () => "# conventions",
+    });
+
+    assert.match(meta.promptPath, /epub-book-conventions-prompt\.md$/);
+    assert.match(meta.promptSha256, /^[0-9a-f]{64}$/);
+    assert.equal(meta.chapterCount, 4);
+    assert.ok(meta.model);
+    assert.ok(meta.effort);
+    assert.ok(Date.parse(meta.generatedAt));
   });
 });
 

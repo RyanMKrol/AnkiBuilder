@@ -89,6 +89,21 @@ already taught — ..."` for a backward match, `"Possibly premature — ..."` fo
   instead of each chapter re-inferring the book's conventions from just its own content. Manual
   `--chapter` mode has no book identity to cache this under, so it doesn't get this context.
 
+  **Precedence, and how the cache is kept honest.** The conventions doc is authoritative about
+  MARKUP and about where things are. It is never authoritative about what to extract: on any
+  conflict the extraction prompt's own rules win, and the conventions block is rendered at the END
+  of the extraction prompt, after those rules, saying so. This is not theoretical. The cached doc
+  for the one book built so far (14 Jul) names a chapter's paradigm image as exercise material to
+  skip, while the extraction prompt (9 Aug) uses that exact shape as its worked example of
+  "reference material, extract in full"; the chapter shipped none of those eight forms. A cached
+  artifact silently outranking a prompt edited a month later is the failure, so both cached
+  artifacts (conventions.md, taught-index.json) now carry a sibling `<artifact>.meta.json` with the
+  prompt path, a sha256 of the prompt TEMPLATE, the model and effort that ran it, the chapter count,
+  and a timestamp (`src/corpus/artifactMeta.js`). When the template's hash no longer matches, the
+  next `assemble` prints a WARNING naming the drift. It never regenerates: that is a paid whole-book
+  pass and a judgement call, so it stays a human decision. An artifact cached before this existed has
+  no meta sibling and warns about that instead of staying silent.
+
 **Pedagogical sort (every source).** As the final step before writing `corpus.json` — for _every_
 source, not just EPUB — `assemble` re-orders the items for learning flow via `sortItemsPedagogically`
 (`src/corpus/pedagogicalSort.js`): a Sonnet-medium `claude -p` pass that returns the items
@@ -623,6 +638,9 @@ always relative to the repo itself, regardless of which directory you invoke the
                                                      #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
+  epubs/<epubHash>/conventions.md.meta.json     # which prompt/model/effort produced it, and when
+  epubs/<epubHash>/taught-index.json            # one-time whole-book "what each chapter teaches"
+  epubs/<epubHash>/taught-index.json.meta.json  # same provenance record, for that index
 ```
 
 ## Output layout

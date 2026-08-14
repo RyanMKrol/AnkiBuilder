@@ -302,7 +302,12 @@ Then open the files that matter (the Read tool renders images) and judge each by
 filename and not by what conventions.md called it: a figure sitting under a heading whose text then
 runs out, or referenced by prose with no visible referent, is load-bearing; an illustration whose
 labels already appear in the text is decoration. Being unnamed in `conventions.md` is an absence, not
-a verdict — that pass read 57 files in one call and can have missed one.
+a verdict — that pass read 57 files in one call and can have missed one. `conventions.md` describes
+the book's MARKUP and where things are; it never decides what gets extracted, and the extraction
+prompt says so in as many words. It is also cached for the life of the book, so `assemble` warns when
+the prompt that produced it has been edited since (the sibling `conventions.md.meta.json` records
+which version ran). Nothing regenerates it automatically — that is a paid whole-book pass, so deleting
+the file is a deliberate choice you make, not something the build does for you.
 **Report what you find WITH the review link**, so the reviewer signs off gate 1 knowing whether the
 chapter taught anything the cards cannot have covered. Transcribe any load-bearing figure into the
 Step 3b brief, and audit any paradigm it contains cell by cell. Full procedure, including the

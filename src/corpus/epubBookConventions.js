@@ -4,14 +4,20 @@ import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath } from "./epubLibrary.js";
 import { runClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
+import { buildArtifactMeta } from "./artifactMeta.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
 // Lives in docs/ (not src/) for the same reason as the other prompts — a
 // plain, human-editable Markdown file meant to be tuned by hand.
-const DEFAULT_TEMPLATE_PATH = resolve(
+export const BOOK_CONVENTIONS_PROMPT_PATH = resolve(
   join(MODULE_DIR, "..", "..", "docs", "epub-book-conventions-prompt.md"),
 );
+const DEFAULT_TEMPLATE_PATH = BOOK_CONVENTIONS_PROMPT_PATH;
+
+// The env-pair prefix this pass's runner honors — recorded in the artifact's provenance so the
+// meta says which model actually produced the cached doc, not which one is configured today.
+const SCOPE_ENV_PREFIX = "ANKI_BUILDER_EPUB_LLM";
 
 function substitute(template, values) {
   let rendered = template;
@@ -53,8 +59,13 @@ export function renderBookConventionsPrompt({
  * extraction cache (chapterCachePath — the same cache assemble/flagForwardConcerns
  * use, so this warms it for them too) and asks a Sonnet-medium model to
  * characterize the book's own structural conventions (placeholder notation,
- * content vs. exercise markup). Returns the raw Markdown text as-is — this
- * pass produces prose, not structured data, so there's nothing to parse.
+ * content vs. exercise markup).
+ *
+ * Returns `{ markdown, meta }`: the model's prose exactly as it came back (this pass produces
+ * prose, not structured data, so there is nothing to parse) plus the provenance record to cache
+ * beside it. The caller passes `meta` to `saveBookConventions`, which writes it to
+ * `conventions.md.meta.json`; a later assemble compares it against the prompt as it stands then
+ * and WARNS if the doc predates a prompt edit.
  */
 export function analyzeBookConventions({
   epubPath,
@@ -72,5 +83,12 @@ export function analyzeBookConventions({
 
   const prompt = renderBookConventionsPrompt({ targetLanguage, chapterFilePaths });
 
-  return runClaude(prompt);
+  return {
+    markdown: runClaude(prompt),
+    meta: buildArtifactMeta({
+      templatePath: DEFAULT_TEMPLATE_PATH,
+      scopeEnvPrefix: SCOPE_ENV_PREFIX,
+      chapterCount: chapterFilePaths.length,
+    }),
+  };
 }

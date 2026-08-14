@@ -2,7 +2,7 @@
 
 `translateCorpus` (`src/translate/index.js`) splits corpus items into two groups depending on whether `item.target` is already set, and sends each group through a different prompt — one `claude -p` call per group, unbatched (the whole group goes in a single call, pinned to Sonnet at medium effort by default, overridable via `ANKI_BUILDER_TRANSLATE_MODEL` / `ANKI_BUILDER_TRANSLATE_EFFORT`, or for every LLM pass at once via `ANKI_BUILDER_LLM_MODEL` / `ANKI_BUILDER_LLM_EFFORT`; every call runs with a timeout, one retry, and the prompt piped over stdin — see `src/util/runClaude.js`).
 
-**Spoken form (`reading`).** Anywhere the target text is romanized or pronounced, an item's optional `reading` is used in place of `target` when set (`reading ?? target`) — the romanization library romanizes it, and the pronunciation-only prompt is handed it as the text to pronounce. This is how a number card displays digits (`target: "2,000えん"`) but pronounces/romanizes the spelled-out spoken form (`reading: "にせんえん"`), since digits break both the romanizer and TTS. The `reading` is carried through onto the resulting card for the audio stage. See `src/model/index.js` (schema) and `src/translate/romanizationEval.js`.
+**Spoken form (`ttsText`).** `ttsText` is the text TTS speaks instead of the target whenever the written target would be misread (numerals AND kanji-bearing targets); it is never rendered on any card face. Anywhere the target text is romanized or pronounced, an item's optional `ttsText` is used in place of `target` when set (`ttsText ?? target`): the romanization library romanizes it, and the pronunciation-only prompt is handed it as the text to pronounce. This is how a number card displays digits (`target: "2,000えん"`) but pronounces and romanizes the spelled-out spoken form (`ttsText: "にせんえん"`), since digits break both the romanizer and TTS. The `ttsText` is carried through onto the resulting card for the audio stage. See `src/model/index.js` (schema) and `src/translate/romanizationEval.js`.
 
 **Per-language style rules.** Both translation prompts inject any register/orthography rules the target language defines in `src/translate/languageRules.js` (`translationStyle`, keyed by ISO 639-1 code) as extra bullets under the `target` field — for Japanese that means defaulting generated translations to the polite です／ます register and textbook phrasing. The `--simple-script` flag separately injects the language's script constraint from `src/translate/targetScript.js`. The prompt cores stay language-neutral; a language with no rules gets no extra bullets.
 
@@ -350,7 +350,7 @@ the final authority on the romanization.
 ## Input Format
 - `id` (string): a unique identifier — reuse it unchanged in your response.
 - `english` (string): the English phrase, for meaning context.
-- `target` (string): the <targetLanguage> text to romanize (the spoken `reading` when the card has one).
+- `target` (string): the <targetLanguage> text to romanize (the card's `ttsText` when it has one).
 - `libraryRomanization` (string): the library's attempt — a starting point, often wrong.
 
 ## Output Format

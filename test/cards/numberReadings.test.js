@@ -14,12 +14,12 @@ test("fills reading AND pronunciation together, and flags the card for the revie
     items,
     targetLanguage: "ja",
     runClaude: reply([
-      { id: "a", reading: "にせんにじゅうごねんに", pronunciation: "nisen nijūgonen ni" },
+      { id: "a", ttsText: "にせんにじゅうごねんに", pronunciation: "nisen nijūgonen ni" },
     ]),
   });
 
   const fixed = result.items.find((i) => i.id === "a");
-  assert.equal(fixed.reading, "にせんにじゅうごねんに");
+  assert.equal(fixed.ttsText, "にせんにじゅうごねんに");
   assert.equal(fixed.pronunciation, "nisen nijūgonen ni");
   // Both symptoms of one cause — fixing only the reading leaves wrong romaji on screen.
   assert.equal(fixed.target, "2025ねんに", "the card face keeps its digits");
@@ -33,7 +33,7 @@ test("an untouched card is left exactly as it was", () => {
   fillNumberReadings({
     items,
     targetLanguage: "ja",
-    runClaude: reply([{ id: "a", reading: "にせんにじゅうごねんに", pronunciation: "nisen ni" }]),
+    runClaude: reply([{ id: "a", ttsText: "にせんにじゅうごねんに", pronunciation: "nisen ni" }]),
   });
   assert.deepEqual(
     items.find((i) => i.id === "b"),
@@ -53,7 +53,7 @@ test("a fix that still contains a digit is discarded", () => {
   const result = fillNumberReadings({
     items,
     targetLanguage: "ja",
-    runClaude: reply([{ id: "a", reading: "2025ねんに", pronunciation: "2025-nen ni" }]),
+    runClaude: reply([{ id: "a", ttsText: "2025ねんに", pronunciation: "2025-nen ni" }]),
   });
   assert.deepEqual(result.fixed, []);
   assert.equal(result.remaining.length, 1);

@@ -52,7 +52,7 @@ export function renderFillInBlankPrompt({
   const cardData = cards.map((card) => {
     const entry = { id: card.id, english: card.english, target: card.target };
     if (card.category) entry.category = card.category;
-    if (card.reading) entry.reading = card.reading;
+    if (card.ttsText) entry.ttsText = card.ttsText;
     if (card.excluded) entry.excluded = true;
     return entry;
   });
@@ -186,8 +186,8 @@ export function mineFillInBlankCards({
       fillInBlank: true,
       aiSuggested: true,
     };
-    if (typeof card.reading === "string" && card.reading.trim()) {
-      item.reading = normalizeDisplayText(card.reading.trim(), displayLang);
+    if (typeof card.ttsText === "string" && card.ttsText.trim()) {
+      item.ttsText = normalizeDisplayText(card.ttsText.trim(), displayLang);
     }
     added.push(item);
     if (typeof card.sourcePattern === "string" && card.sourcePattern.trim()) {

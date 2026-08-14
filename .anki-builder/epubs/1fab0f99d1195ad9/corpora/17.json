@@ -680,7 +680,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank drill (state closing time); filled the time blank with 7:00 using chapter vocabulary ジム.",
       "target": "ジムは７じまでです",
-      "reading": "ジムはしちじまでです"
+      "ttsText": "ジムはしちじまでです"
     },
     {
       "id": "fib-c3-restaurant-open-8",
@@ -688,7 +688,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank drill (state opening time); filled with 8:00 using chapter vocabulary レストラン.",
       "target": "レストランは８じからです",
-      "reading": "レストランははちじからです"
+      "ttsText": "レストランははちじからです"
     },
     {
       "id": "fib-c3-supermarket-10-6",
@@ -696,7 +696,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank drill (state opening and closing times); filled with 10:00/6:00 using chapter vocabulary スーパー.",
       "target": "スーパーは１０じから６じまでです",
-      "reading": "スーパーはじゅうじからろくじまでです"
+      "ttsText": "スーパーはじゅうじからろくじまでです"
     },
     {
       "id": "fib-c3-meeting-end-q",
@@ -704,7 +704,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer closing time); filled with かいぎ and 4:30. Split from Q&A card fib-c3-meeting-end-430 (question half).",
       "target": "かいぎはなんじまでですか",
-      "reading": "かいぎはなんじまでですか"
+      "ttsText": "かいぎはなんじまでですか"
     },
     {
       "id": "fib-c3-meeting-end-a",
@@ -712,7 +712,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer closing time); filled with かいぎ and 4:30. Split from Q&A card fib-c3-meeting-end-430 (answer half).",
       "target": "よじはんまでです",
-      "reading": "よじはんまでです"
+      "ttsText": "よじはんまでです"
     },
     {
       "id": "fib-c3-lunch-break-q",
@@ -720,7 +720,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer opening and closing times); filled with ひるやすみ and 12:30/1:30. Split from Q&A card fib-c3-lunch-break-1230-130 (question half).",
       "target": "ひるやすみはなんじからなんじまでですか",
-      "reading": "ひるやすみはなんじからなんじまでですか"
+      "ttsText": "ひるやすみはなんじからなんじまでですか"
     },
     {
       "id": "fib-c3-lunch-break-a",
@@ -728,7 +728,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer opening and closing times); filled with ひるやすみ and 12:30/1:30. Split from Q&A card fib-c3-lunch-break-1230-130 (answer half).",
       "target": "じゅうにじはんからいちじはんまでです",
-      "reading": "じゅうにじはんからいちじはんまでです"
+      "ttsText": "じゅうにじはんからいちじはんまでです"
     },
     {
       "id": "fib-c3-presentation-q",
@@ -736,7 +736,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with プレゼン and today at 3:00. Split from Q&A card fib-c3-presentation-today-3 (question half).",
       "target": "プレゼンはいつですか",
-      "reading": "プレゼンはいつですか"
+      "ttsText": "プレゼンはいつですか"
     },
     {
       "id": "fib-c3-presentation-a",
@@ -744,7 +744,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with プレゼン and today at 3:00. Split from Q&A card fib-c3-presentation-today-3 (answer half).",
       "target": "きょうのさんじからです",
-      "reading": "きょうのさんじからです"
+      "ttsText": "きょうのさんじからです"
     },
     {
       "id": "fib-c3-party-q",
@@ -752,7 +752,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with パーティー and tomorrow at 5:00. Split from Q&A card fib-c3-party-tomorrow-5 (question half).",
       "target": "パーティーはいつですか",
-      "reading": "パーティーはいつですか"
+      "ttsText": "パーティーはいつですか"
     },
     {
       "id": "fib-c3-party-a",
@@ -760,7 +760,7 @@
       "category": "Time",
       "reviewNote": "Fill-in-the-blank dialogue drill (ask/answer when an event is held); filled with パーティー and tomorrow at 5:00. Split from Q&A card fib-c3-party-tomorrow-5 (answer half).",
       "target": "あしたのごじからです",
-      "reading": "あしたのごじからです"
+      "ttsText": "あしたのごじからです"
     }
   ]
 }

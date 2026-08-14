@@ -13,7 +13,7 @@ import {
 } from "../../src/audio/index.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 
-// The core-mechanics tests below (dedup, caching, hashing, reading-vs-target) exercise the default
+// The core-mechanics tests below (dedup, caching, hashing, ttsText-vs-target) exercise the default
 // recording pass — the only one there is; the with-。 / no-。 pair the alt-audio transform used to
 // produce is gone, replaced by the end marker.
 //
@@ -606,20 +606,20 @@ test("preserves meta property in returned cards", async () => {
   }
 });
 
-test("speaks `reading` instead of `target` when a card carries one", async () => {
+test("speaks `ttsText` instead of `target` when a card carries one", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";
 
   try {
     await withTempDir(async (tmpDir) => {
       const cards = baseCards([
-        // Kanji face, kana reading — TTS must receive the kana, not the kanji.
+        // Kanji face, kana ttsText — TTS must receive the kana, not the kanji.
         {
           id: "n21",
           english: "Twenty-one",
           category: "Numbers",
           target: "二十一",
-          reading: "にじゅういち",
+          ttsText: "にじゅういち",
         },
       ]);
 
@@ -638,7 +638,7 @@ test("speaks `reading` instead of `target` when a card carries one", async () =>
       assert.deepEqual(calls, ["にじゅういち。ででで"]);
       // The card still carries its kanji target untouched; only what was spoken changed.
       assert.equal(result.items[0].target, "二十一");
-      assert.equal(result.items[0].reading, "にじゅういち");
+      assert.equal(result.items[0].ttsText, "にじゅういち");
       assert.ok(result.items[0].audio);
     });
   } finally {
@@ -650,15 +650,15 @@ test("speaks `reading` instead of `target` when a card carries one", async () =>
   }
 });
 
-test("audio cache key follows the spoken text: same target + different reading => distinct clips", async () => {
+test("audio cache key follows the spoken text: same target + different ttsText => distinct clips", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";
 
   try {
     await withTempDir(async (tmpDir) => {
       const cards = baseCards([
-        { id: "c1", english: "A", category: "Numbers", target: "同", reading: "どう" },
-        { id: "c2", english: "B", category: "Numbers", target: "同", reading: "おなじ" },
+        { id: "c1", english: "A", category: "Numbers", target: "同", ttsText: "どう" },
+        { id: "c2", english: "B", category: "Numbers", target: "同", ttsText: "おなじ" },
       ]);
 
       const calls = [];
@@ -673,7 +673,7 @@ test("audio cache key follows the spoken text: same target + different reading =
         libraryHomeDir: tmpDir,
       });
 
-      // Two readings => two TTS calls => two files, even though `target` is identical.
+      // Two ttsText values => two TTS calls => two files, even though `target` is identical.
       assert.equal(calls.length, 2);
       assert.notEqual(result.items[0].audio, result.items[1].audio);
 
@@ -690,14 +690,14 @@ test("audio cache key follows the spoken text: same target + different reading =
   }
 });
 
-test("falls back to `target` when `reading` is an empty string", async () => {
+test("falls back to `target` when `ttsText` is an empty string", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";
 
   try {
     await withTempDir(async (tmpDir) => {
       const cards = baseCards([
-        { id: "e1", english: "Hello", category: "Greetings", target: "こんにちは", reading: "" },
+        { id: "e1", english: "Hello", category: "Greetings", target: "こんにちは", ttsText: "" },
       ]);
 
       const calls = [];
@@ -804,10 +804,10 @@ test("default: the clip is cached — a second run makes zero calls", async () =
   });
 });
 
-test("default: the clip is built from the spoken text (reading when present)", async () => {
+test("default: the clip is built from the spoken text (ttsText when present)", async () => {
   await withKey(async (tmpDir) => {
     const cards = baseCards([
-      { id: "a1", english: "one", category: "Numbers", target: "一", reading: "いち" },
+      { id: "a1", english: "one", category: "Numbers", target: "一", ttsText: "いち" },
     ]);
     const calls = [];
     await generateAudioImpl(cards, {
@@ -822,7 +822,7 @@ test("default: the clip is built from the spoken text (reading when present)", a
     assert.deepEqual(
       calls,
       ["いち。ででで"],
-      "speaks the reading's 。 variant, not the kanji target",
+      "speaks the ttsText's 。 variant, not the kanji target",
     );
   });
 });

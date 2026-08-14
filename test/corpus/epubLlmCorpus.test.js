@@ -96,8 +96,8 @@ test("assembleCorpusFromChapter() preserves uncertain/aiSuggested flags when tru
   assert.strictEqual(corpus.items[2].uncertain, undefined);
 });
 
-test("assembleCorpusFromChapter() carries the extractor's reading, omits it when absent/empty", () => {
-  // The extraction prompt asks for `reading` on numeral-bearing items (2,000えん → にせんえん);
+test("assembleCorpusFromChapter() carries the extractor's ttsText, omits it when absent/empty", () => {
+  // The extraction prompt asks for `ttsText` on numeral-bearing items (2,000えん → にせんえん);
   // dropping it here would force prepare to re-buy it with another model call flagged uncertain.
   const corpus = assembleCorpusFromChapter({
     chapterFilePath: "/tmp/chapter.xhtml",
@@ -109,16 +109,16 @@ test("assembleCorpusFromChapter() carries the extractor's reading, omits it when
           english: "2,000 yen",
           target: "2,000えん",
           category: "Money",
-          reading: "にせんえん",
+          ttsText: "にせんえん",
         },
         { id: "plain", english: "Hello", target: "こんにちは", category: "Greetings" },
-        { id: "empty", english: "Bye", target: "じゃあね", category: "Greetings", reading: "" },
+        { id: "empty", english: "Bye", target: "じゃあね", category: "Greetings", ttsText: "" },
       ]),
   });
 
-  assert.strictEqual(corpus.items[0].reading, "にせんえん");
-  assert.strictEqual(corpus.items[1].reading, undefined);
-  assert.strictEqual(corpus.items[2].reading, undefined); // empty string never survives
+  assert.strictEqual(corpus.items[0].ttsText, "にせんえん");
+  assert.strictEqual(corpus.items[1].ttsText, undefined);
+  assert.strictEqual(corpus.items[2].ttsText, undefined); // empty string never survives
 });
 
 test("assembleCorpusFromChapter() threads bookConventions into the extraction prompt", () => {

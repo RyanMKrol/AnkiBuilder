@@ -11,9 +11,9 @@ function buildRomanizationPrompt(items, targetLanguage) {
   const inputData = items.map((item) => ({
     id: item.id,
     english: item.english,
-    // The text that was actually romanized — the spoken `reading` when set (e.g. kana にせんえん),
+    // The text that was actually romanized — the spoken `ttsText` when set (e.g. kana にせんえん),
     // else `target`. This is what the romanization must match, not a digit/kanji display form.
-    target: item.reading || item.target,
+    target: item.ttsText || item.target,
     libraryRomanization: item.libraryPronunciation,
   }));
 
@@ -193,7 +193,7 @@ export async function romanizeAndEvaluate(
       const mod = await libraryEntry.load();
       // Romanize the spoken form when set (e.g. kana にせんえん) rather than the display
       // `target` (e.g. "2,000えん", which kuroshiro would leave as "2 , 000 en").
-      const libraryPronunciation = await mod.romanize(item.reading || item.target);
+      const libraryPronunciation = await mod.romanize(item.ttsText || item.target);
       romanized.push({ ...item, libraryPronunciation });
     } catch (error) {
       log(

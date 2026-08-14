@@ -391,7 +391,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
   const displayLang = resolveIso639Code(flags.lang);
   for (const item of corpus.items) {
     if (item.target) item.target = normalizeDisplayText(item.target, displayLang);
-    if (item.reading) item.reading = normalizeDisplayText(item.reading, displayLang);
+    if (item.ttsText) item.ttsText = normalizeDisplayText(item.ttsText, displayLang);
   }
 
   writeJson(paths.corpus, corpus);

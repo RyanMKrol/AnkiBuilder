@@ -77,7 +77,7 @@
       "english": "I walked for about eight hours.",
       "category": "Travel & Tourism",
       "target": "８じかんぐらいあるきました",
-      "reading": "はちじかんぐらいあるきました",
+      "ttsText": "はちじかんぐらいあるきました",
       "aiSuggested": true,
       "reviewNote": "Target Dialogue and repeated in NOTES 1 as the paired answer to どのくらいあるきましたか. Deck has ８じかん and ぐらい as vocabulary only."
     },
@@ -164,7 +164,7 @@
       "english": "I waited for about 30 minutes.",
       "category": "Time",
       "target": "30ぷんぐらいまちました",
-      "reading": "さんじゅっぷんぐらいまちました",
+      "ttsText": "さんじゅっぷんぐらいまちました",
       "note": "ぐらい (gurai) attaches straight onto the amount, after the counter, with no particle in between.",
       "aiSuggested": true,
       "reviewNote": "Adverb coverage for ぐらい with a length of time. Constructed sentence. The deck only has 5ふんぐらい as a bare phrase, never a minutes amount inside a sentence."
@@ -266,7 +266,7 @@
       "english": "About 500 people",
       "category": "Numbers",
       "target": "500にんぐらい",
-      "reading": "ごひゃくにんぐらい",
+      "ttsText": "ごひゃくにんぐらい",
       "aiSuggested": true,
       "reviewNote": "NOTES 1 example list. The deck already has the other two examples from that same list (5ふんぐらい and 1,000えんぐらい) but not this one."
     },
@@ -385,7 +385,7 @@
       "english": "That bag was about 10,000 yen.",
       "category": "Money",
       "target": "そのかばんは10,000えんぐらいでした",
-      "reading": "そのかばんはいちまんえんぐらいでした",
+      "ttsText": "そのかばんはいちまんえんぐらいでした",
       "aiSuggested": true,
       "reviewNote": "Adverb coverage for ぐらい with a price. Constructed sentence. 1,000えんぐらい is in the deck as a bare phrase only, and no card puts a ぐらい price into a past-tense sentence."
     },

@@ -4,7 +4,7 @@ import { validateCorpus } from "../model/index.js";
 /**
  * Extracts ONE chapter file via the LLM extractor and wraps the result into a
  * schema-valid corpus.json object — normalizing each item to the superset
- * shape (`target` always present, `null` when absent; `reading`/`uncertain`/
+ * shape (`target` always present, `null` when absent; `ttsText`/`uncertain`/
  * `aiSuggested` carried through when the extractor set them, omitted
  * otherwise) and setting `meta.reviewed: false`, since a freshly assembled
  * corpus has not been through the review stage yet.
@@ -41,8 +41,8 @@ export function assembleCorpusFromChapter({
     // Optional spoken form (e.g. にせんえん for 2,000えん). The schema wants a non-empty string or
     // nothing; when present it drives the romaji and the audio downstream, so dropping it here would
     // force `prepare` to re-derive it with another model call and worse provenance.
-    if (typeof item.reading === "string" && item.reading) {
-      normalized.reading = item.reading;
+    if (typeof item.ttsText === "string" && item.ttsText) {
+      normalized.ttsText = item.ttsText;
     }
     // Only set when true — the schema treats these as optional flags, not
     // tri-state fields, so a false/absent value should stay absent.

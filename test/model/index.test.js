@@ -36,7 +36,7 @@ test("validateCorpus - valid corpus passes validation", () => {
   });
 });
 
-test("validateCorpus - accepts an optional `reading` (spoken form) on an item", () => {
+test("validateCorpus - accepts an optional `ttsText` (spoken form) on an item", () => {
   const validCorpus = {
     meta: { targetLanguage: "ja", sourceType: "epub" },
     items: [
@@ -45,7 +45,7 @@ test("validateCorpus - accepts an optional `reading` (spoken form) on an item", 
         english: "2,000 yen",
         category: "Shopping",
         target: "2,000えん",
-        reading: "にせんえん",
+        ttsText: "にせんえん",
       },
     ],
   };
@@ -311,7 +311,7 @@ test("validateCards - valid cards object passes validation", () => {
   });
 });
 
-test("validateCards - accepts an optional `reading` field on an item", () => {
+test("validateCards - accepts an optional `ttsText` field on an item", () => {
   const cardsWithReading = {
     meta: {
       targetLanguage: "ja",
@@ -324,7 +324,7 @@ test("validateCards - accepts an optional `reading` field on an item", () => {
         category: "Numbers",
         target: "二十一",
         pronunciation: "nijūichi",
-        reading: "にじゅういち",
+        ttsText: "にじゅういち",
       },
     ],
   };
@@ -347,7 +347,7 @@ test("validateCards - accepts an optional boolean `fillInBlank` field on an item
         category: "Time",
         target: "パーティーはいつですか",
         pronunciation: "pātī wa itsu desu ka.",
-        reading: "パーティーはいつですか",
+        ttsText: "パーティーはいつですか",
         fillInBlank: true,
       },
     ],
@@ -358,7 +358,7 @@ test("validateCards - accepts an optional boolean `fillInBlank` field on an item
   });
 });
 
-test("validateCards - a non-string `reading` fails validation", () => {
+test("validateCards - a non-string `ttsText` fails validation", () => {
   const invalidCards = {
     meta: {
       targetLanguage: "ja",
@@ -371,7 +371,7 @@ test("validateCards - a non-string `reading` fails validation", () => {
         category: "Numbers",
         target: "二十一",
         pronunciation: "nijūichi",
-        reading: 21,
+        ttsText: 21,
       },
     ],
   };

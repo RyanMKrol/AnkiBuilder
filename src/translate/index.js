@@ -198,7 +198,7 @@ function buildPronunciationOnlyPrompt(items, targetLanguage) {
   const inputData = items.map((item) => {
     // Pronounce the spoken form when set (e.g. kana にせんえん) rather than the display
     // `target` (e.g. "2,000えん") — keeps this LLM/fallback path in step with the library romanizer.
-    const entry = { id: item.id, english: item.english, target: item.reading || item.target };
+    const entry = { id: item.id, english: item.english, target: item.ttsText || item.target };
     if (item.hint) {
       entry.hint = item.hint;
     }
@@ -368,8 +368,8 @@ function assemblePronunciationOnlyCard(item, entry) {
     target: item.target,
     pronunciation,
   };
-  if (item.reading) {
-    card.reading = item.reading;
+  if (item.ttsText) {
+    card.ttsText = item.ttsText;
   }
   return card;
 }
@@ -447,8 +447,8 @@ function toPartialCard(item) {
   };
   // Carry the spoken form onto the card so the audio stage speaks it and the
   // romanizer romanized it (see romanizeAndEvaluate).
-  if (item.reading) {
-    card.reading = item.reading;
+  if (item.ttsText) {
+    card.ttsText = item.ttsText;
   }
   return card;
 }
@@ -576,12 +576,12 @@ export async function translateCorpus(
   }
 
   // For space-free scripts (e.g. Japanese), strip editorial spaces from the DISPLAY text so the card
-  // face and reading render as natural spaceless script. Romanization already happened above (from
+  // face and ttsText render as natural spaceless script. Romanization already happened above (from
   // the spaced source, which the romanizer re-tokenizes anyway), and the audio stage strips spaces
   // for TTS separately — this is purely the stored display value.
   for (const item of items) {
     if (item.target) item.target = normalizeDisplayText(item.target, languageCode);
-    if (item.reading) item.reading = normalizeDisplayText(item.reading, languageCode);
+    if (item.ttsText) item.ttsText = normalizeDisplayText(item.ttsText, languageCode);
   }
 
   // Preserve the corpus-review flags on the translated card so they survive into cards.json and every

@@ -60,7 +60,7 @@ export function lessonReadiness(meta = {}, items = null) {
   // A digit that has leaked into the spoken text or the romaji. Held at THIS gate rather than at the
   // audio stage, which was the old placement and far too late: by then the lesson has been reviewed,
   // and the reviewer has been reading wrong romaji the whole way through. Here the offending cards are
-  // on screen in front of them, and `reading`/`pronunciation` are both inline-editable — so fixing it
+  // on screen in front of them, and `ttsText`/`pronunciation` are both inline-editable — so fixing it
   // clears the block on the next render, with nothing to re-run.
   const numberIssues = items
     ? findUnreadableNumbers(items, resolveIso639Code(meta.targetLanguage))
@@ -110,7 +110,7 @@ export function describeReadiness({
   if (missing.length === 0 && numberIssues.length === 0) return "ready for review";
   if (missing.length === 0) {
     return (
-      `${numberIssues.length} card(s) have a numeral that needs spelling out in a "reading" — ` +
+      `${numberIssues.length} card(s) have a numeral that needs spelling out in a "ttsText" — ` +
       `the romaji and the audio are both wrong until they do`
     );
   }

@@ -1,5 +1,5 @@
 // Display-text normalization for languages written WITHOUT spaces between words (keyed by ISO 639-1).
-// For these (Japanese today), a card's stored `target`/`reading` is normalized so the deck renders
+// For these (Japanese today), a card's stored `target`/`ttsText` is normalized so the deck renders
 // natural script:
 //   1. Editorial spaces are stripped — e.g. the JBP kana textbook uses 分かち書き (word-separation) as
 //      a beginner aid, which isn't part of real written Japanese.
@@ -7,7 +7,7 @@
 //      deliberate deck-style choice: the terminal 。 measurably changes ElevenLabs' prosody, so the
 //      DEFAULT audio is generated from the dot-less text and the WITH-dot take is always produced as
 //      the audio (src/audio/ttsMarker.js appends its own). A mid-string 。 (two sentences) is left intact.
-// This governs the DISPLAYED Japanese (card face, reading, reviews); the audio stage also strips
+// This governs the DISPLAYED Japanese (card face, ttsText, reviews); the audio stage also strips
 // spaces for TTS separately (see src/audio/ttsText.js).
 const SPACE_FREE_LANGUAGES = new Set(["ja"]);
 

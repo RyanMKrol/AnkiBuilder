@@ -44,7 +44,7 @@ test("generates fresh -genkanji- takes from the kanji orthography and returns th
     card({
       id: "a",
       english: "ten to six",
-      reading: "じゅうじからろくじ",
+      ttsText: "じゅうじからろくじ",
       target: "１０じから６じ",
     }),
   ]);

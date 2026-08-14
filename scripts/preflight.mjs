@@ -19,6 +19,7 @@ import { join, resolve, basename } from "path";
 import { validateCards, validateCorpus } from "../src/model/index.js";
 import { findCollisions, findCrossChapterDuplicates } from "../src/cards/extrasTools.js";
 import { assertUniqueCardIds } from "../src/deck/shippableCards.js";
+import { normalizeDisplayText, isSpaceFreeLanguage } from "../src/model/scriptSpacing.js";
 
 const args = process.argv.slice(2);
 const all = args.includes("--all");
@@ -132,7 +133,35 @@ for (const dir of collectionDirs()) {
     `  · duplicates    ${dupes.length} target group(s) spanning units (review, don't auto-exclude)`,
   );
 
-  // 5. Audio markers — heuristic, so a note rather than a failure.
+  // 5. Display normalization — for a space-free script (Japanese) a stored target must carry no
+  //    editorial spaces and no trailing 。. The pipeline normalizes during translate, so ONLY
+  //    hand-authored units (extras) can drift; chapter-13-extras shipped 66 spaced cards this way
+  //    and rendered 分かち書き word-separation the deck deliberately strips.
+  const unnormalized = [];
+  for (const unit of units) {
+    const lang = unit.meta?.targetLanguage ?? "ja";
+    if (!isSpaceFreeLanguage(lang)) continue;
+    for (const item of unit.items) {
+      if (item.excluded) continue;
+      for (const field of ["target", "reading"]) {
+        const value = item[field];
+        if (typeof value !== "string") continue;
+        if (normalizeDisplayText(value, lang) !== value)
+          unnormalized.push(`${unit.unit}/${item.id}.${field}`);
+      }
+    }
+  }
+  if (unnormalized.length) {
+    fail(
+      `spacing  ${unnormalized.length} field(s) carry editorial spaces or a trailing 。: ` +
+        unnormalized.slice(0, 8).join(", ") +
+        (unnormalized.length > 8 ? ` … +${unnormalized.length - 8} more` : ""),
+    );
+  } else {
+    console.log("  ✓ spacing       display text normalized for the script");
+  }
+
+  // 6. Audio markers — heuristic, so a note rather than a failure.
   const stuck = units.flatMap((u) =>
     u.items.filter((i) => i.audioMarkerStuck && !i.excluded).map((i) => `${u.unit}/${i.id}`),
   );

@@ -1,13 +1,17 @@
 import test from "node:test";
 import assert from "node:assert";
-import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync } from "fs";
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync, mkdirSync } from "fs";
 import { tmpdir } from "os";
-import { join } from "path";
+import { join, dirname } from "path";
 import { Buffer } from "buffer";
 import {
   hashEpubFile,
   registerEpub,
   chapterCachePath,
+  CACHE_VERSION,
+  resolveLabelDecoding,
+  describeBookCache,
+  clearBookCache,
   saveChapterCorpus,
   removeChapterCorpus,
   loadPriorChapterItems,
@@ -16,6 +20,7 @@ import {
   loadBookMeta,
   saveBookSlug,
 } from "../../src/corpus/epubLibrary.js";
+import { LABEL_DECODING_CURRENT } from "../../src/corpus/epubArchive.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
 
 function withTempDir(fn) {
@@ -33,6 +38,14 @@ function writeFixtureEpub(sourceDir, content = "fake epub bytes") {
   const epubPath = join(sourceDir, "book.epub");
   writeFileSync(epubPath, Buffer.from(content));
   return epubPath;
+}
+
+// The extraction cache directory is created by the extractor, not by chapterCachePath.
+function writeCachedChapter(epubHash, libraryHomeDir) {
+  const path = chapterCachePath(epubHash, 1, { libraryHomeDir });
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, "<html/>");
+  return path;
 }
 
 function baseCorpus(items, { chapterLabel } = {}) {
@@ -97,9 +110,12 @@ test("registerEpub() writes book.json with the EPUB's title and a null slug", ()
 
     const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
 
+    // The label-decoding version is stamped once, here — a book registered from now on gets
+    // the current decoder, and one registered before this existed stays on v1 forever.
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Japanese for Busy People",
       slug: null,
+      labelDecoding: LABEL_DECODING_CURRENT,
     });
   });
 });
@@ -110,7 +126,11 @@ test("registerEpub() writes a null title when the EPUB has no <dc:title>", () =>
 
     const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
 
-    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), { title: null, slug: null });
+    assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
+      title: null,
+      slug: null,
+      labelDecoding: LABEL_DECODING_CURRENT,
+    });
   });
 });
 
@@ -125,6 +145,7 @@ test("registerEpub() does not overwrite book.json on a second call", () => {
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Original Title",
       slug: "original-title",
+      labelDecoding: LABEL_DECODING_CURRENT,
     });
   });
 });
@@ -145,14 +166,20 @@ test("saveBookSlug()/loadBookMeta() round-trip and preserve the stored title", (
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Some Book Title",
       slug: "some-book-title",
+      labelDecoding: LABEL_DECODING_CURRENT,
     });
   });
 });
 
-test("chapterCachePath() returns a path scoped to the book and chapter", () => {
+test("chapterCachePath() returns a path scoped to the book, the cache version and the chapter", () => {
   withTempDir(({ libraryHomeDir }) => {
     const path = chapterCachePath("abc123", 5, { libraryHomeDir });
-    assert.equal(path, join(libraryHomeDir, "epubs", "abc123", "chapters", "5.xhtml"));
+    // The version segment is what makes a parser fix reach a book that has already been read:
+    // a cached chapter file is otherwise treated as a complete extraction forever.
+    assert.equal(
+      path,
+      join(libraryHomeDir, "epubs", "abc123", `cache-v${CACHE_VERSION}`, "chapters", "5.xhtml"),
+    );
   });
 });
 
@@ -344,5 +371,155 @@ test("removeChapterCorpus() deletes a saved entry and is a no-op when absent", (
     assert.equal(removeChapterCorpus("book1", 3, { libraryHomeDir }), true);
     assert.deepEqual(loadPriorChapterItems("book1", 4, { libraryHomeDir }), []);
     assert.equal(removeChapterCorpus("book1", 3, { libraryHomeDir }), false); // idempotent
+  });
+});
+
+test("describeBookCache() reports what a book has cached, and never counts corpora as a cache", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Cached Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+    saveBookConventions(epubHash, "# conventions", { libraryHomeDir });
+    saveChapterCorpus(
+      epubHash,
+      1,
+      baseCorpus([{ id: "a", english: "A", category: "Other", notes: null, target: "a" }]),
+      { libraryHomeDir },
+    );
+    writeCachedChapter(epubHash, libraryHomeDir);
+
+    const cache = describeBookCache(epubHash, { libraryHomeDir });
+    assert.equal(cache.registered, true);
+    assert.equal(cache.cacheVersion, CACHE_VERSION);
+    assert.equal(cache.chapters.files, 1);
+    assert.equal(cache.conventions.present, true);
+    assert.equal(cache.taughtIndex.present, false);
+    assert.equal(cache.reviewedCorpora, 1);
+  });
+});
+
+test("describeBookCache() reports an unregistered book instead of throwing", () => {
+  withTempDir(({ libraryHomeDir }) => {
+    const cache = describeBookCache("never-registered", { libraryHomeDir });
+    assert.equal(cache.registered, false);
+  });
+});
+
+test("clearBookCache() clears chapters by default and leaves the paid artifacts alone", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Cached Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+    saveBookConventions(epubHash, "# conventions", { libraryHomeDir });
+    const chapterPath = writeCachedChapter(epubHash, libraryHomeDir);
+
+    const removed = clearBookCache(epubHash, { libraryHomeDir });
+
+    assert.equal(existsSync(chapterPath), false);
+    assert.equal(removed.length, 1);
+    // conventions.md is the output of a paid whole-book pass: it must be asked for by name.
+    assert.equal(loadBookConventions(epubHash, { libraryHomeDir }), "# conventions");
+  });
+});
+
+test("clearBookCache() never removes corpora, whatever is asked for", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Cached Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+    saveChapterCorpus(
+      epubHash,
+      1,
+      baseCorpus([{ id: "a", english: "A", category: "Other", notes: null, target: "a" }]),
+      { libraryHomeDir },
+    );
+    writeCachedChapter(epubHash, libraryHomeDir);
+
+    clearBookCache(epubHash, {
+      kinds: ["chapters", "conventions", "taught-index"],
+      libraryHomeDir,
+    });
+
+    // The reviewed corpus is the one thing here no amount of compute can rebuild.
+    assert.equal(loadPriorChapterItems(epubHash, 2, { libraryHomeDir }).length, 1);
+  });
+});
+
+test("clearBookCache() removes extraction output from older cache versions too", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Cached Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    // The pre-versioning flat layout, as it exists on disk today for the delivered book.
+    const legacyChapters = join(libraryHomeDir, "epubs", epubHash, "chapters");
+    mkdirSync(legacyChapters, { recursive: true });
+    writeFileSync(join(legacyChapters, "1.xhtml"), "<html/>");
+
+    assert.deepEqual(describeBookCache(epubHash, { libraryHomeDir }).staleRoots, [
+      "chapters (pre-versioning)",
+    ]);
+
+    clearBookCache(epubHash, { libraryHomeDir });
+    assert.equal(existsSync(legacyChapters), false);
+  });
+});
+
+test("clearBookCache() reports what it would remove without removing it under dryRun", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Cached Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+    const chapterPath = writeCachedChapter(epubHash, libraryHomeDir);
+
+    const removed = clearBookCache(epubHash, { dryRun: true, libraryHomeDir });
+
+    assert.equal(removed.length, 1);
+    assert.ok(existsSync(chapterPath));
+  });
+});
+
+test("clearBookCache() refuses an unknown cache kind rather than silently clearing nothing", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Cached Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    assert.throws(
+      () => clearBookCache(epubHash, { kinds: ["corpora"], libraryHomeDir }),
+      /corpora/,
+    );
+  });
+});
+
+test("resolveLabelDecoding() gives a never-registered book the current decoder", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["New Book"]));
+    assert.equal(
+      resolveLabelDecoding(epubPath, { libraryHomeDir }),
+      LABEL_DECODING_CURRENT,
+      "a book with no marker has no decks to break",
+    );
+  });
+});
+
+test("resolveLabelDecoding() freezes a book registered before the marker existed at v1", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Delivered Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    // Rewrite book.json the way it looks for a book registered before this field existed.
+    writeFileSync(
+      join(libraryHomeDir, "epubs", epubHash, "book.json"),
+      JSON.stringify({ title: "Delivered Book", slug: "delivered-book" }),
+    );
+
+    // Its labels flow into deck names that already hold notes with scheduling.
+    assert.equal(resolveLabelDecoding(epubPath, { libraryHomeDir }), 1);
+  });
+});
+
+test("saveBookSlug() preserves the label-decoding marker", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["New Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    saveBookSlug(epubHash, "new-book", { libraryHomeDir });
+
+    assert.equal(resolveLabelDecoding(epubPath, { libraryHomeDir }), LABEL_DECODING_CURRENT);
   });
 });

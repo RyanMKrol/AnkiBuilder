@@ -25,7 +25,9 @@ export function buildZip(files) {
 
   for (const { name, content } of files) {
     const nameBuffer = Buffer.from(name, "utf-8");
-    const contentBuffer = Buffer.from(content, "utf-8");
+    // A Buffer passes through as-is, so a fixture can carry bytes that are deliberately not
+    // UTF-8 (a Shift_JIS chapter, a real PNG header) rather than only text.
+    const contentBuffer = Buffer.isBuffer(content) ? content : Buffer.from(content, "utf-8");
     const compressed = deflateRawSync(contentBuffer);
     const crc = crc32(contentBuffer);
 

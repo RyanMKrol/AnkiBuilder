@@ -1711,3 +1711,218 @@ say when it was measured rather than stating it as a standing fact.
   key, import the `.apkg`, and check both card directions render and the audio plays — and record
   the result here. Cheaper still: when a headless `.apkg` import verifier exists, make that first
   worked template deck its fixture, which closes all three gaps at once.
+
+<!-- WS2 (EPUB ingestion robustness) — appended as one block, newest last. -->
+
+## The EPUB shape report warns, it never gates
+
+- **What:** `buildShapeReport` (`src/corpus/epubShapeReport.js`), printed by `--list-lessons` and
+  `scripts/epub-probe.mjs`, reports unreachable spine files, swallowed files, label collisions,
+  image-filename collisions and picture-only pages as WARN lines. Nothing refuses to build, and the
+  probe exits 0 even with warnings.
+- **Why:** every one of these books still builds; the report describes a book whose own table of
+  contents does not mean what the pipeline assumes. A gate here would refuse the one book already
+  proven to work (it swallows a spine file and has a 94-character picture page), which is the fastest
+  way to teach an operator to ignore the output.
+- **Impact:** a person who does not read the report gets exactly today's silence. The report is only
+  as useful as the moment it prints, which is why it is folded into `--list-lessons` rather than
+  living in a separate command nobody runs.
+- **Status:** open
+- **When to revisit:** once a second book has actually been built end to end, some of these
+  (unreachable spine 1, a nav that names none of its own files) may be safe to promote to a hard
+  refusal for a book with no build history.
+
+## The size thresholds are "twice the one proven book", not a measurement
+
+- **What:** `SIZE_WARN` in `src/corpus/epubShapeReport.js` warns above 114 spine files, 4 MB of
+  content or 1,454 distinct images — double the figures for Japanese for Busy People Book 1.
+- **Why:** the whole-book passes (conventions, taught-index) read every file inside one timeout, and
+  the only evidence about what fits is that one book. Doubling it is a deliberate round number, not
+  an observed ceiling.
+- **Impact:** a book between 1x and 2x the proven size passes silently and may still time out; a
+  book over 2x warns even if the passes would have coped.
+- **Status:** open
+- **When to revisit:** when a second book of a materially different size has been through the
+  whole-book passes, replace the factor with the observed limit.
+
+## An inverted nav range is clamped to one file, not repaired
+
+- **What:** when a nav document lists an entry pointing backwards, the range arithmetic in
+  `analyzeExternalChapters` yields something like spine 5-2. It is clamped to spine 5-5 and logged;
+  `resolveLesson` then asserts the invariant.
+- **Why:** the true extent of that lesson is unknowable from a nav document that is not in reading
+  order. A one-file lesson is at least a true statement; the alternatives are a range that throws
+  mid-build or one that silently poisons the forward-flag pass.
+- **Impact:** a lesson on such a book may be missing spine files, and only the warning says so. The
+  operator has to fall back to explicit `--chapter-number` builds for that book.
+- **Status:** open
+- **When to revisit:** if a real book turns up with an out-of-order nav, sorting the resolved
+  positions before computing ranges is the obvious next step — but it changes ordinals, so it needs
+  that real book to test against.
+
+## Comment stripping is textual, not a parser
+
+- **What:** `stripInertMarkup` removes `<!--...-->` and `<![CDATA[...]]>` spans with a regex before
+  every scan.
+- **Why:** the hand-rolled scanner stays (the review ruled the parser's failures are policy, not
+  parsing), and this is the smallest change that stops a commented-out anchor becoming a phantom
+  lesson.
+- **Impact:** a literal `<!--` inside an attribute value or a string would truncate wrongly, and
+  nested comment-like sequences are not handled. Neither is legal XML, so the exposure is malformed
+  books only. It also means a `<!-- -->`-wrapped `<img>` is no longer extracted, which is correct
+  but is a behaviour change for any book relying on commented-out images.
+- **Status:** open
+- **When to revisit:** if a book ever parses to zero manifest items or zero nav entries, check this
+  first — it is the only step that rewrites the source before scanning.
+
+## The image collision is detected, not prevented
+
+- **What:** `copyImageAsset` byte-compares before writing and logs a loud collision naming both
+  archive paths and the shared destination, but every chapter's images still land in one shared
+  `chapters/` directory, so the second write still wins.
+- **Why:** the layout that would close it by construction (mirroring the archive layout under
+  `chapters/`) moves the cache path and interacts with `isCachedChapterFile`. The review ruled the
+  detector ships first and the layout change second, behind the hostile-fixture suite, because this
+  is the code path whose last obviously-reasonable change produced an artifact the real consumer
+  rejected while every test passed — and the real consumer here (a model opening a file by relative
+  path) is exercised by no test.
+- **Impact:** on a book with the standard Sigil/InDesign layout, one chapter's figure can be
+  replaced by another's, and the only signal is a log line during extraction. A per-chapter
+  subdirectory would not fully close it either: two chapters in different directories both
+  referencing `../images/foo.png` still collide, so the detector stays in any design.
+- **Status:** open
+- **When to revisit:** when the archive-layout mirror lands (WS2 item 4). The detector stays.
+
+## SVG re-scanning goes one level deep
+
+- **What:** a copied `.svg` is re-scanned for the images it references and those are copied too, but
+  only one level down.
+- **Why:** the wrapper idiom (`<svg><image href="page.jpg"/></svg>`) is one level by construction,
+  and a depth cap is what makes the recursion incapable of looping on a self-referencing SVG.
+- **Impact:** an SVG referencing an SVG referencing a raster image copies the first two and not the
+  third. No known book does this.
+- **Status:** open
+- **When to revisit:** if an SVG-heavy book turns up where images are still missing after
+  extraction — the copied-SVG log lines are the trail.
+
+## A non-UTF-8 chapter is reported, not transcoded
+
+- **What:** `detectNonUtf8` flags a spine file whose XML declaration names a non-UTF-8 encoding or
+  whose decoded text contains replacement characters. Nothing converts it; the reader still decodes
+  and caches every chapter as UTF-8.
+- **Why:** transcoding means either a dependency or a hand-rolled decoder for a set of legacy
+  Japanese and Chinese encodings, on evidence of exactly zero books. Reporting it turns a silent
+  mojibake extraction into a visible refusal to proceed.
+- **Impact:** such a book can still be built and will produce garbage cards; only the shape report
+  says why. The two signals also miss a file that is validly UTF-8-decodable but was authored in a
+  different encoding without declaring it (rare, and undetectable without heuristics).
+- **Status:** open
+- **When to revisit:** the first time a real book trips this, transcode with `TextDecoder` (which
+  Node ships with full ICU for) at read time, keyed on the declared encoding.
+
+## Bumping CACHE_VERSION orphans the old extraction, it does not migrate it
+
+- **What:** `CACHE_VERSION` moved the extraction cache from `<book>/chapters/` + `<book>/images/`
+  to `<book>/cache-v2/{chapters,images}/`. The v1 directories are left on disk, unused, until
+  `epub cache <hash> --clear` removes them.
+- **Why:** deleting anything inside `.anki-builder/epubs/<hash>/` automatically is exactly the
+  behaviour this workstream is trying to make impossible — `corpora/` is one directory away. An
+  orphan costs disk; a wrong automatic delete costs the dedup registry.
+- **Impact:** the already-built book re-inflates its 57 chapters and 727 images on the next build
+  (free, seconds) and keeps ~90 MB of stale v1 output until cleared by hand. Every version bump
+  repeats this.
+- **Status:** open
+- **When to revisit:** if the orphan count ever matters, `epub cache --clear` could grow a
+  `--stale-only` mode that removes non-current cache roots and nothing else.
+
+## The `epub cache` command takes a hash, not a book slug
+
+- **What:** `anki-builder epub cache <hash>` is keyed on the 16-char content hash, the directory
+  name under `.anki-builder/epubs/`.
+- **Why:** the hash is the library's own key and the only identifier that is unambiguous. A slug
+  is a property of one output tree, so resolving one here would mean taking `--output-root` too.
+- **Impact:** the operator has to look the hash up (`ls .anki-builder/epubs/`, or read the
+  `.epub-hash` file in the book's output folder) before clearing anything.
+- **Status:** open
+- **When to revisit:** if this gets used often, accept `--book <slug> --output-root <dir>` and
+  resolve through `resolveBookEpubPath` the way `assemble` already does.
+
+## The entity decoder is new-books-only, and the existing book stays on v1 forever
+
+- **What:** `resolveLabelDecoding` returns the version stamped in the book's `book.json`. A book
+  registered before that field existed reports v1 and keeps the old five-entity decoder, including
+  its "Lesson5" tag-stripping, for good.
+- **Why:** a label becomes a live Anki deck name. Changing it does not rename the deck; it creates a
+  new one, leaving every existing note and its scheduling behind in the old deck. The re-file path
+  that could migrate an existing book does not exist yet and is opt-in and previewed when it does.
+- **Impact:** the delivered book keeps whatever its labels currently are, correct or not, until
+  someone runs that migration deliberately. Two books in the same library can decode labels
+  differently, which is intended but will read as an inconsistency to anyone who does not know why.
+- **Status:** open
+- **When to revisit:** when the previewed one-time re-file exists and has been proven on a probe
+  profile. Migrating means bumping the marker for that one book and re-delivering.
+
+## v2 label decoding tidies spaces around punctuation
+
+- **What:** after replacing an inline tag with a space, v2 removes the space before `,;:.!?)]` and
+  after `([`.
+- **Why:** the space that correctly separates "Lesson" from "5" is the same space that would sit
+  before the ":" that followed `</span>`. Without the tidy, "Lesson 5 : Greetings" reaches the deck.
+- **Impact:** a label deliberately authored with a space before its colon is normalised too. Cosmetic,
+  and only a newly-registered book can see it.
+- **Status:** open
+- **When to revisit:** if a language turns up where a space before punctuation is meaningful (French
+  typography uses one before `:` and `?`), this needs to be language-aware.
+
+## DRM detection is a spine-document test, not a DRM test
+
+- **What:** `assertSpineNotEncrypted` throws only when `META-INF/encryption.xml` names a spine
+  document in a `<CipherReference URI>`. Anything else encrypted (fonts, images, stylesheets) passes.
+- **Why:** IDPF and Adobe font obfuscation write to the same file on completely readable books, so
+  rejecting on the file's presence would refuse books that work. The spine documents are what the
+  extraction model reads, so they are the only thing whose encryption stops this tool cold.
+- **Impact:** a book whose *images* are encrypted but whose text is not will parse and extract, and
+  the images will be garbage the model reads anyway. Nothing warns about that today.
+- **Status:** open
+- **When to revisit:** if an encrypted-images book turns up, widen the check to warn (not throw) on
+  any encrypted entry that a chapter references.
+
+## The nav sweep matches attribute names, not namespaces
+
+- **What:** the last-resort discovery tier accepts any attribute named `type` or ending in `:type`
+  whose token list includes `toc`, plus `role="doc-toc"`.
+- **Why:** the hand-rolled scanner has no namespace resolution (the review ruled it stays), and the
+  `epub:` prefix is only a convention — a conformant book may bind the namespace to any prefix.
+- **Impact:** a `<nav>` carrying some unrelated `type="toc"` attribute would be accepted. It runs
+  only after both spec-blessed tiers fail, so the exposure is books that have no discoverable nav at
+  all, where the alternative is "no navigation document found".
+- **Status:** open
+- **When to revisit:** if a real book is mis-swept. Resolving `xmlns:*` declarations properly is the
+  fix, and it is the point at which the hand-rolled scanner starts costing more than it saves.
+
+## The archive-layout mirror for the chapter cache is deferred, and why
+
+- **What:** the plan's follow-on to the collision detector was to mirror the archive layout under the
+  cache root (chapter at `<cache>/<archive path>`, images at their own mirrored archive paths), which
+  is isomorphic to the zip and so preserves every `<img src>` relationship exactly. It is NOT done;
+  only the detectors shipped.
+- **Why:** the obstacle is not the mirroring, it is who can compute the path.
+  `src/cli/commands/prepare.js` resolves the chapter file from `meta.epubHash` and
+  `meta.chapterNumber` alone, with no EPUB path in scope — and a mirrored path is a function of the
+  archive, so that call site cannot derive it without either opening the library's EPUB copy (this
+  reader inflates every entry eagerly, so that is a full 90 MB unpack purely to compute a path) or a
+  new sidecar index written at extraction time and read back here. The range cache
+  (`<first>-<last>.xhtml`) also has no single archive directory to mirror into. Landing it half-right
+  is the one failure the ruling calls out as invisible: `extractReferencedImages` logs only MISSING
+  archive entries, `isCachedChapterFile` then treats the chapter as a complete extraction forever,
+  and no test exercises image reading because it only happens inside a paid LLM pass.
+- **Impact:** the collision stays possible by construction on a book with the standard
+  Sigil/InDesign layout. It is detected two ways — statically in the shape report before any spend,
+  and by byte-compare at write time — but the second write still wins.
+- **Status:** open
+- **When to revisit:** with the hostile fixtures now in place, the missing piece is the path
+  contract. Decide between a sidecar `cache-v<N>/index.json` (chapterNumber → relative path, written
+  at extraction) and passing an EPUB path down to `prepare`; then bump `CACHE_VERSION`, move the
+  containment root from "one level up from the chapter file" to an explicit mirror root, and give the
+  range cache a home. Note that a per-chapter subdirectory is NOT a shortcut: with the standard
+  `../images/foo.png` layout it isolates nothing.

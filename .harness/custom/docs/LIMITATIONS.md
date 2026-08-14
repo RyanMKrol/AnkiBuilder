@@ -1782,3 +1782,21 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** when the extraction eval fixture (WS8) can be run against a deliberately
   policy-heavy conventions doc, that becomes the real test of whether the precedence rule holds.
+
+## The dialogue ban is now narrow, which trades a hard rule for a judgement call
+
+- **What:** the extraction prompt banned extracting the dialogue outright while Step 2 required every
+  function word to have a demonstrating sentence, and dialogue is often where that sentence lives. The
+  two rules were mutually unsatisfiable, and the corpus shows the model breaking the ban to satisfy
+  Step 2 (にほんのスパですよ is a verbatim dialogue line, extracted to serve the particle よ). The ban
+  is now "do not mine the dialogue as a script", with a single stated exception for the chapter's only
+  demonstration of a required function word, marked with a `reviewNote` naming the form.
+- **Why:** the ban is what had to give. A function word with no sentence showing it at work is a card
+  a learner can recite and cannot use, and the extras pass re-mines the same dialogue afterwards
+  anyway, so the ban was not even holding the line it claimed to.
+- **Impact:** "the ONLY demonstration in the chapter" is a judgement the model makes with the whole
+  chapter in front of it and nobody checks. A model that reads it loosely can justify several dialogue
+  lines per chapter. The `reviewNote` is the only detector, and it is a human one.
+- **Status:** open
+- **When to revisit:** if reviewed chapters start showing more than about one exception each, tighten
+  the wording or make the reviewNote a required, greppable prefix so the count is mechanical.

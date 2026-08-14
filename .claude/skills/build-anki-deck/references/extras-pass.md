@@ -3,8 +3,11 @@
 This is the full operating procedure for the extras pass summarized in
 [SKILL.md](../SKILL.md) Step 3b. Load it whenever you are about to build an extras unit.
 
-**Run this for every chapter of a book (and every lesson of a course), right after the base unit
-passes Gate 1.** A textbook chapter always teaches far more than the extraction turns into cards. Two things get lost every time:
+**Run this for every chapter of a book (and every lesson of a course), once the base unit is DONE
+(gate 2).** The audits below diff the new cards against the base unit's card set, and a gate-2
+exclusion changes that set — so extras authored while the lesson is still in review are audited
+against a card set that no longer exists. A textbook chapter always teaches far more than the
+extraction turns into cards. Two things get lost every time:
 the chapter's own spoken material (Target Dialogue, Speaking Practice, Short Dialogues), which the
 extraction skips while mining the vocabulary tables dry; and any sense of *coverage*, so a lesson ends
 up with forty bare nouns that appear in no sentence, a particle taught with one example, and a
@@ -126,18 +129,20 @@ Three jobs, and let the counts decide the size:
 Extraction of the chapter text: `extractChapterToFile(epubPath, n, dest)` in `src/corpus/epubArchive.js`.
 Strip the XHTML to plain text before handing it to an agent, or it burns context on markup.
 
-## First, look at the chapter's IMAGES (the pipeline never has)
+## First, look at the chapter's IMAGES (nothing records whether extraction did)
 
 This sweep is a **required step of the BUILD** ([SKILL.md](../SKILL.md) Step 2), run while
 `assemble` is still working so the finding reaches the reviewer with the gate-1 link. It is repeated
 here because this is the pass that acts on it: if you arrive at an extras unit and no image sweep was
 reported for the chapter, do it now before either wave.
 
-**Grep the chapter's raw XHTML for `<img>` and LOOK at anything that isn't decoration.** Every stage upstream of you works on text: the extraction, the drill miner and the note
-pass all read the stripped-out plain text, so a table, chart or worked example that the publisher
-shipped as a picture is invisible to the entire pipeline. It does not appear as a gap; it appears as
-though the chapter never taught that material. Publishers do this constantly for grid-shaped content,
-which is exactly the content that carries a grammar paradigm.
+**Find the chapter's images and LOOK at anything that isn't decoration.** The extraction pass is
+given them (the images are written beside the cached chapter file, and its prompt tells it to open
+each one), but nothing records what it opened or what it concluded — so a table it skipped and a
+chapter that had no table produce identical output. Every stage after it (the drill miner, the note
+pass) genuinely does read text only. Either way the failure looks the same: not a gap, but a chapter
+that appears never to have taught the material. Publishers do this constantly for grid-shaped
+content, which is exactly the content that carries a grammar paradigm.
 
 ```sh
 grep -o '<img[^>]*>' <chapter>.xhtml                       # find them; alt text is usually empty

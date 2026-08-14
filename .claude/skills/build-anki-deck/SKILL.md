@@ -120,9 +120,9 @@ One more thing to do before you hand the link over, which is not the watcher's j
   only at **Mark done** — after both reviews had been signed off. Preflight moves it to before
   anyone has looked at the unit, when it is still a one-line edit.
 
-**Each chapter produces TWO units, and each goes through both gates on its own.** After the base
-lesson clears gate 1, Step 3b builds its *extras* unit: drill cards from the same chapter, shipped as
-a separate sub-deck beside the lesson. The full arc for one chapter:
+**Each chapter produces TWO units, and each goes through both gates on its own.** Once the base
+lesson is **done** (gate 2), Step 3b builds its *extras* unit: drill cards from the same chapter,
+shipped as a separate sub-deck beside the lesson. The full arc for one chapter:
 
 `assemble` → **corpus review** → `audio` → **audio review** → **Mark done**
 &nbsp;&nbsp;&nbsp;&nbsp;↳ then **Step 3b** builds `chapter-N-extras`, which repeats the same arc.
@@ -166,9 +166,18 @@ TTS credits and lands in a deck they study daily, so guessing wrong is expensive
   index: an EPUB "chapter number" is just a content file's position, and a lesson can span several
   files. Run
   `anki-builder assemble --output-root output {--epub <path> | --book <slug>} --list-lessons --lang <lang>`
-  (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and offer the `lesson`-typed entries as
-  options; pass the chosen `label` (or `[number]`) to `assemble --lesson`. Fall back to
-  `--chapter-number <spine index>` only when the book has no navigation document.
+  (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and pass the chosen `label` (or
+  `[number]`) to `assemble --lesson`. Fall back to `--chapter-number <spine index>` only when the book
+  has no navigation document.
+
+  **Present EVERY nav entry, with its `type` as an annotation — never as a filter.** `classifyLesson`
+  is a label-only heuristic anchored on English words (`Unit …`, `Lesson …`, quiz/review/test,
+  cover/contents/preface/appendix), and anything else is `other`. Selection works on any entry
+  regardless of type, so the type is a hint for the reader, not a gate. On a book whose chapters are
+  titled anything else — a novel, a non-English textbook, "Chapter 5", "第5課" — **every entry
+  classifies as `other`**, and filtering to `lesson`-typed entries would show the user an empty list
+  for a book that is perfectly buildable. Say what each entry is (number, label, spine range) and let
+  them choose.
 - **Which template?** List them via `listTemplates()` (`src/corpus/templates.js`) and describe each
   by its *vocabulary* (read from `templates/<name>.json`), never by language. `AskUserQuestion` needs
   a second option, so pair a lone template with "None of these fit"; that choice leads to creating a
@@ -198,7 +207,7 @@ Follow [references/template-creation.md](references/template-creation.md) for th
 
 One command builds the lesson all the way to its first review gate. `assemble` writes `corpus.json`
 and then automatically chains into the `prepare` stage (translate → fill-in-the-blank enrichment →
-semantic de-dup → cross-lesson notes) under a single build claim. There is no stopping point in the
+semantic de-dup → cross-lesson notes → number readings) under a single build claim. There is no stopping point in the
 middle, by design: every one of those steps changes which cards exist or what they say, so a lesson
 that halts partway is a half-built lesson nobody can sign off on.
 
@@ -262,11 +271,14 @@ it (`anki-builder prepare --run <dir>`). Templates are exempt from the drill/not
 mine, no siblings).
 
 **While the build runs, sweep the chapter's IMAGES. This is a required step of every EPUB build,
-not an optional check.** Every stage of the pipeline reads the stripped-out plain text, so any
-teaching material the publisher shipped as a picture (grammar tables above all, but also exercises
-whose alternatives live in the artwork) is invisible to all of it, and the result reads exactly like
-a chapter that never taught that material. Nothing downstream can notice what was never extracted,
-so if you skip this the gap is silent. It costs about thirty seconds:
+not an optional check.** The extraction pass DOES see images: `extractChapterToFile` writes every
+image a chapter references next to the cached chapter file, and the extraction prompt tells the model
+to open each one with its Read tool and judge it (`docs/epub-extraction-prompt.md`, "Images"). What
+is missing is any check that it did. Nothing records which images were opened, so a chapter whose
+grammar table the model skipped is indistinguishable from a chapter that had no table — and every
+stage AFTER extraction (drill mining, de-dup, the note pass) really does work on text alone, so
+nothing downstream can notice either. Your sweep is the second pair of eyes on the one step that can
+silently drop a whole paradigm. It costs about thirty seconds:
 
 ```sh
 grep -o '<img[^>]*>' <chapter>.xhtml                          # decoration is inline; figures are class="fill"
@@ -309,6 +321,19 @@ What `prepare` runs, in order (details and prompts per pass are in
    pattern; redundant FIB cards are excluded (not deleted) with a `reviewNote`, restorable at gate 1.
 4. **Cross-lesson notes** (`src/cards/crossLessonNotes.js`): one pass per lesson, fed only earlier
    lessons, writing backward cross-references, usage notes, and collision cues.
+5. **Number readings** (`src/cards/numberReadings.js`): the only pass that runs on demand rather than
+   always. `findUnreadableNumbers` looks for a digit still sitting in a card's `reading` or
+   `pronunciation`; if it finds any, a model spells them out (the right form depends on the counter
+   and is often irregular — 4がつ is しがつ, not よんがつ — so a regex would produce confidently wrong
+   audio). It runs LAST, so it also covers the cards the drill pass invented. Every card it touches
+   is flagged **Uncertain** with a `reviewNote` naming this pass, and a "fix" that still contains a
+   digit is discarded rather than recorded.
+
+That `reviewNote` matters at gate 1, because **Uncertain** is written by four different passes:
+extraction (unsure the item belongs at all), backward dedup ("possibly already taught"), the
+forward-flag pass ("this chapter uses something a later chapter teaches") and this one. The badge
+alone tells you nothing about which; the Review note column is where each pass says why, so read it
+before deciding what an Uncertain card needs.
 
 The corpus comes out **pedagogically sorted** (atoms before molecules; `--no-sort` keeps raw order),
 with any run of sequential numbers jumbled, and that one order flows through every stage, review, and
@@ -345,11 +370,14 @@ ever reaches the deck without a human having seen it in these columns.
 
 A mis-clicked sign-off is reversible: the corpus step has an **Unreview** button that withdraws the
 review (and removes the lesson's dedup-library entry). It refuses while the lesson is `done`, since
-done means "in the shipping deck"; **Reopen** first, then Unreview.
+done means "in the shipping deck" — clear that first with `node scripts/undone-unit.mjs <runDir>`,
+then Unreview.
 
 ## Step 3b: The extras pass — build the lesson's drill unit
 
-**Run this for every chapter/lesson, right after the base unit passes Gate 1.** The extraction
+**Run this for every chapter/lesson, once the base unit is DONE (gate 2).** The exclusions a reviewer
+makes at gate 2 change the base card set that the extras duplicate and collision audits diff against,
+so authoring extras against a lesson still in review silently invalidates both audits. The extraction
 always leaves value behind: the chapter's spoken material (Target Dialogue, Speaking Practice) that
 never became cards, and coverage gaps (words in no sentence, particles with one example). The extras
 pass fixes both by building a second, sibling unit of drill cards (`chapter-N-extras/`) that ships
@@ -364,9 +392,9 @@ pass from memory. Two rules worth restating here because they shaped the design:
 - **A deck that holds cards must never have children** (Anki can't study a card-holding parent
   alone), which is why extras are a sibling under an empty grouping deck, never nested under the
   lesson.
-- **Look at the chapter's images, and audit any paradigm cell by cell.** Every upstream stage reads
-  only text, so teaching material the publisher shipped as a picture (usually a grammar table) is
-  invisible to the whole pipeline and reads as though the chapter never taught it. And when a chapter
+- **Look at the chapter's images, and audit any paradigm cell by cell.** Extraction is shown the
+  images but never reports what it made of them, and every stage after it reads text only — so a
+  grammar table the model skipped reads as though the chapter never taught it. And when a chapter
   teaches a paradigm, check every cell of it against the whole deck rather than trusting a glance.
   Both procedures are in [extras-pass](references/extras-pass.md).
 
@@ -409,19 +437,26 @@ rebuild button; **Mark done** folds the lesson into the group package and rebuil
 
 **Mark done — Gate 2, the final sign-off.** When the audio is finalized, click **Mark done** (sets
 `cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` and the
-dashboard package only `done` lessons. A **done** lesson opens read-only (a VIEW: players, header
-says *View*, only action **Reopen**); the edit path for a shipped lesson is Reopen → change →
-Mark done (Reopen removes it from the merged `.apkg`, Mark done re-finalizes and rebuilds).
+dashboard package only `done` lessons.
+
+**A done lesson stays fully editable — there is no Reopen and no un-done button.** Done gates what
+ships, not what you can touch: the lesson opens in the same editable review it always had, and fixing
+a field on it needs no ceremony at all. What no button offers is the reverse of Mark done. To pull a
+unit back out of the shipping deck, run `node scripts/undone-unit.mjs <runDir>` (backs up
+`cards.json`, clears `meta.done`, rebuilds the collection without it). That is the whole recovery
+path for a mis-clicked Mark done, and it stops at the package: cards already delivered to Anki stay
+in the live collection, so the script asks for `--force` on a delivered collection.
 
 **The exception: a FIELD-ONLY fix across many done units, edited on disk.** A deck-wide correction
 (adding disambiguation cues to a dozen colliding cards, excluding a duplicate that breaks the build)
-can touch ten units at once, and reopening and re-finalizing each one is a lot of ceremony for a
-change that alters no card's existence. For that case, edit `cards.json` and `corpus.json` directly
+can touch ten units at once, and clicking through each one in the dashboard is a lot of ceremony for
+a change that alters no card's existence. For that case, edit `cards.json` and `corpus.json` directly
 and rebuild once at the end. The boundary that makes it safe:
 
 - **Field edits and exclusions only.** Changing `hint`, `scene`, `note`, `english` or `target`, or
   setting `excluded`, is fine. **Adding a card is not**, ever: a new card has to be seen at the
-  corpus review, so that still means Reopen (or catching it before sign-off).
+  corpus review, so a shipped unit that needs one goes back through gate 1 — `undone-unit.mjs`, then
+  **Unreview**, then the normal arc.
 - **Back the file up first** (`<file>.pre-<reason>.bak`, the convention the migrations use) and keep
   `cards.json` and `corpus.json` in step, since the review reads one and the build the other.
 - **Rebuild by hand afterwards**: `deck --book-dir <bookDir>`. Nothing triggers it for you, because
@@ -438,8 +473,10 @@ anki-builder deck --run <runDir> [--name "My Deck"]
 ```
 
 Reads `cards.json`, assembles a two-template Anki deck (Recognition + Production), includes audio if
-present, writes `deck.apkg` to the run directory. For a template/manual source this is the final
-artifact.
+present, and writes the package into the run directory. **A package is named after what it contains,
+not `deck.apkg`** (`src/deck/deckFileName.js`): a template language dir builds `<template>-<lang>.apkg`,
+a one-off run dir `<folder>.apkg`. For a template/manual source this is the final artifact. Chapter
+and lesson units do not build one at all — they ship inside their collection's package (Step 6).
 
 ## Step 6: Build the book/course-level package (EPUB books and courses only)
 
@@ -449,16 +486,19 @@ anki-builder deck --book-dir output/courses/<course-slug>  # a lesson-sourced co
 ```
 
 Scans every `chapter-*/cards.json` or `lesson-*/cards.json` under the folder, including the
-`-extras` drill units, and writes one `<that-folder>/deck.apkg` with each unit as its own real Anki
-sub-deck under one parent named for the book/course. Deck paths come from `unitDeckSegments`
+`-extras` drill units, and writes one `<that-folder>/<that-folder-slug>.apkg` (e.g.
+`output/epubs/japanese-for-busy-people-book-1-kana/japanese-for-busy-people-book-1-kana.apkg`) with
+each unit as its own real Anki sub-deck under one parent named for the book/course. The name is
+derived from the folder path, so the writer and any reader compute it the same way and can never
+disagree. Deck paths come from `unitDeckSegments`
 (`src/deck/deckPath.js`): a `"Lesson N: Title"` label nests as `Parent::Lesson N::Title` with its
 extras beside it. **Only `done` units are included.** Always rebuilds from scratch; run it again any
 time a unit changes. Skip for template/manual decks.
 
 ## Step 7: Import & deliver
 
-First import of a deck: File → Import in Anki, select the book/course-level `deck.apkg` (or the
-per-unit one for a template), check the sub-deck hierarchy and audio playback.
+First import of a deck: File → Import in Anki, select the collection's `.apkg` (or the template's own
+one), check the sub-deck hierarchy and audio playback.
 
 **Every later change to a deck the user already studies goes through the deliver tool, never a
 re-import.** `node scripts/deliver-to-anki.mjs --dry` to preview, then without `--dry` to deliver: it
@@ -496,7 +536,8 @@ Flags: `--no-prepare` (stop after the corpus), `--no-sort` (skip the pedagogical
 anki-builder prepare --run <dir>
 ```
 
-Translate → FIB enrichment → semantic de-dup → cross-lesson notes, under one build claim. `assemble`
+Translate → FIB enrichment → semantic de-dup → cross-lesson notes → number readings, under one
+build claim. `assemble`
 runs this for you; invoke it directly only to finish an interrupted build or after
 `assemble --no-prepare`. Idempotent; a lesson already marked reviewed is left alone. On failure it
 keeps its claim, so a crash shows as *interrupted* rather than finished.
@@ -597,7 +638,7 @@ looking at a finished deck.
 ### Browse a built deck (`.apkg`) as an artifact
 
 ```sh
-anki-builder view-deck --apkg <path/to/deck.apkg> [--out <file.html>]
+anki-builder view-deck --apkg <path/to/<slug>.apkg> [--out <file.html>]
 ```
 
 Writes a read-only deck-browser HTML page (cards grouped by sub-deck, audio embedded inline,
@@ -616,8 +657,8 @@ A local web app (Node builtins only, binds localhost only) listing every built d
 grouped into Books, Courses, and Templates, with per-lesson card tables and inline audio served over
 HTTP (no size cap, unlike `view-deck`). Editable by default (Replace/Generate/Exclude, the review
 gates, Deliver to Anki); `--read-only` disables all of that. Edits write straight to `cards.json` +
-`audio/`; there is one `.apkg` per group and rebuilds are automatic on Mark done / Reopen (shared
-`src/deck/rebuild.js`, same assembly as the CLI). A spot-check is: Reopen a done lesson → fix its
+`audio/`; there is one `.apkg` per group, named after the group's folder, and **Mark done** rebuilds
+it (shared `src/deck/rebuild.js`, same assembly as the CLI). A spot-check is: fix a done lesson's
 audio → Mark done → import the on-disk `.apkg`.
 
 The dashboard ingests each deck layout through a format adapter in `src/server/adapters/`
@@ -627,31 +668,39 @@ registering an adapter for it is part of shipping that format.
 
 ## State & artifacts
 
-Each unit's run directory holds `corpus.json` (assembled), `cards.json` (translated and enriched),
-`audio/` (if the audio stage ran), and `deck.apkg` (the unit's own deck: final for template/manual,
-superseded by the book-level merge otherwise). Review happens live in the dashboard, which reads
-these files directly; there are no per-stage HTML review artifacts.
+Each unit's run directory holds `corpus.json` (assembled), `cards.json` (translated and enriched) and
+`audio/` (if the audio stage ran). **A chapter or lesson unit holds no package of its own** — there is
+exactly one `.apkg` per collection, written at the collection root and named after that folder. Only
+a template (or a one-off `--run` build) has a package beside its cards, because there is no merge
+step above it.
+
+Review happens live in the dashboard, which reads these files directly. **Older unit dirs may still
+contain `review-corpus.html` / `review-translate.html` / `review-audio.html`** from the CLI-rendered
+reviews this project used to write. Nothing generates or updates them any more: they are frozen
+snapshots of a state long since edited, so never read one as current state, and never hand one to a
+reviewer. `cards.json` and the dashboard are the state.
 
 Under `--output-root`, each source type nests under its own reserved segment of `output/`:
 
 ```
 output/epubs/<book-slug>/
-  book.epub               # copy of the source EPUB, kept so `--book <slug>` works later
-  book.json               # { title, slug, epubHash, targetLanguage } — powers listBooks
-  chapter-0/              # corpus.json, cards.json, audio/, deck.apkg
-  chapter-0-extras/       # the chapter's drill unit (Step 3b)
+  book.epub                 # copy of the source EPUB, kept so `--book <slug>` works later
+  book.json                 # { title, slug, epubHash, targetLanguage } — powers listBooks
+  chapter-0/                # corpus.json, cards.json, audio/ — no package
+  chapter-0-extras/         # the chapter's drill unit (Step 3b)
   chapter-1/
   chapter-1-extras/
-  deck.apkg               # the merged book package (Step 6)
+  <book-slug>.apkg          # the merged book package (Step 6) — the only .apkg here
+  anki-delivered.json       # written by deliver-to-anki once this deck is in the live collection
 
 output/courses/<course-slug>/
-  course.json             # { name, targetLanguage }
-  lesson-0/               # same contents as a chapter dir
+  course.json               # { name, targetLanguage }
+  lesson-0/                 # same contents as a chapter dir
   lesson-0-extras/
-  deck.apkg               # the merged course package (Step 6)
+  <course-slug>.apkg        # the merged course package (Step 6)
 
 output/templates/<template-name>/<language>/
-  corpus.json, cards.json, audio/, deck.apkg    # one unit per language; no merge step
+  corpus.json, cards.json, audio/, <template>-<language>.apkg   # one unit per language, no merge
 ```
 
 Audio is cached in `.anki-builder/audio/<voiceId>/<model>/`; see

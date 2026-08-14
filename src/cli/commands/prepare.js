@@ -4,13 +4,19 @@
 // per command.
 import { existsSync } from "fs";
 import { withClaim, updateClaim } from "../runClaim.js";
-import { backupFileOnce } from "../../util/atomicWrite.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../../cards/spokenNumbers.js";
-import { readJson, writeJson, runDirOrderContext } from "./shared.js";
+import { mergeIntoCardsFile } from "../../cards/mergeIntoCardsFile.js";
+import { readJson, runDirOrderContext } from "./shared.js";
 import { runTranslateInner } from "./translate.js";
 
-const FIB_BACKUP_SUFFIX = ".pre-fib.bak";
+// The tag in this pass's stamped backup names: `cards.json.pre-prepare-fib-<YYYYMMDDHHmm>.bak`.
+// Was an unstamped `.pre-fib.bak`, which keeps the FIRST snapshot forever and so leaves a second
+// run of the pass with no restore point for the state it actually found.
+const FIB_BACKUP_REASON = "prepare-fib";
+
+// What the number-readings pass owns on a card it fixed, and nothing else.
+const NUMBER_READING_FIELDS = ["ttsText", "pronunciation", "uncertain", "reviewNote"];
 
 /**
  * The breadcrumb left on a lesson whose enrichment ran without everything it needed. Its presence is
@@ -126,11 +132,11 @@ async function runPrepareInner(flags, ctx) {
     // marked: a degraded one, or a lesson built before the marker existed at all. Drop them rather
     // than stack a second block on top. Precise and safe: only AI-authored practice cards carry
     // `fillInBlank`, and this whole branch is already skipped for a lesson someone has signed off.
-    const stale = cards.items.filter((item) => item.fillInBlank).length;
-    if (stale > 0) {
+    const staleIds = cards.items.filter((item) => item.fillInBlank).map((item) => item.id);
+    if (staleIds.length > 0) {
       cards.items = cards.items.filter((item) => !item.fillInBlank);
       ctx.log(
-        `fill-in-the-blank: dropped ${stale} unmarked practice card(s) from an earlier run — ` +
+        `fill-in-the-blank: dropped ${staleIds.length} unmarked practice card(s) from an earlier run — ` +
           `re-mining so the lesson ends up with exactly one drill block`,
       );
     }
@@ -173,8 +179,6 @@ async function runPrepareInner(flags, ctx) {
       ctx.log(
         `semantic de-dup: ${deduped.excluded.length} of ${mined.added.length} practice card(s) excluded as pattern repeats`,
       );
-
-      backupFileOnce(paths.cards, FIB_BACKUP_SUFFIX);
     }
 
     // The marker means "this pass ran with everything it needed", NOT "this pass ran". Marked even
@@ -188,11 +192,19 @@ async function runPrepareInner(flags, ctx) {
         "fill-in-the-blank: pass failed — enrichment marker left unset so a re-run retries it",
       );
     } else {
-      cards.meta = complete
-        ? { ...meta, enriched: true, prepareDegraded: undefined }
-        : { ...meta, prepareDegraded: degradedMarker(order) };
-      if (cards.meta.prepareDegraded === undefined) delete cards.meta.prepareDegraded;
-      writeJson(paths.cards, cards);
+      // Merge, don't overwrite. `cards` was read before two model calls that together take minutes,
+      // and the dashboard is editable for that whole window. What this pass OWNS is the drill block:
+      // the stale drills it retired, the ones it mined (already carrying the de-dup pass's exclusion
+      // marks), and its own markers. Everything else on the file is whoever else's — see
+      // mergeIntoCardsFile.
+      mergeIntoCardsFile(paths.cards, {
+        remove: staleIds,
+        append: mined.added.length > 0 ? cards.items.filter((item) => item.fillInBlank) : [],
+        meta: complete
+          ? { enriched: true, prepareDegraded: undefined }
+          : { prepareDegraded: degradedMarker(order) },
+        reason: FIB_BACKUP_REASON,
+      });
     }
   }
 
@@ -213,12 +225,12 @@ async function runPrepareInner(flags, ctx) {
       // rather than freezing a transient outage in as "done".
       ctx.log("cross-lesson notes: pass failed — marker left unset so a re-run retries it");
     } else {
-      // Re-read: the note pass rewrites cards.json itself, so the in-memory copy is stale.
-      const fresh = readJson(paths.cards);
-      fresh.meta = complete
-        ? { ...fresh.meta, notesEnhanced: true }
-        : { ...fresh.meta, prepareDegraded: degradedMarker(order) };
-      writeJson(paths.cards, fresh);
+      // Markers only — the note pass has already written the notes themselves, through the same
+      // re-read-and-merge path.
+      mergeIntoCardsFile(paths.cards, {
+        meta: complete ? { notesEnhanced: true } : { prepareDegraded: degradedMarker(order) },
+        reason: "prepare-notes",
+      });
     }
   }
 
@@ -239,8 +251,13 @@ async function runPrepareInner(flags, ctx) {
       log: ctx.log,
     });
     if (fixed.length > 0) {
-      fresh.items = items;
-      writeJson(paths.cards, fresh);
+      // Same merge discipline: this pass owns the spoken form and the romaji of the cards it fixed,
+      // and nothing else on the file.
+      mergeIntoCardsFile(paths.cards, {
+        byId: new Map(items.map((item) => [item.id, item])),
+        ownedFields: NUMBER_READING_FIELDS,
+        reason: "prepare-numbers",
+      });
       for (const f of fixed) {
         ctx.log(`  ${f.target} -> ${f.ttsText} (${f.pronunciation})`);
       }

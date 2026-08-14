@@ -1614,18 +1614,15 @@ say when it was measured rather than stating it as a standing fact.
 ## `src/cards/crossLessonNotes.js` still uses the unstamped, first-run-only backup
 
 - **What:** the `prepare` pass and `scripts/enhance-card-notes.mjs` share
-  `enhanceLessonNotes`, which backs up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
+  `enhanceLessonNotes`, which backed up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
   writer was left on the old convention while the six `scripts/` writers moved to stamped backups.
 - **Why:** it sits on the `prepare` pipeline path rather than in `scripts/`, and other in-flight work
   edits the same file. Changing it was out of scope for the change that introduced stamping.
-- **Impact:** re-running the enhance pass over a lesson keeps only the pre-first-run snapshot, so the
-  state the second run found is not recoverable from a `.bak`. It is recoverable from git now that
-  `cards.json` is tracked, which is why this was judged safe to defer.
-  `references/card-authoring-rules.md` also claims a re-run "overwrites their `.pre-enhance.bak`
-  backups", which is not what `backupFileOnce` does; the file is kept, not overwritten.
-- **Status:** open
-- **When to revisit:** switch it to `backupFileStamped` next time that file is open, and fix the doc
-  sentence in the same commit.
+- **Impact:** re-running the enhance pass over a lesson kept only the pre-first-run snapshot, so the
+  state the second run found was not recoverable from a `.bak`.
+- **Status:** RESOLVED (WS8 item 4). The pass now writes through `mergeIntoCardsFile`, which uses
+  `writeUnitJson` — validate, stamped `<file>.pre-enhance-<YYYYMMDDHHmm>.bak`, atomic write, re-read
+  and validate. `references/card-authoring-rules.md` was corrected in the same commit.
 
 ## Exclusion provenance is optional, so the 100 exclusions already on disk stay unattributable
 
@@ -2026,3 +2023,38 @@ say when it was measured rather than stating it as a standing fact.
   failure mode.
 - **Status:** open
 - **When to revisit:** when WS1's audit scopes land, the library copy is a natural third scope to add.
+
+## The merge discipline covers the fields a pass owns, not the items it never sees
+
+- **What:** `mergeIntoCardsFile` (`src/cards/mergeIntoCardsFile.js`) re-reads `cards.json` after a
+  multi-minute model call and writes back only the calling pass's own fields, appends and removals.
+  `prepare`'s three passes and `crossLessonNotes` go through it; `audio.js` keeps its own copy of the
+  same pattern because it has extra rules (only overwrite a clip THIS stage owns; an absent clip is
+  an absent key, never `audio: null`).
+- **Why:** each pass reads the cards, spends minutes in a model call, then writes — and the dashboard
+  is editable for that whole window. Writing the object read at the start silently discarded any
+  exclude or inline edit made in between, with no trace.
+- **Impact:** two gaps remain. (1) The window is narrowed, not closed: two writers can still
+  interleave between the re-read and the atomic rename, which is microseconds rather than minutes but
+  is not zero. Nothing takes a lock. (2) `audio.js` is a second implementation of the same idea; a
+  future change to the merge semantics has to be made in both places, and only one of them is named
+  after the pattern.
+- **Status:** open
+- **When to revisit:** if a lost edit is ever actually observed, the answer is a lock on the run
+  directory (the claim file already exists and could carry one), not a narrower window. Fold audio.js
+  onto the shared helper the next time its rules are touched.
+
+## The zip entry ceiling is a throw, not zip64
+
+- **What:** `buildZip` throws past 65,535 entries instead of emitting an archive whose EOCD count has
+  wrapped.
+- **Why:** the correct fix for a genuinely larger archive is zip64, which this hand-rolled builder
+  does not implement. Emitting a valid-looking but silently truncated `.apkg` is strictly worse than
+  refusing.
+- **Impact:** a book that somehow needed more than 65,535 media + note entries cannot be packaged at
+  all. Current decks are around 1,900 entries, so this is theoretical.
+- **Status:** open
+- **When to revisit:** only if the throw ever fires. Media memoization (which would reduce the count
+  by about 1%) stays deferred until the headless import verifier exists and passes on a memoized
+  package — the payoff is 22 entries out of 1,914 against re-entering the one code path whose last
+  reasonable-looking change produced a package Anki rejected while passing every test.

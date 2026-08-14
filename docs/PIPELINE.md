@@ -391,6 +391,25 @@ entirely — growing or rewriting a signed-off card set is the one thing this st
 Unlike every other stage, `prepare` keeps its claim on failure (`clearOnFailure: false`), so a crash
 mid-prepare surfaces in the dashboard as _interrupted_ instead of looking finished.
 
+**Every pass here merges, it never overwrites.** Each one reads `cards.json`, spends minutes in a
+model call, and writes back — and the dashboard is editable for that whole window, since a lesson at
+the translate stage is exactly what someone reviews while `prepare` is still running. Writing back
+the object read at the start would silently discard any exclude or inline edit made in between.
+`mergeIntoCardsFile` (`src/cards/mergeIntoCardsFile.js`) is the shared path: re-read the file, apply
+only the fields the calling pass owns (plus its own appends, removals and meta markers), then write
+through `writeUnitJson` — validate, stamped backup, atomic write, re-read and validate. What each
+pass owns:
+
+| pass                                | owns                                                                                                                                                        |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| fill-in-the-blank + semantic de-dup | the drill block: stale drills removed, mined drills appended (already carrying the de-dup pass's exclusion marks), `meta.enriched` / `meta.prepareDegraded` |
+| cross-lesson notes                  | `note` and `hint` on this lesson's cards, plus the same fields in `corpus.json`                                                                             |
+| number readings                     | `ttsText`, `pronunciation`, `uncertain`, `reviewNote` on the cards it fixed                                                                                 |
+| audio (a later stage)               | each item's audio filenames — its own merge, with extra rules about clips the reviewer chose by hand                                                        |
+
+The backups are STAMPED (`cards.json.pre-prepare-fib-<YYYYMMDDHHmm>.bak`), so a second run of a pass
+does not clobber the restore point for the state it actually found.
+
 ### `translate`
 
 Runs as the first pass of `prepare` — there is **no review gate before it** (the review moved onto its
@@ -443,6 +462,13 @@ by ISO code — Japanese → "kana only, no kanji"). When `translate --simple-sc
 prompt; the translate core is script-agnostic (it just forwards the instruction string), and a language
 with no rule ignores the flag. This is the same per-language plug-in pattern as voices / alt-audio /
 romanization / fonts — nothing language-specific lives in the core.
+
+**The retry halves the failed set.** Each group goes to the model as one unbatched call, so when the
+whole response is unusable — truncated, unparseable — every item in the group fails at once. Retrying
+that set at the same size would rebuild a byte-for-byte identical prompt and fail identically, having
+spent a second full-size call to learn nothing. The retry therefore sends it as two half-size prompts,
+which is a genuinely different request: it fits where one did not, and a response that still breaks
+costs only half the lesson. Only items that fail both attempts surface in `meta.translateErrors`.
 
 **Provenance flags carry forward.** The corpus's `aiSuggested` / `uncertain` flags are copied onto the
 translated card by `translateCorpus` (matched by `id`), so they persist into `cards.json` and every
@@ -686,6 +712,14 @@ Label`, via `buildMultiDeckCollection`) nested under one parent deck named for t
   between runs (a re-translated chapter, a newly added one, regenerated audio), and reusing a
   stale merge would be a correctness footgun for a recompute this cheap.
 
+**The zip builder refuses past 65,535 entries.** `buildZip` (`src/deck/zip.js`) writes a plain
+no-zip64 archive, and the end-of-central-directory record holds the entry count in a uint16. Past
+65,535 that count wraps, and what comes out is still a structurally valid zip that any reader
+trusting the EOCD opens happily — just missing 65,536 entries. A `.apkg` is exactly that kind of
+consumer, so the corruption would surface as cards that quietly never arrived rather than as an
+import error. It throws instead. Current decks run to roughly 1,900 entries, so this guards a future
+that has not happened; the point is that its failure mode is invisible.
+
 ### `restyle-font`
 
 `restyle-font --apkg <path> --lang <code> [--out <path>]` embeds a language's configured deck font
@@ -757,7 +791,6 @@ anki-builder epub cache <hash> --clear --conventions --taught-index --dry
 never touched, whatever is asked for, and the refusal is checked at the point of deletion rather
 than assumed from how the target list was built — it holds human-reviewed chapters that no amount
 of compute can rebuild, one directory away from everything the command does delete.
-
 
 ## Model passes: pinning, env scopes and timeouts
 

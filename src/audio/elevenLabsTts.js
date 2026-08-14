@@ -1,8 +1,15 @@
 import { Buffer } from "buffer";
 import { setTimeout as sleep } from "timers/promises";
+import { assertExternalCallAllowed } from "../util/testEnv.js";
 import { TTS_MODEL } from "./ttsModel.js";
 
 const ELEVENLABS_TTS_URL = "https://api.elevenlabs.io/v1/text-to-speech";
+
+// The platform's fetch, captured at import time so "would this call actually reach ElevenLabs?" can
+// be answered by identity. It has to be captured rather than compared against `globalThis.fetch` at
+// call time, because a test that stubs the global has already replaced it by then — and stubbing the
+// global is exactly the case the guard must let through.
+const REAL_FETCH = globalThis.fetch;
 
 // Per-request ceiling and retry policy. A stalled socket used to hang the whole audio stage
 // forever (bare fetch, no signal), and a transient 429/5xx killed it outright.
@@ -55,6 +62,14 @@ export async function fetchElevenLabsTts(
     wait = sleep,
   } = {},
 ) {
+  // ElevenLabs bills per character, so an un-stubbed call in a test spends real money and, worse,
+  // does it silently — the test passes. This is the same refusal `runClaudeWithPrompt` already makes
+  // for `claude -p`; it only fires when the call would genuinely leave the machine, so every test
+  // that injects `fetchImpl` or stubs the global is unaffected.
+  if (fetchImpl === REAL_FETCH) {
+    assertExternalCallAllowed("call the ElevenLabs TTS API (it bills per character)");
+  }
+
   let lastError;
 
   for (let attempt = 0; attempt <= retries; attempt++) {

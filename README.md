@@ -201,6 +201,17 @@ npm test
 npm run build
 ```
 
+`npm test` runs `node --test` through `scripts/test-with-write-guard.mjs`, which snapshots
+`output/`, `.anki-builder/` and `anki-backups/` before the suite and diffs them after. The run fails,
+naming the paths, if the suite changed anything in them, even when every test passed. The suite has
+no business writing into hand-reviewed decks, the dedup library or the owner's Anki backups; it once
+did, and stayed green for months. Set `ANKI_BUILDER_ALLOW_DURABLE_WRITES=1` for the rare deliberate
+case.
+
+Two related refusals live in the code rather than in test-author discipline: `libraryHome()` resolves
+to a throwaway tmpdir under `node --test`, and `fetchElevenLabsTts` throws instead of calling the
+paid API when a test forgets to inject a `fetchImpl`.
+
 ## Learn more
 
 - [`docs/PIPELINE.md`](./docs/PIPELINE.md) — how each stage works internally: dedup logic, prompt

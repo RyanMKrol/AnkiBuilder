@@ -1466,3 +1466,21 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
 - **When to revisit:** if a second test runner is adopted, add its env marker to the same guard.
   Covering `NODE_ENV=test` safely needs a signal that separates "under a test runner" from
   "someone's shell profile", and no such signal exists.
+
+## The durable-write guard compares (size, mtime), and only wraps `node --test`
+
+- **What:** `scripts/test-with-write-guard.mjs` snapshots every path under `output/`,
+  `.anki-builder/` and `anki-backups/` before and after the suite and fails the run on any
+  difference. The stamp per path is size plus mtime, not a content hash, and the check happens in
+  the wrapper process, not inside the tests.
+- **Why:** the three trees hold ~20,000 files and over 500 MB. Hashing them twice a run would cost
+  more than the suite itself. node:test has no cross-process global hook and `node --test` runs ~75
+  separate processes, so a per-process check would mean roughly a million stat calls per run.
+- **Impact:** a write that preserves both size and mtime is invisible to the guard (no plausible
+  accident does this, but a deliberate one would). Anything that runs the suite without going
+  through `npm test` (a bare `node --test`, an editor's test runner, a future CI step that calls the
+  binary directly) is unguarded. The guard also cannot say WHICH test wrote the file, only that the
+  run did, so diagnosing means bisecting.
+- **When to revisit:** if a stealth write is ever suspected, hash the JSON files only (about 3 MB)
+  and keep size/mtime for the rest. If the suite ever legitimately needs to write into these trees,
+  add an allowlist rather than widening the escape hatch.

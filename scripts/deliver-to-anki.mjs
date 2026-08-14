@@ -15,6 +15,12 @@
 //                     once and forces a manual one-way AnkiWeb sync. Without this flag such a
 //                     delivery is refused. Preview it with --dry first: the dry run prints a
 //                     unified diff of live vs built plus every deck the change would reach.
+//     --allow-template-add
+//                     consent to ADDING a card template to the shared note type. Currently refused
+//                     even with this flag: the live-Anki probes that would say what the write does
+//                     to existing cards have never been run (src/anki/probeEvidence.js). Without
+//                     it, a spec template with no live counterpart stops the deliver and tells you
+//                     to add the card type by hand in Anki first.
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
 // Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
@@ -28,6 +34,7 @@ const args = process.argv.slice(2);
 const dry = args.includes("--dry");
 const sync = !args.includes("--no-sync");
 const allowModelChange = args.includes("--allow-model-change");
+const allowTemplateAdd = args.includes("--allow-template-add");
 const selectorArgs = args.filter((a) => !a.startsWith("--"));
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
@@ -50,6 +57,7 @@ try {
     client,
     dry,
     allowModelChange,
+    allowTemplateAdd,
     sync,
     log: (m) => console.error(`  ${m}`),
   });
@@ -77,6 +85,7 @@ if (report.structure.length) {
     const changes = [
       s.createModel && "created",
       s.addedFields.length && `+fields[${s.addedFields.join(",")}]`,
+      s.addedTemplates?.length && `+templates[${s.addedTemplates.join(",")}]`,
       s.templates && "templates",
       s.css && "css",
     ].filter(Boolean);

@@ -232,16 +232,25 @@ const BASE_CSS = `.card {
   color: #c2ab77;
 }`;
 
-// Base CSS + the language's embedded @font-face, if any. Identical for the .apkg and AnkiConnect paths.
+// Base CSS + the language's embedded @font-face, if any. One definition, read by both builders.
 function modelCss(fontDescriptor) {
   return `${BASE_CSS}${fontDescriptor ? "\n" + languageFontCss(fontDescriptor) : ""}`;
 }
 
 // The complete note-type definition for a target language, in AnkiConnect terms: the model name/id,
 // ordered fields, card templates ({name, qfmt, afmt}), and the full CSS. This is what the deliverer
-// pushes via createModel/updateModelTemplates/updateModelStyling, and what `buildModel` embeds into the
-// `.apkg`. One definition, two consumers — so a field/template/CSS change propagates to Anki on the
+// pushes via createModel/updateModelTemplates/updateModelStyling, and what `buildModel` embeds into
+// the `.apkg`. One SPEC, two consumers — so a field/template/CSS change propagates to Anki on the
 // next deliver. `getFont` is injectable (tests turn font embedding off).
+//
+// ⚠️ Sharing the spec is NOT the same as the two builders producing the same deck, and this comment
+// used to say otherwise. What they share is the note type: its fields, its card templates and its
+// CSS. What they do with a card diverges on purpose — the package writes both directions of every
+// note, while the deliverer may suspend a direction on the notes it creates (per-card direction
+// control), so a delivered deck deliberately stops matching the package card for card. The template
+// ADD path is the other divergence: `buildModel` writes whatever templates the spec has, whereas
+// AnkiConnect cannot create a template row at all on an existing note type, so a spec template with
+// no live counterpart is a refusal in the deliverer rather than a silent no-op (see syncStructure).
 function noteTypeSpec(targetLanguage, { getFont = getLanguageFont } = {}) {
   const { modelId, modelName, fontDescriptor } = resolveModelSpec(targetLanguage, getFont);
   return {

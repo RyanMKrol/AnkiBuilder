@@ -23,6 +23,7 @@ import {
 } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { DELIVERED_MARKER } from "./deliveredMarker.js";
+import { assertProbeEvidence } from "./probeEvidence.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
 
@@ -253,16 +254,22 @@ export async function describeModelChange(client, spec, { liveTemplates, liveCss
  * cards that is; a real deliver needs `--allow-model-change`. Adding a FIELD, and creating the model
  * from scratch, are not gated: neither can silently change what an existing card looks like.
  *
- * WS6's `modelTemplateAdd` path must route through this same guard when it lands. A template ADD is
- * also a schema-modifying write on the shared model and forces the same manual sync; its own local
- * warning is not the same thing as a refusal.
+ * A template ADD routes through this same guard (see `addedTemplates` below). It is also a
+ * schema-modifying write on the shared model and forces the same manual sync; its own local warning
+ * is not the same thing as a refusal.
  */
-export async function syncStructure(client, spec, dry, { allowModelChange = false, log } = {}) {
+export async function syncStructure(
+  client,
+  spec,
+  dry,
+  { allowModelChange = false, allowTemplateAdd = false, log } = {},
+) {
   const say = log ?? (() => {});
   const out = {
     model: spec.modelName,
     createModel: false,
     addedFields: [],
+    addedTemplates: [],
     templates: false,
     css: false,
     modelChange: null,
@@ -303,12 +310,29 @@ export async function syncStructure(client, spec, dry, { allowModelChange = fals
   // Templates and styling — read BOTH before writing EITHER, so the guard below sees the whole
   // change at once rather than refusing halfway through it.
   const liveT = await client.modelTemplates(spec.modelName);
+
+  // A spec template with NO live counterpart is not an edit, it is an ADD — and `updateModelTemplates`
+  // cannot make one. AnkiConnect's update action addresses templates by name on an existing note
+  // type; handed a name the note type does not have, it reports success and creates nothing. That is
+  // a no-op reporting success on a live-collection write, so the add case is separated out here and
+  // handled explicitly, either by refusing or by the guarded `modelTemplateAdd` below.
+  out.addedTemplates = spec.templates.filter((t) => !liveT?.[t.name]).map((t) => t.name);
   const tmplChanged = spec.templates.some((t) => {
     const live = liveT?.[t.name];
-    return !live || live.Front !== t.qfmt || live.Back !== t.afmt;
+    return live && (live.Front !== t.qfmt || live.Back !== t.afmt);
   });
   const liveCss = (await client.modelStyling(spec.modelName))?.css ?? "";
   const cssChanged = liveCss !== spec.css;
+
+  if (out.addedTemplates.length) {
+    const usage = await modelUsage(client, spec.modelName);
+    say(
+      `note type "${spec.modelName}" is MISSING ${out.addedTemplates.length} card template(s) this ` +
+        `build defines: ${out.addedTemplates.join(", ")}. Adding one generates a new card on every ` +
+        `one of the ${usage.cards} existing card(s)' notes, across ${usage.decks.length} deck(s).`,
+    );
+    if (!dry) assertTemplateAddAllowed(spec, out.addedTemplates, usage, allowTemplateAdd);
+  }
 
   if (tmplChanged || cssChanged) {
     out.templates = tmplChanged;
@@ -334,7 +358,17 @@ export async function syncStructure(client, spec, dry, { allowModelChange = fals
   }
 
   if (!dry) {
-    if (tmplChanged) {
+    // Adds first: `updateModelTemplates` can only address rows that exist, so an edit pushed before
+    // the add would silently skip the new row and the run would report both as applied.
+    for (const name of out.addedTemplates) {
+      const template = spec.templates.find((t) => t.name === name);
+      await client.modelTemplateAdd(spec.modelName, name, template.qfmt, template.afmt);
+      say(
+        `added card template "${name}" to "${spec.modelName}" — every existing note now has a new ` +
+          `card. Any per-card direction suspension has to be RE-APPLIED: the new rows are unsuspended.`,
+      );
+    }
+    if (tmplChanged || out.addedTemplates.length) {
       await client.updateModelTemplates(
         spec.modelName,
         Object.fromEntries(spec.templates.map((t) => [t.name, { Front: t.qfmt, Back: t.afmt }])),
@@ -343,6 +377,43 @@ export async function syncStructure(client, spec, dry, { allowModelChange = fals
     if (cssChanged) await client.updateModelStyling(spec.modelName, spec.css);
   }
   return out;
+}
+
+/**
+ * THE TEMPLATE-ADD REFUSAL.
+ *
+ * Shipping behaviour today is the fail-loud half: a spec template with no live counterpart stops the
+ * deliver and tells the operator to add it by hand. The guarded `modelTemplateAdd` path exists below
+ * it, fully written, and is DORMANT — `assertProbeEvidence` refuses it because the live-Anki probes
+ * that would say what a template add does to existing cards have never been run. The order matters:
+ * the operator sees the plain instruction first, and the flag only reveals itself as a real option
+ * once the evidence exists.
+ *
+ * Two reasons this is not just a warning:
+ *
+ *  1. the note type is keyed on LANGUAGE, so an add reaches every deck of that language at once —
+ *     the same blast radius the template/CSS guard exists for, and the same consent standard;
+ *  2. adding a template regenerates cards on every existing note, so any per-card direction
+ *     suspension has to be re-applied afterwards. Whether the add ALSO unsuspends is one of the
+ *     unanswered probe questions, which is precisely why this is gated rather than warned about.
+ */
+function assertTemplateAddAllowed(spec, added, usage, allowTemplateAdd) {
+  if (!allowTemplateAdd) {
+    throw new Error(
+      `the note type "${spec.modelName}" is missing ${added.length} card template(s) this build ` +
+        `defines (${added.join(", ")}), and a deliver will not create them. ` +
+        `updateModelTemplates cannot add a template — handed a name the note type does not have it ` +
+        `reports success and creates nothing.\n` +
+        `Add it by hand in Anki first: Tools > Manage Note Types > "${spec.modelName}" > Cards > ` +
+        `Options > Add Card Type, name it EXACTLY "${added[0]}", then re-run this deliver so the ` +
+        `front/back are pushed from the build.\n` +
+        `That write reaches all ${usage.cards} card(s) in ${usage.decks.length} deck(s) using this ` +
+        `note type, generates one new card on every existing note, and forces a one-way full ` +
+        `AnkiWeb sync you finish by hand.`,
+    );
+  }
+  // Asked for explicitly — and still refused, because nothing yet knows what the write does.
+  assertProbeEvidence("template-add");
 }
 
 /**
@@ -562,6 +633,9 @@ export async function deliverToAnki(
     // Explicit consent for a write that reaches every deck sharing the language's note type. See
     // syncStructure's guard. A dry run never needs it: a dry run writes nothing.
     allowModelChange = false,
+    // Explicit consent to ADD a card template to that shared note type. Dormant: even with this,
+    // the add is refused until the live probes have answered what it does (probeEvidence.js).
+    allowTemplateAdd = false,
     sync = true,
     now = () => Date.now(),
     adapters = ADAPTERS,
@@ -661,14 +735,16 @@ export async function deliverToAnki(
 
   // 4. STRUCTURE SYNC (per unique model)
   for (const [, spec] of specsByModel) {
-    report.structure.push(await syncStructure(client, spec, dry, { allowModelChange, log }));
+    report.structure.push(
+      await syncStructure(client, spec, dry, { allowModelChange, allowTemplateAdd, log }),
+    );
     log(`structure synced: ${spec.modelName}`);
   }
   // A structural change (new field / template / CSS) bumps Anki's schema, which forces a one-way full
   // sync that Anki gates behind its GUI Upload/Download dialog — so the sync-after below can't complete
   // it unattended and the user must click Upload once. Surface it so the CLI/UI can warn.
   report.schemaChanged = report.structure.some(
-    (s) => s.createModel || s.addedFields.length || s.templates || s.css,
+    (s) => s.createModel || s.addedFields.length || s.addedTemplates.length || s.templates || s.css,
   );
 
   // 5. DECKS — a lesson's sub-deck must exist before a note can be added to it.

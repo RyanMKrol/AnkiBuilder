@@ -106,6 +106,7 @@ test("syncStructure is a no-op when the model already matches the spec", async (
     model: SPEC.modelName,
     createModel: false,
     addedFields: [],
+    addedTemplates: [],
     templates: false,
     css: false,
     modelChange: null,

@@ -60,6 +60,14 @@ export function createAnkiConnect({
     modelTemplates: (modelName) => invoke("modelTemplates", { modelName }),
     updateModelTemplates: (name, templates) =>
       invoke("updateModelTemplates", { model: { name, templates } }),
+    // ⚠️ A SCHEMA-MODIFYING WRITE that generates a new card on EVERY existing note of the type, in
+    // every deck of that language. `updateModelTemplates` cannot do this — handed a name the note
+    // type does not have it reports success and creates nothing — which is why the add is its own
+    // action. Nothing reaches it today: syncStructure refuses a template add and tells the operator
+    // to make it by hand, and the guarded path behind --allow-template-add stays closed until the
+    // live probes say what the write does to existing cards (src/anki/probeEvidence.js).
+    modelTemplateAdd: (modelName, name, Front, Back) =>
+      invoke("modelTemplateAdd", { modelName, template: { Name: name, Front, Back } }),
     modelStyling: (modelName) => invoke("modelStyling", { modelName }),
     updateModelStyling: (name, css) => invoke("updateModelStyling", { model: { name, css } }),
 

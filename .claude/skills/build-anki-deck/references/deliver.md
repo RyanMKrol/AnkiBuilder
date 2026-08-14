@@ -170,13 +170,30 @@ cannot turn into a write.
 Record the answers here, dated, as soon as a session produces them. Anything gated on a probe reads
 this table, not a memory of a run.
 
-| probe | answer | recorded |
+| id | probe | answer | recorded |
+|---|---|---|---|
+| `template-regeneration` | 1. template update regenerates a missing card row | not yet run | |
+| `template-unsuspends` | 1. template update unsuspends | not yet run | |
+| `changedeck-on-filtered` | 2. `changeDeck` on a card with non-zero `odid` | not yet run | |
+| `suspend-on-filtered` | 3. `suspend` on a card with non-zero `odid` | not yet run | |
+| `suspend-survives-template-write` | 3. template update / Check Database unsuspends | not yet run | |
+
+**Update `src/anki/probeEvidence.js` in the same commit.** That file is this table's machine-readable
+half: every write path gated on a probe reads it, and an unanswered row makes the command refuse by
+name instead of running on an assumption. A test fails if an id there has no row here. Nothing writes
+either half automatically — a probe result is read and judged by a human, and a gate that could arm
+itself from a script's output would be arming itself from the thing it exists to check.
+
+### What is waiting on these answers
+
+| gated by | what it is | needs |
 |---|---|---|
-| 1. template update regenerates a missing card row | not yet run | |
-| 1. template update unsuspends | not yet run | |
-| 2. `changeDeck` on a card with non-zero `odid` | not yet run | |
-| 3. `suspend` on a card with non-zero `odid` | not yet run | |
-| 3. template update / Check Database unsuspends | not yet run | |
+| `--allow-template-add` | letting a deliver ADD a card template to the shared note type | `template-regeneration`, `template-unsuspends` |
+| `--refile` (the run, not `--dry`) | moving delivered notes into a renamed unit deck | `changedeck-on-filtered` |
+| `--suspend-orphans` (the run, not `--dry`) | suspending a delivered note whose card left the corpus | `suspend-on-filtered`, `suspend-survives-template-write` |
+
+Each of those refuses today, naming the evidence it lacks. The `--dry` previews are not gated: they
+read, print, and write nothing.
 
 ## Rules for a collection managed this way
 

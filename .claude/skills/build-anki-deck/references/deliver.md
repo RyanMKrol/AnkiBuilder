@@ -20,6 +20,9 @@ node scripts/deliver-to-anki.mjs --dry            # preview every managed deck (
 node scripts/deliver-to-anki.mjs                  # back up, then deliver
 node scripts/deliver-to-anki.mjs course:my-course # limit to one deck (type:id)
 node scripts/deliver-to-anki.mjs --allow-model-change   # consent to a template/CSS rewrite
+node scripts/deliver-to-anki.mjs --allow-bulk-add       # consent to adding >200 notes at once
+node scripts/deliver-to-anki.mjs --dry --refile         # preview a deck-name re-file
+node scripts/deliver-to-anki.mjs --dry --suspend-orphans # preview retiring dropped cards
 ```
 
 **Run `npm run check` before a deliver.** It is `ci && validate:decks && preflight`, the full
@@ -42,6 +45,15 @@ So a delivery that would change **card templates or CSS** now stops:
 
 Remember that a template or CSS change also flips Anki's schema, which forces the one-way full
 AnkiWeb sync you have to finish by hand in the GUI.
+
+**A card template the live note type does not have is a different case, and it FAILS.** AnkiConnect's
+update action addresses templates by name on an existing note type: handed a name that is not there,
+it reports success and creates nothing. So a build defining a template Anki has never seen stops the
+deliver and tells you to create the card type by hand first (Tools → Manage Note Types → Cards →
+Options → Add Card Type, named exactly as the message says), then re-run so the front and back are
+pushed from the build. There is a guarded `--allow-template-add` path in the code, and it is closed:
+adding a template generates a new card on every existing note of that language, and nothing has yet
+established whether that write also clears the direction suspensions it lands on.
 
 Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
 open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.

@@ -2413,3 +2413,37 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open — self-resolving on the next deliver of each collection.
 - **When to revisit:** once both live markers carry `deliveredCardIds`, the fallback branch in
   `markerCoversUnit` is dead code for this workspace and could become a warning instead.
+
+## The two delivered collections keep bare note guids, and are not being retrofitted
+
+- **What:** `output/epubs/japanese-for-busy-people-book-1-kana` and
+  `output/courses/nihongo-101-course-n5` both write BARE card ids as their packages' note guids
+  (`book.json` has `"guidNamespace": null`, `course.json` has no such field). Every collection
+  created after 024184c gets a namespace from its immutable slug; these two do not, on purpose.
+- **Why:** a guid is what Anki matches a note by at import. Changing the guids of an already-imported
+  deck makes every note look new, so a retrofit trades a hypothetical import collision for a certain
+  one. The owner ruled: namespace new collections from creation, leave these two alone.
+- **Impact:** an `.apkg` import of one of them into an Anki collection already holding the other can
+  overwrite notes that share a card id. The AnkiConnect path is unaffected (deck-scoped, matched by
+  `abid:` tag), and the mitigation is the runbook rule that a bare-guid deck is never `.apkg`-imported
+  into a collection holding another. `npm run preflight` prints each collection's mode.
+- **Status:** open — deliberate, with a stated trigger.
+- **When to revisit:** when `scripts/verify-apkg-import.mjs` has been run against a namespaced and a
+  bare build of the same deck and shown what a guid change does to the restore path. That answer, not
+  a preference, decides whether a retrofit is worth doing.
+- **Verified by:** `node scripts/preflight.mjs --all --only guid-namespace`
+
+## A run-dir deck built before namespacing will not update on re-import
+
+- **What:** a bundled template or one-off run dir now derives its guid namespace from its directory
+  identity (`numbers-ja`), because it has no marker file to record a decision in. Any package built
+  from such a dir BEFORE this shipped bare ids.
+- **Why:** the alternative was inventing a marker file for the run-dir shape, which is more machinery
+  than the case needs — a run dir's path is already the immutable identity its package is named after.
+  There were no template collections on disk when this landed, so nothing was affected in practice.
+- **Impact:** if an older run-dir deck does turn up and is re-imported after a rebuild, the notes
+  arrive as new ones rather than updating the existing ones. The remedy is one step: delete the old
+  deck in Anki before importing the rebuilt package (that deck has no delivery history to protect —
+  the AnkiConnect path does not manage run-dir decks).
+- **Status:** open — no known instance.
+- **When to revisit:** the first time a pre-namespace template deck is rebuilt and re-imported.

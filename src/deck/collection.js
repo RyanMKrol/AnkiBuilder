@@ -653,7 +653,10 @@ function writeCollectionDb({
  * `card.audio`, when present, must already be the filename to embed via
  * `[sound:...]` (the caller resolves whether the underlying file exists).
  */
-export function buildCollection(cards, { deckName, now, getFont = getLanguageFont }) {
+export function buildCollection(
+  cards,
+  { deckName, now, getFont = getLanguageFont, guidNamespace = null },
+) {
   const nowSeconds = Math.floor(now / 1000);
   return writeCollectionDb({
     decksJson: JSON.stringify(buildDecks(nowSeconds, deckName)),
@@ -663,6 +666,7 @@ export function buildCollection(cards, { deckName, now, getFont = getLanguageFon
     nowSeconds,
     chapterGroups: [{ deckId: DECK_ID, cards }],
     modelSpec: resolveModelSpec(cards.meta?.targetLanguage, getFont),
+    guidNamespace,
   });
 }
 

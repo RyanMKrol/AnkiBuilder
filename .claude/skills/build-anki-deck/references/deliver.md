@@ -116,6 +116,33 @@ fresh one instead of checking against a stale one.
 - **Deletions** → never automatic; a note whose card left the corpus is reported as `orphaned` for you to
   remove by hand.
 
+## Importing an .apkg: note guids and the one rule that matters
+
+A note's **guid** is how Anki decides at import whether it already has that note, and it matches
+guids **collection-wide** — across every deck, not just the one being imported. This tool writes a
+card's own id as the guid, so what that id looks like decides how far an import reaches.
+
+**New collections are namespaced.** A book or course created from now on records a `guidNamespace` in
+its `book.json` / `course.json` at creation, taken from its immutable folder **slug**, and its
+package writes `<namespace>/<card id>`. Deliberately the slug and not the display title: a namespace
+that followed a rename would change every guid and orphan the live scheduling of every card. A
+bundled template or one-off run dir has no marker, so its namespace comes from the same immutable
+directory identity its package is named after (`numbers-ja` for `templates/numbers/ja`).
+
+**The two collections delivered before that existed keep bare guids, and are not being retrofitted.**
+Renumbering their guids now would make every note look new. Their protection is this rule:
+
+> **Never `.apkg`-import a bare-guid deck into an Anki collection that already holds another
+> bare-guid deck from this tool.** If both packages ship bare ids, any card id they happen to share
+> lands on the other deck's note.
+
+`npm run preflight` prints which mode each collection is in (`guid namespace`). Delivering over
+AnkiConnect is unaffected either way: it is scoped to the collection's own deck tree and matches
+notes by their `abid:` tag, never by guid.
+
+The retrofit stays deferred until `scripts/verify-apkg-import.mjs` has shown what a guid change
+actually does to the restore path — that is the trigger recorded in LIMITATIONS.
+
 ## Deck options: turn on sibling burying by hand, once
 
 **This is the one setting in this file that has to be clicked in Anki, and it is worth more than

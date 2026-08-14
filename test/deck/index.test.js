@@ -593,6 +593,30 @@ test("buildDeck allows a duplicate id when one copy is excluded (it never ships)
   });
 });
 
+test("buildDeck namespaces note guids too — a template deck is a collection like any other", async () => {
+  await withTempDir(async (tmpDir) => {
+    const cards = baseCards([
+      { id: "hello", english: "Hello", target: "こんにちは", category: "Greetings" },
+    ]);
+    const outPath = join(tmpDir, "template.apkg");
+    buildDeck(cards, { outPath, deckName: "Numbers", guidNamespace: "numbers-ja" });
+
+    const dbBytes = extractZipEntry(await fs.readFile(outPath), "collection.anki2");
+    const dbPath = join(tmpDir, "template.anki2");
+    await fs.writeFile(dbPath, dbBytes);
+    const db = new DatabaseSync(dbPath);
+    try {
+      const guids = db
+        .prepare("SELECT guid FROM notes")
+        .all()
+        .map((r) => r.guid);
+      assert.deepEqual(guids, ["numbers-ja/hello"]);
+    } finally {
+      db.close();
+    }
+  });
+});
+
 test("buildBookDeck namespaces note guids when asked; bare card ids otherwise", async () => {
   await withTempDir(async (tmpDir) => {
     const chapterDecks = [

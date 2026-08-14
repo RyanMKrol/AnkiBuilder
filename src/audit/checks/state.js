@@ -230,6 +230,47 @@ export const corpusDriftCheck = defineCheck({
   },
 });
 
+export const guidNamespaceCheck = defineCheck({
+  id: "guid-namespace",
+  title: "guid namespace",
+  scope: "collection",
+  tier: "INFO",
+  /**
+   * Whether THIS collection's package writes namespaced note guids, and what follows if it does not.
+   *
+   * A note's guid is how Anki decides, at import, whether it already has this note — and it matches
+   * guids COLLECTION-wide, across every deck. A package that ships bare card ids as guids therefore
+   * reaches beyond its own deck: import it into an Anki collection that already holds another
+   * bare-guid deck and any shared id lands on the other deck's note.
+   *
+   * ⚠️ ISOLATION. This reads ONE collection's marker and reports one property of it. It does not
+   * look at any other collection's ids, and it must not: whether this package is namespaced is a
+   * fact about this package alone. The rule for the un-namespaced case is a RUNBOOK rule for the
+   * human doing the importing, not a comparison for a checker to run.
+   *
+   * New collections get a namespace at creation, from their immutable slug (a rename must never
+   * change a guid — that would orphan the live scheduling of every card). The two collections
+   * delivered before that existed keep bare guids on purpose: changing them now would make every
+   * note look new.
+   */
+  run({ collection }) {
+    const marker = readCollectionMarker(collection);
+    const namespace = marker?.data?.guidNamespace ?? null;
+    if (namespace) {
+      return { summary: `namespaced ("${namespace}/<card id>")` };
+    }
+    return {
+      notes: [
+        `this package writes BARE card ids as note guids, and Anki matches guids collection-wide. ` +
+          `Never .apkg-import it into an Anki collection that already holds another bare-guid deck ` +
+          `from this tool — a shared card id would overwrite that deck's note. Delivering over ` +
+          `AnkiConnect is unaffected (it is deck-scoped and matches by abid: tag).`,
+      ],
+      summary: "bare guids",
+    };
+  },
+});
+
 export const collectionStateCheck = defineCheck({
   id: "collection-state",
   title: "state",

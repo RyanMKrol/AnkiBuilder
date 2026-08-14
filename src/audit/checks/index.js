@@ -15,6 +15,7 @@ import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import {
   collectionStateCheck,
   corpusDriftCheck,
+  guidNamespaceCheck,
   readinessExemptionsCheck,
   unitMarkerCheck,
 } from "./state.js";
@@ -44,6 +45,7 @@ export const ALL_CHECKS = [
   corpusDriftCheck,
   // collection scope
   collectionStateCheck,
+  guidNamespaceCheck,
   readinessExemptionsCheck,
   unitMarkerCheck,
   cardIdsCheck,

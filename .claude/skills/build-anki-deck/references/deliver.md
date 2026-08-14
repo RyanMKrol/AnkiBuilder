@@ -46,6 +46,10 @@ AnkiWeb sync you have to finish by hand in the GUI.
 Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
 open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.
 
+The button passes no flags, so anything that needs consent — a template/CSS change, a first delivery
+of more than 200 cards, `--refile` — has to go through the CLI. That is deliberate: a consent flag
+you can click without reading is not consent. The button reports the refusal and its reason.
+
 **It syncs with AnkiWeb automatically** (default; `--no-sync` to skip): a `sync` before delivery (pull — so
 a review done on another device merges in before the push) and a `sync` after (push local → remote). A
 content-only delivery syncs incrementally with no prompt. A **schema change** (adding a field, editing a

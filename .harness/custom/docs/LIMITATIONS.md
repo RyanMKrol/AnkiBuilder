@@ -2447,3 +2447,34 @@ say when it was measured rather than stating it as a standing fact.
   the AnkiConnect path does not manage run-dir decks).
 - **Status:** open — no known instance.
 - **When to revisit:** the first time a pre-namespace template deck is rebuilt and re-imported.
+
+## Three delivery write paths are written but dormant, waiting on the live probes
+
+- **What:** the guarded `modelTemplateAdd` path (`--allow-template-add`), the `--refile` run and the
+  `--suspend-orphans` run all exist, are tested, and refuse to execute. `src/anki/probeEvidence.js`
+  holds an `answer: null` for every question `scripts/anki-behaviour-probe.mjs` would settle, and
+  each feature names the evidence it lacks when it refuses. The `--dry` previews work today.
+- **Why:** each is a live write to a card's scheduling state whose behaviour on a card in a filtered
+  deck nobody has established. Shipping them on an assumption is the failure this project keeps
+  paying for; deleting them would mean re-deriving the design when the answers arrive.
+- **Impact:** a deck-name correction cannot reach the existing book yet, a post-delivery exclusion
+  still leaves a card the learner drills, and a new card direction has to be added by hand in Anki.
+  All three are stated in `references/deliver.md` with the probe each waits on.
+- **Status:** open — blocked on a human probe session (two minutes in Anki's profile manager, then
+  `node scripts/anki-behaviour-probe.mjs --check`).
+- **When to revisit:** as soon as a probe session is run. Record each answer in BOTH halves of the
+  record (the runbook table and `probeEvidence.js`) in one commit; a test fails if an id exists in
+  one and not the other.
+
+## The delivery add ceiling is a fixed 200, not a proportion
+
+- **What:** `DEFAULT_MAX_ADDS = 200` per collection per deliver, overridable only by
+  `--allow-bulk-add` (there is no `--max-adds`).
+- **Why:** the ceiling exists to catch a matching failure that would re-add a book, and a proportion
+  of the collection's size would have been derived from the same lookup the failure broke. A flat
+  number cannot be argued into being wrong by the bug it is watching for.
+- **Impact:** the first delivery of any collection larger than 200 cards needs the flag, which is
+  exactly the case where reading the `--dry` output is worth the minute. A future 190-card book
+  would deliver in one go with no prompt at all.
+- **Status:** open — deliberate.
+- **When to revisit:** if a legitimate incremental deliver (not a first run) ever trips it.

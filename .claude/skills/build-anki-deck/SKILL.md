@@ -287,13 +287,22 @@ nothing downstream can notice either. Your sweep is the second pair of eyes on t
 silently drop a whole paradigm. It costs about thirty seconds:
 
 ```sh
-grep -o '<img[^>]*>' <chapter>.xhtml                          # decoration is inline; figures are class="fill"
-unzip -o -j <book>.epub '*<ImageName>*' -d <scratchpad>/imgs   # pull the ones near teaching prose
+node scripts/chapter-images.mjs <runDir>     # or: <epubHash> <chapterNumber>
 ```
 
-Read the extracted files (the Read tool renders images) and judge each by POSITION, not filename: a
-figure sitting under a heading whose text then runs out, or referenced by prose with no visible
-referent, is load-bearing; an illustration whose labels already appear in the text is decoration.
+**Do not unzip the EPUB.** The build already extracted every image the chapter references, into the
+book's cache beside the chapter file (`.anki-builder/epubs/<hash>/`, at the path the chapter's own
+`<img src>` resolves to — usually `images/`), because that is how the extraction model opens them.
+The script lists them with their real paths on disk, and quotes what the book's cached
+`conventions.md` says about each: the whole-book conventions pass already went through every chapter
+and listed its image-embedded content per chapter, naming files. Start there, and read the chapter's
+own `Image-Embedded Content` entries.
+
+Then open the files that matter (the Read tool renders images) and judge each by POSITION, not
+filename and not by what conventions.md called it: a figure sitting under a heading whose text then
+runs out, or referenced by prose with no visible referent, is load-bearing; an illustration whose
+labels already appear in the text is decoration. Being unnamed in `conventions.md` is an absence, not
+a verdict — that pass read 57 files in one call and can have missed one.
 **Report what you find WITH the review link**, so the reviewer signs off gate 1 knowing whether the
 chapter taught anything the cards cannot have covered. Transcribe any load-bearing figure into the
 Step 3b brief, and audit any paradigm it contains cell by cell. Full procedure, including the

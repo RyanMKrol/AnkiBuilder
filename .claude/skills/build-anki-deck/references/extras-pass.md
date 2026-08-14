@@ -145,11 +145,14 @@ that appears never to have taught the material. Publishers do this constantly fo
 content, which is exactly the content that carries a grammar paradigm.
 
 ```sh
-grep -o '<img[^>]*>' <chapter>.xhtml                       # find them; alt text is usually empty
-unzip -o -j <book>.epub '*<ImageName>*' -d <scratchpad>/imgs   # pull the ones near teaching prose
+node scripts/chapter-images.mjs <runDir>     # or: <epubHash> <chapterNumber>
 ```
 
-Then **read the extracted files** (the Read tool renders images) and transcribe what they teach into
+The images are already on disk in the book's cache, written next to the cached chapter file when the
+chapter was extracted — there is nothing to unzip. The script prints each one's path and quotes the
+book's `conventions.md` where it names the file.
+
+Then **read the files that matter** (the Read tool renders images) and transcribe what they teach into
 the Wave 2 brief. Two cheap signals that an image is load-bearing rather than decorative: it sits
 directly under an exercise or grammar heading whose text then runs out (a heading followed by nothing
 is the giveaway), and it is referenced by prose that has no visible referent. Judge by position, not

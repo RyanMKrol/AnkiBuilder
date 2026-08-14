@@ -608,6 +608,67 @@ always relative to the repo itself, regardless of which directory you invoke the
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
 ```
 
+Three of those are **tracked in git** rather than ignored — the reviewed corpora, `conventions.md`
+and `taught-index.json` (see the `.gitignore` re-include block). They are months of human review and
+two expensive one-time model passes, and they are what the eval fixtures below read as their
+reference data.
+
+## Per-pass eval fixtures
+
+Every prompt in `docs/` is edited by hand, and nothing else in the repo can tell an improvement from
+a regression. Chapter extraction is the worst case: an item the prompt stops picking up is never seen
+by anyone again, so a narrowed rule or a reworded precedence line can cost a whole class of cards and
+leave no trace downstream. The fixtures exist so that a prompt edit is an **observed** change rather
+than a plausible one.
+
+```sh
+node scripts/eval-pass.mjs --list                    # what fixtures exist and what each one reads
+node scripts/eval-pass.mjs extraction                # offline: replay a recorded response, spend nothing
+node scripts/eval-pass.mjs extraction --live         # against the real model, at the pass's own pinning
+node scripts/eval-pass.mjs extraction --live --save  # ... and store the response as the new recording
+```
+
+The before/after workflow around a prompt edit:
+
+```sh
+node scripts/eval-pass.mjs extraction --live > /tmp/before.txt
+$EDITOR docs/epub-extraction-prompt.md
+node scripts/eval-pass.mjs extraction --live > /tmp/after.txt
+diff /tmp/before.txt /tmp/after.txt
+```
+
+| fixture         | pass                            | module                           | input                                                                 | reference                                                           |
+| --------------- | ------------------------------- | -------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `extraction`    | chapter extraction              | `src/corpus/epubLlmExtract.js`   | `test/fixtures/evals/chapters/25.xhtml` + the book's `conventions.md` | the reviewed `corpora/25.json`, minus the drills a later pass mined |
+| `forward-flags` | premature-item review           | `src/corpus/epubForwardFlags.js` | the same chapter's items + `taught-index.json`                        | the items the reviewer left flagged `uncertain`                     |
+| `sort`          | pedagogical sort                | `src/corpus/pedagogicalSort.js`  | those items in a fixed shuffle                                        | the reviewed order of `corpora/25.json`                             |
+| `categories`    | lesson-word category assignment | `src/corpus/lessonCorpus.js`     | the English glosses only                                              | the reviewed category on each item                                  |
+| `dedup`         | semantic de-dup                 | `src/cards/semanticDedup.js`     | `chapter-10/cards.json` with its exclusions undone                    | the practice cards that run excluded                                |
+
+**It never passes or fails.** Extraction is generative: two good runs disagree about a handful of
+borderline items, so an exact-match assertion would either sit permanently red or force the prompt to
+be tuned toward one historical sample. The output is evidence for a person to read. The exit code
+says whether the fixture ran, never whether the result was good.
+
+Some mechanics worth knowing before you add a fixture:
+
+- **The replay seam is `runClaude`, and the recording is the model's raw stdout** — not the parsed
+  result. That is what makes the offline mode worth having: a replay still runs the pass's own
+  fence-stripping, JSON parse, schema validation and merge logic, so the free run exercises
+  everything except the network. A recording with fewer responses than the pass now asks for throws,
+  rather than reading as a quiet zero-diff.
+- **Matching is by content, never by `id`.** Ids are model-authored slugs that a rewritten prompt
+  renames freely, which would report an unchanged chapter as total churn. Items pair on the
+  display-normalized `target` first (so editorial spaces or a trailing `。` never split a match), then
+  on `english` for the leftovers (so a resolved placeholder still pairs with its reference).
+- **The spoken-form field is read under either name** (`reading` or `ttsText`), so a rename of that
+  field does not show up as a chapter-wide diff.
+- **CI never spends money.** The suite only ever runs the recorded mode, and `--live` is hard-blocked
+  under `node --test` by `assertExternalCallAllowed` (`src/util/testEnv.js`).
+- The chapter `.xhtml` under `test/fixtures/evals/chapters/` is committed because the extracted-chapter
+  cache is not tracked and a fixture with no input is not a fixture. This is a private repo; see
+  `.harness/custom/docs/LIMITATIONS.md`.
+
 ## Output layout
 
 When you pass `assemble --output-root <dir>`, every source type lands under its own **reserved

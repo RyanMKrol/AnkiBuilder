@@ -86,7 +86,13 @@ export function renderForwardFlagIndexPrompt({
   return rendered;
 }
 
-function parseForwardFlagResponse(raw) {
+/**
+ * The `{ flag: [...] }` entries out of a model response. Exported for the forward-flag eval fixture
+ * (src/evals/fixtures.js), which runs this pass at the prompt/parse seam: the enclosing
+ * `flagForwardConcerns` needs the .epub itself for chapter listing and labels, and the .epub is not
+ * tracked, while what an eval actually judges is which ids come back flagged.
+ */
+export function parseForwardFlagResponse(raw) {
   const parsed = JSON.parse(extractJsonObjectText(raw));
 
   if (!parsed || typeof parsed !== "object" || !Array.isArray(parsed.flag)) {

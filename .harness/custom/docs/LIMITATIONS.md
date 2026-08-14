@@ -1536,3 +1536,24 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   correct but loses the earlier history (there is no exclusion log, only a current state).
 - **When to revisit:** if the unattributed count ever needs to go to zero, it has to be a human
   reading each one, not a migration script.
+
+<!-- WS8 — models, pinning and pass mechanics (2026-08) -->
+
+## The eval fixtures are one chapter of one book, and their reference is post-review
+
+- **What:** `scripts/eval-pass.mjs` runs five per-pass fixtures (`src/evals/`) against chapter 25 of
+  the one book whose reviewed data is tracked, and diffs the result against that chapter's reviewed
+  corpus. A 60 KB chapter `.xhtml` is committed under `test/fixtures/evals/chapters/` as the input.
+- **Why:** the extracted-chapter cache is gitignored, so without a committed copy the extraction
+  fixture cannot run on a fresh clone (or in any worktree). It is one chapter of a book this private
+  repo already tracks the reviewed output of, so committing it adds no new class of content.
+- **Impact:** three things. (1) The sample is one chapter, so a prompt edit that helps mid-book and
+  hurts chapter 1 reads as an improvement. (2) The reference is the corpus as SIGNED OFF, which has
+  been through the forward-flag pass, the reviewer's own edits and the drill miner — the extraction
+  fixture filters the mined drills back out by reading `fillInBlank` off the tracked deck, but the
+  reviewer's hand edits are indistinguishable from extraction output and count against a run that
+  reproduced the original extraction exactly. (3) The de-dup fixture runs without the mined `patterns`
+  map, which is not stored anywhere, so its input is thinner than the original run's.
+- **When to revisit:** add a second and third chapter fixture (early and late) when a prompt edit ever
+  disagrees with the chapter-25 result, and persist the mined pattern map if the de-dup fixture is
+  ever used to justify a model downgrade.

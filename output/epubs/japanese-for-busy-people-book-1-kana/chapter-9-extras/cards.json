@@ -36,7 +36,8 @@
       "audio": "3a58d897b2b9720c.mp3",
       "audioOriginal": "3a58d897b2b9720c.orig.mp3",
       "audioAuto": "3a58d897b2b9720c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3a58d897b2b9720c"
     },
     {
       "id": "p9-kaisha-ni-meru-o-okurimasu",
@@ -50,7 +51,8 @@
       "audio": "2c180275c8464d12.mp3",
       "audioOriginal": "2c180275c8464d12.orig.mp3",
       "audioAuto": "2c180275c8464d12.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2c180275c8464d12"
     },
     {
       "id": "v9-gurasu-o-futatsu",
@@ -65,7 +67,8 @@
       "audio": "dbb6581ad4f5659a.mp3",
       "audioOriginal": "dbb6581ad4f5659a.orig.mp3",
       "audioAuto": "dbb6581ad4f5659a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dbb6581ad4f5659a"
     },
     {
       "id": "ex9-kyo-no-osusume",
@@ -78,7 +81,8 @@
       "audio": "c30e32e8f5d427e4.mp3",
       "audioOriginal": "c30e32e8f5d427e4.orig.mp3",
       "audioAuto": "c30e32e8f5d427e4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c30e32e8f5d427e4"
     },
     {
       "id": "p9-iie-amari-mimasen",
@@ -93,7 +97,8 @@
       "audio": "9f0649db4a2de3bf.mp3",
       "audioOriginal": "9f0649db4a2de3bf.orig.mp3",
       "audioAuto": "9f0649db4a2de3bf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9f0649db4a2de3bf"
     },
     {
       "id": "p9-tokidoki-gorufu-o-shimasu-ka",
@@ -106,7 +111,8 @@
       "audio": "ac92c530dadc671a.mp3",
       "audioOriginal": "ac92c530dadc671a.orig.mp3",
       "audioAuto": "ac92c530dadc671a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ac92c530dadc671a"
     },
     {
       "id": "fib-super-de-yoguruto-o-mittsu-kaimasu",
@@ -121,7 +127,8 @@
       "audio": "46dcb71e75af2bd5.mp3",
       "audioOriginal": "46dcb71e75af2bd5.orig.mp3",
       "audioAuto": "46dcb71e75af2bd5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "46dcb71e75af2bd5"
     },
     {
       "id": "ex9-yoku-kono-mise-ni-kimasu-ka",
@@ -134,7 +141,8 @@
       "audio": "0aa49596f9480423.mp3",
       "audioOriginal": "0aa49596f9480423.orig.mp3",
       "audioAuto": "0aa49596f9480423.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0aa49596f9480423"
     },
     {
       "id": "p9-iie-zenzen-yomimasen",
@@ -154,7 +162,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.5101712328767123
-      }
+      },
+      "audioTextHash": "18adc561ac8374a8"
     },
     {
       "id": "v9-goshujin-wa-sampo",
@@ -167,7 +176,8 @@
       "audio": "86418847dd8226ed.mp3",
       "audioOriginal": "86418847dd8226ed.orig.mp3",
       "audioAuto": "86418847dd8226ed.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "86418847dd8226ed"
     },
     {
       "id": "f9-nihon-wa-do-desu-ka",
@@ -180,7 +190,8 @@
       "audio": "f92b10cdc1e2f0b0.mp3",
       "audioOriginal": "f92b10cdc1e2f0b0.orig.mp3",
       "audioAuto": "f92b10cdc1e2f0b0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f92b10cdc1e2f0b0"
     },
     {
       "id": "ex9-dare-ni-meru-o-okurimasu-ka",
@@ -193,7 +204,8 @@
       "audio": "05fa9a4de4c5f0b4.mp3",
       "audioOriginal": "05fa9a4de4c5f0b4.orig.mp3",
       "audioAuto": "05fa9a4de4c5f0b4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "05fa9a4de4c5f0b4"
     },
     {
       "id": "ex9-suzuki-sama-desu-ne",
@@ -208,7 +220,8 @@
       "audio": "90af1d412397a195.mp3",
       "audioOriginal": "90af1d412397a195.orig.mp3",
       "audioAuto": "90af1d412397a195.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "90af1d412397a195"
     },
     {
       "id": "f9-yoku-toshokan-ni-ikimasu",
@@ -221,7 +234,8 @@
       "audio": "c8c9f1c2921c5b70.mp3",
       "audioOriginal": "c8c9f1c2921c5b70.orig.mp3",
       "audioAuto": "c8c9f1c2921c5b70.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c8c9f1c2921c5b70"
     },
     {
       "id": "p9-senshu-wa-tenisu-o-shimasen-deshita",
@@ -235,7 +249,8 @@
       "audio": "dac76e7c3bda5754.mp3",
       "audioOriginal": "dac76e7c3bda5754.orig.mp3",
       "audioAuto": "dac76e7c3bda5754.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dac76e7c3bda5754"
     },
     {
       "id": "ex9-betsubetsu-ni-onegaishimasu",
@@ -249,7 +264,8 @@
       "audio": "00e74a0d03c7b6f8.mp3",
       "audioOriginal": "00e74a0d03c7b6f8.orig.mp3",
       "audioAuto": "00e74a0d03c7b6f8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "00e74a0d03c7b6f8"
     },
     {
       "id": "f9-zenzen-toshokan-ni-ikimasen",
@@ -263,7 +279,8 @@
       "audio": "b677454ac7c14254.mp3",
       "audioOriginal": "b677454ac7c14254.orig.mp3",
       "audioAuto": "b677454ac7c14254.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b677454ac7c14254"
     },
     {
       "id": "fib-chichi-maiasa-kuruma-de-kaisha",
@@ -289,7 +306,8 @@
       "audio": "5a8534684d60db3e.mp3",
       "audioOriginal": "5a8534684d60db3e.orig.mp3",
       "audioAuto": "5a8534684d60db3e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5a8534684d60db3e"
     },
     {
       "id": "v9-otto-wa-jimu",
@@ -304,7 +322,8 @@
       "audio": "f62001a3022a0099.mp3",
       "audioOriginal": "f62001a3022a0099.orig.mp3",
       "audioAuto": "f62001a3022a0099.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f62001a3022a0099"
     },
     {
       "id": "p9-suzuki-san-ni-aimasu",
@@ -318,7 +337,8 @@
       "audio": "251a1e9a434b6d83.mp3",
       "audioOriginal": "251a1e9a434b6d83.orig.mp3",
       "audioAuto": "251a1e9a434b6d83.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "251a1e9a434b6d83"
     },
     {
       "id": "f9-tokidoki-toshokan-ni-ikimasu",
@@ -332,7 +352,8 @@
       "audioAuto": "e1ec646890389ede-genkanji-55b3fa30.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "e1ec646890389ede-genkanji-55b3fa30.mp3"
+      "audio": "e1ec646890389ede-genkanji-55b3fa30.mp3",
+      "audioTextHash": "e1ec646890389ede"
     },
     {
       "id": "v9-maiasa-yasai-jusu",
@@ -346,7 +367,8 @@
       "audioAuto": "98dc2b8331c74b7b-genkanji-95c8d24e.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "98dc2b8331c74b7b-genkanji-95c8d24e.mp3"
+      "audio": "98dc2b8331c74b7b-genkanji-95c8d24e.mp3",
+      "audioTextHash": "98dc2b8331c74b7b"
     },
     {
       "id": "ex9-ee-tokidoki-kimasu",
@@ -362,7 +384,8 @@
       "audio": "f10d933b52807eae.mp3",
       "audioOriginal": "f10d933b52807eae.orig.mp3",
       "audioAuto": "f10d933b52807eae.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f10d933b52807eae"
     },
     {
       "id": "v9-amari-yasai-o-tabemasen",
@@ -375,7 +398,8 @@
       "audio": "5ec53d83945ad282.mp3",
       "audioOriginal": "5ec53d83945ad282.orig.mp3",
       "audioAuto": "5ec53d83945ad282.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5ec53d83945ad282"
     },
     {
       "id": "p9-ashita-wa-doko-ni-ikimasu-ka",
@@ -388,7 +412,8 @@
       "audio": "3633500e15e6abef.mp3",
       "audioOriginal": "3633500e15e6abef.orig.mp3",
       "audioAuto": "3633500e15e6abef.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3633500e15e6abef"
     },
     {
       "id": "ex9-onomimono-wa",
@@ -404,7 +429,8 @@
       "audio": "3c00c9b97a30b217.mp3",
       "audioOriginal": "3c00c9b97a30b217.orig.mp3",
       "audioAuto": "3c00c9b97a30b217.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3c00c9b97a30b217"
     },
     {
       "id": "ex9-nama-biru-o-futatsu",
@@ -420,7 +446,8 @@
       "audio": "a160d92f00e498a1.mp3",
       "audioOriginal": "a160d92f00e498a1.orig.mp3",
       "audioAuto": "a160d92f00e498a1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a160d92f00e498a1"
     },
     {
       "id": "ex9-kochira-desu",
@@ -435,7 +462,8 @@
       "audio": "1ac95ca471505b4a.mp3",
       "audioOriginal": "1ac95ca471505b4a.orig.mp3",
       "audioAuto": "1ac95ca471505b4a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1ac95ca471505b4a"
     },
     {
       "id": "fib-senshu-okusan-ni-aimashita",
@@ -461,7 +489,8 @@
       "audio": "4b5cabc767d0bd4d.mp3",
       "audioOriginal": "4b5cabc767d0bd4d.orig.mp3",
       "audioAuto": "4b5cabc767d0bd4d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4b5cabc767d0bd4d"
     },
     {
       "id": "ex9-tempuraya-de-aimashita",
@@ -474,7 +503,8 @@
       "audio": "019178c268a62040.mp3",
       "audioOriginal": "019178c268a62040.orig.mp3",
       "audioAuto": "019178c268a62040.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "019178c268a62040"
     },
     {
       "id": "f9-ryoko-wa-do-deshita-ka",
@@ -488,7 +518,8 @@
       "audio": "f22d07d210a0763a.mp3",
       "audioOriginal": "f22d07d210a0763a.orig.mp3",
       "audioAuto": "f22d07d210a0763a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f22d07d210a0763a"
     },
     {
       "id": "v9-gakko-wa-kuji-kara",
@@ -502,7 +533,8 @@
       "audio": "4410975b2fbd2f24.mp3",
       "audioOriginal": "4410975b2fbd2f24.orig.mp3",
       "audioAuto": "4410975b2fbd2f24.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4410975b2fbd2f24"
     },
     {
       "id": "fib-okaikei-o-betsubetsu-ni",
@@ -529,7 +561,8 @@
       "audioAuto": "628718a4d81ba24a-genkanji-c78685f8.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "628718a4d81ba24a-genkanji-c78685f8.mp3"
+      "audio": "628718a4d81ba24a-genkanji-c78685f8.mp3",
+      "audioTextHash": "628718a4d81ba24a"
     },
     {
       "id": "ex9-okaikei-o-onegaishimasu",
@@ -542,7 +575,8 @@
       "audio": "6ee38f37bb8a116d.mp3",
       "audioOriginal": "6ee38f37bb8a116d.orig.mp3",
       "audioAuto": "6ee38f37bb8a116d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6ee38f37bb8a116d"
     },
     {
       "id": "ex9-ii-mise-desu-ne",
@@ -566,7 +600,8 @@
       "audio": "0b8f97492d50e6b3.mp3",
       "audioOriginal": "0b8f97492d50e6b3.orig.mp3",
       "audioAuto": "0b8f97492d50e6b3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0b8f97492d50e6b3"
     },
     {
       "id": "v9-gokazoku-ni-aimashita",
@@ -579,7 +614,8 @@
       "audio": "637731dac7fea9fb.mp3",
       "audioOriginal": "637731dac7fea9fb.orig.mp3",
       "audioAuto": "637731dac7fea9fb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "637731dac7fea9fb"
     },
     {
       "id": "p9-tomodachi-to-denwa-o-shimasu",
@@ -593,7 +629,8 @@
       "audio": "6e997b1b2435b98e.mp3",
       "audioOriginal": "6e997b1b2435b98e.orig.mp3",
       "audioAuto": "6e997b1b2435b98e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6e997b1b2435b98e"
     },
     {
       "id": "v9-resutoran-roma-no-basho",
@@ -606,7 +643,8 @@
       "audio": "304d995b455f4b5c.mp3",
       "audioOriginal": "304d995b455f4b5c.orig.mp3",
       "audioAuto": "304d995b455f4b5c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "304d995b455f4b5c"
     },
     {
       "id": "fib-uchi-de-tabemasu",
@@ -621,7 +659,8 @@
       "audio": "52ee8efff01f2eb3.mp3",
       "audioOriginal": "52ee8efff01f2eb3.orig.mp3",
       "audioAuto": "52ee8efff01f2eb3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "52ee8efff01f2eb3"
     },
     {
       "id": "ex9-doko-ni-denwa-o-shimasu-ka",
@@ -634,7 +673,8 @@
       "audio": "a4100bf35a51df54.mp3",
       "audioOriginal": "a4100bf35a51df54.orig.mp3",
       "audioAuto": "a4100bf35a51df54.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a4100bf35a51df54"
     },
     {
       "id": "fib-bangohan-wa-doko-de-tabemasu-ka",
@@ -649,7 +689,8 @@
       "audio": "898f9c91de3ec13f.mp3",
       "audioOriginal": "898f9c91de3ec13f.orig.mp3",
       "audioAuto": "898f9c91de3ec13f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "898f9c91de3ec13f"
     },
     {
       "id": "v9-okasan-to-depato",
@@ -662,7 +703,8 @@
       "audio": "11f66cc29d585eaf.mp3",
       "audioOriginal": "11f66cc29d585eaf.orig.mp3",
       "audioAuto": "11f66cc29d585eaf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "11f66cc29d585eaf"
     },
     {
       "id": "f9-amari-toshokan-ni-ikimasen",
@@ -677,7 +719,8 @@
       "audioAuto": "b8b6872d9350c363-genkanji-47580751.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "b8b6872d9350c363-genkanji-47580751.mp3"
+      "audio": "b8b6872d9350c363-genkanji-47580751.mp3",
+      "audioTextHash": "b8b6872d9350c363"
     },
     {
       "id": "p9-kaisha-de-meru-o-okurimasu",
@@ -691,7 +734,8 @@
       "audio": "4683b87f6f05790b.mp3",
       "audioOriginal": "4683b87f6f05790b.orig.mp3",
       "audioAuto": "4683b87f6f05790b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4683b87f6f05790b"
     },
     {
       "id": "p9-kyo-wa-uchi-de-bangohan",
@@ -705,7 +749,8 @@
       "audio": "2134491acbaba307.mp3",
       "audioOriginal": "2134491acbaba307.orig.mp3",
       "audioAuto": "2134491acbaba307.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2134491acbaba307"
     },
     {
       "id": "v9-shujin-wa-nyusu",
@@ -720,7 +765,8 @@
       "audio": "d96808577e71c261.mp3",
       "audioOriginal": "d96808577e71c261.orig.mp3",
       "audioAuto": "d96808577e71c261.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d96808577e71c261"
     },
     {
       "id": "v9-haha-ni-meru",
@@ -734,7 +780,8 @@
       "audioAuto": "2a6ea612ca72e3d9-genkanji-2329d1dd.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "2a6ea612ca72e3d9-genkanji-2329d1dd.mp3"
+      "audio": "2a6ea612ca72e3d9-genkanji-2329d1dd.mp3",
+      "audioTextHash": "2a6ea612ca72e3d9"
     },
     {
       "id": "v9-yoguruto-o-kaimasu",
@@ -747,7 +794,8 @@
       "audio": "69b6968738272655.mp3",
       "audioOriginal": "69b6968738272655.orig.mp3",
       "audioAuto": "69b6968738272655.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "69b6968738272655"
     },
     {
       "id": "fib-tomodachi-ni-meru-o-okurimasu",
@@ -763,7 +811,8 @@
       "audio": "14e600b30dd49f7b.mp3",
       "audioOriginal": "14e600b30dd49f7b.orig.mp3",
       "audioAuto": "14e600b30dd49f7b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "14e600b30dd49f7b"
     },
     {
       "id": "p9-nihongo-o-oshiemasu",
@@ -776,7 +825,8 @@
       "audio": "d207be9b53aa4bc0.mp3",
       "audioOriginal": "d207be9b53aa4bc0.orig.mp3",
       "audioAuto": "d207be9b53aa4bc0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d207be9b53aa4bc0"
     },
     {
       "id": "p9-ashita-dare-ni-aimasu-ka",
@@ -789,7 +839,8 @@
       "audio": "e3d21819f92d0056.mp3",
       "audioOriginal": "e3d21819f92d0056.orig.mp3",
       "audioAuto": "e3d21819f92d0056.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e3d21819f92d0056"
     },
     {
       "id": "fib-gakko-de-nihongo-o-oshiemasu",
@@ -804,7 +855,8 @@
       "audio": "5080d9e9cbce6c9c.mp3",
       "audioOriginal": "5080d9e9cbce6c9c.orig.mp3",
       "audioAuto": "5080d9e9cbce6c9c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5080d9e9cbce6c9c"
     },
     {
       "id": "v9-kanai-wa-kaimono",
@@ -824,7 +876,8 @@
       "audioTrim": {
         "start": 0,
         "end": 4.8174319349315065
-      }
+      },
+      "audioTextHash": "c02d7eb0de7c7a4d"
     },
     {
       "id": "ex9-senshu-wa-koko-de-aimashita",
@@ -838,7 +891,8 @@
       "audio": "a6d451329cd169a8.mp3",
       "audioOriginal": "a6d451329cd169a8.orig.mp3",
       "audioAuto": "a6d451329cd169a8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a6d451329cd169a8"
     },
     {
       "id": "p9-kaigi-no-basho-o-kikimashita",
@@ -851,7 +905,8 @@
       "audio": "1d20fad2e23cc991.mp3",
       "audioOriginal": "1d20fad2e23cc991.orig.mp3",
       "audioAuto": "1d20fad2e23cc991.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1d20fad2e23cc991"
     },
     {
       "id": "ex9-sore-o-futatsu-onegaishimasu",
@@ -865,7 +920,8 @@
       "audio": "c7ed6c9639ee492b.mp3",
       "audioOriginal": "c7ed6c9639ee492b.orig.mp3",
       "audioAuto": "c7ed6c9639ee492b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c7ed6c9639ee492b"
     },
     {
       "id": "v9-tsuma-to-kabuki",
@@ -880,7 +936,8 @@
       "audio": "870733815a96dc8c.mp3",
       "audioOriginal": "870733815a96dc8c.orig.mp3",
       "audioAuto": "870733815a96dc8c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "870733815a96dc8c"
     },
     {
       "id": "ex9-nakamura-san-ni-okurimasu",
@@ -894,7 +951,8 @@
       "audio": "d5533c7c197a54ed.mp3",
       "audioOriginal": "d5533c7c197a54ed.orig.mp3",
       "audioAuto": "d5533c7c197a54ed.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d5533c7c197a54ed"
     },
     {
       "id": "v9-shacho-wa-sapporo-shisha",
@@ -907,7 +965,8 @@
       "audio": "abd61a9efaf70db1.mp3",
       "audioOriginal": "abd61a9efaf70db1.orig.mp3",
       "audioAuto": "abd61a9efaf70db1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "abd61a9efaf70db1"
     },
     {
       "id": "v9-roma-wa-ima-gozen-shichiji",
@@ -921,7 +980,8 @@
       "audio": "b7390ab6db5f31e0.mp3",
       "audioOriginal": "b7390ab6db5f31e0.orig.mp3",
       "audioAuto": "b7390ab6db5f31e0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b7390ab6db5f31e0"
     },
     {
       "id": "v9-otosan-ni-denwa",
@@ -940,7 +1000,8 @@
       "audioTrim": {
         "start": 0,
         "end": 4.257207191780822
-      }
+      },
+      "audioTextHash": "10f44c7631223997"
     },
     {
       "id": "ex9-ginko-ni-shimasu",
@@ -956,7 +1017,8 @@
       "audio": "c72ab535ce561662.mp3",
       "audioOriginal": "c72ab535ce561662.orig.mp3",
       "audioAuto": "c72ab535ce561662.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c72ab535ce561662"
     },
     {
       "id": "v9-sapporo-de-biru",
@@ -969,7 +1031,8 @@
       "audio": "c33031594504cbf6.mp3",
       "audioOriginal": "c33031594504cbf6.orig.mp3",
       "audioAuto": "c33031594504cbf6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c33031594504cbf6"
     }
   ]
 }

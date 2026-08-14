@@ -25,7 +25,8 @@
       "audioTrim": {
         "start": 0.052418664383561644,
         "end": 1.1762615582191782
-      }
+      },
+      "audioTextHash": "bc4e77e6407e004b"
     },
     {
       "id": "irl-l1-02",
@@ -43,7 +44,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.8258732876712329
-      }
+      },
+      "audioTextHash": "439e44a82b28f76c"
     },
     {
       "id": "irl-l1-03",
@@ -61,7 +63,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.7147945205479452
-      }
+      },
+      "audioTextHash": "2c23036eba8a5d80"
     },
     {
       "id": "irl-l1-04",
@@ -80,7 +83,8 @@
         "start": 0,
         "end": 0.8156866438356165
       },
-      "scene": "said on formal occasions"
+      "scene": "said on formal occasions",
+      "audioTextHash": "2bbc54a687b891ce"
     },
     {
       "id": "irl-l1-05",
@@ -99,7 +103,8 @@
         "start": 0,
         "end": 1.025661381635274
       },
-      "scene": "casual, said to friends"
+      "scene": "casual, said to friends",
+      "audioTextHash": "76c850407d28341b"
     },
     {
       "id": "irl-l1-06",
@@ -117,7 +122,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.8230599315068493
-      }
+      },
+      "audioTextHash": "ad69bc14be090d15"
     },
     {
       "id": "irl-l1-07",
@@ -136,7 +142,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.8274203767123288
-      }
+      },
+      "audioTextHash": "7d6dc1f116f5161b"
     },
     {
       "id": "irl-l1-08",
@@ -172,7 +179,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.8523681506849315
-      }
+      },
+      "audioTextHash": "e7d047cda17f8f2c"
     },
     {
       "id": "irl-l1-10",
@@ -185,7 +193,8 @@
       "audioOriginal": "cd3a34ef6bf90474.orig.mp3",
       "audioAuto": "cd3a34ef6bf90474.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cd3a34ef6bf90474"
     },
     {
       "id": "irl-l1-11",
@@ -202,7 +211,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.8118390410958903
-      }
+      },
+      "audioTextHash": "9f68666f6403790c"
     },
     {
       "id": "irl-l1-12",
@@ -215,7 +225,8 @@
       "audioOriginal": "83dc1b97ba5dc2d6.orig.mp3",
       "audioAuto": "83dc1b97ba5dc2d6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "83dc1b97ba5dc2d6"
     },
     {
       "id": "irl-l1-13",
@@ -228,7 +239,8 @@
       "audioOriginal": "73fc3536de42182c.orig.mp3",
       "audioAuto": "73fc3536de42182c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "73fc3536de42182c"
     },
     {
       "id": "irl-l1-14",
@@ -241,7 +253,8 @@
       "audioOriginal": "b17fe895b4d126b9.orig.mp3",
       "audioAuto": "b17fe895b4d126b9.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b17fe895b4d126b9"
     },
     {
       "id": "irl-l1-15",
@@ -254,7 +267,8 @@
       "audioOriginal": "1253815da14f47e6.orig.mp3",
       "audioAuto": "1253815da14f47e6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1253815da14f47e6"
     },
     {
       "id": "irl-l1-16",
@@ -267,7 +281,8 @@
       "audioOriginal": "7f78df17aa63f81e.orig.mp3",
       "audioAuto": "7f78df17aa63f81e.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7f78df17aa63f81e"
     },
     {
       "id": "irl-l1-17",
@@ -280,7 +295,8 @@
       "audioOriginal": "1e15760863dfd82d.orig.mp3",
       "audioAuto": "1e15760863dfd82d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1e15760863dfd82d"
     },
     {
       "id": "irl-l1-18",
@@ -292,7 +308,8 @@
       "audioOriginal": "58b589a485d7602f-gen-7e29f6ea.orig.mp3",
       "audioAuto": "58b589a485d7602f-gen-7e29f6ea.standard.mp3",
       "audioFilter": "standard",
-      "audio": "58b589a485d7602f-gen-7e29f6ea.standard.mp3"
+      "audio": "58b589a485d7602f-gen-7e29f6ea.standard.mp3",
+      "audioTextHash": "58b589a485d7602f"
     },
     {
       "id": "irl-l1-19",
@@ -305,7 +322,8 @@
       "note": "-じん (jin) attached to a country name means 'person from there'; フランス (furansu) alone is just the country.",
       "audioOriginal": "ae97a3b63945d6cf-gen-b8366ff7.mp3",
       "audioAuto": "ae97a3b63945d6cf-gen-b8366ff7.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "ae97a3b63945d6cf"
     },
     {
       "id": "irl-l1-20",
@@ -319,7 +337,8 @@
       "audioOriginal": "c3e9fc2de15339f5.orig.mp3",
       "audioAuto": "c3e9fc2de15339f5.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c3e9fc2de15339f5"
     },
     {
       "id": "irl-l1-21",
@@ -333,7 +352,8 @@
       "audioOriginal": "07138a1174d1e9e3.orig.mp3",
       "audioAuto": "07138a1174d1e9e3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "07138a1174d1e9e3"
     },
     {
       "id": "irl-l1-22",
@@ -346,7 +366,8 @@
       "note": "-じん (jin) attached to a country name means 'person from there'; イギリス (igirisu) alone is just the country.",
       "audioOriginal": "819a9d8368df1db1-gen-c846d99c.mp3",
       "audioAuto": "819a9d8368df1db1-gen-c846d99c.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "819a9d8368df1db1"
     },
     {
       "id": "irl-l1-23",
@@ -359,7 +380,8 @@
       "audioOriginal": "98e605e4246d36d8.orig.mp3",
       "audioAuto": "98e605e4246d36d8.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "98e605e4246d36d8"
     },
     {
       "id": "irl-l1-24",
@@ -372,7 +394,8 @@
       "audioOriginal": "2a99c48a53abfae1.orig.mp3",
       "audioAuto": "2a99c48a53abfae1.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2a99c48a53abfae1"
     },
     {
       "id": "irl-l1-25",
@@ -385,7 +408,8 @@
       "note": "Also covers 'I don't understand'; it's the negative form of わかります (wakarimasu, 'to understand/know').",
       "audioOriginal": "841f0a8171e61de3-gen-4c692330.mp3",
       "audioAuto": "841f0a8171e61de3-gen-4c692330.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "841f0a8171e61de3"
     },
     {
       "id": "irl-l1-26",
@@ -397,7 +421,8 @@
       "audioOriginal": "b427b4a3ffbcba68-genkanji-1f507d66.orig.mp3",
       "audioAuto": "b427b4a3ffbcba68-genkanji-1f507d66.mp3",
       "audioFilter": "standard",
-      "audio": "b427b4a3ffbcba68-genkanji-1f507d66.mp3"
+      "audio": "b427b4a3ffbcba68-genkanji-1f507d66.mp3",
+      "audioTextHash": "b427b4a3ffbcba68"
     },
     {
       "id": "irl-l1-27",
@@ -427,7 +452,8 @@
       "note": "Here の (no) links country and name ('Ryan of England'); contrast with -じん (jin), which turns the country itself into a nationality noun, as in イギリスじん (igirisu jin).",
       "audioOriginal": "ba4c009fa7dc69f3-gen-4a10aa97.mp3",
       "audioAuto": "ba4c009fa7dc69f3-gen-4a10aa97.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "ba4c009fa7dc69f3"
     },
     {
       "id": "irl-l1-29",
@@ -458,7 +484,8 @@
       "audioOriginal": "a6f547a22f5f42f3.orig.mp3",
       "audioAuto": "a6f547a22f5f42f3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a6f547a22f5f42f3"
     },
     {
       "id": "irl-l1-31",
@@ -475,7 +502,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.64
-      }
+      },
+      "audioTextHash": "977c5ad675ee67c5"
     },
     {
       "id": "irl-l1-32",
@@ -492,7 +520,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.5721626712328767
-      }
+      },
+      "audioTextHash": "fb210db78ece569e"
     },
     {
       "id": "irl-l1-33",
@@ -505,7 +534,8 @@
       "note": "The occupation noun for doctor; when addressing or talking about a doctor directly, use せんせい (sensei) instead, just as with teachers.",
       "audioOriginal": "b782a5d6d656282e-gen-16b56187.mp3",
       "audioAuto": "b782a5d6d656282e-gen-16b56187.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "b782a5d6d656282e"
     },
     {
       "id": "irl-l1-34",
@@ -519,7 +549,8 @@
       "audioOriginal": "52358021549802c7.orig.mp3",
       "audioAuto": "52358021549802c7.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "52358021549802c7"
     },
     {
       "id": "irl-l1-35",
@@ -532,7 +563,8 @@
       "audioOriginal": "3d5799a5744ce6fa-gen-1a1185ad.orig.mp3",
       "audioAuto": "3d5799a5744ce6fa-gen-1a1185ad.mp3",
       "audioFilter": "standard",
-      "audio": "3d5799a5744ce6fa-gen-1a1185ad.mp3"
+      "audio": "3d5799a5744ce6fa-gen-1a1185ad.mp3",
+      "audioTextHash": "3d5799a5744ce6fa"
     },
     {
       "id": "irl-l1-36",
@@ -549,7 +581,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.8776224315068493
-      }
+      },
+      "audioTextHash": "4a7109c193e0f1ba"
     },
     {
       "id": "irl-l1-38",
@@ -562,7 +595,8 @@
       "note": "Uses なん (nan), the form なに (nani) takes before です (desu) and many counters/particles.",
       "audioOriginal": "668485926f91d119-gen-6a98d065.mp3",
       "audioAuto": "668485926f91d119-gen-6a98d065.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "668485926f91d119"
     },
     {
       "id": "irl-l1-37",
@@ -576,7 +610,8 @@
       "audioOriginal": "a765df39e1d33a63.orig.mp3",
       "audioAuto": "a765df39e1d33a63.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a765df39e1d33a63"
     },
     {
       "id": "irl-l1-39",
@@ -589,7 +624,8 @@
       "audioOriginal": "43926753f5b64b27.orig.mp3",
       "audioAuto": "43926753f5b64b27.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "43926753f5b64b27"
     },
     {
       "id": "irl-l1-46",
@@ -603,7 +639,8 @@
       "audioOriginal": "f47132a03015bbe4.orig.mp3",
       "audioAuto": "f47132a03015bbe4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f47132a03015bbe4"
     },
     {
       "id": "irl-l1-40",
@@ -616,7 +653,8 @@
       "audioOriginal": "8a78dbeecd9cecf6.orig.mp3",
       "audioAuto": "8a78dbeecd9cecf6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8a78dbeecd9cecf6"
     },
     {
       "id": "irl-l1-41",
@@ -629,7 +667,8 @@
       "audioAuto": "133925d5ed299c43-gen-7858bd55.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audio": "133925d5ed299c43-gen-7858bd55.mp3"
+      "audio": "133925d5ed299c43-gen-7858bd55.mp3",
+      "audioTextHash": "133925d5ed299c43"
     },
     {
       "id": "irl-l1-42",
@@ -659,7 +698,8 @@
       "note": "いくら (ikura) is the question word for price/amount specifically; contrast なん (nan) 'what' (なんですか, nan desu ka) and どこ (doko) 'where' (as in しゅっしんはどこですか, shusshin wa doko desu ka?) — each targets a different kind of unknown.",
       "audioOriginal": "1cd8204f4348ff54-genkanji-b2aea709.mp3",
       "audioAuto": "1cd8204f4348ff54-genkanji-b2aea709.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "1cd8204f4348ff54"
     },
     {
       "id": "irl-l1-44",
@@ -673,7 +713,8 @@
       "audioOriginal": "df226d96ad2d47dc.orig.mp3",
       "audioAuto": "df226d96ad2d47dc.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "df226d96ad2d47dc"
     },
     {
       "id": "irl-l1-45",
@@ -687,7 +728,8 @@
       "audioOriginal": "d8a8d42bafea5f56.orig.mp3",
       "audioAuto": "d8a8d42bafea5f56.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d8a8d42bafea5f56"
     }
   ]
 }

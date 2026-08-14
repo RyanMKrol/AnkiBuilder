@@ -24,7 +24,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.6271190068493151
-      }
+      },
+      "audioTextHash": "d3cc0a0a2d8f4007"
     },
     {
       "id": "glasses",
@@ -40,7 +41,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.662308647260274
-      }
+      },
+      "audioTextHash": "36c85601335cc55b"
     },
     {
       "id": "wallet",
@@ -52,7 +54,8 @@
       "audioOriginal": "76803f778c6208fa.orig.mp3",
       "audioAuto": "76803f778c6208fa.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "76803f778c6208fa"
     },
     {
       "id": "book",
@@ -69,7 +72,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.3588904109589041
-      }
+      },
+      "audioTextHash": "7476ada2e35293b9"
     },
     {
       "id": "pen",
@@ -85,7 +89,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.3541532534246576
-      }
+      },
+      "audioTextHash": "f97642d4309f103c"
     },
     {
       "id": "smartphone",
@@ -98,7 +103,8 @@
       "audioOriginal": "2041f80ae38241fb.orig.mp3",
       "audioAuto": "2041f80ae38241fb.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2041f80ae38241fb"
     },
     {
       "id": "key",
@@ -110,7 +116,8 @@
       "audioOriginal": "4a867845dd197ed0.orig.mp3",
       "audioAuto": "4a867845dd197ed0.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4a867845dd197ed0"
     },
     {
       "id": "file",
@@ -126,7 +133,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.4239726027397261
-      }
+      },
+      "audioTextHash": "2b39ec3da17eef39"
     },
     {
       "id": "umbrella",
@@ -138,7 +146,8 @@
       "audioOriginal": "fcd95240c8ee9eea.orig.mp3",
       "audioAuto": "fcd95240c8ee9eea.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fcd95240c8ee9eea"
     },
     {
       "id": "is-this-a-pen",
@@ -180,7 +189,8 @@
       "audioOriginal": "c381725b953bcf3b.orig.mp3",
       "audioAuto": "c381725b953bcf3b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c381725b953bcf3b"
     },
     {
       "id": "this-is-not-my-pen",
@@ -193,7 +203,8 @@
       "audioOriginal": "c34d676e6673cfb3.orig.mp3",
       "audioAuto": "c34d676e6673cfb3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c34d676e6673cfb3"
     },
     {
       "id": "food",
@@ -206,7 +217,8 @@
       "audioOriginal": "070526f9dbd66e39.orig.mp3",
       "audioAuto": "070526f9dbd66e39.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "070526f9dbd66e39"
     },
     {
       "id": "drink",
@@ -223,7 +235,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.7720774828767124
-      }
+      },
+      "audioTextHash": "adb93a9c6dc0d138"
     },
     {
       "id": "celebrity",
@@ -235,7 +248,8 @@
       "audioOriginal": "7cbfe9368d10a7f4.orig.mp3",
       "audioAuto": "7cbfe9368d10a7f4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7cbfe9368d10a7f4"
     },
     {
       "id": "sport",
@@ -246,7 +260,8 @@
       "audio": "2a57111faca2f6f9-genkanji-5e87616b.standard.mp3",
       "audioOriginal": "2a57111faca2f6f9-genkanji-5e87616b.mp3",
       "audioAuto": "2a57111faca2f6f9-genkanji-5e87616b.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "2a57111faca2f6f9"
     },
     {
       "id": "animal",
@@ -258,7 +273,8 @@
       "audioOriginal": "e94b4312e3a699b6.orig.mp3",
       "audioAuto": "e94b4312e3a699b6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e94b4312e3a699b6"
     },
     {
       "id": "expensive",
@@ -271,7 +287,8 @@
       "audioAuto": "0b1eff0e68cd2f32.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "note": "Also means 'tall / high' — たかい ビル (takai biru) is a tall building."
+      "note": "Also means 'tall / high' — たかい ビル (takai biru) is a tall building.",
+      "audioTextHash": "0b1eff0e68cd2f32"
     },
     {
       "id": "cheap",
@@ -284,7 +301,8 @@
       "audioOriginal": "38ae842c4598c790.orig.mp3",
       "audioAuto": "38ae842c4598c790.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "38ae842c4598c790"
     },
     {
       "id": "one-minute",
@@ -297,7 +315,8 @@
       "audioOriginal": "ea5b5968843dba45.orig.mp3",
       "audioAuto": "ea5b5968843dba45.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ea5b5968843dba45"
     },
     {
       "id": "nine-minutes",
@@ -309,7 +328,8 @@
       "audioOriginal": "05521cc721a71884.orig.mp3",
       "audioAuto": "05521cc721a71884.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "05521cc721a71884"
     },
     {
       "id": "six-minutes",
@@ -321,7 +341,8 @@
       "note": "Irregular reading for '6 minutes' — ろく (roku) becomes ろっ (rop) before ふん (fun), not ろくふん (rokufun).",
       "audioOriginal": "0c4ab2ff4245b21d-gen-488a94cf.mp3",
       "audioAuto": "0c4ab2ff4245b21d-gen-488a94cf.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "0c4ab2ff4245b21d"
     },
     {
       "id": "three-minutes",
@@ -333,7 +354,8 @@
       "audioOriginal": "951f86ba3fa9f96f.orig.mp3",
       "audioAuto": "951f86ba3fa9f96f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "951f86ba3fa9f96f"
     },
     {
       "id": "seven-minutes",
@@ -345,7 +367,8 @@
       "audioOriginal": "776d3b46fad7a180.orig.mp3",
       "audioAuto": "776d3b46fad7a180.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "776d3b46fad7a180"
     },
     {
       "id": "two-minutes",
@@ -357,7 +380,8 @@
       "audioOriginal": "881f3000b74615a4.orig.mp3",
       "audioAuto": "881f3000b74615a4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "881f3000b74615a4"
     },
     {
       "id": "ten-minutes",
@@ -370,7 +394,8 @@
       "audioOriginal": "cc9d7fc6d2d12d71.orig.mp3",
       "audioAuto": "cc9d7fc6d2d12d71.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cc9d7fc6d2d12d71"
     },
     {
       "id": "four-minutes",
@@ -382,7 +407,8 @@
       "audioOriginal": "0afc8cce62a52a24.orig.mp3",
       "audioAuto": "0afc8cce62a52a24.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0afc8cce62a52a24"
     },
     {
       "id": "eight-minutes",
@@ -395,7 +421,8 @@
       "audioOriginal": "02c52fc0d0415f40.orig.mp3",
       "audioAuto": "02c52fc0d0415f40.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "02c52fc0d0415f40"
     },
     {
       "id": "five-minutes",
@@ -407,7 +434,8 @@
       "audioOriginal": "78d839626223f939.orig.mp3",
       "audioAuto": "78d839626223f939.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "78d839626223f939"
     },
     {
       "id": "eight-oclock",
@@ -419,7 +447,8 @@
       "audioOriginal": "18506b32908fe294.orig.mp3",
       "audioAuto": "18506b32908fe294.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "18506b32908fe294"
     },
     {
       "id": "seven-oclock",
@@ -431,7 +460,8 @@
       "note": "Uses しち (shichi) for 7 rather than なな (nana) — an exception among the o'clock readings.",
       "audioOriginal": "a8b3024d5b033176-gen-dac0cce7.mp3",
       "audioAuto": "a8b3024d5b033176-gen-dac0cce7.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "a8b3024d5b033176"
     },
     {
       "id": "three-oclock",
@@ -443,7 +473,8 @@
       "audioOriginal": "170b3b405d55983f.orig.mp3",
       "audioAuto": "170b3b405d55983f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "170b3b405d55983f"
     },
     {
       "id": "one-oclock",
@@ -455,7 +486,8 @@
       "audioOriginal": "67bf0496ec8b825d.orig.mp3",
       "audioAuto": "67bf0496ec8b825d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "67bf0496ec8b825d"
     },
     {
       "id": "six-oclock",
@@ -472,7 +504,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.6634674657534246
-      }
+      },
+      "audioTextHash": "64416718d789427e"
     },
     {
       "id": "five-oclock",
@@ -484,7 +517,8 @@
       "audioOriginal": "2de14e61f53212f6.orig.mp3",
       "audioAuto": "2de14e61f53212f6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2de14e61f53212f6"
     },
     {
       "id": "eleven-oclock",
@@ -496,7 +530,8 @@
       "audioOriginal": "5868d936f4d1344f.orig.mp3",
       "audioAuto": "5868d936f4d1344f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5868d936f4d1344f"
     },
     {
       "id": "ten-oclock",
@@ -508,7 +543,8 @@
       "audioOriginal": "dbec7ace6d5b830c.orig.mp3",
       "audioAuto": "dbec7ace6d5b830c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dbec7ace6d5b830c"
     },
     {
       "id": "two-oclock",
@@ -520,7 +556,8 @@
       "audioOriginal": "dc3a30df9414faf5.orig.mp3",
       "audioAuto": "dc3a30df9414faf5.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dc3a30df9414faf5"
     },
     {
       "id": "twelve-oclock",
@@ -531,7 +568,8 @@
       "audio": "89e30575973921de-gen-864a0561.standard.mp3",
       "audioOriginal": "89e30575973921de-gen-864a0561.mp3",
       "audioAuto": "89e30575973921de-gen-864a0561.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "89e30575973921de"
     },
     {
       "id": "am-in-the-morning",
@@ -544,7 +582,8 @@
       "audioOriginal": "da737024c19638f7.orig.mp3",
       "audioAuto": "da737024c19638f7.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "da737024c19638f7"
     },
     {
       "id": "pm-in-the-afternoon",
@@ -556,7 +595,8 @@
       "audioOriginal": "108f50c7568502c0-gen-08f11343.orig.mp3",
       "audioAuto": "108f50c7568502c0-gen-08f11343.mp3",
       "audioFilter": "standard",
-      "audio": "108f50c7568502c0-gen-08f11343.mp3"
+      "audio": "108f50c7568502c0-gen-08f11343.mp3",
+      "audioTextHash": "108f50c7568502c0"
     },
     {
       "id": "5-am",
@@ -567,7 +607,8 @@
       "audio": "728b8eef3655dad6-gen-cc867720.standard.mp3",
       "audioOriginal": "728b8eef3655dad6-gen-cc867720.mp3",
       "audioAuto": "728b8eef3655dad6-gen-cc867720.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "728b8eef3655dad6"
     },
     {
       "id": "9-pm",
@@ -580,7 +621,8 @@
       "audioOriginal": "20d470eee9c285ef.orig.mp3",
       "audioAuto": "20d470eee9c285ef.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "20d470eee9c285ef"
     },
     {
       "id": "what",
@@ -593,7 +635,8 @@
       "audioOriginal": "d1cfab64b27944a0.orig.mp3",
       "audioAuto": "d1cfab64b27944a0.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d1cfab64b27944a0"
     },
     {
       "id": "who",
@@ -610,7 +653,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.5782041952054794
-      }
+      },
+      "audioTextHash": "17b38cd2ddade2e3"
     },
     {
       "id": "where",
@@ -622,7 +666,8 @@
       "audioOriginal": "15282f2e3cb3b891.orig.mp3",
       "audioAuto": "15282f2e3cb3b891.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "15282f2e3cb3b891"
     },
     {
       "id": "why",
@@ -634,7 +679,8 @@
       "audioOriginal": "846457fdcd21e3e6.orig.mp3",
       "audioAuto": "846457fdcd21e3e6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "846457fdcd21e3e6"
     },
     {
       "id": "when",
@@ -646,7 +692,8 @@
       "audioOriginal": "bd0f5bf32dde3da8.orig.mp3",
       "audioAuto": "bd0f5bf32dde3da8.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bd0f5bf32dde3da8"
     },
     {
       "id": "how",
@@ -657,7 +704,8 @@
       "audio": "c19df5d4f22d4a90-gen-90e12a4c.standard.mp3",
       "audioOriginal": "c19df5d4f22d4a90-gen-90e12a4c.mp3",
       "audioAuto": "c19df5d4f22d4a90-gen-90e12a4c.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "c19df5d4f22d4a90"
     },
     {
       "id": "about-approximately",
@@ -670,7 +718,8 @@
       "audioOriginal": "8937834d77a8ee08.orig.mp3",
       "audioAuto": "8937834d77a8ee08.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8937834d77a8ee08"
     },
     {
       "id": "about-ten-minutes-approx",
@@ -683,7 +732,8 @@
       "audioAuto": "3e111b3d3e4da10e-gen-95d2b9df.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audio": "3e111b3d3e4da10e-gen-95d2b9df.mp3"
+      "audio": "3e111b3d3e4da10e-gen-95d2b9df.mp3",
+      "audioTextHash": "3e111b3d3e4da10e"
     },
     {
       "id": "around-a-time",
@@ -696,7 +746,8 @@
       "audioOriginal": "c64ab5a0501ae005.orig.mp3",
       "audioAuto": "c64ab5a0501ae005.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c64ab5a0501ae005"
     },
     {
       "id": "around-one-oclock-now",
@@ -709,7 +760,8 @@
       "audioOriginal": "832b952e028d4314.orig.mp3",
       "audioAuto": "832b952e028d4314.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "832b952e028d4314"
     },
     {
       "id": "what-time-is-it-now",
@@ -754,7 +806,8 @@
       "note": "から (kara, 'from') and まで (made, 'to/until') bracket a range — here a time range, but the same から〜まで (kara~made) pattern works for places and dates too.",
       "audioOriginal": "93518f158996b6f0-gen-1e9d92a3.mp3",
       "audioAuto": "93518f158996b6f0-gen-1e9d92a3.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "93518f158996b6f0"
     },
     {
       "id": "what-time-is-it-now-in-the-uk",
@@ -798,7 +851,8 @@
       "audioOriginal": "947fb6e0346c075d.orig.mp3",
       "audioAuto": "947fb6e0346c075d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "947fb6e0346c075d"
     },
     {
       "id": "today",
@@ -810,7 +864,8 @@
       "audioOriginal": "0ec2d22c69c1416f.orig.mp3",
       "audioAuto": "0ec2d22c69c1416f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0ec2d22c69c1416f"
     },
     {
       "id": "yesterday",
@@ -822,7 +877,8 @@
       "audioOriginal": "bf673b2a6511ef44.orig.mp3",
       "audioAuto": "bf673b2a6511ef44.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bf673b2a6511ef44"
     },
     {
       "id": "how-are-you",
@@ -833,7 +889,8 @@
       "audio": "1b2d7b50b0e6f036-genkanji-9756fdfa.standard.mp3",
       "audioOriginal": "1b2d7b50b0e6f036-genkanji-9756fdfa.mp3",
       "audioAuto": "1b2d7b50b0e6f036-genkanji-9756fdfa.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "1b2d7b50b0e6f036"
     },
     {
       "id": "im-well",
@@ -845,7 +902,8 @@
       "audioOriginal": "f2fe58e0bd7963ec.orig.mp3",
       "audioAuto": "f2fe58e0bd7963ec.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f2fe58e0bd7963ec"
     },
     {
       "id": "im-not-well",
@@ -874,7 +932,8 @@
       "audioOriginal": "b0f9db12f4b87aea.orig.mp3",
       "audioAuto": "b0f9db12f4b87aea.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b0f9db12f4b87aea"
     },
     {
       "id": "toy",
@@ -886,7 +945,8 @@
       "audioOriginal": "72b55ec7333e73a0.orig.mp3",
       "audioAuto": "72b55ec7333e73a0.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "72b55ec7333e73a0"
     },
     {
       "id": "ladybird",
@@ -898,7 +958,8 @@
       "audioAuto": "caa3b96c47607d72-gen-37ce8777.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audio": "caa3b96c47607d72-gen-37ce8777.mp3"
+      "audio": "caa3b96c47607d72-gen-37ce8777.mp3",
+      "audioTextHash": "caa3b96c47607d72"
     },
     {
       "id": "watch",
@@ -910,7 +971,8 @@
       "audioOriginal": "b1ee780168387034.orig.mp3",
       "audioAuto": "b1ee780168387034.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b1ee780168387034"
     },
     {
       "id": "mobile-phone",
@@ -923,7 +985,8 @@
       "audioOriginal": "4eca1d949a50e5d3.orig.mp3",
       "audioAuto": "4eca1d949a50e5d3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4eca1d949a50e5d3"
     },
     {
       "id": "hiragana-sa",
@@ -954,7 +1017,8 @@
       "audioOriginal": "9a4f68832ddb1e74.orig.mp3",
       "audioAuto": "9a4f68832ddb1e74.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9a4f68832ddb1e74"
     },
     {
       "id": "water",
@@ -966,7 +1030,8 @@
       "audioOriginal": "e6e612d069cc0f38.orig.mp3",
       "audioAuto": "e6e612d069cc0f38.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e6e612d069cc0f38"
     },
     {
       "id": "personal-computer",
@@ -978,7 +1043,8 @@
       "audioOriginal": "c1a1bc2390bf24b4.orig.mp3",
       "audioAuto": "c1a1bc2390bf24b4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c1a1bc2390bf24b4"
     },
     {
       "id": "mouse-computer",
@@ -990,7 +1056,8 @@
       "audioOriginal": "36f92eec635dba61.orig.mp3",
       "audioAuto": "36f92eec635dba61.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "36f92eec635dba61"
     },
     {
       "id": "remote-control",
@@ -1002,7 +1069,8 @@
       "audioOriginal": "840d32af1d196eec.orig.mp3",
       "audioAuto": "840d32af1d196eec.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "840d32af1d196eec"
     },
     {
       "id": "ring",
@@ -1014,7 +1082,8 @@
       "audioOriginal": "40a3eb7a66e1261a.orig.mp3",
       "audioAuto": "40a3eb7a66e1261a.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "40a3eb7a66e1261a"
     },
     {
       "id": "table",
@@ -1032,7 +1101,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.7818065068493151
-      }
+      },
+      "audioTextHash": "4901ca7329611cce"
     },
     {
       "id": "desk",
@@ -1044,7 +1114,8 @@
       "note": "A desk or work/study surface; contrast テーブル (tēburu), a general (often dining) table.",
       "audioOriginal": "1b91b2a4375946bf-gen-6d9cc160.mp3",
       "audioAuto": "1b91b2a4375946bf-gen-6d9cc160.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "1b91b2a4375946bf"
     },
     {
       "id": "chair",
@@ -1056,7 +1127,8 @@
       "audioOriginal": "91e34c8a541534c7.orig.mp3",
       "audioAuto": "91e34c8a541534c7.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "91e34c8a541534c7"
     },
     {
       "id": "amazing",
@@ -1068,7 +1140,8 @@
       "audioOriginal": "a1b3243842db1789.orig.mp3",
       "audioAuto": "a1b3243842db1789.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a1b3243842db1789"
     },
     {
       "id": "basketball",
@@ -1080,7 +1153,8 @@
       "audioOriginal": "6e337dd52ea66b3b.orig.mp3",
       "audioAuto": "6e337dd52ea66b3b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6e337dd52ea66b3b"
     },
     {
       "id": "football",
@@ -1092,7 +1166,8 @@
       "audioOriginal": "9b933c3bf0a757cb.orig.mp3",
       "audioAuto": "9b933c3bf0a757cb.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9b933c3bf0a757cb"
     },
     {
       "id": "tennis",
@@ -1104,7 +1179,8 @@
       "audioOriginal": "cc41fb9a720a3248.orig.mp3",
       "audioAuto": "cc41fb9a720a3248.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cc41fb9a720a3248"
     },
     {
       "id": "baseball",
@@ -1116,7 +1192,8 @@
       "audioOriginal": "505076514986147f.orig.mp3",
       "audioAuto": "505076514986147f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "505076514986147f"
     },
     {
       "id": "table-tennis",
@@ -1128,7 +1205,8 @@
       "audioOriginal": "6f0db1d9b8003387.orig.mp3",
       "audioAuto": "6f0db1d9b8003387.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6f0db1d9b8003387"
     },
     {
       "id": "lion",
@@ -1140,7 +1218,8 @@
       "audioOriginal": "0574534ad6bd8746.orig.mp3",
       "audioAuto": "0574534ad6bd8746.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0574534ad6bd8746"
     },
     {
       "id": "dog",
@@ -1152,7 +1231,8 @@
       "audioOriginal": "b20facff175eb8ea.orig.mp3",
       "audioAuto": "b20facff175eb8ea.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b20facff175eb8ea"
     },
     {
       "id": "cat",
@@ -1164,7 +1244,8 @@
       "audioOriginal": "aa4f8db857a24535.orig.mp3",
       "audioAuto": "aa4f8db857a24535.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "aa4f8db857a24535"
     },
     {
       "id": "green-tea",
@@ -1177,7 +1258,8 @@
       "audioOriginal": "11cf73a774d576b2.orig.mp3",
       "audioAuto": "11cf73a774d576b2.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "11cf73a774d576b2"
     },
     {
       "id": "black-tea",
@@ -1190,7 +1272,8 @@
       "audioOriginal": "7409d777c5204113.orig.mp3",
       "audioAuto": "7409d777c5204113.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7409d777c5204113"
     },
     {
       "id": "cute",
@@ -1201,7 +1284,8 @@
       "audio": "f161f8a1da3d9709-gen-e6a8832b.standard.mp3",
       "audioOriginal": "f161f8a1da3d9709-gen-e6a8832b.mp3",
       "audioAuto": "f161f8a1da3d9709-gen-e6a8832b.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "f161f8a1da3d9709"
     },
     {
       "id": "water-bottle",
@@ -1214,7 +1298,8 @@
       "audioOriginal": "b2a35efae0b98211.orig.mp3",
       "audioAuto": "b2a35efae0b98211.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b2a35efae0b98211"
     },
     {
       "id": "tasty",
@@ -1226,7 +1311,8 @@
       "audioOriginal": "587828c0c87f4b01.orig.mp3",
       "audioAuto": "587828c0c87f4b01.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "587828c0c87f4b01"
     },
     {
       "id": "work",
@@ -1238,7 +1324,8 @@
       "audioOriginal": "7910dda583f4de74.orig.mp3",
       "audioAuto": "7910dda583f4de74.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7910dda583f4de74"
     },
     {
       "id": "meat",
@@ -1250,7 +1337,8 @@
       "audioOriginal": "5a857e2c193977bd.orig.mp3",
       "audioAuto": "5a857e2c193977bd.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5a857e2c193977bd"
     },
     {
       "id": "cloth",
@@ -1263,7 +1351,8 @@
       "audioOriginal": "ae379f49bde710e3.orig.mp3",
       "audioAuto": "ae379f49bde710e3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ae379f49bde710e3"
     },
     {
       "id": "box",
@@ -1275,7 +1364,8 @@
       "audioOriginal": "933aa10dac96e37f.orig.mp3",
       "audioAuto": "933aa10dac96e37f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "933aa10dac96e37f"
     },
     {
       "id": "clothes",
@@ -1288,7 +1378,8 @@
       "audioOriginal": "72d1a9d8cf0364e4.orig.mp3",
       "audioAuto": "72d1a9d8cf0364e4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "72d1a9d8cf0364e4"
     },
     {
       "id": "fire",
@@ -1300,7 +1391,8 @@
       "audioOriginal": "4e43a64c0f337b7d.orig.mp3",
       "audioAuto": "4e43a64c0f337b7d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4e43a64c0f337b7d"
     },
     {
       "id": "star",
@@ -1312,7 +1404,8 @@
       "audioOriginal": "82c7b47b08beaf7b.orig.mp3",
       "audioAuto": "82c7b47b08beaf7b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "82c7b47b08beaf7b"
     }
   ]
 }

@@ -25,7 +25,8 @@
       "audio": "47a8ae40ac241716.mp3",
       "audioOriginal": "47a8ae40ac241716.orig.mp3",
       "audioAuto": "47a8ae40ac241716.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "47a8ae40ac241716"
     },
     {
       "id": "wa-booto-noriba-doko",
@@ -41,7 +42,8 @@
       "audio": "481823f1bfbca239.mp3",
       "audioOriginal": "481823f1bfbca239.orig.mp3",
       "audioAuto": "481823f1bfbca239.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "481823f1bfbca239"
     },
     {
       "id": "hasami-soko",
@@ -57,7 +59,8 @@
       "audio": "ad30755735e41fba.mp3",
       "audioOriginal": "ad30755735e41fba.orig.mp3",
       "audioAuto": "ad30755735e41fba.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ad30755735e41fba"
     },
     {
       "id": "ex-cabinet-key-doko-q",
@@ -73,7 +76,8 @@
       "audio": "956d957a37d46058.mp3",
       "audioOriginal": "956d957a37d46058.orig.mp3",
       "audioAuto": "956d957a37d46058.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "956d957a37d46058"
     },
     {
       "id": "smith-office-imasendeshita",
@@ -89,7 +93,8 @@
       "audio": "b7f427f17dab312a.mp3",
       "audioOriginal": "b7f427f17dab312a.orig.mp3",
       "audioAuto": "b7f427f17dab312a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b7f427f17dab312a"
     },
     {
       "id": "ex-boat-dock-chikai-a",
@@ -106,7 +111,8 @@
       "audio": "283e35e25d9f62cf.mp3",
       "audioOriginal": "283e35e25d9f62cf.orig.mp3",
       "audioAuto": "283e35e25d9f62cf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "283e35e25d9f62cf"
     },
     {
       "id": "td-sobaichi-ga-oishii",
@@ -122,7 +128,8 @@
       "audio": "6bc6d259c4f99966.mp3",
       "audioOriginal": "6bc6d259c4f99966.orig.mp3",
       "audioAuto": "6bc6d259c4f99966.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6bc6d259c4f99966"
     },
     {
       "id": "fib-tsukue-shita-nani-q",
@@ -137,7 +144,8 @@
       "audio": "9ab1f5e1d769f152.mp3",
       "audioOriginal": "9ab1f5e1d769f152.orig.mp3",
       "audioAuto": "9ab1f5e1d769f152.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9ab1f5e1d769f152"
     },
     {
       "id": "ex-restaurant-men-count-a",
@@ -153,7 +161,8 @@
       "audio": "da6145310e0c819f.mp3",
       "audioOriginal": "da6145310e0c819f.orig.mp3",
       "audioAuto": "da6145310e0c819f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "da6145310e0c819f"
     },
     {
       "id": "koko-ni-imasu-a",
@@ -175,7 +184,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.1872504280821916
-      }
+      },
+      "audioTextHash": "86c8609d100b5509"
     },
     {
       "id": "ex-park-many-boys",
@@ -192,7 +202,8 @@
       "audioAuto": "d479d543b08ffc95-genkanji-bbe9951b.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "d479d543b08ffc95-genkanji-bbe9951b.mp3"
+      "audio": "d479d543b08ffc95-genkanji-bbe9951b.mp3",
+      "audioTextHash": "d479d543b08ffc95"
     },
     {
       "id": "mo-ramenya-chikaku",
@@ -208,7 +219,8 @@
       "audio": "31dbfbe2c8379f11.mp3",
       "audioOriginal": "31dbfbe2c8379f11.orig.mp3",
       "audioAuto": "31dbfbe2c8379f11.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "31dbfbe2c8379f11"
     },
     {
       "id": "ga-panya-pan-oishii",
@@ -224,7 +236,8 @@
       "audio": "0be4adeb5ef0cfe2.mp3",
       "audioOriginal": "0be4adeb5ef0cfe2.orig.mp3",
       "audioAuto": "0be4adeb5ef0cfe2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0be4adeb5ef0cfe2"
     },
     {
       "id": "td-sobaichi-otera-mae-desu",
@@ -240,7 +253,8 @@
       "audio": "00faffc5cdb228db.mp3",
       "audioOriginal": "00faffc5cdb228db.orig.mp3",
       "audioAuto": "00faffc5cdb228db.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "00faffc5cdb228db"
     },
     {
       "id": "sp-ima-doko-q",
@@ -256,7 +270,8 @@
       "audio": "b3499c38ddf93146.mp3",
       "audioOriginal": "b3499c38ddf93146.orig.mp3",
       "audioAuto": "b3499c38ddf93146.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b3499c38ddf93146"
     },
     {
       "id": "soko-enpitsu-q",
@@ -272,7 +287,8 @@
       "audio": "dba2de552119ce0a.mp3",
       "audioOriginal": "dba2de552119ce0a.orig.mp3",
       "audioAuto": "dba2de552119ce0a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dba2de552119ce0a"
     },
     {
       "id": "smith-office-imasen",
@@ -288,7 +304,8 @@
       "audio": "452b89ba1ff8a95f.mp3",
       "audioOriginal": "452b89ba1ff8a95f.orig.mp3",
       "audioAuto": "452b89ba1ff8a95f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "452b89ba1ff8a95f"
     },
     {
       "id": "smith-office-imashita",
@@ -304,7 +321,8 @@
       "audio": "f092d24a425acc84.mp3",
       "audioOriginal": "f092d24a425acc84.orig.mp3",
       "audioAuto": "f092d24a425acc84.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f092d24a425acc84"
     },
     {
       "id": "ex-basutei-chikai-a",
@@ -320,7 +338,8 @@
       "audio": "78afefdd30899ff7.mp3",
       "audioOriginal": "78afefdd30899ff7.orig.mp3",
       "audioAuto": "78afefdd30899ff7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "78afefdd30899ff7"
     },
     {
       "id": "ex-honya-doko-a",
@@ -337,7 +356,8 @@
       "audioAuto": "5857cb6990b94d18-genkanji-3f91a068.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "5857cb6990b94d18-genkanji-3f91a068.mp3"
+      "audio": "5857cb6990b94d18-genkanji-3f91a068.mp3",
+      "audioTextHash": "5857cb6990b94d18"
     },
     {
       "id": "ex-cabinet-key-doko-a",
@@ -353,7 +373,8 @@
       "audio": "dc61d0224f08f5e0.mp3",
       "audioOriginal": "dc61d0224f08f5e0.orig.mp3",
       "audioAuto": "dc61d0224f08f5e0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dc61d0224f08f5e0"
     },
     {
       "id": "td-asoko-ni-otera",
@@ -369,7 +390,8 @@
       "audio": "512722b0435d22d1.mp3",
       "audioOriginal": "512722b0435d22d1.orig.mp3",
       "audioAuto": "512722b0435d22d1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "512722b0435d22d1"
     },
     {
       "id": "ex-honya-doko-q",
@@ -385,7 +407,8 @@
       "audio": "88df96110fb3f817.mp3",
       "audioOriginal": "88df96110fb3f817.orig.mp3",
       "audioAuto": "88df96110fb3f817.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "88df96110fb3f817"
     },
     {
       "id": "no-hotel-chikaku-byouin-q",
@@ -401,7 +424,8 @@
       "audio": "d28dd863c4e338af.mp3",
       "audioOriginal": "d28dd863c4e338af.orig.mp3",
       "audioAuto": "d28dd863c4e338af.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d28dd863c4e338af"
     },
     {
       "id": "smith-office-imasu",
@@ -417,7 +441,8 @@
       "audio": "c6acb14e6916dd90.mp3",
       "audioOriginal": "c6acb14e6916dd90.orig.mp3",
       "audioAuto": "c6acb14e6916dd90.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c6acb14e6916dd90"
     },
     {
       "id": "ex-cups-table-count-a",
@@ -434,7 +459,8 @@
       "audio": "89dcd2b08b82e403.mp3",
       "audioOriginal": "89dcd2b08b82e403.orig.mp3",
       "audioAuto": "89dcd2b08b82e403.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "89dcd2b08b82e403"
     },
     {
       "id": "fib-daigaku-yuubinkyoku-tooi-a",
@@ -463,7 +489,8 @@
       "audio": "3a017dc631a60fc0.mp3",
       "audioOriginal": "3a017dc631a60fc0.orig.mp3",
       "audioAuto": "3a017dc631a60fc0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3a017dc631a60fc0"
     },
     {
       "id": "no-london-bank-file",
@@ -479,7 +506,8 @@
       "audio": "d7dc33ba72251c1b.mp3",
       "audioOriginal": "d7dc33ba72251c1b.orig.mp3",
       "audioAuto": "d7dc33ba72251c1b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d7dc33ba72251c1b"
     },
     {
       "id": "ex-park-one-girl",
@@ -495,7 +523,8 @@
       "audio": "13275d1c66bda4be.mp3",
       "audioOriginal": "13275d1c66bda4be.orig.mp3",
       "audioAuto": "13275d1c66bda4be.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "13275d1c66bda4be"
     },
     {
       "id": "fib-ginkou-doko-q",
@@ -524,7 +553,8 @@
       "audio": "9091594273f2ad6f.mp3",
       "audioOriginal": "9091594273f2ad6f.orig.mp3",
       "audioAuto": "9091594273f2ad6f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9091594273f2ad6f"
     },
     {
       "id": "ex-kato-uchi-kaisha-tooi",
@@ -540,7 +570,8 @@
       "audio": "29a5f0756f72a349.mp3",
       "audioOriginal": "29a5f0756f72a349.orig.mp3",
       "audioAuto": "29a5f0756f72a349.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "29a5f0756f72a349"
     },
     {
       "id": "kara-kuukou-eki-contrast",
@@ -556,7 +587,8 @@
       "audio": "77ededa5af0d9aeb.mp3",
       "audioOriginal": "77ededa5af0d9aeb.orig.mp3",
       "audioAuto": "77ededa5af0d9aeb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "77ededa5af0d9aeb"
     },
     {
       "id": "sp-nanji-goro-kaerimasu-q",
@@ -572,7 +604,8 @@
       "audio": "394387fdb056235e.mp3",
       "audioOriginal": "394387fdb056235e.orig.mp3",
       "audioAuto": "394387fdb056235e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "394387fdb056235e"
     },
     {
       "id": "fib-table-ringo-ikutsu-a",
@@ -601,7 +634,8 @@
       "audio": "021b0ea85c7ff580.mp3",
       "audioOriginal": "021b0ea85c7ff580.orig.mp3",
       "audioAuto": "021b0ea85c7ff580.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "021b0ea85c7ff580"
     },
     {
       "id": "ex-boat-dock-chikai-q",
@@ -617,7 +651,8 @@
       "audio": "92ed505cd3eb0638.mp3",
       "audioOriginal": "92ed505cd3eb0638.orig.mp3",
       "audioAuto": "92ed505cd3eb0638.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "92ed505cd3eb0638"
     },
     {
       "id": "tanaka-soko-imasu-q",
@@ -633,7 +668,8 @@
       "audio": "f315f144f6a38ed9.mp3",
       "audioOriginal": "f315f144f6a38ed9.orig.mp3",
       "audioAuto": "f315f144f6a38ed9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f315f144f6a38ed9"
     },
     {
       "id": "wa-kouban-eki-mae",
@@ -650,7 +686,8 @@
       "audioAuto": "eba9dade1b24e710-genkanji-2f136f90.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "eba9dade1b24e710-genkanji-2f136f90.mp3"
+      "audio": "eba9dade1b24e710-genkanji-2f136f90.mp3",
+      "audioTextHash": "eba9dade1b24e710"
     },
     {
       "id": "ni-sasaki-kaigishitsu-q",
@@ -666,7 +703,8 @@
       "audio": "6863f39c7f129095.mp3",
       "audioOriginal": "6863f39c7f129095.orig.mp3",
       "audioAuto": "6863f39c7f129095.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6863f39c7f129095"
     },
     {
       "id": "sp-ima-nozomi-ni-imasu",
@@ -682,7 +720,8 @@
       "audio": "ed3192ca8f428f44.mp3",
       "audioOriginal": "ed3192ca8f428f44.orig.mp3",
       "audioAuto": "ed3192ca8f428f44.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ed3192ca8f428f44"
     },
     {
       "id": "td-doko-ni-arimasu-q",
@@ -698,7 +737,8 @@
       "audio": "a8029ec6806c0640.mp3",
       "audioOriginal": "a8029ec6806c0640.orig.mp3",
       "audioAuto": "a8029ec6806c0640.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a8029ec6806c0640"
     },
     {
       "id": "ni-uketsuke-okyakusan",
@@ -714,7 +754,8 @@
       "audio": "8c3f335c3db3a8d2.mp3",
       "audioOriginal": "8c3f335c3db3a8d2.orig.mp3",
       "audioAuto": "8c3f335c3db3a8d2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8c3f335c3db3a8d2"
     },
     {
       "id": "fib-sobaya-kouban-tonari",
@@ -729,7 +770,8 @@
       "audio": "016bca5e73f294e0.mp3",
       "audioOriginal": "016bca5e73f294e0.orig.mp3",
       "audioAuto": "016bca5e73f294e0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "016bca5e73f294e0"
     },
     {
       "id": "fib-shachoushitsu-kaigishitsu-tonari",
@@ -744,7 +786,8 @@
       "audio": "d85c72dd60c408ff.mp3",
       "audioOriginal": "d85c72dd60c408ff.orig.mp3",
       "audioAuto": "d85c72dd60c408ff.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d85c72dd60c408ff"
     },
     {
       "id": "wa-honya-panya-contrast",
@@ -760,7 +803,8 @@
       "audio": "7825ff4f0c488352.mp3",
       "audioOriginal": "7825ff4f0c488352.orig.mp3",
       "audioAuto": "7825ff4f0c488352.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7825ff4f0c488352"
     },
     {
       "id": "ga-ramenya-chikaku",
@@ -776,7 +820,8 @@
       "audio": "0ebab5844f3db186.mp3",
       "audioOriginal": "0ebab5844f3db186.orig.mp3",
       "audioAuto": "0ebab5844f3db186.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0ebab5844f3db186"
     },
     {
       "id": "fib-enpitsu-tsukue-ue-arimashita",
@@ -791,7 +836,8 @@
       "audio": "ad6df9bcd56612f7.mp3",
       "audioOriginal": "ad6df9bcd56612f7.orig.mp3",
       "audioAuto": "ad6df9bcd56612f7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ad6df9bcd56612f7"
     },
     {
       "id": "td-soba-nearby-q",
@@ -807,7 +853,8 @@
       "audio": "a20b4ce000951a09.mp3",
       "audioOriginal": "a20b4ce000951a09.orig.mp3",
       "audioAuto": "a20b4ce000951a09.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a20b4ce000951a09"
     },
     {
       "id": "no-clearfile-tanaka",
@@ -823,7 +870,8 @@
       "audio": "5740d277bd47c7a5.mp3",
       "audioOriginal": "5740d277bd47c7a5.orig.mp3",
       "audioAuto": "5740d277bd47c7a5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5740d277bd47c7a5"
     },
     {
       "id": "kagi-drawer-arimasen",
@@ -839,7 +887,8 @@
       "audio": "e6f3b3a74b6858b3.mp3",
       "audioOriginal": "e6f3b3a74b6858b3.orig.mp3",
       "audioAuto": "e6f3b3a74b6858b3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e6f3b3a74b6858b3"
     },
     {
       "id": "ex-panya-uchi-chikai",
@@ -855,7 +904,8 @@
       "audio": "2cec19b0c625d94c.mp3",
       "audioOriginal": "2cec19b0c625d94c.orig.mp3",
       "audioAuto": "2cec19b0c625d94c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2cec19b0c625d94c"
     },
     {
       "id": "ni-keshigomu-shita",
@@ -871,7 +921,8 @@
       "audio": "6db99a874e175c79.mp3",
       "audioOriginal": "6db99a874e175c79.orig.mp3",
       "audioAuto": "6db99a874e175c79.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6db99a874e175c79"
     },
     {
       "id": "fib-ginkou-kouban-tonari-a",
@@ -900,7 +951,8 @@
       "audio": "c95c8d2ae465711f.mp3",
       "audioOriginal": "c95c8d2ae465711f.orig.mp3",
       "audioAuto": "c95c8d2ae465711f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c95c8d2ae465711f"
     },
     {
       "id": "ex-park-two-women",
@@ -916,7 +968,8 @@
       "audio": "eb3a953d83d3bc7c.mp3",
       "audioOriginal": "eb3a953d83d3bc7c.orig.mp3",
       "audioAuto": "eb3a953d83d3bc7c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eb3a953d83d3bc7c"
     },
     {
       "id": "fib-tsukue-shita-gomibako-a",
@@ -931,7 +984,8 @@
       "audio": "ddef998bbdd21368.mp3",
       "audioOriginal": "ddef998bbdd21368.orig.mp3",
       "audioAuto": "ddef998bbdd21368.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ddef998bbdd21368"
     },
     {
       "id": "ex-plates-table-count-q",
@@ -947,7 +1001,8 @@
       "audio": "1ff403991409ac11.mp3",
       "audioOriginal": "1ff403991409ac11.orig.mp3",
       "audioAuto": "1ff403991409ac11.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1ff403991409ac11"
     },
     {
       "id": "kara-yuubinkyoku-kaisha-q",
@@ -963,7 +1018,8 @@
       "audio": "20c7aab9390c202e.mp3",
       "audioOriginal": "20c7aab9390c202e.orig.mp3",
       "audioAuto": "20c7aab9390c202e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "20c7aab9390c202e"
     },
     {
       "id": "ex-plates-table-count-a",
@@ -980,7 +1036,8 @@
       "audio": "2fac0eae23c180ef.mp3",
       "audioOriginal": "2fac0eae23c180ef.orig.mp3",
       "audioAuto": "2fac0eae23c180ef.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2fac0eae23c180ef"
     },
     {
       "id": "hasami-koko",
@@ -996,7 +1053,8 @@
       "audio": "4bf3b0f1c085c5ca.mp3",
       "audioOriginal": "4bf3b0f1c085c5ca.orig.mp3",
       "audioAuto": "4bf3b0f1c085c5ca.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4bf3b0f1c085c5ca"
     },
     {
       "id": "ga-takushii-basu-noriba",
@@ -1012,7 +1070,8 @@
       "audio": "20a9ae0a54e504c6.mp3",
       "audioOriginal": "20a9ae0a54e504c6.orig.mp3",
       "audioAuto": "20a9ae0a54e504c6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "20a9ae0a54e504c6"
     },
     {
       "id": "ex-cups-table-count-q",
@@ -1028,7 +1087,8 @@
       "audio": "01108b72519cba34.mp3",
       "audioOriginal": "01108b72519cba34.orig.mp3",
       "audioAuto": "01108b72519cba34.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "01108b72519cba34"
     },
     {
       "id": "ex-parking-next-to-konbini",
@@ -1044,7 +1104,8 @@
       "audio": "3a353daa5d333a0a.mp3",
       "audioOriginal": "3a353daa5d333a0a.orig.mp3",
       "audioAuto": "3a353daa5d333a0a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3a353daa5d333a0a"
     },
     {
       "id": "kara-kumano-taki",
@@ -1060,7 +1121,8 @@
       "audio": "6239de47f0843bbe.mp3",
       "audioOriginal": "6239de47f0843bbe.orig.mp3",
       "audioAuto": "6239de47f0843bbe.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6239de47f0843bbe"
     },
     {
       "id": "kagi-drawer-arimasendeshita",
@@ -1076,7 +1138,8 @@
       "audio": "79c20319dc3fb349.mp3",
       "audioOriginal": "79c20319dc3fb349.orig.mp3",
       "audioAuto": "79c20319dc3fb349.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "79c20319dc3fb349"
     },
     {
       "id": "fib-table-ringo-ikutsu-q",
@@ -1105,7 +1168,8 @@
       "audio": "76e0990ff161b11b.mp3",
       "audioOriginal": "76e0990ff161b11b.orig.mp3",
       "audioAuto": "76e0990ff161b11b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "76e0990ff161b11b"
     },
     {
       "id": "sp-3ji-ni-kaerimasu-a",
@@ -1122,7 +1186,8 @@
       "audio": "d33407bab3ab6121.mp3",
       "audioOriginal": "d33407bab3ab6121.orig.mp3",
       "audioAuto": "d33407bab3ab6121.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d33407bab3ab6121"
     },
     {
       "id": "td-taki-chikai-q",
@@ -1138,7 +1203,8 @@
       "audio": "43ae8d78feae03cf.mp3",
       "audioOriginal": "43ae8d78feae03cf.orig.mp3",
       "audioAuto": "43ae8d78feae03cf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "43ae8d78feae03cf"
     },
     {
       "id": "td-sobaichi-otera-mae-ni-arimasu",
@@ -1154,7 +1220,8 @@
       "audio": "bd8fea2d7743e2ba.mp3",
       "audioOriginal": "bd8fea2d7743e2ba.orig.mp3",
       "audioAuto": "bd8fea2d7743e2ba.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bd8fea2d7743e2ba"
     },
     {
       "id": "sp-nozomi-file-koko-a",
@@ -1170,7 +1237,8 @@
       "audio": "f50d6a659c6b26ee.mp3",
       "audioOriginal": "f50d6a659c6b26ee.orig.mp3",
       "audioAuto": "f50d6a659c6b26ee.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f50d6a659c6b26ee"
     },
     {
       "id": "ga-kouban-eki-mae",
@@ -1186,7 +1254,8 @@
       "audio": "79329d49dc940912.mp3",
       "audioOriginal": "79329d49dc940912.orig.mp3",
       "audioAuto": "79329d49dc940912.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "79329d49dc940912"
     },
     {
       "id": "ex-restaurant-men-count-q",
@@ -1202,7 +1271,8 @@
       "audio": "4083d5bd0a9fc508.mp3",
       "audioOriginal": "4083d5bd0a9fc508.orig.mp3",
       "audioAuto": "4083d5bd0a9fc508.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4083d5bd0a9fc508"
     },
     {
       "id": "fib-daigaku-yuubinkyoku-tooi-q",
@@ -1231,7 +1301,8 @@
       "audio": "3b13d7931d096b1f.mp3",
       "audioOriginal": "3b13d7931d096b1f.orig.mp3",
       "audioAuto": "3b13d7931d096b1f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3b13d7931d096b1f"
     }
   ]
 }

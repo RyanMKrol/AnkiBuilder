@@ -21,7 +21,8 @@
       "audio": "dad914cbccfb56f7.mp3",
       "audioOriginal": "dad914cbccfb56f7.orig.mp3",
       "audioAuto": "dad914cbccfb56f7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dad914cbccfb56f7"
     },
     {
       "id": "kimasen-deshita",
@@ -35,7 +36,8 @@
       "audio": "7a47463a1ef0582d.mp3",
       "audioOriginal": "7a47463a1ef0582d.orig.mp3",
       "audioAuto": "7a47463a1ef0582d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7a47463a1ef0582d"
     },
     {
       "id": "ga-dono-basu-ga-kuukou-ni-ikimasu-ka",
@@ -49,7 +51,8 @@
       "audio": "78a855d76d26858f.mp3",
       "audioOriginal": "78a855d76d26858f.orig.mp3",
       "audioAuto": "78a855d76d26858f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "78a855d76d26858f"
     },
     {
       "id": "sp1-indo-kara-kimashita",
@@ -63,7 +66,8 @@
       "audio": "ad278313524b1c5e.mp3",
       "audioOriginal": "ad278313524b1c5e.orig.mp3",
       "audioAuto": "ad278313524b1c5e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ad278313524b1c5e"
     },
     {
       "id": "sp2-kono-basu-wa-shibuya-ni-ikimasu-ka",
@@ -77,7 +81,8 @@
       "audio": "8d3370c0f87282be.mp3",
       "audioOriginal": "8d3370c0f87282be.orig.mp3",
       "audioAuto": "8d3370c0f87282be.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8d3370c0f87282be"
     },
     {
       "id": "form-tokyo-shisha-kimasen",
@@ -92,7 +97,8 @@
       "audioAuto": "6acaefbf5c5be625-genkanji-09652c4e.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "6acaefbf5c5be625-genkanji-09652c4e.mp3"
+      "audio": "6acaefbf5c5be625-genkanji-09652c4e.mp3",
+      "audioTextHash": "6acaefbf5c5be625"
     },
     {
       "id": "he-kouen-e-ikimasu-ka",
@@ -106,7 +112,8 @@
       "audio": "5ea4a0c399444449.mp3",
       "audioOriginal": "5ea4a0c399444449.orig.mp3",
       "audioAuto": "5ea4a0c399444449.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5ea4a0c399444449"
     },
     {
       "id": "ex9-sasaki-san-to-ikimasu",
@@ -120,7 +127,8 @@
       "audioOriginal": "f2f5b15720630797.orig.mp3",
       "audioAuto": "f2f5b15720630797.mp3",
       "audioMarked": true,
-      "scene": "answering who is coming with you"
+      "scene": "answering who is coming with you",
+      "audioTextHash": "f2f5b15720630797"
     },
     {
       "id": "vocab-dare-no-uchi-ni-ikimasu-ka",
@@ -140,7 +148,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.7801070205479455
-      }
+      },
+      "audioTextHash": "7221c7d5d2e06716"
     },
     {
       "id": "ga-kono-basu-wa-kuukou-ni-ikimasu-ka",
@@ -154,7 +163,8 @@
       "audio": "8d311b05c3566539.mp3",
       "audioOriginal": "8d311b05c3566539.orig.mp3",
       "audioAuto": "8d311b05c3566539.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8d311b05c3566539"
     },
     {
       "id": "vocab-kaisha-no-hitotachi-to-paatii-ni-ikimasu",
@@ -168,7 +178,8 @@
       "audio": "253b5ade970518e5.mp3",
       "audioOriginal": "253b5ade970518e5.orig.mp3",
       "audioAuto": "253b5ade970518e5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "253b5ade970518e5"
     },
     {
       "id": "td-hitori-de-kimasu-ka",
@@ -183,7 +194,8 @@
       "audioAuto": "27419e756b5b703b-genkanji-c2734031.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "27419e756b5b703b-genkanji-c2734031.mp3"
+      "audio": "27419e756b5b703b-genkanji-c2734031.mp3",
+      "audioTextHash": "27419e756b5b703b"
     },
     {
       "id": "td-tokyo-shisha-no-sumisu",
@@ -197,7 +209,8 @@
       "audio": "1698964d585e1266.mp3",
       "audioOriginal": "1698964d585e1266.orig.mp3",
       "audioAuto": "1698964d585e1266.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1698964d585e1266"
     },
     {
       "id": "kara-honkon-kara-kimashita",
@@ -216,7 +229,8 @@
         "start": 0,
         "end": 1.3782041952054793
       },
-      "scene": "answering where you have come from"
+      "scene": "answering where you have come from",
+      "audioTextHash": "67721de6471afb7f"
     },
     {
       "id": "to-koohii-to-koucha-o-onegaishimasu",
@@ -230,7 +244,8 @@
       "audio": "06dcf71a9ed13fe3.mp3",
       "audioOriginal": "06dcf71a9ed13fe3.orig.mp3",
       "audioAuto": "06dcf71a9ed13fe3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "06dcf71a9ed13fe3"
     },
     {
       "id": "td-hai-ichiji-kara-desu",
@@ -246,7 +261,8 @@
       "audioOriginal": "0dd089bfbe4b53a1.orig.mp3",
       "audioAuto": "0dd089bfbe4b53a1.mp3",
       "audioMarked": true,
-      "scene": "confirming what time the meeting starts"
+      "scene": "confirming what time the meeting starts",
+      "audioTextHash": "0dd089bfbe4b53a1"
     },
     {
       "id": "quiz-itsu-nihon-ni-kimashita-ka",
@@ -260,7 +276,8 @@
       "audio": "f0b8ad6e8299f0c7.mp3",
       "audioOriginal": "f0b8ad6e8299f0c7.orig.mp3",
       "audioAuto": "f0b8ad6e8299f0c7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f0b8ad6e8299f0c7"
     },
     {
       "id": "quiz-dare-to-kimashita-ka",
@@ -279,7 +296,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.4985950342465755
-      }
+      },
+      "audioTextHash": "62106a11d4db772f"
     },
     {
       "id": "form-tokyo-shisha-kimashita",
@@ -294,7 +312,8 @@
       "audioAuto": "d772ca4b98b5cbdb-genkanji-cb196681.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "d772ca4b98b5cbdb-genkanji-cb196681.mp3"
+      "audio": "d772ca4b98b5cbdb-genkanji-cb196681.mp3",
+      "audioTextHash": "d772ca4b98b5cbdb"
     },
     {
       "id": "td-summary-osaka-shisha",
@@ -309,7 +328,8 @@
       "audioAuto": "5102864b96b9307d-genkanji-57171781.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "5102864b96b9307d-genkanji-57171781.mp3"
+      "audio": "5102864b96b9307d-genkanji-57171781.mp3",
+      "audioTextHash": "5102864b96b9307d"
     },
     {
       "id": "ga-dore-ga-sumisu-san-no-kaban-desu-ka",
@@ -328,7 +348,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.463947773972603
-      }
+      },
+      "audioTextHash": "3002f9cbbdd0865f"
     },
     {
       "id": "hitori-de-ikimasu-ka",
@@ -342,7 +363,8 @@
       "audio": "7e3ec2d8e343547a.mp3",
       "audioOriginal": "7e3ec2d8e343547a.orig.mp3",
       "audioAuto": "7e3ec2d8e343547a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7e3ec2d8e343547a"
     },
     {
       "id": "form-kuukou-ikimasu",
@@ -356,7 +378,8 @@
       "audio": "1330edb980221c72.mp3",
       "audioOriginal": "1330edb980221c72.orig.mp3",
       "audioAuto": "1330edb980221c72.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1330edb980221c72"
     },
     {
       "id": "kara-doko-kara-kimashita-ka",
@@ -370,7 +393,8 @@
       "audio": "d41369d521a91b34.mp3",
       "audioOriginal": "d41369d521a91b34.orig.mp3",
       "audioAuto": "d41369d521a91b34.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d41369d521a91b34"
     },
     {
       "id": "vocab-tomodachi-no-uchi-ni-ikimasu",
@@ -386,7 +410,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "3627a7274a8e40b5-gen-6902559b.mp3",
-      "scene": "answering whose house you are going to"
+      "scene": "answering whose house you are going to",
+      "audioTextHash": "3627a7274a8e40b5"
     },
     {
       "id": "vocab-kazoku-kotoshi-nihon-ni-kimasu",
@@ -400,7 +425,8 @@
       "audio": "52060700912c2d6f.mp3",
       "audioOriginal": "52060700912c2d6f.orig.mp3",
       "audioAuto": "52060700912c2d6f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "52060700912c2d6f"
     },
     {
       "id": "ex9-ashita-ikimasu",
@@ -415,7 +441,8 @@
       "audioOriginal": "4b900eae7c6f8d6a.orig.mp3",
       "audioAuto": "4b900eae7c6f8d6a.mp3",
       "audioMarked": true,
-      "scene": "answering when you will visit the other person's office"
+      "scene": "answering when you will visit the other person's office",
+      "audioTextHash": "4b900eae7c6f8d6a"
     },
     {
       "id": "form-tokyo-shisha-kimasu",
@@ -429,7 +456,8 @@
       "audio": "b778fce712f7a3ab.mp3",
       "audioOriginal": "b778fce712f7a3ab.orig.mp3",
       "audioAuto": "b778fce712f7a3ab.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b778fce712f7a3ab"
     },
     {
       "id": "kara-emma-furansu-kara-kimashita",
@@ -443,7 +471,8 @@
       "audio": "ae56aad0e5816b81.mp3",
       "audioOriginal": "ae56aad0e5816b81.orig.mp3",
       "audioAuto": "ae56aad0e5816b81.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ae56aad0e5816b81"
     },
     {
       "id": "ne-kinou-kuukou-ni-ikimashita-ne",
@@ -457,7 +486,8 @@
       "audio": "6de5b72fad905117.mp3",
       "audioOriginal": "6de5b72fad905117.orig.mp3",
       "audioAuto": "6de5b72fad905117.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6de5b72fad905117"
     },
     {
       "id": "vocab-kochira-wa-basu-no-untenshu-desu",
@@ -471,7 +501,8 @@
       "audio": "691793efcda147ec.mp3",
       "audioOriginal": "691793efcda147ec.orig.mp3",
       "audioAuto": "691793efcda147ec.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "691793efcda147ec"
     },
     {
       "id": "td-ashita-sochira-ni-ikimasu",
@@ -490,7 +521,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.9276297089041095
-      }
+      },
+      "audioTextHash": "77a975aab9722e26"
     },
     {
       "id": "vocab-joushi-kongetsu-kimasu",
@@ -505,7 +537,8 @@
       "audioAuto": "b4322fd43d5de559-genkanji-2f037574.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "b4322fd43d5de559-genkanji-2f037574.mp3"
+      "audio": "b4322fd43d5de559-genkanji-2f037574.mp3",
+      "audioTextHash": "b4322fd43d5de559"
     },
     {
       "id": "ne-eki-wa-achira-desu-ne",
@@ -519,7 +552,8 @@
       "audio": "a4c1cc8976db92fb.mp3",
       "audioOriginal": "a4c1cc8976db92fb.orig.mp3",
       "audioAuto": "a4c1cc8976db92fb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a4c1cc8976db92fb"
     },
     {
       "id": "form-kuukou-ikimashita",
@@ -538,7 +572,8 @@
       "audioTrim": {
         "start": 0,
         "end": 3.17815625
-      }
+      },
+      "audioTextHash": "734856e89ff5caff"
     },
     {
       "id": "form-tokyo-shisha-kimasen-deshita",
@@ -553,7 +588,8 @@
       "audioAuto": "bd5aa737be6923b4-genkanji-04c7aba1.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "bd5aa737be6923b4-genkanji-04c7aba1.mp3"
+      "audio": "bd5aa737be6923b4-genkanji-04c7aba1.mp3",
+      "audioTextHash": "bd5aa737be6923b4"
     },
     {
       "id": "to-joushi-to-osaka-shisha-ni-ikimasu",
@@ -568,7 +604,8 @@
       "audioAuto": "fe07c2326ceb5230-genkanji-27d83fed.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "fe07c2326ceb5230-genkanji-27d83fed.mp3"
+      "audio": "fe07c2326ceb5230-genkanji-27d83fed.mp3",
+      "audioTextHash": "fe07c2326ceb5230"
     },
     {
       "id": "quiz-kyonen-kimashita",
@@ -583,7 +620,8 @@
       "audioOriginal": "4c6023810de91b1b.orig.mp3",
       "audioAuto": "4c6023810de91b1b.mp3",
       "audioMarked": true,
-      "scene": "answering when you came to Japan"
+      "scene": "answering when you came to Japan",
+      "audioTextHash": "4c6023810de91b1b"
     },
     {
       "id": "sp1-kyou-kara-yoroshiku",
@@ -597,7 +635,8 @@
       "audio": "6c5e2cc2553e4b00.mp3",
       "audioOriginal": "6c5e2cc2553e4b00.orig.mp3",
       "audioAuto": "6c5e2cc2553e4b00.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6c5e2cc2553e4b00"
     },
     {
       "id": "ne-osaka-shisha-ni-ikimasu-ne",
@@ -611,7 +650,8 @@
       "audio": "960b7383819eff18.mp3",
       "audioOriginal": "960b7383819eff18.orig.mp3",
       "audioAuto": "960b7383819eff18.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "960b7383819eff18"
     },
     {
       "id": "form-kuukou-ikimasen",
@@ -625,7 +665,8 @@
       "audio": "8450fb8728518bb0.mp3",
       "audioOriginal": "8450fb8728518bb0.orig.mp3",
       "audioAuto": "8450fb8728518bb0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8450fb8728518bb0"
     },
     {
       "id": "ga-kore-ga-sumisu-san-no-desu",
@@ -640,7 +681,8 @@
       "audioOriginal": "df2d4c89dd5737cf.orig.mp3",
       "audioAuto": "df2d4c89dd5737cf.mp3",
       "audioMarked": true,
-      "scene": "answering which of several bags belongs to Smith-san"
+      "scene": "answering which of several bags belongs to Smith-san",
+      "audioTextHash": "df2d4c89dd5737cf"
     },
     {
       "id": "q-chan-san-kimasu-ka",
@@ -654,7 +696,8 @@
       "audio": "b46eba1428c5d482.mp3",
       "audioOriginal": "b46eba1428c5d482.orig.mp3",
       "audioAuto": "b46eba1428c5d482.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b46eba1428c5d482"
     },
     {
       "id": "he-eki-e-ikimasu",
@@ -669,7 +712,8 @@
       "audio": "00535c57f97ffc17.mp3",
       "audioOriginal": "00535c57f97ffc17.orig.mp3",
       "audioAuto": "00535c57f97ffc17.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "00535c57f97ffc17"
     },
     {
       "id": "td-dewa-ashita",
@@ -683,7 +727,8 @@
       "audio": "52ddcf5687b94266.mp3",
       "audioOriginal": "52ddcf5687b94266.orig.mp3",
       "audioAuto": "52ddcf5687b94266.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "52ddcf5687b94266"
     },
     {
       "id": "quiz-hitori-de-kimashita",
@@ -698,7 +743,8 @@
       "audioOriginal": "047208a31bce98e4.orig.mp3",
       "audioAuto": "047208a31bce98e4.mp3",
       "audioMarked": true,
-      "scene": "answering who you came with"
+      "scene": "answering who you came with",
+      "audioTextHash": "047208a31bce98e4"
     },
     {
       "id": "ex9-dare-to-kimasu-ka",
@@ -716,7 +762,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.3862427226027398
-      }
+      },
+      "audioTextHash": "063527bd204139c2"
     },
     {
       "id": "vocab-allen-ototoi-nihon-ni-kimashita",
@@ -730,7 +777,8 @@
       "audio": "d621005bf8b78986.mp3",
       "audioOriginal": "d621005bf8b78986.orig.mp3",
       "audioAuto": "d621005bf8b78986.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d621005bf8b78986"
     },
     {
       "id": "ex7a-nihon-ni-kimashita",
@@ -744,7 +792,8 @@
       "audio": "41b1051a8a32c22d.mp3",
       "audioOriginal": "41b1051a8a32c22d.orig.mp3",
       "audioAuto": "41b1051a8a32c22d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "41b1051a8a32c22d"
     },
     {
       "id": "he-eki-ni-ikimasu",
@@ -759,7 +808,8 @@
       "audio": "9876b944850f7041.mp3",
       "audioOriginal": "9876b944850f7041.orig.mp3",
       "audioAuto": "9876b944850f7041.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9876b944850f7041"
     },
     {
       "id": "sp1-todai-no-gakusei-desu",
@@ -774,7 +824,8 @@
       "audioAuto": "a63ea4e500971639-genkanji-5c8cfa94.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "a63ea4e500971639-genkanji-5c8cfa94.mp3"
+      "audio": "a63ea4e500971639-genkanji-5c8cfa94.mp3",
+      "audioTextHash": "a63ea4e500971639"
     },
     {
       "id": "td-kato-san-to-ikimasu",
@@ -788,7 +839,8 @@
       "audioOriginal": "4eff346dfa9f239f.orig.mp3",
       "audioAuto": "4eff346dfa9f239f.mp3",
       "audioMarked": true,
-      "scene": "answering whether you are coming alone"
+      "scene": "answering whether you are coming alone",
+      "audioTextHash": "4eff346dfa9f239f"
     },
     {
       "id": "a-iie-kimasen-deshita",
@@ -802,7 +854,8 @@
       "audioOriginal": "ea5beac019b96e10.orig.mp3",
       "audioAuto": "ea5beac019b96e10.mp3",
       "audioMarked": true,
-      "scene": "answering whether a colleague came to your branch office yesterday"
+      "scene": "answering whether a colleague came to your branch office yesterday",
+      "audioTextHash": "ea5beac019b96e10"
     },
     {
       "id": "q-chan-san-kimashita-ka",
@@ -817,7 +870,8 @@
       "audioAuto": "e711f41c5a140cd4-genkanji-638ede13.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "e711f41c5a140cd4-genkanji-638ede13.mp3"
+      "audio": "e711f41c5a140cd4-genkanji-638ede13.mp3",
+      "audioTextHash": "e711f41c5a140cd4"
     },
     {
       "id": "form-kuukou-ikimasen-deshita",
@@ -831,7 +885,8 @@
       "audio": "4369ec5bf1992113.mp3",
       "audioOriginal": "4369ec5bf1992113.orig.mp3",
       "audioAuto": "4369ec5bf1992113.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4369ec5bf1992113"
     },
     {
       "id": "kara-emma-nihon-ni-kimashita",
@@ -845,7 +900,8 @@
       "audio": "292c7231355b5d41.mp3",
       "audioOriginal": "292c7231355b5d41.orig.mp3",
       "audioAuto": "292c7231355b5d41.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "292c7231355b5d41"
     },
     {
       "id": "a-iie-kimasen",
@@ -860,7 +916,8 @@
       "audioOriginal": "2add73cbc09f2047.orig.mp3",
       "audioAuto": "2add73cbc09f2047.mp3",
       "audioMarked": true,
-      "scene": "answering whether a colleague is coming to your branch office tomorrow"
+      "scene": "answering whether a colleague is coming to your branch office tomorrow",
+      "audioTextHash": "2add73cbc09f2047"
     },
     {
       "id": "vocab-tokyo-eki-ni-ikimasu-ka",
@@ -874,7 +931,8 @@
       "audio": "7356d7e4537562f4.mp3",
       "audioOriginal": "7356d7e4537562f4.orig.mp3",
       "audioAuto": "7356d7e4537562f4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7356d7e4537562f4"
     },
     {
       "id": "vocab-rainen-amerika-ni-ikimasu",
@@ -888,7 +946,8 @@
       "audio": "791682e4e938cfa8.mp3",
       "audioOriginal": "791682e4e938cfa8.orig.mp3",
       "audioAuto": "791682e4e938cfa8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "791682e4e938cfa8"
     },
     {
       "id": "sp2-dono-basu-ga-ikimasu-ka",
@@ -901,7 +960,8 @@
       "audio": "d9cf3cdfc39b9424.mp3",
       "audioOriginal": "d9cf3cdfc39b9424.orig.mp3",
       "audioAuto": "d9cf3cdfc39b9424.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d9cf3cdfc39b9424"
     },
     {
       "id": "he-ginza-no-depaato-e-ikimashita",
@@ -915,7 +975,8 @@
       "audio": "52aab1ed7619e45c.mp3",
       "audioOriginal": "52aab1ed7619e45c.orig.mp3",
       "audioAuto": "52aab1ed7619e45c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "52aab1ed7619e45c"
     },
     {
       "id": "hai-hitori-de-ikimasu",
@@ -930,7 +991,8 @@
       "audioOriginal": "7a2361f25aad8cfc.orig.mp3",
       "audioAuto": "7a2361f25aad8cfc.mp3",
       "audioMarked": true,
-      "scene": "answering whether you will go by yourself"
+      "scene": "answering whether you will go by yourself",
+      "audioTextHash": "7a2361f25aad8cfc"
     },
     {
       "id": "vocab-asatte-yokohama-shisha-ni-ikimasu",
@@ -944,7 +1006,8 @@
       "audio": "b337c4d66782cad8.mp3",
       "audioOriginal": "b337c4d66782cad8.orig.mp3",
       "audioAuto": "b337c4d66782cad8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b337c4d66782cad8"
     },
     {
       "id": "vocab-konshuu-kyouto-ni-ikimasu",
@@ -958,7 +1021,8 @@
       "audio": "9450de67a3441099.mp3",
       "audioOriginal": "9450de67a3441099.orig.mp3",
       "audioAuto": "9450de67a3441099.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9450de67a3441099"
     },
     {
       "id": "vocab-kazoku-to-honkon-ni-ikimashita",
@@ -973,7 +1037,8 @@
       "audioAuto": "84f11c9896fd3f44-genkanji-dd223b62.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "84f11c9896fd3f44-genkanji-dd223b62.mp3"
+      "audio": "84f11c9896fd3f44-genkanji-dd223b62.mp3",
+      "audioTextHash": "84f11c9896fd3f44"
     },
     {
       "id": "td-hai-chan-desu",
@@ -988,7 +1053,8 @@
       "audioOriginal": "d4e550362ddefd6d.orig.mp3",
       "audioAuto": "d4e550362ddefd6d.mp3",
       "audioMarked": true,
-      "scene": "answering the phone"
+      "scene": "answering the phone",
+      "audioTextHash": "d4e550362ddefd6d"
     },
     {
       "id": "ga-goban-no-basu-ga-ikimasu",
@@ -1004,7 +1070,8 @@
       "audioOriginal": "b4ac0f3e395aee83.orig.mp3",
       "audioAuto": "b4ac0f3e395aee83.mp3",
       "audioMarked": true,
-      "scene": "answering which bus goes to the airport"
+      "scene": "answering which bus goes to the airport",
+      "audioTextHash": "b4ac0f3e395aee83"
     },
     {
       "id": "ex9-itsu-yokohama-ni-kimasu-ka",
@@ -1018,7 +1085,8 @@
       "audio": "c26eb8cf4ad0f5ba.mp3",
       "audioOriginal": "c26eb8cf4ad0f5ba.orig.mp3",
       "audioAuto": "c26eb8cf4ad0f5ba.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c26eb8cf4ad0f5ba"
     },
     {
       "id": "hitori-de-kouen-ni-ikimashita",
@@ -1032,7 +1100,8 @@
       "audio": "4afd27293b7ef7c8.mp3",
       "audioOriginal": "4afd27293b7ef7c8.orig.mp3",
       "audioAuto": "4afd27293b7ef7c8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4afd27293b7ef7c8"
     }
   ]
 }

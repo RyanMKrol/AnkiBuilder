@@ -23,7 +23,8 @@
       "audio": "5d4115f26133253e.mp3",
       "audioOriginal": "5d4115f26133253e.orig.mp3",
       "audioAuto": "5d4115f26133253e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5d4115f26133253e"
     },
     {
       "id": "fib-chichi-itsu-okane-kuremasu-q",
@@ -38,7 +39,8 @@
       "audio": "17c11b1e3ef468c5.mp3",
       "audioOriginal": "17c11b1e3ef468c5.orig.mp3",
       "audioAuto": "17c11b1e3ef468c5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "17c11b1e3ef468c5"
     },
     {
       "id": "x14b-tsuma-iyaringu-moraimashita",
@@ -52,7 +54,8 @@
       "audio": "a616fc768f1da622.mp3",
       "audioOriginal": "a616fc768f1da622.orig.mp3",
       "audioAuto": "a616fc768f1da622.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a616fc768f1da622"
     },
     {
       "id": "x14b-suteki-na-baggu-doko-de",
@@ -67,7 +70,8 @@
       "audio": "643c712eddcb858c.mp3",
       "audioOriginal": "643c712eddcb858c.orig.mp3",
       "audioAuto": "643c712eddcb858c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "643c712eddcb858c"
     },
     {
       "id": "x14b-nakamura-hana-kuremashita",
@@ -82,7 +86,8 @@
       "audioAuto": "cb6a3bf064c0a71a-genkanji-b4eeefbb.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "cb6a3bf064c0a71a-genkanji-b4eeefbb.mp3"
+      "audio": "cb6a3bf064c0a71a-genkanji-b4eeefbb.mp3",
+      "audioTextHash": "cb6a3bf064c0a71a"
     },
     {
       "id": "x14b-kinou-yotei-arimasendeshita",
@@ -96,7 +101,8 @@
       "audio": "79e5cbed01754550.mp3",
       "audioOriginal": "79e5cbed01754550.orig.mp3",
       "audioAuto": "79e5cbed01754550.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "79e5cbed01754550"
     },
     {
       "id": "fib-emma-douryou-ni-agemasu",
@@ -111,7 +117,8 @@
       "audio": "dc93763ac85b862e.mp3",
       "audioOriginal": "dc93763ac85b862e.orig.mp3",
       "audioAuto": "dc93763ac85b862e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dc93763ac85b862e"
     },
     {
       "id": "x14-nakamura-emma-sukaafu-kashimashita",
@@ -125,7 +132,8 @@
       "audio": "5f2ac2334bcb542b.mp3",
       "audioOriginal": "5f2ac2334bcb542b.orig.mp3",
       "audioAuto": "5f2ac2334bcb542b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5f2ac2334bcb542b"
     },
     {
       "id": "fib-sengetsu-yakusoku-arimasendeshita",
@@ -140,7 +148,8 @@
       "audio": "62dc21d14bb739bc.mp3",
       "audioOriginal": "62dc21d14bb739bc.orig.mp3",
       "audioAuto": "62dc21d14bb739bc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "62dc21d14bb739bc"
     },
     {
       "id": "fib-emma-dare-ni-yubiwa-agemasu-q",
@@ -156,7 +165,8 @@
       "audioAuto": "5904d24ea7417ba4-genkanji-16f28f44.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "5904d24ea7417ba4-genkanji-16f28f44.mp3"
+      "audio": "5904d24ea7417ba4-genkanji-16f28f44.mp3",
+      "audioTextHash": "5904d24ea7417ba4"
     },
     {
       "id": "x14b-haha-seetaa-moraimasu",
@@ -184,7 +194,8 @@
       "audio": "3675dbeaf8e6f5ab.mp3",
       "audioOriginal": "3675dbeaf8e6f5ab.orig.mp3",
       "audioAuto": "3675dbeaf8e6f5ab.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3675dbeaf8e6f5ab"
     },
     {
       "id": "x14b-chokoreeto-agemasendeshita",
@@ -197,7 +208,8 @@
       "audio": "8a0e5f32a6294a85.mp3",
       "audioOriginal": "8a0e5f32a6294a85.orig.mp3",
       "audioAuto": "8a0e5f32a6294a85.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8a0e5f32a6294a85"
     },
     {
       "id": "x14b-kuruma-ga-arimasu-have",
@@ -211,7 +223,8 @@
       "audio": "e153170fbe48e29b.mp3",
       "audioOriginal": "e153170fbe48e29b.orig.mp3",
       "audioAuto": "e153170fbe48e29b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e153170fbe48e29b"
     },
     {
       "id": "x14-suteki-na-sukaafu-desune",
@@ -224,7 +237,8 @@
       "audio": "04774c2a86ce883f.mp3",
       "audioOriginal": "04774c2a86ce883f.orig.mp3",
       "audioAuto": "04774c2a86ce883f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "04774c2a86ce883f"
     },
     {
       "id": "x14b-okane-karimasendeshita",
@@ -238,7 +252,8 @@
       "audio": "0fcf1da4966b1bda.mp3",
       "audioOriginal": "0fcf1da4966b1bda.orig.mp3",
       "audioAuto": "0fcf1da4966b1bda.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0fcf1da4966b1bda"
     },
     {
       "id": "x14-dare-ni-moraimashita-q",
@@ -253,7 +268,8 @@
       "audio": "fdcae55d50c5c9d0.mp3",
       "audioOriginal": "fdcae55d50c5c9d0.orig.mp3",
       "audioAuto": "fdcae55d50c5c9d0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fdcae55d50c5c9d0"
     },
     {
       "id": "x14b-yubiwa-moraimashita-ni",
@@ -267,7 +283,8 @@
       "audio": "bbc8c71849eeab2e.mp3",
       "audioOriginal": "bbc8c71849eeab2e.orig.mp3",
       "audioAuto": "bbc8c71849eeab2e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bbc8c71849eeab2e"
     },
     {
       "id": "fib-emma-dare-ni-kuruma-karimasu-q",
@@ -282,7 +299,8 @@
       "audio": "4fec7ea55ee8e1e5.mp3",
       "audioOriginal": "4fec7ea55ee8e1e5.orig.mp3",
       "audioAuto": "4fec7ea55ee8e1e5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4fec7ea55ee8e1e5"
     },
     {
       "id": "x14b-watashi-hana-agemashita",
@@ -329,7 +347,8 @@
       "audioAuto": "28ea92ffb2c89760-genkanji-812887e4.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "28ea92ffb2c89760-genkanji-812887e4.mp3"
+      "audio": "28ea92ffb2c89760-genkanji-812887e4.mp3",
+      "audioTextHash": "28ea92ffb2c89760"
     },
     {
       "id": "fib-tanjoubi-ni-kuremasu",
@@ -344,7 +363,8 @@
       "audio": "863d1e4d7ed227f6.mp3",
       "audioOriginal": "863d1e4d7ed227f6.orig.mp3",
       "audioAuto": "863d1e4d7ed227f6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "863d1e4d7ed227f6"
     },
     {
       "id": "x14-asatte-gogo-jikan-arimasu",
@@ -358,7 +378,8 @@
       "audio": "e929f7a658177d43.mp3",
       "audioOriginal": "e929f7a658177d43.orig.mp3",
       "audioAuto": "e929f7a658177d43.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e929f7a658177d43"
     },
     {
       "id": "x14b-burausu-depaato-kaimashita",
@@ -371,7 +392,8 @@
       "audio": "727b64e83b9d2eb5.mp3",
       "audioOriginal": "727b64e83b9d2eb5.orig.mp3",
       "audioAuto": "727b64e83b9d2eb5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "727b64e83b9d2eb5"
     },
     {
       "id": "x14-doumo-sumimasendeshita",
@@ -386,7 +408,8 @@
       "audio": "dedd94e95a9ebfbf.mp3",
       "audioOriginal": "dedd94e95a9ebfbf.orig.mp3",
       "audioAuto": "dedd94e95a9ebfbf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dedd94e95a9ebfbf"
     },
     {
       "id": "x14b-chiketto-ga-arimasu",
@@ -400,7 +423,8 @@
       "audio": "7d9dbaad55ed88c8.mp3",
       "audioOriginal": "7d9dbaad55ed88c8.orig.mp3",
       "audioAuto": "7d9dbaad55ed88c8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7d9dbaad55ed88c8"
     },
     {
       "id": "x14b-douryou-omiyage-agemasu",
@@ -414,7 +438,8 @@
       "audio": "e420af62d3f06837.mp3",
       "audioOriginal": "e420af62d3f06837.orig.mp3",
       "audioAuto": "e420af62d3f06837.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e420af62d3f06837"
     },
     {
       "id": "x14-tanjoubi-nani-moraimashita-q",
@@ -427,7 +452,8 @@
       "audio": "010920ae3bd9df64.mp3",
       "audioOriginal": "010920ae3bd9df64.orig.mp3",
       "audioAuto": "010920ae3bd9df64.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "010920ae3bd9df64"
     },
     {
       "id": "x14-chotto-samui-desune",
@@ -440,7 +466,8 @@
       "audio": "ffc1a465405fd8be.mp3",
       "audioOriginal": "ffc1a465405fd8be.orig.mp3",
       "audioAuto": "ffc1a465405fd8be.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ffc1a465405fd8be"
     },
     {
       "id": "x14-ee-daijoubu-desu",
@@ -454,7 +481,8 @@
       "audio": "e7b07daab1ad06e3.mp3",
       "audioOriginal": "e7b07daab1ad06e3.orig.mp3",
       "audioAuto": "e7b07daab1ad06e3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e7b07daab1ad06e3"
     },
     {
       "id": "fib-tsuma-dare-ni-iyaringu-moraimashita-q",
@@ -481,7 +509,8 @@
       "audio": "a1845c8c28620b7e.mp3",
       "audioOriginal": "a1845c8c28620b7e.orig.mp3",
       "audioAuto": "a1845c8c28620b7e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a1845c8c28620b7e"
     },
     {
       "id": "x14b-emma-chiketto-kuremashita",
@@ -495,7 +524,8 @@
       "audio": "4d8bf28b322a4cb8.mp3",
       "audioOriginal": "4d8bf28b322a4cb8.orig.mp3",
       "audioAuto": "4d8bf28b322a4cb8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4d8bf28b322a4cb8"
     },
     {
       "id": "x14b-risa-chokoreeto-kuremashita",
@@ -509,7 +539,8 @@
       "audio": "fa4ea9b23d3e818d.mp3",
       "audioOriginal": "fa4ea9b23d3e818d.orig.mp3",
       "audioAuto": "fa4ea9b23d3e818d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fa4ea9b23d3e818d"
     },
     {
       "id": "x14b-yubiwa-agemashita-ni",
@@ -523,7 +554,8 @@
       "audio": "c692f24e1b1cdd0a.mp3",
       "audioOriginal": "c692f24e1b1cdd0a.orig.mp3",
       "audioAuto": "c692f24e1b1cdd0a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c692f24e1b1cdd0a"
     },
     {
       "id": "x14-kore-douzo",
@@ -538,7 +570,8 @@
       "audio": "fd8a44eab53d4dcb.mp3",
       "audioOriginal": "fd8a44eab53d4dcb.orig.mp3",
       "audioAuto": "fd8a44eab53d4dcb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fd8a44eab53d4dcb"
     },
     {
       "id": "x14-sukaafu-ga-arimasu-yo",
@@ -552,7 +585,8 @@
       "audio": "adb8ffcf8bb55e00.mp3",
       "audioOriginal": "adb8ffcf8bb55e00.orig.mp3",
       "audioAuto": "adb8ffcf8bb55e00.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "adb8ffcf8bb55e00"
     },
     {
       "id": "x14-ashita-no-yoru-jikan-arimasuka",
@@ -565,7 +599,8 @@
       "audio": "0691552152ff905f.mp3",
       "audioOriginal": "0691552152ff905f.orig.mp3",
       "audioAuto": "0691552152ff905f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0691552152ff905f"
     },
     {
       "id": "x14b-okane-kashimasendeshita",
@@ -578,7 +613,8 @@
       "audio": "15140b2d912ff014.mp3",
       "audioOriginal": "15140b2d912ff014.orig.mp3",
       "audioAuto": "15140b2d912ff014.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "15140b2d912ff014"
     },
     {
       "id": "x14b-okane-ga-arimasen",
@@ -592,7 +628,8 @@
       "audio": "9993de08bf368374.mp3",
       "audioOriginal": "9993de08bf368374.orig.mp3",
       "audioAuto": "9993de08bf368374.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9993de08bf368374"
     },
     {
       "id": "fib-nakamura-san-ni-karimasu",
@@ -607,7 +644,8 @@
       "audio": "cde2cb89238d2b67.mp3",
       "audioOriginal": "cde2cb89238d2b67.orig.mp3",
       "audioAuto": "cde2cb89238d2b67.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cde2cb89238d2b67"
     },
     {
       "id": "fib-atarashii-sumaho-ga-arimasu",
@@ -634,7 +672,8 @@
       "audio": "f9fc25d1787cf0bf.mp3",
       "audioOriginal": "f9fc25d1787cf0bf.orig.mp3",
       "audioAuto": "f9fc25d1787cf0bf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f9fc25d1787cf0bf"
     },
     {
       "id": "x14b-tsuma-iyaringu-kuremashita",
@@ -648,7 +687,8 @@
       "audio": "779502088c2cfeca.mp3",
       "audioOriginal": "779502088c2cfeca.orig.mp3",
       "audioAuto": "779502088c2cfeca.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "779502088c2cfeca"
     },
     {
       "id": "x14b-kekkonkinenbi-nekkuresu-agemasu",
@@ -662,7 +702,8 @@
       "audio": "5ff133d892cb36d6.mp3",
       "audioOriginal": "5ff133d892cb36d6.orig.mp3",
       "audioAuto": "5ff133d892cb36d6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5ff133d892cb36d6"
     },
     {
       "id": "fib-raishuu-kaigi-ga-arimasu",

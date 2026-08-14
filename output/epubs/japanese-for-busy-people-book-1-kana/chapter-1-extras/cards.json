@@ -22,7 +22,8 @@
       "audio": "eecfc5aaca33e962.mp3",
       "audioOriginal": "eecfc5aaca33e962.orig.mp3",
       "audioAuto": "eecfc5aaca33e962.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eecfc5aaca33e962"
     },
     {
       "id": "w2-okuni-dochira-bare",
@@ -37,7 +38,8 @@
       "audio": "34ee1918038a8bac.mp3",
       "audioOriginal": "34ee1918038a8bac.orig.mp3",
       "audioAuto": "34ee1918038a8bac.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "34ee1918038a8bac"
     },
     {
       "id": "w2-igirisu-desu",
@@ -51,7 +53,8 @@
       "audioOriginal": "8234190dd3e0c5d3.orig.mp3",
       "audioAuto": "8234190dd3e0c5d3.mp3",
       "audioMarked": true,
-      "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka) with the country on its own"
+      "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka) with the country on its own",
+      "audioTextHash": "8234190dd3e0c5d3"
     },
     {
       "id": "w2-hai-australian",
@@ -66,7 +69,8 @@
       "audioOriginal": "80a1d7c51f4e20c2.orig.mp3",
       "audioAuto": "80a1d7c51f4e20c2.mp3",
       "audioMarked": true,
-      "scene": "replying to a question that already named both the person and the nationality"
+      "scene": "replying to a question that already named both the person and the nationality",
+      "audioTextHash": "80a1d7c51f4e20c2"
     },
     {
       "id": "g4-tanaka-san-desu-ka",
@@ -85,7 +89,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.0007786815068493
-      }
+      },
+      "audioTextHash": "423f8df01f4ad302"
     },
     {
       "id": "w2-kochira-harris",
@@ -99,7 +104,8 @@
       "audio": "fded013efa77c15d.mp3",
       "audioOriginal": "fded013efa77c15d.orig.mp3",
       "audioAuto": "fded013efa77c15d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fded013efa77c15d"
     },
     {
       "id": "w2-harris-o-onegaishimasu",
@@ -118,7 +124,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.6599546232876712
-      }
+      },
+      "audioTextHash": "bd934d5538dd863f"
     },
     {
       "id": "w2-watashi-wa-igirisujin",
@@ -132,7 +139,8 @@
       "audio": "694890d32d15cd07.mp3",
       "audioOriginal": "694890d32d15cd07.orig.mp3",
       "audioAuto": "694890d32d15cd07.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "694890d32d15cd07"
     },
     {
       "id": "w2-hai-nihonjin",
@@ -147,7 +155,8 @@
       "audioOriginal": "b05dd66d01cb3d3d.orig.mp3",
       "audioAuto": "b05dd66d01cb3d3d.mp3",
       "audioMarked": true,
-      "scene": "replying about yourself when someone has just asked your nationality"
+      "scene": "replying about yourself when someone has just asked your nationality",
+      "audioTextHash": "b05dd66d01cb3d3d"
     },
     {
       "id": "td-intro-smith",
@@ -160,7 +169,8 @@
       "audio": "0418bc73f928a7f1.mp3",
       "audioOriginal": "0418bc73f928a7f1.orig.mp3",
       "audioAuto": "0418bc73f928a7f1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0418bc73f928a7f1"
     },
     {
       "id": "w2-harisu-desu",
@@ -175,7 +185,8 @@
       "audioOriginal": "4a73097bb3afdfbc.orig.mp3",
       "audioAuto": "4a73097bb3afdfbc.mp3",
       "audioMarked": true,
-      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite)"
+      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite)",
+      "audioTextHash": "4a73097bb3afdfbc"
     },
     {
       "id": "w2-iie-indian",
@@ -190,7 +201,8 @@
       "audioOriginal": "38a9502bd68962e9.orig.mp3",
       "audioAuto": "38a9502bd68962e9.mp3",
       "audioMarked": true,
-      "scene": "correcting someone who has just guessed that Raja-san is Japanese"
+      "scene": "correcting someone who has just guessed that Raja-san is Japanese",
+      "audioTextHash": "38a9502bd68962e9"
     },
     {
       "id": "sp1-amerika-desu",
@@ -205,7 +217,8 @@
       "audioOriginal": "0feda43200e5795d.orig.mp3",
       "audioAuto": "0feda43200e5795d.mp3",
       "audioMarked": true,
-      "scene": "answering when asked which country you are from"
+      "scene": "answering when asked which country you are from",
+      "audioTextHash": "0feda43200e5795d"
     },
     {
       "id": "w2-harris-australian-q",
@@ -219,7 +232,8 @@
       "audio": "5dc52723789f346d.mp3",
       "audioOriginal": "5dc52723789f346d.orig.mp3",
       "audioAuto": "5dc52723789f346d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5dc52723789f346d"
     },
     {
       "id": "w2-watashi-no-kuni-nihon",
@@ -233,7 +247,8 @@
       "audio": "d985d3ddcdc0616a.mp3",
       "audioOriginal": "d985d3ddcdc0616a.orig.mp3",
       "audioAuto": "d985d3ddcdc0616a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d985d3ddcdc0616a"
     },
     {
       "id": "w2-sp2-sasaki-intro",
@@ -247,7 +262,8 @@
       "audio": "02923c6cf4c24fda.mp3",
       "audioOriginal": "02923c6cf4c24fda.orig.mp3",
       "audioAuto": "02923c6cf4c24fda.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "02923c6cf4c24fda"
     },
     {
       "id": "w2-chuugoku-desu",
@@ -262,7 +278,8 @@
       "audioOriginal": "5413c60d68eabb39.orig.mp3",
       "audioAuto": "5413c60d68eabb39.mp3",
       "audioMarked": true,
-      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
+      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka)",
+      "audioTextHash": "5413c60d68eabb39"
     },
     {
       "id": "w2-raja-wa-toukyou-daigaku",
@@ -276,7 +293,8 @@
       "audio": "4f88d2e81c097eae.mp3",
       "audioOriginal": "4f88d2e81c097eae.orig.mp3",
       "audioAuto": "4f88d2e81c097eae.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4f88d2e81c097eae"
     },
     {
       "id": "w2-raja-japanese-q",
@@ -289,7 +307,8 @@
       "audio": "07f5f90ed688e4c2.mp3",
       "audioOriginal": "07f5f90ed688e4c2.orig.mp3",
       "audioAuto": "07f5f90ed688e4c2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "07f5f90ed688e4c2"
     },
     {
       "id": "w2-chan-uketsuke-q",
@@ -303,7 +322,8 @@
       "audio": "c89b2b83c5684a3d.mp3",
       "audioOriginal": "c89b2b83c5684a3d.orig.mp3",
       "audioAuto": "c89b2b83c5684a3d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c89b2b83c5684a3d"
     },
     {
       "id": "w2-kochira-hoffman",
@@ -317,7 +337,8 @@
       "audio": "dd1165cca8c44e4d.mp3",
       "audioOriginal": "dd1165cca8c44e4d.orig.mp3",
       "audioAuto": "dd1165cca8c44e4d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dd1165cca8c44e4d"
     },
     {
       "id": "sp3-abc-foods-smith",
@@ -332,7 +353,8 @@
       "audioOriginal": "93bfc09a0bb14708.orig.mp3",
       "audioAuto": "93bfc09a0bb14708.mp3",
       "audioMarked": true,
-      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite)"
+      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite)",
+      "audioTextHash": "93bfc09a0bb14708"
     },
     {
       "id": "ex2b-smith-british-q",
@@ -345,7 +367,8 @@
       "audio": "9c98c19dbc7851db.mp3",
       "audioOriginal": "9c98c19dbc7851db.orig.mp3",
       "audioAuto": "9c98c19dbc7851db.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9c98c19dbc7851db"
     },
     {
       "id": "w2-indo-desu",
@@ -360,7 +383,8 @@
       "audioOriginal": "dfb6fa3cdb69c043.orig.mp3",
       "audioAuto": "dfb6fa3cdb69c043.mp3",
       "audioMarked": true,
-      "scene": "answering a question about which country Raja-san is from, with the country on its own"
+      "scene": "answering a question about which country Raja-san is from, with the country on its own",
+      "audioTextHash": "dfb6fa3cdb69c043"
     },
     {
       "id": "ex4-intro-harris",
@@ -373,7 +397,8 @@
       "audio": "ed188b23af87bde0.mp3",
       "audioOriginal": "ed188b23af87bde0.orig.mp3",
       "audioAuto": "ed188b23af87bde0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ed188b23af87bde0"
     },
     {
       "id": "w2-hai-uketsuke",
@@ -387,7 +412,8 @@
       "audioOriginal": "9f42687a02876704.orig.mp3",
       "audioAuto": "9f42687a02876704.mp3",
       "audioMarked": true,
-      "scene": "replying to a question that has already named the job"
+      "scene": "replying to a question that has already named the job",
+      "audioTextHash": "9f42687a02876704"
     },
     {
       "id": "td-hai-sou-desu",
@@ -402,7 +428,8 @@
       "audioOriginal": "56641c8506f977f7.orig.mp3",
       "audioAuto": "56641c8506f977f7.mp3",
       "audioMarked": true,
-      "scene": "answering when someone asks if you are the person they were looking for"
+      "scene": "answering when someone asks if you are the person they were looking for",
+      "audioTextHash": "56641c8506f977f7"
     },
     {
       "id": "w2-confirm-raja-daigaku",
@@ -420,7 +447,8 @@
       "audioTrim": {
         "start": 0,
         "end": 3.7931352739726028
-      }
+      },
+      "audioTextHash": "939e2969e84b39a4"
     },
     {
       "id": "w2-anata-wa-nihonjin-q",
@@ -435,7 +463,8 @@
       "audio": "25696d5da611bbb7.mp3",
       "audioOriginal": "25696d5da611bbb7.orig.mp3",
       "audioAuto": "25696d5da611bbb7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "25696d5da611bbb7"
     },
     {
       "id": "w2-uketsuke-o-onegaishimasu",
@@ -450,7 +479,8 @@
       "audioOriginal": "a12b3124f1bd8844.orig.mp3",
       "audioAuto": "a12b3124f1bd8844.mp3",
       "audioMarked": true,
-      "scene": "asking to be put through to the front desk rather than to a named person"
+      "scene": "asking to be put through to the front desk rather than to a named person",
+      "audioTextHash": "a12b3124f1bd8844"
     },
     {
       "id": "w2-harris-no-okuni-q",
@@ -465,7 +495,8 @@
       "audioAuto": "651f91ee0b17b02a-genkanji-4be3e42c.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "651f91ee0b17b02a-genkanji-4be3e42c.mp3"
+      "audio": "651f91ee0b17b02a-genkanji-4be3e42c.mp3",
+      "audioTextHash": "651f91ee0b17b02a"
     },
     {
       "id": "w2-hoffman-okuni-q",
@@ -479,7 +510,8 @@
       "audio": "0a86caa7fcf1e1b3.mp3",
       "audioOriginal": "0a86caa7fcf1e1b3.orig.mp3",
       "audioAuto": "0a86caa7fcf1e1b3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0a86caa7fcf1e1b3"
     },
     {
       "id": "w2-doitsu-desu",
@@ -494,7 +526,8 @@
       "audioOriginal": "b1f6470233356d75.orig.mp3",
       "audioAuto": "b1f6470233356d75.mp3",
       "audioMarked": true,
-      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
+      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka)",
+      "audioTextHash": "b1f6470233356d75"
     },
     {
       "id": "w2-hoffman-igirisujin-q",
@@ -507,7 +540,8 @@
       "audio": "8feb4fbcd82cb200.mp3",
       "audioOriginal": "8feb4fbcd82cb200.orig.mp3",
       "audioAuto": "8feb4fbcd82cb200.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8feb4fbcd82cb200"
     },
     {
       "id": "ex1-chan-chinese",
@@ -520,7 +554,8 @@
       "audio": "d20b9556b88fc753.mp3",
       "audioOriginal": "d20b9556b88fc753.orig.mp3",
       "audioAuto": "d20b9556b88fc753.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d20b9556b88fc753"
     },
     {
       "id": "w2-buraun-wa-rondon-ginkou",
@@ -534,7 +569,8 @@
       "audio": "a0a40808d5642ea4.mp3",
       "audioOriginal": "a0a40808d5642ea4.orig.mp3",
       "audioAuto": "a0a40808d5642ea4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a0a40808d5642ea4"
     },
     {
       "id": "w2-raja-no-okuni-q",
@@ -548,7 +584,8 @@
       "audioAuto": "1153ba9a7b6d70ab-genkanji-76594106.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "1153ba9a7b6d70ab-genkanji-76594106.mp3"
+      "audio": "1153ba9a7b6d70ab-genkanji-76594106.mp3",
+      "audioTextHash": "1153ba9a7b6d70ab"
     },
     {
       "id": "w2-chan-wa-uketsuke",
@@ -562,7 +599,8 @@
       "audio": "be3f695945ab053b.mp3",
       "audioOriginal": "be3f695945ab053b.orig.mp3",
       "audioAuto": "be3f695945ab053b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "be3f695945ab053b"
     },
     {
       "id": "w2-harisu-san-desu",
@@ -577,7 +615,8 @@
       "audioOriginal": "852964d3df64b7a0.orig.mp3",
       "audioAuto": "852964d3df64b7a0.mp3",
       "audioMarked": true,
-      "scene": "telling someone which of the people in front of you is the one they were looking for"
+      "scene": "telling someone which of the people in front of you is the one they were looking for",
+      "audioTextHash": "852964d3df64b7a0"
     },
     {
       "id": "td-intro-tanaka-short",
@@ -592,7 +631,8 @@
       "audioOriginal": "9da7a0cbc8ed1f14.orig.mp3",
       "audioAuto": "9da7a0cbc8ed1f14.mp3",
       "audioMarked": true,
-      "scene": "introducing yourself with just your name"
+      "scene": "introducing yourself with just your name",
+      "audioTextHash": "9da7a0cbc8ed1f14"
     },
     {
       "id": "w2-oosutoraria-desu",
@@ -607,7 +647,8 @@
       "audioOriginal": "a76d6632357aff2b.orig.mp3",
       "audioAuto": "a76d6632357aff2b.mp3",
       "audioMarked": true,
-      "scene": "answering a question about which country Harris-san is from, with the country on its own"
+      "scene": "answering a question about which country Harris-san is from, with the country on its own",
+      "audioTextHash": "a76d6632357aff2b"
     },
     {
       "id": "notes-iie-chigaimasu",
@@ -622,7 +663,8 @@
       "audioOriginal": "9e5c2544605b2daf.orig.mp3",
       "audioAuto": "9e5c2544605b2daf.mp3",
       "audioMarked": true,
-      "scene": "answering no when asked whether you are a particular person"
+      "scene": "answering no when asked whether you are a particular person",
+      "audioTextHash": "9e5c2544605b2daf"
     },
     {
       "id": "w2-raja-indian",
@@ -636,7 +678,8 @@
       "audio": "0ad802dfca286487.mp3",
       "audioOriginal": "0ad802dfca286487.orig.mp3",
       "audioAuto": "0ad802dfca286487.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0ad802dfca286487"
     },
     {
       "id": "td-confirm-tanaka",
@@ -649,7 +692,8 @@
       "audio": "079d45125da2e872.mp3",
       "audioOriginal": "079d45125da2e872.orig.mp3",
       "audioAuto": "079d45125da2e872.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "079d45125da2e872"
     },
     {
       "id": "w2-harris-australian",
@@ -663,7 +707,8 @@
       "audio": "d283332164a16ace.mp3",
       "audioOriginal": "d283332164a16ace.orig.mp3",
       "audioAuto": "d283332164a16ace.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d283332164a16ace"
     },
     {
       "id": "w2-chan-okuni-q",
@@ -676,7 +721,8 @@
       "audio": "df667db95099023e.mp3",
       "audioOriginal": "df667db95099023e.orig.mp3",
       "audioAuto": "df667db95099023e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "df667db95099023e"
     },
     {
       "id": "td-kochirakoso-yoroshiku",
@@ -691,7 +737,8 @@
       "audioOriginal": "dabd7a8adfa5afe3.orig.mp3",
       "audioAuto": "dabd7a8adfa5afe3.mp3",
       "audioMarked": true,
-      "scene": "replying after the other person has said it to you first"
+      "scene": "replying after the other person has said it to you first",
+      "audioTextHash": "dabd7a8adfa5afe3"
     },
     {
       "id": "ex2b-no-american",
@@ -705,7 +752,8 @@
       "audioOriginal": "1e208ca50ef4c0c6.orig.mp3",
       "audioAuto": "1e208ca50ef4c0c6.mp3",
       "audioMarked": true,
-      "scene": "correcting someone who guessed Smith-san was British"
+      "scene": "correcting someone who guessed Smith-san was British",
+      "audioTextHash": "1e208ca50ef4c0c6"
     }
   ]
 }

@@ -594,6 +594,19 @@ surface only at Mark done, after both gates were signed off), uncued collisions,
 duplicate targets (reported, never auto-applied), and clips flagged marker-audible. Run it at the
 end of a build, before you post the link.
 
+### Finalize an extras unit
+
+```sh
+node scripts/finalize-extras.mjs <extras-run-dir> [--seed <text>] [--dry]
+```
+
+The tail of the extras pass as one command, in the order the steps depend on: `prepare` (which grows
+the unit, so it goes first) → duplicate check → collision audit → re-order with a fresh seed →
+validate → preflight. Every report is printed for you to read; nothing but the ordering is applied,
+and no audit is given `--apply`. Exit 2 means a report is waiting for your judgment, not that
+something is broken. ⚠️ `prepare` spends model credits. Full reasoning:
+[extras-pass](references/extras-pass.md).
+
 ### Wait for a review gate
 
 ```sh
@@ -605,6 +618,10 @@ Polls the flag the reviewer's click writes and exits when it lands: `meta.review
 `meta.done` plus a genuinely rebuilt collection package at gate 2. Read-only. Exit 0 signed off,
 1 timed out, 2 the unit could not be read, 3 done but the package did not rebuild. The reasoning
 behind each of those is in [The shape of the workflow](#the-shape-of-the-workflow) above.
+
+For a one-shot answer instead of a wait — "is this unit really shipped?" — `node
+scripts/check-done.mjs <runDir>` runs the same gate-2 check once and exits 0 / 1 (not done yet) /
+3 (done, but the rebuild failed).
 
 ### Un-ship a unit (undo a Mark done)
 

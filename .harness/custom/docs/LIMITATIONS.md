@@ -1460,3 +1460,18 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   a file of a few hundred KB. Negligible next to a human clicking a button.
 - **Status:** open
 - **When to revisit:** only if a watcher is ever needed for something with a real latency budget.
+
+## `finalize-extras` bakes the extras tail's ORDER into code, but not its steps
+
+- **What:** `src/cards/finalizeExtras.js` names six commands and the order to run them in. It spawns
+  each as a child process and prints its output, rather than calling the underlying functions.
+- **Why:** the reports are the product. Each of those tools already prints something a human has to
+  read and judge, and re-implementing that reporting in a chainer would fork it — the drift this
+  project keeps paying for. Spawning keeps exactly one implementation of each step.
+- **Impact:** a step's output cannot be inspected programmatically (the chain only sees exit codes),
+  and adding a step means editing the plan as well as writing the tool. The plan is unit tested for
+  order and for the absence of `--apply`, so the part that has actually gone wrong in production is
+  the part that is pinned.
+- **Status:** open
+- **When to revisit:** if a step ever needs a decision made FROM another step's findings, that step
+  belongs in `src/` behind a function, not in the chain.

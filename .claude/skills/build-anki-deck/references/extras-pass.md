@@ -206,6 +206,34 @@ or hint on every collision, split Q&A, an answer card that is answerable alone).
 - **Vary the frame, not just the noun.** Ten sentences on one pattern with interchangeable nouns is
   padding, not practice.
 
+## Finalize the unit: one command, in the order that matters
+
+Once the cards are authored and merged into the unit, the rest of the pass is a fixed sequence with
+real ordering constraints, and it is a sequence that has been got wrong in production more than once.
+Run it as one command:
+
+```sh
+node scripts/finalize-extras.mjs output/epubs/<book-slug>/chapter-<n>-extras
+#   --seed <text>   override the re-order seed        --dry   print the plan without running it
+```
+
+It runs, in this order, printing every report in full:
+
+1. **`prepare`** — first, because it GROWS the unit (see below). Auditing or ordering before it
+   measures a card set that is about to change. ⚠️ It spends model credits.
+2. **the cross-chapter duplicate check** — report only, never `--apply`.
+3. **the deck-wide collision audit** — report only, by design.
+4. **`extras-order --apply`** with a fresh seed, so the cards `prepare` just mined fold into the
+   shuffle instead of sitting as a predictable block at the end.
+5. **`validate-decks`**, then **`preflight`** on the collection, so the last things that run see the
+   unit exactly as the reviewer will.
+
+**It applies nothing except the ordering, and it decides nothing.** Which reported duplicate is real,
+how to word a missing cue, whether an exclusion should be reversed: all of that is yours, and it
+exits 2 to say a report is waiting for you rather than to say something is broken. The sections below
+are the reasoning behind each step, and how to judge what it prints — read them, that is what they
+are for.
+
 ## The gate that catches what the agents cannot
 
 Each agent sees earlier chapters but **not later ones**, so a card added to Lesson 3 can duplicate one
@@ -301,8 +329,8 @@ Keep `corpus.json` in the SAME order as `cards.json`, or the reviews and the dec
 Authoring the unit's files is not the last build step. The readiness gate
 (`src/cards/readiness.js`) holds every non-template unit out of review until `prepare`'s two pass
 markers (`enriched`, `notesEnhanced`) are set, and a hand-authored extras unit has neither. The
-dashboard will say "Not ready to review" and hide the Mark reviewed button. So after the audits and
-ordering, always run:
+dashboard will say "Not ready to review" and hide the Mark reviewed button. `finalize-extras` runs it
+FIRST for exactly this reason; on its own it is:
 
 ```sh
 anki-builder prepare --run output/epubs/<book-slug>/chapter-<n>-extras
@@ -313,9 +341,10 @@ is complete); the fill-in-the-blank miner runs with no chapter file (extras meta
 so it composes a handful of drills from the unit's own patterns, and its semantic de-dup usually
 excludes most of them as repeats of ground the pass already drilled; the cross-lesson note pass adds
 backward references, backing up first. None of your cards are dropped or rewritten (only
-`fillInBlank`-marked cards are ever touched by the de-dup). Afterwards, re-run the duplicate check
-and collision audit on the grown unit, and re-run `extras-order.mjs` with a NEW seed so any surviving
-mined cards fold into the shuffle instead of sitting as a predictable block at the end.
+`fillInBlank`-marked cards are ever touched by the de-dup). That growth is why the audits and the
+ordering run AFTER it, and why the re-order needs a new seed: the surviving mined cards must fold
+into the shuffle instead of sitting as a predictable block at the end. `finalize-extras` does that
+sequencing; running the steps by hand means doing it in that order yourself.
 
 ## Reviewing and shipping it
 

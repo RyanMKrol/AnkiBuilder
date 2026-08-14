@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "path";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { resolveIso639Code } from "../model/iso639.js";
-import { runClaude as defaultRunClaude } from "../corpus/epubLlmRunClaude.js";
+import { runFillInBlankClaude as defaultRunClaude } from "../corpus/epubLlmRunClaude.js";
 import { getLanguagePromptRules } from "../translate/languageRules.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));

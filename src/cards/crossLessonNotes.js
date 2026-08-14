@@ -1,9 +1,9 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { fileURLToPath } from "url";
 import { basename, dirname, join, resolve } from "path";
-import { writeFileAtomic, backupFileOnce } from "../util/atomicWrite.js";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runCrossLessonClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { mergeIntoCardsFile } from "./mergeIntoCardsFile.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -12,7 +12,12 @@ const DEFAULT_TEMPLATE_PATH = resolve(
 );
 
 const NO_EARLIER_LESSONS = "(nothing — this is the first lesson)";
-const BACKUP_SUFFIX = ".pre-enhance.bak";
+
+// The tag that goes in this pass's stamped backup filenames: `<file>.pre-enhance-<YYYYMMDDHHmm>.bak`.
+// It used to be an unstamped `.pre-enhance.bak` written through `backupFileOnce`, which keeps the
+// FIRST snapshot forever — so a second run of the pass had no restore point for the state it
+// actually found, and undoing it meant throwing away the first run's work too.
+const BACKUP_REASON = "enhance";
 
 // How many lessons (current + immediate predecessors) go into the prompt in FULL detail;
 // everything older is digested to lesson/english/target. See enhanceLessonNotes.
@@ -20,10 +25,6 @@ const RECENT_CONTEXT_LESSONS = 3;
 
 function readJson(path) {
   return JSON.parse(readFileSync(path, "utf-8"));
-}
-
-function writeJson(path, obj) {
-  writeFileAtomic(path, JSON.stringify(obj, null, 2) + "\n");
 }
 
 /**
@@ -169,7 +170,9 @@ function applyEdit(item, edit) {
  * written only when the model returns one, so lessons it says nothing about keep the hints they have.
  *
  * Writes the current lesson only, leaving `reviewNote` untouched, and keeps corpus.json in lockstep
- * with cards.json. Each file is backed up once to `<file>.pre-enhance.bak` before its first rewrite.
+ * with cards.json. Both files are RE-READ immediately before the write and only `note`/`hint` are
+ * merged in, so an edit made in the dashboard while the model call was running survives; each gets a
+ * stamped `<file>.pre-enhance-<YYYYMMDDHHmm>.bak` first, so any single run is reversible on its own.
  *
  * Returns `{ changed, skipped, failed? }` — `changed` is how many notes were written, `skipped` a
  * reason string when the pass didn't run at all (a lone lesson with no siblings, an unknown unit).
@@ -256,29 +259,33 @@ export function enhanceLessonNotes({
     return { changed: 0 };
   }
 
-  for (const item of pending) applyEdit(item, edits.get(item.id));
-  backupFileOnce(current.file, BACKUP_SUFFIX);
-  writeJson(current.file, current.data);
+  // Merge, don't overwrite. `current.data` was read before a model call that takes minutes, and the
+  // dashboard is editable for exactly that window — writing the stale snapshot back would silently
+  // discard any exclude or inline edit made while this ran. Re-read and apply only the two fields
+  // this pass owns. (Same hazard audio.js documents; see mergeIntoCardsFile.)
+  const byId = new Map();
+  for (const item of pending) {
+    const applied = {};
+    applyEdit(applied, edits.get(item.id));
+    byId.set(item.id, applied);
+  }
+
+  const merged = mergeIntoCardsFile(current.file, {
+    byId,
+    ownedFields: EDITABLE,
+    reason: BACKUP_REASON,
+  });
 
   // corpus.json carries the same notes/hints; keep the two in lockstep so a later re-translate or a
   // corpus-derived save doesn't resurrect the pre-enhancement text.
   const corpusPath = join(deckDir, current.name, "corpus.json");
   if (existsSync(corpusPath)) {
-    const corpus = readJson(corpusPath);
-    let corpusChanged = 0;
-    for (const item of corpus.items || []) {
-      if (edits.has(item.id) && differs(item, edits.get(item.id))) {
-        applyEdit(item, edits.get(item.id));
-        corpusChanged++;
-      }
-    }
-    if (corpusChanged) {
-      backupFileOnce(corpusPath, BACKUP_SUFFIX);
-      writeJson(corpusPath, corpus);
-    }
+    mergeIntoCardsFile(corpusPath, { byId, ownedFields: EDITABLE, reason: BACKUP_REASON });
   }
 
-  return { changed: pending.length };
+  // What actually landed on disk, not what this pass hoped to change: an id the reviewer deleted
+  // while the model call was running is not a note this pass wrote.
+  return { changed: merged.changed };
 }
 
 /** `enhanceLessonNotes` addressed by run directory: the unit is the folder, the deck its parent. */

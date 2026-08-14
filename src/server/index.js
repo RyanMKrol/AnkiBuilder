@@ -33,7 +33,7 @@ import { generateCardVariants } from "../audio/generateVariants.js";
 import { generateCardKanjiVariants } from "../audio/generateKanjiVariants.js";
 import { isGeneratedTakeFilename } from "../audio/index.js";
 import { usesEndMarker } from "../audio/ttsMarker.js";
-import { runClaude as defaultRunClaude } from "../translate/runClaude.js";
+import { runKanjiOrthographyClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { fetchElevenLabsTts } from "../audio/elevenLabsTts.js";
 import { trimToRange as defaultTrimToRange } from "../audio/trimToRange.js";
 import { isCleanupName } from "../audio/cleanupFilter.js";

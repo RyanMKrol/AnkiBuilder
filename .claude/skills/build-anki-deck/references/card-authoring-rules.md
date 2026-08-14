@@ -327,8 +327,10 @@ against something the learner hasn't met yet — is impossible, not merely disco
 cards may reference each other freely (it's one unit the learner studies together — the constraint is
 per-chapter, NOT per-card). It writes `note` on any card it improves and `hint` only on a card that
 collides with another card's English gloss (see the collision rule above); a card it returns no `hint`
-for keeps whatever hint it already had. It leaves `reviewNote` untouched and backs each file up once to
-`<file>.pre-enhance.bak`.
+for keeps whatever hint it already had. It leaves `reviewNote` untouched. It RE-READS each file
+immediately before writing and merges in only `note` and `hint`, so an edit you make in the dashboard
+while the pass is running is not overwritten, and it snapshots each file to a stamped
+`<file>.pre-enhance-<YYYYMMDDHHmm>.bak` first, so every run is separately reversible.
 
 The pass writes three kinds of note: backward cross-references (near-synonyms, register), usage/register
 tips, and — highest-value — **false-friend disambiguations**: a card that reuses a form the learner
@@ -344,9 +346,10 @@ ANKI_BUILDER_TRANSLATE_EFFORT=high node scripts/enhance-card-notes.mjs --only <u
 # e.g. … --only chapter-6 output/epubs/japanese-for-busy-people-book-1-kana
 ```
 
-**Never run the bare `<bookDir>` form on a book with finished lessons** — it rewrites their notes and
-overwrites their `.pre-enhance.bak` backups. You do NOT need this script for a new lesson; `prepare`
-already ran the pass for it.
+**Never run the bare `<bookDir>` form on a book with finished lessons** — it rewrites their notes.
+(Each run does leave its own stamped `.bak`, so it is undoable, but undoing a book-wide sweep by hand
+is not a pleasant afternoon.) You do NOT need this script for a new lesson; `prepare` already ran the
+pass for it.
 
 ## Never restate the card
 

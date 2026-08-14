@@ -1614,18 +1614,15 @@ say when it was measured rather than stating it as a standing fact.
 ## `src/cards/crossLessonNotes.js` still uses the unstamped, first-run-only backup
 
 - **What:** the `prepare` pass and `scripts/enhance-card-notes.mjs` share
-  `enhanceLessonNotes`, which backs up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
+  `enhanceLessonNotes`, which backed up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
   writer was left on the old convention while the six `scripts/` writers moved to stamped backups.
 - **Why:** it sits on the `prepare` pipeline path rather than in `scripts/`, and other in-flight work
   edits the same file. Changing it was out of scope for the change that introduced stamping.
-- **Impact:** re-running the enhance pass over a lesson keeps only the pre-first-run snapshot, so the
-  state the second run found is not recoverable from a `.bak`. It is recoverable from git now that
-  `cards.json` is tracked, which is why this was judged safe to defer.
-  `references/card-authoring-rules.md` also claims a re-run "overwrites their `.pre-enhance.bak`
-  backups", which is not what `backupFileOnce` does; the file is kept, not overwritten.
-- **Status:** open
-- **When to revisit:** switch it to `backupFileStamped` next time that file is open, and fix the doc
-  sentence in the same commit.
+- **Impact:** re-running the enhance pass over a lesson kept only the pre-first-run snapshot, so the
+  state the second run found was not recoverable from a `.bak`.
+- **Status:** RESOLVED (WS8 item 4). The pass now writes through `mergeIntoCardsFile`, which uses
+  `writeUnitJson` — validate, stamped `<file>.pre-enhance-<YYYYMMDDHHmm>.bak`, atomic write, re-read
+  and validate. `references/card-authoring-rules.md` was corrected in the same commit.
 
 ## Exclusion provenance is optional, so the 100 exclusions already on disk stay unattributable
 
@@ -1644,6 +1641,71 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if the unattributed count ever needs to go to zero, it has to be a human
   reading each one, not a migration script.
+
+<!-- WS8 — models, pinning and pass mechanics (2026-08) -->
+
+## The eval fixtures are one chapter of one book, and their reference is post-review
+
+- **What:** `scripts/eval-pass.mjs` runs five per-pass fixtures (`src/evals/`) against chapter 25 of
+  the one book whose reviewed data is tracked, and diffs the result against that chapter's reviewed
+  corpus. A 60 KB chapter `.xhtml` is committed under `test/fixtures/evals/chapters/` as the input.
+- **Why:** the extracted-chapter cache is gitignored, so without a committed copy the extraction
+  fixture cannot run on a fresh clone (or in any worktree). It is one chapter of a book this private
+  repo already tracks the reviewed output of, so committing it adds no new class of content.
+- **Impact:** three things. (1) The sample is one chapter, so a prompt edit that helps mid-book and
+  hurts chapter 1 reads as an improvement. (2) The reference is the corpus as SIGNED OFF, which has
+  been through the forward-flag pass, the reviewer's own edits and the drill miner — the extraction
+  fixture filters the mined drills back out by reading `fillInBlank` off the tracked deck, but the
+  reviewer's hand edits are indistinguishable from extraction output and count against a run that
+  reproduced the original extraction exactly. (3) The de-dup fixture runs without the mined `patterns`
+  map, which is not stored anywhere, so its input is thinner than the original run's.
+- **Status:** open
+- **When to revisit:** add a second and third chapter fixture (early and late) when a prompt edit ever
+  disagrees with the chapter-25 result, and persist the mined pattern map if the de-dup fixture is
+  ever used to justify a model downgrade.
+
+## Per-pass pinning is thirteen more env scopes, and the defaults are calibrated on one book
+
+- **What:** every model pass now resolves its model, effort and timeout through its own
+  `ANKI_BUILDER_<PASS>_*` triple before its family's and the unified pair. Extraction defaults to
+  effort `high` with a 25-minute ceiling, cross-lesson notes to 20 minutes, conventions and the
+  taught index to 15.
+- **Why:** one knob covered chapter extraction (silent, unrecoverable misses) and the pedagogical
+  sort (mechanically validated, fails open), so tuning either re-tuned the other. The timeout had to
+  move with the scope or raising effort would just have converted a quality knob into a mid-pass
+  abort.
+- **Impact:** thirteen scopes is more surface than one, and nothing enforces that a pass's runner
+  matches its scope name beyond the wiring itself. The raised ceilings are wall-clock numbers
+  measured against one book (a 57-chapter Japanese textbook) on one machine; a much longer chapter
+  could still hit 25 minutes, and the failure then looks like a timeout rather than "this chapter is
+  too big for one call". Extraction at `high` also costs more per chapter than it did, and nothing
+  measures whether the extra effort is buying anything except the eval fixture, run by hand.
+- **Status:** open
+- **When to revisit:** run the extraction fixture at medium and at high on the same chapter and
+  compare, rather than assuming. If a timeout is ever hit legitimately, split the chapter rather than
+  raising the number again.
+
+## The conventions merge is structural, and its coverage check only reports
+
+- **What:** the whole-book conventions pass now runs in batches of 12 chapters. Each batch's response
+  must quote every one of its chapters' `<title>` back, checked against the cached file, and the
+  batch documents are merged by grouping them under one copy of each `##` heading with a
+  "**Chapters 13-24:**" label per block.
+- **Why:** the pass used to take all 57 chapters in one call under a 10-minute ceiling and
+  self-certify that it had read them all. Batching gives it a partial-progress path and a per-range
+  blame. The merge is structural rather than a second model call because a blending pass would be one
+  more place the book's conventions could be quietly rewritten, and the range labels are worth
+  keeping anyway.
+- **Impact:** two things. (1) The merged document repeats itself: five batches means up to five
+  blocks under "Placeholder Notation", and the extraction prompt embeds the whole thing, so the
+  grounding text is longer and partly redundant. (2) The coverage check never fails the run. A batch
+  that quotes no anchors at all still produces a document, with a `[COVERAGE SHORTFALL]` line in the
+  log that nobody is required to read. That is the deliberate trade from the ruling: hard-failing the
+  one pass that onboards a book on a fragile anchor trades a silent gap for a hard block.
+- **Status:** open
+- **When to revisit:** if the merged document grows unwieldy, add a single de-duplicating pass over
+  the merged text rather than merging at generation time. If shortfall lines turn out to be common
+  and real, surface them in preflight rather than only in the assemble log.
 
 ## Un-shipping a unit changes the package, never the live Anki collection
 
@@ -1961,6 +2023,41 @@ say when it was measured rather than stating it as a standing fact.
   failure mode.
 - **Status:** open
 - **When to revisit:** when WS1's audit scopes land, the library copy is a natural third scope to add.
+
+## The merge discipline covers the fields a pass owns, not the items it never sees
+
+- **What:** `mergeIntoCardsFile` (`src/cards/mergeIntoCardsFile.js`) re-reads `cards.json` after a
+  multi-minute model call and writes back only the calling pass's own fields, appends and removals.
+  `prepare`'s three passes and `crossLessonNotes` go through it; `audio.js` keeps its own copy of the
+  same pattern because it has extra rules (only overwrite a clip THIS stage owns; an absent clip is
+  an absent key, never `audio: null`).
+- **Why:** each pass reads the cards, spends minutes in a model call, then writes — and the dashboard
+  is editable for that whole window. Writing the object read at the start silently discarded any
+  exclude or inline edit made in between, with no trace.
+- **Impact:** two gaps remain. (1) The window is narrowed, not closed: two writers can still
+  interleave between the re-read and the atomic rename, which is microseconds rather than minutes but
+  is not zero. Nothing takes a lock. (2) `audio.js` is a second implementation of the same idea; a
+  future change to the merge semantics has to be made in both places, and only one of them is named
+  after the pattern.
+- **Status:** open
+- **When to revisit:** if a lost edit is ever actually observed, the answer is a lock on the run
+  directory (the claim file already exists and could carry one), not a narrower window. Fold audio.js
+  onto the shared helper the next time its rules are touched.
+
+## The zip entry ceiling is a throw, not zip64
+
+- **What:** `buildZip` throws past 65,535 entries instead of emitting an archive whose EOCD count has
+  wrapped.
+- **Why:** the correct fix for a genuinely larger archive is zip64, which this hand-rolled builder
+  does not implement. Emitting a valid-looking but silently truncated `.apkg` is strictly worse than
+  refusing.
+- **Impact:** a book that somehow needed more than 65,535 media + note entries cannot be packaged at
+  all. Current decks are around 1,900 entries, so this is theoretical.
+- **Status:** open
+- **When to revisit:** only if the throw ever fires. Media memoization (which would reduce the count
+  by about 1%) stays deferred until the headless import verifier exists and passes on a memoized
+  package — the payoff is 22 entries out of 1,914 against re-entering the one code path whose last
+  reasonable-looking change produced a package Anki rejected while passing every test.
 ## Package freshness is an mtime comparison, so a byte-identical rewrite reads as stale
 
 - **What:** `preflight`'s `package-freshness` check FAILs when a done unit's `cards.json` is newer

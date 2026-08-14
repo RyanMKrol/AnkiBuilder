@@ -30,12 +30,31 @@ function dosDateTime() {
   return { time: 0, date: 0b0000000000100001 };
 }
 
+// The end-of-central-directory record stores the entry count in a uint16. Past 65,535 the count
+// wraps, and the archive is structurally corrupt in the worst way: still a valid zip, still readable
+// by anything that trusts the EOCD, silently short by 65,536 entries. See buildZip.
+const MAX_ZIP_ENTRIES = 0xffff;
+
 /**
  * Builds a minimal ZIP archive (deflate-compressed entries, no zip64) from
  * `entries: [{ name, data: Buffer }]`. Sufficient for Anki's .apkg format,
  * which is a plain zip.
+ *
+ * Throws past 65,535 entries rather than emitting a package whose central directory lies about how
+ * much is in it. The alternative is zip64, which this builder does not implement; a `.apkg` that
+ * large has a different problem anyway. The current decks run to about 1,900 entries, so this is a
+ * guard against a future that has not happened, not a limit anyone is near — but the failure it
+ * prevents is silent data loss inside a file that imports without complaint.
  */
 export function buildZip(entries) {
+  if (entries.length > MAX_ZIP_ENTRIES) {
+    throw new Error(
+      `cannot build a zip with ${entries.length} entries: the end-of-central-directory record ` +
+        `holds a uint16 count, so anything past ${MAX_ZIP_ENTRIES} wraps and produces a ` +
+        `structurally corrupt archive (zip64 is not implemented here)`,
+    );
+  }
+
   const { time, date } = dosDateTime();
   const localParts = [];
   const centralParts = [];

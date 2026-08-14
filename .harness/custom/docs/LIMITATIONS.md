@@ -1536,3 +1536,63 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   correct but loses the earlier history (there is no exclusion log, only a current state).
 - **When to revisit:** if the unattributed count ever needs to go to zero, it has to be a human
   reading each one, not a migration script.
+
+## Package freshness is an mtime comparison, so a byte-identical rewrite reads as stale
+
+- **What:** `preflight`'s `package-freshness` check FAILs when a done unit's `cards.json` is newer
+  than the collection's `.apkg`. It compares modification times; it does not open the package.
+- **Why:** the only content-true alternative is to unzip the `.apkg`, read its SQLite collection and
+  diff the notes against `cards.json`, which is a second implementation of the deck writer living
+  next to the first, and drift between the two would be a false all-clear. mtime is the signal that
+  is actually available, and the remedy for a false positive is the same as for a true one: rebuild,
+  which is cheap and idempotent.
+- **Impact:** anything that rewrites a `cards.json` without changing it (a `git checkout`, a restore
+  from a `.bak`, a fresh clone) turns the check red for every collection until the packages are
+  rebuilt. It is red on landing day for exactly this reason. A false positive costs one command; it
+  never causes a wrong belief, because "we cannot show the package matches" is the honest state.
+- **When to revisit:** if the rebuild-on-false-positive habit becomes routine enough to be annoying,
+  stamp a build receipt (source file hashes) into the collection dir at build time and compare that
+  instead. Wait until WS1 item 9's import verifier exists, since it already opens packages.
+
+## `.preflight-accepted.json` records the decision, not the evidence for it
+
+- **What:** an ACK acknowledgement is keyed on `(checkId, findingKey)`, e.g.
+  `cross-collection-ids` + `identical/pen`. It stores the message as it read at the time, plus a
+  timestamp and an optional note. It does NOT store a hash of the card content the finding was about.
+- **Why:** hashing the content would mean every legitimate edit to an accepted card silently
+  un-accepts it, and the operator would meet the same finding again with no way to tell an edit from
+  a regression. Keying on identity keeps "I have looked at this pair" true across ordinary editing.
+- **Impact:** if an accepted pair later changes into a genuinely different problem under the same
+  key (the two `pen` cards stop being byte-identical, say), the acknowledgement still covers it and
+  the finding stays quiet. The finding keys are chosen to make this narrow (the identical/differing
+  classification is part of the key for cross-collection ids, so that particular drift DOES re-red),
+  but the general hole is real.
+- **When to revisit:** if a finding class turns out to change meaning under a stable key, fold the
+  distinguishing fact into the key, as `identical/` vs `differs/` already does.
+
+## Cross-deck gloss agreement is a shallow string normalizer, not a synonym engine
+
+- **What:** `glossAlternatives` lowercases, drops parentheticals and `___` blanks, splits on commas
+  and slashes, unifies ordinals, strips a leading article and a trailing plural. Two glosses agree if
+  their alternative sets intersect.
+- **Why:** the check's first run reported 99 findings, ~85 of which were one card taught in two books
+  with slightly different wording ("Big" vs "Big, large", "4th floor" vs "Fourth floor"). A report
+  that noisy trains the operator to skim it. A real synonym engine would need a dictionary and would
+  bring its own wrong answers.
+- **Impact:** genuinely equivalent glosses that share no words still read as a difference ("Car park"
+  vs "Parking lot"), and glosses that share a word but mean different things read as agreement. The
+  check is INFO precisely because of this: it is a pointer for a human, never a gate.
+- **When to revisit:** only if the Recognition-direction list is ever promoted above INFO.
+
+## Preflight is not in `npm run ci`, and deliberately not in the pre-push hook
+
+- **What:** `npm run ci` (which the pre-push hook runs) stays format/lint/test/build. Preflight and
+  `validate:decks` are the separate `npm run check`, run by hand.
+- **Why:** `npm run ci` asserts on tracked state and passes in a fresh clone. Preflight asserts on
+  `output/`, whose bulk is gitignored and untracked. Wiring it into the hook couples `git push` to
+  unversioned deck state, is a no-op in CI and a fresh clone by construction, and would block a README
+  typo behind a deck rebuild whose only escape is `--no-verify`.
+- **Impact:** the deterministic gate is only as reliable as the habit of running it. Nothing forces
+  it before a review link is handed over or before a deliver; the skill doc says to, and that is all.
+- **When to revisit:** if the gate is skipped in practice, add the preflight half to the hook as
+  ADVISORY: print, never contribute a non-zero exit.

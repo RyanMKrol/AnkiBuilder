@@ -213,7 +213,26 @@ tool when they sit in a content section. For the `--epub` path, `extractChapterT
 (`src/corpus/epubArchive.js`) makes this possible by also extracting every image the chapter's
 `<img src>` tags reference, at the same relative path from the cached chapter file that the src
 attribute encodes from the original chapter file inside the archive — so those references resolve
-to real files on disk instead of a directory that was never unpacked. All three paths produce the
+to real files on disk instead of a directory that was never unpacked.
+
+That path is not decorative: the model opens these files, so a wrong image is wrong card content
+with nothing to show for it. Three detectors guard it (all in `extractReferencedImages` /
+`copyImageAsset`):
+
+- **Collision byte-compare.** Every chapter's images land in one shared `chapters/` directory, so
+  two chapters in different archive directories referencing the same relative filename (the standard
+  Sigil/InDesign layout) overwrite each other. On write, differing bytes are logged loudly naming
+  both archive paths, both referring chapters, and the shared destination; identical bytes stay
+  quiet. The count is also computed statically in the shape report, before any extraction.
+- **Containment.** An image `src` comes from the archive and `../` in it is unfiltered, so a crafted
+  zip could write through the cache into repo source. Any destination resolving outside the book's
+  own cache directory is refused and logged. A legitimate `../images/foo.png` is unaffected.
+- **SVG wrappers.** An `.svg` is very often a wrapper whose whole content is
+  `<image href="the-real-page.jpg">`. A copied SVG is re-scanned one level deep and what it
+  references is copied too, and every copied SVG is logged so the shape report's SVG count can be
+  read as "these may be wrappers".
+
+All three paths produce the
 same superset item shape: `{ id, english, category, hint, note, reviewNote, target }` — the three
 note fields are strictly separated (`hint` front-of-card cue, `note` back-of-card context,
 `reviewNote` internal review-only rationale; a legacy blended `notes` folds into `reviewNote`) —

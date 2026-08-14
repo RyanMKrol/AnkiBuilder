@@ -1487,3 +1487,31 @@ Each row: what it is, *why* it was chosen, its **impact**, and *when to revisit*
   but is a behaviour change for any book relying on commented-out images.
 - **When to revisit:** if a book ever parses to zero manifest items or zero nav entries, check this
   first — it is the only step that rewrites the source before scanning.
+
+## The image collision is detected, not prevented
+
+- **What:** `copyImageAsset` byte-compares before writing and logs a loud collision naming both
+  archive paths and the shared destination, but every chapter's images still land in one shared
+  `chapters/` directory, so the second write still wins.
+- **Why:** the layout that would close it by construction (mirroring the archive layout under
+  `chapters/`) moves the cache path and interacts with `isCachedChapterFile`. The review ruled the
+  detector ships first and the layout change second, behind the hostile-fixture suite, because this
+  is the code path whose last obviously-reasonable change produced an artifact the real consumer
+  rejected while every test passed — and the real consumer here (a model opening a file by relative
+  path) is exercised by no test.
+- **Impact:** on a book with the standard Sigil/InDesign layout, one chapter's figure can be
+  replaced by another's, and the only signal is a log line during extraction. A per-chapter
+  subdirectory would not fully close it either: two chapters in different directories both
+  referencing `../images/foo.png` still collide, so the detector stays in any design.
+- **When to revisit:** when the archive-layout mirror lands (WS2 item 4). The detector stays.
+
+## SVG re-scanning goes one level deep
+
+- **What:** a copied `.svg` is re-scanned for the images it references and those are copied too, but
+  only one level down.
+- **Why:** the wrapper idiom (`<svg><image href="page.jpg"/></svg>`) is one level by construction,
+  and a depth cap is what makes the recursion incapable of looping on a self-referencing SVG.
+- **Impact:** an SVG referencing an SVG referencing a raster image copies the first two and not the
+  third. No known book does this.
+- **When to revisit:** if an SVG-heavy book turns up where images are still missing after
+  extraction — the copied-SVG log lines are the trail.

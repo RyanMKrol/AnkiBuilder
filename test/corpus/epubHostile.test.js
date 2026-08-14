@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert";
-import { mkdtempSync, rmSync, writeFileSync } from "fs";
+import { mkdtempSync, rmSync, writeFileSync, existsSync, readFileSync } from "fs";
 import { tmpdir } from "os";
-import { join } from "path";
+import { join, dirname } from "path";
 import { buildFixtureEpub, buildZip, containerXml } from "../support/epubFixtures.js";
-import { listExternalChapters } from "../../src/corpus/epubArchive.js";
+import { listExternalChapters, extractChapterToFile } from "../../src/corpus/epubArchive.js";
 import { listLessons, resolveLesson } from "../../src/corpus/epubLessons.js";
 import { buildShapeReport } from "../../src/corpus/epubShapeReport.js";
 
@@ -295,5 +295,122 @@ test("hostile: a nav block with more anchors than parsed entries is reported", (
     assert.ok(
       report.warnings.some((w) => w.includes("more entr(ies) than this parser could read")),
     );
+  });
+});
+
+test("hostile: two chapters writing different bytes to one cached image path is logged as a collision", () => {
+  withTempDir((dir) => {
+    // The standard Sigil/InDesign layout: chapters in their own directories, each with its
+    // own images beside it. Both reference "fig.png"; both land on chapters/fig.png.
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "c1", href: "one/ch1.xhtml" },
+        { id: "c2", href: "two/ch2.xhtml" },
+      ],
+      spineIdrefs: ["c1", "c2"],
+      extraFiles: [
+        { name: "OEBPS/one/ch1.xhtml", content: page("One", '<img src="fig.png"/>') },
+        { name: "OEBPS/two/ch2.xhtml", content: page("Two", '<img src="fig.png"/>') },
+        { name: "OEBPS/one/fig.png", content: "first-image-bytes" },
+        { name: "OEBPS/two/fig.png", content: "second-image-bytes" },
+      ],
+    });
+
+    const logged = [];
+    const log = (msg) => logged.push(msg);
+    extractChapterToFile(epubPath, 1, join(dir, "cache", "chapters", "1.xhtml"), { log });
+    extractChapterToFile(epubPath, 2, join(dir, "cache", "chapters", "2.xhtml"), { log });
+
+    const collision = logged.find((m) => m.includes("IMAGE COLLISION"));
+    assert.ok(collision, "the second write must name the collision");
+    // Both sides and the shared destination, or the log cannot be acted on.
+    assert.match(collision, /OEBPS\/one\/fig\.png/);
+    assert.match(collision, /OEBPS\/two\/fig\.png/);
+    assert.match(collision, /fig\.png/);
+  });
+});
+
+test("hostile: identical bytes on a shared image path are not reported as a collision", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "c1", href: "one/ch1.xhtml" },
+        { id: "c2", href: "two/ch2.xhtml" },
+      ],
+      spineIdrefs: ["c1", "c2"],
+      extraFiles: [
+        { name: "OEBPS/one/ch1.xhtml", content: page("One", '<img src="fig.png"/>') },
+        { name: "OEBPS/two/ch2.xhtml", content: page("Two", '<img src="fig.png"/>') },
+        { name: "OEBPS/one/fig.png", content: "same-bytes" },
+        { name: "OEBPS/two/fig.png", content: "same-bytes" },
+      ],
+    });
+
+    const logged = [];
+    const log = (msg) => logged.push(msg);
+    extractChapterToFile(epubPath, 1, join(dir, "cache", "chapters", "1.xhtml"), { log });
+    extractChapterToFile(epubPath, 2, join(dir, "cache", "chapters", "2.xhtml"), { log });
+
+    assert.ok(!logged.some((m) => m.includes("IMAGE COLLISION")));
+  });
+});
+
+test("hostile: an image src escaping the book's cache directory is refused, not written", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "c1", href: "xhtml/ch1.xhtml" }],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch1.xhtml",
+          content: page("One", '<img src="../../../escaped.png"/>'),
+        },
+        // A zip may name an entry anything at all, including a traversal path.
+        { name: "../escaped.png", content: "hostile-bytes" },
+      ],
+    });
+
+    const logged = [];
+    extractChapterToFile(epubPath, 1, join(dir, "cache", "chapters", "1.xhtml"), {
+      log: (msg) => logged.push(msg),
+    });
+
+    assert.ok(logged.some((m) => m.includes("REFUSED image")));
+    assert.ok(!existsSync(join(dir, "escaped.png")));
+    assert.ok(!existsSync(join(dirname(dir), "escaped.png")));
+  });
+});
+
+test("hostile: an SVG wrapper's own referenced image is copied too, and the SVG is announced", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [{ id: "c1", href: "xhtml/ch1.xhtml" }],
+      spineIdrefs: ["c1"],
+      extraFiles: [
+        {
+          name: "OEBPS/xhtml/ch1.xhtml",
+          content: page("One", '<img src="../images/page.svg"/>'),
+        },
+        {
+          name: "OEBPS/images/page.svg",
+          content:
+            '<svg xmlns="http://www.w3.org/2000/svg"><image xlink:href="scan.jpg" width="100"/></svg>',
+        },
+        { name: "OEBPS/images/scan.jpg", content: "real-page-bytes" },
+      ],
+    });
+
+    const logged = [];
+    extractChapterToFile(epubPath, 1, join(dir, "cache", "chapters", "1.xhtml"), {
+      log: (msg) => logged.push(msg),
+    });
+
+    // Copying the wrapper alone would leave the model reading XML that points at nothing.
+    assert.ok(existsSync(join(dir, "cache", "images", "page.svg")));
+    assert.equal(
+      readFileSync(join(dir, "cache", "images", "scan.jpg"), "utf-8"),
+      "real-page-bytes",
+    );
+    assert.ok(logged.some((m) => m.includes("copied SVG") && m.includes("page.svg")));
   });
 });

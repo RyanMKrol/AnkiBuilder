@@ -1,7 +1,7 @@
 import { readFileSync, mkdirSync, statSync } from "fs";
 import { writeFileAtomic } from "../util/atomicWrite.js";
 import { inflateRawSync } from "zlib";
-import { posix, dirname, join } from "path";
+import { posix, dirname, join, resolve, sep } from "path";
 
 const EOCD_SIGNATURE = 0x06054b50;
 const CENTRAL_DIRECTORY_SIGNATURE = 0x02014b50;
@@ -764,28 +764,116 @@ function referencedImageSrcs(rawContent) {
   );
 }
 
+// Which chapter last wrote each image path in THIS process, so a collision can name both
+// sides rather than just the one it caught. Process-scoped only (one CLI invocation
+// processes one book); a collision between two separate runs still reports the dest and the
+// incoming chapter, which is enough to find it.
+const imageWriteProvenance = new Map();
+
+function isInside(root, candidate) {
+  return candidate === root || candidate.startsWith(root + sep);
+}
+
+// One image asset: found in the archive, contained, byte-compared, written, and — when it is
+// an SVG — re-scanned for the raster image it wraps.
+//
+// `containmentRoot` is the book's own cache directory (chapters/ lives directly under it).
+// `src` comes from the archive and `../` in it is not filtered anywhere, so without this a
+// crafted zip could write through the cache into repo source. Legitimate `../images/foo.png`
+// (the standard Sigil layout) stays inside the book directory and is unaffected.
+function copyImageAsset(entries, { archivePath, destPath, referrer, containmentRoot, log, depth }) {
+  // Containment is checked FIRST, before the archive is even consulted: a path that escapes
+  // is worth naming whether or not this particular zip carries the entry to go with it.
+  const resolvedDest = resolve(destPath);
+  if (!isInside(containmentRoot, resolvedDest)) {
+    log(
+      `[epub] REFUSED image "${archivePath}" referenced by ${referrer}: its path escapes the book's ` +
+        `cache directory (${containmentRoot}) and would write to ${resolvedDest}`,
+    );
+    return;
+  }
+
+  const imageEntry = entries.find((e) => e.name === archivePath);
+  if (!imageEntry) {
+    // A dangling ref is tolerated (the extraction prompt just won't find the file), but
+    // never silent — the model is told to open images, so a missing one is a real gap.
+    log(`[epub] image referenced by ${referrer} not in archive, skipped: ${archivePath}`);
+    return;
+  }
+
+  // THE COLLISION. Every chapter's images land in one shared chapters/ directory, so two
+  // chapters in different archive directories referencing the same relative filename
+  // overwrite each other — and a swapped image is swapped card content, because the
+  // extraction model opens these files by path. Byte-compare so identical images (the common,
+  // harmless case) stay quiet and genuinely different bytes are named.
+  let existing = null;
+  try {
+    existing = readFileSync(resolvedDest);
+  } catch {
+    existing = null;
+  }
+  if (existing && !existing.equals(imageEntry.data)) {
+    const previous = imageWriteProvenance.get(resolvedDest);
+    log(
+      `[epub] IMAGE COLLISION at ${resolvedDest}: "${archivePath}" (referenced by ${referrer}) ` +
+        `has different bytes from ` +
+        (previous
+          ? `"${previous.archivePath}" (referenced by ${previous.referrer})`
+          : `what is already there`) +
+        ` — one overwrites the other, and the extraction model reads whichever wins`,
+    );
+  }
+
+  // Unconditional (not existsSync-guarded) and atomic: an image path can be shared by two
+  // chapters, so two processes may write the same file at once. The bytes are a pure
+  // function of the EPUB, so last-writer-wins is harmless once each write is atomic —
+  // whereas an existsSync skip could hand a reader a half-written PNG.
+  writeFileAtomic(resolvedDest, imageEntry.data);
+  imageWriteProvenance.set(resolvedDest, { archivePath, referrer });
+
+  // An .svg is very often a wrapper whose whole content is <image href="the-real-page.jpg">.
+  // Copying only the wrapper leaves the model reading an XML file that points at a raster
+  // image that is not on disk. One level of nesting is enough for the wrapper idiom and
+  // cannot loop.
+  if (/\.svg$/i.test(archivePath)) {
+    log(
+      `[epub] copied SVG "${archivePath}" (referenced by ${referrer}) — an SVG is often a wrapper`,
+    );
+    if (depth < 1) {
+      const svgDir = posix.dirname(archivePath);
+      const svgDestDir = dirname(resolvedDest);
+      for (const nested of referencedImageSrcs(imageEntry.data.toString("utf-8"))) {
+        copyImageAsset(entries, {
+          archivePath: posix.normalize(posix.join(svgDir, nested)),
+          destPath: join(svgDestDir, nested),
+          referrer: `${referrer} via ${archivePath}`,
+          containmentRoot,
+          log,
+          depth: depth + 1,
+        });
+      }
+    }
+  }
+}
+
 function extractReferencedImages(entries, chapter, content, destPath, log = () => {}) {
   const srcs = referencedImageSrcs(content);
 
   const chapterDir = posix.dirname(chapter.href);
   const destDir = dirname(destPath);
+  // chapters/ sits directly under the book's cache directory, so its parent is the boundary
+  // every extracted asset must stay inside.
+  const containmentRoot = resolve(destDir, "..");
 
   for (const src of srcs) {
-    const archivePath = posix.normalize(posix.join(chapterDir, src));
-    const imageEntry = entries.find((e) => e.name === archivePath);
-    if (!imageEntry) {
-      // A dangling ref is tolerated (the extraction prompt just won't find the file), but
-      // never silent — the model is told to open images, so a missing one is a real gap.
-      log(`[epub] image referenced by ${chapter.href} not in archive, skipped: ${src}`);
-      continue;
-    }
-
-    const localDest = join(destDir, src);
-    // Unconditional (not existsSync-guarded) and atomic: an image path can be shared by two
-    // chapters, so two processes may write the same file at once. The bytes are a pure
-    // function of the EPUB, so last-writer-wins is harmless once each write is atomic —
-    // whereas an existsSync skip could hand a reader a half-written PNG.
-    writeFileAtomic(localDest, imageEntry.data);
+    copyImageAsset(entries, {
+      archivePath: posix.normalize(posix.join(chapterDir, src)),
+      destPath: join(destDir, src),
+      referrer: chapter.href,
+      containmentRoot,
+      log,
+      depth: 0,
+    });
   }
 }
 

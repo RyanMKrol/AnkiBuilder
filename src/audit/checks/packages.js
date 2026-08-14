@@ -77,6 +77,13 @@ export const packageFreshnessCheck = defineCheck({
 
     const packagePath = resolveDeckPathForDir(collection.dir);
     if (!existsSync(packagePath)) {
+      // A template deck has no `done` gate, so "no package" means "never built", which is a
+      // perfectly ordinary state for a template that was assembled but not yet packaged. For a book
+      // or a course, `done` is the human's statement that the lesson ships — so a missing package
+      // there means something they believe is shipping is not.
+      if (collection.kind === "template") {
+        return { skipped: "no package built for this template yet" };
+      }
       return {
         findings: [
           {

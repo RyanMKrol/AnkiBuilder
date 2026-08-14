@@ -2020,3 +2020,49 @@ say when it was measured rather than stating it as a standing fact.
   it before a review link is handed over or before a deliver; the skill doc says to, and that is all.
 - **When to revisit:** if the gate is skipped in practice, add the preflight half to the hook as
   ADVISORY: print, never contribute a non-zero exit.
+
+## The `.apkg` import verifier needs Python, so it can never be part of the automatic gate
+
+- **What:** `scripts/verify-apkg-import.mjs` shells out to the pinned `anki` Python package in a
+  virtualenv it bootstraps under `.anki-builder/verify-venv/`. It is not in `npm run ci` and not in
+  `npm run check`.
+- **Why:** it is the only tool here that can disagree with our own `.apkg` writer, because it runs a
+  real import rather than another assertion written by the same repo. But it needs a Python
+  toolchain and a one-time wheel download, and `npm run ci` has to stay green in a fresh clone on a
+  machine with neither.
+- **Impact:** a package-format regression is caught only when someone remembers to run it. It is
+  documented as a Definition-of-Done step for the first-ever build of a new source type and for any
+  change to how packages are written, and that documentation is the whole enforcement. Its
+  end-to-end test is env-gated (`ANKI_BUILDER_VERIFY_APKG=1`) and skips cleanly otherwise, so the
+  suite reports "skipped", never "passed", when Python is absent.
+- **When to revisit:** if CI ever gains a Python-capable job, run the smoke target there. Do not add
+  it to the pre-push hook: that couples `git push` to a network fetch.
+
+## The behaviour probes are written, tested and NEVER RUN, so five delivery answers are still blank
+
+- **What:** `scripts/anki-behaviour-probe.mjs` and `src/anki/behaviourProbe.js` exist, are covered by
+  17 tests driving an injected fake client, and have never touched a live collection. The results
+  table in `references/deliver.md` reads "not yet run" in every row.
+- **Why:** running them needs a human to create the `ANKIBUILDER-PROBE` profile, its sentinel deck
+  and a filtered deck inside it, and to have that profile open. Creating, resetting and deleting
+  that profile stay human steps forever: a script that can delete a profile is a script that can
+  delete the wrong profile, and no interlock makes that safe.
+- **Impact:** anything gated on a probe answer stays blocked. Per-card direction suspension and the
+  one-time deck-name re-file both cite these results, and neither may ship on a guess. The
+  interlock's own correctness is tested, but "the interlock refuses the owner's real collection" is
+  tested against a fake, not against the real one.
+- **When to revisit:** the moment the probe profile exists. Run `--check` first (it writes nothing),
+  then `--run`, then fill in the table with the date.
+
+## `suspend`, `unsuspend` and `changeDeck` are in the client with no shipping caller
+
+- **What:** three new AnkiConnect actions were added to `src/anki/ankiConnect.js` for the probes.
+  Nothing in the delivery path calls them.
+- **Why:** the probes need them, and a probe script that reached past the shared client to build its
+  own HTTP calls would be a second, unreviewed way to write to a live collection.
+- **Impact:** the client now exposes three scheduling-mutating calls that no test of the delivery
+  path constrains. A future change could reach for one without the consent machinery that
+  `changeDeck` and `suspend` are supposed to carry. The comment above them says so; nothing enforces
+  it.
+- **When to revisit:** when per-card direction suspension lands, route both through the same
+  consent-and-preview path the model-change guard uses, and delete this row.

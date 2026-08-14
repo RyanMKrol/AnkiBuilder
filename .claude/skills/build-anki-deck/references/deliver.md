@@ -19,7 +19,29 @@ cards. Run it dry first to preview:
 node scripts/deliver-to-anki.mjs --dry            # preview every managed deck (read-only)
 node scripts/deliver-to-anki.mjs                  # back up, then deliver
 node scripts/deliver-to-anki.mjs course:my-course # limit to one deck (type:id)
+node scripts/deliver-to-anki.mjs --allow-model-change   # consent to a template/CSS rewrite
 ```
+
+**Run `npm run check` before a deliver.** It is `ci && validate:decks && preflight`, the full
+deterministic gate over both the code and the on-disk deck state.
+
+### The note type is shared, so a template change is refused unless you ask for it
+
+The note type is keyed on LANGUAGE alone (`AnkiBuilder ja`), which means every Japanese deck in the
+collection shares one: delivering the three-lesson course rewrites the card faces of the 2,000-card
+book at the same moment. That sharing is correct and stays. What was missing was any warning before
+the write.
+
+So a delivery that would change **card templates or CSS** now stops:
+
+- `--dry` prints a unified diff of what is live in Anki against what this build would write, plus
+  every deck using that note type and how many cards that is. It writes nothing.
+- A real deliver refuses unless you pass `--allow-model-change`.
+- Adding a FIELD, and creating the note type from scratch, are NOT gated: neither can change what an
+  existing card looks like.
+
+Remember that a template or CSS change also flips Anki's schema, which forces the one-way full
+AnkiWeb sync you have to finish by hand in the GUI.
 
 Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
 open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.
@@ -84,6 +106,77 @@ does NOT overwrite existing notes' scheduling or content: it looks like it worke
 nothing. That non-obvious two-step is exactly why this script exists; use it rather than importing a
 backup by hand. Anki must be open with AnkiConnect. After a restore, do NOT sync blindly: if the bad
 state already reached AnkiWeb, choose **Upload to AnkiWeb** so the restored local copy wins.
+
+## Live-AnkiConnect behaviour probes (a SEPARATE profile, never yours)
+
+Three questions about delivery cannot be answered without a live collection, and until they are
+answered nothing that depends on them may ship:
+
+1. Does a template update regenerate a card row the `.apkg` writer omitted, and does it UNSUSPEND
+   anything? (Per-card direction control depends on this.)
+2. What does `changeDeck` do to a card sitting in a FILTERED deck, with a non-zero `odid`? (The
+   one-time deck-name re-file depends on this.)
+3. What does `suspend` do to a card with a non-zero `odid`, and does a template update or a Check
+   Database bring it back?
+
+`scripts/anki-behaviour-probe.mjs` answers them. **It performs experimental schema-modifying writes,
+deck moves and suspends.** AnkiConnect listens on `127.0.0.1:8765` and talks to whichever profile is
+OPEN, and the add-on is installed for the whole INSTALLATION, so it is live in every profile
+including the one you study daily.
+
+### The interlock
+
+The guard is not this runbook. It is a fail-closed interlock checked at startup **and re-checked
+immediately before every write**, because a profile switch mid-run is exactly the accident it exists
+to catch. All four must hold:
+
+| | condition | why this one |
+|---|---|---|
+| (a) | no note type matches `AnkiBuilder …` | a pattern, not today's two names, so a rename cannot defeat it |
+| (b) | `findNotes("tag:abid:*")` returns zero | the durable delivery tag survives a note-type rename, catching what (a) misses |
+| (c) | the deck `ANKIBUILDER-PROBE-ONLY` exists AND the collection holds under 200 **cards** | cards, not notes: a two-template note type makes 150 notes into 300 cards, and it is cards these probes move |
+| (d) | no deck matches a delivered marker's `ankiParent` | the last line: your real decks by name |
+
+Any one failing stops the run and writes nothing. **Never relax the interlock to make a run work.**
+If it refuses, the reachable collection is not the probe profile.
+
+### What you do by hand (never scripted)
+
+1. Anki: **File > Switch Profile > Add**, name it exactly `ANKIBUILDER-PROBE`, open it.
+2. In that profile, create a deck named exactly `ANKIBUILDER-PROBE-ONLY`.
+3. Add two or three trivial notes to it, then **Tools > Create Filtered Deck** from
+   `deck:ANKIBUILDER-PROBE-ONLY`, named exactly `ANKIBUILDER-PROBE-FILTERED`. Probes 2 and 3 need a
+   card with a non-zero `odid`, and they SKIP rather than guess if it is not there.
+4. Run the probes.
+5. **File > Switch Profile** back to your own.
+
+Resetting between sessions is step 1 again: delete the probe profile and recreate it. That deletion
+stays a human step forever. A script that can delete a profile is a script that can delete the wrong
+one, and no interlock makes that safe. The script also creates its own note type (`PROBE-ONLY Note`)
+only AFTER the interlock passes, and deliberately shares no prefix with the deliverable one, so a
+second run cannot refuse itself.
+
+```sh
+node scripts/anki-behaviour-probe.mjs --check     # interlock only; writes NOTHING. Always start here.
+node scripts/anki-behaviour-probe.mjs --run       # the probes
+node scripts/anki-behaviour-probe.mjs --run --json
+```
+
+There is no default action: a bare invocation prints usage and exits non-zero, so a mistyped flag
+cannot turn into a write.
+
+### Results
+
+Record the answers here, dated, as soon as a session produces them. Anything gated on a probe reads
+this table, not a memory of a run.
+
+| probe | answer | recorded |
+|---|---|---|
+| 1. template update regenerates a missing card row | not yet run | |
+| 1. template update unsuspends | not yet run | |
+| 2. `changeDeck` on a card with non-zero `odid` | not yet run | |
+| 3. `suspend` on a card with non-zero `odid` | not yet run | |
+| 3. template update / Check Database unsuspends | not yet run | |
 
 ## Rules for a collection managed this way
 

@@ -268,6 +268,27 @@ node scripts/preflight.mjs --all --accept --note "same word, taught in both book
 `npm run validate:decks` is now `preflight --schema-only` through the same loader, so the two
 commands can no longer disagree about which directories are units.
 
+`npm run check` is `ci && validate:decks && preflight`: the full gate over tracked code and on-disk
+deck state. Run it before handing over a review link and before a deliver. It is deliberately NOT in
+the `pre-push` hook, which stays `npm run ci` only. Preflight asserts on `output/`, whose bulk is
+gitignored and untracked, so wiring it into the hook would couple `git push` to unversioned deck
+state, be a no-op in CI and a fresh clone by construction, and block a README typo behind a deck
+rebuild.
+
+### Two tools that talk to real Anki
+
+Neither is part of any automatic gate, and both are documented in
+`.claude/skills/build-anki-deck/references/deliver.md`.
+
+- `node scripts/verify-apkg-import.mjs --smoke` imports a package into a **throwaway collection**
+  using the pinned `anki` Python package in a virtualenv it bootstraps. No running Anki, nothing on
+  port 8765. Three shipped `.apkg` format bugs passed every synthetic check in this repo because
+  nothing ever ran a real import; this is the tool that can disagree with our own writer.
+- `node scripts/anki-behaviour-probe.mjs --check` answers what AnkiConnect actually does to a live
+  card (template regeneration, `changeDeck` and `suspend` on a card in a filtered deck) against a
+  **separate throwaway profile**, behind a fail-closed interlock that is re-asserted before every
+  single write. `--check` runs the interlock and writes nothing; there is no default action.
+
 Adding a check is one `defineCheck` in `src/audit/checks/` plus one line in
 `src/audit/checks/index.js`; nothing in `scripts/` changes. The standing rule: **a check promoted to
 FAIL ships in the same commit as the fix, or the ACK, for its live instances.** A red gate the

@@ -76,6 +76,17 @@ export function createAnkiConnect({
     updateNoteFields: (id, fields) => invoke("updateNoteFields", { note: { id, fields } }),
     addTags: (notes, tags) => invoke("addTags", { notes, tags }),
 
+    // --- card state ---
+    //
+    // ⚠️ These three are LIVE writes to a card's scheduling, and nothing in the delivery path calls
+    // them yet. They exist for scripts/anki-behaviour-probe.mjs, which answers what they actually do
+    // to a card sitting in a filtered deck before any shipping code is allowed to use them. See
+    // src/anki/behaviourProbe.js: the probes run only against a throwaway profile, behind a
+    // fail-closed interlock.
+    suspend: (cards) => invoke("suspend", { cards }),
+    unsuspend: (cards) => invoke("unsuspend", { cards }),
+    changeDeck: (cards, deck) => invoke("changeDeck", { cards, deck }),
+
     // --- media & backup ---
     storeMediaFile: (params) => invoke("storeMediaFile", params),
     exportPackage: (deck, path, includeSched = true) =>

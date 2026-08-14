@@ -85,6 +85,7 @@ td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:va
 .badge-drop{color:var(--accent);border-color:var(--accent)}
 .badge-ai{color:#3f6f6a;border-color:#3f6f6a}.badge-uncertain{color:#8a6a24;border-color:#8a6a24}
 .badge-marker{color:#8a2a24;border-color:#8a2a24}
+.badge-stale{color:#8a2a24;border-color:#8a2a24}
 .rowflags{margin-top:4px;display:flex;gap:5px;flex-wrap:wrap}
 tr.row.excluded td{color:var(--faint);text-decoration:line-through}
 .tw{overflow-x:auto}
@@ -246,11 +247,17 @@ const uncertainBadge = `<span class="badge badge-uncertain">Uncertain</span>`;
 // The automatic trim could not cut the TTS end marker off this card's clip — it is audible in the
 // shipping take until the reviewer replaces or re-generates the audio.
 const markerStuckBadge = `<span class="badge badge-marker">Marker audible</span>`;
+// The clip on this card was generated from text the card no longer has — an edit to `target` or
+// `ttsText` after the audio was made. A badge and not a block: every exit from it either destroys a
+// reviewer's hand trim / hand pick or re-spends credits, so the decision is theirs. See
+// src/audio/textHash.js, and the "keep this clip" button in the Audio column beside it.
+const textStaleBadge = `<span class="badge badge-stale" title="This clip was generated from different text — re-generate it, or keep it with the button in the Audio column">Text changed</span>`;
 const provenanceBadges = (c) =>
   [
     c.aiSuggested ? aiBadge : "",
     c.uncertain ? uncertainBadge : "",
     c.audioMarkerStuck ? markerStuckBadge : "",
+    c.audioTextState === "stale" ? textStaleBadge : "",
   ]
     .filter(Boolean)
     .join(" ");

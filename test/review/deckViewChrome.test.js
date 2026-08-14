@@ -108,6 +108,50 @@ test("review surfaces AI-suggested / Uncertain at every stage (tick columns + No
   }
 });
 
+// Two badges about the AUDIO rather than the card. "Marker audible" was stored, schema'd and
+// rendered for months while the render-card mapper dropped the field — so it never once appeared.
+test("the audio review badges a stuck end marker and a clip whose text has changed", () => {
+  const cards = [
+    {
+      id: "a",
+      english: "one",
+      target: "いち",
+      pronunciation: "ichi",
+      category: "Numbers",
+      audio: "a.mp3",
+      audioMarkerStuck: true,
+    },
+    {
+      id: "b",
+      english: "two",
+      target: "に",
+      pronunciation: "ni",
+      category: "Numbers",
+      audio: "b.mp3",
+      audioTextState: "stale",
+    },
+    {
+      id: "c",
+      english: "three",
+      target: "さん",
+      pronunciation: "san",
+      category: "Numbers",
+      audio: "c.mp3",
+      audioTextState: "current",
+    },
+  ];
+  const { html } = renderLessonSections({
+    sections: [{ leaf: "L", stage: "audio", cards }],
+    audioCell: () => "",
+  });
+  assert.match(html, /badge-marker/);
+  assert.match(html, /Marker audible/);
+  assert.match(html, /badge-stale/);
+  assert.match(html, /Text changed/);
+  // Exactly one row is badged stale — a current clip must not be.
+  assert.equal(html.match(/badge-stale/g).length, 1);
+});
+
 test("reviewNote is shown ONLY in the review (showReviewNote), never in the read-only render", () => {
   const cards = [
     {

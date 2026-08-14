@@ -2392,3 +2392,26 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** check the chapter's images in beside it (they are already in the book's cache
   under `.anki-builder/epubs/<hash>/`), or have the fixture point the extractor at the cached chapter
   path instead of the copy under `test/fixtures/`.
+
+<!-- WS5 -->
+
+## The audio text-hash badge is a badge, and 30 clips can never be checked at all
+
+- **What:** `audioTextHash` records what text each clip was generated from, so the ~200 hand-picked,
+  hand-trimmed and uploaded cards stop being exempt from the text-changed check. It reports, in the
+  audio review (a **Text changed** badge) and in `npm run preflight` (`audio text hash`). It does not
+  block "Mark done", and 30 live clips carry a hand-given name with no hash in it, so nobody can say
+  whether they still match their card.
+- **Why:** a block would have been the first ever gate on the owner's daily path, and a mismatch has
+  no exit that does not destroy the reviewer's hand trim or hand pick — the "Keep this clip" button
+  is the exit, and it is a decision, not a fix. The 30 are unverifiable because the only other way to
+  give them a hash is to compute one from the card's current text, which would declare every drifted
+  clip correct in a single pass and destroy the signal permanently.
+- **Impact:** a stale clip still ships until a human acts on the badge. Coverage is 2,143 of 2,173
+  audio-bearing cards; the remaining 30 report as unverifiable forever unless their audio is
+  regenerated or re-picked, which would cost credits and re-open takes a human already approved.
+- **Status:** open — badge-only by design, pending a measurement of how often it goes red in practice.
+- **Verified by:** `node scripts/preflight.mjs --all --only audio-text-hash --verbose`
+- **When to revisit:** once the live stale count has been observed over a few chapters. If it stays
+  at or near zero, promoting the check to ACK (accept-or-fix, not a hard block) is the next rung —
+  the exit action and its provenance fields already exist, which is what a promotion needs.

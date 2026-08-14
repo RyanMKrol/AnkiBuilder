@@ -210,6 +210,16 @@ const CARDS_SCHEMA = {
           // shipping clip — the marker survives, audibly, and only ears would otherwise catch it.
           // Badged in the audio review; cleared when the reviewer installs different audio.
           audioMarkerStuck: { type: "boolean" },
+          // The 16-hex hash of the TEXT this card's clip was generated from (src/audio/textHash.js).
+          // Read off the take's content-addressed filename, never stamped in bulk from the card's
+          // current text — that would certify the very drift it exists to detect. Absent means
+          // "unverifiable", which is what the 30 hand-named and uploaded takes on disk are.
+          audioTextHash: { type: "string" },
+          // A human's "keep this clip for the current text" decision, made per card in the audio
+          // review. It re-stamps `audioTextHash` from CURRENT text, so recording who and when is the
+          // only thing that keeps that from being an untraceable one-click certification of drift.
+          audioTextHashAcceptedBy: { type: "string" },
+          audioTextHashAcceptedAt: { type: "string" },
           // Legacy optional second recording, from when Japanese cards were generated as a with-。 /
           // no-。 pair. That machinery is gone — the end marker (src/audio/ttsMarker.js) replaced what
           // the dot was working around — and nothing writes this any more. The field stays only so

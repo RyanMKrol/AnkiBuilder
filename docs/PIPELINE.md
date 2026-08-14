@@ -703,6 +703,41 @@ with-`。` takes from THAT text and shows the produced kanji in the audition mod
 write content-addressed preview files (`-gen-` / `-genkanji-` infixes) that never collide with the
 built clip, and neither touches `cards.json` until you pick a take.
 
+**What text a clip actually says (`audioTextHash`, `src/audio/textHash.js`).** The stage's own
+staleness rule (`clipIsCurrent` in `src/cli/commands/audio.js`) asks whether the card's stored clip
+name still matches a hash of its current text — but it short-circuits to "current" whenever
+`isStageOwnedCard` is false, which it is for every picked variant, every Replace upload and every
+hand trim. About 200 live cards are therefore exempt from the text-changed check permanently, while
+the dashboard's inline edit rewrites `target` and `ttsText` freely.
+
+`audioTextHash` closes that. Every path that installs audio records the 16-hex hash of the text the
+take was generated from, read off the take's own content-addressed name rather than computed from
+the card:
+
+| Take             | Name                               | Hash is over                        |
+| ---------------- | ---------------------------------- | ----------------------------------- |
+| audio stage      | `<hash>.orig.mp3`                  | `defaultClipText` (marker included) |
+| Generate         | `<hash>-gen-<bytes>.orig.mp3`      | the picked variant's text           |
+| Generate (kanji) | `<hash>-genkanji-<bytes>.orig.mp3` | the generated kanji text            |
+| Replace upload   | `<cardId>-user-<bytes>.orig.<ext>` | nothing — unverifiable              |
+
+The audio review compares that hash against every hash the card's CURRENT text can produce (the
+default clip, each comma/bracket variant, and the stored `ttsKanji` if there is one) and badges a
+card whose clip no longer matches with **Text changed**. `npm run preflight` counts the same three
+outcomes per collection under `audio text hash`.
+
+Three rules make the record trustworthy rather than decorative:
+
+- It is **never bulk-stamped from a card's current text.** That would declare every drifted clip
+  correct in one pass and permanently destroy the signal. Existing clips were backfilled from their
+  filenames by `scripts/backfill-audio-text-hash.mjs` (2,143 of 2,173 recoverable; 30 hand-named or
+  uploaded takes carry no hash and report as unverifiable).
+- It is a **badge, never a gate.** "Mark done" has no gate of any kind, and a mismatch has no exit
+  that does not destroy the reviewer's trim or pick — so a block would only teach an override habit.
+- The reviewer's exit is the **Keep this clip** button beside the player. It re-stamps the hash from
+  the card's current text and records `audioTextHashAcceptedBy` / `audioTextHashAcceptedAt`, so a
+  one-click certification of drift is at least auditable. It installs no audio and spends nothing.
+
 ### `deck`
 
 **What the package is called (`src/deck/deckFileName.js`).** A built `.apkg` is named after the deck

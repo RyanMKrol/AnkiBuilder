@@ -24,6 +24,7 @@ const SPENT = [
   "split-front-hint.mjs",
   "strip-restatement-notes.mjs",
   "enhance-card-notes.mjs",
+  "backfill-audio-text-hash.mjs",
 ];
 
 const STANDING = [

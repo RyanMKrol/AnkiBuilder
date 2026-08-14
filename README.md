@@ -353,6 +353,13 @@ operator has to override on the day it lands is worse than no gate.
       permanent — it only ever cuts the end, so leading silence always survived and an over-eager cut
       was unrecoverable. A card now carries `audioOriginal` / `audioAuto` / `audioManual`, and the
       `audio` the deck embeds is derived from them
+- [x] Every clip records what text it was generated from (`audioTextHash`), read off the take's own
+      content-addressed filename and never computed from the card. The audio stage's staleness check
+      exempted every hand-picked, uploaded or hand-trimmed clip — about 200 live cards — so editing a
+      card's text left it shipping a recording of the old words with nothing to say so. The audio
+      review now badges those cards **Text changed** and offers **Keep this clip**, which records that
+      a human vouched for the take (with a timestamp) rather than regenerating over their work.
+      Preflight counts the same three outcomes; nothing blocks
 - [x] Manual trim editor in the audio review — the table shows **Original** (with Replace / Generate)
       beside **In use** (the auto-trimmed take, or your hand cut), and **Trim…** opens a waveform with
       draggable start/end handles, snap-to-speech, and selection playback. Every cut is made from the

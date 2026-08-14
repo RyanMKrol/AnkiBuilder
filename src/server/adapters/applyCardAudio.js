@@ -8,6 +8,8 @@ import { autoTrim } from "../../audio/trimSilence.js";
 import { trimToRange as defaultTrimToRange } from "../../audio/trimToRange.js";
 import { cleanupChain, isCleanupName, resolveCleanupName } from "../../audio/cleanupFilter.js";
 import { AUDIO_FIELDS, deriveCardAudio } from "../../audio/index.js";
+import { currentAudioTextHash, parseClipTextHash } from "../../audio/textHash.js";
+import { resolveIso639Code } from "../../model/iso639.js";
 import { isSafeMediaFile } from "./runDir.js";
 
 // Writes a card's audio choice back into a run dir — both the raw-upload path and the pick-a-generated-
@@ -130,9 +132,57 @@ export function selectCardAudio(runDir, cardId, filename, original = null, deps 
       audioAuto: filename,
       audioFilter: resolveCleanupName(deps.filter),
       audioMarked: marked || null,
+      // A picked variant's name is `<hash(its text)>-gen-<bytes>`, so the text behind the pick is
+      // recoverable from it and worth recording — that is the whole point of the hash. A name that
+      // carries none (nothing does on this path today) leaves the card unverifiable, not guessed at.
+      audioTextHash: parseClipTextHash(original || filename)?.hash ?? null,
     },
     deps,
   );
+}
+
+/**
+ * Record a human's "keep this clip for the text as it stands now".
+ *
+ * The exit the staleness badge would otherwise not have. Every other way out of a mismatch destroys
+ * work: regenerating throws away the reviewer's trim or pick, and re-picking re-spends credits on a
+ * clip they already judged correct. So the reviewer gets to say the clip is right — and it is
+ * recorded as a decision, with a name and a time on it, rather than applied as a silent re-stamp.
+ *
+ * Deliberately narrow: it moves `audioTextHash` to the card's CURRENT text and touches no take. The
+ * audio on disk is exactly what it was; only the claim about it changes.
+ */
+export function acceptCardAudioText(
+  runDir,
+  cardId,
+  { by = "human", now = () => new Date(), validateCards = defaultValidateCards } = {},
+) {
+  const { cardsPath, data } = loadCards(runDir);
+  const item = (data.items || []).find((i) => i.id === cardId);
+  if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
+  if (!item.audio) throw httpError(422, "this card has no audio to accept");
+
+  // Deliberately NOT through `setCardTakes`. That re-derives `audio` from the three takes and
+  // deletes it when there are none — and seven live cards, generated before originals were kept,
+  // carry a shipping clip and no takes at all. Routing a write that is not about the audio through
+  // the audio-deriving path would silently delete their only clip.
+  item.audioTextHash = currentAudioTextHash(item, resolveIso639Code(data.meta?.targetLanguage), {
+    kanjiTts: data.meta?.kanjiTts === true,
+  });
+  item.audioTextHashAcceptedBy = by;
+  item.audioTextHashAcceptedAt = now().toISOString();
+
+  try {
+    validateCards(data);
+  } catch (e) {
+    throw httpError(400, `invalid card data after edit: ${e.message}`);
+  }
+  writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
+  return {
+    audioTextHash: item.audioTextHash,
+    acceptedBy: item.audioTextHashAcceptedBy,
+    acceptedAt: item.audioTextHashAcceptedAt,
+  };
 }
 
 /**

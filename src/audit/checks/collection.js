@@ -3,6 +3,8 @@ import { validateCards, validateCorpus } from "../../model/index.js";
 import { findCollisions, findCrossChapterDuplicates } from "../../cards/extrasTools.js";
 import { assertUniqueCardIds } from "../../deck/shippableCards.js";
 import { normalizeDisplayText, isSpaceFreeLanguage } from "../../model/scriptSpacing.js";
+import { resolveIso639Code } from "../../model/iso639.js";
+import { audioTextState } from "../../audio/textHash.js";
 import { unitChapterNumber } from "../units.js";
 
 // The checks that answer a question about ONE unit, or about one collection's units together.
@@ -217,6 +219,50 @@ export const audioMarkerCheck = defineCheck({
         ? [`${stuck.length} clip(s) flagged marker-audible: ${stuck.join(", ")}`]
         : [],
       summary: `${stuck.length} marker-audible clip(s)`,
+    };
+  },
+});
+
+export const audioTextHashCheck = defineCheck({
+  id: "audio-text-hash",
+  title: "audio text hash",
+  scope: "collection",
+  tier: "INFO",
+  /**
+   * How many shipping clips still speak their card's text — and how many nobody can tell about.
+   *
+   * INFO on purpose, and the plan's own ruling says why: `handleLessonDone` has no gate of any kind
+   * today, and a hash mismatch has no exit that does not destroy a reviewer's hand trim or hand
+   * pick. A block here would be the first ever on the owner's daily path, and the only way to clear
+   * it would be to throw away the work it exists to protect. So it counts, publicly, and the
+   * decision about promoting it is made against a measured number rather than a guess.
+   *
+   * `unverifiable` is a first-class outcome, not a failure: a Replace upload and the hand-named
+   * legacy takes carry no text hash in their names, and inventing one from the card's current text
+   * would certify exactly the drift this measures.
+   */
+  run({ units }) {
+    const tally = { current: 0, stale: 0, unverifiable: 0 };
+    const stale = [];
+    for (const unit of units) {
+      const kanjiTts = unit.meta?.kanjiTts === true;
+      const lang = resolveIso639Code(unit.meta?.targetLanguage);
+      for (const item of shipped(unit)) {
+        const { state } = audioTextState(item, lang, { kanjiTts });
+        if (state === "none") continue;
+        tally[state] = (tally[state] ?? 0) + 1;
+        if (state === "stale") stale.push(`${unit.name}/${item.id}`);
+      }
+    }
+    const total = tally.current + tally.stale + tally.unverifiable;
+    if (!total) return { summary: "no audio-bearing cards" };
+    return {
+      notes: [
+        `${tally.current} clip(s) match their card's text, ${tally.stale} changed since, ` +
+          `${tally.unverifiable} unverifiable (no text hash in the take's name)`,
+        ...(stale.length ? [`text changed under: ${stale.join(", ")}`] : []),
+      ],
+      summary: `${tally.stale} stale of ${total}`,
     };
   },
 });

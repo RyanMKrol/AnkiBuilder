@@ -69,13 +69,22 @@ const CORPUS_SCHEMA = {
           // migration folds `cardNote` into `note` and splits out `hint`.
           cardNote: { type: ["string", "null"] },
           target: { type: ["string", "null"] },
-          // Optional spoken form: the target text with anything the romanizer/TTS
-          // mishandles (notably digits — kuroshiro leaves "2,000えん" as "2 , 000 en",
-          // and ElevenLabs may read it as an English number) spelled out in the target
-          // language's own script (e.g. kana にせんえん). When set it drives BOTH the
-          // romaji `pronunciation` and the `audio`; `target` stays the natural display
-          // form. Carried through translate onto the card's `reading` field.
-          reading: { type: "string" },
+          // THE CONTRACT, stated the same way in every prompt and every doc: `ttsText` is the text
+          // TTS speaks instead of the target whenever the written target would be misread (numerals
+          // AND kanji-bearing targets); it is never rendered on any card face.
+          //
+          // In practice that means the target rewritten in the language's own phonetic script: kana
+          // にせんえん for a "2,000えん" target, because the romanizer and the voice both mishandle a
+          // bare numeral (kuroshiro leaves "2,000えん" as "2 , 000 en"; ElevenLabs may read it as an
+          // English number) and both guess at kanji. When set it drives BOTH the romaji
+          // `pronunciation` and the `audio`; `target` stays the natural display form. Carried through
+          // translate onto the card's `ttsText` field.
+          //
+          // Named `ttsText` and not `reading` on purpose: `reading` read like a display field, and a
+          // field nothing renders is exactly the kind of thing a later change quietly starts
+          // rendering. The Anki note type still has a field literally named "Reading" (inert, no
+          // template references it); the deliverer maps `ttsText` onto it (src/deck/collection.js).
+          ttsText: { type: "string" },
           uncertain: { type: "boolean" },
           aiSuggested: { type: "boolean" },
           // Set by the dashboard corpus review to mark an item for exclusion. Reversible in the live
@@ -150,12 +159,11 @@ const CARDS_SCHEMA = {
           reviewNote: { type: ["string", "null"] },
           target: { type: "string" },
           pronunciation: { type: "string" },
-          // Optional phonetic spelling in the target language's own native script
-          // (e.g. hiragana for Japanese) that the audio stage speaks INSTEAD of
-          // `target` when present — see generateAudio. `target` is what the card
-          // face shows (e.g. kanji 二十一); `reading` is only what TTS pronounces
-          // (にじゅういち), sidestepping ambiguous readings of logographic scripts.
-          reading: { type: "string" },
+          // Same contract as the corpus schema's `ttsText`: the text TTS speaks instead of the target
+          // whenever the written target would be misread (numerals AND kanji-bearing targets); never
+          // rendered on any card face. `target` is what the learner sees (e.g. kanji 二十一);
+          // `ttsText` is only what TTS pronounces (にじゅういち). See generateAudio / speechText.
+          ttsText: { type: "string" },
           // English-side disambiguator, shown on the Production front and the Recognition BACK only
           // (on a Target→English front it is a piece of the answer). Repurposed from the old
           // rarely-used back-note fallback; the migration moves any legacy value into `note`.

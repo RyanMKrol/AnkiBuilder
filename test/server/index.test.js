@@ -392,7 +392,7 @@ test("a book mixing an unfinished lesson with a corpus-review lesson renders bot
       join(book, "chapter-0", "corpus.json"),
       JSON.stringify({
         meta: { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "Unfinished Ch" },
-        items: [{ id: "a", english: "one", category: "Numbers", target: "いち", reading: "いち" }],
+        items: [{ id: "a", english: "one", category: "Numbers", target: "いち", ttsText: "いち" }],
       }),
     );
     mkdirSync(join(book, "chapter-1"), { recursive: true });
@@ -1357,7 +1357,7 @@ test("an audio-stage lesson is never held back by the readiness gate", async () 
 
 // Held at the REVIEW gate, not the audio stage. The old placement meant the reviewer read wrong romaji
 // all the way through the lesson and only found out when the voice said the digits out loud.
-test("a lesson with a numeral and no reading is held out of review, naming the cards", async () => {
+test("a lesson with a numeral and no ttsText is held out of review, naming the cards", async () => {
   const root = mkdtempSync(join(tmpdir(), "deck-srv-num-"));
   try {
     const book = join(root, "epubs", "nbook");

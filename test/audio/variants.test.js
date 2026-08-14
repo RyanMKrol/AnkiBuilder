@@ -38,6 +38,6 @@ test("editorial spaces are stripped from the spoken text", () => {
   assert.deepEqual(texts({ target: "これは ほん です" }), ["これはほんです"]);
 });
 
-test("speaks the kana reading when present, not the digit/kanji target", () => {
-  assert.deepEqual(texts({ target: "２ほん", reading: "にほん" }), ["にほん"]);
+test("speaks the kana ttsText when present, not the digit/kanji target", () => {
+  assert.deepEqual(texts({ target: "２ほん", ttsText: "にほん" }), ["にほん"]);
 });

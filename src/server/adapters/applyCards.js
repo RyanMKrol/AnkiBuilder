@@ -10,10 +10,10 @@ import { lessonReadiness, describeReadiness } from "../../cards/readiness.js";
 import { httpError } from "../../util/httpError.js";
 
 // Write-back for the dashboard Corpus review — non-audio edits to cards.json (exclude a card, fix its
-// target/pronunciation/reading, or mark the lesson reviewed). Each is a read-modify-write targeting the
+// target/pronunciation/ttsText, or mark the lesson reviewed). Each is a read-modify-write targeting the
 // item by `id`. (Audio edits live in applyCardAudio.js.)
 
-const EDITABLE_FIELDS = ["target", "pronunciation", "reading"];
+const EDITABLE_FIELDS = ["target", "pronunciation", "ttsText"];
 
 function loadCards(runDir) {
   const cardsPath = join(runDir, "cards.json");
@@ -125,7 +125,7 @@ export function markCardsReviewed(
         category: i.category,
         reviewNote: i.reviewNote ?? null,
         target: i.target ?? null,
-        reading: i.reading,
+        ttsText: i.ttsText,
         ...(i.uncertain ? { uncertain: true } : {}),
         ...(i.aiSuggested ? { aiSuggested: true } : {}),
       }));

@@ -743,7 +743,7 @@
       "category": "Travel & Tourism",
       "reviewNote": null,
       "target": "4がつにじゅうくにちから5がついつかまでです",
-      "reading": "よんがつにじゅうくにちからごがついつかまでです",
+      "ttsText": "よんがつにじゅうくにちからごがついつかまでです",
       "aiSuggested": true
     },
     {

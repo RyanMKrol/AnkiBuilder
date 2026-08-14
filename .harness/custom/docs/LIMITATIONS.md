@@ -1926,3 +1926,38 @@ say when it was measured rather than stating it as a standing fact.
   containment root from "one level up from the chapter file" to an explicit mirror root, and give the
   range cache a home. Note that a per-chapter subdirectory is NOT a shortcut: with the standard
   `../images/foo.png` layout it isolates nothing.
+
+<!-- WS3 (skill-review 2026-08): extraction & prompt quality — appended as one block, newest last. -->
+
+## The Anki note-type field is still called "Reading" after the JSON field became `ttsText`
+
+- **What:** the pipeline's `reading` field was renamed to `ttsText` everywhere (schemas, prompts,
+  passes, dashboard, tests, and all 46 tracked cards.json / corpus.json / dedup-corpora files). The
+  Anki note type's field keeps the name "Reading", and `src/deck/collection.js`'s `fieldValue` maps
+  `ttsText` onto it in one line.
+- **Why:** renaming a field on a live note type rewrites every note in both delivered collections and
+  forces a one-way AnkiWeb sync, for a field no template renders. The point of the rename was to stop
+  future agents reading the name as a display field; inside Anki the field is invisible, so the risk
+  it was fixing does not exist there.
+- **Impact:** one place in the repo (that `case "Reading":` arm) knows both names, and anyone reading
+  the note type in Anki sees a name that no longer matches the JSON. A future note-type migration that
+  does touch field names should fold this in.
+- **Status:** open (deliberate; the mapping is one line and is commented)
+- **When to revisit:** whenever a note-type field migration happens for another reason, or if a
+  template is ever given a reason to render the value (which would need a decision first: today the
+  rule is that `ttsText` is never rendered on any card face).
+
+## The dedup-library corpora are not schema-validated
+
+- **What:** `.anki-builder/epubs/*/corpora/<n>.json` files are corpus-shaped but carry a `meta.done`
+  the corpus schema rejects (`additionalProperties: false`), so neither `validate:decks` nor
+  `writeUnitJson` checks them. The `ttsText` migration checked them by re-reading and asserting no
+  `reading` key survived, not by schema.
+- **Why:** making them validate means either widening the corpus schema's `meta` for a field only the
+  library copy uses, or giving the library its own schema. Both are real changes and neither belongs
+  in a mechanical rename.
+- **Impact:** a malformed dedup corpus reaches the dedup pass unchecked. It is the input to every
+  later chapter's de-duplication, so a bad one degrades quietly, which is this project's signature
+  failure mode.
+- **Status:** open
+- **When to revisit:** when WS1's audit scopes land, the library copy is a natural third scope to add.

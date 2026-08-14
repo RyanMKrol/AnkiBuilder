@@ -337,7 +337,7 @@ What `prepare` runs, in order (details and prompts per pass are in
 4. **Cross-lesson notes** (`src/cards/crossLessonNotes.js`): one pass per lesson, fed only earlier
    lessons, writing backward cross-references, usage notes, and collision cues.
 5. **Number readings** (`src/cards/numberReadings.js`): the only pass that runs on demand rather than
-   always. `findUnreadableNumbers` looks for a digit still sitting in a card's `reading` or
+   always. `findUnreadableNumbers` looks for a digit still sitting in a card's `ttsText` or
    `pronunciation`; if it finds any, a model spells them out (the right form depends on the counter
    and is often irregular — 4がつ is しがつ, not よんがつ — so a regex would produce confidently wrong
    audio). It runs LAST, so it also covers the cards the drill pass invented. Every card it touches
@@ -353,7 +353,7 @@ before deciding what an Uncertain card needs.
 The corpus comes out **pedagogically sorted** (atoms before molecules; `--no-sort` keeps raw order),
 with any run of sequential numbers jumbled, and that one order flows through every stage, review, and
 the deck. Full ordering rules, and every card-content rule (sentence-case English, no editorial
-spaces or terminal `。`, `reading` for numerals, provenance flags, scene/hint/note/reviewNote, collisions,
+spaces or terminal `。`, `ttsText` for numerals, provenance flags, scene/hint/note/reviewNote, collisions,
 Q&A splits, worked examples for grammar cards): [card-authoring-rules](references/card-authoring-rules.md).
 
 ## Step 3: Gate 1 — the corpus review
@@ -371,7 +371,7 @@ drops them.
 What to check, beyond reading the columns: the card-content rules in
 [card-authoring-rules](references/card-authoring-rules.md). The ones most often violated: a scene or hint on
 any English-gloss or target collision, answer cards answerable alone, notes/hints that restate the
-card (delete these), missing `reading` on numerals, and study order (a sentence landing before its
+card (delete these), missing `ttsText` on numerals, and study order (a sentence landing before its
 vocabulary).
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
@@ -435,7 +435,7 @@ marker instead of the phrase; the trim strips it, and a card where it couldn't i
 
 **Re-running `audio` is safe.** The stage skips any card whose shipping clip it doesn't own: picked
 variants, Replace uploads, and manual trims are never overwritten, so a full re-run (after adding
-cards, editing a `reading`, or dropping the cache) only regenerates default clips.
+cards, editing a `ttsText`, or dropping the cache) only regenerates default clips.
 
 **Drop the whole audio cache (`rm -rf .anki-builder/audio`) whenever the audio-generation algorithm
 changes.** The cache key doesn't encode processing, so old clips are served stale forever otherwise.

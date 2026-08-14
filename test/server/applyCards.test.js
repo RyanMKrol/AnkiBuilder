@@ -110,20 +110,20 @@ test("setCardExcluded stamps a human exclusion, and un-excluding clears the prov
   }
 });
 
-test("editCard writes only whitelisted fields (target/pronunciation/reading), ignoring the rest", () => {
+test("editCard writes only whitelisted fields (target/pronunciation/ttsText), ignoring the rest", () => {
   const dir = runDir([card("a", { target: "いち", pronunciation: "ichi" })]);
   try {
     const applied = editCard(dir, "a", {
       target: "一",
       pronunciation: "ichi!",
-      reading: "いち",
+      ttsText: "いち",
       english: "HACKED", // not whitelisted → ignored
     });
-    assert.deepEqual(applied, { target: "一", pronunciation: "ichi!", reading: "いち" });
+    assert.deepEqual(applied, { target: "一", pronunciation: "ichi!", ttsText: "いち" });
     const item = read(dir).items.find((i) => i.id === "a");
     assert.equal(item.target, "一");
     assert.equal(item.pronunciation, "ichi!");
-    assert.equal(item.reading, "いち");
+    assert.equal(item.ttsText, "いち");
     assert.equal(item.english, "a", "non-whitelisted field untouched");
   } finally {
     rmSync(dir, { recursive: true, force: true });

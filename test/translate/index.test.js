@@ -366,17 +366,17 @@ test("library-path: a configured romanization library supplies pronunciation, no
   assert.match(translatePrompt, /Do not include a `pronunciation` key/);
 });
 
-test("library-path: a card's `reading` (spoken form) drives romanization and survives onto the card", async () => {
+test("library-path: a card's `ttsText` (spoken form) drives romanization and survives onto the card", async () => {
   const corpus = {
     meta: { targetLanguage: "ja", sourceType: "manual" },
-    // Pre-existing target with digits + a spelled-out kana reading (the spoken form).
+    // Pre-existing target with digits + a spelled-out kana ttsText (the spoken form).
     items: [
       {
         id: "price",
         english: "2,000 yen",
         category: "Shopping",
         target: "2,000えん",
-        reading: "にせんえん",
+        ttsText: "にせんえん",
       },
     ],
   };
@@ -395,13 +395,13 @@ test("library-path: a card's `reading` (spoken form) drives romanization and sur
   const { cards, errors } = await translateCorpus(corpus, { runClaude, getRomanizationLibrary });
 
   assert.deepEqual(errors, []);
-  assert.equal(romanizedText, "にせんえん", "romanized the reading, not the digit target");
+  assert.equal(romanizedText, "にせんえん", "romanized the ttsText, not the digit target");
   assert.equal(cards.items[0].target, "2,000えん", "display target preserved for the card face");
   assert.equal(cards.items[0].pronunciation, "nisen en");
   assert.equal(
-    cards.items[0].reading,
+    cards.items[0].ttsText,
     "にせんえん",
-    "reading carried onto the card for the audio stage",
+    "ttsText carried onto the card for the audio stage",
   );
 });
 
@@ -492,7 +492,7 @@ test("library-throws-falls-back: an adapter failure falls through to the ordinar
   assert.ok(logs.some((msg) => msg.includes("dictionary not found")));
 });
 
-test("ja: strips editorial spaces from the display target/reading (but keeps them for es)", async () => {
+test("ja: strips editorial spaces from the display target/ttsText (but keeps them for es)", async () => {
   const jaCorpus = {
     meta: { targetLanguage: "ja", sourceType: "epub" },
     items: [

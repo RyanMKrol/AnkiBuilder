@@ -15,7 +15,7 @@ const DEFAULT_TEMPLATE_PATH = resolve(
 const DIGIT = /[0-9０-９]/;
 
 const REVIEW_NOTE =
-  "Number spelled out automatically because the card had a numeral in its reading or romaji — " +
+  "Number spelled out automatically because the card had a numeral in its ttsText or romaji — " +
   "check the counter is right (4がつ is しがつ, not よんがつ).";
 
 export function renderNumberReadingPrompt({
@@ -41,7 +41,7 @@ export function renderNumberReadingPrompt({
         id: card.id,
         english: card.english,
         target: card.target,
-        currentReading: card.reading ?? null,
+        currentTtsText: card.ttsText ?? null,
         currentPronunciation: card.pronunciation ?? null,
       })),
       null,
@@ -59,14 +59,14 @@ function parseFixes(raw) {
 }
 
 /**
- * Fills in the `reading` and `pronunciation` of any card whose number has not been spelled out.
+ * Fills in the `ttsText` and `pronunciation` of any card whose number has not been spelled out.
  *
  * Detecting this is deterministic (`findUnreadableNumbers`); FIXING it is not, which is why it needs a
  * model. The right form depends on the counter and is frequently irregular — 4がつ is しがつ, 9じ is
  * くじ — so a regex would produce confidently wrong audio, which is worse than none.
  *
  * Both fields are written together, deliberately. They are two symptoms of one cause, and fixing only
- * the reading corrects the audio while leaving wrong romaji on screen — which is exactly what happened
+ * the ttsText corrects the audio while leaving wrong romaji on screen — which is exactly what happened
  * when this was done by hand.
  *
  * Every card it touches is marked `uncertain` with a `reviewNote`, so the reviewer is shown what was
@@ -106,16 +106,16 @@ export function fillNumberReadings({
     const item = byId.get(fix.id);
     if (!item) continue;
 
-    const reading = typeof fix.reading === "string" ? fix.reading.trim() : "";
+    const ttsText = typeof fix.ttsText === "string" ? fix.ttsText.trim() : "";
     const pronunciation = typeof fix.pronunciation === "string" ? fix.pronunciation.trim() : "";
     // A "fix" that still carries a digit fixes nothing — drop it rather than record a change.
-    if (!reading || !pronunciation || DIGIT.test(reading) || DIGIT.test(pronunciation)) continue;
+    if (!ttsText || !pronunciation || DIGIT.test(ttsText) || DIGIT.test(pronunciation)) continue;
 
-    item.reading = reading;
+    item.ttsText = ttsText;
     item.pronunciation = pronunciation;
     item.uncertain = true;
     item.reviewNote = item.reviewNote ? `${item.reviewNote} | ${REVIEW_NOTE}` : REVIEW_NOTE;
-    fixed.push({ id: item.id, target: item.target, reading, pronunciation });
+    fixed.push({ id: item.id, target: item.target, ttsText, pronunciation });
   }
 
   return { items, fixed, remaining: findUnreadableNumbers(items, languageCode) };

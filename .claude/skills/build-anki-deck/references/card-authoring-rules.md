@@ -88,17 +88,22 @@ or by telling me) and every downstream stage and review inherits it. When you ha
 I split/add/reorder rows), keep `corpus.json` and `cards.json` in the same sequence so the reviews and
 the deck stay aligned.
 
-## Numbers carry a spoken `reading`
+## Numbers carry a spoken `ttsText`
 
-**Numbers carry a spoken `reading`.** When a `target` contains a numeral (a price, floor, count —
-e.g. `2,000えん`, `５かい`), the item also gets a `reading` field with the number spelled out in the
+**What `ttsText` is.** The text TTS speaks instead of the target whenever the written target would be
+misread (numerals AND kanji-bearing targets). It is never rendered on any card face. It was called
+`reading` before the 2026-08 rename; the Anki note type still has a field named "Reading", which
+holds this value and which no template shows.
+
+**Numbers carry a spoken `ttsText`.** When a `target` contains a numeral (a price, floor, count —
+e.g. `2,000えん`, `５かい`), the item also gets a `ttsText` field with the number spelled out in the
 target language's own script (`にせんえん`, `ごかい`). The digits stay in `target` for a natural card
-face, but the spelled-out `reading` is what drives the romaji pronunciation AND the audio — because
+face, but the spelled-out `ttsText` is what drives the romaji pronunciation AND the audio — because
 digits break both (kuroshiro renders `2,000えん` as `2 , 000 en`, and ElevenLabs may read it in
-English). The `reading` drives the **Pronunciation** you see in the Corpus review, so a wrong counter
+English). The `ttsText` drives the **Pronunciation** you see in the Corpus review, so a wrong counter
 shows up as wrong romaji there — if a number's pronunciation looks off, tell me and I'll fix the
-`reading`. (The `audio` stage refuses to run while any card would send a raw numeral to the TTS
-voice, so a missing `reading` surfaces before credits are spent.)
+`ttsText`. (The `audio` stage refuses to run while any card would send a raw numeral to the TTS
+voice, so a missing `ttsText` surfaces before credits are spent.)
 
 ## Provenance flags: `aiSuggested` and `uncertain`
 
@@ -178,7 +183,7 @@ by its answer card).
 holds both a question and its answer (e.g. `プレゼンはいつですか。きょうのさんじからです` / "When is the
 presentation? It's at 3:00 today.") reviews awkwardly — flashcards are one prompt → one response. When
 generation produces a combined Q&A line, split it into **two separate items**: a question card and an
-answer card, each with its own `target`/`reading`/`english`/`pronunciation` and its own audio (the
+answer card, each with its own `target`/`ttsText`/`english`/`pronunciation` and its own audio (the
 Japanese splits on the internal `。`, the English on the `?`). Keep both marked `fillInBlank` when they
 came from a drill. This holds for any source, not just FIB.
 

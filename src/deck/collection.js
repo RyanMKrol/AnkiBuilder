@@ -12,8 +12,10 @@ import { unitDeckSegments, groupingSegments } from "./deckPath.js";
 // without which the sentence is ambiguous. "Hint" (card.hint) is the Production-front-only
 // disambiguator (an English cue like "the object you read") — on a Target→English front it would
 // give the answer away, so it shows there only on the back. "Note" is the BACK-of-card context.
-// "Reading" is the card's spoken form (kana for a kanji-bearing target) — stored as a real field
-// now so the kanji era needs no note-type migration; the templates don't render it yet.
+// "Reading" holds the card's `ttsText` (see fieldValue below), stored as a real field so the kanji
+// era needs no note-type migration. NO template renders it, and none is meant to: `ttsText` is TTS
+// input, not something a learner reads. The Anki field keeps its old name on purpose. The JSON
+// field was renamed; the live note type was not.
 // New fields append at the END: the AnkiConnect deliverer force-syncs structure by adding missing
 // fields, and appending keeps every existing note's field order stable.
 const FIELD_NAMES = [
@@ -459,8 +461,12 @@ function fieldValue(card, name) {
       // BACK-of-card context. `cardNote` is the pre-rename alias, kept for back-compat.
       return escapeFieldText(card.note || card.cardNote || "");
     case "Reading":
-      // The spoken form (kana for a kanji target) — stored, not yet rendered by the templates.
-      return escapeFieldText(card.reading || "");
+      // THE ONE PLACE the pipeline's `ttsText` becomes Anki's "Reading" field. The JSON field was
+      // renamed (`reading` -> `ttsText`) so its name states its contract; the ANKI field keeps the
+      // name "Reading" deliberately, because renaming a field on a live note type rewrites every
+      // note in both delivered collections for zero benefit (nothing renders it). Both the .apkg
+      // build and the AnkiConnect deliver come through here, so this line is the whole mapping.
+      return escapeFieldText(card.ttsText || "");
     case "Scene":
       // Situation cue, shown on the FRONT of both directions. Never contains the answer.
       return escapeFieldText(card.scene || "");

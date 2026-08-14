@@ -4,7 +4,7 @@ import { normalizeTtsText } from "./ttsText.js";
 // Computes the set of audio "takes" we normally offer for a card — the Cartesian product of the
 // applicable with/without axes, matching what the build-anki-deck skill describes and what the
 // dashboard's Generate button synthesizes via ElevenLabs. The axes, applied to the card's spoken
-// text (`speechText` = reading||target, run through `normalizeTtsText`):
+// text (`speechText` = ttsText||target, run through `normalizeTtsText`):
 //   - brackets: full (keep the bracketed content) vs short (drop it)   — only if the text has （…）/(...)
 //   - comma:    with 、 vs without                                       — only if the text has 、
 // Result: min 1 (a card with neither brackets nor commas) up to 4 (comma × brackets), each

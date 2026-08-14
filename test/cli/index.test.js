@@ -2221,7 +2221,7 @@ test("prepare: a lesson with unmarked drills is re-mined, not stacked on", async
   });
 });
 
-// The failure this guards: seven Lesson 7 cards had a numeral and no `reading`, so `speechText` sent
+// The failure this guards: seven Lesson 7 cards had a numeral and no `ttsText`, so `speechText` sent
 // "2025ねんに" to ElevenLabs, which reads digits in whatever language it likes. The rule was in the
 // extraction prompt and nowhere else, so nothing caught it until the clips were listened to.
 test("audio: refuses to send a raw numeral to TTS, before spending anything", async () => {
@@ -2267,7 +2267,7 @@ test("audio: refuses to send a raw numeral to TTS, before spending anything", as
   });
 });
 
-test("audio: a spelled-out reading satisfies the guard", async () => {
+test("audio: a spelled-out ttsText satisfies the guard", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);
     mkdirSync(runDir, { recursive: true });
@@ -2281,7 +2281,7 @@ test("audio: a spelled-out reading satisfies the guard", async () => {
             english: "In 2025",
             category: "Other",
             target: "2025ねんに",
-            reading: "にせんにじゅうごねんに",
+            ttsText: "にせんにじゅうごねんに",
             pronunciation: "nisen nijūgo nen ni",
           },
         ],
@@ -2332,7 +2332,7 @@ test("prepare: spells out a numeral automatically rather than leaving it for the
       ...prepareDeps([]),
       lessonSiblings: () => [sibling("chapter-1", 2)],
       fillNumberReadings: ({ items }) => {
-        items[0].reading = "にせんにじゅうごねんに";
+        items[0].ttsText = "にせんにじゅうごねんに";
         items[0].pronunciation = "nisen nijūgonen ni";
         items[0].uncertain = true;
         return {
@@ -2341,7 +2341,7 @@ test("prepare: spells out a numeral automatically rather than leaving it for the
             {
               id: "y",
               target: "2025ねんに",
-              reading: items[0].reading,
+              ttsText: items[0].ttsText,
               pronunciation: items[0].pronunciation,
             },
           ],
@@ -2352,7 +2352,7 @@ test("prepare: spells out a numeral automatically rather than leaving it for the
     });
 
     const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
-    assert.equal(cards.items[0].reading, "にせんにじゅうごねんに");
+    assert.equal(cards.items[0].ttsText, "にせんにじゅうごねんに");
     assert.equal(cards.items[0].pronunciation, "nisen nijūgonen ni");
     assert.match(logged.join("\n"), /number readings: filled 1 card/);
     assert.doesNotMatch(logged.join("\n"), /WARNING/);
@@ -2389,7 +2389,7 @@ test("prepare: warns about a numeral the auto-fix could not resolve", async () =
       fillNumberReadings: ({ items }) => ({
         items,
         fixed: [],
-        remaining: [{ id: "y", target: "2025ねんに", cause: "no reading" }],
+        remaining: [{ id: "y", target: "2025ねんに", cause: "no ttsText" }],
       }),
       log: (line) => logged.push(line),
     });

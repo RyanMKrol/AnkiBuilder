@@ -371,7 +371,7 @@
       "category": "Time",
       "reviewNote": null,
       "target": "スミスさんはげつようびの４じにとうきょうえきですずきさんにあいます",
-      "reading": "スミスさんはげつようびのよじにとうきょうえきですずきさんにあいます"
+      "ttsText": "スミスさんはげつようびのよじにとうきょうえきですずきさんにあいます"
     },
     {
       "id": "sanpo-o-shimasu",
@@ -449,7 +449,7 @@
       "category": "Food",
       "reviewNote": null,
       "target": "ビールを２ほんおねがいします",
-      "reading": "ビールをにほんおねがいします"
+      "ttsText": "ビールをにほんおねがいします"
     },
     {
       "id": "kondo-next",

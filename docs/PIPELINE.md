@@ -102,7 +102,7 @@ fails open — any parse/shape error leaves the extracted order untouched and lo
 corpus is what the review gate then shows, so the human is always the final check on the sequence.
 
 **Space-free scripts — normalize the display text (`src/model/scriptSpacing.js`, `normalizeDisplayText`).**
-For a language written without spaces between words (Japanese today), a card's stored `target`/`reading`
+For a language written without spaces between words (Japanese today), a card's stored `target`/`ttsText`
 is normalized so the deck renders natural script: **(1)** editorial spaces are stripped (the JBP kana
 textbook uses 分かち書き word-separation as a beginner aid, which isn't part of real written Japanese),
 and **(2)** a trailing sentence-final `。` is stripped — **a card never ends in a period by default**. A
@@ -117,7 +117,7 @@ ElevenLabs gets `。ででで` appended, so the voice reads the card with senten
 `。` anchors a sentence boundary, which measurably steadies short/bare clips — and the throwaway
 ででで syllables absorb ElevenLabs' end-of-clip artifacts. The automatic trim then finds and cuts
 the marker back off the clip (with a "Marker audible" review badge on the rare card where it
-cannot). The displayed face/reading stays dot-less throughout; there is no separate with-dot /
+cannot). The displayed face and `target` stay dot-less throughout; there is no separate with-dot /
 without-dot take to choose between.
 
 The `--epub` source has two ways to choose _what_ to assemble.
@@ -283,7 +283,7 @@ same superset item shape: `{ id, english, category, hint, note, reviewNote, targ
 note fields are strictly separated (`hint` front-of-card cue, `note` back-of-card context,
 `reviewNote` internal review-only rationale; a legacy blended `notes` folds into `reviewNote`) —
 with the note fields and `target` explicitly `null` when the source path can't populate them, plus
-an optional `reading` (the spoken form, when the target carries a numeral) and two optional flags
+an optional `ttsText` (what TTS speaks when the written target would be misread) and two optional flags
 carried through when the extractor sets them: `uncertain` (the model wasn't sure the item
 belonged) and `aiSuggested` (a critical-gap item the model added itself, not present in the
 source).
@@ -399,15 +399,26 @@ output). Items with `target: null` get a full translation; items with a real `ta
 pre-existing target (see `src/translate/index.js`). The resulting `cards.json` is what the **Corpus
 review** operates on.
 
-**Spoken form (`reading`).** An item may carry an optional `reading` — a spoken version of the
-target with anything the romanizer/TTS mishandles spelled out in the target language's own script.
-The one case that needs it today is **numbers**: kuroshiro leaves a digit verbatim (`2,000えん` →
-`2 , 000 en`) and ElevenLabs may read it as an English number, so extraction keeps the digits in
-`target` (natural card display) and emits `reading: "にせんえん"`. When present, `reading` drives BOTH
-the romaji `pronunciation` (the romanizer/pronunciation prompt romanizes `reading ?? target`) and
-the `audio` (the audio stage's `speechText` speaks `reading ?? target`); the deck still shows
-`target`. Absent a `reading`, everything falls back to `target` exactly as before, so only
-number-bearing cards are affected. Prompts are Markdown-structured (Overview / Input Format /
+**Spoken form (`ttsText`).** `ttsText` is the text TTS speaks instead of the target whenever the
+written target would be misread (numerals AND kanji-bearing targets); it is never rendered on any
+card face. It is the target rewritten in the language's own phonetic script, with whatever the
+romanizer or the voice mishandles spelled out. The case that needs it today is **numbers**:
+kuroshiro leaves a digit verbatim (`2,000えん` → `2 , 000 en`) and ElevenLabs may read it as an
+English number, so extraction keeps the digits in `target` (natural card display) and emits
+`ttsText: "にせんえん"`. When present, `ttsText` drives BOTH the romaji `pronunciation` (the
+romanizer and pronunciation prompt romanize `ttsText ?? target`) and the `audio` (the audio stage's
+`speechText` speaks `ttsText ?? target`); the deck still shows `target`. Absent a `ttsText`,
+everything falls back to `target`, so only cards that need it are affected.
+
+The field was called `reading` until the 2026-08 rename. `reading` read like a display field, and
+the deck's own Anki note type has a field of that name, so the two were easy to confuse; nothing
+renders either one. The Anki field is still named "Reading" (the live collection was not touched)
+and `src/deck/collection.js`'s `fieldValue` maps `ttsText` onto it in one line.
+`scripts/migrate-reading-to-ttstext.mjs` did the one-time data migration (key rename only, no value
+touched, through `writeUnitJson`); it is kept so the change is auditable and re-runnable against any
+older unit that turns up, and it is a no-op on a file that has already been migrated.
+
+Prompts are Markdown-structured (Overview / Input Format /
 Example Input / Output Format / Example Output / Important / Input Data). How `pronunciation` gets
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,
@@ -462,12 +473,12 @@ default (`audio`). For a marker-using language (`src/audio/ttsMarker.js`'s `MARK
 Japanese today) the text sent to TTS carries the `。ででで` end marker described above, and the trim
 strips it from the recording. Every OTHER variant — comma/bracket forms and kana+kanji — is
 generated **on demand** in the dashboard (see the audio review below), not up front; the variant
-set is comma × brackets (1 to 4 takes, `src/audio/variants.js`). The displayed `target`/`reading`
+set is comma × brackets (1 to 4 takes, `src/audio/variants.js`). The displayed `target`/`ttsText`
 never carries a `。`; the sentence-final prosody is audio-only.
 
 **Per-language TTS text normalization (`src/audio/ttsText.js`'s `normalizeTtsText`).** The exact text
 sent to TTS (and used as the cache key) is the card's spoken text run through a per-language
-normalizer. Japanese strips whitespace: `target`/`reading` keep their editorial spaces for the learner
+normalizer. Japanese strips whitespace: `target`/`ttsText` keep their editorial spaces for the learner
 (これは フランスの ワインです。), but the audio is generated from the space-free form
 (これはフランスのワインです。) — because ElevenLabs voices each space as an audible pause (a spaced clip
 runs ~20-25% longer than its unspaced twin). Languages whose spaces are real word boundaries (Spanish,
@@ -879,7 +890,7 @@ button:
 
 - `POST …/unit/:unit/card/:cardId/review/exclude` `{excluded}` — toggle the card's reversible
   `excluded` flag (the deck build drops excluded cards).
-- `POST …/unit/:unit/card/:cardId/review/edit` `{target?,pronunciation?,reading?}` — whitelisted
+- `POST …/unit/:unit/card/:cardId/review/edit` `{target?,pronunciation?,ttsText?}` — whitelisted
   field edit.
 - `POST …/unit/:unit/review/reviewed` — set `cards.meta.reviewed: true` (the gate `audio` checks);
   for an EPUB source, also `saveChapterCorpus` the excluded-filtered corpus (derived from the cards)

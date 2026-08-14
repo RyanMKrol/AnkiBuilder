@@ -81,12 +81,12 @@ invalid the moment it is copied across. Every extras unit built before this was 
 because copying the whole meta object is the obvious thing to do and nothing ever complained: the
 corpus schema is only enforced on the `assemble` path, which a hand-authored unit never takes. Build
 `corpus.meta` explicitly from the fields the corpus schema declares, and likewise keep card fields
-that only exist on the cards side (`reading`, `pronunciation`, `audio*`, `aiSuggested`) out of corpus
+that only exist on the cards side (`ttsText`, `pronunciation`, `audio*`, `aiSuggested`) out of corpus
 items.
 
 **Give every field the type the schema declares, and NEVER a `null` placeholder.** Only `note`,
 `cardNote`, `reviewNote`, `hint` and `scene` accept `null`. Everything else is a plain `string`, which
-means an absent value must be an ABSENT KEY — `"reading": null` fails validation. A hand-authored unit
+means an absent value must be an ABSENT KEY — `"ttsText": null` fails validation. A hand-authored unit
 is the one place this bites, because it skips the translate stage that would otherwise shape the
 fields, and the failure surfaces late and unhelpfully: the dashboard refuses the review click with
 `invalid card data after edit: Property reading in items[0] must be of type string`, naming one field
@@ -191,7 +191,7 @@ spend a card on any member that looks like it belongs to another class (a な-ad
 ## Rules the pass must not break
 
 Everything in [card-authoring-rules.md](card-authoring-rules.md) still applies (kana-only for a kana
-deck, sentence-case English, no editorial spaces, no terminal `。`, a `reading` for any numeral, a scene
+deck, sentence-case English, no editorial spaces, no terminal `。`, a `ttsText` for any numeral, a scene
 or hint on every collision, split Q&A, an answer card that is answerable alone). On top of those:
 
 - **Only vocabulary and grammar from this chapter or an EARLIER one.** Feed each agent an index of

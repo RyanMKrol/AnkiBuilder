@@ -120,7 +120,7 @@
       "note": null,
       "reviewNote": null,
       "target": "エマさんは４がつににほんにきました",
-      "reading": "エマさんはしがつににほんにきました"
+      "ttsText": "エマさんはしがつににほんにきました"
     },
     {
       "id": "ks2-smith-shinkansen",
@@ -166,7 +166,7 @@
       "note": null,
       "reviewNote": null,
       "target": "5じに",
-      "reading": "ごじに"
+      "ttsText": "ごじに"
     },
     {
       "id": "doyoubi-ni",
@@ -185,7 +185,7 @@
       "note": null,
       "reviewNote": null,
       "target": "12にちに",
-      "reading": "じゅうににちに"
+      "ttsText": "じゅうににちに"
     },
     {
       "id": "2025nen-ni",
@@ -195,7 +195,7 @@
       "note": null,
       "reviewNote": null,
       "target": "2025ねんに",
-      "reading": "にせんにじゅうごねんに"
+      "ttsText": "にせんにじゅうごねんに"
     },
     {
       "id": "densha",
@@ -313,7 +313,7 @@
       "note": null,
       "reviewNote": null,
       "target": "1998ねん",
-      "reading": "せんきゅうひゃくきゅうじゅうはちねん"
+      "ttsText": "せんきゅうひゃくきゅうじゅうはちねん"
     },
     {
       "id": "2022nen",
@@ -323,7 +323,7 @@
       "note": null,
       "reviewNote": null,
       "target": "2022ねん",
-      "reading": "にせんにじゅうにねん"
+      "ttsText": "にせんにじゅうにねん"
     },
     {
       "id": "youbi-suffix",

@@ -131,7 +131,7 @@
       "note": null,
       "reviewNote": null,
       "target": "1かいにうけつけがあります",
-      "reading": "いっかいにうけつけがあります"
+      "ttsText": "いっかいにうけつけがあります"
     },
     {
       "id": "imasu-animate",
@@ -234,7 +234,7 @@
       "note": "Uses と, not や — と implies nothing else is there besides the bank and convenience store, unlike や which implies other things too.",
       "reviewNote": null,
       "target": "1かいにぎんこうとコンビニがあります",
-      "reading": "いっかいにぎんこうとコンビニがあります"
+      "ttsText": "いっかいにぎんこうとコンビニがあります"
     },
     {
       "id": "yuubinkyoku-post-office",
@@ -472,7 +472,7 @@
       "note": null,
       "reviewNote": null,
       "target": "1かいになにがありますか",
-      "reading": "いっかいになにがありますか"
+      "ttsText": "いっかいになにがありますか"
     },
     {
       "id": "ginkou-ga-arimasu",

@@ -566,7 +566,7 @@
       "note": "Adds this lesson's target-marking に to the established word order: person は — day/time に — place で — target に — verb, stacking three に's with different jobs in one sentence.",
       "reviewNote": null,
       "target": "スミスさんはげつようびの４じにとうきょうえきですずきさんにあいます",
-      "reading": "スミスさんはげつようびのよじにとうきょうえきですずきさんにあいます"
+      "ttsText": "スミスさんはげつようびのよじにとうきょうえきですずきさんにあいます"
     },
     {
       "id": "sanpo-o-shimasu",
@@ -701,7 +701,7 @@
       "note": "ほん (hon) here counts bottles of beer — the same long-object counter from Lesson 5 (ワインを２ほん), just extended to beer.",
       "reviewNote": null,
       "target": "ビールを２ほんおねがいします",
-      "reading": "ビールをにほんおねがいします"
+      "ttsText": "ビールをにほんおねがいします"
     },
     {
       "id": "kondo-next",

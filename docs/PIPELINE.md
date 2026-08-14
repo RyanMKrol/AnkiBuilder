@@ -950,8 +950,8 @@ Some mechanics worth knowing before you add a fixture:
   renames freely, which would report an unchanged chapter as total churn. Items pair on the
   display-normalized `target` first (so editorial spaces or a trailing `。` never split a match), then
   on `english` for the leftovers (so a resolved placeholder still pairs with its reference).
-- **The spoken-form field is read under either name** (`reading` or `ttsText`), so a rename of that
-  field does not show up as a chapter-wide diff.
+- **The spoken-form field is read under either name** (`ttsText`, and the pre-2026-08 `reading`), so
+  a recording or a corpus predating that rename does not diff as a change to every spoken form.
 - **CI never spends money.** The suite only ever runs the recorded mode, and `--live` is hard-blocked
   under `node --test` by `assertExternalCallAllowed` (`src/util/testEnv.js`).
 - The chapter `.xhtml` under `test/fixtures/evals/chapters/` is committed because the extracted-chapter

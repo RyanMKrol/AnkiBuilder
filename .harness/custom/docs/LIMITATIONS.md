@@ -2066,3 +2066,17 @@ say when it was measured rather than stating it as a standing fact.
   it.
 - **When to revisit:** when per-card direction suspension lands, route both through the same
   consent-and-preview path the model-change guard uses, and delete this row.
+
+## Spent migrations are marked in place, not moved to `scripts/migrations/`
+
+- **What:** a one-off migration carries a `// SPENT: <date>` header saying not to run it. It stays in
+  `scripts/`. `test/scripts/spentMigrations.test.js` requires every `.mjs` in `scripts/` to be listed
+  as either a standing tool or a spent migration.
+- **Why:** moving the files would break every doc reference, every muscle-memory path, and the
+  docs-integrity test, for a distinction that only has to be visible at the top of the file.
+- **Impact:** the classification lives in a test's two arrays, so adding a script to `scripts/` makes
+  the suite red until it is classified. That is deliberate friction, but it is friction: a worker
+  adding a script has to touch a file in `test/` they were not otherwise editing.
+- **When to revisit:** if the friction is what people notice rather than the distinction, derive the
+  lists from the headers themselves (spent = has the marker) and keep only the "no standing tool is
+  marked spent" half.

@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+//
+// SPENT: 2026-08-14 — a one-off MIGRATION, not a standing tool.
+// the restatement sweep ran once over the existing decks. It is kept for the record, and because re-reading
+// what a migration actually did is the only way to understand the shape of the data it left
+// behind. Do not run it as part of any procedure: it is not in SKILL.md's per-chapter flow, and
+// it will re-apply a decision that has already been made and reviewed.
+//
 // One-off: remove `note`s and `hint`s that merely RESTATE the card. Both fields must ADD something the
 // card doesn't already show — a `note` gives usage/register/a cross-reference; a `hint` gives a
 // disambiguation cue (WHEN/WHERE/WHY it's used, e.g. "said when entering a room"). A field that just

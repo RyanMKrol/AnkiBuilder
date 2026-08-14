@@ -721,10 +721,17 @@ the card:
 | Generate (kanji) | `<hash>-genkanji-<bytes>.orig.mp3` | the generated kanji text            |
 | Replace upload   | `<cardId>-user-<bytes>.orig.<ext>` | nothing — unverifiable              |
 
-The audio review compares that hash against every hash the card's CURRENT text can produce (the
-default clip, each comma/bracket variant, and the stored `ttsKanji` if there is one) and badges a
-card whose clip no longer matches with **Text changed**. `npm run preflight` counts the same three
-outcomes per collection under `audio text hash`.
+The audio review compares that hash against every hash the card's CURRENT text can produce and
+badges a card whose clip no longer matches with **Text changed**. `npm run preflight` counts the
+same three outcomes per collection under `audio text hash`.
+
+"Can produce" is deliberately wide, because the text sent to TTS has changed twice without any
+card's own text changing: each spoken form (the default clip, each comma/bracket variant, the stored
+`ttsKanji`) is accepted bare, with the end marker, with the legacy Japanese trailing `。` the marker
+replaced, and with both. That last pair is not indulgence — 52 of the 53 clips the first live run
+flagged were generated under the with-`。` convention and speak their card's words perfectly. Badging
+them would have put 52 false positives on screen on landing day and buried the one card whose clip
+really is of other words.
 
 Three rules make the record trustworthy rather than decorative:
 

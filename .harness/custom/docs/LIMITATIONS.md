@@ -2407,9 +2407,12 @@ say when it was measured rather than stating it as a standing fact.
   is the exit, and it is a decision, not a fix. The 30 are unverifiable because the only other way to
   give them a hash is to compute one from the card's current text, which would declare every drifted
   clip correct in a single pass and destroy the signal permanently.
-- **Impact:** a stale clip still ships until a human acts on the badge. Coverage is 2,143 of 2,173
-  audio-bearing cards; the remaining 30 report as unverifiable forever unless their audio is
-  regenerated or re-picked, which would cost credits and re-open takes a human already approved.
+- **Impact:** a stale clip still ships until a human acts on the badge. On the first live run the
+  count was ONE (`nihongo-101-course-n5/lesson-0/irl-l1-31`, whose hand-trimmed clip was generated
+  from text nobody can now reconstruct); it is left badged rather than regenerated, because deciding
+  between spending credits and keeping the take is the owner's call. 106 clips report unverifiable:
+  30 whose take carries a hand-given name with no hash in it, and the rest kanji takes generated
+  before `ttsKanji` was stored on the card.
 - **Status:** open — badge-only by design, pending a measurement of how often it goes red in practice.
 - **Verified by:** `node scripts/preflight.mjs --all --only audio-text-hash --verbose`
 - **When to revisit:** once the live stale count has been observed over a few chapters. If it stays

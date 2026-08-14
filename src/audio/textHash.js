@@ -1,6 +1,7 @@
-import { hashTerm, defaultClipText } from "./index.js";
+import { hashTerm, defaultClipText, clipSourceText } from "./index.js";
 import { cardAudioVariants } from "./variants.js";
 import { normalizeTtsText } from "./ttsText.js";
+import { withEndMarker, usesEndMarker } from "./ttsMarker.js";
 
 /**
  * `audioTextHash`: what text a card's clip was actually generated from.
@@ -87,30 +88,62 @@ export function deriveAudioTextHash(item) {
 }
 
 /**
+ * The spoken forms of a card's CURRENT text — every string a generator could legitimately have sent
+ * to TTS for it, before the end marker is appended.
+ *
+ * The comma/bracket variants are here because a reviewer who auditioned a comma-less take and picked
+ * it chose a clip of this card's text; re-badging that as drift the moment they pick it would make
+ * the badge useless. The kanji orthography is included only when the card carries one (`ttsKanji`) —
+ * it comes from a model and cannot be recomputed here, so a `-genkanji-` clip on a card without one
+ * is reported unverifiable rather than guessed at.
+ */
+function spokenForms(item, languageCode, { kanjiTts = false } = {}) {
+  const forms = new Set();
+  // Both kanji-TTS flag states, so turning the per-unit flag on (or off) does not badge every card
+  // in the unit at once — the clip on disk was correct under the setting it was made with.
+  for (const flag of [kanjiTts, !kanjiTts]) {
+    forms.add(normalizeTtsText(clipSourceText(item, { kanjiTts: flag }), languageCode));
+  }
+  for (const variant of cardAudioVariants(item, languageCode)) forms.add(variant.ttsText);
+  if (typeof item.ttsKanji === "string" && item.ttsKanji.length > 0) {
+    forms.add(normalizeTtsText(item.ttsKanji, languageCode));
+  }
+  return [...forms].filter(Boolean);
+}
+
+/**
  * Every text hash this card's CURRENT text could legitimately have produced.
  *
- * A card is "current" if its recorded hash is any one of them — not just the stage default — because
- * a reviewer who auditioned a comma-less or bracket-less variant and picked it chose a clip of this
- * card's text, and re-badging that as drift the moment they pick it would make the badge useless.
+ * Each spoken form appears in four shapes, because the text sent to TTS for a given card has changed
+ * twice without the card's own text changing at all:
  *
- * The kanji orthography is included only when the card carries one (`ttsKanji`). It is produced by a
- * model, so it cannot be recomputed here; a `-genkanji-` clip on a card with no stored `ttsKanji` is
- * reported unverifiable rather than guessed at.
+ *   `<form>`              a Generate variant, which hashes the bare text
+ *   `<form>。ででで`       the current stage default: the throwaway end marker (./ttsMarker.js)
+ *   `<form>。`            the LEGACY Japanese "alt audio" take, which appended a bare `。` for
+ *                         sentence-final prosody before the end marker replaced it
+ *   `<form>。。ででで`     a transitional take, generated while both were briefly in force
+ *
+ * The two legacy shapes are not indulgence. Measured on the live tree at the moment the backfill
+ * landed, 52 of the 53 clips that would otherwise have been badged "text changed" were generated
+ * under the with-`。` convention and speak their card's words perfectly. Badging them would have put
+ * 52 false positives on screen on day one, which is exactly how a new report becomes wallpaper —
+ * and it would have buried the ONE card (`lesson-0/irl-l1-31`) whose clip really is of other words.
+ *
+ * Legacy shapes only for a language that uses the end marker: the `。` transform was Japanese, and
+ * a Spanish card ending in a full stop is a different string, not an older convention.
  */
-export function expectedAudioTextHashes(item, languageCode, { kanjiTts = false } = {}) {
+export function expectedAudioTextHashes(item, languageCode, opts = {}) {
   const hashes = new Set();
   if (!item) return hashes;
 
-  hashes.add(hashTerm(defaultClipText(item, languageCode, { kanjiTts })));
-  // Both flag states, so turning the per-unit kanji-TTS flag on (or off) does not badge every card
-  // in the unit at once — the clip on disk was correct under the setting it was made with.
-  hashes.add(hashTerm(defaultClipText(item, languageCode, { kanjiTts: !kanjiTts })));
-
-  for (const variant of cardAudioVariants(item, languageCode))
-    hashes.add(hashTerm(variant.ttsText));
-
-  if (typeof item.ttsKanji === "string" && item.ttsKanji.length > 0) {
-    hashes.add(hashTerm(normalizeTtsText(item.ttsKanji, languageCode)));
+  const marked = usesEndMarker(languageCode);
+  for (const form of spokenForms(item, languageCode, opts)) {
+    hashes.add(hashTerm(form));
+    hashes.add(hashTerm(withEndMarker(form, languageCode)));
+    if (marked) {
+      hashes.add(hashTerm(`${form}。`));
+      hashes.add(hashTerm(withEndMarker(`${form}。`, languageCode)));
+    }
   }
   return hashes;
 }

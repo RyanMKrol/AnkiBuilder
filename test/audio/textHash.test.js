@@ -108,6 +108,26 @@ test("a picked comma-less variant of the card's own text is current, not stale",
   assert.equal(audioTextState(picked, "ja").state, "current");
 });
 
+// The text SENT to TTS has changed twice without any card's own text changing: the Japanese "alt
+// audio" take appended a bare 。 for sentence-final prosody, and the end marker later replaced it.
+// 52 of the 53 clips the first live run would have badged were of that older convention.
+test("a clip made under the older with-。 convention is current, not stale", () => {
+  const item = card();
+  for (const legacy of ["こんにちは。", "こんにちは。。ででで"]) {
+    const clip = { ...item, audio: "a.mp3", audioTextHash: hashTerm(legacy) };
+    assert.equal(audioTextState(clip, "ja").state, "current", legacy);
+  }
+});
+
+// The 。 transform was Japanese. A Spanish card that ends in a full stop is a different string, not
+// an older convention, and treating it as one would silently widen what counts as a match.
+test("the legacy 。 form is Japanese-only", () => {
+  const es = { id: "a", english: "Hi", category: "Other", target: "hola", pronunciation: "hola" };
+  const clip = { ...es, audio: "a.mp3", audioTextHash: hashTerm("hola。") };
+  assert.equal(audioTextState(clip, "es").state, "stale");
+  assert.equal(audioTextState({ ...clip, audioTextHash: hashTerm("hola") }, "es").state, "current");
+});
+
 test("a clip with no recorded hash is unverifiable, never stale", () => {
   const item = { ...card(), audio: "is-this-a-pen-user-82c4768e.mp3" };
   assert.equal(audioTextState(item, "ja").state, "unverifiable");

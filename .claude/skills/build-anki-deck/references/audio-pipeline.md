@@ -56,6 +56,40 @@ take to choose any more, the displayed face and reading never carry a `。`, and
 remaining job is inside the marker. Disable the marker with `ANKI_BUILDER_TTS_END_MARKER=0` (Japanese
 is currently the only marked language).
 
+**Japanese only, and that is a real gap.** `MARKED_LANGUAGES` has exactly one entry. Every other
+language's clips go out unprotected, so ElevenLabs' habit of cutting the final release short lands on
+the card's own last syllable — and `audioMarkerStuck` can only be set on a marked take, so nothing
+reports it. Adding a language is not a one-line change to the set: it means choosing a throwaway
+syllable that no card in that language ends with, generating a dozen clips, and re-deriving the
+position and pulse-shape thresholds against them, exactly as was done for Japanese.
+
+### Trialling rising prosody on か questions (never run)
+
+Question cards are generated exactly like statements, so the voice reads a か-final question on a
+falling contour. 328 delivered cards end in か. Putting the question mark before the marker
+(`<text>ですか？。ででで` instead of `<text>ですか。ででで`) is the obvious way to get a rise, and it is a trim
+REGRESSION risk before it is a prosody gain: the `。` opening the marker is what makes the model
+leave a gap in front of it, and that gap is the only thing that makes the marker findable at all
+(measured: `はちじ。ででで` leaves 1.12s and strips cleanly; `はちじででで` leaves 0.24s and is not
+recognised). `？` lands at exactly that point.
+
+So the trial is **new cards only** — never a bulk regeneration of the 328, which would re-bill every
+one and re-open takes a human has already tuned. It costs credits, so it is the owner's to run:
+
+1. Pick the next Japanese unit that contains か-final cards, BEFORE its `audio` stage has run. At
+   that point the trial is free of any regeneration cost.
+2. Generate that unit normally. Note each か card's clip.
+3. For the same cards, generate a second take with the question mark inserted, by setting
+   `ANKI_BUILDER_TTS_END_MARKER=0` and putting the full string in `ttsText` by hand
+   (`…ですか？。ででで`) on a scratch copy of the unit — never on the reviewed one.
+4. **Measure before you listen.** Run `findEndMarker` (`src/audio/trimSilence.js`) over both sets and
+   compare the end gap against the trim tolerance. A take whose marker no longer strips is
+   disqualified whatever it sounds like: an audible ででで is a worse defect than a falling question.
+5. Only then audition the survivors for the contour, blind if you can manage it.
+6. If it wins, it becomes a rule for NEW units in `withEndMarker` — not a migration.
+
+A rise that costs the marker is not a win.
+
 ## Trim and noise cleanup
 
 **Trailing-silence trim** (`src/audio/trimSilence.js`): every clip that reaches a card gets its

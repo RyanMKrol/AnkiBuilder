@@ -2704,3 +2704,51 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** with the first real deck in each language, alongside the entry above. A
   per-pass eval fixture for romanization would settle it properly; the machinery for that already
   exists (`scripts/eval-pass.mjs`).
+
+## End-marker protection is Japanese-only, so every other language ships whatever ElevenLabs clips
+
+- **What:** `MARKED_LANGUAGES` in `src/audio/ttsMarker.js` holds exactly one entry, `ja`. Every other
+  language's TTS text goes to ElevenLabs unmarked, so nothing protects the end of the utterance: the
+  model's habit of cutting the final release short lands on the card's own last syllable instead of
+  on a throwaway one. A Spanish, Korean or Hindi deck gets clipped endings and nothing reports it.
+- **Why:** the marker is `。ででで`, and it works because Japanese is written without spaces and で
+  is a clean repeated open syllable no real card ends with three of. Neither assumption transfers.
+  In a spaced language the marker is a visible separate word the voice may stress or pause before
+  differently; in another script there is no reason `de` is a safe throwaway; and the trim's removal
+  of it rests on thresholds measured on twelve Japanese clips of one voice. A wrong guess does not
+  degrade quietly — it puts audible nonsense on the end of every card in the deck.
+- **Impact:** the ~13% intervention rate this project sees on Japanese audio is with the marker
+  helping. Another language starts worse and with no badge for it: `audioMarkerStuck` can only be
+  set on a marked take, so an unmarked language's clipped ending is invisible to preflight, to the
+  audio review, and to `scripts/audit-marker-stuck.mjs` alike. Only the reviewer's ears would catch
+  it, and nothing tells them to listen for it.
+- **Status:** open — a known unhandled condition, not a bug.
+- **Verified by:** `node -e "import('./src/audio/ttsMarker.js').then(m => console.log(m.usesEndMarker('es'), m.usesEndMarker('ja')))"`
+- **When to revisit:** the first non-Japanese deck. Adding a language means choosing a throwaway
+  syllable for it, generating a dozen clips, and re-deriving the position and pulse-shape thresholds
+  against them — the same measurement the Japanese entry above describes, not a one-line addition to
+  the set.
+
+## The か-question prosody trial is written down and has never been run
+
+- **What:** Japanese question cards are generated exactly like statements — `<text>。ででで` — so the
+  voice reads a か-final question on a falling contour. 328 delivered cards end in か. A rising
+  contour would be more natural, and the obvious way to get one is to put the question mark before
+  the marker (`ですか？。ででで`). The procedure for trialling that is written in
+  `.claude/skills/build-anki-deck/references/audio-pipeline.md`; it has not been run.
+- **Why:** running it costs ElevenLabs credits, which is the owner's call. And it is a trim
+  REGRESSION risk before it is a prosody gain: the `。` opening the marker is what makes the model
+  leave a gap in front of it, and that gap is the only thing that makes the marker findable
+  (measured: `はちじ。ででで` leaves 1.12s and strips cleanly, `はちじででで` leaves 0.24s and is not
+  recognised at all). Inserting `？` immediately before the `。` changes the phrasing the model sees
+  at exactly the point the mechanism depends on. Seven clips have already shipped with an audible
+  marker; a change that makes that more likely has to be measured before it is adopted, not after.
+- **Impact:** every question card in the live deck falls where a native speaker would rise. It is
+  wrong, it is not misleading (the か is written on the card and is what carries the question), and
+  it is on 328 cards that are already scheduled. Bulk-regenerating them would re-bill every one and
+  re-open takes a human has already tuned, which is why the trial is specified as new cards only.
+- **Status:** open — procedure documented, never executed.
+- **When to revisit:** the next Japanese unit that contains question cards, which is when the trial
+  is free of any regeneration cost at all. Generate that unit's か-final cards both ways, measure the
+  end gap against the trim tolerance FIRST, and only listen for the contour on the takes that still
+  strip cleanly. A rise that costs the marker is not a win.

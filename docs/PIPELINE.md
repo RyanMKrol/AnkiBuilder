@@ -766,6 +766,31 @@ the same sentence used to render at 20px as a question and 26px bold as an answe
 direction smaller. Every text style clears WCAG AA against both the light and night-mode backgrounds,
 computed and asserted in `test/deck/cardStyles.test.js` rather than eyeballed.
 
+**Per-card direction (`dirSuspended`).** A card may name the template ordinals it should not be
+studied in — `dirSuspended: [1]` is "Recognition only". The `.apkg` builder still emits **both** card
+rows for it; the DELIVERER suspends the unwanted ordinal
+(`src/anki/directionSuspension.js`). Both halves of that are load-bearing. Gating a template's front
+on a field produces an EMPTY card, which Anki's Tools → Empty Cards deletes along with its interval
+and review log; omitting the card row at build time is inert on the AnkiConnect path (`addNote` makes
+Anki generate one card per template) and self-reversing on the `.apkg` path (Check Database and any
+template update regenerate it). Suspension is the only per-note direction suppression that survives
+routine housekeeping.
+
+Consent is graded. A note **this deliver created** is suspended unconditionally and tagged
+`dir-suspended::<ord>` — it has never been studied, so there is no scheduling to disturb. A note that
+was **already in the collection** is left alone and the unapplied flag is reported; applying it needs
+`--suspend-delivered`, which is itself refused until two behaviour probes are recorded
+(`suspend-on-filtered`, `housekeeping-unsuspends` — see `src/anki/probeResults.js`). A card that is
+unsuspended AND already carries its tag was turned back on by a **person**, and that decision is
+permanent unless the distinct second flag `--re-suspend-human-unsuspended` is passed. Suspending
+every direction is refused by name: that is a note with no studiable card, which is what `excluded`
+is for.
+
+**Stated consequence:** because the `.apkg` keeps both rows while delivery suspends one, a built
+package deliberately no longer reproduces the delivered deck card-for-card. That is the right trade —
+the two builders must not drift STRUCTURALLY — but it is a real difference and the freshness check
+compares packages, not scheduling.
+
 ⚠️ **Any edit to those templates or that CSS is a change to a SHARED note type.** It is keyed on
 language alone, so the next deliver of any deck in that language rewrites the card faces of every
 other deck using it and flips Anki's schema, forcing a one-way full AnkiWeb sync the owner completes

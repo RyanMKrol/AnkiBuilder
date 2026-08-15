@@ -365,6 +365,15 @@ function insertNotesAndCards(
         fieldChecksum(sortField),
       );
 
+      // BOTH card rows, always — including for a card carrying `dirSuspended`. Omitting a row here
+      // would be inert AND self-reversing: Anki's Check Database and any template update regenerate
+      // a missing card row for a note whose front is non-empty. Direction suppression happens at
+      // DELIVERY, by suspending the unwanted ordinal (src/anki/directionSuspension.js), which is the
+      // only form of it that survives routine housekeeping.
+      //
+      // The stated consequence: a `.apkg` built here deliberately does NOT reproduce the delivered
+      // deck card-for-card. That is the right trade — the two builders must not drift STRUCTURALLY —
+      // but it is a real difference and is written down in docs/PIPELINE.md and LIMITATIONS.
       for (let ord = 0; ord < 2; ord++) {
         const cardId = noteId + ord + 1;
         insertCard.run(cardId, noteId, deckId, ord, nowSeconds, position);

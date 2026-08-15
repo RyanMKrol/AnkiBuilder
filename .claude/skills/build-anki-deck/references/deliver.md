@@ -78,6 +78,42 @@ the note or the card, or remove the duplicate) and re-run.
   reset.
 - **Deletions** → never automatic; a note whose card left the corpus is reported as `orphaned` for you to
   remove by hand.
+- **Card DIRECTION** (`dirSuspended` on a card) → applied by SUSPENDING the unwanted ordinal, and only
+  under the consent rules below.
+
+## Per-card direction: `dirSuspended`
+
+A card can name the directions it should not be studied in, by template ordinal — `dirSuspended: [1]`
+means "Recognition only". 0 is Recognition, 1 is Production; that order is a contract
+(`src/deck/cardTemplates.js`). Suspending every direction is refused by name: a note with no studiable
+card is what `excluded` is for.
+
+Suspension is the mechanism because the two obvious alternatives are actively harmful. Gating a
+template's front on a field produces an **empty card**, which Anki's Tools → Empty Cards deletes along
+with its interval and its whole review log. Omitting the card row at build time is **inert** on this
+path (`addNote` makes Anki generate one card per template) and **self-reversing** on the `.apkg` path
+(Check Database and any template update regenerate it). Suspension is the only per-note direction
+suppression that survives routine housekeeping.
+
+**Stated consequence:** the `.apkg` keeps emitting both card rows while this path suspends one, so a
+built package deliberately no longer reproduces the delivered deck card-for-card.
+
+Who gets suspended, and what consent that needs:
+
+| the note | what happens | flag |
+|---|---|---|
+| created by THIS deliver | suspended unconditionally, tagged `dir-suspended::<ord>`, reported like `createdDecks` | none — a card that has never been studied has no scheduling to disturb |
+| already in the collection | **not touched**; the unapplied flags are reported | `--suspend-delivered`, **currently refused** (see below) |
+| unsuspended by hand, still carrying its `dir-suspended::<ord>` tag | reported and left alone, forever | `--re-suspend-human-unsuspended` overrides that one-click human decision |
+
+**`--suspend-delivered` is hard-disabled.** It is gated on two probe answers that have not been
+recorded: `suspend-on-filtered` (what `suspend` does to a card with a non-zero `odid`, i.e. one pulled
+into a filtered deck) and `housekeeping-unsuspends` (whether a template update or Check Database
+clears the suspension, which would make the control quietly stop working). Passing the flag today
+raises an error naming both and pointing at the probe script; it never reaches the collection. The
+gate reads `src/anki/probeResults.js`, so "gated on a probe" means gated on a recorded RESULT, not on
+a memory that somebody once ran something. Record an answer in BOTH that file and the table below, in
+the same commit.
 
 ## Backups
 
@@ -170,13 +206,16 @@ cannot turn into a write.
 Record the answers here, dated, as soon as a session produces them. Anything gated on a probe reads
 this table, not a memory of a run.
 
-| probe | answer | recorded |
-|---|---|---|
-| 1. template update regenerates a missing card row | not yet run | |
-| 1. template update unsuspends | not yet run | |
-| 2. `changeDeck` on a card with non-zero `odid` | not yet run | |
-| 3. `suspend` on a card with non-zero `odid` | not yet run | |
-| 3. template update / Check Database unsuspends | not yet run | |
+The machine-readable copy is `src/anki/probeResults.js`, and that is what a gate actually consults.
+Update BOTH in the same commit; the `id` column is the key used there.
+
+| probe | id | answer | recorded | what is gated on it |
+|---|---|---|---|---|
+| 1. template update regenerates a missing card row | `template-update-regenerates-card` | not yet run | | |
+| 1. template update unsuspends | `template-update-unsuspends` | not yet run | | |
+| 2. `changeDeck` on a card with non-zero `odid` | `change-deck-on-filtered` | not yet run | | `--refile` |
+| 3. `suspend` on a card with non-zero `odid` | `suspend-on-filtered` | not yet run | | `--suspend-delivered` |
+| 3. template update / Check Database unsuspends | `housekeeping-unsuspends` | not yet run | | `--suspend-delivered` |
 
 ## Rules for a collection managed this way
 

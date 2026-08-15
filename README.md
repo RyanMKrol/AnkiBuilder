@@ -363,6 +363,15 @@ operator has to override on the day it lands is worse than no gate.
       gone from the Recognition front, where it was an uncontrolled answer cue on 2,150 fronts, 86%
       of which have no scene; scene and hint get distinct treatment instead of two identical
       unlabelled grey lines. `Reading` is still rendered by nothing, deliberately
+- [x] Per-card direction control (`dirSuspended: [1]` = Recognition only), by suspending the unwanted
+      card ordinal at delivery — the only form of direction suppression in Anki that survives routine
+      housekeeping (an empty front is an EMPTY card, which Tools → Empty Cards deletes with its
+      review log; a build-side omission is inert on the AnkiConnect path and regenerated on the
+      `.apkg` one). Unconditional for notes the deliver creates (nothing studied, nothing to
+      disturb); a human unsuspend is respected forever via the per-ordinal `dir-suspended::<ord>`
+      tag. Applying it to already-delivered notes is opt-in AND **currently refused**, gated on two
+      unrun behaviour probes it names. Stated consequence: the `.apkg` keeps both card rows, so it no
+      longer reproduces the delivered deck card-for-card
 - [x] A notes truth-check at Gate 1 (`note-claims`): every note asserting a decomposition,
       derivation, distinction or identity, with — for each target-script form the claim names —
       whether this collection teaches a card for it. Deterministic list, human verdict. Every other

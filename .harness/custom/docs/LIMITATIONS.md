@@ -2514,3 +2514,42 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if a proper-noun list for the collection ever exists (the extraction pass
   could emit one), `proper-noun-casing` becomes checkable against it.
+
+## Direction suspension on ALREADY-DELIVERED notes is built but dormant
+
+- **What:** `dirSuspended` works end to end for notes a deliver CREATES. For a note already in the
+  collection the flag is read, reported as unapplied, and never acted on: `--suspend-delivered`
+  raises an error naming the probe evidence it is missing (`suspend-on-filtered`,
+  `housekeeping-unsuspends`) before performing a single read.
+- **Why:** both probes are questions about a card the owner is already studying. Nobody has
+  established what AnkiConnect's `suspend` does to a card with a non-zero `odid` (one pulled into a
+  filtered deck), or whether a template update or Check Database silently clears the suspension —
+  which would make the control stop working with no signal at all. Shipping the path on the
+  assumption that it behaves is exactly the pattern this plan exists to stop.
+- **Impact:** a `dirSuspended` added to an already-delivered card does nothing until the probes are
+  run. That is reported on every deliver rather than being silent, but the flag and the collection
+  disagree in the meantime. The gate reads `src/anki/probeResults.js`, whose entries are `null` (not
+  `false`) so "we don't know" can never be mistaken for "we know it is safe".
+- **Status:** open — dormant pending probe evidence.
+- **When to revisit:** after a probe session on the throwaway `ANKIBUILDER-PROBE` profile. Record each
+  answer in BOTH `src/anki/probeResults.js` and the table in `references/deliver.md`, then re-read the
+  gated path before trusting it.
+- **Verified by:** `node --test test/anki/directionSuspension.test.js` (the last two tests assert the
+  probes are still unanswered and that the gate opens once they are not)
+
+## The .apkg no longer reproduces the delivered deck card-for-card
+
+- **What:** the `.apkg` builder emits BOTH card rows for every note, including one carrying
+  `dirSuspended`; the AnkiConnect deliverer suspends the unwanted ordinal. So a package built from a
+  collection differs from the live deck by exactly those suspensions.
+- **Why:** omitting the row at build time is inert on the delivery path (Anki generates one card per
+  template on `addNote`) and self-reversing on the `.apkg` path (Check Database and any template
+  update regenerate it), so the two builders would have drifted STRUCTURALLY for no gain. Keeping
+  both rows keeps them structurally identical and puts the difference where it is intentional.
+- **Impact:** importing a built `.apkg` into a fresh collection produces a deck with every direction
+  live. Anything treating the `.apkg` as a faithful snapshot of the delivered deck — the freshness
+  check, a restore-by-import — is comparing packages, not scheduling, and is unaffected; a human
+  reading one as "what the owner sees" would be wrong.
+- **Status:** open — accepted trade, recorded so it is not rediscovered as a bug.
+- **When to revisit:** if `.apkg` import ever becomes the primary delivery path again, this inverts
+  and the suspension has to move into the builder.

@@ -1,7 +1,7 @@
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { runRomanizationClaude as defaultRunClaude } from "./runClaude.js";
-import { getLanguagePromptRules } from "./languageRules.js";
+import { getLanguagePromptRules, romanizationExamples } from "./languageRules.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { renderPromptTemplate } from "../util/promptTemplate.js";
 import { chunk } from "../util/chunk.js";
@@ -36,20 +36,65 @@ export function buildRomanizationPrompt(
     libraryRomanization: item.libraryPronunciation,
   }));
 
-  // Per-language style fragment, same plug-in shape as every other prompt (languageRules.js). No
-  // language sets `romanizationStyle` yet; it is the single place a pinned Hepburn spec belongs, so
-  // that all four prompts that romanize can be fed from one string instead of drifting apart.
-  const rules = getLanguagePromptRules(languageCode ?? resolveIso639Code(targetLanguage));
+  // Per-language fragments, same plug-in shape as every other prompt (languageRules.js). Everything
+  // language-specific in this prompt now comes from here — the style rules, what the library gets
+  // wrong, the romanization system's name, and the few-shot pair. It used to be written into the
+  // template, so a Hindi or Arabic run was shown two Japanese exemplars (ろっかい, こんにちは) and
+  // told about the small っ. Few-shot examples dominate a one-line instruction, so the model was
+  // anchored on the wrong task entirely.
+  const code = languageCode ?? resolveIso639Code(targetLanguage);
+  const rules = getLanguagePromptRules(code);
   const styleRules = rules.romanizationStyle ?? [];
+  const examples = romanizationExamples(code);
+  // Whether a library value is coming at all. `hasLibrary` is what the caller knows: a language with
+  // no configured library takes the LLM-only path per ITEM, but a per-item adapter failure also
+  // lands here with no `libraryRomanization`, so the prompt has to read correctly either way.
+  const withLibrary = inputData.some((item) => item.libraryRomanization);
+  const failureModes = rules.libraryFailureModes ?? [];
 
   return renderPromptTemplate(templatePath, {
     TARGET_LANGUAGE: targetLanguage,
+    // The standard system's name, so the instruction is concrete rather than "the standard system
+    // for X, whatever that is". Falls back to a description that is true of every language.
+    ROMANIZATION_SYSTEM:
+      rules.romanizationSystem ?? `the standard romanization for ${targetLanguage}`,
+    LIBRARY_INPUT_CLAUSE: withLibrary
+      ? " and a `libraryRomanization` — a romanization produced by a deterministic library"
+      : "",
+    LIBRARY_FAILURE_MODES:
+      withLibrary && failureModes.length
+        ? `That library is a useful starting point but is frequently WRONG for ${targetLanguage}:\n` +
+          failureModes.map((mode) => `- ${mode}`).join("\n") +
+          "\n\nKeep its value where it is already right, and fix it everywhere it is not."
+        : withLibrary
+          ? "That library is a starting point, not an answer. Keep its value where it is already " +
+            "right, and fix it everywhere it is not."
+          : "",
     // The placeholder sits in an already-flush "## Important" bullet list, so each rule is a
     // plain top-level bullet. Empty for a language with no configured style.
     ROMANIZATION_STYLE_RULES: styleRules.map((rule) => `- ${rule}`).join("\n"),
+    // The example INPUT is the example minus its answer, and minus the library value when this run
+    // has no library — showing a `libraryRomanization` that the real input will not carry teaches
+    // the model to expect a field that is not there.
+    EXAMPLE_INPUT: JSON.stringify(
+      examples.map((example) =>
+        omit(example, "pronunciation", ...(withLibrary ? [] : ["libraryRomanization"])),
+      ),
+      null,
+      2,
+    ),
+    EXAMPLE_OUTPUT: JSON.stringify(
+      examples.map(({ id, pronunciation }) => ({ id, pronunciation })),
+      null,
+      2,
+    ),
     ITEM_COUNT: String(items.length),
     INPUT_JSON: JSON.stringify(inputData, null, 2),
   });
+}
+
+function omit(object, ...keys) {
+  return Object.fromEntries(Object.entries(object).filter(([key]) => !keys.includes(key)));
 }
 
 function parseEvalBatch(raw) {

@@ -345,7 +345,10 @@ say when it was measured rather than stating it as a standing fact.
   `kuroshiro`/`kuroshiro-analyzer-kuromoji` (Japanese, kana+kanji → romaji), `pinyin-pro`
   (Mandarin), `koroman` (Korean), `cyrillic-to-translit-js` (Russian/Cyrillic),
   `hebrew-transliteration` (Hebrew), `@indic-transliteration/sanscript` (Hindi/Devanagari), and
-  `arabic-transliterate` (Arabic). The Japanese case is the one genuinely costly dependency:
+  `arabic-transliterate` (Arabic). **The Arabic and Hebrew adapters are no longer wired into
+  `ROMANIZATION_LIBRARIES`** — their packages stay installed and their adapters and tests stay
+  accurate about what those packages do, but neither language reaches them any more; see "Only
+  ja / zh / ko have a proven romanization path" below. The Japanese case is the one genuinely costly dependency:
   `kuromoji`'s bundled IPADIC morphological dictionary is **~41MB unpacked** — real linguistic data
   needed for kanji-aware analysis, not something that can be hand-rolled small. Every adapter's
   library import is a dynamic `import()` inside the adapter function itself (never a static
@@ -2492,3 +2495,50 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if the A/B comes back positive and the owner wants an existing unit converted.
   That needs a previewed migration that regenerates the whole unit at once, not a flag flip.
+
+## Only ja / zh / ko have a proven romanization path
+
+- **What:** seven languages had a romanization library wired in; three have ever been run end to
+  end. Measured output for the rest: Arabic كتاب → `ktab` (kitāb), مدرسة → `mdrsa` (madrasa),
+  بيت → `byt` (bayt); Hebrew ספר → `spr` (sefer), שלום → `šlwm` (shalom); Hindi कमल → `kamala`
+  (kamal), सड़क → `saḍa़ka` (saṛak, with the combining nukta leaking through raw). Arabic and Hebrew
+  have been removed from `ROMANIZATION_LIBRARIES`; Hindi keeps its library plus explicit
+  schwa-deletion and nukta rules in the prompt.
+- **Why:** Arabic and Hebrew script do not write short vowels and neither library restores them, so
+  both return a consonant skeleton — not an imperfect romanization but a non-answer, since a learner
+  reading `ktab` cannot say the word. The romanization prompt hands the library's value over as a
+  useful starting point and tells the model to keep it where it is right, so a systematically empty
+  value does not merely fail to help: it anchors. Hindi is a different case. Sanscript's
+  devanagari→IAST is a *Sanskrit* scheme, where the inherent schwa is pronounced; Hindi deletes it.
+  Every vowel is at least present, so the output is correctable, and telling the model exactly what
+  to correct is cheaper than dropping a library that is 80% right.
+- **Impact:** an Arabic or Hebrew deck now takes the LLM-only pronunciation path, the same one every
+  unconfigured language uses. That is a model guess with no deterministic backing — but a guess that
+  can supply vowels beats a skeleton that cannot. Hindi's output depends on the model actually
+  applying the schwa rule; nothing verifies it, and there is no Hindi deck to check against.
+  Neither has been run on real material, so "improved" here means "no longer anchored on a wrong
+  answer", not "measured good".
+- **Status:** open
+- **Verified by:** `node -e "import('./src/translate/romanization/indic.js').then(m => m.romanize('सड़क')).then(console.log)"`
+- **When to revisit:** before anyone builds a deck in one of these languages. Romanize thirty real
+  cards, read them, and decide per language — that is the only thing that would turn any of this
+  from a reasoned guess into a measurement. If a vocalizing Arabic or Hebrew library appears,
+  re-wiring is one line in `romanizationLibraries.js`.
+
+## The romanization prompt's language fragments are hand-written, not measured
+
+- **What:** the per-language `romanizationStyle`, `libraryFailureModes` and `romanizationExamples`
+  entries in `languageRules.js` are written from knowledge of each language, not derived from a
+  corpus. The Japanese ones restate faults this project has actually seen; the Hindi, Arabic and
+  Hebrew ones restate faults measured on a handful of words each.
+- **Why:** the alternative was leaving every non-Japanese run anchored on Japanese exemplars, which
+  is a definite fault rather than a possible one. A hand-written fragment naming the real failure
+  mode is better than a correct-looking fragment about another language.
+- **Impact:** a fragment could be wrong or incomplete in a way nobody notices until a deck is built
+  in that language. The Arabic sun-letter rule and the Hebrew mater-lectionis rule in particular are
+  stated from general knowledge, not from output anyone has checked. They are also only prompt
+  text — a wrong rule produces a wrong romanization, not a crash.
+- **Status:** open
+- **When to revisit:** with the first real deck in each language, alongside the entry above. A
+  per-pass eval fixture for romanization would settle it properly; the machinery for that already
+  exists (`scripts/eval-pass.mjs`).

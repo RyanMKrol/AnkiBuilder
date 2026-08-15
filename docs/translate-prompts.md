@@ -9,7 +9,9 @@
 **Which prompts run depends on whether the target language has a configured romanization library** (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code):
 
 - **No library configured** (the original design, unchanged): the two prompts below — full-translation and pronunciation-only — both ask the model for `pronunciation` directly.
-- **Library configured** (e.g. Japanese, Mandarin, Korean, Russian, Hebrew, Hindi, Arabic — see `romanizationLibraries.js` for the current list): the translation call asks for `target` only (§1a, below) — never `pronunciation` — and a separate romanization eval pass (§3) runs the real library and has a Sonnet-medium model correct its output in place instead. See `src/translate/romanizationEval.js`.
+- **Library configured** (Japanese, Mandarin, Korean, Russian, Hindi — see `romanizationLibraries.js` for the current list): the translation call asks for `target` only (§1a, below) — never `pronunciation` — and a separate romanization eval pass (§3) runs the real library and has a Sonnet-medium model correct its output in place instead. See `src/translate/romanizationEval.js`.
+
+**Only ja / zh / ko are library-proven.** Those three are the only languages this project has ever run end to end. Hindi is configured but only half right: Sanscript's devanagari→IAST is a _Sanskrit_ scheme, so it writes the inherent schwa that spoken Hindi deletes (कमल → `kamala` for a word that is `kamal`) and can leak a raw combining nukta (सड़क → `saḍa़ka` for `saṛak`). The vowels are at least all present, which is why it keeps its library and gets explicit schwa-deletion and nukta rules in §3 instead. **Arabic and Hebrew were removed from the registry**: both scripts omit short vowels and neither library restores them, so both returned a consonant skeleton (كتاب → `ktab`, ספר → `spr`, שלום → `šlwm`). Since §3 hands the library's value over as a trustworthy starting point, that was strictly worse than nothing — it anchored the model on an unpronounceable answer. With no entry they take the LLM-only path, which can supply the vowels.
 
 ## The four prompts, and where they live
 
@@ -41,9 +43,17 @@ prompt with a missing input.
 - **1a only**: `{{TARGET_SCRIPT_RULE}}` and `{{TARGET_SCRIPT_REMINDER}}` — the `--simple-script`
   constraint from `src/translate/targetScript.js`, as a sub-bullet and as an `## Important` line.
   Both empty when the language has no constraint.
-- **3 only**: `{{ROMANIZATION_STYLE_RULES}}` — the per-language romanization style
-  (`languageRules.js`, `romanizationStyle`). No language sets it yet; it is the hook a single pinned
-  Hepburn spec plugs into, so that every prompt that romanizes can be fed from one string.
+- **3 only**: five placeholders, all fed from `languageRules.js`, because everything
+  language-specific in that prompt used to be written into the template itself — so a Hindi or
+  Arabic run was shown two Japanese exemplars (ろっかい, こんにちは) and told about the small っ.
+  Few-shot examples beat a one-line instruction, so the model was anchored on the wrong task.
+  `{{ROMANIZATION_STYLE_RULES}}` (the per-language style rules, and the hook a pinned Hepburn spec
+  plugs into), `{{ROMANIZATION_SYSTEM}}` (Hepburn / Hanyu Pinyin / IJMES …),
+  `{{LIBRARY_FAILURE_MODES}}` (what this language's library actually gets wrong, or nothing when it
+  has no known faults), `{{LIBRARY_INPUT_CLAUSE}}` (empty when the run has no library at all, so the
+  prompt does not describe a field that will not arrive), and `{{EXAMPLE_INPUT}}` /
+  `{{EXAMPLE_OUTPUT}}` (the few-shot pair, in the target's own script; a language with no entry gets
+  a script-free placeholder pair that teaches shape only).
 
 ## Design notes
 

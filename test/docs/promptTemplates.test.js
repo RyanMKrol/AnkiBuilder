@@ -112,7 +112,21 @@ const TEMPLATES = {
     outputContract: /Do not include a `target` key/,
   },
   "romanization-prompt.md": {
-    placeholders: ["TARGET_LANGUAGE", "ROMANIZATION_STYLE_RULES", "ITEM_COUNT", "INPUT_JSON"],
+    // Everything language-specific is a placeholder, and that is the point: the Japanese exemplars
+    // and the sokuon rule used to be written into the template, so a Hindi or Arabic run was shown
+    // ろっかい / こんにちは and told about kana. A few-shot example beats a one-line instruction, so
+    // the model was anchored on the wrong task. Losing any of these puts that back.
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "ROMANIZATION_SYSTEM",
+      "LIBRARY_INPUT_CLAUSE",
+      "LIBRARY_FAILURE_MODES",
+      "ROMANIZATION_STYLE_RULES",
+      "EXAMPLE_INPUT",
+      "EXAMPLE_OUTPUT",
+      "ITEM_COUNT",
+      "INPUT_JSON",
+    ],
     outputContract: /"pronunciation"/,
   },
 };

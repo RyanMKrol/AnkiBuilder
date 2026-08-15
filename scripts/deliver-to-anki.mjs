@@ -15,6 +15,23 @@
 //                     once and forces a manual one-way AnkiWeb sync. Without this flag such a
 //                     delivery is refused. Preview it with --dry first: the dry run prints a
 //                     unified diff of live vs built plus every deck the change would reach.
+//     --allow-template-add
+//                     consent to ADDING a card template to the shared note type. Currently refused
+//                     even with this flag: the live-Anki probes that would say what the write does
+//                     to existing cards have never been run (src/anki/probeResults.js). Without
+//                     it, a spec template with no live counterpart stops the deliver and tells you
+//                     to add the card type by hand in Anki first.
+//     --allow-bulk-add
+//                     consent to a delivery that ADDS more than 200 notes to one collection. A run
+//                     that big is either a first delivery or a matching failure, and they look the
+//                     same from here. Preview with --dry first.
+//     --refile        move delivered cards whose deck no longer matches their unit's deck name (the
+//                     only way a chapterLabel fix reaches an existing book without splitting a
+//                     chapter across two decks). Off by default. With --dry it PREVIEWS every move;
+//                     the run itself is refused until the changeDeck probe has been answered.
+//     --suspend-orphans
+//                     suspend and tag delivered notes whose card left the corpus, instead of just
+//                     listing them. Same shape: --dry previews, the run waits on the suspend probe.
 //     --suspend-delivered
 //                     also apply a card's `dirSuspended` directions to notes that were ALREADY in
 //                     the collection. Suspending a card the owner has been studying for months
@@ -41,6 +58,10 @@ const args = process.argv.slice(2);
 const dry = args.includes("--dry");
 const sync = !args.includes("--no-sync");
 const allowModelChange = args.includes("--allow-model-change");
+const allowTemplateAdd = args.includes("--allow-template-add");
+const allowBulkAdd = args.includes("--allow-bulk-add");
+const refile = args.includes("--refile");
+const suspendOrphans = args.includes("--suspend-orphans");
 const suspendDelivered = args.includes("--suspend-delivered");
 const reSuspendHumanUnsuspended = args.includes("--re-suspend-human-unsuspended");
 const selectorArgs = args.filter((a) => !a.startsWith("--"));
@@ -65,6 +86,10 @@ try {
     client,
     dry,
     allowModelChange,
+    allowTemplateAdd,
+    allowBulkAdd,
+    refile,
+    suspendOrphans,
     suspendDelivered,
     reSuspendHumanUnsuspended,
     sync,
@@ -94,6 +119,7 @@ if (report.structure.length) {
     const changes = [
       s.createModel && "created",
       s.addedFields.length && `+fields[${s.addedFields.join(",")}]`,
+      s.addedTemplates?.length && `+templates[${s.addedTemplates.join(",")}]`,
       s.templates && "templates",
       s.css && "css",
     ].filter(Boolean);
@@ -124,6 +150,39 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  for (const a of c.adoptedFromElsewhere ?? []) {
+    line(
+      `     matched ${a.card} to note ${a.noteId}, which is NOT in ${a.deck} — adopted (an old ` +
+        `deck name), not duplicated; --refile moves it into place`,
+    );
+  }
+  for (const a of c.addsMatchingElsewhere ?? []) {
+    line(
+      `     ⚠ adding ${a.card} ("${a.english}"), but an untagged note with the same Target sits ` +
+        `elsewhere in this book (note ${a.noteIds.join(", ")}) — check before a real run`,
+    );
+  }
+  if (c.refiled) {
+    line(
+      `     refile: ${c.refiled.moves.length} move(s), ${c.refiled.skipped.length} left alone` +
+        `${c.refiled.applied ? "" : " (not applied)"}`,
+    );
+    for (const m of c.refiled.moves) line(`       ${m.card}: "${m.from}" → "${m.to}"`);
+    for (const s of c.refiled.skipped) line(`       ${s.card}: "${s.from}" — ${s.reason}`);
+  }
+  if (c.suspendedOrphans) {
+    line(
+      `     suspend-orphans: ${c.suspendedOrphans.orphans.length} note(s)` +
+        `${c.suspendedOrphans.applied ? "" : " (not applied)"}`,
+    );
+  }
+  if (c.baseline) {
+    line(
+      c.baseline.armed
+        ? `     baseline: ${c.baseline.recorded} recorded, ${c.baseline.unresolved} unresolved`
+        : `     baseline: ${c.baseline.reason}`,
+    );
+  }
   // Each direction class is a different fact and they are never summed: one is work done, one is
   // work a dry run would do, one is a decision a HUMAN made, one is a flag the collection is
   // deliberately not honouring.
@@ -144,6 +203,17 @@ for (const c of report.content) {
     for (const e of d.refused) line(`     ⚠ ${e.card} ${dirName(e.ord)}: ${e.reason}`);
   }
   ambiguousTotal += c.ambiguous.length;
+}
+
+for (const m of report.markerWrites ?? []) {
+  if (m.ok || m.skipped) continue;
+  line(
+    `\n⚠ ${m.deck}: could not record the delivery baseline (${m.error}). ` +
+      (m.disarmed
+        ? `The marker records NO baseline, so the next deliver bootstraps one rather than trusting ` +
+          `a stale one — the fail-closed check is unarmed until then.`
+        : `The marker could not be written at all. Fix ${m.path} before delivering again.`),
+  );
 }
 
 // --- AnkiWeb sync ---

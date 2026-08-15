@@ -13,6 +13,13 @@ import {
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
 import { vocabCoverageCheck } from "./vocab.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
+import {
+  collectionStateCheck,
+  corpusDriftCheck,
+  guidNamespaceCheck,
+  readinessExemptionsCheck,
+  unitMarkerCheck,
+} from "./state.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
 import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
 import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "./cardQuality.js";
@@ -39,11 +46,16 @@ export const ALL_CHECKS = [
   spacingCheck,
   placeholderTargetCheck,
   sourceTypeCheck,
+  corpusDriftCheck,
   romajiStyleCheck,
   answerableAloneCheck,
   productionLengthCheck,
   noteClaimsCheck,
   // collection scope
+  collectionStateCheck,
+  guidNamespaceCheck,
+  readinessExemptionsCheck,
+  unitMarkerCheck,
   cardIdsCheck,
   collisionsCheck,
   inlineRomanizationCheck,

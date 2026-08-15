@@ -282,9 +282,13 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    Roughly a third of the groups it reports are cards that should stay.
 
    `--apply` still exists for the case where you have read the report and every group really is a
-   duplicate, and it refuses reviewed/done units without `--force`. It is not a step in this
-   procedure. Excluding a card that is the only teaching of a sense removes it from the deck with
-   nothing to say it is gone.
+   duplicate. It refuses reviewed/done units without `--force`, and refuses a DELIVERED collection
+   without `--force-delivered` on top (an exclusion there does not reach Anki: the learner keeps
+   drilling the card until somebody suspends it by hand). It is not a step in this procedure.
+   Excluding a card that is the only teaching of a sense removes it from the deck with nothing to say
+   it is gone. When it does write, it mirrors each exclusion into that unit's `corpus.json` as well,
+   the way `extras-order.mjs` mirrors ORDER — otherwise the corpus review keeps offering an item the
+   deck will never ship, and the dedup library saved from that corpus keeps counting it as taught.
 
    **Run this at the end of every chapter, not only during an extras pass.** It is the same rule the
    collision audit follows, and for the same reason: a duplicate is created by a LATER lesson

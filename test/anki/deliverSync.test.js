@@ -58,7 +58,14 @@ function orderingClient() {
         fields.splice(i, 0, f);
       },
       modelFieldReposition: async () => rec("modelFieldReposition"),
-      modelTemplates: async () => rec("modelTemplates", { Recognition: { Front: "x", Back: "x" } }),
+      // Both template rows exist and both are stale — a template EDIT. (A live note type MISSING a
+      // row is a different case entirely: the deliver refuses it, because AnkiConnect cannot add
+      // one. See test/anki/templateAdd.test.js.)
+      modelTemplates: async () =>
+        rec("modelTemplates", {
+          Recognition: { Front: "x", Back: "x" },
+          Production: { Front: "x", Back: "x" },
+        }),
       updateModelTemplates: async () => rec("updateModelTemplates"),
       modelStyling: async () => rec("modelStyling", { css: "old" }),
       updateModelStyling: async () => rec("updateModelStyling"),

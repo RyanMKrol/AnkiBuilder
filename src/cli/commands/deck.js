@@ -4,7 +4,7 @@
 import { existsSync } from "fs";
 import { basename, resolve } from "path";
 import { withClaim } from "../runClaim.js";
-import { deckPathForDir } from "../../deck/deckFileName.js";
+import { deckIdentityForDir, deckPathForDir } from "../../deck/deckFileName.js";
 import { readJson } from "./shared.js";
 
 async function runBookDeck(flags, ctx) {
@@ -51,6 +51,11 @@ async function runDeckInner(flags, ctx) {
     outPath: paths.deck,
     audioDir: existsSync(paths.audio) ? paths.audio : null,
     deckName: flags.name || null,
+    // Namespaced note guids, from the run dir's own immutable identity — NOT from `--name`, which
+    // is a display name a rebuild may change. `resolve` first: the identity is derived by walking
+    // basename/dirname, so the same directory typed two ways would otherwise get two namespaces and
+    // the second build's notes would all import as new. See runDirGuidNamespace in ../deck/rebuild.js.
+    guidNamespace: deckIdentityForDir(resolve(flags.run)),
   });
 
   ctx.log(

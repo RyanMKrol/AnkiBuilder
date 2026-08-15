@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
-import { deckPathForDir } from "./deckFileName.js";
+import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
 // automatic rebuild, so a rebuild triggered from the browser is byte-identical to the CLI's. The
@@ -185,5 +185,27 @@ export function rebuildRunDir(runDir, { buildDeck = defaultBuildDeck, deckName =
     outPath: deckPathForDir(runDir),
     audioDir: existsSync(audioDir) ? audioDir : null,
     deckName,
+    guidNamespace: runDirGuidNamespace(runDir),
   });
+}
+
+/**
+ * The guid namespace for a single-run collection (a bundled template, a one-off run dir).
+ *
+ * A book or a course records its namespace in its own marker at creation, because that marker
+ * exists. A run dir has none, so the namespace comes from the directory's own IDENTITY — the same
+ * immutable path `deckFileNameForDir` names the package after (`numbers-ja` for
+ * `templates/numbers/ja`). Immutable is the property that matters: the namespace must not follow the
+ * deck's DISPLAY name, or renaming a deck would change every guid and orphan its live scheduling.
+ *
+ * Any run-dir package built before this existed shipped BARE guids, and re-importing over it will
+ * add new notes rather than update the old ones. There were none on disk when this landed; see the
+ * LIMITATIONS entry for the one-line remedy if an older one turns up.
+ */
+function runDirGuidNamespace(runDir) {
+  // `resolve` first, always. `deckIdentityForDir` walks basename/dirname, so the RELATIVE string
+  // `ja` and the path `output/templates/numbers/ja` describe the same directory and would yield
+  // different namespaces — and therefore different guids for the same deck, which is the exact
+  // failure the namespace exists to prevent.
+  return deckIdentityForDir(resolve(runDir));
 }

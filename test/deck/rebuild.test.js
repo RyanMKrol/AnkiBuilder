@@ -143,6 +143,27 @@ test("rebuildRunDir builds a single run dir (template)", () => {
   }
 });
 
+test("rebuildRunDir namespaces guids from the run dir's own identity, not its display name", () => {
+  // Anki matches note guids collection-wide, so a bare `a` from a template deck collides with the
+  // same id anywhere else. The namespace comes from the immutable directory identity (the same one
+  // the package is named after) — never from a display name, which a rebuild is free to change.
+  const root = mkdtempSync(join(tmpdir(), "rb-tmpl-"));
+  try {
+    const dir = join(root, "templates", "numbers", "ja");
+    writeUnit(dir, { targetLanguage: "ja" }, [
+      { id: "a", english: "zero", target: "ゼロ", pronunciation: "zero", category: "Numbers" },
+    ]);
+    let received;
+    rebuildRunDir(dir, {
+      deckName: "Some Display Name",
+      buildDeck: (cards, opts) => ((received = { cards, opts }), { noteCount: 1, mediaCount: 0 }),
+    });
+    assert.equal(received.opts.guidNamespace, "numbers-ja");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("rebuildBookDir end-to-end embeds an updated clip in the real .apkg", async () => {
   const dir = mkdtempSync(join(tmpdir(), "rb-e2e-"));
   try {

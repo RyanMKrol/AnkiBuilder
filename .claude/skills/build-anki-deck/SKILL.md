@@ -577,7 +577,16 @@ time a unit changes. Skip for template/manual decks.
 ## Step 7: Import & deliver
 
 First import of a deck: File → Import in Anki, select the collection's `.apkg` (or the template's own
-one), check the sub-deck hierarchy and audio playback.
+one), check the sub-deck hierarchy and audio playback. Two things to know before that first import:
+
+- **Turn on sibling burying** on the deck's options preset once it is in (Options → Burying → bury
+  new siblings + bury review siblings). Each note makes two cards and, unburied, they come up in the
+  same session, so the second is answered from memory rather than recalled. The package ships its
+  own preset (`anki-builder`) with this already on, but a deck you already have keeps the preset it
+  already has, and AnkiConnect never writes deck options.
+- **Never import a bare-guid deck into a collection that already holds another one.** Anki matches
+  note guids collection-wide. New collections get a namespace from their folder slug; the two
+  collections delivered before that existed ship bare card ids. `npm run preflight` prints which.
 
 **Every later change to a deck the user already studies goes through the deliver tool, never a
 re-import.** `node scripts/deliver-to-anki.mjs --dry` to preview, then without `--dry` to deliver: it
@@ -587,6 +596,12 @@ any cards were skipped as ambiguous. Backups are pruned (newest 10 plus one per 
 restorable with `scripts/restore-anki-backup.mjs`. The user studies daily: protect scheduling, and
 re-read on-disk deck files before every edit. Full detail, including the restore procedure and the
 managed-collection rules: [deliver](references/deliver.md).
+
+A deliver can stop on one of four guards, and none of them is a reason to reach for a flag without
+reading: the parent deck was renamed (the lookup found no notes where the marker says a delivery
+happened); more than 10% of the previously-delivered cards no longer resolve; more than 200 notes
+would be ADDED at once (`--allow-bulk-add` after reading the dry run); or the pre-delivery backup did
+not actually export. Each says which one it is.
 
 If something looks wrong earlier in the pipeline, edit `corpus.json`/`cards.json` and re-run from
 that stage. Stages are resumable, and a stage whose output exists reuses it.
@@ -728,14 +743,21 @@ scripts/check-done.mjs <runDir>` runs the same gate-2 check once and exits 0 / 1
 ### Un-ship a unit (undo a Mark done)
 
 ```sh
-node scripts/undone-unit.mjs <runDir> [--force] [--no-rebuild]
+node scripts/undone-unit.mjs <runDir> [--force-delivered] [--no-rebuild]
 ```
 
 Backs up `cards.json`, clears `meta.done`, and rebuilds the collection package without the unit.
 There is no dashboard button for this — done lessons stay fully editable, so nothing needed one —
-and this is the reviewed replacement for editing the JSON by hand. `--force` is required when the
-collection has been delivered to Anki, because **it never touches Anki**: notes already delivered
-stay in the live collection with their scheduling, and only the package changes.
+and this is the reviewed replacement for editing the JSON by hand. `--force-delivered` is required
+when the collection has been delivered to Anki, because **it never touches Anki**: notes already
+delivered stay in the live collection with their scheduling, and only the package changes.
+
+That flag name is the same across every tool that writes into a unit. `--force` means "yes, change a
+unit a human signed off"; `--force-delivered` means "yes, and those cards are already in the live
+collection". They are separate consents because they have different consequences, and one flag
+covering both is how "re-order this finished unit" turned into "edit the deck I studied this
+morning". The states themselves (`authored`, `reviewed`, `done`, `packaged`, `delivered`) are
+computed in one place, `src/audit/state.js`.
 
 ### Validate every deck's JSON against the schemas
 

@@ -137,6 +137,18 @@ because the note key is `abid:<card.id>` deck-wide: two such cards would resolve
 the later one would quietly overwrite the earlier. See the
 [skill](./.claude/skills/build-anki-deck/SKILL.md) for details.
 
+Four guards run on every delivery, because the same routine command against a collection something
+has happened to is how a whole book gets re-inserted with no scheduling: it **aborts if the marker
+says this collection was delivered but the lookup finds zero notes** (the deck was renamed — the
+parent deck's name is the book title, and it is editable in Anki); it records the delivered card ids
+and **aborts when more than 10% of them stop resolving**; adding more than 200 notes at once needs
+`--allow-bulk-add`; and a falsy `exportPackage` is treated as a failed backup, because AnkiConnect
+answers `{result: false}` with no error for a deck that does not exist. Two further steps are opt-in
+and previewed with `--dry`: `--refile` (move cards whose deck no longer matches their unit's name)
+and `--suspend-orphans` (retire a delivered note whose card left the corpus). Both refuse to run
+until the live-Anki behaviour probes have been answered — see
+[`references/deliver.md`](./.claude/skills/build-anki-deck/references/deliver.md).
+
 Start with `--read-only` to disable all editing (Review becomes read-only too).
 
 ```sh
@@ -273,6 +285,16 @@ Three things make it a gate rather than a wall of text:
 
 Every run opens with a coverage line (collections by kind, units by shape, directories nobody could
 place, checks skipped for want of input), so "clean" can never mean "I did not look".
+
+Some of what it prints is deliberately not a finding at all. A handful of INFO checks exist to make
+legitimate but invisible states legible: which done units carry no record of the pre-review passes
+(a permanent carve-out — waiving it retroactively would unreview finished work), which units' own
+provenance disagrees with their collection's marker, where `corpus.json` and `cards.json` have
+drifted apart, whether a collection's package writes namespaced or bare note guids, and the
+collection's own state line — `authored / reviewed / done / packaged / delivered`. That last one is
+computed by `src/audit/state.js`, which is also what every mutating tool now asks before it writes:
+`--force` covers a unit a human signed off, and a separate `--force-delivered` covers a collection
+whose cards are already in Anki with real scheduling.
 
 ```sh
 npm run preflight                      # every collection under output/

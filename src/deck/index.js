@@ -73,6 +73,10 @@ export function buildDeck(
     now = Date.now(),
     getFont = getLanguageFont,
     readFont = readFontBytes,
+    // `<namespace>/<card.id>` note guids. Anki matches guids COLLECTION-wide, so a bare `pen` from
+    // one deck overwrites another deck's `pen` on import. The caller derives this from the run
+    // directory's own immutable path (see rebuildRunDir); null keeps the legacy bare ids.
+    guidNamespace = null,
   } = {},
 ) {
   if (!outPath) {
@@ -96,6 +100,7 @@ export function buildDeck(
     deckName: resolvedName,
     now,
     getFont,
+    guidNamespace,
   });
 
   const zipEntries = [

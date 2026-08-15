@@ -20,6 +20,9 @@ node scripts/deliver-to-anki.mjs --dry            # preview every managed deck (
 node scripts/deliver-to-anki.mjs                  # back up, then deliver
 node scripts/deliver-to-anki.mjs course:my-course # limit to one deck (type:id)
 node scripts/deliver-to-anki.mjs --allow-model-change   # consent to a template/CSS rewrite
+node scripts/deliver-to-anki.mjs --allow-bulk-add       # consent to adding >200 notes at once
+node scripts/deliver-to-anki.mjs --dry --refile         # preview a deck-name re-file
+node scripts/deliver-to-anki.mjs --dry --suspend-orphans # preview retiring dropped cards
 ```
 
 **Run `npm run check` before a deliver.** It is `ci && validate:decks && preflight`, the full
@@ -43,8 +46,21 @@ So a delivery that would change **card templates or CSS** now stops:
 Remember that a template or CSS change also flips Anki's schema, which forces the one-way full
 AnkiWeb sync you have to finish by hand in the GUI.
 
+**A card template the live note type does not have is a different case, and it FAILS.** AnkiConnect's
+update action addresses templates by name on an existing note type: handed a name that is not there,
+it reports success and creates nothing. So a build defining a template Anki has never seen stops the
+deliver and tells you to create the card type by hand first (Tools → Manage Note Types → Cards →
+Options → Add Card Type, named exactly as the message says), then re-run so the front and back are
+pushed from the build. There is a guarded `--allow-template-add` path in the code, and it is closed:
+adding a template generates a new card on every existing note of that language, and nothing has yet
+established whether that write also clears the direction suspensions it lands on.
+
 Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
 open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.
+
+The button passes no flags, so anything that needs consent — a template/CSS change, a first delivery
+of more than 200 cards, `--refile` — has to go through the CLI. That is deliberate: a consent flag
+you can click without reading is not consent. The button reports the refusal and its reason.
 
 **It syncs with AnkiWeb automatically** (default; `--no-sync` to skip): a `sync` before delivery (pull — so
 a review done on another device merges in before the push) and a `sync` after (push local → remote). A
@@ -60,10 +76,65 @@ Japanese `Target` (falling back to `English` for shared-Target pairs, then a pre
 edited since import), then stamped. Anything it can't resolve uniquely (a genuine duplicate, a
 too-changed card) is **reported as ambiguous and left alone — never guessed, never duplicated**.
 
+The two lookups have deliberately different scopes, and the difference is load-bearing:
+
+- the **`abid:` index is read BOOK-WIDE** and must never be narrowed. It is the only durable link
+  between a card on disk and a note in Anki, so a delivered note you moved, or one under a
+  differently-named sub-deck, still has to be findable. Narrow it and that note falls out of the
+  index, the card reads as new, and the tool adds a duplicate with fresh scheduling beside a matured
+  original it merely prints as `orphaned`.
+- the **first-run fingerprint indexes are read PER UNIT**. Book-wide they cross-bind: 17 targets
+  repeat across this book's units, so a unit's card could adopt another unit's note by spelling
+  alone.
+
+That scoping opens one window, and a **second pass** closes it: on a first run an untagged note
+sitting under an OLD deck name is in no unit's index, so its card would otherwise be added rather
+than adopted — a duplicate with no scheduling beside the matured original. After every unit has
+claimed what it could, a book-wide pass adopts any note that is still unclaimed AND uniquely
+identified, tags it, and says so. Running it second is what keeps the cross-bind closed: where two
+units' cards share a target, both candidates are already claimed or still ambiguous by then, so
+neither card can take the other's note by being processed first.
+
+Where that pass cannot pick exactly one, the card is still added — and the note ids it saw are
+printed, so an add that something looked like is never silent. If the deck NAME is what moved,
+`--refile` puts the adopted notes back where they belong.
+
 **Ambiguous skips fail the run.** When any cards were skipped as ambiguous, the script exits non-zero
 (exit code 2) after printing a `⚠ ambiguous (skipped)` line per card, so a scripted or agent-driven
 delivery cannot quietly report success while cards were left undelivered. Resolve the ambiguity (fix
 the note or the card, or remove the duplicate) and re-run.
+
+## The four guards on a routine deliver
+
+None of these is optional and none can be turned off with a flag alone. They exist because the same
+routine command, run against a collection something has happened to, is how the whole book gets
+re-inserted as fresh notes with no scheduling.
+
+1. **The rename guard.** The tool finds notes by the parent deck's NAME, which is the book title and
+   is editable in Anki. If `anki-delivered.json` says this collection was delivered and the lookup
+   finds ZERO notes under that name, the run **aborts** and says the deck was probably renamed.
+   Before this, that case read as "a brand-new collection" and re-added everything.
+2. **The fail-closed baseline.** Every real deliver records `deliveredCardIds` in the marker: the
+   cards it resolved to a real note. The next run looks each one up by its `abid:` tag and aborts if
+   more than 10% have vanished (at least 3 of them, so a small collection is not tripped by one
+   hand-deleted note) — or if ALL of them have, at any size. A collection whose marker has no
+   `deliveredCardIds` yet — both of yours, until their next deliver — **records the baseline and
+   asserts nothing**. The gate arms from the second run. There is deliberately no flag to force past
+   it: if you know why those notes are gone, delete the `deliveredCardIds` field from
+   `anki-delivered.json` and the next run re-records it.
+3. **The add ceiling.** More than 200 additions to one collection needs `--allow-bulk-add`. A run
+   that size is either a first delivery or a matching failure, and they look identical from here.
+   `--dry` previews the number without refusing.
+4. **A falsy backup is a failed backup — for a collection that has been delivered before.**
+   AnkiConnect answers `{result: false}` with no error when the deck it was asked to export does not
+   exist, so a backup of a renamed deck used to record a success. The delivery now aborts before
+   touching anything. On a collection that has NEVER been delivered the same answer means something
+   ordinary — the parent deck does not exist yet, because this deliver is what creates it — so the
+   run says so and continues.
+
+If the marker write itself fails after a delivery, the run does not fail (the notes are already
+written) — it prints a warning and leaves the marker with NO baseline, so the next run bootstraps a
+fresh one instead of checking against a stale one.
 
 ## What it does / doesn't do
 
@@ -114,6 +185,94 @@ raises an error naming both and pointing at the probe script; it never reaches t
 gate reads `src/anki/probeResults.js`, so "gated on a probe" means gated on a recorded RESULT, not on
 a memory that somebody once ran something. Record an answer in BOTH that file and the table below, in
 the same commit.
+
+## Importing an .apkg: note guids and the one rule that matters
+
+A note's **guid** is how Anki decides at import whether it already has that note, and it matches
+guids **collection-wide** — across every deck, not just the one being imported. This tool writes a
+card's own id as the guid, so what that id looks like decides how far an import reaches.
+
+**New collections are namespaced.** A book or course created from now on records a `guidNamespace` in
+its `book.json` / `course.json` at creation, taken from its immutable folder **slug**, and its
+package writes `<namespace>/<card id>`. Deliberately the slug and not the display title: a namespace
+that followed a rename would change every guid and orphan the live scheduling of every card. A
+bundled template or one-off run dir has no marker, so its namespace comes from the same immutable
+directory identity its package is named after (`numbers-ja` for `templates/numbers/ja`).
+
+**The two collections delivered before that existed keep bare guids, and are not being retrofitted.**
+Renumbering their guids now would make every note look new. Their protection is this rule:
+
+> **Never `.apkg`-import a bare-guid deck into an Anki collection that already holds another
+> bare-guid deck from this tool.** If both packages ship bare ids, any card id they happen to share
+> lands on the other deck's note.
+
+`npm run preflight` prints which mode each collection is in (`guid namespace`). Delivering over
+AnkiConnect is unaffected either way: it is scoped to the collection's own deck tree and matches
+notes by their `abid:` tag, never by guid.
+
+The retrofit stays deferred until `scripts/verify-apkg-import.mjs` has shown what a guid change
+actually does to the restore path — that is the trigger recorded in LIMITATIONS.
+
+## Deck options: turn on sibling burying by hand, once
+
+**This is the one setting in this file that has to be clicked in Anki, and it is worth more than
+anything the tool can do for you.** Every note here makes two cards, Recognition and Production.
+With burying off they come up in the same session, so the second is answered from working memory
+rather than recalled — roughly halving what a two-direction note teaches.
+
+In Anki: open the deck's options (the gear beside the book deck > **Options**), and under **Burying**
+tick **Bury new siblings** and **Bury review siblings**. Do it on the preset the book decks use;
+Anki applies a preset to every deck assigned to it, so one edit covers the whole book.
+
+The `.apkg` cannot do this for you on a deck you already have. **AnkiConnect never writes deck
+options**, so nothing the deliver tool does touches your scheduling settings, and both of your
+collections were delivered that way. The package's own options are fresh-import hygiene only: it
+ships a preset named `anki-builder` (id 1000001) with burying already on, and every deck it builds
+points at that one — deliberately NOT at `Default` (id 1), which is a preset your collection already
+has and which would push our choices onto every deck we never built. The package also interleaves
+new-card positions so a note's two directions are not adjacent in the new queue even before burying
+is on.
+
+## Two opt-in steps: `--refile` and `--suspend-orphans`
+
+Both are off by default, both preview under `--dry`, and **both refuse to run today** because the
+live-Anki probes that would say what they do to a card in a filtered deck have never been answered
+(see the results table below). The preview is not gated: it reads and prints.
+
+```sh
+node scripts/deliver-to-anki.mjs --dry --refile           # every move it WOULD make
+node scripts/deliver-to-anki.mjs --dry --suspend-orphans  # every note it WOULD suspend
+```
+
+**`--refile`** moves a delivered card whose current deck no longer matches its unit's deck name. It
+is the only way a `chapterLabel` correction reaches an existing book without splitting one chapter
+across two decks, because renaming a deck in Anki makes a NEW deck. It is opt-in rather than
+automatic because deck membership selects the options preset, which is the scheduling behaviour: a
+silent re-file changes how the cards are studied. Two skips, both reported:
+
+- a card in a **filtered deck** (non-zero `odid`). Anki's `deck:` search matches such a card by its
+  HOME deck while `cardsInfo` reports the filtered one, so it reads as "deck differs" and a move
+  would yank it out of a custom-study session mid-review.
+- a card **outside this collection's own deck tree**. Inside the tree, a differing deck means a
+  stale unit name. Outside it, somebody put that card there deliberately.
+
+**`--suspend-orphans`** suspends and tags (`ab-orphaned`) delivered notes whose card id has left the
+corpus — today they are only listed. Suspending keeps the card, its interval and its whole revlog,
+and one click reverses it; leaving it is a card you drill forever, and deleting it destroys history.
+It skips filtered-deck cards the same way `--refile` does.
+
+⚠️ **"Orphaned" means "not in a DONE unit", not "not in the book."** Pull a unit back out of the
+shipping deck with `undone-unit.mjs` and every one of that unit's live notes reads as an orphan here.
+That is the case to check the preview for before ever running it.
+
+### The one-time deck-name migration
+
+The plan is to run the re-file exactly once, deliberately, against the existing book after the entity
+decoding fix changes its deck labels. The sequence, when the probes are in:
+
+1. `node scripts/deliver-to-anki.mjs --dry --refile book:<slug>` and read every proposed move.
+2. Confirm the moves are the rename you expect, and that the skipped list is only filtered cards.
+3. Re-run without `--dry`. The pre-delivery backup covers you; the restore path is above.
 
 ## Backups
 
@@ -207,15 +366,21 @@ Record the answers here, dated, as soon as a session produces them. Anything gat
 this table, not a memory of a run.
 
 The machine-readable copy is `src/anki/probeResults.js`, and that is what a gate actually consults.
-Update BOTH in the same commit; the `id` column is the key used there.
+Update BOTH in the same commit; the `id` column is the key used there. A test fails if an id exists
+in one and not the other. Nothing writes either half automatically — a probe result is read and
+judged by a human, and a gate that could arm itself from a script's output would be arming itself
+from the thing it exists to check.
 
 | probe | id | answer | recorded | what is gated on it |
 |---|---|---|---|---|
-| 1. template update regenerates a missing card row | `template-update-regenerates-card` | not yet run | | |
-| 1. template update unsuspends | `template-update-unsuspends` | not yet run | | |
+| 1. template update regenerates a missing card row | `template-update-regenerates-card` | not yet run | | `--allow-template-add` |
+| 1. template update unsuspends | `template-update-unsuspends` | not yet run | | `--allow-template-add` |
 | 2. `changeDeck` on a card with non-zero `odid` | `change-deck-on-filtered` | not yet run | | `--refile` |
-| 3. `suspend` on a card with non-zero `odid` | `suspend-on-filtered` | not yet run | | `--suspend-delivered` |
-| 3. template update / Check Database unsuspends | `housekeeping-unsuspends` | not yet run | | `--suspend-delivered` |
+| 3. `suspend` on a card with non-zero `odid` | `suspend-on-filtered` | not yet run | | `--suspend-delivered`, `--suspend-orphans` |
+| 3. template update / Check Database unsuspends | `housekeeping-unsuspends` | not yet run | | `--suspend-delivered`, `--suspend-orphans` |
+
+Every one of those refuses today, naming the evidence it lacks. The `--dry` previews are NOT gated:
+they read, print, and write nothing.
 
 ## Rules for a collection managed this way
 

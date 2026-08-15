@@ -2752,3 +2752,107 @@ say when it was measured rather than stating it as a standing fact.
   is free of any regeneration cost at all. Generate that unit's か-final cards both ways, measure the
   end gap against the trim tolerance FIRST, and only listen for the contour on the takes that still
   strip cleanly. A rise that costs the marker is not a win.
+
+<!-- WS6 -->
+
+## "Delivered" is a collection-level fact, so a unit's delivered state is inferred
+
+- **What:** `anki-delivered.json` records that a COLLECTION was pushed to Anki, not which units were
+  in that push. `unitState()` therefore answers `delivered` for a unit by narrowing the collection's
+  marker: a unit must be `done` and in a current package before it can count, and when the marker
+  records `deliveredCardIds` the answer is exact — a unit is delivered iff one of its own card ids is
+  in that baseline.
+- **Why:** the precise answer only exists for deliveries made after `deliveredCardIds` landed. For
+  the two collections delivered before it, the marker holds only `{note, ankiParent,
+  lastDeliveredAt}`, so the honest fallback is to treat every done unit of a delivered collection as
+  delivered. Guessing the other way would hand a mutating tool a free pass over live cards.
+- **Impact:** on a pre-baseline marker, a done unit that was never actually pushed (added after the
+  last deliver) reads as delivered and asks for `--force-delivered` it does not strictly need. That
+  is the safe direction of the error, and it self-corrects on the next real deliver, which records
+  the baseline.
+- **Status:** open — self-resolving on the next deliver of each collection.
+- **When to revisit:** once both live markers carry `deliveredCardIds`, the fallback branch in
+  `markerCoversUnit` is dead code for this workspace and could become a warning instead.
+
+## The two delivered collections keep bare note guids, and are not being retrofitted
+
+- **What:** `output/epubs/japanese-for-busy-people-book-1-kana` and
+  `output/courses/nihongo-101-course-n5` both write BARE card ids as their packages' note guids
+  (`book.json` has `"guidNamespace": null`, `course.json` has no such field). Every collection
+  created after 024184c gets a namespace from its immutable slug; these two do not, on purpose.
+- **Why:** a guid is what Anki matches a note by at import. Changing the guids of an already-imported
+  deck makes every note look new, so a retrofit trades a hypothetical import collision for a certain
+  one. The owner ruled: namespace new collections from creation, leave these two alone.
+- **Impact:** an `.apkg` import of one of them into an Anki collection already holding the other can
+  overwrite notes that share a card id. The AnkiConnect path is unaffected (deck-scoped, matched by
+  `abid:` tag), and the mitigation is the runbook rule that a bare-guid deck is never `.apkg`-imported
+  into a collection holding another. `npm run preflight` prints each collection's mode.
+- **Status:** open — deliberate, with a stated trigger.
+- **When to revisit:** when `scripts/verify-apkg-import.mjs` has been run against a namespaced and a
+  bare build of the same deck and shown what a guid change does to the restore path. That answer, not
+  a preference, decides whether a retrofit is worth doing.
+- **Verified by:** `node scripts/preflight.mjs --all --only guid-namespace`
+
+## A run-dir deck built before namespacing will not update on re-import
+
+- **What:** a bundled template or one-off run dir now derives its guid namespace from its directory
+  identity (`numbers-ja`), because it has no marker file to record a decision in. Any package built
+  from such a dir BEFORE this shipped bare ids.
+- **Why:** the alternative was inventing a marker file for the run-dir shape, which is more machinery
+  than the case needs — a run dir's path is already the immutable identity its package is named after.
+  There were no template collections on disk when this landed, so nothing was affected in practice.
+- **Impact:** if an older run-dir deck does turn up and is re-imported after a rebuild, the notes
+  arrive as new ones rather than updating the existing ones. The remedy is one step: delete the old
+  deck in Anki before importing the rebuilt package (that deck has no delivery history to protect —
+  the AnkiConnect path does not manage run-dir decks).
+- **Status:** open — no known instance.
+- **When to revisit:** the first time a pre-namespace template deck is rebuilt and re-imported.
+
+## Three delivery write paths are written but dormant, waiting on the live probes
+
+- **What:** the guarded `modelTemplateAdd` path (`--allow-template-add`), the `--refile` run and the
+  `--suspend-orphans` run all exist, are tested, and refuse to execute. `src/anki/probeEvidence.js`
+  holds an `answer: null` for every question `scripts/anki-behaviour-probe.mjs` would settle, and
+  each feature names the evidence it lacks when it refuses. The `--dry` previews work today.
+- **Why:** each is a live write to a card's scheduling state whose behaviour on a card in a filtered
+  deck nobody has established. Shipping them on an assumption is the failure this project keeps
+  paying for; deleting them would mean re-deriving the design when the answers arrive.
+- **Impact:** a deck-name correction cannot reach the existing book yet, a post-delivery exclusion
+  still leaves a card the learner drills, and a new card direction has to be added by hand in Anki.
+  All three are stated in `references/deliver.md` with the probe each waits on.
+- **Status:** open — blocked on a human probe session (two minutes in Anki's profile manager, then
+  `node scripts/anki-behaviour-probe.mjs --check`).
+- **When to revisit:** as soon as a probe session is run. Record each answer in BOTH halves of the
+  record (the runbook table and `probeEvidence.js`) in one commit; a test fails if an id exists in
+  one and not the other.
+
+## The delivery add ceiling is a fixed 200, not a proportion
+
+- **What:** `DEFAULT_MAX_ADDS = 200` per collection per deliver, overridable only by
+  `--allow-bulk-add` (there is no `--max-adds`).
+- **Why:** the ceiling exists to catch a matching failure that would re-add a book, and a proportion
+  of the collection's size would have been derived from the same lookup the failure broke. A flat
+  number cannot be argued into being wrong by the bug it is watching for.
+- **Impact:** the first delivery of any collection larger than 200 cards needs the flag, which is
+  exactly the case where reading the `--dry` output is worth the minute. A future 190-card book
+  would deliver in one go with no prompt at all.
+- **Status:** open — deliberate.
+- **When to revisit:** if a legitimate incremental deliver (not a first run) ever trips it.
+
+## The .apkg's own deck-options preset may not survive import at all
+
+- **What:** the package ships preset id 1000001 `anki-builder` (bury on) and points every deck it
+  builds at it, deliberately not at `Default` (id 1). Whether Anki's importer honours a non-1 preset
+  id — or remaps it, or drops it and reassigns the deck to Default — has never been verified.
+  `src/deck/verifyImport.js` documents only the id-1 question, and its `dconfIdOneCollided` answer
+  does not cover the new row.
+- **Why:** the alternative was writing our scheduling choices into id 1, which is a preset every
+  collection already has: that reaches every deck the owner has that we never built. A preset that
+  might be ignored is strictly better than one that might overwrite theirs.
+- **Impact:** if the importer ignores it, the bury setting silently does not apply on a fresh import
+  and the deck's options are whatever its assigned preset says. That is the same position as before
+  this change, and the runbook's "tick both bury settings by hand, once" line is what actually
+  guarantees the fix — which is why that line is primary and this is called hygiene.
+- **Status:** open — unverified, low cost either way.
+- **When to revisit:** next time `scripts/verify-apkg-import.mjs` is run; add an assertion for which
+  preset the imported decks end up pointing at, and what the collection's dconf table then holds.

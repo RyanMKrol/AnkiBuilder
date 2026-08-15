@@ -6,14 +6,7 @@
 //
 // Add support for a language by adding an entry keyed by its ISO 639-1 code.
 
-// One counter-hyphenation convention, shared verbatim by the number-reading and
-// fill-in-the-blank fragments so the two passes cannot drift apart again (they once
-// disagreed on whether jūninichi was correct or forbidden).
-const JA_COUNTER_HYPHEN_RULE =
-  "A number and its counter are joined by a HYPHEN: `jūni-nichi`, `shi-gatsu`, `go-ji`, " +
-  "`nijūgo-nen`, `ip-pon`, `san-gai`. Never fuse them into one token — `jūninichi` reads as if " +
-  'it contains an "ichi" that is not there. An ordinary word that merely looks like a counter ' +
-  'keeps its spelling: にほん "Japan" is `nihon`, not `ni-hon`.';
+import { romanizationStyleRules } from "./romajiStyle.js";
 
 export const LANGUAGE_PROMPT_RULES = {
   ja: {
@@ -29,27 +22,24 @@ export const LANGUAGE_PROMPT_RULES = {
         "native rendering: keep the particles the sentence's grammar calls for (は, を, に, で) " +
         "rather than dropping them conversationally.",
     ],
-    // The deck's romanization style for spelled-out numbers (number-reading pass, rule 3).
+    // The pinned romanization spec — modified Hepburn as this deck writes it — taken WHOLE from
+    // src/translate/romajiStyle.js, which is also what scripts/preflight.mjs lints against. Every
+    // prompt that produces a `pronunciation` gets this same list, so the four passes cannot describe
+    // the style in four slightly different ways again.
+    romanizationStyle: romanizationStyleRules("ja"),
+    // The number-reading pass gets the whole spec plus what is specific to a spelled-out number.
+    // Composed from the same array rather than restating any of it: the two lists disagreed once
+    // already, on whether jūninichi was correct or forbidden.
     numberReadingStyle: [
-      "Long vowels take macrons: `jūji`, `tōkyō`, `nijūgo`.",
-      "ん before a vowel takes an apostrophe: `sanzen'en`.",
-      JA_COUNTER_HYPHEN_RULE + " (Same convention as the practice-card pass.)",
+      ...romanizationStyleRules("ja"),
       "A long number breaks at its thousand / ten-thousand groups, with the counter hyphenated " +
         "to the final group: `ichiman sanzen-en`, `nisen nijūgo-nen`.",
       "Everything that is not part of the number keeps the spacing it already has.",
     ],
-    // `romanizationStyle` (the romanization-correction prompt's {{ROMANIZATION_STYLE_RULES}}) has no
-    // entry yet, deliberately. It is the single place a pinned Hepburn spec belongs: the deck's
-    // romanization drifts per batch today (trailing periods 100% in some units and 0% in others,
-    // -san hyphenated 32/32 in one unit and spaced 40/40 in the next), and the fix is one style
-    // constant fed to every prompt that romanizes, not four prompts each describing the style again.
-    // Add it here and all four inherit it.
-    //
     // Concrete irregular-counter examples (number-reading rule 2, fill-in-the-blank rule 9).
     counterExamples:
       "In Japanese: April is しがつ, never よんがつ; July is しちがつ; 9 o'clock is くじ, not " +
       "きゅうじ; 1 minute is いっぷん.",
-    counterHyphenRule: JA_COUNTER_HYPHEN_RULE,
   },
 };
 

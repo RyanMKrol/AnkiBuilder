@@ -225,6 +225,21 @@ const CARDS_SCHEMA = {
           // drill blank with lesson vocabulary), so reviews can delineate them and the semantic
           // de-dup pass can target them. Behaves like any other card in the deck.
           fillInBlank: { type: "boolean" },
+          // Which card DIRECTIONS this note should not be studied in, as template ordinals
+          // (0 = Recognition, 1 = Production — see src/deck/cardTemplates.js, where the order is a
+          // contract). `[1]` on a three-clause self-introduction means "study it Recognition-only".
+          //
+          // This is the AUTHORING surface, and suspension is the mechanism. Two alternatives were
+          // ruled out as actively harmful: gating a template's qfmt on a field produces an EMPTY
+          // card, which Anki's Tools → Empty Cards deletes along with its interval and its review
+          // log; and omitting the card row at BUILD time is inert on the AnkiConnect path (Anki
+          // generates one card per template on `addNote`) and self-reversing on the .apkg path (Check
+          // Database and any template update regenerate it).
+          //
+          // So the .apkg builder deliberately still emits BOTH card rows and the DELIVERER suspends
+          // the unwanted ordinal — which means the .apkg no longer reproduces the delivered deck
+          // card-for-card. That is stated in docs/PIPELINE.md and in LIMITATIONS.
+          dirSuspended: { type: "array", items: { type: "integer", minimum: 0 } },
           // Set by the dashboard translate review to drop a card from the built deck (reversible
           // flag, not a delete). The deck build skips excluded cards.
           excluded: { type: "boolean" },

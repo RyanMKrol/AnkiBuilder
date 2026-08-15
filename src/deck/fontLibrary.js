@@ -61,13 +61,21 @@ export function fontFaceCss(descriptor) {
 
 /**
  * The full CSS block that makes a card use the font for the target script: the (unicode-ranged)
- * `@font-face` plus a `.card` rule listing the font first, then a Latin sans stack. Because the
- * `@font-face` is scoped, the font only renders target-script glyphs; Latin text falls through to
- * the Latin fonts. Shared by the deck builder and `restyle-font`.
+ * `@font-face` plus a `.card` rule listing the font first, then the card's own Latin fallback.
+ * Because the `@font-face` is scoped by `unicode-range`, the font only ever renders target-script
+ * glyphs; Latin text falls through. Shared by the deck builder and `restyle-font`.
+ *
+ * The fallback is `arial` — the same stack `.card` already declares in BASE_CSS. It used to be
+ * `"Helvetica Neue", Helvetica, Arial, sans-serif`, which meant registering a JAPANESE font also
+ * silently changed the face of every Latin string on the card (the romaji, the English, the notes).
+ * The font rule's job is the target script; changing the Latin stack was a side effect nobody asked
+ * for.
+ *
+ * Kept on `.card` rather than narrowed to the prompt/answer elements, deliberately. The
+ * `unicode-range` already scopes it per glyph, so `.card` costs nothing — and narrowing it would
+ * strip the textbook face from the Japanese quoted inside a `note` or a `scene`, which is a
+ * regression rather than a fix.
  */
 export function languageFontCss(descriptor) {
-  return (
-    fontFaceCss(descriptor) +
-    `\n.card { font-family: "${descriptor.family}", "Helvetica Neue", Helvetica, Arial, sans-serif; }`
-  );
+  return fontFaceCss(descriptor) + `\n.card { font-family: "${descriptor.family}", arial; }`;
 }

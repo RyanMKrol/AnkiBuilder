@@ -52,7 +52,10 @@ Produce exactly one object per input item:
 
 - Return the final, correct `pronunciation` for EVERY item — never leave a known-wrong value in place.
 - Romanize a single word as a single token (no spurious internal spaces); double the consonant for a
-  sokuon (ろっかい → `rokkai`, not `ro tsu kai`); keep natural word spacing in a full sentence.
+  sokuon (ろっかい → `rok-kai`, not `ro tsu kai`); keep natural word spacing in a full sentence.
+- **The deck's pinned style, which every romanization must follow.** These are not preferences: the
+  finished deck is linted against this exact list, and a value that breaks one of them is reported
+  back to a human. Where a rule and the library's output disagree, the rule wins.
   {{ROMANIZATION_STYLE_RULES}}
 - Include every id from the input exactly once. Order does not matter.
 - Do not wrap the response in markdown code fences, and include no text before or after the JSON array.
@@ -61,7 +64,7 @@ Produce exactly one object per input item:
 
 ```json
 [
-  { "id": "sixth-floor", "pronunciation": "rokkai" },
+  { "id": "sixth-floor", "pronunciation": "rok-kai" },
   { "id": "hello", "pronunciation": "konnichiwa" }
 ]
 ```

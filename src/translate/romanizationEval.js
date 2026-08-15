@@ -2,6 +2,7 @@ import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { runRomanizationClaude as defaultRunClaude } from "./runClaude.js";
 import { getLanguagePromptRules } from "./languageRules.js";
+import { formatStyleRules } from "./romajiStyle.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { renderPromptTemplate } from "../util/promptTemplate.js";
 import { chunk } from "../util/chunk.js";
@@ -36,17 +37,20 @@ export function buildRomanizationPrompt(
     libraryRomanization: item.libraryPronunciation,
   }));
 
-  // Per-language style fragment, same plug-in shape as every other prompt (languageRules.js). No
-  // language sets `romanizationStyle` yet; it is the single place a pinned Hepburn spec belongs, so
-  // that all four prompts that romanize can be fed from one string instead of drifting apart.
+  // Per-language style fragment, same plug-in shape as every other prompt (languageRules.js).
+  // `romanizationStyle` is the pinned spec from src/translate/romajiStyle.js — the same list the
+  // number-reading and fill-in-the-blank passes get, and the same one preflight lints the result
+  // against, so no pass can describe the style in its own words any more.
   const rules = getLanguagePromptRules(languageCode ?? resolveIso639Code(targetLanguage));
   const styleRules = rules.romanizationStyle ?? [];
 
   return renderPromptTemplate(templatePath, {
     TARGET_LANGUAGE: targetLanguage,
-    // The placeholder sits in an already-flush "## Important" bullet list, so each rule is a
-    // plain top-level bullet. Empty for a language with no configured style.
-    ROMANIZATION_STYLE_RULES: styleRules.map((rule) => `- ${rule}`).join("\n"),
+    // The placeholder sits on an already-indented continuation line of an "## Important" bullet, so
+    // the first rule needs no indent of its own and the rest align under it. Empty string for a
+    // language with no pinned style, and the bullet above it then reads as an empty promise — which
+    // is why every romanizing language should have one.
+    ROMANIZATION_STYLE_RULES: formatStyleRules(styleRules, { indent: "  " }),
     ITEM_COUNT: String(items.length),
     INPUT_JSON: JSON.stringify(inputData, null, 2),
   });

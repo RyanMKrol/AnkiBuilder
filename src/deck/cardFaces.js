@@ -1,4 +1,5 @@
 import { CARD_TEMPLATES } from "./cardTemplates.js";
+import { renderAnkiTemplate } from "./cardFacePreview.js";
 
 // What a card actually LOOKS LIKE, rendered from the real Anki templates, as plain text an authoring
 // prompt can carry.
@@ -27,16 +28,9 @@ const EXAMPLE_CARD = {
   Audio: "[sound:example.mp3]",
 };
 
-// A deliberately small Mustache subset: exactly what the two templates use. `{{#Field}}…{{/Field}}`
-// sections (rendered only when the field is non-empty), `{{Field}}` substitutions, and
-// `{{FrontSide}}`, which Anki replaces with the already-rendered front.
-function renderTemplate(template, card, frontSide = "") {
-  let out = template.replace(/\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (_, field, body) =>
-    card[field] ? body : "",
-  );
-  out = out.replace(/\{\{FrontSide\}\}/g, frontSide);
-  return out.replace(/\{\{(\w+)\}\}/g, (_, field) => card[field] ?? "");
-}
+// The template renderer is shared with the human-facing card-face preview (./cardFacePreview.js):
+// one deliberately small Mustache subset, so the block the authoring model reads and the page the
+// reviewer looks at cannot disagree about what a template does.
 
 // HTML to lines. Block-level tags become line breaks; everything else collapses. The audio and image
 // placeholders become a word, because "[sound:example.mp3]" tells a reader nothing about the face.
@@ -71,8 +65,8 @@ function foldLabels(lines) {
 }
 
 function renderFace(template, card) {
-  const frontHtml = renderTemplate(template.qfmt, card);
-  const backHtml = renderTemplate(template.afmt, card, frontHtml);
+  const frontHtml = renderAnkiTemplate(template.qfmt, card);
+  const backHtml = renderAnkiTemplate(template.afmt, card, frontHtml);
   return {
     name: template.name,
     front: foldLabels(toLines(frontHtml)),

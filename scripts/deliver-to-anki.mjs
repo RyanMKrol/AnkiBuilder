@@ -15,6 +15,19 @@
 //                     once and forces a manual one-way AnkiWeb sync. Without this flag such a
 //                     delivery is refused. Preview it with --dry first: the dry run prints a
 //                     unified diff of live vs built plus every deck the change would reach.
+//     --suspend-delivered
+//                     also apply a card's `dirSuspended` directions to notes that were ALREADY in
+//                     the collection. Suspending a card the owner has been studying for months
+//                     changes what they see tomorrow, so it is opt-in and must be previewed with
+//                     --dry first. CURRENTLY REFUSED: it is gated on live-Anki behaviour probes
+//                     (what `suspend` does to a card in a filtered deck, and whether housekeeping
+//                     undoes it) that have not been run — passing it prints exactly which.
+//                     Directions on notes THIS run creates are always applied and need no flag:
+//                     a card that has never been studied has no scheduling to disturb.
+//     --re-suspend-human-unsuspended
+//                     the distinct second flag. A card that is unsuspended AND already carries its
+//                     `dir-suspended::<ord>` tag was turned back on by a person; without this flag
+//                     that decision is permanent and is only reported.
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
 // Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
@@ -28,6 +41,8 @@ const args = process.argv.slice(2);
 const dry = args.includes("--dry");
 const sync = !args.includes("--no-sync");
 const allowModelChange = args.includes("--allow-model-change");
+const suspendDelivered = args.includes("--suspend-delivered");
+const reSuspendHumanUnsuspended = args.includes("--re-suspend-human-unsuspended");
 const selectorArgs = args.filter((a) => !a.startsWith("--"));
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
@@ -50,6 +65,8 @@ try {
     client,
     dry,
     allowModelChange,
+    suspendDelivered,
+    reSuspendHumanUnsuspended,
     sync,
     log: (m) => console.error(`  ${m}`),
   });
@@ -107,6 +124,25 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  // Each direction class is a different fact and they are never summed: one is work done, one is
+  // work a dry run would do, one is a decision a HUMAN made, one is a flag the collection is
+  // deliberately not honouring.
+  const d = c.directions;
+  if (d) {
+    const dirName = (ord) => (ord === 0 ? "Recognition" : ord === 1 ? "Production" : `ord ${ord}`);
+    for (const e of d.suspended) line(`     suspended ${dirName(e.ord)}: ${e.card}`);
+    for (const e of d.wouldSuspend) line(`     would suspend ${dirName(e.ord)}: ${e.card}`);
+    for (const e of d.humanUnsuspended) {
+      line(`     ⚠ ${e.card} ${dirName(e.ord)} was unsuspended by hand — left alone`);
+    }
+    if (d.skippedDelivered.length) {
+      line(
+        `     ⚠ ${d.skippedDelivered.length} dirSuspended flag(s) not applied (note already ` +
+          `delivered; needs --suspend-delivered, which is probe-gated)`,
+      );
+    }
+    for (const e of d.refused) line(`     ⚠ ${e.card} ${dirName(e.ord)}: ${e.reason}`);
+  }
   ambiguousTotal += c.ambiguous.length;
 }
 

@@ -24,6 +24,11 @@ import {
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
+import {
+  applyDirectionSuspension,
+  assertStudiableDirection,
+  describeSuspension,
+} from "./directionSuspension.js";
 
 const ABID = "abid:";
 const sanitizeSeg = (s) => String(s).replace(/::/g, "-");
@@ -420,7 +425,12 @@ export function assertUniqueCardIds(deck) {
 }
 
 // Content sync for one deck. Returns per-deck counters + lists.
-export async function syncDeckContent(client, deck, dry) {
+export async function syncDeckContent(
+  client,
+  deck,
+  dry,
+  { suspendDelivered = false, reSuspendHumanUnsuspended = false, log = () => {} } = {},
+) {
   assertUniqueCardIds(deck);
   const r = {
     deck: `${deck.type}:${deck.id}`,
@@ -432,7 +442,17 @@ export async function syncDeckContent(client, deck, dry) {
     addedCards: [],
     ambiguous: [],
     orphaned: [],
+    directions: null,
   };
+  const templateCount = deck.spec.templates.length;
+  // Refuse a card that suspends every direction BEFORE anything is written. That is a note with no
+  // studiable card at all, which is what `excluded` is for.
+  for (const unit of deck.units) {
+    for (const card of unit.cards) assertStudiableDirection(card, templateCount);
+  }
+  // Every note this run touched, so the direction pass can tell a note IT created (unconditional —
+  // nothing has been studied yet) from one that was already in the collection (opt-in, probe-gated).
+  const touched = [];
   const query = `deck:"${escapeSearchTerm(deck.ankiParent)}" note:"${escapeSearchTerm(deck.spec.modelName)}"`;
   const noteIds = await client.findNotes(query);
   const infos = noteIds.length ? await client.notesInfo(noteIds) : [];
@@ -507,11 +527,15 @@ export async function syncDeckContent(client, deck, dry) {
           if (!dry) await client.addTags([noteId], `${ABID}${card.id}`);
           r.tagged++;
         }
+        touched.push({ card, noteId, isNew: false });
       } else {
         const hadAudio = await maybeStoreMedia(client, card, unit, dry);
         if (!hadAudio) r.addedWithoutAudio++;
+        let addedNoteId = null;
         if (!dry) {
-          await client.addNote({
+          // The returned note id is what makes an unconditional direction suspension possible: it
+          // identifies a note THIS run created, whose cards have never been studied.
+          addedNoteId = await client.addNote({
             deckName: unit.ankiDeck,
             modelName: deck.spec.modelName,
             fields,
@@ -521,14 +545,73 @@ export async function syncDeckContent(client, deck, dry) {
         }
         r.added++;
         r.addedCards.push({ card: card.id, english: card.english, deck: unit.ankiDeck });
+        touched.push({ card, noteId: addedNoteId, isNew: true });
       }
     }
   }
+
+  // Direction suspension, last: every note exists and every field is current, so a suspension can
+  // never be applied to a note that then fails to be written.
+  r.directions = await applyDirectionSuspension(client, touched, {
+    templateCount,
+    dry,
+    suspendDelivered,
+    reSuspendHumanUnsuspended,
+    log,
+  });
 
   for (const [cid, nid] of byAbid) {
     if (!corpusIds.has(cid)) r.orphaned.push({ card: cid, noteId: nid });
   }
   return r;
+}
+
+/**
+ * Reports what the direction pass did, one class at a time.
+ *
+ * Each class is a different fact and they must not be added together: a suspension applied, a
+ * suspension a `--dry` run would apply, a card a HUMAN turned back on, and a flag in cards.json the
+ * collection is deliberately not honouring. A single "3 directions handled" would hide the last two,
+ * which are the only ones that need a decision.
+ */
+function logDirections(result, deck, dry, log) {
+  const d = result.directions;
+  if (!d) return;
+  const names = deck.spec.templates.map((t) => t.name);
+  if (d.suspended.length) {
+    log(
+      `suspended ${d.suspended.length} direction(s) on notes created by this deliver:\n` +
+        d.suspended.map((e) => describeSuspension(e, names)).join("\n"),
+    );
+  }
+  if (d.wouldSuspend.length) {
+    log(
+      `would suspend ${d.wouldSuspend.length} direction(s):\n` +
+        d.wouldSuspend.map((e) => describeSuspension(e, names)).join("\n"),
+    );
+  }
+  if (d.humanUnsuspended.length) {
+    log(
+      `${d.humanUnsuspended.length} direction(s) were unsuspended by hand after we suspended them ` +
+        `and were left alone:\n` +
+        d.humanUnsuspended
+          .map((e) => `  ${e.card}  card ${e.cardId}  ord ${e.ord} (${names[e.ord] ?? e.ord})`)
+          .join("\n"),
+    );
+  }
+  if (d.skippedDelivered.length) {
+    log(
+      `${d.skippedDelivered.length} dirSuspended flag(s) are NOT applied: the note was already in ` +
+        `the collection, so suspending it would change a card you may be studying. That path is ` +
+        `opt-in (--suspend-delivered) and is currently gated on unrun behaviour probes.`,
+    );
+  }
+  if (d.refused.length) {
+    log(
+      `${d.refused.length} direction(s) could not be applied:\n` +
+        d.refused.map((e) => `  ${e.card}  ord ${e.ord}: ${e.reason}`).join("\n"),
+    );
+  }
 }
 
 const byAbidHas = (byAbid, noteId) => {
@@ -559,6 +642,13 @@ export async function deliverToAnki(
     // Explicit consent for a write that reaches every deck sharing the language's note type. See
     // syncStructure's guard. A dry run never needs it: a dry run writes nothing.
     allowModelChange = false,
+    // Direction suspension on notes that were ALREADY in the collection. Opt-in, previewed with
+    // --dry, and gated on probe evidence that does not exist yet — so passing this today raises an
+    // error naming the missing probes rather than touching a card the owner is studying.
+    suspendDelivered = false,
+    // The distinct SECOND flag: re-suspend a direction a person unsuspended by hand. Without it a
+    // human unsuspend is permanent, which is the point.
+    reSuspendHumanUnsuspended = false,
     sync = true,
     now = () => Date.now(),
     adapters = ADAPTERS,
@@ -679,9 +769,15 @@ export async function deliverToAnki(
 
   // 6. CONTENT SYNC (per deck)
   for (const deck of deliverable) {
-    report.content.push(await syncDeckContent(client, deck, dry));
+    const result = await syncDeckContent(client, deck, dry, {
+      suspendDelivered,
+      reSuspendHumanUnsuspended,
+      log,
+    });
+    report.content.push(result);
     if (!dry) writeDeliveredMarker(deck);
     log(`content synced: ${deck.type}:${deck.id}`);
+    logDirections(result, deck, dry, log);
   }
 
   // 7. SYNC AFTER (push local → remote). Content-only deliveries sync incrementally with no prompt; a

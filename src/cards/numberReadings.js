@@ -5,6 +5,7 @@ import { findUnreadableNumbers } from "./spokenNumbers.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { runNumberReadingsClaude as defaultRunClaude } from "../translate/runClaude.js";
 import { getLanguagePromptRules } from "../translate/languageRules.js";
+import { formatStyleRules } from "../translate/romajiStyle.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -33,9 +34,7 @@ export function renderNumberReadingPrompt({
     COUNTER_EXAMPLES: rules.counterExamples ?? "",
     // The placeholder sits on an already-indented template line, so the first bullet needs no
     // indent of its own; the rest align under it.
-    ROMANIZATION_STYLE_RULES: styleRules
-      .map((rule, index) => (index === 0 ? `- ${rule}` : `   - ${rule}`))
-      .join("\n"),
+    ROMANIZATION_STYLE_RULES: formatStyleRules(styleRules, { indent: "   " }),
     CARDS_JSON: JSON.stringify(
       cards.map((card) => ({
         id: card.id,

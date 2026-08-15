@@ -113,6 +113,38 @@ shows up as wrong romaji there — if a number's pronunciation looks off, tell m
 `ttsText`. (The `audio` stage refuses to run while any card would send a raw numeral to the TTS
 voice, so a missing `ttsText` surfaces before credits are spent.)
 
+## The romanization style is pinned, and linted
+
+**`pronunciation` follows ONE pinned style, and hand-authored cards follow it too.** The field renders
+on the back of both card directions, so a deck that spells `konbini` in one lesson and `kombini` in
+the next is teaching two spellings of one word. The style below is the single source: it is injected
+verbatim into every prompt that produces a romanization (the romanization-correction pass, the
+number-reading pass and the fill-in-the-blank pass), and `npm run preflight` lints the finished cards
+against it. Anything you write by hand — an extras card, a fixed-up `pronunciation` in the dashboard —
+is held to the same list.
+
+The rules live in `src/translate/romajiStyle.js` (`JA_ROMAJI_STYLE`) and are copied here so you can
+read them without opening the code. A test fails if the two ever disagree, so this copy cannot drift:
+
+- Long vowels take a MACRON, never a doubled vowel and never a trailing `u`: `tōkyō`, `ginkō`, `yūmei`, `tanjōbi`, `dō`, `rāmen`, `ōsutoraria`. Never `ginkou`, `yuumei`, `dou`, `raamen`.
+- Two long vowels keep their doubled spelling: えい stays `ei` (`sensei`, `kirei`, `eiga`) and いい stays `ii` (`ōkii`, `oishii`, `atarashii`). A vowel that begins a new morpheme is not a long vowel either: みずうみ is `mizuumi`, not `mizūmi`.
+- ん is always `n`, never `m`, including before b/p/m: `konbini`, `konbanwa`, `sanpo`, `tenpura`, `shinbun`. (Traditional Hepburn writes `m` there; this deck does not.)
+- ん before a vowel or `y` takes an apostrophe, so the syllable break is unambiguous: `sen'en`, `kin'yōbi`, `pan'ya`, `tan'i`. Without it `kinyōbi` reads as きにょうび.
+- Particles are written as they are SPOKEN: を is `o`, topic は is `wa`, direction へ is `e`. `hon o yomimasu`, `watashi wa`, `gakkō e ikimasu` — never `wo`, `ha` or `he`.
+- The small っ doubles the following consonant (`kitte`, `gakkō`, `zasshi`), and becomes `tch` before ち (`matcha`). Never spell it as a literal `tsu`. The doubling survives the counter hyphen below: ろっかい is `rok-kai`.
+- A romanization NEVER ends in `.`, `!` or `?`. 。／！／？ are marks of the written target, not sounds the learner says: `ohayō gozaimasu`, not `ohayō gozaimasu.` A 、 inside the sentence stays a comma, and a target running two sentences together separates them with a period and a space.
+- Only proper nouns are capitalised — personal names, place names, company names: `Tanaka-san`, `Tōkyō`, `Nihon`, `Nozomi Depāto`. Everything else is lowercase, INCLUDING the first word of the romanization, because a romanization is a pronunciation guide and not a sentence.
+- An honorific or title suffix attaches to the name with a HYPHEN, never a space and never fused: `Tanaka-san`, `Sumisu-sensei`, `Yamada-sama`, `Kumano-jinja`. `tanaka san` reads as two words.
+- A number and its counter are joined by a HYPHEN: `jūni-nichi`, `shi-gatsu`, `go-ji`, `nijūgo-nen`, `ip-pon`, `san-gai`. Never fuse them into one token — `jūninichi` reads as if it contains an "ichi" that is not there. An ordinary word that merely looks like a counter keeps its spelling: にほん "Japan" is `nihon`, not `ni-hon`. The NATIVE ひとつ series is one word and never hyphenates: `hitotsu`, `futatsu`, `mittsu`, `yottsu`, `muttsu` — not `mit-tsu`.
+
+Two of these are taught but not linted, because a regex cannot decide them: proper-noun casing (a
+capital in first position is right for `Tanaka-san` and wrong for `Hai, wakarimashita`) and the
+missing ん apostrophe (the same letters whether the kana was ん+や or に+ょ). Those two are on you.
+
+The lint is INFO-tier and reports, it never rewrites. Fixing a romanization correctly is the
+romanization pass's job: `dou` → `dō` is safe right up until the word is 同 and the fix has to know
+which.
+
 ## Provenance flags: `aiSuggested` and `uncertain`
 
 **Provenance flags are core, persisted, and shown at EVERY review stage.** Two boolean fields track
@@ -214,6 +246,21 @@ stacked in one column, plus **Note** + **Review note**):
   before the learner answers on both sides, a scene must never contain or paraphrase the answer.
   Textbook contextual parentheticals live here: "Excuse me. (said when entering a room)" becomes
   `english` "Excuse me." + `scene` "said when entering a room".
+
+  **The parenthetical convention, stated once.** A textbook parenthetical goes to one of two places,
+  and which one depends entirely on whether the TARGET drops the same thing:
+
+  - **It stays in `english`** when it restores a subject, object or topic the target drops too.
+    `にちようびです` glossed "(The party) is on Sunday." keeps its parenthetical, because the Japanese
+    is elliptical in exactly the same way and the parenthetical is part of the meaning. Stripping it
+    would leave "It's on Sunday." — an English sentence that cannot yield that target.
+  - **It moves to `scene`** when it describes the SITUATION rather than the sentence: who is speaking,
+    what was just asked, when the phrase is used. "Excuse me. (said when entering a room)" →
+    `english` "Excuse me." + `scene` "said when entering a room".
+
+  The test is one question: does the target drop it too? If yes it is meaning and belongs in the
+  gloss; if no it is context and belongs in the scene. Never both, and never a parenthetical in
+  `english` that a reader would take as a stage direction.
 - **`hint`** (shown on the Production front only; on the Recognition front it is part of the answer,
   so there it renders on the back) tells apart two cards whose ENGLISH prompt collides, by
   describing the target word itself: meaning ("the object you read"), register ("warm but casual"),
@@ -309,8 +356,39 @@ Without it "It's on Sunday." is a card with no discoverable right answer.
 
 This is enforced where the pairs are made: `docs/fill-in-blank-prompt.md` rules 4 and 5, with `scene`
 carried through by `src/cards/fillInBlank.js`, which also logs a warning naming any answer-shaped card
-that came back without one. Audit an existing deck by listing cards whose English starts with a
-pronoun stand-in ("It's", "That's", "They're") and checking each for a scene.
+that came back without one. Over a finished deck, `npm run preflight`'s **`answerable-alone`** check
+does the same sweep: every card whose English starts with a pronoun stand-in ("It's", "That's",
+"They're") and carries no `scene`. It is INFO and never blocks, because some of them really are
+producible on their own — the shape is mechanical, the verdict is yours. Both read the same predicate
+(`src/cards/faceQuality.js`), so the pass and the audit cannot disagree about what the rule is.
+
+## A Production face is one prompt, not a paragraph
+
+**Keep the `english` under 60 characters, or ship the card Recognition-only.** A Production card asks
+the learner to produce the entire target from the entire English. Past about a sentence that stops
+being one prompt: the live deck's longest is "Nice to meet you. I am Raja of the University of Tokyo.
+I look forward to working with you." at 91 characters, which is three sentences and one expected
+answer. There are exactly two honest fixes, and both are yours to choose: **split** it into the cards
+it really is, or **suspend the Production direction** for it (`dirSuspended: [1]`) and let it be a
+Recognition card, which is what it was always going to be studied as.
+
+`npm run preflight`'s **`production-length`** check lists them (INFO; 31 live cards on the book
+today). The ceiling lives in `src/cards/faceQuality.js` as `PRODUCTION_FACE_MAX_CHARS`.
+
+## Watch for a sentence frame drilled with only a name swapped
+
+**Three or more cards that are the same sentence with a different name or number in it are a drill
+bank, not three cards.** `Smith-san, what country are you from?` / `Chan-san, …` / `Raja-san, …` gives
+the learner one thing to learn and three cards to answer it with, and the third is answered from
+working memory. Usually two of them earn their place and the rest do not; occasionally all of them do,
+because the swapped slot IS the drill.
+
+`npm run preflight`'s **`near-siblings`** check reports them, and it is deliberately narrow: only
+frames that still carry three ordinary words once names and numbers are blanked out, and only when
+every member fills the slots differently. That narrowness is the whole point — a blanket "these look
+alike" check groups `Yes` / `No` / `Germany` under one frame, reports 270 cards, and fires on the
+counter series (`Nine minutes` / `Six minutes`) that a lesson exists to teach. On the live book the
+narrow version names 7 frames over 24 cards.
 
 ## Irregular members of a counter series each earn a `note`
 
@@ -321,14 +399,20 @@ all; よにん (yo-nin) uses よ (yo) and not よん (yon); とお (tō) is the 
 no つ (tsu). Say what the regular pattern would predict and why this one does not follow it, and
 name the counter card the exception belongs to.
 
-## `category` is required and shown on the card front
+## `category` is required, and shown on the Production front only
 
-**`category` is REQUIRED on every card and is SHOWN ON THE CARD FRONT.** Category is never optional —
-both schemas require it and hold it to the fixed enum in `src/model/categories.js`, the extraction
-validates it too, and the dictated-lesson path auto-assigns it. The deck build renders a small
-category chip on the FRONT of both templates (Recognition and Production), so a word is always
-studied *with* its domain — you don't recognize/produce a word cold, out of context. A card missing a
-category is a bug; if you author cards by hand, set one.
+**`category` is REQUIRED on every card.** It is never optional — both schemas require it and hold it
+to the fixed enum in `src/model/categories.js`, the extraction validates it too, and the
+dictated-lesson path auto-assigns it. A card missing a category is a bug; if you author cards by
+hand, set one.
+
+**The chip renders on the PRODUCTION front only.** It used to render on both. On a Recognition front
+it is an uncontrolled answer cue: "Shopping" sitting above a bare デパート narrows the answer more
+than any `scene` the collision doctrine would let you write, on 2,150 fronts, 86% of which carry no
+scene at all — so the cue you are forbidden from writing was being supplied automatically. On the
+Production front the learner is already reading the English, so the chip adds context without
+answering anything, and the card is still studied *with* its domain in the direction where that
+helps.
 
 Two rules about WHICH one:
 

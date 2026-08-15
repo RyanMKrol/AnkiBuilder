@@ -60,11 +60,10 @@ test("restyleModelsCss drops external @font-face and points .card at the embedde
   assert.match(out, /url\("_KleeOne-Regular\.woff2"\)/, "our @font-face added");
   assert.match(out, /unicode-range:.*U\+3040-30FF/, "font scoped to Japanese");
   assert.match(out, /\.card\s*{\s*font-family:\s*"Klee One"/, ".card leads with the font");
-  assert.match(
-    out,
-    /"Helvetica Neue".*sans-serif/,
-    "Latin text falls through to a Latin sans stack",
-  );
+  // The Latin fallback is the card's OWN stack. Registering a Japanese font must not also restyle
+  // every Latin string on the card — the unicode-range is what scopes the font, not the fallback.
+  assert.match(out, /"Klee One", arial/, "Latin text falls through to the card's own stack");
+  assert.doesNotMatch(out, /Helvetica Neue/, "the font rule no longer imposes a Latin stack");
   assert.match(out, /font-size: 20px/, "original rules preserved");
 });
 

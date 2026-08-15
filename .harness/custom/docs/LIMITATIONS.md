@@ -2392,3 +2392,164 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** check the chapter's images in beside it (they are already in the book's cache
   under `.anki-builder/epubs/<hash>/`), or have the fixture point the extractor at the cached chapter
   path instead of the copy under `test/fixtures/`.
+
+<!-- WS4 -->
+
+## The pinned romanization spec is stated for Japanese only, and lands red on 412 live cards
+
+- **What:** `src/translate/romajiStyle.js` pins one romanization style per language, and only `ja`
+  has one. A language with no entry gets no rules in its prompts and no lint — `lintRomaji` returns
+  `[]`, `romanizationStyleRules` returns `[]`, and the romanization prompt's style bullet renders
+  empty. The other library-configured languages (zh, ko, ru, he, hi, ar) romanize with nothing pinned.
+- **Why:** the deck being built is Japanese, and inventing a pinyin or Hangul-romanization spec
+  nobody has looked at would be worse than an honest gap: a wrong pinned rule is injected into every
+  prompt and linted against every card.
+- **Impact:** the drift the spec exists to stop (per-batch style flips) is still possible in any
+  non-Japanese deck, silently. Adding a language is one entry in `ROMAJI_STYLES` and everything else
+  picks it up.
+- **Status:** open
+- **When to revisit:** the first non-Japanese deck that gets past a review gate.
+- **Verified by:** `node -e "import('./src/translate/romajiStyle.js').then(m=>console.log(Object.keys(m.ROMAJI_STYLES)))"`
+
+## The romaji lint is INFO-tier and will stay non-zero for a long time
+
+- **What:** `romaji-style` reports 412 of 2,150 shipped cards on the day it lands (trailing ASCII
+  punctuation ×253, a spaced honorific ×179, a fused counter ×6, a missing macron ×6, `mb`/`mp` ×5,
+  `wo` ×1). `inline-romaji` reports a further 135 notes whose parenthetical spelling disagrees with
+  the same collection's own audited `pronunciation`.
+- **Why:** every hit is real, but the FIX is a paid pass over the card, not a rewrite rule — `dou` →
+  `dō` is safe right up until the word is 同. Promoting either check to FAIL would block every review
+  on 547 pre-existing findings, which is exactly how a gate becomes an override habit. ACK was
+  rejected too: acknowledging 547 instances one by one is a worse use of the operator than reading a
+  count.
+- **Impact:** a permanently non-zero INFO line, which is the failure mode the tier system was built
+  to name. It is tolerable only because the count is per-unit and drops as batches get re-run; if it
+  is still 400 in six months, that is a signal the fix pass never happened.
+- **Status:** open
+- **When to revisit:** after the first re-run of the romanization pass over a delivered unit — if the
+  count for that unit does not fall to zero, the injected spec is not reaching the model.
+- **Verified by:** `node scripts/preflight.mjs --all --only romaji-style,inline-romaji --verbose`
+
+## The card-face fixes are landed in code but not in the live collection
+
+- **What:** the note type's templates and CSS changed (prompt sizing, WCAG AA colours, no category
+  chip on the Recognition front, distinct scene/hint styling). The two live collections still render
+  the OLD faces, and will until someone runs a deliver with `--allow-model-change`.
+- **Why:** the note type is keyed on language alone, so pushing it rewrites the card faces of both
+  delivered decks at once and flips Anki's schema, forcing a one-way full AnkiWeb sync the owner has
+  to complete by hand through a GUI dialog. That is a decision, not a build step. `deliver --dry`
+  prints the whole diff plus the deck and card counts it reaches.
+- **Impact:** code and live collection disagree about what a card looks like, deliberately, until the
+  owner consents. Anything reading the live note type (a `--dry` diff, the probe script) will report
+  a difference; that is the guard working, not a fault.
+- **Status:** open — awaiting one `deliver --dry` review and an `--allow-model-change` run.
+- **When to revisit:** at the next deliver of either collection.
+- **Verified by:** `node src/cli/bin.js deliver --book-dir <collection> --dry`
+
+## The Japanese font rule was narrowed differently from the plan
+
+- **What:** the plan asked for the webfont to be scoped "to the target rather than `.card`".
+  `languageFontCss` still targets `.card`; what changed is its Latin fallback, from
+  `"Helvetica Neue", Helvetica, Arial, sans-serif` to `arial` (the card's own stack).
+- **Why:** the `@font-face` already carries a `unicode-range` covering only kana, kanji and CJK
+  punctuation, so the font can never render a Latin glyph no matter which selector it is on — the
+  scoping the plan wanted is already there, per glyph. Narrowing the SELECTOR to the prompt and
+  answer elements would have stripped the textbook face from the Japanese quoted inside a `note` or a
+  `scene`, which the learner reads too. The real defect was the fallback: registering a Japanese font
+  silently restyled every Latin string on the card.
+- **Impact:** none on the target script. Latin text on a `ja` card now renders in `arial` (what
+  BASE_CSS asks for) rather than Helvetica Neue.
+- **Status:** open — recorded because it is a deliberate deviation from an approved plan item, not
+  because anything is wrong.
+- **When to revisit:** if a language is ever configured whose font has no `unicode-range`, the
+  `.card` selector stops being safe and the narrowing becomes necessary after all.
+
+## The notes truth-check finds claims, it cannot judge them
+
+- **What:** `note-claims` lists every note asserting a decomposition, derivation, distinction or
+  identity, and says which of the target-script forms it names have no card in this collection. It
+  never says whether the claim is TRUE. 122 findings on the two live decks.
+- **Why:** whether お + かし = おかし is a fact about Japanese. A checker that guessed would be a
+  fourth pass that looks like it verified something, which is precisely how the false なんの analysis
+  survived extraction, the cross-lesson note pass, the corpus review and Mark done.
+- **Impact:** the whole value depends on a human reading the list at Gate 1, so it is written into
+  SKILL.md as a required step rather than left as a report line. The patterns are also English-shaped
+  and Japanese-shaped: "the て-form of" and "X + Y" are what THIS deck's notes look like, and a claim
+  worded some other way ("shortened from", "an older reading of") is not detected at all. The
+  function-morpheme allowlist (particles and the honorific prefix) is likewise Japanese-only.
+- **Status:** open
+- **When to revisit:** when a claim gets through that the patterns should have caught, add the wording
+  rather than loosening an existing pattern.
+- **Verified by:** `node scripts/preflight.mjs --all --only note-claims --verbose`
+
+## The near-sibling check is tuned to one deck's English, on two thresholds
+
+- **What:** `near-siblings` groups cards by blanking digit runs and Capitalised words out of the
+  `english`, then reports a frame with 3+ members that still carries 3+ ordinary words. Both numbers
+  (`MIN_FRAME_WORDS`, the group floor) were chosen by running the alternatives over the live book.
+- **Why:** the untuned version is useless: at a 1-word floor the frame `◇` groups every one-word
+  vocab card in the deck and reports 270 of them, and it fires on `Nine minutes` / `Six minutes`,
+  which is a counter series a lesson exists to teach, not a near-sibling group. At 3 words it names 7
+  frames over 24 cards, all of them real.
+- **Impact:** the slot detector is English-shaped (a Capitalised word is a proper noun) and would
+  behave differently on a deck whose `english` is not English, or one that sentence-cases every
+  gloss. It is also blind to a frame varying by an ordinary lowercase noun (`I drink coffee` /
+  `I drink tea`), which is a real near-sibling shape it will never report.
+- **Status:** open
+- **When to revisit:** if a second collection's report is either empty or enormous, the thresholds
+  are wrong for it and belong per-collection rather than as module constants.
+- **Verified by:** `node scripts/preflight.mjs --all --only near-siblings --verbose`
+
+## Two pinned romanization rules are taught but not linted
+
+- **What:** `proper-noun-casing` and `n-apostrophe` carry `detect: null`. Nothing checks them.
+- **Why:** neither is decidable from the romanization alone. A capital in first position is right for
+  `Tanaka-san` and wrong for `Hai, wakarimashita`, and a missing ん apostrophe leaves the same letters
+  behind whether the kana was ん+や or に+ょ. A detector for either would report noise forever, and
+  this repo's signature failure is a check that cannot see something reading exactly like one that
+  looked and found nothing.
+- **Impact:** the deck's proper-noun casing is genuinely inconsistent right now (`Sumisu-san` and
+  `sumisu-san` both ship) and nothing will catch it. The check names both rules in its report rather
+  than letting them read as checked.
+- **Status:** open
+- **When to revisit:** if a proper-noun list for the collection ever exists (the extraction pass
+  could emit one), `proper-noun-casing` becomes checkable against it.
+
+## Direction suspension on ALREADY-DELIVERED notes is built but dormant
+
+- **What:** `dirSuspended` works end to end for notes a deliver CREATES. For a note already in the
+  collection the flag is read, reported as unapplied, and never acted on: `--suspend-delivered`
+  raises an error naming the probe evidence it is missing (`suspend-on-filtered`,
+  `housekeeping-unsuspends`) before performing a single read.
+- **Why:** both probes are questions about a card the owner is already studying. Nobody has
+  established what AnkiConnect's `suspend` does to a card with a non-zero `odid` (one pulled into a
+  filtered deck), or whether a template update or Check Database silently clears the suspension —
+  which would make the control stop working with no signal at all. Shipping the path on the
+  assumption that it behaves is exactly the pattern this plan exists to stop.
+- **Impact:** a `dirSuspended` added to an already-delivered card does nothing until the probes are
+  run. That is reported on every deliver rather than being silent, but the flag and the collection
+  disagree in the meantime. The gate reads `src/anki/probeResults.js`, whose entries are `null` (not
+  `false`) so "we don't know" can never be mistaken for "we know it is safe".
+- **Status:** open — dormant pending probe evidence.
+- **When to revisit:** after a probe session on the throwaway `ANKIBUILDER-PROBE` profile. Record each
+  answer in BOTH `src/anki/probeResults.js` and the table in `references/deliver.md`, then re-read the
+  gated path before trusting it.
+- **Verified by:** `node --test test/anki/directionSuspension.test.js` (the last two tests assert the
+  probes are still unanswered and that the gate opens once they are not)
+
+## The .apkg no longer reproduces the delivered deck card-for-card
+
+- **What:** the `.apkg` builder emits BOTH card rows for every note, including one carrying
+  `dirSuspended`; the AnkiConnect deliverer suspends the unwanted ordinal. So a package built from a
+  collection differs from the live deck by exactly those suspensions.
+- **Why:** omitting the row at build time is inert on the delivery path (Anki generates one card per
+  template on `addNote`) and self-reversing on the `.apkg` path (Check Database and any template
+  update regenerate it), so the two builders would have drifted STRUCTURALLY for no gain. Keeping
+  both rows keeps them structurally identical and puts the difference where it is intentional.
+- **Impact:** importing a built `.apkg` into a fresh collection produces a deck with every direction
+  live. Anything treating the `.apkg` as a faithful snapshot of the delivered deck — the freshness
+  check, a restore-by-import — is comparing packages, not scheduling, and is unaffected; a human
+  reading one as "what the owner sees" would be wrong.
+- **Status:** open — accepted trade, recorded so it is not rediscovered as a bug.
+- **When to revisit:** if `.apkg` import ever becomes the primary delivery path again, this inverts
+  and the suspension has to move into the builder.

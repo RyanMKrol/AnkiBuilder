@@ -63,7 +63,9 @@ test("an empty field renders as nothing at all, not as an empty label", () => {
     Audio: "",
   });
 
-  assert.deepEqual(recognition.front, ["Greetings", "こんにちは"]);
+  // No "Greetings": the category chip is deliberately absent from the RECOGNITION front, where it
+  // would narrow the answer before the learner has given one.
+  assert.deepEqual(recognition.front, ["こんにちは"]);
   assert.ok(!recognition.back.some((line) => /^Note:?$/.test(line)));
 });
 

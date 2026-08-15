@@ -44,7 +44,7 @@ Return ONLY a JSON object. No prose.
     {
       "id": "2025nen-ni",
       "ttsText": "にせんにじゅうごねんに",
-      "pronunciation": "nisen nijūgonen ni"
+      "pronunciation": "nisen nijūgo-nen ni"
     }
   ]
 }

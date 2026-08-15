@@ -505,6 +505,18 @@ prompt runs when and which language fragments each takes, and
 [`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) covers the dependency
 trade-offs this introduces.
 
+**One pinned romanization spec, three prompts, one lint.** `src/translate/romajiStyle.js` holds the
+target language's romanization style as `{ id, rule, detect }` triples: `rule` is the prose injected
+verbatim into every prompt that produces a `pronunciation` (the romanization-correction pass, the
+number-reading pass, the fill-in-the-blank pass, via `languageRules.js`'s `romanizationStyle`), and
+`detect` is what `preflight`'s `romaji-style` check runs over the finished cards. Prose and detector
+live in the same object so a rule cannot be linted without being taught, or taught without being
+checked. A rule that no regex can decide (proper-noun casing; a missing ん apostrophe) carries
+`detect: null` and the check names it as taught-but-not-linted rather than letting it read as
+checked. Before this constant existed, four passes each described the style in their own words and
+the output drifted per batch — a trailing ASCII period on 253 cards, `-san` hyphenated in one unit
+and spaced in the next, `kombini` beside `konbini`.
+
 **Optional simplified target script (`--simple-script`).** A language may define a beginner/learner
 script constraint in the language plug-in `src/translate/targetScript.js` (`getSimpleScriptRule`, keyed
 by ISO code — Japanese → "kana only, no kanji"). When `translate --simple-script` is passed,
@@ -728,14 +740,64 @@ named file but falls back to the legacy `deck.apkg` left by an older build, so a
 convention is still readable. The one-off script that renamed existing packages has been removed now
 that every package on disk uses the new names; the fallback stays because it costs nothing.
 
-Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows
-`Target` and autoplays `Audio` — the target-language listening/recall direction — answer reveals
-`English`) and **Production** (question shows `English`, answer reveals
-`Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions play the
-target-language audio; Recognition plays it on the question side, since that's the direction meant
-to exercise listening comprehension, not just script recognition.
+Builds a two-template Anki note type: **Recognition** (ordinal 0 — question shows `Target` and
+autoplays `Audio`, the target-language listening/recall direction; answer reveals `English`) and
+**Production** (ordinal 1 — question shows `English`, answer reveals `Target`/`Pronunciation`/`Audio`
+for the native-pronunciation check). Both directions play the target-language audio; Recognition
+plays it on the question side, since that's the direction meant to exercise listening comprehension,
+not just script recognition. The ordinals are a contract, not a detail — a card's `dirSuspended`
+names them.
 
-The note type is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
+The note type is assembled by `src/deck/collection.js` out of three modules, each the single source
+for its half: `cardTemplates.js` (the two `{name, qfmt, afmt}` templates), `cardStyles.js` (the CSS)
+and `noteFields.js` (the field list and the card → field mapping). They are separate because
+`collection.js` opens a sqlite database at import time, and the surfaces that only DESCRIBE a card —
+the authoring prompts' `{{CARD_FACES}}` block, the reviewer's card-face preview — must not pay for
+that to do it.
+
+**What each face shows, and why.** `scene` renders on the front of BOTH directions (it sets the
+situation and must never leak the answer either way); `hint` renders on the Production front and the
+Recognition BACK (it describes the target word, which on a Target→English front IS the answer); the
+category chip renders on the **Production front only** — on a Recognition front it is an uncontrolled
+answer cue, stronger than any scene the collision doctrine permits, on 2,150 fronts of which 86% have
+no scene at all. `Reading` (the note type's field holding `ttsText`) is rendered by NO template, on
+purpose. The prompt on either front is wrapped in `.prompt` and set at the answer's 26px/600, because
+the same sentence used to render at 20px as a question and 26px bold as an answer — sizing the harder
+direction smaller. Every text style clears WCAG AA against both the light and night-mode backgrounds,
+computed and asserted in `test/deck/cardStyles.test.js` rather than eyeballed.
+
+**Per-card direction (`dirSuspended`).** A card may name the template ordinals it should not be
+studied in — `dirSuspended: [1]` is "Recognition only". The `.apkg` builder still emits **both** card
+rows for it; the DELIVERER suspends the unwanted ordinal
+(`src/anki/directionSuspension.js`). Both halves of that are load-bearing. Gating a template's front
+on a field produces an EMPTY card, which Anki's Tools → Empty Cards deletes along with its interval
+and review log; omitting the card row at build time is inert on the AnkiConnect path (`addNote` makes
+Anki generate one card per template) and self-reversing on the `.apkg` path (Check Database and any
+template update regenerate it). Suspension is the only per-note direction suppression that survives
+routine housekeeping.
+
+Consent is graded. A note **this deliver created** is suspended unconditionally and tagged
+`dir-suspended::<ord>` — it has never been studied, so there is no scheduling to disturb. A note that
+was **already in the collection** is left alone and the unapplied flag is reported; applying it needs
+`--suspend-delivered`, which is itself refused until two behaviour probes are recorded
+(`suspend-on-filtered`, `housekeeping-unsuspends` — see `src/anki/probeResults.js`). A card that is
+unsuspended AND already carries its tag was turned back on by a **person**, and that decision is
+permanent unless the distinct second flag `--re-suspend-human-unsuspended` is passed. Suspending
+every direction is refused by name: that is a note with no studiable card, which is what `excluded`
+is for.
+
+**Stated consequence:** because the `.apkg` keeps both rows while delivery suspends one, a built
+package deliberately no longer reproduces the delivered deck card-for-card. That is the right trade —
+the two builders must not drift STRUCTURALLY — but it is a real difference and the freshness check
+compares packages, not scheduling.
+
+⚠️ **Any edit to those templates or that CSS is a change to a SHARED note type.** It is keyed on
+language alone, so the next deliver of any deck in that language rewrites the card faces of every
+other deck using it and flips Anki's schema, forcing a one-way full AnkiWeb sync the owner completes
+by hand. `deliver --dry` prints the unified diff plus every deck and card count it reaches;
+`--allow-model-change` is the consent step (`syncStructure`, `src/anki/deliver.js`).
+
+It is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
 `AnkiBuilder ja`) with a stable, language-derived id (`languageModelId`). Anki keys note types by
 id, so every deck of a language shares ONE note type — no pile-up of duplicates on repeated imports
 — and different languages never collide. When the language has a configured deck font
@@ -1067,6 +1129,19 @@ editing. Actions are per-lesson and link to the **unit-scoped** views:
   [Dashboard editing](#dashboard-editing-serve-editable-by-default) below). Corpus is English-only,
   translate adds target + romaji, audio adds players + generate/pick + **Mark done**; provenance flags
   badge on every stage. An out-of-range `:unit` (no matching lesson) 404s.
+- **Card faces** — `GET /faces/:type/:id` (whole deck) or `GET /faces/:type/:id/:unit` (one lesson)
+  (`renderFacesPage`, linked from the Review lede): every card rendered through the note type's real
+  `qfmt`/`afmt` (`src/deck/cardTemplates.js`) and real CSS (`src/deck/cardStyles.js`), against the
+  real field mapping (`src/deck/noteFields.js`) — both directions, front and back, flippable per card
+  or all at once. This is a **render, not a reimplementation**: `src/deck/cardFacePreview.js` restates
+  nothing a template says, so a template edit changes the preview in the same commit, and it shares
+  its Mustache subset with the authoring prompts' `{{CARD_FACES}}` block. The three most valuable
+  rules in `references/card-authoring-rules.md` (answerable alone, a scene must not leak the answer,
+  a hint belongs on the Production front) are all claims about a rendered FRONT, and nothing showed
+  that front to anyone before this. **Read-only**: it renders the note type, never pushes it, so it
+  is not behind `deliver --allow-model-change`. `[sound:x]` and `<img>` become a chip or a real
+  `/media/...` image, and a card whose front renders EMPTY is called out by name (an empty front is
+  an empty card, which Anki's Tools → Empty Cards deletes along with its scheduling).
 
 Discovery is pluggable through a **format-adapter registry** (`src/server/adapters/`). Each adapter
 (`book`, `course`, `template`) implements `listDecks(outputRoot)`, `loadDeck(outputRoot, id)`, and

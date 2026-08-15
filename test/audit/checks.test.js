@@ -392,3 +392,251 @@ test("vocab coverage: no cached chapter file is a SKIP, never a pass", () => {
     empty.cleanup();
   }
 });
+
+test("romaji style: a card breaking the pinned spec is named with the rule it breaks", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("clean", { pronunciation: "konnichiwa" }),
+        card("period", { pronunciation: "konnichiwa." }),
+        card("labial", { pronunciation: "kombini" }),
+      ],
+    });
+    const found = messages(runOnly(root, "romaji-style"));
+    assert.equal(found.length, 2);
+    assert.ok(found.some((m) => /no-terminal-punctuation/.test(m)));
+    assert.ok(found.some((m) => /n-before-labial/.test(m)));
+  } finally {
+    cleanup();
+  }
+});
+
+test("romaji style: an EXCLUDED card is not linted, and a non-ja deck is not linted at all", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("dropped", { pronunciation: "kombini.", excluded: true })],
+    });
+    writeUnit(root, "epubs/spanish/chapter-1", {
+      meta: { targetLanguage: "es" },
+      items: [card("hola", { pronunciation: "hola." })],
+    });
+    assert.deepEqual(messages(runOnly(root, "romaji-style")), []);
+  } finally {
+    cleanup();
+  }
+});
+
+// The finding key is per-card AND per-rule: accepting one deviation must not blanket-accept the next.
+test("romaji style: one card breaking two rules produces two separately-keyed findings", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("both", { pronunciation: "kombini desu." })],
+    });
+    const keys = runOnly(root, "romaji-style").flatMap((r) => r.findings.map((f) => f.key));
+    assert.deepEqual(keys.sort(), [
+      "chapter-1/both::n-before-labial",
+      "chapter-1/both::no-terminal-punctuation",
+    ]);
+  } finally {
+    cleanup();
+  }
+});
+
+test("inline romaji: a note's parenthetical is checked against this deck's own pronunciation", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("ohayou", { target: "おはよう", pronunciation: "ohayō" })],
+    });
+    writeUnit(root, "epubs/book/chapter-2", {
+      items: [
+        card("agree", { note: "compare おはよう (ohayou), the casual one" }),
+        card("fine", { note: "compare おはよう (ohayō), the casual one" }),
+      ],
+    });
+    const found = messages(runOnly(root, "inline-romaji"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /this deck's own card says "ohayō"/);
+  } finally {
+    cleanup();
+  }
+});
+
+// Case, spaces and hyphens are the romaji-style check's business, not this one's — otherwise every
+// honorific in the deck would be reported twice.
+test("inline romaji: a spelling differing only in case or spacing is not a disagreement", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("tanaka", { target: "たなかさん", pronunciation: "Tanaka-san" })],
+    });
+    writeUnit(root, "epubs/book/chapter-2", {
+      items: [card("ref", { note: "as in たなかさん (tanaka san)" })],
+    });
+    assert.deepEqual(messages(runOnly(root, "inline-romaji")), []);
+  } finally {
+    cleanup();
+  }
+});
+
+// A quoted string with no card of its own has no ground truth here. Reporting that count is the
+// difference between "checked and clean" and "could not check".
+test("inline romaji: an unresolvable quote is counted as unchecked, not as a pass", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("only", { note: "the ～ます (masu) ending" })],
+    });
+    const [result] = runOnly(root, "inline-romaji");
+    assert.equal(result.findings.length, 0);
+    assert.ok(result.notes.some((n) => /no card for/.test(n)));
+  } finally {
+    cleanup();
+  }
+});
+
+test("answerable alone: a reply-shaped English with no scene is named, one with a scene is not", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("bare", { english: "It's the 3rd floor." }),
+        card("cued", { english: "It's the 3rd floor.", scene: "answering which floor" }),
+        card("standalone", { english: "The lift is over there." }),
+      ],
+    });
+    const found = messages(runOnly(root, "answerable-alone"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /bare/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("production length: only a face at or over the ceiling is named", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    const long = "Nice to meet you. I am Brown of the Bank of London. I look forward to it.";
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("short", { english: "Good morning." }), card("long", { english: long })],
+    });
+    const [result] = runOnly(root, "production-length");
+    assert.equal(result.findings.length, 1);
+    assert.match(result.findings[0].message, /long/);
+    assert.ok(result.notes.some((n) => /Recognition-only/.test(n)));
+  } finally {
+    cleanup();
+  }
+});
+
+// The narrowing is the check. A blanket "these three look alike" groups every one-word vocab card in
+// the deck and fires on the counter series a lesson exists to teach.
+test("near siblings: a swapped-name sentence frame is named; vocab and counter series are not", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("a", { english: "Smith-san, what country are you from?" }),
+        card("b", { english: "Chan-san, what country are you from?" }),
+        card("c", { english: "Raja-san, what country are you from?" }),
+        // one-word vocab: no frame survives the slot blanking
+        card("d", { english: "Germany" }),
+        card("e", { english: "China" }),
+        card("f", { english: "Spain" }),
+        // a counter series: two words, under the frame floor
+        card("g", { english: "Nine minutes" }),
+        card("h", { english: "Six minutes" }),
+        card("i", { english: "Three minutes" }),
+      ],
+    });
+    const found = messages(runOnly(root, "near-siblings"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /3× "◇, what country are you from\?"/);
+  } finally {
+    cleanup();
+  }
+});
+
+// Identical slots mean the same card entered twice, which the duplicates check already reports.
+test("near siblings: three cards filling the frame identically are not a sibling group", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("a", { english: "Smith-san, what country are you from?" }),
+        card("b", { english: "Smith-san, what country are you from?" }),
+        card("c", { english: "Smith-san, what country are you from?" }),
+      ],
+    });
+    assert.deepEqual(messages(runOnly(root, "near-siblings")), []);
+  } finally {
+    cleanup();
+  }
+});
+
+// The live case this check exists for: a shipped note presents なんじ and なんにん as instances of
+// なんの, which is false, and なんの has no card anywhere in the deck.
+test("note claims: a decomposition naming a form the deck never teaches is named as such", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("nanji", { target: "なんじ" }), card("nannin", { target: "なんにん" })],
+    });
+    writeUnit(root, "epubs/book/chapter-2", {
+      items: [
+        card("nani", {
+          target: "なに",
+          note: "Plain 'what', distinct from なんの (nan no), seen with なんじ and なんにん.",
+        }),
+      ],
+    });
+    const found = messages(runOnly(root, "note-claims"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /asserts a distinction/);
+    assert.match(found[0], /「なんの」/);
+    assert.doesNotMatch(
+      found[0],
+      /「なんじ」/,
+      "a form the deck DOES teach is not reported as missing",
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+// The whole collection is the deck being made coherent with itself — a claim resolved by a sibling
+// -extras unit is resolved.
+test("note claims: a claim whose forms all have cards says so instead of going quiet", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1-extras", {
+      items: [card("kashi", { target: "かし" }), card("okashi", { target: "おかし" })],
+    });
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [card("sweet", { target: "おかし", note: "お + かし (kashi) = おかし (okashi)." })],
+    });
+    const found = messages(runOnly(root, "note-claims"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /every form it names has a card here/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("note claims: an ordinary note is not a claim, and reviewNote is never read", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("plain", { note: "Said when you meet someone for the first time." }),
+        card("internal", { reviewNote: "built from たべる (taberu) + もの (mono)" }),
+      ],
+    });
+    assert.deepEqual(messages(runOnly(root, "note-claims")), []);
+  } finally {
+    cleanup();
+  }
+});

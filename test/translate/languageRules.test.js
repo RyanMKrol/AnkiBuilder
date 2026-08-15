@@ -41,7 +41,7 @@ test("the Japanese prompt keeps its own exemplars and failure modes", () => {
   ]);
   assert.match(text, /sokuon/);
   assert.match(text, /ろっかい/);
-  assert.match(text, /"pronunciation": "rokkai"/);
+  assert.match(text, /"pronunciation": "rok-kai"/);
 });
 
 // Arabic and Hebrew have no library any more, so the prompt must not describe one — telling the

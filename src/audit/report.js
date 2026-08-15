@@ -30,7 +30,7 @@ export function formatReport({ coverage, results }, { verbose = false } = {}) {
     for (const result of interesting) lines.push(...resultLines(result, { verbose }));
   }
 
-  lines.push("", ...verdictLines(results));
+  lines.push("", ...verdictLines(results, { verbose }));
   return lines;
 }
 
@@ -90,19 +90,34 @@ function resultLines(result, { verbose }) {
     } else if (verbose) {
       lines.push(`  ✓ ${label}${result.summary ?? "ok"}`);
     }
+  } else if (result.findings.length) {
+    // An INFO check's whole value is the LIST — "412 cards break the pinned romanization style" is
+    // not actionable without knowing which. But 412 lines in the default report is the wallpaper
+    // this module exists to prevent, so the count shows always and the list shows under --verbose.
+    lines.push(`  ${mark} ${label}${result.findings.length} finding(s) [INFO]`);
+    if (verbose) for (const finding of result.findings) lines.push(`      ${finding.message}`);
+  } else if (verbose) {
+    lines.push(`  ✓ ${label}${result.summary ?? "ok"}`);
   }
 
   for (const note of result.notes) lines.push(`  · ${label}${note}`);
   return lines;
 }
 
-function verdictLines(results) {
+function verdictLines(results, { verbose = false } = {}) {
   const failures = results.filter((r) => r.tier === "FAIL" && r.findings.length);
   const unreviewed = results.filter((r) => r.tier === "ACK" && r.unreviewed.length);
   const failCount = failures.reduce((n, r) => n + r.findings.length, 0);
   const ackCount = unreviewed.reduce((n, r) => n + r.unreviewed.length, 0);
+  const infoCount = results.reduce((n, r) => n + (r.tier === "INFO" ? r.findings.length : 0), 0);
+  // INFO never blocks, so it is not part of the verdict — but a count nobody can expand is the same
+  // as no count, so say where the list is.
+  const infoLine =
+    infoCount && !verbose
+      ? [`${infoCount} INFO finding(s) not listed — re-run with --verbose. INFO never blocks.`]
+      : [];
 
-  if (!failCount && !ackCount) return ["preflight clean"];
+  if (!failCount && !ackCount) return ["preflight clean", ...infoLine];
   const parts = [];
   if (failCount) parts.push(`${failCount} FAIL finding(s) in ${failures.length} check run(s)`);
   if (ackCount) {
@@ -112,5 +127,6 @@ function verdictLines(results) {
     parts.join("; "),
     "FAIL blocks. ACK blocks only until each instance is fixed or explicitly accepted " +
       "(preflight --accept), which is what keeps a standing count from turning into wallpaper.",
+    ...infoLine,
   ];
 }

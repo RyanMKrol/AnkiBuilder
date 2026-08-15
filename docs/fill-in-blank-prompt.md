@@ -116,7 +116,10 @@ Field by field:
 - `target` (string): the {{TARGET_LANGUAGE}} sentence, as the card face shows it.
 - `ttsText` (string, optional): what TTS speaks instead of `target` — set it only when the written
   `target` would be misread (rule 10). Never rendered on a card face.
-- `pronunciation` (string): the romanization of the spoken form. {{COUNTER_HYPHEN_RULE}}
+- `pronunciation` (string): the romanization of the spoken form, in the deck's pinned style. Every
+  rule below is a rule the deck is linted against, so a card that breaks one is reported to the
+  reviewer:
+  {{ROMANIZATION_STYLE_RULES}}
 - `scene` (string, optional): a short situation cue, shown on the front of BOTH card directions.
   REQUIRED on the answer half of a question/answer pair (rule 4), naming the question it replies to.
   Omit it on a card that stands on its own. Never restate the English and never leak the answer.

@@ -137,14 +137,15 @@ export function createDeckServer({
 
   // The page renderers and media routes moved to pages.js / mediaRoutes.js; each
   // factory receives the same injected values the functions used to close over.
-  const { renderDashboard, renderReviewPage, renderDeckPage } = createPageRenderers({
-    outputRoot,
-    adapters,
-    adapterFor,
-    editable,
-    resolveIso639Code,
-    mediaUrl,
-  });
+  const { renderDashboard, renderReviewPage, renderDeckPage, renderFacesPage } =
+    createPageRenderers({
+      outputRoot,
+      adapters,
+      adapterFor,
+      editable,
+      resolveIso639Code,
+      mediaUrl,
+    });
   const { serveFont, serveMedia } = createMediaRoutes({
     outputRoot,
     adapterFor,
@@ -533,6 +534,12 @@ export function createDeckServer({
         }
         if (seg[0] === "review" && (seg.length === 3 || seg.length === 4)) {
           const html = renderReviewPage(seg[1], seg[2], seg[3] ?? null);
+          return html ? sendHtml(res, html) : notFound(res);
+        }
+        // Read-only card-face preview. GET only, no POST counterpart, and untouched by `editable`:
+        // it renders the note type, it never writes it.
+        if (seg[0] === "faces" && (seg.length === 3 || seg.length === 4)) {
+          const html = renderFacesPage(seg[1], seg[2], seg[3] ?? null);
           return html ? sendHtml(res, html) : notFound(res);
         }
         if (seg[0] === "media" && seg.length === 5)

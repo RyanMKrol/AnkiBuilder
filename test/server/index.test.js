@@ -294,6 +294,35 @@ test("media supports Range requests (206 with a byte slice)", async () => {
   }
 });
 
+// The card faces are the ONLY surface that shows the reviewer what the note type actually produces,
+// and the review page is where the scene/hint decisions get made — so the link has to be there.
+test("the card-faces route renders both directions and is linked from the review page", async () => {
+  const root = fixture();
+  try {
+    await withServer(root, async (url) => {
+      const res = await fetch(`${url}/faces/book/mybook`);
+      assert.equal(res.status, 200);
+      const html = await res.text();
+      assert.match(html, /Recognition · ord 0/);
+      assert.match(html, /Production · ord 1/);
+      assert.match(html, /<div class="card" data-face="front">/);
+      assert.match(html, /All fronts/);
+
+      const unitScoped = await fetch(`${url}/faces/book/mybook/0`);
+      assert.equal(unitScoped.status, 200);
+
+      const review = await (await fetch(`${url}/review/book/mybook`)).text();
+      assert.match(review, /href="\/faces\/book\/mybook"/);
+
+      assert.equal((await fetch(`${url}/faces/book/nope`)).status, 404);
+      // Read-only: there is no POST counterpart at all.
+      assert.equal((await fetch(`${url}/faces/book/mybook`, { method: "POST" })).status, 404);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("path traversal, unknown routes, and non-GET are rejected", async () => {
   const root = fixture();
   try {

@@ -41,6 +41,9 @@ Produce exactly one object per input item, of the shape
 - Romanize a single word as a single token (no spurious internal spaces), and keep natural word
   spacing in a full sentence.
 - Write every vowel the word is actually pronounced with, even when the script does not write them.
+- **The deck's pinned style, which every romanization must follow.** These are not preferences: the
+  finished deck is linted against this exact list, and a value that breaks one of them is reported
+  back to a human. Where a rule and the library's output disagree, the rule wins.
   {{ROMANIZATION_STYLE_RULES}}
 - Include every id from the input exactly once. Order does not matter.
 - Do not wrap the response in markdown code fences, and include no text before or after the JSON array.

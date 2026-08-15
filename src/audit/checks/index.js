@@ -7,6 +7,7 @@ import {
   placeholderTargetCheck,
   exclusionsCheck,
   audioMarkerCheck,
+  audioTextHashCheck,
   chapterNumberCheck,
 } from "./collection.js";
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
@@ -20,6 +21,9 @@ import {
   unitMarkerCheck,
 } from "./state.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
+import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
+import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "./cardQuality.js";
+import { noteClaimsCheck } from "./noteClaims.js";
 
 /**
  * Every check, in report order.
@@ -43,6 +47,10 @@ export const ALL_CHECKS = [
   placeholderTargetCheck,
   sourceTypeCheck,
   corpusDriftCheck,
+  romajiStyleCheck,
+  answerableAloneCheck,
+  productionLengthCheck,
+  noteClaimsCheck,
   // collection scope
   collectionStateCheck,
   guidNamespaceCheck,
@@ -50,6 +58,8 @@ export const ALL_CHECKS = [
   unitMarkerCheck,
   cardIdsCheck,
   collisionsCheck,
+  inlineRomanizationCheck,
+  nearSiblingsCheck,
   chapterNumberCheck,
   extrasLibraryWriteCheck,
   libraryCompletenessCheck,
@@ -59,6 +69,7 @@ export const ALL_CHECKS = [
   duplicatesCheck,
   exclusionsCheck,
   audioMarkerCheck,
+  audioTextHashCheck,
   templateExemptionsCheck,
   unmatchedDirsCheck,
   // workspace scope: none, on purpose. See the isolation note above.

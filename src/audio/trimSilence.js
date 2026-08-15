@@ -195,6 +195,58 @@ function defaultRunFfmpeg(args) {
   return spawnSync("ffmpeg", args, { encoding: "utf-8", maxBuffer: 16 * 1024 * 1024 });
 }
 
+/**
+ * Where the appended end marker sits in a clip ON DISK, as `[from, to]`, or null if it isn't there.
+ *
+ * The same two-stage decision `trimTrailingSilence` makes below — position proposes the windows,
+ * shape decides between them — hoisted so it can be asked of a clip nobody is about to re-encode.
+ * That is what lets the SHIPPING take be checked rather than only the one the trim happened to
+ * produce: a reviewer's hand cut may well have removed a marker the automatic trim could not find,
+ * and until this existed the flag saying otherwise could never be cleared by anything but a
+ * regeneration.
+ *
+ * `path` is a file the caller already has on disk (the pulse-shape check decodes a window of it).
+ * Returns null when ffmpeg is unavailable or the detection fails, same fail-open rule as the trim:
+ * "could not tell" must never be reported as "found one".
+ */
+export function findEndMarker(path, opts = {}) {
+  const { looksLikeMarker = defaultLooksLikeMarker } = opts;
+  const parsed = detectSegments(path, opts);
+  if (!parsed) return null;
+  for (const window of markerCandidates(parsed.speech)) {
+    if (looksLikeMarker(path, window[0], window[1])) return window;
+  }
+  return null;
+}
+
+/**
+ * `{ duration, silences, speech }` for a clip on disk, or null if ffmpeg cannot report on it.
+ *
+ * The silencedetect pass on its own, separated from every decision made on top of it. A caller that
+ * wants to reason about WHERE a clip's trailing run of speech sits — rather than accept or reject
+ * the marker verdict — needs the segments, and re-deriving them by hand is how two callers end up
+ * disagreeing about the same audio.
+ */
+export function detectSegments(
+  path,
+  { runFfmpeg = defaultRunFfmpeg, env = process.env, cleanup = null } = {},
+) {
+  if (!isFfmpegAvailable(runFfmpeg)) return null;
+  const pre = cleanup ? `${cleanup},` : "";
+  const detect = runFfmpeg([
+    "-hide_banner",
+    "-i",
+    path,
+    "-af",
+    `${pre}silencedetect=noise=${envFloat(env, "ANKI_BUILDER_TRIM_SILENCE_DB", DEFAULTS.silenceDb)}dB:d=${envFloat(env, "ANKI_BUILDER_TRIM_MIN_SILENCE_SEC", DEFAULTS.minSilenceSec)}`,
+    "-f",
+    "null",
+    "-",
+  ]);
+  if (detect.error) return null;
+  return parseSegments(detect.stderr || "");
+}
+
 let ffmpegAvailable; // undefined | boolean — probed once, then cached
 let warnedMissing = false;
 

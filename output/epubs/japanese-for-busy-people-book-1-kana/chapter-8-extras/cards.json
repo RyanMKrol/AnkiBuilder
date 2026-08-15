@@ -20,7 +20,8 @@
       "audio": "343dcd095ee71e09.mp3",
       "audioOriginal": "343dcd095ee71e09.orig.mp3",
       "audioAuto": "343dcd095ee71e09.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "343dcd095ee71e09"
     },
     {
       "id": "p-depaato-de-kasa-kaimashita",
@@ -33,7 +34,8 @@
       "audio": "163f1afea1f4a350.mp3",
       "audioOriginal": "163f1afea1f4a350.orig.mp3",
       "audioAuto": "163f1afea1f4a350.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "163f1afea1f4a350"
     },
     {
       "id": "p-resutoran-de-tabemasu",
@@ -47,7 +49,8 @@
       "audio": "5a0fd8a392759941.mp3",
       "audioOriginal": "5a0fd8a392759941.orig.mp3",
       "audioAuto": "5a0fd8a392759941.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5a0fd8a392759941"
     },
     {
       "id": "p-resutoran-ni-ikimasu",
@@ -61,7 +64,8 @@
       "audio": "a9b0ffcde8f80d06.mp3",
       "audioOriginal": "a9b0ffcde8f80d06.orig.mp3",
       "audioAuto": "a9b0ffcde8f80d06.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a9b0ffcde8f80d06"
     },
     {
       "id": "wp-sumisu-hon-o-yomimasu",
@@ -79,7 +83,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.441429794520548
-      }
+      },
+      "audioTextHash": "0f873fcfa4c75a66"
     },
     {
       "id": "v-nihonshu-nomimasu-ka",
@@ -92,7 +97,8 @@
       "audio": "136da60e8d7ce36a.mp3",
       "audioOriginal": "136da60e8d7ce36a.orig.mp3",
       "audioAuto": "136da60e8d7ce36a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "136da60e8d7ce36a"
     },
     {
       "id": "p-raamen-mo-tabemashita",
@@ -106,7 +112,8 @@
       "audio": "d5bc431ab88f69bf.mp3",
       "audioOriginal": "d5bc431ab88f69bf.orig.mp3",
       "audioAuto": "d5bc431ab88f69bf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d5bc431ab88f69bf"
     },
     {
       "id": "f-mimasu-eiga-3",
@@ -124,7 +131,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.425980308219178
-      }
+      },
+      "audioTextHash": "2581f3c862b03f4d"
     },
     {
       "id": "v-nannin-desu-ka",
@@ -139,7 +147,8 @@
       "audio": "ffcf5090baf67f93.mp3",
       "audioOriginal": "ffcf5090baf67f93.orig.mp3",
       "audioAuto": "ffcf5090baf67f93.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ffcf5090baf67f93"
     },
     {
       "id": "sp-doyoubi-shichiji-ni-onegaishimasu",
@@ -155,7 +164,8 @@
       "audioOriginal": "e9aca6123eb6f168.orig.mp3",
       "audioAuto": "e9aca6123eb6f168.mp3",
       "audioMarked": true,
-      "scene": "giving the restaurant your booking day and time"
+      "scene": "giving the restaurant your booking day and time",
+      "audioTextHash": "e9aca6123eb6f168"
     },
     {
       "id": "f-kaimasu-arm-2",
@@ -169,7 +179,8 @@
       "audio": "117c16d1746e99fe.mp3",
       "audioOriginal": "117c16d1746e99fe.orig.mp3",
       "audioAuto": "117c16d1746e99fe.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "117c16d1746e99fe"
     },
     {
       "id": "v-suupu-nomimasendeshita",
@@ -183,7 +194,8 @@
       "audio": "c4dbf760fd74d0af.mp3",
       "audioOriginal": "c4dbf760fd74d0af.orig.mp3",
       "audioAuto": "c4dbf760fd74d0af.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c4dbf760fd74d0af"
     },
     {
       "id": "f-kikimasu-rajio-1",
@@ -196,7 +208,8 @@
       "audio": "767458ea66e84cd9.mp3",
       "audioOriginal": "767458ea66e84cd9.orig.mp3",
       "audioAuto": "767458ea66e84cd9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "767458ea66e84cd9"
     },
     {
       "id": "v-doyoubi-osushi-tabemasu",
@@ -209,7 +222,8 @@
       "audio": "38709df0392e76cc.mp3",
       "audioOriginal": "38709df0392e76cc.orig.mp3",
       "audioAuto": "38709df0392e76cc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "38709df0392e76cc"
     },
     {
       "id": "ex-suzuki-ongaku-kikimasu",
@@ -222,7 +236,8 @@
       "audio": "b2257fd90e16597b.mp3",
       "audioOriginal": "b2257fd90e16597b.orig.mp3",
       "audioAuto": "b2257fd90e16597b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b2257fd90e16597b"
     },
     {
       "id": "v-tenisukooto-de-tenisu",
@@ -235,7 +250,8 @@
       "audio": "8cd7717fdbf528ff.mp3",
       "audioOriginal": "8cd7717fdbf528ff.orig.mp3",
       "audioAuto": "8cd7717fdbf528ff.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8cd7717fdbf528ff"
     },
     {
       "id": "ex-resutoran-de-tabemasu",
@@ -250,7 +266,8 @@
       "audioOriginal": "47704ac3c41c4d5c.orig.mp3",
       "audioAuto": "47704ac3c41c4d5c.mp3",
       "audioMarked": true,
-      "scene": "answering where you're going to eat dinner"
+      "scene": "answering where you're going to eat dinner",
+      "audioTextHash": "47704ac3c41c4d5c"
     },
     {
       "id": "td-nichiyoubi-kabuki-mimasu",
@@ -263,7 +280,8 @@
       "audio": "00b13052dc43eadd.mp3",
       "audioOriginal": "00b13052dc43eadd.orig.mp3",
       "audioAuto": "00b13052dc43eadd.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "00b13052dc43eadd"
     },
     {
       "id": "f-mimasu-eiga-1",
@@ -276,7 +294,8 @@
       "audio": "44c8dbfe9d08f6dc.mp3",
       "audioOriginal": "44c8dbfe9d08f6dc.orig.mp3",
       "audioAuto": "44c8dbfe9d08f6dc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "44c8dbfe9d08f6dc"
     },
     {
       "id": "f-kikimasu-rajio-4",
@@ -289,7 +308,8 @@
       "audio": "771913dbb83f6077.mp3",
       "audioOriginal": "771913dbb83f6077.orig.mp3",
       "audioAuto": "771913dbb83f6077.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "771913dbb83f6077"
     },
     {
       "id": "ex-suzuki-terebi-mimasu",
@@ -302,7 +322,8 @@
       "audio": "a34256f1d2e149fa.mp3",
       "audioOriginal": "a34256f1d2e149fa.orig.mp3",
       "audioAuto": "a34256f1d2e149fa.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a34256f1d2e149fa"
     },
     {
       "id": "ex-futari-desu",
@@ -317,7 +338,8 @@
       "audioOriginal": "444cdc500f78cc63.orig.mp3",
       "audioAuto": "444cdc500f78cc63.mp3",
       "audioMarked": true,
-      "scene": "answering how many are in your party"
+      "scene": "answering how many are in your party",
+      "audioTextHash": "444cdc500f78cc63"
     },
     {
       "id": "f-kaimasu-arm-4",
@@ -331,7 +353,8 @@
       "audio": "1910d34b91735b60.mp3",
       "audioOriginal": "1910d34b91735b60.orig.mp3",
       "audioAuto": "1910d34b91735b60.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1910d34b91735b60"
     },
     {
       "id": "v-hoteru-no-baa-de-biiru",
@@ -344,7 +367,8 @@
       "audio": "4e84d4edfb8d4a5c.mp3",
       "audioOriginal": "4e84d4edfb8d4a5c.orig.mp3",
       "audioAuto": "4e84d4edfb8d4a5c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4e84d4edfb8d4a5c"
     },
     {
       "id": "sp2-furiimaaketto-ni-ikimashita",
@@ -359,7 +383,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "215f81659aaf4d7b-gen-d260ada7.mp3",
-      "scene": "answering what you did yesterday"
+      "scene": "answering what you did yesterday",
+      "audioTextHash": "215f81659aaf4d7b"
     },
     {
       "id": "f-mimasu-eiga-2",
@@ -373,7 +398,8 @@
       "audio": "6bc5fb2e2f24c377.mp3",
       "audioOriginal": "6bc5fb2e2f24c377.orig.mp3",
       "audioAuto": "6bc5fb2e2f24c377.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6bc5fb2e2f24c377"
     },
     {
       "id": "td-doyoubi-tenpura-tabemasu",
@@ -388,7 +414,8 @@
       "audioAuto": "f87351e48170395e-genkanji-8f40e392.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "f87351e48170395e-genkanji-8f40e392.mp3"
+      "audio": "f87351e48170395e-genkanji-8f40e392.mp3",
+      "audioTextHash": "f87351e48170395e"
     },
     {
       "id": "v-doyoubi-ginza-kaimono",
@@ -402,7 +429,8 @@
       "audioAuto": "aecd1eeb32dde64a-genkanji-94f5d530.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "aecd1eeb32dde64a-genkanji-94f5d530.mp3"
+      "audio": "aecd1eeb32dde64a-genkanji-94f5d530.mp3",
+      "audioTextHash": "aecd1eeb32dde64a"
     },
     {
       "id": "ex-doko-de-bangohan-tabemasu-ka",
@@ -415,7 +443,8 @@
       "audio": "de73784f9d523889.mp3",
       "audioOriginal": "de73784f9d523889.orig.mp3",
       "audioAuto": "de73784f9d523889.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "de73784f9d523889"
     },
     {
       "id": "v-doko-de-benkyou-shimasu-ka",
@@ -433,7 +462,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.1521138698630136
-      }
+      },
+      "audioTextHash": "2b9176899f3b49de"
     },
     {
       "id": "v-doyoubi-shigoto-shimasu-ka",
@@ -446,7 +476,8 @@
       "audio": "409355fadecda100.mp3",
       "audioOriginal": "409355fadecda100.orig.mp3",
       "audioAuto": "409355fadecda100.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "409355fadecda100"
     },
     {
       "id": "v-nani-o-nomimasu-ka",
@@ -459,7 +490,8 @@
       "audio": "4d142b445bf09299.mp3",
       "audioOriginal": "4d142b445bf09299.orig.mp3",
       "audioAuto": "4d142b445bf09299.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4d142b445bf09299"
     },
     {
       "id": "p-ema-mo-paatii-ni-ikimasu-ka",
@@ -472,7 +504,8 @@
       "audio": "df94595ab6f05cf3.mp3",
       "audioOriginal": "df94595ab6f05cf3.orig.mp3",
       "audioAuto": "df94595ab6f05cf3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "df94595ab6f05cf3"
     },
     {
       "id": "f-yomimasu-nyuusu-1",
@@ -485,7 +518,8 @@
       "audio": "4120d5914f4c3c7f.mp3",
       "audioOriginal": "4120d5914f4c3c7f.orig.mp3",
       "audioAuto": "4120d5914f4c3c7f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4120d5914f4c3c7f"
     },
     {
       "id": "v-uchi-de-asagohan",
@@ -498,7 +532,8 @@
       "audio": "ae1e34e0b334243e.mp3",
       "audioOriginal": "ae1e34e0b334243e.orig.mp3",
       "audioAuto": "ae1e34e0b334243e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ae1e34e0b334243e"
     },
     {
       "id": "f-kaimasu-arm-1",
@@ -511,7 +546,8 @@
       "audio": "1269288c7f434166.mp3",
       "audioOriginal": "1269288c7f434166.orig.mp3",
       "audioAuto": "1269288c7f434166.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1269288c7f434166"
     },
     {
       "id": "sp-yoyaku-o-onegaishimasu",
@@ -525,7 +561,8 @@
       "audio": "1444968bc1af2cc7.mp3",
       "audioOriginal": "1444968bc1af2cc7.orig.mp3",
       "audioAuto": "1444968bc1af2cc7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1444968bc1af2cc7"
     },
     {
       "id": "f-kikimasu-rajio-2",
@@ -538,7 +575,8 @@
       "audio": "b161f5ad4c9e5874.mp3",
       "audioOriginal": "b161f5ad4c9e5874.orig.mp3",
       "audioAuto": "b161f5ad4c9e5874.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b161f5ad4c9e5874"
     },
     {
       "id": "f-yomimasu-nyuusu-3",
@@ -551,7 +589,8 @@
       "audio": "41aecb3c829a18e1.mp3",
       "audioOriginal": "41aecb3c829a18e1.orig.mp3",
       "audioAuto": "41aecb3c829a18e1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "41aecb3c829a18e1"
     },
     {
       "id": "v-kinou-benkyou-shimasendeshita",
@@ -565,7 +604,8 @@
       "audio": "e50db39be53021be.mp3",
       "audioOriginal": "e50db39be53021be.orig.mp3",
       "audioAuto": "e50db39be53021be.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e50db39be53021be"
     },
     {
       "id": "sp2-kinou-nani-o-shimashita-ka",
@@ -578,7 +618,8 @@
       "audio": "6735a5598391c556.mp3",
       "audioOriginal": "6735a5598391c556.orig.mp3",
       "audioAuto": "6735a5598391c556.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6735a5598391c556"
     },
     {
       "id": "v-ocha-o-nomimasu",
@@ -592,7 +633,8 @@
       "audioOriginal": "25bb0190f08f0980.orig.mp3",
       "audioAuto": "25bb0190f08f0980.mp3",
       "audioMarked": true,
-      "scene": "answering what you're going to drink"
+      "scene": "answering what you're going to drink",
+      "audioTextHash": "25bb0190f08f0980"
     },
     {
       "id": "f-mimasu-eiga-4",
@@ -605,7 +647,8 @@
       "audio": "362794c2bb589c1b.mp3",
       "audioOriginal": "362794c2bb589c1b.orig.mp3",
       "audioAuto": "362794c2bb589c1b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "362794c2bb589c1b"
     },
     {
       "id": "v-iie-shimasen",
@@ -624,7 +667,8 @@
         "start": 0,
         "end": 1.4415342465753427
       },
-      "scene": "answering whether you're working on Saturday"
+      "scene": "answering whether you're working on Saturday",
+      "audioTextHash": "f8641acf9935bca3"
     },
     {
       "id": "sasaki-san-wa",
@@ -644,7 +688,8 @@
         "start": 0,
         "end": 1.2273664383561644
       },
-      "scene": "turning the same question back on the other person"
+      "scene": "turning the same question back on the other person",
+      "audioTextHash": "97b7a38bac6c735e"
     },
     {
       "id": "v-asagohan-tabemasen",
@@ -658,7 +703,8 @@
       "audio": "0e7afd5b59a548b4.mp3",
       "audioOriginal": "0e7afd5b59a548b4.orig.mp3",
       "audioAuto": "0e7afd5b59a548b4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0e7afd5b59a548b4"
     },
     {
       "id": "p-tomodachi-to-mimasu",
@@ -672,7 +718,8 @@
       "audioOriginal": "e647da08a0e381a8.orig.mp3",
       "audioAuto": "e647da08a0e381a8.mp3",
       "audioMarked": true,
-      "scene": "answering who you're seeing kabuki with"
+      "scene": "answering who you're seeing kabuki with",
+      "audioTextHash": "e647da08a0e381a8"
     },
     {
       "id": "p-dare-to-kabuki-mimasu-ka",
@@ -685,7 +732,8 @@
       "audio": "1dc6e4d542875a09.mp3",
       "audioOriginal": "1dc6e4d542875a09.orig.mp3",
       "audioAuto": "1dc6e4d542875a09.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1dc6e4d542875a09"
     },
     {
       "id": "v-iie-nomimasen",
@@ -699,7 +747,8 @@
       "audioOriginal": "629d9fe63dedbe90.orig.mp3",
       "audioAuto": "629d9fe63dedbe90.mp3",
       "audioMarked": true,
-      "scene": "answering whether you drink sake"
+      "scene": "answering whether you drink sake",
+      "audioTextHash": "629d9fe63dedbe90"
     },
     {
       "id": "sp2-nani-o-kaimashita-ka",
@@ -717,7 +766,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.5088946917808217
-      }
+      },
+      "audioTextHash": "d2c5535c77cf7380"
     },
     {
       "id": "sp-onamae-to-odenwabangou",
@@ -733,7 +783,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "6d37527a4fa5b04c-genkanji-a8ffe119.mp3",
-      "scene": "what staff say when taking your booking"
+      "scene": "what staff say when taking your booking",
+      "audioTextHash": "6d37527a4fa5b04c"
     },
     {
       "id": "f-yomimasu-nyuusu-2",
@@ -746,7 +797,8 @@
       "audio": "6a7dd6398a5fd698.mp3",
       "audioOriginal": "6a7dd6398a5fd698.orig.mp3",
       "audioAuto": "6a7dd6398a5fd698.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6a7dd6398a5fd698"
     },
     {
       "id": "v-hakone-de-shimashita",
@@ -760,7 +812,8 @@
       "audioOriginal": "115a0fe307d9bec0.orig.mp3",
       "audioAuto": "115a0fe307d9bec0.mp3",
       "audioMarked": true,
-      "scene": "answering where you played golf"
+      "scene": "answering where you played golf",
+      "audioTextHash": "115a0fe307d9bec0"
     },
     {
       "id": "v-kaisha-de-hirugohan",
@@ -773,7 +826,8 @@
       "audio": "621fb0f2203fcfc6.mp3",
       "audioOriginal": "621fb0f2203fcfc6.orig.mp3",
       "audioAuto": "621fb0f2203fcfc6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "621fb0f2203fcfc6"
     },
     {
       "id": "ex-nani-o-tabemasu-ka",
@@ -786,7 +840,8 @@
       "audio": "62b95641957d27c0.mp3",
       "audioOriginal": "62b95641957d27c0.orig.mp3",
       "audioAuto": "62b95641957d27c0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "62b95641957d27c0"
     },
     {
       "id": "ex-suteeki-o-tabemasu",
@@ -800,7 +855,8 @@
       "audioOriginal": "46b00957f3612891.orig.mp3",
       "audioAuto": "46b00957f3612891.mp3",
       "audioMarked": true,
-      "scene": "answering what you're going to eat"
+      "scene": "answering what you're going to eat",
+      "audioTextHash": "46b00957f3612891"
     },
     {
       "id": "v-suzuki-to-kaimono-shimashita",
@@ -814,7 +870,8 @@
       "audioOriginal": "a75457120041b016.orig.mp3",
       "audioAuto": "a75457120041b016.mp3",
       "audioMarked": true,
-      "scene": "answering what you did over the weekend"
+      "scene": "answering what you did over the weekend",
+      "audioTextHash": "a75457120041b016"
     },
     {
       "id": "ex-sumisu-suteeki-tabemasu",
@@ -827,7 +884,8 @@
       "audio": "ccc54b9669700fb2.mp3",
       "audioOriginal": "ccc54b9669700fb2.orig.mp3",
       "audioAuto": "ccc54b9669700fb2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ccc54b9669700fb2"
     },
     {
       "id": "f-kikimasu-rajio-3",
@@ -840,7 +898,8 @@
       "audio": "7ae0881425d0e5e7.mp3",
       "audioOriginal": "7ae0881425d0e5e7.orig.mp3",
       "audioAuto": "7ae0881425d0e5e7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7ae0881425d0e5e7"
     },
     {
       "id": "v-hitori-desu",
@@ -855,7 +914,8 @@
       "audioOriginal": "1569d2a3a832d0a5.orig.mp3",
       "audioAuto": "1569d2a3a832d0a5.mp3",
       "audioMarked": true,
-      "scene": "answering how many are in your party"
+      "scene": "answering how many are in your party",
+      "audioTextHash": "1569d2a3a832d0a5"
     },
     {
       "id": "v-raamen-tabemashita",
@@ -868,7 +928,8 @@
       "audio": "ada97a824ecf6874.mp3",
       "audioOriginal": "ada97a824ecf6874.orig.mp3",
       "audioAuto": "ada97a824ecf6874.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ada97a824ecf6874"
     },
     {
       "id": "p-suzuki-mo-kabuki-mimasu",
@@ -882,7 +943,8 @@
       "audio": "c0397d9fbeafd9c3.mp3",
       "audioOriginal": "c0397d9fbeafd9c3.orig.mp3",
       "audioAuto": "c0397d9fbeafd9c3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c0397d9fbeafd9c3"
     },
     {
       "id": "v-toshokan-de-shimasu",
@@ -902,7 +964,8 @@
         "start": 0,
         "end": 1.462130565068493
       },
-      "scene": "answering where you study"
+      "scene": "answering where you study",
+      "audioTextHash": "d9784cd0f208ac27"
     },
     {
       "id": "v-konbini-de-mizu-kaimasu",
@@ -915,7 +978,8 @@
       "audio": "73f7eba168cddfb8.mp3",
       "audioOriginal": "73f7eba168cddfb8.orig.mp3",
       "audioAuto": "73f7eba168cddfb8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "73f7eba168cddfb8"
     },
     {
       "id": "f-kaimasu-arm-3",
@@ -934,7 +998,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.962488441780822
-      }
+      },
+      "audioTextHash": "b16dc330904fe878"
     },
     {
       "id": "p-kaado-de-kasa-kaimashita",
@@ -948,7 +1013,8 @@
       "audio": "37062a456538135a.mp3",
       "audioOriginal": "37062a456538135a.orig.mp3",
       "audioAuto": "37062a456538135a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "37062a456538135a"
     },
     {
       "id": "f-yomimasu-nyuusu-4",
@@ -966,7 +1032,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.9217906678082195
-      }
+      },
+      "audioTextHash": "93996ab7ca067221"
     }
   ]
 }

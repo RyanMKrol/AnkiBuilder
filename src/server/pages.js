@@ -22,7 +22,9 @@ import { DELIVERED_MARKER } from "../anki/deliver.js";
 import { INCOMPLETE } from "./adapters/stage.js";
 import { describeReadiness } from "../cards/readiness.js";
 import { cleanupNames } from "../audio/cleanupFilter.js";
+import { audioTextState } from "../audio/textHash.js";
 import { page } from "./respond.js";
+import { renderCardFacesPage } from "../deck/cardFacePreview.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
 
@@ -266,7 +268,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
-    const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
+    const deckLanguageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
+    const isJa = deckLanguageCode === "ja";
 
     const sections = units.map((u) => ({
       leaf: u.label,
@@ -278,10 +281,18 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       missing: u.missing || [],
       reason: u.reason || null,
       numberIssues: u.numberIssues || [],
+      kanjiTts: !!u.kanjiTts,
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
         stage: u.stage || "audio",
+        // Does this clip still speak this card's text? Every hand-picked, uploaded or hand-trimmed
+        // clip is exempt from the audio stage's own staleness check forever, so this is the only
+        // place ~200 live cards are ever asked the question. Badge only — nothing here blocks.
+        audioTextState: audioTextState(c, deckLanguageCode, { kanjiTts: !!u.kanjiTts }).state,
+        // Whether this unit is actually VOICED from its kanji, so the review can say "spoken as"
+        // only when that is true rather than implying a clip says something it does not.
+        kanjiTts: !!u.kanjiTts,
         audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
         // The take the trim editor cuts from. Falls back to the shipping clip for cards generated
         // before originals were kept — still trimmable, just not widenable past the automatic cut.
@@ -299,10 +310,18 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       : "";
     const player = (url) =>
       url ? `<audio controls preload="none" src="${url}"></audio>` : `<span class="x">—</span>`;
+    // "Keep this clip" appears ONLY on a card whose clip no longer matches its text. It is the exit
+    // the badge would otherwise not have: regenerating discards the reviewer's trim or pick, and
+    // re-picking re-spends credits on a take they already judged right. Pressing it changes no
+    // audio — it records that a human vouched for this clip, with a name and a time on it.
+    const keepClipBtn = (c) =>
+      c.audioTextState === "stale"
+        ? `<button type="button" class="keep-clip" title="Record that this clip is correct for the card's current text (changes no audio)">Keep this clip</button>`
+        : "";
     const audioCell = (c) =>
       player(c.audioUrl) +
-      (canEdit && c.originalUrl
-        ? `<div class="ed"><button type="button" class="trim">Edit</button></div>`
+      (canEdit && (c.originalUrl || c.audioTextState === "stale")
+        ? `<div class="ed">${c.originalUrl ? `<button type="button" class="trim">Edit</button>` : ""}${keepClipBtn(c)}</div>`
         : "");
     // Only the editable review shows the Original column; passing undefined leaves the read-only
     // Browse view and the view-deck artifact with their single audio column, exactly as before.
@@ -405,7 +424,13 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const body = `${pageChrome({
       title: deck.title,
       eyebrow: "Review · anki-builder",
-      ledeHtml: `${lede} <a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`,
+      // The card-faces link sits on the REVIEW page on purpose: the corpus gate is where the
+      // scene/hint/answerable-alone decisions get made, and every one of them is a claim about a
+      // rendered front that this table cannot show.
+      ledeHtml:
+        `${lede} <a class="back" href="/faces/${encodeURIComponent(type)}/${encodeURIComponent(id)}` +
+        `${unit != null ? `/${encodeURIComponent(unit)}` : ""}">Card faces →</a> ` +
+        `<a class="back" href="/deck/${encodeURIComponent(type)}/${encodeURIComponent(id)}">Browse (read-only) →</a>`,
       backHref: "/",
       deliver: editable,
       extraHtml: `\n${buildBanner}${toolbar ? `\n<div class="bar">${toolbar}</div>` : ""}`,
@@ -484,5 +509,45 @@ ${sectionHtml}
     );
   }
 
-  return { renderDashboard, renderReviewPage, renderDeckPage };
+  // The CARD FACES view (/faces/:type/:id[/:unit]): every card rendered through the note type's REAL
+  // qfmt/afmt and REAL CSS, both directions, front and back, flippable.
+  //
+  // The three most valuable rules in references/card-authoring-rules.md — an answer card must be
+  // answerable alone, a scene must never leak the answer, a hint belongs on the Production front —
+  // are all claims about a rendered FRONT, and until this page existed no surface in the pipeline
+  // showed that front to anyone. The reviewer approved a table of JSON columns.
+  //
+  // Strictly read-only, and NOT gated on the model-diff guard: it renders the spec, it never pushes
+  // it. Excluded cards are shown, marked, because "should this be excluded?" is a question about the
+  // card face too.
+  function renderFacesPage(type, id, unit = null) {
+    const adapter = adapterFor(type);
+    const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
+    if (!deck) return null;
+    const units =
+      unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
+    if (units.length === 0) return null;
+
+    const cards = units.flatMap((u) => u.cards.map((c) => ({ ...c, unit: u.seq })));
+    const reviewHref = `/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}${
+      unit != null ? `/${encodeURIComponent(unit)}` : ""
+    }`;
+    const body = renderCardFacesPage(cards, {
+      title: `${deck.title} — card faces`,
+      lede:
+        `${cards.length} card(s) across ${units.length} lesson${units.length === 1 ? "" : "s"}, ` +
+        `each rendered from the deck's real templates and CSS. Click a header to flip one card; ` +
+        `<code>scene</code> shows on BOTH fronts and <code>hint</code> only on the Production front, ` +
+        `so read the two fronts side by side before you accept a cue. ` +
+        `<a class="back" href="${reviewHref}">← back to the review</a>`,
+      mediaUrl: (file, card) => mediaUrl(type, id, card.unit, file),
+      // The dashboard already serves the deck's own embedded font at /assets/font.woff2 under the
+      // family name "DeckScript" (respond.js's page() registers it), so the preview points `.card`
+      // at the same face the built deck uses instead of embedding a second copy.
+      fontCss: `.card { font-family: "DeckScript", "Helvetica Neue", Helvetica, Arial, sans-serif; }`,
+    });
+    return page(`${deck.title} — card faces`, body);
+  }
+
+  return { renderDashboard, renderReviewPage, renderDeckPage, renderFacesPage };
 }

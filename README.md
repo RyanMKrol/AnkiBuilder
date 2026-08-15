@@ -279,7 +279,9 @@ Three things make it a gate rather than a wall of text:
   `.preflight-accepted.json`, and still reported afterwards as a standing count. `INFO` never affects
   the exit code. A number that has been non-zero on every run since it was written teaches the
   operator to skim past it, which is what the ACK tier exists to stop. Nothing is ACK-tier right now;
-  the tier and its acceptance file stay for the checks that will need them.
+  the tier and its acceptance file stay for the checks that will need them. An INFO check's findings
+  are COUNTED in the default report and LISTED under `--verbose`: the list is the whole value of a
+  reporting check, and 400 lines of it by default is the wallpaper the tiers exist to prevent.
 
 Every run opens with a coverage line (collections by kind, units by shape, directories nobody could
 place, checks skipped for want of input), so "clean" can never mean "I did not look".
@@ -363,6 +365,46 @@ operator has to override on the day it lands is worse than no gate.
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
 - [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)
+- [x] One pinned romanization spec per language (`src/translate/romajiStyle.js`): each rule is the
+      prose injected into all three romanizing prompts AND the detector `preflight`'s `romaji-style`
+      check runs, in the same object, so neither can drift from the other. Rules no regex can decide
+      are marked taught-but-not-linted and named in the report instead of reading as checked. The
+      inline `(roman)` spellings inside a note or hint are separately checked against that same
+      collection's own audited `pronunciation` field (`inline-romaji`)
+- [x] The three card-quality rules the authoring doc states in prose are now mechanically detected
+      (`src/cards/faceQuality.js`, reported by `preflight` at INFO): `answerable-alone` (English that
+      reads as a reply with no `scene` naming the question), `production-length` (a Production face at
+      or over 60 characters — split it, or ship it Recognition-only), and `near-siblings` (one
+      sentence frame drilled 3+ times with only a name or number swapped). All three detect a shape;
+      whether the shape is a defect stays the reviewer's call
+- [x] Card-face fixes (a note-type SPEC change: reaching a live collection needs
+      `deliver --dry` then `--allow-model-change`). Both prompts are wrapped in `.prompt` at the
+      answer's 26px/600, so the string the learner has to decode is no longer 20px as a question and
+      26px bold as an answer; `.note-back` and the cue styles clear WCAG AA in light mode (they were
+      3.5:1 and 3.1:1, computed and asserted in `test/deck/cardStyles.test.js`); the category chip is
+      gone from the Recognition front, where it was an uncontrolled answer cue on 2,150 fronts, 86%
+      of which have no scene; scene and hint get distinct treatment instead of two identical
+      unlabelled grey lines. `Reading` is still rendered by nothing, deliberately
+- [x] Per-card direction control (`dirSuspended: [1]` = Recognition only), by suspending the unwanted
+      card ordinal at delivery — the only form of direction suppression in Anki that survives routine
+      housekeeping (an empty front is an EMPTY card, which Tools → Empty Cards deletes with its
+      review log; a build-side omission is inert on the AnkiConnect path and regenerated on the
+      `.apkg` one). Unconditional for notes the deliver creates (nothing studied, nothing to
+      disturb); a human unsuspend is respected forever via the per-ordinal `dir-suspended::<ord>`
+      tag. Applying it to already-delivered notes is opt-in AND **currently refused**, gated on two
+      unrun behaviour probes it names. Stated consequence: the `.apkg` keeps both card rows, so it no
+      longer reproduces the delivered deck card-for-card
+- [x] A notes truth-check at Gate 1 (`note-claims`): every note asserting a decomposition,
+      derivation, distinction or identity, with — for each target-script form the claim names —
+      whether this collection teaches a card for it. Deterministic list, human verdict. Every other
+      note check in the repo is structural, and a shipped note teaching a false morphological
+      analysis survived all of them
+- [x] A card-face preview at the review gate (`/faces/<type>/<id>[/<unit>]`, linked from the review
+      page): every card rendered through the note type's REAL `qfmt`/`afmt` and REAL CSS, both
+      directions, front and back, flippable per card or all at once. The three most valuable
+      authoring rules are claims about a rendered front that no surface used to show anyone. Strictly
+      read-only — it renders the note type, it never pushes it, so it is not behind
+      `--allow-model-change`
 - [x] Spoken-form `ttsText` field (renamed from `reading`, 2026-08) — the text TTS speaks instead of the
       target whenever the written target would be misread, never rendered on any card face. Numbers stay
       as digits in `target` (natural display, e.g. `2,000えん`) while a spelled-out `ttsText`
@@ -375,6 +417,27 @@ operator has to override on the day it lands is worse than no gate.
       permanent — it only ever cuts the end, so leading silence always survived and an over-eager cut
       was unrecoverable. A card now carries `audioOriginal` / `audioAuto` / `audioManual`, and the
       `audio` the deck embeds is derived from them
+- [x] Kanji-orthography TTS as a per-unit opt-in. ElevenLabs mis-parses all-kana Japanese, so a
+      kanji+kana form often voices more naturally — but kana→kanji is one-to-many, and a mis-pick
+      puts a different word in the audio of a card whose kana face gives the learner no way to
+      notice. So the conversion is stored on the card (`ttsKanji`, shown in the audio review, free to
+      read and correct) separately from whether the voice reads it (`translate --kanji-tts`, set at
+      unit creation because the value feeds the TTS cache key). Whether it is worth doing is still
+      unmeasured: `scripts/kanji-tts-ab.mjs` is the blind A/B that would settle it, written and not
+      run
+- [x] The "marker audible" flag follows the clip that actually ships. It used to describe the take
+      the audio stage produced and could only ever be cleared by a whole new recording — so a
+      reviewer who fixed the clip by hand, which is exactly what the badge asks for, left the card
+      asserting a fault it no longer had. Installing, re-cleaning or reverting a hand cut now re-asks
+      the question of the shipping take, and `scripts/audit-marker-stuck.mjs` re-checks the existing
+      ones. All seven live instances had already been hand-cut clear; none needed regenerating
+- [x] Every clip records what text it was generated from (`audioTextHash`), read off the take's own
+      content-addressed filename and never computed from the card. The audio stage's staleness check
+      exempted every hand-picked, uploaded or hand-trimmed clip — about 200 live cards — so editing a
+      card's text left it shipping a recording of the old words with nothing to say so. The audio
+      review now badges those cards **Text changed** and offers **Keep this clip**, which records that
+      a human vouched for the take (with a timestamp) rather than regenerating over their work.
+      Preflight counts the same three outcomes; nothing blocks
 - [x] Manual trim editor in the audio review — the table shows **Original** (with Replace / Generate)
       beside **In use** (the auto-trimmed take, or your hand cut), and **Trim…** opens a waveform with
       draggable start/end handles, snap-to-speech, and selection playback. Every cut is made from the

@@ -22,7 +22,8 @@
       "audio": "dda7388c72975455.mp3",
       "audioOriginal": "dda7388c72975455.orig.mp3",
       "audioAuto": "dda7388c72975455.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dda7388c72975455"
     },
     {
       "id": "fib-cheesecake-oishii-a",
@@ -37,7 +38,8 @@
       "audio": "58776b9ceca1733d.mp3",
       "audioOriginal": "58776b9ceca1733d.orig.mp3",
       "audioAuto": "58776b9ceca1733d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "58776b9ceca1733d"
     },
     {
       "id": "fib-jitensha-takai-q",
@@ -64,7 +66,8 @@
       "audio": "818e4e784030ad2e.mp3",
       "audioOriginal": "818e4e784030ad2e.orig.mp3",
       "audioAuto": "818e4e784030ad2e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "818e4e784030ad2e"
     },
     {
       "id": "f10-apuri-yokunai",
@@ -78,7 +81,8 @@
       "audio": "d56d951347baccee.mp3",
       "audioOriginal": "d56d951347baccee.orig.mp3",
       "audioAuto": "d56d951347baccee.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d56d951347baccee"
     },
     {
       "id": "ex10-okashi-ikaga",
@@ -92,7 +96,8 @@
       "audio": "700140d17796c038.mp3",
       "audioOriginal": "700140d17796c038.orig.mp3",
       "audioAuto": "700140d17796c038.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "700140d17796c038"
     },
     {
       "id": "f10-kaban-ookikunai",
@@ -106,7 +111,8 @@
       "audio": "24678590abc14e5c.mp3",
       "audioOriginal": "24678590abc14e5c.orig.mp3",
       "audioAuto": "24678590abc14e5c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "24678590abc14e5c"
     },
     {
       "id": "ex10-iie-samukunai",
@@ -120,7 +126,8 @@
       "audio": "5503a88b60aa8c02.mp3",
       "audioOriginal": "5503a88b60aa8c02.orig.mp3",
       "audioAuto": "5503a88b60aa8c02.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5503a88b60aa8c02"
     },
     {
       "id": "v10-tenki-warui",
@@ -134,7 +141,8 @@
       "audio": "2a60ba2837da3e2f.mp3",
       "audioOriginal": "2a60ba2837da3e2f.orig.mp3",
       "audioAuto": "2a60ba2837da3e2f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2a60ba2837da3e2f"
     },
     {
       "id": "f10-koppu-kirei-ja-arimasen",
@@ -148,7 +156,8 @@
       "audio": "8ef7f5fb0af34c1d.mp3",
       "audioOriginal": "8ef7f5fb0af34c1d.orig.mp3",
       "audioAuto": "8ef7f5fb0af34c1d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8ef7f5fb0af34c1d"
     },
     {
       "id": "fib-jitensha-takakunai-a",
@@ -174,7 +183,8 @@
       "audio": "018f5913b42a2151.mp3",
       "audioOriginal": "018f5913b42a2151.orig.mp3",
       "audioAuto": "018f5913b42a2151.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "018f5913b42a2151"
     },
     {
       "id": "ex10-kochira-6500-en",
@@ -190,7 +200,8 @@
       "audio": "ffd009b5c81e6d25.mp3",
       "audioOriginal": "ffd009b5c81e6d25.orig.mp3",
       "audioAuto": "ffd009b5c81e6d25.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ffd009b5c81e6d25"
     },
     {
       "id": "p10-amari-samukunai",
@@ -204,7 +215,8 @@
       "audio": "743ee7e278b86bd6.mp3",
       "audioOriginal": "743ee7e278b86bd6.orig.mp3",
       "audioAuto": "743ee7e278b86bd6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "743ee7e278b86bd6"
     },
     {
       "id": "ex10-hai-takai",
@@ -218,7 +230,8 @@
       "audio": "461ccdb6bedc6214.mp3",
       "audioOriginal": "461ccdb6bedc6214.orig.mp3",
       "audioAuto": "461ccdb6bedc6214.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "461ccdb6bedc6214"
     },
     {
       "id": "ex10-kono-pasokon-atarashii-q",
@@ -231,7 +244,8 @@
       "audio": "de252f48d50572f7.mp3",
       "audioOriginal": "de252f48d50572f7.orig.mp3",
       "audioAuto": "de252f48d50572f7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "de252f48d50572f7"
     },
     {
       "id": "ex10-hai-kirei",
@@ -245,7 +259,8 @@
       "audio": "a6cbe359a9d85b9a.mp3",
       "audioOriginal": "a6cbe359a9d85b9a.orig.mp3",
       "audioAuto": "a6cbe359a9d85b9a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a6cbe359a9d85b9a"
     },
     {
       "id": "ex10-kyouto-no-okashi",
@@ -259,7 +274,8 @@
       "audio": "7418b95193e2e256.mp3",
       "audioOriginal": "7418b95193e2e256.orig.mp3",
       "audioAuto": "7418b95193e2e256.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7418b95193e2e256"
     },
     {
       "id": "f10-wain-yasukunai",
@@ -273,7 +289,8 @@
       "audio": "8df7094e5b69f629.mp3",
       "audioOriginal": "8df7094e5b69f629.orig.mp3",
       "audioAuto": "8df7094e5b69f629.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8df7094e5b69f629"
     },
     {
       "id": "f10-mise-atarashikunai",
@@ -286,7 +303,8 @@
       "audio": "a56ec7bc88924bf4.mp3",
       "audioOriginal": "a56ec7bc88924bf4.orig.mp3",
       "audioAuto": "a56ec7bc88924bf4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a56ec7bc88924bf4"
     },
     {
       "id": "f10-jitensha-furui",
@@ -300,7 +318,8 @@
       "audio": "a88494bf964e5d06.mp3",
       "audioOriginal": "a88494bf964e5d06.orig.mp3",
       "audioAuto": "a88494bf964e5d06.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a88494bf964e5d06"
     },
     {
       "id": "ex10-sono-wain-takai-q",
@@ -313,7 +332,8 @@
       "audio": "07cb878f0b80a1c1.mp3",
       "audioOriginal": "07cb878f0b80a1c1.orig.mp3",
       "audioAuto": "07cb878f0b80a1c1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "07cb878f0b80a1c1"
     },
     {
       "id": "ex10-ocha-o-douzo",
@@ -327,7 +347,8 @@
       "audio": "117c3a2b91014922.mp3",
       "audioOriginal": "117c3a2b91014922.orig.mp3",
       "audioAuto": "117c3a2b91014922.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "117c3a2b91014922"
     },
     {
       "id": "ex10-iie-shizuka-ja-arimasen",
@@ -341,7 +362,8 @@
       "audio": "af7a0bc72f75f831.mp3",
       "audioOriginal": "af7a0bc72f75f831.orig.mp3",
       "audioAuto": "af7a0bc72f75f831.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "af7a0bc72f75f831"
     },
     {
       "id": "f10-seetaa-takakunai",
@@ -354,7 +376,8 @@
       "audio": "3759a64f7c4ec693.mp3",
       "audioOriginal": "3759a64f7c4ec693.orig.mp3",
       "audioAuto": "3759a64f7c4ec693.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3759a64f7c4ec693"
     },
     {
       "id": "fib-cheesecake-oishii-q",
@@ -369,7 +392,8 @@
       "audio": "d95307f00127ae59.mp3",
       "audioOriginal": "d95307f00127ae59.orig.mp3",
       "audioAuto": "d95307f00127ae59.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d95307f00127ae59"
     },
     {
       "id": "f10-eiga-omoshirokunai",
@@ -382,7 +406,8 @@
       "audio": "680cd0bda22d2378.mp3",
       "audioOriginal": "680cd0bda22d2378.orig.mp3",
       "audioAuto": "680cd0bda22d2378.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "680cd0bda22d2378"
     },
     {
       "id": "ex10-katou-uchi-atarashii",
@@ -395,7 +420,8 @@
       "audio": "61720fa61edf8480.mp3",
       "audioOriginal": "61720fa61edf8480.orig.mp3",
       "audioAuto": "61720fa61edf8480.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "61720fa61edf8480"
     },
     {
       "id": "ex10-london-samui-q",
@@ -408,7 +434,8 @@
       "audio": "7486032a88f36133.mp3",
       "audioOriginal": "7486032a88f36133.orig.mp3",
       "audioAuto": "7486032a88f36133.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7486032a88f36133"
     },
     {
       "id": "ex10-kono-kamera-yasui",
@@ -421,7 +448,8 @@
       "audio": "8a8dba845800a8e1.mp3",
       "audioOriginal": "8a8dba845800a8e1.orig.mp3",
       "audioAuto": "8a8dba845800a8e1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8a8dba845800a8e1"
     },
     {
       "id": "v10-koko-de-machimasu",
@@ -435,7 +463,8 @@
       "audio": "658182058de1af53.mp3",
       "audioOriginal": "658182058de1af53.orig.mp3",
       "audioAuto": "658182058de1af53.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "658182058de1af53"
     },
     {
       "id": "f10-tokei-chiisakunai",
@@ -449,7 +478,8 @@
       "audioAuto": "da6baba3ce288f7b-genkanji-d270c75b.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "da6baba3ce288f7b-genkanji-d270c75b.mp3"
+      "audio": "da6baba3ce288f7b-genkanji-d270c75b.mp3",
+      "audioTextHash": "da6baba3ce288f7b"
     },
     {
       "id": "f10-ocha-atatakakunai",
@@ -462,7 +492,8 @@
       "audio": "913ea56ef3bfb9aa.mp3",
       "audioOriginal": "913ea56ef3bfb9aa.orig.mp3",
       "audioAuto": "913ea56ef3bfb9aa.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "913ea56ef3bfb9aa"
     },
     {
       "id": "ex10-totemo-oishii",
@@ -475,7 +506,8 @@
       "audio": "acc79273c8109a8b.mp3",
       "audioOriginal": "acc79273c8109a8b.orig.mp3",
       "audioAuto": "acc79273c8109a8b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "acc79273c8109a8b"
     },
     {
       "id": "ex10-hontou-ni-ii-tenki-ne",
@@ -489,7 +521,8 @@
       "audio": "ad004f5438f7638a.mp3",
       "audioOriginal": "ad004f5438f7638a.orig.mp3",
       "audioAuto": "ad004f5438f7638a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ad004f5438f7638a"
     },
     {
       "id": "ex10-ii-tenki-ne",
@@ -502,7 +535,8 @@
       "audio": "2e1fc08073e721e5.mp3",
       "audioOriginal": "2e1fc08073e721e5.orig.mp3",
       "audioAuto": "2e1fc08073e721e5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2e1fc08073e721e5"
     },
     {
       "id": "f10-tenki-warukunai",
@@ -515,7 +549,8 @@
       "audio": "c769ee29748656ee.mp3",
       "audioOriginal": "c769ee29748656ee.orig.mp3",
       "audioAuto": "c769ee29748656ee.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c769ee29748656ee"
     },
     {
       "id": "ex10-iie-benri-ja-arimasen",
@@ -529,7 +564,8 @@
       "audio": "d1a2426ce3ae00d4.mp3",
       "audioOriginal": "d1a2426ce3ae00d4.orig.mp3",
       "audioAuto": "d1a2426ce3ae00d4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d1a2426ce3ae00d4"
     },
     {
       "id": "ex10-hai-atarashii",
@@ -543,7 +579,8 @@
       "audio": "fa8a9d9d0336a493.mp3",
       "audioOriginal": "fa8a9d9d0336a493.orig.mp3",
       "audioAuto": "fa8a9d9d0336a493.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fa8a9d9d0336a493"
     },
     {
       "id": "ex10-nihon-no-okashi-q",
@@ -556,7 +593,8 @@
       "audio": "64094527448a7a3b.mp3",
       "audioOriginal": "64094527448a7a3b.orig.mp3",
       "audioAuto": "64094527448a7a3b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "64094527448a7a3b"
     },
     {
       "id": "ex10-hai-shizuka",
@@ -570,7 +608,8 @@
       "audio": "d363fd6f1b3edca2.mp3",
       "audioOriginal": "d363fd6f1b3edca2.orig.mp3",
       "audioAuto": "d363fd6f1b3edca2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d363fd6f1b3edca2"
     },
     {
       "id": "f10-kaban-ookii",
@@ -583,7 +622,8 @@
       "audio": "cc5231cd0fccd1f6.mp3",
       "audioOriginal": "cc5231cd0fccd1f6.orig.mp3",
       "audioAuto": "cc5231cd0fccd1f6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cc5231cd0fccd1f6"
     },
     {
       "id": "v10-odaiba-donna-tokoro",
@@ -596,7 +636,8 @@
       "audio": "613e8fc0d59bafc2.mp3",
       "audioOriginal": "613e8fc0d59bafc2.orig.mp3",
       "audioAuto": "613e8fc0d59bafc2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "613e8fc0d59bafc2"
     },
     {
       "id": "f10-benri-na-apuri",
@@ -610,7 +651,8 @@
       "audioAuto": "6184fe5cca4bd871-genkanji-f833e14e.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "6184fe5cca4bd871-genkanji-f833e14e.mp3"
+      "audio": "6184fe5cca4bd871-genkanji-f833e14e.mp3",
+      "audioTextHash": "6184fe5cca4bd871"
     },
     {
       "id": "fib-daigaku-donna-tokoro-q",
@@ -637,7 +679,8 @@
       "audio": "c7ed854fc4f7e3b7.mp3",
       "audioOriginal": "c7ed854fc4f7e3b7.orig.mp3",
       "audioAuto": "c7ed854fc4f7e3b7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c7ed854fc4f7e3b7"
     },
     {
       "id": "ex10-iie-suzushikunai",
@@ -651,7 +694,8 @@
       "audio": "694a6752ce336519.mp3",
       "audioOriginal": "694a6752ce336519.orig.mp3",
       "audioAuto": "694a6752ce336519.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "694a6752ce336519"
     },
     {
       "id": "fib-mise-benri-nai",
@@ -666,7 +710,8 @@
       "audio": "d7f0f8d2adae8893.mp3",
       "audioOriginal": "d7f0f8d2adae8893.orig.mp3",
       "audioAuto": "d7f0f8d2adae8893.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d7f0f8d2adae8893"
     },
     {
       "id": "fib-hon-omoshiroi",
@@ -692,7 +737,8 @@
       "audio": "b1d50508514ded7c.mp3",
       "audioOriginal": "b1d50508514ded7c.orig.mp3",
       "audioAuto": "b1d50508514ded7c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b1d50508514ded7c"
     },
     {
       "id": "fib-ocha-yuumei",
@@ -707,7 +753,8 @@
       "audio": "449f881fb7a45988.mp3",
       "audioOriginal": "449f881fb7a45988.orig.mp3",
       "audioAuto": "449f881fb7a45988.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "449f881fb7a45988"
     },
     {
       "id": "ex10-emma-okashi-tabemashita",
@@ -720,7 +767,8 @@
       "audio": "3d1a63238d7c8175.mp3",
       "audioOriginal": "3d1a63238d7c8175.orig.mp3",
       "audioAuto": "3d1a63238d7c8175.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3d1a63238d7c8175"
     },
     {
       "id": "ex10-chotto-takai",
@@ -734,7 +782,8 @@
       "audio": "47038f8d2e0ce85d.mp3",
       "audioOriginal": "47038f8d2e0ce85d.orig.mp3",
       "audioAuto": "47038f8d2e0ce85d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "47038f8d2e0ce85d"
     },
     {
       "id": "f10-kouen-nigiyaka-ja-arimasen",
@@ -748,7 +797,8 @@
       "audio": "0e49945ec1c59620.mp3",
       "audioOriginal": "0e49945ec1c59620.orig.mp3",
       "audioAuto": "0e49945ec1c59620.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0e49945ec1c59620"
     },
     {
       "id": "fib-mise-coffee-amari-oishikunai",
@@ -763,7 +813,8 @@
       "audio": "ed261b9e8f27cd10.mp3",
       "audioOriginal": "ed261b9e8f27cd10.orig.mp3",
       "audioAuto": "ed261b9e8f27cd10.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ed261b9e8f27cd10"
     },
     {
       "id": "ex10-sydney-suzushii-q",
@@ -776,7 +827,8 @@
       "audio": "b03a4c800c7a0586.mp3",
       "audioOriginal": "b03a4c800c7a0586.orig.mp3",
       "audioAuto": "b03a4c800c7a0586.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b03a4c800c7a0586"
     },
     {
       "id": "fib-daigaku-nigiyaka-a",
@@ -804,7 +856,8 @@
       "audioAuto": "a2373356a6d45e53-genkanji-71105bbc.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "a2373356a6d45e53-genkanji-71105bbc.mp3"
+      "audio": "a2373356a6d45e53-genkanji-71105bbc.mp3",
+      "audioTextHash": "a2373356a6d45e53"
     },
     {
       "id": "ex10-ano-resutoran-shizuka-q",
@@ -817,7 +870,8 @@
       "audio": "564d6495775ffa70.mp3",
       "audioOriginal": "564d6495775ffa70.orig.mp3",
       "audioAuto": "564d6495775ffa70.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "564d6495775ffa70"
     },
     {
       "id": "ex10-sono-apuri-benri-q",
@@ -830,7 +884,8 @@
       "audio": "26af90ec12384271.mp3",
       "audioOriginal": "26af90ec12384271.orig.mp3",
       "audioAuto": "26af90ec12384271.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "26af90ec12384271"
     },
     {
       "id": "f10-tokei-chiisai",
@@ -843,7 +898,8 @@
       "audio": "acd151f4859545ae.mp3",
       "audioOriginal": "acd151f4859545ae.orig.mp3",
       "audioAuto": "acd151f4859545ae.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "acd151f4859545ae"
     },
     {
       "id": "ex10-hai-donata",
@@ -857,7 +913,8 @@
       "audio": "75e0eecc56dfabb1.mp3",
       "audioOriginal": "75e0eecc56dfabb1.orig.mp3",
       "audioAuto": "75e0eecc56dfabb1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "75e0eecc56dfabb1"
     },
     {
       "id": "ex10-fujisan-yuumei",
@@ -870,7 +927,8 @@
       "audio": "e4e828e147935805.mp3",
       "audioOriginal": "e4e828e147935805.orig.mp3",
       "audioAuto": "e4e828e147935805.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e4e828e147935805"
     },
     {
       "id": "ex10-toshokan-shizuka-q",
@@ -883,7 +941,8 @@
       "audio": "5bd0579aec30d46e.mp3",
       "audioOriginal": "5bd0579aec30d46e.orig.mp3",
       "audioAuto": "5bd0579aec30d46e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5bd0579aec30d46e"
     },
     {
       "id": "v10-asakusa-nigiyaka-na-tokoro",
@@ -896,7 +955,8 @@
       "audio": "f61a68a68663c9fd.mp3",
       "audioOriginal": "f61a68a68663c9fd.orig.mp3",
       "audioAuto": "f61a68a68663c9fd.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f61a68a68663c9fd"
     },
     {
       "id": "ex10-kirei-na-okashi-ne",
@@ -909,7 +969,8 @@
       "audio": "eb8510d14b6a3c3a.mp3",
       "audioOriginal": "eb8510d14b6a3c3a.orig.mp3",
       "audioAuto": "eb8510d14b6a3c3a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eb8510d14b6a3c3a"
     }
   ]
 }

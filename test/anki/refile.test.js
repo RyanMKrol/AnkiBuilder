@@ -111,12 +111,14 @@ test("the --refile RUN is refused: the changeDeck probe has never been answered"
   await assert.rejects(
     () => syncDeckContent(client, deck([card]), false, { refile: true }),
     (error) => {
-      assert.match(error.message, /--refile is not available yet/);
-      assert.match(error.message, /changedeck-on-filtered/);
+      assert.match(error.message, /--refile .* is gated on live-Anki behaviour probes/);
+      assert.match(error.message, /change-deck-on-filtered/);
       return true;
     },
   );
-  assert.ok(!calls.some((c) => c[0] === "changeDeck"), "no card moved on the way to refusing");
+  // And nothing at all was written — the refusal is asserted BEFORE the content pass, not after it.
+  // Throwing at the end would leave every note updated and the delivered marker unwritten.
+  assert.deepEqual(calls, [], "no write of any kind on the way to refusing");
 });
 
 test("a card in a FILTERED deck is skipped, with its reason, never moved", async () => {
@@ -161,9 +163,9 @@ test("--suspend-orphans previews the notes it would suspend, and refuses to run"
 
   await assert.rejects(
     () => syncDeckContent(client, deck([]), false, { suspendOrphans: true }),
-    /--suspend-orphans is not available yet/,
+    /--suspend-orphans .* is gated on live-Anki behaviour probes/,
   );
-  assert.ok(!calls.some((c) => c[0] === "suspend"));
+  assert.deepEqual(calls, [], "refused before anything was written");
 });
 
 test("orphans are still reported when the flag is off — that behaviour is unchanged", async () => {

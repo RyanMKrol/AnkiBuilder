@@ -3,6 +3,8 @@ import { validateCards, validateCorpus } from "../../model/index.js";
 import { findCollisions, findCrossChapterDuplicates } from "../../cards/extrasTools.js";
 import { assertUniqueCardIds } from "../../deck/shippableCards.js";
 import { normalizeDisplayText, isSpaceFreeLanguage } from "../../model/scriptSpacing.js";
+import { resolveIso639Code } from "../../model/iso639.js";
+import { audioTextState } from "../../audio/textHash.js";
 import { unitChapterNumber } from "../units.js";
 
 // The checks that answer a question about ONE unit, or about one collection's units together.
@@ -203,20 +205,75 @@ export const audioMarkerCheck = defineCheck({
   id: "audio-markers",
   title: "audio markers",
   scope: "collection",
-  tier: "INFO",
-  // Heuristic, so a note rather than a failure. WS5 item 2 triages the live instances and decides
-  // whether this earns promotion to the ACK tier.
+  tier: "ACK",
+  /**
+   * A clip shipping with the TTS end marker still audible on the end of it.
+   *
+   * This was the report's other permanently non-zero line: "7 clip(s) flagged marker-audible",
+   * printed before "preflight clean", every run, for months. All seven had in fact been fixed —
+   * the flag described the take the audio stage produced rather than the hand cut that shipped —
+   * and the count carried no information at all, which is exactly how a number becomes wallpaper.
+   *
+   * ACK rather than INFO now that it can go to zero: an unreviewed instance blocks, and the way to
+   * clear it is to fix the clip (re-trim it in the dashboard, or run
+   * `scripts/audit-marker-stuck.mjs --apply` if the flag is stale) or to say out loud that this one
+   * is acceptable. ACK rather than FAIL because the detection is a heuristic with a real
+   * false-positive rate, and a gate you have to override on a wrong answer is how a --force habit
+   * starts. Green on live data the day it landed.
+   */
   run({ units }) {
-    const stuck = units.flatMap((unit) =>
+    const findings = units.flatMap((unit) =>
       shipped(unit)
         .filter((item) => item.audioMarkerStuck)
-        .map((item) => `${unit.name}/${item.id}`),
+        .map((item) => ({
+          key: `${unit.name}/${item.id}`,
+          message: `${unit.name}/${item.id} ships a clip with the TTS end marker audible — re-trim it, or accept it`,
+        })),
     );
+    return { findings, summary: "no clip ships an audible end marker" };
+  },
+});
+
+export const audioTextHashCheck = defineCheck({
+  id: "audio-text-hash",
+  title: "audio text hash",
+  scope: "collection",
+  tier: "INFO",
+  /**
+   * How many shipping clips still speak their card's text — and how many nobody can tell about.
+   *
+   * INFO on purpose, and the plan's own ruling says why: `handleLessonDone` has no gate of any kind
+   * today, and a hash mismatch has no exit that does not destroy a reviewer's hand trim or hand
+   * pick. A block here would be the first ever on the owner's daily path, and the only way to clear
+   * it would be to throw away the work it exists to protect. So it counts, publicly, and the
+   * decision about promoting it is made against a measured number rather than a guess.
+   *
+   * `unverifiable` is a first-class outcome, not a failure: a Replace upload and the hand-named
+   * legacy takes carry no text hash in their names, and inventing one from the card's current text
+   * would certify exactly the drift this measures.
+   */
+  run({ units }) {
+    const tally = { current: 0, stale: 0, unverifiable: 0 };
+    const stale = [];
+    for (const unit of units) {
+      const kanjiTts = unit.meta?.kanjiTts === true;
+      const lang = resolveIso639Code(unit.meta?.targetLanguage);
+      for (const item of shipped(unit)) {
+        const { state } = audioTextState(item, lang, { kanjiTts });
+        if (state === "none") continue;
+        tally[state] = (tally[state] ?? 0) + 1;
+        if (state === "stale") stale.push(`${unit.name}/${item.id}`);
+      }
+    }
+    const total = tally.current + tally.stale + tally.unverifiable;
+    if (!total) return { summary: "no audio-bearing cards" };
     return {
-      notes: stuck.length
-        ? [`${stuck.length} clip(s) flagged marker-audible: ${stuck.join(", ")}`]
-        : [],
-      summary: `${stuck.length} marker-audible clip(s)`,
+      notes: [
+        `${tally.current} clip(s) match their card's text, ${tally.stale} changed since, ` +
+          `${tally.unverifiable} unverifiable (no text hash in the take's name)`,
+        ...(stale.length ? [`text changed under: ${stale.join(", ")}`] : []),
+      ],
+      summary: `${tally.stale} stale of ${total}`,
     };
   },
 });

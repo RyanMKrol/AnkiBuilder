@@ -24,7 +24,8 @@
       "audio": "75861dffb3b8fdc8.mp3",
       "audioOriginal": "75861dffb3b8fdc8.orig.mp3",
       "audioAuto": "75861dffb3b8fdc8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "75861dffb3b8fdc8"
     },
     {
       "id": "ex12-mizuumi-ya-onsen-ga-arimasu",
@@ -38,7 +39,8 @@
       "audio": "c56af59a8ba09e26.mp3",
       "audioOriginal": "c56af59a8ba09e26.orig.mp3",
       "audioAuto": "c56af59a8ba09e26.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c56af59a8ba09e26"
     },
     {
       "id": "ex12-onsen-mo-arimasu",
@@ -52,7 +54,8 @@
       "audio": "868fcf228d4482ed.mp3",
       "audioOriginal": "868fcf228d4482ed.orig.mp3",
       "audioAuto": "868fcf228d4482ed.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "868fcf228d4482ed"
     },
     {
       "id": "ex12-yonkai-ni-dare-ga-imasu-ka",
@@ -66,7 +69,8 @@
       "audio": "2cbcfa004fb2c40f.mp3",
       "audioOriginal": "2cbcfa004fb2c40f.orig.mp3",
       "audioAuto": "2cbcfa004fb2c40f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2cbcfa004fb2c40f"
     },
     {
       "id": "ex12-sangai-ni-dare-ga-imasu-ka",
@@ -81,7 +85,8 @@
       "audio": "8fe9d5fa670476e6.mp3",
       "audioOriginal": "8fe9d5fa670476e6.orig.mp3",
       "audioAuto": "8fe9d5fa670476e6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8fe9d5fa670476e6"
     },
     {
       "id": "fib-toshokan-ga-arimasu",
@@ -108,7 +113,8 @@
       "audio": "85f5670927a18134.mp3",
       "audioOriginal": "85f5670927a18134.orig.mp3",
       "audioAuto": "85f5670927a18134.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "85f5670927a18134"
     },
     {
       "id": "v12-hoteru-no-ushiro-ni-kouen-ga-arimasu",
@@ -122,7 +128,8 @@
       "audio": "a514e47525d79b7d.mp3",
       "audioOriginal": "a514e47525d79b7d.orig.mp3",
       "audioAuto": "a514e47525d79b7d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a514e47525d79b7d"
     },
     {
       "id": "ex12-tsukue-no-ue-ni-nani-ga-arimasu-ka",
@@ -135,7 +142,8 @@
       "audio": "2df307f23dd00378.mp3",
       "audioOriginal": "2df307f23dd00378.orig.mp3",
       "audioAuto": "2df307f23dd00378.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2df307f23dd00378"
     },
     {
       "id": "ex12-nichiyoubi-ni-kuruma-de-odaiba-ni-ikimasu",
@@ -148,7 +156,8 @@
       "audio": "14778039917eb4f6.mp3",
       "audioOriginal": "14778039917eb4f6.orig.mp3",
       "audioAuto": "14778039917eb4f6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "14778039917eb4f6"
     },
     {
       "id": "ex12-kaigishitsu-ni-dare-ga-imasu-ka",
@@ -162,7 +171,8 @@
       "audio": "8aef48678ee3fc30.mp3",
       "audioOriginal": "8aef48678ee3fc30.orig.mp3",
       "audioAuto": "8aef48678ee3fc30.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8aef48678ee3fc30"
     },
     {
       "id": "ex12-ryokan-no-mae-ni-nani-ga-arimasu-ka",
@@ -176,7 +186,8 @@
       "audio": "c8ce0e26a5c5be3e.mp3",
       "audioOriginal": "c8ce0e26a5c5be3e.orig.mp3",
       "audioAuto": "c8ce0e26a5c5be3e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c8ce0e26a5c5be3e"
     },
     {
       "id": "p12-tenpura-tte-nan-desu-ka",
@@ -190,7 +201,8 @@
       "audio": "1e384a63ed1ec639.mp3",
       "audioOriginal": "1e384a63ed1ec639.orig.mp3",
       "audioAuto": "1e384a63ed1ec639.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1e384a63ed1ec639"
     },
     {
       "id": "fib-daigaku-no-chikaku-ni-ginkou-ya-yuubinkyoku-ga-arimasu",
@@ -205,7 +217,8 @@
       "audio": "98c4b8527c0e6f70.mp3",
       "audioOriginal": "98c4b8527c0e6f70.orig.mp3",
       "audioAuto": "98c4b8527c0e6f70.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "98c4b8527c0e6f70"
     },
     {
       "id": "ex12-uketsuke-ni-otoko-no-hito-ga-imasu",
@@ -219,7 +232,8 @@
       "audio": "ca7a1ffedc9bd7e7.mp3",
       "audioOriginal": "ca7a1ffedc9bd7e7.orig.mp3",
       "audioAuto": "ca7a1ffedc9bd7e7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ca7a1ffedc9bd7e7"
     },
     {
       "id": "ex12-yonkai-ni-nani-ga-arimasu-ka",
@@ -234,7 +248,8 @@
       "audio": "434c4ff4884a9a13.mp3",
       "audioOriginal": "434c4ff4884a9a13.orig.mp3",
       "audioAuto": "434c4ff4884a9a13.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "434c4ff4884a9a13"
     },
     {
       "id": "ex12-teeburu-no-shita-ni-nani-ga-arimasu-ka",
@@ -248,7 +263,8 @@
       "audio": "53dc01cca2982440.mp3",
       "audioOriginal": "53dc01cca2982440.orig.mp3",
       "audioAuto": "53dc01cca2982440.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "53dc01cca2982440"
     },
     {
       "id": "fib-kouen-ga-arimasu-w2",
@@ -275,7 +291,8 @@
       "audio": "1ca448fb2408e60d.mp3",
       "audioOriginal": "1ca448fb2408e60d.orig.mp3",
       "audioAuto": "1ca448fb2408e60d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1ca448fb2408e60d"
     },
     {
       "id": "ex12-poketto-no-naka-ni-nani-ga-arimasu-ka",
@@ -289,7 +306,8 @@
       "audio": "8ed23f88651c8eed.mp3",
       "audioOriginal": "8ed23f88651c8eed.orig.mp3",
       "audioAuto": "8ed23f88651c8eed.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8ed23f88651c8eed"
     },
     {
       "id": "v12-beddo-no-shita-ni-kaban-ga-arimasu",
@@ -304,7 +322,8 @@
       "audioAuto": "c0e75855a3de4a0d-genkanji-31fa0e1a.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "c0e75855a3de4a0d-genkanji-31fa0e1a.mp3"
+      "audio": "c0e75855a3de4a0d-genkanji-31fa0e1a.mp3",
+      "audioTextHash": "c0e75855a3de4a0d"
     },
     {
       "id": "ex12-uketsuke-ni-tanaka-san-ga-imasu",
@@ -318,7 +337,8 @@
       "audio": "eefee16c2e0c3fdc.mp3",
       "audioOriginal": "eefee16c2e0c3fdc.orig.mp3",
       "audioAuto": "eefee16c2e0c3fdc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eefee16c2e0c3fdc"
     },
     {
       "id": "ex12-kaigishitsu-ga-arimasu",
@@ -333,7 +353,8 @@
       "audio": "31b4568e5d222d45.mp3",
       "audioOriginal": "31b4568e5d222d45.orig.mp3",
       "audioAuto": "31b4568e5d222d45.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "31b4568e5d222d45"
     },
     {
       "id": "ex12-konbini-no-mae-ni-dare-ga-imasu-ka",
@@ -347,7 +368,8 @@
       "audio": "f3994e3ede292040.mp3",
       "audioOriginal": "f3994e3ede292040.orig.mp3",
       "audioAuto": "f3994e3ede292040.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f3994e3ede292040"
     },
     {
       "id": "fib-resutoran-ni-mo-mizu-ga-arimasu",
@@ -362,7 +384,8 @@
       "audio": "d9d95ffa3e8e0b4c.mp3",
       "audioOriginal": "d9d95ffa3e8e0b4c.orig.mp3",
       "audioAuto": "d9d95ffa3e8e0b4c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d9d95ffa3e8e0b4c"
     },
     {
       "id": "ex12-doyoubi-ni-ema-san-to-nikkou-ni-ikimasu",
@@ -376,7 +399,8 @@
       "audio": "65804bd40a60aaaf.mp3",
       "audioOriginal": "65804bd40a60aaaf.orig.mp3",
       "audioAuto": "65804bd40a60aaaf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "65804bd40a60aaaf"
     },
     {
       "id": "ex12-chiisai-kouen-ga-arimasu",
@@ -391,7 +415,8 @@
       "audio": "6a305e2498e92a78.mp3",
       "audioOriginal": "6a305e2498e92a78.orig.mp3",
       "audioAuto": "6a305e2498e92a78.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6a305e2498e92a78"
     },
     {
       "id": "p12-eki-no-chikaku-ni-yuubinkyoku-mo-arimasu",
@@ -405,7 +430,8 @@
       "audio": "572a9bc49e78bc48.mp3",
       "audioOriginal": "572a9bc49e78bc48.orig.mp3",
       "audioAuto": "572a9bc49e78bc48.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "572a9bc49e78bc48"
     },
     {
       "id": "v12-kinou-sobaya-de-soba-o-tabemashita",
@@ -419,7 +445,8 @@
       "audio": "7362e6c6ab4809bb.mp3",
       "audioOriginal": "7362e6c6ab4809bb.orig.mp3",
       "audioAuto": "7362e6c6ab4809bb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7362e6c6ab4809bb"
     },
     {
       "id": "p12-kaigishitsu-ni-sumisu-san-mo-imasu",
@@ -433,7 +460,8 @@
       "audio": "41169ad211f816a8.mp3",
       "audioOriginal": "41169ad211f816a8.orig.mp3",
       "audioAuto": "41169ad211f816a8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "41169ad211f816a8"
     },
     {
       "id": "ex12-nikkou-ni-nani-ga-arimasu-ka",
@@ -447,7 +475,8 @@
       "audio": "0e443861bcec7a3b.mp3",
       "audioOriginal": "0e443861bcec7a3b.orig.mp3",
       "audioAuto": "0e443861bcec7a3b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0e443861bcec7a3b"
     },
     {
       "id": "ex12-hakone-ni-nani-ga-arimasu-ka",
@@ -461,7 +490,8 @@
       "audio": "3ac93ad78370a2a9.mp3",
       "audioOriginal": "3ac93ad78370a2a9.orig.mp3",
       "audioAuto": "3ac93ad78370a2a9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3ac93ad78370a2a9"
     },
     {
       "id": "fib-kyonen-toshokan-no-chikaku-ni-yuubinkyoku-ga-arimashita",
@@ -489,7 +519,8 @@
       "audio": "61ace93779985594.mp3",
       "audioOriginal": "61ace93779985594.orig.mp3",
       "audioAuto": "61ace93779985594.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "61ace93779985594"
     },
     {
       "id": "fib-toshokan-ni-dare-ga-imasu-ka",
@@ -516,7 +547,8 @@
       "audio": "02a06b1769088f5b.mp3",
       "audioOriginal": "02a06b1769088f5b.orig.mp3",
       "audioAuto": "02a06b1769088f5b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "02a06b1769088f5b"
     },
     {
       "id": "ex12-nikkou-ni-mizuumi-ga-arimasu",
@@ -530,7 +562,8 @@
       "audio": "7c1a877610f0497c.mp3",
       "audioOriginal": "7c1a877610f0497c.orig.mp3",
       "audioAuto": "7c1a877610f0497c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7c1a877610f0497c"
     },
     {
       "id": "ex12-kamakura-ni-nani-ga-arimasu-ka",
@@ -544,7 +577,8 @@
       "audio": "e6e5a02e820e0aeb.mp3",
       "audioOriginal": "e6e5a02e820e0aeb.orig.mp3",
       "audioAuto": "e6e5a02e820e0aeb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e6e5a02e820e0aeb"
     },
     {
       "id": "fib-daigaku-ni-nani-ga-arimasu-ka",
@@ -570,7 +604,8 @@
       "audio": "592245f8c11b31c4.mp3",
       "audioOriginal": "592245f8c11b31c4.orig.mp3",
       "audioAuto": "592245f8c11b31c4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "592245f8c11b31c4"
     },
     {
       "id": "ex12-tanaka-san-ga-imasu",
@@ -585,7 +620,8 @@
       "audio": "81264cdcb6b2688d.mp3",
       "audioOriginal": "81264cdcb6b2688d.orig.mp3",
       "audioAuto": "81264cdcb6b2688d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "81264cdcb6b2688d"
     },
     {
       "id": "v12-heya-ni-denki-potto-ga-arimasu",
@@ -599,7 +635,8 @@
       "audio": "850884cf5f6b4aff.mp3",
       "audioOriginal": "850884cf5f6b4aff.orig.mp3",
       "audioAuto": "850884cf5f6b4aff.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "850884cf5f6b4aff"
     },
     {
       "id": "ex12-uketsuke-ni-dare-ga-imasu-ka",
@@ -613,7 +650,8 @@
       "audio": "bcbd643e756049ff.mp3",
       "audioOriginal": "bcbd643e756049ff.orig.mp3",
       "audioAuto": "bcbd643e756049ff.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bcbd643e756049ff"
     },
     {
       "id": "ex12-sobaya-ga-arimasu-w1",
@@ -628,7 +666,8 @@
       "audio": "fd7e5f3a67d020fc.mp3",
       "audioOriginal": "fd7e5f3a67d020fc.orig.mp3",
       "audioAuto": "fd7e5f3a67d020fc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fd7e5f3a67d020fc"
     },
     {
       "id": "ex12-ookii-otera-ya-jinja-ga-arimasu",
@@ -642,7 +681,8 @@
       "audio": "a12b343a9e0465a2.mp3",
       "audioOriginal": "a12b343a9e0465a2.orig.mp3",
       "audioAuto": "a12b343a9e0465a2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a12b343a9e0465a2"
     },
     {
       "id": "fib-daigaku-no-mae-ni-nani-ga-arimasu-ka",
@@ -657,7 +697,8 @@
       "audio": "83cd200b90def3bb.mp3",
       "audioOriginal": "83cd200b90def3bb.orig.mp3",
       "audioAuto": "83cd200b90def3bb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "83cd200b90def3bb"
     },
     {
       "id": "v12-tsukue-no-mae-ni-isu-ga-arimasu",
@@ -671,7 +712,8 @@
       "audio": "b7a89121c3b0d6c4.mp3",
       "audioOriginal": "b7a89121c3b0d6c4.orig.mp3",
       "audioAuto": "b7a89121c3b0d6c4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b7a89121c3b0d6c4"
     },
     {
       "id": "f12-kyonen-eki-no-mae-ni-konbini-ga-arimashita",
@@ -685,7 +727,8 @@
       "audio": "5fe6beecb0b687fa.mp3",
       "audioOriginal": "5fe6beecb0b687fa.orig.mp3",
       "audioAuto": "5fe6beecb0b687fa.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5fe6beecb0b687fa"
     },
     {
       "id": "ex12-sumisu-san-ga-imasu",
@@ -699,7 +742,8 @@
       "audio": "bd207ed245d11efb.mp3",
       "audioOriginal": "bd207ed245d11efb.orig.mp3",
       "audioAuto": "bd207ed245d11efb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bd207ed245d11efb"
     },
     {
       "id": "f12-kinou-kaigishitsu-ni-tanaka-san-ga-imasen-deshita",
@@ -714,7 +758,8 @@
       "audioAuto": "b952a7f0a7ca6cb9-genkanji-979da815.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "b952a7f0a7ca6cb9-genkanji-979da815.mp3"
+      "audio": "b952a7f0a7ca6cb9-genkanji-979da815.mp3",
+      "audioTextHash": "b952a7f0a7ca6cb9"
     },
     {
       "id": "f12-kinou-kaigishitsu-ni-tanaka-san-ga-imashita",
@@ -729,7 +774,8 @@
       "audioAuto": "ca2e3e9c3675a916-genkanji-f3c6bfbb.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "ca2e3e9c3675a916-genkanji-f3c6bfbb.mp3"
+      "audio": "ca2e3e9c3675a916-genkanji-f3c6bfbb.mp3",
+      "audioTextHash": "ca2e3e9c3675a916"
     },
     {
       "id": "ex12-chuushajou-ni-dare-ga-imasu-ka",
@@ -743,7 +789,8 @@
       "audio": "78f0bf810506e6ad.mp3",
       "audioOriginal": "78f0bf810506e6ad.orig.mp3",
       "audioAuto": "78f0bf810506e6ad.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "78f0bf810506e6ad"
     },
     {
       "id": "fib-kyonen-toshokan-no-chikaku-ni-yuubinkyoku-ga-arimasen-deshita",
@@ -783,7 +830,8 @@
       "audio": "137e7c288febccfc.mp3",
       "audioOriginal": "137e7c288febccfc.orig.mp3",
       "audioAuto": "137e7c288febccfc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "137e7c288febccfc"
     },
     {
       "id": "f12-kyonen-eki-no-mae-ni-konbini-ga-arimasen-deshita",
@@ -797,7 +845,8 @@
       "audio": "2bbf60a21d8a71c0.mp3",
       "audioOriginal": "2bbf60a21d8a71c0.orig.mp3",
       "audioAuto": "2bbf60a21d8a71c0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2bbf60a21d8a71c0"
     },
     {
       "id": "ex12-nikkou-ni-jinja-ga-arimasu",
@@ -811,7 +860,8 @@
       "audio": "be8f45f1f50e4820.mp3",
       "audioOriginal": "be8f45f1f50e4820.orig.mp3",
       "audioAuto": "be8f45f1f50e4820.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "be8f45f1f50e4820"
     },
     {
       "id": "v12-sofaa-no-chikaku-ni-terebi-ga-arimasu",
@@ -825,7 +875,8 @@
       "audio": "37bdecefe7ebc031.mp3",
       "audioOriginal": "37bdecefe7ebc031.orig.mp3",
       "audioAuto": "37bdecefe7ebc031.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "37bdecefe7ebc031"
     },
     {
       "id": "ex12-nichiyoubi-ni-kuruma-de-kamakura-ni-ikimasu",
@@ -839,7 +890,8 @@
       "audio": "7c2a800db61919a8.mp3",
       "audioOriginal": "7c2a800db61919a8.orig.mp3",
       "audioAuto": "7c2a800db61919a8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7c2a800db61919a8"
     },
     {
       "id": "ex12-reizouko-no-naka-ni-mizu-ga-arimasu",
@@ -853,7 +905,8 @@
       "audio": "ace2c91c5adadb4a.mp3",
       "audioOriginal": "ace2c91c5adadb4a.orig.mp3",
       "audioAuto": "ace2c91c5adadb4a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ace2c91c5adadb4a"
     },
     {
       "id": "ex12-jinja-ya-otera-ga-arimasu",
@@ -867,7 +920,8 @@
       "audio": "5c0ef169f0770aa3.mp3",
       "audioOriginal": "5c0ef169f0770aa3.orig.mp3",
       "audioAuto": "5c0ef169f0770aa3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5c0ef169f0770aa3"
     }
   ]
 }

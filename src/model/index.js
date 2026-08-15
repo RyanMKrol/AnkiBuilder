@@ -141,6 +141,12 @@ const CARDS_SCHEMA = {
         // them. `{ at, reason, missing }`. Its presence is what makes a later `prepare` redo the
         // passes rather than skip them, and drop the thin drill block instead of appending to it.
         prepareDegraded: { type: "object" },
+        // Opt-in: this unit's TTS input is each card's kanji orthography (`ttsKanji`) rather than
+        // its kana. Set at unit creation (`translate --kanji-tts`) and per unit, never globally —
+        // the value feeds the ElevenLabs cache key, so flipping it for Japanese wholesale would
+        // invalidate ~1,700 paid clips while hand-touched cards stayed exempt from regeneration,
+        // leaving a silently mixed-orthography deck. See src/audio/index.js `clipSourceText`.
+        kanjiTts: { type: "boolean" },
       },
     },
     items: {
@@ -169,6 +175,13 @@ const CARDS_SCHEMA = {
           // rendered on any card face. `target` is what the learner sees (e.g. kanji 二十一);
           // `ttsText` is only what TTS pronounces (にじゅういち). See generateAudio / speechText.
           ttsText: { type: "string" },
+          // The card's kana text rewritten in natural kanji+kana orthography, PURELY as alternate TTS
+          // input (src/audio/kanjiOrthography.js). ElevenLabs mis-parses all-kana Japanese — it is out
+          // of distribution against how the language is actually written — so a kanji form often
+          // voices more naturally. Never rendered: the learner sees `target`, exactly as with
+          // `ttsText`. It is only SPOKEN when the unit has opted in via `meta.kanjiTts`; stored
+          // otherwise so the review can show it and a human can veto it before anything is generated.
+          ttsKanji: { type: "string" },
           // English-side disambiguator, shown on the Production front and the Recognition BACK only
           // (on a Target→English front it is a piece of the answer). Repurposed from the old
           // rarely-used back-note fallback; the migration moves any legacy value into `note`.
@@ -210,6 +223,16 @@ const CARDS_SCHEMA = {
           // shipping clip — the marker survives, audibly, and only ears would otherwise catch it.
           // Badged in the audio review; cleared when the reviewer installs different audio.
           audioMarkerStuck: { type: "boolean" },
+          // The 16-hex hash of the TEXT this card's clip was generated from (src/audio/textHash.js).
+          // Read off the take's content-addressed filename, never stamped in bulk from the card's
+          // current text — that would certify the very drift it exists to detect. Absent means
+          // "unverifiable", which is what the 30 hand-named and uploaded takes on disk are.
+          audioTextHash: { type: "string" },
+          // A human's "keep this clip for the current text" decision, made per card in the audio
+          // review. It re-stamps `audioTextHash` from CURRENT text, so recording who and when is the
+          // only thing that keeps that from being an untraceable one-click certification of drift.
+          audioTextHashAcceptedBy: { type: "string" },
+          audioTextHashAcceptedAt: { type: "string" },
           // Legacy optional second recording, from when Japanese cards were generated as a with-。 /
           // no-。 pair. That machinery is gone — the end marker (src/audio/ttsMarker.js) replaced what
           // the dot was working around — and nothing writes this any more. The field stays only so
@@ -225,6 +248,21 @@ const CARDS_SCHEMA = {
           // drill blank with lesson vocabulary), so reviews can delineate them and the semantic
           // de-dup pass can target them. Behaves like any other card in the deck.
           fillInBlank: { type: "boolean" },
+          // Which card DIRECTIONS this note should not be studied in, as template ordinals
+          // (0 = Recognition, 1 = Production — see src/deck/cardTemplates.js, where the order is a
+          // contract). `[1]` on a three-clause self-introduction means "study it Recognition-only".
+          //
+          // This is the AUTHORING surface, and suspension is the mechanism. Two alternatives were
+          // ruled out as actively harmful: gating a template's qfmt on a field produces an EMPTY
+          // card, which Anki's Tools → Empty Cards deletes along with its interval and its review
+          // log; and omitting the card row at BUILD time is inert on the AnkiConnect path (Anki
+          // generates one card per template on `addNote`) and self-reversing on the .apkg path (Check
+          // Database and any template update regenerate it).
+          //
+          // So the .apkg builder deliberately still emits BOTH card rows and the DELIVERER suspends
+          // the unwanted ordinal — which means the .apkg no longer reproduces the delivered deck
+          // card-for-card. That is stated in docs/PIPELINE.md and in LIMITATIONS.
+          dirSuspended: { type: "array", items: { type: "integer", minimum: 0 } },
           // Set by the dashboard translate review to drop a card from the built deck (reversible
           // flag, not a delete). The deck build skips excluded cards.
           excluded: { type: "boolean" },

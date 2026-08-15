@@ -42,11 +42,53 @@ The trim then cuts the marker back off before the clip ships. When it cannot fin
 marker, the card gets an `audioMarkerStuck` flag, badged **Marker audible** in the audio review, so
 you know to re-generate or hand-trim that clip rather than ship audible nonsense.
 
+The flag describes the clip that SHIPS, not the take the stage happened to produce, so hand-trimming
+the marker away clears it — installing, re-cleaning or reverting a hand cut re-asks the question of
+the new shipping take. It did not always: for months the seven flagged cards had all been hand-cut
+clear and went on being reported anyway. `node scripts/audit-marker-stuck.mjs` re-checks the flagged
+cards against the audio on disk and `--apply` clears the ones that are stale; it will not clear a
+flag on the detector's say-so alone, because these are exactly the clips the detector failed on. The
+count is an **ACK**-tier preflight check, so a genuine instance blocks until it is fixed or accepted.
+
 This marker absorbed what used to be a per-language transform that appended a bare `。` to the
 spoken text and offered paired takes with and without it. That machinery is gone: there is no such
 take to choose any more, the displayed face and reading never carry a `。`, and the character's one
 remaining job is inside the marker. Disable the marker with `ANKI_BUILDER_TTS_END_MARKER=0` (Japanese
 is currently the only marked language).
+
+**Japanese only, and that is a real gap.** `MARKED_LANGUAGES` has exactly one entry. Every other
+language's clips go out unprotected, so ElevenLabs' habit of cutting the final release short lands on
+the card's own last syllable — and `audioMarkerStuck` can only be set on a marked take, so nothing
+reports it. Adding a language is not a one-line change to the set: it means choosing a throwaway
+syllable that no card in that language ends with, generating a dozen clips, and re-deriving the
+position and pulse-shape thresholds against them, exactly as was done for Japanese.
+
+### Trialling rising prosody on か questions (never run)
+
+Question cards are generated exactly like statements, so the voice reads a か-final question on a
+falling contour. 328 delivered cards end in か. Putting the question mark before the marker
+(`<text>ですか？。ででで` instead of `<text>ですか。ででで`) is the obvious way to get a rise, and it is a trim
+REGRESSION risk before it is a prosody gain: the `。` opening the marker is what makes the model
+leave a gap in front of it, and that gap is the only thing that makes the marker findable at all
+(measured: `はちじ。ででで` leaves 1.12s and strips cleanly; `はちじででで` leaves 0.24s and is not
+recognised). `？` lands at exactly that point.
+
+So the trial is **new cards only** — never a bulk regeneration of the 328, which would re-bill every
+one and re-open takes a human has already tuned. It costs credits, so it is the owner's to run:
+
+1. Pick the next Japanese unit that contains か-final cards, BEFORE its `audio` stage has run. At
+   that point the trial is free of any regeneration cost.
+2. Generate that unit normally. Note each か card's clip.
+3. For the same cards, generate a second take with the question mark inserted, by setting
+   `ANKI_BUILDER_TTS_END_MARKER=0` and putting the full string in `ttsText` by hand
+   (`…ですか？。ででで`) on a scratch copy of the unit — never on the reviewed one.
+4. **Measure before you listen.** Run `findEndMarker` (`src/audio/trimSilence.js`) over both sets and
+   compare the end gap against the trim tolerance. A take whose marker no longer strips is
+   disqualified whatever it sounds like: an audible ででで is a worse defect than a falling question.
+5. Only then audition the survivors for the contour, blind if you can manage it.
+6. If it wins, it becomes a rule for NEW units in `withEndMarker` — not a migration.
+
+A rise that costs the marker is not a win.
 
 ## Trim and noise cleanup
 
@@ -93,7 +135,8 @@ controls. A lesson edits on its own; you don't need its siblings finished.
 - **Generate (kanji)**: Japanese only. Converts the card's kana reading into natural kanji+kana
   orthography (which ElevenLabs voices more naturally than all-kana) and synthesizes takes from THAT
   text; the modal shows the produced kanji so you can sanity-check the reading before picking
-  (`src/audio/generateKanjiVariants.js`).
+  (`src/audio/generateKanjiVariants.js`). This is the per-card version; see "Kanji TTS for a whole
+  unit" below for the reviewable one.
 - **Edit (manual trim)**: opens a modal showing the card's ORIGINAL take as a waveform with draggable
   start/end handles; each drag is applied server-side and the cut becomes the clip that ships. The
   original is never changed, so a cut that went too far is always recoverable here. This is also
@@ -106,6 +149,34 @@ audio-review surface, and the currently selected clip is simply the one playing 
 These edit controls stay available after **Mark done** — a done lesson opens straight into the same
 editable review, since done gates what ships rather than what you can touch (see SKILL.md Step 4 for
 the gate flow, and for the one thing that does need a script: un-shipping the unit).
+
+## Kanji TTS for a whole unit (opt-in, and not yet proven worth it)
+
+The per-card **Generate (kanji)** button converts, synthesizes and offers a take in one click, so the
+orthography only ever exists inside that interaction: nothing is stored, nothing can be read in bulk,
+and the only way to catch a bad conversion is by ear, after paying for it.
+
+Two things split that apart, and they are deliberately separate:
+
+| What                                                 | Command                                                  | Effect                                                        |
+| ---------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
+| Convert a unit's cards, store the orthography         | `node scripts/generate-kanji-tts.mjs --run <dir> --apply` | fills `ttsKanji`; one model call per card, no TTS, speaks nothing |
+| Have the voice actually read it                       | `translate --kanji-tts` at unit creation                  | sets `meta.kanjiTts`; `audio` then generates from the kanji     |
+
+Converting is a TEXT question: cheap, and wrong in ways a literate reader can see on screen. The
+audio review shows each card's `ttsKanji` under its kana — "kanji …" while the unit is still voiced
+from the kana, "spoken as …" once it is not. Read them. kana→kanji is one-to-many (はし is 橋 / 箸 /
+端, いま is 今 / 居間), so a mis-pick puts a different word in the audio of a card whose kana face
+gives the learner no way to notice.
+
+**The flag is set at unit creation and there is no way to flip it on an existing unit, on purpose.**
+The value feeds the ElevenLabs cache key, so flipping it would re-bill every clip in the unit while
+hand-touched cards stayed exempt from regeneration, leaving a unit voiced half in kana and half in
+kanji. Trying kanji TTS on the existing book means a new unit, not a switch.
+
+**Whether it is worth doing at all is unmeasured.** `scripts/kanji-tts-ab.mjs` is the blind A/B that
+would settle it — read the procedure at the top of that file. It has never been run, because running
+it spends credits.
 
 ## Voice choice
 

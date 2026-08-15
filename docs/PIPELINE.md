@@ -481,7 +481,8 @@ Prompts are Markdown-structured (Overview / Input Format /
 Example Input / Output Format / Example Output / Important / Input Data). How `pronunciation` gets
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,
-Korean, Russian, Hebrew, Hindi, Arabic): with a library configured, the model is asked for
+Korean, Russian and Hindi; only ja/zh/ko are proven, and Arabic and Hebrew were removed because both
+libraries return a vowel-less consonant skeleton, see below): with a library configured, the model is asked for
 `target` only, the library romanizes it deterministically, and a Sonnet-medium pass then **corrects that
 output in place** — the library (kuroshiro et al.) is a starting point, not ground truth (it mis-splits
 words, mishandles the sokuon っ, and spells unfamiliar kana letter-by-letter), so the model returns the
@@ -492,6 +493,22 @@ malformed/missing response keeps the library value). With no library configured,
 model is asked for `pronunciation` directly, preferring a standard romanization system when one
 exists and falling back to a phonetic respelling otherwise, unchanged from before this distinction
 existed.
+
+**Which languages the romanization path is actually proven for.** Only ja / zh / ko have been run end
+to end. Hindi is configured but half right: Sanscript's devanagari→IAST is a _Sanskrit_ scheme, so it
+writes the inherent schwa that spoken Hindi deletes (कमल → `kamala` for `kamal`) and can leak a raw
+combining nukta (सड़क → `saḍa़ka` for `saṛak`); it keeps its library and gets explicit schwa-deletion
+and nukta rules in the prompt instead. Arabic and Hebrew were REMOVED from the registry: both scripts
+omit short vowels and neither library restores them (كتاب → `ktab`, مدرسة → `mdrsa`, ספר → `spr`,
+שלום → `šlwm`), and since the prompt presents the library's value as a trustworthy starting point,
+leaving them wired in anchored the model on an unpronounceable answer. They now take the LLM-only
+path, which can supply the vowels.
+
+Everything language-specific in the romanization prompt is a placeholder fed from
+`src/translate/languageRules.js` — the style rules, the romanization system's name, what that
+language's library gets wrong, and the few-shot pair. It used to be written into the template, so a
+Hindi or Arabic run was shown ろっかい / こんにちは and told about the small っ; few-shot examples
+dominate a one-line instruction, so the model was being anchored on Japanese regardless of the input.
 
 All four of these prompts are hand-editable Markdown templates in `docs/`, rendered through
 `renderPromptTemplate`: [`translate-full-prompt.md`](./translate-full-prompt.md),
@@ -504,6 +521,18 @@ one's placeholders and output contract. [`translate-prompts.md`](./translate-pro
 prompt runs when and which language fragments each takes, and
 [`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) covers the dependency
 trade-offs this introduces.
+
+**One pinned romanization spec, three prompts, one lint.** `src/translate/romajiStyle.js` holds the
+target language's romanization style as `{ id, rule, detect }` triples: `rule` is the prose injected
+verbatim into every prompt that produces a `pronunciation` (the romanization-correction pass, the
+number-reading pass, the fill-in-the-blank pass, via `languageRules.js`'s `romanizationStyle`), and
+`detect` is what `preflight`'s `romaji-style` check runs over the finished cards. Prose and detector
+live in the same object so a rule cannot be linted without being taught, or taught without being
+checked. A rule that no regex can decide (proper-noun casing; a missing ん apostrophe) carries
+`detect: null` and the check names it as taught-but-not-linted rather than letting it read as
+checked. Before this constant existed, four passes each described the style in their own words and
+the output drifted per batch — a trailing ASCII period on 253 cards, `-san` hyphenated in one unit
+and spaced in the next, `kombini` beside `konbini`.
 
 **Optional simplified target script (`--simple-script`).** A language may define a beginner/learner
 script constraint in the language plug-in `src/translate/targetScript.js` (`getSimpleScriptRule`, keyed
@@ -703,6 +732,71 @@ with-`。` takes from THAT text and shows the produced kanji in the audition mod
 write content-addressed preview files (`-gen-` / `-genkanji-` infixes) that never collide with the
 built clip, and neither touches `cards.json` until you pick a take.
 
+**Kanji-orthography TTS, opt-in per unit (`meta.kanjiTts` + `ttsKanji`).** ElevenLabs mis-parses
+all-kana Japanese — it is out of distribution against how the language is actually written — so a
+kanji+kana form often voices more naturally. Two separate things control it, and keeping them apart
+is the point:
+
+- **`ttsKanji` on a card** is the orthography itself, produced by
+  `scripts/generate-kanji-tts.mjs --run <unit-dir> --apply` (one model call per card, no TTS). It is
+  never rendered: the learner sees `target`, exactly as with `ttsText`. The audio review shows it
+  under the kana so a human can read the conversions.
+- **`meta.kanjiTts` on a unit** is whether the voice actually reads it, set at unit creation with
+  `translate --kanji-tts`. `clipSourceText` consults it; nothing else does.
+
+The split exists because kana→kanji is ONE-TO-MANY (はし is 橋 / 箸 / 端, いま is 今 / 居間), so a
+conversion can put a different word in the audio of a card whose kana face gives the learner no way
+to notice. Storing the text first makes that catchable on screen, for free, before a credit is spent.
+
+Opt-in **per unit**, never globally: `defaultClipText` feeds both the ElevenLabs cache key and the
+staleness filename, so flipping it for Japanese wholesale would invalidate every existing ja clip
+(paid refetches, discarded trim tuning) while hand-touched cards stayed exempt from regeneration —
+a silently mixed-orthography deck. Whether it is worth doing at all is unmeasured;
+`scripts/kanji-tts-ab.mjs` is the blind A/B that would settle it, written and never run (it spends
+credits, which is the owner's call).
+
+**What text a clip actually says (`audioTextHash`, `src/audio/textHash.js`).** The stage's own
+staleness rule (`clipIsCurrent` in `src/cli/commands/audio.js`) asks whether the card's stored clip
+name still matches a hash of its current text — but it short-circuits to "current" whenever
+`isStageOwnedCard` is false, which it is for every picked variant, every Replace upload and every
+hand trim. About 200 live cards are therefore exempt from the text-changed check permanently, while
+the dashboard's inline edit rewrites `target` and `ttsText` freely.
+
+`audioTextHash` closes that. Every path that installs audio records the 16-hex hash of the text the
+take was generated from, read off the take's own content-addressed name rather than computed from
+the card:
+
+| Take             | Name                               | Hash is over                        |
+| ---------------- | ---------------------------------- | ----------------------------------- |
+| audio stage      | `<hash>.orig.mp3`                  | `defaultClipText` (marker included) |
+| Generate         | `<hash>-gen-<bytes>.orig.mp3`      | the picked variant's text           |
+| Generate (kanji) | `<hash>-genkanji-<bytes>.orig.mp3` | the generated kanji text            |
+| Replace upload   | `<cardId>-user-<bytes>.orig.<ext>` | nothing — unverifiable              |
+
+The audio review compares that hash against every hash the card's CURRENT text can produce and
+badges a card whose clip no longer matches with **Text changed**. `npm run preflight` counts the
+same three outcomes per collection under `audio text hash`.
+
+"Can produce" is deliberately wide, because the text sent to TTS has changed twice without any
+card's own text changing: each spoken form (the default clip, each comma/bracket variant, the stored
+`ttsKanji`) is accepted bare, with the end marker, with the legacy Japanese trailing `。` the marker
+replaced, and with both. That last pair is not indulgence — 52 of the 53 clips the first live run
+flagged were generated under the with-`。` convention and speak their card's words perfectly. Badging
+them would have put 52 false positives on screen on landing day and buried the one card whose clip
+really is of other words.
+
+Three rules make the record trustworthy rather than decorative:
+
+- It is **never bulk-stamped from a card's current text.** That would declare every drifted clip
+  correct in one pass and permanently destroy the signal. Existing clips were backfilled from their
+  filenames by `scripts/backfill-audio-text-hash.mjs` (2,143 of 2,173 recoverable; 30 hand-named or
+  uploaded takes carry no hash and report as unverifiable).
+- It is a **badge, never a gate.** "Mark done" has no gate of any kind, and a mismatch has no exit
+  that does not destroy the reviewer's trim or pick — so a block would only teach an override habit.
+- The reviewer's exit is the **Keep this clip** button beside the player. It re-stamps the hash from
+  the card's current text and records `audioTextHashAcceptedBy` / `audioTextHashAcceptedAt`, so a
+  one-click certification of drift is at least auditable. It installs no audio and spends nothing.
+
 ### `deck`
 
 **What the package is called (`src/deck/deckFileName.js`).** A built `.apkg` is named after the deck
@@ -728,14 +822,64 @@ named file but falls back to the legacy `deck.apkg` left by an older build, so a
 convention is still readable. The one-off script that renamed existing packages has been removed now
 that every package on disk uses the new names; the fallback stays because it costs nothing.
 
-Builds a two-template Anki note type (`src/deck/collection.js`): **Recognition** (question shows
-`Target` and autoplays `Audio` — the target-language listening/recall direction — answer reveals
-`English`) and **Production** (question shows `English`, answer reveals
-`Target`/`Pronunciation`/`Audio` for the native-pronunciation check). Both directions play the
-target-language audio; Recognition plays it on the question side, since that's the direction meant
-to exercise listening comprehension, not just script recognition.
+Builds a two-template Anki note type: **Recognition** (ordinal 0 — question shows `Target` and
+autoplays `Audio`, the target-language listening/recall direction; answer reveals `English`) and
+**Production** (ordinal 1 — question shows `English`, answer reveals `Target`/`Pronunciation`/`Audio`
+for the native-pronunciation check). Both directions play the target-language audio; Recognition
+plays it on the question side, since that's the direction meant to exercise listening comprehension,
+not just script recognition. The ordinals are a contract, not a detail — a card's `dirSuspended`
+names them.
 
-The note type is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
+The note type is assembled by `src/deck/collection.js` out of three modules, each the single source
+for its half: `cardTemplates.js` (the two `{name, qfmt, afmt}` templates), `cardStyles.js` (the CSS)
+and `noteFields.js` (the field list and the card → field mapping). They are separate because
+`collection.js` opens a sqlite database at import time, and the surfaces that only DESCRIBE a card —
+the authoring prompts' `{{CARD_FACES}}` block, the reviewer's card-face preview — must not pay for
+that to do it.
+
+**What each face shows, and why.** `scene` renders on the front of BOTH directions (it sets the
+situation and must never leak the answer either way); `hint` renders on the Production front and the
+Recognition BACK (it describes the target word, which on a Target→English front IS the answer); the
+category chip renders on the **Production front only** — on a Recognition front it is an uncontrolled
+answer cue, stronger than any scene the collision doctrine permits, on 2,150 fronts of which 86% have
+no scene at all. `Reading` (the note type's field holding `ttsText`) is rendered by NO template, on
+purpose. The prompt on either front is wrapped in `.prompt` and set at the answer's 26px/600, because
+the same sentence used to render at 20px as a question and 26px bold as an answer — sizing the harder
+direction smaller. Every text style clears WCAG AA against both the light and night-mode backgrounds,
+computed and asserted in `test/deck/cardStyles.test.js` rather than eyeballed.
+
+**Per-card direction (`dirSuspended`).** A card may name the template ordinals it should not be
+studied in — `dirSuspended: [1]` is "Recognition only". The `.apkg` builder still emits **both** card
+rows for it; the DELIVERER suspends the unwanted ordinal
+(`src/anki/directionSuspension.js`). Both halves of that are load-bearing. Gating a template's front
+on a field produces an EMPTY card, which Anki's Tools → Empty Cards deletes along with its interval
+and review log; omitting the card row at build time is inert on the AnkiConnect path (`addNote` makes
+Anki generate one card per template) and self-reversing on the `.apkg` path (Check Database and any
+template update regenerate it). Suspension is the only per-note direction suppression that survives
+routine housekeeping.
+
+Consent is graded. A note **this deliver created** is suspended unconditionally and tagged
+`dir-suspended::<ord>` — it has never been studied, so there is no scheduling to disturb. A note that
+was **already in the collection** is left alone and the unapplied flag is reported; applying it needs
+`--suspend-delivered`, which is itself refused until two behaviour probes are recorded
+(`suspend-on-filtered`, `housekeeping-unsuspends` — see `src/anki/probeResults.js`). A card that is
+unsuspended AND already carries its tag was turned back on by a **person**, and that decision is
+permanent unless the distinct second flag `--re-suspend-human-unsuspended` is passed. Suspending
+every direction is refused by name: that is a note with no studiable card, which is what `excluded`
+is for.
+
+**Stated consequence:** because the `.apkg` keeps both rows while delivery suspends one, a built
+package deliberately no longer reproduces the delivered deck card-for-card. That is the right trade —
+the two builders must not drift STRUCTURALLY — but it is a real difference and the freshness check
+compares packages, not scheduling.
+
+⚠️ **Any edit to those templates or that CSS is a change to a SHARED note type.** It is keyed on
+language alone, so the next deliver of any deck in that language rewrites the card faces of every
+other deck using it and flips Anki's schema, forcing a one-way full AnkiWeb sync the owner completes
+by hand. `deliver --dry` prints the unified diff plus every deck and card count it reaches;
+`--allow-model-change` is the consent step (`syncStructure`, `src/anki/deliver.js`).
+
+It is **per-language**: named `AnkiBuilder <lang>` (the resolved ISO 639-1 code, e.g.
 `AnkiBuilder ja`) with a stable, language-derived id (`languageModelId`). Anki keys note types by
 id, so every deck of a language shares ONE note type — no pile-up of duplicates on repeated imports
 — and different languages never collide. When the language has a configured deck font
@@ -1067,6 +1211,19 @@ editing. Actions are per-lesson and link to the **unit-scoped** views:
   [Dashboard editing](#dashboard-editing-serve-editable-by-default) below). Corpus is English-only,
   translate adds target + romaji, audio adds players + generate/pick + **Mark done**; provenance flags
   badge on every stage. An out-of-range `:unit` (no matching lesson) 404s.
+- **Card faces** — `GET /faces/:type/:id` (whole deck) or `GET /faces/:type/:id/:unit` (one lesson)
+  (`renderFacesPage`, linked from the Review lede): every card rendered through the note type's real
+  `qfmt`/`afmt` (`src/deck/cardTemplates.js`) and real CSS (`src/deck/cardStyles.js`), against the
+  real field mapping (`src/deck/noteFields.js`) — both directions, front and back, flippable per card
+  or all at once. This is a **render, not a reimplementation**: `src/deck/cardFacePreview.js` restates
+  nothing a template says, so a template edit changes the preview in the same commit, and it shares
+  its Mustache subset with the authoring prompts' `{{CARD_FACES}}` block. The three most valuable
+  rules in `references/card-authoring-rules.md` (answerable alone, a scene must not leak the answer,
+  a hint belongs on the Production front) are all claims about a rendered FRONT, and nothing showed
+  that front to anyone before this. **Read-only**: it renders the note type, never pushes it, so it
+  is not behind `deliver --allow-model-change`. `[sound:x]` and `<img>` become a chip or a real
+  `/media/...` image, and a card whose front renders EMPTY is called out by name (an empty front is
+  an empty card, which Anki's Tools → Empty Cards deletes along with its scheduling).
 
 Discovery is pluggable through a **format-adapter registry** (`src/server/adapters/`). Each adapter
 (`book`, `course`, `template`) implements `listDecks(outputRoot)`, `loadDeck(outputRoot, id)`, and

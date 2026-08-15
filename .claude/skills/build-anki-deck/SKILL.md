@@ -398,11 +398,43 @@ exclude it here (or tell me the rows and I'll edit `cards.json`). Excluding a ca
 reversible `excluded` flag: the `audio` stage skips excluded cards (no TTS spent) and the deck build
 drops them.
 
+**Open the Card faces view too** (the "Card faces →" link in the review lede, or `/faces/...` with
+the same path). It renders every card through the deck's real templates and real CSS — both
+directions, front and back, click a header to flip. Read the two FRONTS side by side before you
+accept a `scene` or a `hint`: `scene` shows on BOTH fronts, so it must not leak the answer in either
+direction, while `hint` shows only on the Production front. It is read-only and touches nothing.
+
 What to check, beyond reading the columns: the card-content rules in
 [card-authoring-rules](references/card-authoring-rules.md). The ones most often violated: a scene or hint on
 any English-gloss or target collision, answer cards answerable alone, notes/hints that restate the
 card (delete these), missing `ttsText` on numerals, and study order (a sentence landing before its
 vocabulary).
+
+Run `npm run preflight` before you hand over the link. Its INFO checks name what the columns cannot:
+`answerable-alone` (a reply-shaped English with no scene), `production-length` (a Production face
+over 60 characters), `near-siblings` (one sentence frame drilled three times with a swapped name),
+`romaji-style` and `inline-romaji`. Each names a shape and leaves the verdict to you; re-run with
+`--verbose` to see the actual cards.
+
+**Read every note the `note-claims` check lists, and decide whether it is TRUE.** This is a required
+step of Gate 1, not an optional one. Every other note check in this project is structural — does the
+note exist, does it restate the gloss, does it carry a romanization, does it point backwards — and
+none of them asks whether what the note says is correct. A shipped card currently teaches a false
+morphological analysis (なんじ and なんにん presented as instances of なんの) that got through
+extraction, the cross-lesson note pass, the corpus review and Mark done, because nothing in that
+chain was ever looking.
+
+```sh
+node scripts/preflight.mjs --all --only note-claims --verbose
+```
+
+It lists every note asserting a decomposition, derivation, distinction or identity — "X + Y", "the
+て-form of X", "distinct from X", "the same word as X" — and, for each target-script form the claim
+names, whether this collection teaches a card for it. **Start with the ones that name a form the deck
+has no card for**: those are either a legitimate etymology aside or an invented root, and the two look
+identical in a JSON row. The check produces the list and stops there on purpose; whether お + かし =
+おかし is a fact about Japanese, and no amount of code decides it. Fix or delete a note you cannot
+confirm — an unverifiable note is worth less than none, because the learner has no way to know.
 
 When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
 `audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves
@@ -647,10 +679,13 @@ mean "I did not look", and it reports in three tiers:
   schematic `〜` in a shipped target, an `-extras` unit that would overwrite its base chapter's
   dedup-library entry, a reviewed chapter missing from that library, a foreign `.apkg` in a
   collection folder, and a package older than a done unit's `cards.json`.
-- **ACK** blocks only while instances are unreviewed. Nothing is ACK-tier today; when a check earns
-  the tier, judge each instance and then `--accept` it with a note.
-- **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, marker-audible clips,
-  and the template path's readiness/enrichment exemptions.
+- **ACK** blocks only while instances are unreviewed. Marker-audible clips: a clip shipping with the
+  TTS end marker still on the end of it. Fix it (re-trim it in the audio review, or run
+  `node scripts/audit-marker-stuck.mjs --apply` if the flag is describing a take the card no longer
+  ships) or judge the instance and `--accept` it with a note.
+- **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, the audio text-hash
+  counts (how many clips still match their card's text), and the template path's
+  readiness/enrichment exemptions.
 
 Every check reads ONE collection. **Collections are isolated:** two decks built from two different
 sources are separate products, and preflight never compares them, cues one against the other, or

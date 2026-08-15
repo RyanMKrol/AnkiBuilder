@@ -21,7 +21,8 @@
       "audio": "0c7e40b6ccc26c2b.mp3",
       "audioOriginal": "0c7e40b6ccc26c2b.orig.mp3",
       "audioAuto": "0c7e40b6ccc26c2b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0c7e40b6ccc26c2b"
     },
     {
       "id": "w2-ema-chikatetsu-ginza",
@@ -34,7 +35,8 @@
       "audio": "111b9ed6942851f1.mp3",
       "audioOriginal": "111b9ed6942851f1.orig.mp3",
       "audioAuto": "111b9ed6942851f1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "111b9ed6942851f1"
     },
     {
       "id": "w2-ropesu-juuichigatsu-amerika",
@@ -49,7 +51,8 @@
       "audio": "382a6013a1c9aa84.mp3",
       "audioOriginal": "382a6013a1c9aa84.orig.mp3",
       "audioAuto": "382a6013a1c9aa84.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "382a6013a1c9aa84"
     },
     {
       "id": "w2-smith-kinou-kaerimashita",
@@ -63,7 +66,8 @@
       "audio": "c0b0de258b2620f9.mp3",
       "audioOriginal": "c0b0de258b2620f9.orig.mp3",
       "audioAuto": "c0b0de258b2620f9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c0b0de258b2620f9"
     },
     {
       "id": "raishuu-no-getsuyoubi-ni-sochira",
@@ -77,7 +81,8 @@
       "audio": "3bafa4192b2633d0.mp3",
       "audioOriginal": "3bafa4192b2633d0.orig.mp3",
       "audioAuto": "3bafa4192b2633d0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3bafa4192b2633d0"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasen",
@@ -91,7 +96,8 @@
       "audio": "bbfd1543b21f07d8.mp3",
       "audioOriginal": "bbfd1543b21f07d8.orig.mp3",
       "audioAuto": "bbfd1543b21f07d8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bbfd1543b21f07d8"
     },
     {
       "id": "w2-natsuyasumi-ni-hokkaido-e",
@@ -105,7 +111,8 @@
       "audio": "5efa2fec26fbc0ca.mp3",
       "audioOriginal": "5efa2fec26fbc0ca.orig.mp3",
       "audioAuto": "5efa2fec26fbc0ca.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5efa2fec26fbc0ca"
     },
     {
       "id": "iie-kaerimasen",
@@ -120,7 +127,8 @@
       "audioOriginal": "72389358a302a488.orig.mp3",
       "audioAuto": "72389358a302a488.mp3",
       "audioMarked": true,
-      "scene": "answering whether you'll go back home for the summer vacation"
+      "scene": "answering whether you'll go back home for the summer vacation",
+      "audioTextHash": "72389358a302a488"
     },
     {
       "id": "shucchou-desu-ka",
@@ -134,7 +142,8 @@
       "audio": "43b81e64c12970cc.mp3",
       "audioOriginal": "43b81e64c12970cc.orig.mp3",
       "audioAuto": "43b81e64c12970cc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "43b81e64c12970cc"
     },
     {
       "id": "w2-sangatsu-desu",
@@ -149,7 +158,8 @@
       "audioOriginal": "fbdcebb7abc02469.orig.mp3",
       "audioAuto": "fbdcebb7abc02469.mp3",
       "audioMarked": true,
-      "scene": "answering whether the trip falls in February or March"
+      "scene": "answering whether the trip falls in February or March",
+      "audioTextHash": "fbdcebb7abc02469"
     },
     {
       "id": "w2-ryokou-nigatsu-ka-sangatsu-ka",
@@ -164,7 +174,8 @@
       "audioAuto": "a1818a213de638f4-genkanji-a2f2cccd.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "a1818a213de638f4-genkanji-a2f2cccd.mp3"
+      "audio": "a1818a213de638f4-genkanji-a2f2cccd.mp3",
+      "audioTextHash": "a1818a213de638f4"
     },
     {
       "id": "w2-paku-mokuyoubi-kimasen",
@@ -178,7 +189,8 @@
       "audio": "18534db09083840e.mp3",
       "audioOriginal": "18534db09083840e.orig.mp3",
       "audioAuto": "18534db09083840e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "18534db09083840e"
     },
     {
       "id": "omatsuri-wa-nangatsu-desu-ka",
@@ -196,7 +208,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.3856198630136984
-      }
+      },
+      "audioTextHash": "0cefa326995ab459"
     },
     {
       "id": "w2-katou-mo-shinkansen-de",
@@ -211,7 +224,8 @@
       "audio": "9331649f8c4d112e.mp3",
       "audioOriginal": "9331649f8c4d112e.orig.mp3",
       "audioAuto": "9331649f8c4d112e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9331649f8c4d112e"
     },
     {
       "id": "w2-konsaato-rainen-ichigatsu",
@@ -226,7 +240,8 @@
       "audio": "703bb6e0a8c5f3b8.mp3",
       "audioOriginal": "703bb6e0a8c5f3b8.orig.mp3",
       "audioAuto": "703bb6e0a8c5f3b8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "703bb6e0a8c5f3b8"
     },
     {
       "id": "kyonen-no-kugatsu-ni-kimashita",
@@ -241,7 +256,8 @@
       "audioOriginal": "d32f7ba214dd6c25.orig.mp3",
       "audioAuto": "d32f7ba214dd6c25.mp3",
       "audioMarked": true,
-      "scene": "answering when you came to Japan"
+      "scene": "answering when you came to Japan",
+      "audioTextHash": "d32f7ba214dd6c25"
     },
     {
       "id": "w2-paku-mokuyoubi-kimasu-ka",
@@ -255,7 +271,8 @@
       "audio": "150947e8028408f5.mp3",
       "audioOriginal": "150947e8028408f5.orig.mp3",
       "audioAuto": "150947e8028408f5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "150947e8028408f5"
     },
     {
       "id": "w2-tanjoubi-juugatsu-kokonoka",
@@ -271,7 +288,8 @@
       "audioAuto": "63b5671fb4dab0f1-genkanji-dfadec2e.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "63b5671fb4dab0f1-genkanji-dfadec2e.mp3"
+      "audio": "63b5671fb4dab0f1-genkanji-dfadec2e.mp3",
+      "audioTextHash": "63b5671fb4dab0f1"
     },
     {
       "id": "w2-dono-basu-ga-kuukou-ni",
@@ -296,7 +314,8 @@
       "audioOriginal": "7ba0949c22733945.orig.mp3",
       "audioAuto": "7ba0949c22733945.mp3",
       "audioMarked": true,
-      "scene": "answering whether the meeting falls on the 3rd or the 6th"
+      "scene": "answering whether the meeting falls on the 3rd or the 6th",
+      "audioTextHash": "7ba0949c22733945"
     },
     {
       "id": "natsuyasumi-ni-indo-ni-kaerimasu-ka",
@@ -309,7 +328,8 @@
       "audio": "bc2bcbdf24b9be9e.mp3",
       "audioOriginal": "bc2bcbdf24b9be9e.orig.mp3",
       "audioAuto": "bc2bcbdf24b9be9e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bc2bcbdf24b9be9e"
     },
     {
       "id": "smith-aruite-uchi-ni-kaerimashita",
@@ -323,7 +343,8 @@
       "audio": "6f9d08e9ed478455.mp3",
       "audioOriginal": "6f9d08e9ed478455.orig.mp3",
       "audioAuto": "6f9d08e9ed478455.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6f9d08e9ed478455"
     },
     {
       "id": "w2-smith-tokyo-eki-e-ikimasu",
@@ -338,7 +359,8 @@
       "audio": "0372dd4403a1d4be.mp3",
       "audioOriginal": "0372dd4403a1d4be.orig.mp3",
       "audioAuto": "0372dd4403a1d4be.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0372dd4403a1d4be"
     },
     {
       "id": "suiyoubi-ni-kimasu",
@@ -352,7 +374,8 @@
       "audioOriginal": "5d331254cc457ace.orig.mp3",
       "audioAuto": "5d331254cc457ace.mp3",
       "audioMarked": true,
-      "scene": "answering when Gibson-san is coming to Japan"
+      "scene": "answering when Gibson-san is coming to Japan",
+      "audioTextHash": "5d331254cc457ace"
     },
     {
       "id": "raigetsu-no-youka-desu",
@@ -368,7 +391,8 @@
       "audioMarked": true,
       "scene": "answering when the meeting is",
       "audioFilter": "standard",
-      "audio": "b0f7eb9e1ea8a2d5-genkanji-5b31de85.mp3"
+      "audio": "b0f7eb9e1ea8a2d5-genkanji-5b31de85.mp3",
+      "audioTextHash": "b0f7eb9e1ea8a2d5"
     },
     {
       "id": "w2-purezen-raigetsu-juuyokka",
@@ -382,7 +406,8 @@
       "audio": "209187b6f4afef31.mp3",
       "audioOriginal": "209187b6f4afef31.orig.mp3",
       "audioAuto": "209187b6f4afef31.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "209187b6f4afef31"
     },
     {
       "id": "w2-tanaka-baiku-uchi",
@@ -396,7 +421,8 @@
       "audio": "951197e4b29f041c.mp3",
       "audioOriginal": "951197e4b29f041c.orig.mp3",
       "audioAuto": "951197e4b29f041c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "951197e4b29f041c"
     },
     {
       "id": "w2-densha-de-kimasu",
@@ -410,7 +436,8 @@
       "audioOriginal": "df733cbb891585a2.orig.mp3",
       "audioAuto": "df733cbb891585a2.mp3",
       "audioMarked": true,
-      "scene": "answering how Kato-san gets to the office"
+      "scene": "answering how Kato-san gets to the office",
+      "audioTextHash": "df733cbb891585a2"
     },
     {
       "id": "kugatsu-desu",
@@ -425,7 +452,8 @@
       "audioOriginal": "e1f54556126c103f.orig.mp3",
       "audioAuto": "e1f54556126c103f.mp3",
       "audioMarked": true,
-      "scene": "answering what month the festival is"
+      "scene": "answering what month the festival is",
+      "audioTextHash": "e1f54556126c103f"
     },
     {
       "id": "smith-nande-osaka-ni-ikimasu-ka",
@@ -438,7 +466,8 @@
       "audio": "a23b8b8277cf7947.mp3",
       "audioOriginal": "a23b8b8277cf7947.orig.mp3",
       "audioAuto": "a23b8b8277cf7947.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a23b8b8277cf7947"
     },
     {
       "id": "hachigatsu-juukunichi-desu",
@@ -454,7 +483,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "scene": "answering when your birthday is",
-      "audio": "9a7c66f74e6deee6-genkanji-7246d0c9.mp3"
+      "audio": "9a7c66f74e6deee6-genkanji-7246d0c9.mp3",
+      "audioTextHash": "9a7c66f74e6deee6"
     },
     {
       "id": "smith-getsuyoubi-takushii-hoteru",
@@ -469,7 +499,8 @@
       "audio": "75bc6e7ccbcab312.mp3",
       "audioOriginal": "75bc6e7ccbcab312.orig.mp3",
       "audioAuto": "75bc6e7ccbcab312.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "75bc6e7ccbcab312"
     },
     {
       "id": "w2-ropesu-kinou-kimasen-deshita",
@@ -484,7 +515,8 @@
       "audioAuto": "12dfb74e1bd70b24-genkanji-135cfa6f.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "12dfb74e1bd70b24-genkanji-135cfa6f.mp3"
+      "audio": "12dfb74e1bd70b24-genkanji-135cfa6f.mp3",
+      "audioTextHash": "12dfb74e1bd70b24"
     },
     {
       "id": "w2-paku-kuruma-kuukou",
@@ -497,7 +529,8 @@
       "audio": "01469f129e3de894.mp3",
       "audioOriginal": "01469f129e3de894.orig.mp3",
       "audioAuto": "01469f129e3de894.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "01469f129e3de894"
     },
     {
       "id": "w2-shinkansen-de-kimashita-ka",
@@ -510,7 +543,8 @@
       "audio": "180eb3eb594619a4.mp3",
       "audioOriginal": "180eb3eb594619a4.orig.mp3",
       "audioAuto": "180eb3eb594619a4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "180eb3eb594619a4"
     },
     {
       "id": "w2-sanban-no-basu-ga-ikimasu",
@@ -526,7 +560,8 @@
       "audioOriginal": "c47fcfbd32ef7f39.orig.mp3",
       "audioAuto": "c47fcfbd32ef7f39.mp3",
       "audioMarked": true,
-      "scene": "answering which bus goes to the airport"
+      "scene": "answering which bus goes to the airport",
+      "audioTextHash": "c47fcfbd32ef7f39"
     },
     {
       "id": "w2-yasumi-doyoubi-to-nichiyoubi",
@@ -541,7 +576,8 @@
       "audioAuto": "3c44ddd00b58990a-genkanji-fd2e60d8.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "3c44ddd00b58990a-genkanji-fd2e60d8.mp3"
+      "audio": "3c44ddd00b58990a-genkanji-fd2e60d8.mp3",
+      "audioTextHash": "3c44ddd00b58990a"
     },
     {
       "id": "raja-itsu-nihon-ni-kimashita-ka",
@@ -554,7 +590,8 @@
       "audio": "2d22ce037f62adcc.mp3",
       "audioOriginal": "2d22ce037f62adcc.orig.mp3",
       "audioAuto": "2d22ce037f62adcc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2d22ce037f62adcc"
     },
     {
       "id": "w2-jimu-no-yasumi-kayoubi",
@@ -568,7 +605,8 @@
       "audio": "8797bbad7729f3eb.mp3",
       "audioOriginal": "8797bbad7729f3eb.orig.mp3",
       "audioAuto": "8797bbad7729f3eb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8797bbad7729f3eb"
     },
     {
       "id": "kinyoubi-ni-tokyo-kaerimasu",
@@ -582,7 +620,8 @@
       "audio": "5143c26a50a98f6e.mp3",
       "audioOriginal": "5143c26a50a98f6e.orig.mp3",
       "audioAuto": "5143c26a50a98f6e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5143c26a50a98f6e"
     },
     {
       "id": "w2-smith-tokyo-eki-ni-ikimasu",
@@ -597,7 +636,8 @@
       "audio": "15ccc7c3646740f8.mp3",
       "audioOriginal": "15ccc7c3646740f8.orig.mp3",
       "audioAuto": "15ccc7c3646740f8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "15ccc7c3646740f8"
     },
     {
       "id": "iie-shinkansen-de-ikimasu",
@@ -611,7 +651,8 @@
       "audioOriginal": "206fe41120293354.orig.mp3",
       "audioAuto": "206fe41120293354.mp3",
       "audioMarked": true,
-      "scene": "answering whether you are going by airplane"
+      "scene": "answering whether you are going by airplane",
+      "audioTextHash": "206fe41120293354"
     },
     {
       "id": "w2-katou-wa-shinkansen-de",
@@ -626,7 +667,8 @@
       "audio": "fafe30cfc3e7771c.mp3",
       "audioOriginal": "fafe30cfc3e7771c.orig.mp3",
       "audioAuto": "fafe30cfc3e7771c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fafe30cfc3e7771c"
     },
     {
       "id": "w2-natsuyasumi-tooka-hatsuka",
@@ -641,7 +683,8 @@
       "audioAuto": "1a1f09e7e3a87d92-genkanji-eb01d936.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "1a1f09e7e3a87d92-genkanji-eb01d936.mp3"
+      "audio": "1a1f09e7e3a87d92-genkanji-eb01d936.mp3",
+      "audioTextHash": "1a1f09e7e3a87d92"
     },
     {
       "id": "w2-natsuyasumi-shichigatsu-kara",
@@ -656,7 +699,8 @@
       "audio": "21ba5aaa6d32b129.mp3",
       "audioOriginal": "21ba5aaa6d32b129.orig.mp3",
       "audioAuto": "21ba5aaa6d32b129.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "21ba5aaa6d32b129"
     },
     {
       "id": "w2-tanaka-juunigatsu-kyoto",
@@ -670,7 +714,8 @@
       "audio": "65d649f8436c2185.mp3",
       "audioOriginal": "65d649f8436c2185.orig.mp3",
       "audioAuto": "65d649f8436c2185.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "65d649f8436c2185"
     },
     {
       "id": "w2-iie-hikouki-de-kimashita",
@@ -684,7 +729,8 @@
       "audioOriginal": "bb1e437ea02ccb65.orig.mp3",
       "audioAuto": "bb1e437ea02ccb65.mp3",
       "audioMarked": true,
-      "scene": "answering whether you came by Shinkansen"
+      "scene": "answering whether you came by Shinkansen",
+      "audioTextHash": "bb1e437ea02ccb65"
     },
     {
       "id": "w2-paku-mokuyoubi-kimasu",
@@ -698,7 +744,8 @@
       "audio": "d0c5ae0a60aa2ec3.mp3",
       "audioOriginal": "d0c5ae0a60aa2ec3.orig.mp3",
       "audioAuto": "d0c5ae0a60aa2ec3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d0c5ae0a60aa2ec3"
     },
     {
       "id": "w2-kaigi-mikka-ka-muika-ka",
@@ -712,7 +759,8 @@
       "audio": "f11ccab0b6a320ca.mp3",
       "audioOriginal": "f11ccab0b6a320ca.orig.mp3",
       "audioAuto": "f11ccab0b6a320ca.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f11ccab0b6a320ca"
     },
     {
       "id": "gibson-itsu-nihon-ni-kimasu-ka",
@@ -725,7 +773,8 @@
       "audio": "a48038253cc67159.mp3",
       "audioOriginal": "a48038253cc67159.orig.mp3",
       "audioAuto": "a48038253cc67159.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a48038253cc67159"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu",
@@ -739,7 +788,8 @@
       "audio": "da409d2de7e9247b.mp3",
       "audioOriginal": "da409d2de7e9247b.orig.mp3",
       "audioAuto": "da409d2de7e9247b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "da409d2de7e9247b"
     },
     {
       "id": "w2-futsuka-kara-nanoka-made",
@@ -759,7 +809,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.0878210616438357
-      }
+      },
+      "audioTextHash": "08dd314460681ff2"
     },
     {
       "id": "w2-ema-2022nen-kimashita",
@@ -775,7 +826,8 @@
       "audioAuto": "2431487ac9cc126b-genkanji-9f908499.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "2431487ac9cc126b-genkanji-9f908499.mp3"
+      "audio": "2431487ac9cc126b-genkanji-9f908499.mp3",
+      "audioTextHash": "2431487ac9cc126b"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu-ka",
@@ -789,7 +841,8 @@
       "audio": "e815b3db9710b098.mp3",
       "audioOriginal": "e815b3db9710b098.orig.mp3",
       "audioAuto": "e815b3db9710b098.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e815b3db9710b098"
     },
     {
       "id": "w2-raja-kyonen-indo-kaerimashita",
@@ -803,7 +856,8 @@
       "audio": "e540fbe3885d10b5.mp3",
       "audioOriginal": "e540fbe3885d10b5.orig.mp3",
       "audioAuto": "e540fbe3885d10b5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e540fbe3885d10b5"
     },
     {
       "id": "tanjoubi-wa-itsu-desu-ka",
@@ -816,7 +870,8 @@
       "audio": "853f7a4ff67634d5.mp3",
       "audioOriginal": "853f7a4ff67634d5.orig.mp3",
       "audioAuto": "853f7a4ff67634d5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "853f7a4ff67634d5"
     },
     {
       "id": "w2-ryokou-nannichi-kara",
@@ -830,7 +885,8 @@
       "audioAuto": "b6876b9ce9061683-genkanji-90d17e9d.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "b6876b9ce9061683-genkanji-90d17e9d.mp3"
+      "audio": "b6876b9ce9061683-genkanji-90d17e9d.mp3",
+      "audioTextHash": "b6876b9ce9061683"
     },
     {
       "id": "w2-getsuyoubi-kara-mokuyoubi-made",
@@ -844,7 +900,8 @@
       "audioOriginal": "69d1fd30c8c9d093.orig.mp3",
       "audioAuto": "69d1fd30c8c9d093.mp3",
       "audioMarked": true,
-      "scene": "answering how long the business trip runs"
+      "scene": "answering how long the business trip runs",
+      "audioTextHash": "69d1fd30c8c9d093"
     },
     {
       "id": "w2-shucchou-itsukara-itsumade",
@@ -857,7 +914,8 @@
       "audio": "7a5c7a7d0cca706d.mp3",
       "audioOriginal": "7a5c7a7d0cca706d.orig.mp3",
       "audioAuto": "7a5c7a7d0cca706d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7a5c7a7d0cca706d"
     },
     {
       "id": "w2-smith-nichiyoubi-ni-kaerimashita",
@@ -871,7 +929,8 @@
       "audio": "493e805c0cdd15da.mp3",
       "audioOriginal": "493e805c0cdd15da.orig.mp3",
       "audioAuto": "493e805c0cdd15da.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "493e805c0cdd15da"
     },
     {
       "id": "nanji-ni-kimasu-ka",
@@ -884,7 +943,8 @@
       "audio": "da0f24946c64cb0c.mp3",
       "audioOriginal": "da0f24946c64cb0c.orig.mp3",
       "audioAuto": "da0f24946c64cb0c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "da0f24946c64cb0c"
     },
     {
       "id": "ee-osaka-shisha-ni-ikimasu",
@@ -899,7 +959,8 @@
       "audioOriginal": "7112e82814a88ea8.orig.mp3",
       "audioAuto": "7112e82814a88ea8.mp3",
       "audioMarked": true,
-      "scene": "answering whether you are going on a business trip"
+      "scene": "answering whether you are going on a business trip",
+      "audioTextHash": "7112e82814a88ea8"
     },
     {
       "id": "w2-omatsuri-tsuitachi-mikka",
@@ -913,7 +974,8 @@
       "audio": "fb5e24f9e5934ec1.mp3",
       "audioOriginal": "fb5e24f9e5934ec1.orig.mp3",
       "audioAuto": "fb5e24f9e5934ec1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fb5e24f9e5934ec1"
     },
     {
       "id": "smith-ototoi-basu-de-depaato",
@@ -927,7 +989,8 @@
       "audio": "bdbd7d26b246db9b.mp3",
       "audioOriginal": "bdbd7d26b246db9b.orig.mp3",
       "audioAuto": "bdbd7d26b246db9b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bdbd7d26b246db9b"
     },
     {
       "id": "w2-ropesu-jitensha-eki",
@@ -940,7 +1003,8 @@
       "audio": "c437b5f05dbe7b8f.mp3",
       "audioOriginal": "c437b5f05dbe7b8f.orig.mp3",
       "audioAuto": "c437b5f05dbe7b8f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c437b5f05dbe7b8f"
     },
     {
       "id": "w2-kaigi-wa-youka-desu-ne",
@@ -954,7 +1018,8 @@
       "audio": "c3f37c9b946f86c0.mp3",
       "audioOriginal": "c3f37c9b946f86c0.orig.mp3",
       "audioAuto": "c3f37c9b946f86c0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c3f37c9b946f86c0"
     },
     {
       "id": "kaigi-wa-itsu-desu-ka",
@@ -977,7 +1042,8 @@
       "audio": "66022b29c818d566.mp3",
       "audioOriginal": "66022b29c818d566.orig.mp3",
       "audioAuto": "66022b29c818d566.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "66022b29c818d566"
     },
     {
       "id": "juuji-ni-ikimasu",
@@ -992,7 +1058,8 @@
       "audioOriginal": "c99a898369b2b856.orig.mp3",
       "audioAuto": "c99a898369b2b856.mp3",
       "audioMarked": true,
-      "scene": "answering what time you'll come"
+      "scene": "answering what time you'll come",
+      "audioTextHash": "c99a898369b2b856"
     },
     {
       "id": "w2-paku-rokugatsu-katou-to-hokkaido",
@@ -1007,7 +1074,8 @@
       "audio": "d4a7abc013d3af6a.mp3",
       "audioOriginal": "d4a7abc013d3af6a.orig.mp3",
       "audioAuto": "d4a7abc013d3af6a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d4a7abc013d3af6a"
     },
     {
       "id": "w2-raja-kyonen-indo-kaerimasen-deshita",
@@ -1021,7 +1089,8 @@
       "audio": "667287fb1c0f2f05.mp3",
       "audioOriginal": "667287fb1c0f2f05.orig.mp3",
       "audioAuto": "667287fb1c0f2f05.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "667287fb1c0f2f05"
     },
     {
       "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
@@ -1034,7 +1103,8 @@
       "audio": "91dfa563bee49fa4.mp3",
       "audioOriginal": "91dfa563bee49fa4.orig.mp3",
       "audioAuto": "91dfa563bee49fa4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "91dfa563bee49fa4"
     }
   ]
 }

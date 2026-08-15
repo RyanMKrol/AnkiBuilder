@@ -2,14 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "fs";
 import { syncStructure } from "../../src/anki/deliver.js";
-import {
-  PROBE_GATED_FEATURES,
-  PROBE_RESULTS,
-  RUNBOOK,
-  assertProbeEvidence,
-  missingProbeEvidence,
-} from "../../src/anki/probeEvidence.js";
+import { PROBE_ANSWERS, unansweredProbes } from "../../src/anki/probeResults.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
+
+const RUNBOOK = ".claude/skills/build-anki-deck/references/deliver.md";
 
 /**
  * The template-add path: what ships (a refusal with instructions) and what is dormant (the guarded
@@ -71,8 +67,8 @@ test("--allow-template-add is still refused: no probe has answered what the add 
   await assert.rejects(
     () => syncStructure(client, SPEC, false, { allowTemplateAdd: true }),
     (error) => {
-      assert.match(error.message, /--allow-template-add is not available yet/);
-      assert.match(error.message, /template-regeneration/);
+      assert.match(error.message, /--allow-template-add .* is gated on live-Anki behaviour probes/);
+      assert.match(error.message, /template-update-regenerates-card/);
       assert.match(error.message, /anki-behaviour-probe/);
       return true;
     },
@@ -90,35 +86,23 @@ test("an EDIT to an existing template is unaffected by the add path", async () =
   assert.ok(calls.includes("updateModelTemplates"));
 });
 
-test("every probe id has a row in the runbook, and every gated feature names real probes", () => {
+test("every probe id has a row in the runbook, so the two halves cannot drift", () => {
+  // src/anki/probeResults.js is what a gate reads; deliver.md's table is what a human writes into.
+  // An answer recorded in one and not the other is how a gate quietly opens on a memory.
   const runbook = readFileSync(RUNBOOK, "utf-8");
-  for (const id of Object.keys(PROBE_RESULTS)) {
+  for (const id of Object.keys(PROBE_ANSWERS)) {
     assert.match(runbook, new RegExp(`\`${id}\``), `${id} has no row in ${RUNBOOK}`);
   }
-  for (const [feature, { probes }] of Object.entries(PROBE_GATED_FEATURES)) {
-    for (const id of probes) {
-      assert.ok(PROBE_RESULTS[id], `${feature} names an unknown probe "${id}"`);
-    }
-  }
 });
 
-test("every probe-gated feature is closed today, and says which evidence it lacks", () => {
-  for (const feature of Object.keys(PROBE_GATED_FEATURES)) {
-    assert.ok(
-      missingProbeEvidence(feature).length > 0,
-      `${feature} claims evidence it has not got`,
-    );
-    assert.throws(() => assertProbeEvidence(feature), /never been run/);
-  }
-});
-
-test("a feature whose probes are answered opens the gate", () => {
-  const answered = Object.fromEntries(
-    Object.entries(PROBE_RESULTS).map(([id, row]) => [
-      id,
-      { ...row, answer: "yes", recorded: "x" },
-    ]),
-  );
-  assert.deepEqual(missingProbeEvidence("refile", answered), []);
-  assert.doesNotThrow(() => assertProbeEvidence("refile", answered));
+test("every probe the delivery gates name is still unanswered, so every gate is shut", () => {
+  const gated = [
+    "template-update-regenerates-card",
+    "template-update-unsuspends",
+    "change-deck-on-filtered",
+    "suspend-on-filtered",
+    "housekeeping-unsuspends",
+  ];
+  for (const id of gated) assert.ok(id in PROBE_ANSWERS, `${id} is not a known probe`);
+  assert.deepEqual(unansweredProbes(gated), gated, "none of these has an answer yet");
 });

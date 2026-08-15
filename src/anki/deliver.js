@@ -23,7 +23,12 @@ import {
 } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { DELIVERED_MARKER, readDeliveredMarker } from "./deliveredMarker.js";
-import { assertProbeEvidence } from "./probeEvidence.js";
+import { assertProbesRecorded } from "./probeResults.js";
+import {
+  applyDirectionSuspension,
+  assertStudiableDirection,
+  describeSuspension,
+} from "./directionSuspension.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { loadCourseMeta } from "../cli/outputPaths.js";
 
@@ -58,7 +63,6 @@ const norm = (s) =>
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();
-const fingerprint = (target, english) => `${norm(target)}\x1f${norm(english)}`;
 const noteField = (n, name) => n.fields?.[name]?.value ?? "";
 
 // Resolve selectors → managed decks with their Anki names, spec, and deliverable units (disk-only).
@@ -341,26 +345,16 @@ export async function syncStructure(
     return out; // a freshly created model already matches the spec exactly
   }
 
-  // Fields: add any missing at their target index, then normalize order.
+  // ── READ EVERYTHING, REFUSE, THEN WRITE ────────────────────────────────────────────────────────
+  //
+  // Every read happens before every write, and every refusal happens between them. Adding a FIELD is
+  // itself a schema bump that forces a manual one-way AnkiWeb sync, so a run that added the field
+  // and THEN refused the template add would have left the owner with the sync to finish and nothing
+  // to show for it. Nothing here writes until the whole change has been judged.
   let liveFields = await client.modelFieldNames(spec.modelName);
-  for (let i = 0; i < spec.fields.length; i++) {
-    if (!liveFields.includes(spec.fields[i])) {
-      out.addedFields.push(spec.fields[i]);
-      if (!dry) await client.modelFieldAdd(spec.modelName, spec.fields[i], i);
-    }
-  }
-  if (!dry && out.addedFields.length) liveFields = await client.modelFieldNames(spec.modelName);
-  if (!dry) {
-    for (let i = 0; i < spec.fields.length; i++) {
-      if (liveFields[i] !== spec.fields[i]) {
-        await client.modelFieldReposition(spec.modelName, spec.fields[i], i);
-        liveFields = await client.modelFieldNames(spec.modelName);
-      }
-    }
-  }
+  const missingFields = spec.fields.filter((name) => !liveFields.includes(name));
+  out.addedFields = missingFields;
 
-  // Templates and styling — read BOTH before writing EITHER, so the guard below sees the whole
-  // change at once rather than refusing halfway through it.
   const liveT = await client.modelTemplates(spec.modelName);
 
   // A spec template with NO live counterpart is not an edit, it is an ADD — and `updateModelTemplates`
@@ -410,8 +404,20 @@ export async function syncStructure(
   }
 
   if (!dry) {
-    // Adds first: `updateModelTemplates` can only address rows that exist, so an edit pushed before
-    // the add would silently skip the new row and the run would report both as applied.
+    // Fields first: add any missing at their target index, then normalize order.
+    for (const name of missingFields) {
+      await client.modelFieldAdd(spec.modelName, name, spec.fields.indexOf(name));
+    }
+    if (missingFields.length) liveFields = await client.modelFieldNames(spec.modelName);
+    for (let i = 0; i < spec.fields.length; i++) {
+      if (liveFields[i] !== spec.fields[i]) {
+        await client.modelFieldReposition(spec.modelName, spec.fields[i], i);
+        liveFields = await client.modelFieldNames(spec.modelName);
+      }
+    }
+
+    // Template adds before template edits: `updateModelTemplates` can only address rows that exist,
+    // so an edit pushed before the add would silently skip the new row and report both as applied.
     for (const name of out.addedTemplates) {
       const template = spec.templates.find((t) => t.name === name);
       await client.modelTemplateAdd(spec.modelName, name, template.qfmt, template.afmt);
@@ -436,7 +442,7 @@ export async function syncStructure(
  *
  * Shipping behaviour today is the fail-loud half: a spec template with no live counterpart stops the
  * deliver and tells the operator to add it by hand. The guarded `modelTemplateAdd` path exists below
- * it, fully written, and is DORMANT — `assertProbeEvidence` refuses it because the live-Anki probes
+ * it, fully written, and is DORMANT — `assertProbesRecorded` refuses it because the live-Anki probes
  * that would say what a template add does to existing cards have never been run. The order matters:
  * the operator sees the plain instruction first, and the flag only reveals itself as a real option
  * once the evidence exists.
@@ -464,8 +470,13 @@ function assertTemplateAddAllowed(spec, added, usage, allowTemplateAdd) {
         `AnkiWeb sync you finish by hand.`,
     );
   }
-  // Asked for explicitly — and still refused, because nothing yet knows what the write does.
-  assertProbeEvidence("template-add");
+  // Asked for explicitly — and still refused, because nothing yet knows what the write does. Same
+  // recorded-probe mechanism the direction-suspension path uses (src/anki/probeResults.js): one
+  // place a probe answer is written down, one gate reading it.
+  assertProbesRecorded(
+    ["template-update-regenerates-card", "template-update-unsuspends"],
+    "--allow-template-add (adding a card template to the shared note type)",
+  );
 }
 
 /**
@@ -566,6 +577,16 @@ export const DEFAULT_MAX_ADDS = 200;
 export const MAX_UNRESOLVED_BASELINE = 0.1;
 
 /**
+ * …and the number of cards below which a percentage means nothing.
+ *
+ * Without a floor, 10% is one card in a ten-card collection, so the smallest decks would trip the
+ * gate the first time a note was tidied up by hand — the exact "red on every run" failure the tier
+ * system exists to prevent. 100% still aborts at any size: a baseline that resolves to nothing is
+ * not a pruned collection, it is a lookup that broke.
+ */
+export const MIN_UNRESOLVED_BASELINE = 3;
+
+/**
  * THE BOOTSTRAP INDEXES, AND WHY THEY ARE READ FROM TWO DIFFERENT QUERIES.
  *
  * `byAbid` comes from ONE BOOK-WIDE query and must never be narrowed. `abid:<card.id>` is the only
@@ -576,10 +597,14 @@ export const MAX_UNRESOLVED_BASELINE = 0.1;
  * under `orphaned`. That is the exact damage this whole layer exists to prevent, so the query stays
  * book-wide and this comment is the reason it may not be "simplified".
  *
- * `byTarget` / `byTargetEnglish` are the FIRST-RUN fingerprint indexes, used once to adopt notes
- * that predate the abid tag, and they ARE scoped to the unit being delivered. Book-wide they
- * cross-bind: 17 targets repeat across this book's units, so a unit's card can adopt another unit's
- * note by spelling alone. Scoping them costs one findNotes per unit and closes that.
+ * `byTarget` is the FIRST-RUN fingerprint index, used once to adopt notes that predate the abid tag,
+ * and it IS scoped to the unit being delivered. Book-wide it cross-binds: 17 targets repeat across
+ * this book's units, so a unit's card can adopt another unit's note by spelling alone. Scoping it
+ * costs one findNotes per unit and closes that.
+ *
+ * `byTargetAnywhere` is the same fingerprint read book-wide, and it is used ONLY by the second pass
+ * in `planDeckContent` — after every unit has had its own say — to rescue a note that is in no
+ * unit's deck at all. See that pass for why it cannot simply be merged into the first.
  */
 async function buildIndexes(client, deck) {
   const model = escapeSearchTerm(deck.spec.modelName);
@@ -614,17 +639,18 @@ async function buildIndexes(client, deck) {
       }
     }
     const byTarget = new Map();
-    const byTargetEnglish = new Map();
-    const push = (map, key, id) => (map.has(key) ? map.get(key).push(id) : map.set(key, [id]));
-    for (const n of unitInfos) {
-      push(byTarget, norm(noteField(n, "Target")), n.noteId);
-      push(byTargetEnglish, fingerprint(noteField(n, "Target"), noteField(n, "English")), n.noteId);
-    }
-    byUnit.set(unit, { byTarget, byTargetEnglish });
+    for (const n of unitInfos) push(byTarget, norm(noteField(n, "Target")), n.noteId);
+    byUnit.set(unit, { byTarget });
   }
 
-  return { noteIds, noteById, byAbid, byUnit };
+  // The book-wide fingerprint, for the second pass only.
+  const byTargetAnywhere = new Map();
+  for (const n of noteById.values()) push(byTargetAnywhere, norm(noteField(n, "Target")), n.noteId);
+
+  return { noteIds, noteById, byAbid, byUnit, byTargetAnywhere };
 }
+
+const push = (map, key, id) => (map.has(key) ? map.get(key).push(id) : map.set(key, [id]));
 
 /**
  * THE RENAME GUARD.
@@ -669,14 +695,20 @@ function assertDeliveredBaseline(deck, byAbid) {
   }
   const unresolved = recorded.filter((id) => !byAbid.has(id));
   const fraction = unresolved.length / recorded.length;
-  if (unresolved.length && (fraction === 1 || fraction > MAX_UNRESOLVED_BASELINE)) {
+  const overThreshold =
+    unresolved.length >= MIN_UNRESOLVED_BASELINE && fraction > MAX_UNRESOLVED_BASELINE;
+  if (unresolved.length && (fraction === 1 || overThreshold)) {
     throw new Error(
       `${unresolved.length} of ${recorded.length} previously-delivered card(s) ` +
         `(${Math.round(fraction * 100)}%) no longer resolve to a note in "${deck.ankiParent}". ` +
         `The last deliver recorded them; this run cannot find them. Something happened to the ` +
         `collection — a rename, a deleted deck, a restore from an older backup — and continuing ` +
         `would re-add them as new notes with no scheduling. First missing: ` +
-        `${unresolved.slice(0, 5).join(", ")}${unresolved.length > 5 ? ", …" : ""}.`,
+        `${unresolved.slice(0, 5).join(", ")}${unresolved.length > 5 ? ", …" : ""}.\n` +
+        `There is deliberately no flag for this. If you know why those notes are gone (you deleted ` +
+        `the deck to re-import it, or pruned it by hand), check the collection in Anki, then delete ` +
+        `the "deliveredCardIds" field from ${join(deck.bookDir ?? ".", DELIVERED_MARKER)} — this ` +
+        `run will re-record the baseline and the gate re-arms on the run after it.`,
     );
   }
   return { armed: true, recorded: recorded.length, unresolved: unresolved.length };
@@ -691,32 +723,46 @@ function assertDeliveredBaseline(deck, byAbid) {
  */
 export async function planDeckContent(client, deck) {
   assertUniqueCardIds(deck);
-  const { noteIds, noteById, byAbid, byUnit } = await buildIndexes(client, deck);
+  // A card that suspends EVERY direction is a note with no studiable card at all, which is what
+  // `excluded` is for. Refused here, before a single read decides anything.
+  const templateCount = deck.spec.templates.length;
+  for (const unit of deck.units) {
+    for (const card of unit.cards) assertStudiableDirection(card, templateCount);
+  }
+
+  const { noteIds, noteById, byAbid, byUnit, byTargetAnywhere } = await buildIndexes(client, deck);
   assertBookQueryResolves(deck, noteIds);
   const baseline = assertDeliveredBaseline(deck, byAbid);
 
   const ops = [];
   const ambiguous = [];
   const orphaned = [];
+  const adoptedFromElsewhere = [];
   const addsMatchingElsewhere = [];
   const corpusIds = new Set();
   const used = new Set();
   const abidNoteIds = new Set(byAbid.values());
+  const free = (id) => !used.has(id) && !abidNoteIds.has(id);
 
-  // A BOOK-WIDE target index, used for nothing but reporting. Unit-scoping the fingerprint indexes
-  // is right — it stops a unit's card adopting another unit's note by spelling alone — but it opens
-  // one window on a FIRST run: an un-tagged note sitting under an old deck name is no longer in any
-  // unit's index, so its card falls through to `add` and the learner gets a duplicate beside the
-  // matured original. Adding may well be correct (17 targets legitimately repeat across units), so
-  // this does not refuse; it names every add that a note elsewhere in the book could have matched,
-  // which is the difference between a decision and an accident.
-  const byTargetAnywhere = new Map();
-  for (const n of noteById.values()) {
-    const key = norm(noteField(n, "Target"));
-    if (byTargetAnywhere.has(key)) byTargetAnywhere.get(key).push(n.noteId);
-    else byTargetAnywhere.set(key, [n.noteId]);
-  }
+  /** Pick exactly one note from a same-Target group, or null. Shared by both passes. */
+  const disambiguate = (card, matches) => {
+    if (matches.length === 1) return matches[0];
+    // A shared Target (e.g. これはフランスのワインです glossed twice) → disambiguate by English.
+    const ce = norm(fieldValue(card, "English"));
+    let pick = matches.filter((id) => norm(noteField(noteById.get(id), "English")) === ce);
+    // Fall back to a prefix match: a gloss edited since import (e.g. a parenthetical moved to the
+    // hint, so the Anki gloss is the corpus gloss + extra) still resolves if it's the only one.
+    if (pick.length !== 1) {
+      pick = matches.filter((id) => {
+        const ne = norm(noteField(noteById.get(id), "English"));
+        return ne.startsWith(ce) || ce.startsWith(ne);
+      });
+    }
+    return pick.length === 1 ? pick[0] : null;
+  };
 
+  // ── PASS 1: the durable key, then each unit's OWN fingerprint index ────────────────────────────
+  const unresolved = [];
   for (const unit of deck.units) {
     const { byTarget } = byUnit.get(unit) ?? { byTarget: new Map() };
     for (const card of unit.cards) {
@@ -726,34 +772,17 @@ export async function planDeckContent(client, deck) {
       let noteId = byAbid.get(card.id);
       let stamp = false;
       if (noteId == null) {
-        const free = (id) => !used.has(id) && !abidNoteIds.has(id);
         const tgtMatches = (byTarget.get(norm(card.target)) || []).filter(free);
-        if (tgtMatches.length === 1) {
-          noteId = tgtMatches[0];
-          stamp = true;
-        } else if (tgtMatches.length > 1) {
-          // A shared Target (e.g. これはフランスのワインです glossed twice) → disambiguate by English.
-          const ce = norm(fieldValue(card, "English"));
-          let pick = tgtMatches.filter((id) => norm(noteField(noteById.get(id), "English")) === ce);
-          // Fall back to a prefix match: a gloss edited since import (e.g. a parenthetical moved to the
-          // hint, so the Anki gloss is the corpus gloss + extra) still resolves if it's the only one.
-          // Unit-scoped like the index it filters, so the fallback can no longer reach across units.
-          if (pick.length !== 1) {
-            pick = tgtMatches.filter((id) => {
-              const ne = norm(noteField(noteById.get(id), "English"));
-              return ne.startsWith(ce) || ce.startsWith(ne);
-            });
-          }
-          if (pick.length === 1) {
-            noteId = pick[0];
-            stamp = true;
-          } else {
-            // Can't pick exactly one same-Target note → AMBIGUOUS. Report it; never add a duplicate.
+        if (tgtMatches.length > 0) {
+          noteId = disambiguate(card, tgtMatches);
+          if (noteId == null) {
+            // Can't pick exactly one same-Target note IN THIS UNIT → AMBIGUOUS. Report it; never
+            // add a duplicate, and never let pass 2 guess at what this pass could not resolve.
             ambiguous.push({ card: card.id, english: card.english });
             continue;
           }
+          stamp = true;
         }
-        // tgtMatches.length === 0 → Target absent → genuinely new → fall through to add.
       }
 
       if (noteId != null) {
@@ -762,19 +791,61 @@ export async function planDeckContent(client, deck) {
         const differs = FIELD_NAMES.some((f) => !sameField(noteField(n, f), fields[f]));
         ops.push({ kind: differs ? "update" : "skip", noteId, card, unit, fields, stamp, note: n });
       } else {
-        ops.push({ kind: "add", card, unit, fields });
-        const elsewhere = (byTargetAnywhere.get(norm(card.target)) || []).filter(
-          (id) => !used.has(id) && !abidNoteIds.has(id),
-        );
-        if (elsewhere.length) {
-          addsMatchingElsewhere.push({
-            card: card.id,
-            english: card.english,
-            deck: unit.ankiDeck,
-            noteIds: elsewhere,
-          });
-        }
+        // Not resolved yet. Pass 2 gets one look at it before it becomes an add.
+        unresolved.push({ card, unit, fields });
       }
+    }
+  }
+
+  // ── PASS 2: the book-wide rescue, for notes that are in NO unit's deck ─────────────────────────
+  //
+  // Scoping the fingerprint index to the unit is right — it stops a card adopting another unit's
+  // note by spelling alone — but on a FIRST run it opens one window: an untagged note sitting under
+  // an OLD deck name (exactly what a chapterLabel fix leaves behind) is in no unit's index, so its
+  // card would fall through to `addNote({allowDuplicate})` and the learner would get a fresh
+  // duplicate beside the matured original, reported as nothing.
+  //
+  // The rescue runs only AFTER every unit has claimed what it could, and only adopts a note that is
+  // still free and uniquely identified book-wide. That ordering is what keeps the cross-bind closed:
+  // where two units' cards share a target, both candidates were already claimed or are still
+  // ambiguous here, so neither card can take the other's note by being processed first.
+  for (const { card, unit, fields } of unresolved) {
+    const matches = (byTargetAnywhere.get(norm(card.target)) || []).filter(free);
+    const noteId = matches.length ? disambiguate(card, matches) : null;
+
+    if (noteId != null) {
+      used.add(noteId);
+      const n = noteById.get(noteId);
+      const differs = FIELD_NAMES.some((f) => !sameField(noteField(n, f), fields[f]));
+      ops.push({
+        kind: differs ? "update" : "skip",
+        noteId,
+        card,
+        unit,
+        fields,
+        stamp: true,
+        note: n,
+      });
+      adoptedFromElsewhere.push({
+        card: card.id,
+        english: card.english,
+        noteId,
+        deck: unit.ankiDeck,
+      });
+      continue;
+    }
+
+    ops.push({ kind: "add", card, unit, fields });
+    // Still added — but if something book-wide LOOKED like it, say so. This is the residue the
+    // rescue could not resolve (two or more free candidates), and it is the difference between a
+    // decision and an accident.
+    if (matches.length) {
+      addsMatchingElsewhere.push({
+        card: card.id,
+        english: card.english,
+        deck: unit.ankiDeck,
+        noteIds: matches,
+      });
     }
   }
 
@@ -782,7 +853,16 @@ export async function planDeckContent(client, deck) {
     if (!corpusIds.has(cid)) orphaned.push({ card: cid, noteId: nid });
   }
 
-  return { ops, ambiguous, orphaned, addsMatchingElsewhere, baseline, noteById };
+  return {
+    ops,
+    ambiguous,
+    orphaned,
+    adoptedFromElsewhere,
+    addsMatchingElsewhere,
+    baseline,
+    noteById,
+    templateCount,
+  };
 }
 
 /** The tag a `--suspend-orphans` run leaves, so a human can find (and reverse) exactly this set. */
@@ -834,7 +914,17 @@ export async function planRefile(client, deck, plan) {
   const moves = [];
   const skipped = [];
   for (const candidate of candidates) {
-    if ((odidOf.get(candidate.cardId) ?? 0) !== 0) {
+    const odid = odidOf.get(candidate.cardId);
+    // FAIL CLOSED on a card `cardsInfo` did not describe. "No row came back" and "this card is not
+    // filtered" are different states, and defaulting the first to the second is how a card in a
+    // custom-study session gets moved out from under the learner.
+    if (odid === undefined) {
+      skipped.push({
+        ...candidate,
+        reason:
+          "cardsInfo returned nothing for it, so whether it is filtered is unknown — left alone",
+      });
+    } else if (odid !== 0) {
       skipped.push({ ...candidate, reason: "in a filtered deck (non-zero odid) — left alone" });
     } else if (!inCollection(candidate.from)) {
       skipped.push({ ...candidate, reason: `outside "${deck.ankiParent}" — left alone` });
@@ -869,8 +959,31 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
     allowBulkAdd = false,
     refile = false,
     suspendOrphans = false,
+    suspendDelivered = false,
+    reSuspendHumanUnsuspended = false,
     log = () => {},
   } = options;
+
+  // ⚠️ THE PROBE GATES COME FIRST, BEFORE ANY READ OR WRITE.
+  //
+  // Both refusals are static — they depend only on what is recorded in probeResults.js, not on
+  // anything in this collection — so there is no reason to discover them late. Asserting them at
+  // the end (where they used to be) meant a `--refile` run wrote every note, THEN threw, and the
+  // delivered marker was never written: a fully-pushed collection with no delivery record, which
+  // disarms the rename guard, the baseline and every --force-delivered guard at once.
+  if (!dry && refile) {
+    assertProbesRecorded(
+      ["change-deck-on-filtered"],
+      "--refile (moving delivered cards between decks)",
+    );
+  }
+  if (!dry && suspendOrphans) {
+    assertProbesRecorded(
+      ["suspend-on-filtered", "housekeeping-unsuspends"],
+      "--suspend-orphans (suspending delivered notes whose card left the corpus)",
+    );
+  }
+
   const plan = await planDeckContent(client, deck);
 
   const r = {
@@ -883,12 +996,22 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
     addedCards: [],
     ambiguous: plan.ambiguous,
     orphaned: plan.orphaned,
+    adoptedFromElsewhere: plan.adoptedFromElsewhere,
     addsMatchingElsewhere: plan.addsMatchingElsewhere,
     baseline: plan.baseline,
     deliveredCardIds: [],
+    directions: null,
     refiled: null,
     suspendedOrphans: null,
   };
+
+  for (const adopted of plan.adoptedFromElsewhere) {
+    log(
+      `matched "${adopted.card}" ("${adopted.english}") to note ${adopted.noteId}, which is NOT in ` +
+        `${adopted.deck} — an untagged note under an old deck name. Adopted and tagged rather than ` +
+        `added as a duplicate; --refile moves it into place.`,
+    );
+  }
 
   for (const add of plan.addsMatchingElsewhere) {
     log(
@@ -910,12 +1033,19 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
     log(message);
   }
 
+  // Every note this run touched, so the direction pass can tell a note IT created (unconditional —
+  // nothing has been studied yet) from one that was already in the collection (opt-in, probe-gated).
+  const touched = [];
+
   for (const op of plan.ops) {
     if (op.kind === "add") {
       const hadAudio = await maybeStoreMedia(client, op.card, op.unit, dry);
       if (!hadAudio) r.addedWithoutAudio++;
+      let addedNoteId = null;
       if (!dry) {
-        await client.addNote({
+        // The returned note id is what makes an unconditional direction suspension possible: it
+        // identifies a note THIS run created, whose cards have never been studied.
+        addedNoteId = await client.addNote({
           deckName: op.unit.ankiDeck,
           modelName: deck.spec.modelName,
           fields: op.fields,
@@ -926,6 +1056,7 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
       r.added++;
       r.addedCards.push({ card: op.card.id, english: op.card.english, deck: op.unit.ankiDeck });
       r.deliveredCardIds.push(op.card.id);
+      touched.push({ card: op.card, noteId: addedNoteId, isNew: true });
       continue;
     }
 
@@ -941,13 +1072,23 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
       r.tagged++;
     }
     r.deliveredCardIds.push(op.card.id);
+    touched.push({ card: op.card, noteId: op.noteId, isNew: false });
   }
+
+  // Direction suspension, after the content: every note exists and every field is current, so a
+  // suspension can never be applied to a note that then fails to be written.
+  r.directions = await applyDirectionSuspension(client, touched, {
+    templateCount: plan.templateCount,
+    dry,
+    suspendDelivered,
+    reSuspendHumanUnsuspended,
+    log,
+  });
 
   // ── the two OPT-IN steps, both previewed, both refused until the probes have answered ──────────
   //
-  // The preview is not gated: it reads and prints. The RUN is, because both of these are live
-  // writes to a card's scheduling state whose behaviour on a card in a filtered deck nobody has
-  // established. `assertProbeEvidence` names the missing evidence rather than failing vaguely.
+  // The preview is not gated: it reads and prints. The RUN is, and it was refused at the top of this
+  // function, before anything was written.
   if (refile) {
     const { moves, skipped } = await planRefile(client, deck, plan);
     r.refiled = { moves, skipped, applied: false };
@@ -958,7 +1099,6 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
       log(`refile: SKIPPED card ${skip.cardId} (${skip.card}) in "${skip.from}" — ${skip.reason}`);
     }
     if (!dry && moves.length) {
-      assertProbeEvidence("refile");
       const byTarget = new Map();
       for (const move of moves) {
         if (!byTarget.has(move.to)) byTarget.set(move.to, []);
@@ -979,7 +1119,6 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
       );
     }
     if (!dry && orphans.length) {
-      assertProbeEvidence("suspend-orphans");
       const ids = orphans.flatMap((orphan) => orphan.cardIds);
       if (ids.length) await client.suspend(ids);
       await client.addTags(
@@ -991,6 +1130,54 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
   }
 
   return r;
+}
+
+/**
+ * Reports what the direction pass did, one class at a time.
+ *
+ * Each class is a different fact and they must not be added together: a suspension applied, a
+ * suspension a `--dry` run would apply, a card a HUMAN turned back on, and a flag in cards.json the
+ * collection is deliberately not honouring. A single "3 directions handled" would hide the last two,
+ * which are the only ones that need a decision.
+ */
+function logDirections(result, deck, dry, log) {
+  const d = result.directions;
+  if (!d) return;
+  const names = deck.spec.templates.map((t) => t.name);
+  if (d.suspended.length) {
+    log(
+      `suspended ${d.suspended.length} direction(s) on notes created by this deliver:\n` +
+        d.suspended.map((e) => describeSuspension(e, names)).join("\n"),
+    );
+  }
+  if (d.wouldSuspend.length) {
+    log(
+      `would suspend ${d.wouldSuspend.length} direction(s):\n` +
+        d.wouldSuspend.map((e) => describeSuspension(e, names)).join("\n"),
+    );
+  }
+  if (d.humanUnsuspended.length) {
+    log(
+      `${d.humanUnsuspended.length} direction(s) were unsuspended by hand after we suspended them ` +
+        `and were left alone:\n` +
+        d.humanUnsuspended
+          .map((e) => `  ${e.card}  card ${e.cardId}  ord ${e.ord} (${names[e.ord] ?? e.ord})`)
+          .join("\n"),
+    );
+  }
+  if (d.skippedDelivered.length) {
+    log(
+      `${d.skippedDelivered.length} dirSuspended flag(s) are NOT applied: the note was already in ` +
+        `the collection, so suspending it would change a card you may be studying. That path is ` +
+        `opt-in (--suspend-delivered) and is currently gated on unrun behaviour probes.`,
+    );
+  }
+  if (d.refused.length) {
+    log(
+      `${d.refused.length} direction(s) could not be applied:\n` +
+        d.refused.map((e) => `  ${e.card}  ord ${e.ord}: ${e.reason}`).join("\n"),
+    );
+  }
 }
 
 // Store a card's audio file into Anki's media (idempotent). Returns true if the card had an audio file.
@@ -1017,8 +1204,15 @@ export async function deliverToAnki(
     // syncStructure's guard. A dry run never needs it: a dry run writes nothing.
     allowModelChange = false,
     // Explicit consent to ADD a card template to that shared note type. Dormant: even with this,
-    // the add is refused until the live probes have answered what it does (probeEvidence.js).
+    // the add is refused until the live probes have answered what it does (probeResults.js).
     allowTemplateAdd = false,
+    // Direction suspension on notes that were ALREADY in the collection. Opt-in, previewed with
+    // --dry, and gated on probe evidence that does not exist yet — so passing this today raises an
+    // error naming the missing probes rather than touching a card the owner is studying.
+    suspendDelivered = false,
+    // The distinct SECOND flag: re-suspend a direction a person unsuspended by hand. Without it a
+    // human unsuspend is permanent, which is the point.
+    reSuspendHumanUnsuspended = false,
     // The add ceiling. A run bigger than this is either a first delivery or a matching failure, and
     // they look identical from here, so it asks.
     maxAdds = DEFAULT_MAX_ADDS,
@@ -1084,6 +1278,9 @@ export async function deliverToAnki(
   const specsByModel = new Map();
   for (const d of deliverable) specsByModel.set(d.spec.modelName, d.spec);
   const ankiParents = [...new Set(deliverable.map((d) => d.ankiParent))];
+  // Which of those parents belong to a collection that HAS been delivered before, and so must
+  // really exist in Anki. The backup step below is the only thing that needs the distinction.
+  const deliveredParents = new Set(deliverable.filter((d) => d.marker).map((d) => d.ankiParent));
 
   // 2. SYNC BEFORE (pull remote → local). A safety net: even if a review happened on another device,
   // it merges in before we push, so the later clobbering upload can't silently drop it. Non-fatal —
@@ -1109,12 +1306,20 @@ export async function deliverToAnki(
     for (const parent of ankiParents) {
       const path = resolve(join(backupDir, `${safeFile(parent)}.apkg`));
       try {
-        // A FALSY result is a failure. AnkiConnect answers `{result: false, error: null}` for a deck
-        // that does not exist — no throw, nothing to catch — so a backup of a renamed or missing
-        // deck used to record a success and hand the delivery a fail-closed guarantee it did not
-        // have. This is the one line that made the backup real.
+        // A FALSY result is a failure — WHEN there is something to back up. AnkiConnect answers
+        // `{result: false, error: null}` for a deck that does not exist: no throw, nothing to catch.
+        // For a delivered collection that means the deck was renamed or deleted and the backup this
+        // delivery is about to rely on does not exist, so the run must stop.
+        //
+        // For a collection that has NEVER been delivered it means something entirely ordinary: the
+        // deck is not there yet, because this deliver is what creates it (step 5, below). Treating
+        // those the same made the first delivery of any new book impossible.
         const ok = await client.exportPackage(parent, path, true);
         if (ok === false || ok == null) {
+          if (!deliveredParents.has(parent)) {
+            log(`nothing to back up for "${parent}" — this collection has never been delivered`);
+            continue;
+          }
           throw new Error(
             `AnkiConnect reported no export (result: ${JSON.stringify(ok)}) — the usual cause is ` +
               `that no deck is named "${parent}" any more`,
@@ -1177,6 +1382,8 @@ export async function deliverToAnki(
       allowBulkAdd,
       refile,
       suspendOrphans,
+      suspendDelivered,
+      reSuspendHumanUnsuspended,
       log,
     });
     report.content.push(result);
@@ -1198,6 +1405,7 @@ export async function deliverToAnki(
       }
     }
     log(`content synced: ${deck.type}:${deck.id}`);
+    logDirections(result, deck, dry, log);
   }
 
   // 7. SYNC AFTER (push local → remote). Content-only deliveries sync incrementally with no prompt; a

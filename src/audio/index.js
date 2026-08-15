@@ -27,6 +27,13 @@ export const AUDIO_FIELDS = [
   "audioFilter",
   "audioMarked",
   "audioMarkerStuck",
+  // What text the clip was generated from, and a human's "keep this clip for the current text"
+  // acceptance of it (see ./textHash.js). Listed here so installing a NEW recording clears them:
+  // a hash and an acceptance both describe one specific clip of one specific text, and carrying
+  // either onto a different take would say the new clip had been vouched for when it has not.
+  "audioTextHash",
+  "audioTextHashAcceptedBy",
+  "audioTextHashAcceptedAt",
 ];
 
 /**
@@ -48,6 +55,26 @@ export function deriveCardAudio(item) {
 // `ttsText` is set and `target` is spoken exactly as before.
 export function speechText(item) {
   return typeof item.ttsText === "string" && item.ttsText.length > 0 ? item.ttsText : item.target;
+}
+
+/**
+ * The text the DEFAULT clip is generated from, before per-language normalization and the end marker.
+ *
+ * `speechText` unless this unit has opted into kanji-orthography TTS (`meta.kanjiTts`) and the card
+ * carries a stored `ttsKanji`. Japanese TTS mis-parses all-kana input — it is out of distribution
+ * against natural Japanese writing — so a kanji form voices more naturally; see ./kanjiOrthography.js.
+ *
+ * Opt-in PER UNIT rather than globally, on purpose. This value feeds the ElevenLabs cache key and
+ * the staleness filename, so flipping it for Japanese wholesale would invalidate every ja clip in
+ * the library (paid refetches, discarded trim tuning) while hand-touched clips stayed exempt from
+ * regeneration — a silently mixed-orthography deck. Kana→kanji is also one-to-many, so it adds a
+ * wrong-word channel a learner reading a kana card face cannot detect.
+ */
+export function clipSourceText(item, { kanjiTts = false } = {}) {
+  if (kanjiTts && typeof item.ttsKanji === "string" && item.ttsKanji.length > 0) {
+    return item.ttsKanji;
+  }
+  return speechText(item);
 }
 
 async function ensureDir(dir) {
@@ -144,8 +171,8 @@ async function fetchTermsToCache(
  * addressed, so editing a `ttsText` after audio has run leaves the card pointing at a stale clip that
  * is still on disk — which read as "already generated — reusing" and silently kept the old audio.
  */
-export function defaultClipText(item, languageCode) {
-  const text = normalizeTtsText(speechText(item), languageCode);
+export function defaultClipText(item, languageCode, { kanjiTts = false } = {}) {
+  const text = normalizeTtsText(clipSourceText(item, { kanjiTts }), languageCode);
   // The throwaway end marker is part of the text SENT, so it is part of the cache key too — a clip
   // generated with it is a different recording from one generated without, and must not be reused
   // across the change.
@@ -174,8 +201,8 @@ export function isStageOriginalFilename(filename) {
   return typeof filename === "string" && /^[0-9a-f]{16}\.orig\.mp3$/.test(filename);
 }
 
-export function defaultOriginalFilename(item, languageCode) {
-  return `${hashTerm(defaultClipText(item, languageCode))}.orig.mp3`;
+export function defaultOriginalFilename(item, languageCode, opts = {}) {
+  return `${hashTerm(defaultClipText(item, languageCode, opts))}.orig.mp3`;
 }
 
 /**
@@ -207,8 +234,8 @@ export function isStageOwnedCard(item) {
   return !item.audio || isDefaultClipFilename(item.audio);
 }
 
-export function defaultClipFilename(item, languageCode) {
-  return `${hashTerm(defaultClipText(item, languageCode))}.mp3`;
+export function defaultClipFilename(item, languageCode, opts = {}) {
+  return `${hashTerm(defaultClipText(item, languageCode, opts))}.mp3`;
 }
 
 export async function generateAudio(
@@ -253,7 +280,12 @@ export async function generateAudio(
   // The DEFAULT (and only up-front) take. Comma/bracket forms and kana+kanji are generated ON DEMAND
   // in the dashboard, not here. Japanese text gets the end marker appended (./ttsMarker.js), which the
   // trim cuts back off; the displayed target/ttsText never carries it.
-  const defaultTextFor = (item) => defaultClipText(item, languageCode);
+  //
+  // `meta.kanjiTts` is the per-unit opt-in that makes the kanji orthography the TTS input instead of
+  // the kana. Read from the unit rather than from a global so existing units keep their kana clips —
+  // see `clipSourceText`.
+  const kanjiTts = cards.meta?.kanjiTts === true;
+  const defaultTextFor = (item) => defaultClipText(item, languageCode, { kanjiTts });
 
   // Excluded cards are dropped from the deck at build time (src/deck/index.js), so don't spend TTS on
   // them here — and clear any `audio` they carry so the review shows no player and nothing lingers.
@@ -283,8 +315,16 @@ export async function generateAudio(
       if (handPicked(item)) {
         return item;
       }
-      const clip = fetchedFiles.get(defaultTextFor(item));
+      const text = defaultTextFor(item);
+      const clip = fetchedFiles.get(text);
       const next = { ...item, audio: clip.audio, audioAuto: clip.audio };
+      // What this clip actually says, recorded rather than inferred. The filename already encodes it,
+      // but only for the shapes this stage produces — stamping it here is what makes the record hold
+      // for every take a card can later be given. A fresh clip is by definition current, so any
+      // earlier human acceptance of the PREVIOUS clip is dropped with it. See ./textHash.js.
+      next.audioTextHash = hashTerm(text);
+      delete next.audioTextHashAcceptedBy;
+      delete next.audioTextHashAcceptedAt;
       // Recorded so anything that later re-derives this card's takes from its original — a cleanup
       // switch, a re-trim — knows the original still has the marker on the end and strips it too.
       if (usesEndMarker(languageCode)) next.audioMarked = true;

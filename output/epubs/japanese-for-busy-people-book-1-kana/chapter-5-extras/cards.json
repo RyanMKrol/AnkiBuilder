@@ -23,7 +23,8 @@
       "audioAuto": "fd55d629da658756-gen-90342fc6.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "fd55d629da658756-gen-90342fc6.mp3"
+      "audio": "fd55d629da658756-gen-90342fc6.mp3",
+      "audioTextHash": "fd55d629da658756"
     },
     {
       "id": "akai-magukappu-ikura",
@@ -36,7 +37,8 @@
       "audio": "0d6f90dc60db1934.mp3",
       "audioOriginal": "0d6f90dc60db1934.orig.mp3",
       "audioAuto": "0d6f90dc60db1934.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0d6f90dc60db1934"
     },
     {
       "id": "chiizukeeki-appurupai-kudasai",
@@ -51,7 +53,8 @@
       "audioAuto": "46a4d3522a9f2fa6-genkanji-326870ac.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "46a4d3522a9f2fa6-genkanji-326870ac.mp3"
+      "audio": "46a4d3522a9f2fa6-genkanji-326870ac.mp3",
+      "audioTextHash": "46a4d3522a9f2fa6"
     },
     {
       "id": "taoru-o-yonmai-kudasai",
@@ -65,7 +68,8 @@
       "audio": "70cec30005a44aa6.mp3",
       "audioOriginal": "70cec30005a44aa6.orig.mp3",
       "audioAuto": "70cec30005a44aa6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "70cec30005a44aa6"
     },
     {
       "id": "mikan-o-mittsu-kudasai",
@@ -78,7 +82,8 @@
       "audio": "e95ccd7771d8091a.mp3",
       "audioOriginal": "e95ccd7771d8091a.orig.mp3",
       "audioAuto": "e95ccd7771d8091a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e95ccd7771d8091a"
     },
     {
       "id": "ookii-fukuro-o-ichimai",
@@ -94,7 +99,8 @@
       "audioAuto": "d6f4f0db208a2e66-genkanji-95b3d83b.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "d6f4f0db208a2e66-genkanji-95b3d83b.mp3"
+      "audio": "d6f4f0db208a2e66-genkanji-95b3d83b.mp3",
+      "audioTextHash": "d6f4f0db208a2e66"
     },
     {
       "id": "kore-wa-igirisu-no-kaban",
@@ -108,7 +114,8 @@
       "audio": "0ea613cbe01dc514.mp3",
       "audioOriginal": "0ea613cbe01dc514.orig.mp3",
       "audioAuto": "0ea613cbe01dc514.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0ea613cbe01dc514"
     },
     {
       "id": "kono-kuroi-kaban-mo-ichiman",
@@ -122,7 +129,8 @@
       "audio": "2db728f222178092.mp3",
       "audioOriginal": "2db728f222178092.orig.mp3",
       "audioAuto": "2db728f222178092.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2db728f222178092"
     },
     {
       "id": "ookii-soujiki-wa-ikura",
@@ -135,7 +143,8 @@
       "audio": "0acbf3b5f8d38f2f.mp3",
       "audioOriginal": "0acbf3b5f8d38f2f.orig.mp3",
       "audioAuto": "0acbf3b5f8d38f2f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0acbf3b5f8d38f2f"
     },
     {
       "id": "ringo-wa-hyaku-en",
@@ -150,7 +159,8 @@
       "audio": "27b0477bfdac2979.mp3",
       "audioOriginal": "27b0477bfdac2979.orig.mp3",
       "audioAuto": "27b0477bfdac2979.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "27b0477bfdac2979"
     },
     {
       "id": "itaria-no-kutsu-ja-arimasen",
@@ -164,7 +174,8 @@
       "audio": "3287ae1b9cdd3258.mp3",
       "audioOriginal": "3287ae1b9cdd3258.orig.mp3",
       "audioAuto": "3287ae1b9cdd3258.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3287ae1b9cdd3258"
     },
     {
       "id": "biiru-ippon-to-wain-nihon",
@@ -179,7 +190,8 @@
       "audio": "41946d3e15d97651.mp3",
       "audioOriginal": "41946d3e15d97651.orig.mp3",
       "audioAuto": "41946d3e15d97651.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "41946d3e15d97651"
     },
     {
       "id": "kamera-wa-yonkai-desu-ka",
@@ -194,7 +206,8 @@
       "audio": "5cdf5ba806cc1a31.mp3",
       "audioOriginal": "5cdf5ba806cc1a31.orig.mp3",
       "audioAuto": "5cdf5ba806cc1a31.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5cdf5ba806cc1a31"
     },
     {
       "id": "biiru-o-sanbon-kudasai",
@@ -209,7 +222,8 @@
       "audio": "d4a38dfb0b60318e.mp3",
       "audioOriginal": "d4a38dfb0b60318e.orig.mp3",
       "audioAuto": "d4a38dfb0b60318e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d4a38dfb0b60318e"
     },
     {
       "id": "iie-suisu-no-ja-arimasen",
@@ -224,7 +238,8 @@
       "audioOriginal": "48c2854a628f9a4b.orig.mp3",
       "audioAuto": "48c2854a628f9a4b.mp3",
       "audioMarked": true,
-      "scene": "answering whether the watch is Swiss"
+      "scene": "answering whether the watch is Swiss",
+      "audioTextHash": "48c2854a628f9a4b"
     },
     {
       "id": "fukuro-mo-ni-mai-kudasai",
@@ -239,7 +254,8 @@
       "audio": "7304fe2706692edf.mp3",
       "audioOriginal": "7304fe2706692edf.orig.mp3",
       "audioAuto": "7304fe2706692edf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7304fe2706692edf"
     },
     {
       "id": "hai-sore-mo-nihon-no",
@@ -254,7 +270,8 @@
       "audioOriginal": "c19b68de8017e2be.orig.mp3",
       "audioAuto": "c19b68de8017e2be.mp3",
       "audioMarked": true,
-      "scene": "answering whether the large camera is also Japanese"
+      "scene": "answering whether the large camera is also Japanese",
+      "audioTextHash": "c19b68de8017e2be"
     },
     {
       "id": "nisen-roppyaku-en-desu",
@@ -269,7 +286,8 @@
       "audioOriginal": "093d5cbf28562770.orig.mp3",
       "audioAuto": "093d5cbf28562770.mp3",
       "audioMarked": true,
-      "scene": "answering how much the wine costs"
+      "scene": "answering how much the wine costs",
+      "audioTextHash": "093d5cbf28562770"
     },
     {
       "id": "sono-kamera-wa-amerika-no",
@@ -283,7 +301,8 @@
       "audio": "2c7b991724179333.mp3",
       "audioOriginal": "2c7b991724179333.orig.mp3",
       "audioAuto": "2c7b991724179333.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2c7b991724179333"
     },
     {
       "id": "ookii-kamera-mo-nihon-no-ka",
@@ -296,7 +315,8 @@
       "audio": "03ddbf2ddbecdb35.mp3",
       "audioOriginal": "03ddbf2ddbecdb35.orig.mp3",
       "audioAuto": "03ddbf2ddbecdb35.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "03ddbf2ddbecdb35"
     },
     {
       "id": "otearai-doko-desu-ka",
@@ -309,7 +329,8 @@
       "audio": "db52da8ab7a09810.mp3",
       "audioOriginal": "db52da8ab7a09810.orig.mp3",
       "audioAuto": "db52da8ab7a09810.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "db52da8ab7a09810"
     },
     {
       "id": "sono-wain-doko-no",
@@ -323,7 +344,8 @@
       "audio": "c2c3001b8b954c1f.mp3",
       "audioOriginal": "c2c3001b8b954c1f.orig.mp3",
       "audioAuto": "c2c3001b8b954c1f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c2c3001b8b954c1f"
     },
     {
       "id": "kore-wa-watashi-no-kaban",
@@ -337,7 +359,8 @@
       "audio": "0398169717029426.mp3",
       "audioOriginal": "0398169717029426.orig.mp3",
       "audioAuto": "0398169717029426.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0398169717029426"
     },
     {
       "id": "ano-aoi-tshirt-desu",
@@ -351,7 +374,8 @@
       "audioOriginal": "a754d2c79d8b6143.orig.mp3",
       "audioAuto": "a754d2c79d8b6143.mp3",
       "audioMarked": true,
-      "scene": "answering which T-shirt you mean"
+      "scene": "answering which T-shirt you mean",
+      "audioTextHash": "a754d2c79d8b6143"
     },
     {
       "id": "kore-wa-doko-no-biiru-ka",
@@ -364,7 +388,8 @@
       "audio": "f70b7261e5df2e10.mp3",
       "audioOriginal": "f70b7261e5df2e10.orig.mp3",
       "audioAuto": "f70b7261e5df2e10.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f70b7261e5df2e10"
     },
     {
       "id": "dore-desu-ka",
@@ -378,7 +403,8 @@
       "audio": "f22b8737e632dd29.mp3",
       "audioOriginal": "f22b8737e632dd29.orig.mp3",
       "audioAuto": "f22b8737e632dd29.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f22b8737e632dd29"
     },
     {
       "id": "akai-ringo-o-itsutsu",
@@ -391,7 +417,8 @@
       "audio": "42ce599f4d0112c3.mp3",
       "audioOriginal": "42ce599f4d0112c3.orig.mp3",
       "audioAuto": "42ce599f4d0112c3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "42ce599f4d0112c3"
     },
     {
       "id": "ikura-desu-ka",
@@ -416,7 +443,8 @@
       "audioOriginal": "0aa43a7b0b4a292e.orig.mp3",
       "audioAuto": "0aa43a7b0b4a292e.mp3",
       "audioMarked": true,
-      "scene": "answering where the wine is from"
+      "scene": "answering where the wine is from",
+      "audioTextHash": "0aa43a7b0b4a292e"
     },
     {
       "id": "koppu-futatsu-to-osara-sanmai",
@@ -431,7 +459,8 @@
       "audio": "bea749c9324aa3a6.mp3",
       "audioOriginal": "bea749c9324aa3a6.orig.mp3",
       "audioAuto": "bea749c9324aa3a6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bea749c9324aa3a6"
     },
     {
       "id": "ano-kamera-wa-doko-no",
@@ -445,7 +474,8 @@
       "audio": "4f41e032dab73433.mp3",
       "audioOriginal": "4f41e032dab73433.orig.mp3",
       "audioAuto": "4f41e032dab73433.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4f41e032dab73433"
     },
     {
       "id": "shiroi-sara-mo-sen-en-ka",
@@ -460,7 +490,8 @@
       "audio": "2d5934b35fc04cc9.mp3",
       "audioOriginal": "2d5934b35fc04cc9.orig.mp3",
       "audioAuto": "2d5934b35fc04cc9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2d5934b35fc04cc9"
     },
     {
       "id": "kore-wa-itaria-no-kutsu",
@@ -474,7 +505,8 @@
       "audio": "a5dde77236191921.mp3",
       "audioOriginal": "a5dde77236191921.orig.mp3",
       "audioAuto": "a5dde77236191921.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a5dde77236191921"
     },
     {
       "id": "sore-wa-itaria-no-kutsu-ka",
@@ -488,7 +520,8 @@
       "audio": "7755b95a3a27ea02.mp3",
       "audioOriginal": "7755b95a3a27ea02.orig.mp3",
       "audioAuto": "7755b95a3a27ea02.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7755b95a3a27ea02"
     },
     {
       "id": "sanman-en-desu",
@@ -503,7 +536,8 @@
       "audioOriginal": "a3e50970972cd433.orig.mp3",
       "audioAuto": "a3e50970972cd433.mp3",
       "audioMarked": true,
-      "scene": "answering how much the large vacuum cleaner costs"
+      "scene": "answering how much the large vacuum cleaner costs",
+      "audioTextHash": "a3e50970972cd433"
     },
     {
       "id": "kono-kamera-wa-nihon-no",
@@ -518,7 +552,8 @@
       "audioAuto": "7557e91a8c84960c-gen-13d4540d.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "7557e91a8c84960c-gen-13d4540d.mp3"
+      "audio": "7557e91a8c84960c-gen-13d4540d.mp3",
+      "audioTextHash": "7557e91a8c84960c"
     },
     {
       "id": "kore-wa-suisu-no-tokei-ka",
@@ -532,7 +567,8 @@
       "audio": "cc2e6b11825cef84.mp3",
       "audioOriginal": "cc2e6b11825cef84.orig.mp3",
       "audioAuto": "cc2e6b11825cef84.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cc2e6b11825cef84"
     },
     {
       "id": "chiisai-koppu-o-yattsu",
@@ -545,7 +581,8 @@
       "audio": "3fc30a336daa4089.mp3",
       "audioOriginal": "3fc30a336daa4089.orig.mp3",
       "audioAuto": "3fc30a336daa4089.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3fc30a336daa4089"
     },
     {
       "id": "mikan-mo-hyaku-en",
@@ -560,7 +597,8 @@
       "audio": "ddba9d0d06115f99.mp3",
       "audioOriginal": "ddba9d0d06115f99.orig.mp3",
       "audioAuto": "ddba9d0d06115f99.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ddba9d0d06115f99"
     },
     {
       "id": "iie-rokkai-desu",
@@ -575,7 +613,8 @@
       "audioOriginal": "bf9c375c938907b4.orig.mp3",
       "audioAuto": "bf9c375c938907b4.mp3",
       "audioMarked": true,
-      "scene": "answering whether the cameras are on the fourth floor"
+      "scene": "answering whether the cameras are on the fourth floor",
+      "audioTextHash": "bf9c375c938907b4"
     },
     {
       "id": "mikan-o-too-kudasai",
@@ -589,7 +628,8 @@
       "audio": "5b998e4e53f8162d.mp3",
       "audioOriginal": "5b998e4e53f8162d.orig.mp3",
       "audioAuto": "5b998e4e53f8162d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5b998e4e53f8162d"
     },
     {
       "id": "akawain-o-ippon-kudasai",
@@ -604,7 +644,8 @@
       "audio": "b8794d19d552860f.mp3",
       "audioOriginal": "b8794d19d552860f.orig.mp3",
       "audioAuto": "b8794d19d552860f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b8794d19d552860f"
     },
     {
       "id": "hai-sore-mo-ichiman",
@@ -620,7 +661,8 @@
       "audioOriginal": "d04396e344580c92.orig.mp3",
       "audioAuto": "d04396e344580c92.mp3",
       "audioMarked": true,
-      "scene": "answering whether the black bag costs the same"
+      "scene": "answering whether the black bag costs the same",
+      "audioTextHash": "d04396e344580c92"
     },
     {
       "id": "wain-shoppu-wa-ikkai-ja-arimasen",
@@ -635,7 +677,8 @@
       "audio": "bf84905575d57698.mp3",
       "audioOriginal": "bf84905575d57698.orig.mp3",
       "audioAuto": "bf84905575d57698.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bf84905575d57698"
     },
     {
       "id": "shiroi-tshirt-o-nimai",
@@ -649,7 +692,8 @@
       "audio": "d64fbe0e13d0acda.mp3",
       "audioOriginal": "d64fbe0e13d0acda.orig.mp3",
       "audioAuto": "d64fbe0e13d0acda.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d64fbe0e13d0acda"
     },
     {
       "id": "osara-wa-achira-desu",
@@ -663,7 +707,8 @@
       "audio": "e43b635ec89d3108.mp3",
       "audioOriginal": "e43b635ec89d3108.orig.mp3",
       "audioAuto": "e43b635ec89d3108.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e43b635ec89d3108"
     },
     {
       "id": "oosutoraria-no-gyuuniku",
@@ -676,7 +721,8 @@
       "audio": "d57d392e152b4338.mp3",
       "audioOriginal": "d57d392e152b4338.orig.mp3",
       "audioAuto": "d57d392e152b4338.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d57d392e152b4338"
     },
     {
       "id": "iie-kyuuhyaku-en-desu",
@@ -691,7 +737,8 @@
       "audioOriginal": "7e0d04a031a62dfc.orig.mp3",
       "audioAuto": "7e0d04a031a62dfc.mp3",
       "audioMarked": true,
-      "scene": "answering whether the white plate costs the same as the other one"
+      "scene": "answering whether the white plate costs the same as the other one",
+      "audioTextHash": "7e0d04a031a62dfc"
     },
     {
       "id": "ja-sore-o-nihon-kudasai",
@@ -707,7 +754,8 @@
       "audioOriginal": "bde859504ab8979d.orig.mp3",
       "audioAuto": "bde859504ab8979d.mp3",
       "audioMarked": true,
-      "scene": "the wine is already under discussion, so it is not named"
+      "scene": "the wine is already under discussion, so it is not named",
+      "audioTextHash": "bde859504ab8979d"
     },
     {
       "id": "iie-doitsu-no-desu",
@@ -721,7 +769,8 @@
       "audioOriginal": "2d7eea55ff1a6b62.orig.mp3",
       "audioAuto": "2d7eea55ff1a6b62.mp3",
       "audioMarked": true,
-      "scene": "answering whether the shoes are Italian"
+      "scene": "answering whether the shoes are Italian",
+      "audioTextHash": "2d7eea55ff1a6b62"
     },
     {
       "id": "kutsu-wa-nikai-desu",
@@ -736,7 +785,8 @@
       "audioAuto": "dc0c7e5527414c28-genkanji-8a7c7581.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "dc0c7e5527414c28-genkanji-8a7c7581.mp3"
+      "audio": "dc0c7e5527414c28-genkanji-8a7c7581.mp3",
+      "audioTextHash": "dc0c7e5527414c28"
     },
     {
       "id": "aoi-tshirt-o-misete-kudasai",
@@ -751,7 +801,8 @@
       "audioAuto": "56522bd58035159d-genkanji-bcdf04b9.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "56522bd58035159d-genkanji-bcdf04b9.mp3"
+      "audio": "56522bd58035159d-genkanji-bcdf04b9.mp3",
+      "audioTextHash": "56522bd58035159d"
     },
     {
       "id": "ookii-koppu-happyaku-en",
@@ -766,7 +817,8 @@
       "audio": "c570efdaf32fcd7a.mp3",
       "audioOriginal": "c570efdaf32fcd7a.orig.mp3",
       "audioAuto": "c570efdaf32fcd7a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c570efdaf32fcd7a"
     },
     {
       "id": "chiizu-to-wain-furansu-no",
@@ -780,7 +832,8 @@
       "audio": "b5e216ff3ff43df2.mp3",
       "audioOriginal": "b5e216ff3ff43df2.orig.mp3",
       "audioAuto": "b5e216ff3ff43df2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b5e216ff3ff43df2"
     },
     {
       "id": "chiisai-koppu-gohyaku-en",
@@ -795,7 +848,8 @@
       "audio": "5f31d31e16fc2deb.mp3",
       "audioOriginal": "5f31d31e16fc2deb.orig.mp3",
       "audioAuto": "5f31d31e16fc2deb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5f31d31e16fc2deb"
     },
     {
       "id": "infomeeshon-wa-ikkai",
@@ -810,7 +864,8 @@
       "audio": "43e2a83cd2f365c7.mp3",
       "audioOriginal": "43e2a83cd2f365c7.orig.mp3",
       "audioAuto": "43e2a83cd2f365c7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "43e2a83cd2f365c7"
     }
   ]
 }

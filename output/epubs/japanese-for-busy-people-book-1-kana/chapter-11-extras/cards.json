@@ -22,7 +22,8 @@
       "audio": "9789547e93205ba9.mp3",
       "audioOriginal": "9789547e93205ba9.orig.mp3",
       "audioAuto": "9789547e93205ba9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9789547e93205ba9"
     },
     {
       "id": "f11-kono-hon-wa-tsumaranakunai-desu",
@@ -36,7 +37,8 @@
       "audio": "9640ec48f6e2f764.mp3",
       "audioOriginal": "9640ec48f6e2f764.orig.mp3",
       "audioAuto": "9640ec48f6e2f764.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9640ec48f6e2f764"
     },
     {
       "id": "f11-tesuto-wa-muzukashikunai-desu",
@@ -49,7 +51,8 @@
       "audio": "fc52fc7ba4381283.mp3",
       "audioOriginal": "fc52fc7ba4381283.orig.mp3",
       "audioAuto": "fc52fc7ba4381283.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fc52fc7ba4381283"
     },
     {
       "id": "ex11-kinou-wa-atsukatta-desu-ga-kyou-wa-suzushii-desu",
@@ -62,7 +65,8 @@
       "audio": "19cddff0e03cb71a.mp3",
       "audioOriginal": "19cddff0e03cb71a.orig.mp3",
       "audioAuto": "19cddff0e03cb71a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "19cddff0e03cb71a"
     },
     {
       "id": "ex11-kinou-no-omatsuri-wa-kirei-deshita",
@@ -75,7 +79,8 @@
       "audio": "bd4fdb96e854295e.mp3",
       "audioOriginal": "bd4fdb96e854295e.orig.mp3",
       "audioAuto": "bd4fdb96e854295e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bd4fdb96e854295e"
     },
     {
       "id": "ex11-paatii-wa-dou-deshita-ka",
@@ -88,7 +93,8 @@
       "audio": "39012bc0122a800c.mp3",
       "audioOriginal": "39012bc0122a800c.orig.mp3",
       "audioAuto": "39012bc0122a800c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "39012bc0122a800c"
     },
     {
       "id": "ex11-totemo-tanoshikatta-desu",
@@ -102,7 +108,8 @@
       "audio": "087ca8d368c6a263.mp3",
       "audioOriginal": "087ca8d368c6a263.orig.mp3",
       "audioAuto": "087ca8d368c6a263.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "087ca8d368c6a263"
     },
     {
       "id": "ex11-shuumatsu-ni-hakone-ni-ikimashita",
@@ -116,7 +123,8 @@
       "audioAuto": "2590074548ac7c83-genkanji-bfa21554.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "2590074548ac7c83-genkanji-bfa21554.mp3"
+      "audio": "2590074548ac7c83-genkanji-bfa21554.mp3",
+      "audioTextHash": "2590074548ac7c83"
     },
     {
       "id": "ex11-hachijikan-gurai-arukimashita",
@@ -130,7 +138,8 @@
       "audio": "8d47675ce664875e.mp3",
       "audioOriginal": "8d47675ce664875e.orig.mp3",
       "audioAuto": "8d47675ce664875e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8d47675ce664875e"
     },
     {
       "id": "ex11-sumisu-san-kinou-wa-omiyage-o-arigatou-gozaimashita",
@@ -143,7 +152,8 @@
       "audio": "81488743574dbbbd.mp3",
       "audioOriginal": "81488743574dbbbd.orig.mp3",
       "audioAuto": "81488743574dbbbd.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "81488743574dbbbd"
     },
     {
       "id": "f11-kono-hon-wa-tsumaranai-desu",
@@ -157,7 +167,8 @@
       "audio": "cc9494e6df375238.mp3",
       "audioOriginal": "cc9494e6df375238.orig.mp3",
       "audioAuto": "cc9494e6df375238.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cc9494e6df375238"
     },
     {
       "id": "ex11-hai-yasukatta-desu",
@@ -171,7 +182,8 @@
       "audio": "a5b49005bc6c6e71.mp3",
       "audioOriginal": "a5b49005bc6c6e71.orig.mp3",
       "audioAuto": "a5b49005bc6c6e71.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a5b49005bc6c6e71"
     },
     {
       "id": "fib-paatii-wa-nigiyaka-ja-arimasen-deshita",
@@ -198,7 +210,8 @@
       "audio": "033dc4b23bf5fd4b.mp3",
       "audioOriginal": "033dc4b23bf5fd4b.orig.mp3",
       "audioAuto": "033dc4b23bf5fd4b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "033dc4b23bf5fd4b"
     },
     {
       "id": "ex11-totemo-kirei-deshita",
@@ -212,7 +225,8 @@
       "audio": "3be712a2a526a1cd.mp3",
       "audioOriginal": "3be712a2a526a1cd.orig.mp3",
       "audioAuto": "3be712a2a526a1cd.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3be712a2a526a1cd"
     },
     {
       "id": "f11-kono-hon-wa-tsumaranakunakatta-desu",
@@ -225,7 +239,8 @@
       "audio": "17604fc365a119d2.mp3",
       "audioOriginal": "17604fc365a119d2.orig.mp3",
       "audioAuto": "17604fc365a119d2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "17604fc365a119d2"
     },
     {
       "id": "f11-nihongo-wa-kantan-ja-arimasen",
@@ -239,7 +254,8 @@
       "audio": "6cf8f6aa1c972621.mp3",
       "audioOriginal": "6cf8f6aa1c972621.orig.mp3",
       "audioAuto": "6cf8f6aa1c972621.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6cf8f6aa1c972621"
     },
     {
       "id": "ex11-totemo-oishikatta-desu",
@@ -253,7 +269,8 @@
       "audio": "ca9682082496fcb1.mp3",
       "audioOriginal": "ca9682082496fcb1.orig.mp3",
       "audioAuto": "ca9682082496fcb1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ca9682082496fcb1"
     },
     {
       "id": "fib-dono-kurai-benkyou-o-shimashita-ka",
@@ -279,7 +296,8 @@
       "audio": "aa856e21723b17fd.mp3",
       "audioOriginal": "aa856e21723b17fd.orig.mp3",
       "audioAuto": "aa856e21723b17fd.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "aa856e21723b17fd"
     },
     {
       "id": "p11-sanjuppun-gurai-machimashita",
@@ -294,7 +312,8 @@
       "audio": "7441e1a722e43617.mp3",
       "audioOriginal": "7441e1a722e43617.orig.mp3",
       "audioAuto": "7441e1a722e43617.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7441e1a722e43617"
     },
     {
       "id": "ex11-kinou-wa-hima-deshita-ga-kyou-wa-isogashii-desu",
@@ -307,7 +326,8 @@
       "audio": "ab378906ab3fa83b.mp3",
       "audioOriginal": "ab378906ab3fa83b.orig.mp3",
       "audioAuto": "ab378906ab3fa83b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ab378906ab3fa83b"
     },
     {
       "id": "ex11-taihen-deshita-ga-tanoshikatta-desu",
@@ -320,7 +340,8 @@
       "audio": "3f7814580d5f2df7.mp3",
       "audioOriginal": "3f7814580d5f2df7.orig.mp3",
       "audioAuto": "3f7814580d5f2df7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3f7814580d5f2df7"
     },
     {
       "id": "ex11-hontou-ni-kirei-desu-ne",
@@ -334,7 +355,8 @@
       "audio": "db01692f57df34a4.mp3",
       "audioOriginal": "db01692f57df34a4.orig.mp3",
       "audioAuto": "db01692f57df34a4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "db01692f57df34a4"
     },
     {
       "id": "f11-shutchou-wa-taihen-desu",
@@ -347,7 +369,8 @@
       "audio": "0036db02e822b361.mp3",
       "audioOriginal": "0036db02e822b361.orig.mp3",
       "audioAuto": "0036db02e822b361.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0036db02e822b361"
     },
     {
       "id": "ex11-kore-hakone-no-omiyage-desu",
@@ -361,7 +384,8 @@
       "audio": "9bd65f8e791e1fa2.mp3",
       "audioOriginal": "9bd65f8e791e1fa2.orig.mp3",
       "audioAuto": "9bd65f8e791e1fa2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9bd65f8e791e1fa2"
     },
     {
       "id": "f11-shutchou-wa-taihen-ja-arimasen-deshita",
@@ -375,7 +399,8 @@
       "audio": "09e41583298ba7f2.mp3",
       "audioOriginal": "09e41583298ba7f2.orig.mp3",
       "audioAuto": "09e41583298ba7f2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "09e41583298ba7f2"
     },
     {
       "id": "f11-suteeki-wa-oishikunakatta-desu",
@@ -388,7 +413,8 @@
       "audio": "1f7b31a33abe4912.mp3",
       "audioOriginal": "1f7b31a33abe4912.orig.mp3",
       "audioAuto": "1f7b31a33abe4912.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1f7b31a33abe4912"
     },
     {
       "id": "fib-senshu-kyouto-ni-ikimashita",
@@ -414,7 +440,8 @@
       "audio": "be07aa58c499f5ac.mp3",
       "audioOriginal": "be07aa58c499f5ac.orig.mp3",
       "audioAuto": "be07aa58c499f5ac.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "be07aa58c499f5ac"
     },
     {
       "id": "f11-shutchou-wa-taihen-ja-arimasen",
@@ -427,7 +454,8 @@
       "audio": "4ca25bdbdff011ee.mp3",
       "audioOriginal": "4ca25bdbdff011ee.orig.mp3",
       "audioAuto": "4ca25bdbdff011ee.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4ca25bdbdff011ee"
     },
     {
       "id": "p11-dono-kurai-machimashita-ka",
@@ -440,7 +468,8 @@
       "audio": "b3acd4b60b4c0df7.mp3",
       "audioOriginal": "b3acd4b60b4c0df7.orig.mp3",
       "audioAuto": "b3acd4b60b4c0df7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b3acd4b60b4c0df7"
     },
     {
       "id": "ex11-watashitachi-mo-tanoshikatta-desu",
@@ -454,7 +483,8 @@
       "audio": "3c33e9e1e9ec15b5.mp3",
       "audioOriginal": "3c33e9e1e9ec15b5.orig.mp3",
       "audioAuto": "3c33e9e1e9ec15b5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3c33e9e1e9ec15b5"
     },
     {
       "id": "fib-kyouto-de-osushi-o-tabemashita",
@@ -469,7 +499,8 @@
       "audio": "0f32c12d5e8d3f04.mp3",
       "audioOriginal": "0f32c12d5e8d3f04.orig.mp3",
       "audioAuto": "0f32c12d5e8d3f04.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0f32c12d5e8d3f04"
     },
     {
       "id": "ex11-gohyakunin-gurai",
@@ -483,7 +514,8 @@
       "audio": "b2df97067da11231.mp3",
       "audioOriginal": "b2df97067da11231.orig.mp3",
       "audioAuto": "b2df97067da11231.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b2df97067da11231"
     },
     {
       "id": "ex11-hakone-wa-dou-deshita-ka",
@@ -496,7 +528,8 @@
       "audio": "c5db8b811e8b9f03.mp3",
       "audioOriginal": "c5db8b811e8b9f03.orig.mp3",
       "audioAuto": "c5db8b811e8b9f03.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c5db8b811e8b9f03"
     },
     {
       "id": "ex11-kinou-no-omatsuri-wa-kirei-ja-arimasen-deshita",
@@ -509,7 +542,8 @@
       "audio": "a9a6e09b0299292a.mp3",
       "audioOriginal": "a9a6e09b0299292a.orig.mp3",
       "audioAuto": "a9a6e09b0299292a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a9a6e09b0299292a"
     },
     {
       "id": "ex11-shashin-o-torimashita-ka",
@@ -522,7 +556,8 @@
       "audio": "c6c5689d7e5b8fe8.mp3",
       "audioOriginal": "c6c5689d7e5b8fe8.orig.mp3",
       "audioAuto": "c6c5689d7e5b8fe8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c6c5689d7e5b8fe8"
     },
     {
       "id": "fib-nijikan-gurai-benkyou-o-shimashita",
@@ -550,7 +585,8 @@
       "audio": "f62d2cad4058031c.mp3",
       "audioOriginal": "f62d2cad4058031c.orig.mp3",
       "audioAuto": "f62d2cad4058031c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f62d2cad4058031c"
     },
     {
       "id": "ex11-kinou-wa-atsukatta-desu",
@@ -563,7 +599,8 @@
       "audio": "79577de04662daef.mp3",
       "audioOriginal": "79577de04662daef.orig.mp3",
       "audioAuto": "79577de04662daef.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "79577de04662daef"
     },
     {
       "id": "f11-shigoto-wa-tanoshii-desu",
@@ -576,7 +613,8 @@
       "audio": "862d100ed08007b1.mp3",
       "audioOriginal": "862d100ed08007b1.orig.mp3",
       "audioAuto": "862d100ed08007b1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "862d100ed08007b1"
     },
     {
       "id": "f11-rondon-wa-atsukunakatta-desu",
@@ -590,7 +628,8 @@
       "audio": "084e3f6e4c3d33ac.mp3",
       "audioOriginal": "084e3f6e4c3d33ac.orig.mp3",
       "audioAuto": "084e3f6e4c3d33ac.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "084e3f6e4c3d33ac"
     },
     {
       "id": "fib-iie-muzukashikunakatta-desu",
@@ -616,7 +655,8 @@
       "audio": "8949f3ec38737849.mp3",
       "audioOriginal": "8949f3ec38737849.orig.mp3",
       "audioAuto": "8949f3ec38737849.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8949f3ec38737849"
     },
     {
       "id": "f11-tesuto-wa-muzukashii-desu",
@@ -629,7 +669,8 @@
       "audio": "ca871c4d367fdddb.mp3",
       "audioOriginal": "ca871c4d367fdddb.orig.mp3",
       "audioAuto": "ca871c4d367fdddb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ca871c4d367fdddb"
     },
     {
       "id": "ex11-dono-kurai-arukimashita-ka",
@@ -642,7 +683,8 @@
       "audio": "d877fc2f65191e4a.mp3",
       "audioOriginal": "d877fc2f65191e4a.orig.mp3",
       "audioAuto": "d877fc2f65191e4a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d877fc2f65191e4a"
     },
     {
       "id": "v11-sou-desu-ka-yokatta-desu",
@@ -657,7 +699,8 @@
       "audio": "ed42fcea658bddbc.mp3",
       "audioOriginal": "ed42fcea658bddbc.orig.mp3",
       "audioAuto": "ed42fcea658bddbc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ed42fcea658bddbc"
     },
     {
       "id": "ex11-iie-omoshirokunakatta-desu",
@@ -671,7 +714,8 @@
       "audio": "0e46588c3aa9f3b4.mp3",
       "audioOriginal": "0e46588c3aa9f3b4.orig.mp3",
       "audioAuto": "0e46588c3aa9f3b4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0e46588c3aa9f3b4"
     },
     {
       "id": "ex11-hai-omoshirokatta-desu",
@@ -685,7 +729,8 @@
       "audio": "30c4c67a77b09cf6.mp3",
       "audioOriginal": "30c4c67a77b09cf6.orig.mp3",
       "audioAuto": "30c4c67a77b09cf6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "30c4c67a77b09cf6"
     },
     {
       "id": "p11-sono-kaban-wa-ichiman-en-gurai-deshita",
@@ -699,7 +744,8 @@
       "audio": "a36019e896a9a49c.mp3",
       "audioOriginal": "a36019e896a9a49c.orig.mp3",
       "audioAuto": "a36019e896a9a49c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a36019e896a9a49c"
     },
     {
       "id": "f11-chichi-wa-isogashikunakatta-desu",
@@ -713,7 +759,8 @@
       "audioAuto": "2a3d1ff8bf9920d1-genkanji-16d100d9.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "2a3d1ff8bf9920d1-genkanji-16d100d9.mp3"
+      "audio": "2a3d1ff8bf9920d1-genkanji-16d100d9.mp3",
+      "audioTextHash": "2a3d1ff8bf9920d1"
     },
     {
       "id": "ex11-ema-san-wa-shashin-o-misemashita",
@@ -726,7 +773,8 @@
       "audio": "156d96ff5715c1f2.mp3",
       "audioOriginal": "156d96ff5715c1f2.orig.mp3",
       "audioAuto": "156d96ff5715c1f2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "156d96ff5715c1f2"
     },
     {
       "id": "fib-paatii-ni-gohyakunin-gurai-kimashita",
@@ -742,7 +790,8 @@
       "audio": "d74b9b972b782d45.mp3",
       "audioOriginal": "d74b9b972b782d45.orig.mp3",
       "audioAuto": "d74b9b972b782d45.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d74b9b972b782d45"
     },
     {
       "id": "ex11-kinou-wa-atatakakatta-desu-ga-kyou-wa-samui-desu",
@@ -755,7 +804,8 @@
       "audio": "98510458f7c1320c.mp3",
       "audioOriginal": "98510458f7c1320c.orig.mp3",
       "audioAuto": "98510458f7c1320c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "98510458f7c1320c"
     },
     {
       "id": "f11-chichi-wa-isogashikunai-desu",
@@ -769,7 +819,8 @@
       "audioAuto": "63074c84261f618e-genkanji-302f9e27.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "63074c84261f618e-genkanji-302f9e27.mp3"
+      "audio": "63074c84261f618e-genkanji-302f9e27.mp3",
+      "audioTextHash": "63074c84261f618e"
     },
     {
       "id": "ex11-amari-kantan-ja-arimasen-deshita",
@@ -783,7 +834,8 @@
       "audio": "a1c575ef67f49772.mp3",
       "audioOriginal": "a1c575ef67f49772.orig.mp3",
       "audioAuto": "a1c575ef67f49772.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a1c575ef67f49772"
     },
     {
       "id": "f11-shuumatsu-wa-hima-ja-arimasen-deshita",
@@ -796,7 +848,8 @@
       "audio": "a6fcdea87e4ad967.mp3",
       "audioOriginal": "a6fcdea87e4ad967.orig.mp3",
       "audioAuto": "a6fcdea87e4ad967.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a6fcdea87e4ad967"
     },
     {
       "id": "ex11-kinou-no-deeto-wa-yokunakatta-desu",
@@ -809,7 +862,8 @@
       "audio": "54604d9c73cc6f0a.mp3",
       "audioOriginal": "54604d9c73cc6f0a.orig.mp3",
       "audioAuto": "54604d9c73cc6f0a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "54604d9c73cc6f0a"
     },
     {
       "id": "f11-nihongo-wa-kantan-desu",
@@ -822,7 +876,8 @@
       "audio": "a275b95f18dcd2e2.mp3",
       "audioOriginal": "a275b95f18dcd2e2.orig.mp3",
       "audioAuto": "a275b95f18dcd2e2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a275b95f18dcd2e2"
     },
     {
       "id": "ex11-amari-yokunakatta-desu",
@@ -836,7 +891,8 @@
       "audio": "7712a61d54bd9bd9.mp3",
       "audioOriginal": "7712a61d54bd9bd9.orig.mp3",
       "audioAuto": "7712a61d54bd9bd9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7712a61d54bd9bd9"
     },
     {
       "id": "f11-hokkaidou-wa-samukunakatta-desu",
@@ -849,7 +905,8 @@
       "audio": "0da9289b271b1ea8.mp3",
       "audioOriginal": "0da9289b271b1ea8.orig.mp3",
       "audioAuto": "0da9289b271b1ea8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0da9289b271b1ea8"
     },
     {
       "id": "f11-shigoto-wa-tanoshikunai-desu",
@@ -862,7 +919,8 @@
       "audio": "d907e956a0214a16.mp3",
       "audioOriginal": "d907e956a0214a16.orig.mp3",
       "audioAuto": "d907e956a0214a16.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d907e956a0214a16"
     },
     {
       "id": "ex11-iie-yasukunakatta-desu",
@@ -876,7 +934,8 @@
       "audio": "d5aa77189adc819c.mp3",
       "audioOriginal": "d5aa77189adc819c.orig.mp3",
       "audioAuto": "d5aa77189adc819c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d5aa77189adc819c"
     },
     {
       "id": "ex11-kinou-no-deeto-wa-omoshirokunakatta-desu",
@@ -889,7 +948,8 @@
       "audio": "64278d359d2d8538.mp3",
       "audioOriginal": "64278d359d2d8538.orig.mp3",
       "audioAuto": "64278d359d2d8538.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "64278d359d2d8538"
     },
     {
       "id": "f11-shuumatsu-wa-hima-ja-arimasen",
@@ -902,7 +962,8 @@
       "audio": "12709cfa18a62f9b.mp3",
       "audioOriginal": "12709cfa18a62f9b.orig.mp3",
       "audioAuto": "12709cfa18a62f9b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "12709cfa18a62f9b"
     },
     {
       "id": "fib-tesuto-wa-muzukashikatta-desu-ka",

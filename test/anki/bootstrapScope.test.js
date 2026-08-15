@@ -189,13 +189,60 @@ test("the abid index spans units, so one unit's card can match a note tagged in 
   assert.equal(report.added, 0);
 });
 
-test("an add that an untagged note ELSEWHERE in the book could have matched is reported", async () => {
-  // The one window unit-scoping the fingerprint indexes opens: on a first run, an untagged note
-  // sitting under an OLD deck name is in no unit's index, so its card falls through to `add` and
-  // duplicates it. Adding may be correct (targets legitimately repeat across units), so this is a
-  // loud report rather than a refusal — the difference between a decision and an accident.
+test("a note under an OLD deck name is ADOPTED by the second pass, never duplicated", async () => {
+  // The window unit-scoping the fingerprint index opens: on a first run an untagged note sitting
+  // under an old deck name is in no unit's index. Left there it would fall through to addNote and
+  // the learner would get a duplicate beside the matured original. The book-wide second pass runs
+  // after every unit has claimed what it could, and rescues it when the match is unambiguous.
   const notes = [note(1, { target: "はい", english: "Yes" })]; // under a deck no unit claims
   const byDeck = { 'deck:"My Book"': [1], 'deck:"My Book::Lesson 01"': [] };
+  const calls = [];
+  const lines = [];
+  const c = {
+    findNotes: async (q) => byDeck[q.split(" note:")[0]] ?? [],
+    notesInfo: async (ids) => notes.filter((n) => ids.includes(n.noteId)),
+    addNote: async () => calls.push(["addNote"]),
+    addTags: async (ids, tags) => calls.push(["addTags", ids, tags]),
+    updateNoteFields: async (id) => calls.push(["updateNoteFields", id]),
+    storeMediaFile: async () => {},
+  };
+
+  const report = await syncDeckContent(
+    c,
+    deck([
+      {
+        ankiDeck: "My Book::Lesson 01",
+        audioDir: null,
+        cards: [{ id: "yes", target: "はい", english: "Yes", note: "changed" }],
+      },
+    ]),
+    false,
+    { log: (m) => lines.push(m) },
+  );
+
+  assert.equal(report.added, 0, "never duplicated");
+  assert.equal(report.updated, 1);
+  assert.deepEqual(
+    report.adoptedFromElsewhere.map((a) => [a.card, a.noteId]),
+    [["yes", 1]],
+  );
+  assert.ok(!calls.some((c) => c[0] === "addNote"));
+  assert.deepEqual(
+    calls.find((c) => c[0] === "addTags").slice(1),
+    [[1], "abid:yes"],
+    "and stamped, so the next run uses the durable key",
+  );
+  assert.match(lines.join("\n"), /an untagged note under an old deck name/);
+});
+
+test("the rescue refuses to guess: two free candidates book-wide stay an add, and are reported", async () => {
+  // Two untagged notes share the target, both outside every unit's deck. Neither is a unique match,
+  // so the pass adds rather than picking one — and says what it saw.
+  const notes = [
+    note(1, { target: "はい", english: "Yes" }),
+    note(2, { target: "はい", english: "Yeah" }),
+  ];
+  const byDeck = { 'deck:"My Book"': [1, 2], 'deck:"My Book::Lesson 01"': [] };
   const lines = [];
   const c = {
     findNotes: async (q) => byDeck[q.split(" note:")[0]] ?? [],
@@ -212,7 +259,7 @@ test("an add that an untagged note ELSEWHERE in the book could have matched is r
       {
         ankiDeck: "My Book::Lesson 01",
         audioDir: null,
-        cards: [{ id: "yes", target: "はい", english: "Yes" }],
+        cards: [{ id: "yes", target: "はい", english: "Something else entirely" }],
       },
     ]),
     true,
@@ -220,9 +267,10 @@ test("an add that an untagged note ELSEWHERE in the book could have matched is r
   );
 
   assert.equal(report.added, 1);
+  assert.deepEqual(report.adoptedFromElsewhere, []);
   assert.deepEqual(
     report.addsMatchingElsewhere.map((a) => [a.card, a.noteIds]),
-    [["yes", [1]]],
+    [["yes", [1, 2]]],
   );
   assert.match(lines.join("\n"), /same Target already exists elsewhere in this book/);
 });

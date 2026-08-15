@@ -6,6 +6,12 @@
 // adapter's ~40MB kuromoji dictionary. Each adapter module exports a single uniform
 // `async romanize(targetText) => string`, so callers never branch on which library backs a
 // given language — see romanizationEval.js for how this plugs into translation.
+//
+// ⚠️ A LIBRARY HERE IS A CLAIM THAT ITS OUTPUT IS WORTH SHOWING THE MODEL. The prompt hands the
+// library's value over as "a useful starting point" and tells the model to keep it when it is
+// already right, so a library that is systematically wrong does not merely fail to help — it
+// anchors. Arabic and Hebrew were wired in on the strength of the package existing and have been
+// REMOVED for exactly that reason (see below). Only ja / zh / ko have been run end to end.
 export const ROMANIZATION_LIBRARIES = {
   ja: {
     load: () => import("./romanization/ja.js"),
@@ -14,12 +20,30 @@ export const ROMANIZATION_LIBRARIES = {
   zh: { load: () => import("./romanization/zh.js"), library: "pinyin-pro" },
   ko: { load: () => import("./romanization/ko.js"), library: "koroman" },
   ru: { load: () => import("./romanization/cyrillic.js"), library: "cyrillic-to-translit-js" },
-  he: { load: () => import("./romanization/he.js"), library: "hebrew-transliteration" },
+  // Kept, but the library is only half right and the prompt says so: Sanscript's devanagari→IAST is
+  // a SANSKRIT scheme, where every inherent schwa is pronounced. Hindi deletes it, so कमल comes back
+  // as `kamala` for a word that is `kamal`, and a nukta can leak through raw (सड़क → `saḍa़ka`). The
+  // vowels are at least all there, which is what separates this from ar/he; the per-language
+  // schwa-deletion and nukta rules in languageRules.js are what make the output correctable.
   hi: {
     load: () => import("./romanization/indic.js"),
     library: "@indic-transliteration/sanscript",
   },
-  ar: { load: () => import("./romanization/ar.js"), library: "arabic-transliterate" },
+  //
+  // ── ar and he are DELIBERATELY ABSENT ──────────────────────────────────────────────────────────
+  //
+  // Both scripts omit short vowels, and neither library restores them, so both return a consonant
+  // skeleton. Measured: كتاب → `ktab` (kitāb), مدرسة → `mdrsa` (madrasa), بيت → `byt` (bayt);
+  // ספר → `spr` (sefer), שלום → `šlwm` (shalom, with the mater lectionis ו rendered as a consonant
+  // `w`). None of those is a pronunciation guide — a learner reading `ktab` cannot say the word.
+  //
+  // Removing them is not a downgrade: a language with no entry takes the LLM-only pronunciation
+  // path, which is what every other language already does and which can supply the vowels. Leaving
+  // them in was strictly worse than nothing, because the prompt presents the library's value as a
+  // trustworthy starting point and the model was being told to preserve a skeleton.
+  //
+  // The adapters (./romanization/{ar,he}.js) and their tests stay — they are accurate about what
+  // those packages do, and re-wiring is one line here if a vocalizing library ever appears.
 };
 
 /**

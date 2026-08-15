@@ -17,6 +17,7 @@ import {
   trimCardAudio,
   revertCardAudio,
   recleanCardAudio,
+  acceptCardAudioText,
 } from "./adapters/applyCardAudio.js";
 import {
   setCardExcluded,
@@ -136,14 +137,15 @@ export function createDeckServer({
 
   // The page renderers and media routes moved to pages.js / mediaRoutes.js; each
   // factory receives the same injected values the functions used to close over.
-  const { renderDashboard, renderReviewPage, renderDeckPage } = createPageRenderers({
-    outputRoot,
-    adapters,
-    adapterFor,
-    editable,
-    resolveIso639Code,
-    mediaUrl,
-  });
+  const { renderDashboard, renderReviewPage, renderDeckPage, renderFacesPage } =
+    createPageRenderers({
+      outputRoot,
+      adapters,
+      adapterFor,
+      editable,
+      resolveIso639Code,
+      mediaUrl,
+    });
   const { serveFont, serveMedia } = createMediaRoutes({
     outputRoot,
     adapterFor,
@@ -352,6 +354,15 @@ export function createDeckServer({
     sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
   }
 
+  // "Keep this clip for the current text." The one exit from a stale-text badge that does not
+  // destroy a reviewer's hand trim or hand pick — see src/audio/textHash.js. It changes no audio.
+  function handleAcceptText(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    sendJson(res, acceptCardAudioText(runDir, cardId));
+  }
+
   function handleTrimRevert(res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -474,6 +485,9 @@ export function createDeckServer({
         await handleSelect(req, res, type, id, unit, cardId);
         return true;
       }
+      if (seg[8] === "audio" && seg[9] === "accept-text" && seg.length === 10) {
+        return (handleAcceptText(res, type, id, unit, cardId), true);
+      }
       if (seg[8] === "audio" && seg[9] === "clean" && seg.length === 10) {
         await handleClean(req, res, type, id, unit, cardId);
         return true;
@@ -520,6 +534,12 @@ export function createDeckServer({
         }
         if (seg[0] === "review" && (seg.length === 3 || seg.length === 4)) {
           const html = renderReviewPage(seg[1], seg[2], seg[3] ?? null);
+          return html ? sendHtml(res, html) : notFound(res);
+        }
+        // Read-only card-face preview. GET only, no POST counterpart, and untouched by `editable`:
+        // it renders the note type, it never writes it.
+        if (seg[0] === "faces" && (seg.length === 3 || seg.length === 4)) {
+          const html = renderFacesPage(seg[1], seg[2], seg[3] ?? null);
           return html ? sendHtml(res, html) : notFound(res);
         }
         if (seg[0] === "media" && seg.length === 5)

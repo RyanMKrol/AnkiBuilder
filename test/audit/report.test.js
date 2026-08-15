@@ -87,3 +87,39 @@ test("--verbose is what prints the checks that passed", () => {
     cleanup();
   }
 });
+
+// An INFO check that reports "412 cards break the style" and cannot say WHICH is a mood, not a
+// report. The count shows always; the list is one flag away.
+test("INFO findings are counted in the default report and listed under --verbose", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", { items: [card("a")] });
+    const checks = [
+      defineCheck({
+        id: "noisy",
+        title: "noisy",
+        scope: "collection",
+        tier: "INFO",
+        run: () => ({
+          findings: [
+            { key: "x", message: "card x is odd" },
+            { key: "y", message: "card y is odd" },
+          ],
+        }),
+      }),
+    ];
+    const result = audit({ outputRoot: root, checks });
+    const quiet = lines(result);
+    assert.match(quiet, /· noisy\s+2 finding\(s\) \[INFO\]/);
+    assert.doesNotMatch(quiet, /card x is odd/);
+    assert.match(quiet, /2 INFO finding\(s\) not listed — re-run with --verbose/);
+    assert.equal(result.exitCode, 0, "INFO never blocks");
+
+    const loud = lines(result, { verbose: true });
+    assert.match(loud, /card x is odd/);
+    assert.match(loud, /card y is odd/);
+    assert.doesNotMatch(loud, /not listed/);
+  } finally {
+    cleanup();
+  }
+});

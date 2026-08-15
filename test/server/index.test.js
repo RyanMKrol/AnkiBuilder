@@ -294,6 +294,35 @@ test("media supports Range requests (206 with a byte slice)", async () => {
   }
 });
 
+// The card faces are the ONLY surface that shows the reviewer what the note type actually produces,
+// and the review page is where the scene/hint decisions get made — so the link has to be there.
+test("the card-faces route renders both directions and is linked from the review page", async () => {
+  const root = fixture();
+  try {
+    await withServer(root, async (url) => {
+      const res = await fetch(`${url}/faces/book/mybook`);
+      assert.equal(res.status, 200);
+      const html = await res.text();
+      assert.match(html, /Recognition · ord 0/);
+      assert.match(html, /Production · ord 1/);
+      assert.match(html, /<div class="card" data-face="front">/);
+      assert.match(html, /All fronts/);
+
+      const unitScoped = await fetch(`${url}/faces/book/mybook/0`);
+      assert.equal(unitScoped.status, 200);
+
+      const review = await (await fetch(`${url}/review/book/mybook`)).text();
+      assert.match(review, /href="\/faces\/book\/mybook"/);
+
+      assert.equal((await fetch(`${url}/faces/book/nope`)).status, 404);
+      // Read-only: there is no POST counterpart at all.
+      assert.equal((await fetch(`${url}/faces/book/mybook`, { method: "POST" })).status, 404);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("path traversal, unknown routes, and non-GET are rejected", async () => {
   const root = fixture();
   try {
@@ -1684,6 +1713,78 @@ test("Replace and Generate-select both report the new original, and clear a stal
         const card = JSON.parse(readFileSync(cardsPath, "utf-8")).items[0];
         assert.equal("audioManual" in card, false);
         assert.equal("audioTrim" in card, false);
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+// The audio review's only exit from a "text changed" badge. It writes a decision, not a recording:
+// the clip on disk is untouched, and who accepted it and when are on the card afterwards.
+test("keeping a clip for the card's current text records the decision and changes no audio", async () => {
+  const root = fixture();
+  const cardsPath = join(root, "epubs", "mybook", "chapter-0", "cards.json");
+  try {
+    // A clip generated from text the card no longer has: the badge case.
+    const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+    cards.items[0].audioTextHash = "0000000000000000";
+    writeFileSync(cardsPath, JSON.stringify(cards));
+
+    await withServer(
+      root,
+      async (url) => {
+        const before = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.match(
+          before,
+          /class="badge badge-stale"/,
+          "the row is badged before it is accepted",
+        );
+        assert.match(before, /button type="button" class="keep-clip"/);
+
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/a/audio/accept-text`, {
+            method: "POST",
+          }),
+        );
+        assert.equal(res.status, 200);
+        assert.equal(res.body.acceptedBy, "human");
+        assert.match(res.body.audioTextHash, /^[0-9a-f]{16}$/);
+
+        const card = JSON.parse(readFileSync(cardsPath, "utf-8")).items[0];
+        assert.equal(card.audio, "a.mp3", "the clip is exactly the one that was there");
+        assert.equal(card.audioTextHash, res.body.audioTextHash);
+        assert.equal(card.audioTextHashAcceptedBy, "human");
+        assert.match(card.audioTextHashAcceptedAt, /^\d{4}-\d{2}-\d{2}T/);
+
+        const after = await (await fetch(`${url}/review/book/mybook/0`)).text();
+        assert.doesNotMatch(
+          after,
+          /class="badge badge-stale"/,
+          "and the badge is gone on the next render",
+        );
+      },
+      editDeps,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("accepting a card that has no audio says so rather than inventing a hash", async () => {
+  const root = fixture();
+  try {
+    await withServer(
+      root,
+      async (url) => {
+        const res = await asJson(
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/b/audio/accept-text`, {
+            method: "POST",
+          }),
+        );
+        assert.equal(res.status, 422);
+        assert.match(res.body.error, /no audio to accept/);
       },
       editDeps,
     );

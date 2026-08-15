@@ -18,7 +18,7 @@
 //     --allow-template-add
 //                     consent to ADDING a card template to the shared note type. Currently refused
 //                     even with this flag: the live-Anki probes that would say what the write does
-//                     to existing cards have never been run (src/anki/probeEvidence.js). Without
+//                     to existing cards have never been run (src/anki/probeResults.js). Without
 //                     it, a spec template with no live counterpart stops the deliver and tells you
 //                     to add the card type by hand in Anki first.
 //     --allow-bulk-add
@@ -32,6 +32,19 @@
 //     --suspend-orphans
 //                     suspend and tag delivered notes whose card left the corpus, instead of just
 //                     listing them. Same shape: --dry previews, the run waits on the suspend probe.
+//     --suspend-delivered
+//                     also apply a card's `dirSuspended` directions to notes that were ALREADY in
+//                     the collection. Suspending a card the owner has been studying for months
+//                     changes what they see tomorrow, so it is opt-in and must be previewed with
+//                     --dry first. CURRENTLY REFUSED: it is gated on live-Anki behaviour probes
+//                     (what `suspend` does to a card in a filtered deck, and whether housekeeping
+//                     undoes it) that have not been run — passing it prints exactly which.
+//                     Directions on notes THIS run creates are always applied and need no flag:
+//                     a card that has never been studied has no scheduling to disturb.
+//     --re-suspend-human-unsuspended
+//                     the distinct second flag. A card that is unsuspended AND already carries its
+//                     `dir-suspended::<ord>` tag was turned back on by a person; without this flag
+//                     that decision is permanent and is only reported.
 //     type:id         limit to specific decks, e.g. course:nihongo-101-course-n5
 //                     book:japanese-for-busy-people-book-1-kana  (omit → every managed deck)
 // Anki must be open with the AnkiConnect add-on. By default it syncs with AnkiWeb before (pull) and
@@ -49,6 +62,8 @@ const allowTemplateAdd = args.includes("--allow-template-add");
 const allowBulkAdd = args.includes("--allow-bulk-add");
 const refile = args.includes("--refile");
 const suspendOrphans = args.includes("--suspend-orphans");
+const suspendDelivered = args.includes("--suspend-delivered");
+const reSuspendHumanUnsuspended = args.includes("--re-suspend-human-unsuspended");
 const selectorArgs = args.filter((a) => !a.startsWith("--"));
 const selectors = selectorArgs.length
   ? selectorArgs.map((a) => {
@@ -75,6 +90,8 @@ try {
     allowBulkAdd,
     refile,
     suspendOrphans,
+    suspendDelivered,
+    reSuspendHumanUnsuspended,
     sync,
     log: (m) => console.error(`  ${m}`),
   });
@@ -133,6 +150,12 @@ for (const c of report.content) {
   if (c.addedWithoutAudio) line(`     ⚠ ${c.addedWithoutAudio} new card(s) added without audio`);
   for (const a of c.ambiguous) line(`     ⚠ ambiguous (skipped): ${a.card} — "${a.english}"`);
   for (const o of c.orphaned) line(`     ⚠ orphaned in Anki (kept): ${o.card} (note ${o.noteId})`);
+  for (const a of c.adoptedFromElsewhere ?? []) {
+    line(
+      `     matched ${a.card} to note ${a.noteId}, which is NOT in ${a.deck} — adopted (an old ` +
+        `deck name), not duplicated; --refile moves it into place`,
+    );
+  }
   for (const a of c.addsMatchingElsewhere ?? []) {
     line(
       `     ⚠ adding ${a.card} ("${a.english}"), but an untagged note with the same Target sits ` +
@@ -159,6 +182,25 @@ for (const c of report.content) {
         ? `     baseline: ${c.baseline.recorded} recorded, ${c.baseline.unresolved} unresolved`
         : `     baseline: ${c.baseline.reason}`,
     );
+  }
+  // Each direction class is a different fact and they are never summed: one is work done, one is
+  // work a dry run would do, one is a decision a HUMAN made, one is a flag the collection is
+  // deliberately not honouring.
+  const d = c.directions;
+  if (d) {
+    const dirName = (ord) => (ord === 0 ? "Recognition" : ord === 1 ? "Production" : `ord ${ord}`);
+    for (const e of d.suspended) line(`     suspended ${dirName(e.ord)}: ${e.card}`);
+    for (const e of d.wouldSuspend) line(`     would suspend ${dirName(e.ord)}: ${e.card}`);
+    for (const e of d.humanUnsuspended) {
+      line(`     ⚠ ${e.card} ${dirName(e.ord)} was unsuspended by hand — left alone`);
+    }
+    if (d.skippedDelivered.length) {
+      line(
+        `     ⚠ ${d.skippedDelivered.length} dirSuspended flag(s) not applied (note already ` +
+          `delivered; needs --suspend-delivered, which is probe-gated)`,
+      );
+    }
+    for (const e of d.refused) line(`     ⚠ ${e.card} ${dirName(e.ord)}: ${e.reason}`);
   }
   ambiguousTotal += c.ambiguous.length;
 }

@@ -190,10 +190,16 @@ function liveClient({ exportResult = true } = {}) {
   };
 }
 
-test("a falsy exportPackage is a backup FAILURE, not a success", async () => {
-  const { root } = fixture();
+test("a falsy exportPackage on a DELIVERED collection is a backup FAILURE, not a success", async () => {
+  const { root, dir } = fixture();
   const backupRoot = mkdtempSync(join(tmpdir(), "deliver-guards-backup-"));
   try {
+    // Delivered before, so the deck must exist. `{result: false}` here means it was renamed or
+    // deleted, and the backup this delivery relies on does not exist.
+    writeFileSync(
+      join(dir, "anki-delivered.json"),
+      JSON.stringify({ ankiParent: "My Course", deliveredCardIds: ["cat"] }),
+    );
     await assert.rejects(
       () =>
         deliverToAnki(root, "all", {
@@ -207,6 +213,29 @@ test("a falsy exportPackage is a backup FAILURE, not a success", async () => {
         return true;
       },
     );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+    rmSync(backupRoot, { recursive: true, force: true });
+  }
+});
+
+test("a falsy exportPackage on a NEVER-delivered collection is just an absent deck", async () => {
+  // The first delivery of any new collection hits this: the backup runs before the decks are
+  // created, so AnkiConnect answers `{result: false}` for a parent deck that does not exist yet.
+  // Treating that as a failed backup made a first delivery impossible, with no flag to get past it.
+  const { root } = fixture();
+  const backupRoot = mkdtempSync(join(tmpdir(), "deliver-guards-backup-"));
+  const lines = [];
+  try {
+    const report = await deliverToAnki(root, "all", {
+      client: liveClient({ exportResult: false }),
+      backupRoot,
+      sync: false,
+      log: (m) => lines.push(m),
+    });
+    assert.deepEqual(report.backedUp, [], "nothing existed to back up");
+    assert.equal(report.content[0].added, 1, "and the delivery went ahead");
+    assert.match(lines.join("\n"), /never been delivered/);
   } finally {
     rmSync(root, { recursive: true, force: true });
     rmSync(backupRoot, { recursive: true, force: true });

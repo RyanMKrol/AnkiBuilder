@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
 import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
 
@@ -203,5 +203,9 @@ export function rebuildRunDir(runDir, { buildDeck = defaultBuildDeck, deckName =
  * LIMITATIONS entry for the one-line remedy if an older one turns up.
  */
 function runDirGuidNamespace(runDir) {
-  return deckIdentityForDir(runDir);
+  // `resolve` first, always. `deckIdentityForDir` walks basename/dirname, so the RELATIVE string
+  // `ja` and the path `output/templates/numbers/ja` describe the same directory and would yield
+  // different namespaces — and therefore different guids for the same deck, which is the exact
+  // failure the namespace exists to prevent.
+  return deckIdentityForDir(resolve(runDir));
 }

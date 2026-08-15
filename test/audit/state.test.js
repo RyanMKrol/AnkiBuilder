@@ -113,13 +113,41 @@ test("with deliveredCardIds recorded, delivered is answered per unit", () => {
   }
 });
 
-test("an unreadable marker is refused, never read as 'never delivered'", () => {
+test("clearing meta.done does NOT launder away the delivered consent", () => {
+  // undone-unit asks for --force-delivered once, correctly, and clears `done`. If `delivered` were
+  // gated on `done`, that single consent would permanently downgrade the unit and every later tool
+  // would rewrite live cards asking only for --force. The recorded baseline is the fact, not the flag.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    const dir = writeUnit(root, "epubs/book/chapter-1", {
+      meta: { reviewed: true, done: false }, // just un-doned
+      items: [card("a")],
+    });
+    writeMarker(root, "epubs/book", "anki-delivered.json", {
+      ankiParent: "Book",
+      deliveredCardIds: ["a"],
+    });
+
+    assert.equal(unitState(dir).done, false);
+    assert.equal(unitState(dir).delivered, true, "the cards are still in Anki");
+    assert.throws(() => assertMutationAllowed(dir, { force: true }), /--force-delivered/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("an unreadable marker is refused, never read as 'never delivered' or as delivered", () => {
   const { root, cleanup } = makeOutputRoot();
   try {
     const dir = writeUnit(root, "epubs/book/chapter-1", { items: [card("a")] });
     writeFileSync(join(bookDir(root), "anki-delivered.json"), "{ not json");
     const state = unitState(dir);
     assert.equal(state.collection.markerUnreadable, true);
+    assert.equal(
+      state.collection.delivered,
+      false,
+      "an unparseable file is a question, not a delivery record — markerUnreadable is the answer",
+    );
     assert.throws(
       () => assertMutationAllowed(state, { force: true, forceDelivered: true }),
       MutationRefused,

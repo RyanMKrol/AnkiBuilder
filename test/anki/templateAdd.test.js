@@ -27,6 +27,8 @@ function fakeClient({ templates }) {
     client: {
       modelNames: async () => [SPEC.modelName],
       modelFieldNames: async () => [...SPEC.fields],
+      modelFieldAdd: async (_m, f) => calls.push(`modelFieldAdd:${f}`),
+      modelFieldReposition: async (_m, f) => calls.push(`modelFieldReposition:${f}`),
       modelTemplates: async () => templates,
       modelStyling: async () => ({ css: SPEC.css }),
       updateModelTemplates: async () => calls.push("updateModelTemplates"),
@@ -74,6 +76,16 @@ test("--allow-template-add is still refused: no probe has answered what the add 
     },
   );
   assert.deepEqual(calls, [], "the dormant path writes nothing while its evidence is missing");
+});
+
+test("a refused template add leaves NO field write behind — reads, refusal, then writes", async () => {
+  // Adding a FIELD is itself a schema bump that forces a manual one-way AnkiWeb sync. A run that
+  // added the field and then refused the template would have left the owner with that sync to
+  // finish and nothing to show for it, so every read happens before every write.
+  const { client, calls } = fakeClient({ templates: asLive(SPEC, { drop: ["Production"] }) });
+  client.modelFieldNames = async () => SPEC.fields.slice(0, -1); // one field missing as well
+  await assert.rejects(() => syncStructure(client, SPEC, false), /missing 1 card template/);
+  assert.deepEqual(calls, [], "no modelFieldAdd, no reposition, nothing");
 });
 
 test("an EDIT to an existing template is unaffected by the add path", async () => {

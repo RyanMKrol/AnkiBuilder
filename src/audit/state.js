@@ -87,7 +87,10 @@ export function collectionState(collectionDir) {
     reviewed: authoredUnits.length > 0 && authoredUnits.every((unit) => unit.reviewed),
     done: authoredUnits.length > 0 && authoredUnits.every((unit) => unit.done),
     packaged: packageAt !== null && packageAt >= newestCardsAt,
-    delivered: marker !== null,
+    // A marker that will not parse is not a delivery record: it is a question. `markerUnreadable`
+    // is the flag that matters there, and `assertMutationAllowed` refuses on it before it looks at
+    // anything else — so reporting `delivered: true` here would only mislead the state line.
+    delivered: marker !== null && !marker.unreadable,
   };
 }
 
@@ -115,11 +118,21 @@ export function unitState(runDir, { collection = null } = {}) {
   const isOwnCollection = collectionDir === dir;
   const shipped = flags.done || (isOwnCollection && flags.authored);
   const packaged = shipped && state.packaged;
-  // NOT gated on `packaged`. Delivery reads cards.json over AnkiConnect and never opens the package,
-  // so a deleted or never-built .apkg says nothing about whether these cards are in Anki — and
-  // reading "no package" as "not delivered" would drop the guard on exactly the collections that
-  // have one.
-  const delivered = shipped && state.delivered && markerCoversUnit(state.marker, flags.cardIds);
+
+  // `delivered` is NOT gated on `packaged`, and — where a baseline exists — NOT on `done` either.
+  //
+  // Not on `packaged`: delivery reads cards.json over AnkiConnect and never opens the package, so a
+  // deleted or never-built .apkg says nothing about whether these cards are in Anki.
+  //
+  // Not on `done`: `done` is a flag on disk that a tool can CLEAR. Gating on it meant one
+  // `undone-unit --force-delivered` (a single, correctly-guarded consent) permanently flipped the
+  // unit to "not delivered", and every later tool would then rewrite live cards asking only for
+  // `--force`. Where the marker records `deliveredCardIds`, that set is the precise answer and is
+  // used alone: a card that was pushed to Anki stays delivered whatever the local flags now say.
+  const hasBaseline = Array.isArray(state.marker?.deliveredCardIds);
+  const delivered = hasBaseline
+    ? state.delivered && markerCoversUnit(state.marker, flags.cardIds)
+    : shipped && state.delivered;
 
   return {
     dir,

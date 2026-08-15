@@ -2838,3 +2838,21 @@ say when it was measured rather than stating it as a standing fact.
   would deliver in one go with no prompt at all.
 - **Status:** open — deliberate.
 - **When to revisit:** if a legitimate incremental deliver (not a first run) ever trips it.
+
+## The .apkg's own deck-options preset may not survive import at all
+
+- **What:** the package ships preset id 1000001 `anki-builder` (bury on) and points every deck it
+  builds at it, deliberately not at `Default` (id 1). Whether Anki's importer honours a non-1 preset
+  id — or remaps it, or drops it and reassigns the deck to Default — has never been verified.
+  `src/deck/verifyImport.js` documents only the id-1 question, and its `dconfIdOneCollided` answer
+  does not cover the new row.
+- **Why:** the alternative was writing our scheduling choices into id 1, which is a preset every
+  collection already has: that reaches every deck the owner has that we never built. A preset that
+  might be ignored is strictly better than one that might overwrite theirs.
+- **Impact:** if the importer ignores it, the bury setting silently does not apply on a fresh import
+  and the deck's options are whatever its assigned preset says. That is the same position as before
+  this change, and the runbook's "tick both bury settings by hand, once" line is what actually
+  guarantees the fix — which is why that line is primary and this is called hygiene.
+- **Status:** open — unverified, low cost either way.
+- **When to revisit:** next time `scripts/verify-apkg-import.mjs` is run; add an assertion for which
+  preset the imported decks end up pointing at, and what the collection's dconf table then holds.

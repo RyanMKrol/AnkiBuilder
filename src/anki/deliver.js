@@ -941,12 +941,43 @@ export async function planRefile(client, deck, plan) {
  * Suspending is the right retirement for these. The card, its interval and its whole revlog survive,
  * and one click reverses it — whereas leaving it is a card the learner drills forever, and deleting
  * it destroys history this project's first rule is about.
+ *
+ * ⚠️ "ORPHANED" MEANS "NOT IN A DONE UNIT", NOT "NOT IN THE BOOK". The corpus this compares against
+ * is the deliverable set, which is the DONE units only. Pull a unit back out of the shipping deck
+ * (`scripts/undone-unit.mjs`, which promises its delivered cards keep their scheduling) and every
+ * one of that unit's live notes becomes an orphan here. That is why this is opt-in and previewed,
+ * and why the preview prints the note ids rather than a count.
+ *
+ * Same filtered-deck rule as `planRefile`: a card with a non-zero `odid` is in a custom-study
+ * session, and what `suspend` does to it is one of the unanswered probe questions. A card whose
+ * `cardsInfo` row did not come back is skipped too — unknown is not "safe".
  */
-export function planSuspendOrphans(plan) {
-  return plan.orphaned.map((orphan) => ({
+export async function planSuspendOrphans(client, plan) {
+  const orphans = plan.orphaned.map((orphan) => ({
     ...orphan,
     cardIds: plan.noteById.get(orphan.noteId)?.cards ?? [],
   }));
+  const allCardIds = orphans.flatMap((o) => o.cardIds);
+  if (allCardIds.length === 0) return { orphans, skipped: [] };
+
+  const info = (await client.cardsInfo(allCardIds)) ?? [];
+  const odidOf = new Map(info.map((c) => [c.cardId, c.odid ?? 0]));
+  const skipped = [];
+  for (const orphan of orphans) {
+    const keep = [];
+    for (const cardId of orphan.cardIds) {
+      const odid = odidOf.get(cardId);
+      if (odid === undefined) {
+        skipped.push({ card: orphan.card, cardId, reason: "cardsInfo returned nothing for it" });
+      } else if (odid !== 0) {
+        skipped.push({ card: orphan.card, cardId, reason: "in a filtered deck (non-zero odid)" });
+      } else {
+        keep.push(cardId);
+      }
+    }
+    orphan.cardIds = keep;
+  }
+  return { orphans: orphans.filter((o) => o.cardIds.length), skipped };
 }
 
 /**
@@ -1110,13 +1141,16 @@ export async function syncDeckContent(client, deck, dry, options = {}) {
   }
 
   if (suspendOrphans) {
-    const orphans = planSuspendOrphans(plan);
-    r.suspendedOrphans = { orphans, applied: false };
+    const { orphans, skipped } = await planSuspendOrphans(client, plan);
+    r.suspendedOrphans = { orphans, skipped, applied: false };
     for (const orphan of orphans) {
       log(
         `suspend-orphans: note ${orphan.noteId} (${orphan.card}) — ${orphan.cardIds.length} card(s), ` +
           `tagged ${ORPHAN_TAG}`,
       );
+    }
+    for (const skip of skipped) {
+      log(`suspend-orphans: SKIPPED card ${skip.cardId} (${skip.card}) — ${skip.reason}`);
     }
     if (!dry && orphans.length) {
       const ids = orphans.flatMap((orphan) => orphan.cardIds);

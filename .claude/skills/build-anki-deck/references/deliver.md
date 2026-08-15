@@ -87,11 +87,17 @@ The two lookups have deliberately different scopes, and the difference is load-b
   repeat across this book's units, so a unit's card could adopt another unit's note by spelling
   alone.
 
-That scoping opens one window, and the report closes it: on a first run an untagged note sitting
-under an OLD deck name is in no unit's index, so its card would be added rather than adopted. Any add
-that an untagged note elsewhere in the book could have matched is printed with the note id. Adding
-may well be right (those 17 repeats are real), so it is a warning to read, not a refusal — and if the
-deck NAME is what moved, `--refile` is the fix.
+That scoping opens one window, and a **second pass** closes it: on a first run an untagged note
+sitting under an OLD deck name is in no unit's index, so its card would otherwise be added rather
+than adopted — a duplicate with no scheduling beside the matured original. After every unit has
+claimed what it could, a book-wide pass adopts any note that is still unclaimed AND uniquely
+identified, tags it, and says so. Running it second is what keeps the cross-bind closed: where two
+units' cards share a target, both candidates are already claimed or still ambiguous by then, so
+neither card can take the other's note by being processed first.
+
+Where that pass cannot pick exactly one, the card is still added — and the note ids it saw are
+printed, so an add that something looked like is never silent. If the deck NAME is what moved,
+`--refile` puts the adopted notes back where they belong.
 
 **Ambiguous skips fail the run.** When any cards were skipped as ambiguous, the script exits non-zero
 (exit code 2) after printing a `⚠ ambiguous (skipped)` line per card, so a scripted or agent-driven
@@ -110,15 +116,21 @@ re-inserted as fresh notes with no scheduling.
    Before this, that case read as "a brand-new collection" and re-added everything.
 2. **The fail-closed baseline.** Every real deliver records `deliveredCardIds` in the marker: the
    cards it resolved to a real note. The next run looks each one up by its `abid:` tag and aborts if
-   more than 10% (or all) have vanished. A collection whose marker has no `deliveredCardIds` yet —
-   both of yours, until their next deliver — **records the baseline and asserts nothing**. The gate
-   arms from the second run.
+   more than 10% have vanished (at least 3 of them, so a small collection is not tripped by one
+   hand-deleted note) — or if ALL of them have, at any size. A collection whose marker has no
+   `deliveredCardIds` yet — both of yours, until their next deliver — **records the baseline and
+   asserts nothing**. The gate arms from the second run. There is deliberately no flag to force past
+   it: if you know why those notes are gone, delete the `deliveredCardIds` field from
+   `anki-delivered.json` and the next run re-records it.
 3. **The add ceiling.** More than 200 additions to one collection needs `--allow-bulk-add`. A run
    that size is either a first delivery or a matching failure, and they look identical from here.
    `--dry` previews the number without refusing.
-4. **A falsy backup is a failed backup.** AnkiConnect answers `{result: false}` with no error when
-   the deck it was asked to export does not exist, so a backup of a renamed deck used to record a
-   success. The delivery now aborts before touching anything.
+4. **A falsy backup is a failed backup — for a collection that has been delivered before.**
+   AnkiConnect answers `{result: false}` with no error when the deck it was asked to export does not
+   exist, so a backup of a renamed deck used to record a success. The delivery now aborts before
+   touching anything. On a collection that has NEVER been delivered the same answer means something
+   ordinary — the parent deck does not exist yet, because this deliver is what creates it — so the
+   run says so and continues.
 
 If the marker write itself fails after a delivery, the run does not fail (the notes are already
 written) — it prints a warning and leaves the marker with NO baseline, so the next run bootstraps a
@@ -247,6 +259,11 @@ silent re-file changes how the cards are studied. Two skips, both reported:
 **`--suspend-orphans`** suspends and tags (`ab-orphaned`) delivered notes whose card id has left the
 corpus — today they are only listed. Suspending keeps the card, its interval and its whole revlog,
 and one click reverses it; leaving it is a card you drill forever, and deleting it destroys history.
+It skips filtered-deck cards the same way `--refile` does.
+
+⚠️ **"Orphaned" means "not in a DONE unit", not "not in the book."** Pull a unit back out of the
+shipping deck with `undone-unit.mjs` and every one of that unit's live notes reads as an orphan here.
+That is the case to check the preview for before ever running it.
 
 ### The one-time deck-name migration
 

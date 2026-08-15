@@ -168,6 +168,29 @@ test("--suspend-orphans previews the notes it would suspend, and refuses to run"
   assert.deepEqual(calls, [], "refused before anything was written");
 });
 
+test("suspend-orphans skips a card in a filtered deck, exactly as --refile does", async () => {
+  const notes = [
+    Object.assign(
+      note(9, { target: "とり", english: "Bird", tags: ["abid:gone"], cards: [91, 92] }),
+      {
+        homeDeck: "My Book::Lesson 05::New Title",
+      },
+    ),
+  ];
+  const { client } = fakeClient({
+    notes,
+    decksOf: { 91: "x", 92: "x" },
+    odids: { 91: 4242 }, // 91 is in a custom-study session
+  });
+  const report = await syncDeckContent(client, deck([]), true, { suspendOrphans: true });
+  assert.deepEqual(
+    report.suspendedOrphans.orphans.map((o) => o.cardIds),
+    [[92]],
+    "only the unfiltered card would be suspended",
+  );
+  assert.match(report.suspendedOrphans.skipped[0].reason, /filtered deck/);
+});
+
 test("orphans are still reported when the flag is off — that behaviour is unchanged", async () => {
   const notes = [
     Object.assign(note(9, { target: "とり", english: "Bird", tags: ["abid:gone"], cards: [91] }), {

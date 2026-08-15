@@ -21,7 +21,8 @@
       "audioOriginal": "6d500862eb2abe65.orig.mp3",
       "audioAuto": "6d500862eb2abe65.mp3",
       "audioMarked": true,
-      "scene": "no topic named — you already asked about lunchtime"
+      "scene": "no topic named — you already asked about lunchtime",
+      "audioTextHash": "6d500862eb2abe65"
     },
     {
       "id": "yasumi-ashita-a",
@@ -36,7 +37,8 @@
       "audioOriginal": "8e20b82e5bee4220.orig.mp3",
       "audioAuto": "8e20b82e5bee4220.mp3",
       "audioMarked": true,
-      "scene": "answering when the day off is"
+      "scene": "answering when the day off is",
+      "audioTextHash": "8e20b82e5bee4220"
     },
     {
       "id": "ima-nanji-a",
@@ -50,7 +52,8 @@
       "audioOriginal": "de7354b648171c55.orig.mp3",
       "audioAuto": "de7354b648171c55.mp3",
       "audioMarked": true,
-      "scene": "answering what time it is now, without いま (ima)"
+      "scene": "answering what time it is now, without いま (ima)",
+      "audioTextHash": "de7354b648171c55"
     },
     {
       "id": "depaato-nanji-made-q",
@@ -63,7 +66,8 @@
       "audio": "df93d9fc72b8c7eb.mp3",
       "audioOriginal": "df93d9fc72b8c7eb.orig.mp3",
       "audioAuto": "df93d9fc72b8c7eb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "df93d9fc72b8c7eb"
     },
     {
       "id": "furonto-q",
@@ -76,7 +80,8 @@
       "audio": "c13fef8efd0d4b1c.mp3",
       "audioOriginal": "c13fef8efd0d4b1c.orig.mp3",
       "audioAuto": "c13fef8efd0d4b1c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c13fef8efd0d4b1c"
     },
     {
       "id": "td-lunchtime-start-q",
@@ -89,7 +94,8 @@
       "audio": "f5bd1aaa7d801113.mp3",
       "audioOriginal": "f5bd1aaa7d801113.orig.mp3",
       "audioAuto": "f5bd1aaa7d801113.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f5bd1aaa7d801113"
     },
     {
       "id": "kaigi-itsu-q",
@@ -103,7 +109,8 @@
       "audio": "e1792621ca8b80ff.mp3",
       "audioOriginal": "e1792621ca8b80ff.orig.mp3",
       "audioAuto": "e1792621ca8b80ff.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e1792621ca8b80ff"
     },
     {
       "id": "hotel-asagohan-q",
@@ -116,7 +123,8 @@
       "audio": "03b147c6b8abe7ff.mp3",
       "audioOriginal": "03b147c6b8abe7ff.orig.mp3",
       "audioAuto": "03b147c6b8abe7ff.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "03b147c6b8abe7ff"
     },
     {
       "id": "kaigi-ashita-kuji-a",
@@ -131,7 +139,8 @@
       "audioOriginal": "040de7bf05058a7d.orig.mp3",
       "audioAuto": "040de7bf05058a7d.mp3",
       "audioMarked": true,
-      "scene": "answering when the meeting is"
+      "scene": "answering when the meeting is",
+      "audioTextHash": "040de7bf05058a7d"
     },
     {
       "id": "ima-kuji-ja-arimasen",
@@ -145,7 +154,8 @@
       "audio": "8e0dbe240461539d.mp3",
       "audioOriginal": "8e0dbe240461539d.orig.mp3",
       "audioAuto": "8e0dbe240461539d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8e0dbe240461539d"
     },
     {
       "id": "kaigi-ichiji-sanji-a",
@@ -159,7 +169,8 @@
       "audioOriginal": "b39006a0b2f42aaa.orig.mp3",
       "audioAuto": "b39006a0b2f42aaa.mp3",
       "audioMarked": true,
-      "scene": "answering what hours the meeting runs"
+      "scene": "answering what hours the meeting runs",
+      "audioTextHash": "b39006a0b2f42aaa"
     },
     {
       "id": "ima-kuji-hai-a",
@@ -173,7 +184,8 @@
       "audioOriginal": "75cc81e9a41661a7.orig.mp3",
       "audioAuto": "75cc81e9a41661a7.mp3",
       "audioMarked": true,
-      "scene": "answering yes to whether it is 9:00 now"
+      "scene": "answering yes to whether it is 9:00 now",
+      "audioTextHash": "75cc81e9a41661a7"
     },
     {
       "id": "paatii-shichiji-juuji",
@@ -186,7 +198,8 @@
       "audio": "0f01a2a93dcf5744.mp3",
       "audioOriginal": "0f01a2a93dcf5744.orig.mp3",
       "audioAuto": "0f01a2a93dcf5744.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0f01a2a93dcf5744"
     },
     {
       "id": "london-ima-nanji-a",
@@ -201,7 +214,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "6ee249019a00a3d7-genkanji-7e91c763.mp3",
-      "scene": "answering what time it is in London"
+      "scene": "answering what time it is in London",
+      "audioTextHash": "6ee249019a00a3d7"
     },
     {
       "id": "mise-no-hito-kochira",
@@ -215,7 +229,8 @@
       "audio": "54cee2363e961ce8.mp3",
       "audioOriginal": "54cee2363e961ce8.orig.mp3",
       "audioAuto": "54cee2363e961ce8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "54cee2363e961ce8"
     },
     {
       "id": "suupaa-gogo-rokuji-made",
@@ -228,7 +243,8 @@
       "audio": "8e344182dd2b6879.mp3",
       "audioOriginal": "8e344182dd2b6879.orig.mp3",
       "audioAuto": "8e344182dd2b6879.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8e344182dd2b6879"
     },
     {
       "id": "sou-desu-ka-doumo",
@@ -241,7 +257,8 @@
       "audio": "cccc56829c978278.mp3",
       "audioOriginal": "cccc56829c978278.orig.mp3",
       "audioAuto": "cccc56829c978278.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cccc56829c978278"
     },
     {
       "id": "puuru-gozen-hachiji-a",
@@ -256,7 +273,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "b47006851e098f32-genkanji-0c7ec9f6.mp3",
-      "scene": "answering what time the pool opens"
+      "scene": "answering what time the pool opens",
+      "audioTextHash": "b47006851e098f32"
     },
     {
       "id": "td-last-order-a",
@@ -270,7 +288,8 @@
       "audioOriginal": "2c55bedd568fc507.orig.mp3",
       "audioAuto": "2c55bedd568fc507.mp3",
       "audioMarked": true,
-      "scene": "answering what time the last order is"
+      "scene": "answering what time the last order is",
+      "audioTextHash": "2c55bedd568fc507"
     },
     {
       "id": "resutoran-gozen-juuichiji-a",
@@ -285,7 +304,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "bc62cdd721682a54-genkanji-211872b6.mp3",
-      "scene": "answering what time the restaurant opens"
+      "scene": "answering what time the restaurant opens",
+      "audioTextHash": "bc62cdd721682a54"
     },
     {
       "id": "kyou-no-kaigi-nanji-q",
@@ -299,7 +319,8 @@
       "audio": "f753e44401fc138f.mp3",
       "audioOriginal": "f753e44401fc138f.orig.mp3",
       "audioAuto": "f753e44401fc138f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f753e44401fc138f"
     },
     {
       "id": "rasuto-oodaa-niji-desu",
@@ -313,7 +334,8 @@
       "audio": "d437f09c88f5b5f3.mp3",
       "audioOriginal": "d437f09c88f5b5f3.orig.mp3",
       "audioAuto": "d437f09c88f5b5f3.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d437f09c88f5b5f3"
     },
     {
       "id": "yasumi-itsu-q",
@@ -326,7 +348,8 @@
       "audio": "c2a46c3df3da3895.mp3",
       "audioOriginal": "c2a46c3df3da3895.orig.mp3",
       "audioAuto": "c2a46c3df3da3895.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c2a46c3df3da3895"
     },
     {
       "id": "kaigi-nanji-kara-made-q",
@@ -344,7 +367,8 @@
       "audioTrim": {
         "start": 0,
         "end": 3.2643912671232873
-      }
+      },
+      "audioTextHash": "7f7f69a0342ae609"
     },
     {
       "id": "purezen-ashita-gozen",
@@ -358,7 +382,8 @@
       "audio": "79038dd434f48202.mp3",
       "audioOriginal": "79038dd434f48202.orig.mp3",
       "audioAuto": "79038dd434f48202.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "79038dd434f48202"
     },
     {
       "id": "ima-juuniji-han",
@@ -371,7 +396,8 @@
       "audio": "7de9f4ec062dd051.mp3",
       "audioOriginal": "7de9f4ec062dd051.orig.mp3",
       "audioAuto": "7de9f4ec062dd051.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7de9f4ec062dd051"
     },
     {
       "id": "london-ima-nanji-q",
@@ -385,7 +411,8 @@
       "audio": "accb060055ceaadb.mp3",
       "audioOriginal": "accb060055ceaadb.orig.mp3",
       "audioAuto": "accb060055ceaadb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "accb060055ceaadb"
     },
     {
       "id": "shigoto-kuji-kara",
@@ -399,7 +426,8 @@
       "audio": "96929e689f47055a.mp3",
       "audioOriginal": "96929e689f47055a.orig.mp3",
       "audioAuto": "96929e689f47055a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "96929e689f47055a"
     },
     {
       "id": "asagohan",
@@ -425,7 +453,8 @@
       "audioAuto": "ebde9df2e25b7651-genkanji-1f4f7d73.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "ebde9df2e25b7651-genkanji-1f4f7d73.mp3"
+      "audio": "ebde9df2e25b7651-genkanji-1f4f7d73.mp3",
+      "audioTextHash": "ebde9df2e25b7651"
     },
     {
       "id": "resutoran-gogo-juuichiji-a",
@@ -441,7 +470,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "890e085cac055d42-genkanji-e3f0c315.mp3",
-      "scene": "answering what time the restaurant closes"
+      "scene": "answering what time the restaurant closes",
+      "audioTextHash": "890e085cac055d42"
     },
     {
       "id": "mise-kuji-kara-a",
@@ -455,7 +485,8 @@
       "audioOriginal": "761ad772a3e51aca.orig.mp3",
       "audioAuto": "761ad772a3e51aca.mp3",
       "audioMarked": true,
-      "scene": "answering what time the shop opens"
+      "scene": "answering what time the shop opens",
+      "audioTextHash": "761ad772a3e51aca"
     },
     {
       "id": "ginkou-gozen-kuji-kara",
@@ -468,7 +499,8 @@
       "audio": "bce7f1a0eac8a264.mp3",
       "audioOriginal": "bce7f1a0eac8a264.orig.mp3",
       "audioAuto": "bce7f1a0eac8a264.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bce7f1a0eac8a264"
     },
     {
       "id": "happii-awaa-a",
@@ -482,7 +514,8 @@
       "audioOriginal": "d822dea1156ad188.orig.mp3",
       "audioAuto": "d822dea1156ad188.mp3",
       "audioMarked": true,
-      "scene": "answering what hours happy hour runs"
+      "scene": "answering what hours happy hour runs",
+      "audioTextHash": "d822dea1156ad188"
     },
     {
       "id": "shigoto-goji-made",
@@ -496,7 +529,8 @@
       "audio": "b29042d31c737a8f.mp3",
       "audioOriginal": "b29042d31c737a8f.orig.mp3",
       "audioAuto": "b29042d31c737a8f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b29042d31c737a8f"
     },
     {
       "id": "bangohan-rokuji-kara",
@@ -509,7 +543,8 @@
       "audio": "ca4174e9f61f3805.mp3",
       "audioOriginal": "ca4174e9f61f3805.orig.mp3",
       "audioAuto": "ca4174e9f61f3805.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ca4174e9f61f3805"
     },
     {
       "id": "ima-nanji-q",
@@ -523,7 +558,8 @@
       "audio": "fb73dd301f03ae4c.mp3",
       "audioOriginal": "fb73dd301f03ae4c.orig.mp3",
       "audioAuto": "fb73dd301f03ae4c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fb73dd301f03ae4c"
     },
     {
       "id": "sumisu-purezen-a",
@@ -537,7 +573,8 @@
       "audioOriginal": "09967b2b46bfdfce.orig.mp3",
       "audioAuto": "09967b2b46bfdfce.mp3",
       "audioMarked": true,
-      "scene": "answering when Smith-san's presentation is"
+      "scene": "answering when Smith-san's presentation is",
+      "audioTextHash": "09967b2b46bfdfce"
     },
     {
       "id": "sumisu-purezen-itsu-q",
@@ -551,7 +588,8 @@
       "audio": "eba44cd02a87250a.mp3",
       "audioOriginal": "eba44cd02a87250a.orig.mp3",
       "audioAuto": "eba44cd02a87250a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eba44cd02a87250a"
     },
     {
       "id": "bangohan",
@@ -576,7 +614,8 @@
       "audio": "155795d8d88bd2fc.mp3",
       "audioOriginal": "155795d8d88bd2fc.orig.mp3",
       "audioAuto": "155795d8d88bd2fc.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "155795d8d88bd2fc"
     },
     {
       "id": "jimu-gozen-kuji-kara",
@@ -590,7 +629,8 @@
       "audio": "8ee236312498353a.mp3",
       "audioOriginal": "8ee236312498353a.orig.mp3",
       "audioAuto": "8ee236312498353a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8ee236312498353a"
     },
     {
       "id": "td-lunchtime-summary",
@@ -603,7 +643,8 @@
       "audio": "97d066a79d031676.mp3",
       "audioOriginal": "97d066a79d031676.orig.mp3",
       "audioAuto": "97d066a79d031676.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "97d066a79d031676"
     },
     {
       "id": "depaato-gogo-hachiji-a",
@@ -617,7 +658,8 @@
       "audioOriginal": "8e33e5ae80f8d4af.orig.mp3",
       "audioAuto": "8e33e5ae80f8d4af.mp3",
       "audioMarked": true,
-      "scene": "answering what time the department store closes"
+      "scene": "answering what time the department store closes",
+      "audioTextHash": "8e33e5ae80f8d4af"
     },
     {
       "id": "td-lunchtime-start-a",
@@ -631,7 +673,8 @@
       "audioOriginal": "b9809f4a71cc7841.orig.mp3",
       "audioAuto": "b9809f4a71cc7841.mp3",
       "audioMarked": true,
-      "scene": "answering what time lunchtime starts"
+      "scene": "answering what time lunchtime starts",
+      "audioTextHash": "b9809f4a71cc7841"
     },
     {
       "id": "puuru-nanji-kara-q",
@@ -644,7 +687,8 @@
       "audio": "d679d835e7d0b208.mp3",
       "audioOriginal": "d679d835e7d0b208.orig.mp3",
       "audioAuto": "d679d835e7d0b208.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d679d835e7d0b208"
     },
     {
       "id": "ima-kuji-iie-a",
@@ -658,7 +702,8 @@
       "audioOriginal": "84dd1c0be964dfcf.orig.mp3",
       "audioAuto": "84dd1c0be964dfcf.mp3",
       "audioMarked": true,
-      "scene": "answering no to whether it is 9:00 now"
+      "scene": "answering no to whether it is 9:00 now",
+      "audioTextHash": "84dd1c0be964dfcf"
     },
     {
       "id": "td-last-order-q",
@@ -672,7 +717,8 @@
       "audio": "6f6f5b6959d99099.mp3",
       "audioOriginal": "6f6f5b6959d99099.orig.mp3",
       "audioAuto": "6f6f5b6959d99099.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6f6f5b6959d99099"
     },
     {
       "id": "hotel-asagohan-a",
@@ -686,7 +732,8 @@
       "audioOriginal": "dfc20d736422e1fa.orig.mp3",
       "audioAuto": "dfc20d736422e1fa.mp3",
       "audioMarked": true,
-      "scene": "answering what time breakfast starts"
+      "scene": "answering what time breakfast starts",
+      "audioTextHash": "dfc20d736422e1fa"
     },
     {
       "id": "furonto-a",
@@ -701,7 +748,8 @@
       "audioOriginal": "1bae30ecdc3f470e.orig.mp3",
       "audioAuto": "1bae30ecdc3f470e.mp3",
       "audioMarked": true,
-      "scene": "answering the reception desk's opening hours"
+      "scene": "answering the reception desk's opening hours",
+      "audioTextHash": "1bae30ecdc3f470e"
     },
     {
       "id": "konsaato-kyou-rokuji",
@@ -714,7 +762,8 @@
       "audio": "397ec56323f87084.mp3",
       "audioOriginal": "397ec56323f87084.orig.mp3",
       "audioAuto": "397ec56323f87084.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "397ec56323f87084"
     },
     {
       "id": "mise-nanji-kara-q",
@@ -727,7 +776,8 @@
       "audio": "0b745079a353b043.mp3",
       "audioOriginal": "0b745079a353b043.orig.mp3",
       "audioAuto": "0b745079a353b043.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0b745079a353b043"
     },
     {
       "id": "happii-awaa-q",
@@ -740,7 +790,8 @@
       "audio": "6521c3dd6dbd1aa0.mp3",
       "audioOriginal": "6521c3dd6dbd1aa0.orig.mp3",
       "audioAuto": "6521c3dd6dbd1aa0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6521c3dd6dbd1aa0"
     },
     {
       "id": "resutoran-nanji-kara-q",
@@ -759,7 +810,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.2105436643835614
-      }
+      },
+      "audioTextHash": "1e777c7105361d3a"
     },
     {
       "id": "kyou-no-kaigi-a",
@@ -773,7 +825,8 @@
       "audioOriginal": "cfbfb8de04a1c865.orig.mp3",
       "audioAuto": "cfbfb8de04a1c865.mp3",
       "audioMarked": true,
-      "scene": "answering what time today's meeting is"
+      "scene": "answering what time today's meeting is",
+      "audioTextHash": "cfbfb8de04a1c865"
     },
     {
       "id": "td-lunchtime-end-a",
@@ -787,7 +840,8 @@
       "audioOriginal": "a0be9de6cf12c9ab.orig.mp3",
       "audioAuto": "a0be9de6cf12c9ab.mp3",
       "audioMarked": true,
-      "scene": "answering what time lunchtime ends"
+      "scene": "answering what time lunchtime ends",
+      "audioTextHash": "a0be9de6cf12c9ab"
     },
     {
       "id": "resutoran-nanji-made-q",
@@ -800,7 +854,8 @@
       "audio": "5886ac9686af230f.mp3",
       "audioOriginal": "5886ac9686af230f.orig.mp3",
       "audioAuto": "5886ac9686af230f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5886ac9686af230f"
     },
     {
       "id": "ima-kuji-desu",
@@ -814,7 +869,8 @@
       "audio": "473bf9d6dbc9b0b8.mp3",
       "audioOriginal": "473bf9d6dbc9b0b8.orig.mp3",
       "audioAuto": "473bf9d6dbc9b0b8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "473bf9d6dbc9b0b8"
     },
     {
       "id": "ima-kuji-desu-ka",
@@ -828,7 +884,8 @@
       "audio": "7631da123c87634b.mp3",
       "audioOriginal": "7631da123c87634b.orig.mp3",
       "audioAuto": "7631da123c87634b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7631da123c87634b"
     }
   ]
 }

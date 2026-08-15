@@ -21,7 +21,8 @@
       "audioOriginal": "3184439687aa43e9.orig.mp3",
       "audioAuto": "3184439687aa43e9.mp3",
       "audioMarked": true,
-      "scene": "asking the price of something already being discussed"
+      "scene": "asking the price of something already being discussed",
+      "audioTextHash": "3184439687aa43e9"
     },
     {
       "id": "sumimasen-are-wa-pasokon-ka",
@@ -40,7 +41,8 @@
         "start": 0,
         "end": 3.6322885273972605
       },
-      "scene": "opening the exchange, about the item across the shop"
+      "scene": "opening the exchange, about the item across the shop",
+      "audioTextHash": "d2120cfa9c07c37b"
     },
     {
       "id": "sore-wa-ikura-desu-ka",
@@ -54,7 +56,8 @@
       "audio": "e79aaf67c802d64d.mp3",
       "audioOriginal": "e79aaf67c802d64d.orig.mp3",
       "audioAuto": "e79aaf67c802d64d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e79aaf67c802d64d"
     },
     {
       "id": "kohi-o-onegaishimasu",
@@ -69,7 +72,8 @@
       "audio": "95771c659b27ab62.mp3",
       "audioOriginal": "95771c659b27ab62.orig.mp3",
       "audioAuto": "95771c659b27ab62.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "95771c659b27ab62"
     },
     {
       "id": "reizouko-wa-kyuman-rokusen-en-desu",
@@ -83,7 +87,8 @@
       "audio": "49e64b5e7f8372ae.mp3",
       "audioOriginal": "49e64b5e7f8372ae.orig.mp3",
       "audioAuto": "49e64b5e7f8372ae.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "49e64b5e7f8372ae"
     },
     {
       "id": "juice-mo-onegaishimasu",
@@ -97,7 +102,8 @@
       "audio": "21a44f01e5ad4bf8.mp3",
       "audioOriginal": "21a44f01e5ad4bf8.orig.mp3",
       "audioAuto": "21a44f01e5ad4bf8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "21a44f01e5ad4bf8"
     },
     {
       "id": "kore-mo-kudasai",
@@ -111,7 +117,8 @@
       "audio": "d17961ff2c1a3bf6.mp3",
       "audioOriginal": "d17961ff2c1a3bf6.orig.mp3",
       "audioAuto": "d17961ff2c1a3bf6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d17961ff2c1a3bf6"
     },
     {
       "id": "ja-kado-de-onegaishimasu",
@@ -125,7 +132,8 @@
       "audio": "2394db224c988e8d.mp3",
       "audioOriginal": "2394db224c988e8d.orig.mp3",
       "audioAuto": "2394db224c988e8d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2394db224c988e8d"
     },
     {
       "id": "are-wa-sumaho-ja-arimasen",
@@ -139,7 +147,8 @@
       "audio": "f8c7b9097111d3a2.mp3",
       "audioOriginal": "f8c7b9097111d3a2.orig.mp3",
       "audioAuto": "f8c7b9097111d3a2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f8c7b9097111d3a2"
     },
     {
       "id": "sore-mo-sen-en-desu",
@@ -154,7 +163,8 @@
       "audio": "33900dc88437ea19.mp3",
       "audioOriginal": "33900dc88437ea19.orig.mp3",
       "audioAuto": "33900dc88437ea19.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "33900dc88437ea19"
     },
     {
       "id": "sore-mo-watashi-no-desu",
@@ -168,7 +178,8 @@
       "audio": "812cec6e6f8a8b51.mp3",
       "audioOriginal": "812cec6e6f8a8b51.orig.mp3",
       "audioAuto": "812cec6e6f8a8b51.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "812cec6e6f8a8b51"
     },
     {
       "id": "gohyaku-en-desu",
@@ -183,7 +194,8 @@
       "audioOriginal": "3165080a0e786073.orig.mp3",
       "audioAuto": "3165080a0e786073.mp3",
       "audioMarked": true,
-      "scene": "answering how much this one costs"
+      "scene": "answering how much this one costs",
+      "audioTextHash": "3165080a0e786073"
     },
     {
       "id": "ja-kore-o-kudasai",
@@ -196,7 +208,8 @@
       "audio": "8e57ed1363d1f4a4.mp3",
       "audioOriginal": "8e57ed1363d1f4a4.orig.mp3",
       "audioAuto": "8e57ed1363d1f4a4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8e57ed1363d1f4a4"
     },
     {
       "id": "kore-mo-sore-mo-tokei",
@@ -211,7 +224,8 @@
       "audioOriginal": "5caf4cfe26003686.orig.mp3",
       "audioAuto": "5caf4cfe26003686.mp3",
       "audioMarked": true,
-      "scene": "pointing out that a second item is the same thing"
+      "scene": "pointing out that a second item is the same thing",
+      "audioTextHash": "5caf4cfe26003686"
     },
     {
       "id": "hai-douzo",
@@ -225,7 +239,8 @@
       "audio": "9915e349766284d0.mp3",
       "audioOriginal": "9915e349766284d0.orig.mp3",
       "audioAuto": "9915e349766284d0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9915e349766284d0"
     },
     {
       "id": "kore-wa-hassen-en-desu",
@@ -240,7 +255,8 @@
       "audio": "51c338e9b77c8114.mp3",
       "audioOriginal": "51c338e9b77c8114.orig.mp3",
       "audioAuto": "51c338e9b77c8114.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "51c338e9b77c8114"
     },
     {
       "id": "terebi-wa-nanaman-hassen-en-desu",
@@ -254,7 +270,8 @@
       "audio": "72e8306f1fe77651.mp3",
       "audioOriginal": "72e8306f1fe77651.orig.mp3",
       "audioAuto": "72e8306f1fe77651.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "72e8306f1fe77651"
     },
     {
       "id": "to-sandwich-coffee-ikura-a",
@@ -268,7 +285,8 @@
       "audio": "2c1becd4eb304179.mp3",
       "audioOriginal": "2c1becd4eb304179.orig.mp3",
       "audioAuto": "2c1becd4eb304179.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2c1becd4eb304179"
     },
     {
       "id": "iie-pasokon-wa-goman-en-ja-arimasen",
@@ -284,7 +302,8 @@
       "audioOriginal": "59b01aaae6a82ab1.orig.mp3",
       "audioAuto": "59b01aaae6a82ab1.mp3",
       "audioMarked": true,
-      "scene": "answering whether the computer costs the same as the tablet"
+      "scene": "answering whether the computer costs the same as the tablet",
+      "audioTextHash": "59b01aaae6a82ab1"
     },
     {
       "id": "are-o-misete-kudasai",
@@ -298,7 +317,8 @@
       "audio": "c6af741d2ab29990.mp3",
       "audioOriginal": "c6af741d2ab29990.orig.mp3",
       "audioAuto": "c6af741d2ab29990.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c6af741d2ab29990"
     },
     {
       "id": "kore-wa-ikura-desu-ka",
@@ -311,7 +331,8 @@
       "audio": "a41dc09a2d8eb635.mp3",
       "audioOriginal": "a41dc09a2d8eb635.orig.mp3",
       "audioAuto": "a41dc09a2d8eb635.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a41dc09a2d8eb635"
     },
     {
       "id": "are-wa-ikura-desu-ka",
@@ -324,7 +345,8 @@
       "audio": "566681ade03d330a.mp3",
       "audioOriginal": "566681ade03d330a.orig.mp3",
       "audioAuto": "566681ade03d330a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "566681ade03d330a"
     },
     {
       "id": "denshi-renji-wa-nimankyusen-happyaku-en-desu",
@@ -344,7 +366,8 @@
       "audioTrim": {
         "start": 0,
         "end": 3.5558630136986302
-      }
+      },
+      "audioTextHash": "26cd9da0648ca157"
     },
     {
       "id": "kore-wa-watashi-no-kasa-desu",
@@ -358,7 +381,8 @@
       "audio": "fe2de3dd571acade.mp3",
       "audioOriginal": "fe2de3dd571acade.orig.mp3",
       "audioAuto": "fe2de3dd571acade.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fe2de3dd571acade"
     },
     {
       "id": "iie-are-wa-gosen-en-ja-arimasen",
@@ -374,7 +398,8 @@
       "audioOriginal": "2beb4fc2fd10ecff.orig.mp3",
       "audioAuto": "2beb4fc2fd10ecff.mp3",
       "audioMarked": true,
-      "scene": "answering whether that one over there is also 5,000 yen"
+      "scene": "answering whether that one over there is also 5,000 yen",
+      "audioTextHash": "2beb4fc2fd10ecff"
     },
     {
       "id": "to-koucha-choko-keki",
@@ -387,7 +412,8 @@
       "audio": "2866b8803627a1a2.mp3",
       "audioOriginal": "2866b8803627a1a2.orig.mp3",
       "audioAuto": "2866b8803627a1a2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2866b8803627a1a2"
     },
     {
       "id": "pasokon-mo-goman-en-desu-ka",
@@ -402,7 +428,8 @@
       "audio": "c8e7fa3741678066.mp3",
       "audioOriginal": "c8e7fa3741678066.orig.mp3",
       "audioAuto": "c8e7fa3741678066.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c8e7fa3741678066"
     },
     {
       "id": "sumimasen-sandoitchi-to-kohi",
@@ -415,7 +442,8 @@
       "audio": "510caccb91d65c50.mp3",
       "audioOriginal": "510caccb91d65c50.orig.mp3",
       "audioAuto": "510caccb91d65c50.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "510caccb91d65c50"
     },
     {
       "id": "sore-wa-pasokon-desu-ka",
@@ -429,7 +457,8 @@
       "audioOriginal": "13e45658ebc72c8c.orig.mp3",
       "audioAuto": "13e45658ebc72c8c.mp3",
       "audioMarked": true,
-      "scene": "about the item next to the salesperson"
+      "scene": "about the item next to the salesperson",
+      "audioTextHash": "13e45658ebc72c8c"
     },
     {
       "id": "kore-wa-hassen-en-desu-ka",
@@ -444,7 +473,8 @@
       "audio": "2564320925e83838.mp3",
       "audioOriginal": "2564320925e83838.orig.mp3",
       "audioAuto": "2564320925e83838.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2564320925e83838"
     },
     {
       "id": "to-toaster-microwave-kudasai",
@@ -458,7 +488,8 @@
       "audio": "6c8c52a1fbc9bdbe.mp3",
       "audioOriginal": "6c8c52a1fbc9bdbe.orig.mp3",
       "audioAuto": "6c8c52a1fbc9bdbe.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6c8c52a1fbc9bdbe"
     },
     {
       "id": "ja-sore-o-kudasai",
@@ -471,7 +502,8 @@
       "audio": "a8cbf3c6a3588ac8.mp3",
       "audioOriginal": "a8cbf3c6a3588ac8.orig.mp3",
       "audioAuto": "a8cbf3c6a3588ac8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a8cbf3c6a3588ac8"
     },
     {
       "id": "iie-taburetto-desu",
@@ -486,7 +518,8 @@
       "audioOriginal": "e7c2450fd3ae55ba.orig.mp3",
       "audioAuto": "e7c2450fd3ae55ba.mp3",
       "audioMarked": true,
-      "scene": "answering whether the item across the shop is a computer"
+      "scene": "answering whether the item across the shop is a computer",
+      "audioTextHash": "e7c2450fd3ae55ba"
     },
     {
       "id": "hai-sou-desu",
@@ -511,7 +544,8 @@
       "audio": "19da89b57cab2588.mp3",
       "audioOriginal": "19da89b57cab2588.orig.mp3",
       "audioAuto": "19da89b57cab2588.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "19da89b57cab2588"
     },
     {
       "id": "kore-wa-tosuta-ja-arimasen",
@@ -530,7 +564,8 @@
       "audioTrim": {
         "start": 0,
         "end": 4.3150184075342475
-      }
+      },
+      "audioTextHash": "dfcbc88c50ff0e39"
     },
     {
       "id": "kore-o-kado-de-onegaishimasu",
@@ -544,7 +579,8 @@
       "audio": "fd9e017b5952c301.mp3",
       "audioOriginal": "fd9e017b5952c301.orig.mp3",
       "audioAuto": "fd9e017b5952c301.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fd9e017b5952c301"
     },
     {
       "id": "sore-wa-sen-en-desu",
@@ -564,7 +600,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.8490607876712328
-      }
+      },
+      "audioTextHash": "83468bcf49e9218b"
     },
     {
       "id": "denshi-renji-wa-ikura-desu-ka",
@@ -577,7 +614,8 @@
       "audio": "523a474aeafa0797.mp3",
       "audioOriginal": "523a474aeafa0797.orig.mp3",
       "audioAuto": "523a474aeafa0797.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "523a474aeafa0797"
     },
     {
       "id": "orange-juice-o-kudasai",
@@ -590,7 +628,8 @@
       "audio": "0326eb270bbfebba.mp3",
       "audioOriginal": "0326eb270bbfebba.orig.mp3",
       "audioAuto": "0326eb270bbfebba.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0326eb270bbfebba"
     },
     {
       "id": "kore-wa-sumaho-desu",
@@ -604,7 +643,8 @@
       "audio": "27fdc218729856ca.mp3",
       "audioOriginal": "27fdc218729856ca.orig.mp3",
       "audioAuto": "27fdc218729856ca.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "27fdc218729856ca"
     },
     {
       "id": "reizouko-wa-ikura-desu-ka",
@@ -622,7 +662,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.8631220034246578
-      }
+      },
+      "audioTextHash": "bb8317f537311071"
     },
     {
       "id": "terebi-wa-ikura-desu-ka",
@@ -636,7 +677,8 @@
       "audio": "26a7bdf80c5a5f16.mp3",
       "audioOriginal": "26a7bdf80c5a5f16.orig.mp3",
       "audioAuto": "26a7bdf80c5a5f16.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "26a7bdf80c5a5f16"
     },
     {
       "id": "to-sandwich-coffee-ikura-q",
@@ -650,7 +692,8 @@
       "audio": "32c0b128bddb8227.mp3",
       "audioOriginal": "32c0b128bddb8227.orig.mp3",
       "audioAuto": "32c0b128bddb8227.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "32c0b128bddb8227"
     },
     {
       "id": "kore-wa-anata-no-kasa-desu-ka",
@@ -664,7 +707,8 @@
       "audio": "150922cc85cf343c.mp3",
       "audioOriginal": "150922cc85cf343c.orig.mp3",
       "audioAuto": "150922cc85cf343c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "150922cc85cf343c"
     },
     {
       "id": "sore-o-misete-kudasai",
@@ -682,7 +726,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.5881999143835615
-      }
+      },
+      "audioTextHash": "5181554fb8630845"
     },
     {
       "id": "ja-kore-to-sore-o-kudasai",
@@ -696,7 +741,8 @@
       "audio": "0b56fa354a318490.mp3",
       "audioOriginal": "0b56fa354a318490.orig.mp3",
       "audioAuto": "0b56fa354a318490.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0b56fa354a318490"
     },
     {
       "id": "kohi-o-kudasai",
@@ -711,7 +757,8 @@
       "audio": "b4ca6db9b8784848.mp3",
       "audioOriginal": "b4ca6db9b8784848.orig.mp3",
       "audioAuto": "b4ca6db9b8784848.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b4ca6db9b8784848"
     },
     {
       "id": "hai-watashi-no-desu",
@@ -737,7 +784,8 @@
       "audio": "c6071e4b34ac5b30.mp3",
       "audioOriginal": "c6071e4b34ac5b30.orig.mp3",
       "audioAuto": "c6071e4b34ac5b30.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c6071e4b34ac5b30"
     },
     {
       "id": "kore-wa-hassen-en-ja-arimasen",
@@ -752,7 +800,8 @@
       "audio": "9e865aa87ecb02f7.mp3",
       "audioOriginal": "9e865aa87ecb02f7.orig.mp3",
       "audioAuto": "9e865aa87ecb02f7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9e865aa87ecb02f7"
     },
     {
       "id": "hyakunanajuu-en-desu",
@@ -767,7 +816,8 @@
       "audioOriginal": "1d26f429ddc715e0.orig.mp3",
       "audioAuto": "1d26f429ddc715e0.mp3",
       "audioMarked": true,
-      "scene": "answering the price of the item the salesperson is holding"
+      "scene": "answering the price of the item the salesperson is holding",
+      "audioTextHash": "1d26f429ddc715e0"
     },
     {
       "id": "hai-are-mo-nanasen-en",
@@ -781,7 +831,8 @@
       "audio": "fe5acd1246a40044.mp3",
       "audioOriginal": "fe5acd1246a40044.orig.mp3",
       "audioAuto": "fe5acd1246a40044.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fe5acd1246a40044"
     },
     {
       "id": "tokei-o-misete-kudasai",
@@ -795,7 +846,8 @@
       "audio": "9ef471429b98bb8a.mp3",
       "audioOriginal": "9ef471429b98bb8a.orig.mp3",
       "audioAuto": "9ef471429b98bb8a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9ef471429b98bb8a"
     },
     {
       "id": "sore-mo-hassen-en-ja-arimasen",
@@ -810,7 +862,8 @@
       "audio": "46c5031d9f982622.mp3",
       "audioOriginal": "46c5031d9f982622.orig.mp3",
       "audioAuto": "46c5031d9f982622.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "46c5031d9f982622"
     },
     {
       "id": "sarada-mo-onegaishimasu",
@@ -824,7 +877,8 @@
       "audio": "eea6016c2e92c96e.mp3",
       "audioOriginal": "eea6016c2e92c96e.orig.mp3",
       "audioAuto": "eea6016c2e92c96e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eea6016c2e92c96e"
     }
   ]
 }

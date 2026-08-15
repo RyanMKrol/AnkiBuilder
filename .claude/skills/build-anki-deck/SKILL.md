@@ -664,10 +664,13 @@ mean "I did not look", and it reports in three tiers:
   schematic `〜` in a shipped target, an `-extras` unit that would overwrite its base chapter's
   dedup-library entry, a reviewed chapter missing from that library, a foreign `.apkg` in a
   collection folder, and a package older than a done unit's `cards.json`.
-- **ACK** blocks only while instances are unreviewed. Nothing is ACK-tier today; when a check earns
-  the tier, judge each instance and then `--accept` it with a note.
-- **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, marker-audible clips,
-  and the template path's readiness/enrichment exemptions.
+- **ACK** blocks only while instances are unreviewed. Marker-audible clips: a clip shipping with the
+  TTS end marker still on the end of it. Fix it (re-trim it in the audio review, or run
+  `node scripts/audit-marker-stuck.mjs --apply` if the flag is describing a take the card no longer
+  ships) or judge the instance and `--accept` it with a note.
+- **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, the audio text-hash
+  counts (how many clips still match their card's text), and the template path's
+  readiness/enrichment exemptions.
 
 Every check reads ONE collection. **Collections are isolated:** two decks built from two different
 sources are separate products, and preflight never compares them, cues one against the other, or

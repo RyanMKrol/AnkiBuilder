@@ -20,7 +20,8 @@
       "audioOriginal": "d07e4e1378db7c95.orig.mp3",
       "audioAuto": "d07e4e1378db7c95.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d07e4e1378db7c95"
     },
     {
       "id": "wine-shop",
@@ -33,7 +34,8 @@
       "audioOriginal": "e478446fa18d64b3.orig.mp3",
       "audioAuto": "e478446fa18d64b3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e478446fa18d64b3"
     },
     {
       "id": "doko",
@@ -47,7 +49,8 @@
       "audioOriginal": "15282f2e3cb3b891.orig.mp3",
       "audioAuto": "15282f2e3cb3b891.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "15282f2e3cb3b891"
     },
     {
       "id": "doko-example",
@@ -62,7 +65,8 @@
       "audioAuto": "ed0aa5ebe206f7d4-gen-c5b0c095.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audio": "ed0aa5ebe206f7d4-gen-c5b0c095.mp3"
+      "audio": "ed0aa5ebe206f7d4-gen-c5b0c095.mp3",
+      "audioTextHash": "ed0aa5ebe206f7d4"
     },
     {
       "id": "information-desk",
@@ -75,7 +79,8 @@
       "note": "A store or building's information counter for directions and questions; contrast うけつけ (uketsuke) from an earlier lesson, the more general word for a reception desk in offices or hospitals.",
       "audioOriginal": "3b7fd3e55142f35f-gen-bc7b0ef7.mp3",
       "audioAuto": "3b7fd3e55142f35f-gen-bc7b0ef7.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "3b7fd3e55142f35f"
     },
     {
       "id": "chika",
@@ -90,7 +95,8 @@
       "audioOriginal": "f91e69f4e5a86980.orig.mp3",
       "audioAuto": "f91e69f4e5a86980.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f91e69f4e5a86980"
     },
     {
       "id": "chika-ikkai",
@@ -104,7 +110,8 @@
       "audioOriginal": "51a6b0e86ae4255f.orig.mp3",
       "audioAuto": "51a6b0e86ae4255f.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "51a6b0e86ae4255f"
     },
     {
       "id": "ikkai-sub",
@@ -120,7 +127,8 @@
       "audioOriginal": "d06a0f64a4d54af4.orig.mp3",
       "audioAuto": "d06a0f64a4d54af4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d06a0f64a4d54af4"
     },
     {
       "id": "sono",
@@ -139,7 +147,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.6494755993150685
-      }
+      },
+      "audioTextHash": "7485dd9b8ea0a799"
     },
     {
       "id": "france",
@@ -152,7 +161,8 @@
       "audioOriginal": "73fc3536de42182c.orig.mp3",
       "audioAuto": "73fc3536de42182c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "73fc3536de42182c"
     },
     {
       "id": "two-hon",
@@ -167,7 +177,8 @@
       "audioOriginal": "1253815da14f47e6.orig.mp3",
       "audioAuto": "1253815da14f47e6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1253815da14f47e6"
     },
     {
       "id": "fifth-floor",
@@ -181,7 +192,8 @@
       "audioOriginal": "853984f21c339a20.orig.mp3",
       "audioAuto": "853984f21c339a20.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "853984f21c339a20"
     },
     {
       "id": "two-mai",
@@ -196,7 +208,8 @@
       "audioOriginal": "a6d6cc978d256236.orig.mp3",
       "audioAuto": "a6d6cc978d256236.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a6d6cc978d256236"
     },
     {
       "id": "ks1-restaurant-floor",
@@ -210,7 +223,8 @@
       "audioOriginal": "6d0953fdf405efea.orig.mp3",
       "audioAuto": "6d0953fdf405efea.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6d0953fdf405efea"
     },
     {
       "id": "kono",
@@ -224,7 +238,8 @@
       "audioOriginal": "8e8898e8ec07fa64.orig.mp3",
       "audioAuto": "8e8898e8ec07fa64.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8e8898e8ec07fa64"
     },
     {
       "id": "tshirt",
@@ -237,7 +252,8 @@
       "audioOriginal": "b6f7afc7f4dcb03c.orig.mp3",
       "audioAuto": "b6f7afc7f4dcb03c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b6f7afc7f4dcb03c"
     },
     {
       "id": "ks2-tshirt-price",
@@ -251,7 +267,8 @@
       "audioOriginal": "169872fb2e496ce2.orig.mp3",
       "audioAuto": "169872fb2e496ce2.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "169872fb2e496ce2"
     },
     {
       "id": "ano",
@@ -265,7 +282,8 @@
       "audioOriginal": "9ca13062dcf3452b.orig.mp3",
       "audioAuto": "9ca13062dcf3452b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9ca13062dcf3452b"
     },
     {
       "id": "blue",
@@ -279,7 +297,8 @@
       "audioOriginal": "9118d5bdd53de2d6.orig.mp3",
       "audioAuto": "9118d5bdd53de2d6.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9118d5bdd53de2d6"
     },
     {
       "id": "ks3-blue-tshirt-price",
@@ -293,7 +312,8 @@
       "audioOriginal": "cb9f73916886f433.orig.mp3",
       "audioAuto": "cb9f73916886f433.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cb9f73916886f433"
     },
     {
       "id": "ks4-wine-from-france",
@@ -309,7 +329,8 @@
       "audioOriginal": "68f38d3d1ee11182.orig.mp3",
       "audioAuto": "68f38d3d1ee11182.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "68f38d3d1ee11182"
     },
     {
       "id": "ks5-two-bottles-wine",
@@ -322,7 +343,8 @@
       "altAudio": "98ed84db50156dcb.mp3",
       "audioOriginal": "b7983a30b88ac7fd-genkanji-d8d941d9.mp3",
       "audioAuto": "b7983a30b88ac7fd-genkanji-d8d941d9.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "b7983a30b88ac7fd"
     },
     {
       "id": "mai-suffix",
@@ -333,7 +355,8 @@
       "audio": "1c87da3365fd4c72.mp3",
       "altAudio": "cde47d89cb175c2a.mp3",
       "excluded": true,
-      "note": "Suffix — attaches after a number (〜まい (~mai))"
+      "note": "Suffix — attaches after a number (〜まい (~mai))",
+      "audioTextHash": "1c87da3365fd4c72"
     },
     {
       "id": "hon-suffix-hon",
@@ -345,7 +368,8 @@
       "altAudio": "7476ada2e35293b9.mp3",
       "excluded": true,
       "note": "Base reading of the long-object counter — after に (ni) (2), よん (yon) (4), ご (go) (5), なな (nana) (7), きゅう (kyuu) (9). Same sound and spelling as ほん (hon, 'Book') from Lesson 2 — two unrelated words that happen to share a form.",
-      "scene": "counting slender things"
+      "scene": "counting slender things",
+      "audioTextHash": "d2815033823ea835"
     },
     {
       "id": "hon-suffix-bon",
@@ -356,7 +380,8 @@
       "audio": "0282ccb35415fc7b.mp3",
       "altAudio": "6678d4058c0143f0.mp3",
       "excluded": true,
-      "note": "Voiced (dakuten) form of the long-object counter — after さん (san) (3), e.g. さんぼん (sanbon)"
+      "note": "Voiced (dakuten) form of the long-object counter — after さん (san) (3), e.g. さんぼん (sanbon)",
+      "audioTextHash": "0282ccb35415fc7b"
     },
     {
       "id": "hon-suffix-pon",
@@ -367,7 +392,8 @@
       "audio": "68a41b6bbff0e8a8.mp3",
       "altAudio": "8bf5287377baf46e.mp3",
       "excluded": true,
-      "note": "Plosive (handakuten) form — after いっ (ip) (1), ろっ (rop) (6), はっ (hap) (8), じゅっ (jup) (10), e.g. いっぽん (ippon)"
+      "note": "Plosive (handakuten) form — after いっ (ip) (1), ろっ (rop) (6), はっ (hap) (8), じゅっ (jup) (10), e.g. いっぽん (ippon)",
+      "audioTextHash": "68a41b6bbff0e8a8"
     },
     {
       "id": "tsu-suffix",
@@ -378,7 +404,8 @@
       "audio": "1962f1a6db331047.mp3",
       "altAudio": "82cb12703e4a4ce6.mp3",
       "excluded": true,
-      "note": "Suffix — the general-purpose counter, used when no specific counter fits. Attaches to native-Japanese numerals (ひと〜 (hito-), ふた〜 (futa-), みっ〜 (mit-) → ひとつ (hitotsu), ふたつ (futatsu), みっつ (mittsu)). Written 〜つ (~tsu)."
+      "note": "Suffix — the general-purpose counter, used when no specific counter fits. Attaches to native-Japanese numerals (ひと〜 (hito-), ふた〜 (futa-), みっ〜 (mit-) → ひとつ (hitotsu), ふたつ (futatsu), みっつ (mittsu)). Written 〜つ (~tsu).",
+      "audioTextHash": "1962f1a6db331047"
     },
     {
       "id": "counter-mai-9",
@@ -393,7 +420,8 @@
       "audioOriginal": "788622d4ca34d394.orig.mp3",
       "audioAuto": "788622d4ca34d394.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "788622d4ca34d394"
     },
     {
       "id": "counter-tsu-3",
@@ -408,7 +436,8 @@
       "audioOriginal": "99eefc37ccf792d2.orig.mp3",
       "audioAuto": "99eefc37ccf792d2.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "99eefc37ccf792d2"
     },
     {
       "id": "counter-hon-10",
@@ -423,7 +452,8 @@
       "audioOriginal": "2e5a3bd264e49507.orig.mp3",
       "audioAuto": "2e5a3bd264e49507.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2e5a3bd264e49507"
     },
     {
       "id": "counter-hon-5",
@@ -438,7 +468,8 @@
       "audioOriginal": "6e1050933c0d999d.orig.mp3",
       "audioAuto": "6e1050933c0d999d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6e1050933c0d999d"
     },
     {
       "id": "counter-hon-6",
@@ -453,7 +484,8 @@
       "audioOriginal": "6e594eb983bf7d3b.orig.mp3",
       "audioAuto": "6e594eb983bf7d3b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6e594eb983bf7d3b"
     },
     {
       "id": "counter-hon-7",
@@ -469,7 +501,8 @@
       "audioOriginal": "3cdcbe7a0bb99214.orig.mp3",
       "audioAuto": "3cdcbe7a0bb99214.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3cdcbe7a0bb99214"
     },
     {
       "id": "counter-mai-6",
@@ -485,7 +518,8 @@
       "audioOriginal": "d87704e37b40a7b1.orig.mp3",
       "audioAuto": "d87704e37b40a7b1.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d87704e37b40a7b1"
     },
     {
       "id": "counter-hon-1",
@@ -500,7 +534,8 @@
       "audioOriginal": "3721d9827430bd98.orig.mp3",
       "audioAuto": "3721d9827430bd98.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3721d9827430bd98"
     },
     {
       "id": "counter-mai-5",
@@ -515,7 +550,8 @@
       "audioOriginal": "0326e72c530215a0.orig.mp3",
       "audioAuto": "0326e72c530215a0.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0326e72c530215a0"
     },
     {
       "id": "counter-mai-10",
@@ -530,7 +566,8 @@
       "audioOriginal": "fa0d719aa9013518.orig.mp3",
       "audioAuto": "fa0d719aa9013518.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fa0d719aa9013518"
     },
     {
       "id": "counter-tsu-10",
@@ -545,7 +582,8 @@
       "audioOriginal": "0dde389f1823520b.orig.mp3",
       "audioAuto": "0dde389f1823520b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0dde389f1823520b"
     },
     {
       "id": "counter-hon-3",
@@ -560,7 +598,8 @@
       "audioOriginal": "3133f6cc69e2ea6d.orig.mp3",
       "audioAuto": "3133f6cc69e2ea6d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3133f6cc69e2ea6d"
     },
     {
       "id": "counter-tsu-8",
@@ -575,7 +614,8 @@
       "audioOriginal": "4c90f0211edf237a.orig.mp3",
       "audioAuto": "4c90f0211edf237a.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4c90f0211edf237a"
     },
     {
       "id": "counter-tsu-2",
@@ -590,7 +630,8 @@
       "audioOriginal": "fc85a4823662b97e.orig.mp3",
       "audioAuto": "fc85a4823662b97e.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fc85a4823662b97e"
     },
     {
       "id": "counter-hon-8",
@@ -605,7 +646,8 @@
       "audioOriginal": "055c9220e8d87e6a.orig.mp3",
       "audioAuto": "055c9220e8d87e6a.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "055c9220e8d87e6a"
     },
     {
       "id": "counter-tsu-4",
@@ -620,7 +662,8 @@
       "audioOriginal": "97b1e6400f0c4904.orig.mp3",
       "audioAuto": "97b1e6400f0c4904.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "97b1e6400f0c4904"
     },
     {
       "id": "counter-mai-4",
@@ -635,7 +678,8 @@
       "audioOriginal": "d88132a0a8c4b137.orig.mp3",
       "audioAuto": "d88132a0a8c4b137.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d88132a0a8c4b137"
     },
     {
       "id": "counter-hon-9",
@@ -650,7 +694,8 @@
       "audioOriginal": "5ad7cc5fab2da202.orig.mp3",
       "audioAuto": "5ad7cc5fab2da202.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5ad7cc5fab2da202"
     },
     {
       "id": "counter-hon-4",
@@ -665,7 +710,8 @@
       "audioOriginal": "c9ebcc14e9bd1b95.orig.mp3",
       "audioAuto": "c9ebcc14e9bd1b95.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c9ebcc14e9bd1b95"
     },
     {
       "id": "counter-tsu-9",
@@ -685,7 +731,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.0146746575342467
-      }
+      },
+      "audioTextHash": "5d5aac697044e46f"
     },
     {
       "id": "counter-mai-1",
@@ -700,7 +747,8 @@
       "audioOriginal": "fd2c675cefac97fa.orig.mp3",
       "audioAuto": "fd2c675cefac97fa.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "fd2c675cefac97fa"
     },
     {
       "id": "counter-tsu-5",
@@ -715,7 +763,8 @@
       "audioOriginal": "c79dab93f0866276.orig.mp3",
       "audioAuto": "c79dab93f0866276.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c79dab93f0866276"
     },
     {
       "id": "counter-mai-7",
@@ -731,7 +780,8 @@
       "audioOriginal": "69eace393579ddff.orig.mp3",
       "audioAuto": "69eace393579ddff.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "69eace393579ddff"
     },
     {
       "id": "counter-mai-3",
@@ -746,7 +796,8 @@
       "audioOriginal": "5f1021382bf23f60.orig.mp3",
       "audioAuto": "5f1021382bf23f60.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5f1021382bf23f60"
     },
     {
       "id": "counter-tsu-6",
@@ -761,7 +812,8 @@
       "audioOriginal": "ed5a797ab4221b2b.orig.mp3",
       "audioAuto": "ed5a797ab4221b2b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ed5a797ab4221b2b"
     },
     {
       "id": "counter-tsu-7",
@@ -776,7 +828,8 @@
       "audioOriginal": "2508fb23a8cfe515.orig.mp3",
       "audioAuto": "2508fb23a8cfe515.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2508fb23a8cfe515"
     },
     {
       "id": "counter-mai-8",
@@ -791,7 +844,8 @@
       "audioOriginal": "169707bb3eed7a8a.orig.mp3",
       "audioAuto": "169707bb3eed7a8a.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "169707bb3eed7a8a"
     },
     {
       "id": "counter-tsu-1",
@@ -806,7 +860,8 @@
       "audioOriginal": "4da3d61789cd6133.orig.mp3",
       "audioAuto": "4da3d61789cd6133.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4da3d61789cd6133"
     },
     {
       "id": "red",
@@ -820,7 +875,8 @@
       "audioOriginal": "70c92dbfb0b4fc51.orig.mp3",
       "audioAuto": "70c92dbfb0b4fc51.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "70c92dbfb0b4fc51"
     },
     {
       "id": "black",
@@ -834,7 +890,8 @@
       "audioOriginal": "9b9e3de528738257.orig.mp3",
       "audioAuto": "9b9e3de528738257.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9b9e3de528738257"
     },
     {
       "id": "white",
@@ -848,7 +905,8 @@
       "audioOriginal": "c8f38792b899a581.orig.mp3",
       "audioAuto": "c8f38792b899a581.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c8f38792b899a581"
     },
     {
       "id": "beer",
@@ -861,7 +919,8 @@
       "audioOriginal": "8695fd5601279683.orig.mp3",
       "audioAuto": "8695fd5601279683.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8695fd5601279683"
     },
     {
       "id": "dish-plate",
@@ -889,7 +948,8 @@
       "audioAuto": "69bab4e203905799-gen-2564a13d.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audio": "69bab4e203905799-gen-2564a13d.mp3"
+      "audio": "69bab4e203905799-gen-2564a13d.mp3",
+      "audioTextHash": "69bab4e203905799"
     },
     {
       "id": "apple",
@@ -914,7 +974,8 @@
       "audioOriginal": "3b8502533899c5c4.orig.mp3",
       "audioAuto": "3b8502533899c5c4.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3b8502533899c5c4"
     },
     {
       "id": "small",
@@ -927,7 +988,8 @@
       "audioOriginal": "47c9325fc288b624.orig.mp3",
       "audioAuto": "47c9325fc288b624.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "47c9325fc288b624"
     },
     {
       "id": "kai-suffix",
@@ -938,7 +1000,8 @@
       "audio": "9fb0c23100e7e867.mp3",
       "altAudio": "41dfa06a0c90235d.mp3",
       "note": "Base reading of the floor counter — after most numbers (1 いっ (ik), 2 に (ni), 4 よん (yon), 5 ご (go), 6 ろっ (rok) …), e.g. ごかい (gokai) (5th floor)",
-      "excluded": true
+      "excluded": true,
+      "audioTextHash": "9fb0c23100e7e867"
     },
     {
       "id": "gai-suffix",
@@ -949,7 +1012,8 @@
       "audio": "be7520fc2809f063.mp3",
       "altAudio": "6914f4b3f6860a18.mp3",
       "note": "Voiced (dakuten) form of the floor counter — after さん (san) (3), e.g. さんがい (sangai) (3rd floor)",
-      "excluded": true
+      "excluded": true,
+      "audioTextHash": "be7520fc2809f063"
     },
     {
       "id": "fourth-floor",
@@ -962,7 +1026,8 @@
       "audioOriginal": "dd6522f20b48320c.orig.mp3",
       "audioAuto": "dd6522f20b48320c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dd6522f20b48320c"
     },
     {
       "id": "second-floor",
@@ -975,7 +1040,8 @@
       "audioOriginal": "940b21e126b566ac.orig.mp3",
       "audioAuto": "940b21e126b566ac.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "940b21e126b566ac"
     },
     {
       "id": "third-floor",
@@ -989,7 +1055,8 @@
       "audioOriginal": "7542d2207c19cc6c.orig.mp3",
       "audioAuto": "7542d2207c19cc6c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7542d2207c19cc6c"
     },
     {
       "id": "sixth-floor",
@@ -1002,7 +1069,8 @@
       "audioOriginal": "d7d41072d41cf427.orig.mp3",
       "audioAuto": "d7d41072d41cf427.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d7d41072d41cf427"
     },
     {
       "id": "vacuum-cleaner",
@@ -1015,7 +1083,8 @@
       "audioOriginal": "2c1f398b51ce14d1.orig.mp3",
       "audioAuto": "2c1f398b51ce14d1.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2c1f398b51ce14d1"
     },
     {
       "id": "mug",
@@ -1029,7 +1098,8 @@
       "audioOriginal": "b618c5d7a51d6612.orig.mp3",
       "audioAuto": "b618c5d7a51d6612.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b618c5d7a51d6612"
     },
     {
       "id": "switzerland",
@@ -1042,7 +1112,8 @@
       "audioOriginal": "381dfb29fa75daf0.orig.mp3",
       "audioAuto": "381dfb29fa75daf0.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "381dfb29fa75daf0"
     },
     {
       "id": "camera",
@@ -1055,7 +1126,8 @@
       "audioOriginal": "c246a8ac5d7eea16.orig.mp3",
       "audioAuto": "c246a8ac5d7eea16.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c246a8ac5d7eea16"
     },
     {
       "id": "beef",
@@ -1067,7 +1139,8 @@
       "altAudio": "00ae539054765f6e.mp3",
       "audioOriginal": "0db37621f421fe1e-gen-11f15786.mp3",
       "audioAuto": "0db37621f421fe1e-gen-11f15786.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "0db37621f421fe1e"
     },
     {
       "id": "shoes",
@@ -1080,7 +1153,8 @@
       "audioOriginal": "d53eb2573cc1a0cc.orig.mp3",
       "audioAuto": "d53eb2573cc1a0cc.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d53eb2573cc1a0cc"
     },
     {
       "id": "italy",
@@ -1093,7 +1167,8 @@
       "audioOriginal": "b576203a0a12ec0c.orig.mp3",
       "audioAuto": "b576203a0a12ec0c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b576203a0a12ec0c"
     },
     {
       "id": "cheese",
@@ -1106,7 +1181,8 @@
       "audioOriginal": "75d322a1b9e63a7d.orig.mp3",
       "audioAuto": "75d322a1b9e63a7d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "75d322a1b9e63a7d"
     },
     {
       "id": "mikan-orange",
@@ -1119,7 +1195,8 @@
       "note": "A mikan is a satsuma / Japanese mandarin — a small, sweet, seedless, easy-to-peel citrus, extremely popular in Japan and a winter staple",
       "audioOriginal": "f5cdac5b36222b04-gen-75190fda.mp3",
       "audioAuto": "f5cdac5b36222b04-gen-75190fda.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "f5cdac5b36222b04"
     },
     {
       "id": "red-wine",
@@ -1132,7 +1209,8 @@
       "note": "Fixed compound noun, NOT あかい (akai) ワイン (wain). Contrast the regular い-adjective+noun pattern, which keeps the い (i): あかい (akai) シャツ (shatsu) (“red shirt”), あおい (aoi) Tシャツ (T-shatsu) (“blue T-shirt”). Only these set colour-compounds drop it: あかワイン (aka wain) (“red wine”), しろワイン (shiro wain) (“white wine”).",
       "audioOriginal": "929076b6c76e5d8d-gen-62e9ffbd.mp3",
       "audioAuto": "929076b6c76e5d8d-gen-62e9ffbd.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "929076b6c76e5d8d"
     },
     {
       "id": "coffee-cup",
@@ -1145,7 +1223,8 @@
       "audioOriginal": "3f9dbef572f685c0.orig.mp3",
       "audioAuto": "3f9dbef572f685c0.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3f9dbef572f685c0"
     },
     {
       "id": "towel",
@@ -1158,7 +1237,8 @@
       "audioOriginal": "91a66d8c217aa3cb.orig.mp3",
       "audioAuto": "91a66d8c217aa3cb.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "91a66d8c217aa3cb"
     },
     {
       "id": "dore",
@@ -1172,7 +1252,8 @@
       "audioOriginal": "18a6698052e8c040.orig.mp3",
       "audioAuto": "18a6698052e8c040.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "18a6698052e8c040"
     },
     {
       "id": "dore-example",
@@ -1187,7 +1268,8 @@
       "audioAuto": "c804441fc0b18857-gen-00f0f8b2.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audio": "c804441fc0b18857-gen-00f0f8b2.mp3"
+      "audio": "c804441fc0b18857-gen-00f0f8b2.mp3",
+      "audioTextHash": "c804441fc0b18857"
     },
     {
       "id": "cheesecake",
@@ -1200,7 +1282,8 @@
       "audioOriginal": "ec5a869ae81df35d.orig.mp3",
       "audioAuto": "ec5a869ae81df35d.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ec5a869ae81df35d"
     },
     {
       "id": "apple-pie",
@@ -1212,7 +1295,8 @@
       "altAudio": "16b97831de675075.mp3",
       "audioOriginal": "0011e965e8110057-gen-2f866481.mp3",
       "audioAuto": "0011e965e8110057-gen-2f866481.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "0011e965e8110057"
     },
     {
       "id": "restroom",
@@ -1226,7 +1310,8 @@
       "audioOriginal": "2200f34aaa83221c.orig.mp3",
       "audioAuto": "2200f34aaa83221c.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2200f34aaa83221c"
     },
     {
       "id": "achira",
@@ -1241,7 +1326,8 @@
       "audioAuto": "ed379012d1b1f27c.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "hint": "polite form"
+      "hint": "polite form",
+      "audioTextHash": "ed379012d1b1f27c"
     },
     {
       "id": "achira-example",
@@ -1256,7 +1342,8 @@
       "audioOriginal": "b094fecdccfdc7eb.orig.mp3",
       "audioAuto": "b094fecdccfdc7eb.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b094fecdccfdc7eb"
     },
     {
       "id": "doumo",
@@ -1269,7 +1356,8 @@
       "note": "A casual, shortened 'thanks' dropped from どうもありがとう (doumo arigatou) — the fuller どうもありがとう or the more formal ありがとうございます (arigatou gozaimasu) from Frequently Used Expressions are better in polite settings.",
       "audioOriginal": "ac99e75ff6d5a8c9-gen-1139ce24.mp3",
       "audioAuto": "ac99e75ff6d5a8c9-gen-1139ce24.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "ac99e75ff6d5a8c9"
     },
     {
       "id": "fib-c5-vacuum-where",
@@ -1285,7 +1373,8 @@
       "audioOriginal": "c0c53caa5108f937.orig.mp3",
       "audioAuto": "c0c53caa5108f937.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c0c53caa5108f937"
     },
     {
       "id": "fib-c5-vacuum-third-floor",
@@ -1302,7 +1391,8 @@
       "audioAuto": "ddedd39f8fae1cd1.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "answering where the vacuum cleaner is"
+      "scene": "answering where the vacuum cleaner is",
+      "audioTextHash": "ddedd39f8fae1cd1"
     },
     {
       "id": "fib-c5-pc-where",
@@ -1317,7 +1407,8 @@
       "note": null,
       "audioOriginal": "6363bea645801049-gen-0e45a895.mp3",
       "audioAuto": "6363bea645801049-gen-0e45a895.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "6363bea645801049"
     },
     {
       "id": "fib-c5-pc-basement-first-floor",
@@ -1334,7 +1425,8 @@
       "audioAuto": "806e04c99c063d1b.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "answering where the computer is"
+      "scene": "answering where the computer is",
+      "audioTextHash": "806e04c99c063d1b"
     },
     {
       "id": "fib-c5-coffee-cup-price-q",
@@ -1350,7 +1442,8 @@
       "audioOriginal": "e994708b8a667cef.orig.mp3",
       "audioAuto": "e994708b8a667cef.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e994708b8a667cef"
     },
     {
       "id": "fib-c5-coffee-cup-origin-q",
@@ -1365,7 +1458,8 @@
       "note": "どこ (doko) alone asks a location ('where is it?'), but どこの (doko no) asks origin or make — here, 'what place's coffee cup,' i.e. where it's from. The の (no) turns the location word into a modifier of the noun that follows.",
       "audioOriginal": "d091ff0d5da1d059-gen-509f2da1.mp3",
       "audioAuto": "d091ff0d5da1d059-gen-509f2da1.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "audioTextHash": "d091ff0d5da1d059"
     },
     {
       "id": "fib-c5-coffee-cup-origin-a",
@@ -1382,7 +1476,8 @@
       "audioAuto": "73368776f414be4c.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "answering where the coffee cup is from"
+      "scene": "answering where the coffee cup is from",
+      "audioTextHash": "73368776f414be4c"
     },
     {
       "id": "fib-c5-coffee-cup-quantity",
@@ -1398,7 +1493,8 @@
       "audioOriginal": "4894dbc88bab3961.orig.mp3",
       "audioAuto": "4894dbc88bab3961.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4894dbc88bab3961"
     }
   ]
 }

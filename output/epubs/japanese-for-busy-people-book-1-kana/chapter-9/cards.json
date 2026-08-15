@@ -22,7 +22,8 @@
       "audio": "46ff7bb7b4d8f39c.mp3",
       "audioOriginal": "46ff7bb7b4d8f39c.orig.mp3",
       "audioAuto": "46ff7bb7b4d8f39c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "46ff7bb7b4d8f39c"
     },
     {
       "id": "suzuki-sama",
@@ -34,7 +35,8 @@
       "audio": "e4fd6cb2f198e1fd.mp3",
       "audioOriginal": "e4fd6cb2f198e1fd.orig.mp3",
       "audioAuto": "e4fd6cb2f198e1fd.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e4fd6cb2f198e1fd"
     },
     {
       "id": "douzo-kochira-e",
@@ -77,7 +79,8 @@
       "audioOriginal": "221156dc332e2736.orig.mp3",
       "audioAuto": "221156dc332e2736.mp3",
       "audioMarked": true,
-      "scene": "about how frequently"
+      "scene": "about how frequently",
+      "audioTextHash": "221156dc332e2736"
     },
     {
       "id": "tokidoki-sometimes",
@@ -89,7 +92,8 @@
       "audio": "1abb465752dcd51d.mp3",
       "audioOriginal": "1abb465752dcd51d.orig.mp3",
       "audioAuto": "1abb465752dcd51d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "1abb465752dcd51d"
     },
     {
       "id": "koko-here",
@@ -100,7 +104,8 @@
       "audio": "ca132d21bfe8b3b8.mp3",
       "audioOriginal": "ca132d21bfe8b3b8.orig.mp3",
       "audioAuto": "ca132d21bfe8b3b8.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ca132d21bfe8b3b8"
     },
     {
       "id": "ni-particle-target",
@@ -115,7 +120,8 @@
       "audioOriginal": "557359c0476f3633.orig.mp3",
       "audioAuto": "557359c0476f3633.mp3",
       "audioMarked": true,
-      "scene": "marking who a call, e-mail or greeting is aimed at"
+      "scene": "marking who a call, e-mail or greeting is aimed at",
+      "audioTextHash": "557359c0476f3633"
     },
     {
       "id": "aimasu-meet",
@@ -127,7 +133,8 @@
       "audio": "d28d4dcc1c5c8e9b.mp3",
       "audioOriginal": "d28d4dcc1c5c8e9b.orig.mp3",
       "audioAuto": "d28d4dcc1c5c8e9b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d28d4dcc1c5c8e9b"
     },
     {
       "id": "hontou-desu-ka",
@@ -139,7 +146,8 @@
       "audioOriginal": "7bf33361a2ebd071.orig.mp3",
       "audioAuto": "7bf33361a2ebd071.mp3",
       "audioMarked": true,
-      "hint": "the whole question you say back when surprised"
+      "hint": "the whole question you say back when surprised",
+      "audioTextHash": "7bf33361a2ebd071"
     },
     {
       "id": "ya-suffix",
@@ -153,7 +161,8 @@
       "audioOriginal": "a6a294ce06130f3d.orig.mp3",
       "audioAuto": "a6a294ce06130f3d.mp3",
       "audioMarked": true,
-      "scene": "attached to what a shop sells, naming the shop"
+      "scene": "attached to what a shop sells, naming the shop",
+      "audioTextHash": "a6a294ce06130f3d"
     },
     {
       "id": "tenpuraya",
@@ -165,7 +174,8 @@
       "audio": "70be91e8a5847e70.mp3",
       "audioOriginal": "70be91e8a5847e70.orig.mp3",
       "audioAuto": "70be91e8a5847e70.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "70be91e8a5847e70"
     },
     {
       "id": "basho-location",
@@ -176,7 +186,8 @@
       "audio": "02199954c3de7c70.mp3",
       "audioOriginal": "02199954c3de7c70.orig.mp3",
       "audioAuto": "02199954c3de7c70.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "02199954c3de7c70"
     },
     {
       "id": "oshiemasu-tell",
@@ -188,7 +199,8 @@
       "audio": "4d3044d063a0a4ee.mp3",
       "audioOriginal": "4d3044d063a0a4ee.orig.mp3",
       "audioAuto": "4d3044d063a0a4ee.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4d3044d063a0a4ee"
     },
     {
       "id": "mainichi-everyday",
@@ -200,7 +212,8 @@
       "audio": "383c997301fa41d6.mp3",
       "audioOriginal": "383c997301fa41d6.orig.mp3",
       "audioAuto": "383c997301fa41d6.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "383c997301fa41d6"
     },
     {
       "id": "amari-not-often",
@@ -212,7 +225,8 @@
       "audio": "2f36a565ca9fc662.mp3",
       "audioOriginal": "2f36a565ca9fc662.orig.mp3",
       "audioAuto": "2f36a565ca9fc662.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2f36a565ca9fc662"
     },
     {
       "id": "ks1-meet-tomorrow",
@@ -223,7 +237,8 @@
       "audio": "a6708239e65e6eb9.mp3",
       "audioOriginal": "a6708239e65e6eb9.orig.mp3",
       "audioAuto": "a6708239e65e6eb9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a6708239e65e6eb9"
     },
     {
       "id": "ks2-told-location",
@@ -234,7 +249,8 @@
       "audio": "b3ef44a3b8577347.mp3",
       "audioOriginal": "b3ef44a3b8577347.orig.mp3",
       "audioAuto": "b3ef44a3b8577347.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b3ef44a3b8577347"
     },
     {
       "id": "ks3-drinks-coffee",
@@ -245,7 +261,8 @@
       "audio": "4e692b62a61f6094.mp3",
       "audioOriginal": "4e692b62a61f6094.orig.mp3",
       "audioAuto": "4e692b62a61f6094.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "4e692b62a61f6094"
     },
     {
       "id": "ks4-not-watch-tv",
@@ -257,7 +274,8 @@
       "audio": "371ebcd6ff704f95.mp3",
       "audioOriginal": "371ebcd6ff704f95.orig.mp3",
       "audioAuto": "371ebcd6ff704f95.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "371ebcd6ff704f95"
     },
     {
       "id": "denwa-o-shimasu",
@@ -269,7 +287,8 @@
       "audio": "297ee1e164c0060c.mp3",
       "audioOriginal": "297ee1e164c0060c.orig.mp3",
       "audioAuto": "297ee1e164c0060c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "297ee1e164c0060c"
     },
     {
       "id": "okurimasu-send",
@@ -281,7 +300,8 @@
       "audio": "c295946ef3bc8f3f.mp3",
       "audioOriginal": "c295946ef3bc8f3f.orig.mp3",
       "audioAuto": "c295946ef3bc8f3f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c295946ef3bc8f3f"
     },
     {
       "id": "kikimasu-ask",
@@ -297,7 +317,8 @@
       "audioOriginal": "6b35b56dbd2561c0.orig.mp3",
       "audioAuto": "6b35b56dbd2561c0.mp3",
       "audioMarked": true,
-      "scene": "getting information from a person"
+      "scene": "getting information from a person",
+      "audioTextHash": "6b35b56dbd2561c0"
     },
     {
       "id": "go-prefix",
@@ -313,7 +334,8 @@
       "audioOriginal": "51cb9ab3eaf67614.orig.mp3",
       "audioAuto": "51cb9ab3eaf67614.mp3",
       "audioMarked": true,
-      "scene": "politely referring to someone else's family member"
+      "scene": "politely referring to someone else's family member",
+      "audioTextHash": "51cb9ab3eaf67614"
     },
     {
       "id": "gokazoku",
@@ -325,7 +347,8 @@
       "audio": "97a5a8bdaf6545ae.mp3",
       "audioOriginal": "97a5a8bdaf6545ae.orig.mp3",
       "audioAuto": "97a5a8bdaf6545ae.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "97a5a8bdaf6545ae"
     },
     {
       "id": "otousan",
@@ -337,7 +360,8 @@
       "audio": "f9736b26c24e2b5e.mp3",
       "audioOriginal": "f9736b26c24e2b5e.orig.mp3",
       "audioAuto": "f9736b26c24e2b5e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f9736b26c24e2b5e"
     },
     {
       "id": "okaasan",
@@ -349,7 +373,8 @@
       "audio": "c673c118ec9f0aca.mp3",
       "audioOriginal": "c673c118ec9f0aca.orig.mp3",
       "audioAuto": "c673c118ec9f0aca.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c673c118ec9f0aca"
     },
     {
       "id": "okusan",
@@ -361,7 +386,8 @@
       "audio": "2512c2c652b109a0.mp3",
       "audioOriginal": "2512c2c652b109a0.orig.mp3",
       "audioAuto": "2512c2c652b109a0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2512c2c652b109a0"
     },
     {
       "id": "chichi",
@@ -373,7 +399,8 @@
       "audio": "f551e4e04967922c.mp3",
       "audioOriginal": "f551e4e04967922c.orig.mp3",
       "audioAuto": "f551e4e04967922c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f551e4e04967922c"
     },
     {
       "id": "haha",
@@ -386,7 +413,8 @@
       "audioAuto": "1a3205c3a91ea555-genkanji-74db1abf.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "1a3205c3a91ea555-genkanji-74db1abf.mp3"
+      "audio": "1a3205c3a91ea555-genkanji-74db1abf.mp3",
+      "audioTextHash": "1a3205c3a91ea555"
     },
     {
       "id": "tsuma-wife",
@@ -398,7 +426,8 @@
       "audio": "9164d83f5c5c2784.mp3",
       "audioOriginal": "9164d83f5c5c2784.orig.mp3",
       "audioAuto": "9164d83f5c5c2784.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9164d83f5c5c2784"
     },
     {
       "id": "goshujin",
@@ -410,7 +439,8 @@
       "audio": "e1b81db9af4df33c.mp3",
       "audioOriginal": "e1b81db9af4df33c.orig.mp3",
       "audioAuto": "e1b81db9af4df33c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e1b81db9af4df33c"
     },
     {
       "id": "otto-husband",
@@ -423,7 +453,8 @@
       "audioAuto": "d36432a4fd57c84a-gen-b1900b50.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "d36432a4fd57c84a-gen-b1900b50.mp3"
+      "audio": "d36432a4fd57c84a-gen-b1900b50.mp3",
+      "audioTextHash": "d36432a4fd57c84a"
     },
     {
       "id": "maiasa",
@@ -435,7 +466,8 @@
       "audio": "be8ff7c96bde7296.mp3",
       "audioOriginal": "be8ff7c96bde7296.orig.mp3",
       "audioAuto": "be8ff7c96bde7296.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "be8ff7c96bde7296"
     },
     {
       "id": "maiban",
@@ -447,7 +479,8 @@
       "audio": "3e2b62fa30e2e7ef.mp3",
       "audioOriginal": "3e2b62fa30e2e7ef.orig.mp3",
       "audioAuto": "3e2b62fa30e2e7ef.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3e2b62fa30e2e7ef"
     },
     {
       "id": "maishuu",
@@ -459,7 +492,8 @@
       "audio": "655357cc05afe340.mp3",
       "audioOriginal": "655357cc05afe340.orig.mp3",
       "audioAuto": "655357cc05afe340.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "655357cc05afe340"
     },
     {
       "id": "itsumo-always",
@@ -471,7 +505,8 @@
       "audio": "0edd3288c496c585.mp3",
       "audioOriginal": "0edd3288c496c585.orig.mp3",
       "audioAuto": "0edd3288c496c585.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "0edd3288c496c585"
     },
     {
       "id": "zenzen-not-at-all",
@@ -484,7 +519,8 @@
       "audioOriginal": "74f1a310dd685dc4.orig.mp3",
       "audioAuto": "74f1a310dd685dc4.mp3",
       "audioMarked": true,
-      "hint": "the adverb that forces a negative verb after it"
+      "hint": "the adverb that forces a negative verb after it",
+      "audioTextHash": "74f1a310dd685dc4"
     },
     {
       "id": "zenzen-example",
@@ -497,7 +533,8 @@
       "audio": "e2435bf2e14f4d0b.mp3",
       "audioOriginal": "e2435bf2e14f4d0b.orig.mp3",
       "audioAuto": "e2435bf2e14f4d0b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e2435bf2e14f4d0b"
     },
     {
       "id": "denwa-example",
@@ -513,7 +550,8 @@
       "audioTrim": {
         "start": 0,
         "end": 3.0015025684931507
-      }
+      },
+      "audioTextHash": "dab8a40ff7a99d28"
     },
     {
       "id": "meeru",
@@ -524,7 +562,8 @@
       "audio": "77f8ec89a9575076.mp3",
       "audioOriginal": "77f8ec89a9575076.orig.mp3",
       "audioAuto": "77f8ec89a9575076.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "77f8ec89a9575076"
     },
     {
       "id": "mail-example",
@@ -535,7 +574,8 @@
       "audio": "da005e7d2355d98f.mp3",
       "audioOriginal": "da005e7d2355d98f.orig.mp3",
       "audioAuto": "da005e7d2355d98f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "da005e7d2355d98f"
     },
     {
       "id": "shachou",
@@ -546,7 +586,8 @@
       "audio": "78a20525c974333b.mp3",
       "audioOriginal": "78a20525c974333b.orig.mp3",
       "audioAuto": "78a20525c974333b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "78a20525c974333b"
     },
     {
       "id": "go-language-suffix",
@@ -562,7 +603,8 @@
       "audioOriginal": "51cb9ab3eaf67614.orig.mp3",
       "audioAuto": "51cb9ab3eaf67614.mp3",
       "audioMarked": true,
-      "scene": "naming a language after a country name"
+      "scene": "naming a language after a country name",
+      "audioTextHash": "51cb9ab3eaf67614"
     },
     {
       "id": "nihongo",
@@ -574,7 +616,8 @@
       "audio": "2f848294b52f651f.mp3",
       "audioOriginal": "2f848294b52f651f.orig.mp3",
       "audioAuto": "2f848294b52f651f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2f848294b52f651f"
     },
     {
       "id": "gakkou-school",
@@ -585,7 +628,8 @@
       "audio": "008012002d2e2013.mp3",
       "audioOriginal": "008012002d2e2013.orig.mp3",
       "audioAuto": "008012002d2e2013.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "008012002d2e2013"
     },
     {
       "id": "dare-ni-denwa-q",
@@ -596,7 +640,8 @@
       "audio": "51625b45cf264ce7.mp3",
       "audioOriginal": "51625b45cf264ce7.orig.mp3",
       "audioAuto": "51625b45cf264ce7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "51625b45cf264ce7"
     },
     {
       "id": "dare-ni-denwa-a",
@@ -608,7 +653,8 @@
       "audio": "5dd40d1787979270.mp3",
       "audioOriginal": "5dd40d1787979270.orig.mp3",
       "audioAuto": "5dd40d1787979270.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5dd40d1787979270"
     },
     {
       "id": "doko-ni-mail-q",
@@ -619,7 +665,8 @@
       "audio": "776a5be68c850c45.mp3",
       "audioOriginal": "776a5be68c850c45.orig.mp3",
       "audioAuto": "776a5be68c850c45.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "776a5be68c850c45"
     },
     {
       "id": "doko-ni-mail-a",
@@ -631,7 +678,8 @@
       "audio": "d2b7c40babf0c984.mp3",
       "audioOriginal": "d2b7c40babf0c984.orig.mp3",
       "audioAuto": "d2b7c40babf0c984.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d2b7c40babf0c984"
     },
     {
       "id": "denwabangou-suggestion",
@@ -654,7 +702,8 @@
       "audio": "30b7374c0a708485.mp3",
       "audioOriginal": "30b7374c0a708485.orig.mp3",
       "audioAuto": "30b7374c0a708485.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "30b7374c0a708485"
     },
     {
       "id": "tell-phone-number",
@@ -666,7 +715,8 @@
       "audio": "06227bb49880d9b7.mp3",
       "audioOriginal": "06227bb49880d9b7.orig.mp3",
       "audioAuto": "06227bb49880d9b7.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "06227bb49880d9b7"
     },
     {
       "id": "meet-monday-4",
@@ -679,7 +729,8 @@
       "audio": "7639cdbcc55acac2.mp3",
       "audioOriginal": "7639cdbcc55acac2.orig.mp3",
       "audioAuto": "7639cdbcc55acac2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7639cdbcc55acac2"
     },
     {
       "id": "sanpo-o-shimasu",
@@ -691,7 +742,8 @@
       "audio": "2a760edd1ad9e4ec.mp3",
       "audioOriginal": "2a760edd1ad9e4ec.orig.mp3",
       "audioAuto": "2a760edd1ad9e4ec.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "2a760edd1ad9e4ec"
     },
     {
       "id": "kato-walk-everyday",
@@ -702,7 +754,8 @@
       "audio": "51b560b828b4562b.mp3",
       "audioOriginal": "51b560b828b4562b.orig.mp3",
       "audioAuto": "51b560b828b4562b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "51b560b828b4562b"
     },
     {
       "id": "rooma-rome",
@@ -713,7 +766,8 @@
       "audio": "a9a0682740df09a9.mp3",
       "audioOriginal": "a9a0682740df09a9.orig.mp3",
       "audioAuto": "a9a0682740df09a9.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a9a0682740df09a9"
     },
     {
       "id": "sapporo",
@@ -724,7 +778,8 @@
       "audio": "7d93bd54ced0b9e1.mp3",
       "audioOriginal": "7d93bd54ced0b9e1.orig.mp3",
       "audioAuto": "7d93bd54ced0b9e1.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7d93bd54ced0b9e1"
     },
     {
       "id": "yoguruto",
@@ -735,7 +790,8 @@
       "audio": "233528af9733c27a.mp3",
       "audioOriginal": "233528af9733c27a.orig.mp3",
       "audioAuto": "233528af9733c27a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "233528af9733c27a"
     },
     {
       "id": "yasai-vegetable",
@@ -746,7 +802,8 @@
       "audio": "06c0e33443d5b50a.mp3",
       "audioOriginal": "06c0e33443d5b50a.orig.mp3",
       "audioAuto": "06c0e33443d5b50a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "06c0e33443d5b50a"
     },
     {
       "id": "yasai-juusu",
@@ -758,7 +815,8 @@
       "audio": "81a22b910d051f3b.mp3",
       "audioOriginal": "81a22b910d051f3b.orig.mp3",
       "audioAuto": "81a22b910d051f3b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "81a22b910d051f3b"
     },
     {
       "id": "hon-book-suggestion",
@@ -792,7 +850,8 @@
       "audioAuto": "7acc5de45fe4f2c7-gen-0c512f3b.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "7acc5de45fe4f2c7-gen-0c512f3b.mp3"
+      "audio": "7acc5de45fe4f2c7-gen-0c512f3b.mp3",
+      "audioTextHash": "7acc5de45fe4f2c7"
     },
     {
       "id": "yoku-hon-a",
@@ -804,7 +863,8 @@
       "audio": "46efde9a72e57a1b.mp3",
       "audioOriginal": "46efde9a72e57a1b.orig.mp3",
       "audioAuto": "46efde9a72e57a1b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "46efde9a72e57a1b"
     },
     {
       "id": "gurasu-glass",
@@ -817,7 +877,8 @@
       "audio": "c3ddf610295b705f.mp3",
       "audioOriginal": "c3ddf610295b705f.orig.mp3",
       "audioAuto": "c3ddf610295b705f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c3ddf610295b705f"
     },
     {
       "id": "beer-order",
@@ -830,7 +891,8 @@
       "audio": "bac7539cb25acfaf.mp3",
       "audioOriginal": "bac7539cb25acfaf.orig.mp3",
       "audioAuto": "bac7539cb25acfaf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "bac7539cb25acfaf"
     },
     {
       "id": "kondo-next",
@@ -842,7 +904,8 @@
       "audio": "92bcf9968dd7b7b0.mp3",
       "audioOriginal": "92bcf9968dd7b7b0.orig.mp3",
       "audioAuto": "92bcf9968dd7b7b0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "92bcf9968dd7b7b0"
     },
     {
       "id": "weekend-plans-q",
@@ -853,7 +916,8 @@
       "audio": "f2ab8d52687c9bcb.mp3",
       "audioOriginal": "f2ab8d52687c9bcb.orig.mp3",
       "audioAuto": "f2ab8d52687c9bcb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f2ab8d52687c9bcb"
     },
     {
       "id": "shibuya-library-a",
@@ -866,7 +930,8 @@
       "audioAuto": "278891b50fad5947-genkanji-f8d26ed7.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "278891b50fad5947-genkanji-f8d26ed7.mp3"
+      "audio": "278891b50fad5947-genkanji-f8d26ed7.mp3",
+      "audioTextHash": "278891b50fad5947"
     },
     {
       "id": "yoku-library-q",
@@ -878,7 +943,8 @@
       "audioAuto": "936666426d3fb90a-genkanji-61558ec9.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "936666426d3fb90a-genkanji-61558ec9.mp3"
+      "audio": "936666426d3fb90a-genkanji-61558ec9.mp3",
+      "audioTextHash": "936666426d3fb90a"
     },
     {
       "id": "yoku-library-a",
@@ -890,7 +956,8 @@
       "audio": "9a72280f193f6af2.mp3",
       "audioOriginal": "9a72280f193f6af2.orig.mp3",
       "audioAuto": "9a72280f193f6af2.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9a72280f193f6af2"
     },
     {
       "id": "osusume",
@@ -901,7 +968,8 @@
       "audio": "cfe61bf59cc1ea33.mp3",
       "audioOriginal": "cfe61bf59cc1ea33.orig.mp3",
       "audioAuto": "cfe61bf59cc1ea33.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cfe61bf59cc1ea33"
     },
     {
       "id": "kochira-polite-this",
@@ -925,7 +993,8 @@
       "audio": "014c0856206ebe1b.mp3",
       "audioOriginal": "014c0856206ebe1b.orig.mp3",
       "audioAuto": "014c0856206ebe1b.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "014c0856206ebe1b"
     },
     {
       "id": "namabiiru",
@@ -936,7 +1005,8 @@
       "audio": "20fcb503eb5db66a.mp3",
       "audioOriginal": "20fcb503eb5db66a.orig.mp3",
       "audioAuto": "20fcb503eb5db66a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "20fcb503eb5db66a"
     },
     {
       "id": "okaikei",
@@ -948,7 +1018,8 @@
       "audio": "b2aa336d92eebbab.mp3",
       "audioOriginal": "b2aa336d92eebbab.orig.mp3",
       "audioAuto": "b2aa336d92eebbab.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b2aa336d92eebbab"
     },
     {
       "id": "betsubetsu-ni",
@@ -960,7 +1031,8 @@
       "audio": "9ef7d70d4d05b63f.mp3",
       "audioOriginal": "9ef7d70d4d05b63f.orig.mp3",
       "audioAuto": "9ef7d70d4d05b63f.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9ef7d70d4d05b63f"
     },
     {
       "id": "fib-denwa-taishikan",

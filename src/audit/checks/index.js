@@ -7,6 +7,7 @@ import {
   placeholderTargetCheck,
   exclusionsCheck,
   audioMarkerCheck,
+  audioTextHashCheck,
   chapterNumberCheck,
 } from "./collection.js";
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
@@ -56,6 +57,7 @@ export const ALL_CHECKS = [
   duplicatesCheck,
   exclusionsCheck,
   audioMarkerCheck,
+  audioTextHashCheck,
   templateExemptionsCheck,
   unmatchedDirsCheck,
   // workspace scope: none, on purpose. See the isolation note above.

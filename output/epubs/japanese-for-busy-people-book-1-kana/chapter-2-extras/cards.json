@@ -27,7 +27,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.398214897260274
-      }
+      },
+      "audioTextHash": "5a9ce8de39ab8884"
     },
     {
       "id": "oshiete-kudasai",
@@ -41,7 +42,8 @@
       "audio": "25d9ff995be70b88.mp3",
       "audioOriginal": "25d9ff995be70b88.orig.mp3",
       "audioAuto": "25d9ff995be70b88.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "25d9ff995be70b88"
     },
     {
       "id": "kore-wa-dare-no-meishi-desu-ka",
@@ -59,7 +61,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.337349743150685
-      }
+      },
+      "audioTextHash": "c6515aefe13dd61b"
     },
     {
       "id": "hai-kagi-desu",
@@ -74,7 +77,8 @@
       "audioOriginal": "635c7fc62c4b9ec3.orig.mp3",
       "audioAuto": "635c7fc62c4b9ec3.mp3",
       "audioMarked": true,
-      "scene": "answering whether the object in front of you is a key"
+      "scene": "answering whether the object in front of you is a key",
+      "audioTextHash": "635c7fc62c4b9ec3"
     },
     {
       "id": "megane-wa-watashi-no-ja-arimasen",
@@ -88,7 +92,8 @@
       "audio": "d4ff691a88af58e0.mp3",
       "audioOriginal": "d4ff691a88af58e0.orig.mp3",
       "audioAuto": "d4ff691a88af58e0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d4ff691a88af58e0"
     },
     {
       "id": "nozomi-depaato-no-denwa-bangou",
@@ -107,7 +112,8 @@
       "audioTrim": {
         "start": 0,
         "end": 6.645499143835616
-      }
+      },
+      "audioTextHash": "33271e74f0f650e3"
     },
     {
       "id": "kore-wa-kagi-desu-ka",
@@ -121,7 +127,8 @@
       "audio": "7bce29cac9d35545.mp3",
       "audioOriginal": "7bce29cac9d35545.orig.mp3",
       "audioAuto": "7bce29cac9d35545.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7bce29cac9d35545"
     },
     {
       "id": "kore-wa-kaisha-no-denwa-desu",
@@ -140,7 +147,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.497150684931507
-      }
+      },
+      "audioTextHash": "4b9b2d847fa22fa8"
     },
     {
       "id": "nakamura-san-no-desu",
@@ -154,7 +162,8 @@
       "audioOriginal": "7b262e2177016c9d.orig.mp3",
       "audioAuto": "7b262e2177016c9d.mp3",
       "audioMarked": true,
-      "scene": "answering whose business card this is"
+      "scene": "answering whose business card this is",
+      "audioTextHash": "7b262e2177016c9d"
     },
     {
       "id": "hai-sasaki-san-no-desu",
@@ -169,7 +178,8 @@
       "audioOriginal": "08f2f8b7d5938ef6.orig.mp3",
       "audioAuto": "08f2f8b7d5938ef6.mp3",
       "audioMarked": true,
-      "scene": "answering whether the wallet is Sasaki-san's"
+      "scene": "answering whether the wallet is Sasaki-san's",
+      "audioTextHash": "08f2f8b7d5938ef6"
     },
     {
       "id": "ema-san-no-desu",
@@ -183,7 +193,8 @@
       "audioOriginal": "18da28545dffb115.orig.mp3",
       "audioAuto": "18da28545dffb115.mp3",
       "audioMarked": true,
-      "scene": "answering whose pen it is"
+      "scene": "answering whose pen it is",
+      "audioTextHash": "18da28545dffb115"
     },
     {
       "id": "kore-wa-sasaki-san-no-sumaho-desu-ka",
@@ -196,7 +207,8 @@
       "audio": "3975bd1c21e2aaa5.mp3",
       "audioOriginal": "3975bd1c21e2aaa5.orig.mp3",
       "audioAuto": "3975bd1c21e2aaa5.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3975bd1c21e2aaa5"
     },
     {
       "id": "saa-wakarimasen",
@@ -211,7 +223,8 @@
       "audio": "b8902c4af7a68ba4.mp3",
       "audioOriginal": "b8902c4af7a68ba4.orig.mp3",
       "audioAuto": "b8902c4af7a68ba4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b8902c4af7a68ba4"
     },
     {
       "id": "nihon-no-okashi-desu",
@@ -225,7 +238,8 @@
       "audioOriginal": "7c62c3cf014d6207.orig.mp3",
       "audioAuto": "7c62c3cf014d6207.mp3",
       "audioMarked": true,
-      "scene": "answering what the snacks in the break room are"
+      "scene": "answering what the snacks in the break room are",
+      "audioTextHash": "7c62c3cf014d6207"
     },
     {
       "id": "kore-wa-tokei-desu-ka",
@@ -244,7 +258,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.949058219178082
-      }
+      },
+      "audioTextHash": "b965122460b0a867"
     },
     {
       "id": "kore-wa-sasaki-san-no-saifu-desu-ka",
@@ -258,7 +273,8 @@
       "audio": "dd61e1814fe52115.mp3",
       "audioOriginal": "dd61e1814fe52115.orig.mp3",
       "audioAuto": "dd61e1814fe52115.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "dd61e1814fe52115"
     },
     {
       "id": "kore-wa-dare-no-kaban-desu-ka",
@@ -271,7 +287,8 @@
       "audio": "a695d78372c6f969.mp3",
       "audioOriginal": "a695d78372c6f969.orig.mp3",
       "audioAuto": "a695d78372c6f969.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a695d78372c6f969"
     },
     {
       "id": "iie-watashi-no-desu",
@@ -286,7 +303,8 @@
       "audioOriginal": "8fe74b10fcb8b1c3.orig.mp3",
       "audioAuto": "8fe74b10fcb8b1c3.mp3",
       "audioMarked": true,
-      "scene": "answering whether the smartphone belongs to Sasaki-san"
+      "scene": "answering whether the smartphone belongs to Sasaki-san",
+      "audioTextHash": "8fe74b10fcb8b1c3"
     },
     {
       "id": "sasaki-san-no-desu",
@@ -300,7 +318,8 @@
       "audioOriginal": "870dafd2b21d0401.orig.mp3",
       "audioAuto": "870dafd2b21d0401.mp3",
       "audioMarked": true,
-      "scene": "answering whose bag this is"
+      "scene": "answering whose bag this is",
+      "audioTextHash": "870dafd2b21d0401"
     },
     {
       "id": "denwa-bangou-o-oshiete-kudasai",
@@ -313,7 +332,8 @@
       "audio": "e0238900161ba135.mp3",
       "audioOriginal": "e0238900161ba135.orig.mp3",
       "audioAuto": "e0238900161ba135.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "e0238900161ba135"
     },
     {
       "id": "iie-tokei-ja-arimasen",
@@ -327,7 +347,8 @@
       "audioOriginal": "909c23ba4800f960.orig.mp3",
       "audioAuto": "909c23ba4800f960.mp3",
       "audioMarked": true,
-      "scene": "answering whether the object is a watch"
+      "scene": "answering whether the object is a watch",
+      "audioTextHash": "909c23ba4800f960"
     },
     {
       "id": "megane-wa-nakamura-san-no-desu",
@@ -340,7 +361,8 @@
       "audio": "00624359792867fb.mp3",
       "audioOriginal": "00624359792867fb.orig.mp3",
       "audioAuto": "00624359792867fb.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "00624359792867fb"
     },
     {
       "id": "hai-hon-desu",
@@ -359,7 +381,8 @@
         "start": 0,
         "end": 1.111957191780822
       },
-      "scene": "answering whether the object is a book"
+      "scene": "answering whether the object is a book",
+      "audioTextHash": "190a8926199b6030"
     },
     {
       "id": "hai-watashi-no-desu",
@@ -378,7 +401,8 @@
         "start": 0,
         "end": 1.4096558219178084
       },
-      "scene": "answering whether the pen is yours"
+      "scene": "answering whether the pen is yours",
+      "audioTextHash": "72303db73b0ef59b"
     },
     {
       "id": "kaisha-no-namae-o-oshiete-kudasai",
@@ -392,7 +416,8 @@
       "audio": "01cccd16618cc78e.mp3",
       "audioOriginal": "01cccd16618cc78e.orig.mp3",
       "audioAuto": "01cccd16618cc78e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "01cccd16618cc78e"
     },
     {
       "id": "kore-wa-nihon-no-kasa-desu",
@@ -406,7 +431,8 @@
       "audio": "8d8707f56fbb54ce.mp3",
       "audioOriginal": "8d8707f56fbb54ce.orig.mp3",
       "audioAuto": "8d8707f56fbb54ce.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8d8707f56fbb54ce"
     },
     {
       "id": "kore-wa-kagi-ja-arimasen",
@@ -425,7 +451,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.0061592465753426
-      }
+      },
+      "audioTextHash": "81cbbd0da42365b2"
     },
     {
       "id": "kore-wa-hon-desu-ka",
@@ -438,7 +465,8 @@
       "audio": "a9706572b3141b97.mp3",
       "audioOriginal": "a9706572b3141b97.orig.mp3",
       "audioAuto": "a9706572b3141b97.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a9706572b3141b97"
     },
     {
       "id": "fairu-wa-tanaka-san-no-desu",
@@ -451,7 +479,8 @@
       "audio": "c059a8de7006bb96.mp3",
       "audioOriginal": "c059a8de7006bb96.orig.mp3",
       "audioAuto": "c059a8de7006bb96.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "c059a8de7006bb96"
     },
     {
       "id": "kore-wa-fairu-desu-ka",
@@ -464,7 +493,8 @@
       "audio": "50e4954b8c363800.mp3",
       "audioOriginal": "50e4954b8c363800.orig.mp3",
       "audioAuto": "50e4954b8c363800.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "50e4954b8c363800"
     },
     {
       "id": "kore-wa-watashi-no-denwa-ja-arimasen",
@@ -478,7 +508,8 @@
       "audio": "98b58173f65ca0f0.mp3",
       "audioOriginal": "98b58173f65ca0f0.orig.mp3",
       "audioAuto": "98b58173f65ca0f0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "98b58173f65ca0f0"
     },
     {
       "id": "sumisu-san-no-juusho-o-oshiete-kudasai",
@@ -491,7 +522,8 @@
       "audio": "52367e0416660c4a.mp3",
       "audioOriginal": "52367e0416660c4a.orig.mp3",
       "audioAuto": "52367e0416660c4a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "52367e0416660c4a"
     },
     {
       "id": "hai-sou-desu-kaisha",
@@ -516,7 +548,8 @@
       "audio": "f4fc0c2c7d48372d.mp3",
       "audioOriginal": "f4fc0c2c7d48372d.orig.mp3",
       "audioAuto": "f4fc0c2c7d48372d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f4fc0c2c7d48372d"
     },
     {
       "id": "dare-no-desu-ka",
@@ -530,7 +563,8 @@
       "audio": "08799d8eff88b527.mp3",
       "audioOriginal": "08799d8eff88b527.orig.mp3",
       "audioAuto": "08799d8eff88b527.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "08799d8eff88b527"
     },
     {
       "id": "meeru-adoresu-o-oshiete-kudasai",
@@ -543,7 +577,8 @@
       "audio": "eea73c1f35808a1d.mp3",
       "audioOriginal": "eea73c1f35808a1d.orig.mp3",
       "audioAuto": "eea73c1f35808a1d.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eea73c1f35808a1d"
     },
     {
       "id": "iie-fairu-ja-arimasen",
@@ -557,7 +592,8 @@
       "audioOriginal": "8936c46119bb8711.orig.mp3",
       "audioAuto": "8936c46119bb8711.mp3",
       "audioMarked": true,
-      "scene": "answering whether the object is a file"
+      "scene": "answering whether the object is a file",
+      "audioTextHash": "8936c46119bb8711"
     },
     {
       "id": "tanaka-san-no-kaisha-wa-nozomi-depaato-desu",
@@ -571,7 +607,8 @@
       "audio": "510debf6a9100dda.mp3",
       "audioOriginal": "510debf6a9100dda.orig.mp3",
       "audioAuto": "510debf6a9100dda.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "510debf6a9100dda"
     },
     {
       "id": "kore-wa-sumisu-san-no-desu",
@@ -585,7 +622,8 @@
       "audio": "33e0ea1a267def1a.mp3",
       "audioOriginal": "33e0ea1a267def1a.orig.mp3",
       "audioAuto": "33e0ea1a267def1a.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "33e0ea1a267def1a"
     },
     {
       "id": "kore-wa-watashi-no-juusho-desu",
@@ -598,7 +636,8 @@
       "audio": "8552a3730d2718f4.mp3",
       "audioOriginal": "8552a3730d2718f4.orig.mp3",
       "audioAuto": "8552a3730d2718f4.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "8552a3730d2718f4"
     },
     {
       "id": "kore-wa-sasaki-san-no-saifu-desu",
@@ -612,7 +651,8 @@
       "audio": "029dc3899c20d355.mp3",
       "audioOriginal": "029dc3899c20d355.orig.mp3",
       "audioAuto": "029dc3899c20d355.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "029dc3899c20d355"
     },
     {
       "id": "sumisu-san-no-denwa-bangou-wa",
@@ -626,7 +666,8 @@
       "audio": "a59c378e0981b650.mp3",
       "audioOriginal": "a59c378e0981b650.orig.mp3",
       "audioAuto": "a59c378e0981b650.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "a59c378e0981b650"
     },
     {
       "id": "kore-wa-sasaki-san-no-kaban-desu",
@@ -639,7 +680,8 @@
       "audio": "cfe305aa630b879c.mp3",
       "audioOriginal": "cfe305aa630b879c.orig.mp3",
       "audioAuto": "cfe305aa630b879c.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "cfe305aa630b879c"
     },
     {
       "id": "kore-wa-dare-no-pen-desu-ka",
@@ -657,7 +699,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.9087089041095888
-      }
+      },
+      "audioTextHash": "1bdc6ecab4476409"
     },
     {
       "id": "nozomi-depaato-desu",
@@ -671,7 +714,8 @@
       "audioOriginal": "ec58fbb878c830c3.orig.mp3",
       "audioAuto": "ec58fbb878c830c3.mp3",
       "audioMarked": true,
-      "scene": "answering what your company is called"
+      "scene": "answering what your company is called",
+      "audioTextHash": "ec58fbb878c830c3"
     },
     {
       "id": "kore-wa-kagi-desu",
@@ -685,7 +729,8 @@
       "audio": "eb44dd5904a5bf63.mp3",
       "audioOriginal": "eb44dd5904a5bf63.orig.mp3",
       "audioAuto": "eb44dd5904a5bf63.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "eb44dd5904a5bf63"
     },
     {
       "id": "kaban-wa-sasaki-san-no-desu",
@@ -699,7 +744,8 @@
       "audio": "725ee1346c339839.mp3",
       "audioOriginal": "725ee1346c339839.orig.mp3",
       "audioAuto": "725ee1346c339839.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "725ee1346c339839"
     },
     {
       "id": "kore-wa-nozomi-depaato-no-meishi-desu",
@@ -713,7 +759,8 @@
       "audio": "b5b00282b84c18fa.mp3",
       "audioOriginal": "b5b00282b84c18fa.orig.mp3",
       "audioAuto": "b5b00282b84c18fa.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "b5b00282b84c18fa"
     },
     {
       "id": "kore-wa-sasaki-san-no-saifu-ja-arimasen",
@@ -727,7 +774,8 @@
       "audio": "9a9891644b3dce37.mp3",
       "audioOriginal": "9a9891644b3dce37.orig.mp3",
       "audioAuto": "9a9891644b3dce37.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "9a9891644b3dce37"
     },
     {
       "id": "iie-watashi-no-ja-arimasen",
@@ -746,7 +794,8 @@
         "start": 0,
         "end": 2.2608732876712327
       },
-      "scene": "answering whether the pen is yours"
+      "scene": "answering whether the pen is yours",
+      "audioTextHash": "3bf9f919a0e0c7d3"
     },
     {
       "id": "tanaka-san-no-kaisha-wa-nozomi-depaato-desu-ka",
@@ -759,7 +808,8 @@
       "audio": "81f48a1c4358b3cf.mp3",
       "audioOriginal": "81f48a1c4358b3cf.orig.mp3",
       "audioAuto": "81f48a1c4358b3cf.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "81f48a1c4358b3cf"
     },
     {
       "id": "iie-kasa-ja-arimasen",
@@ -773,7 +823,8 @@
       "audioOriginal": "c1f7b5f11afa4e7f.orig.mp3",
       "audioAuto": "c1f7b5f11afa4e7f.mp3",
       "audioMarked": true,
-      "scene": "answering whether the object is an umbrella"
+      "scene": "answering whether the object is an umbrella",
+      "audioTextHash": "c1f7b5f11afa4e7f"
     },
     {
       "id": "iie-sasaki-san-no-ja-arimasen",
@@ -788,7 +839,8 @@
       "audioOriginal": "002eeda9a057ad15.orig.mp3",
       "audioAuto": "002eeda9a057ad15.mp3",
       "audioMarked": true,
-      "scene": "answering whether the wallet is Sasaki-san's"
+      "scene": "answering whether the wallet is Sasaki-san's",
+      "audioTextHash": "002eeda9a057ad15"
     },
     {
       "id": "kore-wa-nan-desu-ka",
@@ -801,7 +853,8 @@
       "audio": "5824c4fc8841c1af.mp3",
       "audioOriginal": "5824c4fc8841c1af.orig.mp3",
       "audioAuto": "5824c4fc8841c1af.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "5824c4fc8841c1af"
     },
     {
       "id": "namae-o-oshiete-kudasai",
@@ -815,7 +868,8 @@
       "audio": "6290b90d769a2001.mp3",
       "audioOriginal": "6290b90d769a2001.orig.mp3",
       "audioAuto": "6290b90d769a2001.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6290b90d769a2001"
     },
     {
       "id": "sumisu-san-no-desu-ka",
@@ -834,7 +888,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.455714897260274
-      }
+      },
+      "audioTextHash": "304809bf4a3c332d"
     },
     {
       "id": "kore-wa-kasa-desu-ka",
@@ -852,7 +907,8 @@
       "audioTrim": {
         "start": 0,
         "end": 2.0959212328767123
-      }
+      },
+      "audioTextHash": "5676a015fbcaddcc"
     },
     {
       "id": "nozomi-depaato-no-denwa-bangou-wa-nan-desu-ka",
@@ -871,7 +927,8 @@
       "audioTrim": {
         "start": 0,
         "end": 3.1084854452054795
-      }
+      },
+      "audioTextHash": "f6d95ea647b9bb71"
     },
     {
       "id": "tanaka-san-kore-wa-tanaka-san-no-pen-desu-ka",
@@ -885,7 +942,8 @@
       "audio": "3588a469cf49f46e.mp3",
       "audioOriginal": "3588a469cf49f46e.orig.mp3",
       "audioAuto": "3588a469cf49f46e.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "3588a469cf49f46e"
     },
     {
       "id": "watashi-no-namae-wa-sumisu-desu",
@@ -899,7 +957,8 @@
       "audio": "f89e54fbc23944c0.mp3",
       "audioOriginal": "f89e54fbc23944c0.orig.mp3",
       "audioAuto": "f89e54fbc23944c0.mp3",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "f89e54fbc23944c0"
     }
   ]
 }

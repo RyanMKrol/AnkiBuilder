@@ -71,11 +71,15 @@ async function runAudioInner(flags, ctx) {
   // A clip is "current" if this stage doesn't own it (a human chose it) or if it was generated from
   // the card's CURRENT text. Compared on the original's name rather than the shipping clip's, because
   // the shipping name also encodes the cleanup applied and so changes without the text changing.
+  // The per-unit kanji-TTS opt-in changes what the default clip's text IS, so it changes what that
+  // clip's name hashes to. Reading it here is what stops flipping the flag from reporting every card
+  // in the unit as stale (and, worse, regenerating them).
+  const kanjiTts = cards.meta?.kanjiTts === true;
   const clipIsCurrent = (item) =>
     !isStageOwnedCard(item) ||
     (item.audioOriginal
-      ? item.audioOriginal === defaultOriginalFilename(item, audioLanguageCode)
-      : item.audio === defaultClipFilename(item, audioLanguageCode));
+      ? item.audioOriginal === defaultOriginalFilename(item, audioLanguageCode, { kanjiTts })
+      : item.audio === defaultClipFilename(item, audioLanguageCode, { kanjiTts }));
   const active = cards.items.filter((item) => !item.excluded);
   const stale = active.filter((item) => item.audio && !clipIsCurrent(item));
   const alreadyDone =

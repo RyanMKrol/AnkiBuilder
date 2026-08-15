@@ -481,7 +481,8 @@ Prompts are Markdown-structured (Overview / Input Format /
 Example Input / Output Format / Example Output / Important / Input Data). How `pronunciation` gets
 filled in depends on whether the target language has a configured romanization library
 (`src/translate/romanizationLibraries.js`, keyed by ISO 639-1 code — currently Japanese, Mandarin,
-Korean, Russian, Hebrew, Hindi, Arabic): with a library configured, the model is asked for
+Korean, Russian and Hindi; only ja/zh/ko are proven, and Arabic and Hebrew were removed because both
+libraries return a vowel-less consonant skeleton, see below): with a library configured, the model is asked for
 `target` only, the library romanizes it deterministically, and a Sonnet-medium pass then **corrects that
 output in place** — the library (kuroshiro et al.) is a starting point, not ground truth (it mis-splits
 words, mishandles the sokuon っ, and spells unfamiliar kana letter-by-letter), so the model returns the
@@ -492,6 +493,22 @@ malformed/missing response keeps the library value). With no library configured,
 model is asked for `pronunciation` directly, preferring a standard romanization system when one
 exists and falling back to a phonetic respelling otherwise, unchanged from before this distinction
 existed.
+
+**Which languages the romanization path is actually proven for.** Only ja / zh / ko have been run end
+to end. Hindi is configured but half right: Sanscript's devanagari→IAST is a _Sanskrit_ scheme, so it
+writes the inherent schwa that spoken Hindi deletes (कमल → `kamala` for `kamal`) and can leak a raw
+combining nukta (सड़क → `saḍa़ka` for `saṛak`); it keeps its library and gets explicit schwa-deletion
+and nukta rules in the prompt instead. Arabic and Hebrew were REMOVED from the registry: both scripts
+omit short vowels and neither library restores them (كتاب → `ktab`, مدرسة → `mdrsa`, ספר → `spr`,
+שלום → `šlwm`), and since the prompt presents the library's value as a trustworthy starting point,
+leaving them wired in anchored the model on an unpronounceable answer. They now take the LLM-only
+path, which can supply the vowels.
+
+Everything language-specific in the romanization prompt is a placeholder fed from
+`src/translate/languageRules.js` — the style rules, the romanization system's name, what that
+language's library gets wrong, and the few-shot pair. It used to be written into the template, so a
+Hindi or Arabic run was shown ろっかい / こんにちは and told about the small っ; few-shot examples
+dominate a one-line instruction, so the model was being anchored on Japanese regardless of the input.
 
 All four of these prompts are hand-editable Markdown templates in `docs/`, rendered through
 `renderPromptTemplate`: [`translate-full-prompt.md`](./translate-full-prompt.md),
@@ -714,6 +731,71 @@ orthography — preserving the exact reading, only the script changes — then s
 with-`。` takes from THAT text and shows the produced kanji in the audition modal. Both on-demand paths
 write content-addressed preview files (`-gen-` / `-genkanji-` infixes) that never collide with the
 built clip, and neither touches `cards.json` until you pick a take.
+
+**Kanji-orthography TTS, opt-in per unit (`meta.kanjiTts` + `ttsKanji`).** ElevenLabs mis-parses
+all-kana Japanese — it is out of distribution against how the language is actually written — so a
+kanji+kana form often voices more naturally. Two separate things control it, and keeping them apart
+is the point:
+
+- **`ttsKanji` on a card** is the orthography itself, produced by
+  `scripts/generate-kanji-tts.mjs --run <unit-dir> --apply` (one model call per card, no TTS). It is
+  never rendered: the learner sees `target`, exactly as with `ttsText`. The audio review shows it
+  under the kana so a human can read the conversions.
+- **`meta.kanjiTts` on a unit** is whether the voice actually reads it, set at unit creation with
+  `translate --kanji-tts`. `clipSourceText` consults it; nothing else does.
+
+The split exists because kana→kanji is ONE-TO-MANY (はし is 橋 / 箸 / 端, いま is 今 / 居間), so a
+conversion can put a different word in the audio of a card whose kana face gives the learner no way
+to notice. Storing the text first makes that catchable on screen, for free, before a credit is spent.
+
+Opt-in **per unit**, never globally: `defaultClipText` feeds both the ElevenLabs cache key and the
+staleness filename, so flipping it for Japanese wholesale would invalidate every existing ja clip
+(paid refetches, discarded trim tuning) while hand-touched cards stayed exempt from regeneration —
+a silently mixed-orthography deck. Whether it is worth doing at all is unmeasured;
+`scripts/kanji-tts-ab.mjs` is the blind A/B that would settle it, written and never run (it spends
+credits, which is the owner's call).
+
+**What text a clip actually says (`audioTextHash`, `src/audio/textHash.js`).** The stage's own
+staleness rule (`clipIsCurrent` in `src/cli/commands/audio.js`) asks whether the card's stored clip
+name still matches a hash of its current text — but it short-circuits to "current" whenever
+`isStageOwnedCard` is false, which it is for every picked variant, every Replace upload and every
+hand trim. About 200 live cards are therefore exempt from the text-changed check permanently, while
+the dashboard's inline edit rewrites `target` and `ttsText` freely.
+
+`audioTextHash` closes that. Every path that installs audio records the 16-hex hash of the text the
+take was generated from, read off the take's own content-addressed name rather than computed from
+the card:
+
+| Take             | Name                               | Hash is over                        |
+| ---------------- | ---------------------------------- | ----------------------------------- |
+| audio stage      | `<hash>.orig.mp3`                  | `defaultClipText` (marker included) |
+| Generate         | `<hash>-gen-<bytes>.orig.mp3`      | the picked variant's text           |
+| Generate (kanji) | `<hash>-genkanji-<bytes>.orig.mp3` | the generated kanji text            |
+| Replace upload   | `<cardId>-user-<bytes>.orig.<ext>` | nothing — unverifiable              |
+
+The audio review compares that hash against every hash the card's CURRENT text can produce and
+badges a card whose clip no longer matches with **Text changed**. `npm run preflight` counts the
+same three outcomes per collection under `audio text hash`.
+
+"Can produce" is deliberately wide, because the text sent to TTS has changed twice without any
+card's own text changing: each spoken form (the default clip, each comma/bracket variant, the stored
+`ttsKanji`) is accepted bare, with the end marker, with the legacy Japanese trailing `。` the marker
+replaced, and with both. That last pair is not indulgence — 52 of the 53 clips the first live run
+flagged were generated under the with-`。` convention and speak their card's words perfectly. Badging
+them would have put 52 false positives on screen on landing day and buried the one card whose clip
+really is of other words.
+
+Three rules make the record trustworthy rather than decorative:
+
+- It is **never bulk-stamped from a card's current text.** That would declare every drifted clip
+  correct in one pass and permanently destroy the signal. Existing clips were backfilled from their
+  filenames by `scripts/backfill-audio-text-hash.mjs` (2,143 of 2,173 recoverable; 30 hand-named or
+  uploaded takes carry no hash and report as unverifiable).
+- It is a **badge, never a gate.** "Mark done" has no gate of any kind, and a mismatch has no exit
+  that does not destroy the reviewer's trim or pick — so a block would only teach an override habit.
+- The reviewer's exit is the **Keep this clip** button beside the player. It re-stamps the hash from
+  the card's current text and records `audioTextHashAcceptedBy` / `audioTextHashAcceptedAt`, so a
+  one-click certification of drift is at least auditable. It installs no audio and spends nothing.
 
 ### `deck`
 

@@ -95,6 +95,10 @@ export function decorateUnit(runDir, data, { includeCards = true } = {}) {
     stage: data.stage,
     reviewed: !!meta.reviewed,
     done: !!meta.done,
+    // The per-unit kanji-TTS opt-in. It decides what a card's DEFAULT clip text is, so the review
+    // needs it to say whether a clip still matches its card (src/audio/textHash.js) and to label
+    // which orthography this unit is voiced in.
+    kanjiTts: meta.kanjiTts === true,
     // Whether the pre-review passes have all run. Surfaced per unit so the home page can keep an
     // unfinished lesson out of "In review" and the review view can say what's still to run.
     ...lessonReadiness(meta, data.items),

@@ -24,6 +24,7 @@ const SPENT = [
   "split-front-hint.mjs",
   "strip-restatement-notes.mjs",
   "enhance-card-notes.mjs",
+  "backfill-audio-text-hash.mjs",
 ];
 
 const STANDING = [
@@ -44,6 +45,9 @@ const STANDING = [
   "vocab-coverage.mjs",
   "paradigm-grid.mjs",
   "clean-audio.mjs",
+  "audit-marker-stuck.mjs",
+  "generate-kanji-tts.mjs",
+  "kanji-tts-ab.mjs",
   "prune-baks.mjs",
   "test-with-write-guard.mjs",
   "verify-apkg-import.mjs",

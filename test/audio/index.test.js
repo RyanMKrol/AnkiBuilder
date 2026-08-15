@@ -319,6 +319,41 @@ test("handles multiple cards with duplicate target terms", async () => {
   }
 });
 
+// Every clip the stage installs records the text it was made from, so the check that a clip still
+// matches its card stops depending on whether the stage happens to own that card.
+test("stamps each generated clip with the text it was generated from", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([
+        { id: "a1", english: "Hello", category: "Greetings", target: "こんにちは" },
+      ]);
+      // A stale acceptance of the PREVIOUS clip must not survive onto a fresh recording.
+      cards.items[0].audioTextHashAcceptedBy = "human";
+      cards.items[0].audioTextHashAcceptedAt = "2026-01-01T00:00:00.000Z";
+
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: async (term) => Buffer.from(`audio for ${term}`),
+        libraryHomeDir: tmpDir,
+      });
+
+      const item = result.items[0];
+      assert.equal(
+        item.audioTextHash,
+        createHash("sha256").update("こんにちは。ででで").digest("hex").slice(0, 16),
+      );
+      assert.equal(item.audio, `${item.audioTextHash}.mp3`, "the name and the stamp agree");
+      assert.equal("audioTextHashAcceptedBy" in item, false);
+      assert.equal("audioTextHashAcceptedAt" in item, false);
+    });
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+});
+
 test("flags a card whose end marker survived the trim, and only that card", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";

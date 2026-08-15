@@ -17,6 +17,7 @@ import {
   trimCardAudio,
   revertCardAudio,
   recleanCardAudio,
+  acceptCardAudioText,
 } from "./adapters/applyCardAudio.js";
 import {
   setCardExcluded,
@@ -353,6 +354,15 @@ export function createDeckServer({
     sendJson(res, { audio, mediaUrl: mediaUrl(type, id, unit, audio) });
   }
 
+  // "Keep this clip for the current text." The one exit from a stale-text badge that does not
+  // destroy a reviewer's hand trim or hand pick — see src/audio/textHash.js. It changes no audio.
+  function handleAcceptText(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    sendJson(res, acceptCardAudioText(runDir, cardId));
+  }
+
   function handleTrimRevert(res, type, id, unit, cardId) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -474,6 +484,9 @@ export function createDeckServer({
       if (seg[8] === "audio" && seg[9] === "select" && seg.length === 10) {
         await handleSelect(req, res, type, id, unit, cardId);
         return true;
+      }
+      if (seg[8] === "audio" && seg[9] === "accept-text" && seg.length === 10) {
+        return (handleAcceptText(res, type, id, unit, cardId), true);
       }
       if (seg[8] === "audio" && seg[9] === "clean" && seg.length === 10) {
         await handleClean(req, res, type, id, unit, cardId);

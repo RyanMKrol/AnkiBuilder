@@ -22,6 +22,7 @@ import { DELIVERED_MARKER } from "../anki/deliver.js";
 import { INCOMPLETE } from "./adapters/stage.js";
 import { describeReadiness } from "../cards/readiness.js";
 import { cleanupNames } from "../audio/cleanupFilter.js";
+import { audioTextState } from "../audio/textHash.js";
 import { page } from "./respond.js";
 import { renderCardFacesPage } from "../deck/cardFacePreview.js";
 
@@ -267,7 +268,8 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
-    const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
+    const deckLanguageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
+    const isJa = deckLanguageCode === "ja";
 
     const sections = units.map((u) => ({
       leaf: u.label,
@@ -279,10 +281,18 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       missing: u.missing || [],
       reason: u.reason || null,
       numberIssues: u.numberIssues || [],
+      kanjiTts: !!u.kanjiTts,
       cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
         stage: u.stage || "audio",
+        // Does this clip still speak this card's text? Every hand-picked, uploaded or hand-trimmed
+        // clip is exempt from the audio stage's own staleness check forever, so this is the only
+        // place ~200 live cards are ever asked the question. Badge only — nothing here blocks.
+        audioTextState: audioTextState(c, deckLanguageCode, { kanjiTts: !!u.kanjiTts }).state,
+        // Whether this unit is actually VOICED from its kanji, so the review can say "spoken as"
+        // only when that is true rather than implying a clip says something it does not.
+        kanjiTts: !!u.kanjiTts,
         audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
         // The take the trim editor cuts from. Falls back to the shipping clip for cards generated
         // before originals were kept — still trimmable, just not widenable past the automatic cut.
@@ -300,10 +310,18 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
       : "";
     const player = (url) =>
       url ? `<audio controls preload="none" src="${url}"></audio>` : `<span class="x">—</span>`;
+    // "Keep this clip" appears ONLY on a card whose clip no longer matches its text. It is the exit
+    // the badge would otherwise not have: regenerating discards the reviewer's trim or pick, and
+    // re-picking re-spends credits on a take they already judged right. Pressing it changes no
+    // audio — it records that a human vouched for this clip, with a name and a time on it.
+    const keepClipBtn = (c) =>
+      c.audioTextState === "stale"
+        ? `<button type="button" class="keep-clip" title="Record that this clip is correct for the card's current text (changes no audio)">Keep this clip</button>`
+        : "";
     const audioCell = (c) =>
       player(c.audioUrl) +
-      (canEdit && c.originalUrl
-        ? `<div class="ed"><button type="button" class="trim">Edit</button></div>`
+      (canEdit && (c.originalUrl || c.audioTextState === "stale")
+        ? `<div class="ed">${c.originalUrl ? `<button type="button" class="trim">Edit</button>` : ""}${keepClipBtn(c)}</div>`
         : "");
     // Only the editable review shows the Original column; passing undefined leaves the read-only
     // Browse view and the view-deck artifact with their single audio column, exactly as before.

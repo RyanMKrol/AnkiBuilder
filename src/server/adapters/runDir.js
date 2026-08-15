@@ -49,6 +49,11 @@ export function toRenderCard(item) {
     scene: item.scene || "",
     note: item.note || item.cardNote || "",
     reviewNote: item.reviewNote || "",
+    // What the voice actually says, and (when the unit has opted into kanji TTS) the orthography it
+    // says it in. Carried so the review can compare the clip against the card's CURRENT text; the
+    // learner never sees either — see src/audio/index.js `speechText` / `clipSourceText`.
+    ttsText: item.ttsText || "",
+    ttsKanji: item.ttsKanji || "",
     audio: item.audio || null,
     // The untouched take, and the hand cut applied to it. The review shows the original beside the
     // shipping clip and pre-fills the trim editor's handles from the saved range.
@@ -56,6 +61,14 @@ export function toRenderCard(item) {
     audioManual: item.audioManual || null,
     audioTrim: item.audioTrim || null,
     audioFilter: item.audioFilter || null,
+    // The trim could not cut the TTS end marker off this clip. It was already stored, already
+    // schema'd and already badged by the renderer — and dropped HERE, so the badge the whole
+    // mechanism rests on has never once appeared in the dashboard. See src/audio/ttsMarker.js.
+    audioMarkerStuck: !!item.audioMarkerStuck,
+    // What text this clip was generated from, and whether a human has vouched for it against the
+    // card's current text (src/audio/textHash.js).
+    audioTextHash: item.audioTextHash || "",
+    audioTextHashAcceptedBy: item.audioTextHashAcceptedBy || "",
     excluded: !!item.excluded,
     // Who excluded it. "" means a human decision or a file written before provenance
     // existed; a script name means a sweep, which is the case a reviewer should re-check.

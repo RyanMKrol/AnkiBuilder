@@ -157,6 +157,25 @@ export const DECK_EDIT_SCRIPT = `(function () {
       })
       .catch(function (e) { list.innerHTML = '<div class="spin"></div>'; list.firstChild.textContent = e.message; });
   };
+  // "Keep this clip for the current text." Records a human decision; installs no audio, spends no
+  // credits, and the row's badge is only cleared once the server confirms the write. The button
+  // removes itself afterwards, so the same card cannot be accepted twice by an impatient double
+  // click and the row stops offering an action that no longer applies.
+  document.querySelectorAll("button.keep-clip").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var r = rowRef(btn);
+      btn.disabled = true;
+      if (r.msg) r.msg.textContent = "accepting\\u2026";
+      fetch(base + "/unit/" + encodeURIComponent(r.unit) + "/card/" + encodeURIComponent(r.cid) + "/audio/accept-text", { method: "POST" })
+        .then(jsonp).then(function (x) {
+          if (!x.ok) throw new Error(x.j.error || "accept failed");
+          var b = r.tr.querySelector(".badge-stale"); if (b) b.remove();
+          btn.remove();
+          if (r.msg) r.msg.textContent = "\\u2713 kept for current text";
+        })
+        .catch(function (e) { btn.disabled = false; if (r.msg) r.msg.textContent = e.message; });
+    });
+  });
   document.querySelectorAll("button.gen").forEach(function (btn) { btn.addEventListener("click", function () { openGen(btn, "/generate"); }); });
   document.querySelectorAll("button.gen-kanji").forEach(function (btn) { btn.addEventListener("click", function () { openGen(btn, "/generate-kanji"); }); });
   modal.querySelector(".close").addEventListener("click", closeModal);

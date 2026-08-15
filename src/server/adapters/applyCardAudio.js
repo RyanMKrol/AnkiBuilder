@@ -4,10 +4,12 @@ import { join } from "path";
 import { createHash } from "crypto";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
 import { httpError } from "../../util/httpError.js";
-import { autoTrim } from "../../audio/trimSilence.js";
+import { autoTrim, findEndMarker as defaultFindEndMarker } from "../../audio/trimSilence.js";
 import { trimToRange as defaultTrimToRange } from "../../audio/trimToRange.js";
 import { cleanupChain, isCleanupName, resolveCleanupName } from "../../audio/cleanupFilter.js";
 import { AUDIO_FIELDS, deriveCardAudio } from "../../audio/index.js";
+import { currentAudioTextHash, parseClipTextHash } from "../../audio/textHash.js";
+import { resolveIso639Code } from "../../model/iso639.js";
 import { isSafeMediaFile } from "./runDir.js";
 
 // Writes a card's audio choice back into a run dir — both the raw-upload path and the pick-a-generated-
@@ -130,9 +132,82 @@ export function selectCardAudio(runDir, cardId, filename, original = null, deps 
       audioAuto: filename,
       audioFilter: resolveCleanupName(deps.filter),
       audioMarked: marked || null,
+      // A picked variant's name is `<hash(its text)>-gen-<bytes>`, so the text behind the pick is
+      // recoverable from it and worth recording — that is the whole point of the hash. A name that
+      // carries none (nothing does on this path today) leaves the card unverifiable, not guessed at.
+      audioTextHash: parseClipTextHash(original || filename)?.hash ?? null,
     },
     deps,
   );
+}
+
+/**
+ * Record a human's "keep this clip for the text as it stands now".
+ *
+ * The exit the staleness badge would otherwise not have. Every other way out of a mismatch destroys
+ * work: regenerating throws away the reviewer's trim or pick, and re-picking re-spends credits on a
+ * clip they already judged correct. So the reviewer gets to say the clip is right — and it is
+ * recorded as a decision, with a name and a time on it, rather than applied as a silent re-stamp.
+ *
+ * Deliberately narrow: it moves `audioTextHash` to the card's CURRENT text and touches no take. The
+ * audio on disk is exactly what it was; only the claim about it changes.
+ */
+export function acceptCardAudioText(
+  runDir,
+  cardId,
+  { by = "human", now = () => new Date(), validateCards = defaultValidateCards } = {},
+) {
+  const { cardsPath, data } = loadCards(runDir);
+  const item = (data.items || []).find((i) => i.id === cardId);
+  if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
+  if (!item.audio) throw httpError(422, "this card has no audio to accept");
+
+  // Deliberately NOT through `setCardTakes`. That re-derives `audio` from the three takes and
+  // deletes it when there are none — and seven live cards, generated before originals were kept,
+  // carry a shipping clip and no takes at all. Routing a write that is not about the audio through
+  // the audio-deriving path would silently delete their only clip.
+  item.audioTextHash = currentAudioTextHash(item, resolveIso639Code(data.meta?.targetLanguage), {
+    kanjiTts: data.meta?.kanjiTts === true,
+  });
+  item.audioTextHashAcceptedBy = by;
+  item.audioTextHashAcceptedAt = now().toISOString();
+
+  try {
+    validateCards(data);
+  } catch (e) {
+    throw httpError(400, `invalid card data after edit: ${e.message}`);
+  }
+  writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
+  return {
+    audioTextHash: item.audioTextHash,
+    acceptedBy: item.audioTextHashAcceptedBy,
+    acceptedAt: item.audioTextHashAcceptedAt,
+  };
+}
+
+/**
+ * Does the take that is about to SHIP still carry the TTS end marker?
+ *
+ * `audioMarkerStuck` is set by the audio stage when the automatic trim cannot find the marker, and
+ * until now nothing ever cleared it except installing a whole new recording. But a hand trim is
+ * precisely the fix the badge is asking for — the reviewer places the end of the clip by ear — so
+ * the flag went on describing a take the card no longer ships. All seven live instances were like
+ * that: every one had already been hand-cut, and the marker had been gone for months.
+ *
+ * Re-derived from the audio rather than reasoned about, because "did the cut land past the marker"
+ * is a question about a recording. `null` means no marker (and `setCardTakes` deletes the field), and
+ * it is also what a failed or unavailable detection returns: "could not tell" must not be recorded
+ * as "found one".
+ */
+function markerStuckIn(runDir, filename, { marked, findMarker = defaultFindEndMarker } = {}) {
+  if (!marked || !filename || !isSafeMediaFile(filename)) return null;
+  const path = join(runDir, "audio", filename);
+  if (!existsSync(path)) return null;
+  try {
+    return findMarker(path) ? true : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -228,6 +303,9 @@ export function trimCardAudio(runDir, cardId, start, end, deps = {}) {
       audioManual: filename,
       audioTrim: { start, end },
       ...(filter ? { audioFilter: filter } : {}),
+      // The cut is the new shipping take, so the marker claim has to be re-asked of it. A hand trim
+      // is how a reviewer clears a stuck marker; without this the badge survived the fix.
+      audioMarkerStuck: markerStuckIn(runDir, filename, { marked: !!item.audioMarked, ...deps }),
     },
     deps,
   );
@@ -260,7 +338,7 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
   if (!existsSync(sourcePath)) throw httpError(404, `audio ${JSON.stringify(source)} not found`);
   const raw = readFileSync(sourcePath);
 
-  const { auto } = await autoTrim(raw, {
+  const { auto, markerStuck } = await autoTrim(raw, {
     ...(trim ? { trim } : {}),
     cleanup: filter,
     // The original still carries the end marker, so re-deriving from it has to cut the
@@ -273,7 +351,16 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
   writeFileAtomic(join(runDir, "audio", audioAuto), auto);
   dropSupersededChainTake(runDir, item, audioAuto);
 
-  const takes = { audioAuto, audioFilter: filter, audioManual: null, audioTrim: null };
+  // A re-clean re-derives the take from the original, so its marker verdict is fresh — and until
+  // now it was computed and thrown away, leaving the card asserting whatever the last generation
+  // said. A preserved hand cut overrides it below, since that is what ships.
+  const takes = {
+    audioAuto,
+    audioFilter: filter,
+    audioManual: null,
+    audioTrim: null,
+    audioMarkerStuck: markerStuck || null,
+  };
   if (item.audioTrim && Number.isFinite(item.audioTrim.start)) {
     const { start, end } = item.audioTrim;
     try {
@@ -284,6 +371,10 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
       dropSupersededManual(runDir, item, name);
       takes.audioManual = name;
       takes.audioTrim = { start, end };
+      takes.audioMarkerStuck = markerStuckIn(runDir, name, {
+        marked: !!item.audioMarked,
+        ...deps,
+      });
     } catch (e) {
       throw httpError(422, `re-cleaned, but could not re-apply the saved trim: ${e.message}`);
     }
@@ -291,9 +382,32 @@ export async function recleanCardAudio(runDir, cardId, filter, deps = {}) {
   return setCardTakes(runDir, cardId, takes, deps);
 }
 
-// Drop a card's hand cut, falling back to the automatic take. The cut file is left on disk — it costs
-// tens of KB, never reaches the deck, and keeping it means an accidental revert is undone by
-// re-applying the same range rather than by re-cutting audio the reviewer already approved.
+/**
+ * Drop a card's hand cut, falling back to the automatic take.
+ *
+ * The cut file is left on disk — it costs tens of KB, never reaches the deck, and keeping it means
+ * an accidental revert is undone by re-applying the same range rather than by re-cutting audio the
+ * reviewer already approved.
+ *
+ * The marker verdict has to move back with it. Reverting re-installs the automatic take, which is
+ * the one the trim may have failed on, so a card that was hand-cut clear of a stuck marker is stuck
+ * again the moment the cut is dropped.
+ */
 export function revertCardAudio(runDir, cardId, deps = {}) {
-  return setCardTakes(runDir, cardId, { audioManual: null, audioTrim: null }, deps);
+  const { data } = loadCards(runDir);
+  const item = (data.items || []).find((i) => i.id === cardId);
+  if (!item) throw httpError(404, `card ${JSON.stringify(cardId)} not found`);
+  return setCardTakes(
+    runDir,
+    cardId,
+    {
+      audioManual: null,
+      audioTrim: null,
+      audioMarkerStuck: markerStuckIn(runDir, item.audioAuto, {
+        marked: !!item.audioMarked,
+        ...deps,
+      }),
+    },
+    deps,
+  );
 }

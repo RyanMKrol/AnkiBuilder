@@ -22,7 +22,8 @@
       "audioOriginal": "d9293fde5096fda7.orig.mp3",
       "audioAuto": "d9293fde5096fda7.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "d9293fde5096fda7"
     },
     {
       "id": "konnichiwa",
@@ -36,7 +37,8 @@
       "audioOriginal": "6dde65c7439b036b.orig.mp3",
       "audioAuto": "6dde65c7439b036b.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "6dde65c7439b036b"
     },
     {
       "id": "konbanwa",
@@ -51,7 +53,8 @@
       "audioOriginal": "79964d0103b938d3.orig.mp3",
       "audioAuto": "79964d0103b938d3.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "79964d0103b938d3"
     },
     {
       "id": "ja-mata",
@@ -79,7 +82,8 @@
       "audioAuto": "e8735a3fed17bfbe.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "hint": "the plain everyday good-bye, not a workplace phrase"
+      "hint": "the plain everyday good-bye, not a workplace phrase",
+      "audioTextHash": "e8735a3fed17bfbe"
     },
     {
       "id": "shitsurei-shimasu-entering",
@@ -95,7 +99,8 @@
       "audioAuto": "f49d56dfa01636c7.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "said when entering another person's room"
+      "scene": "said when entering another person's room",
+      "audioTextHash": "f49d56dfa01636c7"
     },
     {
       "id": "shitsurei-shimasu-leaving",
@@ -111,7 +116,8 @@
       "audioAuto": "f49d56dfa01636c7.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "said on formal occasions"
+      "scene": "said on formal occasions",
+      "audioTextHash": "f49d56dfa01636c7"
     },
     {
       "id": "osaki-ni-shitsurei-shimasu",
@@ -126,7 +132,8 @@
       "audioAuto": "132ecb80bddab956.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "said when leaving the office before other people"
+      "scene": "said when leaving the office before other people",
+      "audioTextHash": "132ecb80bddab956"
     },
     {
       "id": "otsukaresama-deshita",
@@ -146,7 +153,8 @@
         "start": 0,
         "end": 1.311318493150685
       },
-      "scene": "said when your colleague leaves the office before you"
+      "scene": "said when your colleague leaves the office before you",
+      "audioTextHash": "329939a097685c7f"
     },
     {
       "id": "douzo",
@@ -162,7 +170,8 @@
       "audioAuto": "66ebb7fac7a56a92.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "offering something to someone"
+      "scene": "offering something to someone",
+      "audioTextHash": "66ebb7fac7a56a92"
     },
     {
       "id": "arigatou-gozaimasu",
@@ -179,7 +188,8 @@
       "audioAuto": "5f4dbd7f8c93ad8f.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "hint": "the polite full-length form, for a stranger or a superior"
+      "hint": "the polite full-length form, for a stranger or a superior",
+      "audioTextHash": "5f4dbd7f8c93ad8f"
     },
     {
       "id": "iie-not-at-all",
@@ -195,7 +205,8 @@
       "audioAuto": "2a99c48a53abfae1.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "downplaying thanks just received"
+      "scene": "downplaying thanks just received",
+      "audioTextHash": "2a99c48a53abfae1"
     },
     {
       "id": "itadakimasu",
@@ -212,7 +223,8 @@
       "audioAuto": "9c19de9fa965407b.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "about to start eating"
+      "scene": "about to start eating",
+      "audioTextHash": "9c19de9fa965407b"
     },
     {
       "id": "gochisousama-deshita",
@@ -247,7 +259,8 @@
       "audioAuto": "e65b17184aa057a7.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "getting someone's attention"
+      "scene": "getting someone's attention",
+      "audioTextHash": "e65b17184aa057a7"
     },
     {
       "id": "sumimasen-sorry",
@@ -263,7 +276,8 @@
       "audioAuto": "e65b17184aa057a7.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "apologizing for a mistake"
+      "scene": "apologizing for a mistake",
+      "audioTextHash": "e65b17184aa057a7"
     },
     {
       "id": "chotto-matte-kudasai",
@@ -278,7 +292,8 @@
       "audioOriginal": "ef3b98d41b8e14b5.orig.mp3",
       "audioAuto": "ef3b98d41b8e14b5.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "ef3b98d41b8e14b5"
     },
     {
       "id": "mou-ichido-onegaishimasu",
@@ -294,7 +309,8 @@
       "audioOriginal": "7474e36082efb107.orig.mp3",
       "audioAuto": "7474e36082efb107.mp3",
       "audioFilter": "standard",
-      "audioMarked": true
+      "audioMarked": true,
+      "audioTextHash": "7474e36082efb107"
     }
   ]
 }

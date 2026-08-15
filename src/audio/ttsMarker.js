@@ -24,7 +24,17 @@
 // short clips; the marker covers both, and the dot now has exactly one job, here.
 export const TTS_END_MARKER = "。ででで";
 
-/** Languages whose TTS text gets the marker. */
+/**
+ * Languages whose TTS text gets the marker.
+ *
+ * One entry, and every other language therefore ships whatever ElevenLabs clips off the end. That is
+ * a known unhandled condition rather than an oversight — see the LIMITATIONS entry "End-marker
+ * protection is Japanese-only". It is also INVISIBLE: `audioMarkerStuck` can only be set on a marked
+ * take, so an unmarked language's clipped ending reaches no badge, no preflight check and no audit
+ * script. Adding a language means choosing a throwaway syllable no card in it ends with, generating
+ * a sample, and re-deriving the position and pulse-shape thresholds against that sample — not adding
+ * a string here.
+ */
 const MARKED_LANGUAGES = new Set(["ja"]);
 
 export function usesEndMarker(languageCode, env = process.env) {

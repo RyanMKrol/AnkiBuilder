@@ -345,7 +345,10 @@ say when it was measured rather than stating it as a standing fact.
   `kuroshiro`/`kuroshiro-analyzer-kuromoji` (Japanese, kana+kanji → romaji), `pinyin-pro`
   (Mandarin), `koroman` (Korean), `cyrillic-to-translit-js` (Russian/Cyrillic),
   `hebrew-transliteration` (Hebrew), `@indic-transliteration/sanscript` (Hindi/Devanagari), and
-  `arabic-transliterate` (Arabic). The Japanese case is the one genuinely costly dependency:
+  `arabic-transliterate` (Arabic). **The Arabic and Hebrew adapters are no longer wired into
+  `ROMANIZATION_LIBRARIES`** — their packages stay installed and their adapters and tests stay
+  accurate about what those packages do, but neither language reaches them any more; see "Only
+  ja / zh / ko have a proven romanization path" below. The Japanese case is the one genuinely costly dependency:
   `kuromoji`'s bundled IPADIC morphological dictionary is **~41MB unpacked** — real linguistic data
   needed for kanji-aware analysis, not something that can be hand-rolled small. Every adapter's
   library import is a dynamic `import()` inside the adapter function itself (never a static
@@ -2400,7 +2403,8 @@ say when it was measured rather than stating it as a standing fact.
 - **What:** `src/translate/romajiStyle.js` pins one romanization style per language, and only `ja`
   has one. A language with no entry gets no rules in its prompts and no lint — `lintRomaji` returns
   `[]`, `romanizationStyleRules` returns `[]`, and the romanization prompt's style bullet renders
-  empty. The other library-configured languages (zh, ko, ru, he, hi, ar) romanize with nothing pinned.
+  empty. The other library-configured languages (zh, ko, ru, hi) romanize with nothing pinned, as do ar
+  and he, which WS5 moved off the library path entirely.
 - **Why:** the deck being built is Japanese, and inventing a pinyin or Hangul-romanization spec
   nobody has looked at would be worse than an honest gap: a wrong pinned rule is injected into every
   prompt and linted against every card.
@@ -2553,3 +2557,198 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open — accepted trade, recorded so it is not rediscovered as a bug.
 - **When to revisit:** if `.apkg` import ever becomes the primary delivery path again, this inverts
   and the suspension has to move into the builder.
+
+<!-- WS5 -->
+
+## The audio text-hash badge is a badge, and 30 clips can never be checked at all
+
+- **What:** `audioTextHash` records what text each clip was generated from, so the ~200 hand-picked,
+  hand-trimmed and uploaded cards stop being exempt from the text-changed check. It reports, in the
+  audio review (a **Text changed** badge) and in `npm run preflight` (`audio text hash`). It does not
+  block "Mark done", and 30 live clips carry a hand-given name with no hash in it, so nobody can say
+  whether they still match their card.
+- **Why:** a block would have been the first ever gate on the owner's daily path, and a mismatch has
+  no exit that does not destroy the reviewer's hand trim or hand pick — the "Keep this clip" button
+  is the exit, and it is a decision, not a fix. The 30 are unverifiable because the only other way to
+  give them a hash is to compute one from the card's current text, which would declare every drifted
+  clip correct in a single pass and destroy the signal permanently.
+- **Impact:** a stale clip still ships until a human acts on the badge. On the first live run the
+  count was ONE (`nihongo-101-course-n5/lesson-0/irl-l1-31`, whose hand-trimmed clip was generated
+  from text nobody can now reconstruct); it is left badged rather than regenerated, because deciding
+  between spending credits and keeping the take is the owner's call. 106 clips report unverifiable:
+  30 whose take carries a hand-given name with no hash in it, and the rest kanji takes generated
+  before `ttsKanji` was stored on the card.
+- **Status:** open — badge-only by design, pending a measurement of how often it goes red in practice.
+- **Verified by:** `node scripts/preflight.mjs --all --only audio-text-hash --verbose`
+- **When to revisit:** once the live stale count has been observed over a few chapters. If it stays
+  at or near zero, promoting the check to ACK (accept-or-fix, not a hard block) is the next rung —
+  the exit action and its provenance fields already exist, which is what a promotion needs.
+
+## A cleared marker-stuck flag rests on where the cut landed, not on the detector
+
+- **What:** `scripts/audit-marker-stuck.mjs` clears `audioMarkerStuck` only when the reviewer's hand
+  cut ends at or before the start of the original's trailing run of separated speech — the only place
+  an appended marker can be — and the detector also finds nothing in the shipping clip. The detector's
+  own verdict is never enough on its own.
+- **Why:** these are precisely the clips the detector failed on; that failure is what set the flag.
+  Measured on the seven live instances, all of whose originals certainly carry the marker,
+  `findEndMarker` locates it in exactly one. Clearing a flag on "the detector found nothing" would be
+  reasoning from a known-blind instrument.
+- **Impact:** a clip fixed some other way — regenerated, replaced, or hand-cut with no `audioTrim`
+  recorded — cannot be cleared by this tool even when it is genuinely clean. It reports those as
+  unproven and leaves them flagged, which is the safe direction but means the count can stick above
+  zero for a reason that is not a bad clip. All seven live instances cleared; none is currently in
+  that state.
+- **Status:** open
+- **Verified by:** `node scripts/audit-marker-stuck.mjs`
+- **When to revisit:** if the ACK count starts holding non-zero on cards nobody can clear. The next
+  rung would be storing the marker window on the card at generation time, so "was it cut away" stops
+  depending on re-detecting it later.
+
+## Marker detection is re-run on every hand trim, re-clean and revert
+
+- **What:** installing or dropping a hand cut now re-asks whether the shipping take carries the end
+  marker, which is one `silencedetect` pass plus up to three short decodes per action.
+- **Why:** the flag has to describe the clip that ships, or it goes on asserting a fault the reviewer
+  has already fixed — which is what happened to all seven live instances for months.
+- **Impact:** an Apply in the trim editor now costs an extra ffmpeg round trip (tens of milliseconds
+  on these clip lengths). Only for a take generated with the marker; a non-Japanese card never pays
+  it. If ffmpeg is missing the detection returns "no marker", same fail-open rule as the trim itself,
+  so an absent ffmpeg silently clears flags rather than keeping them.
+- **Status:** open
+- **When to revisit:** if the editor starts feeling slow on Apply, or if a machine without ffmpeg is
+  ever used for review — the fail-open direction is wrong for that case and would need a third state
+  ("could not tell") rather than a boolean.
+
+## Kanji-orthography TTS is opt-in and unmeasured — the A/B has never been run
+
+- **What:** a unit can be voiced from each card's kanji orthography (`meta.kanjiTts` + `ttsKanji`)
+  instead of its kana. The machinery is complete: the conversion pass, the per-unit flag, the review
+  surfacing, and `scripts/kanji-tts-ab.mjs`, which is the blind A/B that would decide whether it is
+  worth using. Nothing in the live tree has the flag set, and the A/B has never been run.
+- **Why:** running it costs ElevenLabs credits (two takes per sampled card, 60 for the default
+  sample), which is the owner's call and not something an agent should spend. Building the harness
+  costs nothing, and the parts that are easy to get wrong — the sample weighting toward
+  homophone-bearing cards, the blinding, the scoring — are exactly the parts worth pinning down in
+  advance. `--spend` is deliberately not wired to a generator, so no code path in this repo reaches
+  ElevenLabs without someone having just written the call.
+- **Impact:** the codebase's claim that kanji voices more naturally is still just a claim, and the
+  cost side of it — how often kana→kanji picks the wrong word — has no number at all. Until both
+  exist, the flag is a capability nobody should turn on by default. The one-to-many risk is real and
+  undetectable by the learner: the card face is kana, so a clip saying 箸 where the card means 橋
+  sounds perfectly fluent.
+- **Status:** open — built, documented, never run.
+- **When to revisit:** whenever the owner is willing to spend the ~60 takes. Step 2 of the procedure
+  (reading the conversions on screen) is free and worth doing first on its own: the visible mis-pick
+  rate is half the answer and might settle it without any audio at all.
+
+## Nothing has changed for units that already exist
+
+- **What:** `translate --kanji-tts` records the flag at unit CREATION. There is no command to flip it
+  on a unit that already has audio.
+- **Why:** `defaultClipText` feeds both the ElevenLabs cache key and the staleness filename, so
+  flipping it on an existing ja unit would invalidate every clip in it — paid refetches, discarded
+  trim tuning — while hand-touched cards stayed exempt from regeneration, leaving a unit voiced half
+  in kana and half in kanji with nothing saying which is which.
+- **Impact:** trying kanji TTS on the existing book means a new unit, not a switch. The staleness
+  comparison deliberately accepts BOTH flag states (`expectedAudioTextHashes`), so hand-editing the
+  flag onto a unit badges nothing — but it would silently change what the next `audio` run generates
+  and re-bill it, which is precisely the mixed-orthography outcome. Do not hand-edit it.
+- **Status:** open
+- **When to revisit:** if the A/B comes back positive and the owner wants an existing unit converted.
+  That needs a previewed migration that regenerates the whole unit at once, not a flag flip.
+
+## Only ja / zh / ko have a proven romanization path
+
+- **What:** seven languages had a romanization library wired in; three have ever been run end to
+  end. Measured output for the rest: Arabic كتاب → `ktab` (kitāb), مدرسة → `mdrsa` (madrasa),
+  بيت → `byt` (bayt); Hebrew ספר → `spr` (sefer), שלום → `šlwm` (shalom); Hindi कमल → `kamala`
+  (kamal), सड़क → `saḍa़ka` (saṛak, with the combining nukta leaking through raw). Arabic and Hebrew
+  have been removed from `ROMANIZATION_LIBRARIES`; Hindi keeps its library plus explicit
+  schwa-deletion and nukta rules in the prompt.
+- **Why:** Arabic and Hebrew script do not write short vowels and neither library restores them, so
+  both return a consonant skeleton — not an imperfect romanization but a non-answer, since a learner
+  reading `ktab` cannot say the word. The romanization prompt hands the library's value over as a
+  useful starting point and tells the model to keep it where it is right, so a systematically empty
+  value does not merely fail to help: it anchors. Hindi is a different case. Sanscript's
+  devanagari→IAST is a *Sanskrit* scheme, where the inherent schwa is pronounced; Hindi deletes it.
+  Every vowel is at least present, so the output is correctable, and telling the model exactly what
+  to correct is cheaper than dropping a library that is 80% right.
+- **Impact:** an Arabic or Hebrew deck now takes the LLM-only pronunciation path, the same one every
+  unconfigured language uses. That is a model guess with no deterministic backing — but a guess that
+  can supply vowels beats a skeleton that cannot. Hindi's output depends on the model actually
+  applying the schwa rule; nothing verifies it, and there is no Hindi deck to check against.
+  Neither has been run on real material, so "improved" here means "no longer anchored on a wrong
+  answer", not "measured good".
+- **Status:** open
+- **Verified by:** `node -e "import('./src/translate/romanization/indic.js').then(m => m.romanize('सड़क')).then(console.log)"`
+- **When to revisit:** before anyone builds a deck in one of these languages. Romanize thirty real
+  cards, read them, and decide per language — that is the only thing that would turn any of this
+  from a reasoned guess into a measurement. If a vocalizing Arabic or Hebrew library appears,
+  re-wiring is one line in `romanizationLibraries.js`.
+
+## The romanization prompt's language fragments are hand-written, not measured
+
+- **What:** the per-language `romanizationStyle`, `libraryFailureModes` and `romanizationExamples`
+  entries in `languageRules.js` are written from knowledge of each language, not derived from a
+  corpus. The Japanese ones restate faults this project has actually seen; the Hindi, Arabic and
+  Hebrew ones restate faults measured on a handful of words each.
+- **Why:** the alternative was leaving every non-Japanese run anchored on Japanese exemplars, which
+  is a definite fault rather than a possible one. A hand-written fragment naming the real failure
+  mode is better than a correct-looking fragment about another language.
+- **Impact:** a fragment could be wrong or incomplete in a way nobody notices until a deck is built
+  in that language. The Arabic sun-letter rule and the Hebrew mater-lectionis rule in particular are
+  stated from general knowledge, not from output anyone has checked. They are also only prompt
+  text — a wrong rule produces a wrong romanization, not a crash.
+- **Status:** open
+- **When to revisit:** with the first real deck in each language, alongside the entry above. A
+  per-pass eval fixture for romanization would settle it properly; the machinery for that already
+  exists (`scripts/eval-pass.mjs`).
+
+## End-marker protection is Japanese-only, so every other language ships whatever ElevenLabs clips
+
+- **What:** `MARKED_LANGUAGES` in `src/audio/ttsMarker.js` holds exactly one entry, `ja`. Every other
+  language's TTS text goes to ElevenLabs unmarked, so nothing protects the end of the utterance: the
+  model's habit of cutting the final release short lands on the card's own last syllable instead of
+  on a throwaway one. A Spanish, Korean or Hindi deck gets clipped endings and nothing reports it.
+- **Why:** the marker is `。ででで`, and it works because Japanese is written without spaces and で
+  is a clean repeated open syllable no real card ends with three of. Neither assumption transfers.
+  In a spaced language the marker is a visible separate word the voice may stress or pause before
+  differently; in another script there is no reason `de` is a safe throwaway; and the trim's removal
+  of it rests on thresholds measured on twelve Japanese clips of one voice. A wrong guess does not
+  degrade quietly — it puts audible nonsense on the end of every card in the deck.
+- **Impact:** the ~13% intervention rate this project sees on Japanese audio is with the marker
+  helping. Another language starts worse and with no badge for it: `audioMarkerStuck` can only be
+  set on a marked take, so an unmarked language's clipped ending is invisible to preflight, to the
+  audio review, and to `scripts/audit-marker-stuck.mjs` alike. Only the reviewer's ears would catch
+  it, and nothing tells them to listen for it.
+- **Status:** open — a known unhandled condition, not a bug.
+- **Verified by:** `node -e "import('./src/audio/ttsMarker.js').then(m => console.log(m.usesEndMarker('es'), m.usesEndMarker('ja')))"`
+- **When to revisit:** the first non-Japanese deck. Adding a language means choosing a throwaway
+  syllable for it, generating a dozen clips, and re-deriving the position and pulse-shape thresholds
+  against them — the same measurement the Japanese entry above describes, not a one-line addition to
+  the set.
+
+## The か-question prosody trial is written down and has never been run
+
+- **What:** Japanese question cards are generated exactly like statements — `<text>。ででで` — so the
+  voice reads a か-final question on a falling contour. 328 delivered cards end in か. A rising
+  contour would be more natural, and the obvious way to get one is to put the question mark before
+  the marker (`ですか？。ででで`). The procedure for trialling that is written in
+  `.claude/skills/build-anki-deck/references/audio-pipeline.md`; it has not been run.
+- **Why:** running it costs ElevenLabs credits, which is the owner's call. And it is a trim
+  REGRESSION risk before it is a prosody gain: the `。` opening the marker is what makes the model
+  leave a gap in front of it, and that gap is the only thing that makes the marker findable
+  (measured: `はちじ。ででで` leaves 1.12s and strips cleanly, `はちじででで` leaves 0.24s and is not
+  recognised at all). Inserting `？` immediately before the `。` changes the phrasing the model sees
+  at exactly the point the mechanism depends on. Seven clips have already shipped with an audible
+  marker; a change that makes that more likely has to be measured before it is adopted, not after.
+- **Impact:** every question card in the live deck falls where a native speaker would rise. It is
+  wrong, it is not misleading (the か is written on the card and is what carries the question), and
+  it is on 328 cards that are already scheduled. Bulk-regenerating them would re-bill every one and
+  re-open takes a human has already tuned, which is why the trial is specified as new cards only.
+- **Status:** open — procedure documented, never executed.
+- **When to revisit:** the next Japanese unit that contains question cards, which is when the trial
+  is free of any regeneration cost at all. Generate that unit's か-final cards both ways, measure the
+  end gap against the trim tolerance FIRST, and only listen for the contour on the takes that still
+  strip cleanly. A rise that costs the marker is not a win.

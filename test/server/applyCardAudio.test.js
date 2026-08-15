@@ -18,7 +18,9 @@ import {
   trimCardAudio,
   revertCardAudio,
   recleanCardAudio,
+  acceptCardAudioText,
 } from "../../src/server/adapters/applyCardAudio.js";
+import { hashTerm, defaultClipText } from "../../src/audio/index.js";
 
 function runDir() {
   const dir = mkdtempSync(join(tmpdir(), "upload-"));
@@ -404,6 +406,169 @@ test("trimming a card whose source is missing from disk is refused", () => {
     cards.items[0].audioOriginal = "vanished.orig.mp3";
     writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
     assert.throws(() => trimCardAudio(dir, "a", 0, 1, { trimToRange: fakeCut([]) }), /not found/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// --- the marker verdict follows the clip that ships ------------------------------------------------
+
+// `audioMarkerStuck` described the take the audio stage produced, and nothing but a whole new
+// recording ever cleared it — so a reviewer who fixed the clip by hand (exactly what the badge asks
+// for) left the card asserting a fault it no longer had. All seven live instances were that.
+test("a hand trim clears a stuck marker it cut away", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioMarked = true;
+    cards.items[0].audioMarkerStuck = true;
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    trimCardAudio(dir, "a", 0, 1.2, {
+      trimToRange: fakeCut([]),
+      findMarker: () => null, // the cut carries no marker
+    });
+    assert.equal("audioMarkerStuck" in cardOf(dir), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a hand trim that did not cut the marker away keeps the flag", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioMarked = true;
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    trimCardAudio(dir, "a", 0, 1.2, {
+      trimToRange: fakeCut([]),
+      findMarker: () => [1.0, 1.2],
+    });
+    assert.equal(cardOf(dir).audioMarkerStuck, true);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// Reverting re-installs the automatic take — the one the trim may have failed on — so a card that
+// was hand-cut clear of a stuck marker is stuck again the moment the cut is dropped.
+test("reverting a hand cut restores the automatic take's marker verdict", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audioMarked = true;
+    cards.items[0].audioManual = "a-manual-11111111.mp3";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+    writeFileSync(join(dir, "audio", "a-manual-11111111.mp3"), "CUT");
+
+    revertCardAudio(dir, "a", { findMarker: () => [1.0, 1.4] });
+    assert.equal(cardOf(dir).audioMarkerStuck, true);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// A card whose language never used the marker can never be carrying one, so no detection runs.
+test("an unmarked take is never asked about the marker", () => {
+  const dir = trimmableCard(runDir());
+  try {
+    let asked = 0;
+    trimCardAudio(dir, "a", 0, 1.2, {
+      trimToRange: fakeCut([]),
+      findMarker: () => {
+        asked++;
+        return [0, 1];
+      },
+    });
+    assert.equal(asked, 0);
+    assert.equal("audioMarkerStuck" in cardOf(dir), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// --- what text a clip was generated from (src/audio/textHash.js) -----------------------------------
+
+// A picked variant is named after the text it was generated from, so the pick can record what the
+// clip says. This is the population the audio stage's own staleness check exempts forever.
+test("picking a generated variant records the text it was generated from", () => {
+  const dir = runDir();
+  try {
+    mkdirSync(join(dir, "audio"), { recursive: true });
+    const stem = "0123456789abcdef-gen-aabbccdd";
+    writeFileSync(join(dir, "audio", `${stem}.mp3`), "TRIMMED");
+    writeFileSync(join(dir, "audio", `${stem}.orig.mp3`), "RAW");
+    selectCardAudio(dir, "a", `${stem}.mp3`, `${stem}.orig.mp3`, {});
+    assert.equal(cardOf(dir).audioTextHash, "0123456789abcdef");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// An upload's name hashes its BYTES, not any text — there is nothing to record, and inventing a
+// hash from the card's current text would declare a clip correct that nobody has checked.
+test("an uploaded clip records no text hash rather than a guessed one", async () => {
+  const dir = runDir();
+  try {
+    await applyCardAudio(dir, "a", Buffer.from("RAW"), "mp3", { trim: async (b) => b });
+    assert.equal("audioTextHash" in cardOf(dir), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// The exit the staleness badge would otherwise not have: every other way out destroys the
+// reviewer's trim or pick, so they get to say the clip is right — on the record.
+test("accepting a clip stamps the current text and records who and when", () => {
+  const dir = runDir();
+  try {
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    cards.items[0].audio = "a-user-1.mp3";
+    cards.items[0].audioTextHash = "0000000000000000";
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    const result = acceptCardAudioText(dir, "a", { now: () => new Date("2026-08-14T10:00:00Z") });
+    const card = cardOf(dir);
+    assert.equal(card.audioTextHash, hashTerm(defaultClipText(card, "ja")));
+    assert.equal(card.audioTextHashAcceptedBy, "human");
+    assert.equal(card.audioTextHashAcceptedAt, "2026-08-14T10:00:00.000Z");
+    assert.equal(result.audioTextHash, card.audioTextHash);
+    assert.equal(card.audio, "a-user-1.mp3", "the audio itself is untouched");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a card with no audio has nothing to accept", () => {
+  const dir = runDir();
+  try {
+    assert.throws(() => acceptCardAudioText(dir, "a"), /no audio to accept/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// An acceptance describes one clip of one text. Installing a different recording has to drop it, or
+// the new take would arrive already vouched for.
+test("installing new audio drops an earlier acceptance", () => {
+  const dir = runDir();
+  try {
+    mkdirSync(join(dir, "audio"), { recursive: true });
+    writeFileSync(join(dir, "audio", "v.mp3"), "TAKE");
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    Object.assign(cards.items[0], {
+      audio: "old.mp3",
+      audioTextHash: "0000000000000000",
+      audioTextHashAcceptedBy: "human",
+      audioTextHashAcceptedAt: "2026-08-14T10:00:00.000Z",
+    });
+    writeFileSync(join(dir, "cards.json"), JSON.stringify(cards));
+
+    selectCardAudio(dir, "a", "v.mp3", null, {});
+    const card = cardOf(dir);
+    assert.equal("audioTextHashAcceptedBy" in card, false);
+    assert.equal("audioTextHashAcceptedAt" in card, false);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

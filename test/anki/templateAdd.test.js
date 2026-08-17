@@ -2,7 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "fs";
 import { syncStructure } from "../../src/anki/deliver.js";
-import { PROBE_ANSWERS, unansweredProbes } from "../../src/anki/probeResults.js";
+import {
+  PROBE_ANSWERS,
+  unansweredProbes,
+  assertProbesRecorded,
+} from "../../src/anki/probeResults.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
 
 const RUNBOOK = ".claude/skills/build-anki-deck/references/deliver.md";
@@ -64,18 +68,40 @@ test("a dry run reports the missing template instead of refusing", async () => {
   assert.deepEqual(calls, []);
 });
 
-test("--allow-template-add is still refused: no probe has answered what the add does", async () => {
-  const { client, calls } = fakeClient({ templates: asLive(SPEC, { drop: ["Production"] }) });
-  await assert.rejects(
-    () => syncStructure(client, SPEC, false, { allowTemplateAdd: true }),
+test("the probe gate refuses while its evidence is missing, and names what to run", () => {
+  // The MECHANISM, tested against an injected answer map rather than the recorded one, so this stays
+  // true no matter which probes have been run. The recorded state is asserted separately, below.
+  assert.throws(
+    () =>
+      assertProbesRecorded(["template-update-regenerates-card"], "--allow-template-add", {
+        answers: { "template-update-regenerates-card": null },
+      }),
     (error) => {
-      assert.match(error.message, /--allow-template-add .* is gated on live-Anki behaviour probes/);
+      assert.match(error.message, /--allow-template-add is gated on live-Anki behaviour probes/);
       assert.match(error.message, /template-update-regenerates-card/);
       assert.match(error.message, /anki-behaviour-probe/);
       return true;
     },
   );
-  assert.deepEqual(calls, [], "the dormant path writes nothing while its evidence is missing");
+  // A recorded FALSE is evidence, not absence: "we measured it and it does not happen" must open the
+  // gate, or running the probes would achieve nothing.
+  assertProbesRecorded(["template-update-regenerates-card"], "--allow-template-add", {
+    answers: { "template-update-regenerates-card": false },
+  });
+});
+
+test("--allow-template-add proceeds now that its two probes are answered", async () => {
+  // Answered 2026-08-17: a template update neither regenerates a deleted card row nor unsuspends.
+  const { client, calls } = fakeClient({ templates: asLive(SPEC, { drop: ["Production"] }) });
+  const out = await syncStructure(client, SPEC, false, {
+    allowTemplateAdd: true,
+    allowModelChange: true,
+  });
+  assert.deepEqual(out.addedTemplates, ["Production"]);
+  assert.ok(
+    calls.includes("modelTemplateAdd:Production"),
+    `expected a template add, got: ${calls.join(", ")}`,
+  );
 });
 
 test("a refused template add leaves NO field write behind — reads, refusal, then writes", async () => {
@@ -107,7 +133,14 @@ test("every probe id has a row in the runbook, so the two halves cannot drift", 
   }
 });
 
-test("every probe the delivery gates name is still unanswered, so every gate is shut", () => {
+test("the recorded probe state is exactly what the last session measured", () => {
+  // A deliberate snapshot of recorded state, not an invariant: UPDATE IT when a probe session runs,
+  // in the same commit as the answer. It exists so an answer cannot appear in probeResults.js without
+  // a human noticing here, and so nobody has to trust a memory of what has been measured.
+  //
+  // 2026-08-17: probes 1a and 1b ran against an empty throwaway profile. The remaining three all need
+  // a card with a non-zero odid, which means a filtered deck, and AnkiConnect cannot create one — so
+  // they wait on the human step written up in references/deliver.md.
   const gated = [
     "template-update-regenerates-card",
     "template-update-unsuspends",
@@ -116,5 +149,11 @@ test("every probe the delivery gates name is still unanswered, so every gate is 
     "housekeeping-unsuspends",
   ];
   for (const id of gated) assert.ok(id in PROBE_ANSWERS, `${id} is not a known probe`);
-  assert.deepEqual(unansweredProbes(gated), gated, "none of these has an answer yet");
+  assert.deepEqual(unansweredProbes(gated), [
+    "change-deck-on-filtered",
+    "suspend-on-filtered",
+    "housekeeping-unsuspends",
+  ]);
+  assert.equal(PROBE_ANSWERS["template-update-regenerates-card"], false);
+  assert.equal(PROBE_ANSWERS["template-update-unsuspends"], false);
 });

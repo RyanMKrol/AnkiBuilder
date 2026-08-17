@@ -654,7 +654,7 @@ export const DELIVER_SCRIPT = `(function () {
         var msg2 = "Delivered. " + summarize(done);
         if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
         else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
-        if (done.schemaChanged) msg2 += " Note-type changed: click 'Upload to AnkiWeb' in Anki to finish the full sync.";
+        if (done.schemaChanged) msg2 += " A field or card template was added: Anki will ask for one 'Upload to AnkiWeb' to finish the full sync.";
         set(msg2 + " Backup: " + done.backupDir);
       } catch (e) {
         set("Failed: " + e.message);

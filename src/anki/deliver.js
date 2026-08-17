@@ -1393,11 +1393,17 @@ export async function deliverToAnki(
     );
     log(`structure synced: ${spec.modelName}`);
   }
-  // A structural change (new field / template / CSS) bumps Anki's schema, which forces a one-way full
-  // sync that Anki gates behind its GUI Upload/Download dialog — so the sync-after below can't complete
-  // it unattended and the user must click Upload once. Surface it so the CLI/UI can warn.
+  // ADDING a field or a template changes the shape of every existing note, which bumps Anki's schema
+  // and forces a one-way full sync that Anki gates behind its GUI Upload/Download dialog. The
+  // sync-after below cannot complete that unattended, so the user has to click Upload once.
+  //
+  // EDITING an existing template's HTML or the CSS does NOT do this. Measured 2026-08-17: a delivery
+  // that rewrote both templates and the whole stylesheet synced incrementally, and Anki never prompted.
+  // This flag used to include `s.templates || s.css`, so it warned about an Upload click on every
+  // styling change, and an owner who follows that instruction and finds no dialog learns to disregard
+  // the warning — which is the one thing a full-sync warning must not become.
   report.schemaChanged = report.structure.some(
-    (s) => s.createModel || s.addedFields.length || s.addedTemplates.length || s.templates || s.css,
+    (s) => s.addedFields.length > 0 || s.addedTemplates.length > 0,
   );
 
   // 5. DECKS — a lesson's sub-deck must exist before a note can be added to it.

@@ -112,6 +112,28 @@ test("deliverToAnki syncs before backup and after content, and flags the schema 
   }
 });
 
+test("a template/CSS EDIT is not a schema change, so no Upload click is claimed", async () => {
+  // Measured against the live collection on 2026-08-17: a delivery that rewrote both templates and the
+  // whole stylesheet synced incrementally and Anki never showed its Upload/Download dialog. Only ADDING
+  // a field or a template reshapes existing notes and forces the full sync. This asserts the narrower
+  // rule, because the previous one told the owner to click a button that never appeared.
+  const root = makeFixture();
+  try {
+    const { client } = orderingClient();
+    // Start from a note type that already has every field, so the only structural work is the stale
+    // template HTML and the stale CSS the fake reports.
+    client.modelFieldNames = async () => [...SPEC.fields];
+    const report = await deliverToAnki(root, "all", { client, dry: true, now: () => 0 });
+    const structure = report.structure[0];
+    assert.deepEqual(structure.addedFields, [], "no field was added");
+    assert.deepEqual(structure.addedTemplates, [], "no template was added");
+    assert.ok(structure.templates || structure.css, "the templates or CSS did need rewriting");
+    assert.equal(report.schemaChanged, false, "an edit must not claim a full sync is needed");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("deliverToAnki dry run does not sync (but still detects the schema change)", async () => {
   const root = makeFixture();
   try {

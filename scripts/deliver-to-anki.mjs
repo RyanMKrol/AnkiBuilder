@@ -220,8 +220,10 @@ for (const m of report.markerWrites ?? []) {
 if (dry) {
   line(`\nsync: skipped (dry run)`);
   if (report.schemaChanged) {
-    line(`  note: this delivery changes the note-type schema — the real run's sync will need a`);
-    line(`  one-time manual "Upload to AnkiWeb" click in Anki (schema changes force a full sync).`);
+    line(
+      `  note: this delivery ADDS a field or card template, which reshapes every existing note.`,
+    );
+    line(`  Anki will ask for a one-time "Upload to AnkiWeb" to finish that as a full sync.`);
   }
 } else if (!sync) {
   line(`\nsync: skipped (--no-sync) — sync manually in Anki when ready`);
@@ -231,9 +233,9 @@ if (dry) {
   if (report.syncError) line(`  ⚠ ${report.syncError}`);
   if (report.schemaChanged) {
     line(
-      `  ⚠ schema changed (new field/template) — Anki needs a one-time manual "Upload to AnkiWeb"`,
+      `  ⚠ a field or card template was ADDED — Anki will ask for a one-time "Upload to AnkiWeb"`,
     );
-    line(`     click to finish the full sync. Future content-only deliveries sync automatically.`);
+    line(`     to finish the full sync. Template and CSS edits do not need it and sync normally.`);
   }
 }
 line();

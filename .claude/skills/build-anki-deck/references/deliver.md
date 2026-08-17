@@ -64,10 +64,17 @@ you can click without reading is not consent. The button reports the refusal and
 
 **It syncs with AnkiWeb automatically** (default; `--no-sync` to skip): a `sync` before delivery (pull — so
 a review done on another device merges in before the push) and a `sync` after (push local → remote). A
-content-only delivery syncs incrementally with no prompt. A **schema change** (adding a field, editing a
-template) is the exception: Anki forces a one-way full sync gated behind its GUI **Upload/Download**
-dialog, which AnkiConnect can't answer — the tool flags `schemaChanged` and you click **Upload to AnkiWeb**
-once. Schema changes are rare (only when `FIELD_NAMES`/templates/CSS change), so this is a one-off.
+content-only delivery syncs incrementally with no prompt.
+
+**ADDING a field or a card template** is the exception. That reshapes every existing note, so Anki forces
+a one-way full sync behind its GUI **Upload/Download** dialog, which AnkiConnect cannot answer: the tool
+flags `schemaChanged` and you click **Upload to AnkiWeb** once.
+
+**Editing an existing template's HTML, or the CSS, is not that**, and does not need the click. Measured on
+2026-08-17: a delivery that rewrote both templates and the whole stylesheet synced incrementally, and Anki
+never prompted. The flag used to fire on those edits too, which sent the owner looking for a dialog that
+was never going to appear. If you ever do see Anki's Upload/Download dialog, choose **Upload to AnkiWeb**:
+the local collection is the one that just received the delivery, and Download would discard it.
 
 ## How notes are matched
 

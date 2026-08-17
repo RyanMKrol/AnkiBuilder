@@ -373,14 +373,30 @@ from the thing it exists to check.
 
 | probe | id | answer | recorded | what is gated on it |
 |---|---|---|---|---|
-| 1. template update regenerates a missing card row | `template-update-regenerates-card` | not yet run | | `--allow-template-add` |
-| 1. template update unsuspends | `template-update-unsuspends` | not yet run | | `--allow-template-add` |
+| 1. template update regenerates a missing card row | `template-update-regenerates-card` | **no** — row count unchanged after `updateModelTemplates` on a note with a deleted card row | 2026-08-17 | `--allow-template-add` |
+| 1. template update unsuspends | `template-update-unsuspends` | **no** — a suspended card was still suspended after the template write | 2026-08-17 | `--allow-template-add` |
 | 2. `changeDeck` on a card with non-zero `odid` | `change-deck-on-filtered` | not yet run | | `--refile` |
 | 3. `suspend` on a card with non-zero `odid` | `suspend-on-filtered` | not yet run | | `--suspend-delivered`, `--suspend-orphans` |
 | 3. template update / Check Database unsuspends | `housekeeping-unsuspends` | not yet run | | `--suspend-delivered`, `--suspend-orphans` |
 
-Every one of those refuses today, naming the evidence it lacks. The `--dry` previews are NOT gated:
+Every unanswered one refuses, naming the evidence it lacks. The `--dry` previews are NOT gated:
 they read, print, and write nothing.
+
+The three remaining probes all need a card with a non-zero `odid`, which means a **filtered deck**,
+and AnkiConnect exposes no way to create one (`apiReflect` lists `createDeck` only). So that part of
+the session is a human step, once:
+
+1. Switch to the throwaway profile. The name is advisory, not enforced: the interlock checks the
+   collection, not the profile name, so any empty profile works (`Claude Test Profile` was used on
+   2026-08-17).
+2. The sentinel deck `ANKIBUILDER-PROBE-ONLY` already holds two probe cards after a `--run`. If it is
+   empty, run `node scripts/anki-behaviour-probe.mjs --run` once to create them.
+3. Tools > Create Filtered Deck. Name it `ANKIBUILDER-PROBE-FILTERED`, set the search to
+   `deck:ANKIBUILDER-PROBE-ONLY`, turn off "Reschedule cards based on my answers" if you want the
+   least invasive version, and Build.
+4. `node scripts/anki-behaviour-probe.mjs --run` again. Probes 2 and 3 then answer, which also
+   answers `housekeeping-unsuspends` (it is measured inside probe 3).
+5. Record the answers here and in `src/anki/probeResults.js`, then switch back to your own profile.
 
 ## Rules for a collection managed this way
 

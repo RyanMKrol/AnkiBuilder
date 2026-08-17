@@ -2856,3 +2856,50 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open — unverified, low cost either way.
 - **When to revisit:** next time `scripts/verify-apkg-import.mjs` is run; add an assertion for which
   preset the imported decks end up pointing at, and what the collection's dconf table then holds.
+
+<!-- Live-collection incidents -->
+
+### A pre-WS6 deliver cross-bound と and から, and the owner found it in study
+
+**What.** On 2026-08-17 the owner reported that a から card had changed meaning from "from" to
+"because". It had. Four live notes were bound to the wrong card ids, and two pairs had their content
+straight-swapped, audio included:
+
+| note | deck | showed | should have shown |
+|---|---|---|---|
+| 1784507481510 | Lesson 03 | から "Because (particle)" | から "From (particle)" |
+| 1785019499117 | Lesson 06 | から "From (particle)" | nothing: its card is excluded on disk |
+| 1784508481630 | Lesson 04 | と "With, together with" | と "And (particle)" |
+| 1785019498813 | Lesson 06 | と "And (particle)" | と "With, together with" |
+
+Note 1784507481510 had accumulated three `abid:` tags (`kara-particle`, `kara-particle-because`,
+`kara-particle-place`), which is the fingerprint of the bug: one note claimed by three card ids.
+
+**Why.** `deliver.js` identifies a note by its `abid:<card id>` tag and, failing that, by a content
+fingerprint. Both と and から appear several times across this book in different senses, so a card
+whose id had no tagged note yet matched a note that merely shared its target, overwrote that note's
+fields, and added its own tag. Last writer won. This is the cross-bind the 2026-08 review identified
+(17 repeated targets in this book) and WS6 fixed going forward by unit-scoping the fingerprint
+indexes, deleting the loose prefix fallback, and reporting rather than silently binding a note it
+cannot uniquely identify. The damage already in the collection was not undone by that fix, because
+nothing retroactively unpicks a bind.
+
+**Impact.** The owner studied a wrong meaning on a 26-day interval for an unknown period, and heard
+the wrong audio with it. Found by a human noticing, not by any check: preflight reads the on-disk
+decks, and nothing compares them against the live collection. `deliver --dry` is what surfaced it,
+because WS6's version reports a note matched outside its expected deck.
+
+**Repaired 2026-08-17.** Fields rewritten from disk through the repo's own `noteFields()`, tags
+reduced to exactly one id per note, and the Lesson 06 から duplicate (whose card is excluded on disk)
+tagged `ankibuilder-orphan` and suspended rather than deleted. Every interval and rep count was left
+untouched and verified afterwards. `kara-particle-because` now owns no note, so the next content
+delivery adds it as a genuinely new card in Lesson 14, which is the right outcome: that sense was
+never actually learned.
+
+- **Status:** open
+- **Verified by:** `node --env-file=.env scripts/deliver-to-anki.mjs --dry` (every `abid:` tag should
+  resolve to exactly one note, and no note should be reported as matched outside its expected deck)
+- **When to revisit.** If a delivery ever again reports adopting a note under an old deck name, check
+  tag multiplicity on the notes involved before running it. A check that walks the live collection
+  looking for a note carrying two or more `abid:` tags would have caught this the day it happened, and
+  is the obvious next guard if it recurs.

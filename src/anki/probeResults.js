@@ -15,10 +15,18 @@
 // degradation this project keeps finding in itself.
 
 export const PROBE_ANSWERS = {
-  /** Does a template update regenerate a card row that was deleted from a live note? */
-  "template-update-regenerates-card": null,
-  /** Does a template update clear a card's suspended flag? */
-  "template-update-unsuspends": null,
+  /**
+   * Does a template update regenerate a card row that was deleted from a live note?
+   * Recorded 2026-08-17: NO. `updateModelTemplates` against a note whose second card row had been
+   * deleted left the row count unchanged, so a missing card row stays missing.
+   */
+  "template-update-regenerates-card": false,
+  /**
+   * Does a template update clear a card's suspended flag?
+   * Recorded 2026-08-17: NO. A suspended card was still suspended after the template write, so a
+   * suspension survives a note-type update.
+   */
+  "template-update-unsuspends": false,
   /** What does `changeDeck` do to a card sitting in a filtered deck (non-zero `odid`)? */
   "change-deck-on-filtered": null,
   /** What does `suspend` do to a card sitting in a filtered deck (non-zero `odid`)? */

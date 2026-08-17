@@ -1912,6 +1912,50 @@ test("prepare: a FAILED mining pass leaves enriched unset, so a re-run retries i
   });
 });
 
+test("prepare: a failed pass makes the closing line say NOT ready, and name it", async () => {
+  // Lesson 15 of the Japanese book was built while five model passes were failing on a usage limit.
+  // The markers were all correct and the dashboard correctly withheld Mark reviewed, but prepare
+  // still signed off with "is ready for the corpus review", so the only surface an operator reads
+  // said the opposite of the truth. Gate 1 has to see the FINAL card set, and a lesson missing its
+  // drill mining does not have one.
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      mineFillInBlankCards: ({ items }) => {
+        calls.push("fib");
+        return { items, added: [], patterns: {}, failed: true };
+      },
+      enhanceRunDirNotes: () => {
+        calls.push("notes");
+        return { changed: 0, failed: true };
+      },
+      log: (line) => logged.push(line),
+    });
+
+    const out = logged.join("\n");
+    assert.match(out, /is NOT ready for the corpus review/);
+    assert.match(out, /fill-in-the-blank/, "names the pass that failed");
+    assert.match(out, /cross-lesson notes/, "names the other one");
+    assert.match(out, /anki-builder prepare --run/, "gives the command that retries them");
+    assert.doesNotMatch(out, /is ready for the corpus review/, "must not also claim it is ready");
+
+    // And the happy path still signs off, or this fix would have broken every normal build.
+    calls.length = 0;
+    logged.length = 0;
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps(calls),
+      log: (l) => logged.push(l),
+    });
+    assert.match(logged.join("\n"), /is ready for the corpus review/);
+  });
+});
+
 test("prepare: a FAILED notes pass leaves notesEnhanced unset, so a re-run retries it", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

@@ -92,6 +92,11 @@ async function runPrepareInner(flags, ctx) {
   // A template is a fixed vocabulary list: there are no drills to mine and no sibling lessons to
   // cross-reference, so both enrichment and the note pass are no-ops for it by design.
   const isTemplate = meta.sourceType === "template";
+  // Every pass below this line except translate FAILS OPEN, so prepare can finish having skipped the
+  // drill mining or the note pass. It used to sign off with "ready for the corpus review" regardless,
+  // which is how a lesson missing two passes reads as a lesson ready to review: the markers were
+  // right and the closing line was wrong. Collect what failed and say so at the end.
+  const failedPasses = [];
 
   // Both remaining passes read this lesson's EARLIER siblings, so their result is only as complete
   // as what those siblings have already written. Worked out once, up front, and used to decide both
@@ -188,6 +193,7 @@ async function runPrepareInner(flags, ctx) {
     // and NOT marked when the pass itself FAILED (a model/parse error), or a transient outage
     // would permanently skip this lesson's drills.
     if (mined.failed) {
+      failedPasses.push("fill-in-the-blank");
       ctx.log(
         "fill-in-the-blank: pass failed — enrichment marker left unset so a re-run retries it",
       );
@@ -223,6 +229,7 @@ async function runPrepareInner(flags, ctx) {
     if (failed) {
       // A failed pass is not a completed pass: leave notesEnhanced unset so a re-run retries,
       // rather than freezing a transient outage in as "done".
+      failedPasses.push("cross-lesson notes");
       ctx.log("cross-lesson notes: pass failed — marker left unset so a re-run retries it");
     } else {
       // Markers only — the note pass has already written the notes themselves, through the same
@@ -266,6 +273,7 @@ async function runPrepareInner(flags, ctx) {
       );
     }
     if (remaining.length > 0) {
+      failedPasses.push(`${remaining.length} unreadable numeral(s)`);
       ctx.log(
         `prepare: WARNING — ${remaining.length} card(s) still have a numeral that reaches the romaji ` +
           `or the spoken text. The review gate holds this lesson back until each has a "ttsText" with ` +
@@ -273,6 +281,19 @@ async function runPrepareInner(flags, ctx) {
           describeUnreadableNumbers(remaining),
       );
     }
+  }
+
+  if (failedPasses.length > 0) {
+    // Say NOT ready, name what is missing, and give the command that fixes it. The dashboard already
+    // withholds Mark reviewed in this state, so the only thing a cheerful closing line changed was
+    // whether the operator knew.
+    ctx.log(
+      `prepare: ${runDir} is NOT ready for the corpus review — ${failedPasses.join(", ")} did not ` +
+        `complete, so the card set is not final and gate 1 must see the final set. The marker for each ` +
+        `failed pass is unset, so re-running retries exactly those:\n` +
+        `  anki-builder prepare --run ${runDir}`,
+    );
+    return;
   }
 
   ctx.log(

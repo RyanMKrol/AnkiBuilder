@@ -1,0 +1,540 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 37,
+    "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime"
+  },
+  "items": [
+    {
+      "id": "itoko-cousin",
+      "english": "Cousin",
+      "category": "Family & People",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "いとこ"
+    },
+    {
+      "id": "anime",
+      "english": "Anime, animation",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "アニメ"
+    },
+    {
+      "id": "suki-like",
+      "english": "Like, favorite",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective; often written すき(な) (suki(na)) since な (na) attaches before a noun, e.g. すきな アニメ (sukina anime), 'favorite anime'. Conjugates: すきです (sukidesu) 'like', すきじゃありません (sukija arimasen) 'don't like', すきでした (sukideshita) 'liked', すきじゃありませんでした (sukija arimasendeshita) 'didn't like'.",
+      "reviewNote": "(な) stripped from the source headword すき(な) — a type marker, not part of the spoken word. Conjugation forms are drawn from the EXERCISES I present/past aff./neg. reference chart (image) rather than given four separate cards.",
+      "target": "すき"
+    },
+    {
+      "id": "robotto",
+      "english": "Robot",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ロボット"
+    },
+    {
+      "id": "kaku-draw",
+      "english": "Draw",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "The dictionary form of かきます (kakimasu) — see GRAMMAR 2 on forming dictionary forms.",
+      "reviewNote": null,
+      "target": "かく"
+    },
+    {
+      "id": "kakimasu-draw",
+      "english": "Draw",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": "wants the ます (polite) form, not the dictionary form",
+      "note": "The ます-form (masu-form, used in polite speech) of かく (kaku), which this lesson introduces as the word's dictionary form.",
+      "reviewNote": null,
+      "target": "かきます"
+    },
+    {
+      "id": "no-nominalizer",
+      "english": "(nominalizer — turns a verb into a noun-like phrase, similar to '-ing')",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Added after a verb's dictionary form so the action can take が (ga), as in サッカーを みるのが すきです (sakkā o miru no ga sukidesu), 'likes watching soccer' (KS3).",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "target": "の",
+      "uncertain": true
+    },
+    {
+      "id": "waa-wow",
+      "english": "Wow! (exclamation of surprise)",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "わあ!"
+    },
+    {
+      "id": "sugoi-great",
+      "english": "That's great!",
+      "category": "Emotions & Feelings",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "すごい!"
+    },
+    {
+      "id": "jouzu-skilled",
+      "english": "Skilled, be good at",
+      "category": "Descriptions & Qualities",
+      "scene": null,
+      "hint": null,
+      "note": "な-adjective; often written じょうず(な) (jouzu(na)). Conjugates: じょうずです (jouzudesu) 'be good at', じょうずじゃありません (jouzu ja arimasen) 'not good at', じょうずでした (jouzudeshita) 'was good at', じょうずじゃありませんでした (jouzu ja arimasendeshita) 'wasn't good at'. Almost never used to describe yourself or your own family — it sounds like boasting.",
+      "reviewNote": "Conjugation forms and the self-description caveat come from GRAMMAR 1's NOTE and the EXERCISES I reference chart (image).",
+      "target": "じょうず"
+    },
+    {
+      "id": "donna-what-kind",
+      "english": "What kind of anime do you like?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "どんな (donna, 'what kind of') was already met in Lesson 10 (どんなところですか, 'what kind of place'); here it combines with the new が すきですか pattern to ask what someone likes within a category.",
+      "reviewNote": "Quoted verbatim in NOTES 1 as the illustration of どんな; also the dialogue's opening question to Paul.",
+      "target": "どんなアニメがすきですか"
+    },
+    {
+      "id": "watashi-mo-desu",
+      "english": "Me too.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Short for わたしも ロボットの アニメが すきです (watashi mo robotto no anime ga sukidesu), 'I like mecha anime too'. Can express agreement whether the previous statement was affirmative or negative.",
+      "reviewNote": null,
+      "target": "わたしもです"
+    },
+    {
+      "id": "ks1-wine",
+      "english": "Chan-san likes wine.",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "チャンさんはワインがすきです"
+    },
+    {
+      "id": "ks2-japanese-good",
+      "english": "Chan-san is good at Japanese.",
+      "category": "School & Education",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "チャンさんはにほんごがじょうずです"
+    },
+    {
+      "id": "ks3-watch-soccer",
+      "english": "Smith-san likes watching soccer matches.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "KS3 — the chapter's cross-referenced (GRAMMAR 3) demonstration of the の nominalizer pattern.",
+      "target": "スミスさんはサッカーをみるのがすきです"
+    },
+    {
+      "id": "kau-buy",
+      "english": "Buy",
+      "category": "Shopping",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "Dictionary form of かいます (kaimasu).",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image) — a representative sample of Regular 1 verbs, not the whole chart. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "target": "かう",
+      "uncertain": true
+    },
+    {
+      "id": "iku-go",
+      "english": "Go",
+      "category": "Transport",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "Dictionary form of いきます (ikimasu).",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image). | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on english)",
+      "target": "いく",
+      "uncertain": true
+    },
+    {
+      "id": "nomu-drink",
+      "english": "Drink",
+      "category": "Food",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "Dictionary form of のみます (nomimasu).",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image). | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "target": "のむ",
+      "uncertain": true
+    },
+    {
+      "id": "kaeru-go-home",
+      "english": "Return, go home",
+      "category": "Transport",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form of かえります (kaerimasu). Ends in る (ru) like a Regular 2 verb but is actually Regular 1 — a common point of confusion.",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image).",
+      "target": "かえる"
+    },
+    {
+      "id": "iru-be",
+      "english": "Be, exist (people, animals)",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form of います (imasu), used for people and animals; あります (Lesson 12) is the equivalent verb for objects, plants and other inanimate things.",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image).",
+      "target": "いる"
+    },
+    {
+      "id": "taberu-eat",
+      "english": "Eat",
+      "category": "Food",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "Dictionary form of たべます (tabemasu).",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image). | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "target": "たべる",
+      "uncertain": true
+    },
+    {
+      "id": "kuru-come",
+      "english": "Come",
+      "category": "Transport",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "Dictionary form of きます (kimasu) — one of only two Irregular verbs in Japanese, along with する (suru).",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image); Irregular verbs are the exception to the regular sound-change rules and are kept in full. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on english)",
+      "target": "くる",
+      "uncertain": true
+    },
+    {
+      "id": "suru-do",
+      "english": "Do",
+      "category": "Other",
+      "scene": null,
+      "hint": "wants the dictionary (plain) form, not the ます form",
+      "note": "Dictionary form of します (shimasu) — one of only two Irregular verbs, along with くる (kuru). Combines with many nouns to form compound verbs, e.g. べんきょうします (benkyō shimasu), 'study'.",
+      "reviewNote": "From the dictionary-form conjugation chart (GRAMMAR 2 image); Irregular verbs are the exception to the regular sound-change rules and are kept in full. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "target": "する",
+      "uncertain": true
+    },
+    {
+      "id": "sakkaa-soccer",
+      "english": "Soccer, football",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "サッカー"
+    },
+    {
+      "id": "miru-watch",
+      "english": "See, watch",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "A Regular 2 verb — already in its dictionary form (Regular 2 verbs form the dictionary form by changing ます (masu) to る (ru)).",
+      "reviewNote": null,
+      "target": "みる"
+    },
+    {
+      "id": "sukii-skiing",
+      "english": "Skiing",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スキー"
+    },
+    {
+      "id": "yakyuu-baseball",
+      "english": "Baseball",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "やきゅう"
+    },
+    {
+      "id": "daibingu-scuba",
+      "english": "Scuba diving",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ダイビング"
+    },
+    {
+      "id": "kiku-listen",
+      "english": "Hear, listen",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form of ききます (kikimasu). ききます already covered 'ask' (Lesson 9) besides 'listen, hear' (Lesson 8); きく carries both senses too — context tells them apart.",
+      "reviewNote": "From the WORD POWER 'Dictionary form' chart (image) — a word not shown in the main GRAMMAR chart.",
+      "target": "きく"
+    },
+    {
+      "id": "hanashimasu-talk",
+      "english": "Talk, speak",
+      "category": "Technology & Communication",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form: はなす (hanasu).",
+      "reviewNote": null,
+      "target": "はなします"
+    },
+    {
+      "id": "utaimasu-sing",
+      "english": "Sing",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form: うたう (utau).",
+      "reviewNote": null,
+      "target": "うたいます"
+    },
+    {
+      "id": "oyogimasu-swim",
+      "english": "Swim",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form: およぐ (oyogu).",
+      "reviewNote": null,
+      "target": "およぎます"
+    },
+    {
+      "id": "hashirimasu-run",
+      "english": "Run",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form: はしる (hashiru).",
+      "reviewNote": null,
+      "target": "はしります"
+    },
+    {
+      "id": "ex2b-dislike-coffee",
+      "english": "Mr. Kato doesn't like coffee. He's not good at tennis.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "e.g. line from EXERCISES II.B — the chapter's only complete sentence demonstrating the negative forms すきじゃありません / じょうずじゃありません.",
+      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
+    },
+    {
+      "id": "gorufu-golf",
+      "english": "Golf",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ゴルフ"
+    },
+    {
+      "id": "dansu-dance",
+      "english": "Dance",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ダンス"
+    },
+    {
+      "id": "uta-song",
+      "english": "Song",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "うた"
+    },
+    {
+      "id": "uisukii-whiskey",
+      "english": "Whiskey",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ウイスキー"
+    },
+    {
+      "id": "ex3-donna-sports",
+      "english": "What kind of sports do you like?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "e.g. line from EXERCISES III — a second どんな example with different vocabulary from NOTES 1's, per the 'two examples beat one' guidance.",
+      "target": "どんなスポーツがすきですか"
+    },
+    {
+      "id": "ex3-yakyuu-answer",
+      "english": "I like baseball.",
+      "category": "Sports & Hobbies",
+      "scene": "answering what kind of sports someone likes",
+      "hint": null,
+      "note": null,
+      "reviewNote": "e.g. answer line from EXERCISES III, paired with the どんな スポーツが すきですか question.",
+      "target": "やきゅうがすきです"
+    },
+    {
+      "id": "supootsu-sports",
+      "english": "Sports",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "スポーツ"
+    },
+    {
+      "id": "kudamono-fruits",
+      "english": "Fruits",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "くだもの"
+    },
+    {
+      "id": "toru-take",
+      "english": "Take",
+      "category": "Other",
+      "scene": null,
+      "hint": null,
+      "note": "Dictionary form of とります (torimasu).",
+      "reviewNote": "From the EXERCISES IV dictionary-form reference chart (image) — a word not shown in the main GRAMMAR chart.",
+      "target": "とる"
+    },
+    {
+      "id": "itaria-ryouri",
+      "english": "Italian cuisine",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "イタリア (itaria, 'Italy') + りょうり (ryouri, 'cuisine') = イタリアりょうり (itaria ryouri), 'Italian cuisine'.",
+      "reviewNote": null,
+      "target": "イタリアりょうり"
+    },
+    {
+      "id": "ryouri-cuisine",
+      "english": "Food, dish, cooking, cuisine",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "The base word decomposed from イタリアりょうり (itaria ryouri), 'Italian cuisine', above.",
+      "reviewNote": null,
+      "target": "りょうり"
+    },
+    {
+      "id": "piza-pizza",
+      "english": "Pizza",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ピザ"
+    },
+    {
+      "id": "jazu-jazz",
+      "english": "Jazz",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "ジャズ"
+    },
+    {
+      "id": "ex7-ongaku-listen",
+      "english": "Do you like listening to music, Green-san?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "e.g. line from EXERCISES VII — a second example of the の nominalizer pattern (verb dictionary form + の + が すきです), for variety alongside KS3.",
+      "target": "グリーンさんはおんがくをきくのがすきですか"
+    },
+    {
+      "id": "ongaku-music",
+      "english": "Music",
+      "category": "Sports & Hobbies",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "Not formally glossed in this chapter's VOCABULARY tables; appears in EXERCISES III's blank cue and EXERCISES VII's e.g. sentence. Gloss supplied from general knowledge. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "target": "おんがく",
+      "uncertain": true
+    },
+    {
+      "id": "bijutsukan-art-museum",
+      "english": "Art museum",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "びじゅつかん"
+    },
+    {
+      "id": "soccer-but-not-good",
+      "english": "I like soccer. But I'm not good at it.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "From SPEAKING PRACTICE 1 (Raja's line) — the chapter's only sentence using でも (but), extracted under the dialogue-line exception since でも's own vocabulary entry needs a worked example.",
+      "target": "サッカーがすきです。でも、じょうずじゃありません"
+    },
+    {
+      "id": "demo-but",
+      "english": "But",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "でも"
+    }
+  ]
+}

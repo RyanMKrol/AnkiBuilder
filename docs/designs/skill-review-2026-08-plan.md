@@ -239,3 +239,54 @@ Neither requires reading a second collection's cards, and neither is permitted t
 `CLAUDE.md` golden rule 7, `src/audit/registry.js` and `src/audit/checks/index.js` (with a test that
 fails if a workspace-scope check is added without review), `references/card-authoring-rules.md`
 (scope stated once for the whole file), and an entry in `.harness/custom/docs/LIMITATIONS.md`.
+
+---
+
+## Status at close of the build phase (2026-08-17)
+
+All nine workstreams are merged. Main carries the whole plan except the items listed below, `npm run ci`
+is green (1,303 tests), and `npm run preflight` is clean on the real output tree.
+
+### Owner ruling: probe-gated features are DEFERRED, not pending
+
+Two of the five behaviour probes were run on 2026-08-17 against an empty throwaway profile
+(`template-update-regenerates-card` and `template-update-unsuspends`, both "no"). The remaining three
+need a card in a filtered deck, which AnkiConnect cannot create, so they need a human GUI step.
+
+The owner has decided **not to pursue the remaining probes for now**, and to work the questions out as
+they come up in real use instead. So these features stay refused, and that is a deliberate resting
+state rather than unfinished work:
+
+| feature                                                                  | waiting on                                       |
+| ------------------------------------------------------------------------ | ------------------------------------------------ |
+| `--refile` (the one-time deck-name migration)                            | `change-deck-on-filtered`                        |
+| `--suspend-delivered` (direction suppression on already-delivered notes) | `suspend-on-filtered`, `housekeeping-unsuspends` |
+| `--suspend-orphans`                                                      | `suspend-on-filtered`, `housekeeping-unsuspends` |
+
+Each refuses with a message naming the missing evidence and the command that would produce it, so the
+route forward is discoverable at the moment someone wants the feature. `--dry` previews are not gated.
+The deck-name migration the owner approved in principle therefore does not happen yet; the existing
+book keeps its current deck names, which was already the scheduled behaviour (WS2 item 6 ships the
+decoder fix new-books-only).
+
+`--allow-template-add` is no longer gated, because both of its probes are answered. Caveat recorded
+honestly: the probes measured a template UPDATE, and a template ADD is a different operation that
+generates a card per note by design. Nothing adds a template today (the owner chose no new card
+directions), so this is not load-bearing, but the gate is weaker than it looks and should be given its
+own evidence before anyone relies on it.
+
+### Not done, by decision or by cost
+
+- **WS2 item 4**, mirroring the archive layout under `chapters/`, deferred by its worker on
+  ruling-R6 grounds. The image collision it would close by construction is detected two other ways.
+- **`vocab-coverage` has never run against live data.** It needs a cached chapter file, which means an
+  `assemble` run, which is a paid pass. It skips honestly rather than reporting a false pass.
+- **412 `romaji-style` findings** (INFO) will not clear on their own: the fix is re-running the
+  romanization pass over already-delivered units, a paid pass on reviewed content. The owner confirmed
+  hyphenated `-san` as the pinned standard on 2026-08-15, which is why the ~201 spaced cards report.
+- **Extraction runs at effort `high` unmeasured.** The eval harness exists; comparing medium against
+  high on one chapter is two paid calls nobody has spent.
+- **One genuinely stale audio clip**, `nihongo-101-course-n5/lesson-0/irl-l1-31`, is badged and left
+  alone: fixing it means spending a TTS credit or discarding a hand-picked take.
+- **The card-face improvements are built but not delivered.** They need one `deliver --dry` review, then
+  `--allow-model-change`, then one manual AnkiWeb upload. Not probe-gated; waiting only on the owner.

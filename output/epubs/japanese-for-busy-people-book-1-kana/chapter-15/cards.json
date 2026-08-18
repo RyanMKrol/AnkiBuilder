@@ -123,14 +123,6 @@
       "note": "Demonstrates person は noun が じょうずです (\"X is good at Y\"). じょうずです is normally used only to describe other people, not yourself."
     },
     {
-      "id": "ks3-smith-soccer-miru-suki",
-      "english": "Smith-san likes watching soccer matches.",
-      "category": "Grammar & Function Words",
-      "target": "スミスさんはサッカーをみるのがすきです",
-      "pronunciation": "sumisu san wa sakkā o miru no ga suki desu",
-      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです."
-    },
-    {
       "id": "soccer-vocab",
       "english": "Soccer, football",
       "category": "Sports & Hobbies",
@@ -144,6 +136,14 @@
       "target": "みる",
       "pronunciation": "miru",
       "note": "Dictionary form of みます (mimasu, \"see\", Lesson 8) — the verb already known for watching TV or movies now appears bare, as this lesson does for all Regular 2 verbs."
+    },
+    {
+      "id": "ks3-smith-soccer-miru-suki",
+      "english": "Smith-san likes watching soccer matches.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはサッカーをみるのがすきです",
+      "pronunciation": "sumisu san wa sakkā o miru no ga suki desu",
+      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです."
     },
     {
       "id": "skiing",
@@ -262,6 +262,36 @@
       "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context."
     },
     {
+      "id": "golf-vocab",
+      "english": "Golf",
+      "category": "Sports & Hobbies",
+      "target": "ゴルフ",
+      "pronunciation": "gorufu"
+    },
+    {
+      "id": "dance-vocab",
+      "english": "Dance",
+      "category": "Sports & Hobbies",
+      "target": "ダンス",
+      "pronunciation": "dansu",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (ダンス is explicitly taught as hobbies vocabulary later in the book)"
+    },
+    {
+      "id": "song-uta",
+      "english": "Song",
+      "category": "Sports & Hobbies",
+      "target": "うた",
+      "pronunciation": "uta"
+    },
+    {
+      "id": "whiskey-vocab",
+      "english": "Whiskey",
+      "category": "Food",
+      "target": "ウイスキー",
+      "pronunciation": "uisukī"
+    },
+    {
       "id": "ex2-eg-a-kato-sake-golf",
       "english": "Kato-san likes Japanese sake. He is good at golf.",
       "category": "Grammar & Function Words",
@@ -279,32 +309,11 @@
       "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at."
     },
     {
-      "id": "golf-vocab",
-      "english": "Golf",
+      "id": "sports-vocab",
+      "english": "Sports",
       "category": "Sports & Hobbies",
-      "target": "ゴルフ",
-      "pronunciation": "gorufu"
-    },
-    {
-      "id": "dance-vocab",
-      "english": "Dance",
-      "category": "Sports & Hobbies",
-      "target": "ダンス",
-      "pronunciation": "dansu"
-    },
-    {
-      "id": "song-uta",
-      "english": "Song",
-      "category": "Sports & Hobbies",
-      "target": "うた",
-      "pronunciation": "uta"
-    },
-    {
-      "id": "whiskey-vocab",
-      "english": "Whiskey",
-      "category": "Food",
-      "target": "ウイスキー",
-      "pronunciation": "uisukī"
+      "target": "スポーツ",
+      "pronunciation": "supōtsu"
     },
     {
       "id": "ex3-eg-suzuki-sports-question",
@@ -313,13 +322,6 @@
       "target": "すずきさんはスポーツがすきですか",
       "pronunciation": "suzuki san wa supōtsu ga suki desu ka",
       "note": "Exercise III's worked example for asking someone whether they like something."
-    },
-    {
-      "id": "sports-vocab",
-      "english": "Sports",
-      "category": "Sports & Hobbies",
-      "target": "スポーツ",
-      "pronunciation": "supōtsu"
     },
     {
       "id": "fruits-vocab",
@@ -444,20 +446,20 @@
       "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
     },
     {
-      "id": "italian-cuisine",
-      "english": "Italian cuisine",
-      "category": "Food",
-      "target": "イタリアりょうり",
-      "pronunciation": "itaria ryōri",
-      "note": "イタリア (Italy) + りょうり (food, cooking, cuisine)."
-    },
-    {
       "id": "ryouri-food-cooking",
       "english": "Food, dish, cooking, cuisine",
       "category": "Food",
       "target": "りょうり",
       "pronunciation": "ryōri",
       "note": "Base word behind the compound イタリアりょうり (\"Italian cuisine\"): イタリア (Italy) + りょうり."
+    },
+    {
+      "id": "italian-cuisine",
+      "english": "Italian cuisine",
+      "category": "Food",
+      "target": "イタリアりょうり",
+      "pronunciation": "itaria ryōri",
+      "note": "イタリア (Italy) + りょうり (food, cooking, cuisine)."
     },
     {
       "id": "pizza-vocab",
@@ -531,20 +533,20 @@
       "pronunciation": "bijutsukan"
     },
     {
-      "id": "demo-but-speaking-practice",
-      "english": "I like soccer. But I'm not good at it.",
-      "category": "Grammar & Function Words",
-      "target": "サッカーがすきです。でも、じょうずじゃありません",
-      "pronunciation": "sakkā ga suki desu. demo, jōzu ja ari mase n",
-      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else."
-    },
-    {
       "id": "demo-but-vocab",
       "english": "But",
       "category": "Grammar & Function Words",
       "target": "でも",
       "pronunciation": "demo",
       "note": "See サッカーが すきです。でも、じょうずじゃありません。 (\"I like soccer, but I'm not good at it.\")"
+    },
+    {
+      "id": "demo-but-speaking-practice",
+      "english": "I like soccer. But I'm not good at it.",
+      "category": "Grammar & Function Words",
+      "target": "サッカーがすきです。でも、じょうずじゃありません",
+      "pronunciation": "sakkā ga suki desu. demo, jōzu ja ari mase n",
+      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else."
     },
     {
       "id": "fib-suzuki-kudamono-suki-q",

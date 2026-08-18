@@ -153,6 +153,14 @@ Reviews happen in the dashboard, never a terminal table. Start it once and leave
 npm run serve   # then open the printed http://localhost:… URL (Ctrl+C to stop)
 ```
 
+**RESTART it after any change to the server, the note type, or the card templates.** "Leave it
+running" means across a review, not across a week: the process serves the code it started with, and
+a long-lived dashboard silently keeps rendering the old review page. A session once reviewed a lesson
+through a dashboard six days old, so the Card faces view did not exist on the page, the exclusion
+provenance badge was missing, and a badge fixed days earlier still did not render. Nothing warns you,
+because a stale page looks exactly like a current one. On-disk state is unaffected, so a restart costs
+one command and a reload.
+
 ## Step 1: What do you want to build a deck for?
 
 Use the `AskUserQuestion` tool to ask which source to build from:

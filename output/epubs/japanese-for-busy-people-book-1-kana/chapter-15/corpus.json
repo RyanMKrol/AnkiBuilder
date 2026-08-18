@@ -150,16 +150,6 @@
       "target": "チャンさんはにほんごがじょうずです"
     },
     {
-      "id": "ks3-smith-soccer-miru-suki",
-      "english": "Smith-san likes watching soccer matches.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです.",
-      "reviewNote": null,
-      "target": "スミスさんはサッカーをみるのがすきです"
-    },
-    {
       "id": "soccer-vocab",
       "english": "Soccer, football",
       "category": "Sports & Hobbies",
@@ -178,6 +168,16 @@
       "note": "Dictionary form of みます (mimasu, \"see\", Lesson 8) — the verb already known for watching TV or movies now appears bare, as this lesson does for all Regular 2 verbs.",
       "reviewNote": null,
       "target": "みる"
+    },
+    {
+      "id": "ks3-smith-soccer-miru-suki",
+      "english": "Smith-san likes watching soccer matches.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです.",
+      "reviewNote": null,
+      "target": "スミスさんはサッカーをみるのがすきです"
     },
     {
       "id": "skiing",
@@ -332,26 +332,6 @@
       "aiSuggested": true
     },
     {
-      "id": "ex2-eg-a-kato-sake-golf",
-      "english": "Kato-san likes Japanese sake. He is good at golf.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Exercise II's worked example for stating what someone likes and is skilled at, combining grammar points 1's two patterns in one exchange.",
-      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
-      "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです"
-    },
-    {
-      "id": "ex2-eg-b-kato-coffee-tennis",
-      "english": "Kato-san doesn't like coffee. He is not good at tennis.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at.",
-      "reviewNote": null,
-      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
-    },
-    {
       "id": "golf-vocab",
       "english": "Golf",
       "category": "Sports & Hobbies",
@@ -368,8 +348,9 @@
       "scene": null,
       "hint": null,
       "note": null,
-      "reviewNote": null,
-      "target": "ダンス"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (ダンス is explicitly taught as hobbies vocabulary later in the book)",
+      "target": "ダンス",
+      "uncertain": true
     },
     {
       "id": "song-uta",
@@ -392,14 +373,24 @@
       "target": "ウイスキー"
     },
     {
-      "id": "ex3-eg-suzuki-sports-question",
-      "english": "Do you like sports, Suzuki-san?",
+      "id": "ex2-eg-a-kato-sake-golf",
+      "english": "Kato-san likes Japanese sake. He is good at golf.",
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Exercise III's worked example for asking someone whether they like something.",
+      "note": "Exercise II's worked example for stating what someone likes and is skilled at, combining grammar points 1's two patterns in one exchange.",
+      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
+      "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです"
+    },
+    {
+      "id": "ex2-eg-b-kato-coffee-tennis",
+      "english": "Kato-san doesn't like coffee. He is not good at tennis.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at.",
       "reviewNote": null,
-      "target": "すずきさんはスポーツがすきですか"
+      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
     },
     {
       "id": "sports-vocab",
@@ -410,6 +401,16 @@
       "note": null,
       "reviewNote": null,
       "target": "スポーツ"
+    },
+    {
+      "id": "ex3-eg-suzuki-sports-question",
+      "english": "Do you like sports, Suzuki-san?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Exercise III's worked example for asking someone whether they like something.",
+      "reviewNote": null,
+      "target": "すずきさんはスポーツがすきですか"
     },
     {
       "id": "fruits-vocab",
@@ -535,16 +536,6 @@
       "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
     },
     {
-      "id": "italian-cuisine",
-      "english": "Italian cuisine",
-      "category": "Food",
-      "scene": null,
-      "hint": null,
-      "note": "イタリア (Italy) + りょうり (food, cooking, cuisine).",
-      "reviewNote": null,
-      "target": "イタリアりょうり"
-    },
-    {
       "id": "ryouri-food-cooking",
       "english": "Food, dish, cooking, cuisine",
       "category": "Food",
@@ -553,6 +544,16 @@
       "note": "Base word behind the compound イタリアりょうり (\"Italian cuisine\"): イタリア (Italy) + りょうり.",
       "reviewNote": null,
       "target": "りょうり"
+    },
+    {
+      "id": "italian-cuisine",
+      "english": "Italian cuisine",
+      "category": "Food",
+      "scene": null,
+      "hint": null,
+      "note": "イタリア (Italy) + りょうり (food, cooking, cuisine).",
+      "reviewNote": null,
+      "target": "イタリアりょうり"
     },
     {
       "id": "pizza-vocab",
@@ -643,16 +644,6 @@
       "target": "びじゅつかん"
     },
     {
-      "id": "demo-but-speaking-practice",
-      "english": "I like soccer. But I'm not good at it.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": null,
-      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
-      "target": "サッカーがすきです。でも、じょうずじゃありません"
-    },
-    {
       "id": "demo-but-vocab",
       "english": "But",
       "category": "Grammar & Function Words",
@@ -661,6 +652,16 @@
       "note": "See サッカーが すきです。でも、じょうずじゃありません。 (\"I like soccer, but I'm not good at it.\")",
       "reviewNote": null,
       "target": "でも"
+    },
+    {
+      "id": "demo-but-speaking-practice",
+      "english": "I like soccer. But I'm not good at it.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
+      "target": "サッカーがすきです。でも、じょうずじゃありません"
     }
   ]
 }

@@ -1,0 +1,503 @@
+{
+  "chapters": [
+    {
+      "chapter": 1,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 2,
+      "label": "Hiragana",
+      "teaches": []
+    },
+    {
+      "chapter": 3,
+      "label": "Katakana",
+      "teaches": []
+    },
+    {
+      "chapter": 4,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 5,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 6,
+      "label": "CONTENTS",
+      "teaches": []
+    },
+    {
+      "chapter": 7,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 8,
+      "label": "PREFACE TO THE REVISED 4TH EDITION",
+      "teaches": []
+    },
+    {
+      "chapter": 9,
+      "label": "INTRODUCTION",
+      "teaches": []
+    },
+    {
+      "chapter": 10,
+      "label": "CHARACTERISTICS OF JAPANESE GRAMMAR",
+      "teaches": [
+        "grammar terminology: い-adjective, な-adjective, and R2 (Regular 2) verb abbreviations defined"
+      ]
+    },
+    {
+      "chapter": 11,
+      "label": "FREQUENTLY USED EXPRESSIONS",
+      "teaches": []
+    },
+    {
+      "chapter": 12,
+      "label": "Audio, Script and Answers Download",
+      "teaches": []
+    },
+    {
+      "chapter": 13,
+      "label": "UNIT 1: AT THE OFFICE",
+      "teaches": []
+    },
+    {
+      "chapter": 14,
+      "label": "LESSON 1: Meeting: Nice to Meet You",
+      "teaches": [
+        "noun1 は noun2 です (identification)",
+        "noun1 は noun2 ですか (yes/no question with か)",
+        "company の person (affiliation/belonging)",
+        "omission of the topic when clear from context",
+        "greeting vocabulary: すみません, はじめまして, よろしくおねがいします, こちらこそ, そうです, はい",
+        "particles: は (topic), の (affiliation), か (question)",
+        "vocabulary: 〜さん, 〜です, こちら, わたし, おくに, どちら, 〜をおねがいします, うけつけ",
+        "countries and nationalities vocabulary: にほん, ちゅうごく, ドイツ, イギリス, アメリカ, オーストラリア, インド, 〜じん",
+        "work affiliation vocabulary: デパート, ぎんこう, だいがく, たいしかん"
+      ]
+    },
+    {
+      "chapter": 15,
+      "label": "LESSON 2: Possession: Whose Pen Is This?",
+      "teaches": [
+        "これは noun です",
+        "これは noun じゃありません (negative of です) and the full です conjugation table (present/past, affirmative/negative)",
+        "person の noun (possession)",
+        "vocabulary: これ, だれの, だれ, ペン, さあ、わかりません, 〜さんの, わたしの, ありがとうございます, とけい",
+        "numbers 0-9: ゼロ/れい, いち, に, さん, よん/し, ご, ろく, なな/しち, はち, きゅう/く",
+        "business vocabulary: めいし, かいしゃのなまえ, かいしゃ, なまえ, じゅうしょ, でんわばんごう, でんわ, ばんごう, メールアドレス",
+        "personal belongings vocabulary: かばん, スマホ, めがね, かぎ, さいふ, ファイル, ほん, かさ, ペン, とけい",
+        "〜を おしえてください (please tell me)"
+      ]
+    },
+    {
+      "chapter": 16,
+      "label": "UNIT 2: SHOPPING",
+      "teaches": []
+    },
+    {
+      "chapter": 17,
+      "label": "LESSON 3: Asking the Time: What Time Is It?",
+      "teaches": [
+        "(いま) time です (telling the present time)",
+        "noun は time1 から time2 までです (time range with から/まで)",
+        "time1 の time2 (compound time expressions)",
+        "vocabulary: みせのひと, すしよし, ランチタイム, なんじ, 〜じはん, ラストオーダー",
+        "services/activities vocabulary: スーパー, レストラン, ジム, しごと, かいぎ, ひるやすみ, パーティー",
+        "numbers 10-100",
+        "clock time readings: 〜じ, 〜ふん/ぷん, ごぜん, ごご",
+        "time expressions: いま, きょう, あした"
+      ]
+    },
+    {
+      "chapter": 18,
+      "label": "LESSON 4: Shopping (1): How Much Is This?",
+      "teaches": [
+        "これ／それ／あれ (demonstrative pronouns)",
+        "noun も (also/too particle)",
+        "noun を ください / noun を おねがいします",
+        "noun1 と noun2 (connecting nouns with と)",
+        "vocabulary: いらっしゃいませ, みせてください, いくら, 〜えん, じゃ",
+        "home appliances vocabulary: テレビ, タブレット, パソコン, れいぞうこ, エアコン, でんしレンジ",
+        "food and drink vocabulary: コーヒー, こうちゃ, ジュース, サンドイッチ, カレー, サラダ",
+        "large numbers 100-90,000, decimals, and fractions",
+        "で particle marking means of payment (カードで)"
+      ]
+    },
+    {
+      "chapter": 19,
+      "label": "LESSON 5: Shopping (2): Two Bottles of That Wine, Please",
+      "teaches": [
+        "noun は place です (location)",
+        "この／その／あの + noun (demonstrative adjectives)",
+        "adjective + noun (modification order)",
+        "place の noun (place of origin)",
+        "noun を number ください (ordering quantities, no particle after the number)",
+        "counters 〜ほん(ぼん/ぽん) for long objects and 〜まい for flat objects; ひとつ・ふたつ・みっつ counting system vs いち・に・さん + counter system",
+        "vocabulary: ワインショップ, どこ, インフォメーション, ちか1かい, ワイン, フランス, ふくろ",
+        "floor counters: 1かい-6かい, ちかいっかい, 〜かい/がい",
+        "items for sale vocabulary: Tシャツ, あかい, あおい, くろい, しろい, ビール, (お)さら, コップ, りんご, おおきい, ちいさい",
+        "どれ vs どちら (which of three-plus vs which of two)",
+        "あちら (polite form of あそこ)"
+      ]
+    },
+    {
+      "chapter": 20,
+      "label": "Quiz 1",
+      "teaches": []
+    },
+    {
+      "chapter": 21,
+      "label": "UNIT 3: GETTING AROUND",
+      "teaches": []
+    },
+    {
+      "chapter": 22,
+      "label": "LESSON 6: Going Places (1): Where Are You Going?",
+      "teaches": [
+        "verb tense system: present/past, affirmative/negative (〜ます/〜ません/〜ました/〜ませんでした)",
+        "person は place/event に いきます (motion verbs with に, interchangeable with へ)",
+        "relative time expressions taking no particle: あした, せんしゅう, きのう, きょねん, etc.",
+        "person と (accompaniment particle, 'with')",
+        "person は place から きました (source with から)",
+        "vocabulary: せんしゅう, きのう, ともだち, きょねん, いきます, きます",
+        "destinations vocabulary: くうこう, えき, ししゃ, こうえん, ともだちのうち",
+        "time expression grid: きのう/きょう/あした, せんしゅう/こんしゅう/らいしゅう, せんげつ/こんげつ/らいげつ, きょねん/ことし/らいねん",
+        "people vocabulary: ともだち, どうりょう, じょうし, かぞく, がくせい"
+      ]
+    },
+    {
+      "chapter": 23,
+      "label": "LESSON 7: Going Places (2): I'm Going by Shinkansen",
+      "teaches": [
+        "specific time expressions take に (contrast with relative time expressions, which take no particle)",
+        "transportation で (means of transportation)",
+        "noun1 は noun2 ですか、noun3 ですか (alternative question pattern)",
+        "vocabulary: しゅっちょう, ええ, きんようび, かえります, ひこうき, しんかんせん, いってらっしゃい",
+        "dates vocabulary: years (〜ねん), days of the week, months (いちがつ-じゅうにがつ), days of the month (ついたち-さんじゅういちにち)",
+        "means of transportation vocabulary: でんしゃ, ちかてつ, くるま, タクシー, しんかんせん, ひこうき, バイク, じてんしゃ",
+        "なんで/なにで (asking means of transportation), あるいて (on foot)"
+      ]
+    },
+    {
+      "chapter": 24,
+      "label": "UNIT 4: EATING OUT",
+      "teaches": []
+    },
+    {
+      "chapter": 25,
+      "label": "LESSON 8: Doing Things (1): I'm Going to Eat Tempura",
+      "teaches": [
+        "person は noun を verb (object marker を)",
+        "place/event で (location where an action takes place)",
+        "なにも in a negative sentence (nothing)",
+        "vocabulary: しゅうまつ, なに, します, てんぷら, たべます, かぶき, みます",
+        "food and drink vocabulary: あさごはん, ひるごはん, ばんごはん, ラーメン, (お)すし, ステーキ, スープ, にほんしゅ, おちゃ, みず, アイスクリーム",
+        "verbs: たべます, のみます, かいます, よみます, ききます, みます, テニスをします, べんきょうをします, かいものをします, しごとをします",
+        "numbers-of-people counters: ひとり, ふたり, 〜にん, なんにん"
+      ]
+    },
+    {
+      "chapter": 26,
+      "label": "LESSON 9: Doing Things (2): Do You Often Come Here?",
+      "teaches": [
+        "person1 は person2 に verb (に marking target of action, e.g. あいます)",
+        "person1 は person2/place に noun を verb (に marking receiver, e.g. おしえます, おくります, でんわをします)",
+        "habitual action expressed with present tense + frequency words (まいにち, まいしゅう, まいあさ)",
+        "あまり／ぜんぜん + negative sentence (not often / not at all)",
+        "vocabulary: ばしょ, おしえます, まいにち",
+        "verbs: でんわをします, おくります, あいます, ききます (ask), おしえます",
+        "family vocabulary: ごかぞく, おとうさん, おかあさん, おくさん, ちち, はは, つま/かない, ごしゅじん, おっと/しゅじん",
+        "time expressions: まいあさ, まいばん, まいしゅう, いつも"
+      ]
+    },
+    {
+      "chapter": 27,
+      "label": "Quiz 2",
+      "teaches": []
+    },
+    {
+      "chapter": 28,
+      "label": "UNIT 5: VISITING A JAPANESE HOME",
+      "teaches": []
+    },
+    {
+      "chapter": 29,
+      "label": "LESSON 10: Describing Things: It's Delicious",
+      "teaches": [
+        "Adjectives (1): い-adjectives vs な-adjectives, modifying-noun form vs predicate (+です) form, present affirmative/negative conjugation",
+        "vocabulary: いかがですか, いただきます, きれい(な), とても, おいしい",
+        "い-adjectives vocabulary: おおきい, ちいさい, たかい, やすい, あたらしい, ふるい, いい, わるい, あつい, さむい, あたたかい, すずしい, おもしろい, おいしい",
+        "な-adjectives vocabulary: にぎやか(な), しずか(な), べんり(な), ゆうめい(な), きれい(な)"
+      ]
+    },
+    {
+      "chapter": 30,
+      "label": "LESSON 11: Describing Impressions: It Was Beautiful",
+      "teaches": [
+        "Adjectives (2): past-tense conjugation of い-adjectives and な-adjectives (さむかったです, にぎやかでした, etc.)",
+        "clause1 が、clause2 (contrastive 'but')",
+        "vocabulary: のぼります, どうでしたか, しゃしん, とります, どのくらい, あるきます, 〜じかん, 〜ぐらい (approximation), たいへん(な), たのしい, みせます",
+        "い-adjectives vocabulary: たのしい, つまらない, むずかしい, いそがしい",
+        "な-adjectives vocabulary: かんたん(な), たいへん(な), ひま(な)"
+      ]
+    },
+    {
+      "chapter": 31,
+      "label": "UNIT 6: WEEKEND TRIPS",
+      "teaches": []
+    },
+    {
+      "chapter": 32,
+      "label": "LESSON 12: Asking about Places: What Is at Nikko?",
+      "teaches": [
+        "place に noun が あります／います (existence; あります for inanimate, います for animate; が for information new to the listener)",
+        "position words: noun1 の noun2(position), e.g. うえ, した",
+        "noun1 や noun2 (non-exhaustive 'and', contrasted with と)",
+        "vocabulary: います, テーブル, うえ, おてら, じんじゃ, おんせん, 〜って なんですか, よ(particle)",
+        "parts of a building vocabulary: うけつけ, ゆうびんきょく, かいぎしつ, ちゅうしゃじょう",
+        "hotel room items vocabulary: へや, でんきポット, ベッド, つくえ, いす, ごみばこ, ソファー",
+        "tourist site features vocabulary: おてら, じんじゃ, おんせん, たき, みずうみ",
+        "position words vocabulary: うえ, した, なか, まえ, うしろ, となり, ちかく"
+      ]
+    },
+    {
+      "chapter": 33,
+      "label": "LESSON 13: Asking for a Place: Where Is It?",
+      "teaches": [
+        "place に noun が number あります／います (counting existence, no particle after the number)",
+        "noun は place に あります／います (topic marked with は when the location is being described)",
+        "place1 は place2 から ちかい／とおいです (relative distance)",
+        "vocabulary: おきゃくさん, タクシーのりば",
+        "things near a train station vocabulary: バスのりば, こうばん, びょういん, ほんや, パンや, ラーメンや",
+        "office supplies vocabulary: けしゴム, えんぴつ, はさみ, クリアファイル, ひきだし, キャビネット",
+        "demonstrative pronouns: ここ, そこ, あそこ",
+        "い-adjectives: ちかい, とおい"
+      ]
+    },
+    {
+      "chapter": 34,
+      "label": "LESSON 14: Giving and Receiving: I Received It from My Friend",
+      "teaches": [
+        "person1 は person2 に noun を あげます (give)",
+        "person1 は person2 に noun を もらいます (receive; に = 'from')",
+        "person は noun が あります (have/own)",
+        "vocabulary: あります (have), いいんですか, から(because), すてき(な), もらいます, かします",
+        "verbs: あげます, もらいます, かします, かります",
+        "gifts vocabulary: イヤリング, ネックレス, ゆびわ, スカーフ, ブラウス, バッグ, コンサートのチケット, セーター, マフラー, ネクタイ",
+        "words used with あります (have): (お)かね, よてい, やくそく, じかん"
+      ]
+    },
+    {
+      "chapter": 35,
+      "label": "Quiz 3",
+      "teaches": []
+    },
+    {
+      "chapter": 36,
+      "label": "UNIT 7: MAKING LEISURE PLANS",
+      "teaches": []
+    },
+    {
+      "chapter": 37,
+      "label": "LESSON 15: Talking about Preferences: I Like Japanese Anime",
+      "teaches": [
+        "person は noun が すきです / person は noun が じょうずです (が marks the liked/skilled-at thing)",
+        "verb dictionary form: Regular 1 / Regular 2 / Irregular verb classification and dictionary-form conjugation rules",
+        "person は verb[dictionary form] のが すきです (nominalizer の + dictionary form)",
+        "vocabulary: いとこ, アニメ, すき(な), ロボット, かく/かきます, わあ, すごい, じょうず(な)",
+        "sports vocabulary: スキー, サッカー, やきゅう, ダイビング",
+        "verbs: かきます, はなします, うたいます, およぎます, はしります"
+      ]
+    },
+    {
+      "chapter": 38,
+      "label": "LESSON 16: Making an Invitation: Shall We Go Together?",
+      "teaches": [
+        "place で event が あります (event taking place, で marks the location)",
+        "verb[ますform stem]ませんか (invitation, 'shall we...?')",
+        "verb[ますform stem]ましょう (let's...)",
+        "clause1 から、clause2 (reason)",
+        "vocabulary: あきはばら, イベント, いっしょに, ぜひ, どうですか, ちょっと…",
+        "events vocabulary: はなびたいかい, ゆきまつり, サッカーのしあい",
+        "parts of a train station vocabulary: ホーム, でぐち, にしぐち, ひがしぐち, きたぐち, みなみぐち",
+        "physical condition vocabulary: おなかがすきました, のどがかわきました, つかれました",
+        "ます-form variations: V ます / V ませんか / V ましょう"
+      ]
+    },
+    {
+      "chapter": 39,
+      "label": "LESSON 17: Stating a Wish: I Want to Buy a Souvenir",
+      "teaches": [
+        "(わたしは) verb[ますform stem]たいです／たくないです (want to; conjugates like an い-adjective, incl. past たかった／たくなかった)",
+        "person は noun の まえに verb (before noun)",
+        "person は verb1[dictionary form] まえに verb2 (before doing verb1, do verb2)",
+        "vocabulary: おとうと, かいたいです, 〜のまえに, ロビー",
+        "hobbies vocabulary: いけばな, からて, ピアノ, ダンス",
+        "verbs: ならいます, りょうりをします, あらいます, シャワーをあびます, はじめます"
+      ]
+    },
+    {
+      "chapter": 40,
+      "label": "CASUAL STYLE 1",
+      "teaches": [
+        "overview of casual speech style vs です・ます style",
+        "noun1 は noun2 (だ omitted; だね／だよ with ね／よ)",
+        "casual questions: か omitted with rising intonation; は often omitted or becomes って",
+        "casual affirmative/negative responses: うん／ううん (replacing はい／いいえ), じゃない (replacing じゃありません)",
+        "casual self-reference terms: ぼく／おれ (male), あたし (female); くん／ちゃん as name-suffix alternatives to さん",
+        "casual present-affirmative verb form = dictionary form (いく for いきます)",
+        "casual destination particle に often omitted",
+        "casual い-adjective and な-adjective conjugation (present/past, affirmative/negative)"
+      ]
+    },
+    {
+      "chapter": 41,
+      "label": "UNIT 8: BUSINESS TRIPS",
+      "teaches": []
+    },
+    {
+      "chapter": 42,
+      "label": "LESSON 18: Explaining Plans: I Will Go to Osaka and See Her",
+      "teaches": [
+        "verb て-form (Regular 1 / Regular 2 / Irregular formation rules)",
+        "person は verb1[て-form]、verb2 (sequential actions with the same subject)",
+        "person は noun の あと、verb (after noun, do verb)",
+        "vocabulary: よろしいですか, パッケージフェア, 〜のあと, いって(て-form of いきます), こうじょう, みて(て-form of みます), きをつけて, レポート"
+      ]
+    },
+    {
+      "chapter": 43,
+      "label": "LESSON 19: Making a Request: Please Give Her My Regards",
+      "teaches": [
+        "verb[て-form]ください (polite request/imperative)",
+        "means で (particle for means of communication or delivery)",
+        "place/space を (particle for movement through a space)",
+        "vocabulary: いろいろ(な), サンプル, たくはいびん, ほうこくしてください, よろしくつたえてください, 〜について",
+        "verbs: まがります, とめます, いいます, もってきます, とどけます, まちます",
+        "positions/directions vocabulary: こうさてん, しんごう, みち, かど, さき, てまえ, みぎ, ひだり, まっすぐ",
+        "means of delivery vocabulary: たくはいびん, ゆうびん, バイクびん"
+      ]
+    },
+    {
+      "chapter": 44,
+      "label": "Quiz 4",
+      "teaches": []
+    },
+    {
+      "chapter": 45,
+      "label": "UNIT 9: AT THE MUSEUM",
+      "teaches": []
+    },
+    {
+      "chapter": 46,
+      "label": "LESSON 20: Going Places (3): How Do You Go There?",
+      "teaches": [
+        "person は place で transportation に のります (get on; に also marks the destination for つきます 'arrive')",
+        "person は place で transportation を おります (get off; を also marks the origin for でます 'leave')",
+        "place1 から place2 まで (transportation で) period かかります (duration, no particle before かかります; ぐらい for approximation)",
+        "person は place に period います (duration of stay, no particle before います)",
+        "vocabulary: ねぼうします, でます, かかります, カフェ, はくぶつかん",
+        "verbs: のります, おります, でます, つきます, かかります",
+        "period counters: minutes/hours/days/weeks/months/years (ごふん(かん), いちじかん, いちにち, いっしゅうかん, いっかげつ(かん), いちねん(かん), etc.) and the はん ('half') placement rule"
+      ]
+    },
+    {
+      "chapter": 47,
+      "label": "LESSON 21: Asking Permission: May I Have It?",
+      "teaches": [
+        "verb[て-form]も いいですか (asking permission)",
+        "place/thing に (particle marking the place/thing affected by a resultative action, e.g. かきます, すわります, おきます, とめます)",
+        "(わたしは) body part が いたいです (a body part hurts)",
+        "vocabulary: むかし, えいご, パンフレット, もらってもいいですか, あし, いたい, すわってもいいですか",
+        "verbs: つかいます, すわります, はいります, おきます, あけます, しめます, つけます, けします",
+        "parts of the body vocabulary: あたま, め, は, のど, おなか, かた, せなか, こし, て, あし",
+        "symptoms vocabulary: あたまがいたいです, きぶんがわるいです, ねつがあります"
+      ]
+    },
+    {
+      "chapter": 48,
+      "label": "LESSON 22: Forbidding Actions: Please Don't Take Photos",
+      "teaches": [
+        "verb ない-form (Regular 1 / Regular 2 / Irregular formation rules)",
+        "verb[ない-form]でください (please don't do)",
+        "place にも noun が あります (も added to a location marked with に)",
+        "vocabulary: きもの, 〜まえ (ago), いもうと, とらないでください",
+        "verbs: たちます, さわります, たばこをすいます",
+        "restrictions vocabulary: たちいりきんし, ちゅうしゃきんし, きんえん",
+        "adjective: あぶない"
+      ]
+    },
+    {
+      "chapter": 49,
+      "label": "UNIT 10: AT WORK AND AFTER WORK",
+      "teaches": []
+    },
+    {
+      "chapter": 50,
+      "label": "LESSON 23: Explaining Actions: What Are You Doing Now?",
+      "teaches": [
+        "person は verb[て-form]います (1): present progressive 'is doing'; also used for an intentionally repeated action over a period",
+        "もう verb[ますform stem]ましたか (has already...? question of completion) with responses はい〜ました / いいえ、まだです",
+        "は for contrast (contrastive topic marking replacing が/を or added to other particles)",
+        "vocabulary: もう(already), じゅんび, できます, まだです, よやくします, つくります, おわります, もうすぐ, チェック",
+        "verbs: せつめいをします, そうじをします, おわります, つくります, できます",
+        "lessons vocabulary: しょどう, ギター, フランスご"
+      ]
+    },
+    {
+      "chapter": 51,
+      "label": "LESSON 24: Work and Interests: I Work for an Apparel Maker",
+      "teaches": [
+        "person は verb[て-form]います (2): expressing a present state (すんでいます, つとめています, しっています)",
+        "person は noun が わかります (understand, が marks the object)",
+        "person は noun を しっています (know; always used in the て-form いる, never plain ます-form; negative しりません is distinct from わかりません)",
+        "noun は verb[dictionary form] ことです (nominalizer こと for hobbies/dreams)",
+        "vocabulary: いもうとさん, わかります, おしごと, デザイナー, アパレルメーカー, つとめています, ゆめ, じぶんの, ブランド, がんばってください",
+        "verbs: すんでいます, つとめています, しっています, わかります",
+        "family vocabulary contrasting own vs. others': こども/おこさん, むすこ/むすこさん, むすめ/おじょうさん・むすめさん, あに/おにいさん, あね/おねえさん, おとうと/おとうとさん, いもうと/いもうとさん"
+      ]
+    },
+    {
+      "chapter": 52,
+      "label": "Quiz 5",
+      "teaches": []
+    },
+    {
+      "chapter": 53,
+      "label": "CASUAL STYLE 2",
+      "teaches": [
+        "casual permission-seeking: て-form も いい? (rising intonation), with responses いいよ／どうぞ (grant), えー、ちょっと… (soft refusal), だめ (firm refusal)",
+        "casual invitation: ない-form + rising intonation (こない?) as an alternative to きませんか",
+        "casual past-affirmative verb form = た-form (よんだ) as an alternative to 〜ました",
+        "casual request: て-form alone (かして) as an alternative to てください, with responses いいよ／わかった／ありがとう (accept), えー、ちょっと… (soft decline), いや(だ) (firm decline)"
+      ]
+    },
+    {
+      "chapter": 54,
+      "label": "APPENDIXES",
+      "teaches": []
+    },
+    {
+      "chapter": 55,
+      "label": "GLOSSARY (Japanese-English)",
+      "teaches": []
+    },
+    {
+      "chapter": 56,
+      "label": "English-Japanese Glossary",
+      "teaches": []
+    },
+    {
+      "chapter": 57,
+      "label": null,
+      "teaches": []
+    }
+  ]
+}

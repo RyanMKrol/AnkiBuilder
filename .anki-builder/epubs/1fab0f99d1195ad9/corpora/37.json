@@ -1,0 +1,540 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 37,
+    "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime",
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "cousin",
+      "english": "Cousin",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "いとこ"
+    },
+    {
+      "id": "anime",
+      "english": "Anime, animation",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "アニメ"
+    },
+    {
+      "id": "suki-na-like",
+      "english": "Like, favorite",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "すき"
+    },
+    {
+      "id": "robot",
+      "english": "Robot",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "ロボット"
+    },
+    {
+      "id": "kaku-draw",
+      "english": "Draw (dictionary form)",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Gloss disambiguated at gate 1: it and かきます were both plain \"Draw\", while every sibling activity verb in this lesson (はなす, うたう, およぐ, はしる) marks its dictionary form in the gloss.",
+      "target": "かく"
+    },
+    {
+      "id": "kakimasu-draw",
+      "english": "Draw",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "かきます"
+    },
+    {
+      "id": "no-nominalizer",
+      "english": "(nominalizer)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "target": "の",
+      "uncertain": true
+    },
+    {
+      "id": "waa-wow",
+      "english": "Wow! (exclamation of surprise)",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "わあ!"
+    },
+    {
+      "id": "sugoi-great",
+      "english": "That's great!",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "すごい!"
+    },
+    {
+      "id": "jouzu-na-skilled",
+      "english": "Skilled, good at",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "じょうず"
+    },
+    {
+      "id": "donna-anime-ga-suki",
+      "english": "What kind of anime do you like?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どんなアニメがすきですか"
+    },
+    {
+      "id": "watashi-mo-desu",
+      "english": "I am too. / Me too.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "わたしもです"
+    },
+    {
+      "id": "ks1-chan-wine-suki",
+      "english": "Chan-san likes wine.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "チャンさんはワインがすきです"
+    },
+    {
+      "id": "ks2-chan-nihongo-jouzu",
+      "english": "Chan-san is good at Japanese.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "チャンさんはにほんごがじょうずです"
+    },
+    {
+      "id": "soccer-vocab",
+      "english": "Soccer, football",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "サッカー"
+    },
+    {
+      "id": "miru-see-watch",
+      "english": "See, watch (dictionary form)",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "みる"
+    },
+    {
+      "id": "ks3-smith-soccer-miru-suki",
+      "english": "Smith-san likes watching soccer matches.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "スミスさんはサッカーをみるのがすきです"
+    },
+    {
+      "id": "skiing",
+      "english": "Skiing",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "スキー"
+    },
+    {
+      "id": "baseball",
+      "english": "Baseball",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "やきゅう"
+    },
+    {
+      "id": "scuba-diving",
+      "english": "Scuba diving",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ダイビング"
+    },
+    {
+      "id": "kiku-listen-dict-form",
+      "english": "Listen, hear (dictionary form)",
+      "category": "Sports & Hobbies",
+      "reviewNote": "From the WORD POWER \"Dictionary form\" illustration (Page_145_Image_0001.jpg), which pairs ききます・きく with no English gloss given anywhere in the chapter; the \"listen, hear\" meaning is inferred from general vocabulary, not confirmed by the source text.",
+      "target": "きく",
+      "uncertain": true
+    },
+    {
+      "id": "hanashimasu-talk",
+      "english": "Talk, speak",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "はなします"
+    },
+    {
+      "id": "utaimasu-sing",
+      "english": "Sing",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "うたいます"
+    },
+    {
+      "id": "oyogimasu-swim",
+      "english": "Swim",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "およぎます"
+    },
+    {
+      "id": "hashirimasu-run",
+      "english": "Run",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "はしります"
+    },
+    {
+      "id": "suki-ja-arimasen",
+      "english": "Don't like, dislike",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "すきじゃありません"
+    },
+    {
+      "id": "suki-deshita",
+      "english": "Liked (past)",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "すきでした"
+    },
+    {
+      "id": "suki-ja-arimasen-deshita",
+      "english": "Didn't like (past)",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "すきじゃありませんでした"
+    },
+    {
+      "id": "jouzu-ja-arimasen",
+      "english": "Not good at, unskilled",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "じょうずじゃありません"
+    },
+    {
+      "id": "jouzu-deshita",
+      "english": "Was good at (past)",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "じょうずでした"
+    },
+    {
+      "id": "jouzu-ja-arimasen-deshita",
+      "english": "Wasn't good at (past)",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "じょうずじゃありませんでした"
+    },
+    {
+      "id": "chan-nihongo-jouzu-deshita-suggestion",
+      "english": "Chan-san was good at Japanese.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context.",
+      "target": "チャンさんはにほんごがじょうずでした",
+      "aiSuggested": true
+    },
+    {
+      "id": "golf-vocab",
+      "english": "Golf",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ゴルフ"
+    },
+    {
+      "id": "tenisu-tennis",
+      "english": "Tennis",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
+      "target": "テニス",
+      "uncertain": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "sake-rice-wine",
+      "english": "Sake, rice wine",
+      "category": "Food",
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
+      "target": "さけ",
+      "uncertain": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "dance-vocab",
+      "english": "Dance",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (ダンス is explicitly taught as hobbies vocabulary there).",
+      "target": "ダンス",
+      "uncertain": true
+    },
+    {
+      "id": "song-uta",
+      "english": "Song",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "うた"
+    },
+    {
+      "id": "whiskey-vocab",
+      "english": "Whiskey",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ウイスキー"
+    },
+    {
+      "id": "ex2-eg-a-kato-sake-golf",
+      "english": "Kato-san likes Japanese sake. He is good at golf.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
+      "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです"
+    },
+    {
+      "id": "ex2-eg-b-kato-coffee-tennis",
+      "english": "Kato-san doesn't like coffee. He is not good at tennis.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
+    },
+    {
+      "id": "sports-vocab",
+      "english": "Sports",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "スポーツ"
+    },
+    {
+      "id": "ex3-eg-suzuki-sports-question",
+      "english": "Do you like sports, Suzuki-san?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "すずきさんはスポーツがすきですか"
+    },
+    {
+      "id": "fruits-vocab",
+      "english": "Fruits",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "くだもの"
+    },
+    {
+      "id": "hanasu-dict-form",
+      "english": "Talk, speak (dictionary form)",
+      "category": "Other",
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "target": "はなす"
+    },
+    {
+      "id": "utau-dict-form",
+      "english": "Sing (dictionary form)",
+      "category": "Sports & Hobbies",
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "target": "うたう"
+    },
+    {
+      "id": "oyogu-dict-form",
+      "english": "Swim (dictionary form)",
+      "category": "Sports & Hobbies",
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "target": "およぐ"
+    },
+    {
+      "id": "hashiru-dict-form",
+      "english": "Run (dictionary form)",
+      "category": "Sports & Hobbies",
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "target": "はしる"
+    },
+    {
+      "id": "taberu-dict-form-eg",
+      "english": "Eat (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Exercise V's own worked example for the \"change to dictionary form\" drill (たべます → たべる).",
+      "target": "たべる"
+    },
+    {
+      "id": "iku-dict-form",
+      "english": "Go (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "いく",
+      "aiSuggested": true
+    },
+    {
+      "id": "kau-dict-form",
+      "english": "Buy (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "かう",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomu-dict-form",
+      "english": "Drink (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "のむ",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaeru-dict-form",
+      "english": "Go home, return (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "かえる",
+      "aiSuggested": true
+    },
+    {
+      "id": "kasu-dict-form",
+      "english": "Lend (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "target": "かす",
+      "aiSuggested": true
+    },
+    {
+      "id": "matsu-dict-form",
+      "english": "Wait (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "target": "まつ",
+      "aiSuggested": true
+    },
+    {
+      "id": "iru-dict-form",
+      "english": "Be, exist (animate) (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "target": "いる",
+      "aiSuggested": true
+    },
+    {
+      "id": "toru-dict-form",
+      "english": "Take (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "target": "とる",
+      "aiSuggested": true
+    },
+    {
+      "id": "oshieru-dict-form",
+      "english": "Tell, teach (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "おしえる",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuru-dict-form",
+      "english": "Come (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "くる",
+      "aiSuggested": true
+    },
+    {
+      "id": "suru-dict-form",
+      "english": "Do (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "target": "する",
+      "aiSuggested": true
+    },
+    {
+      "id": "ryouri-food-cooking",
+      "english": "Food, dish, cooking, cuisine",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "りょうり"
+    },
+    {
+      "id": "italian-cuisine",
+      "english": "Italian cuisine",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "イタリアりょうり"
+    },
+    {
+      "id": "pizza-vocab",
+      "english": "Pizza",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ピザ"
+    },
+    {
+      "id": "jazz-vocab",
+      "english": "Jazz",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ジャズ"
+    },
+    {
+      "id": "ex7-eg-green-music-question",
+      "english": "Do you like listening to music, Green-san?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "グリーンさんはおんがくをきくのがすきですか"
+    },
+    {
+      "id": "ex7-eg-green-reply-what-about-you",
+      "english": "Yes, I do. What about you, Kato-san?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ええ、すきです。かとうさんは?"
+    },
+    {
+      "id": "ex7-eg-kato-me-too-sing",
+      "english": "I like it too. I also like singing.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "わたしもすきです。うたうのもすきです"
+    },
+    {
+      "id": "art-museum",
+      "english": "Art museum",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "びじゅつかん"
+    },
+    {
+      "id": "demo-but-vocab",
+      "english": "But",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "でも"
+    },
+    {
+      "id": "demo-but-speaking-practice",
+      "english": "I like soccer. But I'm not good at it.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
+      "target": "サッカーがすきです。でも、じょうずじゃありません"
+    },
+    {
+      "id": "fib-donna-kudamono-suki-q",
+      "english": "What kind of fruit do you like?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どんなくだものがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-ringo-suki-a",
+      "english": "I like apples.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "りんごがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-bijutsukan-iku-mo-suki",
+      "english": "I like it too. I also like going to art museums.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "わたしもすきです。びじゅつかんにいくのもすきです",
+      "aiSuggested": true
+    }
+  ]
+}

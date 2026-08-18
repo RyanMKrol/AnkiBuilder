@@ -172,5 +172,14 @@ async function runAudioInner(flags, ctx) {
     }
   }
   writeJson(paths.cards, fresh);
-  ctx.log(`generated audio for ${annotated.items.length} item(s) into ${paths.audio}`);
+  // Report what was VOICED, not how many items the file holds. Those differ by every excluded card,
+  // and the stage skips those on purpose so no TTS credit is spent on a card that will never ship.
+  // Printing the file's length made a complete run look like it had missed five cards, and would
+  // equally have hidden a run that really did miss some.
+  const voiced = fresh.items.filter((item) => item.audio).length;
+  const skipped = fresh.items.length - voiced;
+  ctx.log(
+    `voiced ${voiced} of ${fresh.items.length} item(s) into ${paths.audio}` +
+      (skipped > 0 ? ` (${skipped} skipped: excluded, or no spoken text)` : ""),
+  );
 }

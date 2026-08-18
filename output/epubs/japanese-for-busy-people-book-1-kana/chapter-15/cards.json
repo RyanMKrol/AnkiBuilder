@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "epubHash": "1fab0f99d1195ad9",
     "chapterNumber": 37,
     "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime",
@@ -15,14 +15,24 @@
       "english": "Cousin",
       "category": "Family & People",
       "target": "いとこ",
-      "pronunciation": "itoko"
+      "pronunciation": "itoko",
+      "audio": "e1b9a4bfce075943.mp3",
+      "audioOriginal": "e1b9a4bfce075943.orig.mp3",
+      "audioAuto": "e1b9a4bfce075943.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e1b9a4bfce075943"
     },
     {
       "id": "anime",
       "english": "Anime, animation",
       "category": "Sports & Hobbies",
       "target": "アニメ",
-      "pronunciation": "anime"
+      "pronunciation": "anime",
+      "audio": "f69197e0a00a6185.mp3",
+      "audioOriginal": "f69197e0a00a6185.orig.mp3",
+      "audioAuto": "f69197e0a00a6185.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f69197e0a00a6185"
     },
     {
       "id": "suki-na-like",
@@ -30,14 +40,24 @@
       "category": "Descriptions & Qualities",
       "target": "すき",
       "pronunciation": "suki",
-      "note": "な-adjective. Takes な before a following noun (e.g. すきな アニメ, \"favorite anime\"), but です directly after it when it's the sentence's predicate, as in ...が すきです."
+      "note": "な-adjective. Takes な before a following noun (e.g. すきな アニメ, \"favorite anime\"), but です directly after it when it's the sentence's predicate, as in ...が すきです.",
+      "audio": "a5b663cb74e7ecaf.mp3",
+      "audioOriginal": "a5b663cb74e7ecaf.orig.mp3",
+      "audioAuto": "a5b663cb74e7ecaf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a5b663cb74e7ecaf"
     },
     {
       "id": "robot",
       "english": "Robot",
       "category": "Technology & Communication",
       "target": "ロボット",
-      "pronunciation": "robotto"
+      "pronunciation": "robotto",
+      "audio": "61fe7b1a972b2d3a.mp3",
+      "audioOriginal": "61fe7b1a972b2d3a.orig.mp3",
+      "audioAuto": "61fe7b1a972b2d3a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "61fe7b1a972b2d3a"
     },
     {
       "id": "kaku-draw",
@@ -47,7 +67,12 @@
       "pronunciation": "kaku",
       "hint": "dictionary form (plain, casual)",
       "reviewNote": "Gloss disambiguated at gate 1: it and かきます were both plain \"Draw\", while every sibling activity verb in this lesson (はなす, うたう, およぐ, はしる) marks its dictionary form in the gloss.",
-      "note": "Dictionary form of かきます (kakimasu, \"draw\"). Regular 1: the stem ends in -ki, which becomes -ku, the same row as ききます → きく."
+      "note": "Dictionary form of かきます (kakimasu, \"draw\"). Regular 1: the stem ends in -ki, which becomes -ku, the same row as ききます → きく.",
+      "audio": "c10a3b276a60e2cd.mp3",
+      "audioOriginal": "c10a3b276a60e2cd.orig.mp3",
+      "audioAuto": "c10a3b276a60e2cd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c10a3b276a60e2cd"
     },
     {
       "id": "kakimasu-draw",
@@ -56,7 +81,12 @@
       "target": "かきます",
       "pronunciation": "kaki masu",
       "hint": "polite ます-form",
-      "note": "ます-form of かく (kaku, \"draw\"); かく is the dictionary form, used in casual speech and before grammar patterns like のが すきです."
+      "note": "ます-form of かく (kaku, \"draw\"); かく is the dictionary form, used in casual speech and before grammar patterns like のが すきです.",
+      "audio": "641794d0a3619820.mp3",
+      "audioOriginal": "641794d0a3619820.orig.mp3",
+      "audioAuto": "641794d0a3619820.mp3",
+      "audioMarked": true,
+      "audioTextHash": "641794d0a3619820"
     },
     {
       "id": "no-nominalizer",
@@ -67,21 +97,36 @@
       "uncertain": true,
       "note": "This の does a different job than the の you've met before: the possessive の in Lesson 1, or the apposition の in Lesson 6's インターンの ラジャさん (intern Raja-san). Here it turns a dictionary-form verb like みる into a noun-equivalent so が すきです can follow, as in みるのが すきです.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
-      "scene": "turning a verb into something you can like or be good at"
+      "scene": "turning a verb into something you can like or be good at",
+      "audio": "d36e2b09aa3aff44.mp3",
+      "audioOriginal": "d36e2b09aa3aff44.orig.mp3",
+      "audioAuto": "d36e2b09aa3aff44.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d36e2b09aa3aff44"
     },
     {
       "id": "waa-wow",
       "english": "Wow! (exclamation of surprise)",
       "category": "Emotions & Feelings",
       "target": "わあ!",
-      "pronunciation": "waa!"
+      "pronunciation": "waa!",
+      "audio": "6db328bc56ed042e.mp3",
+      "audioOriginal": "6db328bc56ed042e.orig.mp3",
+      "audioAuto": "6db328bc56ed042e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6db328bc56ed042e"
     },
     {
       "id": "sugoi-great",
       "english": "That's great!",
       "category": "Emotions & Feelings",
       "target": "すごい!",
-      "pronunciation": "sugoi!"
+      "pronunciation": "sugoi!",
+      "audio": "c64e94674dcea4da.mp3",
+      "audioOriginal": "c64e94674dcea4da.orig.mp3",
+      "audioAuto": "c64e94674dcea4da.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c64e94674dcea4da"
     },
     {
       "id": "jouzu-na-skilled",
@@ -89,7 +134,12 @@
       "category": "Descriptions & Qualities",
       "target": "じょうず",
       "pronunciation": "jōzu",
-      "note": "な-adjective. Almost always used to describe OTHER people, not yourself or your own family, because it sounds like boasting to say it about yourself; people rarely ask じょうずですか (\"are you good at...?\") for this reason."
+      "note": "な-adjective. Almost always used to describe OTHER people, not yourself or your own family, because it sounds like boasting to say it about yourself; people rarely ask じょうずですか (\"are you good at...?\") for this reason.",
+      "audio": "5783f7c26d7e0ab7.mp3",
+      "audioOriginal": "5783f7c26d7e0ab7.orig.mp3",
+      "audioAuto": "5783f7c26d7e0ab7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5783f7c26d7e0ab7"
     },
     {
       "id": "donna-anime-ga-suki",
@@ -97,7 +147,12 @@
       "category": "Grammar & Function Words",
       "target": "どんなアニメがすきですか",
       "pronunciation": "donna anime ga suki desu ka",
-      "note": "どんな + noun + が すきですか asks what someone likes from within a specific category (here, which kind of anime)."
+      "note": "どんな + noun + が すきですか asks what someone likes from within a specific category (here, which kind of anime).",
+      "audio": "28b7211c5e0d46c3.mp3",
+      "audioOriginal": "28b7211c5e0d46c3.orig.mp3",
+      "audioAuto": "28b7211c5e0d46c3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "28b7211c5e0d46c3"
     },
     {
       "id": "watashi-mo-desu",
@@ -105,7 +160,12 @@
       "category": "Grammar & Function Words",
       "target": "わたしもです",
       "pronunciation": "watashi mo desu",
-      "note": "Short for わたしも ロボットの アニメが すきです (\"I like mecha anime too\"). わたしもです is used to say \"I am the same as the previous speaker,\" whether the original statement was affirmative or negative."
+      "note": "Short for わたしも ロボットの アニメが すきです (\"I like mecha anime too\"). わたしもです is used to say \"I am the same as the previous speaker,\" whether the original statement was affirmative or negative.",
+      "audio": "21190d5930d4abdb.mp3",
+      "audioOriginal": "21190d5930d4abdb.orig.mp3",
+      "audioAuto": "21190d5930d4abdb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "21190d5930d4abdb"
     },
     {
       "id": "ks1-chan-wine-suki",
@@ -113,7 +173,12 @@
       "category": "Grammar & Function Words",
       "target": "チャンさんはワインがすきです",
       "pronunciation": "chan san wa wain ga suki desu",
-      "note": "Demonstrates person は noun が すきです (\"X likes Y\")."
+      "note": "Demonstrates person は noun が すきです (\"X likes Y\").",
+      "audio": "283f35fe4a9ad580.mp3",
+      "audioOriginal": "283f35fe4a9ad580.orig.mp3",
+      "audioAuto": "283f35fe4a9ad580.mp3",
+      "audioMarked": true,
+      "audioTextHash": "283f35fe4a9ad580"
     },
     {
       "id": "ks2-chan-nihongo-jouzu",
@@ -121,14 +186,24 @@
       "category": "Grammar & Function Words",
       "target": "チャンさんはにほんごがじょうずです",
       "pronunciation": "chan san wa ni hon go ga jōzu desu",
-      "note": "Demonstrates person は noun が じょうずです (\"X is good at Y\"). じょうずです is normally used only to describe other people, not yourself."
+      "note": "Demonstrates person は noun が じょうずです (\"X is good at Y\"). じょうずです is normally used only to describe other people, not yourself.",
+      "audio": "bff66b88bd2dd935.mp3",
+      "audioOriginal": "bff66b88bd2dd935.orig.mp3",
+      "audioAuto": "bff66b88bd2dd935.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bff66b88bd2dd935"
     },
     {
       "id": "soccer-vocab",
       "english": "Soccer, football",
       "category": "Sports & Hobbies",
       "target": "サッカー",
-      "pronunciation": "sakkā"
+      "pronunciation": "sakkā",
+      "audio": "9b933c3bf0a757cb.mp3",
+      "audioOriginal": "9b933c3bf0a757cb.orig.mp3",
+      "audioAuto": "9b933c3bf0a757cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9b933c3bf0a757cb"
     },
     {
       "id": "miru-see-watch",
@@ -136,7 +211,12 @@
       "category": "Sports & Hobbies",
       "target": "みる",
       "pronunciation": "miru",
-      "note": "Dictionary form of みます (mimasu, \"see\", Lesson 8) — the verb already known for watching TV or movies now appears bare, as this lesson does for all Regular 2 verbs."
+      "note": "Dictionary form of みます (mimasu, \"see\", Lesson 8) — the verb already known for watching TV or movies now appears bare, as this lesson does for all Regular 2 verbs.",
+      "audio": "955635c7a6529193.mp3",
+      "audioOriginal": "955635c7a6529193.orig.mp3",
+      "audioAuto": "955635c7a6529193.mp3",
+      "audioMarked": true,
+      "audioTextHash": "955635c7a6529193"
     },
     {
       "id": "ks3-smith-soccer-miru-suki",
@@ -144,28 +224,48 @@
       "category": "Grammar & Function Words",
       "target": "スミスさんはサッカーをみるのがすきです",
       "pronunciation": "sumisu san wa sakkā o miru no ga suki desu",
-      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです."
+      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです.",
+      "audio": "a8ea59d389120ac0.mp3",
+      "audioOriginal": "a8ea59d389120ac0.orig.mp3",
+      "audioAuto": "a8ea59d389120ac0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a8ea59d389120ac0"
     },
     {
       "id": "skiing",
       "english": "Skiing",
       "category": "Sports & Hobbies",
       "target": "スキー",
-      "pronunciation": "sukī"
+      "pronunciation": "sukī",
+      "audio": "895a73ec9000a55d.mp3",
+      "audioOriginal": "895a73ec9000a55d.orig.mp3",
+      "audioAuto": "895a73ec9000a55d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "895a73ec9000a55d"
     },
     {
       "id": "baseball",
       "english": "Baseball",
       "category": "Sports & Hobbies",
       "target": "やきゅう",
-      "pronunciation": "ya kyū"
+      "pronunciation": "ya kyū",
+      "audio": "505076514986147f.mp3",
+      "audioOriginal": "505076514986147f.orig.mp3",
+      "audioAuto": "505076514986147f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "505076514986147f"
     },
     {
       "id": "scuba-diving",
       "english": "Scuba diving",
       "category": "Sports & Hobbies",
       "target": "ダイビング",
-      "pronunciation": "daibingu"
+      "pronunciation": "daibingu",
+      "audio": "2c01e979db135b87.mp3",
+      "audioOriginal": "2c01e979db135b87.orig.mp3",
+      "audioAuto": "2c01e979db135b87.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2c01e979db135b87"
     },
     {
       "id": "kiku-listen-dict-form",
@@ -175,35 +275,60 @@
       "pronunciation": "kiku",
       "uncertain": true,
       "note": "ききます (kikimasu) already covers two different meanings from earlier lessons: \"listen to\" (Lesson 8) and \"ask\" (Lesson 9). きく here is the dictionary form of only the \"listen, hear\" sense, matching this card's gloss.",
-      "reviewNote": "From the WORD POWER \"Dictionary form\" illustration (Page_145_Image_0001.jpg), which pairs ききます・きく with no English gloss given anywhere in the chapter; the \"listen, hear\" meaning is inferred from general vocabulary, not confirmed by the source text."
+      "reviewNote": "From the WORD POWER \"Dictionary form\" illustration (Page_145_Image_0001.jpg), which pairs ききます・きく with no English gloss given anywhere in the chapter; the \"listen, hear\" meaning is inferred from general vocabulary, not confirmed by the source text.",
+      "audio": "16b902f21f09faee.mp3",
+      "audioOriginal": "16b902f21f09faee.orig.mp3",
+      "audioAuto": "16b902f21f09faee.mp3",
+      "audioMarked": true,
+      "audioTextHash": "16b902f21f09faee"
     },
     {
       "id": "hanashimasu-talk",
       "english": "Talk, speak",
       "category": "Other",
       "target": "はなします",
-      "pronunciation": "hanashi masu"
+      "pronunciation": "hanashi masu",
+      "audio": "e0ecf4e5b3f1c878.mp3",
+      "audioOriginal": "e0ecf4e5b3f1c878.orig.mp3",
+      "audioAuto": "e0ecf4e5b3f1c878.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e0ecf4e5b3f1c878"
     },
     {
       "id": "utaimasu-sing",
       "english": "Sing",
       "category": "Sports & Hobbies",
       "target": "うたいます",
-      "pronunciation": "utai masu"
+      "pronunciation": "utai masu",
+      "audio": "a7ae0f81d7801014.mp3",
+      "audioOriginal": "a7ae0f81d7801014.orig.mp3",
+      "audioAuto": "a7ae0f81d7801014.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a7ae0f81d7801014"
     },
     {
       "id": "oyogimasu-swim",
       "english": "Swim",
       "category": "Sports & Hobbies",
       "target": "およぎます",
-      "pronunciation": "oyogi masu"
+      "pronunciation": "oyogi masu",
+      "audio": "6d6d4ce8fc692d62.mp3",
+      "audioOriginal": "6d6d4ce8fc692d62.orig.mp3",
+      "audioAuto": "6d6d4ce8fc692d62.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6d6d4ce8fc692d62"
     },
     {
       "id": "hashirimasu-run",
       "english": "Run",
       "category": "Sports & Hobbies",
       "target": "はしります",
-      "pronunciation": "hashiri masu"
+      "pronunciation": "hashiri masu",
+      "audio": "a52c11319239dea5.mp3",
+      "audioOriginal": "a52c11319239dea5.orig.mp3",
+      "audioAuto": "a52c11319239dea5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a52c11319239dea5"
     },
     {
       "id": "suki-ja-arimasen",
@@ -211,7 +336,12 @@
       "category": "Descriptions & Qualities",
       "target": "すきじゃありません",
       "pronunciation": "suki ja ari mase n",
-      "note": "Negative present form of すきです (suki desu, \"like\"). Demonstrated in context in Exercise II: かとうさんは コーヒーが すきじゃありません (\"Kato-san doesn't like coffee\")."
+      "note": "Negative present form of すきです (suki desu, \"like\"). Demonstrated in context in Exercise II: かとうさんは コーヒーが すきじゃありません (\"Kato-san doesn't like coffee\").",
+      "audio": "beab3d5f9d7d1de8.mp3",
+      "audioOriginal": "beab3d5f9d7d1de8.orig.mp3",
+      "audioAuto": "beab3d5f9d7d1de8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "beab3d5f9d7d1de8"
     },
     {
       "id": "suki-deshita",
@@ -219,7 +349,12 @@
       "category": "Descriptions & Qualities",
       "target": "すきでした",
       "pronunciation": "suki deshi ta",
-      "note": "Past affirmative form of すきです (suki desu, \"like\")."
+      "note": "Past affirmative form of すきです (suki desu, \"like\").",
+      "audio": "f22a035663400e00.mp3",
+      "audioOriginal": "f22a035663400e00.orig.mp3",
+      "audioAuto": "f22a035663400e00.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f22a035663400e00"
     },
     {
       "id": "suki-ja-arimasen-deshita",
@@ -227,7 +362,12 @@
       "category": "Descriptions & Qualities",
       "target": "すきじゃありませんでした",
       "pronunciation": "suki ja ari mase n deshi ta",
-      "note": "Past negative form of すきです (suki desu, \"like\")."
+      "note": "Past negative form of すきです (suki desu, \"like\").",
+      "audio": "d13b26835253c9d6.mp3",
+      "audioOriginal": "d13b26835253c9d6.orig.mp3",
+      "audioAuto": "d13b26835253c9d6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d13b26835253c9d6"
     },
     {
       "id": "jouzu-ja-arimasen",
@@ -235,7 +375,12 @@
       "category": "Descriptions & Qualities",
       "target": "じょうずじゃありません",
       "pronunciation": "jōzu ja ari mase n",
-      "note": "Negative present form of じょうずです (jouzu desu, \"be good at\"). Demonstrated in context: テニスが じょうずじゃありません (\"not good at tennis\", Exercise II) and サッカーが すきです。でも、じょうずじゃありません (\"I like soccer, but I'm not good at it\", Speaking Practice)."
+      "note": "Negative present form of じょうずです (jouzu desu, \"be good at\"). Demonstrated in context: テニスが じょうずじゃありません (\"not good at tennis\", Exercise II) and サッカーが すきです。でも、じょうずじゃありません (\"I like soccer, but I'm not good at it\", Speaking Practice).",
+      "audio": "37d41e4db1aeb3d0.mp3",
+      "audioOriginal": "37d41e4db1aeb3d0.orig.mp3",
+      "audioAuto": "37d41e4db1aeb3d0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "37d41e4db1aeb3d0"
     },
     {
       "id": "jouzu-deshita",
@@ -243,7 +388,12 @@
       "category": "Descriptions & Qualities",
       "target": "じょうずでした",
       "pronunciation": "jōzu deshi ta",
-      "note": "Past affirmative form of じょうずです (jouzu desu, \"be good at\")."
+      "note": "Past affirmative form of じょうずです (jouzu desu, \"be good at\").",
+      "audio": "b8087025c693af65.mp3",
+      "audioOriginal": "b8087025c693af65.orig.mp3",
+      "audioAuto": "b8087025c693af65.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b8087025c693af65"
     },
     {
       "id": "jouzu-ja-arimasen-deshita",
@@ -251,7 +401,12 @@
       "category": "Descriptions & Qualities",
       "target": "じょうずじゃありませんでした",
       "pronunciation": "jōzu ja ari mase n deshi ta",
-      "note": "Past negative form of じょうずです (jouzu desu, \"be good at\")."
+      "note": "Past negative form of じょうずです (jouzu desu, \"be good at\").",
+      "audio": "f9cc671c1ff49496.mp3",
+      "audioOriginal": "f9cc671c1ff49496.orig.mp3",
+      "audioAuto": "f9cc671c1ff49496.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f9cc671c1ff49496"
     },
     {
       "id": "chan-nihongo-jouzu-deshita-suggestion",
@@ -260,14 +415,24 @@
       "target": "チャンさんはにほんごがじょうずでした",
       "pronunciation": "chan san wa ni hon go ga jōzu deshi ta",
       "aiSuggested": true,
-      "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context."
+      "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context.",
+      "audio": "3b1f02a79d0d2059.mp3",
+      "audioOriginal": "3b1f02a79d0d2059.orig.mp3",
+      "audioAuto": "3b1f02a79d0d2059.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3b1f02a79d0d2059"
     },
     {
       "id": "golf-vocab",
       "english": "Golf",
       "category": "Sports & Hobbies",
       "target": "ゴルフ",
-      "pronunciation": "gorufu"
+      "pronunciation": "gorufu",
+      "audio": "ea7c175cdb190b3c.mp3",
+      "audioOriginal": "ea7c175cdb190b3c.orig.mp3",
+      "audioAuto": "ea7c175cdb190b3c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ea7c175cdb190b3c"
     },
     {
       "id": "tenisu-tennis",
@@ -278,7 +443,12 @@
       "note": "Used throughout this lesson's exercises as a skill: テニスが じょうずじゃありません (\"not good at tennis\").",
       "uncertain": true,
       "aiSuggested": true,
-      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's."
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
+      "audio": "cc41fb9a720a3248.mp3",
+      "audioOriginal": "cc41fb9a720a3248.orig.mp3",
+      "audioAuto": "cc41fb9a720a3248.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc41fb9a720a3248"
     },
     {
       "id": "sake-rice-wine",
@@ -289,7 +459,12 @@
       "note": "Appears in the EXERCISES II like/dislike drills alongside ビール, ワイン and ウイスキー.",
       "uncertain": true,
       "aiSuggested": true,
-      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's."
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
+      "audio": "66bb10942db6fe92.mp3",
+      "audioOriginal": "66bb10942db6fe92.orig.mp3",
+      "audioAuto": "66bb10942db6fe92.mp3",
+      "audioMarked": true,
+      "audioTextHash": "66bb10942db6fe92"
     },
     {
       "id": "dance-vocab",
@@ -298,21 +473,36 @@
       "target": "ダンス",
       "pronunciation": "dansu",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (ダンス is explicitly taught as hobbies vocabulary there)."
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (ダンス is explicitly taught as hobbies vocabulary there).",
+      "audio": "7b773e2afc52f56a.mp3",
+      "audioOriginal": "7b773e2afc52f56a.orig.mp3",
+      "audioAuto": "7b773e2afc52f56a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7b773e2afc52f56a"
     },
     {
       "id": "song-uta",
       "english": "Song",
       "category": "Sports & Hobbies",
       "target": "うた",
-      "pronunciation": "uta"
+      "pronunciation": "uta",
+      "audio": "32ab5b5d53b69c27.mp3",
+      "audioOriginal": "32ab5b5d53b69c27.orig.mp3",
+      "audioAuto": "32ab5b5d53b69c27.mp3",
+      "audioMarked": true,
+      "audioTextHash": "32ab5b5d53b69c27"
     },
     {
       "id": "whiskey-vocab",
       "english": "Whiskey",
       "category": "Food",
       "target": "ウイスキー",
-      "pronunciation": "uisukī"
+      "pronunciation": "uisukī",
+      "audio": "c616edfd6651fbb4.mp3",
+      "audioOriginal": "c616edfd6651fbb4.orig.mp3",
+      "audioAuto": "c616edfd6651fbb4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c616edfd6651fbb4"
     },
     {
       "id": "ex2-eg-a-kato-sake-golf",
@@ -321,7 +511,12 @@
       "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです",
       "pronunciation": "katō san wa ni hon shi yugasukidesu. gorufu ga jōzu desu",
       "note": "Exercise II's worked example for stating what someone likes and is skilled at, combining grammar points 1's two patterns in one exchange.",
-      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example."
+      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
+      "audio": "5658aa5e5c226930.mp3",
+      "audioOriginal": "5658aa5e5c226930.orig.mp3",
+      "audioAuto": "5658aa5e5c226930.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5658aa5e5c226930"
     },
     {
       "id": "ex2-eg-b-kato-coffee-tennis",
@@ -329,14 +524,24 @@
       "category": "Grammar & Function Words",
       "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません",
       "pronunciation": "katō san wa kōhī ga suki ja ari mase n. tenisu ga jōzu ja ari mase n",
-      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at."
+      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at.",
+      "audio": "43c9ef4b403e8c84.mp3",
+      "audioOriginal": "43c9ef4b403e8c84.orig.mp3",
+      "audioAuto": "43c9ef4b403e8c84.mp3",
+      "audioMarked": true,
+      "audioTextHash": "43c9ef4b403e8c84"
     },
     {
       "id": "sports-vocab",
       "english": "Sports",
       "category": "Sports & Hobbies",
       "target": "スポーツ",
-      "pronunciation": "supōtsu"
+      "pronunciation": "supōtsu",
+      "audio": "b67f5109e035045d.mp3",
+      "audioOriginal": "b67f5109e035045d.orig.mp3",
+      "audioAuto": "b67f5109e035045d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b67f5109e035045d"
     },
     {
       "id": "ex3-eg-suzuki-sports-question",
@@ -344,14 +549,24 @@
       "category": "Grammar & Function Words",
       "target": "すずきさんはスポーツがすきですか",
       "pronunciation": "suzuki san wa supōtsu ga suki desu ka",
-      "note": "Exercise III's worked example for asking someone whether they like something."
+      "note": "Exercise III's worked example for asking someone whether they like something.",
+      "audio": "73720ddad4273414.mp3",
+      "audioOriginal": "73720ddad4273414.orig.mp3",
+      "audioAuto": "73720ddad4273414.mp3",
+      "audioMarked": true,
+      "audioTextHash": "73720ddad4273414"
     },
     {
       "id": "fruits-vocab",
       "english": "Fruits",
       "category": "Food",
       "target": "くだもの",
-      "pronunciation": "kudamono"
+      "pronunciation": "kudamono",
+      "audio": "8f25babf4b8d53af.mp3",
+      "audioOriginal": "8f25babf4b8d53af.orig.mp3",
+      "audioAuto": "8f25babf4b8d53af.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f25babf4b8d53af"
     },
     {
       "id": "hanasu-dict-form",
@@ -360,7 +575,12 @@
       "target": "はなす",
       "pronunciation": "hanasu",
       "note": "Dictionary form of はなします (hanashimasu, \"talk, speak\"); Regular 1 verbs change the sound before ます to form the dictionary form.",
-      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg)."
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "audio": "503a980ebd7792ea.mp3",
+      "audioOriginal": "503a980ebd7792ea.orig.mp3",
+      "audioAuto": "503a980ebd7792ea.mp3",
+      "audioMarked": true,
+      "audioTextHash": "503a980ebd7792ea"
     },
     {
       "id": "utau-dict-form",
@@ -369,7 +589,12 @@
       "target": "うたう",
       "pronunciation": "utau",
       "note": "Dictionary form of うたいます (utaimasu, \"sing\"). Used in context in Exercise VII: うたうのも すきです (\"I also like singing\").",
-      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg)."
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "audio": "eee796f0b1c307a3.mp3",
+      "audioOriginal": "eee796f0b1c307a3.orig.mp3",
+      "audioAuto": "eee796f0b1c307a3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eee796f0b1c307a3"
     },
     {
       "id": "oyogu-dict-form",
@@ -378,7 +603,12 @@
       "target": "およぐ",
       "pronunciation": "oyogu",
       "note": "Dictionary form of およぎます (oyogimasu, \"swim\").",
-      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg)."
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "audio": "dcd57e2ed0be9d07.mp3",
+      "audioOriginal": "dcd57e2ed0be9d07.orig.mp3",
+      "audioAuto": "dcd57e2ed0be9d07.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dcd57e2ed0be9d07"
     },
     {
       "id": "hashiru-dict-form",
@@ -387,7 +617,12 @@
       "target": "はしる",
       "pronunciation": "hashiru",
       "note": "Dictionary form of はしります (hashirimasu, \"run\").",
-      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg)."
+      "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
+      "audio": "52943ebc03d7e324.mp3",
+      "audioOriginal": "52943ebc03d7e324.orig.mp3",
+      "audioAuto": "52943ebc03d7e324.mp3",
+      "audioMarked": true,
+      "audioTextHash": "52943ebc03d7e324"
     },
     {
       "id": "taberu-dict-form-eg",
@@ -396,7 +631,12 @@
       "target": "たべる",
       "pronunciation": "taberu",
       "note": "Dictionary form of たべます (tabemasu, \"eat\"); Regular 2 verbs form the dictionary form by changing ます to る.",
-      "reviewNote": "Exercise V's own worked example for the \"change to dictionary form\" drill (たべます → たべる)."
+      "reviewNote": "Exercise V's own worked example for the \"change to dictionary form\" drill (たべます → たべる).",
+      "audio": "0aebe30d58889dd3.mp3",
+      "audioOriginal": "0aebe30d58889dd3.orig.mp3",
+      "audioAuto": "0aebe30d58889dd3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0aebe30d58889dd3"
     },
     {
       "id": "iku-dict-form",
@@ -406,7 +646,12 @@
       "note": "Dictionary form of いきます (ikimasu, “go”, Lesson 6). Regular 1: the ます stem ends in -ki, which becomes -ku.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "7789cd5487c9aebf.mp3",
+      "audioOriginal": "7789cd5487c9aebf.orig.mp3",
+      "audioAuto": "7789cd5487c9aebf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7789cd5487c9aebf"
     },
     {
       "id": "kau-dict-form",
@@ -416,7 +661,12 @@
       "note": "Dictionary form of かいます (kaimasu, “buy”, Lesson 8). Regular 1: the stem ends in -i, which becomes -u — the one row of this group with no consonant to carry over.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "c5d477fe36614a39.mp3",
+      "audioOriginal": "c5d477fe36614a39.orig.mp3",
+      "audioAuto": "c5d477fe36614a39.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c5d477fe36614a39"
     },
     {
       "id": "nomu-dict-form",
@@ -426,7 +676,12 @@
       "note": "Dictionary form of のみます (nomimasu, “drink”, Lesson 8). Regular 1: the stem ends in -mi, which becomes -mu.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "fde9418c6d479525.mp3",
+      "audioOriginal": "fde9418c6d479525.orig.mp3",
+      "audioAuto": "fde9418c6d479525.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fde9418c6d479525"
     },
     {
       "id": "kaeru-dict-form",
@@ -436,7 +691,12 @@
       "note": "Dictionary form of かえります (kaerimasu, “go home”, Lesson 6). Regular 1: the stem ends in -ri, which becomes -ru. It looks like a Regular 2 verb and is not.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "791b4e86e96b289a.mp3",
+      "audioOriginal": "791b4e86e96b289a.orig.mp3",
+      "audioAuto": "791b4e86e96b289a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "791b4e86e96b289a"
     },
     {
       "id": "kasu-dict-form",
@@ -446,7 +706,12 @@
       "note": "Dictionary form of かします (kashimasu, \"lend\", Lesson 14). Regular 1: the stem ends in -shi, which becomes -su.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "audio": "274b5c9f82caeb43.mp3",
+      "audioOriginal": "274b5c9f82caeb43.orig.mp3",
+      "audioAuto": "274b5c9f82caeb43.mp3",
+      "audioMarked": true,
+      "audioTextHash": "274b5c9f82caeb43"
     },
     {
       "id": "matsu-dict-form",
@@ -456,7 +721,12 @@
       "note": "Dictionary form of まちます (machimasu, \"wait\", Lesson 10). Regular 1: the stem ends in -chi, which becomes -tsu — the spelling changes as well as the sound.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "audio": "282e71d62ec6c627.mp3",
+      "audioOriginal": "282e71d62ec6c627.orig.mp3",
+      "audioAuto": "282e71d62ec6c627.mp3",
+      "audioMarked": true,
+      "audioTextHash": "282e71d62ec6c627"
     },
     {
       "id": "iru-dict-form",
@@ -466,7 +736,12 @@
       "note": "Dictionary form of います (imasu, \"be\" for people and animals, Lesson 12). Regular 2: ます becomes る.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "audio": "fbd5bdb70a44af0c.mp3",
+      "audioOriginal": "fbd5bdb70a44af0c.orig.mp3",
+      "audioAuto": "fbd5bdb70a44af0c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fbd5bdb70a44af0c"
     },
     {
       "id": "toru-dict-form",
@@ -476,7 +751,12 @@
       "note": "Dictionary form of とります (torimasu, \"take\", Lesson 11). Regular 1: the stem ends in -ri, which becomes -ru. Like かえる it looks like a Regular 2 verb and is not.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form.",
+      "audio": "cc0679f6eb0ddf11.mp3",
+      "audioOriginal": "cc0679f6eb0ddf11.orig.mp3",
+      "audioAuto": "cc0679f6eb0ddf11.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc0679f6eb0ddf11"
     },
     {
       "id": "oshieru-dict-form",
@@ -486,7 +766,12 @@
       "note": "Dictionary form of おしえます (oshiemasu, \"tell, teach\", Lesson 9). Regular 2: ます simply becomes る, as with たべる and みる. The book glosses it \"tell, teach\": it covers passing on information as well as instruction.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "b37b729749906cd9.mp3",
+      "audioOriginal": "b37b729749906cd9.orig.mp3",
+      "audioAuto": "b37b729749906cd9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b37b729749906cd9"
     },
     {
       "id": "kuru-dict-form",
@@ -496,7 +781,12 @@
       "note": "Irregular. きます (kimasu, “come”, Lesson 6) becomes くる — the vowel changes, so this one cannot be derived from the ます form by any rule.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "cf8b54aecaac351b.mp3",
+      "audioOriginal": "cf8b54aecaac351b.orig.mp3",
+      "audioAuto": "cf8b54aecaac351b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cf8b54aecaac351b"
     },
     {
       "id": "suru-dict-form",
@@ -506,7 +796,12 @@
       "note": "Irregular. します (shimasu, “do”, Lesson 8) becomes する. Together with くる it is one of only two irregular verbs in Japanese.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's.",
+      "audio": "3153e5bb98333131.mp3",
+      "audioOriginal": "3153e5bb98333131.orig.mp3",
+      "audioAuto": "3153e5bb98333131.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3153e5bb98333131"
     },
     {
       "id": "ryouri-food-cooking",
@@ -514,7 +809,12 @@
       "category": "Food",
       "target": "りょうり",
       "pronunciation": "ryōri",
-      "note": "Base word behind the compound イタリアりょうり (\"Italian cuisine\"): イタリア (Italy) + りょうり."
+      "note": "Base word behind the compound イタリアりょうり (\"Italian cuisine\"): イタリア (Italy) + りょうり.",
+      "audio": "1cbe262f695d5974.mp3",
+      "audioOriginal": "1cbe262f695d5974.orig.mp3",
+      "audioAuto": "1cbe262f695d5974.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1cbe262f695d5974"
     },
     {
       "id": "italian-cuisine",
@@ -522,21 +822,36 @@
       "category": "Food",
       "target": "イタリアりょうり",
       "pronunciation": "itaria ryōri",
-      "note": "イタリア (Italy) + りょうり (food, cooking, cuisine)."
+      "note": "イタリア (Italy) + りょうり (food, cooking, cuisine).",
+      "audio": "be53571c9e610314.mp3",
+      "audioOriginal": "be53571c9e610314.orig.mp3",
+      "audioAuto": "be53571c9e610314.mp3",
+      "audioMarked": true,
+      "audioTextHash": "be53571c9e610314"
     },
     {
       "id": "pizza-vocab",
       "english": "Pizza",
       "category": "Food",
       "target": "ピザ",
-      "pronunciation": "piza"
+      "pronunciation": "piza",
+      "audio": "74f92c0c98ca11e4.mp3",
+      "audioOriginal": "74f92c0c98ca11e4.orig.mp3",
+      "audioAuto": "74f92c0c98ca11e4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "74f92c0c98ca11e4"
     },
     {
       "id": "jazz-vocab",
       "english": "Jazz",
       "category": "Sports & Hobbies",
       "target": "ジャズ",
-      "pronunciation": "jazu"
+      "pronunciation": "jazu",
+      "audio": "3a624f132370ea1a.mp3",
+      "audioOriginal": "3a624f132370ea1a.orig.mp3",
+      "audioAuto": "3a624f132370ea1a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3a624f132370ea1a"
     },
     {
       "id": "ex7-eg-green-music-question",
@@ -544,7 +859,12 @@
       "category": "Grammar & Function Words",
       "target": "グリーンさんはおんがくをきくのがすきですか",
       "pronunciation": "gurīn san wa on gaku o kiku no ga suki desu ka",
-      "note": "Exercise VII's worked example for talking about what you like to do."
+      "note": "Exercise VII's worked example for talking about what you like to do.",
+      "audio": "8ccdb2837f413a00.mp3",
+      "audioOriginal": "8ccdb2837f413a00.orig.mp3",
+      "audioAuto": "8ccdb2837f413a00.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8ccdb2837f413a00"
     },
     {
       "id": "ex7-eg-green-reply-what-about-you",
@@ -553,7 +873,12 @@
       "target": "ええ、すきです。かとうさんは?",
       "pronunciation": "ē, suki desu. katō san wa?",
       "scene": "replying to whether he likes listening to music, then turning the question back to the other speaker",
-      "note": "「Xさんは?」on its own is a common way to turn a question back on someone: \"What about X?\""
+      "note": "「Xさんは?」on its own is a common way to turn a question back on someone: \"What about X?\"",
+      "audio": "76e4a99d3299edc3.mp3",
+      "audioOriginal": "76e4a99d3299edc3.orig.mp3",
+      "audioAuto": "76e4a99d3299edc3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "76e4a99d3299edc3"
     },
     {
       "id": "ex7-eg-kato-me-too-sing",
@@ -562,7 +887,12 @@
       "target": "わたしもすきです。うたうのもすきです",
       "pronunciation": "watashi mo suki desu. utau no mo suki desu",
       "scene": "replying that he also likes listening to music",
-      "note": "うたうのも すきです extends the person は verb[dictionary form] のが すきです pattern with も (\"also, too\") in place of が."
+      "note": "うたうのも すきです extends the person は verb[dictionary form] のが すきです pattern with も (\"also, too\") in place of が.",
+      "audio": "d06f32a5f2283372.mp3",
+      "audioOriginal": "d06f32a5f2283372.orig.mp3",
+      "audioAuto": "d06f32a5f2283372.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d06f32a5f2283372"
     },
     {
       "id": "sou-desu-ka",
@@ -593,7 +923,12 @@
       "english": "Art museum",
       "category": "Travel & Tourism",
       "target": "びじゅつかん",
-      "pronunciation": "bijutsukan"
+      "pronunciation": "bijutsukan",
+      "audio": "94c811f0824dd05d.mp3",
+      "audioOriginal": "94c811f0824dd05d.orig.mp3",
+      "audioAuto": "94c811f0824dd05d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "94c811f0824dd05d"
     },
     {
       "id": "demo-but-vocab",
@@ -601,7 +936,12 @@
       "category": "Grammar & Function Words",
       "target": "でも",
       "pronunciation": "demo",
-      "note": "See サッカーが すきです。でも、じょうずじゃありません。 (\"I like soccer, but I'm not good at it.\")"
+      "note": "See サッカーが すきです。でも、じょうずじゃありません。 (\"I like soccer, but I'm not good at it.\")",
+      "audio": "e2f53945699cc732.mp3",
+      "audioOriginal": "e2f53945699cc732.orig.mp3",
+      "audioAuto": "e2f53945699cc732.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e2f53945699cc732"
     },
     {
       "id": "demo-but-speaking-practice",
@@ -609,7 +949,12 @@
       "category": "Grammar & Function Words",
       "target": "サッカーがすきです。でも、じょうずじゃありません",
       "pronunciation": "sakkā ga suki desu. demo, jōzu ja ari mase n",
-      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else."
+      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
+      "audio": "022b68bfbdbf2e02.mp3",
+      "audioOriginal": "022b68bfbdbf2e02.orig.mp3",
+      "audioAuto": "022b68bfbdbf2e02.mp3",
+      "audioMarked": true,
+      "audioTextHash": "022b68bfbdbf2e02"
     },
     {
       "id": "fib-suzuki-kudamono-suki-q",
@@ -650,7 +995,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "fcacf2d09109a9ce.mp3",
+      "audioOriginal": "fcacf2d09109a9ce.orig.mp3",
+      "audioAuto": "fcacf2d09109a9ce.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fcacf2d09109a9ce"
     },
     {
       "id": "fib-ringo-suki-a",
@@ -661,7 +1011,12 @@
       "note": null,
       "scene": "answering what kind of fruit Suzuki-san likes",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "327608f4e212db34.mp3",
+      "audioOriginal": "327608f4e212db34.orig.mp3",
+      "audioAuto": "327608f4e212db34.mp3",
+      "audioMarked": true,
+      "audioTextHash": "327608f4e212db34"
     },
     {
       "id": "fib-green-hashiru-suki-q",
@@ -687,7 +1042,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "72432113ee010714.mp3",
+      "audioOriginal": "72432113ee010714.orig.mp3",
+      "audioAuto": "72432113ee010714.mp3",
+      "audioMarked": true,
+      "audioTextHash": "72432113ee010714"
     }
   ]
 }

@@ -323,10 +323,22 @@ prompt says so in as many words. It is also cached for the life of the book, so 
 the prompt that produced it has been edited since (the sibling `conventions.md.meta.json` records
 which version ran). Nothing regenerates it automatically — that is a paid whole-book pass, so deleting
 the file is a deliberate choice you make, not something the build does for you.
+**A paradigm you find in an image is BASE-lesson work, and gate 1 is your only chance at it.** Audit
+it cell by cell against the built cards now, before you hand the link over, and add whatever is
+missing: a chapter's own grammar table belongs in the lesson that teaches it, and nothing may be added
+after the reviewer signs off. Sending it to the Step 3b brief instead is too late by two gates. Step 3b
+is for drilling what the lesson already teaches, not for the teaching the extraction dropped.
+
+This is not hypothetical. Lesson 15's ます→dictionary-form chart (the whole grammar point of the
+chapter) reached gate 1 with seven of its ten cells uncarded, including both irregular verbs, because
+the extraction applied its paradigm-table restraint rule to a group the chart itself headed
+**Irregular**. The sweep is what caught it; the prompt has since been amended so restraint never
+overrides an irregular cell.
+
 **Report what you find WITH the review link**, so the reviewer signs off gate 1 knowing whether the
 chapter taught anything the cards cannot have covered. Transcribe any load-bearing figure into the
-Step 3b brief, and audit any paradigm it contains cell by cell. Full procedure, including the
-paradigm audit: [extras-pass](references/extras-pass.md).
+Step 3b brief as well, so the drill pass can build on it. Full procedure for the cell-by-cell method:
+[extras-pass](references/extras-pass.md).
 
 **Also diff the chapter's VOCABULARY entries against the built cards, for the same reason.** The
 extraction can skip a whole vocabulary block silently, and nothing downstream notices: a chapter is

@@ -72,9 +72,9 @@
       "id": "no-nominalizer",
       "english": "(nominalizer)",
       "category": "Grammar & Function Words",
-      "scene": null,
+      "scene": "turning a verb into something you can like or be good at",
       "hint": null,
-      "note": "Attaches to a verb's dictionary form to turn it into a noun-equivalent, so it can be followed by が すきです like a noun would (e.g. サッカーを みるのが すきです, \"like watching soccer\"). See GRAMMAR 3.",
+      "note": "This の does a different job than the の you've met before: the possessive の in Lesson 1, or the apposition の in Lesson 6's インターンの ラジャさん (intern Raja-san). Here it turns a dictionary-form verb like みる into a noun-equivalent so が すきです can follow, as in みるのが すきです.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
       "target": "の",
       "uncertain": true
@@ -175,7 +175,7 @@
       "category": "Sports & Hobbies",
       "scene": null,
       "hint": null,
-      "note": "Regular 2 verb, introduced directly in dictionary form (Regular 2 verbs from this lesson onward are listed this way rather than as ます-form).",
+      "note": "Dictionary form of みます (mimasu, \"see\", Lesson 8) — the verb already known for watching TV or movies now appears bare, as this lesson does for all Regular 2 verbs.",
       "reviewNote": null,
       "target": "みる"
     },
@@ -215,7 +215,7 @@
       "category": "Sports & Hobbies",
       "scene": null,
       "hint": null,
-      "note": "ます-form is ききます (kikimasu).",
+      "note": "ききます (kikimasu) already covers two different meanings from earlier lessons: \"listen to\" (Lesson 8) and \"ask\" (Lesson 9). きく here is the dictionary form of only the \"listen, hear\" sense, matching this card's gloss.",
       "reviewNote": "From the WORD POWER \"Dictionary form\" illustration (Page_145_Image_0001.jpg), which pairs ききます・きく with no English gloss given anywhere in the chapter; the \"listen, hear\" meaning is inferred from general vocabulary, not confirmed by the source text.",
       "target": "きく",
       "uncertain": true
@@ -472,6 +472,69 @@
       "target": "たべる"
     },
     {
+      "id": "iku-dict-form",
+      "english": "Go (dictionary form)",
+      "target": "いく",
+      "note": "Dictionary form of いきます (ikimasu, “go”, Lesson 6). Regular 1: the ます stem ends in -ki, which becomes -ku.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
+      "id": "kau-dict-form",
+      "english": "Buy (dictionary form)",
+      "target": "かう",
+      "note": "Dictionary form of かいます (kaimasu, “buy”, Lesson 8). Regular 1: the stem ends in -i, which becomes -u — the one row of this group with no consonant to carry over.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
+      "id": "nomu-dict-form",
+      "english": "Drink (dictionary form)",
+      "target": "のむ",
+      "note": "Dictionary form of のみます (nomimasu, “drink”, Lesson 8). Regular 1: the stem ends in -mi, which becomes -mu.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
+      "id": "kaeru-dict-form",
+      "english": "Go home, return (dictionary form)",
+      "target": "かえる",
+      "note": "Dictionary form of かえります (kaerimasu, “go home”, Lesson 6). Regular 1: the stem ends in -ri, which becomes -ru. It looks like a Regular 2 verb and is not.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
+      "id": "oshieru-dict-form",
+      "english": "Teach (dictionary form)",
+      "target": "おしえる",
+      "note": "Dictionary form of おしえます (oshiemasu, “teach”). Regular 2: ます simply becomes る, as with たべる and みる.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
+      "id": "kuru-dict-form",
+      "english": "Come (dictionary form)",
+      "target": "くる",
+      "note": "Irregular. きます (kimasu, “come”, Lesson 6) becomes くる — the vowel changes, so this one cannot be derived from the ます form by any rule.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
+      "id": "suru-dict-form",
+      "english": "Do (dictionary form)",
+      "target": "する",
+      "note": "Irregular. します (shimasu, “do”, Lesson 8) becomes する. Together with くる it is one of only two irregular verbs in Japanese.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
+    },
+    {
       "id": "italian-cuisine",
       "english": "Italian cuisine",
       "category": "Food",
@@ -550,7 +613,10 @@
       "note": null,
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
       "target": "そうですか",
-      "uncertain": true
+      "uncertain": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Duplicate of the identical card in an earlier lesson (same id, same target); backward dedup flagged it and the shared id would map both onto one Anki note."
     },
     {
       "id": "ii-desu-ne",
@@ -561,7 +627,10 @@
       "note": null,
       "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target)",
       "target": "いいですね",
-      "uncertain": true
+      "uncertain": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Duplicate of the identical card in an earlier lesson (same id, same target); backward dedup flagged it and the shared id would map both onto one Anki note."
     },
     {
       "id": "art-museum",

@@ -193,6 +193,17 @@ any one sentence pattern**, chosen for variety of vocabulary and context rather 
 meet. For a large paradigm table the same idea applies in the other direction — the complete set of
 forms for a few representative words teaches the pattern; one form for every word does not.
 
+**Two limits on that restraint, both learned by getting it wrong.** First, it NEVER applies to a cell
+the source marks as irregular or exceptional: sampling is for cells a learner can derive, and an
+irregular cell is by definition the one they cannot, so keep every one of them however small the
+sample. (A real miss: a ます→dictionary-form chart whose third group was headed **Irregular** was
+sampled like the regular ones, and くる and する — the only two irregular verbs in the language, and
+the whole reason the chart has a third group — reached the review as the two cells nobody had carded.)
+Second, when the table is a DERIVATION (form A becomes form B) rather than a set of forms per word,
+the unit to sample is the distinct derivation, not the word: いきます→いく and ききます→きく are the same
+row, but かいます→かう, のみます→のむ and かえります→かえる are three others, and a learner shown only the
+first cannot produce the rest. Cover each row shape once, then stop.
+
 **When you are genuinely torn, extract it.** A surplus card costs the reviewer one click to exclude. A
 missing one is invisible: nothing downstream can flag content that was never emitted, and it will only
 surface if a human happens to notice the gap months later.

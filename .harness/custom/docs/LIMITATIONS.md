@@ -2932,3 +2932,36 @@ documenting in SKILL.md that a from-scratch rebuild must use `--run <that same r
   with no `cards.json`, which would also have caught it here. The deeper fix is for the `--book`/
   `--lesson` form to reuse the directory whose `meta.chapterNumber` matches the resolved spine index,
   rather than always allocating.
+
+### Paradigm-table restraint outranked the irregular-form rule, and dropped both irregular verbs
+
+**What.** Lesson 15 of the Japanese book teaches the ます→dictionary-form conversion. Its WORD POWER
+chart has ten cells in three groups, the third headed **Irregular**. The extraction carded three of
+the ten and said so in its coverage report, citing the prompt's paradigm-table restraint rule ("the
+complete set of forms for a few representative words teaches the pattern"). Among the seven it dropped
+were くる and する, the only two irregular verbs in Japanese and the entire reason the chart has a third
+group.
+
+**Why.** The prompt held both rules and connected neither: restraint on large paradigm tables, and "a
+form the chapter names as an EXCEPTION is high priority, never optional… watch for the words but,
+except, instead, **irregular**". A sampling rule and a never-sample rule met on one table and the
+sampling rule won. A second, subtler cause: the chart is a DERIVATION table, one output form per word,
+where the derivation differs per row (-ki→-ku, -i→-u, -mi→-mu, -ri→-ru), so "a few representative
+words" sampled the wrong unit — a learner shown only ききます→きく cannot produce かいます→かう.
+
+**Impact.** The chapter's own grammar point would have shipped with its two underivable cells missing.
+Nothing downstream could have caught it: every later pass reads text only, and the chart is an image.
+The gate-1 image sweep caught it, which is the only reason it is a near-miss rather than an incident.
+
+**Fixed 2026-08-18.** `docs/epub-extraction-prompt.md` now states that restraint never applies to a
+cell the source marks irregular or exceptional, and that a derivation table is sampled per distinct
+derivation rather than per word. `SKILL.md` now says a paradigm found in an image is BASE-lesson work
+to be added before gate 1, not material for the Step 3b brief — adding it later is impossible, since
+nothing may be added after sign-off. The seven missing cells were authored by hand into Lesson 15.
+
+- **Status:** open
+- **Verified by:** open the chapter's chart image and check every cell against `cards.json`; the
+  eval fixture in `src/evals/` is the mechanical version once a chart-bearing chapter is added to it
+- **When to revisit.** If a future lesson's chart is sampled the same way despite the amended prompt,
+  the prompt is not the lever and the check has to be mechanical: a `paradigm-grid` spec authored per
+  chart-bearing chapter, run at gate 1.

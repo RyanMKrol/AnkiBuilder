@@ -67,6 +67,11 @@ node scripts/epub-probe.mjs mybook.epub
 # name under .anki-builder/epubs/.
 anki-builder epub cache <hash>
 anki-builder epub cache <hash> --clear
+# Build the book's taught-content index ONCE, before its first lesson. The forward-flag pass
+# reads it to judge whether an item is premature; a build never builds it. One model pass over
+# every chapter, and the only time this book pays for it. Without one, every lesson falls back
+# to having the model read all the chapters after it — which works, but costs more each time.
+anki-builder epub taught-index <hash> --lang ja
 anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
 # --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
 # right span of spine files (however many), and extracts them all as one unit.

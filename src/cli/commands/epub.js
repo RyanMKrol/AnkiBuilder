@@ -1,6 +1,6 @@
-// The `epub` command: book-level maintenance that is not a build. Today that is one
-// subcommand, `cache`, which reports what a book has cached and clears the parts that are
-// rebuildable.
+// The `epub` command: book-level maintenance that is not a build. Two subcommands: `cache`,
+// which reports what a book has cached and clears the parts that are rebuildable, and
+// `taught-index`, which builds the book's once-per-book taught-content index.
 //
 // This exists because every parser and prompt fix in this tool is INERT for a book that has
 // already been read once: a cached chapter file is treated as a complete extraction forever,
@@ -9,7 +9,13 @@
 // — directly beside `corpora/`, the human-reviewed dedup registry that no amount of compute
 // can rebuild.
 
+import { existsSync } from "fs";
+
 const CACHE_KIND_FLAGS = ["chapters", "conventions", "taught-index"];
+
+const USAGE =
+  "usage: anki-builder epub cache <hash> [--clear] [--chapters] [--conventions] [--taught-index] [--dry]\n" +
+  "       anki-builder epub taught-index <hash> [--lang <lang>] [--force]";
 
 function formatStamp(stamp) {
   return stamp ? stamp.replace("T", " ").slice(0, 19) : "unknown";
@@ -45,13 +51,78 @@ function printCache(cache, log) {
   log("  (no artifact records which prompt version produced it — the timestamp is all there is)");
 }
 
+/**
+ * `epub taught-index <hash>` — build the book's taught-content index, ONCE, deliberately.
+ *
+ * This used to happen inside whichever lesson build needed it first: a model pass over every
+ * chapter of the book, fired unannounced in the middle of building one lesson. On a 57-chapter
+ * book that is the single most expensive thing a build can do, and when it exhausted the usage
+ * window it took the rest of that lesson's passes down with it. So it is its own command now:
+ * the index is READ by a build and BUILT only here.
+ */
+async function runTaughtIndex(flags, ctx) {
+  const hash = flags._[1] || flags.hash || null;
+  if (!hash) {
+    throw new Error(
+      "epub taught-index needs a book hash: anki-builder epub taught-index <hash> " +
+        "(the hash is the directory name under .anki-builder/epubs/)",
+    );
+  }
+
+  const cache = ctx.describeBookCache(hash);
+  if (!cache.registered) {
+    throw new Error(
+      `book ${hash} is not registered in the library — assemble one lesson of it first, ` +
+        `which is what copies the .epub in and gives it a hash`,
+    );
+  }
+  if (cache.taughtIndex.present && !flags.force) {
+    ctx.log(
+      `book ${hash} already has a taught index (generated ${formatStamp(cache.taughtIndex.generatedAt)}). ` +
+        `Rebuilding costs another whole-book model pass — pass --force to do it anyway, or ` +
+        `"epub cache ${hash} --clear --taught-index" to drop it first.`,
+    );
+    return;
+  }
+
+  const epubPath = ctx.libraryEpubPath(hash);
+  if (!existsSync(epubPath)) {
+    throw new Error(
+      `no book.epub for ${hash} at ${epubPath} — re-assemble this book once with --epub`,
+    );
+  }
+
+  // The language the index is written in the terms of. Recorded on the book when it was first
+  // assembled, so it only has to be passed for a book that predates that record.
+  const targetLanguage = flags.lang || ctx.loadBookMeta(hash)?.targetLanguage || null;
+  if (!targetLanguage) {
+    throw new Error(
+      `this book records no target language — pass --lang <lang> (the same one its lessons are built in)`,
+    );
+  }
+
+  ctx.log(
+    `building the taught index for ${hash} (${targetLanguage}) — one model pass over the whole book, ` +
+      `and the only time this book pays for it`,
+  );
+  const { path, chapterCount } = ctx.buildTaughtIndex({
+    epubPath,
+    targetLanguage,
+    log: ctx.log,
+  });
+  ctx.log(`taught index: ${chapterCount} chapter(s) indexed -> ${path}`);
+  ctx.log(
+    "every later lesson of this book now consults it instead of re-reading the chapters after it",
+  );
+}
+
 export async function runEpub(flags, ctx) {
   const [subcommand] = flags._ || [];
+  if (subcommand === "taught-index") {
+    return runTaughtIndex(flags, ctx);
+  }
   if (subcommand !== "cache") {
-    throw new Error(
-      `unknown epub subcommand: ${subcommand ?? "(none)"}. Usage: ` +
-        `anki-builder epub cache <hash> [--clear] [--chapters] [--conventions] [--taught-index] [--dry]`,
-    );
+    throw new Error(`unknown epub subcommand: ${subcommand ?? "(none)"}. ${USAGE}`);
   }
 
   // The hash can arrive either as a positional or as --clear's value, since both readings of

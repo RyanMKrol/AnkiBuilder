@@ -1397,8 +1397,10 @@ say when it was measured rather than stating it as a standing fact.
 - **What:** `flagForwardConcerns` no longer has the model re-read every later chapter on each
   assemble. A one-time whole-book pass (`src/corpus/epubTaughtIndex.js`) records what each chapter
   introduces into `taught-index.json` under the book's hash dir, and the per-lesson forward call
-  hands the model that index instead. The legacy read-everything path survives only as the fallback
-  when the index cannot be built.
+  hands the model that index instead. The legacy read-everything path survives as the fallback for a
+  book that has no index. Since 2026-08-18 the index is never built by a lesson build: it is built
+  only by `anki-builder epub taught-index <hash>`, and a build that finds none says so and falls
+  back.
 - **Why:** the old shape was O(n squared) over a book's build: an early lesson of this 57-file book
   asked one model call to read roughly 50 files (about 1.9 MB), and that repeated for every lesson.
   The conventions pass had already proven the read-once-cache-forever shape.
@@ -2965,3 +2967,26 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit.** If a future lesson's chart is sampled the same way despite the amended prompt,
   the prompt is not the lever and the check has to be mechanical: a `paradigm-grid` spec authored per
   chart-bearing chapter, run at gate 1.
+
+## The whole-book taught index is a command, not something a lesson build pays for
+
+- **What:** `getTaughtIndex()` (was `ensureTaughtIndex`) no longer builds on demand. It reads the
+  book's cached index and returns null when there isn't one; building is `anki-builder epub
+  taught-index <hash>`, which refuses to re-spend on a book that already has one unless `--force`.
+  A build with no index falls back to reading the later chapters directly and logs the command that
+  would fix it for every subsequent lesson.
+- **Why:** building lesson 15 of a 57-chapter book fired an unannounced whole-book model pass
+  partway through the lesson. It exhausted the usage window, and the four passes after it in the
+  same build then failed in turn — the index build, the forward flags, the pedagogical sort, the
+  drill mining and the note pass, all lost to one implicit call nobody asked for. The one-time cost
+  was never the problem; its timing was.
+- **Impact:** a book nobody has run the command for pays the slower per-lesson fallback (the model
+  reads every chapter after this lesson) instead of silently paying the whole-book cost once. That
+  is the deliberate trade: predictable per-lesson spend by default, the cheap path when an operator
+  chooses it. The fallback is a real quality path, not a degraded one — it is what the pass did
+  before the index existed.
+- **Verified by:** `node -e "import('./src/corpus/epubTaughtIndex.js').then(m => console.log(m.getTaughtIndex.toString().includes('build = false')))"`
+- **Status:** resolved (2026-08-18)
+- **When to revisit:** if operators keep forgetting to run it and lessons keep taking the slow path,
+  make `assemble` refuse to start on a book with no index rather than falling back — but only with
+  a flag to override, never by spending on their behalf.

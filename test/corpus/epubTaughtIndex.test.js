@@ -6,7 +6,8 @@ import { join } from "path";
 import {
   renderTaughtIndexPrompt,
   parseTaughtIndexResponse,
-  ensureTaughtIndex,
+  getTaughtIndex,
+  buildTaughtIndex,
 } from "../../src/corpus/epubTaughtIndex.js";
 import { loadTaughtIndex, hashEpubFile } from "../../src/corpus/epubLibrary.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
@@ -90,15 +91,16 @@ test("parseTaughtIndexResponse() rejects malformed entries", () => {
   assert.throws(() => parseTaughtIndexResponse(rawBadTeaches, [1]), /string array teaches/);
 });
 
-test("ensureTaughtIndex() builds once, caches under the book hash, and reuses the cache", () => {
+test("getTaughtIndex({build:true}) builds once, caches under the book hash, and reuses the cache", () => {
   withTempDir((dir) => {
     const epubPath = fixtureBook(dir, 3);
     let calls = 0;
 
-    const index = ensureTaughtIndex({
+    const index = getTaughtIndex({
       epubPath,
       targetLanguage: "Japanese",
       libraryHomeDir: dir,
+      build: true,
       runClaude: () => {
         calls++;
         return validIndexResponse([1, 2, 3]);
@@ -109,10 +111,11 @@ test("ensureTaughtIndex() builds once, caches under the book hash, and reuses th
     assert.equal(index.chapters.length, 3);
     assert.deepEqual(loadTaughtIndex(hashEpubFile(epubPath), { libraryHomeDir: dir }), index);
 
-    const again = ensureTaughtIndex({
+    const again = getTaughtIndex({
       epubPath,
       targetLanguage: "Japanese",
       libraryHomeDir: dir,
+      build: true,
       runClaude: () => {
         calls++;
         return validIndexResponse([1, 2, 3]);
@@ -124,15 +127,16 @@ test("ensureTaughtIndex() builds once, caches under the book hash, and reuses th
   });
 });
 
-test("ensureTaughtIndex() returns null and caches nothing when the build fails validation", () => {
+test("getTaughtIndex({build:true}) returns null and caches nothing when the build fails validation", () => {
   withTempDir((dir) => {
     const epubPath = fixtureBook(dir, 3);
     const logs = [];
 
-    const index = ensureTaughtIndex({
+    const index = getTaughtIndex({
       epubPath,
       targetLanguage: "Japanese",
       libraryHomeDir: dir,
+      build: true,
       log: (msg) => logs.push(msg),
       runClaude: () => validIndexResponse([1, 2]), // chapter 3 missing
     });
@@ -140,5 +144,74 @@ test("ensureTaughtIndex() returns null and caches nothing when the build fails v
     assert.equal(index, null);
     assert.equal(loadTaughtIndex(hashEpubFile(epubPath), { libraryHomeDir: dir }), null);
     assert.ok(logs.some((msg) => msg.includes("taught index: build failed")));
+  });
+});
+
+test("getTaughtIndex() does NOT build by default — a lesson build never pays for a whole-book pass", () => {
+  withTempDir((dir) => {
+    const epubPath = fixtureBook(dir, 3);
+    let calls = 0;
+
+    const index = getTaughtIndex({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () => {
+        calls++;
+        return validIndexResponse([1, 2, 3]);
+      },
+    });
+
+    // The regression this guards: the index used to be built lazily by whichever lesson needed it
+    // first, so a 57-chapter model call could fire in the middle of building one lesson — and when
+    // it exhausted the usage window it took the rest of that lesson's passes with it.
+    assert.equal(index, null);
+    assert.equal(calls, 0);
+    assert.equal(loadTaughtIndex(hashEpubFile(epubPath), { libraryHomeDir: dir }), null);
+  });
+});
+
+test("getTaughtIndex() reads a cached index without building, even with build off", () => {
+  withTempDir((dir) => {
+    const epubPath = fixtureBook(dir, 2);
+    buildTaughtIndex({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () => validIndexResponse([1, 2]),
+    });
+
+    let calls = 0;
+    const index = getTaughtIndex({
+      epubPath,
+      targetLanguage: "Japanese",
+      libraryHomeDir: dir,
+      runClaude: () => {
+        calls++;
+        return validIndexResponse([1, 2]);
+      },
+    });
+
+    assert.equal(calls, 0);
+    assert.equal(index.chapters.length, 2);
+  });
+});
+
+test("buildTaughtIndex() THROWS on a response that misses part of the spine, and caches nothing", () => {
+  withTempDir((dir) => {
+    const epubPath = fixtureBook(dir, 3);
+    // Unlike getTaughtIndex, the explicit build reports its failure to the operator who asked for
+    // it, rather than swallowing it into a null the caller has to interpret.
+    assert.throws(
+      () =>
+        buildTaughtIndex({
+          epubPath,
+          targetLanguage: "Japanese",
+          libraryHomeDir: dir,
+          runClaude: () => validIndexResponse([1, 2]),
+        }),
+      /missing 1 chapter/,
+    );
+    assert.equal(loadTaughtIndex(hashEpubFile(epubPath), { libraryHomeDir: dir }), null);
   });
 });

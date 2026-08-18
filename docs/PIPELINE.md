@@ -67,12 +67,17 @@ Four sources:
   anything that looks premature, either because a later chapter explicitly re-teaches it or
   because it relies on grammar/vocabulary the book hasn't introduced yet. The forward pass judges
   from a once-per-book **taught-content index** (`src/corpus/epubTaughtIndex.js`): one whole-book
-  model pass, built lazily on first need and cached as `taught-index.json` under the book's hash
-  dir, recording what each chapter introduces. The per-lesson forward call then hands the model
-  that compact index instead of re-materializing every later chapter (which repeated a
-  near-whole-book read on each assemble). Index coverage is verified mechanically (every spine
-  chapter must appear, or the build is rejected); when the index can't be built the pass falls back
-  to the original read-the-later-chapters behavior. Neither pass ever drops
+  model pass, cached as `taught-index.json` under the book's hash dir, recording what each chapter
+  introduces. The per-lesson forward call then hands the model that compact index instead of
+  re-materializing every later chapter (which repeated a near-whole-book read on each assemble).
+  A build only ever READS that index — building it is `anki-builder epub taught-index <hash>`, a
+  deliberate one-off, because a pass over every chapter of the book firing unannounced in the
+  middle of one lesson is the worst thing a dwindling usage window can be spent on. Index coverage
+  is verified mechanically (every spine chapter must appear, or the build is rejected); a book with
+  no index falls back to the original read-the-later-chapters behavior and says so, naming the
+  command that would make every later lesson cheaper. Either way the outcome lands on the unit's
+  pass ledger (`meta.passes.taughtIndex`, `ok` when the index was used, `skipped` when it wasn't),
+  so which source a lesson was judged against is a fact on the unit rather than a log line. Neither pass ever drops
   an item — each flagged item comes back with `uncertain: true` and a note appended (`"Possibly
 already taught — ..."` for a backward match, `"Possibly premature — ..."` for a forward one), so
   the corpus review gate is where the human actually decides, rather than the item silently
@@ -1019,7 +1024,7 @@ it buys a hard mid-pass abort with a misleading error, after the money is spent.
 | ------------------- | ----------------------------------- | ---------------------------------------- | --------------------------- | ------------------------------ | ----------------------------------------------- | ------------------ |
 | chapter extraction  | `src/corpus/epubLlmExtract.js`      | `docs/epub-extraction-prompt.md`         | sonnet / **high**, 25 min   | `ANKI_BUILDER_EXTRACT`         | no — one call per chapter                       | 4-8 min            |
 | book conventions    | `src/corpus/epubBookConventions.js` | `docs/epub-book-conventions-prompt.md`   | sonnet / medium, 15 min     | `ANKI_BUILDER_CONVENTIONS`     | **yes** — chapter ranges, merged                | 3-6 min per batch  |
-| taught index        | `src/corpus/epubTaughtIndex.js`     | `docs/epub-taught-index-prompt.md`       | sonnet / medium, 15 min     | `ANKI_BUILDER_TAUGHT_INDEX`    | no — once per book                              | 3-8 min            |
+| taught index        | `src/corpus/epubTaughtIndex.js`     | `docs/epub-taught-index-prompt.md`       | sonnet / medium, 15 min     | `ANKI_BUILDER_TAUGHT_INDEX`    | no — once per book, and only when asked for     | 3-8 min            |
 | forward flags       | `src/corpus/epubForwardFlags.js`    | `docs/epub-forward-flag-index-prompt.md` | sonnet / medium, 10 min     | `ANKI_BUILDER_FORWARD_FLAGS`   | no                                              | 30-90 s            |
 | pedagogical sort    | `src/corpus/pedagogicalSort.js`     | `docs/pedagogical-sort-prompt.md`        | sonnet / medium, 10 min     | `ANKI_BUILDER_SORT`            | no                                              | 30-90 s            |
 | fill-in-the-blank   | `src/cards/fillInBlank.js`          | `docs/fill-in-blank-prompt.md`           | sonnet / medium, 10 min     | `ANKI_BUILDER_FILL_BLANK`      | no                                              | 1-3 min            |

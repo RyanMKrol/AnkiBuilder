@@ -115,20 +115,71 @@ export function parseTaughtIndexResponse(raw, spineChapterNumbers) {
 }
 
 /**
- * Loads the book's cached taught-content index, building it (ONE whole-book model
- * call, cached under the EPUB's content hash beside conventions.md) when absent.
- * Returns null when the build fails — the caller decides its own fallback; this
- * never throws.
+ * Builds the book's taught-content index: ONE model pass over EVERY chapter, cached under the
+ * EPUB's content hash beside conventions.md. Throws if the pass fails or the response does not
+ * cover the whole spine — the caller decides what to do about it.
  *
- * The one-time cost mirrors analyzeBookConventions; every later assemble's forward
- * pass then consults the compact index instead of re-reading all later chapters
- * (which repeated a near-whole-book read per lesson, O(n²) over a book's build).
+ * This is a DELIBERATE, whole-book, paid pass and nothing calls it implicitly. It used to be built
+ * lazily by the first lesson that needed it, which meant a 57-chapter model call could fire in the
+ * middle of building one lesson: the single worst thing to spend a dwindling quota window on, and
+ * it happened — the index build exhausted the window, then every downstream pass of that lesson
+ * failed in turn. Run it once per book, on purpose:
+ *
+ *     anki-builder epub taught-index <hash>
  */
-export function ensureTaughtIndex({
+export function buildTaughtIndex({
   epubPath,
   targetLanguage,
   runClaude = defaultRunClaude,
   libraryHomeDir,
+  log = () => {},
+} = {}) {
+  const epubHash = hashEpubFile(epubPath);
+  const { chapters } = listChapters(epubPath);
+  const chapterFilePaths = chapters.map((chapter) => ({
+    number: chapter.number,
+    path: extractChapterToFile(
+      epubPath,
+      chapter.number,
+      chapterCachePath(epubHash, chapter.number, { libraryHomeDir }),
+    ),
+  }));
+
+  log(`taught index: one model pass over all ${chapters.length} chapter(s) of this book`);
+  const prompt = renderTaughtIndexPrompt({ targetLanguage, chapterFilePaths });
+  const index = parseTaughtIndexResponse(
+    runClaude(prompt),
+    chapters.map((chapter) => chapter.number),
+  );
+
+  const path = saveTaughtIndex(epubHash, index, {
+    libraryHomeDir,
+    meta: buildArtifactMeta({
+      templatePath: DEFAULT_TEMPLATE_PATH,
+      scopeEnvPrefix: SCOPE_ENV_PREFIX,
+      defaults: SCOPE_DEFAULTS,
+      chapterCount: chapterFilePaths.length,
+    }),
+  });
+  return { index, path, epubHash, chapterCount: chapterFilePaths.length };
+}
+
+/**
+ * The book's cached taught-content index, or null if this book has never had one built.
+ *
+ * `build` defaults to FALSE on purpose: a lesson build must never spend a whole-book pass it was
+ * not asked for. A caller that gets null falls back to its own slower path and says so; the
+ * operator builds the index when they choose to (see buildTaughtIndex). Pass `build: true` only
+ * from a command whose entire job is to build it.
+ *
+ * Never throws — a failed build returns null, because every caller has a fallback.
+ */
+export function getTaughtIndex({
+  epubPath,
+  targetLanguage,
+  runClaude = defaultRunClaude,
+  libraryHomeDir,
+  build = false,
   log = () => {},
 } = {}) {
   const epubHash = hashEpubFile(epubPath);
@@ -146,36 +197,12 @@ export function ensureTaughtIndex({
     return cached;
   }
 
+  if (!build) {
+    return null;
+  }
+
   try {
-    const { chapters } = listChapters(epubPath);
-    const chapterFilePaths = chapters.map((chapter) => ({
-      number: chapter.number,
-      path: extractChapterToFile(
-        epubPath,
-        chapter.number,
-        chapterCachePath(epubHash, chapter.number, { libraryHomeDir }),
-      ),
-    }));
-
-    log(
-      `taught index: building once for this book — one model pass over all ${chapters.length} chapter(s)`,
-    );
-    const prompt = renderTaughtIndexPrompt({ targetLanguage, chapterFilePaths });
-    const index = parseTaughtIndexResponse(
-      runClaude(prompt),
-      chapters.map((chapter) => chapter.number),
-    );
-
-    saveTaughtIndex(epubHash, index, {
-      libraryHomeDir,
-      meta: buildArtifactMeta({
-        templatePath: DEFAULT_TEMPLATE_PATH,
-        scopeEnvPrefix: SCOPE_ENV_PREFIX,
-        defaults: SCOPE_DEFAULTS,
-        chapterCount: chapterFilePaths.length,
-      }),
-    });
-    return index;
+    return buildTaughtIndex({ epubPath, targetLanguage, runClaude, libraryHomeDir, log }).index;
   } catch (error) {
     log(`taught index: build failed (${error.message}) — not cached`);
     return null;

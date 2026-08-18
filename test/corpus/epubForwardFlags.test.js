@@ -221,7 +221,7 @@ test("flagForwardConcerns() consults the taught index when available, not the ch
       chapterNumber: 1,
       targetLanguage: "Japanese",
       libraryHomeDir: dir,
-      ensureTaughtIndex: () => ({
+      getTaughtIndex: () => ({
         chapters: [
           { chapter: 1, label: null, teaches: [] },
           { chapter: 2, label: null, teaches: ["greetings"] },
@@ -264,7 +264,7 @@ test("flagForwardConcerns() falls back to reading chapters directly when the ind
       targetLanguage: "Japanese",
       libraryHomeDir: dir,
       log: (msg) => logs.push(msg),
-      ensureTaughtIndex: () => null,
+      getTaughtIndex: () => null,
       runClaude: (prompt) => {
         prompts.push(prompt);
         return JSON.stringify({ flag: [] });

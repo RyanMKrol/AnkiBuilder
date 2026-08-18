@@ -2581,3 +2581,68 @@ test("epub cache without a hash fails rather than guessing a book", async () => 
     /needs a book hash/,
   );
 });
+
+const BOOK_WITHOUT_INDEX = {
+  registered: true,
+  epubHash: "abc123",
+  dir: "/lib/epubs/abc123",
+  cacheVersion: 2,
+  chapters: { present: true, files: 3, generatedAt: null },
+  conventions: { present: true, generatedAt: "2026-07-14T09:00:00.000Z" },
+  taughtIndex: { present: false },
+  reviewedCorpora: 0,
+  staleRoots: [],
+};
+
+test("epub taught-index builds the whole-book index once, on purpose", async () => {
+  const logs = [];
+  let built = null;
+
+  await runCli(["epub", "taught-index", "abc123", "--lang", "ja"], {
+    describeBookCache: () => BOOK_WITHOUT_INDEX,
+    libraryEpubPath: () => process.argv[1], // any file that exists
+    loadBookMeta: () => ({ title: "A book" }),
+    buildTaughtIndex: (args) => {
+      built = args;
+      return { path: "/lib/epubs/abc123/taught-index.json", chapterCount: 57 };
+    },
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.equal(built.targetLanguage, "ja");
+  assert.ok(logs.some((m) => m.includes("57 chapter(s) indexed")));
+});
+
+test("epub taught-index refuses to re-spend a whole-book pass on a book that has one", async () => {
+  const logs = [];
+  let built = false;
+
+  await runCli(["epub", "taught-index", "abc123", "--lang", "ja"], {
+    describeBookCache: () => ({
+      ...BOOK_WITHOUT_INDEX,
+      taughtIndex: { present: true, generatedAt: "2026-08-01T09:00:00.000Z" },
+    }),
+    libraryEpubPath: () => process.argv[1],
+    loadBookMeta: () => ({}),
+    buildTaughtIndex: () => {
+      built = true;
+      return {};
+    },
+    log: (msg) => logs.push(msg),
+  });
+
+  assert.equal(built, false, "an existing index must never be silently re-billed");
+  assert.ok(logs.some((m) => m.includes("--force")));
+});
+
+test("epub taught-index needs a language it can name, rather than guessing one", async () => {
+  await assert.rejects(
+    runCli(["epub", "taught-index", "abc123"], {
+      describeBookCache: () => BOOK_WITHOUT_INDEX,
+      libraryEpubPath: () => process.argv[1],
+      loadBookMeta: () => ({}),
+      log: () => {},
+    }),
+    /--lang/,
+  );
+});

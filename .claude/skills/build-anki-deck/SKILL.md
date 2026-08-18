@@ -762,6 +762,23 @@ and no audit is given `--apply`. Exit 2 means a report is waiting for your judgm
 something is broken. ⚠️ `prepare` spends model credits. Full reasoning:
 [extras-pass](references/extras-pass.md).
 
+### Recover a pass that failed inside `assemble`
+
+```sh
+node --env-file=.env scripts/recover-extraction-passes.mjs <runDir> [--flags] [--sort]
+```
+
+The taught index, the forward-flag pass and the pedagogical sort run inside `assemble`'s extraction
+branch, and that branch is skipped entirely once `corpus.json` exists — so when one of them fails (a
+quota window, a timeout), **no re-run of anything recovers it**. Rebuilding from scratch means paying
+for a fresh extraction, throwing away every card added at gate 1, and leaking a run directory unless
+you pass `--run`. This drives the same modules against the corpus already on disk instead.
+
+Both are safe by construction: the flag pass only annotates (`uncertain` + `reviewNote`) and the sort
+cannot add, drop or duplicate an item. Each is a paid model pass, so pick the ones you need. It
+refuses a unit that is already **reviewed** — both passes change what the reviewer signed off on, so
+Unreview first. EPUB units only.
+
 ### Wait for a review gate
 
 ```sh

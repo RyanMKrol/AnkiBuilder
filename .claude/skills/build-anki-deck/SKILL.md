@@ -281,6 +281,27 @@ Notes on the forms:
 - A template has no book-level merge (one unit per language), so its Step 5 `deck --run` output is
   the final artifact; skip Step 6. A one-off ad hoc build can use `--run <anyDir>` instead.
 
+**Build a new book's taught index ONCE, before its first lesson.** The forward-flag pass judges
+whether an item is premature by consulting a whole-book index of what each chapter introduces. A
+build only ever READS that index; it never builds one. Build it deliberately, before you start on a
+book's lessons:
+
+```sh
+anki-builder epub taught-index <epubHash>   # --lang <lang> if the book predates the language record
+```
+
+The hash is the directory name under `.anki-builder/epubs/` (`anki-builder epub cache <hash>` prints
+it, along with whether an index already exists). It costs one model pass over every chapter — a few
+minutes on a 57-chapter book — and it is the only time that book pays for it. The command refuses to
+re-spend on a book that already has one unless you pass `--force`.
+
+A book with no index is not blocked: the forward pass falls back to having the model read every
+chapter after the lesson, which is what it did before the index existed. It just costs more, on
+every single lesson. The reason this is a command rather than something the first lesson does for
+you: it used to build itself lazily, and on lesson 15 that meant a 57-chapter pass firing unasked in
+the middle of one lesson's build. It exhausted the usage window, and the four passes queued behind
+it in the same build all failed in turn.
+
 **Build a book's lessons in ascending order, and mark each one reviewed before assembling the next.**
 A lesson's build reads what the book has already taught from two places: the backward-dedup library,
 written by the dashboard's **Mark reviewed** (not by the build), and each earlier lesson's

@@ -5,7 +5,7 @@ import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 import { withClaim } from "../runClaim.js";
 import { validateCorpus } from "../../model/index.js";
-import { recordPass, PASS_OK, PASS_FAILED } from "../../cards/passLedger.js";
+import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { listTemplates } from "../../corpus/templates.js";
 import { normalizeDisplayText } from "../../model/scriptSpacing.js";
@@ -389,8 +389,19 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     recordPass(
       corpus.meta,
       "forwardFlags",
-      forward.failed ? PASS_FAILED : PASS_OK,
-      forward.failed ? forward.reason : null,
+      forward.failed ? PASS_FAILED : forward.skipped ? PASS_SKIPPED : PASS_OK,
+      forward.failed ? forward.reason : (forward.skipped ?? null),
+    );
+    // The taught index is never built by a lesson build — it is read if the book has one. Record
+    // WHICH it was, so `resume` and preflight can tell a lesson judged against the compact
+    // whole-book index from one judged by re-reading later chapters.
+    recordPass(
+      corpus.meta,
+      "taughtIndex",
+      forward.usedTaughtIndex ? PASS_OK : PASS_SKIPPED,
+      forward.usedTaughtIndex
+        ? null
+        : "this book has no cached taught index — the forward pass read later chapters directly",
     );
     for (const { item, laterChapterLabel, reason } of forward.flagged) {
       const where = laterChapterLabel

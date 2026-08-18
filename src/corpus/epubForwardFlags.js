@@ -3,7 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { listChapters, extractChapterToFile, describeChapter } from "./epubArchive.js";
 import { hashEpubFile, chapterCachePath, resolveLabelDecoding } from "./epubLibrary.js";
-import { ensureTaughtIndex as defaultEnsureTaughtIndex } from "./epubTaughtIndex.js";
+import { getTaughtIndex as defaultGetTaughtIndex } from "./epubTaughtIndex.js";
 import { runForwardFlagsClaude as defaultRunClaude } from "./epubLlmRunClaude.js";
 import { extractJsonObjectText } from "../util/promptTemplate.js";
 
@@ -156,17 +156,16 @@ export function flagForwardConcerns({
   targetLanguage,
   bookConventions = null,
   log = () => {},
-  // Deliberately undefined-by-default rather than defaulted here: the taught-index build below is a
-  // DIFFERENT pass with its own pinning (see epubLlmRunClaude.js), and defaulting here would have
-  // forwarded this pass's runner into it, silently pinning a whole-book read to the flag pass's
-  // knobs. An injected stub is still forwarded, which is what tests rely on.
+  // Deliberately undefined-by-default rather than defaulted here: the taught index is a DIFFERENT
+  // pass with its own pinning (see epubLlmRunClaude.js), and defaulting here would have forwarded
+  // this pass's runner into it. An injected stub is still forwarded, which is what tests rely on.
   runClaude,
-  ensureTaughtIndex = defaultEnsureTaughtIndex,
+  getTaughtIndex = defaultGetTaughtIndex,
   libraryHomeDir,
 } = {}) {
   const runFlagClaude = runClaude ?? defaultRunClaude;
   if (candidateItems.length === 0) {
-    return { items: candidateItems, flagged: [] };
+    return { items: candidateItems, flagged: [], skipped: "no candidate items" };
   }
 
   const { chapters } = listChapters(epubPath);
@@ -174,16 +173,17 @@ export function flagForwardConcerns({
 
   if (laterChapters.length === 0) {
     log(`chapter ${chapterNumber} is the last chapter — forward flag pass skipped`);
-    return { items: candidateItems, flagged: [] };
+    return { items: candidateItems, flagged: [], skipped: "no later chapters to check against" };
   }
 
   const lastChapterNumber = chapters[chapters.length - 1].number;
 
-  // Preferred path: consult the once-per-book taught-content index (built and cached on
-  // first need) instead of materializing and re-reading every later chapter per assemble.
-  // When the index can't be built, fall back to the legacy whole-chapters read below —
-  // never a silent quality downgrade to "no flags".
-  const taughtIndex = ensureTaughtIndex({
+  // Preferred path: consult the book's cached taught-content index instead of materializing and
+  // re-reading every later chapter on every assemble. It is only ever READ here — building it is a
+  // whole-book paid pass and belongs to `anki-builder epub taught-index`, not to whichever lesson
+  // happened to be the first one built. When it is absent, fall back to the whole-chapters read
+  // below and say so, rather than silently downgrading to "no flags".
+  const taughtIndex = getTaughtIndex({
     epubPath,
     targetLanguage,
     runClaude,
@@ -216,7 +216,9 @@ export function flagForwardConcerns({
 
     log(
       `forward flag pass: checking ${candidateItems.length} item(s) against chapters ` +
-        `${chapterNumber + 1}-${lastChapterNumber} (no taught index — reading chapters directly)`,
+        `${chapterNumber + 1}-${lastChapterNumber} by reading those chapters directly — this book ` +
+        `has no taught index. Building one costs a single whole-book pass and makes every later ` +
+        `lesson of this book cheaper: anki-builder epub taught-index ${hashEpubFile(epubPath)}`,
     );
 
     prompt = renderForwardFlagPrompt({
@@ -233,7 +235,10 @@ export function flagForwardConcerns({
     flagEntries = parseForwardFlagResponse(runFlagClaude(prompt));
   } catch (error) {
     log(`forward flag pass: failed (${error.message}) — leaving all items unflagged by this pass`);
-    return { items: candidateItems, flagged: [] };
+    // `failed` is what the caller records on the unit's pass ledger. Without it a failure here is
+    // indistinguishable from "nothing looked premature" — which is exactly the shape of silent
+    // degradation the ledger exists to end. See src/cards/passLedger.js.
+    return { items: candidateItems, flagged: [], failed: true, reason: error.message };
   }
 
   const flagById = new Map(flagEntries.map((entry) => [entry.id, entry]));
@@ -267,5 +272,8 @@ export function flagForwardConcerns({
     };
   });
 
-  return { items, flagged };
+  // `usedTaughtIndex` tells the caller WHICH source this judgement came from, so a lesson built
+  // against the compact index and one built by re-reading later chapters are distinguishable after
+  // the fact rather than both reading as "the forward pass ran".
+  return { items, flagged, usedTaughtIndex: Boolean(taughtIndex) };
 }

@@ -31,7 +31,9 @@ import {
   loadBookConventions as defaultLoadBookConventions,
   saveBookConventions as defaultSaveBookConventions,
   loadBookMeta as defaultLoadBookMeta,
+  libraryEpubPath as defaultLibraryEpubPath,
 } from "../corpus/epubLibrary.js";
+import { buildTaughtIndex as defaultBuildTaughtIndex } from "../corpus/epubTaughtIndex.js";
 import {
   resolveBookSlug as defaultResolveBookSlug,
   resolveChapterRunDir as defaultResolveChapterRunDir,
@@ -172,6 +174,8 @@ export async function runCli(argv, deps = {}) {
     loadBookConventions = defaultLoadBookConventions,
     saveBookConventions = defaultSaveBookConventions,
     loadBookMeta = defaultLoadBookMeta,
+    libraryEpubPath = defaultLibraryEpubPath,
+    buildTaughtIndex = defaultBuildTaughtIndex,
     analyzeBookConventions = defaultAnalyzeBookConventions,
     dedupBackward = defaultDedupBackward,
     flagForwardConcerns = defaultFlagForwardConcerns,
@@ -246,6 +250,8 @@ export async function runCli(argv, deps = {}) {
     loadBookConventions,
     saveBookConventions,
     loadBookMeta,
+    libraryEpubPath,
+    buildTaughtIndex,
     analyzeBookConventions,
     dedupBackward,
     flagForwardConcerns,

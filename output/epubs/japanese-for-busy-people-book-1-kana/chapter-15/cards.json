@@ -46,7 +46,8 @@
       "target": "かく",
       "pronunciation": "kaku",
       "hint": "dictionary form (plain, casual)",
-      "reviewNote": "Gloss disambiguated at gate 1: it and かきます were both plain \"Draw\", while every sibling activity verb in this lesson (はなす, うたう, およぐ, はしる) marks its dictionary form in the gloss."
+      "reviewNote": "Gloss disambiguated at gate 1: it and かきます were both plain \"Draw\", while every sibling activity verb in this lesson (はなす, うたう, およぐ, はしる) marks its dictionary form in the gloss.",
+      "note": "Dictionary form of かきます (kakimasu, \"draw\"). Regular 1: the stem ends in -ki, which becomes -ku, the same row as ききます → きく."
     },
     {
       "id": "kakimasu-draw",
@@ -131,7 +132,7 @@
     },
     {
       "id": "miru-see-watch",
-      "english": "See, watch",
+      "english": "See, watch (dictionary form)",
       "category": "Sports & Hobbies",
       "target": "みる",
       "pronunciation": "miru",
@@ -267,6 +268,28 @@
       "category": "Sports & Hobbies",
       "target": "ゴルフ",
       "pronunciation": "gorufu"
+    },
+    {
+      "id": "tenisu-tennis",
+      "english": "Tennis",
+      "target": "テニス",
+      "pronunciation": "tenisu",
+      "category": "Sports & Hobbies",
+      "note": "Used throughout this lesson's exercises as a skill: テニスが じょうずじゃありません (\"not good at tennis\").",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's."
+    },
+    {
+      "id": "sake-rice-wine",
+      "english": "Sake, rice wine",
+      "target": "さけ",
+      "pronunciation": "sake",
+      "category": "Food",
+      "note": "Appears in the EXERCISES II like/dislike drills alongside ビール, ワイン and ウイスキー.",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's."
     },
     {
       "id": "dance-vocab",
@@ -416,11 +439,51 @@
       "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
     },
     {
+      "id": "kasu-dict-form",
+      "english": "Lend (dictionary form)",
+      "target": "かす",
+      "pronunciation": "kasu",
+      "note": "Dictionary form of かします (kashimasu, \"lend\", Lesson 14). Regular 1: the stem ends in -shi, which becomes -su.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+    },
+    {
+      "id": "matsu-dict-form",
+      "english": "Wait (dictionary form)",
+      "target": "まつ",
+      "pronunciation": "matsu",
+      "note": "Dictionary form of まちます (machimasu, \"wait\", Lesson 10). Regular 1: the stem ends in -chi, which becomes -tsu — the spelling changes as well as the sound.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+    },
+    {
+      "id": "iru-dict-form",
+      "english": "Be, exist (animate) (dictionary form)",
+      "target": "いる",
+      "pronunciation": "iru",
+      "note": "Dictionary form of います (imasu, \"be\" for people and animals, Lesson 12). Regular 2: ます becomes る.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+    },
+    {
+      "id": "toru-dict-form",
+      "english": "Take (dictionary form)",
+      "target": "とる",
+      "pronunciation": "toru",
+      "note": "Dictionary form of とります (torimasu, \"take\", Lesson 11). Regular 1: the stem ends in -ri, which becomes -ru. Like かえる it looks like a Regular 2 verb and is not.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 from the GRAMMAR verb-conversion chart (Page_144_Image_0001.jpg): the row was in the chapter's main verb-conversion table and had no card in either form."
+    },
+    {
       "id": "oshieru-dict-form",
-      "english": "Teach (dictionary form)",
+      "english": "Tell, teach (dictionary form)",
       "target": "おしえる",
       "pronunciation": "oshieru",
-      "note": "Dictionary form of おしえます (oshiemasu, “teach”). Regular 2: ます simply becomes る, as with たべる and みる.",
+      "note": "Dictionary form of おしえます (oshiemasu, \"tell, teach\", Lesson 9). Regular 2: ます simply becomes る, as with たべる and みる. The book glosses it \"tell, teach\": it covers passing on information as well as instruction.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
       "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."

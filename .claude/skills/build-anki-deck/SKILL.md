@@ -321,10 +321,25 @@ The script lists them with their real paths on disk, and quotes what the book's 
 and listed its image-embedded content per chapter, naming files. Start there, and read the chapter's
 own `Image-Embedded Content` entries.
 
-Then open the files that matter (the Read tool renders images) and judge each by POSITION, not
-filename and not by what conventions.md called it: a figure sitting under a heading whose text then
-runs out, or referenced by prose with no visible referent, is load-bearing; an illustration whose
-labels already appear in the text is decoration. Being unnamed in `conventions.md` is an absence, not
+**Open EVERY image that is or could be a TABLE, CHART or LIST. There is no triage for those, ever.**
+A chart's content is invisible from outside it: you cannot tell a complete conjugation table from a
+decorative one by where it sits, what it is called, or how big the file is, so any judgement made
+before opening it is a guess. Only an ILLUSTRATION — a picture of a scene or an object — is eligible
+for the position triage below, and when you cannot tell which kind it is from the markup, that means
+open it. Prose that promises a chart ("the chart on the following page", "repeat the verbs below",
+"memorize their forms") is a guarantee that the next image is one.
+
+**And having listed the images you intend to open, open ALL of them before you call the sweep done.**
+Naming an image as load-bearing and then not reading it is the same outcome as never noticing it,
+with more paperwork. This happened on Lesson 15: four charts were identified, two were read, the sweep
+was reported complete, and the two unread ones turned out to hold the lesson's main grammar table —
+thirteen verb pairs, of which four verbs (lend, wait, be, take) were on no card at all. The owner
+found them by reading the book.
+
+For the rest (the illustrations), judge each by POSITION, not filename and not by what conventions.md
+called it: a figure sitting under a heading whose text then runs out, or referenced by prose with no
+visible referent, is load-bearing; an illustration whose labels already appear in the text is
+decoration. Being unnamed in `conventions.md` is an absence, not
 a verdict — that pass read 57 files in one call and can have missed one. `conventions.md` describes
 the book's MARKUP and where things are; it never decides what gets extracted, and the extraction
 prompt says so in as many words. It is also cached for the life of the book, so `assemble` warns when

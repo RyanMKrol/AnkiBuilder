@@ -110,6 +110,20 @@ export const JA_ROMAJI_STYLE = [
     detect: (text) => first(text, /(?:^|\s)tsu(?=\s|$)/i),
   },
   {
+    id: "word-segmentation",
+    rule:
+      "A romanization is split into WORDS, not into the syllables a morphological analyser happened " +
+      "to find. `nihongo`, `arimasen`, `hanashimasu`, `deshita` — never `ni hon go`, `ari mase n`, " +
+      "`hanashi masu` or `deshi ta`. A trailing ん is part of the word before it and never stands " +
+      "alone.",
+    // Fragments that are never a standalone word in romanized Japanese, and are exactly what the
+    // romanization LIBRARY emits when it mis-segments. This rule exists because the other rules are
+    // all about SPELLING, and a mis-split romanization violates none of them: every token in
+    // "ni hon go" is flawless Hepburn. A whole lesson once passed the style lint reading
+    // "suki ja ari mase n", because nothing was looking at where the words began and ended.
+    detect: (text) => first(text, /(?:^|\s)(n|mase|masu|deshi|masen|arimase)(?=\s|$)/i),
+  },
+  {
     id: "no-terminal-punctuation",
     rule:
       "A romanization NEVER ends in `.`, `!` or `?`. 。／！／？ are marks of the written target, " +

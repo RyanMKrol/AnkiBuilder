@@ -1,6 +1,6 @@
 // Re-run the EXTRACTION-BRANCH passes against a unit that already has a corpus.
 //
-//   node --env-file=.env scripts/recover-extraction-passes.mjs <runDir> [--flags] [--sort]
+//   node --env-file=.env scripts/recover-extraction-passes.mjs <runDir> [--flags] [--sort] [--romaji]
 //
 // WHY THIS EXISTS. `assemble` runs the taught index, the forward-flag pass and the pedagogical sort
 // inside its extraction branch, and that whole branch is skipped once corpus.json exists. So a pass
@@ -13,11 +13,18 @@
 // and never adds or removes an item; `reorderByIds` cannot add, drop or duplicate one, so the worst
 // case is the order the unit already has. Neither rewrites a card's content.
 //
-// EPUB units only: both passes need the book. A course or template unit has no later chapters to
-// flag against.
+// --romaji is the same problem one stage later. The romanization-correction pass runs inside
+// `translate`, and re-running `translate` is not a fix: it rebuilds cards.json from corpus.json,
+// which discards the drill block, every audio reference and the cross-lesson notes. So it too can
+// only be recovered by driving the module directly. It rewrites `pronunciation` and nothing else.
+//
+// --flags and --sort are EPUB-only: both need the book. --romaji works on any unit.
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { flagForwardConcerns } from "../src/corpus/epubForwardFlags.js";
+import { romanizeAndEvaluate } from "../src/translate/romanizationEval.js";
+import { ROMANIZATION_LIBRARIES } from "../src/translate/romanizationLibraries.js";
+import { resolveIso639Code } from "../src/model/iso639.js";
 import { sortItemsPedagogically } from "../src/corpus/pedagogicalSort.js";
 import { writeUnitJson } from "../src/util/unitWrite.js";
 import { libraryHome } from "../src/model/index.js";
@@ -26,12 +33,14 @@ const args = process.argv.slice(2);
 const runDir = args.find((a) => !a.startsWith("--"));
 const wantFlags = args.includes("--flags");
 const wantSort = args.includes("--sort");
+const wantRomaji = args.includes("--romaji");
 
-if (!runDir || (!wantFlags && !wantSort)) {
+if (!runDir || (!wantFlags && !wantSort && !wantRomaji)) {
   console.error(
     "usage: node --env-file=.env scripts/recover-extraction-passes.mjs <runDir> [--flags] [--sort]\n" +
       "  --flags  re-run the forward-flag pass (builds the book's taught index if absent)\n" +
       "  --sort   re-run the pedagogical sort\n" +
+      "  --romaji re-run the romanization correction over cards.json (pronunciation only)\n" +
       "Pick at least one; each is a paid model pass.",
   );
   process.exit(2);
@@ -46,8 +55,8 @@ if (!existsSync(corpusPath)) {
 
 const corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
 const { epubHash, targetLanguage } = corpus.meta;
-if (!epubHash) {
-  console.error("this unit has no epubHash — both passes are EPUB-only");
+if (!epubHash && (wantFlags || wantSort)) {
+  console.error("this unit has no epubHash — --flags and --sort are EPUB-only");
   process.exit(2);
 }
 if (corpus.meta.reviewed) {
@@ -133,4 +142,36 @@ if (wantSort) {
       file.items = [...file.items].sort((a, b) => rank(a) - rank(b));
     });
   }
+}
+
+if (wantRomaji) {
+  // Reads and writes cards.json ONLY: corpus.json has no `pronunciation` field, by schema.
+  const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+  const code = resolveIso639Code(targetLanguage);
+  const libraryEntry = ROMANIZATION_LIBRARIES[code];
+  if (!libraryEntry) {
+    console.error(`no romanization library configured for ${targetLanguage} — nothing to correct`);
+    process.exit(2);
+  }
+  const subjects = cards.items.filter((item) => !item.excluded && (item.ttsText || item.target));
+  console.log(`romanization: correcting ${subjects.length} item(s)`);
+  const { items } = await romanizeAndEvaluate(subjects, {
+    targetLanguage,
+    libraryEntry,
+    log: (line) => console.log(`  ${line}`),
+    // An item whose library adapter fails keeps whatever pronunciation it already has, rather than
+    // being dropped from the file.
+    fallback: (rest) => ({ items: rest, errors: [] }),
+  });
+  const byId = new Map(items.map((item) => [item.id, item]));
+  let changed = 0;
+  for (const item of cards.items) {
+    const fixed = byId.get(item.id);
+    if (!fixed?.pronunciation || fixed.pronunciation === item.pronunciation) continue;
+    console.log(`  ${item.target}\n      ${item.pronunciation}\n   -> ${fixed.pronunciation}`);
+    item.pronunciation = fixed.pronunciation;
+    changed++;
+  }
+  console.log(`romanization: ${changed} item(s) corrected`);
+  if (changed) writeUnitJson(cardsPath, cards, { reason: "recover-romanization" });
 }

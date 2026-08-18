@@ -2990,3 +2990,47 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** if operators keep forgetting to run it and lessons keep taking the slow path,
   make `assemble` refuse to start on a book with no index rather than falling back — but only with
   a flag to override, never by spending on their behalf.
+
+## Recovery is driven by a ledger on the unit, not by a human's memory of what failed
+
+- **What:** every model pass records `ok` / `failed` / `skipped` (with a reason) at `meta.passes`
+  (`src/cards/passLedger.js`), a FAIL-tier preflight check refuses a unit with an incomplete pass,
+  and `anki-builder resume --run <dir>` re-runs exactly the failed ones. The hand-driven recovery
+  script that did the same job from operator-picked flags has been deleted rather than kept
+  alongside: two recovery paths drift, and the one that drifts is the one nobody ran this month.
+- **Why:** `prepare`'s markers already made its own passes recoverable; the four passes outside it
+  wrote nothing, so a quota interruption was both invisible and unrecoverable. The instance: a lesson
+  reached its review gate with the romanization correction never having run, and the only thing that
+  knew was a log line that had scrolled away.
+- **Impact:** three passes are resumable because they only annotate or reorder. `extraction` is not
+  and never will be — it IS the item set, so a failed extraction still means rebuilding the unit and
+  losing anything hand-added since. `resume` reports that rather than attempting it. The ledger is
+  also only as good as the passes that write to it: a pass added later that forgets to call
+  `recordPass` is invisible to `resume` exactly as all four were before. `KNOWN_PASSES` is the list
+  to check a new pass against.
+- **Verified by:** `node --test test/cards/resumePasses.test.js`
+- **Status:** resolved (2026-08-18)
+- **When to revisit:** if a new model pass lands, confirm it appears in `KNOWN_PASSES` and calls
+  `recordPass` on both outcomes; a pass that only records success is worse than one that records
+  nothing, because it makes the ledger look complete.
+
+## The package-freshness check reads mtimes, and git rewrites the mtimes of tracked deck JSON
+
+- **What:** `preflight`'s `package freshness` check FAILs when a done unit's `cards.json` is newer
+  than the collection's `.apkg`. Since the hand-reviewed JSON became git-tracked, any git operation
+  that rewrites one of those files — a branch switch, a merge — bumps its mtime without changing a
+  byte of it, and the check reports a stale package that is not stale.
+- **Why:** mtime is the only signal available without hashing every card set on every preflight run,
+  and before the JSON was tracked nothing but the pipeline ever wrote these files.
+- **Impact:** a false FAIL after any branch operation that touches a collection's units. Observed
+  2026-08-18: merging `feat/taught-index-command` rewrote `chapter-15/cards.json` at the exact second
+  of the merge commit, and preflight then reported the just-rebuilt package as older than the unit.
+  The failure mode is safe (it over-reports, never under-reports) and the resolution is a rebuild,
+  which is cheap and deterministic — but a check that cries wolf after every merge is on its way to
+  being ignored, which is the specific thing the FAIL tier cannot afford.
+- **Verified by:** `git log -1 --format=%cI` on the merge commit, compared against
+  `stat -f "%Sm" -t "%F %T" output/epubs/<slug>/chapter-*/cards.json`
+- **Status:** open
+- **When to revisit:** the moment someone dismisses this FAIL without checking. The fix is to compare
+  CONTENT, not timestamps: stamp the source card sets' hash into the package build and compare that,
+  so a byte-identical file rewritten by git is correctly seen as no change at all.

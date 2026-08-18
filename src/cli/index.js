@@ -51,6 +51,7 @@ import { flagForwardConcerns as defaultFlagForwardConcerns } from "../corpus/epu
 import { sortItemsPedagogically as defaultSortItemsPedagogically } from "../corpus/pedagogicalSort.js";
 import { analyzeBookConventions as defaultAnalyzeBookConventions } from "../corpus/epubBookConventions.js";
 import { translateCorpus as defaultTranslateCorpus } from "../translate/index.js";
+import { correctRomanization as defaultCorrectRomanization } from "../translate/correctRomanization.js";
 import { mineFillInBlankCards as defaultMineFillInBlankCards } from "../cards/fillInBlank.js";
 import { dedupeByPattern as defaultDedupeByPattern } from "../cards/semanticDedup.js";
 import { fillNumberReadings as defaultFillNumberReadings } from "../cards/numberReadings.js";
@@ -76,6 +77,7 @@ import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
 import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
 import { runAssemble } from "./commands/assemble.js";
 import { runPrepare } from "./commands/prepare.js";
+import { runResume } from "./commands/resume.js";
 import { runTranslate } from "./commands/translate.js";
 import { runAudio } from "./commands/audio.js";
 import { runDeck } from "./commands/deck.js";
@@ -130,6 +132,7 @@ function parseFlags(args) {
 const COMMANDS = {
   assemble: runAssemble,
   prepare: runPrepare,
+  resume: runResume,
   translate: runTranslate,
   audio: runAudio,
   deck: runDeck,
@@ -181,6 +184,7 @@ export async function runCli(argv, deps = {}) {
     flagForwardConcerns = defaultFlagForwardConcerns,
     sortItemsPedagogically = defaultSortItemsPedagogically,
     translateCorpus = defaultTranslateCorpus,
+    correctRomanization = defaultCorrectRomanization,
     mineFillInBlankCards = defaultMineFillInBlankCards,
     dedupeByPattern = defaultDedupeByPattern,
     enhanceRunDirNotes = defaultEnhanceRunDirNotes,
@@ -257,6 +261,7 @@ export async function runCli(argv, deps = {}) {
     flagForwardConcerns,
     sortItemsPedagogically,
     translateCorpus,
+    correctRomanization,
     mineFillInBlankCards,
     dedupeByPattern,
     enhanceRunDirNotes,

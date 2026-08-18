@@ -242,13 +242,13 @@ that halts partway is a half-built lesson nobody can sign off on.
 point at which you hand over. If you only need the corpus (rare — a debugging run), pass
 `--no-prepare` and say plainly that the lesson isn't reviewable yet.
 
-If a build stopped partway (a crash, an interrupted session), re-run the same `assemble` command: it
-reuses the existing `corpus.json` and picks up the remaining `prepare` steps; nothing already done is
-redone or re-charged. **A re-run recovers `prepare`'s passes only.** Everything in the extraction
-branch — the taught index, the forward-flag pass, the pedagogical sort — is skipped entirely once
-`corpus.json` exists, so a lesson whose sort or forward flags failed keeps that gap unless the corpus
-is rebuilt from scratch (see the troubleshooting note on doing that without leaking a run directory). The dashboard lists such a lesson under **Not finished**, never under In
-review.
+If a build stopped partway (a crash, an interrupted session), run **`anki-builder resume --run
+<runDir> --dry`** and then without `--dry`. It reads the pass ledger the build wrote and re-runs
+exactly what failed, including the extraction-branch passes (the forward flags, the pedagogical
+sort) that a plain `assemble` re-run skips entirely once `corpus.json` exists. Re-running `assemble`
+is still fine and still picks up `prepare`'s remaining steps, but it recovers `prepare`'s passes
+ONLY, so reach for `resume` first. The dashboard lists an unfinished lesson under **Not finished**,
+never under In review.
 
 The forms, per source. All print `resolved run directory: …`; **capture that path**, it's the
 `<runDir>` for every later `translate`/`audio`/`deck` call, and re-running the same form reuses the
@@ -783,22 +783,40 @@ and no audit is given `--apply`. Exit 2 means a report is waiting for your judgm
 something is broken. ⚠️ `prepare` spends model credits. Full reasoning:
 [extras-pass](references/extras-pass.md).
 
-### Recover a pass that failed inside `assemble`
+### Recover a pass that failed — `anki-builder resume`
 
 ```sh
-node --env-file=.env scripts/recover-extraction-passes.mjs <runDir> [--flags] [--sort]
+anki-builder resume --run <runDir> --dry     # what it would re-run, and why. Costs nothing.
+anki-builder resume --run <runDir>           # do it
 ```
 
-The taught index, the forward-flag pass and the pedagogical sort run inside `assemble`'s extraction
-branch, and that branch is skipped entirely once `corpus.json` exists — so when one of them fails (a
-quota window, a timeout), **no re-run of anything recovers it**. Rebuilding from scratch means paying
-for a fresh extraction, throwing away every card added at gate 1, and leaking a run directory unless
-you pass `--run`. This drives the same modules against the corpus already on disk instead.
+**This is the first thing to reach for when a build was interrupted.** Every model pass records its
+outcome on the unit (`meta.passes`), and `resume` reads that ledger back and re-runs exactly what
+failed, in pipeline order. You do not diagnose anything: the unit already knows.
 
-Both are safe by construction: the flag pass only annotates (`uncertain` + `reviewNote`) and the sort
-cannot add, drop or duplicate an item. Each is a paid model pass, so pick the ones you need. It
-refuses a unit that is already **reviewed** — both passes change what the reviewer signed off on, so
-Unreview first. EPUB units only.
+Always run `--dry` first. It prints the same plan the real run executes, so there is no way for the
+two to disagree, and each pass in that plan is paid.
+
+What it does, per pass:
+
+- **Re-runs** `forwardFlags`, `pedagogicalSort`, `romanization` itself. All three only annotate or
+  reorder, so re-running one against a unit that already has cards cannot change what a card means.
+- **Delegates** `translate`, `fillInBlank`, `semanticDedup`, `crossLessonNotes` and `numberReadings`
+  to `prepare`, which already recovers them through the markers it writes. Romanization deliberately
+  runs LAST, after `prepare` has had its chance to mine a drill block, so those cards get corrected
+  too.
+- **Refuses, and names the fix** for `extraction` (the item set itself — rebuild from scratch,
+  passing `--run <thisDir>` so you don't leak a run directory), `bookConventions` and `taughtIndex`
+  (book-level artifacts, each with its own command). When the taught index is missing AND the forward
+  pass needs re-running, it tells you to build the index first — that ordering is what makes the
+  forward pass cheap.
+
+It **stops at the first pass that fails again** rather than marching the rest of the plan into the
+same wall: a usage window that just refused one pass will refuse the next four too. The ledger
+records the retry, so running `resume` again picks up from there.
+
+It refuses a unit that is already **reviewed** or **done** — every pass it runs would change what
+was signed off. Unreview first if you really mean to.
 
 ### Wait for a review gate
 

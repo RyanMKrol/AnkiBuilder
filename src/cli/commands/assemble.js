@@ -5,6 +5,7 @@ import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 import { withClaim } from "../runClaim.js";
 import { validateCorpus } from "../../model/index.js";
+import { recordPass, PASS_OK, PASS_FAILED } from "../../cards/passLedger.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { listTemplates } from "../../corpus/templates.js";
 import { normalizeDisplayText } from "../../model/scriptSpacing.js";
@@ -372,6 +373,8 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       );
     }
 
+    // Record how each model pass turned out, so a failure is a fact on the unit rather than a line
+    // in a log nobody kept. See src/cards/passLedger.js.
     const forward = ctx.flagForwardConcerns({
       candidateItems: backward.items,
       epubPath: flags.epub,
@@ -383,6 +386,12 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       bookConventions,
       log: ctx.log,
     });
+    recordPass(
+      corpus.meta,
+      "forwardFlags",
+      forward.failed ? PASS_FAILED : PASS_OK,
+      forward.failed ? forward.reason : null,
+    );
     for (const { item, laterChapterLabel, reason } of forward.flagged) {
       const where = laterChapterLabel
         ? `explicitly taught later in ${laterChapterLabel}`
@@ -420,6 +429,12 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       log: ctx.log,
     });
     corpus.items = sortResult.items;
+    recordPass(
+      corpus.meta,
+      "pedagogicalSort",
+      sortResult.failed ? PASS_FAILED : PASS_OK,
+      sortResult.failed ? sortResult.reason : null,
+    );
     ctx.log(
       sortResult.changed
         ? `pedagogical sort: reordered ${corpus.items.length} item(s) into a vocabulary-first learning sequence`

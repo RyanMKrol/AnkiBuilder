@@ -6,6 +6,7 @@ import { getRomanizationLibrary as defaultGetRomanizationLibrary } from "./roman
 import { getSimpleScriptRule as defaultGetSimpleScriptRule } from "./targetScript.js";
 import { getLanguagePromptRules as defaultGetLanguagePromptRules } from "./languageRules.js";
 import { romanizeAndEvaluate } from "./romanizationEval.js";
+import { recordPass, PASS_OK, PASS_FAILED } from "../cards/passLedger.js";
 import { chunk } from "../util/chunk.js";
 import { stripMarkdownFence } from "../util/markdownFence.js";
 import { renderPromptTemplate } from "../util/promptTemplate.js";
@@ -351,6 +352,7 @@ export async function translateCorpus(
   } = {},
 ) {
   const errors = [];
+  let romanizationOutcome = null;
   const { targetLanguage } = corpus.meta;
 
   // Items marked for exclusion in the dashboard corpus review are dropped here — the single point
@@ -409,6 +411,11 @@ export async function translateCorpus(
     });
     items = result.items;
     errors.push(...result.errors);
+    // The romanization correction fails OPEN, keeping the library's value — which reads as a normal
+    // result and is how a whole lesson once shipped raw, mis-split romaji. Record it.
+    romanizationOutcome = result.failed
+      ? { status: PASS_FAILED, reason: result.reason }
+      : { status: PASS_OK, reason: null };
   } else {
     items = [];
     const ctx = { runClaude, targetLanguage, items, errors, targetScriptRule, styleRules };
@@ -477,5 +484,8 @@ export async function translateCorpus(
 
   validateCards(cards);
 
+  if (romanizationOutcome) {
+    recordPass(cards.meta, "romanization", romanizationOutcome.status, romanizationOutcome.reason);
+  }
   return { cards, errors };
 }

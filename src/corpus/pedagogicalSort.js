@@ -121,7 +121,7 @@ export function sortItemsPedagogically({
     order = parseSortResponse(runClaude(prompt));
   } catch (error) {
     log(`pedagogical sort: failed (${error.message}) — keeping the extracted order`);
-    return { items, changed: false };
+    return { items, changed: false, failed: true, reason: error.message };
   }
 
   const reordered = reorderByIds(items, order);

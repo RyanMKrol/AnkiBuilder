@@ -22,6 +22,9 @@ const CORPUS_SCHEMA = {
           enum: ["template", "epub", "manual"],
         },
         reviewed: { type: "boolean" },
+        // See src/cards/passLedger.js. Recorded during assemble; translate copies meta verbatim,
+        // so an entry written here travels with the unit into cards.json.
+        passes: { type: "object" },
         epubHash: { type: ["string", "null"] },
         chapterNumber: { type: ["number", "null"] },
         // Set only when an --epub lesson spans MORE THAN ONE spine file (see
@@ -141,6 +144,9 @@ const CARDS_SCHEMA = {
         // them. `{ at, reason, missing }`. Its presence is what makes a later `prepare` redo the
         // passes rather than skip them, and drop the thin drill block instead of appending to it.
         prepareDegraded: { type: "object" },
+        // How each model pass turned out — see src/cards/passLedger.js. Free-form by design: a
+        // pass records its own name, so adding one must not require a schema change.
+        passes: { type: "object" },
         // Opt-in: this unit's TTS input is each card's kanji orthography (`ttsKanji`) rather than
         // its kana. Set at unit creation (`translate --kanji-tts`) and per unit, never globally —
         // the value feeds the ElevenLabs cache key, so flipping it for Japanese wholesale would

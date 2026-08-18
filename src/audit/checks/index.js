@@ -24,6 +24,7 @@ import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./
 import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
 import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "./cardQuality.js";
 import { noteClaimsCheck } from "./noteClaims.js";
+import { passLedgerCheck } from "./passLedger.js";
 
 /**
  * Every check, in report order.
@@ -41,6 +42,7 @@ import { noteClaimsCheck } from "./noteClaims.js";
  * compare one collection's cards against another's.
  */
 export const ALL_CHECKS = [
+  passLedgerCheck,
   // unit scope
   schemaCheck,
   spacingCheck,

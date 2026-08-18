@@ -153,6 +153,7 @@ function assembleCard(item, correction) {
  */
 function correctRomanizations(items, { targetLanguage, runClaude, log = () => {} }) {
   const cards = [];
+  const failedBatches = [];
 
   for (const batch of chunk(items, BATCH_SIZE)) {
     const prompt = buildRomanizationPrompt(batch, targetLanguage);
@@ -169,6 +170,7 @@ function correctRomanizations(items, { targetLanguage, runClaude, log = () => {}
       // Fail open — every item below keeps the library value — but SAY so: the library's known
       // failure modes (mis-split words, literal "tsu" for っ) go uncorrected for this whole batch.
       correctionById = new Map();
+      failedBatches.push(error.message);
       log(
         `romanization eval: failed (${error.message}) — keeping the library romanization for ${batch.length} item(s)`,
       );
@@ -179,7 +181,7 @@ function correctRomanizations(items, { targetLanguage, runClaude, log = () => {}
     }
   }
 
-  return cards;
+  return { cards, failed: failedBatches.length > 0, reason: failedBatches[0] ?? null };
 }
 
 /**
@@ -218,8 +220,16 @@ export async function romanizeAndEvaluate(
     }
   }
 
-  const corrected = correctRomanizations(romanized, { targetLanguage, runClaude, log });
+  const {
+    cards: corrected,
+    failed,
+    reason,
+  } = correctRomanizations(romanized, {
+    targetLanguage,
+    runClaude,
+    log,
+  });
   const { items: fallbackCards, errors } = fallback(needsFallback);
 
-  return { items: [...corrected, ...fallbackCards], errors };
+  return { items: [...corrected, ...fallbackCards], errors, failed, reason };
 }

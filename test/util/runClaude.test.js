@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { EventEmitter } from "node:events";
-import { runClaudeWithPrompt, runClaudeWithPromptAsync } from "../../src/util/runClaude.js";
+import {
+  runClaudeWithPrompt,
+  runClaudeWithPromptAsync,
+  resetQuotaState,
+} from "../../src/util/runClaude.js";
 
 // The core refuses to run under the test runner unless explicitly allowed — these tests
 // inject a fake spawn, so lift the refusal around each call and restore afterwards.
@@ -336,23 +340,57 @@ test("a plain string scopeEnvPrefix still works, so an old call site is untouche
   assert.equal(pinning.model, "claude-opus-5");
 });
 
-test("a failure reports BOTH streams, because the CLI puts quota refusals on stdout", () => {
+test("a failure reports BOTH streams, because the CLI puts detail on stdout", () => {
   // A run of five passes once died with "exited with status 1: " and nothing after the colon: the
-  // message interpolated stderr alone, and the CLI had written its usage-limit refusal to stdout.
-  // Quota, a bad flag and a malformed prompt were indistinguishable at exactly the moment that
-  // mattered.
+  // message interpolated stderr alone, and the CLI had written its reason to stdout.
   withEnv({}, () => {
+    resetQuotaState();
     assert.throws(
       () =>
         runClaudeWithPrompt("p", {
-          spawn: () => ({ status: 1, stdout: "Claude usage limit reached", stderr: "" }),
+          spawn: () => ({ status: 1, stdout: "Unexpected token < in JSON", stderr: "" }),
         }),
-      /stdout: Claude usage limit reached/,
+      /stdout: Unexpected token/,
     );
-    // And when the CLI says nothing at all, say THAT rather than trailing off after a colon.
     assert.throws(
       () => runClaudeWithPrompt("p", { spawn: () => ({ status: 1, stdout: "", stderr: "" }) }),
       /no output on either stream/,
     );
+  });
+});
+
+test("a quota refusal stops the run instead of retrying, and stops the NEXT call too", () => {
+  // Quota is the one failure where retrying, and where continuing at all, is pure waste: every
+  // remaining pass fails the same way. One build burned ten spawns after the limit was already hit,
+  // then reported five separate "failed" passes as if they were five separate problems.
+  withEnv({}, () => {
+    resetQuotaState();
+    let spawns = 0;
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => {
+            spawns++;
+            return { status: 1, stdout: "Claude usage limit reached · resets 3am", stderr: "" };
+          },
+        }),
+      /usage limit appears to be reached/,
+    );
+    assert.equal(spawns, 1, "no retry is spent on a quota refusal");
+
+    // The breaker is process-scoped: the next pass in the same run must not spawn at all.
+    let laterSpawns = 0;
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => {
+            laterSpawns++;
+            return { status: 0, stdout: "ok" };
+          },
+        }),
+      /usage limit appears to be reached/,
+    );
+    assert.equal(laterSpawns, 0, "the rest of the run does not spawn");
+    resetQuotaState();
   });
 });

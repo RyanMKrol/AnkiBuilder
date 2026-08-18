@@ -87,12 +87,20 @@ export function runClaudeWithPrompt(
 
   const { model, effort, timeout } = resolvePinning(scopeEnvPrefix, defaults);
 
+  if (quotaExhausted) throw new QuotaExhaustedError(quotaExhausted);
+
   let lastError;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       return invokeOnce(prompt, { model, effort, timeout, maxBuffer, spawn });
     } catch (error) {
       lastError = error;
+      // A quota refusal is not a transient hiccup: do not spend the retry, and do not let the rest
+      // of the run spend anything either.
+      if (looksLikeQuotaExhaustion(error.message)) {
+        quotaExhausted = error.message;
+        throw new QuotaExhaustedError(error.message);
+      }
     }
   }
   throw lastError;
@@ -106,6 +114,49 @@ export function runClaudeWithPrompt(
  * colon, and quota was indistinguishable from a bad flag or a malformed prompt. Both streams, always,
  * trimmed and capped so a megabyte of half-written JSON cannot bury the one line that explains it.
  */
+/**
+ * Does this failure look like the account's usage limit rather than a bad call?
+ *
+ * Worth distinguishing because a quota refusal is the one failure where retrying, and where
+ * CONTINUING AT ALL, is pure waste: every remaining pass in the run will fail the same way. One
+ * lesson build burned ten spawns after the limit was already reached, then reported five separate
+ * "failed" passes as if they were five separate problems.
+ */
+export function looksLikeQuotaExhaustion(text) {
+  return /usage limit|rate limit|quota|too many requests|429|upgrade to increase|limit reached/i.test(
+    String(text ?? ""),
+  );
+}
+
+/**
+ * Set once a quota refusal is seen, so the rest of the run stops spawning. Process-scoped on
+ * purpose: a fresh invocation gets a fresh chance, which is exactly right when the window has rolled
+ * over.
+ */
+let quotaExhausted = null;
+
+/** Test seam, and the way a caller signals a new window is worth trying. */
+export function resetQuotaState() {
+  quotaExhausted = null;
+}
+
+/** What stopped the run, if it was the quota. Callers use this to record WHY a pass never ran. */
+export function quotaFailure() {
+  return quotaExhausted;
+}
+
+class QuotaExhaustedError extends Error {
+  constructor(detail) {
+    super(
+      `claude -p refused: the account's usage limit appears to be reached.\n${detail}\n` +
+        `Every remaining model pass in this run would fail the same way, so the run stopped here ` +
+        `rather than spending attempts on it. Re-run when the window has rolled over; passes that ` +
+        `completed are recorded and will not be redone.`,
+    );
+    this.quotaExhausted = true;
+  }
+}
+
 function describeFailure(status, stdout, stderr) {
   const cap = (text) => {
     const trimmed = String(text ?? "").trim();

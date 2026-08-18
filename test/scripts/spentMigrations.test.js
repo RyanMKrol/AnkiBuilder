@@ -44,7 +44,6 @@ const STANDING = [
   "eval-pass.mjs",
   "vocab-coverage.mjs",
   "paradigm-grid.mjs",
-  "recover-extraction-passes.mjs",
   "clean-audio.mjs",
   "audit-marker-stuck.mjs",
   "generate-kanji-tts.mjs",

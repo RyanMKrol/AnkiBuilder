@@ -25,9 +25,9 @@ export const passLedgerCheck = defineCheck({
         key: `${name}`,
         message:
           `the ${name} pass did not complete${reason ? ` (${reason})` : ""}. Its output is missing ` +
-          `from this unit, so the card set is not final. Re-run it — ` +
-          `\`node scripts/recover-extraction-passes.mjs <runDir>\` covers the passes an ordinary ` +
-          `re-run cannot reach.`,
+          `from this unit, so the card set is not final. Re-run it: ` +
+          `\`anki-builder resume --run <runDir>\` reads this ledger and re-runs exactly what ` +
+          `failed (\`--dry\` first to see the plan).`,
       })),
       summary: `${failed.length} pass(es) did not complete: ${failed.map(([n]) => n).join(", ")}`,
     };

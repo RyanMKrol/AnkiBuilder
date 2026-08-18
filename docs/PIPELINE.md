@@ -995,6 +995,67 @@ never touched, whatever is asked for, and the refusal is checked at the point of
 than assumed from how the target list was built — it holds human-reviewed chapters that no amount
 of compute can rebuild, one directory away from everything the command does delete.
 
+## The pass ledger, and `resume`
+
+Every model pass in a build records its outcome on the unit, at `meta.passes`:
+
+```json
+"passes": {
+  "forwardFlags": { "status": "failed", "reason": "usage limit reached" },
+  "pedagogicalSort": { "status": "ok" },
+  "taughtIndex": { "status": "skipped", "reason": "this book has no cached taught index — ..." }
+}
+```
+
+`recordPass` / `failedPasses` live in `src/cards/passLedger.js`. The ledger travels corpus -> cards
+(translate copies `meta` verbatim), so an entry written during `assemble` survives into the deck.
+
+This extends a convention that already existed rather than inventing a second one. `prepare`'s two
+enrichment passes have always written markers (`enriched`, `notesEnhanced`), which is exactly why a
+failure there was trivially recoverable: no marker means not done, so a re-run retries those and
+only those. The passes outside `prepare` — the taught index, the forward flags, the pedagogical
+sort, the romanization correction — wrote nothing at all. Nothing on disk knew they had failed, so
+nothing could retry them, and the failure surfaced weeks later as one wrong card.
+
+Three things read the ledger:
+
+- **`preflight`'s `pass-ledger` check** (FAIL tier, `src/audit/checks/passLedger.js`) refuses to let
+  a unit with an incomplete pass present itself as ready for a review gate. Silent for units built
+  before the ledger existed — no `meta.passes`, nothing to report.
+- **`prepare`'s closing line** names what did not complete instead of saying "ready for the corpus
+  review" regardless.
+- **`anki-builder resume --run <dir>`** (`src/cli/commands/resume.js`) re-runs exactly what failed.
+
+### `resume`
+
+The plan is data (`planResume`, `src/cards/resumePasses.js`), so `--dry` and the real run cannot
+disagree. Passes split three ways:
+
+| group         | passes                                                                            | how                                                                            |
+| ------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **resumable** | `forwardFlags`, `pedagogicalSort`, `romanization`                                 | driven directly against the files on disk — all three only annotate or reorder |
+| **delegated** | `translate`, `fillInBlank`, `semanticDedup`, `crossLessonNotes`, `numberReadings` | `runPrepare`, which already recovers them through its markers                  |
+| **blocked**   | `extraction`, `bookConventions`, `taughtIndex`                                    | reported with the command that fixes each; none can be repaired in place       |
+
+Three properties are load-bearing:
+
+- **Romanization runs LAST**, after `prepare`. `prepare` can mine a whole drill block, and those
+  cards need correcting too. (Re-running `translate` is not a substitute: it short-circuits on an
+  existing `cards.json`, and when it doesn't it rebuilds the file from the corpus, discarding the
+  drill block, every audio reference and the cross-lesson notes.)
+- **Writes go through `patchUnitItems`**, which applies the same patch to `corpus.json` and
+  `cards.json`, refuses any patch that changes the item count, and writes through `writeUnitJson`
+  (validate, stamped backup, atomic write, re-validate). The count assertion is what makes the
+  resumable passes safe by construction: a patch that adds or drops an item has done something its
+  pass is not allowed to do.
+- **The ledger is updated after each pass.** A resume that fixed a unit but left it reading "failed"
+  would keep `preflight` blocking the review and make the next resume redo work that already
+  succeeded. It **stops at the first pass that fails again**: a usage window that just refused one
+  pass will refuse the next four too, and the retry is recorded so the next `resume` picks up there.
+
+`resume` refuses a unit that is `reviewed` or `done` — every pass it runs would change what was
+signed off.
+
 ## Model passes: pinning, env scopes and timeouts
 
 Every `claude -p` call in the pipeline goes through `runClaudeWithPrompt` (`src/util/runClaude.js`):

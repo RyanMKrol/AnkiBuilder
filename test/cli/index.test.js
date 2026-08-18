@@ -2646,3 +2646,161 @@ test("epub taught-index needs a language it can name, rather than guessing one",
     /--lang/,
   );
 });
+
+// --- resume ---
+
+function resumeUnit(dir, { passes = {}, meta = {}, cards = true } = {}) {
+  const base = {
+    targetLanguage: "ja",
+    sourceType: "epub",
+    epubHash: "abc123",
+    chapterNumber: 5,
+    reviewed: false,
+    passes,
+    ...meta,
+  };
+  const items = [
+    { id: "a", english: "A", target: "あ", category: "Other" },
+    { id: "b", english: "B", target: "い", category: "Other" },
+  ];
+  writeFileSync(join(dir, "corpus.json"), JSON.stringify({ meta: base, items }));
+  if (cards) {
+    // `enriched` / `notesEnhanced` are cards-only by schema — a unit whose prepare passes are done.
+    writeFileSync(
+      join(dir, "cards.json"),
+      JSON.stringify({
+        meta: { ...base, enriched: true, notesEnhanced: true },
+        items: items.map((i) => ({ ...i, pronunciation: "x" })),
+      }),
+    );
+  }
+  return dir;
+}
+
+test("resume --dry reads the ledger and reports the plan without spending anything", async () => {
+  await withTempDir(async (dir) => {
+    resumeUnit(dir, {
+      passes: {
+        forwardFlags: { status: "failed", reason: "usage limit reached" },
+        pedagogicalSort: { status: "failed", reason: "usage limit reached" },
+      },
+    });
+    const logs = [];
+    let spent = false;
+
+    await runCli(["resume", "--run", dir, "--dry"], {
+      flagForwardConcerns: () => {
+        spent = true;
+        return { items: [], flagged: [] };
+      },
+      sortItemsPedagogically: () => {
+        spent = true;
+        return { items: [], changed: false };
+      },
+      log: (msg) => logs.push(msg),
+    });
+
+    assert.equal(spent, false);
+    assert.ok(logs.some((m) => m.includes("2 pass(es) to re-run")));
+    assert.ok(logs.some((m) => m.includes("--dry, so nothing ran")));
+  });
+});
+
+test("resume re-runs exactly the failed passes and clears them from the ledger", async () => {
+  await withTempDir(async (dir) => {
+    resumeUnit(dir, { passes: { pedagogicalSort: { status: "failed", reason: "quota" } } });
+    const logs = [];
+
+    await runCli(["resume", "--run", dir], {
+      loadBookConventions: () => "conventions",
+      sortItemsPedagogically: ({ items }) => ({ items: [...items].reverse(), changed: true }),
+      log: (msg) => logs.push(msg),
+    });
+
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    assert.deepEqual(
+      cards.items.map((i) => i.id),
+      ["b", "a"],
+    );
+    // The point of writing the outcome back: preflight reads this, and a resume that fixed the
+    // unit but left it reading "failed" would keep blocking the review forever.
+    assert.equal(cards.meta.passes.pedagogicalSort.status, "ok");
+    assert.equal(
+      JSON.parse(readFileSync(join(dir, "corpus.json"), "utf-8")).meta.passes.pedagogicalSort
+        .status,
+      "ok",
+    );
+  });
+});
+
+test("resume STOPS at the first pass that fails again, instead of walking the rest into the same wall", async () => {
+  await withTempDir(async (dir) => {
+    resumeUnit(dir, {
+      passes: {
+        forwardFlags: { status: "failed", reason: "quota" },
+        pedagogicalSort: { status: "failed", reason: "quota" },
+      },
+    });
+    const logs = [];
+    let sorted = false;
+
+    await runCli(["resume", "--run", dir], {
+      libraryEpubPath: () => "/lib/abc123/book.epub",
+      loadBookConventions: () => null,
+      flagForwardConcerns: () => ({ items: [], flagged: [], failed: true, reason: "usage limit" }),
+      sortItemsPedagogically: () => {
+        sorted = true;
+        return { items: [], changed: false };
+      },
+      log: (msg) => logs.push(msg),
+    });
+
+    assert.equal(sorted, false, "the second pass must not run after the first failed again");
+    const cards = JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+    assert.equal(cards.meta.passes.forwardFlags.status, "failed");
+    assert.equal(cards.meta.passes.pedagogicalSort.status, "failed");
+    assert.ok(logs.some((m) => m.includes("stopping here")));
+  });
+});
+
+test("resume refuses a unit that has already been reviewed", async () => {
+  await withTempDir(async (dir) => {
+    resumeUnit(dir, {
+      passes: { pedagogicalSort: { status: "failed", reason: "quota" } },
+      meta: { reviewed: true },
+    });
+    const logs = [];
+    let spent = false;
+
+    await runCli(["resume", "--run", dir], {
+      sortItemsPedagogically: () => {
+        spent = true;
+        return { items: [], changed: false };
+      },
+      log: (msg) => logs.push(msg),
+    });
+
+    assert.equal(spent, false);
+    assert.ok(logs.some((m) => m.includes("already REVIEWED")));
+  });
+});
+
+test("resume says so plainly when there is nothing to re-run", async () => {
+  await withTempDir(async (dir) => {
+    resumeUnit(dir, { passes: { forwardFlags: { status: "ok" } } });
+    const logs = [];
+    await runCli(["resume", "--run", dir], { log: (msg) => logs.push(msg) });
+    assert.ok(logs.some((m) => m.includes("every pass on")));
+  });
+});
+
+test("resume names the fix for a failure it cannot repair, and does not pretend to handle it", async () => {
+  await withTempDir(async (dir) => {
+    resumeUnit(dir, { passes: { extraction: { status: "failed", reason: "timeout" } } });
+    const logs = [];
+    await runCli(["resume", "--run", dir], { log: (msg) => logs.push(msg) });
+
+    assert.ok(logs.some((m) => m.includes("extraction CANNOT be resumed")));
+    assert.ok(logs.some((m) => m.includes("--run")));
+  });
+});

@@ -84,6 +84,11 @@ anki-builder assemble --output-root output --epub mybook.epub --chapter-number 1
 anki-builder assemble --output-root output --book <book-slug> --lesson "Lesson 4" --lang ja
 # ...Corpus-review in the dashboard, then audio for that lesson; repeat per lesson...
 anki-builder deck --book-dir output/epubs/<book-slug>   # merges every chapter into one deck
+# If a build was interrupted (a usage window, a timeout), don't diagnose it — the unit already
+# recorded which passes failed. This reads that ledger and re-runs exactly those, in pipeline
+# order. --dry prints the same plan without spending anything.
+anki-builder resume --run <runDir> --dry
+anki-builder resume --run <runDir>
 ```
 
 Audio generation needs an ElevenLabs API key — copy `.env.example` to `.env` and add
@@ -369,6 +374,13 @@ operator has to override on the day it lands is worse than no gate.
       automatically: that is a paid pass and a judgement call
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
+- [x] Every model pass records its outcome on the unit (`meta.passes`: ok / failed / skipped, with a
+      reason), a FAIL-tier preflight check refuses to let a unit with an incomplete pass reach a
+      review gate, and `anki-builder resume --run <dir>` reads that ledger back and re-runs exactly
+      what failed — `--dry` first for the plan. A refusal from the usage limit is recognised, never
+      retried, and trips a breaker so the passes queued behind it don't spawn at all. The whole-book
+      taught index is its own command (`anki-builder epub taught-index <hash>`) rather than something
+      a lesson build fires unannounced
 - [x] Translation stage (Claude — one Sonnet-medium call per group, no batching)
 - [x] One pinned romanization spec per language (`src/translate/romajiStyle.js`): each rule is the
       prose injected into all three romanizing prompts AND the detector `preflight`'s `romaji-style`

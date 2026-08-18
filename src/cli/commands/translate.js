@@ -36,6 +36,7 @@ export async function runTranslateInner(flags, ctx) {
     const subCorpus = { ...corpus, items: corpus.items.filter((item) => pendingIds.has(item.id)) };
     const { cards: retried, errors } = await ctx.translateCorpus(subCorpus, {
       simpleScript: !!flags["simple-script"],
+      log: ctx.log,
     });
 
     const byId = new Map(existing.items.map((item) => [item.id, item]));
@@ -79,6 +80,11 @@ export async function runTranslateInner(flags, ctx) {
   // a language with no such rule.
   const { cards, errors } = await ctx.translateCorpus(corpus, {
     simpleScript: !!flags["simple-script"],
+    // Without this the stage's log defaults to a no-op, and everything it has to say disappears.
+    // That is not hypothetical: a whole lesson was built with its romanization-correction pass
+    // failing on every batch, and the "romanization eval: failed" line it dutifully emitted went
+    // nowhere, so the cards shipped with raw library romaji and the build looked clean.
+    log: ctx.log,
   });
 
   // Errored items are RECORDED on the file, not just logged: readiness blocks the review while any

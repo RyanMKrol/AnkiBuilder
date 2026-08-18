@@ -2903,3 +2903,32 @@ never actually learned.
   tag multiplicity on the notes involved before running it. A check that walks the live collection
   looking for a note carrying two or more `abid:` tags would have caught this the day it happened, and
   is the obvious next guard if it recurs.
+
+### A rebuilt-from-scratch lesson lands in a NEW run directory, leaving a husk
+
+**What.** Emptying a unit dir (deleting `corpus.json`/`cards.json`) and re-running the
+`--book`/`--lesson` form of `assemble` does not rebuild in place: the run directory is allocated by
+taking the next free sequence number, and the number this lesson already holds is only reclaimed via
+the claim file that a FAILED build leaves behind (`clearOnFailure: false`). A build that SUCCEEDED and
+was then emptied by hand has no claim, so the rebuild takes a fresh number. Lesson 15 rebuilt into
+`chapter-16` while `chapter-15` was left holding nothing but `.bak` files.
+
+**Why it does not break anything.** Directory numbers are allocation order, not lesson or spine
+numbers, and never matched them (`chapter-14` is spine 34). Deck paths come from `meta.chapterLabel`,
+the dedup library is keyed on `(epubHash, meta.chapterNumber)`, and both were correct in the new
+directory. The cost is legibility, not correctness.
+
+**Impact.** The tree stops reading as "chapter-N is lesson N-ish" and an empty husk sits where the
+work used to be. Preflight does not notice either: a unit-shaped directory with no `cards.json` is
+skipped silently rather than reported, so the coverage header counted the new unit and said nothing
+about the husk.
+
+**Handled 2026-08-17** by moving the rebuilt unit back into `chapter-15` and deleting the husk, and by
+documenting in SKILL.md that a from-scratch rebuild must use `--run <that same runDir>`.
+
+- **Status:** open
+- **Verified by:** `ls output/epubs/<book>/` — a unit directory holding only `.bak` files is a husk
+- **When to revisit.** If this recurs, the cheap guard is a preflight line for a unit-shaped directory
+  with no `cards.json`, which would also have caught it here. The deeper fix is for the `--book`/
+  `--lesson` form to reuse the directory whose `meta.chapterNumber` matches the resolved spine index,
+  rather than always allocating.

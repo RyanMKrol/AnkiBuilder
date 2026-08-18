@@ -236,7 +236,10 @@ point at which you hand over. If you only need the corpus (rare — a debugging 
 
 If a build stopped partway (a crash, an interrupted session), re-run the same `assemble` command: it
 reuses the existing `corpus.json` and picks up the remaining `prepare` steps; nothing already done is
-redone or re-charged. The dashboard lists such a lesson under **Not finished**, never under In
+redone or re-charged. **A re-run recovers `prepare`'s passes only.** Everything in the extraction
+branch — the taught index, the forward-flag pass, the pedagogical sort — is skipped entirely once
+`corpus.json` exists, so a lesson whose sort or forward flags failed keeps that gap unless the corpus
+is rebuilt from scratch (see the troubleshooting note on doing that without leaking a run directory). The dashboard lists such a lesson under **Not finished**, never under In
 review.
 
 The forms, per source. All print `resolved run directory: …`; **capture that path**, it's the
@@ -866,7 +869,16 @@ Audio is cached in `.anki-builder/audio/<voiceId>/<model>/`; see
 
 - **"corpus.json already exists — reusing"**: not an error — assemble found an existing corpus and
   carried on into `prepare`; that's how a re-run resumes an interrupted lesson. To genuinely start
-  fresh, delete `<runDir>/corpus.json` and `<runDir>/cards.json` first.
+  fresh, delete `<runDir>/corpus.json` and `<runDir>/cards.json` first — and then **re-run assemble
+  with `--run <that same runDir>`, not the `--book`/`--lesson` form.** A `--book`/`--lesson` build
+  resolves its run directory by ALLOCATING the next free sequence number, and the number it already
+  gave this lesson is only reclaimed by the claim file a FAILED build leaves behind. A build that
+  succeeded and was then emptied by hand has no claim, so the rebuild takes a fresh number and the
+  lesson lands one directory along, leaving an empty husk behind: this happened on Lesson 15, which
+  rebuilt into `chapter-16` while `chapter-15` kept nothing but backup files. Nothing downstream
+  breaks (the deck path comes from `meta.chapterLabel`, and `meta.chapterNumber` is the spine index,
+  so directory numbers never matched lesson numbers anyway) but the tree becomes a puzzle. Pass
+  `--run` and it rebuilds in place.
 - **A lesson sits under "Not finished"**: its build stopped early. Re-run the same `assemble`
   command, or `anki-builder prepare --run <dir>` directly; nothing already done is redone. If the
   readiness message names failed translations (`translateErrors`), a re-run retries just those items.

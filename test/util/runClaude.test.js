@@ -111,7 +111,7 @@ test("throws the last error once the retry is exhausted", () => {
             return { status: 1, stdout: "", stderr: `boom ${calls}` };
           },
         }),
-      /exited with status 1: boom 2/,
+      /exited with status 1 \(stderr: boom 2\)/,
     );
     assert.equal(calls, 2);
   });
@@ -199,7 +199,7 @@ test("async: retries once on a non-zero exit, then surfaces the last error", asy
             return fakeChild({ code: 1, stderr: `boom ${calls}` });
           },
         }),
-      /exited with status 1: boom 2/,
+      /exited with status 1 \(stderr: boom 2\)/,
     );
     assert.equal(calls, 2);
   });
@@ -334,4 +334,25 @@ test("a plain string scopeEnvPrefix still works, so an old call site is untouche
     { scopeEnvPrefix: "ANKI_BUILDER_EPUB_LLM" },
   );
   assert.equal(pinning.model, "claude-opus-5");
+});
+
+test("a failure reports BOTH streams, because the CLI puts quota refusals on stdout", () => {
+  // A run of five passes once died with "exited with status 1: " and nothing after the colon: the
+  // message interpolated stderr alone, and the CLI had written its usage-limit refusal to stdout.
+  // Quota, a bad flag and a malformed prompt were indistinguishable at exactly the moment that
+  // mattered.
+  withEnv({}, () => {
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => ({ status: 1, stdout: "Claude usage limit reached", stderr: "" }),
+        }),
+      /stdout: Claude usage limit reached/,
+    );
+    // And when the CLI says nothing at all, say THAT rather than trailing off after a colon.
+    assert.throws(
+      () => runClaudeWithPrompt("p", { spawn: () => ({ status: 1, stdout: "", stderr: "" }) }),
+      /no output on either stream/,
+    );
+  });
 });

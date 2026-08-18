@@ -98,6 +98,26 @@ export function runClaudeWithPrompt(
   throw lastError;
 }
 
+/**
+ * The reason a `claude -p` run failed, from wherever the CLI put it.
+ *
+ * It reports a usage/quota refusal on STDOUT, not stderr, and this message used to interpolate
+ * stderr alone — so a whole run of passes died with "exited with status 1: " and nothing after the
+ * colon, and quota was indistinguishable from a bad flag or a malformed prompt. Both streams, always,
+ * trimmed and capped so a megabyte of half-written JSON cannot bury the one line that explains it.
+ */
+function describeFailure(status, stdout, stderr) {
+  const cap = (text) => {
+    const trimmed = String(text ?? "").trim();
+    return trimmed.length > 600 ? `${trimmed.slice(0, 600)}…` : trimmed;
+  };
+  const parts = [];
+  if (cap(stderr)) parts.push(`stderr: ${cap(stderr)}`);
+  if (cap(stdout)) parts.push(`stdout: ${cap(stdout)}`);
+  const detail = parts.length ? parts.join(" | ") : "no output on either stream";
+  return `claude -p exited with status ${status} (${detail})`;
+}
+
 function invokeOnce(prompt, { model, effort, timeout, maxBuffer, spawn }) {
   const result = spawn("claude", ["-p", "--model", model, "--effort", effort], {
     input: prompt,
@@ -113,7 +133,7 @@ function invokeOnce(prompt, { model, effort, timeout, maxBuffer, spawn }) {
     throw result.error;
   }
   if (result.status !== 0) {
-    throw new Error(`claude -p exited with status ${result.status}: ${result.stderr}`);
+    throw new Error(describeFailure(result.status, result.stdout, result.stderr));
   }
 
   return result.stdout;
@@ -183,7 +203,7 @@ function invokeOnceAsync(prompt, { model, effort, timeout, maxBuffer, spawnImpl 
       settled = true;
       clearTimeout(timer);
       if (code !== 0) {
-        reject(new Error(`claude -p exited with status ${code}: ${stderr}`));
+        reject(new Error(describeFailure(code, stdout, stderr)));
       } else {
         resolvePromise(stdout);
       }

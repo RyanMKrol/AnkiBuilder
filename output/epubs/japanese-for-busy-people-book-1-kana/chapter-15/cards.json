@@ -41,11 +41,12 @@
     },
     {
       "id": "kaku-draw",
-      "english": "Draw",
+      "english": "Draw (dictionary form)",
       "category": "Sports & Hobbies",
       "target": "かく",
       "pronunciation": "kaku",
-      "hint": "dictionary form (plain, casual)"
+      "hint": "dictionary form (plain, casual)",
+      "reviewNote": "Gloss disambiguated at gate 1: it and かきます were both plain \"Draw\", while every sibling activity verb in this lesson (はなす, うたう, およぐ, はしる) marks its dictionary form in the gloss."
     },
     {
       "id": "kakimasu-draw",

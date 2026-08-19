@@ -3051,11 +3051,15 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   true flag instead of re-rolling it, and the unit then reported clean.
 - **Impact:** the flag can now only be cleared by evidence, which is right, but it also means a flag
   set by a take that has since been replaced by hand outside the stage stays until something re-asks.
-  That is what `scripts/audit-marker-stuck.mjs` is for. It also means the flag is only as good as the
-  runs that set it: any unit whose `audio` was re-run before this fix may be carrying a marker-audible
-  clip with no flag at all, and nothing on disk records that the flag was ever there. The detector
-  cannot find these (they are by definition the clips it failed on), so the only way to recover them
-  is a human listening at gate 2.
+  That is what `scripts/audit-marker-stuck.mjs` is for.
+- **Blast radius, measured:** ONE card, the one that surfaced the bug. Every removal of an
+  `audioMarkerStuck` field from a tracked `cards.json` is in git, and there are only three commits:
+  `a0dfa10` (the commit that began tracking the JSON at all), `79327cf` (the deliberate
+  `audit-marker-stuck.mjs --apply` run that cleared the seven stale flags on 2026-08-14, each with a
+  recorded positional proof that the clip's hand cut lands before its marker), and `6cb84a0` (this
+  fix). No silent erasure happened in the tracked period. Before 2026-08-14 `output/` was untracked,
+  so that window cannot be audited — but no clip in it has been reported marker-audible by ear
+  either. There is no re-listening sweep to do.
 - **Verified by:** `node --test test/audio/index.test.js` (the two tests named "a cache hit does NOT
   clear a marker-stuck flag..." and "a real trim that finds no marker DOES clear a stale flag")
 - **Status:** resolved (2026-08-19)

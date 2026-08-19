@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "chapterNumber": 37,
     "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime (Extras)",
     "baseChapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime",
@@ -27,7 +27,8 @@
         "status": "ok",
         "reason": "completed in an earlier run (notesEnhanced marker set)"
       }
-    }
+    },
+    "done": true
   },
   "items": [
     {

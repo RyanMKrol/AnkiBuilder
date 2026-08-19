@@ -364,10 +364,13 @@ test("flags a card whose end marker survived the trim, and only that card", asyn
         { id: "stuck", english: "Ra", category: "Other", target: "ら" },
       ]);
 
-      // The real trimmer reports via opts.flags; this stub fails the strip for one clip only.
+      // The real trimmer reports via opts.flags, and BOTH halves have to say yes: the marker was
+      // located, and a cut actually happened. This stub fails the strip for one clip only.
       const trim = async (bytes, opts) => {
         if (opts.marker && opts.flags) {
-          opts.flags.markerStripped = !bytes.toString().includes("STUCK");
+          const clean = !bytes.toString().includes("STUCK");
+          opts.flags.markerStripped = clean;
+          opts.flags.trimmedTo = clean ? 1.5 : null;
         }
         return bytes;
       };
@@ -396,7 +399,9 @@ test("a cache hit does NOT clear a marker-stuck flag it produced no evidence abo
     await withTempDir(async (tmpDir) => {
       const cards = baseCards([{ id: "stuck", english: "Ra", category: "Other", target: "ら" }]);
       const trim = async (bytes, opts) => {
-        if (opts.marker && opts.flags) opts.flags.markerStripped = false;
+        if (opts.marker && opts.flags) {
+          Object.assign(opts.flags, { markerStripped: false, trimmedTo: null });
+        }
         return bytes;
       };
       const opts = {
@@ -451,7 +456,10 @@ test("a real trim that finds no marker DOES clear a stale flag", async () => {
         },
       ]);
       const trim = async (bytes, opts) => {
-        if (opts.marker && opts.flags) opts.flags.markerStripped = true;
+        // Found AND cut — the only combination that means the marker is really gone.
+        if (opts.marker && opts.flags) {
+          Object.assign(opts.flags, { markerStripped: true, trimmedTo: 1.5 });
+        }
         return bytes;
       };
 

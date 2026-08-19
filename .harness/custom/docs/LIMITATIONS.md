@@ -3143,3 +3143,29 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   comparing each stage-owned marked clip's duration against its `.orig.mp3` would catch this whatever
   the flag says. It is ~2,000 ffprobe calls, so it wants to be its own command rather than part of the
   default sweep.
+
+## The source EPUB's OCR corrupts small kana, and nothing checks the target against its own romaji
+
+- **What:** this book's scan renders small ょ/ゅ/っ as large よ/ゆ/つ in places, so extraction faithfully
+  produces cards whose target is not a word — `いっしよに`, `たべましよう`, `しゆうまつ`, `ちよつと`,
+  `しよくじ`. Ten such cards reached gate 1 on Lesson 16, including every ましょう cell of the chapter's
+  own paradigm table. Corrected by hand at gate 1 and documented in SKILL.md; only chapter 16 of 2,223
+  cards was affected.
+- **Why extraction is not at fault:** copying the source verbatim rather than silently "correcting" a
+  book it cannot second-guess is the right default, and it did flag the two vocabulary rows whose
+  gloss made the damage obvious (`つき、` for つぎ, `ゆさ` for ゆき). What it cannot see is that a small
+  kana was scanned large, because the result is still valid kana.
+- **Impact:** a corrupt target teaches a non-word AND is voiced wrong by TTS (い-っ-し-よ-に). The
+  detection is currently a hand sweep with a regex whose false-positive rate is high — 47 hits, 7 real,
+  because `にぎやか`, `おみやげ`, `にちようび` and the `や` particle legitimately take a large kana. It
+  found the paradigm cells only because the cell-by-cell audit reported them empty.
+- **The check worth building:** the romanization pass normalizes to the INTENDED reading, so a corrupt
+  target ships beside a correct romaji — `いっしよに` / `issho ni`. Romanizing the target and comparing
+  it to the stored `pronunciation` would catch this class deterministically, with no per-book regex and
+  no false positives from legitimate large kana. It needs the kuroshiro adapter at check time, which is
+  a ~40MB dictionary load, so it belongs in `npm run check` rather than the default sweep.
+- **Verified by:** `node scripts/vocab-coverage.mjs <chapterFile> <unitDir>` reports each corrupt card
+  as MISSING with the correct form as its nearest card target
+- **Status:** open (instances fixed; no automated check yet)
+- **When to revisit:** the next book. If a second source shows the same damage, build the round-trip
+  check rather than re-deriving the regex — a hand sweep that is 85% false positives will get skipped.

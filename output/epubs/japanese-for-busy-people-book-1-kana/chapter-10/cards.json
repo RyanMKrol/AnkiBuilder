@@ -22,7 +22,8 @@
       "audioOriginal": "6fbf72576000cbe5.orig.mp3",
       "audioAuto": "6fbf72576000cbe5.mp3",
       "audioMarked": true,
-      "audioTextHash": "6fbf72576000cbe5"
+      "audioTextHash": "6fbf72576000cbe5",
+      "hint": "the polite offer of food or drink"
     },
     {
       "id": "itadakimasu-accept",
@@ -829,7 +830,8 @@
       "audioOriginal": "85ae31317e4ffec5.orig.mp3",
       "audioAuto": "85ae31317e4ffec5.mp3",
       "audioMarked": true,
-      "audioTextHash": "85ae31317e4ffec5"
+      "audioTextHash": "85ae31317e4ffec5",
+      "scene": "saying how much or how long"
     },
     {
       "id": "machimasu",

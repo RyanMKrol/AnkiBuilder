@@ -134,6 +134,15 @@ async function fetchTermsToCache(
           // Cached. A pre-originals entry has no sibling — report it absent rather than refetching,
           // which would spend credits re-rolling a take (ElevenLabs is non-deterministic) purely to
           // recover an original we had already chosen to discard.
+          //
+          // `markerStuck` is deliberately left UNDEFINED, meaning "no evidence either way this run",
+          // and is NOT `false`. Nothing was fetched and nothing was trimmed here, so this branch
+          // learned nothing about whether the cached clip carries the end marker. Reporting `false`
+          // read as "checked, and it is clean": a re-run over a cached unit silently cleared the flag
+          // off every marker-audible clip it owned, leaving the card asserting clean audio, the
+          // dashboard badge gone and preflight's audio-markers check passing — while the clip on disk
+          // was byte-identical and still said ででで. See src/audio/trimSilence.js's own rule: "could
+          // not tell" must never be reported as "found one", and its converse holds too.
           fetched.set(term, {
             audio: filename,
             original: (await fileExists(origPath)) ? original : null,
@@ -332,8 +341,13 @@ export async function generateAudio(
       // The trim could not find/cut the end marker, so it survives into the shipping clip — a
       // failure only ears would otherwise catch. Badged in the audio review; cleared whenever the
       // reviewer installs different audio (all setters spread the full AUDIO_FIELDS).
-      if (clip.markerStuck) next.audioMarkerStuck = true;
-      else delete next.audioMarkerStuck;
+      //
+      // THREE states, not two. `true`/`false` are verdicts from a real fetch-and-trim and either may
+      // overwrite what the card said. `undefined` is a cache hit: this run produced no evidence, so
+      // whatever the card already records stands. Collapsing undefined into "clear it" is what let a
+      // second `audio` run over a cached unit erase a true flag and report the clip as clean.
+      if (clip.markerStuck === true) next.audioMarkerStuck = true;
+      else if (clip.markerStuck === false) delete next.audioMarkerStuck;
       if (clip.original) next.audioOriginal = clip.original;
       else delete next.audioOriginal;
       // A regenerated card is speaking NEW text, so any hand-cut range the reviewer applied describes

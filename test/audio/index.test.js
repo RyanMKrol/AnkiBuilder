@@ -389,6 +389,87 @@ test("flags a card whose end marker survived the trim, and only that card", asyn
   }
 });
 
+test("a cache hit does NOT clear a marker-stuck flag it produced no evidence about", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    await withTempDir(async (tmpDir) => {
+      const cards = baseCards([{ id: "stuck", english: "Ra", category: "Other", target: "ら" }]);
+      const trim = async (bytes, opts) => {
+        if (opts.marker && opts.flags) opts.flags.markerStripped = false;
+        return bytes;
+      };
+      const opts = {
+        voiceId: "voice123",
+        fetchTts: async () => Buffer.from("STUCK-bytes"),
+        libraryHomeDir: tmpDir,
+        trim,
+      };
+
+      const first = await generateAudio(cards, opts);
+      assert.equal(first.items[0].audioMarkerStuck, true);
+
+      // Second run: the clip is cached, so nothing is fetched and nothing is trimmed. The clip on
+      // disk is byte-identical and still says ででで, so the flag must survive.
+      //
+      // It did not. The cache branch reported no `markerStuck` at all, `undefined` was treated as
+      // "clean", and the flag was deleted — leaving the card asserting clean audio, the dashboard
+      // badge gone, and preflight's audio-markers check passing on a clip a reviewer can hear the
+      // marker in. Found on a live unit: re-running `audio` to re-roll one clip wiped the truthful
+      // flag off it instead.
+      let fetches = 0;
+      const second = await generateAudio(first, {
+        ...opts,
+        fetchTts: async () => {
+          fetches++;
+          return Buffer.from("STUCK-bytes");
+        },
+      });
+      assert.equal(fetches, 0, "the clip is cached — nothing should be fetched");
+      assert.equal(second.items[0].audioMarkerStuck, true);
+    });
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+});
+
+test("a real trim that finds no marker DOES clear a stale flag", async () => {
+  const originalKey = process.env.ELEVENLABS_API_KEY;
+  process.env.ELEVENLABS_API_KEY = "test-key";
+  try {
+    await withTempDir(async (tmpDir) => {
+      // The flag is only ever cleared by evidence: a fetch-and-trim that actually stripped the
+      // marker. That half must keep working, or the flag becomes impossible to get rid of.
+      const cards = baseCards([
+        {
+          id: "stuck",
+          english: "Ra",
+          category: "Other",
+          target: "ら",
+          audioMarkerStuck: true,
+        },
+      ]);
+      const trim = async (bytes, opts) => {
+        if (opts.marker && opts.flags) opts.flags.markerStripped = true;
+        return bytes;
+      };
+
+      const result = await generateAudio(cards, {
+        voiceId: "voice123",
+        fetchTts: async () => Buffer.from("clean-bytes"),
+        libraryHomeDir: tmpDir,
+        trim,
+      });
+
+      assert.equal("audioMarkerStuck" in result.items[0], false);
+    });
+  } finally {
+    if (originalKey) process.env.ELEVENLABS_API_KEY = originalKey;
+    else delete process.env.ELEVENLABS_API_KEY;
+  }
+});
+
 test("annotates each card with its audio filename", async () => {
   const originalKey = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = "test-key";

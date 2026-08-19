@@ -3034,3 +3034,30 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** the moment someone dismisses this FAIL without checking. The fix is to compare
   CONTENT, not timestamps: stamp the source card sets' hash into the package build and compare that,
   so a byte-identical file rewritten by git is correctly seen as no change at all.
+
+## A cache hit reports no verdict about the end marker, and that is no longer read as "clean"
+
+- **What:** `fetchTermsToCache`'s cache-hit branch returns no `markerStuck` at all, because nothing was
+  fetched and nothing was trimmed — it has no evidence either way. The writeback in
+  `generateAudio` now distinguishes three states: `true` and `false` are verdicts from a real
+  fetch-and-trim and either may overwrite the card, while `undefined` (a cache hit) leaves whatever
+  the card already records untouched.
+- **Why:** it used to be two states. `undefined` was falsy, so the writeback took the `delete`
+  branch, and re-running `audio` over a unit with cached clips silently erased `audioMarkerStuck`
+  from every marker-audible clip it owned. The clip on disk was byte-identical and still spoke the
+  `。ででで`; the card asserted clean audio, the dashboard's **Marker audible** badge vanished, and
+  preflight's ACK-tier audio-markers check passed. Found on 2026-08-19 on
+  `chapter-15-extras/fib-donna-e-kaku-suki-q`: re-running `audio` to re-roll that one clip cleared its
+  true flag instead of re-rolling it, and the unit then reported clean.
+- **Impact:** the flag can now only be cleared by evidence, which is right, but it also means a flag
+  set by a take that has since been replaced by hand outside the stage stays until something re-asks.
+  That is what `scripts/audit-marker-stuck.mjs` is for. It also means the flag is only as good as the
+  runs that set it: any unit whose `audio` was re-run before this fix may be carrying a marker-audible
+  clip with no flag at all, and nothing on disk records that the flag was ever there. The detector
+  cannot find these (they are by definition the clips it failed on), so the only way to recover them
+  is a human listening at gate 2.
+- **Verified by:** `node --test test/audio/index.test.js` (the two tests named "a cache hit does NOT
+  clear a marker-stuck flag..." and "a real trim that finds no marker DOES clear a stale flag")
+- **Status:** resolved (2026-08-19)
+- **When to revisit:** if a clip is ever reported marker-audible by ear on a card with no flag, that
+  is a pre-fix erasure surfacing — note the unit, since it bounds how many others to re-listen to.

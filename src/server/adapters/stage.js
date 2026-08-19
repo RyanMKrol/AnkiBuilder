@@ -6,9 +6,10 @@ import { lessonReadiness } from "../../cards/readiness.js";
 
 // A lesson has exactly TWO stages, and both are human review gates:
 //
-//   `corpus` — cards.json exists, no audio yet. The combined first review: English + target +
-//              pronunciation, signed off with "Mark reviewed" (the gate the `audio` CLI stage checks).
-//   `audio`  — at least one card has a clip. The second review, signed off with "Mark done".
+//   `corpus` — the combined first review: English + target + pronunciation, signed off with "Mark
+//              reviewed" (the gate the `audio` CLI stage checks). Any unit that has NOT passed it is
+//              here, including one that already has clips — see loadStageData.
+//   `audio`  — passed gate 1 AND at least one card has a clip. The second review, "Mark done".
 //
 // A run dir carrying corpus.json but NO cards.json is `INCOMPLETE`: its build stopped partway through
 // `prepare` (translate → drill enrichment → de-dup → notes), all of which change what a reviewer would
@@ -30,8 +31,15 @@ export function loadStageData(runDir) {
   const cards = readCardsJson(runDir);
   if (cards) {
     const anyAudio = cards.items.some((i) => typeof i.audio === "string" && i.audio.length > 0);
+    // Audio alone does NOT put a unit at gate 2 — it has to have passed gate 1 as well. The two used
+    // to be treated as the same fact, because the audio CLI stage refuses an unreviewed unit, so
+    // clips could only exist after a sign-off. `Unreview` breaks that: a unit that already has audio
+    // goes back to reviewed:false, the stage stayed "audio", and the reviewer was parked at gate 2
+    // forever — where Mark done correctly refuses ("has not passed the corpus review") and the page
+    // offers no way to do the corpus review. A dead end reachable from the dashboard's own button.
+    const reviewed = (cards.meta || {}).reviewed === true;
     return {
-      stage: anyAudio ? "audio" : "corpus",
+      stage: anyAudio && reviewed ? "audio" : "corpus",
       meta: cards.meta || {},
       items: cards.items,
       sourceFile: "cards.json",

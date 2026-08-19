@@ -20,8 +20,11 @@ const corpus = (dir, items) =>
     join(dir, "corpus.json"),
     JSON.stringify({ meta: { targetLanguage: "ja" }, items }),
   );
-const cards = (dir, items) =>
-  writeFileSync(join(dir, "cards.json"), JSON.stringify({ meta: { targetLanguage: "ja" }, items }));
+const cards = (dir, items, meta = {}) =>
+  writeFileSync(
+    join(dir, "cards.json"),
+    JSON.stringify({ meta: { targetLanguage: "ja", ...meta }, items }),
+  );
 
 test("detectStage: empty dir → null", () => {
   const dir = runDir(() => {});
@@ -63,22 +66,48 @@ test("detectStage: cards.json with no audio → corpus (the first review)", () =
   }
 });
 
-test("detectStage: cards.json where any item has audio → audio", () => {
-  const dir = runDir((d) =>
-    cards(d, [
-      { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
-      {
-        id: "b",
-        english: "two",
-        category: "Numbers",
-        target: "に",
-        pronunciation: "ni",
-        audio: "b.mp3",
-      },
-    ]),
-  );
+const withAudio = [
+  { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+  {
+    id: "b",
+    english: "two",
+    category: "Numbers",
+    target: "に",
+    pronunciation: "ni",
+    audio: "b.mp3",
+  },
+];
+
+test("detectStage: a REVIEWED unit with audio → audio (the second review)", () => {
+  const dir = runDir((d) => cards(d, withAudio, { reviewed: true }));
   try {
     assert.equal(detectStage(dir), "audio");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("detectStage: an UNREVIEWED unit with audio → corpus, not a dead end at gate 2", () => {
+  // Reachable from the dashboard's own Unreview button, and from any expansion of a unit that has
+  // already been voiced. Audio used to decide the stage on its own, on the reasoning that clips can
+  // only exist after a sign-off — true of the CLI, false the moment a human un-reviews. The reviewer
+  // was parked at gate 2, where Mark done correctly refuses ("has not passed the corpus review") and
+  // the page offers no way to do the corpus review it is demanding.
+  const dir = runDir((d) => cards(d, withAudio, { reviewed: false }));
+  try {
+    assert.equal(detectStage(dir), "corpus");
+    assert.equal(loadStageData(dir).items.length, 2, "the clips are kept, only the gate moves");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("detectStage: a unit with audio and no review flag at all → corpus", () => {
+  // Absent is not reviewed. The flag is what the audio CLI stage checks, so the dashboard must read
+  // it the same way rather than inferring a sign-off from the artifact.
+  const dir = runDir((d) => cards(d, withAudio));
+  try {
+    assert.equal(detectStage(dir), "corpus");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

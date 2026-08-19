@@ -1372,6 +1372,11 @@ test("an audio-stage lesson is never held back by the readiness gate", async () 
     const cardsPath = join(book, "chapter-0", "cards.json");
     const data = JSON.parse(readFileSync(cardsPath, "utf-8"));
     data.items[0].audio = "a.mp3";
+    // Signed off at gate 1, which is what puts a lesson at the audio stage — readiness gates the
+    // FIRST review only, so a lesson past it must not be dragged back by unset prepare markers.
+    // (Audio alone no longer implies this: an unreviewed unit with clips sits at gate 1, where
+    // readiness rightly applies. See src/server/adapters/stage.js.)
+    data.meta = { ...data.meta, reviewed: true };
     writeFileSync(cardsPath, JSON.stringify(data));
 
     await withServer(root, async (url) => {

@@ -3101,3 +3101,23 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** once a book's count has been read through once. If what remains is genuinely
   all legitimate standalones, that is the moment to consider a `legitimatelyStandalone` marker on the
   card rather than promoting the tier — the count only becomes useful when it can go to zero.
+
+## Un-reviewing a unit that already has audio used to strand it at gate 2
+
+- **What:** the dashboard picked a unit's review gate from "does any card have a clip" alone
+  (`loadStageData`, `src/server/adapters/stage.js`). It now requires `meta.reviewed === true` as well,
+  so an unreviewed unit sits at the corpus gate whether or not it has been voiced.
+- **Why:** the old rule was sound while clips could only exist after a sign-off — the `audio` CLI
+  stage refuses an unreviewed unit. `Unreview` breaks that, and so does adding cards to a unit that
+  has already been voiced. The unit went back to `reviewed: false`, the stage stayed `audio`, and the
+  reviewer was parked at gate 2 where **Mark done** correctly refuses ("this lesson has not passed the
+  corpus review") and the page offers no way to do the corpus review it is demanding. A dead end
+  reachable from the dashboard's own button, hit on 2026-08-19 on `chapter-15-extras`.
+- **Impact:** none on the normal path — a reviewed unit with clips is still the audio stage. The
+  clips are kept when a unit moves back to gate 1; only which gate is rendered changes. Two tests had
+  encoded the old assumption by giving a fixture audio with no `reviewed` flag, a state the CLI cannot
+  produce; both now say so explicitly.
+- **Verified by:** `node --test test/server/stage.test.js`
+- **Status:** resolved (2026-08-19)
+- **When to revisit:** if a third gate is ever added, this is the function that decides which one a
+  unit is at, and "the artifact exists" will be the wrong test for that one too.

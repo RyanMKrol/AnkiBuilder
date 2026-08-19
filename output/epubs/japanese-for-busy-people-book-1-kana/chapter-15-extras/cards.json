@@ -159,12 +159,16 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "59c245851d3dffc5.mp3",
+      "audio": "fib-donna-e-kaku-suki-q-manual-786fce30.mp3",
       "audioOriginal": "59c245851d3dffc5.orig.mp3",
       "audioAuto": "59c245851d3dffc5.mp3",
       "audioMarked": true,
       "audioTextHash": "59c245851d3dffc5",
-      "audioMarkerStuck": true
+      "audioManual": "fib-donna-e-kaku-suki-q-manual-786fce30.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.494893835616438
+      }
     },
     {
       "id": "x15b-anime-o-miru-no-ga-suki",

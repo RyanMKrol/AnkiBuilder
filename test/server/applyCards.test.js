@@ -21,6 +21,15 @@ function runDir(items, meta = {}) {
 // A lesson that has passed the corpus review — the precondition for "Mark done".
 const reviewed = { reviewed: true };
 const read = (dir) => JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
+const readCorpus = (dir) => JSON.parse(readFileSync(join(dir, "corpus.json"), "utf-8"));
+/** Give a run dir the corpus.json a real EPUB unit has, holding the same ids. */
+const withCorpus = (dir, items) => {
+  writeFileSync(
+    join(dir, "corpus.json"),
+    JSON.stringify({ meta: { targetLanguage: "ja", sourceType: "epub" }, items }),
+  );
+  return dir;
+};
 const card = (id, over = {}) => ({
   id,
   english: id,
@@ -77,6 +86,50 @@ test("unmarkCardsReviewed refuses while the lesson is done", () => {
     assert.equal(read(dir).meta.reviewed, true, "the sign-off stays intact");
   } finally {
     rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("setCardExcluded mirrors the exclusion into corpus.json, both ways", () => {
+  // The two files are read by different things: the deck build and the review read cards.json, while
+  // translate and resume rebuild the cards FROM corpus.json. An exclusion in only one of them is a
+  // decision with a shelf life — the next rebuild reinstates an excluded card, or re-drops a restored
+  // one. Every scripts/ tool mirrored; the dashboard toggle, where almost every real exclusion is
+  // made, did not, and four units had drifted before anyone noticed.
+  const dir = withCorpus(runDir([card("a"), card("b")]), [card("a"), card("b")]);
+  try {
+    const on = setCardExcluded(dir, "a", true);
+    assert.equal(on.mirrored, true);
+    assert.equal(readCorpus(dir).items.find((i) => i.id === "a").excluded, true);
+    assert.equal(readCorpus(dir).items.find((i) => i.id === "a").excludedBy, "human");
+
+    const off = setCardExcluded(dir, "a", false);
+    assert.equal(off.mirrored, true);
+    const restored = readCorpus(dir).items.find((i) => i.id === "a");
+    assert.equal("excluded" in restored, false);
+    assert.equal("excludedBy" in restored, false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("setCardExcluded is silent when the corpus has no such card, or none at all", () => {
+  // A mined drill card exists only on the cards side by design, and a unit need not have a corpus.
+  // Neither is an error, and neither may stop the exclusion the reviewer actually asked for.
+  const noCorpus = runDir([card("a")]);
+  try {
+    assert.equal(setCardExcluded(noCorpus, "a", true).mirrored, false);
+    assert.equal(read(noCorpus).items[0].excluded, true, "cards.json still updated");
+  } finally {
+    rmSync(noCorpus, { recursive: true, force: true });
+  }
+
+  const cardsOnly = withCorpus(runDir([card("a"), card("fib-1")]), [card("a")]);
+  try {
+    assert.equal(setCardExcluded(cardsOnly, "fib-1", true).mirrored, false);
+    assert.equal(read(cardsOnly).items.find((i) => i.id === "fib-1").excluded, true);
+    assert.equal(readCorpus(cardsOnly).items.length, 1, "corpus untouched");
+  } finally {
+    rmSync(cardsOnly, { recursive: true, force: true });
   }
 });
 

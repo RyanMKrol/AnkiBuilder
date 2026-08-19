@@ -3169,3 +3169,27 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** open (instances fixed; no automated check yet)
 - **When to revisit:** the next book. If a second source shows the same damage, build the round-trip
   check rather than re-deriving the regex — a hand sweep that is 85% false positives will get skipped.
+
+## The dashboard's Exclude toggle wrote only cards.json, so exclusions drifted from the corpus
+
+- **What:** `setCardExcluded` (`src/server/adapters/applyCards.js`) now mirrors the flag into
+  `corpus.json` as well, in both directions, and reports whether it did. It is silent when the corpus
+  has no such item (a mined `fillInBlank` card exists only on the cards side by design) or when the
+  unit has no corpus at all.
+- **Why:** the two files are read by different things. The deck build and the review read
+  `cards.json`; `translate` and `resume` rebuild the cards FROM `corpus.json`. An exclusion recorded
+  in only one is a decision with a shelf life — the next rebuild silently reinstates an excluded card,
+  or re-drops a restored one. Every `scripts/` tool that excludes has mirrored for exactly this reason
+  and says so in its comments; the dashboard toggle, which is where almost every real exclusion is
+  actually made, did not.
+- **Impact:** found live on 2026-08-19 when a reviewer restored a card at gate 1 and the two files
+  disagreed. Preflight's `corpus drift` check reports it, and it has been quietly accumulating: four
+  units of the live book carry unmirrored exclusions from before this fix (`hiragana-sa`,
+  `hiragana-ki`, `topic-particle-wa`, `object-particle-o`, and five counter suffixes), plus one corpus
+  id with no card at all. **Those are NOT repaired by this change** — they are done, delivered units,
+  and rewriting deck data the owner has shipped is their call, not the fix's. `cards.json` is the
+  truth for each: it is what the package was built from.
+- **Verified by:** `node --test test/server/applyCards.test.js`
+- **Status:** resolved for new exclusions (2026-08-19); the four historical units are open
+- **When to revisit:** if `corpus drift` is ever promoted above INFO, the historical four have to be
+  repaired first or the check lands red on day one.

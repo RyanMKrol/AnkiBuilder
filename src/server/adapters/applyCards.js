@@ -57,6 +57,44 @@ function persist(cardsPath, data, validateCards) {
   writeFileAtomic(cardsPath, JSON.stringify(data, null, 2));
 }
 
+/**
+ * Mirror one card's exclusion state into `corpus.json`, if that file has the card.
+ *
+ * The two files are read by different things: the deck build and the review read `cards.json`, while
+ * `translate` and `resume` rebuild the cards FROM `corpus.json`. So an exclusion recorded in only one
+ * of them is a decision with a shelf life — the next rebuild silently reinstates an excluded card, or
+ * re-drops a restored one. Every `scripts/` tool that excludes has mirrored for exactly this reason
+ * (see extras-order.mjs, extras-duplicate-check.mjs); the dashboard toggle, which is where almost
+ * every real exclusion is actually made, did not. Live drift found on 2026-08-19 across four units.
+ *
+ * Silent when the corpus has no such item: a mined drill card (`fillInBlank`) exists only on the
+ * cards side by design, and a unit need not have a corpus.json at all.
+ */
+function mirrorExclusionToCorpus(runDir, cardId, excluded) {
+  const corpusPath = join(runDir, "corpus.json");
+  if (!existsSync(corpusPath)) return false;
+  let data;
+  try {
+    data = JSON.parse(readFileSync(corpusPath, "utf-8"));
+  } catch {
+    return false; // a corpus we cannot parse is not this toggle's to repair
+  }
+  const item = (data.items || []).find((i) => i.id === cardId);
+  if (!item) return false;
+
+  if (excluded) {
+    item.excluded = true;
+    item.excludedBy = "human";
+    delete item.excludedReason;
+  } else {
+    delete item.excluded;
+    delete item.excludedBy;
+    delete item.excludedReason;
+  }
+  writeFileAtomic(corpusPath, JSON.stringify(data, null, 2));
+  return true;
+}
+
 // Toggle a card's exclusion flag (reversible — a flag, not a delete). The deck build drops excluded
 // cards.
 export function setCardExcluded(
@@ -79,7 +117,11 @@ export function setCardExcluded(
     delete item.excludedReason;
   }
   persist(cardsPath, data, validateCards);
-  return { excluded: !!excluded };
+  // Only after cards.json has landed: if the mirror fails, the two files disagree in the direction
+  // preflight's `corpus drift` check reports, rather than the corpus claiming an exclusion the deck
+  // never made.
+  const mirrored = mirrorExclusionToCorpus(runDir, cardId, excluded);
+  return { excluded: !!excluded, mirrored };
 }
 
 // Set/clear the lesson's final "done" sign-off (cards.meta.done) — the audio-review "Mark done".

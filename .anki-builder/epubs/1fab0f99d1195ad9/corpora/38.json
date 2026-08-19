@@ -1,0 +1,542 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 38,
+    "chapterLabel": "Lesson 16: Making an Invitation: Shall We Go Together?",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "semanticDedup": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "tsugi-next",
+      "english": "Next",
+      "category": "Time",
+      "reviewNote": "Vocabulary table shows 'つき、' glossed 'next' — likely an OCR misread of つぎ ('next'), the word actually used in this chapter's dialogue ('つぎの にちようびに', 'next Sunday'). Preserved verbatim as printed rather than silently corrected; つき itself would mean 'moon/month', a different word — flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "つぎ",
+      "uncertain": true
+    },
+    {
+      "id": "akihabara",
+      "english": "Akihabara (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "あきはばら"
+    },
+    {
+      "id": "ibento",
+      "english": "Event",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "イベント"
+    },
+    {
+      "id": "arimasu-takeplace",
+      "english": "There is, takes place",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "target": "あります",
+      "uncertain": true
+    },
+    {
+      "id": "kara-because",
+      "english": "Because, so (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "target": "から",
+      "uncertain": true
+    },
+    {
+      "id": "isshoni",
+      "english": "Together",
+      "category": "Other",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "いっしょに",
+      "uncertain": true
+    },
+    {
+      "id": "ikimasenka",
+      "english": "Shall we go?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いきませんか"
+    },
+    {
+      "id": "zehi",
+      "english": "I'd love to, by all means",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ぜひ"
+    },
+    {
+      "id": "tabemashou-vocab",
+      "english": "Let's eat",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "たべましょう",
+      "uncertain": true
+    },
+    {
+      "id": "dou-desu-ka",
+      "english": "How about you?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どうですか"
+    },
+    {
+      "id": "ha-dou-desu-ka",
+      "english": "How about...?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Written 〜はどうですか in the source; wave dash stripped since this entry is the particle/suffix itself. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english) | Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (the 〜はどうですか construction is explicitly taught as its own WORD POWER vocabulary entry, glossed \"how about…\")",
+      "target": "はどうですか",
+      "uncertain": true
+    },
+    {
+      "id": "chotto-decline",
+      "english": "Well, it's a bit... (used to decline politely)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Source prints the trailing ellipsis as 'ちよつと…'; the ellipsis marks the idiom's natural trailing-off and has been dropped since it can't be spoken as a target. Kana kept exactly as this row prints it (ちよつと). | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ/つ for small ょ/ゅ/っ). Confirmed against the chapter itself — check it reads right.",
+      "target": "ちょっと",
+      "uncertain": true
+    },
+    {
+      "id": "mimasenka",
+      "english": "Shall we see?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みませんか"
+    },
+    {
+      "id": "mimashou",
+      "english": "Let's see.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1: WORD POWER IV lists this cell (V ましょう for 'see') and the extraction produced no card for it. Its eleven sibling cells were all carded.",
+      "target": "みましょう",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikimashou-vocab",
+      "english": "Let's go",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "いきましょう",
+      "uncertain": true
+    },
+    {
+      "id": "tabemasenka",
+      "english": "Shall we eat?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たべませんか"
+    },
+    {
+      "id": "ks1-omatsuri",
+      "english": "There is a festival in Asakusa on Saturday.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どようびにあさくさでおまつリがあります"
+    },
+    {
+      "id": "ks2-eiga",
+      "english": "Shall we see a movie together on the weekend?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "しゅうまつにいっしょにえいがをみませんか",
+      "uncertain": true
+    },
+    {
+      "id": "ks3-ikimashou",
+      "english": "Let's go together.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "いっしょにいきましょう",
+      "uncertain": true
+    },
+    {
+      "id": "ks4-tenki-kara",
+      "english": "The weather is nice, so shall we have lunch in the park?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いいてんきですから、こうえんでひるごはんをたべませんか"
+    },
+    {
+      "id": "ee-zehi",
+      "english": "Yes, I'd love to.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Source shows alternatives 'ええ／はい、 ぜひ。'; ええ kept as the primary form, はい noted as an alternate opener.",
+      "target": "ええ、ぜひ"
+    },
+    {
+      "id": "iidesune-zehi",
+      "english": "Sounds good. I'd love to.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いいですね。ぜひ"
+    },
+    {
+      "id": "decline-anime",
+      "english": "I'm sorry, but anime is not really my thing.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Source GRAMMAR table gives the pattern 'すみません。 noun は ちょっと…。'; filled with アニメ (anime), reusing this chapter's dialogue topic. The trailing ellipsis was resolved into a closed sentence since a placeholder can't be spoken.",
+      "target": "すみません。アニメはちょっと"
+    },
+    {
+      "id": "zannen-desu",
+      "english": "It is unfortunate.",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "ざんねんです"
+    },
+    {
+      "id": "decline-doyoubi",
+      "english": "Unfortunately, Saturday doesn't really work for me.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence.",
+      "target": "ざんねんですが、どようびはちょっと"
+    },
+    {
+      "id": "shiai",
+      "english": "Game, match",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "しあい"
+    },
+    {
+      "id": "soccer-match",
+      "english": "Soccer match",
+      "category": "Sports & Hobbies",
+      "reviewNote": "サッカー (soccer) is never glossed as its own vocabulary entry in this chapter — it only appears combined with しあい (already glossed 'game, match') in the WORD POWER Events caption and again as an Exercise II.A picture cue. Gloss supplied since the word would otherwise be lost from the chapter entirely.",
+      "target": "サッカーのしあい",
+      "uncertain": true
+    },
+    {
+      "id": "shimasenka",
+      "english": "Shall we do?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "しませんか"
+    },
+    {
+      "id": "shimashou",
+      "english": "Let's do it.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "しましょう"
+    },
+    {
+      "id": "aimasenka",
+      "english": "Shall we meet?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あいませんか"
+    },
+    {
+      "id": "aimashou",
+      "english": "Let's meet.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "あいましょう",
+      "uncertain": true
+    },
+    {
+      "id": "hanabi",
+      "english": "Fireworks",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "はなび"
+    },
+    {
+      "id": "taikai",
+      "english": "Festival, event",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "たいかい"
+    },
+    {
+      "id": "hanabi-taikai",
+      "english": "Fireworks festival",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "はなびたいかい"
+    },
+    {
+      "id": "yuki-snow",
+      "english": "Snow",
+      "category": "Weather & Nature",
+      "reviewNote": "Source shows this sub-entry (decomposing ゆきまつり) as 'ゆさ' glossed 'snow' — likely an OCR misread of ゆき ('snow'). Preserved verbatim as printed; flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "ゆき",
+      "uncertain": true
+    },
+    {
+      "id": "yukimatsuri",
+      "english": "Snow festival",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ゆきまつり"
+    },
+    {
+      "id": "homu",
+      "english": "Platform",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ホーム"
+    },
+    {
+      "id": "deguchi",
+      "english": "Exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "でぐち"
+    },
+    {
+      "id": "nishi",
+      "english": "West",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "にし"
+    },
+    {
+      "id": "nishiguchi",
+      "english": "West exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "にしぐち"
+    },
+    {
+      "id": "higashi",
+      "english": "East",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ひがし"
+    },
+    {
+      "id": "higashiguchi",
+      "english": "East exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ひがしぐち"
+    },
+    {
+      "id": "kita",
+      "english": "North",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "きた"
+    },
+    {
+      "id": "kitaguchi",
+      "english": "North exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "きたぐち"
+    },
+    {
+      "id": "minami",
+      "english": "South",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "みなみ"
+    },
+    {
+      "id": "minamiguchi",
+      "english": "South exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "みなみぐち"
+    },
+    {
+      "id": "onaka-suki",
+      "english": "I'm hungry.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "おなかがすきました"
+    },
+    {
+      "id": "nodo-kawaki",
+      "english": "I'm thirsty.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "のどがかわきました"
+    },
+    {
+      "id": "tsukaremashita",
+      "english": "I'm tired.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "つかれました"
+    },
+    {
+      "id": "shinjuku",
+      "english": "Shinjuku (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "しんじゅく"
+    },
+    {
+      "id": "shokuji-shimasu",
+      "english": "Have a meal",
+      "category": "Food",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "しょくじをします",
+      "uncertain": true
+    },
+    {
+      "id": "mata-kondo",
+      "english": "Next time. Another time.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "またこんど"
+    },
+    {
+      "id": "nichiyoubi-jikan",
+      "english": "I have time on Sunday.",
+      "category": "Time",
+      "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call",
+      "target": "にちようびはじかんがあります",
+      "uncertain": true
+    },
+    {
+      "id": "party-shimasu",
+      "english": "Have a party",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "パーティーをします"
+    },
+    {
+      "id": "nanika",
+      "english": "Something",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "なにか"
+    },
+    {
+      "id": "sou-shimashou",
+      "english": "Let's do that.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "そうしましょう"
+    },
+    {
+      "id": "sukoshi",
+      "english": "A bit, a little",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "すこし"
+    },
+    {
+      "id": "yasumimasu",
+      "english": "Rest",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "やすみます"
+    },
+    {
+      "id": "ex7-yokohama-invite",
+      "english": "There's a fireworks festival in Yokohama on Sunday. Shall we go together?",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "にちようびによこはまではなびたいかいがあります。いっしょにいきませんか"
+    },
+    {
+      "id": "ex7-nanji-kara",
+      "english": "What time does the fireworks festival start?",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "はなびたいかいはなんじからですか"
+    },
+    {
+      "id": "ex7-shichiji-kara",
+      "english": "It starts at 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "7じからです。6じによこはまえきのにしぐちであいましょう",
+      "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう"
+    },
+    {
+      "id": "ex7-wakarimashita",
+      "english": "6:00 at the west exit of Yokohama Station, right? Got it.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "6じによこはまえきのにしぐちですね。わかりました",
+      "ttsText": "ろくじによこはまえきのにしぐちですね。わかりました"
+    },
+    {
+      "id": "sp1-party-invite",
+      "english": "Smith-san, I am having a party at my home on Sunday, the 15th. Would you like to come?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Chapter's only sentence demonstrating きませんか used for an invitation to the speaker's own home/event, a nuance highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception since the pattern appears nowhere else in the chapter.",
+      "target": "スミスさん、15にちのにちようびにうちでパーティーをします。きませんか",
+      "ttsText": "スミスさん、じゅうごにちのにちようびにうちでパーティーをします。きませんか"
+    },
+    {
+      "id": "sp1-arigatou-zehi",
+      "english": "Thank you. I'd love to.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Chapter's only sentence demonstrating this accepting-register nuance, highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception.",
+      "target": "ありがとうございます。ぜひ"
+    },
+    {
+      "id": "fib-nodo-nanika-nomimasenka",
+      "english": "You're thirsty, aren't you? Shall we drink something?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "のどがかわきましたね。なにかのみませんか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-nodo-sou-shimashou",
+      "english": "Yes, let's do that.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ええ、そうしましょう",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tsukare-sukoshi-yasumimasenka",
+      "english": "You're tired, aren't you? Shall we rest a bit?",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "つかれましたね。すこしやすみませんか",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tsukare-sou-shimashou",
+      "english": "Yes, let's do that.",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ええ、そうしましょう",
+      "aiSuggested": true
+    }
+  ]
+}

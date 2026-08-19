@@ -47,7 +47,9 @@ function fixture() {
   );
   writeUnit(
     join(book, "chapter-1"),
-    { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "First" },
+    // `reviewed` matters now: a unit only reaches the audio stage once gate 1 is signed off, which is
+    // the only way it can have clips in the first place. See loadStageData.
+    { targetLanguage: "ja", chapterNumber: 1, chapterLabel: "First", reviewed: true },
     [
       {
         id: "a",

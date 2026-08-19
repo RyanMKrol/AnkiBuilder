@@ -162,6 +162,16 @@ async function runPrepareInner(flags, ctx) {
     }
   }
 
+  if (!isTemplate && meta.enriched === true) {
+    // The marker IS the record: this pass, and the semantic de-dup that runs inside it, completed in
+    // an earlier run, which is exactly why this branch is being skipped. Stamping the ledger from
+    // what THIS run did instead would assert something false about the unit — the first version of
+    // this recorded `semanticDedup: skipped, "no drill cards were mined"` on a unit that had eleven
+    // of them, because this run mined none.
+    notePass("fillInBlank", PASS_OK, "completed in an earlier run (enriched marker set)");
+    notePass("semanticDedup", PASS_OK, "completed in an earlier run (enriched marker set)");
+  }
+
   if (!isTemplate && meta.enriched !== true) {
     updateClaim(runDir, { stage: "fill-in-the-blank" });
 
@@ -248,6 +258,10 @@ async function runPrepareInner(flags, ctx) {
         reason: FIB_BACKUP_REASON,
       });
     }
+  }
+
+  if (!isTemplate && meta.notesEnhanced === true) {
+    notePass("crossLessonNotes", PASS_OK, "completed in an earlier run (notesEnhanced marker set)");
   }
 
   if (!isTemplate && meta.notesEnhanced !== true) {

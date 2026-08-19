@@ -1977,6 +1977,38 @@ test("prepare: records EVERY pass it owns on the ledger, so a hand-authored unit
   });
 });
 
+test("prepare: a re-run reports what the UNIT achieved, not what this run happened to do", async () => {
+  // The first version of the ledger stamped outcomes from this run's actions alone. On a unit whose
+  // enrichment markers were already set — every re-run, and every extras unit that gets a card added
+  // after its first prepare — the drill branch is skipped entirely, so it recorded
+  // `semanticDedup: skipped, "no drill cards were mined"` on a unit holding eleven mined drills.
+  // A ledger that asserts something false about the unit is worse than no ledger.
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    const calls = [];
+    await runCli(["prepare", "--run", runDir], { ...prepareDeps(calls), log: () => {} });
+    assert.ok(calls.includes("fib"), "first run mines drills");
+
+    calls.length = 0;
+    await runCli(["prepare", "--run", runDir], { ...prepareDeps(calls), log: () => {} });
+    assert.equal(calls.includes("fib"), false, "second run skips the pass its marker says is done");
+
+    const passes = JSON.parse(readFileSync(paths.cards, "utf-8")).meta.passes;
+    assert.equal(passes.fillInBlank.status, "ok");
+    assert.equal(passes.semanticDedup.status, "ok");
+    assert.equal(passes.crossLessonNotes.status, "ok");
+    assert.match(passes.fillInBlank.reason, /earlier run/);
+    assert.doesNotMatch(
+      passes.semanticDedup.reason,
+      /nothing to dedup/,
+      "must not claim nothing was mined on a unit that has drills",
+    );
+  });
+});
+
 test("prepare: a pass with nothing to do is recorded SKIPPED, not silently absent", async () => {
   // Skipped is a third state, and it earns its place: "the de-dup never ran because nothing was
   // mined" and "the de-dup is missing from this unit" look identical if only ok/failed exist.

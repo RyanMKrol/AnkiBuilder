@@ -12,6 +12,7 @@ import {
 } from "./collection.js";
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
 import { vocabCoverageCheck } from "./vocab.js";
+import { taughtNeverUsedCheck } from "./taughtNeverUsed.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import {
   collectionStateCheck,
@@ -66,6 +67,7 @@ export const ALL_CHECKS = [
   extrasLibraryWriteCheck,
   libraryCompletenessCheck,
   vocabCoverageCheck,
+  taughtNeverUsedCheck,
   strayPackageCheck,
   packageFreshnessCheck,
   duplicatesCheck,

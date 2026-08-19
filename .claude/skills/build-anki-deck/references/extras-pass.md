@@ -122,6 +122,20 @@ Three jobs, and let the counts decide the size:
    highest-value cards the pass produces.
 2. **Vocabulary.** Every content word in the chapter's vocabulary that appears in no sentence gets
    one, built only from vocabulary already introduced.
+
+   **"The chapter's vocabulary" means every CARD the base unit shipped, not the vocabulary table's
+   headwords.** Read narrowly, this rule passes a lesson that is failing it: lesson 15's vocabulary
+   table was fully covered — every headword had a card — while twelve of its twenty-one dictionary
+   forms and five of its ます-forms were carded bare and used in nothing, on a chapter whose entire
+   grammar point is the ます↔dictionary correspondence. A conjugation chart carded as a list is the
+   "carded half-way" failure at the top of this file, and the headword check cannot see it.
+
+   Don't count by eye — `preflight` computes it. The **`taught, never used`** check (INFO tier,
+   `src/audit/checks/taughtNeverUsed.js`) lists every card in a lesson whose target appears inside no
+   other card of that lesson, judging the base unit and its extras together as one product. Run
+   preflight before wave 2 and let its list for this lesson drive the vocabulary and forms briefs.
+   Expect some legitimate standalones in it — an exclamation, a greeting, a fixed reply — and dismiss
+   those; the rest are the cards to write.
 3. **Forms.** Whatever the chapter teaches (です/じゃありません/ですか, ます/ません/ました/ませんでした,
    〜から〜まで). Supply a contrast set **on fixed vocabulary** so the transformation is visible rather
    than three unrelated sentences.

@@ -3075,3 +3075,29 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** resolved (2026-08-19)
 - **When to revisit:** if a clip is ever reported marker-audible by ear on a card with no flag, that
   is a pre-fix erasure surfacing — note the unit, since it bounds how many others to re-listen to.
+
+## Words taught but never used are now counted, and the standing count is large
+
+- **What:** a new INFO-tier preflight check, `taught, never used`
+  (`src/audit/checks/taughtNeverUsed.js` + `src/cards/taughtNeverUsed.js`), lists every card whose
+  target appears inside no other card of the same lesson, judging a base unit and its `-extras`
+  sibling together. It complements `vocab-coverage`, which asks whether a headword was carded at all;
+  this asks whether a carded word is ever put to work.
+- **Why:** lesson 15 reached both review gates with twelve of its twenty-one dictionary forms and
+  five of its ます-forms carded bare and used in nothing, on a chapter whose entire grammar point is
+  the ます↔dictionary correspondence. Vocabulary coverage was perfect. The extras reference stated the
+  rule in prose ("every content word that appears in no sentence gets one") and left the counting to
+  whoever remembered, and the natural reading of "the chapter's vocabulary" is the vocabulary TABLE,
+  which is exactly the reading that misses conjugation charts.
+- **Impact:** it starts at **118 findings on the book and 121 on the course**, and it must stay INFO
+  until those have been read. A meaningful share are legitimate standalones — greetings, exclamations,
+  fixed replies — which no rule can separate from stranded words without reading the gloss, so the
+  message names each one for a glance. The discriminator is a per-lesson median target length rather
+  than a per-language constant; on the live book that dropped 68 of 186 raw containment hits, all set
+  phrases or whole sentences. It needs a lesson-sized input to mean anything: on a handful of cards
+  the median lands on a sentence and the answer is an artefact of the sample.
+- **Verified by:** `node --test test/cards/taughtNeverUsed.test.js`
+- **Status:** open (check shipped; the live counts are unreviewed)
+- **When to revisit:** once a book's count has been read through once. If what remains is genuinely
+  all legitimate standalones, that is the moment to consider a `legitimatelyStandalone` marker on the
+  card rather than promoting the tier — the count only becomes useful when it can go to zero.

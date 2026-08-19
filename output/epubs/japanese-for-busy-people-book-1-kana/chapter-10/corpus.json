@@ -13,7 +13,7 @@
       "english": "How about...?",
       "category": "Grammar & Function Words",
       "scene": null,
-      "hint": null,
+      "hint": "the polite offer of food or drink",
       "note": "Used to politely offer something, often food or drink — \"thing は いかがですか\" means \"Would you like...?\" or \"How about some...?\"",
       "reviewNote": null,
       "target": "いかがですか"
@@ -650,7 +650,7 @@
       "id": "chotto",
       "english": "A little bit",
       "category": "Grammar & Function Words",
-      "scene": null,
+      "scene": "saying how much or how long",
       "hint": null,
       "note": null,
       "reviewNote": null,

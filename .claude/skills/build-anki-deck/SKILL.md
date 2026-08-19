@@ -384,6 +384,36 @@ chapter taught anything the cards cannot have covered. Transcribe any load-beari
 Step 3b brief as well, so the drill pass can build on it. Full procedure for the cell-by-cell method:
 [extras-pass](references/extras-pass.md).
 
+**Check the target against its own romaji, because a scanned book's kana can be WRONG.** This book's
+OCR turns small kana into large ones — ょ into よ, ゅ into ゆ, っ into つ — and the extraction is right
+to copy what it sees rather than silently correct a source it cannot second-guess. The result is
+cards whose target is not a word: `いっしよに`, `たべましよう`, `しゆうまつ`, `ちよつと`, `しよくじ`. On
+Lesson 16 there were ten of them, including the chapter's entire ましょう paradigm, and the same
+chapter spelled `しましょう` correctly two rows away — which is how you can tell OCR damage from an
+orthography choice.
+
+**The romaji is the tell, and it is free.** The romanization pass reads the intended word and
+normalizes it, so a corrupt target comes out with a CORRECT romanization sitting beside it:
+`いっしよに` / `issho ni`, `いきましよう` / `ikimashō`, `しよくじ` / `shokuji`. Target and romaji
+disagree, and the romaji is the one to believe. Two other cheap confirmations, both internal to the
+chapter, so you never have to trust your own reading of Japanese: the same word usually appears
+correctly somewhere else in the chapter (the dialogue wrote `つぎの` while the vocabulary row said
+`つき、`), and `scripts/vocab-coverage.mjs` reports a corrupt card as MISSING with the correct form as
+its "nearest card target".
+
+A quick sweep for the pattern, which is a large よ/ゆ/や directly after an i-column kana:
+
+```sh
+node -e "…/[きしちにひみりぎじびぴ][よゆや]/…"   # then JUDGE each hit
+```
+
+**Judge every hit; most are false positives.** `にぎやか`, `おみやげ`, `にちようび`, and the `や`
+particle all legitimately take a large kana, and the regex also matches across word boundaries
+(`によこはま` is に + よこはま). On the full book that sweep returned 47 hits of which 7 were real, all
+in one chapter. Correct the real ones at gate 1, leave them flagged **Uncertain** with a note saying
+what you changed, and say so when you hand over the link — you have edited the book's own text, and
+the reviewer should confirm it rather than take it on trust.
+
 **Also diff the chapter's VOCABULARY entries against the built cards, for the same reason.** The
 extraction can skip a whole vocabulary block silently, and nothing downstream notices: a chapter is
 simply short a few words, which looks like a chapter that had fewer words. It happens most often to

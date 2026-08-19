@@ -50,6 +50,18 @@ cards against the audio on disk and `--apply` clears the ones that are stale; it
 flag on the detector's say-so alone, because these are exactly the clips the detector failed on. The
 count is an **ACK**-tier preflight check, so a genuine instance blocks until it is fixed or accepted.
 
+**The flag needs BOTH halves: the marker was located AND a cut actually happened.** Those come apart,
+and for a long time only the first was checked. `computeTrimPoint` returns null when the speech runs
+to the end of the file — which is exactly the shape a marker that ran long produces — so the trim
+would locate the marker, pass its shape check, set "stripped", then remove nothing and ship the clip
+whole. Measured on the live book: **52 marked takes came out exactly as long as their originals, the
+badge caught none of them, and a human hand-trimmed all 52 by ear.** A marked take always contains
+the marker (it is appended to every request), so a trim that removes nothing has left it in — that is
+a fact about the output, which is what makes it independent of the marker detector, the part that
+fails. Since 2026-08-19 a trim that reports no cut is stuck, and so is one that reports nothing at
+all (ffmpeg missing, trimming toggled off): those paths return the raw take, and a raw marked take
+certainly still has its marker.
+
 A **cache hit leaves the flag alone**, and that distinction is load-bearing. Nothing is fetched and
 nothing is trimmed on a cached clip, so a re-run learns nothing about whether that clip carries the
 marker — and "learned nothing" must not be written down as "it is clean". It was, until 2026-08-19:

@@ -3121,3 +3121,25 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** resolved (2026-08-19)
 - **When to revisit:** if a third gate is ever added, this is the function that decides which one a
   unit is at, and "the artifact exists" will be the wrong test for that one too.
+
+## The end-marker flag recorded the intent to cut, not whether anything was cut
+
+- **What:** `autoTrim`'s `markerStuck` now requires BOTH that the marker was located
+  (`flags.markerStripped`) AND that a trim point was actually applied (`flags.trimmedTo`). It used to
+  read only the first.
+- **Why:** `markerStripped` is set the moment a candidate passes the pulse-shape check — the decision.
+  `computeTrimPoint` can then return null, because the speech runs to the end of the file and there is
+  no trailing silence to cut against, which is precisely the shape a marker that ran long produces.
+  Nothing is removed, the clip ships whole with the marker audible, and the flags say it was stripped.
+- **Impact, measured on the live book:** **52 of 1,978 marked takes (2.6%) came out exactly as long as
+  their originals. The badge caught 0 of them. The operator hand-trimmed all 52 by ear** — doing the
+  trim's job fifty-two times while the mechanism meant to warn them stayed silent. Re-deriving those
+  52 with the fix flags 43; the other 9, and 6 false positives across 1,926 good clips, are mostly the
+  trim rules having changed since those clips were made, so the replay is not exact. Going forward the
+  invariant is exact, because it is asked of the take as it is produced.
+- **Verified by:** `node --test test/audio/trimSilence.test.js test/audio/index.test.js`
+- **Status:** resolved (2026-08-19)
+- **When to revisit:** a second, independent instrument is still worth having — a preflight check
+  comparing each stage-owned marked clip's duration against its `.orig.mp3` would catch this whatever
+  the flag says. It is ~2,000 ffprobe calls, so it wants to be its own command rather than part of the
+  default sweep.

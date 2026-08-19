@@ -501,26 +501,38 @@ test("autoTrim passes the marker flag through to the trimmer", async () => {
   assert.deepEqual(seen, [false, true]);
 });
 
-test("autoTrim reports a stuck marker when the trimmer says the strip did not happen", async () => {
-  const stuckTrim = async (bytes, opts) => {
-    if (opts.marker && opts.flags) opts.flags.markerStripped = false;
+test("autoTrim reports a stuck marker unless the trim BOTH found the marker and cut", async () => {
+  const flagging = (markerStripped, trimmedTo) => async (bytes, opts) => {
+    if (opts.marker && opts.flags) Object.assign(opts.flags, { markerStripped, trimmedTo });
     return bytes;
   };
-  const stuck = await autoTrim(Buffer.from("x"), { trim: stuckTrim, marker: true });
-  assert.equal(stuck.markerStuck, true);
 
-  const strippedTrim = async (bytes, opts) => {
-    if (opts.marker && opts.flags) opts.flags.markerStripped = true;
-    return Buffer.from("cut");
-  };
-  const ok = await autoTrim(Buffer.from("x"), { trim: strippedTrim, marker: true });
-  assert.equal(ok.markerStuck, false);
+  // Never located → stuck, as it always has been.
+  const notFound = await autoTrim(Buffer.from("x"), { trim: flagging(false, null), marker: true });
+  assert.equal(notFound.markerStuck, true);
 
-  // A trimmer that never reports (an injected test stub, or the ffmpeg-missing early return path
-  // in old builds) reads as NOT stuck — the flag only fires on a positive "could not strip".
-  const silentTrim = async (bytes) => bytes;
-  const unknown = await autoTrim(Buffer.from("x"), { trim: silentTrim, marker: true });
-  assert.equal(unknown.markerStuck, false);
-  const noMarker = await autoTrim(Buffer.from("x"), { trim: stuckTrim, marker: false });
+  // THE 52. Located and shape-checked, so the old flag said "stripped" — but computeTrimPoint
+  // returned null, so nothing was removed and the clip shipped with the marker in it. The badge
+  // said clean on all 52; a human hand-trimmed every one of them by ear.
+  const foundButNotCut = await autoTrim(Buffer.from("x"), {
+    trim: flagging(true, null),
+    marker: true,
+  });
+  assert.equal(foundButNotCut.markerStuck, true);
+
+  // Located AND cut — the only combination that means clean.
+  const stripped = await autoTrim(Buffer.from("x"), { trim: flagging(true, 2.5), marker: true });
+  assert.equal(stripped.markerStuck, false);
+
+  // A trimmer that reports NOTHING now reads as stuck for a marked clip, where it used to read as
+  // clean. That is not caution, it is accuracy: the paths that report nothing (ffmpeg missing, the
+  // trim toggled off, an empty buffer) all return the raw take unchanged, and a marked raw take
+  // certainly still has its marker.
+  const silent = async (bytes) => bytes;
+  const unknown = await autoTrim(Buffer.from("x"), { trim: silent, marker: true });
+  assert.equal(unknown.markerStuck, true);
+
+  // An unmarked language is never stuck: nothing was appended to strip.
+  const noMarker = await autoTrim(Buffer.from("x"), { trim: silent, marker: false });
   assert.equal(noMarker.markerStuck, false);
 });

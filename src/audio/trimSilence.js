@@ -352,6 +352,14 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
       padSec: cfg.padSec,
       dropFrom,
     });
+    // The OUTCOME, reported separately from the decision above. `markerStripped` only ever meant
+    // "a marker was located and passed the shape check" — the intent to cut. Whether anything was
+    // actually removed is this, and the two come apart: computeTrimPoint returns null when the
+    // speech runs to the end of the file, which is exactly the shape a marker that ran long
+    // produces. The clip then ships whole, with the marker in it, while the flags say it was
+    // stripped. Measured on the live book: 52 marked takes came out byte-for-byte as long as their
+    // originals, the badge caught none of them, and a human hand-trimmed all 52 by ear.
+    if (flags) flags.trimmedTo = trimTo;
     // Nothing to cut. When cleaning is on there is still work to do — the cleaned audio is the point,
     // trimming was only ever the other half — so fall through to the encode with the filter alone.
     if (trimTo == null && !cleanup) return mp3Buffer;
@@ -397,10 +405,11 @@ export async function trimTrailingSilence(mp3Buffer, opts = {}) {
  * `cleanup` names a chain from ./cleanupFilter.js; omit it for the configured default, or pass
  * `"off"` to trim without cleaning.
  *
- * `markerStuck` is true when the clip was generated WITH the end marker but the trim could not
- * find and cut it — the marker survives into the shipping clip and only ears would catch it, so
- * the caller should surface a flag for the reviewer. Only the real trimmer reports it (an
- * injected test trim leaves the report unset, which reads as "not stuck").
+ * `markerStuck` is true when the clip was generated WITH the end marker but the trim did not both
+ * FIND it and actually CUT it — the marker survives into the shipping clip and only ears would
+ * catch it, so the caller should surface a flag for the reviewer. Only the real trimmer reports the
+ * two flags this reads; an injected test trim reports neither, which for a marked clip reads as
+ * stuck (the safe direction).
  *
  * @returns {Promise<{ auto: Buffer, changed: boolean, markerStuck: boolean }>}
  */
@@ -408,9 +417,17 @@ export async function autoTrim(raw, { trim = trimTrailingSilence, cleanup, marke
   const flags = {};
   const auto = await trim(raw, { cleanup: cleanupChain(cleanup), marker, flags });
   const changed = auto !== raw && !auto.equals(raw);
+  // A marked take ALWAYS contains the marker — it is appended to every request — so the clip is only
+  // clean if the trim both found it AND actually cut. Either half missing leaves it in. Asking for
+  // both is what makes this independent of the marker detector, which is the part that fails: a cut
+  // that removed nothing is a fact about the output, not an opinion about the audio.
+  //
+  // An injected test trim reports neither flag, which still reads as stuck for a marked clip — that
+  // is the safe direction, and tests that mean "clean" say so by setting the flags.
+  const stripped = flags.markerStripped === true && flags.trimmedTo != null;
   return {
     auto: changed ? auto : raw,
     changed,
-    markerStuck: Boolean(marker) && flags.markerStripped === false,
+    markerStuck: Boolean(marker) && !stripped,
   };
 }

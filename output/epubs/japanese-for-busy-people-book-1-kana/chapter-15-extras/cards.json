@@ -13,11 +13,19 @@
         "status": "ok"
       },
       "semanticDedup": {
-        "status": "skipped",
-        "reason": "no drill cards were mined, so there was nothing to dedup"
+        "status": "ok",
+        "reason": "completed in an earlier run (enriched marker set)"
       },
       "numberReadings": {
         "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "ok",
+        "reason": "completed in an earlier run (enriched marker set)"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
       }
     }
   },
@@ -105,7 +113,12 @@
       "pronunciation": "Raja-san wa yoku hashirimasu",
       "note": "Regular 1: はしります → はしる. Compare はしるのがじょうずです, which needs the dictionary form.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — はしります appeared in no sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "97b70c0a02f86b80.mp3",
+      "audioOriginal": "97b70c0a02f86b80.orig.mp3",
+      "audioAuto": "97b70c0a02f86b80.mp3",
+      "audioMarked": true,
+      "audioTextHash": "97b70c0a02f86b80"
     },
     {
       "id": "x15b-uta-ga-jouzu",
@@ -206,7 +219,12 @@
       "pronunciation": "Tanaka-san wa nihongo o hanashimasu",
       "note": "はなします takes を for the language spoken. Its dictionary form はなす is what のが needs.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — はなします appeared in no sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "98459cdfd96bc65d.mp3",
+      "audioOriginal": "98459cdfd96bc65d.orig.mp3",
+      "audioAuto": "98459cdfd96bc65d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "98459cdfd96bc65d"
     },
     {
       "id": "x15c-aruku-no-ga-suki",
@@ -216,7 +234,12 @@
       "pronunciation": "aruku no ga suki desu",
       "note": "No object, so のが attaches straight to the dictionary form. あるきます → あるく is the other form EXERCISES V asks for.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — あるく was carded bare only, and this is the のが pattern at its simplest).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e0d3aeedd233bbb3.mp3",
+      "audioOriginal": "e0d3aeedd233bbb3.orig.mp3",
+      "audioAuto": "e0d3aeedd233bbb3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e0d3aeedd233bbb3"
     },
     {
       "id": "x15a-itoko-no-pooru",
@@ -349,7 +372,12 @@
       "pronunciation": "Ema-san wa yoku oyogimasu",
       "note": "およぎます → およぐ: the ぎ before ます becomes ぐ. Compare およぐのもすきです.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — およぎます appeared in no sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2d6be26fd79c9a4b.mp3",
+      "audioOriginal": "2d6be26fd79c9a4b.orig.mp3",
+      "audioAuto": "2d6be26fd79c9a4b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d6be26fd79c9a4b"
     },
     {
       "id": "x15a-yakyuu-ga-suki",
@@ -374,7 +402,12 @@
       "pronunciation": "Suzuki-san wa yoku e o kakimasu",
       "note": "かきます here, かく in えをかくのがすきですか. Same verb, two forms: ます to state the action, dictionary form to feed のが.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — かきます appeared in no sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8cc75deb4599f9e7.mp3",
+      "audioOriginal": "8cc75deb4599f9e7.orig.mp3",
+      "audioAuto": "8cc75deb4599f9e7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8cc75deb4599f9e7"
     },
     {
       "id": "x15c-wain-nomu-no-ga-suki",
@@ -384,7 +417,12 @@
       "pronunciation": "Chan-san wa wain o nomu no ga suki desu",
       "note": "Contrast チャンさんはワインがすきです, which likes the WINE. This one likes the drinking of it.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — のむ was carded bare only; also a minimal pair against the base lesson's ワインがすきです).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e525d442b86329cc.mp3",
+      "audioOriginal": "e525d442b86329cc.orig.mp3",
+      "audioAuto": "e525d442b86329cc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e525d442b86329cc"
     },
     {
       "id": "fib-chan-robotto-anime-suki-q",
@@ -532,7 +570,12 @@
       "pronunciation": "hon o yomu no ga suki desu",
       "note": "よみます → よむ, one of the forms EXERCISES V asks you to make.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — よむ was carded bare only).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "202a518c81e26d26.mp3",
+      "audioOriginal": "202a518c81e26d26.orig.mp3",
+      "audioAuto": "202a518c81e26d26.mp3",
+      "audioMarked": true,
+      "audioTextHash": "202a518c81e26d26"
     },
     {
       "id": "x15a-piza-ga-suki",
@@ -749,7 +792,12 @@
       "pronunciation": "nihongo o hanasu no ga suki desu",
       "note": "The pair to たなかさんはにほんごをはなします: を stays with はなす, and の wraps the whole action so が can mark it as the thing liked.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — はなす was carded bare only, and this completes the ます/dictionary pair).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "14cf8ca0d6af95a6.mp3",
+      "audioOriginal": "14cf8ca0d6af95a6.orig.mp3",
+      "audioAuto": "14cf8ca0d6af95a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "14cf8ca0d6af95a6"
     },
     {
       "id": "x15a-e-o-kaku-no-ga-suki-q",
@@ -804,7 +852,12 @@
       "pronunciation": "Pōru-san wa yoku utaimasu",
       "note": "The ます-form as the sentence's own verb. Its dictionary form うたう is what のが needs: うたうのがすきです, \"likes singing\".",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — うたいます appeared in no sentence, only as a bare vocabulary card, while its dictionary form was already used in one).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3b6ad281c09c014f.mp3",
+      "audioOriginal": "3b6ad281c09c014f.orig.mp3",
+      "audioAuto": "3b6ad281c09c014f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3b6ad281c09c014f"
     },
     {
       "id": "fib-utau-jouzu-q",

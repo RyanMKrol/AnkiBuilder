@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "epubHash": "1fab0f99d1195ad9",
     "chapterNumber": 38,
     "chapterLabel": "Lesson 16: Making an Invitation: Shall We Go Together?",
@@ -46,21 +46,36 @@
       "target": "つぎ",
       "pronunciation": "tsugi",
       "uncertain": true,
-      "reviewNote": "Vocabulary table shows 'つき、' glossed 'next' — likely an OCR misread of つぎ ('next'), the word actually used in this chapter's dialogue ('つぎの にちようびに', 'next Sunday'). Preserved verbatim as printed rather than silently corrected; つき itself would mean 'moon/month', a different word — flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Vocabulary table shows 'つき、' glossed 'next' — likely an OCR misread of つぎ ('next'), the word actually used in this chapter's dialogue ('つぎの にちようびに', 'next Sunday'). Preserved verbatim as printed rather than silently corrected; つき itself would mean 'moon/month', a different word — flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "3f5887e764898dee.mp3",
+      "audioOriginal": "3f5887e764898dee.orig.mp3",
+      "audioAuto": "3f5887e764898dee.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3f5887e764898dee"
     },
     {
       "id": "akihabara",
       "english": "Akihabara (district in Tokyo)",
       "category": "Travel & Tourism",
       "target": "あきはばら",
-      "pronunciation": "Akihabara"
+      "pronunciation": "Akihabara",
+      "audio": "90c2c0052cf09410.mp3",
+      "audioOriginal": "90c2c0052cf09410.orig.mp3",
+      "audioAuto": "90c2c0052cf09410.mp3",
+      "audioMarked": true,
+      "audioTextHash": "90c2c0052cf09410"
     },
     {
       "id": "ibento",
       "english": "Event",
       "category": "Travel & Tourism",
       "target": "イベント",
-      "pronunciation": "ibento"
+      "pronunciation": "ibento",
+      "audio": "dfb9cb98d3773c2b.mp3",
+      "audioOriginal": "dfb9cb98d3773c2b.orig.mp3",
+      "audioAuto": "dfb9cb98d3773c2b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dfb9cb98d3773c2b"
     },
     {
       "id": "arimasu-takeplace",
@@ -71,7 +86,12 @@
       "uncertain": true,
       "note": "This is あります in the sense \"take place\": the place takes で, not に. Contrast ちかくにえきがあります (Lesson 12), where あります means \"exist\" and the place takes に.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
-      "scene": "an event happening at a place"
+      "scene": "an event happening at a place",
+      "audio": "ac1b70d2f99ab6ea.mp3",
+      "audioOriginal": "ac1b70d2f99ab6ea.orig.mp3",
+      "audioAuto": "ac1b70d2f99ab6ea.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ac1b70d2f99ab6ea"
     },
     {
       "id": "kara-because",
@@ -82,9 +102,12 @@
       "uncertain": true,
       "note": "This から means \"because, so\" — a different job from the から you already know for \"from\" (Lesson 3's なんじからなんじまで, Lesson 6's アメリカからきました). It attaches to the end of the reason clause: clause1から、clause2, as in いいてんきですから、こうえんでひるごはんをたべませんか, \"The weather is nice, so shall we have lunch in the park?\"",
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
-      "excluded": true,
-      "excludedBy": "human",
-      "excludedReason": "Already introduced in an earlier lesson with the same target and sense (backward dedup flagged it); the duplicate id would also collapse two cards onto one Anki note."
+      "scene": "the reason first, then what follows from it",
+      "audio": "59e2dbcc834bc889.mp3",
+      "audioOriginal": "59e2dbcc834bc889.orig.mp3",
+      "audioAuto": "59e2dbcc834bc889.mp3",
+      "audioMarked": true,
+      "audioTextHash": "59e2dbcc834bc889"
     },
     {
       "id": "isshoni",
@@ -93,7 +116,12 @@
       "target": "いっしょに",
       "pronunciation": "issho ni",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "0718067211cf6a6e.mp3",
+      "audioOriginal": "0718067211cf6a6e.orig.mp3",
+      "audioAuto": "0718067211cf6a6e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0718067211cf6a6e"
     },
     {
       "id": "ikimasenka",
@@ -101,14 +129,24 @@
       "category": "Grammar & Function Words",
       "target": "いきませんか",
       "pronunciation": "ikimasen ka",
-      "note": "ませんか makes a soft invitation that leaves room for the listener to decline; contrast いきましょう below, which assumes agreement and suits a moment once both sides are already on board."
+      "note": "ませんか makes a soft invitation that leaves room for the listener to decline; contrast いきましょう below, which assumes agreement and suits a moment once both sides are already on board.",
+      "audio": "46fbcd24d1892657.mp3",
+      "audioOriginal": "46fbcd24d1892657.orig.mp3",
+      "audioAuto": "46fbcd24d1892657.mp3",
+      "audioMarked": true,
+      "audioTextHash": "46fbcd24d1892657"
     },
     {
       "id": "zehi",
       "english": "I'd love to, by all means",
       "category": "Grammar & Function Words",
       "target": "ぜひ",
-      "pronunciation": "zehi"
+      "pronunciation": "zehi",
+      "audio": "5f0ea2d182e88fd8.mp3",
+      "audioOriginal": "5f0ea2d182e88fd8.orig.mp3",
+      "audioAuto": "5f0ea2d182e88fd8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f0ea2d182e88fd8"
     },
     {
       "id": "tabemashou-vocab",
@@ -117,7 +155,12 @@
       "target": "たべましょう",
       "pronunciation": "tabemashō",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "8c9dc561c4e437f5.mp3",
+      "audioOriginal": "8c9dc561c4e437f5.orig.mp3",
+      "audioAuto": "8c9dc561c4e437f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c9dc561c4e437f5"
     },
     {
       "id": "dou-desu-ka",
@@ -125,7 +168,12 @@
       "category": "Grammar & Function Words",
       "target": "どうですか",
       "pronunciation": "dō desu ka",
-      "note": "Used to ask the listener's intention or preference."
+      "note": "Used to ask the listener's intention or preference.",
+      "audio": "235b773db859fc9a.mp3",
+      "audioOriginal": "235b773db859fc9a.orig.mp3",
+      "audioAuto": "235b773db859fc9a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "235b773db859fc9a"
     },
     {
       "id": "ha-dou-desu-ka",
@@ -136,7 +184,12 @@
       "uncertain": true,
       "note": "Suffix — attaches after a noun or topic to ask 'how about ___?', e.g. にちようびは どうですか, 'How about Sunday?'",
       "reviewNote": "Written 〜はどうですか in the source; wave dash stripped since this entry is the particle/suffix itself. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english) | Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (the 〜はどうですか construction is explicitly taught as its own WORD POWER vocabulary entry, glossed \"how about…\")",
-      "hint": "proposing an alternative after a refusal"
+      "hint": "proposing an alternative after a refusal",
+      "audio": "99f46fbf7ea8a93c.mp3",
+      "audioOriginal": "99f46fbf7ea8a93c.orig.mp3",
+      "audioAuto": "99f46fbf7ea8a93c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "99f46fbf7ea8a93c"
     },
     {
       "id": "chotto-decline",
@@ -147,14 +200,24 @@
       "note": "Used after [noun]は to soften a refusal without a direct 'no' — e.g. アニメは ちょっと…, 'Anime is not really my thing.' Often follows すみません or ざんねんですが.",
       "reviewNote": "Source prints the trailing ellipsis as 'ちよつと…'; the ellipsis marks the idiom's natural trailing-off and has been dropped since it can't be spoken as a target. Kana kept exactly as this row prints it (ちよつと). | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ/つ for small ょ/ゅ/っ). Confirmed against the chapter itself — check it reads right.",
       "uncertain": true,
-      "scene": "trailing off to turn an invitation down"
+      "scene": "trailing off to turn an invitation down",
+      "audio": "85ae31317e4ffec5.mp3",
+      "audioOriginal": "85ae31317e4ffec5.orig.mp3",
+      "audioAuto": "85ae31317e4ffec5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "85ae31317e4ffec5"
     },
     {
       "id": "mimasenka",
       "english": "Shall we see?",
       "category": "Grammar & Function Words",
       "target": "みませんか",
-      "pronunciation": "mimasen ka"
+      "pronunciation": "mimasen ka",
+      "audio": "41e6ee45e19d6c54.mp3",
+      "audioOriginal": "41e6ee45e19d6c54.orig.mp3",
+      "audioAuto": "41e6ee45e19d6c54.mp3",
+      "audioMarked": true,
+      "audioTextHash": "41e6ee45e19d6c54"
     },
     {
       "id": "mimashou",
@@ -164,7 +227,12 @@
       "pronunciation": "mimashō",
       "note": "みます → みましょう. The chapter drills all four verbs (いく・みる・する・あう) across ます / ませんか / ましょう; this is the cell for みる.",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1: WORD POWER IV lists this cell (V ましょう for 'see') and the extraction produced no card for it. Its eleven sibling cells were all carded."
+      "reviewNote": "Added at gate 1: WORD POWER IV lists this cell (V ましょう for 'see') and the extraction produced no card for it. Its eleven sibling cells were all carded.",
+      "audio": "554b50e38f4fba01.mp3",
+      "audioOriginal": "554b50e38f4fba01.orig.mp3",
+      "audioAuto": "554b50e38f4fba01.mp3",
+      "audioMarked": true,
+      "audioTextHash": "554b50e38f4fba01"
     },
     {
       "id": "ikimashou-vocab",
@@ -174,14 +242,24 @@
       "pronunciation": "ikimashō",
       "note": "ましょう assumes agreement and moves straight to action — more decisive than いきませんか above, which politely asks first before assuming a yes.",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "28feac91725157f2.mp3",
+      "audioOriginal": "28feac91725157f2.orig.mp3",
+      "audioAuto": "28feac91725157f2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "28feac91725157f2"
     },
     {
       "id": "tabemasenka",
       "english": "Shall we eat?",
       "category": "Grammar & Function Words",
       "target": "たべませんか",
-      "pronunciation": "tabemasen ka"
+      "pronunciation": "tabemasen ka",
+      "audio": "2ab39dd7b9349746.mp3",
+      "audioOriginal": "2ab39dd7b9349746.orig.mp3",
+      "audioAuto": "2ab39dd7b9349746.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ab39dd7b9349746"
     },
     {
       "id": "ks1-omatsuri",
@@ -189,7 +267,12 @@
       "category": "Grammar & Function Words",
       "target": "どようびにあさくさでおまつリがあります",
       "pronunciation": "doyōbi ni Asakusa de omatsuri ga arimasu",
-      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1)."
+      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1).",
+      "audio": "9432b84300ef90b0.mp3",
+      "audioOriginal": "9432b84300ef90b0.orig.mp3",
+      "audioAuto": "9432b84300ef90b0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9432b84300ef90b0"
     },
     {
       "id": "ks2-eiga",
@@ -199,7 +282,12 @@
       "pronunciation": "shūmatsu ni issho ni eiga o mimasen ka",
       "note": "Demonstrates verb[ます-stem]+ませんか, used to invite someone to do something (GRAMMAR 2).",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "54fe9f70f4e592dd.mp3",
+      "audioOriginal": "54fe9f70f4e592dd.orig.mp3",
+      "audioAuto": "54fe9f70f4e592dd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "54fe9f70f4e592dd"
     },
     {
       "id": "ks3-ikimashou",
@@ -209,7 +297,12 @@
       "pronunciation": "issho ni ikimashō",
       "note": "Demonstrates verb[ます-stem]+ましょう, used when inviting the listener to do something together (GRAMMAR 3).",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "660d32310ca03148.mp3",
+      "audioOriginal": "660d32310ca03148.orig.mp3",
+      "audioAuto": "660d32310ca03148.mp3",
+      "audioMarked": true,
+      "audioTextHash": "660d32310ca03148"
     },
     {
       "id": "ks4-tenki-kara",
@@ -217,7 +310,12 @@
       "category": "Grammar & Function Words",
       "target": "いいてんきですから、こうえんでひるごはんをたべませんか",
       "pronunciation": "ii tenki desu kara, kōen de hirugohan o tabemasen ka",
-      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation (GRAMMAR 4)."
+      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation (GRAMMAR 4).",
+      "audio": "be291b34c5a05e99.mp3",
+      "audioOriginal": "be291b34c5a05e99.orig.mp3",
+      "audioAuto": "be291b34c5a05e99.mp3",
+      "audioMarked": true,
+      "audioTextHash": "be291b34c5a05e99"
     },
     {
       "id": "ee-zehi",
@@ -227,7 +325,12 @@
       "pronunciation": "ē, zehi",
       "scene": "accepting an invitation",
       "note": "はい can replace ええ for a slightly more formal 'yes'.",
-      "reviewNote": "Source shows alternatives 'ええ／はい、 ぜひ。'; ええ kept as the primary form, はい noted as an alternate opener."
+      "reviewNote": "Source shows alternatives 'ええ／はい、 ぜひ。'; ええ kept as the primary form, はい noted as an alternate opener.",
+      "audio": "b53ea8dbffcca3cd.mp3",
+      "audioOriginal": "b53ea8dbffcca3cd.orig.mp3",
+      "audioAuto": "b53ea8dbffcca3cd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b53ea8dbffcca3cd"
     },
     {
       "id": "iidesune-zehi",
@@ -235,7 +338,12 @@
       "category": "Grammar & Function Words",
       "target": "いいですね。ぜひ",
       "pronunciation": "ii desu ne. zehi",
-      "scene": "accepting an invitation"
+      "scene": "accepting an invitation",
+      "audio": "f41e029d8d7322f5.mp3",
+      "audioOriginal": "f41e029d8d7322f5.orig.mp3",
+      "audioAuto": "f41e029d8d7322f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f41e029d8d7322f5"
     },
     {
       "id": "decline-anime",
@@ -244,14 +352,24 @@
       "target": "すみません。アニメはちょっと",
       "pronunciation": "sumimasen. anime wa chotto",
       "scene": "declining an invitation",
-      "reviewNote": "Source GRAMMAR table gives the pattern 'すみません。 noun は ちょっと…。'; filled with アニメ (anime), reusing this chapter's dialogue topic. The trailing ellipsis was resolved into a closed sentence since a placeholder can't be spoken."
+      "reviewNote": "Source GRAMMAR table gives the pattern 'すみません。 noun は ちょっと…。'; filled with アニメ (anime), reusing this chapter's dialogue topic. The trailing ellipsis was resolved into a closed sentence since a placeholder can't be spoken.",
+      "audio": "3a078afcb586da93.mp3",
+      "audioOriginal": "3a078afcb586da93.orig.mp3",
+      "audioAuto": "3a078afcb586da93.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3a078afcb586da93"
     },
     {
       "id": "zannen-desu",
       "english": "It is unfortunate.",
       "category": "Emotions & Feelings",
       "target": "ざんねんです",
-      "pronunciation": "zannen desu"
+      "pronunciation": "zannen desu",
+      "audio": "0683aedf262f3979.mp3",
+      "audioOriginal": "0683aedf262f3979.orig.mp3",
+      "audioAuto": "0683aedf262f3979.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0683aedf262f3979"
     },
     {
       "id": "decline-doyoubi",
@@ -261,14 +379,24 @@
       "pronunciation": "zannen desu ga, doyōbi wa chotto",
       "scene": "declining an invitation",
       "note": "ざんねんですが (unfortunately) softens the refusal more than すみません — used especially for a scheduling conflict rather than a taste mismatch.",
-      "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence."
+      "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence.",
+      "audio": "e6157848593000de.mp3",
+      "audioOriginal": "e6157848593000de.orig.mp3",
+      "audioAuto": "e6157848593000de.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e6157848593000de"
     },
     {
       "id": "shiai",
       "english": "Game, match",
       "category": "Sports & Hobbies",
       "target": "しあい",
-      "pronunciation": "shiai"
+      "pronunciation": "shiai",
+      "audio": "b566586800f81a72.mp3",
+      "audioOriginal": "b566586800f81a72.orig.mp3",
+      "audioAuto": "b566586800f81a72.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b566586800f81a72"
     },
     {
       "id": "soccer-match",
@@ -277,7 +405,12 @@
       "target": "サッカーのしあい",
       "pronunciation": "sakkā no shiai",
       "uncertain": true,
-      "reviewNote": "サッカー (soccer) is never glossed as its own vocabulary entry in this chapter — it only appears combined with しあい (already glossed 'game, match') in the WORD POWER Events caption and again as an Exercise II.A picture cue. Gloss supplied since the word would otherwise be lost from the chapter entirely."
+      "reviewNote": "サッカー (soccer) is never glossed as its own vocabulary entry in this chapter — it only appears combined with しあい (already glossed 'game, match') in the WORD POWER Events caption and again as an Exercise II.A picture cue. Gloss supplied since the word would otherwise be lost from the chapter entirely.",
+      "audio": "41776338f3db6517.mp3",
+      "audioOriginal": "41776338f3db6517.orig.mp3",
+      "audioAuto": "41776338f3db6517.mp3",
+      "audioMarked": true,
+      "audioTextHash": "41776338f3db6517"
     },
     {
       "id": "shimasu",
@@ -297,14 +430,24 @@
       "english": "Shall we do?",
       "category": "Grammar & Function Words",
       "target": "しませんか",
-      "pronunciation": "shimasen ka"
+      "pronunciation": "shimasen ka",
+      "audio": "9e4b0e42d085ea82.mp3",
+      "audioOriginal": "9e4b0e42d085ea82.orig.mp3",
+      "audioAuto": "9e4b0e42d085ea82.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9e4b0e42d085ea82"
     },
     {
       "id": "shimashou",
       "english": "Let's do it.",
       "category": "Grammar & Function Words",
       "target": "しましょう",
-      "pronunciation": "shimashō"
+      "pronunciation": "shimashō",
+      "audio": "f1f7ee5b9febf31f.mp3",
+      "audioOriginal": "f1f7ee5b9febf31f.orig.mp3",
+      "audioAuto": "f1f7ee5b9febf31f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f1f7ee5b9febf31f"
     },
     {
       "id": "aimasu",
@@ -324,7 +467,12 @@
       "english": "Shall we meet?",
       "category": "Grammar & Function Words",
       "target": "あいませんか",
-      "pronunciation": "aimasen ka"
+      "pronunciation": "aimasen ka",
+      "audio": "ccb5714ef6bdd9d4.mp3",
+      "audioOriginal": "ccb5714ef6bdd9d4.orig.mp3",
+      "audioAuto": "ccb5714ef6bdd9d4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ccb5714ef6bdd9d4"
     },
     {
       "id": "aimashou",
@@ -333,7 +481,12 @@
       "target": "あいましょう",
       "pronunciation": "aimashō",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "2190ab0a00b21e57.mp3",
+      "audioOriginal": "2190ab0a00b21e57.orig.mp3",
+      "audioAuto": "2190ab0a00b21e57.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2190ab0a00b21e57"
     },
     {
       "id": "hanabi",
@@ -341,7 +494,12 @@
       "category": "Travel & Tourism",
       "target": "はなび",
       "pronunciation": "hanabi",
-      "note": "Combines with たいかい (festival, event) to form はなびたいかい, 'fireworks festival'."
+      "note": "Combines with たいかい (festival, event) to form はなびたいかい, 'fireworks festival'.",
+      "audio": "0f035ee2f5c4814a.mp3",
+      "audioOriginal": "0f035ee2f5c4814a.orig.mp3",
+      "audioAuto": "0f035ee2f5c4814a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0f035ee2f5c4814a"
     },
     {
       "id": "taikai",
@@ -349,7 +507,12 @@
       "category": "Travel & Tourism",
       "target": "たいかい",
       "pronunciation": "taikai",
-      "note": "Combines with はなび (fireworks) to form はなびたいかい, 'fireworks festival'."
+      "note": "Combines with はなび (fireworks) to form はなびたいかい, 'fireworks festival'.",
+      "audio": "75a7b3b937ce2253.mp3",
+      "audioOriginal": "75a7b3b937ce2253.orig.mp3",
+      "audioAuto": "75a7b3b937ce2253.mp3",
+      "audioMarked": true,
+      "audioTextHash": "75a7b3b937ce2253"
     },
     {
       "id": "hanabi-taikai",
@@ -357,7 +520,12 @@
       "category": "Travel & Tourism",
       "target": "はなびたいかい",
       "pronunciation": "hanabi taikai",
-      "note": "はなび (fireworks) + たいかい (festival, event) = はなびたいかい (fireworks festival)."
+      "note": "はなび (fireworks) + たいかい (festival, event) = はなびたいかい (fireworks festival).",
+      "audio": "e5306fbc0bfb889c.mp3",
+      "audioOriginal": "e5306fbc0bfb889c.orig.mp3",
+      "audioAuto": "e5306fbc0bfb889c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5306fbc0bfb889c"
     },
     {
       "id": "yuki-snow",
@@ -367,7 +535,12 @@
       "pronunciation": "yuki",
       "uncertain": true,
       "note": "Combines with まつり (festival) to form ゆきまつり, 'snow festival'.",
-      "reviewNote": "Source shows this sub-entry (decomposing ゆきまつり) as 'ゆさ' glossed 'snow' — likely an OCR misread of ゆき ('snow'). Preserved verbatim as printed; flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Source shows this sub-entry (decomposing ゆきまつり) as 'ゆさ' glossed 'snow' — likely an OCR misread of ゆき ('snow'). Preserved verbatim as printed; flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "15638181b4b3d7bf.mp3",
+      "audioOriginal": "15638181b4b3d7bf.orig.mp3",
+      "audioAuto": "15638181b4b3d7bf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "15638181b4b3d7bf"
     },
     {
       "id": "yukimatsuri",
@@ -375,21 +548,36 @@
       "category": "Travel & Tourism",
       "target": "ゆきまつり",
       "pronunciation": "yukimatsuri",
-      "note": "ゆき (snow) + まつり (festival, as in おまつり from Key Sentence 1) = ゆきまつり (snow festival)."
+      "note": "ゆき (snow) + まつり (festival, as in おまつり from Key Sentence 1) = ゆきまつり (snow festival).",
+      "audio": "3af93e2040a24d73.mp3",
+      "audioOriginal": "3af93e2040a24d73.orig.mp3",
+      "audioAuto": "3af93e2040a24d73.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3af93e2040a24d73"
     },
     {
       "id": "homu",
       "english": "Platform",
       "category": "Transport",
       "target": "ホーム",
-      "pronunciation": "hōmu"
+      "pronunciation": "hōmu",
+      "audio": "9a6e2ef0e11bba24.mp3",
+      "audioOriginal": "9a6e2ef0e11bba24.orig.mp3",
+      "audioAuto": "9a6e2ef0e11bba24.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9a6e2ef0e11bba24"
     },
     {
       "id": "deguchi",
       "english": "Exit",
       "category": "Directions",
       "target": "でぐち",
-      "pronunciation": "deguchi"
+      "pronunciation": "deguchi",
+      "audio": "d3398e9360ad07e6.mp3",
+      "audioOriginal": "d3398e9360ad07e6.orig.mp3",
+      "audioAuto": "d3398e9360ad07e6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d3398e9360ad07e6"
     },
     {
       "id": "nishi",
@@ -397,7 +585,12 @@
       "category": "Directions",
       "target": "にし",
       "pronunciation": "nishi",
-      "note": "Combines with ぐち (opening/exit, from でぐち) to form にしぐち, 'west exit'."
+      "note": "Combines with ぐち (opening/exit, from でぐち) to form にしぐち, 'west exit'.",
+      "audio": "fcf32eafe361d809.mp3",
+      "audioOriginal": "fcf32eafe361d809.orig.mp3",
+      "audioAuto": "fcf32eafe361d809.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fcf32eafe361d809"
     },
     {
       "id": "nishiguchi",
@@ -405,7 +598,12 @@
       "category": "Directions",
       "target": "にしぐち",
       "pronunciation": "nishiguchi",
-      "note": "にし (west) + ぐち (opening/exit, from でぐち) = にしぐち (west exit)."
+      "note": "にし (west) + ぐち (opening/exit, from でぐち) = にしぐち (west exit).",
+      "audio": "dbb1d7ad5cad1587.mp3",
+      "audioOriginal": "dbb1d7ad5cad1587.orig.mp3",
+      "audioAuto": "dbb1d7ad5cad1587.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dbb1d7ad5cad1587"
     },
     {
       "id": "higashi",
@@ -413,7 +611,12 @@
       "category": "Directions",
       "target": "ひがし",
       "pronunciation": "higashi",
-      "note": "Combines with ぐち (opening/exit, from でぐち) to form ひがしぐち, 'east exit'."
+      "note": "Combines with ぐち (opening/exit, from でぐち) to form ひがしぐち, 'east exit'.",
+      "audio": "e8613c8b0f057efe.mp3",
+      "audioOriginal": "e8613c8b0f057efe.orig.mp3",
+      "audioAuto": "e8613c8b0f057efe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e8613c8b0f057efe"
     },
     {
       "id": "higashiguchi",
@@ -421,7 +624,12 @@
       "category": "Directions",
       "target": "ひがしぐち",
       "pronunciation": "higashiguchi",
-      "note": "ひがし (east) + ぐち (opening/exit, from でぐち) = ひがしぐち (east exit)."
+      "note": "ひがし (east) + ぐち (opening/exit, from でぐち) = ひがしぐち (east exit).",
+      "audio": "2724892c66cdb384.mp3",
+      "audioOriginal": "2724892c66cdb384.orig.mp3",
+      "audioAuto": "2724892c66cdb384.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2724892c66cdb384"
     },
     {
       "id": "kita",
@@ -429,7 +637,13 @@
       "category": "Directions",
       "target": "きた",
       "pronunciation": "kita",
-      "note": "Combines with ぐち (opening/exit, from でぐち) to form きたぐち, 'north exit'."
+      "note": "Combines with ぐち (opening/exit, from でぐち) to form きたぐち, 'north exit'.",
+      "audio": "5e3301c7aac45c54.mp3",
+      "audioOriginal": "5e3301c7aac45c54.orig.mp3",
+      "audioAuto": "5e3301c7aac45c54.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "5e3301c7aac45c54"
     },
     {
       "id": "kitaguchi",
@@ -437,7 +651,12 @@
       "category": "Directions",
       "target": "きたぐち",
       "pronunciation": "kitaguchi",
-      "note": "きた (north) + ぐち (opening/exit, from でぐち) = きたぐち (north exit)."
+      "note": "きた (north) + ぐち (opening/exit, from でぐち) = きたぐち (north exit).",
+      "audio": "dedb9a22eb98cd13.mp3",
+      "audioOriginal": "dedb9a22eb98cd13.orig.mp3",
+      "audioAuto": "dedb9a22eb98cd13.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dedb9a22eb98cd13"
     },
     {
       "id": "minami",
@@ -445,7 +664,12 @@
       "category": "Directions",
       "target": "みなみ",
       "pronunciation": "minami",
-      "note": "Combines with ぐち (opening/exit, from でぐち) to form みなみぐち, 'south exit'."
+      "note": "Combines with ぐち (opening/exit, from でぐち) to form みなみぐち, 'south exit'.",
+      "audio": "1bdae7812257c5f0.mp3",
+      "audioOriginal": "1bdae7812257c5f0.orig.mp3",
+      "audioAuto": "1bdae7812257c5f0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1bdae7812257c5f0"
     },
     {
       "id": "minamiguchi",
@@ -453,7 +677,12 @@
       "category": "Directions",
       "target": "みなみぐち",
       "pronunciation": "minamiguchi",
-      "note": "みなみ (south) + ぐち (opening/exit, from でぐち) = みなみぐち (south exit)."
+      "note": "みなみ (south) + ぐち (opening/exit, from でぐち) = みなみぐち (south exit).",
+      "audio": "d99a9019b96d3574.mp3",
+      "audioOriginal": "d99a9019b96d3574.orig.mp3",
+      "audioAuto": "d99a9019b96d3574.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d99a9019b96d3574"
     },
     {
       "id": "onaka-suki",
@@ -461,21 +690,36 @@
       "category": "Body & Health",
       "target": "おなかがすきました",
       "pronunciation": "onaka ga sukimashita",
-      "note": "すきました here comes from すきます, \"become empty/hungry\" — a different word from すき, \"like, favorite\" (Lesson 15), despite the similar sound. おなかがすきました literally means \"my stomach has become empty.\""
+      "note": "すきました here comes from すきます, \"become empty/hungry\" — a different word from すき, \"like, favorite\" (Lesson 15), despite the similar sound. おなかがすきました literally means \"my stomach has become empty.\"",
+      "audio": "12fb5e49f569c185.mp3",
+      "audioOriginal": "12fb5e49f569c185.orig.mp3",
+      "audioAuto": "12fb5e49f569c185.mp3",
+      "audioMarked": true,
+      "audioTextHash": "12fb5e49f569c185"
     },
     {
       "id": "nodo-kawaki",
       "english": "I'm thirsty.",
       "category": "Body & Health",
       "target": "のどがかわきました",
-      "pronunciation": "nodo ga kawakimashita"
+      "pronunciation": "nodo ga kawakimashita",
+      "audio": "1644f97ad5051fad.mp3",
+      "audioOriginal": "1644f97ad5051fad.orig.mp3",
+      "audioAuto": "1644f97ad5051fad.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1644f97ad5051fad"
     },
     {
       "id": "tsukaremashita",
       "english": "I'm tired.",
       "category": "Body & Health",
       "target": "つかれました",
-      "pronunciation": "tsukaremashita"
+      "pronunciation": "tsukaremashita",
+      "audio": "eb5259f3548e2952.mp3",
+      "audioOriginal": "eb5259f3548e2952.orig.mp3",
+      "audioAuto": "eb5259f3548e2952.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eb5259f3548e2952"
     },
     {
       "id": "nikko",
@@ -530,7 +774,12 @@
       "english": "Shinjuku (district in Tokyo)",
       "category": "Travel & Tourism",
       "target": "しんじゅく",
-      "pronunciation": "Shinjuku"
+      "pronunciation": "Shinjuku",
+      "audio": "2cb0d25c4a61cbfc.mp3",
+      "audioOriginal": "2cb0d25c4a61cbfc.orig.mp3",
+      "audioAuto": "2cb0d25c4a61cbfc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2cb0d25c4a61cbfc"
     },
     {
       "id": "shokuji-shimasu",
@@ -539,7 +788,12 @@
       "target": "しょくじをします",
       "pronunciation": "shokuji o shimasu",
       "uncertain": true,
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right."
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "081254233ac10e46.mp3",
+      "audioOriginal": "081254233ac10e46.orig.mp3",
+      "audioAuto": "081254233ac10e46.mp3",
+      "audioMarked": true,
+      "audioTextHash": "081254233ac10e46"
     },
     {
       "id": "mata-kondo",
@@ -547,7 +801,12 @@
       "category": "Greetings",
       "target": "またこんど",
       "pronunciation": "mata kondo",
-      "note": "Built from こんど (Lesson 9, \"next, next time\") plus また (\"again\"); used to gently defer an invitation to some future occasion."
+      "note": "Built from こんど (Lesson 9, \"next, next time\") plus また (\"again\"); used to gently defer an invitation to some future occasion.",
+      "audio": "9ae42a61ed7766c7.mp3",
+      "audioOriginal": "9ae42a61ed7766c7.orig.mp3",
+      "audioAuto": "9ae42a61ed7766c7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9ae42a61ed7766c7"
     },
     {
       "id": "nichiyoubi-jikan",
@@ -557,7 +816,12 @@
       "pronunciation": "nichiyōbi wa jikan ga arimasu",
       "uncertain": true,
       "note": "じかんが あります literally means 'there is time' — a common way to say you are free or available.",
-      "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call"
+      "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call",
+      "audio": "21dd401ee53f3a05.mp3",
+      "audioOriginal": "21dd401ee53f3a05.orig.mp3",
+      "audioAuto": "21dd401ee53f3a05.mp3",
+      "audioMarked": true,
+      "audioTextHash": "21dd401ee53f3a05"
     },
     {
       "id": "chikaku",
@@ -648,7 +912,12 @@
       "english": "Have a party",
       "category": "Other",
       "target": "パーティーをします",
-      "pronunciation": "pātī o shimasu"
+      "pronunciation": "pātī o shimasu",
+      "audio": "0a28e1166f49eaed.mp3",
+      "audioOriginal": "0a28e1166f49eaed.orig.mp3",
+      "audioAuto": "0a28e1166f49eaed.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0a28e1166f49eaed"
     },
     {
       "id": "nanika",
@@ -656,14 +925,24 @@
       "category": "Grammar & Function Words",
       "target": "なにか",
       "pronunciation": "nanika",
-      "note": "なにか (something) is used in questions and positive statements, e.g. なにかのみませんか; contrast なにも (Lesson 8), which only ever pairs with a negative verb to mean \"nothing.\""
+      "note": "なにか (something) is used in questions and positive statements, e.g. なにかのみませんか; contrast なにも (Lesson 8), which only ever pairs with a negative verb to mean \"nothing.\"",
+      "audio": "3929725120ac288a.mp3",
+      "audioOriginal": "3929725120ac288a.orig.mp3",
+      "audioAuto": "3929725120ac288a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3929725120ac288a"
     },
     {
       "id": "sou-shimashou",
       "english": "Let's do that.",
       "category": "Grammar & Function Words",
       "target": "そうしましょう",
-      "pronunciation": "sō shimashō"
+      "pronunciation": "sō shimashō",
+      "audio": "b9177f0a5fbd5552.mp3",
+      "audioOriginal": "b9177f0a5fbd5552.orig.mp3",
+      "audioAuto": "b9177f0a5fbd5552.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b9177f0a5fbd5552"
     },
     {
       "id": "sukoshi",
@@ -671,7 +950,12 @@
       "category": "Descriptions & Qualities",
       "target": "すこし",
       "pronunciation": "sukoshi",
-      "note": "A more neutral, slightly formal synonym of ちょっと (Lesson 10) — both mean \"a bit, a little,\" but ちょっと is the everyday casual choice."
+      "note": "A more neutral, slightly formal synonym of ちょっと (Lesson 10) — both mean \"a bit, a little,\" but ちょっと is the everyday casual choice.",
+      "audio": "78841ab85b7a5c02.mp3",
+      "audioOriginal": "78841ab85b7a5c02.orig.mp3",
+      "audioAuto": "78841ab85b7a5c02.mp3",
+      "audioMarked": true,
+      "audioTextHash": "78841ab85b7a5c02"
     },
     {
       "id": "yasumimasu",
@@ -679,14 +963,24 @@
       "category": "Body & Health",
       "target": "やすみます",
       "pronunciation": "yasumimasu",
-      "note": "Verb form of やすみ (Lesson 3, \"break, day off\") — やすみます is the action \"to rest,\" while やすみ names the break itself."
+      "note": "Verb form of やすみ (Lesson 3, \"break, day off\") — やすみます is the action \"to rest,\" while やすみ names the break itself.",
+      "audio": "4906277f94fbbd24.mp3",
+      "audioOriginal": "4906277f94fbbd24.orig.mp3",
+      "audioAuto": "4906277f94fbbd24.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4906277f94fbbd24"
     },
     {
       "id": "ex7-yokohama-invite",
       "english": "There's a fireworks festival in Yokohama on Sunday. Shall we go together?",
       "category": "Travel & Tourism",
       "target": "にちようびによこはまではなびたいかいがあります。いっしょにいきませんか",
-      "pronunciation": "nichiyōbi ni Yokohama de hanabi taikai ga arimasu. issho ni ikimasen ka"
+      "pronunciation": "nichiyōbi ni Yokohama de hanabi taikai ga arimasu. issho ni ikimasen ka",
+      "audio": "d5ba2325272f5132.mp3",
+      "audioOriginal": "d5ba2325272f5132.orig.mp3",
+      "audioAuto": "d5ba2325272f5132.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5ba2325272f5132"
     },
     {
       "id": "ex7-nanji-kara",
@@ -694,7 +988,12 @@
       "category": "Time",
       "target": "はなびたいかいはなんじからですか",
       "pronunciation": "hanabi taikai wa nanji kara desu ka",
-      "scene": "asking what time an event starts"
+      "scene": "asking what time an event starts",
+      "audio": "7d9dbf27576ee657.mp3",
+      "audioOriginal": "7d9dbf27576ee657.orig.mp3",
+      "audioAuto": "7d9dbf27576ee657.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7d9dbf27576ee657"
     },
     {
       "id": "ex7-shichiji-kara",
@@ -703,7 +1002,12 @@
       "target": "7じからです。6じによこはまえきのにしぐちであいましょう",
       "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう",
       "pronunciation": "shichi-ji kara desu. roku-ji ni Yokohama-eki no nishiguchi de aimashō",
-      "scene": "arranging where to meet before an event"
+      "scene": "arranging where to meet before an event",
+      "audio": "1ad48ebb8ebc376d.mp3",
+      "audioOriginal": "1ad48ebb8ebc376d.orig.mp3",
+      "audioAuto": "1ad48ebb8ebc376d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1ad48ebb8ebc376d"
     },
     {
       "id": "ex7-wakarimashita",
@@ -713,7 +1017,12 @@
       "ttsText": "ろくじによこはまえきのにしぐちですね。わかりました",
       "pronunciation": "roku-ji ni Yokohama-eki no nishiguchi desu ne. wakarimashita",
       "scene": "confirming a meeting time and place",
-      "note": "わかりました (wakarimashita) means 'understood, got it' — used to confirm you've understood a plan or instruction."
+      "note": "わかりました (wakarimashita) means 'understood, got it' — used to confirm you've understood a plan or instruction.",
+      "audio": "cded6470c70a1403.mp3",
+      "audioOriginal": "cded6470c70a1403.orig.mp3",
+      "audioAuto": "cded6470c70a1403.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cded6470c70a1403"
     },
     {
       "id": "sp1-party-invite",
@@ -724,7 +1033,12 @@
       "pronunciation": "Sumisu-san, jūgo-nichi no nichiyōbi ni uchi de pātī o shimasu. kimasen ka",
       "scene": "inviting someone to a party at one's own home",
       "note": "きませんか (not いきませんか) is used specifically when inviting someone to your own home or an event you yourself are hosting.",
-      "reviewNote": "Chapter's only sentence demonstrating きませんか used for an invitation to the speaker's own home/event, a nuance highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception since the pattern appears nowhere else in the chapter."
+      "reviewNote": "Chapter's only sentence demonstrating きませんか used for an invitation to the speaker's own home/event, a nuance highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception since the pattern appears nowhere else in the chapter.",
+      "audio": "5601d1806affc507.mp3",
+      "audioOriginal": "5601d1806affc507.orig.mp3",
+      "audioAuto": "5601d1806affc507.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5601d1806affc507"
     },
     {
       "id": "sp1-arigatou-zehi",
@@ -734,7 +1048,12 @@
       "pronunciation": "arigatō gozaimasu. zehi",
       "scene": "accepting an invitation to someone's home or a planned event",
       "note": "Contrasts with ええ、ぜひ or いいですね。ぜひ — ありがとうございます。ぜひ is used specifically when accepting an invitation to the speaker's home, a planned event, or something already decided.",
-      "reviewNote": "Chapter's only sentence demonstrating this accepting-register nuance, highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception."
+      "reviewNote": "Chapter's only sentence demonstrating this accepting-register nuance, highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception.",
+      "audio": "0c86c01773e67078.mp3",
+      "audioOriginal": "0c86c01773e67078.orig.mp3",
+      "audioAuto": "0c86c01773e67078.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0c86c01773e67078"
     },
     {
       "id": "fib-nodo-nanika-nomimasenka",
@@ -745,7 +1064,12 @@
       "note": "なにか (something) plus ませんか invites without naming the drink.",
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3361b1c5d29150f8.mp3",
+      "audioOriginal": "3361b1c5d29150f8.orig.mp3",
+      "audioAuto": "3361b1c5d29150f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3361b1c5d29150f8"
     },
     {
       "id": "fib-nodo-sou-shimashou",
@@ -756,7 +1080,13 @@
       "note": null,
       "scene": "answering an invitation to drink something because you're thirsty",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6b10214a750efa0e.mp3",
+      "audioOriginal": "6b10214a750efa0e.orig.mp3",
+      "audioAuto": "6b10214a750efa0e.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "6b10214a750efa0e"
     },
     {
       "id": "fib-tsukare-sukoshi-yasumimasenka",
@@ -767,7 +1097,12 @@
       "note": "すこし (a bit) softens the suggestion to rest.",
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "dfff80a7edd0c335.mp3",
+      "audioOriginal": "dfff80a7edd0c335.orig.mp3",
+      "audioAuto": "dfff80a7edd0c335.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dfff80a7edd0c335"
     },
     {
       "id": "fib-tsukare-sou-shimashou",
@@ -778,7 +1113,13 @@
       "note": null,
       "scene": "answering an invitation to rest a bit because you're tired",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6b10214a750efa0e.mp3",
+      "audioOriginal": "6b10214a750efa0e.orig.mp3",
+      "audioAuto": "6b10214a750efa0e.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "6b10214a750efa0e"
     }
   ]
 }

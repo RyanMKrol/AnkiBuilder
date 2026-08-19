@@ -65,15 +65,12 @@
       "id": "kara-because",
       "english": "Because, so (particle)",
       "category": "Grammar & Function Words",
-      "scene": null,
+      "scene": "the reason first, then what follows from it",
       "hint": null,
       "note": "This から means \"because, so\" — a different job from the から you already know for \"from\" (Lesson 3's なんじからなんじまで, Lesson 6's アメリカからきました). It attaches to the end of the reason clause: clause1から、clause2, as in いいてんきですから、こうえんでひるごはんをたべませんか, \"The weather is nice, so shall we have lunch in the park?\"",
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
       "target": "から",
-      "uncertain": true,
-      "excluded": true,
-      "excludedBy": "human",
-      "excludedReason": "Already introduced in an earlier lesson with the same target and sense (backward dedup flagged it); the duplicate id would also collapse two cards onto one Anki note."
+      "uncertain": true
     },
     {
       "id": "isshoni",

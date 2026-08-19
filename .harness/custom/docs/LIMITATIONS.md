@@ -3006,6 +3006,12 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   ledger, and a hand-authored extras unit runs neither, so all 15 of them carried no `meta.passes` and
   the FAIL-tier check went silent on half the collection without saying so. `prepare` now stamps the
   five passes it owns, which every unit runs.
+- **The ledger reports what the UNIT achieved, not what one run did.** `prepare` skips any pass whose
+  marker is already set, so on a re-run those branches never execute. The first version stamped from
+  this run's actions alone and so recorded `semanticDedup: skipped — no drill cards were mined` on a
+  unit holding eleven of them. A pass skipped because its marker says it is done is now recorded `ok`,
+  with the marker named as the evidence. A ledger that asserts something false about the unit is worse
+  than no ledger at all, because the check that reads it is FAIL-tier.
 - **Impact:** three passes are resumable because they only annotate or reorder. `extraction` is not
   and never will be — it IS the item set, so a failed extraction still means rebuilding the unit and
   losing anything hand-added since. `resume` reports that rather than attempting it. The ledger is

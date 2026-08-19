@@ -1956,6 +1956,97 @@ test("prepare: a failed pass makes the closing line say NOT ready, and name it",
   });
 });
 
+test("prepare: records EVERY pass it owns on the ledger, so a hand-authored unit has one too", async () => {
+  // The pass ledger was written only by assemble and translate, so any unit that runs neither — every
+  // hand-authored extras unit, half of the live collection — carried no `meta.passes` at all. The
+  // FAIL-tier pass-ledger check goes silent on a unit with no ledger BY DESIGN, so "preflight clean"
+  // said strictly less about an extras unit than about a base lesson, and said so nowhere.
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    await runCli(["prepare", "--run", runDir], { ...prepareDeps([]), log: () => {} });
+
+    const passes = JSON.parse(readFileSync(paths.cards, "utf-8")).meta.passes;
+    assert.equal(passes.translate.status, "ok");
+    assert.equal(passes.fillInBlank.status, "ok");
+    assert.equal(passes.crossLessonNotes.status, "ok");
+    assert.equal(passes.semanticDedup.status, "ok");
+    assert.equal(passes.numberReadings.status, "ok");
+  });
+});
+
+test("prepare: a pass with nothing to do is recorded SKIPPED, not silently absent", async () => {
+  // Skipped is a third state, and it earns its place: "the de-dup never ran because nothing was
+  // mined" and "the de-dup is missing from this unit" look identical if only ok/failed exist.
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      // Nothing mined, so the semantic de-dup has nothing to look at.
+      mineFillInBlankCards: ({ items }) => ({ items, added: [], patterns: {} }),
+      log: () => {},
+    });
+
+    const passes = JSON.parse(readFileSync(paths.cards, "utf-8")).meta.passes;
+    assert.equal(passes.semanticDedup.status, "skipped");
+    assert.match(passes.semanticDedup.reason, /nothing to dedup/);
+    assert.equal(passes.fillInBlank.status, "ok", "the miner ran fine; it just found nothing");
+  });
+});
+
+test("prepare: a failed pass lands on the ledger with its reason, not just in the log", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      mineFillInBlankCards: ({ items }) => ({
+        items,
+        added: [],
+        patterns: {},
+        failed: true,
+        reason: "usage limit reached",
+      }),
+      log: () => {},
+    });
+
+    const passes = JSON.parse(readFileSync(paths.cards, "utf-8")).meta.passes;
+    assert.equal(passes.fillInBlank.status, "failed");
+    assert.equal(passes.fillInBlank.reason, "usage limit reached");
+    // And `resume` can now see it, which is the whole point of writing it down.
+    assert.equal(passes.crossLessonNotes.status, "ok");
+  });
+});
+
+test("prepare: stamping the ledger does not erase what assemble already recorded", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = baseEpubCorpus();
+    // assemble's half of the ledger, already on the unit before prepare runs.
+    corpus.meta.passes = {
+      forwardFlags: { status: "failed", reason: "usage limit reached" },
+      pedagogicalSort: { status: "ok" },
+    };
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    await runCli(["prepare", "--run", runDir], { ...prepareDeps([]), log: () => {} });
+
+    const passes = JSON.parse(readFileSync(paths.cards, "utf-8")).meta.passes;
+    assert.equal(passes.forwardFlags.status, "failed", "assemble's entry must survive");
+    assert.equal(passes.forwardFlags.reason, "usage limit reached");
+    assert.equal(passes.pedagogicalSort.status, "ok");
+    assert.equal(passes.translate.status, "ok", "and prepare's must be added alongside");
+  });
+});
+
 test("prepare: a FAILED notes pass leaves notesEnhanced unset, so a re-run retries it", async () => {
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);

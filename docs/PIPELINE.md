@@ -1010,6 +1010,14 @@ Every model pass in a build records its outcome on the unit, at `meta.passes`:
 `recordPass` / `failedPasses` live in `src/cards/passLedger.js`. The ledger travels corpus -> cards
 (translate copies `meta` verbatim), so an entry written during `assemble` survives into the deck.
 
+**Three stages write to it:** `assemble` (taught index, forward flags, pedagogical sort), `translate`
+(romanization), and `prepare` (translate, drill mining, semantic de-dup, cross-lesson notes, number
+readings). `prepare`'s half matters more than it looks: a hand-authored **extras** unit never runs
+`assemble` or `translate`, so before `prepare` stamped its own passes those units carried no ledger at
+all — and the `pass-ledger` check goes silent on a unit with no ledger by design. "preflight clean"
+therefore said strictly less about an extras unit than about a base lesson, and said so nowhere. Each
+stage merges into what is already recorded rather than overwriting, so the halves coexist.
+
 This extends a convention that already existed rather than inventing a second one. `prepare`'s two
 enrichment passes have always written markers (`enriched`, `notesEnhanced`), which is exactly why a
 failure there was trivially recoverable: no marker means not done, so a re-run retries those and

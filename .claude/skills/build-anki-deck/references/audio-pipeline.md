@@ -50,6 +50,14 @@ cards against the audio on disk and `--apply` clears the ones that are stale; it
 flag on the detector's say-so alone, because these are exactly the clips the detector failed on. The
 count is an **ACK**-tier preflight check, so a genuine instance blocks until it is fixed or accepted.
 
+A **cache hit leaves the flag alone**, and that distinction is load-bearing. Nothing is fetched and
+nothing is trimmed on a cached clip, so a re-run learns nothing about whether that clip carries the
+marker — and "learned nothing" must not be written down as "it is clean". It was, until 2026-08-19:
+the cache branch reported no verdict, the writeback read the missing verdict as `false`, and so
+re-running `audio` over a unit deleted the flag from every marker-audible clip it owned. The clip on
+disk was byte-identical and still said ででで, but the card claimed clean audio, the badge was gone
+and preflight passed. Only a real fetch-and-trim may now set OR clear the flag.
+
 This marker absorbed what used to be a per-language transform that appended a bare `。` to the
 spoken text and offered paired takes with and without it. That machinery is gone: there is no such
 take to choose any more, the displayed face and reading never carry a `。`, and the character's one
@@ -224,6 +232,10 @@ cut, and a card with no shipping clip at all is regenerated whatever stale field
 adding a card, editing a `ttsText`, or re-running after a cache drop never clobbers hand-picked
 takes. The deck embeds whatever is in each card's `audio`; that field is the source of truth for its
 final take.
+
+A re-run also will not talk you out of a fault it cannot re-examine: a cached clip's
+`audioMarkerStuck` flag survives, because that run produced no evidence about it (see the end-marker
+section above). Only a fetch-and-trim, which does produce evidence, may set or clear it.
 
 One related subtlety the stage handles for you: clip names are content-addressed, so editing a
 `ttsText` after audio has run leaves the card pointing at a stale clip that still exists on disk. The

@@ -1,0 +1,339 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 37,
+    "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime (Extras)"
+  },
+  "items": [
+    {
+      "id": "x15b-daibingu-ga-suki",
+      "english": "Chan-san likes scuba diving.",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence ダイビング appears in).",
+      "target": "チャンさんはダイビングがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-piza-o-taberu-no-ga-suki",
+      "english": "Emma-san likes eating pizza.",
+      "category": "Food",
+      "note": "たべます → たべる is Regular 2: ます simply becomes る, with no sound change before it.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — のが on a Regular 2 verb, the second of the chart's three classes).",
+      "target": "エマさんはピザをたべるのがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-jazu-ga-suki",
+      "english": "I like jazz.",
+      "category": "Sports & Hobbies",
+      "scene": "answering \"what kind of music do you like?\"",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 3 answer; job: the only sentence ジャズ appears in).",
+      "target": "ジャズがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-pooru-yakyuu-suki",
+      "english": "Paul-san likes baseball.",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the な-adjective grid, present affirmative).",
+      "target": "ポールさんはやきゅうがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-pooru-yakyuu-suki-past-neg",
+      "english": "Paul-san didn't like baseball.",
+      "category": "Sports & Hobbies",
+      "note": "Same frame, past negative: じゃありません picks up でした on the end. Nothing else in the sentence moves.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the な-adjective grid's past negative had only the bare table entry, no sentence).",
+      "target": "ポールさんはやきゅうがすきじゃありませんでした",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-suzuki-dansu-jouzu-neg",
+      "english": "Suzuki-san isn't good at dancing.",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the じょうず grid, present negative).",
+      "target": "すずきさんはダンスがじょうずじゃありません",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-donna-ongaku-q",
+      "english": "What kind of music do you like?",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 3; job: the どんな turn on おんがく).",
+      "target": "どんなおんがくがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-utau-no-ga-suki",
+      "english": "I like singing.",
+      "category": "Sports & Hobbies",
+      "note": "が, not も: this is what you like, full stop. うたうのもすきです would mean singing is one MORE thing you like on top of something already mentioned.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the base lesson's うたうのもすきです).",
+      "target": "うたうのがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-itoko-no-pooru",
+      "english": "This is my cousin, Paul.",
+      "category": "Family & People",
+      "note": "This の joins two nouns: いとこ の ポール, \"Paul, [who is] my cousin.\" It is the same の as にほんのアニメ, and NOT the nominalizer の of かくのがすきです — that one only ever follows a verb.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: possessive/appositive の, and the contrast with this lesson's nominalizer の).",
+      "target": "いとこのポールです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-pooru-to-suzuki-robotto",
+      "english": "Paul-san and Suzuki-san like mecha anime.",
+      "category": "Sports & Hobbies",
+      "note": "と joins the two people into one topic, so は marks them both and the sentence takes a single すきです.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue closing summary; job: と joining subjects inside the person は thing が frame).",
+      "target": "ポールさんとすずきさんはロボットのアニメがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-e-o-kaku-no-ga-suki-q",
+      "english": "Do you like drawing pictures, Green-san?",
+      "category": "Sports & Hobbies",
+      "note": "え is what かく takes as its object (を), and the whole action えをかく is what の turns into the thing liked (が). Two different particles, two different jobs.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII substitution 2; job: を inside a のが clause, the pattern's hardest shape).",
+      "target": "グリーンさんはえをかくのがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-robotto-no-anime-suki",
+      "english": "I like mecha anime.",
+      "category": "Sports & Hobbies",
+      "scene": "answering \"what kind of anime do you like?\"",
+      "note": "ロボットのアニメ is literally \"robot anime\" — の narrows the noun that follows it.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Paul's answer; job: the answer half of どんな〜がすきですか).",
+      "target": "ロボットのアニメがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-pooru-yakyuu-suki-neg",
+      "english": "Paul-san doesn't like baseball.",
+      "category": "Sports & Hobbies",
+      "note": "Same frame, negated: です becomes じゃありません. A な-adjective never takes くない.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the な-adjective grid, present negative).",
+      "target": "ポールさんはやきゅうがすきじゃありません",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-itaria-ryouri-q",
+      "english": "Do you like Italian food, Suzuki-san?",
+      "category": "Food",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 2; job: the first turn of the substitution dialogue).",
+      "target": "すずきさんはイタリアりょうりがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-oyogu-no-mo-suki",
+      "english": "I like it too. I also like swimming.",
+      "category": "Sports & Hobbies",
+      "scene": "replying after the other person says they like running",
+      "note": "Two も in one turn: the first agrees about running, the second adds swimming.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII substitution 1; job: the second half of the substitution, uncarded).",
+      "target": "わたしもすきです。およぐのもすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-donna-supootsu-q",
+      "english": "What kind of sports do you like?",
+      "category": "Sports & Hobbies",
+      "note": "どんな + noun + がすきですか narrows a category you have already established the person likes.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III example and SPEAKING PRACTICE 1; job: the どんな question on スポーツ, carded only for アニメ and くだもの).",
+      "target": "どんなスポーツがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-uta-ga-jouzu",
+      "english": "Kato-san is a good singer.",
+      "category": "Sports & Hobbies",
+      "note": "うた is the noun \"song\", so it takes が directly. うたうのがじょうずです — with the verb — says the same thing about the ACT of singing.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence うた appears in, plus the noun/verb contrast).",
+      "target": "かとうさんはうたがじょうずです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-yomu-dict",
+      "english": "Read (dictionary form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1: よみます → よむ. The み before ます becomes む.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 10, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "target": "よむ",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-uisukii-suki-ja-arimasen",
+      "english": "Brown-san doesn't like whiskey.",
+      "category": "Food",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence ウイスキー appears in).",
+      "target": "ブラウンさんはウイスキーがすきじゃありません",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-nihon-no-anime-suki",
+      "english": "I like Japanese anime.",
+      "category": "Sports & Hobbies",
+      "note": "The lesson's core frame: person は — thing が — すきです. にほんの here means \"of Japan\", i.e. Japanese.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Paul's line; job: the lesson's headline sentence, uncarded).",
+      "target": "わたしはにほんのアニメがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-sakkaa-ga-suki",
+      "english": "I like soccer.",
+      "category": "Sports & Hobbies",
+      "note": "Contrast with サッカーをみるのがすきです: this one likes the SPORT, that one likes WATCHING it. A plain noun takes が on its own; an action needs のが to become one.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the base lesson's サッカーをみるのがすきです).",
+      "target": "サッカーがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-bijutsukan-ni-iku-no-ga-suki-q",
+      "english": "Do you like going to art museums, Emma-san?",
+      "category": "Travel & Tourism",
+      "note": "に stays with いく inside the clause; の then wraps the whole action so が can mark it.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — に surviving inside a のが clause, in question form).",
+      "target": "エマさんはびじゅつかんにいくのがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-pooru-yakyuu-suki-past",
+      "english": "Paul-san liked baseball.",
+      "category": "Sports & Hobbies",
+      "note": "Same frame in the past: です becomes でした.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the な-adjective grid's past affirmative had only the bare table entry すきでした, no sentence).",
+      "target": "ポールさんはやきゅうがすきでした",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-suzuki-dansu-jouzu-past",
+      "english": "Suzuki-san was good at dancing.",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the じょうず grid, past affirmative).",
+      "target": "すずきさんはダンスがじょうずでした",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-hashiru-no-ga-jouzu",
+      "english": "Raja-san is good at running.",
+      "category": "Sports & Hobbies",
+      "note": "The same のが clause works with じょうず as with すき: verb in dictionary form, then のが. はしります → はしる is Regular 1.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — のが with じょうず, which the grammar states and no card showed).",
+      "target": "ラジャさんははしるのがじょうずです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-supootsu-o-suru-no-ga-suki",
+      "english": "Tanaka-san likes playing sports.",
+      "category": "Sports & Hobbies",
+      "note": "します → する is Irregular, the third class in the chart along with きます → くる.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — のが on an Irregular verb, completing the chart's three classes).",
+      "target": "たなかさんはスポーツをするのがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-suzuki-dansu-jouzu",
+      "english": "Suzuki-san is good at dancing.",
+      "category": "Sports & Hobbies",
+      "note": "じょうず takes が for the skill, exactly as すき takes が for the thing liked.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the じょうず grid, present affirmative; also the only sentence ダンス appears in).",
+      "target": "すずきさんはダンスがじょうずです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-aruku-dict",
+      "english": "Walk (dictionary form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1: あるきます → あるく. The き before ます becomes く.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 9, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "target": "あるく",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-piza-ga-suki",
+      "english": "I like pizza.",
+      "category": "Food",
+      "scene": "answering \"what kind of Italian food do you like?\"",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 2 answer; job: the only sentence ピザ appears in).",
+      "target": "ピザがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-donna-itaria-ryouri-q",
+      "english": "What kind of Italian food do you like?",
+      "category": "Food",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 2; job: the どんな turn).",
+      "target": "どんなイタリアりょうりがすきですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-jouzu-desu-ne",
+      "english": "You're good at it!",
+      "category": "Descriptions & Qualities",
+      "scene": "praising someone's drawing as you watch them finish it",
+      "note": "じょうず is only ever said about OTHER people. Japanese speakers avoid it about themselves or their own family because it sounds like boasting — which is also why じょうずですか is rarely asked.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Smith and Paul's line; job: the GRAMMAR 1 note on じょうず, which no card carried).",
+      "target": "じょうずですね",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-nihon-no-ryouri-suki",
+      "english": "I like Japanese food.",
+      "category": "Food",
+      "note": "りょうり on its own is \"cooking\" or \"cuisine\"; にほんの narrows it, the same way イタリアりょうり does.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence the bare りょうり appears in).",
+      "target": "にほんのりょうりがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-anime-o-miru-no-ga-suki",
+      "english": "I like watching anime.",
+      "category": "Sports & Hobbies",
+      "note": "みるの turns the verb into the thing liked — the nominalizer only ever follows a dictionary form. Contrast にほんのアニメ, where の joins two nouns instead.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against わたしはにほんのアニメがすきです, the possessive の).",
+      "target": "アニメをみるのがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-yakyuu-ga-suki",
+      "english": "I like baseball.",
+      "category": "Sports & Hobbies",
+      "scene": "answering \"what kind of sports do you like?\"",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III example answer; job: the answer half, and the only sentence やきゅう appears in).",
+      "target": "やきゅうがすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-sukii-ga-jouzu",
+      "english": "Nakamura-san is good at skiing.",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence スキー appears in).",
+      "target": "なかむらさんはスキーがじょうずです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-kaku-no-mo-suki",
+      "english": "I like drawing them too.",
+      "category": "Sports & Hobbies",
+      "scene": "after agreeing you like the same anime the other person does",
+      "note": "かくの is \"drawing\" — the nominalizer の turns the dictionary form into something が/も can mark. も (not が) because it is one MORE thing you like.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Suzuki's line; job: のも, the nominalizer under a second particle).",
+      "target": "かくのもすきです",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15b-suzuki-dansu-jouzu-past-neg",
+      "english": "Suzuki-san wasn't good at dancing.",
+      "category": "Sports & Hobbies",
+      "note": "The longest form in the set, and still only the ending changes: じょうず + じゃありません + でした.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the じょうず grid's past negative had only the bare table entry, no sentence).",
+      "target": "すずきさんはダンスがじょうずじゃありませんでした",
+      "aiSuggested": true
+    }
+  ]
+}

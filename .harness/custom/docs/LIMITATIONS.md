@@ -3002,6 +3002,10 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   wrote nothing, so a quota interruption was both invisible and unrecoverable. The instance: a lesson
   reached its review gate with the romanization correction never having run, and the only thing that
   knew was a log line that had scrolled away.
+- **Extras units were a blind spot until 2026-08-19:** only `assemble` and `translate` wrote to the
+  ledger, and a hand-authored extras unit runs neither, so all 15 of them carried no `meta.passes` and
+  the FAIL-tier check went silent on half the collection without saying so. `prepare` now stamps the
+  five passes it owns, which every unit runs.
 - **Impact:** three passes are resumable because they only annotate or reorder. `extraction` is not
   and never will be — it IS the item set, so a failed extraction still means rebuilding the unit and
   losing anything hand-added since. `resume` reports that rather than attempting it. The ledger is

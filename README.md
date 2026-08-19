@@ -375,8 +375,9 @@ operator has to override on the day it lands is worse than no gate.
 - [x] Pedagogical sort — every assembled corpus is re-ordered (dependency-aware LLM pass) so a
       learner meets vocabulary before the sentences built from it; on by default, `--no-sort` opts out
 - [x] Every model pass records its outcome on the unit (`meta.passes`: ok / failed / skipped, with a
-      reason), a FAIL-tier preflight check refuses to let a unit with an incomplete pass reach a
-      review gate, and `anki-builder resume --run <dir>` reads that ledger back and re-runs exactly
+      reason) — written by `assemble`, `translate` AND `prepare`, so a hand-authored extras unit that
+      runs only the last of those still gets a ledger. A FAIL-tier preflight check refuses to let a
+      unit with an incomplete pass reach a review gate, and `anki-builder resume --run <dir>` reads that ledger back and re-runs exactly
       what failed — `--dry` first for the plan. A refusal from the usage limit is recognised, never
       retried, and trips a breaker so the passes queued behind it don't spawn at all. The whole-book
       taught index is its own command (`anki-builder epub taught-index <hash>`) rather than something

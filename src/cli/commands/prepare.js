@@ -7,6 +7,7 @@ import { withClaim, updateClaim } from "../runClaim.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../../cards/spokenNumbers.js";
 import { mergeIntoCardsFile } from "../../cards/mergeIntoCardsFile.js";
+import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
 import { readJson, runDirOrderContext } from "./shared.js";
 import { runTranslateInner } from "./translate.js";
 
@@ -29,6 +30,21 @@ function degradedMarker(order) {
     reason: order.status,
     missing: order.missing.map((unit) => unit.name),
   };
+}
+
+/**
+ * Write a batch of pass outcomes onto the unit's ledger, merging into whatever is already recorded.
+ *
+ * Read-modify-write per call rather than from a snapshot: assemble may already have stamped
+ * forwardFlags / pedagogicalSort / taughtIndex, translate may have stamped romanization, and a
+ * whole-object overwrite would erase them. `mergeIntoCardsFile` re-reads the file for the same reason
+ * everything else in this stage does — the dashboard is editable throughout.
+ */
+function stampPasses(cardsPath, outcomes) {
+  if (outcomes.length === 0) return;
+  const meta = { passes: { ...(readJson(cardsPath).meta?.passes ?? {}) } };
+  for (const { name, status, reason } of outcomes) recordPass(meta, name, status, reason);
+  mergeIntoCardsFile(cardsPath, { meta, reason: "prepare-ledger" });
 }
 
 /**
@@ -73,6 +89,13 @@ async function runPrepareInner(flags, ctx) {
   // set with holes in it. Stop here instead — the markers stay unset, readiness keeps the lesson
   // out of review, and re-running prepare retries the errored items first.
   if (Array.isArray(meta.translateErrors) && meta.translateErrors.length > 0) {
+    stampPasses(paths.cards, [
+      {
+        name: "translate",
+        status: PASS_FAILED,
+        reason: `${meta.translateErrors.length} item(s) failed to translate`,
+      },
+    ]);
     ctx.log(
       `prepare: stopping — ${meta.translateErrors.length} item(s) failed to translate. ` +
         `Re-run "prepare --run ${runDir}" to retry them; enrichment runs once translation is complete.`,
@@ -97,6 +120,16 @@ async function runPrepareInner(flags, ctx) {
   // which is how a lesson missing two passes reads as a lesson ready to review: the markers were
   // right and the closing line was wrong. Collect what failed and say so at the end.
   const failedPasses = [];
+  // The ledger side of the same story. `failedPasses` is prose for the closing line; this is the
+  // record that survives on the unit, and it is what `resume` and preflight's pass-ledger check read.
+  //
+  // Until now ONLY assemble and translate wrote to meta.passes, so a unit that never runs them — any
+  // hand-authored extras unit, which is half of this collection — carried no ledger at all, and the
+  // FAIL-tier check went silent on it by design ("no meta.passes, nothing to report"). "preflight
+  // clean" therefore said strictly less about an extras unit than about a base lesson, without
+  // saying so. Every pass prepare owns now reports here.
+  const passOutcomes = [];
+  const notePass = (name, status, reason = null) => passOutcomes.push({ name, status, reason });
 
   // Both remaining passes read this lesson's EARLIER siblings, so their result is only as complete
   // as what those siblings have already written. Worked out once, up front, and used to decide both
@@ -184,6 +217,7 @@ async function runPrepareInner(flags, ctx) {
       ctx.log(
         `semantic de-dup: ${deduped.excluded.length} of ${mined.added.length} practice card(s) excluded as pattern repeats`,
       );
+      notePass("semanticDedup", PASS_OK);
     }
 
     // The marker means "this pass ran with everything it needed", NOT "this pass ran". Marked even
@@ -193,11 +227,13 @@ async function runPrepareInner(flags, ctx) {
     // and NOT marked when the pass itself FAILED (a model/parse error), or a transient outage
     // would permanently skip this lesson's drills.
     if (mined.failed) {
+      notePass("fillInBlank", PASS_FAILED, mined.reason ?? "the drill pass did not complete");
       failedPasses.push("fill-in-the-blank");
       ctx.log(
         "fill-in-the-blank: pass failed — enrichment marker left unset so a re-run retries it",
       );
     } else {
+      notePass("fillInBlank", PASS_OK);
       // Merge, don't overwrite. `cards` was read before two model calls that together take minutes,
       // and the dashboard is editable for that whole window. What this pass OWNS is the drill block:
       // the stale drills it retired, the ones it mined (already carrying the de-dup pass's exclusion
@@ -227,11 +263,13 @@ async function runPrepareInner(flags, ctx) {
       ctx.log(`cross-lesson notes: wrote ${changed} note(s) for this lesson`);
     }
     if (failed) {
+      notePass("crossLessonNotes", PASS_FAILED, "the note pass did not complete");
       // A failed pass is not a completed pass: leave notesEnhanced unset so a re-run retries,
       // rather than freezing a transient outage in as "done".
       failedPasses.push("cross-lesson notes");
       ctx.log("cross-lesson notes: pass failed — marker left unset so a re-run retries it");
     } else {
+      notePass("crossLessonNotes", skipped ? PASS_SKIPPED : PASS_OK, skipped || null);
       // Markers only — the note pass has already written the notes themselves, through the same
       // re-read-and-merge path.
       mergeIntoCardsFile(paths.cards, {
@@ -272,7 +310,13 @@ async function runPrepareInner(flags, ctx) {
         `number readings: filled ${fixed.length} card(s), each flagged uncertain so you check the counter`,
       );
     }
+    if (remaining.length === 0) notePass("numberReadings", PASS_OK);
     if (remaining.length > 0) {
+      notePass(
+        "numberReadings",
+        PASS_FAILED,
+        `${remaining.length} numeral(s) still reach the romaji or the spoken text`,
+      );
       failedPasses.push(`${remaining.length} unreadable numeral(s)`);
       ctx.log(
         `prepare: WARNING — ${remaining.length} card(s) still have a numeral that reaches the romaji ` +
@@ -282,6 +326,28 @@ async function runPrepareInner(flags, ctx) {
       );
     }
   }
+
+  // Translation is the one pass whose success is already proven by everything above it running: the
+  // stage stops dead when translateErrors is non-empty, so reaching here means the card set is whole.
+  notePass("translate", PASS_OK);
+  if (isTemplate) {
+    // Not failures and not silence: a template has no siblings to cross-reference and no source text
+    // to mine, so these two are skipped BY DESIGN. Recording that is what stops a later reader
+    // wondering whether they were forgotten.
+    notePass("fillInBlank", PASS_SKIPPED, "a template has no source text to mine drills from");
+    notePass("crossLessonNotes", PASS_SKIPPED, "a template has no sibling lessons to reference");
+  }
+  if (!passOutcomes.some((o) => o.name === "semanticDedup")) {
+    notePass(
+      "semanticDedup",
+      PASS_SKIPPED,
+      "no drill cards were mined, so there was nothing to dedup",
+    );
+  }
+  if (!passOutcomes.some((o) => o.name === "numberReadings")) {
+    notePass("numberReadings", PASS_OK, null);
+  }
+  stampPasses(paths.cards, passOutcomes);
 
   if (failedPasses.length > 0) {
     // Say NOT ready, name what is missing, and give the command that fixes it. The dashboard already

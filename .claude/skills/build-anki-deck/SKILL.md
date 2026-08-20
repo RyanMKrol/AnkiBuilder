@@ -479,6 +479,20 @@ you want one unit's answer while the chapter is in front of you.
 It pulls every headword + gloss out of the chapter's `<table class="voca">` blocks, sub-rows
 included, and reports the ones no card's `target` contains.
 
+**A `／` in a headword means TWO words, and each needs its own card.** The book writes
+`つま ／ かない` for "(my) wife" and `おっと ／ しゅじん` for "(my) husband" — different words, one
+gloss. The script splits them and checks each separately, because reporting the cell whole is a miss
+that LOOKS like a false positive: the `nearest card target` comes back as the half that IS carded,
+and the row reads exactly like the optional-parts noise below. That is how `かない` and `しゅじん`
+stayed unreported, with four sentence cards already using `しゅじん` and nothing teaching it. Counter
+sound-variants (`〜ほん ／ ぼん ／ ぽん`) split the same way and should: a beginner cannot derive
+`ろっぽん` from `にほん`, so each shape has to appear somewhere.
+
+**A headword can also be hidden by a LONGER word that contains it.** `しゅじん` reads as covered
+because `ごしゅじん` is carded, and the two are different words — the honorific prefix changes who is
+being talked about. The script cannot tell that from containment, so when a report's only coverage is
+another vocabulary entry rather than a sentence, check it by hand.
+
 Expect a couple of false positives and check each by hand rather than adding blindly. The script
 already resolves the two conventions that cause most of them (a word printed with optional parts,
 `(お)てら`, matches the card `おてら`; an attachment-point `〜` is notation, not card text) and prints

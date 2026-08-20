@@ -4,6 +4,7 @@ import {
   parseVocaEntries,
   vocabTargetVariants,
   findUncoveredVocab,
+  splitAlternates,
 } from "../../src/cards/vocabCoverage.js";
 
 // The book's real shape: a two-column table, with component/derived forms on indented sub-rows.
@@ -93,5 +94,39 @@ test("sub-rows can be left out when only headline entries are wanted", () => {
   assert.deepEqual(
     misses.map((m) => m.target),
     ["おかし", "(お)てら", "ぎんこう"],
+  );
+});
+
+test("splitAlternates splits a headword cell that holds several words for one gloss", () => {
+  // The book writes つま ／ かない for "(my) wife" — two different words, one gloss, and each needs
+  // its own card. Counter sound-variants (〜ほん ／ ぼん ／ ぽん) split the same way, and should: a
+  // beginner cannot derive ろっぽん from にほん, so each shape has to appear somewhere.
+  assert.deepEqual(splitAlternates("つま ／ かない"), ["つま", "かない"]);
+  assert.deepEqual(splitAlternates("〜ほん ／ ぼん ／ ぽん"), ["〜ほん", "ぼん", "ぽん"]);
+  assert.deepEqual(splitAlternates("おっと/しゅじん"), ["おっと", "しゅじん"]);
+});
+
+test("splitAlternates leaves an ordinary headword alone, including a parenthesised one", () => {
+  assert.deepEqual(splitAlternates("ちち"), ["ちち"]);
+  assert.deepEqual(splitAlternates("(お)てら"), ["(お)てら"]);
+});
+
+test("a half-covered alternates cell is reported as the MISSING half, not as the whole cell", () => {
+  // The bug this fixes, and why it hid: reporting the whole cell "つま ／ かない" as missing produced
+  // a `nearest` of つま — the half that IS carded — so the row read exactly like the documented
+  // optional-parts false positive and was dismissed. Three words sat unreported that way, one of
+  // them used by four sentence cards with nothing teaching it.
+  const html = `<table class="voca"><tr><td>つま ／ かない</td><td>(my) wife</td></tr></table>`;
+  const entries = parseVocaEntries(html);
+  assert.deepEqual(
+    entries.map((e) => e.target),
+    ["つま", "かない"],
+  );
+  assert.equal(entries[1].english, "(my) wife", "both halves keep the shared gloss");
+
+  const misses = findUncoveredVocab(entries, [{ target: "つま" }]);
+  assert.deepEqual(
+    misses.map((m) => m.target),
+    ["かない"],
   );
 });

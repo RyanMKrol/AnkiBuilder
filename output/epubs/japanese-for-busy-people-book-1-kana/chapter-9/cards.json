@@ -427,7 +427,24 @@
       "audioOriginal": "9164d83f5c5c2784.orig.mp3",
       "audioAuto": "9164d83f5c5c2784.mp3",
       "audioMarked": true,
-      "audioTextHash": "9164d83f5c5c2784"
+      "audioTextHash": "9164d83f5c5c2784",
+      "hint": "the everyday modern word"
+    },
+    {
+      "id": "kanai-wife",
+      "english": "(My) wife",
+      "category": "Family & People",
+      "target": "かない",
+      "pronunciation": "kanai",
+      "hint": "the older, more traditional word",
+      "note": "A humble word for one's own wife, literally \"inside the house\". つま is the everyday modern word; かない sounds dated to many speakers now. Neither is ever used for someone else's wife — that is おくさん.",
+      "aiSuggested": true,
+      "reviewNote": "Added 2026-08-20: the book's family table lists つま／かない for \"(my) wife\" and only つま was carded. Review gates waived by the owner for this addition.",
+      "audio": "baa3a4f3dd8f731f.mp3",
+      "audioOriginal": "baa3a4f3dd8f731f.orig.mp3",
+      "audioAuto": "baa3a4f3dd8f731f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "baa3a4f3dd8f731f"
     },
     {
       "id": "goshujin",
@@ -454,7 +471,24 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "d36432a4fd57c84a-gen-b1900b50.mp3",
-      "audioTextHash": "d36432a4fd57c84a"
+      "audioTextHash": "d36432a4fd57c84a",
+      "hint": "the neutral modern word"
+    },
+    {
+      "id": "shujin-husband",
+      "english": "(My) husband",
+      "category": "Family & People",
+      "target": "しゅじん",
+      "pronunciation": "shujin",
+      "hint": "the more traditional word, literally \"master\"",
+      "note": "A traditional word for one's own husband. Still very common in speech, though おっと is the neutral modern equivalent. Never used for someone else's husband — that is ごしゅじん.",
+      "aiSuggested": true,
+      "reviewNote": "Added 2026-08-20: the book's family table lists おっと／しゅじん for \"(my) husband\" and only おっと was carded, while four sentence cards already used しゅじん. Review gates waived by the owner for this addition.",
+      "audio": "50fadeb5a6eb2829.mp3",
+      "audioOriginal": "50fadeb5a6eb2829.orig.mp3",
+      "audioAuto": "50fadeb5a6eb2829.mp3",
+      "audioMarked": true,
+      "audioTextHash": "50fadeb5a6eb2829"
     },
     {
       "id": "maiasa",

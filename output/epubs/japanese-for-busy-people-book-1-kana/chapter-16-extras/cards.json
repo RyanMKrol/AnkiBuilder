@@ -1,0 +1,572 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 38,
+    "chapterLabel": "Lesson 16: Making an Invitation: Shall We Go Together? (Extras)",
+    "baseChapterLabel": "Lesson 16: Making an Invitation: Shall We Go Together?",
+    "enriched": true,
+    "notesEnhanced": true,
+    "passes": {
+      "semanticDedup": {
+        "status": "ok",
+        "reason": "completed in an earlier run (enriched marker set)"
+      },
+      "fillInBlank": {
+        "status": "ok",
+        "reason": "completed in an earlier run (enriched marker set)"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "x16b-tsukare-yasumimasenka",
+      "english": "I'm tired, so shall we rest a bit?",
+      "category": "Body & Health",
+      "target": "つかれましたから、すこしやすみませんか",
+      "pronunciation": "tsukaremashita kara, sukoshi yasumimasen ka",
+      "note": "から on a past-tense clause: the reason is something that has already happened.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence やすみます appears in; also から after a ました clause).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-sou-desu-ka-mata-kondo",
+      "english": "I see. Well, another time then.",
+      "category": "Grammar & Function Words",
+      "target": "そうですか。じゃ、またこんど",
+      "pronunciation": "sō desu ka. ja, mata kondo",
+      "scene": "accepting someone's refusal gracefully",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B closing turn; job: またこんど in a sentence, carded only as a bare phrase).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-nichiyoubi-jikan-arimasen",
+      "english": "I don't have time on Sunday.",
+      "category": "Time",
+      "target": "にちようびはじかんがありません",
+      "pronunciation": "nichiyōbi wa jikan ga arimasen",
+      "note": "The negative of にちようびはじかんがあります. あります becomes ありません; じかん keeps が either way.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the negative of a frame the lesson teaches only in the affirmative).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-doyoubi-hakone-ikimasenka",
+      "english": "Shall we go to Hakone on Saturday?",
+      "category": "Travel & Tourism",
+      "target": "どようびにはこねにいきませんか",
+      "pronunciation": "doyōbi ni Hakone ni ikimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B, cue 1 — picture cue).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-raigetsu-sapporo-yukimatsuri",
+      "english": "There is a snow festival in Sapporo next month.",
+      "category": "Travel & Tourism",
+      "target": "らいげつさっぽろでゆきまつりがあります",
+      "pronunciation": "raigetsu Sapporo de yukimatsuri ga arimasu",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III, cue 1 — picture cue; job: ゆきまつり in a sentence, and で on an event).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-akihabara-de-vs-ni",
+      "english": "Shall we go to Akihabara together?",
+      "category": "Travel & Tourism",
+      "target": "いっしょにあきはばらにいきませんか",
+      "pronunciation": "issho ni Akihabara ni ikimasen ka",
+      "note": "に because you GO there. あきはばらでイベントがあります takes で, because that is where the event HAPPENS. Same place, two particles, decided by the verb.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the Target Dialogue's あきはばらでイベントがあります).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-pooru-suzuki-event-ikimasu",
+      "english": "Paul-san and Suzuki-san will go to the anime event next Sunday.",
+      "category": "Sports & Hobbies",
+      "target": "ポールさんとすずきさんはつぎのにちようびにアニメのイベントにいきます",
+      "pronunciation": "Pōru-san to Suzuki-san wa tsugi no nichiyōbi ni anime no ibento ni ikimasu",
+      "note": "Here the event takes に, because they GO to it. Contrast あきはばらでイベントがあります, where で marks where it happens.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue closing summary; job: the に/で contrast on the same noun, which is GRAMMAR 1's real difficulty).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-doyoubi-wa-dou-desu-ka",
+      "english": "How about Saturday?",
+      "category": "Time",
+      "target": "どようびはどうですか",
+      "pronunciation": "doyōbi wa dō desu ka",
+      "scene": "proposing a different day after the first was turned down",
+      "note": "〜はどうですか proposes an alternative. Contrast どうですか on its own, which asks what someone thinks or wants.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: the only sentence はどうですか appears in — the chapter teaches it and Lesson 17 teaches it again).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-higashiguchi-deguchi",
+      "english": "Shall we meet at the east exit?",
+      "category": "Transport",
+      "target": "ひがしぐちのでぐちであいませんか",
+      "pronunciation": "higashiguchi no deguchi de aimasen ka",
+      "note": "でぐち is the general word for an exit; ひがしぐち names which one. The chapter's four 〜ぐち are all built the same way, on にし・ひがし・きた・みなみ.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence でぐち appears in, and the only one あいませんか appears in).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-hai-zehi",
+      "english": "Yes, I'd love to.",
+      "category": "Grammar & Function Words",
+      "target": "はい、ぜひ",
+      "pronunciation": "hai, zehi",
+      "scene": "accepting an invitation",
+      "note": "GRAMMAR 2 lists ええ／はい、ぜひ as interchangeable here; the deck already has the ええ version.",
+      "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant, which the book gives and the deck lacked).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-zannen-nichiyoubi-chotto",
+      "english": "Unfortunately, Sunday doesn't really work for me.",
+      "category": "Grammar & Function Words",
+      "target": "ざんねんですが、にちようびはちょっと",
+      "pronunciation": "zannen desu ga, nichiyōbi wa chotto",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-concert-shichiji-kara",
+      "english": "It starts at 7:00.",
+      "category": "Time",
+      "target": "しちじからです",
+      "pronunciation": "shichiji kara desu",
+      "note": null,
+      "scene": "answering what time the concert starts",
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Byte-identical to chapter-3-extras/hotel-asagohan-a (しちじからです, \"It starts at 7:00.\") — the drill miner cannot see later or earlier units, which is what the cross-chapter check is for."
+    },
+    {
+      "id": "x16a-ichiji-kara",
+      "english": "It starts at 1:00.",
+      "category": "Time",
+      "target": "1じからです",
+      "ttsText": "いちじからです",
+      "pronunciation": "ichi-ji kara desu",
+      "scene": "answering what time the event starts",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the answer half of なんじからですか).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-toukyou-eki-higashiguchi-aimasenka",
+      "english": "Shall we meet at Tokyo Station's east exit?",
+      "category": "Transport",
+      "target": "とうきょうえきのひがしぐちのでぐちであいませんか",
+      "pronunciation": "Tōkyō Eki no higashiguchi no deguchi de aimasen ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-hai-sou-shimashou",
+      "english": "Yes, let's do that.",
+      "category": "Grammar & Function Words",
+      "target": "はい、そうしましょう",
+      "pronunciation": "hai, sō shimashō",
+      "scene": "agreeing to a suggestion someone has just made",
+      "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant of ええ、そうしましょう).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-tsugi-akihabara-event",
+      "english": "Next Sunday there is an anime event in Akihabara.",
+      "category": "Sports & Hobbies",
+      "target": "つぎのにちようびにあきはばらでアニメのイベントがあります",
+      "pronunciation": "tsugi no nichiyōbi ni Akihabara de anime no ibento ga arimasu",
+      "note": "The lesson's GRAMMAR 1 frame: the place an event HAPPENS takes で, not に. Time takes に as always.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Suzuki's opening line; job: the sentence that introduces つぎ, あきはばら and イベント, none of which appeared in any sentence).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-shinjuku-hoomu-aimashou",
+      "english": "Let's meet on the platform at Shinjuku Station.",
+      "category": "Transport",
+      "target": "しんじゅくえきのホームであいましょう",
+      "pronunciation": "Shinjuku-eki no hōmu de aimashō",
+      "note": "で marks where the meeting happens, exactly as it marks where an event happens.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence ホーム and しんじゅく appear in).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-onaka-suita-tabemasenka",
+      "english": "I'm hungry, so shall we eat something?",
+      "category": "Food",
+      "target": "おなかがすきましたから、なにかたべませんか",
+      "pronunciation": "onaka ga sukimashita kara, nanika tabemasen ka",
+      "note": "The chapter's three physical-condition phrases (おなかがすきました, のどがかわきました, つかれました) all work as reasons in front of から.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the reason+invitation frame on a second condition, so the pattern is visible rather than a single instance).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-koen-tabemashou",
+      "english": "Let's have lunch in the park.",
+      "category": "Food",
+      "target": "こうえんでひるごはんをたべましょう",
+      "pronunciation": "kōen de hirugohan o tabemashō",
+      "note": "ましょう assumes agreement and moves to the action. The same sentence with ませんか would still be asking.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ましょう half of the pair; the grammar states this difference and no card showed it).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-issho-ni-soccer-mimashou",
+      "english": "Let's watch the soccer game together.",
+      "category": "Sports & Hobbies",
+      "target": "いっしょにサッカーのしあいをみましょう",
+      "pronunciation": "issho ni sakkā no shiai o mimashō",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-concert-nanji-kara",
+      "english": "What time does the concert start?",
+      "category": "Time",
+      "target": "コンサートはなんじからですか",
+      "pronunciation": "konsāto wa nanji kara desu ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-shibuya-konsaato",
+      "english": "There's a concert in Shibuya. Shall we go together?",
+      "category": "Sports & Hobbies",
+      "target": "しぶやでコンサートがあります。いっしょにいきませんか",
+      "pronunciation": "Shibuya de konsāto ga arimasu. issho ni ikimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1 — the whole exercise was missed on my first read).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-koen-tabemasenka",
+      "english": "Shall we have lunch in the park?",
+      "category": "Food",
+      "target": "こうえんでひるごはんをたべませんか",
+      "pronunciation": "kōen de hirugohan o tabemasen ka",
+      "note": "ませんか ASKS, and leaves the other person free to decline. Compare こうえんでひるごはんをたべましょう, which assumes the answer is yes.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ませんか half of a fixed-frame minimal pair, so only the ending varies).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-omoshiroi-kara-ikimasenka",
+      "english": "It's an interesting event, so shall we go together?",
+      "category": "Sports & Hobbies",
+      "target": "おもしろいイベントですから、いっしょにいきませんか",
+      "pronunciation": "omoshiroi ibento desu kara, issho ni ikimasen ka",
+      "note": "から gives the reason FIRST, then the invitation — the shape this chapter teaches (contrast Lesson 14, where から trails the sentence it justifies).",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: から + ませんか, the chapter's two grammar points in one sentence).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-sobaya-kara-ikimasenka",
+      "english": "There's a good soba restaurant near here, so shall we go together?",
+      "category": "Food",
+      "target": "このちかくにおいしいそばやがありますから、いっしょにいきませんか",
+      "pronunciation": "kono chikaku ni oishii sobaya ga arimasu kara, issho ni ikimasen ka",
+      "note": "Here あります is the \"exist\" sense with に (Lesson 12), and から turns it into a reason for the invitation.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 1; job: から on an existence clause, and the に/で contrast again).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-tanjoubi-kara-paatii",
+      "english": "Sunday is Smith-san's birthday, so shall we have a party?",
+      "category": "Grammar & Function Words",
+      "target": "にちようびはスミスさんのたんじょうびですから、パーティーをしませんか",
+      "pronunciation": "nichiyōbi wa Sumisu-san no tanjōbi desu kara, pātī o shimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 2; job: から after a noun predicate rather than a verb).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-ja-nichiyoubi-ikimashou",
+      "english": "Then let's go on Sunday.",
+      "category": "Grammar & Function Words",
+      "target": "じゃ、にちようびにいきましょう",
+      "pronunciation": "ja, nichiyōbi ni ikimashō",
+      "scene": "settling on a day after the first one was turned down",
+      "note": "じゃ picks up what was just agreed; ましょう then proposes the action outright, because the asking is already done.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES IV closing turn; job: the ましょう that ends a negotiation, which is where the form earns its meaning).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-smith-mo-dou-desu-ka",
+      "english": "Smith-san, how about you?",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんもいっしょにどうですか",
+      "pronunciation": "Sumisu-san mo issho ni dō desu ka",
+      "note": "どうですか asks the listener's intention — here, whether Smith wants to come along.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue and its NOTES; job: どうですか used in a sentence).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-chiketto-nimai-eiga",
+      "english": "I have two tickets, so shall we see a movie this evening?",
+      "category": "Sports & Hobbies",
+      "target": "チケットが2まいありますから、こんばんえいがをみませんか",
+      "ttsText": "チケットがにまいありますから、こんばんえいがをみませんか",
+      "pronunciation": "chiketto ga ni-mai arimasu kara, konban eiga o mimasen ka",
+      "note": "まい counts flat things (Lesson 13). あります here is the \"have/exist\" sense, and から turns it into the reason for the invitation.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 3 — missed on my first read of the chapter; job: から on an existence clause with a counter).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-event-nanji-kara",
+      "english": "What time does the event start?",
+      "category": "Time",
+      "target": "イベントはなんじからですか",
+      "pronunciation": "ibento wa nanji kara desu ka",
+      "note": "A DIFFERENT から from the one above: this is から \"from\", marking a starting time (Lesson 3). Same particle, and only the sentence tells you which.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the から/から contrast, in the one chapter that uses both).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-onaka-ne-tabemasenka",
+      "english": "You're hungry, aren't you? Shall we eat something?",
+      "category": "Food",
+      "target": "おなかがすきましたね。なにかたべませんか",
+      "pronunciation": "onaka ga sukimashita ne. nanika tabemasen ka",
+      "note": "ね invites agreement about the situation before the invitation — a softer opening than から, which asserts the reason outright.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VI worked example — the whole exercise was missed on my first read; job: the ね opening, which the deck had for のど and つかれ but not for おなか).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-goji-han-wakarimashita",
+      "english": "5:30 at the east exit of Shibuya Station, right? Got it.",
+      "category": "Time",
+      "target": "5じはんにしぶやえきのひがしぐちですね。わかりました",
+      "ttsText": "ごじはんにしぶやえきのひがしぐちですね。わかりました",
+      "pronunciation": "go-ji han ni Shibuya-eki no higashiguchi desu ne. wakarimashita",
+      "scene": "repeating back a meeting time and place to confirm it",
+      "note": "ね here checks a detail back rather than seeking agreement — the standard way to confirm arrangements.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1, closing turn).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-doyoubi-tanaka-tanjoubi-party",
+      "english": "Saturday is Tanaka-san's birthday, so shall we have a party?",
+      "category": "Grammar & Function Words",
+      "target": "どようびはたなかさんのたんじょうびですから、パーティーをしませんか",
+      "pronunciation": "doyōbi wa Tanaka-san no tanjōbi desu kara, pātī o shimasen ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-rokuji-han-higashiguchi",
+      "english": "It starts at 6:30. Let's meet at 5:30 at the east exit of Shibuya Station.",
+      "category": "Time",
+      "target": "6じはんからです。5じはんにしぶやえきのひがしぐちであいましょう",
+      "ttsText": "ろくじはんからです。ごじはんにしぶやえきのひがしぐちであいましょう",
+      "pronunciation": "roku-ji han kara desu. go-ji han ni Shibuya-eki no higashiguchi de aimashō",
+      "scene": "answering what time the concert starts, and proposing where to meet",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1; job: から for a starting time and で for a meeting place in one turn, on a named exit).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-konban-shokuji-shimasenka",
+      "english": "Shall we have a meal this evening?",
+      "category": "Food",
+      "target": "こんばんしょくじをしませんか",
+      "pronunciation": "konban shokuji o shimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 2 — picture cue; job: しませんか in a sentence, carded only as a bare form).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-zannen-kinyoubi-chotto",
+      "english": "Unfortunately, Friday doesn't really work for me.",
+      "category": "Grammar & Function Words",
+      "target": "ざんねんですが、きんようびはちょっと",
+      "scene": "turning down an invitation for a particular day",
+      "pronunciation": "zannen desu ga, kin'yōbi wa chotto",
+      "note": "The sentence is left unfinished on purpose. Japanese avoids a flat refusal, so ちょっと trails off and the listener supplies the rest.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B decline pattern; job: the decline on a day rather than on a noun).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tsukare-nanika-tabemasenka",
+      "english": "I'm tired, so shall we eat something?",
+      "category": "Body & Health",
+      "target": "つかれましたから、なにかたべませんか",
+      "pronunciation": "tsukaremashita kara, nanika tabemasen ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [reason]ましたから、[invitation]ませんか — Third example of this frame; the source already teaches it twice (tired-so-rest and hungry-so-eat).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [reason]ましたから、[invitation]ませんか. Third example of this frame; the source already teaches it twice (tired-so-rest and hungry-so-eat)."
+    },
+    {
+      "id": "x16c-watashi-mo-ikimasu",
+      "english": "I'll go to the festival too.",
+      "category": "Travel & Tourism",
+      "target": "わたしもおまつりにいきます",
+      "pronunciation": "watashi mo omatsuri ni ikimasu",
+      "note": "も replaces は on the topic to mean \"me too\" — it never sits alongside it.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — も had only two examples across the pair, below the three the pass aims for).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-raigetsu-nikko-ikimasenka",
+      "english": "Shall we go to Nikko next month?",
+      "category": "Travel & Tourism",
+      "target": "らいげつにっこうにいきませんか",
+      "pronunciation": "raigetsu Nikkō ni ikimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 1 — a picture cue, so this sentence exists only in the image).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-shinjuku-omatsuri",
+      "english": "There's a festival in Shinjuku. Shall we go together?",
+      "category": "Travel & Tourism",
+      "target": "しんじゅくでおまつりがあります。いっしょにいきませんか",
+      "pronunciation": "Shinjuku de omatsuri ga arimasu. issho ni ikimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2 — missed on my first read; job: the only sentence しんじゅく appears in).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-eiga-mimashou",
+      "english": "Let's watch a movie together.",
+      "category": "Sports & Hobbies",
+      "target": "いっしょにえいがをみましょう",
+      "pronunciation": "issho ni eiga o mimashō",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence みましょう appears in; it was the paradigm cell added by hand at gate 1).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-kuji-minamiguchi-wakarimashita",
+      "english": "9:00 at the south exit of Shinjuku Station, right? Got it.",
+      "category": "Time",
+      "target": "9じにしんじゅくえきのみなみぐちですね。わかりました",
+      "ttsText": "くじにしんじゅくえきのみなみぐちですね。わかりました",
+      "pronunciation": "ku-ji ni Shinjuku-eki no minamiguchi desu ne. wakarimashita",
+      "scene": "repeating back a meeting time and place to confirm it",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2, closing turn).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16c-juuji-minamiguchi",
+      "english": "It starts at 10:00. Let's meet at 9:00 at the south exit of Shinjuku Station.",
+      "category": "Time",
+      "target": "10じからです。9じにしんじゅくえきのみなみぐちであいましょう",
+      "ttsText": "じゅうじからです。くじにしんじゅくえきのみなみぐちであいましょう",
+      "pronunciation": "jū-ji kara desu. ku-ji ni Shinjuku-eki no minamiguchi de aimashō",
+      "scene": "answering what time the festival starts, and proposing where to meet",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2; job: the only sentence みなみぐち appears in — the chapter teaches four exits and only two were ever used).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-ramenya-chikaku-ikimasenka",
+      "english": "There's a good ramen restaurant near here, so shall we go together?",
+      "category": "Food",
+      "target": "このちかくにおいしいラーメンやがありますから、いっしょにいきませんか",
+      "pronunciation": "kono chikaku ni oishii rāmen'ya ga arimasu kara, issho ni ikimasen ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-shibuya-furiimaaketto",
+      "english": "There's a flea market in Shibuya on Saturday.",
+      "category": "Shopping",
+      "target": "どようびにしぶやでフリーマーケットがあります",
+      "pronunciation": "doyōbi ni Shibuya de furīmāketto ga arimasu",
+      "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 2; job: another で-marked event, on vocabulary from Lesson 8).",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-nichiyoubi-yokohama-concert",
+      "english": "There is a concert in Yokohama on Sunday.",
+      "category": "Sports & Hobbies",
+      "target": "にちようびによこはまでコンサートがあります",
+      "pronunciation": "nichiyōbi ni Yokohama de konsāto ga arimasu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [day]に[place]で[event]があります — The source already teaches this frame at least four times (Akihabara anime event, Sapporo snow festival, Yokohama soccer game, Shibuya flea market), well past the cap.",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [day]に[place]で[event]があります. The source already teaches this frame at least four times (Akihabara anime event, Sapporo snow festival, Yokohama soccer game, Shibuya flea market), well past the cap."
+    },
+    {
+      "id": "x16c-kitaguchi-aimasenka",
+      "english": "Shall we meet at the north exit of Tokyo Station?",
+      "category": "Transport",
+      "target": "とうきょうえきのきたぐちであいませんか",
+      "pronunciation": "Tōkyō-eki no kitaguchi de aimasen ka",
+      "note": "The last of the chapter's four exits. にし・ひがし・きた・みなみ each take ぐち the same way, so once one is clear all four are.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — きたぐち and きた appeared in no sentence, and the book's own exercises never use them).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16b-kamakura-omatsuri-ikimasenka",
+      "english": "There's a festival in Kamakura on the weekend. Shall we go together?",
+      "category": "Travel & Tourism",
+      "target": "しゅうまつにかまくらでおまつりがあります。いっしょにいきませんか",
+      "pronunciation": "shūmatsu ni Kamakura de omatsuri ga arimasu. issho ni ikimasen ka",
+      "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 1; job: the full two-sentence invitation the exercise builds).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-raishuu-sakkaa-mimasenka",
+      "english": "Shall we watch the soccer game next week?",
+      "category": "Sports & Hobbies",
+      "target": "らいしゅうサッカーのしあいをみませんか",
+      "pronunciation": "raishū sakkā no shiai o mimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 3 — picture cue; job: みませんか in a sentence).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-hirugohan-mo-tabemashou",
+      "english": "Let's have lunch together too.",
+      "category": "Food",
+      "target": "ひるごはんもいっしょにたべましょう",
+      "pronunciation": "hirugohan mo issho ni tabemashō",
+      "note": "ましょう assumes agreement and proposes the action; も adds lunch to the plan already made.",
+      "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: たべましょう in a sentence — it was carded only as a bare form).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-kayoubi-yokohama-shiai",
+      "english": "There is a soccer game in Yokohama on Tuesday.",
+      "category": "Sports & Hobbies",
+      "target": "かようびによこはまでサッカーのしあいがあります",
+      "pronunciation": "kayōbi ni Yokohama de sakkā no shiai ga arimasu",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES III, cue 3 — picture cue).",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16a-kinyoubi-kabuki-mimasenka",
+      "english": "Shall we see kabuki on Friday?",
+      "category": "Sports & Hobbies",
+      "target": "きんようびにかぶきをみませんか",
+      "pronunciation": "kin'yōbi ni kabuki o mimasen ka",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B, cue 2 — picture cue).",
+      "aiSuggested": true
+    }
+  ]
+}

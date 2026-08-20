@@ -611,11 +611,12 @@
       "pronunciation": "kinō tanaka-san no gokazoku ni aimashita",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for ごかぞく (and the honorific prefix ご), which appears in no sentence; delivered in the new に+あいます frame.",
-      "audio": "637731dac7fea9fb.mp3",
-      "audioOriginal": "637731dac7fea9fb.orig.mp3",
-      "audioAuto": "637731dac7fea9fb.mp3",
+      "audioOriginal": "16958a3020e46804-genkanji-9ded826f.orig.mp3",
+      "audioAuto": "16958a3020e46804-genkanji-9ded826f.mp3",
       "audioMarked": true,
-      "audioTextHash": "637731dac7fea9fb"
+      "audioTextHash": "16958a3020e46804",
+      "audioFilter": "standard",
+      "audio": "16958a3020e46804-genkanji-9ded826f.mp3"
     },
     {
       "id": "p9-tomodachi-to-denwa-o-shimasu",

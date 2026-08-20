@@ -3225,3 +3225,25 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** if a fourth miss of this class happens, the answer is not another checklist —
   it is that the extraction pass should report its own coverage per section, so the account is produced
   by the thing doing the reading rather than by the operator watching it.
+
+## A half-covered vocabulary cell reads exactly like a false positive
+
+- **What:** `parseVocaEntries` now splits a headword cell on `／` and emits one entry per word, so
+  `つま ／ かない` is checked as two headwords rather than one string. SKILL.md records both this and
+  the containment case below.
+- **Why:** reporting the cell whole produced `MISSING つま ／ かない … nearest card target: つま` — the
+  `nearest` pointing at the half that IS carded, which is indistinguishable from the documented
+  optional-parts noise (`(お)てら` vs `おてら`). Two words sat unreported behind that shape for the life
+  of the deck: `かない`, and `しゅじん`, which four sentence cards already used with nothing teaching
+  it. The check was working; reading it was not.
+- **Impact:** a second, related blind spot remains and is NOT fixed. A headword can be hidden by a
+  longer word containing it — `しゅじん` still reads as covered because `ごしゅじん` is carded, and those
+  are different words. Containment is deliberate elsewhere (a word used inside a sentence does count),
+  so narrowing it would create false positives across the whole deck. The honest mitigation is in
+  SKILL.md: when a finding's only coverage is another vocabulary entry rather than a sentence, check
+  by hand.
+- **Verified by:** `node --test test/cards/vocabCoverage.test.js`, and a full-book re-scan that
+  surfaced `かない` as its own finding where it had previously been invisible
+- **Status:** resolved for the `／` case (2026-08-20); the containment case is open
+- **When to revisit:** if a third word is found this way, the fix is for the extraction prompt to emit
+  one item per alternate at source, rather than for the coverage check to reconstruct the split later.

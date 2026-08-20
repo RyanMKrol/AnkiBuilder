@@ -328,10 +328,20 @@
       "english": "(My) wife",
       "category": "Family & People",
       "scene": null,
-      "hint": null,
+      "hint": "the everyday modern word",
       "note": "Also read かない (kanai) — both mean 'my wife'; use おくさん (okusan) for someone else's wife.",
       "reviewNote": null,
       "target": "つま"
+    },
+    {
+      "id": "kanai-wife",
+      "english": "(My) wife",
+      "category": "Family & People",
+      "hint": "the older, more traditional word",
+      "note": "A humble word for one's own wife, literally \"inside the house\". つま is the everyday modern word; かない sounds dated to many speakers now. Neither is ever used for someone else's wife — that is おくさん.",
+      "reviewNote": "Added 2026-08-20: the book's family table lists つま／かない for \"(my) wife\" and only つま was carded. Review gates waived by the owner for this addition.",
+      "target": "かない",
+      "aiSuggested": true
     },
     {
       "id": "goshujin",
@@ -348,10 +358,20 @@
       "english": "(My) husband",
       "category": "Family & People",
       "scene": null,
-      "hint": null,
+      "hint": "the neutral modern word",
       "note": "Also read しゅじん (shujin) — both mean 'my husband'; use ごしゅじん (goshujin) for someone else's husband.",
       "reviewNote": null,
       "target": "おっと"
+    },
+    {
+      "id": "shujin-husband",
+      "english": "(My) husband",
+      "category": "Family & People",
+      "hint": "the more traditional word, literally \"master\"",
+      "note": "A traditional word for one's own husband. Still very common in speech, though おっと is the neutral modern equivalent. Never used for someone else's husband — that is ごしゅじん.",
+      "reviewNote": "Added 2026-08-20: the book's family table lists おっと／しゅじん for \"(my) husband\" and only おっと was carded, while four sentence cards already used しゅじん. Review gates waived by the owner for this addition.",
+      "target": "しゅじん",
+      "aiSuggested": true
     },
     {
       "id": "maiasa",

@@ -201,12 +201,12 @@
       "category": "Time",
       "target": "よっか",
       "pronunciation": "yokka",
-      "audio": "acd253b29ff01cb0.mp3",
-      "audioOriginal": "acd253b29ff01cb0.orig.mp3",
-      "audioAuto": "acd253b29ff01cb0.mp3",
+      "audioOriginal": "5dd30357e75ddff0-genkanji-1092ae50.orig.mp3",
+      "audioAuto": "5dd30357e75ddff0-genkanji-1092ae50.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "acd253b29ff01cb0"
+      "audioTextHash": "5dd30357e75ddff0",
+      "audio": "5dd30357e75ddff0-genkanji-1092ae50.mp3"
     },
     {
       "id": "youka-8th",

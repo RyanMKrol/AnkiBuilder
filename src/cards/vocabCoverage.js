@@ -35,6 +35,25 @@ function stripTags(html) {
  * Two-column tables (Japanese, English) are the shape this book uses; a row with fewer than two
  * cells, or with an empty first cell, is skipped rather than guessed at.
  */
+/**
+ * A headword cell split into the separate words it holds.
+ *
+ * The book uses ／ for two things and this cannot tell them apart, which is fine — both want the
+ * same treatment. Genuine synonyms (`つま ／ かない`) are separate words each needing a card. Counter
+ * sound-variants (`〜ふん ／ ぷん`, `〜ほん ／ ぼん ／ ぽん`) are one counter changing shape after
+ * different numbers, and each shape still has to appear SOMEWHERE in the deck or the learner has
+ * never seen it — `ろっぽん` is not derivable from `にほん` by a beginner.
+ *
+ * Returns the whole cell unchanged when there is no separator, so every existing entry is untouched.
+ */
+export function splitAlternates(headword) {
+  const parts = String(headword)
+    .split(/[／/]/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  return parts.length > 1 ? parts : [String(headword)];
+}
+
 export function parseVocaEntries(html) {
   const entries = [];
   for (const [, tableBody] of html.matchAll(VOCA_TABLE)) {
@@ -46,14 +65,20 @@ export function parseVocaEntries(html) {
       if (cells.length < 2) continue;
       const [head, ...rest] = cells;
       if (!head.text) continue;
-      entries.push({
-        target: head.text,
-        english: rest
-          .map((c) => c.text)
-          .filter(Boolean)
-          .join(" "),
-        sub: head.sub,
-      });
+      const english = rest
+        .map((c) => c.text)
+        .filter(Boolean)
+        .join(" ");
+      // A headword cell can hold SEVERAL words for one gloss, separated by ／: `つま ／ かない`
+      // (my wife), `おっと ／ しゅじん` (my husband). Each is its own word and needs its own card.
+      // Treating the cell as one headword is a false NEGATIVE that looks like a false positive: the
+      // whole cell is reported missing, `nearest` points at the half that IS carded, and the row
+      // reads as the documented optional-parts noise. That is exactly how three missing words —
+      // かない, おっと, しゅじん — sat in an INFO report and were dismissed, while a card in the same
+      // book used しゅじん in a sentence with nothing teaching it.
+      for (const part of splitAlternates(head.text)) {
+        entries.push({ target: part, english, sub: head.sub });
+      }
     }
   }
   return entries;

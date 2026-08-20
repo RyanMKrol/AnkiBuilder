@@ -780,7 +780,7 @@
     },
     {
       "id": "hontouni-samui-ne",
-      "english": "Yeah, it's really cold.",
+      "english": "Yeah, it really is cold, isn't it?",
       "category": "Weather & Nature",
       "target": "ええ、ほんとうにさむいですね",
       "pronunciation": "ē, hontōni samui desu ne",
@@ -1038,7 +1038,7 @@
     },
     {
       "id": "fib-hontouni-atatakai-ne",
-      "english": "Yeah, it's really warm.",
+      "english": "Yeah, it really is warm, isn't it?",
       "category": "Weather & Nature",
       "target": "ええ、ほんとうにあたたかいですね",
       "pronunciation": "ē, hontōni atatakai desu ne",

@@ -675,11 +675,12 @@
       "target": "ぎんこうにおくります",
       "pronunciation": "ginkō ni okurimasu",
       "scene": "answering where Smith-san will send the e-mail",
-      "audio": "d2b7c40babf0c984.mp3",
-      "audioOriginal": "d2b7c40babf0c984.orig.mp3",
-      "audioAuto": "d2b7c40babf0c984.mp3",
+      "audioOriginal": "b9a3547557fd0282-genkanji-401ee276.orig.mp3",
+      "audioAuto": "b9a3547557fd0282-genkanji-401ee276.mp3",
       "audioMarked": true,
-      "audioTextHash": "d2b7c40babf0c984"
+      "audioTextHash": "b9a3547557fd0282",
+      "audioFilter": "standard",
+      "audio": "b9a3547557fd0282-genkanji-401ee276.mp3"
     },
     {
       "id": "denwabangou-suggestion",

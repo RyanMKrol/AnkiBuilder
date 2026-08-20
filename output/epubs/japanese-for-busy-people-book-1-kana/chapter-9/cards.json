@@ -699,11 +699,12 @@
       "target": "スミスさんはなかむらさんにでんわばんごうをききました",
       "pronunciation": "sumisu san wa nakamura san ni denwa bangō o kikimashita",
       "note": "ききます (kikimasu, 'ask') vs おしえます (oshiemasu, 'tell') below — same でんわばんごう(を) pattern, opposite direction of information.",
-      "audio": "30b7374c0a708485.mp3",
-      "audioOriginal": "30b7374c0a708485.orig.mp3",
-      "audioAuto": "30b7374c0a708485.mp3",
+      "audioOriginal": "6297b69f3a293ff5-genkanji-a332c5fb.orig.mp3",
+      "audioAuto": "6297b69f3a293ff5-genkanji-a332c5fb.mp3",
       "audioMarked": true,
-      "audioTextHash": "30b7374c0a708485"
+      "audioTextHash": "6297b69f3a293ff5",
+      "audioFilter": "standard",
+      "audio": "6297b69f3a293ff5-genkanji-a332c5fb.mp3"
     },
     {
       "id": "tell-phone-number",
@@ -775,11 +776,12 @@
       "category": "Travel & Tourism",
       "target": "さっぽろ",
       "pronunciation": "sapporo",
-      "audio": "7d93bd54ced0b9e1.mp3",
-      "audioOriginal": "7d93bd54ced0b9e1.orig.mp3",
-      "audioAuto": "7d93bd54ced0b9e1.mp3",
+      "audioOriginal": "3bf2c28a78958871-genkanji-dfafdfae.orig.mp3",
+      "audioAuto": "3bf2c28a78958871-genkanji-dfafdfae.mp3",
       "audioMarked": true,
-      "audioTextHash": "7d93bd54ced0b9e1"
+      "audioTextHash": "3bf2c28a78958871",
+      "audioFilter": "standard",
+      "audio": "3bf2c28a78958871-genkanji-dfafdfae.mp3"
     },
     {
       "id": "yoguruto",

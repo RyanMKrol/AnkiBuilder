@@ -235,15 +235,12 @@
       "uncertain": true,
       "altAudio": "5f2cc6b34147d114.mp3",
       "note": "Set phrase spoken after finishing a meal, thanking the preparer or host. （でした）(deshita) is the polite past-tense ending: ごちそうさまでした (gochisousama deshita) is the fuller, formal version, while ごちそうさま (gochisousama) alone is the casual short form.",
-      "audioOriginal": "gochisousama-deshita-user-82333f0f.orig.mp3",
-      "audioAuto": "gochisousama-deshita-user-82333f0f.mp3",
+      "audioOriginal": "86e285b0e6e8a158-gen-86a29b1c.orig.mp3",
+      "audioAuto": "86e285b0e6e8a158-gen-86a29b1c.mp3",
       "audioFilter": "standard",
-      "audio": "gochisousama-deshita-manual-37505c5a.mp3",
-      "audioManual": "gochisousama-deshita-manual-37505c5a.mp3",
-      "audioTrim": {
-        "start": 0,
-        "end": 1.3369737237799657
-      }
+      "audioMarked": true,
+      "audioTextHash": "86e285b0e6e8a158",
+      "audio": "86e285b0e6e8a158-gen-86a29b1c.mp3"
     },
     {
       "id": "sumimasen-excuse-me",

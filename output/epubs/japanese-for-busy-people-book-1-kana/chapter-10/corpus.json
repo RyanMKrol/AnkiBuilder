@@ -537,11 +537,11 @@
     },
     {
       "id": "nikko-kirei-tokoro",
-      "english": "It's a pretty place.",
+      "english": "It's a pretty place, you know.",
       "category": "Travel & Tourism",
       "scene": "describing what kind of place Nikko is",
       "hint": null,
-      "note": null,
+      "note": "よ presents this as news for the listener — you have been there and they have not. Contrast きれいなところですね, which would assume you are both looking at it. The particle is formally introduced in Lesson 12.",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 12: Asking about Places: What Is at Nikko? (ends with sentence-final よ, which is explicitly taught as a dedicated grammar point later in the book)",
       "target": "きれいなところですよ",
       "uncertain": true

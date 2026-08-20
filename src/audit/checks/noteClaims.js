@@ -23,7 +23,15 @@ const CLAIM_PATTERNS = [
   ["composition", /\S\s*\+\s*\S/, "asserts a composition (X + Y)"],
   ["derivation", /\b(?:forms? of|built from|comes from|derived from)\b/i, "asserts a derivation"],
   ["distinction", /\bdistinct from\b/i, "asserts a distinction from another form"],
-  ["identity", /\bthe same (?:word|as)\b/i, "asserts two cards are the same word"],
+  // "the same word" was the only identity phrasing recognised, and the deck does not use it. Its
+  // actual wording is "Also read かない — both mean 'my wife'", which named two words the deck had no
+  // cards for and went unreported: exactly the class this pattern exists to surface. A check that
+  // only matches a phrasing nobody writes is silent by construction.
+  [
+    "identity",
+    /\b(?:the same (?:word|as)|also read|also called|another word for|both mean|same meaning as)\b/i,
+    "asserts two forms are the same word",
+  ],
   ["instance", /\bis (?:an? )?(?:instance|example) of\b/i, "asserts membership of a pattern"],
 ];
 

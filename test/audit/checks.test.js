@@ -607,6 +607,49 @@ test("note claims: a decomposition naming a form the deck never teaches is named
   }
 });
 
+test("note claims: catches the identity phrasing the deck actually writes, not just 'the same word'", () => {
+  // The real miss this fixes. つま's note said "Also read かない (kanai) — both mean 'my wife'", and
+  // かない had no card anywhere. The identity pattern only matched "the same word"/"the same as",
+  // which nothing in the deck says, so the note named a word the deck did not teach and the check
+  // stayed silent. A pattern that only matches a phrasing nobody writes is silent by construction.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("tsuma", {
+          target: "つま",
+          note: "Also read かない (kanai) — both mean 'my wife'.",
+        }),
+      ],
+    });
+    const found = messages(runOnly(root, "note-claims"));
+    assert.equal(found.length, 1);
+    assert.match(found[0], /asserts two forms are the same word/);
+    assert.match(found[0], /「かない」/, "names the word the deck has no card for");
+  } finally {
+    cleanup();
+  }
+});
+
+test("note claims: a plain descriptive note is still not a claim", () => {
+  // The widened pattern must not turn ordinary prose into findings — "a humble word for" describes
+  // the card itself and asserts nothing about another form.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      items: [
+        card("kanai", {
+          target: "かない",
+          note: "A humble word for one's own wife, literally 'inside the house'.",
+        }),
+      ],
+    });
+    assert.deepEqual(messages(runOnly(root, "note-claims")), []);
+  } finally {
+    cleanup();
+  }
+});
+
 // The whole collection is the deck being made coherent with itself — a claim resolved by a sibling
 // -extras unit is resolved.
 test("note claims: a claim whose forms all have cards says so instead of going quiet", () => {

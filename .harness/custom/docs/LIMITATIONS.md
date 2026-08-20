@@ -3247,3 +3247,24 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** resolved for the `／` case (2026-08-20); the containment case is open
 - **When to revisit:** if a third word is found this way, the fix is for the extraction prompt to emit
   one item per alternate at source, rather than for the coverage check to reconstruct the split later.
+
+## note-claims only matched an identity phrasing the deck never writes
+
+- **What:** the `identity` claim pattern matched `the same word` / `the same as` only. Widened to cover
+  `also read`, `also called`, `another word for`, `both mean`, `same meaning as` — the phrasings the
+  deck's notes actually use.
+- **Why:** `つま`'s note said *"Also read かない (kanai) — both mean 'my wife'"*, and `かない` had no card
+  anywhere in the deck. That is precisely the class the check exists to surface — a note naming a form
+  the deck does not teach — and it stayed silent, because a pattern that only matches a phrasing
+  nobody writes is silent by construction. `おっと`/`しゅじん` was the same. Both words were eventually
+  found by hand, from the owner studying a card.
+- **Impact:** the widening surfaces 18 identity claims on the live book, of which 3 name a form with
+  no card and **all 3 are false positives** — `きのう` and `ソファー` are carded (the note writes `ソファ`
+  without its long vowel) and the third quotes a whole sentence. So the immediate yield on this deck is
+  zero new real findings, because the two real ones were fixed before the pattern was widened. It is a
+  correctness fix for the next book, not a discovery for this one, and it costs a little INFO noise.
+- **Verified by:** `node --test test/audit/checks.test.js` — the test fails against the old pattern
+- **Status:** resolved (2026-08-20)
+- **When to revisit:** if the identity findings become noise nobody reads, the fix is to compare the
+  named form against the deck AFTER normalizing long vowels and dropping sentence-length quotes,
+  rather than to narrow the pattern back.

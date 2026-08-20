@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "accepted": {
+    "audio-markers": {
+      "chapter-16/fib-nodo-sou-shimashou": {
+        "at": "2026-08-19T21:29:12.612Z",
+        "message": "chapter-16/fib-nodo-sou-shimashou ships a clip with the TTS end marker audible — re-trim it, or accept it",
+        "note": "Judged at gate 2 with segment-level evidence: the original's marker occupies 2.82-4.00s (two short runs after a 0.84s gap); the hand cuts end at 2.00s, so every sample the marker could occupy is outside the shipping clip. audit-marker-stuck cannot clear these because its detector false-positives on そうしましょう, the card's own final word."
+      },
+      "chapter-16/fib-tsukare-sou-shimashou": {
+        "at": "2026-08-19T21:29:12.612Z",
+        "message": "chapter-16/fib-tsukare-sou-shimashou ships a clip with the TTS end marker audible — re-trim it, or accept it",
+        "note": "Judged at gate 2 with segment-level evidence: the original's marker occupies 2.82-4.00s (two short runs after a 0.84s gap); the hand cuts end at 2.00s, so every sample the marker could occupy is outside the shipping clip. audit-marker-stuck cannot clear these because its detector false-positives on そうしましょう, the card's own final word."
+      }
+    }
+  }
+}

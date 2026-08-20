@@ -36,7 +36,8 @@
       }
     },
     "enriched": true,
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -59,11 +60,12 @@
       "category": "Travel & Tourism",
       "target": "あきはばら",
       "pronunciation": "Akihabara",
-      "audio": "90c2c0052cf09410.mp3",
-      "audioOriginal": "90c2c0052cf09410.orig.mp3",
-      "audioAuto": "90c2c0052cf09410.mp3",
+      "audioOriginal": "b69776e5a4fdabe5-genkanji-1a32e1cc.orig.mp3",
+      "audioAuto": "b69776e5a4fdabe5-genkanji-1a32e1cc.mp3",
       "audioMarked": true,
-      "audioTextHash": "90c2c0052cf09410"
+      "audioTextHash": "b69776e5a4fdabe5",
+      "audioFilter": "standard",
+      "audio": "b69776e5a4fdabe5-genkanji-1a32e1cc.mp3"
     },
     {
       "id": "ibento",
@@ -638,12 +640,16 @@
       "target": "きた",
       "pronunciation": "kita",
       "note": "Combines with ぐち (opening/exit, from でぐち) to form きたぐち, 'north exit'.",
-      "audio": "5e3301c7aac45c54.mp3",
+      "audio": "kita-manual-c4dc467e.mp3",
       "audioOriginal": "5e3301c7aac45c54.orig.mp3",
       "audioAuto": "5e3301c7aac45c54.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "5e3301c7aac45c54"
+      "audioTextHash": "5e3301c7aac45c54",
+      "audioManual": "kita-manual-c4dc467e.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.539461044520548
+      }
     },
     {
       "id": "kitaguchi",
@@ -817,11 +823,12 @@
       "uncertain": true,
       "note": "じかんが あります literally means 'there is time' — a common way to say you are free or available.",
       "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call",
-      "audio": "21dd401ee53f3a05.mp3",
-      "audioOriginal": "21dd401ee53f3a05.orig.mp3",
-      "audioAuto": "21dd401ee53f3a05.mp3",
+      "audioOriginal": "d95767020f1d1411-genkanji-c68fec3f.orig.mp3",
+      "audioAuto": "d95767020f1d1411-genkanji-c68fec3f.mp3",
       "audioMarked": true,
-      "audioTextHash": "21dd401ee53f3a05"
+      "audioTextHash": "d95767020f1d1411",
+      "audioFilter": "standard",
+      "audio": "d95767020f1d1411-genkanji-c68fec3f.mp3"
     },
     {
       "id": "chikaku",
@@ -976,11 +983,12 @@
       "category": "Travel & Tourism",
       "target": "にちようびによこはまではなびたいかいがあります。いっしょにいきませんか",
       "pronunciation": "nichiyōbi ni Yokohama de hanabi taikai ga arimasu. issho ni ikimasen ka",
-      "audio": "d5ba2325272f5132.mp3",
-      "audioOriginal": "d5ba2325272f5132.orig.mp3",
-      "audioAuto": "d5ba2325272f5132.mp3",
+      "audioOriginal": "05b7a346cbf298f7-genkanji-fa98221f.orig.mp3",
+      "audioAuto": "05b7a346cbf298f7-genkanji-fa98221f.mp3",
       "audioMarked": true,
-      "audioTextHash": "d5ba2325272f5132"
+      "audioTextHash": "05b7a346cbf298f7",
+      "audioFilter": "standard",
+      "audio": "05b7a346cbf298f7-genkanji-fa98221f.mp3"
     },
     {
       "id": "ex7-nanji-kara",
@@ -1003,11 +1011,12 @@
       "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう",
       "pronunciation": "shichi-ji kara desu. roku-ji ni Yokohama-eki no nishiguchi de aimashō",
       "scene": "arranging where to meet before an event",
-      "audio": "1ad48ebb8ebc376d.mp3",
-      "audioOriginal": "1ad48ebb8ebc376d.orig.mp3",
-      "audioAuto": "1ad48ebb8ebc376d.mp3",
+      "audioOriginal": "69fb094f2321c85c-genkanji-161fd9c9.orig.mp3",
+      "audioAuto": "69fb094f2321c85c-genkanji-161fd9c9.mp3",
       "audioMarked": true,
-      "audioTextHash": "1ad48ebb8ebc376d"
+      "audioTextHash": "69fb094f2321c85c",
+      "audioFilter": "standard",
+      "audio": "69fb094f2321c85c-genkanji-161fd9c9.mp3"
     },
     {
       "id": "ex7-wakarimashita",
@@ -1018,11 +1027,12 @@
       "pronunciation": "roku-ji ni Yokohama-eki no nishiguchi desu ne. wakarimashita",
       "scene": "confirming a meeting time and place",
       "note": "わかりました (wakarimashita) means 'understood, got it' — used to confirm you've understood a plan or instruction.",
-      "audio": "cded6470c70a1403.mp3",
-      "audioOriginal": "cded6470c70a1403.orig.mp3",
-      "audioAuto": "cded6470c70a1403.mp3",
+      "audioOriginal": "b29f11a08c1d2a45-genkanji-5359aa33.orig.mp3",
+      "audioAuto": "b29f11a08c1d2a45-genkanji-5359aa33.mp3",
       "audioMarked": true,
-      "audioTextHash": "cded6470c70a1403"
+      "audioTextHash": "b29f11a08c1d2a45",
+      "audioFilter": "standard",
+      "audio": "b29f11a08c1d2a45-genkanji-5359aa33.mp3"
     },
     {
       "id": "sp1-party-invite",
@@ -1065,11 +1075,12 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "3361b1c5d29150f8.mp3",
-      "audioOriginal": "3361b1c5d29150f8.orig.mp3",
-      "audioAuto": "3361b1c5d29150f8.mp3",
+      "audioOriginal": "9103f7a052949a1b-genkanji-b3511448.orig.mp3",
+      "audioAuto": "9103f7a052949a1b-genkanji-b3511448.mp3",
       "audioMarked": true,
-      "audioTextHash": "3361b1c5d29150f8"
+      "audioTextHash": "9103f7a052949a1b",
+      "audioFilter": "standard",
+      "audio": "9103f7a052949a1b-genkanji-b3511448.mp3"
     },
     {
       "id": "fib-nodo-sou-shimashou",
@@ -1081,12 +1092,17 @@
       "scene": "answering an invitation to drink something because you're thirsty",
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "6b10214a750efa0e.mp3",
+      "audio": "fib-nodo-sou-shimashou-manual-b70aa9e3.mp3",
       "audioOriginal": "6b10214a750efa0e.orig.mp3",
       "audioAuto": "6b10214a750efa0e.mp3",
       "audioMarked": true,
       "audioMarkerStuck": true,
-      "audioTextHash": "6b10214a750efa0e"
+      "audioTextHash": "6b10214a750efa0e",
+      "audioManual": "fib-nodo-sou-shimashou-manual-b70aa9e3.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.0008561643835616
+      }
     },
     {
       "id": "fib-tsukare-sukoshi-yasumimasenka",
@@ -1114,12 +1130,17 @@
       "scene": "answering an invitation to rest a bit because you're tired",
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "6b10214a750efa0e.mp3",
+      "audio": "fib-tsukare-sou-shimashou-manual-e4a98276.mp3",
       "audioOriginal": "6b10214a750efa0e.orig.mp3",
       "audioAuto": "6b10214a750efa0e.mp3",
       "audioMarked": true,
       "audioMarkerStuck": true,
-      "audioTextHash": "6b10214a750efa0e"
+      "audioTextHash": "6b10214a750efa0e",
+      "audioManual": "fib-tsukare-sou-shimashou-manual-e4a98276.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.0122645547945206
+      }
     }
   ]
 }

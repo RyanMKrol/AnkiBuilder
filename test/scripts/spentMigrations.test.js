@@ -40,6 +40,7 @@ const STANDING = [
   "undone-unit.mjs",
   "await-review.mjs",
   "chapter-images.mjs",
+  "chapter-outline.mjs",
   "epub-probe.mjs",
   "eval-pass.mjs",
   "vocab-coverage.mjs",

@@ -320,7 +320,38 @@ pass shows no **Mark reviewed** button and sits under **Not finished** with the 
 it (`anki-builder prepare --run <dir>`). Templates are exempt from the drill/notes passes (nothing to
 mine, no siblings).
 
-**While the build runs, sweep the chapter's IMAGES. This is a required step of every EPUB build,
+**FIRST, take the chapter's outline, and read EVERY section of it.** This is a required step of
+every EPUB build, and it comes before the image sweep because it is what tells you how much there is.
+
+```sh
+node scripts/chapter-outline.mjs <runDir>          # the structure, as a checklist
+node scripts/chapter-outline.mjs <runDir> --text   # …and the full text, section by section
+```
+
+It prints every section the book itself declares, the size of each, and — the load-bearing part —
+**the book's own numbered blocks**: `EXERCISES: 8 block(s) — I, II, III, IV, V, VI, VII, VIII`. A run
+with a hole in it is a block nobody read, and it is visible without knowing what should have been
+there.
+
+**Read the chapter through `--text`, section by section, and make a call on every one.** Not a
+prefix. Do not page through the raw XHTML with `sed -n 'A,Bp'` windows: that is how this goes wrong,
+because nothing in a window tells you the file kept going. On Lesson 16 the chapter was 942 lines,
+the reading stopped at 780, and EXERCISES VI and VII were never seen — VII being the only place the
+chapter uses half of its own station-exit vocabulary (`みなみぐち`, `しんじゅく`), so those cards were
+built and then never used in a sentence. The extraction had the same partial view.
+
+**Then account for every numbered block when you hand over the review link** — one line each, saying
+what it teaches or why it produced no card. "EXERCISES VI: reason-then-invitation on the three
+physical-condition phrases; two mined by the drill pass, the third added by hand" is an account.
+Silence about VI is not, and silence is exactly what a short read produces.
+
+This generalises past this one book. **A section you did not read is indistinguishable from a section
+with nothing in it**, which is the same failure as the image sweep below (a chart nobody opened looks
+like a chapter with no chart) and the vocabulary diff further down (a dropped block looks like a
+chapter with fewer words). All three checks exist because that class of miss is invisible from the
+inside, and none of them is satisfied by reading carefully.
+
+**Then sweep the chapter's IMAGES. This is a required step of every EPUB build,
 not an optional check.** The extraction pass DOES see images: `extractChapterToFile` writes every
 image a chapter references next to the cached chapter file, and the extraction prompt tells the model
 to open each one with its Read tool and judge it (`docs/epub-extraction-prompt.md`, "Images"). What

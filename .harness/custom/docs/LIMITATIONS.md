@@ -3193,3 +3193,29 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** resolved for new exclusions (2026-08-19); the four historical units are open
 - **When to revisit:** if `corpus drift` is ever promoted above INFO, the historical four have to be
   repaired first or the check lands red on day one.
+
+## Coverage misses come from reading a PREFIX, and three checks now exist because of it
+
+- **What:** `scripts/chapter-outline.mjs` (+ `src/corpus/chapterOutline.js`) prints a chapter's own
+  sections and, crucially, the book's numbered runs — `EXERCISES: 8 block(s) — I … VIII`. SKILL.md now
+  requires it as the FIRST step of an EPUB build, ahead of the image sweep, and requires accounting for
+  every numbered block when the review link is handed over.
+- **Why:** three lesson-level misses in two chapters, all the same shape — enumerate, process a
+  prefix, conclude. Lesson 15: four charts named, two opened, sweep reported complete; the unread two
+  held the chapter's main grammar table. Lesson 16 text: 780 lines of 942 read, EXERCISES VI and VII
+  never seen, and VII is the only place the chapter uses `みなみぐち` and `しんじゅく`. Lesson 16 extras:
+  33 hand-authored cards against a median of 57, from the same partial read. None of the individual
+  steps was wrong, and no amount of reading carefully fixes it, because **a section you did not read is
+  indistinguishable from a section with nothing in it.**
+- **Impact:** the outline is structural only — it says nothing about what belongs on a card, which is
+  the judgement it exists to make possible about ALL sections rather than a prefix. It depends on this
+  publisher's conventions in one place: the roman-numeral marker images (`…_enum-VII.jpg`). A book that
+  numbers its exercises differently gets sections and sizes but no numbered run, which is the strongest
+  half of the signal. That is a per-book gap to notice on book #2, not a silent one — the count prints
+  as zero.
+- **Verified by:** `node --test test/corpus/chapterOutline.test.js`, and
+  `node scripts/chapter-outline.mjs 1fab0f99d1195ad9 38` reports the 8 exercises that were missed
+- **Status:** resolved (2026-08-20)
+- **When to revisit:** if a fourth miss of this class happens, the answer is not another checklist —
+  it is that the extraction pass should report its own coverage per section, so the account is produced
+  by the thing doing the reading rather than by the operator watching it.

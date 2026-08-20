@@ -27,7 +27,8 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "done": true
   },
   "items": [
     {
@@ -69,11 +70,12 @@
       "note": "The negative of にちようびはじかんがあります. あります becomes ありません; じかん keeps が either way.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the negative of a frame the lesson teaches only in the affirmative).",
       "aiSuggested": true,
-      "audio": "5067d43e938999cc.mp3",
-      "audioOriginal": "5067d43e938999cc.orig.mp3",
-      "audioAuto": "5067d43e938999cc.mp3",
+      "audioOriginal": "9486c548b166c501-genkanji-89168189.orig.mp3",
+      "audioAuto": "9486c548b166c501-genkanji-89168189.mp3",
       "audioMarked": true,
-      "audioTextHash": "5067d43e938999cc"
+      "audioTextHash": "9486c548b166c501",
+      "audioFilter": "standard",
+      "audio": "9486c548b166c501-genkanji-89168189.mp3"
     },
     {
       "id": "x16a-doyoubi-hakone-ikimasenka",
@@ -83,11 +85,12 @@
       "pronunciation": "doyōbi ni Hakone ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B, cue 1 — picture cue).",
       "aiSuggested": true,
-      "audio": "41b0ed82ae60d11b.mp3",
-      "audioOriginal": "41b0ed82ae60d11b.orig.mp3",
-      "audioAuto": "41b0ed82ae60d11b.mp3",
+      "audioOriginal": "65c852882ed706ba-genkanji-5fe29130.orig.mp3",
+      "audioAuto": "65c852882ed706ba-genkanji-5fe29130.mp3",
       "audioMarked": true,
-      "audioTextHash": "41b0ed82ae60d11b"
+      "audioTextHash": "65c852882ed706ba",
+      "audioFilter": "standard",
+      "audio": "65c852882ed706ba-genkanji-5fe29130.mp3"
     },
     {
       "id": "x16a-raigetsu-sapporo-yukimatsuri",
@@ -112,11 +115,12 @@
       "note": "に because you GO there. あきはばらでイベントがあります takes で, because that is where the event HAPPENS. Same place, two particles, decided by the verb.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the Target Dialogue's あきはばらでイベントがあります).",
       "aiSuggested": true,
-      "audio": "9127f0c00e6d19a4.mp3",
-      "audioOriginal": "9127f0c00e6d19a4.orig.mp3",
-      "audioAuto": "9127f0c00e6d19a4.mp3",
+      "audioOriginal": "09edde39827fe28c-genkanji-1abec0e8.orig.mp3",
+      "audioAuto": "09edde39827fe28c-genkanji-1abec0e8.mp3",
       "audioMarked": true,
-      "audioTextHash": "9127f0c00e6d19a4"
+      "audioTextHash": "09edde39827fe28c",
+      "audioFilter": "standard",
+      "audio": "09edde39827fe28c-genkanji-1abec0e8.mp3"
     },
     {
       "id": "x16a-pooru-suzuki-event-ikimasu",
@@ -224,7 +228,9 @@
       "audioOriginal": "ca86f77062238dd0.orig.mp3",
       "audioAuto": "ca86f77062238dd0.mp3",
       "audioMarked": true,
-      "audioTextHash": "ca86f77062238dd0"
+      "audioTextHash": "ca86f77062238dd0",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "fib-toukyou-eki-higashiguchi-aimasenka",
@@ -266,11 +272,12 @@
       "note": "The lesson's GRAMMAR 1 frame: the place an event HAPPENS takes で, not に. Time takes に as always.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Suzuki's opening line; job: the sentence that introduces つぎ, あきはばら and イベント, none of which appeared in any sentence).",
       "aiSuggested": true,
-      "audio": "d2107974effee7a1.mp3",
-      "audioOriginal": "d2107974effee7a1.orig.mp3",
-      "audioAuto": "d2107974effee7a1.mp3",
+      "audioOriginal": "cade9b19ebad4e57-genkanji-d3238049.orig.mp3",
+      "audioAuto": "cade9b19ebad4e57-genkanji-d3238049.mp3",
       "audioMarked": true,
-      "audioTextHash": "d2107974effee7a1"
+      "audioTextHash": "cade9b19ebad4e57",
+      "audioFilter": "standard",
+      "audio": "cade9b19ebad4e57-genkanji-d3238049.mp3"
     },
     {
       "id": "x16b-shinjuku-hoomu-aimashou",
@@ -347,7 +354,9 @@
       "audioOriginal": "51e9a114db80f8fc.orig.mp3",
       "audioAuto": "51e9a114db80f8fc.mp3",
       "audioMarked": true,
-      "audioTextHash": "51e9a114db80f8fc"
+      "audioTextHash": "51e9a114db80f8fc",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "x16c-shibuya-konsaato",
@@ -463,11 +472,12 @@
       "note": "まい counts flat things (Lesson 13). あります here is the \"have/exist\" sense, and から turns it into the reason for the invitation.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 3 — missed on my first read of the chapter; job: から on an existence clause with a counter).",
       "aiSuggested": true,
-      "audio": "2cd712555068fb5d.mp3",
-      "audioOriginal": "2cd712555068fb5d.orig.mp3",
-      "audioAuto": "2cd712555068fb5d.mp3",
+      "audioOriginal": "7e4b27a4a70af774-genkanji-7a0ac718.orig.mp3",
+      "audioAuto": "7e4b27a4a70af774-genkanji-7a0ac718.mp3",
       "audioMarked": true,
-      "audioTextHash": "2cd712555068fb5d"
+      "audioTextHash": "7e4b27a4a70af774",
+      "audioFilter": "standard",
+      "audio": "7e4b27a4a70af774-genkanji-7a0ac718.mp3"
     },
     {
       "id": "x16a-event-nanji-kara",
@@ -493,11 +503,12 @@
       "note": "ね invites agreement about the situation before the invitation — a softer opening than から, which asserts the reason outright.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VI worked example — the whole exercise was missed on my first read; job: the ね opening, which the deck had for のど and つかれ but not for おなか).",
       "aiSuggested": true,
-      "audio": "3932e48bb00247f0.mp3",
-      "audioOriginal": "3932e48bb00247f0.orig.mp3",
-      "audioAuto": "3932e48bb00247f0.mp3",
+      "audioOriginal": "da33b226baea9a53-genkanji-77d85337.orig.mp3",
+      "audioAuto": "da33b226baea9a53-genkanji-77d85337.mp3",
       "audioMarked": true,
-      "audioTextHash": "3932e48bb00247f0"
+      "audioTextHash": "da33b226baea9a53",
+      "audioFilter": "standard",
+      "audio": "da33b226baea9a53-genkanji-77d85337.mp3"
     },
     {
       "id": "x16c-goji-han-wakarimashita",
@@ -542,11 +553,12 @@
       "scene": "answering what time the concert starts, and proposing where to meet",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1; job: から for a starting time and で for a meeting place in one turn, on a named exit).",
       "aiSuggested": true,
-      "audio": "9d2301b1de0c93d1.mp3",
-      "audioOriginal": "9d2301b1de0c93d1.orig.mp3",
-      "audioAuto": "9d2301b1de0c93d1.mp3",
+      "audioOriginal": "3123665472e88ab4-genkanji-9ba5f422.orig.mp3",
+      "audioAuto": "3123665472e88ab4-genkanji-9ba5f422.mp3",
       "audioMarked": true,
-      "audioTextHash": "9d2301b1de0c93d1"
+      "audioTextHash": "3123665472e88ab4",
+      "audioFilter": "standard",
+      "audio": "3123665472e88ab4-genkanji-9ba5f422.mp3"
     },
     {
       "id": "x16a-konban-shokuji-shimasenka",
@@ -556,12 +568,12 @@
       "pronunciation": "konban shokuji o shimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 2 — picture cue; job: しませんか in a sentence, carded only as a bare form).",
       "aiSuggested": true,
-      "audio": "a3f6a8667b06cf52.mp3",
-      "audioOriginal": "a3f6a8667b06cf52.orig.mp3",
-      "audioAuto": "a3f6a8667b06cf52.mp3",
+      "audioOriginal": "f6967e141a62aa8d-genkanji-abf196b5.orig.mp3",
+      "audioAuto": "f6967e141a62aa8d-genkanji-abf196b5.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "a3f6a8667b06cf52"
+      "audioTextHash": "f6967e141a62aa8d",
+      "audioFilter": "standard",
+      "audio": "f6967e141a62aa8d-genkanji-abf196b5.mp3"
     },
     {
       "id": "x16a-zannen-kinyoubi-chotto",
@@ -677,11 +689,12 @@
       "scene": "answering what time the festival starts, and proposing where to meet",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2; job: the only sentence みなみぐち appears in — the chapter teaches four exits and only two were ever used).",
       "aiSuggested": true,
-      "audio": "a7334e14cdff6436.mp3",
-      "audioOriginal": "a7334e14cdff6436.orig.mp3",
-      "audioAuto": "a7334e14cdff6436.mp3",
+      "audioOriginal": "e1dfd6c4a0c13679-genkanji-32d32343.orig.mp3",
+      "audioAuto": "e1dfd6c4a0c13679-genkanji-32d32343.mp3",
       "audioMarked": true,
-      "audioTextHash": "a7334e14cdff6436"
+      "audioTextHash": "e1dfd6c4a0c13679",
+      "audioFilter": "standard",
+      "audio": "e1dfd6c4a0c13679-genkanji-32d32343.mp3"
     },
     {
       "id": "fib-ramenya-chikaku-ikimasenka",
@@ -707,11 +720,12 @@
       "pronunciation": "doyōbi ni Shibuya de furīmāketto ga arimasu",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 2; job: another で-marked event, on vocabulary from Lesson 8).",
       "aiSuggested": true,
-      "audio": "22a9ba3ec37c1ebc.mp3",
-      "audioOriginal": "22a9ba3ec37c1ebc.orig.mp3",
-      "audioAuto": "22a9ba3ec37c1ebc.mp3",
+      "audioOriginal": "d18c23c02c77085e-genkanji-97696982.orig.mp3",
+      "audioAuto": "d18c23c02c77085e-genkanji-97696982.mp3",
       "audioMarked": true,
-      "audioTextHash": "22a9ba3ec37c1ebc"
+      "audioTextHash": "d18c23c02c77085e",
+      "audioFilter": "standard",
+      "audio": "d18c23c02c77085e-genkanji-97696982.mp3"
     },
     {
       "id": "fib-nichiyoubi-yokohama-concert",
@@ -765,11 +779,12 @@
       "pronunciation": "raishū sakkā no shiai o mimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 3 — picture cue; job: みませんか in a sentence).",
       "aiSuggested": true,
-      "audio": "c14e8435aa511a36.mp3",
-      "audioOriginal": "c14e8435aa511a36.orig.mp3",
-      "audioAuto": "c14e8435aa511a36.mp3",
+      "audioOriginal": "fce63982c79b10cb-genkanji-1fff6659.orig.mp3",
+      "audioAuto": "fce63982c79b10cb-genkanji-1fff6659.mp3",
       "audioMarked": true,
-      "audioTextHash": "c14e8435aa511a36"
+      "audioTextHash": "fce63982c79b10cb",
+      "audioFilter": "standard",
+      "audio": "fce63982c79b10cb-genkanji-1fff6659.mp3"
     },
     {
       "id": "x16a-hirugohan-mo-tabemashou",

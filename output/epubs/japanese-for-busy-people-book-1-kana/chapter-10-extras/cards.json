@@ -669,7 +669,7 @@
     },
     {
       "id": "ex10-omoshiroi-tokoro",
-      "english": "It's an interesting place.",
+      "english": "It's an interesting place, you know.",
       "category": "Travel & Tourism",
       "target": "おもしろいところですよ",
       "pronunciation": "omoshiroi tokoro desu yo",
@@ -680,7 +680,8 @@
       "audioOriginal": "c7ed854fc4f7e3b7.orig.mp3",
       "audioAuto": "c7ed854fc4f7e3b7.mp3",
       "audioMarked": true,
-      "audioTextHash": "c7ed854fc4f7e3b7"
+      "audioTextHash": "c7ed854fc4f7e3b7",
+      "note": "よ presents this as news for the listener — you have been there and they have not. Contrast きれいなところですね, which would assume you are both looking at it. The particle is formally introduced in Lesson 12."
     },
     {
       "id": "ex10-iie-suzushikunai",

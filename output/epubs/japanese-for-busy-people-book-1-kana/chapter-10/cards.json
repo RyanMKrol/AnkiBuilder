@@ -677,7 +677,7 @@
     },
     {
       "id": "nikko-kirei-tokoro",
-      "english": "It's a pretty place.",
+      "english": "It's a pretty place, you know.",
       "category": "Travel & Tourism",
       "target": "きれいなところですよ",
       "pronunciation": "kirei na tokoro desu yo",
@@ -688,7 +688,8 @@
       "audioOriginal": "cd405235cc96fb08.orig.mp3",
       "audioAuto": "cd405235cc96fb08.mp3",
       "audioMarked": true,
-      "audioTextHash": "cd405235cc96fb08"
+      "audioTextHash": "cd405235cc96fb08",
+      "note": "よ presents this as news for the listener — you have been there and they have not. Contrast きれいなところですね, which would assume you are both looking at it. The particle is formally introduced in Lesson 12."
     },
     {
       "id": "asakusa",

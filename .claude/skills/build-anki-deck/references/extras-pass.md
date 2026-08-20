@@ -112,10 +112,10 @@ sentences and questions the book itself contains that never became a card. Prefe
 verbatim. The Target Dialogue and Speaking Practice sections are where the misses concentrate: check
 them first, every time.
 
-**Start from the outline, and cover every numbered block.** `node scripts/chapter-outline.mjs
-<baseRunDir>` prints the chapter's sections and the book's own numbered runs
-(`EXERCISES: 8 block(s) — I … VIII`); `--text` gives you the text section by section. Wave 1 is a
-sweep over that checklist, not over as much of the chapter as you happen to read. Lesson 16's extras
+**Read the whole chapter first.** `node scripts/chapter-outline.mjs <baseRunDir>` prints it start to
+end with an END OF CHAPTER marker, plus the book's own numbered runs where it has them
+(`EXERCISES: 8 block(s) — I … VIII`). Wave 1 is a sweep over the whole file, not over as much of the
+chapter as you happen to read — and where the numbered runs exist, over all of them. Lesson 16's extras
 shipped 39 cards on a first pass that had read to EXERCISES V of VIII — the two unread exercises held
 a four-turn dialogue and the only use of `みなみぐち` and `しんじゅく` in the whole chapter, and the unit
 came in at 33 hand-authored cards against a median of 57. Pass the BASE unit's run dir: an extras unit

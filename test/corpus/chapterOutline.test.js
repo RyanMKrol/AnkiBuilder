@@ -4,6 +4,7 @@ import {
   chapterOutline,
   parseHeadings,
   parseNumberedBlocks,
+  countImages,
 } from "../../src/corpus/chapterOutline.js";
 
 test("parseHeadings reads a title nested inside other tags", () => {
@@ -74,4 +75,33 @@ test("a chapter with no headings or blocks is reported as empty, not as an error
   assert.deepEqual(sections, []);
   assert.deepEqual(groups, []);
   assert.equal(chars, "a stub page".length);
+});
+
+test("countImages is generic — it is the signal for a chapter whose content is pictures", () => {
+  // This book's kana tables are ~47 characters of text and a full-page figure. Without an image
+  // count that reads as an empty chapter, which is the same miss in a different costume.
+  assert.equal(countImages('<img src="a.jpg"/><p>hi</p><IMG SRC="b.png"/>'), 2);
+  assert.equal(countImages("<p>no pictures here</p>"), 0);
+});
+
+test("a book that numbers nothing yields no groups, and that is not an error", () => {
+  // The numbered runs are ONE publisher's convention. A novel, or this book's own front matter, has
+  // none — and an empty `groups` must read as "this book does not number things", never as "there is
+  // nothing to read here". The bounds of the file are the completeness guarantee, not the numbering.
+  const novel = "<h1>Chapter One</h1><p>It was a dark and stormy night.</p>";
+  const { groups, sections, chars, images } = chapterOutline(novel);
+  assert.deepEqual(groups, []);
+  assert.equal(sections.length, 1);
+  assert.equal(sections[0].title, "Chapter One");
+  assert.ok(chars > 0);
+  assert.equal(images, 0);
+});
+
+test("a chapter with no headings at all still reports its size and images", () => {
+  // Headings are generic but not guaranteed: plenty of EPUBs style their titles with <p class=…>.
+  // Everything the completeness guarantee rests on has to survive that.
+  const { sections, chars, images } = chapterOutline('<p class="head">TITLE</p><img src="x.jpg"/>');
+  assert.deepEqual(sections, []);
+  assert.ok(chars > 0);
+  assert.equal(images, 1);
 });

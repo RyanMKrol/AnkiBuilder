@@ -3207,12 +3207,18 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   33 hand-authored cards against a median of 57, from the same partial read. None of the individual
   steps was wrong, and no amount of reading carefully fixes it, because **a section you did not read is
   indistinguishable from a section with nothing in it.**
+- **What it rests on, deliberately separated:** the completeness guarantee is the FILE BOUNDS, which
+  are universal — `extractChapterToFile` already writes exactly one lesson's content, so the script
+  prints all of it and stamps `END OF CHAPTER`. That works for any EPUB. The structure summary on top
+  is a bonus of two different qualities: the text-vs-image balance is generic (a chapter with little
+  text and many figures has its content in the pictures, which is a real shape and not an empty
+  chapter), while the numbered runs (`EXERCISES: I … VIII`) are read off ONE publisher's marker images
+  and are empty for front matter, for a novel, and for any book that numbers differently. The script
+  states that explicitly, because an empty checklist must read as "this book does not number things"
+  and never as "there is nothing to read". An earlier cut of this had the numbered run as the
+  backbone, which would have silently degraded to no signal at all on book #2.
 - **Impact:** the outline is structural only — it says nothing about what belongs on a card, which is
-  the judgement it exists to make possible about ALL sections rather than a prefix. It depends on this
-  publisher's conventions in one place: the roman-numeral marker images (`…_enum-VII.jpg`). A book that
-  numbers its exercises differently gets sections and sizes but no numbered run, which is the strongest
-  half of the signal. That is a per-book gap to notice on book #2, not a silent one — the count prints
-  as zero.
+  the judgement it exists to make possible about ALL sections rather than a prefix.
 - **Verified by:** `node --test test/corpus/chapterOutline.test.js`, and
   `node scripts/chapter-outline.mjs 1fab0f99d1195ad9 38` reports the 8 exercises that were missed
 - **Status:** resolved (2026-08-20)

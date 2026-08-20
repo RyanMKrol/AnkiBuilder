@@ -934,11 +934,12 @@
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for つま (bare vocab card only, no sentence). Collision: つま and かない both translate as 'my wife', so this card and v9-kanai-wa-kaimono each carry a hint naming which synonym to produce.",
       "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses つま.",
-      "audio": "870733815a96dc8c.mp3",
-      "audioOriginal": "870733815a96dc8c.orig.mp3",
-      "audioAuto": "870733815a96dc8c.mp3",
+      "audioOriginal": "6379bee570cebcfa-genkanji-bd17f28b.orig.mp3",
+      "audioAuto": "6379bee570cebcfa-genkanji-bd17f28b.mp3",
       "audioMarked": true,
-      "audioTextHash": "870733815a96dc8c"
+      "audioTextHash": "6379bee570cebcfa",
+      "audioFilter": "standard",
+      "audio": "6379bee570cebcfa-genkanji-bd17f28b.mp3"
     },
     {
       "id": "ex9-nakamura-san-ni-okurimasu",

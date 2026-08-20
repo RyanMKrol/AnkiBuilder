@@ -1,7 +1,7 @@
 {
   "note": "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
   "ankiParent": "Nihongo 101 Course (N5)",
-  "lastDeliveredAt": "2026-08-17T16:56:56.894Z",
+  "lastDeliveredAt": "2026-08-20T20:29:19.983Z",
   "deliveredCardIds": [
     "10th-floor",
     "1st-floor",

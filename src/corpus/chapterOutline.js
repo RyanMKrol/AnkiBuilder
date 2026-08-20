@@ -9,6 +9,18 @@
 // The fix is an account of what there IS, produced before the reading starts. Purely structural: it
 // says nothing about what belongs on a card, which is a judgement, and exists so that judgement gets
 // made about every section rather than about a prefix of them.
+//
+// ── What is universal here, and what is one publisher's ──────────────────────────────────────────
+//
+// `chars`, `images` and the headings are generic: any EPUB is HTML, and the caller already holds
+// exactly one chapter's bytes because extractChapterToFile bounded them. Those are the parts a
+// completeness guarantee may rest on.
+//
+// `groups` is NOT generic. It reads the roman-numeral marker images this one textbook heads its
+// exercise blocks with (`…_enum-VII.jpg`), and on that book it is the sharpest coverage signal there
+// is. On the same book's front matter it is empty, and on a novel it will always be empty. So it is
+// reported as a bonus and never as the backbone: an empty `groups` must read as "this book does not
+// number things", never as "there is nothing to read".
 
 /** Tags stripped, entities folded, whitespace collapsed. */
 export function plainText(html) {
@@ -77,6 +89,15 @@ const ROMAN = [
  * fall inside them. `groups` collects the numbered blocks by kind and reports any gap in the
  * numbering — a run of I,II,III,V has lost IV, and that is the shape of a block nobody read.
  */
+/**
+ * How many images the chapter references. Generic, and load-bearing on its own: a chapter with very
+ * little text and many images is one whose CONTENT is in the pictures — this book's kana tables are
+ * 47 characters of text and dozens of figures — and that is a real shape, not an empty chapter.
+ */
+export function countImages(html) {
+  return [...String(html).matchAll(/<img\b/gi)].length;
+}
+
 export function chapterOutline(html) {
   const headings = parseHeadings(html);
   const numbered = parseNumberedBlocks(html);
@@ -104,5 +125,5 @@ export function chapterOutline(html) {
     groups.push({ kind, numerals: got, missing: expected.filter((r) => !got.includes(r)) });
   }
 
-  return { chars: plainText(html).length, sections, groups };
+  return { chars: plainText(html).length, images: countImages(html), sections, groups };
 }

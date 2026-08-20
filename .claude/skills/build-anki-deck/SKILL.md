@@ -320,36 +320,52 @@ pass shows no **Mark reviewed** button and sits under **Not finished** with the 
 it (`anki-builder prepare --run <dir>`). Templates are exempt from the drill/notes passes (nothing to
 mine, no siblings).
 
-**FIRST, take the chapter's outline, and read EVERY section of it.** This is a required step of
-every EPUB build, and it comes before the image sweep because it is what tells you how much there is.
+**FIRST, read the WHOLE chapter, start to end.** This is a required step of every EPUB build, and it
+comes before the image sweep because it is what tells you how much there is.
 
 ```sh
-node scripts/chapter-outline.mjs <runDir>          # the structure, as a checklist
-node scripts/chapter-outline.mjs <runDir> --text   # …and the full text, section by section
+node scripts/chapter-outline.mjs <runDir>             # the whole chapter, with an end marker
+node scripts/chapter-outline.mjs <runDir> --summary   # structure only, no text
 ```
 
-It prints every section the book itself declares, the size of each, and — the load-bearing part —
-**the book's own numbered blocks**: `EXERCISES: 8 block(s) — I, II, III, IV, V, VI, VII, VIII`. A run
-with a hole in it is a block nobody read, and it is visible without knowing what should have been
-there.
+**The guarantee is the file, and it is already exact.** `extractChapterToFile` wrote precisely one
+lesson's content — one spine file, or the concatenated range for a lesson spanning several — so
+"where the chapter starts and ends" is settled before you read a word. The script prints all of it
+and stamps the bottom:
 
-**Read the chapter through `--text`, section by section, and make a call on every one.** Not a
-prefix. Do not page through the raw XHTML with `sed -n 'A,Bp'` windows: that is how this goes wrong,
-because nothing in a window tells you the file kept going. On Lesson 16 the chapter was 942 lines,
-the reading stopped at 780, and EXERCISES VI and VII were never seen — VII being the only place the
-chapter uses half of its own station-exit vocabulary (`みなみぐち`, `しんじゅく`), so those cards were
-built and then never used in a sentence. The extraction had the same partial view.
+```
+END OF CHAPTER — 7911 chars, 17 heading(s), 46 image(s).
+If you did not see this line, you have not read the chapter.
+```
 
-**Then account for every numbered block when you hand over the review link** — one line each, saying
-what it teaches or why it produced no card. "EXERCISES VI: reason-then-invitation on the three
-physical-condition phrases; two mined by the drill pass, the third added by hand" is an account.
-Silence about VI is not, and silence is exactly what a short read produces.
+That works for any EPUB: a textbook, a novel, a book in any language.
 
-This generalises past this one book. **A section you did not read is indistinguishable from a section
-with nothing in it**, which is the same failure as the image sweep below (a chart nobody opened looks
-like a chapter with no chart) and the vocabulary diff further down (a dropped block looks like a
-chapter with fewer words). All three checks exist because that class of miss is invisible from the
-inside, and none of them is satisfied by reading carefully.
+**Do NOT page the raw XHTML with `sed -n 'A,Bp'` windows.** That is exactly how this goes wrong,
+because nothing inside a window tells you the file kept going. On Lesson 16 the chapter was 942
+lines, the reading stopped at 780, and two whole exercises were never seen — one of them the only
+place the chapter used half of its own station-exit vocabulary, so those cards were built and then
+appeared in no sentence. The extraction pass had the same partial view, and nothing anywhere said so.
+
+**Two annotations come free, and they are worth different amounts:**
+
+- **Text-vs-image balance** is universal. A chapter with little text and many figures is one whose
+  content is IN the pictures — this book's kana tables are 47 characters and a full-page chart — and
+  the script says so rather than letting it read as an empty chapter.
+- **The book's own numbered runs** (`EXERCISES: 8 block(s) — I … VIII`) are the sharpest signal there
+  is *when the book has them*, because a hole in the run names a block nobody read. But this is ONE
+  publisher's convention, read off its marker images. On front matter, on a novel, on any book that
+  numbers things differently, it is empty — and **empty means "this book doesn't number its blocks",
+  never "there is nothing here"**. The script says that too. Never treat the absence of a checklist as
+  permission to skim; the completeness guarantee is the file bounds, not the numbering.
+
+When the numbered runs ARE there, account for every one when you hand over the review link — a line
+each, saying what it teaches or why it produced no card. Silence about EXERCISES VI is precisely what
+a short read produces.
+
+This generalises past any one book. **A section you did not read is indistinguishable from a section
+with nothing in it** — the same failure as the image sweep below (a chart nobody opened looks like a
+chapter with no chart) and the vocabulary diff further down (a dropped block looks like a chapter
+with fewer words). None of the three is satisfied by reading carefully.
 
 **Then sweep the chapter's IMAGES. This is a required step of every EPUB build,
 not an optional check.** The extraction pass DOES see images: `extractChapterToFile` writes every

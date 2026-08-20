@@ -106,12 +106,12 @@
     },
     {
       "id": "ex12-uketsuke-ni-otoko-no-hito-ga-imasu",
-      "english": "There is a man at the information desk.",
+      "english": "There is a man at the reception desk.",
       "category": "Family & People",
       "target": "うけつけにおとこのひとがいます",
       "note": "おとこのひと (otoko no hito) is the neutral way to say 'man'; おとこ (otoko) alone can sound blunt.",
       "aiSuggested": true,
-      "reviewNote": "EXERCISE 2B alternative 1, completed on the printed example うけつけにおんなのひとがいます."
+      "reviewNote": "EXERCISE 2B alternative 1, completed on the printed example うけつけにおんなのひとがいます. | Deliberately diverges from the book, which glosses うけつけ as \"information desk\" here. The deck teaches インフォメーション = \"Information desk\" as its own card, so that English is an ambiguous Production prompt; chapter 1 defines うけつけ as \"Reception desk\" and chapter-13-extras already uses that wording. Do not revert to match the source."
     },
     {
       "id": "ex12-yonkai-ni-nani-ga-arimasu-ka",
@@ -161,12 +161,12 @@
     },
     {
       "id": "ex12-uketsuke-ni-tanaka-san-ga-imasu",
-      "english": "Tanaka-san is at the information desk.",
+      "english": "Tanaka-san is at the reception desk.",
       "category": "Family & People",
       "target": "うけつけにたなかさんがいます",
       "note": "います (imasu) is required because たなかさん is animate; あります (arimasu) would be wrong for a person.",
       "aiSuggested": true,
-      "reviewNote": "EXERCISE 2B alternative 2. The deck has no います sentence with a named person."
+      "reviewNote": "EXERCISE 2B alternative 2. The deck has no います sentence with a named person. | Deliberately diverges from the book, which glosses うけつけ as \"information desk\" here. The deck teaches インフォメーション = \"Information desk\" as its own card, so that English is an ambiguous Production prompt; chapter 1 defines うけつけ as \"Reception desk\" and chapter-13-extras already uses that wording. Do not revert to match the source."
     },
     {
       "id": "ex12-kaigishitsu-ga-arimasu",
@@ -317,12 +317,12 @@
     },
     {
       "id": "ex12-uketsuke-ni-dare-ga-imasu-ka",
-      "english": "Who is at the information desk?",
+      "english": "Who is at the reception desk?",
       "category": "Family & People",
       "target": "うけつけにだれがいますか",
       "note": "だれが (dare ga), not だれは: a question word is always the new information, so it takes が (ga).",
       "aiSuggested": true,
-      "reviewNote": "EXERCISE 3B, the printed example question, the lesson's model だれが question."
+      "reviewNote": "EXERCISE 3B, the printed example question, the lesson's model だれが question. | Deliberately diverges from the book, which glosses うけつけ as \"information desk\" here. The deck teaches インフォメーション = \"Information desk\" as its own card, so that English is an ambiguous Production prompt; chapter 1 defines うけつけ as \"Reception desk\" and chapter-13-extras already uses that wording. Do not revert to match the source."
     },
     {
       "id": "ex12-sobaya-ga-arimasu-w1",

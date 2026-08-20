@@ -173,7 +173,7 @@
     },
     {
       "id": "ikkai-uketsuke-arimasu",
-      "english": "There is an information desk on the first floor.",
+      "english": "There is a reception desk on the first floor.",
       "category": "Directions",
       "target": "1かいにうけつけがあります",
       "ttsText": "いっかいにうけつけがあります",
@@ -183,7 +183,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audio": "08d85dafe9f54c94-genkanji-f137ac8b.mp3",
-      "audioTextHash": "08d85dafe9f54c94"
+      "audioTextHash": "08d85dafe9f54c94",
+      "reviewNote": "Deliberately diverges from the book, which glosses うけつけ as \"information desk\" here. The deck teaches インフォメーション = \"Information desk\" as its own card, so that English is an ambiguous Production prompt; chapter 1 defines うけつけ as \"Reception desk\" and chapter-13-extras already uses that wording. Do not revert to match the source."
     },
     {
       "id": "imasu-animate",
@@ -229,7 +230,7 @@
     },
     {
       "id": "uketsuke-onna-imasu",
-      "english": "There is a woman at the information desk.",
+      "english": "There is a woman at the reception desk.",
       "category": "Family & People",
       "target": "うけつけにおんなのひとがいます",
       "pronunciation": "uketsuke ni onna no hito ga imasu",
@@ -237,7 +238,8 @@
       "audioOriginal": "7756aec8e3d4494c.orig.mp3",
       "audioAuto": "7756aec8e3d4494c.mp3",
       "audioMarked": true,
-      "audioTextHash": "7756aec8e3d4494c"
+      "audioTextHash": "7756aec8e3d4494c",
+      "reviewNote": "Deliberately diverges from the book, which glosses うけつけ as \"information desk\" here. The deck teaches インフォメーション = \"Information desk\" as its own card, so that English is an ambiguous Production prompt; chapter 1 defines うけつけ as \"Reception desk\" and chapter-13-extras already uses that wording. Do not revert to match the source."
     },
     {
       "id": "table-noun",

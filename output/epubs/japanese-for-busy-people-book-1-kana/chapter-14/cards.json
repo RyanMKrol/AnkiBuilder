@@ -970,7 +970,7 @@
     },
     {
       "id": "yoku-niaimasune",
-      "english": "It suits you well.",
+      "english": "It suits you well, doesn't it?",
       "category": "Other",
       "target": "よくにあいますね",
       "pronunciation": "yoku niaimasu ne",
@@ -1163,7 +1163,7 @@
     },
     {
       "id": "fib-suteki-mafuraa",
-      "english": "What a lovely muffler!",
+      "english": "It's a lovely muffler, isn't it?",
       "category": "Clothing",
       "target": "すてきなマフラーですね",
       "pronunciation": "Suteki na mafuraa desu ne",

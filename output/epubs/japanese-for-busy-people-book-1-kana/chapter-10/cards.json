@@ -869,11 +869,12 @@
       "target": "おじゃまします",
       "pronunciation": "ojama shimasu",
       "note": "Customary expression used when entering someone's home or private space as a guest.",
-      "audio": "3370982802ef2d35.mp3",
-      "audioOriginal": "3370982802ef2d35.orig.mp3",
-      "audioAuto": "3370982802ef2d35.mp3",
+      "audioOriginal": "90f32dac57892e3a-genkanji-96c38770.orig.mp3",
+      "audioAuto": "90f32dac57892e3a-genkanji-96c38770.mp3",
       "audioMarked": true,
-      "audioTextHash": "3370982802ef2d35"
+      "audioTextHash": "90f32dac57892e3a",
+      "audioFilter": "standard",
+      "audio": "90f32dac57892e3a-genkanji-96c38770.mp3"
     },
     {
       "id": "fib-pasokon-atarashii-q",

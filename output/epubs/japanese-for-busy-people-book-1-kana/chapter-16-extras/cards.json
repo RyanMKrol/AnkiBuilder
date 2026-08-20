@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "chapterNumber": 38,
     "chapterLabel": "Lesson 16: Making an Invitation: Shall We Go Together? (Extras)",
     "baseChapterLabel": "Lesson 16: Making an Invitation: Shall We Go Together?",
@@ -38,7 +38,12 @@
       "pronunciation": "tsukaremashita kara, sukoshi yasumimasen ka",
       "note": "から on a past-tense clause: the reason is something that has already happened.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence やすみます appears in; also から after a ました clause).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c7077fb46455a138.mp3",
+      "audioOriginal": "c7077fb46455a138.orig.mp3",
+      "audioAuto": "c7077fb46455a138.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c7077fb46455a138"
     },
     {
       "id": "x16a-sou-desu-ka-mata-kondo",
@@ -48,7 +53,12 @@
       "pronunciation": "sō desu ka. ja, mata kondo",
       "scene": "accepting someone's refusal gracefully",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B closing turn; job: またこんど in a sentence, carded only as a bare phrase).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "297d93e0f54afa93.mp3",
+      "audioOriginal": "297d93e0f54afa93.orig.mp3",
+      "audioAuto": "297d93e0f54afa93.mp3",
+      "audioMarked": true,
+      "audioTextHash": "297d93e0f54afa93"
     },
     {
       "id": "x16b-nichiyoubi-jikan-arimasen",
@@ -58,7 +68,12 @@
       "pronunciation": "nichiyōbi wa jikan ga arimasen",
       "note": "The negative of にちようびはじかんがあります. あります becomes ありません; じかん keeps が either way.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the negative of a frame the lesson teaches only in the affirmative).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "5067d43e938999cc.mp3",
+      "audioOriginal": "5067d43e938999cc.orig.mp3",
+      "audioAuto": "5067d43e938999cc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5067d43e938999cc"
     },
     {
       "id": "x16a-doyoubi-hakone-ikimasenka",
@@ -67,7 +82,12 @@
       "target": "どようびにはこねにいきませんか",
       "pronunciation": "doyōbi ni Hakone ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B, cue 1 — picture cue).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "41b0ed82ae60d11b.mp3",
+      "audioOriginal": "41b0ed82ae60d11b.orig.mp3",
+      "audioAuto": "41b0ed82ae60d11b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "41b0ed82ae60d11b"
     },
     {
       "id": "x16a-raigetsu-sapporo-yukimatsuri",
@@ -76,7 +96,12 @@
       "target": "らいげつさっぽろでゆきまつりがあります",
       "pronunciation": "raigetsu Sapporo de yukimatsuri ga arimasu",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES III, cue 1 — picture cue; job: ゆきまつり in a sentence, and で on an event).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f908bb425a70d461.mp3",
+      "audioOriginal": "f908bb425a70d461.orig.mp3",
+      "audioAuto": "f908bb425a70d461.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f908bb425a70d461"
     },
     {
       "id": "x16b-akihabara-de-vs-ni",
@@ -86,7 +111,12 @@
       "pronunciation": "issho ni Akihabara ni ikimasen ka",
       "note": "に because you GO there. あきはばらでイベントがあります takes で, because that is where the event HAPPENS. Same place, two particles, decided by the verb.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the Target Dialogue's あきはばらでイベントがあります).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9127f0c00e6d19a4.mp3",
+      "audioOriginal": "9127f0c00e6d19a4.orig.mp3",
+      "audioAuto": "9127f0c00e6d19a4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9127f0c00e6d19a4"
     },
     {
       "id": "x16a-pooru-suzuki-event-ikimasu",
@@ -96,7 +126,12 @@
       "pronunciation": "Pōru-san to Suzuki-san wa tsugi no nichiyōbi ni anime no ibento ni ikimasu",
       "note": "Here the event takes に, because they GO to it. Contrast あきはばらでイベントがあります, where で marks where it happens.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue closing summary; job: the に/で contrast on the same noun, which is GRAMMAR 1's real difficulty).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "bcf5de437473b8f9.mp3",
+      "audioOriginal": "bcf5de437473b8f9.orig.mp3",
+      "audioAuto": "bcf5de437473b8f9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bcf5de437473b8f9"
     },
     {
       "id": "x16b-doyoubi-wa-dou-desu-ka",
@@ -107,7 +142,12 @@
       "scene": "proposing a different day after the first was turned down",
       "note": "〜はどうですか proposes an alternative. Contrast どうですか on its own, which asks what someone thinks or wants.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: the only sentence はどうですか appears in — the chapter teaches it and Lesson 17 teaches it again).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c3bc0651892df630.mp3",
+      "audioOriginal": "c3bc0651892df630.orig.mp3",
+      "audioAuto": "c3bc0651892df630.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c3bc0651892df630"
     },
     {
       "id": "x16b-higashiguchi-deguchi",
@@ -117,7 +157,12 @@
       "pronunciation": "higashiguchi no deguchi de aimasen ka",
       "note": "でぐち is the general word for an exit; ひがしぐち names which one. The chapter's four 〜ぐち are all built the same way, on にし・ひがし・きた・みなみ.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence でぐち appears in, and the only one あいませんか appears in).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "4f052a5c59978df0.mp3",
+      "audioOriginal": "4f052a5c59978df0.orig.mp3",
+      "audioAuto": "4f052a5c59978df0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4f052a5c59978df0"
     },
     {
       "id": "x16b-hai-zehi",
@@ -128,7 +173,12 @@
       "scene": "accepting an invitation",
       "note": "GRAMMAR 2 lists ええ／はい、ぜひ as interchangeable here; the deck already has the ええ version.",
       "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant, which the book gives and the deck lacked).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7cd3d252a3077993.mp3",
+      "audioOriginal": "7cd3d252a3077993.orig.mp3",
+      "audioAuto": "7cd3d252a3077993.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7cd3d252a3077993"
     },
     {
       "id": "fib-zannen-nichiyoubi-chotto",
@@ -139,7 +189,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "4db01a0362d8703a.mp3",
+      "audioOriginal": "4db01a0362d8703a.orig.mp3",
+      "audioAuto": "4db01a0362d8703a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4db01a0362d8703a"
     },
     {
       "id": "fib-concert-shichiji-kara",
@@ -164,7 +219,12 @@
       "pronunciation": "ichi-ji kara desu",
       "scene": "answering what time the event starts",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the answer half of なんじからですか).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ca86f77062238dd0.mp3",
+      "audioOriginal": "ca86f77062238dd0.orig.mp3",
+      "audioAuto": "ca86f77062238dd0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ca86f77062238dd0"
     },
     {
       "id": "fib-toukyou-eki-higashiguchi-aimasenka",
@@ -175,7 +235,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "404b1c43134fbc22.mp3",
+      "audioOriginal": "404b1c43134fbc22.orig.mp3",
+      "audioAuto": "404b1c43134fbc22.mp3",
+      "audioMarked": true,
+      "audioTextHash": "404b1c43134fbc22"
     },
     {
       "id": "x16b-hai-sou-shimashou",
@@ -185,7 +250,12 @@
       "pronunciation": "hai, sō shimashō",
       "scene": "agreeing to a suggestion someone has just made",
       "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant of ええ、そうしましょう).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3120e4eae157439c.mp3",
+      "audioOriginal": "3120e4eae157439c.orig.mp3",
+      "audioAuto": "3120e4eae157439c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3120e4eae157439c"
     },
     {
       "id": "x16a-tsugi-akihabara-event",
@@ -195,7 +265,12 @@
       "pronunciation": "tsugi no nichiyōbi ni Akihabara de anime no ibento ga arimasu",
       "note": "The lesson's GRAMMAR 1 frame: the place an event HAPPENS takes で, not に. Time takes に as always.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Suzuki's opening line; job: the sentence that introduces つぎ, あきはばら and イベント, none of which appeared in any sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d2107974effee7a1.mp3",
+      "audioOriginal": "d2107974effee7a1.orig.mp3",
+      "audioAuto": "d2107974effee7a1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d2107974effee7a1"
     },
     {
       "id": "x16b-shinjuku-hoomu-aimashou",
@@ -205,7 +280,12 @@
       "pronunciation": "Shinjuku-eki no hōmu de aimashō",
       "note": "で marks where the meeting happens, exactly as it marks where an event happens.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence ホーム and しんじゅく appear in).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3318482473b4754c.mp3",
+      "audioOriginal": "3318482473b4754c.orig.mp3",
+      "audioAuto": "3318482473b4754c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3318482473b4754c"
     },
     {
       "id": "x16b-onaka-suita-tabemasenka",
@@ -215,7 +295,12 @@
       "pronunciation": "onaka ga sukimashita kara, nanika tabemasen ka",
       "note": "The chapter's three physical-condition phrases (おなかがすきました, のどがかわきました, つかれました) all work as reasons in front of から.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the reason+invitation frame on a second condition, so the pattern is visible rather than a single instance).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "271f7578e773b51c.mp3",
+      "audioOriginal": "271f7578e773b51c.orig.mp3",
+      "audioAuto": "271f7578e773b51c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "271f7578e773b51c"
     },
     {
       "id": "x16b-koen-tabemashou",
@@ -225,7 +310,12 @@
       "pronunciation": "kōen de hirugohan o tabemashō",
       "note": "ましょう assumes agreement and moves to the action. The same sentence with ませんか would still be asking.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ましょう half of the pair; the grammar states this difference and no card showed it).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ff67c95e9d33a074.mp3",
+      "audioOriginal": "ff67c95e9d33a074.orig.mp3",
+      "audioAuto": "ff67c95e9d33a074.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ff67c95e9d33a074"
     },
     {
       "id": "fib-issho-ni-soccer-mimashou",
@@ -236,7 +326,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ecd00e87d952dad2.mp3",
+      "audioOriginal": "ecd00e87d952dad2.orig.mp3",
+      "audioAuto": "ecd00e87d952dad2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ecd00e87d952dad2"
     },
     {
       "id": "fib-concert-nanji-kara",
@@ -247,7 +342,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "51e9a114db80f8fc.mp3",
+      "audioOriginal": "51e9a114db80f8fc.orig.mp3",
+      "audioAuto": "51e9a114db80f8fc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "51e9a114db80f8fc"
     },
     {
       "id": "x16c-shibuya-konsaato",
@@ -256,7 +356,12 @@
       "target": "しぶやでコンサートがあります。いっしょにいきませんか",
       "pronunciation": "Shibuya de konsāto ga arimasu. issho ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1 — the whole exercise was missed on my first read).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e2d357384e14533c.mp3",
+      "audioOriginal": "e2d357384e14533c.orig.mp3",
+      "audioAuto": "e2d357384e14533c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e2d357384e14533c"
     },
     {
       "id": "x16b-koen-tabemasenka",
@@ -266,7 +371,12 @@
       "pronunciation": "kōen de hirugohan o tabemasen ka",
       "note": "ませんか ASKS, and leaves the other person free to decline. Compare こうえんでひるごはんをたべましょう, which assumes the answer is yes.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ませんか half of a fixed-frame minimal pair, so only the ending varies).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "979dca2a2aa0840f.mp3",
+      "audioOriginal": "979dca2a2aa0840f.orig.mp3",
+      "audioAuto": "979dca2a2aa0840f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "979dca2a2aa0840f"
     },
     {
       "id": "x16a-omoshiroi-kara-ikimasenka",
@@ -276,7 +386,12 @@
       "pronunciation": "omoshiroi ibento desu kara, issho ni ikimasen ka",
       "note": "から gives the reason FIRST, then the invitation — the shape this chapter teaches (contrast Lesson 14, where から trails the sentence it justifies).",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: から + ませんか, the chapter's two grammar points in one sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7a0f11d7073509f7.mp3",
+      "audioOriginal": "7a0f11d7073509f7.orig.mp3",
+      "audioAuto": "7a0f11d7073509f7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a0f11d7073509f7"
     },
     {
       "id": "x16a-sobaya-kara-ikimasenka",
@@ -286,7 +401,12 @@
       "pronunciation": "kono chikaku ni oishii sobaya ga arimasu kara, issho ni ikimasen ka",
       "note": "Here あります is the \"exist\" sense with に (Lesson 12), and から turns it into a reason for the invitation.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 1; job: から on an existence clause, and the に/で contrast again).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "308feb05f5c8a585.mp3",
+      "audioOriginal": "308feb05f5c8a585.orig.mp3",
+      "audioAuto": "308feb05f5c8a585.mp3",
+      "audioMarked": true,
+      "audioTextHash": "308feb05f5c8a585"
     },
     {
       "id": "x16a-tanjoubi-kara-paatii",
@@ -295,7 +415,12 @@
       "target": "にちようびはスミスさんのたんじょうびですから、パーティーをしませんか",
       "pronunciation": "nichiyōbi wa Sumisu-san no tanjōbi desu kara, pātī o shimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 2; job: から after a noun predicate rather than a verb).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6e220de9d39c4c09.mp3",
+      "audioOriginal": "6e220de9d39c4c09.orig.mp3",
+      "audioAuto": "6e220de9d39c4c09.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6e220de9d39c4c09"
     },
     {
       "id": "x16a-ja-nichiyoubi-ikimashou",
@@ -306,7 +431,12 @@
       "scene": "settling on a day after the first one was turned down",
       "note": "じゃ picks up what was just agreed; ましょう then proposes the action outright, because the asking is already done.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES IV closing turn; job: the ましょう that ends a negotiation, which is where the form earns its meaning).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "848693d99b635c8c.mp3",
+      "audioOriginal": "848693d99b635c8c.orig.mp3",
+      "audioAuto": "848693d99b635c8c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "848693d99b635c8c"
     },
     {
       "id": "x16a-smith-mo-dou-desu-ka",
@@ -316,7 +446,12 @@
       "pronunciation": "Sumisu-san mo issho ni dō desu ka",
       "note": "どうですか asks the listener's intention — here, whether Smith wants to come along.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue and its NOTES; job: どうですか used in a sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b10ab7b09ca4a660.mp3",
+      "audioOriginal": "b10ab7b09ca4a660.orig.mp3",
+      "audioAuto": "b10ab7b09ca4a660.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b10ab7b09ca4a660"
     },
     {
       "id": "x16c-chiketto-nimai-eiga",
@@ -327,7 +462,12 @@
       "pronunciation": "chiketto ga ni-mai arimasu kara, konban eiga o mimasen ka",
       "note": "まい counts flat things (Lesson 13). あります here is the \"have/exist\" sense, and から turns it into the reason for the invitation.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES V, substitution 3 — missed on my first read of the chapter; job: から on an existence clause with a counter).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2cd712555068fb5d.mp3",
+      "audioOriginal": "2cd712555068fb5d.orig.mp3",
+      "audioAuto": "2cd712555068fb5d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2cd712555068fb5d"
     },
     {
       "id": "x16a-event-nanji-kara",
@@ -337,7 +477,12 @@
       "pronunciation": "ibento wa nanji kara desu ka",
       "note": "A DIFFERENT から from the one above: this is から \"from\", marking a starting time (Lesson 3). Same particle, and only the sentence tells you which.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the から/から contrast, in the one chapter that uses both).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "161b11777748ee1f.mp3",
+      "audioOriginal": "161b11777748ee1f.orig.mp3",
+      "audioAuto": "161b11777748ee1f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "161b11777748ee1f"
     },
     {
       "id": "x16c-onaka-ne-tabemasenka",
@@ -347,7 +492,12 @@
       "pronunciation": "onaka ga sukimashita ne. nanika tabemasen ka",
       "note": "ね invites agreement about the situation before the invitation — a softer opening than から, which asserts the reason outright.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VI worked example — the whole exercise was missed on my first read; job: the ね opening, which the deck had for のど and つかれ but not for おなか).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3932e48bb00247f0.mp3",
+      "audioOriginal": "3932e48bb00247f0.orig.mp3",
+      "audioAuto": "3932e48bb00247f0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3932e48bb00247f0"
     },
     {
       "id": "x16c-goji-han-wakarimashita",
@@ -359,7 +509,12 @@
       "scene": "repeating back a meeting time and place to confirm it",
       "note": "ね here checks a detail back rather than seeking agreement — the standard way to confirm arrangements.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1, closing turn).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6c3db6d2f31d2067.mp3",
+      "audioOriginal": "6c3db6d2f31d2067.orig.mp3",
+      "audioAuto": "6c3db6d2f31d2067.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6c3db6d2f31d2067"
     },
     {
       "id": "fib-doyoubi-tanaka-tanjoubi-party",
@@ -370,7 +525,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c000af95bba30527.mp3",
+      "audioOriginal": "c000af95bba30527.orig.mp3",
+      "audioAuto": "c000af95bba30527.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c000af95bba30527"
     },
     {
       "id": "x16c-rokuji-han-higashiguchi",
@@ -381,7 +541,12 @@
       "pronunciation": "roku-ji han kara desu. go-ji han ni Shibuya-eki no higashiguchi de aimashō",
       "scene": "answering what time the concert starts, and proposing where to meet",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1; job: から for a starting time and で for a meeting place in one turn, on a named exit).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9d2301b1de0c93d1.mp3",
+      "audioOriginal": "9d2301b1de0c93d1.orig.mp3",
+      "audioAuto": "9d2301b1de0c93d1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9d2301b1de0c93d1"
     },
     {
       "id": "x16a-konban-shokuji-shimasenka",
@@ -390,7 +555,13 @@
       "target": "こんばんしょくじをしませんか",
       "pronunciation": "konban shokuji o shimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 2 — picture cue; job: しませんか in a sentence, carded only as a bare form).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a3f6a8667b06cf52.mp3",
+      "audioOriginal": "a3f6a8667b06cf52.orig.mp3",
+      "audioAuto": "a3f6a8667b06cf52.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "a3f6a8667b06cf52"
     },
     {
       "id": "x16a-zannen-kinyoubi-chotto",
@@ -401,7 +572,12 @@
       "pronunciation": "zannen desu ga, kin'yōbi wa chotto",
       "note": "The sentence is left unfinished on purpose. Japanese avoids a flat refusal, so ちょっと trails off and the listener supplies the rest.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B decline pattern; job: the decline on a day rather than on a noun).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a5484ef1296450db.mp3",
+      "audioOriginal": "a5484ef1296450db.orig.mp3",
+      "audioAuto": "a5484ef1296450db.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a5484ef1296450db"
     },
     {
       "id": "fib-tsukare-nanika-tabemasenka",
@@ -426,7 +602,12 @@
       "pronunciation": "watashi mo omatsuri ni ikimasu",
       "note": "も replaces は on the topic to mean \"me too\" — it never sits alongside it.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — も had only two examples across the pair, below the three the pass aims for).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d58740a48f7ad9cc.mp3",
+      "audioOriginal": "d58740a48f7ad9cc.orig.mp3",
+      "audioAuto": "d58740a48f7ad9cc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d58740a48f7ad9cc"
     },
     {
       "id": "x16a-raigetsu-nikko-ikimasenka",
@@ -435,7 +616,12 @@
       "target": "らいげつにっこうにいきませんか",
       "pronunciation": "raigetsu Nikkō ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 1 — a picture cue, so this sentence exists only in the image).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "fbd0c9433145bec7.mp3",
+      "audioOriginal": "fbd0c9433145bec7.orig.mp3",
+      "audioAuto": "fbd0c9433145bec7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fbd0c9433145bec7"
     },
     {
       "id": "x16c-shinjuku-omatsuri",
@@ -444,7 +630,12 @@
       "target": "しんじゅくでおまつりがあります。いっしょにいきませんか",
       "pronunciation": "Shinjuku de omatsuri ga arimasu. issho ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2 — missed on my first read; job: the only sentence しんじゅく appears in).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c4c68a3feced2b2a.mp3",
+      "audioOriginal": "c4c68a3feced2b2a.orig.mp3",
+      "audioAuto": "c4c68a3feced2b2a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c4c68a3feced2b2a"
     },
     {
       "id": "x16b-eiga-mimashou",
@@ -453,7 +644,12 @@
       "target": "いっしょにえいがをみましょう",
       "pronunciation": "issho ni eiga o mimashō",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence みましょう appears in; it was the paradigm cell added by hand at gate 1).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "00856f303ef688f1.mp3",
+      "audioOriginal": "00856f303ef688f1.orig.mp3",
+      "audioAuto": "00856f303ef688f1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "00856f303ef688f1"
     },
     {
       "id": "x16c-kuji-minamiguchi-wakarimashita",
@@ -464,7 +660,12 @@
       "pronunciation": "ku-ji ni Shinjuku-eki no minamiguchi desu ne. wakarimashita",
       "scene": "repeating back a meeting time and place to confirm it",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2, closing turn).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2810801be9a59d2a.mp3",
+      "audioOriginal": "2810801be9a59d2a.orig.mp3",
+      "audioAuto": "2810801be9a59d2a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2810801be9a59d2a"
     },
     {
       "id": "x16c-juuji-minamiguchi",
@@ -475,7 +676,12 @@
       "pronunciation": "jū-ji kara desu. ku-ji ni Shinjuku-eki no minamiguchi de aimashō",
       "scene": "answering what time the festival starts, and proposing where to meet",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2; job: the only sentence みなみぐち appears in — the chapter teaches four exits and only two were ever used).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a7334e14cdff6436.mp3",
+      "audioOriginal": "a7334e14cdff6436.orig.mp3",
+      "audioAuto": "a7334e14cdff6436.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a7334e14cdff6436"
     },
     {
       "id": "fib-ramenya-chikaku-ikimasenka",
@@ -486,7 +692,12 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "39dfa8be583201eb.mp3",
+      "audioOriginal": "39dfa8be583201eb.orig.mp3",
+      "audioAuto": "39dfa8be583201eb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "39dfa8be583201eb"
     },
     {
       "id": "x16b-shibuya-furiimaaketto",
@@ -495,7 +706,12 @@
       "target": "どようびにしぶやでフリーマーケットがあります",
       "pronunciation": "doyōbi ni Shibuya de furīmāketto ga arimasu",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 2; job: another で-marked event, on vocabulary from Lesson 8).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "22a9ba3ec37c1ebc.mp3",
+      "audioOriginal": "22a9ba3ec37c1ebc.orig.mp3",
+      "audioAuto": "22a9ba3ec37c1ebc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "22a9ba3ec37c1ebc"
     },
     {
       "id": "fib-nichiyoubi-yokohama-concert",
@@ -520,7 +736,12 @@
       "pronunciation": "Tōkyō-eki no kitaguchi de aimasen ka",
       "note": "The last of the chapter's four exits. にし・ひがし・きた・みなみ each take ぐち the same way, so once one is clear all four are.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — きたぐち and きた appeared in no sentence, and the book's own exercises never use them).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "59b97d750055db5d.mp3",
+      "audioOriginal": "59b97d750055db5d.orig.mp3",
+      "audioAuto": "59b97d750055db5d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "59b97d750055db5d"
     },
     {
       "id": "x16b-kamakura-omatsuri-ikimasenka",
@@ -529,7 +750,12 @@
       "target": "しゅうまつにかまくらでおまつりがあります。いっしょにいきませんか",
       "pronunciation": "shūmatsu ni Kamakura de omatsuri ga arimasu. issho ni ikimasen ka",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 1; job: the full two-sentence invitation the exercise builds).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "dfa43f8358b19ffd.mp3",
+      "audioOriginal": "dfa43f8358b19ffd.orig.mp3",
+      "audioAuto": "dfa43f8358b19ffd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dfa43f8358b19ffd"
     },
     {
       "id": "x16a-raishuu-sakkaa-mimasenka",
@@ -538,7 +764,12 @@
       "target": "らいしゅうサッカーのしあいをみませんか",
       "pronunciation": "raishū sakkā no shiai o mimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-A, cue 3 — picture cue; job: みませんか in a sentence).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c14e8435aa511a36.mp3",
+      "audioOriginal": "c14e8435aa511a36.orig.mp3",
+      "audioAuto": "c14e8435aa511a36.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c14e8435aa511a36"
     },
     {
       "id": "x16a-hirugohan-mo-tabemashou",
@@ -548,7 +779,12 @@
       "pronunciation": "hirugohan mo issho ni tabemashō",
       "note": "ましょう assumes agreement and proposes the action; も adds lunch to the plan already made.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: たべましょう in a sentence — it was carded only as a bare form).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "1952ecb6f3c3b345.mp3",
+      "audioOriginal": "1952ecb6f3c3b345.orig.mp3",
+      "audioAuto": "1952ecb6f3c3b345.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1952ecb6f3c3b345"
     },
     {
       "id": "x16a-kayoubi-yokohama-shiai",
@@ -557,7 +793,12 @@
       "target": "かようびによこはまでサッカーのしあいがあります",
       "pronunciation": "kayōbi ni Yokohama de sakkā no shiai ga arimasu",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES III, cue 3 — picture cue).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "743f0397d5078568.mp3",
+      "audioOriginal": "743f0397d5078568.orig.mp3",
+      "audioAuto": "743f0397d5078568.mp3",
+      "audioMarked": true,
+      "audioTextHash": "743f0397d5078568"
     },
     {
       "id": "x16a-kinyoubi-kabuki-mimasenka",
@@ -566,7 +807,12 @@
       "target": "きんようびにかぶきをみませんか",
       "pronunciation": "kin'yōbi ni kabuki o mimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B, cue 2 — picture cue).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d6744fcc091bd7e1.mp3",
+      "audioOriginal": "d6744fcc091bd7e1.orig.mp3",
+      "audioAuto": "d6744fcc091bd7e1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d6744fcc091bd7e1"
     }
   ]
 }

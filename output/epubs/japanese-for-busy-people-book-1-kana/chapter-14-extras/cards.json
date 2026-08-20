@@ -59,7 +59,7 @@
     },
     {
       "id": "x14b-suteki-na-baggu-doko-de",
-      "english": "It's a lovely bag. Where did you buy it?",
+      "english": "It's a lovely bag, isn't it? Where did you buy it?",
       "category": "Clothing",
       "target": "すてきなバッグですね。どこでかいましたか",
       "scene": "complimenting something a friend is carrying",
@@ -228,7 +228,7 @@
     },
     {
       "id": "x14-suteki-na-sukaafu-desune",
-      "english": "It's a lovely scarf!",
+      "english": "It's a lovely scarf, isn't it?",
       "category": "Clothing",
       "target": "すてきなスカーフですね",
       "aiSuggested": true,
@@ -457,7 +457,7 @@
     },
     {
       "id": "x14-chotto-samui-desune",
-      "english": "It's a bit cold here.",
+      "english": "It's a bit cold, isn't it?",
       "category": "Weather & Nature",
       "target": "ちょっとさむいですね",
       "aiSuggested": true,

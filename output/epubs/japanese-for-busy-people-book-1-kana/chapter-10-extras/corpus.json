@@ -343,7 +343,7 @@
     },
     {
       "id": "f10-benri-na-apuri",
-      "english": "What a convenient app!",
+      "english": "It's a convenient app, isn't it?",
       "category": "Technology & Communication",
       "target": "べんりなアプリですね",
       "aiSuggested": true,
@@ -369,7 +369,7 @@
     },
     {
       "id": "f10-shizuka-na-resutoran",
-      "english": "What a quiet restaurant!",
+      "english": "It's a quiet restaurant, isn't it?",
       "category": "Food",
       "target": "しずかなレストランですね",
       "aiSuggested": true,
@@ -477,7 +477,7 @@
     },
     {
       "id": "ex10-kirei-na-okashi-ne",
-      "english": "What a beautiful sweet!",
+      "english": "It's a beautiful sweet, isn't it?",
       "category": "Food",
       "target": "きれいなおかしですね",
       "aiSuggested": true,

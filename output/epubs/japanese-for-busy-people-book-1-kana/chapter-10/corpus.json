@@ -568,7 +568,7 @@
     },
     {
       "id": "ookii-uchi-ne",
-      "english": "What a big house!",
+      "english": "It's a big house, isn't it?",
       "category": "Home & Household",
       "scene": null,
       "hint": null,
@@ -578,7 +578,7 @@
     },
     {
       "id": "omoshiroi-e-ne",
-      "english": "What an interesting picture!",
+      "english": "It's an interesting picture, isn't it?",
       "category": "Other",
       "scene": null,
       "hint": null,
@@ -588,7 +588,7 @@
     },
     {
       "id": "totemo-furui-tokei-ne",
-      "english": "What a very old clock!",
+      "english": "It's a very old clock, isn't it?",
       "category": "Other",
       "scene": null,
       "hint": null,

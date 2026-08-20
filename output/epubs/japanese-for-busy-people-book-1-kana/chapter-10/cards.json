@@ -716,7 +716,7 @@
     },
     {
       "id": "ookii-uchi-ne",
-      "english": "What a big house!",
+      "english": "It's a big house, isn't it?",
       "category": "Home & Household",
       "target": "おおきいうちですね",
       "pronunciation": "ōkii uchi desu ne",
@@ -728,7 +728,7 @@
     },
     {
       "id": "omoshiroi-e-ne",
-      "english": "What an interesting picture!",
+      "english": "It's an interesting picture, isn't it?",
       "category": "Other",
       "target": "おもしろいえですね",
       "pronunciation": "omoshiroi e desu ne",
@@ -740,7 +740,7 @@
     },
     {
       "id": "totemo-furui-tokei-ne",
-      "english": "What a very old clock!",
+      "english": "It's a very old clock, isn't it?",
       "category": "Other",
       "target": "とてもふるいとけいですね",
       "pronunciation": "totemo furui tokei desu ne",

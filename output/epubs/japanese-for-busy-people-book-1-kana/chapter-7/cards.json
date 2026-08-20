@@ -214,12 +214,12 @@
       "category": "Time",
       "target": "ようか",
       "pronunciation": "yōka",
-      "audio": "c3c3de4bb70b3df7.mp3",
-      "audioOriginal": "c3c3de4bb70b3df7.orig.mp3",
-      "audioAuto": "c3c3de4bb70b3df7.mp3",
+      "audioOriginal": "8d380c99461ae478-genkanji-20a881a6.orig.mp3",
+      "audioAuto": "8d380c99461ae478-genkanji-20a881a6.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "c3c3de4bb70b3df7"
+      "audioTextHash": "8d380c99461ae478",
+      "audio": "8d380c99461ae478-genkanji-20a881a6.mp3"
     },
     {
       "id": "ks3-4th-or-8th",

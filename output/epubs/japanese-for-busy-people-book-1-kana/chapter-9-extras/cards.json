@@ -180,7 +180,7 @@
     },
     {
       "id": "f9-nihon-wa-do-desu-ka",
-      "english": "How is Japan?",
+      "english": "How do you like Japan?",
       "category": "Grammar & Function Words",
       "target": "にほんはどうですか",
       "pronunciation": "nihon wa dō desu ka",
@@ -190,7 +190,8 @@
       "audioOriginal": "f92b10cdc1e2f0b0.orig.mp3",
       "audioAuto": "f92b10cdc1e2f0b0.mp3",
       "audioMarked": true,
-      "audioTextHash": "f92b10cdc1e2f0b0"
+      "audioTextHash": "f92b10cdc1e2f0b0",
+      "note": "どう asks for an impression rather than a fact — what you think of something, not what state it is in. Compare どうでしたか (Lesson 11) for the same question in the past. The word is formally introduced in Lesson 11."
     },
     {
       "id": "ex9-dare-ni-meru-o-okurimasu-ka",

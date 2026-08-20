@@ -105,7 +105,9 @@
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the answer half of なんじからですか).",
       "target": "1じからです",
       "ttsText": "いちじからです",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "x16b-hai-sou-shimashou",

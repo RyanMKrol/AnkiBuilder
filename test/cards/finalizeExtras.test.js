@@ -50,3 +50,28 @@ test("a failing audit does not stop the chain; a failing build step does", () =>
   assert.equal(by.order.fatal, true);
   assert.equal(by.validate.fatal, true);
 });
+
+test("consent for a signed-off or delivered unit reaches the ordering step, which is the one write", () => {
+  // Without this the chain dies at step 4, after `prepare` has already spent credits on the three
+  // steps before it. The absorption migration hit exactly that: fifteen delivered units to finalize.
+  const plain = finalizeExtrasPlan(RUN).find((s) => s.name === "order");
+  assert.equal(plain.argv.includes("--force-delivered"), false);
+  assert.equal(plain.argv.includes("--force"), false);
+
+  const consented = finalizeExtrasPlan(RUN, { force: true, forceDelivered: true }).find(
+    (s) => s.name === "order",
+  );
+  assert.deepEqual(consented.argv.slice(-2), ["--force", "--force-delivered"]);
+});
+
+test("consent is forwarded ONLY to the write step, never to an audit", () => {
+  for (const step of finalizeExtrasPlan(RUN, { force: true, forceDelivered: true })) {
+    if (step.name === "order") continue;
+    assert.equal(step.argv.includes("--force"), false, `${step.name} must not be given --force`);
+    assert.equal(
+      step.argv.includes("--force-delivered"),
+      false,
+      `${step.name} must not be given --force-delivered`,
+    );
+  }
+});

@@ -459,6 +459,152 @@
       "scene": "answering what there is to see at Kamakura",
       "aiSuggested": true,
       "reviewNote": "EXERCISE 7 dialogue 1, Kato's reply. Elliptical, so it carries a scene. Reverses the noun order of the Key Sentence にっこうにおてらやじんじゃがあります."
+    },
+    {
+      "id": "animal",
+      "english": "Animal",
+      "category": "Animals",
+      "target": "どうぶつ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+    },
+    {
+      "id": "ladybird",
+      "english": "Ladybird",
+      "category": "Animals",
+      "target": "てんとうむし",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+    },
+    {
+      "id": "lion",
+      "english": "Lion",
+      "category": "Animals",
+      "target": "ライオン",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+    },
+    {
+      "id": "dog",
+      "english": "Dog",
+      "category": "Animals",
+      "target": "いぬ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+    },
+    {
+      "id": "cat",
+      "english": "Cat",
+      "category": "Animals",
+      "target": "ねこ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+    },
+    {
+      "id": "box",
+      "english": "Box",
+      "category": "Home & Household",
+      "target": "はこ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Room and container objects, alongside Lesson 12's desk/chair/bed"
+    },
+    {
+      "id": "fire",
+      "english": "Fire",
+      "category": "Emergencies",
+      "target": "ひ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Placed with Lesson 12's existence sentences for want of a better home"
+    },
+    {
+      "id": "star",
+      "english": "Star",
+      "category": "Weather & Nature",
+      "target": "ほし",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Placed with Lesson 12's existence sentences for want of a better home"
+    },
+    {
+      "id": "eg-chairoi-tsukue",
+      "english": "This is a brown desk.",
+      "category": "Colors",
+      "target": "これはちゃいろいつくえです",
+      "hint": null,
+      "note": "ちゃいろ (chairo) is the other both-ways colour, so ちゃいろのつくえ (chairo no tsukue) is equally fine.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Colour sentence built on tsukue, which Lesson 12 teaches",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "ear",
+      "english": "Ear",
+      "category": "Body & Health",
+      "target": "みみ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call"
+    },
+    {
+      "id": "eye",
+      "english": "Eye",
+      "category": "Body & Health",
+      "target": "め",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call"
+    },
+    {
+      "id": "insect",
+      "english": "Insect",
+      "category": "Animals",
+      "target": "むし",
+      "note": "Turns up inside てんとうむし (tentōmushi), 'ladybird'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+    },
+    {
+      "id": "side",
+      "english": "Side",
+      "category": "Directions",
+      "target": "よこ",
+      "note": "A position word: ~の よこ (no yoko) = 'beside ~'. いすの よこ (isu no yoko) = 'next to the chair'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's position words (ue/shita/tonari/chikaku)"
+    },
+    {
+      "id": "camel",
+      "english": "Camel",
+      "category": "Animals",
+      "target": "らくだ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+    },
+    {
+      "id": "squirrel",
+      "english": "Squirrel",
+      "category": "Animals",
+      "target": "りす",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+    },
+    {
+      "id": "crocodile",
+      "english": "Crocodile",
+      "category": "Animals",
+      "target": "わに",
+      "note": "Japanese doesn't split crocodile from alligator — わに (wani) covers both.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+    },
+    {
+      "id": "fib-chuushajou-wa-nangai-desu-ka",
+      "english": "What floor is the car park on?",
+      "category": "Directions",
+      "target": "ちゅうしゃじょうはなんがいですか",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: chuushajou is taught in Lesson 12",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-wani-wa-nagai-desu",
+      "english": "Crocodiles are long.",
+      "category": "Animals",
+      "target": "わにはながいです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-sore-wa-wani-desu",
+      "english": "That over there is a crocodile.",
+      "category": "Animals",
+      "target": "あれはわにです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "aiSuggested": true
     }
   ]
 }

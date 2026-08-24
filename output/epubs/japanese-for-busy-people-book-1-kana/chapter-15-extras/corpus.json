@@ -415,6 +415,88 @@
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — うたいます appeared in no sentence, only as a bare vocabulary card, while its dictionary form was already used in one).",
       "target": "ポールさんはよくうたいます",
       "aiSuggested": true
+    },
+    {
+      "id": "celebrity",
+      "english": "Celebrity",
+      "category": "Family & People",
+      "target": "セレブ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Entertainment/media, alongside Lesson 15's anime and music"
+    },
+    {
+      "id": "amazing",
+      "english": "Amazing!",
+      "category": "Emotions & Feelings",
+      "target": "すごい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu"
+    },
+    {
+      "id": "basketball",
+      "english": "Basketball",
+      "category": "Sports & Hobbies",
+      "target": "バスケットボール",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field"
+    },
+    {
+      "id": "table-tennis",
+      "english": "Table tennis",
+      "category": "Sports & Hobbies",
+      "target": "たっきゅう",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field"
+    },
+    {
+      "id": "to-swim-2",
+      "english": "To swim",
+      "category": "Sports & Hobbies",
+      "target": "すいえいをします",
+      "hint": "the pursuit you take up",
+      "note": "すいえい (suiei) is a NOUN meaning swimming as a sport or discipline, so it needs します to become something you do: まいしゅう すいえいを します (maishū suiei o shimasu), 'I swim every week'. しゅみは すいえい です (shumi wa suiei desu) = 'my hobby is swimming'. For the physical act, use およぐ (oyogu).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 15 teaches suiei and the sport/hobby set"
+    },
+    {
+      "id": "p102-kankoku-ryouri",
+      "english": "Korean food",
+      "category": "Food",
+      "target": "かんこくりょうり",
+      "note": "Built the same way as this lesson's イタリアりょうり (itaria ryōri): a country in front of りょうり (ryōri).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a second example of the country plus りょうり (ryōri) pattern, so it reads as a slot rather than a fixed phrase.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kankou-suru",
+      "english": "To go sightseeing",
+      "category": "Travel & Tourism",
+      "target": "かんこうする",
+      "note": "A noun plus する (suru), the dictionary form of します (shimasu). The polite form is かんこうします (kankō shimasu).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a noun-plus-する (suru) verb in the dictionary form this lesson introduces.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-jitensha-ni-noru",
+      "english": "To ride a bicycle",
+      "category": "Transport",
+      "target": "じてんしゃにのる",
+      "note": "のる (noru) takes に (ni), not を (o): じてんしゃにのる (jitensha ni noru), never じてんしゃをのる (jitensha o noru).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a dictionary-form verb on Lesson 7's じてんしゃ (jitensha), and the に (ni) it takes is the part a learner gets wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-saikuringu",
+      "english": "Cycling",
+      "category": "Sports & Hobbies",
+      "target": "サイクリング",
+      "note": "The pastime, so it works after すき (suki): サイクリングがすきです (saikuringu ga suki desu). じてんしゃにのる (jitensha ni noru) is the act of riding.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a hobby noun for this lesson's すき (suki) frame.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-tomodachi-to-piza-o-tabemashita",
+      "english": "I ate pizza with a friend.",
+      "category": "Food",
+      "target": "ともだちとピザをたべました",
+      "scene": "answering what you did last weekend",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Sits in this lesson rather than with its question because ピザ (piza) is taught here; the scene carries the question so the card is answerable alone.",
+      "aiSuggested": true
     }
   ]
 }

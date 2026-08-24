@@ -2,7 +2,6 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": true,
     "chapterNumber": 37,
     "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime (Extras)",
     "baseChapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime",
@@ -27,8 +26,7 @@
         "status": "ok",
         "reason": "completed in an earlier run (notesEnhanced marker set)"
       }
-    },
-    "done": true
+    }
   },
   "items": [
     {
@@ -895,6 +893,128 @@
       "audioAuto": "c40747fbc23e5c56.mp3",
       "audioMarked": true,
       "audioTextHash": "c40747fbc23e5c56"
+    },
+    {
+      "id": "celebrity",
+      "english": "Celebrity",
+      "category": "Family & People",
+      "target": "セレブ",
+      "pronunciation": "serebu",
+      "audio": "7cbfe9368d10a7f4.mp3",
+      "audioOriginal": "7cbfe9368d10a7f4.orig.mp3",
+      "audioAuto": "7cbfe9368d10a7f4.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "7cbfe9368d10a7f4",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Entertainment/media, alongside Lesson 15's anime and music"
+    },
+    {
+      "id": "amazing",
+      "english": "Amazing!",
+      "category": "Emotions & Feelings",
+      "target": "すごい",
+      "pronunciation": "sugoi",
+      "audio": "a1b3243842db1789.mp3",
+      "audioOriginal": "a1b3243842db1789.orig.mp3",
+      "audioAuto": "a1b3243842db1789.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "a1b3243842db1789",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu"
+    },
+    {
+      "id": "basketball",
+      "english": "Basketball",
+      "category": "Sports & Hobbies",
+      "target": "バスケットボール",
+      "pronunciation": "basukettobōru",
+      "audio": "6e337dd52ea66b3b.mp3",
+      "audioOriginal": "6e337dd52ea66b3b.orig.mp3",
+      "audioAuto": "6e337dd52ea66b3b.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "6e337dd52ea66b3b",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field"
+    },
+    {
+      "id": "table-tennis",
+      "english": "Table tennis",
+      "category": "Sports & Hobbies",
+      "target": "たっきゅう",
+      "pronunciation": "takkyū",
+      "audio": "6f0db1d9b8003387.mp3",
+      "audioOriginal": "6f0db1d9b8003387.orig.mp3",
+      "audioAuto": "6f0db1d9b8003387.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "6f0db1d9b8003387",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field"
+    },
+    {
+      "id": "to-swim-2",
+      "english": "To swim",
+      "category": "Sports & Hobbies",
+      "target": "すいえいをします",
+      "pronunciation": "suiei o shimasu",
+      "hint": "the pursuit you take up",
+      "note": "すいえい (suiei) is a NOUN meaning swimming as a sport or discipline, so it needs します to become something you do: まいしゅう すいえいを します (maishū suiei o shimasu), 'I swim every week'. しゅみは すいえい です (shumi wa suiei desu) = 'my hobby is swimming'. For the physical act, use およぐ (oyogu).",
+      "audio": "36c03489be0c9038.standard.mp3",
+      "audioOriginal": "36c03489be0c9038.orig.mp3",
+      "audioAuto": "36c03489be0c9038.standard.mp3",
+      "audioMarked": true,
+      "audioFilter": "standard",
+      "audioTextHash": "36c03489be0c9038",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 15 teaches suiei and the sport/hobby set"
+    },
+    {
+      "id": "p102-kankoku-ryouri",
+      "english": "Korean food",
+      "category": "Food",
+      "target": "かんこくりょうり",
+      "pronunciation": "kankoku ryōri",
+      "note": "Built the same way as this lesson's イタリアりょうり (itaria ryōri): a country in front of りょうり (ryōri).",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a second example of the country plus りょうり (ryōri) pattern, so it reads as a slot rather than a fixed phrase."
+    },
+    {
+      "id": "p102-kankou-suru",
+      "english": "To go sightseeing",
+      "category": "Travel & Tourism",
+      "target": "かんこうする",
+      "pronunciation": "kankō suru",
+      "note": "A noun plus する (suru), the dictionary form of します (shimasu). The polite form is かんこうします (kankō shimasu).",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a noun-plus-する (suru) verb in the dictionary form this lesson introduces."
+    },
+    {
+      "id": "p102-jitensha-ni-noru",
+      "english": "To ride a bicycle",
+      "category": "Transport",
+      "target": "じてんしゃにのる",
+      "pronunciation": "jitensha ni noru",
+      "note": "のる (noru) takes に (ni), not を (o): じてんしゃにのる (jitensha ni noru), never じてんしゃをのる (jitensha o noru).",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a dictionary-form verb on Lesson 7's じてんしゃ (jitensha), and the に (ni) it takes is the part a learner gets wrong."
+    },
+    {
+      "id": "p102-saikuringu",
+      "english": "Cycling",
+      "category": "Sports & Hobbies",
+      "target": "サイクリング",
+      "pronunciation": "saikuringu",
+      "note": "The pastime, so it works after すき (suki): サイクリングがすきです (saikuringu ga suki desu). じてんしゃにのる (jitensha ni noru) is the act of riding.",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a hobby noun for this lesson's すき (suki) frame."
+    },
+    {
+      "id": "p102-tomodachi-to-piza-o-tabemashita",
+      "english": "I ate pizza with a friend.",
+      "category": "Food",
+      "target": "ともだちとピザをたべました",
+      "pronunciation": "tomodachi to piza o tabemashita",
+      "scene": "answering what you did last weekend",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Sits in this lesson rather than with its question because ピザ (piza) is taught here; the scene carries the question so the card is answerable alone."
     }
   ]
 }

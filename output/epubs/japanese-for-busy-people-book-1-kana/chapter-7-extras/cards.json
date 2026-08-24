@@ -4,9 +4,7 @@
     "sourceType": "epub",
     "chapterNumber": 23,
     "chapterLabel": "Lesson 7: Going Places (2): I’m Going by Shinkansen (Extras)",
-    "baseChapterLabel": "Lesson 7: Going Places (2): I’m Going by Shinkansen",
-    "reviewed": true,
-    "done": true
+    "baseChapterLabel": "Lesson 7: Going Places (2): I’m Going by Shinkansen"
   },
   "items": [
     {
@@ -1105,6 +1103,69 @@
       "audioAuto": "91dfa563bee49fa4.mp3",
       "audioMarked": true,
       "audioTextHash": "91dfa563bee49fa4"
+    },
+    {
+      "id": "how",
+      "english": "How",
+      "category": "Grammar & Function Words",
+      "target": "どうやって",
+      "pronunciation": "dō yatte",
+      "audio": "c19df5d4f22d4a90-gen-90e12a4c.standard.mp3",
+      "audioOriginal": "c19df5d4f22d4a90-gen-90e12a4c.mp3",
+      "audioAuto": "c19df5d4f22d4a90-gen-90e12a4c.standard.mp3",
+      "audioFilter": "standard",
+      "audioTextHash": "c19df5d4f22d4a90",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 7 asks dou yatte ikimasu ka about transport"
+    },
+    {
+      "id": "p102-arukide",
+      "english": "On foot",
+      "category": "Transport",
+      "target": "あるきで",
+      "pronunciation": "aruki de",
+      "hint": "the 〜で (de) variant, not the usual form",
+      "note": "A variant of あるいて (aruite). Both mean going on foot, and あるいて (aruite) is the one you will hear.",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone."
+    },
+    {
+      "id": "p102-douyatte-jimu-ni-ikimasu-ka",
+      "english": "How do you get to the gym?",
+      "category": "Transport",
+      "target": "どうやってジムにいきますか",
+      "pronunciation": "dō yatte jimu ni ikimasu ka",
+      "note": "どうやって (dō yatte) asks by what means, like なんで (nande) in this lesson. どうやって (dō yatte) is the more everyday of the two.",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say."
+    },
+    {
+      "id": "p102-jimu-ni-aruite-ikimasu",
+      "english": "I walk to the gym.",
+      "category": "Transport",
+      "target": "ジムにあるいていきます",
+      "pronunciation": "jimu ni aruite ikimasu",
+      "scene": "answering how you get to the gym",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going."
+    },
+    {
+      "id": "p102-douyatte-shigoto-ni-ikimasu-ka",
+      "english": "How do you go to work?",
+      "category": "Transport",
+      "target": "どうやってしごとにいきますか",
+      "pronunciation": "dō yatte shigoto ni ikimasu ka",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase."
+    },
+    {
+      "id": "p102-basu-de-shigoto-ni-ikimasu",
+      "english": "I go to work by bus.",
+      "category": "Transport",
+      "target": "バスでしごとにいきます",
+      "pronunciation": "basu de shigoto ni ikimasu",
+      "scene": "answering how you get to work",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 3 answer. Job: contrasts the で (de) of means against the あるいて (aruite) answer above."
     }
   ]
 }

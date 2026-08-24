@@ -598,6 +598,119 @@
       "note": "Member 3 of the set: か (ka) turns いまくじです (ima ku-ji desu) into a yes/no question, unlike なんじですか (nan-ji desu ka), which asks for the time itself.",
       "reviewNote": "Constructed. Form job: member 3 of the contrast set, and the deck's only yes/no か question in this lesson — every other か card is an information question.",
       "aiSuggested": true
+    },
+    {
+      "id": "one-minute",
+      "english": "One minute",
+      "category": "Time",
+      "target": "いっぷん",
+      "note": "Irregular reading for '1 minute' — いち (ichi) becomes いっ (ip) before ふん (fun).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "nine-minutes",
+      "english": "Nine minutes",
+      "category": "Time",
+      "target": "きゅうふん",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "six-minutes",
+      "english": "Six minutes",
+      "category": "Time",
+      "target": "ろっぷん",
+      "note": "Irregular reading for '6 minutes' — ろく (roku) becomes ろっ (rop) before ふん (fun), not ろくふん (rokufun).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "three-minutes",
+      "english": "Three minutes",
+      "category": "Time",
+      "target": "さんぷん",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "seven-minutes",
+      "english": "Seven minutes",
+      "category": "Time",
+      "target": "ななふん",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "two-minutes",
+      "english": "Two minutes",
+      "category": "Time",
+      "target": "にふん",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "ten-minutes",
+      "english": "Ten minutes",
+      "category": "Time",
+      "target": "じゅっぷん",
+      "note": "Irregular reading for '10 minutes' — じゅう (jū) becomes じゅっ (jup) before ふん (fun); じっぷん (jippun) is an accepted alternate reading.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "four-minutes",
+      "english": "Four minutes",
+      "category": "Time",
+      "target": "よんぷん",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "eight-minutes",
+      "english": "Eight minutes",
+      "category": "Time",
+      "target": "はっぷん",
+      "note": "Irregular reading for '8 minutes' — はち (hachi) becomes はっ (hap) before ふん (fun), not はちふん (hachifun).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "five-minutes",
+      "english": "Five minutes",
+      "category": "Time",
+      "target": "ごふん",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter"
+    },
+    {
+      "id": "5-am",
+      "english": "5 AM",
+      "category": "Time",
+      "target": "ごぜんごじ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches gozen/gogo with the hours"
+    },
+    {
+      "id": "its-9-01-now",
+      "english": "It's 9:01 now.",
+      "category": "Time",
+      "target": "いまくじいっぷんです",
+      "note": "Combines くじ (kuji), the irregular '9 o'clock' reading (く/ku, not きゅう/kyū) seen in ごごくじ (gogo kuji), with いっぷん (ippun), the irregular '1 minute' reading from earlier in this lesson.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Built entirely from Lesson 3's clock vocabulary"
+    },
+    {
+      "id": "from-what-time-to-what-time-is-the-gym-o",
+      "english": "From what time to what time is the gym open?",
+      "category": "Time",
+      "target": "ジムはなんじからなんじまでですか",
+      "note": "から (kara, 'from') and まで (made, 'to/until') bracket a range — here a time range, but the same から〜まで (kara~made) pattern works for places and dates too.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Built entirely from Lesson 3's clock vocabulary"
+    },
+    {
+      "id": "what-time-is-it-now-in-the-uk",
+      "english": "What time is it now in the UK?",
+      "category": "Time",
+      "target": "イギリスはいまなんじですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Built entirely from Lesson 3's clock vocabulary"
+    },
+    {
+      "id": "p102-itsu-desu-ka",
+      "english": "When is it?",
+      "category": "Grammar & Function Words",
+      "target": "いつですか",
+      "note": "いつ (itsu) plus ですか (desu ka). Unlike なんじですか (nan-ji desu ka) it does not demand a clock time, so a day on its own answers it.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the whole question, where the book cards only the bare word いつ (itsu).",
+      "aiSuggested": true
     }
   ]
 }

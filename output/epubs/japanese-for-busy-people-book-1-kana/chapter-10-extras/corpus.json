@@ -483,6 +483,115 @@
       "target": "きれいなおかしですね",
       "aiSuggested": true,
       "reviewNote": "Target Dialogue, verbatim. A な-adjective noun-modifying exclamation parallel to the carded おおきいうちですね (ookii uchi desu ne); this dialogue line itself was never carded."
+    },
+    {
+      "id": "how-are-you",
+      "english": "How are you?",
+      "category": "Greetings",
+      "target": "げんきですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
+    },
+    {
+      "id": "im-well",
+      "english": "I'm well.",
+      "category": "Greetings",
+      "target": "げんきです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
+    },
+    {
+      "id": "im-not-well",
+      "english": "I'm not well.",
+      "category": "Greetings",
+      "target": "げんきじゃないです",
+      "note": "じゃないです (ja nai desu) negates げんきです the same way じゃありません (ja arimasen) negates です in これはペンじゃありません (kore wa pen ja arimasen), but blends the plain negative じゃない (ja nai) with です for a slightly more casual feel than the formal-sounding じゃありません.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
+    },
+    {
+      "id": "cute",
+      "english": "Cute",
+      "category": "Emotions & Feelings",
+      "target": "かわいい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
+    },
+    {
+      "id": "pretty",
+      "english": "Pretty",
+      "category": "Other",
+      "target": "きれいな",
+      "hint": "also 'clean, tidy'",
+      "note": "Despite ending in い it's a な-adjective, so な goes before the noun: きれいな かばん (kirei na kaban). It covers both 'pretty' and 'clean'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
+    },
+    {
+      "id": "kore-wa-kirei-na-kaban-desu",
+      "english": "This is a pretty bag.",
+      "category": "Other",
+      "target": "これはきれいなかばんです",
+      "hint": null,
+      "note": "な is doing the joining here. Without it, きれい (kirei) cannot sit in front of かばん (kaban).",
+      "reviewNote": "Example sentence card added during the corpus review, at your request, to show the な-adjective in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "cool",
+      "english": "Cool",
+      "category": "Other",
+      "target": "かっこいい",
+      "hint": "stylish, good-looking",
+      "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\"."
+    },
+    {
+      "id": "spicy",
+      "english": "Spicy",
+      "category": "Food",
+      "target": "からい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
+    },
+    {
+      "id": "long",
+      "english": "Long",
+      "category": "Other",
+      "target": "ながい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
+    },
+    {
+      "id": "clear",
+      "english": "Clear",
+      "category": "Other",
+      "target": "とうめいな",
+      "note": "Another な-adjective, like きれいな (kirei na): とうめいな かさ (tōmei na kasa), 'a clear umbrella'. The final い belongs to めい (mei), so it doesn't inflect like ちいさい (chīsai).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
+    },
+    {
+      "id": "kore-wa-toumei-na-kasa-desu",
+      "english": "This is a clear umbrella.",
+      "category": "Other",
+      "target": "これはとうめいなかさです",
+      "hint": null,
+      "note": "The same shape as これは きれいな かばん です (kore wa kirei na kaban desu): な is what lets a な-adjective attach to the noun in front of it.",
+      "reviewNote": "Example sentence card added during the corpus review, at your request, to show the な-adjective in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-kore-wa-takai-desu",
+      "english": "This is expensive.",
+      "category": "Money",
+      "target": "これはたかいです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-onaji",
+      "english": "The same",
+      "category": "Descriptions & Qualities",
+      "target": "おなじ",
+      "note": "Sits in front of a noun without な (na), unlike the な-adjectives in this lesson: おなじみせ (onaji mise), not おなじなみせ (onaji na mise).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a describing word that looks like a な-adjective and does not behave like one, which is where a learner goes wrong.",
+      "aiSuggested": true
     }
   ]
 }

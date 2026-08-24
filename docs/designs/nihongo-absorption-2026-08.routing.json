@@ -1,5 +1,5 @@
 {
-  "_": "Routing table for the 2026-08-24 Nihongo absorption. See docs/designs/nihongo-absorption-2026-08.md. Phase 3 merges from this file.",
+  "_": "Routing table for the 2026-08-24 Nihongo absorption. See docs/designs/nihongo-absorption-2026-08.md. Phase 3 merges from this file. The `new` rows are generated from nihongo-absorption-2026-08.cards.json, so the table and the cards it describes cannot drift.",
   "rows": [
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -394,6 +394,7 @@
       "category": "Technology & Communication",
       "targetWas": "わたしのけいたいばんごうは[number]です",
       "englishWas": "My phone number is [number]",
+      "pronunciation": "watashi no keitai bangō wa zero kyū zero no ni yon roku hachi no ichi san go nana desu",
       "note": "RESOLVED: the target carried a literal `[number]`, which preflight's placeholder-target check fails. Rewritten to a concrete number in the book's own style."
     },
     {
@@ -612,15 +613,16 @@
       "target": "のみもの",
       "disposition": "move",
       "destination": "chapter-9-extras",
-      "reason": "Lesson 9 already teaches nomimono. Needs a hint on merge (English gloss \"Drink\" also reaches のみます (nomimasu, chapter-8), the verb): \"the plain everyday word, not the polite form a restaurant uses\". The book card onomimono (chapter-9) needs one too.",
+      "reason": "Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\".",
       "cardId": "drink",
       "category": "Food",
       "cueOnMerge": {
-        "kind": "hint",
-        "text": "the plain everyday word, not the polite form a restaurant uses",
-        "book": "onomimono (chapter-9)",
-        "booktext": "what a restaurant offers you, the polite お- form of のみもの (nomimono)",
-        "why": "English gloss \"Drink\" also reaches のみます (nomimasu, chapter-8), the verb"
+        "hint": "the noun, a thing you drink",
+        "note": "The noun built from のみます (nomimasu) 'to drink'. A restaurant says it with the polite お (o): おのみもの (onomimono).",
+        "book": "nomimasu",
+        "bookUnit": "chapter-8",
+        "bookHint": "the verb, what you do with a drink",
+        "why": "the English gloss \"Drink\" also reaches のみます (nomimasu), the verb"
       }
     },
     {
@@ -1723,15 +1725,16 @@
       "target": "かっこいい",
       "disposition": "move",
       "destination": "chapter-10-extras",
-      "reason": "i-adjective describing things, Lesson 10's job. Needs a hint on merge (English gloss \"Cool\" collides with すずしい (suzushii), which is about temperature): \"stylish, good-looking\". The book card suzushii (chapter-10) needs one too.",
+      "reason": "i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\".",
       "cardId": "cool",
       "category": "Other",
       "cueOnMerge": {
-        "kind": "hint",
-        "text": "stylish, good-looking",
-        "book": "suzushii (chapter-10)",
-        "booktext": "pleasantly cool weather",
-        "why": "English gloss \"Cool\" collides with すずしい (suzushii), which is about temperature"
+        "hint": "stylish, good-looking",
+        "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks.",
+        "book": "suzushii",
+        "bookUnit": "chapter-10",
+        "bookHint": "pleasantly cool weather",
+        "why": "the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature"
       }
     },
     {
@@ -2388,31 +2391,7 @@
       "category": "Animals"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Recommended shop / restaurant",
-      "target": "おすすめのみせ",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9 teaches osusume; mise is Lesson 3"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "The worst / terrible",
-      "target": "さいあく",
-      "disposition": "new",
-      "destination": "chapter-11-extras",
-      "reason": "Evaluative impression, Lesson 11's field"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "The best / great",
-      "target": "さいこう",
-      "disposition": "new",
-      "destination": "chapter-11-extras",
-      "reason": "Evaluative impression, Lesson 11's field"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
       "english": "Busy",
       "target": "いそがしい",
       "disposition": "drop-duplicate",
@@ -2420,7 +2399,7 @@
       "reason": "Already in the book verbatim, in chapter-11"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
       "english": "Pretty / beautiful / clean",
       "target": "きれい",
       "disposition": "drop-duplicate",
@@ -2428,55 +2407,7 @@
       "reason": "Already in the book verbatim, in chapter-10"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Company employee",
-      "target": "かいしゃいん",
-      "disposition": "new",
-      "destination": "chapter-2-extras",
-      "reason": "Built on kaisha, which Lesson 2 teaches"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Eat dinner",
-      "target": "ばんごはんをたべます",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Lesson 8 teaches bangohan and tabemasu"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Korean food",
-      "target": "かんこくりょうり",
-      "disposition": "new",
-      "destination": "chapter-15-extras",
-      "reason": "Lesson 15 teaches ryouri (Italian cuisine)"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Study Japanese",
-      "target": "にほんごをべんきょうします",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9 teaches nihongo; benkyou shimasu is Lesson 8"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Italian (the language)",
-      "target": "イタリアご",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9 teaches kotoba and nihongo, the language set"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "English (the language)",
-      "target": "えいご",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9 teaches kotoba and nihongo, the language set"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
       "english": "Japanese person",
       "target": "にほんじん",
       "disposition": "drop-duplicate",
@@ -2484,39 +2415,87 @@
       "reason": "Already in the book verbatim, in chapter-1"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Go to the gym",
-      "target": "ジムにいきます",
-      "disposition": "new",
-      "destination": "chapter-6-extras",
-      "reason": "Lesson 6's ni + ikimasu; jimu is Lesson 3"
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "How much is it?",
+      "target": "いくらですか",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4-extras",
+      "reason": "Already in the book verbatim, in chapter-4-extras"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "To go sightseeing",
-      "target": "かんこうする",
-      "disposition": "new",
-      "destination": "chapter-15-extras",
-      "reason": "Dictionary form, which Lesson 15 introduces"
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Day off / holiday",
+      "target": "やすみ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3, chapter-7"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "To ride a bicycle",
-      "target": "じてんしゃにのる",
-      "disposition": "new",
-      "destination": "chapter-15-extras",
-      "reason": "Dictionary form; jitensha is Lesson 7"
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Souvenir",
+      "target": "おみやげ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-11",
+      "reason": "Already in the book verbatim, in chapter-11"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Cycling",
-      "target": "サイクリング",
-      "disposition": "new",
-      "destination": "chapter-15-extras",
-      "reason": "Sport/hobby, Lesson 15's field"
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "On foot",
+      "target": "あるいて",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-7",
+      "reason": "Already in the book verbatim, in chapter-7"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "University",
+      "target": "だいがく",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Go / will go",
+      "target": "いきます",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-6",
+      "reason": "Already in the book verbatim, in chapter-6"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Went",
+      "target": "いきました",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-6",
+      "reason": "Already in the book verbatim, in chapter-6"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Here",
+      "target": "ここ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-9",
+      "reason": "Already in the book verbatim, in chapter-9"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "There",
+      "target": "そこ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-13",
+      "reason": "Already in the book verbatim, in chapter-13"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Over there",
+      "target": "あそこ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-13",
+      "reason": "Already in the book verbatim, in chapter-13"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
       "english": "What is it?",
       "target": "なんですか",
       "disposition": "drop-duplicate",
@@ -2525,301 +2504,64 @@
       "note": "RESOLVED: duplicates Nihongo 101 card irl-l1-38, which ships instead because it has review history."
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "When is it?",
-      "target": "いつですか",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Company employee",
+      "target": "かいしゃいん",
       "disposition": "new",
-      "destination": "chapter-3-extras",
-      "reason": "Lesson 3 teaches itsu"
+      "destination": "chapter-2-extras",
+      "reason": "Built on kaisha, which Lesson 2 teaches",
+      "cardId": "p102-kaishain",
+      "category": "Work & Occupations"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Where is it?",
-      "target": "どこですか",
-      "disposition": "new",
-      "destination": "chapter-5-extras",
-      "reason": "Lesson 5 teaches doko"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
       "english": "Who is it?",
       "target": "だれですか",
       "disposition": "new",
       "destination": "chapter-2-extras",
-      "reason": "Lesson 2 teaches dare"
+      "reason": "Lesson 2 teaches dare",
+      "cardId": "p102-dare-desu-ka",
+      "category": "Grammar & Function Words"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Why is that?",
-      "target": "どうしてですか",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "When is it?",
+      "target": "いつですか",
       "disposition": "new",
-      "destination": "chapter-14-extras",
-      "reason": "Answerable once Lesson 14 teaches kara (because)"
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches itsu",
+      "cardId": "p102-itsu-desu-ka",
+      "category": "Grammar & Function Words"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "How much is it?",
-      "target": "いくらですか",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-4-extras",
-      "reason": "Already in the book verbatim, in chapter-4-extras"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Same",
-      "target": "おなじ",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Where is it?",
+      "target": "どこですか",
       "disposition": "new",
-      "destination": "chapter-10-extras",
-      "reason": "Comparing and describing, Lesson 10's field"
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches doko",
+      "cardId": "p102-doko-desu-ka",
+      "category": "Grammar & Function Words"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Day off / holiday",
-      "target": "やすみ",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-3",
-      "reason": "Already in the book verbatim, in chapter-3, chapter-7"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Souvenir",
-      "target": "おみやげ",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-11",
-      "reason": "Already in the book verbatim, in chapter-11"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "On foot",
-      "target": "あるいて",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-7",
-      "reason": "Already in the book verbatim, in chapter-7"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "On foot (variant)",
-      "target": "あるきで",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I go to the gym.",
+      "target": "ジムにいきます",
       "disposition": "new",
-      "destination": "chapter-7-extras",
-      "reason": "Variant of Lesson 7's aruite"
+      "destination": "chapter-6-extras",
+      "reason": "Lesson 6's ni + ikimasu; jimu is Lesson 3",
+      "cardId": "p102-jimu-ni-ikimasu",
+      "category": "Sports & Hobbies"
     },
     {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Go to the office",
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I go to the office.",
       "target": "かいしゃにいきます",
       "disposition": "new",
       "destination": "chapter-6-extras",
-      "reason": "Lesson 6's ni + ikimasu; kaisha is Lesson 2"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "How do you get to the gym?",
-      "target": "どうやってジムにいきますか",
-      "disposition": "new",
-      "destination": "chapter-7-extras",
-      "reason": "Lesson 7's dou yatte ikimasu ka — REWRITTEN from the PDF's schematic 〜 form",
-      "note": "The PDF writes this schematically as どうやって〜にいきますか. A shipped target containing 〜 is a preflight FAIL, so it is rewritten around ジム."
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "I walk to the gym.",
-      "target": "ジムにあるいていきます",
-      "disposition": "new",
-      "destination": "chapter-7-extras",
-      "reason": "Lesson 7 teaches aruite as a means of going"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "University",
-      "target": "だいがく",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-1",
-      "reason": "Already in the book verbatim, in chapter-1"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Go / will go",
-      "target": "いきます",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-6",
-      "reason": "Already in the book verbatim, in chapter-6"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Went",
-      "target": "いきました",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-6",
-      "reason": "Already in the book verbatim, in chapter-6"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Don't go / won't go",
-      "target": "いきません",
-      "disposition": "new",
-      "destination": "chapter-6-extras",
-      "reason": "Completes Lesson 6's ikimasu paradigm"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Didn't go",
-      "target": "いきませんでした",
-      "disposition": "new",
-      "destination": "chapter-6-extras",
-      "reason": "Completes Lesson 6's ikimasu paradigm"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Every Monday",
-      "target": "まいしゅうげつようび",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9 teaches maishuu; getsuyoubi is Lesson 7"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Here",
-      "target": "ここ",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-9",
-      "reason": "Already in the book verbatim, in chapter-9"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "There",
-      "target": "そこ",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-13",
-      "reason": "Already in the book verbatim, in chapter-13"
-    },
-    {
-      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
-      "english": "Over there",
-      "target": "あそこ",
-      "disposition": "drop-duplicate",
-      "destination": "chapter-13",
-      "reason": "Already in the book verbatim, in chapter-13"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "What time do you get up every day?",
-      "target": "まいにち、なんじにおきますか",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9's mainichi + habitual verb; nanji is Lesson 3"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I get up at eight o’clock.",
-      "target": "わたしは、はちじにおきます",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Answer to the okimasu question routed here"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "What did you eat yesterday?",
-      "target": "きのう、なにをたべましたか",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Lesson 8's past-tense nani o tabemashita ka"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I ate a hamburger.",
-      "target": "ハンバーガーをたべました",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Answer to the tabemashita question routed here"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "How do you go to work?",
-      "target": "どうやってしごとにいきますか",
-      "disposition": "new",
-      "destination": "chapter-7-extras",
-      "reason": "Lesson 7's dou yatte; shigoto is Lesson 3"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I go to work by bus.",
-      "target": "バスでしごとにいきます",
-      "disposition": "new",
-      "destination": "chapter-7-extras",
-      "reason": "Lesson 7's de of means (basu de)"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "What did you do last weekend?",
-      "target": "せんしゅうまつ、なにをしましたか",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Lesson 8's past-tense nani o shimashita ka"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I ate pizza with a friend.",
-      "target": "ともだちとピザをたべました",
-      "disposition": "new",
-      "destination": "chapter-15-extras",
-      "reason": "piza is taught in Lesson 15; tomodachi and to are Lesson 6"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I went to the cinema.",
-      "target": "えいがかんにいきました",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Built on Lesson 8's eiga"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "What do you do on Sundays?",
-      "target": "にちようび、なにをしますか",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Lesson 8's nani o shimasu ka; nichiyoubi is Lesson 7"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "On Sundays I do housework.",
-      "target": "にちようび、かじをします",
-      "disposition": "new",
-      "destination": "chapter-8-extras",
-      "reason": "Answer using Lesson 8's o + shimasu"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "How did you come here today?",
-      "target": "きょう、どうやってここにきましたか",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Lesson 9 teaches koko; kimashita is Lesson 6"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I came here by train.",
-      "target": "でんしゃでここにきました",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Answer using Lesson 9's koko and Lesson 7's densha de"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "What time did you go to bed last night?",
-      "target": "さくばん、なんじにねましたか",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Past-tense habitual question, paired with the okimasu set routed here"
-    },
-    {
-      "source": "Nihongo 102 · Extra questions PDF",
-      "english": "I went to bed at twelve.",
-      "target": "じゅうにじにねました",
-      "disposition": "new",
-      "destination": "chapter-9-extras",
-      "reason": "Answer to the nemashita question routed here"
+      "reason": "Lesson 6's ni + ikimasu; kaisha is Lesson 2",
+      "cardId": "p102-kaisha-ni-ikimasu",
+      "category": "Work & Occupations"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2828,7 +2570,348 @@
       "disposition": "new",
       "destination": "chapter-6-extras",
       "reason": "Cell 2 of the いきます paradigm. Authored in Phase 2 so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
-      "note": "Added during authoring, not present in either source as its own item."
+      "cardId": "p102-kaisha-ni-ikimashita",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I don't go to the office.",
+      "target": "かいしゃにいきません",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Cell 3 of the ikimasu paradigm, on the same frame as the other three",
+      "cardId": "p102-kaisha-ni-ikimasen",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I didn't go to the office.",
+      "target": "かいしゃにいきませんでした",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Cell 4 of the ikimasu paradigm, on the same frame as the other three",
+      "cardId": "p102-kaisha-ni-ikimasen-deshita",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "On foot",
+      "target": "あるきで",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Variant of Lesson 7's aruite",
+      "cardId": "p102-arukide",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "How do you get to the gym?",
+      "target": "どうやってジムにいきますか",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7's dou yatte ikimasu ka — REWRITTEN from the PDF's schematic 〜 form",
+      "cardId": "p102-douyatte-jimu-ni-ikimasu-ka",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I walk to the gym.",
+      "target": "ジムにあるいていきます",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7 teaches aruite as a means of going",
+      "cardId": "p102-jimu-ni-aruite-ikimasu",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "How do you go to work?",
+      "target": "どうやってしごとにいきますか",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7's dou yatte; shigoto is Lesson 3",
+      "cardId": "p102-douyatte-shigoto-ni-ikimasu-ka",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I go to work by bus.",
+      "target": "バスでしごとにいきます",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7's de of means (basu de)",
+      "cardId": "p102-basu-de-shigoto-ni-ikimasu",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I eat dinner.",
+      "target": "ばんごはんをたべます",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8 teaches bangohan and tabemasu",
+      "cardId": "p102-bangohan-o-tabemasu",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What did you eat yesterday?",
+      "target": "きのう、なにをたべましたか",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's past-tense nani o tabemashita ka",
+      "cardId": "p102-kinou-nani-o-tabemashita-ka",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I ate a hamburger.",
+      "target": "ハンバーガーをたべました",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Answer to the tabemashita question routed here",
+      "cardId": "p102-hanbaagaa-o-tabemashita",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What did you do last weekend?",
+      "target": "せんしゅうまつ、なにをしましたか",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's past-tense nani o shimashita ka",
+      "cardId": "p102-senshuumatsu-nani-o-shimashita-ka",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I went to the cinema.",
+      "target": "えいがかんにいきました",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Built on Lesson 8's eiga",
+      "cardId": "p102-eigakan-ni-ikimashita",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What do you do on Sundays?",
+      "target": "にちようび、なにをしますか",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's nani o shimasu ka; nichiyoubi is Lesson 7",
+      "cardId": "p102-nichiyoubi-nani-o-shimasu-ka",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "On Sundays I do housework.",
+      "target": "にちようび、かじをします",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Answer using Lesson 8's o + shimasu",
+      "cardId": "p102-nichiyoubi-kaji-o-shimasu",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "A recommended restaurant",
+      "target": "おすすめのみせ",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches osusume; mise is Lesson 3",
+      "cardId": "p102-osusume-no-mise",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I study Japanese.",
+      "target": "にほんごをべんきょうします",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches nihongo; benkyou shimasu is Lesson 8",
+      "cardId": "p102-nihongo-o-benkyou-shimasu",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Italian (the language)",
+      "target": "イタリアご",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches kotoba and nihongo, the language set",
+      "cardId": "p102-itariago",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "English (the language)",
+      "target": "えいご",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches kotoba and nihongo, the language set",
+      "cardId": "p102-eigo",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Every Monday",
+      "target": "まいしゅうげつようび",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches maishuu; getsuyoubi is Lesson 7",
+      "cardId": "p102-maishuu-getsuyoubi",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What time do you get up every day?",
+      "target": "まいにち、なんじにおきますか",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9's mainichi + habitual verb; nanji is Lesson 3",
+      "cardId": "p102-mainichi-nanji-ni-okimasu-ka",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I get up at eight o'clock.",
+      "target": "わたしは、はちじにおきます",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Answer to the okimasu question routed here",
+      "cardId": "p102-hachiji-ni-okimasu",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "How did you come here today?",
+      "target": "きょう、どうやってここにきましたか",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches koko; kimashita is Lesson 6",
+      "cardId": "p102-kyou-douyatte-koko-ni-kimashita-ka",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I came here by train.",
+      "target": "でんしゃでここにきました",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Answer using Lesson 9's koko and Lesson 7's densha de",
+      "cardId": "p102-densha-de-koko-ni-kimashita",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What time did you go to bed last night?",
+      "target": "さくばん、なんじにねましたか",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Past-tense habitual question, paired with the okimasu set routed here",
+      "cardId": "p102-sakuban-nanji-ni-nemashita-ka",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I went to bed at twelve.",
+      "target": "じゅうにじにねました",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Answer to the nemashita question routed here",
+      "cardId": "p102-juuniji-ni-nemashita",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "The same",
+      "target": "おなじ",
+      "disposition": "new",
+      "destination": "chapter-10-extras",
+      "reason": "Comparing and describing, Lesson 10's field",
+      "cardId": "p102-onaji",
+      "category": "Descriptions & Qualities"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "The worst",
+      "target": "さいあく",
+      "disposition": "new",
+      "destination": "chapter-11-extras",
+      "reason": "Evaluative impression, Lesson 11's field",
+      "cardId": "p102-saiaku",
+      "category": "Descriptions & Qualities"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "The best",
+      "target": "さいこう",
+      "disposition": "new",
+      "destination": "chapter-11-extras",
+      "reason": "Evaluative impression, Lesson 11's field",
+      "cardId": "p102-saikou",
+      "category": "Descriptions & Qualities"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Why is that?",
+      "target": "どうしてですか",
+      "disposition": "new",
+      "destination": "chapter-14-extras",
+      "reason": "Answerable once Lesson 14 teaches kara (because)",
+      "cardId": "p102-doushite-desu-ka",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Korean food",
+      "target": "かんこくりょうり",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Lesson 15 teaches ryouri (Italian cuisine)",
+      "cardId": "p102-kankoku-ryouri",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "To go sightseeing",
+      "target": "かんこうする",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Dictionary form, which Lesson 15 introduces",
+      "cardId": "p102-kankou-suru",
+      "category": "Travel & Tourism"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "To ride a bicycle",
+      "target": "じてんしゃにのる",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Dictionary form; jitensha is Lesson 7",
+      "cardId": "p102-jitensha-ni-noru",
+      "category": "Transport"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "Cycling",
+      "target": "サイクリング",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Sport/hobby, Lesson 15's field",
+      "cardId": "p102-saikuringu",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I ate pizza with a friend.",
+      "target": "ともだちとピザをたべました",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "piza is taught in Lesson 15; tomodachi and to are Lesson 6",
+      "cardId": "p102-tomodachi-to-piza-o-tabemashita",
+      "category": "Food"
     }
   ]
 }

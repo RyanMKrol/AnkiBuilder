@@ -525,6 +525,120 @@
       "target": "すずきさんはさっぽろでビールをのみました",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for さっぽろ as a standalone place name (only さっぽろししゃ is otherwise covered); uses the Lesson 8 place-で past frame."
+    },
+    {
+      "id": "drink",
+      "english": "Drink",
+      "category": "Food",
+      "target": "のみもの",
+      "hint": "the noun, a thing you drink",
+      "note": "The noun built from のみます (nomimasu) 'to drink'. A restaurant says it with the polite お (o): おのみもの (onomimono).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\"."
+    },
+    {
+      "id": "fib-yasai-o-tabemasu",
+      "english": "I eat vegetables.",
+      "category": "Food",
+      "target": "やさいをたべます",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: yasai is taught in Lesson 9",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-osusume-no-mise",
+      "english": "A recommended restaurant",
+      "category": "Food",
+      "target": "おすすめのみせ",
+      "note": "おすすめ (osusume) from this lesson, joined to みせ (mise) with の (no).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts this lesson's おすすめ (osusume) into a phrase rather than leaving it a bare noun.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-nihongo-o-benkyou-shimasu",
+      "english": "I study Japanese.",
+      "category": "School & Education",
+      "target": "にほんごをべんきょうします",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the only sentence にほんご (nihongo), taught bare in this lesson, appears in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-itariago",
+      "english": "Italian (the language)",
+      "category": "Nationalities & Countries",
+      "target": "イタリアご",
+      "note": "The ご (go) suffix turns a country into its language, the same way にほん (nihon) becomes にほんご (nihongo).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: shows ご (go) is a productive suffix, not part of the fixed word にほんご (nihongo).",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-eigo",
+      "english": "English (the language)",
+      "category": "Nationalities & Countries",
+      "target": "えいご",
+      "note": "Irregular against the pattern: it is えいご (eigo), not イギリスご (igirisugo), even though the country is イギリス (igirisu).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the exception to the ご (go) suffix pattern, which is where a learner silently goes wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-maishuu-getsuyoubi",
+      "english": "Every Monday",
+      "category": "Time",
+      "target": "まいしゅうげつようび",
+      "note": "まいしゅう (maishū) 'every week' in front of a day names that day every week.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: combines this lesson's まいしゅう (maishū) with a weekday from Lesson 7.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-mainichi-nanji-ni-okimasu-ka",
+      "english": "What time do you get up every day?",
+      "category": "Time",
+      "target": "まいにち、なんじにおきますか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 1. Job: this lesson's まいにち (mainichi) with a habitual verb, plus the に (ni) that marks a clock time.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-hachiji-ni-okimasu",
+      "english": "I get up at eight o'clock.",
+      "category": "Time",
+      "target": "わたしは、はちじにおきます",
+      "scene": "answering what time you get up",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 1 answer. Job: the second of the two sentences おきます (okimasu) appears in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kyou-douyatte-koko-ni-kimashita-ka",
+      "english": "How did you come here today?",
+      "category": "Transport",
+      "target": "きょう、どうやってここにきましたか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 6. Job: どうやって (dō yatte) in the past, on this lesson's ここ (koko).",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-densha-de-koko-ni-kimashita",
+      "english": "I came here by train.",
+      "category": "Transport",
+      "target": "でんしゃでここにきました",
+      "scene": "answering how you got here today",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 6 answer. Job: the で (de) of means answering a どうやって (dō yatte) question in the past.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-sakuban-nanji-ni-nemashita-ka",
+      "english": "What time did you go to bed last night?",
+      "category": "Time",
+      "target": "さくばん、なんじにねましたか",
+      "note": "さくばん (sakuban) is last night. きのうのよる (kinō no yoru) says the same thing more plainly.",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 7. Job: the past of the なんじに (nan-ji ni) time question, against the present-tense one above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-juuniji-ni-nemashita",
+      "english": "I went to bed at twelve.",
+      "category": "Time",
+      "target": "じゅうにじにねました",
+      "scene": "answering what time you went to bed",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 7 answer. Job: the second of the two sentences ねました (nemashita) appears in.",
+      "aiSuggested": true
     }
   ]
 }

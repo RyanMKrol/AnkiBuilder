@@ -666,6 +666,36 @@
       "hint": null,
       "note": null,
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES (Talk about how close a certain place is to where you are now)."
+    },
+    {
+      "id": "around-one-oclock-now",
+      "english": "It's around one o'clock now.",
+      "category": "Time",
+      "target": "いまいちじごろです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: goro (around a time) is taught in Lesson 13",
+      "aiSuggested": true
+    },
+    {
+      "id": "notebook",
+      "english": "Notebook",
+      "category": "School & Education",
+      "target": "ノート",
+      "note": "A blank notebook for writing in; contrast ほん (hon), a book for reading.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's stationery set (eraser, pencil, scissors, clear file)"
+    },
+    {
+      "id": "pharmacy",
+      "english": "Pharmacy",
+      "category": "Directions",
+      "target": "やっきょく",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)"
+    },
+    {
+      "id": "town",
+      "english": "Town",
+      "category": "Directions",
+      "target": "まち",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)"
     }
   ]
 }

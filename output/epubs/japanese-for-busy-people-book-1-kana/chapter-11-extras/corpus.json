@@ -503,6 +503,32 @@
       "target": "しゅうまつはひまじゃありません",
       "aiSuggested": true,
       "reviewNote": "Paradigm gap: free, not busy / present negative. Constructed sentence, first of a fixed frame with f11-shuumatsu-wa-hima-ja-arimasen-deshita. Both existing ひま cards use きょう or きのう, so this moves to しゅうまつ."
+    },
+    {
+      "id": "about-ten-minutes-approx",
+      "english": "It's about ten minutes.",
+      "category": "Time",
+      "target": "じゅっぷんぐらいです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-saiaku",
+      "english": "The worst",
+      "category": "Descriptions & Qualities",
+      "target": "さいあく",
+      "note": "The opposite of さいこう (saikō). Both are verdicts on how something turned out, so they answer どうでしたか (dō deshita ka).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka).",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-saikou",
+      "english": "The best",
+      "category": "Descriptions & Qualities",
+      "target": "さいこう",
+      "note": "The opposite of さいあく (saiaku). Stronger than いい (ii): it is the top of the scale, not merely good.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka).",
+      "aiSuggested": true
     }
   ]
 }

@@ -591,6 +591,273 @@
       "note": "１かい is いっかい (ikkai), not いちかい. The same clipping happens at ろっかい (rokkai) and じゅっかい (jukkai).",
       "reviewNote": "Constructed. Serves the VOCABULARY job for インフォメーション and １かい — the information desk is in the TARGET DIALOGUE's cast and had no sentence, and いっかい only ever appeared bolted onto ちか. States a floor rather than asking for one, so it does not add to the deck's five 〜はどこですか cards.",
       "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-29",
+      "english": "Where are you from?",
+      "category": "Nationalities & Countries",
+      "target": "しゅっしんはどこですか？",
+      "note": "Asks generally where someone is from (hometown/origin) — an open-ended alternative to directly guessing nationality with ~さんは[country]じんですか, like ジャックさんはフランスじんですか (Jakku san wa furansu jin desu ka?) in this lesson.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)"
+    },
+    {
+      "id": "irl-l1-40",
+      "english": "Where is the hotel address?",
+      "category": "Travel & Tourism",
+      "target": "ホテルのじゅうしょはどこですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)"
+    },
+    {
+      "id": "what-time-is-it-now-in-france",
+      "english": "What time is it now in France?",
+      "category": "Time",
+      "target": "フランスはいまなんじですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Same frame, but Furansu is first carded in Lesson 5"
+    },
+    {
+      "id": "water-bottle",
+      "english": "Water bottle",
+      "category": "Home & Household",
+      "target": "すいとう",
+      "note": "The bottle/container itself, not the water inside it (みず, mizu).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "meat",
+      "english": "Meat",
+      "category": "Food",
+      "target": "にく",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "cloth",
+      "english": "Cloth",
+      "category": "Clothing",
+      "target": "ぬの",
+      "note": "The raw fabric or material itself; contrast ふく (fuku), the finished clothes made from it.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "clothes",
+      "english": "Clothes",
+      "category": "Clothing",
+      "target": "ふく",
+      "note": "Finished garments; contrast ぬの (nuno), the raw fabric they're made from.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "peach",
+      "english": "Peach",
+      "category": "Food",
+      "target": "もも",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field"
+    },
+    {
+      "id": "plastic-bottle",
+      "english": "Plastic bottle",
+      "category": "Home & Household",
+      "target": "ペットボトル",
+      "note": "A word built in Japan out of English parts: 'PET bottle', after the plastic it's made from. It means a disposable plastic drinks bottle — an English speaker would never call it that.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field"
+    },
+    {
+      "id": "yellow",
+      "english": "Yellow",
+      "category": "Colors",
+      "target": "きいろい",
+      "note": "Yellow is one of only TWO colours with both forms — きいろい シャツ (kiiroi shatsu) and きいろの シャツ (kiiro no shatsu) are equally correct. Brown is the other. Green cannot do this: it is みどりの (midori no) only.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
+    },
+    {
+      "id": "brown",
+      "english": "Brown",
+      "category": "Colors",
+      "target": "ちゃいろい",
+      "note": "Literally 'tea-colour', and the other both-ways colour alongside きいろ (kiiro): ちゃいろい くつ (chairoi kutsu) and ちゃいろの くつ (chairo no kutsu) are both fine.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
+    },
+    {
+      "id": "green",
+      "english": "Green",
+      "category": "Colors",
+      "target": "みどりの",
+      "note": "みどり (midori) is a noun, so の is the ONLY way to attach it: みどりの くるま (midori no kuruma). Unlike きいろ (kiiro) and ちゃいろ (chairo) there is no みどりい — green does not have an adjective form.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
+    },
+    {
+      "id": "purple",
+      "english": "Purple",
+      "category": "Colors",
+      "target": "むらさきの",
+      "note": "A noun like みどり (midori), so it takes の: むらさきの はな (murasaki no hana). There is no むらさきい.",
+      "reviewNote": "Added as a second example of a colour that only works with の, per your question. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "pink",
+      "english": "Pink",
+      "category": "Colors",
+      "target": "ピンクの",
+      "note": "Borrowed colour words are always nouns, so they always take の: ピンクの かばん (pinku no kaban).",
+      "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "orange",
+      "english": "Orange",
+      "category": "Colors",
+      "target": "オレンジの",
+      "note": "The colour and the fruit share the word. Like every borrowed colour it takes の: オレンジの ぼうし (orenji no bōshi).",
+      "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "grey",
+      "english": "Grey",
+      "category": "Colors",
+      "target": "はいいろの",
+      "note": "Literally 'ash colour'. グレー (gurē) is the borrowed alternative and is just as common — both take の: はいいろの そら (haiiro no sora).",
+      "reviewNote": "Added as a further の-only colour; グレー (gurē) is the equally common loanword form. Audio synthesized from はい色の (audio-only orthography) — all-kana はいいろの is mis-parsed by ElevenLabs as はい + いろの, and 灰色の gets 色 read as しょく. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "eg-kiiroi-kasa",
+      "english": "This is a yellow umbrella.",
+      "category": "Colors",
+      "target": "これはきいろいかさです",
+      "hint": null,
+      "note": "きいろ (kiiro) is one of only two colours with both forms. これはきいろのくつしたです (kore wa kiiro no kutsushita desu) says the same kind of thing the other way.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "eg-kiiro-no-kutsushita",
+      "english": "These are yellow socks.",
+      "category": "Colors",
+      "target": "これはきいろのくつしたです",
+      "hint": null,
+      "note": "The same colour in its の form — both are correct here. Contrast これはみどりのペンです (kore wa midori no pen desu), where の is the only option available.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "eg-midori-no-pen",
+      "english": "This is a green pen.",
+      "category": "Colors",
+      "target": "これはみどりのペンです",
+      "hint": null,
+      "note": "みどり (midori) is a noun, so の is compulsory — there is no みどりい. Drop the の and the sentence is broken, unlike きいろ (kiiro).",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "eg-pinku-no-kaban",
+      "english": "This is a pink bag.",
+      "category": "Colors",
+      "target": "これはピンクのかばんです",
+      "hint": null,
+      "note": "Borrowed colours are always nouns, so they always take の — ピンク (pinku), オレンジ (orenji) and グレー (gurē) all behave this way.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "three-books",
+      "english": "Three books",
+      "category": "Numbers",
+      "target": "さんさつ",
+      "note": "No sound change — it stays さ (sa), unlike the floor counter where さんがい (sangai) does shift.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series"
+    },
+    {
+      "id": "one-book",
+      "english": "One book",
+      "category": "Numbers",
+      "target": "いっさつ",
+      "note": "さつ (satsu) counts bound things — books, magazines, notebooks. いち (ichi) shortens to いっ (i-) here.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series"
+    },
+    {
+      "id": "two-books",
+      "english": "Two books",
+      "category": "Numbers",
+      "target": "にさつ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series"
+    },
+    {
+      "id": "which-floor",
+      "english": "Which floor?",
+      "category": "Directions",
+      "target": "なんがいですか",
+      "note": "Textbooks teach なんがい (nangai). なんかい (nankai) is also heard, but it collides with 'how many times'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "9th-floor",
+      "english": "9th floor",
+      "category": "Directions",
+      "target": "きゅうかい",
+      "note": "きゅう (kyū), not く (ku), for this counter.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "7th-floor",
+      "english": "7th floor",
+      "category": "Directions",
+      "target": "ななかい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "10th-floor",
+      "english": "10th floor",
+      "category": "Directions",
+      "target": "じゅっかい",
+      "note": "じゅう (jū) shortens to じゅっ (ju-).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "1st-floor",
+      "english": "1st floor",
+      "category": "Directions",
+      "target": "いっかい",
+      "note": "Japanese counts from street level, so いっかい (ikkai) is the British ground floor. The British 'first floor' is にかい (nikai).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "8th-floor",
+      "english": "8th floor",
+      "category": "Directions",
+      "target": "はっかい",
+      "note": "はち (hachi) shortens to はっ (ha-).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "5th-floor",
+      "english": "5th floor",
+      "category": "Directions",
+      "target": "ごかい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "rooftop",
+      "english": "Rooftop",
+      "category": "Directions",
+      "target": "おくじょう",
+      "note": "Shares the じょう (jō) 'place' ending with ちゅうしゃじょう (chūshajō).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "p102-doko-desu-ka",
+      "english": "Where is it?",
+      "category": "Grammar & Function Words",
+      "target": "どこですか",
+      "hint": "the short question on its own, ending in ですか (desu ka)",
+      "note": "どこ (doko) plus ですか (desu ka). Asks which place something is.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the whole question, where the book cards only the bare word どこ (doko). Carries a hint because 'Where is it?' also reaches どこにありますか (doko ni arimasu ka) in Lesson 13.",
+      "aiSuggested": true
     }
   ]
 }

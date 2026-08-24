@@ -406,6 +406,36 @@ ordering run AFTER it, and why the re-order needs a new seed: the surviving mine
 into the shuffle instead of sitting as a predictable block at the end. `finalize-extras` does that
 sequencing; running the steps by hand means doing it in that order yourself.
 
+## Adding cards to an extras unit that is already DONE and delivered
+
+The procedure above builds a unit from nothing. Adding to a finished one is different, and the order
+matters, because three separate guards stand between you and a signed-off unit that is live in Anki.
+
+1. **Clear `done` first.** `node scripts/undone-unit.mjs <unit> --force-delivered --no-rebuild`
+   backs the file up, clears `meta.done` and (without `--no-rebuild`) rebuilds the package. Use
+   `--no-rebuild` when you are touching several units and rebuild once at the end.
+2. **Then withdraw the corpus sign-off**, so the added cards actually face gate 1 instead of shipping
+   unreviewed. `unmarkCardsReviewed` refuses while `done` is still set, which is why it goes second.
+3. **Never un-review a BASE unit to do this.** A base unit's sign-off owns its dedup-library entry,
+   and withdrawing it calls `removeChapterCorpus`, which deletes the entry every later chapter's
+   backward dedup reads. An extras unit is safe because it carries no `epubHash` and so owns no key.
+   If a base unit needs a one-field fix (a `hint` to settle a collision, say), edit the field through
+   `mergeIntoCardsFile` and leave the review state alone.
+4. **Merge through `mergeIntoCardsFile`**, not a bare write: it re-reads the file, appends only ids
+   that are not already there, and writes through `writeUnitJson` (validate, stamped backup, atomic
+   write, re-validate what landed). Mirror the same items into `corpus.json` in the SAME order, built
+   from the corpus schema's own fields, or `corpus-drift` reports it.
+5. **`npm run validate:decks`, then `finalize-extras`,** then both gates as usual.
+
+`scripts/absorb-nihongo.mjs` is a worked example of all of this: a spent migration that folded a
+retired course and two PDFs of class notes into fifteen delivered extras units at once. Read it if
+you are about to do something similar.
+
+**A relocated card keeps its card id.** The id becomes the `abid:` tag `deliver-to-anki.mjs` matches
+notes by, so keeping it is what lets the live note be found and updated in place, with its scheduling,
+instead of added fresh. Changing the text of a moved card is fine and delivers as a field update;
+changing its id is what silently orphans it.
+
 ## Reviewing and shipping it
 
 The extras unit has no audio when created, so it lands at the **corpus stage**, which is the right

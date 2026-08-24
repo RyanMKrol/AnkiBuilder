@@ -126,6 +126,24 @@ pre-existing cards with review history being relocated, and dropping them would 
 content. They move as they are, each stamped with a `reviewNote` recording its origin. Recorded in
 LIMITATIONS.
 
+## How the merge ran
+
+Phase 3 is `scripts/absorb-nihongo.mjs`, a spent one-off migration kept for the record. It reads
+this document's routing table and cards file, appends the routed cards to each destination unit's
+`cards.json`, mirrors them into `corpus.json` in the same order, copies each moved card's audio takes
+across (including hand-trimmed manual ones), and adds the two hint pairs the collision analysis
+requires. It is idempotent: a card already present by id is skipped.
+
+Moved cards keep their original card id. That is load-bearing rather than incidental: the id becomes
+the `abid:` tag `deliver-to-anki.mjs` matches notes by, so keeping it is what lets the live Anki note
+be found and updated in place instead of created fresh with no review history.
+
+Before it ran, all 15 destination units had `meta.done` cleared with `scripts/undone-unit.mjs` and
+their corpus sign-off withdrawn, so the added cards face both review gates rather than shipping
+unreviewed. Base units were deliberately NOT un-reviewed: a base unit's sign-off owns its
+dedup-library entry, and withdrawing it would delete the entry every later chapter's backward dedup
+reads. The two book-side hints are therefore a field-only edit.
+
 ## The routing table
 
 Grouped by destination, which is the order Phase 3 works in.

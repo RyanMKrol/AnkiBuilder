@@ -486,6 +486,125 @@
       "reviewNote": "EXERCISE II-B model answer, verbatim, and the reply to ex2b-smith-british-q above. Prompt is close to eg-yes-american ('Yes, (he is) American.'), so the hint disambiguates. This is the third negative-correction answer in the lesson (after eg-no-british and fib-c1-hoffman-not-british); it earns its place only as the paired answer, so prune it together with its question if at all.",
       "aiSuggested": true,
       "scene": "correcting someone who guessed Smith-san was British"
+    },
+    {
+      "id": "irl-l1-10",
+      "english": "Spain",
+      "category": "Nationalities & Countries",
+      "target": "スペイン",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "irl-l1-12",
+      "english": "Turkey",
+      "category": "Nationalities & Countries",
+      "target": "トルコ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "irl-l1-14",
+      "english": "Korea",
+      "category": "Nationalities & Countries",
+      "target": "かんこく",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+    },
+    {
+      "id": "irl-l1-17",
+      "english": "Thailand",
+      "category": "Nationalities & Countries",
+      "target": "タイ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "irl-l1-19",
+      "english": "French Person",
+      "category": "Nationalities & Countries",
+      "target": "フランスじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; フランス (furansu) alone is just the country.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "irl-l1-21",
+      "english": "Korean Person",
+      "category": "Nationalities & Countries",
+      "target": "かんこくじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; かんこく (kankoku) alone is just the country.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "irl-l1-26",
+      "english": "Is Jack French?",
+      "category": "Nationalities & Countries",
+      "target": "ジャックさんはフランスじんですか？",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "irl-l1-27",
+      "english": "Is Ryan English?",
+      "category": "Nationalities & Countries",
+      "target": "ライアンさんはイギリスじんですか？",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "irl-l1-28",
+      "english": "This is Ryan from England",
+      "category": "Nationalities & Countries",
+      "target": "こちらはイギリスのライアンです",
+      "note": "Here の (no) links country and name ('Ryan of England'); contrast with -じん (jin), which turns the country itself into a nationality noun, as in イギリスじん (igirisu jin).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "irl-l1-30",
+      "english": "Nice to meet you, my name is Ryan",
+      "category": "Greetings",
+      "target": "はじめまして。ライアンです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "irl-l1-32",
+      "english": "Cook",
+      "category": "Work & Occupations",
+      "target": "コック",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "irl-l1-33",
+      "english": "Doctor",
+      "category": "Work & Occupations",
+      "target": "いしゃ",
+      "note": "The occupation noun for doctor; when addressing or talking about a doctor directly, use せんせい (sensei) instead, just as with teachers.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "irl-l1-34",
+      "english": "Teacher",
+      "category": "Work & Occupations",
+      "target": "せんせい",
+      "note": "Also used directly as a title of address for teachers, doctors, and other professionals (e.g. saying 先生 to or about them instead of their name), not just as the occupation noun.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "irl-l1-36",
+      "english": "Engineer",
+      "category": "Work & Occupations",
+      "target": "エンジニア",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "congratulations",
+      "english": "Congratulations!",
+      "category": "Greetings",
+      "target": "おめでとう",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Chapter-0's set-phrase material; chapter-0 has no extras deck of its own"
+    },
+    {
+      "id": "fib-watashi-wa-enjinia-desu",
+      "english": "I am an engineer.",
+      "category": "School & Education",
+      "target": "わたしはエンジニアです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here",
+      "aiSuggested": true
     }
   ]
 }

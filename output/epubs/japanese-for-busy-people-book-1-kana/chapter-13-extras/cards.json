@@ -2,13 +2,11 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": true,
     "chapterNumber": 33,
     "chapterLabel": "Lesson 13: Asking for a Place: Where Is It? (Extras)",
     "baseChapterLabel": "Lesson 13: Asking for a Place: Where Is It?",
     "enriched": true,
-    "notesEnhanced": true,
-    "done": true
+    "notesEnhanced": true
   },
   "items": [
     {
@@ -1302,6 +1300,64 @@
       "audioAuto": "3b13d7931d096b1f.mp3",
       "audioMarked": true,
       "audioTextHash": "3b13d7931d096b1f"
+    },
+    {
+      "id": "around-one-oclock-now",
+      "english": "It's around one o'clock now.",
+      "category": "Time",
+      "target": "いまいちじごろです",
+      "pronunciation": "ima ichiji goro desu",
+      "aiSuggested": true,
+      "audio": "832b952e028d4314.mp3",
+      "audioOriginal": "832b952e028d4314.orig.mp3",
+      "audioAuto": "832b952e028d4314.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "832b952e028d4314",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: goro (around a time) is taught in Lesson 13"
+    },
+    {
+      "id": "notebook",
+      "english": "Notebook",
+      "category": "School & Education",
+      "target": "ノート",
+      "pronunciation": "nōto",
+      "audio": "9a4f68832ddb1e74.mp3",
+      "note": "A blank notebook for writing in; contrast ほん (hon), a book for reading.",
+      "audioOriginal": "9a4f68832ddb1e74.orig.mp3",
+      "audioAuto": "9a4f68832ddb1e74.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "9a4f68832ddb1e74",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's stationery set (eraser, pencil, scissors, clear file)"
+    },
+    {
+      "id": "pharmacy",
+      "english": "Pharmacy",
+      "category": "Directions",
+      "target": "やっきょく",
+      "pronunciation": "yakkyoku",
+      "audio": "146f311e28b56c7f.standard.mp3",
+      "audioOriginal": "146f311e28b56c7f.orig.mp3",
+      "audioAuto": "146f311e28b56c7f.standard.mp3",
+      "audioMarked": true,
+      "audioFilter": "standard",
+      "audioTextHash": "146f311e28b56c7f",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)"
+    },
+    {
+      "id": "town",
+      "english": "Town",
+      "category": "Directions",
+      "target": "まち",
+      "pronunciation": "machi",
+      "audio": "12d403f934db4d44.standard.mp3",
+      "audioOriginal": "12d403f934db4d44.orig.mp3",
+      "audioAuto": "12d403f934db4d44.standard.mp3",
+      "audioMarked": true,
+      "audioFilter": "standard",
+      "audioTextHash": "12d403f934db4d44",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)"
     }
   ]
 }

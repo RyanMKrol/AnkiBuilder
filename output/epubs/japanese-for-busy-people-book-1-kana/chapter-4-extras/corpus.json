@@ -586,6 +586,29 @@
       "note": "The natural way to tack an item onto an order you have already placed.",
       "reviewNote": "Constructed. Coverage job: particle も (mo) in the object slot, second example. サラダ (sarada) appears in only one sentence in the deck (the Key Sentence), always paired with カレー (karē); this gives it a frame of its own.",
       "aiSuggested": true
+    },
+    {
+      "id": "mouse-computer",
+      "english": "Mouse (computer)",
+      "category": "Technology & Communication",
+      "target": "マウス",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
+    },
+    {
+      "id": "remote-control",
+      "english": "Remote control",
+      "category": "Technology & Communication",
+      "target": "リモコン",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
+    },
+    {
+      "id": "fib-are-wa-nan-desu-ka",
+      "english": "What is that, over there?",
+      "category": "Grammar & Function Words",
+      "target": "あれはなんですか",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4",
+      "aiSuggested": true
     }
   ]
 }

@@ -6,9 +6,7 @@
     "chapterLabel": "Lesson 11: Describing Impressions: It Was Beautiful (Extras)",
     "baseChapterLabel": "Lesson 11: Describing Impressions: It Was Beautiful",
     "enriched": true,
-    "notesEnhanced": true,
-    "reviewed": true,
-    "done": true
+    "notesEnhanced": true
   },
   "items": [
     {
@@ -977,6 +975,41 @@
       "aiSuggested": true,
       "excluded": true,
       "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [topic]は[i-adj past]ですか. Source already teaches this question form (セールはやすかったですか) plus two いいえ+i-adj-past-negative answers, so this is a redundant third example."
+    },
+    {
+      "id": "about-ten-minutes-approx",
+      "english": "It's about ten minutes.",
+      "category": "Time",
+      "target": "じゅっぷんぐらいです",
+      "pronunciation": "juppun gurai desu",
+      "aiSuggested": true,
+      "audioOriginal": "3e111b3d3e4da10e-gen-95d2b9df.orig.mp3",
+      "audioAuto": "3e111b3d3e4da10e-gen-95d2b9df.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audio": "3e111b3d3e4da10e-gen-95d2b9df.mp3",
+      "audioTextHash": "3e111b3d3e4da10e",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11"
+    },
+    {
+      "id": "p102-saiaku",
+      "english": "The worst",
+      "category": "Descriptions & Qualities",
+      "target": "さいあく",
+      "pronunciation": "saiaku",
+      "note": "The opposite of さいこう (saikō). Both are verdicts on how something turned out, so they answer どうでしたか (dō deshita ka).",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka)."
+    },
+    {
+      "id": "p102-saikou",
+      "english": "The best",
+      "category": "Descriptions & Qualities",
+      "target": "さいこう",
+      "pronunciation": "saikō",
+      "note": "The opposite of さいあく (saiaku). Stronger than いい (ii): it is the top of the scale, not merely good.",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka)."
     }
   ]
 }

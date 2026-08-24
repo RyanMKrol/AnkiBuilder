@@ -4,9 +4,7 @@
     "sourceType": "epub",
     "chapterNumber": 25,
     "chapterLabel": "Lesson 8: Doing Things (1): I’m Going to Eat Tempura (Extras)",
-    "baseChapterLabel": "Lesson 8: Doing Things (1): I’m Going to Eat Tempura",
-    "reviewed": true,
-    "done": true
+    "baseChapterLabel": "Lesson 8: Doing Things (1): I’m Going to Eat Tempura"
   },
   "items": [
     {
@@ -1034,6 +1032,119 @@
         "end": 2.9217906678082195
       },
       "audioTextHash": "93996ab7ca067221"
+    },
+    {
+      "id": "food",
+      "english": "Food",
+      "category": "Food",
+      "target": "たべもの",
+      "pronunciation": "tabemono",
+      "audio": "070526f9dbd66e39.mp3",
+      "note": "Built from たべる (taberu, 'to eat') + もの (mono, 'thing'); のみもの (nomimono, drink) follows the same pattern from のむ (nomu, 'to drink').",
+      "audioOriginal": "070526f9dbd66e39.orig.mp3",
+      "audioAuto": "070526f9dbd66e39.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "070526f9dbd66e39",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson"
+    },
+    {
+      "id": "i-eat-sushi",
+      "english": "I eat sushi.",
+      "category": "Food",
+      "target": "すしをたべます",
+      "pronunciation": "sushi o tabemasu",
+      "note": "を (o) marks what the verb acts on: すし (sushi) is the thing being eaten. The particle is written を but pronounced お (o) — it never appears anywhere except as this marker.",
+      "audio": "18878859f44670d3.standard.mp3",
+      "audioOriginal": "18878859f44670d3.orig.mp3",
+      "audioAuto": "18878859f44670d3.standard.mp3",
+      "audioMarked": true,
+      "audioFilter": "standard",
+      "audioTextHash": "18878859f44670d3",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+    },
+    {
+      "id": "fish",
+      "english": "Fish",
+      "category": "Food",
+      "target": "さかな",
+      "pronunciation": "sakana",
+      "note": "The animal and the food alike.",
+      "audio": "be4a7cd4dfa51614.standard.mp3",
+      "audioOriginal": "be4a7cd4dfa51614.orig.mp3",
+      "audioAuto": "be4a7cd4dfa51614.standard.mp3",
+      "audioMarked": true,
+      "audioFilter": "standard",
+      "audioTextHash": "be4a7cd4dfa51614",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+    },
+    {
+      "id": "p102-bangohan-o-tabemasu",
+      "english": "I eat dinner.",
+      "category": "Food",
+      "target": "ばんごはんをたべます",
+      "pronunciation": "bangohan o tabemasu",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the bare を (o) plus たべます (tabemasu) frame on ばんごはん (bangohan), which this lesson teaches as a word."
+    },
+    {
+      "id": "p102-kinou-nani-o-tabemashita-ka",
+      "english": "What did you eat yesterday?",
+      "category": "Food",
+      "target": "きのう、なにをたべましたか",
+      "pronunciation": "kinō nani o tabemashita ka",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2. Job: past-tense なにを (nani o) question, the form this lesson teaches."
+    },
+    {
+      "id": "p102-hanbaagaa-o-tabemashita",
+      "english": "I ate a hamburger.",
+      "category": "Food",
+      "target": "ハンバーガーをたべました",
+      "pronunciation": "hanbāgā o tabemashita",
+      "scene": "answering what you ate yesterday",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2 answer."
+    },
+    {
+      "id": "p102-senshuumatsu-nani-o-shimashita-ka",
+      "english": "What did you do last weekend?",
+      "category": "Time",
+      "target": "せんしゅうまつ、なにをしましたか",
+      "pronunciation": "senshūmatsu nani o shimashita ka",
+      "note": "せんしゅう (senshū) 'last week' plus まつ (matsu) 'end'. The lesson's own しゅうまつ (shūmatsu) is the weekend without saying which one.",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open."
+    },
+    {
+      "id": "p102-eigakan-ni-ikimashita",
+      "english": "I went to the cinema.",
+      "category": "Sports & Hobbies",
+      "target": "えいがかんにいきました",
+      "pronunciation": "eigakan ni ikimashita",
+      "scene": "answering what you did last weekend",
+      "note": "えいが (eiga) 'film' plus かん (kan), the suffix for a building.",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in."
+    },
+    {
+      "id": "p102-nichiyoubi-nani-o-shimasu-ka",
+      "english": "What do you do on Sundays?",
+      "category": "Time",
+      "target": "にちようび、なにをしますか",
+      "pronunciation": "nichiyōbi nani o shimasu ka",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5. Job: the present-tense なにを (nani o) question against the past-tense one above."
+    },
+    {
+      "id": "p102-nichiyoubi-kaji-o-shimasu",
+      "english": "On Sundays I do housework.",
+      "category": "Home & Household",
+      "target": "にちようび、かじをします",
+      "pronunciation": "nichiyōbi kaji o shimasu",
+      "scene": "answering what you do on Sundays",
+      "aiSuggested": true,
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in."
     }
   ]
 }

@@ -25,6 +25,7 @@ const SPENT = [
   "strip-restatement-notes.mjs",
   "enhance-card-notes.mjs",
   "backfill-audio-text-hash.mjs",
+  "absorb-nihongo.mjs",
 ];
 
 const STANDING = [

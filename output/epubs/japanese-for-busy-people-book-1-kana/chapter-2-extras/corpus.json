@@ -607,6 +607,107 @@
       "note": "Spells out what （わたしは）スミスです ((watashi wa) sumisu desu) from the previous lesson leaves implied; in real introductions the shorter version is far more common.",
       "reviewNote": "Constructed as the reply to なまえをおしえてください. Coverage job: vocabulary — puts なまえ in a sentence, and shows a の-phrase as the topic of a は sentence.",
       "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-38",
+      "english": "What is it?",
+      "category": "Grammar & Function Words",
+      "target": "なんですか",
+      "note": "Uses なん (nan), the form なに (nani) takes before です (desu) and many counters/particles.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Identifying an object: Lesson 2's kore wa nan desu ka frame"
+    },
+    {
+      "id": "irl-l1-37",
+      "english": "What is James's mobile phone number?",
+      "category": "Technology & Communication",
+      "target": "ジェームズさんのけいたいばんごうはなんですか",
+      "note": "Uses なん (nan), the form なに (nani) takes before です (desu) — the same pattern explained under なんですか (nan desu ka) earlier in this lesson.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no"
+    },
+    {
+      "id": "irl-l1-39",
+      "english": "My mobile number is 090-2468-1357.",
+      "category": "Technology & Communication",
+      "target": "わたしのけいたいばんごうはゼロきゅうゼロのによんろくはちのいちさんごななです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no. Placeholder [number] replaced with a concrete number, written the way the book writes phone numbers: kana digits joined by の for each hyphen (cf. chapter-2-extras sumisu-san-no-denwa-bangou-wa, 080-1234-5678)"
+    },
+    {
+      "id": "irl-l1-41",
+      "english": "My address is...",
+      "category": "Home & Household",
+      "target": "わたしのじゅうしょは",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)"
+    },
+    {
+      "id": "irl-l1-42",
+      "english": "The hotel address is",
+      "category": "Travel & Tourism",
+      "target": "ホテルのじゅうしょは",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)"
+    },
+    {
+      "id": "is-this-a-pen",
+      "english": "Is this a pen?",
+      "category": "Grammar & Function Words",
+      "target": "これはペンですか",
+      "note": "A yes/no question — answer with はい (hai, 'yes') or いいえ (īe, 'no'), both from lesson 1.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame"
+    },
+    {
+      "id": "this-is-not-a-pen",
+      "english": "This is not a pen.",
+      "category": "Grammar & Function Words",
+      "target": "これはペンじゃありません",
+      "note": "じゃありません (ja arimasen) negates です (desu); casual speech often shortens this to じゃない (ja nai).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame"
+    },
+    {
+      "id": "this-is-not-my-pen",
+      "english": "This is not my pen.",
+      "category": "Grammar & Function Words",
+      "target": "これはわたしのペンじゃありません",
+      "note": "Combines の (no) for possession, as in これはわたしのペンです (kore wa watashi no pen desu), with the じゃありません (ja arimasen) negation from これはペンじゃありません (kore wa pen ja arimasen).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame"
+    },
+    {
+      "id": "toy",
+      "english": "Toy",
+      "category": "Other",
+      "target": "おもちゃ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field"
+    },
+    {
+      "id": "watch",
+      "english": "Watch",
+      "category": "Other",
+      "target": "うでどけい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field"
+    },
+    {
+      "id": "mobile-phone",
+      "english": "Mobile phone",
+      "category": "Technology & Communication",
+      "target": "けいたい",
+      "note": "Short for けいたいでんわ (keitai denwa, 'mobile phone'); スマホ (sumaho) refers specifically to a smartphone, not phones generally.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field"
+    },
+    {
+      "id": "p102-kaishain",
+      "english": "Company employee",
+      "category": "Work & Occupations",
+      "target": "かいしゃいん",
+      "note": "かいしゃ (kaisha) 'company' plus いん (in), the suffix for a member of staff. Names the job the way you would answer 'what do you do?'.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an occupation word the book never teaches, built on かいしゃ (kaisha) from this lesson.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-dare-desu-ka",
+      "english": "Who is it?",
+      "category": "Grammar & Function Words",
+      "target": "だれですか",
+      "note": "だれ (dare) on its own is just the word 'who'; だれですか (dare desu ka) is the whole question.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the class taught the question-word set as complete ですか (desu ka) questions; the book cards only the bare word だれ (dare).",
+      "aiSuggested": true
     }
   ]
 }

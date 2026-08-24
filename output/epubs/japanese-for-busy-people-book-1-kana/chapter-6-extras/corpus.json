@@ -698,6 +698,63 @@
       "note": "ひとりで (hitori de) fills the slot a companion would occupy — compare ともだちたちとこうえんにいきます (tomodachitachi to kōen ni ikimasu).",
       "reviewNote": "Constructed. PARTICLE job: shows ひとりで inside a full statement rather than a short answer, and puts it in direct positional contrast with a と phrase. こうえん (kōen) had a single sentence before this.",
       "aiSuggested": true
+    },
+    {
+      "id": "yesterday",
+      "english": "Yesterday",
+      "category": "Time",
+      "target": "きのう",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+    },
+    {
+      "id": "i-am-a-student",
+      "english": "I am a student.",
+      "category": "School & Education",
+      "target": "わたしはがくせいです",
+      "note": "The は here is read わ (wa). がくせい (gakusei) was introduced with the other occupations.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6"
+    },
+    {
+      "id": "p102-jimu-ni-ikimasu",
+      "english": "I go to the gym.",
+      "category": "Sports & Hobbies",
+      "target": "ジムにいきます",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts ジム (jimu), taught bare in Lesson 3, into a sentence using this lesson's に (ni) plus いきます (ikimasu).",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimasu",
+      "english": "I go to the office.",
+      "category": "Work & Occupations",
+      "target": "かいしゃにいきます",
+      "note": "The first of four cards on one frame that change only the ending: いきます (ikimasu), いきました (ikimashita), いきません (ikimasen), いきませんでした (ikimasen deshita).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 1 of the いきます paradigm the PDF prints as a table, delivered as a fixed frame so only the inflection varies.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimashita",
+      "english": "I went to the office.",
+      "category": "Work & Occupations",
+      "target": "かいしゃにいきました",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 2 of the いきます paradigm. Added so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimasen",
+      "english": "I don't go to the office.",
+      "category": "Work & Occupations",
+      "target": "かいしゃにいきません",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 3 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimasen-deshita",
+      "english": "I didn't go to the office.",
+      "category": "Work & Occupations",
+      "target": "かいしゃにいきませんでした",
+      "note": "Past negative is built on いきません (ikimasen) plus でした (deshita), not on いきました (ikimashita).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 4 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
+      "aiSuggested": true
     }
   ]
 }

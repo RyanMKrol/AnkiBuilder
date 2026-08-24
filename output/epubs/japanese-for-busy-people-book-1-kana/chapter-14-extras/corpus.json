@@ -291,6 +291,90 @@
       "target": "わたしはけっこんきねんびにつまにネックレスをあげます",
       "note": "あげます is correct here because the necklace leaves the speaker. Present-tense ます also covers a plan for the future.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+    },
+    {
+      "id": "why",
+      "english": "Why",
+      "category": "Grammar & Function Words",
+      "target": "どうして",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: doushite becomes answerable once Lesson 14 teaches kara (because)"
+    },
+    {
+      "id": "eg-kuroi-beruto",
+      "english": "This is a black belt.",
+      "category": "Colors",
+      "target": "これはくろいベルトです",
+      "hint": null,
+      "note": "くろい (kuroi) is a true い-adjective, so の never appears here. Same for あかい (akai), あおい (aoi) and しろい (shiroi) — those four and no others.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "sweatshirt",
+      "english": "Sweatshirt",
+      "category": "Clothing",
+      "target": "トレーナー",
+      "note": "Built in Japan out of English, but it does NOT mean 'trainer'. Not a person who trains you, and not British 'trainers' (shoes) — it's a crewneck sweatshirt.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)"
+    },
+    {
+      "id": "hoodie",
+      "english": "Hoodie",
+      "category": "Clothing",
+      "target": "パーカー",
+      "note": "Another English-looking word that shifted meaning: not an English 'parka' (a heavy winter coat) but a hooded sweatshirt.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)"
+    },
+    {
+      "id": "belt",
+      "english": "Belt",
+      "category": "Clothing",
+      "target": "ベルト",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)"
+    },
+    {
+      "id": "hat",
+      "english": "Hat",
+      "category": "Clothing",
+      "target": "ぼうし",
+      "note": "Covers hats and caps alike. Note the long vowel: ぼう (bō), not ぼ.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)"
+    },
+    {
+      "id": "socks",
+      "english": "Socks",
+      "category": "Clothing",
+      "target": "くつした",
+      "note": "くつ (kutsu) 'shoe' + した (shita) 'under'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)"
+    },
+    {
+      "id": "fib-kono-boushi-wa-kawaii-desu",
+      "english": "This hat is cute.",
+      "category": "Clothing",
+      "target": "このぼうしはかわいいです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-kore-wa-kuroi-kutsushita-desu",
+      "english": "These are black socks.",
+      "category": "Clothing",
+      "target": "これはくろいくつしたです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-doushite-desu-ka",
+      "english": "Why is that?",
+      "category": "Grammar & Function Words",
+      "target": "どうしてですか",
+      "note": "Answered with から (kara), the 'because' particle this lesson teaches.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the question どうして (dōshite) asks, placed here because this is the lesson that teaches how to answer it.",
+      "aiSuggested": true
     }
   ]
 }

@@ -4,9 +4,7 @@
     "sourceType": "epub",
     "chapterNumber": 18,
     "chapterLabel": "Lesson 4: Shopping (1): How Much Is This? (Extras)",
-    "baseChapterLabel": "Lesson 4: Shopping (1): How Much Is This?",
-    "reviewed": true,
-    "done": true
+    "baseChapterLabel": "Lesson 4: Shopping (1): How Much Is This?"
   },
   "items": [
     {
@@ -879,6 +877,56 @@
       "audioAuto": "eea6016c2e92c96e.mp3",
       "audioMarked": true,
       "audioTextHash": "eea6016c2e92c96e"
+    },
+    {
+      "id": "mouse-computer",
+      "english": "Mouse (computer)",
+      "category": "Technology & Communication",
+      "target": "マウス",
+      "pronunciation": "mausu",
+      "audio": "36f92eec635dba61.mp3",
+      "audioOriginal": "36f92eec635dba61.orig.mp3",
+      "audioAuto": "36f92eec635dba61.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "36f92eec635dba61",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
+    },
+    {
+      "id": "remote-control",
+      "english": "Remote control",
+      "category": "Technology & Communication",
+      "target": "リモコン",
+      "pronunciation": "rimokon",
+      "audio": "840d32af1d196eec.mp3",
+      "audioOriginal": "840d32af1d196eec.orig.mp3",
+      "audioAuto": "840d32af1d196eec.mp3",
+      "audioFilter": "standard",
+      "audioMarked": true,
+      "audioTextHash": "840d32af1d196eec",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
+    },
+    {
+      "id": "fib-are-wa-nan-desu-ka",
+      "english": "What is that, over there?",
+      "category": "Grammar & Function Words",
+      "target": "あれはなんですか",
+      "pronunciation": "are wa nan desu ka",
+      "note": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "audio": "fib-are-wa-nan-desu-ka-manual-7ef90997.mp3",
+      "audioOriginal": "51035aba615583d1.orig.mp3",
+      "audioAuto": "51035aba615583d1.standard.mp3",
+      "audioMarked": true,
+      "audioFilter": "standard",
+      "audioManual": "fib-are-wa-nan-desu-ka-manual-7ef90997.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.0427093321917806
+      },
+      "audioTextHash": "51035aba615583d1",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4"
     }
   ]
 }

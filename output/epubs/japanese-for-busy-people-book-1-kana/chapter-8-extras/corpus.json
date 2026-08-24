@@ -677,6 +677,91 @@
       "note": null,
       "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the よみます four-form set.",
       "aiSuggested": true
+    },
+    {
+      "id": "food",
+      "english": "Food",
+      "category": "Food",
+      "target": "たべもの",
+      "note": "Built from たべる (taberu, 'to eat') + もの (mono, 'thing'); のみもの (nomimono, drink) follows the same pattern from のむ (nomu, 'to drink').",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson"
+    },
+    {
+      "id": "i-eat-sushi",
+      "english": "I eat sushi.",
+      "category": "Food",
+      "target": "すしをたべます",
+      "note": "を (o) marks what the verb acts on: すし (sushi) is the thing being eaten. The particle is written を but pronounced お (o) — it never appears anywhere except as this marker.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+    },
+    {
+      "id": "fish",
+      "english": "Fish",
+      "category": "Food",
+      "target": "さかな",
+      "note": "The animal and the food alike.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+    },
+    {
+      "id": "p102-bangohan-o-tabemasu",
+      "english": "I eat dinner.",
+      "category": "Food",
+      "target": "ばんごはんをたべます",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the bare を (o) plus たべます (tabemasu) frame on ばんごはん (bangohan), which this lesson teaches as a word.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kinou-nani-o-tabemashita-ka",
+      "english": "What did you eat yesterday?",
+      "category": "Food",
+      "target": "きのう、なにをたべましたか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2. Job: past-tense なにを (nani o) question, the form this lesson teaches.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-hanbaagaa-o-tabemashita",
+      "english": "I ate a hamburger.",
+      "category": "Food",
+      "target": "ハンバーガーをたべました",
+      "scene": "answering what you ate yesterday",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2 answer.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-senshuumatsu-nani-o-shimashita-ka",
+      "english": "What did you do last weekend?",
+      "category": "Time",
+      "target": "せんしゅうまつ、なにをしましたか",
+      "note": "せんしゅう (senshū) 'last week' plus まつ (matsu) 'end'. The lesson's own しゅうまつ (shūmatsu) is the weekend without saying which one.",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-eigakan-ni-ikimashita",
+      "english": "I went to the cinema.",
+      "category": "Sports & Hobbies",
+      "target": "えいがかんにいきました",
+      "scene": "answering what you did last weekend",
+      "note": "えいが (eiga) 'film' plus かん (kan), the suffix for a building.",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-nichiyoubi-nani-o-shimasu-ka",
+      "english": "What do you do on Sundays?",
+      "category": "Time",
+      "target": "にちようび、なにをしますか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5. Job: the present-tense なにを (nani o) question against the past-tense one above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-nichiyoubi-kaji-o-shimasu",
+      "english": "On Sundays I do housework.",
+      "category": "Home & Household",
+      "target": "にちようび、かじをします",
+      "scene": "answering what you do on Sundays",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in.",
+      "aiSuggested": true
     }
   ]
 }

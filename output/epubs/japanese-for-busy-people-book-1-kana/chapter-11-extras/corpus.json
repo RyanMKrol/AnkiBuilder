@@ -7,21 +7,13 @@
   },
   "items": [
     {
-      "id": "ex11-seeru-wa-yasukatta-desu-ka",
-      "english": "Was the sale cheap?",
-      "category": "Shopping",
-      "target": "セールはやすかったですか",
+      "id": "ex11-totemo-oishikatta-desu",
+      "english": "It was really delicious.",
+      "category": "Food",
+      "target": "とてもおいしかったです",
+      "scene": "answering how the tempura you ate in Asakusa was",
       "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise A item 1 (セール、やすいです), Nakamura's line completed on the printed example えいがはおもしろかったですか. セール is carded as bare vocabulary only."
-    },
-    {
-      "id": "f11-kono-hon-wa-tsumaranakunai-desu",
-      "english": "This book isn't boring.",
-      "category": "Sports & Hobbies",
-      "target": "このほんはつまらなくないです",
-      "note": "つまらない (tsumaranai) ends in ない (nai) but is an ordinary い-adjective, so it negates like one: つまらなくないです (tsumaranakunai desu), never つまらないじゃありません (tsumaranai ja arimasen).",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: boring / present negative. Constructed sentence, second of the このほんは〜 fixed frame. Carries the つまらない trap note."
+      "reviewNote": "Weekend Dialogue Exercise item 1 (おいしいです), Smith's closing line completed on the printed example とてもたのしかったです; the same sentence is printed verbatim in Speaking Practice 3. Elliptical, so it carries a scene."
     },
     {
       "id": "f11-tesuto-wa-muzukashikunai-desu",
@@ -32,62 +24,28 @@
       "reviewNote": "Paradigm gap: difficult / present negative. Constructed sentence, second of the テストは〜 fixed frame."
     },
     {
-      "id": "ex11-kinou-wa-atsukatta-desu-ga-kyou-wa-suzushii-desu",
-      "english": "Yesterday it was hot, but today it's cool.",
+      "id": "f11-shuumatsu-wa-hima-ja-arimasen-deshita",
+      "english": "I wasn't free on the weekend.",
+      "category": "Time",
+      "target": "しゅうまつはひまじゃありませんでした",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: free, not busy / past negative. Constructed sentence, second of the しゅうまつは〜 fixed frame; the な-adjective past-negative note sits on f11-shutchou-wa-taihen-ja-arimasen-deshita."
+    },
+    {
+      "id": "ex11-kinou-no-omatsuri-wa-kirei-ja-arimasen-deshita",
+      "english": "Yesterday's festival wasn't beautiful.",
+      "category": "Travel & Tourism",
+      "target": "きのうのおまつりはきれいじゃありませんでした",
+      "aiSuggested": true,
+      "reviewNote": "Substitution Exercise D item 1 (きれいです), completed on the printed example きのうのおまつりはにぎやかじゃありませんでした. Only the example is carded."
+    },
+    {
+      "id": "ex11-kinou-wa-atsukatta-desu",
+      "english": "Yesterday it was hot.",
       "category": "Weather & Nature",
-      "target": "きのうはあつかったですが、きょうはすずしいです",
+      "target": "きのうはあつかったです",
       "aiSuggested": true,
-      "reviewNote": "Contrast Exercise item 2 (あついです、すずしいです), completed on the printed example. Missing from the deck."
-    },
-    {
-      "id": "ex11-kinou-no-omatsuri-wa-kirei-deshita",
-      "english": "Yesterday's festival was beautiful.",
-      "category": "Travel & Tourism",
-      "target": "きのうのおまつりはきれいでした",
-      "aiSuggested": true,
-      "reviewNote": "Substitution Exercise C, the printed example sentence itself. The deck carded the にぎやか version but skipped the きれい example the exercise is built on."
-    },
-    {
-      "id": "ex11-paatii-wa-dou-deshita-ka",
-      "english": "How was the party?",
-      "category": "Sports & Hobbies",
-      "target": "パーティーはどうでしたか",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise B, Kato's line in the printed example. The deck has コンサートはどうでしたか and テストはどうでしたか from the same exercise but skipped the example itself."
-    },
-    {
-      "id": "ex11-totemo-tanoshikatta-desu",
-      "english": "It was very fun.",
-      "category": "Emotions & Feelings",
-      "target": "とてもたのしかったです",
-      "scene": "answering how the party was",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise B, Emma's line in the printed example; the same line also closes the weekend-skiing dialogue example and Speaking Practice 1. Deck has bare たのしかったです only. Elliptical, so it carries a scene."
-    },
-    {
-      "id": "ex11-shuumatsu-ni-hakone-ni-ikimashita",
-      "english": "Over the weekend, I went to Hakone.",
-      "category": "Travel & Tourism",
-      "target": "しゅうまつにはこねにいきました",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 2, Smith's opening line. Missing from the deck; はこね was introduced back in Lesson 8 and only ever carded as a place name."
-    },
-    {
-      "id": "ex11-hachijikan-gurai-arukimashita",
-      "english": "I walked for about eight hours.",
-      "category": "Travel & Tourism",
-      "target": "８じかんぐらいあるきました",
-      "ttsText": "はちじかんぐらいあるきました",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue and repeated in NOTES 1 as the paired answer to どのくらいあるきましたか. Deck has ８じかん and ぐらい as vocabulary only."
-    },
-    {
-      "id": "ex11-sumisu-san-kinou-wa-omiyage-o-arigatou-gozaimashita",
-      "english": "Thank you for the souvenir yesterday, Smith-san.",
-      "category": "Greetings",
-      "target": "スミスさん、きのうはおみやげをありがとうございました",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 3, Nakamura's opening line, and the worked example for NOTES 2 on past-tense thanks. The deck has bare どうもありがとうございました but no sentence showing what you are thanking someone for."
+      "reviewNote": "Substitution Exercise A item 1 (あついです), completed into a full sentence on the printed example きのうはさむかったです. Only the example itself is in the deck."
     },
     {
       "id": "f11-kono-hon-wa-tsumaranai-desu",
@@ -99,65 +57,12 @@
       "reviewNote": "Paradigm gap: boring / present affirmative. Constructed sentence; first of the four-card このほんは〜 fixed frame that cycles つまらない through all four forms. Chosen to sit against the existing このほんはおもしろいです from Lesson 10."
     },
     {
-      "id": "ex11-hai-yasukatta-desu",
-      "english": "Yes, it was cheap.",
-      "category": "Shopping",
-      "target": "はい、やすかったです",
-      "scene": "answering whether the sale was cheap",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise A item 1, Emma's line completed on the printed example はい、おもしろかったです. Elliptical answer, so it carries a scene."
-    },
-    {
-      "id": "f11-kono-hon-wa-tsumaranakatta-desu",
-      "english": "This book was boring.",
-      "category": "Sports & Hobbies",
-      "target": "このほんはつまらなかったです",
-      "note": "The past of an い-adjective always ends in かった (katta), so this is past affirmative even though the word looks negative.",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: boring / past affirmative. Constructed sentence, third of the このほんは〜 fixed frame."
-    },
-    {
-      "id": "ex11-totemo-kirei-deshita",
-      "english": "It was really beautiful.",
-      "category": "Travel & Tourism",
-      "target": "とてもきれいでした",
-      "scene": "answering how climbing Mt. Fuji was",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Emma's reply to どうでしたか (dō deshita ka); the same line is also the answer for the ぎんざ・かぶき alternative in the last dialogue exercise. Deck has bare きれいでした (kirei deshita) as vocabulary but not the とても (totemo) reply."
-    },
-    {
-      "id": "f11-kono-hon-wa-tsumaranakunakatta-desu",
-      "english": "This book wasn't boring.",
-      "category": "Sports & Hobbies",
-      "target": "このほんはつまらなくなかったです",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: boring / past negative. Constructed sentence, fourth of the このほんは〜 fixed frame; the two earlier cards in the frame carry the notes it builds on."
-    },
-    {
-      "id": "f11-nihongo-wa-kantan-ja-arimasen",
-      "english": "Japanese isn't easy.",
-      "category": "School & Education",
-      "target": "にほんごはかんたんじゃありません",
-      "note": "な-adjectives negate like nouns, with じゃありません (ja arimasen). They never take the くない (kunai) ending that い-adjectives use.",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: easy / present negative. Constructed sentence, second of the にほんごは〜 fixed frame."
-    },
-    {
-      "id": "ex11-totemo-oishikatta-desu",
-      "english": "It was really delicious.",
+      "id": "f11-suteeki-wa-oishikunakatta-desu",
+      "english": "The steak wasn't delicious.",
       "category": "Food",
-      "target": "とてもおいしかったです",
-      "scene": "answering how the tempura you ate in Asakusa was",
+      "target": "ステーキはおいしくなかったです",
       "aiSuggested": true,
-      "reviewNote": "Weekend Dialogue Exercise item 1 (おいしいです), Smith's closing line completed on the printed example とてもたのしかったです; the same sentence is printed verbatim in Speaking Practice 3. Elliptical, so it carries a scene."
-    },
-    {
-      "id": "ex11-kinou-wa-atatakakatta-desu",
-      "english": "Yesterday it was warm.",
-      "category": "Weather & Nature",
-      "target": "きのうはあたたかかったです",
-      "aiSuggested": true,
-      "reviewNote": "Substitution Exercise A item 2 (あたたかいです), completed into a full sentence on the printed example きのうはさむかったです. Missing from the deck."
+      "reviewNote": "Paradigm gap: delicious / past negative. Constructed sentence. Near-sibling of wave 1's とてもおいしかったです, but different noun, different form and a different English gloss, so no hint is needed."
     },
     {
       "id": "p11-sanjuppun-gurai-machimashita",
@@ -170,87 +75,37 @@
       "reviewNote": "Adverb coverage for ぐらい with a length of time. Constructed sentence. The deck only has 5ふんぐらい as a bare phrase, never a minutes amount inside a sentence."
     },
     {
-      "id": "ex11-kinou-wa-hima-deshita-ga-kyou-wa-isogashii-desu",
-      "english": "Yesterday I was free, but today I'm busy.",
-      "category": "Work & Occupations",
-      "target": "きのうはひまでしたが、きょうはいそがしいです",
-      "aiSuggested": true,
-      "reviewNote": "Contrast Exercise item 1 (ひまです、いそがしいです), completed on the printed example きのうはいそがしかったですが、きょうはひまです. Only the example is carded."
-    },
-    {
-      "id": "ex11-taihen-deshita-ga-tanoshikatta-desu",
-      "english": "It was hard, but it was fun.",
-      "category": "Emotions & Feelings",
-      "target": "たいへんでしたが、たのしかったです",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Emma's closing line. It is the only place in the lesson where the が clause joins a な-adjective past to an い-adjective past, and it is missing from the deck."
-    },
-    {
-      "id": "ex11-hontou-ni-kirei-desu-ne",
-      "english": "It really is beautiful, isn't it?",
+      "id": "ex11-e-kore-desu",
+      "english": "Yes. Here they are.",
       "category": "Travel & Tourism",
-      "target": "ほんとうにきれいですね",
-      "note": "Sasaki switches to the present ですね (desu ne) because she is looking at the photo now, even though Emma's trip is over.",
+      "target": "ええ、これです",
+      "scene": "answering whether you took photos on Mt. Fuji, holding out your phone",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Sasaki's comment on the photos. Lesson 10 carded ええ、ほんとうにさむいですね but not this one."
+      "reviewNote": "Target Dialogue, Emma's reply as she shows the photos. Elliptical answer, so it carries a scene. Not in the deck in any chapter."
     },
     {
-      "id": "f11-shutchou-wa-taihen-desu",
-      "english": "The business trip is hard.",
-      "category": "Work & Occupations",
-      "target": "しゅっちょうはたいへんです",
+      "id": "ex11-paatii-wa-dou-deshita-ka",
+      "english": "How was the party?",
+      "category": "Sports & Hobbies",
+      "target": "パーティーはどうでしたか",
       "aiSuggested": true,
-      "reviewNote": "Paradigm gap: hard, tough / present affirmative. Constructed sentence, first of a three-card しゅっちょうは〜 fixed frame. The deck only has the fixed phrase たいへんでした, so this gives たいへん a topic of its own."
+      "reviewNote": "Dialogue Exercise B, Kato's line in the printed example. The deck has コンサートはどうでしたか and テストはどうでしたか from the same exercise but skipped the example itself."
     },
     {
-      "id": "ex11-kore-hakone-no-omiyage-desu",
-      "english": "This is a souvenir from Hakone.",
+      "id": "ex11-kinou-no-omatsuri-wa-kirei-deshita",
+      "english": "Yesterday's festival was beautiful.",
       "category": "Travel & Tourism",
-      "target": "これ、はこねのおみやげです",
-      "note": "The comma instead of は (wa) focuses the listener on これ (kore) before you say what it is. これははこねのおみやげです (kore wa hakone no omiyage desu) would be the version used when they are already looking at it.",
+      "target": "きのうのおまつりはきれいでした",
       "aiSuggested": true,
-      "reviewNote": "Speaking Practice 2, Smith's line, singled out for comment in NOTES 3. おみやげ is carded as bare vocabulary only."
+      "reviewNote": "Substitution Exercise C, the printed example sentence itself. The deck carded the にぎやか version but skipped the きれい example the exercise is built on."
     },
     {
-      "id": "f11-shutchou-wa-taihen-ja-arimasen-deshita",
-      "english": "The business trip wasn't hard.",
-      "category": "Work & Occupations",
-      "target": "しゅっちょうはたいへんじゃありませんでした",
-      "note": "The past negative of a な-adjective just adds でした (deshita) onto the present negative: じゃありません (ja arimasen) becomes じゃありませんでした (ja arimasen deshita).",
+      "id": "f11-chichi-wa-isogashikunai-desu",
+      "english": "My father isn't busy.",
+      "category": "Family & People",
+      "target": "ちちはいそがしくないです",
       "aiSuggested": true,
-      "reviewNote": "Paradigm gap: hard, tough / past negative. Constructed sentence, third of the しゅっちょうは〜 fixed frame."
-    },
-    {
-      "id": "f11-suteeki-wa-oishikunakatta-desu",
-      "english": "The steak wasn't delicious.",
-      "category": "Food",
-      "target": "ステーキはおいしくなかったです",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: delicious / past negative. Constructed sentence. Near-sibling of wave 1's とてもおいしかったです, but different noun, different form and a different English gloss, so no hint is needed."
-    },
-    {
-      "id": "ex11-asakusa-de-tenpura-o-tabemashita",
-      "english": "I ate tempura in Asakusa.",
-      "category": "Food",
-      "target": "あさくさでてんぷらをたべました",
-      "aiSuggested": true,
-      "reviewNote": "Weekend Dialogue Exercise item 1 (あさくさ、てんぷらをたべます), completed on the printed example ほっかいどうでスキーをしました. The deck has the example and the ぎんざ/かぶき alternative but not this one."
-    },
-    {
-      "id": "f11-shutchou-wa-taihen-ja-arimasen",
-      "english": "The business trip isn't hard.",
-      "category": "Work & Occupations",
-      "target": "しゅっちょうはたいへんじゃありません",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: hard, tough / present negative. Constructed sentence, second of the しゅっちょうは〜 fixed frame."
-    },
-    {
-      "id": "p11-dono-kurai-machimashita-ka",
-      "english": "How long did you wait?",
-      "category": "Time",
-      "target": "どのくらいまちましたか",
-      "aiSuggested": true,
-      "reviewNote": "Adverb coverage for どのくらい. Constructed sentence. Wave 1 has どのくらいあるきましたか from the dialogue; this is the only other verb the deck can support (まちます, Lesson 10) and pairs with p11-sanjuppun-gurai-machimashita."
+      "reviewNote": "Paradigm gap: busy / present negative. Constructed sentence, first of a fixed frame with f11-chichi-wa-isogashikunakatta-desu. いそがしい only ever appears in the deck with a day as its topic, so this uses a person instead."
     },
     {
       "id": "ex11-watashitachi-mo-tanoshikatta-desu",
@@ -262,71 +117,37 @@
       "reviewNote": "Speaking Practice 1, Sasaki's line. わたしたち is carded as bare vocabulary but the sentence it comes from is not."
     },
     {
-      "id": "ex11-gohyakunin-gurai",
-      "english": "About 500 people",
-      "category": "Numbers",
-      "target": "500にんぐらい",
-      "ttsText": "ごひゃくにんぐらい",
+      "id": "ex11-kinou-no-deeto-wa-yokunakatta-desu",
+      "english": "Yesterday's date wasn't good.",
+      "category": "Emotions & Feelings",
+      "target": "きのうのデートはよくなかったです",
       "aiSuggested": true,
-      "reviewNote": "NOTES 1 example list. The deck already has the other two examples from that same list (5ふんぐらい and 1,000えんぐらい) but not this one."
+      "reviewNote": "Substitution Exercise B item 2 (いいです), completed on the printed example きのうのデートはたのしくなかったです. The irregular よくなかったです only appears in the deck as a bare form, never in a sentence."
     },
     {
-      "id": "ex11-hakone-wa-dou-deshita-ka",
-      "english": "How was Hakone?",
+      "id": "f11-chichi-wa-isogashikunakatta-desu",
+      "english": "My father wasn't busy.",
+      "category": "Family & People",
+      "target": "ちちはいそがしくなかったです",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: busy / past negative. Constructed sentence, second of the ちちは〜 fixed frame."
+    },
+    {
+      "id": "ex11-kore-hakone-no-omiyage-desu",
+      "english": "This is a souvenir from Hakone.",
       "category": "Travel & Tourism",
-      "target": "はこねはどうでしたか",
+      "target": "これ、はこねのおみやげです",
+      "note": "The comma instead of は (wa) focuses the listener on これ (kore) before you say what it is. これははこねのおみやげです (kore wa hakone no omiyage desu) would be the version used when they are already looking at it.",
       "aiSuggested": true,
-      "reviewNote": "Speaking Practice 2, Nakamura's question. The deck has コンサートはどうでしたか and テストはどうでしたか but not the Speaking Practice one asking about a place."
+      "reviewNote": "Speaking Practice 2, Smith's line, singled out for comment in NOTES 3. おみやげ is carded as bare vocabulary only."
     },
     {
-      "id": "ex11-kinou-no-omatsuri-wa-kirei-ja-arimasen-deshita",
-      "english": "Yesterday's festival wasn't beautiful.",
-      "category": "Travel & Tourism",
-      "target": "きのうのおまつりはきれいじゃありませんでした",
-      "aiSuggested": true,
-      "reviewNote": "Substitution Exercise D item 1 (きれいです), completed on the printed example きのうのおまつりはにぎやかじゃありませんでした. Only the example is carded."
-    },
-    {
-      "id": "ex11-shashin-o-torimashita-ka",
-      "english": "Did you take photos?",
-      "category": "Travel & Tourism",
-      "target": "しゃしんをとりましたか",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Sasaki's question. しゃしん and とります are carded as bare vocabulary but the question itself is missing."
-    },
-    {
-      "id": "ex11-e-kore-desu",
-      "english": "Yes. Here they are.",
-      "category": "Travel & Tourism",
-      "target": "ええ、これです",
-      "scene": "answering whether you took photos on Mt. Fuji, holding out your phone",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Emma's reply as she shows the photos. Elliptical answer, so it carries a scene. Not in the deck in any chapter."
-    },
-    {
-      "id": "ex11-kinou-wa-atsukatta-desu",
-      "english": "Yesterday it was hot.",
-      "category": "Weather & Nature",
-      "target": "きのうはあつかったです",
-      "aiSuggested": true,
-      "reviewNote": "Substitution Exercise A item 1 (あついです), completed into a full sentence on the printed example きのうはさむかったです. Only the example itself is in the deck."
-    },
-    {
-      "id": "f11-shigoto-wa-tanoshii-desu",
-      "english": "Work is fun.",
-      "category": "Work & Occupations",
-      "target": "しごとはたのしいです",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: fun / present affirmative. Constructed sentence, first of a fixed frame with f11-shigoto-wa-tanoshikunai-desu — only the inflection changes. Every existing たのしい card in the deck is past tense."
-    },
-    {
-      "id": "f11-rondon-wa-atsukunakatta-desu",
-      "english": "London wasn't hot.",
-      "category": "Weather & Nature",
-      "target": "ロンドンはあつくなかったです",
-      "note": "The past negative is built from the present negative: あつくない (atsukunai) drops ない (nai) and takes なかった (nakatta) instead.",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: hot / past negative. Constructed sentence, not a printed one. The deck already has とうきょうはあついですか and ロンドンはさむいですか, so this reuses a familiar city with the one form the tables never reached."
+      "id": "about-ten-minutes-approx",
+      "english": "It's about ten minutes.",
+      "category": "Time",
+      "target": "じゅっぷんぐらいです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11",
+      "aiSuggested": true
     },
     {
       "id": "ex11-senshu-fujisan-ni-noborimashita",
@@ -337,6 +158,50 @@
       "reviewNote": "Target Dialogue, Emma's opening line. The deck has のぼります and ふじさん as vocabulary but never the sentence that sets up the whole lesson."
     },
     {
+      "id": "f11-shutchou-wa-taihen-ja-arimasen-deshita",
+      "english": "The business trip wasn't hard.",
+      "category": "Work & Occupations",
+      "target": "しゅっちょうはたいへんじゃありませんでした",
+      "note": "The past negative of a な-adjective just adds でした (deshita) onto the present negative: じゃありません (ja arimasen) becomes じゃありませんでした (ja arimasen deshita).",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: hard, tough / past negative. Constructed sentence, third of the しゅっちょうは〜 fixed frame."
+    },
+    {
+      "id": "ex11-hai-yasukatta-desu",
+      "english": "Yes, it was cheap.",
+      "category": "Shopping",
+      "target": "はい、やすかったです",
+      "scene": "answering whether the sale was cheap",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise A item 1, Emma's line completed on the printed example はい、おもしろかったです. Elliptical answer, so it carries a scene."
+    },
+    {
+      "id": "ex11-amari-yokunakatta-desu",
+      "english": "It wasn't very good.",
+      "category": "Emotions & Feelings",
+      "target": "あまりよくなかったです",
+      "scene": "answering how the concert was",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise B item 1 (コンサート、いいです), Smith's line completed on the printed example あまりたのしくなかったです. The deck has the question and Emma's とてもよかったです but not Smith's negative. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "p102-saikou",
+      "english": "The best",
+      "category": "Descriptions & Qualities",
+      "target": "さいこう",
+      "note": "The opposite of さいあく (saiaku). Stronger than いい (ii): it is the top of the scale, not merely good.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka).",
+      "aiSuggested": true
+    },
+    {
+      "id": "f11-shuumatsu-wa-hima-ja-arimasen",
+      "english": "I'm not free on the weekend.",
+      "category": "Time",
+      "target": "しゅうまつはひまじゃありません",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: free, not busy / present negative. Constructed sentence, first of a fixed frame with f11-shuumatsu-wa-hima-ja-arimasen-deshita. Both existing ひま cards use きょう or きのう, so this moves to しゅうまつ."
+    },
+    {
       "id": "f11-tesuto-wa-muzukashii-desu",
       "english": "The test is difficult.",
       "category": "School & Education",
@@ -345,12 +210,113 @@
       "reviewNote": "Paradigm gap: difficult / present affirmative. Constructed sentence, first of a fixed frame with f11-tesuto-wa-muzukashikunai-desu. The deck only has むずかしい in the past, attached to にほんごのクラス, so this uses テスト instead."
     },
     {
+      "id": "ex11-sumisu-san-kinou-wa-omiyage-o-arigatou-gozaimashita",
+      "english": "Thank you for the souvenir yesterday, Smith-san.",
+      "category": "Greetings",
+      "target": "スミスさん、きのうはおみやげをありがとうございました",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 3, Nakamura's opening line, and the worked example for NOTES 2 on past-tense thanks. The deck has bare どうもありがとうございました but no sentence showing what you are thanking someone for."
+    },
+    {
+      "id": "f11-shutchou-wa-taihen-desu",
+      "english": "The business trip is hard.",
+      "category": "Work & Occupations",
+      "target": "しゅっちょうはたいへんです",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: hard, tough / present affirmative. Constructed sentence, first of a three-card しゅっちょうは〜 fixed frame. The deck only has the fixed phrase たいへんでした, so this gives たいへん a topic of its own."
+    },
+    {
+      "id": "ex11-hai-omoshirokatta-desu",
+      "english": "Yes, it was interesting.",
+      "category": "Sports & Hobbies",
+      "target": "はい、おもしろかったです",
+      "scene": "answering whether the movie was interesting",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise A, Emma's line in the printed example. The deck has the question えいがはおもしろかったですか but neither of the two printed answers. Elliptical, so it carries a scene."
+    },
+    {
       "id": "ex11-dono-kurai-arukimashita-ka",
       "english": "How long did you walk?",
       "category": "Travel & Tourism",
       "target": "どのくらいあるきましたか",
       "aiSuggested": true,
       "reviewNote": "Target Dialogue and repeated in NOTES 1. どのくらい and あるきます are carded separately but the question is not."
+    },
+    {
+      "id": "ex11-hontou-ni-kirei-desu-ne",
+      "english": "It really is beautiful, isn't it?",
+      "category": "Travel & Tourism",
+      "target": "ほんとうにきれいですね",
+      "note": "Sasaki switches to the present ですね (desu ne) because she is looking at the photo now, even though Emma's trip is over.",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Sasaki's comment on the photos. Lesson 10 carded ええ、ほんとうにさむいですね but not this one."
+    },
+    {
+      "id": "ex11-asakusa-de-tenpura-o-tabemashita",
+      "english": "I ate tempura in Asakusa.",
+      "category": "Food",
+      "target": "あさくさでてんぷらをたべました",
+      "aiSuggested": true,
+      "reviewNote": "Weekend Dialogue Exercise item 1 (あさくさ、てんぷらをたべます), completed on the printed example ほっかいどうでスキーをしました. The deck has the example and the ぎんざ/かぶき alternative but not this one."
+    },
+    {
+      "id": "f11-shigoto-wa-tanoshii-desu",
+      "english": "Work is fun.",
+      "category": "Work & Occupations",
+      "target": "しごとはたのしいです",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: fun / present affirmative. Constructed sentence, first of a fixed frame with f11-shigoto-wa-tanoshikunai-desu — only the inflection changes. Every existing たのしい card in the deck is past tense."
+    },
+    {
+      "id": "ex11-hachijikan-gurai-arukimashita",
+      "english": "I walked for about eight hours.",
+      "category": "Travel & Tourism",
+      "target": "８じかんぐらいあるきました",
+      "ttsText": "はちじかんぐらいあるきました",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue and repeated in NOTES 1 as the paired answer to どのくらいあるきましたか. Deck has ８じかん and ぐらい as vocabulary only."
+    },
+    {
+      "id": "ex11-hakone-wa-dou-deshita-ka",
+      "english": "How was Hakone?",
+      "category": "Travel & Tourism",
+      "target": "はこねはどうでしたか",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 2, Nakamura's question. The deck has コンサートはどうでしたか and テストはどうでしたか but not the Speaking Practice one asking about a place."
+    },
+    {
+      "id": "f11-shutchou-wa-taihen-ja-arimasen",
+      "english": "The business trip isn't hard.",
+      "category": "Work & Occupations",
+      "target": "しゅっちょうはたいへんじゃありません",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: hard, tough / present negative. Constructed sentence, second of the しゅっちょうは〜 fixed frame."
+    },
+    {
+      "id": "ex11-gohyakunin-gurai",
+      "english": "About 500 people",
+      "category": "Numbers",
+      "target": "500にんぐらい",
+      "ttsText": "ごひゃくにんぐらい",
+      "aiSuggested": true,
+      "reviewNote": "NOTES 1 example list. The deck already has the other two examples from that same list (5ふんぐらい and 1,000えんぐらい) but not this one."
+    },
+    {
+      "id": "ex11-amari-kantan-ja-arimasen-deshita",
+      "english": "It wasn't very easy.",
+      "category": "School & Education",
+      "target": "あまりかんたんじゃありませんでした",
+      "scene": "answering how the test was",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise B item 2 (テスト、かんたんです), Smith's line completed on the printed example あまりたのしくなかったです. The deck has the question and Emma's とてもかんたんでした but not Smith's negative. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "p11-dono-kurai-machimashita-ka",
+      "english": "How long did you wait?",
+      "category": "Time",
+      "target": "どのくらいまちましたか",
+      "aiSuggested": true,
+      "reviewNote": "Adverb coverage for どのくらい. Constructed sentence. Wave 1 has どのくらいあるきましたか from the dialogue; this is the only other verb the deck can support (まちます, Lesson 10) and pairs with p11-sanjuppun-gurai-machimashita."
     },
     {
       "id": "v11-sou-desu-ka-yokatta-desu",
@@ -363,47 +329,28 @@
       "reviewNote": "Vocabulary coverage for よかったです in its 'I'm glad to hear that' sense. That sense sits in the deck only as a bare vocabulary card, and the Speaking Practice 3 line it comes from was not harvested in wave 1. The other よかったです cards in the deck all mean 'it was good', so this one carries a scene to keep the two apart."
     },
     {
-      "id": "ex11-iie-omoshirokunakatta-desu",
-      "english": "No, it wasn't interesting.",
-      "category": "Sports & Hobbies",
-      "target": "いいえ、おもしろくなかったです",
-      "scene": "answering whether the movie was interesting",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise A, Smith's line in the printed example, the negative counterpart to Emma's. Missing from the deck; elliptical, so it carries a scene."
-    },
-    {
-      "id": "ex11-hai-omoshirokatta-desu",
-      "english": "Yes, it was interesting.",
-      "category": "Sports & Hobbies",
-      "target": "はい、おもしろかったです",
-      "scene": "answering whether the movie was interesting",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise A, Emma's line in the printed example. The deck has the question えいがはおもしろかったですか but neither of the two printed answers. Elliptical, so it carries a scene."
-    },
-    {
-      "id": "p11-sono-kaban-wa-ichiman-en-gurai-deshita",
-      "english": "That bag was about 10,000 yen.",
-      "category": "Money",
-      "target": "そのかばんは10,000えんぐらいでした",
-      "ttsText": "そのかばんはいちまんえんぐらいでした",
-      "aiSuggested": true,
-      "reviewNote": "Adverb coverage for ぐらい with a price. Constructed sentence. 1,000えんぐらい is in the deck as a bare phrase only, and no card puts a ぐらい price into a past-tense sentence."
-    },
-    {
-      "id": "f11-chichi-wa-isogashikunakatta-desu",
-      "english": "My father wasn't busy.",
-      "category": "Family & People",
-      "target": "ちちはいそがしくなかったです",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: busy / past negative. Constructed sentence, second of the ちちは〜 fixed frame."
-    },
-    {
-      "id": "ex11-ema-san-wa-shashin-o-misemashita",
-      "english": "Emma-san showed her photos to Sasaki-san and Sasaki-san's husband.",
+      "id": "ex11-shuumatsu-ni-hakone-ni-ikimashita",
+      "english": "Over the weekend, I went to Hakone.",
       "category": "Travel & Tourism",
-      "target": "エマさんはささきさんとささきさんのごしゅじんにしゃしんをみせました",
+      "target": "しゅうまつにはこねにいきました",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, the narrative summary line printed after the dialogue. みせます is carded as bare vocabulary; this is the only printed sentence using it."
+      "reviewNote": "Speaking Practice 2, Smith's opening line. Missing from the deck; はこね was introduced back in Lesson 8 and only ever carded as a place name."
+    },
+    {
+      "id": "ex11-taihen-deshita-ga-tanoshikatta-desu",
+      "english": "It was hard, but it was fun.",
+      "category": "Emotions & Feelings",
+      "target": "たいへんでしたが、たのしかったです",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Emma's closing line. It is the only place in the lesson where the が clause joins a な-adjective past to an い-adjective past, and it is missing from the deck."
+    },
+    {
+      "id": "ex11-shashin-o-torimashita-ka",
+      "english": "Did you take photos?",
+      "category": "Travel & Tourism",
+      "target": "しゃしんをとりましたか",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Sasaki's question. しゃしん and とります are carded as bare vocabulary but the question itself is missing."
     },
     {
       "id": "ex11-kinou-wa-atatakakatta-desu-ga-kyou-wa-samui-desu",
@@ -414,54 +361,46 @@
       "reviewNote": "Contrast Exercise item 3 (あたたかいです、さむいです), completed on the printed example. Missing from the deck."
     },
     {
-      "id": "f11-chichi-wa-isogashikunai-desu",
-      "english": "My father isn't busy.",
-      "category": "Family & People",
-      "target": "ちちはいそがしくないです",
+      "id": "f11-kono-hon-wa-tsumaranakunai-desu",
+      "english": "This book isn't boring.",
+      "category": "Sports & Hobbies",
+      "target": "このほんはつまらなくないです",
+      "note": "つまらない (tsumaranai) ends in ない (nai) but is an ordinary い-adjective, so it negates like one: つまらなくないです (tsumaranakunai desu), never つまらないじゃありません (tsumaranai ja arimasen).",
       "aiSuggested": true,
-      "reviewNote": "Paradigm gap: busy / present negative. Constructed sentence, first of a fixed frame with f11-chichi-wa-isogashikunakatta-desu. いそがしい only ever appears in the deck with a day as its topic, so this uses a person instead."
+      "reviewNote": "Paradigm gap: boring / present negative. Constructed sentence, second of the このほんは〜 fixed frame. Carries the つまらない trap note."
     },
     {
-      "id": "ex11-amari-kantan-ja-arimasen-deshita",
-      "english": "It wasn't very easy.",
+      "id": "ex11-ema-san-wa-shashin-o-misemashita",
+      "english": "Emma-san showed her photos to Sasaki-san and Sasaki-san's husband.",
+      "category": "Travel & Tourism",
+      "target": "エマさんはささきさんとささきさんのごしゅじんにしゃしんをみせました",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, the narrative summary line printed after the dialogue. みせます is carded as bare vocabulary; this is the only printed sentence using it."
+    },
+    {
+      "id": "f11-nihongo-wa-kantan-ja-arimasen",
+      "english": "Japanese isn't easy.",
       "category": "School & Education",
-      "target": "あまりかんたんじゃありませんでした",
-      "scene": "answering how the test was",
+      "target": "にほんごはかんたんじゃありません",
+      "note": "な-adjectives negate like nouns, with じゃありません (ja arimasen). They never take the くない (kunai) ending that い-adjectives use.",
       "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise B item 2 (テスト、かんたんです), Smith's line completed on the printed example あまりたのしくなかったです. The deck has the question and Emma's とてもかんたんでした but not Smith's negative. Elliptical, so it carries a scene."
+      "reviewNote": "Paradigm gap: easy / present negative. Constructed sentence, second of the にほんごは〜 fixed frame."
     },
     {
-      "id": "f11-shuumatsu-wa-hima-ja-arimasen-deshita",
-      "english": "I wasn't free on the weekend.",
-      "category": "Time",
-      "target": "しゅうまつはひまじゃありませんでした",
+      "id": "ex11-kinou-wa-atsukatta-desu-ga-kyou-wa-suzushii-desu",
+      "english": "Yesterday it was hot, but today it's cool.",
+      "category": "Weather & Nature",
+      "target": "きのうはあつかったですが、きょうはすずしいです",
       "aiSuggested": true,
-      "reviewNote": "Paradigm gap: free, not busy / past negative. Constructed sentence, second of the しゅうまつは〜 fixed frame; the な-adjective past-negative note sits on f11-shutchou-wa-taihen-ja-arimasen-deshita."
+      "reviewNote": "Contrast Exercise item 2 (あついです、すずしいです), completed on the printed example. Missing from the deck."
     },
     {
-      "id": "ex11-kinou-no-deeto-wa-yokunakatta-desu",
-      "english": "Yesterday's date wasn't good.",
-      "category": "Emotions & Feelings",
-      "target": "きのうのデートはよくなかったです",
+      "id": "ex11-kinou-wa-hima-deshita-ga-kyou-wa-isogashii-desu",
+      "english": "Yesterday I was free, but today I'm busy.",
+      "category": "Work & Occupations",
+      "target": "きのうはひまでしたが、きょうはいそがしいです",
       "aiSuggested": true,
-      "reviewNote": "Substitution Exercise B item 2 (いいです), completed on the printed example きのうのデートはたのしくなかったです. The irregular よくなかったです only appears in the deck as a bare form, never in a sentence."
-    },
-    {
-      "id": "f11-nihongo-wa-kantan-desu",
-      "english": "Japanese is easy.",
-      "category": "School & Education",
-      "target": "にほんごはかんたんです",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: easy / present affirmative. Constructed sentence, first of a fixed frame with f11-nihongo-wa-kantan-ja-arimasen. Both existing かんたん cards are about テスト and are past tense, so this changes the noun."
-    },
-    {
-      "id": "ex11-amari-yokunakatta-desu",
-      "english": "It wasn't very good.",
-      "category": "Emotions & Feelings",
-      "target": "あまりよくなかったです",
-      "scene": "answering how the concert was",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise B item 1 (コンサート、いいです), Smith's line completed on the printed example あまりたのしくなかったです. The deck has the question and Emma's とてもよかったです but not Smith's negative. Elliptical, so it carries a scene."
+      "reviewNote": "Contrast Exercise item 1 (ひまです、いそがしいです), completed on the printed example きのうはいそがしかったですが、きょうはひまです. Only the example is carded."
     },
     {
       "id": "f11-hokkaidou-wa-samukunakatta-desu",
@@ -472,45 +411,12 @@
       "reviewNote": "Paradigm gap: cold / past negative. Constructed sentence. Deliberately not きのうは〜, which the printed exercises already own; ほっかいどう comes from Lesson 6."
     },
     {
-      "id": "f11-shigoto-wa-tanoshikunai-desu",
-      "english": "Work isn't fun.",
-      "category": "Work & Occupations",
-      "target": "しごとはたのしくないです",
+      "id": "f11-nihongo-wa-kantan-desu",
+      "english": "Japanese is easy.",
+      "category": "School & Education",
+      "target": "にほんごはかんたんです",
       "aiSuggested": true,
-      "reviewNote": "Paradigm gap: fun / present negative. Constructed sentence, second of the しごとは〜 fixed frame."
-    },
-    {
-      "id": "ex11-iie-yasukunakatta-desu",
-      "english": "No, it wasn't cheap.",
-      "category": "Shopping",
-      "target": "いいえ、やすくなかったです",
-      "scene": "answering whether the sale was cheap",
-      "aiSuggested": true,
-      "reviewNote": "Dialogue Exercise A item 1, Smith's line completed on the printed example いいえ、おもしろくなかったです. Elliptical answer, so it carries a scene."
-    },
-    {
-      "id": "ex11-kinou-no-deeto-wa-omoshirokunakatta-desu",
-      "english": "Yesterday's date wasn't interesting.",
-      "category": "Emotions & Feelings",
-      "target": "きのうのデートはおもしろくなかったです",
-      "aiSuggested": true,
-      "reviewNote": "Substitution Exercise B item 1 (おもしろいです), completed on the printed example きのうのデートはたのしくなかったです. Only the example is carded."
-    },
-    {
-      "id": "f11-shuumatsu-wa-hima-ja-arimasen",
-      "english": "I'm not free on the weekend.",
-      "category": "Time",
-      "target": "しゅうまつはひまじゃありません",
-      "aiSuggested": true,
-      "reviewNote": "Paradigm gap: free, not busy / present negative. Constructed sentence, first of a fixed frame with f11-shuumatsu-wa-hima-ja-arimasen-deshita. Both existing ひま cards use きょう or きのう, so this moves to しゅうまつ."
-    },
-    {
-      "id": "about-ten-minutes-approx",
-      "english": "It's about ten minutes.",
-      "category": "Time",
-      "target": "じゅっぷんぐらいです",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11",
-      "aiSuggested": true
+      "reviewNote": "Paradigm gap: easy / present affirmative. Constructed sentence, first of a fixed frame with f11-nihongo-wa-kantan-ja-arimasen. Both existing かんたん cards are about テスト and are past tense, so this changes the noun."
     },
     {
       "id": "p102-saiaku",
@@ -522,13 +428,107 @@
       "aiSuggested": true
     },
     {
-      "id": "p102-saikou",
-      "english": "The best",
-      "category": "Descriptions & Qualities",
-      "target": "さいこう",
-      "note": "The opposite of さいあく (saiaku). Stronger than いい (ii): it is the top of the scale, not merely good.",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka).",
-      "aiSuggested": true
+      "id": "f11-kono-hon-wa-tsumaranakunakatta-desu",
+      "english": "This book wasn't boring.",
+      "category": "Sports & Hobbies",
+      "target": "このほんはつまらなくなかったです",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: boring / past negative. Constructed sentence, fourth of the このほんは〜 fixed frame; the two earlier cards in the frame carry the notes it builds on."
+    },
+    {
+      "id": "ex11-kinou-no-deeto-wa-omoshirokunakatta-desu",
+      "english": "Yesterday's date wasn't interesting.",
+      "category": "Emotions & Feelings",
+      "target": "きのうのデートはおもしろくなかったです",
+      "aiSuggested": true,
+      "reviewNote": "Substitution Exercise B item 1 (おもしろいです), completed on the printed example きのうのデートはたのしくなかったです. Only the example is carded."
+    },
+    {
+      "id": "ex11-seeru-wa-yasukatta-desu-ka",
+      "english": "Was the sale cheap?",
+      "category": "Shopping",
+      "target": "セールはやすかったですか",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise A item 1 (セール、やすいです), Nakamura's line completed on the printed example えいがはおもしろかったですか. セール is carded as bare vocabulary only."
+    },
+    {
+      "id": "f11-rondon-wa-atsukunakatta-desu",
+      "english": "London wasn't hot.",
+      "category": "Weather & Nature",
+      "target": "ロンドンはあつくなかったです",
+      "note": "The past negative is built from the present negative: あつくない (atsukunai) drops ない (nai) and takes なかった (nakatta) instead.",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: hot / past negative. Constructed sentence, not a printed one. The deck already has とうきょうはあついですか and ロンドンはさむいですか, so this reuses a familiar city with the one form the tables never reached."
+    },
+    {
+      "id": "ex11-iie-yasukunakatta-desu",
+      "english": "No, it wasn't cheap.",
+      "category": "Shopping",
+      "target": "いいえ、やすくなかったです",
+      "scene": "answering whether the sale was cheap",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise A item 1, Smith's line completed on the printed example いいえ、おもしろくなかったです. Elliptical answer, so it carries a scene."
+    },
+    {
+      "id": "ex11-totemo-tanoshikatta-desu",
+      "english": "It was very fun.",
+      "category": "Emotions & Feelings",
+      "target": "とてもたのしかったです",
+      "scene": "answering how the party was",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise B, Emma's line in the printed example; the same line also closes the weekend-skiing dialogue example and Speaking Practice 1. Deck has bare たのしかったです only. Elliptical, so it carries a scene."
+    },
+    {
+      "id": "ex11-totemo-kirei-deshita",
+      "english": "It was really beautiful.",
+      "category": "Travel & Tourism",
+      "target": "とてもきれいでした",
+      "scene": "answering how climbing Mt. Fuji was",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Emma's reply to どうでしたか (dō deshita ka); the same line is also the answer for the ぎんざ・かぶき alternative in the last dialogue exercise. Deck has bare きれいでした (kirei deshita) as vocabulary but not the とても (totemo) reply."
+    },
+    {
+      "id": "ex11-iie-omoshirokunakatta-desu",
+      "english": "No, it wasn't interesting.",
+      "category": "Sports & Hobbies",
+      "target": "いいえ、おもしろくなかったです",
+      "scene": "answering whether the movie was interesting",
+      "aiSuggested": true,
+      "reviewNote": "Dialogue Exercise A, Smith's line in the printed example, the negative counterpart to Emma's. Missing from the deck; elliptical, so it carries a scene."
+    },
+    {
+      "id": "ex11-kinou-wa-atatakakatta-desu",
+      "english": "Yesterday it was warm.",
+      "category": "Weather & Nature",
+      "target": "きのうはあたたかかったです",
+      "aiSuggested": true,
+      "reviewNote": "Substitution Exercise A item 2 (あたたかいです), completed into a full sentence on the printed example きのうはさむかったです. Missing from the deck."
+    },
+    {
+      "id": "f11-kono-hon-wa-tsumaranakatta-desu",
+      "english": "This book was boring.",
+      "category": "Sports & Hobbies",
+      "target": "このほんはつまらなかったです",
+      "note": "The past of an い-adjective always ends in かった (katta), so this is past affirmative even though the word looks negative.",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: boring / past affirmative. Constructed sentence, third of the このほんは〜 fixed frame."
+    },
+    {
+      "id": "p11-sono-kaban-wa-ichiman-en-gurai-deshita",
+      "english": "That bag was about 10,000 yen.",
+      "category": "Money",
+      "target": "そのかばんは10,000えんぐらいでした",
+      "ttsText": "そのかばんはいちまんえんぐらいでした",
+      "aiSuggested": true,
+      "reviewNote": "Adverb coverage for ぐらい with a price. Constructed sentence. 1,000えんぐらい is in the deck as a bare phrase only, and no card puts a ぐらい price into a past-tense sentence."
+    },
+    {
+      "id": "f11-shigoto-wa-tanoshikunai-desu",
+      "english": "Work isn't fun.",
+      "category": "Work & Occupations",
+      "target": "しごとはたのしくないです",
+      "aiSuggested": true,
+      "reviewNote": "Paradigm gap: fun / present negative. Constructed sentence, second of the しごとは〜 fixed frame."
     }
   ]
 }

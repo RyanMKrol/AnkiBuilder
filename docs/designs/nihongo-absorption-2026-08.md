@@ -144,6 +144,24 @@ unreviewed. Base units were deliberately NOT un-reviewed: a base unit's sign-off
 dedup-library entry, and withdrawing it would delete the entry every later chapter's backward dedup
 reads. The two book-side hints are therefore a field-only edit.
 
+## Moving the live Anki notes
+
+Phase 5 is `scripts/migrate-nihongo-absorption.mjs`, also a spent one-off. `deliver-to-anki.mjs`
+matches a note to a card by its durable `abid:<card.id>` tag, but it looks with one query scoped to
+the collection's own parent deck. A note under `Nihongo 101 Course (N5)` is therefore invisible to the
+book's delivery: the card would read as new, be added with fresh scheduling, and the matured original
+would only be reported as orphaned. Moving the notes into the book's tree first is what makes the
+next deliver find them and update them in place.
+
+The safety design is copied from `scripts/migrate-deck-numbering.mjs`, which did the same kind of
+move on this collection in August. Every affected card's `due`, `ivl`, `factor`, `reps`, `lapses`,
+`queue` and `type` are snapshotted, re-read after the move, and compared field by field; any drift
+aborts the run. A card in a filtered deck is skipped and reported rather than moved, because what
+`changeDeck` does to one is the unanswered `change-deck-on-filtered` probe. `--dry` is the default.
+
+The dry run on 2026-08-24 resolved all 133 moved cards by `abid`, with none unresolved and none
+filtered: 266 cards across 15 destination decks.
+
 ## The routing table
 
 Grouped by destination, which is the order Phase 3 works in.

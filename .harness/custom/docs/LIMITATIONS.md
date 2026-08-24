@@ -3268,3 +3268,62 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** if the identity findings become noise nobody reads, the fix is to compare the
   named form against the deck AFTER normalizing long vowels and dropping sentence-length quotes,
   rather than to narrow the pattern back.
+
+## The Nihongo 101 absorption crosses the collection boundary, once, to remove it
+
+- **What:** golden rule 7 forbids two collections being compared, deduped, or considered in reference
+  to each other. The 2026-08-24 absorption of `output/courses/nihongo-101-course-n5` into
+  `output/epubs/japanese-for-busy-people-book-1-kana` does all three, deliberately. Design and full
+  routing table: `docs/designs/nihongo-absorption-2026-08.md`.
+- **Why:** the two decks overlapped on 102 of the course's 236 cards, so those were being studied
+  twice, and the course had been stalled at three lessons for months. The ruling's purpose is that one
+  product's wording must never have to answer for another's. A merge is the one operation that ends
+  the relationship rather than creating one: afterwards there is a single collection and nothing left
+  to compare.
+- **Impact:** this is **not a precedent**, and nothing in the codebase was changed to permit it. No
+  standing check compares collections, and none should be added. If a second course is ever absorbed,
+  it needs its own owner decision; do not cite this entry as prior approval. While the migration is
+  in flight the repo does hold two collections whose content has been compared, which is the exact
+  state the rule exists to prevent, so the window between Phase 1 and Phase 6 should be short.
+- **Verified by:** the two commands in the Verification section of
+  `docs/designs/nihongo-absorption-2026-08.md`
+- **Status:** open until Phase 6 retires the course collection; resolved by its removal
+- **When to revisit:** if the migration stalls part-done. A half-absorbed course is worse than either
+  end state, because the duplicate cards then exist in both decks with divergent review histories.
+
+## Relocated course cards keep a card shape the extras rules forbid for new cards
+
+- **What:** `extras-pass.md` says "Do not add bare vocabulary cards, numbers, or counter recitations."
+  A large share of the 134 cards moving out of Nihongo 101 are exactly that: bare nouns (Toy,
+  Ladybird, Watch, Box, Star), the minute counters, the floor counters.
+- **Why:** that rule governs **authoring new padding**, where a bare noun is filler the pass invented.
+  These are pre-existing cards with real review history that the owner studies daily. Dropping them to
+  satisfy a rule about authoring would delete studied content, which is a worse outcome than an extras
+  unit containing some bare vocabulary.
+- **Impact:** several extras units end up shaped less like the rule describes than a freshly authored
+  unit would be, and a future reader comparing them against `extras-pass.md` will find a discrepancy
+  that is intentional. Each relocated card carries a `reviewNote` naming its Nihongo 101 origin, so
+  the provenance is visible on the card rather than only here.
+- **Verified by:** `grep -l "Nihongo 101" output/epubs/japanese-for-busy-people-book-1-kana/*/cards.json`
+- **Status:** open, and expected to stay open
+- **When to revisit:** if a later pass tries to enforce the no-bare-vocabulary rule mechanically, it
+  must exempt cards carrying the relocation `reviewNote`, or it will propose deleting studied cards.
+
+## Card ids collide across the two bare-guid collections, but only on dropped cards
+
+- **What:** a card id becomes the `abid:<id>` tag `deliver-to-anki.mjs` matches notes by, so a course
+  card moving into the book under an id the book already uses would bind silently to the wrong note.
+  Course and book share eleven ids: `baseball`, `beef`, `beer`, `black`, `camera`, `file`, `pen`,
+  `restroom`, `scarf`, `small`, `white`.
+- **Why:** both collections predate guid namespacing and write bare card ids (see the bare-guid entry
+  above). The overlap is a natural consequence of two Japanese beginner decks covering the same nouns.
+- **Impact:** **zero risk in this migration**, because all eleven land on cards being dropped as
+  duplicates, so none of the 134 moved cards carries a colliding id. `scarf` was initially mis-read as
+  needing a re-id to `mafuraa-scarf`; the book already ships マフラー as `mafuraa` in chapter-14, so the
+  course card is a plain duplicate and no re-id exists anywhere in this work. That conclusion is a
+  property of the current routing, not a guarantee: if any of those eleven is ever reclassified from
+  drop to move, it must be re-idded first.
+- **Verified by:** the card-id collision command in
+  `docs/designs/nihongo-absorption-2026-08.md`, which must print `no colliding moves`
+- **Status:** open while the course exists; resolved when Phase 6 removes it
+- **When to revisit:** before Phase 5 runs, and before any change to the routing table.

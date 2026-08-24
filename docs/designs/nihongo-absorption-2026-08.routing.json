@@ -1,0 +1,2810 @@
+{
+  "_": "Routing table for the 2026-08-24 Nihongo absorption. See docs/designs/nihongo-absorption-2026-08.md. Phase 3 merges from this file.",
+  "rows": [
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Good morning",
+      "target": "おはようございます",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0",
+      "cardId": "irl-l1-01",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Good afternoon",
+      "target": "こんにちは",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0",
+      "cardId": "irl-l1-02",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Good Evening",
+      "target": "こんばんは",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0",
+      "cardId": "irl-l1-03",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Goodbye.",
+      "target": "さようなら",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0",
+      "cardId": "irl-l1-04",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Goodbye.",
+      "target": "じゃあまた",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Chapter-0's set-phrase material; chapter-0 has no extras deck of its own",
+      "cardId": "irl-l1-05",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Sorry / Excuse me",
+      "target": "すみません",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0",
+      "cardId": "irl-l1-06",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Nice to meet you.",
+      "target": "はじめまして",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-07",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Nice to meet you.",
+      "target": "よろしくおねがいします",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-08",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "China",
+      "target": "ちゅうごく",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-09",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Spain",
+      "target": "スペイン",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1 teaches the country and nationality set",
+      "cardId": "irl-l1-10",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Italy",
+      "target": "イタリア",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "irl-l1-11",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Turkey",
+      "target": "トルコ",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1 teaches the country and nationality set",
+      "cardId": "irl-l1-12",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "France",
+      "target": "フランス",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "irl-l1-13",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Korea",
+      "target": "かんこく",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1 teaches the country and nationality set. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
+      "cardId": "irl-l1-14",
+      "category": "Nationalities & Countries",
+      "note": "RESOLVED: the book has かんこく in chapter-6 but its reviewer excluded it, so this is not a duplicate."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Japan",
+      "target": "にほん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-15",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "UK",
+      "target": "イギリス",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-16",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Thailand",
+      "target": "タイ",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1 teaches the country and nationality set",
+      "cardId": "irl-l1-17",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "USA",
+      "target": "アメリカ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-18",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "French Person",
+      "target": "フランスじん",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1 teaches the country and nationality set",
+      "cardId": "irl-l1-19",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Chinese Person",
+      "target": "ちゅうごくじん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-20",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Korean Person",
+      "target": "かんこくじん",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1 teaches the country and nationality set",
+      "cardId": "irl-l1-21",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "English Person",
+      "target": "イギリスじん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-22",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Yes",
+      "target": "はい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "irl-l1-23",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "No",
+      "target": "いいえ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0, chapter-1",
+      "cardId": "irl-l1-24",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "I don't know",
+      "target": "わかりません",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "irl-l1-25",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Is Jack French?",
+      "target": "ジャックさんはフランスじんですか？",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "cardId": "irl-l1-26",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Is Ryan English?",
+      "target": "ライアンさんはイギリスじんですか？",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "cardId": "irl-l1-27",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "This is Ryan from England",
+      "target": "こちらはイギリスのライアンです",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "cardId": "irl-l1-28",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Where are you from?",
+      "target": "しゅっしんはどこですか？",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
+      "cardId": "irl-l1-29",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Nice to meet you, my name is Ryan",
+      "target": "はじめまして。ライアンです",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "cardId": "irl-l1-30",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "I am from England",
+      "target": "わたしはイギリスじんです",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1-extras",
+      "reason": "Already in the book verbatim, in chapter-1-extras",
+      "cardId": "irl-l1-31",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Cook",
+      "target": "コック",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Occupations, alongside Lesson 1's introductions and workplaces",
+      "cardId": "irl-l1-32",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Doctor",
+      "target": "いしゃ",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Occupations, alongside Lesson 1's introductions and workplaces",
+      "cardId": "irl-l1-33",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Teacher",
+      "target": "せんせい",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Occupations, alongside Lesson 1's introductions and workplaces",
+      "cardId": "irl-l1-34",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Student",
+      "target": "がくせい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-6",
+      "reason": "Already in the book verbatim, in chapter-6",
+      "cardId": "irl-l1-35",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Engineer",
+      "target": "エンジニア",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Occupations, alongside Lesson 1's introductions and workplaces",
+      "cardId": "irl-l1-36",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "What is it?",
+      "target": "なんですか",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Identifying an object: Lesson 2's kore wa nan desu ka frame",
+      "cardId": "irl-l1-38",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "What is James's mobile phone number?",
+      "target": "ジェームズさんのけいたいばんごうはなんですか",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2 teaches denwa bangou and the possessive no",
+      "cardId": "irl-l1-37",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "My mobile number is 090-2468-1357.",
+      "target": "わたしのけいたいばんごうはゼロきゅうゼロのによんろくはちのいちさんごななです",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2 teaches denwa bangou and the possessive no. Placeholder [number] replaced with a concrete number, written the way the book writes phone numbers: kana digits joined by の for each hyphen (cf. chapter-2-extras sumisu-san-no-denwa-bangou-wa, 080-1234-5678)",
+      "cardId": "irl-l1-39",
+      "category": "Technology & Communication",
+      "targetWas": "わたしのけいたいばんごうは[number]です",
+      "englishWas": "My phone number is [number]",
+      "note": "RESOLVED: the target carried a literal `[number]`, which preflight's placeholder-target check fails. Rewritten to a concrete number in the book's own style."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Address",
+      "target": "じゅうしょ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "irl-l1-46",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Where is the hotel address?",
+      "target": "ホテルのじゅうしょはどこですか",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
+      "cardId": "irl-l1-40",
+      "category": "Travel & Tourism"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "My address is...",
+      "target": "わたしのじゅうしょは",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2 teaches juusho (address)",
+      "cardId": "irl-l1-41",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "The hotel address is",
+      "target": "ホテルのじゅうしょは",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2 teaches juusho (address)",
+      "cardId": "irl-l1-42",
+      "category": "Travel & Tourism"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "How much is it?",
+      "target": "いくらですか",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4-extras",
+      "reason": "Already in the book verbatim, in chapter-4-extras",
+      "cardId": "irl-l1-43",
+      "category": "Money"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Business card",
+      "target": "めいし",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "irl-l1-44",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 1",
+      "english": "Name",
+      "target": "なまえ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "irl-l1-45",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Bag",
+      "target": "かばん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "bag",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Glasses",
+      "target": "めがね",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "glasses",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Wallet",
+      "target": "さいふ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "wallet",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Book",
+      "target": "ほん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "book",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Pen",
+      "target": "ペン",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "pen",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Smartphone",
+      "target": "スマホ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "smartphone",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Key",
+      "target": "かぎ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "key",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "File",
+      "target": "ファイル",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "file",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Umbrella",
+      "target": "かさ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "umbrella",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Is this a pen?",
+      "target": "これはペンですか",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2's kore wa ... desu / ja arimasen possession frame",
+      "cardId": "is-this-a-pen",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "This is not a pen.",
+      "target": "これはペンじゃありません",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2's kore wa ... desu / ja arimasen possession frame",
+      "cardId": "this-is-not-a-pen",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "This is my pen.",
+      "target": "これはわたしのペンです",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "this-is-my-pen",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "This is not my pen.",
+      "target": "これはわたしのペンじゃありません",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2's kore wa ... desu / ja arimasen possession frame",
+      "cardId": "this-is-not-my-pen",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Food",
+      "target": "たべもの",
+      "disposition": "move",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8 is the eating and drinking lesson",
+      "cardId": "food",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Drink",
+      "target": "のみもの",
+      "disposition": "move",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 already teaches nomimono",
+      "cardId": "drink",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Celebrity",
+      "target": "セレブ",
+      "disposition": "move",
+      "destination": "chapter-15-extras",
+      "reason": "Entertainment/media, alongside Lesson 15's anime and music",
+      "cardId": "celebrity",
+      "category": "Family & People",
+      "note": "RESOLVED: no strong chapter fit; parked with Lesson 15 (media and entertainment)."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Sport",
+      "target": "スポーツ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-15",
+      "reason": "Already in the book verbatim, in chapter-15",
+      "cardId": "sport",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Animal",
+      "target": "どうぶつ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "cardId": "animal",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Expensive",
+      "target": "たかい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-10",
+      "reason": "Already in the book verbatim, in chapter-10",
+      "cardId": "expensive",
+      "category": "Money"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Cheap",
+      "target": "やすい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-10",
+      "reason": "Already in the book verbatim, in chapter-10",
+      "cardId": "cheap",
+      "category": "Money"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "One minute",
+      "target": "いっぷん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "one-minute",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Nine minutes",
+      "target": "きゅうふん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "nine-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Six minutes",
+      "target": "ろっぷん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "six-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Three minutes",
+      "target": "さんぷん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "three-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Seven minutes",
+      "target": "ななふん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "seven-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Two minutes",
+      "target": "にふん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "two-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Ten minutes",
+      "target": "じゅっぷん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "ten-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Four minutes",
+      "target": "よんぷん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "four-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Eight minutes",
+      "target": "はっぷん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "eight-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Five minutes",
+      "target": "ごふん",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches the ...fun minute counter",
+      "cardId": "five-minutes",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Eight o'clock",
+      "target": "はちじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "eight-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Seven o'clock",
+      "target": "しちじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "seven-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Three o'clock",
+      "target": "さんじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "three-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "One o'clock",
+      "target": "いちじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "one-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Six o'clock",
+      "target": "ろくじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "six-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Five o'clock",
+      "target": "ごじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "five-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Eleven o'clock",
+      "target": "じゅういちじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "eleven-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Ten o'clock",
+      "target": "じゅうじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "ten-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Two o'clock",
+      "target": "にじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "two-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Twelve o'clock",
+      "target": "じゅうにじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "twelve-oclock",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "AM (in the morning)",
+      "target": "ごぜん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "am-in-the-morning",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "PM (in the afternoon)",
+      "target": "ごご",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "pm-in-the-afternoon",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "5 AM",
+      "target": "ごぜんごじ",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches gozen/gogo with the hours",
+      "cardId": "5-am",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "9 PM",
+      "target": "ごごくじ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "9-pm",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "What",
+      "target": "なに",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-8",
+      "reason": "Already in the book verbatim, in chapter-8",
+      "cardId": "what",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Who",
+      "target": "だれ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "who",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Where",
+      "target": "どこ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "where",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Why",
+      "target": "どうして",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "doushite becomes answerable once Lesson 14 teaches kara (because)",
+      "cardId": "why",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "When",
+      "target": "いつ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "when",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "How",
+      "target": "どうやって",
+      "disposition": "move",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7 asks dou yatte ikimasu ka about transport",
+      "cardId": "how",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "About (approximately)",
+      "target": "ぐらい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-11",
+      "reason": "Already in the book verbatim, in chapter-11",
+      "cardId": "about-approximately",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "It's about ten minutes.",
+      "target": "じゅっぷんぐらいです",
+      "disposition": "move",
+      "destination": "chapter-11-extras",
+      "reason": "gurai (approximately) is taught in Lesson 11",
+      "cardId": "about-ten-minutes-approx",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Around (a time)",
+      "target": "ごろ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-13",
+      "reason": "Already in the book verbatim, in chapter-13",
+      "cardId": "around-a-time",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "It's around one o'clock now.",
+      "target": "いまいちじごろです",
+      "disposition": "move",
+      "destination": "chapter-13-extras",
+      "reason": "goro (around a time) is taught in Lesson 13",
+      "cardId": "around-one-oclock-now",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "What time is it now?",
+      "target": "いまなんじですか",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3-extras",
+      "reason": "Already in the book verbatim, in chapter-3-extras",
+      "cardId": "what-time-is-it-now",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "It's 9:01 now.",
+      "target": "いまくじいっぷんです",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Built entirely from Lesson 3's clock vocabulary",
+      "cardId": "its-9-01-now",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "From what time to what time is the gym open?",
+      "target": "ジムはなんじからなんじまでですか",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Built entirely from Lesson 3's clock vocabulary",
+      "cardId": "from-what-time-to-what-time-is-the-gym-o",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "What time is it now in the UK?",
+      "target": "イギリスはいまなんじですか",
+      "disposition": "move",
+      "destination": "chapter-3-extras",
+      "reason": "Built entirely from Lesson 3's clock vocabulary",
+      "cardId": "what-time-is-it-now-in-the-uk",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "What time is it now in France?",
+      "target": "フランスはいまなんじですか",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Same frame, but Furansu is first carded in Lesson 5",
+      "cardId": "what-time-is-it-now-in-france",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Tomorrow",
+      "target": "あした",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "tomorrow",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Today",
+      "target": "きょう",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "today",
+      "category": "Time"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Yesterday",
+      "target": "きのう",
+      "disposition": "move",
+      "destination": "chapter-6-extras",
+      "reason": "Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
+      "cardId": "yesterday",
+      "category": "Time",
+      "note": "RESOLVED: the book has きのう in chapter-6 but its reviewer excluded it, so this is not a duplicate."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "How are you?",
+      "target": "げんきですか",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
+      "cardId": "how-are-you",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "I'm well.",
+      "target": "げんきです",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
+      "cardId": "im-well",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "I'm not well.",
+      "target": "げんきじゃないです",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
+      "cardId": "im-not-well",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Congratulations!",
+      "target": "おめでとう",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Chapter-0's set-phrase material; chapter-0 has no extras deck of its own",
+      "cardId": "congratulations",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Toy",
+      "target": "おもちゃ",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Everyday objects, Lesson 2's own vocabulary field",
+      "cardId": "toy",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Ladybird",
+      "target": "てんとうむし",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "cardId": "ladybird",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Watch",
+      "target": "うでどけい",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Everyday objects, Lesson 2's own vocabulary field",
+      "cardId": "watch",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Mobile phone",
+      "target": "けいたい",
+      "disposition": "move",
+      "destination": "chapter-2-extras",
+      "reason": "Everyday objects, Lesson 2's own vocabulary field",
+      "cardId": "mobile-phone",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Notebook",
+      "target": "ノート",
+      "disposition": "move",
+      "destination": "chapter-13-extras",
+      "reason": "Lesson 13's stationery set (eraser, pencil, scissors, clear file)",
+      "cardId": "notebook",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Water",
+      "target": "みず",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-8",
+      "reason": "Already in the book verbatim, in chapter-8",
+      "cardId": "water",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Personal computer",
+      "target": "パソコン",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4",
+      "reason": "Already in the book verbatim, in chapter-4",
+      "cardId": "personal-computer",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Mouse (computer)",
+      "target": "マウス",
+      "disposition": "move",
+      "destination": "chapter-4-extras",
+      "reason": "Lesson 4's consumer-electronics set",
+      "cardId": "mouse-computer",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Remote control",
+      "target": "リモコン",
+      "disposition": "move",
+      "destination": "chapter-4-extras",
+      "reason": "Lesson 4's consumer-electronics set",
+      "cardId": "remote-control",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Ring",
+      "target": "ゆびわ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-14",
+      "reason": "Already in the book verbatim, in chapter-14",
+      "cardId": "ring",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Table",
+      "target": "テーブル",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-12",
+      "reason": "Already in the book verbatim, in chapter-12",
+      "cardId": "table",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Desk",
+      "target": "つくえ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-12",
+      "reason": "Already in the book verbatim, in chapter-12",
+      "cardId": "desk",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Chair",
+      "target": "いす",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-12",
+      "reason": "Already in the book verbatim, in chapter-12",
+      "cardId": "chair",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Amazing!",
+      "target": "すごい",
+      "disposition": "move",
+      "destination": "chapter-15-extras",
+      "reason": "Exclamations of praise sit with Lesson 15's sugoi / jouzu",
+      "cardId": "amazing",
+      "category": "Emotions & Feelings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Basketball",
+      "target": "バスケットボール",
+      "disposition": "move",
+      "destination": "chapter-15-extras",
+      "reason": "Sports, Lesson 15's vocabulary field",
+      "cardId": "basketball",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Football",
+      "target": "サッカー",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-15",
+      "reason": "Already in the book verbatim, in chapter-15",
+      "cardId": "football",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Tennis",
+      "target": "テニス",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-15",
+      "reason": "Already in the book verbatim, in chapter-15",
+      "cardId": "tennis",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Baseball",
+      "target": "やきゅう",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-15",
+      "reason": "Already in the book verbatim, in chapter-15",
+      "cardId": "baseball",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Table tennis",
+      "target": "たっきゅう",
+      "disposition": "move",
+      "destination": "chapter-15-extras",
+      "reason": "Sports, Lesson 15's vocabulary field",
+      "cardId": "table-tennis",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Lion",
+      "target": "ライオン",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "cardId": "lion",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Dog",
+      "target": "いぬ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "cardId": "dog",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Cat",
+      "target": "ねこ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "cardId": "cat",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Green tea",
+      "target": "おちゃ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-8",
+      "reason": "Already in the book verbatim, in chapter-8",
+      "cardId": "green-tea",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Black tea",
+      "target": "こうちゃ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4",
+      "reason": "Already in the book verbatim, in chapter-4",
+      "cardId": "black-tea",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Cute",
+      "target": "かわいい",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "i-adjective describing things, Lesson 10's job",
+      "cardId": "cute",
+      "category": "Emotions & Feelings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Water bottle",
+      "target": "すいとう",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Shopping goods, Lesson 5's field",
+      "cardId": "water-bottle",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Tasty",
+      "target": "おいしい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-10",
+      "reason": "Already in the book verbatim, in chapter-10",
+      "cardId": "tasty",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Work",
+      "target": "しごと",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3",
+      "cardId": "work",
+      "category": "Work & Occupations"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Meat",
+      "target": "にく",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Shopping goods, Lesson 5's field",
+      "cardId": "meat",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Cloth",
+      "target": "ぬの",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Shopping goods, Lesson 5's field",
+      "cardId": "cloth",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Box",
+      "target": "はこ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Room and container objects, alongside Lesson 12's desk/chair/bed",
+      "cardId": "box",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Clothes",
+      "target": "ふく",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Shopping goods, Lesson 5's field",
+      "cardId": "clothes",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Fire",
+      "target": "ひ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Placed with Lesson 12's existence sentences for want of a better home",
+      "cardId": "fire",
+      "category": "Emergencies",
+      "note": "RESOLVED: no strong chapter fit; parked with Lesson 12."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 2",
+      "english": "Star",
+      "target": "ほし",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Placed with Lesson 12's existence sentences for want of a better home",
+      "cardId": "star",
+      "category": "Weather & Nature",
+      "note": "RESOLVED: no strong chapter fit; parked with Lesson 12."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "To swim",
+      "target": "およぐ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-15",
+      "reason": "Already in the book verbatim, in chapter-15",
+      "cardId": "to-swim",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "To swim",
+      "target": "すいえいをします",
+      "disposition": "move",
+      "destination": "chapter-15-extras",
+      "reason": "Lesson 15 teaches suiei and the sport/hobby set",
+      "cardId": "to-swim-2",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "One more time, please.",
+      "target": "もういちどおねがいします",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "Already in the book verbatim, in chapter-0",
+      "cardId": "one-more-time-please",
+      "category": "Greetings"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This one",
+      "target": "これ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "this-one",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That one",
+      "target": "それ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4",
+      "reason": "Already in the book verbatim, in chapter-4",
+      "cardId": "that-one",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That one over there",
+      "target": "あれ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4",
+      "reason": "Already in the book verbatim, in chapter-4",
+      "cardId": "that-one-over-there",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This one",
+      "target": "こちら",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1",
+      "cardId": "this-one-polite",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That one",
+      "target": "そちら",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-6",
+      "reason": "Already in the book verbatim, in chapter-6",
+      "cardId": "that-one-polite",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That one over there",
+      "target": "あちら",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "that-one-over-there-polite",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This ___",
+      "target": "この",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "this",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That ___",
+      "target": "その",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "that",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That ___ over there",
+      "target": "あの",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "that-over-there",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "I am a student.",
+      "target": "わたしはがくせいです",
+      "disposition": "move",
+      "destination": "chapter-6-extras",
+      "reason": "gakusei is taught in Lesson 6",
+      "cardId": "i-am-a-student",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "I eat sushi.",
+      "target": "すしをたべます",
+      "disposition": "move",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's o-particle + tabemasu frame",
+      "cardId": "i-eat-sushi",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Sweets",
+      "target": "おかし",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-2",
+      "reason": "Already in the book verbatim, in chapter-2",
+      "cardId": "sweets",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Fish",
+      "target": "さかな",
+      "disposition": "move",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's o-particle + tabemasu frame",
+      "cardId": "fish",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Beef",
+      "target": "ぎゅうにく",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "beef",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Vegetables",
+      "target": "やさい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-9",
+      "reason": "Already in the book verbatim, in chapter-9",
+      "cardId": "vegetables",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Peach",
+      "target": "もも",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Shopping food and containers, Lesson 5's field",
+      "cardId": "peach",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Pizza",
+      "target": "ピザ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-15",
+      "reason": "Already in the book verbatim, in chapter-15",
+      "cardId": "pizza",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Beer",
+      "target": "ビール",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "beer",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Plastic bottle",
+      "target": "ペットボトル",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Shopping food and containers, Lesson 5's field",
+      "cardId": "plastic-bottle",
+      "category": "Home & Household"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Pretty",
+      "target": "きれいな",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "na-adjective describing things, Lesson 10's job",
+      "cardId": "pretty",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a pretty bag.",
+      "target": "これはきれいなかばんです",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "na-adjective describing things, Lesson 10's job",
+      "cardId": "kore-wa-kirei-na-kaban-desu",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Cool",
+      "target": "かっこいい",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "i-adjective describing things, Lesson 10's job",
+      "cardId": "cool",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Small",
+      "target": "ちいさい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "small",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Big",
+      "target": "おおきい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "big",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Spicy",
+      "target": "からい",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "i-adjective describing things, Lesson 10's job",
+      "cardId": "spicy",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Long",
+      "target": "ながい",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "i-adjective describing things, Lesson 10's job",
+      "cardId": "long",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Clear",
+      "target": "とうめいな",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "na-adjective describing things, Lesson 10's job",
+      "cardId": "clear",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a clear umbrella.",
+      "target": "これはとうめいなかさです",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "na-adjective describing things, Lesson 10's job",
+      "cardId": "kore-wa-toumei-na-kasa-desu",
+      "category": "Other"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Yellow",
+      "target": "きいろい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "yellow",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Brown",
+      "target": "ちゃいろい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "brown",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Green",
+      "target": "みどりの",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "green",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "White",
+      "target": "しろい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "white",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Black",
+      "target": "くろい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "black",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Purple",
+      "target": "むらさきの",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "purple",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Pink",
+      "target": "ピンクの",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "pink",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Orange",
+      "target": "オレンジの",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "orange",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Grey",
+      "target": "はいいろの",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "grey",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a yellow umbrella.",
+      "target": "これはきいろいかさです",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "eg-kiiroi-kasa",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "These are yellow socks.",
+      "target": "これはきいろのくつしたです",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "eg-kiiro-no-kutsushita",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a brown desk.",
+      "target": "これはちゃいろいつくえです",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Colour sentence built on tsukue, which Lesson 12 teaches",
+      "cardId": "eg-chairoi-tsukue",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a black belt.",
+      "target": "これはくろいベルトです",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "eg-kuroi-beruto",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a green pen.",
+      "target": "これはみどりのペンです",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "eg-midori-no-pen",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is a pink bag.",
+      "target": "これはピンクのかばんです",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "cardId": "eg-pinku-no-kaban",
+      "category": "Colors"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Sweatshirt",
+      "target": "トレーナー",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "sweatshirt",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Hoodie",
+      "target": "パーカー",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "hoodie",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Scarf",
+      "target": "マフラー",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-14",
+      "reason": "Already in the book verbatim, in chapter-14",
+      "cardId": "scarf",
+      "category": "Clothing",
+      "note": "RESOLVED: card-id collision with the book's `scarf` (スカーフ) in chapter-14. This one is マフラー, so it ships as `mafuraa-scarf` and its live note is re-tagged abid:scarf -> abid:mafuraa-scarf. Both gloss \"Scarf\", so it also needs a hint or scene cue."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Belt",
+      "target": "ベルト",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "belt",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Hat",
+      "target": "ぼうし",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "hat",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Socks",
+      "target": "くつした",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "socks",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Three books",
+      "target": "さんさつ",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the counter series",
+      "cardId": "three-books",
+      "category": "Numbers"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "One book",
+      "target": "いっさつ",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the counter series",
+      "cardId": "one-book",
+      "category": "Numbers"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Two books",
+      "target": "にさつ",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the counter series",
+      "cardId": "two-books",
+      "category": "Numbers"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Which floor?",
+      "target": "なんがいですか",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "which-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "4th floor",
+      "target": "よんかい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "4th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "9th floor",
+      "target": "きゅうかい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "9th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "2nd floor",
+      "target": "にかい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "2nd-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "7th floor",
+      "target": "ななかい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "7th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "10th floor",
+      "target": "じゅっかい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "10th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "1st floor",
+      "target": "いっかい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "1st-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "6th floor",
+      "target": "ろっかい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "6th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "3rd floor",
+      "target": "さんがい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "3rd-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "8th floor",
+      "target": "はっかい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "8th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "5th floor",
+      "target": "ごかい",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "5th-floor",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Car park",
+      "target": "ちゅうしゃじょう",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-12",
+      "reason": "Already in the book verbatim, in chapter-12",
+      "cardId": "car-park",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Pharmacy",
+      "target": "やっきょく",
+      "disposition": "move",
+      "destination": "chapter-13-extras",
+      "reason": "Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)",
+      "cardId": "pharmacy",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Rooftop",
+      "target": "おくじょう",
+      "disposition": "move",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches the floor counters and the basement/floor vocabulary",
+      "cardId": "rooftop",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Restroom",
+      "target": "おてあらい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "restroom",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Town",
+      "target": "まち",
+      "disposition": "move",
+      "destination": "chapter-13-extras",
+      "reason": "Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)",
+      "cardId": "town",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Ear",
+      "target": "みみ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "No natural chapter; parked with Lesson 12 pending your call",
+      "cardId": "ear",
+      "category": "Body & Health",
+      "note": "RESOLVED: no body-parts chapter exists anywhere in the book; parked with Lesson 12."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Eye",
+      "target": "め",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "No natural chapter; parked with Lesson 12 pending your call",
+      "cardId": "eye",
+      "category": "Body & Health",
+      "note": "RESOLVED: no body-parts chapter exists anywhere in the book; parked with Lesson 12."
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Insect",
+      "target": "むし",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Creatures, with Lesson 12's animate imasu",
+      "cardId": "insect",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Snow",
+      "target": "ゆき",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-16",
+      "reason": "Already in the book verbatim, in chapter-16",
+      "cardId": "snow",
+      "category": "Weather & Nature"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Side",
+      "target": "よこ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Lesson 12's position words (ue/shita/tonari/chikaku)",
+      "cardId": "side",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Camera",
+      "target": "カメラ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "camera",
+      "category": "Technology & Communication"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Camel",
+      "target": "らくだ",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Creatures, with Lesson 12's animate imasu",
+      "cardId": "camel",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Squirrel",
+      "target": "りす",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Creatures, with Lesson 12's animate imasu",
+      "cardId": "squirrel",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Crocodile",
+      "target": "わに",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Creatures, with Lesson 12's animate imasu",
+      "cardId": "crocodile",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This is expensive.",
+      "target": "これはたかいです",
+      "disposition": "move",
+      "destination": "chapter-10-extras",
+      "reason": "i-adjective describing things, Lesson 10's job",
+      "cardId": "fib-kore-wa-takai-desu",
+      "category": "Money"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "This hat is cute.",
+      "target": "このぼうしはかわいいです",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "fib-kono-boushi-wa-kawaii-desu",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "I eat vegetables.",
+      "target": "やさいをたべます",
+      "disposition": "move",
+      "destination": "chapter-9-extras",
+      "reason": "yasai is taught in Lesson 9",
+      "cardId": "fib-yasai-o-tabemasu",
+      "category": "Food"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "I am an engineer.",
+      "target": "わたしはエンジニアです",
+      "disposition": "move",
+      "destination": "chapter-1-extras",
+      "reason": "Uses Lesson 1's introduction frame plus the engineer card routed here",
+      "cardId": "fib-watashi-wa-enjinia-desu",
+      "category": "School & Education"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "These are black socks.",
+      "target": "これはくろいくつしたです",
+      "disposition": "move",
+      "destination": "chapter-14-extras",
+      "reason": "Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
+      "cardId": "fib-kore-wa-kuroi-kutsushita-desu",
+      "category": "Clothing"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "What floor is the car park on?",
+      "target": "ちゅうしゃじょうはなんがいですか",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "chuushajou is taught in Lesson 12",
+      "cardId": "fib-chuushajou-wa-nangai-desu-ka",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "It's the 3rd floor.",
+      "target": "さんがいです",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-5",
+      "reason": "Already in the book verbatim, in chapter-5",
+      "cardId": "fib-sangai-desu",
+      "category": "Directions"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "Crocodiles are long.",
+      "target": "わにはながいです",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Creatures, with Lesson 12's animate imasu",
+      "cardId": "fib-wani-wa-nagai-desu",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "What is that, over there?",
+      "target": "あれはなんですか",
+      "disposition": "move",
+      "destination": "chapter-4-extras",
+      "reason": "are is first taught in Lesson 4",
+      "cardId": "fib-are-wa-nan-desu-ka",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "source": "Nihongo 101 · Lesson 3",
+      "english": "That over there is a crocodile.",
+      "target": "あれはわにです",
+      "disposition": "move",
+      "destination": "chapter-12-extras",
+      "reason": "Creatures, with Lesson 12's animate imasu",
+      "cardId": "fib-sore-wa-wani-desu",
+      "category": "Animals"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Recommended shop / restaurant",
+      "target": "おすすめのみせ",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches osusume; mise is Lesson 3"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "The worst / terrible",
+      "target": "さいあく",
+      "disposition": "new",
+      "destination": "chapter-11-extras",
+      "reason": "Evaluative impression, Lesson 11's field"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "The best / great",
+      "target": "さいこう",
+      "disposition": "new",
+      "destination": "chapter-11-extras",
+      "reason": "Evaluative impression, Lesson 11's field"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Busy",
+      "target": "いそがしい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-11",
+      "reason": "Already in the book verbatim, in chapter-11"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Pretty / beautiful / clean",
+      "target": "きれい",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-10",
+      "reason": "Already in the book verbatim, in chapter-10"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Company employee",
+      "target": "かいしゃいん",
+      "disposition": "new",
+      "destination": "chapter-2-extras",
+      "reason": "Built on kaisha, which Lesson 2 teaches"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Eat dinner",
+      "target": "ばんごはんをたべます",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8 teaches bangohan and tabemasu"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Korean food",
+      "target": "かんこくりょうり",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Lesson 15 teaches ryouri (Italian cuisine)"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Study Japanese",
+      "target": "にほんごをべんきょうします",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches nihongo; benkyou shimasu is Lesson 8"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Italian (the language)",
+      "target": "イタリアご",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches kotoba and nihongo, the language set"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "English (the language)",
+      "target": "えいご",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches kotoba and nihongo, the language set"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Japanese person",
+      "target": "にほんじん",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Go to the gym",
+      "target": "ジムにいきます",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Lesson 6's ni + ikimasu; jimu is Lesson 3"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "To go sightseeing",
+      "target": "かんこうする",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Dictionary form, which Lesson 15 introduces"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "To ride a bicycle",
+      "target": "じてんしゃにのる",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Dictionary form; jitensha is Lesson 7"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Cycling",
+      "target": "サイクリング",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "Sport/hobby, Lesson 15's field"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "What is it?",
+      "target": "なんですか",
+      "disposition": "drop-duplicate",
+      "destination": "",
+      "reason": "Duplicates Nihongo 101 card irl-l1-38, which is moving with its review history. Ship that one.",
+      "note": "RESOLVED: duplicates Nihongo 101 card irl-l1-38, which ships instead because it has review history."
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "When is it?",
+      "target": "いつですか",
+      "disposition": "new",
+      "destination": "chapter-3-extras",
+      "reason": "Lesson 3 teaches itsu"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Where is it?",
+      "target": "どこですか",
+      "disposition": "new",
+      "destination": "chapter-5-extras",
+      "reason": "Lesson 5 teaches doko"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Who is it?",
+      "target": "だれですか",
+      "disposition": "new",
+      "destination": "chapter-2-extras",
+      "reason": "Lesson 2 teaches dare"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Why is that?",
+      "target": "どうしてですか",
+      "disposition": "new",
+      "destination": "chapter-14-extras",
+      "reason": "Answerable once Lesson 14 teaches kara (because)"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "How much is it?",
+      "target": "いくらですか",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-4-extras",
+      "reason": "Already in the book verbatim, in chapter-4-extras"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Same",
+      "target": "おなじ",
+      "disposition": "new",
+      "destination": "chapter-10-extras",
+      "reason": "Comparing and describing, Lesson 10's field"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Day off / holiday",
+      "target": "やすみ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-3",
+      "reason": "Already in the book verbatim, in chapter-3, chapter-7"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Souvenir",
+      "target": "おみやげ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-11",
+      "reason": "Already in the book verbatim, in chapter-11"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "On foot",
+      "target": "あるいて",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-7",
+      "reason": "Already in the book verbatim, in chapter-7"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "On foot (variant)",
+      "target": "あるきで",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Variant of Lesson 7's aruite"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Go to the office",
+      "target": "かいしゃにいきます",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Lesson 6's ni + ikimasu; kaisha is Lesson 2"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "How do you get to the gym?",
+      "target": "どうやってジムにいきますか",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7's dou yatte ikimasu ka — REWRITTEN from the PDF's schematic 〜 form",
+      "note": "The PDF writes this schematically as どうやって〜にいきますか. A shipped target containing 〜 is a preflight FAIL, so it is rewritten around ジム."
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "I walk to the gym.",
+      "target": "ジムにあるいていきます",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7 teaches aruite as a means of going"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "University",
+      "target": "だいがく",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-1",
+      "reason": "Already in the book verbatim, in chapter-1"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Go / will go",
+      "target": "いきます",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-6",
+      "reason": "Already in the book verbatim, in chapter-6"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Went",
+      "target": "いきました",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-6",
+      "reason": "Already in the book verbatim, in chapter-6"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Don't go / won't go",
+      "target": "いきません",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Completes Lesson 6's ikimasu paradigm"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Didn't go",
+      "target": "いきませんでした",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Completes Lesson 6's ikimasu paradigm"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Every Monday",
+      "target": "まいしゅうげつようび",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches maishuu; getsuyoubi is Lesson 7"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Here",
+      "target": "ここ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-9",
+      "reason": "Already in the book verbatim, in chapter-9"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "There",
+      "target": "そこ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-13",
+      "reason": "Already in the book verbatim, in chapter-13"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1–2 PDF",
+      "english": "Over there",
+      "target": "あそこ",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-13",
+      "reason": "Already in the book verbatim, in chapter-13"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What time do you get up every day?",
+      "target": "まいにち、なんじにおきますか",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9's mainichi + habitual verb; nanji is Lesson 3"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I get up at eight o’clock.",
+      "target": "わたしは、はちじにおきます",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Answer to the okimasu question routed here"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What did you eat yesterday?",
+      "target": "きのう、なにをたべましたか",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's past-tense nani o tabemashita ka"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I ate a hamburger.",
+      "target": "ハンバーガーをたべました",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Answer to the tabemashita question routed here"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "How do you go to work?",
+      "target": "どうやってしごとにいきますか",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7's dou yatte; shigoto is Lesson 3"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I go to work by bus.",
+      "target": "バスでしごとにいきます",
+      "disposition": "new",
+      "destination": "chapter-7-extras",
+      "reason": "Lesson 7's de of means (basu de)"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What did you do last weekend?",
+      "target": "せんしゅうまつ、なにをしましたか",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's past-tense nani o shimashita ka"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I ate pizza with a friend.",
+      "target": "ともだちとピザをたべました",
+      "disposition": "new",
+      "destination": "chapter-15-extras",
+      "reason": "piza is taught in Lesson 15; tomodachi and to are Lesson 6"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I went to the cinema.",
+      "target": "えいがかんにいきました",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Built on Lesson 8's eiga"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What do you do on Sundays?",
+      "target": "にちようび、なにをしますか",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Lesson 8's nani o shimasu ka; nichiyoubi is Lesson 7"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "On Sundays I do housework.",
+      "target": "にちようび、かじをします",
+      "disposition": "new",
+      "destination": "chapter-8-extras",
+      "reason": "Answer using Lesson 8's o + shimasu"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "How did you come here today?",
+      "target": "きょう、どうやってここにきましたか",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Lesson 9 teaches koko; kimashita is Lesson 6"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I came here by train.",
+      "target": "でんしゃでここにきました",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Answer using Lesson 9's koko and Lesson 7's densha de"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "What time did you go to bed last night?",
+      "target": "さくばん、なんじにねましたか",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Past-tense habitual question, paired with the okimasu set routed here"
+    },
+    {
+      "source": "Nihongo 102 · Extra questions PDF",
+      "english": "I went to bed at twelve.",
+      "target": "じゅうにじにねました",
+      "disposition": "new",
+      "destination": "chapter-9-extras",
+      "reason": "Answer to the nemashita question routed here"
+    }
+  ]
+}

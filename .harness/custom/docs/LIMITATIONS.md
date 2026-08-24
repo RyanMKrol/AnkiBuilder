@@ -3327,3 +3327,28 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   `docs/designs/nihongo-absorption-2026-08.md`, which must print `no colliding moves`
 - **Status:** open while the course exists; resolved when Phase 6 removes it
 - **When to revisit:** before Phase 5 runs, and before any change to the routing table.
+
+## A relocated card carrying `fillInBlank` is DELETED by the next `prepare`
+
+- **What:** `fillInBlank: true` means "the drill miner produced this card for THIS unit". Nine cards
+  moved out of the Nihongo 101 course carried it, because the course's own miner had produced them
+  there. On the first `prepare` after the move, the miner saw a flagged card it did not recognise as
+  its own and dropped it: "fill-in-the-blank: dropped 1 unmarked practice card(s) from an earlier
+  run". `fib-watashi-wa-enjinia-desu` was deleted from chapter-1-extras that way, a card with real
+  review history in the live collection.
+- **Why it is easy to hit:** the drop is correct behaviour for the case it was written for, which is
+  a half-finished run leaving orphan drills behind. Nothing distinguishes that from a card the flag
+  followed into a new home. The message is printed, not raised, so a batch run scrolls past it.
+- **Impact:** the card is gone from `cards.json` with no exclusion record, so it does not appear in
+  any review, any audit, or the exclusion counts. `scripts/absorb-nihongo.mjs` now strips the flag on
+  relocation, which is correct on its own terms: the card is no longer part of any drill block, and
+  leaving the flag also exposes it to the semantic de-dup, which only ever considers flagged cards
+  and could exclude it as a repeat of a block it was never in. Provenance survives in the card's
+  `reviewNote`. **Any future relocation of cards between units must strip it too.**
+- **Verified by:** the moved-cards-present command in the Verification section of
+  `docs/designs/nihongo-absorption-2026-08.md`, which must print `all moved cards present` and
+  `none carries fillInBlank`
+- **Status:** resolved for this migration (2026-08-24); the underlying sharp edge in `prepare` is open
+- **When to revisit:** if a second migration relocates cards. The durable fix would be for the miner
+  to report what it dropped as an exclusion with provenance rather than deleting outright, so a
+  silent removal becomes a visible one.

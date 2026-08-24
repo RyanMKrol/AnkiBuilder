@@ -618,5 +618,27 @@ console.log(bad.length?"COLLIDING MOVES: "+bad.join(", "):"no colliding moves");
 '
 ```
 
-The second one must print `no colliding moves`. If it does not, a card is about to bind to the wrong
+Every routed card actually landed, and none still carries `fillInBlank`:
+
+```sh
+node -e '
+const fs=require("fs"),path=require("path");
+const book="output/epubs/japanese-for-busy-people-book-1-kana";
+const rows=JSON.parse(fs.readFileSync("docs/designs/nihongo-absorption-2026-08.routing.json")).rows;
+const missing=[],flagged=[];
+for(const r of rows.filter(x=>x.disposition==="move")){
+  const items=JSON.parse(fs.readFileSync(path.join(book,r.destination,"cards.json"))).items;
+  const c=items.find(i=>i.id===r.cardId);
+  if(!c) missing.push(r.cardId+" ("+r.destination+")");
+  else if(c.fillInBlank) flagged.push(r.cardId);
+}
+console.log(missing.length?"MISSING: "+missing.join(", "):"all moved cards present");
+console.log(flagged.length?"STILL FLAGGED: "+flagged.join(", "):"none carries fillInBlank");
+'
+```
+
+Both lines must be the clean ones. A missing card means `prepare` deleted it: see the LIMITATIONS
+entry on the `fillInBlank` flag.
+
+The card-id collision check must print `no colliding moves`. If it does not, a card is about to bind to the wrong
 Anki note and Phase 5 must stop until it is re-idded.

@@ -113,6 +113,15 @@ for (const r of rows) {
     if (r.targetWas) card.target = r.target;
     if (r.englishWas) card.english = r.english;
     if (r.targetWas && r.pronunciation) card.pronunciation = r.pronunciation;
+    // STRIP `fillInBlank`. It means "this card was mined by the drill pass FOR THIS UNIT", which
+    // stops being true the moment the card is relocated. Two passes act on the flag and both are
+    // destructive here: `prepare`'s miner DELETES flagged cards it does not recognise as its own
+    // ("dropped N unmarked practice card(s) from an earlier run"), and the semantic de-dup only ever
+    // considers flagged cards, so a relocated one can be excluded as a repeat of the drill block it
+    // was never part of. The first of those silently deleted a card with real review history before
+    // this line existed. Provenance is not lost: the reviewNote below records where the card came
+    // from, which is the durable record anyway.
+    delete card.fillInBlank;
     if (r.cueOnMerge) {
       card.hint = r.cueOnMerge.hint;
       if (r.cueOnMerge.note) card.note = r.cueOnMerge.note;

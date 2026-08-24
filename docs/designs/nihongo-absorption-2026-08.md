@@ -162,6 +162,22 @@ aborts the run. A card in a filtered deck is skipped and reported rather than mo
 The dry run on 2026-08-24 resolved all 133 moved cards by `abid`, with none unresolved and none
 filtered: 266 cards across 15 destination decks.
 
+## One card missed the cross-lesson note pass
+
+`prepare` runs the cross-lesson note pass over the whole unit, moved cards included, and writes a
+`note` on any card it thinks it can improve. That happened normally everywhere except one card.
+
+`chapter-1-extras` was finalized twice: once before the `fillInBlank` deletion was found, and again
+after `fib-watashi-wa-enjinia-desu` was restored. The pass records itself in `meta.passes`, so the
+second run skipped it ("completed in an earlier run (notesEnhanced marker set)"). The first run had
+therefore seen a card set that did not include the restored card, and the second did not look again.
+
+So `fib-watashi-wa-enjinia-desu` carries the note it had in the Nihongo 101 course and has never been
+considered against its new neighbours. It is one card, the pass writes enrichment rather than
+correctness, and re-running it over the unit would rewrite every other card's notes to fix one. The
+honest fix is to read that card at gate 1. Flagged here so it is a known gap rather than an invisible
+one.
+
 ## The routing table
 
 Grouped by destination, which is the order Phase 3 works in.

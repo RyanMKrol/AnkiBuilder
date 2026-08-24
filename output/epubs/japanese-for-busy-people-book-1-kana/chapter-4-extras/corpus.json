@@ -8,43 +8,71 @@
   },
   "items": [
     {
-      "id": "ikura-desu-ka",
-      "english": "How much is it?",
-      "category": "Money",
-      "target": "いくらですか",
-      "note": null,
-      "reviewNote": "From EXERCISE 7's worked example (Smith's fifth line). Once the item is established the topic is dropped, and this bare form is what a shopper actually says most of the time. The hint separates it from the new これはいくらですか card.",
-      "aiSuggested": true,
-      "scene": "asking the price of something already being discussed"
-    },
-    {
-      "id": "sumimasen-are-wa-pasokon-ka",
-      "english": "Excuse me. Is that one over there a computer?",
-      "category": "Shopping",
-      "target": "すみません。あれはパソコンですか",
-      "note": null,
-      "reviewNote": "From EXERCISE 7's worked example (first line). Opens the shop exchange the rest of these cards continue. Collides in shape with the existing fib-c4-ballpoint-pen-q (あれはボールペンですか), which is why both this card and the それ (sore) version below carry hints; with those two that pattern is at its ceiling.",
-      "aiSuggested": true,
-      "scene": "opening the exchange, about the item across the shop"
-    },
-    {
-      "id": "sore-wa-ikura-desu-ka",
-      "english": "How much is that one?",
-      "category": "Money",
-      "target": "それはいくらですか",
+      "id": "orange-juice-o-kudasai",
+      "english": "An orange juice, please.",
+      "category": "Food",
+      "target": "オレンジジュースをください",
       "hint": null,
-      "note": "The middle distance: これ (kore) for what is in your own hand, それ (sore) for what the salesperson is holding, あれ (are) for what is across the shop.",
-      "reviewNote": "Constructed. Coverage job: form — the missing member of the いくらですか (ikura desu ka) set. これ and あれ both have price questions after wave 1; それ, the one you use the moment an item has been handed over, did not.",
+      "note": null,
+      "reviewNote": "Constructed on the pattern of EXERCISE 6. Coverage job: vocabulary — オレンジジュース (orenji jūsu) is taught in the exercise vocabulary and used by no sentence in the deck.",
       "aiSuggested": true
     },
     {
-      "id": "kohi-o-onegaishimasu",
-      "english": "I would like a coffee, please.",
-      "category": "Food",
-      "target": "コーヒーをおねがいします",
-      "hint": "the wider-use polite request, the one that also works for asking a favour",
-      "note": "Same order, softer and broader. おねがいします (onegaishimasu) stretches to requests ください (kudasai) cannot make, such as たなかさんをおねがいします (tanaka san o onegaishimasu) in Lesson 1.",
-      "reviewNote": "Constructed. Coverage job: form — member 2 of the ください / おねがいします minimal pair. Also gives コーヒー (kōhī) a sentence where it is not buried in a two-item order.",
+      "id": "mouse-computer",
+      "english": "Mouse (computer)",
+      "category": "Technology & Communication",
+      "target": "マウス",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
+    },
+    {
+      "id": "taburetto-wa-goman-en-desu",
+      "english": "The tablet is 50,000 yen.",
+      "category": "Money",
+      "target": "タブレットは50,000えんです",
+      "ttsText": "タブレットはごまんえんです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed, using EXERCISE 7's 50,000えん figure. Coverage job: vocabulary — タブレット (taburetto) appears in exactly one sentence in the deck. Sets up the も question and its correction that follow.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ja-sore-o-kudasai",
+      "english": "All right, I'll take that one.",
+      "category": "Shopping",
+      "target": "じゃ、それをください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From EXERCISE 7's worked example (closing line), and the payoff of the exchange above. This is the third 〜をください card in the lesson, but the only one that buys the item near the salesperson rather than the one in your own hand. Lowest priority of the batch — prune it first if you want fewer.",
+      "aiSuggested": true
+    },
+    {
+      "id": "to-sandwich-coffee-ikura-q",
+      "english": "How much are a sandwich and a coffee?",
+      "category": "Money",
+      "target": "サンドイッチとコーヒーはいくらですか",
+      "hint": null,
+      "note": "Once と (to) has joined them the pair behaves as a single topic and takes one は (wa), not one each.",
+      "reviewNote": "Constructed. Coverage job: particle と (to) in question form — no と sentence in the deck or in wave 1 is a question, and this is the only one showing a joined pair as the topic of いくらですか (ikura desu ka).",
+      "aiSuggested": true
+    },
+    {
+      "id": "are-wa-sumaho-ja-arimasen",
+      "english": "That one over there isn't a smartphone. It's a tablet.",
+      "category": "Technology & Communication",
+      "target": "あれはスマホじゃありません。タブレットです",
+      "hint": null,
+      "note": "Closes the スマホ (sumaho) distance set with a negative, and shows the deny-then-correct move in full.",
+      "reviewNote": "Constructed on the noun pair EXERCISE 7's worked example uses. Coverage job: form — the only negative built on あれ (are) anywhere in the lesson; every じゃありません card in the deck starts with これ (kore) or それ (sore).",
+      "aiSuggested": true
+    },
+    {
+      "id": "ja-kado-de-onegaishimasu",
+      "english": "Well then, I'll pay by credit card.",
+      "category": "Money",
+      "target": "じゃ、カードでおねがいします",
+      "hint": null,
+      "note": "じゃ (ja) marks the decision — you say it after the price has been named, not before.",
+      "reviewNote": "Constructed. Coverage job: particle で (de). Second で example, and the one that puts it at the point in the exchange where it actually gets said. Lowest-value card in the batch; prune first.",
       "aiSuggested": true
     },
     {
@@ -59,162 +87,6 @@
       "aiSuggested": true
     },
     {
-      "id": "juice-mo-onegaishimasu",
-      "english": "I would like a juice as well, please.",
-      "category": "Food",
-      "target": "ジュースもおねがいします",
-      "hint": null,
-      "note": "も (mo) swallows を (o) here exactly as it swallows は (wa) in あれも (are mo) — ジュースをも is not possible.",
-      "reviewNote": "Constructed. Serves two jobs: it is the only sentence in the lesson using ジュース (jūsu), and it is the first time も appears in the object slot. Every existing も card has it in the topic slot.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-mo-kudasai",
-      "english": "I'll take this one too, please.",
-      "category": "Shopping",
-      "target": "これもください",
-      "hint": null,
-      "note": "The shopper's add-on: point at a second item and put も (mo) where を (o) would have gone.",
-      "reviewNote": "Constructed. Coverage job: particle も (mo) in the object slot, paired with ください (kudasai) rather than おねがいします (onegaishimasu). The shortest sentence in the batch and the one most likely to be needed at a till.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ja-kado-de-onegaishimasu",
-      "english": "Well then, I'll pay by credit card.",
-      "category": "Money",
-      "target": "じゃ、カードでおねがいします",
-      "hint": null,
-      "note": "じゃ (ja) marks the decision — you say it after the price has been named, not before.",
-      "reviewNote": "Constructed. Coverage job: particle で (de). Second で example, and the one that puts it at the point in the exchange where it actually gets said. Lowest-value card in the batch; prune first.",
-      "aiSuggested": true
-    },
-    {
-      "id": "are-wa-sumaho-ja-arimasen",
-      "english": "That one over there isn't a smartphone. It's a tablet.",
-      "category": "Technology & Communication",
-      "target": "あれはスマホじゃありません。タブレットです",
-      "hint": null,
-      "note": "Closes the スマホ (sumaho) distance set with a negative, and shows the deny-then-correct move in full.",
-      "reviewNote": "Constructed on the noun pair EXERCISE 7's worked example uses. Coverage job: form — the only negative built on あれ (are) anywhere in the lesson; every じゃありません card in the deck starts with これ (kore) or それ (sore).",
-      "aiSuggested": true
-    },
-    {
-      "id": "sore-mo-sen-en-desu",
-      "english": "That one is 1,000 yen too.",
-      "category": "Money",
-      "target": "それも1,000えんです",
-      "ttsText": "それもせんえんです",
-      "hint": null,
-      "note": "Differs from それは1,000えんです (sore wa sen'en desu) by one particle only. も (mo) takes は (wa)'s place rather than joining it — それはも is impossible.",
-      "reviewNote": "Constructed. Coverage job: particle も (mo), second half of the は／も minimal pair. The deck's six も cards all differ from their は counterparts in vocabulary too, so nothing isolates the particle itself until now.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sore-mo-watashi-no-desu",
-      "english": "That one is mine too.",
-      "category": "Shopping",
-      "target": "それもわたしのです",
-      "hint": null,
-      "note": "The affirmative twin of それもわたしのじゃありません (sore mo watashi no ja arimasen) — も (mo) behaves identically in positive and negative sentences, which is the point GRAMMAR 2 makes.",
-      "reviewNote": "Constructed. Coverage job: particle も (mo) in the possessive slot. GRAMMAR 2 states も works in both affirmative and negative sentences but the book only prints the negative, and the deck copied that gap.",
-      "aiSuggested": true
-    },
-    {
-      "id": "gohyaku-en-desu",
-      "english": "It's 500 yen.",
-      "category": "Money",
-      "target": "500えんです",
-      "ttsText": "ごひゃくえんです",
-      "note": null,
-      "reviewNote": "From EXERCISE 2's worked example (A: これはいくらですか / B: 500えんです). Split from the question above per the Q-and-A rule so the learner can produce the answer as well as the question. Shares its shape with the existing fib-c4-13000-yen-price (\"It's 13,000 yen.\"), hence the hint.",
-      "aiSuggested": true,
-      "scene": "answering how much this one costs"
-    },
-    {
-      "id": "ja-kore-o-kudasai",
-      "english": "All right, I'll take this one.",
-      "category": "Shopping",
-      "target": "じゃ、これをください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From the TARGET DIALOGUE, and singled out in NOTES as the model for じゃ (ja). The deck has これをください (ks3-kore-kudasai) and じゃ (ja) separately but never together, so the learner never sees the interjection doing its job at the moment of deciding to buy.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-mo-sore-mo-tokei",
-      "english": "This is a watch. That one is a watch too.",
-      "category": "Other",
-      "target": "これはとけいです。それもとけいです",
-      "note": "も (mo) replaces は (wa) rather than joining it — それは (sore wa) becomes それも (sore mo), never それはも.",
-      "reviewNote": "From EXERCISE 4 item 2 (これ、とけい、それ). The deck's four も (mo) cards are all about prices, times, or negatives; this is the only affirmative それも (sore mo) and the only everyday-noun example. とけい (tokei) is from Lesson 2. The hint disambiguates it from Lesson 2's これはとけいです.",
-      "aiSuggested": true,
-      "scene": "pointing out that a second item is the same thing"
-    },
-    {
-      "id": "hai-douzo",
-      "english": "Here you go.",
-      "category": "Shopping",
-      "target": "はい、どうぞ",
-      "hint": null,
-      "note": "Said while handing something over. The はい (hai) here is closer to \"here\" or \"certainly\" than to \"yes\" — it is not answering a question.",
-      "reviewNote": "From the TARGET DIALOGUE (the salesperson's reply to それをみせてください). It is the natural response to the card above and the deck has no card for it; どうぞ (dōzo) exists only as a standalone expression from the Frequently Used Expressions list.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-hassen-en-desu",
-      "english": "This one is 8,000 yen.",
-      "category": "Money",
-      "target": "これは8,000えんです",
-      "ttsText": "これははっせんえんです",
-      "hint": null,
-      "note": "8,000 is はっせん (hassen), not はちせん — the ち drops and the s doubles.",
-      "reviewNote": "Constructed. Coverage job: form. Member 1 of a です / じゃありません / ですか set built on identical wording so the transformation is visible; the deck's existing price cards are three unrelated sentences.",
-      "aiSuggested": true
-    },
-    {
-      "id": "terebi-wa-nanaman-hassen-en-desu",
-      "english": "The television is 78,000 yen.",
-      "category": "Money",
-      "target": "テレビは78,000えんです",
-      "ttsText": "テレビはななまんはっせんえんです",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed as the answer to the card above. Coverage job: vocabulary. Restates the topic so it stands alone, and gives the ななまん (nanaman) + はっせん (hassen) combination a workout.",
-      "aiSuggested": true
-    },
-    {
-      "id": "to-sandwich-coffee-ikura-a",
-      "english": "A sandwich and a coffee are 900 yen.",
-      "category": "Money",
-      "target": "サンドイッチとコーヒーは900えんです",
-      "ttsText": "サンドイッチとコーヒーはきゅうひゃくえんです",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed as the answer to the card above, per the question-and-answer rule. Coverage job: particle と (to). Restates the whole topic rather than dropping it, so the card stands on its own.",
-      "aiSuggested": true
-    },
-    {
-      "id": "iie-pasokon-wa-goman-en-ja-arimasen",
-      "english": "No, the computer isn't 50,000 yen. It's 80,000 yen.",
-      "category": "Money",
-      "target": "いいえ、パソコンは50,000えんじゃありません。80,000えんです",
-      "ttsText": "いいえ、パソコンはごまんえんじゃありません。はちまんえんです",
-      "note": "Watch the particle flip: the question asks with も (mo), the answer corrects with は (wa). Once the answer is no, the two prices are no longer the same thing.",
-      "reviewNote": "Constructed on EXERCISE 5B's pattern. Coverage job: form — denying a price, which the deck did not do at all before wave 1 and still does only once, with あれ (are). The も-to-は flip in a correction is not stated anywhere in the chapter and is the single most missable point in it. Elliptical opening, hence the hint.",
-      "aiSuggested": true,
-      "scene": "answering whether the computer costs the same as the tablet"
-    },
-    {
-      "id": "are-o-misete-kudasai",
-      "english": "Please show me that one over there.",
-      "category": "Shopping",
-      "target": "あれをみせてください",
-      "hint": null,
-      "note": "Swapping それ (sore) for あれ (are) moves the request from the item beside the salesperson to the one across the shop.",
-      "reviewNote": "Constructed. Coverage job: particle を (o). Third を example on the みせてください frame and the only one reaching for the far item, which is the case where you most need the words.",
-      "aiSuggested": true
-    },
-    {
       "id": "kore-wa-ikura-desu-ka",
       "english": "How much is this?",
       "category": "Money",
@@ -223,89 +95,6 @@
       "note": null,
       "reviewNote": "From the TARGET DIALOGUE and used as the worked example in EXERCISES 2 and 3. This is the sentence the lesson is titled after and it is completely absent from the deck — いくら (ikura) is taught only as an isolated noun. Highest-priority gap in the chapter.",
       "aiSuggested": true
-    },
-    {
-      "id": "are-wa-ikura-desu-ka",
-      "english": "How much is that one over there?",
-      "category": "Money",
-      "target": "あれはいくらですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From the TARGET DIALOGUE (Smith's second price question). Gives the いくら question its second demonstrative; the deck teaches あれ (are) only inside statements. Its book answer, あれも3,000えんです, is already carded as ks2-are-mo-3000en, so no answer card is needed here.",
-      "aiSuggested": true
-    },
-    {
-      "id": "denshi-renji-wa-nimankyusen-happyaku-en-desu",
-      "english": "The microwave oven is 29,800 yen.",
-      "category": "Money",
-      "target": "でんしレンジは29,800えんです",
-      "ttsText": "でんしレンジはにまんきゅうせんはっぴゃくえんです",
-      "hint": null,
-      "note": "Read in blocks, largest first: にまん (niman) 20,000, then きゅうせん (kyūsen) 9,000, then はっぴゃく (happyaku) 800, with nothing joining them.",
-      "reviewNote": "Constructed as the answer to the card above, using EXERCISE 3 item 5's 29,800えん. Coverage job: vocabulary. This is the most complex number the chapter asks the learner to say and the deck has it nowhere in a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-watashi-no-kasa-desu",
-      "english": "This is my umbrella.",
-      "category": "Shopping",
-      "target": "これはわたしのかさです",
-      "hint": null,
-      "note": "The affirmative of これはわたしのかさじゃありません (kore wa watashi no kasa ja arimasen), the sentence GRAMMAR 2 builds its も (mo) example on.",
-      "reviewNote": "Constructed. Coverage job: form — member 1 of a です / じゃありません / ですか set on かさ (kasa), built around the negative the deck already holds. Also gives the particle の (no) an affirmative example; both existing の sentences in this lesson are negative.",
-      "aiSuggested": true
-    },
-    {
-      "id": "iie-are-wa-gosen-en-ja-arimasen",
-      "english": "No, that one over there is not 5,000 yen. It's 4,000 yen.",
-      "category": "Money",
-      "target": "いいえ、あれは5,000えんじゃありません。4,000えんです",
-      "ttsText": "いいえ、あれはごせんえんじゃありません。よんせんえんです",
-      "note": "Correcting a price takes two steps: deny it with じゃありません (ja arimasen), then state the real one.",
-      "reviewNote": "From EXERCISE 5B's worked example, verbatim. Nothing in the deck denies a price — じゃありません (ja arimasen) was learned in Lesson 2 but is only ever applied to objects and owners, never to money. Two sentences on one card follows the existing fib-c4-tokyo-seoul-10am precedent.",
-      "aiSuggested": true,
-      "scene": "answering whether that one over there is also 5,000 yen"
-    },
-    {
-      "id": "to-koucha-choko-keki",
-      "english": "I would like a black tea and a chocolate cake, please.",
-      "category": "Food",
-      "target": "こうちゃとチョコレートケーキをおねがいします",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed on the pattern of EXERCISE 6 (place your order). Coverage job: vocabulary — こうちゃ (kōcha) and チョコレートケーキ (chokorēto kēki) both sat in the deck as nouns no sentence used. Also a third と (to) example.",
-      "aiSuggested": true
-    },
-    {
-      "id": "pasokon-mo-goman-en-desu-ka",
-      "english": "Is the computer also 50,000 yen?",
-      "category": "Money",
-      "target": "パソコンも50,000えんですか",
-      "ttsText": "パソコンもごまんえんですか",
-      "hint": null,
-      "note": "も (mo) asking rather than telling: it takes the first price as settled and checks whether the second matches it.",
-      "reviewNote": "Constructed on the pattern of EXERCISE 5. Coverage job: particle も (mo) in a question with a named item as topic — the deck's one も question uses あれ (are). Follows on from the tablet's price above.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sumimasen-sandoitchi-to-kohi",
-      "english": "Excuse me. I would like a sandwich and coffee, please.",
-      "category": "Food",
-      "target": "すみません。サンドイッチとコーヒーをおねがいします",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From SPEAKING PRACTICE 1 verbatim (also the worked example of the restaurant-order exercise). The deck has only one 〜と〜をおねがいします sentence (ks4-curry-salad), and サンドイッチ (sandoitchi) and コーヒー (kōhī) sit unused as bare vocabulary. Also shows how to open the order with すみません (sumimasen).",
-      "aiSuggested": true
-    },
-    {
-      "id": "sore-wa-pasokon-desu-ka",
-      "english": "Is that one a computer?",
-      "category": "Shopping",
-      "target": "それはパソコンですか",
-      "note": null,
-      "reviewNote": "From EXERCISE 7's worked example (third line). The deck has no それ (sore) question at all — それ appears only in statements (ks1-sore-smartphone, mo-example-mine), so the learner never practises the middle-distance demonstrative in the form they would actually use in a shop.",
-      "aiSuggested": true,
-      "scene": "about the item next to the salesperson"
     },
     {
       "id": "kore-wa-hassen-en-desu-ka",
@@ -319,26 +108,6 @@
       "aiSuggested": true
     },
     {
-      "id": "to-toaster-microwave-kudasai",
-      "english": "I'll take a toaster and a microwave oven, please.",
-      "category": "Home & Household",
-      "target": "トースターとでんしレンジをください",
-      "hint": null,
-      "note": "と (to) glues the two nouns into one block, and を (o) comes after the block, not after each noun.",
-      "reviewNote": "Constructed. Coverage job: particle と (to), introduced by this chapter's GRAMMAR 4. Both existing と sentences use おねがいします (onegaishimasu); this is the first with ください (kudasai), and it also gives トースター (tōsutā) its first sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ja-sore-o-kudasai",
-      "english": "All right, I'll take that one.",
-      "category": "Shopping",
-      "target": "じゃ、それをください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From EXERCISE 7's worked example (closing line), and the payoff of the exchange above. This is the third 〜をください card in the lesson, but the only one that buys the item near the salesperson rather than the one in your own hand. Lowest priority of the batch — prune it first if you want fewer.",
-      "aiSuggested": true
-    },
-    {
       "id": "iie-taburetto-desu",
       "english": "No, it's a tablet.",
       "category": "Technology & Communication",
@@ -347,149 +116,6 @@
       "reviewNote": "Constructed from EXERCISE 7's worked example (the salesperson's reply), which wave 1 left off — its すみません。あれはパソコンですか card is currently a question with no answer. Coverage job: form. Elliptical, hence the hint.",
       "aiSuggested": true,
       "scene": "answering whether the item across the shop is a computer"
-    },
-    {
-      "id": "hai-sou-desu",
-      "english": "Yes, that's right.",
-      "category": "Other",
-      "target": "はい、そうです",
-      "hint": null,
-      "note": "The standard way to confirm a 〜ですか (desu ka) question. Compare そうですか (sō desu ka) from Lesson 3, which is the listener saying \"oh, I see\", not agreeing.",
-      "reviewNote": "Duplicate of td-hai-sou-desu in Lesson 1. Its question card stays and stands alone.",
-      "aiSuggested": true,
-      "excluded": true,
-      "scene": "confirming what was just asked"
-    },
-    {
-      "id": "eakon-o-misete-kudasai",
-      "english": "Please show me the air conditioner.",
-      "category": "Home & Household",
-      "target": "エアコンをみせてください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job: vocabulary — エアコン (eakon) is a WORD POWER noun that no sentence in the deck uses. Put in the みせてください (misete kudasai) frame because a large appliance is exactly the thing you ask to be shown.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-tosuta-ja-arimasen",
-      "english": "This isn't a toaster. It's a microwave oven.",
-      "category": "Home & Household",
-      "target": "これはトースターじゃありません。でんしレンジです",
-      "hint": null,
-      "note": "Deny, then correct: state what it is not, then name the right thing. The second sentence drops the topic because it is already obvious.",
-      "reviewNote": "Constructed from EXERCISE 7 item 2's noun pair (でんしレンジ / トースター), which wave 1 skipped. Coverage job: vocabulary — トースター (tōsutā) had no sentence — and it is the deck's only じゃありません (ja arimasen) applied to a shop item rather than an umbrella or a price.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-o-kado-de-onegaishimasu",
-      "english": "I'd like to pay for this by credit card.",
-      "category": "Money",
-      "target": "これをカードでおねがいします",
-      "hint": null,
-      "note": "Two particles doing different jobs in one sentence: を (o) marks what you are buying, で (de) marks how you are paying.",
-      "reviewNote": "Constructed. Coverage job: particle で (de), which the chapter introduces in the SPEAKING PRACTICE notes and which the deck exercises in exactly one fragment. This is the only card where で and を appear together.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sore-wa-sen-en-desu",
-      "english": "That one is 1,000 yen.",
-      "category": "Money",
-      "target": "それは1,000えんです",
-      "ttsText": "それはせんえんです",
-      "hint": null,
-      "note": "1,000 is just せん (sen) — there is no いち (ichi) in front of it, unlike English \"one thousand\".",
-      "reviewNote": "Constructed. Coverage job: particle は (wa) as the first half of a は／も minimal pair on identical wording. Also the deck's only price sentence built on それ (sore).",
-      "aiSuggested": true
-    },
-    {
-      "id": "denshi-renji-wa-ikura-desu-ka",
-      "english": "How much is the microwave oven?",
-      "category": "Money",
-      "target": "でんしレンジはいくらですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed; the listening exercise's item 1 is this exact topic (でんしレンジは…です) but its price is audio-only, so the deck never got the sentence. Coverage job: vocabulary.",
-      "aiSuggested": true
-    },
-    {
-      "id": "orange-juice-o-kudasai",
-      "english": "An orange juice, please.",
-      "category": "Food",
-      "target": "オレンジジュースをください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed on the pattern of EXERCISE 6. Coverage job: vocabulary — オレンジジュース (orenji jūsu) is taught in the exercise vocabulary and used by no sentence in the deck.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-sumaho-desu",
-      "english": "This is a smartphone.",
-      "category": "Technology & Communication",
-      "target": "これはスマホです",
-      "hint": null,
-      "note": "Pairs with それはスマホです (sore wa sumaho desu): same object, different distance — これ (kore) is the one in your own hand.",
-      "reviewNote": "Constructed. Coverage job: form — GRAMMAR 1's three-way distance system, which the deck demonstrates only by changing the noun as well as the pronoun (それ with スマホ, あれ with タブレット). Holding the noun steady is what makes the distance visible.",
-      "aiSuggested": true
-    },
-    {
-      "id": "reizouko-wa-ikura-desu-ka",
-      "english": "How much is the refrigerator?",
-      "category": "Money",
-      "target": "れいぞうこはいくらですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed; the listening exercise's item 3 uses this topic with an audio-only price. Coverage job: vocabulary — れいぞうこ (reizōko) has no sentence in the deck.",
-      "aiSuggested": true
-    },
-    {
-      "id": "terebi-wa-ikura-desu-ka",
-      "english": "How much is the television?",
-      "category": "Money",
-      "target": "テレビはいくらですか",
-      "hint": null,
-      "note": "Naming the item as the topic instead of pointing at it — what you do when the thing is too far away, or too obvious, to point at.",
-      "reviewNote": "Constructed on the pattern of the listening exercise ([item]は…です). Coverage job: vocabulary — テレビ (terebi) has no sentence in the deck. Also the first いくらですか (ikura desu ka) question in the lesson whose topic is a named item rather than これ／それ／あれ.",
-      "aiSuggested": true
-    },
-    {
-      "id": "to-sandwich-coffee-ikura-q",
-      "english": "How much are a sandwich and a coffee?",
-      "category": "Money",
-      "target": "サンドイッチとコーヒーはいくらですか",
-      "hint": null,
-      "note": "Once と (to) has joined them the pair behaves as a single topic and takes one は (wa), not one each.",
-      "reviewNote": "Constructed. Coverage job: particle と (to) in question form — no と sentence in the deck or in wave 1 is a question, and this is the only one showing a joined pair as the topic of いくらですか (ikura desu ka).",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-anata-no-kasa-desu-ka",
-      "english": "Is this your umbrella?",
-      "category": "Shopping",
-      "target": "これはあなたのかさですか",
-      "hint": null,
-      "note": "Completes the かさ (kasa) set. In real speech the あなたの (anata no) is usually dropped once it is obvious whose umbrella is meant.",
-      "reviewNote": "Constructed. Coverage job: form — member 3 of the かさ (kasa) set, and the deck's only question using あなた (anata), which has been a bare vocabulary card since Lesson 1.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sore-o-misete-kudasai",
-      "english": "Please show me that item.",
-      "category": "Shopping",
-      "target": "それをみせてください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From the TARGET DIALOGUE (Smith's first line) and NOTES, which teaches the frame \"thing を みせてください\". The deck has みせてください (misete-kudasai) only as a bare verb phrase, so the learner never sees the frame with an object attached. Quiz 1 asks for exactly this sentence (\"In a shop, you want to see something located near the salesperson\").",
-      "aiSuggested": true
-    },
-    {
-      "id": "ja-kore-to-sore-o-kudasai",
-      "english": "Well then, I'll take this one and that one.",
-      "category": "Shopping",
-      "target": "じゃ、これとそれをください",
-      "hint": null,
-      "note": "と (to) joins pronouns as readily as nouns — GRAMMAR 4's rule is about nouns generally, not just names of things.",
-      "reviewNote": "Constructed. Coverage job: particle と (to), fourth example and the only one joining これ (kore) and それ (sore) rather than two named items. Also the lesson's most realistic closing line when buying more than one thing.",
-      "aiSuggested": true
     },
     {
       "id": "kohi-o-kudasai",
@@ -513,25 +139,413 @@
       "scene": "answering whether the umbrella in front of you belongs to you"
     },
     {
-      "id": "taburetto-wa-goman-en-desu",
-      "english": "The tablet is 50,000 yen.",
-      "category": "Money",
-      "target": "タブレットは50,000えんです",
-      "ttsText": "タブレットはごまんえんです",
-      "hint": null,
+      "id": "fib-are-wa-nan-desu-ka",
+      "english": "What is that, over there?",
+      "category": "Grammar & Function Words",
+      "target": "あれはなんですか",
       "note": null,
-      "reviewNote": "Constructed, using EXERCISE 7's 50,000えん figure. Coverage job: vocabulary — タブレット (taburetto) appears in exactly one sentence in the deck. Sets up the も question and its correction that follow.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4",
       "aiSuggested": true
     },
     {
-      "id": "kore-wa-hassen-en-ja-arimasen",
-      "english": "This one isn't 8,000 yen.",
+      "id": "iie-are-wa-gosen-en-ja-arimasen",
+      "english": "No, that one over there is not 5,000 yen. It's 4,000 yen.",
       "category": "Money",
-      "target": "これは8,000えんじゃありません",
-      "ttsText": "これははっせんえんじゃありません",
+      "target": "いいえ、あれは5,000えんじゃありません。4,000えんです",
+      "ttsText": "いいえ、あれはごせんえんじゃありません。よんせんえんです",
+      "note": "Correcting a price takes two steps: deny it with じゃありません (ja arimasen), then state the real one.",
+      "reviewNote": "From EXERCISE 5B's worked example, verbatim. Nothing in the deck denies a price — じゃありません (ja arimasen) was learned in Lesson 2 but is only ever applied to objects and owners, never to money. Two sentences on one card follows the existing fib-c4-tokyo-seoul-10am precedent.",
+      "aiSuggested": true,
+      "scene": "answering whether that one over there is also 5,000 yen"
+    },
+    {
+      "id": "sumimasen-sandoitchi-to-kohi",
+      "english": "Excuse me. I would like a sandwich and coffee, please.",
+      "category": "Food",
+      "target": "すみません。サンドイッチとコーヒーをおねがいします",
       "hint": null,
-      "note": "Member 2 of the 8,000えん (hassen'en) set. A price behaves like any other noun, so じゃありません (ja arimasen) simply replaces です (desu).",
-      "reviewNote": "Constructed. Coverage job: form. Until wave 1 nothing in the deck denied a price at all — じゃありません was learned in Lesson 2 and only ever applied to objects and owners. This is the bare negative, with no correction attached, so the learner meets the form on its own.",
+      "note": null,
+      "reviewNote": "From SPEAKING PRACTICE 1 verbatim (also the worked example of the restaurant-order exercise). The deck has only one 〜と〜をおねがいします sentence (ks4-curry-salad), and サンドイッチ (sandoitchi) and コーヒー (kōhī) sit unused as bare vocabulary. Also shows how to open the order with すみません (sumimasen).",
+      "aiSuggested": true
+    },
+    {
+      "id": "terebi-wa-nanaman-hassen-en-desu",
+      "english": "The television is 78,000 yen.",
+      "category": "Money",
+      "target": "テレビは78,000えんです",
+      "ttsText": "テレビはななまんはっせんえんです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed as the answer to the card above. Coverage job: vocabulary. Restates the topic so it stands alone, and gives the ななまん (nanaman) + はっせん (hassen) combination a workout.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikura-desu-ka",
+      "english": "How much is it?",
+      "category": "Money",
+      "target": "いくらですか",
+      "note": null,
+      "reviewNote": "From EXERCISE 7's worked example (Smith's fifth line). Once the item is established the topic is dropped, and this bare form is what a shopper actually says most of the time. The hint separates it from the new これはいくらですか card.",
+      "aiSuggested": true,
+      "scene": "asking the price of something already being discussed"
+    },
+    {
+      "id": "hai-sou-desu",
+      "english": "Yes, that's right.",
+      "category": "Other",
+      "target": "はい、そうです",
+      "hint": null,
+      "note": "The standard way to confirm a 〜ですか (desu ka) question. Compare そうですか (sō desu ka) from Lesson 3, which is the listener saying \"oh, I see\", not agreeing.",
+      "reviewNote": "Duplicate of td-hai-sou-desu in Lesson 1. Its question card stays and stands alone.",
+      "aiSuggested": true,
+      "excluded": true,
+      "scene": "confirming what was just asked"
+    },
+    {
+      "id": "hai-are-mo-nanasen-en",
+      "english": "Yes, that one over there is also 7,000 yen.",
+      "category": "Money",
+      "target": "はい、あれも7,000えんです",
+      "ttsText": "はい、あれもななせんえんです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From EXERCISE 5A item 1 (the salesperson's reply, blank filled with 7,000えん exactly as the existing fib card did). The deck already has the question fib-c4-also-7000-yen-q but no answer to it, leaving the exchange half-taught.",
+      "aiSuggested": true
+    },
+    {
+      "id": "eakon-o-misete-kudasai",
+      "english": "Please show me the air conditioner.",
+      "category": "Home & Household",
+      "target": "エアコンをみせてください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job: vocabulary — エアコン (eakon) is a WORD POWER noun that no sentence in the deck uses. Put in the みせてください (misete kudasai) frame because a large appliance is exactly the thing you ask to be shown.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sore-wa-sen-en-desu",
+      "english": "That one is 1,000 yen.",
+      "category": "Money",
+      "target": "それは1,000えんです",
+      "ttsText": "それはせんえんです",
+      "hint": null,
+      "note": "1,000 is just せん (sen) — there is no いち (ichi) in front of it, unlike English \"one thousand\".",
+      "reviewNote": "Constructed. Coverage job: particle は (wa) as the first half of a は／も minimal pair on identical wording. Also the deck's only price sentence built on それ (sore).",
+      "aiSuggested": true
+    },
+    {
+      "id": "tokei-o-misete-kudasai",
+      "english": "Please show me the watch.",
+      "category": "Shopping",
+      "target": "とけいをみせてください",
+      "hint": null,
+      "note": "を (o) marks whatever you want handed to you, and it takes a named item just as readily as a pointed-at one.",
+      "reviewNote": "Constructed. Coverage job: particle を (o). The deck's みせてください (misete kudasai) is a bare verb phrase and the only sentence using it points with それ (sore), so the learner never sees the frame with a named noun. とけい (tokei) is Lesson 2 vocabulary.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-mo-kudasai",
+      "english": "I'll take this one too, please.",
+      "category": "Shopping",
+      "target": "これもください",
+      "hint": null,
+      "note": "The shopper's add-on: point at a second item and put も (mo) where を (o) would have gone.",
+      "reviewNote": "Constructed. Coverage job: particle も (mo) in the object slot, paired with ください (kudasai) rather than おねがいします (onegaishimasu). The shortest sentence in the batch and the one most likely to be needed at a till.",
+      "aiSuggested": true
+    },
+    {
+      "id": "gohyaku-en-desu",
+      "english": "It's 500 yen.",
+      "category": "Money",
+      "target": "500えんです",
+      "ttsText": "ごひゃくえんです",
+      "note": null,
+      "reviewNote": "From EXERCISE 2's worked example (A: これはいくらですか / B: 500えんです). Split from the question above per the Q-and-A rule so the learner can produce the answer as well as the question. Shares its shape with the existing fib-c4-13000-yen-price (\"It's 13,000 yen.\"), hence the hint.",
+      "aiSuggested": true,
+      "scene": "answering how much this one costs"
+    },
+    {
+      "id": "sore-mo-hassen-en-ja-arimasen",
+      "english": "That one isn't 8,000 yen either.",
+      "category": "Money",
+      "target": "それも8,000えんじゃありません",
+      "ttsText": "それもはっせんえんじゃありません",
+      "hint": null,
+      "note": "In a negative sentence も (mo) reads as \"not … either\". Same particle, same position as in それも1,000えんです (sore mo sen'en desu) — only the ending changes.",
+      "reviewNote": "Constructed. Coverage job: particle も (mo) in a negative sentence about money, the one combination GRAMMAR 2 claims and neither the book nor the deck demonstrates on a price. Follows on directly from the negative above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "denshi-renji-wa-nimankyusen-happyaku-en-desu",
+      "english": "The microwave oven is 29,800 yen.",
+      "category": "Money",
+      "target": "でんしレンジは29,800えんです",
+      "ttsText": "でんしレンジはにまんきゅうせんはっぴゃくえんです",
+      "hint": null,
+      "note": "Read in blocks, largest first: にまん (niman) 20,000, then きゅうせん (kyūsen) 9,000, then はっぴゃく (happyaku) 800, with nothing joining them.",
+      "reviewNote": "Constructed as the answer to the card above, using EXERCISE 3 item 5's 29,800えん. Coverage job: vocabulary. This is the most complex number the chapter asks the learner to say and the deck has it nowhere in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-o-kado-de-onegaishimasu",
+      "english": "I'd like to pay for this by credit card.",
+      "category": "Money",
+      "target": "これをカードでおねがいします",
+      "hint": null,
+      "note": "Two particles doing different jobs in one sentence: を (o) marks what you are buying, で (de) marks how you are paying.",
+      "reviewNote": "Constructed. Coverage job: particle で (de), which the chapter introduces in the SPEAKING PRACTICE notes and which the deck exercises in exactly one fragment. This is the only card where で and を appear together.",
+      "aiSuggested": true
+    },
+    {
+      "id": "to-toaster-microwave-kudasai",
+      "english": "I'll take a toaster and a microwave oven, please.",
+      "category": "Home & Household",
+      "target": "トースターとでんしレンジをください",
+      "hint": null,
+      "note": "と (to) glues the two nouns into one block, and を (o) comes after the block, not after each noun.",
+      "reviewNote": "Constructed. Coverage job: particle と (to), introduced by this chapter's GRAMMAR 4. Both existing と sentences use おねがいします (onegaishimasu); this is the first with ください (kudasai), and it also gives トースター (tōsutā) its first sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "pasokon-mo-goman-en-desu-ka",
+      "english": "Is the computer also 50,000 yen?",
+      "category": "Money",
+      "target": "パソコンも50,000えんですか",
+      "ttsText": "パソコンもごまんえんですか",
+      "hint": null,
+      "note": "も (mo) asking rather than telling: it takes the first price as settled and checks whether the second matches it.",
+      "reviewNote": "Constructed on the pattern of EXERCISE 5. Coverage job: particle も (mo) in a question with a named item as topic — the deck's one も question uses あれ (are). Follows on from the tablet's price above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "denshi-renji-wa-ikura-desu-ka",
+      "english": "How much is the microwave oven?",
+      "category": "Money",
+      "target": "でんしレンジはいくらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed; the listening exercise's item 1 is this exact topic (でんしレンジは…です) but its price is audio-only, so the deck never got the sentence. Coverage job: vocabulary.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-hassen-en-desu",
+      "english": "This one is 8,000 yen.",
+      "category": "Money",
+      "target": "これは8,000えんです",
+      "ttsText": "これははっせんえんです",
+      "hint": null,
+      "note": "8,000 is はっせん (hassen), not はちせん — the ち drops and the s doubles.",
+      "reviewNote": "Constructed. Coverage job: form. Member 1 of a です / じゃありません / ですか set built on identical wording so the transformation is visible; the deck's existing price cards are three unrelated sentences.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-tosuta-ja-arimasen",
+      "english": "This isn't a toaster. It's a microwave oven.",
+      "category": "Home & Household",
+      "target": "これはトースターじゃありません。でんしレンジです",
+      "hint": null,
+      "note": "Deny, then correct: state what it is not, then name the right thing. The second sentence drops the topic because it is already obvious.",
+      "reviewNote": "Constructed from EXERCISE 7 item 2's noun pair (でんしレンジ / トースター), which wave 1 skipped. Coverage job: vocabulary — トースター (tōsutā) had no sentence — and it is the deck's only じゃありません (ja arimasen) applied to a shop item rather than an umbrella or a price.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sore-mo-watashi-no-desu",
+      "english": "That one is mine too.",
+      "category": "Shopping",
+      "target": "それもわたしのです",
+      "hint": null,
+      "note": "The affirmative twin of それもわたしのじゃありません (sore mo watashi no ja arimasen) — も (mo) behaves identically in positive and negative sentences, which is the point GRAMMAR 2 makes.",
+      "reviewNote": "Constructed. Coverage job: particle も (mo) in the possessive slot. GRAMMAR 2 states も works in both affirmative and negative sentences but the book only prints the negative, and the deck copied that gap.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sore-mo-sen-en-desu",
+      "english": "That one is 1,000 yen too.",
+      "category": "Money",
+      "target": "それも1,000えんです",
+      "ttsText": "それもせんえんです",
+      "hint": null,
+      "note": "Differs from それは1,000えんです (sore wa sen'en desu) by one particle only. も (mo) takes は (wa)'s place rather than joining it — それはも is impossible.",
+      "reviewNote": "Constructed. Coverage job: particle も (mo), second half of the は／も minimal pair. The deck's six も cards all differ from their は counterparts in vocabulary too, so nothing isolates the particle itself until now.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sore-wa-ikura-desu-ka",
+      "english": "How much is that one?",
+      "category": "Money",
+      "target": "それはいくらですか",
+      "hint": null,
+      "note": "The middle distance: これ (kore) for what is in your own hand, それ (sore) for what the salesperson is holding, あれ (are) for what is across the shop.",
+      "reviewNote": "Constructed. Coverage job: form — the missing member of the いくらですか (ikura desu ka) set. これ and あれ both have price questions after wave 1; それ, the one you use the moment an item has been handed over, did not.",
+      "aiSuggested": true
+    },
+    {
+      "id": "terebi-wa-ikura-desu-ka",
+      "english": "How much is the television?",
+      "category": "Money",
+      "target": "テレビはいくらですか",
+      "hint": null,
+      "note": "Naming the item as the topic instead of pointing at it — what you do when the thing is too far away, or too obvious, to point at.",
+      "reviewNote": "Constructed on the pattern of the listening exercise ([item]は…です). Coverage job: vocabulary — テレビ (terebi) has no sentence in the deck. Also the first いくらですか (ikura desu ka) question in the lesson whose topic is a named item rather than これ／それ／あれ.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sore-o-misete-kudasai",
+      "english": "Please show me that item.",
+      "category": "Shopping",
+      "target": "それをみせてください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From the TARGET DIALOGUE (Smith's first line) and NOTES, which teaches the frame \"thing を みせてください\". The deck has みせてください (misete-kudasai) only as a bare verb phrase, so the learner never sees the frame with an object attached. Quiz 1 asks for exactly this sentence (\"In a shop, you want to see something located near the salesperson\").",
+      "aiSuggested": true
+    },
+    {
+      "id": "are-o-misete-kudasai",
+      "english": "Please show me that one over there.",
+      "category": "Shopping",
+      "target": "あれをみせてください",
+      "hint": null,
+      "note": "Swapping それ (sore) for あれ (are) moves the request from the item beside the salesperson to the one across the shop.",
+      "reviewNote": "Constructed. Coverage job: particle を (o). Third を example on the みせてください frame and the only one reaching for the far item, which is the case where you most need the words.",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-pasokon-wa-goman-en-ja-arimasen",
+      "english": "No, the computer isn't 50,000 yen. It's 80,000 yen.",
+      "category": "Money",
+      "target": "いいえ、パソコンは50,000えんじゃありません。80,000えんです",
+      "ttsText": "いいえ、パソコンはごまんえんじゃありません。はちまんえんです",
+      "note": "Watch the particle flip: the question asks with も (mo), the answer corrects with は (wa). Once the answer is no, the two prices are no longer the same thing.",
+      "reviewNote": "Constructed on EXERCISE 5B's pattern. Coverage job: form — denying a price, which the deck did not do at all before wave 1 and still does only once, with あれ (are). The も-to-は flip in a correction is not stated anywhere in the chapter and is the single most missable point in it. Elliptical opening, hence the hint.",
+      "aiSuggested": true,
+      "scene": "answering whether the computer costs the same as the tablet"
+    },
+    {
+      "id": "sarada-mo-onegaishimasu",
+      "english": "I would like a salad as well, please.",
+      "category": "Food",
+      "target": "サラダもおねがいします",
+      "hint": null,
+      "note": "The natural way to tack an item onto an order you have already placed.",
+      "reviewNote": "Constructed. Coverage job: particle も (mo) in the object slot, second example. サラダ (sarada) appears in only one sentence in the deck (the Key Sentence), always paired with カレー (karē); this gives it a frame of its own.",
+      "aiSuggested": true
+    },
+    {
+      "id": "remote-control",
+      "english": "Remote control",
+      "category": "Technology & Communication",
+      "target": "リモコン",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set",
+      "note": "Clipped from リモートコントロール (rimōto kontorōru, 'remote control') — the same shortening pattern as パソコン (pasokon) and シャーペン (shāpen) from this lesson."
+    },
+    {
+      "id": "kore-mo-sore-mo-tokei",
+      "english": "This is a watch. That one is a watch too.",
+      "category": "Other",
+      "target": "これはとけいです。それもとけいです",
+      "note": "も (mo) replaces は (wa) rather than joining it — それは (sore wa) becomes それも (sore mo), never それはも.",
+      "reviewNote": "From EXERCISE 4 item 2 (これ、とけい、それ). The deck's four も (mo) cards are all about prices, times, or negatives; this is the only affirmative それも (sore mo) and the only everyday-noun example. とけい (tokei) is from Lesson 2. The hint disambiguates it from Lesson 2's これはとけいです.",
+      "aiSuggested": true,
+      "scene": "pointing out that a second item is the same thing"
+    },
+    {
+      "id": "ja-kore-to-sore-o-kudasai",
+      "english": "Well then, I'll take this one and that one.",
+      "category": "Shopping",
+      "target": "じゃ、これとそれをください",
+      "hint": null,
+      "note": "と (to) joins pronouns as readily as nouns — GRAMMAR 4's rule is about nouns generally, not just names of things.",
+      "reviewNote": "Constructed. Coverage job: particle と (to), fourth example and the only one joining これ (kore) and それ (sore) rather than two named items. Also the lesson's most realistic closing line when buying more than one thing.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kohi-o-onegaishimasu",
+      "english": "I would like a coffee, please.",
+      "category": "Food",
+      "target": "コーヒーをおねがいします",
+      "hint": "the wider-use polite request, the one that also works for asking a favour",
+      "note": "Same order, softer and broader. おねがいします (onegaishimasu) stretches to requests ください (kudasai) cannot make, such as たなかさんをおねがいします (tanaka san o onegaishimasu) in Lesson 1.",
+      "reviewNote": "Constructed. Coverage job: form — member 2 of the ください / おねがいします minimal pair. Also gives コーヒー (kōhī) a sentence where it is not buried in a two-item order.",
+      "aiSuggested": true
+    },
+    {
+      "id": "reizouko-wa-ikura-desu-ka",
+      "english": "How much is the refrigerator?",
+      "category": "Money",
+      "target": "れいぞうこはいくらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed; the listening exercise's item 3 uses this topic with an audio-only price. Coverage job: vocabulary — れいぞうこ (reizōko) has no sentence in the deck.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sore-wa-pasokon-desu-ka",
+      "english": "Is that one a computer?",
+      "category": "Shopping",
+      "target": "それはパソコンですか",
+      "note": null,
+      "reviewNote": "From EXERCISE 7's worked example (third line). The deck has no それ (sore) question at all — それ appears only in statements (ks1-sore-smartphone, mo-example-mine), so the learner never practises the middle-distance demonstrative in the form they would actually use in a shop.",
+      "aiSuggested": true,
+      "scene": "about the item next to the salesperson"
+    },
+    {
+      "id": "kore-wa-sumaho-desu",
+      "english": "This is a smartphone.",
+      "category": "Technology & Communication",
+      "target": "これはスマホです",
+      "hint": null,
+      "note": "Pairs with それはスマホです (sore wa sumaho desu): same object, different distance — これ (kore) is the one in your own hand.",
+      "reviewNote": "Constructed. Coverage job: form — GRAMMAR 1's three-way distance system, which the deck demonstrates only by changing the noun as well as the pronoun (それ with スマホ, あれ with タブレット). Holding the noun steady is what makes the distance visible.",
+      "aiSuggested": true
+    },
+    {
+      "id": "are-wa-ikura-desu-ka",
+      "english": "How much is that one over there?",
+      "category": "Money",
+      "target": "あれはいくらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From the TARGET DIALOGUE (Smith's second price question). Gives the いくら question its second demonstrative; the deck teaches あれ (are) only inside statements. Its book answer, あれも3,000えんです, is already carded as ks2-are-mo-3000en, so no answer card is needed here.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumimasen-are-wa-pasokon-ka",
+      "english": "Excuse me. Is that one over there a computer?",
+      "category": "Shopping",
+      "target": "すみません。あれはパソコンですか",
+      "note": null,
+      "reviewNote": "From EXERCISE 7's worked example (first line). Opens the shop exchange the rest of these cards continue. Collides in shape with the existing fib-c4-ballpoint-pen-q (あれはボールペンですか), which is why both this card and the それ (sore) version below carry hints; with those two that pattern is at its ceiling.",
+      "aiSuggested": true,
+      "scene": "opening the exchange, about the item across the shop"
+    },
+    {
+      "id": "kore-wa-anata-no-kasa-desu-ka",
+      "english": "Is this your umbrella?",
+      "category": "Shopping",
+      "target": "これはあなたのかさですか",
+      "hint": null,
+      "note": "Completes the かさ (kasa) set. In real speech the あなたの (anata no) is usually dropped once it is obvious whose umbrella is meant.",
+      "reviewNote": "Constructed. Coverage job: form — member 3 of the かさ (kasa) set, and the deck's only question using あなた (anata), which has been a bare vocabulary card since Lesson 1.",
+      "aiSuggested": true
+    },
+    {
+      "id": "juice-mo-onegaishimasu",
+      "english": "I would like a juice as well, please.",
+      "category": "Food",
+      "target": "ジュースもおねがいします",
+      "hint": null,
+      "note": "も (mo) swallows を (o) here exactly as it swallows は (wa) in あれも (are mo) — ジュースをも is not possible.",
+      "reviewNote": "Constructed. Serves two jobs: it is the only sentence in the lesson using ジュース (jūsu), and it is the first time も appears in the object slot. Every existing も card has it in the topic slot.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ja-kore-o-kudasai",
+      "english": "All right, I'll take this one.",
+      "category": "Shopping",
+      "target": "じゃ、これをください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From the TARGET DIALOGUE, and singled out in NOTES as the model for じゃ (ja). The deck has これをください (ks3-kore-kudasai) and じゃ (ja) separately but never together, so the learner never sees the interjection doing its job at the moment of deciding to buy.",
       "aiSuggested": true
     },
     {
@@ -546,68 +560,55 @@
       "scene": "answering the price of the item the salesperson is holding"
     },
     {
-      "id": "hai-are-mo-nanasen-en",
-      "english": "Yes, that one over there is also 7,000 yen.",
+      "id": "kore-wa-hassen-en-ja-arimasen",
+      "english": "This one isn't 8,000 yen.",
       "category": "Money",
-      "target": "はい、あれも7,000えんです",
-      "ttsText": "はい、あれもななせんえんです",
+      "target": "これは8,000えんじゃありません",
+      "ttsText": "これははっせんえんじゃありません",
       "hint": null,
-      "note": null,
-      "reviewNote": "From EXERCISE 5A item 1 (the salesperson's reply, blank filled with 7,000えん exactly as the existing fib card did). The deck already has the question fib-c4-also-7000-yen-q but no answer to it, leaving the exchange half-taught.",
+      "note": "Member 2 of the 8,000えん (hassen'en) set. A price behaves like any other noun, so じゃありません (ja arimasen) simply replaces です (desu).",
+      "reviewNote": "Constructed. Coverage job: form. Until wave 1 nothing in the deck denied a price at all — じゃありません was learned in Lesson 2 and only ever applied to objects and owners. This is the bare negative, with no correction attached, so the learner meets the form on its own.",
       "aiSuggested": true
     },
     {
-      "id": "tokei-o-misete-kudasai",
-      "english": "Please show me the watch.",
+      "id": "kore-wa-watashi-no-kasa-desu",
+      "english": "This is my umbrella.",
       "category": "Shopping",
-      "target": "とけいをみせてください",
+      "target": "これはわたしのかさです",
       "hint": null,
-      "note": "を (o) marks whatever you want handed to you, and it takes a named item just as readily as a pointed-at one.",
-      "reviewNote": "Constructed. Coverage job: particle を (o). The deck's みせてください (misete kudasai) is a bare verb phrase and the only sentence using it points with それ (sore), so the learner never sees the frame with a named noun. とけい (tokei) is Lesson 2 vocabulary.",
+      "note": "The affirmative of これはわたしのかさじゃありません (kore wa watashi no kasa ja arimasen), the sentence GRAMMAR 2 builds its も (mo) example on.",
+      "reviewNote": "Constructed. Coverage job: form — member 1 of a です / じゃありません / ですか set on かさ (kasa), built around the negative the deck already holds. Also gives the particle の (no) an affirmative example; both existing の sentences in this lesson are negative.",
       "aiSuggested": true
     },
     {
-      "id": "sore-mo-hassen-en-ja-arimasen",
-      "english": "That one isn't 8,000 yen either.",
+      "id": "to-sandwich-coffee-ikura-a",
+      "english": "A sandwich and a coffee are 900 yen.",
       "category": "Money",
-      "target": "それも8,000えんじゃありません",
-      "ttsText": "それもはっせんえんじゃありません",
+      "target": "サンドイッチとコーヒーは900えんです",
+      "ttsText": "サンドイッチとコーヒーはきゅうひゃくえんです",
       "hint": null,
-      "note": "In a negative sentence も (mo) reads as \"not … either\". Same particle, same position as in それも1,000えんです (sore mo sen'en desu) — only the ending changes.",
-      "reviewNote": "Constructed. Coverage job: particle も (mo) in a negative sentence about money, the one combination GRAMMAR 2 claims and neither the book nor the deck demonstrates on a price. Follows on directly from the negative above.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sarada-mo-onegaishimasu",
-      "english": "I would like a salad as well, please.",
-      "category": "Food",
-      "target": "サラダもおねがいします",
-      "hint": null,
-      "note": "The natural way to tack an item onto an order you have already placed.",
-      "reviewNote": "Constructed. Coverage job: particle も (mo) in the object slot, second example. サラダ (sarada) appears in only one sentence in the deck (the Key Sentence), always paired with カレー (karē); this gives it a frame of its own.",
-      "aiSuggested": true
-    },
-    {
-      "id": "mouse-computer",
-      "english": "Mouse (computer)",
-      "category": "Technology & Communication",
-      "target": "マウス",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
-    },
-    {
-      "id": "remote-control",
-      "english": "Remote control",
-      "category": "Technology & Communication",
-      "target": "リモコン",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
-    },
-    {
-      "id": "fib-are-wa-nan-desu-ka",
-      "english": "What is that, over there?",
-      "category": "Grammar & Function Words",
-      "target": "あれはなんですか",
       "note": null,
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4",
+      "reviewNote": "Constructed as the answer to the card above, per the question-and-answer rule. Coverage job: particle と (to). Restates the whole topic rather than dropping it, so the card stands on its own.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hai-douzo",
+      "english": "Here you go.",
+      "category": "Shopping",
+      "target": "はい、どうぞ",
+      "hint": null,
+      "note": "Said while handing something over. The はい (hai) here is closer to \"here\" or \"certainly\" than to \"yes\" — it is not answering a question.",
+      "reviewNote": "From the TARGET DIALOGUE (the salesperson's reply to それをみせてください). It is the natural response to the card above and the deck has no card for it; どうぞ (dōzo) exists only as a standalone expression from the Frequently Used Expressions list.",
+      "aiSuggested": true
+    },
+    {
+      "id": "to-koucha-choko-keki",
+      "english": "I would like a black tea and a chocolate cake, please.",
+      "category": "Food",
+      "target": "こうちゃとチョコレートケーキをおねがいします",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the pattern of EXERCISE 6 (place your order). Coverage job: vocabulary — こうちゃ (kōcha) and チョコレートケーキ (chokorēto kēki) both sat in the deck as nouns no sentence used. Also a third と (to) example.",
       "aiSuggested": true
     }
   ]

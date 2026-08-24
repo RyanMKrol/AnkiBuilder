@@ -1,5 +1,5 @@
 {
-  "_": "Routing table for the 2026-08-24 Nihongo absorption. See docs/designs/nihongo-absorption-2026-08.md. Phase 3 merges from this file. The `new` rows are generated from nihongo-absorption-2026-08.cards.json, so the table and the cards it describes cannot drift.",
+  "_": "Routing table for the 2026-08-24 Nihongo absorption. See docs/designs/nihongo-absorption-2026-08.md. `duplicateOf` names the book card a dropped card duplicates, which is what the retirement script verifies is still shipping. This table is a RECORD, not a derivation: it describes the pre-merge state and must not be regenerated from the book on disk, which now contains the merged cards.",
   "rows": [
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -9,7 +9,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0",
       "cardId": "irl-l1-01",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "ohayou-gozaimasu"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -19,7 +20,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0",
       "cardId": "irl-l1-02",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "konnichiwa"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -29,7 +31,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0",
       "cardId": "irl-l1-03",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "konbanwa"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -39,7 +42,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0",
       "cardId": "irl-l1-04",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "sayounara"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -50,7 +54,8 @@
       "reason": "The book already teaches this as `ja-mata` in chapter-0 (じゃ、また, \"See you.\"). Same expression, transcribed differently, so the exact-target match missed it. Dropped like any other duplicate.",
       "cardId": "irl-l1-05",
       "category": "Greetings",
-      "note": "The book already teaches this as `ja-mata` in chapter-0 (じゃ、また, \"See you.\"). Same expression, transcribed differently, so the exact-target match missed it. Dropped like any other duplicate."
+      "note": "The book already teaches this as `ja-mata` in chapter-0 (じゃ、また, \"See you.\"). Same expression, transcribed differently, so the exact-target match missed it. Dropped like any other duplicate.",
+      "duplicateOf": "ja-mata"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -60,7 +65,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0",
       "cardId": "irl-l1-06",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "sumimasen-excuse-me"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -70,7 +76,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-07",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "hajimemashite"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -80,7 +87,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-08",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "yoroshiku-onegaishimasu"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -90,7 +98,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-09",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "chuugoku"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -110,7 +119,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "irl-l1-11",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "italy"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -130,7 +140,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "irl-l1-13",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "france"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -151,7 +162,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-15",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "nihon"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -161,7 +173,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-16",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "igirisu"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -181,7 +194,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-18",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "amerika"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -201,7 +215,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-20",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "chuugokujin"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -221,7 +236,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-22",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "igirisujin"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -231,7 +247,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "irl-l1-23",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "hai"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -241,7 +258,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0, chapter-1",
       "cardId": "irl-l1-24",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "iie-not-at-all"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -251,7 +269,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "irl-l1-25",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "wakarimasen"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -311,7 +330,8 @@
       "destination": "chapter-1-extras",
       "reason": "Already in the book verbatim, in chapter-1-extras",
       "cardId": "irl-l1-31",
-      "category": "Nationalities & Countries"
+      "category": "Nationalities & Countries",
+      "duplicateOf": "w2-watashi-wa-igirisujin"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -351,7 +371,8 @@
       "destination": "chapter-6",
       "reason": "Already in the book verbatim, in chapter-6",
       "cardId": "irl-l1-35",
-      "category": "School & Education"
+      "category": "School & Education",
+      "duplicateOf": "gakusei"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -405,7 +426,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "irl-l1-46",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "duplicateOf": "juusho"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -445,7 +467,8 @@
       "destination": "chapter-4-extras",
       "reason": "Already in the book verbatim, in chapter-4-extras",
       "cardId": "irl-l1-43",
-      "category": "Money"
+      "category": "Money",
+      "duplicateOf": "ikura-desu-ka"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -455,7 +478,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "irl-l1-44",
-      "category": "Work & Occupations"
+      "category": "Work & Occupations",
+      "duplicateOf": "meishi"
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -465,7 +489,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "irl-l1-45",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "namae"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -475,7 +500,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "bag",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "kaban"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -485,7 +511,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "glasses",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "megane"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -495,7 +522,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "wallet",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "saifu"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -505,7 +533,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "book",
-      "category": "School & Education"
+      "category": "School & Education",
+      "duplicateOf": "hon"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -515,7 +544,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "pen",
-      "category": "School & Education"
+      "category": "School & Education",
+      "duplicateOf": "pen"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -525,7 +555,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "smartphone",
-      "category": "Technology & Communication"
+      "category": "Technology & Communication",
+      "duplicateOf": "sumaho"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -535,7 +566,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "key",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "kagi"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -545,7 +577,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "file",
-      "category": "School & Education"
+      "category": "School & Education",
+      "duplicateOf": "file"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -555,7 +588,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "umbrella",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "kasa"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -585,7 +619,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "this-is-my-pen",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "kore-watashi-pen"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -644,7 +679,8 @@
       "destination": "chapter-15",
       "reason": "Already in the book verbatim, in chapter-15",
       "cardId": "sport",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "duplicateOf": "sports-vocab"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -664,7 +700,8 @@
       "destination": "chapter-10",
       "reason": "Already in the book verbatim, in chapter-10",
       "cardId": "expensive",
-      "category": "Money"
+      "category": "Money",
+      "duplicateOf": "takai"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -674,7 +711,8 @@
       "destination": "chapter-10",
       "reason": "Already in the book verbatim, in chapter-10",
       "cardId": "cheap",
-      "category": "Money"
+      "category": "Money",
+      "duplicateOf": "yasui"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -784,7 +822,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "eight-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "hachi-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -794,7 +833,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "seven-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "shichi-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -804,7 +844,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "three-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "san-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -814,7 +855,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "one-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "ichi-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -824,7 +866,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "six-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "roku-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -834,7 +877,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "five-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "go-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -844,7 +888,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "eleven-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "juuichi-ji-time"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -854,7 +899,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "ten-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "juu-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -864,7 +910,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "two-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "ni-ji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -874,7 +921,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "twelve-oclock",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "juuni-ji-time"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -884,7 +932,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "am-in-the-morning",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "gozen"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -894,7 +943,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "pm-in-the-afternoon",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "gogo"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -914,7 +964,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "9-pm",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "gogo-kuji"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -924,7 +975,8 @@
       "destination": "chapter-8",
       "reason": "Already in the book verbatim, in chapter-8",
       "cardId": "what",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "nani"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -934,7 +986,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "who",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "dare"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -944,7 +997,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "where",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "doko"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -964,7 +1018,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "when",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "itsu"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -984,7 +1039,8 @@
       "destination": "chapter-11",
       "reason": "Already in the book verbatim, in chapter-11",
       "cardId": "about-approximately",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "gurai"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1004,7 +1060,8 @@
       "destination": "chapter-13",
       "reason": "Already in the book verbatim, in chapter-13",
       "cardId": "around-a-time",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "goro"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1024,7 +1081,8 @@
       "destination": "chapter-3-extras",
       "reason": "Already in the book verbatim, in chapter-3-extras",
       "cardId": "what-time-is-it-now",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "ima-nanji-q"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1074,7 +1132,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "tomorrow",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "ashita"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1084,7 +1143,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "today",
-      "category": "Time"
+      "category": "Time",
+      "duplicateOf": "kyou"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1195,7 +1255,8 @@
       "destination": "chapter-8",
       "reason": "Already in the book verbatim, in chapter-8",
       "cardId": "water",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "mizu"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1205,7 +1266,8 @@
       "destination": "chapter-4",
       "reason": "Already in the book verbatim, in chapter-4",
       "cardId": "personal-computer",
-      "category": "Technology & Communication"
+      "category": "Technology & Communication",
+      "duplicateOf": "pasokon"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1235,7 +1297,8 @@
       "destination": "chapter-14",
       "reason": "Already in the book verbatim, in chapter-14",
       "cardId": "ring",
-      "category": "Clothing"
+      "category": "Clothing",
+      "duplicateOf": "yubiwa"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1245,7 +1308,8 @@
       "destination": "chapter-12",
       "reason": "Already in the book verbatim, in chapter-12",
       "cardId": "table",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "duplicateOf": "table-noun"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1255,7 +1319,8 @@
       "destination": "chapter-12",
       "reason": "Already in the book verbatim, in chapter-12",
       "cardId": "desk",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "duplicateOf": "tsukue-desk"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1265,7 +1330,8 @@
       "destination": "chapter-12",
       "reason": "Already in the book verbatim, in chapter-12",
       "cardId": "chair",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "duplicateOf": "isu-chair"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1295,7 +1361,8 @@
       "destination": "chapter-15",
       "reason": "Already in the book verbatim, in chapter-15",
       "cardId": "football",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "duplicateOf": "soccer-vocab"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1305,7 +1372,8 @@
       "destination": "chapter-15",
       "reason": "Already in the book verbatim, in chapter-15",
       "cardId": "tennis",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "duplicateOf": "tenisu-tennis"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1315,7 +1383,8 @@
       "destination": "chapter-15",
       "reason": "Already in the book verbatim, in chapter-15",
       "cardId": "baseball",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "duplicateOf": "baseball"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1365,7 +1434,8 @@
       "destination": "chapter-8",
       "reason": "Already in the book verbatim, in chapter-8",
       "cardId": "green-tea",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "ocha"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1375,7 +1445,8 @@
       "destination": "chapter-4",
       "reason": "Already in the book verbatim, in chapter-4",
       "cardId": "black-tea",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "koucha"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1405,7 +1476,8 @@
       "destination": "chapter-10",
       "reason": "Already in the book verbatim, in chapter-10",
       "cardId": "tasty",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "oishii"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1415,7 +1487,8 @@
       "destination": "chapter-3",
       "reason": "Already in the book verbatim, in chapter-3",
       "cardId": "work",
-      "category": "Work & Occupations"
+      "category": "Work & Occupations",
+      "duplicateOf": "shigoto"
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1487,7 +1560,8 @@
       "destination": "chapter-15",
       "reason": "Already in the book verbatim, in chapter-15",
       "cardId": "to-swim",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "duplicateOf": "oyogu-dict-form"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1507,7 +1581,8 @@
       "destination": "chapter-0",
       "reason": "Already in the book verbatim, in chapter-0",
       "cardId": "one-more-time-please",
-      "category": "Greetings"
+      "category": "Greetings",
+      "duplicateOf": "mou-ichido-onegaishimasu"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1517,7 +1592,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "this-one",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "kore"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1527,7 +1603,8 @@
       "destination": "chapter-4",
       "reason": "Already in the book verbatim, in chapter-4",
       "cardId": "that-one",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "sore"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1537,7 +1614,8 @@
       "destination": "chapter-4",
       "reason": "Already in the book verbatim, in chapter-4",
       "cardId": "that-one-over-there",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "are"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1547,7 +1625,8 @@
       "destination": "chapter-1",
       "reason": "Already in the book verbatim, in chapter-1",
       "cardId": "this-one-polite",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "kochira"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1557,7 +1636,8 @@
       "destination": "chapter-6",
       "reason": "Already in the book verbatim, in chapter-6",
       "cardId": "that-one-polite",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "sochira"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1567,7 +1647,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "that-one-over-there-polite",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "achira"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1577,7 +1658,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "this",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "kono"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1587,7 +1669,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "that",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "sono"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1597,7 +1680,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "that-over-there",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "duplicateOf": "ano"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1627,7 +1711,8 @@
       "destination": "chapter-2",
       "reason": "Already in the book verbatim, in chapter-2",
       "cardId": "sweets",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "okashi"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1647,7 +1732,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "beef",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "beef"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1657,7 +1743,8 @@
       "destination": "chapter-9",
       "reason": "Already in the book verbatim, in chapter-9",
       "cardId": "vegetables",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "yasai-vegetable"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1677,7 +1764,8 @@
       "destination": "chapter-15",
       "reason": "Already in the book verbatim, in chapter-15",
       "cardId": "pizza",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "pizza-vocab"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1687,7 +1775,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "beer",
-      "category": "Food"
+      "category": "Food",
+      "duplicateOf": "beer"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1745,7 +1834,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "small",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "small"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1755,7 +1845,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "big",
-      "category": "Other"
+      "category": "Other",
+      "duplicateOf": "big-large"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1835,7 +1926,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "white",
-      "category": "Colors"
+      "category": "Colors",
+      "duplicateOf": "white"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1845,7 +1937,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "black",
-      "category": "Colors"
+      "category": "Colors",
+      "duplicateOf": "black"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -1976,7 +2069,8 @@
       "reason": "Already in the book verbatim, in chapter-14",
       "cardId": "scarf",
       "category": "Clothing",
-      "note": "RESOLVED: card-id collision with the book's `scarf` (スカーフ) in chapter-14. This one is マフラー, so it ships as `mafuraa-scarf` and its live note is re-tagged abid:scarf -> abid:mafuraa-scarf. Both gloss \"Scarf\", so it also needs a hint or scene cue."
+      "note": "RESOLVED: card-id collision with the book's `scarf` (スカーフ) in chapter-14. This one is マフラー, so it ships as `mafuraa-scarf` and its live note is re-tagged abid:scarf -> abid:mafuraa-scarf. Both gloss \"Scarf\", so it also needs a hint or scene cue.",
+      "duplicateOf": "mafuraa"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2056,7 +2150,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "4th-floor",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "fourth-floor"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2076,7 +2171,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "2nd-floor",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "second-floor"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2116,7 +2212,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "6th-floor",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "sixth-floor"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2126,7 +2223,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "3rd-floor",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "third-floor"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2156,7 +2254,8 @@
       "destination": "chapter-12",
       "reason": "Already in the book verbatim, in chapter-12",
       "cardId": "car-park",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "chuushajou-parking-lot"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2186,7 +2285,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "restroom",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "restroom"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2238,7 +2338,8 @@
       "destination": "chapter-16",
       "reason": "Already in the book verbatim, in chapter-16",
       "cardId": "snow",
-      "category": "Weather & Nature"
+      "category": "Weather & Nature",
+      "duplicateOf": "yuki-snow"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2258,7 +2359,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "camera",
-      "category": "Technology & Communication"
+      "category": "Technology & Communication",
+      "duplicateOf": "camera"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2358,7 +2460,8 @@
       "destination": "chapter-5",
       "reason": "Already in the book verbatim, in chapter-5",
       "cardId": "fib-sangai-desu",
-      "category": "Directions"
+      "category": "Directions",
+      "duplicateOf": "fib-c5-vacuum-third-floor"
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2396,7 +2499,8 @@
       "target": "いそがしい",
       "disposition": "drop-duplicate",
       "destination": "chapter-11",
-      "reason": "Already in the book verbatim, in chapter-11"
+      "reason": "Already in the book verbatim, in chapter-11",
+      "duplicateOf": "isogashii"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2404,7 +2508,8 @@
       "target": "きれい",
       "disposition": "drop-duplicate",
       "destination": "chapter-10",
-      "reason": "Already in the book verbatim, in chapter-10"
+      "reason": "Already in the book verbatim, in chapter-10",
+      "duplicateOf": "kirei"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2412,7 +2517,8 @@
       "target": "にほんじん",
       "disposition": "drop-duplicate",
       "destination": "chapter-1",
-      "reason": "Already in the book verbatim, in chapter-1"
+      "reason": "Already in the book verbatim, in chapter-1",
+      "duplicateOf": "nihonjin"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2420,7 +2526,8 @@
       "target": "いくらですか",
       "disposition": "drop-duplicate",
       "destination": "chapter-4-extras",
-      "reason": "Already in the book verbatim, in chapter-4-extras"
+      "reason": "Already in the book verbatim, in chapter-4-extras",
+      "duplicateOf": "ikura-desu-ka"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2428,7 +2535,8 @@
       "target": "やすみ",
       "disposition": "drop-duplicate",
       "destination": "chapter-3",
-      "reason": "Already in the book verbatim, in chapter-3, chapter-7"
+      "reason": "Already in the book verbatim, in chapter-3, chapter-7",
+      "duplicateOf": "yasumi"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2436,7 +2544,8 @@
       "target": "おみやげ",
       "disposition": "drop-duplicate",
       "destination": "chapter-11",
-      "reason": "Already in the book verbatim, in chapter-11"
+      "reason": "Already in the book verbatim, in chapter-11",
+      "duplicateOf": "omiyage"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2444,7 +2553,8 @@
       "target": "あるいて",
       "disposition": "drop-duplicate",
       "destination": "chapter-7",
-      "reason": "Already in the book verbatim, in chapter-7"
+      "reason": "Already in the book verbatim, in chapter-7",
+      "duplicateOf": "aruite"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2452,7 +2562,8 @@
       "target": "だいがく",
       "disposition": "drop-duplicate",
       "destination": "chapter-1",
-      "reason": "Already in the book verbatim, in chapter-1"
+      "reason": "Already in the book verbatim, in chapter-1",
+      "duplicateOf": "daigaku"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2460,7 +2571,8 @@
       "target": "いきます",
       "disposition": "drop-duplicate",
       "destination": "chapter-6",
-      "reason": "Already in the book verbatim, in chapter-6"
+      "reason": "Already in the book verbatim, in chapter-6",
+      "duplicateOf": "ikimasu"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2468,7 +2580,8 @@
       "target": "いきました",
       "disposition": "drop-duplicate",
       "destination": "chapter-6",
-      "reason": "Already in the book verbatim, in chapter-6"
+      "reason": "Already in the book verbatim, in chapter-6",
+      "duplicateOf": "ikimashita"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2476,7 +2589,8 @@
       "target": "ここ",
       "disposition": "drop-duplicate",
       "destination": "chapter-9",
-      "reason": "Already in the book verbatim, in chapter-9"
+      "reason": "Already in the book verbatim, in chapter-9",
+      "duplicateOf": "koko-here"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2484,7 +2598,8 @@
       "target": "そこ",
       "disposition": "drop-duplicate",
       "destination": "chapter-13",
-      "reason": "Already in the book verbatim, in chapter-13"
+      "reason": "Already in the book verbatim, in chapter-13",
+      "duplicateOf": "soko"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2492,7 +2607,8 @@
       "target": "あそこ",
       "disposition": "drop-duplicate",
       "destination": "chapter-13",
-      "reason": "Already in the book verbatim, in chapter-13"
+      "reason": "Already in the book verbatim, in chapter-13",
+      "duplicateOf": "asoko"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
@@ -2501,7 +2617,8 @@
       "disposition": "drop-duplicate",
       "destination": "",
       "reason": "Duplicates Nihongo 101 card irl-l1-38, which is moving with its review history. Ship that one.",
-      "note": "RESOLVED: duplicates Nihongo 101 card irl-l1-38, which ships instead because it has review history."
+      "note": "RESOLVED: duplicates Nihongo 101 card irl-l1-38, which ships instead because it has review history.",
+      "duplicateOf": "irl-l1-38"
     },
     {
       "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",

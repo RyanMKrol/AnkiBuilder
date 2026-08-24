@@ -250,6 +250,24 @@ another, copy its shape rather than reaching for a flag:
 survive the move; how the cards are scheduled from then on follows the destination deck's preset.
 That is usually the point of the move, but it is a real consequence and worth saying out loud.
 
+## Retiring a whole collection from the live deck
+
+Deliver never deletes. A card that leaves the corpus is reported as `orphaned` for a human to act
+on, and that is deliberate: deletion takes a note's cards and its entire review log with it, and
+nothing in Anki brings them back. So retiring a collection is its own explicit act, not a flag on a
+delivery. `scripts/retire-nihongo-course.mjs` did it once, for the collection the Nihongo absorption
+emptied. Its shape is what any future one should copy:
+
+- delete ONLY notes a written record says are redundant, matched by their `abid:` tag, and confirm
+  the card each one duplicates is genuinely still shipping before removing it. A duplicate whose twin
+  has gone missing is not a duplicate, it is the last copy.
+- report and REFUSE on any note under that parent deck that the record does not account for. It is
+  either something a migration missed or something the owner added by hand, and neither is a
+  script's to remove.
+- remove the decks with `cardsToo: false`, so a deck that turns out not to be empty gives its cards
+  up to Default rather than to deletion.
+- default to a dry run, and require an explicit backup acknowledgement on top of `--apply`.
+
 ## Deck options: turn on sibling burying by hand, once
 
 **This is the one setting in this file that has to be clicked in Anki, and it is worth more than

@@ -27,6 +27,7 @@ const SPENT = [
   "backfill-audio-text-hash.mjs",
   "absorb-nihongo.mjs",
   "migrate-nihongo-absorption.mjs",
+  "retire-nihongo-course.mjs",
 ];
 
 const STANDING = [

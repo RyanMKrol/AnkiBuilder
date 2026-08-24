@@ -4,7 +4,8 @@
     "sourceType": "epub",
     "chapterNumber": 17,
     "chapterLabel": "Lesson 3: Asking the Time: What Time Is It? (Extras)",
-    "baseChapterLabel": "Lesson 3: Asking the Time: What Time Is It?"
+    "baseChapterLabel": "Lesson 3: Asking the Time: What Time Is It?",
+    "enriched": true
   },
   "items": [
     {
@@ -1099,6 +1100,99 @@
       "note": "いつ (itsu) plus ですか (desu ka). Unlike なんじですか (nan-ji desu ka) it does not demand a clock time, so a day on its own answers it.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the whole question, where the book cards only the bare word いつ (itsu)."
+    },
+    {
+      "id": "fib-toukyou-ima-nanji-q",
+      "english": "What time is it in Tokyo now?",
+      "category": "Time",
+      "target": "とうきょうはいまなんじですか",
+      "pronunciation": "Tōkyō wa ima nanji desu ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [place]はいまなんじですか — The source already asks this twice (London and the UK), so a third city adds nothing new.",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [place]はいまなんじですか. The source already asks this twice (London and the UK), so a third city adds nothing new."
+    },
+    {
+      "id": "fib-suupaa-nanji-made-q",
+      "english": "What time does the supermarket close?",
+      "category": "Shopping",
+      "target": "スーパーはなんじまでですか",
+      "pronunciation": "sūpā wa nanji made desu ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [topic]はなんじまでですか — The source already teaches this closing-time question twice (department store, restaurant).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [topic]はなんじまでですか. The source already teaches this closing-time question twice (department store, restaurant)."
+    },
+    {
+      "id": "fib-ima-gozen-goji",
+      "english": "It's 5 AM now.",
+      "category": "Time",
+      "target": "いまごぜんごじです",
+      "pronunciation": "ima gozen goji desu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-ginkou-nanji-made-q",
+      "english": "What time does the bank close?",
+      "category": "Money",
+      "target": "ぎんこうはなんじまでですか",
+      "pronunciation": "ginkō wa nanji made desu ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [topic]はなんじまでですか — Third redundant example of the closing-time question the source already covers twice.",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [topic]はなんじまでですか. Third redundant example of the closing-time question the source already covers twice."
+    },
+    {
+      "id": "fib-ginkou-sanji-made-a",
+      "english": "It closes at 3:00 P.M.",
+      "category": "Money",
+      "target": "ごごさんじまでです",
+      "pronunciation": "gogo sanji made desu",
+      "note": null,
+      "scene": "answering what time the bank closes",
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: ごご[time]までです — Its paired question (fib-ginkou-nanji-made-q) is being removed, and the answer pattern is itself already taught twice by the source (department store, restaurant).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: ごご[time]までです. Its paired question (fib-ginkou-nanji-made-q) is being removed, and the answer pattern is itself already taught twice by the source (department store, restaurant)."
+    },
+    {
+      "id": "fib-kaigi-sanji-q",
+      "english": "Is the meeting at 3:00?",
+      "category": "Work & Occupations",
+      "target": "かいぎはさんじですか",
+      "pronunciation": "kaigi wa sanji desu ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-kaigi-sanji-iie-a",
+      "english": "No, it isn't 3:00.",
+      "category": "Work & Occupations",
+      "target": "いいえ、さんじじゃありません",
+      "pronunciation": "iie, sanji ja arimasen",
+      "note": null,
+      "scene": "answering whether the meeting is at 3:00",
+      "fillInBlank": true,
+      "aiSuggested": true
     }
   ]
 }

@@ -45,11 +45,12 @@
       "source": "Nihongo 101 · Lesson 1",
       "english": "Goodbye.",
       "target": "じゃあまた",
-      "disposition": "move",
-      "destination": "chapter-1-extras",
-      "reason": "Chapter-0's set-phrase material; chapter-0 has no extras deck of its own",
+      "disposition": "drop-duplicate",
+      "destination": "chapter-0",
+      "reason": "The book already teaches this as `ja-mata` in chapter-0 (じゃ、また, \"See you.\"). Same expression, transcribed differently, so the exact-target match missed it. Dropped like any other duplicate.",
       "cardId": "irl-l1-05",
-      "category": "Greetings"
+      "category": "Greetings",
+      "note": "The book already teaches this as `ja-mata` in chapter-0 (じゃ、また, \"See you.\"). Same expression, transcribed differently, so the exact-target match missed it. Dropped like any other duplicate."
     },
     {
       "source": "Nihongo 101 · Lesson 1",
@@ -611,9 +612,16 @@
       "target": "のみもの",
       "disposition": "move",
       "destination": "chapter-9-extras",
-      "reason": "Lesson 9 already teaches nomimono",
+      "reason": "Lesson 9 already teaches nomimono. Needs a hint on merge (English gloss \"Drink\" also reaches のみます (nomimasu, chapter-8), the verb): \"the plain everyday word, not the polite form a restaurant uses\". The book card onomimono (chapter-9) needs one too.",
       "cardId": "drink",
-      "category": "Food"
+      "category": "Food",
+      "cueOnMerge": {
+        "kind": "hint",
+        "text": "the plain everyday word, not the polite form a restaurant uses",
+        "book": "onomimono (chapter-9)",
+        "booktext": "what a restaurant offers you, the polite お- form of のみもの (nomimono)",
+        "why": "English gloss \"Drink\" also reaches のみます (nomimasu, chapter-8), the verb"
+      }
     },
     {
       "source": "Nihongo 101 · Lesson 2",
@@ -1715,9 +1723,16 @@
       "target": "かっこいい",
       "disposition": "move",
       "destination": "chapter-10-extras",
-      "reason": "i-adjective describing things, Lesson 10's job",
+      "reason": "i-adjective describing things, Lesson 10's job. Needs a hint on merge (English gloss \"Cool\" collides with すずしい (suzushii), which is about temperature): \"stylish, good-looking\". The book card suzushii (chapter-10) needs one too.",
       "cardId": "cool",
-      "category": "Other"
+      "category": "Other",
+      "cueOnMerge": {
+        "kind": "hint",
+        "text": "stylish, good-looking",
+        "book": "suzushii (chapter-10)",
+        "booktext": "pleasantly cool weather",
+        "why": "English gloss \"Cool\" collides with すずしい (suzushii), which is about temperature"
+      }
     },
     {
       "source": "Nihongo 101 · Lesson 3",
@@ -2805,6 +2820,15 @@
       "disposition": "new",
       "destination": "chapter-9-extras",
       "reason": "Answer to the nemashita question routed here"
+    },
+    {
+      "source": "Nihongo 102 · Beginner 2 Week 1-2 PDF",
+      "english": "I went to the office.",
+      "target": "かいしゃにいきました",
+      "disposition": "new",
+      "destination": "chapter-6-extras",
+      "reason": "Cell 2 of the いきます paradigm. Authored in Phase 2 so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
+      "note": "Added during authoring, not present in either source as its own item."
     }
   ]
 }

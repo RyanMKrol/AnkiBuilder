@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
+import { Buffer } from "buffer";
 import { startDeckServer } from "../../src/server/index.js";
 import { buildBookDeck } from "../../src/deck/index.js";
 

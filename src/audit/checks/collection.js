@@ -10,6 +10,11 @@ import { unitChapterNumber } from "../units.js";
 // The checks that answer a question about ONE unit, or about one collection's units together.
 // Everything here reads files preflight has already loaded; none of it writes.
 
+// Deliberately NOT `shippableCards()`, which also filters out a pending addition. An audit wants to
+// see a retrofitted card BEFORE it is approved, which is the only moment fixing it is cheap: a
+// colliding id caught here is one edit, where the same clash caught after approval is a refusal to
+// package a deck whose reviews are already signed off. Narrowing this to the shipping set would move
+// every finding on a pending card to the worst possible time.
 const shipped = (unit) => unit.items.filter((item) => !item.excluded);
 
 export const schemaCheck = defineCheck({

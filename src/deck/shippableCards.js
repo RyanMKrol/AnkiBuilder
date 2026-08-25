@@ -11,7 +11,28 @@
  * dependency circular.
  */
 export function shippableCards(cards) {
-  return (cards?.items || []).filter((item) => !item.excluded);
+  return (cards?.items || []).filter((item) => !item.excluded && !isPendingAddition(item));
+}
+
+/**
+ * A card retrofitted into a finished unit that has not been through the ADDITIONS review yet.
+ *
+ * Class notes keep arriving for material the deck taught chapters ago, so cards get added to units
+ * that are already reviewed, done and delivered. Re-opening a whole unit's corpus gate to approve a
+ * dozen new cards means re-reading hundreds of approved ones, so the gate for these is per CARD: the
+ * unit keeps its sign-off, and only the additions are held back.
+ *
+ * `addition` names the batch that added the card and is never cleared, so "which retrofit added
+ * this?" stays answerable for the life of the deck. `additionReviewed` is the sign-off. A card with
+ * no `addition` at all is not an addition, which is why every deck built before this existed is
+ * unaffected.
+ *
+ * Held back HERE rather than at either delivery path, for the same reason `excluded` is: this is the
+ * one function the `.apkg` builder and the AnkiConnect deliverer both call, so they cannot disagree
+ * about what ships.
+ */
+export function isPendingAddition(item) {
+  return typeof item?.addition === "string" && item.additionReviewed !== true;
 }
 
 /**

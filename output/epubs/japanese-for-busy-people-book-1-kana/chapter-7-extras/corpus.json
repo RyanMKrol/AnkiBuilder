@@ -8,6 +8,685 @@
   },
   "items": [
     {
+      "id": "how",
+      "english": "How",
+      "category": "Grammar & Function Words",
+      "target": "どうやって",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 7 asks dou yatte ikimasu ka about transport",
+      "note": "Interchangeable with なんで (nande) from this lesson for asking how someone travels; どうやって (dō yatte) is the everyday choice, while なんで (nande) risks being heard as \"why\" in casual speech."
+    },
+    {
+      "id": "w2-ema-2022nen-kimashita",
+      "english": "Emma-san came to Japan in 2022.",
+      "category": "Travel & Tourism",
+      "target": "エマさんは2022ねんににほんにきました",
+      "ttsText": "エマさんはにせんにじゅうにねんににほんにきました",
+      "hint": null,
+      "note": "A year behaves like any other specific time and takes に (ni), exactly as a month or a day does.",
+      "reviewNote": "Constructed. Vocabulary job: 〜ねん exists only as the 2025ねんに fragment and two bare year cards, never in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "suiyoubi-ni-kimasu",
+      "english": "He's coming on Wednesday.",
+      "category": "Travel & Tourism",
+      "target": "すいようびにきます",
+      "note": null,
+      "reviewNote": "Exercise V.B worked example, answer half. Pairs with gibson-itsu-nihon-ni-kimasu-ka. Shows the day-of-week + に pattern in a reply, which the どようびに fragment card only hints at.",
+      "aiSuggested": true,
+      "scene": "answering when Gibson-san is coming to Japan"
+    },
+    {
+      "id": "w2-smith-nichiyoubi-ni-kaerimashita",
+      "english": "Smith-san went home on Sunday.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはにちようびにうちにかえりました",
+      "hint": null,
+      "note": "にちようび (nichiyōbi) names a specific day, so に (ni) is required after it.",
+      "reviewNote": "Constructed. Particle job (に vs no particle): member 1 of a minimal pair whose only difference is the time word and the に it forces. This is the distinction Lesson 6 and Lesson 7 together set up and no card states outright.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-futsuka-kara-nanoka-made",
+      "english": "It's from the 2nd to the 7th.",
+      "category": "Time",
+      "target": "ふつかからなのかまでです",
+      "note": null,
+      "reviewNote": "Constructed, using the book's own 9がつふつかからなのかまで dates from Exercise II.C. Vocabulary job: ふつか and なのか had no sentence. Answer half of the pair with w2-ryokou-nannichi-kara.",
+      "aiSuggested": true,
+      "scene": "answering what dates the trip runs"
+    },
+    {
+      "id": "w2-smith-tokyo-eki-ni-ikimasu",
+      "english": "Smith-san is going to Tokyo Station tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはあしたとうきょうえきにいきます",
+      "hint": "use the に (ni) destination particle",
+      "note": "に (ni) is the everyday choice for a destination and the one this lesson uses throughout.",
+      "reviewNote": "Constructed. Particle job (に vs へ): member 1 of a minimal pair differing only in that one particle. Both members carry a hint because the English is identical.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kinyoubi-ni-tokyo-kaerimasu",
+      "english": "I'll return to Tokyo on Friday.",
+      "category": "Travel & Tourism",
+      "target": "きんようびにとうきょうにかえります",
+      "hint": null,
+      "note": "Two に (ni) in one sentence doing different jobs: the first marks the time, the second the destination.",
+      "reviewNote": "Target Dialogue, Smith's first reply (second sentence). かえります has no sentence card anywhere in the lesson, and this is the book's own example of the specific-time に from GRAMMAR 1 inside a full sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-nande-osaka-ni-ikimasu-ka",
+      "english": "How is Smith-san going to Osaka?",
+      "category": "Transport",
+      "target": "スミスさんはなんでおおさかにいきますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Exercise VII worked example. The existing なんでいきますか is a bare fragment with no subject or destination; this is the full question the book drills. I deliberately left out its answer (くるまでいきます) because バスでいきます already teaches that pattern and いいえ、しんかんせんでいきます above makes a second.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-mikka-desu",
+      "english": "It's on the 3rd.",
+      "category": "Time",
+      "target": "みっかです",
+      "note": null,
+      "reviewNote": "Constructed from Exercise VIII alternative 1. Form job: the reply half of the alternative question — you pick one and drop the rest of the sentence.",
+      "aiSuggested": true,
+      "scene": "answering whether the meeting falls on the 3rd or the 6th"
+    },
+    {
+      "id": "w2-kaigi-mikka-ka-muika-ka",
+      "english": "Is the meeting on the 3rd or the 6th?",
+      "category": "Time",
+      "target": "かいぎはみっかですか、むいかですか",
+      "hint": null,
+      "note": "Both か (ka) are said with a rising intonation, not just the last one.",
+      "reviewNote": "Constructed from Exercise VIII alternative 1. Form job: the noun1は noun2ですか、noun3ですか pattern is a Key Sentence but the only card for it has no answer card, so the exchange is never completed. Also gives むいか its first sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-smith-doyoubi-kaerimasen",
+      "english": "Smith-san isn't going home on Saturday.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはどようびにうちにかえりません",
+      "hint": null,
+      "note": "Member 2 of the set: ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
+      "reviewNote": "Constructed. Form job: negative member of the かえります triad. かえりません appears nowhere in the lesson's own cards.",
+      "aiSuggested": true
+    },
+    {
+      "id": "raishuu-no-getsuyoubi-ni-sochira",
+      "english": "I'll go there next Monday.",
+      "category": "Travel & Tourism",
+      "target": "らいしゅうのげつようびにそちらにいきます",
+      "hint": null,
+      "note": "らいしゅうの (raishū no) + a day of the week behaves as one specific time expression, so it takes に (ni) even though らいしゅう on its own would not.",
+      "reviewNote": "Exercise IX worked dialogue, Chan's first line. Exercise IX never became cards. This is the one place the book shows a relative week word narrowed to a specific day, which is exactly the に/no-に decision learners get wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-basu-de-shigoto-ni-ikimasu",
+      "english": "I go to work by bus.",
+      "category": "Transport",
+      "target": "バスでしごとにいきます",
+      "scene": "answering how you get to work",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 3 answer. Job: contrasts the で (de) of means against the あるいて (aruite) answer above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-wa-itsu-desu-ka",
+      "english": "When is the meeting?",
+      "category": "Time",
+      "target": "かいぎはいつですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Duplicate of kaigi-itsu-q in Lesson 3. Its answer card carries a hint and stands alone.",
+      "aiSuggested": true,
+      "excluded": true
+    },
+    {
+      "id": "w2-jimu-no-yasumi-kayoubi",
+      "english": "The gym's day off is Tuesday.",
+      "category": "Time",
+      "target": "ジムのやすみはかようびです",
+      "hint": null,
+      "note": "やすみ (yasumi) covers any break — a day off, a lunch break, or a school holiday.",
+      "reviewNote": "Constructed. Vocabulary job: かようび was the last weekday with no sentence, and やすみ on its own appears only inside ひるやすみ and なつやすみ.",
+      "aiSuggested": true
+    },
+    {
+      "id": "omatsuri-wa-nangatsu-desu-ka",
+      "english": "What month is the festival?",
+      "category": "Time",
+      "target": "おまつりはなんがつですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Exercise II.A worked example. なんがつ is a bare card with no sentence, unlike なんにち and なんようび which the fill-in-the-blank block already puts in questions.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-ropesu-kinou-kimasen-deshita",
+      "english": "Lopez-san didn't come to the office yesterday.",
+      "category": "Work & Occupations",
+      "target": "ロペスさんはきのうかいしゃにきませんでした",
+      "hint": null,
+      "note": "きのう (kinō) takes no に (ni), the same as きょねん (kyonen) and おととい (ototoi).",
+      "reviewNote": "Constructed. Form job: きませんでした completes the きます conjugation, which otherwise stops at きました. ロペス is the third of the lesson's unused surnames.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hachigatsu-juukunichi-desu",
+      "english": "It's on August 19th.",
+      "category": "Time",
+      "target": "8がつ19にちです",
+      "ttsText": "はちがつじゅうくにちです",
+      "note": null,
+      "reviewNote": "Exercise II.B worked example, answer half. Pairs with tanjoubi-wa-itsu-desu-ka and is the only short month + day date card — the existing dated card is the long from/to travel sentence.",
+      "aiSuggested": true,
+      "scene": "answering when your birthday is"
+    },
+    {
+      "id": "w2-kaigi-wa-youka-desu-ne",
+      "english": "The meeting is on the 8th, right?",
+      "category": "Time",
+      "target": "かいぎはようかですね",
+      "hint": null,
+      "note": "ね (ne) asks the listener to confirm something you already believe, unlike か (ka), which asks for information you do not have.",
+      "reviewNote": "Lifted from SPEAKING PRACTICE 3, Smith's closing line (with かいぎ restored as the topic so the card stands alone). Particle job (ね): introduced in Lesson 6 on one card and never used again.",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-aruite-uchi-ni-kaerimashita",
+      "english": "Smith-san walked home.",
+      "category": "Transport",
+      "target": "スミスさんはあるいてうちにかえりました",
+      "hint": null,
+      "note": "あるいて (aruite) is the exception to the transport で (de) rule — it already means \"by walking\", so no で follows it. Compare タクシーでうちにかえりました (takushī de uchi ni kaerimashita).",
+      "reviewNote": "Exercise VI, alternative 3. The exercise's whole point is that あるいて breaks the transport-で pattern, and the deck teaches あるいて only as an isolated word. The fill-in-the-blank block covers the タクシーで version, so this is the contrast card.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-natsuyasumi-tooka-hatsuka",
+      "english": "The summer vacation is from the 10th to the 20th.",
+      "category": "Time",
+      "target": "なつやすみはとおかからはつかまでです",
+      "hint": null,
+      "note": "はつか (hatsuka) is the 20th and ふつか (futsuka) the 2nd — they sound close but share no counting logic.",
+      "reviewNote": "Constructed from the Active Communication prompt about summer vacations. Vocabulary job: とおか and はつか had no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-ropesu-juuichigatsu-amerika",
+      "english": "Lopez-san is going back to the United States in November.",
+      "category": "Travel & Tourism",
+      "target": "ロペスさんは11がつにアメリカにかえります",
+      "ttsText": "ロペスさんはじゅういちがつにアメリカにかえります",
+      "hint": null,
+      "note": "かえります (kaerimasu) is going back to where you belong, which is why it fits a country you came from.",
+      "reviewNote": "Constructed. Vocabulary job: じゅういちがつ had no sentence. Uses アメリカ from Lesson 1 to give かえります a destination other than うち or とうきょう.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-smith-tokyo-eki-e-ikimasu",
+      "english": "Smith-san is going to Tokyo Station tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはあしたとうきょうえきへいきます",
+      "hint": "use the へ (e) direction particle",
+      "note": "へ (e) is the hiragana he, but it is read e whenever it works as a particle. For a destination it swaps with に (ni) freely.",
+      "reviewNote": "Constructed. Particle job (に vs へ): member 2 of the minimal pair. へ was introduced in Lesson 6 on a single card and is exercised nowhere in this lesson.",
+      "aiSuggested": true
+    },
+    {
+      "id": "juuji-ni-ikimasu",
+      "english": "I'll go at 10:00.",
+      "category": "Time",
+      "target": "10じにいきます",
+      "ttsText": "じゅうじにいきます",
+      "note": null,
+      "reviewNote": "Exercise IX worked dialogue, Chan's reply. Answer half of the pair with nanji-ni-kimasu-ka, and the working version of the 5じに fragment card.",
+      "aiSuggested": true,
+      "scene": "answering what time you'll come"
+    },
+    {
+      "id": "kyonen-no-kugatsu-ni-kimashita",
+      "english": "I came in September last year.",
+      "category": "Travel & Tourism",
+      "target": "きょねんの9がつにきました",
+      "ttsText": "きょねんのくがつにきました",
+      "note": null,
+      "reviewNote": "Speaking Practice 2, Raja's reply. Answer half of the pair. Combines きょねんの (L6) with a month + に, a combination no card shows.",
+      "aiSuggested": true,
+      "scene": "answering when you came to Japan"
+    },
+    {
+      "id": "w2-ryokou-nannichi-kara",
+      "english": "What dates does the trip run from and to?",
+      "category": "Time",
+      "target": "りょこうはなんにちからなんにちまでですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Particle job (から / まで) combined with a question word in both slots — the pattern the deck only has for なんじ (nan-ji) in Lesson 3.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-jimu-ni-aruite-ikimasu",
+      "english": "I walk to the gym.",
+      "category": "Transport",
+      "target": "ジムにあるいていきます",
+      "scene": "answering how you get to the gym",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-smith-doyoubi-kaerimasu",
+      "english": "Smith-san is going home on Saturday.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはどようびにうちにかえります",
+      "hint": null,
+      "note": "A named day is a specific time, so it takes に (ni). Member 1 of a かえります (kaerimasu) / かえりません (kaerimasen) / かえりますか (kaerimasu ka) set on the same sentence.",
+      "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for かえります, on one fixed sentence so the transformation is visible. どようび also had no sentence card, only the どようびに fragment.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ee-osaka-shisha-ni-ikimasu",
+      "english": "Yes, I'm going to the Osaka branch office with Kato-san.",
+      "category": "Travel & Tourism",
+      "target": "ええ、かとうさんとおおさかししゃにいきます",
+      "hint": "use the softer yes",
+      "note": null,
+      "reviewNote": "Target Dialogue, Smith's first reply. Answer half of the split pair with shucchou-desu-ka. It is also the only card that puts ええ (ē) to work — the ee-yes card is flagged uncertain and is a bare word.",
+      "aiSuggested": true,
+      "scene": "answering whether you are going on a business trip"
+    },
+    {
+      "id": "raigetsu-no-youka-desu",
+      "english": "It's on the 8th of next month.",
+      "category": "Time",
+      "target": "らいげつのようかです",
+      "note": "らいげつ (raigetsu) from Lesson 6 attaches to a date with の (no), the same way きょねんの (kyonen no) does.",
+      "reviewNote": "Speaking Practice 3, Emma's reply. Answer half of the pair with kaigi-wa-itsu-desu-ka, and the only card showing a relative month combined with a specific date.",
+      "aiSuggested": true,
+      "scene": "answering when the meeting is"
+    },
+    {
+      "id": "gibson-itsu-nihon-ni-kimasu-ka",
+      "english": "When is Gibson-san coming to Japan?",
+      "category": "Travel & Tourism",
+      "target": "ギブソンさんはいつにほんにきますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Exercise V.B worked example. The deck has ks1-emma-april as a statement but no question that asks when someone comes, which is the exercise's whole point.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-sangatsu-desu",
+      "english": "It's in March.",
+      "category": "Time",
+      "target": "3がつです",
+      "ttsText": "さんがつです",
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: answer half of the pair with w2-ryokou-nigatsu-ka-sangatsu-ka. Hint added because the target drops the topic and because the English sits close to the bare さんがつ card.",
+      "aiSuggested": true,
+      "scene": "answering whether the trip falls in February or March"
+    },
+    {
+      "id": "smith-ototoi-basu-de-depaato",
+      "english": "Smith-san went to the department store by bus the day before yesterday.",
+      "category": "Transport",
+      "target": "スミスさんはおとといバスでデパートにいきました",
+      "hint": null,
+      "note": "おととい (ototoi) is a relative time word, so it takes no に (ni) — compare きんようびに (kin'yōbi ni), which does. This is the Lesson 6 rule still holding alongside the new one.",
+      "reviewNote": "Exercise VIII worked example. It is the only sentence in the lesson that stacks time + transport + destination + past tense, and nothing in the deck contrasts the に-less relative time word with the に-taking specific one.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-tanjoubi-juugatsu-kokonoka",
+      "english": "My birthday is October 9th.",
+      "category": "Time",
+      "target": "たんじょうびは10がつここのかです",
+      "ttsText": "たんじょうびはじゅうがつここのかです",
+      "hint": null,
+      "note": "The month comes first and the day second, the reverse of the usual English order.",
+      "reviewNote": "Constructed. Vocabulary job: ここのか and じゅうがつ each had no sentence, and the month + native-reading-day combination appears nowhere.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-katou-mo-shinkansen-de",
+      "english": "Kato-san is going by Shinkansen too.",
+      "category": "Transport",
+      "target": "かとうさんもしんかんせんでいきます",
+      "hint": "the \"too\" version — the particle changes, nothing else does",
+      "note": "も (mo) replaces は (wa) rather than joining it; はも is never said.",
+      "reviewNote": "Constructed. Particle job (は vs も): member 2 of the minimal pair. も has not been used since Lesson 4 and appears on no Lesson 7 card.",
+      "aiSuggested": true
+    },
+    {
+      "id": "raja-itsu-nihon-ni-kimashita-ka",
+      "english": "Raja-san, when did you come to Japan?",
+      "category": "Travel & Tourism",
+      "target": "ラジャさんはいつにほんにきましたか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Speaking Practice 2, Nakamura's first line. Past-tense version of the same question, and the exact pattern Quiz 2 item 1 tests. Speaking Practice 2 currently has no cards at all.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-konsaato-rainen-ichigatsu",
+      "english": "The concert is in January next year.",
+      "category": "Time",
+      "target": "コンサートはらいねんの1がつです",
+      "ttsText": "コンサートはらいねんのいちがつです",
+      "hint": null,
+      "note": "らいねん (rainen) narrows the month with の (no), the same join as きょねんの (kyonen no) and らいげつの (raigetsu no).",
+      "reviewNote": "Constructed. Vocabulary job: いちがつ had no sentence. Frame chosen to reuse the Lesson 6 relative-year words rather than repeat the birthday frame.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-yasumi-doyoubi-to-nichiyoubi",
+      "english": "The days off are Saturday and Sunday.",
+      "category": "Time",
+      "target": "やすみはどようびとにちようびです",
+      "hint": null,
+      "note": "This と (to) joins two nouns into a list; the same と (to) means \"with\" when it attaches a person to a verb.",
+      "reviewNote": "Constructed. Particle job (と): both existing examples in this lesson are the \"with a person\" と, so the listing use had no example here at all.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-douyatte-jimu-ni-ikimasu-ka",
+      "english": "How do you get to the gym?",
+      "category": "Transport",
+      "target": "どうやってジムにいきますか",
+      "note": "どうやって (dō yatte) asks by what means, like なんで (nande) in this lesson. どうやって (dō yatte) is the more everyday of the two.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-getsuyoubi-kara-mokuyoubi-made",
+      "english": "It's from Monday to Thursday.",
+      "category": "Time",
+      "target": "げつようびからもくようびまでです",
+      "note": null,
+      "reviewNote": "Constructed from the Exercise II.C alternatives. Particle job (から / まで) with days of the week rather than clock times. Answer half of the pair with w2-shucchou-itsukara-itsumade.",
+      "aiSuggested": true,
+      "scene": "answering how long the business trip runs"
+    },
+    {
+      "id": "p102-douyatte-shigoto-ni-ikimasu-ka",
+      "english": "How do you go to work?",
+      "category": "Transport",
+      "target": "どうやってしごとにいきますか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
+      "english": "Is Lopez-san coming by airplane too?",
+      "category": "Transport",
+      "target": "ロペスさんもひこうきできますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Particle job (も) in question form — the brief asks for at least one question among a particle's examples, and も had none anywhere.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-katou-wa-shinkansen-de",
+      "english": "Kato-san is going by Shinkansen.",
+      "category": "Transport",
+      "target": "かとうさんはしんかんせんでいきます",
+      "hint": "the plain statement, marking the topic",
+      "note": "は (wa) simply presents Kato-san as what the sentence is about.",
+      "reviewNote": "Constructed. Particle job (は vs も): member 1 of a minimal pair differing only in the particle after かとうさん. Hint added because the paired card has almost the same English.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-arukide",
+      "english": "On foot",
+      "category": "Transport",
+      "target": "あるきで",
+      "hint": "the 〜で (de) variant, not the usual form",
+      "note": "A variant of あるいて (aruite). Both mean going on foot, and あるいて (aruite) is the one you will hear.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-smith-doyoubi-kaerimasu-ka",
+      "english": "Is Smith-san going home on Saturday?",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはどようびにうちにかえりますか",
+      "hint": null,
+      "note": "Member 3 of the set: か (ka) is simply added to the end, with no change to word order.",
+      "reviewNote": "Constructed. Form job: question member of the かえります triad.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-raja-kyonen-indo-kaerimasen-deshita",
+      "english": "Raja-san didn't go back to India last year.",
+      "category": "Travel & Tourism",
+      "target": "ラジャさんはきょねんインドにかえりませんでした",
+      "hint": null,
+      "note": "The past negative is ませんでした (masen deshita), built the same way as いきませんでした (ikimasen deshita) from Lesson 6.",
+      "reviewNote": "Constructed. Form job: かえりませんでした exists on no card, so かえります was missing a quarter of its conjugation.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-paku-mokuyoubi-kimasu-ka",
+      "english": "Is Pak-san coming to Japan on Thursday?",
+      "category": "Travel & Tourism",
+      "target": "パクさんはもくようびににほんにきますか",
+      "hint": null,
+      "note": "Member 3 of the set — a yes/no question, unlike the いつ (itsu) question the exercises drill.",
+      "reviewNote": "Constructed. Form job: question member of the きます triad.",
+      "aiSuggested": true
+    },
+    {
+      "id": "natsuyasumi-ni-indo-ni-kaerimasu-ka",
+      "english": "Will you go back to India during the summer vacation?",
+      "category": "Travel & Tourism",
+      "target": "なつやすみにインドにかえりますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Speaking Practice 2, Nakamura's second line. かえります appears on no question card, and なつやすみ exists only as a bare noun. インド is from Lesson 1.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-natsuyasumi-ni-hokkaido-e",
+      "english": "I'm going to Hokkaido during the summer vacation.",
+      "category": "Travel & Tourism",
+      "target": "なつやすみにほっかいどうへいきます",
+      "hint": null,
+      "note": "なつやすみ (natsuyasumi) counts as a specific time here, so it takes に (ni) even though it names no date.",
+      "reviewNote": "Constructed from Speaking Practice 2, where Raja says he is going to Hokkaido instead of home. Particle job (へ): third example, and the only one that is not part of the minimal pair.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kugatsu-desu",
+      "english": "It's in September.",
+      "category": "Time",
+      "target": "9がつです",
+      "ttsText": "くがつです",
+      "note": null,
+      "reviewNote": "Exercise II.A worked example, answer half. Pairs with omatsuri-wa-nangatsu-desu-ka. Hint added because the target drops the topic and because the English sits close to the bare くがつ vocabulary card.",
+      "aiSuggested": true,
+      "scene": "answering what month the festival is"
+    },
+    {
+      "id": "w2-densha-de-kimasu",
+      "english": "He comes by train.",
+      "category": "Transport",
+      "target": "でんしゃできます",
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: でんしゃ is a bare noun card and appears in no sentence anywhere in the lesson. Answer half of the pair with w2-katou-nande-kaisha-ni-kimasu-ka.",
+      "aiSuggested": true,
+      "scene": "answering how Kato-san gets to the office"
+    },
+    {
+      "id": "w2-purezen-raigetsu-juuyokka",
+      "english": "The presentation is on the 14th of next month.",
+      "category": "Time",
+      "target": "プレゼンはらいげつのじゅうよっかです",
+      "hint": null,
+      "note": "じゅうよっか (jūyokka) keeps the よっか (yokka) reading rather than becoming じゅうよんにち.",
+      "reviewNote": "Constructed. Vocabulary job: じゅうよっか had no sentence, and it is one of the three teens that keeps a native reading.",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-getsuyoubi-takushii-hoteru",
+      "english": "Smith-san is going to the Tokyo Hotel with Suzuki-san by taxi at 12:00 on Monday.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはげつようびの12じにすずきさんとタクシーでとうきょうホテルにいきます",
+      "ttsText": "スミスさんはげつようびのじゅうにじにすずきさんとタクシーでとうきょうホテルにいきます",
+      "hint": null,
+      "note": "The full slot order this lesson builds to: topic は, time に, companion と, means で, destination に, verb.",
+      "reviewNote": "Exercise X worked example (weekly planner). It is the lesson's culminating sentence and the only one that uses every particle taught so far at once; nothing in the deck goes past two slots. Note that ホテル is currently an excluded vocabulary card, but it appears here inside the book's own example.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-natsuyasumi-shichigatsu-kara",
+      "english": "The summer vacation starts in July.",
+      "category": "Time",
+      "target": "なつやすみは7がつからです",
+      "ttsText": "なつやすみはしちがつからです",
+      "hint": null,
+      "note": "から (kara) can stand on its own without まで (made) when only the start matters.",
+      "reviewNote": "Constructed. Vocabulary job: しちがつ had no sentence. Particle job too — から without まで is a Lesson 3 pattern that this lesson never revisits with dates.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-paku-mokuyoubi-kimasu",
+      "english": "Pak-san is coming to Japan on Thursday.",
+      "category": "Travel & Tourism",
+      "target": "パクさんはもくようびににほんにきます",
+      "hint": null,
+      "note": "Two に (ni) in a row doing different jobs: もくようびに (mokuyōbi ni) is the time, にほんに (Nihon ni) the destination. Member 1 of a きます (kimasu) / きません (kimasen) / きますか (kimasu ka) set.",
+      "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for きます. もくようび had no sentence card either.",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-kaerimasen",
+      "english": "No, I won't go back.",
+      "category": "Travel & Tourism",
+      "target": "いいえ、かえりません",
+      "note": "The negative of かえります (kaerimasu), formed the same way as いきません (ikimasen) from Lesson 6.",
+      "reviewNote": "Speaking Practice 2, Raja's reply. The biggest single hole in the lesson: かえりません appears on no card, so the learner meets かえります only in the affirmative.",
+      "aiSuggested": true,
+      "scene": "answering whether you'll go back home for the summer vacation"
+    },
+    {
+      "id": "hikouki-de-ikimasu-ka",
+      "english": "Are you going by airplane?",
+      "category": "Transport",
+      "target": "ひこうきでいきますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Target Dialogue, Nakamura's second line. The lesson teaches transport + で but has no yes/no question using it — only なんでいきますか and bare fragments like バスで.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nanji-ni-kimasu-ka",
+      "english": "What time will you come?",
+      "category": "Time",
+      "target": "なんじにきますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Exercise IX worked dialogue, Smith's first line. なんじ came in Lesson 3 but only ever with です; this is the first time it attaches to a verb with に, and the deck has no card for it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-raja-kyonen-indo-kaerimashita",
+      "english": "Raja-san went back to India last year.",
+      "category": "Travel & Tourism",
+      "target": "ラジャさんはきょねんインドにかえりました",
+      "hint": null,
+      "note": "きょねん (kyonen) is a relative time word, so no に (ni) follows it — unlike きょねんの9がつに (kyonen no ku-gatsu ni), which names a specific month.",
+      "reviewNote": "Constructed. Form job: past pair for かえります on one sentence. Uses the ラジャ / インド pairing the book itself sets up in Speaking Practice 2.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-sanban-no-basu-ga-ikimasu",
+      "english": "The No. 3 bus goes there.",
+      "category": "Transport",
+      "target": "3ばんのバスがいきます",
+      "ttsText": "さんばんのバスがいきます",
+      "note": "The answer keeps が (ga) — swapping in は (wa) would make it sound like a change of subject.",
+      "reviewNote": "Constructed on the model of the Lesson 6 card 6ばんのバスがいきます. Particle job (が): answer half of the pair with w2-dono-basu-ga-kuukou-ni, which the Lesson 6 card had no question to answer.",
+      "aiSuggested": true,
+      "scene": "answering which bus goes to the airport"
+    },
+    {
+      "id": "shucchou-desu-ka",
+      "english": "Are you going on a business trip?",
+      "category": "Travel & Tourism",
+      "target": "しゅっちょうですか",
+      "hint": null,
+      "note": "A noun + ですか (desu ka) is enough to ask this — no verb is needed. Nakamura asks it because Smith is carrying a suitcase.",
+      "reviewNote": "Target Dialogue, line 1 (trimmed of the あ、スミスさん、 opening, since the あ card is excluded from the deck). The lesson's title word しゅっちょう exists only as a bare noun card; this is the question the book actually uses it in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "tanjoubi-wa-itsu-desu-ka",
+      "english": "When is your birthday?",
+      "category": "Time",
+      "target": "たんじょうびはいつですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Exercise II.B worked example, and one of the two Active Communication tasks the lesson closes on. The deck has たんじょうび as a noun and a fill-in-the-blank なんようび question, but not the open いつ question the book actually drills.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-paku-rokugatsu-katou-to-hokkaido",
+      "english": "Pak-san is going to Hokkaido with Kato-san in June.",
+      "category": "Travel & Tourism",
+      "target": "パクさんは6がつにかとうさんとほっかいどうにいきます",
+      "ttsText": "パクさんはろくがつにかとうさんとほっかいどうにいきます",
+      "hint": null,
+      "note": "Slot order: time に (ni), then companion と (to), then destination に (ni), then the verb.",
+      "reviewNote": "Constructed. Vocabulary job: ろくがつ had no sentence. Particle job as well — と meaning \"with\" has only two examples in the lesson.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-tanaka-juunigatsu-kyoto",
+      "english": "Tanaka-san went to Kyoto in December.",
+      "category": "Travel & Tourism",
+      "target": "たなかさんは12がつにきょうとにいきました",
+      "ttsText": "たなかさんはじゅうにがつにきょうとにいきました",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: じゅうにがつ had no sentence. Past tense, so the month cards are not all locked to the non-past.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-shinkansen-de-kimashita-ka",
+      "english": "Did you come by Shinkansen?",
+      "category": "Transport",
+      "target": "しんかんせんできましたか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Particle job (で): every existing で card is non-past or a bare fragment, so nothing asks about means of travel in the past.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-tanaka-baiku-uchi",
+      "english": "Tanaka-san went home by motorbike.",
+      "category": "Transport",
+      "target": "たなかさんはバイクでうちにかえりました",
+      "hint": null,
+      "note": "バイク (baiku) is a motorbike despite the English it comes from — the bicycle is じてんしゃ (jitensha).",
+      "reviewNote": "Constructed. Vocabulary job: バイク has no sentence card. Pairs the new noun with かえります so the transport list is not tied to いきます alone.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-paku-kuruma-kuukou",
+      "english": "Pak-san went to the airport by car.",
+      "category": "Transport",
+      "target": "パクさんはくるまでくうこうにいきました",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: くるま has no sentence card. パク is one of the lesson's own three surnames and is used on no card at all.",
+      "aiSuggested": true
+    },
+    {
       "id": "w2-katou-nande-kaisha-ni-kimasu-ka",
       "english": "How does Kato-san come to the office?",
       "category": "Transport",
@@ -28,99 +707,6 @@
       "aiSuggested": true
     },
     {
-      "id": "w2-ropesu-juuichigatsu-amerika",
-      "english": "Lopez-san is going back to the United States in November.",
-      "category": "Travel & Tourism",
-      "target": "ロペスさんは11がつにアメリカにかえります",
-      "ttsText": "ロペスさんはじゅういちがつにアメリカにかえります",
-      "hint": null,
-      "note": "かえります (kaerimasu) is going back to where you belong, which is why it fits a country you came from.",
-      "reviewNote": "Constructed. Vocabulary job: じゅういちがつ had no sentence. Uses アメリカ from Lesson 1 to give かえります a destination other than うち or とうきょう.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-kinou-kaerimashita",
-      "english": "Smith-san went home yesterday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはきのううちにかえりました",
-      "hint": null,
-      "note": "きのう (kinō) is a relative time word — it points at a day without naming one, and it never takes に (ni).",
-      "reviewNote": "Constructed. Particle job (に vs no particle): member 2 of the minimal pair with w2-smith-nichiyoubi-ni-kaerimashita. Same sentence, same tense, only the time word swapped.",
-      "aiSuggested": true
-    },
-    {
-      "id": "raishuu-no-getsuyoubi-ni-sochira",
-      "english": "I'll go there next Monday.",
-      "category": "Travel & Tourism",
-      "target": "らいしゅうのげつようびにそちらにいきます",
-      "hint": null,
-      "note": "らいしゅうの (raishū no) + a day of the week behaves as one specific time expression, so it takes に (ni) even though らいしゅう on its own would not.",
-      "reviewNote": "Exercise IX worked dialogue, Chan's first line. Exercise IX never became cards. This is the one place the book shows a relative week word narrowed to a specific day, which is exactly the に/no-に decision learners get wrong.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-doyoubi-kaerimasen",
-      "english": "Smith-san isn't going home on Saturday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはどようびにうちにかえりません",
-      "hint": null,
-      "note": "Member 2 of the set: ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
-      "reviewNote": "Constructed. Form job: negative member of the かえります triad. かえりません appears nowhere in the lesson's own cards.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-natsuyasumi-ni-hokkaido-e",
-      "english": "I'm going to Hokkaido during the summer vacation.",
-      "category": "Travel & Tourism",
-      "target": "なつやすみにほっかいどうへいきます",
-      "hint": null,
-      "note": "なつやすみ (natsuyasumi) counts as a specific time here, so it takes に (ni) even though it names no date.",
-      "reviewNote": "Constructed from Speaking Practice 2, where Raja says he is going to Hokkaido instead of home. Particle job (へ): third example, and the only one that is not part of the minimal pair.",
-      "aiSuggested": true
-    },
-    {
-      "id": "iie-kaerimasen",
-      "english": "No, I won't go back.",
-      "category": "Travel & Tourism",
-      "target": "いいえ、かえりません",
-      "note": "The negative of かえります (kaerimasu), formed the same way as いきません (ikimasen) from Lesson 6.",
-      "reviewNote": "Speaking Practice 2, Raja's reply. The biggest single hole in the lesson: かえりません appears on no card, so the learner meets かえります only in the affirmative.",
-      "aiSuggested": true,
-      "scene": "answering whether you'll go back home for the summer vacation"
-    },
-    {
-      "id": "shucchou-desu-ka",
-      "english": "Are you going on a business trip?",
-      "category": "Travel & Tourism",
-      "target": "しゅっちょうですか",
-      "hint": null,
-      "note": "A noun + ですか (desu ka) is enough to ask this — no verb is needed. Nakamura asks it because Smith is carrying a suitcase.",
-      "reviewNote": "Target Dialogue, line 1 (trimmed of the あ、スミスさん、 opening, since the あ card is excluded from the deck). The lesson's title word しゅっちょう exists only as a bare noun card; this is the question the book actually uses it in.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-sangatsu-desu",
-      "english": "It's in March.",
-      "category": "Time",
-      "target": "3がつです",
-      "ttsText": "さんがつです",
-      "note": null,
-      "reviewNote": "Constructed. Vocabulary job: answer half of the pair with w2-ryokou-nigatsu-ka-sangatsu-ka. Hint added because the target drops the topic and because the English sits close to the bare さんがつ card.",
-      "aiSuggested": true,
-      "scene": "answering whether the trip falls in February or March"
-    },
-    {
-      "id": "w2-ryokou-nigatsu-ka-sangatsu-ka",
-      "english": "Is the trip in February or in March?",
-      "category": "Time",
-      "target": "りょこうは2がつですか、3がつですか",
-      "ttsText": "りょこうはにがつですか、さんがつですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Vocabulary job: にがつ and さんがつ had no sentence. Deliberately reuses the alternative-question form on months, since the existing examples of it are all days or clock times.",
-      "aiSuggested": true
-    },
-    {
       "id": "w2-paku-mokuyoubi-kimasen",
       "english": "Pak-san isn't coming to Japan on Thursday.",
       "category": "Travel & Tourism",
@@ -131,66 +717,33 @@
       "aiSuggested": true
     },
     {
-      "id": "omatsuri-wa-nangatsu-desu-ka",
-      "english": "What month is the festival?",
-      "category": "Time",
-      "target": "おまつりはなんがつですか",
+      "id": "w2-shucchou-itsukara-itsumade",
+      "english": "From when to when is the business trip?",
+      "category": "Travel & Tourism",
+      "target": "しゅっちょうはいつからいつまでですか",
       "hint": null,
       "note": null,
-      "reviewNote": "Exercise II.A worked example. なんがつ is a bare card with no sentence, unlike なんにち and なんようび which the fill-in-the-blank block already puts in questions.",
+      "reviewNote": "Constructed from the Exercise II.C pattern. Particle job (から / まで): only one card in the lesson uses them, and しゅっちょう — the word the Target Dialogue turns on — appears in no dated sentence.",
       "aiSuggested": true
     },
     {
-      "id": "w2-katou-mo-shinkansen-de",
-      "english": "Kato-san is going by Shinkansen too.",
+      "id": "iie-shinkansen-de-ikimasu",
+      "english": "No, we're going by Shinkansen.",
       "category": "Transport",
-      "target": "かとうさんもしんかんせんでいきます",
-      "hint": "the \"too\" version — the particle changes, nothing else does",
-      "note": "も (mo) replaces は (wa) rather than joining it; はも is never said.",
-      "reviewNote": "Constructed. Particle job (は vs も): member 2 of the minimal pair. も has not been used since Lesson 4 and appears on no Lesson 7 card.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-konsaato-rainen-ichigatsu",
-      "english": "The concert is in January next year.",
-      "category": "Time",
-      "target": "コンサートはらいねんの1がつです",
-      "ttsText": "コンサートはらいねんのいちがつです",
-      "hint": null,
-      "note": "らいねん (rainen) narrows the month with の (no), the same join as きょねんの (kyonen no) and らいげつの (raigetsu no).",
-      "reviewNote": "Constructed. Vocabulary job: いちがつ had no sentence. Frame chosen to reuse the Lesson 6 relative-year words rather than repeat the birthday frame.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kyonen-no-kugatsu-ni-kimashita",
-      "english": "I came in September last year.",
-      "category": "Travel & Tourism",
-      "target": "きょねんの9がつにきました",
-      "ttsText": "きょねんのくがつにきました",
+      "target": "いいえ、しんかんせんでいきます",
       "note": null,
-      "reviewNote": "Speaking Practice 2, Raja's reply. Answer half of the pair. Combines きょねんの (L6) with a month + に, a combination no card shows.",
+      "reviewNote": "Target Dialogue, Smith's second reply — the line the lesson is named after. Answer half of the pair with hikouki-de-ikimasu-ka. Distinct from ks2-smith-shinkansen, which is a third-person statement naming the destination.",
       "aiSuggested": true,
-      "scene": "answering when you came to Japan"
+      "scene": "answering whether you are going by airplane"
     },
     {
-      "id": "w2-paku-mokuyoubi-kimasu-ka",
-      "english": "Is Pak-san coming to Japan on Thursday?",
-      "category": "Travel & Tourism",
-      "target": "パクさんはもくようびににほんにきますか",
+      "id": "w2-ropesu-jitensha-eki",
+      "english": "Lopez-san is going to the station by bicycle.",
+      "category": "Transport",
+      "target": "ロペスさんはじてんしゃでえきにいきます",
       "hint": null,
-      "note": "Member 3 of the set — a yes/no question, unlike the いつ (itsu) question the exercises drill.",
-      "reviewNote": "Constructed. Form job: question member of the きます triad.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-tanjoubi-juugatsu-kokonoka",
-      "english": "My birthday is October 9th.",
-      "category": "Time",
-      "target": "たんじょうびは10がつここのかです",
-      "ttsText": "たんじょうびはじゅうがつここのかです",
-      "hint": null,
-      "note": "The month comes first and the day second, the reverse of the usual English order.",
-      "reviewNote": "Constructed. Vocabulary job: ここのか and じゅうがつ each had no sentence, and the month + native-reading-day combination appears nowhere.",
+      "note": null,
+      "reviewNote": "Constructed. Vocabulary job: じてんしゃ has no sentence card. Non-past, to balance the two past-tense transport sentences beside it.",
       "aiSuggested": true
     },
     {
@@ -205,279 +758,34 @@
       "excluded": true
     },
     {
-      "id": "w2-mikka-desu",
-      "english": "It's on the 3rd.",
+      "id": "w2-omatsuri-tsuitachi-mikka",
+      "english": "The festival is from the 1st to the 3rd.",
       "category": "Time",
-      "target": "みっかです",
-      "note": null,
-      "reviewNote": "Constructed from Exercise VIII alternative 1. Form job: the reply half of the alternative question — you pick one and drop the rest of the sentence.",
-      "aiSuggested": true,
-      "scene": "answering whether the meeting falls on the 3rd or the 6th"
+      "target": "おまつりはついたちからみっかまでです",
+      "hint": null,
+      "note": "ついたち (tsuitachi) is the odd one out among the dates — it is not built from いち (ichi) at all.",
+      "reviewNote": "Constructed. Vocabulary job: ついたち and みっか are bare cards with no sentence, and the irregular native readings are the ones worth drilling in context.",
+      "aiSuggested": true
     },
     {
-      "id": "natsuyasumi-ni-indo-ni-kaerimasu-ka",
-      "english": "Will you go back to India during the summer vacation?",
+      "id": "w2-smith-kinou-kaerimashita",
+      "english": "Smith-san went home yesterday.",
       "category": "Travel & Tourism",
-      "target": "なつやすみにインドにかえりますか",
+      "target": "スミスさんはきのううちにかえりました",
       "hint": null,
-      "note": null,
-      "reviewNote": "Speaking Practice 2, Nakamura's second line. かえります appears on no question card, and なつやすみ exists only as a bare noun. インド is from Lesson 1.",
+      "note": "きのう (kinō) is a relative time word — it points at a day without naming one, and it never takes に (ni).",
+      "reviewNote": "Constructed. Particle job (に vs no particle): member 2 of the minimal pair with w2-smith-nichiyoubi-ni-kaerimashita. Same sentence, same tense, only the time word swapped.",
       "aiSuggested": true
     },
     {
-      "id": "smith-aruite-uchi-ni-kaerimashita",
-      "english": "Smith-san walked home.",
-      "category": "Transport",
-      "target": "スミスさんはあるいてうちにかえりました",
-      "hint": null,
-      "note": "あるいて (aruite) is the exception to the transport で (de) rule — it already means \"by walking\", so no で follows it. Compare タクシーでうちにかえりました (takushī de uchi ni kaerimashita).",
-      "reviewNote": "Exercise VI, alternative 3. The exercise's whole point is that あるいて breaks the transport-で pattern, and the deck teaches あるいて only as an isolated word. The fill-in-the-blank block covers the タクシーで version, so this is the contrast card.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-tokyo-eki-e-ikimasu",
-      "english": "Smith-san is going to Tokyo Station tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはあしたとうきょうえきへいきます",
-      "hint": "use the へ (e) direction particle",
-      "note": "へ (e) is the hiragana he, but it is read e whenever it works as a particle. For a destination it swaps with に (ni) freely.",
-      "reviewNote": "Constructed. Particle job (に vs へ): member 2 of the minimal pair. へ was introduced in Lesson 6 on a single card and is exercised nowhere in this lesson.",
-      "aiSuggested": true
-    },
-    {
-      "id": "suiyoubi-ni-kimasu",
-      "english": "He's coming on Wednesday.",
-      "category": "Travel & Tourism",
-      "target": "すいようびにきます",
-      "note": null,
-      "reviewNote": "Exercise V.B worked example, answer half. Pairs with gibson-itsu-nihon-ni-kimasu-ka. Shows the day-of-week + に pattern in a reply, which the どようびに fragment card only hints at.",
-      "aiSuggested": true,
-      "scene": "answering when Gibson-san is coming to Japan"
-    },
-    {
-      "id": "raigetsu-no-youka-desu",
-      "english": "It's on the 8th of next month.",
+      "id": "w2-ryokou-nigatsu-ka-sangatsu-ka",
+      "english": "Is the trip in February or in March?",
       "category": "Time",
-      "target": "らいげつのようかです",
-      "note": "らいげつ (raigetsu) from Lesson 6 attaches to a date with の (no), the same way きょねんの (kyonen no) does.",
-      "reviewNote": "Speaking Practice 3, Emma's reply. Answer half of the pair with kaigi-wa-itsu-desu-ka, and the only card showing a relative month combined with a specific date.",
-      "aiSuggested": true,
-      "scene": "answering when the meeting is"
-    },
-    {
-      "id": "w2-purezen-raigetsu-juuyokka",
-      "english": "The presentation is on the 14th of next month.",
-      "category": "Time",
-      "target": "プレゼンはらいげつのじゅうよっかです",
-      "hint": null,
-      "note": "じゅうよっか (jūyokka) keeps the よっか (yokka) reading rather than becoming じゅうよんにち.",
-      "reviewNote": "Constructed. Vocabulary job: じゅうよっか had no sentence, and it is one of the three teens that keeps a native reading.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-tanaka-baiku-uchi",
-      "english": "Tanaka-san went home by motorbike.",
-      "category": "Transport",
-      "target": "たなかさんはバイクでうちにかえりました",
-      "hint": null,
-      "note": "バイク (baiku) is a motorbike despite the English it comes from — the bicycle is じてんしゃ (jitensha).",
-      "reviewNote": "Constructed. Vocabulary job: バイク has no sentence card. Pairs the new noun with かえります so the transport list is not tied to いきます alone.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-densha-de-kimasu",
-      "english": "He comes by train.",
-      "category": "Transport",
-      "target": "でんしゃできます",
-      "note": null,
-      "reviewNote": "Constructed. Vocabulary job: でんしゃ is a bare noun card and appears in no sentence anywhere in the lesson. Answer half of the pair with w2-katou-nande-kaisha-ni-kimasu-ka.",
-      "aiSuggested": true,
-      "scene": "answering how Kato-san gets to the office"
-    },
-    {
-      "id": "kugatsu-desu",
-      "english": "It's in September.",
-      "category": "Time",
-      "target": "9がつです",
-      "ttsText": "くがつです",
-      "note": null,
-      "reviewNote": "Exercise II.A worked example, answer half. Pairs with omatsuri-wa-nangatsu-desu-ka. Hint added because the target drops the topic and because the English sits close to the bare くがつ vocabulary card.",
-      "aiSuggested": true,
-      "scene": "answering what month the festival is"
-    },
-    {
-      "id": "smith-nande-osaka-ni-ikimasu-ka",
-      "english": "How is Smith-san going to Osaka?",
-      "category": "Transport",
-      "target": "スミスさんはなんでおおさかにいきますか",
+      "target": "りょこうは2がつですか、3がつですか",
+      "ttsText": "りょこうはにがつですか、さんがつですか",
       "hint": null,
       "note": null,
-      "reviewNote": "Exercise VII worked example. The existing なんでいきますか is a bare fragment with no subject or destination; this is the full question the book drills. I deliberately left out its answer (くるまでいきます) because バスでいきます already teaches that pattern and いいえ、しんかんせんでいきます above makes a second.",
-      "aiSuggested": true
-    },
-    {
-      "id": "hachigatsu-juukunichi-desu",
-      "english": "It's on August 19th.",
-      "category": "Time",
-      "target": "8がつ19にちです",
-      "ttsText": "はちがつじゅうくにちです",
-      "note": null,
-      "reviewNote": "Exercise II.B worked example, answer half. Pairs with tanjoubi-wa-itsu-desu-ka and is the only short month + day date card — the existing dated card is the long from/to travel sentence.",
-      "aiSuggested": true,
-      "scene": "answering when your birthday is"
-    },
-    {
-      "id": "smith-getsuyoubi-takushii-hoteru",
-      "english": "Smith-san is going to the Tokyo Hotel with Suzuki-san by taxi at 12:00 on Monday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはげつようびの12じにすずきさんとタクシーでとうきょうホテルにいきます",
-      "ttsText": "スミスさんはげつようびのじゅうにじにすずきさんとタクシーでとうきょうホテルにいきます",
-      "hint": null,
-      "note": "The full slot order this lesson builds to: topic は, time に, companion と, means で, destination に, verb.",
-      "reviewNote": "Exercise X worked example (weekly planner). It is the lesson's culminating sentence and the only one that uses every particle taught so far at once; nothing in the deck goes past two slots. Note that ホテル is currently an excluded vocabulary card, but it appears here inside the book's own example.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-ropesu-kinou-kimasen-deshita",
-      "english": "Lopez-san didn't come to the office yesterday.",
-      "category": "Work & Occupations",
-      "target": "ロペスさんはきのうかいしゃにきませんでした",
-      "hint": null,
-      "note": "きのう (kinō) takes no に (ni), the same as きょねん (kyonen) and おととい (ototoi).",
-      "reviewNote": "Constructed. Form job: きませんでした completes the きます conjugation, which otherwise stops at きました. ロペス is the third of the lesson's unused surnames.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-paku-kuruma-kuukou",
-      "english": "Pak-san went to the airport by car.",
-      "category": "Transport",
-      "target": "パクさんはくるまでくうこうにいきました",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Vocabulary job: くるま has no sentence card. パク is one of the lesson's own three surnames and is used on no card at all.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-shinkansen-de-kimashita-ka",
-      "english": "Did you come by Shinkansen?",
-      "category": "Transport",
-      "target": "しんかんせんできましたか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Particle job (で): every existing で card is non-past or a bare fragment, so nothing asks about means of travel in the past.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-sanban-no-basu-ga-ikimasu",
-      "english": "The No. 3 bus goes there.",
-      "category": "Transport",
-      "target": "3ばんのバスがいきます",
-      "ttsText": "さんばんのバスがいきます",
-      "note": "The answer keeps が (ga) — swapping in は (wa) would make it sound like a change of subject.",
-      "reviewNote": "Constructed on the model of the Lesson 6 card 6ばんのバスがいきます. Particle job (が): answer half of the pair with w2-dono-basu-ga-kuukou-ni, which the Lesson 6 card had no question to answer.",
-      "aiSuggested": true,
-      "scene": "answering which bus goes to the airport"
-    },
-    {
-      "id": "w2-yasumi-doyoubi-to-nichiyoubi",
-      "english": "The days off are Saturday and Sunday.",
-      "category": "Time",
-      "target": "やすみはどようびとにちようびです",
-      "hint": null,
-      "note": "This と (to) joins two nouns into a list; the same と (to) means \"with\" when it attaches a person to a verb.",
-      "reviewNote": "Constructed. Particle job (と): both existing examples in this lesson are the \"with a person\" と, so the listing use had no example here at all.",
-      "aiSuggested": true
-    },
-    {
-      "id": "raja-itsu-nihon-ni-kimashita-ka",
-      "english": "Raja-san, when did you come to Japan?",
-      "category": "Travel & Tourism",
-      "target": "ラジャさんはいつにほんにきましたか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Speaking Practice 2, Nakamura's first line. Past-tense version of the same question, and the exact pattern Quiz 2 item 1 tests. Speaking Practice 2 currently has no cards at all.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-jimu-no-yasumi-kayoubi",
-      "english": "The gym's day off is Tuesday.",
-      "category": "Time",
-      "target": "ジムのやすみはかようびです",
-      "hint": null,
-      "note": "やすみ (yasumi) covers any break — a day off, a lunch break, or a school holiday.",
-      "reviewNote": "Constructed. Vocabulary job: かようび was the last weekday with no sentence, and やすみ on its own appears only inside ひるやすみ and なつやすみ.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kinyoubi-ni-tokyo-kaerimasu",
-      "english": "I'll return to Tokyo on Friday.",
-      "category": "Travel & Tourism",
-      "target": "きんようびにとうきょうにかえります",
-      "hint": null,
-      "note": "Two に (ni) in one sentence doing different jobs: the first marks the time, the second the destination.",
-      "reviewNote": "Target Dialogue, Smith's first reply (second sentence). かえります has no sentence card anywhere in the lesson, and this is the book's own example of the specific-time に from GRAMMAR 1 inside a full sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-tokyo-eki-ni-ikimasu",
-      "english": "Smith-san is going to Tokyo Station tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはあしたとうきょうえきにいきます",
-      "hint": "use the に (ni) destination particle",
-      "note": "に (ni) is the everyday choice for a destination and the one this lesson uses throughout.",
-      "reviewNote": "Constructed. Particle job (に vs へ): member 1 of a minimal pair differing only in that one particle. Both members carry a hint because the English is identical.",
-      "aiSuggested": true
-    },
-    {
-      "id": "iie-shinkansen-de-ikimasu",
-      "english": "No, we're going by Shinkansen.",
-      "category": "Transport",
-      "target": "いいえ、しんかんせんでいきます",
-      "note": null,
-      "reviewNote": "Target Dialogue, Smith's second reply — the line the lesson is named after. Answer half of the pair with hikouki-de-ikimasu-ka. Distinct from ks2-smith-shinkansen, which is a third-person statement naming the destination.",
-      "aiSuggested": true,
-      "scene": "answering whether you are going by airplane"
-    },
-    {
-      "id": "w2-katou-wa-shinkansen-de",
-      "english": "Kato-san is going by Shinkansen.",
-      "category": "Transport",
-      "target": "かとうさんはしんかんせんでいきます",
-      "hint": "the plain statement, marking the topic",
-      "note": "は (wa) simply presents Kato-san as what the sentence is about.",
-      "reviewNote": "Constructed. Particle job (は vs も): member 1 of a minimal pair differing only in the particle after かとうさん. Hint added because the paired card has almost the same English.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-natsuyasumi-tooka-hatsuka",
-      "english": "The summer vacation is from the 10th to the 20th.",
-      "category": "Time",
-      "target": "なつやすみはとおかからはつかまでです",
-      "hint": null,
-      "note": "はつか (hatsuka) is the 20th and ふつか (futsuka) the 2nd — they sound close but share no counting logic.",
-      "reviewNote": "Constructed from the Active Communication prompt about summer vacations. Vocabulary job: とおか and はつか had no sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-natsuyasumi-shichigatsu-kara",
-      "english": "The summer vacation starts in July.",
-      "category": "Time",
-      "target": "なつやすみは7がつからです",
-      "ttsText": "なつやすみはしちがつからです",
-      "hint": null,
-      "note": "から (kara) can stand on its own without まで (made) when only the start matters.",
-      "reviewNote": "Constructed. Vocabulary job: しちがつ had no sentence. Particle job too — から without まで is a Lesson 3 pattern that this lesson never revisits with dates.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-tanaka-juunigatsu-kyoto",
-      "english": "Tanaka-san went to Kyoto in December.",
-      "category": "Travel & Tourism",
-      "target": "たなかさんは12がつにきょうとにいきました",
-      "ttsText": "たなかさんはじゅうにがつにきょうとにいきました",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Vocabulary job: じゅうにがつ had no sentence. Past tense, so the month cards are not all locked to the non-past.",
+      "reviewNote": "Constructed. Vocabulary job: にがつ and さんがつ had no sentence. Deliberately reuses the alternative-question form on months, since the existing examples of it are all days or clock times.",
       "aiSuggested": true
     },
     {
@@ -489,313 +797,6 @@
       "reviewNote": "Constructed. Particle job (で): answer half of the pair with w2-shinkansen-de-kimashita-ka, and the past-tense counterpart of the いいえ、しんかんせんでいきます pattern.",
       "aiSuggested": true,
       "scene": "answering whether you came by Shinkansen"
-    },
-    {
-      "id": "w2-paku-mokuyoubi-kimasu",
-      "english": "Pak-san is coming to Japan on Thursday.",
-      "category": "Travel & Tourism",
-      "target": "パクさんはもくようびににほんにきます",
-      "hint": null,
-      "note": "Two に (ni) in a row doing different jobs: もくようびに (mokuyōbi ni) is the time, にほんに (Nihon ni) the destination. Member 1 of a きます (kimasu) / きません (kimasen) / きますか (kimasu ka) set.",
-      "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for きます. もくようび had no sentence card either.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-kaigi-mikka-ka-muika-ka",
-      "english": "Is the meeting on the 3rd or the 6th?",
-      "category": "Time",
-      "target": "かいぎはみっかですか、むいかですか",
-      "hint": null,
-      "note": "Both か (ka) are said with a rising intonation, not just the last one.",
-      "reviewNote": "Constructed from Exercise VIII alternative 1. Form job: the noun1は noun2ですか、noun3ですか pattern is a Key Sentence but the only card for it has no answer card, so the exchange is never completed. Also gives むいか its first sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "gibson-itsu-nihon-ni-kimasu-ka",
-      "english": "When is Gibson-san coming to Japan?",
-      "category": "Travel & Tourism",
-      "target": "ギブソンさんはいつにほんにきますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Exercise V.B worked example. The deck has ks1-emma-april as a statement but no question that asks when someone comes, which is the exercise's whole point.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-doyoubi-kaerimasu",
-      "english": "Smith-san is going home on Saturday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはどようびにうちにかえります",
-      "hint": null,
-      "note": "A named day is a specific time, so it takes に (ni). Member 1 of a かえります (kaerimasu) / かえりません (kaerimasen) / かえりますか (kaerimasu ka) set on the same sentence.",
-      "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for かえります, on one fixed sentence so the transformation is visible. どようび also had no sentence card, only the どようびに fragment.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-futsuka-kara-nanoka-made",
-      "english": "It's from the 2nd to the 7th.",
-      "category": "Time",
-      "target": "ふつかからなのかまでです",
-      "note": null,
-      "reviewNote": "Constructed, using the book's own 9がつふつかからなのかまで dates from Exercise II.C. Vocabulary job: ふつか and なのか had no sentence. Answer half of the pair with w2-ryokou-nannichi-kara.",
-      "aiSuggested": true,
-      "scene": "answering what dates the trip runs"
-    },
-    {
-      "id": "w2-ema-2022nen-kimashita",
-      "english": "Emma-san came to Japan in 2022.",
-      "category": "Travel & Tourism",
-      "target": "エマさんは2022ねんににほんにきました",
-      "ttsText": "エマさんはにせんにじゅうにねんににほんにきました",
-      "hint": null,
-      "note": "A year behaves like any other specific time and takes に (ni), exactly as a month or a day does.",
-      "reviewNote": "Constructed. Vocabulary job: 〜ねん exists only as the 2025ねんに fragment and two bare year cards, never in a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-doyoubi-kaerimasu-ka",
-      "english": "Is Smith-san going home on Saturday?",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはどようびにうちにかえりますか",
-      "hint": null,
-      "note": "Member 3 of the set: か (ka) is simply added to the end, with no change to word order.",
-      "reviewNote": "Constructed. Form job: question member of the かえります triad.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-raja-kyonen-indo-kaerimashita",
-      "english": "Raja-san went back to India last year.",
-      "category": "Travel & Tourism",
-      "target": "ラジャさんはきょねんインドにかえりました",
-      "hint": null,
-      "note": "きょねん (kyonen) is a relative time word, so no に (ni) follows it — unlike きょねんの9がつに (kyonen no ku-gatsu ni), which names a specific month.",
-      "reviewNote": "Constructed. Form job: past pair for かえります on one sentence. Uses the ラジャ / インド pairing the book itself sets up in Speaking Practice 2.",
-      "aiSuggested": true
-    },
-    {
-      "id": "tanjoubi-wa-itsu-desu-ka",
-      "english": "When is your birthday?",
-      "category": "Time",
-      "target": "たんじょうびはいつですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Exercise II.B worked example, and one of the two Active Communication tasks the lesson closes on. The deck has たんじょうび as a noun and a fill-in-the-blank なんようび question, but not the open いつ question the book actually drills.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-ryokou-nannichi-kara",
-      "english": "What dates does the trip run from and to?",
-      "category": "Time",
-      "target": "りょこうはなんにちからなんにちまでですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Particle job (から / まで) combined with a question word in both slots — the pattern the deck only has for なんじ (nan-ji) in Lesson 3.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-getsuyoubi-kara-mokuyoubi-made",
-      "english": "It's from Monday to Thursday.",
-      "category": "Time",
-      "target": "げつようびからもくようびまでです",
-      "note": null,
-      "reviewNote": "Constructed from the Exercise II.C alternatives. Particle job (から / まで) with days of the week rather than clock times. Answer half of the pair with w2-shucchou-itsukara-itsumade.",
-      "aiSuggested": true,
-      "scene": "answering how long the business trip runs"
-    },
-    {
-      "id": "w2-shucchou-itsukara-itsumade",
-      "english": "From when to when is the business trip?",
-      "category": "Travel & Tourism",
-      "target": "しゅっちょうはいつからいつまでですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed from the Exercise II.C pattern. Particle job (から / まで): only one card in the lesson uses them, and しゅっちょう — the word the Target Dialogue turns on — appears in no dated sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-smith-nichiyoubi-ni-kaerimashita",
-      "english": "Smith-san went home on Sunday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはにちようびにうちにかえりました",
-      "hint": null,
-      "note": "にちようび (nichiyōbi) names a specific day, so に (ni) is required after it.",
-      "reviewNote": "Constructed. Particle job (に vs no particle): member 1 of a minimal pair whose only difference is the time word and the に it forces. This is the distinction Lesson 6 and Lesson 7 together set up and no card states outright.",
-      "aiSuggested": true
-    },
-    {
-      "id": "nanji-ni-kimasu-ka",
-      "english": "What time will you come?",
-      "category": "Time",
-      "target": "なんじにきますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Exercise IX worked dialogue, Smith's first line. なんじ came in Lesson 3 but only ever with です; this is the first time it attaches to a verb with に, and the deck has no card for it.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ee-osaka-shisha-ni-ikimasu",
-      "english": "Yes, I'm going to the Osaka branch office with Kato-san.",
-      "category": "Travel & Tourism",
-      "target": "ええ、かとうさんとおおさかししゃにいきます",
-      "hint": "use the softer yes",
-      "note": null,
-      "reviewNote": "Target Dialogue, Smith's first reply. Answer half of the split pair with shucchou-desu-ka. It is also the only card that puts ええ (ē) to work — the ee-yes card is flagged uncertain and is a bare word.",
-      "aiSuggested": true,
-      "scene": "answering whether you are going on a business trip"
-    },
-    {
-      "id": "w2-omatsuri-tsuitachi-mikka",
-      "english": "The festival is from the 1st to the 3rd.",
-      "category": "Time",
-      "target": "おまつりはついたちからみっかまでです",
-      "hint": null,
-      "note": "ついたち (tsuitachi) is the odd one out among the dates — it is not built from いち (ichi) at all.",
-      "reviewNote": "Constructed. Vocabulary job: ついたち and みっか are bare cards with no sentence, and the irregular native readings are the ones worth drilling in context.",
-      "aiSuggested": true
-    },
-    {
-      "id": "smith-ototoi-basu-de-depaato",
-      "english": "Smith-san went to the department store by bus the day before yesterday.",
-      "category": "Transport",
-      "target": "スミスさんはおとといバスでデパートにいきました",
-      "hint": null,
-      "note": "おととい (ototoi) is a relative time word, so it takes no に (ni) — compare きんようびに (kin'yōbi ni), which does. This is the Lesson 6 rule still holding alongside the new one.",
-      "reviewNote": "Exercise VIII worked example. It is the only sentence in the lesson that stacks time + transport + destination + past tense, and nothing in the deck contrasts the に-less relative time word with the に-taking specific one.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-ropesu-jitensha-eki",
-      "english": "Lopez-san is going to the station by bicycle.",
-      "category": "Transport",
-      "target": "ロペスさんはじてんしゃでえきにいきます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Vocabulary job: じてんしゃ has no sentence card. Non-past, to balance the two past-tense transport sentences beside it.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-kaigi-wa-youka-desu-ne",
-      "english": "The meeting is on the 8th, right?",
-      "category": "Time",
-      "target": "かいぎはようかですね",
-      "hint": null,
-      "note": "ね (ne) asks the listener to confirm something you already believe, unlike か (ka), which asks for information you do not have.",
-      "reviewNote": "Lifted from SPEAKING PRACTICE 3, Smith's closing line (with かいぎ restored as the topic so the card stands alone). Particle job (ね): introduced in Lesson 6 on one card and never used again.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaigi-wa-itsu-desu-ka",
-      "english": "When is the meeting?",
-      "category": "Time",
-      "target": "かいぎはいつですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Duplicate of kaigi-itsu-q in Lesson 3. Its answer card carries a hint and stands alone.",
-      "aiSuggested": true,
-      "excluded": true
-    },
-    {
-      "id": "hikouki-de-ikimasu-ka",
-      "english": "Are you going by airplane?",
-      "category": "Transport",
-      "target": "ひこうきでいきますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Target Dialogue, Nakamura's second line. The lesson teaches transport + で but has no yes/no question using it — only なんでいきますか and bare fragments like バスで.",
-      "aiSuggested": true
-    },
-    {
-      "id": "juuji-ni-ikimasu",
-      "english": "I'll go at 10:00.",
-      "category": "Time",
-      "target": "10じにいきます",
-      "ttsText": "じゅうじにいきます",
-      "note": null,
-      "reviewNote": "Exercise IX worked dialogue, Chan's reply. Answer half of the pair with nanji-ni-kimasu-ka, and the working version of the 5じに fragment card.",
-      "aiSuggested": true,
-      "scene": "answering what time you'll come"
-    },
-    {
-      "id": "w2-paku-rokugatsu-katou-to-hokkaido",
-      "english": "Pak-san is going to Hokkaido with Kato-san in June.",
-      "category": "Travel & Tourism",
-      "target": "パクさんは6がつにかとうさんとほっかいどうにいきます",
-      "ttsText": "パクさんはろくがつにかとうさんとほっかいどうにいきます",
-      "hint": null,
-      "note": "Slot order: time に (ni), then companion と (to), then destination に (ni), then the verb.",
-      "reviewNote": "Constructed. Vocabulary job: ろくがつ had no sentence. Particle job as well — と meaning \"with\" has only two examples in the lesson.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-raja-kyonen-indo-kaerimasen-deshita",
-      "english": "Raja-san didn't go back to India last year.",
-      "category": "Travel & Tourism",
-      "target": "ラジャさんはきょねんインドにかえりませんでした",
-      "hint": null,
-      "note": "The past negative is ませんでした (masen deshita), built the same way as いきませんでした (ikimasen deshita) from Lesson 6.",
-      "reviewNote": "Constructed. Form job: かえりませんでした exists on no card, so かえります was missing a quarter of its conjugation.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
-      "english": "Is Lopez-san coming by airplane too?",
-      "category": "Transport",
-      "target": "ロペスさんもひこうきできますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Particle job (も) in question form — the brief asks for at least one question among a particle's examples, and も had none anywhere.",
-      "aiSuggested": true
-    },
-    {
-      "id": "how",
-      "english": "How",
-      "category": "Grammar & Function Words",
-      "target": "どうやって",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 7 asks dou yatte ikimasu ka about transport"
-    },
-    {
-      "id": "p102-arukide",
-      "english": "On foot",
-      "category": "Transport",
-      "target": "あるきで",
-      "hint": "the 〜で (de) variant, not the usual form",
-      "note": "A variant of あるいて (aruite). Both mean going on foot, and あるいて (aruite) is the one you will hear.",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p102-douyatte-jimu-ni-ikimasu-ka",
-      "english": "How do you get to the gym?",
-      "category": "Transport",
-      "target": "どうやってジムにいきますか",
-      "note": "どうやって (dō yatte) asks by what means, like なんで (nande) in this lesson. どうやって (dō yatte) is the more everyday of the two.",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p102-jimu-ni-aruite-ikimasu",
-      "english": "I walk to the gym.",
-      "category": "Transport",
-      "target": "ジムにあるいていきます",
-      "scene": "answering how you get to the gym",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p102-douyatte-shigoto-ni-ikimasu-ka",
-      "english": "How do you go to work?",
-      "category": "Transport",
-      "target": "どうやってしごとにいきますか",
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p102-basu-de-shigoto-ni-ikimasu",
-      "english": "I go to work by bus.",
-      "category": "Transport",
-      "target": "バスでしごとにいきます",
-      "scene": "answering how you get to work",
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 3 answer. Job: contrasts the で (de) of means against the あるいて (aruite) answer above.",
-      "aiSuggested": true
     }
   ]
 }

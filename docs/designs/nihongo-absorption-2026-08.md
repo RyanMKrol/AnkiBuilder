@@ -588,6 +588,34 @@ deleted in Phase 6.
 
 ## Verification
 
+`node scripts/absorption-crosscheck.mjs` is the cross-reference pass: it re-derives every claim this
+document makes, from the data, and exits non-zero if any of them stops holding. Add `--anki` to check
+the live collection too. Run it after any change to the routing table, the cards file, or the units.
+
+It exists because every failure in this migration was SILENT. A card deleted by the drill miner, a
+routing row that had drifted from the card file, a duplicate whose twin had gone missing, a unit whose
+model pass died on a usage limit: each looked exactly like success from the outside, and each was
+found by hand. The checks are the hand-checks made repeatable.
+
+The eleven checks, and what each one would have caught:
+
+1. every moved card present and shipping (the drill miner deleting a relocated card)
+2. every authored card present and shipping
+3. no moved card still carries `fillInBlank` (the flag that causes 1)
+4. every dropped card names a twin that is still shipping (retiring the last copy of something)
+5. routing `new` rows match the cards file exactly (the two drifting apart)
+6. no id ships twice (two cards collapsing onto one Anki note)
+7. every moved card has audio and every take it names is on disk (a clip left behind)
+8. `cards.json` and `corpus.json` agree on order (review and deck disagreeing about study order)
+9. no unit carries a failed model pass (a usage limit killing a pass mid-run)
+10. every touched unit has its readiness markers (a unit that cannot reach gate 1)
+11. the course still holds all 236 cards (the source being mutated by mistake)
+
+The commands below re-derive individual claims by hand, and are kept because reading one is often
+faster than reading the whole sweep.
+
+### Individual claims
+
 Re-derive the two facts this document asserts about live data, rather than trusting the numbers above.
 
 Duplicate and disposition counts:

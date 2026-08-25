@@ -7,48 +7,29 @@
   },
   "items": [
     {
-      "id": "f10-jitensha-furukunai",
-      "english": "This bicycle is not old.",
-      "category": "Transport",
-      "target": "このじてんしゃはふるくないです",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (e): negative half of the ふるい minimal pair, held on the same じてんしゃ frame; the ふるくないです form appeared nowhere in the index or wave 1. Constructed."
-    },
-    {
-      "id": "f10-kouen-nigiyaka",
-      "english": "This park is lively.",
+      "id": "pretty",
+      "english": "Pretty",
       "category": "Other",
-      "target": "このこうえんはにぎやかです",
-      "note": "As a predicate, a な-adjective takes です directly with no な — にぎやかです (nigiyaka desu). The な appears only before a noun: にぎやかなこうえん (nigiyaka na kōen).",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (b): affirmative half of the fixed-frame な-adjective cycle (same frame as the next card). Constructed."
+      "target": "きれいな",
+      "hint": "also 'clean, tidy'",
+      "note": "Despite ending in い it's a な-adjective, so な goes before the noun: きれいな かばん (kirei na kaban). It covers both 'pretty' and 'clean'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
     },
     {
-      "id": "f10-apuri-yokunai",
-      "english": "This app is not good.",
-      "category": "Technology & Communication",
-      "target": "このアプリはよくないです",
-      "note": "いい (ii) is the one irregular い-adjective: its negative is よくないです (yokunai desu), never いくない (ikunai), which is what the regular い→くないです pattern would predict.",
+      "id": "v10-asakusa-nigiyaka-na-tokoro",
+      "english": "Asakusa is a lively place.",
+      "category": "Travel & Tourism",
+      "target": "あさくさはにぎやかなところです",
       "aiSuggested": true,
-      "reviewNote": "Forms brief item (c): よくないです in a real sentence — the index carded it only as the bare form 'Not good.' with no sentence. Constructed."
+      "reviewNote": "Vocabulary coverage for あさくさ — chapter vocabulary word in no sentence anywhere (Exercise 9 item 1's substitution place). Also the deck's first full-statement な + noun modification (existing きれいなところですよ is an elliptical answer). Constructed."
     },
     {
-      "id": "ex10-okashi-ikaga",
-      "english": "How about a sweet?",
-      "category": "Food",
-      "target": "おかしはいかがですか",
-      "note": "Thingはいかがですか (thing wa ikaga desu ka) is the polite way to offer food or drink. More polite than どうですか (dō desu ka).",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, verbatim. Only the bare vocabulary item いかがですか was carded; the full offering sentence from the dialogue was not."
-    },
-    {
-      "id": "f10-kaban-ookikunai",
-      "english": "This bag is not big.",
+      "id": "clear",
+      "english": "Clear",
       "category": "Other",
-      "target": "このかばんはおおきくないです",
-      "note": "Negative of an い-adjective: the final い drops and くないです attaches — おおきい (ookii) → おおきくないです (ookikunai desu).",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (a): negative half of the fixed-frame い-adjective cycle, held on the same かばん frame so the くないです transformation is the only change. Also closes the おおきい-negative gap from item (e). Constructed."
+      "target": "とうめいな",
+      "note": "Another な-adjective, like きれいな (kirei na): とうめいな かさ (tōmei na kasa), 'a clear umbrella'. The final い belongs to めい (mei), so it doesn't inflect like ちいさい (chīsai).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
     },
     {
       "id": "ex10-iie-samukunai",
@@ -60,30 +41,81 @@
       "reviewNote": "Exercise 3B item 1 B-line, negative い-adjective answer following the printed example いいえ、あつくないです (which is carded). Elliptical, hence the scene."
     },
     {
-      "id": "v10-tenki-warui",
-      "english": "The weather today is bad.",
-      "category": "Weather & Nature",
-      "target": "きょうのてんきはわるいです",
-      "note": "わるい (warui) is the opposite of いい (ii) and, unlike いい, conjugates regularly: わるくないです (warukunai desu).",
+      "id": "f10-shizuka-na-resutoran",
+      "english": "It's a quiet restaurant, isn't it?",
+      "category": "Food",
+      "target": "しずかなレストランですね",
       "aiSuggested": true,
-      "reviewNote": "Vocabulary coverage for わるい — Word Power word appearing in no sentence anywhere in the index or wave 1. Constructed from ch. 3/10 vocabulary (きょう, てんき)."
+      "reviewNote": "Gap-closing batch: しずかな + noun appeared nowhere (only predicate uses). Same exclamation pattern as きれいなおかしですね, on the レストラン the unit already asks about (あのレストランはしずかですか), so the な transformation on familiar ground. Constructed."
     },
     {
-      "id": "f10-koppu-kirei-ja-arimasen",
-      "english": "This glass is not clean.",
-      "category": "Home & Household",
-      "target": "このコップはきれいじゃありません",
-      "note": "The trap: きれい (kirei) ends in い but is a な-adjective, not an い-adjective — noun form きれいなコップ (kirei na koppu), negative きれいじゃありません (kirei ja arimasen). きれいくない (kireikunai) does not exist. It means both 'pretty' and 'clean'; here it is 'clean'.",
+      "id": "ex10-hai-donata",
+      "english": "Yes. Who is it?",
+      "category": "Greetings",
+      "target": "はい、どなたですか",
+      "note": "Answering the door or an intercom. どなた (donata) is the polite word for だれ (dare).",
       "aiSuggested": true,
-      "reviewNote": "Forms brief item (d), the きれい trap card. きれいな noun-modifying sentences and the affirmative already exist (きれいなはな, このはなはきれいです, はい、きれいです), so per the brief this targets the negative, where the trap actually bites. Also shows the 'clean' sense for the first time. Constructed."
+      "reviewNote": "Speaking Practice 1, verbatim (Sasaki answering the doorbell). Only the bare vocabulary item どなた was carded, not this sentence."
     },
     {
-      "id": "ex10-okinawa-umi-kirei-q",
-      "english": "Is the ocean in Okinawa beautiful?",
+      "id": "ex10-omoshiroi-tokoro",
+      "english": "It's an interesting place, you know.",
       "category": "Travel & Tourism",
-      "target": "おきなわのうみはきれいですか",
+      "target": "おもしろいところですよ",
+      "scene": "answering what kind of place Odaiba is",
       "aiSuggested": true,
-      "reviewNote": "Exercise 6A item 2 (cue おきなわの うみ、きれいです completed per the example pattern). おきなわ and うみ were carded only as vocabulary."
+      "reviewNote": "Exercise 9 item 2 final line (cue おもしろい, completed per the example きれいなところですよ). Kept despite the carded example because this variant is the い-adjective + ところ form, grammatically distinct from the carded な-adjective version; the parallel な-adjective item (にぎやかなところですよ) was skipped as a near-identical variant. Elliptical, hence the scene.",
+      "note": "よ presents this as news for the listener — you have been there and they have not. Contrast きれいなところですね, which would assume you are both looking at it. The particle is formally introduced in Lesson 12."
+    },
+    {
+      "id": "f10-jitensha-furui",
+      "english": "This bicycle is old.",
+      "category": "Transport",
+      "target": "このじてんしゃはふるいです",
+      "note": "ふるい (furui) describes things, never people.",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (e): ふるい existed only as a noun modifier (ふるいとけい), never as a predicate, so this is the affirmative half of a minimal aff/neg pair with the next card. Constructed."
+    },
+    {
+      "id": "long",
+      "english": "Long",
+      "category": "Other",
+      "target": "ながい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
+    },
+    {
+      "id": "f10-kaban-ookikunai",
+      "english": "This bag is not big.",
+      "category": "Other",
+      "target": "このかばんはおおきくないです",
+      "note": "Negative of an い-adjective: the final い drops and くないです attaches — おおきい (ookii) → おおきくないです (ookikunai desu).",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (a): negative half of the fixed-frame い-adjective cycle, held on the same かばん frame so the くないです transformation is the only change. Also closes the おおきい-negative gap from item (e). Constructed."
+    },
+    {
+      "id": "f10-eiga-omoshirokunai",
+      "english": "This movie is not interesting.",
+      "category": "Sports & Hobbies",
+      "target": "このえいがはおもしろくないです",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (e): おもしろい affirmative exists (このほんはおもしろいです), so only the negative is added, on a different noun (えいが, ch. 8) to vary the frame. Constructed."
+    },
+    {
+      "id": "ex10-okashi-ikaga",
+      "english": "How about a sweet?",
+      "category": "Food",
+      "target": "おかしはいかがですか",
+      "note": "Thingはいかがですか (thing wa ikaga desu ka) is the polite way to offer food or drink. More polite than どうですか (dō desu ka).",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, verbatim. Only the bare vocabulary item いかがですか was carded; the full offering sentence from the dialogue was not."
+    },
+    {
+      "id": "ex10-sydney-suzushii-q",
+      "english": "Is it cool in Sydney?",
+      "category": "Weather & Nature",
+      "target": "シドニーはすずしいですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3B item 2 (cue シドニー、すずしいです completed per the example pattern). シドニー and すずしい were carded only as vocabulary."
     },
     {
       "id": "ex10-kochira-6500-en",
@@ -97,32 +129,6 @@
       "note": "こちら (kochira) is the shopkeeper's polite word for これ (kore), the same service register as こちらです (kochira desu) from Lesson 9."
     },
     {
-      "id": "p10-amari-samukunai",
-      "english": "It is not very cold today.",
-      "category": "Weather & Nature",
-      "target": "きょうはあまりさむくないです",
-      "note": "あまり (amari) + negative works with adjectives exactly as it does with verbs in Lesson 9 (あまりみません (amari mimasen)): 'not very...'.",
-      "aiSuggested": true,
-      "reviewNote": "Adverb coverage: あまり + adjective negative, taught in this chapter's notes. All existing あまり cards (ch. 9) are verb negatives; no あまり + adjective example existed. さむくないです itself is covered by wave 1, so あまり is the new element here. Constructed."
-    },
-    {
-      "id": "ex10-hai-takai",
-      "english": "Yes, it's expensive.",
-      "category": "Shopping",
-      "target": "はい、たかいです",
-      "scene": "answering whether that wine is expensive",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 3A example B-line, printed verbatim. Elliptical affirmative answer, hence the scene; missing while the parallel はい、おいしいです was carded."
-    },
-    {
-      "id": "ex10-kono-pasokon-atarashii-q",
-      "english": "Is this computer new?",
-      "category": "Technology & Communication",
-      "target": "このパソコンはあたらしいですか",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 3A item 1 (cue この パソコン、あたらしいです completed per the example pattern). Not in the deck."
-    },
-    {
       "id": "ex10-hai-kirei",
       "english": "Yes, it's beautiful.",
       "category": "Travel & Tourism",
@@ -132,97 +138,18 @@
       "reviewNote": "Exercise 6A item 2 B-line. Elliptical affirmative answer to the previous card's question, hence the scene."
     },
     {
-      "id": "ex10-kyouto-no-okashi",
-      "english": "It's a sweet from Kyoto.",
-      "category": "Food",
-      "target": "きょうとのおかしです",
-      "scene": "telling a guest where the sweet they are eating comes from",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, verbatim (Sasaki's reply after confirming the sweet is Japanese). Never carded; scene added because the line only makes sense as a reply."
+      "id": "how-are-you",
+      "english": "How are you?",
+      "category": "Greetings",
+      "target": "げんきですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
     },
     {
-      "id": "f10-wain-yasukunai",
-      "english": "This wine is not cheap.",
-      "category": "Shopping",
-      "target": "このワインはやすくないです",
-      "hint": "Use やすい (yasui) in the negative, not たかい (takai)",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: やすくないです appeared nowhere. Hint added because the natural English 'not cheap' could otherwise produce たかいです (takai desu). Constructed."
-    },
-    {
-      "id": "f10-mise-atarashikunai",
-      "english": "This shop is not new.",
-      "category": "Shopping",
-      "target": "このみせはあたらしくないです",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: あたらしくないです appeared nowhere (affirmatives exist: かとうさんのうちはあたらしいです, このパソコンはあたらしいですか). New noun to vary the frame. Constructed."
-    },
-    {
-      "id": "f10-jitensha-furui",
-      "english": "This bicycle is old.",
-      "category": "Transport",
-      "target": "このじてんしゃはふるいです",
-      "note": "ふるい (furui) describes things, never people.",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (e): ふるい existed only as a noun modifier (ふるいとけい), never as a predicate, so this is the affirmative half of a minimal aff/neg pair with the next card. Constructed."
-    },
-    {
-      "id": "ex10-sono-wain-takai-q",
-      "english": "Is that wine expensive?",
-      "category": "Shopping",
-      "target": "そのワインはたかいですか",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 3A example A-line, printed verbatim. The extraction carded the parallel そのおべんとうはおいしいですか pair but missed the example pair itself."
-    },
-    {
-      "id": "ex10-ocha-o-douzo",
-      "english": "Please, have some tea.",
-      "category": "Food",
-      "target": "おちゃをどうぞ",
-      "note": "The pattern Thingをどうぞ (thing o dōzo) is how you offer something to someone: \"please help yourself to...\"",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue opening line (also Notes 1 example), verbatim. The extraction carded bare どうぞ back in chapter 0 but never this offering pattern with を."
-    },
-    {
-      "id": "ex10-iie-shizuka-ja-arimasen",
-      "english": "No, it isn't quiet.",
-      "category": "Food",
-      "target": "いいえ、しずかじゃありません",
-      "scene": "answering whether that restaurant over there is quiet",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 6B item 2 B-line, negative な-adjective answer per the example pattern. Elliptical, hence the scene."
-    },
-    {
-      "id": "f10-seetaa-takakunai",
-      "english": "This sweater is not expensive.",
-      "category": "Clothing",
-      "target": "このセーターはたかくないです",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (e): たかい affirmatives exist (はい、たかいです; ちょっとたかいですね; たかいセーターをかいました), so per the brief only the negative is added — deliberately on セーター to contrast with the existing たかいセーター card. Constructed."
-    },
-    {
-      "id": "f10-eiga-omoshirokunai",
-      "english": "This movie is not interesting.",
-      "category": "Sports & Hobbies",
-      "target": "このえいがはおもしろくないです",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (e): おもしろい affirmative exists (このほんはおもしろいです), so only the negative is added, on a different noun (えいが, ch. 8) to vary the frame. Constructed."
-    },
-    {
-      "id": "ex10-katou-uchi-atarashii",
-      "english": "Kato-san's house is new.",
-      "category": "Home & Household",
-      "target": "かとうさんのうちはあたらしいです",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 2 item 2 (substitution cue かとうさんの うち、あたらしいです completed per the printed example pattern). Not in the deck."
-    },
-    {
-      "id": "ex10-london-samui-q",
-      "english": "Is it cold in London?",
-      "category": "Weather & Nature",
-      "target": "ロンドンはさむいですか",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 3B item 1 (cue ロンドン、さむいです completed per the printed example とうきょうはあついですか). The example pair was carded; both substitution pairs were not."
+      "id": "cute",
+      "english": "Cute",
+      "category": "Emotions & Feelings",
+      "target": "かわいい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
     },
     {
       "id": "ex10-kono-kamera-yasui",
@@ -231,158 +158,6 @@
       "target": "このカメラはやすいです",
       "aiSuggested": true,
       "reviewNote": "Exercise 2 item 1 (substitution cue この カメラ、やすいです completed per the printed example pattern). Only the example sentence このほんはおもしろいです was carded."
-    },
-    {
-      "id": "v10-koko-de-machimasu",
-      "english": "I'll wait here.",
-      "category": "Other",
-      "target": "ここでまちます",
-      "note": "まちます (machimasu) is the verb behind the set phrase ちょっとまってください (chotto matte kudasai) from Frequently Used Expressions.",
-      "aiSuggested": true,
-      "reviewNote": "Vocabulary coverage for まちます — listed in the chapter's vocabulary but appearing in no sentence anywhere (only inside the fixed expression まってください). Constructed from ch. 8/9 grammar (で place of action, ここ)."
-    },
-    {
-      "id": "f10-tokei-chiisakunai",
-      "english": "This watch is not small.",
-      "category": "Other",
-      "target": "このとけいはちいさくないです",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: ちいさくないです appeared nowhere in the deck. Negative half of the ちいさい minimal pair on the held とけい frame. Constructed."
-    },
-    {
-      "id": "f10-ocha-atatakakunai",
-      "english": "This tea is not warm.",
-      "category": "Food",
-      "target": "このおちゃはあたたかくないです",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: あたたかくないです appeared nowhere (affirmatives are the weather small-talk pair). Applied to おちゃ to show あたたかい beyond weather. Constructed."
-    },
-    {
-      "id": "ex10-totemo-oishii",
-      "english": "It's very delicious.",
-      "category": "Food",
-      "target": "とてもおいしいです",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue closing line, verbatim. とても was carded only as a bare vocabulary item; the chapter's signature とても + adjective sentence was never carded. English uses \"very\" (not \"really\") to cue とても (totemo) rather than ほんとうに (hontō ni)."
-    },
-    {
-      "id": "ex10-hontou-ni-ii-tenki-ne",
-      "english": "Yeah, it really is nice weather, isn't it?",
-      "category": "Weather & Nature",
-      "target": "ええ、ほんとうにいいてんきですね",
-      "scene": "agreeing with someone's remark that the weather is nice today",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 11 item 2 B-line, per the example pattern ええ、ほんとうにさむいですね (which is carded). Agreement reply, hence the scene."
-    },
-    {
-      "id": "ex10-ii-tenki-ne",
-      "english": "Nice weather today, isn't it?",
-      "category": "Weather & Nature",
-      "target": "きょうはいいてんきですね",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 11 item 2 (cue いい てんき completed per the printed example きょうはさむいですね, which is carded). てんき was carded only as vocabulary; the noun-variant of the weather small-talk pattern is missing."
-    },
-    {
-      "id": "f10-tenki-warukunai",
-      "english": "The weather today is not bad.",
-      "category": "Weather & Nature",
-      "target": "きょうのてんきはわるくないです",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: わるくないです appeared nowhere. Held on the same きょうのてんき frame as the affirmative card (きょうのてんきはわるいです) so the transformation is the only change. Constructed."
-    },
-    {
-      "id": "ex10-iie-benri-ja-arimasen",
-      "english": "No, it isn't convenient.",
-      "category": "Technology & Communication",
-      "target": "いいえ、べんりじゃありません",
-      "scene": "answering whether that app is convenient",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 6B item 1 B-line, negative な-adjective answer per the example pattern (いいえ、ゆうめいじゃありません is carded). Elliptical, hence the scene."
-    },
-    {
-      "id": "ex10-hai-atarashii",
-      "english": "Yes, it's new.",
-      "category": "Technology & Communication",
-      "target": "はい、あたらしいです",
-      "scene": "answering whether this computer is new",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 3A item 1 B-line. Elliptical affirmative answer to the previous card's question; question and answer kept as two cards."
-    },
-    {
-      "id": "ex10-nihon-no-okashi-q",
-      "english": "Is it a Japanese sweet?",
-      "category": "Food",
-      "target": "にほんのおかしですか",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, verbatim. Chapter 2 carded にほんのおかし and the statement にほんのおかしです, but this question form from the dialogue is missing. Question and answer are separate cards; the answer is the Kyoto card."
-    },
-    {
-      "id": "ex10-hai-shizuka",
-      "english": "Yes, it's quiet.",
-      "category": "School & Education",
-      "target": "はい、しずかです",
-      "scene": "answering whether the library is quiet",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 6A example B-line, printed verbatim. Elliptical affirmative な-adjective answer, hence the scene."
-    },
-    {
-      "id": "f10-kaban-ookii",
-      "english": "This bag is big.",
-      "category": "Other",
-      "target": "このかばんはおおきいです",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (a): affirmative half of the fixed-frame い-adjective cycle (same frame as the next card, only the conjugation changes). おおきい existed only as noun-modifier (おおきいうちですね) and shopping modifier; the predicate affirmative existed nowhere. Constructed."
-    },
-    {
-      "id": "v10-odaiba-donna-tokoro",
-      "english": "What kind of place is Odaiba?",
-      "category": "Travel & Tourism",
-      "target": "おだいばはどんなところですか",
-      "aiSuggested": true,
-      "reviewNote": "Vocabulary coverage for おだいば — chapter vocabulary word in no sentence anywhere. Doubles as the missing question for wave 1's answer card おもしろいところですよ, whose scene names exactly this question. Constructed per the Exercise 9 pattern."
-    },
-    {
-      "id": "f10-benri-na-apuri",
-      "english": "It's a convenient app, isn't it?",
-      "category": "Technology & Communication",
-      "target": "べんりなアプリですね",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: べんりな + noun appeared nowhere (only predicate uses). Mirrors そのアプリはべんりですか so the learner meets both forms of べんり on the same noun. Constructed."
-    },
-    {
-      "id": "ex10-omoshiroi-tokoro",
-      "english": "It's an interesting place, you know.",
-      "category": "Travel & Tourism",
-      "target": "おもしろいところですよ",
-      "scene": "answering what kind of place Odaiba is",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 9 item 2 final line (cue おもしろい, completed per the example きれいなところですよ). Kept despite the carded example because this variant is the い-adjective + ところ form, grammatically distinct from the carded な-adjective version; the parallel な-adjective item (にぎやかなところですよ) was skipped as a near-identical variant. Elliptical, hence the scene.",
-      "note": "よ presents this as news for the listener — you have been there and they have not. Contrast きれいなところですね, which would assume you are both looking at it. The particle is formally introduced in Lesson 12."
-    },
-    {
-      "id": "ex10-iie-suzushikunai",
-      "english": "No, it isn't cool.",
-      "category": "Weather & Nature",
-      "target": "いいえ、すずしくないです",
-      "scene": "answering whether it's cool in Sydney",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 3B item 2 B-line, negative い-adjective answer per the example pattern. Elliptical, hence the scene."
-    },
-    {
-      "id": "f10-shizuka-na-resutoran",
-      "english": "It's a quiet restaurant, isn't it?",
-      "category": "Food",
-      "target": "しずかなレストランですね",
-      "aiSuggested": true,
-      "reviewNote": "Gap-closing batch: しずかな + noun appeared nowhere (only predicate uses). Same exclamation pattern as きれいなおかしですね, on the レストラン the unit already asks about (あのレストランはしずかですか), so the な transformation on familiar ground. Constructed."
-    },
-    {
-      "id": "ex10-emma-okashi-tabemashita",
-      "english": "Emma-san ate a pretty Japanese sweet at Sasaki-san's house.",
-      "category": "Food",
-      "target": "エマさんはささきさんのうちできれいなにほんのおかしをたべました",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue summary sentence, verbatim. The chapter's one long combined sentence (な-adjective modifying a のphrase plus で place-of-action); the extraction skipped it entirely."
     },
     {
       "id": "ex10-chotto-takai",
@@ -394,21 +169,12 @@
       "reviewNote": "Speaking Practice 2, verbatim (Smith in the antique shop). Key ちょっと + adjective usage from this lesson; not carded anywhere."
     },
     {
-      "id": "f10-kouen-nigiyaka-ja-arimasen",
-      "english": "This park is not lively.",
-      "category": "Other",
-      "target": "このこうえんはにぎやかじゃありません",
-      "note": "Negative of a な-adjective: じゃありません attaches straight to the adjective, no く form — にぎやか (nigiyaka) → にぎやかじゃありません (nigiyaka ja arimasen). Same ending as noun + じゃありません from Lesson 2.",
-      "aiSuggested": true,
-      "reviewNote": "Forms brief item (b): negative half of the fixed-frame な-adjective cycle on the held-constant こうえん frame. Also closes the にぎやか-negative gap from item (e) (only ゆうめい, べんり and しずか negatives existed). Constructed."
-    },
-    {
-      "id": "ex10-sydney-suzushii-q",
-      "english": "Is it cool in Sydney?",
+      "id": "ex10-ii-tenki-ne",
+      "english": "Nice weather today, isn't it?",
       "category": "Weather & Nature",
-      "target": "シドニーはすずしいですか",
+      "target": "きょうはいいてんきですね",
       "aiSuggested": true,
-      "reviewNote": "Exercise 3B item 2 (cue シドニー、すずしいです completed per the example pattern). シドニー and すずしい were carded only as vocabulary."
+      "reviewNote": "Exercise 11 item 2 (cue いい てんき completed per the printed example きょうはさむいですね, which is carded). てんき was carded only as vocabulary; the noun-variant of the weather small-talk pattern is missing."
     },
     {
       "id": "p10-totemo-kirei",
@@ -420,20 +186,13 @@
       "reviewNote": "Adverb coverage: とても + な-adjective. Wave 1's とてもおいしいです and the index's とてもふるいとけいですね are both い-adjective slots; this fills the な-adjective slot, reusing wave 1's おきなわのうみ topic in statement form. Constructed."
     },
     {
-      "id": "ex10-ano-resutoran-shizuka-q",
-      "english": "Is that restaurant over there quiet?",
-      "category": "Food",
-      "target": "あのレストランはしずかですか",
+      "id": "ex10-hai-shizuka",
+      "english": "Yes, it's quiet.",
+      "category": "School & Education",
+      "target": "はい、しずかです",
+      "scene": "answering whether the library is quiet",
       "aiSuggested": true,
-      "reviewNote": "Exercise 6B item 2 (cue あの レストラン、しずかです completed per the example pattern). Not in the deck."
-    },
-    {
-      "id": "ex10-sono-apuri-benri-q",
-      "english": "Is that app convenient?",
-      "category": "Technology & Communication",
-      "target": "そのアプリはべんりですか",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 6B item 1 (cue その アプリ、べんりです completed per the printed example このえはゆうめいですか). The example pair was carded; both substitution pairs were not."
+      "reviewNote": "Exercise 6A example B-line, printed verbatim. Elliptical affirmative な-adjective answer, hence the scene."
     },
     {
       "id": "f10-tokei-chiisai",
@@ -442,85 +201,6 @@
       "target": "このとけいはちいさいです",
       "aiSuggested": true,
       "reviewNote": "Gap-closing batch (owner-requested audit of Exercise 1/4 coverage): ちいさい had no predicate affirmative anywhere — only noun-modifying uses. Paired with the negative that follows on the same とけい frame. Constructed."
-    },
-    {
-      "id": "ex10-hai-donata",
-      "english": "Yes. Who is it?",
-      "category": "Greetings",
-      "target": "はい、どなたですか",
-      "note": "Answering the door or an intercom. どなた (donata) is the polite word for だれ (dare).",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, verbatim (Sasaki answering the doorbell). Only the bare vocabulary item どなた was carded, not this sentence."
-    },
-    {
-      "id": "ex10-fujisan-yuumei",
-      "english": "Mt. Fuji is famous.",
-      "category": "Travel & Tourism",
-      "target": "ふじさんはゆうめいです",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 5 item 1 (cue ふじさん、ゆうめいです completed per the printed example とうきょうのちかてつはべんりです). Item 2's このはなはきれいです was carded; this one was not."
-    },
-    {
-      "id": "ex10-toshokan-shizuka-q",
-      "english": "Is the library quiet?",
-      "category": "School & Education",
-      "target": "としょかんはしずかですか",
-      "aiSuggested": true,
-      "reviewNote": "Exercise 6A example A-line, printed verbatim. The extraction carded the item-1 pair (ろっぽんぎはにぎやかですか) but missed the example pair itself."
-    },
-    {
-      "id": "v10-asakusa-nigiyaka-na-tokoro",
-      "english": "Asakusa is a lively place.",
-      "category": "Travel & Tourism",
-      "target": "あさくさはにぎやかなところです",
-      "aiSuggested": true,
-      "reviewNote": "Vocabulary coverage for あさくさ — chapter vocabulary word in no sentence anywhere (Exercise 9 item 1's substitution place). Also the deck's first full-statement な + noun modification (existing きれいなところですよ is an elliptical answer). Constructed."
-    },
-    {
-      "id": "ex10-kirei-na-okashi-ne",
-      "english": "It's a beautiful sweet, isn't it?",
-      "category": "Food",
-      "target": "きれいなおかしですね",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, verbatim. A な-adjective noun-modifying exclamation parallel to the carded おおきいうちですね (ookii uchi desu ne); this dialogue line itself was never carded."
-    },
-    {
-      "id": "how-are-you",
-      "english": "How are you?",
-      "category": "Greetings",
-      "target": "げんきですか",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
-    },
-    {
-      "id": "im-well",
-      "english": "I'm well.",
-      "category": "Greetings",
-      "target": "げんきです",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
-    },
-    {
-      "id": "im-not-well",
-      "english": "I'm not well.",
-      "category": "Greetings",
-      "target": "げんきじゃないです",
-      "note": "じゃないです (ja nai desu) negates げんきです the same way じゃありません (ja arimasen) negates です in これはペンじゃありません (kore wa pen ja arimasen), but blends the plain negative じゃない (ja nai) with です for a slightly more casual feel than the formal-sounding じゃありません.",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
-    },
-    {
-      "id": "cute",
-      "english": "Cute",
-      "category": "Emotions & Feelings",
-      "target": "かわいい",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
-    },
-    {
-      "id": "pretty",
-      "english": "Pretty",
-      "category": "Other",
-      "target": "きれいな",
-      "hint": "also 'clean, tidy'",
-      "note": "Despite ending in い it's a な-adjective, so な goes before the noun: きれいな かばん (kirei na kaban). It covers both 'pretty' and 'clean'.",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
     },
     {
       "id": "kore-wa-kirei-na-kaban-desu",
@@ -534,13 +214,12 @@
       "aiSuggested": true
     },
     {
-      "id": "cool",
-      "english": "Cool",
-      "category": "Other",
-      "target": "かっこいい",
-      "hint": "stylish, good-looking",
-      "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks.",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\"."
+      "id": "ex10-okinawa-umi-kirei-q",
+      "english": "Is the ocean in Okinawa beautiful?",
+      "category": "Travel & Tourism",
+      "target": "おきなわのうみはきれいですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 6A item 2 (cue おきなわの うみ、きれいです completed per the example pattern). おきなわ and うみ were carded only as vocabulary."
     },
     {
       "id": "spicy",
@@ -550,19 +229,159 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
     },
     {
-      "id": "long",
-      "english": "Long",
-      "category": "Other",
-      "target": "ながい",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job"
+      "id": "ex10-hai-takai",
+      "english": "Yes, it's expensive.",
+      "category": "Shopping",
+      "target": "はい、たかいです",
+      "scene": "answering whether that wine is expensive",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3A example B-line, printed verbatim. Elliptical affirmative answer, hence the scene; missing while the parallel はい、おいしいです was carded."
     },
     {
-      "id": "clear",
-      "english": "Clear",
+      "id": "v10-odaiba-donna-tokoro",
+      "english": "What kind of place is Odaiba?",
+      "category": "Travel & Tourism",
+      "target": "おだいばはどんなところですか",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary coverage for おだいば — chapter vocabulary word in no sentence anywhere. Doubles as the missing question for wave 1's answer card おもしろいところですよ, whose scene names exactly this question. Constructed per the Exercise 9 pattern."
+    },
+    {
+      "id": "f10-apuri-yokunai",
+      "english": "This app is not good.",
+      "category": "Technology & Communication",
+      "target": "このアプリはよくないです",
+      "note": "いい (ii) is the one irregular い-adjective: its negative is よくないです (yokunai desu), never いくない (ikunai), which is what the regular い→くないです pattern would predict.",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (c): よくないです in a real sentence — the index carded it only as the bare form 'Not good.' with no sentence. Constructed."
+    },
+    {
+      "id": "ex10-kyouto-no-okashi",
+      "english": "It's a sweet from Kyoto.",
+      "category": "Food",
+      "target": "きょうとのおかしです",
+      "scene": "telling a guest where the sweet they are eating comes from",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, verbatim (Sasaki's reply after confirming the sweet is Japanese). Never carded; scene added because the line only makes sense as a reply."
+    },
+    {
+      "id": "ex10-fujisan-yuumei",
+      "english": "Mt. Fuji is famous.",
+      "category": "Travel & Tourism",
+      "target": "ふじさんはゆうめいです",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 5 item 1 (cue ふじさん、ゆうめいです completed per the printed example とうきょうのちかてつはべんりです). Item 2's このはなはきれいです was carded; this one was not."
+    },
+    {
+      "id": "ex10-hontou-ni-ii-tenki-ne",
+      "english": "Yeah, it really is nice weather, isn't it?",
+      "category": "Weather & Nature",
+      "target": "ええ、ほんとうにいいてんきですね",
+      "scene": "agreeing with someone's remark that the weather is nice today",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 11 item 2 B-line, per the example pattern ええ、ほんとうにさむいですね (which is carded). Agreement reply, hence the scene."
+    },
+    {
+      "id": "p102-onaji",
+      "english": "The same",
+      "category": "Descriptions & Qualities",
+      "target": "おなじ",
+      "note": "Sits in front of a noun without な (na), unlike the な-adjectives in this lesson: おなじみせ (onaji mise), not おなじなみせ (onaji na mise).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a describing word that looks like a な-adjective and does not behave like one, which is where a learner goes wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex10-ocha-o-douzo",
+      "english": "Please, have some tea.",
+      "category": "Food",
+      "target": "おちゃをどうぞ",
+      "note": "The pattern Thingをどうぞ (thing o dōzo) is how you offer something to someone: \"please help yourself to...\"",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue opening line (also Notes 1 example), verbatim. The extraction carded bare どうぞ back in chapter 0 but never this offering pattern with を."
+    },
+    {
+      "id": "f10-jitensha-furukunai",
+      "english": "This bicycle is not old.",
+      "category": "Transport",
+      "target": "このじてんしゃはふるくないです",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (e): negative half of the ふるい minimal pair, held on the same じてんしゃ frame; the ふるくないです form appeared nowhere in the index or wave 1. Constructed."
+    },
+    {
+      "id": "cool",
+      "english": "Cool",
       "category": "Other",
-      "target": "とうめいな",
-      "note": "Another な-adjective, like きれいな (kirei na): とうめいな かさ (tōmei na kasa), 'a clear umbrella'. The final い belongs to めい (mei), so it doesn't inflect like ちいさい (chīsai).",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
+      "target": "かっこいい",
+      "hint": "stylish, good-looking",
+      "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\"."
+    },
+    {
+      "id": "fib-kore-wa-takai-desu",
+      "english": "This is expensive.",
+      "category": "Money",
+      "target": "これはたかいです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
+      "aiSuggested": true
+    },
+    {
+      "id": "f10-mise-atarashikunai",
+      "english": "This shop is not new.",
+      "category": "Shopping",
+      "target": "このみせはあたらしくないです",
+      "aiSuggested": true,
+      "reviewNote": "Gap-closing batch: あたらしくないです appeared nowhere (affirmatives exist: かとうさんのうちはあたらしいです, このパソコンはあたらしいですか). New noun to vary the frame. Constructed."
+    },
+    {
+      "id": "f10-kaban-ookii",
+      "english": "This bag is big.",
+      "category": "Other",
+      "target": "このかばんはおおきいです",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (a): affirmative half of the fixed-frame い-adjective cycle (same frame as the next card, only the conjugation changes). おおきい existed only as noun-modifier (おおきいうちですね) and shopping modifier; the predicate affirmative existed nowhere. Constructed."
+    },
+    {
+      "id": "ex10-kirei-na-okashi-ne",
+      "english": "It's a beautiful sweet, isn't it?",
+      "category": "Food",
+      "target": "きれいなおかしですね",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, verbatim. A な-adjective noun-modifying exclamation parallel to the carded おおきいうちですね (ookii uchi desu ne); this dialogue line itself was never carded."
+    },
+    {
+      "id": "ex10-hai-atarashii",
+      "english": "Yes, it's new.",
+      "category": "Technology & Communication",
+      "target": "はい、あたらしいです",
+      "scene": "answering whether this computer is new",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3A item 1 B-line. Elliptical affirmative answer to the previous card's question; question and answer kept as two cards."
+    },
+    {
+      "id": "im-not-well",
+      "english": "I'm not well.",
+      "category": "Greetings",
+      "target": "げんきじゃないです",
+      "note": "じゃないです (ja nai desu) negates げんきです the same way じゃありません (ja arimasen) negates です in これはペンじゃありません (kore wa pen ja arimasen), but blends the plain negative じゃない (ja nai) with です for a slightly more casual feel than the formal-sounding じゃありません.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
+    },
+    {
+      "id": "f10-wain-yasukunai",
+      "english": "This wine is not cheap.",
+      "category": "Shopping",
+      "target": "このワインはやすくないです",
+      "hint": "Use やすい (yasui) in the negative, not たかい (takai)",
+      "aiSuggested": true,
+      "reviewNote": "Gap-closing batch: やすくないです appeared nowhere. Hint added because the natural English 'not cheap' could otherwise produce たかいです (takai desu). Constructed."
+    },
+    {
+      "id": "v10-koko-de-machimasu",
+      "english": "I'll wait here.",
+      "category": "Other",
+      "target": "ここでまちます",
+      "note": "まちます (machimasu) is the verb behind the set phrase ちょっとまってください (chotto matte kudasai) from Frequently Used Expressions.",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary coverage for まちます — listed in the chapter's vocabulary but appearing in no sentence anywhere (only inside the fixed expression まってください). Constructed from ch. 8/9 grammar (で place of action, ここ)."
     },
     {
       "id": "kore-wa-toumei-na-kasa-desu",
@@ -576,22 +395,203 @@
       "aiSuggested": true
     },
     {
-      "id": "fib-kore-wa-takai-desu",
-      "english": "This is expensive.",
-      "category": "Money",
-      "target": "これはたかいです",
-      "note": null,
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
-      "aiSuggested": true
+      "id": "v10-tenki-warui",
+      "english": "The weather today is bad.",
+      "category": "Weather & Nature",
+      "target": "きょうのてんきはわるいです",
+      "note": "わるい (warui) is the opposite of いい (ii) and, unlike いい, conjugates regularly: わるくないです (warukunai desu).",
+      "aiSuggested": true,
+      "reviewNote": "Vocabulary coverage for わるい — Word Power word appearing in no sentence anywhere in the index or wave 1. Constructed from ch. 3/10 vocabulary (きょう, てんき)."
     },
     {
-      "id": "p102-onaji",
-      "english": "The same",
-      "category": "Descriptions & Qualities",
-      "target": "おなじ",
-      "note": "Sits in front of a noun without な (na), unlike the な-adjectives in this lesson: おなじみせ (onaji mise), not おなじなみせ (onaji na mise).",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a describing word that looks like a な-adjective and does not behave like one, which is where a learner goes wrong.",
-      "aiSuggested": true
+      "id": "ex10-ano-resutoran-shizuka-q",
+      "english": "Is that restaurant over there quiet?",
+      "category": "Food",
+      "target": "あのレストランはしずかですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 6B item 2 (cue あの レストラン、しずかです completed per the example pattern). Not in the deck."
+    },
+    {
+      "id": "p10-amari-samukunai",
+      "english": "It is not very cold today.",
+      "category": "Weather & Nature",
+      "target": "きょうはあまりさむくないです",
+      "note": "あまり (amari) + negative works with adjectives exactly as it does with verbs in Lesson 9 (あまりみません (amari mimasen)): 'not very...'.",
+      "aiSuggested": true,
+      "reviewNote": "Adverb coverage: あまり + adjective negative, taught in this chapter's notes. All existing あまり cards (ch. 9) are verb negatives; no あまり + adjective example existed. さむくないです itself is covered by wave 1, so あまり is the new element here. Constructed."
+    },
+    {
+      "id": "f10-tokei-chiisakunai",
+      "english": "This watch is not small.",
+      "category": "Other",
+      "target": "このとけいはちいさくないです",
+      "aiSuggested": true,
+      "reviewNote": "Gap-closing batch: ちいさくないです appeared nowhere in the deck. Negative half of the ちいさい minimal pair on the held とけい frame. Constructed."
+    },
+    {
+      "id": "f10-kouen-nigiyaka",
+      "english": "This park is lively.",
+      "category": "Other",
+      "target": "このこうえんはにぎやかです",
+      "note": "As a predicate, a な-adjective takes です directly with no な — にぎやかです (nigiyaka desu). The な appears only before a noun: にぎやかなこうえん (nigiyaka na kōen).",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (b): affirmative half of the fixed-frame な-adjective cycle (same frame as the next card). Constructed."
+    },
+    {
+      "id": "ex10-katou-uchi-atarashii",
+      "english": "Kato-san's house is new.",
+      "category": "Home & Household",
+      "target": "かとうさんのうちはあたらしいです",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 2 item 2 (substitution cue かとうさんの うち、あたらしいです completed per the printed example pattern). Not in the deck."
+    },
+    {
+      "id": "ex10-sono-wain-takai-q",
+      "english": "Is that wine expensive?",
+      "category": "Shopping",
+      "target": "そのワインはたかいですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3A example A-line, printed verbatim. The extraction carded the parallel そのおべんとうはおいしいですか pair but missed the example pair itself."
+    },
+    {
+      "id": "ex10-toshokan-shizuka-q",
+      "english": "Is the library quiet?",
+      "category": "School & Education",
+      "target": "としょかんはしずかですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 6A example A-line, printed verbatim. The extraction carded the item-1 pair (ろっぽんぎはにぎやかですか) but missed the example pair itself."
+    },
+    {
+      "id": "ex10-sono-apuri-benri-q",
+      "english": "Is that app convenient?",
+      "category": "Technology & Communication",
+      "target": "そのアプリはべんりですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 6B item 1 (cue その アプリ、べんりです completed per the printed example このえはゆうめいですか). The example pair was carded; both substitution pairs were not."
+    },
+    {
+      "id": "ex10-london-samui-q",
+      "english": "Is it cold in London?",
+      "category": "Weather & Nature",
+      "target": "ロンドンはさむいですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3B item 1 (cue ロンドン、さむいです completed per the printed example とうきょうはあついですか). The example pair was carded; both substitution pairs were not."
+    },
+    {
+      "id": "f10-seetaa-takakunai",
+      "english": "This sweater is not expensive.",
+      "category": "Clothing",
+      "target": "このセーターはたかくないです",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (e): たかい affirmatives exist (はい、たかいです; ちょっとたかいですね; たかいセーターをかいました), so per the brief only the negative is added — deliberately on セーター to contrast with the existing たかいセーター card. Constructed."
+    },
+    {
+      "id": "ex10-iie-shizuka-ja-arimasen",
+      "english": "No, it isn't quiet.",
+      "category": "Food",
+      "target": "いいえ、しずかじゃありません",
+      "scene": "answering whether that restaurant over there is quiet",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 6B item 2 B-line, negative な-adjective answer per the example pattern. Elliptical, hence the scene."
+    },
+    {
+      "id": "ex10-iie-benri-ja-arimasen",
+      "english": "No, it isn't convenient.",
+      "category": "Technology & Communication",
+      "target": "いいえ、べんりじゃありません",
+      "scene": "answering whether that app is convenient",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 6B item 1 B-line, negative な-adjective answer per the example pattern (いいえ、ゆうめいじゃありません is carded). Elliptical, hence the scene."
+    },
+    {
+      "id": "f10-ocha-atatakakunai",
+      "english": "This tea is not warm.",
+      "category": "Food",
+      "target": "このおちゃはあたたかくないです",
+      "aiSuggested": true,
+      "reviewNote": "Gap-closing batch: あたたかくないです appeared nowhere (affirmatives are the weather small-talk pair). Applied to おちゃ to show あたたかい beyond weather. Constructed."
+    },
+    {
+      "id": "im-well",
+      "english": "I'm well.",
+      "category": "Greetings",
+      "target": "げんきです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught"
+    },
+    {
+      "id": "ex10-totemo-oishii",
+      "english": "It's very delicious.",
+      "category": "Food",
+      "target": "とてもおいしいです",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue closing line, verbatim. とても was carded only as a bare vocabulary item; the chapter's signature とても + adjective sentence was never carded. English uses \"very\" (not \"really\") to cue とても (totemo) rather than ほんとうに (hontō ni)."
+    },
+    {
+      "id": "ex10-iie-suzushikunai",
+      "english": "No, it isn't cool.",
+      "category": "Weather & Nature",
+      "target": "いいえ、すずしくないです",
+      "scene": "answering whether it's cool in Sydney",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3B item 2 B-line, negative い-adjective answer per the example pattern. Elliptical, hence the scene."
+    },
+    {
+      "id": "ex10-nihon-no-okashi-q",
+      "english": "Is it a Japanese sweet?",
+      "category": "Food",
+      "target": "にほんのおかしですか",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, verbatim. Chapter 2 carded にほんのおかし and the statement にほんのおかしです, but this question form from the dialogue is missing. Question and answer are separate cards; the answer is the Kyoto card."
+    },
+    {
+      "id": "f10-tenki-warukunai",
+      "english": "The weather today is not bad.",
+      "category": "Weather & Nature",
+      "target": "きょうのてんきはわるくないです",
+      "aiSuggested": true,
+      "reviewNote": "Gap-closing batch: わるくないです appeared nowhere. Held on the same きょうのてんき frame as the affirmative card (きょうのてんきはわるいです) so the transformation is the only change. Constructed."
+    },
+    {
+      "id": "ex10-kono-pasokon-atarashii-q",
+      "english": "Is this computer new?",
+      "category": "Technology & Communication",
+      "target": "このパソコンはあたらしいですか",
+      "aiSuggested": true,
+      "reviewNote": "Exercise 3A item 1 (cue この パソコン、あたらしいです completed per the example pattern). Not in the deck."
+    },
+    {
+      "id": "f10-benri-na-apuri",
+      "english": "It's a convenient app, isn't it?",
+      "category": "Technology & Communication",
+      "target": "べんりなアプリですね",
+      "aiSuggested": true,
+      "reviewNote": "Gap-closing batch: べんりな + noun appeared nowhere (only predicate uses). Mirrors そのアプリはべんりですか so the learner meets both forms of べんり on the same noun. Constructed."
+    },
+    {
+      "id": "f10-kouen-nigiyaka-ja-arimasen",
+      "english": "This park is not lively.",
+      "category": "Other",
+      "target": "このこうえんはにぎやかじゃありません",
+      "note": "Negative of a な-adjective: じゃありません attaches straight to the adjective, no く form — にぎやか (nigiyaka) → にぎやかじゃありません (nigiyaka ja arimasen). Same ending as noun + じゃありません from Lesson 2.",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (b): negative half of the fixed-frame な-adjective cycle on the held-constant こうえん frame. Also closes the にぎやか-negative gap from item (e) (only ゆうめい, べんり and しずか negatives existed). Constructed."
+    },
+    {
+      "id": "f10-koppu-kirei-ja-arimasen",
+      "english": "This glass is not clean.",
+      "category": "Home & Household",
+      "target": "このコップはきれいじゃありません",
+      "note": "The trap: きれい (kirei) ends in い but is a な-adjective, not an い-adjective — noun form きれいなコップ (kirei na koppu), negative きれいじゃありません (kirei ja arimasen). きれいくない (kireikunai) does not exist. It means both 'pretty' and 'clean'; here it is 'clean'.",
+      "aiSuggested": true,
+      "reviewNote": "Forms brief item (d), the きれい trap card. きれいな noun-modifying sentences and the affirmative already exist (きれいなはな, このはなはきれいです, はい、きれいです), so per the brief this targets the negative, where the trap actually bites. Also shows the 'clean' sense for the first time. Constructed."
+    },
+    {
+      "id": "ex10-emma-okashi-tabemashita",
+      "english": "Emma-san ate a pretty Japanese sweet at Sasaki-san's house.",
+      "category": "Food",
+      "target": "エマさんはささきさんのうちできれいなにほんのおかしをたべました",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue summary sentence, verbatim. The chapter's one long combined sentence (な-adjective modifying a のphrase plus で place-of-action); the extraction skipped it entirely."
     }
   ]
 }

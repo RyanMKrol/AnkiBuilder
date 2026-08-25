@@ -8,6 +8,13 @@
   },
   "items": [
     {
+      "id": "yesterday",
+      "english": "Yesterday",
+      "category": "Time",
+      "target": "きのう",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+    },
+    {
       "id": "kimasen",
       "english": "Do not come, will not come",
       "category": "Travel & Tourism",
@@ -28,26 +35,6 @@
       "aiSuggested": true
     },
     {
-      "id": "ga-dono-basu-ga-kuukou-ni-ikimasu-ka",
-      "english": "Which bus goes to the airport?",
-      "category": "Transport",
-      "target": "どのバスがくうこうにいきますか",
-      "hint": null,
-      "note": "Minimal pair with このバスはくうこうにいきますか (kono basu wa kūkō ni ikimasu ka): after an interrogative like どの (dono) the subject marker が (ga) takes over from the topic marker は (wa).",
-      "reviewNote": "Constructed. PARTICLE job: が had only two sentences in the deck. This is the が half of the minimal pair and names its own destination, so it is answerable without context.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp1-indo-kara-kimashita",
-      "english": "I came from India.",
-      "category": "Nationalities & Countries",
-      "target": "インドからきました",
-      "hint": null,
-      "note": "How you say where you are from when introducing yourself. Asked どこからきましたか (doko kara kimashita ka) \"where did you come from?\", a non-Japanese speaker is normally being asked their country.",
-      "reviewNote": "SPEAKING PRACTICE 1. ks4 is the only から (kara) sentence in the deck and it is third-person with a topic; this is the first-person self-introduction form the learner will actually need to say, and it is what the kara-particle card's note describes but never shows.",
-      "aiSuggested": true
-    },
-    {
       "id": "sp2-kono-basu-wa-shibuya-ni-ikimasu-ka",
       "english": "Excuse me. Does this bus go to Shibuya?",
       "category": "Transport",
@@ -56,6 +43,83 @@
       "note": "The bus is the topic here, so it takes は (wa) after この (kono) \"this\" from Lesson 5. When you do not know which bus, は cannot be used and が (ga) takes over — see どのバスがいきますか (dono basu ga ikimasu ka).",
       "reviewNote": "SPEAKING PRACTICE 2. The exchange's answer line, 6ばんのバスがいきます, is already a card but neither question is, so the deck has バス (basu), しぶや (Shibuya), どの (dono) and が (ga) as isolated words with nothing to use them in. This is also the most directly usable travel sentence in the lesson.",
       "aiSuggested": true
+    },
+    {
+      "id": "vocab-konshuu-kyouto-ni-ikimasu",
+      "english": "I'm going to Kyoto this week.",
+      "category": "Travel & Tourism",
+      "target": "こんしゅうきょうとにいきます",
+      "hint": null,
+      "note": "GRAMMAR 3: relative time words take no particle. Lesson 3's あしたのよじ (ashita no yo-ji) needed の (no) only because a clock time followed it.",
+      "reviewNote": "Constructed. VOCABULARY job: こんしゅう (konshū) had a WORD POWER card and no sentence, and it is the one time word that also carries the no-particle rule cleanly.",
+      "aiSuggested": true
+    },
+    {
+      "id": "vocab-kazoku-kotoshi-nihon-ni-kimasu",
+      "english": "My family is coming to Japan this year.",
+      "category": "Family & People",
+      "target": "かぞくはことしにほんにきます",
+      "hint": null,
+      "note": "きます (kimasu) because the speaker is already in Japan. Said from anywhere else it would have to be いきます (ikimasu).",
+      "reviewNote": "Constructed. VOCABULARY job: ことし (kotoshi) and かぞく (kazoku) both had bare WORD POWER cards and no sentence. The point-of-view rule falls out of it naturally.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimasu",
+      "english": "I go to the office.",
+      "category": "Work & Occupations",
+      "target": "かいしゃにいきます",
+      "note": "The first of four cards on one frame that change only the ending: いきます (ikimasu), いきました (ikimashita), いきません (ikimasen), いきませんでした (ikimasen deshita).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 1 of the いきます paradigm the PDF prints as a table, delivered as a fixed frame so only the inflection varies.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-jimu-ni-ikimasu",
+      "english": "I go to the gym.",
+      "category": "Sports & Hobbies",
+      "target": "ジムにいきます",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts ジム (jimu), taught bare in Lesson 3, into a sentence using this lesson's に (ni) plus いきます (ikimasu).",
+      "aiSuggested": true
+    },
+    {
+      "id": "form-kuukou-ikimashita",
+      "english": "Smith-san went to the airport yesterday.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはきのうくうこうにいきました",
+      "hint": null,
+      "note": "Member 3: ます (masu) becomes ました (mashita). The time word has to follow the verb into the past — あした (ashita) turns into きのう (kinō).",
+      "reviewNote": "Constructed. FORM job: the past affirmative member of the four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "quiz-kyonen-kimashita",
+      "english": "I came last year.",
+      "category": "Travel & Tourism",
+      "target": "きょねんきました",
+      "note": "A time word attaches straight to the verb with no particle, the same shape as らいげついきます (raigetsu ikimasu).",
+      "reviewNote": "QUIZ 2 (Units 3-4), question 1 — the answer half, split off. CONSTRUCTED, not verbatim: the book's own answer is きょねんの10がつにきました (kyonen no jū-gatsu ni kimashita), but months are not taught until Lesson 7, so I shortened it to the book's own elliptical answer shape from EXERCISE IV-B (らいしゅう いきます).",
+      "aiSuggested": true,
+      "scene": "answering when you came to Japan"
+    },
+    {
+      "id": "he-eki-ni-ikimasu",
+      "english": "Smith-san is going to the station tomorrow.",
+      "category": "Transport",
+      "target": "スミスさんはあしたえきにいきます",
+      "hint": "the everyday choice of the two direction particles",
+      "note": "に (ni) is what you will hear far more often in speech. GRAMMAR 2 says へ (e) can stand in its place without changing the meaning at all.",
+      "reviewNote": "Constructed. PARTICLE job: the first half of a に／へ minimal pair, and the deck's only sentence using えき (eki), which had a vocabulary card and no sentence anywhere.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-kato-san-to-ikimasu",
+      "english": "No, I'm going with Kato-san.",
+      "category": "Travel & Tourism",
+      "target": "いいえ、かとうさんといきます",
+      "note": null,
+      "reviewNote": "TARGET DIALOGUE; the answer half of ひとりできますか, split into its own card. Also the only place in the deck where a question in きます (kimasu) is answered in いきます (ikimasu).",
+      "aiSuggested": true,
+      "scene": "answering whether you are coming alone"
     },
     {
       "id": "form-tokyo-shisha-kimasen",
@@ -68,24 +132,74 @@
       "aiSuggested": true
     },
     {
-      "id": "he-kouen-e-ikimasu-ka",
-      "english": "Are you going to the park tomorrow?",
-      "category": "Travel & Tourism",
-      "target": "あしたこうえんへいきますか",
+      "id": "ga-dono-basu-ga-kuukou-ni-ikimasu-ka",
+      "english": "Which bus goes to the airport?",
+      "category": "Transport",
+      "target": "どのバスがくうこうにいきますか",
       "hint": null,
-      "note": "へ (e) behaves in a question exactly as に (ni) does — か (ka) simply goes on the end. No topic is needed when you are obviously asking the person in front of you.",
-      "reviewNote": "Constructed. PARTICLE job: へ in question form, an angle the deck's single へ sentence does not cover. Also gives こうえん (kōen) a second sentence.",
+      "note": "Minimal pair with このバスはくうこうにいきますか (kono basu wa kūkō ni ikimasu ka): after an interrogative like どの (dono) the subject marker が (ga) takes over from the topic marker は (wa).",
+      "reviewNote": "Constructed. PARTICLE job: が had only two sentences in the deck. This is the が half of the minimal pair and names its own destination, so it is answerable without context.",
       "aiSuggested": true
     },
     {
-      "id": "ex9-sasaki-san-to-ikimasu",
-      "english": "I will go with Sasaki-san.",
+      "id": "ex7a-nihon-ni-kimashita",
+      "english": "Smith-san came to Japan last year.",
       "category": "Travel & Tourism",
-      "target": "ささきさんといきます",
-      "note": null,
-      "reviewNote": "EXERCISE IX; the answer half, split off. Kept verbatim including ささきさん (Sasaki-san), who is introduced in this same lesson's SPEAKING PRACTICE 1 and Exercise IX. Completes the four-line exchange so the きます／いきます flip is drilled twice.",
+      "target": "スミスさんはきょねんにほんにきました",
+      "hint": null,
+      "note": "に (ni) marks the destination with きます (kimasu) exactly as it does with いきます (ikimasu). Contrast スミスさんはきょねんアメリカからきました (Sumisu-san wa kyonen Amerika kara kimashita), where から (kara) marks the place left behind instead.",
+      "reviewNote": "EXERCISE VII-A, which drills \"state who came to a particular place\" and produced no cards. The deck's only きました (kimashita) sentence is ks4, which uses から — so destination-marking に (ni) with きます is never modelled.",
+      "aiSuggested": true
+    },
+    {
+      "id": "a-iie-kimasen",
+      "english": "No, she will not come.",
+      "category": "Travel & Tourism",
+      "target": "いいえ、きません",
+      "note": "Short answers keep only the verb — the topic and the destination are already agreed, so they drop out.",
+      "reviewNote": "Constructed on GRAMMAR 1's short-answer pattern. FORM job: the deck holds はい、いきます and いいえ、いきません but no きます equivalents, so the answer half of a きますか question was unlearnable.",
       "aiSuggested": true,
-      "scene": "answering who is coming with you"
+      "scene": "answering whether a colleague is coming to your branch office tomorrow"
+    },
+    {
+      "id": "td-hai-chan-desu",
+      "english": "Hello, this is Chan.",
+      "category": "Greetings",
+      "target": "はい、チャンです",
+      "note": "On the phone, Japanese speakers usually put はい (hai) in front of their name where English says \"hello.\" It is not answering a yes/no question here.",
+      "reviewNote": "TARGET DIALOGUE opening line, plus the NOTES entry that exists only to explain it. The deck has taught はい (hai) as \"yes\" since Lesson 1 but never shows this use, and the Target Dialogue currently contributes only one card to the whole lesson.",
+      "aiSuggested": true,
+      "scene": "answering the phone"
+    },
+    {
+      "id": "kara-emma-nihon-ni-kimashita",
+      "english": "Emma-san came to Japan last year.",
+      "category": "Nationalities & Countries",
+      "target": "エマさんはきょねんにほんにきました",
+      "hint": null,
+      "note": "Minimal pair with エマさんはきょねんフランスからきました (Emma-san wa kyonen Furansu kara kimashita): same verb, but に (ni) names where she arrived while から (kara) names where she started.",
+      "reviewNote": "Constructed. PARTICLE job: the に half of the から／に contrast on きます. The distinction matters because English uses \"came\" for both.",
+      "aiSuggested": true
+    },
+    {
+      "id": "vocab-allen-ototoi-nihon-ni-kimashita",
+      "english": "Allen-san came to Japan the day before yesterday.",
+      "category": "Travel & Tourism",
+      "target": "アレンさんはおとといにほんにきました",
+      "hint": null,
+      "note": "おととい (ototoi) mirrors あさって (asatte) on the far side of きのう (kinō).",
+      "reviewNote": "Constructed from EXERCISE VII-A's substitution item (アレンさん、おととい). VOCABULARY job: おととい (ototoi) had no sentence, and アレン (Aren) is introduced by this lesson with nothing built on him.",
+      "aiSuggested": true
+    },
+    {
+      "id": "form-tokyo-shisha-kimasen-deshita",
+      "english": "Chan-san did not come to the Tokyo branch yesterday.",
+      "category": "Travel & Tourism",
+      "target": "チャンさんはきのうとうきょうししゃにきませんでした",
+      "hint": null,
+      "note": "Member 4, the last corner of the EXERCISE I chart.",
+      "reviewNote": "Constructed. FORM job: きませんでした (kimasen deshita) had no sentence anywhere in the deck. Completes both rows of the conjugation chart the lesson tells you to memorize.",
+      "aiSuggested": true
     },
     {
       "id": "vocab-dare-no-uchi-ni-ikimasu-ka",
@@ -95,157 +209,6 @@
       "hint": null,
       "note": "Lesson 2's だれの (dare no) in front of a place. Owning the destination does not change anything: に (ni) still marks it.",
       "reviewNote": "Constructed. VOCABULARY job: うち (uchi) is a WORD POWER destination with a bare card and no sentence. Paired with an answer because a home is exactly the kind of destination you get asked about.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ga-kono-basu-wa-kuukou-ni-ikimasu-ka",
-      "english": "Does this bus go to the airport?",
-      "category": "Transport",
-      "target": "このバスはくうこうにいきますか",
-      "hint": null,
-      "note": "You already know which bus you mean, so it becomes the topic and takes は (wa). The moment the bus is unknown, は is impossible.",
-      "reviewNote": "Constructed. PARTICLE job: the は half of a は／が minimal pair on the same destination, so the NOTES' rule about が after interrogatives can be seen rather than just read. Also gives くうこう (kūkō) a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "vocab-kaisha-no-hitotachi-to-paatii-ni-ikimasu",
-      "english": "I'm going to the party with the people from the company.",
-      "category": "Family & People",
-      "target": "かいしゃのひとたちとパーティーにいきます",
-      "hint": null,
-      "note": "に (ni) marks an event as well as a place — GRAMMAR 2 covers both, which is why パーティー (pātī) behaves like えき (eki).",
-      "reviewNote": "Constructed from SPEAKING PRACTICE 1's かいしゃのひとたち. VOCABULARY job: ひとたち (hitotachi) had a bare card and no sentence. Also the deck's only sentence where に marks an event rather than a place.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-hitori-de-kimasu-ka",
-      "english": "Will you be coming alone?",
-      "category": "Travel & Tourism",
-      "target": "ひとりできますか",
-      "hint": null,
-      "note": "Asked by the person at the destination, so the verb is きます (kimasu) — the movement is toward her. The reply flips to いきます (ikimasu), because the speaker there chooses from his own position.",
-      "reviewNote": "TARGET DIALOGUE, and the exchange the NOTES use to teach いきます vs きます. ひとりで (hitori de) has a bare vocabulary card and appears in no sentence; this is also the deck's only きますか (kimasu ka) question.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-tokyo-shisha-no-sumisu",
-      "english": "This is Smith, of the Tokyo branch.",
-      "category": "Work & Occupations",
-      "target": "とうきょうししゃのスミスです",
-      "hint": null,
-      "note": "Naming yourself on the phone: organization + の (no) + your name, the same frame as Lesson 1's ロンドンぎんこうのブラウンです (Rondon ginkō no Buraun desu).",
-      "reviewNote": "TARGET DIALOGUE. とうきょうししゃ (Tōkyōshisha) has a vocabulary card but is never used in a sentence, and this is the one phone-introduction line in the lesson.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kara-honkon-kara-kimashita",
-      "english": "I came from Hong Kong.",
-      "category": "Nationalities & Countries",
-      "target": "ホンコンからきました",
-      "note": null,
-      "reviewNote": "Constructed on EXERCISE VII-B, which pairs チャンさん with ホンコン. PARTICLE job: the answer half of どこからきましたか. ホンコン (Honkon) had a vocabulary card and no sentence.",
-      "aiSuggested": true,
-      "scene": "answering where you have come from"
-    },
-    {
-      "id": "to-koohii-to-koucha-o-onegaishimasu",
-      "english": "Coffee and tea, please.",
-      "category": "Food",
-      "target": "コーヒーとこうちゃをおねがいします",
-      "hint": null,
-      "note": "The same と (to) as in スミスさんはきのうともだちとレストランにいきました (Sumisu-san wa kinō tomodachi to resutoran ni ikimashita), doing a different job: between two nouns it means \"and\", after a person in front of a verb it means \"with\".",
-      "reviewNote": "Constructed from Lesson 4 vocabulary only. PARTICLE job: と now has nine \"with\" sentences and nothing to contrast them against, so the learner has no card that separates this lesson's と from Lesson 4's.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-hai-ichiji-kara-desu",
-      "english": "Yes, it is from 1:00.",
-      "category": "Time",
-      "target": "はい、１じからです",
-      "ttsText": "はい、いちじからです",
-      "note": "Answering a ね (ne) confirmation: you repeat only the part being confirmed and drop the topic かいぎは (kaigi wa) that the questioner already supplied.",
-      "reviewNote": "TARGET DIALOGUE. The deck teaches the ね (ne) question (ne-example) but not the reply to it, so the exchange only works in one direction.",
-      "aiSuggested": true,
-      "scene": "confirming what time the meeting starts"
-    },
-    {
-      "id": "quiz-itsu-nihon-ni-kimashita-ka",
-      "english": "Emma-san, when did you come to Japan?",
-      "category": "Travel & Tourism",
-      "target": "エマさんはいつにほんにきましたか",
-      "hint": null,
-      "note": "いつ (itsu) sits in the time slot and the verb carries the tense — the word order is identical to かとうさんはいつおおさかししゃにいきますか (Katō-san wa itsu Ōsaka shisha ni ikimasu ka), only the verb changes.",
-      "reviewNote": "QUIZ 2 (Units 3-4), question 1. Every question card in the deck is present-tense; there is no past-tense question with an interrogative word, and none at all built on きました (kimashita).",
-      "aiSuggested": true
-    },
-    {
-      "id": "quiz-dare-to-kimashita-ka",
-      "english": "Who did you come with?",
-      "category": "Travel & Tourism",
-      "target": "だれときましたか",
-      "hint": null,
-      "note": "It is と (to) that makes this \"with whom\" — だれ (dare) alone would be asking who came.",
-      "reviewNote": "QUIZ 2 (Units 3-4), question 1. Near-neighbour of the proposed だれときますか (dare to kimasu ka, ex9-dare-to-kimasu-ka) and of fib-c6-with-whom-q, but this is the only past-tense version and the only one built on きます (kimasu); the tense in the English keeps the three prompts distinct.",
-      "aiSuggested": true
-    },
-    {
-      "id": "form-tokyo-shisha-kimashita",
-      "english": "Chan-san came to the Tokyo branch yesterday.",
-      "category": "Travel & Tourism",
-      "target": "チャンさんはきのうとうきょうししゃにきました",
-      "hint": null,
-      "note": "Member 3, and a reminder that に (ni) marks the arrival point with きます (kimasu) just as it does with いきます (ikimasu).",
-      "reviewNote": "Constructed. FORM job: the past affirmative member of the きます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-summary-osaka-shisha",
-      "english": "Smith-san will go to the Osaka branch with Kato-san tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはあしたかとうさんとおおさかししゃにいきます",
-      "hint": null,
-      "note": "Full word order for a trip: topic は (wa), then when, then the companion with と (to), then the destination with に (ni), then the verb. The time word takes no particle at all.",
-      "reviewNote": "The TARGET DIALOGUE's closing summary sentence, and the exact frame EXERCISE VIII drills (\"state when, where, and with whom\"). No card in the deck combines time + companion + destination in one sentence — ks3 has companion + destination, ks1 has time + destination.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ga-dore-ga-sumisu-san-no-kaban-desu-ka",
-      "english": "Which one is Smith-san's bag?",
-      "category": "Other",
-      "target": "どれがスミスさんのかばんですか",
-      "hint": null,
-      "note": "Same rule as どの (dono): どれ (dore) takes が (ga). Lesson 5 put どれ at the end instead — あかいシャツはどれですか (akai shatsu wa dore desu ka) — and there the topic still keeps は (wa).",
-      "reviewNote": "Constructed. PARTICLE job: the NOTES name both どれ and どの as triggers for が, but every existing sentence uses どの. This shows the rule on the other interrogative and connects it back to Lesson 5.",
-      "aiSuggested": true
-    },
-    {
-      "id": "hitori-de-ikimasu-ka",
-      "english": "Will you go alone?",
-      "category": "Travel & Tourism",
-      "target": "ひとりでいきますか",
-      "hint": null,
-      "note": "Asked by someone who is not at the destination, so the verb is いきます (ikimasu). Someone standing at the destination asks the same thing with きます (kimasu).",
-      "reviewNote": "Constructed. PARTICLE/FORM job: the deck asks ひとりできますか but never ひとりでいきますか, so the learner sees only one side of the point-of-view rule the NOTES spend a paragraph on.",
-      "aiSuggested": true
-    },
-    {
-      "id": "form-kuukou-ikimasu",
-      "english": "Smith-san will go to the airport tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはあしたくうこうにいきます",
-      "hint": null,
-      "note": "Member 1 of the four-form set. The ます-form covers present and future alike — nothing but あした (ashita) makes this \"will go\".",
-      "reviewNote": "Constructed from EXERCISE II-A's substitution item くうこう. FORM job: the deck has all four いきます forms but spread over four different sentences, so the transformation itself is never visible. This set holds the vocabulary constant. Also gives くうこう a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kara-doko-kara-kimashita-ka",
-      "english": "Where did you come from?",
-      "category": "Nationalities & Countries",
-      "target": "どこからきましたか",
-      "hint": null,
-      "note": "GRAMMAR 5 warns that when Japanese people ask a foreigner this, they usually want to know the country, not the last station.",
-      "reviewNote": "Lifted from GRAMMAR 5, which prints どこからきましたか as its worked example. PARTICLE job: place-から had only two sentences and no question form at all, so the learner could recognise から but never ask with it.",
       "aiSuggested": true
     },
     {
@@ -259,13 +222,43 @@
       "scene": "answering whose house you are going to"
     },
     {
-      "id": "vocab-kazoku-kotoshi-nihon-ni-kimasu",
-      "english": "My family is coming to Japan this year.",
-      "category": "Family & People",
-      "target": "かぞくはことしにほんにきます",
+      "id": "he-ginza-no-depaato-e-ikimashita",
+      "english": "I went to the department store in Ginza yesterday.",
+      "category": "Shopping",
+      "target": "きのうぎんざのデパートへいきました",
       "hint": null,
-      "note": "きます (kimasu) because the speaker is already in Japan. Said from anywhere else it would have to be いきます (ikimasu).",
-      "reviewNote": "Constructed. VOCABULARY job: ことし (kotoshi) and かぞく (kazoku) both had bare WORD POWER cards and no sentence. The point-of-view rule falls out of it naturally.",
+      "note": "ぎんざの (Ginza no) says which department store, the same の (no) as in Lesson 1's ロンドンぎんこうのブラウン (Rondon ginkō no Buraun).",
+      "reviewNote": "Constructed from EXERCISE III-A's substitution item ぎんざの デパート. PARTICLE job: へ with a past verb, the third of the three へ angles. ぎんざ (Ginza) had a vocabulary card and no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ga-dore-ga-sumisu-san-no-kaban-desu-ka",
+      "english": "Which one is Smith-san's bag?",
+      "category": "Other",
+      "target": "どれがスミスさんのかばんですか",
+      "hint": null,
+      "note": "Same rule as どの (dono): どれ (dore) takes が (ga). Lesson 5 put どれ at the end instead — あかいシャツはどれですか (akai shatsu wa dore desu ka) — and there the topic still keeps は (wa).",
+      "reviewNote": "Constructed. PARTICLE job: the NOTES name both どれ and どの as triggers for が, but every existing sentence uses どの. This shows the rule on the other interrogative and connects it back to Lesson 5.",
+      "aiSuggested": true
+    },
+    {
+      "id": "he-eki-e-ikimasu",
+      "english": "Smith-san is going to the station tomorrow.",
+      "category": "Transport",
+      "target": "スミスさんはあしたえきへいきます",
+      "hint": "the direction particle spelled へ, read e",
+      "note": "Minimal pair with スミスさんはあしたえきにいきます (Sumisu-san wa ashita eki ni ikimasu): only the particle differs and the meaning is identical. The deck's other へ sentence is スミスさんはパーティーへいきます (Sumisu-san wa pātī e ikimasu).",
+      "reviewNote": "Constructed. PARTICLE job: へ had exactly one sentence in the whole deck. This is the second half of the に／へ minimal pair, which is the clearest way to show they are interchangeable after a place.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-summary-osaka-shisha",
+      "english": "Smith-san will go to the Osaka branch with Kato-san tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはあしたかとうさんとおおさかししゃにいきます",
+      "hint": null,
+      "note": "Full word order for a trip: topic は (wa), then when, then the companion with と (to), then the destination with に (ni), then the verb. The time word takes no particle at all.",
+      "reviewNote": "The TARGET DIALOGUE's closing summary sentence, and the exact frame EXERCISE VIII drills (\"state when, where, and with whom\"). No card in the deck combines time + companion + destination in one sentence — ks3 has companion + destination, ks1 has time + destination.",
       "aiSuggested": true
     },
     {
@@ -289,106 +282,6 @@
       "aiSuggested": true
     },
     {
-      "id": "kara-emma-furansu-kara-kimashita",
-      "english": "Emma-san came from France last year.",
-      "category": "Nationalities & Countries",
-      "target": "エマさんはきょねんフランスからきました",
-      "hint": null,
-      "note": "から (kara) marks the place left behind, so nothing here says where she ended up.",
-      "reviewNote": "Constructed from EXERCISE VII-B's substitution item (エマさん、フランス). PARTICLE job: the から half of a から／に minimal pair, so the two things きます can be paired with sit side by side.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ne-kinou-kuukou-ni-ikimashita-ne",
-      "english": "You went to the airport yesterday, right?",
-      "category": "Travel & Tourism",
-      "target": "きのうくうこうにいきましたね",
-      "hint": null,
-      "note": "ね (ne) follows the past form as readily as the present — it is always the very last thing in the sentence, after the tense has been settled.",
-      "reviewNote": "Constructed. PARTICLE job: ね on a past verb, the last of the three ね slots. Also a second sentence for くうこう (kūkō).",
-      "aiSuggested": true
-    },
-    {
-      "id": "vocab-kochira-wa-basu-no-untenshu-desu",
-      "english": "This is the bus driver.",
-      "category": "Transport",
-      "target": "こちらはバスのうんてんしゅです",
-      "hint": null,
-      "note": "Lesson 1's introduction frame こちらは…です (kochira wa … desu) with a job in the slot where a name usually goes.",
-      "reviewNote": "Constructed from SPEAKING PRACTICE 2's バスの うんてんしゅ. VOCABULARY job: うんてんしゅ (untenshu) had a bare card and no sentence anywhere.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-ashita-sochira-ni-ikimasu",
-      "english": "I will go there (where you are) tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "あしたそちらにいきます",
-      "hint": null,
-      "note": "いきます (ikimasu) even though the destination is where the listener is — the verb is chosen from the speaker's own position, so \"come to you\" is still いきます, never きます (kimasu). The book translates the line loosely as \"I will visit you tomorrow.\"",
-      "reviewNote": "TARGET DIALOGUE, and the line the NOTES single out to explain the いきます／きます rule. そちら (sochira) currently has a bare vocabulary card and appears in no sentence in the deck.",
-      "aiSuggested": true
-    },
-    {
-      "id": "vocab-joushi-kongetsu-kimasu",
-      "english": "My boss is coming to the Tokyo branch this month.",
-      "category": "Work & Occupations",
-      "target": "じょうしはこんげつとうきょうししゃにきます",
-      "hint": null,
-      "note": "There is no word for \"my\" here — じょうし (jōshi) on its own is understood as your own boss.",
-      "reviewNote": "Constructed. VOCABULARY job: こんげつ (kongetsu) had no sentence. Doubles as a second じょうし example and one of the few きます sentences with a person other than the book's cast of travellers.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ne-eki-wa-achira-desu-ne",
-      "english": "The station is over there, right?",
-      "category": "Transport",
-      "target": "えきはあちらですね",
-      "hint": null,
-      "note": "Use ね (ne) when you think you already know and just want it confirmed. Drop it and this is a flat statement; swap it for か (ka) and you are asking from scratch.",
-      "reviewNote": "Constructed. PARTICLE job: a third ね angle, checking a fact rather than a plan. Reuses Lesson 5's あちら (achira) and gives えき (eki) a second sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "form-kuukou-ikimashita",
-      "english": "Smith-san went to the airport yesterday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはきのうくうこうにいきました",
-      "hint": null,
-      "note": "Member 3: ます (masu) becomes ました (mashita). The time word has to follow the verb into the past — あした (ashita) turns into きのう (kinō).",
-      "reviewNote": "Constructed. FORM job: the past affirmative member of the four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "form-tokyo-shisha-kimasen-deshita",
-      "english": "Chan-san did not come to the Tokyo branch yesterday.",
-      "category": "Travel & Tourism",
-      "target": "チャンさんはきのうとうきょうししゃにきませんでした",
-      "hint": null,
-      "note": "Member 4, the last corner of the EXERCISE I chart.",
-      "reviewNote": "Constructed. FORM job: きませんでした (kimasen deshita) had no sentence anywhere in the deck. Completes both rows of the conjugation chart the lesson tells you to memorize.",
-      "aiSuggested": true
-    },
-    {
-      "id": "to-joushi-to-osaka-shisha-ni-ikimasu",
-      "english": "I'm going to the Osaka branch with my boss next week.",
-      "category": "Work & Occupations",
-      "target": "らいしゅうじょうしとおおさかししゃにいきます",
-      "hint": null,
-      "note": "Two particles doing separate jobs in one sentence: と (to) takes the person, に (ni) takes the destination. The time word at the front takes nothing.",
-      "reviewNote": "Constructed on EXERCISE VI's substitution item じょうし. VOCABULARY job: じょうし (jōshi) had a WORD POWER card and appeared in no sentence. Also the と particle's only workplace-superior example.",
-      "aiSuggested": true
-    },
-    {
-      "id": "quiz-kyonen-kimashita",
-      "english": "I came last year.",
-      "category": "Travel & Tourism",
-      "target": "きょねんきました",
-      "note": "A time word attaches straight to the verb with no particle, the same shape as らいげついきます (raigetsu ikimasu).",
-      "reviewNote": "QUIZ 2 (Units 3-4), question 1 — the answer half, split off. CONSTRUCTED, not verbatim: the book's own answer is きょねんの10がつにきました (kyonen no jū-gatsu ni kimashita), but months are not taught until Lesson 7, so I shortened it to the book's own elliptical answer shape from EXERCISE IV-B (らいしゅう いきます).",
-      "aiSuggested": true,
-      "scene": "answering when you came to Japan"
-    },
-    {
       "id": "sp1-kyou-kara-yoroshiku",
       "english": "From today, I look forward to working with you.",
       "category": "Greetings",
@@ -409,174 +302,14 @@
       "aiSuggested": true
     },
     {
-      "id": "form-kuukou-ikimasen",
-      "english": "Smith-san will not go to the airport tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはあしたくうこうにいきません",
+      "id": "to-joushi-to-osaka-shisha-ni-ikimasu",
+      "english": "I'm going to the Osaka branch with my boss next week.",
+      "category": "Work & Occupations",
+      "target": "らいしゅうじょうしとおおさかししゃにいきます",
       "hint": null,
-      "note": "Member 2: ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
-      "reviewNote": "Constructed. FORM job: the present negative member of the four-form set, on the same vocabulary as スミスさんはあしたくうこうにいきます.",
+      "note": "Two particles doing separate jobs in one sentence: と (to) takes the person, に (ni) takes the destination. The time word at the front takes nothing.",
+      "reviewNote": "Constructed on EXERCISE VI's substitution item じょうし. VOCABULARY job: じょうし (jōshi) had a WORD POWER card and appeared in no sentence. Also the と particle's only workplace-superior example.",
       "aiSuggested": true
-    },
-    {
-      "id": "ga-kore-ga-sumisu-san-no-desu",
-      "english": "This one is Smith-san's.",
-      "category": "Other",
-      "target": "これがスミスさんのです",
-      "note": "が (ga) rather than Lesson 2's これはわたしのです (kore wa watashi no desu): が picks one item out of a set, は (wa) just names what you are talking about.",
-      "reviewNote": "Constructed. PARTICLE job: the answer half of the どれが question, and the one place in the deck where は and が sit on the identical これ…のです frame.",
-      "aiSuggested": true,
-      "scene": "answering which of several bags belongs to Smith-san"
-    },
-    {
-      "id": "q-chan-san-kimasu-ka",
-      "english": "Will Chan-san come to the Tokyo branch tomorrow?",
-      "category": "Travel & Tourism",
-      "target": "チャンさんはあしたとうきょうししゃにきますか",
-      "hint": null,
-      "note": "GRAMMAR 1's rule in action: to make a verb sentence into a question you add か (ka) and change nothing else.",
-      "reviewNote": "Constructed. FORM job: the 〜ますか question built on きます, and the setup for the short negative answer the deck lacks. Deliberately the same sentence as チャンさんはあしたとうきょうししゃにきます plus か, so the transformation is the point.",
-      "aiSuggested": true
-    },
-    {
-      "id": "he-eki-e-ikimasu",
-      "english": "Smith-san is going to the station tomorrow.",
-      "category": "Transport",
-      "target": "スミスさんはあしたえきへいきます",
-      "hint": "the direction particle spelled へ, read e",
-      "note": "Minimal pair with スミスさんはあしたえきにいきます (Sumisu-san wa ashita eki ni ikimasu): only the particle differs and the meaning is identical. The deck's other へ sentence is スミスさんはパーティーへいきます (Sumisu-san wa pātī e ikimasu).",
-      "reviewNote": "Constructed. PARTICLE job: へ had exactly one sentence in the whole deck. This is the second half of the に／へ minimal pair, which is the clearest way to show they are interchangeable after a place.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-dewa-ashita",
-      "english": "Well then, see you tomorrow.",
-      "category": "Greetings",
-      "target": "では、あした",
-      "hint": null,
-      "note": "Literally just \"well then, tomorrow\" — the sign-off stops there and leaves the verb out entirely. Compare じゃ、また (ja, mata) \"see you\" from the Frequently Used Expressions.",
-      "reviewNote": "TARGET DIALOGUE. では (dewa) has a vocabulary card whose gloss is \"well then\", but the learner never sees it doing its most common job, closing a conversation.",
-      "aiSuggested": true
-    },
-    {
-      "id": "quiz-hitori-de-kimashita",
-      "english": "I came alone.",
-      "category": "Travel & Tourism",
-      "target": "ひとりできました",
-      "note": "ひとりで (hitori de) is how you answer a だれと (dare to) question when there was nobody — Japanese says \"by oneself\" rather than \"with no one.\"",
-      "reviewNote": "QUIZ 2 (Units 3-4), question 1 — the answer half. ひとりで (hitori de) is a Target Dialogue headword with a bare vocabulary card and no sentence anywhere in the deck.",
-      "aiSuggested": true,
-      "scene": "answering who you came with"
-    },
-    {
-      "id": "ex9-dare-to-kimasu-ka",
-      "english": "Who will you come with?",
-      "category": "Travel & Tourism",
-      "target": "だれときますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "EXERCISE IX. Distinct from fib-c6-with-whom-q, which is third-person and uses いきます (ikimasu); this is the short, second-person form you would actually be asked, and it uses きます (kimasu).",
-      "aiSuggested": true
-    },
-    {
-      "id": "vocab-allen-ototoi-nihon-ni-kimashita",
-      "english": "Allen-san came to Japan the day before yesterday.",
-      "category": "Travel & Tourism",
-      "target": "アレンさんはおとといにほんにきました",
-      "hint": null,
-      "note": "おととい (ototoi) mirrors あさって (asatte) on the far side of きのう (kinō).",
-      "reviewNote": "Constructed from EXERCISE VII-A's substitution item (アレンさん、おととい). VOCABULARY job: おととい (ototoi) had no sentence, and アレン (Aren) is introduced by this lesson with nothing built on him.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex7a-nihon-ni-kimashita",
-      "english": "Smith-san came to Japan last year.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはきょねんにほんにきました",
-      "hint": null,
-      "note": "に (ni) marks the destination with きます (kimasu) exactly as it does with いきます (ikimasu). Contrast スミスさんはきょねんアメリカからきました (Sumisu-san wa kyonen Amerika kara kimashita), where から (kara) marks the place left behind instead.",
-      "reviewNote": "EXERCISE VII-A, which drills \"state who came to a particular place\" and produced no cards. The deck's only きました (kimashita) sentence is ks4, which uses から — so destination-marking に (ni) with きます is never modelled.",
-      "aiSuggested": true
-    },
-    {
-      "id": "he-eki-ni-ikimasu",
-      "english": "Smith-san is going to the station tomorrow.",
-      "category": "Transport",
-      "target": "スミスさんはあしたえきにいきます",
-      "hint": "the everyday choice of the two direction particles",
-      "note": "に (ni) is what you will hear far more often in speech. GRAMMAR 2 says へ (e) can stand in its place without changing the meaning at all.",
-      "reviewNote": "Constructed. PARTICLE job: the first half of a に／へ minimal pair, and the deck's only sentence using えき (eki), which had a vocabulary card and no sentence anywhere.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp1-todai-no-gakusei-desu",
-      "english": "I am a student at the University of Tokyo.",
-      "category": "School & Education",
-      "target": "とうきょうだいがくのがくせいです",
-      "hint": null,
-      "note": "Affiliation の (no) from Lesson 1, but landing on a role instead of a name: Lesson 1 gave ロンドンぎんこうのブラウンです (Rondon ginkō no Buraun desu), \"I am Brown of the Bank of London.\"",
-      "reviewNote": "SPEAKING PRACTICE 1. がくせい (gakusei) has a bare vocabulary card from WORD POWER and appears in no sentence in the deck.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-kato-san-to-ikimasu",
-      "english": "No, I'm going with Kato-san.",
-      "category": "Travel & Tourism",
-      "target": "いいえ、かとうさんといきます",
-      "note": null,
-      "reviewNote": "TARGET DIALOGUE; the answer half of ひとりできますか, split into its own card. Also the only place in the deck where a question in きます (kimasu) is answered in いきます (ikimasu).",
-      "aiSuggested": true,
-      "scene": "answering whether you are coming alone"
-    },
-    {
-      "id": "a-iie-kimasen-deshita",
-      "english": "No, she did not come.",
-      "category": "Travel & Tourism",
-      "target": "いいえ、きませんでした",
-      "note": null,
-      "reviewNote": "Constructed. FORM job: the past-negative short answer on きます, the counterpart of the deck's existing いいえ、いきませんでした.",
-      "aiSuggested": true,
-      "scene": "answering whether a colleague came to your branch office yesterday"
-    },
-    {
-      "id": "q-chan-san-kimashita-ka",
-      "english": "Did Chan-san come to the Tokyo branch yesterday?",
-      "category": "Travel & Tourism",
-      "target": "チャンさんはきのうとうきょうししゃにきましたか",
-      "hint": null,
-      "note": "か (ka) goes on the past form the same way it goes on the present.",
-      "reviewNote": "Constructed. FORM job: the 〜ましたか question built on きます, which the deck only has for いきます.",
-      "aiSuggested": true
-    },
-    {
-      "id": "form-kuukou-ikimasen-deshita",
-      "english": "Smith-san did not go to the airport yesterday.",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはきのうくうこうにいきませんでした",
-      "hint": null,
-      "note": "Member 4: the past negative is just the present negative plus でした (deshita), the same でした as in Lesson 2's じゃありませんでした (ja arimasen deshita).",
-      "reviewNote": "Constructed. FORM job: closes the four-form set for いきます on one set of words, which EXERCISE I asks the learner to memorize as a chart.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kara-emma-nihon-ni-kimashita",
-      "english": "Emma-san came to Japan last year.",
-      "category": "Nationalities & Countries",
-      "target": "エマさんはきょねんにほんにきました",
-      "hint": null,
-      "note": "Minimal pair with エマさんはきょねんフランスからきました (Emma-san wa kyonen Furansu kara kimashita): same verb, but に (ni) names where she arrived while から (kara) names where she started.",
-      "reviewNote": "Constructed. PARTICLE job: the に half of the から／に contrast on きます. The distinction matters because English uses \"came\" for both.",
-      "aiSuggested": true
-    },
-    {
-      "id": "a-iie-kimasen",
-      "english": "No, she will not come.",
-      "category": "Travel & Tourism",
-      "target": "いいえ、きません",
-      "note": "Short answers keep only the verb — the topic and the destination are already agreed, so they drop out.",
-      "reviewNote": "Constructed on GRAMMAR 1's short-answer pattern. FORM job: the deck holds はい、いきます and いいえ、いきません but no きます equivalents, so the answer half of a きますか question was unlearnable.",
-      "aiSuggested": true,
-      "scene": "answering whether a colleague is coming to your branch office tomorrow"
     },
     {
       "id": "vocab-tokyo-eki-ni-ikimasu-ka",
@@ -587,86 +320,6 @@
       "note": "A station name glues straight onto えき (eki) with no の (no) between them — とうきょうえき (Tōkyō eki), never とうきょうのえき.",
       "reviewNote": "Constructed from EXERCISE III-A's substitution item とうきょうえき. VOCABULARY job: とうきょうえき (Tōkyō eki) had a bare card and no sentence. Its answer, はい、いきます, is already in the deck.",
       "aiSuggested": true
-    },
-    {
-      "id": "vocab-rainen-amerika-ni-ikimasu",
-      "english": "I'm going to America next year.",
-      "category": "Travel & Tourism",
-      "target": "らいねんアメリカにいきます",
-      "hint": null,
-      "note": "らいねん (rainen) is the year-row \"next\", matching らいしゅう (raishū) for weeks and らいげつ (raigetsu) for months.",
-      "reviewNote": "Constructed. VOCABULARY job: らいねん (rainen) had no sentence, and it is the only one of the three らい- words the deck never used.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp2-dono-basu-ga-ikimasu-ka",
-      "english": "Which bus goes there?",
-      "category": "Transport",
-      "target": "どのバスがいきますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "SPEAKING PRACTICE 2, and the line the NOTES on どの (dono) and が (ga) are written to explain. Placed immediately before the existing ga-example card (6ばんのバスがいきます), which is its answer — the deck currently has the answer with no question.",
-      "aiSuggested": true
-    },
-    {
-      "id": "he-ginza-no-depaato-e-ikimashita",
-      "english": "I went to the department store in Ginza yesterday.",
-      "category": "Shopping",
-      "target": "きのうぎんざのデパートへいきました",
-      "hint": null,
-      "note": "ぎんざの (Ginza no) says which department store, the same の (no) as in Lesson 1's ロンドンぎんこうのブラウン (Rondon ginkō no Buraun).",
-      "reviewNote": "Constructed from EXERCISE III-A's substitution item ぎんざの デパート. PARTICLE job: へ with a past verb, the third of the three へ angles. ぎんざ (Ginza) had a vocabulary card and no sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "hai-hitori-de-ikimasu",
-      "english": "Yes, I'll go alone.",
-      "category": "Travel & Tourism",
-      "target": "はい、ひとりでいきます",
-      "note": "Repeating ひとりで (hitori de) after はい (hai) is normal; a bare はい would sound abrupt.",
-      "reviewNote": "Constructed. FORM job: the affirmative short answer to a ひとりで question. Every existing はい answer in the deck is the bare はい、いきます.",
-      "aiSuggested": true,
-      "scene": "answering whether you will go by yourself"
-    },
-    {
-      "id": "vocab-asatte-yokohama-shisha-ni-ikimasu",
-      "english": "I'm going to the Yokohama branch the day after tomorrow.",
-      "category": "Travel & Tourism",
-      "target": "あさってよこはまししゃにいきます",
-      "hint": null,
-      "note": "あさって (asatte) is one step further out than あした (ashita), and like every relative time word it takes no particle.",
-      "reviewNote": "Constructed from EXERCISE IX's substitution item あさって. VOCABULARY job: あさって (asatte) had a bare card and no sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "vocab-konshuu-kyouto-ni-ikimasu",
-      "english": "I'm going to Kyoto this week.",
-      "category": "Travel & Tourism",
-      "target": "こんしゅうきょうとにいきます",
-      "hint": null,
-      "note": "GRAMMAR 3: relative time words take no particle. Lesson 3's あしたのよじ (ashita no yo-ji) needed の (no) only because a clock time followed it.",
-      "reviewNote": "Constructed. VOCABULARY job: こんしゅう (konshū) had a WORD POWER card and no sentence, and it is the one time word that also carries the no-particle rule cleanly.",
-      "aiSuggested": true
-    },
-    {
-      "id": "vocab-kazoku-to-honkon-ni-ikimashita",
-      "english": "I went to Hong Kong with my family last year.",
-      "category": "Family & People",
-      "target": "きょねんかぞくとホンコンにいきました",
-      "hint": null,
-      "note": "と (to) works for a whole group as readily as for one person — かぞくと (kazoku to) needs no plural marking.",
-      "reviewNote": "Constructed from EXERCISE II-C's substitution item ホンコン. VOCABULARY job: a second かぞく (kazoku) example, this time as a travelling companion, and the deck's only ホンコン destination sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-hai-chan-desu",
-      "english": "Hello, this is Chan.",
-      "category": "Greetings",
-      "target": "はい、チャンです",
-      "note": "On the phone, Japanese speakers usually put はい (hai) in front of their name where English says \"hello.\" It is not answering a yes/no question here.",
-      "reviewNote": "TARGET DIALOGUE opening line, plus the NOTES entry that exists only to explain it. The deck has taught はい (hai) as \"yes\" since Lesson 1 but never shows this use, and the Target Dialogue currently contributes only one card to the whole lesson.",
-      "aiSuggested": true,
-      "scene": "answering the phone"
     },
     {
       "id": "ga-goban-no-basu-ga-ikimasu",
@@ -680,31 +333,74 @@
       "scene": "answering which bus goes to the airport"
     },
     {
-      "id": "ex9-itsu-yokohama-ni-kimasu-ka",
-      "english": "Smith-san, when will you come to the Yokohama branch?",
-      "category": "Travel & Tourism",
-      "target": "スミスさんはいつよこはまししゃにきますか",
+      "id": "td-tokyo-shisha-no-sumisu",
+      "english": "This is Smith, of the Tokyo branch.",
+      "category": "Work & Occupations",
+      "target": "とうきょうししゃのスミスです",
       "hint": null,
-      "note": "Asked by someone who is at the Yokohama branch, so the verb is きます (kimasu) — the movement is toward the speaker. Someone not there would ask いきますか (ikimasu ka) instead.",
-      "reviewNote": "EXERCISE IX, which was skipped entirely and is the lesson's only worked dialogue for the いきます／きます contrast. よこはま (Yokohama) currently has a vocabulary card with nothing built on it.",
+      "note": "Naming yourself on the phone: organization + の (no) + your name, the same frame as Lesson 1's ロンドンぎんこうのブラウンです (Rondon ginkō no Buraun desu).",
+      "reviewNote": "TARGET DIALOGUE. とうきょうししゃ (Tōkyōshisha) has a vocabulary card but is never used in a sentence, and this is the one phone-introduction line in the lesson.",
       "aiSuggested": true
     },
     {
-      "id": "hitori-de-kouen-ni-ikimashita",
-      "english": "I went to the park alone last week.",
-      "category": "Travel & Tourism",
-      "target": "せんしゅうひとりでこうえんにいきました",
+      "id": "vocab-kochira-wa-basu-no-untenshu-desu",
+      "english": "This is the bus driver.",
+      "category": "Transport",
+      "target": "こちらはバスのうんてんしゅです",
       "hint": null,
-      "note": "ひとりで (hitori de) fills the slot a companion would occupy — compare ともだちたちとこうえんにいきます (tomodachitachi to kōen ni ikimasu).",
-      "reviewNote": "Constructed. PARTICLE job: shows ひとりで inside a full statement rather than a short answer, and puts it in direct positional contrast with a と phrase. こうえん (kōen) had a single sentence before this.",
+      "note": "Lesson 1's introduction frame こちらは…です (kochira wa … desu) with a job in the slot where a name usually goes.",
+      "reviewNote": "Constructed from SPEAKING PRACTICE 2's バスの うんてんしゅ. VOCABULARY job: うんてんしゅ (untenshu) had a bare card and no sentence anywhere.",
       "aiSuggested": true
     },
     {
-      "id": "yesterday",
-      "english": "Yesterday",
-      "category": "Time",
-      "target": "きのう",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+      "id": "vocab-kaisha-no-hitotachi-to-paatii-ni-ikimasu",
+      "english": "I'm going to the party with the people from the company.",
+      "category": "Family & People",
+      "target": "かいしゃのひとたちとパーティーにいきます",
+      "hint": null,
+      "note": "に (ni) marks an event as well as a place — GRAMMAR 2 covers both, which is why パーティー (pātī) behaves like えき (eki).",
+      "reviewNote": "Constructed from SPEAKING PRACTICE 1's かいしゃのひとたち. VOCABULARY job: ひとたち (hitotachi) had a bare card and no sentence. Also the deck's only sentence where に marks an event rather than a place.",
+      "aiSuggested": true
+    },
+    {
+      "id": "to-koohii-to-koucha-o-onegaishimasu",
+      "english": "Coffee and tea, please.",
+      "category": "Food",
+      "target": "コーヒーとこうちゃをおねがいします",
+      "hint": null,
+      "note": "The same と (to) as in スミスさんはきのうともだちとレストランにいきました (Sumisu-san wa kinō tomodachi to resutoran ni ikimashita), doing a different job: between two nouns it means \"and\", after a person in front of a verb it means \"with\".",
+      "reviewNote": "Constructed from Lesson 4 vocabulary only. PARTICLE job: と now has nine \"with\" sentences and nothing to contrast them against, so the learner has no card that separates this lesson's と from Lesson 4's.",
+      "aiSuggested": true
+    },
+    {
+      "id": "quiz-hitori-de-kimashita",
+      "english": "I came alone.",
+      "category": "Travel & Tourism",
+      "target": "ひとりできました",
+      "note": "ひとりで (hitori de) is how you answer a だれと (dare to) question when there was nobody — Japanese says \"by oneself\" rather than \"with no one.\"",
+      "reviewNote": "QUIZ 2 (Units 3-4), question 1 — the answer half. ひとりで (hitori de) is a Target Dialogue headword with a bare vocabulary card and no sentence anywhere in the deck.",
+      "aiSuggested": true,
+      "scene": "answering who you came with"
+    },
+    {
+      "id": "vocab-rainen-amerika-ni-ikimasu",
+      "english": "I'm going to America next year.",
+      "category": "Travel & Tourism",
+      "target": "らいねんアメリカにいきます",
+      "hint": null,
+      "note": "らいねん (rainen) is the year-row \"next\", matching らいしゅう (raishū) for weeks and らいげつ (raigetsu) for months.",
+      "reviewNote": "Constructed. VOCABULARY job: らいねん (rainen) had no sentence, and it is the only one of the three らい- words the deck never used.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sp1-indo-kara-kimashita",
+      "english": "I came from India.",
+      "category": "Nationalities & Countries",
+      "target": "インドからきました",
+      "hint": null,
+      "note": "How you say where you are from when introducing yourself. Asked どこからきましたか (doko kara kimashita ka) \"where did you come from?\", a non-Japanese speaker is normally being asked their country.",
+      "reviewNote": "SPEAKING PRACTICE 1. ks4 is the only から (kara) sentence in the deck and it is third-person with a topic; this is the first-person self-introduction form the learner will actually need to say, and it is what the kara-particle card's note describes but never shows.",
+      "aiSuggested": true
     },
     {
       "id": "i-am-a-student",
@@ -715,28 +411,113 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6"
     },
     {
-      "id": "p102-jimu-ni-ikimasu",
-      "english": "I go to the gym.",
-      "category": "Sports & Hobbies",
-      "target": "ジムにいきます",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts ジム (jimu), taught bare in Lesson 3, into a sentence using this lesson's に (ni) plus いきます (ikimasu).",
+      "id": "ne-eki-wa-achira-desu-ne",
+      "english": "The station is over there, right?",
+      "category": "Transport",
+      "target": "えきはあちらですね",
+      "hint": null,
+      "note": "Use ね (ne) when you think you already know and just want it confirmed. Drop it and this is a flat statement; swap it for か (ka) and you are asking from scratch.",
+      "reviewNote": "Constructed. PARTICLE job: a third ね angle, checking a fact rather than a plan. Reuses Lesson 5's あちら (achira) and gives えき (eki) a second sentence.",
       "aiSuggested": true
     },
     {
-      "id": "p102-kaisha-ni-ikimasu",
-      "english": "I go to the office.",
-      "category": "Work & Occupations",
-      "target": "かいしゃにいきます",
-      "note": "The first of four cards on one frame that change only the ending: いきます (ikimasu), いきました (ikimashita), いきません (ikimasen), いきませんでした (ikimasen deshita).",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 1 of the いきます paradigm the PDF prints as a table, delivered as a fixed frame so only the inflection varies.",
+      "id": "ex9-dare-to-kimasu-ka",
+      "english": "Who will you come with?",
+      "category": "Travel & Tourism",
+      "target": "だれときますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISE IX. Distinct from fib-c6-with-whom-q, which is third-person and uses いきます (ikimasu); this is the short, second-person form you would actually be asked, and it uses きます (kimasu).",
       "aiSuggested": true
     },
     {
-      "id": "p102-kaisha-ni-ikimashita",
-      "english": "I went to the office.",
+      "id": "td-dewa-ashita",
+      "english": "Well then, see you tomorrow.",
+      "category": "Greetings",
+      "target": "では、あした",
+      "hint": null,
+      "note": "Literally just \"well then, tomorrow\" — the sign-off stops there and leaves the verb out entirely. Compare じゃ、また (ja, mata) \"see you\" from the Frequently Used Expressions.",
+      "reviewNote": "TARGET DIALOGUE. では (dewa) has a vocabulary card whose gloss is \"well then\", but the learner never sees it doing its most common job, closing a conversation.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimasen-deshita",
+      "english": "I didn't go to the office.",
       "category": "Work & Occupations",
-      "target": "かいしゃにいきました",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 2 of the いきます paradigm. Added so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
+      "target": "かいしゃにいきませんでした",
+      "note": "Past negative is built on いきません (ikimasen) plus でした (deshita), not on いきました (ikimashita).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 4 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
+      "aiSuggested": true
+    },
+    {
+      "id": "vocab-kazoku-to-honkon-ni-ikimashita",
+      "english": "I went to Hong Kong with my family last year.",
+      "category": "Family & People",
+      "target": "きょねんかぞくとホンコンにいきました",
+      "hint": null,
+      "note": "と (to) works for a whole group as readily as for one person — かぞくと (kazoku to) needs no plural marking.",
+      "reviewNote": "Constructed from EXERCISE II-C's substitution item ホンコン. VOCABULARY job: a second かぞく (kazoku) example, this time as a travelling companion, and the deck's only ホンコン destination sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-hai-ichiji-kara-desu",
+      "english": "Yes, it is from 1:00.",
+      "category": "Time",
+      "target": "はい、１じからです",
+      "ttsText": "はい、いちじからです",
+      "note": "Answering a ね (ne) confirmation: you repeat only the part being confirmed and drop the topic かいぎは (kaigi wa) that the questioner already supplied.",
+      "reviewNote": "TARGET DIALOGUE. The deck teaches the ね (ne) question (ne-example) but not the reply to it, so the exchange only works in one direction.",
+      "aiSuggested": true,
+      "scene": "confirming what time the meeting starts"
+    },
+    {
+      "id": "kara-doko-kara-kimashita-ka",
+      "english": "Where did you come from?",
+      "category": "Nationalities & Countries",
+      "target": "どこからきましたか",
+      "hint": null,
+      "note": "GRAMMAR 5 warns that when Japanese people ask a foreigner this, they usually want to know the country, not the last station.",
+      "reviewNote": "Lifted from GRAMMAR 5, which prints どこからきましたか as its worked example. PARTICLE job: place-から had only two sentences and no question form at all, so the learner could recognise から but never ask with it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "q-chan-san-kimasu-ka",
+      "english": "Will Chan-san come to the Tokyo branch tomorrow?",
+      "category": "Travel & Tourism",
+      "target": "チャンさんはあしたとうきょうししゃにきますか",
+      "hint": null,
+      "note": "GRAMMAR 1's rule in action: to make a verb sentence into a question you add か (ka) and change nothing else.",
+      "reviewNote": "Constructed. FORM job: the 〜ますか question built on きます, and the setup for the short negative answer the deck lacks. Deliberately the same sentence as チャンさんはあしたとうきょうししゃにきます plus か, so the transformation is the point.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sp2-dono-basu-ga-ikimasu-ka",
+      "english": "Which bus goes there?",
+      "category": "Transport",
+      "target": "どのバスがいきますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "SPEAKING PRACTICE 2, and the line the NOTES on どの (dono) and が (ga) are written to explain. Placed immediately before the existing ga-example card (6ばんのバスがいきます), which is its answer — the deck currently has the answer with no question.",
+      "aiSuggested": true
+    },
+    {
+      "id": "quiz-dare-to-kimashita-ka",
+      "english": "Who did you come with?",
+      "category": "Travel & Tourism",
+      "target": "だれときましたか",
+      "hint": null,
+      "note": "It is と (to) that makes this \"with whom\" — だれ (dare) alone would be asking who came.",
+      "reviewNote": "QUIZ 2 (Units 3-4), question 1. Near-neighbour of the proposed だれときますか (dare to kimasu ka, ex9-dare-to-kimasu-ka) and of fib-c6-with-whom-q, but this is the only past-tense version and the only one built on きます (kimasu); the tense in the English keeps the three prompts distinct.",
+      "aiSuggested": true
+    },
+    {
+      "id": "form-kuukou-ikimasen-deshita",
+      "english": "Smith-san did not go to the airport yesterday.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはきのうくうこうにいきませんでした",
+      "hint": null,
+      "note": "Member 4: the past negative is just the present negative plus でした (deshita), the same でした as in Lesson 2's じゃありませんでした (ja arimasen deshita).",
+      "reviewNote": "Constructed. FORM job: closes the four-form set for いきます on one set of words, which EXERCISE I asks the learner to memorize as a chart.",
       "aiSuggested": true
     },
     {
@@ -748,12 +529,231 @@
       "aiSuggested": true
     },
     {
-      "id": "p102-kaisha-ni-ikimasen-deshita",
-      "english": "I didn't go to the office.",
+      "id": "form-kuukou-ikimasu",
+      "english": "Smith-san will go to the airport tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはあしたくうこうにいきます",
+      "hint": null,
+      "note": "Member 1 of the four-form set. The ます-form covers present and future alike — nothing but あした (ashita) makes this \"will go\".",
+      "reviewNote": "Constructed from EXERCISE II-A's substitution item くうこう. FORM job: the deck has all four いきます forms but spread over four different sentences, so the transformation itself is never visible. This set holds the vocabulary constant. Also gives くうこう a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-kaisha-ni-ikimashita",
+      "english": "I went to the office.",
       "category": "Work & Occupations",
-      "target": "かいしゃにいきませんでした",
-      "note": "Past negative is built on いきません (ikimasen) plus でした (deshita), not on いきました (ikimashita).",
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 4 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
+      "target": "かいしゃにいきました",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 2 of the いきます paradigm. Added so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
+      "aiSuggested": true
+    },
+    {
+      "id": "a-iie-kimasen-deshita",
+      "english": "No, she did not come.",
+      "category": "Travel & Tourism",
+      "target": "いいえ、きませんでした",
+      "note": null,
+      "reviewNote": "Constructed. FORM job: the past-negative short answer on きます, the counterpart of the deck's existing いいえ、いきませんでした.",
+      "aiSuggested": true,
+      "scene": "answering whether a colleague came to your branch office yesterday"
+    },
+    {
+      "id": "form-kuukou-ikimasen",
+      "english": "Smith-san will not go to the airport tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはあしたくうこうにいきません",
+      "hint": null,
+      "note": "Member 2: ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
+      "reviewNote": "Constructed. FORM job: the present negative member of the four-form set, on the same vocabulary as スミスさんはあしたくうこうにいきます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ga-kono-basu-wa-kuukou-ni-ikimasu-ka",
+      "english": "Does this bus go to the airport?",
+      "category": "Transport",
+      "target": "このバスはくうこうにいきますか",
+      "hint": null,
+      "note": "You already know which bus you mean, so it becomes the topic and takes は (wa). The moment the bus is unknown, は is impossible.",
+      "reviewNote": "Constructed. PARTICLE job: the は half of a は／が minimal pair on the same destination, so the NOTES' rule about が after interrogatives can be seen rather than just read. Also gives くうこう (kūkō) a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kara-emma-furansu-kara-kimashita",
+      "english": "Emma-san came from France last year.",
+      "category": "Nationalities & Countries",
+      "target": "エマさんはきょねんフランスからきました",
+      "hint": null,
+      "note": "から (kara) marks the place left behind, so nothing here says where she ended up.",
+      "reviewNote": "Constructed from EXERCISE VII-B's substitution item (エマさん、フランス). PARTICLE job: the から half of a から／に minimal pair, so the two things きます can be paired with sit side by side.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-ashita-sochira-ni-ikimasu",
+      "english": "I will go there (where you are) tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "あしたそちらにいきます",
+      "hint": null,
+      "note": "いきます (ikimasu) even though the destination is where the listener is — the verb is chosen from the speaker's own position, so \"come to you\" is still いきます, never きます (kimasu). The book translates the line loosely as \"I will visit you tomorrow.\"",
+      "reviewNote": "TARGET DIALOGUE, and the line the NOTES single out to explain the いきます／きます rule. そちら (sochira) currently has a bare vocabulary card and appears in no sentence in the deck.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hai-hitori-de-ikimasu",
+      "english": "Yes, I'll go alone.",
+      "category": "Travel & Tourism",
+      "target": "はい、ひとりでいきます",
+      "note": "Repeating ひとりで (hitori de) after はい (hai) is normal; a bare はい would sound abrupt.",
+      "reviewNote": "Constructed. FORM job: the affirmative short answer to a ひとりで question. Every existing はい answer in the deck is the bare はい、いきます.",
+      "aiSuggested": true,
+      "scene": "answering whether you will go by yourself"
+    },
+    {
+      "id": "sp1-todai-no-gakusei-desu",
+      "english": "I am a student at the University of Tokyo.",
+      "category": "School & Education",
+      "target": "とうきょうだいがくのがくせいです",
+      "hint": null,
+      "note": "Affiliation の (no) from Lesson 1, but landing on a role instead of a name: Lesson 1 gave ロンドンぎんこうのブラウンです (Rondon ginkō no Buraun desu), \"I am Brown of the Bank of London.\"",
+      "reviewNote": "SPEAKING PRACTICE 1. がくせい (gakusei) has a bare vocabulary card from WORD POWER and appears in no sentence in the deck.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-hitori-de-kimasu-ka",
+      "english": "Will you be coming alone?",
+      "category": "Travel & Tourism",
+      "target": "ひとりできますか",
+      "hint": null,
+      "note": "Asked by the person at the destination, so the verb is きます (kimasu) — the movement is toward her. The reply flips to いきます (ikimasu), because the speaker there chooses from his own position.",
+      "reviewNote": "TARGET DIALOGUE, and the exchange the NOTES use to teach いきます vs きます. ひとりで (hitori de) has a bare vocabulary card and appears in no sentence; this is also the deck's only きますか (kimasu ka) question.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ga-kore-ga-sumisu-san-no-desu",
+      "english": "This one is Smith-san's.",
+      "category": "Other",
+      "target": "これがスミスさんのです",
+      "note": "が (ga) rather than Lesson 2's これはわたしのです (kore wa watashi no desu): が picks one item out of a set, は (wa) just names what you are talking about.",
+      "reviewNote": "Constructed. PARTICLE job: the answer half of the どれが question, and the one place in the deck where は and が sit on the identical これ…のです frame.",
+      "aiSuggested": true,
+      "scene": "answering which of several bags belongs to Smith-san"
+    },
+    {
+      "id": "q-chan-san-kimashita-ka",
+      "english": "Did Chan-san come to the Tokyo branch yesterday?",
+      "category": "Travel & Tourism",
+      "target": "チャンさんはきのうとうきょうししゃにきましたか",
+      "hint": null,
+      "note": "か (ka) goes on the past form the same way it goes on the present.",
+      "reviewNote": "Constructed. FORM job: the 〜ましたか question built on きます, which the deck only has for いきます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kara-honkon-kara-kimashita",
+      "english": "I came from Hong Kong.",
+      "category": "Nationalities & Countries",
+      "target": "ホンコンからきました",
+      "note": null,
+      "reviewNote": "Constructed on EXERCISE VII-B, which pairs チャンさん with ホンコン. PARTICLE job: the answer half of どこからきましたか. ホンコン (Honkon) had a vocabulary card and no sentence.",
+      "aiSuggested": true,
+      "scene": "answering where you have come from"
+    },
+    {
+      "id": "form-tokyo-shisha-kimashita",
+      "english": "Chan-san came to the Tokyo branch yesterday.",
+      "category": "Travel & Tourism",
+      "target": "チャンさんはきのうとうきょうししゃにきました",
+      "hint": null,
+      "note": "Member 3, and a reminder that に (ni) marks the arrival point with きます (kimasu) just as it does with いきます (ikimasu).",
+      "reviewNote": "Constructed. FORM job: the past affirmative member of the きます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ne-kinou-kuukou-ni-ikimashita-ne",
+      "english": "You went to the airport yesterday, right?",
+      "category": "Travel & Tourism",
+      "target": "きのうくうこうにいきましたね",
+      "hint": null,
+      "note": "ね (ne) follows the past form as readily as the present — it is always the very last thing in the sentence, after the tense has been settled.",
+      "reviewNote": "Constructed. PARTICLE job: ね on a past verb, the last of the three ね slots. Also a second sentence for くうこう (kūkō).",
+      "aiSuggested": true
+    },
+    {
+      "id": "hitori-de-ikimasu-ka",
+      "english": "Will you go alone?",
+      "category": "Travel & Tourism",
+      "target": "ひとりでいきますか",
+      "hint": null,
+      "note": "Asked by someone who is not at the destination, so the verb is いきます (ikimasu). Someone standing at the destination asks the same thing with きます (kimasu).",
+      "reviewNote": "Constructed. PARTICLE/FORM job: the deck asks ひとりできますか but never ひとりでいきますか, so the learner sees only one side of the point-of-view rule the NOTES spend a paragraph on.",
+      "aiSuggested": true
+    },
+    {
+      "id": "vocab-joushi-kongetsu-kimasu",
+      "english": "My boss is coming to the Tokyo branch this month.",
+      "category": "Work & Occupations",
+      "target": "じょうしはこんげつとうきょうししゃにきます",
+      "hint": null,
+      "note": "There is no word for \"my\" here — じょうし (jōshi) on its own is understood as your own boss.",
+      "reviewNote": "Constructed. VOCABULARY job: こんげつ (kongetsu) had no sentence. Doubles as a second じょうし example and one of the few きます sentences with a person other than the book's cast of travellers.",
+      "aiSuggested": true
+    },
+    {
+      "id": "quiz-itsu-nihon-ni-kimashita-ka",
+      "english": "Emma-san, when did you come to Japan?",
+      "category": "Travel & Tourism",
+      "target": "エマさんはいつにほんにきましたか",
+      "hint": null,
+      "note": "いつ (itsu) sits in the time slot and the verb carries the tense — the word order is identical to かとうさんはいつおおさかししゃにいきますか (Katō-san wa itsu Ōsaka shisha ni ikimasu ka), only the verb changes.",
+      "reviewNote": "QUIZ 2 (Units 3-4), question 1. Every question card in the deck is present-tense; there is no past-tense question with an interrogative word, and none at all built on きました (kimashita).",
+      "aiSuggested": true
+    },
+    {
+      "id": "he-kouen-e-ikimasu-ka",
+      "english": "Are you going to the park tomorrow?",
+      "category": "Travel & Tourism",
+      "target": "あしたこうえんへいきますか",
+      "hint": null,
+      "note": "へ (e) behaves in a question exactly as に (ni) does — か (ka) simply goes on the end. No topic is needed when you are obviously asking the person in front of you.",
+      "reviewNote": "Constructed. PARTICLE job: へ in question form, an angle the deck's single へ sentence does not cover. Also gives こうえん (kōen) a second sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "vocab-asatte-yokohama-shisha-ni-ikimasu",
+      "english": "I'm going to the Yokohama branch the day after tomorrow.",
+      "category": "Travel & Tourism",
+      "target": "あさってよこはまししゃにいきます",
+      "hint": null,
+      "note": "あさって (asatte) is one step further out than あした (ashita), and like every relative time word it takes no particle.",
+      "reviewNote": "Constructed from EXERCISE IX's substitution item あさって. VOCABULARY job: あさって (asatte) had a bare card and no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex9-itsu-yokohama-ni-kimasu-ka",
+      "english": "Smith-san, when will you come to the Yokohama branch?",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはいつよこはまししゃにきますか",
+      "hint": null,
+      "note": "Asked by someone who is at the Yokohama branch, so the verb is きます (kimasu) — the movement is toward the speaker. Someone not there would ask いきますか (ikimasu ka) instead.",
+      "reviewNote": "EXERCISE IX, which was skipped entirely and is the lesson's only worked dialogue for the いきます／きます contrast. よこはま (Yokohama) currently has a vocabulary card with nothing built on it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex9-sasaki-san-to-ikimasu",
+      "english": "I will go with Sasaki-san.",
+      "category": "Travel & Tourism",
+      "target": "ささきさんといきます",
+      "note": null,
+      "reviewNote": "EXERCISE IX; the answer half, split off. Kept verbatim including ささきさん (Sasaki-san), who is introduced in this same lesson's SPEAKING PRACTICE 1 and Exercise IX. Completes the four-line exchange so the きます／いきます flip is drilled twice.",
+      "aiSuggested": true,
+      "scene": "answering who is coming with you"
+    },
+    {
+      "id": "hitori-de-kouen-ni-ikimashita",
+      "english": "I went to the park alone last week.",
+      "category": "Travel & Tourism",
+      "target": "せんしゅうひとりでこうえんにいきました",
+      "hint": null,
+      "note": "ひとりで (hitori de) fills the slot a companion would occupy — compare ともだちたちとこうえんにいきます (tomodachitachi to kōen ni ikimasu).",
+      "reviewNote": "Constructed. PARTICLE job: shows ひとりで inside a full statement rather than a short answer, and puts it in direct positional contrast with a と phrase. こうえん (kōen) had a single sentence before this.",
       "aiSuggested": true
     }
   ]

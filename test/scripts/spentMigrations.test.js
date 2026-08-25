@@ -56,6 +56,7 @@ const STANDING = [
   "test-with-write-guard.mjs",
   "verify-apkg-import.mjs",
   "anki-behaviour-probe.mjs",
+  "absorption-crosscheck.mjs",
 ];
 
 const read = (name) => readFileSync(join(SCRIPTS, name), "utf-8");

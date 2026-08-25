@@ -431,6 +431,19 @@ matters, because three separate guards stand between you and a signed-off unit t
 retired course and two PDFs of class notes into fifteen delivered extras units at once. Read it if
 you are about to do something similar.
 
+**Cross-check the result afterwards, because these failures are silent.**
+`scripts/absorption-crosscheck.mjs` is the pass written for the Nihongo absorption, and its shape is
+worth copying for any bulk relocation. It re-derives every claim the move makes and exits non-zero
+when one stops holding: every routed card present and shipping, no relocated card still carrying
+`fillInBlank`, every dropped card's twin still in the deck, no id shipping twice, every clip a card
+names actually on disk, `cards.json` and `corpus.json` agreeing on order, no unit left with a failed
+model pass, and the source collection unmutated.
+
+Each of those was a real defect in that migration, and every one of them looked exactly like success
+from the outside. A card the drill miner deleted, a routing row that had drifted from the card file,
+a duplicate whose twin had gone missing, a unit whose model pass died on a usage limit: none of them
+raised anything. Checking by hand found them; a script is what makes the checking repeatable.
+
 **A relocated card keeps its card id.** The id becomes the `abid:` tag `deliver-to-anki.mjs` matches
 notes by, so keeping it is what lets the live note be found and updated in place, with its scheduling,
 instead of added fresh. Changing the text of a moved card is fine and delivers as a field update;

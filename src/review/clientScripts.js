@@ -615,10 +615,10 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
       // equivalent of the corpus gate, and the thing that unlocks the audio stage — not a delivery.
       // Nothing reaches the live Anki collection without an explicit Deliver.
       var silent = document.querySelectorAll('tr.row[data-needs-audio="1"]').length;
-      var warn = "Approve " + rows.length + " card" + (rows.length === 1 ? "" : "s") + "?\n\n"
+      var warn = "Approve " + rows.length + " card" + (rows.length === 1 ? "" : "s") + "?\\n\\n"
         + "This is the content sign-off. Audio is generated after it, and nothing reaches Anki "
         + "until you click Deliver."
-        + (silent ? "\n\n" + silent + " of them have no clip yet." : "");
+        + (silent ? "\\n\\n" + silent + " of them have no clip yet." : "");
       if (!window.confirm(warn)) return;
       all.disabled = true;
       approveEach(rows, function (n, of) { if (msg) msg.textContent = n + " of " + of + "…"; })

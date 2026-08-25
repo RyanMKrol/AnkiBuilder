@@ -586,7 +586,15 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
       var rows = pendingRows(document);
       var msg = all.nextElementSibling;
       if (!rows.length) { if (msg) msg.textContent = "nothing left to approve"; return; }
-      if (!window.confirm("Approve " + rows.length + " card" + (rows.length === 1 ? "" : "s") + "? They start shipping on the next build.")) return;
+      // Say what approving actually does. It is the CONTENT sign-off, the additions review's
+      // equivalent of the corpus gate, and the thing that unlocks the audio stage — not a delivery.
+      // Nothing reaches the live Anki collection without an explicit Deliver.
+      var silent = document.querySelectorAll('tr.row[data-needs-audio="1"]').length;
+      var warn = "Approve " + rows.length + " card" + (rows.length === 1 ? "" : "s") + "?\n\n"
+        + "This is the content sign-off. Audio is generated after it, and nothing reaches Anki "
+        + "until you click Deliver."
+        + (silent ? "\n\n" + silent + " of them have no clip yet." : "");
+      if (!window.confirm(warn)) return;
       all.disabled = true;
       approveEach(rows, function (n, of) { if (msg) msg.textContent = n + " of " + of + "…"; })
         .then(function (n) {

@@ -415,6 +415,7 @@ const cardRow = (c, n, stage, ctx) => {
         (c.audioFilter ? ` data-filter="${escapeHtml(c.audioFilter)}"` : "")
       : "";
   const attrs =
+    `${stage === "additions" && !c.audio && !c.excluded ? ` data-needs-audio="1"` : ""}` +
     `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +
     `${c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""}` +
     ` data-stage="${escapeHtml(stage)}"` +

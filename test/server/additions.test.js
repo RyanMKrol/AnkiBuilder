@@ -118,6 +118,24 @@ test("the additions page lists the retrofit and names the deck each card is goin
   }
 });
 
+test("the page says approving is the content gate, not a delivery, and names the audio state", async () => {
+  const { root } = fixture();
+  try {
+    await withServer(root, async (url) => {
+      const html = await (await fetch(`${url}/additions/book/mybook`)).text();
+      // The confirm used to say "they start shipping", which reads as a delivery. Approving is the
+      // content sign-off; it is what unlocks the audio stage.
+      assert.match(html, /CONTENT.*sign-off|content.*sign-off/i);
+      assert.match(html, /nothing reaches Anki until you click/i);
+      // A page full of clipless cards is the expected state here, so it says so.
+      assert.match(html, /have no clip yet, which is normal at this/);
+      assert.match(html, /data-needs-audio="1"/, "rows missing a clip are marked for the count");
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("approving a card clears the gate on disk and leaves the unit's own sign-off alone", async () => {
   const { root, book } = fixture();
   try {

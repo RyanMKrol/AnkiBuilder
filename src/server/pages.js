@@ -658,12 +658,23 @@ ${sectionHtml}
     });
 
     const title = batch ? `Additions: ${batch}` : `Additions — ${deck.title}`;
+    const silent = all.filter((c) => !c.excluded && !c.audio);
     const lede = pending.length
       ? `<b>${pending.length}</b> card${pending.length === 1 ? "" : "s"} waiting, across ` +
-        `${sections.length} deck${sections.length === 1 ? "" : "s"}. A pending card does not ship ` +
-        `until you approve it, and the units they sit in keep their own sign-off, so nothing else ` +
-        `is re-opened by this.`
-      : `Every addition here is approved. They ship on the next build.`;
+        `${sections.length} deck${sections.length === 1 ? "" : "s"}. Approving is the CONTENT ` +
+        `sign-off: it is what unlocks the audio stage, and nothing reaches Anki until you click ` +
+        `Deliver. The units these sit in keep their own sign-off, so nothing else is re-opened.`
+      : `Every addition here is approved.`;
+    // Audio comes AFTER approval, the same way it does at the corpus gate, so a page full of
+    // clipless cards is the expected state rather than a problem. Said out loud because the empty
+    // audio column next to a populated one reads as a fault otherwise.
+    const audioNote = silent.length
+      ? `<p class="lede"><b>${silent.length}</b> of these have no clip yet, which is normal at this ` +
+        `stage: audio is generated after approval so nothing is spent on a card you might cut. ` +
+        `Afterwards run <code>anki-builder audio --run &lt;unit&gt;</code> for each deck listed below; ` +
+        `it regenerates only what is missing. Cards that came from another deck kept their existing ` +
+        `clips and need nothing.</p>`
+      : "";
     const excludedCount = all.filter((c) => c.excluded).length;
     // The primary action. Reading 200 cards and clicking Approve on each is not a review, it is
     // data entry: the useful flow is to read through, exclude or fix the few that need it, and
@@ -684,9 +695,10 @@ ${sectionHtml}
         backHref: "/",
         deliver: editable,
         extraHtml:
-          batch == null && batches.length > 1
+          audioNote +
+          (batch == null && batches.length > 1
             ? `\n<p class="lede">Batches here: ${batches.map((b) => `<a href="/additions/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(b)}">${escapeHtml(b)}</a>`).join(", ")}</p>`
-            : "",
+            : ""),
       }) +
       (editable
         ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="1" hidden></div>`

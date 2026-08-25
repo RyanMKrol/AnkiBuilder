@@ -12,6 +12,7 @@ import {
   EXPAND_COLLAPSE_SCRIPT,
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
+  APPROVE_ADDITION_SCRIPT,
   MARK_DONE_SCRIPT,
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
@@ -25,6 +26,7 @@ import { cleanupNames } from "../audio/cleanupFilter.js";
 import { audioTextState } from "../audio/textHash.js";
 import { page } from "./respond.js";
 import { renderCardFacesPage } from "../deck/cardFacePreview.js";
+import { unitDeckSegments } from "../deck/deckPath.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
 
@@ -95,6 +97,8 @@ export function createPageRenderers({
         building: !!u.building,
         interrupted: !!u.interrupted,
         claim: u.claim || null,
+        pendingAdditions: u.pendingAdditions || 0,
+        additionBatches: u.additionBatches || [],
       }));
       // A deck delivered over AnkiConnect carries a marker beside its .apkg (see deliver.js):
       // re-importing the package into that collection would create duplicate notes, so the
@@ -214,6 +218,21 @@ export function createPageRenderers({
       }
     }
 
+    // Retrofitted cards waiting on the additions review, across every deck. Surfaced on the home
+    // page because a batch that nobody can find is a batch that never gets approved, and its cards
+    // do not ship until it is.
+    const additionRows = [];
+    let pendingTotal = 0;
+    for (const deck of withUnits) {
+      const n = deck.units.reduce((sum, u) => sum + (u.pendingAdditions || 0), 0);
+      if (!n) continue;
+      pendingTotal += n;
+      const batches = [...new Set(deck.units.flatMap((u) => u.additionBatches || []))].sort();
+      additionRows.push(
+        `<div class="dblock single"><a href="/additions/${encodeURIComponent(deck.type)}/${encodeURIComponent(deck.id)}"><span class="dt">${escapeHtml(deck.title)}</span><span class="badge">${n} pending</span><span class="dsub">${batches.map(escapeHtml).join(", ")}</span></a></div>`,
+      );
+    }
+
     const section = (cls, title, hint, blocks, count) =>
       blocks.length
         ? `<div class="grp ${cls}"><h2>${title} <span class="gcount">${count}</span></h2><p class="ghint">${hint}</p>${blocks.join("")}</div>`
@@ -230,6 +249,7 @@ export function createPageRenderers({
         deliver: editable,
       })}
 ${section("grp-unfinished", "Not finished", "These lessons stopped mid-build and have no cards to review yet. Re-run <code>anki-builder assemble</code> for the lesson (it picks up where it left off), or <code>anki-builder prepare --run &lt;dir&gt;</code> directly.", unfinishedBlocks, unfinishedCount)}
+${section("grp-additions", "Additions waiting", "Cards retrofitted into finished lessons, held out of the deck until you approve them. The lessons they sit in keep their own sign-off, so approving these re-opens nothing.", additionRows, pendingTotal)}
 ${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
 ${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}`,
       [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null].filter(Boolean).join("\n"),
@@ -549,5 +569,111 @@ ${sectionHtml}
     return page(`${deck.title} — card faces`, body);
   }
 
-  return { renderDashboard, renderReviewPage, renderDeckPage, renderFacesPage };
+  /**
+   * The ADDITIONS review: the cards a retrofit added, wherever they landed.
+   *
+   * The third review type, and the only one not scoped to a unit. Class notes keep arriving for
+   * material a deck taught chapters ago, so cards get added to units that were finished months
+   * before. Approving them through the unit's own corpus gate means re-opening the whole unit and
+   * re-reading every card in it, which is why this exists.
+   *
+   * Sections are DESTINATION UNITS, headed with the Anki deck path the card is going into, because
+   * "where is this going" is the question this review answers and the per-unit pages never have to
+   * ask it. `batch` narrows to one retrofit; without it every pending batch in the collection shows.
+   */
+  function renderAdditionsPage(type, id, batch = null) {
+    const adapter = adapterFor(type);
+    const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
+    if (!deck) return null;
+
+    const wanted = (c) => c.addition && (batch == null || c.addition === batch);
+    const sections = deck.units
+      .map((u) => ({ u, cards: (u.cards || []).filter(wanted) }))
+      .filter((s) => s.cards.length > 0)
+      .map(({ u, cards }) => ({
+        seq: u.seq,
+        // The full Anki deck path, from the ONE function both delivery paths derive names with, so
+        // the heading cannot claim a deck the card will not land in.
+        leaf: [deck.title, ...unitDeckSegments(u.label)].join(" › "),
+        stage: "additions",
+        cards: cards.map((c) => ({
+          ...c,
+          unit: u.seq,
+          kanjiTts: u.kanjiTts === true,
+          audioTextState: audioTextState(c),
+          audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
+        })),
+      }));
+
+    const all = sections.flatMap((s) => s.cards);
+    const batches = [...new Set(all.map((c) => c.addition))].sort();
+    const pending = all.filter((c) => c.additionPending);
+    if (all.length === 0) return null;
+
+    const canEdit = editable && !deck.units.some((u) => u.building);
+    const rowControl = canEdit
+      ? (stage, c) =>
+          stage === "additions"
+            ? `${c.additionPending ? `<button type="button" class="approve-btn">Approve</button>` : `<span class="tick" title="Approved — this card ships">✓</span>`}<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
+            : ""
+      : undefined;
+    const sectionControl = canEdit
+      ? (s) =>
+          s.cards.some((c) => c.additionPending)
+            ? `<button type="button" class="approve-unit" data-unit="${escapeHtml(String(s.seq))}">Approve all in this deck</button><span class="rev-msg"></span>`
+            : `<span class="done-badge">✓ all approved</span>`
+      : undefined;
+    const audioCell = (c) =>
+      c.audioUrl
+        ? `<audio controls preload="none" src="${c.audioUrl}"></audio>`
+        : `<span class="x">—</span>`;
+
+    const { html: sectionHtml } = renderLessonSections({
+      sections,
+      startNumber: 1,
+      audioCell,
+      rowControl,
+      sectionControl,
+      open: true,
+      showReviewNote: true,
+    });
+
+    const title = batch ? `Additions: ${batch}` : `Additions — ${deck.title}`;
+    const lede = pending.length
+      ? `<b>${pending.length}</b> card${pending.length === 1 ? "" : "s"} waiting, across ` +
+        `${sections.length} deck${sections.length === 1 ? "" : "s"}. A pending card does not ship ` +
+        `until you approve it, and the units they sit in keep their own sign-off, so nothing else ` +
+        `is re-opened by this.`
+      : `Every addition here is approved. They ship on the next build.`;
+    const body =
+      pageChrome({
+        title,
+        eyebrow: `${TYPE_LABEL[type] || type} · additions review`,
+        ledeHtml: lede,
+        backHref: "/",
+        deliver: editable,
+        extraHtml:
+          batch == null && batches.length > 1
+            ? `\n<p class="lede">Batches here: ${batches.map((b) => `<a href="/additions/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(b)}">${escapeHtml(b)}</a>`).join(", ")}</p>`
+            : "",
+      }) +
+      (editable
+        ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="1" hidden></div>`
+        : "") +
+      sectionHtml;
+
+    const scripts = [];
+    if (canEdit) scripts.push(DASH_PRELUDE_SCRIPT, REVIEW_EDIT_SCRIPT, APPROVE_ADDITION_SCRIPT);
+    scripts.push(STICKY_HEADER_SCRIPT);
+    if (editable) scripts.push(DELIVER_SCRIPT);
+    return page(title, body, scripts.join("\n"));
+  }
+
+  return {
+    renderDashboard,
+    renderReviewPage,
+    renderDeckPage,
+    renderFacesPage,
+    renderAdditionsPage,
+  };
 }

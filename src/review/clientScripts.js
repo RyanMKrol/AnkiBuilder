@@ -502,6 +502,75 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
 // Vanilla JS, no ${}. Handles: the per-row Exclude toggle, inline editing of the target/pronunciation
 // cells (contentEditable, saved on blur), and the per-section "Mark reviewed" button. All wired to
 // the `corpus`-review rows (which carry the translated cards).
+// The Approve control on the additions review. Approving a card clears its pending flag, so it
+// starts shipping — which means the group package is now out of date, exactly as excluding a card
+// from a done lesson is. `maybeRebuild` is the same auto-rebuild the exclude toggle uses.
+//
+// The row is updated in place rather than reloading: on a page holding a couple of hundred
+// retrofitted cards, a reload after every approval would lose your scroll position every time.
+export const APPROVE_ADDITION_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  if (!ctx || !window.__ab) return;
+  var A = window.__ab;
+  var base = A.base, jsonp = A.jsonp;
+
+  function approve(tr) {
+    var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
+    return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/addition/approve", { method: "POST" })
+      .then(jsonp).then(function (x) {
+        if (!x.ok) throw new Error(x.j.error || "failed");
+        var cell = tr.querySelector("td.excl-cell");
+        var btn = cell && cell.querySelector("button.approve-btn");
+        if (btn) btn.outerHTML = '<span class="tick" title="Approved — this card ships">✓</span>';
+        var badge = tr.querySelector(".badge-pending");
+        if (badge) badge.remove();
+        A.rowMsg(tr, "");
+        return true;
+      });
+  }
+
+  document.querySelectorAll("button.approve-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var tr = btn.closest("tr");
+      btn.disabled = true;
+      approve(tr).then(A.maybeRebuild).catch(function (e) {
+        btn.disabled = false;
+        A.rowMsg(tr, e.message || "failed");
+      });
+    });
+  });
+
+  // Whole-section approve. Sequential rather than parallel: every one of these writes the same
+  // cards.json, and firing them at once would have each request read the file before the previous
+  // had written it, so all but the last approval would be lost.
+  document.querySelectorAll("button.approve-unit").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var sec = btn.closest("details");
+      var rows = [].slice.call(sec.querySelectorAll("tr")).filter(function (tr) {
+        return tr.querySelector("button.approve-btn");
+      });
+      if (!rows.length) return;
+      btn.disabled = true;
+      var msg = btn.nextElementSibling;
+      var i = 0;
+      function step() {
+        if (i >= rows.length) {
+          if (msg) msg.textContent = "✓ " + rows.length + " approved";
+          btn.outerHTML = '<span class="done-badge">✓ all approved</span>';
+          return A.maybeRebuild();
+        }
+        if (msg) msg.textContent = i + 1 + " of " + rows.length + "…";
+        return approve(rows[i++]).then(step);
+      }
+      step().catch(function (e) {
+        btn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
+    });
+  });
+})();
+`;
+
 export const REVIEW_EDIT_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx || !window.__ab) return;

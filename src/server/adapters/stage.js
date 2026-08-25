@@ -3,6 +3,7 @@ import { join } from "path";
 import { INCOMPLETE, readCardsJson, readCorpusJson, renderCardForStage } from "./runDir.js";
 import { claimLiveness, readClaim } from "../../cli/runClaim.js";
 import { lessonReadiness } from "../../cards/readiness.js";
+import { isPendingAddition } from "../../deck/shippableCards.js";
 
 // A lesson has exactly TWO stages, and both are human review gates:
 //
@@ -113,6 +114,13 @@ export function decorateUnit(runDir, data, { includeCards = true } = {}) {
     building: build.building,
     interrupted: build.interrupted,
     claim: build.claim,
+    // Retrofitted cards still waiting on the additions review, and the batches they came in.
+    // Counted here rather than from `cards` because the home page loads units WITHOUT cards, and
+    // this function has already read the items for the readiness check, so it costs no extra IO.
+    pendingAdditions: (data.items || []).filter(isPendingAddition).length,
+    additionBatches: [
+      ...new Set((data.items || []).map((i) => i.addition).filter((b) => typeof b === "string")),
+    ].sort(),
     // The home page and listDecks only need per-unit STATE; materializing a render card for every
     // item of every lesson just to show a status row was most of the home page's IO.
     ...(includeCards ? { cards: data.items.map(renderCardForStage(data.stage)) } : { cards: [] }),

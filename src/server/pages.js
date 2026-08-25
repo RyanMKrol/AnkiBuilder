@@ -599,88 +599,107 @@ ${sectionHtml}
     if (!deck) return null;
 
     const wanted = (c) => c.addition && (batch == null || c.addition === batch);
-    const sections = deck.units
-      .map((u) => ({ u, cards: (u.cards || []).filter(wanted) }))
-      .filter((s) => s.cards.length > 0)
-      .map(({ u, cards }) => ({
-        seq: u.seq,
-        // The full Anki deck path, from the ONE function both delivery paths derive names with, so
-        // the heading cannot claim a deck the card will not land in.
-        leaf: [deck.title, ...unitDeckSegments(u.label)].join(" › "),
-        stage: "additions",
-        cards: cards.map((c) => ({
-          ...c,
-          unit: u.seq,
-          kanjiTts: u.kanjiTts === true,
-          audioTextState: audioTextState(c),
-          audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
-        })),
-      }));
-
-    const all = sections.flatMap((s) => s.cards);
-    const batches = [...new Set(all.map((c) => c.addition))].sort();
-    // Excluded pending cards are shown but not counted: they are decided, not waiting.
-    const pending = all.filter((c) => c.additionPending && !c.excluded);
-    if (all.length === 0) return null;
-
     const canEdit = editable && !deck.units.some((u) => u.building);
-    const rowControl = canEdit
-      ? (stage, c) =>
-          stage === "additions"
-            ? `${
-                c.excluded
-                  ? `<span class="x" title="Excluded, so there is nothing to approve">—</span>`
-                  : c.additionPending
-                    ? `<button type="button" class="approve-btn">Approve</button>`
-                    : `<span class="tick" title="Approved — this card ships">✓</span>`
-              }<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
-            : ""
-      : undefined;
-    const sectionControl = canEdit
-      ? (s) =>
-          s.cards.some((c) => c.additionPending)
-            ? `<button type="button" class="approve-unit" data-unit="${escapeHtml(String(s.seq))}">Approve all in this deck</button><span class="rev-msg"></span>`
-            : `<span class="done-badge">✓ all approved</span>`
-      : undefined;
-    const audioCell = (c) =>
-      c.audioUrl
-        ? `<audio controls preload="none" src="${c.audioUrl}"></audio>`
-        : `<span class="x">—</span>`;
 
-    const { html: sectionHtml } = renderLessonSections({
-      sections,
-      startNumber: 1,
-      audioCell,
-      rowControl,
-      sectionControl,
-      open: true,
-      showReviewNote: true,
-    });
+    // Sections for ONE of the two gates. Each carries the stage of the matching lesson review, so
+    // the rows render through the same STAGE_TABLES entry the corpus and audio reviews use: this is
+    // the same review, filtered to a retrofit, rather than a second implementation of it.
+    const sectionsFor = (stage) =>
+      deck.units
+        .map((u) => ({
+          u,
+          cards: (u.cards || []).filter((c) => wanted(c) && c.additionStage === stage),
+        }))
+        .filter((s) => s.cards.length > 0)
+        .map(({ u, cards }) => ({
+          seq: u.seq,
+          // The full Anki deck path, from the ONE function both delivery paths derive names with,
+          // so the heading cannot claim a deck the card will not land in.
+          leaf: [deck.title, ...unitDeckSegments(u.label)].join(" › "),
+          stage,
+          cards: cards.map((c) => ({
+            ...c,
+            unit: u.seq,
+            kanjiTts: u.kanjiTts === true,
+            audioTextState: audioTextState(c),
+            audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
+            originalUrl: c.audioOriginal
+              ? mediaUrl(type, id, u.seq, c.audioOriginal)
+              : c.audio
+                ? mediaUrl(type, id, u.seq, c.audio)
+                : null,
+          })),
+        }));
+
+    const contentSections = sectionsFor("corpus");
+    const audioSections = sectionsFor("audio");
+    const all = deck.units.flatMap((u) => (u.cards || []).filter(wanted));
+    if (all.length === 0) return null;
+    const batches = [...new Set(all.map((c) => c.addition))].sort();
+    const atContent = contentSections.flatMap((s) => s.cards).filter((c) => !c.excluded);
+    const atAudio = audioSections.flatMap((s) => s.cards).filter((c) => !c.excluded);
+    const excludedCount = all.filter((c) => c.excluded).length;
+    const needClip = atAudio.filter((c) => !c.audio);
+
+    const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
+    const editControls = canEdit
+      ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button>${isJa ? `<button type="button" class="gen-kanji">Generate (kanji)</button>` : ""}<span class="msg"></span></div>`
+      : "";
+    const player = (url) =>
+      url ? `<audio controls preload="none" src="${url}"></audio>` : `<span class="x">—</span>`;
+    const audioCell = (c) =>
+      player(c.audioUrl) +
+      (canEdit && c.originalUrl
+        ? `<div class="ed"><button type="button" class="trim">Edit</button></div>`
+        : "");
+    const originalCell = canEdit ? (c) => player(c.originalUrl) + editControls : undefined;
+
+    // One control per gate, named for what it signs off, and both refusing the same way the lesson
+    // gates do: content first, then audio.
+    const rowControl = canEdit
+      ? (stage, c) => {
+          const excl = `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`;
+          if (c.excluded)
+            return `<span class="x" title="Excluded, so there is nothing to sign off">—</span>${excl}`;
+          if (stage === "corpus")
+            return `<button type="button" class="approve-btn">Approve</button>${excl}`;
+          return `<button type="button" class="addition-done"${c.audio ? "" : ' disabled title="No clip yet — generate audio first"'}>Mark ready</button>${excl}`;
+        }
+      : undefined;
+
+    const group = (title, hint, sections, cls) => {
+      if (!sections.length) return "";
+      const { html } = renderLessonSections({
+        sections,
+        startNumber: 1,
+        audioCell,
+        originalCell: sections[0].stage === "audio" ? originalCell : undefined,
+        rowControl,
+        open: true,
+        showReviewNote: true,
+      });
+      return `<div class="grp ${cls}"><h2>${title}</h2><p class="ghint">${hint}</p>${html}</div>`;
+    };
 
     const title = batch ? `Additions: ${batch}` : `Additions — ${deck.title}`;
-    const silent = all.filter((c) => !c.excluded && !c.audio);
-    const lede = pending.length
-      ? `<b>${pending.length}</b> card${pending.length === 1 ? "" : "s"} waiting, across ` +
-        `${sections.length} deck${sections.length === 1 ? "" : "s"}. Approving is the CONTENT ` +
-        `sign-off: it is what unlocks the audio stage, and nothing reaches Anki until you click ` +
-        `Deliver. The units these sit in keep their own sign-off, so nothing else is re-opened.`
-      : `Every addition here is approved.`;
-    // Audio comes AFTER approval, the same way it does at the corpus gate, so a page full of
-    // clipless cards is the expected state rather than a problem. Said out loud because the empty
-    // audio column next to a populated one reads as a fault otherwise.
-    const audioNote = silent.length
-      ? `<p class="lede"><b>${silent.length}</b> of these have no clip yet, which is normal at this ` +
-        `stage: audio is generated after approval so nothing is spent on a card you might cut. ` +
-        `Afterwards run <code>anki-builder audio --run &lt;unit&gt;</code> for each deck listed below; ` +
-        `it regenerates only what is missing. Cards that came from another deck kept their existing ` +
-        `clips and need nothing.</p>`
+    const lede =
+      atContent.length || atAudio.length
+        ? `<b>${atContent.length}</b> waiting on content, <b>${atAudio.length}</b> waiting on audio. ` +
+          `A card ships only once it has passed BOTH, exactly as a lesson does. The lessons these ` +
+          `sit in keep their own sign-off, so nothing else is re-opened, and nothing reaches Anki ` +
+          `until you click Deliver.`
+        : `Every addition here has passed both gates.`;
+    const clipNote = needClip.length
+      ? `<p class="lede"><b>${needClip.length}</b> approved card${needClip.length === 1 ? " has" : "s have"} no clip yet. ` +
+        `Run <code>anki-builder audio --run &lt;unit&gt;</code> for the decks listed below; it generates only ` +
+        `what is missing, so it costs exactly these cards.</p>`
       : "";
-    const excludedCount = all.filter((c) => c.excluded).length;
-    // The primary action. Reading 200 cards and clicking Approve on each is not a review, it is
-    // data entry: the useful flow is to read through, exclude or fix the few that need it, and
-    // accept the rest in one go. The per-card button stays for the exceptions.
+
     const toolbar = canEdit
-      ? `<div class="add-tools"><button type="button" class="approve-all">Approve all ${pending.length} remaining</button><span class="approve-all-msg"></span>` +
+      ? `<div class="add-tools">` +
+        (atContent.length
+          ? `<button type="button" class="approve-all">Approve all ${atContent.length} on content</button><span class="approve-all-msg"></span>`
+          : "") +
         (excludedCount
           ? `<label class="show-excl"><input type="checkbox" id="show-excluded"> Show ${excludedCount} excluded</label>`
           : "") +
@@ -695,7 +714,7 @@ ${sectionHtml}
         backHref: "/",
         deliver: editable,
         extraHtml:
-          audioNote +
+          clipNote +
           (batch == null && batches.length > 1
             ? `\n<p class="lede">Batches here: ${batches.map((b) => `<a href="/additions/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(b)}">${escapeHtml(b)}</a>`).join(", ")}</p>`
             : ""),
@@ -704,10 +723,24 @@ ${sectionHtml}
         ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="1" hidden></div>`
         : "") +
       toolbar +
-      sectionHtml;
+      group(
+        "Content review",
+        "The first gate: English, target and pronunciation, on the cards this retrofit added. Approving one does not ship it — its audio is checked next.",
+        contentSections,
+        "grp-review",
+      ) +
+      group(
+        "Audio review",
+        "The second gate: every approved card's clip. A card ships once this is signed off.",
+        audioSections,
+        "grp-built",
+      );
 
     const scripts = [];
-    if (canEdit) scripts.push(DASH_PRELUDE_SCRIPT, REVIEW_EDIT_SCRIPT, APPROVE_ADDITION_SCRIPT);
+    if (canEdit) {
+      scripts.push(DASH_PRELUDE_SCRIPT, REVIEW_EDIT_SCRIPT, APPROVE_ADDITION_SCRIPT);
+      if (audioSections.length) scripts.push(DECK_EDIT_SCRIPT, AUDIO_TRIM_SCRIPT);
+    }
     scripts.push(STICKY_HEADER_SCRIPT);
     if (editable) scripts.push(DELIVER_SCRIPT);
     return page(title, body, scripts.join("\n"));

@@ -23,16 +23,31 @@ export function shippableCards(cards) {
  * unit keeps its sign-off, and only the additions are held back.
  *
  * `addition` names the batch that added the card and is never cleared, so "which retrofit added
- * this?" stays answerable for the life of the deck. `additionReviewed` is the sign-off. A card with
- * no `addition` at all is not an addition, which is why every deck built before this existed is
- * unaffected.
+ * this?" stays answerable for the life of the deck. A card with no `addition` at all is not an
+ * addition, which is why every deck built before this existed is unaffected.
+ *
+ * TWO sign-offs, not one, mirroring the two gates a lesson passes: `additionReviewed` is the corpus
+ * gate (the English, target and pronunciation are right) and `additionDone` is the audio gate (the
+ * clip is right). A card ships only when it has both. One flag was enough while the first batch
+ * happened to arrive with audio already generated, and would have been wrong for every batch after
+ * it: the normal case is a PDF of class notes, where a card is authored with no clip at all and the
+ * audio has to be generated between the two gates.
  *
  * Held back HERE rather than at either delivery path, for the same reason `excluded` is: this is the
  * one function the `.apkg` builder and the AnkiConnect deliverer both call, so they cannot disagree
  * about what ships.
  */
 export function isPendingAddition(item) {
-  return typeof item?.addition === "string" && item.additionReviewed !== true;
+  if (typeof item?.addition !== "string") return false;
+  return item.additionReviewed !== true || item.additionDone !== true;
+}
+
+/** Which of the two addition gates a card is waiting at, or null when it is not an addition. */
+export function additionStage(item) {
+  if (typeof item?.addition !== "string") return null;
+  if (item.additionReviewed !== true) return "corpus";
+  if (item.additionDone !== true) return "audio";
+  return null;
 }
 
 /**

@@ -577,6 +577,31 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
     });
   });
 
+  // The second gate. Same shape as approve, different endpoint and different meaning: this one is
+  // what actually lets the card ship, so it is the last thing that happens to it.
+  function markDone(tr) {
+    var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
+    return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/addition/done", { method: "POST" })
+      .then(jsonp).then(function (x) {
+        if (!x.ok) throw new Error(x.j.error || "failed");
+        var btn = tr.querySelector("button.addition-done");
+        if (btn) btn.outerHTML = '<span class="tick" title="Signed off — this card ships">✓</span>';
+        A.rowMsg(tr, "");
+        return true;
+      });
+  }
+
+  document.querySelectorAll("button.addition-done").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var tr = btn.closest("tr");
+      btn.disabled = true;
+      markDone(tr).then(A.maybeRebuild).catch(function (e) {
+        btn.disabled = false;
+        A.rowMsg(tr, e.message || "failed");
+      });
+    });
+  });
+
   // The primary action. Reading a couple of hundred cards and clicking Approve on each is data
   // entry, not review: the useful flow is to exclude or fix the few that need it and accept the
   // rest together. Confirmed, because it is the one control here that cannot be undone in one click.

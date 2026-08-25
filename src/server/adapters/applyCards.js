@@ -148,6 +148,35 @@ export function approveAddition(runDir, cardId, { validateCards = defaultValidat
   return { approved: true, alreadyApproved: false };
 }
 
+// Sign off a retrofitted card's AUDIO, the second of its two gates. The card ships after this.
+//
+// Refuses a card whose content has not been approved yet, the same way `setLessonDone` refuses a
+// lesson that never passed its corpus review: the gates are ordered, and a clip auditioned against
+// text nobody has checked proves nothing. Refuses a card with no clip for the more obvious reason.
+export function markAdditionDone(runDir, cardId, { validateCards = defaultValidateCards } = {}) {
+  const { cardsPath, data } = loadCards(runDir);
+  const item = findItem(data, cardId);
+  if (typeof item.addition !== "string") {
+    throw httpError(409, `${cardId} is not a retrofitted card, so it has no audio gate`);
+  }
+  if (item.additionReviewed !== true) {
+    throw httpError(
+      409,
+      `${cardId} has not passed its content review yet — approve the card before signing off its audio`,
+    );
+  }
+  if (!item.audio) {
+    throw httpError(
+      422,
+      `${cardId} has no clip yet — run "anki-builder audio --run ${runDir}" before signing off its audio`,
+    );
+  }
+  if (item.additionDone === true) return { done: true, alreadyDone: true };
+  item.additionDone = true;
+  persist(cardsPath, data, validateCards);
+  return { done: true, alreadyDone: false };
+}
+
 // Set/clear the lesson's final "done" sign-off (cards.meta.done) — the audio-review "Mark done".
 // Only `done` lessons are merged into the book/course deck. The clearing form has no UI (done
 // lessons stay editable); it exists as the programmatic escape hatch, and deleting the key rather

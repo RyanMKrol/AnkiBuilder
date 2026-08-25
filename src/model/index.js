@@ -261,6 +261,7 @@ const CARDS_SCHEMA = {
           // it is the durable record of which batch a card arrived in.
           addition: { type: "string" },
           additionReviewed: { type: "boolean" },
+          additionDone: { type: "boolean" },
           // Which card DIRECTIONS this note should not be studied in, as template ordinals
           // (0 = Recognition, 1 = Production — see src/deck/cardTemplates.js, where the order is a
           // contract). `[1]` on a three-clause self-introduction means "study it Recognition-only".

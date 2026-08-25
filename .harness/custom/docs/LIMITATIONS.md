@@ -3407,3 +3407,23 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   `anki-delivered.json`, with 211 pending additions held back
 - **Status:** resolved (2026-08-25)
 - **When to revisit:** never; the script is spent.
+
+## An addition passes TWO gates, because one was only ever right for the first batch
+
+- **What:** a retrofitted card ships only with both `additionReviewed` (content) and `additionDone`
+  (audio), mirroring a lesson's `reviewed` and `done`. It started as a single flag.
+- **Why the single flag was wrong:** the first batch happened to be a migration, so its 133 cards
+  arrived with clips already generated and "approve" could mean both "the text is right" and "ready
+  to ship" at once. That is the exception, not the rule. The normal case is a PDF of class notes,
+  where a card is authored with no clip at all and audio has to be generated BETWEEN the two
+  sign-offs: content first so nothing spends TTS credits on a card that might be cut, audio second so
+  no clip reaches a studied deck unheard.
+- **Impact:** two flags per retrofitted card rather than one, and the additions page renders two
+  groups instead of one. Both reuse the corpus and audio `STAGE_TABLES` entries, so the surface is
+  the existing review filtered to a batch rather than a second implementation of it. The cost is that
+  `isPendingAddition` is now a two-condition predicate, and anything reading it has to mean
+  "not through BOTH" rather than "not approved".
+- **Verified by:** `node --test test/deck/shippableCards.test.js test/server/additions.test.js`
+- **Status:** open, and expected to stay open
+- **When to revisit:** if a batch ever legitimately arrives fully voiced, the audio gate is still
+  worth passing: a clip that was right in its old deck is worth hearing once in its new context.

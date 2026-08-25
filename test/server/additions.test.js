@@ -75,8 +75,9 @@ function fixture() {
           category: "Work & Occupations",
           addition: "notes-2026-08",
           additionReviewed: true,
-          // Approved, so it ships, so it needs a clip: assertEveryCardHasAudio refuses a silent
-          // shipping card. The pending one above deliberately has none, which is the normal state
+          additionDone: true,
+          // Through both gates, so it ships, so it needs a clip: assertEveryCardHasAudio refuses a
+          // silent shipping card. The card above deliberately has none, which is the normal state
           // before the audio stage runs.
           audio: "b.mp3",
         },
@@ -110,12 +111,12 @@ test("the additions page lists the retrofit and names the deck each card is goin
   try {
     await withServer(root, async (url) => {
       const html = await (await fetch(`${url}/additions/book/mybook`)).text();
-      assert.match(html, /gym/, "a pending addition is listed");
-      assert.match(html, /office/, "an approved addition is listed too, so it can be re-judged");
+      assert.match(html, /gym/, "a card at the content gate is listed");
+      assert.match(html, /Content review/, "the two gates are shown separately");
       assert.ok(!/one<\/td>/.test(html), "an ordinary card of the same unit is NOT listed");
       // The question this review exists to answer.
       assert.match(html, /My Book › Lesson 01 › Meeting/, "the destination Anki deck is named");
-      assert.match(html, /1<\/b> card waiting/, "the lede counts only what is pending");
+      assert.match(html, /<b>1<\/b> waiting on content/, "the lede counts each gate separately");
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -129,11 +130,10 @@ test("the page says approving is the content gate, not a delivery, and names the
       const html = await (await fetch(`${url}/additions/book/mybook`)).text();
       // The confirm used to say "they start shipping", which reads as a delivery. Approving is the
       // content sign-off; it is what unlocks the audio stage.
-      assert.match(html, /CONTENT.*sign-off|content.*sign-off/i);
+      assert.match(html, /passed BOTH/, "a card ships only after both gates");
       assert.match(html, /nothing reaches Anki until you click/i);
-      // A page full of clipless cards is the expected state here, so it says so.
-      assert.match(html, /have no clip yet, which is normal at this/);
-      assert.match(html, /data-needs-audio="1"/, "rows missing a clip are marked for the count");
+      assert.match(html, /Content review/);
+      assert.match(html, /Audio review|waiting on audio/);
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -157,6 +157,10 @@ test("approving a card clears the gate on disk and leaves the unit's own sign-of
 
         const after = readCards(book);
         assert.equal(after.items.find((i) => i.id === "new-pending").additionReviewed, true);
+        assert.ok(
+          !after.items.find((i) => i.id === "new-pending").additionDone,
+          "content approval alone does not clear the audio gate",
+        );
         // The point of the whole design.
         assert.equal(after.meta.reviewed, before.reviewed, "unit stays reviewed");
         assert.equal(after.meta.done, before.done, "unit stays done");
@@ -268,9 +272,65 @@ test("an excluded pending card offers no Approve, so bulk approve cannot overrid
         !/<button[^>]*class="approve-btn"/.test(html),
         "no Approve button once the only pending card is excluded",
       );
-      assert.match(html, /Approve all 0 remaining/, "the count excludes it too");
-      assert.match(html, /Show 1 excluded/, "and it is behind the toggle");
+      assert.match(html, /Show 1 excluded/, "it is behind the toggle");
     });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("the audio gate refuses an unapproved card, and one with no clip", async () => {
+  const { root, book } = fixture();
+  try {
+    await withServer(root, async (url) => {
+      const done = (id) =>
+        fetch(`${url}/api/deck/book/mybook/unit/0/card/${id}/addition/done`, { method: "POST" });
+
+      // Ordered gates: a clip auditioned against text nobody has checked proves nothing.
+      const early = await asJson(await done("new-pending"));
+      assert.equal(early.status, 409);
+      assert.match(early.body.error, /has not passed its content review/);
+
+      // Approve the content, but it still has no clip.
+      await fetch(`${url}/api/deck/book/mybook/unit/0/card/new-pending/addition/approve`, {
+        method: "POST",
+      });
+      const silent = await asJson(await done("new-pending"));
+      assert.equal(silent.status, 422);
+      assert.match(silent.body.error, /no clip yet/);
+
+      assert.ok(
+        !JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8")).items.find(
+          (i) => i.id === "new-pending",
+        ).additionDone,
+        "neither refusal wrote the flag",
+      );
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a card ships only once BOTH gates are signed off", () => {
+  const { root, book } = fixture();
+  try {
+    const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+    const card = cards.items.find((i) => i.id === "new-pending");
+    card.audio = "a.mp3";
+
+    const count = () => {
+      writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+      return buildBookDeck([{ name: "Lesson 1: Meeting", cards }], {
+        bookName: "My Book",
+        outPath: join(root, "out.apkg"),
+      }).noteCount;
+    };
+
+    assert.equal(count(), 2, "at the content gate: does not ship");
+    card.additionReviewed = true;
+    assert.equal(count(), 2, "content approved but audio not signed off: still does not ship");
+    card.additionDone = true;
+    assert.equal(count(), 3, "through both gates: ships");
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

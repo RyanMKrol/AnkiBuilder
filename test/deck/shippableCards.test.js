@@ -1,23 +1,35 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { shippableCards, isPendingAddition } from "../../src/deck/shippableCards.js";
+import { shippableCards, isPendingAddition, additionStage } from "../../src/deck/shippableCards.js";
 
 // The per-card gate for retrofitted cards. These tests are about ONE property: a card that has not
 // been through the additions review cannot reach either delivery path, and the reason it cannot is
 // that both paths funnel through this function.
 
-test("a pending addition does not ship, and an approved one does", () => {
+test("an addition ships only after BOTH gates, mirroring a lesson's two", () => {
   const cards = {
     items: [
       { id: "plain" },
       { id: "excluded", excluded: true },
-      { id: "pending", addition: "batch-1" },
-      { id: "approved", addition: "batch-1", additionReviewed: true },
+      { id: "at-content", addition: "batch-1" },
+      { id: "at-audio", addition: "batch-1", additionReviewed: true },
+      { id: "through", addition: "batch-1", additionReviewed: true, additionDone: true },
     ],
   };
   assert.deepEqual(
     shippableCards(cards).map((c) => c.id),
-    ["plain", "approved"],
+    ["plain", "through"],
+  );
+});
+
+test("additionStage names the gate a card is waiting at", () => {
+  assert.equal(additionStage({}), null, "not an addition");
+  assert.equal(additionStage({ addition: "b" }), "corpus");
+  assert.equal(additionStage({ addition: "b", additionReviewed: true }), "audio");
+  assert.equal(
+    additionStage({ addition: "b", additionReviewed: true, additionDone: true }),
+    null,
+    "through both gates",
   );
 });
 
@@ -30,13 +42,15 @@ test("a card with no `addition` is not an addition, so old decks are untouched",
   assert.equal(isPendingAddition(null), false);
 });
 
-test("only `additionReviewed === true` clears the gate", () => {
-  // Anything truthy-but-not-true would let a half-written value ship a card nobody approved.
+test("only the literal `true` clears either gate", () => {
+  // Anything truthy-but-not-true would let a half-written value ship a card nobody signed off.
+  const through = { addition: "b", additionReviewed: true, additionDone: true };
   assert.equal(isPendingAddition({ addition: "b" }), true);
-  assert.equal(isPendingAddition({ addition: "b", additionReviewed: false }), true);
-  assert.equal(isPendingAddition({ addition: "b", additionReviewed: "yes" }), true);
-  assert.equal(isPendingAddition({ addition: "b", additionReviewed: 1 }), true);
-  assert.equal(isPendingAddition({ addition: "b", additionReviewed: true }), false);
+  assert.equal(isPendingAddition({ ...through, additionReviewed: "yes" }), true);
+  assert.equal(isPendingAddition({ ...through, additionReviewed: 1 }), true);
+  assert.equal(isPendingAddition({ ...through, additionDone: "yes" }), true);
+  assert.equal(isPendingAddition({ ...through, additionDone: false }), true);
+  assert.equal(isPendingAddition(through), false);
 });
 
 test("an addition id must be a string to count as one", () => {

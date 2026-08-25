@@ -102,9 +102,14 @@ reason.
 
 ## 5. Hand over the ADDITIONS review
 
-Not the corpus gate. The whole point of the additions review is that the destination units keep their
-sign-off: `/additions/<type>/<id>` shows the batch's cards grouped by destination deck, and nothing
-else. Approving is per card.
+Not the destination units' own gates. The whole point is that they keep their sign-off:
+`/additions/<type>/<id>` shows the batch's cards grouped by destination deck, and nothing else.
+
+It has the SAME two gates a lesson has, per card rather than per unit: **Approve** signs off the
+content, then audio is generated, then **Mark ready** signs off the clip. A card ships only with
+both. That ordering is not ceremony: the content gate is what stops TTS credits being spent on a
+card that might be cut, and the audio gate is what stops a silent or mis-generated clip reaching a
+deck unheard.
 
 **Never clear `done` on a destination unit to get cards reviewed.** That was the only way before the
 gate existed, and it puts hundreds of approved cards back in front of a reviewer to approve a dozen
@@ -114,10 +119,14 @@ The dashboard's home page lists pending batches, so the work is findable.
 
 ## 6. Audio, then cross-check
 
-An approved addition has no clip. The destination unit is still `reviewed: true`, so
-`anki-builder audio --run <unit>` works untouched and regenerates only cards whose clip is missing or
-stale, costing exactly the new cards. Moved cards bring their existing clips with them and need
-nothing.
+A content-approved addition has no clip, and it CANNOT ship without one: `assertEveryCardHasAudio`
+refuses a build or a deliver holding a silent shipping card, and preflight's `audio-files` check
+catches the sneakier case where a clip is named but missing from disk.
+
+The destination unit is still `reviewed: true`, so `anki-builder audio --run <unit>` works untouched
+and regenerates only cards whose clip is missing or stale, costing exactly the new cards. Moved cards
+bring their existing clips and need nothing, but they still pass the audio gate: a clip that was
+right in its old deck is worth hearing once in its new context.
 
 Then **cross-check, because every failure in this kind of work is silent.** A card the drill miner
 deleted, a routing row that drifted from the card file, a duplicate whose twin had gone missing, a

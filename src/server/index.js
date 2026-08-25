@@ -25,6 +25,7 @@ import {
   setLessonDone,
   markCardsReviewed,
   approveAddition,
+  markAdditionDone,
   unmarkCardsReviewed,
 } from "./adapters/applyCards.js";
 import {
@@ -287,6 +288,13 @@ export function createDeckServer({
     sendJson(res, approveAddition(runDir, cardId));
   }
 
+  function handleAdditionDone(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    sendJson(res, markAdditionDone(runDir, cardId));
+  }
+
   function handleCardsUnreviewed(res, type, id, unit) {
     const runDir = safeUnitDir(type, id, unit);
     if (!runDir) return notFound(res);
@@ -517,6 +525,10 @@ export function createDeckServer({
       }
       if (seg[8] === "review" && seg[9] === "exclude" && seg.length === 10) {
         await handleReviewExclude(req, res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "addition" && seg[9] === "done" && seg.length === 10) {
+        handleAdditionDone(res, type, id, unit, cardId);
         return true;
       }
       if (seg[8] === "addition" && seg[9] === "approve" && seg.length === 10) {

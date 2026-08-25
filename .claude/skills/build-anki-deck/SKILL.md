@@ -61,9 +61,18 @@ That's the whole state space **for a lesson**. A lesson is either mid-build (the
 
 **There is a third review, and it is not a lesson state.** The **Additions** review
 (`/additions/<type>/<id>`) covers cards RETROFITTED into a lesson that is already finished, which
-happens whenever class notes arrive for material the deck taught chapters ago. Its gate is per CARD,
-not per lesson: a retrofitted card carries an `addition` batch and does not ship until it carries
-`additionReviewed`, while the lesson it landed in keeps its own two sign-offs untouched.
+happens whenever class notes arrive for material the deck taught chapters ago. Its gates are per
+CARD, not per lesson, and there are TWO of them, the same pair a lesson passes:
+
+| Gate | What you check | Sign-off | Field |
+| --- | --- | --- | --- |
+| **Additions, content** | English + target + pronunciation | **Approve** | `additionReviewed` |
+| **Additions, audio** | the card's clip | **Mark ready** | `additionDone` |
+
+A retrofitted card carries an `addition` batch and ships only once it has BOTH, while the lesson it
+landed in keeps its own sign-offs untouched. Audio is generated between the two, exactly as it is
+between gate 1 and gate 2, which is why the content gate comes first: nothing spends TTS credits on
+a card that might be cut.
 
 That distinction is the whole point. Approving a dozen new cards through the lesson's own corpus gate
 would mean clearing `done`, withdrawing the sign-off, and re-reading every card in the unit; doing

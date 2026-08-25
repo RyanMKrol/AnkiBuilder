@@ -117,7 +117,11 @@ export function decorateUnit(runDir, data, { includeCards = true } = {}) {
     // Retrofitted cards still waiting on the additions review, and the batches they came in.
     // Counted here rather than from `cards` because the home page loads units WITHOUT cards, and
     // this function has already read the items for the readiness check, so it costs no extra IO.
-    pendingAdditions: (data.items || []).filter(isPendingAddition).length,
+    //
+    // An EXCLUDED pending card is not counted: it has already been decided, it cannot ship whatever
+    // happens at the gate, and counting it would advertise work that does not exist. It is still
+    // rendered on the page, struck through, the way the corpus review shows an excluded card.
+    pendingAdditions: (data.items || []).filter((i) => !i.excluded && isPendingAddition(i)).length,
     additionBatches: [
       ...new Set((data.items || []).map((i) => i.addition).filter((b) => typeof b === "string")),
     ].sort(),

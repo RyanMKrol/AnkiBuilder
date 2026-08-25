@@ -26,7 +26,9 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -46,7 +48,8 @@
         "end": 0.8776224315068493
       },
       "audioTextHash": "4a7109c193e0f1ba",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-smith-teacher-q",
@@ -61,7 +64,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [name]さんは[occupation]ですか — Source already teaches this frame (w2-chan-uketsuke-q) and fib-hoffman-engineer-q covers it too; a third example is padding.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [name]さんは[occupation]ですか. Source already teaches this frame (w2-chan-uketsuke-q) and fib-hoffman-engineer-q covers it too; a third example is padding."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [name]さんは[occupation]ですか. Source already teaches this frame (w2-chan-uketsuke-q) and fib-hoffman-engineer-q covers it too; a third example is padding.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-chan-okuni-q",
@@ -124,7 +128,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [name]さん、おくにはどちらですか — Source already teaches this exact vocative frame twice (w2-hoffman-okuni-q, w2-chan-okuni-q), hitting the cap.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [name]さん、おくにはどちらですか. Source already teaches this exact vocative frame twice (w2-hoffman-okuni-q, w2-chan-okuni-q), hitting the cap."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [name]さん、おくにはどちらですか. Source already teaches this exact vocative frame twice (w2-hoffman-okuni-q, w2-chan-okuni-q), hitting the cap.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-12",
@@ -139,7 +144,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "83dc1b97ba5dc2d6",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-indo-desu",
@@ -170,7 +176,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [name]さんは[nationality]ですか — Source already drills this frame four times (w2-harris-australian-q, w2-raja-japanese-q, ex2b-smith-british-q, w2-hoffman-igirisujin-q); no room for a practice card.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [name]さんは[nationality]ですか. Source already drills this frame four times (w2-harris-australian-q, w2-raja-japanese-q, ex2b-smith-british-q, w2-hoffman-igirisujin-q); no room for a practice card."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [name]さんは[nationality]ですか. Source already drills this frame four times (w2-harris-australian-q, w2-raja-japanese-q, ex2b-smith-british-q, w2-hoffman-igirisujin-q); no room for a practice card.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "td-hai-sou-desu",
@@ -213,7 +220,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-28",
@@ -228,7 +236,8 @@
       "audioAuto": "ba4c009fa7dc69f3-gen-4a10aa97.standard.mp3",
       "audioFilter": "standard",
       "audioTextHash": "ba4c009fa7dc69f3",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "td-intro-smith",
@@ -288,7 +297,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "b17fe895b4d126b9",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-jack-okuni-a",
@@ -303,7 +313,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [country]です — Paired answer to fib-jack-okuni-q, and the bare-country-answer frame is already heavily covered by the source (igirisu, amerika, chuugoku, doitsu, indo, oosutoraria).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [country]です. Paired answer to fib-jack-okuni-q, and the bare-country-answer frame is already heavily covered by the source (igirisu, amerika, chuugoku, doitsu, indo, oosutoraria)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [country]です. Paired answer to fib-jack-okuni-q, and the bare-country-answer frame is already heavily covered by the source (igirisu, amerika, chuugoku, doitsu, indo, oosutoraria).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-iie-indian",
@@ -427,7 +438,8 @@
       "audioAuto": "ae97a3b63945d6cf-gen-b8366ff7.standard.mp3",
       "audioFilter": "standard",
       "audioTextHash": "ae97a3b63945d6cf",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-doitsu-desu",
@@ -474,7 +486,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "2d8dd3910e00a97a",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-igirisu-desu",
@@ -550,7 +563,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: いいえ、[nationality]です — Paired answer to fib-chan-korean-q, removed with its question.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: いいえ、[nationality]です. Paired answer to fib-chan-korean-q, removed with its question."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: いいえ、[nationality]です. Paired answer to fib-chan-korean-q, removed with its question.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-hai-australian",
@@ -662,7 +676,8 @@
       "audioAuto": "b782a5d6d656282e-gen-16b56187.standard.mp3",
       "audioFilter": "standard",
       "audioTextHash": "b782a5d6d656282e",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-okuni-dochira-bare",
@@ -736,7 +751,8 @@
       "audioFilter": "standard",
       "audio": "b427b4a3ffbcba68-genkanji-1f507d66.mp3",
       "audioTextHash": "b427b4a3ffbcba68",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-confirm-raja-daigaku",
@@ -774,7 +790,8 @@
         "end": 0.5721626712328767
       },
       "audioTextHash": "fb210db78ece569e",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "td-intro-tanaka-short",
@@ -879,7 +896,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "b0f9db12f4b87aea",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Chapter-0's set-phrase material; chapter-0 has no extras deck of its own"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Chapter-0's set-phrase material; chapter-0 has no extras deck of its own",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-21",
@@ -895,7 +913,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "07138a1174d1e9e3",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-uketsuke-o-onegaishimasu",
@@ -937,7 +956,8 @@
       "note": null,
       "scene": "answering whether Hoffman-san is an engineer",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-30",
@@ -952,7 +972,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "a6f547a22f5f42f3",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-34",
@@ -968,7 +989,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "52358021549802c7",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-17",
@@ -983,7 +1005,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "1e15760863dfd82d",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-raja-o-onegaishimasu",
@@ -994,7 +1017,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-chan-wa-uketsuke",
@@ -1020,7 +1044,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-27",
@@ -1038,7 +1063,8 @@
         "start": 0,
         "end": 2.413417255837079
       },
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "sp1-amerika-desu",
@@ -1144,7 +1170,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: いいえ、[occupation]です — Paired answer to fib-smith-teacher-q, removed with its question.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: いいえ、[occupation]です. Paired answer to fib-smith-teacher-q, removed with its question."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: いいえ、[occupation]です. Paired answer to fib-smith-teacher-q, removed with its question.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "irl-l1-10",
@@ -1159,7 +1186,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "cd3a34ef6bf90474",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
+      "addition": "nihongo-102-2026-08"
     }
   ]
 }

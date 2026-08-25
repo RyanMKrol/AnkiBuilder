@@ -26,7 +26,9 @@
       }
     },
     "enriched": true,
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -36,7 +38,8 @@
       "target": "ばんごはんをたべます",
       "pronunciation": "bangohan o tabemasu",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the bare を (o) plus たべます (tabemasu) frame on ばんごはん (bangohan), which this lesson teaches as a word."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the bare を (o) plus たべます (tabemasu) frame on ばんごはん (bangohan), which this lesson teaches as a word.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-doyoubi-shigoto-shimasu-ka",
@@ -123,7 +126,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "18878859f44670d3",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-kinou-benkyou-shimasendeshita",
@@ -181,7 +185,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [food]をたべました — Source already drills this exact frame twice (スミスさんはラーメンをたべました, ハンバーガーをたべました).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [food]をたべました. Source already drills this exact frame twice (スミスさんはラーメンをたべました, ハンバーガーをたべました)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [food]をたべました. Source already drills this exact frame twice (スミスさんはラーメンをたべました, ハンバーガーをたべました).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-nannin-desu-ka",
@@ -241,7 +246,8 @@
       "scene": "answering what you did last weekend",
       "note": "えいが (eiga) 'film' plus かん (kan), the suffix for a building.",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-ema-mo-ocha-nomimasu",
@@ -252,7 +258,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-nani-o-nomimasu-ka",
@@ -281,7 +288,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "be4a7cd4dfa51614",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-doyoubi-osushi-tabemasu",
@@ -377,7 +385,8 @@
       "pronunciation": "nichiyōbi kaji o shimasu",
       "scene": "answering what you do on Sundays",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-asagohan-tabemasen",
@@ -407,7 +416,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [drink]をのみました — Answer half of the pair with fib-nani-o-nomimashita-ka; removed together since that question is being cut for redundancy.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [drink]をのみました. Answer half of the pair with fib-nani-o-nomimashita-ka; removed together since that question is being cut for redundancy."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [drink]をのみました. Answer half of the pair with fib-nani-o-nomimashita-ka; removed together since that question is being cut for redundancy.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-benkyou-o-shimashita",
@@ -418,7 +428,8 @@
       "note": null,
       "scene": "answering what you did yesterday",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "f-mimasu-eiga-4",
@@ -443,7 +454,8 @@
       "note": null,
       "scene": "answering where you study",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex-suzuki-terebi-mimasu",
@@ -558,7 +570,8 @@
       "note": null,
       "scene": "answering where Smith-san eats dinner",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex-futari-desu",
@@ -618,7 +631,8 @@
       "pronunciation": "hanbāgā o tabemashita",
       "scene": "answering what you ate yesterday",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 2 answer."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2 answer.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p-suzuki-mo-kabuki-mimasu",
@@ -739,7 +753,8 @@
       "note": null,
       "scene": "answering what you did last weekend",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-suzuki-to-kaimono-shimashita",
@@ -809,7 +824,8 @@
       "note": null,
       "scene": "answering what you bought",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-iie-nomimasen",
@@ -833,7 +849,8 @@
       "target": "きのう、なにをたべましたか",
       "pronunciation": "kinō nani o tabemashita ka",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 2. Job: past-tense なにを (nani o) question, the form this lesson teaches."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2. Job: past-tense なにを (nani o) question, the form this lesson teaches.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v-kaisha-de-hirugohan",
@@ -903,7 +920,8 @@
       "target": "にちようび、なにをしますか",
       "pronunciation": "nichiyōbi nani o shimasu ka",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 5. Job: the present-tense なにを (nani o) question against the past-tense one above."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5. Job: the present-tense なにを (nani o) question against the past-tense one above.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p102-senshuumatsu-nani-o-shimashita-ka",
@@ -913,7 +931,8 @@
       "pronunciation": "senshūmatsu nani o shimashita ka",
       "note": "せんしゅう (senshū) 'last week' plus まつ (matsu) 'end'. The lesson's own しゅうまつ (shūmatsu) is the weekend without saying which one.",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p-depaato-de-kasa-kaimashita",
@@ -1137,7 +1156,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "f-mimasu-eiga-2",
@@ -1181,7 +1201,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: なにを[verb-past]か — The source already asks this 'what did you do' question four times (きのうなにをしましたか, なにをかいましたか, きのう、なにをたべましたか, せんしゅうまつ、なにをしましたか).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: なにを[verb-past]か. The source already asks this 'what did you do' question four times (きのうなにをしましたか, なにをかいましたか, きのう、なにをたべましたか, せんしゅうまつ、なにをしましたか)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: なにを[verb-past]か. The source already asks this 'what did you do' question four times (きのうなにをしましたか, なにをかいましたか, きのう、なにをたべましたか, せんしゅうまつ、なにをしましたか).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "td-nichiyoubi-kabuki-mimasu",
@@ -1239,7 +1260,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "070526f9dbd66e39",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "sp2-nani-o-kaimashita-ka",

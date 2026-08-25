@@ -26,7 +26,9 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -217,7 +219,8 @@
       },
       "audioTextHash": "adb93a9c6dc0d138",
       "hint": "the noun, a thing you drink",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\"."
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\".",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex9-doko-ni-denwa-o-shimasu-ka",
@@ -247,7 +250,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "2b2ba797907d3ecc",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: yasai is taught in Lesson 9"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: yasai is taught in Lesson 9",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "f9-zenzen-toshokan-ni-ikimasen",
@@ -363,7 +367,8 @@
       "target": "きょう、どうやってここにきましたか",
       "pronunciation": "kyō dō yatte koko ni kimashita ka",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 6. Job: どうやって (dō yatte) in the past, on this lesson's ここ (koko)."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 6. Job: どうやって (dō yatte) in the past, on this lesson's ここ (koko).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "f9-amari-toshokan-ni-ikimasen",
@@ -417,7 +422,8 @@
       "target": "まいにち、なんじにおきますか",
       "pronunciation": "mainichi nan-ji ni okimasu ka",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 1. Job: this lesson's まいにち (mainichi) with a habitual verb, plus the に (ni) that marks a clock time."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 1. Job: this lesson's まいにち (mainichi) with a habitual verb, plus the に (ni) that marks a clock time.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v9-kanai-wa-kaimono",
@@ -464,7 +470,8 @@
       "pronunciation": "jūni-ji ni nemashita",
       "scene": "answering what time you went to bed",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 7 answer. Job: the second of the two sentences ねました (nemashita) appears in."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 7 answer. Job: the second of the two sentences ねました (nemashita) appears in.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v9-shujin-wa-nyusu",
@@ -535,7 +542,8 @@
       "pronunciation": "eigo",
       "note": "Irregular against the pattern: it is えいご (eigo), not イギリスご (igirisugo), even though the country is イギリス (igirisu).",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the exception to the ご (go) suffix pattern, which is where a learner silently goes wrong."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the exception to the ご (go) suffix pattern, which is where a learner silently goes wrong.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-kinou-kaisha-de-meru-o-okurimashita",
@@ -893,7 +901,8 @@
       "pronunciation": "watashi wa hachi-ji ni okimasu",
       "scene": "answering what time you get up",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 1 answer. Job: the second of the two sentences おきます (okimasu) appears in."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 1 answer. Job: the second of the two sentences おきます (okimasu) appears in.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p9-kaigi-no-basho-o-kikimashita",
@@ -916,7 +925,8 @@
       "target": "にほんごをべんきょうします",
       "pronunciation": "nihongo o benkyō shimasu",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the only sentence にほんご (nihongo), taught bare in this lesson, appears in."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the only sentence にほんご (nihongo), taught bare in this lesson, appears in.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex9-suzuki-sama-desu-ne",
@@ -966,7 +976,8 @@
       "pronunciation": "sakuban nan-ji ni nemashita ka",
       "note": "さくばん (sakuban) is last night. きのうのよる (kinō no yoru) says the same thing more plainly.",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 7. Job: the past of the なんじに (nan-ji ni) time question, against the present-tense one above."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 7. Job: the past of the なんじに (nan-ji ni) time question, against the present-tense one above.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-gakko-de-nihongo-o-oshiemasu",
@@ -1006,7 +1017,8 @@
       "pronunciation": "itariago",
       "note": "The ご (go) suffix turns a country into its language, the same way にほん (nihon) becomes にほんご (nihongo).",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: shows ご (go) is a productive suffix, not part of the fixed word にほんご (nihongo)."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: shows ご (go) is a productive suffix, not part of the fixed word にほんご (nihongo).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-uchi-de-tabemasu",
@@ -1088,7 +1100,8 @@
       "pronunciation": "maishū getsuyōbi",
       "note": "まいしゅう (maishū) 'every week' in front of a day names that day every week.",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: combines this lesson's まいしゅう (maishū) with a weekday from Lesson 7."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: combines this lesson's まいしゅう (maishū) with a weekday from Lesson 7.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v9-shacho-wa-sapporo-shisha",
@@ -1125,7 +1138,8 @@
       "pronunciation": "densha de koko ni kimashita",
       "scene": "answering how you got here today",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 6 answer. Job: the で (de) of means answering a どうやって (dō yatte) question in the past."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 6 answer. Job: the で (de) of means answering a どうやって (dō yatte) question in the past.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v9-maiasa-yasai-jusu",
@@ -1179,7 +1193,8 @@
       "pronunciation": "osusume no mise",
       "note": "おすすめ (osusume) from this lesson, joined to みせ (mise) with の (no).",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts this lesson's おすすめ (osusume) into a phrase rather than leaving it a bare noun."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts this lesson's おすすめ (osusume) into a phrase rather than leaving it a bare noun.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v9-roma-wa-ima-gozen-shichiji",

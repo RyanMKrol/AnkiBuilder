@@ -23,7 +23,9 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -38,7 +40,8 @@
       "audioFilter": "standard",
       "audioTextHash": "c19df5d4f22d4a90",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 7 asks dou yatte ikimasu ka about transport",
-      "note": "Interchangeable with なんで (nande) from this lesson for asking how someone travels; どうやって (dō yatte) is the everyday choice, while なんで (nande) risks being heard as \"why\" in casual speech."
+      "note": "Interchangeable with なんで (nande) from this lesson for asking how someone travels; どうやって (dō yatte) is the everyday choice, while なんで (nande) risks being heard as \"why\" in casual speech.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-ema-2022nen-kimashita",
@@ -133,7 +136,8 @@
       "note": null,
       "scene": "answering whether you're going to Tokyo Hotel by taxi",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "kinyoubi-ni-tokyo-kaerimasu",
@@ -173,7 +177,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-mikka-desu",
@@ -244,7 +249,8 @@
       "note": null,
       "scene": "answering how Tanaka-san is going to the meeting",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-ropesu-raigetsu-youka-a",
@@ -255,7 +261,8 @@
       "note": null,
       "scene": "answering whether Lopez-san is coming next month, on the 8th",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-ropesu-raigetsu-youka-q",
@@ -266,7 +273,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p102-basu-de-shigoto-ni-ikimasu",
@@ -276,7 +284,8 @@
       "pronunciation": "basu de shigoto ni ikimasu",
       "scene": "answering how you get to work",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 3 answer. Job: contrasts the で (de) of means against the あるいて (aruite) answer above."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 3 answer. Job: contrasts the で (de) of means against the あるいて (aruite) answer above.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "kaigi-wa-itsu-desu-ka",
@@ -312,7 +321,8 @@
       "note": null,
       "scene": "answering whether Emma-san is also going to Ginza by subway",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-shucchou-itsukara-a",
@@ -327,7 +337,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [event/day range]から[day]までです — The から...までです date-range frame is already taught four times by the source (natsuyasumi, futsuka-nanoka, getsuyoubi-mokuyoubi, omatsuri); this only swaps in a new noun.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [event/day range]から[day]までです. The から...までです date-range frame is already taught four times by the source (natsuyasumi, futsuka-nanoka, getsuyoubi-mokuyoubi, omatsuri); this only swaps in a new noun."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [event/day range]から[day]までです. The から...までです date-range frame is already taught four times by the source (natsuyasumi, futsuka-nanoka, getsuyoubi-mokuyoubi, omatsuri); this only swaps in a new noun.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "omatsuri-wa-nangatsu-desu-ka",
@@ -394,7 +405,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: どうやって[place]にいきますか — Source already drills this frame twice (jimu, shigoto); a third example is padding.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: どうやって[place]にいきますか. Source already drills this frame twice (jimu, shigoto); a third example is padding."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: どうやって[place]にいきますか. Source already drills this frame twice (jimu, shigoto); a third example is padding.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-kaigi-wa-youka-desu-ne",
@@ -529,7 +541,8 @@
       "pronunciation": "jimu ni aruite ikimasu",
       "scene": "answering how you get to the gym",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu",
@@ -571,7 +584,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "raigetsu-no-youka-desu",
@@ -633,7 +647,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [transport]で[place]にいきます — Answer half of the removed どうやって pair, and the transport-place-いきます frame is already well covered by source cards (jitensha-eki, shinkansen).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [transport]で[place]にいきます. Answer half of the removed どうやって pair, and the transport-place-いきます frame is already well covered by source cards (jitensha-eki, shinkansen)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [transport]で[place]にいきます. Answer half of the removed どうやって pair, and the transport-place-いきます frame is already well covered by source cards (jitensha-eki, shinkansen).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "smith-ototoi-basu-de-depaato",
@@ -737,7 +752,8 @@
       "pronunciation": "dō yatte jimu ni ikimasu ka",
       "note": "どうやって (dō yatte) asks by what means, like なんで (nande) in this lesson. どうやって (dō yatte) is the more everyday of the two.",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-getsuyoubi-kara-mokuyoubi-made",
@@ -761,7 +777,8 @@
       "target": "どうやってしごとにいきますか",
       "pronunciation": "dō yatte shigoto ni ikimasu ka",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase."
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
@@ -802,7 +819,8 @@
       "hint": "the 〜で (de) variant, not the usual form",
       "note": "A variant of あるいて (aruite). Both mean going on foot, and あるいて (aruite) is the one you will hear.",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu-ka",
@@ -933,7 +951,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "smith-getsuyoubi-takushii-hoteru",

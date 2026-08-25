@@ -28,6 +28,7 @@ const SPENT = [
   "absorb-nihongo.mjs",
   "migrate-nihongo-absorption.mjs",
   "retire-nihongo-course.mjs",
+  "migrate-absorption-to-additions.mjs",
 ];
 
 const STANDING = [

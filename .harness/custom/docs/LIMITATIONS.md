@@ -3352,3 +3352,58 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** if a second migration relocates cards. The durable fix would be for the miner
   to report what it dropped as an exclusion with provenance rather than deleting outright, so a
   silent removal becomes a visible one.
+
+## The additions gate is per CARD, which no other review state is
+
+- **What:** a card retrofitted into a finished unit carries `addition: "<batch>"` and does not ship
+  until it carries `additionReviewed: true`. Enforced by one predicate in `shippableCards()`, which is
+  the single function both delivery paths call. Reviewed at `/additions/<type>/<id>`, the third review
+  type, added 2026-08-25.
+- **Why:** class notes keep arriving for material a deck taught chapters ago, so cards land in units
+  that were signed off months before. The only mechanism that existed was to clear `done` on the unit
+  and withdraw its corpus sign-off, which puts hundreds of approved cards back in front of a reviewer
+  in order to approve about a dozen. Doing that by hand across fifteen units is what caused this to be
+  built.
+- **Impact:** every other review state in this project is per unit, and this one is not, so anything
+  that reasons about "what is waiting for review" now has two shapes to handle. The dashboard's home
+  page treats them separately on purpose. A pending card is also invisible to the deck while being
+  fully visible to every audit, which is the intended asymmetry but is worth knowing before reading a
+  count from one and comparing it against the other.
+- **Verified by:** `node --test test/deck/shippableCards.test.js test/server/additions.test.js`
+- **Status:** open, and expected to stay open
+- **When to revisit:** if a retrofit ever targets a BASE unit rather than an extras unit. Approving an
+  addition does not re-save the unit's reviewed corpus into the backward-dedup library, which
+  `markCardsReviewed` does; extras units are exempt from that library anyway, so the gap is latent
+  today and becomes real the first time a base unit is retrofitted.
+
+## An excluded pending addition is shown but not counted
+
+- **What:** the additions review renders an excluded pending card struck through, the way the corpus
+  review does, but does not count it in "N cards waiting" or in the home page's pending badge.
+- **Why:** it has already been decided and cannot ship whatever happens at the gate, so counting it
+  advertises work that does not exist. On the first real batch, 35 of 246 were in that state, so the
+  page would have claimed 246 outstanding when 211 were.
+- **Impact:** the number on the page is smaller than the number of rows on it, which reads as a bug
+  until you notice the struck-through rows. The alternative (hiding them) is worse: an exclusion made
+  by a script is exactly the kind a reviewer should be able to overturn.
+- **Verified by:** `node --test test/server/additions.test.js`
+- **Status:** resolved by choosing the smaller count (2026-08-25)
+- **When to revisit:** if the two numbers being different causes a real misreading, show both rather
+  than picking one.
+
+## The absorption predates the gate, so it was migrated onto it afterwards
+
+- **What:** the 2026-08-24 Nihongo absorption held its 246 cards back the only way available at the
+  time, by clearing `done` and withdrawing the corpus sign-off on fifteen finished units.
+  `scripts/migrate-absorption-to-additions.mjs` stamped those cards with their batch and restored
+  every unit's sign-off, so the units are finished again with pending additions attached.
+- **Why:** leaving it would have meant reviewing the first real batch through the mechanism the batch
+  itself proved was wrong.
+- **Impact:** the set of cards to stamp was derived from git (the ids each unit gained since the
+  commit before the merge) rather than from a marker, because no marker existed at the time. That is
+  sound for this one migration and is not a pattern to repeat: a future retrofit stamps `addition` as
+  it appends, so the set is recorded rather than reconstructed.
+- **Verified by:** the package note count returned to 2,159, exactly the delivered baseline in
+  `anki-delivered.json`, with 211 pending additions held back
+- **Status:** resolved (2026-08-25)
+- **When to revisit:** never; the script is spent.

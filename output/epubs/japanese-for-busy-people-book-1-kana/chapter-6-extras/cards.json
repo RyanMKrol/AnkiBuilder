@@ -23,7 +23,9 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -38,7 +40,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "bf673b2a6511ef44",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "kimasen",
@@ -123,7 +126,8 @@
       "pronunciation": "kaisha ni ikimasu",
       "note": "The first of four cards on one frame that change only the ending: いきます (ikimasu), いきました (ikimashita), いきません (ikimasen), いきませんでした (ikimasen deshita).",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 1 of the いきます paradigm the PDF prints as a table, delivered as a fixed frame so only the inflection varies."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 1 of the いきます paradigm the PDF prints as a table, delivered as a fixed frame so only the inflection varies.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p102-jimu-ni-ikimasu",
@@ -132,7 +136,8 @@
       "target": "ジムにいきます",
       "pronunciation": "jimu ni ikimasu",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts ジム (jimu), taught bare in Lesson 3, into a sentence using this lesson's に (ni) plus いきます (ikimasu)."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts ジム (jimu), taught bare in Lesson 3, into a sentence using this lesson's に (ni) plus いきます (ikimasu).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "form-kuukou-ikimashita",
@@ -199,7 +204,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: だれと [event] に いきますか — The source already teaches 'と いきます' four times (ex9-sasaki-san-to-ikimasu, td-kato-san-to-ikimasu, to-joushi-to-osaka-shisha-ni-ikimasu, vocab-kazoku-to-honkon-ni-ikimashita).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: だれと [event] に いきますか. The source already teaches 'と いきます' four times (ex9-sasaki-san-to-ikimasu, td-kato-san-to-ikimasu, to-joushi-to-osaka-shisha-ni-ikimasu, vocab-kazoku-to-honkon-ni-ikimashita)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: だれと [event] に いきますか. The source already teaches 'と いきます' four times (ex9-sasaki-san-to-ikimasu, td-kato-san-to-ikimasu, to-joushi-to-osaka-shisha-ni-ikimasu, vocab-kazoku-to-honkon-ni-ikimashita).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "td-kato-san-to-ikimasu",
@@ -229,7 +235,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: どのバスが [place] に いきますか — The source already gives two examples of this question (ga-dono-basu-ga-kuukou-ni-ikimasu-ka, sp2-dono-basu-ga-ikimasu-ka); a third only swaps the destination.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: どのバスが [place] に いきますか. The source already gives two examples of this question (ga-dono-basu-ga-kuukou-ni-ikimasu-ka, sp2-dono-basu-ga-ikimasu-ka); a third only swaps the destination."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: どのバスが [place] に いきますか. The source already gives two examples of this question (ga-dono-basu-ga-kuukou-ni-ikimasu-ka, sp2-dono-basu-ga-ikimasu-ka); a third only swaps the destination.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "form-tokyo-shisha-kimasen",
@@ -286,7 +293,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "a-iie-kimasen",
@@ -348,7 +356,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [people] と [place] から きました — Still the same over-taught 'から きました' frame the source already covers four times; the added と doesn't change what's being drilled.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [people] と [place] から きました. Still the same over-taught 'から きました' frame the source already covers four times; the added と doesn't change what's being drilled."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [people] と [place] から きました. Still the same over-taught 'から きました' frame the source already covers four times; the added と doesn't change what's being drilled.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "vocab-allen-ototoi-nihon-ni-kimashita",
@@ -714,7 +723,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [person] は [country] から きました — The source already drills 'から きました' four times (sp1-indo-kara-kimashita, kara-honkon-kara-kimashita, kara-emma-furansu-kara-kimashita, kara-doko-kara-kimashita-ka); this just swaps in another country.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person] は [country] から きました. The source already drills 'から きました' four times (sp1-indo-kara-kimashita, kara-honkon-kara-kimashita, kara-emma-furansu-kara-kimashita, kara-doko-kara-kimashita-ka); this just swaps in another country."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person] は [country] から きました. The source already drills 'から きました' four times (sp1-indo-kara-kimashita, kara-honkon-kara-kimashita, kara-emma-furansu-kara-kimashita, kara-doko-kara-kimashita-ka); this just swaps in another country.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "i-am-a-student",
@@ -729,7 +739,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "0843e848faa59d29",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ne-eki-wa-achira-desu-ne",
@@ -788,7 +799,8 @@
       "pronunciation": "kaisha ni ikimasen deshita",
       "note": "Past negative is built on いきません (ikimasen) plus でした (deshita), not on いきました (ikimashita).",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 4 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 4 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "vocab-kazoku-to-honkon-ni-ikimashita",
@@ -900,7 +912,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [person] と [event] に いきます — Same 'と いきます' frame the source already drills four times; only the companion noun changes.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person] と [event] に いきます. Same 'と いきます' frame the source already drills four times; only the companion noun changes."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person] と [event] に いきます. Same 'と いきます' frame the source already drills four times; only the companion noun changes.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "form-kuukou-ikimasen-deshita",
@@ -924,7 +937,8 @@
       "target": "かいしゃにいきません",
       "pronunciation": "kaisha ni ikimasen",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 3 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 3 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-iie-ikimasendeshita",
@@ -938,7 +952,8 @@
       "aiSuggested": true,
       "excluded": true,
       "excludedBy": "absorption-collision-audit",
-      "excludedReason": "Duplicate of chapter-6/fib-c6-embassy-past-neg-a, which ships the same target with the same meaning. Mined by prepare in the 2026-08-24 absorption run; the semantic de-dup could not see it because that pass only compares within one unit and the twin is in the base lesson. Keeping the earliest occurrence, as the duplicate check does."
+      "excludedReason": "Duplicate of chapter-6/fib-c6-embassy-past-neg-a, which ships the same target with the same meaning. Mined by prepare in the 2026-08-24 absorption run; the semantic de-dup could not see it because that pass only compares within one unit and the twin is in the base lesson. Keeping the earliest occurrence, as the duplicate check does.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "form-kuukou-ikimasu",
@@ -962,7 +977,8 @@
       "target": "かいしゃにいきました",
       "pronunciation": "kaisha ni ikimashita",
       "aiSuggested": true,
-      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 2 of the いきます paradigm. Added so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences."
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 2 of the いきます paradigm. Added so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "a-iie-kimasen-deshita",
@@ -988,7 +1004,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "form-kuukou-ikimasen",
@@ -1196,7 +1213,8 @@
       "scene": "answering which bus goes to Shibuya",
       "fillInBlank": true,
       "aiSuggested": true,
-      "ttsText": "さんばんのバスがいきます"
+      "ttsText": "さんばんのバスがいきます",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "hitori-de-ikimasu-ka",

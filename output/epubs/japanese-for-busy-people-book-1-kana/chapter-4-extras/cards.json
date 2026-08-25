@@ -23,7 +23,9 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -52,7 +54,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "36f92eec635dba61",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-rimokon-o-misete-kudasai",
@@ -67,7 +70,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [item]をみせてください — The source already teaches this frame four times (are/sore/eakon/tokei o misete kudasai).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]をみせてください. The source already teaches this frame four times (are/sore/eakon/tokei o misete kudasai)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]をみせてください. The source already teaches this frame four times (are/sore/eakon/tokei o misete kudasai).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "taburetto-wa-goman-en-desu",
@@ -156,7 +160,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [item]はいくらですか — The source already drills this frame at least seven times (kore/sore/are/denshi-renji/reizouko/terebi wa ikura desu ka), well past quota.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]はいくらですか. The source already drills this frame at least seven times (kore/sore/are/denshi-renji/reizouko/terebi wa ikura desu ka), well past quota."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]はいくらですか. The source already drills this frame at least seven times (kore/sore/are/denshi-renji/reizouko/terebi wa ikura desu ka), well past quota.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "reizouko-wa-kyuman-rokusen-en-desu",
@@ -266,7 +271,8 @@
         "end": 2.0427093321917806
       },
       "audioTextHash": "51035aba615583d1",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "iie-are-wa-gosen-en-ja-arimasen",
@@ -298,7 +304,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [subject]は[item]じゃありません。[item]です — The source already teaches this negation-then-correction frame twice (are wa sumaho ja arimasen / kore wa tosuta ja arimasen).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [subject]は[item]じゃありません。[item]です. The source already teaches this negation-then-correction frame twice (are wa sumaho ja arimasen / kore wa tosuta ja arimasen)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [subject]は[item]じゃありません。[item]です. The source already teaches this negation-then-correction frame twice (are wa sumaho ja arimasen / kore wa tosuta ja arimasen).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "sumimasen-sandoitchi-to-kohi",
@@ -369,7 +376,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [item]と[item]をおねがいします — The source already teaches this two-item frame twice (koucha to choko keki, sandoitchi to kohi).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]と[item]をおねがいします. The source already teaches this two-item frame twice (koucha to choko keki, sandoitchi to kohi)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]と[item]をおねがいします. The source already teaches this two-item frame twice (koucha to choko keki, sandoitchi to kohi).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "hai-are-mo-nanasen-en",
@@ -450,7 +458,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [item]は[price]えんです — The source already teaches this frame six times over (reizouko, kore, terebi, denshi-renji, taburetto, sore wa ... en desu).",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]は[price]えんです. The source already teaches this frame six times over (reizouko, kore, terebi, denshi-renji, taburetto, sore wa ... en desu)."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]は[price]えんです. The source already teaches this frame six times over (reizouko, kore, terebi, denshi-renji, taburetto, sore wa ... en desu).",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-iie-rimokon-desu",
@@ -461,7 +470,8 @@
       "note": null,
       "scene": "answering whether that's a mouse",
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "kore-mo-kudasai",
@@ -767,7 +777,8 @@
       "audioMarked": true,
       "audioTextHash": "840d32af1d196eec",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set",
-      "note": "Clipped from リモートコントロール (rimōto kontorōru, 'remote control') — the same shortening pattern as パソコン (pasokon) and シャーペン (shāpen) from this lesson."
+      "note": "Clipped from リモートコントロール (rimōto kontorōru, 'remote control') — the same shortening pattern as パソコン (pasokon) and シャーペン (shāpen) from this lesson.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "kore-mo-sore-mo-tokei",
@@ -798,7 +809,8 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "pattern: [item]をください — The source already teaches this frame repeatedly (kore/sore/kohi/orange juice o kudasai), so this only swaps the noun.",
-      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]をください. The source already teaches this frame repeatedly (kore/sore/kohi/orange juice o kudasai), so this only swaps the noun."
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [item]をください. The source already teaches this frame repeatedly (kore/sore/kohi/orange juice o kudasai), so this only swaps the noun.",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ja-kore-to-sore-o-kudasai",
@@ -859,7 +871,8 @@
       "note": null,
       "scene": null,
       "fillInBlank": true,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "sore-wa-pasokon-desu-ka",

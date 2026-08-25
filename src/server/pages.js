@@ -607,7 +607,8 @@ ${sectionHtml}
 
     const all = sections.flatMap((s) => s.cards);
     const batches = [...new Set(all.map((c) => c.addition))].sort();
-    const pending = all.filter((c) => c.additionPending);
+    // Excluded pending cards are shown but not counted: they are decided, not waiting.
+    const pending = all.filter((c) => c.additionPending && !c.excluded);
     if (all.length === 0) return null;
 
     const canEdit = editable && !deck.units.some((u) => u.building);

@@ -26,7 +26,9 @@
       "numberReadings": {
         "status": "ok"
       }
-    }
+    },
+    "reviewed": true,
+    "done": true
   },
   "items": [
     {
@@ -88,7 +90,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "4e0f5dc0ae0015f1",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-poketto-no-naka-ni-nani-ga-arimasu-ka",
@@ -238,7 +241,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "b20facff175eb8ea",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fire",
@@ -252,7 +256,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "4e43a64c0f337b7d",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Placed with Lesson 12's existence sentences for want of a better home"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Placed with Lesson 12's existence sentences for want of a better home",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-sangai-ni-dare-ga-imasu-ka",
@@ -329,7 +334,8 @@
       "audioMarked": true,
       "audio": "caa3b96c47607d72-gen-37ce8777.mp3",
       "audioTextHash": "caa3b96c47607d72",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-chuushajou-wa-nangai-desu-ka",
@@ -345,7 +351,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "40e2a09649c5bbe5",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: chuushajou is taught in Lesson 12"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: chuushajou is taught in Lesson 12",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "f12-kinou-kaigishitsu-ni-tanaka-san-ga-imasen-deshita",
@@ -390,7 +397,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "82c7b47b08beaf7b",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Placed with Lesson 12's existence sentences for want of a better home"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Placed with Lesson 12's existence sentences for want of a better home",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-gakusei-ga-imasu",
@@ -460,7 +468,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "0e7e72afe4de5c93",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-nikai-ni-nani-ga-arimasu-ka",
@@ -494,7 +503,8 @@
       "audioOriginal": "a599d9eacbffc2e2.orig.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audioTextHash": "a599d9eacbffc2e2"
+      "audioTextHash": "a599d9eacbffc2e2",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-kaigishitsu-ga-arimasu",
@@ -539,7 +549,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "aa4f8db857a24535",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-nikkou-ni-mizuumi-ga-arimasu",
@@ -569,7 +580,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "47f7e010399cd735",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "camel",
@@ -583,7 +595,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "60a3ef8af630ea39",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-odaiba-ni-nani-ga-arimasu-ka",
@@ -655,7 +668,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "db28dd8225b72a50",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-teeburu-no-shita-ni-nani-ga-arimasu-ka",
@@ -893,7 +907,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "0574534ad6bd8746",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-uketsuke-ni-dare-ga-imasu-ka",
@@ -922,7 +937,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "f246efa733234dc9",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-ryokan-no-tonari-ni-nani-ga-arimasu-ka",
@@ -1053,7 +1069,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "59aaeb85452ad196",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's position words (ue/shita/tonari/chikaku)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's position words (ue/shita/tonari/chikaku)",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "box",
@@ -1067,7 +1084,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "933aa10dac96e37f",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Room and container objects, alongside Lesson 12's desk/chair/bed"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Room and container objects, alongside Lesson 12's desk/chair/bed",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "p12-tenpura-tte-nan-desu-ka",
@@ -1096,7 +1114,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "1321427ff295160c",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "fib-wani-wa-nagai-desu",
@@ -1112,7 +1131,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "b954ff55ef376d2f",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Creatures, with Lesson 12's animate imasu",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "v12-heya-ni-denki-potto-ga-arimasu",
@@ -1156,7 +1176,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "e94b4312e3a699b6",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's imasu is the animate existence verb, which is what animals are for",
+      "addition": "nihongo-102-2026-08"
     },
     {
       "id": "ex12-yonkai-ni-nani-ga-arimasu-ka",

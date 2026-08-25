@@ -45,13 +45,18 @@ function client(notes = []) {
   };
 }
 
+// A deliverable card must have audio (`assertDeliverableAudio`): a silent card in a studied deck
+// teaches close to nothing, and this path used to add one and merely mention it in the report.
+// These fixtures are about matching, guards and counting, so they do not care WHICH clip a card
+// has, only that a deliverable deck has one. A test about the missing-audio case sets it itself.
+const audioed = (cards) => (cards || []).map((c) => (c.audio ? c : { ...c, audio: `${c.id}.mp3` }));
 const deck = (cards, marker = null) => ({
   type: "epub",
   id: "book",
   ankiParent: "My Book",
   spec: SPEC,
   marker,
-  units: [{ ankiDeck: "My Book::Lesson 01", audioDir: null, cards }],
+  units: [{ ankiDeck: "My Book::Lesson 01", audioDir: null, cards: audioed(cards) }],
 });
 
 const cards = (n) =>
@@ -159,7 +164,7 @@ function fixture() {
       chapterLabel: "Lesson 1",
       courseSlug: "my-course",
     },
-    items: [{ id: "cat", target: "猫", english: "Cat", category: "Animals" }],
+    items: [{ id: "cat", target: "猫", english: "Cat", category: "Animals", audio: "cat.mp3" }],
   };
   writeFileSync(join(dir, "lesson-0", "cards.json"), JSON.stringify(cardsJson));
   writeFileSync(join(dir, "lesson-0", "corpus.json"), JSON.stringify(cardsJson));

@@ -5,7 +5,7 @@ import { Buffer } from "buffer";
 import { buildCollection, buildMultiDeckCollection } from "./collection.js";
 import { buildZip } from "./zip.js";
 import { getLanguageFont, readFontBytes } from "./fontLibrary.js";
-import { shippableCards, assertUniqueCardIds } from "./shippableCards.js";
+import { shippableCards, assertUniqueCardIds, assertEveryCardHasAudio } from "./shippableCards.js";
 import { resolveIso639Code } from "../model/iso639.js";
 
 // Embeds the deck's per-language font file (if the language has one configured — see fontLibrary.js)
@@ -94,6 +94,13 @@ export function buildDeck(
     [{ label: resolvedName, items: resolvedCards.items }],
     `deck "${resolvedName}"`,
   );
+  // On the card's OWN audio field, not the resolved one: resolution blanks a clip whose file is
+  // missing, and "the file is not on disk" is a different fault with a different fix. Preflight's
+  // `audio files` check owns that one, where it can say which path it looked for.
+  assertEveryCardHasAudio(
+    [{ label: resolvedName, items: shippableCards(cards) }],
+    `deck "${resolvedName}"`,
+  );
   embedLanguageFont(cards.meta?.targetLanguage, media, mediaEntries, counter, getFont, readFont);
 
   const collectionBytes = buildCollection(resolvedCards, {
@@ -152,6 +159,13 @@ export function buildBookDeck(
   // chapter of the merged package, not each chapter alone. Same guard as the AnkiConnect path.
   assertUniqueCardIds(
     resolvedChapterDecks.map((chapter) => ({ label: chapter.name, items: chapter.cards.items })),
+    `book "${bookName}"`,
+  );
+  assertEveryCardHasAudio(
+    chapterDecks.map((chapter) => ({
+      label: chapter.name,
+      items: shippableCards(chapter.cards),
+    })),
     `book "${bookName}"`,
   );
   embedLanguageFont(

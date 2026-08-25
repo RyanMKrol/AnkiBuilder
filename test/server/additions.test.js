@@ -75,6 +75,10 @@ function fixture() {
           category: "Work & Occupations",
           addition: "notes-2026-08",
           additionReviewed: true,
+          // Approved, so it ships, so it needs a clip: assertEveryCardHasAudio refuses a silent
+          // shipping card. The pending one above deliberately has none, which is the normal state
+          // before the audio stage runs.
+          audio: "b.mp3",
         },
       ],
     }),

@@ -87,7 +87,14 @@ test("restyleApkgBuffer embeds the font and rewrites the note-type CSS", async (
       {
         meta: { targetLanguage: "ja", sourceType: "manual" },
         items: [
-          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+          {
+            id: "a",
+            english: "one",
+            category: "Numbers",
+            target: "いち",
+            pronunciation: "ichi",
+            audio: "a.mp3",
+          },
         ],
       },
       { outPath, now: 1700000000000 },
@@ -114,7 +121,14 @@ test("restyleApkgBuffer is idempotent — a second pass reuses the font's media 
       {
         meta: { targetLanguage: "ja", sourceType: "manual" },
         items: [
-          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+          {
+            id: "a",
+            english: "one",
+            category: "Numbers",
+            target: "いち",
+            pronunciation: "ichi",
+            audio: "a.mp3",
+          },
         ],
       },
       { outPath, now: 1700000000000 },
@@ -142,7 +156,14 @@ test("restyleApkgBuffer with freshNoteType gives the note type a new id + name a
       {
         meta: { targetLanguage: "ja", sourceType: "manual" },
         items: [
-          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+          {
+            id: "a",
+            english: "one",
+            category: "Numbers",
+            target: "いち",
+            pronunciation: "ichi",
+            audio: "a.mp3",
+          },
         ],
       },
       { outPath, now: 1700000000000 },

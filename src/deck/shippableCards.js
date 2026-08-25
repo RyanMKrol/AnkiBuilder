@@ -36,6 +36,37 @@ export function isPendingAddition(item) {
 }
 
 /**
+ * Refuses a shipping card set containing a card with no audio.
+ *
+ * A silent card in a studied deck is close to useless: half of what a card teaches here is how the
+ * phrase SOUNDS, and a Recognition front is a bare target with a play button that does nothing. They
+ * reach a deck by accident rather than by decision, because every stage before this one treats a
+ * missing clip as "not generated yet" and carries on.
+ *
+ * This THROWS rather than filtering, and that is the whole point. Filtering would hold the card back
+ * silently, which is the failure this project keeps being bitten by: a card that vanishes from a
+ * deck with nothing anywhere reporting that it went. A refusal names the cards and stops, and the
+ * fix is to run the audio stage, which is what the operator meant to do anyway.
+ *
+ * It runs AFTER `shippableCards()`, so it never sees an excluded card or an addition that is still
+ * being reviewed. Those are deliberately not shipping and have no business having audio yet.
+ */
+export function assertEveryCardHasAudio(cardSets, deckDescription) {
+  const missing = [];
+  for (const { label, items } of cardSets) {
+    for (const card of items) {
+      if (!card.audio) missing.push(`${card.id} (${label ?? "?"})`);
+    }
+  }
+  if (!missing.length) return;
+  throw new Error(
+    `${deckDescription} has ${missing.length} card(s) with no audio, which would ship silent: ` +
+      `${missing.slice(0, 10).join("; ")}${missing.length > 10 ? `; and ${missing.length - 10} more` : ""}. ` +
+      `Run the audio stage for those units, or exclude the cards, then re-run.`,
+  );
+}
+
+/**
  * Refuses a shipping card set whose ids repeat, because the card id IS the Anki note key on
  * both delivery paths — the `.apkg` writes it as the note's `guid` and the AnkiConnect push
  * tags notes `abid:<card.id>` — so two cards with one id silently become one note and the

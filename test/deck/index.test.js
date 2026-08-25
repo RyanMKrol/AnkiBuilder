@@ -15,11 +15,26 @@ import {
 // default) would add a media entry and shift every count. Default it off here — dedicated tests for
 // the font live in fontLibrary/restyleFont/collection tests.
 const NO_FONT = { getFont: () => undefined };
+
+// A shipping card must have audio (`assertEveryCardHasAudio`), because a silent card in a studied
+// deck teaches close to nothing. These fixtures are about numbering, fonts, guids and packaging, so
+// they do not care WHICH clip a card has, only that a valid deck has one. Given here rather than
+// written into every fixture, which would bury what each test is actually asserting. A test that
+// cares about the missing-audio case sets it explicitly.
+const withAudio = (cards) => ({
+  ...cards,
+  items: (cards?.items || []).map((i) =>
+    i.audio || i.excluded ? i : { ...i, audio: `${i.id}.mp3` },
+  ),
+});
 function buildDeck(cards, opts = {}) {
-  return buildDeckImpl(cards, { ...NO_FONT, ...opts });
+  return buildDeckImpl(withAudio(cards), { ...NO_FONT, ...opts });
 }
 function buildBookDeck(chapterDecks, opts = {}) {
-  return buildBookDeckImpl(chapterDecks, { ...NO_FONT, ...opts });
+  return buildBookDeckImpl(
+    chapterDecks.map((c) => ({ ...c, cards: withAudio(c.cards) })),
+    { ...NO_FONT, ...opts },
+  );
 }
 
 function baseCards(items) {
@@ -741,7 +756,14 @@ test("buildDeck embeds the per-language font file into the deck media (ja)", asy
       {
         meta: { targetLanguage: "ja", sourceType: "manual" },
         items: [
-          { id: "a", english: "one", category: "Numbers", target: "いち", pronunciation: "ichi" },
+          {
+            id: "a",
+            english: "one",
+            category: "Numbers",
+            target: "いち",
+            pronunciation: "ichi",
+            audio: "a.mp3",
+          },
         ],
       },
       { outPath, now: 1700000000000, readFont: () => Buffer.from("FONTBYTES") },

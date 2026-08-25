@@ -206,7 +206,7 @@ test("a rebuild reads and publishes in one event-loop turn \u2014 nothing can in
   const dir = mkdtempSync(join(tmpdir(), "rb-sync-"));
   try {
     writeUnit(join(dir, "chapter-0"), { chapterLabel: "A" }, [
-      { id: "a", english: "A", target: "\u3042", category: "Other" },
+      { id: "a", english: "A", target: "\u3042", category: "Other", audio: "a.mp3" },
     ]);
 
     const pending = rebuildBookDir(dir, { bookNameFallback: "Book" });

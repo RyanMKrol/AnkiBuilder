@@ -20,6 +20,7 @@ import { selectDoneChapterDecks, resolveBookName } from "../deck/rebuild.js";
 import {
   shippableCards,
   assertUniqueCardIds as assertUniqueCardIdsAcross,
+  assertEveryCardHasAudio,
 } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { DELIVERED_MARKER, readDeliveredMarker } from "./deliveredMarker.js";
@@ -557,6 +558,24 @@ export function assertUniqueCardIds(deck) {
 }
 
 /**
+ * Refuses to deliver a deck holding a card with no audio.
+ *
+ * This path used to add a clipless card SILENTLY and merely flag it in the report, which puts a
+ * silent card into a collection the owner studies daily and leaves them to notice. A card that
+ * plays nothing teaches close to nothing here: half of what these cards carry is the sound, and a
+ * Recognition front is a bare target with a dead play button.
+ *
+ * Refusing is recoverable and cheap (run the audio stage, deliver again); a silent card in a live
+ * deck is neither, because by the time it is noticed it has scheduling attached.
+ */
+export function assertDeliverableAudio(deck) {
+  assertEveryCardHasAudio(
+    deck.units.map((unit) => ({ label: unit.ankiDeck, items: unit.cards })),
+    `${deck.type}:${deck.id}`,
+  );
+}
+
+/**
  * How many notes one deliver may ADD to a collection before it wants to be asked twice.
  *
  * An add is the expensive mistake in this layer: a note added where one should have been matched is
@@ -723,6 +742,7 @@ function assertDeliveredBaseline(deck, byAbid) {
  */
 export async function planDeckContent(client, deck) {
   assertUniqueCardIds(deck);
+  assertDeliverableAudio(deck);
   // A card that suspends EVERY direction is a note with no studiable card at all, which is what
   // `excluded` is for. Refused here, before a single read decides anything.
   const templateCount = deck.spec.templates.length;

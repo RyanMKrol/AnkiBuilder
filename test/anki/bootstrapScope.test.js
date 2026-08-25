@@ -60,12 +60,21 @@ function client(notes, { queries = [] } = {}) {
   };
 }
 
+// A deliverable card must have audio (`assertDeliverableAudio`). These fixtures are about which
+// QUERIES the bootstrap makes and which note each card resolves to, so they do not care which clip a
+// card has, only that a deliverable deck has one.
+const audioed = (units) =>
+  units.map((u) => ({
+    ...u,
+    cards: (u.cards || []).map((c) => (c.audio ? c : { ...c, audio: `${c.id}.mp3` })),
+  }));
+
 const deck = (units) => ({
   type: "epub",
   id: "book",
   ankiParent: "My Book",
   spec: SPEC,
-  units,
+  units: audioed(units),
 });
 
 test("the DURABLE lookup is the book-wide one; the fingerprint lookups are per unit", async () => {

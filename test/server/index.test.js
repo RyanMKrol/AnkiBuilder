@@ -44,7 +44,28 @@ function fixture() {
           category: "Numbers",
           audio: "a.mp3",
         },
-        { id: "b", english: "two", target: "に", pronunciation: "ni", category: "Numbers" },
+        // Every shipping card needs a clip (`assertEveryCardHasAudio`); the file itself is only
+        // written for "a", since the tests that care about bytes use that one.
+        {
+          id: "b",
+          english: "two",
+          target: "に",
+          pronunciation: "ni",
+          category: "Numbers",
+          audio: "b.mp3",
+        },
+        // Excluded, and therefore legitimately clipless: the audio stage strips audio from an
+        // excluded card, and `assertEveryCardHasAudio` never sees one because it is not shippable.
+        // This is the fixture's "card with no audio" for the tests that need one, now that a
+        // SHIPPING card without a clip is refused.
+        {
+          id: "c",
+          english: "three",
+          target: "さん",
+          pronunciation: "san",
+          category: "Numbers",
+          excluded: true,
+        },
       ],
     }),
   );
@@ -1784,7 +1805,7 @@ test("accepting a card that has no audio says so rather than inventing a hash", 
       root,
       async (url) => {
         const res = await asJson(
-          await fetch(`${url}/api/deck/book/mybook/unit/0/card/b/audio/accept-text`, {
+          await fetch(`${url}/api/deck/book/mybook/unit/0/card/c/audio/accept-text`, {
             method: "POST",
           }),
         );

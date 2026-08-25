@@ -1,7 +1,9 @@
 import { defineCheck } from "../registry.js";
 import { validateCards, validateCorpus } from "../../model/index.js";
 import { findCollisions, findCrossChapterDuplicates } from "../../cards/extrasTools.js";
-import { assertUniqueCardIds } from "../../deck/shippableCards.js";
+import { existsSync } from "fs";
+import { join } from "path";
+import { assertUniqueCardIds, isPendingAddition } from "../../deck/shippableCards.js";
 import { normalizeDisplayText, isSpaceFreeLanguage } from "../../model/scriptSpacing.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { audioTextState } from "../../audio/textHash.js";
@@ -203,6 +205,53 @@ export const exclusionsCheck = defineCheck({
       ],
       summary: `${total} excluded`,
     };
+  },
+});
+
+export const audioFilesCheck = defineCheck({
+  id: "audio-files",
+  title: "audio files",
+  scope: "collection",
+  tier: "FAIL",
+  /**
+   * A card that ships in a DONE unit and whose clip is missing, either not named at all or named
+   * and absent from disk.
+   *
+   * The build refuses a card with no `audio` field (`assertEveryCardHasAudio`), but it cannot refuse
+   * a clip whose FILE has gone: the packager blanks a missing file and carries on, so the card ships
+   * silent and nothing says so. That is the sneakier of the two faults, because the card's own data
+   * looks correct.
+   *
+   * Here rather than in the packager because it is a filesystem question, and this is the layer that
+   * can name the path it looked for. FAIL because a silent card in a studied deck teaches close to
+   * nothing, and unlike a heuristic there is no false-positive case: the file is there or it is not.
+   *
+   * Only DONE units, and only shipping cards. A unit mid-build has not reached the audio stage yet,
+   * and saying so on every run is how a number becomes wallpaper.
+   */
+  run({ units }) {
+    const findings = [];
+    for (const unit of units) {
+      if (unit.meta?.done !== true) continue;
+      for (const item of shipped(unit)) {
+        if (isPendingAddition(item)) continue;
+        if (!item.audio) {
+          findings.push({
+            key: `${unit.name}/${item.id}`,
+            message: `${unit.name}/${item.id} ships with no audio at all — run the audio stage for this unit`,
+          });
+          continue;
+        }
+        const path = join(unit.dir, "audio", item.audio);
+        if (!existsSync(path)) {
+          findings.push({
+            key: `${unit.name}/${item.id}`,
+            message: `${unit.name}/${item.id} names a clip that is not on disk (${item.audio}) — it would ship silent`,
+          });
+        }
+      }
+    }
+    return { findings, summary: "every shipping card has a clip, and every clip is on disk" };
   },
 });
 

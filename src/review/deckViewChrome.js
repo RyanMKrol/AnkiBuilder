@@ -45,8 +45,10 @@ table.tbl-incomplete{min-width:1070px}
 table.tbl-corpus{min-width:1310px}
 .tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:200px}.tbl-corpus col.c-cat{width:120px}.tbl-corpus col.c-jp{width:190px}.tbl-corpus col.c-pron{width:140px}.tbl-corpus col.c-hint{width:150px}.tbl-corpus col.c-note{width:120px}.tbl-corpus col.c-flag{width:104px}.tbl-corpus col.c-excl{width:96px}
 .tbl-additions col.c-num{width:44px}.tbl-additions col.c-en{width:210px}.tbl-additions col.c-jp{width:190px}.tbl-additions col.c-pron{width:150px}.tbl-additions col.c-au{width:184px}.tbl-additions col.c-hint{width:150px}.tbl-additions col.c-note{width:auto}.tbl-additions col.c-excl{width:132px}
-.tbl-additions td.excl-cell{white-space:nowrap}
-.approve-btn{cursor:pointer;font:inherit;font-size:12px;padding:3px 9px;border:1px solid #3f6f6a;border-radius:5px;background:#fff;color:#3f6f6a}
+.tbl-additions td.excl-cell{white-space:nowrap;text-align:right}
+.tbl-additions td.excl-cell > * + *{margin-left:8px}
+.tbl-additions td.excl-cell .msg{display:block;margin:4px 0 0;text-align:right}
+.approve-btn{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;vertical-align:middle;font:inherit;font-size:12.5px;line-height:1;cursor:pointer;border:1px solid #3f6f6a;border-radius:8px;background:var(--card);color:#3f6f6a}
 .approve-btn:hover{background:#3f6f6a;color:#fff}
 .approve-btn[disabled]{opacity:.45;cursor:default}
 .add-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 6px}
@@ -225,7 +227,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .sec-tools .done-badge{font-size:11px;font-weight:700;color:#5c7a52;text-transform:uppercase;letter-spacing:.04em}
 .sec-tools .hint{font-size:12px;color:var(--faint)}.sec-tools .hint code{font-family:var(--mono);font-size:11px}
 /* Exclude is a single compact icon button (the circled-slash glyph) — no wrapping text; .on = excluded. */
-.excl-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:16px;line-height:1;color:var(--soft);background:var(--card);border:1px solid var(--rule2);border-radius:8px;cursor:pointer}
+.excl-btn{vertical-align:middle;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:16px;line-height:1;color:var(--soft);background:var(--card);border:1px solid var(--rule2);border-radius:8px;cursor:pointer}
 .excl-btn:hover{border-color:var(--accent);color:var(--accent)}
 .excl-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .excl-btn:disabled{opacity:.5;cursor:default}

@@ -230,6 +230,30 @@ test("a deck with no additions shows no additions section and 404s the page", as
   }
 });
 
+test("an excluded pending card offers no Approve, so bulk approve cannot override an exclusion", async () => {
+  const { root, book } = fixture();
+  try {
+    // Exclude the pending card, then check the page offers no way to approve it.
+    const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+    cards.items.find((i) => i.id === "new-pending").excluded = true;
+    writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+    await withServer(root, async (url) => {
+      const html = await (await fetch(`${url}/additions/book/mybook`)).text();
+      // The bulk control finds its work by looking for approve buttons, so a row without one is
+      // structurally unreachable rather than merely skipped.
+      // Matched on the button markup, not the class name: the class also appears in the stylesheet.
+      assert.ok(
+        !/<button[^>]*class="approve-btn"/.test(html),
+        "no Approve button once the only pending card is excluded",
+      );
+      assert.match(html, /Approve all 0 remaining/, "the count excludes it too");
+      assert.match(html, /Show 1 excluded/, "and it is behind the toggle");
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("a read-only server refuses to approve", async () => {
   const { root, book } = fixture();
   try {

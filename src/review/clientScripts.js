@@ -519,8 +519,7 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
     return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/addition/approve", { method: "POST" })
       .then(jsonp).then(function (x) {
         if (!x.ok) throw new Error(x.j.error || "failed");
-        var cell = tr.querySelector("td.excl-cell");
-        var btn = cell && cell.querySelector("button.approve-btn");
+        var btn = tr.querySelector("button.approve-btn");
         if (btn) btn.outerHTML = '<span class="tick" title="Approved — this card ships">✓</span>';
         var badge = tr.querySelector(".badge-pending");
         if (badge) badge.remove();
@@ -528,6 +527,25 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
         return true;
       });
   }
+
+  // Sequential, never parallel: every one of these rewrites the SAME cards.json, so firing them at
+  // once would have each request read the file before the previous had written it and all but the
+  // last approval would be silently lost.
+  function approveEach(rows, onProgress) {
+    var i = 0;
+    function step() {
+      if (i >= rows.length) return Promise.resolve(rows.length);
+      if (onProgress) onProgress(i + 1, rows.length);
+      return approve(rows[i++]).then(step);
+    }
+    return step();
+  }
+
+  var pendingRows = function (root) {
+    return [].slice.call(root.querySelectorAll("tr")).filter(function (tr) {
+      return tr.querySelector("button.approve-btn");
+    });
+  };
 
   document.querySelectorAll("button.approve-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -540,34 +558,64 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
     });
   });
 
-  // Whole-section approve. Sequential rather than parallel: every one of these writes the same
-  // cards.json, and firing them at once would have each request read the file before the previous
-  // had written it, so all but the last approval would be lost.
   document.querySelectorAll("button.approve-unit").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var sec = btn.closest("details");
-      var rows = [].slice.call(sec.querySelectorAll("tr")).filter(function (tr) {
-        return tr.querySelector("button.approve-btn");
-      });
+      var rows = pendingRows(btn.closest("details"));
       if (!rows.length) return;
       btn.disabled = true;
       var msg = btn.nextElementSibling;
-      var i = 0;
-      function step() {
-        if (i >= rows.length) {
-          if (msg) msg.textContent = "✓ " + rows.length + " approved";
+      approveEach(rows, function (n, of) { if (msg) msg.textContent = n + " of " + of + "…"; })
+        .then(function (n) {
+          if (msg) msg.textContent = "✓ " + n + " approved";
           btn.outerHTML = '<span class="done-badge">✓ all approved</span>';
           return A.maybeRebuild();
-        }
-        if (msg) msg.textContent = i + 1 + " of " + rows.length + "…";
-        return approve(rows[i++]).then(step);
-      }
-      step().catch(function (e) {
-        btn.disabled = false;
-        if (msg) msg.textContent = e.message || "failed";
-      });
+        })
+        .catch(function (e) {
+          btn.disabled = false;
+          if (msg) msg.textContent = e.message || "failed";
+        });
     });
   });
+
+  // The primary action. Reading a couple of hundred cards and clicking Approve on each is data
+  // entry, not review: the useful flow is to exclude or fix the few that need it and accept the
+  // rest together. Confirmed, because it is the one control here that cannot be undone in one click.
+  var all = document.querySelector("button.approve-all");
+  if (all) {
+    all.addEventListener("click", function () {
+      var rows = pendingRows(document);
+      var msg = all.nextElementSibling;
+      if (!rows.length) { if (msg) msg.textContent = "nothing left to approve"; return; }
+      if (!window.confirm("Approve " + rows.length + " card" + (rows.length === 1 ? "" : "s") + "? They start shipping on the next build.")) return;
+      all.disabled = true;
+      approveEach(rows, function (n, of) { if (msg) msg.textContent = n + " of " + of + "…"; })
+        .then(function (n) {
+          if (msg) msg.textContent = "✓ " + n + " approved";
+          document.querySelectorAll("button.approve-unit").forEach(function (b) {
+            b.outerHTML = '<span class="done-badge">✓ all approved</span>';
+          });
+          return A.maybeRebuild();
+        })
+        .catch(function (e) {
+          all.disabled = false;
+          if (msg) msg.textContent = e.message || "failed";
+        });
+    });
+  }
+
+  // Cards already excluded are decided, and on a big retrofit they are most of the rows. Hidden by
+  // default so the page shows what is actually outstanding; the toggle is there because a
+  // script-made exclusion is exactly the kind a reviewer should be able to overturn.
+  var toggle = document.getElementById("show-excluded");
+  if (toggle) {
+    var apply = function () {
+      document.querySelectorAll("tr.row.excluded").forEach(function (tr) {
+        tr.style.display = toggle.checked ? "" : "none";
+      });
+    };
+    toggle.addEventListener("change", apply);
+    apply();
+  }
 })();
 `;
 

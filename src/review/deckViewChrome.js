@@ -49,6 +49,12 @@ table.tbl-corpus{min-width:1310px}
 .approve-btn{cursor:pointer;font:inherit;font-size:12px;padding:3px 9px;border:1px solid #3f6f6a;border-radius:5px;background:#fff;color:#3f6f6a}
 .approve-btn:hover{background:#3f6f6a;color:#fff}
 .approve-btn[disabled]{opacity:.45;cursor:default}
+.add-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 6px}
+.approve-all{cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid #3f6f6a;border-radius:6px;background:#3f6f6a;color:#fff}
+.approve-all:hover{background:#345c58}
+.approve-all[disabled]{opacity:.5;cursor:default}
+.approve-all-msg{font-size:12px;color:#6b6459}
+.show-excl{font-size:12px;color:#6b6459;display:flex;align-items:center;gap:5px;cursor:pointer}
 /* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
    would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
    crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */

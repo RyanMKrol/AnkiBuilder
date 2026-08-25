@@ -627,7 +627,13 @@ ${sectionHtml}
     const rowControl = canEdit
       ? (stage, c) =>
           stage === "additions"
-            ? `${c.additionPending ? `<button type="button" class="approve-btn">Approve</button>` : `<span class="tick" title="Approved — this card ships">✓</span>`}<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
+            ? `${
+                c.excluded
+                  ? `<span class="x" title="Excluded, so there is nothing to approve">—</span>`
+                  : c.additionPending
+                    ? `<button type="button" class="approve-btn">Approve</button>`
+                    : `<span class="tick" title="Approved — this card ships">✓</span>`
+              }<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
             : ""
       : undefined;
     const sectionControl = canEdit
@@ -658,6 +664,18 @@ ${sectionHtml}
         `until you approve it, and the units they sit in keep their own sign-off, so nothing else ` +
         `is re-opened by this.`
       : `Every addition here is approved. They ship on the next build.`;
+    const excludedCount = all.filter((c) => c.excluded).length;
+    // The primary action. Reading 200 cards and clicking Approve on each is not a review, it is
+    // data entry: the useful flow is to read through, exclude or fix the few that need it, and
+    // accept the rest in one go. The per-card button stays for the exceptions.
+    const toolbar = canEdit
+      ? `<div class="add-tools"><button type="button" class="approve-all">Approve all ${pending.length} remaining</button><span class="approve-all-msg"></span>` +
+        (excludedCount
+          ? `<label class="show-excl"><input type="checkbox" id="show-excluded"> Show ${excludedCount} excluded</label>`
+          : "") +
+        `</div>`
+      : "";
+
     const body =
       pageChrome({
         title,
@@ -673,6 +691,7 @@ ${sectionHtml}
       (editable
         ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="1" hidden></div>`
         : "") +
+      toolbar +
       sectionHtml;
 
     const scripts = [];

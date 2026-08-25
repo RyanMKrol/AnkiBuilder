@@ -98,7 +98,7 @@ export function createPageRenderers({
         interrupted: !!u.interrupted,
         claim: u.claim || null,
         pendingAdditions: u.pendingAdditions || 0,
-        additionBatches: u.additionBatches || [],
+        additionCounts: u.additionCounts || {},
       }));
       // A deck delivered over AnkiConnect carries a marker beside its .apkg (see deliver.js):
       // re-importing the package into that collection would create duplicate notes, so the
@@ -224,13 +224,25 @@ export function createPageRenderers({
     const additionRows = [];
     let pendingTotal = 0;
     for (const deck of withUnits) {
-      const n = deck.units.reduce((sum, u) => sum + (u.pendingAdditions || 0), 0);
-      if (!n) continue;
-      pendingTotal += n;
-      const batches = [...new Set(deck.units.flatMap((u) => u.additionBatches || []))].sort();
-      additionRows.push(
-        `<div class="dblock single"><a href="/additions/${encodeURIComponent(deck.type)}/${encodeURIComponent(deck.id)}"><span class="dt">${escapeHtml(deck.title)}</span><span class="badge">${n} pending</span><span class="dsub">${batches.map(escapeHtml).join(", ")}</span></a></div>`,
-      );
+      const perBatch = {};
+      for (const u of deck.units) {
+        for (const [batch, n] of Object.entries(u.additionCounts || {})) {
+          perBatch[batch] = (perBatch[batch] || 0) + n;
+        }
+      }
+      const batches = Object.keys(perBatch).sort();
+      if (!batches.length) continue;
+      pendingTotal += batches.reduce((sum, b) => sum + perBatch[b], 0);
+      // Same markup as a multi-lesson deck block, so it sits in the page rather than on it: a
+      // `.dbhead` naming the deck, then one `.urow` per retrofit with its own count in the badge.
+      const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span></div>`;
+      const rows = batches
+        .map(
+          (b) =>
+            `<a class="urow" href="/additions/${enc(deck.type)}/${enc(deck.id)}/${enc(b)}"><span class="ulabel">${escapeHtml(b)}</span><span class="ustage">${perBatch[b]} pending</span></a>`,
+        )
+        .join("");
+      additionRows.push(`<div class="dblock">${head}${rows}</div>`);
     }
 
     const section = (cls, title, hint, blocks, count) =>

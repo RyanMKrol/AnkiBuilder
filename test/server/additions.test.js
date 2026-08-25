@@ -192,6 +192,8 @@ test("the home page surfaces the pending batch, so it is findable without knowin
       const html = await (await fetch(`${url}/`)).text();
       assert.match(html, /Additions waiting/);
       assert.match(html, /1 pending/);
+      assert.match(html, /class="dblock"/, "uses the same block markup as a deck row");
+      assert.match(html, /class="urow"/, "one row per batch, styled like a lesson row");
       assert.match(html, /notes-2026-08/);
       assert.match(html, /\/additions\/book\/mybook/);
     });

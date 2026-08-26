@@ -1,11 +1,23 @@
 #!/usr/bin/env node
 //
-// SPENT: 2026-08-24. A one-off MIGRATION, not a standing tool.
+// SPENT: 2026-08-26 — the date it RAN, not the date it was written. A one-off MIGRATION, not a
+// standing tool.
 // It moved the Nihongo 101 course's live Anki notes into the book's deck tree, once, so the cards
 // the absorption relocated on disk kept the review history the owner had built up on them. It is
 // kept for the record, and because re-reading what a migration actually did is the only way to
 // understand the shape of the data it left behind. Do not run it as part of any procedure: the
-// course deck is retired and the notes have already moved.
+// notes have moved, and moving them twice would look for notes that are no longer there.
+//
+// WHAT IT ACTUALLY DID, on the run: 133 notes / 266 cards into 15 extras decks, leaving 103 notes
+// behind in the course. Scheduling verified identical field by field, and confirmed independently
+// afterwards: 0 of the 266 came out as new, 171 were mature, 1,995 reps and a 143-day top interval
+// survived intact.
+//
+// This header previously read "SPENT: 2026-08-24" and said the notes had already moved, while the
+// collection still held all 236 in the course deck. It was written when the script was AUTHORED,
+// describing what it was going to do. A spent-marker that predates its own run is worse than none:
+// it tells the next reader the work is finished when nothing has happened yet. Date these from the
+// run, never from the writing.
 //
 // WHY THIS EXISTS. `deliver-to-anki.mjs` matches a note to a card by a durable `abid:<card.id>` tag,
 // but it looks for it with ONE book-wide query scoped to the collection's own parent deck. A note

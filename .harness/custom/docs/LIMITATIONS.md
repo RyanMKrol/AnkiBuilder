@@ -3427,3 +3427,23 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** open, and expected to stay open
 - **When to revisit:** if a batch ever legitimately arrives fully voiced, the audio gate is still
   worth passing: a clip that was right in its old deck is worth hearing once in its new context.
+
+## "Which clips are new" cannot be reconstructed from the audio field afterwards
+
+- **What:** the audio review separates a clip the retrofit carried across from one synthesized after
+  the content gate, using `additionAudioInherited`. A future retrofit sets it as it copies the clip.
+  The first batch predated the field, so `scripts/migrate-mark-inherited-audio.mjs` reconstructed the
+  set from the routing table's record of which cards MOVED.
+- **Why not derive it:** the obvious signal, "its `audio` field changed during the audio run", is
+  wrong. The audio stage re-resolves a cached clip under a canonical name, so on this batch 126 cards
+  showed a changed filename where only 78 were actually synthesized. Reconstructing from that would
+  have marked 48 cards as needing an ear that nobody had generated, which is the opposite of the
+  point.
+- **Impact:** the fact has to be recorded at the moment it is true, by whatever copies the clip. A
+  retrofit that forgets leaves its carried-over clips indistinguishable from new ones, and the only
+  recovery is the same routing-table reconstruction, which needs a routing table to exist.
+- **Verified by:** `node --test test/server/additions.test.js`, and on the live batch:
+  132 inherited + 79 fresh = 211, where the single moved card counted as fresh is `irl-l1-39`, whose
+  clip really was regenerated after its `[number]` placeholder was rewritten
+- **Status:** resolved for this batch (2026-08-26); the field is the standing mechanism
+- **When to revisit:** if a batch ever mixes sources per card rather than per batch.

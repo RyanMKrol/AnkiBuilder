@@ -639,6 +639,11 @@ ${sectionHtml}
     const atContent = contentSections.flatMap((s) => s.cards).filter((c) => !c.excluded);
     const atAudio = audioSections.flatMap((s) => s.cards).filter((c) => !c.excluded);
     const excludedCount = all.filter((c) => c.excluded).length;
+    // A clip the retrofit carried across has already been heard, in the deck it came from. A clip
+    // synthesized after the content gate has been heard by nobody. Only the second needs auditioning
+    // with any care, so the first is hidden by default rather than padding the list.
+    const inherited = atAudio.filter((c) => c.additionAudioInherited);
+    const freshAudio = atAudio.filter((c) => !c.additionAudioInherited);
     const needClip = atAudio.filter((c) => !c.audio);
 
     const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
@@ -700,7 +705,11 @@ ${sectionHtml}
     const title = batch ? `Additions: ${batch}` : `Additions — ${deck.title}`;
     const lede =
       atContent.length || atAudio.length
-        ? `<b>${atContent.length}</b> waiting on content, <b>${atAudio.length}</b> waiting on audio. ` +
+        ? `<b>${atContent.length}</b> waiting on content, <b>${atAudio.length}</b> waiting on audio` +
+          (inherited.length
+            ? ` (<b>${freshAudio.length}</b> of them clips nobody has heard yet; the other ${inherited.length} came across with their card)`
+            : "") +
+          `. ` +
           `A card ships only once it has passed BOTH, exactly as a lesson does. The lessons these ` +
           `sit in keep their own sign-off, so nothing else is re-opened, and nothing reaches Anki ` +
           `until you click Deliver.`
@@ -715,6 +724,10 @@ ${sectionHtml}
       ? `<div class="add-tools">` +
         (atContent.length
           ? `<button type="button" class="approve-all">Approve all ${atContent.length} on content</button><span class="approve-all-msg"></span>`
+          : "") +
+        (inherited.length
+          ? `<button type="button" class="done-inherited">Sign off ${inherited.length} carried-over clip${inherited.length === 1 ? "" : "s"}</button><span class="done-inherited-msg"></span>` +
+            `<label class="show-excl"><input type="checkbox" id="show-inherited"> Show them</label>`
           : "") +
         (excludedCount
           ? `<label class="show-excl"><input type="checkbox" id="show-excluded"> Show ${excludedCount} excluded</label>`

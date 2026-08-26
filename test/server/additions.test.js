@@ -358,6 +358,33 @@ test("the audio group offers a per-section sign-off, like the normal audio revie
   }
 });
 
+test("carried-over clips are separated from ones nobody has heard", async () => {
+  const { root, book } = fixture();
+  try {
+    const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+    // Two cards at the audio gate: one whose clip came across with it, one synthesized here.
+    const carried = cards.items.find((i) => i.id === "new-approved");
+    carried.additionDone = false;
+    delete carried.additionDone;
+    carried.additionAudioInherited = true;
+    const fresh = cards.items.find((i) => i.id === "new-pending");
+    fresh.additionReviewed = true;
+    fresh.audio = "a.mp3";
+    writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+
+    await withServer(root, async (url) => {
+      const html = await (await fetch(`${url}/additions/book/mybook`)).text();
+      assert.match(html, /data-inherited-audio="1"/, "the carried-over row is marked");
+      assert.match(html, /Sign off 1 carried-over clip/, "and can be cleared without listening");
+      assert.match(html, /clips nobody has heard yet/, "the lede separates the two");
+      // Hidden by default, so the list shows what actually needs an ear.
+      assert.match(html, /id="show-inherited"/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("a read-only server refuses to approve", async () => {
   const { root, book } = fixture();
   try {

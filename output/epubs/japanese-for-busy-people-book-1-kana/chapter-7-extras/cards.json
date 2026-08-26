@@ -42,7 +42,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 7 asks dou yatte ikimasu ka about transport",
       "note": "Interchangeable with なんで (nande) from this lesson for asking how someone travels; どうやって (dō yatte) is the everyday choice, while なんで (nande) risks being heard as \"why\" in casual speech.",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "w2-ema-2022nen-kimashita",

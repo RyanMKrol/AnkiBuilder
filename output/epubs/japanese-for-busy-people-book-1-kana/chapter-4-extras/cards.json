@@ -56,7 +56,8 @@
       "audioTextHash": "36f92eec635dba61",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "fib-rimokon-o-misete-kudasai",
@@ -274,7 +275,8 @@
       "audioTextHash": "51035aba615583d1",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: are is first taught in Lesson 4",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "iie-are-wa-gosen-en-ja-arimasen",
@@ -787,7 +789,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 4's consumer-electronics set",
       "note": "Clipped from リモートコントロール (rimōto kontorōru, 'remote control') — the same shortening pattern as パソコン (pasokon) and シャーペン (shāpen) from this lesson.",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "kore-mo-sore-mo-tokei",

@@ -666,6 +666,55 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
     });
   }
 
+  // Clips the retrofit carried across. Hidden by default: they have already been heard in the deck
+  // they came from, and on a big batch they bury the ones nobody has heard. The toggle is there
+  // because "already heard" is a claim about the OLD deck, and a card can read differently in its
+  // new neighbours.
+  var inheritedRows = function () {
+    return [].slice.call(document.querySelectorAll('tr.row[data-inherited-audio="1"]'));
+  };
+  var showInherited = document.getElementById("show-inherited");
+  if (showInherited) {
+    var applyInherited = function () {
+      inheritedRows().forEach(function (tr) {
+        // Never fight the excluded toggle for control of the same row.
+        if (tr.classList.contains("excluded")) return;
+        tr.style.display = showInherited.checked ? "" : "none";
+      });
+    };
+    showInherited.addEventListener("change", applyInherited);
+    applyInherited();
+  }
+
+  // Sign them all off without auditioning, which is the whole point of separating them out. Still
+  // one request per card, and each still passes the same refusal, so a silent one cannot slip in.
+  var inhBtn = document.querySelector("button.done-inherited");
+  if (inhBtn) {
+    inhBtn.addEventListener("click", function () {
+      var rows = inheritedRows().filter(function (tr) {
+        var b = tr.querySelector("button.addition-done");
+        return b && !b.disabled;
+      });
+      var msg = inhBtn.nextElementSibling;
+      if (!rows.length) { if (msg) msg.textContent = "nothing left"; return; }
+      if (!window.confirm("Sign off " + rows.length + " clip" + (rows.length === 1 ? "" : "s") + " carried over from the old deck, without listening? They ship after this.")) return;
+      inhBtn.disabled = true;
+      var i = 0;
+      function step() {
+        if (i >= rows.length) {
+          if (msg) msg.textContent = "\u2713 " + rows.length + " signed off";
+          return A.maybeRebuild();
+        }
+        if (msg) msg.textContent = i + 1 + " of " + rows.length + "\u2026";
+        return markDone(rows[i++]).then(step);
+      }
+      step().catch(function (e) {
+        inhBtn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
+    });
+  }
+
   // Cards already excluded are decided, and on a big retrofit they are most of the rows. Hidden by
   // default so the page shows what is actually outstanding; the toggle is there because a
   // script-made exclusion is exactly the kind a reviewer should be able to overturn.

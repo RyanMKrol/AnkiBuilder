@@ -93,6 +93,14 @@ cards. The first of those silently deleted a card with real review history.
 **Build `corpus.meta` explicitly, never by copying `cards.meta`.** The corpus schema is
 `additionalProperties: false` and a cards-only field invalidates the file.
 
+**Stamp a card that arrives WITH a clip as `additionAudioInherited: true`.** A batch that absorbs
+another deck brings audio with it; a batch built from a PDF does not. The audio gate separates the
+two, because a carried-over clip has already been heard in the deck it came from and a synthesized
+one has been heard by nobody, and only the second needs auditioning with care. Record it as you copy
+the clip: reconstructing it later is unreliable, because the audio stage renames a cached clip when
+it re-resolves it, so "the filename changed" marks cards nobody generated
+(`scripts/migrate-mark-inherited-audio.mjs` had to reconstruct it from the routing table instead).
+
 **Stamp every card with `addition: "<batch-id>"` as you append it.** That is what holds it out of the
 deck until it is reviewed, and it is never cleared afterwards, so which retrofit a card arrived in
 stays answerable for the life of the deck.

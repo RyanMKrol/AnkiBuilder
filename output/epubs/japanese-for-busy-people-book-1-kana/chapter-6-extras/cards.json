@@ -42,7 +42,8 @@
       "audioTextHash": "bf673b2a6511ef44",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "kimasen",
@@ -760,7 +761,8 @@
       "audioTextHash": "0843e848faa59d29",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "ne-eki-wa-achira-desu-ne",

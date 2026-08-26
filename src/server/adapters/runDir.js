@@ -85,6 +85,7 @@ export function toRenderCard(item) {
     // Which of the two addition gates this card is at: "corpus", "audio", or null when it has
     // passed both (or is not an addition at all).
     additionStage: additionStage(item),
+    additionAudioInherited: !!item.additionAudioInherited,
   };
 }
 

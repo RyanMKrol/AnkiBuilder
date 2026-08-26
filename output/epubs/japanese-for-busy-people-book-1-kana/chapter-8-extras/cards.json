@@ -134,7 +134,8 @@
       "audioTextHash": "18878859f44670d3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "v-kinou-benkyou-shimasendeshita",
@@ -309,7 +310,8 @@
       "audioTextHash": "be4a7cd4dfa51614",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "v-doyoubi-osushi-tabemasu",
@@ -1348,7 +1350,8 @@
       "audioTextHash": "070526f9dbd66e39",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "sp2-nani-o-kaimashita-ka",

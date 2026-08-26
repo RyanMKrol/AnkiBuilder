@@ -338,7 +338,8 @@
       "audioTextHash": "3e111b3d3e4da10e",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "fib-senshu-kyouto-ni-ikimashita",

@@ -43,7 +43,8 @@
       "audioTextHash": "72d1a9d8cf0364e4",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "fukuro",
@@ -76,7 +77,8 @@
       "audioTextHash": "853984f21c339a20",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "iie-rokkai-desu",
@@ -123,7 +125,8 @@
       "audioTextHash": "4615c5782e774c4f",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "wain-shoppu-wa-ikkai-ja-arimasen",
@@ -199,7 +202,8 @@
       "audioTextHash": "e8bdf0e5fb092e2f",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "fukuro-mo-ni-mai-kudasai",
@@ -313,7 +317,8 @@
       "audioTextHash": "a8d9041c6f77fd79",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "furansu-no-desu",
@@ -363,7 +368,8 @@
       "audioFilter": "standard",
       "audioTextHash": "a1541a979f8aaa90",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "ano-kamera-wa-doko-no",
@@ -443,7 +449,8 @@
       "audioTextHash": "891df24b17851350",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "mikan-o-too-kudasai",
@@ -506,7 +513,8 @@
       "audioTextHash": "09b991cf1ee509b2",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "akai-ringo-o-itsutsu",
@@ -567,7 +575,8 @@
       "audioTextHash": "742df8e80f4900f3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "chiisai-koppu-gohyaku-en",
@@ -635,7 +644,8 @@
       "audioTextHash": "000305cc8be17e96",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "pink",
@@ -653,7 +663,8 @@
       "audioFilter": "standard",
       "audioTextHash": "bc61c094fd405258",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "8th-floor",
@@ -670,7 +681,8 @@
       "audioTextHash": "3ec0880bd18e7a2b",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "hai-sore-mo-nihon-no",
@@ -768,7 +780,8 @@
       "audioTextHash": "296b20c2867dfad5",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "eg-pinku-no-kaban",
@@ -788,7 +801,8 @@
       "audioFilter": "standard",
       "audioTextHash": "1df5fe7e09ff2819",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "ookii-kamera-mo-nihon-no-ka",
@@ -836,7 +850,8 @@
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Same frame, but Furansu is first carded in Lesson 5",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "iie-doitsu-no-desu",
@@ -916,7 +931,8 @@
       "audioTextHash": "f3d82a2323afeb63",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "water-bottle",
@@ -933,7 +949,8 @@
       "audioTextHash": "b2a35efae0b98211",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "iie-kyuuhyaku-en-desu",
@@ -966,7 +983,8 @@
       "audioTextHash": "af51375382e52588",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "chiizu-to-wain-furansu-no",
@@ -1081,7 +1099,8 @@
       "audioTextHash": "7abdf046a165de57",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "kore-wa-itaria-no-kutsu",
@@ -1199,7 +1218,8 @@
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "ikura-desu-ka",
@@ -1227,7 +1247,8 @@
       "audioTextHash": "d06a0f64a4d54af4",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "eg-midori-no-pen",
@@ -1247,7 +1268,8 @@
       "audioFilter": "standard",
       "audioTextHash": "620f0c6426b840c2",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "itaria-no-kutsu-ja-arimasen",
@@ -1279,7 +1301,8 @@
       "audioTextHash": "26dd04e3f6a5e268",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "infomeeshon-wa-ikkai",
@@ -1326,7 +1349,8 @@
       "audioTextHash": "8b44669c31d307c8",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "kono-kuroi-kaban-mo-ichiman",
@@ -1358,7 +1382,8 @@
       "audioMarked": true,
       "audioFilter": "standard",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "two-books",
@@ -1374,7 +1399,8 @@
       "audioTextHash": "f49758bef12ca226",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "biiru-ippon-to-wain-nihon",
@@ -1423,7 +1449,8 @@
       "audioFilter": "standard",
       "audioTextHash": "8181b8ad74178a32",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "meat",
@@ -1439,7 +1466,8 @@
       "audioTextHash": "5a857e2c193977bd",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "kore-wa-doko-no-biiru-ka",
@@ -1473,7 +1501,8 @@
       "audioFilter": "standard",
       "audioTextHash": "0ef23b589900aeea",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "taoru-o-yonmai-kudasai",
@@ -1538,7 +1567,8 @@
       "audioFilter": "standard",
       "audioTextHash": "c5311ec930f0f242",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "chiizukeeki-appurupai-kudasai",
@@ -1571,7 +1601,8 @@
       "audioTextHash": "ae379f49bde710e3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "ano-aoi-tshirt-desu",

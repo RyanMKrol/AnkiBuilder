@@ -356,7 +356,8 @@
       "audioTextHash": "6e337dd52ea66b3b",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "x15c-hon-yomu-no-ga-suki",
@@ -401,7 +402,8 @@
       "audioTextHash": "a1b3243842db1789",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",
@@ -631,7 +633,8 @@
       "audioTextHash": "6f0db1d9b8003387",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "fib-utau-suki-past",
@@ -665,7 +668,8 @@
       "audioTextHash": "36c03489be0c9038",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 15 teaches suiei and the sport/hobby set",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "x15b-bijutsukan-ni-iku-no-ga-suki-q",
@@ -1030,7 +1034,8 @@
       "audioTextHash": "7cbfe9368d10a7f4",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Entertainment/media, alongside Lesson 15's anime and music",
       "addition": "nihongo-102-2026-08",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionAudioInherited": true
     },
     {
       "id": "fib-raja-hashiru-jouzu-past-neg",

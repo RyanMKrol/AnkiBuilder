@@ -29,6 +29,7 @@ const SPENT = [
   "migrate-nihongo-absorption.mjs",
   "retire-nihongo-course.mjs",
   "migrate-absorption-to-additions.mjs",
+  "migrate-mark-inherited-audio.mjs",
 ];
 
 const STANDING = [

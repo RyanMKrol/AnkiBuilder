@@ -98,16 +98,25 @@ export function createAnkiConnect({
     // --- destructive: notes and decks ---
     //
     // ⚠️ These two DELETE. `deleteNotes` takes the note's cards and its whole review log with it,
-    // and nothing about it is recoverable from Anki afterwards, only from a backup. `deleteDecks`
-    // with cardsToo:false moves any cards left in the deck to Default rather than deleting them,
-    // which is the only reason it is safe to call on a deck you believe is empty: if you are wrong,
-    // the cards survive somewhere findable instead of vanishing.
+    // and nothing about it is recoverable from Anki afterwards, only from a backup.
+    //
+    // `deleteDecks` USED to take cardsToo:false, which moved any cards left in the deck to Default
+    // instead of deleting them, and this wrapper defaulted to that as a safety net. Anki removed the
+    // option in 2.1.28: the call now fails outright with "it's not possible to delete decks without
+    // deleting cards as well". So the net was not a net. It was a call that could only ever throw,
+    // and it read as the safest of the two choices right up until it ran.
+    //
+    // There is no flag-shaped replacement. The guarantee has to come from the caller: COUNT THE
+    // CARDS IN THE DECK AND REFUSE IF IT IS NOT ZERO, then delete. That is strictly stronger than
+    // the old flag anyway — the flag rescued cards after being wrong about emptiness, where the
+    // check means never being wrong about it — which is why `cardsToo` is now a required argument
+    // with no default: passing it should be a decision at the call site, not something inherited.
     //
     // Nothing in the delivery path calls either one, by design: deliver never deletes, it reports a
     // dropped card as `orphaned` for a human to act on. They exist for the retirement of a whole
     // collection, which is a decision a person makes once and then wants carried out exactly.
     deleteNotes: (notes) => invoke("deleteNotes", { notes }),
-    deleteDecks: (decks, cardsToo = false) => invoke("deleteDecks", { decks, cardsToo }),
+    deleteDecks: (decks, cardsToo) => invoke("deleteDecks", { decks, cardsToo }),
 
     // --- media & backup ---
     storeMediaFile: (params) => invoke("storeMediaFile", params),

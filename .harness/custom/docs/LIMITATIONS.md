@@ -3492,3 +3492,38 @@ node -e 'const q=(a,p)=>fetch("http://127.0.0.1:8765",{method:"POST",body:JSON.s
 const u=n.filter(x=>!x.tags.some(t=>t.startsWith("abid:")));
 console.log(u.length+" untagged:",u.map(x=>x.fields.Target.value).join(" "));})()'
 ```
+
+### A safety flag that Anki stopped accepting read as the safest option right up until it ran
+
+**What.** `deleteDecks` took a `cardsToo` argument, and this repo's wrapper defaulted it to `false`
+on the reasoning that a deck which turns out not to be empty should give its cards up to Default
+rather than to deletion. Anki removed that option in **2.1.28**: the call now fails outright with
+"Since Anki 2.1.28 it's not possible to delete decks without deleting cards as well". The default was
+not a weaker safety net than intended, it was a request that could only ever throw.
+
+**Why it survived.** Two reinforcing reasons. Every caller that actually ran in anger passed
+`cardsToo: true` explicitly (`deliver.js`, `migrate-deck-numbering.mjs`, `restore-anki-backup.mjs`),
+so the default was only reachable from the one script nobody had run yet. And the unit test asserted
+the default, describing it in a comment as "the safety property, not a detail" — but it asserts
+against a **mock**, and a mock accepts values the real server rejects. The test was pinning a belief
+about Anki, not a behaviour of Anki, and it passed for exactly as long as nobody checked.
+
+**Impact.** It surfaced on the live retirement of the Nihongo 101 course: 103 notes were deleted,
+then the deck removal failed, leaving four empty decks behind. Recoverable by fixing forward, because
+`deleteNotes` had already returned and the deletion was the irreversible half. Had the order been
+reversed, the failure would have aborted before any deletion and looked like nothing but noise.
+
+**Status.** Fixed. `cardsToo` is now a **required** argument with no default, so the choice happens at
+each call site. The guarantee moved to where it can hold: the caller counts the cards in each deck and
+refuses if the count is not zero, which is strictly stronger than the old flag — the flag rescued
+cards after being wrong about emptiness, the check means never being wrong about it.
+
+**The general lesson, which is the reason this entry exists at all.** A test written against a mock
+proves what we SEND, never what the server does with it. Where a mocked assertion also carries a
+claim about the remote system's behaviour, that claim is unverified by construction, and a confident
+comment on it makes it read as verified. Any argument whose whole purpose is safety against a remote
+API is worth confirming against the real thing at least once.
+
+**Revisit** if AnkiConnect wrappers grow more defaults that encode assumptions about Anki's rules; the
+same shape of bug is available anywhere a default stands in for a live behaviour nobody has probed.
+`src/anki/probeResults.js` is where such behaviours get answered.

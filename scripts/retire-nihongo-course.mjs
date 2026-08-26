@@ -1,10 +1,22 @@
 #!/usr/bin/env node
 //
-// SPENT: 2026-08-24. A one-off MIGRATION, not a standing tool.
+// SPENT: 2026-08-26 — the date it RAN, not the date it was written. A one-off MIGRATION, not a
+// standing tool.
 // It retired the Nihongo 101 course deck from the live collection, once, after the absorption had
 // moved everything worth keeping into the book. It is kept for the record, and because re-reading
 // what a migration actually did is the only way to understand the shape of the data it left behind.
 // Do not run it as part of any procedure.
+//
+// WHAT IT ACTUALLY DID: deleted 103 notes, then removed 4 empty decks. Every one of the 103 was
+// checked first against the LIVE collection, not just the routing table — each named a twin, and
+// each twin was confirmed present in the book's deck tree — because a duplicate whose twin failed
+// to deliver is not a duplicate, it is the last copy.
+//
+// It also failed on its first run, halfway: the notes went, the decks did not, because
+// `deleteDecks` was called with cardsToo:false and Anki has refused that since 2.1.28. Both this
+// script and the wrapper were fixed and it was re-run to finish. The deleted notes were unaffected
+// — deleteNotes had already returned — so the halfway state was recoverable by fixing forward.
+// See the LIMITATIONS entry "A safety flag that Anki stopped accepting".
 //
 // ⚠️ THIS DELETES NOTES THE OWNER HAS BEEN STUDYING. That is the point of it, and it is why every
 // safety property below exists. Run it only when the routing table says those notes are redundant
@@ -15,9 +27,9 @@
 //     the course parent whose id is not in that set is REPORTED AND LEFT ALONE, because it is either
 //     something the migration missed or something the owner added by hand, and neither is this
 //     script's to remove.
-//   - Then the course decks, with cardsToo:false, so a deck that turns out not to be empty gives its
-//     cards up to Default rather than to deletion. If any deck still holds cards, it is left alone
-//     and reported.
+//   - Then the course decks, but ONLY after counting the cards in each and refusing if any is
+//     non-empty. A deck that still holds cards is left alone and reported. The refusal is the whole
+//     safety property: Anki has not allowed deleting a deck while sparing its cards since 2.1.28.
 //
 // Safety properties, in order of how much they matter:
 //   - A note is deleted only if the routing table says its card is a duplicate of one still shipping
@@ -148,9 +160,10 @@ const main = async () => {
     for (const s of stillHolding) console.error("      " + s);
     process.exit(1);
   }
-  // cardsToo:false. If the emptiness check above is somehow wrong, the cards go to Default rather
-  // than to deletion.
-  await client.deleteDecks(decks, false);
+  // Every deck is now CONFIRMED to hold zero cards by the loop above, which is what makes this
+  // safe. cardsToo:true is not a choice here, it is the only value Anki has accepted since 2.1.28,
+  // and it deletes nothing because there is nothing left to delete.
+  await client.deleteDecks(decks, true);
   console.log(`removed ${decks.length} empty deck(s)`);
   console.log("\nNext: sync Anki, then archive output/courses/nihongo-101-course-n5 on disk.");
 };

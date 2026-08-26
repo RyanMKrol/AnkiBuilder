@@ -41,10 +41,19 @@ test("typed helpers send the right action + params", async () => {
   await anki.deleteNotes([7, 8]);
   assert.deepEqual(calls.at(-1).body.params, { notes: [7, 8] });
 
-  // cardsToo defaults to FALSE, so a deck that turns out not to be empty loses its cards to
-  // Default rather than to deletion. That default is the safety property, not a detail.
-  await anki.deleteDecks(["Old Course"]);
-  assert.deepEqual(calls.at(-1).body.params, { decks: ["Old Course"], cardsToo: false });
+  // cardsToo is passed straight through with NO default, and the caller has to decide it.
+  //
+  // This assertion used to read `cardsToo: false` and call that default "the safety property, not a
+  // detail". It was neither. Anki has refused deleteDecks with cardsToo:false since 2.1.28 — the
+  // call fails with "it's not possible to delete decks without deleting cards as well" — so the
+  // safety net was a request that could only ever throw. The test passed anyway, because it asserts
+  // against a mock, and a mock accepts a value the real server rejects. That is the failure mode to
+  // watch for here: this file can only prove what we SEND, never what Anki does with it.
+  //
+  // The guarantee now lives where it can actually hold: the caller counts the cards in the deck and
+  // refuses if the count is not zero. See scripts/retire-nihongo-course.mjs.
+  await anki.deleteDecks(["Old Course"], true);
+  assert.deepEqual(calls.at(-1).body.params, { decks: ["Old Course"], cardsToo: true });
 
   await anki.exportPackage("Deck::Sub", "/tmp/x.apkg");
   assert.deepEqual(calls.at(-1).body.params, {

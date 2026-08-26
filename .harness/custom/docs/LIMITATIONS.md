@@ -3447,3 +3447,48 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   clip really was regenerated after its `[number]` placeholder was rewritten
 - **Status:** resolved for this batch (2026-08-26); the field is the standing mechanism
 - **When to revisit:** if a batch ever mixes sources per card rather than per batch.
+
+### Eight live notes carry no `abid:` tag, so no deliver can see them
+
+**What.** The book's deck tree in the live collection holds eight notes on the `AnkiBuilder ja` note
+type that have no `abid:<card.id>` tag: the counters まい, ほん, ぼん, ぽん, つ, かい, がい, and the
+greeting しつれいします. They have real study history behind them, up to a 148-day interval, so they
+have been part of the owner's reviews for months.
+
+**Why.** `deliver-to-anki.mjs` matches a note to a card solely by that tag. A note without one is
+invisible to it: not an update, not an add, not even an orphan, since orphan detection also works
+off the tag. These predate the tagging scheme, so nothing in the pipeline has ever had a handle on
+them. They were only found by reconciling the live note count against the package by hand.
+
+**Impact.** Three separate things, in increasing order of how much they matter.
+
+Nothing can edit them. A fix to the note type reaches them (it is per-language), but a fix to their
+CONTENT cannot, because no card on disk corresponds to them.
+
+They make the live count disagree with the package forever, which is the reconciliation this entry
+exists to explain: 2,367 shipping + 2 excluded-but-kept + these 8 = 2,377 live. Anyone checking that
+the deliver worked by comparing the two numbers will find a discrepancy that is not a defect.
+
+One is a genuine duplicate. The untagged しつれいします glosses as "Excuse me.", which is exactly what
+the corpus ships as `shitsurei-shimasu-entering`, so the owner is studying the same card twice under
+two schedules. (The untagged ほん is NOT a duplicate despite sharing a target with `hon`: the untagged
+one is the long-object counter, the corpus one is the noun "book".) The six remaining counters have
+no corpus twin at all, and are material the deck does not currently teach.
+
+**Status.** Live, and deliberately not auto-fixed. Every option spends the owner's study history:
+deleting the duplicate discards 5 reps, back-filling tags adopts six cards the corpus does not teach
+and cannot regenerate audio for, and leaving it costs one duplicated card. That is a judgement about
+what the owner wants to study, not a defect to repair, so it is recorded rather than resolved.
+
+**Revisit** if the counters are ever added to the corpus properly, at which point the untagged
+originals become six more duplicates and the choice gets made anyway.
+
+**Verified by:**
+
+```sh
+# the 8, with their study history, straight from the live collection
+node -e 'const q=(a,p)=>fetch("http://127.0.0.1:8765",{method:"POST",body:JSON.stringify({action:a,version:6,params:p||{}})}).then(r=>r.json()).then(d=>{if(d.error)throw d.error;return d.result});
+(async()=>{const n=await q("notesInfo",{notes:await q("findNotes",{query:"deck:\"Japanese for Busy People Book 1: Kana::*\""})});
+const u=n.filter(x=>!x.tags.some(t=>t.startsWith("abid:")));
+console.log(u.length+" untagged:",u.map(x=>x.fields.Target.value).join(" "));})()'
+```

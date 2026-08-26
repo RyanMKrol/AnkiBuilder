@@ -667,6 +667,21 @@ ${sectionHtml}
         }
       : undefined;
 
+    // The normal audio review signs a whole unit off with one "Mark done". The gate here is per card,
+    // so the same shape is a per-section control that walks its rows: familiar to use, and it still
+    // cannot sign off a card with no clip, because each row goes through the same refusal.
+    const sectionControl = canEdit
+      ? (sec) => {
+          if (sec.stage !== "audio") return "";
+          const left = sec.cards.filter(
+            (c) => !c.excluded && c.audio && c.additionStage === "audio",
+          );
+          return left.length
+            ? `<button type="button" class="done-unit" data-unit="${escapeHtml(String(sec.seq))}">Mark all ${left.length} ready</button><span class="rev-msg"></span>`
+            : `<span class="done-badge">✓ all signed off</span>`;
+        }
+      : undefined;
+
     const group = (title, hint, sections, cls) => {
       if (!sections.length) return "";
       const { html } = renderLessonSections({
@@ -675,6 +690,7 @@ ${sectionHtml}
         audioCell,
         originalCell: sections[0].stage === "audio" ? originalCell : undefined,
         rowControl,
+        sectionControl,
         open: true,
         showReviewNote: true,
       });

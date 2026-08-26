@@ -602,6 +602,36 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
     });
   });
 
+  // Per-section sign-off, the same shape the normal audio review's "Mark done" has. Sequential for
+  // the same reason as approve: every one rewrites the same cards.json.
+  document.querySelectorAll("button.done-unit").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var sec = btn.closest("details");
+      var rows = [].slice.call(sec.querySelectorAll("tr")).filter(function (tr) {
+        var b = tr.querySelector("button.addition-done");
+        return b && !b.disabled;
+      });
+      if (!rows.length) return;
+      if (!window.confirm("Sign off the audio on " + rows.length + " card" + (rows.length === 1 ? "" : "s") + " in this deck? They ship after this.")) return;
+      btn.disabled = true;
+      var msg = btn.nextElementSibling;
+      var i = 0;
+      function step() {
+        if (i >= rows.length) {
+          if (msg) msg.textContent = "\u2713 " + rows.length + " signed off";
+          btn.outerHTML = '<span class="done-badge">\u2713 all signed off</span>';
+          return A.maybeRebuild();
+        }
+        if (msg) msg.textContent = i + 1 + " of " + rows.length + "\u2026";
+        return markDone(rows[i++]).then(step);
+      }
+      step().catch(function (e) {
+        btn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
+    });
+  });
+
   // The primary action. Reading a couple of hundred cards and clicking Approve on each is data
   // entry, not review: the useful flow is to exclude or fix the few that need it and accept the
   // rest together. Confirmed, because it is the one control here that cannot be undone in one click.

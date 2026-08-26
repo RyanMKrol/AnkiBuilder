@@ -336,6 +336,28 @@ test("a card ships only once BOTH gates are signed off", () => {
   }
 });
 
+test("the audio group offers a per-section sign-off, like the normal audio review's Mark done", async () => {
+  const { root, book } = fixture();
+  try {
+    // Put the pending card at the audio gate with a clip, so the group renders.
+    const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+    const c = cards.items.find((i) => i.id === "new-pending");
+    c.additionReviewed = true;
+    c.audio = "a.mp3";
+    writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+
+    await withServer(root, async (url) => {
+      const html = await (await fetch(`${url}/additions/book/mybook`)).text();
+      assert.match(html, /Mark all 1 ready/, "a per-section control, not just per-card");
+      assert.match(html, /<button[^>]*class="addition-done"/, "and the per-card one");
+      // The label must not be able to wrap into an unreadable stack again.
+      assert.match(html, /\.approve-btn,\.addition-done\{white-space:nowrap/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("a read-only server refuses to approve", async () => {
   const { root, book } = fixture();
   try {

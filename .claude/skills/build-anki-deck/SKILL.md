@@ -55,9 +55,31 @@ where they apply in the reference files.
 | **1 — Corpus** (Step 3) | English + target + pronunciation, on the final cards | **Mark reviewed** |
 | **2 — Audio** (Step 4)  | Every card's clip                                    | **Mark done**     |
 
-That's the whole state space. A lesson is either mid-build (the dashboard says *building* or
-*interrupted*, or lists it under **Not finished**), sitting at gate 1, sitting at gate 2, or done.
-There is no third review, and nothing to review before translation.
+That's the whole state space **for a lesson**. A lesson is either mid-build (the dashboard says
+*building* or *interrupted*, or lists it under **Not finished**), sitting at gate 1, sitting at gate
+2, or done. There is nothing to review before translation.
+
+**There is a third review, and it is not a lesson state.** The **Additions** review
+(`/additions/<type>/<id>`) covers cards RETROFITTED into a lesson that is already finished, which
+happens whenever class notes arrive for material the deck taught chapters ago. Its gates are per
+CARD, not per lesson, and there are TWO of them, the same pair a lesson passes:
+
+| Gate | What you check | Sign-off | Field |
+| --- | --- | --- | --- |
+| **Additions, content** | English + target + pronunciation | **Approve** | `additionReviewed` |
+| **Additions, audio** | the card's clip | **Mark ready** | `additionDone` |
+
+A retrofitted card carries an `addition` batch and ships only once it has BOTH, while the lesson it
+landed in keeps its own sign-offs untouched. Audio is generated between the two, exactly as it is
+between gate 1 and gate 2, which is why the content gate comes first: nothing spends TTS credits on
+a card that might be cut.
+
+That distinction is the whole point. Approving a dozen new cards through the lesson's own corpus gate
+would mean clearing `done`, withdrawing the sign-off, and re-reading every card in the unit; doing
+exactly that across fifteen units by hand is what caused the feature to be built. So: a lesson is
+still only ever at one of the two gates, and additions are reviewed beside that, never instead of it.
+
+Building a retrofit is [augment-anki-deck](../augment-anki-deck/SKILL.md), not this skill.
 
 **Never hand over a gate and stop. Arm a watcher and continue by yourself when the sign-off lands.**
 Handing over a review link and then waiting to be told "I've reviewed it" costs the user a message

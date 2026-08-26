@@ -133,7 +133,12 @@ test("syncStructure creates the model when absent", async () => {
 });
 
 // Build a notesInfo-shaped record.
-const note = (noteId, { target = "", english = "", note: nt = "", tags = [] } = {}) => ({
+// `audio` defaults to the clip `audioed()` gives a card of the same id, so a note meant to be
+// IDENTICAL to its card stays identical. Pass it explicitly to model a note whose clip differs.
+const note = (
+  noteId,
+  { target = "", english = "", note: nt = "", tags = [], audio = "" } = {},
+) => ({
   noteId,
   tags,
   fields: {
@@ -144,17 +149,22 @@ const note = (noteId, { target = "", english = "", note: nt = "", tags = [] } = 
     Hint: { value: "" },
     Note: { value: nt },
     Image: { value: "" },
-    Audio: { value: "" },
+    Audio: { value: audio ? `[sound:${audio}]` : "" },
   },
 });
 
+// A deliverable card must have audio (`assertDeliverableAudio`): a silent card in a studied deck
+// teaches close to nothing, and this path used to add one and merely mention it in the report.
+// These fixtures are about matching, guards and counting, so they do not care WHICH clip a card
+// has, only that a deliverable deck has one. A test about the missing-audio case sets it itself.
+const audioed = (cards) => (cards || []).map((c) => (c.audio ? c : { ...c, audio: `${c.id}.mp3` }));
 function deckWith(cards) {
   return {
     type: "course",
     id: "c",
     ankiParent: "Course",
     spec: SPEC,
-    units: [{ ankiDeck: "Course::L1", audioDir: null, cards }],
+    units: [{ ankiDeck: "Course::L1", audioDir: null, cards: audioed(cards) }],
   };
 }
 
@@ -162,7 +172,7 @@ test("syncDeckContent: update-by-tag, fingerprint-bootstrap+tag, add-new, skip-n
   const notes = [
     note(1, { target: "こんにちは", english: "Hello", note: "", tags: ["abid:a"] }), // A: differs → update
     note(2, { target: "さようなら", english: "Goodbye" }), // B: no tag → fingerprint → update+tag
-    note(3, { target: "はい", english: "Yes", tags: ["abid:d"] }), // D: identical → skip
+    note(3, { target: "はい", english: "Yes", tags: ["abid:d"], audio: "d.mp3" }), // D: identical → skip
     note(7, { target: "みず", english: "Water" }), // E: fingerprint dup #1
     note(8, { target: "みず", english: "Water" }), // E: fingerprint dup #2 → ambiguous
     note(9, { target: "ねこ", english: "Cat", tags: ["abid:z"] }), // orphan (no corpus card z)

@@ -29,6 +29,10 @@ test("readApkg round-trips a built deck: fields, sub-deck, and embedded audio by
           target: "さようなら",
           pronunciation: "sayounara",
           category: "Greetings",
+          // Named but never written to disk. The build refuses a card with NO clip
+          // (`assertEveryCardHasAudio`), so this is how a deck legitimately ends up holding a card
+          // with no audio bytes: the file went missing, which is the real-world shape of it.
+          audio: "gone.mp3",
         },
       ],
     };
@@ -49,7 +53,7 @@ test("readApkg round-trips a built deck: fields, sub-deck, and embedded audio by
     assert.deepEqual(Buffer.from(hello.audioData), audioBytes);
 
     const bye = cardsOut.find((c) => c.english === "Bye");
-    assert.equal(bye.audioData, null, "card with no audio resolves to null bytes");
+    assert.equal(bye.audioData, null, "a card whose clip file is absent resolves to null bytes");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -72,6 +76,7 @@ test("readApkg groups cards under their sub-decks for a merged book, in book ord
                 target: "いち",
                 pronunciation: "ichi",
                 category: "Numbers",
+                audio: "a.mp3",
               },
             ],
           },
@@ -81,7 +86,14 @@ test("readApkg groups cards under their sub-decks for a merged book, in book ord
           cards: {
             meta: { targetLanguage: "ja" },
             items: [
-              { id: "b", english: "two", target: "に", pronunciation: "ni", category: "Numbers" },
+              {
+                id: "b",
+                english: "two",
+                target: "に",
+                pronunciation: "ni",
+                category: "Numbers",
+                audio: "b.mp3",
+              },
             ],
           },
         },

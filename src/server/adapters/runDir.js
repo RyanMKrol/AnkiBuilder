@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
+import { isPendingAddition, additionStage } from "../../deck/shippableCards.js";
 
 // Shared helpers for the build-folder deck adapters: reading a run directory's corpus.json/cards.json
 // and mapping their items into stage-appropriate render shapes for the dashboard. (Stage detection and
@@ -76,6 +77,15 @@ export function toRenderCard(item) {
     excludedReason: item.excludedReason || "",
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,
+    // The retrofit batch that added this card, and whether it has been signed off. Carried so the
+    // additions review can group by batch and badge what is still pending; a card with no
+    // `addition` is not an addition at all. See src/deck/shippableCards.js.
+    addition: item.addition || "",
+    additionPending: isPendingAddition(item),
+    // Which of the two addition gates this card is at: "corpus", "audio", or null when it has
+    // passed both (or is not an addition at all).
+    additionStage: additionStage(item),
+    additionAudioInherited: !!item.additionAudioInherited,
   };
 }
 

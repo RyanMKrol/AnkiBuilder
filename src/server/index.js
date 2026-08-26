@@ -24,6 +24,8 @@ import {
   editCard,
   setLessonDone,
   markCardsReviewed,
+  approveAddition,
+  markAdditionDone,
   unmarkCardsReviewed,
 } from "./adapters/applyCards.js";
 import {
@@ -137,15 +139,20 @@ export function createDeckServer({
 
   // The page renderers and media routes moved to pages.js / mediaRoutes.js; each
   // factory receives the same injected values the functions used to close over.
-  const { renderDashboard, renderReviewPage, renderDeckPage, renderFacesPage } =
-    createPageRenderers({
-      outputRoot,
-      adapters,
-      adapterFor,
-      editable,
-      resolveIso639Code,
-      mediaUrl,
-    });
+  const {
+    renderDashboard,
+    renderReviewPage,
+    renderDeckPage,
+    renderFacesPage,
+    renderAdditionsPage,
+  } = createPageRenderers({
+    outputRoot,
+    adapters,
+    adapterFor,
+    editable,
+    resolveIso639Code,
+    mediaUrl,
+  });
   const { serveFont, serveMedia } = createMediaRoutes({
     outputRoot,
     adapterFor,
@@ -269,6 +276,23 @@ export function createDeckServer({
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     sendJson(res, markCardsReviewed(runDir, { saveChapterCorpus }));
+  }
+
+  // Sign off one retrofitted card. Same four-line prologue as every other write handler, so it
+  // inherits the --read-only refusal, the localhost-only check, the build claim guard and the
+  // httpError funnel without restating any of them.
+  function handleApproveAddition(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    sendJson(res, approveAddition(runDir, cardId));
+  }
+
+  function handleAdditionDone(res, type, id, unit, cardId) {
+    const runDir = safeUnitDir(type, id, unit);
+    if (!runDir) return notFound(res);
+    assertNotBuilding(runDir);
+    sendJson(res, markAdditionDone(runDir, cardId));
   }
 
   function handleCardsUnreviewed(res, type, id, unit) {
@@ -503,6 +527,14 @@ export function createDeckServer({
         await handleReviewExclude(req, res, type, id, unit, cardId);
         return true;
       }
+      if (seg[8] === "addition" && seg[9] === "done" && seg.length === 10) {
+        handleAdditionDone(res, type, id, unit, cardId);
+        return true;
+      }
+      if (seg[8] === "addition" && seg[9] === "approve" && seg.length === 10) {
+        handleApproveAddition(res, type, id, unit, cardId);
+        return true;
+      }
       if (seg[8] === "review" && seg[9] === "edit" && seg.length === 10) {
         await handleReviewEdit(req, res, type, id, unit, cardId);
         return true;
@@ -540,6 +572,12 @@ export function createDeckServer({
         // it renders the note type, it never writes it.
         if (seg[0] === "faces" && (seg.length === 3 || seg.length === 4)) {
           const html = renderFacesPage(seg[1], seg[2], seg[3] ?? null);
+          return html ? sendHtml(res, html) : notFound(res);
+        }
+        // The ADDITIONS review: cards a retrofit added, across every unit they landed in. Optional
+        // 4th segment narrows to one batch.
+        if (seg[0] === "additions" && (seg.length === 3 || seg.length === 4)) {
+          const html = renderAdditionsPage(seg[1], seg[2], seg[3] ?? null);
           return html ? sendHtml(res, html) : notFound(res);
         }
         if (seg[0] === "media" && seg.length === 5)

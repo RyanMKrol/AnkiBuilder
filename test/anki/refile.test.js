@@ -60,7 +60,14 @@ const deck = (cards) => ({
   ankiParent: "My Book",
   spec: SPEC,
   marker: { ankiParent: "My Book" },
-  units: [{ ankiDeck: "My Book::Lesson 05::New Title", audioDir: null, cards }],
+  units: [
+    {
+      ankiDeck: "My Book::Lesson 05::New Title",
+      audioDir: null,
+      // A deliverable card must have audio; these fixtures are about deck MEMBERSHIP, not sound.
+      cards: (cards || []).map((c) => (c.audio ? c : { ...c, audio: `${c.id}.mp3` })),
+    },
+  ],
 });
 
 /** One delivered note whose two cards sit under the unit's OLD deck name. */

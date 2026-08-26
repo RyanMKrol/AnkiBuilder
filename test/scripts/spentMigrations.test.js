@@ -25,6 +25,11 @@ const SPENT = [
   "strip-restatement-notes.mjs",
   "enhance-card-notes.mjs",
   "backfill-audio-text-hash.mjs",
+  "absorb-nihongo.mjs",
+  "migrate-nihongo-absorption.mjs",
+  "retire-nihongo-course.mjs",
+  "migrate-absorption-to-additions.mjs",
+  "migrate-mark-inherited-audio.mjs",
 ];
 
 const STANDING = [
@@ -53,6 +58,7 @@ const STANDING = [
   "test-with-write-guard.mjs",
   "verify-apkg-import.mjs",
   "anki-behaviour-probe.mjs",
+  "absorption-crosscheck.mjs",
 ];
 
 const read = (name) => readFileSync(join(SCRIPTS, name), "utf-8");

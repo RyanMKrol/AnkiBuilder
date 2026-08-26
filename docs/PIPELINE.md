@@ -873,6 +873,14 @@ permanent unless the distinct second flag `--re-suspend-human-unsuspended` is pa
 every direction is refused by name: that is a note with no studiable card, which is what `excluded`
 is for.
 
+**Deletion is not on this path at all.** `deleteNotes` and `deleteDecks` exist on the client
+(`src/anki/ankiConnect.js`) and nothing in the delivery code calls either. Deliver reports a card
+that left the corpus as `orphaned` and stops there, because deleting a note takes its cards and its
+whole review log with it and Anki cannot undo that. The two actions are there for retiring a whole
+collection, which is a decision a person makes once. `deleteDecks` defaults `cardsToo` to `false`, so
+a deck that turns out not to be empty gives its cards up to Default rather than to deletion; that
+default is a safety property rather than a convenience, and a test asserts it.
+
 **Stated consequence:** because the `.apkg` keeps both rows while delivery suspends one, a built
 package deliberately no longer reproduces the delivered deck card-for-card. That is the right trade —
 the two builders must not drift STRUCTURALLY — but it is a real difference and the freshness check

@@ -122,7 +122,16 @@ test("a non-zero exit from the Python half surfaces both streams", () => {
   buildDeck(
     {
       meta: { targetLanguage: "ja", sourceType: "manual" },
-      items: [{ id: "a", english: "A", category: "Numbers", target: "あ", pronunciation: "a" }],
+      items: [
+        {
+          id: "a",
+          english: "A",
+          category: "Numbers",
+          target: "あ",
+          pronunciation: "a",
+          audio: "a.mp3",
+        },
+      ],
     },
     { outPath: apkg, getFont: () => undefined },
   );

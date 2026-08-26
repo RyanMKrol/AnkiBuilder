@@ -32,9 +32,17 @@ export function postPrepareSeed(runDir) {
  * wrong thing. `reportOnly` steps exit non-zero to say "there is something here for you to judge",
  * which is not a failure of the chain.
  */
-export function finalizeExtrasPlan(runDir, { seed = postPrepareSeed(runDir), cliBin } = {}) {
+export function finalizeExtrasPlan(
+  runDir,
+  { seed = postPrepareSeed(runDir), cliBin, force = false, forceDelivered = false } = {},
+) {
   const unit = resolve(runDir);
   const collection = dirname(unit);
+  // The ordering step is the one WRITE in this chain, so it is the one step the mutation guard
+  // stops. Consent has to reach it or the chain dies at step 4, after `prepare` has already spent
+  // credits on steps 1 to 3 — which is the worst place to discover a permissions problem. The
+  // consent is never inferred here: it is only ever forwarded from what the caller was given.
+  const consent = [...(force ? ["--force"] : []), ...(forceDelivered ? ["--force-delivered"] : [])];
   return [
     {
       name: "prepare",
@@ -56,7 +64,7 @@ export function finalizeExtrasPlan(runDir, { seed = postPrepareSeed(runDir), cli
     },
     {
       name: "order",
-      argv: ["scripts/extras-order.mjs", unit, "--apply", "--seed", seed],
+      argv: ["scripts/extras-order.mjs", unit, "--apply", "--seed", seed, ...consent],
       why: "seeded shuffle then hoist, with a fresh seed so prepare's mined cards fold in",
       fatal: true,
     },

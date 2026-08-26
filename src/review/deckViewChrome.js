@@ -44,6 +44,16 @@ table.tbl-incomplete{min-width:1070px}
 .tbl-incomplete col.c-num{width:44px}.tbl-incomplete col.c-en{width:240px}.tbl-incomplete col.c-cat{width:140px}.tbl-incomplete col.c-hint{width:170px}.tbl-incomplete col.c-note{width:196px}.tbl-incomplete col.c-flag{width:120px}
 table.tbl-corpus{min-width:1310px}
 .tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:200px}.tbl-corpus col.c-cat{width:120px}.tbl-corpus col.c-jp{width:190px}.tbl-corpus col.c-pron{width:140px}.tbl-corpus col.c-hint{width:150px}.tbl-corpus col.c-note{width:120px}.tbl-corpus col.c-flag{width:104px}.tbl-corpus col.c-excl{width:96px}
+.tbl-additions col.c-num{width:44px}.tbl-additions col.c-en{width:210px}.tbl-additions col.c-jp{width:190px}.tbl-additions col.c-pron{width:150px}.tbl-additions col.c-au{width:184px}.tbl-additions col.c-hint{width:150px}.tbl-additions col.c-note{width:auto}.tbl-additions col.c-excl{width:96px}
+.tbl-additions td.excl-cell{white-space:nowrap;text-align:right}
+.tbl-additions td.excl-cell > * + *{margin-left:8px}
+.tbl-additions td.excl-cell .msg{display:block;margin:4px 0 0;text-align:right}
+.add-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 6px}
+.approve-all{cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid #3f6f6a;border-radius:6px;background:#3f6f6a;color:#fff}
+.approve-all:hover{background:#345c58}
+.approve-all[disabled]{opacity:.5;cursor:default}
+.approve-all-msg{font-size:12px;color:#6b6459}
+.show-excl{font-size:12px;color:#6b6459;display:flex;align-items:center;gap:5px;cursor:pointer}
 /* Audio review with the extra Exclude / Review-note columns: the base audio table's AUTO Note column
    would collapse, so give the whole table explicit px widths + a min-width (scrolls in .tw). Only the
    crowded review render gets this class — the read-only 6-column audio browse/artifact is untouched. */
@@ -86,6 +96,7 @@ td.cat-col{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:va
 .badge-ai{color:#3f6f6a;border-color:#3f6f6a}.badge-uncertain{color:#8a6a24;border-color:#8a6a24}
 .badge-marker{color:#8a2a24;border-color:#8a2a24}
 .badge-stale{color:#8a2a24;border-color:#8a2a24}
+.badge-pending{color:#2f4a7a;border-color:#2f4a7a}
 /* The kanji orthography TTS reads instead of the kana. Never a card face — see spokenKanji().
    Muted while it is only stored for review; in the accent colour once the unit is voiced from it. */
 .tts-kanji{margin-top:3px;font-size:12px;color:var(--faint);font-family:var(--jp)}
@@ -213,7 +224,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .sec-tools .done-badge{font-size:11px;font-weight:700;color:#5c7a52;text-transform:uppercase;letter-spacing:.04em}
 .sec-tools .hint{font-size:12px;color:var(--faint)}.sec-tools .hint code{font-family:var(--mono);font-size:11px}
 /* Exclude is a single compact icon button (the circled-slash glyph) — no wrapping text; .on = excluded. */
-.excl-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:16px;line-height:1;color:var(--soft);background:var(--card);border:1px solid var(--rule2);border-radius:8px;cursor:pointer}
+.excl-btn{vertical-align:middle;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:16px;line-height:1;color:var(--soft);background:var(--card);border:1px solid var(--rule2);border-radius:8px;cursor:pointer}
 .excl-btn:hover{border-color:var(--accent);color:var(--accent)}
 .excl-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .excl-btn:disabled{opacity:.5;cursor:default}
@@ -238,6 +249,7 @@ export {
   DECK_EDIT_SCRIPT,
   AUDIO_TRIM_SCRIPT,
   REVIEW_EDIT_SCRIPT,
+  ADDITIONS_REVIEW_SCRIPT,
   MARK_DONE_SCRIPT,
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
@@ -256,8 +268,10 @@ const markerStuckBadge = `<span class="badge badge-marker">Marker audible</span>
 // reviewer's hand trim / hand pick or re-spends credits, so the decision is theirs. See
 // src/audio/textHash.js, and the "keep this clip" button in the Audio column beside it.
 const textStaleBadge = `<span class="badge badge-stale" title="This clip was generated from different text — re-generate it, or keep it with the button in the Audio column">Text changed</span>`;
+const pendingAdditionBadge = `<span class="badge badge-pending" title="Retrofitted into this unit and not yet approved — it does not ship until it is">Pending</span>`;
 const provenanceBadges = (c) =>
   [
+    c.additionPending ? pendingAdditionBadge : "",
     c.aiSuggested ? aiBadge : "",
     c.uncertain ? uncertainBadge : "",
     c.audioMarkerStuck ? markerStuckBadge : "",
@@ -359,6 +373,30 @@ const STAGE_TABLES = {
   <td class="ctr">${tick(c.uncertain)}</td>
   <td class="excl-cell">${rowExtra(ctx, "corpus", c)}</td>`,
   },
+  // The "Additions" review — the THIRD review type, and the only one not scoped to a unit. It shows
+  // the cards a retrofit added, wherever they landed, so a dozen new cards can be approved without
+  // re-opening the corpus gate of every unit they went into. The unit's own two gates are untouched.
+  //
+  // Which deck a card is going into is the question this review exists to answer, and it is the one
+  // the per-unit pages never have to ask. It is the SECTION heading rather than a column: sections
+  // here are destination units, so the answer is stated once per group instead of repeated on every
+  // row.
+  //
+  // Columns are the corpus set (English, the inline-editable Target and Pronunciation, Hint, Note)
+  // plus Audio, because an approved addition gets a clip and is auditioned here rather than by
+  // opening a finished unit's audio review.
+  additions: {
+    cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-au"><col class="c-hint"><col class="c-note"><col class="c-excl">`,
+    head: `<th class="num">#</th><th>English</th><th>Target</th><th>Pronunciation</th><th>Audio</th><th>Hint</th><th>Note</th><th></th>`,
+    cells: (c, ctx) =>
+      `<td class="en">${escapeHtml(c.english)}${c.category ? `<div class="cat">${escapeHtml(c.category)}</div>` : ""}${inlineFlags(c)}</td>
+  <td class="jp" data-field="target">${jpOrDash(c.target)}${spokenKanji(c)}</td>
+  <td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation)}</td>
+  <td class="au">${ctx.audioCell ? ctx.audioCell(c) : `<span class="x">—</span>`}</td>
+  ${hintCell(c)}
+  <td class="note">${c.note ? escapeHtml(c.note) : ""}</td>
+  <td class="excl-cell">${rowExtra(ctx, "additions", c)}</td>`,
+  },
 };
 
 const cardRow = (c, n, stage, ctx) => {
@@ -374,6 +412,8 @@ const cardRow = (c, n, stage, ctx) => {
         (c.audioFilter ? ` data-filter="${escapeHtml(c.audioFilter)}"` : "")
       : "";
   const attrs =
+    `${stage === "additions" && !c.audio && !c.excluded ? ` data-needs-audio="1"` : ""}` +
+    `${c.additionAudioInherited ? ` data-inherited-audio="1"` : ""}` +
     `${c.id ? ` data-card-id="${escapeHtml(c.id)}"` : ""}` +
     `${c.unit != null ? ` data-unit="${escapeHtml(String(c.unit))}"` : ""}` +
     ` data-stage="${escapeHtml(stage)}"` +

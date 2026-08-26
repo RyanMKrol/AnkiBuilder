@@ -8,6 +8,14 @@
   },
   "items": [
     {
+      "id": "clothes",
+      "english": "Clothes",
+      "category": "Clothing",
+      "target": "ふく",
+      "note": "Finished garments; contrast ぬの (nuno), the raw fabric they're made from.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
       "id": "fukuro",
       "english": "Bag",
       "category": "Shopping",
@@ -18,398 +26,11 @@
       "aiSuggested": true
     },
     {
-      "id": "akai-magukappu-ikura",
-      "english": "How much is the red mug?",
-      "category": "Shopping",
-      "target": "あかいマグカップはいくらですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From EXERCISES 3, the worked example (verbatim). GRAMMAR 3 (adjective before noun) has exactly one card in the deck, the KS3 statement; this is the same grammar inside a question, and it puts the stranded マグカップ and あかい vocabulary to work. Its answer form is already covered by nisen-roppyaku-en-desu, so I did not add a second price answer.",
-      "aiSuggested": true
-    },
-    {
-      "id": "chiizukeeki-appurupai-kudasai",
-      "english": "I would like three cheesecakes and two apple pies, please.",
-      "category": "Food",
-      "target": "チーズケーキをみっつとアップルパイをふたつください",
-      "hint": null,
-      "note": "Each item carries its own を (o) and its own counter, and と (to) joins the two orders. ください (kudasai) comes once, at the end.",
-      "reviewNote": "From SPEAKING PRACTICE 2 (verbatim). This is the only sentence in the lesson that orders two different counted items in one breath, and it is the only thing that uses the stranded チーズケーキ and アップルパイ vocabulary cards. It also puts みっつ and ふたつ into a sentence — until now the つ-counters only existed as recitation cards plus the single それをむっつください drill.",
-      "aiSuggested": true
-    },
-    {
-      "id": "taoru-o-yonmai-kudasai",
-      "english": "Four towels, please.",
-      "category": "Shopping",
-      "target": "タオルを４まいください",
-      "ttsText": "タオルをよんまいください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed, but it is exactly the answer EXERCISES 7.2 asks the learner to produce (タオル, 4まい). Serves the VOCABULARY job for タオル and adds a second まい sentence — before wave 1 the deck had ten まい recitation cards and zero sentences.",
-      "aiSuggested": true
-    },
-    {
-      "id": "mikan-o-mittsu-kudasai",
-      "english": "Three of those mikan oranges, please.",
-      "category": "Food",
-      "target": "そのみかんをみっつください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Lifted verbatim from EXERCISES 6, the worked example. Serves the FORM job (nounを number ください) and the VOCABULARY job — みかん sat in the deck as a bare noun with no sentence. Wave 1 did not take this one.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ookii-fukuro-o-ichimai",
-      "english": "One of those large bags, please.",
-      "category": "Shopping",
-      "target": "そのおおきいふくろを１まいください",
-      "ttsText": "そのおおきいふくろをいちまいください",
-      "hint": null,
-      "note": "Bags count with まい (mai) because they are flat when empty, the same counter as shirts and sheets of paper.",
-      "reviewNote": "Constructed. Serves the VOCABULARY job for おおきい, which had no sentence. Builds on wave 1's ふくろも２まいください rather than repeating it: singular いちまい instead of にまい, and a plain request instead of an 'as well' one.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-igirisu-no-kaban",
-      "english": "This is an English bag.",
-      "category": "Nationalities & Countries",
-      "target": "これはイギリスのかばんです",
-      "hint": null,
-      "note": "The other half of the pair with これはわたしのかばんです (kore wa watashi no kaban desu). A place before の (no) says where the thing was made, never who it belongs to — this bag is not owned by England.",
-      "reviewNote": "Constructed. Serves the PARTICLE job for の as the origin member of the minimal pair. イギリス is from Lesson 1.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kono-kuroi-kaban-mo-ichiman",
-      "english": "Is this black bag also 10,000 yen?",
-      "category": "Shopping",
-      "target": "このくろいかばんも10,000えんですか",
-      "ttsText": "このくろいかばんもいちまんえんですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From EXERCISES 5, the worked example (verbatim). Exercise 5 produced no cards. No card in this lesson uses も, and this stacks この + adjective + noun in one question, which nothing else in the deck does.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ookii-soujiki-wa-ikura",
-      "english": "How much is that large vacuum cleaner over there?",
-      "category": "Shopping",
-      "target": "あのおおきいそうじきはいくらですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Serves the VOCABULARY job for おおきい and puts そうじき to work outside its single どこですか card. GRAMMAR 3 (adjective before noun) had one worked example in the deck before wave 1 and two after; this is a third with a different adjective type — size rather than colour.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ringo-wa-hyaku-en",
-      "english": "Apples are 100 yen.",
-      "category": "Money",
-      "target": "りんごは100えんです",
-      "ttsText": "りんごはひゃくえんです",
-      "hint": null,
-      "note": "Half of a minimal pair with みかんも100えんです (mikan mo hyaku-en desu). は (wa) just names the topic and says nothing about anything else.",
-      "reviewNote": "Constructed. Serves the PARTICLE job: は and も are the lesson's two topic-slot particles and the deck never shows them swapped in one otherwise identical sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "itaria-no-kutsu-ja-arimasen",
-      "english": "These aren't Italian shoes.",
-      "category": "Clothing",
-      "target": "これはイタリアのくつじゃありません",
-      "hint": null,
-      "note": "Member 2 of the set. じゃありません (ja arimasen) from Lesson 2 simply replaces です (desu); nothing else in the sentence moves.",
-      "reviewNote": "Constructed. Serves the FORM job as the negative rung, on the same noun as kore-wa-itaria-no-kutsu. Wave 1's スイスのじゃありません negates a noun-dropped のです; this one negates the full placeの noun phrase, which is the shape GRAMMAR 4 actually teaches.",
-      "aiSuggested": true
-    },
-    {
-      "id": "biiru-ippon-to-wain-nihon",
-      "english": "One beer and two bottles of wine, please.",
-      "category": "Food",
-      "target": "ビールを１ぽんとワインを２ほんください",
-      "ttsText": "ビールをいっぽんとワインをにほんください",
-      "hint": null,
-      "note": "One counter, two sounds in a single breath: いっぽん (ip-pon) after いち (ichi), にほん (ni-hon) after に (ni).",
-      "reviewNote": "Constructed. Serves the FORM job. This is the only card anywhere that puts two forms of the same counter side by side, which is the fastest way to see that the change is driven by the number in front, not by the object.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kamera-wa-yonkai-desu-ka",
-      "english": "Are the cameras on the fourth floor?",
+      "id": "5th-floor",
+      "english": "5th floor",
       "category": "Directions",
-      "target": "カメラは４かいですか",
-      "ttsText": "カメラはよんかいですか",
-      "hint": null,
-      "note": "You can check a location without どこ (doko): name a floor and add か (ka).",
-      "reviewNote": "Constructed. Serves the VOCABULARY job for よんかい and the FORM job — every location question in the deck uses どこ, so the yes/no version of GRAMMAR 1 had no example at all.",
-      "aiSuggested": true
-    },
-    {
-      "id": "biiru-o-sanbon-kudasai",
-      "english": "Three beers, please.",
-      "category": "Food",
-      "target": "ビールを３ぼんください",
-      "ttsText": "ビールをさんぼんください",
-      "hint": null,
-      "note": "ほん (hon) softens to ぼん (bon) after さん (san). That is why the deck has three separate spellings of the same counter.",
-      "reviewNote": "Constructed. Serves the FORM job — of the three counter shapes ほん／ぼん／ぽん, only ほん had ever appeared in a sentence (ks5-two-bottles-wine). Also the first sentence use of ビール as the thing being bought rather than asked about.",
-      "aiSuggested": true
-    },
-    {
-      "id": "iie-suisu-no-ja-arimasen",
-      "english": "No, it isn't Swiss. It's French.",
-      "category": "Nationalities & Countries",
-      "target": "いいえ、スイスのじゃありません。フランスのです",
-      "note": "Correcting someone runs in two parts: deny with じゃありません (ja arimasen), then supply the right answer. じゃありません is from Lesson 2.",
-      "reviewNote": "From EXERCISES 4A, the worked example (verbatim), paired with kore-wa-suisu-no-tokei-ka. This is the only place in the lesson where the placeの pattern is negated, and there is no card for it anywhere in the deck.",
-      "aiSuggested": true,
-      "scene": "answering whether the watch is Swiss"
-    },
-    {
-      "id": "fukuro-mo-ni-mai-kudasai",
-      "english": "Please give me two bags as well.",
-      "category": "Shopping",
-      "target": "ふくろも２まいください",
-      "ttsText": "ふくろもにまいください",
-      "hint": null,
-      "note": "Bags count with まい (mai) because they are flat, the same counter as shirts and sheets of paper. Bottles took ほん (hon) two lines earlier in the same dialogue.",
-      "reviewNote": "From the TARGET DIALOGUE (verbatim). This is the highest-value missing card in the lesson: the deck has ten いちまい…じゅうまい recitation cards and not one sentence that uses まい. It also carries the も particle into a counted request.",
-      "aiSuggested": true
-    },
-    {
-      "id": "hai-sore-mo-nihon-no",
-      "english": "Yes, that one is Japanese too.",
-      "category": "Nationalities & Countries",
-      "target": "はい、それもにほんのです",
-      "note": "The customer says その (sono) and the assistant answers それ (sore) — from behind the counter the same camera is now the near one.",
-      "reviewNote": "Constructed, paired with ookii-kamera-mo-nihon-no-ka. Serves the PARTICLE job for も in an answer, and repeats the pointer switch that EXERCISES 5 singles out ('Change the pronoun to fit each item') on different material from wave 1's bag exchange.",
-      "aiSuggested": true,
-      "scene": "answering whether the large camera is also Japanese"
-    },
-    {
-      "id": "nisen-roppyaku-en-desu",
-      "english": "It's 2,600 yen.",
-      "category": "Money",
-      "target": "2,600えんです",
-      "ttsText": "にせんろっぴゃくえんです",
-      "note": null,
-      "reviewNote": "From the TARGET DIALOGUE (verbatim), paired with ikura-desu-ka. The lesson has no price-answer card of its own; the nearest is 13,000えんです back in Lesson 4.",
-      "aiSuggested": true,
-      "scene": "answering how much the wine costs"
-    },
-    {
-      "id": "sono-kamera-wa-amerika-no",
-      "english": "That camera is an American one.",
-      "category": "Nationalities & Countries",
-      "target": "そのカメラはアメリカのです",
-      "hint": null,
-      "note": "Member 2 of the この (kono) / その (sono) / あの (ano) set. その is the thing nearer the person you are talking to.",
-      "reviewNote": "Constructed. Serves the FORM job as the middle rung of the demonstrative ladder, on the same noun as kono-kamera-wa-nihon-no so the only thing that changes is the pointer.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ookii-kamera-mo-nihon-no-ka",
-      "english": "Is that large camera also a Japanese one?",
-      "category": "Nationalities & Countries",
-      "target": "そのおおきいカメラもにほんのですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Serves the PARTICLE job for も — every other も card in the deck is about matching prices, so nothing showed it working on a country of origin. Also a third stacking of demonstrative plus adjective plus noun.",
-      "aiSuggested": true
-    },
-    {
-      "id": "otearai-doko-desu-ka",
-      "english": "Where is the restroom?",
-      "category": "Directions",
-      "target": "おてあらいはどこですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From SPEAKING PRACTICE 3 (verbatim). The deck already has this exchange's ANSWER as achira-example (おてあらいはあちらです) but never carded the question, leaving an orphaned answer. The unit quiz (Quiz 1, part II.2) asks the learner to produce exactly this sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sono-wain-doko-no",
-      "english": "Where is that wine from?",
-      "category": "Shopping",
-      "target": "そのワインはどこのですか",
-      "hint": null,
-      "note": "どこの (doko no) usually has a noun after it — それはどこのコーヒーカップですか (sore wa doko no kōhī kappu desu ka). Here the noun is dropped because ワイン (wain) is already the topic, so どこの is left dangling and means 'from where'.",
-      "reviewNote": "From the TARGET DIALOGUE (verbatim). Distinct from the existing fib-c5-coffee-cup-origin-q, which keeps the noun after どこの; this is the noun-dropped form the dialogue actually uses and nothing in the deck teaches it.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-watashi-no-kaban",
-      "english": "This is my bag.",
-      "category": "Other",
-      "target": "これはわたしのかばんです",
-      "hint": null,
-      "note": "Half of a minimal pair. Here の (no) says who owns it.",
-      "reviewNote": "Constructed. Serves the PARTICLE job for の. GRAMMAR 4 introduces a second, quite different job for の (where a thing was made) and the deck never sets it against the ownership の from Lesson 2 — this card and kore-wa-igirisu-no-kaban differ by one word so the contrast is unmissable.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ano-aoi-tshirt-desu",
-      "english": "It's that blue T-shirt over there.",
-      "category": "Clothing",
-      "target": "あのあおいTシャツです",
-      "note": null,
-      "reviewNote": "From SPEAKING PRACTICE 1 (verbatim), paired with dore-desu-ka. Distinct from KS3 (あのあおいTシャツは3,000えんです), which states a price rather than identifying the item — this is how you point something out when asked.",
-      "aiSuggested": true,
-      "scene": "answering which T-shirt you mean"
-    },
-    {
-      "id": "kore-wa-doko-no-biiru-ka",
-      "english": "Where is this beer from?",
-      "category": "Nationalities & Countries",
-      "target": "これはどこのビールですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From EXERCISES 4B, the worked example (verbatim). Second example of どこの + noun (the first is the existing fib-c5-coffee-cup-origin-q with それ), which keeps that pattern at the two-example cap while contrasting これ against それ. I left its answer (ちゅうごくのです) out on purpose — the deck would then have three 'It's from X' answers.",
-      "aiSuggested": true
-    },
-    {
-      "id": "dore-desu-ka",
-      "english": "Which one is it?",
-      "category": "Grammar & Function Words",
-      "target": "どれですか",
-      "hint": null,
-      "note": "どれ (dore) is for three or more things. For a choice between two, use どちら (dochira), from Lesson 1.",
-      "reviewNote": "From SPEAKING PRACTICE 1 (verbatim) — the shopkeeper's line. The deck has どれ as vocabulary and a constructed dore-example, but not the bare question a shop assistant actually says to you.",
-      "aiSuggested": true
-    },
-    {
-      "id": "akai-ringo-o-itsutsu",
-      "english": "Five red apples, please.",
-      "category": "Food",
-      "target": "あかいりんごをいつつください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Serves the VOCABULARY job for りんご, which had no sentence anywhere, and stacks GRAMMAR 3 (adjective before noun) onto the counted-request pattern — the deck had those two points only in separate cards.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikura-desu-ka",
-      "english": "How much is it?",
-      "category": "Shopping",
-      "target": "いくらですか",
-      "hint": null,
-      "note": "The topic is dropped once it is obvious what you are pointing at. Name the item and it becomes そのワインはいくらですか (sono wain wa ikura desu ka).",
-      "reviewNote": "Duplicate of ikura-desu-ka in Lesson 4, the lesson that teaches いくら (ikura). Its answer card carries a hint and stands alone.",
-      "aiSuggested": true,
-      "excluded": true
-    },
-    {
-      "id": "furansu-no-desu",
-      "english": "It's from France.",
-      "category": "Nationalities & Countries",
-      "target": "フランスのです",
-      "note": null,
-      "reviewNote": "From the TARGET DIALOGUE (verbatim), paired with sono-wain-doko-no. Same shape as the existing fib-c5-coffee-cup-origin-a (イギリスのです, 'It's from England.') but a different gloss, so no English collision; both carry a hint naming their question.",
-      "aiSuggested": true,
-      "scene": "answering where the wine is from"
-    },
-    {
-      "id": "koppu-futatsu-to-osara-sanmai",
-      "english": "Two glasses and three plates, please.",
-      "category": "Home & Household",
-      "target": "コップをふたつとおさらを３まいください",
-      "ttsText": "コップをふたつとおさらをさんまいください",
-      "hint": null,
-      "note": "Each item keeps its own を (o) and its own counter; ください (kudasai) is said once at the end. Glasses are round so they take つ (tsu), plates are flat so they take まい (mai).",
-      "reviewNote": "Constructed. Serves the PARTICLE job for と — wave 1's cheesecake order was its only sentence — and the VOCABULARY job for both コップ and (お)さら. Unlike the cheesecake order this one mixes two DIFFERENT counters, which is the harder half of the pattern.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ano-kamera-wa-doko-no",
-      "english": "Where is that camera over there from?",
-      "category": "Nationalities & Countries",
-      "target": "あのカメラはどこのですか",
-      "hint": null,
-      "note": "Member 3 of the この (kono) / その (sono) / あの (ano) set, and the one in question form. あの is the thing away from both of you.",
-      "reviewNote": "Constructed. Serves the FORM job — closes the demonstrative ladder and swaps the country for どこの, so the learner sees that the question is the statement with one slot emptied.",
-      "aiSuggested": true
-    },
-    {
-      "id": "shiroi-sara-mo-sen-en-ka",
-      "english": "Is that white plate also 1,000 yen?",
-      "category": "Money",
-      "target": "そのしろいさらも1,000えんですか",
-      "ttsText": "そのしろいさらもせんえんですか",
-      "hint": null,
-      "note": "も (mo) takes は (wa)'s place — the two never sit side by side.",
-      "reviewNote": "Constructed, following the EXERCISES 5 pattern with different goods so it does not repeat wave 1's black bag. Serves the PARTICLE job for も and the VOCABULARY job for (お)さら and しろい.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-itaria-no-kutsu",
-      "english": "These are Italian shoes.",
-      "category": "Clothing",
-      "target": "これはイタリアのくつです",
-      "hint": null,
-      "note": "Member 1 of a です (desu) / じゃありません (ja arimasen) / ですか (desu ka) set on one noun.",
-      "reviewNote": "Constructed. Serves the FORM job and the VOCABULARY job for both くつ and イタリア, neither of which had a sentence. The deck has the three forms scattered over unrelated vocabulary and never on one noun.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sore-wa-itaria-no-kutsu-ka",
-      "english": "Are those Italian shoes?",
-      "category": "Clothing",
-      "target": "それはイタリアのくつですか",
-      "hint": null,
-      "note": "Member 3 of the set. か (ka) on the end is the whole of the question; the word order does not change. これ (kore) becomes それ (sore) because you are now asking about the other person's side.",
-      "reviewNote": "Constructed. Serves the FORM job as the question rung of the triad.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sanman-en-desu",
-      "english": "It's 30,000 yen.",
-      "category": "Money",
-      "target": "30,000えんです",
-      "ttsText": "さんまんえんです",
-      "note": null,
-      "reviewNote": "Constructed, paired with ookii-soujiki-wa-ikura. Serves the FORM job — the price-answer form deserves practice at more than one order of magnitude, and まん (man) prices appear nowhere in this lesson's sentences.",
-      "aiSuggested": true,
-      "scene": "answering how much the large vacuum cleaner costs"
-    },
-    {
-      "id": "kono-kamera-wa-nihon-no",
-      "english": "This camera is a Japanese one.",
-      "category": "Nationalities & Countries",
-      "target": "このカメラはにほんのです",
-      "hint": null,
-      "note": "Member 1 of a この (kono) / その (sono) / あの (ano) set on one noun. この is the thing at your own hand.",
-      "reviewNote": "Constructed. Serves the VOCABULARY job for カメラ and the FORM job for GRAMMAR 2 — the deck teaches この, その and あの as three unrelated vocabulary cards and never shows them stepping away from the speaker on the same noun.",
-      "aiSuggested": true
-    },
-    {
-      "id": "kore-wa-suisu-no-tokei-ka",
-      "english": "Is this a Swiss watch?",
-      "category": "Nationalities & Countries",
-      "target": "これはスイスのとけいですか",
-      "hint": null,
-      "note": "A place before の (no) says where a thing was made, so スイスのとけい (suisu no tokei) is a watch made in Switzerland, not a watch belonging to Switzerland.",
-      "reviewNote": "From EXERCISES 4A, the worked example (verbatim). The whole of Exercise 4 never became cards, and GRAMMAR 4 (placeの noun) has only the KS4 statement in the deck. Reuses とけい from Lesson 2 and puts the stranded スイス card to work.",
-      "aiSuggested": true
-    },
-    {
-      "id": "chiisai-koppu-o-yattsu",
-      "english": "Eight of those small glasses over there, please.",
-      "category": "Home & Household",
-      "target": "あのちいさいコップをやっつください",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Serves the VOCABULARY job for ちいさい, which had no sentence, and is the only counted request in the deck that uses あの — ks5 and the fib cards all use その or それ.",
-      "aiSuggested": true
-    },
-    {
-      "id": "mikan-mo-hyaku-en",
-      "english": "Mikan oranges are 100 yen too.",
-      "category": "Money",
-      "target": "みかんも100えんです",
-      "ttsText": "みかんもひゃくえんです",
-      "hint": null,
-      "note": "The other half of the pair with りんごは100えんです (ringo wa hyaku-en desu). Swapping は (wa) for も (mo) adds 'as well' and nothing else changes.",
-      "reviewNote": "Constructed. Serves the PARTICLE job as the も member of the minimal pair.",
-      "aiSuggested": true
+      "target": "ごかい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
     },
     {
       "id": "iie-rokkai-desu",
@@ -423,36 +44,21 @@
       "scene": "answering whether the cameras are on the fourth floor"
     },
     {
-      "id": "mikan-o-too-kudasai",
-      "english": "Ten mikan oranges, please.",
-      "category": "Food",
-      "target": "みかんをとおください",
+      "id": "sore-wa-itaria-no-kutsu-ka",
+      "english": "Are those Italian shoes?",
+      "category": "Clothing",
+      "target": "それはイタリアのくつですか",
       "hint": null,
-      "note": "とお (tō) is where the ひとつ (hitotsu) series stops. For eleven and up you switch to じゅういち (jūichi) and hang a counter off it.",
-      "reviewNote": "Constructed. Serves the FORM job: とお exists as a recitation card (counter-tsu-10) and the NOTES section makes a point of it being the end of the series, but no sentence uses it.",
+      "note": "Member 3 of the set. か (ka) on the end is the whole of the question; the word order does not change. これ (kore) becomes それ (sore) because you are now asking about the other person's side.",
+      "reviewNote": "Constructed. Serves the FORM job as the question rung of the triad.",
       "aiSuggested": true
     },
     {
-      "id": "akawain-o-ippon-kudasai",
-      "english": "One bottle of that red wine, please.",
+      "id": "peach",
+      "english": "Peach",
       "category": "Food",
-      "target": "そのあかワインを１ぽんください",
-      "ttsText": "そのあかワインをいっぽんください",
-      "hint": null,
-      "note": "ほん (hon) hardens to ぽん (pon) after いち (ichi), ろく (roku) and じゅう (jū) — hence いっぽん (ip-pon), ろっぽん (rop-pon), じゅっぽん (jup-pon).",
-      "reviewNote": "Constructed. Serves the VOCABULARY job for あかワイン, which had no sentence, and the FORM job for the ぽん shape of the counter, which likewise had none.",
-      "aiSuggested": true
-    },
-    {
-      "id": "hai-sore-mo-ichiman",
-      "english": "Yes, that one is also 10,000 yen.",
-      "category": "Money",
-      "target": "はい、それも10,000えんです",
-      "ttsText": "はい、それもいちまんえんです",
-      "note": "The shopper says この (kono) because the bag is beside them; the assistant answers それ (sore) because from where they stand the same bag is near the customer.",
-      "reviewNote": "From EXERCISES 5, the worked example (verbatim), paired with kono-kuroi-kaban-mo-ichiman. Worth carding for the この→それ pronoun switch that the exercise instructions single out ('Change the pronoun to fit each item') and that no card in the deck demonstrates.",
-      "aiSuggested": true,
-      "scene": "answering whether the black bag costs the same"
+      "target": "もも",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field"
     },
     {
       "id": "wain-shoppu-wa-ikkai-ja-arimasen",
@@ -466,14 +72,13 @@
       "aiSuggested": true
     },
     {
-      "id": "shiroi-tshirt-o-nimai",
-      "english": "Two of those white T-shirts, please.",
-      "category": "Clothing",
-      "target": "そのしろいTシャツを２まいください",
-      "ttsText": "そのしろいTシャツをにまいください",
+      "id": "chiisai-koppu-o-yattsu",
+      "english": "Eight of those small glasses over there, please.",
+      "category": "Home & Household",
+      "target": "あのちいさいコップをやっつください",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed. Serves the VOCABULARY job for しろい, which had no sentence, and instantiates the NOTES section's own definition of まい (mai) — 'thin, flat objects like shirts'.",
+      "reviewNote": "Constructed. Serves the VOCABULARY job for ちいさい, which had no sentence, and is the only counted request in the deck that uses あの — ks5 and the fib cards all use その or それ.",
       "aiSuggested": true
     },
     {
@@ -497,56 +102,124 @@
       "aiSuggested": true
     },
     {
-      "id": "iie-kyuuhyaku-en-desu",
-      "english": "No, it's 900 yen.",
-      "category": "Money",
-      "target": "いいえ、900えんです",
-      "ttsText": "いいえ、きゅうひゃくえんです",
-      "note": null,
-      "reviewNote": "Constructed, paired with shiroi-sara-mo-sen-en-ka. Serves the FORM job: every も question in the deck is answered はい, so the learner has never seen one turned down, and correcting a price is the commonest thing that actually happens in a shop.",
-      "aiSuggested": true,
-      "scene": "answering whether the white plate costs the same as the other one"
-    },
-    {
-      "id": "ja-sore-o-nihon-kudasai",
-      "english": "Right, then two bottles of those, please.",
-      "category": "Shopping",
-      "target": "じゃ、それを２ほんください",
-      "ttsText": "じゃ、それをにほんください",
-      "note": "じゃ (ja) from Lesson 4 is the 'right then' that closes a decision. Once the item is established you drop its name and point with それ (sore).",
-      "reviewNote": "Lifted verbatim from the TARGET DIALOGUE, which wave 1 left out. Serves the FORM job. Distinct from ks5-two-bottles-wine, which names the wine; the hint on this card marks the difference so the two do not collide on an English prompt.",
-      "aiSuggested": true,
-      "scene": "the wine is already under discussion, so it is not named"
-    },
-    {
-      "id": "iie-doitsu-no-desu",
-      "english": "No, they're German ones.",
-      "category": "Nationalities & Countries",
-      "target": "いいえ、ドイツのです",
-      "note": null,
-      "reviewNote": "Constructed, modelled on the EXERCISES 4A answer pattern. Serves the FORM job as the answer to sore-wa-itaria-no-kutsu-ka. The hint keeps it apart from the Lesson 1 card いいえ、ドイツじんです (īe, doitsu jin desu), which is about a person.",
-      "aiSuggested": true,
-      "scene": "answering whether the shoes are Italian"
-    },
-    {
-      "id": "kutsu-wa-nikai-desu",
-      "english": "The shoes are on the second floor.",
+      "id": "rooftop",
+      "english": "Rooftop",
       "category": "Directions",
-      "target": "くつは２かいです",
-      "ttsText": "くつはにかいです",
+      "target": "おくじょう",
+      "note": "Shares the じょう (jō) 'place' ending with ちゅうしゃじょう (chūshajō).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "fukuro-mo-ni-mai-kudasai",
+      "english": "Please give me two bags as well.",
+      "category": "Shopping",
+      "target": "ふくろも２まいください",
+      "ttsText": "ふくろもにまいください",
       "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Serves the VOCABULARY job for にかい, one of four floor counters sitting in the deck as recitation cards with no sentence. Reuses くつ from the Italian-shoes set in a completely different frame.",
+      "note": "Bags count with まい (mai) because they are flat, the same counter as shirts and sheets of paper. Bottles took ほん (hon) two lines earlier in the same dialogue.",
+      "reviewNote": "From the TARGET DIALOGUE (verbatim). This is the highest-value missing card in the lesson: the deck has ten いちまい…じゅうまい recitation cards and not one sentence that uses まい. It also carries the も particle into a counted request.",
       "aiSuggested": true
     },
     {
-      "id": "aoi-tshirt-o-misete-kudasai",
-      "english": "Please show me that blue T-shirt.",
-      "category": "Shopping",
-      "target": "そのあおいTシャツをみせてください",
+      "id": "sono-kamera-wa-amerika-no",
+      "english": "That camera is an American one.",
+      "category": "Nationalities & Countries",
+      "target": "そのカメラはアメリカのです",
       "hint": null,
-      "note": "みせてください (misete kudasai) from Lesson 4 asks to be shown something; ください (kudasai) on its own asks to be given it.",
-      "reviewNote": "Constructed. Serves the PARTICLE job for を in a non-counting frame — every other を card in this lesson ends in a number plus ください. みせてください has been a bare vocabulary card since Lesson 4 with no sentence anywhere in the deck.",
+      "note": "Member 2 of the この (kono) / その (sono) / あの (ano) set. その is the thing nearer the person you are talking to.",
+      "reviewNote": "Constructed. Serves the FORM job as the middle rung of the demonstrative ladder, on the same noun as kono-kamera-wa-nihon-no so the only thing that changes is the pointer.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hai-sore-mo-ichiman",
+      "english": "Yes, that one is also 10,000 yen.",
+      "category": "Money",
+      "target": "はい、それも10,000えんです",
+      "ttsText": "はい、それもいちまんえんです",
+      "note": "The shopper says この (kono) because the bag is beside them; the assistant answers それ (sore) because from where they stand the same bag is near the customer.",
+      "reviewNote": "From EXERCISES 5, the worked example (verbatim), paired with kono-kuroi-kaban-mo-ichiman. Worth carding for the この→それ pronoun switch that the exercise instructions single out ('Change the pronoun to fit each item') and that no card in the deck demonstrates.",
+      "aiSuggested": true,
+      "scene": "answering whether the black bag costs the same"
+    },
+    {
+      "id": "ookii-fukuro-o-ichimai",
+      "english": "One of those large bags, please.",
+      "category": "Shopping",
+      "target": "そのおおきいふくろを１まいください",
+      "ttsText": "そのおおきいふくろをいちまいください",
+      "hint": null,
+      "note": "Bags count with まい (mai) because they are flat when empty, the same counter as shirts and sheets of paper.",
+      "reviewNote": "Constructed. Serves the VOCABULARY job for おおきい, which had no sentence. Builds on wave 1's ふくろも２まいください rather than repeating it: singular いちまい instead of にまい, and a plain request instead of an 'as well' one.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ringo-wa-hyaku-en",
+      "english": "Apples are 100 yen.",
+      "category": "Money",
+      "target": "りんごは100えんです",
+      "ttsText": "りんごはひゃくえんです",
+      "hint": null,
+      "note": "Half of a minimal pair with みかんも100えんです (mikan mo hyaku-en desu). は (wa) just names the topic and says nothing about anything else.",
+      "reviewNote": "Constructed. Serves the PARTICLE job: は and も are the lesson's two topic-slot particles and the deck never shows them swapped in one otherwise identical sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "plastic-bottle",
+      "english": "Plastic bottle",
+      "category": "Home & Household",
+      "target": "ペットボトル",
+      "note": "A word built in Japan out of English parts: 'PET bottle', after the plastic it's made from. It means a disposable plastic drinks bottle — an English speaker would never call it that.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field"
+    },
+    {
+      "id": "furansu-no-desu",
+      "english": "It's from France.",
+      "category": "Nationalities & Countries",
+      "target": "フランスのです",
+      "note": null,
+      "reviewNote": "From the TARGET DIALOGUE (verbatim), paired with sono-wain-doko-no. Same shape as the existing fib-c5-coffee-cup-origin-a (イギリスのです, 'It's from England.') but a different gloss, so no English collision; both carry a hint naming their question.",
+      "aiSuggested": true,
+      "scene": "answering where the wine is from"
+    },
+    {
+      "id": "kore-wa-watashi-no-kaban",
+      "english": "This is my bag.",
+      "category": "Other",
+      "target": "これはわたしのかばんです",
+      "hint": null,
+      "note": "Half of a minimal pair. Here の (no) says who owns it.",
+      "reviewNote": "Constructed. Serves the PARTICLE job for の. GRAMMAR 4 introduces a second, quite different job for の (where a thing was made) and the deck never sets it against the ownership の from Lesson 2 — this card and kore-wa-igirisu-no-kaban differ by one word so the contrast is unmissable.",
+      "aiSuggested": true
+    },
+    {
+      "id": "eg-kiiro-no-kutsushita",
+      "english": "These are yellow socks.",
+      "category": "Colors",
+      "target": "これはきいろのくつしたです",
+      "hint": null,
+      "note": "The same colour in its の form — both are correct here. Contrast これはみどりのペンです (kore wa midori no pen desu), where の is the only option available.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "ano-kamera-wa-doko-no",
+      "english": "Where is that camera over there from?",
+      "category": "Nationalities & Countries",
+      "target": "あのカメラはどこのですか",
+      "hint": null,
+      "note": "Member 3 of the この (kono) / その (sono) / あの (ano) set, and the one in question form. あの is the thing away from both of you.",
+      "reviewNote": "Constructed. Serves the FORM job — closes the demonstrative ladder and swaps the country for どこの, so the learner sees that the question is the statement with one slot emptied.",
+      "aiSuggested": true
+    },
+    {
+      "id": "akai-magukappu-ikura",
+      "english": "How much is the red mug?",
+      "category": "Shopping",
+      "target": "あかいマグカップはいくらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From EXERCISES 3, the worked example (verbatim). GRAMMAR 3 (adjective before noun) has exactly one card in the deck, the KS3 statement; this is the same grammar inside a question, and it puts the stranded マグカップ and あかい vocabulary to work. Its answer form is already covered by nisen-roppyaku-en-desu, so I did not add a second price answer.",
       "aiSuggested": true
     },
     {
@@ -561,14 +234,89 @@
       "aiSuggested": true
     },
     {
-      "id": "chiizu-to-wain-furansu-no",
-      "english": "The cheese and the wine are French.",
+      "id": "irl-l1-40",
+      "english": "Where is the hotel address?",
+      "category": "Travel & Tourism",
+      "target": "ホテルのじゅうしょはどこですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)"
+    },
+    {
+      "id": "mikan-o-too-kudasai",
+      "english": "Ten mikan oranges, please.",
       "category": "Food",
-      "target": "チーズとワインはフランスのです",
+      "target": "みかんをとおください",
       "hint": null,
-      "note": "と (to) glues two nouns into a single topic, so one は (wa) and one です (desu) cover both.",
-      "reviewNote": "Constructed. Serves the PARTICLE job for と in a slot nothing else in the deck uses — every other と card joins two things being ordered with を. Also the VOCABULARY job for チーズ, which had no sentence.",
+      "note": "とお (tō) is where the ひとつ (hitotsu) series stops. For eleven and up you switch to じゅういち (jūichi) and hang a counter off it.",
+      "reviewNote": "Constructed. Serves the FORM job: とお exists as a recitation card (counter-tsu-10) and the NOTES section makes a point of it being the end of the series, but no sentence uses it.",
       "aiSuggested": true
+    },
+    {
+      "id": "akawain-o-ippon-kudasai",
+      "english": "One bottle of that red wine, please.",
+      "category": "Food",
+      "target": "そのあかワインを１ぽんください",
+      "ttsText": "そのあかワインをいっぽんください",
+      "hint": null,
+      "note": "ほん (hon) hardens to ぽん (pon) after いち (ichi), ろく (roku) and じゅう (jū) — hence いっぽん (ip-pon), ろっぽん (rop-pon), じゅっぽん (jup-pon).",
+      "reviewNote": "Constructed. Serves the VOCABULARY job for あかワイン, which had no sentence, and the FORM job for the ぽん shape of the counter, which likewise had none.",
+      "aiSuggested": true
+    },
+    {
+      "id": "dore-desu-ka",
+      "english": "Which one is it?",
+      "category": "Grammar & Function Words",
+      "target": "どれですか",
+      "hint": null,
+      "note": "どれ (dore) is for three or more things. For a choice between two, use どちら (dochira), from Lesson 1.",
+      "reviewNote": "From SPEAKING PRACTICE 1 (verbatim) — the shopkeeper's line. The deck has どれ as vocabulary and a constructed dore-example, but not the bare question a shop assistant actually says to you.",
+      "aiSuggested": true
+    },
+    {
+      "id": "brown",
+      "english": "Brown",
+      "category": "Colors",
+      "target": "ちゃいろい",
+      "note": "Literally 'tea-colour', and the other both-ways colour alongside きいろ (kiiro): ちゃいろい くつ (chairoi kutsu) and ちゃいろの くつ (chairo no kutsu) are both fine.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
+    },
+    {
+      "id": "akai-ringo-o-itsutsu",
+      "english": "Five red apples, please.",
+      "category": "Food",
+      "target": "あかいりんごをいつつください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Serves the VOCABULARY job for りんご, which had no sentence anywhere, and stacks GRAMMAR 3 (adjective before noun) onto the counted-request pattern — the deck had those two points only in separate cards.",
+      "aiSuggested": true
+    },
+    {
+      "id": "mikan-o-mittsu-kudasai",
+      "english": "Three of those mikan oranges, please.",
+      "category": "Food",
+      "target": "そのみかんをみっつください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Lifted verbatim from EXERCISES 6, the worked example. Serves the FORM job (nounを number ください) and the VOCABULARY job — みかん sat in the deck as a bare noun with no sentence. Wave 1 did not take this one.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kutsu-wa-nikai-desu",
+      "english": "The shoes are on the second floor.",
+      "category": "Directions",
+      "target": "くつは２かいです",
+      "ttsText": "くつはにかいです",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Serves the VOCABULARY job for にかい, one of four floor counters sitting in the deck as recitation cards with no sentence. Reuses くつ from the Italian-shoes set in a completely different frame.",
+      "aiSuggested": true
+    },
+    {
+      "id": "green",
+      "english": "Green",
+      "category": "Colors",
+      "target": "みどりの",
+      "note": "みどり (midori) is a noun, so の is the ONLY way to attach it: みどりの くるま (midori no kuruma). Unlike きいろ (kiiro) and ちゃいろ (chairo) there is no みどりい — green does not have an adjective form.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
     },
     {
       "id": "chiisai-koppu-gohyaku-en",
@@ -582,6 +330,352 @@
       "aiSuggested": true
     },
     {
+      "id": "aoi-tshirt-o-misete-kudasai",
+      "english": "Please show me that blue T-shirt.",
+      "category": "Shopping",
+      "target": "そのあおいTシャツをみせてください",
+      "hint": null,
+      "note": "みせてください (misete kudasai) from Lesson 4 asks to be shown something; ください (kudasai) on its own asks to be given it.",
+      "reviewNote": "Constructed. Serves the PARTICLE job for を in a non-counting frame — every other を card in this lesson ends in a number plus ください. みせてください has been a bare vocabulary card since Lesson 4 with no sentence anywhere in the deck.",
+      "aiSuggested": true
+    },
+    {
+      "id": "9th-floor",
+      "english": "9th floor",
+      "category": "Directions",
+      "target": "きゅうかい",
+      "note": "きゅう (kyū), not く (ku), for this counter.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "pink",
+      "english": "Pink",
+      "category": "Colors",
+      "target": "ピンクの",
+      "note": "Borrowed colour words are always nouns, so they always take の: ピンクの かばん (pinku no kaban).",
+      "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "8th-floor",
+      "english": "8th floor",
+      "category": "Directions",
+      "target": "はっかい",
+      "note": "はち (hachi) shortens to はっ (ha-).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "hai-sore-mo-nihon-no",
+      "english": "Yes, that one is Japanese too.",
+      "category": "Nationalities & Countries",
+      "target": "はい、それもにほんのです",
+      "note": "The customer says その (sono) and the assistant answers それ (sore) — from behind the counter the same camera is now the near one.",
+      "reviewNote": "Constructed, paired with ookii-kamera-mo-nihon-no-ka. Serves the PARTICLE job for も in an answer, and repeats the pointer switch that EXERCISES 5 singles out ('Change the pronoun to fit each item') on different material from wave 1's bag exchange.",
+      "aiSuggested": true,
+      "scene": "answering whether the large camera is also Japanese"
+    },
+    {
+      "id": "ookii-soujiki-wa-ikura",
+      "english": "How much is that large vacuum cleaner over there?",
+      "category": "Shopping",
+      "target": "あのおおきいそうじきはいくらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Serves the VOCABULARY job for おおきい and puts そうじき to work outside its single どこですか card. GRAMMAR 3 (adjective before noun) had one worked example in the deck before wave 1 and two after; this is a third with a different adjective type — size rather than colour.",
+      "aiSuggested": true
+    },
+    {
+      "id": "iie-suisu-no-ja-arimasen",
+      "english": "No, it isn't Swiss. It's French.",
+      "category": "Nationalities & Countries",
+      "target": "いいえ、スイスのじゃありません。フランスのです",
+      "note": "Correcting someone runs in two parts: deny with じゃありません (ja arimasen), then supply the right answer. じゃありません is from Lesson 2.",
+      "reviewNote": "From EXERCISES 4A, the worked example (verbatim), paired with kore-wa-suisu-no-tokei-ka. This is the only place in the lesson where the placeの pattern is negated, and there is no card for it anywhere in the deck.",
+      "aiSuggested": true,
+      "scene": "answering whether the watch is Swiss"
+    },
+    {
+      "id": "7th-floor",
+      "english": "7th floor",
+      "category": "Directions",
+      "target": "ななかい",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "eg-pinku-no-kaban",
+      "english": "This is a pink bag.",
+      "category": "Colors",
+      "target": "これはピンクのかばんです",
+      "hint": null,
+      "note": "Borrowed colours are always nouns, so they always take の — ピンク (pinku), オレンジ (orenji) and グレー (gurē) all behave this way.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "ookii-kamera-mo-nihon-no-ka",
+      "english": "Is that large camera also a Japanese one?",
+      "category": "Nationalities & Countries",
+      "target": "そのおおきいカメラもにほんのですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Serves the PARTICLE job for も — every other も card in the deck is about matching prices, so nothing showed it working on a country of origin. Also a third stacking of demonstrative plus adjective plus noun.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sono-wain-doko-no",
+      "english": "Where is that wine from?",
+      "category": "Shopping",
+      "target": "そのワインはどこのですか",
+      "hint": null,
+      "note": "どこの (doko no) usually has a noun after it — それはどこのコーヒーカップですか (sore wa doko no kōhī kappu desu ka). Here the noun is dropped because ワイン (wain) is already the topic, so どこの is left dangling and means 'from where'.",
+      "reviewNote": "From the TARGET DIALOGUE (verbatim). Distinct from the existing fib-c5-coffee-cup-origin-q, which keeps the noun after どこの; this is the noun-dropped form the dialogue actually uses and nothing in the deck teaches it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "what-time-is-it-now-in-france",
+      "english": "What time is it now in France?",
+      "category": "Time",
+      "target": "フランスはいまなんじですか",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Same frame, but Furansu is first carded in Lesson 5"
+    },
+    {
+      "id": "iie-doitsu-no-desu",
+      "english": "No, they're German ones.",
+      "category": "Nationalities & Countries",
+      "target": "いいえ、ドイツのです",
+      "note": null,
+      "reviewNote": "Constructed, modelled on the EXERCISES 4A answer pattern. Serves the FORM job as the answer to sore-wa-itaria-no-kutsu-ka. The hint keeps it apart from the Lesson 1 card いいえ、ドイツじんです (īe, doitsu jin desu), which is about a person.",
+      "aiSuggested": true,
+      "scene": "answering whether the shoes are Italian"
+    },
+    {
+      "id": "nisen-roppyaku-en-desu",
+      "english": "It's 2,600 yen.",
+      "category": "Money",
+      "target": "2,600えんです",
+      "ttsText": "にせんろっぴゃくえんです",
+      "note": null,
+      "reviewNote": "From the TARGET DIALOGUE (verbatim), paired with ikura-desu-ka. The lesson has no price-answer card of its own; the nearest is 13,000えんです back in Lesson 4.",
+      "aiSuggested": true,
+      "scene": "answering how much the wine costs"
+    },
+    {
+      "id": "kamera-wa-yonkai-desu-ka",
+      "english": "Are the cameras on the fourth floor?",
+      "category": "Directions",
+      "target": "カメラは４かいですか",
+      "ttsText": "カメラはよんかいですか",
+      "hint": null,
+      "note": "You can check a location without どこ (doko): name a floor and add か (ka).",
+      "reviewNote": "Constructed. Serves the VOCABULARY job for よんかい and the FORM job — every location question in the deck uses どこ, so the yes/no version of GRAMMAR 1 had no example at all.",
+      "aiSuggested": true
+    },
+    {
+      "id": "three-books",
+      "english": "Three books",
+      "category": "Numbers",
+      "target": "さんさつ",
+      "note": "No sound change — it stays さ (sa), unlike the floor counter where さんがい (sangai) does shift.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series"
+    },
+    {
+      "id": "water-bottle",
+      "english": "Water bottle",
+      "category": "Home & Household",
+      "target": "すいとう",
+      "note": "The bottle/container itself, not the water inside it (みず, mizu).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "iie-kyuuhyaku-en-desu",
+      "english": "No, it's 900 yen.",
+      "category": "Money",
+      "target": "いいえ、900えんです",
+      "ttsText": "いいえ、きゅうひゃくえんです",
+      "note": null,
+      "reviewNote": "Constructed, paired with shiroi-sara-mo-sen-en-ka. Serves the FORM job: every も question in the deck is answered はい, so the learner has never seen one turned down, and correcting a price is the commonest thing that actually happens in a shop.",
+      "aiSuggested": true,
+      "scene": "answering whether the white plate costs the same as the other one"
+    },
+    {
+      "id": "10th-floor",
+      "english": "10th floor",
+      "category": "Directions",
+      "target": "じゅっかい",
+      "note": "じゅう (jū) shortens to じゅっ (ju-).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "chiizu-to-wain-furansu-no",
+      "english": "The cheese and the wine are French.",
+      "category": "Food",
+      "target": "チーズとワインはフランスのです",
+      "hint": null,
+      "note": "と (to) glues two nouns into a single topic, so one は (wa) and one です (desu) cover both.",
+      "reviewNote": "Constructed. Serves the PARTICLE job for と in a slot nothing else in the deck uses — every other と card joins two things being ordered with を. Also the VOCABULARY job for チーズ, which had no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kono-kamera-wa-nihon-no",
+      "english": "This camera is a Japanese one.",
+      "category": "Nationalities & Countries",
+      "target": "このカメラはにほんのです",
+      "hint": null,
+      "note": "Member 1 of a この (kono) / その (sono) / あの (ano) set on one noun. この is the thing at your own hand.",
+      "reviewNote": "Constructed. Serves the VOCABULARY job for カメラ and the FORM job for GRAMMAR 2 — the deck teaches この, その and あの as three unrelated vocabulary cards and never shows them stepping away from the speaker on the same noun.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-doko-desu-ka",
+      "english": "Where is it?",
+      "category": "Grammar & Function Words",
+      "target": "どこですか",
+      "hint": "the short question on its own, ending in ですか (desu ka)",
+      "note": "どこ (doko) plus ですか (desu ka). Asks which place something is.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the whole question, where the book cards only the bare word どこ (doko). Carries a hint because 'Where is it?' also reaches どこにありますか (doko ni arimasu ka) in Lesson 13.",
+      "aiSuggested": true
+    },
+    {
+      "id": "shiroi-tshirt-o-nimai",
+      "english": "Two of those white T-shirts, please.",
+      "category": "Clothing",
+      "target": "そのしろいTシャツを２まいください",
+      "ttsText": "そのしろいTシャツをにまいください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Serves the VOCABULARY job for しろい, which had no sentence, and instantiates the NOTES section's own definition of まい (mai) — 'thin, flat objects like shirts'.",
+      "aiSuggested": true
+    },
+    {
+      "id": "shiroi-sara-mo-sen-en-ka",
+      "english": "Is that white plate also 1,000 yen?",
+      "category": "Money",
+      "target": "そのしろいさらも1,000えんですか",
+      "ttsText": "そのしろいさらもせんえんですか",
+      "hint": null,
+      "note": "も (mo) takes は (wa)'s place — the two never sit side by side.",
+      "reviewNote": "Constructed, following the EXERCISES 5 pattern with different goods so it does not repeat wave 1's black bag. Serves the PARTICLE job for も and the VOCABULARY job for (お)さら and しろい.",
+      "aiSuggested": true
+    },
+    {
+      "id": "yellow",
+      "english": "Yellow",
+      "category": "Colors",
+      "target": "きいろい",
+      "note": "Yellow is one of only TWO colours with both forms — きいろい シャツ (kiiroi shatsu) and きいろの シャツ (kiiro no shatsu) are equally correct. Brown is the other. Green cannot do this: it is みどりの (midori no) only.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
+    },
+    {
+      "id": "kore-wa-itaria-no-kutsu",
+      "english": "These are Italian shoes.",
+      "category": "Clothing",
+      "target": "これはイタリアのくつです",
+      "hint": null,
+      "note": "Member 1 of a です (desu) / じゃありません (ja arimasen) / ですか (desu ka) set on one noun.",
+      "reviewNote": "Constructed. Serves the FORM job and the VOCABULARY job for both くつ and イタリア, neither of which had a sentence. The deck has the three forms scattered over unrelated vocabulary and never on one noun.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-suisu-no-tokei-ka",
+      "english": "Is this a Swiss watch?",
+      "category": "Nationalities & Countries",
+      "target": "これはスイスのとけいですか",
+      "hint": null,
+      "note": "A place before の (no) says where a thing was made, so スイスのとけい (suisu no tokei) is a watch made in Switzerland, not a watch belonging to Switzerland.",
+      "reviewNote": "From EXERCISES 4A, the worked example (verbatim). The whole of Exercise 4 never became cards, and GRAMMAR 4 (placeの noun) has only the KS4 statement in the deck. Reuses とけい from Lesson 2 and puts the stranded スイス card to work.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sanman-en-desu",
+      "english": "It's 30,000 yen.",
+      "category": "Money",
+      "target": "30,000えんです",
+      "ttsText": "さんまんえんです",
+      "note": null,
+      "reviewNote": "Constructed, paired with ookii-soujiki-wa-ikura. Serves the FORM job — the price-answer form deserves practice at more than one order of magnitude, and まん (man) prices appear nowhere in this lesson's sentences.",
+      "aiSuggested": true,
+      "scene": "answering how much the large vacuum cleaner costs"
+    },
+    {
+      "id": "mikan-mo-hyaku-en",
+      "english": "Mikan oranges are 100 yen too.",
+      "category": "Money",
+      "target": "みかんも100えんです",
+      "ttsText": "みかんもひゃくえんです",
+      "hint": null,
+      "note": "The other half of the pair with りんごは100えんです (ringo wa hyaku-en desu). Swapping は (wa) for も (mo) adds 'as well' and nothing else changes.",
+      "reviewNote": "Constructed. Serves the PARTICLE job as the も member of the minimal pair.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ja-sore-o-nihon-kudasai",
+      "english": "Right, then two bottles of those, please.",
+      "category": "Shopping",
+      "target": "じゃ、それを２ほんください",
+      "ttsText": "じゃ、それをにほんください",
+      "note": "じゃ (ja) from Lesson 4 is the 'right then' that closes a decision. Once the item is established you drop its name and point with それ (sore).",
+      "reviewNote": "Lifted verbatim from the TARGET DIALOGUE, which wave 1 left out. Serves the FORM job. Distinct from ks5-two-bottles-wine, which names the wine; the hint on this card marks the difference so the two do not collide on an English prompt.",
+      "aiSuggested": true,
+      "scene": "the wine is already under discussion, so it is not named"
+    },
+    {
+      "id": "irl-l1-29",
+      "english": "Where are you from?",
+      "category": "Nationalities & Countries",
+      "target": "しゅっしんはどこですか？",
+      "note": "Asks generally where someone is from (hometown/origin) — an open-ended alternative to directly guessing nationality with ~さんは[country]じんですか, like ジャックさんはフランスじんですか (Jakku san wa furansu jin desu ka?) in this lesson.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)"
+    },
+    {
+      "id": "ikura-desu-ka",
+      "english": "How much is it?",
+      "category": "Shopping",
+      "target": "いくらですか",
+      "hint": null,
+      "note": "The topic is dropped once it is obvious what you are pointing at. Name the item and it becomes そのワインはいくらですか (sono wain wa ikura desu ka).",
+      "reviewNote": "Duplicate of ikura-desu-ka in Lesson 4, the lesson that teaches いくら (ikura). Its answer card carries a hint and stands alone.",
+      "aiSuggested": true,
+      "excluded": true
+    },
+    {
+      "id": "1st-floor",
+      "english": "1st floor",
+      "category": "Directions",
+      "target": "いっかい",
+      "note": "Japanese counts from street level, so いっかい (ikkai) is the British ground floor. The British 'first floor' is にかい (nikai).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
+      "id": "eg-midori-no-pen",
+      "english": "This is a green pen.",
+      "category": "Colors",
+      "target": "これはみどりのペンです",
+      "hint": null,
+      "note": "みどり (midori) is a noun, so の is compulsory — there is no みどりい. Drop the の and the sentence is broken, unlike きいろ (kiiro).",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "itaria-no-kutsu-ja-arimasen",
+      "english": "These aren't Italian shoes.",
+      "category": "Clothing",
+      "target": "これはイタリアのくつじゃありません",
+      "hint": null,
+      "note": "Member 2 of the set. じゃありません (ja arimasen) from Lesson 2 simply replaces です (desu); nothing else in the sentence moves.",
+      "reviewNote": "Constructed. Serves the FORM job as the negative rung, on the same noun as kore-wa-itaria-no-kutsu. Wave 1's スイスのじゃありません negates a noun-dropped のです; this one negates the full placeの noun phrase, which is the shape GRAMMAR 4 actually teaches.",
+      "aiSuggested": true
+    },
+    {
+      "id": "which-floor",
+      "english": "Which floor?",
+      "category": "Directions",
+      "target": "なんがいですか",
+      "note": "Textbooks teach なんがい (nangai). なんかい (nankai) is also heard, but it collides with 'how many times'.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary"
+    },
+    {
       "id": "infomeeshon-wa-ikkai",
       "english": "The information desk is on the first floor.",
       "category": "Directions",
@@ -591,6 +685,179 @@
       "note": "１かい is いっかい (ikkai), not いちかい. The same clipping happens at ろっかい (rokkai) and じゅっかい (jukkai).",
       "reviewNote": "Constructed. Serves the VOCABULARY job for インフォメーション and １かい — the information desk is in the TARGET DIALOGUE's cast and had no sentence, and いっかい only ever appeared bolted onto ちか. States a floor rather than asking for one, so it does not add to the deck's five 〜はどこですか cards.",
       "aiSuggested": true
+    },
+    {
+      "id": "otearai-doko-desu-ka",
+      "english": "Where is the restroom?",
+      "category": "Directions",
+      "target": "おてあらいはどこですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From SPEAKING PRACTICE 3 (verbatim). The deck already has this exchange's ANSWER as achira-example (おてあらいはあちらです) but never carded the question, leaving an orphaned answer. The unit quiz (Quiz 1, part II.2) asks the learner to produce exactly this sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "one-book",
+      "english": "One book",
+      "category": "Numbers",
+      "target": "いっさつ",
+      "note": "さつ (satsu) counts bound things — books, magazines, notebooks. いち (ichi) shortens to いっ (i-) here.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series"
+    },
+    {
+      "id": "kono-kuroi-kaban-mo-ichiman",
+      "english": "Is this black bag also 10,000 yen?",
+      "category": "Shopping",
+      "target": "このくろいかばんも10,000えんですか",
+      "ttsText": "このくろいかばんもいちまんえんですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From EXERCISES 5, the worked example (verbatim). Exercise 5 produced no cards. No card in this lesson uses も, and this stacks この + adjective + noun in one question, which nothing else in the deck does.",
+      "aiSuggested": true
+    },
+    {
+      "id": "grey",
+      "english": "Grey",
+      "category": "Colors",
+      "target": "はいいろの",
+      "note": "Literally 'ash colour'. グレー (gurē) is the borrowed alternative and is just as common — both take の: はいいろの そら (haiiro no sora).",
+      "reviewNote": "Added as a further の-only colour; グレー (gurē) is the equally common loanword form. Audio synthesized from はい色の (audio-only orthography) — all-kana はいいろの is mis-parsed by ElevenLabs as はい + いろの, and 灰色の gets 色 read as しょく. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "two-books",
+      "english": "Two books",
+      "category": "Numbers",
+      "target": "にさつ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series"
+    },
+    {
+      "id": "biiru-ippon-to-wain-nihon",
+      "english": "One beer and two bottles of wine, please.",
+      "category": "Food",
+      "target": "ビールを１ぽんとワインを２ほんください",
+      "ttsText": "ビールをいっぽんとワインをにほんください",
+      "hint": null,
+      "note": "One counter, two sounds in a single breath: いっぽん (ip-pon) after いち (ichi), にほん (ni-hon) after に (ni).",
+      "reviewNote": "Constructed. Serves the FORM job. This is the only card anywhere that puts two forms of the same counter side by side, which is the fastest way to see that the change is driven by the number in front, not by the object.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kore-wa-igirisu-no-kaban",
+      "english": "This is an English bag.",
+      "category": "Nationalities & Countries",
+      "target": "これはイギリスのかばんです",
+      "hint": null,
+      "note": "The other half of the pair with これはわたしのかばんです (kore wa watashi no kaban desu). A place before の (no) says where the thing was made, never who it belongs to — this bag is not owned by England.",
+      "reviewNote": "Constructed. Serves the PARTICLE job for の as the origin member of the minimal pair. イギリス is from Lesson 1.",
+      "aiSuggested": true
+    },
+    {
+      "id": "orange",
+      "english": "Orange",
+      "category": "Colors",
+      "target": "オレンジの",
+      "note": "The colour and the fruit share the word. Like every borrowed colour it takes の: オレンジの ぼうし (orenji no bōshi).",
+      "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "meat",
+      "english": "Meat",
+      "category": "Food",
+      "target": "にく",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "kore-wa-doko-no-biiru-ka",
+      "english": "Where is this beer from?",
+      "category": "Nationalities & Countries",
+      "target": "これはどこのビールですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "From EXERCISES 4B, the worked example (verbatim). Second example of どこの + noun (the first is the existing fib-c5-coffee-cup-origin-q with それ), which keeps that pattern at the two-example cap while contrasting これ against それ. I left its answer (ちゅうごくのです) out on purpose — the deck would then have three 'It's from X' answers.",
+      "aiSuggested": true
+    },
+    {
+      "id": "eg-kiiroi-kasa",
+      "english": "This is a yellow umbrella.",
+      "category": "Colors",
+      "target": "これはきいろいかさです",
+      "hint": null,
+      "note": "きいろ (kiiro) is one of only two colours with both forms. これはきいろのくつしたです (kore wa kiiro no kutsushita desu) says the same kind of thing the other way.",
+      "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "uncertain": false,
+      "aiSuggested": true
+    },
+    {
+      "id": "taoru-o-yonmai-kudasai",
+      "english": "Four towels, please.",
+      "category": "Shopping",
+      "target": "タオルを４まいください",
+      "ttsText": "タオルをよんまいください",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed, but it is exactly the answer EXERCISES 7.2 asks the learner to produce (タオル, 4まい). Serves the VOCABULARY job for タオル and adds a second まい sentence — before wave 1 the deck had ten まい recitation cards and zero sentences.",
+      "aiSuggested": true
+    },
+    {
+      "id": "biiru-o-sanbon-kudasai",
+      "english": "Three beers, please.",
+      "category": "Food",
+      "target": "ビールを３ぼんください",
+      "ttsText": "ビールをさんぼんください",
+      "hint": null,
+      "note": "ほん (hon) softens to ぼん (bon) after さん (san). That is why the deck has three separate spellings of the same counter.",
+      "reviewNote": "Constructed. Serves the FORM job — of the three counter shapes ほん／ぼん／ぽん, only ほん had ever appeared in a sentence (ks5-two-bottles-wine). Also the first sentence use of ビール as the thing being bought rather than asked about.",
+      "aiSuggested": true
+    },
+    {
+      "id": "koppu-futatsu-to-osara-sanmai",
+      "english": "Two glasses and three plates, please.",
+      "category": "Home & Household",
+      "target": "コップをふたつとおさらを３まいください",
+      "ttsText": "コップをふたつとおさらをさんまいください",
+      "hint": null,
+      "note": "Each item keeps its own を (o) and its own counter; ください (kudasai) is said once at the end. Glasses are round so they take つ (tsu), plates are flat so they take まい (mai).",
+      "reviewNote": "Constructed. Serves the PARTICLE job for と — wave 1's cheesecake order was its only sentence — and the VOCABULARY job for both コップ and (お)さら. Unlike the cheesecake order this one mixes two DIFFERENT counters, which is the harder half of the pattern.",
+      "aiSuggested": true
+    },
+    {
+      "id": "purple",
+      "english": "Purple",
+      "category": "Colors",
+      "target": "むらさきの",
+      "note": "A noun like みどり (midori), so it takes の: むらさきの はな (murasaki no hana). There is no むらさきい.",
+      "reviewNote": "Added as a second example of a colour that only works with の, per your question. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
+      "aiSuggested": true
+    },
+    {
+      "id": "chiizukeeki-appurupai-kudasai",
+      "english": "I would like three cheesecakes and two apple pies, please.",
+      "category": "Food",
+      "target": "チーズケーキをみっつとアップルパイをふたつください",
+      "hint": null,
+      "note": "Each item carries its own を (o) and its own counter, and と (to) joins the two orders. ください (kudasai) comes once, at the end.",
+      "reviewNote": "From SPEAKING PRACTICE 2 (verbatim). This is the only sentence in the lesson that orders two different counted items in one breath, and it is the only thing that uses the stranded チーズケーキ and アップルパイ vocabulary cards. It also puts みっつ and ふたつ into a sentence — until now the つ-counters only existed as recitation cards plus the single それをむっつください drill.",
+      "aiSuggested": true
+    },
+    {
+      "id": "cloth",
+      "english": "Cloth",
+      "category": "Clothing",
+      "target": "ぬの",
+      "note": "The raw fabric or material itself; contrast ふく (fuku), the finished clothes made from it.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field"
+    },
+    {
+      "id": "ano-aoi-tshirt-desu",
+      "english": "It's that blue T-shirt over there.",
+      "category": "Clothing",
+      "target": "あのあおいTシャツです",
+      "note": null,
+      "reviewNote": "From SPEAKING PRACTICE 1 (verbatim), paired with dore-desu-ka. Distinct from KS3 (あのあおいTシャツは3,000えんです), which states a price rather than identifying the item — this is how you point something out when asked.",
+      "aiSuggested": true,
+      "scene": "answering which T-shirt you mean"
     }
   ]
 }

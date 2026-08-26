@@ -220,6 +220,54 @@ notes by their `abid:` tag, never by guid.
 The retrofit stays deferred until `scripts/verify-apkg-import.mjs` has shown what a guid change
 actually does to the restore path — that is the trigger recorded in LIMITATIONS.
 
+## Moving notes between collections: why `--refile` is not the tool
+
+`--refile` moves a delivered card whose deck no longer matches its unit, and it is gated on the
+unanswered `change-deck-on-filtered` probe. It also only ever looks WITHIN one collection's deck
+tree, because the `abid:` index it works from is built by one query scoped to that collection's
+parent deck.
+
+So it cannot help with the other case: a note that has to move BETWEEN collections, because the card
+it belongs to was relocated from one product into another. The book's deliver cannot see a note
+sitting under another parent deck at all. Such a card reads as new, gets added with fresh scheduling,
+and the matured original is merely reported as `orphaned`. The fix is to move the notes into the
+target tree BEFORE delivering, so the next deliver resolves them by `abid` and updates them in place.
+
+That is a migration, not a standing control, and it is written as one:
+`scripts/migrate-nihongo-absorption.mjs` did it once for the Nihongo 101 absorption. If you ever need
+another, copy its shape rather than reaching for a flag:
+
+- snapshot `due`, `ivl`, `factor`, `reps`, `lapses`, `queue` and `type` for every affected card,
+  re-read them after the move, and abort unless every field of every card still matches. `changeDeck`
+  is documented as leaving scheduling alone, and that is not something to take on trust with a daily
+  learner's collection.
+- skip and report any card with a non-zero `odid`, for the same unanswered probe that gates
+  `--refile`. Do not guess.
+- keep the card ids identical. The id IS the `abid:` tag, so changing it is what orphans the note.
+- default to a dry run and require an explicit flag to write.
+
+**Deck membership selects the options preset, which is scheduling behaviour.** Existing intervals
+survive the move; how the cards are scheduled from then on follows the destination deck's preset.
+That is usually the point of the move, but it is a real consequence and worth saying out loud.
+
+## Retiring a whole collection from the live deck
+
+Deliver never deletes. A card that leaves the corpus is reported as `orphaned` for a human to act
+on, and that is deliberate: deletion takes a note's cards and its entire review log with it, and
+nothing in Anki brings them back. So retiring a collection is its own explicit act, not a flag on a
+delivery. `scripts/retire-nihongo-course.mjs` did it once, for the collection the Nihongo absorption
+emptied. Its shape is what any future one should copy:
+
+- delete ONLY notes a written record says are redundant, matched by their `abid:` tag, and confirm
+  the card each one duplicates is genuinely still shipping before removing it. A duplicate whose twin
+  has gone missing is not a duplicate, it is the last copy.
+- report and REFUSE on any note under that parent deck that the record does not account for. It is
+  either something a migration missed or something the owner added by hand, and neither is a
+  script's to remove.
+- remove the decks with `cardsToo: false`, so a deck that turns out not to be empty gives its cards
+  up to Default rather than to deletion.
+- default to a dry run, and require an explicit backup acknowledgement on top of `--apply`.
+
 ## Deck options: turn on sibling burying by hand, once
 
 **This is the one setting in this file that has to be clicked in Anki, and it is worth more than

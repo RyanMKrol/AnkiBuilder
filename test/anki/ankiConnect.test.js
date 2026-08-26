@@ -38,6 +38,14 @@ test("typed helpers send the right action + params", async () => {
   await anki.updateModelStyling("AnkiBuilder ja", ".card{}");
   assert.deepEqual(calls.at(-1).body.params, { model: { name: "AnkiBuilder ja", css: ".card{}" } });
 
+  await anki.deleteNotes([7, 8]);
+  assert.deepEqual(calls.at(-1).body.params, { notes: [7, 8] });
+
+  // cardsToo defaults to FALSE, so a deck that turns out not to be empty loses its cards to
+  // Default rather than to deletion. That default is the safety property, not a detail.
+  await anki.deleteDecks(["Old Course"]);
+  assert.deepEqual(calls.at(-1).body.params, { decks: ["Old Course"], cardsToo: false });
+
   await anki.exportPackage("Deck::Sub", "/tmp/x.apkg");
   assert.deepEqual(calls.at(-1).body.params, {
     deck: "Deck::Sub",

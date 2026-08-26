@@ -7,6 +7,7 @@ import {
   placeholderTargetCheck,
   exclusionsCheck,
   audioMarkerCheck,
+  audioFilesCheck,
   audioTextHashCheck,
   chapterNumberCheck,
 } from "./collection.js";
@@ -73,6 +74,7 @@ export const ALL_CHECKS = [
   duplicatesCheck,
   exclusionsCheck,
   audioMarkerCheck,
+  audioFilesCheck,
   audioTextHashCheck,
   templateExemptionsCheck,
   unmatchedDirsCheck,

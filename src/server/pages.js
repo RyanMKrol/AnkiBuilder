@@ -12,6 +12,7 @@ import {
   EXPAND_COLLAPSE_SCRIPT,
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
+  ADDITIONS_REVIEW_SCRIPT,
   MARK_DONE_SCRIPT,
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
@@ -25,6 +26,7 @@ import { cleanupNames } from "../audio/cleanupFilter.js";
 import { audioTextState } from "../audio/textHash.js";
 import { page } from "./respond.js";
 import { renderCardFacesPage } from "../deck/cardFacePreview.js";
+import { unitDeckSegments } from "../deck/deckPath.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
 
@@ -65,6 +67,34 @@ export function createPageRenderers({
   // done) and "Built" (done lessons) — with each deck's lessons grouped under its heading. A deck with
   // lessons in several states appears (grouped) in each. Actions are per-lesson and link to the
   // unit-scoped views.
+  /**
+   * The two audio modals: generated-variant picker and the trim editor.
+   *
+   * Shared because they are not decoration — `DECK_EDIT_SCRIPT` and `AUDIO_TRIM_SCRIPT` look their
+   * containers up by id at load time and dereference them immediately, so a page that includes
+   * either script without this markup throws on the first line and takes every handler after it
+   * with it. Generate, Replace and the trim editor all die at once and the only symptom is a button
+   * that does nothing. The additions review shipped exactly that way.
+   */
+  const audioModals = (canEdit) =>
+    canEdit
+      ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>
+<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Edit audio</h3><p class="sub">This is the card's <b>original</b> recording, with the edges set to where the clip in use is currently trimmed. Drag them to change what is kept — the shaded parts are cut. Each drag is applied as soon as you let go, replacing the clip in use; the original is never changed.</p>
+<div class="wfwrap"><canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div><div class="wfplay"></div><div class="wfhandle start"></div><div class="wfhandle end"></div></div>
+<div class="trimtimes"><span>Start <b class="t-start">—</b></span><span>End <b class="t-end">—</b></span><span>Keeping <b class="t-kept">—</b></span></div>
+<div class="trimbar"><button type="button" class="trim-play-sel">▶ Selection</button><button type="button" class="trim-play-all">▶ Original</button><button type="button" class="trim-snap">Snap to speech</button><span class="trim-msg"></span></div>
+<div class="trimbar cleanbar"><span class="cleanlabel">Noise cleanup</span>${cleanupNames()
+          .map(
+            (n) =>
+              `<button type="button" class="clean-btn" data-filter="${escapeHtml(n)}">${escapeHtml(n)}</button>`,
+          )
+          .join(
+            "",
+          )}<button type="button" class="clean-btn" data-filter="off">off</button><span class="clean-msg"></span></div>
+<div class="trimbar"><button type="button" class="trim-revert" hidden>Revert to automatic</button><button type="button" class="trim-close primary">Close</button></div>
+<p class="trimnote">Automatic trimming only ever cuts the end of a clip, so leading silence always survives it — and a cut that went too far can only be recovered here, from the original. <b>Noise cleanup</b> runs before the trim and is applied to the clip in use, not to the original above — switch chains if the default leaves rumble behind or thins the voice.</p></div></div>`
+      : "";
+
   function renderDashboard() {
     const decks = adapters.flatMap((a) => a.listDecks(outputRoot));
     if (decks.length === 0) {
@@ -95,6 +125,8 @@ export function createPageRenderers({
         building: !!u.building,
         interrupted: !!u.interrupted,
         claim: u.claim || null,
+        pendingAdditions: u.pendingAdditions || 0,
+        additionCounts: u.additionCounts || {},
       }));
       // A deck delivered over AnkiConnect carries a marker beside its .apkg (see deliver.js):
       // re-importing the package into that collection would create duplicate notes, so the
@@ -214,6 +246,33 @@ export function createPageRenderers({
       }
     }
 
+    // Retrofitted cards waiting on the additions review, across every deck. Surfaced on the home
+    // page because a batch that nobody can find is a batch that never gets approved, and its cards
+    // do not ship until it is.
+    const additionRows = [];
+    let pendingTotal = 0;
+    for (const deck of withUnits) {
+      const perBatch = {};
+      for (const u of deck.units) {
+        for (const [batch, n] of Object.entries(u.additionCounts || {})) {
+          perBatch[batch] = (perBatch[batch] || 0) + n;
+        }
+      }
+      const batches = Object.keys(perBatch).sort();
+      if (!batches.length) continue;
+      pendingTotal += batches.reduce((sum, b) => sum + perBatch[b], 0);
+      // Same markup as a multi-lesson deck block, so it sits in the page rather than on it: a
+      // `.dbhead` naming the deck, then one `.urow` per retrofit with its own count in the badge.
+      const head = `<div class="dbhead"><span class="dt">${escapeHtml(deck.title)}</span><span class="dm">${deckMeta(deck)}</span></div>`;
+      const rows = batches
+        .map(
+          (b) =>
+            `<a class="urow" href="/additions/${enc(deck.type)}/${enc(deck.id)}/${enc(b)}"><span class="ulabel">${escapeHtml(b)}</span><span class="ustage">${perBatch[b]} pending</span></a>`,
+        )
+        .join("");
+      additionRows.push(`<div class="dblock">${head}${rows}</div>`);
+    }
+
     const section = (cls, title, hint, blocks, count) =>
       blocks.length
         ? `<div class="grp ${cls}"><h2>${title} <span class="gcount">${count}</span></h2><p class="ghint">${hint}</p>${blocks.join("")}</div>`
@@ -230,6 +289,7 @@ export function createPageRenderers({
         deliver: editable,
       })}
 ${section("grp-unfinished", "Not finished", "These lessons stopped mid-build and have no cards to review yet. Re-run <code>anki-builder assemble</code> for the lesson (it picks up where it left off), or <code>anki-builder prepare --run &lt;dir&gt;</code> directly.", unfinishedBlocks, unfinishedCount)}
+${section("grp-additions", "Additions waiting", "Cards retrofitted into finished lessons, held out of the deck until you approve them. The lessons they sit in keep their own sign-off, so approving these re-opens nothing.", additionRows, pendingTotal)}
 ${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
 ${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}`,
       [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null].filter(Boolean).join("\n"),
@@ -389,23 +449,7 @@ ${section("grp-built", "Built · ready to study", "Finished (marked done) lesson
     // the client whether an audio edit should auto-rebuild (only when a lesson in view is already part
     // of the package); it's carried on #deckctx. The toolbar keeps just a status line for feedback.
     const toolbar = canEdit ? `<span id="rebuild-status" class="rb"></span>` : "";
-    const modal = canEdit
-      ? `<div id="gen-modal" class="modal" hidden><div class="modal-box"><h3>Generated variants</h3><p class="sub">Audition and pick one to use for this card, or cancel to keep the current clip.</p><div class="vlist"></div><div class="modal-foot"><button type="button" class="close">Cancel</button></div></div></div>
-<div id="trim-modal" class="modal" hidden><div class="modal-box"><h3>Edit audio</h3><p class="sub">This is the card's <b>original</b> recording, with the edges set to where the clip in use is currently trimmed. Drag them to change what is kept — the shaded parts are cut. Each drag is applied as soon as you let go, replacing the clip in use; the original is never changed.</p>
-<div class="wfwrap"><canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div><div class="wfplay"></div><div class="wfhandle start"></div><div class="wfhandle end"></div></div>
-<div class="trimtimes"><span>Start <b class="t-start">—</b></span><span>End <b class="t-end">—</b></span><span>Keeping <b class="t-kept">—</b></span></div>
-<div class="trimbar"><button type="button" class="trim-play-sel">▶ Selection</button><button type="button" class="trim-play-all">▶ Original</button><button type="button" class="trim-snap">Snap to speech</button><span class="trim-msg"></span></div>
-<div class="trimbar cleanbar"><span class="cleanlabel">Noise cleanup</span>${cleanupNames()
-          .map(
-            (n) =>
-              `<button type="button" class="clean-btn" data-filter="${escapeHtml(n)}">${escapeHtml(n)}</button>`,
-          )
-          .join(
-            "",
-          )}<button type="button" class="clean-btn" data-filter="off">off</button><span class="clean-msg"></span></div>
-<div class="trimbar"><button type="button" class="trim-revert" hidden>Revert to automatic</button><button type="button" class="trim-close primary">Close</button></div>
-<p class="trimnote">Automatic trimming only ever cuts the end of a clip, so leading silence always survives it — and a cut that went too far can only be recovered here, from the original. <b>Noise cleanup</b> runs before the trim and is applied to the clip in use, not to the original above — switch chains if the default leaves rumble behind or thins the voice.</p></div></div>`
-      : "";
+    const modal = audioModals(canEdit);
     const lessonWord = `lesson${units.length === 1 ? "" : "s"}`;
     const lede = canEdit
       ? `<b>${total}</b> cards across <b>${units.length}</b> ${lessonWord}. Play a card's audio inline; <b>Replace</b> uploads a clip, <b>Generate</b> synthesizes variants to pick from, <b>Exclude</b> drops a card. Edits rebuild the deck's <code>.apkg</code> automatically${anyDone ? ` — this ${units.length === 1 ? "lesson is" : "set includes lessons"} marked <b>done</b>, so edits reach the shipping deck.` : " — just re-import it."}`
@@ -549,5 +593,222 @@ ${sectionHtml}
     return page(`${deck.title} — card faces`, body);
   }
 
-  return { renderDashboard, renderReviewPage, renderDeckPage, renderFacesPage };
+  /**
+   * The ADDITIONS review: the cards a retrofit added, wherever they landed.
+   *
+   * The third review type, and the only one not scoped to a unit. Class notes keep arriving for
+   * material a deck taught chapters ago, so cards get added to units that were finished months
+   * before. Approving them through the unit's own corpus gate means re-opening the whole unit and
+   * re-reading every card in it, which is why this exists.
+   *
+   * Sections are DESTINATION UNITS, headed with the Anki deck path the card is going into, because
+   * "where is this going" is the question this review answers and the per-unit pages never have to
+   * ask it. `batch` narrows to one retrofit; without it every pending batch in the collection shows.
+   */
+  function renderAdditionsPage(type, id, batch = null) {
+    const adapter = adapterFor(type);
+    const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
+    if (!deck) return null;
+
+    const wanted = (c) => c.addition && (batch == null || c.addition === batch);
+    const canEdit = editable && !deck.units.some((u) => u.building);
+
+    // Sections for ONE of the two gates. Each carries the stage of the matching lesson review, so
+    // the rows render through the same STAGE_TABLES entry the corpus and audio reviews use: this is
+    // the same review, filtered to a retrofit, rather than a second implementation of it.
+    const sectionsFor = (stage) =>
+      deck.units
+        .map((u) => ({
+          u,
+          cards: (u.cards || []).filter((c) => wanted(c) && c.additionStage === stage),
+        }))
+        .filter((s) => s.cards.length > 0)
+        .map(({ u, cards }) => ({
+          seq: u.seq,
+          // The full Anki deck path, from the ONE function both delivery paths derive names with,
+          // so the heading cannot claim a deck the card will not land in.
+          leaf: [deck.title, ...unitDeckSegments(u.label)].join(" › "),
+          stage,
+          cards: cards.map((c) => ({
+            ...c,
+            unit: u.seq,
+            kanjiTts: u.kanjiTts === true,
+            audioTextState: audioTextState(c),
+            audioUrl: c.audio ? mediaUrl(type, id, u.seq, c.audio) : null,
+            originalUrl: c.audioOriginal
+              ? mediaUrl(type, id, u.seq, c.audioOriginal)
+              : c.audio
+                ? mediaUrl(type, id, u.seq, c.audio)
+                : null,
+          })),
+        }));
+
+    const contentSections = sectionsFor("corpus");
+    const audioSections = sectionsFor("audio");
+    const all = deck.units.flatMap((u) => (u.cards || []).filter(wanted));
+    if (all.length === 0) return null;
+    const batches = [...new Set(all.map((c) => c.addition))].sort();
+    const atContent = contentSections.flatMap((s) => s.cards).filter((c) => !c.excluded);
+    const atAudio = audioSections.flatMap((s) => s.cards).filter((c) => !c.excluded);
+    const excludedCount = all.filter((c) => c.excluded).length;
+    // A clip the retrofit carried across has already been heard, in the deck it came from. A clip
+    // synthesized after the content gate has been heard by nobody. Only the second needs auditioning
+    // with any care, so the first is hidden by default rather than padding the list.
+    const inherited = atAudio.filter((c) => c.additionAudioInherited);
+    const freshAudio = atAudio.filter((c) => !c.additionAudioInherited);
+    const needClip = atAudio.filter((c) => !c.audio);
+
+    const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
+    const editControls = canEdit
+      ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button>${isJa ? `<button type="button" class="gen-kanji">Generate (kanji)</button>` : ""}<span class="msg"></span></div>`
+      : "";
+    const player = (url) =>
+      url ? `<audio controls preload="none" src="${url}"></audio>` : `<span class="x">—</span>`;
+    const audioCell = (c) =>
+      player(c.audioUrl) +
+      (canEdit && c.originalUrl
+        ? `<div class="ed"><button type="button" class="trim">Edit</button></div>`
+        : "");
+    const originalCell = canEdit ? (c) => player(c.originalUrl) + editControls : undefined;
+
+    // One control per gate, named for what it signs off, and both refusing the same way the lesson
+    // gates do: content first, then audio.
+    // Exclude ONLY, exactly as the corpus and audio reviews have. The sign-off is a section
+    // control, not a per-row button: the existing reviews have no per-card approve and neither
+    // should this one. The gate underneath is still per card, but that is a storage detail and has
+    // no business becoming a column of buttons.
+    const rowControl = canEdit
+      ? (stage, c) =>
+          `<button type="button" class="excl-btn${c.excluded ? " on" : ""}" aria-pressed="${c.excluded ? "true" : "false"}" title="${c.excluded ? "Excluded — click to include" : "Exclude this card from the deck"}">⊘</button><span class="msg"></span>`
+      : undefined;
+
+    // "Mark reviewed" on a content section, "Mark done" on an audio one: the same two words the
+    // corpus and audio reviews use, doing the same thing to the cards in front of you.
+    const sectionControl = canEdit
+      ? (sec) => {
+          const open = sec.cards.filter((c) => !c.excluded && c.additionStage === sec.stage);
+          if (sec.stage === "corpus") {
+            return open.length
+              ? `<button type="button" class="mark-rev-additions" data-unit="${escapeHtml(String(sec.seq))}">Mark reviewed</button><span class="rev-msg"></span>`
+              : `<span class="done-badge">✓ reviewed</span>`;
+          }
+          const ready = open.filter((c) => c.audio);
+          if (!open.length) return `<span class="done-badge">✓ done</span>`;
+          return ready.length === open.length
+            ? `<button type="button" class="mark-done-additions" data-unit="${escapeHtml(String(sec.seq))}">Mark done</button><span class="done-msg"></span>`
+            : `<span class="done-msg">${open.length - ready.length} card(s) still have no clip — generate audio first</span>`;
+        }
+      : undefined;
+
+    const group = (title, hint, sections, cls, tools = "") => {
+      if (!sections.length) return "";
+      const { html } = renderLessonSections({
+        sections,
+        startNumber: 1,
+        audioCell,
+        originalCell: sections[0].stage === "audio" ? originalCell : undefined,
+        rowControl,
+        sectionControl,
+        open: true,
+        showReviewNote: true,
+      });
+      return `<div class="grp ${cls}"><h2>${title}</h2><p class="ghint">${hint}</p>${tools}${html}</div>`;
+    };
+
+    const title = batch ? `Additions: ${batch}` : `Additions — ${deck.title}`;
+    const lede =
+      atContent.length || atAudio.length
+        ? `<b>${atContent.length}</b> waiting on content, <b>${atAudio.length}</b> waiting on audio` +
+          (inherited.length
+            ? ` (<b>${freshAudio.length}</b> of them clips nobody has heard yet; the other ${inherited.length} came across with their card)`
+            : "") +
+          `. ` +
+          `A card ships only once it has passed BOTH, exactly as a lesson does. The lessons these ` +
+          `sit in keep their own sign-off, so nothing else is re-opened, and nothing reaches Anki ` +
+          `until you click Deliver.`
+        : `Every addition here has passed both gates.`;
+    const clipNote = needClip.length
+      ? `<p class="lede"><b>${needClip.length}</b> approved card${needClip.length === 1 ? " has" : "s have"} no clip yet. ` +
+        `Run <code>anki-builder audio --run &lt;unit&gt;</code> for the decks listed below; it generates only ` +
+        `what is missing, so it costs exactly these cards.</p>`
+      : "";
+
+    const contentTools = canEdit
+      ? `<div class="add-tools">` +
+        (atContent.length
+          ? `<button type="button" class="approve-all">Approve all ${atContent.length} on content</button><span class="approve-all-msg"></span>`
+          : "") +
+        `</div>`
+      : "";
+
+    const audioTools = canEdit
+      ? `<div class="add-tools">` +
+        (inherited.length
+          ? `<button type="button" class="done-inherited" title="Passes these through the audio gate unheard, which is the last thing each card needs before it ships. Nothing reaches Anki until you click Deliver.">Accept ${inherited.length} carried-over clip${inherited.length === 1 ? "" : "s"} without listening</button><span class="done-inherited-msg"></span>` +
+            `<label class="show-excl"><input type="checkbox" id="show-inherited"> Show them</label>`
+          : "") +
+        `</div>`
+      : "";
+
+    // Page level, because it hides rows in BOTH groups. Inside one of them it would vanish whenever
+    // that group happened to be empty, taking the only way back to the excluded rows with it.
+    const pageTools =
+      canEdit && excludedCount
+        ? `<div class="add-tools"><label class="show-excl"><input type="checkbox" id="show-excluded"> Show ${excludedCount} excluded</label></div>`
+        : "";
+
+    const body =
+      pageChrome({
+        title,
+        eyebrow: `${TYPE_LABEL[type] || type} · additions review`,
+        ledeHtml: lede,
+        backHref: "/",
+        deliver: editable,
+        extraHtml:
+          clipNote +
+          (batch == null && batches.length > 1
+            ? `\n<p class="lede">Batches here: ${batches.map((b) => `<a href="/additions/${encodeURIComponent(type)}/${encodeURIComponent(id)}/${encodeURIComponent(b)}">${escapeHtml(b)}</a>`).join(", ")}</p>`
+            : ""),
+      }) +
+      (editable
+        ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="1" hidden></div>`
+        : "") +
+      audioModals(canEdit) +
+      // The same status line the review page carries. DASH_PRELUDE's setStatus is null-guarded, so
+      // its absence does not crash: it just silently drops every "rebuilding…" and "saved" message,
+      // which is worse, because the page then looks like it did nothing.
+      (canEdit ? `<div class="bar"><span id="rebuild-status" class="rb"></span></div>` : "") +
+      pageTools +
+      group(
+        "Content review",
+        "The first gate: English, target and pronunciation, on the cards this retrofit added. Approving one does not ship it — its audio is checked next.",
+        contentSections,
+        "grp-review",
+        contentTools,
+      ) +
+      group(
+        "Audio review",
+        "The second gate: every approved card's clip. Signing one off is the LAST thing it needs — it ships on the next build, though nothing reaches Anki until you click Deliver.",
+        audioSections,
+        "grp-built",
+        audioTools,
+      );
+
+    const scripts = [];
+    if (canEdit) {
+      scripts.push(DASH_PRELUDE_SCRIPT, REVIEW_EDIT_SCRIPT, ADDITIONS_REVIEW_SCRIPT);
+      scripts.push(DECK_EDIT_SCRIPT, AUDIO_TRIM_SCRIPT);
+    }
+    scripts.push(STICKY_HEADER_SCRIPT);
+    if (editable) scripts.push(DELIVER_SCRIPT);
+    return page(title, body, scripts.join("\n"));
+  }
+
+  return {
+    renderDashboard,
+    renderReviewPage,
+    renderDeckPage,
+    renderFacesPage,
+    renderAdditionsPage,
+  };
 }

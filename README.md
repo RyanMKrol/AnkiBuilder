@@ -526,6 +526,12 @@ operator has to override on the day it lands is worse than no gate.
       of a build and `JSON.parse`s these files with no try/catch, so a torn read would be a hard
       failure, not a glitch
 - [x] `build-anki-deck` conversational skill
+- [x] Absorbing one collection into another (2026-08-24). The Nihongo 101 course and two PDFs of
+      class notes were folded into the book's extras units and the course retired, so what was two
+      overlapping decks studied daily is one product. 133 cards moved keeping their card ids, which
+      is what lets `deliver-to-anki.mjs` find their live Anki notes by `abid:` tag and update them in
+      place with their review history rather than adding them fresh. Design, the full routing table
+      and the commands that re-derive its claims: `docs/designs/nihongo-absorption-2026-08.md`
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 See `.harness/tracking/TASKS.json` for the authoritative, up-to-date backlog.

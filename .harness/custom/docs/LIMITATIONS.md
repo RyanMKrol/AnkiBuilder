@@ -3268,3 +3268,182 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** if the identity findings become noise nobody reads, the fix is to compare the
   named form against the deck AFTER normalizing long vowels and dropping sentence-length quotes,
   rather than to narrow the pattern back.
+
+## The Nihongo 101 absorption crosses the collection boundary, once, to remove it
+
+- **What:** golden rule 7 forbids two collections being compared, deduped, or considered in reference
+  to each other. The 2026-08-24 absorption of `output/courses/nihongo-101-course-n5` into
+  `output/epubs/japanese-for-busy-people-book-1-kana` does all three, deliberately. Design and full
+  routing table: `docs/designs/nihongo-absorption-2026-08.md`.
+- **Why:** the two decks overlapped on 102 of the course's 236 cards, so those were being studied
+  twice, and the course had been stalled at three lessons for months. The ruling's purpose is that one
+  product's wording must never have to answer for another's. A merge is the one operation that ends
+  the relationship rather than creating one: afterwards there is a single collection and nothing left
+  to compare.
+- **Impact:** this is **not a precedent**, and nothing in the codebase was changed to permit it. No
+  standing check compares collections, and none should be added. If a second course is ever absorbed,
+  it needs its own owner decision; do not cite this entry as prior approval. While the migration is
+  in flight the repo does hold two collections whose content has been compared, which is the exact
+  state the rule exists to prevent, so the window between Phase 1 and Phase 6 should be short.
+- **Verified by:** the two commands in the Verification section of
+  `docs/designs/nihongo-absorption-2026-08.md`
+- **Status:** open until Phase 6 retires the course collection; resolved by its removal
+- **When to revisit:** if the migration stalls part-done. A half-absorbed course is worse than either
+  end state, because the duplicate cards then exist in both decks with divergent review histories.
+
+## Relocated course cards keep a card shape the extras rules forbid for new cards
+
+- **What:** `extras-pass.md` says "Do not add bare vocabulary cards, numbers, or counter recitations."
+  A large share of the 134 cards moving out of Nihongo 101 are exactly that: bare nouns (Toy,
+  Ladybird, Watch, Box, Star), the minute counters, the floor counters.
+- **Why:** that rule governs **authoring new padding**, where a bare noun is filler the pass invented.
+  These are pre-existing cards with real review history that the owner studies daily. Dropping them to
+  satisfy a rule about authoring would delete studied content, which is a worse outcome than an extras
+  unit containing some bare vocabulary.
+- **Impact:** several extras units end up shaped less like the rule describes than a freshly authored
+  unit would be, and a future reader comparing them against `extras-pass.md` will find a discrepancy
+  that is intentional. Each relocated card carries a `reviewNote` naming its Nihongo 101 origin, so
+  the provenance is visible on the card rather than only here.
+- **Verified by:** `grep -l "Nihongo 101" output/epubs/japanese-for-busy-people-book-1-kana/*/cards.json`
+- **Status:** open, and expected to stay open
+- **When to revisit:** if a later pass tries to enforce the no-bare-vocabulary rule mechanically, it
+  must exempt cards carrying the relocation `reviewNote`, or it will propose deleting studied cards.
+
+## Card ids collide across the two bare-guid collections, but only on dropped cards
+
+- **What:** a card id becomes the `abid:<id>` tag `deliver-to-anki.mjs` matches notes by, so a course
+  card moving into the book under an id the book already uses would bind silently to the wrong note.
+  Course and book share eleven ids: `baseball`, `beef`, `beer`, `black`, `camera`, `file`, `pen`,
+  `restroom`, `scarf`, `small`, `white`.
+- **Why:** both collections predate guid namespacing and write bare card ids (see the bare-guid entry
+  above). The overlap is a natural consequence of two Japanese beginner decks covering the same nouns.
+- **Impact:** **zero risk in this migration**, because all eleven land on cards being dropped as
+  duplicates, so none of the 134 moved cards carries a colliding id. `scarf` was initially mis-read as
+  needing a re-id to `mafuraa-scarf`; the book already ships マフラー as `mafuraa` in chapter-14, so the
+  course card is a plain duplicate and no re-id exists anywhere in this work. That conclusion is a
+  property of the current routing, not a guarantee: if any of those eleven is ever reclassified from
+  drop to move, it must be re-idded first.
+- **Verified by:** the card-id collision command in
+  `docs/designs/nihongo-absorption-2026-08.md`, which must print `no colliding moves`
+- **Status:** open while the course exists; resolved when Phase 6 removes it
+- **When to revisit:** before Phase 5 runs, and before any change to the routing table.
+
+## A relocated card carrying `fillInBlank` is DELETED by the next `prepare`
+
+- **What:** `fillInBlank: true` means "the drill miner produced this card for THIS unit". Nine cards
+  moved out of the Nihongo 101 course carried it, because the course's own miner had produced them
+  there. On the first `prepare` after the move, the miner saw a flagged card it did not recognise as
+  its own and dropped it: "fill-in-the-blank: dropped 1 unmarked practice card(s) from an earlier
+  run". `fib-watashi-wa-enjinia-desu` was deleted from chapter-1-extras that way, a card with real
+  review history in the live collection.
+- **Why it is easy to hit:** the drop is correct behaviour for the case it was written for, which is
+  a half-finished run leaving orphan drills behind. Nothing distinguishes that from a card the flag
+  followed into a new home. The message is printed, not raised, so a batch run scrolls past it.
+- **Impact:** the card is gone from `cards.json` with no exclusion record, so it does not appear in
+  any review, any audit, or the exclusion counts. `scripts/absorb-nihongo.mjs` now strips the flag on
+  relocation, which is correct on its own terms: the card is no longer part of any drill block, and
+  leaving the flag also exposes it to the semantic de-dup, which only ever considers flagged cards
+  and could exclude it as a repeat of a block it was never in. Provenance survives in the card's
+  `reviewNote`. **Any future relocation of cards between units must strip it too.**
+- **Verified by:** the moved-cards-present command in the Verification section of
+  `docs/designs/nihongo-absorption-2026-08.md`, which must print `all moved cards present` and
+  `none carries fillInBlank`
+- **Status:** resolved for this migration (2026-08-24); the underlying sharp edge in `prepare` is open
+- **When to revisit:** if a second migration relocates cards. The durable fix would be for the miner
+  to report what it dropped as an exclusion with provenance rather than deleting outright, so a
+  silent removal becomes a visible one.
+
+## The additions gate is per CARD, which no other review state is
+
+- **What:** a card retrofitted into a finished unit carries `addition: "<batch>"` and does not ship
+  until it carries `additionReviewed: true`. Enforced by one predicate in `shippableCards()`, which is
+  the single function both delivery paths call. Reviewed at `/additions/<type>/<id>`, the third review
+  type, added 2026-08-25.
+- **Why:** class notes keep arriving for material a deck taught chapters ago, so cards land in units
+  that were signed off months before. The only mechanism that existed was to clear `done` on the unit
+  and withdraw its corpus sign-off, which puts hundreds of approved cards back in front of a reviewer
+  in order to approve about a dozen. Doing that by hand across fifteen units is what caused this to be
+  built.
+- **Impact:** every other review state in this project is per unit, and this one is not, so anything
+  that reasons about "what is waiting for review" now has two shapes to handle. The dashboard's home
+  page treats them separately on purpose. A pending card is also invisible to the deck while being
+  fully visible to every audit, which is the intended asymmetry but is worth knowing before reading a
+  count from one and comparing it against the other.
+- **Verified by:** `node --test test/deck/shippableCards.test.js test/server/additions.test.js`
+- **Status:** open, and expected to stay open
+- **When to revisit:** if a retrofit ever targets a BASE unit rather than an extras unit. Approving an
+  addition does not re-save the unit's reviewed corpus into the backward-dedup library, which
+  `markCardsReviewed` does; extras units are exempt from that library anyway, so the gap is latent
+  today and becomes real the first time a base unit is retrofitted.
+
+## An excluded pending addition is shown but not counted
+
+- **What:** the additions review renders an excluded pending card struck through, the way the corpus
+  review does, but does not count it in "N cards waiting" or in the home page's pending badge.
+- **Why:** it has already been decided and cannot ship whatever happens at the gate, so counting it
+  advertises work that does not exist. On the first real batch, 35 of 246 were in that state, so the
+  page would have claimed 246 outstanding when 211 were.
+- **Impact:** the number on the page is smaller than the number of rows on it, which reads as a bug
+  until you notice the struck-through rows. The alternative (hiding them) is worse: an exclusion made
+  by a script is exactly the kind a reviewer should be able to overturn.
+- **Verified by:** `node --test test/server/additions.test.js`
+- **Status:** resolved by choosing the smaller count (2026-08-25)
+- **When to revisit:** if the two numbers being different causes a real misreading, show both rather
+  than picking one.
+
+## The absorption predates the gate, so it was migrated onto it afterwards
+
+- **What:** the 2026-08-24 Nihongo absorption held its 246 cards back the only way available at the
+  time, by clearing `done` and withdrawing the corpus sign-off on fifteen finished units.
+  `scripts/migrate-absorption-to-additions.mjs` stamped those cards with their batch and restored
+  every unit's sign-off, so the units are finished again with pending additions attached.
+- **Why:** leaving it would have meant reviewing the first real batch through the mechanism the batch
+  itself proved was wrong.
+- **Impact:** the set of cards to stamp was derived from git (the ids each unit gained since the
+  commit before the merge) rather than from a marker, because no marker existed at the time. That is
+  sound for this one migration and is not a pattern to repeat: a future retrofit stamps `addition` as
+  it appends, so the set is recorded rather than reconstructed.
+- **Verified by:** the package note count returned to 2,159, exactly the delivered baseline in
+  `anki-delivered.json`, with 211 pending additions held back
+- **Status:** resolved (2026-08-25)
+- **When to revisit:** never; the script is spent.
+
+## An addition passes TWO gates, because one was only ever right for the first batch
+
+- **What:** a retrofitted card ships only with both `additionReviewed` (content) and `additionDone`
+  (audio), mirroring a lesson's `reviewed` and `done`. It started as a single flag.
+- **Why the single flag was wrong:** the first batch happened to be a migration, so its 133 cards
+  arrived with clips already generated and "approve" could mean both "the text is right" and "ready
+  to ship" at once. That is the exception, not the rule. The normal case is a PDF of class notes,
+  where a card is authored with no clip at all and audio has to be generated BETWEEN the two
+  sign-offs: content first so nothing spends TTS credits on a card that might be cut, audio second so
+  no clip reaches a studied deck unheard.
+- **Impact:** two flags per retrofitted card rather than one, and the additions page renders two
+  groups instead of one. Both reuse the corpus and audio `STAGE_TABLES` entries, so the surface is
+  the existing review filtered to a batch rather than a second implementation of it. The cost is that
+  `isPendingAddition` is now a two-condition predicate, and anything reading it has to mean
+  "not through BOTH" rather than "not approved".
+- **Verified by:** `node --test test/deck/shippableCards.test.js test/server/additions.test.js`
+- **Status:** open, and expected to stay open
+- **When to revisit:** if a batch ever legitimately arrives fully voiced, the audio gate is still
+  worth passing: a clip that was right in its old deck is worth hearing once in its new context.
+
+## "Which clips are new" cannot be reconstructed from the audio field afterwards
+
+- **What:** the audio review separates a clip the retrofit carried across from one synthesized after
+  the content gate, using `additionAudioInherited`. A future retrofit sets it as it copies the clip.
+  The first batch predated the field, so `scripts/migrate-mark-inherited-audio.mjs` reconstructed the
+  set from the routing table's record of which cards MOVED.
+- **Why not derive it:** the obvious signal, "its `audio` field changed during the audio run", is
+  wrong. The audio stage re-resolves a cached clip under a canonical name, so on this batch 126 cards
+  showed a changed filename where only 78 were actually synthesized. Reconstructing from that would
+  have marked 48 cards as needing an ear that nobody had generated, which is the opposite of the
+  point.
+- **Impact:** the fact has to be recorded at the moment it is true, by whatever copies the clip. A
+  retrofit that forgets leaves its carried-over clips indistinguishable from new ones, and the only
+  recovery is the same routing-table reconstruction, which needs a routing table to exist.
+- **Verified by:** `node --test test/server/additions.test.js`, and on the live batch:
+  132 inherited + 79 fresh = 211, where the single moved card counted as fresh is `irl-l1-39`, whose
+  clip really was regenerated after its `[number]` placeholder was rewritten
+- **Status:** resolved for this batch (2026-08-26); the field is the standing mechanism
+- **When to revisit:** if a batch ever mixes sources per card rather than per batch.

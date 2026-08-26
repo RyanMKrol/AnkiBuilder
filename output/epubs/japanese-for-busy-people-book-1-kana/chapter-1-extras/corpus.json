@@ -8,6 +8,98 @@
   },
   "items": [
     {
+      "id": "irl-l1-36",
+      "english": "Engineer",
+      "category": "Work & Occupations",
+      "target": "エンジニア",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "w2-chan-okuni-q",
+      "english": "Chan-san, what country are you from?",
+      "category": "Nationalities & Countries",
+      "target": "チャンさん、おくにはどちらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on the SPEAKING PRACTICE 1 model. Particle job: second practice of the address-plus-おくに structure, and the question half of the pair that puts ちゅうごく (chuugoku) in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-confirm-tanaka",
+      "english": "Excuse me, are you Tanaka-san of the Nozomi Department Store?",
+      "category": "Grammar & Function Words",
+      "target": "すみません。のぞみデパートのたなかさんですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "TARGET DIALOGUE, Smith's opening line, verbatim. The deck has two substitution drills built on this sentence (fib-c1-confirm-hoffman, fib-c1-confirm-brown) but not the model line they were derived from. That makes three cards on one pattern, which I would normally avoid, but the book's own dialogue line is the one worth keeping if the owner prunes.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-harris-o-onegaishimasu",
+      "english": "I'd like to see Harris-san, please.",
+      "category": "Grammar & Function Words",
+      "target": "ハリスさんをおねがいします",
+      "hint": null,
+      "note": "The name takes を (o) here, not は (wa). Harris-san is what you are asking for, not what the sentence is about, and that is the whole difference between the two particles.",
+      "reviewNote": "Constructed on the SPEAKING PRACTICE 3 pattern. Particle job: を (o) had exactly one example in the entire lesson. Second of three.",
+      "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-12",
+      "english": "Turkey",
+      "category": "Nationalities & Countries",
+      "target": "トルコ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "w2-indo-desu",
+      "english": "He's from India.",
+      "category": "Nationalities & Countries",
+      "target": "インドです",
+      "note": "Compare ラジャさんはインドじんです (Raja san wa Indojin desu). Dropping じん (jin) turns the answer from a description of the person into the name of a place.",
+      "reviewNote": "Constructed. Vocabulary job: インド (indo) as a country appears in no sentence. Paired answer to w2-raja-no-okuni-q, and the last of the seven WORD POWER countries to get one.",
+      "aiSuggested": true,
+      "scene": "answering a question about which country Raja-san is from, with the country on its own"
+    },
+    {
+      "id": "td-hai-sou-desu",
+      "english": "Yes, I am.",
+      "category": "Grammar & Function Words",
+      "target": "はい、そうです",
+      "note": "NOTES 2 explains that そう (sou) stands in for the noun instead of repeating it, so you say はい、そうです (hai, sou desu) rather than はい、たなかです (hai, Tanaka desu).",
+      "reviewNote": "TARGET DIALOGUE, Tanaka's reply, verbatim, and also the answer half of EXERCISE III's model. The deck has はい (hai) and そうです (sou desu) as separate bare vocabulary cards but never the reply itself, so all three confirm-identity question cards in the lesson currently have no answer.",
+      "aiSuggested": true,
+      "scene": "answering when someone asks if you are the person they were looking for"
+    },
+    {
+      "id": "w2-harisu-desu",
+      "english": "I'm Harris.",
+      "category": "Family & People",
+      "target": "ハリスです",
+      "note": "Never さん (san) on your own name. さん (san) is respect you hand to other people, so attaching it to yourself sounds like you are praising yourself.",
+      "reviewNote": "Constructed. Vocabulary job: gives さん (san) its own worked minimal pair. Every self-introduction card in the deck is a long three-part greeting; this is the bare form and the first half of the pair with w2-harisu-san-desu.",
+      "aiSuggested": true,
+      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite)"
+    },
+    {
+      "id": "irl-l1-28",
+      "english": "This is Ryan from England",
+      "category": "Nationalities & Countries",
+      "target": "こちらはイギリスのライアンです",
+      "note": "Here の (no) links country and name ('Ryan of England'); contrast with -じん (jin), which turns the country itself into a nationality noun, as in イギリスじん (igirisu jin).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "td-intro-smith",
+      "english": "Nice to meet you. I am Smith of ABC Foods. I look forward to working with you.",
+      "category": "Greetings",
+      "target": "はじめまして。ABCフーズのスミスです。よろしくおねがいします",
+      "hint": null,
+      "note": null,
+      "reviewNote": "TARGET DIALOGUE, Smith's self-introduction, verbatim, and the model for EXERCISE IV. The deck has two substitutions of it (fib-c1-intro-brown, fib-c1-intro-raja) but not the original three-part introduction the book actually teaches. Contains the Roman letters ABC exactly as the book prints them; see coverageNotes.",
+      "aiSuggested": true
+    },
+    {
       "id": "w2-nihonjin-q-bare",
       "english": "Are you Japanese?",
       "category": "Nationalities & Countries",
@@ -18,13 +110,127 @@
       "aiSuggested": true
     },
     {
-      "id": "w2-okuni-dochira-bare",
-      "english": "What country are you from?",
+      "id": "w2-raja-no-okuni-q",
+      "english": "What country is Raja-san from?",
       "category": "Nationalities & Countries",
-      "target": "おくにはどちらですか",
-      "hint": "asked straight out, with no name in front of it",
-      "note": "The form you use once you are already in conversation. Putting a name in front, as in ホフマンさん、おくにはどちらですか (Hofuman san, okuni wa dochira desu ka), is only for catching someone's attention first.",
-      "reviewNote": "Constructed by stripping the address term from the SPEAKING PRACTICE 1 question. Form job: the bare version is the one a learner will actually need, and every おくに card in the deck carries a name in front of it.",
+      "target": "ラジャさんのおくにはどちらですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Particle job: second example of の (no) joining a person to an ordinary noun, and the question half of the pair that puts インド (Indo) in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-14",
+      "english": "Korea",
+      "category": "Nationalities & Countries",
+      "target": "かんこく",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate"
+    },
+    {
+      "id": "w2-iie-indian",
+      "english": "No, (he is) Indian.",
+      "category": "Nationalities & Countries",
+      "target": "いいえ、インドじんです",
+      "note": "いいえ (iie) on its own leaves the question hanging, so the right noun follows immediately. The reply denies and corrects in one breath, which is why this lesson never needs a way to say 'is not'.",
+      "reviewNote": "Constructed. Vocabulary job: first appearance of インドじん (indojin) in a sentence. Paired answer to w2-raja-japanese-q.",
+      "aiSuggested": true,
+      "scene": "correcting someone who has just guessed that Raja-san is Japanese"
+    },
+    {
+      "id": "w2-oosutoraria-desu",
+      "english": "He's from Australia.",
+      "category": "Nationalities & Countries",
+      "target": "オーストラリアです",
+      "note": "The country, not the nationality. Compare ハリスさんはオーストラリアじんです (Harisu san wa Oosutorariajin desu), which describes the man rather than the place.",
+      "reviewNote": "Constructed. Vocabulary job: オーストラリア (oosutoraria) as a standalone country appears in no sentence, only inside the compound オーストラリアたいしかん (Oosutoraria taishikan). Paired answer to w2-harris-no-okuni-q.",
+      "aiSuggested": true,
+      "scene": "answering a question about which country Harris-san is from, with the country on its own"
+    },
+    {
+      "id": "w2-anata-wa-nihonjin-q",
+      "english": "Are you Japanese?",
+      "category": "Nationalities & Countries",
+      "target": "あなたはにほんじんですか",
+      "hint": "with あなた (anata) spelled out as the topic",
+      "note": "Grammatically complete, and the version worth learning first because you can see every part. In real conversation the pronoun is usually dropped or replaced by the person's name.",
+      "reviewNote": "Constructed. Vocabulary job: あなた (anata) appears in no sentence in the deck, only as a bare word and as a speaker label in the exercises. Half of a minimal pair with w2-nihonjin-q-bare.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-hai-nihonjin",
+      "english": "Yes, I am Japanese.",
+      "category": "Nationalities & Countries",
+      "target": "はい、にほんじんです",
+      "note": "The topic drops out of the answer for the same reason it usually drops out of the question: both of you already know who is being talked about.",
+      "reviewNote": "Constructed. Form job: paired answer to w2-anata-wa-nihonjin-q, and the deck's only first-person affirmative reply. にほんじん (nihonjin) previously appeared in one statement card only.",
+      "aiSuggested": true,
+      "scene": "replying about yourself when someone has just asked your nationality"
+    },
+    {
+      "id": "w2-chan-uketsuke-q",
+      "english": "Is Chan-san the receptionist?",
+      "category": "Work & Occupations",
+      "target": "チャンさんはうけつけですか",
+      "hint": null,
+      "note": "The same か (ka) that turns a nationality sentence into a question does it here too, with no regard for what kind of noun sits in front of です (desu).",
+      "reviewNote": "Constructed. Form job: every question card in the deck asks about a nationality or an identity. This shows the question ending applying to an ordinary noun, which is the point of the rule.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-raja-japanese-q",
+      "english": "Is Raja-san Japanese?",
+      "category": "Nationalities & Countries",
+      "target": "ラジャさんはにほんじんですか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed, modelled on EXERCISE II-B. Form job: the deck has three negative-correction answers but only one question that expects a correction. This one sets up インドじん (indojin), which appears in no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-chuugoku-desu",
+      "english": "I'm from China.",
+      "category": "Nationalities & Countries",
+      "target": "ちゅうごくです",
+      "note": "The country ちゅうごく (Chuugoku), not the nationality. Compare チャンさんはちゅうごくじんです (Chan san wa Chuugokujin desu): same person, but じん (jin) makes it about her rather than about the place.",
+      "reviewNote": "Constructed. Vocabulary job: ちゅうごく (chuugoku) as a country appears in no sentence. Paired answer to w2-chan-okuni-q, and a country-versus-nationality contrast against the existing Chan statement.",
+      "aiSuggested": true,
+      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
+    },
+    {
+      "id": "irl-l1-19",
+      "english": "French Person",
+      "category": "Nationalities & Countries",
+      "target": "フランスじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; フランス (furansu) alone is just the country.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "w2-doitsu-desu",
+      "english": "I'm from Germany.",
+      "category": "Nationalities & Countries",
+      "target": "ドイツです",
+      "note": "Just the country plus です (desu). おくには (okuni wa) is not repeated because the question already supplied it, and the country ドイツ (Doitsu) is used rather than ドイツじん (Doitsujin) because the question asked about a place.",
+      "reviewNote": "Constructed. Vocabulary job: ドイツ (doitsu) as a country appears in no sentence in the deck, only ドイツじん (doitsujin). Paired answer to w2-hoffman-okuni-q.",
+      "aiSuggested": true,
+      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
+    },
+    {
+      "id": "w2-watashi-no-kuni-nihon",
+      "english": "My country is Japan.",
+      "category": "Nationalities & Countries",
+      "target": "わたしのくにはにほんです",
+      "hint": null,
+      "note": "No お (o) on your own くに (kuni). The honorific belongs to the other person's country, so おくに (okuni) about yourself sounds as odd as calling yourself さん (san). Note also that the answer here is the country にほん (Nihon), not the nationality にほんじん (Nihonjin).",
+      "reviewNote": "Constructed. Vocabulary job: covers both くに (kuni) without the honorific and the country にほん (nihon), neither of which appears in any sentence. Also the clearest place to teach the お (o) / no-お contrast against the おくに questions.",
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-watashi-wa-enjinia-desu",
+      "english": "I am an engineer.",
+      "category": "School & Education",
+      "target": "わたしはエンジニアです",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here",
       "aiSuggested": true
     },
     {
@@ -36,6 +242,36 @@
       "reviewNote": "Constructed. Vocabulary job: イギリス (igirisu) as a country appears in no sentence, only イギリスじん (igirisujin). Paired answer to w2-okuni-dochira-bare.",
       "aiSuggested": true,
       "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka) with the country on its own"
+    },
+    {
+      "id": "ex2b-no-american",
+      "english": "No, (he is) American.",
+      "category": "Nationalities & Countries",
+      "target": "いいえ、アメリカじんです",
+      "note": null,
+      "reviewNote": "EXERCISE II-B model answer, verbatim, and the reply to ex2b-smith-british-q above. Prompt is close to eg-yes-american ('Yes, (he is) American.'), so the hint disambiguates. This is the third negative-correction answer in the lesson (after eg-no-british and fib-c1-hoffman-not-british); it earns its place only as the paired answer, so prune it together with its question if at all.",
+      "aiSuggested": true,
+      "scene": "correcting someone who guessed Smith-san was British"
+    },
+    {
+      "id": "w2-harris-australian",
+      "english": "Harris-san is Australian.",
+      "category": "Nationalities & Countries",
+      "target": "ハリスさんはオーストラリアじんです",
+      "hint": null,
+      "note": "オーストラリアじん (Oosutorariajin) is the country オーストラリア (Oosutoraria) with じん (jin), 'person of', stuck on the end. Every nationality in this lesson is built the same way.",
+      "reviewNote": "Constructed. Vocabulary job: オーストラリアじん (oosutorariajin) appears in no sentence anywhere in the deck. Also member 1 of a form contrast set (statement / question / reply) built on one piece of vocabulary.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sp3-abc-foods-smith",
+      "english": "I am Smith of ABC Foods.",
+      "category": "Work & Occupations",
+      "target": "ABCフーズのスミスです",
+      "note": "The [company] の (no) [name] です (desu) pattern used to state who you are, as opposed to こちらは (kochira wa) ... です, which states who someone else is.",
+      "reviewNote": "SPEAKING PRACTICE 3, Smith's first line, verbatim. The deck already has the second half of that line (onegaishimasu-pattern-ch14) but not this half, so the learner never sees the bare self-identification with an affiliation. Extends ks4-i-am-smith, which has the name only.",
+      "aiSuggested": true,
+      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite)"
     },
     {
       "id": "w2-hai-australian",
@@ -58,126 +294,6 @@
       "aiSuggested": true
     },
     {
-      "id": "w2-kochira-harris",
-      "english": "This is Harris-san of the Australian Embassy.",
-      "category": "Work & Occupations",
-      "target": "こちらはオーストラリアたいしかんのハリスさんです",
-      "hint": null,
-      "note": "オーストラリアたいしかん (Oosutoraria taishikan) runs together with no の (no) inside it, because the country simply says which embassy. The の (no) comes afterwards, joining the embassy to the person who works there.",
-      "reviewNote": "Constructed from EXERCISE V's structure and EXERCISE III's Harris entry. Vocabulary job: たいしかん (taishikan) is the one work-affiliation word with no third-person introduction card, and this is the deck's only chance to show a compound where の (no) is deliberately absent.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-harris-o-onegaishimasu",
-      "english": "I'd like to see Harris-san, please.",
-      "category": "Grammar & Function Words",
-      "target": "ハリスさんをおねがいします",
-      "hint": null,
-      "note": "The name takes を (o) here, not は (wa). Harris-san is what you are asking for, not what the sentence is about, and that is the whole difference between the two particles.",
-      "reviewNote": "Constructed on the SPEAKING PRACTICE 3 pattern. Particle job: を (o) had exactly one example in the entire lesson. Second of three.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-watashi-wa-igirisujin",
-      "english": "I am British.",
-      "category": "Nationalities & Countries",
-      "target": "わたしはイギリスじんです",
-      "hint": null,
-      "note": "は (wa) after わたし (watashi) makes 'I' the topic, exactly as it does after a name. Japanese drops it once it is obvious who you mean, which is why the Key Sentence prints it in brackets: （わたしは）スミスです (watashi wa Sumisu desu).",
-      "reviewNote": "Constructed. Vocabulary job: わたし (watashi) appears in only one sentence card in the deck, and there it sits inside brackets, so the learner never sees it used for real.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-hai-nihonjin",
-      "english": "Yes, I am Japanese.",
-      "category": "Nationalities & Countries",
-      "target": "はい、にほんじんです",
-      "note": "The topic drops out of the answer for the same reason it usually drops out of the question: both of you already know who is being talked about.",
-      "reviewNote": "Constructed. Form job: paired answer to w2-anata-wa-nihonjin-q, and the deck's only first-person affirmative reply. にほんじん (nihonjin) previously appeared in one statement card only.",
-      "aiSuggested": true,
-      "scene": "replying about yourself when someone has just asked your nationality"
-    },
-    {
-      "id": "td-intro-smith",
-      "english": "Nice to meet you. I am Smith of ABC Foods. I look forward to working with you.",
-      "category": "Greetings",
-      "target": "はじめまして。ABCフーズのスミスです。よろしくおねがいします",
-      "hint": null,
-      "note": null,
-      "reviewNote": "TARGET DIALOGUE, Smith's self-introduction, verbatim, and the model for EXERCISE IV. The deck has two substitutions of it (fib-c1-intro-brown, fib-c1-intro-raja) but not the original three-part introduction the book actually teaches. Contains the Roman letters ABC exactly as the book prints them; see coverageNotes.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-harisu-desu",
-      "english": "I'm Harris.",
-      "category": "Family & People",
-      "target": "ハリスです",
-      "note": "Never さん (san) on your own name. さん (san) is respect you hand to other people, so attaching it to yourself sounds like you are praising yourself.",
-      "reviewNote": "Constructed. Vocabulary job: gives さん (san) its own worked minimal pair. Every self-introduction card in the deck is a long three-part greeting; this is the bare form and the first half of the pair with w2-harisu-san-desu.",
-      "aiSuggested": true,
-      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite)"
-    },
-    {
-      "id": "w2-iie-indian",
-      "english": "No, (he is) Indian.",
-      "category": "Nationalities & Countries",
-      "target": "いいえ、インドじんです",
-      "note": "いいえ (iie) on its own leaves the question hanging, so the right noun follows immediately. The reply denies and corrects in one breath, which is why this lesson never needs a way to say 'is not'.",
-      "reviewNote": "Constructed. Vocabulary job: first appearance of インドじん (indojin) in a sentence. Paired answer to w2-raja-japanese-q.",
-      "aiSuggested": true,
-      "scene": "correcting someone who has just guessed that Raja-san is Japanese"
-    },
-    {
-      "id": "sp1-amerika-desu",
-      "english": "I'm from the United States.",
-      "category": "Nationalities & Countries",
-      "target": "アメリカです",
-      "note": "The topic is dropped because the question already named it. Note that the answer is the country アメリカ (Amerika), not the nationality アメリカじん (amerikajin).",
-      "reviewNote": "SPEAKING PRACTICE 1, Smith's reply, verbatim. The deck teaches the question (o-prefix-example, スミスさん、おくにはどちらですか) but not the answer, so the exchange is half taught. Prompt is close to the bare vocabulary card amerika ('United States'), hence the hint.",
-      "aiSuggested": true,
-      "scene": "answering when asked which country you are from"
-    },
-    {
-      "id": "w2-harris-australian-q",
-      "english": "Is Harris-san Australian?",
-      "category": "Nationalities & Countries",
-      "target": "ハリスさんはオーストラリアじんですか",
-      "hint": null,
-      "note": "The same sentence as ハリスさんはオーストラリアじんです (Harisu san wa Oosutorariajin desu) with か (ka) added. Nothing else moves: no inversion, no change of ending, no extra word.",
-      "reviewNote": "Constructed. Form job: member 2 of the statement / question / reply set, deliberately on the same vocabulary as the card before it so the transformation is visible.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-watashi-no-kuni-nihon",
-      "english": "My country is Japan.",
-      "category": "Nationalities & Countries",
-      "target": "わたしのくにはにほんです",
-      "hint": null,
-      "note": "No お (o) on your own くに (kuni). The honorific belongs to the other person's country, so おくに (okuni) about yourself sounds as odd as calling yourself さん (san). Note also that the answer here is the country にほん (Nihon), not the nationality にほんじん (Nihonjin).",
-      "reviewNote": "Constructed. Vocabulary job: covers both くに (kuni) without the honorific and the country にほん (nihon), neither of which appears in any sentence. Also the clearest place to teach the お (o) / no-お contrast against the おくに questions.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-sp2-sasaki-intro",
-      "english": "Tanaka-san, this is Brown-san of the Bank of London.",
-      "category": "Family & People",
-      "target": "たなかさん、こちらはロンドンぎんこうのブラウンさんです",
-      "hint": null,
-      "note": "Two people in one sentence doing completely different jobs. たなかさん (Tanaka-san) at the front is the person you are speaking to, marked by nothing but a comma; ブラウンさん (Buraun-san) is the person you are speaking about. Only こちら (kochira) gets は (wa).",
-      "reviewNote": "Lifted verbatim from SPEAKING PRACTICE 2, Sasaki's line. Form job: the deck has the bare introduction (fib-c1-this-is-brown) but never shows how you address the listener first, which is what makes an introduction an introduction rather than a description.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-chuugoku-desu",
-      "english": "I'm from China.",
-      "category": "Nationalities & Countries",
-      "target": "ちゅうごくです",
-      "note": "The country ちゅうごく (Chuugoku), not the nationality. Compare チャンさんはちゅうごくじんです (Chan san wa Chuugokujin desu): same person, but じん (jin) makes it about her rather than about the place.",
-      "reviewNote": "Constructed. Vocabulary job: ちゅうごく (chuugoku) as a country appears in no sentence. Paired answer to w2-chan-okuni-q, and a country-versus-nationality contrast against the existing Chan statement.",
-      "aiSuggested": true,
-      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
-    },
-    {
       "id": "w2-raja-wa-toukyou-daigaku",
       "english": "Raja-san is with the University of Tokyo.",
       "category": "Work & Occupations",
@@ -188,126 +304,6 @@
       "aiSuggested": true
     },
     {
-      "id": "w2-raja-japanese-q",
-      "english": "Is Raja-san Japanese?",
-      "category": "Nationalities & Countries",
-      "target": "ラジャさんはにほんじんですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed, modelled on EXERCISE II-B. Form job: the deck has three negative-correction answers but only one question that expects a correction. This one sets up インドじん (indojin), which appears in no sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-chan-uketsuke-q",
-      "english": "Is Chan-san the receptionist?",
-      "category": "Work & Occupations",
-      "target": "チャンさんはうけつけですか",
-      "hint": null,
-      "note": "The same か (ka) that turns a nationality sentence into a question does it here too, with no regard for what kind of noun sits in front of です (desu).",
-      "reviewNote": "Constructed. Form job: every question card in the deck asks about a nationality or an identity. This shows the question ending applying to an ordinary noun, which is the point of the rule.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-kochira-hoffman",
-      "english": "This is Hoffman-san of Berlin Motors.",
-      "category": "Work & Occupations",
-      "target": "こちらはベルリンモーターズのホフマンさんです",
-      "hint": null,
-      "note": "さん (san) stays on because you are naming somebody else. Introducing himself, the same man would say ベルリンモーターズのホフマンです (Berurin Mootaazu no Hofuman desu), with the さん (san) gone.",
-      "reviewNote": "Lifted verbatim from the EXERCISE V worked example. Form job: the deck holds a substitution built on this line (fib-c1-this-is-brown) but not the model line itself, and this is the only place ベルリンモーターズ (Berurin Mootaazu) appears in a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp3-abc-foods-smith",
-      "english": "I am Smith of ABC Foods.",
-      "category": "Work & Occupations",
-      "target": "ABCフーズのスミスです",
-      "note": "The [company] の (no) [name] です (desu) pattern used to state who you are, as opposed to こちらは (kochira wa) ... です, which states who someone else is.",
-      "reviewNote": "SPEAKING PRACTICE 3, Smith's first line, verbatim. The deck already has the second half of that line (onegaishimasu-pattern-ch14) but not this half, so the learner never sees the bare self-identification with an affiliation. Extends ks4-i-am-smith, which has the name only.",
-      "aiSuggested": true,
-      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite)"
-    },
-    {
-      "id": "ex2b-smith-british-q",
-      "english": "Is Smith-san British?",
-      "category": "Nationalities & Countries",
-      "target": "スミスさんはイギリスじんですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "EXERCISE II-B model question, verbatim. The lesson's only other nationality question is ks2-smith-american-q, which expects yes; this one expects a correction, and it is the question the existing eg-no-british / fib-c1-hoffman-not-british answer cards are modelled on. Second card on this pattern, so within the cap.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-indo-desu",
-      "english": "He's from India.",
-      "category": "Nationalities & Countries",
-      "target": "インドです",
-      "note": "Compare ラジャさんはインドじんです (Raja san wa Indojin desu). Dropping じん (jin) turns the answer from a description of the person into the name of a place.",
-      "reviewNote": "Constructed. Vocabulary job: インド (indo) as a country appears in no sentence. Paired answer to w2-raja-no-okuni-q, and the last of the seven WORD POWER countries to get one.",
-      "aiSuggested": true,
-      "scene": "answering a question about which country Raja-san is from, with the country on its own"
-    },
-    {
-      "id": "ex4-intro-harris",
-      "english": "Nice to meet you. I am Harris of the Australian Embassy. I look forward to working with you.",
-      "category": "Greetings",
-      "target": "はじめまして。オーストラリアたいしかんのハリスです。よろしくおねがいします",
-      "hint": null,
-      "note": null,
-      "reviewNote": "EXERCISE IV item 3, verbatim. The deck built items 1 and 2 of that three-item exercise (fib-c1-intro-brown, fib-c1-intro-raja) and skipped item 3, which is also the lesson's only chance to use たいしかん (taishikan) inside a sentence rather than as a bare noun.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-hai-uketsuke",
-      "english": "Yes, (she is) the receptionist.",
-      "category": "Work & Occupations",
-      "target": "はい、うけつけです",
-      "note": null,
-      "reviewNote": "Constructed. Form job: closes the statement / question / reply set on うけつけ (uketsuke), mirroring the same three-step set built on オーストラリアじん (oosutorariajin) so the learner sees the pattern hold across two different kinds of noun.",
-      "aiSuggested": true,
-      "scene": "replying to a question that has already named the job"
-    },
-    {
-      "id": "td-hai-sou-desu",
-      "english": "Yes, I am.",
-      "category": "Grammar & Function Words",
-      "target": "はい、そうです",
-      "note": "NOTES 2 explains that そう (sou) stands in for the noun instead of repeating it, so you say はい、そうです (hai, sou desu) rather than はい、たなかです (hai, Tanaka desu).",
-      "reviewNote": "TARGET DIALOGUE, Tanaka's reply, verbatim, and also the answer half of EXERCISE III's model. The deck has はい (hai) and そうです (sou desu) as separate bare vocabulary cards but never the reply itself, so all three confirm-identity question cards in the lesson currently have no answer.",
-      "aiSuggested": true,
-      "scene": "answering when someone asks if you are the person they were looking for"
-    },
-    {
-      "id": "w2-confirm-raja-daigaku",
-      "english": "Excuse me, are you Raja-san of the University of Tokyo?",
-      "category": "Grammar & Function Words",
-      "target": "すみません。とうきょうだいがくのラジャさんですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "EXERCISE III item 3, reconstructed from the printed model plus the information given for that item. Vocabulary job: だいがく (daigaku) appears in one sentence in the whole deck, and never in a question.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-anata-wa-nihonjin-q",
-      "english": "Are you Japanese?",
-      "category": "Nationalities & Countries",
-      "target": "あなたはにほんじんですか",
-      "hint": "with あなた (anata) spelled out as the topic",
-      "note": "Grammatically complete, and the version worth learning first because you can see every part. In real conversation the pronoun is usually dropped or replaced by the person's name.",
-      "reviewNote": "Constructed. Vocabulary job: あなた (anata) appears in no sentence in the deck, only as a bare word and as a speaker label in the exercises. Half of a minimal pair with w2-nihonjin-q-bare.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-uketsuke-o-onegaishimasu",
-      "english": "Reception, please.",
-      "category": "Grammar & Function Words",
-      "target": "うけつけをおねがいします",
-      "note": "を (o) marks whatever you are asking for, and that does not have to be a person. Said at an entrance or on the phone when you do not know who you need yet.",
-      "reviewNote": "Constructed. Particle job: third example of を (o), and the only one where the thing marked is not a person, so the particle is not learned as part of a fixed person-shaped phrase. The book's note only shows 'person を おねがいします', so this widens it slightly.",
-      "aiSuggested": true,
-      "scene": "asking to be put through to the front desk rather than to a named person"
-    },
-    {
       "id": "w2-harris-no-okuni-q",
       "english": "What country is Harris-san from?",
       "category": "Nationalities & Countries",
@@ -315,36 +311,6 @@
       "hint": null,
       "note": "Asking a third party about someone rather than asking the person directly, so の (no) links the name to おくに (okuni). Every other の (no) in this lesson joins a company to a person; here it is plain possession.",
       "reviewNote": "Constructed. Particle job: の (no) had ten examples in the deck and all ten were [company] の [person]. This is the first with an ordinary noun after it, and the question half of the pair that puts オーストラリア (Oosutoraria) in a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-hoffman-okuni-q",
-      "english": "Hoffman-san, what country are you from?",
-      "category": "Nationalities & Countries",
-      "target": "ホフマンさん、おくにはどちらですか",
-      "hint": null,
-      "note": "The name at the front is just how you get someone's attention, so it takes a comma and no particle. The topic marker は (wa) goes on おくに (okuni), which is what the sentence is actually about. どちら (dochira) stays where the answer will go instead of jumping to the front the way 'what' does in English.",
-      "reviewNote": "Constructed on the SPEAKING PRACTICE 1 model. Particle job: どちら (dochira) and the おくに question had exactly one example in the deck. Question half of the pair that finally puts ドイツ (Doitsu) in a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-doitsu-desu",
-      "english": "I'm from Germany.",
-      "category": "Nationalities & Countries",
-      "target": "ドイツです",
-      "note": "Just the country plus です (desu). おくには (okuni wa) is not repeated because the question already supplied it, and the country ドイツ (Doitsu) is used rather than ドイツじん (Doitsujin) because the question asked about a place.",
-      "reviewNote": "Constructed. Vocabulary job: ドイツ (doitsu) as a country appears in no sentence in the deck, only ドイツじん (doitsujin). Paired answer to w2-hoffman-okuni-q.",
-      "aiSuggested": true,
-      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
-    },
-    {
-      "id": "w2-hoffman-igirisujin-q",
-      "english": "Is Hoffman-san British?",
-      "category": "Nationalities & Countries",
-      "target": "ホフマンさんはイギリスじんですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "EXERCISE II-B item 1, reconstructed by putting ホフマンさん (Hofuman-san) into the printed model スミスさんはイギリスじんですか. Form job: the deck already holds this drill's answer card (fib-c1-hoffman-not-british, 'No, he is German.') with no question attached to it. Place this immediately BEFORE that card rather than at the anchor id below.",
       "aiSuggested": true
     },
     {
@@ -358,44 +324,86 @@
       "aiSuggested": true
     },
     {
-      "id": "w2-buraun-wa-rondon-ginkou",
-      "english": "Brown-san is with the Bank of London.",
+      "id": "notes-iie-chigaimasu",
+      "english": "No, that's not right.",
+      "category": "Grammar & Function Words",
+      "target": "いいえ、ちがいます",
+      "note": "The negative counterpart of はい、そうです (hai, sou desu). Use it to deny the identification outright. When you want to correct it instead, give the right noun: いいえ、アメリカじんです (iie, amerikajin desu).",
+      "reviewNote": "NOTES 2 teaches this phrase in so many words ('When replying in the negative, say いいえ、ちがいます'), yet ちがいます (chigaimasu) appears nowhere in the deck. The English gloss is mine, as the book prints the phrase untranslated inside the note.",
+      "aiSuggested": true,
+      "scene": "answering no when asked whether you are a particular person"
+    },
+    {
+      "id": "irl-l1-33",
+      "english": "Doctor",
       "category": "Work & Occupations",
-      "target": "ブラウンさんはロンドンぎんこうです",
-      "hint": null,
-      "note": "The other way to link a person to a company. ロンドンぎんこうのブラウンさん (Rondon ginkou no Buraun-san) makes the person the point of the phrase; this makes the company the news.",
-      "reviewNote": "Constructed. Vocabulary job: ぎんこう (ginkou) outside the [company] の [person] frame. Same caveat as the University of Tokyo card, and the two are best kept or cut together.",
+      "target": "いしゃ",
+      "note": "The occupation noun for doctor; when addressing or talking about a doctor directly, use せんせい (sensei) instead, just as with teachers.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "w2-okuni-dochira-bare",
+      "english": "What country are you from?",
+      "category": "Nationalities & Countries",
+      "target": "おくにはどちらですか",
+      "hint": "asked straight out, with no name in front of it",
+      "note": "The form you use once you are already in conversation. Putting a name in front, as in ホフマンさん、おくにはどちらですか (Hofuman san, okuni wa dochira desu ka), is only for catching someone's attention first.",
+      "reviewNote": "Constructed by stripping the address term from the SPEAKING PRACTICE 1 question. Form job: the bare version is the one a learner will actually need, and every おくに card in the deck carries a name in front of it.",
       "aiSuggested": true
     },
     {
-      "id": "w2-raja-no-okuni-q",
-      "english": "What country is Raja-san from?",
+      "id": "w2-kochira-harris",
+      "english": "This is Harris-san of the Australian Embassy.",
+      "category": "Work & Occupations",
+      "target": "こちらはオーストラリアたいしかんのハリスさんです",
+      "hint": null,
+      "note": "オーストラリアたいしかん (Oosutoraria taishikan) runs together with no の (no) inside it, because the country simply says which embassy. The の (no) comes afterwards, joining the embassy to the person who works there.",
+      "reviewNote": "Constructed from EXERCISE V's structure and EXERCISE III's Harris entry. Vocabulary job: たいしかん (taishikan) is the one work-affiliation word with no third-person introduction card, and this is the deck's only chance to show a compound where の (no) is deliberately absent.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-hai-uketsuke",
+      "english": "Yes, (she is) the receptionist.",
+      "category": "Work & Occupations",
+      "target": "はい、うけつけです",
+      "note": null,
+      "reviewNote": "Constructed. Form job: closes the statement / question / reply set on うけつけ (uketsuke), mirroring the same three-step set built on オーストラリアじん (oosutorariajin) so the learner sees the pattern hold across two different kinds of noun.",
+      "aiSuggested": true,
+      "scene": "replying to a question that has already named the job"
+    },
+    {
+      "id": "ex2b-smith-british-q",
+      "english": "Is Smith-san British?",
       "category": "Nationalities & Countries",
-      "target": "ラジャさんのおくにはどちらですか",
+      "target": "スミスさんはイギリスじんですか",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed. Particle job: second example of の (no) joining a person to an ordinary noun, and the question half of the pair that puts インド (Indo) in a sentence.",
+      "reviewNote": "EXERCISE II-B model question, verbatim. The lesson's only other nationality question is ks2-smith-american-q, which expects yes; this one expects a correction, and it is the question the existing eg-no-british / fib-c1-hoffman-not-british answer cards are modelled on. Second card on this pattern, so within the cap.",
       "aiSuggested": true
     },
     {
-      "id": "w2-chan-wa-uketsuke",
-      "english": "Chan-san is the receptionist.",
-      "category": "Work & Occupations",
-      "target": "チャンさんはうけつけです",
+      "id": "irl-l1-26",
+      "english": "Is Jack French?",
+      "category": "Nationalities & Countries",
+      "target": "ジャックさんはフランスじんですか？",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "w2-confirm-raja-daigaku",
+      "english": "Excuse me, are you Raja-san of the University of Tokyo?",
+      "category": "Grammar & Function Words",
+      "target": "すみません。とうきょうだいがくのラジャさんですか",
       "hint": null,
-      "note": "Noun 2 after は (wa) does not have to be a nationality. Anything that identifies the topic works, and a job identifies a person just as well as a country does.",
-      "reviewNote": "Constructed. Vocabulary job: うけつけ (uketsuke) appears in no sentence in the deck; the book only ever uses it as a speaker label. Chan is the one cast member the book gives no workplace to, so no printed fact is contradicted, but swap the name if the reviewer would rather keep her unemployed.",
+      "note": null,
+      "reviewNote": "EXERCISE III item 3, reconstructed from the printed model plus the information given for that item. Vocabulary job: だいがく (daigaku) appears in one sentence in the whole deck, and never in a question.",
       "aiSuggested": true
     },
     {
-      "id": "w2-harisu-san-desu",
-      "english": "It's Harris-san.",
-      "category": "Family & People",
-      "target": "ハリスさんです",
-      "note": "The same name with さん (san) added is now about somebody else. Compare ハリスです (Harisu desu), which can only mean 'I am Harris'. This one syllable is the whole difference between talking about yourself and talking about another person.",
-      "reviewNote": "Constructed. Vocabulary job: the second half of a minimal pair with w2-harisu-desu, differing only in さん (san). The deck teaches the さん rule in a note on the bare vocabulary card but never shows the two sentences side by side.",
-      "aiSuggested": true,
-      "scene": "telling someone which of the people in front of you is the one they were looking for"
+      "id": "irl-l1-32",
+      "english": "Cook",
+      "category": "Work & Occupations",
+      "target": "コック",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
     },
     {
       "id": "td-intro-tanaka-short",
@@ -408,26 +416,6 @@
       "scene": "introducing yourself with just your name"
     },
     {
-      "id": "w2-oosutoraria-desu",
-      "english": "He's from Australia.",
-      "category": "Nationalities & Countries",
-      "target": "オーストラリアです",
-      "note": "The country, not the nationality. Compare ハリスさんはオーストラリアじんです (Harisu san wa Oosutorariajin desu), which describes the man rather than the place.",
-      "reviewNote": "Constructed. Vocabulary job: オーストラリア (oosutoraria) as a standalone country appears in no sentence, only inside the compound オーストラリアたいしかん (Oosutoraria taishikan). Paired answer to w2-harris-no-okuni-q.",
-      "aiSuggested": true,
-      "scene": "answering a question about which country Harris-san is from, with the country on its own"
-    },
-    {
-      "id": "notes-iie-chigaimasu",
-      "english": "No, that's not right.",
-      "category": "Grammar & Function Words",
-      "target": "いいえ、ちがいます",
-      "note": "The negative counterpart of はい、そうです (hai, sou desu). Use it to deny the identification outright. When you want to correct it instead, give the right noun: いいえ、アメリカじんです (iie, amerikajin desu).",
-      "reviewNote": "NOTES 2 teaches this phrase in so many words ('When replying in the negative, say いいえ、ちがいます'), yet ちがいます (chigaimasu) appears nowhere in the deck. The English gloss is mine, as the book prints the phrase untranslated inside the note.",
-      "aiSuggested": true,
-      "scene": "answering no when asked whether you are a particular person"
-    },
-    {
       "id": "w2-raja-indian",
       "english": "Raja-san is Indian.",
       "category": "Nationalities & Countries",
@@ -438,33 +426,23 @@
       "aiSuggested": true
     },
     {
-      "id": "td-confirm-tanaka",
-      "english": "Excuse me, are you Tanaka-san of the Nozomi Department Store?",
-      "category": "Grammar & Function Words",
-      "target": "すみません。のぞみデパートのたなかさんですか",
+      "id": "w2-hoffman-igirisujin-q",
+      "english": "Is Hoffman-san British?",
+      "category": "Nationalities & Countries",
+      "target": "ホフマンさんはイギリスじんですか",
       "hint": null,
       "note": null,
-      "reviewNote": "TARGET DIALOGUE, Smith's opening line, verbatim. The deck has two substitution drills built on this sentence (fib-c1-confirm-hoffman, fib-c1-confirm-brown) but not the model line they were derived from. That makes three cards on one pattern, which I would normally avoid, but the book's own dialogue line is the one worth keeping if the owner prunes.",
+      "reviewNote": "EXERCISE II-B item 1, reconstructed by putting ホフマンさん (Hofuman-san) into the printed model スミスさんはイギリスじんですか. Form job: the deck already holds this drill's answer card (fib-c1-hoffman-not-british, 'No, he is German.') with no question attached to it. Place this immediately BEFORE that card rather than at the anchor id below.",
       "aiSuggested": true
     },
     {
-      "id": "w2-harris-australian",
-      "english": "Harris-san is Australian.",
-      "category": "Nationalities & Countries",
-      "target": "ハリスさんはオーストラリアじんです",
+      "id": "w2-kochira-hoffman",
+      "english": "This is Hoffman-san of Berlin Motors.",
+      "category": "Work & Occupations",
+      "target": "こちらはベルリンモーターズのホフマンさんです",
       "hint": null,
-      "note": "オーストラリアじん (Oosutorariajin) is the country オーストラリア (Oosutoraria) with じん (jin), 'person of', stuck on the end. Every nationality in this lesson is built the same way.",
-      "reviewNote": "Constructed. Vocabulary job: オーストラリアじん (oosutorariajin) appears in no sentence anywhere in the deck. Also member 1 of a form contrast set (statement / question / reply) built on one piece of vocabulary.",
-      "aiSuggested": true
-    },
-    {
-      "id": "w2-chan-okuni-q",
-      "english": "Chan-san, what country are you from?",
-      "category": "Nationalities & Countries",
-      "target": "チャンさん、おくにはどちらですか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed on the SPEAKING PRACTICE 1 model. Particle job: second practice of the address-plus-おくに structure, and the question half of the pair that puts ちゅうごく (chuugoku) in a sentence.",
+      "note": "さん (san) stays on because you are naming somebody else. Introducing himself, the same man would say ベルリンモーターズのホフマンです (Berurin Mootaazu no Hofuman desu), with the さん (san) gone.",
+      "reviewNote": "Lifted verbatim from the EXERCISE V worked example. Form job: the deck holds a substitution built on this line (fib-c1-this-is-brown) but not the model line itself, and this is the only place ベルリンモーターズ (Berurin Mootaazu) appears in a sentence.",
       "aiSuggested": true
     },
     {
@@ -478,14 +456,155 @@
       "scene": "replying after the other person has said it to you first"
     },
     {
-      "id": "ex2b-no-american",
-      "english": "No, (he is) American.",
+      "id": "w2-buraun-wa-rondon-ginkou",
+      "english": "Brown-san is with the Bank of London.",
+      "category": "Work & Occupations",
+      "target": "ブラウンさんはロンドンぎんこうです",
+      "hint": null,
+      "note": "The other way to link a person to a company. ロンドンぎんこうのブラウンさん (Rondon ginkou no Buraun-san) makes the person the point of the phrase; this makes the company the news.",
+      "reviewNote": "Constructed. Vocabulary job: ぎんこう (ginkou) outside the [company] の [person] frame. Same caveat as the University of Tokyo card, and the two are best kept or cut together.",
+      "aiSuggested": true
+    },
+    {
+      "id": "congratulations",
+      "english": "Congratulations!",
+      "category": "Greetings",
+      "target": "おめでとう",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Chapter-0's set-phrase material; chapter-0 has no extras deck of its own"
+    },
+    {
+      "id": "irl-l1-21",
+      "english": "Korean Person",
       "category": "Nationalities & Countries",
-      "target": "いいえ、アメリカじんです",
-      "note": null,
-      "reviewNote": "EXERCISE II-B model answer, verbatim, and the reply to ex2b-smith-british-q above. Prompt is close to eg-yes-american ('Yes, (he is) American.'), so the hint disambiguates. This is the third negative-correction answer in the lesson (after eg-no-british and fib-c1-hoffman-not-british); it earns its place only as the paired answer, so prune it together with its question if at all.",
+      "target": "かんこくじん",
+      "note": "-じん (jin) attached to a country name means 'person from there'; かんこく (kankoku) alone is just the country.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "w2-uketsuke-o-onegaishimasu",
+      "english": "Reception, please.",
+      "category": "Grammar & Function Words",
+      "target": "うけつけをおねがいします",
+      "note": "を (o) marks whatever you are asking for, and that does not have to be a person. Said at an entrance or on the phone when you do not know who you need yet.",
+      "reviewNote": "Constructed. Particle job: third example of を (o), and the only one where the thing marked is not a person, so the particle is not learned as part of a fixed person-shaped phrase. The book's note only shows 'person を おねがいします', so this widens it slightly.",
       "aiSuggested": true,
-      "scene": "correcting someone who guessed Smith-san was British"
+      "scene": "asking to be put through to the front desk rather than to a named person"
+    },
+    {
+      "id": "w2-hoffman-okuni-q",
+      "english": "Hoffman-san, what country are you from?",
+      "category": "Nationalities & Countries",
+      "target": "ホフマンさん、おくにはどちらですか",
+      "hint": null,
+      "note": "The name at the front is just how you get someone's attention, so it takes a comma and no particle. The topic marker は (wa) goes on おくに (okuni), which is what the sentence is actually about. どちら (dochira) stays where the answer will go instead of jumping to the front the way 'what' does in English.",
+      "reviewNote": "Constructed on the SPEAKING PRACTICE 1 model. Particle job: どちら (dochira) and the おくに question had exactly one example in the deck. Question half of the pair that finally puts ドイツ (Doitsu) in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-30",
+      "english": "Nice to meet you, my name is Ryan",
+      "category": "Greetings",
+      "target": "はじめまして。ライアンです",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "irl-l1-34",
+      "english": "Teacher",
+      "category": "Work & Occupations",
+      "target": "せんせい",
+      "note": "Also used directly as a title of address for teachers, doctors, and other professionals (e.g. saying 先生 to or about them instead of their name), not just as the occupation noun.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+    },
+    {
+      "id": "irl-l1-17",
+      "english": "Thailand",
+      "category": "Nationalities & Countries",
+      "target": "タイ",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
+    },
+    {
+      "id": "w2-chan-wa-uketsuke",
+      "english": "Chan-san is the receptionist.",
+      "category": "Work & Occupations",
+      "target": "チャンさんはうけつけです",
+      "hint": null,
+      "note": "Noun 2 after は (wa) does not have to be a nationality. Anything that identifies the topic works, and a job identifies a person just as well as a country does.",
+      "reviewNote": "Constructed. Vocabulary job: うけつけ (uketsuke) appears in no sentence in the deck; the book only ever uses it as a speaker label. Chan is the one cast member the book gives no workplace to, so no printed fact is contradicted, but swap the name if the reviewer would rather keep her unemployed.",
+      "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-27",
+      "english": "Is Ryan English?",
+      "category": "Nationalities & Countries",
+      "target": "ライアンさんはイギリスじんですか？",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
+    },
+    {
+      "id": "sp1-amerika-desu",
+      "english": "I'm from the United States.",
+      "category": "Nationalities & Countries",
+      "target": "アメリカです",
+      "note": "The topic is dropped because the question already named it. Note that the answer is the country アメリカ (Amerika), not the nationality アメリカじん (amerikajin).",
+      "reviewNote": "SPEAKING PRACTICE 1, Smith's reply, verbatim. The deck teaches the question (o-prefix-example, スミスさん、おくにはどちらですか) but not the answer, so the exchange is half taught. Prompt is close to the bare vocabulary card amerika ('United States'), hence the hint.",
+      "aiSuggested": true,
+      "scene": "answering when asked which country you are from"
+    },
+    {
+      "id": "w2-harisu-san-desu",
+      "english": "It's Harris-san.",
+      "category": "Family & People",
+      "target": "ハリスさんです",
+      "note": "The same name with さん (san) added is now about somebody else. Compare ハリスです (Harisu desu), which can only mean 'I am Harris'. This one syllable is the whole difference between talking about yourself and talking about another person.",
+      "reviewNote": "Constructed. Vocabulary job: the second half of a minimal pair with w2-harisu-desu, differing only in さん (san). The deck teaches the さん rule in a note on the bare vocabulary card but never shows the two sentences side by side.",
+      "aiSuggested": true,
+      "scene": "telling someone which of the people in front of you is the one they were looking for"
+    },
+    {
+      "id": "ex4-intro-harris",
+      "english": "Nice to meet you. I am Harris of the Australian Embassy. I look forward to working with you.",
+      "category": "Greetings",
+      "target": "はじめまして。オーストラリアたいしかんのハリスです。よろしくおねがいします",
+      "hint": null,
+      "note": null,
+      "reviewNote": "EXERCISE IV item 3, verbatim. The deck built items 1 and 2 of that three-item exercise (fib-c1-intro-brown, fib-c1-intro-raja) and skipped item 3, which is also the lesson's only chance to use たいしかん (taishikan) inside a sentence rather than as a bare noun.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-harris-australian-q",
+      "english": "Is Harris-san Australian?",
+      "category": "Nationalities & Countries",
+      "target": "ハリスさんはオーストラリアじんですか",
+      "hint": null,
+      "note": "The same sentence as ハリスさんはオーストラリアじんです (Harisu san wa Oosutorariajin desu) with か (ka) added. Nothing else moves: no inversion, no change of ending, no extra word.",
+      "reviewNote": "Constructed. Form job: member 2 of the statement / question / reply set, deliberately on the same vocabulary as the card before it so the transformation is visible.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-watashi-wa-igirisujin",
+      "english": "I am British.",
+      "category": "Nationalities & Countries",
+      "target": "わたしはイギリスじんです",
+      "hint": null,
+      "note": "は (wa) after わたし (watashi) makes 'I' the topic, exactly as it does after a name. Japanese drops it once it is obvious who you mean, which is why the Key Sentence prints it in brackets: （わたしは）スミスです (watashi wa Sumisu desu).",
+      "reviewNote": "Constructed. Vocabulary job: わたし (watashi) appears in only one sentence card in the deck, and there it sits inside brackets, so the learner never sees it used for real.",
+      "aiSuggested": true
+    },
+    {
+      "id": "w2-sp2-sasaki-intro",
+      "english": "Tanaka-san, this is Brown-san of the Bank of London.",
+      "category": "Family & People",
+      "target": "たなかさん、こちらはロンドンぎんこうのブラウンさんです",
+      "hint": null,
+      "note": "Two people in one sentence doing completely different jobs. たなかさん (Tanaka-san) at the front is the person you are speaking to, marked by nothing but a comma; ブラウンさん (Buraun-san) is the person you are speaking about. Only こちら (kochira) gets は (wa).",
+      "reviewNote": "Lifted verbatim from SPEAKING PRACTICE 2, Sasaki's line. Form job: the deck has the bare introduction (fib-c1-this-is-brown) but never shows how you address the listener first, which is what makes an introduction an introduction rather than a description.",
+      "aiSuggested": true
+    },
+    {
+      "id": "irl-l1-10",
+      "english": "Spain",
+      "category": "Nationalities & Countries",
+      "target": "スペイン",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set"
     }
   ]
 }

@@ -95,6 +95,20 @@ export function createAnkiConnect({
     unsuspend: (cards) => invoke("unsuspend", { cards }),
     changeDeck: (cards, deck) => invoke("changeDeck", { cards, deck }),
 
+    // --- destructive: notes and decks ---
+    //
+    // ⚠️ These two DELETE. `deleteNotes` takes the note's cards and its whole review log with it,
+    // and nothing about it is recoverable from Anki afterwards, only from a backup. `deleteDecks`
+    // with cardsToo:false moves any cards left in the deck to Default rather than deleting them,
+    // which is the only reason it is safe to call on a deck you believe is empty: if you are wrong,
+    // the cards survive somewhere findable instead of vanishing.
+    //
+    // Nothing in the delivery path calls either one, by design: deliver never deletes, it reports a
+    // dropped card as `orphaned` for a human to act on. They exist for the retirement of a whole
+    // collection, which is a decision a person makes once and then wants carried out exactly.
+    deleteNotes: (notes) => invoke("deleteNotes", { notes }),
+    deleteDecks: (decks, cardsToo = false) => invoke("deleteDecks", { decks, cardsToo }),
+
     // --- media & backup ---
     storeMediaFile: (params) => invoke("storeMediaFile", params),
     exportPackage: (deck, path, includeSched = true) =>

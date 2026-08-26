@@ -7,58 +7,20 @@
   },
   "items": [
     {
-      "id": "p9-tomodachi-ni-denwa-o-shimasu",
-      "english": "Emma-san will telephone a friend.",
-      "category": "Technology & Communication",
-      "target": "エマさんはともだちにでんわをします",
-      "note": "Minimal pair with ともだちとでんわをします (tomodachi to denwa o shimasu): に (ni) marks the friend as the person the call is directed at, that is, the one being dialed.",
+      "id": "p9-ashita-dare-ni-aimasu-ka",
+      "english": "Whom will Smith-san meet tomorrow?",
+      "category": "Family & People",
+      "target": "スミスさんはあしただれにあいますか",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Minimal pair, half 1 of 2: に (person an action is directed at, this lesson) vs と (person you do something together with, Lesson 6). Only the particle differs between the two cards."
+      "reviewNote": "Constructed. Particle coverage: に with あいます exists only in statements (index KS1/KS5, wave 1); this supplies the missing question form, mirroring the drill pattern だれに (dare ni)."
     },
     {
-      "id": "p9-kaisha-ni-meru-o-okurimasu",
-      "english": "Smith-san will send an e-mail to the office.",
-      "category": "Technology & Communication",
-      "target": "スミスさんはかいしゃにメールをおくります",
-      "note": "Minimal pair with かいしゃでメールをおくります (kaisha de mēru o okurimasu): に (ni) marks the office as the receiver the e-mail is directed at, while で (de) would mark it as merely the place where the sending happens.",
+      "id": "v9-sapporo-de-biru",
+      "english": "Suzuki-san drank beer in Sapporo.",
+      "category": "Travel & Tourism",
+      "target": "すずきさんはさっぽろでビールをのみました",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Minimal pair, half 1 of 2: に (recipient/destination of おくります, this lesson's Grammar 2) vs で (place of action, Lesson 8). Only the particle differs between the two cards."
-    },
-    {
-      "id": "v9-gurasu-o-futatsu",
-      "english": "Two wine glasses, please.",
-      "category": "Shopping",
-      "target": "グラスをふたつください",
-      "hint": "The word is グラス (gurasu), the stemware word, not コップ (koppu)",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for グラス (no sentence anywhere), in the Lesson 5 counter-order frame. Hint added because English 'glass' could otherwise produce the Lesson 5 word コップ.",
-      "note": "グラス (gurasu) is a stemmed wine glass, distinct from the everyday tumbler コップ (koppu) from Lesson 5 — see グラス (gurasu) card."
-    },
-    {
-      "id": "ex9-kyo-no-osusume",
-      "english": "What do you recommend today?",
-      "category": "Food",
-      "target": "きょうのおすすめはなんですか",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, Suzuki's opening line きょうの おすすめは なんですか. Only the bare vocabulary item おすすめ was carded; the printed question itself is missing."
-    },
-    {
-      "id": "p9-iie-amari-mimasen",
-      "english": "No, she doesn't watch them very often.",
-      "category": "Grammar & Function Words",
-      "target": "いいえ、あまりみません",
-      "scene": "Answering whether Emma-san often watches movies",
-      "note": "よく (yoku) from the question cannot simply be negated; the natural negative reply downgrades to あまり (amari) plus the negative みません (mimasen), as in the book's Exercise VII dialogues.",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Frequency-adverb coverage: あまり in its Q&A answer slot (the deck's only あまり card is a standalone statement). Elliptical, so it carries a scene naming the question."
-    },
-    {
-      "id": "p9-tokidoki-gorufu-o-shimasu-ka",
-      "english": "Does Kato-san sometimes play golf?",
-      "category": "Grammar & Function Words",
-      "target": "かとうさんはときどきゴルフをしますか",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Frequency-adverb coverage: ときどき in question form with a する-verb; the deck's only ときどき sentences are wave 1's elliptical answer and the forms-set statement, so this adds the question slot."
+      "reviewNote": "Constructed. Vocabulary coverage for さっぽろ as a standalone place name (only さっぽろししゃ is otherwise covered); uses the Lesson 8 place-で past frame."
     },
     {
       "id": "ex9-yoku-kono-mise-ni-kimasu-ka",
@@ -69,15 +31,6 @@
       "reviewNote": "Target Dialogue, Smith's line すずきさんは よく この みせに きますか. This is the lesson's title question ('Do you often come here?') and it was never carded; only the Exercise IX variant about the Shibuya Library made it in."
     },
     {
-      "id": "p9-iie-zenzen-yomimasen",
-      "english": "No, he doesn't read them at all.",
-      "category": "Grammar & Function Words",
-      "target": "いいえ、ぜんぜんよみません",
-      "scene": "Answering whether Smith-san often reads books",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Frequency-adverb coverage: ぜんぜん in its Q&A answer slot, the negative counterpart to the existing card はい、よくよみます for the existing question スミスさんはよくほんをよみますか. Elliptical, so it carries a scene naming the question."
-    },
-    {
       "id": "v9-goshujin-wa-sampo",
       "english": "Sasaki-san's husband takes a walk in the park every morning.",
       "category": "Family & People",
@@ -86,57 +39,78 @@
       "reviewNote": "Constructed. Vocabulary coverage for ごしゅじん and まいあさ, both sentence-less; uses the book's own possessor ささきさんのごしゅじん from Word Power, in the Lesson 8 place-で activity frame."
     },
     {
-      "id": "f9-nihon-wa-do-desu-ka",
-      "english": "How do you like Japan?",
-      "category": "Grammar & Function Words",
-      "target": "にほんはどうですか",
+      "id": "v9-haha-ni-meru",
+      "english": "I sent my mother an e-mail yesterday.",
+      "category": "Family & People",
+      "target": "きのうははにメールをおくりました",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Form coverage for どうですか, taught in this lesson but absent from the deck; present-tense slot, asking a newcomer's impression.",
-      "note": "どう asks for an impression rather than a fact — what you think of something, not what state it is in. Compare どうでしたか (Lesson 11) for the same question in the past. The word is formally introduced in Lesson 11."
+      "reviewNote": "Constructed. Vocabulary coverage for はは (no sentence anywhere); delivered in this lesson's recipient-に e-mail frame, past tense for variety."
     },
     {
-      "id": "ex9-dare-ni-meru-o-okurimasu-ka",
-      "english": "Whom will Smith-san send an e-mail to?",
+      "id": "v9-otosan-ni-denwa",
+      "english": "Suzuki-san telephones his father every week.",
+      "category": "Family & People",
+      "target": "すずきさんはまいしゅうおとうさんにでんわをします",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for おとうさん and まいしゅう, both sentence-less; uses the drill A frame (person に でんわをします) plus a habitual time word, per this lesson's Grammar 3."
+    },
+    {
+      "id": "ex9-ee-tokidoki-kimasu",
+      "english": "Yes, I come sometimes.",
+      "category": "Grammar & Function Words",
+      "target": "ええ、ときどききます",
+      "scene": "Answering whether you often come to this restaurant",
+      "hint": "Uses the softer ええ (ē) for 'yes', as in the dialogue",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Suzuki's reply ええ、ときどき きます. The frequency adverb ときどき is carded only as bare vocabulary; this is the book's printed answer to the title question and was never carded. Hint added because 'yes' would otherwise produce はい (hai).",
+      "note": "ええ (ē) is a softer, more casual 'yes' than はい (hai) — natural in relaxed conversation with restaurant staff you know."
+    },
+    {
+      "id": "ex9-ginko-ni-shimasu",
+      "english": "He'll call the bank.",
       "category": "Technology & Communication",
-      "target": "スミスさんはだれにメールをおくりますか",
+      "target": "ぎんこうにします",
+      "scene": "Answering where Smith-san will telephone",
+      "hint": "The reply keeps only します (shimasu), short for でんわをします (denwa o shimasu)",
       "aiSuggested": true,
-      "reviewNote": "Exercise III, part 2, example 1: スミスさんは だれに メールを おくりますか. The deck has the どこに (doko ni) version of this e-mail question but the printed だれに (dare ni) version was skipped."
+      "reviewNote": "Exercise III, example 2 reply ぎんこうに します. Its e-mail counterpart ぎんこうにおくります is already carded but this telephone reply is not. Elliptical answer, so it carries a scene naming the question.",
+      "note": "ぎんこうにします is short for ぎんこうにでんわをします — the reply drops でんわを (denwa o) since the question already established 'telephone' as the activity."
     },
     {
-      "id": "ex9-suzuki-sama-desu-ne",
-      "english": "Mr. Suzuki, right?",
-      "category": "Greetings",
-      "target": "すずきさまですね",
-      "scene": "A restaurant employee politely confirming the name of the customer who just arrived",
-      "note": "The employee uses the extra-polite 〜さま (-sama) instead of 〜さん (-san) because they are addressing a customer.",
+      "id": "ex9-kochira-desu",
+      "english": "It's this one.",
+      "category": "Food",
+      "target": "こちらです",
+      "scene": "A restaurant employee answering what today's recommendation is, while politely presenting it",
+      "note": "こちら (kochira) is the polite service-register word for これ (kore).",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, restaurant employee's line すずきさまですね. The vocabulary items さま and すずきさま were carded but this printed sentence never was; it is the only usage example of the new honorific in the deck."
+      "reviewNote": "Speaking Practice 1, the employee's reply こちらです. The chapter glosses こちら as the polite word for これ but no card demonstrates it. Elliptical answer, so it carries a scene naming the question."
     },
     {
-      "id": "f9-yoku-toshokan-ni-ikimasu",
-      "english": "Emma-san often goes to the library.",
-      "category": "Grammar & Function Words",
-      "target": "エマさんはよくとしょかんにいきます",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Form contrast set, card 1 of 4: fixed frame エマさんは…としょかんにいきます cycled through the four frequency adverbs; only the adverb changes."
+      "id": "drink",
+      "english": "Drink",
+      "category": "Food",
+      "target": "のみもの",
+      "hint": "the noun, a thing you drink",
+      "note": "The noun built from のみます (nomimasu) 'to drink'. A restaurant says it with the polite お (o): おのみもの (onomimono).",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\"."
     },
     {
-      "id": "p9-senshu-wa-tenisu-o-shimasen-deshita",
-      "english": "As for last week, I didn't play tennis.",
-      "category": "Grammar & Function Words",
-      "target": "せんしゅうはテニスをしませんでした",
-      "note": "Topical は (wa) on the time word plus the negative past ませんでした (masen deshita): the implied contrast is with weeks when the speaker does play.",
+      "id": "ex9-doko-ni-denwa-o-shimasu-ka",
+      "english": "Where will Smith-san telephone?",
+      "category": "Technology & Communication",
+      "target": "スミスさんはどこにでんわをしますか",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Particle coverage for topical は on a time expression, negative-past slot; third genuinely different frame alongside wave 1's statement and the question card."
+      "reviewNote": "Exercise III, example 2 of the telephone dialogues: スミスさんは どこに でんわを しますか. The deck carded the だれに (dare ni) telephone question and the どこに (doko ni) e-mail question but skipped this どこに telephone example."
     },
     {
-      "id": "ex9-betsubetsu-ni-onegaishimasu",
-      "english": "We would like to pay separately.",
-      "category": "Money",
-      "target": "べつべつにおねがいします",
-      "note": "べつべつで おねがいします (betsubetsu de onegaishimasu) is also used, per the lesson's notes.",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 2, Suzuki's line べつべつに おねがいします, which also gets its own NOTES entry in the book. Only the bare adverb べつべつに was carded; the printed expression is missing."
+      "id": "fib-yasai-o-tabemasu",
+      "english": "I eat vegetables.",
+      "category": "Food",
+      "target": "やさいをたべます",
+      "note": null,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: yasai is taught in Lesson 9",
+      "aiSuggested": true
     },
     {
       "id": "f9-zenzen-toshokan-ni-ikimasen",
@@ -156,6 +130,170 @@
       "reviewNote": "Constructed. Vocabulary coverage for おくさん (no sentence anywhere); reuses the Lesson 1 nationality copula frame."
     },
     {
+      "id": "ex9-onomimono-wa",
+      "english": "And something to drink?",
+      "category": "Food",
+      "target": "おのみものは",
+      "scene": "A server taking a food order, asking what the customer would like to drink",
+      "hint": "Elliptical question ending in は (wa): literally 'as for a drink…?'",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 1, the employee's line おのみものは?. Only the vocabulary item おのみもの was carded; this printed elliptical question was skipped.",
+      "note": "おのみものは trails off with は (wa), the same ellipsis as Lesson 8's ささきさんは (sasaki-san wa) — the rest ('would you like?') is dropped as understood."
+    },
+    {
+      "id": "ex9-betsubetsu-ni-onegaishimasu",
+      "english": "We would like to pay separately.",
+      "category": "Money",
+      "target": "べつべつにおねがいします",
+      "note": "べつべつで おねがいします (betsubetsu de onegaishimasu) is also used, per the lesson's notes.",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 2, Suzuki's line べつべつに おねがいします, which also gets its own NOTES entry in the book. Only the bare adverb べつべつに was carded; the printed expression is missing."
+    },
+    {
+      "id": "v9-itsumo-shichiji-ni-kaerimasu",
+      "english": "Suzuki-san always returns home at 7:00.",
+      "category": "Time",
+      "target": "すずきさんはいつも７じにうちにかえります",
+      "ttsText": "すずきさんはいつもしちじにうちにかえります",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for いつも, which appears in no sentence; combined with the Lesson 7 time-に + かえります frame. Numeral in target, so a kana reading is supplied."
+    },
+    {
+      "id": "ex9-senshu-wa-koko-de-aimashita",
+      "english": "Last week, I met Green-san here.",
+      "category": "Family & People",
+      "target": "せんしゅうはここでグリーンさんにあいました",
+      "note": "The は (wa) after せんしゅう (senshū) singles out last week as the topic from among the times the speaker has come here, as explained in the lesson's notes.",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Suzuki's line せんしゅうは ここで グリーンさんに あいました, also the subject of the lesson's NOTES section on topical は. It combines new に + あいます with ここ and was never carded."
+    },
+    {
+      "id": "p102-kyou-douyatte-koko-ni-kimashita-ka",
+      "english": "How did you come here today?",
+      "category": "Transport",
+      "target": "きょう、どうやってここにきましたか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 6. Job: どうやって (dō yatte) in the past, on this lesson's ここ (koko).",
+      "aiSuggested": true
+    },
+    {
+      "id": "f9-amari-toshokan-ni-ikimasen",
+      "english": "Emma-san does not go to the library very often.",
+      "category": "Grammar & Function Words",
+      "target": "エマさんはあまりとしょかんにいきません",
+      "note": "あまり (amari) cannot stand with the affirmative いきます (ikimasu); it forces the negative いきません (ikimasen).",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Form contrast set, card 3 of 4: the verb flips to the negative because of あまり, this lesson's Grammar 4."
+    },
+    {
+      "id": "p9-yoku-eiga-o-mimasu-ka",
+      "english": "Does Emma-san often watch movies?",
+      "category": "Grammar & Function Words",
+      "target": "エマさんはよくえいがをみますか",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Frequency-adverb coverage: よく question with a を-verb (existing よく questions all use motion or よみます); paired with the あまり answer card that follows."
+    },
+    {
+      "id": "f9-nihon-wa-do-desu-ka",
+      "english": "How do you like Japan?",
+      "category": "Grammar & Function Words",
+      "target": "にほんはどうですか",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Form coverage for どうですか, taught in this lesson but absent from the deck; present-tense slot, asking a newcomer's impression.",
+      "note": "どう asks for an impression rather than a fact — what you think of something, not what state it is in. Compare どうでしたか (Lesson 11) for the same question in the past. The word is formally introduced in Lesson 11."
+    },
+    {
+      "id": "p102-mainichi-nanji-ni-okimasu-ka",
+      "english": "What time do you get up every day?",
+      "category": "Time",
+      "target": "まいにち、なんじにおきますか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 1. Job: this lesson's まいにち (mainichi) with a habitual verb, plus the に (ni) that marks a clock time.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v9-kanai-wa-kaimono",
+      "english": "My wife sometimes goes shopping in Shibuya.",
+      "category": "Family & People",
+      "target": "かないはときどきしぶやでかいものをします",
+      "hint": "'My wife' here is かない (kanai), not つま (tsuma)",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for かない, the book's alternative to つま, which appears in no card at all; also adds a ときどき statement slot. Collision with v9-tsuma-to-kabuki over 'my wife', hence the hint on each.",
+      "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses かない."
+    },
+    {
+      "id": "p9-iie-amari-mimasen",
+      "english": "No, she doesn't watch them very often.",
+      "category": "Grammar & Function Words",
+      "target": "いいえ、あまりみません",
+      "scene": "Answering whether Emma-san often watches movies",
+      "note": "よく (yoku) from the question cannot simply be negated; the natural negative reply downgrades to あまり (amari) plus the negative みません (mimasen), as in the book's Exercise VII dialogues.",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Frequency-adverb coverage: あまり in its Q&A answer slot (the deck's only あまり card is a standalone statement). Elliptical, so it carries a scene naming the question."
+    },
+    {
+      "id": "p102-juuniji-ni-nemashita",
+      "english": "I went to bed at twelve.",
+      "category": "Time",
+      "target": "じゅうにじにねました",
+      "scene": "answering what time you went to bed",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 7 answer. Job: the second of the two sentences ねました (nemashita) appears in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v9-shujin-wa-nyusu",
+      "english": "My husband watches the news every evening.",
+      "category": "Family & People",
+      "target": "しゅじんはまいばんニュースをみます",
+      "hint": "'My husband' here is しゅじん (shujin), not おっと (otto)",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for しゅじん (the book's alternative to おっと, in no card at all) and for まいばん, also sentence-less. Collision with v9-otto-wa-jimu over 'my husband', hence the hint on each.",
+      "note": "しゅじん (shujin) and おっと (otto) are two readings of the same word for 'my husband' — see おっと (otto) card. This sentence uses しゅじん."
+    },
+    {
+      "id": "v9-gurasu-o-futatsu",
+      "english": "Two wine glasses, please.",
+      "category": "Shopping",
+      "target": "グラスをふたつください",
+      "hint": "The word is グラス (gurasu), the stemware word, not コップ (koppu)",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for グラス (no sentence anywhere), in the Lesson 5 counter-order frame. Hint added because English 'glass' could otherwise produce the Lesson 5 word コップ.",
+      "note": "グラス (gurasu) is a stemmed wine glass, distinct from the everyday tumbler コップ (koppu) from Lesson 5 — see グラス (gurasu) card."
+    },
+    {
+      "id": "p9-tokidoki-gorufu-o-shimasu-ka",
+      "english": "Does Kato-san sometimes play golf?",
+      "category": "Grammar & Function Words",
+      "target": "かとうさんはときどきゴルフをしますか",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Frequency-adverb coverage: ときどき in question form with a する-verb; the deck's only ときどき sentences are wave 1's elliptical answer and the forms-set statement, so this adds the question slot."
+    },
+    {
+      "id": "ex9-sore-o-futatsu-onegaishimasu",
+      "english": "Well then, we'll have two of those, please.",
+      "category": "Food",
+      "target": "じゃ、それを２つおねがいします",
+      "ttsText": "じゃ、それをふたつおねがいします",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 1, Suzuki's line じゃ、それを ２つ おねがいします. The deck's closest cards use ください with counters (Lesson 5); this printed ordering line with おねがいします plus the general counter was never carded."
+    },
+    {
+      "id": "p102-eigo",
+      "english": "English (the language)",
+      "category": "Nationalities & Countries",
+      "target": "えいご",
+      "note": "Irregular against the pattern: it is えいご (eigo), not イギリスご (igirisugo), even though the country is イギリス (igirisu).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the exception to the ご (go) suffix pattern, which is where a learner silently goes wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex9-nakamura-san-ni-okurimasu",
+      "english": "He'll send it to Nakamura-san.",
+      "category": "Technology & Communication",
+      "target": "なかむらさんにおくります",
+      "scene": "Answering whom Smith-san will send an e-mail to",
+      "aiSuggested": true,
+      "reviewNote": "Exercise III, part 2, example 1 reply なかむらさんに おくります. The telephone counterpart なかむらさんにします is carded; this printed e-mail reply is not. Elliptical answer, so it carries a scene naming the question."
+    },
+    {
       "id": "v9-otto-wa-jimu",
       "english": "My husband goes to the gym every week.",
       "category": "Family & People",
@@ -166,67 +304,13 @@
       "note": "おっと (otto) and しゅじん (shujin) are two readings of the same word for 'my husband' — see おっと (otto) card. This sentence uses おっと."
     },
     {
-      "id": "p9-suzuki-san-ni-aimasu",
-      "english": "He will meet Suzuki-san.",
-      "category": "Family & People",
-      "target": "すずきさんにあいます",
-      "scene": "Answering the question of whom Smith-san will meet tomorrow",
+      "id": "p9-kaisha-ni-meru-o-okurimasu",
+      "english": "Smith-san will send an e-mail to the office.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはかいしゃにメールをおくります",
+      "note": "Minimal pair with かいしゃでメールをおくります (kaisha de mēru o okurimasu): に (ni) marks the office as the receiver the e-mail is directed at, while で (de) would mark it as merely the place where the sending happens.",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Particle coverage: elliptical answer to p9-ashita-dare-ni-aimasu-ka, keeping に (ni) plus verb in the reply as the book's drill answers do. Elliptical, so it carries a scene naming the question."
-    },
-    {
-      "id": "f9-tokidoki-toshokan-ni-ikimasu",
-      "english": "Emma-san sometimes goes to the library.",
-      "category": "Grammar & Function Words",
-      "target": "エマさんはときどきとしょかんにいきます",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Form contrast set, card 2 of 4: same fixed frame, ときどき still with the affirmative verb."
-    },
-    {
-      "id": "v9-maiasa-yasai-jusu",
-      "english": "Emma-san drinks vegetable juice every morning.",
-      "category": "Food",
-      "target": "エマさんはまいあさやさいジュースをのみます",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for やさいジュース (no sentence anywhere), in the habitual-present frame from this lesson's Grammar 3, matching the book's Exercise VI material."
-    },
-    {
-      "id": "ex9-ee-tokidoki-kimasu",
-      "english": "Yes, I come sometimes.",
-      "category": "Grammar & Function Words",
-      "target": "ええ、ときどききます",
-      "scene": "Answering whether you often come to this restaurant",
-      "hint": "Uses the softer ええ (ē) for 'yes', as in the dialogue",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Suzuki's reply ええ、ときどき きます. The frequency adverb ときどき is carded only as bare vocabulary; this is the book's printed answer to the title question and was never carded. Hint added because 'yes' would otherwise produce はい (hai).",
-      "note": "ええ (ē) is a softer, more casual 'yes' than はい (hai) — natural in relaxed conversation with restaurant staff you know."
-    },
-    {
-      "id": "v9-amari-yasai-o-tabemasen",
-      "english": "I don't eat vegetables very often.",
-      "category": "Food",
-      "target": "あまりやさいをたべません",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for やさい (no sentence anywhere); doubles as a third あまり example in a first-person eating frame, respecting the mandatory negative."
-    },
-    {
-      "id": "p9-ashita-wa-doko-ni-ikimasu-ka",
-      "english": "As for tomorrow, where will you go?",
-      "category": "Grammar & Function Words",
-      "target": "あしたはどこにいきますか",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Particle coverage for topical は on a time expression, question-form slot (the index's どこにいきますか cards all use bare time words with no は)."
-    },
-    {
-      "id": "ex9-onomimono-wa",
-      "english": "And something to drink?",
-      "category": "Food",
-      "target": "おのみものは",
-      "scene": "A server taking a food order, asking what the customer would like to drink",
-      "hint": "Elliptical question ending in は (wa): literally 'as for a drink…?'",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, the employee's line おのみものは?. Only the vocabulary item おのみもの was carded; this printed elliptical question was skipped.",
-      "note": "おのみものは trails off with は (wa), the same ellipsis as Lesson 8's ささきさんは (sasaki-san wa) — the rest ('would you like?') is dropped as understood."
+      "reviewNote": "Constructed. Minimal pair, half 1 of 2: に (recipient/destination of おくります, this lesson's Grammar 2) vs で (place of action, Lesson 8). Only the particle differs between the two cards."
     },
     {
       "id": "ex9-nama-biru-o-futatsu",
@@ -240,24 +324,6 @@
       "note": "Draft beer takes the general counter つ (tsu), not the long-object counter ほん (hon) used for bottled beer in ビールを２ほんおねがいします — it's measured by glass, not by bottle."
     },
     {
-      "id": "ex9-kochira-desu",
-      "english": "It's this one.",
-      "category": "Food",
-      "target": "こちらです",
-      "scene": "A restaurant employee answering what today's recommendation is, while politely presenting it",
-      "note": "こちら (kochira) is the polite service-register word for これ (kore).",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, the employee's reply こちらです. The chapter glosses こちら as the polite word for これ but no card demonstrates it. Elliptical answer, so it carries a scene naming the question."
-    },
-    {
-      "id": "p9-yoku-eiga-o-mimasu-ka",
-      "english": "Does Emma-san often watch movies?",
-      "category": "Grammar & Function Words",
-      "target": "エマさんはよくえいがをみますか",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Frequency-adverb coverage: よく question with a を-verb (existing よく questions all use motion or よみます); paired with the あまり answer card that follows."
-    },
-    {
       "id": "ex9-tempuraya-de-aimashita",
       "english": "Smith-san and Suzuki-san met Green-san at the tempura restaurant in Ginza.",
       "category": "Family & People",
@@ -266,13 +332,56 @@
       "reviewNote": "Target Dialogue closing summary sentence スミスさんと すずきさんは ぎんざの てんぷらやで グリーンさんに あいました. It is the only printed sentence using the new word てんぷらや and was never carded."
     },
     {
-      "id": "f9-ryoko-wa-do-deshita-ka",
-      "english": "How was the trip?",
-      "category": "Grammar & Function Words",
-      "target": "りょこうはどうでしたか",
-      "note": "でしたか (deshita ka) is the past of ですか (desu ka), so this asks for an impression after the trip is over.",
+      "id": "p9-suzuki-san-ni-aimasu",
+      "english": "He will meet Suzuki-san.",
+      "category": "Family & People",
+      "target": "すずきさんにあいます",
+      "scene": "Answering the question of whom Smith-san will meet tomorrow",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Form coverage for どうですか in its past form どうでしたか, pairing with f9-nihon-wa-do-desu-ka to show the present/past contrast on the same pattern."
+      "reviewNote": "Constructed. Particle coverage: elliptical answer to p9-ashita-dare-ni-aimasu-ka, keeping に (ni) plus verb in the reply as the book's drill answers do. Elliptical, so it carries a scene naming the question."
+    },
+    {
+      "id": "p9-iie-zenzen-yomimasen",
+      "english": "No, he doesn't read them at all.",
+      "category": "Grammar & Function Words",
+      "target": "いいえ、ぜんぜんよみません",
+      "scene": "Answering whether Smith-san often reads books",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Frequency-adverb coverage: ぜんぜん in its Q&A answer slot, the negative counterpart to the existing card はい、よくよみます for the existing question スミスさんはよくほんをよみますか. Elliptical, so it carries a scene naming the question."
+    },
+    {
+      "id": "ex9-okaikei-o-onegaishimasu",
+      "english": "Excuse me. May we have the bill, please?",
+      "category": "Money",
+      "target": "すみません。おかいけいをおねがいします",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 2, Suzuki's line すみません。おかいけいを おねがいします. Only the vocabulary item おかいけい was carded; the printed bill-request sentence itself is missing."
+    },
+    {
+      "id": "v9-tsuma-to-kabuki",
+      "english": "Yesterday I saw kabuki with my wife.",
+      "category": "Family & People",
+      "target": "きのうつまとかぶきをみました",
+      "hint": "'My wife' here is つま (tsuma), not かない (kanai)",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for つま (bare vocab card only, no sentence). Collision: つま and かない both translate as 'my wife', so this card and v9-kanai-wa-kaimono each carry a hint naming which synonym to produce.",
+      "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses つま."
+    },
+    {
+      "id": "v9-yoguruto-o-kaimasu",
+      "english": "I often buy yogurt at the supermarket.",
+      "category": "Food",
+      "target": "よくスーパーでヨーグルトをかいます",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for ヨーグルト (no sentence anywhere); the buy-at frame plus よく also adds another frequency-adverb slot."
+    },
+    {
+      "id": "v9-gokazoku-ni-aimashita",
+      "english": "I met Tanaka-san's family yesterday.",
+      "category": "Family & People",
+      "target": "きのうたなかさんのごかぞくにあいました",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for ごかぞく (and the honorific prefix ご), which appears in no sentence; delivered in the new に+あいます frame."
     },
     {
       "id": "v9-gakko-wa-kuji-kara",
@@ -292,80 +401,63 @@
       "reviewNote": "Constructed. Vocabulary coverage for ちち (no sentence anywhere); reuses the Lesson 7 means-of-transport frame."
     },
     {
-      "id": "ex9-okaikei-o-onegaishimasu",
-      "english": "Excuse me. May we have the bill, please?",
-      "category": "Money",
-      "target": "すみません。おかいけいをおねがいします",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 2, Suzuki's line すみません。おかいけいを おねがいします. Only the vocabulary item おかいけい was carded; the printed bill-request sentence itself is missing."
-    },
-    {
-      "id": "ex9-ii-mise-desu-ne",
-      "english": "It's a nice restaurant, isn't it?",
-      "category": "Food",
-      "target": "いいみせですね",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Smith's line いい みせですね. The new adjective いい (ii, 'nice, good') appears in the chapter vocabulary but no card uses it; this printed sentence was skipped entirely. PRE-EXCLUDED: the reviewer excluded いい (ii) from the base lesson as premature (formally taught in Lesson 10) — restore this card if early exposure inside the book's own printed sentence is wanted.",
-      "excluded": true
-    },
-    {
-      "id": "v9-itsumo-shichiji-ni-kaerimasu",
-      "english": "Suzuki-san always returns home at 7:00.",
-      "category": "Time",
-      "target": "すずきさんはいつも７じにうちにかえります",
-      "ttsText": "すずきさんはいつもしちじにうちにかえります",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for いつも, which appears in no sentence; combined with the Lesson 7 time-に + かえります frame. Numeral in target, so a kana reading is supplied."
-    },
-    {
-      "id": "v9-gokazoku-ni-aimashita",
-      "english": "I met Tanaka-san's family yesterday.",
-      "category": "Family & People",
-      "target": "きのうたなかさんのごかぞくにあいました",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for ごかぞく (and the honorific prefix ご), which appears in no sentence; delivered in the new に+あいます frame."
-    },
-    {
-      "id": "p9-tomodachi-to-denwa-o-shimasu",
-      "english": "Emma-san will talk on the phone with a friend.",
-      "category": "Technology & Communication",
-      "target": "エマさんはともだちとでんわをします",
-      "note": "Minimal pair with ともだちにでんわをします (tomodachi ni denwa o shimasu): と (to, 'together with', Lesson 6) makes the friend the partner sharing the phone conversation, not the person being dialed, which would take に (ni).",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Minimal pair, half 2 of 2: と (companion) vs に (receiver of the action). Only the particle differs between the two cards."
-    },
-    {
-      "id": "v9-resutoran-roma-no-basho",
-      "english": "Please tell me the location of Restaurant Rome.",
-      "category": "Food",
-      "target": "レストランローマのばしょをおしえてください",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for レストランローマ (no sentence anywhere); reuses the Lesson 2 おしえてください request frame combined with this lesson's ばしょ."
-    },
-    {
-      "id": "ex9-doko-ni-denwa-o-shimasu-ka",
-      "english": "Where will Smith-san telephone?",
-      "category": "Technology & Communication",
-      "target": "スミスさんはどこにでんわをしますか",
-      "aiSuggested": true,
-      "reviewNote": "Exercise III, example 2 of the telephone dialogues: スミスさんは どこに でんわを しますか. The deck carded the だれに (dare ni) telephone question and the どこに (doko ni) e-mail question but skipped this どこに telephone example."
-    },
-    {
-      "id": "v9-okasan-to-depato",
-      "english": "On Sunday, Emma-san went to the department store with her mother.",
-      "category": "Family & People",
-      "target": "エマさんはにちようびにおかあさんとデパートにいきました",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for おかあさん (no sentence anywhere); reuses the Lesson 6/7 companion-と motion frame rather than this chapter's phone frame, for variety."
-    },
-    {
-      "id": "f9-amari-toshokan-ni-ikimasen",
-      "english": "Emma-san does not go to the library very often.",
+      "id": "p9-kyo-wa-uchi-de-bangohan",
+      "english": "As for today, I'm eating dinner at home.",
       "category": "Grammar & Function Words",
-      "target": "エマさんはあまりとしょかんにいきません",
-      "note": "あまり (amari) cannot stand with the affirmative いきます (ikimasu); it forces the negative いきません (ikimasen).",
+      "target": "きょうはうちでばんごはんをたべます",
+      "note": "The は (wa) after きょう (kyō) makes today the topic and implies contrast with other days, the same use as せんしゅうは (senshū wa) in this lesson's Target Dialogue.",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Form contrast set, card 3 of 4: the verb flips to the negative because of あまり, this lesson's Grammar 4."
+      "reviewNote": "Constructed. Particle coverage for topical は on a time expression, this lesson's NOTES point; only wave 1's せんしゅうは card exists. Affirmative statement slot."
+    },
+    {
+      "id": "f9-ryoko-wa-do-deshita-ka",
+      "english": "How was the trip?",
+      "category": "Grammar & Function Words",
+      "target": "りょこうはどうでしたか",
+      "note": "でしたか (deshita ka) is the past of ですか (desu ka), so this asks for an impression after the trip is over.",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Form coverage for どうですか in its past form どうでしたか, pairing with f9-nihon-wa-do-desu-ka to show the present/past contrast on the same pattern."
+    },
+    {
+      "id": "p9-nihongo-o-oshiemasu",
+      "english": "Suzuki-san teaches Emma-san Japanese.",
+      "category": "School & Education",
+      "target": "すずきさんはエマさんににほんごをおしえます",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Double duty: particle coverage for に with おしえます in the teach-a-skill slot (existing cards only use the tell-information slot with でんわばんごう/ばしょ), and vocabulary coverage for にほんご, which appears in no sentence."
+    },
+    {
+      "id": "p9-ashita-wa-doko-ni-ikimasu-ka",
+      "english": "As for tomorrow, where will you go?",
+      "category": "Grammar & Function Words",
+      "target": "あしたはどこにいきますか",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Particle coverage for topical は on a time expression, question-form slot (the index's どこにいきますか cards all use bare time words with no は)."
+    },
+    {
+      "id": "v9-amari-yasai-o-tabemasen",
+      "english": "I don't eat vegetables very often.",
+      "category": "Food",
+      "target": "あまりやさいをたべません",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for やさい (no sentence anywhere); doubles as a third あまり example in a first-person eating frame, respecting the mandatory negative."
+    },
+    {
+      "id": "f9-tokidoki-toshokan-ni-ikimasu",
+      "english": "Emma-san sometimes goes to the library.",
+      "category": "Grammar & Function Words",
+      "target": "エマさんはときどきとしょかんにいきます",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Form contrast set, card 2 of 4: same fixed frame, ときどき still with the affirmative verb."
+    },
+    {
+      "id": "p9-senshu-wa-tenisu-o-shimasen-deshita",
+      "english": "As for last week, I didn't play tennis.",
+      "category": "Grammar & Function Words",
+      "target": "せんしゅうはテニスをしませんでした",
+      "note": "Topical は (wa) on the time word plus the negative past ませんでした (masen deshita): the implied contrast is with weeks when the speaker does play.",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Particle coverage for topical は on a time expression, negative-past slot; third genuinely different frame alongside wave 1's statement and the question card."
     },
     {
       "id": "p9-kaisha-de-meru-o-okurimasu",
@@ -377,74 +469,13 @@
       "reviewNote": "Constructed. Minimal pair, half 2 of 2: で (place of action) vs に (recipient). Only the particle differs between the two cards."
     },
     {
-      "id": "p9-kyo-wa-uchi-de-bangohan",
-      "english": "As for today, I'm eating dinner at home.",
-      "category": "Grammar & Function Words",
-      "target": "きょうはうちでばんごはんをたべます",
-      "note": "The は (wa) after きょう (kyō) makes today the topic and implies contrast with other days, the same use as せんしゅうは (senshū wa) in this lesson's Target Dialogue.",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Particle coverage for topical は on a time expression, this lesson's NOTES point; only wave 1's せんしゅうは card exists. Affirmative statement slot."
-    },
-    {
-      "id": "v9-shujin-wa-nyusu",
-      "english": "My husband watches the news every evening.",
-      "category": "Family & People",
-      "target": "しゅじんはまいばんニュースをみます",
-      "hint": "'My husband' here is しゅじん (shujin), not おっと (otto)",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for しゅじん (the book's alternative to おっと, in no card at all) and for まいばん, also sentence-less. Collision with v9-otto-wa-jimu over 'my husband', hence the hint on each.",
-      "note": "しゅじん (shujin) and おっと (otto) are two readings of the same word for 'my husband' — see おっと (otto) card. This sentence uses しゅじん."
-    },
-    {
-      "id": "v9-haha-ni-meru",
-      "english": "I sent my mother an e-mail yesterday.",
-      "category": "Family & People",
-      "target": "きのうははにメールをおくりました",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for はは (no sentence anywhere); delivered in this lesson's recipient-に e-mail frame, past tense for variety."
-    },
-    {
-      "id": "v9-yoguruto-o-kaimasu",
-      "english": "I often buy yogurt at the supermarket.",
-      "category": "Food",
-      "target": "よくスーパーでヨーグルトをかいます",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for ヨーグルト (no sentence anywhere); the buy-at frame plus よく also adds another frequency-adverb slot."
-    },
-    {
-      "id": "p9-nihongo-o-oshiemasu",
-      "english": "Suzuki-san teaches Emma-san Japanese.",
-      "category": "School & Education",
-      "target": "すずきさんはエマさんににほんごをおしえます",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Double duty: particle coverage for に with おしえます in the teach-a-skill slot (existing cards only use the tell-information slot with でんわばんごう/ばしょ), and vocabulary coverage for にほんご, which appears in no sentence."
-    },
-    {
-      "id": "p9-ashita-dare-ni-aimasu-ka",
-      "english": "Whom will Smith-san meet tomorrow?",
-      "category": "Family & People",
-      "target": "スミスさんはあしただれにあいますか",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Particle coverage: に with あいます exists only in statements (index KS1/KS5, wave 1); this supplies the missing question form, mirroring the drill pattern だれに (dare ni)."
-    },
-    {
-      "id": "v9-kanai-wa-kaimono",
-      "english": "My wife sometimes goes shopping in Shibuya.",
-      "category": "Family & People",
-      "target": "かないはときどきしぶやでかいものをします",
-      "hint": "'My wife' here is かない (kanai), not つま (tsuma)",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for かない, the book's alternative to つま, which appears in no card at all; also adds a ときどき statement slot. Collision with v9-tsuma-to-kabuki over 'my wife', hence the hint on each.",
-      "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses かない."
-    },
-    {
-      "id": "ex9-senshu-wa-koko-de-aimashita",
-      "english": "Last week, I met Green-san here.",
-      "category": "Family & People",
-      "target": "せんしゅうはここでグリーンさんにあいました",
-      "note": "The は (wa) after せんしゅう (senshū) singles out last week as the topic from among the times the speaker has come here, as explained in the lesson's notes.",
-      "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Suzuki's line せんしゅうは ここで グリーンさんに あいました, also the subject of the lesson's NOTES section on topical は. It combines new に + あいます with ここ and was never carded."
+      "id": "p102-hachiji-ni-okimasu",
+      "english": "I get up at eight o'clock.",
+      "category": "Time",
+      "target": "わたしは、はちじにおきます",
+      "scene": "answering what time you get up",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 1 answer. Job: the second of the two sentences おきます (okimasu) appears in.",
+      "aiSuggested": true
     },
     {
       "id": "p9-kaigi-no-basho-o-kikimashita",
@@ -455,32 +486,99 @@
       "reviewNote": "Constructed. Particle coverage: に with ききます (ask) has exactly one sentence in the deck (でんわばんごうをききました); this varies the thing asked about (ばしょ) and the people."
     },
     {
-      "id": "ex9-sore-o-futatsu-onegaishimasu",
-      "english": "Well then, we'll have two of those, please.",
-      "category": "Food",
-      "target": "じゃ、それを２つおねがいします",
-      "ttsText": "じゃ、それをふたつおねがいします",
-      "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, Suzuki's line じゃ、それを ２つ おねがいします. The deck's closest cards use ください with counters (Lesson 5); this printed ordering line with おねがいします plus the general counter was never carded."
+      "id": "p102-nihongo-o-benkyou-shimasu",
+      "english": "I study Japanese.",
+      "category": "School & Education",
+      "target": "にほんごをべんきょうします",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the only sentence にほんご (nihongo), taught bare in this lesson, appears in.",
+      "aiSuggested": true
     },
     {
-      "id": "v9-tsuma-to-kabuki",
-      "english": "Yesterday I saw kabuki with my wife.",
-      "category": "Family & People",
-      "target": "きのうつまとかぶきをみました",
-      "hint": "'My wife' here is つま (tsuma), not かない (kanai)",
+      "id": "ex9-suzuki-sama-desu-ne",
+      "english": "Mr. Suzuki, right?",
+      "category": "Greetings",
+      "target": "すずきさまですね",
+      "scene": "A restaurant employee politely confirming the name of the customer who just arrived",
+      "note": "The employee uses the extra-polite 〜さま (-sama) instead of 〜さん (-san) because they are addressing a customer.",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for つま (bare vocab card only, no sentence). Collision: つま and かない both translate as 'my wife', so this card and v9-kanai-wa-kaimono each carry a hint naming which synonym to produce.",
-      "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses つま."
+      "reviewNote": "Target Dialogue, restaurant employee's line すずきさまですね. The vocabulary items さま and すずきさま were carded but this printed sentence never was; it is the only usage example of the new honorific in the deck."
     },
     {
-      "id": "ex9-nakamura-san-ni-okurimasu",
-      "english": "He'll send it to Nakamura-san.",
+      "id": "ex9-dare-ni-meru-o-okurimasu-ka",
+      "english": "Whom will Smith-san send an e-mail to?",
       "category": "Technology & Communication",
-      "target": "なかむらさんにおくります",
-      "scene": "Answering whom Smith-san will send an e-mail to",
+      "target": "スミスさんはだれにメールをおくりますか",
       "aiSuggested": true,
-      "reviewNote": "Exercise III, part 2, example 1 reply なかむらさんに おくります. The telephone counterpart なかむらさんにします is carded; this printed e-mail reply is not. Elliptical answer, so it carries a scene naming the question."
+      "reviewNote": "Exercise III, part 2, example 1: スミスさんは だれに メールを おくりますか. The deck has the どこに (doko ni) version of this e-mail question but the printed だれに (dare ni) version was skipped."
+    },
+    {
+      "id": "ex9-ii-mise-desu-ne",
+      "english": "It's a nice restaurant, isn't it?",
+      "category": "Food",
+      "target": "いいみせですね",
+      "aiSuggested": true,
+      "reviewNote": "Target Dialogue, Smith's line いい みせですね. The new adjective いい (ii, 'nice, good') appears in the chapter vocabulary but no card uses it; this printed sentence was skipped entirely. PRE-EXCLUDED: the reviewer excluded いい (ii) from the base lesson as premature (formally taught in Lesson 10) — restore this card if early exposure inside the book's own printed sentence is wanted.",
+      "excluded": true
+    },
+    {
+      "id": "p102-sakuban-nanji-ni-nemashita-ka",
+      "english": "What time did you go to bed last night?",
+      "category": "Time",
+      "target": "さくばん、なんじにねましたか",
+      "note": "さくばん (sakuban) is last night. きのうのよる (kinō no yoru) says the same thing more plainly.",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 7. Job: the past of the なんじに (nan-ji ni) time question, against the present-tense one above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v9-resutoran-roma-no-basho",
+      "english": "Please tell me the location of Restaurant Rome.",
+      "category": "Food",
+      "target": "レストランローマのばしょをおしえてください",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for レストランローマ (no sentence anywhere); reuses the Lesson 2 おしえてください request frame combined with this lesson's ばしょ."
+    },
+    {
+      "id": "p102-itariago",
+      "english": "Italian (the language)",
+      "category": "Nationalities & Countries",
+      "target": "イタリアご",
+      "note": "The ご (go) suffix turns a country into its language, the same way にほん (nihon) becomes にほんご (nihongo).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: shows ご (go) is a productive suffix, not part of the fixed word にほんご (nihongo).",
+      "aiSuggested": true
+    },
+    {
+      "id": "v9-okasan-to-depato",
+      "english": "On Sunday, Emma-san went to the department store with her mother.",
+      "category": "Family & People",
+      "target": "エマさんはにちようびにおかあさんとデパートにいきました",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for おかあさん (no sentence anywhere); reuses the Lesson 6/7 companion-と motion frame rather than this chapter's phone frame, for variety."
+    },
+    {
+      "id": "p9-tomodachi-to-denwa-o-shimasu",
+      "english": "Emma-san will talk on the phone with a friend.",
+      "category": "Technology & Communication",
+      "target": "エマさんはともだちとでんわをします",
+      "note": "Minimal pair with ともだちにでんわをします (tomodachi ni denwa o shimasu): と (to, 'together with', Lesson 6) makes the friend the partner sharing the phone conversation, not the person being dialed, which would take に (ni).",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Minimal pair, half 2 of 2: と (companion) vs に (receiver of the action). Only the particle differs between the two cards."
+    },
+    {
+      "id": "ex9-kyo-no-osusume",
+      "english": "What do you recommend today?",
+      "category": "Food",
+      "target": "きょうのおすすめはなんですか",
+      "aiSuggested": true,
+      "reviewNote": "Speaking Practice 1, Suzuki's opening line きょうの おすすめは なんですか. Only the bare vocabulary item おすすめ was carded; the printed question itself is missing."
+    },
+    {
+      "id": "p102-maishuu-getsuyoubi",
+      "english": "Every Monday",
+      "category": "Time",
+      "target": "まいしゅうげつようび",
+      "note": "まいしゅう (maishū) 'every week' in front of a day names that day every week.",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: combines this lesson's まいしゅう (maishū) with a weekday from Lesson 7.",
+      "aiSuggested": true
     },
     {
       "id": "v9-shacho-wa-sapporo-shisha",
@@ -491,6 +589,49 @@
       "reviewNote": "Constructed. Vocabulary coverage for しゃちょう and さっぽろししゃ, both sentence-less; reuses the Lesson 6 destination frame with a future time word."
     },
     {
+      "id": "p102-densha-de-koko-ni-kimashita",
+      "english": "I came here by train.",
+      "category": "Transport",
+      "target": "でんしゃでここにきました",
+      "scene": "answering how you got here today",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 6 answer. Job: the で (de) of means answering a どうやって (dō yatte) question in the past.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v9-maiasa-yasai-jusu",
+      "english": "Emma-san drinks vegetable juice every morning.",
+      "category": "Food",
+      "target": "エマさんはまいあさやさいジュースをのみます",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary coverage for やさいジュース (no sentence anywhere), in the habitual-present frame from this lesson's Grammar 3, matching the book's Exercise VI material."
+    },
+    {
+      "id": "p9-tomodachi-ni-denwa-o-shimasu",
+      "english": "Emma-san will telephone a friend.",
+      "category": "Technology & Communication",
+      "target": "エマさんはともだちにでんわをします",
+      "note": "Minimal pair with ともだちとでんわをします (tomodachi to denwa o shimasu): に (ni) marks the friend as the person the call is directed at, that is, the one being dialed.",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Minimal pair, half 1 of 2: に (person an action is directed at, this lesson) vs と (person you do something together with, Lesson 6). Only the particle differs between the two cards."
+    },
+    {
+      "id": "f9-yoku-toshokan-ni-ikimasu",
+      "english": "Emma-san often goes to the library.",
+      "category": "Grammar & Function Words",
+      "target": "エマさんはよくとしょかんにいきます",
+      "aiSuggested": true,
+      "reviewNote": "Constructed. Form contrast set, card 1 of 4: fixed frame エマさんは…としょかんにいきます cycled through the four frequency adverbs; only the adverb changes."
+    },
+    {
+      "id": "p102-osusume-no-mise",
+      "english": "A recommended restaurant",
+      "category": "Food",
+      "target": "おすすめのみせ",
+      "note": "おすすめ (osusume) from this lesson, joined to みせ (mise) with の (no).",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts this lesson's おすすめ (osusume) into a phrase rather than leaving it a bare noun.",
+      "aiSuggested": true
+    },
+    {
       "id": "v9-roma-wa-ima-gozen-shichiji",
       "english": "It is 7:00 A.M. in Rome now.",
       "category": "Travel & Tourism",
@@ -498,33 +639,6 @@
       "ttsText": "ローマはいまごぜんしちじです",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for ローマ (no sentence anywhere); reuses the Lesson 3 world-clock frame (とうきょうはいまごごよじはんです). Numeral in target, so a kana reading is supplied."
-    },
-    {
-      "id": "v9-otosan-ni-denwa",
-      "english": "Suzuki-san telephones his father every week.",
-      "category": "Family & People",
-      "target": "すずきさんはまいしゅうおとうさんにでんわをします",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for おとうさん and まいしゅう, both sentence-less; uses the drill A frame (person に でんわをします) plus a habitual time word, per this lesson's Grammar 3."
-    },
-    {
-      "id": "ex9-ginko-ni-shimasu",
-      "english": "He'll call the bank.",
-      "category": "Technology & Communication",
-      "target": "ぎんこうにします",
-      "scene": "Answering where Smith-san will telephone",
-      "hint": "The reply keeps only します (shimasu), short for でんわをします (denwa o shimasu)",
-      "aiSuggested": true,
-      "reviewNote": "Exercise III, example 2 reply ぎんこうに します. Its e-mail counterpart ぎんこうにおくります is already carded but this telephone reply is not. Elliptical answer, so it carries a scene naming the question.",
-      "note": "ぎんこうにします is short for ぎんこうにでんわをします — the reply drops でんわを (denwa o) since the question already established 'telephone' as the activity."
-    },
-    {
-      "id": "v9-sapporo-de-biru",
-      "english": "Suzuki-san drank beer in Sapporo.",
-      "category": "Travel & Tourism",
-      "target": "すずきさんはさっぽろでビールをのみました",
-      "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for さっぽろ as a standalone place name (only さっぽろししゃ is otherwise covered); uses the Lesson 8 place-で past frame."
     }
   ]
 }

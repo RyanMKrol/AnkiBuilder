@@ -502,6 +502,131 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
 // Vanilla JS, no ${}. Handles: the per-row Exclude toggle, inline editing of the target/pronunciation
 // cells (contentEditable, saved on blur), and the per-section "Mark reviewed" button. All wired to
 // the `corpus`-review rows (which carry the translated cards).
+// The Approve control on the additions review. Approving a card clears its pending flag, so it
+// starts shipping — which means the group package is now out of date, exactly as excluding a card
+// from a done lesson is. `maybeRebuild` is the same auto-rebuild the exclude toggle uses.
+//
+// The row is updated in place rather than reloading: on a page holding a couple of hundred
+// retrofitted cards, a reload after every approval would lose your scroll position every time.
+// The additions review's two sign-offs. Deliberately SECTION controls named "Mark reviewed" and
+// "Mark done", because that is what the corpus and audio reviews have and this is meant to be the
+// same review filtered to a retrofit. The gate underneath is per card, which is a storage detail:
+// it exists so a finished lesson keeps its own sign-off, not so the page grows a column of buttons.
+//
+// Each control walks its section's rows one at a time. Never in parallel: every request rewrites the
+// same cards.json, so firing them together would have each read the file before the previous wrote
+// it and all but the last would be silently lost.
+export const ADDITIONS_REVIEW_SCRIPT = `(function () {
+  var ctx = document.getElementById("deckctx");
+  if (!ctx || !window.__ab) return;
+  var A = window.__ab;
+  var base = A.base, jsonp = A.jsonp;
+
+  function post(tr, path) {
+    var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
+    return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + path, { method: "POST" })
+      .then(jsonp).then(function (x) {
+        if (!x.ok) throw new Error(x.j.error || "failed");
+        return true;
+      });
+  }
+
+  function walk(rows, path, msg, onDone) {
+    var i = 0;
+    function step() {
+      if (i >= rows.length) { onDone(rows.length); return A.maybeRebuild(); }
+      if (msg) msg.textContent = i + 1 + " of " + rows.length + "\u2026";
+      return post(rows[i++], path).then(step);
+    }
+    return step();
+  }
+
+  // Rows of this section that are not excluded and not already signed off at this gate.
+  function openRows(btn) {
+    return [].slice.call(btn.closest("details").querySelectorAll("tr.row")).filter(function (tr) {
+      return !tr.classList.contains("excluded");
+    });
+  }
+
+  document.querySelectorAll("button.mark-rev-additions").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var rows = openRows(btn), msg = btn.nextElementSibling;
+      if (!rows.length) return;
+      btn.disabled = true;
+      walk(rows, "/addition/approve", msg, function (n) {
+        if (msg) msg.textContent = "\u2713 " + n + " reviewed";
+        btn.outerHTML = '<span class="done-badge">\u2713 reviewed</span>';
+      }).catch(function (e) {
+        btn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
+    });
+  });
+
+  document.querySelectorAll("button.mark-done-additions").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var rows = openRows(btn), msg = btn.nextElementSibling;
+      if (!rows.length) return;
+      if (!window.confirm("Mark " + rows.length + " card" + (rows.length === 1 ? "" : "s") + " done? They ship on the next build. Nothing reaches Anki until you click Deliver.")) return;
+      btn.disabled = true;
+      walk(rows, "/addition/done", msg, function (n) {
+        if (msg) msg.textContent = "\u2713 " + n + " done";
+        btn.outerHTML = '<span class="done-badge">\u2713 done</span>';
+      }).catch(function (e) {
+        btn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
+    });
+  });
+
+  // Clips the retrofit carried across have already been heard in the deck they came from. Hidden by
+  // default so the list shows what actually needs an ear; the toggle is there because "already
+  // heard" is a claim about the OLD deck.
+  var inheritedRows = function () {
+    return [].slice.call(document.querySelectorAll('tr.row[data-inherited-audio="1"]'));
+  };
+  var showInherited = document.getElementById("show-inherited");
+  if (showInherited) {
+    var applyInherited = function () {
+      inheritedRows().forEach(function (tr) {
+        if (tr.classList.contains("excluded")) return;
+        tr.style.display = showInherited.checked ? "" : "none";
+      });
+    };
+    showInherited.addEventListener("change", applyInherited);
+    applyInherited();
+  }
+
+  var inhBtn = document.querySelector("button.done-inherited");
+  if (inhBtn) {
+    inhBtn.addEventListener("click", function () {
+      var rows = inheritedRows().filter(function (tr) { return !tr.classList.contains("excluded"); });
+      var msg = inhBtn.nextElementSibling;
+      if (!rows.length) { if (msg) msg.textContent = "nothing left"; return; }
+      if (!window.confirm("Mark " + rows.length + " carried-over card" + (rows.length === 1 ? "" : "s") + " done without listening? They ship on the next build.")) return;
+      inhBtn.disabled = true;
+      walk(rows, "/addition/done", msg, function (n) {
+        if (msg) msg.textContent = "\u2713 " + n + " done";
+      }).catch(function (e) {
+        inhBtn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
+    });
+  }
+
+  var toggle = document.getElementById("show-excluded");
+  if (toggle) {
+    var apply = function () {
+      document.querySelectorAll("tr.row.excluded").forEach(function (tr) {
+        tr.style.display = toggle.checked ? "" : "none";
+      });
+    };
+    toggle.addEventListener("change", apply);
+    apply();
+  }
+})();
+`;
+
 export const REVIEW_EDIT_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx || !window.__ab) return;

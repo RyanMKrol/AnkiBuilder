@@ -4,8 +4,14 @@
 //
 // Usage:
 //   node scripts/finalize-extras.mjs <extras-run-dir>
-//   ... --seed <text>     override the re-order seed (default <folder>-post-prepare)
-//   ... --dry             print the plan without running it
+//   ... --seed <text>        override the re-order seed (default <folder>-post-prepare)
+//   ... --dry                print the plan without running it
+//   ... --force             the unit is signed off, re-order it anyway
+//   ... --force-delivered   the collection is live in Anki, re-order it anyway
+//
+// The two consent flags exist because the ordering step is the one WRITE in the chain, so it is the
+// one step the mutation guard stops. Without forwarding them the chain dies at step 4, after
+// `prepare` has already spent credits on the three steps before it.
 //
 // ⚠️ `prepare` spends model credits. Run this once, after the unit's cards are authored and merged.
 //
@@ -21,6 +27,8 @@ import { finalizeExtrasPlan, postPrepareSeed } from "../src/cards/finalizeExtras
 const REPO = resolve(join(dirname(fileURLToPath(import.meta.url)), ".."));
 const args = process.argv.slice(2);
 const dry = args.includes("--dry");
+const force = args.includes("--force");
+const forceDelivered = args.includes("--force-delivered");
 const seedIndex = args.indexOf("--seed");
 // Guard the -1: with no --seed, `seedIndex + 1` is 0, which would drop argv[0] — the run dir — and
 // the script could then only run WITH --seed. extras-order.mjs hit exactly this.
@@ -35,7 +43,7 @@ if (!positional[0] || !existsSync(join(runDir, "cards.json"))) {
 }
 
 const seed = seedIndex >= 0 ? args[seedIndex + 1] : postPrepareSeed(runDir);
-const plan = finalizeExtrasPlan(runDir, { seed });
+const plan = finalizeExtrasPlan(runDir, { seed, force, forceDelivered });
 const results = [];
 
 for (const step of plan) {

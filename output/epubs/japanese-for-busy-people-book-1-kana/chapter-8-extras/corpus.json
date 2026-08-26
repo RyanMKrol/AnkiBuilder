@@ -8,53 +8,31 @@
   },
   "items": [
     {
-      "id": "ex-omatsuri-nani-tabemashita-ka",
-      "english": "What did you eat at the festival?",
+      "id": "p102-bangohan-o-tabemasu",
+      "english": "I eat dinner.",
       "category": "Food",
-      "target": "おまつりでなにをたべましたか",
+      "target": "ばんごはんをたべます",
+      "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the bare を (o) plus たべます (tabemasu) frame on ばんごはん (bangohan), which this lesson teaches as a word.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-doyoubi-shigoto-shimasu-ka",
+      "english": "Smith-san, are you working on Saturday?",
+      "category": "Work & Occupations",
+      "target": "スミスさんはどようびにしごとをしますか",
       "hint": null,
       "note": null,
-      "reviewNote": "The book's own worked example for EXERCISES VI ('Ask and answer what someone did at an event'). The deck carded substitution alternative 1 (かいます) as a pair but took only the ANSWER from the printed example — なにもたべませんでした exists as `nanimo-tabemasendeshita` with no question in front of it. This restores the missing half and sits directly before it.",
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): しごとをします had no sentence — しごと appears in the deck only as Lesson 3's しごとはくじからごじまでです, where it is a noun, never as an activity you do.",
       "aiSuggested": true
     },
     {
-      "id": "p-depaato-de-kasa-kaimashita",
-      "english": "Emma-san bought an umbrella at a department store.",
-      "category": "Shopping",
-      "target": "エマさんはデパートでかさをかいました",
+      "id": "f-kikimasu-rajio-2",
+      "english": "Suzuki-san doesn't listen to the radio.",
+      "category": "Technology & Communication",
+      "target": "すずきさんはラジオをききません",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed. Coverage job 1 (particle): first half of a で-place vs で-means minimal pair. Same particle, two unrelated jobs, and the deck teaches them a lesson apart (Lesson 4's カードでおねがいします, Lesson 7's しんかんせんで) without ever showing the clash.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p-resutoran-de-tabemasu",
-      "english": "Suzuki-san is going to eat at a restaurant.",
-      "category": "Food",
-      "target": "すずきさんはレストランでたべます",
-      "hint": null,
-      "note": "で (de) marks where an action happens. Compare すずきさんはレストランにいきます (suzuki san wa resutoran ni ikimasu): に goes to the place, で does something there.",
-      "reviewNote": "Constructed. Coverage job 1 (particle): second half of the に-vs-で minimal pair, differing only in the particle and the verb it licenses. Kept adjacent to p-resutoran-ni-ikimasu.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p-resutoran-ni-ikimasu",
-      "english": "Suzuki-san is going to a restaurant.",
-      "category": "Food",
-      "target": "すずきさんはレストランにいきます",
-      "hint": null,
-      "note": "に (ni) marks where the movement ends up. Nothing happens at the restaurant in this sentence — only the arriving.",
-      "reviewNote": "Constructed. Coverage job 1 (particle): first half of a に-vs-で minimal pair. This lesson's new で is the particle most easily confused with Lesson 6's destination に, and nothing in the deck puts the two on the same place noun.",
-      "aiSuggested": true
-    },
-    {
-      "id": "wp-sumisu-hon-o-yomimasu",
-      "english": "Smith-san will read a book.",
-      "category": "Other",
-      "target": "スミスさんはほんをよみます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "CONSTRUCTED, not quoted — flagging this explicitly. よみます is listed in WORD POWER and named in GRAMMAR 1 as a を-taking verb, but the chapter never gives it a sentence, so it is the one verb in the lesson that exists in the deck purely as an isolated dictionary entry. ほん is from Lesson 2. Prune this if you want the lesson to stay strictly book-sourced.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the ききます four-form set.",
       "aiSuggested": true
     },
     {
@@ -68,23 +46,61 @@
       "aiSuggested": true
     },
     {
-      "id": "p-raamen-mo-tabemashita",
-      "english": "Smith-san ate ramen too.",
-      "category": "Food",
-      "target": "スミスさんはラーメンもたべました",
+      "id": "v-hitori-desu",
+      "english": "One person.",
+      "category": "Numbers",
+      "target": "ひとりです",
+      "note": "ひとり (hitori) and ふたり (futari) are irregular — they do not take にん (nin). Counting with the suffix only starts at さんにん (san-nin).",
+      "reviewNote": "Constructed on EXERCISES VII's pattern. Coverage job 2 (vocabulary): ひとり had no sentence, while ふたり and さんにん both do. Paired with v-nannin-desu-ka and adjacent to it.",
+      "aiSuggested": true,
+      "scene": "answering how many are in your party"
+    },
+    {
+      "id": "sp2-kinou-nani-o-shimashita-ka",
+      "english": "What did you do yesterday?",
+      "category": "Time",
+      "target": "きのうなにをしましたか",
       "hint": null,
-      "note": "も (mo) does not sit next to を (o) — it replaces it. Compare スミスさんはラーメンをたべました (sumisu san wa rāmen o tabemashita): same sentence, and the swap is the whole difference between 'ate ramen' and 'ate ramen as well'.",
-      "reviewNote": "Constructed. Coverage job 1 (particle): minimal pair with v-raamen-tabemashita. Lesson 4 introduced も but only ever with です (あれもさんぜんえんです), so nothing in the deck shows it displacing an object marker — which is exactly where a learner reaches for ラーメンをも.",
+      "note": null,
+      "reviewNote": "From SPEAKING PRACTICE 2, p. 80 — Nakamura's opening question. The deck has no past-tense なにを question at all in circulation: the one that existed (fib-shuumatsu-nani-shimashitaka) is flagged EXCLUDED. This is the more useful of the two anyway, and it is a verbatim dialogue line rather than a derived one.",
       "aiSuggested": true
     },
     {
-      "id": "f-mimasu-eiga-3",
-      "english": "Sasaki-san saw a movie.",
-      "category": "Sports & Hobbies",
-      "target": "ささきさんはえいがをみました",
+      "id": "i-eat-sushi",
+      "english": "I eat sushi.",
+      "category": "Food",
+      "target": "すしをたべます",
+      "note": "を (o) marks what the verb acts on: すし (sushi) is the thing being eaten. The particle is written を but pronounced お (o) — it never appears anywhere except as this marker.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+    },
+    {
+      "id": "v-kinou-benkyou-shimasendeshita",
+      "english": "I didn't study yesterday.",
+      "category": "School & Education",
+      "target": "きのうべんきょうをしませんでした",
+      "hint": null,
+      "note": "In a nounを します verb, only します (shimasu) conjugates — べんきょうを (benkyō o) is untouched.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): しませんでした is a bare word card with no sentence, and no card anywhere shows a nounを します compound in a negative form, which is where the conjugation is easiest to get wrong.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex-nani-o-tabemasu-ka",
+      "english": "Smith-san, what are you going to eat?",
+      "category": "Food",
+      "target": "スミスさんはなにをたべますか",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the みます four-form set.",
+      "reviewNote": "Worked example question from EXERCISES III-B ('Ask and answer what someone will do'). The deck's only なにを question is しゅうまつになにをしますか with the catch-all します — nothing asks なにを with a real content verb, which is the whole point of GRAMMAR 1. English follows the deck's direct-address convention from Lesson 6 (スミスさんはあしたきょうとにいきますか → 'Smith-san, will you go to Kyoto tomorrow?').",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex-sumisu-suteeki-tabemasu",
+      "english": "Smith-san will eat steak.",
+      "category": "Food",
+      "target": "スミスさんはステーキをたべます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example from EXERCISES III-A ('State what someone will do'). The deck's only present-tense を + たべます sentence is the Target Dialogue one I propose above, which is loaded with three other particles; this is the bare pattern with nothing else in the way. Also sets up the Q&A pair that follows.",
       "aiSuggested": true
     },
     {
@@ -95,6 +111,437 @@
       "hint": "the everyday wording, not the one restaurant staff use",
       "note": "This is the plain counterpart of なんめいさまですか (nanmeisama desu ka) — same question, no honorific dressing, so it is what you would ask a colleague rather than a customer.",
       "reviewNote": "Constructed from the WORD POWER counter list, which teaches なんにん but only ever exercises the polite なんめいさまですか. Coverage job 2 (vocabulary): なんにん had no sentence. NOTE FOR REVIEW — this shares its English with the existing nanmeisama-desu-ka card, so that card needs a hint too (something like 'what restaurant staff ask'); I can only supply the hint on my own side.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-uchi-de-asagohan",
+      "english": "I eat breakfast at home.",
+      "category": "Food",
+      "target": "わたしはうちであさごはんをたべます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): あさごはん is carded but appears in no sentence. Frames it with うち (Lesson 6) and the lesson's new place-で rather than yet another レストラン.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-doko-de-benkyou-shimasu-ka",
+      "english": "Where do you study?",
+      "category": "School & Education",
+      "target": "どこでべんきょうをしますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on EXERCISES V-B's どこで〜ますか pattern. Coverage job 2 (vocabulary): べんきょうをします had no sentence at all, and this is the question that makes としょかん usable.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-eigakan-ni-ikimashita",
+      "english": "I went to the cinema.",
+      "category": "Sports & Hobbies",
+      "target": "えいがかんにいきました",
+      "scene": "answering what you did last weekend",
+      "note": "えいが (eiga) 'film' plus かん (kan), the suffix for a building.",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-nani-o-nomimasu-ka",
+      "english": "What are you going to drink?",
+      "category": "Food",
+      "target": "なにをのみますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed on EXERCISES III-B's なにを〜ますか pattern. Coverage job 1 (particle): を in a question with a real content verb — the deck's なにを questions all use します, かいます or たべます, never のみます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "fish",
+      "english": "Fish",
+      "category": "Food",
+      "target": "さかな",
+      "note": "The animal and the food alike.",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame"
+    },
+    {
+      "id": "v-doyoubi-osushi-tabemasu",
+      "english": "On Saturday I'm going to eat sushi with a friend.",
+      "category": "Food",
+      "target": "どようびにともだちとおすしをたべます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): (お)すし had no sentence. Built on the Target Dialogue's own frame (time に — person と — object を — verb) with the topic dropped, so it doubles as a second run at the lesson's word order.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-kaimasu-arm-1",
+      "english": "Smith-san will buy ice cream.",
+      "category": "Food",
+      "target": "スミスさんはアイスクリームをかいます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 1 of a four-form set for かいます, which the deck holds only as a bare ます card while たべます, のみます and します have all four. Also gives アイスクリーム its first sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sp2-furiimaaketto-ni-ikimashita",
+      "english": "I went to a flea market.",
+      "category": "Shopping",
+      "target": "フリーマーケットにいきました",
+      "note": null,
+      "reviewNote": "From SPEAKING PRACTICE 2, p. 80 — Smith's reply, split from its question per the Q/A rule. Uses Lesson 6's に + いきました with this lesson's フリーマーケット, which is otherwise a bare noun with no sentence. Adjacent to sp2-kinou-nani-o-shimashita-ka.",
+      "aiSuggested": true,
+      "scene": "answering what you did yesterday"
+    },
+    {
+      "id": "f-kikimasu-rajio-1",
+      "english": "Suzuki-san listens to the radio.",
+      "category": "Technology & Communication",
+      "target": "すずきさんはラジオをききます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 1 of a four-form set for ききます. Also gives ラジオ its only sentence — the deck carded it from EXERCISES II-B's substitution list and never used it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex-doko-de-bangohan-tabemasu-ka",
+      "english": "Smith-san, where are you going to eat dinner?",
+      "category": "Food",
+      "target": "スミスさんはどこでばんごはんをたべますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Worked example question from EXERCISES V-B ('Ask and answer where someone will do something'). The deck's only どこで question is the past-tense fragment どこでしましたか (fib-doko-de-shimashitaka); nothing shows どこで in a full present-tense sentence with an object, which is exactly what GRAMMAR 2 teaches.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-kikimasu-rajio-3",
+      "english": "Suzuki-san listened to the radio.",
+      "category": "Technology & Communication",
+      "target": "すずきさんはラジオをききました",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the ききます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-nichiyoubi-kaji-o-shimasu",
+      "english": "On Sundays I do housework.",
+      "category": "Home & Household",
+      "target": "にちようび、かじをします",
+      "scene": "answering what you do on Sundays",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-asagohan-tabemasen",
+      "english": "Smith-san doesn't eat breakfast.",
+      "category": "Food",
+      "target": "スミスさんはあさごはんをたべません",
+      "hint": null,
+      "note": "Contrast with わたしはうちであさごはんをたべます (watashi wa uchi de asagohan o tabemasu) directly above — same object, opposite polarity.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): たべます is the lesson's headline verb but the deck has no sentence in the plain negative — it has past affirmative (Key Sentence 2) and past negative (Key Sentence 3) only. Second あさごはん context as a bonus.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-mimasu-eiga-4",
+      "english": "Sasaki-san didn't see a movie.",
+      "category": "Sports & Hobbies",
+      "target": "ささきさんはえいがをみませんでした",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the みます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex-suzuki-terebi-mimasu",
+      "english": "Suzuki-san will watch television.",
+      "category": "Technology & Communication",
+      "target": "すずきさんはテレビをみます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "The book's own worked example for EXERCISES II-A ('State what someone will see'). The deck carded substitution alternative 2 (かぶき) but not the printed example, so みます currently has one sentence. This makes two, and gives テレビ (Lesson 4) its first use in a sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p-kaado-de-kasa-kaimashita",
+      "english": "Emma-san bought an umbrella by credit card.",
+      "category": "Shopping",
+      "target": "エマさんはカードでかさをかいました",
+      "hint": null,
+      "note": "Same で (de), different job: here it is the means, not the place. Compare エマさんはデパートでかさをかいました (ema san wa depāto de kasa o kaimashita) — only the noun in front of で changes, and it decides which reading you get.",
+      "reviewNote": "Constructed. Coverage job 1 (particle): second half of the で-place vs で-means pair. Uses Lesson 4's カード and Lesson 2's かさ, so the only new thing is the ambiguity itself. Kept adjacent to p-depaato-de-kasa-kaimashita.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-iie-shimasen",
+      "english": "No, I won't.",
+      "category": "Work & Occupations",
+      "target": "いいえ、しません",
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): しません is a bare word card with no sentence. Paired answer to v-doyoubi-shigoto-shimasu-ka and adjacent to it; elliptical, so it carries a hint distinguishing it from the sake reply いいえ、のみません.",
+      "aiSuggested": true,
+      "scene": "answering whether you're working on Saturday"
+    },
+    {
+      "id": "f-kaimasu-arm-3",
+      "english": "Smith-san bought ice cream.",
+      "category": "Food",
+      "target": "スミスさんはアイスクリームをかいました",
+      "hint": null,
+      "note": "ます (masu) → ました (mashita) is the whole of the past tense. There is no separate past form of the noun or the particle.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the かいます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-konbini-de-mizu-kaimasu",
+      "english": "Suzuki-san is going to buy water at a convenience store.",
+      "category": "Shopping",
+      "target": "すずきさんはコンビニでみずをかいます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "The book's own worked example for EXERCISES IV-B, printed verbatim. Coverage job 2 (vocabulary): コンビニ had no sentence — the deck took substitution alternative 1 (スーパー) and left the printed example out.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sasaki-san-wa",
+      "english": "How about you, Sasaki-san?",
+      "category": "Other",
+      "target": "ささきさんは",
+      "note": "Said with rising intonation. It is the topic particle は (wa) with everything after it dropped — the question just asked is understood to carry over, so this means 'and you, what are you going to do?' Swap in any name.",
+      "reviewNote": "From TARGET DIALOGUE, explained in NOTES 2, p. 75. The book gives it a dedicated note because it is a reusable conversational move, but it never became a card. Cheap to learn and immediately usable.",
+      "aiSuggested": true,
+      "scene": "turning the same question back on the other person"
+    },
+    {
+      "id": "ex-futari-desu",
+      "english": "Two people.",
+      "category": "Numbers",
+      "target": "ふたりです",
+      "note": "Note the register swap: staff ask with the honorific なんめいさまですか (nanmeisama desu ka), you answer with the plain counter.",
+      "reviewNote": "The book's worked answer in EXERCISES VII, and Suzuki says the same line in SPEAKING PRACTICE 1 — it appears twice in the chapter. The deck has the AI-derived さんにんです but not this one. Low priority since the pattern is already taught, but it is the printed example.",
+      "aiSuggested": true,
+      "scene": "answering how many are in your party"
+    },
+    {
+      "id": "f-yomimasu-nyuusu-4",
+      "english": "Emma-san didn't read the news.",
+      "category": "Technology & Communication",
+      "target": "エマさんはニュースをよみませんでした",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the よみます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p-tomodachi-to-mimasu",
+      "english": "I'm going to see it with a friend.",
+      "category": "Sports & Hobbies",
+      "target": "ともだちとみます",
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 1 (particle): paired answer to p-dare-to-kabuki-mimasu-ka, adjacent to it. The object かぶきを (kabuki o) drops out because the question supplied it; elliptical, hence the hint.",
+      "aiSuggested": true,
+      "scene": "answering who you're seeing kabuki with"
+    },
+    {
+      "id": "p102-hanbaagaa-o-tabemashita",
+      "english": "I ate a hamburger.",
+      "category": "Food",
+      "target": "ハンバーガーをたべました",
+      "scene": "answering what you ate yesterday",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2 answer.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p-suzuki-mo-kabuki-mimasu",
+      "english": "Suzuki-san is going to see kabuki too.",
+      "category": "Sports & Hobbies",
+      "target": "すずきさんもかぶきをみます",
+      "hint": null,
+      "note": "Here も (mo) replaces は (wa), so it is the person that is 'as well', not the activity. Contrast スミスさんはラーメンもたべました (sumisu san wa rāmen mo tabemashita), where も sits on the object instead.",
+      "reviewNote": "Constructed. Coverage job 1 (particle): も had no example with a verb anywhere in the deck. This is the subject slot; p-raamen-mo-tabemashita is the object slot. Builds on the Target Dialogue's かぶきをみます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "td-doyoubi-tenpura-tabemasu",
+      "english": "On Saturday, I'm going to eat tempura in Ginza with Suzuki-san.",
+      "category": "Food",
+      "target": "どようびにぎんざですずきさんとてんぷらをたべます",
+      "hint": null,
+      "note": "The lesson's word order in full: person は — time に — place で — object を — verb. Three particles already known (に from Lesson 7, で newly split into its place sense, と from Lesson 6) stack around this lesson's new を.",
+      "reviewNote": "From TARGET DIALOGUE — Smith's reply, and the title line of the whole lesson. The deck cards the question (td-shuumatsu-nani-shimasu) but none of the three answers, so the dialogue currently has an opening and nothing else. This is also the only sentence in the lesson that shows the full time/place/object particle stack.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex-omatsuri-nani-tabemashita-ka",
+      "english": "What did you eat at the festival?",
+      "category": "Food",
+      "target": "おまつりでなにをたべましたか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "The book's own worked example for EXERCISES VI ('Ask and answer what someone did at an event'). The deck carded substitution alternative 1 (かいます) as a pair but took only the ANSWER from the printed example — なにもたべませんでした exists as `nanimo-tabemasendeshita` with no question in front of it. This restores the missing half and sits directly before it.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-suupu-nomimasendeshita",
+      "english": "Emma-san didn't drink the soup.",
+      "category": "Food",
+      "target": "エマさんはスープをのみませんでした",
+      "hint": null,
+      "note": "Soup takes のみます (nomimasu, 'drink') in Japanese, not たべます (tabemasu, 'eat').",
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): スープ had no sentence. The note records a genuine trap the vocabulary card cannot show, and the past negative gives のみます a second form in context.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p-resutoran-de-tabemasu",
+      "english": "Suzuki-san is going to eat at a restaurant.",
+      "category": "Food",
+      "target": "すずきさんはレストランでたべます",
+      "hint": null,
+      "note": "で (de) marks where an action happens. Compare すずきさんはレストランにいきます (suzuki san wa resutoran ni ikimasu): に goes to the place, で does something there.",
+      "reviewNote": "Constructed. Coverage job 1 (particle): second half of the に-vs-で minimal pair, differing only in the particle and the verb it licenses. Kept adjacent to p-resutoran-ni-ikimasu.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex-suzuki-ongaku-kikimasu",
+      "english": "Suzuki-san will listen to music.",
+      "category": "Sports & Hobbies",
+      "target": "すずきさんはおんがくをききます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "The book's own worked example for EXERCISES II-B ('State what someone will listen to'). Same situation as II-A: the deck has alternative 2 (ニュース) but not the printed example, and おんがく is otherwise a bare vocabulary card with no sentence.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-toshokan-de-shimasu",
+      "english": "I do it at the library.",
+      "category": "School & Education",
+      "target": "としょかんでします",
+      "note": "The reply drops べんきょうを (benkyō o) because the question already supplied it, leaving the catch-all します (shimasu) to stand in for the whole activity.",
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): としょかん had no sentence. Paired answer to v-doko-de-benkyou-shimasu-ka, adjacent to it; elliptical, so it carries a hint.",
+      "aiSuggested": true,
+      "scene": "answering where you study"
+    },
+    {
+      "id": "v-suzuki-to-kaimono-shimashita",
+      "english": "I went shopping with Suzuki-san.",
+      "category": "Shopping",
+      "target": "すずきさんとかいものをしました",
+      "note": null,
+      "reviewNote": "From EXERCISES VIII, substitution set 2 (すずきさん、かいもの) — the book's own line, not constructed. Coverage job 2 (vocabulary): the deck already carded this exchange's follow-up answer (fib-ginza-depaato-de-shimashita, ぎんざのデパートでしました) but not the line it follows, so that answer currently hangs on nothing.",
+      "aiSuggested": true,
+      "scene": "answering what you did over the weekend"
+    },
+    {
+      "id": "p-ema-mo-paatii-ni-ikimasu-ka",
+      "english": "Is Emma-san going to the party too?",
+      "category": "Other",
+      "target": "エマさんもパーティーにいきますか",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 1 (particle): the third も example and the only one in question form. Uses Lesson 6's に + いきます and Lesson 3's パーティー, so nothing here runs ahead of the book.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-kaimasu-arm-2",
+      "english": "Smith-san won't buy ice cream.",
+      "category": "Food",
+      "target": "スミスさんはアイスクリームをかいません",
+      "hint": null,
+      "note": "The stem かい (kai) never moves. Only the ending swaps: ます (masu) → ません (masen).",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the かいます four-form set, deliberately on the same vocabulary as f-kaimasu-arm-1 so only the ending changes.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-doyoubi-ginza-kaimono",
+      "english": "On Saturday I'm going to go shopping in Ginza.",
+      "category": "Shopping",
+      "target": "どようびにぎんざでかいものをします",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): かいものをします had no sentence. Uses the Target Dialogue's own time-に place-で ordering with ぎんざ, the chapter's home turf.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-iie-nomimasen",
+      "english": "No, I don't drink it.",
+      "category": "Food",
+      "target": "いいえ、のみません",
+      "note": null,
+      "reviewNote": "Constructed, on the model of Lesson 6's はい、いきます / いいえ、いきません pair. Coverage job 3 (forms): のみません exists as a bare word card with no sentence. Elliptical, so it carries a hint naming its question; kept adjacent to v-nihonshu-nomimasu-ka.",
+      "aiSuggested": true,
+      "scene": "answering whether you drink sake"
+    },
+    {
+      "id": "p102-kinou-nani-o-tabemashita-ka",
+      "english": "What did you eat yesterday?",
+      "category": "Food",
+      "target": "きのう、なにをたべましたか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 2. Job: past-tense なにを (nani o) question, the form this lesson teaches.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-kaisha-de-hirugohan",
+      "english": "Emma-san ate lunch at the office.",
+      "category": "Food",
+      "target": "エマさんはかいしゃでひるごはんをたべました",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed, modelled on EXERCISES IX item 2 (エマさんは ___ で ひるごはんを たべました), whose blank the audio fills. Coverage job 2 (vocabulary): ひるごはん had no sentence. かいしゃ is from Lesson 2.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-kikimasu-rajio-4",
+      "english": "Suzuki-san didn't listen to the radio.",
+      "category": "Technology & Communication",
+      "target": "すずきさんはラジオをききませんでした",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the ききます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "wp-sumisu-hon-o-yomimasu",
+      "english": "Smith-san will read a book.",
+      "category": "Other",
+      "target": "スミスさんはほんをよみます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "CONSTRUCTED, not quoted — flagging this explicitly. よみます is listed in WORD POWER and named in GRAMMAR 1 as a を-taking verb, but the chapter never gives it a sentence, so it is the one verb in the lesson that exists in the deck purely as an isolated dictionary entry. ほん is from Lesson 2. Prune this if you want the lesson to stay strictly book-sourced.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-yomimasu-nyuusu-1",
+      "english": "Emma-san reads the news.",
+      "category": "Technology & Communication",
+      "target": "エマさんはニュースをよみます",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 1 of a four-form set for よみます, the verb with the thinnest coverage in the lesson — the chapter names it in GRAMMAR 1 and lists it in WORD POWER but never gives it a sentence. Uses ニュース rather than ほん to stay clear of WAVE1's スミスさんはほんをよみます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-nichiyoubi-nani-o-shimasu-ka",
+      "english": "What do you do on Sundays?",
+      "category": "Time",
+      "target": "にちようび、なにをしますか",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 5. Job: the present-tense なにを (nani o) question against the past-tense one above.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p102-senshuumatsu-nani-o-shimashita-ka",
+      "english": "What did you do last weekend?",
+      "category": "Time",
+      "target": "せんしゅうまつ、なにをしましたか",
+      "note": "せんしゅう (senshū) 'last week' plus まつ (matsu) 'end'. The lesson's own しゅうまつ (shūmatsu) is the weekend without saying which one.",
+      "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open.",
+      "aiSuggested": true
+    },
+    {
+      "id": "p-depaato-de-kasa-kaimashita",
+      "english": "Emma-san bought an umbrella at a department store.",
+      "category": "Shopping",
+      "target": "エマさんはデパートでかさをかいました",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 1 (particle): first half of a で-place vs で-means minimal pair. Same particle, two unrelated jobs, and the deck teaches them a lesson apart (Lesson 4's カードでおねがいします, Lesson 7's しんかんせんで) without ever showing the clash.",
       "aiSuggested": true
     },
     {
@@ -109,63 +556,93 @@
       "scene": "giving the restaurant your booking day and time"
     },
     {
-      "id": "f-kaimasu-arm-2",
-      "english": "Smith-san won't buy ice cream.",
+      "id": "v-raamen-tabemashita",
+      "english": "Smith-san ate ramen.",
       "category": "Food",
-      "target": "スミスさんはアイスクリームをかいません",
+      "target": "スミスさんはラーメンをたべました",
       "hint": null,
-      "note": "The stem かい (kai) never moves. Only the ending swaps: ます (masu) → ません (masen).",
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the かいます four-form set, deliberately on the same vocabulary as f-kaimasu-arm-1 so only the ending changes.",
+      "note": null,
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): ラーメン had no sentence. Kept deliberately bare because it is the を half of the を/も minimal pair that follows.",
       "aiSuggested": true
     },
     {
-      "id": "v-suupu-nomimasendeshita",
-      "english": "Emma-san didn't drink the soup.",
-      "category": "Food",
-      "target": "エマさんはスープをのみませんでした",
+      "id": "p-dare-to-kabuki-mimasu-ka",
+      "english": "Who are you going to see kabuki with?",
+      "category": "Sports & Hobbies",
+      "target": "だれとかぶきをみますか",
       "hint": null,
-      "note": "Soup takes のみます (nomimasu, 'drink') in Japanese, not たべます (tabemasu, 'eat').",
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): スープ had no sentence. The note records a genuine trap the vocabulary card cannot show, and the past negative gives のみます a second form in context.",
+      "note": null,
+      "reviewNote": "Constructed on Lesson 6's だれとデパートにいきますか. Coverage job 1 (particle): と had three statements in this lesson and no question, and the existing だれと question is tied to いきます — this shows it with an object-taking verb, where と and を have to sit in the same sentence.",
       "aiSuggested": true
     },
     {
-      "id": "f-kikimasu-rajio-1",
-      "english": "Suzuki-san listens to the radio.",
+      "id": "sp-yoyaku-o-onegaishimasu",
+      "english": "I'd like to make a reservation.",
+      "category": "Travel & Tourism",
+      "target": "よやくをおねがいします",
+      "hint": null,
+      "note": "Same [noun] を おねがいします frame as Lesson 1's たなかさんをおねがいします (tanaka san o onegaishimasu) and Lesson 4's カレーとサラダをおねがいします (karē to sarada o onegaishimasu) — one of the most reusable request patterns in the book.",
+      "reviewNote": "From SPEAKING PRACTICE 1, p. 80 — Suzuki's opening request. The deck has よやく as a bare noun but never the line that uses it, so a learner knows the word 'reservation' without being able to ask for one.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-yomimasu-nyuusu-2",
+      "english": "Emma-san doesn't read the news.",
       "category": "Technology & Communication",
-      "target": "すずきさんはラジオをききます",
+      "target": "エマさんはニュースをよみません",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 1 of a four-form set for ききます. Also gives ラジオ its only sentence — the deck carded it from EXERCISES II-B's substitution list and never used it.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the よみます four-form set.",
       "aiSuggested": true
     },
     {
-      "id": "v-doyoubi-osushi-tabemasu",
-      "english": "On Saturday I'm going to eat sushi with a friend.",
+      "id": "sp-onamae-to-odenwabangou",
+      "english": "Please give me your name and your telephone number.",
+      "category": "Other",
+      "target": "おなまえとおでんわばんごうをおねがいします",
+      "note": "と (to) here is Lesson 4's 'and' joining two nouns, not Lesson 6's 'with' — the whole pair is then marked by を as one object of おねがいします.",
+      "reviewNote": "From SPEAKING PRACTICE 1, p. 80 — the employee's closing line. The deck has おなまえ and おでんわばんごう as separate bare nouns; this is the sentence they were introduced for, and it is what a learner will actually hear at a counter or on the phone.",
+      "aiSuggested": true,
+      "scene": "what staff say when taking your booking"
+    },
+    {
+      "id": "v-hoteru-no-baa-de-biiru",
+      "english": "Suzuki-san is going to drink beer at the hotel bar.",
       "category": "Food",
-      "target": "どようびにともだちとおすしをたべます",
+      "target": "すずきさんはホテルのバーでビールをのみます",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): (お)すし had no sentence. Built on the Target Dialogue's own frame (time に — person と — object を — verb) with the topic dropped, so it doubles as a second run at the lesson's word order.",
+      "reviewNote": "From EXERCISES IV-A, substitution alternative 2 (ホテルの バー) applied to the book's printed example. Coverage job 2 (vocabulary): バー had no sentence — the deck carded alternative 1 (レストラン) and skipped this one. ホテル appears only in this chapter's exercises, so flag it if you want the word carded separately first.",
       "aiSuggested": true
     },
     {
-      "id": "ex-suzuki-ongaku-kikimasu",
-      "english": "Suzuki-san will listen to music.",
-      "category": "Sports & Hobbies",
-      "target": "すずきさんはおんがくをききます",
+      "id": "f-yomimasu-nyuusu-3",
+      "english": "Emma-san read the news.",
+      "category": "Technology & Communication",
+      "target": "エマさんはニュースをよみました",
       "hint": null,
       "note": null,
-      "reviewNote": "The book's own worked example for EXERCISES II-B ('State what someone will listen to'). Same situation as II-A: the deck has alternative 2 (ニュース) but not the printed example, and おんがく is otherwise a bare vocabulary card with no sentence.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the よみます four-form set. Note the English is the only thing distinguishing it from member 1 in speech — Japanese marks the tense, English 'read' does not.",
       "aiSuggested": true
     },
     {
-      "id": "v-tenisukooto-de-tenisu",
-      "english": "I played tennis at the hotel tennis court.",
+      "id": "f-mimasu-eiga-3",
+      "english": "Sasaki-san saw a movie.",
       "category": "Sports & Hobbies",
-      "target": "ホテルのテニスコートでテニスをしました",
+      "target": "ささきさんはえいがをみました",
       "hint": null,
       "note": null,
-      "reviewNote": "Constructed from EXERCISES VIII substitution set 1 (テニス / ホテルの テニスコート), merged into one self-contained sentence rather than the book's two-line exchange so it needs no hint. Coverage job 2 (vocabulary): テニスコート had no sentence, and テニスをします had only the present-tense Key Sentence 1.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the みます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "f-kaimasu-arm-4",
+      "english": "Smith-san didn't buy ice cream.",
+      "category": "Food",
+      "target": "スミスさんはアイスクリームをかいませんでした",
+      "hint": null,
+      "note": "The past negative stacks both pieces: ません (masen) then でした (deshita). Compare かいません (kaimasen), which is present.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the かいます four-form set, and the form the chapter pairs with なにも in Key Sentence 3.",
       "aiSuggested": true
     },
     {
@@ -177,6 +654,46 @@
       "reviewNote": "The paired answer from EXERCISES V-B. Elliptical (both topic and object dropped), so it carries a hint naming its question. Adjacent to ex-doko-de-bangohan-tabemasu-ka.",
       "aiSuggested": true,
       "scene": "answering where you're going to eat dinner"
+    },
+    {
+      "id": "p-resutoran-ni-ikimasu",
+      "english": "Suzuki-san is going to a restaurant.",
+      "category": "Food",
+      "target": "すずきさんはレストランにいきます",
+      "hint": null,
+      "note": "に (ni) marks where the movement ends up. Nothing happens at the restaurant in this sentence — only the arriving.",
+      "reviewNote": "Constructed. Coverage job 1 (particle): first half of a に-vs-で minimal pair. This lesson's new で is the particle most easily confused with Lesson 6's destination に, and nothing in the deck puts the two on the same place noun.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-hakone-de-shimashita",
+      "english": "I did it in Hakone.",
+      "category": "Sports & Hobbies",
+      "target": "はこねでしました",
+      "note": null,
+      "reviewNote": "From EXERCISES VIII, the printed worked dialogue — the book's own line. Coverage job 2 (vocabulary): はこね had no sentence. The deck already holds the two lines either side of it (ともだちとゴルフをしました and どこでしましたか) so this closes the exchange. Elliptical, hence the hint.",
+      "aiSuggested": true,
+      "scene": "answering where you played golf"
+    },
+    {
+      "id": "f-mimasu-eiga-2",
+      "english": "Sasaki-san isn't going to see a movie.",
+      "category": "Sports & Hobbies",
+      "target": "ささきさんはえいがをみません",
+      "hint": null,
+      "note": "みます (mimasu) has a one-syllable stem み (mi), so the negative is just みません (mimasen) — shorter than it looks, and no irregularity.",
+      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the みます four-form set.",
+      "aiSuggested": true
+    },
+    {
+      "id": "v-tenisukooto-de-tenisu",
+      "english": "I played tennis at the hotel tennis court.",
+      "category": "Sports & Hobbies",
+      "target": "ホテルのテニスコートでテニスをしました",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Constructed from EXERCISES VIII substitution set 1 (テニス / ホテルの テニスコート), merged into one self-contained sentence rather than the book's two-line exchange so it needs no hint. Coverage job 2 (vocabulary): テニスコート had no sentence, and テニスをします had only the present-tense Key Sentence 1.",
+      "aiSuggested": true
     },
     {
       "id": "td-nichiyoubi-kabuki-mimasu",
@@ -199,304 +716,22 @@
       "aiSuggested": true
     },
     {
-      "id": "f-kikimasu-rajio-4",
-      "english": "Suzuki-san didn't listen to the radio.",
-      "category": "Technology & Communication",
-      "target": "すずきさんはラジオをききませんでした",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the ききます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex-suzuki-terebi-mimasu",
-      "english": "Suzuki-san will watch television.",
-      "category": "Technology & Communication",
-      "target": "すずきさんはテレビをみます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "The book's own worked example for EXERCISES II-A ('State what someone will see'). The deck carded substitution alternative 2 (かぶき) but not the printed example, so みます currently has one sentence. This makes two, and gives テレビ (Lesson 4) its first use in a sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex-futari-desu",
-      "english": "Two people.",
-      "category": "Numbers",
-      "target": "ふたりです",
-      "note": "Note the register swap: staff ask with the honorific なんめいさまですか (nanmeisama desu ka), you answer with the plain counter.",
-      "reviewNote": "The book's worked answer in EXERCISES VII, and Suzuki says the same line in SPEAKING PRACTICE 1 — it appears twice in the chapter. The deck has the AI-derived さんにんです but not this one. Low priority since the pattern is already taught, but it is the printed example.",
-      "aiSuggested": true,
-      "scene": "answering how many are in your party"
-    },
-    {
-      "id": "f-kaimasu-arm-4",
-      "english": "Smith-san didn't buy ice cream.",
+      "id": "p-raamen-mo-tabemashita",
+      "english": "Smith-san ate ramen too.",
       "category": "Food",
-      "target": "スミスさんはアイスクリームをかいませんでした",
+      "target": "スミスさんはラーメンもたべました",
       "hint": null,
-      "note": "The past negative stacks both pieces: ません (masen) then でした (deshita). Compare かいません (kaimasen), which is present.",
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the かいます four-form set, and the form the chapter pairs with なにも in Key Sentence 3.",
+      "note": "も (mo) does not sit next to を (o) — it replaces it. Compare スミスさんはラーメンをたべました (sumisu san wa rāmen o tabemashita): same sentence, and the swap is the whole difference between 'ate ramen' and 'ate ramen as well'.",
+      "reviewNote": "Constructed. Coverage job 1 (particle): minimal pair with v-raamen-tabemashita. Lesson 4 introduced も but only ever with です (あれもさんぜんえんです), so nothing in the deck shows it displacing an object marker — which is exactly where a learner reaches for ラーメンをも.",
       "aiSuggested": true
     },
     {
-      "id": "v-hoteru-no-baa-de-biiru",
-      "english": "Suzuki-san is going to drink beer at the hotel bar.",
+      "id": "food",
+      "english": "Food",
       "category": "Food",
-      "target": "すずきさんはホテルのバーでビールをのみます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From EXERCISES IV-A, substitution alternative 2 (ホテルの バー) applied to the book's printed example. Coverage job 2 (vocabulary): バー had no sentence — the deck carded alternative 1 (レストラン) and skipped this one. ホテル appears only in this chapter's exercises, so flag it if you want the word carded separately first.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp2-furiimaaketto-ni-ikimashita",
-      "english": "I went to a flea market.",
-      "category": "Shopping",
-      "target": "フリーマーケットにいきました",
-      "note": null,
-      "reviewNote": "From SPEAKING PRACTICE 2, p. 80 — Smith's reply, split from its question per the Q/A rule. Uses Lesson 6's に + いきました with this lesson's フリーマーケット, which is otherwise a bare noun with no sentence. Adjacent to sp2-kinou-nani-o-shimashita-ka.",
-      "aiSuggested": true,
-      "scene": "answering what you did yesterday"
-    },
-    {
-      "id": "f-mimasu-eiga-2",
-      "english": "Sasaki-san isn't going to see a movie.",
-      "category": "Sports & Hobbies",
-      "target": "ささきさんはえいがをみません",
-      "hint": null,
-      "note": "みます (mimasu) has a one-syllable stem み (mi), so the negative is just みません (mimasen) — shorter than it looks, and no irregularity.",
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the みます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "td-doyoubi-tenpura-tabemasu",
-      "english": "On Saturday, I'm going to eat tempura in Ginza with Suzuki-san.",
-      "category": "Food",
-      "target": "どようびにぎんざですずきさんとてんぷらをたべます",
-      "hint": null,
-      "note": "The lesson's word order in full: person は — time に — place で — object を — verb. Three particles already known (に from Lesson 7, で newly split into its place sense, と from Lesson 6) stack around this lesson's new を.",
-      "reviewNote": "From TARGET DIALOGUE — Smith's reply, and the title line of the whole lesson. The deck cards the question (td-shuumatsu-nani-shimasu) but none of the three answers, so the dialogue currently has an opening and nothing else. This is also the only sentence in the lesson that shows the full time/place/object particle stack.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-doyoubi-ginza-kaimono",
-      "english": "On Saturday I'm going to go shopping in Ginza.",
-      "category": "Shopping",
-      "target": "どようびにぎんざでかいものをします",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): かいものをします had no sentence. Uses the Target Dialogue's own time-に place-で ordering with ぎんざ, the chapter's home turf.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex-doko-de-bangohan-tabemasu-ka",
-      "english": "Smith-san, where are you going to eat dinner?",
-      "category": "Food",
-      "target": "スミスさんはどこでばんごはんをたべますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Worked example question from EXERCISES V-B ('Ask and answer where someone will do something'). The deck's only どこで question is the past-tense fragment どこでしましたか (fib-doko-de-shimashitaka); nothing shows どこで in a full present-tense sentence with an object, which is exactly what GRAMMAR 2 teaches.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-doko-de-benkyou-shimasu-ka",
-      "english": "Where do you study?",
-      "category": "School & Education",
-      "target": "どこでべんきょうをしますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed on EXERCISES V-B's どこで〜ますか pattern. Coverage job 2 (vocabulary): べんきょうをします had no sentence at all, and this is the question that makes としょかん usable.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-doyoubi-shigoto-shimasu-ka",
-      "english": "Smith-san, are you working on Saturday?",
-      "category": "Work & Occupations",
-      "target": "スミスさんはどようびにしごとをしますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): しごとをします had no sentence — しごと appears in the deck only as Lesson 3's しごとはくじからごじまでです, where it is a noun, never as an activity you do.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-nani-o-nomimasu-ka",
-      "english": "What are you going to drink?",
-      "category": "Food",
-      "target": "なにをのみますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed on EXERCISES III-B's なにを〜ますか pattern. Coverage job 1 (particle): を in a question with a real content verb — the deck's なにを questions all use します, かいます or たべます, never のみます.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p-ema-mo-paatii-ni-ikimasu-ka",
-      "english": "Is Emma-san going to the party too?",
-      "category": "Other",
-      "target": "エマさんもパーティーにいきますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 1 (particle): the third も example and the only one in question form. Uses Lesson 6's に + いきます and Lesson 3's パーティー, so nothing here runs ahead of the book.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-yomimasu-nyuusu-1",
-      "english": "Emma-san reads the news.",
-      "category": "Technology & Communication",
-      "target": "エマさんはニュースをよみます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 1 of a four-form set for よみます, the verb with the thinnest coverage in the lesson — the chapter names it in GRAMMAR 1 and lists it in WORD POWER but never gives it a sentence. Uses ニュース rather than ほん to stay clear of WAVE1's スミスさんはほんをよみます.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-uchi-de-asagohan",
-      "english": "I eat breakfast at home.",
-      "category": "Food",
-      "target": "わたしはうちであさごはんをたべます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): あさごはん is carded but appears in no sentence. Frames it with うち (Lesson 6) and the lesson's new place-で rather than yet another レストラン.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-kaimasu-arm-1",
-      "english": "Smith-san will buy ice cream.",
-      "category": "Food",
-      "target": "スミスさんはアイスクリームをかいます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 1 of a four-form set for かいます, which the deck holds only as a bare ます card while たべます, のみます and します have all four. Also gives アイスクリーム its first sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp-yoyaku-o-onegaishimasu",
-      "english": "I'd like to make a reservation.",
-      "category": "Travel & Tourism",
-      "target": "よやくをおねがいします",
-      "hint": null,
-      "note": "Same [noun] を おねがいします frame as Lesson 1's たなかさんをおねがいします (tanaka san o onegaishimasu) and Lesson 4's カレーとサラダをおねがいします (karē to sarada o onegaishimasu) — one of the most reusable request patterns in the book.",
-      "reviewNote": "From SPEAKING PRACTICE 1, p. 80 — Suzuki's opening request. The deck has よやく as a bare noun but never the line that uses it, so a learner knows the word 'reservation' without being able to ask for one.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-kikimasu-rajio-2",
-      "english": "Suzuki-san doesn't listen to the radio.",
-      "category": "Technology & Communication",
-      "target": "すずきさんはラジオをききません",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the ききます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-yomimasu-nyuusu-3",
-      "english": "Emma-san read the news.",
-      "category": "Technology & Communication",
-      "target": "エマさんはニュースをよみました",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the よみます four-form set. Note the English is the only thing distinguishing it from member 1 in speech — Japanese marks the tense, English 'read' does not.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-kinou-benkyou-shimasendeshita",
-      "english": "I didn't study yesterday.",
-      "category": "School & Education",
-      "target": "きのうべんきょうをしませんでした",
-      "hint": null,
-      "note": "In a nounを します verb, only します (shimasu) conjugates — べんきょうを (benkyō o) is untouched.",
-      "reviewNote": "Constructed. Coverage job 3 (forms): しませんでした is a bare word card with no sentence, and no card anywhere shows a nounを します compound in a negative form, which is where the conjugation is easiest to get wrong.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp2-kinou-nani-o-shimashita-ka",
-      "english": "What did you do yesterday?",
-      "category": "Time",
-      "target": "きのうなにをしましたか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "From SPEAKING PRACTICE 2, p. 80 — Nakamura's opening question. The deck has no past-tense なにを question at all in circulation: the one that existed (fib-shuumatsu-nani-shimashitaka) is flagged EXCLUDED. This is the more useful of the two anyway, and it is a verbatim dialogue line rather than a derived one.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-ocha-o-nomimasu",
-      "english": "I'm going to drink green tea.",
-      "category": "Food",
-      "target": "おちゃをのみます",
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): おちゃ had no sentence. Paired answer to v-nani-o-nomimasu-ka and kept adjacent to it; elliptical, so it carries a hint.",
-      "aiSuggested": true,
-      "scene": "answering what you're going to drink"
-    },
-    {
-      "id": "f-mimasu-eiga-4",
-      "english": "Sasaki-san didn't see a movie.",
-      "category": "Sports & Hobbies",
-      "target": "ささきさんはえいがをみませんでした",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the みます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-iie-shimasen",
-      "english": "No, I won't.",
-      "category": "Work & Occupations",
-      "target": "いいえ、しません",
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): しません is a bare word card with no sentence. Paired answer to v-doyoubi-shigoto-shimasu-ka and adjacent to it; elliptical, so it carries a hint distinguishing it from the sake reply いいえ、のみません.",
-      "aiSuggested": true,
-      "scene": "answering whether you're working on Saturday"
-    },
-    {
-      "id": "sasaki-san-wa",
-      "english": "How about you, Sasaki-san?",
-      "category": "Other",
-      "target": "ささきさんは",
-      "note": "Said with rising intonation. It is the topic particle は (wa) with everything after it dropped — the question just asked is understood to carry over, so this means 'and you, what are you going to do?' Swap in any name.",
-      "reviewNote": "From TARGET DIALOGUE, explained in NOTES 2, p. 75. The book gives it a dedicated note because it is a reusable conversational move, but it never became a card. Cheap to learn and immediately usable.",
-      "aiSuggested": true,
-      "scene": "turning the same question back on the other person"
-    },
-    {
-      "id": "v-asagohan-tabemasen",
-      "english": "Smith-san doesn't eat breakfast.",
-      "category": "Food",
-      "target": "スミスさんはあさごはんをたべません",
-      "hint": null,
-      "note": "Contrast with わたしはうちであさごはんをたべます (watashi wa uchi de asagohan o tabemasu) directly above — same object, opposite polarity.",
-      "reviewNote": "Constructed. Coverage job 3 (forms): たべます is the lesson's headline verb but the deck has no sentence in the plain negative — it has past affirmative (Key Sentence 2) and past negative (Key Sentence 3) only. Second あさごはん context as a bonus.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p-tomodachi-to-mimasu",
-      "english": "I'm going to see it with a friend.",
-      "category": "Sports & Hobbies",
-      "target": "ともだちとみます",
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 1 (particle): paired answer to p-dare-to-kabuki-mimasu-ka, adjacent to it. The object かぶきを (kabuki o) drops out because the question supplied it; elliptical, hence the hint.",
-      "aiSuggested": true,
-      "scene": "answering who you're seeing kabuki with"
-    },
-    {
-      "id": "p-dare-to-kabuki-mimasu-ka",
-      "english": "Who are you going to see kabuki with?",
-      "category": "Sports & Hobbies",
-      "target": "だれとかぶきをみますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed on Lesson 6's だれとデパートにいきますか. Coverage job 1 (particle): と had three statements in this lesson and no question, and the existing だれと question is tied to いきます — this shows it with an object-taking verb, where と and を have to sit in the same sentence.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-iie-nomimasen",
-      "english": "No, I don't drink it.",
-      "category": "Food",
-      "target": "いいえ、のみません",
-      "note": null,
-      "reviewNote": "Constructed, on the model of Lesson 6's はい、いきます / いいえ、いきません pair. Coverage job 3 (forms): のみません exists as a bare word card with no sentence. Elliptical, so it carries a hint naming its question; kept adjacent to v-nihonshu-nomimasu-ka.",
-      "aiSuggested": true,
-      "scene": "answering whether you drink sake"
+      "target": "たべもの",
+      "note": "Built from たべる (taberu, 'to eat') + もの (mono, 'thing'); のみもの (nomimono, drink) follows the same pattern from のむ (nomu, 'to drink').",
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson"
     },
     {
       "id": "sp2-nani-o-kaimashita-ka",
@@ -506,56 +741,6 @@
       "hint": null,
       "note": null,
       "reviewNote": "From SPEAKING PRACTICE 2, p. 80 — Nakamura's follow-up. Its answer, なにもかいませんでした, is already in the deck as fib-nanimo-kaimasendeshita, so the deck currently holds the reply to a question it never teaches. The existing fib-omatsuri-nani-kaimashitaka is the same pattern but with a place; this is the bare form and a verbatim dialogue line.",
-      "aiSuggested": true
-    },
-    {
-      "id": "sp-onamae-to-odenwabangou",
-      "english": "Please give me your name and your telephone number.",
-      "category": "Other",
-      "target": "おなまえとおでんわばんごうをおねがいします",
-      "note": "と (to) here is Lesson 4's 'and' joining two nouns, not Lesson 6's 'with' — the whole pair is then marked by を as one object of おねがいします.",
-      "reviewNote": "From SPEAKING PRACTICE 1, p. 80 — the employee's closing line. The deck has おなまえ and おでんわばんごう as separate bare nouns; this is the sentence they were introduced for, and it is what a learner will actually hear at a counter or on the phone.",
-      "aiSuggested": true,
-      "scene": "what staff say when taking your booking"
-    },
-    {
-      "id": "f-yomimasu-nyuusu-2",
-      "english": "Emma-san doesn't read the news.",
-      "category": "Technology & Communication",
-      "target": "エマさんはニュースをよみません",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 2 of the よみます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-hakone-de-shimashita",
-      "english": "I did it in Hakone.",
-      "category": "Sports & Hobbies",
-      "target": "はこねでしました",
-      "note": null,
-      "reviewNote": "From EXERCISES VIII, the printed worked dialogue — the book's own line. Coverage job 2 (vocabulary): はこね had no sentence. The deck already holds the two lines either side of it (ともだちとゴルフをしました and どこでしましたか) so this closes the exchange. Elliptical, hence the hint.",
-      "aiSuggested": true,
-      "scene": "answering where you played golf"
-    },
-    {
-      "id": "v-kaisha-de-hirugohan",
-      "english": "Emma-san ate lunch at the office.",
-      "category": "Food",
-      "target": "エマさんはかいしゃでひるごはんをたべました",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed, modelled on EXERCISES IX item 2 (エマさんは ___ で ひるごはんを たべました), whose blank the audio fills. Coverage job 2 (vocabulary): ひるごはん had no sentence. かいしゃ is from Lesson 2.",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex-nani-o-tabemasu-ka",
-      "english": "Smith-san, what are you going to eat?",
-      "category": "Food",
-      "target": "スミスさんはなにをたべますか",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Worked example question from EXERCISES III-B ('Ask and answer what someone will do'). The deck's only なにを question is しゅうまつになにをしますか with the catch-all します — nothing asks なにを with a real content verb, which is the whole point of GRAMMAR 1. English follows the deck's direct-address convention from Lesson 6 (スミスさんはあしたきょうとにいきますか → 'Smith-san, will you go to Kyoto tomorrow?').",
       "aiSuggested": true
     },
     {
@@ -569,114 +754,14 @@
       "scene": "answering what you're going to eat"
     },
     {
-      "id": "v-suzuki-to-kaimono-shimashita",
-      "english": "I went shopping with Suzuki-san.",
-      "category": "Shopping",
-      "target": "すずきさんとかいものをしました",
-      "note": null,
-      "reviewNote": "From EXERCISES VIII, substitution set 2 (すずきさん、かいもの) — the book's own line, not constructed. Coverage job 2 (vocabulary): the deck already carded this exchange's follow-up answer (fib-ginza-depaato-de-shimashita, ぎんざのデパートでしました) but not the line it follows, so that answer currently hangs on nothing.",
-      "aiSuggested": true,
-      "scene": "answering what you did over the weekend"
-    },
-    {
-      "id": "ex-sumisu-suteeki-tabemasu",
-      "english": "Smith-san will eat steak.",
+      "id": "v-ocha-o-nomimasu",
+      "english": "I'm going to drink green tea.",
       "category": "Food",
-      "target": "スミスさんはステーキをたべます",
-      "hint": null,
+      "target": "おちゃをのみます",
       "note": null,
-      "reviewNote": "Worked example from EXERCISES III-A ('State what someone will do'). The deck's only present-tense を + たべます sentence is the Target Dialogue one I propose above, which is loaded with three other particles; this is the bare pattern with nothing else in the way. Also sets up the Q&A pair that follows.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-kikimasu-rajio-3",
-      "english": "Suzuki-san listened to the radio.",
-      "category": "Technology & Communication",
-      "target": "すずきさんはラジオをききました",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the ききます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-hitori-desu",
-      "english": "One person.",
-      "category": "Numbers",
-      "target": "ひとりです",
-      "note": "ひとり (hitori) and ふたり (futari) are irregular — they do not take にん (nin). Counting with the suffix only starts at さんにん (san-nin).",
-      "reviewNote": "Constructed on EXERCISES VII's pattern. Coverage job 2 (vocabulary): ひとり had no sentence, while ふたり and さんにん both do. Paired with v-nannin-desu-ka and adjacent to it.",
+      "reviewNote": "Constructed. Coverage job 2 (vocabulary): おちゃ had no sentence. Paired answer to v-nani-o-nomimasu-ka and kept adjacent to it; elliptical, so it carries a hint.",
       "aiSuggested": true,
-      "scene": "answering how many are in your party"
-    },
-    {
-      "id": "v-raamen-tabemashita",
-      "english": "Smith-san ate ramen.",
-      "category": "Food",
-      "target": "スミスさんはラーメンをたべました",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): ラーメン had no sentence. Kept deliberately bare because it is the を half of the を/も minimal pair that follows.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p-suzuki-mo-kabuki-mimasu",
-      "english": "Suzuki-san is going to see kabuki too.",
-      "category": "Sports & Hobbies",
-      "target": "すずきさんもかぶきをみます",
-      "hint": null,
-      "note": "Here も (mo) replaces は (wa), so it is the person that is 'as well', not the activity. Contrast スミスさんはラーメンもたべました (sumisu san wa rāmen mo tabemashita), where も sits on the object instead.",
-      "reviewNote": "Constructed. Coverage job 1 (particle): も had no example with a verb anywhere in the deck. This is the subject slot; p-raamen-mo-tabemashita is the object slot. Builds on the Target Dialogue's かぶきをみます.",
-      "aiSuggested": true
-    },
-    {
-      "id": "v-toshokan-de-shimasu",
-      "english": "I do it at the library.",
-      "category": "School & Education",
-      "target": "としょかんでします",
-      "note": "The reply drops べんきょうを (benkyō o) because the question already supplied it, leaving the catch-all します (shimasu) to stand in for the whole activity.",
-      "reviewNote": "Constructed. Coverage job 2 (vocabulary): としょかん had no sentence. Paired answer to v-doko-de-benkyou-shimasu-ka, adjacent to it; elliptical, so it carries a hint.",
-      "aiSuggested": true,
-      "scene": "answering where you study"
-    },
-    {
-      "id": "v-konbini-de-mizu-kaimasu",
-      "english": "Suzuki-san is going to buy water at a convenience store.",
-      "category": "Shopping",
-      "target": "すずきさんはコンビニでみずをかいます",
-      "hint": null,
-      "note": null,
-      "reviewNote": "The book's own worked example for EXERCISES IV-B, printed verbatim. Coverage job 2 (vocabulary): コンビニ had no sentence — the deck took substitution alternative 1 (スーパー) and left the printed example out.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-kaimasu-arm-3",
-      "english": "Smith-san bought ice cream.",
-      "category": "Food",
-      "target": "スミスさんはアイスクリームをかいました",
-      "hint": null,
-      "note": "ます (masu) → ました (mashita) is the whole of the past tense. There is no separate past form of the noun or the particle.",
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 3 of the かいます four-form set.",
-      "aiSuggested": true
-    },
-    {
-      "id": "p-kaado-de-kasa-kaimashita",
-      "english": "Emma-san bought an umbrella by credit card.",
-      "category": "Shopping",
-      "target": "エマさんはカードでかさをかいました",
-      "hint": null,
-      "note": "Same で (de), different job: here it is the means, not the place. Compare エマさんはデパートでかさをかいました (ema san wa depāto de kasa o kaimashita) — only the noun in front of で changes, and it decides which reading you get.",
-      "reviewNote": "Constructed. Coverage job 1 (particle): second half of the で-place vs で-means pair. Uses Lesson 4's カード and Lesson 2's かさ, so the only new thing is the ambiguity itself. Kept adjacent to p-depaato-de-kasa-kaimashita.",
-      "aiSuggested": true
-    },
-    {
-      "id": "f-yomimasu-nyuusu-4",
-      "english": "Emma-san didn't read the news.",
-      "category": "Technology & Communication",
-      "target": "エマさんはニュースをよみませんでした",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Constructed. Coverage job 3 (forms): member 4 of the よみます four-form set.",
-      "aiSuggested": true
+      "scene": "answering what you're going to drink"
     }
   ]
 }

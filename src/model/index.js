@@ -254,6 +254,19 @@ const CARDS_SCHEMA = {
           // drill blank with lesson vocabulary), so reviews can delineate them and the semantic
           // de-dup pass can target them. Behaves like any other card in the deck.
           fillInBlank: { type: "boolean" },
+          // The retrofit batch that added this card to a unit that was already finished, and the
+          // sign-off that lets it ship. A card is a PENDING addition while `addition` is set and
+          // `additionReviewed` is not true, and a pending card is filtered out by
+          // `shippableCards()` so neither delivery path can see it. `addition` is never cleared:
+          // it is the durable record of which batch a card arrived in.
+          addition: { type: "string" },
+          additionReviewed: { type: "boolean" },
+          additionDone: { type: "boolean" },
+          // Set when a retrofit brought this card's clip WITH it, rather than the audio stage
+          // synthesizing a new one after the content gate. The audio review can then separate "a
+          // clip I have already heard, in another deck" from "a clip nobody has heard yet", which
+          // is the difference that decides how carefully it needs auditioning.
+          additionAudioInherited: { type: "boolean" },
           // Which card DIRECTIONS this note should not be studied in, as template ordinals
           // (0 = Recognition, 1 = Production — see src/deck/cardTemplates.js, where the order is a
           // contract). `[1]` on a three-clause self-introduction means "study it Recognition-only".

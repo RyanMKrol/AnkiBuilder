@@ -27,7 +27,7 @@ function makeFixture() {
       courseSlug: "my-course",
       done: true,
     },
-    items: [{ id: "cat", target: "猫", english: "Cat", category: "Animals" }],
+    items: [{ id: "cat", target: "猫", english: "Cat", category: "Animals", audio: "cat.mp3" }],
   };
   writeFileSync(join(lesson, "cards.json"), JSON.stringify(cards));
   writeFileSync(join(lesson, "corpus.json"), JSON.stringify(cards));

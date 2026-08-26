@@ -350,8 +350,9 @@ test("the audio group offers a per-section sign-off, like the normal audio revie
       const html = await (await fetch(`${url}/additions/book/mybook`)).text();
       assert.match(html, /Mark done/, "the same words the audio review uses");
       assert.ok(!/class="addition-done"/.test(html), "no invented per-card sign-off button");
-      // The label must not be able to wrap into an unreadable stack again.
-      assert.match(html, /\.approve-btn,\.addition-done\{white-space:nowrap/);
+      // And no invented per-card sign-off control: the reviews this copies have none.
+      assert.ok(!/<button[^>]*class="addition-done"/.test(html));
+      assert.ok(!/<button[^>]*class="approve-btn"/.test(html));
     });
   } finally {
     rmSync(root, { recursive: true, force: true });

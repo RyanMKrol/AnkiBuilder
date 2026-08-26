@@ -45,7 +45,8 @@
       "audioOriginal": "65c67a32d7d4d76d.orig.mp3",
       "audioAuto": "65c67a32d7d4d76d.mp3",
       "audioMarked": true,
-      "audioTextHash": "65c67a32d7d4d76d"
+      "audioTextHash": "65c67a32d7d4d76d",
+      "additionDone": true
     },
     {
       "id": "v-doyoubi-shigoto-shimasu-ka",
@@ -135,7 +136,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "v-kinou-benkyou-shimasendeshita",
@@ -261,7 +263,8 @@
       "audioOriginal": "38c7599a5bcebe4a.orig.mp3",
       "audioAuto": "38c7599a5bcebe4a.mp3",
       "audioMarked": true,
-      "audioTextHash": "38c7599a5bcebe4a"
+      "audioTextHash": "38c7599a5bcebe4a",
+      "additionDone": true
     },
     {
       "id": "fib-ema-mo-ocha-nomimasu",
@@ -279,7 +282,8 @@
       "audioOriginal": "4e4c3bef6c0841f8.orig.mp3",
       "audioAuto": "4e4c3bef6c0841f8.mp3",
       "audioMarked": true,
-      "audioTextHash": "4e4c3bef6c0841f8"
+      "audioTextHash": "4e4c3bef6c0841f8",
+      "additionDone": true
     },
     {
       "id": "v-nani-o-nomimasu-ka",
@@ -311,7 +315,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "v-doyoubi-osushi-tabemasu",
@@ -414,7 +419,8 @@
       "audioOriginal": "abc8d8aedabae0c8.orig.mp3",
       "audioAuto": "abc8d8aedabae0c8.mp3",
       "audioMarked": true,
-      "audioTextHash": "abc8d8aedabae0c8"
+      "audioTextHash": "abc8d8aedabae0c8",
+      "additionDone": true
     },
     {
       "id": "v-asagohan-tabemasen",
@@ -463,7 +469,8 @@
       "audioOriginal": "29052567f7212653.orig.mp3",
       "audioAuto": "29052567f7212653.mp3",
       "audioMarked": true,
-      "audioTextHash": "29052567f7212653"
+      "audioTextHash": "29052567f7212653",
+      "additionDone": true
     },
     {
       "id": "f-mimasu-eiga-4",
@@ -495,7 +502,8 @@
       "audioOriginal": "6069f7137b2e695f.orig.mp3",
       "audioAuto": "6069f7137b2e695f.mp3",
       "audioMarked": true,
-      "audioTextHash": "6069f7137b2e695f"
+      "audioTextHash": "6069f7137b2e695f",
+      "additionDone": true
     },
     {
       "id": "ex-suzuki-terebi-mimasu",
@@ -617,7 +625,8 @@
       "audioOriginal": "1be2646f23794a62.orig.mp3",
       "audioAuto": "1be2646f23794a62.mp3",
       "audioMarked": true,
-      "audioTextHash": "1be2646f23794a62"
+      "audioTextHash": "1be2646f23794a62",
+      "additionDone": true
     },
     {
       "id": "ex-futari-desu",
@@ -684,7 +693,8 @@
       "audioOriginal": "ad2a71acc4996fa8.orig.mp3",
       "audioAuto": "ad2a71acc4996fa8.mp3",
       "audioMarked": true,
-      "audioTextHash": "ad2a71acc4996fa8"
+      "audioTextHash": "ad2a71acc4996fa8",
+      "additionDone": true
     },
     {
       "id": "p-suzuki-mo-kabuki-mimasu",
@@ -812,7 +822,8 @@
       "audioOriginal": "7b9cfb14f988b954.orig.mp3",
       "audioAuto": "7b9cfb14f988b954.mp3",
       "audioMarked": true,
-      "audioTextHash": "7b9cfb14f988b954"
+      "audioTextHash": "7b9cfb14f988b954",
+      "additionDone": true
     },
     {
       "id": "v-suzuki-to-kaimono-shimashita",
@@ -889,7 +900,8 @@
       "audioOriginal": "ac43a7e1bd36b9e8.orig.mp3",
       "audioAuto": "ac43a7e1bd36b9e8.mp3",
       "audioMarked": true,
-      "audioTextHash": "ac43a7e1bd36b9e8"
+      "audioTextHash": "ac43a7e1bd36b9e8",
+      "additionDone": true
     },
     {
       "id": "v-iie-nomimasen",
@@ -920,7 +932,8 @@
       "audioOriginal": "cc7af7acd34c7f2a.orig.mp3",
       "audioAuto": "cc7af7acd34c7f2a.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc7af7acd34c7f2a"
+      "audioTextHash": "cc7af7acd34c7f2a",
+      "additionDone": true
     },
     {
       "id": "v-kaisha-de-hirugohan",
@@ -997,7 +1010,8 @@
       "audioOriginal": "fa2ba7b943617f57.orig.mp3",
       "audioAuto": "fa2ba7b943617f57.mp3",
       "audioMarked": true,
-      "audioTextHash": "fa2ba7b943617f57"
+      "audioTextHash": "fa2ba7b943617f57",
+      "additionDone": true
     },
     {
       "id": "p102-senshuumatsu-nani-o-shimashita-ka",
@@ -1014,7 +1028,8 @@
       "audioOriginal": "60571e7d2524ab61.orig.mp3",
       "audioAuto": "60571e7d2524ab61.mp3",
       "audioMarked": true,
-      "audioTextHash": "60571e7d2524ab61"
+      "audioTextHash": "60571e7d2524ab61",
+      "additionDone": true
     },
     {
       "id": "p-depaato-de-kasa-kaimashita",
@@ -1245,7 +1260,8 @@
       "audioOriginal": "dbc67beb7b07ca32.orig.mp3",
       "audioAuto": "dbc67beb7b07ca32.mp3",
       "audioMarked": true,
-      "audioTextHash": "dbc67beb7b07ca32"
+      "audioTextHash": "dbc67beb7b07ca32",
+      "additionDone": true
     },
     {
       "id": "f-mimasu-eiga-2",
@@ -1351,7 +1367,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "sp2-nani-o-kaimashita-ka",

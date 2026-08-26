@@ -339,7 +339,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-senshu-kyouto-ni-ikimashita",
@@ -428,7 +429,8 @@
       "audioOriginal": "8ee233f61625c511.orig.mp3",
       "audioAuto": "8ee233f61625c511.mp3",
       "audioMarked": true,
-      "audioTextHash": "8ee233f61625c511"
+      "audioTextHash": "8ee233f61625c511",
+      "additionDone": true
     },
     {
       "id": "f11-shuumatsu-wa-hima-ja-arimasen",
@@ -860,7 +862,8 @@
       "audioOriginal": "9703be7f4e361844.orig.mp3",
       "audioAuto": "9703be7f4e361844.mp3",
       "audioMarked": true,
-      "audioTextHash": "9703be7f4e361844"
+      "audioTextHash": "9703be7f4e361844",
+      "additionDone": true
     },
     {
       "id": "f11-kono-hon-wa-tsumaranakunakatta-desu",

@@ -222,7 +222,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\".",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ex9-doko-ni-denwa-o-shimasu-ka",
@@ -255,7 +256,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: yasai is taught in Lesson 9",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "f9-zenzen-toshokan-ni-ikimasen",
@@ -378,7 +380,8 @@
       "audioOriginal": "ffea091098a851dd.orig.mp3",
       "audioAuto": "ffea091098a851dd.mp3",
       "audioMarked": true,
-      "audioTextHash": "ffea091098a851dd"
+      "audioTextHash": "ffea091098a851dd",
+      "additionDone": true
     },
     {
       "id": "f9-amari-toshokan-ni-ikimasen",
@@ -439,7 +442,8 @@
       "audioOriginal": "d1018ef830b04c5d.orig.mp3",
       "audioAuto": "d1018ef830b04c5d.mp3",
       "audioMarked": true,
-      "audioTextHash": "d1018ef830b04c5d"
+      "audioTextHash": "d1018ef830b04c5d",
+      "additionDone": true
     },
     {
       "id": "v9-kanai-wa-kaimono",
@@ -493,7 +497,8 @@
       "audioOriginal": "5fd73f8465d45228.orig.mp3",
       "audioAuto": "5fd73f8465d45228.mp3",
       "audioMarked": true,
-      "audioTextHash": "5fd73f8465d45228"
+      "audioTextHash": "5fd73f8465d45228",
+      "additionDone": true
     },
     {
       "id": "v9-shujin-wa-nyusu",
@@ -571,7 +576,8 @@
       "audioOriginal": "fb3031d6b20161d7.orig.mp3",
       "audioAuto": "fb3031d6b20161d7.mp3",
       "audioMarked": true,
-      "audioTextHash": "fb3031d6b20161d7"
+      "audioTextHash": "fb3031d6b20161d7",
+      "additionDone": true
     },
     {
       "id": "fib-kinou-kaisha-de-meru-o-okurimashita",
@@ -936,7 +942,8 @@
       "audioOriginal": "25414fa8284e6607.orig.mp3",
       "audioAuto": "25414fa8284e6607.mp3",
       "audioMarked": true,
-      "audioTextHash": "25414fa8284e6607"
+      "audioTextHash": "25414fa8284e6607",
+      "additionDone": true
     },
     {
       "id": "p9-kaigi-no-basho-o-kikimashita",
@@ -966,7 +973,8 @@
       "audioOriginal": "8b26fcd40d6f6d1e.orig.mp3",
       "audioAuto": "8b26fcd40d6f6d1e.mp3",
       "audioMarked": true,
-      "audioTextHash": "8b26fcd40d6f6d1e"
+      "audioTextHash": "8b26fcd40d6f6d1e",
+      "additionDone": true
     },
     {
       "id": "ex9-suzuki-sama-desu-ne",
@@ -1023,7 +1031,8 @@
       "audioOriginal": "e2b076797b073546.orig.mp3",
       "audioAuto": "e2b076797b073546.mp3",
       "audioMarked": true,
-      "audioTextHash": "e2b076797b073546"
+      "audioTextHash": "e2b076797b073546",
+      "additionDone": true
     },
     {
       "id": "fib-gakko-de-nihongo-o-oshiemasu",
@@ -1070,7 +1079,8 @@
       "audioOriginal": "9ea7809de5d9d804.orig.mp3",
       "audioAuto": "9ea7809de5d9d804.mp3",
       "audioMarked": true,
-      "audioTextHash": "9ea7809de5d9d804"
+      "audioTextHash": "9ea7809de5d9d804",
+      "additionDone": true
     },
     {
       "id": "fib-uchi-de-tabemasu",
@@ -1159,7 +1169,8 @@
       "audioOriginal": "981e8c91f0a9340b.orig.mp3",
       "audioAuto": "981e8c91f0a9340b.mp3",
       "audioMarked": true,
-      "audioTextHash": "981e8c91f0a9340b"
+      "audioTextHash": "981e8c91f0a9340b",
+      "additionDone": true
     },
     {
       "id": "v9-shacho-wa-sapporo-shisha",
@@ -1203,7 +1214,8 @@
       "audioOriginal": "4169a75a14666ce9.orig.mp3",
       "audioAuto": "4169a75a14666ce9.mp3",
       "audioMarked": true,
-      "audioTextHash": "4169a75a14666ce9"
+      "audioTextHash": "4169a75a14666ce9",
+      "additionDone": true
     },
     {
       "id": "v9-maiasa-yasai-jusu",
@@ -1264,7 +1276,8 @@
       "audioOriginal": "a256f8b9e59a4ca2.orig.mp3",
       "audioAuto": "a256f8b9e59a4ca2.mp3",
       "audioMarked": true,
-      "audioTextHash": "a256f8b9e59a4ca2"
+      "audioTextHash": "a256f8b9e59a4ca2",
+      "additionDone": true
     },
     {
       "id": "v9-roma-wa-ima-gozen-shichiji",

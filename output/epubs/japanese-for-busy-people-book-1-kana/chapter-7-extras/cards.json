@@ -43,7 +43,8 @@
       "note": "Interchangeable with なんで (nande) from this lesson for asking how someone travels; どうやって (dō yatte) is the everyday choice, while なんで (nande) risks being heard as \"why\" in casual speech.",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "w2-ema-2022nen-kimashita",
@@ -145,7 +146,8 @@
       "audioOriginal": "e5020bd8f43d6615.orig.mp3",
       "audioAuto": "e5020bd8f43d6615.mp3",
       "audioMarked": true,
-      "audioTextHash": "e5020bd8f43d6615"
+      "audioTextHash": "e5020bd8f43d6615",
+      "additionDone": true
     },
     {
       "id": "kinyoubi-ni-tokyo-kaerimasu",
@@ -192,7 +194,8 @@
       "audioOriginal": "77a9c2ca577b467e.orig.mp3",
       "audioAuto": "77a9c2ca577b467e.mp3",
       "audioMarked": true,
-      "audioTextHash": "77a9c2ca577b467e"
+      "audioTextHash": "77a9c2ca577b467e",
+      "additionDone": true
     },
     {
       "id": "w2-mikka-desu",
@@ -270,7 +273,8 @@
       "audioOriginal": "548ca1cc469740d9.orig.mp3",
       "audioAuto": "548ca1cc469740d9.mp3",
       "audioMarked": true,
-      "audioTextHash": "548ca1cc469740d9"
+      "audioTextHash": "548ca1cc469740d9",
+      "additionDone": true
     },
     {
       "id": "fib-ropesu-raigetsu-youka-a",
@@ -288,7 +292,8 @@
       "audioOriginal": "1d34543026733c31.orig.mp3",
       "audioAuto": "1d34543026733c31.mp3",
       "audioMarked": true,
-      "audioTextHash": "1d34543026733c31"
+      "audioTextHash": "1d34543026733c31",
+      "additionDone": true
     },
     {
       "id": "fib-ropesu-raigetsu-youka-q",
@@ -306,7 +311,8 @@
       "audioOriginal": "1a385949268f3b16.orig.mp3",
       "audioAuto": "1a385949268f3b16.mp3",
       "audioMarked": true,
-      "audioTextHash": "1a385949268f3b16"
+      "audioTextHash": "1a385949268f3b16",
+      "additionDone": true
     },
     {
       "id": "p102-basu-de-shigoto-ni-ikimasu",
@@ -323,7 +329,8 @@
       "audioOriginal": "8d2ffecfe93a9a79.orig.mp3",
       "audioAuto": "8d2ffecfe93a9a79.mp3",
       "audioMarked": true,
-      "audioTextHash": "8d2ffecfe93a9a79"
+      "audioTextHash": "8d2ffecfe93a9a79",
+      "additionDone": true
     },
     {
       "id": "kaigi-wa-itsu-desu-ka",
@@ -366,7 +373,8 @@
       "audioOriginal": "509e379be9c55440.orig.mp3",
       "audioAuto": "509e379be9c55440.mp3",
       "audioMarked": true,
-      "audioTextHash": "509e379be9c55440"
+      "audioTextHash": "509e379be9c55440",
+      "additionDone": true
     },
     {
       "id": "fib-shucchou-itsukara-a",
@@ -588,11 +596,13 @@
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going.",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "audio": "a4ef445c07cb6a4c.mp3",
-      "audioOriginal": "a4ef445c07cb6a4c.orig.mp3",
-      "audioAuto": "a4ef445c07cb6a4c.mp3",
+      "audioOriginal": "bc6ff4f623693c19-genkanji-89ab3f68.orig.mp3",
+      "audioAuto": "bc6ff4f623693c19-genkanji-89ab3f68.mp3",
       "audioMarked": true,
-      "audioTextHash": "a4ef445c07cb6a4c"
+      "audioTextHash": "bc6ff4f623693c19",
+      "audioFilter": "standard",
+      "audio": "bc6ff4f623693c19-genkanji-89ab3f68.mp3",
+      "additionDone": true
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu",
@@ -641,7 +651,8 @@
       "audioOriginal": "2d3d3a6aec4e91b0.orig.mp3",
       "audioAuto": "2d3d3a6aec4e91b0.mp3",
       "audioMarked": true,
-      "audioTextHash": "2d3d3a6aec4e91b0"
+      "audioTextHash": "2d3d3a6aec4e91b0",
+      "additionDone": true
     },
     {
       "id": "raigetsu-no-youka-desu",
@@ -815,7 +826,8 @@
       "audioOriginal": "feef7e1a957380ff.orig.mp3",
       "audioAuto": "feef7e1a957380ff.mp3",
       "audioMarked": true,
-      "audioTextHash": "feef7e1a957380ff"
+      "audioTextHash": "feef7e1a957380ff",
+      "additionDone": true
     },
     {
       "id": "w2-getsuyoubi-kara-mokuyoubi-made",
@@ -846,7 +858,8 @@
       "audioOriginal": "9f0da341ba6f7a40.orig.mp3",
       "audioAuto": "9f0da341ba6f7a40.mp3",
       "audioMarked": true,
-      "audioTextHash": "9f0da341ba6f7a40"
+      "audioTextHash": "9f0da341ba6f7a40",
+      "additionDone": true
     },
     {
       "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
@@ -894,7 +907,8 @@
       "audioOriginal": "f9b5d8d927f0acf5.orig.mp3",
       "audioAuto": "f9b5d8d927f0acf5.mp3",
       "audioMarked": true,
-      "audioTextHash": "f9b5d8d927f0acf5"
+      "audioTextHash": "f9b5d8d927f0acf5",
+      "additionDone": true
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu-ka",
@@ -1032,7 +1046,8 @@
       "audioOriginal": "9868e140c4564f71.orig.mp3",
       "audioAuto": "9868e140c4564f71.mp3",
       "audioMarked": true,
-      "audioTextHash": "9868e140c4564f71"
+      "audioTextHash": "9868e140c4564f71",
+      "additionDone": true
     },
     {
       "id": "smith-getsuyoubi-takushii-hoteru",

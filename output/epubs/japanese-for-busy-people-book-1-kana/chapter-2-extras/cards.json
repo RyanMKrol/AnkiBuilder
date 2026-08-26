@@ -65,7 +65,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "p102-kaishain",
@@ -82,7 +83,8 @@
       "audioOriginal": "32f12bb6a01314cf.orig.mp3",
       "audioAuto": "32f12bb6a01314cf.mp3",
       "audioMarked": true,
-      "audioTextHash": "32f12bb6a01314cf"
+      "audioTextHash": "32f12bb6a01314cf",
+      "additionDone": true
     },
     {
       "id": "oshiete-kudasai",
@@ -386,7 +388,8 @@
       "hint": "the item you wear on your wrist, not the general word for a clock",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-keitai-bangou-o-oshiete-kudasai",
@@ -435,7 +438,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "sumisu-san-no-juusho-o-oshiete-kudasai",
@@ -501,7 +505,8 @@
       "audioOriginal": "41d7a053c7f33b9c.orig.mp3",
       "audioAuto": "41d7a053c7f33b9c.mp3",
       "audioMarked": true,
-      "audioTextHash": "41d7a053c7f33b9c"
+      "audioTextHash": "41d7a053c7f33b9c",
+      "additionDone": true
     },
     {
       "id": "kore-wa-watashi-no-juusho-desu",
@@ -536,7 +541,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "nihon-no-okashi-desu",
@@ -649,7 +655,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "iie-watashi-no-desu",
@@ -760,7 +767,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "hai-sasaki-san-no-desu",
@@ -808,7 +816,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Identifying an object: Lesson 2's kore wa nan desu ka frame",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "nozomi-depaato-no-denwa-bangou",
@@ -978,11 +987,13 @@
       "aiSuggested": true,
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "audio": "bb11a90a02d5642c.mp3",
-      "audioOriginal": "bb11a90a02d5642c.orig.mp3",
-      "audioAuto": "bb11a90a02d5642c.mp3",
+      "audioOriginal": "db6ee57ac7436fdd-genkanji-60fca18a.orig.mp3",
+      "audioAuto": "db6ee57ac7436fdd-genkanji-60fca18a.mp3",
       "audioMarked": true,
-      "audioTextHash": "bb11a90a02d5642c"
+      "audioTextHash": "db6ee57ac7436fdd",
+      "audioFilter": "standard",
+      "audio": "db6ee57ac7436fdd-genkanji-60fca18a.mp3",
+      "additionDone": true
     },
     {
       "id": "kore-wa-sasaki-san-no-saifu-desu-ka",
@@ -1030,7 +1041,8 @@
       "audioOriginal": "462146861b8b54cb.orig.mp3",
       "audioAuto": "462146861b8b54cb.mp3",
       "audioMarked": true,
-      "audioTextHash": "462146861b8b54cb"
+      "audioTextHash": "462146861b8b54cb",
+      "additionDone": true
     },
     {
       "id": "irl-l1-37",
@@ -1049,7 +1061,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "iie-tokei-ja-arimasen",
@@ -1188,7 +1201,8 @@
       "audioOriginal": "278171539209e471.orig.mp3",
       "audioAuto": "278171539209e471.mp3",
       "audioMarked": true,
-      "audioTextHash": "278171539209e471"
+      "audioTextHash": "278171539209e471",
+      "additionDone": true
     },
     {
       "id": "toy",
@@ -1205,7 +1219,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "kore-wa-fairu-desu-ka",
@@ -1251,7 +1266,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "kore-wa-kagi-desu-ka",

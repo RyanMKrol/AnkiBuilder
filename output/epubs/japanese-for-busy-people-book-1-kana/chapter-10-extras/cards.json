@@ -48,7 +48,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "v10-asakusa-nigiyaka-na-tokoro",
@@ -80,7 +81,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-mise-benri-nai",
@@ -188,7 +190,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "f10-kaban-ookikunai",
@@ -294,7 +297,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "cute",
@@ -310,7 +314,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ex10-kono-kamera-yasui",
@@ -451,7 +456,8 @@
       "audioTextHash": "a48981ce874cf711",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ex10-okinawa-umi-kirei-q",
@@ -482,7 +488,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ex10-hai-takai",
@@ -603,7 +610,8 @@
       "audioOriginal": "e24b01dfaf1acb8c.orig.mp3",
       "audioAuto": "e24b01dfaf1acb8c.mp3",
       "audioMarked": true,
-      "audioTextHash": "e24b01dfaf1acb8c"
+      "audioTextHash": "e24b01dfaf1acb8c",
+      "additionDone": true
     },
     {
       "id": "ex10-ocha-o-douzo",
@@ -664,7 +672,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\".",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-kore-wa-takai-desu",
@@ -683,7 +692,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "f10-mise-atarashikunai",
@@ -774,7 +784,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "f10-wain-yasukunai",
@@ -825,7 +836,8 @@
       "audioTextHash": "f7469831558a9d98",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "v10-tenki-warui",
@@ -1073,7 +1085,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ex10-totemo-oishii",

@@ -149,7 +149,8 @@
       "audioOriginal": "478810452412066e.orig.mp3",
       "audioAuto": "478810452412066e.mp3",
       "audioMarked": true,
-      "audioTextHash": "478810452412066e"
+      "audioTextHash": "478810452412066e",
+      "additionDone": true
     },
     {
       "id": "x15c-wain-nomu-no-ga-suki",
@@ -196,7 +197,8 @@
       "audioOriginal": "2b99da4ef9678209.orig.mp3",
       "audioAuto": "2b99da4ef9678209.mp3",
       "audioMarked": true,
-      "audioTextHash": "2b99da4ef9678209"
+      "audioTextHash": "2b99da4ef9678209",
+      "additionDone": true
     },
     {
       "id": "fib-utau-jouzu-q",
@@ -357,7 +359,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x15c-hon-yomu-no-ga-suki",
@@ -403,7 +406,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",
@@ -525,7 +529,8 @@
       "audioOriginal": "91752f7fe79105c5.orig.mp3",
       "audioAuto": "91752f7fe79105c5.mp3",
       "audioMarked": true,
-      "audioTextHash": "91752f7fe79105c5"
+      "audioTextHash": "91752f7fe79105c5",
+      "additionDone": true
     },
     {
       "id": "fib-anime-miru-mo-suki",
@@ -573,7 +578,8 @@
       "audioOriginal": "e602cd41c82c8797.orig.mp3",
       "audioAuto": "e602cd41c82c8797.mp3",
       "audioMarked": true,
-      "audioTextHash": "e602cd41c82c8797"
+      "audioTextHash": "e602cd41c82c8797",
+      "additionDone": true
     },
     {
       "id": "x15c-aruku-no-ga-suki",
@@ -634,7 +640,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-utau-suki-past",
@@ -669,7 +676,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 15 teaches suiei and the sport/hobby set",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x15b-bijutsukan-ni-iku-no-ga-suki-q",
@@ -882,7 +890,8 @@
       "audioOriginal": "04caffdd26683070.orig.mp3",
       "audioAuto": "04caffdd26683070.mp3",
       "audioMarked": true,
-      "audioTextHash": "04caffdd26683070"
+      "audioTextHash": "04caffdd26683070",
+      "additionDone": true
     },
     {
       "id": "x15a-donna-itaria-ryouri-q",
@@ -1035,7 +1044,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Entertainment/media, alongside Lesson 15's anime and music",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-raja-hashiru-jouzu-past-neg",

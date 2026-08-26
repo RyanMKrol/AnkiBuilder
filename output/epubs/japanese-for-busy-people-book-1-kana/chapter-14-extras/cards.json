@@ -47,7 +47,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14b-yubiwa-agemashita-ni",
@@ -289,7 +290,8 @@
       "audioOriginal": "b686abeb44670160.orig.mp3",
       "audioAuto": "b686abeb44670160.mp3",
       "audioMarked": true,
-      "audioTextHash": "b686abeb44670160"
+      "audioTextHash": "b686abeb44670160",
+      "additionDone": true
     },
     {
       "id": "fib-atarashii-sumaho-ga-arimasu",
@@ -320,7 +322,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-raishuu-kaigi-ga-arimasu",
@@ -351,7 +354,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14-tanjoubi-nani-moraimashita-q",
@@ -399,7 +403,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14b-tsuma-iyaringu-kuremashita",
@@ -493,7 +498,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: doushite becomes answerable once Lesson 14 teaches kara (because)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14b-chokoreeto-agemasendeshita",
@@ -524,7 +530,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14b-konban-yakusoku-arimasu",
@@ -675,7 +682,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14-ashita-no-yoru-jikan-arimasuka",
@@ -852,7 +860,8 @@
       "audioTextHash": "f21cd71ef3fa23dc",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-emma-dare-ni-yubiwa-agemasu-q",
@@ -887,7 +896,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "x14b-okane-karimasendeshita",

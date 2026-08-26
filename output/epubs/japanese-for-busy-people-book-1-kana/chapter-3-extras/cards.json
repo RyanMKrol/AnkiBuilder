@@ -60,7 +60,8 @@
       "audioOriginal": "aa4326a4b914531e.orig.mp3",
       "audioAuto": "aa4326a4b914531e.mp3",
       "audioMarked": true,
-      "audioTextHash": "aa4326a4b914531e"
+      "audioTextHash": "aa4326a4b914531e",
+      "additionDone": true
     },
     {
       "id": "yasumi-ashita-a",
@@ -126,7 +127,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Built entirely from Lesson 3's clock vocabulary",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "td-lunchtime-end-q",
@@ -220,7 +222,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "td-lunchtime-start-a",
@@ -253,7 +256,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-ima-gozen-goji",
@@ -271,7 +275,8 @@
       "audioOriginal": "56a365da7ff63d77.orig.mp3",
       "audioAuto": "56a365da7ff63d77.mp3",
       "audioMarked": true,
-      "audioTextHash": "56a365da7ff63d77"
+      "audioTextHash": "56a365da7ff63d77",
+      "additionDone": true
     },
     {
       "id": "ima-juuniji-han",
@@ -302,7 +307,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "fib-suupaa-nanji-made-q",
@@ -349,7 +355,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches gozen/gogo with the hours",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "from-what-time-to-what-time-is-the-gym-o",
@@ -366,7 +373,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Built entirely from Lesson 3's clock vocabulary",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "td-lunchtime-summary",
@@ -397,7 +405,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "sumisu-purezen-itsu-q",
@@ -459,7 +468,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "five-minutes",
@@ -476,7 +486,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "resutoran-nanji-made-q",
@@ -611,7 +622,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "yasumi-itsu-q",
@@ -766,7 +778,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "paatii-shichiji-juuji",
@@ -798,7 +811,8 @@
       "audioOriginal": "2fb9a7d8b35958ff.orig.mp3",
       "audioAuto": "2fb9a7d8b35958ff.mp3",
       "audioMarked": true,
-      "audioTextHash": "2fb9a7d8b35958ff"
+      "audioTextHash": "2fb9a7d8b35958ff",
+      "additionDone": true
     },
     {
       "id": "depaato-nanji-made-q",
@@ -923,7 +937,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ima-kuji-desu-ka",
@@ -1000,7 +1015,8 @@
       "audioOriginal": "cf0ce74b5c1df74a.orig.mp3",
       "audioAuto": "cf0ce74b5c1df74a.mp3",
       "audioMarked": true,
-      "audioTextHash": "cf0ce74b5c1df74a"
+      "audioTextHash": "cf0ce74b5c1df74a",
+      "additionDone": true
     },
     {
       "id": "kyou-no-kaigi-nanji-q",
@@ -1064,7 +1080,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Built entirely from Lesson 3's clock vocabulary",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "suupaa-gogo-rokuji-made",
@@ -1221,7 +1238,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 3 teaches the ...fun minute counter",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "puuru-gozen-hachiji-a",

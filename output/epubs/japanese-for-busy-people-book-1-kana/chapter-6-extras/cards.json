@@ -43,7 +43,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "kimasen",
@@ -135,7 +136,8 @@
       "audioOriginal": "f424b775acf16cc4.orig.mp3",
       "audioAuto": "f424b775acf16cc4.mp3",
       "audioMarked": true,
-      "audioTextHash": "f424b775acf16cc4"
+      "audioTextHash": "f424b775acf16cc4",
+      "additionDone": true
     },
     {
       "id": "p102-jimu-ni-ikimasu",
@@ -151,7 +153,8 @@
       "audioOriginal": "c04909aed51db303.orig.mp3",
       "audioAuto": "c04909aed51db303.mp3",
       "audioMarked": true,
-      "audioTextHash": "c04909aed51db303"
+      "audioTextHash": "c04909aed51db303",
+      "additionDone": true
     },
     {
       "id": "form-kuukou-ikimashita",
@@ -314,7 +317,8 @@
       "audioOriginal": "c8e8795e1a2f74f4.orig.mp3",
       "audioAuto": "c8e8795e1a2f74f4.mp3",
       "audioMarked": true,
-      "audioTextHash": "c8e8795e1a2f74f4"
+      "audioTextHash": "c8e8795e1a2f74f4",
+      "additionDone": true
     },
     {
       "id": "a-iie-kimasen",
@@ -762,7 +766,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionDone": true
     },
     {
       "id": "ne-eki-wa-achira-desu-ne",
@@ -828,7 +833,8 @@
       "audioOriginal": "d2f8ef83e74870a4.orig.mp3",
       "audioAuto": "d2f8ef83e74870a4.mp3",
       "audioMarked": true,
-      "audioTextHash": "d2f8ef83e74870a4"
+      "audioTextHash": "d2f8ef83e74870a4",
+      "additionDone": true
     },
     {
       "id": "vocab-kazoku-to-honkon-ni-ikimashita",
@@ -972,7 +978,8 @@
       "audioOriginal": "720fdb40997d011e.orig.mp3",
       "audioAuto": "720fdb40997d011e.mp3",
       "audioMarked": true,
-      "audioTextHash": "720fdb40997d011e"
+      "audioTextHash": "720fdb40997d011e",
+      "additionDone": true
     },
     {
       "id": "fib-iie-ikimasendeshita",
@@ -1018,7 +1025,8 @@
       "audioOriginal": "5b8dba93b6d84c55.orig.mp3",
       "audioAuto": "5b8dba93b6d84c55.mp3",
       "audioMarked": true,
-      "audioTextHash": "5b8dba93b6d84c55"
+      "audioTextHash": "5b8dba93b6d84c55",
+      "additionDone": true
     },
     {
       "id": "a-iie-kimasen-deshita",
@@ -1047,11 +1055,13 @@
       "aiSuggested": true,
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "audio": "2ce700dd3edc0d4c.mp3",
-      "audioOriginal": "2ce700dd3edc0d4c.orig.mp3",
-      "audioAuto": "2ce700dd3edc0d4c.mp3",
+      "audioOriginal": "44669461a881d9ee-gen-3fad7808.orig.mp3",
+      "audioAuto": "44669461a881d9ee-gen-3fad7808.mp3",
       "audioMarked": true,
-      "audioTextHash": "2ce700dd3edc0d4c"
+      "audioTextHash": "44669461a881d9ee",
+      "audioFilter": "standard",
+      "audio": "44669461a881d9ee-gen-3fad7808.mp3",
+      "additionDone": true
     },
     {
       "id": "form-kuukou-ikimasen",
@@ -1266,7 +1276,8 @@
       "audioOriginal": "c47fcfbd32ef7f39.orig.mp3",
       "audioAuto": "c47fcfbd32ef7f39.mp3",
       "audioMarked": true,
-      "audioTextHash": "c47fcfbd32ef7f39"
+      "audioTextHash": "c47fcfbd32ef7f39",
+      "additionDone": true
     },
     {
       "id": "hitori-de-ikimasu-ka",

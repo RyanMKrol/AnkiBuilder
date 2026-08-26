@@ -44,13 +44,10 @@ table.tbl-incomplete{min-width:1070px}
 .tbl-incomplete col.c-num{width:44px}.tbl-incomplete col.c-en{width:240px}.tbl-incomplete col.c-cat{width:140px}.tbl-incomplete col.c-hint{width:170px}.tbl-incomplete col.c-note{width:196px}.tbl-incomplete col.c-flag{width:120px}
 table.tbl-corpus{min-width:1310px}
 .tbl-corpus col.c-num{width:44px}.tbl-corpus col.c-en{width:200px}.tbl-corpus col.c-cat{width:120px}.tbl-corpus col.c-jp{width:190px}.tbl-corpus col.c-pron{width:140px}.tbl-corpus col.c-hint{width:150px}.tbl-corpus col.c-note{width:120px}.tbl-corpus col.c-flag{width:104px}.tbl-corpus col.c-excl{width:96px}
-.tbl-additions col.c-num{width:44px}.tbl-additions col.c-en{width:210px}.tbl-additions col.c-jp{width:190px}.tbl-additions col.c-pron{width:150px}.tbl-additions col.c-au{width:184px}.tbl-additions col.c-hint{width:150px}.tbl-additions col.c-note{width:auto}.tbl-additions col.c-excl{width:176px}
+.tbl-additions col.c-num{width:44px}.tbl-additions col.c-en{width:210px}.tbl-additions col.c-jp{width:190px}.tbl-additions col.c-pron{width:150px}.tbl-additions col.c-au{width:184px}.tbl-additions col.c-hint{width:150px}.tbl-additions col.c-note{width:auto}.tbl-additions col.c-excl{width:96px}
 .tbl-additions td.excl-cell{white-space:nowrap;text-align:right}
 .tbl-additions td.excl-cell > * + *{margin-left:8px}
 .tbl-additions td.excl-cell .msg{display:block;margin:4px 0 0;text-align:right}
-.approve-btn,.addition-done{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;vertical-align:middle;font:inherit;font-size:12.5px;line-height:1;cursor:pointer;border:1px solid #3f6f6a;border-radius:8px;background:var(--card);color:#3f6f6a}
-.approve-btn:hover,.addition-done:hover{background:#3f6f6a;color:#fff}
-.approve-btn[disabled],.addition-done[disabled]{opacity:.45;cursor:default}
 .add-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 6px}
 .approve-all{cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid #3f6f6a;border-radius:6px;background:#3f6f6a;color:#fff}
 .approve-all:hover{background:#345c58}
@@ -252,7 +249,7 @@ export {
   DECK_EDIT_SCRIPT,
   AUDIO_TRIM_SCRIPT,
   REVIEW_EDIT_SCRIPT,
-  APPROVE_ADDITION_SCRIPT,
+  ADDITIONS_REVIEW_SCRIPT,
   MARK_DONE_SCRIPT,
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,

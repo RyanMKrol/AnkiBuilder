@@ -508,168 +508,80 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
 //
 // The row is updated in place rather than reloading: on a page holding a couple of hundred
 // retrofitted cards, a reload after every approval would lose your scroll position every time.
-export const APPROVE_ADDITION_SCRIPT = `(function () {
+// The additions review's two sign-offs. Deliberately SECTION controls named "Mark reviewed" and
+// "Mark done", because that is what the corpus and audio reviews have and this is meant to be the
+// same review filtered to a retrofit. The gate underneath is per card, which is a storage detail:
+// it exists so a finished lesson keeps its own sign-off, not so the page grows a column of buttons.
+//
+// Each control walks its section's rows one at a time. Never in parallel: every request rewrites the
+// same cards.json, so firing them together would have each read the file before the previous wrote
+// it and all but the last would be silently lost.
+export const ADDITIONS_REVIEW_SCRIPT = `(function () {
   var ctx = document.getElementById("deckctx");
   if (!ctx || !window.__ab) return;
   var A = window.__ab;
   var base = A.base, jsonp = A.jsonp;
 
-  function approve(tr) {
+  function post(tr, path) {
     var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
-    return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/addition/approve", { method: "POST" })
+    return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + path, { method: "POST" })
       .then(jsonp).then(function (x) {
         if (!x.ok) throw new Error(x.j.error || "failed");
-        var btn = tr.querySelector("button.approve-btn");
-        if (btn) btn.outerHTML = '<span class="tick" title="Approved — this card ships">✓</span>';
-        var badge = tr.querySelector(".badge-pending");
-        if (badge) badge.remove();
-        A.rowMsg(tr, "");
         return true;
       });
   }
 
-  // Sequential, never parallel: every one of these rewrites the SAME cards.json, so firing them at
-  // once would have each request read the file before the previous had written it and all but the
-  // last approval would be silently lost.
-  function approveEach(rows, onProgress) {
+  function walk(rows, path, msg, onDone) {
     var i = 0;
     function step() {
-      if (i >= rows.length) return Promise.resolve(rows.length);
-      if (onProgress) onProgress(i + 1, rows.length);
-      return approve(rows[i++]).then(step);
+      if (i >= rows.length) { onDone(rows.length); return A.maybeRebuild(); }
+      if (msg) msg.textContent = i + 1 + " of " + rows.length + "\u2026";
+      return post(rows[i++], path).then(step);
     }
     return step();
   }
 
-  var pendingRows = function (root) {
-    return [].slice.call(root.querySelectorAll("tr")).filter(function (tr) {
-      return tr.querySelector("button.approve-btn");
+  // Rows of this section that are not excluded and not already signed off at this gate.
+  function openRows(btn) {
+    return [].slice.call(btn.closest("details").querySelectorAll("tr.row")).filter(function (tr) {
+      return !tr.classList.contains("excluded");
     });
-  };
-
-  document.querySelectorAll("button.approve-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var tr = btn.closest("tr");
-      btn.disabled = true;
-      approve(tr).then(A.maybeRebuild).catch(function (e) {
-        btn.disabled = false;
-        A.rowMsg(tr, e.message || "failed");
-      });
-    });
-  });
-
-  document.querySelectorAll("button.approve-unit").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var rows = pendingRows(btn.closest("details"));
-      if (!rows.length) return;
-      btn.disabled = true;
-      var msg = btn.nextElementSibling;
-      approveEach(rows, function (n, of) { if (msg) msg.textContent = n + " of " + of + "…"; })
-        .then(function (n) {
-          if (msg) msg.textContent = "✓ " + n + " approved";
-          btn.outerHTML = '<span class="done-badge">✓ all approved</span>';
-          return A.maybeRebuild();
-        })
-        .catch(function (e) {
-          btn.disabled = false;
-          if (msg) msg.textContent = e.message || "failed";
-        });
-    });
-  });
-
-  // The second gate. Same shape as approve, different endpoint and different meaning: this one is
-  // what actually lets the card ship, so it is the last thing that happens to it.
-  function markDone(tr) {
-    var cid = tr.getAttribute("data-card-id"), unit = tr.getAttribute("data-unit");
-    return fetch(base + "/unit/" + encodeURIComponent(unit) + "/card/" + encodeURIComponent(cid) + "/addition/done", { method: "POST" })
-      .then(jsonp).then(function (x) {
-        if (!x.ok) throw new Error(x.j.error || "failed");
-        var btn = tr.querySelector("button.addition-done");
-        if (btn) btn.outerHTML = '<span class="tick" title="Signed off — this card ships">✓</span>';
-        A.rowMsg(tr, "");
-        return true;
-      });
   }
 
-  document.querySelectorAll("button.addition-done").forEach(function (btn) {
+  document.querySelectorAll("button.mark-rev-additions").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var tr = btn.closest("tr");
-      btn.disabled = true;
-      markDone(tr).then(A.maybeRebuild).catch(function (e) {
-        btn.disabled = false;
-        A.rowMsg(tr, e.message || "failed");
-      });
-    });
-  });
-
-  // Per-section sign-off, the same shape the normal audio review's "Mark done" has. Sequential for
-  // the same reason as approve: every one rewrites the same cards.json.
-  document.querySelectorAll("button.done-unit").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var sec = btn.closest("details");
-      var rows = [].slice.call(sec.querySelectorAll("tr")).filter(function (tr) {
-        var b = tr.querySelector("button.addition-done");
-        return b && !b.disabled;
-      });
+      var rows = openRows(btn), msg = btn.nextElementSibling;
       if (!rows.length) return;
-      if (!window.confirm("Sign off the audio on " + rows.length + " card" + (rows.length === 1 ? "" : "s") + " in this deck? They ship after this.")) return;
       btn.disabled = true;
-      var msg = btn.nextElementSibling;
-      var i = 0;
-      function step() {
-        if (i >= rows.length) {
-          if (msg) msg.textContent = "\u2713 " + rows.length + " signed off";
-          btn.outerHTML = '<span class="done-badge">\u2713 all signed off</span>';
-          return A.maybeRebuild();
-        }
-        if (msg) msg.textContent = i + 1 + " of " + rows.length + "\u2026";
-        return markDone(rows[i++]).then(step);
-      }
-      step().catch(function (e) {
+      walk(rows, "/addition/approve", msg, function (n) {
+        if (msg) msg.textContent = "\u2713 " + n + " reviewed";
+        btn.outerHTML = '<span class="done-badge">\u2713 reviewed</span>';
+      }).catch(function (e) {
         btn.disabled = false;
         if (msg) msg.textContent = e.message || "failed";
       });
     });
   });
 
-  // The primary action. Reading a couple of hundred cards and clicking Approve on each is data
-  // entry, not review: the useful flow is to exclude or fix the few that need it and accept the
-  // rest together. Confirmed, because it is the one control here that cannot be undone in one click.
-  var all = document.querySelector("button.approve-all");
-  if (all) {
-    all.addEventListener("click", function () {
-      var rows = pendingRows(document);
-      var msg = all.nextElementSibling;
-      if (!rows.length) { if (msg) msg.textContent = "nothing left to approve"; return; }
-      // Say what approving actually does. It is the CONTENT sign-off, the additions review's
-      // equivalent of the corpus gate, and the thing that unlocks the audio stage — not a delivery.
-      // Nothing reaches the live Anki collection without an explicit Deliver.
-      var silent = document.querySelectorAll('tr.row[data-needs-audio="1"]').length;
-      var warn = "Approve " + rows.length + " card" + (rows.length === 1 ? "" : "s") + "?\\n\\n"
-        + "This is the content sign-off. Audio is generated after it, and nothing reaches Anki "
-        + "until you click Deliver."
-        + (silent ? "\\n\\n" + silent + " of them have no clip yet." : "");
-      if (!window.confirm(warn)) return;
-      all.disabled = true;
-      approveEach(rows, function (n, of) { if (msg) msg.textContent = n + " of " + of + "…"; })
-        .then(function (n) {
-          if (msg) msg.textContent = "✓ " + n + " approved";
-          document.querySelectorAll("button.approve-unit").forEach(function (b) {
-            b.outerHTML = '<span class="done-badge">✓ all approved</span>';
-          });
-          return A.maybeRebuild();
-        })
-        .catch(function (e) {
-          all.disabled = false;
-          if (msg) msg.textContent = e.message || "failed";
-        });
+  document.querySelectorAll("button.mark-done-additions").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var rows = openRows(btn), msg = btn.nextElementSibling;
+      if (!rows.length) return;
+      if (!window.confirm("Mark " + rows.length + " card" + (rows.length === 1 ? "" : "s") + " done? They ship on the next build. Nothing reaches Anki until you click Deliver.")) return;
+      btn.disabled = true;
+      walk(rows, "/addition/done", msg, function (n) {
+        if (msg) msg.textContent = "\u2713 " + n + " done";
+        btn.outerHTML = '<span class="done-badge">\u2713 done</span>';
+      }).catch(function (e) {
+        btn.disabled = false;
+        if (msg) msg.textContent = e.message || "failed";
+      });
     });
-  }
+  });
 
-  // Clips the retrofit carried across. Hidden by default: they have already been heard in the deck
-  // they came from, and on a big batch they bury the ones nobody has heard. The toggle is there
-  // because "already heard" is a claim about the OLD deck, and a card can read differently in its
-  // new neighbours.
+  // Clips the retrofit carried across have already been heard in the deck they came from. Hidden by
+  // default so the list shows what actually needs an ear; the toggle is there because "already
+  // heard" is a claim about the OLD deck.
   var inheritedRows = function () {
     return [].slice.call(document.querySelectorAll('tr.row[data-inherited-audio="1"]'));
   };
@@ -677,7 +589,6 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
   if (showInherited) {
     var applyInherited = function () {
       inheritedRows().forEach(function (tr) {
-        // Never fight the excluded toggle for control of the same row.
         if (tr.classList.contains("excluded")) return;
         tr.style.display = showInherited.checked ? "" : "none";
       });
@@ -686,38 +597,23 @@ export const APPROVE_ADDITION_SCRIPT = `(function () {
     applyInherited();
   }
 
-  // Sign them all off without auditioning, which is the whole point of separating them out. Still
-  // one request per card, and each still passes the same refusal, so a silent one cannot slip in.
   var inhBtn = document.querySelector("button.done-inherited");
   if (inhBtn) {
     inhBtn.addEventListener("click", function () {
-      var rows = inheritedRows().filter(function (tr) {
-        var b = tr.querySelector("button.addition-done");
-        return b && !b.disabled;
-      });
+      var rows = inheritedRows().filter(function (tr) { return !tr.classList.contains("excluded"); });
       var msg = inhBtn.nextElementSibling;
       if (!rows.length) { if (msg) msg.textContent = "nothing left"; return; }
-      if (!window.confirm("Sign off " + rows.length + " clip" + (rows.length === 1 ? "" : "s") + " carried over from the old deck, without listening? They ship after this.")) return;
+      if (!window.confirm("Mark " + rows.length + " carried-over card" + (rows.length === 1 ? "" : "s") + " done without listening? They ship on the next build.")) return;
       inhBtn.disabled = true;
-      var i = 0;
-      function step() {
-        if (i >= rows.length) {
-          if (msg) msg.textContent = "\u2713 " + rows.length + " signed off";
-          return A.maybeRebuild();
-        }
-        if (msg) msg.textContent = i + 1 + " of " + rows.length + "\u2026";
-        return markDone(rows[i++]).then(step);
-      }
-      step().catch(function (e) {
+      walk(rows, "/addition/done", msg, function (n) {
+        if (msg) msg.textContent = "\u2713 " + n + " done";
+      }).catch(function (e) {
         inhBtn.disabled = false;
         if (msg) msg.textContent = e.message || "failed";
       });
     });
   }
 
-  // Cards already excluded are decided, and on a big retrofit they are most of the rows. Hidden by
-  // default so the page shows what is actually outstanding; the toggle is there because a
-  // script-made exclusion is exactly the kind a reviewer should be able to overturn.
   var toggle = document.getElementById("show-excluded");
   if (toggle) {
     var apply = function () {

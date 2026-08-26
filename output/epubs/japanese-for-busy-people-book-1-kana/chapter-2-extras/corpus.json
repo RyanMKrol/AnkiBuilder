@@ -466,7 +466,9 @@
       "english": "My mobile number is 090-2468-1357.",
       "category": "Technology & Communication",
       "target": "わたしのけいたいばんごうはゼロきゅうゼロのによんろくはちのいちさんごななです",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no. Placeholder [number] replaced with a concrete number, written the way the book writes phone numbers: kana digits joined by の for each hyphen (cf. chapter-2-extras sumisu-san-no-denwa-bangou-wa, 080-1234-5678)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no. Placeholder [number] replaced with a concrete number, written the way the book writes phone numbers: kana digits joined by の for each hyphen (cf. chapter-2-extras sumisu-san-no-denwa-bangou-wa, 080-1234-5678)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "hai-sou-desu-kaisha",

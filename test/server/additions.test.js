@@ -270,7 +270,7 @@ test("an excluded pending card offers no Approve, so bulk approve cannot overrid
       // Matched on the button markup, not the class name: the class also appears in the stylesheet.
       assert.ok(
         !/<button[^>]*class="approve-btn"/.test(html),
-        "no Approve button once the only pending card is excluded",
+        "the page has no per-card approve control at all",
       );
       assert.match(html, /Show 1 excluded/, "it is behind the toggle");
     });
@@ -348,8 +348,8 @@ test("the audio group offers a per-section sign-off, like the normal audio revie
 
     await withServer(root, async (url) => {
       const html = await (await fetch(`${url}/additions/book/mybook`)).text();
-      assert.match(html, /Mark all 1 ready/, "a per-section control, not just per-card");
-      assert.match(html, /<button[^>]*class="addition-done"/, "and the per-card one");
+      assert.match(html, /Mark done/, "the same words the audio review uses");
+      assert.ok(!/class="addition-done"/.test(html), "no invented per-card sign-off button");
       // The label must not be able to wrap into an unreadable stack again.
       assert.match(html, /\.approve-btn,\.addition-done\{white-space:nowrap/);
     });
@@ -375,10 +375,38 @@ test("carried-over clips are separated from ones nobody has heard", async () => 
     await withServer(root, async (url) => {
       const html = await (await fetch(`${url}/additions/book/mybook`)).text();
       assert.match(html, /data-inherited-audio="1"/, "the carried-over row is marked");
-      assert.match(html, /Sign off 1 carried-over clip/, "and can be cleared without listening");
+      assert.match(
+        html,
+        /Accept 1 carried-over clip without listening/,
+        "and says what accepting does",
+      );
       assert.match(html, /clips nobody has heard yet/, "the lede separates the two");
       // Hidden by default, so the list shows what actually needs an ear.
       assert.match(html, /id="show-inherited"/);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("the page carries the markup its audio scripts dereference on load", async () => {
+  // DECK_EDIT_SCRIPT and AUDIO_TRIM_SCRIPT look their modal containers up by id and dereference
+  // them immediately, so a page including either without this markup throws on the first line and
+  // silently kills every handler after it. Generate and Replace shipped dead exactly that way.
+  const { root, book } = fixture();
+  try {
+    const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+    const c = cards.items.find((i) => i.id === "new-pending");
+    c.additionReviewed = true;
+    c.audio = "a.mp3";
+    writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+    await withServer(root, async (url) => {
+      const html = await (await fetch(`${url}/additions/book/mybook`)).text();
+      assert.match(html, /id="gen-modal"/, "Generate needs its variant picker");
+      assert.match(html, /id="trim-modal"/, "the trim editor needs its modal");
+      assert.match(html, /class="vlist"/);
+      assert.match(html, /class="close"/, "the script dereferences this on load");
+      assert.match(html, /id="rebuild-status"/, "or every status message is dropped silently");
     });
   } finally {
     rmSync(root, { recursive: true, force: true });

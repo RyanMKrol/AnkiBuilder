@@ -1064,7 +1064,9 @@
       "audioOriginal": "4a6e3e8bf3a3ef48.orig.mp3",
       "audioAuto": "4a6e3e8bf3a3ef48.mp3",
       "audioMarked": true,
-      "audioTextHash": "4a6e3e8bf3a3ef48"
+      "audioTextHash": "4a6e3e8bf3a3ef48",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "w2-chan-wa-uketsuke",

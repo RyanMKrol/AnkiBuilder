@@ -41,7 +41,8 @@
       "audioMarked": true,
       "audioTextHash": "bf673b2a6511ef44",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 6 teaches the kinou/senshuu time frame. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "kimasen",
@@ -127,7 +128,13 @@
       "note": "The first of four cards on one frame that change only the ending: いきます (ikimasu), いきました (ikimashita), いきません (ikimasen), いきませんでした (ikimasen deshita).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 1 of the いきます paradigm the PDF prints as a table, delivered as a fixed frame so only the inflection varies.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "f424b775acf16cc4.mp3",
+      "audioOriginal": "f424b775acf16cc4.orig.mp3",
+      "audioAuto": "f424b775acf16cc4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f424b775acf16cc4"
     },
     {
       "id": "p102-jimu-ni-ikimasu",
@@ -137,7 +144,13 @@
       "pronunciation": "jimu ni ikimasu",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts ジム (jimu), taught bare in Lesson 3, into a sentence using this lesson's に (ni) plus いきます (ikimasu).",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "c04909aed51db303.mp3",
+      "audioOriginal": "c04909aed51db303.orig.mp3",
+      "audioAuto": "c04909aed51db303.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c04909aed51db303"
     },
     {
       "id": "form-kuukou-ikimashita",
@@ -294,7 +307,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "c8e8795e1a2f74f4.mp3",
+      "audioOriginal": "c8e8795e1a2f74f4.orig.mp3",
+      "audioAuto": "c8e8795e1a2f74f4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c8e8795e1a2f74f4"
     },
     {
       "id": "a-iie-kimasen",
@@ -733,14 +752,15 @@
       "target": "わたしはがくせいです",
       "pronunciation": "watashi wa gakusei desu",
       "note": "The は here is read わ (wa). がくせい (gakusei) was introduced with the other occupations.",
-      "audio": "0843e848faa59d29.standard.mp3",
+      "audio": "0843e848faa59d29.mp3",
       "audioOriginal": "0843e848faa59d29.orig.mp3",
-      "audioAuto": "0843e848faa59d29.standard.mp3",
+      "audioAuto": "0843e848faa59d29.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "0843e848faa59d29",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gakusei is taught in Lesson 6",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ne-eki-wa-achira-desu-ne",
@@ -800,7 +820,13 @@
       "note": "Past negative is built on いきません (ikimasen) plus でした (deshita), not on いきました (ikimashita).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 4 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "d2f8ef83e74870a4.mp3",
+      "audioOriginal": "d2f8ef83e74870a4.orig.mp3",
+      "audioAuto": "d2f8ef83e74870a4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d2f8ef83e74870a4"
     },
     {
       "id": "vocab-kazoku-to-honkon-ni-ikimashita",
@@ -938,7 +964,13 @@
       "pronunciation": "kaisha ni ikimasen",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 3 of the いきます paradigm, delivered as a sentence rather than the PDF's bare table row.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "720fdb40997d011e.mp3",
+      "audioOriginal": "720fdb40997d011e.orig.mp3",
+      "audioAuto": "720fdb40997d011e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "720fdb40997d011e"
     },
     {
       "id": "fib-iie-ikimasendeshita",
@@ -978,7 +1010,13 @@
       "pronunciation": "kaisha ni ikimashita",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: cell 2 of the いきます paradigm. Added so the four-cell contrast is complete on one frame; the PDF lists the form and the book teaches it only on other sentences.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "5b8dba93b6d84c55.mp3",
+      "audioOriginal": "5b8dba93b6d84c55.orig.mp3",
+      "audioAuto": "5b8dba93b6d84c55.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5b8dba93b6d84c55"
     },
     {
       "id": "a-iie-kimasen-deshita",
@@ -1005,7 +1043,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "2ce700dd3edc0d4c.mp3",
+      "audioOriginal": "2ce700dd3edc0d4c.orig.mp3",
+      "audioAuto": "2ce700dd3edc0d4c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ce700dd3edc0d4c"
     },
     {
       "id": "form-kuukou-ikimasen",
@@ -1214,7 +1258,13 @@
       "fillInBlank": true,
       "aiSuggested": true,
       "ttsText": "さんばんのバスがいきます",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "c47fcfbd32ef7f39.mp3",
+      "audioOriginal": "c47fcfbd32ef7f39.orig.mp3",
+      "audioAuto": "c47fcfbd32ef7f39.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c47fcfbd32ef7f39"
     },
     {
       "id": "hitori-de-ikimasu-ka",

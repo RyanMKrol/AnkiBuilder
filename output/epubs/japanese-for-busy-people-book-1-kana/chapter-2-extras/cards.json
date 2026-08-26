@@ -63,7 +63,8 @@
       "audioMarked": true,
       "audioTextHash": "4eca1d949a50e5d3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "p102-kaishain",
@@ -74,7 +75,13 @@
       "note": "かいしゃ (kaisha) 'company' plus いん (in), the suffix for a member of staff. Names the job the way you would answer 'what do you do?'.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an occupation word the book never teaches, built on かいしゃ (kaisha) from this lesson.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "32f12bb6a01314cf.mp3",
+      "audioOriginal": "32f12bb6a01314cf.orig.mp3",
+      "audioAuto": "32f12bb6a01314cf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "32f12bb6a01314cf"
     },
     {
       "id": "oshiete-kudasai",
@@ -376,7 +383,8 @@
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field",
       "note": "うでどけい (udedokei, literally 'arm-clock') specifically means a wristwatch; とけい (tokei), earlier in this lesson, is the broader word for any watch or clock.",
       "hint": "the item you wear on your wrist, not the general word for a clock",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-keitai-bangou-o-oshiete-kudasai",
@@ -423,7 +431,8 @@
       "audioMarked": true,
       "audioTextHash": "c34d676e6673cfb3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "sumisu-san-no-juusho-o-oshiete-kudasai",
@@ -483,7 +492,13 @@
       "note": "だれ (dare) on its own is just the word 'who'; だれですか (dare desu ka) is the whole question.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the class taught the question-word set as complete ですか (desu ka) questions; the book cards only the bare word だれ (dare).",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "41d7a053c7f33b9c.mp3",
+      "audioOriginal": "41d7a053c7f33b9c.orig.mp3",
+      "audioAuto": "41d7a053c7f33b9c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "41d7a053c7f33b9c"
     },
     {
       "id": "kore-wa-watashi-no-juusho-desu",
@@ -516,7 +531,8 @@
         "end": 1.8502506387788953
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "nihon-no-okashi-desu",
@@ -627,7 +643,8 @@
         "end": 1.3827850331763698
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "iie-watashi-no-desu",
@@ -736,7 +753,8 @@
       "audioFilter": "aggressive",
       "audio": "this-is-not-a-pen-user-385118b5.aggressive.mp3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2's kore wa ... desu / ja arimasen possession frame",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "hai-sasaki-san-no-desu",
@@ -782,7 +800,8 @@
       "audioFilter": "standard",
       "audioTextHash": "668485926f91d119",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Identifying an object: Lesson 2's kore wa nan desu ka frame",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "nozomi-depaato-no-denwa-bangou",
@@ -814,7 +833,13 @@
       "scene": "answering whose key it is",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "efbf282e5f420243.mp3",
+      "audioOriginal": "efbf282e5f420243.orig.mp3",
+      "audioAuto": "efbf282e5f420243.mp3",
+      "audioMarked": true,
+      "audioTextHash": "efbf282e5f420243"
     },
     {
       "id": "nozomi-depaato-no-denwa-bangou-wa-nan-desu-ka",
@@ -842,15 +867,16 @@
       "category": "Technology & Communication",
       "target": "わたしのけいたいばんごうはゼロきゅうゼロのによんろくはちのいちさんごななです",
       "pronunciation": "watashi no keitai bangō wa zero kyū zero no ni yon roku hachi no ichi san go nana desu",
-      "audio": "43926753f5b64b27.mp3",
+      "audio": "edccbcd87d8fd1a9.mp3",
       "altAudio": "0df9a05b46f4fa63.mp3",
-      "audioOriginal": "43926753f5b64b27.orig.mp3",
-      "audioAuto": "43926753f5b64b27.mp3",
+      "audioOriginal": "edccbcd87d8fd1a9.orig.mp3",
+      "audioAuto": "edccbcd87d8fd1a9.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "43926753f5b64b27",
+      "audioTextHash": "edccbcd87d8fd1a9",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no. Placeholder [number] replaced with a concrete number, written the way the book writes phone numbers: kana digits joined by の for each hyphen (cf. chapter-2-extras sumisu-san-no-denwa-bangou-wa, 080-1234-5678)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "hai-sou-desu-kaisha",
@@ -939,7 +965,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "bb11a90a02d5642c.mp3",
+      "audioOriginal": "bb11a90a02d5642c.orig.mp3",
+      "audioAuto": "bb11a90a02d5642c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bb11a90a02d5642c"
     },
     {
       "id": "kore-wa-sasaki-san-no-saifu-desu-ka",
@@ -981,7 +1013,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "462146861b8b54cb.mp3",
+      "audioOriginal": "462146861b8b54cb.orig.mp3",
+      "audioAuto": "462146861b8b54cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "462146861b8b54cb"
     },
     {
       "id": "irl-l1-37",
@@ -989,16 +1027,17 @@
       "category": "Technology & Communication",
       "target": "ジェームズさんのけいたいばんごうはなんですか",
       "pronunciation": "jēmuzu san no keitai bangō wa nan desu ka.",
-      "audio": "a765df39e1d33a63.mp3",
+      "audio": "2559bebd9be3a5f8.mp3",
       "altAudio": "9571d9d63f109985.mp3",
       "note": "Uses なん (nan), the form なに (nani) takes before です (desu) — the same pattern explained under なんですか (nan desu ka) earlier in this lesson.",
-      "audioOriginal": "a765df39e1d33a63.orig.mp3",
-      "audioAuto": "a765df39e1d33a63.mp3",
+      "audioOriginal": "2559bebd9be3a5f8.orig.mp3",
+      "audioAuto": "2559bebd9be3a5f8.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "a765df39e1d33a63",
+      "audioTextHash": "2559bebd9be3a5f8",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches denwa bangou and the possessive no",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "iie-tokei-ja-arimasen",
@@ -1131,7 +1170,13 @@
       "scene": "answering whether Tanaka-san is a company employee",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "278171539209e471.mp3",
+      "audioOriginal": "278171539209e471.orig.mp3",
+      "audioAuto": "278171539209e471.mp3",
+      "audioMarked": true,
+      "audioTextHash": "278171539209e471"
     },
     {
       "id": "toy",
@@ -1146,7 +1191,8 @@
       "audioMarked": true,
       "audioTextHash": "72b55ec7333e73a0",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Everyday objects, Lesson 2's own vocabulary field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "kore-wa-fairu-desu-ka",
@@ -1190,7 +1236,8 @@
       "audio": "133925d5ed299c43-gen-7858bd55.mp3",
       "audioTextHash": "133925d5ed299c43",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "kore-wa-kagi-desu-ka",

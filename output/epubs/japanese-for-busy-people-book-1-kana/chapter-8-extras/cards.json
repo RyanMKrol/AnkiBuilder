@@ -39,7 +39,13 @@
       "pronunciation": "bangohan o tabemasu",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the bare を (o) plus たべます (tabemasu) frame on ばんごはん (bangohan), which this lesson teaches as a word.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "65c67a32d7d4d76d.mp3",
+      "audioOriginal": "65c67a32d7d4d76d.orig.mp3",
+      "audioAuto": "65c67a32d7d4d76d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "65c67a32d7d4d76d"
     },
     {
       "id": "v-doyoubi-shigoto-shimasu-ka",
@@ -120,14 +126,15 @@
       "target": "すしをたべます",
       "pronunciation": "sushi o tabemasu",
       "note": "を (o) marks what the verb acts on: すし (sushi) is the thing being eaten. The particle is written を but pronounced お (o) — it never appears anywhere except as this marker.",
-      "audio": "18878859f44670d3.standard.mp3",
+      "audio": "18878859f44670d3.mp3",
       "audioOriginal": "18878859f44670d3.orig.mp3",
-      "audioAuto": "18878859f44670d3.standard.mp3",
+      "audioAuto": "18878859f44670d3.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "18878859f44670d3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "v-kinou-benkyou-shimasendeshita",
@@ -247,7 +254,13 @@
       "note": "えいが (eiga) 'film' plus かん (kan), the suffix for a building.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "38c7599a5bcebe4a.mp3",
+      "audioOriginal": "38c7599a5bcebe4a.orig.mp3",
+      "audioAuto": "38c7599a5bcebe4a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "38c7599a5bcebe4a"
     },
     {
       "id": "fib-ema-mo-ocha-nomimasu",
@@ -259,7 +272,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "4e4c3bef6c0841f8.mp3",
+      "audioOriginal": "4e4c3bef6c0841f8.orig.mp3",
+      "audioAuto": "4e4c3bef6c0841f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4e4c3bef6c0841f8"
     },
     {
       "id": "v-nani-o-nomimasu-ka",
@@ -282,14 +301,15 @@
       "target": "さかな",
       "pronunciation": "sakana",
       "note": "The animal and the food alike.",
-      "audio": "be4a7cd4dfa51614.standard.mp3",
+      "audio": "be4a7cd4dfa51614.mp3",
       "audioOriginal": "be4a7cd4dfa51614.orig.mp3",
-      "audioAuto": "be4a7cd4dfa51614.standard.mp3",
+      "audioAuto": "be4a7cd4dfa51614.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "be4a7cd4dfa51614",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8's o-particle + tabemasu frame",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "v-doyoubi-osushi-tabemasu",
@@ -386,7 +406,13 @@
       "scene": "answering what you do on Sundays",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "abc8d8aedabae0c8.mp3",
+      "audioOriginal": "abc8d8aedabae0c8.orig.mp3",
+      "audioAuto": "abc8d8aedabae0c8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "abc8d8aedabae0c8"
     },
     {
       "id": "v-asagohan-tabemasen",
@@ -429,7 +455,13 @@
       "scene": "answering what you did yesterday",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "29052567f7212653.mp3",
+      "audioOriginal": "29052567f7212653.orig.mp3",
+      "audioAuto": "29052567f7212653.mp3",
+      "audioMarked": true,
+      "audioTextHash": "29052567f7212653"
     },
     {
       "id": "f-mimasu-eiga-4",
@@ -455,7 +487,13 @@
       "scene": "answering where you study",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "6069f7137b2e695f.mp3",
+      "audioOriginal": "6069f7137b2e695f.orig.mp3",
+      "audioAuto": "6069f7137b2e695f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6069f7137b2e695f"
     },
     {
       "id": "ex-suzuki-terebi-mimasu",
@@ -571,7 +609,13 @@
       "scene": "answering where Smith-san eats dinner",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "1be2646f23794a62.mp3",
+      "audioOriginal": "1be2646f23794a62.orig.mp3",
+      "audioAuto": "1be2646f23794a62.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1be2646f23794a62"
     },
     {
       "id": "ex-futari-desu",
@@ -632,7 +676,13 @@
       "scene": "answering what you ate yesterday",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 2 answer.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "ad2a71acc4996fa8.mp3",
+      "audioOriginal": "ad2a71acc4996fa8.orig.mp3",
+      "audioAuto": "ad2a71acc4996fa8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ad2a71acc4996fa8"
     },
     {
       "id": "p-suzuki-mo-kabuki-mimasu",
@@ -754,7 +804,13 @@
       "scene": "answering what you did last weekend",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "7b9cfb14f988b954.mp3",
+      "audioOriginal": "7b9cfb14f988b954.orig.mp3",
+      "audioAuto": "7b9cfb14f988b954.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7b9cfb14f988b954"
     },
     {
       "id": "v-suzuki-to-kaimono-shimashita",
@@ -825,7 +881,13 @@
       "scene": "answering what you bought",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "ac43a7e1bd36b9e8.mp3",
+      "audioOriginal": "ac43a7e1bd36b9e8.orig.mp3",
+      "audioAuto": "ac43a7e1bd36b9e8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ac43a7e1bd36b9e8"
     },
     {
       "id": "v-iie-nomimasen",
@@ -850,7 +912,13 @@
       "pronunciation": "kinō nani o tabemashita ka",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 2. Job: past-tense なにを (nani o) question, the form this lesson teaches.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "cc7af7acd34c7f2a.mp3",
+      "audioOriginal": "cc7af7acd34c7f2a.orig.mp3",
+      "audioAuto": "cc7af7acd34c7f2a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc7af7acd34c7f2a"
     },
     {
       "id": "v-kaisha-de-hirugohan",
@@ -921,7 +989,13 @@
       "pronunciation": "nichiyōbi nani o shimasu ka",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 5. Job: the present-tense なにを (nani o) question against the past-tense one above.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "fa2ba7b943617f57.mp3",
+      "audioOriginal": "fa2ba7b943617f57.orig.mp3",
+      "audioAuto": "fa2ba7b943617f57.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fa2ba7b943617f57"
     },
     {
       "id": "p102-senshuumatsu-nani-o-shimashita-ka",
@@ -932,7 +1006,13 @@
       "note": "せんしゅう (senshū) 'last week' plus まつ (matsu) 'end'. The lesson's own しゅうまつ (shūmatsu) is the weekend without saying which one.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "60571e7d2524ab61.mp3",
+      "audioOriginal": "60571e7d2524ab61.orig.mp3",
+      "audioAuto": "60571e7d2524ab61.mp3",
+      "audioMarked": true,
+      "audioTextHash": "60571e7d2524ab61"
     },
     {
       "id": "p-depaato-de-kasa-kaimashita",
@@ -1157,7 +1237,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "dbc67beb7b07ca32.mp3",
+      "audioOriginal": "dbc67beb7b07ca32.orig.mp3",
+      "audioAuto": "dbc67beb7b07ca32.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dbc67beb7b07ca32"
     },
     {
       "id": "f-mimasu-eiga-2",
@@ -1261,7 +1347,8 @@
       "audioMarked": true,
       "audioTextHash": "070526f9dbd66e39",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 8 is the eating and drinking lesson",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "sp2-nani-o-kaimashita-ka",

@@ -49,7 +49,8 @@
       },
       "audioTextHash": "4a7109c193e0f1ba",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-smith-teacher-q",
@@ -145,7 +146,8 @@
       "audioMarked": true,
       "audioTextHash": "83dc1b97ba5dc2d6",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-indo-desu",
@@ -221,7 +223,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "7138013bed1b06b8.mp3",
+      "audioOriginal": "7138013bed1b06b8.orig.mp3",
+      "audioAuto": "7138013bed1b06b8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7138013bed1b06b8"
     },
     {
       "id": "irl-l1-28",
@@ -237,7 +245,8 @@
       "audioFilter": "standard",
       "audioTextHash": "ba4c009fa7dc69f3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "td-intro-smith",
@@ -298,7 +307,8 @@
       "audioMarked": true,
       "audioTextHash": "b17fe895b4d126b9",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set. The book has this word but its reviewer EXCLUDED it, so this is not a duplicate",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-jack-okuni-a",
@@ -439,7 +449,8 @@
       "audioFilter": "standard",
       "audioTextHash": "ae97a3b63945d6cf",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-doitsu-desu",
@@ -480,14 +491,15 @@
       "pronunciation": "watashi wa enjinia desu",
       "note": null,
       "aiSuggested": true,
-      "audio": "2d8dd3910e00a97a.standard.mp3",
+      "audio": "2d8dd3910e00a97a.mp3",
       "audioOriginal": "2d8dd3910e00a97a.orig.mp3",
-      "audioAuto": "2d8dd3910e00a97a.standard.mp3",
+      "audioAuto": "2d8dd3910e00a97a.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "2d8dd3910e00a97a",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-igirisu-desu",
@@ -677,7 +689,8 @@
       "audioFilter": "standard",
       "audioTextHash": "b782a5d6d656282e",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-okuni-dochira-bare",
@@ -752,7 +765,8 @@
       "audio": "b427b4a3ffbcba68-genkanji-1f507d66.mp3",
       "audioTextHash": "b427b4a3ffbcba68",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-confirm-raja-daigaku",
@@ -791,7 +805,8 @@
       },
       "audioTextHash": "fb210db78ece569e",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "td-intro-tanaka-short",
@@ -897,7 +912,8 @@
       "audioMarked": true,
       "audioTextHash": "b0f9db12f4b87aea",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Chapter-0's set-phrase material; chapter-0 has no extras deck of its own",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "irl-l1-21",
@@ -914,7 +930,8 @@
       "audioMarked": true,
       "audioTextHash": "07138a1174d1e9e3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-uketsuke-o-onegaishimasu",
@@ -957,7 +974,13 @@
       "scene": "answering whether Hoffman-san is an engineer",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "e09effde9a1d28c4.mp3",
+      "audioOriginal": "e09effde9a1d28c4.orig.mp3",
+      "audioAuto": "e09effde9a1d28c4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e09effde9a1d28c4"
     },
     {
       "id": "irl-l1-30",
@@ -965,15 +988,16 @@
       "category": "Greetings",
       "target": "はじめまして。ライアンです",
       "pronunciation": "hajimemashite. raian desu.",
-      "audio": "a6f547a22f5f42f3.mp3",
+      "audio": "83618d346d8e8eb7.mp3",
       "altAudio": "648bfd72a900994f.mp3",
-      "audioOriginal": "a6f547a22f5f42f3.orig.mp3",
-      "audioAuto": "a6f547a22f5f42f3.mp3",
+      "audioOriginal": "83618d346d8e8eb7.orig.mp3",
+      "audioAuto": "83618d346d8e8eb7.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "a6f547a22f5f42f3",
+      "audioTextHash": "83618d346d8e8eb7",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "irl-l1-34",
@@ -990,7 +1014,8 @@
       "audioMarked": true,
       "audioTextHash": "52358021549802c7",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "irl-l1-17",
@@ -1006,7 +1031,8 @@
       "audioMarked": true,
       "audioTextHash": "1e15760863dfd82d",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-raja-o-onegaishimasu",
@@ -1018,7 +1044,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "4a6e3e8bf3a3ef48.mp3",
+      "audioOriginal": "4a6e3e8bf3a3ef48.orig.mp3",
+      "audioAuto": "4a6e3e8bf3a3ef48.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4a6e3e8bf3a3ef48"
     },
     {
       "id": "w2-chan-wa-uketsuke",
@@ -1045,7 +1077,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "aa13136bf2cfa08d.mp3",
+      "audioOriginal": "aa13136bf2cfa08d.orig.mp3",
+      "audioAuto": "aa13136bf2cfa08d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aa13136bf2cfa08d"
     },
     {
       "id": "irl-l1-27",
@@ -1064,7 +1102,8 @@
         "end": 2.413417255837079
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "sp1-amerika-desu",
@@ -1187,7 +1226,8 @@
       "audioMarked": true,
       "audioTextHash": "cd3a34ef6bf90474",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     }
   ]
 }

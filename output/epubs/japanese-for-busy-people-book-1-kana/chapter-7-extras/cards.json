@@ -41,7 +41,8 @@
       "audioTextHash": "c19df5d4f22d4a90",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 7 asks dou yatte ikimasu ka about transport",
       "note": "Interchangeable with なんで (nande) from this lesson for asking how someone travels; どうやって (dō yatte) is the everyday choice, while なんで (nande) risks being heard as \"why\" in casual speech.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "w2-ema-2022nen-kimashita",
@@ -137,7 +138,13 @@
       "scene": "answering whether you're going to Tokyo Hotel by taxi",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "e5020bd8f43d6615.mp3",
+      "audioOriginal": "e5020bd8f43d6615.orig.mp3",
+      "audioAuto": "e5020bd8f43d6615.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5020bd8f43d6615"
     },
     {
       "id": "kinyoubi-ni-tokyo-kaerimasu",
@@ -178,7 +185,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "77a9c2ca577b467e.mp3",
+      "audioOriginal": "77a9c2ca577b467e.orig.mp3",
+      "audioAuto": "77a9c2ca577b467e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "77a9c2ca577b467e"
     },
     {
       "id": "w2-mikka-desu",
@@ -250,7 +263,13 @@
       "scene": "answering how Tanaka-san is going to the meeting",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "548ca1cc469740d9.mp3",
+      "audioOriginal": "548ca1cc469740d9.orig.mp3",
+      "audioAuto": "548ca1cc469740d9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "548ca1cc469740d9"
     },
     {
       "id": "fib-ropesu-raigetsu-youka-a",
@@ -262,7 +281,13 @@
       "scene": "answering whether Lopez-san is coming next month, on the 8th",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "1d34543026733c31.mp3",
+      "audioOriginal": "1d34543026733c31.orig.mp3",
+      "audioAuto": "1d34543026733c31.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1d34543026733c31"
     },
     {
       "id": "fib-ropesu-raigetsu-youka-q",
@@ -274,7 +299,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "1a385949268f3b16.mp3",
+      "audioOriginal": "1a385949268f3b16.orig.mp3",
+      "audioAuto": "1a385949268f3b16.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1a385949268f3b16"
     },
     {
       "id": "p102-basu-de-shigoto-ni-ikimasu",
@@ -285,7 +316,13 @@
       "scene": "answering how you get to work",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 3 answer. Job: contrasts the で (de) of means against the あるいて (aruite) answer above.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "8d2ffecfe93a9a79.mp3",
+      "audioOriginal": "8d2ffecfe93a9a79.orig.mp3",
+      "audioAuto": "8d2ffecfe93a9a79.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8d2ffecfe93a9a79"
     },
     {
       "id": "kaigi-wa-itsu-desu-ka",
@@ -322,7 +359,13 @@
       "scene": "answering whether Emma-san is also going to Ginza by subway",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "509e379be9c55440.mp3",
+      "audioOriginal": "509e379be9c55440.orig.mp3",
+      "audioAuto": "509e379be9c55440.mp3",
+      "audioMarked": true,
+      "audioTextHash": "509e379be9c55440"
     },
     {
       "id": "fib-shucchou-itsukara-a",
@@ -542,7 +585,13 @@
       "scene": "answering how you get to the gym",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF. Job: the answer to the どうやって (dō yatte) question, showing あるいて (aruite) used as a means of going.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "a4ef445c07cb6a4c.mp3",
+      "audioOriginal": "a4ef445c07cb6a4c.orig.mp3",
+      "audioAuto": "a4ef445c07cb6a4c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a4ef445c07cb6a4c"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu",
@@ -585,7 +634,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "2d3d3a6aec4e91b0.mp3",
+      "audioOriginal": "2d3d3a6aec4e91b0.orig.mp3",
+      "audioAuto": "2d3d3a6aec4e91b0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d3d3a6aec4e91b0"
     },
     {
       "id": "raigetsu-no-youka-desu",
@@ -753,7 +808,13 @@
       "note": "どうやって (dō yatte) asks by what means, like なんで (nande) in this lesson. どうやって (dō yatte) is the more everyday of the two.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "feef7e1a957380ff.mp3",
+      "audioOriginal": "feef7e1a957380ff.orig.mp3",
+      "audioAuto": "feef7e1a957380ff.mp3",
+      "audioMarked": true,
+      "audioTextHash": "feef7e1a957380ff"
     },
     {
       "id": "w2-getsuyoubi-kara-mokuyoubi-made",
@@ -778,7 +839,13 @@
       "pronunciation": "dō yatte shigoto ni ikimasu ka",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "9f0da341ba6f7a40.mp3",
+      "audioOriginal": "9f0da341ba6f7a40.orig.mp3",
+      "audioAuto": "9f0da341ba6f7a40.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f0da341ba6f7a40"
     },
     {
       "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
@@ -820,7 +887,13 @@
       "note": "A variant of あるいて (aruite). Both mean going on foot, and あるいて (aruite) is the one you will hear.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "f9b5d8d927f0acf5.mp3",
+      "audioOriginal": "f9b5d8d927f0acf5.orig.mp3",
+      "audioAuto": "f9b5d8d927f0acf5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f9b5d8d927f0acf5"
     },
     {
       "id": "w2-smith-doyoubi-kaerimasu-ka",
@@ -952,7 +1025,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "9868e140c4564f71.mp3",
+      "audioOriginal": "9868e140c4564f71.orig.mp3",
+      "audioAuto": "9868e140c4564f71.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9868e140c4564f71"
     },
     {
       "id": "smith-getsuyoubi-takushii-hoteru",

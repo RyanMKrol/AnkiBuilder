@@ -364,7 +364,8 @@
       "audioFilter": "standard",
       "audioTextHash": "146f311e28b56c7f",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "wa-kouban-eki-mae",
@@ -686,7 +687,8 @@
       "audioMarked": true,
       "audioTextHash": "9a4f68832ddb1e74",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's stationery set (eraser, pencil, scissors, clear file)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ex-kato-uchi-kaisha-tooi",
@@ -905,7 +907,8 @@
       "audioMarked": true,
       "audioTextHash": "832b952e028d4314",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: goro (around a time) is taught in Lesson 13",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "wa-honya-panya-contrast",
@@ -1331,7 +1334,8 @@
       "audioFilter": "standard",
       "audioTextHash": "12d403f934db4d44",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 13's neighbourhood places (hospital, bookstore, bakery, police box)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "td-taki-chikai-q",

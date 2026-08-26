@@ -143,7 +143,13 @@
       "note": "The pastime, so it works after すき (suki): サイクリングがすきです (saikuringu ga suki desu). じてんしゃにのる (jitensha ni noru) is the act of riding.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a hobby noun for this lesson's すき (suki) frame.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "478810452412066e.mp3",
+      "audioOriginal": "478810452412066e.orig.mp3",
+      "audioAuto": "478810452412066e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "478810452412066e"
     },
     {
       "id": "x15c-wain-nomu-no-ga-suki",
@@ -184,7 +190,13 @@
       "note": "A noun plus する (suru), the dictionary form of します (shimasu). The polite form is かんこうします (kankō shimasu).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a noun-plus-する (suru) verb in the dictionary form this lesson introduces.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "2b99da4ef9678209.mp3",
+      "audioOriginal": "2b99da4ef9678209.orig.mp3",
+      "audioAuto": "2b99da4ef9678209.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b99da4ef9678209"
     },
     {
       "id": "fib-utau-jouzu-q",
@@ -343,7 +355,8 @@
       "audioMarked": true,
       "audioTextHash": "6e337dd52ea66b3b",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "x15c-hon-yomu-no-ga-suki",
@@ -387,7 +400,8 @@
       "audioMarked": true,
       "audioTextHash": "a1b3243842db1789",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",
@@ -503,7 +517,13 @@
       "note": "のる (noru) takes に (ni), not を (o): じてんしゃにのる (jitensha ni noru), never じてんしゃをのる (jitensha o noru).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a dictionary-form verb on Lesson 7's じてんしゃ (jitensha), and the に (ni) it takes is the part a learner gets wrong.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "91752f7fe79105c5.mp3",
+      "audioOriginal": "91752f7fe79105c5.orig.mp3",
+      "audioAuto": "91752f7fe79105c5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "91752f7fe79105c5"
     },
     {
       "id": "fib-anime-miru-mo-suki",
@@ -545,7 +565,13 @@
       "note": "Built the same way as this lesson's イタリアりょうり (itaria ryōri): a country in front of りょうり (ryōri).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a second example of the country plus りょうり (ryōri) pattern, so it reads as a slot rather than a fixed phrase.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "e602cd41c82c8797.mp3",
+      "audioOriginal": "e602cd41c82c8797.orig.mp3",
+      "audioAuto": "e602cd41c82c8797.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e602cd41c82c8797"
     },
     {
       "id": "x15c-aruku-no-ga-suki",
@@ -604,7 +630,8 @@
       "audioMarked": true,
       "audioTextHash": "6f0db1d9b8003387",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Sports, Lesson 15's vocabulary field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-utau-suki-past",
@@ -630,14 +657,15 @@
       "pronunciation": "suiei o shimasu",
       "hint": "the pursuit you take up",
       "note": "すいえい (suiei) is a NOUN meaning swimming as a sport or discipline, so it needs します to become something you do: まいしゅう すいえいを します (maishū suiei o shimasu), 'I swim every week'. しゅみは すいえい です (shumi wa suiei desu) = 'my hobby is swimming'. For the physical act, use およぐ (oyogu).",
-      "audio": "36c03489be0c9038.standard.mp3",
+      "audio": "36c03489be0c9038.mp3",
       "audioOriginal": "36c03489be0c9038.orig.mp3",
-      "audioAuto": "36c03489be0c9038.standard.mp3",
+      "audioAuto": "36c03489be0c9038.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "36c03489be0c9038",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 15 teaches suiei and the sport/hobby set",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "x15b-bijutsukan-ni-iku-no-ga-suki-q",
@@ -844,7 +872,13 @@
       "scene": "answering what you did last weekend",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Sits in this lesson rather than with its question because ピザ (piza) is taught here; the scene carries the question so the card is answerable alone.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "04caffdd26683070.mp3",
+      "audioOriginal": "04caffdd26683070.orig.mp3",
+      "audioAuto": "04caffdd26683070.mp3",
+      "audioMarked": true,
+      "audioTextHash": "04caffdd26683070"
     },
     {
       "id": "x15a-donna-itaria-ryouri-q",
@@ -995,7 +1029,8 @@
       "audioMarked": true,
       "audioTextHash": "7cbfe9368d10a7f4",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Entertainment/media, alongside Lesson 15's anime and music",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-raja-hashiru-jouzu-past-neg",

@@ -42,7 +42,8 @@
       "audioMarked": true,
       "audioTextHash": "72d1a9d8cf0364e4",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fukuro",
@@ -67,14 +68,15 @@
       "category": "Directions",
       "target": "ごかい",
       "pronunciation": "gokai",
-      "audio": "853984f21c339a20.standard.mp3",
+      "audio": "853984f21c339a20.mp3",
       "audioOriginal": "853984f21c339a20.orig.mp3",
-      "audioAuto": "853984f21c339a20.standard.mp3",
+      "audioAuto": "853984f21c339a20.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "853984f21c339a20",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "iie-rokkai-desu",
@@ -113,14 +115,15 @@
       "category": "Food",
       "target": "もも",
       "pronunciation": "momo",
-      "audio": "4615c5782e774c4f.standard.mp3",
+      "audio": "4615c5782e774c4f.mp3",
       "audioOriginal": "4615c5782e774c4f.orig.mp3",
-      "audioAuto": "4615c5782e774c4f.standard.mp3",
+      "audioAuto": "4615c5782e774c4f.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "4615c5782e774c4f",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "wain-shoppu-wa-ikkai-ja-arimasen",
@@ -188,14 +191,15 @@
       "target": "おくじょう",
       "pronunciation": "okujō",
       "note": "Shares the じょう (jō) 'place' ending with ちゅうしゃじょう (chūshajō).",
-      "audio": "e8bdf0e5fb092e2f.standard.mp3",
+      "audio": "e8bdf0e5fb092e2f.mp3",
       "audioOriginal": "e8bdf0e5fb092e2f.orig.mp3",
-      "audioAuto": "e8bdf0e5fb092e2f.standard.mp3",
+      "audioAuto": "e8bdf0e5fb092e2f.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "e8bdf0e5fb092e2f",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fukuro-mo-ni-mai-kudasai",
@@ -301,14 +305,15 @@
       "target": "ペットボトル",
       "pronunciation": "pettobotoru",
       "note": "A word built in Japan out of English parts: 'PET bottle', after the plastic it's made from. It means a disposable plastic drinks bottle — an English speaker would never call it that.",
-      "audio": "a8d9041c6f77fd79.standard.mp3",
+      "audio": "a8d9041c6f77fd79.mp3",
       "audioOriginal": "a8d9041c6f77fd79.orig.mp3",
-      "audioAuto": "a8d9041c6f77fd79.standard.mp3",
+      "audioAuto": "a8d9041c6f77fd79.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "a8d9041c6f77fd79",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping food and containers, Lesson 5's field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "furansu-no-desu",
@@ -351,13 +356,14 @@
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true,
       "uncertain": false,
-      "audio": "a1541a979f8aaa90.standard.mp3",
-      "audioAuto": "a1541a979f8aaa90.standard.mp3",
+      "audio": "a1541a979f8aaa90.mp3",
+      "audioAuto": "a1541a979f8aaa90.mp3",
       "audioOriginal": "a1541a979f8aaa90.orig.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "a1541a979f8aaa90",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ano-kamera-wa-doko-no",
@@ -414,7 +420,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "426975e35cd82434.mp3",
+      "audioOriginal": "426975e35cd82434.orig.mp3",
+      "audioAuto": "426975e35cd82434.mp3",
+      "audioMarked": true,
+      "audioTextHash": "426975e35cd82434"
     },
     {
       "id": "irl-l1-40",
@@ -422,15 +434,16 @@
       "category": "Travel & Tourism",
       "target": "ホテルのじゅうしょはどこですか",
       "pronunciation": "hoteru no jūsho wa doko desu ka.",
-      "audio": "8a78dbeecd9cecf6.mp3",
+      "audio": "891df24b17851350.mp3",
       "altAudio": "f9101dd92f4cdeb0.mp3",
-      "audioOriginal": "8a78dbeecd9cecf6.orig.mp3",
-      "audioAuto": "8a78dbeecd9cecf6.mp3",
+      "audioOriginal": "891df24b17851350.orig.mp3",
+      "audioAuto": "891df24b17851350.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "8a78dbeecd9cecf6",
+      "audioTextHash": "891df24b17851350",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "mikan-o-too-kudasai",
@@ -485,14 +498,15 @@
       "target": "ちゃいろい",
       "pronunciation": "chairoi",
       "note": "Literally 'tea-colour', and the other both-ways colour alongside きいろ (kiiro): ちゃいろい くつ (chairoi kutsu) and ちゃいろの くつ (chairo no kutsu) are both fine.",
-      "audio": "09b991cf1ee509b2.standard.mp3",
+      "audio": "09b991cf1ee509b2.mp3",
       "audioOriginal": "09b991cf1ee509b2.orig.mp3",
-      "audioAuto": "09b991cf1ee509b2.standard.mp3",
+      "audioAuto": "09b991cf1ee509b2.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "09b991cf1ee509b2",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "akai-ringo-o-itsutsu",
@@ -545,14 +559,15 @@
       "target": "みどりの",
       "pronunciation": "midori no",
       "note": "みどり (midori) is a noun, so の is the ONLY way to attach it: みどりの くるま (midori no kuruma). Unlike きいろ (kiiro) and ちゃいろ (chairo) there is no みどりい — green does not have an adjective form.",
-      "audio": "742df8e80f4900f3.standard.mp3",
+      "audio": "742df8e80f4900f3.mp3",
       "audioOriginal": "742df8e80f4900f3.orig.mp3",
-      "audioAuto": "742df8e80f4900f3.standard.mp3",
+      "audioAuto": "742df8e80f4900f3.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "742df8e80f4900f3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "chiisai-koppu-gohyaku-en",
@@ -597,7 +612,13 @@
       "fillInBlank": true,
       "aiSuggested": true,
       "ttsText": "にせんえんです",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "fa887d5318b91570.mp3",
+      "audioOriginal": "fa887d5318b91570.orig.mp3",
+      "audioAuto": "fa887d5318b91570.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fa887d5318b91570"
     },
     {
       "id": "9th-floor",
@@ -606,14 +627,15 @@
       "target": "きゅうかい",
       "pronunciation": "kyūkai",
       "note": "きゅう (kyū), not く (ku), for this counter.",
-      "audio": "000305cc8be17e96.standard.mp3",
+      "audio": "000305cc8be17e96.mp3",
       "audioOriginal": "000305cc8be17e96.orig.mp3",
-      "audioAuto": "000305cc8be17e96.standard.mp3",
+      "audioAuto": "000305cc8be17e96.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "000305cc8be17e96",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "pink",
@@ -624,13 +646,14 @@
       "aiSuggested": true,
       "note": "Borrowed colour words are always nouns, so they always take の: ピンクの かばん (pinku no kaban).",
       "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
-      "audio": "bc61c094fd405258.standard.mp3",
+      "audio": "bc61c094fd405258.mp3",
       "audioOriginal": "bc61c094fd405258.orig.mp3",
-      "audioAuto": "bc61c094fd405258.standard.mp3",
+      "audioAuto": "bc61c094fd405258.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "bc61c094fd405258",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "8th-floor",
@@ -639,14 +662,15 @@
       "target": "はっかい",
       "pronunciation": "hakkai",
       "note": "はち (hachi) shortens to はっ (ha-).",
-      "audio": "3ec0880bd18e7a2b.standard.mp3",
+      "audio": "3ec0880bd18e7a2b.mp3",
       "audioOriginal": "3ec0880bd18e7a2b.orig.mp3",
-      "audioAuto": "3ec0880bd18e7a2b.standard.mp3",
+      "audioAuto": "3ec0880bd18e7a2b.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "3ec0880bd18e7a2b",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "hai-sore-mo-nihon-no",
@@ -688,7 +712,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "d0eb55a5db102e32.mp3",
+      "audioOriginal": "d0eb55a5db102e32.orig.mp3",
+      "audioAuto": "d0eb55a5db102e32.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d0eb55a5db102e32"
     },
     {
       "id": "iie-suisu-no-ja-arimasen",
@@ -716,7 +746,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "61610455256e6113.mp3",
+      "audioOriginal": "61610455256e6113.orig.mp3",
+      "audioAuto": "61610455256e6113.mp3",
+      "audioMarked": true,
+      "audioTextHash": "61610455256e6113"
     },
     {
       "id": "7th-floor",
@@ -724,14 +760,15 @@
       "category": "Directions",
       "target": "ななかい",
       "pronunciation": "nanakai",
-      "audio": "296b20c2867dfad5.standard.mp3",
+      "audio": "296b20c2867dfad5.mp3",
       "audioOriginal": "296b20c2867dfad5.orig.mp3",
-      "audioAuto": "296b20c2867dfad5.standard.mp3",
+      "audioAuto": "296b20c2867dfad5.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "296b20c2867dfad5",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "eg-pinku-no-kaban",
@@ -744,13 +781,14 @@
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true,
       "uncertain": false,
-      "audio": "1df5fe7e09ff2819.standard.mp3",
-      "audioAuto": "1df5fe7e09ff2819.standard.mp3",
+      "audio": "1df5fe7e09ff2819.mp3",
+      "audioAuto": "1df5fe7e09ff2819.mp3",
       "audioOriginal": "1df5fe7e09ff2819.orig.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "1df5fe7e09ff2819",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ookii-kamera-mo-nihon-no-ka",
@@ -797,7 +835,8 @@
         "end": 1.8830042763627284
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Same frame, but Furansu is first carded in Lesson 5",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "iie-doitsu-no-desu",
@@ -869,14 +908,15 @@
       "target": "さんさつ",
       "pronunciation": "sansatsu",
       "note": "No sound change — it stays さ (sa), unlike the floor counter where さんがい (sangai) does shift.",
-      "audio": "f3d82a2323afeb63.standard.mp3",
+      "audio": "f3d82a2323afeb63.mp3",
       "audioOriginal": "f3d82a2323afeb63.orig.mp3",
-      "audioAuto": "f3d82a2323afeb63.standard.mp3",
+      "audioAuto": "f3d82a2323afeb63.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "f3d82a2323afeb63",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "water-bottle",
@@ -892,7 +932,8 @@
       "audioMarked": true,
       "audioTextHash": "b2a35efae0b98211",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "iie-kyuuhyaku-en-desu",
@@ -917,14 +958,15 @@
       "target": "じゅっかい",
       "pronunciation": "jukkai",
       "note": "じゅう (jū) shortens to じゅっ (ju-).",
-      "audio": "af51375382e52588.standard.mp3",
+      "audio": "af51375382e52588.mp3",
       "audioOriginal": "af51375382e52588.orig.mp3",
-      "audioAuto": "af51375382e52588.standard.mp3",
+      "audioAuto": "af51375382e52588.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "af51375382e52588",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "chiizu-to-wain-furansu-no",
@@ -967,7 +1009,13 @@
       "note": "どこ (doko) plus ですか (desu ka). Asks which place something is.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the whole question, where the book cards only the bare word どこ (doko). Carries a hint because 'Where is it?' also reaches どこにありますか (doko ni arimasu ka) in Lesson 13.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "31e8e9f0544d7719.mp3",
+      "audioOriginal": "31e8e9f0544d7719.orig.mp3",
+      "audioAuto": "31e8e9f0544d7719.mp3",
+      "audioMarked": true,
+      "audioTextHash": "31e8e9f0544d7719"
     },
     {
       "id": "fib-murasaki-kaban-ikura",
@@ -979,7 +1027,13 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "8f5a58cb0f99f49f.mp3",
+      "audioOriginal": "8f5a58cb0f99f49f.orig.mp3",
+      "audioAuto": "8f5a58cb0f99f49f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f5a58cb0f99f49f"
     },
     {
       "id": "shiroi-tshirt-o-nimai",
@@ -1026,7 +1080,8 @@
       "audio": "7abdf046a165de57-gen-6f0512ef.mp3",
       "audioTextHash": "7abdf046a165de57",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "kore-wa-itaria-no-kutsu",
@@ -1117,7 +1172,13 @@
       "scene": "answering what floor the refrigerator is on",
       "fillInBlank": true,
       "aiSuggested": true,
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "9f5ca20dff5661f1.mp3",
+      "audioOriginal": "9f5ca20dff5661f1.orig.mp3",
+      "audioAuto": "9f5ca20dff5661f1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f5ca20dff5661f1"
     },
     {
       "id": "irl-l1-29",
@@ -1137,7 +1198,8 @@
         "end": 2.0594461692217823
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ikura-desu-ka",
@@ -1157,14 +1219,15 @@
       "target": "いっかい",
       "pronunciation": "ikkai",
       "note": "Japanese counts from street level, so いっかい (ikkai) is the British ground floor. The British 'first floor' is にかい (nikai).",
-      "audio": "d06a0f64a4d54af4.standard.mp3",
+      "audio": "d06a0f64a4d54af4.mp3",
       "audioOriginal": "d06a0f64a4d54af4.orig.mp3",
-      "audioAuto": "d06a0f64a4d54af4.standard.mp3",
+      "audioAuto": "d06a0f64a4d54af4.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "d06a0f64a4d54af4",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "eg-midori-no-pen",
@@ -1177,13 +1240,14 @@
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true,
       "uncertain": false,
-      "audio": "620f0c6426b840c2.standard.mp3",
-      "audioAuto": "620f0c6426b840c2.standard.mp3",
+      "audio": "620f0c6426b840c2.mp3",
+      "audioAuto": "620f0c6426b840c2.mp3",
       "audioOriginal": "620f0c6426b840c2.orig.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "620f0c6426b840c2",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "itaria-no-kutsu-ja-arimasen",
@@ -1207,14 +1271,15 @@
       "target": "なんがいですか",
       "pronunciation": "nangai desu ka",
       "note": "Textbooks teach なんがい (nangai). なんかい (nankai) is also heard, but it collides with 'how many times'.",
-      "audio": "26dd04e3f6a5e268.standard.mp3",
+      "audio": "26dd04e3f6a5e268.mp3",
       "audioOriginal": "26dd04e3f6a5e268.orig.mp3",
-      "audioAuto": "26dd04e3f6a5e268.standard.mp3",
+      "audioAuto": "26dd04e3f6a5e268.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "26dd04e3f6a5e268",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "infomeeshon-wa-ikkai",
@@ -1253,14 +1318,15 @@
       "target": "いっさつ",
       "pronunciation": "issatsu",
       "note": "さつ (satsu) counts bound things — books, magazines, notebooks. いち (ichi) shortens to いっ (i-) here.",
-      "audio": "8b44669c31d307c8.standard.mp3",
+      "audio": "8b44669c31d307c8.mp3",
       "audioOriginal": "8b44669c31d307c8.orig.mp3",
-      "audioAuto": "8b44669c31d307c8.standard.mp3",
+      "audioAuto": "8b44669c31d307c8.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "8b44669c31d307c8",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "kono-kuroi-kaban-mo-ichiman",
@@ -1291,7 +1357,8 @@
       "audioAuto": "grey-genkanji-366835ad.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "two-books",
@@ -1299,14 +1366,15 @@
       "category": "Numbers",
       "target": "にさつ",
       "pronunciation": "nisatsu",
-      "audio": "f49758bef12ca226.standard.mp3",
+      "audio": "f49758bef12ca226.mp3",
       "audioOriginal": "f49758bef12ca226.orig.mp3",
-      "audioAuto": "f49758bef12ca226.standard.mp3",
+      "audioAuto": "f49758bef12ca226.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "f49758bef12ca226",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the counter series",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "biiru-ippon-to-wain-nihon",
@@ -1348,13 +1416,14 @@
       "aiSuggested": true,
       "note": "The colour and the fruit share the word. Like every borrowed colour it takes の: オレンジの ぼうし (orenji no bōshi).",
       "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
-      "audio": "8181b8ad74178a32.standard.mp3",
+      "audio": "8181b8ad74178a32.mp3",
       "audioOriginal": "8181b8ad74178a32.orig.mp3",
-      "audioAuto": "8181b8ad74178a32.standard.mp3",
+      "audioAuto": "8181b8ad74178a32.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "8181b8ad74178a32",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "meat",
@@ -1369,7 +1438,8 @@
       "audioMarked": true,
       "audioTextHash": "5a857e2c193977bd",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "kore-wa-doko-no-biiru-ka",
@@ -1396,13 +1466,14 @@
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true,
       "uncertain": false,
-      "audio": "0ef23b589900aeea.standard.mp3",
-      "audioAuto": "0ef23b589900aeea.standard.mp3",
+      "audio": "0ef23b589900aeea.mp3",
+      "audioAuto": "0ef23b589900aeea.mp3",
       "audioOriginal": "0ef23b589900aeea.orig.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "0ef23b589900aeea",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "taoru-o-yonmai-kudasai",
@@ -1460,13 +1531,14 @@
       "aiSuggested": true,
       "note": "A noun like みどり (midori), so it takes の: むらさきの はな (murasaki no hana). There is no むらさきい.",
       "reviewNote": "Added as a second example of a colour that only works with の, per your question. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
-      "audio": "c5311ec930f0f242.standard.mp3",
+      "audio": "c5311ec930f0f242.mp3",
       "audioOriginal": "c5311ec930f0f242.orig.mp3",
-      "audioAuto": "c5311ec930f0f242.standard.mp3",
+      "audioAuto": "c5311ec930f0f242.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "c5311ec930f0f242",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "chiizukeeki-appurupai-kudasai",
@@ -1498,7 +1570,8 @@
       "audioMarked": true,
       "audioTextHash": "ae379f49bde710e3",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Shopping goods, Lesson 5's field",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ano-aoi-tshirt-desu",

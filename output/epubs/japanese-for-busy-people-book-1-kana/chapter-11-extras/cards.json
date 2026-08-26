@@ -337,7 +337,8 @@
       "audio": "3e111b3d3e4da10e-gen-95d2b9df.mp3",
       "audioTextHash": "3e111b3d3e4da10e",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: gurai (approximately) is taught in Lesson 11",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-senshu-kyouto-ni-ikimashita",
@@ -420,7 +421,13 @@
       "note": "The opposite of さいあく (saiaku). Stronger than いい (ii): it is the top of the scale, not merely good.",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka).",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "8ee233f61625c511.mp3",
+      "audioOriginal": "8ee233f61625c511.orig.mp3",
+      "audioAuto": "8ee233f61625c511.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8ee233f61625c511"
     },
     {
       "id": "f11-shuumatsu-wa-hima-ja-arimasen",
@@ -846,7 +853,13 @@
       "note": "The opposite of さいこう (saikō). Both are verdicts on how something turned out, so they answer どうでしたか (dō deshita ka).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: an evaluative word answering this lesson's どうでしたか (dō deshita ka).",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "9703be7f4e361844.mp3",
+      "audioOriginal": "9703be7f4e361844.orig.mp3",
+      "audioAuto": "9703be7f4e361844.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9703be7f4e361844"
     },
     {
       "id": "f11-kono-hon-wa-tsumaranakunakatta-desu",

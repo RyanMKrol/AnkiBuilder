@@ -39,14 +39,15 @@
       "pronunciation": "kirei na",
       "hint": "also 'clean, tidy'",
       "note": "Despite ending in い it's a な-adjective, so な goes before the noun: きれいな かばん (kirei na kaban). It covers both 'pretty' and 'clean'.",
-      "audio": "815f1c138ca51720.standard.mp3",
+      "audio": "815f1c138ca51720.mp3",
       "audioOriginal": "815f1c138ca51720.orig.mp3",
-      "audioAuto": "815f1c138ca51720.standard.mp3",
+      "audioAuto": "815f1c138ca51720.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "815f1c138ca51720",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "v10-asakusa-nigiyaka-na-tokoro",
@@ -69,14 +70,15 @@
       "target": "とうめいな",
       "pronunciation": "tōmei na",
       "note": "Another な-adjective, like きれいな (kirei na): とうめいな かさ (tōmei na kasa), 'a clear umbrella'. The final い belongs to めい (mei), so it doesn't inflect like ちいさい (chīsai).",
-      "audio": "f94ba9d42421f703.standard.mp3",
+      "audio": "f94ba9d42421f703.mp3",
       "audioOriginal": "f94ba9d42421f703.orig.mp3",
-      "audioAuto": "f94ba9d42421f703.standard.mp3",
+      "audioAuto": "f94ba9d42421f703.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "f94ba9d42421f703",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-mise-benri-nai",
@@ -175,14 +177,15 @@
       "category": "Other",
       "target": "ながい",
       "pronunciation": "nagai",
-      "audio": "fc18d93a93b907f7.standard.mp3",
+      "audio": "fc18d93a93b907f7.mp3",
       "audioOriginal": "fc18d93a93b907f7.orig.mp3",
-      "audioAuto": "fc18d93a93b907f7.standard.mp3",
+      "audioAuto": "fc18d93a93b907f7.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "fc18d93a93b907f7",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "f10-kaban-ookikunai",
@@ -286,7 +289,8 @@
       "audioFilter": "standard",
       "audioTextHash": "1b2d7b50b0e6f036",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "cute",
@@ -300,7 +304,8 @@
       "audioFilter": "standard",
       "audioTextHash": "f161f8a1da3d9709",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ex10-kono-kamera-yasui",
@@ -433,13 +438,14 @@
       "reviewNote": "Example sentence card added during the corpus review, at your request, to show the な-adjective in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
       "aiSuggested": true,
       "uncertain": false,
-      "audio": "a48981ce874cf711.standard.mp3",
+      "audio": "a48981ce874cf711.mp3",
       "audioOriginal": "a48981ce874cf711.orig.mp3",
-      "audioAuto": "a48981ce874cf711.standard.mp3",
+      "audioAuto": "a48981ce874cf711.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "a48981ce874cf711",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ex10-okinawa-umi-kirei-q",
@@ -461,14 +467,15 @@
       "category": "Food",
       "target": "からい",
       "pronunciation": "karai",
-      "audio": "a108ef8087176294.standard.mp3",
+      "audio": "a108ef8087176294.mp3",
       "audioOriginal": "a108ef8087176294.orig.mp3",
-      "audioAuto": "a108ef8087176294.standard.mp3",
+      "audioAuto": "a108ef8087176294.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "a108ef8087176294",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ex10-hai-takai",
@@ -583,7 +590,13 @@
       "note": "Sits in front of a noun without な (na), unlike the な-adjectives in this lesson: おなじみせ (onaji mise), not おなじなみせ (onaji na mise).",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: a describing word that looks like a な-adjective and does not behave like one, which is where a learner goes wrong.",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true,
+      "audio": "e24b01dfaf1acb8c.mp3",
+      "audioOriginal": "e24b01dfaf1acb8c.orig.mp3",
+      "audioAuto": "e24b01dfaf1acb8c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e24b01dfaf1acb8c"
     },
     {
       "id": "ex10-ocha-o-douzo",
@@ -634,15 +647,16 @@
       "target": "かっこいい",
       "pronunciation": "kakkoii",
       "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks.",
-      "audio": "3ade1dd0f0a71a9c.standard.mp3",
+      "audio": "3ade1dd0f0a71a9c.mp3",
       "audioOriginal": "3ade1dd0f0a71a9c.orig.mp3",
-      "audioAuto": "3ade1dd0f0a71a9c.standard.mp3",
+      "audioAuto": "3ade1dd0f0a71a9c.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "3ade1dd0f0a71a9c",
       "hint": "stylish, good-looking",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\".",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "fib-kore-wa-takai-desu",
@@ -652,14 +666,15 @@
       "pronunciation": "kore wa takai desu",
       "note": null,
       "aiSuggested": true,
-      "audio": "cfaccb9c96654982.standard.mp3",
+      "audio": "cfaccb9c96654982.mp3",
       "audioOriginal": "cfaccb9c96654982.orig.mp3",
-      "audioAuto": "cfaccb9c96654982.standard.mp3",
+      "audioAuto": "cfaccb9c96654982.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "cfaccb9c96654982",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "f10-mise-atarashikunai",
@@ -748,7 +763,8 @@
         "end": 1.3276628468134632
       },
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "f10-wain-yasukunai",
@@ -791,13 +807,14 @@
       "reviewNote": "Example sentence card added during the corpus review, at your request, to show the な-adjective in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job",
       "aiSuggested": true,
       "uncertain": false,
-      "audio": "f7469831558a9d98.standard.mp3",
+      "audio": "f7469831558a9d98.mp3",
       "audioOriginal": "f7469831558a9d98.orig.mp3",
-      "audioAuto": "f7469831558a9d98.standard.mp3",
+      "audioAuto": "f7469831558a9d98.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
       "audioTextHash": "f7469831558a9d98",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "v10-tenki-warui",
@@ -1043,7 +1060,8 @@
       "audioMarked": true,
       "audioTextHash": "f2fe58e0bd7963ec",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: genki is a na-adjective; Lesson 10 is where na-adjectives are taught",
-      "addition": "nihongo-102-2026-08"
+      "addition": "nihongo-102-2026-08",
+      "additionReviewed": true
     },
     {
       "id": "ex10-totemo-oishii",

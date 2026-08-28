@@ -504,3 +504,89 @@ test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks",
   // Emptiness was actually checked, with the deck name escaped into the query.
   assert.ok(queries.every((q) => q.startsWith('deck:"')));
 });
+
+test("a collection marked `retired` is skipped, so it cannot block delivery of the others", async () => {
+  // The failure this prevents: a retired collection's Anki deck is gone on purpose, but the
+  // delivered-before-yet-ZERO-notes guard cannot tell "deliberately deleted" from "renamed", so it
+  // aborts — and because one guard failure aborts the WHOLE run, an unrelated book stops uploading
+  // with a message about a deck the owner retired days earlier. Skipping is what breaks that link.
+  const { resolveDecks } = await import("../../src/anki/deliver.js");
+  const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("fs");
+  const { join } = await import("path");
+  const { tmpdir } = await import("os");
+
+  const root = mkdtempSync(join(tmpdir(), "deliver-retired-"));
+  try {
+    const mk = (dir, manifest, manifestName) => {
+      const d = join(root, dir);
+      mkdirSync(join(d, "chapter-0"), { recursive: true });
+      writeFileSync(join(d, manifestName), JSON.stringify(manifest));
+      writeFileSync(
+        join(d, "chapter-0", "cards.json"),
+        JSON.stringify({
+          meta: { done: true, targetLanguage: "ja", chapterNumber: 1, chapterLabel: "L1" },
+          items: [
+            { id: "x", english: "One", target: "いち", pronunciation: "ichi", category: "Numbers" },
+          ],
+        }),
+      );
+    };
+    mk(
+      "epubs/live",
+      { title: "Live", slug: "live", epubHash: null, targetLanguage: "ja" },
+      "book.json",
+    );
+    mk(
+      "epubs/gone",
+      { title: "Gone", slug: "gone", epubHash: null, targetLanguage: "ja", retired: true },
+      "book.json",
+    );
+
+    const decks = resolveDecks(root, "all");
+    const byId = Object.fromEntries(decks.map((d) => [d.id, d]));
+    assert.equal(byId.gone.skipped, "retired", "a retired collection is skipped, with the reason");
+    assert.equal(byId.gone.units, undefined, "and resolves no units, so no stage can touch it");
+    assert.equal(byId.live.skipped, undefined, "the live collection is unaffected");
+    assert.ok(byId.live.units.length > 0);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("`retired` must be exactly true, and a missing or unreadable manifest never means retired", async () => {
+  // Absence has to mean "not retired": every collection already on disk lacks the field, and the
+  // read is best-effort, so a parse failure must not silently stop a real delivery.
+  const { resolveDecks } = await import("../../src/anki/deliver.js");
+  const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("fs");
+  const { join } = await import("path");
+  const { tmpdir } = await import("os");
+
+  for (const [label, retired] of [
+    ["absent", undefined],
+    ["false", false],
+    ["truthy string", "yes"],
+    ["1", 1],
+  ]) {
+    const root = mkdtempSync(join(tmpdir(), "deliver-retired-val-"));
+    try {
+      const d = join(root, "epubs", "bk");
+      mkdirSync(join(d, "chapter-0"), { recursive: true });
+      const manifest = { title: "Bk", slug: "bk", epubHash: null, targetLanguage: "ja" };
+      if (retired !== undefined) manifest.retired = retired;
+      writeFileSync(join(d, "book.json"), JSON.stringify(manifest));
+      writeFileSync(
+        join(d, "chapter-0", "cards.json"),
+        JSON.stringify({
+          meta: { done: true, targetLanguage: "ja", chapterNumber: 1, chapterLabel: "L1" },
+          items: [
+            { id: "x", english: "One", target: "いち", pronunciation: "ichi", category: "Numbers" },
+          ],
+        }),
+      );
+      const deck = resolveDecks(root, "all").find((x) => x.id === "bk");
+      assert.notEqual(deck.skipped, "retired", `retired: ${label} must NOT skip`);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+});

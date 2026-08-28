@@ -1272,12 +1272,13 @@
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: puts this lesson's おすすめ (osusume) into a phrase rather than leaving it a bare noun.",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "audio": "a256f8b9e59a4ca2.mp3",
-      "audioOriginal": "a256f8b9e59a4ca2.orig.mp3",
-      "audioAuto": "a256f8b9e59a4ca2.mp3",
+      "audioOriginal": "1676df26904d55ba-genkanji-3dc010f3.orig.mp3",
+      "audioAuto": "1676df26904d55ba-genkanji-3dc010f3.mp3",
       "audioMarked": true,
-      "audioTextHash": "a256f8b9e59a4ca2",
-      "additionDone": true
+      "audioTextHash": "1676df26904d55ba",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "1676df26904d55ba-genkanji-3dc010f3.mp3"
     },
     {
       "id": "v9-roma-wa-ima-gozen-shichiji",

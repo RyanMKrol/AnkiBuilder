@@ -3527,3 +3527,37 @@ API is worth confirming against the real thing at least once.
 **Revisit** if AnkiConnect wrappers grow more defaults that encode assumptions about Anki's rules; the
 same shape of bug is available anywhere a default stands in for a live behaviour nobody has probed.
 `src/anki/probeResults.js` is where such behaviours get answered.
+
+### A retired collection blocked delivery of every OTHER collection
+
+**What.** The Nihongo 101 course was absorbed into the book and its Anki deck deleted. Its
+`anki-delivered.json` still recorded 236 delivered notes, so the next delivery hit the
+delivered-before-but-ZERO-notes-found guard and aborted. That guard is correct in isolation — from
+where it stands, a deliberately deleted deck and a RENAMED one look identical, and continuing past a
+rename would re-add every card as a new note with no scheduling. But one guard failure aborts the
+whole run, and the dashboard's "Deliver to Anki" button delivers ALL collections. So a collection
+retired days earlier silently blocked an unrelated book from uploading, and the error named only the
+retired deck, which reads as unrelated to the deck the owner was actually trying to ship.
+
+**Why.** There was no way to say "this deck is gone on purpose". The two states the pipeline could
+represent were "deliver it" and "it failed", and retirement is neither.
+
+**Impact.** Delivery of the live book was blocked outright until the flag existed. The trap in the
+guard's own suggested fix made it worse: it advises clearing `deliveredCardIds`, which would have
+re-armed the collection and re-delivered all 236 cards into a recreated deck as new notes.
+
+**Status.** Fixed. A collection's manifest (`book.json` / `course.json`) may carry `retired: true`,
+and `resolveDecks` skips it with `skipped: "retired"` before any stage touches it. Only a human sets
+it, because only a human knows whether a missing deck is intentional. `retired` must be exactly
+`true`; absent, `false` or merely truthy all mean not retired, so the thousands of existing manifests
+without the field are unaffected.
+
+**Revisit** if collections ever need retiring per-UNIT rather than whole; the flag is deliberately
+collection-wide because that is the only granularity retirement has meant so far.
+
+**Verified by:**
+
+```sh
+node -e 'import("./src/anki/deliver.js").then(m=>{for(const d of m.resolveDecks("output","all"))
+  console.log(d.type, d.id, "| skipped:", d.skipped||"-")})'
+```

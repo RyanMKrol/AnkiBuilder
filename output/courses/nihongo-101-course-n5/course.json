@@ -1,4 +1,6 @@
 {
   "name": "Nihongo 101 Course (N5)",
-  "targetLanguage": "ja"
+  "targetLanguage": "ja",
+  "retired": true,
+  "retiredNote": "Absorbed into the Japanese for Busy People Book 1: Kana collection on 2026-08-26; the Anki deck was deleted. Kept on disk as the record of what was absorbed."
 }

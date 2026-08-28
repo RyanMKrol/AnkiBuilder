@@ -259,12 +259,13 @@
       "reviewNote": "Nihongo 102, Extra questions PDF, question 4 answer. Job: the only sentence えいがかん (eigakan) appears in.",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
-      "audio": "38c7599a5bcebe4a.mp3",
-      "audioOriginal": "38c7599a5bcebe4a.orig.mp3",
-      "audioAuto": "38c7599a5bcebe4a.mp3",
+      "audioOriginal": "4f6b0fb0685e04e4-genkanji-8fcd5bb9.orig.mp3",
+      "audioAuto": "4f6b0fb0685e04e4-genkanji-8fcd5bb9.mp3",
       "audioMarked": true,
-      "audioTextHash": "38c7599a5bcebe4a",
-      "additionDone": true
+      "audioTextHash": "4f6b0fb0685e04e4",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "4f6b0fb0685e04e4-genkanji-8fcd5bb9.mp3"
     },
     {
       "id": "fib-ema-mo-ocha-nomimasu",

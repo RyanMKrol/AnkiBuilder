@@ -563,12 +563,13 @@
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 2, Raja's reply. Answer half of the pair. Combines きょねんの (L6) with a month + に, a combination no card shows.",
       "ttsText": "きょねんのくがつにきました",
-      "audio": "d32f7ba214dd6c25.mp3",
-      "audioOriginal": "d32f7ba214dd6c25.orig.mp3",
-      "audioAuto": "d32f7ba214dd6c25.mp3",
+      "audioOriginal": "36c24fad072e198a-genkanji-65c1aac8.orig.mp3",
+      "audioAuto": "36c24fad072e198a-genkanji-65c1aac8.mp3",
       "audioMarked": true,
       "scene": "answering when you came to Japan",
-      "audioTextHash": "d32f7ba214dd6c25"
+      "audioTextHash": "36c24fad072e198a",
+      "audioFilter": "standard",
+      "audio": "36c24fad072e198a-genkanji-65c1aac8.mp3"
     },
     {
       "id": "w2-ryokou-nannichi-kara",
@@ -1185,7 +1186,9 @@
       "audioOriginal": "43b81e64c12970cc.orig.mp3",
       "audioAuto": "43b81e64c12970cc.mp3",
       "audioMarked": true,
-      "audioTextHash": "43b81e64c12970cc"
+      "audioTextHash": "43b81e64c12970cc",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "tanjoubi-wa-itsu-desu-ka",

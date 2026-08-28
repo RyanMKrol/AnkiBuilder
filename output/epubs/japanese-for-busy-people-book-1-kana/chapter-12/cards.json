@@ -287,11 +287,12 @@
       "category": "Home & Household",
       "target": "テーブルのうえにはながあります",
       "pronunciation": "tēburu no ue ni hana ga arimasu",
-      "audio": "d344c44d36b0375d.mp3",
-      "audioOriginal": "d344c44d36b0375d.orig.mp3",
-      "audioAuto": "d344c44d36b0375d.mp3",
+      "audioOriginal": "22bf182f539f2c10-genkanji-ce05b5ed.orig.mp3",
+      "audioAuto": "22bf182f539f2c10-genkanji-ce05b5ed.mp3",
       "audioMarked": true,
-      "audioTextHash": "d344c44d36b0375d"
+      "audioTextHash": "22bf182f539f2c10",
+      "audioFilter": "standard",
+      "audio": "22bf182f539f2c10-genkanji-ce05b5ed.mp3"
     },
     {
       "id": "nikko-otera-jinja-arimasu",
@@ -299,11 +300,12 @@
       "category": "Travel & Tourism",
       "target": "にっこうにおてらやじんじゃがあります",
       "pronunciation": "nikkō ni otera ya jinja ga arimasu",
-      "audio": "1d8e89442703dd44.mp3",
-      "audioOriginal": "1d8e89442703dd44.orig.mp3",
-      "audioAuto": "1d8e89442703dd44.mp3",
+      "audioOriginal": "e8a1a75cdc768a23-genkanji-7dc32f87.orig.mp3",
+      "audioAuto": "e8a1a75cdc768a23-genkanji-7dc32f87.mp3",
       "audioMarked": true,
-      "audioTextHash": "1d8e89442703dd44"
+      "audioTextHash": "e8a1a75cdc768a23",
+      "audioFilter": "standard",
+      "audio": "e8a1a75cdc768a23-genkanji-7dc32f87.mp3"
     },
     {
       "id": "ikkai-ginkou-conveni-to",
@@ -313,11 +315,12 @@
       "ttsText": "いっかいにぎんこうとコンビニがあります",
       "pronunciation": "ikkai ni ginkō to kombini ga arimasu",
       "note": "Uses と, not や — と implies nothing else is there besides the bank and convenience store, unlike や which implies other things too.",
-      "audio": "d1dd1214e681dd13.mp3",
-      "audioOriginal": "d1dd1214e681dd13.orig.mp3",
-      "audioAuto": "d1dd1214e681dd13.mp3",
+      "audioOriginal": "1f268bff635522bf-genkanji-5455a5ff.orig.mp3",
+      "audioAuto": "1f268bff635522bf-genkanji-5455a5ff.mp3",
       "audioMarked": true,
-      "audioTextHash": "d1dd1214e681dd13"
+      "audioTextHash": "1f268bff635522bf",
+      "audioFilter": "standard",
+      "audio": "1f268bff635522bf-genkanji-5455a5ff.mp3"
     },
     {
       "id": "yuubinkyoku-post-office",
@@ -685,11 +688,12 @@
       "pronunciation": "ryokan no chikaku ni nani ga arimasu ka",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (built on ちかく, which reappears in a dedicated vicinity/location vocabulary list (この ちかく), suggesting it's formally retaught rather than just reused)",
-      "audio": "7e8ad7ebc09edbf4.mp3",
-      "audioOriginal": "7e8ad7ebc09edbf4.orig.mp3",
-      "audioAuto": "7e8ad7ebc09edbf4.mp3",
+      "audioOriginal": "14f0f3972e9f0259-genkanji-66f88f9a.orig.mp3",
+      "audioAuto": "14f0f3972e9f0259-genkanji-66f88f9a.mp3",
       "audioMarked": true,
-      "audioTextHash": "7e8ad7ebc09edbf4"
+      "audioTextHash": "14f0f3972e9f0259",
+      "audioFilter": "standard",
+      "audio": "14f0f3972e9f0259-genkanji-66f88f9a.mp3"
     },
     {
       "id": "ookii-mizuumi-ya-taki",
@@ -698,11 +702,12 @@
       "target": "おおきいみずうみやたきがあります",
       "pronunciation": "ōkii mizuumi ya taki ga arimasu",
       "scene": "answering what is near the Japanese inn",
-      "audio": "121d5d03bee9c4a6.mp3",
-      "audioOriginal": "121d5d03bee9c4a6.orig.mp3",
-      "audioAuto": "121d5d03bee9c4a6.mp3",
+      "audioOriginal": "dcc7cf1858d094b6-genkanji-05efb8e0.orig.mp3",
+      "audioAuto": "dcc7cf1858d094b6-genkanji-05efb8e0.mp3",
       "audioMarked": true,
-      "audioTextHash": "121d5d03bee9c4a6"
+      "audioTextHash": "dcc7cf1858d094b6",
+      "audioFilter": "standard",
+      "audio": "dcc7cf1858d094b6-genkanji-05efb8e0.mp3"
     },
     {
       "id": "hikidashi-drawer",
@@ -807,11 +812,12 @@
       "target": "にちようびにくるまではこねにいきます",
       "pronunciation": "nichiyōbi ni kuruma de hakone ni ikimasu",
       "note": "くるまで uses で to mark the means of transportation — \"by car.\"",
-      "audio": "71eb92a3fde0db2c.mp3",
-      "audioOriginal": "71eb92a3fde0db2c.orig.mp3",
-      "audioAuto": "71eb92a3fde0db2c.mp3",
+      "audioOriginal": "81bae97d42b85e23-genkanji-975dae6d.orig.mp3",
+      "audioAuto": "81bae97d42b85e23-genkanji-975dae6d.mp3",
       "audioMarked": true,
-      "audioTextHash": "71eb92a3fde0db2c"
+      "audioTextHash": "81bae97d42b85e23",
+      "audioFilter": "standard",
+      "audio": "81bae97d42b85e23-genkanji-975dae6d.mp3"
     },
     {
       "id": "goa-place",

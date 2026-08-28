@@ -111,11 +111,12 @@
       "note": "The ない (nai) on the end belongs to the word itself, not to a negative ending, so this is the plain affirmative.",
       "aiSuggested": true,
       "reviewNote": "Paradigm gap: boring / present affirmative. Constructed sentence; first of the four-card このほんは〜 fixed frame that cycles つまらない through all four forms. Chosen to sit against the existing このほんはおもしろいです from Lesson 10.",
-      "audio": "cc9494e6df375238.mp3",
-      "audioOriginal": "cc9494e6df375238.orig.mp3",
-      "audioAuto": "cc9494e6df375238.mp3",
+      "audioOriginal": "b3d60c991acf32d4-genkanji-f5573dc5.orig.mp3",
+      "audioAuto": "b3d60c991acf32d4-genkanji-f5573dc5.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc9494e6df375238"
+      "audioTextHash": "b3d60c991acf32d4",
+      "audioFilter": "standard",
+      "audio": "b3d60c991acf32d4-genkanji-f5573dc5.mp3"
     },
     {
       "id": "f11-suteeki-wa-oishikunakatta-desu",
@@ -257,11 +258,12 @@
       "scene": "replying to a guest who has just said she had a very nice time at your home",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 1, Sasaki's line. わたしたち is carded as bare vocabulary but the sentence it comes from is not.",
-      "audio": "3c33e9e1e9ec15b5.mp3",
-      "audioOriginal": "3c33e9e1e9ec15b5.orig.mp3",
-      "audioAuto": "3c33e9e1e9ec15b5.mp3",
+      "audioOriginal": "b2d4d8f215bedd8c-genkanji-f88c7c2e.orig.mp3",
+      "audioAuto": "b2d4d8f215bedd8c-genkanji-f88c7c2e.mp3",
       "audioMarked": true,
-      "audioTextHash": "3c33e9e1e9ec15b5"
+      "audioTextHash": "b2d4d8f215bedd8c",
+      "audioFilter": "standard",
+      "audio": "b2d4d8f215bedd8c-genkanji-f88c7c2e.mp3"
     },
     {
       "id": "ex11-kinou-no-deeto-wa-yokunakatta-desu",
@@ -873,11 +875,12 @@
       "pronunciation": "kono hon wa tsumaranakunakatta desu",
       "aiSuggested": true,
       "reviewNote": "Paradigm gap: boring / past negative. Constructed sentence, fourth of the このほんは〜 fixed frame; the two earlier cards in the frame carry the notes it builds on.",
-      "audio": "17604fc365a119d2.mp3",
-      "audioOriginal": "17604fc365a119d2.orig.mp3",
-      "audioAuto": "17604fc365a119d2.mp3",
+      "audioOriginal": "da4ca7e95ea94da2-genkanji-5fb3ec11.orig.mp3",
+      "audioAuto": "da4ca7e95ea94da2-genkanji-5fb3ec11.mp3",
       "audioMarked": true,
-      "audioTextHash": "17604fc365a119d2"
+      "audioTextHash": "da4ca7e95ea94da2",
+      "audioFilter": "standard",
+      "audio": "da4ca7e95ea94da2-genkanji-5fb3ec11.mp3"
     },
     {
       "id": "ex11-kinou-no-deeto-wa-omoshirokunakatta-desu",

@@ -622,7 +622,9 @@
       "hint": null,
       "note": "A noun + ですか (desu ka) is enough to ask this — no verb is needed. Nakamura asks it because Smith is carrying a suitcase.",
       "reviewNote": "Target Dialogue, line 1 (trimmed of the あ、スミスさん、 opening, since the あ card is excluded from the deck). The lesson's title word しゅっちょう exists only as a bare noun card; this is the question the book actually uses it in.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "tanjoubi-wa-itsu-desu-ka",

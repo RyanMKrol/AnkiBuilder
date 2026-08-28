@@ -757,7 +757,7 @@
       "target": "わたしはがくせいです",
       "pronunciation": "watashi wa gakusei desu",
       "note": "The は here is read わ (wa). がくせい (gakusei) was introduced with the other occupations.",
-      "audio": "0843e848faa59d29.mp3",
+      "audio": "i-am-a-student-manual-31ccfbbc.mp3",
       "audioOriginal": "0843e848faa59d29.orig.mp3",
       "audioAuto": "0843e848faa59d29.mp3",
       "audioMarked": true,
@@ -767,7 +767,13 @@
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "audioManual": "i-am-a-student-manual-31ccfbbc.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.4710389554794516
+      },
+      "audioMarkerStuck": true
     },
     {
       "id": "ne-eki-wa-achira-desu-ne",

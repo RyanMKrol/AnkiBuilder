@@ -138,7 +138,16 @@ the home page) pushes the on-disk state into a running Anki over AnkiConnect:
 it backs up first (with scheduling), force-syncs the note type to the code's definition, and updates
 each note's fields in place by GUID — deterministic, idempotent, scheduling preserved. It also syncs with
 AnkiWeb before and after (default; `--no-sync` to skip). Preview with
-`node scripts/deliver-to-anki.mjs --dry`. Backups land in `anki-backups/<stamp>/` and are pruned
+`node scripts/deliver-to-anki.mjs --dry`.
+
+The button delivers **every** collection, so a collection whose Anki deck has been deliberately
+deleted (its material absorbed elsewhere, or the deck abandoned) needs `"retired": true` in its own
+`book.json` / `course.json`. Deliver then skips it. Without that flag the "delivered before but no
+notes found" guard fires — it cannot tell a deleted deck from a renamed one — and because one guard
+failure aborts the whole run, a retired collection blocks every other collection from uploading.
+Only set it by hand: only a human knows whether a missing deck is intentional.
+
+Backups land in `anki-backups/<stamp>/` and are pruned
 automatically (the newest 10 plus one per older week; `ANKI_BUILDER_BACKUP_KEEP` tunes it). To roll a
 deck back, use `node scripts/restore-anki-backup.mjs --list` then
 `... <stamp> [deckName] --yes` — it deletes the live deck first and imports the snapshot, because a

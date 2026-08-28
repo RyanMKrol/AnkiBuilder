@@ -70,11 +70,12 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "d9d95ffa3e8e0b4c.mp3",
-      "audioOriginal": "d9d95ffa3e8e0b4c.orig.mp3",
-      "audioAuto": "d9d95ffa3e8e0b4c.mp3",
+      "audioOriginal": "a277563445891c17-genkanji-ff3dd911.orig.mp3",
+      "audioAuto": "a277563445891c17-genkanji-ff3dd911.mp3",
       "audioMarked": true,
-      "audioTextHash": "d9d95ffa3e8e0b4c"
+      "audioTextHash": "a277563445891c17",
+      "audioFilter": "standard",
+      "audio": "a277563445891c17-genkanji-ff3dd911.mp3"
     },
     {
       "id": "fib-sore-wa-wani-desu",

@@ -1,7 +1,7 @@
 {
   "note": "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
   "ankiParent": "Japanese for Busy People Book 1: Kana",
-  "lastDeliveredAt": "2026-08-26T22:51:57.709Z",
+  "lastDeliveredAt": "2026-09-05T11:18:45.929Z",
   "deliveredCardIds": [
     "10th-floor",
     "12nichi-ni",
@@ -1766,7 +1766,6 @@
     "shoes",
     "shokuji-shimasu",
     "shucchou",
-    "shucchou-desu-ka",
     "shujin-husband",
     "shumatsu-nani-shimashita-ka",
     "shuumatsu",

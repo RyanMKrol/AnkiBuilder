@@ -191,6 +191,55 @@ Audit an existing deck for this the same way: list every `Grammar & Function Wor
 is a bare morpheme, and check whether any longer `target` in the deck contains it. The gaps are real
 bugs, not stylistic preferences.
 
+## Every verb gets its citation form, whatever form the source printed
+
+**A verb that enters the deck in an inflected form also gets a card for its citation form.** This is
+language-agnostic. Every language that inflects verbs has one form the language itself treats as the
+name of the verb: the dictionary form in Japanese, the infinitive in Spanish, French, German and
+Russian, the third-person masculine singular perfect in Arabic. That form is the one a learner needs
+to look the word up, to derive every other form, and to speak in the plain register that casual
+conversation actually runs in. A deck that only ever shows one inflected form has taught a phrase, not
+a verb.
+
+Courses create this gap constantly, and reasonably. A beginner textbook teaches the polite inflected
+form first because that is what a learner can use on day one, and it may not print the citation form
+for twenty lessons, or ever. Following that order for the *sentences* is right. Silently inheriting it
+for the *vocabulary* is what leaves a learner unable to say the verb they have drilled fifty times.
+
+So the source's order decides WHERE the citation-form card goes, never WHETHER it exists:
+
+- If the course introduces the citation form at some lesson, that lesson is the home for every verb
+  taught up to it, and later verbs get theirs where they are taught.
+- If the course never introduces it, the card goes in the `-extras` unit of the lesson that teaches
+  the verb, marked `aiSuggested: true`.
+- Either way it never lands EARLIER than the inflected form it derives from. That is the extras
+  prerequisite rule and it wins: a citation form the learner meets before the form it comes from is
+  backwards, and the reviewer cannot tell it was deliberate.
+
+Put the derivation in the `note`, because that is the part that transfers. Name the conjugation class
+and the change: which letters moved, and one verb already carded that makes the same move. A card
+reading only "dictionary form of X" teaches one word; a card reading "Regular 1, so the い before ます
+becomes う, the same change as あいます → あう" teaches the learner to do the next one alone.
+
+Card the citation form always. Do NOT card the full paradigm by default: every tense, mood and
+politeness level of every verb multiplies out fast and buries the deck. The rest of the forms are the
+source's call, exactly as the extras pass already has it (a chapter that teaches a
+present/past/negative contrast gets that contrast drilled on fixed vocabulary).
+
+**Watch for a paradigm printed as an IMAGE.** This rule exists because of one: the chapter that
+introduced the dictionary form laid its conjugation chart out as a page picture, the prose beside it
+listed only the inflected forms, and extraction carded what it could read. Nineteen citation forms
+reached that chapter and the deck went to press without twenty-three others, on the one chapter whose
+entire grammar point was that correspondence. Three of the twenty-three were named in the chapter's
+own grammar prose and still missed. Whenever a chapter's grammar IS a transformation, open its images before trusting the
+card count (see the images step in [extras-pass.md](./extras-pass.md)).
+
+Audit an existing deck for this the way the gap was found: group every card by the verb it inflects,
+and report any group with no citation-form member. In a language with no spaces the cheap version is a
+suffix match on the inflected ending, then a membership test for the derived citation form, which is
+mechanical apart from the conjugation class. Read the result per collection and never across two, as
+with every other audit here.
+
 ## Fill-in-the-blank cards and the semantic de-dup
 
 **Fill-in-the-blank (FIB) cards must be semantically de-duped against the corpus.** When AI-generated

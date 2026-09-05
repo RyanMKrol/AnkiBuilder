@@ -30,6 +30,7 @@ const SPENT = [
   "retire-nihongo-course.mjs",
   "migrate-absorption-to-additions.mjs",
   "migrate-mark-inherited-audio.mjs",
+  "add-verb-forms-family.mjs",
 ];
 
 const STANDING = [

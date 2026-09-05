@@ -828,6 +828,39 @@
       "audioAuto": "d6744fcc091bd7e1.mp3",
       "audioMarked": true,
       "audioTextHash": "d6744fcc091bd7e1"
+    },
+    {
+      "id": "x16d-yasumu-dict",
+      "english": "Rest (dictionary form)",
+      "category": "Body & Health",
+      "target": "やすむ",
+      "pronunciation": "yasumu",
+      "note": "Dictionary form of やすみます (yasumimasu, \"rest\", Lesson 16). Regular 1: the み before ます becomes む, the same change as よみます → よむ (yomu, \"read\").",
+      "reviewNote": "Verb dictionary-form batch (2026-09). Routed to Lesson 16 rather than Lesson 15 with the rest of the batch because やすみます is Lesson 16 vocabulary: a dictionary form in Lesson 15 would front-run the ます-form it derives from.",
+      "aiSuggested": true,
+      "addition": "verb-dictionary-forms"
+    },
+    {
+      "id": "x16d-shokuji-o-suru-dict",
+      "english": "Have a meal (dictionary form)",
+      "category": "Food",
+      "target": "しょくじをする",
+      "pronunciation": "shokuji o suru",
+      "note": "Dictionary form of しょくじをします (shokuji o shimasu, \"have a meal\", Lesson 16). Only the します part changes, to する (suru); しょくじ (shokuji) on its own is the noun \"meal\".",
+      "reviewNote": "Verb dictionary-form batch (2026-09). Routed to Lesson 16 rather than Lesson 15 because しょくじをします is Lesson 16 vocabulary.",
+      "aiSuggested": true,
+      "addition": "verb-dictionary-forms"
+    },
+    {
+      "id": "x16d-paatii-o-suru-dict",
+      "english": "Have a party (dictionary form)",
+      "category": "Other",
+      "target": "パーティーをする",
+      "pronunciation": "pātī o suru",
+      "note": "Dictionary form of パーティーをします (pātī o shimasu, \"have a party\", Lesson 16). Only the します part changes, to する (suru).",
+      "reviewNote": "Verb dictionary-form batch (2026-09). Routed to Lesson 16 rather than Lesson 15 because パーティーをします is Lesson 16 vocabulary.",
+      "aiSuggested": true,
+      "addition": "verb-dictionary-forms"
     }
   ]
 }

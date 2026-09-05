@@ -3619,30 +3619,33 @@ print(f"{total} cue(s) quote Japanese; {bare} unglossed")   # expect: 46 quote J
 PY
 ```
 
-## A verb's citation form is a prose rule, with nothing mechanical behind it
+## Most verbs have no citation form, and three of those are a real miss
 
-- **What:** [card-authoring-rules.md](../../../.claude/skills/build-anki-deck/references/card-authoring-rules.md)
-  ("Every verb gets its citation form") now requires every verb that enters a deck in an inflected
-  form to also get a card for its citation form (dictionary form, infinitive, whichever the language
-  uses). Nothing enforces it. There is no `preflight` check, no schema field marking a card as an
-  inflected form, and no link between an inflected card and its citation-form sibling. The rule holds
-  only for as long as whoever authors the next lesson reads it.
-- **Why:** a general check needs per-language morphology the tool deliberately does not carry. Deciding
-  that かります is Regular 2 (so かりる) while おくります is Regular 1 (so おくる) is a lookup, not a
-  transformation, and the same is true of any language with more than one conjugation class. The
-  romanization checks hit this wall already and settled on reporting rather than rewriting; a
-  citation-form check would have to do the same, and a reporting check needs a verb list nobody
-  maintains yet.
-- **Impact:** the gap this rule was written for went undetected across sixteen lessons and two review
-  gates. Twenty-three verbs shipped with no citation form anywhere in the collection, three of them
-  named in the source chapter's own grammar prose. All twenty-three have since been authored into the
-  `-extras` units as the `verb-dictionary-forms` addition batch (applied by the spent migration
-  `scripts/add-verb-forms-family.mjs`, from the card data in
-  `docs/designs/verb-forms-family-2026-09.cards.json`), so the count below is now zero, but the next
-  book gets no warning at all.
-- **Status:** open (the specific gap is closed; the class of gap is not)
-- **Verified by:** counts the book's bare inflected-form verb entries against the citation-form cards
-  that name them, per collection. Expect `0 with no citation form`:
+- **What:** the deck cards verbs in whatever form the book prints. Twenty-four bare ます-form verb
+  entries have no dictionary-form card anywhere in the collection. Twenty-one of those are expected:
+  Japanese for Busy People Book 1 simply never prints their dictionary form, and the owner ruled on
+  2026-09-05 that the deck follows the book's schedule rather than running ahead of it. **Three are a
+  genuine bug:** Lesson 15's GRAMMAR 2 prose enumerates the Regular 2 verbs taught up to that point so
+  the learner can derive their dictionary forms, and みせる, あげる and かりる were never carded
+  although the chapter names them. The chapter's conjugation chart is a page image
+  (`Page_145_Image_0001.jpg`), so extraction carded only what the prose beside it listed.
+- **Why:** the twenty-one are a deliberate ruling, not an oversight. A batch supplying all twenty-three
+  was authored, audio-generated and content-reviewed in 2026-09, then stripped back out: carding a
+  citation form ahead of the lesson that explains the concept means meeting a form before its
+  explanation, and gathering them into Lesson 15 (the one lesson that does teach it) piled that lesson
+  with verbs whose own lesson was chapters earlier. It was applied by the spent migration
+  `scripts/add-verb-forms-family.mjs`; see `docs/designs/verb-forms-family-2026-09.md`
+  for the batch and the reversal, and the "Card every verb form the source teaches, and none it does
+  not" rule in `card-authoring-rules.md`. The three-verb miss has no such defence and is simply open.
+- **Impact:** a learner through Lesson 16 can say たべます and not たべる for most verbs, which is the
+  plain register informal speech runs in. Lessons 17 to 24 introduce more forms and will close part of
+  it as they are built. Nothing mechanical will catch the next miss of the Lesson 15 kind: there is no
+  `preflight` check for a citation form the source teaches and the cards lack, because a general check
+  needs per-language morphology this tool deliberately does not carry (deciding かります is Regular 2
+  while おくります is Regular 1 is a lookup, not a transformation).
+- **Status:** open — three verbs are a real gap against the source; the rest is by design
+- **Verified by:** counts bare inflected-form verb entries against the citation-form cards that name
+  them. Expect `24 with no citation form` until Lesson 17+ is built or the three are recovered:
 
 ```sh
 node - <<'JS'
@@ -3660,13 +3663,12 @@ const masu = cards.filter(c => /ます$/.test(c.target || "") && c.target.length
   && !/^(おはようございます|でございます)$/.test(c.target));
 const missing = masu.filter(m => !dict.some(d => (d.note || "").includes(m.target)));
 console.log(`${masu.length} bare ます-form verb entries; ${dict.length} citation-form cards; ${missing.length} with no citation form`);
-for (const m of missing) console.log("  MISSING:", m.target, "-", m.english);
 JS
 ```
 
-- **When to revisit:** when a second inflecting language reaches a real deck. Two languages is the
-  point at which a per-language verb table earns its keep, and the check can then be an INFO-tier
-  `preflight` entry alongside `taught, never used`, which already reports on the same card set.
+- **When to revisit:** recovering みせる, あげる and かりる into `chapter-15` is a small, source-backed
+  fix worth doing on its own; it needs no ruling because the chapter names them. The other twenty-one
+  stay open until the book teaches them.
 
 ## Book 1's family vocabulary stops short of siblings, and the deck is faithful to that
 

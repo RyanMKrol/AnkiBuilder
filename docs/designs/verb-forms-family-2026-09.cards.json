@@ -1,5 +1,5 @@
 {
-  "_": "Cards authored 2026-09-05 as a course-style augmentation of an already-finished deck. Two batches, routed to the -extras units so the book-sourced base lessons keep their own provenance. See docs/designs/verb-forms-family-2026-09.md.",
+  "_": "Cards authored 2026-09-05 as a course-style augmentation of an already-finished deck. REVERTED: the chapter-15-extras and chapter-16-extras entries (the verb-dictionary-forms batch, 23 cards) were authored, audio-generated, content-approved and then stripped back out the same day on the owner's ruling that the deck follows the book's own schedule for verb forms. They are kept here as the record of what was built. Only the chapter-9-extras entries (family-vocabulary) are in the deck. See docs/designs/verb-forms-family-2026-09.md.",
   "chapter-15-extras": [
     {
       "id": "x15d-au-dict",

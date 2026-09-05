@@ -147,6 +147,14 @@ notes found" guard fires â€” it cannot tell a deleted deck from a renamed one â€
 failure aborts the whole run, a retired collection blocks every other collection from uploading.
 Only set it by hand: only a human knows whether a missing deck is intentional.
 
+The flag is honored everywhere a collection is discovered, not just at delivery: `assemble` refuses
+to build a new unit into a retired collection (`--force` overrides), `preflight` skips it and says so
+in its coverage header, and the dashboard moves it to its own **Retired** section instead of listing
+it among the built decks. `isRetiredCollection` (`src/cli/outputPaths.js`) is the single definition;
+`listBooks` / `listCourses` both report it so callers can filter. `materializeBookInOutput` preserves
+the flag when it refreshes a marker, because it replaces the file wholesale, so a field it did not carry
+forward would be silently dropped, turning a retired deck back into a deliverable one.
+
 Backups land in `anki-backups/<stamp>/` and are pruned
 automatically (the newest 10 plus one per older week; `ANKI_BUILDER_BACKUP_KEEP` tunes it). To roll a
 deck back, use `node scripts/restore-anki-backup.mjs --list` then

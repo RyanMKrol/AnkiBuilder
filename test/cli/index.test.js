@@ -2927,3 +2927,89 @@ test("resume names the fix for a failure it cannot repair, and does not pretend 
     assert.ok(logs.some((m) => m.includes("--run")));
   });
 });
+
+test("assemble: refuses to build into a RETIRED course, and --force overrides", async () => {
+  // A retired collection is never delivered and is not scanned by preflight, so a unit assembled
+  // into it can never ship. Without this the failure is silent and LATE: the lesson builds, spends
+  // model and TTS credits, passes both review gates, and only then goes nowhere.
+  await withTempDir(async (outputRoot) => {
+    const wordsPath = join(outputRoot, "words.txt");
+    await fs.writeFile(wordsPath, "Good morning\n");
+    mkdirSync(join(outputRoot, "courses", "dead-course"), { recursive: true });
+    writeFileSync(
+      join(outputRoot, "courses", "dead-course", "course.json"),
+      JSON.stringify({ name: "Dead Course", targetLanguage: "ja", retired: true }),
+    );
+
+    const args = (extra = []) => [
+      "assemble",
+      "--no-prepare",
+      "--output-root",
+      outputRoot,
+      "--words",
+      wordsPath,
+      "--course",
+      "Dead Course",
+      "--lesson-number",
+      "1",
+      "--lang",
+      "ja",
+      ...extra,
+    ];
+    const ctx = {
+      resolveCourseSlug: () => "dead-course",
+      log: () => {},
+    };
+
+    await assert.rejects(() => runCli(args(), ctx), /is RETIRED/);
+    // The refusal names the way out, so nobody has to go reading source to find it.
+    await assert.rejects(() => runCli(args(), ctx), /--force/);
+    // And it refuses BEFORE allocating a run directory, so a refused build leaves no husk behind.
+    assert.ok(!existsSync(join(outputRoot, "courses", "dead-course", "lesson-1")));
+  });
+});
+
+test("assemble: a live course is unaffected by the retired guard", async () => {
+  await withTempDir(async (outputRoot) => {
+    const wordsPath = join(outputRoot, "words.txt");
+    await fs.writeFile(wordsPath, "Good morning\n");
+    mkdirSync(join(outputRoot, "courses", "live-course"), { recursive: true });
+    writeFileSync(
+      join(outputRoot, "courses", "live-course", "course.json"),
+      JSON.stringify({ name: "Live Course", targetLanguage: "ja" }),
+    );
+
+    let resolved = null;
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--output-root",
+        outputRoot,
+        "--words",
+        wordsPath,
+        "--course",
+        "Live Course",
+        "--lesson-number",
+        "1",
+        "--lang",
+        "ja",
+      ],
+      {
+        resolveCourseSlug: () => "live-course",
+        resolveLessonRunDir: (root, slug, n) => {
+          resolved = join(root, "courses", slug, `lesson-${n}`);
+          mkdirSync(resolved, { recursive: true });
+          return resolved;
+        },
+        assembleCorpusFromLessonWords: () => ({
+          meta: { targetLanguage: "ja", sourceType: "manual" },
+          items: [{ id: "a", english: "Good morning", category: "Greetings", target: null }],
+        }),
+        sortItemsPedagogically: passthroughSort,
+        log: () => {},
+      },
+    );
+    assert.ok(resolved && existsSync(join(resolved, "corpus.json")));
+  });
+});

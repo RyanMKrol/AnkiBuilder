@@ -12,7 +12,7 @@ import {
   scanWorkspace,
   unitChapterNumber,
 } from "../../src/audit/units.js";
-import { makeOutputRoot, writeUnit, writeRaw, card } from "./fixture.js";
+import { makeOutputRoot, writeUnit, writeRaw, writeMarker, card } from "./fixture.js";
 
 test("the unit pattern matches all three folder shapes and nothing else", () => {
   assert.ok(isUnitDirName("chapter-3"));
@@ -145,4 +145,80 @@ test("unitChapterNumber only accepts a number — the join key is not a label", 
   assert.equal(unitChapterNumber({ chapterNumber: "33" }), null);
   assert.equal(unitChapterNumber({}), null);
   assert.equal(unitChapterNumber(null), null);
+});
+
+test("scanWorkspace leaves a retired collection out of the sweep, but REPORTS it", () => {
+  // Every finding against a retired deck is noise nobody will act on: its Anki deck is gone on
+  // purpose and its cards are frozen. But it must not vanish silently: this module exists because a
+  // checker that cannot see a unit reads exactly like one that checked it and found nothing, so the
+  // retired collection has to come back somewhere a reader will see it.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/live/chapter-1", { items: [card("a")] });
+    writeUnit(root, "courses/dead/lesson-1", { items: [card("b")] });
+    writeMarker(root, "courses/dead", "course.json", { name: "Dead", retired: true });
+
+    const scan = scanWorkspace(root);
+    assert.deepEqual(
+      scan.collections.map((c) => `${c.kind}:${c.slug}`),
+      ["epub:live"],
+      "the retired course is not swept",
+    );
+    assert.deepEqual(
+      scan.retired.map((c) => `${c.kind}:${c.slug}`),
+      ["course:dead"],
+      "and is reported instead of being dropped",
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+test("a retired BOOK is skipped too, and `retired` must be exactly true", () => {
+  // Books and courses use different manifests; a filter that only knew course.json would let a
+  // retired book keep emitting findings forever. And absence must stay live: every collection on
+  // disk today lacks the field entirely.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/gone/chapter-1", { items: [card("a")] });
+    writeMarker(root, "epubs/gone", "book.json", { title: "Gone", retired: true });
+    assert.deepEqual(
+      scanWorkspace(root).retired.map((c) => c.slug),
+      ["gone"],
+    );
+  } finally {
+    cleanup();
+  }
+
+  for (const value of [undefined, false, "yes", 1, "true"]) {
+    const { root, cleanup } = makeOutputRoot();
+    try {
+      writeUnit(root, "epubs/bk/chapter-1", { items: [card("a")] });
+      const manifest = { title: "Bk" };
+      if (value !== undefined) manifest.retired = value;
+      writeMarker(root, "epubs/bk", "book.json", manifest);
+      assert.deepEqual(
+        scanWorkspace(root).collections.map((c) => c.slug),
+        ["bk"],
+        `retired: ${JSON.stringify(value)} must still be swept`,
+      );
+    } finally {
+      cleanup();
+    }
+  }
+});
+
+test("pointing preflight at ONE retired collection still checks it", () => {
+  // The filter keeps dead decks out of a whole-root sweep; it must not make them unexaminable.
+  // Naming a directory explicitly is a deliberate act.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "courses/dead/lesson-1", { items: [card("b")] });
+    writeMarker(root, "courses/dead", "course.json", { name: "Dead", retired: true });
+    const collection = describeCollectionDir(join(root, "courses", "dead"));
+    assert.equal(collection.kind, "course");
+    assert.equal(collection.unitDirs.length, 1, "its unit is still enumerated");
+  } finally {
+    cleanup();
+  }
 });

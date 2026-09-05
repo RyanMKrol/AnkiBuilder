@@ -50,6 +50,9 @@ function coverageLines(coverage) {
       (coverage.checksSkipped ? `, ${coverage.checksSkipped} skipped for want of input` : ""),
     `          root ${coverage.root}`,
   ];
+  for (const { dir, kind } of coverage.retired ?? []) {
+    lines.push(`          – ${dir} is a retired ${kind}, not scanned`);
+  }
   for (const dir of coverage.unknownGroups) {
     lines.push(`          ? ${dir} is not epubs/, courses/ or templates/ — not scanned`);
   }

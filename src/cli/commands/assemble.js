@@ -2,7 +2,7 @@
 // into a run directory's corpus.json, then chain into `prepare` unless told not to.
 // Moved verbatim from src/cli/index.js when the CLI was split per command.
 import { existsSync, readFileSync } from "fs";
-import { resolve } from "path";
+import { join, resolve } from "path";
 import { withClaim } from "../runClaim.js";
 import { validateCorpus } from "../../model/index.js";
 import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
@@ -12,8 +12,25 @@ import { normalizeDisplayText } from "../../model/scriptSpacing.js";
 import { writeJson, runDirOrderContext } from "./shared.js";
 import { runPrepare } from "./prepare.js";
 import { bookConventionsPath } from "../../corpus/epubLibrary.js";
+import { isRetiredCollection } from "../outputPaths.js";
 import { BOOK_CONVENTIONS_PROMPT_PATH } from "../../corpus/epubBookConventions.js";
 import { promptDriftWarning } from "../../corpus/artifactMeta.js";
+
+// A RETIRED collection is not a build target. Its Anki deck was deliberately removed and its cards
+// are kept only as the record of what it held, so a unit assembled into it can never ship: `deliver`
+// skips the whole collection and preflight does not scan it.
+//
+// A refusal rather than a warning, because the failure is otherwise silent and late: the lesson
+// builds, spends model and TTS credits, passes both review gates, and only then goes nowhere.
+// Un-retiring is a human decision (clear `retired` from the manifest), not something a build infers,
+// so `--force` is the deliberate one-off escape hatch.
+function refuseIfRetired(collectionDir, label, force) {
+  if (force || !isRetiredCollection(collectionDir)) return;
+  throw new Error(
+    `${label} is RETIRED. Its Anki deck was deliberately removed, and it is never delivered. ` +
+      `Remove "retired" from its manifest to build into it again, or pass --force to build anyway.`,
+  );
+}
 
 function resolveAssembleRunDir(flags, ctx) {
   if (!flags["output-root"]) {
@@ -43,6 +60,7 @@ function resolveAssembleRunDir(flags, ctx) {
 
     const outputRoot = resolve(flags["output-root"]);
     const courseSlug = ctx.resolveCourseSlug(outputRoot, flags.course, flags.lang);
+    refuseIfRetired(join(outputRoot, "courses", courseSlug), `course "${courseSlug}"`, flags.force);
     const lessonNumber = Number(flags["lesson-number"]);
     // Two lessons dictated at the same time are both told "next is N" by nextLessonNumber, and
     // no filesystem primitive can catch that — the identity is chosen before the path is. So
@@ -70,6 +88,8 @@ function resolveAssembleRunDir(flags, ctx) {
   const outputRoot = resolve(flags["output-root"]);
   const { epubHash } = ctx.registerEpub(flags.epub);
   const slug = ctx.resolveBookSlug(outputRoot, flags.epub, epubHash);
+  // Before materializeBookInOutput, which rewrites the marker this reads.
+  refuseIfRetired(join(outputRoot, "epubs", slug), `book "${slug}"`, flags.force);
   // Keep a durable copy of the EPUB in the book's output folder (+ a book.json marker)
   // so future chapters can be built with `--book <slug>` without re-locating the file.
   ctx.materializeBookInOutput(outputRoot, slug, flags.epub, epubHash, flags.lang);

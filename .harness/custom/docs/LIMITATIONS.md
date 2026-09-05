@@ -3618,3 +3618,82 @@ for f in sorted(glob.glob('output/epubs/japanese-for-busy-people-book-1-kana/cha
 print(f"{total} cue(s) quote Japanese; {bare} unglossed")   # expect: 46 quote Japanese; 0 unglossed
 PY
 ```
+
+## A verb's citation form is a prose rule, with nothing mechanical behind it
+
+- **What:** [card-authoring-rules.md](../../../.claude/skills/build-anki-deck/references/card-authoring-rules.md)
+  ("Every verb gets its citation form") now requires every verb that enters a deck in an inflected
+  form to also get a card for its citation form (dictionary form, infinitive, whichever the language
+  uses). Nothing enforces it. There is no `preflight` check, no schema field marking a card as an
+  inflected form, and no link between an inflected card and its citation-form sibling. The rule holds
+  only for as long as whoever authors the next lesson reads it.
+- **Why:** a general check needs per-language morphology the tool deliberately does not carry. Deciding
+  that かります is Regular 2 (so かりる) while おくります is Regular 1 (so おくる) is a lookup, not a
+  transformation, and the same is true of any language with more than one conjugation class. The
+  romanization checks hit this wall already and settled on reporting rather than rewriting; a
+  citation-form check would have to do the same, and a reporting check needs a verb list nobody
+  maintains yet.
+- **Impact:** the gap this rule was written for went undetected across sixteen lessons and two review
+  gates. Twenty-three verbs shipped with no citation form anywhere in the collection, three of them
+  named in the source chapter's own grammar prose. All twenty-three have since been authored into the
+  `-extras` units as the `verb-dictionary-forms` addition batch (applied by the spent migration
+  `scripts/add-verb-forms-family.mjs`, from the card data in
+  `docs/designs/verb-forms-family-2026-09.cards.json`), so the count below is now zero, but the next
+  book gets no warning at all.
+- **Status:** open (the specific gap is closed; the class of gap is not)
+- **Verified by:** counts the book's bare inflected-form verb entries against the citation-form cards
+  that name them, per collection. Expect `0 with no citation form`:
+
+```sh
+node - <<'JS'
+import { readFileSync, readdirSync } from "fs";
+import { join } from "path";
+const BOOK = "output/epubs/japanese-for-busy-people-book-1-kana";
+const cards = [];
+for (const d of readdirSync(BOOK, { withFileTypes: true })) {
+  if (!d.isDirectory()) continue;
+  try { cards.push(...JSON.parse(readFileSync(join(BOOK, d.name, "cards.json"), "utf-8")).items.filter(i => !i.excluded)); } catch {}
+}
+const dict = cards.filter(c => /dictionary form/i.test(c.english));
+const masu = cards.filter(c => /ます$/.test(c.target || "") && c.target.length <= 9
+  && !/[.?!、。]/.test(c.english) && c.english.split(/[ ,]+/).length <= 4
+  && !/^(おはようございます|でございます)$/.test(c.target));
+const missing = masu.filter(m => !dict.some(d => (d.note || "").includes(m.target)));
+console.log(`${masu.length} bare ます-form verb entries; ${dict.length} citation-form cards; ${missing.length} with no citation form`);
+for (const m of missing) console.log("  MISSING:", m.target, "-", m.english);
+JS
+```
+
+- **When to revisit:** when a second inflecting language reaches a real deck. Two languages is the
+  point at which a per-language verb table earns its keep, and the check can then be an INFO-tier
+  `preflight` entry alongside `taught, never used`, which already reports on the same card set.
+
+## Book 1's family vocabulary stops short of siblings, and the deck is faithful to that
+
+- **What:** the Japanese for Busy People deck teaches twelve family terms, all of them from Lesson 9's
+  own WORD POWER table (ごかぞく, おとうさん, おかあさん, おくさん, かぞく, ちち, はは, つま, かない,
+  ごしゅじん, おっと, しゅじん). Siblings, children, sons and daughters are not missing from the
+  extraction: the book does not teach them until Lesson 24, which this deck has not been built to.
+  Grandparents (そふ, そぼ, おじいさん, おばあさん) and りょうしん never appear anywhere in Book 1, in
+  any lesson or either glossary.
+- **Why:** the deck follows the book's teaching order, and the forward-flag pass exists specifically to
+  keep a lesson from carding vocabulary the book introduces later. Pulling Lesson 24's family table
+  forward would have been the pass working incorrectly, not correctly.
+- **Impact:** a learner studying through Lesson 16 can name their parents and spouse and cannot name a
+  brother. The twenty-two-card `family-vocabulary` addition batch closes it ahead of the book, marked
+  `aiSuggested`, and every card's `reviewNote` records whether it came from Lesson 24's table or is
+  absent from Book 1 entirely. When Lessons 17 to 24 are eventually built, that batch will collide
+  with Lesson 24's own extraction and the duplicates will need reconciling.
+- **Status:** open (deliberate; the collision at Lesson 24 is the thing to remember)
+- **Verified by:** the terms Book 1 never teaches, checked against the extracted chapter cache:
+
+```sh
+cd .anki-builder/epubs/1fab0f99d1195ad9/cache-v2/chapters &&
+for w in そふ そぼ おじいさん おばあさん りょうしん; do
+  echo "$w: $(grep -l "$w" *.xhtml 2>/dev/null | tr '\n' ' ')NONE-means-absent"
+done
+```
+
+- **When to revisit:** when Lesson 24 is built. Reconcile the `family-vocabulary` batch against that
+  lesson's own extraction before shipping it, keeping the earliest card id so Anki review history
+  survives.

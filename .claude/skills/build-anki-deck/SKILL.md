@@ -18,8 +18,8 @@ implemented. If SKILL.md disagrees with the CODE, the code wins: fix the doc in 
 ## Reference files
 
 - [references/card-authoring-rules.md](references/card-authoring-rules.md): every rule about card
-  content and card-set shape (glosses, scenes/hints/notes, collisions, number readings, ordering, the
-  cross-lesson note pass). Load it whenever you author, edit, or audit cards.
+  content and card-set shape (glosses, scenes/hints/notes, collisions, number readings, verb citation
+  forms, ordering, the cross-lesson note pass). Load it whenever you author, edit, or audit cards.
 - [references/extras-pass.md](references/extras-pass.md): the full Step 3b procedure for building a
   lesson's extras (drill) unit. Load it before running that pass.
 - [references/template-creation.md](references/template-creation.md): the flow for adding a new
@@ -579,8 +579,9 @@ direction, while `hint` shows only on the Production front. It is read-only and 
 What to check, beyond reading the columns: the card-content rules in
 [card-authoring-rules](references/card-authoring-rules.md). The ones most often violated: a scene or hint on
 any English-gloss or target collision, answer cards answerable alone, notes/hints that restate the
-card (delete these), missing `ttsText` on numerals, and study order (a sentence landing before its
-vocabulary).
+card (delete these), missing `ttsText` on numerals, a verb carded only in the inflected form the
+source printed with no citation-form card anywhere in the collection, and study order (a sentence
+landing before its vocabulary).
 
 Run `npm run preflight` before you hand over the link. Its INFO checks name what the columns cannot:
 `answerable-alone` (a reply-shaped English with no scene), `production-length` (a Production face

@@ -1305,7 +1305,13 @@
       "note": "Used for your own child, opposite おこさん (okosan) for someone else's — the same humble/honorific split as ちち (chichi, \"my father\") against おとうさん (otōsan). こども is also the ordinary general word for \"child\" in any other context. こ (ko, \"child\") from Lesson 13 is the shorter root that builds おんなのこ (onna no ko, \"girl\") and おとこのこ (otoko no ko, \"boy\").",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table. Glossed \"(My) child\" rather than \"Child\" because こ already carries \"Child\" in Lesson 13 — see the collision rule in card-authoring-rules.md. Hint added because the gloss narrows a word that is also general.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "30d84acfea030b61.mp3",
+      "audioOriginal": "30d84acfea030b61.orig.mp3",
+      "audioAuto": "30d84acfea030b61.mp3",
+      "audioMarked": true,
+      "audioTextHash": "30d84acfea030b61"
     },
     {
       "id": "x9f-okosan",
@@ -1316,7 +1322,13 @@
       "note": "Someone else's child — for your own, use こども (kodomo). Same pattern as おとうさん (otōsan) against ちち (chichi) in this lesson.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "d44357c2c211ad4d.mp3",
+      "audioOriginal": "d44357c2c211ad4d.orig.mp3",
+      "audioAuto": "d44357c2c211ad4d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d44357c2c211ad4d"
     },
     {
       "id": "x9f-musuko",
@@ -1327,7 +1339,13 @@
       "note": "Used for your own son; for someone else's, use むすこさん (musukosan).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "97e71043dabd5f60.mp3",
+      "audioOriginal": "97e71043dabd5f60.orig.mp3",
+      "audioAuto": "97e71043dabd5f60.mp3",
+      "audioMarked": true,
+      "audioTextHash": "97e71043dabd5f60"
     },
     {
       "id": "x9f-musukosan",
@@ -1338,7 +1356,13 @@
       "note": "Someone else's son — for your own, use むすこ (musuko). The honorific here is the plain さん (san) suffix from Lesson 1, not a ご- prefix.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "4f6918e53be6dc9e.mp3",
+      "audioOriginal": "4f6918e53be6dc9e.orig.mp3",
+      "audioAuto": "4f6918e53be6dc9e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4f6918e53be6dc9e"
     },
     {
       "id": "x9f-musume",
@@ -1349,7 +1373,13 @@
       "note": "Used for your own daughter; for someone else's, use おじょうさん (ojōsan).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "8de15c5f18d9bfaf.mp3",
+      "audioOriginal": "8de15c5f18d9bfaf.orig.mp3",
+      "audioAuto": "8de15c5f18d9bfaf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8de15c5f18d9bfaf"
     },
     {
       "id": "x9f-ojousan",
@@ -1360,7 +1390,13 @@
       "note": "Someone else's daughter — for your own, use むすめ (musume). むすめさん (musumesan) works too; おじょうさん is the politer of the two and also serves as a polite word for a young woman generally.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table, which lists おじょうさん／むすめさん as alternatives. Carded as おじょうさん with むすめさん in the note rather than as two cards, to avoid a third \"(Another person's) daughter\" gloss collision.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "a338861105851446.mp3",
+      "audioOriginal": "a338861105851446.orig.mp3",
+      "audioAuto": "a338861105851446.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a338861105851446"
     },
     {
       "id": "x9f-ani",
@@ -1371,7 +1407,13 @@
       "note": "Japanese has no single word for \"brother\": age is built into the noun, so あに is specifically an older brother and おとうと (otōto) a younger one. Used for your own; for someone else's, use おにいさん (oniisan).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "d3c8ab6d7d3c5c83.mp3",
+      "audioOriginal": "d3c8ab6d7d3c5c83.orig.mp3",
+      "audioAuto": "d3c8ab6d7d3c5c83.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d3c8ab6d7d3c5c83"
     },
     {
       "id": "x9f-oniisan",
@@ -1382,7 +1424,14 @@
       "note": "Someone else's older brother — for your own, use あに (ani). It is also how you address your own older brother directly, the way English uses a name.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "299d6e0d006fb528.mp3",
+      "audioOriginal": "299d6e0d006fb528.orig.mp3",
+      "audioAuto": "299d6e0d006fb528.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "299d6e0d006fb528"
     },
     {
       "id": "x9f-ane",
@@ -1393,7 +1442,13 @@
       "note": "Specifically an older sister; a younger one is いもうと (imōto). Used for your own; for someone else's, use おねえさん (onēsan).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "ef67dcc5721aeeb7.mp3",
+      "audioOriginal": "ef67dcc5721aeeb7.orig.mp3",
+      "audioAuto": "ef67dcc5721aeeb7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ef67dcc5721aeeb7"
     },
     {
       "id": "x9f-oneesan",
@@ -1404,7 +1459,14 @@
       "note": "Someone else's older sister — for your own, use あね (ane). It is also how you address your own older sister directly.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "947a8a951351cdb7.mp3",
+      "audioOriginal": "947a8a951351cdb7.orig.mp3",
+      "audioAuto": "947a8a951351cdb7.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "947a8a951351cdb7"
     },
     {
       "id": "x9f-otouto",
@@ -1415,7 +1477,13 @@
       "note": "Specifically a younger brother; an older one is あに (ani). Used for your own; for someone else's, use おとうとさん (otōtosan). Note how close it sounds to おとうさん (otōsan, \"father\") — the difference is the second と.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: it first appears in Lesson 17's dialogue and is formally taught in Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "dc5a30ef5f2f81a0.mp3",
+      "audioOriginal": "dc5a30ef5f2f81a0.orig.mp3",
+      "audioAuto": "dc5a30ef5f2f81a0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dc5a30ef5f2f81a0"
     },
     {
       "id": "x9f-otoutosan",
@@ -1426,7 +1494,13 @@
       "note": "Someone else's younger brother — for your own, use おとうと (otōto).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "aac0a7fea9d83833.mp3",
+      "audioOriginal": "aac0a7fea9d83833.orig.mp3",
+      "audioAuto": "aac0a7fea9d83833.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aac0a7fea9d83833"
     },
     {
       "id": "x9f-imouto",
@@ -1437,7 +1511,13 @@
       "note": "Specifically a younger sister; an older one is あね (ane). Used for your own; for someone else's, use いもうとさん (imōtosan).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: it first appears in Lesson 22's dialogue and is formally taught in Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "1551a88565bb1bb1.mp3",
+      "audioOriginal": "1551a88565bb1bb1.orig.mp3",
+      "audioAuto": "1551a88565bb1bb1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1551a88565bb1bb1"
     },
     {
       "id": "x9f-imoutosan",
@@ -1448,7 +1528,13 @@
       "note": "Someone else's younger sister — for your own, use いもうと (imōto).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "64e62c05fcde31a8.mp3",
+      "audioOriginal": "64e62c05fcde31a8.orig.mp3",
+      "audioAuto": "64e62c05fcde31a8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "64e62c05fcde31a8"
     },
     {
       "id": "x9f-kyoudai",
@@ -1459,7 +1545,13 @@
       "note": "The collective word for siblings of either sex, which is what you use when the age order does not matter and あに (ani) or いもうと (imōto) would be too specific. For someone else's, use ごきょうだい (gokyōdai).",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: きょうだい appears from Lesson 24 onward and in the book's glossary; it is the natural collective partner to the sibling cards in this batch.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "2b78750d63080fbb.mp3",
+      "audioOriginal": "2b78750d63080fbb.orig.mp3",
+      "audioAuto": "2b78750d63080fbb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b78750d63080fbb"
     },
     {
       "id": "x9f-gokyoudai",
@@ -1470,7 +1562,13 @@
       "note": "ご (go, honorific prefix) + きょうだい (kyōdai, \"brothers and sisters\"), built exactly like ごかぞく (gokazoku) in this lesson. Used about someone else's siblings, never your own.",
       "reviewNote": "Family batch (2026-09). Not printed in Book 1; the honorific partner to きょうだい, formed with the same ご- prefix this lesson already teaches on ごかぞく.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "7de6b9a832818f7b.mp3",
+      "audioOriginal": "7de6b9a832818f7b.orig.mp3",
+      "audioAuto": "7de6b9a832818f7b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7de6b9a832818f7b"
     },
     {
       "id": "x9f-sofu",
@@ -1481,7 +1579,13 @@
       "note": "Used for your own grandfather; for someone else's, use おじいさん (ojiisan). Same humble/honorific split as ちち (chichi) against おとうさん (otōsan) in this lesson.",
       "reviewNote": "Family batch (2026-09). NOT in Book 1 at all — そふ appears in no lesson and in neither glossary. Added because the deck teaches parents, children and siblings and a learner talking about family needs grandparents too.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "6b8190c70d7171d4.mp3",
+      "audioOriginal": "6b8190c70d7171d4.orig.mp3",
+      "audioAuto": "6b8190c70d7171d4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6b8190c70d7171d4"
     },
     {
       "id": "x9f-ojiisan",
@@ -1492,7 +1596,13 @@
       "note": "Someone else's grandfather — for your own, use そふ (sofu). It is also the ordinary word for an elderly man generally, and how you address your own grandfather directly.",
       "reviewNote": "Family batch (2026-09). NOT in Book 1 at all — appears in no lesson and in neither glossary.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "4df93e7e384543bc.mp3",
+      "audioOriginal": "4df93e7e384543bc.orig.mp3",
+      "audioAuto": "4df93e7e384543bc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4df93e7e384543bc"
     },
     {
       "id": "x9f-sobo",
@@ -1503,7 +1613,13 @@
       "note": "Used for your own grandmother; for someone else's, use おばあさん (obāsan).",
       "reviewNote": "Family batch (2026-09). NOT in Book 1 at all — そぼ appears in no lesson and in neither glossary.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "cf5aead59f3a251d.mp3",
+      "audioOriginal": "cf5aead59f3a251d.orig.mp3",
+      "audioAuto": "cf5aead59f3a251d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cf5aead59f3a251d"
     },
     {
       "id": "x9f-obaasan",
@@ -1514,7 +1630,14 @@
       "note": "Someone else's grandmother — for your own, use そぼ (sobo). It is also the ordinary word for an elderly woman generally. Listen for the long ばあ: おばさん (obasan), with a short ば, means \"aunt\".",
       "reviewNote": "Family batch (2026-09). NOT in Book 1 at all — appears in no lesson and in neither glossary.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "1bcc53238e72dab7.mp3",
+      "audioOriginal": "1bcc53238e72dab7.orig.mp3",
+      "audioAuto": "1bcc53238e72dab7.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "1bcc53238e72dab7"
     },
     {
       "id": "x9f-ryoushin",
@@ -1525,7 +1648,13 @@
       "note": "Both parents together, where ちち (chichi) and はは (haha) name them singly. For someone else's, use ごりょうしん (goryōshin).",
       "reviewNote": "Family batch (2026-09). NOT in Book 1 at all — りょうしん appears in no lesson and in neither glossary. Added as the collective partner to the ちち／はは pair this lesson already teaches.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "350028c64a40e9df.mp3",
+      "audioOriginal": "350028c64a40e9df.orig.mp3",
+      "audioAuto": "350028c64a40e9df.mp3",
+      "audioMarked": true,
+      "audioTextHash": "350028c64a40e9df"
     },
     {
       "id": "x9f-goryoushin",
@@ -1536,7 +1665,13 @@
       "note": "ご (go, honorific prefix) + りょうしん (ryōshin, \"parents\"), built exactly like ごかぞく (gokazoku) in this lesson. Used about someone else's parents, never your own.",
       "reviewNote": "Family batch (2026-09). NOT in Book 1 at all — appears in no lesson and in neither glossary.",
       "aiSuggested": true,
-      "addition": "family-vocabulary"
+      "addition": "family-vocabulary",
+      "additionReviewed": true,
+      "audio": "2575fab016868fd9.mp3",
+      "audioOriginal": "2575fab016868fd9.orig.mp3",
+      "audioAuto": "2575fab016868fd9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2575fab016868fd9"
     }
   ]
 }

@@ -1087,7 +1087,13 @@
       "note": "Dictionary form of あいます (aimasu, \"meet\", Lesson 9). Regular 1: the い before ます becomes う.",
       "reviewNote": "Verb dictionary-form batch (2026-09). あいます was carded in Lesson 9 with no dictionary form anywhere in the deck; the book never prints this one.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "5d68810955be6135.mp3",
+      "audioOriginal": "5d68810955be6135.orig.mp3",
+      "audioAuto": "5d68810955be6135.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5d68810955be6135"
     },
     {
       "id": "x15d-ageru-dict",
@@ -1098,7 +1104,14 @@
       "note": "Dictionary form of あげます (agemasu, \"give\", Lesson 14). Regular 2, so ます simply becomes る. Lesson 15's grammar names あげます in its own list of the Regular 2 verbs taught up to that point, precisely so this form can be derived.",
       "reviewNote": "Verb dictionary-form batch (2026-09). Recovery, not an invention: Lesson 15 GRAMMAR 2 enumerates あげます among the Regular 2 verbs introduced through Lesson 14, and the dictionary form was never carded.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "37cb1c0a2b7a941a.mp3",
+      "audioOriginal": "37cb1c0a2b7a941a.orig.mp3",
+      "audioAuto": "37cb1c0a2b7a941a.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "37cb1c0a2b7a941a"
     },
     {
       "id": "x15d-aru-dict",
@@ -1109,7 +1122,13 @@
       "note": "Dictionary form of あります (arimasu, Lesson 12), and it covers every sense this deck teaches that verb in: \"be, exist\", \"have\", and \"there is, takes place\". Regular 1: the り before ます becomes る. Its animate partner います (imasu, \"be, exist\") has the dictionary form いる (iru).",
       "reviewNote": "Verb dictionary-form batch (2026-09). あります is carded three times across Lessons 12, 14 and 16 with three senses; one dictionary-form card serves all three, so the note names them rather than splitting the card.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "051f32ef3ca77be2.mp3",
+      "audioOriginal": "051f32ef3ca77be2.orig.mp3",
+      "audioAuto": "051f32ef3ca77be2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "051f32ef3ca77be2"
     },
     {
       "id": "x15d-okuru-dict",
@@ -1120,7 +1139,13 @@
       "note": "Dictionary form of おくります (okurimasu, \"send\", Lesson 9). Regular 1: the り before ます becomes る, the same change as のります → のる.",
       "reviewNote": "Verb dictionary-form batch (2026-09). おくります was carded in Lesson 9 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "8941b87cfb872364.mp3",
+      "audioOriginal": "8941b87cfb872364.orig.mp3",
+      "audioAuto": "8941b87cfb872364.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8941b87cfb872364"
     },
     {
       "id": "x15d-kariru-dict",
@@ -1131,7 +1156,13 @@
       "note": "Dictionary form of かります (karimasu, \"borrow\", Lesson 14). It looks like a Regular 1 verb, since り sits before ます, but it is Regular 2: ます becomes る and the り stays, giving かりる and never かる. Lesson 15's grammar lists it among the Regular 2 verbs taught so far for exactly this reason. Contrast かします (kashimasu, \"lend\"), which really is Regular 1 and gives かす (kasu).",
       "reviewNote": "Verb dictionary-form batch (2026-09). Recovery: Lesson 15 GRAMMAR 2 enumerates かります among the Regular 2 verbs introduced through Lesson 14, and the dictionary form was never carded. The R1-lookalike trap is the whole reason the book names it.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "4d1627c69e1a068d.mp3",
+      "audioOriginal": "4d1627c69e1a068d.orig.mp3",
+      "audioAuto": "4d1627c69e1a068d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4d1627c69e1a068d"
     },
     {
       "id": "x15d-kureru-dict",
@@ -1142,7 +1173,13 @@
       "note": "Dictionary form of くれます (kuremasu, \"give (to me)\", Lesson 14). Regular 2: ます becomes る. Pairs with あげる (ageru, \"give\") the same way くれます pairs with あげます — くれる is used when the thing comes toward you.",
       "reviewNote": "Verb dictionary-form batch (2026-09). くれます was carded in Lesson 14 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "e66053f128329feb.mp3",
+      "audioOriginal": "e66053f128329feb.orig.mp3",
+      "audioAuto": "e66053f128329feb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e66053f128329feb"
     },
     {
       "id": "x15d-niau-dict",
@@ -1153,7 +1190,13 @@
       "note": "Dictionary form of にあいます (niaimasu, \"suit, look good on\", Lesson 14). Regular 1: the い before ます becomes う, the same change as あいます → あう (au, \"meet\").",
       "reviewNote": "Verb dictionary-form batch (2026-09). にあいます was carded in Lesson 14 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "3a367506a201a4f6.mp3",
+      "audioOriginal": "3a367506a201a4f6.orig.mp3",
+      "audioAuto": "3a367506a201a4f6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3a367506a201a4f6"
     },
     {
       "id": "x15d-noboru-dict",
@@ -1164,7 +1207,13 @@
       "note": "Dictionary form of のぼります (noborimasu, \"climb\", Lesson 11). Regular 1: the り before ます becomes る.",
       "reviewNote": "Verb dictionary-form batch (2026-09). のぼります was carded in Lesson 11 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "463a643db48cbddc.mp3",
+      "audioOriginal": "463a643db48cbddc.orig.mp3",
+      "audioAuto": "463a643db48cbddc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "463a643db48cbddc"
     },
     {
       "id": "x15d-miseru-dict",
@@ -1175,7 +1224,13 @@
       "note": "Dictionary form of みせます (misemasu, \"show\", Lesson 11). Regular 2: ます becomes る. Lesson 15's grammar names みせます in its own list of the Regular 2 verbs taught up to that point.",
       "reviewNote": "Verb dictionary-form batch (2026-09). Recovery: Lesson 15 GRAMMAR 2 enumerates みせます among the Regular 2 verbs introduced through Lesson 14, and the dictionary form was never carded.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "453f4ef0748ab4c4.mp3",
+      "audioOriginal": "453f4ef0748ab4c4.orig.mp3",
+      "audioAuto": "453f4ef0748ab4c4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "453f4ef0748ab4c4"
     },
     {
       "id": "x15d-morau-dict",
@@ -1186,7 +1241,13 @@
       "note": "Dictionary form of もらいます (moraimasu, \"receive\", Lesson 14). Regular 1: the い before ます becomes う.",
       "reviewNote": "Verb dictionary-form batch (2026-09). もらいます was carded in Lesson 14 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "9f93538ccaf7f4cb.mp3",
+      "audioOriginal": "9f93538ccaf7f4cb.orig.mp3",
+      "audioAuto": "9f93538ccaf7f4cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f93538ccaf7f4cb"
     },
     {
       "id": "x15d-wakaru-dict",
@@ -1197,7 +1258,14 @@
       "note": "Dictionary form of わかります (wakarimasu, \"understand, see, get it\", Lesson 8). Regular 1: the り before ます becomes る. The thing understood takes が (ga), not を (o).",
       "reviewNote": "Verb dictionary-form batch (2026-09). わかります was carded in Lesson 8 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "134a2dcca20b5fe9.mp3",
+      "audioOriginal": "134a2dcca20b5fe9.orig.mp3",
+      "audioAuto": "134a2dcca20b5fe9.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "134a2dcca20b5fe9"
     },
     {
       "id": "x15d-kaimono-o-suru-dict",
@@ -1208,7 +1276,13 @@
       "note": "Dictionary form of かいものをします (kaimono o shimasu, \"shop\", Lesson 8). A noun plus します is irregular: only the します part changes, to する (suru), and the noun and を (o) are untouched.",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "86c2377bfe42dc67.mp3",
+      "audioOriginal": "86c2377bfe42dc67.orig.mp3",
+      "audioAuto": "86c2377bfe42dc67.mp3",
+      "audioMarked": true,
+      "audioTextHash": "86c2377bfe42dc67"
     },
     {
       "id": "x15d-gorufu-o-suru-dict",
@@ -1219,7 +1293,13 @@
       "note": "Dictionary form of ゴルフをします (gorufu o shimasu, \"play golf\", Lesson 8). Only the します part changes, to する (suru). This is the form Lesson 15 needs for ゴルフをするのがすきです (\"I like playing golf\").",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "339365ac00ae98be.mp3",
+      "audioOriginal": "339365ac00ae98be.orig.mp3",
+      "audioAuto": "339365ac00ae98be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "339365ac00ae98be"
     },
     {
       "id": "x15d-sanpo-o-suru-dict",
@@ -1230,7 +1310,13 @@
       "note": "Dictionary form of さんぽをします (sanpo o shimasu, \"take a walk\", Lesson 9). Only the します part changes, to する (suru).",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "233e296c06996197.mp3",
+      "audioOriginal": "233e296c06996197.orig.mp3",
+      "audioAuto": "233e296c06996197.mp3",
+      "audioMarked": true,
+      "audioTextHash": "233e296c06996197"
     },
     {
       "id": "x15d-shigoto-o-suru-dict",
@@ -1241,7 +1327,13 @@
       "note": "Dictionary form of しごとをします (shigoto o shimasu, \"work\", Lesson 8). Only the します part changes, to する (suru); しごと (shigoto) on its own is the noun \"work, job\".",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "e82771062a032c46.mp3",
+      "audioOriginal": "e82771062a032c46.orig.mp3",
+      "audioAuto": "e82771062a032c46.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e82771062a032c46"
     },
     {
       "id": "x15d-suiei-o-suru-dict",
@@ -1252,7 +1344,13 @@
       "note": "Dictionary form of すいえいをします (suiei o shimasu, \"to swim\"). Only the します part changes, to する (suru). The plain verb およぐ (oyogu, \"swim\") says the same thing in one word; this noun+する form is the more formal register.",
       "reviewNote": "Verb dictionary-form batch (2026-09). Glossed \"(dictionary form, noun+する)\" rather than plain \"Swim (dictionary form)\" because およぐ already carries that gloss in Lesson 15 — see the collision rule in card-authoring-rules.md.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "3aa5cb5fcee6dbd7.mp3",
+      "audioOriginal": "3aa5cb5fcee6dbd7.orig.mp3",
+      "audioAuto": "3aa5cb5fcee6dbd7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3aa5cb5fcee6dbd7"
     },
     {
       "id": "x15d-sukii-o-suru-dict",
@@ -1263,7 +1361,13 @@
       "note": "Dictionary form of スキーをします (sukī o shimasu, \"ski\", Lesson 11). Only the します part changes, to する (suru).",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "d3e306406cfdc6f8.mp3",
+      "audioOriginal": "d3e306406cfdc6f8.orig.mp3",
+      "audioAuto": "d3e306406cfdc6f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d3e306406cfdc6f8"
     },
     {
       "id": "x15d-tenisu-o-suru-dict",
@@ -1274,7 +1378,13 @@
       "note": "Dictionary form of テニスをします (tenisu o shimasu, \"play tennis\", Lesson 8). Only the します part changes, to する (suru).",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "d5d8e1a3b743253e.mp3",
+      "audioOriginal": "d5d8e1a3b743253e.orig.mp3",
+      "audioAuto": "d5d8e1a3b743253e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5d8e1a3b743253e"
     },
     {
       "id": "x15d-denwa-o-suru-dict",
@@ -1285,7 +1395,13 @@
       "note": "Dictionary form of でんわをします (denwa o shimasu, \"telephone (someone)\", Lesson 9). Only the します part changes, to する (suru); でんわ (denwa) on its own is the noun \"telephone\".",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "192f087be6c71bd9.mp3",
+      "audioOriginal": "192f087be6c71bd9.orig.mp3",
+      "audioAuto": "192f087be6c71bd9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "192f087be6c71bd9"
     },
     {
       "id": "x15d-benkyou-o-suru-dict",
@@ -1296,7 +1412,13 @@
       "note": "Dictionary form of べんきょうをします (benkyō o shimasu, \"study\", Lesson 8). Only the します part changes, to する (suru).",
       "reviewNote": "Verb dictionary-form batch (2026-09). One of eleven noun+をします verbs carded across Lessons 8-16 with no dictionary form anywhere in the deck.",
       "aiSuggested": true,
-      "addition": "verb-dictionary-forms"
+      "addition": "verb-dictionary-forms",
+      "additionReviewed": true,
+      "audio": "5f1bab783e020925.mp3",
+      "audioOriginal": "5f1bab783e020925.orig.mp3",
+      "audioAuto": "5f1bab783e020925.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f1bab783e020925"
     }
   ]
 }

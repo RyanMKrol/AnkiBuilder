@@ -246,7 +246,7 @@
       "english": "Smith-san is going to the station tomorrow.",
       "category": "Transport",
       "target": "スミスさんはあしたえきへいきます",
-      "hint": "the direction particle spelled へ, read e",
+      "hint": "the direction particle written へ but read \"e\" (\"to/toward\")",
       "note": "Minimal pair with スミスさんはあしたえきにいきます (Sumisu-san wa ashita eki ni ikimasu): only the particle differs and the meaning is identical. The deck's other へ sentence is スミスさんはパーティーへいきます (Sumisu-san wa pātī e ikimasu).",
       "reviewNote": "Constructed. PARTICLE job: へ had exactly one sentence in the whole deck. This is the second half of the に／へ minimal pair, which is the clearest way to show they are interchangeable after a place.",
       "aiSuggested": true

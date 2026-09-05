@@ -62,7 +62,7 @@
       "english": "Yes, there is. The Sobaichi shop is good.",
       "category": "Food",
       "target": "ええ。そばいちがおいしいですよ",
-      "scene": "answering \"この ちかくに おいしい おそばやさんが ありますか\" by naming a good soba shop",
+      "scene": "answering \"この ちかくに おいしい おそばやさんが ありますか\" (kono chikaku ni oishii osobayasan ga arimasu ka, \"is there a good soba shop near here?\") by naming a good soba shop",
       "hint": null,
       "note": "が (not は) marks そばいち because the shop is new information to the listener; そばいちは おいしいです would instead make おいしいです the new part (NOTES 2).",
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
@@ -163,7 +163,7 @@
       "category": "Directions",
       "target": "そばいちはおてらのまえにあります",
       "scene": null,
-      "hint": "using に あります (not contracted)",
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "The closing line of the dialogue says the same thing as そばいちは あの おてらの まえです — once the location is established, place に あります can be shortened to place です (GRAMMAR 2).",
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
     },
@@ -319,7 +319,7 @@
       "english": "Yes, he's here with me.",
       "category": "Work & Occupations",
       "target": "はい、ここにいます",
-      "scene": "answering \"たなかさんは そこに いますか\" on the phone",
+      "scene": "answering \"たなかさんは そこに いますか\" (Tanaka-san wa soko ni imasu ka, a phone question about where Tanaka-san is) on the phone",
       "hint": null,
       "note": "The same spot is そこ for the person asking and ここ for the person answering. ここ／そこ／あそこ are chosen from whoever is currently speaking, not fixed to the place itself.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
@@ -506,7 +506,7 @@
       "category": "Directions",
       "target": "そばいちはあのおてらのまえです",
       "scene": null,
-      "hint": "contracted with です instead of に あります",
+      "hint": "contracted with です (desu, \"is\") instead of に あります (ni arimasu, \"exists at\")",
       "note": null,
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
     },
@@ -585,7 +585,7 @@
       "english": "Yes, Sobaichi is good.",
       "category": "Food",
       "target": "はい、そばいちはおいしいです",
-      "scene": "answering \"そばいちは おいしいですか\", where the shop is already under discussion",
+      "scene": "answering \"そばいちは おいしいですか\" (sobaichi wa oishii desu ka, a yes/no question about the shop), where the shop is already under discussion",
       "hint": null,
       "note": "The flip side of そばいちが おいしいです. With は, the shop is already known and おいしいです is the new information; with が, the shop itself is the news (NOTES 2).",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."

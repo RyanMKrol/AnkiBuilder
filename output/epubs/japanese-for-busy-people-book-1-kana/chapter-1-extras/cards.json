@@ -214,7 +214,7 @@
       "audioOriginal": "4a73097bb3afdfbc.orig.mp3",
       "audioAuto": "4a73097bb3afdfbc.mp3",
       "audioMarked": true,
-      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite)",
+      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite, \"nice to meet you\")",
       "audioTextHash": "4a73097bb3afdfbc"
     },
     {
@@ -376,7 +376,7 @@
       "pronunciation": "anata wa nihonjin desu ka",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary job: あなた (anata) appears in no sentence in the deck, only as a bare word and as a speaker label in the exercises. Half of a minimal pair with w2-nihonjin-q-bare.",
-      "hint": "with あなた (anata) spelled out as the topic",
+      "hint": "with あなた (anata, \"you\") spelled out as the topic",
       "note": "Grammatically complete, and the version worth learning first because you can see every part. In real conversation the pronoun is usually dropped or replaced by the person's name.",
       "audio": "25696d5da611bbb7.mp3",
       "audioOriginal": "25696d5da611bbb7.orig.mp3",
@@ -442,7 +442,7 @@
       "audioOriginal": "5413c60d68eabb39.orig.mp3",
       "audioAuto": "5413c60d68eabb39.mp3",
       "audioMarked": true,
-      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka)",
+      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka, \"what country are you from?\")",
       "audioTextHash": "5413c60d68eabb39"
     },
     {
@@ -477,7 +477,7 @@
       "audioOriginal": "b1f6470233356d75.orig.mp3",
       "audioAuto": "b1f6470233356d75.mp3",
       "audioMarked": true,
-      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka)",
+      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka, \"what country are you from?\")",
       "audioTextHash": "b1f6470233356d75"
     },
     {
@@ -527,7 +527,7 @@
       "audioOriginal": "8234190dd3e0c5d3.orig.mp3",
       "audioAuto": "8234190dd3e0c5d3.mp3",
       "audioMarked": true,
-      "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka) with the country on its own",
+      "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka, \"what country are you from?\") with the country on its own",
       "audioTextHash": "8234190dd3e0c5d3"
     },
     {
@@ -573,7 +573,7 @@
       "audioOriginal": "93bfc09a0bb14708.orig.mp3",
       "audioAuto": "93bfc09a0bb14708.mp3",
       "audioMarked": true,
-      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite)",
+      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite, \"nice to meet you\")",
       "audioTextHash": "93bfc09a0bb14708"
     },
     {

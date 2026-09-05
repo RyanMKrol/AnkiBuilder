@@ -79,7 +79,7 @@
       "note": "Never さん (san) on your own name. さん (san) is respect you hand to other people, so attaching it to yourself sounds like you are praising yourself.",
       "reviewNote": "Constructed. Vocabulary job: gives さん (san) its own worked minimal pair. Every self-introduction card in the deck is a long three-part greeting; this is the bare form and the first half of the pair with w2-harisu-san-desu.",
       "aiSuggested": true,
-      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite)"
+      "scene": "giving your own surname when someone asks who you are, without はじめまして (hajimemashite, \"nice to meet you\")"
     },
     {
       "id": "irl-l1-28",
@@ -151,7 +151,7 @@
       "english": "Are you Japanese?",
       "category": "Nationalities & Countries",
       "target": "あなたはにほんじんですか",
-      "hint": "with あなた (anata) spelled out as the topic",
+      "hint": "with あなた (anata, \"you\") spelled out as the topic",
       "note": "Grammatically complete, and the version worth learning first because you can see every part. In real conversation the pronoun is usually dropped or replaced by the person's name.",
       "reviewNote": "Constructed. Vocabulary job: あなた (anata) appears in no sentence in the deck, only as a bare word and as a speaker label in the exercises. Half of a minimal pair with w2-nihonjin-q-bare.",
       "aiSuggested": true
@@ -194,7 +194,7 @@
       "note": "The country ちゅうごく (Chuugoku), not the nationality. Compare チャンさんはちゅうごくじんです (Chan san wa Chuugokujin desu): same person, but じん (jin) makes it about her rather than about the place.",
       "reviewNote": "Constructed. Vocabulary job: ちゅうごく (chuugoku) as a country appears in no sentence. Paired answer to w2-chan-okuni-q, and a country-versus-nationality contrast against the existing Chan statement.",
       "aiSuggested": true,
-      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
+      "scene": "Chan-san answering the question おくにはどちらですか (okuni wa dochira desu ka, \"what country are you from?\")"
     },
     {
       "id": "irl-l1-19",
@@ -212,7 +212,7 @@
       "note": "Just the country plus です (desu). おくには (okuni wa) is not repeated because the question already supplied it, and the country ドイツ (Doitsu) is used rather than ドイツじん (Doitsujin) because the question asked about a place.",
       "reviewNote": "Constructed. Vocabulary job: ドイツ (doitsu) as a country appears in no sentence in the deck, only ドイツじん (doitsujin). Paired answer to w2-hoffman-okuni-q.",
       "aiSuggested": true,
-      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka)"
+      "scene": "Hoffman-san answering the question おくにはどちらですか (okuni wa dochira desu ka, \"what country are you from?\")"
     },
     {
       "id": "w2-watashi-no-kuni-nihon",
@@ -241,7 +241,7 @@
       "note": null,
       "reviewNote": "Constructed. Vocabulary job: イギリス (igirisu) as a country appears in no sentence, only イギリスじん (igirisujin). Paired answer to w2-okuni-dochira-bare.",
       "aiSuggested": true,
-      "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka) with the country on its own"
+      "scene": "answering the question おくにはどちらですか (okuni wa dochira desu ka, \"what country are you from?\") with the country on its own"
     },
     {
       "id": "ex2b-no-american",
@@ -271,7 +271,7 @@
       "note": "The [company] の (no) [name] です (desu) pattern used to state who you are, as opposed to こちらは (kochira wa) ... です, which states who someone else is.",
       "reviewNote": "SPEAKING PRACTICE 3, Smith's first line, verbatim. The deck already has the second half of that line (onegaishimasu-pattern-ch14) but not this half, so the learner never sees the bare self-identification with an affiliation. Extends ks4-i-am-smith, which has the name only.",
       "aiSuggested": true,
-      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite)"
+      "scene": "identifying yourself at a reception desk, without はじめまして (hajimemashite, \"nice to meet you\")"
     },
     {
       "id": "w2-hai-australian",

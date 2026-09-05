@@ -80,7 +80,7 @@
       "category": "Other",
       "target": "とります",
       "pronunciation": "torimasu",
-      "hint": "used with しゃしんを (photo) as the object",
+      "hint": "used with しゃしんを (shashin o, \"photo\" plus the object marker) as the object",
       "note": "Combined as しゃしんを とります (shashin wo torimasu), \"take a photo.\"",
       "audio": "dcb06d5d18f5156b.mp3",
       "audioOriginal": "dcb06d5d18f5156b.orig.mp3",
@@ -127,7 +127,7 @@
       "audioOriginal": "a5d062c2d76325b2.orig.mp3",
       "audioAuto": "a5d062c2d76325b2.mp3",
       "audioMarked": true,
-      "scene": "after a number, as in 2じかん",
+      "scene": "after a number, as in 2じかん (ni-jikan)",
       "audioTextHash": "a5d062c2d76325b2"
     },
     {
@@ -358,7 +358,7 @@
       "target": "よくないです",
       "pronunciation": "yokunai desu",
       "uncertain": true,
-      "scene": "irregular negative of いい (good)",
+      "scene": "irregular negative of いい (ii, \"good\")",
       "note": "Exceptional inflection — いい (ii, good) does not become いくないです; the negative stem is よく (yoku), not いく.",
       "reviewNote": "Excluded as a duplicate: chapter-10 already teaches よくないです (\"Not good.\"). The backward de-dup flagged this at build time as already introduced; keeping both made an unanswerable Recognition collision. The earliest occurrence is kept.",
       "audio": "34debb852f1c5557.mp3",

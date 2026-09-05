@@ -277,9 +277,23 @@ disambiguation parentheticals out of `english` into `hint` and renames the old `
 book by book, backing up to `.pre-hint.bak`. Every deck on disk has been through it; it is kept for a
 deck restored from an old backup.)
 
-**Any `hint`/`note` that quotes non-Roman target script ALWAYS shows its romanization in brackets** —
-`はじめまして (hajimemashite)`, `お (o) + かし (kashi) = おかし (okashi)` — because the learner may not
-yet read the script (this is a learner-facing rule; `reviewNote` is internal and needs none).
+**Any `scene`/`hint`/`note` that quotes non-Roman target script ALWAYS shows BOTH its romanization
+and an English gloss in brackets** — `はじめまして (hajimemashite, "nice to meet you")`, not bare
+`はじめまして` and not romanization alone. The learner may not yet read the script, and on a `scene`
+or a `hint` the quoted text sits on a FRONT, where they have to parse it before they can answer;
+romaji alone tells them how it sounds and still leaves them stuck on what it means. Take the gloss
+from this deck's own card for that string wherever one exists, so a cue can't disagree with what a
+later card teaches. Two exceptions: a purely grammatical string with no English meaning (`〜ます
+(masu)`) gets romanization only, and so does any gloss that would give away the card's own answer
+(see below). This is learner-facing; `reviewNote` is internal and needs neither.
+
+**Never let a cue's gloss hand over the answer.** A `scene` renders on the Recognition FRONT, where
+the answer IS the English, so translating a quoted question literally can pre-give it: on
+`はい、そばいちはおいしいです` / "Yes, Sobaichi is good.", glossing the quoted `そばいちは おいしいですか`
+as "Is Sobaichi good?" answers the card. Gloss it by its shape instead ("a yes/no question about the
+shop"). A `hint` is not exposed this way (the Production front already shows the English, and on
+Recognition a hint only renders on the back), so hints may gloss freely.
+
 **Back-note cross-references look BACKWARD only** — a card may compare itself to a card from the SAME or
 an EARLIER lesson, never a later one the learner hasn't met (so その (sono) references それ (sore) from
 an earlier lesson, not vice-versa). The extraction prompt enforces all of this

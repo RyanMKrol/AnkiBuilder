@@ -126,6 +126,13 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .grp-built .dblock{border-left:3px solid #5c7a52}
 .grp-unfinished .dblock{border-left:3px solid #9a4f2a}
 .grp-unfinished .urow .ustage{color:#9a4f2a;font-weight:700}
+/* "Retired": a deck deliberately removed from Anki, kept on disk as a record. Muted and desaturated
+   on purpose: it is the one section on this page that is NOT live, so it should read as an archive
+   shelf rather than as work, and never compete with the buckets above it for attention. */
+.grp-retired h2{border-bottom-color:var(--rule2);color:var(--soft)}
+.grp-retired .dblock{border-left:3px solid var(--rule2);opacity:.72}
+.grp-retired .dblock:hover{opacity:1}
+.retired-chip{color:var(--soft);font-weight:700}
 .ghint code{font-family:var(--mono);font-size:11.5px}
 .dblock .dt{font-family:var(--serif);font-size:17px}
 .dblock a.dt{color:inherit;text-decoration:none}

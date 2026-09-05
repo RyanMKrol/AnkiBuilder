@@ -11,7 +11,7 @@
 // All effects go through an injected AnkiConnect client (see ./ankiConnect.js) and the injected `now`,
 // so the whole thing is unit-testable with a fake client and no running Anki.
 
-import { existsSync, mkdirSync, writeFileSync, readdirSync, rmSync, readFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync, readdirSync, rmSync } from "fs";
 import { join, resolve, dirname } from "path";
 import { noteTypeSpec, fieldValue, FIELD_NAMES } from "../deck/collection.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
@@ -31,7 +31,7 @@ import {
   describeSuspension,
 } from "./directionSuspension.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
-import { loadCourseMeta } from "../cli/outputPaths.js";
+import { isRetiredCollection, loadCourseMeta } from "../cli/outputPaths.js";
 
 const ABID = "abid:";
 const sanitizeSeg = (s) => String(s).replace(/::/g, "-");
@@ -69,26 +69,6 @@ const noteField = (n, name) => n.fields?.[name]?.value ?? "";
 // Resolve selectors → managed decks with their Anki names, spec, and deliverable units (disk-only).
 // Exported for tests: this is where a unit's Anki deck NAME is decided, and getting that wrong
 // delivers cards into the wrong deck without any error to notice.
-// `retired: true` in a collection's own MANIFEST (book.json / course.json). Read straight from disk
-// rather than through the adapter, so it works for every collection type without each adapter having
-// to thread the field through its own load shape.
-//
-// Note this takes the collection DIRECTORY, not `adapter.deckFile()` — that returns the built .apkg,
-// not the manifest, which is a trap worth naming because reading the wrong path here fails silently:
-// the JSON.parse throws, the catch returns false, and a retired collection is delivered anyway.
-function isRetired(collectionDir) {
-  for (const name of ["book.json", "course.json"]) {
-    const path = join(collectionDir, name);
-    if (!existsSync(path)) continue;
-    try {
-      if (JSON.parse(readFileSync(path, "utf-8")).retired === true) return true;
-    } catch {
-      // A manifest we cannot read is not a retired one; the stages below will fail on it properly.
-    }
-  }
-  return false;
-}
-
 export function resolveDecks(outputRoot, selectors, adapters) {
   const wanted =
     !selectors || selectors === "all" || selectors.length === 0
@@ -117,7 +97,7 @@ export function resolveDecks(outputRoot, selectors, adapters) {
     //
     // The flag is what tells those two cases apart, and only a human can set it, because only a
     // human knows whether the deck is gone on purpose.
-    if (isRetired(bookDir)) {
+    if (isRetiredCollection(bookDir)) {
       decks.push({ type, id, title: info.title, skipped: "retired" });
       continue;
     }

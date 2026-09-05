@@ -30,6 +30,7 @@ export const bookAdapter = {
         targetLanguage: b.targetLanguage,
         unitCount: units.length,
         stage: deckStage(units),
+        retired: b.retired === true,
       };
     });
   },

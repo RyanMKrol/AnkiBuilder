@@ -30,6 +30,7 @@ export const courseAdapter = {
         targetLanguage: c.targetLanguage,
         unitCount: units.length,
         stage: deckStage(units),
+        retired: c.retired === true,
       };
     });
   },

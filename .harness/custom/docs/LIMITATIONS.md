@@ -3553,7 +3553,9 @@ it, because only a human knows whether a missing deck is intentional. `retired` 
 without the field are unaffected.
 
 **Revisit** if collections ever need retiring per-UNIT rather than whole; the flag is deliberately
-collection-wide because that is the only granularity retirement has meant so far.
+collection-wide because that is the only granularity retirement has meant so far. Note the fix above
+covered DELIVERY only. See "A retired collection was still a build target, still audited, and still
+offered for review" below for what that left behind.
 
 **Verified by:**
 
@@ -3699,3 +3701,51 @@ done
 - **When to revisit:** when Lesson 24 is built. Reconcile the `family-vocabulary` batch against that
   lesson's own extraction before shipping it, keeping the earliest card id so Anki review history
   survives.
+
+### A retired collection was still a build target, still audited, and still offered for review
+
+**What.** `retired: true` was read in exactly one place: a private `isRetired()` inside
+`src/anki/deliver.js`. Delivery was correctly blocked, but nothing else in the codebase could see the
+flag, so every other surface treated a retired collection as live. The dashboard listed the dead
+Nihongo 101 course under "Built · ready to study" alongside the live book; `preflight` swept its
+three lessons on every run and emitted findings (two corpus-drift warnings) that nobody would ever
+act on; `listBooks` dropped the field entirely, so a retired BOOK could not have been filtered at
+all; and the build flow offered the course as a source to build a new lesson into, which is how it
+was found: a Step 1 question presented a deck that has been dead since 2026-08-26.
+
+**Why.** The flag was introduced to solve one incident (a retired collection aborting delivery of
+every other collection) and was scoped to that incident. Retirement is a property of the collection,
+but it was implemented as a property of the delivery path.
+
+**Impact.** Assembling into it would have been silent and expensive: the lesson builds, spends model
+and TTS credits, passes both review gates, and only then goes nowhere, because delivery skips the
+whole collection. Nothing anywhere would have reported it, because the wasted work looks exactly like
+finished work right up until it fails to appear in Anki. A latent variant was worse:
+`materializeBookInOutput` rewrites `book.json` wholesale and carried forward only five fields, so any
+`assemble` against a retired BOOK would have silently ERASED `retired: true`, turning a deliberately
+deleted deck back into a deliverable one with no error and no trace.
+
+**Status.** Fixed. `isRetiredCollection` (`src/cli/outputPaths.js`) is now the single definition, and
+`deliver.js` calls it instead of its own copy. `assemble` refuses a retired collection before
+allocating a run directory (`--force` overrides); `scanWorkspace` leaves it out of the sweep and
+reports it in preflight's coverage header; the dashboard gives it its own **Retired** section;
+`listBooks` carries the field like `listCourses` already did; and `materializeBookInOutput` preserves
+it across a marker refresh. Pointing preflight at a retired collection directly still checks it. The
+filter keeps dead decks out of a whole-root sweep, not out of reach.
+
+**Revisit** when any new surface enumerates collections. The rule this entry exists to record is that
+discovering a collection and honoring its retirement are the same responsibility; a lister that finds
+a collection but cannot say whether it is retired will get this wrong again. The same applies to any
+future hand-set manifest field, which `materializeBookInOutput` must be taught to preserve.
+
+**Verified by:**
+
+```sh
+# the retired course is skipped by delivery, absent from the preflight sweep but named in its
+# coverage header, and refused as a build target
+node -e 'import("./src/anki/deliver.js").then(m=>{for(const d of m.resolveDecks("output","all"))
+  console.log(d.type, d.id, "| skipped:", d.skipped||"-")})'
+npm run preflight | head -5
+npx anki-builder assemble --output-root output --words /dev/null \
+  --course "Nihongo 101 Course (N5)" --lesson-number 99 --lang ja 2>&1 | tail -1
+```

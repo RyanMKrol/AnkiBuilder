@@ -99,8 +99,16 @@ function normalize(result) {
  * what is on disk mid-run.
  */
 export function loadWorkspace({ outputRoot = "output", collectionDir = null } = {}) {
+  // Pointing preflight at ONE collection checks it even when it is retired: naming a directory
+  // explicitly is a deliberate act, and the retirement filter exists to keep dead decks out of a
+  // whole-root sweep, not to make them unexaminable.
   const scan = collectionDir
-    ? { root: outputRoot, collections: [describeCollectionDir(collectionDir)], unknownGroups: [] }
+    ? {
+        root: outputRoot,
+        collections: [describeCollectionDir(collectionDir)],
+        retired: [],
+        unknownGroups: [],
+      }
     : scanWorkspace(outputRoot);
 
   const collections = scan.collections.map((collection) => ({
@@ -112,6 +120,7 @@ export function loadWorkspace({ outputRoot = "output", collectionDir = null } = 
   return {
     root: scan.root,
     missing: Boolean(scan.missing),
+    retired: scan.retired ?? [],
     unknownGroups: scan.unknownGroups,
     collections,
     accepted: readAccepted(scan.root),
@@ -250,6 +259,7 @@ function describeCoverage(workspace, selected, results) {
     units,
     unitsByShape,
     unmatchedDirs,
+    retired: workspace.retired ?? [],
     unknownGroups: workspace.unknownGroups,
     checksDeclared: selected.length,
     checksSkipped: results.filter((r) => r.skipped).length,

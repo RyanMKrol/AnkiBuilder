@@ -199,9 +199,22 @@ question to the user, never something you infer from the state of `output/`.** R
 state tells you what the OPTIONS are; it never tells you which one they want. A build costs LLM and
 TTS credits and lands in a deck they study daily, so guessing wrong is expensive in both.
 
+**Never offer a RETIRED collection as a build target.** A collection whose manifest (`book.json` /
+`course.json`) carries `"retired": true` had its Anki deck deliberately removed: the material was
+absorbed elsewhere, or the deck was abandoned. Its cards stay on disk as the record of what it held,
+which is exactly why listing the directory makes it look alive. `listBooks` and `listCourses` both
+report the flag, so filter on it rather than on whether the folder exists.
+
+Getting this wrong is silent and expensive: the lesson builds, spends model and TTS credits, passes
+both review gates, and only then goes nowhere, because `deliver` skips the whole collection and
+preflight never scans it. `assemble` now refuses outright (`--force` overrides), but the refusal
+comes AFTER the user has picked, so the option should never have been on the list. This is exactly
+how the retired Nihongo 101 course got offered as a build target.
+
 - **Which book? (EPUB) — always ask, even when there is exactly one.** List the EPUBs already worked
   on by calling `listBooks(outputRoot)` (`src/cli/outputPaths.js`) and offer each (labelled by
-  `title`) as an option, **always alongside "a new EPUB (I'll give a path)"**. A single existing book
+  `title`, **skipping any whose `retired` is true**) as an option, **always alongside "a new EPUB
+  (I'll give a path)"**. A single existing book
   is not an answer: the user may well be starting a second one, and that option has to be on the
   table every time. Every `--epub` build keeps a copy of the source file in the book's output folder,
   so an existing book builds with `--book <book-slug>` and no path. If `listBooks` returns nothing,
@@ -234,7 +247,7 @@ TTS credits and lands in a deck they study daily, so guessing wrong is expensive
   `language_code` resolve.
 - **Which course? (lesson)** List existing courses (`listCourses(outputRoot)`, or read
   `output/courses/*/course.json`) plus "start a new course"; a new course needs a name and target
-  language.
+  language. **Skip any course whose `retired` is true** (see above).
 - **Which lesson number? (lesson)** Suggest the next free one
   (`nextLessonNumber(outputRoot, courseSlug)`) and let them confirm or override. Ask about a custom
   sub-deck label too (defaults to `"Lesson <N>"`); a course that will get extras units needs a real
@@ -844,8 +857,8 @@ npm run check                                        # ci + validate:decks + pre
 ```
 
 Runs every deterministic check in one command. It opens with a **coverage header** naming what it
-looked at (collections by kind, units by shape, anything it could not place), so "clean" can never
-mean "I did not look", and it reports in three tiers:
+looked at (collections by kind, units by shape, anything it could not place, and any collection
+skipped as **retired**), so "clean" can never mean "I did not look", and it reports in three tiers:
 
 - **FAIL** blocks. Schema, duplicate card ids (a clash makes the package build refuse, and it used
   to surface only at Mark done), uncued collisions, editorial spacing in a hand-authored unit, a
@@ -859,6 +872,11 @@ mean "I did not look", and it reports in three tiers:
 - **INFO** never blocks: cross-unit duplicate targets, exclusion provenance, the audio text-hash
   counts (how many clips still match their card's text), and the template path's
   readiness/enrichment exemptions.
+
+A **retired** collection is not swept: its Anki deck is gone on purpose and its cards are frozen, so
+every finding against it is noise nobody will act on. It is named in the coverage header rather than
+dropped in silence, and pointing preflight at it directly (`node scripts/preflight.mjs <its-dir>`)
+still checks it. The filter keeps dead decks out of a whole-root sweep, not out of reach.
 
 Every check reads ONE collection. **Collections are isolated:** two decks built from two different
 sources are separate products, and preflight never compares them, cues one against the other, or

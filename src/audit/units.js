@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import { basename, join, resolve } from "path";
+import { isRetiredCollection } from "../cli/outputPaths.js";
 
 /**
  * The ONE place that knows what a unit directory looks like, and what a collection is.
@@ -108,21 +109,37 @@ function directoryNames(dir) {
  * or corpus.json whose name matches no known unit shape) are what let a report say "I looked at 31
  * units and there were none I could not place" instead of just "clean".
  *
- * Returns `{ root, collections, unknownGroups }`.
+ * A RETIRED collection (`"retired": true` in its own book.json/course.json) is left out of
+ * `collections` and listed in `retired` instead. Its Anki deck is gone on purpose and its cards are
+ * frozen, so every finding against it is noise nobody will ever act on. The dead Nihongo course was
+ * emitting two corpus-drift warnings on every single run. But it is reported, never silently
+ * dropped: this file's whole premise is that a checker which cannot see a unit reads exactly like
+ * one that checked it and found nothing, so "skipped 1 retired collection" has to appear in the
+ * coverage header for the same reason `unknownGroups` does.
+ *
+ * Returns `{ root, collections, retired, unknownGroups }`.
  */
 export function scanWorkspace(outputRoot = "output") {
   const root = resolve(outputRoot);
   const collections = [];
+  const retired = [];
   const unknownGroups = [];
 
-  if (!existsSync(root)) return { root, collections, unknownGroups, missing: true };
+  if (!existsSync(root)) return { root, collections, retired, unknownGroups, missing: true };
 
   for (const group of directoryNames(root)) {
     const groupDir = join(root, group);
     if (group === EPUBS_DIR || group === COURSES_DIR) {
       const kind = group === EPUBS_DIR ? "epub" : "course";
       for (const slug of directoryNames(groupDir)) {
-        collections.push(describeCollection(join(groupDir, slug), kind, slug));
+        const dir = join(groupDir, slug);
+        // Only books and courses carry a manifest; a template has no place to mark retirement, so
+        // the templates branch below has nothing to check.
+        if (isRetiredCollection(dir)) {
+          retired.push({ dir, kind, slug });
+          continue;
+        }
+        collections.push(describeCollection(dir, kind, slug));
       }
     } else if (group === TEMPLATES_DIR) {
       for (const name of directoryNames(groupDir)) {
@@ -137,7 +154,7 @@ export function scanWorkspace(outputRoot = "output") {
     }
   }
 
-  return { root, collections, unknownGroups, missing: false };
+  return { root, collections, retired, unknownGroups, missing: false };
 }
 
 /**

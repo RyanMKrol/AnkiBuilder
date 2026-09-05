@@ -143,6 +143,7 @@ export function createPageRenderers({
         total: units.length,
         units,
         managed,
+        retired: d.retired === true,
       };
     });
 
@@ -155,6 +156,9 @@ export function createPageRenderers({
         .filter(Boolean)
         .join(" · ");
     const deckBlock = (deck, units, mode) => {
+      const retiredChip = deck.retired
+        ? `<span class="dm retired-chip" title="Retired: this deck's Anki deck was deliberately removed. Kept on disk as the record of what it held. It is not a build target and is never delivered.">· retired</span>`
+        : "";
       const managedChip = deck.managed
         ? `<span class="dm" title="Delivered via AnkiConnect — push updates with Deliver to Anki. Re-importing the .apkg into that collection creates duplicate notes.">· AnkiConnect-managed</span>`
         : "";
@@ -167,7 +171,7 @@ export function createPageRenderers({
           ? `<a class="dt" href="${allUrl}" title="Open every lesson's cards on one page">${escapeHtml(deck.title)}</a>`
           : `<span class="dt">${escapeHtml(deck.title)}</span>`;
       const allLink = deck.total > 1 ? `<a class="dball" href="${allUrl}">All cards →</a>` : "";
-      const head = `<div class="dbhead">${titleHtml}<span class="dm">${deckMeta(deck)}</span>${managedChip}${allLink}</div>`;
+      const head = `<div class="dbhead">${titleHtml}<span class="dm">${deckMeta(deck)}</span>${retiredChip}${managedChip}${allLink}</div>`;
       // A single-unit deck (template) has no meaningful sub-decks — the whole block is the link.
       // A single-lesson deck renders as one block with no per-unit row, so any badge that says this
       // lesson is NOT simply sitting at a review — building, interrupted, or an unfinished build — has
@@ -217,10 +221,22 @@ export function createPageRenderers({
     const unfinishedBlocks = [];
     const reviewBlocks = [];
     const builtBlocks = [];
+    const retiredBlocks = [];
     let unfinishedCount = 0;
     let reviewCount = 0;
     let builtCount = 0;
+    let retiredCount = 0;
     for (const deck of withUnits) {
+      // A RETIRED deck's units are all `done`, so without this they sort into "Built · ready to
+      // study" and read as part of the live shipping deck, which is exactly backwards, since a
+      // retired deck is the one thing on this page that is NOT in Anki. It gets its own bucket at
+      // the bottom rather than being hidden: the cards are kept on disk as the record of what the
+      // deck held, and a record you cannot open is not much of a record.
+      if (deck.retired) {
+        retiredBlocks.push(deckBlock(deck, deck.units, "built"));
+        retiredCount += deck.units.length;
+        continue;
+      }
       // "Not finished" is about whether the PIPELINE has completed, not about which file exists: a
       // lesson with no cards at all and a lesson whose enrichment passes never ran are the same kind
       // of not-ready, and neither belongs in front of a reviewer. That keeps "In review" meaning
@@ -291,7 +307,8 @@ export function createPageRenderers({
 ${section("grp-unfinished", "Not finished", "These lessons stopped mid-build and have no cards to review yet. Re-run <code>anki-builder assemble</code> for the lesson (it picks up where it left off), or <code>anki-builder prepare --run &lt;dir&gt;</code> directly.", unfinishedBlocks, unfinishedCount)}
 ${section("grp-additions", "Additions waiting", "Cards retrofitted into finished lessons, held out of the deck until you approve them. The lessons they sit in keep their own sign-off, so approving these re-opens nothing.", additionRows, pendingTotal)}
 ${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
-${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}`,
+${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}
+${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately removed, because the material was absorbed elsewhere or the deck was abandoned. Kept on disk as the record of what they held. They are never delivered, never offered as a build target, and preflight skips them.", retiredBlocks, retiredCount)}`,
       [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null].filter(Boolean).join("\n"),
     );
   }

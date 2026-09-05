@@ -125,11 +125,21 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
   // other's note on import. Decided once, at the book dir's FIRST materialization, and preserved
   // verbatim on every refresh after that: changing an existing book's guids would orphan its live
   // scheduling, so a book that started bare (the pre-namespace era) stays bare forever.
+  //
+  // `retired` is preserved for a sharper reason than `guidNamespace`: this function REPLACES the
+  // marker wholesale, so any field it does not carry forward is silently dropped. Losing the
+  // retirement flag would turn a deliberately-removed deck back into a live one: `deliver` would
+  // recreate it in Anki and re-add every card with no scheduling, and nothing would report it,
+  // because a wiped flag and a never-set flag are the same absence. Any future manifest field a
+  // human sets by hand has to be added here for the same reason.
   const markerPath = bookMarkerPath(outputRoot, slug);
   let guidNamespace = slug;
+  let retired;
   if (existsSync(markerPath)) {
     try {
-      guidNamespace = JSON.parse(readFileSync(markerPath, "utf-8")).guidNamespace ?? null;
+      const existing = JSON.parse(readFileSync(markerPath, "utf-8"));
+      guidNamespace = existing.guidNamespace ?? null;
+      if (existing.retired === true) retired = true;
     } catch {
       guidNamespace = null;
     }
@@ -144,6 +154,7 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
         epubHash,
         targetLanguage: targetLanguage || null,
         guidNamespace,
+        ...(retired ? { retired: true } : {}),
       },
       null,
       2,
@@ -185,6 +196,10 @@ export function listBooks(outputRoot) {
           (hasHashMarker ? readFileSync(join(dir, ".epub-hash"), "utf-8").trim() : null),
         targetLanguage: marker?.targetLanguage ?? null,
         epubPath: hasOwnEpub ? ownEpub : null,
+        // Carried through so callers can filter a retired book the same way they filter a retired
+        // course: `listCourses` spreads the whole manifest and gets this for free, and a lister that
+        // silently dropped the field would make the flag unfollowable for books.
+        retired: marker?.retired === true,
       };
     })
     .filter(Boolean);
@@ -363,6 +378,37 @@ export function loadCourseMeta(courseDir) {
     return null;
   }
   return JSON.parse(readFileSync(markerPath, "utf-8"));
+}
+
+/**
+ * Whether a collection's own manifest marks it RETIRED: its Anki deck was deliberately removed,
+ * because the material was absorbed into another collection or the deck was abandoned. A retired
+ * collection is kept on disk as the record of what it held; it is not a build target, not something
+ * to review, and not something to deliver.
+ *
+ * Takes the collection DIRECTORY, not a built `.apkg`, and reads `book.json` / `course.json`
+ * straight from disk so it works for every collection type without each caller threading the field
+ * through its own load shape. Reading the wrong path here fails silently (the JSON.parse throws,
+ * the catch returns false, and a retired collection is treated as live), so the directory-not-file
+ * contract is worth keeping in mind at every call site.
+ *
+ * Absence must mean "not retired": every collection already on disk lacks the field. A manifest we
+ * cannot read is not a retired one either; the stages that consume it fail on it properly, whereas
+ * treating an unparseable file as retired would silently drop a LIVE collection from delivery.
+ *
+ * Only a human sets this flag, because only a human knows whether a deck is gone on purpose.
+ */
+export function isRetiredCollection(collectionDir) {
+  for (const name of ["book.json", "course.json"]) {
+    const path = join(collectionDir, name);
+    if (!existsSync(path)) continue;
+    try {
+      if (JSON.parse(readFileSync(path, "utf-8")).retired === true) return true;
+    } catch {
+      // A manifest we cannot read is not a retired one. See above.
+    }
+  }
+  return false;
 }
 
 /**

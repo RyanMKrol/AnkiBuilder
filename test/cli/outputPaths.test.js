@@ -18,6 +18,7 @@ import {
   loadBookMarker,
   listBooks,
   resolveBookEpubPath,
+  isRetiredCollection,
 } from "../../src/cli/outputPaths.js";
 import { withClaim, readClaim } from "../../src/cli/runClaim.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
@@ -207,6 +208,7 @@ test("listBooks() returns worked-on books and ignores non-book folders", () => {
         epubHash,
         targetLanguage: "ja",
         epubPath: join(outputRoot, "epubs", slug, "book.epub"),
+        retired: false,
       },
     ]);
   });
@@ -225,6 +227,7 @@ test("listBooks() surfaces a legacy book (only a .epub-hash marker) with a null 
         epubHash: "deadbeefcafe0000",
         targetLanguage: null,
         epubPath: null,
+        retired: false,
       },
     ]);
   });
@@ -731,4 +734,97 @@ process.stdout.write(JSON.stringify(dirs));
   } finally {
     rmSync(outputRoot, { recursive: true, force: true });
   }
+});
+
+test("isRetiredCollection reads either manifest, and only an exact `true` retires", () => {
+  const root = mkdtempSync(join(tmpdir(), "retired-helper-"));
+  try {
+    const mk = (name, manifest) => {
+      const dir = join(root, name);
+      mkdirSync(dir, { recursive: true });
+      if (manifest !== null) writeFileSync(join(dir, name.split("-")[0] + ".json"), manifest);
+      return dir;
+    };
+    assert.strictEqual(
+      isRetiredCollection(mk("book-retired", JSON.stringify({ retired: true }))),
+      true,
+    );
+    assert.strictEqual(
+      isRetiredCollection(mk("course-retired", JSON.stringify({ retired: true }))),
+      true,
+    );
+    assert.strictEqual(isRetiredCollection(mk("book-live", JSON.stringify({ title: "x" }))), false);
+    // Absence must mean live: every collection on disk today lacks the field.
+    assert.strictEqual(isRetiredCollection(mk("book-none", null)), false);
+    // A truthy non-true value is NOT retirement. The flag is a deliberate human act.
+    for (const v of [false, "yes", 1, "true", null]) {
+      assert.strictEqual(
+        isRetiredCollection(mk(`book-v${JSON.stringify(v)}`, JSON.stringify({ retired: v }))),
+        false,
+        `retired: ${JSON.stringify(v)} must not retire`,
+      );
+    }
+    // An unreadable manifest is not a retired one: treating a parse failure as retirement would
+    // silently stop a LIVE collection from ever being delivered.
+    assert.strictEqual(isRetiredCollection(mk("book-broken", "{ not json")), false);
+    assert.strictEqual(isRetiredCollection(join(root, "does-not-exist")), false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("listBooks carries `retired` through, so a retired book can be filtered like a retired course", () => {
+  const root = mkdtempSync(join(tmpdir(), "list-retired-"));
+  try {
+    for (const [slug, retired] of [
+      ["live", false],
+      ["gone", true],
+    ]) {
+      const dir = join(root, "epubs", slug);
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, "book.epub"), "");
+      const manifest = { title: slug, slug, epubHash: "h", targetLanguage: "ja" };
+      if (retired) manifest.retired = true;
+      writeFileSync(join(dir, "book.json"), JSON.stringify(manifest));
+    }
+    const bySlug = Object.fromEntries(listBooks(root).map((b) => [b.slug, b]));
+    assert.strictEqual(bySlug.gone.retired, true);
+    assert.strictEqual(bySlug.live.retired, false, "absent reads as false, never undefined");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("materializeBookInOutput preserves `retired` when it refreshes the marker", () => {
+  // It REPLACES the marker wholesale, so a field it does not carry forward is silently dropped.
+  // Losing this one would turn a deliberately-removed deck back into a deliverable one, and nothing
+  // would report it: a wiped flag and a never-set flag are the same absence.
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    const dir = join(outputRoot, "epubs", slug);
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+
+    // The owner retires the book by hand, then some later command refreshes the marker.
+    writeFileSync(
+      join(dir, "book.json"),
+      JSON.stringify({ ...loadBookMarker(dir), retired: true }, null, 2),
+    );
+    materializeBookInOutput(outputRoot, slug, epubPath, "newhash", "es");
+
+    assert.strictEqual(loadBookMarker(dir).retired, true, "still retired after a refresh");
+    assert.strictEqual(isRetiredCollection(dir), true);
+    assert.strictEqual(loadBookMarker(dir).targetLanguage, "es", "other fields still refresh");
+  });
+});
+
+test("materializeBookInOutput does not INVENT a retired flag on a live book", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+    const dir = join(outputRoot, "epubs", slug);
+    assert.ok(!("retired" in loadBookMarker(dir)), "a live book's marker stays clean");
+    assert.strictEqual(isRetiredCollection(dir), false);
+  });
 });

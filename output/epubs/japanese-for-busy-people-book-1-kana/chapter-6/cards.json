@@ -447,7 +447,7 @@
       "target": "へ",
       "ttsText": "え",
       "pronunciation": "e",
-      "hint": "the alternative to に (ni)",
+      "hint": "the alternative to に (ni, \"in/on/at\")",
       "note": "Interchangeable with に (ni) after a place or event noun with motion verbs like いきます (ikimasu). Written へ but pronounced え (e) when it is doing this job, not the usual \"he.\"",
       "reviewNote": "Was the textbook's grammar-note line スミスさんはパーティーに／へいきます, where ／ meant \"either particle works\" — not a speakable sentence. Recast as a particle card mirroring に (row 5).",
       "audio": "a3ac531b8a5da55a.mp3",
@@ -927,7 +927,7 @@
       "audioAuto": "2e80f7652f14ae6a.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "picking out which one of several, as in a だれが (dare ga) question",
+      "scene": "picking out which one of several, as in a だれが (dare ga, \"who …?\") question",
       "audioTextHash": "2e80f7652f14ae6a"
     },
     {

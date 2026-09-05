@@ -3561,3 +3561,60 @@ collection-wide because that is the only granularity retirement has meant so far
 node -e 'import("./src/anki/deliver.js").then(m=>{for(const d of m.resolveDecks("output","all"))
   console.log(d.type, d.id, "| skipped:", d.skipped||"-")})'
 ```
+
+### Front cues quoted Japanese with no English gloss, so a learner who can't read kana was stuck
+
+**What.** A `scene` or a `hint` renders BEFORE the answer, and 46 of them in the kana book quoted
+Japanese. Only 4 gave an English meaning. 16 quoted bare kana with nothing in brackets at all
+(`used with もらいます`, `answering "そばいちは おいしいですか", where the shop is already under
+discussion`), and the other 26 gave romanization only (`Use やすい (yasui) in the negative`). A
+learner still building kana fluency has to decode the cue before they can even start on the card, on
+a field whose entire job is to make the card faster to answer.
+
+**Why.** The authoring rule (`references/card-authoring-rules.md`, `docs/epub-extraction-prompt.md`)
+demanded a romanization in brackets and nothing more, and it named only `hint` and `note`. `scene`
+was never covered, which is exactly why every one of the 16 bare cases was a scene or a
+chapter-13-style hint. Romanization solves "how does this sound", which is not the problem a front
+cue has.
+
+**Impact.** 40 cues across 33 units, on a deck delivered to a collection the owner studies daily.
+Fixed by hand in this change; the glosses were taken from the deck's own card for each quoted string
+wherever one existed, so no cue asserts a meaning that disagrees with a later card.
+
+**Status.** Fixed for front cues, and the rule now requires romaji AND an English gloss and covers
+`scene`. NOT fixed for `note`: ~490 back-of-card notes still carry at least one unglossed Japanese
+run. That was a deliberate scope call — a note renders after the answer, so an unreadable one costs
+reading time but never blocks the card, and notes are where most of the deck's grammar explanation
+lives, so a sweep there needs real per-card care rather than a mechanical pass.
+
+**The trade-off inside the fix.** A `scene` renders on the Recognition FRONT, where the answer IS the
+English, so glossing a quoted question literally can hand the card over: on `はい、そばいちはおいしいです`
+/ "Yes, Sobaichi is good.", translating the quoted `そばいちは おいしいですか` as "Is Sobaichi good?"
+answers it. Three cues are therefore glossed by SHAPE ("a yes/no question about the shop") rather
+than translated, and `chapter-11/jikan-suffix` takes romanization only because any English gloss of
+2じかん gives away its answer "(Number of) hours". Readability lost a little to keep the card honest.
+
+**Revisit** when the note sweep is picked up, or if a future deck's cues are authored by a model
+under the new rule and the leak case turns out to need spelling out further than the prompt does.
+
+**Verified by:**
+
+```sh
+python3 - <<'PY'
+import json,glob,re
+JP=re.compile(r'[぀-ヿ一-鿿]')
+RUN=re.compile(r'[぀-ヿ一-鿿々〜～ー][぀-ヿ一-鿿々〜～ー　 ]*')
+bare=total=0
+for f in sorted(glob.glob('output/epubs/japanese-for-busy-people-book-1-kana/chapter-*/cards.json')):
+    for i in json.load(open(f))['items']:
+        for k in ('scene','hint'):
+            v=i.get(k)
+            if not v or not JP.search(v): continue
+            total+=1
+            for m in RUN.finditer(v):
+                rest=v[m.start()+len(m.group().rstrip()):]
+                if not re.match(r'^["”\'’,、…\s]*\(', rest) and not re.search(r'^[^(]{0,24}["“](?:[a-zāīūēō])', rest):
+                    bare+=1; break
+print(f"{total} cue(s) quote Japanese; {bare} unglossed")   # expect: 46 quote Japanese; 0 unglossed
+PY
+```

@@ -257,7 +257,7 @@
       "english": "(Honorific prefix)",
       "category": "Grammar & Function Words",
       "scene": "politely referring to someone else's family member",
-      "hint": "attaches before a noun like かぞく (family) or しゅじん (husband)",
+      "hint": "attaches before a noun like かぞく (kazoku, \"family\") or しゅじん (shujin, \"husband\")",
       "note": "A different ご (go) from this lesson's language suffix (にほんご, nihongo, 'Japanese') — same sound, unrelated: this one is a prefix showing respect for someone else's things. お (o) is the same prefix for native Japanese words and ご for words of Chinese origin, which is why the family set splits ごかぞく (gokazoku) and ごしゅじん (goshujin) against おとうさん (otousan), おかあさん (okaasan) and おくさん (okusan). The two are never stacked: おくさん already carries its お.",
       "reviewNote": "Written ご〜 in the source. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
       "target": "ご",
@@ -707,7 +707,7 @@
       "english": "Glass, wine glass",
       "category": "Food",
       "scene": null,
-      "hint": "a wine glass specifically, not the everyday コップ from Lesson 5",
+      "hint": "a wine glass specifically, not the everyday コップ (koppu, \"tumbler\") from Lesson 5",
       "note": "A stemmed glass, typically for wine, unlike the everyday tumbler-type コップ (koppu) from Lesson 5 — English 'glass' covers both, Japanese distinguishes them.",
       "reviewNote": null,
       "target": "グラス"

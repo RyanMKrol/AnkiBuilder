@@ -640,7 +640,7 @@
       "english": "Yes, I'm fine.",
       "category": "Greetings",
       "target": "ええ、だいじょうぶです",
-      "scene": "answering だいじょうぶですか after someone bumps into you",
+      "scene": "answering だいじょうぶですか (daijōbu desu ka, \"are you all right?\") after someone bumps into you",
       "aiSuggested": true,
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1.",
       "pronunciation": "ē, daijōbu desu",

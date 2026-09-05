@@ -61,7 +61,7 @@
       "english": "Smith-san is going to Tokyo Station tomorrow.",
       "category": "Travel & Tourism",
       "target": "スミスさんはあしたとうきょうえきにいきます",
-      "hint": "use the に (ni) destination particle",
+      "hint": "use the に (ni, \"in/on/at\") destination particle",
       "note": "に (ni) is the everyday choice for a destination and the one this lesson uses throughout.",
       "reviewNote": "Constructed. Particle job (に vs へ): member 1 of a minimal pair differing only in that one particle. Both members carry a hint because the English is identical.",
       "aiSuggested": true
@@ -233,7 +233,7 @@
       "english": "Smith-san is going to Tokyo Station tomorrow.",
       "category": "Travel & Tourism",
       "target": "スミスさんはあしたとうきょうえきへいきます",
-      "hint": "use the へ (e) direction particle",
+      "hint": "use the へ (e, \"to/toward\") direction particle",
       "note": "へ (e) is the hiragana he, but it is read e whenever it works as a particle. For a destination it swaps with に (ni) freely.",
       "reviewNote": "Constructed. Particle job (に vs へ): member 2 of the minimal pair. へ was introduced in Lesson 6 on a single card and is exercised nowhere in this lesson.",
       "aiSuggested": true
@@ -445,7 +445,7 @@
       "english": "On foot",
       "category": "Transport",
       "target": "あるきで",
-      "hint": "the 〜で (de) variant, not the usual form",
+      "hint": "the 〜で (de, \"by means of\") variant, not the usual form",
       "note": "A variant of あるいて (aruite). Both mean going on foot, and あるいて (aruite) is the one you will hear.",
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, listed there as an alternative to あるいて (aruite). Worth a look at gate 1: if it is not a form you want to produce, exclude it and keep あるいて (aruite) alone.",
       "aiSuggested": true

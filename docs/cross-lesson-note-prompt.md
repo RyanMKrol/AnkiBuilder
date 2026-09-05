@@ -100,6 +100,10 @@ tags are the book's own names and are the only correct way to cite a lesson.
 
 - ALWAYS follow any {{TARGET_LANGUAGE}} script in the note with its romanization in parentheses:
   はじめまして (hajimemashite).
+- In a `hint`, add an English gloss as well: なんにん (nan-nin, "how many people"). A hint is a FRONT
+  cue, so the learner has to parse it before answering, and romaji alone tells them how the word
+  sounds without telling them what it means. Skip the gloss only for a grammatical string that has
+  no English meaning, or where the gloss would give away the card's own answer.
 - Keep each note concise (1–2 sentences), concrete, and about USING the card — not restating its
   meaning.
 - Natural sentence-case English. Only reference cards that actually appear in the lists below (the

@@ -311,7 +311,7 @@
       "uncertain": false,
       "reviewNote": "Written お〜 in the source",
       "note": "Prefix — attaches before a noun as an honorific. Example, from this chapter's own Target Dialogue: スミスさん (sumisu-san)、おくには (o-kuni wa) どちらですか (dochira desu ka)。 — 'Smith-san, what country are you from?' (お (o) + くに (kuni) = 'your country'.)",
-      "hint": "the prefix on native words like なまえ (namae) and みやげ (miyage)"
+      "hint": "the prefix on native words like なまえ (namae, \"name\") and みやげ (miyage, \"souvenir\")"
     },
     {
       "id": "okuni",

@@ -53,7 +53,7 @@
       "audioOriginal": "2d8b08f37ff774f0.orig.mp3",
       "audioAuto": "2d8b08f37ff774f0.mp3",
       "audioMarked": true,
-      "hint": "polite form, with お… and …さん",
+      "hint": "polite form, with the honorific お (o) in front and the …さん (san, \"Mr./Ms.\") ending",
       "audioTextHash": "2d8b08f37ff774f0"
     },
     {
@@ -249,7 +249,7 @@
       "target": "レストランは1かいにあります",
       "ttsText": "レストランはいっかいにあります",
       "pronunciation": "resutoran wa ikkai ni arimasu",
-      "hint": "using に あります (not contracted)",
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "The restaurant's existence is already known, so the topic marker は replaces が; contrast with the が あります version, which introduces the restaurant as new information. Compare also the shorter contracted version below using です.",
       "audio": "3fbb719009bf9457.mp3",
       "audioOriginal": "3fbb719009bf9457.orig.mp3",
@@ -264,7 +264,7 @@
       "target": "レストランは1かいです",
       "ttsText": "レストランはいっかいです",
       "pronunciation": "resutoran wa ikkai desu",
-      "hint": "contracted with です instead of に あります",
+      "hint": "contracted with です (desu, \"is\") instead of に あります (ni arimasu, \"exists at\")",
       "note": "A shortened version that replaces に あります with です once the restaurant's existence and location are already established; this contraction is not possible for the が あります existence statement (see GRAMMAR 2).",
       "audio": "d81e3e35d974e8c5.mp3",
       "audioOriginal": "d81e3e35d974e8c5.orig.mp3",

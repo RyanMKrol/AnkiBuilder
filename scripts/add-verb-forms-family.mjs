@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 //
 // SPENT: 2026-09-05. A one-off MIGRATION, not a standing tool.
+// PARTLY REVERTED the same day: the 23 verb-dictionary-forms cards it appended to chapter-15-extras
+// and chapter-16-extras were stripped back out on the owner's ruling (see
+// docs/designs/verb-forms-family-2026-09.md). Only the 22 family-vocabulary cards remain in the deck,
+// so running this again would re-add 23 cards a human has already decided against.
 // It added the two 2026-09 augmentation batches to the book's -extras units, once, from the card data
 // in docs/designs/verb-forms-family-2026-09.cards.json. It is kept for the record, and because
 // re-reading what a migration actually did is the only way to understand the shape of the data it

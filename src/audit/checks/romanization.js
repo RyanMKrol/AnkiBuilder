@@ -1,4 +1,5 @@
 import { defineCheck } from "../registry.js";
+import { unitLanguage } from "../units.js";
 import { lintRomaji, unlintedRuleIds, ROMAJI_STYLES } from "../../translate/romajiStyle.js";
 import { normalizeDisplayText } from "../../model/scriptSpacing.js";
 
@@ -7,7 +8,9 @@ import { normalizeDisplayText } from "../../model/scriptSpacing.js";
 // 7).
 
 const shipped = (unit) => unit.items.filter((item) => !item.excluded);
-const langOf = (unit) => unit.meta?.targetLanguage ?? "ja";
+// No default: a unit with no declared language gets no romanization verdict at all. Both checks
+// below already gate on ROMAJI_STYLES[language] existing, and `null` is simply not a key there.
+const langOf = (unit) => unitLanguage(unit);
 
 export const romajiStyleCheck = defineCheck({
   id: "romaji-style",

@@ -28,6 +28,19 @@ const repoPath = (...parts) => join(REPO_ROOT, ...parts);
 // The one book with reviewed, TRACKED data: its reviewed corpora, its cached conventions doc and its
 // taught-content index are all committed (see .gitignore), which is what makes these fixtures
 // reproducible on a fresh clone rather than only on the owner's laptop.
+/**
+ * A fixture's target language, or a hard failure naming the file.
+ *
+ * Fixtures read reviewed, tracked corpora, so a missing `targetLanguage` is a broken fixture rather
+ * than a language to guess at. This used to default to "ja", which would have silently evaluated a
+ * Spanish fixture against Japanese rules and reported the diff as a prompt regression.
+ */
+function requireLanguage(meta, path) {
+  const code = meta?.targetLanguage;
+  if (typeof code === "string" && code.trim()) return code;
+  throw new Error(`fixture source has no meta.targetLanguage: ${path}`);
+}
+
 const BOOK_HASH = "1fab0f99d1195ad9";
 const bookPath = (...parts) => repoPath(".anki-builder", "epubs", BOOK_HASH, ...parts);
 
@@ -46,7 +59,7 @@ function loadReferenceCorpus(chapterNumber = REFERENCE_CHAPTER) {
   return {
     path,
     items: corpus.items,
-    targetLanguage: corpus.meta?.targetLanguage ?? "ja",
+    targetLanguage: requireLanguage(corpus.meta, path),
     label: corpus.meta?.chapterLabel ?? `chapter ${chapterNumber}`,
   };
 }
@@ -405,7 +418,7 @@ const dedupFixture = {
 
     const { excluded } = dedupeByPattern({
       items: input,
-      targetLanguage: cards.meta?.targetLanguage ?? "ja",
+      targetLanguage: requireLanguage(cards.meta, join(this.deckPath, "cards.json")),
       runClaude,
     });
 

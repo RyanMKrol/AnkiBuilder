@@ -4,6 +4,7 @@ import { mkdirSync } from "fs";
 import { join } from "path";
 import {
   UNIT_DIR_PATTERN,
+  unitLanguage,
   describeCollectionDir,
   isUnitDirName,
   listUnitDirs,
@@ -227,4 +228,12 @@ test("pointing preflight at ONE retired collection still checks it", () => {
   } finally {
     cleanup();
   }
+});
+
+test("unitLanguage never guesses: no declared language means null", () => {
+  assert.equal(unitLanguage({ meta: { targetLanguage: "ja" } }), "ja");
+  assert.equal(unitLanguage({ meta: { targetLanguage: "  " } }), null);
+  assert.equal(unitLanguage({ meta: {} }), null);
+  assert.equal(unitLanguage({}), null);
+  assert.equal(unitLanguage(undefined), null);
 });

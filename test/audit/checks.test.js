@@ -683,3 +683,32 @@ test("note claims: an ordinary note is not a claim, and reviewNote is never read
     cleanup();
   }
 });
+
+test("spacing: a unit with no target language is declined, not passed", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    // This target WOULD be flagged as Japanese. Before, the check defaulted the language to "ja"
+    // and judged it anyway; a check that cannot establish the language must decline instead. The
+    // schema check is what fails such a unit, and it is FAIL tier.
+    writeUnit(root, "epubs/book/chapter-1-extras", {
+      meta: { targetLanguage: undefined },
+      items: [card("a", { target: "これは ペン です" })],
+    });
+    assert.equal(messages(runOnly(root, "spacing")).length, 0);
+  } finally {
+    cleanup();
+  }
+});
+
+test("note claims: a unit with no target language is declined, not passed", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { targetLanguage: undefined },
+      items: [card("a", { note: "お + かし = おかし" })],
+    });
+    assert.equal(messages(runOnly(root, "note-claims")).length, 0);
+  } finally {
+    cleanup();
+  }
+});

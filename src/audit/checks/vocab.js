@@ -1,8 +1,12 @@
 import { existsSync, readFileSync } from "fs";
 import { defineCheck } from "../registry.js";
 import { unitChapterNumber } from "../units.js";
-import { chapterCachePath, chapterRangeCachePath } from "../../corpus/epubLibrary.js";
-import { parseVocaEntries, findUncoveredVocab } from "../../cards/vocabCoverage.js";
+import {
+  chapterCachePath,
+  chapterRangeCachePath,
+  loadBookHints,
+} from "../../corpus/epubLibrary.js";
+import { parseVocabularyEntries, findUncoveredVocab } from "../../cards/vocabCoverage.js";
 
 // Did the extraction drop a whole vocabulary block?
 //
@@ -53,6 +57,7 @@ export const vocabCoverageCheck = defineCheck({
     const findings = [];
     let checked = 0;
     let uncached = 0;
+    let unconfigured = 0;
 
     for (const unit of candidates) {
       const chapterFile = chapterFileFor(unit.meta, { libraryHomeDir });
@@ -60,9 +65,20 @@ export const vocabCoverageCheck = defineCheck({
         uncached++;
         continue;
       }
+      // The selector is the BOOK's, from its hints, and there is no default. A book that records
+      // none cannot be diffed, and this check says so rather than reporting a clean zero — which is
+      // exactly what it used to do on any book not marking its tables `class="voca"`.
+      const hints = loadBookHints(unit.meta?.epubHash, { libraryHomeDir });
+      const entries = parseVocabularyEntries(readFileSync(chapterFile, "utf-8"), {
+        tableClass: hints.vocabularyTableClass,
+        subRowClass: hints.vocabularySubRowClass,
+      });
+      if (entries === null) {
+        unconfigured++;
+        continue;
+      }
       checked++;
 
-      const entries = parseVocaEntries(readFileSync(chapterFile, "utf-8"));
       for (const miss of findUncoveredVocab(entries, unit.items ?? [])) {
         findings.push({
           key: `${unit.name}/${miss.target}`,
@@ -76,6 +92,15 @@ export const vocabCoverageCheck = defineCheck({
       }
     }
 
+    if (checked === 0 && unconfigured > 0) {
+      return {
+        skipped:
+          `this book records no hints.vocabularyTableClass, so which of its tables are vocabulary ` +
+          `is unknown and ${unconfigured} unit(s) could not be diffed. That is not a clean result: ` +
+          `add the selector to the book's hints, or let the table specialist judge them`,
+      };
+    }
+
     if (checked === 0) {
       return {
         skipped:
@@ -87,7 +112,9 @@ export const vocabCoverageCheck = defineCheck({
 
     return {
       findings,
-      summary: `${checked} chapter(s) diffed against their own vocabulary tables`,
+      summary:
+        `${checked} chapter(s) diffed against their own vocabulary tables` +
+        (unconfigured ? `, ${unconfigured} not diffed (book records no selector)` : ""),
       notes: uncached
         ? [`${uncached} unit(s) had no cached chapter file and were not checked`]
         : [],

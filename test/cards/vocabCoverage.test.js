@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  parseVocaEntries,
+  parseVocabularyEntries,
   vocabTargetVariants,
   findUncoveredVocab,
   splitAlternates,
@@ -20,8 +20,12 @@ const CHAPTER = `
 <table class="tab1"><tr><td>not vocabulary</td><td>ignored</td></tr></table>
 `;
 
-test("parseVocaEntries pulls every headword out of a voca table, sub-rows included", () => {
-  const entries = parseVocaEntries(CHAPTER);
+// The selector is the BOOK's now, so every call names it. The "no selector" case is asserted
+// separately below, because null and [] must never be confused.
+const JBP = { tableClass: "voca", subRowClass: "sub" };
+
+test("parseVocabularyEntries pulls every headword out of a voca table, sub-rows included", () => {
+  const entries = parseVocabularyEntries(CHAPTER, JBP);
   assert.deepEqual(
     entries.map((e) => e.target),
     ["おかし", "お〜", "かし", "(お)てら", "ぎんこう"],
@@ -31,8 +35,8 @@ test("parseVocaEntries pulls every headword out of a voca table, sub-rows includ
   assert.equal(entries[0].sub, false);
 });
 
-test("parseVocaEntries ignores tables that are not vocabulary", () => {
-  const entries = parseVocaEntries(CHAPTER);
+test("parseVocabularyEntries ignores tables that are not vocabulary", () => {
+  const entries = parseVocabularyEntries(CHAPTER, JBP);
   assert.ok(!entries.some((e) => e.target === "not vocabulary"));
 });
 
@@ -48,7 +52,7 @@ test("vocabTargetVariants drops the attachment-point wave dash and editorial spa
 });
 
 test("findUncoveredVocab reports only the headwords no card target contains", () => {
-  const entries = parseVocaEntries(CHAPTER);
+  const entries = parseVocabularyEntries(CHAPTER, JBP);
   const cards = [
     { id: "a", target: "おかし" },
     { id: "b", target: "おてら" }, // covers the (お)てら row
@@ -89,7 +93,7 @@ test("an excluded card still counts as coverage — the word is in the unit eith
 });
 
 test("sub-rows can be left out when only headline entries are wanted", () => {
-  const entries = parseVocaEntries(CHAPTER);
+  const entries = parseVocabularyEntries(CHAPTER, JBP);
   const misses = findUncoveredVocab(entries, [], { includeSubRows: false });
   assert.deepEqual(
     misses.map((m) => m.target),
@@ -117,7 +121,7 @@ test("a half-covered alternates cell is reported as the MISSING half, not as the
   // optional-parts false positive and was dismissed. Three words sat unreported that way, one of
   // them used by four sentence cards with nothing teaching it.
   const html = `<table class="voca"><tr><td>つま ／ かない</td><td>(my) wife</td></tr></table>`;
-  const entries = parseVocaEntries(html);
+  const entries = parseVocabularyEntries(html, JBP);
   assert.deepEqual(
     entries.map((e) => e.target),
     ["つま", "かない"],
@@ -129,4 +133,19 @@ test("a half-covered alternates cell is reported as the MISSING half, not as the
     misses.map((m) => m.target),
     ["かない"],
   );
+});
+
+test("no selector returns null, which is not the same as finding nothing", () => {
+  // The failure this rewrite removes: a book that marks tables any other way used to yield [] here,
+  // and the check reported zero uncovered headwords, which reads exactly like a fully carded
+  // chapter. `null` forces every caller to say "nobody looked" instead.
+  assert.equal(parseVocabularyEntries(CHAPTER), null);
+  assert.equal(parseVocabularyEntries(CHAPTER, { tableClass: null }), null);
+  assert.deepEqual(parseVocabularyEntries(CHAPTER, { tableClass: "not-this-book" }), []);
+});
+
+test("a selector with regex metacharacters is escaped, not interpreted", () => {
+  const html = '<table class="a.b"><tr><td>ねこ</td><td>Cat</td></tr></table>';
+  assert.equal(parseVocabularyEntries(html, { tableClass: "a.b" }).length, 1);
+  assert.equal(parseVocabularyEntries(html, { tableClass: "axb" }).length, 0);
 });

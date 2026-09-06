@@ -27,6 +27,13 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "coverage-adversary-prompt.md": {
+    // Deliberately NO category list, card faces or book hints: this role enumerates the source, it
+    // does not author cards, and anything derived from the corpus would anchor it to the answer it
+    // exists to check independently.
+    placeholders: ["TARGET_LANGUAGE", "CHAPTER_FILE_PATH", "IMAGE_COUNT", "IMAGE_PATHS"],
+    outputContract: /"items"[\s\S]*"coverage"/,
+  },
   "image-specialist-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CATEGORY_LIST", "CARD_FACES", "BOOK_HINTS", "IMAGES_JSON"],
     // The envelope: what the pictures teach, plus a verdict for every one of them. Losing the

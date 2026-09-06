@@ -1104,6 +1104,38 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### The coverage adversary: enumerate, then diff in code
+
+`src/agents/coverageAdversary.js` is the check on the three phase-1 roles, and it is deliberately
+**not asked what they missed**.
+
+Asked directly whether something is absent from a document, a reader performs at close to chance:
+absence has no text to attend to, so there is nothing to notice. Asked to enumerate a source
+independently, the same reader does well, and comparing the two lists finds the gaps reliably. So the
+role returns a **list**, and `findGaps` does the comparison in JavaScript. Absence detection is a set
+operation, and a set operation belongs in code.
+
+It is shown **neither the corpus nor the other roles' prompts**. A list written after reading someone
+else's answer agrees with it. That independence is a property of the function signature rather than a
+habit of its callers: `renderCoverageAdversaryPrompt` has nowhere to put the other roles' output even
+by accident, and a test asserts that.
+
+It is pinned to Opus, above the three Sonnet roles it checks, for the two reasons the role registry
+enforces generally: noticing an omission is harder than producing content, and a checker drawn from
+the same family as its generator leans toward approving it.
+
+`findGaps` uses the same matcher as the reconciler and the eval fixtures, so three callers cannot
+drift on what counts as the same item. It returns `onlyInCorpus` as well, which is not noise: an item
+the corpus has and the adversary did not enumerate is either a legitimate addition or a sign the
+adversary read short, and both are worth a glance before trusting the gap list.
+
+The artifact at `candidates/coverage.json` records the counts alongside the gaps, because a gap list
+with no denominator cannot be judged: four gaps means something different against an enumeration of
+twelve than against one of two hundred.
+
+**It decides nothing.** Its output is candidate gaps for a human at the review gate, and `confidence`
+travels with each so a reviewer can start where the evidence is strongest.
+
 ### The union reconciler: union for existence, never a vote
 
 `src/cards/unionReconciler.js` merges the three phase-1 roles into one candidate corpus. Nothing in

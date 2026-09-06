@@ -1104,6 +1104,31 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### The chapter reader, and why it overlaps the table specialist
+
+`src/agents/chapterReader.js` reads the whole bounded chapter and returns vocabulary found anywhere,
+independent of markup. Its results are **unioned** with the table specialist's rather than either
+deferring to the other.
+
+The overlap is the design, not waste. A role reasoning from structure has a blind spot shaped like
+that structure, and no EPUB is reliably consistent. What only this role can find is the word taught
+somewhere a table is not: in a note, a caption, or a drill's cue. Two words were once dropped from a
+lesson on the reasoning that scaffolding is mechanical, and turned out to be carded nowhere in the
+entire book.
+
+**Its accountability unit is the section, because its failure mode is a short read.** A chapter you
+stopped reading looks exactly like a chapter that ended. One lesson's read stopped at line 780 of
+942, two exercises were never seen, and one held the only use of `みなみぐち` and `しんじゅく` in
+the whole book. So the role returns a line per heading and `assertSectionsAccountedFor` rejects a
+response that does not, in either direction.
+
+Two answers it is explicitly allowed to give, so that honesty is cheaper than silence:
+`contributed: 0` with a reason (a listening drill whose answers live in a separate download), and
+`read: false` (`unreadSections` surfaces those rather than burying them).
+
+Headings are matched by title **and count**, since a chapter may legitimately print `EXERCISES`
+twice and demanding unique titles would make an honest response unrepresentable.
+
 ### The table specialist, and why it must account for every table
 
 `src/agents/tableSpecialist.js` is fed the raw dump from `parseTables` and returns two things: the

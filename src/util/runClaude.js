@@ -115,17 +115,44 @@ export function runClaudeWithPrompt(
  * trimmed and capped so a megabyte of half-written JSON cannot bury the one line that explains it.
  */
 /**
+ * Every phrasing that means "the account is out of budget", not "the call was wrong".
+ *
+ * Kept as a list rather than one alternation because the CLI's wording is not ours to control and
+ * this set only ever grows. Each entry is one FAMILY of phrasing, so a new variant usually means
+ * widening an entry rather than appending a literal.
+ *
+ * The `<period> limit` entry is the one that matters most: the CLI says "You've hit your session
+ * limit", and an earlier version of this predicate listed only "usage limit". "session limit"
+ * matched nothing, so the breaker below never tripped on the single most common refusal there is.
+ */
+const QUOTA_PHRASINGS = [
+  // "session limit", "usage limit", "weekly limit", "5-hour limit reached", …
+  /\b(?:session|usage|rate|token|output|context|weekly|monthly|daily|hourly|\d+-hour)\s+limits?\b/i,
+  // "you've hit your limit", "you have reached the limit for …"
+  /\b(?:hit|reached|exceeded)\s+(?:your|the|its)\b[^.\n]{0,40}\blimits?\b/i,
+  /\blimits?\s+(?:reached|exceeded)\b/i,
+  /\bquota\b/i,
+  /\btoo many requests\b/i,
+  /\b429\b/i,
+  /upgrade to increase/i,
+];
+
+/**
  * Does this failure look like the account's usage limit rather than a bad call?
  *
  * Worth distinguishing because a quota refusal is the one failure where retrying, and where
  * CONTINUING AT ALL, is pure waste: every remaining pass in the run will fail the same way. One
  * lesson build burned ten spawns after the limit was already reached, then reported five separate
  * "failed" passes as if they were five separate problems.
+ *
+ * Bias the matching WIDE. The two ways to be wrong are not symmetric: calling a real error "quota"
+ * stops the run with a message saying to re-run when the window rolls over, and the next run finds
+ * out otherwise in one pass. Missing a real quota refusal is the expensive one, because every
+ * remaining pass then fails the same way and each reports itself as a separate problem.
  */
 export function looksLikeQuotaExhaustion(text) {
-  return /usage limit|rate limit|quota|too many requests|429|upgrade to increase|limit reached/i.test(
-    String(text ?? ""),
-  );
+  const subject = String(text ?? "");
+  return QUOTA_PHRASINGS.some((pattern) => pattern.test(subject));
 }
 
 /**

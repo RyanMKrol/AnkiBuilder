@@ -24,6 +24,40 @@ process and no visual surface.
   keeps being driven by. `.harness/tracking/IDEAS.jsonl` is the zero-ceremony inbox for anything
   not yet thought through. A larger piece of work gets a design doc under `docs/designs/`.
 
+## Generations, and the deck data they share
+
+**Which generation is this tree?** If `V2-MIGRATION.md` exists at the repo root, the v2 rewrite is
+still in progress and that file's rules override the branching conventions below for the duration.
+If it does not exist, the rewrite has landed and this file stands as written. Check for the file
+rather than assuming either way.
+
+**`v1` is a git tag, and it is the archive.** It marks the pipeline as it stood on 2026-09-06: 13
+single-shot `claude -p` passes plus the operator procedure in `.claude/skills/build-anki-deck/`,
+having built Japanese for Busy People Book 1 to chapter 17. Recover it whenever you need to compare
+against it, without disturbing the working tree:
+
+```sh
+git worktree add ../anki-builder-v1 v1
+```
+
+**`output/` and `.anki-builder/` belong to no generation.** They are the product, and any rewrite
+inherits them rather than replacing them. Two consequences worth knowing before touching either:
+
+- **They are partly tracked, and `.gitignore` is deliberate about which half.** The generated bulk
+  (audio, images, `.apkg`, `.bak`, the chapter cache) stays out of git; the hand-reviewed JSON does
+  not. 93 files under `output/` (`cards.json`, `corpus.json`, `book.json`, `course.json`,
+  `anki-delivered.json`, `.preflight-accepted.json`) and 20 under `.anki-builder/` (the dedup
+  corpora, `conventions.md`, `taught-index.json`) are versioned, and git is the only backup they
+  have. Read the comments in `.gitignore` before editing it: the exclusion is written as
+  `/output/**` followed by a directory re-include precisely because git never descends into an
+  excluded directory, so the obvious `/output` entry would silently un-track all 93.
+- **Four things are a contract, not an implementation detail**, because they are already baked into
+  a live collection: the `cards.json` / `corpus.json` schemas, the audio filename convention (which
+  addresses roughly 480 MB of paid clips, including the 14 hand-trimmed originals `.gitignore` lists
+  one by one), the deck naming in `unitDeckSegments` (`src/deck/deckPath.js`), and the card id to
+  Anki note GUID mapping. Changing any of them is a migration of a deck someone studies daily, never
+  a refactor.
+
 ## Golden rules
 
 ### 1. Every change happens on a branch
@@ -143,7 +177,8 @@ and how that concern is handled without any content comparison.
    creates or resolves.
 6. **Run `npm run ci`.** Format, lint, test and build all pass, plus whatever empirical check the
    change calls for (`npm run validate:decks`, `npm run preflight`) — those two are deliberately
-   not in CI, because `/output` is gitignored and CI has no deck data.
+   not in CI, because CI has no deck data: the audio and caches those checks read are gitignored,
+   and a fresh clone has only the tracked JSON.
 7. Commit on the branch, push, then merge per golden rule 2 once green.
 
 ## Before you start — check the ground is real
@@ -193,9 +228,11 @@ worktree on its own branch. `main` moves under you. If your fast-forward is reje
   anything fails — so "push every commit" stays safe. Do **not** bypass it with `git push --no-verify`
   except in a genuine, explained emergency. If you ever add a new check to CI, add it to the `ci` script
   too so the hook stays a faithful mirror.
-- Two checks are deliberately NOT in CI, because `/output` is gitignored and CI has no deck data:
-  `npm run validate:decks` (every deck's JSON against the schemas) and `npm run preflight` (the
-  deterministic pre-review sweep). Run them by hand after touching deck data or the schemas.
+- Two checks are deliberately NOT in CI, because CI has no deck data to check: `npm run
+  validate:decks` (every deck's JSON against the schemas) and `npm run preflight` (the deterministic
+  pre-review sweep). The hand-reviewed JSON *is* tracked (see "Generations" above), but the audio,
+  images and chapter cache these checks also read are gitignored, so a fresh clone cannot run them
+  meaningfully. Run them by hand after touching deck data or the schemas.
 
 ## The harness is retired
 

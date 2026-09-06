@@ -2332,12 +2332,24 @@ say when it was measured rather than stating it as a standing fact.
   })'
   # expect: voca: 1 / other: 0. The same vocabulary table, seen or not seen by its class alone.
   ```
+- **A deterministic replacement was measured and rejected.** The obvious fix, widen the check to
+  every `<table>` instead of the `voca` ones, was shadow-run across all 17 base units against the
+  reviewed cards. It finds 781 candidate headwords to the selector's 705, but the extra 76 are
+  mostly false positives (`い-adj.`, `①1かいにレストランがあります`, `〜です` placeholder forms),
+  and it brings its own false negatives: in chapter file 15 the numbers chart puts the digit in
+  column 0 and the reading in column 1, so a "first cell is the headword" rule finds none of it, and
+  the cell `ゼロ ／ れい` needs splitting before `れい` is visible at all. `ゼロ` and `よん` are
+  carded; `れい`, `し`, `しち` and `く` are the target of no card in the deck. Swapping one set of
+  blind spots for another is not progress, and this is the evidence that which table is vocabulary,
+  which cell is the headword, and whether one cell holds two readings are judgements rather than
+  patterns.
+- **Verified by:** `node scripts/chapter-tables.mjs 1fab0f99d1195ad9 15` shows all 9 tables in that
+  chapter, 3 of which the `voca` selector cannot see.
 - **Status:** open
-- **When to revisit:** before a second book is built, and it is scheduled: v2 task D4
-  (`docs/designs/v2-tasks-2026-09.md`) retires this parsing entirely. A script dumps every `<table>`
-  and an agent decides which are vocabulary, because no EPUB is reliably consistent enough for a
-  selector. Until then the rule that would have caught it stands on its own: a check that finds no
-  configuration for a book must report **unknown**, never **zero**.
+- **When to revisit:** when v2 task E1 (the table specialist agent) can replace the judgement. D4 was
+  moved out of Stage D and behind E1 for exactly that reason. Until then the rule that would have
+  caught this stands on its own: a check that finds no configuration for a book must report
+  **unknown**, never **zero**.
 
 ## The paradigm audit cannot tell a particle from the same kana inside a word
 

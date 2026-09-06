@@ -1104,6 +1104,38 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### A phase reports what it produced, and the check is the file
+
+Each phase script writes a `run-report.json` into the unit dir
+(`src/agents/runReport.js`): one entry per step, with its status, role, model, effort, duration,
+counts and the artifact it produced. `verifyRun` then checks the report **against the files**, and
+that is what the main thread reads. Never the log.
+
+The distinction matters because a log is prose a step writes about itself, and a step that skipped
+its work writes the same prose as one that did it. A report is a set of claims each naming a file.
+
+What separates "found nothing" from "never ran" is shape, not counts: **a declared artifact must
+exist even when it holds an empty list.** A missing file is a problem and blocks the review
+handover; an empty list is a note for a person. A failed step must carry a reason, and a
+non-terminal status is refused when it is recorded rather than surfacing as a puzzle afterwards.
+
+### The as-generated snapshot, and why it comes first
+
+`as-generated.json` (`src/agents/snapshot.js`) is the corpus exactly as the agents produced it,
+before any human touched it. The learning pass diffs it against what the reviewer approved, so every
+edit and exclusion becomes feedback on the role that caused it.
+
+It is written **once**: `writeSnapshot` refuses to overwrite, and the dashboard never imports the
+module, so a review cannot rebase its own baseline. A re-run that overwrote it would report that the
+reviewer changed nothing.
+
+Provenance lives here rather than on the card, because "which role produced this" is a fact about
+the build and the card schema is a contract with a live Anki collection. It maps an id to a **list**
+of roles, since the phase-1 roles deliberately overlap and are unioned. An item nobody claimed
+reports nobody rather than a guess.
+
+The file is build scratch and stays out of git under `.gitignore`'s existing `/output/**` rule.
+
 ### v2 agent roles are pinned in a registry, and a missing pin fails the build
 
 `src/agents/roles.js` declares every v2 agent role with its own `model`, `effort` and `timeoutMs`.

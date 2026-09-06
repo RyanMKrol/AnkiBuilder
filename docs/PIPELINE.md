@@ -1104,6 +1104,31 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### Shadow-running phase 1 against a corpus a human already reviewed
+
+`node scripts/shadow-run.mjs <unitName>` runs phase 1 over a chapter that already has a reviewed
+corpus and diffs the two. `--list` names the eligible units, `--dry` prints what it would spend,
+`--keep` leaves the scratch output for inspection.
+
+It is the cheapest validation available because the ground truth is already paid for: a reviewed
+corpus is a human's own answer to "what should this chapter have produced", and there are 33 of them.
+
+**Read the diff in both directions.**
+
+- `extra`: produced by v2, absent from the reviewed corpus. **Candidate gaps in v1**, which is the
+  reason for the rewrite.
+- `missing`: kept by a human, not produced by v2. **Regressions in v2**, and the half most likely to
+  go unlooked-at, because the instinct is to search only for improvements.
+
+Neither is automatically a defect. The reviewed corpus is one human's answer on one day, not a
+specification, and an item it excluded was a decision rather than a miss. Excluded cards are
+filtered out of the comparison for exactly that reason, since counting one as a gap would send a
+reviewer to re-add what they just cut.
+
+**It writes nowhere near the deck.** The run is given a throwaway unit directory under the system
+temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
+`V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
+
 ### Phase 1 as one ordered script
 
 `node scripts/build-base.mjs <unitDir> <epubHash> <n> --lang <code>` takes a chapter to a reviewable

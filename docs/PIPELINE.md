@@ -1104,6 +1104,42 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### Phase 1 as one ordered script
+
+`node scripts/build-base.mjs <unitDir> <epubHash> <n> --lang <code>` takes a chapter to a reviewable
+base-vocabulary corpus. `--dry` prints the steps and what each would write, and spends nothing.
+
+**The steps are data** (`BASE_PHASE_STEPS`, `src/agents/basePhase.js`), and the script only drives
+them. An ordering constraint that lives inside a script is one nothing can assert; three of the
+constraints here are load-bearing and a test pins each:
+
+- **Raw material before judgement.** Every agent is fed by a deterministic step, and no agent is
+  handed a selector or a filter.
+- **The merge before the snapshot.** The snapshot is the pre-review baseline, and a baseline taken
+  mid-merge is not one.
+- **The adversary last, and never shown the corpus.** Last only so its diff has something to compare
+  against; the comparison happens in code afterwards, and its prompt has nowhere to put the corpus
+  even if the order changed.
+
+| #   | step                     | kind          | artifact                   |
+| --- | ------------------------ | ------------- | -------------------------- |
+| 1-3 | tables, sections, images | deterministic | `candidates/*-raw.json`    |
+| 4   | table specialist         | agent         | `candidates/tables.json`   |
+| 5   | chapter reader           | agent         | `candidates/chapter.json`  |
+| 6   | image specialist         | agent         | `candidates/images.json`   |
+| 7   | reconcile                | deterministic | `corpus.json`              |
+| 8   | snapshot                 | deterministic | `as-generated.json`        |
+| 9   | coverage adversary       | agent         | `candidates/coverage.json` |
+
+Four of the nine spend, one of them at a higher pinning. `--dry` says so before you commit to it.
+
+**The run verifies itself against its own artifacts.** `verifyRun` re-reads the files at the end with
+every step id required, so a step that returned cheerfully and wrote nothing is caught here rather
+than at a review gate, and the script exits 2 rather than handing over a link.
+
+Three things it surfaces before the review rather than after: targets carrying more than one sense
+(kept, and named), coverage gaps the adversary found, and any image that came back `unreadable`.
+
 ### The coverage adversary: enumerate, then diff in code
 
 `src/agents/coverageAdversary.js` is the check on the three phase-1 roles, and it is deliberately

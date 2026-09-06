@@ -48,6 +48,7 @@ const STANDING = [
   "chapter-images.mjs",
   "chapter-outline.mjs",
   "chapter-tables.mjs",
+  "build-base.mjs",
   "epub-probe.mjs",
   "eval-pass.mjs",
   "vocab-coverage.mjs",

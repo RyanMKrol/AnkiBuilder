@@ -9,6 +9,10 @@ inside a document that survives.
 **Is this file stale?** Run `git ls-remote --heads origin v2`. If it prints nothing, the v2 branch
 is gone, the migration is over, and this file should already have been deleted. Delete it now.
 
+**What v2 is aiming at** is [`docs/designs/v2-goals-2026-09.md`](./docs/designs/v2-goals-2026-09.md).
+That file is the reference for whether v2 is succeeding, and unlike this one it survives the merge.
+Read it before starting v2 work; read this one for the rules that only apply while the branch exists.
+
 ## Where work happens
 
 - **All v2 work goes on the `v2` branch**, or on short branches taken off `v2` and merged back into

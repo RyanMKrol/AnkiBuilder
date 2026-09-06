@@ -27,6 +27,19 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "chapter-reader-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BOOK_HINTS",
+      "SECTIONS_JSON",
+    ],
+    // The envelope: words found, plus a line per heading. Losing the second half puts back the
+    // short read that a chapter's own bounds cannot detect.
+    outputContract: /"items"[\s\S]*"sections"/,
+  },
   "table-specialist-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CATEGORY_LIST", "CARD_FACES", "BOOK_HINTS", "TABLES_JSON"],
     // The envelope: entries read, plus a verdict for every table it was shown. Losing the second

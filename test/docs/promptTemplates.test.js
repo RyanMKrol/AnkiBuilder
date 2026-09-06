@@ -27,6 +27,12 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "table-specialist-prompt.md": {
+    placeholders: ["TARGET_LANGUAGE", "CATEGORY_LIST", "CARD_FACES", "BOOK_HINTS", "TABLES_JSON"],
+    // The envelope: entries read, plus a verdict for every table it was shown. Losing the second
+    // half would put back the silence this role exists to remove.
+    outputContract: /"items"[\s\S]*"tables"/,
+  },
   "epub-book-conventions-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CHAPTER_COUNT", "CHAPTER_FILE_PATHS"],
   },

@@ -14,6 +14,7 @@
 import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
 import { findCollisions } from "../src/cards/extrasTools.js";
+import { parseUnitDir } from "../src/model/unitDir.js";
 
 const bookDir = resolve(process.argv[2] || "");
 if (!bookDir || !existsSync(bookDir)) {
@@ -22,9 +23,8 @@ if (!bookDir || !existsSync(bookDir)) {
 }
 
 const units = readdirSync(bookDir)
-  .map((name) => name.match(/^(chapter|lesson)-(\d+)(-extras)?$/))
+  .map((name) => parseUnitDir(name))
   .filter(Boolean)
-  .map((m) => ({ name: m[0], number: Number(m[2]), extras: Boolean(m[3]) }))
   .sort((a, b) => a.number - b.number || Number(a.extras) - Number(b.extras))
   .map(({ name }) => {
     const path = join(bookDir, name, "cards.json");

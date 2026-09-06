@@ -1104,6 +1104,34 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### Dumping a chapter's tables, so a script never decides which are vocabulary
+
+`node scripts/chapter-tables.mjs <runDir> | <epubHash> <n>` prints **every** `<table>` a chapter
+contains (`src/corpus/chapterTables.js`), with its class, row and column counts, and cell text.
+Which of them are vocabulary is a judgement, and this script does not make it.
+
+It replaces a selector that made that judgement badly. `vocabCoverage` found vocabulary blocks by
+matching `<table class="voca">`, and on chapter file 15 of the only book in the library that sees 6
+tables and misses 3:
+
+| table | class        | what it holds                                      |
+| ----- | ------------ | -------------------------------------------------- |
+| 4     | `tab1 FS-95` | the numbers chart, `0 ゼロ／れい` and `4 よん／し` |
+| 1     | `tab1 FS-95` | the です / でした paradigm                         |
+| 2     | (none)       | `これは わたしの ペンです。` and its gloss         |
+
+The readings in that first row (`れい`, `し`, `しち`, `く`) are the target of no card anywhere in
+the deck. On a different publisher the same selector matches nothing at all and the coverage check
+reports zero misses, which reads exactly like a fully carded chapter.
+
+**A book hint annotates; it never filters.** Where `book.json`'s `hints.vocabularyTableClass` is
+set, a matching table is flagged, and nothing is ever removed for failing to match: the failure mode
+of a hint is that it is out of date, and the table it missed is the one that mattered. A book with
+no hint gets `hintMatch: null`, meaning "not asked", which is deliberately distinct from `false`.
+
+`columnCounts` is a list rather than a number because raggedness is signal: a vocabulary block whose
+rows are mostly two cells with a few threes usually means indented sub-entries.
+
 ### A phase reports what it produced, and the check is the file
 
 Each phase script writes a `run-report.json` into the unit dir

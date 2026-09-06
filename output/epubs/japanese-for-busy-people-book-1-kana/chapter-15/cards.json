@@ -82,12 +82,13 @@
       "target": "かきます",
       "pronunciation": "kakimasu",
       "hint": "the polite 〜ます (masu) form",
-      "note": "ます-form of かく (kaku, \"draw\"); かく is the dictionary form, used in casual speech and before grammar patterns like のが すきです.",
+      "note": "ます-form of かく (kaku, \"draw\"); かく is the dictionary form, used in casual speech and before grammar patterns like のが すきです. The same verb also covers \"write\" (Lesson 17): Japanese uses the one word かきます for drawing and for writing, and both take を.",
       "audio": "641794d0a3619820.mp3",
       "audioOriginal": "641794d0a3619820.orig.mp3",
       "audioAuto": "641794d0a3619820.mp3",
       "audioMarked": true,
-      "audioTextHash": "641794d0a3619820"
+      "audioTextHash": "641794d0a3619820",
+      "scene": "drawing a picture"
     },
     {
       "id": "no-nominalizer",

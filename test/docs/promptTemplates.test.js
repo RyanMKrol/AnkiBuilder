@@ -27,6 +27,12 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "image-specialist-prompt.md": {
+    placeholders: ["TARGET_LANGUAGE", "CATEGORY_LIST", "CARD_FACES", "BOOK_HINTS", "IMAGES_JSON"],
+    // The envelope: what the pictures teach, plus a verdict for every one of them. Losing the
+    // second half makes a skipped chart indistinguishable from a chapter that had none.
+    outputContract: /"items"[\s\S]*"verdicts"/,
+  },
   "chapter-reader-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

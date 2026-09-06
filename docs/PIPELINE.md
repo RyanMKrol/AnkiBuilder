@@ -1104,6 +1104,27 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### The image specialist, and why the dull verdicts are kept
+
+`src/agents/imageSpecialist.js` opens every image a chapter references and says what each one is,
+transcribing the ones that carry teaching content. It is the **only** pass that looks: every text
+pass in this pipeline is blind to a chart that was drawn rather than marked up, and an `<img>` tag's
+`alt` is usually empty even when the picture is the whole lesson.
+
+The failure being closed is not "the model judged an image wrongly", it is "nobody looked and the
+output says nothing about it". So `assertImagesAccountedFor` rejects a response that omits any image
+it was given, decorative ones included, reusing `unaccountedImages` from the storage module so the
+check and the artifact cannot drift apart on what "accounted for" means.
+
+Two guards worth knowing:
+
+- **An image absent from disk is forced to `unreadable`**, whatever the response claims. A file that
+  does not exist cannot have been opened, so a `decorative` verdict for it is a statement about a
+  picture nobody saw.
+- **The prompt tells the role that a file it did not open must take `unreadable`.** Deciding a
+  picture was decorative without opening it is precisely the failure here, and from the outside it is
+  indistinguishable from having looked.
+
 ### The chapter reader, and why it overlaps the table specialist
 
 `src/agents/chapterReader.js` reads the whole bounded chapter and returns vocabulary found anywhere,

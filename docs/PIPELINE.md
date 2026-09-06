@@ -1104,6 +1104,34 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### The union reconciler: union for existence, never a vote
+
+`src/cards/unionReconciler.js` merges the three phase-1 roles into one candidate corpus. Nothing in
+it decides an item is wrong. It decides only when two candidates are **the same item**, and what the
+merged version should say.
+
+**An item only one role found is kept.** That is the entire reason three roles exist: a majority vote
+would delete exactly the singletons, and in a recall task the minority report is what you want. In
+this deck, `テニス` was lost for appearing only in a drill's cue and `れい` only in a chart, and both
+are singletons.
+
+**The match key is target AND gloss together, not target alone.** Two roles finding `はし` may have
+found one word glossed twice, or two senses sharing a spelling: bridge and chopsticks. v1's duplicate
+check already says roughly a third of same-target groups are cards that should stay. So same target
+with a different gloss stays two items and is reported in `senseCollisions` for the reviewer, because
+a rule cannot tell those apart and a deleted sense is invisible.
+
+**A role that found only half the key folds into the role that found both.** The image specialist
+reading `れい` off a chart with no gloss is agreeing with the table specialist that glossed it, not
+describing something else.
+
+Two smaller guarantees: the richer record wins the fields so information is never lost to a tie-break
+(and the thinner role is still credited), and ids are made unique on merge, because a card id becomes
+an Anki note GUID and a duplicate makes the package build refuse outright, which used to surface only
+at **Mark done**, after both reviews were signed off.
+
+`agreement` is recorded as evidence for the review gate, never applied as a threshold in code.
+
 ### The image specialist, and why the dull verdicts are kept
 
 `src/agents/imageSpecialist.js` opens every image a chapter references and says what each one is,

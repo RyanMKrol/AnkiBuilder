@@ -1,0 +1,697 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 39,
+    "chapterLabel": "Lesson 17: Stating a Wish: I Want to Buy a Souvenir",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "semanticDedup": {
+        "status": "ok"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "omiyage",
+      "english": "Souvenir",
+      "category": "Shopping",
+      "target": "おみやげ",
+      "pronunciation": "omiyage",
+      "uncertain": true,
+      "reviewNote": "Central to this lesson ('I Want to Buy a Souvenir') and appears in the Target Dialogue and Exercises II and V, but not glossed in any vocabulary box this chapter. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on english) | Excluded at gate 1: Lesson 11 already teaches おみやげ (\"Souvenir\") with the (お)みやげ honorific note. Duplicate card id. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 11 already teaches おみやげ (\"Souvenir\") with the (お)みやげ honorific note. Duplicate card id."
+    },
+    {
+      "id": "anime",
+      "english": "Anime",
+      "category": "Sports & Hobbies",
+      "target": "アニメ",
+      "pronunciation": "anime",
+      "uncertain": true,
+      "reviewNote": "Appears in the Target Dialogue (おとうとも アニメが すきですから) but not glossed in any vocabulary box this chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target) | Excluded at gate 1: Lesson 15 already teaches アニメ (\"Anime, animation\"). Duplicate card id. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 15 already teaches アニメ (\"Anime, animation\"). Duplicate card id."
+    },
+    {
+      "id": "otouto",
+      "english": "(My) younger brother",
+      "category": "Family & People",
+      "target": "おとうと",
+      "pronunciation": "otōto",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (おとうと is formally taught later as part of the own-vs-others' family-vocabulary set)",
+      "note": "Use only for your own younger brother. Another person's younger brother is おとうとさん (otōtosan), which you also met in Lesson 9; Japanese keeps the humble and honorific family words separate."
+    },
+    {
+      "id": "kaitai-desu",
+      "english": "Want to buy",
+      "category": "Shopping",
+      "target": "かいたいです",
+      "pronunciation": "kaitai desu",
+      "note": "ます-form stem かい (kai) + たいです (tai desu). The 〜たい ending conjugates like an い-adjective."
+    },
+    {
+      "id": "mae",
+      "english": "Before",
+      "category": "Time",
+      "target": "まえ",
+      "pronunciation": "mae",
+      "uncertain": true,
+      "note": "In Lesson 12, まえ (mae) meant only the spatial 'in front (of)'. Lesson 17 adds the time sense 'before', so の まえに now covers both 'in front of the station' and 'before the meeting'.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (borderline: まえ appears as a formal vocabulary entry later in its 〜まえ ('ago') sense; this entry's 'before; front' gloss may overlap)",
+      "scene": "talking about the time before an event"
+    },
+    {
+      "id": "no-mae-ni",
+      "english": "Before ... (a noun)",
+      "category": "Grammar & Function Words",
+      "target": "のまえに",
+      "pronunciation": "no mae ni",
+      "note": "Attaches to a noun: noun + の まえに (no mae ni), e.g. かいぎの まえに (\"before the meeting\"). For a verb instead, use the dictionary form + まえに (mae ni).",
+      "reviewNote": "Written 〜の まえに in the source."
+    },
+    {
+      "id": "lobby",
+      "english": "Lobby",
+      "category": "Travel & Tourism",
+      "target": "ロビー",
+      "pronunciation": "robī"
+    },
+    {
+      "id": "taberu-mae-ni",
+      "english": "Before eating",
+      "category": "Grammar & Function Words",
+      "target": "たべるまえに",
+      "pronunciation": "taberu mae ni",
+      "note": "Dictionary-form verb + まえに (mae ni) = \"before doing ...\"; たべる (taberu) is the plain form of たべます (tabemasu)."
+    },
+    {
+      "id": "ikitai-desu",
+      "english": "(I) want to go.",
+      "category": "Grammar & Function Words",
+      "target": "いきたいです",
+      "pronunciation": "ikitai desu",
+      "note": "ます-form stem いき (iki) + たいです (tai desu). Conjugates like an い-adjective."
+    },
+    {
+      "id": "ikitakunai-desu",
+      "english": "(I) don't want to go.",
+      "category": "Grammar & Function Words",
+      "target": "いきたくないです",
+      "pronunciation": "ikitakunai desu",
+      "note": "Negative of いきたいです (\"want to go\"): たい → たくないです (taku nai desu)."
+    },
+    {
+      "id": "ikitakatta-desu",
+      "english": "(I) wanted to go.",
+      "category": "Grammar & Function Words",
+      "target": "いきたかったです",
+      "pronunciation": "ikitakatta desu",
+      "note": "Past of いきたいです (\"want to go\"): たい → たかったです (takatta desu)."
+    },
+    {
+      "id": "ikitakunakatta-desu",
+      "english": "(I) didn't want to go.",
+      "category": "Grammar & Function Words",
+      "target": "いきたくなかったです",
+      "pronunciation": "ikitakunakatta desu",
+      "note": "Past negative of いきたいです (\"want to go\"): たい → たくなかったです (taku nakatta desu)."
+    },
+    {
+      "id": "wain-ga-nomitai",
+      "english": "(I) want to drink wine.",
+      "category": "Grammar & Function Words",
+      "target": "ワインがのみたいです",
+      "pronunciation": "wain ga nomitai desu",
+      "note": "With 〜たい (tai) the object may take が (ga) instead of を (o); ワインを のみたいです is equally correct.",
+      "reviewNote": "GRAMMAR 1 NOTE — が-for-を substitution with 〜たい; source prints ワインを／が のみたいです。"
+    },
+    {
+      "id": "tabetai-desu",
+      "english": "Want to eat",
+      "category": "Food",
+      "target": "たべたいです",
+      "pronunciation": "tabetai desu",
+      "note": "ます-form stem たべ (tabe) + たいです (tai desu)."
+    },
+    {
+      "id": "shiryou",
+      "english": "Materials; data; documents",
+      "category": "Work & Occupations",
+      "target": "しりょう",
+      "pronunciation": "shiryō"
+    },
+    {
+      "id": "nemasu",
+      "english": "Sleep; go to bed",
+      "category": "Other",
+      "target": "ねます",
+      "pronunciation": "nemasu",
+      "note": "R2 (ru-verb). Plain form ねる (neru), as in ねる まえに (\"before going to bed\")."
+    },
+    {
+      "id": "sutorecchi-o-shimasu",
+      "english": "Do stretching exercises",
+      "category": "Sports & Hobbies",
+      "target": "ストレッチをします",
+      "pronunciation": "sutorecchi o shimasu"
+    },
+    {
+      "id": "ks1-osushi-tabetai",
+      "english": "(I) want to eat some good sushi.",
+      "category": "Food",
+      "target": "おいしいおすしをたべたいです",
+      "pronunciation": "oishii osushi o tabetai desu",
+      "note": "〜たい (tai) states only the speaker's own wish, never someone else's."
+    },
+    {
+      "id": "ks2-kaigi-mae-shiryou",
+      "english": "Smith-san will send the materials before the meeting.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはかいぎのまえにしりょうをおくります",
+      "pronunciation": "Sumisu-san wa kaigi no mae ni shiryō o okurimasu",
+      "note": "Pattern: person は + noun + の まえに (no mae ni) + verb — the action happens before that event."
+    },
+    {
+      "id": "ks3-neru-mae-stretch",
+      "english": "Smith-san does stretching exercises every day before going to bed.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはまいにちねるまえにストレッチをします",
+      "pronunciation": "Sumisu-san wa mainichi neru mae ni sutorecchi o shimasu",
+      "note": "Pattern: dictionary-form verb + まえに (mae ni) + main verb. ねる (neru) is the plain form of ねます (nemasu, \"go to bed\")."
+    },
+    {
+      "id": "ikebana",
+      "english": "Flower arrangement",
+      "category": "Sports & Hobbies",
+      "target": "いけばな",
+      "pronunciation": "ikebana"
+    },
+    {
+      "id": "karate",
+      "english": "Karate",
+      "category": "Sports & Hobbies",
+      "target": "からて",
+      "pronunciation": "karate"
+    },
+    {
+      "id": "piano",
+      "english": "Piano",
+      "category": "Sports & Hobbies",
+      "target": "ピアノ",
+      "pronunciation": "piano"
+    },
+    {
+      "id": "dansu",
+      "english": "Dance",
+      "category": "Sports & Hobbies",
+      "target": "ダンス",
+      "pronunciation": "dansu",
+      "uncertain": true,
+      "reviewNote": "WORD POWER 'Hobbies' illustration ④; gloss supplied, not in the accompanying vocabulary box. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)"
+    },
+    {
+      "id": "naraimasu",
+      "english": "Learn; take lessons in",
+      "category": "School & Education",
+      "target": "ならいます",
+      "pronunciation": "naraimasu",
+      "note": "Usually for a skill studied under a teacher (piano, karate); contrast べんきょうします (benkyō shimasu, \"study\") for academic study."
+    },
+    {
+      "id": "ryouri-o-shimasu",
+      "english": "Do the cooking",
+      "category": "Food",
+      "target": "りょうりをします",
+      "pronunciation": "ryōri o shimasu",
+      "note": "りょうり (ryōri, \"cooking, cuisine\") + を します.",
+      "reviewNote": "Gloss changed from \"Cook\" to \"Do the cooking\" at gate 1: \"Cook\" collided with コック (kokku, a cook/chef) from Lesson 1 extras, which is a person, not an action."
+    },
+    {
+      "id": "araimasu",
+      "english": "Wash",
+      "category": "Home & Household",
+      "target": "あらいます",
+      "pronunciation": "araimasu"
+    },
+    {
+      "id": "shawaa-o-abimasu",
+      "english": "Take a shower",
+      "category": "Body & Health",
+      "target": "シャワーをあびます",
+      "pronunciation": "shawā o abimasu",
+      "note": "R2 verb. あびます (abimasu) = \"douse oneself with.\""
+    },
+    {
+      "id": "shokuji-o-shimasu",
+      "english": "Have a meal; dine",
+      "category": "Food",
+      "target": "しょくじをします",
+      "pronunciation": "shokuji o shimasu",
+      "uncertain": true,
+      "reviewNote": "WORD POWER 'Verbs' illustration ⑤; gloss supplied, not in the accompanying vocabulary box. Formed as しょくじ (shokuji, \"a meal\") + を します. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Excluded at gate 1: Lesson 16 already teaches しょくじをします (\"Have a meal\"). Identical target and sense. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 16 already teaches しょくじをします (\"Have a meal\"). Identical target and sense."
+    },
+    {
+      "id": "hajimemasu",
+      "english": "Start; begin",
+      "category": "Other",
+      "target": "はじめます",
+      "pronunciation": "hajimemasu",
+      "note": "R2 verb, transitive: X を はじめます ('begin X'). Same はじめ- stem as はじめまして (hajimemashite, 'nice to meet you') from Lesson 1, but the two are unrelated in use."
+    },
+    {
+      "id": "kakimasu",
+      "english": "Write",
+      "category": "Other",
+      "target": "かきます",
+      "pronunciation": "kakimasu",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "note": "Same verb as かく / かきます from Lesson 15, where it was glossed 'draw'. Japanese uses the one word for writing and for drawing, and both take を.",
+      "scene": "writing a letter"
+    },
+    {
+      "id": "mitai-desu",
+      "english": "Want to see",
+      "category": "Grammar & Function Words",
+      "target": "みたいです",
+      "pronunciation": "mitai desu",
+      "note": "ます-form stem み (mi) + たいです (tai desu); from みます (mimasu, \"see, watch\")."
+    },
+    {
+      "id": "aitai-desu",
+      "english": "Want to meet",
+      "category": "Grammar & Function Words",
+      "target": "あいたいです",
+      "pronunciation": "aitai desu",
+      "note": "ます-form stem あい (ai) + たいです (tai desu); from あいます (aimasu, \"meet\")."
+    },
+    {
+      "id": "osushi-tabetakunai",
+      "english": "(I) don't want to eat sushi.",
+      "category": "Food",
+      "target": "おすしをたべたくないです",
+      "pronunciation": "osushi o tabetakunai desu",
+      "note": "Negative wish: たべたいです → たべたくないです (tabetaku nai desu)."
+    },
+    {
+      "id": "onsen",
+      "english": "Hot spring",
+      "category": "Travel & Tourism",
+      "target": "おんせん",
+      "pronunciation": "onsen",
+      "uncertain": true,
+      "reviewNote": "Appears only in an Exercise II substitution cue (おんせんに いきます); not glossed in any vocabulary box this chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)"
+    },
+    {
+      "id": "tegami",
+      "english": "Letter",
+      "category": "Technology & Communication",
+      "target": "てがみ",
+      "pronunciation": "tegami"
+    },
+    {
+      "id": "shourai",
+      "english": "In the future",
+      "category": "Time",
+      "target": "しょうらい",
+      "pronunciation": "shōrai"
+    },
+    {
+      "id": "sumimasu",
+      "english": "Live; reside",
+      "category": "Home & Household",
+      "target": "すみます",
+      "pronunciation": "sumimasu",
+      "uncertain": true,
+      "note": "Takes に for the place lived in: 〜に すみます. Not related to すみません (sumimasen, 'excuse me, I'm sorry') from Frequently Used Expressions, despite the close sound.",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (borderline: the verb すむ is formally taught later as すんでいます (expressing a present state); reviewer should judge whether the bare すみます entry here overlaps)"
+    },
+    {
+      "id": "machi",
+      "english": "Town",
+      "category": "Travel & Tourism",
+      "target": "まち",
+      "pronunciation": "machi"
+    },
+    {
+      "id": "benkyou-shimasu",
+      "english": "Study",
+      "category": "School & Education",
+      "target": "べんきょうします",
+      "pronunciation": "benkyō shimasu",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english) | Excluded at gate 1: Lesson 8 already teaches this verb as べんきょうをします (\"Study\"). Two cards glossed \"Study\" differing only by を would be a near-sibling trap. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 8 already teaches this verb as べんきょうをします (\"Study\"). Two cards glossed \"Study\" differing only by を would be a near-sibling trap."
+    },
+    {
+      "id": "hanami-o-shimasu",
+      "english": "View cherry blossoms",
+      "category": "Sports & Hobbies",
+      "target": "はなみをします",
+      "pronunciation": "hanami o shimasu",
+      "note": "はなみ (hanami) = cherry-blossom viewing; commonly said with the honorific お as おはなみ (o-hanami).",
+      "reviewNote": "Source shows the optional honorific: (お)はなみを します."
+    },
+    {
+      "id": "kurabu",
+      "english": "Club",
+      "category": "Sports & Hobbies",
+      "target": "クラブ",
+      "pronunciation": "kurabu"
+    },
+    {
+      "id": "kagu",
+      "english": "Furniture",
+      "category": "Home & Household",
+      "target": "かぐ",
+      "pronunciation": "kagu"
+    },
+    {
+      "id": "antiiku",
+      "english": "Antiques",
+      "category": "Shopping",
+      "target": "アンティーク",
+      "pronunciation": "antīku"
+    },
+    {
+      "id": "umi",
+      "english": "Sea; ocean",
+      "category": "Weather & Nature",
+      "target": "うみ",
+      "pronunciation": "umi",
+      "uncertain": true,
+      "reviewNote": "Appears in an extracted Exercise III example (うみの ちかく) but not glossed in a vocabulary box this chapter. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target) | Excluded at gate 1: Lesson 10 already teaches うみ (\"Ocean\"). Identical word and sense; duplicate card id. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 10 already teaches うみ (\"Ocean\"). Identical word and sense; duplicate card id."
+    },
+    {
+      "id": "chikaku",
+      "english": "Nearby; the vicinity",
+      "category": "Directions",
+      "target": "ちかく",
+      "pronunciation": "chikaku",
+      "uncertain": true,
+      "reviewNote": "Appears in extracted Exercise III examples (うみの ちかく, この ちかくに) but not glossed in a vocabulary box this chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Excluded at gate 1: Lesson 12 already teaches ちかく (\"Vicinity, near\"). Identical sense. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 12 already teaches ちかく (\"Vicinity, near\"). Identical sense."
+    },
+    {
+      "id": "tokoro",
+      "english": "Place",
+      "category": "Other",
+      "target": "ところ",
+      "pronunciation": "tokoro",
+      "uncertain": true,
+      "reviewNote": "Appears in Exercise III (どんな ところ) and Exercise IV cues but not glossed in a vocabulary box this chapter. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english) | Excluded at gate 1: Lesson 10 already teaches ところ (\"Place\") with a note distinguishing it from ばしょ. Duplicate card id. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 10 already teaches ところ (\"Place\") with a note distinguishing it from ばしょ. Duplicate card id."
+    },
+    {
+      "id": "shourai-donna-tokoro-sumitai",
+      "english": "What kind of place do you want to live in in the future?",
+      "category": "Grammar & Function Words",
+      "target": "しょうらいどんなところにすみたいですか",
+      "pronunciation": "shōrai donna tokoro ni sumitai desu ka",
+      "note": "Asking about a future hope with 〜たいですか is acceptable even to someone of higher status; for everyday wishes it can sound too direct."
+    },
+    {
+      "id": "umi-no-chikaku-sumitai",
+      "english": "I want to live near the sea.",
+      "category": "Home & Household",
+      "target": "うみのちかくにすみたいです",
+      "pronunciation": "umi no chikaku ni sumitai desu",
+      "scene": "answering what kind of place you want to live in one day"
+    },
+    {
+      "id": "nihongo-benkyou-shitai-gakkou",
+      "english": "I want to study Japanese. Is there a good school near here?",
+      "category": "School & Education",
+      "target": "にほんごをべんきょうしたいです。このちかくにいいがっこうがありますか",
+      "pronunciation": "nihongo o benkyō shitai desu. kono chikaku ni ii gakkō ga arimasu ka"
+    },
+    {
+      "id": "gogo-shichiji-kara-paatii",
+      "english": "There is a party from 7:00 p.m.",
+      "category": "Time",
+      "target": "ごご７じからパーティーがあります",
+      "ttsText": "ごごしちじからパーティーがあります",
+      "pronunciation": "gogo shichi-ji kara pātī ga arimasu",
+      "note": "〜から (kara) here marks a start time. あります (arimasu) is used for events as well as objects."
+    },
+    {
+      "id": "paatii-no-mae-ni-wain",
+      "english": "I'll buy wine before the party.",
+      "category": "Grammar & Function Words",
+      "target": "パーティーのまえにワインをかいます",
+      "pronunciation": "pātī no mae ni wain o kaimasu",
+      "note": "noun + の まえに (no mae ni) + verb = \"before (the event), do ...\""
+    },
+    {
+      "id": "daunroodo-shimasu",
+      "english": "Download",
+      "category": "Technology & Communication",
+      "target": "ダウンロードします",
+      "pronunciation": "daunrōdo shimasu"
+    },
+    {
+      "id": "biyouin",
+      "english": "Hairdresser; beauty salon",
+      "category": "Other",
+      "target": "びよういん",
+      "pronunciation": "biyōin",
+      "note": "Nearly homophonous with びょういん (byōin, \"hospital\"); this salon word has a long \"yō.\""
+    },
+    {
+      "id": "nihon-ni-kuru-mae-benkyou",
+      "english": "Smith-san started studying Japanese before coming to Japan.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはにほんにくるまえににほんごのべんきょうをはじめました",
+      "pronunciation": "Sumisu-san wa nihon ni kuru mae ni nihongo no benkyō o hajimemashita",
+      "note": "くる (kuru) is the plain form of きます (kimasu, \"come\"). Dictionary form + まえに (mae ni) is the same whether the main verb is present or past (here はじめました, \"started\")."
+    },
+    {
+      "id": "chekku-shimasu",
+      "english": "Check",
+      "category": "Technology & Communication",
+      "target": "チェックします",
+      "pronunciation": "chekku shimasu",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック is listed as formally taught vocabulary in a later lesson)"
+    },
+    {
+      "id": "te",
+      "english": "Hand",
+      "category": "Body & Health",
+      "target": "て",
+      "pronunciation": "te",
+      "uncertain": true,
+      "note": "Seen in てを あらいます (te o araimasu, \"wash one's hands\").",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 21: Asking Permission: May I Have It? (て 'hand' is formally taught later as parts-of-the-body vocabulary)"
+    },
+    {
+      "id": "ja-mata-ashita",
+      "english": "See you tomorrow.",
+      "category": "Greetings",
+      "target": "じゃ、またあした",
+      "pronunciation": "ja, mata ashita",
+      "note": "Japanese speakers usually part with a phrase naming the next meeting rather than さようなら (sayōnara): じゃ、また + a day or time, e.g. じゃ、また すいようびに ('see you Wednesday'). Contrast またこんど (mata kondo) from Lesson 16, which defers vaguely to 'some other time' instead of naming one.",
+      "reviewNote": "From the NOTES section example line."
+    },
+    {
+      "id": "itadakimasu",
+      "english": "Thank you for the food.",
+      "category": "Food",
+      "target": "いただきます",
+      "pronunciation": "itadakimasu",
+      "uncertain": true,
+      "scene": "said just before starting to eat a meal",
+      "note": "Set mealtime phrase with no literal English equivalent, roughly 'I gratefully receive.' Lesson 10 used the same word to gladly accept an offer ('yes, thank you'); here it is specifically what you say just before eating.",
+      "reviewNote": "Possibly already taught — already introduced in Frequently Used Expressions (matched on target) | Excluded at gate 1: Lesson 0 (Frequently Used Expressions) already teaches いただきます with a scene and a fuller note pairing it with ごちそうさま(でした). Duplicate card id and a duplicate teaching. Restore here if you want this chapter to re-teach it.",
+      "excluded": true,
+      "excludedBy": "backward-dedup-review",
+      "excludedReason": "Lesson 0 (Frequently Used Expressions) already teaches いただきます with a scene and a fuller note pairing it with ごちそうさま(でした). Duplicate card id and a duplicate teaching."
+    },
+    {
+      "id": "fib-omiyage-kaitai",
+      "english": "I want to buy a souvenir.",
+      "category": "Shopping",
+      "target": "おみやげをかいたいです",
+      "pronunciation": "omiyage o kaitai desu",
+      "note": "In casual speech the wished-for object is sometimes marked with が instead of を.",
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [object] を [verb]たいです — The source already teaches this frame as full sentences (wain-ga-nomitai, ks1-osushi-tabetai, osushi-tabetakunai).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [object] を [verb]たいです. The source already teaches this frame as full sentences (wain-ga-nomitai, ks1-osushi-tabetai, osushi-tabetakunai)."
+    },
+    {
+      "id": "fib-tegami-kakitai",
+      "english": "I want to write a letter.",
+      "category": "Technology & Communication",
+      "target": "てがみをかきたいです",
+      "pronunciation": "tegami o kakitai desu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [object] を [verb]たいです — Same noun-swap of a frame the source teaches multiple times (wain-ga-nomitai, ks1-osushi-tabetai).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [object] を [verb]たいです. Same noun-swap of a frame the source teaches multiple times (wain-ga-nomitai, ks1-osushi-tabetai)."
+    },
+    {
+      "id": "fib-onsen-ikitai",
+      "english": "I want to go to a hot spring.",
+      "category": "Travel & Tourism",
+      "target": "おんせんにいきたいです",
+      "pronunciation": "onsen ni ikitai desu",
+      "note": "に marks the destination here, the same as with いきます.",
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-atatakai-tokoro-sumitai",
+      "english": "I want to live in a warm place.",
+      "category": "Home & Household",
+      "target": "あたたかいところにすみたいです",
+      "pronunciation": "atatakai tokoro ni sumitai desu",
+      "note": null,
+      "scene": "answering what sort of place someone hopes to live in someday",
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [place] に すみたいです — The source teaches this frame twice (shourai-donna-tokoro-sumitai, umi-no-chikaku-sumitai).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [place] に すみたいです. The source teaches this frame twice (shourai-donna-tokoro-sumitai, umi-no-chikaku-sumitai)."
+    },
+    {
+      "id": "fib-shizuka-machi-sumitai",
+      "english": "I want to live in a quiet town.",
+      "category": "Home & Household",
+      "target": "しずかなまちにすみたいです",
+      "pronunciation": "shizukana machi ni sumitai desu",
+      "note": null,
+      "scene": "answering what sort of place someone hopes to live in someday",
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [place] に すみたいです — Near-identical sibling of fib-atatakai-tokoro-sumitai; source already covers the frame twice (shourai-donna-tokoro-sumitai, umi-no-chikaku-sumitai).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [place] に すみたいです. Near-identical sibling of fib-atatakai-tokoro-sumitai; source already covers the frame twice (shourai-donna-tokoro-sumitai, umi-no-chikaku-sumitai)."
+    },
+    {
+      "id": "fib-furui-kagu-mise",
+      "english": "I want to buy old furniture. Is there a good shop near here?",
+      "category": "Shopping",
+      "target": "ふるいかぐをかいたいです。このちかくにいいみせがありますか",
+      "pronunciation": "furui kagu o kaitai desu. kono chikaku ni ii mise ga arimasu ka",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-paatii-mae-biyouin",
+      "english": "I'll go to the hairdresser before the party.",
+      "category": "Grammar & Function Words",
+      "target": "パーティーのまえにびよういんにいきます",
+      "pronunciation": "pātī no mae ni biyōin ni ikimasu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [noun] のまえに [action] — The source teaches noun-のまえに twice (ks2-kaigi-mae-shiryou, paatii-no-mae-ni-wain), and this reuses パーティー from the latter.",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [noun] のまえに [action]. The source teaches noun-のまえに twice (ks2-kaigi-mae-shiryou, paatii-no-mae-ni-wain), and this reuses パーティー from the latter."
+    },
+    {
+      "id": "fib-shigoto-hajimeru-mae-news",
+      "english": "Smith-san checks the news before starting work.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはしごとをはじめるまえにニュースをチェックします",
+      "pronunciation": "Sumisu-san wa shigoto o hajimeru mae ni nyūsu o chekku shimasu",
+      "note": "まえに takes the plain dictionary form of the verb, whatever tense the main sentence is in.",
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [person]は[verb-dict]まえに[verb] — The source already teaches this frame twice (ks3-neru-mae-stretch, nihon-ni-kuru-mae-benkyou).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person]は[verb-dict]まえに[verb]. The source already teaches this frame twice (ks3-neru-mae-stretch, nihon-ni-kuru-mae-benkyou)."
+    },
+    {
+      "id": "fib-ryouri-suru-mae-te-araimasu",
+      "english": "Smith-san washes his hands before cooking.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはりょうりをするまえにてをあらいます",
+      "pronunciation": "Sumisu-san wa ryōri o suru mae ni te o araimasu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [person]は[verb-dict]まえに[verb] — Third+ example of a frame the source teaches twice (ks3-neru-mae-stretch, nihon-ni-kuru-mae-benkyou).",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person]は[verb-dict]まえに[verb]. Third+ example of a frame the source teaches twice (ks3-neru-mae-stretch, nihon-ni-kuru-mae-benkyou)."
+    },
+    {
+      "id": "fib-oyogu-mae-stretch",
+      "english": "Emma-san did stretching exercises before swimming.",
+      "category": "Grammar & Function Words",
+      "target": "エマさんはおよぐまえにストレッチをしました",
+      "pronunciation": "Ema-san wa oyogu mae ni sutorecchi o shimashita",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [person]は[verb-dict]まえに[verb] — Same frame as the two source sentences (ks3-neru-mae-stretch, nihon-ni-kuru-mae-benkyou) plus two other practice siblings.",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person]は[verb-dict]まえに[verb]. Same frame as the two source sentences (ks3-neru-mae-stretch, nihon-ni-kuru-mae-benkyou) plus two other practice siblings."
+    }
+  ]
+}

@@ -547,7 +547,9 @@
       "audioOriginal": "1ac5880b7f90e6a6.orig.mp3",
       "audioAuto": "1ac5880b7f90e6a6.mp3",
       "audioMarked": true,
-      "audioTextHash": "1ac5880b7f90e6a6"
+      "audioTextHash": "1ac5880b7f90e6a6",
+      "scene": "describing where something is located",
+      "note": "The spatial sense: まえ (mae) = \"in front (of)\", as in えきの まえ (eki no mae, \"in front of the station\"). Lesson 17 adds the time sense, \"before\"."
     },
     {
       "id": "ushiro-behind",

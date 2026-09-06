@@ -406,9 +406,9 @@
       "id": "mae-in-front",
       "english": "In front",
       "category": "Directions",
-      "scene": null,
+      "scene": "describing where something is located",
       "hint": null,
-      "note": null,
+      "note": "The spatial sense: まえ (mae) = \"in front (of)\", as in えきの まえ (eki no mae, \"in front of the station\"). Lesson 17 adds the time sense, \"before\".",
       "reviewNote": null,
       "target": "まえ"
     },

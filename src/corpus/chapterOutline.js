@@ -57,30 +57,72 @@ export function parseHeadings(html) {
  * (`_` is a word character) — that mistake returned zero blocks for a chapter holding twelve, a
  * silent zero in the very function written to stop silent misses.
  */
-export function parseNumberedBlocks(html) {
-  return [...String(html).matchAll(/(enum|wnum)-([IVX]+)\.(?:jpg|jpeg|png|gif)/gi)].map((m) => ({
-    kind: m[1].toLowerCase() === "enum" ? "EXERCISES" : "WORD POWER",
-    numeral: m[2].toUpperCase(),
-    at: m.index,
-  }));
+export function parseNumberedBlocks(html, markers = []) {
+  const source = String(html);
+  const blocks = [];
+  for (const { filenamePrefix, label } of markers) {
+    if (!filenamePrefix || !label) continue;
+    const pattern = new RegExp(
+      `${escapeForRegExp(filenamePrefix)}-([IVXLCDM]+)\\.(?:jpg|jpeg|png|gif|svg)`,
+      "gi",
+    );
+    for (const m of source.matchAll(pattern)) {
+      blocks.push({ kind: label, numeral: m[1].toUpperCase(), at: m.index });
+    }
+  }
+  return blocks.sort((a, b) => a.at - b.at);
 }
 
-const ROMAN = [
-  "I",
-  "II",
-  "III",
-  "IV",
-  "V",
-  "VI",
-  "VII",
-  "VIII",
-  "IX",
-  "X",
-  "XI",
-  "XII",
-  "XIII",
-  "XIV",
+function escapeForRegExp(text) {
+  return String(text).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Roman numerals are COMPUTED rather than listed. The previous version was a literal array that
+// stopped at XIV, so a book numbering fifteen or more blocks would have silently mis-reported its
+// gaps: `expected` could never contain XV, so a missing XV was invisible in exactly the check
+// written to make a missed block visible. A ceiling nobody states is the failure this file exists
+// to remove, so there is now no ceiling.
+const ROMAN_UNITS = [
+  [1000, "M"],
+  [900, "CM"],
+  [500, "D"],
+  [400, "CD"],
+  [100, "C"],
+  [90, "XC"],
+  [50, "L"],
+  [40, "XL"],
+  [10, "X"],
+  [9, "IX"],
+  [5, "V"],
+  [4, "IV"],
+  [1, "I"],
 ];
+
+export function toRoman(value) {
+  let n = Number(value);
+  if (!Number.isInteger(n) || n < 1) return null;
+  let out = "";
+  for (const [size, glyph] of ROMAN_UNITS) {
+    while (n >= size) {
+      out += glyph;
+      n -= size;
+    }
+  }
+  return out;
+}
+
+export function fromRoman(text) {
+  const upper = String(text).toUpperCase();
+  if (!/^[IVXLCDM]+$/.test(upper)) return null;
+  const value = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+  let total = 0;
+  for (let i = 0; i < upper.length; i++) {
+    const here = value[upper[i]];
+    const next = value[upper[i + 1]] ?? 0;
+    total += here < next ? -here : here;
+  }
+  return toRoman(total) === upper ? total : null;
+}
 
 /**
  * `{ chars, sections, groups }` for one chapter's XHTML.
@@ -98,9 +140,9 @@ export function countImages(html) {
   return [...String(html).matchAll(/<img\b/gi)].length;
 }
 
-export function chapterOutline(html) {
+export function chapterOutline(html, { markers = [] } = {}) {
   const headings = parseHeadings(html);
-  const numbered = parseNumberedBlocks(html);
+  const numbered = parseNumberedBlocks(html, markers);
 
   const sections = headings.map((h, i) => {
     const end = i + 1 < headings.length ? headings[i + 1].at : String(html).length;
@@ -115,13 +157,16 @@ export function chapterOutline(html) {
   });
 
   const groups = [];
-  for (const kind of ["EXERCISES", "WORD POWER"]) {
+  // Kinds come from the book's own markers, in the order it declares them, so a book that numbers
+  // something this one has never heard of is reported the same way.
+  for (const kind of [...new Set(markers.map((m) => m.label).filter(Boolean))]) {
     const got = numbered.filter((n) => n.kind === kind).map((n) => n.numeral);
     if (got.length === 0) continue;
     // Gaps are judged against a run of the same LENGTH starting at I: the blocks are numbered
     // consecutively by the publisher, so I,II,III,V is five blocks' worth of numbering with four
     // present, and IV is the one to go and look for.
-    const expected = ROMAN.slice(0, Math.max(got.length, ROMAN.indexOf(got[got.length - 1]) + 1));
+    const highest = Math.max(got.length, ...got.map((r) => fromRoman(r) ?? 0));
+    const expected = Array.from({ length: highest }, (_, i) => toRoman(i + 1));
     groups.push({ kind, numerals: got, missing: expected.filter((r) => !got.includes(r)) });
   }
 

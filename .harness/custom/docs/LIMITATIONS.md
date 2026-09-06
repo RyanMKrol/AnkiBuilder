@@ -3248,8 +3248,11 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   prints all of it and stamps `END OF CHAPTER`. That works for any EPUB. The structure summary on top
   is a bonus of two different qualities: the text-vs-image balance is generic (a chapter with little
   text and many figures has its content in the pictures, which is a real shape and not an empty
-  chapter), while the numbered runs (`EXERCISES: I … VIII`) are read off ONE publisher's marker images
-  and are empty for front matter, for a novel, and for any book that numbers differently. The script
+  chapter), while the numbered runs (`EXERCISES: I … VIII`) come from THAT BOOK's own markers and are
+  empty for front matter, for a novel, and for any book that numbers differently. Those markers were
+  a literal `(enum|wnum)` regex in the code until v2 moved them into `book.json`'s `hints`
+  (`numberedBlockMarkers`), so a book that numbers its blocks some other way is now describable
+  rather than unsupported, and a book that records none reports that in words. The script
   states that explicitly, because an empty checklist must read as "this book does not number things"
   and never as "there is nothing to read". An earlier cut of this had the numbered run as the
   backbone, which would have silently degraded to no signal at all on book #2.

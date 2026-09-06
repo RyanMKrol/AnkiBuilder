@@ -1104,6 +1104,39 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### The table specialist, and why it must account for every table
+
+`src/agents/tableSpecialist.js` is fed the raw dump from `parseTables` and returns two things: the
+entries it read, and **a verdict for every table it was shown** (`vocabulary`, `paradigm`,
+`reference`, `example`, `layout`, `unreadable`).
+
+The second half is not bookkeeping. The failure this role replaces was a CSS-class selector that, on
+a book marking tables any other way, matched nothing and reported the chapter's vocabulary fully
+covered. So a table nobody judged and a table holding nothing have to be distinguishable in the
+output, or the same silence returns wearing a model's name.
+
+`assertAccountedFor` enforces it: a response missing a verdict for any table it was given is
+**rejected rather than merged**, as is a verdict for a table that was never sent, or a table judged
+twice, or a verdict outside the fixed set. The prompt states the rule and the code checks it, because
+a rule stated only in a prompt holds until the day it does not.
+
+Three things the prompt is explicit about, each from a real miss in this deck:
+
+- **A headword is not always in column 0.** The numbers chart prints the digit first and the reading
+  second.
+- **One cell can hold two entries.** `ゼロ ／ れい` teaches two readings; `ゼロ` and `よん` are
+  carded in this deck and `れい`, `し`, `しち`, `く` appear on no card at all.
+- **Hints are orientation, not instructions.** Where a hint disagrees with the table in front of it,
+  the table wins and the role says so in that table's `reason`.
+
+Items are stamped `producedBy`, which is what lets the as-generated snapshot attribute a reviewer's
+later correction back to the role that caused it.
+
+`src/agents/runRole.js` is the one place a role's pinning is applied. It deliberately has **no family
+fallback**: v1's families group passes that share a blast radius, and v2's roles do not share one, so
+a single knob moving both the adversary and what it checks would undo the ranking the registry
+asserts.
+
 ### Numbered blocks come from the book's own markers
 
 `chapterOutline` reports a chapter's numbered runs (`EXERCISES: 8 block(s) — I … VIII`) and names

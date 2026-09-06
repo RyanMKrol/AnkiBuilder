@@ -49,6 +49,7 @@ const STANDING = [
   "chapter-outline.mjs",
   "chapter-tables.mjs",
   "build-base.mjs",
+  "shadow-run.mjs",
   "epub-probe.mjs",
   "eval-pass.mjs",
   "vocab-coverage.mjs",

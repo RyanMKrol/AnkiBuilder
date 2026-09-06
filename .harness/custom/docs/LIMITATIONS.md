@@ -2304,7 +2304,7 @@ say when it was measured rather than stating it as a standing fact.
   findings once, then either fix them or promote the check to ACK in the same commit that accepts
   the residue.
 
-## vocab-coverage only sees ONE publisher's vocabulary tables, and reports zero on every other book
+## ~~vocab-coverage only sees ONE publisher's vocabulary tables~~ (RESOLVED: the selector is the book's)
 
 - **What:** `parseVocaEntries` (`src/cards/vocabCoverage.js:12`) finds a chapter's vocabulary blocks
   with `VOCA_TABLE = /<table[^>]*class="[^"]*\bvoca\b[^"]*"/`, and its indented sub-rows with
@@ -2345,11 +2345,19 @@ say when it was measured rather than stating it as a standing fact.
   patterns.
 - **Verified by:** `node scripts/chapter-tables.mjs 1fab0f99d1195ad9 15` shows all 9 tables in that
   chapter, 3 of which the `voca` selector cannot see.
-- **Status:** open
-- **When to revisit:** when v2 task E1 (the table specialist agent) can replace the judgement. D4 was
-  moved out of Stage D and behind E1 for exactly that reason. Until then the rule that would have
-  caught this stands on its own: a check that finds no configuration for a book must report
-  **unknown**, never **zero**.
+- **Resolved by:** v2 task D4. `parseVocabularyEntries` takes the selector and has no default of its
+  own, and it returns **`null`** when the book records none. `null` is the whole fix: `[]` means
+  "looked at this book's vocabulary tables and found no entry", `null` means "no selector, so nobody
+  looked", and both callers now branch on it. The preflight check reports the book as unknown and
+  refuses to call it clean; `scripts/vocab-coverage.mjs` exits 2 with "Nothing was checked, that is
+  not the same as nothing being missing". This book keeps working unchanged because its selector
+  moved to `book.json`'s `hints.vocabularyTableClass`: 72 INFO findings before and after.
+- **What is deliberately still open:** the check reads the book's HINT, not the table specialist's
+  verdicts. A hint is a good guess about which tables are vocabulary, and E1 is the judgement. Wiring
+  the check to E1's persisted output belongs with E6, when a phase script exists to produce it. Until
+  then the honest reading of a clean result is "clean against what this book says its vocabulary
+  tables are".
+- **Status:** resolved (2026-09-06) for the code coupling; the hint-versus-judgement step is E6.
 
 ## The paradigm audit cannot tell a particle from the same kana inside a word
 

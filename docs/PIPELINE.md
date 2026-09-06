@@ -1104,6 +1104,34 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### v2 agent roles are pinned in a registry, and a missing pin fails the build
+
+`src/agents/roles.js` declares every v2 agent role with its own `model`, `effort` and `timeoutMs`.
+It exists because the operator thread runs Opus 5 and an agent that does not state a model inherits
+whatever spawned it, so an unpinned role silently bills Opus rates for work Sonnet does well and
+nothing in the output says so. Pinning is the whole reason running this work in scripts is cheaper
+than doing it in the operator's own context, so it is enforced rather than remembered:
+`test/agents/roles.test.js` fails the build for a role missing a model, an effort or a timeout.
+
+Two further invariants the same test pins:
+
+- **A verification role outranks what it verifies.** A role that checks others declares
+  `checks: [...]`, and must be pinned strictly above every id it names, ordered by `MODEL_RANK`.
+  Noticing that something is absent is harder than producing it, and a checker drawn from the same
+  family as its generator is biased toward approving it. Getting this backwards would leave the
+  pipeline looking fully verified while the verification was its weakest link.
+- **Every model a role names is ranked.** An unranked model fails rather than sorting as unknown, so
+  adding a model is the deliberate act of saying where it sits.
+
+Overrides go through `ANKI_BUILDER_<SCOPE>_MODEL` / `_EFFORT` / `_TIMEOUT_MS` and resolve through
+the same `resolvePinning` the v1 passes use, so there is one resolution order in the codebase rather
+than two. A role's own declaration is the floor, never a fallback for a missing one, and a caller
+cannot upgrade a role for a single run.
+
+The thirteen v1 passes below still declare their pinning at their call sites and are deliberately
+not migrated into the registry: Stages D to F of the v2 plan rewrite them, so moving them first
+would be work thrown away.
+
 Every `claude -p` call in the pipeline goes through `runClaudeWithPrompt` (`src/util/runClaude.js`):
 prompt on stdin, a hard timeout, one retry. What differs per pass is the **pinning** — model, effort
 and timeout — and each pass now has its own knobs rather than sharing one with a pass whose blast

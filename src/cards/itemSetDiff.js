@@ -4,6 +4,12 @@ import { normalizeDisplayText } from "../model/scriptSpacing.js";
  * Set-level diff between a human-approved REFERENCE item list and the CANDIDATE list a pass just
  * produced.
  *
+ * It lives under `cards/` rather than `evals/` because three things need it and only one of them
+ * is an eval: the eval fixtures, the union reconciler that merges the overlapping phase-1 roles,
+ * and the learning pass that diffs a unit's as-generated snapshot against what the reviewer
+ * approved. All three are asking the same question, "which items are the same item", and the
+ * answer must not differ between them.
+ *
  * This is deliberately not an assertion. Extraction is generative: two good runs of the same prompt
  * over the same chapter will disagree about a handful of borderline items, and an exact-match check
  * would either be permanently red or force the prompt to be tuned toward one historical sample. So

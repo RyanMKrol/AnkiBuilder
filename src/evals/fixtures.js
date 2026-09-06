@@ -17,7 +17,7 @@ import {
 } from "../corpus/epubLlmRunClaude.js";
 import { runCategorizeClaude, runSemanticDedupClaude } from "../translate/runClaude.js";
 import { resolveIso639Code } from "../model/iso639.js";
-import { diffItemSets, orderDisagreement } from "./itemSetDiff.js";
+import { diffItemSets, orderDisagreement } from "../cards/itemSetDiff.js";
 import { formatItemSetReport, formatIdSetReport } from "./report.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));

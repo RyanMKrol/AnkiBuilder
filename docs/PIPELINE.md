@@ -223,13 +223,42 @@ the `epub` prefix is only a convention) or whose `role` is `doc-toc`. The sweep 
 spec-blessed tiers came up empty, so no book that resolves today changes behaviour, and it reports
 `source: "nav-sweep"` so the probe says how the book was actually resolved.
 
+### Per-book config: invariants and hints
+
+`book.json` has two sections and they are not interchangeable, because they grant different powers
+(`src/corpus/bookConfig.js`).
+
+- **`invariants`** are facts code may branch on, because they really are stable for this book.
+  `labelDecoding` is the archetype: stamped once, frozen forever, because a chapter label flows into
+  a live Anki deck name. `bookInvariants` returns **only** keys named in `INVARIANT_KEYS`.
+- **`hints`** are what onboarding noticed about this publisher, for example that vocabulary tables
+  tend to carry `class="voca"`. They reach **prompts only** (`renderBookHints`), as orientation for
+  a model that is free to disagree. Nothing branches on them, so a wrong or missing hint costs
+  recall and can never cost correctness.
+
+The separation is enforced rather than merely documented: a hint cannot become a code dependency by
+being read, only by being **promoted** into `INVARIANT_KEYS`, which is a reviewed change to code.
+`assertConfigSeparation` rejects a book that declares the same key as both.
+
+Why the split exists at all: three modules once hardcoded one publisher's markup, and the
+vocabulary-table selector failed silently: on a book that marks tables differently the regex
+matched nothing and the coverage check reported zero misses, which is indistinguishable from a
+chapter that was fully carded. Moving those selectors into config without the split would have kept
+the same failure and merely relocated it, because no EPUB is reliably consistent enough for a
+selector to be a guarantee.
+
+A book registered before this split keeps its flat file and is **never rewritten**; `bookInvariants`
+reads the legacy top-level shape too. A pinned config a delivered deck depends on is not migrated as
+a side effect of a refactor.
+
 ### Label decoding is versioned per book
 
 A chapter label is not just text a person reads: `unitDeckSegments` turns it into a live Anki deck
 name, and renaming a deck in Anki is not a rename — it is a new deck, and the existing notes stay in
 the old one with all their scheduling. So the decoder that produces labels is **versioned per book**,
 stamped once into `book.json` at registration by `registerEpub` and read back by
-`resolveLabelDecoding` (`src/corpus/epubLibrary.js`).
+`resolveLabelDecoding` (`src/corpus/epubLibrary.js`). It lives under that file's `invariants`
+section, which is the section code is permitted to branch on — see _Per-book config_ below.
 
 - **v1** — the five original entities (`&amp;` `&lt;` `&gt;` `&quot;` `&#39;`), tags removed with
   nothing in their place. Any book registered before this existed stays here forever.
@@ -958,8 +987,9 @@ always relative to the repo itself, regardless of which directory you invoke the
 .anki-builder/
   audio/<voiceId>/<model>/<hash>.mp3            # ElevenLabs TTS cache (segmented by model)
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
-  epubs/<epubHash>/book.json                    # { title, slug } — title from <dc:title>, slug
-                                                 #   filled in lazily on first --output-root use
+  epubs/<epubHash>/book.json                    # { title, slug, invariants, hints } — title from
+                                                 #   <dc:title>, slug filled in lazily on first
+                                                 #   --output-root use. See "Per-book config".
   epubs/<epubHash>/cache-v<N>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
   epubs/<epubHash>/cache-v<N>/images/<...>          # images the cached chapters reference,
                                                      #   at whatever relative path their own

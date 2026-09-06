@@ -31,7 +31,11 @@
 
 import { readFileSync, existsSync } from "fs";
 import { join, resolve } from "path";
-import { chapterCachePath, chapterRangeCachePath } from "../src/corpus/epubLibrary.js";
+import {
+  chapterCachePath,
+  chapterRangeCachePath,
+  loadBookHints,
+} from "../src/corpus/epubLibrary.js";
 import { chapterOutline, plainText } from "../src/corpus/chapterOutline.js";
 
 const args = process.argv.slice(2);
@@ -48,7 +52,11 @@ if (positional.length === 0) {
 
 /** The cached chapter file this unit was built from — the same bytes the extraction model read. */
 function resolveChapterFile([first, second]) {
-  if (second !== undefined) return chapterCachePath(first, Number(second));
+  // Returns the hash alongside the path: the caller needs it to read the BOOK's own numbered-block
+  // markers, and re-deriving it there would be a second place that has to agree with this one.
+  if (second !== undefined) {
+    return { file: chapterCachePath(first, Number(second)), epubHash: first };
+  }
   const runDir = resolve(first);
   const src = ["cards.json", "corpus.json"].map((f) => join(runDir, f)).find((f) => existsSync(f));
   if (!src) {
@@ -62,12 +70,14 @@ function resolveChapterFile([first, second]) {
     );
     process.exit(2);
   }
-  return typeof meta.lastChapterNumber === "number" && meta.lastChapterNumber > meta.chapterNumber
-    ? chapterRangeCachePath(meta.epubHash, meta.chapterNumber, meta.lastChapterNumber)
-    : chapterCachePath(meta.epubHash, meta.chapterNumber);
+  const file =
+    typeof meta.lastChapterNumber === "number" && meta.lastChapterNumber > meta.chapterNumber
+      ? chapterRangeCachePath(meta.epubHash, meta.chapterNumber, meta.lastChapterNumber)
+      : chapterCachePath(meta.epubHash, meta.chapterNumber);
+  return { file, epubHash: meta.epubHash };
 }
 
-const chapterFile = resolveChapterFile(positional);
+const { file: chapterFile, epubHash } = resolveChapterFile(positional);
 if (!existsSync(chapterFile)) {
   console.error(
     `chapter not cached at ${chapterFile} — it is a free re-inflate of the EPUB, so run an assemble for this book first`,
@@ -76,7 +86,11 @@ if (!existsSync(chapterFile)) {
 }
 
 const raw = readFileSync(chapterFile, "utf-8");
-const { chars, sections, groups, images } = chapterOutline(raw);
+// The numbered-block markers are the BOOK's, read from its hints. A book that records none gets
+// no groups, and the line below says that in words: the checklist is a bonus this publisher
+// happens to make possible, never the completeness guarantee, which is the file bounds.
+const markers = loadBookHints(epubHash).numberedBlockMarkers ?? [];
+const { chars, sections, groups, images } = chapterOutline(raw, { markers });
 
 console.log(`chapter file: ${chapterFile}`);
 console.log(
@@ -103,6 +117,12 @@ if (sections.length > 0) {
         `${String(s.chars).padStart(6)} chars${blocks}`,
     );
   }
+}
+
+if (markers.length === 0) {
+  console.log(
+    "\n  (this book records no numbered-block markers, so there is no block checklist. That is\n   not a claim that the chapter has no blocks — read the text.)",
+  );
 }
 
 for (const g of groups) {

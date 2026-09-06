@@ -22,11 +22,19 @@ test("parseHeadings reads a title nested inside other tags", () => {
   );
 });
 
+// The markers are the BOOK's, read from its hints, so every call that expects blocks now names
+// them. A book that records none gets none, which is asserted separately below.
+const JBP_MARKERS = [
+  { filenamePrefix: "enum", label: "EXERCISES" },
+  { filenamePrefix: "wnum", label: "WORD POWER" },
+];
+
 test("parseNumberedBlocks finds markers INSIDE a filename, after an underscore", () => {
   // The bug this guards: `\benum` cannot match `_enum`, because `_` is a word character. It returned
   // zero blocks for a chapter holding twelve — a silent zero, in the check written to stop those.
   const blocks = parseNumberedBlocks(
     '<img src="../images/9781568366333_9781568366340_enum-VII.jpg"/><img src="x_wnum-II.jpg"/>',
+    JBP_MARKERS,
   );
   assert.deepEqual(
     blocks.map((b) => [b.kind, b.numeral]),
@@ -43,7 +51,7 @@ test("chapterOutline reports the full numbered run, which is what makes a short 
     ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"]
       .map((r) => `<img src="a_enum-${r}.jpg"/>`)
       .join("");
-  const { groups } = chapterOutline(html);
+  const { groups } = chapterOutline(html, { markers: JBP_MARKERS });
   assert.equal(groups.length, 1);
   assert.deepEqual(groups[0].numerals, ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"]);
   assert.deepEqual(groups[0].missing, []);
@@ -51,7 +59,7 @@ test("chapterOutline reports the full numbered run, which is what makes a short 
 
 test("chapterOutline names a HOLE in the numbering — the block nobody read", () => {
   const html = ["I", "II", "III", "V"].map((r) => `<img src="a_enum-${r}.jpg"/>`).join("");
-  const { groups } = chapterOutline(html);
+  const { groups } = chapterOutline(html, { markers: JBP_MARKERS });
   assert.deepEqual(groups[0].missing, ["IV"]);
 });
 
@@ -59,7 +67,7 @@ test("chapterOutline attributes each block to the section holding it, and sizes 
   const html =
     "<h2><b>GRAMMAR</b></h2><p>rules and more rules</p>" +
     '<h2><b>EXERCISES</b></h2><img src="a_enum-I.jpg"/><p>drill</p><img src="a_enum-II.jpg"/>';
-  const { sections, chars } = chapterOutline(html);
+  const { sections, chars } = chapterOutline(html, { markers: JBP_MARKERS });
   assert.deepEqual(
     sections.map((s) => [s.title, s.blocks]),
     [
@@ -71,7 +79,9 @@ test("chapterOutline attributes each block to the section holding it, and sizes 
 });
 
 test("a chapter with no headings or blocks is reported as empty, not as an error", () => {
-  const { sections, groups, chars } = chapterOutline("<p>a stub page</p>");
+  const { sections, groups, chars } = chapterOutline("<p>a stub page</p>", {
+    markers: JBP_MARKERS,
+  });
   assert.deepEqual(sections, []);
   assert.deepEqual(groups, []);
   assert.equal(chars, "a stub page".length);
@@ -89,7 +99,7 @@ test("a book that numbers nothing yields no groups, and that is not an error", (
   // none — and an empty `groups` must read as "this book does not number things", never as "there is
   // nothing to read here". The bounds of the file are the completeness guarantee, not the numbering.
   const novel = "<h1>Chapter One</h1><p>It was a dark and stormy night.</p>";
-  const { groups, sections, chars, images } = chapterOutline(novel);
+  const { groups, sections, chars, images } = chapterOutline(novel, { markers: JBP_MARKERS });
   assert.deepEqual(groups, []);
   assert.equal(sections.length, 1);
   assert.equal(sections[0].title, "Chapter One");

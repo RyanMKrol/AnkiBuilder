@@ -1104,6 +1104,25 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### Numbered blocks come from the book's own markers
+
+`chapterOutline` reports a chapter's numbered runs (`EXERCISES: 8 block(s) — I … VIII`) and names
+any hole in them, because a gap is a block nobody read. Those markers used to be a literal
+`(enum|wnum)` regex mapped to two hardcoded labels. They now come from `book.json`'s
+`hints.numberedBlockMarkers`, so a publisher that numbers its blocks differently is describable
+rather than unsupported.
+
+**A book with no markers gets no checklist, and the script says so in words.** That distinction is
+the whole reason this signal was demoted to a bonus in the first place: an empty result must read as
+"this book does not number things", never "there is nothing to read here". The completeness
+guarantee is the file bounds, which are universal; the checklist is a bonus this publisher happens
+to make possible.
+
+While making it configurable, a silent ceiling came out with it. The roman numerals were a literal
+array stopping at `XIV`, so on a book numbering fifteen or more blocks the expected run could never
+contain `XV` and a missing `XV` was invisible **in the check written to make a missed block
+visible**. They are computed now, and there is no ceiling.
+
 ### Image verdicts are persisted, whatever the verdict is
 
 `src/agents/imageVerdicts.js` records what the image specialist concluded about **every** image a

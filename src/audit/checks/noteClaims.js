@@ -1,4 +1,5 @@
 import { defineCheck } from "../registry.js";
+import { unitLanguage } from "../units.js";
 import { normalizeDisplayText } from "../../model/scriptSpacing.js";
 
 // Every existing note check in this repo is STRUCTURAL: does the note exist, does it restate the
@@ -76,7 +77,14 @@ export const noteClaimsCheck = defineCheck({
   scope: "unit",
   tier: "INFO",
   run({ unit, collection }) {
-    const language = unit.meta?.targetLanguage ?? "ja";
+    const language = unitLanguage(unit);
+    if (!language) {
+      return {
+        findings: [],
+        notes: [`${unit.name}: no target language declared, note claims not judged`],
+        summary: "not judged: no target language",
+      };
+    }
     const key = (text) => normalizeDisplayText(String(text), language).trim();
 
     // Everything this COLLECTION teaches, so "the deck's own cards" is the whole product being made

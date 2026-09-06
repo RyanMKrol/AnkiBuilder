@@ -40,6 +40,21 @@ const EPUBS_DIR = "epubs";
 const COURSES_DIR = "courses";
 const TEMPLATES_DIR = "templates";
 
+/**
+ * A unit's target language, or `null` when it does not declare one.
+ *
+ * There is deliberately NO fallback. `targetLanguage` is required by both schemas and every one of
+ * the 72 real unit files carries it, so a default could only ever fire on data that is already
+ * invalid, and what it did there was quietly apply Japanese rules to a unit of unknown language.
+ * Three checks defaulted to "ja" this way. A language-dependent check that cannot establish the
+ * language must say so rather than answer, which is the same rule the book config follows: report
+ * unknown, never zero.
+ */
+export function unitLanguage(unit) {
+  const code = unit?.meta?.targetLanguage;
+  return typeof code === "string" && code.trim() ? code : null;
+}
+
 /** The files a unit directory is recognised by, and validated through. */
 export const UNIT_FILES = ["cards.json", "corpus.json"];
 

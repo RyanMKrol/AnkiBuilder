@@ -1,0 +1,22 @@
+{
+  "title": "Japanese for Busy People Book 1: Kana",
+  "slug": "japanese-for-busy-people-book-1-kana",
+  "hints": {
+    "vocabularyTableClass": "voca",
+    "vocabularySubRowClass": "sub",
+    "numberedBlockMarkers": [
+      {
+        "filenamePrefix": "enum",
+        "label": "EXERCISES"
+      },
+      {
+        "filenamePrefix": "wnum",
+        "label": "WORD POWER"
+      }
+    ],
+    "lessonLabelWords": [
+      "Lesson",
+      "Unit"
+    ]
+  }
+}

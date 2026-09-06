@@ -1104,6 +1104,31 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### Image verdicts are persisted, whatever the verdict is
+
+`src/agents/imageVerdicts.js` records what the image specialist concluded about **every** image a
+chapter references, and `unaccountedImages` reports the ones carrying no verdict at all.
+
+That last function is the check. v1 already required the extraction model to report which images it
+opened, and `diffImageCoverage` already computed which were never accounted for. Both work. Then
+`epubLlmCorpus.js` destructures the result down to `{ items }`, so after a build a grammar table the
+model skipped and a chapter that never had one produce byte-identical output. Publishers put exactly
+the grid-shaped content that carries a paradigm into pictures, which is what makes that the sharpest
+silent failure in the pipeline.
+
+Two distinctions the vocabulary keeps apart:
+
+- **`decorative` is worth recording.** The point is not to keep the interesting verdicts. What makes
+  the failure invisible is an image with no entry, and that is only detectable when the
+  uninteresting ones are present too.
+- **`unreadable` is a verdict, not an error.** An image the specialist could not open or could not
+  make sense of is a real state, and separating it from `decorative` is what stops "looked and could
+  not tell" being filed as "looked and it was nothing". It is the one verdict that should make a
+  human look.
+
+An unknown verdict string is refused at write time rather than sorting as not-content-bearing, which
+would quietly reintroduce the failure.
+
 ### Dumping a chapter's tables, so a script never decides which are vocabulary
 
 `node scripts/chapter-tables.mjs <runDir> | <epubHash> <n>` prints **every** `<table>` a chapter

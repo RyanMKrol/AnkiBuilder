@@ -2303,6 +2303,41 @@ say when it was measured rather than stating it as a standing fact.
   findings once, then either fix them or promote the check to ACK in the same commit that accepts
   the residue.
 
+## vocab-coverage only sees ONE publisher's vocabulary tables, and reports zero on every other book
+
+- **What:** `parseVocaEntries` (`src/cards/vocabCoverage.js:12`) finds a chapter's vocabulary blocks
+  with `VOCA_TABLE = /<table[^>]*class="[^"]*\bvoca\b[^"]*"/`, and its indented sub-rows with
+  `SUB_CELL = /class="[^"]*\bsub\d?\b[^"]*"/`. Both are *Japanese for Busy People*'s markup. The
+  module says so in prose ("the shape this book uses", `:34`), but the `vocab-coverage` preflight
+  check (`src/audit/checks/vocab.js`) gates on `collection.kind === "epub"`, not on whether the book
+  is that one. On any other publisher the regex matches nothing, `findUncoveredVocab` receives an
+  empty entry list, and the check reports **zero uncovered headwords**, which is indistinguishable
+  from a chapter whose vocabulary is fully carded.
+- **Why:** the check was written against the only book in the library, and a regex over that book's
+  own markup was the cheapest thing that worked. Nothing has exercised it against a second book, so
+  the failure has never been seen. Note the same file's *content* rules (`／` alternate readings,
+  `(お)` optional prefixes, `〜` attachment points, counter sound-variants) are stated as language
+  facts but are equally this publisher's typography.
+- **Impact:** a silent zero on the one check whose whole job is to catch a silent miss. This is the
+  project's signature failure (an absent thing reading exactly like a working one) inside the
+  check written to prevent it. On the current book the check is correct and useful; the risk is
+  entirely on book #2, where it would report clean while seeing nothing.
+- **Verified by:**
+  ```sh
+  node -e 'import("./src/cards/vocabCoverage.js").then((m) => {
+    const row = "<tr><td>ねこ</td><td>Cat</td></tr>";
+    console.log("voca:", m.parseVocaEntries(`<table class="voca">${row}</table>`).length);
+    console.log("other:", m.parseVocaEntries(`<table class="tab1 FS-95">${row}</table>`).length);
+  })'
+  # expect: voca: 1 / other: 0. The same vocabulary table, seen or not seen by its class alone.
+  ```
+- **Status:** open
+- **When to revisit:** before a second book is built, and it is scheduled: v2 task D4
+  (`docs/designs/v2-tasks-2026-09.md`) retires this parsing entirely. A script dumps every `<table>`
+  and an agent decides which are vocabulary, because no EPUB is reliably consistent enough for a
+  selector. Until then the rule that would have caught it stands on its own: a check that finds no
+  configuration for a book must report **unknown**, never **zero**.
+
 ## The paradigm audit cannot tell a particle from the same kana inside a word
 
 - **What:** `matchesInPredicatePosition` requires a form to start the string or follow a particle

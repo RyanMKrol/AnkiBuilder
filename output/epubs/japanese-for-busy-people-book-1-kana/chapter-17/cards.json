@@ -82,6 +82,33 @@
       "note": "ます-form stem かい (kai) + たいです (tai desu). The 〜たい ending conjugates like an い-adjective."
     },
     {
+      "id": "kaitakunai-desu",
+      "english": "Don't want to buy",
+      "category": "Shopping",
+      "target": "かいたくないです",
+      "pronunciation": "kaitakunai desu",
+      "note": "Negative of かいたいです (“want to buy”): たい → たくないです (takunai desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "kaitakatta-desu",
+      "english": "Wanted to buy",
+      "category": "Shopping",
+      "target": "かいたかったです",
+      "pronunciation": "kaitakatta desu",
+      "note": "Past of かいたいです (“want to buy”): たい → たかったです (takatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "kaitakunakatta-desu",
+      "english": "Didn't want to buy",
+      "category": "Shopping",
+      "target": "かいたくなかったです",
+      "pronunciation": "kaitakunakatta desu",
+      "note": "Past negative of かいたいです (“want to buy”): たい → たくなかったです (takunakatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
       "id": "mae",
       "english": "Before",
       "category": "Time",
@@ -164,6 +191,33 @@
       "target": "たべたいです",
       "pronunciation": "tabetai desu",
       "note": "ます-form stem たべ (tabe) + たいです (tai desu)."
+    },
+    {
+      "id": "tabetakunai-desu",
+      "english": "Don't want to eat",
+      "category": "Food",
+      "target": "たべたくないです",
+      "pronunciation": "tabetakunai desu",
+      "note": "Negative of たべたいです (“want to eat”): たい → たくないです (takunai desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "tabetakatta-desu",
+      "english": "Wanted to eat",
+      "category": "Food",
+      "target": "たべたかったです",
+      "pronunciation": "tabetakatta desu",
+      "note": "Past of たべたいです (“want to eat”): たい → たかったです (takatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "tabetakunakatta-desu",
+      "english": "Didn't want to eat",
+      "category": "Food",
+      "target": "たべたくなかったです",
+      "pronunciation": "tabetakunakatta desu",
+      "note": "Past negative of たべたいです (“want to eat”): たい → たくなかったです (takunakatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
     },
     {
       "id": "shiryou",
@@ -313,12 +367,66 @@
       "note": "ます-form stem み (mi) + たいです (tai desu); from みます (mimasu, \"see, watch\")."
     },
     {
+      "id": "mitakunai-desu",
+      "english": "Don't want to see",
+      "category": "Grammar & Function Words",
+      "target": "みたくないです",
+      "pronunciation": "mitakunai desu",
+      "note": "Negative of みたいです (“want to see”): たい → たくないです (takunai desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "mitakatta-desu",
+      "english": "Wanted to see",
+      "category": "Grammar & Function Words",
+      "target": "みたかったです",
+      "pronunciation": "mitakatta desu",
+      "note": "Past of みたいです (“want to see”): たい → たかったです (takatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "mitakunakatta-desu",
+      "english": "Didn't want to see",
+      "category": "Grammar & Function Words",
+      "target": "みたくなかったです",
+      "pronunciation": "mitakunakatta desu",
+      "note": "Past negative of みたいです (“want to see”): たい → たくなかったです (takunakatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
       "id": "aitai-desu",
       "english": "Want to meet",
       "category": "Grammar & Function Words",
       "target": "あいたいです",
       "pronunciation": "aitai desu",
       "note": "ます-form stem あい (ai) + たいです (tai desu); from あいます (aimasu, \"meet\")."
+    },
+    {
+      "id": "aitakunai-desu",
+      "english": "Don't want to meet",
+      "category": "Grammar & Function Words",
+      "target": "あいたくないです",
+      "pronunciation": "aitakunai desu",
+      "note": "Negative of あいたいです (“want to meet”): たい → たくないです (takunai desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "aitakatta-desu",
+      "english": "Wanted to meet",
+      "category": "Grammar & Function Words",
+      "target": "あいたかったです",
+      "pronunciation": "aitakatta desu",
+      "note": "Past of あいたいです (“want to meet”): たい → たかったです (takatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
+    },
+    {
+      "id": "aitakunakatta-desu",
+      "english": "Didn't want to meet",
+      "category": "Grammar & Function Words",
+      "target": "あいたくなかったです",
+      "pronunciation": "aitakunakatta desu",
+      "note": "Past negative of あいたいです (“want to meet”): たい → たくなかったです (takunakatta desu).",
+      "reviewNote": "Added at gate 1 from the Exercise I conjugation table, which prints all four たい-forms for this verb and instructs the learner to memorize them."
     },
     {
       "id": "osushi-tabetakunai",

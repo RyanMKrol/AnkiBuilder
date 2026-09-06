@@ -44,14 +44,21 @@
 !/output/epubs/japanese-for-busy-people-book-1-kana/chapter-14/audio/bec9e4ba7edc6fe0.orig.mp3
 
 # anki-builder local library (audio cache, EPUB registry). Same mechanics as /output above, same
-# ordering rule. Tracked: the dedup corpora every later chapter is deduped against, and the two
-# cached artifacts a paid LLM pass produced (conventions, taught-index). The audio cache, the
-# extracted chapters and the extracted images stay untracked.
+# ordering rule. Tracked: the dedup corpora every later chapter is deduped against, the two cached
+# artifacts a paid LLM pass produced (conventions, taught-index), and each book's config. The audio
+# cache, the extracted chapters and the extracted images stay untracked.
+#
+# book.json is tracked because of what it now holds. It began as {title, slug}, both cheap to
+# re-derive, and it now also carries the book's `invariants` (labelDecoding, pinned once and frozen
+# because a chapter label becomes a live Anki deck name) and its `hints` (what onboarding learned
+# about this publisher's markup, reviewed by a human before it lands). That is hand-checked
+# knowledge with no other copy, which is the same reason conventions.md is tracked.
 /.anki-builder/**
 !/.anki-builder/**/
 !/.anki-builder/epubs/*/corpora/**
 !/.anki-builder/epubs/*/conventions.md
 !/.anki-builder/epubs/*/taught-index.json
+!/.anki-builder/epubs/*/book.json
 # ...but not a tool's stamped backup of a corpus file. The corpora/** re-include above is a glob, so
 # without this line every writeUnitJson backup lands in git. The tracked file's own history is the
 # restore point now, which is what makes the .bak disposable.

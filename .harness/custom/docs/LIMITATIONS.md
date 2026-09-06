@@ -3749,3 +3749,46 @@ npm run preflight | head -5
 npx anki-builder assemble --output-root output --words /dev/null \
   --course "Nihongo 101 Course (N5)" --lesson-number 99 --lang ja 2>&1 | tail -1
 ```
+
+## The quota circuit breaker reads the CLI's prose, and that prose is not a contract
+
+**What:** `looksLikeQuotaExhaustion` (`src/util/runClaude.js`) decides whether a failed `claude -p`
+call was a budget refusal by pattern-matching the CLI's human-readable message. On a match the run
+stops spawning entirely; on a miss every remaining pass is attempted and fails the same way. There is
+no exit code, header or machine-readable field that distinguishes the two, so prose is the only
+signal available.
+
+**Why this is recorded:** the predicate listed `usage limit` but not `session limit`, which is what
+the CLI actually says. It matched nothing, so the breaker never tripped on the most common refusal
+there is. A Lesson 17 build crossed the window and reported three passes as three separate failures
+(romanization, drill mining, cross-lesson notes), each having also spent its one retry, for roughly
+six wasted spawns after the budget was already gone. The failure is silent by construction: a missed
+match looks exactly like several unrelated errors, which is how it survived long enough for the owner
+to notice it as "API errors over the last few days" rather than as one quota event.
+
+The matching is now a list of phrasing FAMILIES rather than one alternation of literals, and it is
+deliberately biased wide, because the two errors are not symmetric. A false positive stops the run
+with a message saying to re-run when the window rolls over, and the next run finds out otherwise in a
+single pass. A false negative costs a cascade of spawns and a misleading report.
+
+**Impact:** still fragile in principle. Any future rewording that escapes all seven families brings
+the cascade straight back, and nothing fails loudly when it does. What changed is the blast radius:
+the wordings are pinned by tests including the exact observed string, so a narrowing edit breaks CI
+instead of shipping.
+
+**Status:** mitigated (2026-09-06). Not resolved: prose matching cannot be made correct, only wide.
+
+**When to revisit:** if the CLI ever exposes a machine-readable signal for a budget refusal (a
+distinct exit code, or a structured error under `--output-format json`), switch to it and keep the
+prose match only as a fallback. Sooner, if a build is ever again seen reporting several consecutive
+pass failures whose messages all mention a limit: that is this bug, and the fix is to widen a family.
+
+**Verified by:**
+
+```sh
+# the exact string a real build got must read as quota, and an ordinary error must not
+node -e 'import("./src/util/runClaude.js").then(m=>{
+  console.log(m.looksLikeQuotaExhaustion("You'"'"'ve hit your session limit · resets 12:30am (Europe/London)"));
+  console.log(m.looksLikeQuotaExhaustion("spawn claude ENOENT"))})'
+node --test test/util/runClaude.test.js
+```

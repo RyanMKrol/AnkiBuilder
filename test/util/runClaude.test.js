@@ -5,6 +5,7 @@ import {
   runClaudeWithPrompt,
   runClaudeWithPromptAsync,
   resetQuotaState,
+  looksLikeQuotaExhaustion,
 } from "../../src/util/runClaude.js";
 
 // The core refuses to run under the test runner unless explicitly allowed — these tests
@@ -391,6 +392,87 @@ test("a quota refusal stops the run instead of retrying, and stops the NEXT call
       /usage limit appears to be reached/,
     );
     assert.equal(laterSpawns, 0, "the rest of the run does not spawn");
+    resetQuotaState();
+  });
+});
+
+// The predicate had no direct test, and the behavioural test above happened to use the one
+// phrasing ("usage limit") the old pattern matched. The CLI actually says "session limit", which
+// matched nothing — so the breaker never tripped on the most common refusal there is, and a build
+// that crossed a limit reported every remaining pass as its own separate failure. Pin the real
+// wordings so a future edit cannot quietly narrow this again.
+test("recognizes every wording that means the account is out of budget", () => {
+  const refusals = [
+    // The exact string a Lesson 17 build got, straight from `claude -p` stdout.
+    "You've hit your session limit · resets 12:30am (Europe/London)",
+    "You've hit your session limit",
+    "Claude usage limit reached · resets 3am",
+    "You have reached your weekly limit",
+    "5-hour limit reached",
+    "Your token limit has been reached",
+    "quota exceeded for this organization",
+    "429 Too Many Requests",
+    "upgrade to increase your limit",
+    "limit exceeded",
+  ];
+  for (const text of refusals) {
+    assert.equal(looksLikeQuotaExhaustion(text), true, `should read as quota: ${text}`);
+  }
+});
+
+test("does not mistake an ordinary failure for a quota refusal", () => {
+  // Calling a real error "quota" stops the run early, so the widening above must not swallow
+  // the everyday failures a run should surface and retry normally.
+  const ordinary = [
+    "spawn claude ENOENT",
+    "error: unknown option '--effort'",
+    "SyntaxError: Unexpected end of JSON input",
+    "connection reset by peer",
+    "the model returned an empty response",
+    "no output on either stream",
+    "",
+    null,
+    undefined,
+  ];
+  for (const text of ordinary) {
+    assert.equal(looksLikeQuotaExhaustion(text), false, `should NOT read as quota: ${text}`);
+  }
+});
+
+test("the breaker trips on the CLI's real session-limit wording, not just on 'usage limit'", () => {
+  // End to end through the runner, because the predicate being right is only half of it: the
+  // point is that the run STOPS. This is the regression that cost a build six wasted spawns.
+  withEnv({}, () => {
+    resetQuotaState();
+    let spawns = 0;
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => {
+            spawns++;
+            return {
+              status: 1,
+              stdout: "You've hit your session limit · resets 12:30am (Europe/London)",
+              stderr: "",
+            };
+          },
+        }),
+      /usage limit appears to be reached/,
+    );
+    assert.equal(spawns, 1, "no retry is spent on a session-limit refusal");
+
+    let laterSpawns = 0;
+    assert.throws(
+      () =>
+        runClaudeWithPrompt("p", {
+          spawn: () => {
+            laterSpawns++;
+            return { status: 0, stdout: "ok" };
+          },
+        }),
+      /usage limit appears to be reached/,
+    );
+    assert.equal(laterSpawns, 0, "the passes queued behind it do not spawn either");
     resetQuotaState();
   });
 });

@@ -1,6 +1,7 @@
 import { existsSync, statSync, readFileSync } from "fs";
 import { basename, dirname, join, resolve } from "path";
 import { resolveDeckPathForDir } from "../deck/deckFileName.js";
+import { isUnitDir } from "../model/unitDir.js";
 
 // What a review gate looks like from the OUTSIDE — the question "has the human signed this unit off
 // yet, and did the work that sign-off triggers actually happen?"
@@ -9,10 +10,6 @@ import { resolveDeckPathForDir } from "../deck/deckFileName.js";
 // ~50-line shell snippet in SKILL.md, retyped once per unit (four times per chapter), which meant
 // every rule below had to be re-obeyed by hand every time — and each rule here exists because it was
 // broken at least once in a real build.
-//
-// The unit-dir shape is re-derived here rather than shared, matching the copies in
-// src/deck/deckFileName.js, src/deck/rebuild.js and src/server/adapters/stage.js. Keep them in step.
-const UNIT_DIR_PATTERN = /^(?:chapter|lesson)-\d+(?:-extras)?$/;
 
 /** Poll outcomes, and the process exit code each one means. */
 export const GATE_EXIT = {
@@ -31,7 +28,7 @@ export const GATE_EXIT = {
  */
 export function packageDirForUnit(runDir) {
   const dir = resolve(runDir);
-  return UNIT_DIR_PATTERN.test(basename(dir)) ? dirname(dir) : dir;
+  return isUnitDir(basename(dir)) ? dirname(dir) : dir;
 }
 
 /**

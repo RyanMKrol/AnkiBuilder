@@ -28,6 +28,7 @@ import { planDuplicateExclusions } from "../src/cards/duplicatePlan.js";
 import { mirrorExclusions } from "../src/cards/corpusMirror.js";
 import { collectionState, MutationRefused, assertMutationAllowed } from "../src/audit/state.js";
 import { writeUnitJson } from "../src/util/unitWrite.js";
+import { parseUnitDir } from "../src/model/unitDir.js";
 
 const args = process.argv.slice(2);
 const apply = args.includes("--apply");
@@ -59,9 +60,8 @@ if (apply) {
 }
 
 const units = readdirSync(bookDir)
-  .map((name) => name.match(/^(chapter|lesson)-(\d+)(-extras)?$/))
+  .map((name) => parseUnitDir(name))
   .filter(Boolean)
-  .map((m) => ({ name: m[0], number: Number(m[2]), extras: Boolean(m[3]) }))
   .sort((a, b) => a.number - b.number || Number(a.extras) - Number(b.extras))
   .map(({ name }) => {
     const path = join(bookDir, name, "cards.json");

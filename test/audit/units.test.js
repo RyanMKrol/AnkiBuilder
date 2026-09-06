@@ -24,7 +24,13 @@ test("the unit pattern matches all three folder shapes and nothing else", () => 
   assert.ok(!isUnitDirName("ja"));
   assert.ok(!isUnitDirName("chapter-x"));
   assert.ok(!isUnitDirName("chapter-3-drills"));
-  assert.deepEqual(UNIT_DIR_PATTERN.exec("chapter-13-extras").slice(1), ["13", "-extras"]);
+  // The group layout lives in src/model/unitDir.js now, and callers use parseUnitDir rather
+  // than indices. test/model/unitDir.test.js pins the fields.
+  assert.deepEqual(UNIT_DIR_PATTERN.exec("chapter-13-extras").slice(1), [
+    "chapter",
+    "13",
+    "-extras",
+  ]);
 });
 
 test("scanWorkspace finds books, courses and template decks, and reports what it could not place", () => {

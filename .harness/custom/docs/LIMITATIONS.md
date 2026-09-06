@@ -1336,9 +1336,10 @@ say when it was measured rather than stating it as a standing fact.
 ## An extras unit is keyed by folder-name suffix, not by a first-class unit type
 
 - **What:** a chapter's drill unit is a sibling folder suffixed `-extras` (`chapter-5-extras/`), and
-  everything that enumerates units recognizes it by that suffix: `BOOK_UNIT_DIR_PATTERN` in
-  `src/deck/rebuild.js`, the folder regex in `scanNumberedUnits`, and the `UNIT_PATTERN` whitelist in
-  the book/course server adapters. Its dashboard unit key is the suffix verbatim (`"5-extras"`), a
+  everything that enumerates units recognizes it by that suffix: `parseUnitDir`
+  (`src/model/unitDir.js`, the one definition since the seven hand-copies were collapsed) and the
+  per-prefix regex in `scanNumberedUnits`, which stays separate because a book adapter must match
+  only `chapter-*` and a course adapter only `lesson-*`. Its dashboard unit key is the suffix verbatim (`"5-extras"`), a
   string where a base lesson's is a number.
 - **Why:** the alternative was a real unit-type field plus a seq allocator that could mint distinct
   numbers for two units of the same chapter. That is a much wider change (allocation, claims, the

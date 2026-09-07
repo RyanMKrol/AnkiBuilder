@@ -42,6 +42,7 @@ import {
 import { writeVerdicts } from "./imageVerdicts.js";
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
+import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 /**
@@ -74,6 +75,12 @@ export const BASE_PHASE_STEPS = Object.freeze([
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
   { id: "coverage-adversary", kind: "agent", role: "coverageAdversary", artifact: COVERAGE_FILE },
   { id: "semantic-dedup", kind: "agent", role: "semanticDeduplicator", artifact: DEDUP_FILE },
+  {
+    id: "backward-dedup",
+    kind: "agent",
+    role: "backwardDeduplicator",
+    artifact: BACKWARD_FILE,
+  },
 ]);
 
 /** Steps `verifyRun` insists on. Every one of them: none of these is optional. */
@@ -99,6 +106,9 @@ export function runBasePhase({
   chapterHtml,
   targetLanguage,
   meta = null,
+  // Every earlier unit's shipping items, base and extras alike, for the backward judge. Separate
+  // from anything the miners see: this is prior ART, not permitted vocabulary.
+  priorItems = [],
   agents = {},
   now,
 } = {}) {
@@ -109,6 +119,7 @@ export function runBasePhase({
     judgeImages,
     enumerateChapter,
     deduplicateCorpus,
+    deduplicateAgainstEarlier,
     ...agents,
   };
 
@@ -275,6 +286,35 @@ export function runBasePhase({
       unaccounted: dedup.value.unaccounted,
     }),
   });
+
+  // --- prior art, after the within-corpus merge so nothing about-to-be-cut is judged -----------
+  const backward = timed(() =>
+    impl.deduplicateAgainstEarlier({
+      items: merged.items,
+      earlierItems: priorItems,
+      targetLanguage,
+      languageCode: targetLanguage,
+      // `assemble` runs the v1 string matcher after this phase and flags exact repeats itself.
+      skipExactMatches: true,
+      ...(agents.runClaude ? { runClaude: agents.runClaude } : {}),
+    }),
+  );
+  recordStep(run, {
+    step: "backward-dedup",
+    role: "backwardDeduplicator",
+    status: STEP_STATUS.OK,
+    durationMs: backward.durationMs,
+    counts: { in: backward.value.candidates.length, out: backward.value.flagged.length },
+    artifact: writeRelative(unitDir, BACKWARD_FILE, {
+      priorItems: priorItems.length,
+      candidates: backward.value.candidates.length,
+      skipped: backward.value.skipped,
+      flagged: backward.value.flagged,
+      cleared: backward.value.cleared,
+      unaccounted: backward.value.unaccounted,
+    }),
+  });
+
   // The corpus is rewritten because the exclusions are part of it. The SNAPSHOT is not: it was taken
   // before this ran, on purpose, and `writeSnapshot` refuses a second write anyway.
   writeRelative(unitDir, "corpus.json", {
@@ -294,6 +334,7 @@ export function runBasePhase({
     run,
     verdict,
     dedup: dedup.value,
+    backward: backward.value,
     items: merged.items,
     provenance: merged.provenance,
     senseCollisions: merged.senseCollisions,

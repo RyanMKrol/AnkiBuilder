@@ -93,6 +93,7 @@ test("the order is data, so removing a step is a visible edit rather than a path
       "snapshot",
       "coverage-adversary",
       "semantic-dedup",
+      "backward-dedup",
     ],
   );
   assert.deepEqual(
@@ -115,8 +116,12 @@ test("the ordering invariants: raw material, then the merge, then the baseline, 
   // because it is the only role that can remove a card; and it runs after the snapshot so the
   // learning pass can see what it cut. Before the baseline, its work would be invisible to the one
   // mechanism built to audit what happens to a corpus between generation and review.
-  assert.equal(at("semantic-dedup"), BASE_PHASE_STEPS.length - 1);
   assert.ok(at("snapshot") < at("semantic-dedup"), "the baseline is taken before anything is cut");
+
+  // The two dedup judges are ordered against each other: the within-corpus one cuts first, so the
+  // backward one is never asked about a card that is about to be excluded anyway.
+  assert.equal(at("backward-dedup"), BASE_PHASE_STEPS.length - 1);
+  assert.ok(at("semantic-dedup") < at("backward-dedup"));
 });
 
 test("a full run writes every artifact and verifies clean", () => {

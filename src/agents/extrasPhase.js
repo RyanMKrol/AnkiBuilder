@@ -30,6 +30,7 @@ import { authorInventedPractice } from "./inventiveAuthor.js";
 import { reconcile } from "../cards/unionReconciler.js";
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
+import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 export const EXTRAS_PHASE_STEPS = Object.freeze([
@@ -63,6 +64,12 @@ export const EXTRAS_PHASE_STEPS = Object.freeze([
   { id: "reconcile", kind: "deterministic", artifact: "corpus.json" },
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
   { id: "semantic-dedup", kind: "agent", role: "semanticDeduplicator", artifact: DEDUP_FILE },
+  {
+    id: "backward-dedup",
+    kind: "agent",
+    role: "backwardDeduplicator",
+    artifact: BACKWARD_FILE,
+  },
 ]);
 
 /**
@@ -121,6 +128,10 @@ export function runExtrasPhase({
   targetLanguage,
   meta = null,
   paradigmMisses = null,
+  // Deliberately NOT `earlierItems`. That one is the vocabulary the miners are permitted to use, and
+  // it excludes extras units on purpose. This is prior ART for the backward judge, and it must
+  // include them: extras content being invisible is the whole blind spot this closes.
+  priorItems = [],
   agents = {},
   now,
 } = {}) {
@@ -132,6 +143,7 @@ export function runExtrasPhase({
     authorGapFills,
     authorInventedPractice,
     deduplicateCorpus,
+    deduplicateAgainstEarlier,
     ...agents,
   };
   const pass = (fn) => {
@@ -290,6 +302,33 @@ export function runExtrasPhase({
       unaccounted: dedup.value.unaccounted,
     }),
   });
+
+  // --- prior art, after the within-corpus merge so nothing about-to-be-cut is judged -----------
+  const backward = pass(() =>
+    impl.deduplicateAgainstEarlier({
+      items: merged.items,
+      earlierItems: priorItems,
+      targetLanguage,
+      languageCode: targetLanguage,
+      ...(agents.runClaude ? { runClaude: agents.runClaude } : {}),
+    }),
+  );
+  recordStep(run, {
+    step: "backward-dedup",
+    role: "backwardDeduplicator",
+    status: STEP_STATUS.OK,
+    durationMs: backward.durationMs,
+    counts: { in: backward.value.candidates.length, out: backward.value.flagged.length },
+    artifact: write(unitDir, BACKWARD_FILE, {
+      priorItems: priorItems.length,
+      candidates: backward.value.candidates.length,
+      skipped: backward.value.skipped,
+      flagged: backward.value.flagged,
+      cleared: backward.value.cleared,
+      unaccounted: backward.value.unaccounted,
+    }),
+  });
+
   write(unitDir, "corpus.json", {
     meta: {
       targetLanguage,
@@ -306,6 +345,7 @@ export function runExtrasPhase({
     run,
     verdict: verifyRun(run, { unitDir, requiredSteps: REQUIRED_STEPS }),
     dedup: dedup.value,
+    backward: backward.value,
     items: merged.items,
     provenance: merged.provenance,
     senseCollisions: merged.senseCollisions,

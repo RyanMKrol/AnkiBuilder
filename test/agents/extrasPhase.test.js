@@ -124,6 +124,7 @@ test("the order is data, with the miners before the gaps and the inventor last",
       "reconcile",
       "snapshot",
       "semantic-dedup",
+      "backward-dedup",
     ],
   );
   assert.deepEqual(
@@ -134,8 +135,9 @@ test("the order is data, with the miners before the gaps and the inventor last",
   // Same invariant as phase 1, and it matters more here: five authoring roles feed this phase and
   // three of them mine the same chapter, so two miners returning one sentence is the normal case.
   const at = (id) => EXTRAS_PHASE_STEPS.findIndex((s) => s.id === id);
-  assert.equal(at("semantic-dedup"), EXTRAS_PHASE_STEPS.length - 1);
   assert.ok(at("snapshot") < at("semantic-dedup"), "the baseline is taken before anything is cut");
+  assert.equal(at("backward-dedup"), EXTRAS_PHASE_STEPS.length - 1);
+  assert.ok(at("semantic-dedup") < at("backward-dedup"), "cut duplicates before judging prior art");
 });
 
 test("gaps are computed AFTER the miners, so a hole one filled is not a hole", () => {

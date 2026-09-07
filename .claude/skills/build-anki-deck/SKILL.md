@@ -332,6 +332,7 @@ pinned higher and used to check them.
 | snapshot | script | `as-generated.json`, the pre-review baseline |
 | coverage adversary | agent, higher model | enumerates the chapter independently, diffed against the corpus in code |
 | semantic deduplicator | agent, higher model | decides which look-alike items are one card and which are two senses |
+| backward deduplicator | agent, higher model | flags cards an earlier unit already teaches, extras units included |
 
 **Nothing else in either phase decides whether two items are the same card.** The merge before it
 is a script comparing normalised strings, which is strict on purpose: loosening it is how a sense
@@ -756,6 +757,7 @@ decoration.
 | gap author | agent | driven by that gap list |
 | **inventive author** | agent | sentences NOT in the book, capped at **+20% of what the miners produced** |
 | semantic deduplicator | agent, higher model | runs last, on the finished set: which of these are the same sentence |
+| backward deduplicator | agent, higher model | flags sentences earlier units already teach |
 
 **The miners are unbounded and the inventive author is not.** If the book contains it, it belongs in
 the extras unit; an inventive role with no ceiling is how a unit fills with padding. It runs **last**

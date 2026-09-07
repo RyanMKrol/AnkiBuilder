@@ -50,6 +50,7 @@ const STANDING = [
   "chapter-tables.mjs",
   "build-base.mjs",
   "shadow-run.mjs",
+  "build-extras.mjs",
   "epub-probe.mjs",
   "eval-pass.mjs",
   "vocab-coverage.mjs",

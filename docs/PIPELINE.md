@@ -1149,6 +1149,41 @@ say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` grou
 built from its base unit's approved cards rather than from the book, and the one thing that does
 need the book, finding the cached chapter, reads the hash off the base unit directly.
 
+### The base/extras split, checked rather than trusted
+
+The `base-split` audit check flags cards in a base unit whose target reads as a sentence. The split
+is the reason phase 2 exists, and until now nothing enforced it: the phases put a card where their
+prompt says, and a prompt is a rule that holds until the day it does not.
+
+**The test is lexical entry versus utterance, never length**, so it is not a character count. A fixed
+expression the book glosses as a unit is an entry at twelve characters; a short clause is an utterance
+at four.
+
+`src/cards/predicateShape.js` holds the rule, per language, in the registry shape
+`romanizationLibraries.js` established: keyed by ISO 639-1, with an absent language returning `null`
+rather than an empty list. Only `ja` is worked out, and every other language is deliberately absent,
+because a wrong marker list would flag correct vocabulary as misfiled and send a reviewer to move
+cards that were already right.
+
+A target is an utterance when it has **both** a sentence-final predicate ending **and** clause
+structure, and the second half is what makes the check usable. This deck cards verbs in their polite
+ます form, so `あるきます` ("Walk") and `あります` ("Be, exist") are lexical entries that end in a
+predicate marker; requiring a particle as well drops every one of them, along with the fixed
+greetings that end the same way. The structure test runs on what is left once the predicate is
+removed, because `です` contains `で` and would otherwise prove itself a clause.
+
+**Its limit is that a particle is an ordinary kana.** There is no way to tell the topic marker `は`
+from the `は` inside `はな` without morphological analysis, so every particle in the set also fires
+word-internally. Which particles are in it is a measured recall/noise trade, recorded in the module
+against the 1,224 shipping cards of the live base units. The upgrade path, if the noise justifies it,
+is kuromoji, which this repo already depends on for Japanese romanization.
+
+**Only phase-built units are judged, and the check is ACK.** A v1 base unit is 20-30% utterances by
+this measure and that is the convention those chapters were built under, so they are counted and
+named as a permanent exemption rather than flagged: not rewriting them is an explicit non-goal. ACK
+rather than FAIL because a fixed expression is an entry however sentence-like it looks, and a tier
+that blocked would be overridden the first time it fired.
+
 ### One source of card rules, included rather than restated
 
 `docs/card-rules-shared.md` holds the rules every pass that writes, edits or deletes a card has to

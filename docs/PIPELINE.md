@@ -1219,6 +1219,34 @@ leaves `とけい`, which is a finding a person can act on.
 It is a **report, never a filter**. Substring containment over a space-free script cannot be certain,
 so a silent drop would remove a good sentence for a bad reason and say nothing about it.
 
+#### The line between the two miners
+
+**The exercise miner mines what the book PRINTS; the fill-in-the-blank miner expands what the book
+IMPLIES.** A worked `e.g.` line is a sentence the author wrote, so mining it is a fact about the
+chapter and that role is unbounded. A frame with six fillers beside it is a recipe for six sentences
+the author did not write, so how many deserve a card is a judgement, and that role is capped at three
+per frame.
+
+Drawing that line late cost a near-duplicate: the exercise miner's first prompt claimed substitutions
+too, which would have produced the same sentences twice under two role names and made the provenance
+meaningless. The prompts now name each other's territory.
+
+Two exceptions the cap never applies to, both learned by getting it wrong in v1: an **irregular** form
+is kept whatever the cap says, because sampling is for cells a learner can derive and an irregular is
+by definition the one they cannot; and a **distinct derivation** is not a repeat, since
+`かいます→かう`, `のみます→のむ` and `かえります→かえる` are three row shapes rather than one.
+
+#### Unresolved slots are refused, not reported
+
+Everything else in this pipeline reports and lets a human decide, because most judgements are
+genuinely close. This one is not. A target still holding `___`, an empty full-width paren or a bare
+`〜` cannot be studied by anyone in any context, so there is nothing for a reviewer to weigh, and
+`assertNoUnresolvedSlots` throws at parse time rather than adding a card whose only future is
+deletion.
+
+`frameYield` records what each frame offered against what it kept, so "this chapter was thin" and
+"this role capped hard" are told apart by reading rather than guessing.
+
 #### The exercise miner (F1)
 
 Turns drills and worked examples into complete sentences, and accounts for **every numbered exercise

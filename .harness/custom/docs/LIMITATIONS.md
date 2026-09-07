@@ -3920,7 +3920,8 @@ Sonnet, and the ordering is asserted from the `checks` field rather than left in
 
 ## A page-scan EPUB has no text, so the TEXT path cannot read it
 
-The second EPUB this project was tested against (Genki I, supplied 2026-09-07) is a Calibre "PDF
+The second EPUB this project was tested against (Genki I, supplied 2026-09-07 as a test fixture
+for the "unknown, never zero" criterion, not as a book anyone wants a deck from) is a Calibre "PDF
 Reflow conversion" of a scan: a single `index.html` of 393 `<p><img></p>` pairs, one per page, with
 132 characters of text in the whole file, all of it the `<title>` tag holding the source PDF's
 filename. The owner's PDF of the same book is the same thing one step earlier: 392 images, **zero

@@ -97,6 +97,13 @@ const TEMPLATES = {
     // `skipped` would make "this drill needed an untaught word" indistinguishable from silence.
     outputContract: /"items"[\s\S]*"blocks"[\s\S]*"skipped"/,
   },
+  "semantic-deduplicator-prompt.md": {
+    // Only the groups. It judges what the corpus already contains, so it needs no chapter, no
+    // categories and no card faces: everything it can act on is in front of it, and anything else
+    // would widen a prompt whose whole job is a bounded yes/no per group.
+    placeholders: ["TARGET_LANGUAGE", "GROUPS_JSON"],
+    outputContract: /"verdict"[\s\S]*"duplicate"[\s\S]*"distinct"/,
+  },
   "coverage-adversary-prompt.md": {
     // Deliberately NO category list, card faces or book hints: this role enumerates the source, it
     // does not author cards, and anything derived from the corpus would anchor it to the answer it

@@ -92,6 +92,28 @@ export const ROLES = Object.freeze({
     purpose: "Enumerate the chapter's teachable items independently, for a code-side diff.",
   },
 
+  semanticDeduplicator: {
+    envScope: "SEMANTIC_DEDUPLICATOR",
+    // Above every producer, and for a sharper reason than the adversary's. This role can DELETE. A
+    // wrong "duplicate" verdict removes a card and nobody notices it is gone, so it outranks the
+    // roles whose output it judges in BOTH phases.
+    model: "claude-opus-5",
+    effort: "high",
+    timeoutMs: 20 * MINUTES,
+    phase: "both",
+    checks: [
+      "tableSpecialist",
+      "chapterReader",
+      "imageSpecialist",
+      "exerciseMiner",
+      "fillInBlankMiner",
+      "exampleSentenceMiner",
+      "gapAuthor",
+      "inventiveAuthor",
+    ],
+    purpose: "Decide which look-alike items in one corpus are the same card, and which are senses.",
+  },
+
   // ---- Phase 2: extras ----------------------------------------------------------------------
   exerciseMiner: {
     envScope: "EXERCISE_MINER",

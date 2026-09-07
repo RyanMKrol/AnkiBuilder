@@ -92,6 +92,7 @@ test("the order is data, so removing a step is a visible edit rather than a path
       "reconcile",
       "snapshot",
       "coverage-adversary",
+      "semantic-dedup",
     ],
   );
   assert.deepEqual(
@@ -101,13 +102,21 @@ test("the order is data, so removing a step is a visible edit rather than a path
   );
 });
 
-test("the adversary runs last, and the reconciler before the snapshot", () => {
+test("the ordering invariants: raw material, then the merge, then the baseline, then the judge", () => {
   const at = (id) => BASE_PHASE_STEPS.findIndex((s) => s.id === id);
-  assert.equal(at("coverage-adversary"), BASE_PHASE_STEPS.length - 1);
+
   assert.ok(at("reconcile") < at("snapshot"), "a baseline taken mid-merge is not a baseline");
   for (const agentStep of ["table-specialist", "chapter-reader", "image-specialist"]) {
     assert.ok(at("tables") < at(agentStep), "scripts supply raw material before agents judge");
   }
+  assert.ok(at("reconcile") < at("coverage-adversary"), "the diff needs something to compare to");
+
+  // The deduplicator runs LAST, and the two reasons are separate. It acts on the finished set
+  // because it is the only role that can remove a card; and it runs after the snapshot so the
+  // learning pass can see what it cut. Before the baseline, its work would be invisible to the one
+  // mechanism built to audit what happens to a corpus between generation and review.
+  assert.equal(at("semantic-dedup"), BASE_PHASE_STEPS.length - 1);
+  assert.ok(at("snapshot") < at("semantic-dedup"), "the baseline is taken before anything is cut");
 });
 
 test("a full run writes every artifact and verifies clean", () => {

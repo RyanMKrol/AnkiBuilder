@@ -11,9 +11,14 @@
 //     raw material; agents judge. No agent here is handed a selector or a filter.
 //   - the reconciler runs after all three specialists and before the snapshot, because the snapshot
 //     is the pre-review baseline and a baseline taken mid-merge is not one.
-//   - the adversary runs LAST and is fed the chapter, never the corpus. It runs last only so its
-//     diff has something to compare against; the comparison happens in code afterwards, and the
-//     prompt has nowhere to put the corpus even if the order changed.
+//   - the adversary is fed the chapter, never the corpus, and runs after the merge so its diff has
+//     something to compare against. The comparison happens in code afterwards, and the prompt has
+//     nowhere to put the corpus even if the order changed.
+//   - the deduplicator runs LAST, and after the snapshot. It is the only role that can remove a
+//     card, so it acts on the finished set rather than a partial one; and running it after the
+//     baseline is taken is what lets the learning pass see what it cut. Before the snapshot, its
+//     work would be invisible to the one mechanism built to audit what happens to a corpus between
+//     generation and review.
 //
 // EVERY STEP IS VERIFIED BY ITS ARTIFACT, not by its return value. `verifyRun` re-reads the files at
 // the end, so a step that returned cheerfully and wrote nothing is caught here rather than at a
@@ -36,6 +41,7 @@ import {
 } from "./coverageAdversary.js";
 import { writeVerdicts } from "./imageVerdicts.js";
 import { writeSnapshot } from "./snapshot.js";
+import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 /**
@@ -67,6 +73,7 @@ export const BASE_PHASE_STEPS = Object.freeze([
   { id: "reconcile", kind: "deterministic", artifact: "corpus.json" },
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
   { id: "coverage-adversary", kind: "agent", role: "coverageAdversary", artifact: COVERAGE_FILE },
+  { id: "semantic-dedup", kind: "agent", role: "semanticDeduplicator", artifact: DEDUP_FILE },
 ]);
 
 /** Steps `verifyRun` insists on. Every one of them: none of these is optional. */
@@ -101,6 +108,7 @@ export function runBasePhase({
     readChapter,
     judgeImages,
     enumerateChapter,
+    deduplicateCorpus,
     ...agents,
   };
 
@@ -244,11 +252,48 @@ export function runBasePhase({
     ),
   });
 
+  // --- the deduplicator, last, on the finished corpus and after the baseline -------------------
+  const dedup = timed(() =>
+    impl.deduplicateCorpus({
+      items: merged.items,
+      targetLanguage,
+      languageCode: targetLanguage,
+      ...(agents.runClaude ? { runClaude: agents.runClaude } : {}),
+    }),
+  );
+  recordStep(run, {
+    step: "semantic-dedup",
+    role: "semanticDeduplicator",
+    status: STEP_STATUS.OK,
+    durationMs: dedup.durationMs,
+    counts: { in: dedup.value.groups.length, out: dedup.value.excluded.length },
+    artifact: writeRelative(unitDir, DEDUP_FILE, {
+      groups: dedup.value.groups.length,
+      skipped: dedup.value.skipped,
+      excluded: dedup.value.excluded,
+      distinct: dedup.value.distinct,
+      unaccounted: dedup.value.unaccounted,
+    }),
+  });
+  // The corpus is rewritten because the exclusions are part of it. The SNAPSHOT is not: it was taken
+  // before this ran, on purpose, and `writeSnapshot` refuses a second write anyway.
+  writeRelative(unitDir, "corpus.json", {
+    meta: {
+      targetLanguage,
+      sourceType: "epub",
+      reviewed: false,
+      ...(meta?.unit ?? {}),
+      phase: "base",
+    },
+    items: merged.items,
+  });
+
   finishRun(run, now ? { now } : {});
   const verdict = verifyRun(run, { unitDir, requiredSteps: REQUIRED_STEPS });
   return {
     run,
     verdict,
+    dedup: dedup.value,
     items: merged.items,
     provenance: merged.provenance,
     senseCollisions: merged.senseCollisions,

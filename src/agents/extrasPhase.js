@@ -29,6 +29,7 @@ import { authorGapFills } from "./gapAuthor.js";
 import { authorInventedPractice } from "./inventiveAuthor.js";
 import { reconcile } from "../cards/unionReconciler.js";
 import { writeSnapshot } from "./snapshot.js";
+import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 export const EXTRAS_PHASE_STEPS = Object.freeze([
@@ -61,6 +62,7 @@ export const EXTRAS_PHASE_STEPS = Object.freeze([
   },
   { id: "reconcile", kind: "deterministic", artifact: "corpus.json" },
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
+  { id: "semantic-dedup", kind: "agent", role: "semanticDeduplicator", artifact: DEDUP_FILE },
 ]);
 
 /**
@@ -129,6 +131,7 @@ export function runExtrasPhase({
     mineExampleSentences,
     authorGapFills,
     authorInventedPractice,
+    deduplicateCorpus,
     ...agents,
   };
   const pass = (fn) => {
@@ -262,10 +265,47 @@ export function runExtrasPhase({
     artifact: "as-generated.json",
   });
 
+  // --- the deduplicator, last, on the finished corpus and after the baseline -------------------
+  // Five authoring roles feed this phase and three of them mine the same chapter, so two miners
+  // returning one sentence is the normal case rather than the unlucky one.
+  const dedup = pass(() =>
+    impl.deduplicateCorpus({
+      items: merged.items,
+      targetLanguage,
+      languageCode: targetLanguage,
+      ...(agents.runClaude ? { runClaude: agents.runClaude } : {}),
+    }),
+  );
+  recordStep(run, {
+    step: "semantic-dedup",
+    role: "semanticDeduplicator",
+    status: STEP_STATUS.OK,
+    durationMs: dedup.durationMs,
+    counts: { in: dedup.value.groups.length, out: dedup.value.excluded.length },
+    artifact: write(unitDir, DEDUP_FILE, {
+      groups: dedup.value.groups.length,
+      skipped: dedup.value.skipped,
+      excluded: dedup.value.excluded,
+      distinct: dedup.value.distinct,
+      unaccounted: dedup.value.unaccounted,
+    }),
+  });
+  write(unitDir, "corpus.json", {
+    meta: {
+      targetLanguage,
+      sourceType: "epub",
+      reviewed: false,
+      ...(meta?.unit ?? {}),
+      phase: "extras",
+    },
+    items: merged.items,
+  });
+
   finishRun(run, now ? { now } : {});
   return {
     run,
     verdict: verifyRun(run, { unitDir, requiredSteps: REQUIRED_STEPS }),
+    dedup: dedup.value,
     items: merged.items,
     provenance: merged.provenance,
     senseCollisions: merged.senseCollisions,

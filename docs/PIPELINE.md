@@ -1129,6 +1129,33 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### Phase 2 as one ordered script
+
+`node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code>` takes an **approved**
+base unit to a reviewable extras corpus. `--dry` prints the nine steps and says five of them spend.
+
+It refuses an unreviewed base unit. Phase 2 exists to show approved vocabulary at work, so running it
+earlier means every sentence rests on words a human may still cut, which is how v1's extras units
+ended up audited against a card set that no longer existed.
+
+The order carries three constraints, each asserted by a test:
+
+- **The three miners run before the gaps are computed.** A gap is only real if a miner did not
+  already fill it, and computing first would hand the gap author holes that no longer exist and spend
+  a call closing them twice.
+- **The gaps are computed between the miners and the gap author**, from the base unit plus everything
+  mined so far. That is the only moment the number is true.
+- **The inventive author runs last.** Its allowance is a share of what the others produced, and its
+  job is to add what is missing; earlier, the allowance would be a guess and it could not avoid
+  reinventing what it had not yet seen.
+
+It is also given every **earlier lesson's** cards, so the vocabulary rule is judged against what the
+learner has actually met rather than against this chapter alone.
+
+Findings are surfaced before the review rather than after: sentences that appear to use an untaught
+word, gaps left open for want of taught vocabulary, invented sentences that repeat a mined one, and
+targets carrying more than one sense.
+
 ### Phase 1 as one ordered script
 
 `node scripts/build-base.mjs <unitDir> <epubHash> <n> --lang <code>` takes a chapter to a reviewable

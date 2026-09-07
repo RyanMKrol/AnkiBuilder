@@ -98,8 +98,10 @@ Optional: install `ffmpeg` (`brew install ffmpeg`) to auto-trim the trailing sil
 ElevenLabs leaves on each clip. It's best-effort — audio still builds fine without it.
 
 Run the local dashboard (`npm run serve`). Readiness is tracked **per lesson (sub-deck)**, not per
-deck: a lesson passes **two review gates** (Corpus, then Audio) and becomes **Built** only when you
-click **Mark done** — the final human sign-off. The home page splits your lessons into **Not finished**
+deck: a lesson passes a **corpus review** and then an **audio review**, and becomes **Built** only
+when you click **Mark done** — the final human sign-off. A v2 chapter is signed off three times,
+once per unit at the corpus gate and once for the chapter's shared audio; the flags on disk
+(`reviewed`, `done`) are the same two either way. The home page splits your lessons into **Not finished**
 (a build that stopped before there was anything to review — re-run `assemble` to resume it),
 **In review** (each with a _Review_ action) and **Built · ready to study** (a single **Open** action)
 — with a deck's lessons grouped under its heading. A deck with some lessons done and others still in
@@ -501,7 +503,7 @@ operator has to override on the day it lands is worse than no gate.
 - [x] `view-deck` — reads a built `.apkg` back and renders a read-only deck-browser artifact (cards
       grouped by sub-deck, audio embedded inline per card; auto-splits large decks into parts)
 - [x] `serve` — local deck-dashboard web app (Node builtins only) with two views per deck: a
-      **Review** view (`/review/...`) — the guided, editable workflow across the two gates (corpus →
+      **Review** view (`/review/...`) — the guided, editable workflow across the gates (corpus →
       audio, with exclude / edit / mark-reviewed / generate / rebuild write-back and
       AI-suggested/uncertain badges) — and a read-only **Browse** view (`/deck/...`) that streams audio
       over HTTP with no size cap. A multi-lesson deck's home-page heading links to the deck-level

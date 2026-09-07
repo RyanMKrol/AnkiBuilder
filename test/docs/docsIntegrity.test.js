@@ -22,7 +22,6 @@ const DOC_ROOTS = [
   "CLAUDE.md",
   "docs",
   ".claude/skills/build-anki-deck",
-  ".claude/skills/augment-anki-deck",
   ".harness/custom/docs/LIMITATIONS.md",
 ];
 

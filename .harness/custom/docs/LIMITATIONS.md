@@ -3955,3 +3955,41 @@ this entry first claimed.
 
 **Verified by:** `node scripts/epub-probe.mjs <the epub>` reports `1 file(s), 35 KB of content` and
 `132 chars of text, 393 image(s)`. For the PDF, a raw scan for `/Type /Font` returns zero matches.
+
+## The union reconciler ships the same word twice when two roles gloss it differently
+
+Measured on the only live phase-1 run so far (chapter 2, 4 agent calls): **19 of 83 items are a
+target that already appears elsewhere in the same corpus**, differing only in how the gloss is
+punctuated.
+
+```
+とけい   x2   'Watch, clock.'   /  'Watch; clock.'
+わたしの x2   'My, mine.'       /  'My; mine.'
+かし     x2   'Sweets.'         /  'Sweets; confectionery.'
+いち     x2   'One (1).'        /  'One.'
+```
+
+**Why it happens.** `candidateKey` is `targetKey|englishKey`, and keying on the gloss as well as the
+target is deliberate: it is what stops はし (bridge) and はし (chopsticks) merging into one item and
+silently deleting a sense. But `englishKey` normalises only case, whitespace and a trailing `.?!`,
+so `watch, clock` and `watch; clock` are different keys and both entries survive. The specialists
+overlap by design and each writes its own gloss, so this fires whenever two of them agree on a word
+and differ on a comma.
+
+**Impact.** About a quarter of a base corpus reaches the review as near-identical pairs, and the
+reviewer culls them by hand. Worse, the pairs are not obviously wrong on screen: two cards reading
+"Watch, clock." and "Watch; clock." look like a duplicate someone already decided to keep. It is also
+the largest single quality gap between v2's output and a reviewed v1 unit.
+
+**Why the obvious fix is not obviously right.** Normalising `,` and `;` inside the gloss would merge
+these, but the same normalisation moves the boundary that protects a real sense split, and the sense
+split is the failure that costs a card rather than a reviewer's minute. A safer shape is probably to
+keep the key as it is and add a post-merge pass that reports same-target pairs whose glosses differ
+only in punctuation, so a script proposes and a human or an agent disposes, which is this project's
+existing idiom.
+
+**Status:** open, and it should be settled before any paid v2 build. `findSenseCollisions` already
+computes same-target groups, so the machinery to report them exists.
+
+**Verified by:** re-run `node scripts/shadow-run.mjs` for a reviewed chapter and count targets
+appearing more than once in the resulting `corpus.json`.

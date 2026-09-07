@@ -1197,6 +1197,25 @@ twelve than against one of two hundred.
 **It decides nothing.** Its output is candidate gaps for a human at the review gate, and `confidence`
 travels with each so a reviewer can start where the evidence is strongest.
 
+### Alternate readings are split in code, before the merge
+
+A cell like `ゼロ ／ れい` teaches two readings. The first live shadow run showed both ways of
+getting that wrong at once: some roles emitted the raw cell as a **target** (four of them, and a
+target holding two readings is not a word), while others recorded the second reading as a **note** on
+the first, so no card taught it either. Both are the same v1 miss arriving by different routes, from
+roles whose prompts warn about it explicitly.
+
+`expandAlternates` splits them, and it lives in code rather than a prompt because splitting a cell on
+a separator is not a judgement. It runs **before** the merge, which is what makes the halves join up:
+one role's `ゼロ／れい` becomes `ゼロ` and `れい`, and that `ゼロ` then merges with the bare `ゼロ`
+another role found rather than shipping as a third card.
+
+Each half carries a note naming its sibling, because two cards glossed "Zero" with nothing else
+separating them is precisely the collision the deck's cue rules exist for.
+
+Verified against the real agent output kept from the shadow run, at no cost: 83 items became 87,
+`れい`, `し`, `しち` and `く` all appear as entries, and no target contains a separator.
+
 ### The union reconciler: union for existence, never a vote
 
 `src/cards/unionReconciler.js` merges the three phase-1 roles into one candidate corpus. Nothing in

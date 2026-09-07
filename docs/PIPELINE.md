@@ -1197,6 +1197,39 @@ twelve than against one of two hundred.
 **It decides nothing.** Its output is candidate gaps for a human at the review gate, and `confidence`
 travels with each so a reviewer can start where the evidence is strongest.
 
+### Phase 2 roles, and the vocabulary rule they are all held to
+
+Phase 2 runs **after** the base corpus review, so every extras role is fed vocabulary a human has
+already approved. Its job is to show those words at work, never to teach new ones.
+
+**Every word a produced sentence uses must already be taught**, from this chapter's approved base
+unit or an earlier lesson. v1 calls this the rule most likely to be broken and the most damaging when
+it is, because a sentence built on an untaught word cannot be studied and sits in the deck looking
+finished.
+
+`src/agents/extrasVocabulary.js` checks it mechanically rather than trusting the prompt. Three
+prompts will state the rule and three models will mostly follow it, and "mostly" is the problem: the
+violation is invisible at review, because a sentence using one unfamiliar word reads perfectly well
+to anyone who knows the language.
+
+The check is **coverage, not parsing**: walk the sentence marking every character a taught form
+accounts for, and report the residue. `これはとけいです` against a set holding これ/は/です/ペン
+leaves `とけい`, which is a finding a person can act on.
+
+It is a **report, never a filter**. Substring containment over a space-free script cannot be certain,
+so a silent drop would remove a good sentence for a bad reason and say nothing about it.
+
+#### The exercise miner (F1)
+
+Turns drills and worked examples into complete sentences, and accounts for **every numbered exercise
+block**. One chapter's read once stopped at Exercise V of VIII with two blocks never seen, one of
+which held the only use of two words in the whole book.
+
+`skipped` is a first-class part of its answer rather than an apology. A drill needing a word neither
+list teaches must be skipped, and naming which and why is how a reviewer tells "this chapter had less
+in it" apart from "this role quietly lowered its standards". A block may be accounted for by either
+list, so skipping is never indistinguishable from never arriving.
+
 ### Alternate readings are split in code, before the merge
 
 A cell like `ゼロ ／ れい` teaches two readings. The first live shadow run showed both ways of

@@ -1240,7 +1240,7 @@ and often correct.
 
 Two things are reported rather than refused, both because they are judgements: a sentence that
 **reinvents** one the miners already produced (matched on the reconciler's own key, so this cannot
-disagree with the merge that follows), and a sentence using an **untaught word** — this role is the
+disagree with the merge that follows), and a sentence using an **untaught word**. This role is the
 likeliest to slip there, since it writes freely rather than copying and a natural sentence is exactly
 where an untaught word gets in.
 

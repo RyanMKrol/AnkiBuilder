@@ -27,6 +27,20 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "exercise-miner-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+      "BLOCKS_JSON",
+    ],
+    // The envelope: sentences, a line per block, and the blocks deliberately skipped. Losing
+    // `skipped` would make "this drill needed an untaught word" indistinguishable from silence.
+    outputContract: /"items"[\s\S]*"blocks"[\s\S]*"skipped"/,
+  },
   "coverage-adversary-prompt.md": {
     // Deliberately NO category list, card faces or book hints: this role enumerates the source, it
     // does not author cards, and anything derived from the corpus would anchor it to the answer it

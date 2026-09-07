@@ -27,6 +27,21 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "gap-author-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "EXAMPLES_WANTED",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "GAPS_JSON",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+    ],
+    // The envelope: sentences that close gaps, and the gaps deliberately left open. Losing
+    // `unfillable` makes "this hole needs an untaught word" indistinguishable from silence.
+    outputContract: /"items"[\s\S]*"unfillable"/,
+  },
   "example-sentence-miner-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

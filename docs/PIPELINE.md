@@ -1219,6 +1219,34 @@ leaves `とけい`, which is a finding a person can act on.
 It is a **report, never a filter**. Substring containment over a space-free script cannot be certain,
 so a silent drop would remove a good sentence for a bad reason and say nothing about it.
 
+#### The gap author (F4), and why its holes are counted
+
+The three miners work from what the chapter contains. The gap author works from what the lesson's
+own cards are **missing**, and the difference is that the holes are found by arithmetic
+(`src/agents/coverageGaps.js`) rather than by a model's sense of what feels thin.
+
+That matters because a role asked "what is this unit missing" answers from impression and produces
+plausible work with no relationship to the deck's actual shape. Handed a computed list, it writes
+against evidence. Same scripts-supply-agents-judge split as everywhere else, with arithmetic as the
+raw material.
+
+Two sources are computed, one is supplied:
+
+- **`neverUsed`**: `findTaughtNeverUsed` reports a word the lesson teaches and then uses in nothing longer.
+- **`underExampled`**: function words with fewer than three sentences showing them at work.
+  Counting is the honest test: `の` once had ten examples in this deck and all ten were the same
+  `[company]の[person]` shape, so presence was never the question.
+- **`paradigm`**: deliberately **not** computed. A grid's spec is hand-authored per chapter because
+  knowing which paradigm a chapter teaches is a judgement, not a count. With no spec it reports
+  `null` rather than `[]`, because "nobody checked" and "nothing missing" are different answers.
+
+`assertGapsAddressed` refuses a response that leaves a computed gap unmentioned. `unfillable` is a
+correct outcome: a hole that cannot be closed without an untaught word must stay open, since filling
+it with one turns one gap into two.
+
+A lesson with no gaps costs **no model call at all**, which is the common case for a well-covered
+chapter and should not be paid for.
+
 #### The line between the two miners
 
 **The exercise miner mines what the book PRINTS; the fill-in-the-blank miner expands what the book

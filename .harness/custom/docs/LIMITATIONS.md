@@ -3918,28 +3918,39 @@ Sonnet, and the ordering is asserted from the `checks` field rather than left in
 **Verified by:** `node --test test/agents/survivingPassPins.test.js`, and
 `grep -n "PASS_PINS" src/corpus/epubLlmRunClaude.js src/translate/runClaude.js` for the tables.
 
-## A page-scan EPUB has no text, and the pipeline needs text
+## A page-scan EPUB has no text, so the TEXT path cannot read it
 
-The second EPUB this project was tested against (Genki I, supplied 2026-09-07) turned out to be a
-Calibre "PDF Reflow conversion" of a scanned book: a single `index.html` of 393 `<p><img></p>` pairs,
-one per page, with 132 characters of text in the whole file, all of it the `<title>` tag holding the
-source PDF's filename.
+The second EPUB this project was tested against (Genki I, supplied 2026-09-07) is a Calibre "PDF
+Reflow conversion" of a scan: a single `index.html` of 393 `<p><img></p>` pairs, one per page, with
+132 characters of text in the whole file, all of it the `<title>` tag holding the source PDF's
+filename. The owner's PDF of the same book is the same thing one step earlier: 392 images, **zero
+`/Font` objects**, so it cannot be rendering text either.
 
-**Impact: this book cannot be built at all**, and the reason is structural rather than a missing
-config. Extraction, the miners, the dedup passes and the note pass all read text. The image
-specialist reads images, but it is one voice among three by design and it is fed per chapter, and
-here there are no chapters: one spine file is the whole book, so nothing bounds a lesson. The book's
-own table of contents is itself a page image.
+**Impact on the text path: total.** Extraction, the miners, the dedup passes and the note pass all
+read text, and there is none. No `book.json` helps, because there is no markup to point a hint at.
 
-**Why it is worth recording rather than just fixing.** `epub-probe.mjs` caught both halves before
-anything was spent, in the two warnings it was written for: no nav entry classifies as a lesson, and
-a spine file carries under 200 characters of text but does carry images. That is the check working,
-and the finding is that a whole CLASS of EPUB is out of scope, not that this file is broken.
+**A correction to the first version of this entry.** It also claimed nothing could bound a lesson,
+because one spine file is the whole book and the table of contents is itself an image. That is wrong,
+and it was written before anyone opened a page. Every page carries its lesson in the printed header
+(`第1課 51`, `第5課 141`) and again in a side tab (`L1`, `L5`), so lesson boundaries are recoverable
+from the pages themselves without the contents pages at all.
 
-**Status:** open, and the cheap answer is a different file. A text EPUB of the same book needs no
-work at all. Supporting page scans is in the ideas inbox and is a real piece of work: grouping page
-images into lessons, and promoting the image specialist from one voice among three to the only
-source.
+**What is actually true is narrower, and more interesting.** The scans are 300 DPI, 1360x1920, and
+fully legible including furigana. v2 already has an image specialist role, so the blocker is not
+readability or structure but ARCHITECTURE: the pipeline takes a chapter of markup, and this book is a
+directory of page images.
+
+Building from it would need a source adapter for page images beside the EPUB one, lesson grouping off
+the page header, and the image specialist promoted from one voice to the primary reader. **That last
+part is the real cost**, and it is a design cost rather than an effort one: phase 1 works by having
+three specialists read the same chapter independently and unioning them, because the disagreement is
+the signal. With images only, the table specialist and the chapter reader have nothing to read, and
+the redundancy that phase 1 is built on collapses to a single voice unless it is rebuilt some other
+way, such as two vision passes pinned to different models.
+
+**Status:** open. The cheap answer is still a text EPUB, which needs no work at all. The page-image
+path is in the ideas inbox and is a real piece of work, but a smaller and better-defined one than
+this entry first claimed.
 
 **Verified by:** `node scripts/epub-probe.mjs <the epub>` reports `1 file(s), 35 KB of content` and
-`132 chars of text, 393 image(s)`.
+`132 chars of text, 393 image(s)`. For the PDF, a raw scan for `/Type /Font` returns zero matches.

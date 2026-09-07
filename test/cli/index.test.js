@@ -2138,6 +2138,51 @@ test("prepare: skips drills and notes for a template (no drills to mine, no sibl
   });
 });
 
+test("prepare: a v2 base unit does not get drills mined into it", async () => {
+  // The whole point of the base/extras split: a base unit is lexical entries. Phase 2 mines this
+  // chapter's sentences into its extras sibling, so prepare running its own miner here would put
+  // sentences into the one unit that must hold none.
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = baseEpubCorpus();
+    corpus.meta.phase = "base";
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    const calls = [];
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+
+    assert.deepEqual(calls, ["translate", "notes"], "the drill miner never ran");
+    const written = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    assert.equal(
+      written.items.some((item) => item.fillInBlank),
+      false,
+    );
+    // Skipped with a reason, not silently absent: the ledger has to distinguish "phase 2 owns this"
+    // from "the pass was forgotten".
+    assert.equal(written.meta.passes.fillInBlank.status, "skipped");
+    assert.match(written.meta.passes.fillInBlank.reason, /vocabulary only/);
+    assert.equal(written.meta.passes.semanticDedup.status, "skipped");
+  });
+});
+
+test("prepare: a v2 extras unit keeps the sentences its miners produced", async () => {
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    const corpus = baseEpubCorpus();
+    corpus.meta.phase = "extras";
+    writeFileSync(paths.corpus, JSON.stringify(corpus));
+
+    const calls = [];
+    await runCli(["prepare", "--run", runDir], prepareDeps(calls));
+
+    assert.equal(calls.includes("fib"), false, "a second differently-mined drill block");
+    const passes = JSON.parse(readFileSync(paths.cards, "utf-8")).meta.passes;
+    assert.match(passes.fillInBlank.reason, /phase 2's own miners/);
+  });
+});
+
 test("prepare: throws when there's no corpus to prepare", async () => {
   await withTempDir(async (runDir) => {
     await assert.rejects(

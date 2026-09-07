@@ -198,7 +198,13 @@ export function runBasePhase({
       out: merged.items.length,
     },
     artifact: writeRelative(unitDir, "corpus.json", {
-      meta: { targetLanguage, sourceType: "epub", reviewed: false, ...(meta?.unit ?? {}) },
+      meta: {
+        targetLanguage,
+        sourceType: "epub",
+        reviewed: false,
+        ...(meta?.unit ?? {}),
+        phase: "base",
+      },
       items: merged.items,
     }),
   });

@@ -41,6 +41,16 @@ const CORPUS_SCHEMA = {
         // since both sourceTypes need the exact same "numbered sub-deck of a bigger
         // merged collection" shape — see resolveLessonRunDir in cli/outputPaths.js.
         courseSlug: { type: ["string", "null"] },
+        // Which v2 phase script built this corpus: "base" (lexical entries, phase 1) or "extras"
+        // (propositions, phase 2). ABSENT IS MEANINGFUL, and it is the v1 answer: the corpus came
+        // from `assemble`, so `prepare` still owns the drill mining. A phase unit's sentences were
+        // produced by phase 2's own miners, and re-mining them in `prepare` would put sentences into
+        // a base unit that is defined as vocabulary only.
+        //
+        // Stamped on the corpus rather than derived from `as-generated.json`, which also records the
+        // phase: that file is build scratch, untracked and deletable, and a correctness rule resting
+        // on a deletable file fails silently in the direction that costs a card set.
+        phase: { type: "string", enum: ["base", "extras"] },
       },
       additionalProperties: false,
     },

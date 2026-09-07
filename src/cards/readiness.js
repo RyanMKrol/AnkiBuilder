@@ -18,6 +18,29 @@ import { resolveIso639Code } from "../model/iso639.js";
  * Checking the state instead of trusting the route means it does not matter how a lesson got here.
  */
 
+/**
+ * Is the fill-in-the-blank + semantic de-dup pass this unit's to run?
+ *
+ * Two units answer no, for the same underlying reason: something else already settled what drills
+ * the unit holds, so an absent `enriched` marker is correct rather than a pass that never finished.
+ *
+ *  - **A template** is a fixed vocabulary list with no source text to mine.
+ *  - **A v2 phase unit** (`meta.phase`) had its sentences produced by phase 2's own miners. A base
+ *    unit must hold no sentences at all, so mining drills into it would break the split the phases
+ *    exist to enforce; an extras unit already holds the mined set.
+ *
+ * This is exported and shared rather than re-tested at each site because the three callers must
+ * agree: `prepare` decides whether to run the pass, `lessonReadiness` decides whether its marker is
+ * required before a human may sign off, and `resume` decides whether to send the operator back to
+ * `prepare`. Two of those disagreeing produces a unit that can never become reviewable and a
+ * recovery step that never stops recommending itself.
+ */
+export function drillPassExpected(meta = {}) {
+  if (meta.sourceType === "template") return false;
+  if (meta.phase === "base" || meta.phase === "extras") return false;
+  return true;
+}
+
 /** The pre-review passes, in the order `prepare` runs them, keyed by the marker each one sets. */
 const REQUIRED_PASSES = [
   {
@@ -50,7 +73,12 @@ export function lessonReadiness(meta = {}, items = null) {
     return { ready: true, missing: [], reason: null, numberIssues: [], translateErrors: [] };
   }
 
-  const missing = REQUIRED_PASSES.filter((pass) => meta[pass.key] !== true);
+  // A pass this unit was never going to run cannot be missing from it. The cross-lesson note pass
+  // still runs on a phase unit, so it stays required either way.
+  const required = REQUIRED_PASSES.filter(
+    (pass) => pass.key !== "enriched" || drillPassExpected(meta),
+  );
+  const missing = required.filter((pass) => meta[pass.key] !== true);
 
   // Items that never translated (recorded by the translate stage after its retry). A reviewer
   // signing off a lesson with holes in it would be approving a card set that isn't final —

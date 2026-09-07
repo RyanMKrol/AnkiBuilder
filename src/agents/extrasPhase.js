@@ -211,7 +211,13 @@ export function runExtrasPhase({
     status: STEP_STATUS.OK,
     counts: { in: existing.length + invented.value.items.length, out: merged.items.length },
     artifact: write(unitDir, "corpus.json", {
-      meta: { targetLanguage, sourceType: "epub", reviewed: false, ...(meta?.unit ?? {}) },
+      meta: {
+        targetLanguage,
+        sourceType: "epub",
+        reviewed: false,
+        ...(meta?.unit ?? {}),
+        phase: "extras",
+      },
       items: merged.items,
     }),
   });

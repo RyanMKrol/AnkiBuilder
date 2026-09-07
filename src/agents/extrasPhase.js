@@ -63,6 +63,38 @@ export const EXTRAS_PHASE_STEPS = Object.freeze([
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
 ]);
 
+/**
+ * The identity an extras unit inherits from the base unit it was built from.
+ *
+ * Every field here has been typed by hand sixteen times, once per extras unit in the collection, and
+ * all sixteen agree. That is the argument for deriving it: a convention nothing enforces is one that
+ * holds until the first time someone is in a hurry, and two of these fields are read by the deck
+ * build.
+ *
+ *  - **`chapterLabel` is the base label plus " (Extras)"**, and that suffix is not decoration. It is
+ *    what `deckPath.js` splits on to nest the drills under their lesson, so a unit that spells it
+ *    differently ships as a sibling deck of the book rather than a child of the lesson.
+ *  - **`baseChapterLabel` names the lesson the drills belong to**, which is what `rebuild.js` groups
+ *    on.
+ *  - **`chapterNumber` is the base unit's**, so the two units sort together.
+ *
+ * `epubHash` is deliberately NOT carried over, matching all sixteen existing units: an extras unit is
+ * built from its base unit's approved cards rather than from the book, and the one thing that does
+ * need the book (finding the cached chapter) reads it off the base unit directly.
+ */
+export function extrasUnitMeta(baseMeta = {}) {
+  const label = baseMeta.chapterLabel ?? null;
+  const meta = {
+    chapterNumber: baseMeta.chapterNumber ?? null,
+    chapterLabel: label ? `${label} (Extras)` : null,
+  };
+  if (label) meta.baseChapterLabel = label;
+  if (typeof baseMeta.lastChapterNumber === "number") {
+    meta.lastChapterNumber = baseMeta.lastChapterNumber;
+  }
+  return meta;
+}
+
 export const REQUIRED_STEPS = Object.freeze(EXTRAS_PHASE_STEPS.map((s) => s.id));
 
 function write(unitDir, relative, body) {

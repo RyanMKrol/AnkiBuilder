@@ -16,7 +16,7 @@ import {
   chapterRangeCachePath,
   loadBookHints,
 } from "../src/corpus/epubLibrary.js";
-import { EXTRAS_PHASE_STEPS, runExtrasPhase } from "../src/agents/extrasPhase.js";
+import { EXTRAS_PHASE_STEPS, runExtrasPhase, extrasUnitMeta } from "../src/agents/extrasPhase.js";
 import { ROLES } from "../src/agents/roles.js";
 import { parseUnitDir } from "../src/model/unitDir.js";
 
@@ -105,7 +105,7 @@ const result = runExtrasPhase({
   baseItems,
   earlierItems,
   targetLanguage,
-  meta: { hints: loadBookHints(meta.epubHash) },
+  meta: { hints: loadBookHints(meta.epubHash), unit: extrasUnitMeta(meta) },
 });
 
 for (const step of result.run.steps) {

@@ -1149,6 +1149,29 @@ say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` grou
 built from its base unit's approved cards rather than from the book, and the one thing that does
 need the book, finding the cached chapter, reads the hash off the base unit directly.
 
+### Every pass declares its model, including the v1 ones that survived
+
+Both the v2 role registry (`src/agents/roles.js`) and the two v1 families
+(`EPUB_PASS_PINS`, `TRANSLATE_PASS_PINS`) declare a model and an effort per pass, and
+`test/agents/survivingPassPins.test.js` holds the v1 tables to the same two rules the role registry
+is held to: every pass names both, and a checking pass outranks what it checks.
+
+The v1 passes were not previously unpinned in the sense of inheriting the operator's model.
+`resolvePinning` falls through to a hardcoded `DEFAULT_MODEL` of `claude-sonnet-5`, so they had a
+pin; it just lived in a constant three files away that would have moved eight passes at once if
+anyone had changed it.
+
+**What was actually wrong is the forward-flag pass.** It reads items the extraction just produced
+and judges whether any are premature, which makes it a checking role, and it was running at the same
+rank as the pass it checks with nothing saying that was a choice. It is now Opus against the
+extraction's Sonnet, and the ordering is derived from a `checks` field rather than stated in a
+comment, so getting it backwards fails the build.
+
+They stay in their own tables rather than moving into `ROLES`, and that is now a decision rather
+than a deferral: the v1 families group passes that share an env knob and a blast radius, and the v2
+roles deliberately do not share one. The table specialist and the coverage adversary are pinned apart
+on purpose, and a single knob moving both would undo the ranking the registry exists to assert.
+
 ### The base/extras split, checked rather than trusted
 
 The `base-split` audit check flags cards in a base unit whose target reads as a sentence. The split

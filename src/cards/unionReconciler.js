@@ -17,6 +17,7 @@
 
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { targetKey, englishKey } from "./itemSetDiff.js";
+import { splitAlternates } from "./vocabCoverage.js";
 
 /**
  * The key two candidates are considered THE SAME ITEM on: the target and the gloss together.
@@ -54,6 +55,46 @@ function richer(a, b) {
 }
 
 /**
+ * Splits a candidate whose target holds two readings into one candidate per reading.
+ *
+ * WHY THIS IS CODE AND NOT A PROMPT. The first live shadow run produced four targets that were raw
+ * table cells: `ゼロ／れい`, `よん／し`, `なな／しち`, `きゅう／く`. A target holding two readings is
+ * not a word and would ship as an unstudiable card. Worse, the same run showed the alternative
+ * failure at the same time: the other roles recorded `れい` as a NOTE on `ゼロ` rather than as an
+ * entry, so no card taught it either. Both are the same v1 miss, arriving by two different routes,
+ * from roles whose prompts warn about it explicitly.
+ *
+ * Splitting a cell on a separator is not a judgement, so instructing a model to do it reliably is
+ * the wrong tool. It is a set operation, and set operations belong here where they can be asserted
+ * for free. Doing it BEFORE the merge is what makes the halves join up: one role's `ゼロ／れい`
+ * becomes `ゼロ` and `れい`, and the `ゼロ` then merges with the `ゼロ` another role found alone.
+ *
+ * Each half carries a note naming its sibling, because two cards reading "Zero" with nothing else to
+ * separate them is exactly the collision the deck's own cue rules exist for.
+ */
+export function expandAlternates(items) {
+  const out = [];
+  for (const item of items ?? []) {
+    const readings = typeof item.target === "string" ? splitAlternates(item.target) : [item.target];
+    if (readings.length < 2) {
+      out.push(item);
+      continue;
+    }
+    readings.forEach((reading, index) => {
+      const others = readings.filter((r) => r !== reading);
+      out.push({
+        ...item,
+        id: index === 0 ? item.id : `${item.id ?? "item"}-alt${index + 1}`,
+        target: reading,
+        note: [item.note, `Also read ${others.join(", ")}.`].filter(Boolean).join(" "),
+        alternateOf: readings[0],
+      });
+    });
+  }
+  return out;
+}
+
+/**
  * Merges candidate lists into one, and returns `{ items, provenance, singletons, agreement }`.
  *
  * `items` keeps every distinct candidate. `provenance` maps the merged item's id to the role ids
@@ -69,7 +110,8 @@ export function reconcile(candidateLists, { languageCode } = {}) {
   const unmatchable = [];
 
   for (const list of candidateLists) {
-    for (const item of list ?? []) {
+    // Split before merging, so one role's `ゼロ／れい` joins another role's bare `ゼロ`.
+    for (const item of expandAlternates(list)) {
       const key = candidateKey(item, languageCode);
       if (!key) {
         unmatchable.push({ item, roles: new Set([item.producedBy].filter(Boolean)) });

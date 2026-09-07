@@ -140,3 +140,75 @@ test("agreement is reported as evidence, not applied as a threshold", () => {
   assert.equal(agreement.total, 2);
   assert.deepEqual(agreement.byRoleCount, { 1: 1, 2: 1 });
 });
+
+test("a target holding two readings becomes two entries, before the merge", () => {
+  // From the first live shadow run: four targets came back as raw table cells (ゼロ／れい and
+  // friends). A target holding two readings is not a word, and the readings after the separator
+  // (れい, し, しち, く) are the target of no card in the real deck.
+  const { items } = reconcile(
+    [from("tableSpecialist", { id: "zero", target: "ゼロ／れい", english: "Zero" })],
+    ja,
+  );
+  assert.deepEqual(
+    items.map((i) => i.target),
+    ["ゼロ", "れい"],
+  );
+  assert.deepEqual(
+    items.map((i) => i.id),
+    ["zero", "zero-alt2"],
+  );
+  assert.equal(items.filter((i) => /[／/]/.test(i.target)).length, 0);
+});
+
+test("each half names its sibling, because two cards glossed 'Zero' need separating", () => {
+  const { items } = reconcile(
+    [from("tableSpecialist", { id: "z", target: "ゼロ／れい", english: "Zero" })],
+    ja,
+  );
+  assert.match(items[0].note, /Also read れい/);
+  assert.match(items[1].note, /Also read ゼロ/);
+  assert.equal(items[1].alternateOf, "ゼロ");
+});
+
+test("splitting happens before merging, so the halves join what other roles found alone", () => {
+  // This ordering is the point: one role's ゼロ／れい becomes ゼロ + れい, and that ゼロ then merges
+  // with the bare ゼロ another role found, rather than shipping as a third card.
+  const { items, provenance } = reconcile(
+    [
+      from("tableSpecialist", { id: "zero", target: "ゼロ／れい", english: "Zero" }),
+      from("chapterReader", { id: "zero2", target: "ゼロ", english: "Zero" }),
+    ],
+    ja,
+  );
+  assert.deepEqual(
+    items.map((i) => i.target),
+    ["ゼロ", "れい"],
+  );
+  assert.deepEqual(provenance[items[0].id].sort(), ["chapterReader", "tableSpecialist"]);
+});
+
+test("an existing note is kept, not replaced, when a target is split", () => {
+  const { items } = reconcile(
+    [
+      from("tableSpecialist", {
+        id: "z",
+        target: "ゼロ／れい",
+        english: "Zero",
+        note: "Used in phone numbers.",
+      }),
+    ],
+    ja,
+  );
+  assert.match(items[0].note, /Used in phone numbers\./);
+  assert.match(items[0].note, /Also read れい/);
+});
+
+test("a target with no separator is untouched", () => {
+  const { items } = reconcile(
+    [from("tableSpecialist", { id: "a", target: "ねこ", english: "Cat" })],
+    ja,
+  );
+  assert.equal(items.length, 1);
+  assert.equal(items[0].target, "ねこ");
+  assert.ok(!("alternateOf" in items[0]));
+});

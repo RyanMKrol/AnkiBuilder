@@ -22,6 +22,7 @@ const DOC_ROOTS = [
   "CLAUDE.md",
   "docs",
   ".claude/skills/build-anki-deck",
+  ".claude/skills/onboard-epub",
   ".harness/custom/docs/LIMITATIONS.md",
 ];
 

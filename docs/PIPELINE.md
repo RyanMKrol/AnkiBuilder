@@ -1129,6 +1129,37 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### The learning pass: reading the review back
+
+`node scripts/learning-pass.mjs <unitDir>` diffs a unit's `as-generated.json` against its approved
+`cards.json` and attributes every difference to the role that produced the item.
+
+It exists because moving extraction to agents removed the eval fixtures' replay seam for that half of
+the pipeline: there is no recorded stdout to diff when the work is a judgement spread across several
+roles. What replaces it is the reviewer, who already looks at every card and already excludes and
+edits. Those actions are ground truth about where a role was wrong, they cost nothing extra, and
+until now nothing read them back.
+
+**Only a human exclusion is feedback.** An exclusion carries `excludedBy`, and the difference between
+`human` and a script name is the difference between "a person judged this card wrong" and "the
+pipeline did its job". Counting a `semantic-dedup` exclusion against the role that produced the card
+would punish it for being deduplicated, which is usually the system working. The two are counted
+apart and can never be added together.
+
+**A changed field is reported as changed, never as a rejection.** A card records no author for a
+field, so a reviewer's edit and a later pass's edit are indistinguishable. Claiming the reviewer
+rejected a wording would send someone to fix a prompt that was never at fault.
+
+**An item no role claimed is unattributed**, which is a real category rather than a rounding error: a
+card can reach the corpus by a route no role was recorded for, and inventing an attribution is worse
+than admitting the gap.
+
+A unit built by v1 has no snapshot and says so plainly. That is a gap in the record, not an error:
+the snapshot is written by the phase script before the review, so it only exists for units v2 built.
+
+Run against a real phase-1 output with a simulated review, it reports per role: produced, kept, cut
+by human, cut by script, and edited, with the human cuts named alongside their reasons.
+
 ### Phase 3: a chapter's audio, and the refetch audit that guards it
 
 `node scripts/build-audio.mjs <collectionDir> <n> --lang <code>` generates a chapter's audio for

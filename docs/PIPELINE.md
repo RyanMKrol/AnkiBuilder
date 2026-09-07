@@ -1129,6 +1129,34 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### Phase 3: a chapter's audio, and the refetch audit that guards it
+
+`node scripts/build-audio.mjs <collectionDir> <n> --lang <code>` generates a chapter's audio for
+**both** its units in one run, because they share one audio review. `--dry` runs the readiness check
+and the refetch audit and fetches nothing.
+
+**The cache hit rate is the wrong question.** The obvious check is whether every card's text still
+resolves to a file in `.anki-builder/audio`, and against the real deck that is **76%**. It is not a
+regression: the cache is documented as disposable, `rm -rf` on it is sanctioned whenever audio
+generation changes, and it has been dropped. The clips live in each unit's `audio/` directory,
+296 MB against the cache's 171 MB.
+
+**The real invariant is that no shipping card is refetched.** A default clip is named for the hash of
+the text it speaks, so if the derivation still produces that hash the clip stands and nothing is
+fetched. If the derivation drifts, every card's name stops matching at once and the stage re-buys
+roughly 4,400 clips silently, because a refetch looks exactly like a first fetch.
+
+`src/audio/refetchAudit.js` measures it, and counts **hand-curated takes separately**: a manual trim,
+an upload or a generated variant keeps its own filename by design, and folding those into "stale"
+would make the check cry wolf on 326 real cards and be ignored within a week. Across the whole book
+today: 2,062 current, 326 hand-curated, **0 would be refetched**.
+
+A non-zero refetch count **stops the run** rather than warning, because the money is spent the moment
+it proceeds.
+
+The generation itself is v1's, driven rather than reimplemented: `src/audio` is the most portable
+code in the repo and the most expensive to get wrong.
+
 ### The combined audio review page
 
 `GET /chapter/<type>/<id>/<n>` renders a chapter's base unit and its `-extras` sibling on one page,

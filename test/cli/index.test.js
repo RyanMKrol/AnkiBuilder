@@ -453,6 +453,110 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
   });
 });
 
+test("assemble --extraction phase: phase 1 replaces extraction and nothing else", async () => {
+  // The point of the seam: everything assemble does AROUND extraction still runs, in the same order,
+  // on the phase's items. A v2 chapter that skipped the backward dedup would re-teach words the book
+  // already taught, and nothing downstream would notice.
+  await withTempDir(async (runDir) => {
+    const seen = [];
+    let phaseUnitDir = null;
+
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "1",
+        "--lang",
+        "Japanese",
+        "--extraction",
+        "phase",
+      ],
+      {
+        registerEpub: () => ({ epubHash: "hash123" }),
+        resolveLabelDecoding: () => 1,
+        chapterCachePath: () => "/cache/1.xhtml",
+        extractChapterToFile: (epubPath, chapterNumber, destPath) => destPath,
+        loadBookConventions: () => "cached conventions",
+        describeChapter: () => "Lesson 1",
+        assembleCorpusFromChapter: () => {
+          throw new Error("the v1 extraction must not run under --extraction phase");
+        },
+        extractBaseCorpus: ({ unitDir, epubHash }) => {
+          seen.push("phase");
+          phaseUnitDir = unitDir;
+          assert.equal(epubHash, "hash123");
+          return baseEpubCorpus();
+        },
+        loadPriorChapterItems: () => {
+          seen.push("prior");
+          return [];
+        },
+        dedupBackward: (items) => {
+          seen.push("backward");
+          return { items, flagged: [] };
+        },
+        flagForwardConcerns: ({ candidateItems }) => {
+          seen.push("forward");
+          return { items: candidateItems, flagged: [] };
+        },
+        sortItemsPedagogically: ({ items }) => {
+          seen.push("sort");
+          return { items, changed: false };
+        },
+        log: () => {},
+      },
+    );
+
+    assert.deepEqual(seen, ["phase", "prior", "backward", "forward", "sort"]);
+    assert.equal(phaseUnitDir, runDir, "the phase writes its artifacts into the unit being built");
+
+    // And the unit's identity is stamped afterwards exactly as it is for a v1 extraction.
+    const corpus = JSON.parse(readFileSync(runPaths(runDir).corpus, "utf-8"));
+    assert.equal(corpus.meta.epubHash, "hash123");
+    assert.equal(corpus.meta.chapterLabel, "Lesson 1");
+  });
+});
+
+test("assemble: --extraction takes phase or v1, and a typo is an error not a silent v1 build", async () => {
+  await withTempDir(async (runDir) => {
+    await assert.rejects(
+      () =>
+        runCli([
+          "assemble",
+          "--run",
+          runDir,
+          "--template",
+          "travel-essentials",
+          "--extraction",
+          "phase",
+        ]),
+      /needs an --epub source/,
+    );
+    await assert.rejects(
+      () =>
+        runCli([
+          "assemble",
+          "--run",
+          runDir,
+          "--epub",
+          "/tmp/book.epub",
+          "--chapter-number",
+          "1",
+          "--lang",
+          "ja",
+          "--extraction",
+          "phse",
+        ]),
+      /must be "phase" or "v1"/,
+    );
+  });
+});
+
 test("assemble: skips the book-conventions pass when it's already cached for that epub", async () => {
   await withTempDir(async (runDir) => {
     let analyzeCalled = false;

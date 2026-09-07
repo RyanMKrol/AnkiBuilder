@@ -214,6 +214,12 @@ export async function runAssemble(flags, ctx) {
     ctx.log("both --lesson and --chapter-number given — using --chapter-number (manual override)");
   }
 
+  // Checked here, before anything is resolved or extracted, so a bad value costs nothing. Phase 1
+  // reads a chapter, so it has nothing to do on a template or a dictated word list.
+  if (usePhaseExtraction(flags) && !flags.epub) {
+    throw new Error("--extraction phase needs an --epub source; phase 1 reads a chapter");
+  }
+
   const runDir = resolveAssembleRunDir(flags, ctx);
   if (!runDir) {
     throw new Error(
@@ -248,6 +254,23 @@ export async function runAssemble(flags, ctx) {
     return;
   }
   return runPrepare({ ...flags, run: runDir }, ctx);
+}
+
+/**
+ * Whether this build's extraction step is v2's phase 1.
+ *
+ * `--extraction phase` is opt-in per build rather than a mode the tree is in, because both
+ * extractions have to keep working for the whole of the migration: `main` is still finishing a book
+ * with v1, and a v2 chapter has to be buildable beside it without a branch switch. The value is
+ * checked rather than treated as a boolean so `--extraction v1` stays sayable and a typo is an
+ * error rather than a silent fallback to the old path.
+ */
+function usePhaseExtraction(flags) {
+  const value = flags.extraction;
+  if (value === undefined) return false;
+  if (value === "phase") return true;
+  if (value === "v1") return false;
+  throw new Error(`--extraction must be "phase" or "v1" (got "${value}")`);
 }
 
 async function assembleIntoRunDir(flags, ctx, runDir) {
@@ -361,12 +384,22 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
             { log: ctx.log },
           );
 
-    corpus = ctx.assembleCorpusFromChapter({
-      chapterFilePath,
-      targetLanguage: flags.lang,
-      bookConventions,
-      log: ctx.log,
-    });
+    // The one thing v2 changes about an EPUB build: how a chapter becomes candidate items.
+    // Everything below this line is the same work in the same order for either extraction.
+    corpus = usePhaseExtraction(flags)
+      ? ctx.extractBaseCorpus({
+          unitDir: runDir,
+          chapterFilePath,
+          targetLanguage: flags.lang,
+          epubHash,
+          log: ctx.log,
+        })
+      : ctx.assembleCorpusFromChapter({
+          chapterFilePath,
+          targetLanguage: flags.lang,
+          bookConventions,
+          log: ctx.log,
+        });
     const chapterLabel = lesson
       ? lesson.label
       : ctx.describeChapter(flags.epub, chapterNumber, {

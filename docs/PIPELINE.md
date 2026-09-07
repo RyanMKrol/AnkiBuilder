@@ -1129,6 +1129,37 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### Phase 1 as `assemble`'s extraction step
+
+`anki-builder assemble --epub … --extraction phase` substitutes phase 1 for the v1 extraction pass
+and changes nothing else about the build.
+
+That is the whole seam, and the narrowness is the point. v2 replaces one thing about an EPUB build:
+how a chapter becomes a list of candidate items. Everything `assemble` does around that step is
+wanted unchanged, and it is most of the build: registering the book, the cached whole-book
+conventions, extracting the chapter's bytes, stamping `epubHash` / `chapterNumber` / `chapterLabel`,
+the backward dedup against what the book already taught, the forward flags for vocabulary a later
+chapter introduces, the pedagogical sort, the pass ledger, the run claim, and chaining into
+`prepare`. Every item on that list has been got wrong at least once, and the order is load-bearing.
+
+Re-implementing that order inside the phase script was the alternative, and it is risk without
+reward: a second copy of a sequence whose only value is that this one is proven.
+
+**`--extraction` is per build, not a mode the tree is in.** Both extractions have to keep working
+for the whole migration: `main` is still finishing a book with v1, and a v2 chapter has to be
+buildable beside it. The flag takes `phase` or `v1`, and a typo is an error rather than a quiet
+fall back to the old path, which would look exactly like a successful v2 build.
+
+**A re-run reuses the phase's output.** `assemble` is this project's resume command, so re-running
+it on a half-built lesson has to be cheap. It also has to be possible at all: `writeSnapshot`
+refuses to overwrite, deliberately, so a phase that could not be re-entered would turn that
+safeguard into a crash on the recovery path. The presence of `as-generated.json` beside
+`corpus.json` is what says the phase finished; a corpus without one is a crash between the reconcile
+step and the snapshot, and it runs again.
+
+`scripts/build-base.mjs` is unchanged and still runs the phase standalone, which is what
+`shadow-run.mjs` uses. The difference is only who calls it.
+
 ### From a phase corpus to a reviewable unit
 
 A phase script ends at `corpus.json`. The review gate reads `cards.json`. `anki-builder prepare

@@ -92,6 +92,29 @@ export const ROLES = Object.freeze({
     purpose: "Enumerate the chapter's teachable items independently, for a code-side diff.",
   },
 
+  backwardDeduplicator: {
+    envScope: "BACKWARD_DEDUPLICATOR",
+    // Above the producers, like every checking role here. It only ever FLAGS, so a wrong verdict
+    // costs a reviewer a glance rather than a card — but the judgement itself is the subtle one in
+    // this pipeline: おかし after かし is one word with a polite prefix, ごふん after ふん is not,
+    // and the two are indistinguishable without knowing that ご is the number five.
+    model: "claude-opus-5",
+    effort: "high",
+    timeoutMs: 20 * MINUTES,
+    phase: "both",
+    checks: [
+      "tableSpecialist",
+      "chapterReader",
+      "imageSpecialist",
+      "exerciseMiner",
+      "fillInBlankMiner",
+      "exampleSentenceMiner",
+      "gapAuthor",
+      "inventiveAuthor",
+    ],
+    purpose: "Decide which of a new unit's cards repeat what an earlier unit already taught.",
+  },
+
   semanticDeduplicator: {
     envScope: "SEMANTIC_DEDUPLICATOR",
     // Above every producer, and for a sharper reason than the adversary's. This role can DELETE. A

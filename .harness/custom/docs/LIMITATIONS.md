@@ -3995,3 +3995,21 @@ excluded, 3 kept as distinct, 0 unaccounted, 83 shipping items down to 65.
 
 **Verified by:** re-run `node scripts/shadow-run.mjs` for a reviewed chapter and count targets
 appearing more than once in the resulting `corpus.json`.
+
+## Backward dedup was blind to every extras unit
+
+**Status: RESOLVED**, by a `backward-dedup` agent step in both phases, fed by
+`loadEarlierUnitItems`, which reads every earlier unit off disk rather than through the library.
+
+**What was wrong.** `dedupBackward` ran in one place (`assemble`), so an `-extras` unit never ran it,
+and it compared against a library keyed `(epubHash, chapterNumber)` that extras units are forbidden
+to write to: an extras unit shares its base's chapter number, so the write would overwrite the base
+chapter's entry. On the live book a new chapter was deduped against 1,176 targets and blind to 1,163
+more, which is half the collection.
+
+**What is kept.** The v1 string matcher still runs in `assemble` and still flags exact repeats. The
+agent's pre-filter suppresses those on the base path (`skipExactMatches`) so the reviewer does not
+get the same concern twice, and keeps them on the extras path where nothing else checks at all.
+
+**Verified by:** replaying chapter 16 against everything before it: 2,273 prior items, 1,117 of them
+from extras units, 22 candidates raised, prompt bounded at 16 KB.

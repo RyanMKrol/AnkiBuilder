@@ -97,6 +97,13 @@ const TEMPLATES = {
     // `skipped` would make "this drill needed an untaught word" indistinguishable from silence.
     outputContract: /"items"[\s\S]*"blocks"[\s\S]*"skipped"/,
   },
+  "backward-deduplicator-prompt.md": {
+    // The new unit's cards paired with the earlier ones a filter thought related, and nothing else.
+    // No chapter: whether a card repeats an earlier one is answered by the two cards, and the source
+    // text would only add a way to be distracted.
+    placeholders: ["TARGET_LANGUAGE", "CANDIDATES_JSON"],
+    outputContract: /"verdict"[\s\S]*"already-taught"[\s\S]*"new"/,
+  },
   "semantic-deduplicator-prompt.md": {
     // Only the groups. It judges what the corpus already contains, so it needs no chapter, no
     // categories and no card faces: everything it can act on is in front of it, and anything else

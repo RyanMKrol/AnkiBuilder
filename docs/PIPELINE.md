@@ -1149,6 +1149,47 @@ say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` grou
 built from its base unit's approved cards rather than from the book, and the one thing that does
 need the book, finding the cached chapter, reads the hash off the base unit directly.
 
+### The backward deduplicator, and the blind spot it closes
+
+Backward dedup ran in exactly one place, `assemble`, comparing exact strings against the
+reviewed-corpus library. Two consequences followed, and neither was visible from inside the feature:
+
+- **An `-extras` unit never ran it at all**, because it is built by `build-extras.mjs` and never goes
+  through `assemble`.
+- **Extras content never entered the library.** The library is keyed `(epubHash, chapterNumber)`, and
+  an extras unit shares its base unit's chapter number, so writing one would overwrite the base
+  chapter's entry and later chapters would be deduped against the drills instead of the lesson. The
+  dashboard refuses the write and the `extras-library-write` check enforces it.
+
+Measured on the live book: **a new chapter was deduped against 1,176 targets and blind to 1,163
+more** that its own extras units already teach. Half the collection.
+
+**The fix does not touch the library.** That key collision is a property of how the file is stored,
+not of the comparison, so `loadEarlierUnitItems` reads every earlier unit off disk instead, base and
+extras alike. A base unit counts as earlier than its own extras sibling, because the extras unit is
+built from the base unit's approved vocabulary.
+
+**The pre-filter is fuzzy on purpose.** Exact matching already finds what exact matching can find, so
+everything left is a near miss: `おかし` against `かし`, or two glosses that say the same thing in
+different words. Three signals propose a pair, and all three thresholds were set by running the
+unfiltered version over a real chapter:
+
+- **same target**, which the base path suppresses (`skipExactMatches`) because `assemble` flags those
+  itself; the extras path keeps them, since nothing else ever checks an extras unit
+- **one target a prefix or suffix of the other**, at half its length or more. Plain substring
+  matching proposed `せん` inside `いきませんか` and `です` inside `どうですか`, because grammatical
+  endings are substrings of everything built from them; the ratio then drops `ちょっと` inside
+  `ちょっとまってください` at 0.36
+- **glosses agree**, via the existing `glossesAgree`
+
+Each candidate shows at most five prior cards, strongest signal first, because one real card matched
+dozens on gloss overlap alone and the judge should not have to read a wall to answer one question.
+
+**It flags and never removes**, which is `dedupBackward`'s existing philosophy and the right one: a
+word deliberately re-taught in a new grammatical role is a legitimate card, and only a human reading
+both can say. An `already-taught` verdict sets `uncertain` and appends a note naming the earlier
+unit, without discarding whatever the card already said.
+
 ### The semantic deduplicator: the one agent that reconciles rather than produces
 
 Every other agent in the pipeline is a producer. Nine of them across the two phases, and each either

@@ -12,13 +12,14 @@
 //
 // ⚠️ It SPENDS: four agent steps, one of them pinned to a higher model. --dry first.
 import { existsSync, readFileSync, mkdirSync } from "fs";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
 import {
   chapterCachePath,
   chapterRangeCachePath,
   loadBookHints,
 } from "../src/corpus/epubLibrary.js";
 import { BASE_PHASE_STEPS, runBasePhase } from "../src/agents/basePhase.js";
+import { loadEarlierUnitItems } from "../src/cards/earlierUnits.js";
 import { ROLES } from "../src/agents/roles.js";
 
 const argv = process.argv.slice(2);
@@ -77,6 +78,9 @@ const result = runBasePhase({
   chapterHtml: readFileSync(chapterFilePath, "utf-8"),
   targetLanguage,
   meta: { hints },
+  // Every earlier unit of this collection, extras included. That inclusion is the point: the dedup
+  // library cannot hold extras units, so they are invisible to the string matcher in `assemble`.
+  priorItems: loadEarlierUnitItems(dirname(unitDir), unitDir.split("/").pop()),
 });
 
 for (const step of result.run.steps) {

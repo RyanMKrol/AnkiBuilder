@@ -19,6 +19,7 @@ import {
 import { EXTRAS_PHASE_STEPS, runExtrasPhase, extrasUnitMeta } from "../src/agents/extrasPhase.js";
 import { ROLES } from "../src/agents/roles.js";
 import { parseUnitDir } from "../src/model/unitDir.js";
+import { loadEarlierUnitItems } from "../src/cards/earlierUnits.js";
 
 const argv = process.argv.slice(2);
 const positional = argv.filter((a) => !a.startsWith("--"));
@@ -106,6 +107,9 @@ const result = runExtrasPhase({
   earlierItems,
   targetLanguage,
   meta: { hints: loadBookHints(meta.epubHash), unit: extrasUnitMeta(meta) },
+  // Distinct from `earlierItems` above, which is the vocabulary the miners may USE and deliberately
+  // excludes extras units. This is prior art for the backward judge and must include them.
+  priorItems: loadEarlierUnitItems(collection, extrasDir.split("/").pop()),
 });
 
 for (const step of result.run.steps) {

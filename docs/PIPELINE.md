@@ -1129,6 +1129,40 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### From a phase corpus to a reviewable unit
+
+A phase script ends at `corpus.json`. The review gate reads `cards.json`. `anki-builder prepare
+--run <unitDir>` is still what spans the two, unchanged: translate, then the cross-lesson note pass,
+then number readings.
+
+What changed is the one pass in that chain phase 2 now owns. `prepare` mines fill-in-the-blank
+drills and semantically dedups them, and running that on a v2 unit is wrong in both directions: it
+would put sentences into a base unit, which is defined as lexical entries only, and it would stack a
+second differently-mined drill block onto an extras unit that already holds the miners' output.
+
+**`meta.phase` is what says so**, stamped on the corpus by the phase script that wrote it and
+carried into `cards.json` by translate. Absent is the v1 answer: the corpus came from `assemble`, so
+`prepare` still owns the drill mining. The field is on the corpus rather than derived from
+`as-generated.json`, which records the phase too, because the snapshot is build scratch: untracked,
+deletable, and a correctness rule resting on a deletable file fails in the direction that costs a
+card set.
+
+**`drillPassExpected(meta)` in `src/cards/readiness.js` is the only place that rule is written.**
+Three callers have to agree with each other, and the failure when they don't is not a wrong report:
+
+- `prepare` decides whether to run the pass.
+- `lessonReadiness` decides whether the `enriched` marker is required before a human may sign off.
+  This one is the sharp edge: readiness required that marker for every non-template unit, so a
+  phase-built unit would never have shown a **Mark reviewed** button. The phase would have produced
+  a corpus nobody could sign off on.
+- `resume` decides whether to send the operator back to `prepare`, which for a phase unit would have
+  been a recommendation that never stopped recommending itself.
+
+The `readiness-exemptions` audit check reads it too, for a different reason: it lists done units
+carrying no record of the pre-review passes, described as signed off before those markers existed.
+That is true of the v1 units it was written for and false of every v2 unit, so it asks the same
+question rather than counting them.
+
 ### The learning pass: reading the review back
 
 `node scripts/learning-pass.mjs <unitDir>` diffs a unit's `as-generated.json` against its approved

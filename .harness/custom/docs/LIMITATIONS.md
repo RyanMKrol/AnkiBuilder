@@ -3875,3 +3875,25 @@ node -e 'import("./src/util/runClaude.js").then(m=>{
   console.log(m.looksLikeQuotaExhaustion("spawn claude ENOENT"))})'
 node --test test/util/runClaude.test.js
 ```
+
+## `meta.phase` is a fact about the build that four consumers have to agree on
+
+`prepare`'s fill-in-the-blank pass is skipped for a v2 phase unit, and the rule lives in exactly one
+function (`drillPassExpected`, `src/cards/readiness.js`) because four places ask it: `prepare`
+itself, the readiness gate, `resume`, and the `readiness-exemptions` audit check.
+
+**Why it is one function.** The consequence of two of them disagreeing is not a wrong number. If
+readiness keeps requiring the `enriched` marker while `prepare` stops setting it, a phase-built unit
+shows no **Mark reviewed** button and can never be signed off, and nothing in the pipeline says why:
+the phase ran, the corpus is there, the card set is complete, and the gate is simply absent.
+
+**Impact.** A fifth consumer that reads `meta.enriched` directly will misreport every v2 unit, and
+will look correct on the 34 v1 units it is tested against. The field is also on the corpus schema,
+which `main` validates too, so a v1 tree reads it as an optional field it never sets.
+
+**Status:** live, and this is the shape to keep. Revisit only if a consumer needs a different
+question than "was the drill pass this unit's to run", at which point it wants its own predicate
+rather than a second reading of this one.
+
+**Verified by:** `grep -rn "meta.enriched\|meta\[.enriched" src/ | grep -v readiness.js`. Every
+hit must be guarded by `drillPassExpected` or be inside `prepare`'s own `minesDrills` branch.

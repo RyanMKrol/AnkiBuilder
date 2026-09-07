@@ -22,6 +22,7 @@ import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import { writeUnitJson } from "../util/unitWrite.js";
 import { failedPasses, recordPass, PASS_FAILED, PASS_SKIPPED } from "./passLedger.js";
+import { drillPassExpected } from "./readiness.js";
 
 /** The passes resume drives itself, in the order the pipeline runs them. */
 export const RESUMABLE_PASSES = ["forwardFlags", "pedagogicalSort", "romanization"];
@@ -121,7 +122,10 @@ export function planResume({ corpusMeta = {}, cardsMeta = null, hasCards = false
     preparePending.push("no cards.json — the unit was never translated");
   }
   if (!isTemplate && hasCards) {
-    if (meta.enriched !== true) preparePending.push("the fill-in-the-blank pass never completed");
+    // `drillPassExpected` covers the template case too; the guard above is kept because the note
+    // pass has its own reason to skip a template (no siblings to cross-reference).
+    if (drillPassExpected(meta) && meta.enriched !== true)
+      preparePending.push("the fill-in-the-blank pass never completed");
     if (meta.notesEnhanced !== true)
       preparePending.push("the cross-lesson note pass never completed");
   }

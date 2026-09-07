@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { lessonReadiness, describeReadiness } from "../../src/cards/readiness.js";
+import {
+  lessonReadiness,
+  describeReadiness,
+  drillPassExpected,
+} from "../../src/cards/readiness.js";
 
 const prepared = { enriched: true, notesEnhanced: true };
 
@@ -57,4 +61,38 @@ test("a degraded run is held back, and says what its passes could not see", () =
 test("describeReadiness handles a ready lesson and a missing argument", () => {
   assert.equal(describeReadiness(lessonReadiness(prepared)), "ready for review");
   assert.equal(describeReadiness(), "ready for review");
+});
+
+test("a v2 phase unit is reviewable without the drill marker it was never going to set", () => {
+  // Phase 2 owns the drill mining, so `enriched` is correctly absent. Requiring it anyway is not a
+  // stricter gate, it is a unit that can never be signed off at all.
+  const base = lessonReadiness({ targetLanguage: "ja", sourceType: "epub", phase: "base" });
+  assert.deepEqual(
+    base.missing.map((pass) => pass.key),
+    ["notesEnhanced"],
+  );
+
+  const done = lessonReadiness({
+    targetLanguage: "ja",
+    sourceType: "epub",
+    phase: "base",
+    notesEnhanced: true,
+  });
+  assert.equal(done.ready, true);
+});
+
+test("a v1 unit still has to record both passes", () => {
+  const v1 = lessonReadiness({ targetLanguage: "ja", sourceType: "epub", notesEnhanced: true });
+  assert.equal(v1.ready, false);
+  assert.deepEqual(
+    v1.missing.map((pass) => pass.key),
+    ["enriched"],
+  );
+});
+
+test("drillPassExpected: only a v1 non-template unit mines its own drills", () => {
+  assert.equal(drillPassExpected({ sourceType: "epub" }), true);
+  assert.equal(drillPassExpected({ sourceType: "template" }), false);
+  assert.equal(drillPassExpected({ sourceType: "epub", phase: "base" }), false);
+  assert.equal(drillPassExpected({ sourceType: "epub", phase: "extras" }), false);
 });

@@ -53,6 +53,7 @@ const STANDING = [
   "build-extras.mjs",
   "build-audio.mjs",
   "learning-pass.mjs",
+  "epub-hints.mjs",
   "epub-probe.mjs",
   "eval-pass.mjs",
   "vocab-coverage.mjs",

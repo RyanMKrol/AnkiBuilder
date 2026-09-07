@@ -293,6 +293,15 @@ how the retired Nihongo 101 course got offered as a build target.
   `assemble --words` reads a file, not inline text. Capitalize each gloss as you write the file
   (sentence case; see [card-authoring-rules](references/card-authoring-rules.md)).
 
+### A book that has never been built before
+
+**Run the [`onboard-epub`](../onboard-epub/SKILL.md) skill first, before its first chapter.** It
+surveys the archive, works out where this publisher's markup differs from the last one's, and drafts
+the book's `hints` for a human to commit. The whole survey is free and read-only.
+
+Skipping it is not a blocker and that is the problem: every check that depends on a hint will simply
+report *unknown* on this book, forever, and nothing will ever say the config was never written.
+
 ### Creating a new reusable template
 
 A template is reusable English vocabulary + categories with no language baked in; creating one is

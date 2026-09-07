@@ -28,6 +28,9 @@ into one deck with a sub-deck per chapter/lesson.
 
 **For the full walkthrough — including how to pick a source, review each stage, and generate
 audio — use the [`build-anki-deck`](./.claude/skills/build-anki-deck/SKILL.md) Claude Code skill.**
+For a book that has never been built here, run
+[`onboard-epub`](./.claude/skills/onboard-epub/SKILL.md) first: it surveys the archive and drafts
+the book's config, free and read-only.
 It drives the CLI commands below for you and knows when to pause for your review.
 
 ## Quick start

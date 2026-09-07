@@ -17,7 +17,8 @@ process and no visual surface.
   present state.
 - **How to build a deck with it** (the operator procedure, and the file most worth reading
   before touching anything user-facing): `.claude/skills/build-anki-deck/SKILL.md`, which is
-  normative for procedure. `docs/PIPELINE.md` covers how the code is wired.
+  normative for procedure. A book that has never been built goes through
+  `.claude/skills/onboard-epub/SKILL.md` first. `docs/PIPELINE.md` covers how the code is wired.
 - **What's planned:** two files, and they ARE the planning loop.
   [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md) is the live one:
   every trade-off, bottleneck and known gap, each with a `**Status:**`, and it is what the work

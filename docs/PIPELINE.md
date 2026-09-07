@@ -1149,6 +1149,30 @@ say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` grou
 built from its base unit's approved cards rather than from the book, and the one thing that does
 need the book, finding the cached chapter, reads the hash off the base unit directly.
 
+### Onboarding a book: evidence, not conclusions
+
+`scripts/epub-hints.mjs` samples spine files spread across a book and prints frequency tables for the
+four things a `hints` entry is about: classes on `<table>`, classes inside tables, image filename
+stems, and the first word of each nav label. It is free, read-only, and it concludes nothing.
+
+The judgement-free part is the whole design. `class="voca"` was hardcoded in `vocabCoverage` for
+months, and on any book but the one it was written for it returned an empty list, reported zero
+uncovered headwords, and printed clean. A frequency table cannot make that mistake because it does
+not claim anything, and a script that proposed a value would be the same bug with a longer fuse.
+
+Two details are there because the counts were unreadable without them. A trailing counter is stripped
+including roman numerals, because the proven book numbers its exercise blocks `enum-I` through
+`enum-VIII` and stripping only digits left eight stems of six instead of one stem of fifty. And the
+prefix every stem shares is reported once and removed from the listing, because publishers put the
+ISBN on every asset and the distinguishing half of a filename can start forty characters in.
+
+The sample is spread across the book rather than taken from the front: front matter is the part least
+likely to look like a lesson.
+
+**It deliberately does not read the book's prose.** That is `conventions.md`, it costs a paid
+whole-book pass, and it stays a separate step. Onboarding produces structure; the paid passes produce
+meaning, and keeping them apart is what makes onboarding runnable on a book still being considered.
+
 ### Phase 1 as `assemble`'s extraction step
 
 `anki-builder assemble --epub … --extraction phase` substitutes phase 1 for the v1 extraction pass

@@ -1,12 +1,15 @@
 ---
 name: build-anki-deck
-description: Build an Anki deck from a real-life lesson, template, or custom EPUB
+description: Build or extend an Anki deck. Three pathways - continue an EPUB book, retrofit lesson notes into finished units, or build an ad-hoc deck from a word list or template.
 ---
 
 # Build an Anki Deck
 
-This skill guides you through building a complete Anki flashcard deck for vocabulary practice. This
-file is the workflow spine: the steps, the commands, and the gates. Depth lives in the reference
+This skill covers every way cards get made here. **Step 0 picks the pathway**, and the three are
+genuinely different jobs, not variations on one: they have different sources, different gates, and
+different failure modes.
+
+This file is the workflow spine: the steps, the commands, and the gates. Depth lives in the reference
 files below; load one when its topic comes up.
 
 **This file is normative for operator procedure.** When SKILL.md and any other document disagree
@@ -20,8 +23,12 @@ implemented. If SKILL.md disagrees with the CODE, the code wins: fix the doc in 
 - [references/card-authoring-rules.md](references/card-authoring-rules.md): every rule about card
   content and card-set shape (glosses, scenes/hints/notes, collisions, number readings, verb citation
   forms, ordering, the cross-lesson note pass). Load it whenever you author, edit, or audit cards.
-- [references/extras-pass.md](references/extras-pass.md): the full Step 3b procedure for building a
-  lesson's extras (drill) unit. Load it before running that pass.
+- [references/augment-pathway.md](references/augment-pathway.md): the whole of pathway 2, retrofitting
+  notes into units that are already finished. Routing, the duplicate traps, the merge, the additions
+  gates. Load it whenever the work is a retrofit rather than a build.
+- [references/extras-pass.md](references/extras-pass.md): what an extras unit is FOR, the rules its
+  cards must not break, and the duplicate/collision audits. Phase 2 automates the mining; this file
+  is still what the phase's output is judged against.
 - [references/template-creation.md](references/template-creation.md): the flow for adding a new
   reusable bundled template. Load it when the user wants a template that doesn't exist yet.
 - [references/audio-pipeline.md](references/audio-pipeline.md): audio internals (the TTS end marker,
@@ -48,45 +55,56 @@ where they apply in the reference files.
 
 ## The shape of the workflow
 
-**There are exactly TWO review gates, and a lesson only ever rests at one of them:**
+**A chapter is the unit of work, and it passes THREE gates.** Not a lesson: a chapter produces two
+units, its base vocabulary and its extras drills, and they share one audio review at the end.
 
-| Gate                    | What you check                                       | Sign-off          |
-| ----------------------- | ---------------------------------------------------- | ----------------- |
-| **1 — Corpus** (Step 3) | English + target + pronunciation, on the final cards | **Mark reviewed** |
-| **2 — Audio** (Step 4)  | Every card's clip                                    | **Mark done**     |
+| Gate | What you check | On what | Sign-off |
+| --- | --- | --- | --- |
+| **1. Base corpus** | English + target + pronunciation | `chapter-N` | **Mark reviewed** |
+| **2. Extras corpus** | the same, on the drill sentences | `chapter-N-extras` | **Mark reviewed** |
+| **3. Audio** | every clip, both units at once | the chapter | **Mark done** |
 
-That's the whole state space **for a lesson**. A lesson is either mid-build (the dashboard says
-*building* or *interrupted*, or lists it under **Not finished**), sitting at gate 1, sitting at gate
-2, or done. There is nothing to review before translation.
+```
+1. BASE     chapter → vocabulary corpus → GATE 1
+2. EXTRAS   approved vocabulary → sentence corpus → GATE 2
+3. AUDIO    both units → ElevenLabs → GATE 3 → done
+                                   → the learning pass
+```
 
-**There is a third review, and it is not a lesson state.** The **Additions** review
-(`/additions/<type>/<id>`) covers cards RETROFITTED into a lesson that is already finished, which
-happens whenever class notes arrive for material the deck taught chapters ago. Its gates are per
-CARD, not per lesson, and there are TWO of them, the same pair a lesson passes:
+**The order is the design, not a convention.** Extras sentences are authored against vocabulary a
+human has ALREADY approved, so excluding a base card can never orphan a sentence built on it. And no
+TTS credit is spent on any card that might still be cut, because audio comes after both content
+gates.
+
+**Three gates is one fewer than v1 had**, and the one that went is the point. v1 ran
+base→corpus→audio→done and then started extras as a whole second arc months later, which meant a
+chapter's two units were audio-reviewed months apart and every chapter cost four visits. Moving audio
+to the end keeps the ordering and drops a gate.
+
+**There is a fourth review, and it is not a chapter state.** The **Additions** review
+(`/additions/<type>/<id>`) covers cards RETROFITTED into a unit that is already finished, which is
+pathway 2. Its gates are per CARD, not per unit, and there are TWO of them:
 
 | Gate | What you check | Sign-off | Field |
 | --- | --- | --- | --- |
 | **Additions, content** | English + target + pronunciation | **Approve** | `additionReviewed` |
 | **Additions, audio** | the card's clip | **Mark ready** | `additionDone` |
 
-A retrofitted card carries an `addition` batch and ships only once it has BOTH, while the lesson it
-landed in keeps its own sign-offs untouched. Audio is generated between the two, exactly as it is
-between gate 1 and gate 2, which is why the content gate comes first: nothing spends TTS credits on
-a card that might be cut.
+A retrofitted card carries an `addition` batch and ships only once it has BOTH, while the unit it
+landed in keeps its own sign-offs untouched. Audio is generated between the two, for the same reason
+it is generated between gates 2 and 3: nothing spends TTS credits on a card that might be cut.
 
-That distinction is the whole point. Approving a dozen new cards through the lesson's own corpus gate
-would mean clearing `done`, withdrawing the sign-off, and re-reading every card in the unit; doing
-exactly that across fifteen units by hand is what caused the feature to be built. So: a lesson is
-still only ever at one of the two gates, and additions are reviewed beside that, never instead of it.
-
-Building a retrofit is [augment-anki-deck](../augment-anki-deck/SKILL.md), not this skill.
+That distinction is the whole reason pathway 2 exists separately. Approving a dozen new cards through
+a unit's own corpus gate would mean clearing `done`, withdrawing the sign-off, and re-reading every
+card in it; doing exactly that across fifteen units by hand is what caused the additions gate to be
+built.
 
 **Never hand over a gate and stop. Arm a watcher and continue by yourself when the sign-off lands.**
 Handing over a review link and then waiting to be told "I've reviewed it" costs the user a message
-every single time, twice per unit, four times per chapter. Instead, the moment you give them a review
-link, start a background watcher that polls the flag the dashboard writes and exits once it is set.
-Its completion notification is your cue to carry straight on: generate the audio after gate 1, and
-after gate 2 run the extras pass, or the merge, or whatever the arc calls for next.
+every single time, three times per chapter. Instead, the moment you give them a review link, start a
+background watcher that polls the flag the dashboard writes and exits once it is set. Its completion
+notification is your cue to carry straight on: phase 2 after gate 1, phase 3 after gate 2, and the
+merge or the deliver after gate 3.
 
 **Use the Monitor tool, so the watcher is VISIBLE in the conversation.** A plain background poll
 loop works but is silent until the moment it fires, which leaves the reviewer with no evidence that
@@ -160,14 +178,10 @@ One more thing to do before you hand the link over, which is not the watcher's j
   (It is deliberately not in the `pre-push` hook: that would couple `git push` to deck state that
   is not in git.)
 
-**Each chapter produces TWO units, and each goes through both gates on its own.** Once the base
-lesson is **done** (gate 2), Step 3b builds its *extras* unit: drill cards from the same chapter,
-shipped as a separate sub-deck beside the lesson. The full arc for one chapter:
-
-`assemble` → **corpus review** → `audio` → **audio review** → **Mark done**
-&nbsp;&nbsp;&nbsp;&nbsp;↳ then **Step 3b** builds `chapter-N-extras`, which repeats the same arc.
-
-Step 3b is a standard step of building a chapter, not an optional extra. Do not skip it.
+**Each chapter produces TWO units, and they share the third gate.** The extras unit is a standard
+part of building a chapter, not an optional extra. Do not skip it, and do not start chapter N+1 with
+chapter N holding only a base unit: the backward dedup and the taught index both read what earlier
+chapters actually shipped.
 
 Reviews happen in the dashboard, never a terminal table. Start it once and leave it running:
 
@@ -182,6 +196,28 @@ through a dashboard six days old, so the Card faces view did not exist on the pa
 provenance badge was missing, and a badge fixed days earlier still did not render. Nothing warns you,
 because a stale page looks exactly like a current one. On-disk state is unaffected, so a restart costs
 one command and a reload.
+
+## Step 0: Which pathway?
+
+Ask. Do not infer it from the state of `output/`. Reading the disk tells you what the options are,
+never which one the user wants, and every pathway spends model and TTS credits on a deck they study
+daily.
+
+| | When | Where it goes |
+| --- | --- | --- |
+| **1. Extend an EPUB deck** | the next chapter of a book in progress | a new `chapter-N` + `chapter-N-extras` |
+| **2. Augment with lesson notes** | notes covering material the deck ALREADY taught | existing units, per-card additions gates |
+| **3. Ad hoc from a corpus** | a word list, a bundled template, or scenarios you describe | a course lesson, or a self-contained template unit |
+
+**The tell between 1 and 2 is not the source, it is the destination.** A class handout can be either:
+new material the book has not reached is pathway 1 shaped, and material the deck covered in chapter 3
+is pathway 2. If the notes span both, split them and run both, rather than routing the whole batch to
+whichever fits most of it.
+
+**Pathway 2 is [references/augment-pathway.md](references/augment-pathway.md).** Load it and follow
+it; the rest of this file is pathways 1 and 3. It shares this file's audio stage and deliver, and
+nothing else: its gates are per card, its destination units are already signed off, and none of the
+three phases runs on it.
 
 ## Step 1: What do you want to build a deck for?
 
@@ -264,13 +300,42 @@ its own small flow (gather terms language-agnostically, author `templates/<name>
 register and test it, review it with the user) that completes before you return to the deck build.
 Follow [references/template-creation.md](references/template-creation.md) for the steps.
 
-## Step 2: Build the lesson — `assemble` runs the whole pre-review pipeline
+## Step 2: Phase 1, the chapter's base vocabulary
 
-One command builds the lesson all the way to its first review gate. `assemble` writes `corpus.json`
-and then automatically chains into the `prepare` stage (translate → fill-in-the-blank enrichment →
-semantic de-dup → cross-lesson notes → number readings) under a single build claim. There is no stopping point in the
-middle, by design: every one of those steps changes which cards exist or what they say, so a lesson
-that halts partway is a half-built lesson nobody can sign off on.
+One command builds the unit all the way to gate 1. `assemble` writes `corpus.json` and then
+automatically chains into the `prepare` stage (translate → cross-lesson notes → number readings)
+under a single build claim. There is no stopping point in the middle, by design: every one of those
+steps changes which cards exist or what they say, so a lesson that halts partway is a half-built
+lesson nobody can sign off on.
+
+**On an EPUB chapter, pass `--extraction phase`. That is what makes it a v2 build.** Without it you
+get v1's single extraction pass, which still works and is what `main` is running; with it, the
+extraction step is phase 1: four agents, three of them finding vocabulary independently and a fourth
+pinned higher and used to check them.
+
+| Step | Who | What it does |
+| --- | --- | --- |
+| tables / sections / images | scripts | dump every table, heading and image. No script judges what any of them IS. |
+| table specialist | agent | which tables are vocabulary, and why the others are not |
+| chapter reader | agent | vocabulary anywhere in the chapter, independent of markup |
+| image specialist | agent | a verdict per image, **recorded whatever it is**, plus a transcription |
+| reconcile | script | UNION the three, then dedup. Never a majority vote. |
+| snapshot | script | `as-generated.json`, the pre-review baseline |
+| coverage adversary | agent, higher model | enumerates the chapter independently, diffed against the corpus in code |
+
+**The overlap between the three specialists is deliberate.** No EPUB is reliably consistent, so they
+disagree, and the disagreement is the signal: union for existence, then dedup, because in a recall
+task the minority report is exactly what you want to keep. On the first live run against chapter 2,
+the adversary caught four number readings all three specialists had recorded as prose rather than as
+entries.
+
+**Everything else about the build is unchanged.** `--extraction phase` swaps one step. Registering
+the book, the cached whole-book conventions, extracting the chapter's bytes, the unit's identity, the
+backward dedup against what the book already taught, the forward flags for vocabulary a later chapter
+introduces, the pedagogical sort, and the chaining into `prepare` all run exactly as they always have.
+
+**Base units are lexical entries. Sentences belong to phase 2.** That is the split the two phases
+exist to enforce, and `prepare` no longer mines drills into a phase-built unit.
 
 **Do not report a lesson to the user until `assemble` has returned.** Its last line is
 `prepare: <runDir> is ready for the corpus review` — that, not `wrote corpus with N item(s)`, is the
@@ -299,10 +364,15 @@ anki-builder assemble --output-root output --words <wordsFile> \
   [--lesson-label "Lesson <N>: <topic>"]
 
 # EPUB — files under output/epubs/<book-slug>/chapter-<seq>/. Prefer --lesson (from Step 1's
-# --list-lessons); --chapter-number is the no-TOC fallback.
-anki-builder assemble --output-root output --epub <path> --lesson "<label or number>" --lang <lang>
-anki-builder assemble --output-root output --book <book-slug> --lesson "<label or number>" --lang <lang>
+# --list-lessons); --chapter-number is the no-TOC fallback. --extraction phase is the v2 build.
+anki-builder assemble --output-root output --epub <path> --lesson "<label or number>" --lang <lang> --extraction phase
+anki-builder assemble --output-root output --book <book-slug> --lesson "<label or number>" --lang <lang> --extraction phase
 ```
+
+`--extraction` takes `phase` or `v1`, and a typo is an error rather than a silent v1 build, which
+would look exactly like a successful v2 one. It needs an `--epub` source: phase 1 reads a chapter, so
+it has nothing to do on a template or a dictated word list (pathway 3), which build the same way they
+always did.
 
 Notes on the forms:
 
@@ -571,7 +641,7 @@ the deck. Full ordering rules, and every card-content rule (sentence-case Englis
 spaces or terminal `。`, `ttsText` for numerals, provenance flags, scene/hint/note/reviewNote, collisions,
 Q&A splits, worked examples for grammar cards): [card-authoring-rules](references/card-authoring-rules.md).
 
-## Step 3: Gate 1 — the corpus review
+## Step 3: Gate 1, the base corpus review
 
 Open the lesson's **Review** view on the dashboard (`/review/...` — distinct from the read-only
 **Browse** view). The unit renders the combined **Corpus review**: columns #, **English**,
@@ -622,10 +692,14 @@ identical in a JSON row. The check produces the list and stops there on purpose;
 おかし is a fact about Japanese, and no amount of code decides it. Fix or delete a note you cannot
 confirm — an unverifiable note is worth less than none, because the learner has no way to know.
 
-When it looks right, click **Mark reviewed** — that sets `cards.meta.reviewed: true` (the gate
-`audio` checks — it won't spend TTS credits on an un-reviewed lesson) and, for an EPUB source, saves
-the reviewed (excluded-filtered) corpus to the dedup library for later chapters' backward-dedup. Then
-move straight into Step 4 in the same turn — marking reviewed IS the go-ahead.
+When it looks right, click **Mark reviewed**. That sets `cards.meta.reviewed: true` and, for an
+EPUB source, saves the reviewed (excluded-filtered) corpus to the dedup library for later chapters'
+backward-dedup. Then move straight into **Step 3b** in the same turn: marking reviewed IS the
+go-ahead, and phase 2 is gated on it, refusing to run against a base unit a human has not signed off.
+
+**Also run the learning pass on the unit now** (Step 4b). It reads what the reviewer just changed
+back against the roles that produced the cards, and it is the only feedback those roles get. It costs
+nothing and reads only.
 
 **Nothing may be added to the lesson after this gate.** If you later realize a card is missing, don't
 quietly append it — say so, add it, and send the reviewer back through the corpus review, so no card
@@ -636,40 +710,94 @@ review (and removes the lesson's dedup-library entry). It refuses while the less
 done means "in the shipping deck" — clear that first with `node scripts/undone-unit.mjs <runDir>`,
 then Unreview.
 
-## Step 3b: The extras pass — build the lesson's drill unit
+## Step 3b: Phase 2, the chapter's extras unit, then Gate 2
 
-**Run this for every chapter/lesson, once the base unit is DONE (gate 2).** The exclusions a reviewer
-makes at gate 2 change the base card set that the extras duplicate and collision audits diff against,
-so authoring extras against a lesson still in review silently invalidates both audits. The extraction
-always leaves value behind: the chapter's spoken material (Target Dialogue, Speaking Practice) that
-never became cards, and coverage gaps (words in no sentence, particles with one example). The extras
-pass fixes both by building a second, sibling unit of drill cards (`chapter-N-extras/`) that ships
-as its own sub-deck under a shared `"Lesson N"` grouping deck, so the base lesson never grows and
-each can be studied alone. The extras unit is a first-class lesson with its own two gates.
+**Run this for every chapter, immediately after gate 1.** Not after the audio, and never in parallel
+with phase 1: extras sentences are authored against vocabulary a human has already approved, so a
+base card cut at gate 1 can never orphan a sentence built on it.
 
-The full procedure (the two-wave subagent process, the rules the pass must not break, the
-duplicate/collision audits, and the seeded shuffle + hoist ordering) is in
-[references/extras-pass.md](references/extras-pass.md). Load that file and follow it; do not run the
-pass from memory. Two rules worth restating here because they shaped the design:
+```sh
+node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <lang> --dry   # always --dry first
+node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <lang>
+anki-builder prepare --run <extrasUnitDir>
+```
+
+It refuses a base unit that is not `reviewed`, and says why. `--dry` prints the ordered steps with
+each agent's pin and spends nothing.
+
+The unit's identity (chapter number, label, `baseChapterLabel`) is derived from the base unit rather
+than typed. The `" (Extras)"` suffix is what nests the drills under their lesson, so it is not
+decoration.
+
+| Step | Who | Bound |
+| --- | --- | --- |
+| blocks | script | the chapter's numbered blocks, dumped |
+| exercise miner | agent | **unbounded**: complete sentences from drills and worked examples |
+| fill-in-the-blank miner | agent | resolved drill sentences, no blank left; at most three per frame |
+| example-sentence miner | agent | **unbounded**: Key Sentences, model sentences, dialogue lines |
+| gaps | script | `taughtNeverUsed`, the paradigm grid, particle example counts |
+| gap author | agent | driven by that gap list |
+| **inventive author** | agent | sentences NOT in the book, capped at **+20% of what the miners produced** |
+
+**The miners are unbounded and the inventive author is not.** If the book contains it, it belongs in
+the extras unit; an inventive role with no ceiling is how a unit fills with padding. It runs **last**
+so it can see what already exists and not re-invent it, and its one hard constraint is the rule most
+likely to be broken and most damaging when it is: **only vocabulary and grammar from this chapter or
+an earlier one**, which after gate 1 means the APPROVED vocabulary specifically.
+
+Then **Gate 2**: the extras unit's own corpus review, read exactly like gate 1. What to judge the
+output against, plus the duplicate and collision audits and the ordering rules, is
+[references/extras-pass.md](references/extras-pass.md). Load it before you review; phase 2 automates
+the mining, not the judgement.
+
+Two rules worth restating here because they shaped the design:
 
 - **A deck that holds cards must never have children** (Anki can't study a card-holding parent
   alone), which is why extras are a sibling under an empty grouping deck, never nested under the
   lesson.
-- **Look at the chapter's images, and audit any paradigm cell by cell.** Extraction is shown the
-  images but never reports what it made of them, and every stage after it reads text only — so a
-  grammar table the model skipped reads as though the chapter never taught it. And when a chapter
-  teaches a paradigm, check every cell of it against the whole deck rather than trusting a glance.
-  Both procedures are in [extras-pass](references/extras-pass.md).
+- **Audit any paradigm cell by cell**, against the whole deck rather than a glance. When a chapter
+  teaches a paradigm, a single missing cell is invisible in a card list.
 
-Build the extras unit for chapter N before moving on to chapter N+1.
+**Run `node scripts/finalize-extras.mjs <extrasUnitDir>` before you hand over gate 2.** It is the
+tail of this pass as one command, in the order the steps depend on: `prepare`, then the duplicate
+check, the collision audit, a re-order with a fresh seed, validate, preflight. It applies nothing but
+the ordering and gives no audit `--apply`, so exit 2 means a report is waiting for your judgement
+rather than that something is broken.
 
-## Step 4: Audio generation, then Gate 2 — the audio review
+Mark the extras unit reviewed, then run the learning pass on it too, then go to Step 4. Build both of
+chapter N's units before starting chapter N+1.
+
+## Step 4: Phase 3, the chapter's audio, then Gate 3
+
+**Both of a chapter's units get their audio in one run and one review.** That is the gate v2 removed
+a visit for: v1 generated a base unit's clips months before its extras sibling's, so one chapter cost
+two audio reviews.
 
 ```sh
-anki-builder audio --run <runDir> [--voice <voiceId>]
+node scripts/build-audio.mjs <collectionDir> <chapterNumber> --lang <lang> --dry   # ALWAYS first
+node scripts/build-audio.mjs <collectionDir> <chapterNumber> --lang <lang>
 ```
 
-Requires `ELEVENLABS_API_KEY` and a corpus review sign-off (it refuses un-reviewed lessons). It
+**`<chapterNumber>` here is the UNIT number, not the spine number.** `chapter-16` is 16, even though
+its `meta.chapterNumber` is spine file 38 and that is the number `assemble --lesson` resolved. Passing
+the spine number reports `no units found for this chapter`, which reads like a missing chapter rather
+than a wrong argument.
+
+**Always `--dry` first, because this is the step that spends real money.** It runs the readiness
+check and the refetch audit and fetches nothing:
+
+```
+chapter 16: chapter-16, chapter-16-extras
+95 clip(s) match the current derivation, 20 hand-curated, 0 would be refetched.
+```
+
+**Read the refetch line before you spend.** A non-zero "would be refetched" on a chapter that already
+has audio means a `ttsText` derivation changed, and the 1,264 hand-curated takes in this collection
+exist only in run directories and cannot be regenerated at any price. The gate itself is
+chapter-level: it refuses unless BOTH corpus reviews are signed off, because generating between them
+splits one review into two and re-introduces the visit this design removed.
+
+The stage underneath is unchanged from v1. It
 fetches one default clip per card (ElevenLabs `eleven_v3`), trims trailing silence and cleans noise
 (needs optional system `ffmpeg`), caches fetches in `.anki-builder/audio/`, copies clips into the run
 directory, and writes the references into `cards.json`. `--voice` can be omitted for a language with
@@ -689,7 +817,9 @@ cards, editing a `ttsText`, or dropping the cache) only regenerates default clip
 changes.** The cache key doesn't encode processing, so old clips are served stale forever otherwise.
 The full rule and the incident behind it: [audio-pipeline](references/audio-pipeline.md).
 
-**Review gate — the Review view's audio stage.** Once a lesson is at the audio stage its Review view
+**Gate 3: one audio review for the chapter.** Open `/chapter/<type>/<id>/<n>`, which renders both
+units' clips together. Each unit's own Review view still works and is where the per-card controls
+live. Once a lesson is at the audio stage its Review view
 renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)** / **Edit**
 (manual trim) controls and an **Exclude** checkbox. Play each card's clip; for any that sound wrong,
 **Generate** fresh takes (comma/bracket variants, 1 to 4 per card), audition them in the modal,
@@ -698,9 +828,39 @@ hand-made clip. **Exclude** drops a card without returning to the corpus review.
 works: [audio-pipeline](references/audio-pipeline.md). Rebuilds are fully automatic, with no manual
 rebuild button; **Mark done** folds the lesson into the group package and rebuilds then.
 
-**Mark done — Gate 2, the final sign-off.** When the audio is finalized, click **Mark done** (sets
-`cards.meta.done`). This is the gate the book/course merge checks: `deck --book-dir` and the
-dashboard package only `done` lessons.
+**Mark done, the Gate 3 sign-off.** When the audio is finalized, click **Mark done** on the
+chapter page. It sets `cards.meta.done` on BOTH units and rebuilds the collection package, so a
+chapter is signed off once rather than twice. This is the gate the book/course merge checks:
+`deck --book-dir` and the dashboard package only `done` units.
+
+**`await-review.mjs` numbers gates per unit, not per chapter**, and it predates the third gate:
+`--gate 1` waits for **Mark reviewed** and `--gate 2` waits for **Mark done** plus its rebuild. So
+gates 1 and 2 of a chapter are both `--gate 1`, on the base and extras unit directories, and gate 3
+is `--gate 2` on either.
+
+## Step 4b: The learning pass
+
+```sh
+node scripts/learning-pass.mjs <unitDir>
+```
+
+Run it after each corpus review. It diffs the unit's `as-generated.json` against the approved
+`cards.json` and attributes every difference to the role that produced the item, which is the only
+feedback those roles get: moving extraction to agents removed the eval fixtures' replay seam, and
+what replaces it is the reviewer, who already excludes and edits.
+
+It reads only, and it is careful about three things you should be too when acting on it:
+
+- **Only a human exclusion is feedback.** A script exclusion (semantic dedup, a duplicate check) is
+  the pipeline working, and counting it against the role that produced the card would punish that
+  role for being deduplicated. The report keeps the two apart and never adds them together.
+- **A changed field is reported as changed, never as a rejection.** A card records no author for a
+  field, so a reviewer's edit and a later pass's edit are indistinguishable.
+- **An item no role claimed is unattributed**, which is a real category, not a rounding error.
+
+A v1 unit has no snapshot and it says so rather than reporting a clean run over nothing. What the
+report is FOR is prompt and roster changes: a role cut repeatedly for the same reason is a prompt
+that needs a line, not a role that needs replacing.
 
 **A done lesson stays fully editable — there is no Reopen and no un-done button.** Done gates what
 ships, not what you can touch: the lesson opens in the same editable review it always had, and fixing

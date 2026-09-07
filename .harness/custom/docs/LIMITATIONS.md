@@ -3917,3 +3917,29 @@ Sonnet, and the ordering is asserted from the `checks` field rather than left in
 
 **Verified by:** `node --test test/agents/survivingPassPins.test.js`, and
 `grep -n "PASS_PINS" src/corpus/epubLlmRunClaude.js src/translate/runClaude.js` for the tables.
+
+## A page-scan EPUB has no text, and the pipeline needs text
+
+The second EPUB this project was tested against (Genki I, supplied 2026-09-07) turned out to be a
+Calibre "PDF Reflow conversion" of a scanned book: a single `index.html` of 393 `<p><img></p>` pairs,
+one per page, with 132 characters of text in the whole file, all of it the `<title>` tag holding the
+source PDF's filename.
+
+**Impact: this book cannot be built at all**, and the reason is structural rather than a missing
+config. Extraction, the miners, the dedup passes and the note pass all read text. The image
+specialist reads images, but it is one voice among three by design and it is fed per chapter, and
+here there are no chapters: one spine file is the whole book, so nothing bounds a lesson. The book's
+own table of contents is itself a page image.
+
+**Why it is worth recording rather than just fixing.** `epub-probe.mjs` caught both halves before
+anything was spent, in the two warnings it was written for: no nav entry classifies as a lesson, and
+a spine file carries under 200 characters of text but does carry images. That is the check working,
+and the finding is that a whole CLASS of EPUB is out of scope, not that this file is broken.
+
+**Status:** open, and the cheap answer is a different file. A text EPUB of the same book needs no
+work at all. Supporting page scans is in the ideas inbox and is a real piece of work: grouping page
+images into lessons, and promoting the image specialist from one voice among three to the only
+source.
+
+**Verified by:** `node scripts/epub-probe.mjs <the epub>` reports `1 file(s), 35 KB of content` and
+`132 chars of text, 393 image(s)`.

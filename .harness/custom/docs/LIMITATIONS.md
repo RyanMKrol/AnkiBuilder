@@ -3900,28 +3900,20 @@ hit must be guarded by `drillPassExpected` or be inside `prepare`'s own `minesDr
 
 ## The surviving v1 model passes declare an effort at most, never a model
 
-v2's rule is that every agent a script invokes declares its own `model` and `effort`
-(`src/agents/roles.js`), and that a checking role outranks what it checks. That holds for everything
-the phase scripts call. It half-holds for the v1 passes that survive around them.
+**Status: RESOLVED.** Every pass in both families now names a model and an effort in a declared
+table (`EPUB_PASS_PINS`, `TRANSLATE_PASS_PINS`), and `test/agents/survivingPassPins.test.js` holds
+them to it alongside the v2 role registry.
 
-Those passes are not unstructured: `epubLlmRunClaude.js` already gives each one its own scope and
-its own `ANKI_BUILDER_<PASS>_MODEL` / `_EFFORT` / `_TIMEOUT_MS` triple, deliberately, so tuning one
-does not re-tune the others. What none of them declares is a **model**. Only chapter extraction
-declares even an effort (`high`), and that pass is the one `--extraction phase` replaces. The rest
-(book conventions, taught index, forward flags, pedagogical sort, and everything `prepare` runs)
-resolve their model from the environment or the ambient default at the call site.
+**One correction to what this entry originally said.** It implied the unpinned passes were spending
+at whatever the operator thread runs. They were not: `resolvePinning` falls through to a hardcoded
+`DEFAULT_MODEL` of `claude-sonnet-5`, so they were pinned, just invisibly, by a constant three files
+away that would have moved eight passes at once if anyone changed it.
 
-**Why it was left.** `--extraction phase` was deliberately the narrowest possible seam, swapping one
-step and touching nothing else, because the value of the surrounding sequence is that it is proven.
-Declaring pins for eight passes in the same change would have turned a wiring commit into a rewrite
-of the passes it was wiring.
+**What was actually wrong, and is now fixed.** The forward-flag pass is a checking role: it reads
+items the extraction just produced and judges whether any are premature. v2's rule is that a role
+verifying another is pinned strictly above it, and this one was running at the same rank as the pass
+it checks, with nothing anywhere saying that was a choice. It is now Opus against the extraction's
+Sonnet, and the ordering is asserted from the `checks` field rather than left in a comment.
 
-**Impact.** Nothing regressed, because this is what v1 always did. But "every agent is pinned" is
-not yet true across the whole pipeline, and forward flags is the case that most wants it: it is a
-checking role, so under v2's own rule it should outrank the roles that produced the items it
-judges, and today it runs at whatever the environment says.
-
-**Status:** open. Its own task, not a follow-up to the wiring.
-
-**Verified by:** `grep -n "epubRunner(" src/corpus/epubLlmRunClaude.js` lists the passes and the
-defaults each declares. Any entry whose defaults carry no `model` is in this set.
+**Verified by:** `node --test test/agents/survivingPassPins.test.js`, and
+`grep -n "PASS_PINS" src/corpus/epubLlmRunClaude.js src/translate/runClaude.js` for the tables.

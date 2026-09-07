@@ -14,9 +14,12 @@
 // it is worth an explicit assertion, because getting it backwards would leave the pipeline looking
 // fully verified while the verification was the weakest link in it.
 //
-// This registry governs v2 roles. The thirteen v1 passes still declare their own pinning at their
-// call sites (src/corpus/epubLlmRunClaude.js, src/translate/runClaude.js) and are deliberately not
-// migrated here: Stages D to F rewrite them, and moving them first would be work thrown away.
+// This registry governs v2 roles. The v1 passes that SURVIVED the rewrite keep declaring their
+// pinning at their own call sites (src/corpus/epubLlmRunClaude.js, src/translate/runClaude.js),
+// which is now a decision rather than a deferral: they are grouped into env families whose members
+// share a blast radius, and v2's roles deliberately do not share one. Both tables are held to the
+// same two rules by tests (test/agents/survivingPassPins.test.js), so "every agent is pinned" is
+// asserted across the whole pipeline rather than only across half of it.
 
 import { resolvePinning } from "../util/runClaude.js";
 

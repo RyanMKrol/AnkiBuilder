@@ -26,7 +26,11 @@ test("neither runClaude will spawn a real `claude` from a test", () => {
 // straight to `spawnSync` instead of through the shared core would be a silent hole in the refusal.
 test("no per-pass runner will spawn a real `claude` from a test", () => {
   const runners = Object.entries({ ...translateRunners, ...epubRunners }).filter(
-    ([name]) => name !== "runClaudeAsync" && name !== "runKanjiOrthographyClaude",
+    // Functions only: both modules also export their pinning TABLE, which is data and not callable.
+    ([name, value]) =>
+      typeof value === "function" &&
+      name !== "runClaudeAsync" &&
+      name !== "runKanjiOrthographyClaude",
   );
   assert.ok(runners.length >= 12, `expected every pass to have a runner, saw ${runners.length}`);
   for (const [name, runner] of runners) {

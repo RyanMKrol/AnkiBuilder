@@ -2359,6 +2359,30 @@ say when it was measured rather than stating it as a standing fact.
   tables are".
 - **Status:** resolved (2026-09-06) for the code coupling; the hint-versus-judgement step is E6.
 
+## v2 narrows v1's outright ban on carding the dialogue
+
+- **What:** `docs/epub-extraction-prompt.md` forbids walking a modeled conversation line by line,
+  with one exception for a function word demonstrated nowhere else. v2's example-sentence miner
+  (`src/agents/exampleSentenceMiner.js`) narrows that: a dialogue line may be carded when it names a
+  form it uniquely demonstrates, capped at four lines per dialogue, with reactions, backchannels and
+  recap lines still refused.
+- **Why:** the ban was right about the failure and too wide about the remedy. Mining a dialogue for
+  good-sounding lines fills a unit with `そうですか` and recap turns nobody can study alone, which is
+  what it was written to stop. But measured on a real chapter, the blanket version produced ZERO
+  cards from a chapter's dialogues while those dialogues held the only utterance demonstrating the
+  chapter's own grammar point, and the extras pass then re-added those lines by hand months later
+  with reviewNotes saying exactly that. A rule whose output is routinely undone by hand is the wrong
+  rule.
+- **Impact:** more dialogue lines reach the deck than under v1, and the guard against the original
+  failure is now a cap and a justification rather than a prohibition. If the narrowing is too loose,
+  the symptom will be extras units carrying conversational filler, visible at the corpus review.
+- **Verified by:** `node --test test/agents/exampleSentenceMiner.test.js` asserts that a line naming
+  no form is refused and that a fifth line from one dialogue is refused.
+- **Status:** open, pending the first live extras run on a chapter with substantial dialogue.
+- **When to revisit:** if a reviewer starts excluding dialogue-sourced cards at the corpus gate, the
+  cap is too high or the justification requirement is too weak. Tighten the cap before widening the
+  ban again: the ban's cost was measured and the cap's has not been.
+
 ## The paradigm audit cannot tell a particle from the same kana inside a word
 
 - **What:** `matchesInPredicatePosition` requires a form to start the string or follow a particle

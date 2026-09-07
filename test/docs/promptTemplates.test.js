@@ -27,6 +27,18 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "example-sentence-miner-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+      "SECTIONS_JSON",
+    ],
+    outputContract: /"items"[\s\S]*"sections"[\s\S]*"skipped"/,
+  },
   "fill-in-blank-miner-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

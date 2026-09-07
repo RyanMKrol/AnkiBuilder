@@ -3988,8 +3988,10 @@ keep the key as it is and add a post-merge pass that reports same-target pairs w
 only in punctuation, so a script proposes and a human or an agent disposes, which is this project's
 existing idiom.
 
-**Status:** open, and it should be settled before any paid v2 build. `findSenseCollisions` already
-computes same-target groups, so the machinery to report them exists.
+**Status: RESOLVED.** A `semantic-dedup` agent step now runs last in both phases, after the
+snapshot. `findDuplicateCandidates` groups the look-alikes and an Opus role judges each group
+`duplicate` or `distinct`. Replayed against the corpus that produced this entry: 21 groups, 18
+excluded, 3 kept as distinct, 0 unaccounted, 83 shipping items down to 65.
 
 **Verified by:** re-run `node scripts/shadow-run.mjs` for a reviewed chapter and count targets
 appearing more than once in the resulting `corpus.json`.

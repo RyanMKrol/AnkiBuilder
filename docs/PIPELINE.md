@@ -1149,6 +1149,41 @@ say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` grou
 built from its base unit's approved cards rather than from the book, and the one thing that does
 need the book, finding the cached chapter, reads the hash off the base unit directly.
 
+### The semantic deduplicator: the one agent that reconciles rather than produces
+
+Every other agent in the pipeline is a producer. Nine of them across the two phases, and each either
+finds content or authors it. Reconciliation, the one place where "is this the same as that?" is
+asked, was a script comparing normalised strings.
+
+That script is strict on purpose. `reconcile` merges on target AND gloss so that `はし` (bridge) and
+`はし` (chopsticks) cannot collapse into one card and silently lose a sense. The cost is measurable:
+on the first live phase-1 run, **19 of 83 items were a target already present in the same corpus**,
+differing only in whether the gloss used a comma or a semicolon. No normalisation separates
+"Watch, clock." from "Watch; clock." while keeping "Bridge" apart from "Chopsticks", because the
+difference is meaning rather than spelling.
+
+**So the work is split.** `findDuplicateCandidates` (`src/cards/dedupGroups.js`) groups items that
+share a normalised target, or share a gloss with different targets. It removes nothing and decides
+nothing. The agent judges each group `duplicate` (naming which id to keep) or `distinct`.
+
+**It is pinned to Opus, above every producer in both phases**, and for a sharper reason than the
+coverage adversary's: this role can DELETE. A wrong `duplicate` verdict removes a card and nobody
+notices it is gone, which is why the prompt's tie-breaker is to return `distinct` when unsure, and
+why `applyVerdicts` validates every verdict against its own group before applying it. A verdict
+naming an id outside the group, or emptying it, is discarded with the group left intact: a malformed
+answer costs nothing rather than costing a card.
+
+**It excludes rather than deletes**, stamping `excludedBy: "semantic-dedup"` so the card stays in the
+file, the reviewer sees why, and the learning pass can tell it from a human's decision.
+
+**It runs last, after the snapshot**, and both halves of that matter. Last, because it acts on the
+finished set. After the snapshot, because the snapshot is the pre-review baseline: run before it, the
+deduplicator's work would be invisible to the one mechanism built to audit what happens to a corpus
+between generation and review.
+
+A corpus with no look-alike groups skips the call entirely rather than paying an Opus round trip to
+be told there is nothing to do.
+
 ### Every pass declares its model, including the v1 ones that survived
 
 Both the v2 role registry (`src/agents/roles.js`) and the two v1 families

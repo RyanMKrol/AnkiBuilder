@@ -331,6 +331,14 @@ pinned higher and used to check them.
 | reconcile | script | UNION the three, then dedup. Never a majority vote. |
 | snapshot | script | `as-generated.json`, the pre-review baseline |
 | coverage adversary | agent, higher model | enumerates the chapter independently, diffed against the corpus in code |
+| semantic deduplicator | agent, higher model | decides which look-alike items are one card and which are two senses |
+
+**Nothing else in either phase decides whether two items are the same card.** The merge before it
+is a script comparing normalised strings, which is strict on purpose: loosening it is how a sense
+gets deleted, because `はし` (bridge) and `はし` (chopsticks) share a spelling. The cost of that
+strictness, measured on a real run, was 19 duplicate items in an 83-item corpus, all differing only
+in whether the gloss used a comma or a semicolon. The deduplicator is what closes that, and it runs
+**after** the snapshot so the learning pass can see what it cut.
 
 **The overlap between the three specialists is deliberate.** No EPUB is reliably consistent, so they
 disagree, and the disagreement is the signal: union for existence, then dedup, because in a recall
@@ -747,6 +755,7 @@ decoration.
 | gaps | script | `taughtNeverUsed`, the paradigm grid, particle example counts |
 | gap author | agent | driven by that gap list |
 | **inventive author** | agent | sentences NOT in the book, capped at **+20% of what the miners produced** |
+| semantic deduplicator | agent, higher model | runs last, on the finished set: which of these are the same sentence |
 
 **The miners are unbounded and the inventive author is not.** If the book contains it, it belongs in
 the extras unit; an inventive role with no ceiling is how a unit fills with padding. It runs **last**

@@ -1129,6 +1129,26 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### An extras unit's identity is derived, not typed
+
+Phase 2 writes `corpus.json` into a new unit directory, and that unit needs three fields the phase
+itself knows nothing about: which chapter it belongs to, what it is called, and which lesson its
+drills hang under. `extrasUnitMeta` derives all three from the base unit's approved `cards.json`.
+
+They had been typed by hand sixteen times, once per extras unit in the collection, and all sixteen
+agree. That agreement is the argument for deriving it rather than evidence that typing it is fine: a
+convention nothing enforces holds until the first time someone is in a hurry, and two of the fields
+are read by the deck build.
+
+`chapterLabel` is the base label plus `" (Extras)"`, and the suffix is not decoration:
+`src/deck/deckPath.js` splits on it to nest the drills under their lesson, so a unit that spells it
+differently ships as a sibling deck of the book rather than a child of the lesson, with nothing to
+say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` groups on.
+
+`epubHash` is deliberately not carried over, matching all sixteen existing units. An extras unit is
+built from its base unit's approved cards rather than from the book, and the one thing that does
+need the book, finding the cached chapter, reads the hash off the base unit directly.
+
 ### Phase 1 as `assemble`'s extraction step
 
 `anki-builder assemble --epub … --extraction phase` substitutes phase 1 for the v1 extraction pass

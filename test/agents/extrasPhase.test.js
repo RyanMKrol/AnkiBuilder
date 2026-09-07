@@ -7,6 +7,7 @@ import {
   EXTRAS_PHASE_STEPS,
   REQUIRED_STEPS,
   runExtrasPhase,
+  extrasUnitMeta,
 } from "../../src/agents/extrasPhase.js";
 import { readSnapshot } from "../../src/agents/snapshot.js";
 
@@ -211,4 +212,35 @@ test("the gaps artifact records what was computed, for the reviewer to read", ()
     assert.ok(Array.isArray(gaps.neverUsed));
     assert.equal(gaps.paradigm, null, "no grid spec means nobody checked, not nothing missing");
   });
+});
+
+test("an extras unit inherits its identity from its base unit, suffix included", () => {
+  // The " (Extras)" suffix is what deckPath splits on to nest the drills under their lesson. A unit
+  // that spells it differently ships as a sibling of the book instead of a child of the lesson, and
+  // the deck build has no way to tell that was not intended.
+  const meta = extrasUnitMeta({
+    targetLanguage: "ja",
+    sourceType: "epub",
+    reviewed: true,
+    epubHash: "1fab0f99d1195ad9",
+    chapterNumber: 38,
+    chapterLabel: "Lesson 16: Making an Invitation: Shall We Go Together?",
+  });
+
+  assert.deepEqual(meta, {
+    chapterNumber: 38,
+    chapterLabel: "Lesson 16: Making an Invitation: Shall We Go Together? (Extras)",
+    baseChapterLabel: "Lesson 16: Making an Invitation: Shall We Go Together?",
+  });
+  // Matches all sixteen hand-authored units: an extras unit carries no epubHash.
+  assert.equal("epubHash" in meta, false);
+});
+
+test("a multi-file lesson's span carries over, so the extras unit spans the same range", () => {
+  const meta = extrasUnitMeta({ chapterNumber: 38, lastChapterNumber: 40, chapterLabel: "L16" });
+  assert.equal(meta.lastChapterNumber, 40);
+  assert.equal(
+    extrasUnitMeta({ chapterNumber: 38, chapterLabel: "L16" }).lastChapterNumber,
+    undefined,
+  );
 });

@@ -1129,6 +1129,28 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### The combined audio review page
+
+`GET /chapter/<type>/<id>/<n>` renders a chapter's base unit and its `-extras` sibling on one page,
+and `POST /api/deck/<type>/<id>/chapter/<n>/done` signs both off at once.
+
+It is a **scope on the existing renderer**, not a new page. `renderReviewPage` already rendered N
+units together (that is how the deck-level view works), so the chapter view is a filter on
+`u.number` alongside the unit filter it already had. The task that produced this was scoped as a new
+page in a 4,472-line surface; reading the code first made it a few lines.
+
+`meta.done` is still set **per unit**, because that is what the package build and the deliverer
+select on. Only the sign-off is shared.
+
+The handler **refuses before writing anything** when the chapter is not ready, reusing
+`chapterAudioReadiness` rather than re-deriving the rule, so the dashboard and the CLI cannot
+disagree about when a chapter may proceed. A partial sign-off would ship half a chapter, so the check
+runs across both units before either is touched.
+
+`safeCollectionDir` derives the collection directory from the adapter's own `unitDir`, so the three
+collection shapes stay the adapters' business and this does not become a fourth place that knows
+where books live on disk.
+
 ### The chapter-level audio gate
 
 A chapter's two units share **one** audio review, which is why v2 has three gates per chapter where

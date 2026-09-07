@@ -318,13 +318,20 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
   // generate / rebuild controls when the server is editable. A lesson whose build never finished
   // (INCOMPLETE) renders read-only here with the command that completes it. (Browsing a finished deck
   // read-only is renderDeckPage below.)
-  function renderReviewPage(type, id, unit = null) {
+  function renderReviewPage(type, id, unit = null, { chapterNumber = null } = {}) {
     const adapter = adapterFor(type);
     const deck = adapter ? adapter.loadDeck(outputRoot, id) : null;
     if (!deck) return null;
-    // Unit-scoped review renders a single lesson; deck-level renders all of them.
-    const units =
-      unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
+    // Three scopes, one renderer. Unit-scoped renders a single lesson; deck-level renders all of
+    // them; CHAPTER-scoped renders a lesson and its `-extras` sibling together, which is what the
+    // shared audio review needs. The chapter scope is a filter rather than a new page precisely
+    // because this function already renders N units on one page.
+    let units = deck.units;
+    if (chapterNumber != null) {
+      units = units.filter((u) => Number(u.number) === Number(chapterNumber));
+    } else if (unit != null) {
+      units = units.filter((u) => String(u.seq) === String(unit));
+    }
     if (units.length === 0) return null;
 
     // A lesson is ALWAYS open for editing — done or not. `done` only gates delivery / .apkg

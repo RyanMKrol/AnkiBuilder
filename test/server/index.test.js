@@ -1818,3 +1818,99 @@ test("accepting a card that has no audio says so rather than inventing a hash", 
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+// --- the chapter-level audio review (v2) ---------------------------------------------------
+//
+// A chapter's two units share ONE audio review, which is what takes a chapter from v1's four gates
+// to three. The page is the same renderer scoped differently, and the sign-off still sets
+// `meta.done` per unit because that is what the package build and the deliverer select on.
+
+/** The standard fixture, plus a chapter-2 base unit and its extras sibling. */
+function withChapterPair(root, { extrasReviewed = true } = {}) {
+  const book = join(root, "epubs", "mybook");
+  for (const [name, meta] of [
+    ["chapter-2", { reviewed: true }],
+    ["chapter-2-extras", { reviewed: extrasReviewed }],
+  ]) {
+    mkdirSync(join(book, name, "audio"), { recursive: true });
+    writeFileSync(join(book, name, "audio", "a.mp3"), Buffer.from("CLIP"));
+    writeFileSync(
+      join(book, name, "cards.json"),
+      JSON.stringify({
+        meta: {
+          targetLanguage: "ja",
+          chapterNumber: 2,
+          chapterLabel: name.endsWith("-extras") ? "Lesson 2: Two (Extras)" : "Lesson 2: Two",
+          ...meta,
+        },
+        items: [
+          {
+            id: `${name}-a`,
+            english: "one",
+            target: "\u3044\u3061",
+            pronunciation: "ichi",
+            category: "Numbers",
+            audio: "a.mp3",
+          },
+        ],
+      }),
+    );
+  }
+  return root;
+}
+
+const metaOf = (root, name) =>
+  JSON.parse(readFileSync(join(root, "epubs", "mybook", name, "cards.json"), "utf-8")).meta;
+
+test("the chapter review page renders a lesson and its extras sibling together", async () => {
+  const root = withChapterPair(fixture());
+  try {
+    await withServer(root, async (url) => {
+      const res = await fetch(`${url}/chapter/book/mybook/2`);
+      assert.equal(res.status, 200);
+      const html = await res.text();
+      assert.match(html, /Lesson 2: Two/);
+      assert.match(html, /\(Extras\)/, "both units are on the one page");
+      assert.doesNotMatch(html, /Lesson One/, "and only this chapter's units");
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("one chapter sign-off marks both units done", async () => {
+  const root = withChapterPair(fixture());
+  try {
+    await withServer(root, async (url) => {
+      const { status, body } = await asJson(
+        await fetch(`${url}/api/deck/book/mybook/chapter/2/done`, { method: "POST" }),
+      );
+      assert.equal(status, 200);
+      assert.equal(body.ok, true);
+      assert.deepEqual(body.units.map((u) => u.unit).sort(), ["chapter-2", "chapter-2-extras"]);
+      // `meta.done` is still per unit: it is what the package build and the deliverer select on.
+      assert.equal(metaOf(root, "chapter-2").done, true);
+      assert.equal(metaOf(root, "chapter-2-extras").done, true);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("the chapter sign-off refuses before writing when a unit is unreviewed", async () => {
+  const root = withChapterPair(fixture(), { extrasReviewed: false });
+  try {
+    await withServer(root, async (url) => {
+      const { status, body } = await asJson(
+        await fetch(`${url}/api/deck/book/mybook/chapter/2/done`, { method: "POST" }),
+      );
+      assert.equal(status, 409);
+      assert.match(body.error, /not signed off at the corpus gate/);
+      // Nothing was written: a partial sign-off would ship half a chapter.
+      assert.notEqual(metaOf(root, "chapter-2").done, true);
+      assert.notEqual(metaOf(root, "chapter-2-extras").done, true);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

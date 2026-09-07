@@ -3897,3 +3897,31 @@ rather than a second reading of this one.
 
 **Verified by:** `grep -rn "meta.enriched\|meta\[.enriched" src/ | grep -v readiness.js`. Every
 hit must be guarded by `drillPassExpected` or be inside `prepare`'s own `minesDrills` branch.
+
+## The surviving v1 model passes declare an effort at most, never a model
+
+v2's rule is that every agent a script invokes declares its own `model` and `effort`
+(`src/agents/roles.js`), and that a checking role outranks what it checks. That holds for everything
+the phase scripts call. It half-holds for the v1 passes that survive around them.
+
+Those passes are not unstructured: `epubLlmRunClaude.js` already gives each one its own scope and
+its own `ANKI_BUILDER_<PASS>_MODEL` / `_EFFORT` / `_TIMEOUT_MS` triple, deliberately, so tuning one
+does not re-tune the others. What none of them declares is a **model**. Only chapter extraction
+declares even an effort (`high`), and that pass is the one `--extraction phase` replaces. The rest
+(book conventions, taught index, forward flags, pedagogical sort, and everything `prepare` runs)
+resolve their model from the environment or the ambient default at the call site.
+
+**Why it was left.** `--extraction phase` was deliberately the narrowest possible seam, swapping one
+step and touching nothing else, because the value of the surrounding sequence is that it is proven.
+Declaring pins for eight passes in the same change would have turned a wiring commit into a rewrite
+of the passes it was wiring.
+
+**Impact.** Nothing regressed, because this is what v1 always did. But "every agent is pinned" is
+not yet true across the whole pipeline, and forward flags is the case that most wants it: it is a
+checking role, so under v2's own rule it should outrank the roles that produced the items it
+judges, and today it runs at whatever the environment says.
+
+**Status:** open. Its own task, not a follow-up to the wiring.
+
+**Verified by:** `grep -n "epubRunner(" src/corpus/epubLlmRunClaude.js` lists the passes and the
+defaults each declares. Any entry whose defaults carry no `model` is in this set.

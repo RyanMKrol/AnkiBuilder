@@ -6,6 +6,7 @@ import { runPaths as defaultRunPaths, libraryHome as defaultLibraryHome } from "
 import { loadTemplate as defaultLoadTemplate } from "../corpus/templates.js";
 import { assembleCorpusFromChapter as defaultAssembleCorpusFromChapter } from "../corpus/epubLlmCorpus.js";
 import { assembleCorpusFromLessonWords as defaultAssembleCorpusFromLessonWords } from "../corpus/lessonCorpus.js";
+import { extractBaseCorpus as defaultExtractBaseCorpus } from "../corpus/phaseExtraction.js";
 import {
   extractChapterToFile as defaultExtractChapterToFile,
   extractChapterRangeToFile as defaultExtractChapterRangeToFile,
@@ -158,6 +159,7 @@ export async function runCli(argv, deps = {}) {
     materializeBookInOutput = defaultMaterializeBookInOutput,
     resolveBookEpubPath = defaultResolveBookEpubPath,
     assembleCorpusFromChapter = defaultAssembleCorpusFromChapter,
+    extractBaseCorpus = defaultExtractBaseCorpus,
     assembleCorpusFromLessonWords = defaultAssembleCorpusFromLessonWords,
     extractChapterToFile = defaultExtractChapterToFile,
     extractChapterRangeToFile = defaultExtractChapterRangeToFile,
@@ -235,6 +237,7 @@ export async function runCli(argv, deps = {}) {
     materializeBookInOutput,
     resolveBookEpubPath,
     assembleCorpusFromChapter,
+    extractBaseCorpus,
     assembleCorpusFromLessonWords,
     extractChapterToFile,
     extractChapterRangeToFile,

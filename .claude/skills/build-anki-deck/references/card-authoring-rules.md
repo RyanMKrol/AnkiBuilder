@@ -14,6 +14,11 @@ It never means two of them together. Two collections are two separate products a
 overlapped, compared, cued against each other, or considered in reference to each other, even though
 the learner may study both on the same day. See CLAUDE.md, "Collections are isolated".
 
+> **The cross-pass subset of these rules lives in `docs/card-rules-shared.md`**, and is injected into
+> every card-writing prompt at its `{{CARD_RULES}}` marker. This file is the full rulebook and most of
+> it concerns one pass; that file is what every pass is guaranteed to have read. A rule that passes
+> keep undoing for each other belongs in both.
+
 ## English glosses read as natural sentence-case English
 
 **Every English gloss reads as natural sentence-case English — capitalized, never a lowercased clip.**

@@ -6,6 +6,8 @@ its grammar examples, and the small number of dialogue lines that earn a card.
 You write the chapter's **extras** unit. The base unit already holds the vocabulary, approved by a
 human. These are the sentences that show those words working together.
 
+{{CARD_RULES}}
+
 ## Two sources, two different rules
 
 ### Key Sentences and grammar examples: take them all

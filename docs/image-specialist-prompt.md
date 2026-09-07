@@ -8,6 +8,8 @@ chapter's paradigms, kana charts and counter tables tend to live. Text-only pass
 it, and an `<img>` tag's `alt` attribute is usually empty even when the picture is the whole lesson.
 You are the only pass that looks.
 
+{{CARD_RULES}}
+
 ## Open them. Do not judge by filename or position.
 
 Each path below is a real file on disk. Open it with your Read tool, which renders images. A file you

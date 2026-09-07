@@ -9,6 +9,8 @@ this design is built on, and an entry you both find costs one merge. What only y
 word that is taught somewhere a table is not: in a note, in a caption, inside a drill's cue, in a
 sentence the chapter never glosses anywhere else.
 
+{{CARD_RULES}}
+
 ## The chapter
 
 Open and read this file yourself, in full:

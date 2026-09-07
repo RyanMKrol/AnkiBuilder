@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "fs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import { renderPromptTemplate } from "../../src/util/promptTemplate.js";
 
 // Golden checks on the hand-editable prompt templates in docs/. The renderers throw on an
 // UNRESOLVED placeholder, but a placeholder that gets DELETED in a hand edit fails silently —
@@ -256,4 +257,60 @@ test("every *-prompt.md template in docs/ is covered by this golden check", () =
   // transcribe are now real templates in this map, which is what stopped the transcript drifting.
   const uncovered = promptFiles.filter((f) => f !== "translate-prompts.md" && !TEMPLATES[f]);
   assert.deepEqual(uncovered, [], "add new templates to the TEMPLATES map above");
+});
+
+// ---------------------------------------------------------------------------
+// The shared card rules, and the classification that keeps them shared.
+// ---------------------------------------------------------------------------
+
+// Prompts that deliberately carry NO card rules, each with the reason. A prompt is in this map or it
+// carries the marker; there is no third state, so a prompt added later cannot opt out by being new.
+//
+// The test that enumerates docs/ is the whole mechanism. `card-authoring-rules.md` claimed for a year
+// to govern "every pass that writes cards" and nothing made that true, which is how the extraction
+// prompt came to protect irregular forms from sampling while the semantic de-dup prompt had never
+// heard the word and deleted one as a repeat.
+const NO_CARD_RULES = {
+  "epub-book-conventions-prompt.md": "writes a prose doc about the book; it authors no card",
+  "epub-taught-index-prompt.md": "writes a whole-book index of what each chapter introduces",
+  "epub-forward-flag-prompt.md": "flags items as possibly premature; it never edits card content",
+  "epub-forward-flag-index-prompt.md": "the same pass, reading the taught index instead",
+  "pedagogical-sort-prompt.md": "a permutation of items that already exist; it writes no field",
+};
+
+test("every prompt either carries the shared card rules or is classified as not needing them", () => {
+  const prompts = readdirSync(DOCS).filter((name) => name.endsWith("-prompt.md"));
+  assert.ok(prompts.length > 15, "sanity: the prompt set was found");
+
+  for (const name of prompts) {
+    const text = readFileSync(join(DOCS, name), "utf-8");
+    const carries = text.includes("{{CARD_RULES}}");
+    const exempt = name in NO_CARD_RULES;
+    assert.notEqual(
+      carries,
+      exempt,
+      carries
+        ? `${name} carries {{CARD_RULES}} and is also listed as exempt — pick one`
+        : `${name} neither carries {{CARD_RULES}} nor is listed in NO_CARD_RULES with a reason. ` +
+            `If it writes, edits or deletes a card, add the marker; if it does not, say so there.`,
+    );
+  }
+});
+
+test("every exemption states a reason, so the list cannot grow silently", () => {
+  for (const [name, reason] of Object.entries(NO_CARD_RULES)) {
+    assert.ok(reason && reason.length > 20, `${name} needs a real reason, not a placeholder`);
+  }
+});
+
+test("the rules actually reach a rendered prompt, and carry the rule the incident was about", () => {
+  // The one that caused this: extraction protected forms the source marks irregular, semantic de-dup
+  // never mentioned them, and a correctly-mined irregular card was deleted as a pattern repeat.
+  const rendered = renderPromptTemplate(join(DOCS, "semantic-dedup-prompt.md"), {
+    TARGET_LANGUAGE: "Japanese",
+    CARDS_JSON: "[]",
+  });
+  assert.ok(!rendered.includes("{{CARD_RULES}}"), "the marker was substituted, not left literal");
+  assert.match(rendered, /irregular/i);
+  assert.match(rendered, /never optional and never redundant/i);
 });

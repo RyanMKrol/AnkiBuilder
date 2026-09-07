@@ -7,6 +7,8 @@ You are writing the chapter's **extras** unit: the sentences that put the vocabu
 base unit already exists and holds the words themselves, approved by a human. Your job is not to
 teach new words. It is to show the approved ones being used.
 
+{{CARD_RULES}}
+
 ## The vocabulary rule, which is absolute
 
 **Every word and construction you use must already be taught.** The approved base vocabulary is below,

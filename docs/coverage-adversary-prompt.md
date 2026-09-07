@@ -3,6 +3,8 @@
 List every word, fixed expression and taught form in this chapter of a {{TARGET_LANGUAGE}} textbook.
 Just the list. You are not judging anyone's work and you are not being asked what is missing.
 
+{{CARD_RULES}}
+
 ## Why the task is shaped this way
 
 You are a check on other passes that read this same chapter, and you are deliberately **not shown

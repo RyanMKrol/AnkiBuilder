@@ -1129,6 +1129,26 @@ reviewer to re-add what they just cut.
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
 `V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
 
+### The chapter-level audio gate
+
+A chapter's two units share **one** audio review, which is why v2 has three gates per chapter where
+v1 had four. `src/review/chapterGate.js` holds the rule.
+
+Worth stating what did **not** change, because the task that produced this was scoped as adding a
+stage. The per-unit machinery is untouched: each unit still moves `corpus` then `audio`, and
+`meta.reviewed` and `meta.done` keep their exact meanings, which matters because those two booleans
+drive package selection and delivery.
+
+`chapterAudioReadiness` refuses in three distinguishable ways, because "not yet", "this chapter has
+no readable cards" and "the extras unit was never built" call for different next actions and a caller
+that cannot tell them apart will guess:
+
+- **a unit not signed off**: audio covers both units, so it waits for both reviews rather than
+  splitting into two and re-introducing the second visit the design removed.
+- **an absent `-extras` unit**: phase 2 runs after the base review and before audio, so its absence
+  means the chapter is not finished, never that it legitimately has no drills.
+- **an unreadable `cards.json`**: reported as itself rather than collapsing into "unreviewed".
+
 ### Phase 2 as one ordered script
 
 `node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code>` takes an **approved**

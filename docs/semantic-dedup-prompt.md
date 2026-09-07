@@ -1,5 +1,7 @@
 # Task: De-duplicate Practice Cards by Sentence Pattern
 
+{{CARD_RULES}}
+
 ## Overview
 
 A {{TARGET_LANGUAGE}} flashcard lesson has just been enriched with AI-generated fill-in-the-blank

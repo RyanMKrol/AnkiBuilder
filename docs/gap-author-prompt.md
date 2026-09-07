@@ -6,6 +6,8 @@ that already exist. Write the sentences that fill them.
 You are not being asked what the lesson is missing. That question has already been answered, by
 arithmetic rather than impression, and the answer is the list. Write against it.
 
+{{CARD_RULES}}
+
 ## The vocabulary rule, which is absolute
 
 **Every word you use must already be taught**, from the approved base vocabulary below or the earlier

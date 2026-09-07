@@ -9,6 +9,8 @@ author wrote and belongs to it. A frame with six fillers beside it is a recipe f
 author did not write, and how many of them deserve a card is a judgement, which is why it is yours
 and why you are bounded and it is not.
 
+{{CARD_RULES}}
+
 ## Restraint, because your output volume is a choice
 
 A six-filler table can produce six near-identical sentences, and ten sentences on one frame with only

@@ -1,5 +1,7 @@
 # Task: Produce Pronunciation Guides
 
+{{CARD_RULES}}
+
 ## Overview
 
 You are producing pronunciation guides for flashcards in a language-learning deck.

@@ -10,6 +10,8 @@ it found none and reported that the chapter's vocabulary was fully covered. You 
 that replaces that pattern, so the honest "this one is not vocabulary, because…" matters as much as
 the extraction.
 
+{{CARD_RULES}}
+
 ## Output Format
 
 Respond with ONLY a single JSON object, no markdown fences and no prose around it, with two keys:

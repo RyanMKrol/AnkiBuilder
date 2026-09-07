@@ -1149,6 +1149,35 @@ say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` grou
 built from its base unit's approved cards rather than from the book, and the one thing that does
 need the book, finding the cached chapter, reads the hash off the base unit directly.
 
+### One source of card rules, included rather than restated
+
+`docs/card-rules-shared.md` holds the rules every pass that writes, edits or deletes a card has to
+obey. `renderPromptTemplate` substitutes it at each prompt's `{{CARD_RULES}}` marker, so no caller
+passes it and no caller can forget it.
+
+It exists because `card-authoring-rules.md` opened by claiming it governed "every pass that writes
+cards" and nothing made that true. The passes are separate prompts in separate files, each written
+when its pass was, so a rule added to one after another was written never reached the other. That is
+not hypothetical: the extraction prompt protects forms the source marks irregular from being sampled
+away, `semantic-dedup-prompt.md` had never mentioned the word, and a correctly-mined irregular card
+was deleted as "the third example of a frame the source teaches twice". Both passes did exactly what
+their own prompt said.
+
+**A test enumerates every `docs/*-prompt.md` and insists each one either carries the marker or is
+named in `NO_CARD_RULES` with a reason.** There is no third state, which is the point: a pass added
+later cannot quietly opt out by being new. Five prompts are exempt today, and each says why (they
+write a book-level doc, an index, a flag, or a permutation, not card content).
+
+**The file is short and language-neutral, and both are enforced consequences rather than style.** It
+is prepended to every card-writing call, so its length is multiplied by the number of passes. And it
+reaches every language's prompts including the generic romanization one, which an existing test holds
+to containing no Japanese: that test caught the first draft, which used Japanese examples. A rule
+illustrated in one script reads as a rule about that script.
+
+The full rulebook stays where it was, at
+`.claude/skills/build-anki-deck/references/card-authoring-rules.md`. Most of its five hundred lines
+concern a single pass, and a rule earns a place in the shared file only by being cross-pass.
+
 ### Onboarding a book: evidence, not conclusions
 
 `scripts/epub-hints.mjs` samples spine files spread across a book and prints frequency tables for the

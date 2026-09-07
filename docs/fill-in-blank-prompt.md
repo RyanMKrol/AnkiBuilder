@@ -1,5 +1,7 @@
 # Task: Mine Fill-in-the-Blank Practice Cards
 
+{{CARD_RULES}}
+
 ## Overview
 
 You are adding extra practice cards to a {{TARGET_LANGUAGE}} flashcard lesson. Textbook lessons carry

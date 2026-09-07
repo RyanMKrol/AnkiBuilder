@@ -8,6 +8,8 @@ practice the book does not supply, using only what it has already taught.
 checked. If {{ALLOWANCE_HALF}} good sentences are all this chapter supports, return
 {{ALLOWANCE_HALF}}.
 
+{{CARD_RULES}}
+
 ## Why you are capped when the others are not
 
 They mine. If the book prints a sentence, that is a fact about the chapter and there is no reason to

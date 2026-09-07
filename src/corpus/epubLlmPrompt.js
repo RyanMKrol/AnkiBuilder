@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
 import { CATEGORIES } from "../model/categories.js";
 import { renderCardFacesBlock } from "../deck/cardFaces.js";
+import { cardRules, CARD_RULES_KEY } from "../util/cardRules.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -13,9 +14,13 @@ const DEFAULT_TEMPLATE_PATH = resolve(
   join(MODULE_DIR, "..", "..", "docs", "epub-extraction-prompt.md"),
 );
 
+// This pass predates `renderPromptTemplate` and keeps its own substituter, which deliberately does
+// NOT throw on an unresolved placeholder. What it does share is the card rules: injected here for
+// the same reason they are injected there, so a rule cannot reach one pass and miss another.
 function substitute(template, values) {
   let rendered = template;
-  for (const [key, value] of Object.entries(values)) {
+  const resolved = CARD_RULES_KEY in values ? values : { ...values, [CARD_RULES_KEY]: cardRules() };
+  for (const [key, value] of Object.entries(resolved)) {
     rendered = rendered.split(`{{${key}}}`).join(value);
   }
   return rendered;

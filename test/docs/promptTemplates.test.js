@@ -27,6 +27,21 @@ const TEMPLATES = {
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  "inventive-author-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "PRIOR_COUNT",
+      "ALLOWANCE",
+      "ALLOWANCE_HALF",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "EXISTING_SENTENCES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+    ],
+    // `usedAllowance` keeps the ceiling in the role's own answer rather than only in the checker.
+    outputContract: /"items"[\s\S]*"usedAllowance"/,
+  },
   "gap-author-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

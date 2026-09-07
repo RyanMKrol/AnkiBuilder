@@ -1219,6 +1219,38 @@ leaves `とけい`, which is a finding a person can act on.
 It is a **report, never a filter**. Substring containment over a space-free script cannot be certain,
 so a silent drop would remove a good sentence for a bad reason and say nothing about it.
 
+#### The inventive author (F5), the only capped role
+
+It writes practice the book does not supply, and it is the only phase-2 role with a ceiling:
+`allowanceFor(priorCount)` is 20% of what the other roles produced, rounded up.
+
+The miners are uncapped because they mine. If the book prints a sentence, that is a fact about the
+chapter and there is no reason to stop at any number. This role invents, and an inventive role with
+no ceiling is how a unit fills with padding: another sentence is always possible, each looks
+reasonable alone, and the unit ends up twice the size with no more teaching in it.
+
+**It runs last**, and is given every sentence the other roles produced, so it can tell "this context
+is missing" from "I have not seen it yet". Running it earlier would make its allowance a guess and
+its duplicate-avoidance impossible.
+
+**The cap is enforced, not requested.** `assertWithinAllowance` refuses a response that exceeds it
+rather than trimming, because trimming would hide a role ignoring its brief and would make the module
+choose which cards to drop, which is a content judgement it has no basis for. Returning fewer is fine
+and often correct.
+
+Two things are reported rather than refused, both because they are judgements: a sentence that
+**reinvents** one the miners already produced (matched on the reconciler's own key, so this cannot
+disagree with the merge that follows), and a sentence using an **untaught word** — this role is the
+likeliest to slip there, since it writes freely rather than copying and a natural sentence is exactly
+where an untaught word gets in.
+
+Every item must carry a `why`: what a learner gets from it that the existing sentences do not give
+them. A sentence that cannot be justified in one line is one that should not have been written, and
+writing the line is the cheapest way to find that out.
+
+`ALLOWANCE_SHARE` is a named constant, because 20% is a dial rather than a law and it is the first
+number to tune if extras units come out thin or bloated.
+
 #### The gap author (F4), and why its holes are counted
 
 The three miners work from what the chapter contains. The gap author works from what the lesson's

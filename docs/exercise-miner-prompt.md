@@ -65,8 +65,8 @@ and one chapter's read once stopped at Exercise V of VIII with two blocks never 
 
 - **The worked examples.** A drill's `e.g.` line is usually a complete, natural sentence and is the
   best thing in the block.
-- **Resolved substitutions.** Where a drill gives a frame and a list of fillers, produce complete
-  sentences from them. Never emit the frame itself: a card containing `___` or `（　）` is not a card.
+- **Reference material printed among the drills**, where it is a complete sentence rather than a
+  table row. A conjugation chart is the base unit's business; a model sentence beside it is yours.
 - **Both halves of a question-and-answer pair**, kept together and in order, question first. An
   answer studied alone months later needs a `scene` naming the question it replies to, and that scene
   must state the question without leaking the answer.
@@ -74,8 +74,10 @@ and one chapter's read once stopped at Exercise V of VIII with two blocks never 
 ## What not to mine
 
 - **Anything needing an untaught word.** See the rule above.
-- Bare substitution alternatives on their own (`1. (タクシーで) 2. (でんしゃで)`). They are cues, not
-  sentences.
+- **Substitution frames and their fillers.** A frame plus a list of alternatives
+  (`1. (タクシーで) 2. (でんしゃで)`) is not a printed sentence, it is a recipe for several. The
+  fill-in-the-blank miner owns those, and it is bounded because their number is a choice rather than
+  a fact about the chapter. Mine what the book PRINTS; it expands what the book IMPLIES.
 - Lines with an unresolved blank, and empty answer slots.
 - A reference table printed among the drills. Those are the base unit's business, not yours.
 

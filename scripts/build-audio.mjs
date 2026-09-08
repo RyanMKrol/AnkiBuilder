@@ -11,9 +11,10 @@
 //
 // ⚠️ IT SPENDS REAL MONEY. Every uncached clip is a paid ElevenLabs fetch. --dry first, always: it
 // runs the refetch audit and the readiness check and fetches nothing.
-import { existsSync, readFileSync } from "fs";
-import { resolve } from "path";
+import { existsSync, readFileSync, readdirSync } from "fs";
+import { join, resolve } from "path";
 import { chapterUnits, chapterAudioReadiness } from "../src/review/chapterGate.js";
+import { parseUnitDir } from "../src/model/unitDir.js";
 import { auditChapterRefetch, describeRefetchAudit } from "../src/audio/refetchAudit.js";
 
 const argv = process.argv.slice(2);
@@ -40,6 +41,40 @@ const readiness = chapterAudioReadiness(units);
 console.log(`chapter ${chapterNumber}: ${units.map((u) => u.name).join(", ") || "(no units)"}`);
 
 if (!readiness.ok) {
+  // THE TWO NUMBERS A CHAPTER HAS, AND WHY THIS MESSAGE EXISTS.
+  //
+  // A unit is `chapter-16` and its `meta.chapterNumber` is spine file 38. This script takes the UNIT
+  // number, because that is what names the directory; `assemble --lesson` resolves and reports the
+  // SPINE number. Pass the wrong one and the readiness check honestly reports "no units found for
+  // this chapter", which reads like a missing chapter rather than a wrong argument.
+  //
+  // So before giving up, look for a unit whose spine number is what was typed, and name the unit
+  // number to use instead.
+  if (units.length === 0) {
+    const bySpine = readdirSync(collectionDir)
+      .map((name) => ({ name, unit: parseUnitDir(name) }))
+      .filter(({ unit }) => unit && !unit.extras)
+      .map(({ name, unit }) => {
+        const cards = join(collectionDir, name, "cards.json");
+        if (!existsSync(cards)) return null;
+        try {
+          const meta = JSON.parse(readFileSync(cards, "utf-8")).meta ?? {};
+          return meta.chapterNumber === chapterNumber ? { name, number: unit.number } : null;
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+    if (bySpine.length) {
+      const hit = bySpine[0];
+      console.error(
+        `\nno unit is numbered ${chapterNumber}, but ${hit.name} has chapterNumber ${chapterNumber} ` +
+          `(that is its SPINE file, not its unit number).\n` +
+          `This script takes the unit number, so you want:  ${hit.number}`,
+      );
+      process.exit(2);
+    }
+  }
   console.error(`\nnot ready: ${readiness.reason}`);
   process.exit(2);
 }

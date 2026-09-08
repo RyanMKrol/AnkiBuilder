@@ -16,6 +16,7 @@
 
 import { findTaughtNeverUsed } from "../cards/taughtNeverUsed.js";
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
+import { isPredicateShaped } from "../cards/predicateShape.js";
 
 /** Categories whose items are forms rather than things, so a bare gloss is not enough to study. */
 export const FUNCTION_CATEGORY = "Grammar & Function Words";
@@ -43,20 +44,36 @@ export function underExampledForms(cards, { wanted = EXAMPLES_WANTED, languageCo
   const norm = (text) => normalizeDisplayText(String(text).trim(), languageCode);
   const sentences = items.map((c) => norm(c.target)).filter(Boolean);
 
-  return items
-    .filter((c) => c.category === FUNCTION_CATEGORY)
-    .map((card) => {
-      const form = norm(card.target);
-      const examples = sentences.filter((s) => s !== form && s.includes(form));
-      return {
-        id: card.id,
-        target: card.target,
-        english: card.english ?? null,
-        examples: examples.length,
-      };
-    })
-    .filter((entry) => entry.examples < wanted)
-    .sort((a, b) => a.examples - b.examples);
+  return (
+    items
+      .filter((c) => c.category === FUNCTION_CATEGORY)
+      // A SENTENCE IS NOT A FORM AWAITING EXAMPLES, and category alone does not say which it is.
+      //
+      // The example-sentence miner categorises a Key Sentence as Grammar & Function Words, which is
+      // right: the sentence exists to teach a grammar point. But this computation read that category
+      // as "a function WORD needing three sentences to demonstrate it", and since nothing else in a
+      // chapter contains a whole sentence, every such card reported 0 examples forever. The gap author
+      // was then asked to write three sentences demonstrating a sentence, could not, and its silence
+      // tripped a guard that was right to fire. That killed a real chapter-9 run after eleven paid
+      // model calls: six of the thirty-eight gaps were incoherent requests.
+      //
+      // `isPredicateShaped` returns null for a language with no markers configured, and `=== true` is
+      // therefore false there, so an unconfigured language keeps the old behaviour rather than
+      // silently dropping gaps nobody has verified are droppable.
+      .filter((c) => isPredicateShaped(c.target, languageCode) !== true)
+      .map((card) => {
+        const form = norm(card.target);
+        const examples = sentences.filter((s) => s !== form && s.includes(form));
+        return {
+          id: card.id,
+          target: card.target,
+          english: card.english ?? null,
+          examples: examples.length,
+        };
+      })
+      .filter((entry) => entry.examples < wanted)
+      .sort((a, b) => a.examples - b.examples)
+  );
 }
 
 /**

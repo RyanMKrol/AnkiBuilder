@@ -105,7 +105,7 @@ test("a well-covered lesson costs no model call at all", () => {
         targetLanguage: "ja",
         runClaude: never,
       }),
-      { items: [], unfillable: [], notes: null, unteachable: [] },
+      { items: [], unfillable: [], notes: null, unteachable: [], unaddressed: [] },
     );
   });
 });
@@ -132,4 +132,59 @@ test("gapHandles is one spelling, so prompt and check cannot disagree", () => {
     "が",
     "past negative",
   ]);
+});
+
+test("an unaddressed gap is REPORTED by the author, so the phase can persist it before failing", () => {
+  // The guard used to throw straight after parsing, so a rejected response was never written. A real
+  // chapter-9 run died with a count and no artifact, and nothing on disk could say whether the model
+  // had dropped the gaps or answered with handles that did not match.
+  withChapter((file) => {
+    const gaps = {
+      neverUsed: [{ target: "ちち", english: "My father." }],
+      underExampled: [{ target: "あまり", english: "Not much.", examples: 1 }],
+      paradigm: null,
+    };
+    const result = authorGapFills({
+      chapterFilePath: file,
+      gaps,
+      baseItems: BASE,
+      targetLanguage: "ja",
+      runClaude: () =>
+        JSON.stringify({
+          items: [
+            {
+              id: "chichi-1",
+              target: "ちちは がっこうに いきます",
+              english: "My father goes to school.",
+              category: "Family & People",
+              fillsGap: "ちち",
+            },
+          ],
+          unfillable: [],
+        }),
+    });
+
+    // It returns rather than throwing, and names exactly what went unanswered.
+    assert.deepEqual(result.unaddressed, ["あまり"]);
+    assert.equal(result.items.length, 1, "and the answer it DID give survives to be written");
+  });
+});
+
+test("assertGapsAddressed still refuses that response when the phase checks it", () => {
+  const gaps = {
+    neverUsed: [{ target: "ちち" }],
+    underExampled: [{ target: "あまり" }],
+    paradigm: null,
+  };
+  assert.throws(
+    () => assertGapsAddressed(gaps, { items: [{ fillsGap: "ちち" }], unfillable: [] }),
+    /1 computed gap\(s\) unaddressed/,
+  );
+  // ...and accepts it once the gap is explicitly declined.
+  assert.doesNotThrow(() =>
+    assertGapsAddressed(gaps, {
+      items: [{ fillsGap: "ちち" }],
+      unfillable: [{ gap: "あまり", reason: "no taught word to build a second example from" }],
+    }),
+  );
 });

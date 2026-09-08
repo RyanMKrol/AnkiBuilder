@@ -68,12 +68,23 @@ export function renderGapAuthorPrompt({
  * A gap is addressed by an item claiming to fill it, or by an entry in `unfillable`. Anything else is
  * silence, and silence is what computing the list was meant to remove.
  */
-export function assertGapsAddressed(gaps, { items = [], unfillable = [] } = {}) {
-  const wanted = gapHandles(gaps);
+/**
+ * The gaps a response neither filled nor declined.
+ *
+ * Split out from the assertion so a caller can WRITE this before deciding what to do about it. The
+ * guard used to throw straight after parsing, which meant a rejected response was never persisted:
+ * a real chapter-9 run failed with a count and no artifact, and nothing on disk could say whether
+ * the model had dropped the gaps or answered with handles that did not match. Every other step in
+ * the phase is verified by its artifact; this one destroyed its own.
+ */
+export function unaddressedGaps(gaps, { items = [], unfillable = [] } = {}) {
   const closed = new Set(items.map((i) => i.fillsGap).filter(Boolean));
   const declined = new Set(unfillable.map((u) => u.gap).filter(Boolean));
+  return gapHandles(gaps).filter((handle) => !closed.has(handle) && !declined.has(handle));
+}
 
-  const untouched = wanted.filter((handle) => !closed.has(handle) && !declined.has(handle));
+export function assertGapsAddressed(gaps, { items = [], unfillable = [] } = {}) {
+  const untouched = unaddressedGaps(gaps, { items, unfillable });
   if (untouched.length) {
     throw new Error(
       `gap author left ${untouched.length} computed gap(s) unaddressed: ` +
@@ -99,7 +110,7 @@ export function authorGapFills({
   // Nothing to do is a real and common outcome for a well-covered lesson, and it must not cost a
   // model call to discover.
   if (!gaps || noGaps(gaps)) {
-    return { items: [], unfillable: [], notes: null, unteachable: [] };
+    return { items: [], unfillable: [], notes: null, unteachable: [], unaddressed: [] };
   }
 
   const prompt = renderGapAuthorPrompt({
@@ -118,13 +129,15 @@ export function authorGapFills({
     producedBy: ROLE_ID,
     aiSuggested: true,
   }));
-  assertGapsAddressed(gaps, { items, unfillable: parsed.unfillable ?? [] });
-
+  const unfillable = parsed.unfillable ?? [];
   const taught = teachableVocabulary({ baseItems, earlierItems }, targetLanguage);
   return {
     items,
-    unfillable: parsed.unfillable ?? [],
+    unfillable,
     notes: parsed.notes ?? null,
     unteachable: findUnteachable(items, taught, { languageCode: targetLanguage }),
+    // Reported, not thrown. The PHASE writes this to `candidates/gap-fills.json` and then asserts,
+    // so a failure leaves the model's actual answer on disk to be read.
+    unaddressed: unaddressedGaps(gaps, { items, unfillable }),
   };
 }

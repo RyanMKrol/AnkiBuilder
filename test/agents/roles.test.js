@@ -1,6 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ROLES, ROLE_IDS, MODEL_RANK, resolveRolePinning } from "../../src/agents/roles.js";
+import {
+  ROLES,
+  ROLE_IDS,
+  MODEL_RANK,
+  resolveRolePinning,
+  capabilityRank,
+} from "../../src/agents/roles.js";
 
 test("every role pins a model and an effort, because inheriting means Opus by accident", () => {
   for (const id of ROLE_IDS) {
@@ -28,7 +34,7 @@ test("a verification role is pinned strictly above every role it checks", () => 
     for (const target of role.checks) {
       assert.ok(ROLES[target], `${id} checks unknown role ${target}`);
       assert.ok(
-        MODEL_RANK[role.model] > MODEL_RANK[ROLES[target].model],
+        capabilityRank(role) > capabilityRank(ROLES[target]),
         `${id} (${role.model}) must outrank ${target} (${ROLES[target].model}): ` +
           `catching an omission is harder than producing content, and a checker from the same ` +
           `family as its generator is biased toward approving it`,
@@ -62,4 +68,16 @@ test("resolveRolePinning honours the per-role override and never returns an unpi
 
 test("an unknown role id is a hard error naming what is declared", () => {
   assert.throws(() => resolveRolePinning("nope"), /unknown agent role: nope/);
+});
+
+test("with one model tier, effort is what ranks a checker above what it checks", () => {
+  // The tier gap did two jobs. Effort recovers one of them (noticing an omission is harder than
+  // producing content, so the checker should work harder) and cannot recover the other: a model
+  // checking its own family's output leans toward approving it, and both sides are Sonnet now.
+  assert.ok(capabilityRank(ROLES.coverageAdversary) > capabilityRank(ROLES.tableSpecialist));
+  assert.equal(
+    capabilityRank(ROLES.coverageAdversary),
+    capabilityRank(ROLES.chapterReader),
+    "and it is an exact peer of the chapter reader, which is why that role is not in its checks list",
+  );
 });

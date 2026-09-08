@@ -37,6 +37,25 @@ export const MODEL_RANK = Object.freeze({
   "claude-opus-5": 3,
 });
 
+/**
+ * Effort, as the tiebreak within one model.
+ *
+ * The adversary assertion used to compare models alone, which worked while checkers were Opus and
+ * producers were Sonnet. Moving the checkers to Sonnet on cost grounds (owner, 2026-09-08) collapses
+ * that comparison: same model on both sides, so the only remaining axis is how hard each one thinks.
+ *
+ * Note what this does NOT recover. Half the original reason for the tier gap was that a model
+ * checking its own family's output leans toward approving it, and effort does not address that at
+ * all. What survives is the other half: noticing an omission is harder than producing content, so a
+ * checker should at least be working harder than what it checks.
+ */
+export const EFFORT_RANK = Object.freeze({ low: 0, medium: 1, high: 2 });
+
+/** A role's capability as one comparable number: model tier first, effort as the tiebreak. */
+export function capabilityRank(role) {
+  return MODEL_RANK[role.model] * 10 + (EFFORT_RANK[role.effort] ?? 0);
+}
+
 const MINUTES = 60 * 1000;
 
 /**
@@ -84,11 +103,15 @@ export const ROLES = Object.freeze({
     envScope: "COVERAGE_ADVERSARY",
     // Above every role it checks. Asked to enumerate independently, never shown the corpus or the
     // prompts that produced it, so the diff can be computed in code rather than judged.
-    model: "claude-opus-5",
+    model: "claude-sonnet-5",
     effort: "high",
     timeoutMs: 25 * MINUTES,
     phase: "base",
-    checks: ["tableSpecialist", "chapterReader", "imageSpecialist"],
+    // `chapterReader` is DELIBERATELY absent from this list, and its absence is the cost of moving
+    // the checkers to Sonnet. That role is pinned sonnet-5/high for its own reasons, so this one is
+    // now its exact peer: same model, same effort. It still reads its output, but it no longer
+    // outranks it, and asserting otherwise would be asserting something untrue.
+    checks: ["tableSpecialist", "imageSpecialist"],
     purpose: "Enumerate the chapter's teachable items independently, for a code-side diff.",
   },
 
@@ -98,13 +121,13 @@ export const ROLES = Object.freeze({
     // costs a reviewer a glance rather than a card — but the judgement itself is the subtle one in
     // this pipeline: おかし after かし is one word with a polite prefix, ごふん after ふん is not,
     // and the two are indistinguishable without knowing that ご is the number five.
-    model: "claude-opus-5",
+    model: "claude-sonnet-5",
     effort: "high",
     timeoutMs: 20 * MINUTES,
     phase: "both",
     checks: [
+      // chapterReader omitted: sonnet-5/high on both sides now, so this no longer outranks it.
       "tableSpecialist",
-      "chapterReader",
       "imageSpecialist",
       "exerciseMiner",
       "fillInBlankMiner",
@@ -120,13 +143,13 @@ export const ROLES = Object.freeze({
     // Above every producer, and for a sharper reason than the adversary's. This role can DELETE. A
     // wrong "duplicate" verdict removes a card and nobody notices it is gone, so it outranks the
     // roles whose output it judges in BOTH phases.
-    model: "claude-opus-5",
+    model: "claude-sonnet-5",
     effort: "high",
     timeoutMs: 20 * MINUTES,
     phase: "both",
     checks: [
+      // chapterReader omitted: sonnet-5/high on both sides now, so this no longer outranks it.
       "tableSpecialist",
-      "chapterReader",
       "imageSpecialist",
       "exerciseMiner",
       "fillInBlankMiner",
@@ -141,7 +164,7 @@ export const ROLES = Object.freeze({
     envScope: "GAP_FILLER",
     // Opus, because it is completing work three Sonnet specialists missed and deciding what earns a
     // card. It does not declare `checks`: it is not verifying the adversary, it is acting on it.
-    model: "claude-opus-5",
+    model: "claude-sonnet-5",
     effort: "high",
     timeoutMs: 25 * MINUTES,
     phase: "base",

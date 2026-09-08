@@ -11,7 +11,7 @@ import {
   findGaps,
   buildCoverageArtifact,
 } from "../../src/agents/coverageAdversary.js";
-import { ROLES, MODEL_RANK } from "../../src/agents/roles.js";
+import { ROLES, capabilityRank } from "../../src/agents/roles.js";
 
 const ja = { languageCode: "ja" };
 function withChapter(fn) {
@@ -109,10 +109,14 @@ test("the adversary outranks every role it checks", () => {
   const role = ROLES[ROLE_ID];
   for (const target of role.checks) {
     assert.ok(
-      MODEL_RANK[role.model] > MODEL_RANK[ROLES[target].model],
+      capabilityRank(role) > capabilityRank(ROLES[target]),
       `${ROLE_ID} must outrank ${target}`,
     );
   }
+  // chapterReader is not in that list any more, and this pins why: since the checkers moved to
+  // Sonnet the two are exact peers, so claiming this one outranks it would be claiming something
+  // untrue about the pipeline.
+  assert.equal(role.checks.includes("chapterReader"), false);
 });
 
 test("a missing chapter file is a hard error, not an empty enumeration", () => {

@@ -25,7 +25,7 @@ import { mineExercises } from "./exerciseMiner.js";
 import { mineFillInBlanks } from "./fillInBlankMiner.js";
 import { mineExampleSentences } from "./exampleSentenceMiner.js";
 import { computeGaps } from "./coverageGaps.js";
-import { authorGapFills } from "./gapAuthor.js";
+import { authorGapFills, assertGapsAddressed } from "./gapAuthor.js";
 import { authorInventedPractice } from "./inventiveAuthor.js";
 import { reconcile } from "../cards/unionReconciler.js";
 import { writeSnapshot } from "./snapshot.js";
@@ -228,6 +228,10 @@ export function runExtrasPhase({
     },
     artifact: write(unitDir, "candidates/gap-fills.json", fills.value),
   });
+  // Enforced HERE, after the artifact is on disk, so a rejected response can be read rather than
+  // only counted. A gap left silently is still indistinguishable from one that was filled, so this
+  // still stops the phase.
+  assertGapsAddressed(gaps, { items: fills.value.items, unfillable: fills.value.unfillable });
 
   // --- the inventive author, last, and the only capped role ------------------------------------
   const existing = [...mined, ...fills.value.items];

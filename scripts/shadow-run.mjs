@@ -130,6 +130,9 @@ try {
     chapterHtml: readFileSync(chapterFilePath, "utf-8"),
     targetLanguage,
     meta: { hints: loadBookHints(meta.epubHash) },
+    // Without this the backward judge runs against an empty prior set and reports 0 candidates,
+    // which reads exactly like "nothing repeats" while actually meaning "nothing was compared".
+    priorItems: loadEarlierUnitItems(BOOK, unitName),
   });
 } catch (error) {
   console.error(`phase 1 failed: ${error.message}`);

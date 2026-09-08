@@ -78,6 +78,11 @@ Respond with ONLY a single JSON object, no markdown fences and no prose around i
 }
 ```
 
+**A gap you cannot make sense of belongs in `unfillable` too.** The list is computed by counting, so
+a malformed entry is possible: a gap whose "form" is actually a complete sentence cannot have three
+sentences demonstrating it, and the honest answer is to decline it with that as the reason. Say so
+rather than going quiet, because silence is the one response that stops the build.
+
 **Every gap listed below must be closed or appear in `unfillable`.** That is checked. A gap left
 silently is the failure this pass exists to prevent.
 

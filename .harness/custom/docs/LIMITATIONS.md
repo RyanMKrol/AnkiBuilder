@@ -4013,3 +4013,45 @@ get the same concern twice, and keeps them on the extras path where nothing else
 
 **Verified by:** replaying chapter 16 against everything before it: 2,273 prior items, 1,117 of them
 from extras units, 22 candidates raised, prompt bounded at 16 KB.
+
+## A gap is only answerable if it names a FORM, and category alone does not say that
+
+Found by the first two-phase shadow run (chapter 9, 2026-09-08). Phase 2 died after eleven paid model
+calls with `gap author left 25 computed gap(s) unaddressed`.
+
+**The chain.** The example-sentence miner categorises a Key Sentence as `Grammar & Function Words`,
+which is right: the sentence exists to teach a grammar point. `underExampledForms` filtered on that
+category alone and read it as "a function WORD needing three sentences to demonstrate it". Since
+nothing in a chapter contains a whole sentence, each of those reported **0 examples forever**, and
+the gap author was asked to write three sentences demonstrating a sentence. Six of chapter 9's
+thirty-eight gaps were that request. Its silence then tripped a guard that was right to fire.
+
+**Fixed** by skipping utterance-shaped items (`isPredicateShaped`), which is the same judgement the
+base/extras split already makes. Re-computed on the same run's artifacts: 38 gaps down to 33.
+
+**One survivor, and it is the heuristic's known limit.** `ときどききます` ("I come here sometimes")
+is a sentence with no particle, so the predicate test cannot see it. That is why the prompt now also
+says a gap you cannot make sense of belongs in `unfillable` with that as the reason: fixing the
+generator is not enough on its own, because the generator is a heuristic.
+
+**Status:** resolved for the six-in-thirty-eight case, open as a class. A malformed gap is possible
+whenever a card's category and its shape disagree, and the second line of defence is the author being
+able to decline rather than go quiet.
+
+**Verified by:** `node --test test/agents/coverageGaps.test.js`.
+
+## A guard that throws before writing destroys the evidence it was checking
+
+Same run. `assertGapsAddressed` threw immediately after parsing, so the rejected response was never
+persisted: the failure gave a count and nothing on disk could say whether the model had dropped the
+gaps or answered with handles that did not match. Every other step in the phase is verified by its
+artifact; this one destroyed its own.
+
+**Fixed** by splitting reporting from enforcing. `authorGapFills` returns `unaddressed` and does not
+throw; the phase writes `candidates/gap-fills.json` and then asserts. The guard still stops the
+phase, and the answer survives to be read.
+
+**Worth generalising.** Any future step that validates a model's response should write first and
+judge second, for the same reason: a rejection you cannot inspect costs the whole run's evidence.
+
+**Status:** fixed here; the general rule is not enforced anywhere.

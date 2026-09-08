@@ -737,8 +737,11 @@ base card cut at gate 1 can never orphan a sentence built on it.
 ```sh
 node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <lang> --dry   # always --dry first
 node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <lang>
-anki-builder prepare --run <extrasUnitDir>
 ```
+
+It chains into `prepare` on success, exactly as `assemble` does, so the unit arrives reviewable
+rather than as a corpus somebody still has to finish. `--no-prepare` stops at `corpus.json` for a
+debugging run and says plainly that the unit is not reviewable yet.
 
 It refuses a base unit that is not `reviewed`, and says why. `--dry` prints the ordered steps with
 each agent's pin and spends nothing.
@@ -799,9 +802,10 @@ node scripts/build-audio.mjs <collectionDir> <chapterNumber> --lang <lang>
 ```
 
 **`<chapterNumber>` here is the UNIT number, not the spine number.** `chapter-16` is 16, even though
-its `meta.chapterNumber` is spine file 38 and that is the number `assemble --lesson` resolved. Passing
-the spine number reports `no units found for this chapter`, which reads like a missing chapter rather
-than a wrong argument.
+its `meta.chapterNumber` is spine file 38 and that is the number `assemble --lesson` resolved. Pass
+the spine number and it now tells you which unit you meant and what to type instead, rather than
+reporting `no units found for this chapter` and leaving you to work out that a chapter has two
+numbers.
 
 **Always `--dry` first, because this is the step that spends real money.** It runs the readiness
 check and the refetch audit and fetches nothing:
@@ -853,10 +857,11 @@ chapter page. It sets `cards.meta.done` on BOTH units and rebuilds the collectio
 chapter is signed off once rather than twice. This is the gate the book/course merge checks:
 `deck --book-dir` and the dashboard package only `done` units.
 
-**`await-review.mjs` numbers gates per unit, not per chapter**, and it predates the third gate:
-`--gate 1` waits for **Mark reviewed** and `--gate 2` waits for **Mark done** plus its rebuild. So
-gates 1 and 2 of a chapter are both `--gate 1`, on the base and extras unit directories, and gate 3
-is `--gate 2` on either.
+**`await-review.mjs` numbers gates per UNIT; the chapter arc numbers them per CHAPTER.** There are
+two flags on a unit, `reviewed` and `done`, and three gates in a chapter, because its two units share
+one audio review. So a chapter's gates 1 and 2 are both `--gate 1`, on the base and extras unit
+directories, and its gate 3 is `--gate 2` on either. `--gate 3` is accepted as a name for that last
+one, since every v2 doc calls it gate 3; it runs the same check.
 
 ## Step 4b: The learning pass
 

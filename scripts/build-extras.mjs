@@ -2,13 +2,16 @@
 // Phase 2: an APPROVED base unit to a reviewable extras corpus, in one command.
 //
 // Usage:
-//   node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code> [--dry]
+//   node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code> [--dry] [--no-prepare]
+//
+// It chains into `prepare` when the phase succeeds, exactly as `assemble` does, so the unit arrives
+// reviewable rather than as a corpus somebody still has to finish.
 //
 // The base unit must be REVIEWED. Phase 2 exists to show approved vocabulary at work, and running it
 // against an unreviewed base means every sentence rests on words a human may still cut, which is how
 // v1's extras units ended up audited against a card set that no longer existed.
 //
-// ⚠️ It SPENDS: up to five agent steps. --dry first.
+// ⚠️ It SPENDS: up to five agent steps, plus whatever `prepare` costs after them. --dry first.
 import { existsSync, readFileSync, mkdirSync } from "fs";
 import { dirname, join, resolve } from "path";
 import {
@@ -24,11 +27,14 @@ import { loadEarlierUnitItems } from "../src/cards/earlierUnits.js";
 const argv = process.argv.slice(2);
 const positional = argv.filter((a) => !a.startsWith("--"));
 const dry = argv.includes("--dry");
+const noPrepare = argv.includes("--no-prepare");
 const langAt = argv.indexOf("--lang");
 const targetLanguage = langAt === -1 ? null : argv[langAt + 1];
 
 if (positional.length < 2 || !targetLanguage) {
-  console.error("usage: build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code> [--dry]");
+  console.error(
+    "usage: build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code> [--dry] [--no-prepare]",
+  );
   process.exit(1);
 }
 
@@ -143,6 +149,27 @@ if (!result.verdict.ok) {
   process.exit(2);
 }
 for (const note of result.verdict.notes) console.log(`  · ${note}`);
-console.log(
-  `\nverified against its own artifacts. Next: the extras corpus review for ${extrasDir}`,
-);
+console.log(`\nverified against its own artifacts.`);
+
+// ── into prepare, so a phase-2 unit has no resting state between corpus and reviewable ──────────
+//
+// `assemble` chains into `prepare` for a reason it states plainly: corpus.json is not a place a
+// lesson stops, and a unit that halts there is a half-built unit nobody can sign off on. Phase 2 had
+// the same shape and not the same chaining, so building an extras unit was two commands and the
+// second was easy to forget. The review gate would then refuse the unit, correctly, and the operator
+// would be looking at a corpus wondering why.
+//
+// Same escape hatch as assemble's, and for the same reason: `--no-prepare` for a debugging run,
+// which says plainly that the unit is not reviewable yet.
+if (noPrepare) {
+  console.log(
+    `--no-prepare given: stopping at corpus.json. ${extrasDir} is NOT reviewable yet.\n` +
+      `  finish it with:  anki-builder prepare --run ${extrasDir}`,
+  );
+  process.exit(0);
+}
+
+console.log(`\nprepare: translating and running the cross-lesson passes…`);
+const { runCli } = await import("../src/cli/index.js");
+await runCli(["prepare", "--run", extrasDir]);
+console.log(`\nNext: the extras corpus review for ${extrasDir}`);

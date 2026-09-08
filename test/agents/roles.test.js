@@ -73,11 +73,24 @@ test("an unknown role id is a hard error naming what is declared", () => {
 test("with one model tier, effort is what ranks a checker above what it checks", () => {
   // The tier gap did two jobs. Effort recovers one of them (noticing an omission is harder than
   // producing content, so the checker should work harder) and cannot recover the other: a model
-  // checking its own family's output leans toward approving it, and both sides are Sonnet now.
-  assert.ok(capabilityRank(ROLES.coverageAdversary) > capabilityRank(ROLES.tableSpecialist));
-  assert.equal(
-    capabilityRank(ROLES.coverageAdversary),
-    capabilityRank(ROLES.chapterReader),
-    "and it is an exact peer of the chapter reader, which is why that role is not in its checks list",
+  // checking its own family's output leans toward approving it, and every role is Sonnet now.
+  //
+  // Exactly one role is `high`, and it is the one whose whole value is an independent re-derivation.
+  const high = Object.entries(ROLES).filter(([, r]) => r.effort === "high");
+  assert.deepEqual(
+    high.map(([id]) => id),
+    ["coverageAdversary"],
+    "effort is the scarce resource now, so spend it where the independence is the product",
   );
+  for (const target of ROLES.coverageAdversary.checks) {
+    assert.ok(capabilityRank(ROLES.coverageAdversary) > capabilityRank(ROLES[target]));
+  }
+});
+
+test("a role that judges the merged corpus declares no `checks`", () => {
+  // A deduplicator has no opinion about who contributed what; it reconciles the merged set. Naming
+  // producers there would assert an ordering that, at equal model and effort, does not exist.
+  for (const id of ["semanticDeduplicator", "backwardDeduplicator", "gapFiller"]) {
+    assert.equal(ROLES[id].checks, undefined, `${id} should not claim to outrank a producer`);
+  }
 });

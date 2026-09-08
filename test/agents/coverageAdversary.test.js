@@ -113,10 +113,10 @@ test("the adversary outranks every role it checks", () => {
       `${ROLE_ID} must outrank ${target}`,
     );
   }
-  // chapterReader is not in that list any more, and this pins why: since the checkers moved to
-  // Sonnet the two are exact peers, so claiming this one outranks it would be claiming something
-  // untrue about the pipeline.
-  assert.equal(role.checks.includes("chapterReader"), false);
+  // All three producers, chapterReader included. It dropped off the list for one commit, when the
+  // checkers moved to Sonnet and the two became peers at sonnet-5/high; lowering the chapter reader
+  // to `medium` on cost grounds made this role its superior again. The list tracks the pins.
+  assert.deepEqual(role.checks, ["tableSpecialist", "chapterReader", "imageSpecialist"]);
 });
 
 test("a missing chapter file is a hard error, not an empty enumeration", () => {

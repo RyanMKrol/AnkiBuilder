@@ -84,9 +84,14 @@ export const ROLES = Object.freeze({
   chapterReader: {
     envScope: "CHAPTER_READER",
     model: "claude-sonnet-5",
-    // `high` for the same reason v1's chapter extraction runs high: this role reads a long file
-    // against several competing inclusion rules, and its misses are silent and unrecoverable.
-    effort: "high",
+    // Was `high`, for the reason v1's chapter extraction runs high: this role reads a long file
+    // against several competing inclusion rules, and its misses were silent and unrecoverable.
+    //
+    // They are no longer silent. The coverage adversary re-derives the chapter independently and the
+    // gap filler cards what this role missed: on chapter 9 that pair recovered fifteen items,
+    // thirteen of them verb conjugations. The safety net that justifies `medium` did not exist when
+    // the pin was chosen. Measured at 408s per run, the single most expensive step in the phase.
+    effort: "medium",
     timeoutMs: 25 * MINUTES,
     phase: "base",
     purpose: "Find vocabulary anywhere in the chapter, independent of markup.",
@@ -107,11 +112,12 @@ export const ROLES = Object.freeze({
     effort: "high",
     timeoutMs: 25 * MINUTES,
     phase: "base",
-    // `chapterReader` is DELIBERATELY absent from this list, and its absence is the cost of moving
-    // the checkers to Sonnet. That role is pinned sonnet-5/high for its own reasons, so this one is
-    // now its exact peer: same model, same effort. It still reads its output, but it no longer
-    // outranks it, and asserting otherwise would be asserting something untrue.
-    checks: ["tableSpecialist", "imageSpecialist"],
+    // All three producers, and `chapterReader` came BACK to this list rather than being left out.
+    // It dropped out when the checkers moved to Sonnet and the two became peers at sonnet-5/high;
+    // lowering the chapter reader to `medium` on cost grounds made this role its superior again.
+    // The list tracks what is true about the pins, which is the only thing that makes it worth
+    // asserting.
+    checks: ["tableSpecialist", "chapterReader", "imageSpecialist"],
     purpose: "Enumerate the chapter's teachable items independently, for a code-side diff.",
   },
 
@@ -122,19 +128,16 @@ export const ROLES = Object.freeze({
     // this pipeline: おかし after かし is one word with a polite prefix, ごふん after ふん is not,
     // and the two are indistinguishable without knowing that ご is the number five.
     model: "claude-sonnet-5",
-    effort: "high",
+    effort: "medium",
     timeoutMs: 20 * MINUTES,
     phase: "both",
-    checks: [
-      // chapterReader omitted: sonnet-5/high on both sides now, so this no longer outranks it.
-      "tableSpecialist",
-      "imageSpecialist",
-      "exerciseMiner",
-      "fillInBlankMiner",
-      "exampleSentenceMiner",
-      "gapAuthor",
-      "inventiveAuthor",
-    ],
+    // NO `checks`, and dropping it was the honest half of moving to `medium`. At equal model and
+    // equal effort this role is the exact peer of every producer it used to name, so asserting that
+    // it outranks them would assert something untrue.
+    //
+    // The field was never quite right for this role anyway. An adversary re-derives what a producer
+    // should have found and so genuinely checks it; a deduplicator judges the MERGED corpus and has
+    // no opinion about who contributed what. It reconciles candidate pairs.
     purpose: "Decide which of a new unit's cards repeat what an earlier unit already taught.",
   },
 
@@ -144,28 +147,29 @@ export const ROLES = Object.freeze({
     // wrong "duplicate" verdict removes a card and nobody notices it is gone, so it outranks the
     // roles whose output it judges in BOTH phases.
     model: "claude-sonnet-5",
-    effort: "high",
+    effort: "medium",
     timeoutMs: 20 * MINUTES,
     phase: "both",
-    checks: [
-      // chapterReader omitted: sonnet-5/high on both sides now, so this no longer outranks it.
-      "tableSpecialist",
-      "imageSpecialist",
-      "exerciseMiner",
-      "fillInBlankMiner",
-      "exampleSentenceMiner",
-      "gapAuthor",
-      "inventiveAuthor",
-    ],
+    // NO `checks`, and dropping it was the honest half of moving to `medium`. At equal model and
+    // equal effort this role is the exact peer of every producer it used to name, so asserting that
+    // it outranks them would assert something untrue.
+    //
+    // The field was never quite right for this role anyway. An adversary re-derives what a producer
+    // should have found and so genuinely checks it; a deduplicator judges the MERGED corpus and has
+    // no opinion about who contributed what. It reconciles look-alike groups.
     purpose: "Decide which look-alike items in one corpus are the same card, and which are senses.",
   },
 
   gapFiller: {
     envScope: "GAP_FILLER",
-    // Opus, because it is completing work three Sonnet specialists missed and deciding what earns a
-    // card. It does not declare `checks`: it is not verifying the adversary, it is acting on it.
+    // It completes work three specialists missed and decides what earns a card. It does not declare
+    // `checks`: it is not verifying the adversary, it is acting on it.
+    //
+    // `medium`, on measurement rather than analogy. It judges a bounded list against a corpus it is
+    // handed, which is not the long-file reading task `high` buys discipline for, and it was pinned
+    // `high` by analogy with the adversary when it was written. 317s per run before the change.
     model: "claude-sonnet-5",
-    effort: "high",
+    effort: "medium",
     timeoutMs: 25 * MINUTES,
     phase: "base",
     purpose: "Turn the adversary's confirmed gaps into finished cards, or say why each is not one.",

@@ -4102,4 +4102,21 @@ the judgements a weaker pass would get wrong, and the failure would be silent: a
 wrongly-flagged card looks like a decision, not a mistake. Compare a shadow run before and after
 before trusting it on a paid build.
 
-**Status:** staged on `perf/sonnet-checkers`, not merged. Revert is one edit to four `model:` lines.
+**Status:** merged, adopted optimistically without a before/after comparison at the owner's
+direction. Revert is one edit to four `model:` lines.
+
+**Followed immediately by an effort cut, on measurement.** Phase 1 was 24.2 minutes of agent time per
+chapter across four runs, and seven of the fourteen calls ran at `high`. Four dropped to `medium`:
+the chapter reader (408s, the most expensive step), the gap filler (317s), and both deduplicators.
+Exactly one role is `high` now, the coverage adversary, because an independent re-derivation is the
+entire product of that step.
+
+**The chapter reader's `high` was load-bearing when it was chosen and is not any more.** Its pin said
+`high` because its misses were silent and unrecoverable. They are no longer silent: the adversary
+re-derives the chapter and the gap filler cards what was missed, recovering fifteen items on chapter
+9. That safety net did not exist when the pin was written.
+
+**What to watch, unchanged from above and now with less headroom.** These roles were doing visibly
+good work at the higher settings, and their failure mode is silent: a merged sense or a wrongly
+flagged card looks like a decision rather than a mistake. Nothing has been compared before and after.
+

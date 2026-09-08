@@ -19,6 +19,7 @@ import { renderCardFacesBlock } from "../deck/cardFaces.js";
 import { CATEGORIES } from "../model/categories.js";
 import { renderBookHints } from "../corpus/bookConfig.js";
 import { runRole } from "./runRole.js";
+import { describeScheme } from "../cards/inflectionSchemes.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 export const TABLE_SPECIALIST_PROMPT_PATH = resolve(
@@ -56,6 +57,7 @@ export function renderTableSpecialistPrompt({ tables, targetLanguage, meta = nul
     rows: table.rows.map((row) => row.map((cell) => cell.text)),
   }));
   return renderPromptTemplate(TABLE_SPECIALIST_PROMPT_PATH, {
+    INFLECTION_SCHEME: describeScheme(targetLanguage),
     TARGET_LANGUAGE: targetLanguage,
     CATEGORY_LIST: CATEGORIES.map((c) => `- ${c}`).join("\n"),
     CARD_FACES: renderCardFacesBlock(),

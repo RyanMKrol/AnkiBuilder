@@ -11,6 +11,10 @@ sentence the chapter never glosses anywhere else.
 
 {{CARD_RULES}}
 
+## The forms this language inflects
+
+{{INFLECTION_SCHEME}}
+
 ## The chapter
 
 Open and read this file yourself, in full:

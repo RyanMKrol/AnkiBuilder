@@ -107,6 +107,7 @@ const TEMPLATES = {
       "CORPUS_JSON",
       "GAPS_JSON",
       "CATEGORY_LIST",
+      "INFLECTION_SCHEME",
     ],
     outputContract: /"items"[\s\S]*"fillsGap"[\s\S]*"declined"/,
   },
@@ -145,13 +146,21 @@ const TEMPLATES = {
       "CARD_FACES",
       "BOOK_HINTS",
       "SECTIONS_JSON",
+      "INFLECTION_SCHEME",
     ],
     // The envelope: words found, plus a line per heading. Losing the second half puts back the
     // short read that a chapter's own bounds cannot detect.
     outputContract: /"items"[\s\S]*"sections"/,
   },
   "table-specialist-prompt.md": {
-    placeholders: ["TARGET_LANGUAGE", "CATEGORY_LIST", "CARD_FACES", "BOOK_HINTS", "TABLES_JSON"],
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BOOK_HINTS",
+      "TABLES_JSON",
+      "INFLECTION_SCHEME",
+    ],
     // The envelope: entries read, plus a verdict for every table it was shown. Losing the second
     // half would put back the silence this role exists to remove.
     outputContract: /"items"[\s\S]*"tables"/,

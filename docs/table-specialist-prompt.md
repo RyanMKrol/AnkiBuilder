@@ -12,6 +12,10 @@ the extraction.
 
 {{CARD_RULES}}
 
+## The forms this language inflects
+
+{{INFLECTION_SCHEME}}
+
 ## Output Format
 
 Respond with ONLY a single JSON object, no markdown fences and no prose around it, with two keys:

@@ -40,6 +40,7 @@ import {
   COVERAGE_FILE,
 } from "./coverageAdversary.js";
 import { writeVerdicts } from "./imageVerdicts.js";
+import { fillCoverageGaps, GAP_FILLS_FILE, ROLE_ID as GAP_FILLER_ROLE } from "./gapFiller.js";
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
@@ -72,8 +73,9 @@ export const BASE_PHASE_STEPS = Object.freeze([
     artifact: "candidates/images.json",
   },
   { id: "reconcile", kind: "deterministic", artifact: "corpus.json" },
-  { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
   { id: "coverage-adversary", kind: "agent", role: "coverageAdversary", artifact: COVERAGE_FILE },
+  { id: "gap-filler", kind: "agent", role: "gapFiller", artifact: GAP_FILLS_FILE },
+  { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
   { id: "semantic-dedup", kind: "agent", role: "semanticDeduplicator", artifact: DEDUP_FILE },
   {
     id: "backward-dedup",
@@ -118,6 +120,7 @@ export function runBasePhase({
     readChapter,
     judgeImages,
     enumerateChapter,
+    fillCoverageGaps,
     deduplicateCorpus,
     deduplicateAgainstEarlier,
     ...agents,
@@ -228,19 +231,7 @@ export function runBasePhase({
     }),
   });
 
-  writeSnapshot(unitDir, {
-    phase: "base",
-    items: merged.items,
-    provenance: merged.provenance,
-  });
-  recordStep(run, {
-    step: "snapshot",
-    status: STEP_STATUS.OK,
-    counts: { out: merged.items.length },
-    artifact: "as-generated.json",
-  });
-
-  // --- the adversary, last, and never shown the corpus ----------------------------------------
+  // --- the adversary: enumerate independently, diff in code -----------------------------------
   const adversary = timed(() =>
     impl.enumerateChapter({
       chapterFilePath,
@@ -261,6 +252,57 @@ export function runBasePhase({
       COVERAGE_FILE,
       buildCoverageArtifact({ coverage: adversary.value.coverage, gaps }),
     ),
+  });
+
+  // --- the gap filler: ACT on that diff, rather than writing it down ---------------------------
+  //
+  // The adversary's findings used to end here, in a file nothing opened. Its gaps are evidence, not
+  // suggestions: another reader found them in the chapter and a set operation confirmed the corpus
+  // lacks them. So they are filled, and what is declined says why.
+  const fills = timed(() =>
+    impl.fillCoverageGaps({
+      gaps: gaps.gaps,
+      items: merged.items,
+      chapterFilePath,
+      targetLanguage,
+      runClaude: agents.runClaude,
+    }),
+  );
+  for (const item of fills.value.items) {
+    merged.items.push(item);
+    merged.provenance[item.id] = [GAP_FILLER_ROLE];
+  }
+  recordStep(run, {
+    step: "gap-filler",
+    role: "gapFiller",
+    status: STEP_STATUS.OK,
+    durationMs: fills.durationMs,
+    counts: { in: gaps.counts.gaps, out: fills.value.items.length },
+    artifact: writeRelative(unitDir, GAP_FILLS_FILE, {
+      gaps: gaps.counts.gaps,
+      skipped: fills.value.skipped,
+      filled: fills.value.items.map((i) => ({ id: i.id, target: i.target, fillsGap: i.fillsGap })),
+      declined: fills.value.declined,
+      unfilled: fills.value.unfilled,
+    }),
+  });
+
+  // --- the baseline, AFTER everything that adds and BEFORE anything that removes ---------------
+  //
+  // That is the rule the snapshot encodes, and both halves matter. It is the pre-review baseline the
+  // learning pass diffs against, so a card added after it would look like the reviewer added it, and
+  // an exclusion made before it would be invisible. Producing happens above this line; pruning
+  // happens below it.
+  writeSnapshot(unitDir, {
+    phase: "base",
+    items: merged.items,
+    provenance: merged.provenance,
+  });
+  recordStep(run, {
+    step: "snapshot",
+    status: STEP_STATUS.OK,
+    counts: { out: merged.items.length },
+    artifact: "as-generated.json",
   });
 
   // --- the deduplicator, last, on the finished corpus and after the baseline -------------------
@@ -335,6 +377,7 @@ export function runBasePhase({
     verdict,
     dedup: dedup.value,
     backward: backward.value,
+    fills: fills.value,
     items: merged.items,
     provenance: merged.provenance,
     senseCollisions: merged.senseCollisions,

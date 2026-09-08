@@ -97,6 +97,19 @@ const TEMPLATES = {
     // `skipped` would make "this drill needed an untaught word" indistinguishable from silence.
     outputContract: /"items"[\s\S]*"blocks"[\s\S]*"skipped"/,
   },
+  "gap-filler-prompt.md": {
+    // It sees everything the adversary must not: the corpus, the chapter, the gaps. That asymmetry
+    // is the design, not an oversight: the enumeration stays independent so its diff means
+    // something, and the filling is informed so it can decline a gap an earlier chapter covers.
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CORPUS_JSON",
+      "GAPS_JSON",
+      "CATEGORY_LIST",
+    ],
+    outputContract: /"items"[\s\S]*"fillsGap"[\s\S]*"declined"/,
+  },
   "backward-deduplicator-prompt.md": {
     // The new unit's cards paired with the earlier ones a filter thought related, and nothing else.
     // No chapter: whether a card repeats an earlier one is answered by the two cards, and the source

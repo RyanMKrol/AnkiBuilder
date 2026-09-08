@@ -1190,6 +1190,44 @@ word deliberately re-taught in a new grammatical role is a legitimate card, and 
 both can say. An `already-taught` verdict sets `uncertain` and appends a note naming the earlier
 unit, without discarding whatever the card already said.
 
+### The gap filler, and the snapshot rule it forced
+
+The coverage adversary enumerates a chapter independently and a set operation diffs that against the
+corpus. That worked from the first run: on chapter 9 it found 48 items the corpus lacked, including
+`あまり…〜ません` and `ぜんぜん…〜ません`, paired constructions the specialists had carded only as bare
+adverbs, losing the pairing that makes them usable.
+
+**And nothing consumed any of it.** `candidates/coverage.json` was written, a line was printed
+suggesting somebody read it, and no code path anywhere opened the file. The review page did not know
+it existed, no audit check looked at it, and phase 2's `computeGaps` is a different notion of gap
+entirely. The most expensive role in phase 1 produced findings into a file nobody opens.
+
+The owner's ruling (2026-09-08) was that the adversary should FILL its gaps rather than surface them:
+a review is a light human check that nothing is missing, not a worklist of holes to chase. So
+`gapFiller` takes the diff and writes finished cards, or declines a gap with a reason.
+
+**Why it is a separate role from the adversary.** The adversary must never see the corpus, because a
+list written after reading someone else's answer agrees with it, and that independence is what makes
+the diff mean anything. The filler sees everything: the gaps, the corpus, the chapter. Splitting them
+keeps the enumeration honest and lets the filling be informed enough to decline a gap an earlier
+chapter already covers.
+
+**It defaults to filling.** An unfilled gap is a card that never gets made, and there is no longer a
+human downstream reading the list. Declining is for a concrete reason: an earlier chapter teaches it,
+it is a sentence belonging to the extras unit, it is a fragment of an existing card, or the chapter
+never taught it at all.
+
+**And it forced the snapshot's rule into the open.** The snapshot is the pre-review baseline the
+learning pass diffs against, so a card ADDED after it looks like the reviewer added it, and an
+exclusion made BEFORE it is invisible. The step order now states that directly:
+
+```
+reconcile → coverage-adversary → gap-filler → SNAPSHOT → semantic-dedup → backward-dedup
+                  everything that adds  ↑  everything that removes
+```
+
+Producing happens above the line; pruning happens below it. Both halves are asserted.
+
 ### The semantic deduplicator: the one agent that reconciles rather than produces
 
 Every other agent in the pipeline is a producer. Nine of them across the two phases, and each either

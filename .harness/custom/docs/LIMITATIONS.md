@@ -4055,3 +4055,24 @@ phase, and the answer survives to be read.
 judge second, for the same reason: a rejection you cannot inspect costs the whole run's evidence.
 
 **Status:** fixed here; the general rule is not enforced anywhere.
+
+## The coverage adversary's findings went into a file nobody opened
+
+**Status: RESOLVED** by the `gap-filler` step, which acts on the diff instead of recording it.
+
+The adversary is the most expensive role in phase 1 (Opus, high effort, 25-minute timeout) and its
+output reached nothing. `candidates/coverage.json` was written and verified to exist, a line was
+printed suggesting someone read it, and no code path opened it: not the review page, not an audit
+check, not phase 2 (whose `computeGaps` is a different notion of gap entirely). On chapter 9 that was
+48 real findings, including two paired constructions carded only as bare adverbs.
+
+The goals doc had specified the opposite ("the review gate refuses the link if the artifact is
+missing") and that gate was never built. `verifyRun` checking the artifact existed made the role
+LOOK wired, which is the failure this project names as its signature.
+
+**The general lesson, which is not enforced anywhere.** Every artifact a step writes should have a
+named consumer, and "a human might read it" is not one. The other artifacts added in the same period
+(`dedup.json`, `backward.json`, `image-verdicts.json`) have not been audited for the same problem.
+
+**Verified by:** `grep -rn "coverage.json" src/ scripts/` should show a consumer, not only writers
+and log lines.

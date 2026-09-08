@@ -137,6 +137,17 @@ export const ROLES = Object.freeze({
     purpose: "Decide which look-alike items in one corpus are the same card, and which are senses.",
   },
 
+  gapFiller: {
+    envScope: "GAP_FILLER",
+    // Opus, because it is completing work three Sonnet specialists missed and deciding what earns a
+    // card. It does not declare `checks`: it is not verifying the adversary, it is acting on it.
+    model: "claude-opus-5",
+    effort: "high",
+    timeoutMs: 25 * MINUTES,
+    phase: "base",
+    purpose: "Turn the adversary's confirmed gaps into finished cards, or say why each is not one.",
+  },
+
   // ---- Phase 2: extras ----------------------------------------------------------------------
   exerciseMiner: {
     envScope: "EXERCISE_MINER",

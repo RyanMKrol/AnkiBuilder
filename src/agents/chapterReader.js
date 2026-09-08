@@ -22,6 +22,7 @@ import { renderCardFacesBlock } from "../deck/cardFaces.js";
 import { CATEGORIES } from "../model/categories.js";
 import { renderBookHints } from "../corpus/bookConfig.js";
 import { runRole } from "./runRole.js";
+import { describeScheme } from "../cards/inflectionSchemes.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 export const CHAPTER_READER_PROMPT_PATH = resolve(
@@ -41,6 +42,7 @@ export function renderChapterReaderPrompt({
   meta = null,
 }) {
   return renderPromptTemplate(CHAPTER_READER_PROMPT_PATH, {
+    INFLECTION_SCHEME: describeScheme(targetLanguage),
     TARGET_LANGUAGE: targetLanguage,
     CHAPTER_FILE_PATH: chapterFilePath,
     CATEGORY_LIST: CATEGORIES.map((c) => `- ${c}`).join("\n"),

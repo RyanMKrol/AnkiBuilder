@@ -27,6 +27,7 @@ import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
 import { CATEGORIES } from "../model/categories.js";
+import { describeScheme } from "../cards/inflectionSchemes.js";
 import { runRole } from "./runRole.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -59,6 +60,7 @@ export function renderGapFillerPrompt({ gaps, items, chapterFilePath, targetLang
     CORPUS_JSON: JSON.stringify(corpusForPrompt(items), null, 2),
     GAPS_JSON: JSON.stringify(gaps ?? [], null, 2),
     CATEGORY_LIST: CATEGORIES.join(", "),
+    INFLECTION_SCHEME: describeScheme(targetLanguage),
   });
 }
 

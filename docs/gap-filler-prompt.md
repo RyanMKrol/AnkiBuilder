@@ -23,7 +23,13 @@ So the default is to FILL. Decline only for a concrete reason, not because a gap
 - **It is a sentence, not an entry.** This unit holds lexical entries. A sentence belongs to the
   chapter's extras unit, which is built separately, so decline it here and it will be picked up
   there.
-- **It is a fragment of something already carded**, or a bare inflection of a word the corpus has.
+- **It is a fragment of something already carded.** A piece of a phrase the corpus holds whole.
+
+**An inflected form is NOT a fragment.** If this chapter teaches `あいました` and the corpus has only
+`あいます`, that is a gap and it earns a card: a learner who meets one form cannot use the word. Card
+it with a gloss that distinguishes it ("Met", not "To meet"). The one thing you must not do is invent
+a form this chapter has not reached.
+
 - **It is not taught by the chapter at all**: a name in an example, a word used in passing that the chapter never presents as vocabulary.
 - **You cannot tell what it is.** Say so; that is a real answer.
 
@@ -44,6 +50,10 @@ card in this deck:
 
 `foundIn` tells you where in the chapter the reader saw it, which is the fastest way to check what
 it actually is. Read the chapter at that point before writing a card you are unsure of.
+
+## The forms this language inflects
+
+{{INFLECTION_SCHEME}}
 
 ## The chapter
 

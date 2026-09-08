@@ -1190,6 +1190,37 @@ word deliberately re-taught in a new grammatical role is a legitimate card, and 
 both can say. An `already-taught` verdict sets `uncertain` and appends a note naming the earlier
 unit, without discarding whatever the card already said.
 
+### Inflected forms, as a per-language plugin
+
+A learner who meets `あいます` and never meets `あいました`, `あいません` or `あいませんでした` knows
+one form and cannot use the word. On chapter 9, **fifteen of the coverage adversary's forty-eight
+gaps were exactly that**: conjugations printed in the chapter and carded by nobody.
+
+`src/cards/inflectionSchemes.js` declares the paradigms worth carding, keyed by ISO 639-1 like every
+other language registry here. Japanese declares five verb forms (dictionary, polite present, past,
+negative, past-negative) and four adjective forms. Every other language is deliberately absent, and
+an unconfigured one returns `null` so its prompt is told to card each word once rather than to invent
+a paradigm.
+
+**It states what is worth carding, not what must exist.** A form earns a card in the chapter that
+teaches it, and nowhere else. That boundary is not a detail: `card-authoring-rules.md` records that
+supplying forms the source has not reached was tried on this deck in 2026-09, reviewed, and stripped
+back out, because a citation form carded before the lesson that explains it means the learner meets a
+form before the explanation that makes sense of it. The owner reaffirmed that on 2026-09-08 after
+considering the alternative. The rule is one rule with two halves: **card what the chapter teaches,
+all of it, and nothing it has not reached.**
+
+**Why a script cannot generate the forms.** The polite forms are mechanical from the `ます` stem, but
+the dictionary form is not: `あいます → あう` and `たべます → たべる` differ by verb class, and the
+`ます` form alone does not say which class a verb is in. So the scheme states the requirement, the
+prompts carry it, and the agents produce the forms.
+
+It reaches three prompts, chosen because they are the three that decide what earns a card: the table
+specialist and the chapter reader, which should card a printed form on the way in, and the gap
+filler, which catches what they missed. The gap filler's decline list says so explicitly, because its
+first draft would have refused these as "a bare inflection of a word the corpus has" and declined the
+entire class.
+
 ### The gap filler, and the snapshot rule it forced
 
 The coverage adversary enumerates a chapter independently and a set operation diffs that against the

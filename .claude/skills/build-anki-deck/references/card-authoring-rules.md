@@ -229,6 +229,18 @@ So: no citation-form card for a verb whose citation form the source has not intr
 source does introduce it, that lesson is its home, and a citation form never lands earlier than the
 inflected form it derives from.
 
+**Every form the chapter DOES teach earns its own card, and that is the half most often missed.** A
+learner who meets あいます and never meets あいました, あいません or あいませんでした knows one form
+and cannot use the word. The paradigm worth carding is declared per language in
+`src/cards/inflectionSchemes.js` and injected into the prompts that decide what earns a card, so the
+requirement travels with the language rather than living in English prose about Japanese. Measured on
+chapter 9: fifteen of the coverage adversary's forty-eight gaps were conjugations printed in that
+chapter and carded by nobody. Give each form a gloss that distinguishes it ("Met", not a second "To
+meet"), or the learner gets four cards they cannot tell apart.
+
+The two halves of this rule are one rule: **card what the chapter teaches, all of it, and nothing
+it has not reached.**
+
 Put the derivation in the `note`, because that is the part that transfers. Name the conjugation class
 and the change: which letters moved, and one verb already carded that makes the same move. A card
 reading only "dictionary form of X" teaches one word; a card reading "Regular 1, so the い before ます

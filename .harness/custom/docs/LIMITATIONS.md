@@ -4076,3 +4076,30 @@ named consumer, and "a human might read it" is not one. The other artifacts adde
 
 **Verified by:** `grep -rn "coverage.json" src/ scripts/` should show a consumer, not only writers
 and log lines.
+
+## The checking roles are Sonnet now, and half the debias argument went with them
+
+Owner decision 2026-09-08, on cost: the four `claude-opus-5 / high` roles (coverage adversary, gap
+filler, semantic deduplicator, backward deduplicator) are now `claude-sonnet-5 / high`. That takes a
+chapter from 6 Opus calls to 1 (the forward-flag pass, which stays `opus-5 / medium`).
+
+**What the tier gap was doing, and what is left.** The registry gave two reasons for pinning a
+checker above what it checks. Noticing an omission is harder than producing content, and a model
+checking its own family's output leans toward approving it. Effort recovers the first: the checkers
+are `high` against producers at `medium`, and `capabilityRank` now ranks on model tier with effort as
+the tiebreak, so the assertion still means something. **Nothing recovers the second.** Both sides are
+Sonnet, so the self-preference the tier gap was chosen to counter is back.
+
+**One assertion got narrower, deliberately.** `chapterReader` is pinned `sonnet-5 / high` for its own
+reasons, so the adversary is now its exact peer. It has been removed from the adversary's and both
+deduplicators' `checks` lists, because leaving it there would assert an ordering that no longer
+exists. The roles still read its output; they just do not outrank it.
+
+**What to watch.** The four roles were doing visibly good work at Opus: the semantic deduplicator
+reported 0 unaccounted across two runs and correctly kept `に`, "my wife" and "my husband" apart, and
+the backward deduplicator cleared `いい` against `いいえ` as a spelling coincidence. Those are exactly
+the judgements a weaker pass would get wrong, and the failure would be silent: a merged sense or a
+wrongly-flagged card looks like a decision, not a mistake. Compare a shadow run before and after
+before trusting it on a paid build.
+
+**Status:** staged on `perf/sonnet-checkers`, not merged. Revert is one edit to four `model:` lines.

@@ -9,6 +9,7 @@ import {
   assertGapsAddressed,
   authorGapFills,
   renderGapAuthorPrompt,
+  unaddressedGaps,
 } from "../../src/agents/gapAuthor.js";
 import { computeGaps, underExampledForms, noGaps } from "../../src/agents/coverageGaps.js";
 
@@ -186,5 +187,50 @@ test("assertGapsAddressed still refuses that response when the phase checks it",
       items: [{ fillsGap: "ちち" }],
       unfillable: [{ gap: "あまり", reason: "no taught word to build a second example from" }],
     }),
+  );
+});
+
+test("a gap is addressed by its ID or its target, because the prompt promises both", () => {
+  // The chapter-9 run of 2026-09-08 in one test. The gap author returned fifty items covering every
+  // gap, thirty-five naming a gap by id, and the check reported 39 of 39 unaddressed: gapHandles
+  // returned targets only while the prompt said "the id or target of the gap this closes". The phase
+  // died having done the work.
+  const gaps = {
+    neverUsed: [{ id: "suzuki-sama", target: "すずきさま", english: "Mr. Suzuki" }],
+    underExampled: [{ id: "amari-masen", target: "あまり … 〜ません", examples: 0 }],
+    paradigm: null,
+  };
+
+  assert.deepEqual(
+    unaddressedGaps(gaps, {
+      items: [{ fillsGap: "suzuki-sama" }, { fillsGap: "あまり … 〜ません" }],
+      unfillable: [],
+    }),
+    [],
+    "one gap named by id, one by target, both accepted",
+  );
+
+  // And a gap named by neither is still reported, so the guard keeps its teeth.
+  assert.deepEqual(
+    unaddressedGaps(gaps, { items: [{ fillsGap: "suzuki-sama" }], unfillable: [] }),
+    ["あまり … 〜ません"],
+    "and it is named by its TARGET, which tells a reader what is missing",
+  );
+});
+
+test("a gap counts as addressed ONCE, not once per handle", () => {
+  // Grouped rather than flattened: naming both handles of one gap must not look like two gaps
+  // closed, or a response could satisfy the check while leaving another gap silent.
+  const gaps = {
+    neverUsed: [
+      { id: "a", target: "あ" },
+      { id: "b", target: "い" },
+    ],
+    underExampled: [],
+    paradigm: null,
+  };
+  assert.deepEqual(
+    unaddressedGaps(gaps, { items: [{ fillsGap: "a" }, { fillsGap: "あ" }], unfillable: [] }),
+    ["い"],
   );
 });

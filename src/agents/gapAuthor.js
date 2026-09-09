@@ -32,12 +32,37 @@ export const ROLE_ID = "gapAuthor";
 const NO_EARLIER = "(this is the book's first lesson — there is no earlier vocabulary)";
 
 /** Every gap's handle, in the one spelling the prompt and the check both use. */
+/**
+ * The handles that IDENTIFY each gap, as `[[handle, ...], ...]`, one group per gap.
+ *
+ * A gap is addressed when a response names ANY of its handles, and it has two: its `id` and its
+ * `target`. The prompt has always promised that ("the id or target of the gap this closes") and this
+ * function used to return targets only, so a response that used ids matched nothing at all.
+ *
+ * That is not hypothetical and it is not a rare edge. On the chapter-9 run of 2026-09-08 the gap
+ * author returned fifty items covering every gap, thirty-five of them naming a gap by id, and the
+ * check reported thirty-nine of thirty-nine unaddressed. The phase died having done the work. An
+ * earlier run had mixed ids and targets and failed partially, which is why the cause looked like a
+ * model that dropped gaps rather than a contract the checker did not honour.
+ *
+ * Grouped rather than flattened because a gap must count as addressed once, by either handle, not
+ * twice by both.
+ */
+export function gapHandleGroups(gaps) {
+  // TARGET FIRST, deliberately. Any handle matches, but the first is what gets printed when a gap is
+  // reported unaddressed, and `が` tells a reader what is missing where `ga` makes them go and look
+  // it up.
+  const groups = [
+    ...gaps.neverUsed.map((g) => [g.target, g.id]),
+    ...gaps.underExampled.map((g) => [g.target, g.id]),
+    ...(gaps.paradigm ?? []).map((g) => [g.label, g.form, g.id]),
+  ];
+  return groups.map((handles) => handles.filter(Boolean)).filter((handles) => handles.length);
+}
+
+/** One handle per gap, the human-readable one. What a report names when a gap goes unanswered. */
 export function gapHandles(gaps) {
-  return [
-    ...gaps.neverUsed.map((g) => g.target),
-    ...gaps.underExampled.map((g) => g.target),
-    ...(gaps.paradigm ?? []).map((g) => g.label ?? g.form),
-  ].filter(Boolean);
+  return gapHandleGroups(gaps).map((handles) => handles[0]);
 }
 
 export function renderGapAuthorPrompt({
@@ -78,9 +103,12 @@ export function renderGapAuthorPrompt({
  * the phase is verified by its artifact; this one destroyed its own.
  */
 export function unaddressedGaps(gaps, { items = [], unfillable = [] } = {}) {
-  const closed = new Set(items.map((i) => i.fillsGap).filter(Boolean));
-  const declined = new Set(unfillable.map((u) => u.gap).filter(Boolean));
-  return gapHandles(gaps).filter((handle) => !closed.has(handle) && !declined.has(handle));
+  const named = new Set(
+    [...items.map((i) => i.fillsGap), ...unfillable.map((u) => u.gap)].filter(Boolean),
+  );
+  return gapHandleGroups(gaps)
+    .filter((handles) => !handles.some((handle) => named.has(handle)))
+    .map((handles) => handles[0]);
 }
 
 export function assertGapsAddressed(gaps, { items = [], unfillable = [] } = {}) {

@@ -4217,3 +4217,43 @@ answer is a schema addition, not a wider projection.
 field is dropped and reported and the result still validates, another that `alternateOf` survives.
 
 **Status:** fixed.
+
+## Two writers produce `corpus.json` on the phase path, so its existence is ambiguous
+
+The phase's reconcile step writes its merged items to `<unitDir>/corpus.json` as that step's artifact.
+`assemble` writes the finished corpus to the same path, after stamping the unit's identity and running
+the backward dedup, the forward flags and the pedagogical sort. Both are called `corpus.json`, and they
+mean different things.
+
+**What that cost.** Chapter 17's first build stopped between them: the phase wrote 93 items, `assemble`
+refused them at its own write. A plain re-run reads "corpus.json exists" as "assemble finished" and
+goes straight to `prepare`, on a corpus with no `epubHash`, no `chapterNumber` and no `chapterLabel`.
+The deck path is derived from `chapterLabel` (`unitDeckSegments`), so the lesson would have been built
+and shipped into the wrong place, with nothing anywhere reporting it. `resume` was no help: it reads
+the pass ledger, and a crash before the stamping writes no ledger, so an empty one read as "nothing
+failed" and it reported only `prepare`.
+
+**What was done.** `corpusStoppedMidAssemble` treats an `epub` corpus with no `epubHash` as unfinished
+and re-enters `assemble`, which then reuses the phase's items off disk rather than re-spending its
+agent calls. `epubHash` is the marker because `assemble` alone sets it. Scoped to the EPUB path,
+because a template or a dictated word list has no intermediate writer and asking them for a stamp they
+never carry would make every re-run rebuild from scratch.
+
+**What was NOT done, and is the real fix.** The phase should not write `corpus.json` at all. Give the
+reconcile step its own artifact name and `assemble` becomes the only writer, at which point the
+filename is unambiguous, the reuse check is unnecessary and `resume` needs no ledger to tell the two
+apart. That touches `basePhase`, `extrasPhase`, `phaseExtraction`, the reuse path and their tests,
+which is wider than the failure warranted while a chapter was mid-build.
+
+**Impact:** a stamp check is a proxy for a structural property, so it is exactly as good as the marker
+it picked. A future source type with an intermediate writer and no `epubHash` reproduces the original
+bug.
+
+**Revisit when:** anything else grows a second writer for a unit artifact, or the next time
+`phaseExtraction` is touched for another reason. Do the rename then.
+
+**Verified by:** `node --test test/cli/index.test.js` — one test pins that an unstamped phase corpus
+re-enters assemble and comes out stamped, another that a finished corpus is still reused so re-running
+assemble stays the resume command.
+
+**Status:** worked around; the structural fix is open.

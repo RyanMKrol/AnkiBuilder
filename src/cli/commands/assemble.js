@@ -4,7 +4,7 @@
 import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
 import { withClaim } from "../runClaim.js";
-import { validateCorpus } from "../../model/index.js";
+import { validateCorpus, projectCorpusItem } from "../../model/index.js";
 import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { listTemplates } from "../../corpus/templates.js";
@@ -536,6 +536,29 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
   for (const item of corpus.items) {
     if (item.target) item.target = normalizeDisplayText(item.target, displayLang);
     if (item.ttsText) item.ttsText = normalizeDisplayText(item.ttsText, displayLang);
+  }
+
+  // Last stop before the write, and the reason it is HERE rather than only in the phase that
+  // produced the items: this is the boundary the schema guards, and every path reaches it. A fresh
+  // phase, a re-run reusing an existing corpus, the pre-rewrite extraction, a future source type --
+  // all of them write through this line, so projecting here is what makes "a build never dies over a
+  // field an agent volunteered" a guarantee instead of a habit each producer has to remember.
+  //
+  // Chapter 17's first live build is why. The table specialist reported `fromTable`, which is real
+  // provenance already persisted in candidates/tables.json and wanted by nothing downstream. Phase 1
+  // finished all ten steps, both deduplicators ran, the forward pass ran, and the write then refused
+  // the whole corpus. The schema being closed is correct; a whole paid build being the unit of
+  // failure for it was not.
+  const volunteered = new Set();
+  corpus.items = corpus.items.map((item) => {
+    const { item: projected, dropped } = projectCorpusItem(item);
+    for (const field of dropped) volunteered.add(field);
+    return projected;
+  });
+  if (volunteered.size) {
+    ctx.log(
+      `dropped ${volunteered.size} field(s) no corpus item may carry: ${[...volunteered].sort().join(", ")} — kept in the candidate artifacts`,
+    );
   }
 
   writeJson(paths.corpus, corpus);

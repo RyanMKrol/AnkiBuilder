@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { reconcile, candidateKey } from "../../src/cards/unionReconciler.js";
+import { validateCorpus } from "../../src/model/index.js";
 
 const ja = { languageCode: "ja" };
 const from = (role, ...items) => items.map((i) => ({ ...i, producedBy: role }));
@@ -211,4 +212,66 @@ test("a target with no separator is untouched", () => {
   assert.equal(items.length, 1);
   assert.equal(items[0].target, "ねこ");
   assert.ok(!("alternateOf" in items[0]));
+});
+
+test("a field an agent volunteered is dropped from the corpus and reported, not carried into it", () => {
+  // The first live run of chapter 17 died here. Phase 1 finished all ten steps, both deduplicators
+  // ran, the forward pass ran, and the build then refused to write corpus.json over `fromTable` --
+  // provenance the table specialist reports, already persisted in candidates/tables.json, needed by
+  // nothing downstream. About twenty minutes of paid agent calls for a field nobody wanted. The
+  // corpus schema is closed on purpose; what was wrong was making a whole build the unit of failure.
+  const { items, droppedFields } = reconcile(
+    [
+      from("tableSpecialist", {
+        id: "omiyage",
+        target: "おみやげ",
+        english: "Souvenir",
+        category: "Shopping",
+        fromTable: 3,
+      }),
+      from("chapterReader", {
+        id: "onsen",
+        target: "おんせん",
+        english: "Hot spring",
+        category: "Shopping",
+        foundIn: "Key Sentences",
+      }),
+    ],
+    ja,
+  );
+
+  assert.deepEqual(droppedFields, ["foundIn", "fromTable"]);
+  for (const item of items) {
+    assert.equal("fromTable" in item, false);
+    assert.equal("foundIn" in item, false);
+  }
+  // And the item is still a valid corpus item, which is the actual point of the projection.
+  assert.doesNotThrow(() =>
+    validateCorpus({ meta: { targetLanguage: "ja", sourceType: "epub" }, items }),
+  );
+});
+
+test("alternateOf survives the projection, because the reconciler itself writes it", () => {
+  // The opposite call to fromTable, and the reason the projection reads its allowed set off the
+  // schema instead of a hand-kept list. `alternateOf` is code-authored and load-bearing: it tells the
+  // review gate this card is one reading of a printed pair. It was missing from the schema, so every
+  // corpus containing a split headword was unwritable, and nothing caught it because the field only
+  // appears when a chapter actually has one.
+  const { items, droppedFields } = reconcile(
+    [
+      from("tableSpecialist", {
+        id: "z",
+        target: "ゼロ／れい",
+        english: "Zero",
+        category: "Numbers",
+      }),
+    ],
+    ja,
+  );
+
+  assert.deepEqual(droppedFields, []);
+  assert.equal(items[1].alternateOf, "ゼロ");
+  assert.doesNotThrow(() =>
+    validateCorpus({ meta: { targetLanguage: "ja", sourceType: "epub" }, items }),
+  );
 });

@@ -4173,3 +4173,47 @@ per-source boolean should become an explicit per-source table.
 (an `--epub` build with no flag must run the phase; a template build with no flag must not).
 
 **Status:** current design.
+
+## A closed corpus schema made a whole paid build the unit of failure
+
+`corpus.json`'s item schema is closed: an unknown property is an error. That is right, because the
+corpus is the contract the dashboard, the deck build and the delivery all read. What was wrong is
+where the error landed.
+
+**Measured on chapter 17's first live build, 2026-09-09.** Phase 1 completed all ten steps, the
+coverage adversary ran, the gap filler ran, both deduplicators ran, the backward dedup flagged 19
+already-taught items and the forward pass flagged 8 premature ones. Then the write refused the corpus
+with `Unexpected property in items[0]: fromTable` and the build exited 1. `fromTable` is the table
+specialist's own provenance, telling you which of the chapter's ten tables an item came from. It is
+already persisted in `candidates/tables.json`, nothing downstream reads it, and it cost roughly twenty
+minutes of paid agent calls. The chapter reader volunteers `foundIn` the same way.
+
+**The fix is a projection, at the write.** `projectCorpusItem` keeps only the properties
+`CORPUS_SCHEMA` declares, derives that set from the schema so a second list cannot drift from the
+validator, and returns what it dropped. It runs in the union reconciler, so the run report attributes
+a volunteered field to the step that produced it, and again at `assemble`'s write, which is the line
+every path crosses: a fresh phase, a re-run reusing an existing corpus, the pre-rewrite extraction, or
+a source type that does not exist yet.
+
+**What is dropped is logged, never swallowed.** A field appearing in that list means an agent is
+volunteering something the corpus has no home for, which is either a prompt to fix or a schema to
+grow. Silence would turn a closed schema into a quietly lossy one, which is worse than the crash.
+
+**A second bug of the same class, with the opposite fix.** `alternateOf` is written by the reconciler
+itself when it splits a headword the book printed as a pair (`ゼロ／れい`), and it tells the review
+gate the card is one of two readings. It was in NEITHER schema, so any corpus containing a split
+headword was unwritable, and any unit that got past `assemble` would have failed again at `prepare`.
+Nothing caught it because the field only appears when a chapter actually has such a headword; chapter
+17 has none, which is the only reason `fromTable` surfaced first. Both schemas now declare it.
+
+**Impact:** none on chapters 0-16. The general shape is the one worth remembering: a strict boundary
+crossed once at the end of an expensive pipeline turns any surprise into a total loss. Either validate
+early on a cheap sample, or make the boundary forgiving and loud.
+
+**Revisit when:** an agent volunteers a field that SHOULD be carried. The log line names it, and the
+answer is a schema addition, not a wider projection.
+
+**Verified by:** `node --test test/cards/unionReconciler.test.js` — one test pins that a volunteered
+field is dropped and reported and the result still validates, another that `alternateOf` survives.
+
+**Status:** fixed.

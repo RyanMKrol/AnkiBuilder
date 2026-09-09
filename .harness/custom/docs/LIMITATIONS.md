@@ -1336,9 +1336,10 @@ say when it was measured rather than stating it as a standing fact.
 ## An extras unit is keyed by folder-name suffix, not by a first-class unit type
 
 - **What:** a chapter's drill unit is a sibling folder suffixed `-extras` (`chapter-5-extras/`), and
-  everything that enumerates units recognizes it by that suffix: `BOOK_UNIT_DIR_PATTERN` in
-  `src/deck/rebuild.js`, the folder regex in `scanNumberedUnits`, and the `UNIT_PATTERN` whitelist in
-  the book/course server adapters. Its dashboard unit key is the suffix verbatim (`"5-extras"`), a
+  everything that enumerates units recognizes it by that suffix: `parseUnitDir`
+  (`src/model/unitDir.js`, the one definition since the seven hand-copies were collapsed) and the
+  per-prefix regex in `scanNumberedUnits`, which stays separate because a book adapter must match
+  only `chapter-*` and a course adapter only `lesson-*`. Its dashboard unit key is the suffix verbatim (`"5-extras"`), a
   string where a base lesson's is a number.
 - **Why:** the alternative was a real unit-type field plus a seq allocator that could mint distinct
   numbers for two units of the same chapter. That is a much wider change (allocation, claims, the
@@ -2303,7 +2304,7 @@ say when it was measured rather than stating it as a standing fact.
   findings once, then either fix them or promote the check to ACK in the same commit that accepts
   the residue.
 
-## vocab-coverage only sees ONE publisher's vocabulary tables, and reports zero on every other book
+## ~~vocab-coverage only sees ONE publisher's vocabulary tables~~ (RESOLVED: the selector is the book's)
 
 - **What:** `parseVocaEntries` (`src/cards/vocabCoverage.js:12`) finds a chapter's vocabulary blocks
   with `VOCA_TABLE = /<table[^>]*class="[^"]*\bvoca\b[^"]*"/`, and its indented sub-rows with
@@ -2331,12 +2332,56 @@ say when it was measured rather than stating it as a standing fact.
   })'
   # expect: voca: 1 / other: 0. The same vocabulary table, seen or not seen by its class alone.
   ```
-- **Status:** open
-- **When to revisit:** before a second book is built, and it is scheduled: v2 task D4
-  (`docs/designs/v2-tasks-2026-09.md`) retires this parsing entirely. A script dumps every `<table>`
-  and an agent decides which are vocabulary, because no EPUB is reliably consistent enough for a
-  selector. Until then the rule that would have caught it stands on its own: a check that finds no
-  configuration for a book must report **unknown**, never **zero**.
+- **A deterministic replacement was measured and rejected.** The obvious fix, widen the check to
+  every `<table>` instead of the `voca` ones, was shadow-run across all 17 base units against the
+  reviewed cards. It finds 781 candidate headwords to the selector's 705, but the extra 76 are
+  mostly false positives (`い-adj.`, `①1かいにレストランがあります`, `〜です` placeholder forms),
+  and it brings its own false negatives: in chapter file 15 the numbers chart puts the digit in
+  column 0 and the reading in column 1, so a "first cell is the headword" rule finds none of it, and
+  the cell `ゼロ ／ れい` needs splitting before `れい` is visible at all. `ゼロ` and `よん` are
+  carded; `れい`, `し`, `しち` and `く` are the target of no card in the deck. Swapping one set of
+  blind spots for another is not progress, and this is the evidence that which table is vocabulary,
+  which cell is the headword, and whether one cell holds two readings are judgements rather than
+  patterns.
+- **Verified by:** `node scripts/chapter-tables.mjs 1fab0f99d1195ad9 15` shows all 9 tables in that
+  chapter, 3 of which the `voca` selector cannot see.
+- **Resolved by:** v2 task D4. `parseVocabularyEntries` takes the selector and has no default of its
+  own, and it returns **`null`** when the book records none. `null` is the whole fix: `[]` means
+  "looked at this book's vocabulary tables and found no entry", `null` means "no selector, so nobody
+  looked", and both callers now branch on it. The preflight check reports the book as unknown and
+  refuses to call it clean; `scripts/vocab-coverage.mjs` exits 2 with "Nothing was checked, that is
+  not the same as nothing being missing". This book keeps working unchanged because its selector
+  moved to `book.json`'s `hints.vocabularyTableClass`: 72 INFO findings before and after.
+- **What is deliberately still open:** the check reads the book's HINT, not the table specialist's
+  verdicts. A hint is a good guess about which tables are vocabulary, and E1 is the judgement. Wiring
+  the check to E1's persisted output belongs with E6, when a phase script exists to produce it. Until
+  then the honest reading of a clean result is "clean against what this book says its vocabulary
+  tables are".
+- **Status:** resolved (2026-09-06) for the code coupling; the hint-versus-judgement step is E6.
+
+## v2 narrows v1's outright ban on carding the dialogue
+
+- **What:** `docs/epub-extraction-prompt.md` forbids walking a modeled conversation line by line,
+  with one exception for a function word demonstrated nowhere else. v2's example-sentence miner
+  (`src/agents/exampleSentenceMiner.js`) narrows that: a dialogue line may be carded when it names a
+  form it uniquely demonstrates, capped at four lines per dialogue, with reactions, backchannels and
+  recap lines still refused.
+- **Why:** the ban was right about the failure and too wide about the remedy. Mining a dialogue for
+  good-sounding lines fills a unit with `そうですか` and recap turns nobody can study alone, which is
+  what it was written to stop. But measured on a real chapter, the blanket version produced ZERO
+  cards from a chapter's dialogues while those dialogues held the only utterance demonstrating the
+  chapter's own grammar point, and the extras pass then re-added those lines by hand months later
+  with reviewNotes saying exactly that. A rule whose output is routinely undone by hand is the wrong
+  rule.
+- **Impact:** more dialogue lines reach the deck than under v1, and the guard against the original
+  failure is now a cap and a justification rather than a prohibition. If the narrowing is too loose,
+  the symptom will be extras units carrying conversational filler, visible at the corpus review.
+- **Verified by:** `node --test test/agents/exampleSentenceMiner.test.js` asserts that a line naming
+  no form is refused and that a fifth line from one dialogue is refused.
+- **Status:** open, pending the first live extras run on a chapter with substantial dialogue.
+- **When to revisit:** if a reviewer starts excluding dialogue-sourced cards at the corpus gate, the
+  cap is too high or the justification requirement is too weak. Tighten the cap before widening the
+  ban again: the ban's cost was measured and the cap's has not been.
 
 ## The paradigm audit cannot tell a particle from the same kana inside a word
 
@@ -3247,8 +3292,11 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   prints all of it and stamps `END OF CHAPTER`. That works for any EPUB. The structure summary on top
   is a bonus of two different qualities: the text-vs-image balance is generic (a chapter with little
   text and many figures has its content in the pictures, which is a real shape and not an empty
-  chapter), while the numbered runs (`EXERCISES: I … VIII`) are read off ONE publisher's marker images
-  and are empty for front matter, for a novel, and for any book that numbers differently. The script
+  chapter), while the numbered runs (`EXERCISES: I … VIII`) come from THAT BOOK's own markers and are
+  empty for front matter, for a novel, and for any book that numbers differently. Those markers were
+  a literal `(enum|wnum)` regex in the code until v2 moved them into `book.json`'s `hints`
+  (`numberedBlockMarkers`), so a book that numbers its blocks some other way is now describable
+  rather than unsupported, and a book that records none reports that in words. The script
   states that explicitly, because an empty checklist must read as "this book does not number things"
   and never as "there is nothing to read". An earlier cut of this had the numbered run as the
   backbone, which would have silently degraded to no signal at all on book #2.
@@ -3827,3 +3875,301 @@ node -e 'import("./src/util/runClaude.js").then(m=>{
   console.log(m.looksLikeQuotaExhaustion("spawn claude ENOENT"))})'
 node --test test/util/runClaude.test.js
 ```
+
+## `meta.phase` is a fact about the build that four consumers have to agree on
+
+`prepare`'s fill-in-the-blank pass is skipped for a v2 phase unit, and the rule lives in exactly one
+function (`drillPassExpected`, `src/cards/readiness.js`) because four places ask it: `prepare`
+itself, the readiness gate, `resume`, and the `readiness-exemptions` audit check.
+
+**Why it is one function.** The consequence of two of them disagreeing is not a wrong number. If
+readiness keeps requiring the `enriched` marker while `prepare` stops setting it, a phase-built unit
+shows no **Mark reviewed** button and can never be signed off, and nothing in the pipeline says why:
+the phase ran, the corpus is there, the card set is complete, and the gate is simply absent.
+
+**Impact.** A fifth consumer that reads `meta.enriched` directly will misreport every v2 unit, and
+will look correct on the 34 v1 units it is tested against. The field is also on the corpus schema,
+which `main` validates too, so a v1 tree reads it as an optional field it never sets.
+
+**Status:** live, and this is the shape to keep. Revisit only if a consumer needs a different
+question than "was the drill pass this unit's to run", at which point it wants its own predicate
+rather than a second reading of this one.
+
+**Verified by:** `grep -rn "meta.enriched\|meta\[.enriched" src/ | grep -v readiness.js`. Every
+hit must be guarded by `drillPassExpected` or be inside `prepare`'s own `minesDrills` branch.
+
+## The surviving v1 model passes declare an effort at most, never a model
+
+**Status: RESOLVED.** Every pass in both families now names a model and an effort in a declared
+table (`EPUB_PASS_PINS`, `TRANSLATE_PASS_PINS`), and `test/agents/survivingPassPins.test.js` holds
+them to it alongside the v2 role registry.
+
+**One correction to what this entry originally said.** It implied the unpinned passes were spending
+at whatever the operator thread runs. They were not: `resolvePinning` falls through to a hardcoded
+`DEFAULT_MODEL` of `claude-sonnet-5`, so they were pinned, just invisibly, by a constant three files
+away that would have moved eight passes at once if anyone changed it.
+
+**What was actually wrong, and is now fixed.** The forward-flag pass is a checking role: it reads
+items the extraction just produced and judges whether any are premature. v2's rule is that a role
+verifying another is pinned strictly above it, and this one was running at the same rank as the pass
+it checks, with nothing anywhere saying that was a choice. It is now Opus against the extraction's
+Sonnet, and the ordering is asserted from the `checks` field rather than left in a comment.
+
+**Verified by:** `node --test test/agents/survivingPassPins.test.js`, and
+`grep -n "PASS_PINS" src/corpus/epubLlmRunClaude.js src/translate/runClaude.js` for the tables.
+
+## A page-scan EPUB has no text, so the TEXT path cannot read it
+
+The second EPUB this project was tested against (Genki I, supplied 2026-09-07 as a test fixture
+for the "unknown, never zero" criterion, not as a book anyone wants a deck from) is a Calibre "PDF
+Reflow conversion" of a scan: a single `index.html` of 393 `<p><img></p>` pairs, one per page, with
+132 characters of text in the whole file, all of it the `<title>` tag holding the source PDF's
+filename. The owner's PDF of the same book is the same thing one step earlier: 392 images, **zero
+`/Font` objects**, so it cannot be rendering text either.
+
+**Impact on the text path: total.** Extraction, the miners, the dedup passes and the note pass all
+read text, and there is none. No `book.json` helps, because there is no markup to point a hint at.
+
+**A correction to the first version of this entry.** It also claimed nothing could bound a lesson,
+because one spine file is the whole book and the table of contents is itself an image. That is wrong,
+and it was written before anyone opened a page. Every page carries its lesson in the printed header
+(`第1課 51`, `第5課 141`) and again in a side tab (`L1`, `L5`), so lesson boundaries are recoverable
+from the pages themselves without the contents pages at all.
+
+**What is actually true is narrower, and more interesting.** The scans are 300 DPI, 1360x1920, and
+fully legible including furigana. v2 already has an image specialist role, so the blocker is not
+readability or structure but ARCHITECTURE: the pipeline takes a chapter of markup, and this book is a
+directory of page images.
+
+Building from it would need a source adapter for page images beside the EPUB one, lesson grouping off
+the page header, and the image specialist promoted from one voice to the primary reader. **That last
+part is the real cost**, and it is a design cost rather than an effort one: phase 1 works by having
+three specialists read the same chapter independently and unioning them, because the disagreement is
+the signal. With images only, the table specialist and the chapter reader have nothing to read, and
+the redundancy that phase 1 is built on collapses to a single voice unless it is rebuilt some other
+way, such as two vision passes pinned to different models.
+
+**Status:** open. The cheap answer is still a text EPUB, which needs no work at all. The page-image
+path is in the ideas inbox and is a real piece of work, but a smaller and better-defined one than
+this entry first claimed.
+
+**Verified by:** `node scripts/epub-probe.mjs <the epub>` reports `1 file(s), 35 KB of content` and
+`132 chars of text, 393 image(s)`. For the PDF, a raw scan for `/Type /Font` returns zero matches.
+
+## The union reconciler ships the same word twice when two roles gloss it differently
+
+Measured on the only live phase-1 run so far (chapter 2, 4 agent calls): **19 of 83 items are a
+target that already appears elsewhere in the same corpus**, differing only in how the gloss is
+punctuated.
+
+```
+とけい   x2   'Watch, clock.'   /  'Watch; clock.'
+わたしの x2   'My, mine.'       /  'My; mine.'
+かし     x2   'Sweets.'         /  'Sweets; confectionery.'
+いち     x2   'One (1).'        /  'One.'
+```
+
+**Why it happens.** `candidateKey` is `targetKey|englishKey`, and keying on the gloss as well as the
+target is deliberate: it is what stops はし (bridge) and はし (chopsticks) merging into one item and
+silently deleting a sense. But `englishKey` normalises only case, whitespace and a trailing `.?!`,
+so `watch, clock` and `watch; clock` are different keys and both entries survive. The specialists
+overlap by design and each writes its own gloss, so this fires whenever two of them agree on a word
+and differ on a comma.
+
+**Impact.** About a quarter of a base corpus reaches the review as near-identical pairs, and the
+reviewer culls them by hand. Worse, the pairs are not obviously wrong on screen: two cards reading
+"Watch, clock." and "Watch; clock." look like a duplicate someone already decided to keep. It is also
+the largest single quality gap between v2's output and a reviewed v1 unit.
+
+**Why the obvious fix is not obviously right.** Normalising `,` and `;` inside the gloss would merge
+these, but the same normalisation moves the boundary that protects a real sense split, and the sense
+split is the failure that costs a card rather than a reviewer's minute. A safer shape is probably to
+keep the key as it is and add a post-merge pass that reports same-target pairs whose glosses differ
+only in punctuation, so a script proposes and a human or an agent disposes, which is this project's
+existing idiom.
+
+**Status: RESOLVED.** A `semantic-dedup` agent step now runs last in both phases, after the
+snapshot. `findDuplicateCandidates` groups the look-alikes and an Opus role judges each group
+`duplicate` or `distinct`. Replayed against the corpus that produced this entry: 21 groups, 18
+excluded, 3 kept as distinct, 0 unaccounted, 83 shipping items down to 65.
+
+**Verified by:** re-run `node scripts/shadow-run.mjs` for a reviewed chapter and count targets
+appearing more than once in the resulting `corpus.json`.
+
+## Backward dedup was blind to every extras unit
+
+**Status: RESOLVED**, by a `backward-dedup` agent step in both phases, fed by
+`loadEarlierUnitItems`, which reads every earlier unit off disk rather than through the library.
+
+**What was wrong.** `dedupBackward` ran in one place (`assemble`), so an `-extras` unit never ran it,
+and it compared against a library keyed `(epubHash, chapterNumber)` that extras units are forbidden
+to write to: an extras unit shares its base's chapter number, so the write would overwrite the base
+chapter's entry. On the live book a new chapter was deduped against 1,176 targets and blind to 1,163
+more, which is half the collection.
+
+**What is kept.** The v1 string matcher still runs in `assemble` and still flags exact repeats. The
+agent's pre-filter suppresses those on the base path (`skipExactMatches`) so the reviewer does not
+get the same concern twice, and keeps them on the extras path where nothing else checks at all.
+
+**Verified by:** replaying chapter 16 against everything before it: 2,273 prior items, 1,117 of them
+from extras units, 22 candidates raised, prompt bounded at 16 KB.
+
+## A gap is only answerable if it names a FORM, and category alone does not say that
+
+Found by the first two-phase shadow run (chapter 9, 2026-09-08). Phase 2 died after eleven paid model
+calls with `gap author left 25 computed gap(s) unaddressed`.
+
+**The chain.** The example-sentence miner categorises a Key Sentence as `Grammar & Function Words`,
+which is right: the sentence exists to teach a grammar point. `underExampledForms` filtered on that
+category alone and read it as "a function WORD needing three sentences to demonstrate it". Since
+nothing in a chapter contains a whole sentence, each of those reported **0 examples forever**, and
+the gap author was asked to write three sentences demonstrating a sentence. Six of chapter 9's
+thirty-eight gaps were that request. Its silence then tripped a guard that was right to fire.
+
+**Fixed** by skipping utterance-shaped items (`isPredicateShaped`), which is the same judgement the
+base/extras split already makes. Re-computed on the same run's artifacts: 38 gaps down to 33.
+
+**One survivor, and it is the heuristic's known limit.** `ときどききます` ("I come here sometimes")
+is a sentence with no particle, so the predicate test cannot see it. That is why the prompt now also
+says a gap you cannot make sense of belongs in `unfillable` with that as the reason: fixing the
+generator is not enough on its own, because the generator is a heuristic.
+
+**Status:** resolved for the six-in-thirty-eight case, open as a class. A malformed gap is possible
+whenever a card's category and its shape disagree, and the second line of defence is the author being
+able to decline rather than go quiet.
+
+**Verified by:** `node --test test/agents/coverageGaps.test.js`.
+
+## A guard that throws before writing destroys the evidence it was checking
+
+Same run. `assertGapsAddressed` threw immediately after parsing, so the rejected response was never
+persisted: the failure gave a count and nothing on disk could say whether the model had dropped the
+gaps or answered with handles that did not match. Every other step in the phase is verified by its
+artifact; this one destroyed its own.
+
+**Fixed** by splitting reporting from enforcing. `authorGapFills` returns `unaddressed` and does not
+throw; the phase writes `candidates/gap-fills.json` and then asserts. The guard still stops the
+phase, and the answer survives to be read.
+
+**Worth generalising.** Any future step that validates a model's response should write first and
+judge second, for the same reason: a rejection you cannot inspect costs the whole run's evidence.
+
+**Status:** fixed here; the general rule is not enforced anywhere.
+
+## The coverage adversary's findings went into a file nobody opened
+
+**Status: RESOLVED** by the `gap-filler` step, which acts on the diff instead of recording it.
+
+The adversary is the most expensive role in phase 1 (Opus, high effort, 25-minute timeout) and its
+output reached nothing. `candidates/coverage.json` was written and verified to exist, a line was
+printed suggesting someone read it, and no code path opened it: not the review page, not an audit
+check, not phase 2 (whose `computeGaps` is a different notion of gap entirely). On chapter 9 that was
+48 real findings, including two paired constructions carded only as bare adverbs.
+
+The goals doc had specified the opposite ("the review gate refuses the link if the artifact is
+missing") and that gate was never built. `verifyRun` checking the artifact existed made the role
+LOOK wired, which is the failure this project names as its signature.
+
+**The general lesson, which is not enforced anywhere.** Every artifact a step writes should have a
+named consumer, and "a human might read it" is not one. The other artifacts added in the same period
+(`dedup.json`, `backward.json`, `image-verdicts.json`) have not been audited for the same problem.
+
+**Verified by:** `grep -rn "coverage.json" src/ scripts/` should show a consumer, not only writers
+and log lines.
+
+## The checking roles are Sonnet now, and half the debias argument went with them
+
+Owner decision 2026-09-08, on cost: the four `claude-opus-5 / high` roles (coverage adversary, gap
+filler, semantic deduplicator, backward deduplicator) are now `claude-sonnet-5 / high`. That takes a
+chapter from 6 Opus calls to 1 (the forward-flag pass, which stays `opus-5 / medium`).
+
+**What the tier gap was doing, and what is left.** The registry gave two reasons for pinning a
+checker above what it checks. Noticing an omission is harder than producing content, and a model
+checking its own family's output leans toward approving it. Effort recovers the first: the checkers
+are `high` against producers at `medium`, and `capabilityRank` now ranks on model tier with effort as
+the tiebreak, so the assertion still means something. **Nothing recovers the second.** Both sides are
+Sonnet, so the self-preference the tier gap was chosen to counter is back.
+
+**One assertion got narrower, deliberately.** `chapterReader` is pinned `sonnet-5 / high` for its own
+reasons, so the adversary is now its exact peer. It has been removed from the adversary's and both
+deduplicators' `checks` lists, because leaving it there would assert an ordering that no longer
+exists. The roles still read its output; they just do not outrank it.
+
+**What to watch.** The four roles were doing visibly good work at Opus: the semantic deduplicator
+reported 0 unaccounted across two runs and correctly kept `に`, "my wife" and "my husband" apart, and
+the backward deduplicator cleared `いい` against `いいえ` as a spelling coincidence. Those are exactly
+the judgements a weaker pass would get wrong, and the failure would be silent: a merged sense or a
+wrongly-flagged card looks like a decision, not a mistake. Compare a shadow run before and after
+before trusting it on a paid build.
+
+**Status:** merged, adopted optimistically without a before/after comparison at the owner's
+direction. Revert is one edit to four `model:` lines.
+
+**Followed immediately by an effort cut, on measurement.** Phase 1 was 24.2 minutes of agent time per
+chapter across four runs, and seven of the fourteen calls ran at `high`. Four dropped to `medium`:
+the chapter reader (408s, the most expensive step), the gap filler (317s), and both deduplicators.
+Exactly one role is `high` now, the coverage adversary, because an independent re-derivation is the
+entire product of that step.
+
+**The chapter reader's `high` was load-bearing when it was chosen and is not any more.** Its pin said
+`high` because its misses were silent and unrecoverable. They are no longer silent: the adversary
+re-derives the chapter and the gap filler cards what was missed, recovering fifteen items on chapter
+9. That safety net did not exist when the pin was written.
+
+**What to watch, unchanged from above and now with less headroom.** These roles were doing visibly
+good work at the higher settings, and their failure mode is silent: a merged sense or a wrongly
+flagged card looks like a decision rather than a mistake. Nothing has been compared before and after.
+
+## A checker that honours less than its prompt promises rejects correct work
+
+The gap author's prompt has always said `"fillsGap": "the id or target of the gap this closes"`.
+`gapHandles` returned targets only. So a response naming gaps by id matched nothing, and the phase
+refused work that was complete.
+
+**Measured on the chapter-9 run of 2026-09-08.** The gap author returned fifty items covering every
+gap, thirty-five of them naming a gap by id, and the check reported **39 of 39 unaddressed**. Replayed
+against the fix: **0**. An earlier run had mixed ids and targets and failed partially, which is why
+the cause looked like a model dropping gaps rather than a contract the checker did not honour.
+
+**Two things made this findable, and neither existed a day earlier.** The artifact is now written
+before the guard runs, so the model's actual answer survived a rejection. And the run report records
+what each step produced, so "fifty items, thirty-nine unaddressed" was visible as a contradiction
+rather than a plausible failure.
+
+**The general shape.** A prompt is a contract with two sides, and only one of them is tested. Every
+`{{PLACEHOLDER}}` is pinned by `test/docs/promptTemplates.test.js`, and nothing pins what the prompt
+promises about the SHAPE of a response against the code that reads it. The other agents' matchers
+(`gapFiller` on `fillsGap`, both deduplicators on `group`) have not been audited for the same gap.
+
+**Status:** fixed here, open as a class.
+
+## The phase extraction is now the default, and the old pass stays reachable
+
+`assemble` on an `--epub` source runs phase 1 unless `--extraction v1` says otherwise. It was the
+other way round while the rewrite was being written, because `main` was finishing a book with the old
+pass and both had to work side by side without a branch switch.
+
+**Why the default inverted.** A unit built by the old pass is indistinguishable from a phase-built one
+after the fact: same `corpus.json`, same schema, same review page. What it lacks is the coverage
+adversary, the per-image verdicts and both deduplicators, and none of those absences is visible in the
+output. So a forgotten flag produced a unit that read as fully built and was not, which is this
+project's signature failure shape. The flag is no longer what stands between a chapter and the
+pipeline meant to build it.
+
+**The trade-off accepted.** The default is now per SOURCE rather than global: an `--epub` chapter gets
+the phase, and a template or dictated word list gets the only extraction it can have, because phase 1
+reads a chapter and those have none. That means `usePhaseExtraction` consults `flags.epub`, so the
+answer to "which extraction is this" is no longer readable from the flag alone. Asking for the phase
+on a source that cannot run it is an error rather than a silent downgrade, which is what keeps the
+per-source default from becoming a second way to get the wrong pipeline quietly.
+
+**Impact:** none on chapters 0-16, which are built and not rewritten. A future non-EPUB source type
+that COULD support a phase would need this default revisited rather than inherited.
+
+**Revisit when:** a third extraction exists, or a non-EPUB source grows a phase. At that point the
+per-source boolean should become an explicit per-source table.
+
+**Verified by:** `node --test test/cli/index.test.js` — two tests pin the default in both directions
+(an `--epub` build with no flag must run the phase; a template build with no flag must not).
+
+**Status:** current design.

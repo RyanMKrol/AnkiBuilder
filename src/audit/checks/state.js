@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import { defineCheck } from "../registry.js";
 import { collectionState, unitState } from "../state.js";
+import { drillPassExpected } from "../../cards/readiness.js";
 
 /**
  * MAKE THE INVISIBLE STATES VISIBLE.
@@ -63,7 +64,11 @@ export const readinessExemptionsCheck = defineCheck({
     for (const unit of units) {
       const meta = unit.meta ?? {};
       if (!meta.done) continue;
-      const missing = ["enriched", "notesEnhanced"].filter((key) => meta[key] !== true);
+      // A pass the unit was never going to run is not an exemption. Without this, every v2 unit
+      // would be listed as "signed off before those markers existed", which is not true of any of
+      // them: phase 2 ran the drill mining, it just did not run it HERE.
+      const expected = drillPassExpected(meta) ? ["enriched", "notesEnhanced"] : ["notesEnhanced"];
+      const missing = expected.filter((key) => meta[key] !== true);
       if (missing.length) exempt.push(`${unit.name} (no ${missing.join(", ")})`);
       if (meta.prepareDegraded) degraded.push(unit.name);
     }

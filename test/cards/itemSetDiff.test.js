@@ -6,7 +6,7 @@ import {
   spokenTextOf,
   categoryHistogram,
   orderDisagreement,
-} from "../../src/evals/itemSetDiff.js";
+} from "../../src/cards/itemSetDiff.js";
 import { formatItemSetReport, formatIdSetReport } from "../../src/evals/report.js";
 
 const item = (over) => ({ id: "x", english: "Water", target: "みず", category: "Food", ...over });

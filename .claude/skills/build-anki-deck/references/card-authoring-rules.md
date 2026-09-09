@@ -14,6 +14,11 @@ It never means two of them together. Two collections are two separate products a
 overlapped, compared, cued against each other, or considered in reference to each other, even though
 the learner may study both on the same day. See CLAUDE.md, "Collections are isolated".
 
+> **The cross-pass subset of these rules lives in `docs/card-rules-shared.md`**, and is injected into
+> every card-writing prompt at its `{{CARD_RULES}}` marker. This file is the full rulebook and most of
+> it concerns one pass; that file is what every pass is guaranteed to have read. A rule that passes
+> keep undoing for each other belongs in both.
+
 ## English glosses read as natural sentence-case English
 
 **Every English gloss reads as natural sentence-case English — capitalized, never a lowercased clip.**
@@ -223,6 +228,18 @@ gets there.
 So: no citation-form card for a verb whose citation form the source has not introduced. When the
 source does introduce it, that lesson is its home, and a citation form never lands earlier than the
 inflected form it derives from.
+
+**Every form the chapter DOES teach earns its own card, and that is the half most often missed.** A
+learner who meets あいます and never meets あいました, あいません or あいませんでした knows one form
+and cannot use the word. The paradigm worth carding is declared per language in
+`src/cards/inflectionSchemes.js` and injected into the prompts that decide what earns a card, so the
+requirement travels with the language rather than living in English prose about Japanese. Measured on
+chapter 9: fifteen of the coverage adversary's forty-eight gaps were conjugations printed in that
+chapter and carded by nobody. Give each form a gloss that distinguishes it ("Met", not a second "To
+meet"), or the learner gets four cards they cannot tell apart.
+
+The two halves of this rule are one rule: **card what the chapter teaches, all of it, and nothing
+it has not reached.**
 
 Put the derivation in the `note`, because that is the part that transfers. Name the conjugation class
 and the change: which letters moved, and one verb already carded that makes the same move. A card

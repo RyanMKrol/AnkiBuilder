@@ -20,7 +20,8 @@
 // Exit 0 when every headword is covered, 1 when any is not — so it can gate a build step later.
 import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
-import { parseVocaEntries, findUncoveredVocab } from "../src/cards/vocabCoverage.js";
+import { parseVocabularyEntries, findUncoveredVocab } from "../src/cards/vocabCoverage.js";
+import { loadBookHints } from "../src/corpus/epubLibrary.js";
 
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a) => a.startsWith("--")));
@@ -40,10 +41,25 @@ for (const path of [chapterPath, cardsPath]) {
   }
 }
 
-const entries = parseVocaEntries(readFileSync(chapterPath, "utf-8"));
 // An excluded card still means the word IS in the unit; whether it ships is a separate decision, and
 // treating an exclusion as a coverage gap would send a reviewer to re-add what they just dropped.
-const cards = JSON.parse(readFileSync(cardsPath, "utf-8")).items ?? [];
+const cardsFile = JSON.parse(readFileSync(cardsPath, "utf-8"));
+const cards = cardsFile.items ?? [];
+
+// The selector is the BOOK's. Without one, this script cannot tell which tables are vocabulary, and
+// it exits 2 rather than printing a clean "0 uncovered" that means nothing.
+const hints = loadBookHints(cardsFile.meta?.epubHash);
+const entries = parseVocabularyEntries(readFileSync(chapterPath, "utf-8"), {
+  tableClass: hints.vocabularyTableClass,
+  subRowClass: hints.vocabularySubRowClass,
+});
+if (entries === null) {
+  console.error(
+    `this book records no hints.vocabularyTableClass, so which of its tables are vocabulary is ` +
+      `unknown. Nothing was checked — that is not the same as nothing being missing.`,
+  );
+  process.exit(2);
+}
 
 const misses = findUncoveredVocab(entries, cards, {
   includeSubRows: !flags.has("--no-sub-rows"),

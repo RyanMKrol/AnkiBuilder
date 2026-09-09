@@ -8,6 +8,8 @@ Use the file's structure (headings, CSS classes, tag nesting) as signal for what
 
 A **Book-Wide Conventions** section sits at the END of this prompt. It describes how THIS book marks things up, and it is there to help you FIND things. It never decides what you extract: the rules below do. Read the rules first.
 
+{{CARD_RULES}}
+
 ## Why
 
 The data you extract here will become flashcards in an Anki deck used to learn this language. Prioritize content that actually helps someone learn to speak and recognize the language — real vocabulary, real sentences — over exhaustively cataloguing every explanatory detail in the chapter.

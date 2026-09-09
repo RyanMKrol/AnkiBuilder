@@ -1,5 +1,7 @@
 # Task: Translate Flashcards
 
+{{CARD_RULES}}
+
 ## Overview
 
 You are translating flashcards for a language-learning deck.

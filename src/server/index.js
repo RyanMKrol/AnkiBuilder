@@ -1,11 +1,12 @@
 import http from "node:http";
 import { Buffer } from "buffer";
 import { realpathSync } from "fs";
-import { resolve, sep } from "path";
+import { dirname, resolve, sep } from "path";
 import { createAnkiConnect } from "../anki/ankiConnect.js";
 import { deliverToAnki } from "../anki/deliver.js";
 import { ADAPTERS } from "./adapters/index.js";
 import { unitBuildState } from "./adapters/stage.js";
+import { chapterUnits, chapterAudioReadiness } from "../review/chapterGate.js";
 import { clearClaim, describeClaim } from "../cli/runClaim.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
@@ -161,6 +162,19 @@ export function createDeckServer({
   });
 
   // The run dir owning a card's edits, realpath-verified inside outputRoot. null => 404.
+  /**
+   * The COLLECTION directory, guarded the same way a unit dir is.
+   *
+   * Derived from the adapter's own `unitDir` rather than rebuilt from the output root, so the three
+   * collection shapes stay the adapters' business and this does not become a fourth place that knows
+   * where books live.
+   */
+  function safeCollectionDir(type, id) {
+    const adapter = adapterFor(type);
+    const probe = adapter && adapter.unitDir ? adapter.unitDir(outputRoot, id, 0) : null;
+    return probe ? realWithinRoot(dirname(probe)) : null;
+  }
+
   function safeUnitDir(type, id, unit) {
     const adapter = adapterFor(type);
     const dir = adapter && adapter.unitDir ? adapter.unitDir(outputRoot, id, unit) : null;
@@ -300,6 +314,30 @@ export function createDeckServer({
     if (!runDir) return notFound(res);
     assertNotBuilding(runDir);
     sendJson(res, unmarkCardsReviewed(runDir, { removeChapterCorpus }));
+  }
+
+  /**
+   * Signs off a whole chapter's audio: its base unit and its `-extras` sibling together.
+   *
+   * It refuses BEFORE writing anything if the chapter is not ready, and it reuses
+   * `chapterAudioReadiness` rather than re-deriving the rule, so the dashboard and the CLI cannot
+   * disagree about when a chapter may proceed. `meta.done` is still set per unit, because that is
+   * what the package build and the deliverer select on; only the sign-off is shared.
+   */
+  async function handleChapterDone(res, type, id, chapterNumber) {
+    const collectionDir = safeCollectionDir(type, id);
+    if (!collectionDir) return notFound(res);
+
+    const units = chapterUnits(collectionDir, chapterNumber);
+    const readiness = chapterAudioReadiness(units);
+    if (!readiness.ok) {
+      return sendJson(res, { ok: false, error: readiness.reason }, 409);
+    }
+    for (const unit of units) assertNotBuilding(unit.dir);
+
+    const results = units.map((unit) => ({ unit: unit.name, ...setLessonDone(unit.dir, true) }));
+    const { rebuildError } = await rebuildGroup(type, id);
+    sendJson(res, { ok: true, units: results, rebuildError });
   }
 
   async function handleLessonDone(res, type, id, unit) {
@@ -476,6 +514,9 @@ export function createDeckServer({
     if (seg[4] === "unit" && seg[6] === "review" && seg[7] === "reviewed" && seg.length === 8) {
       return (handleCardsReviewed(res, type, id, seg[5]), true);
     }
+    if (seg[4] === "chapter" && seg[6] === "done" && seg.length === 7) {
+      return handleChapterDone(res, seg[2], seg[3], Number(seg[5]));
+    }
     if (seg[4] === "unit" && seg[6] === "done" && seg.length === 7) {
       await handleLessonDone(res, type, id, seg[5]);
       return true;
@@ -566,6 +607,13 @@ export function createDeckServer({
         }
         if (seg[0] === "review" && (seg.length === 3 || seg.length === 4)) {
           const html = renderReviewPage(seg[1], seg[2], seg[3] ?? null);
+          return html ? sendHtml(res, html) : notFound(res);
+        }
+        // The CHAPTER review: a lesson and its `-extras` sibling on one page. v2 gives a chapter's
+        // two units ONE audio review rather than one each, which is what takes a chapter from
+        // v1's four gates to three. Same renderer as the unit view, scoped differently.
+        if (seg[0] === "chapter" && seg.length === 4) {
+          const html = renderReviewPage(seg[1], seg[2], null, { chapterNumber: Number(seg[3]) });
           return html ? sendHtml(res, html) : notFound(res);
         }
         // Read-only card-face preview. GET only, no POST counterpart, and untouched by `editable`:

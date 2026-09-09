@@ -14,6 +14,7 @@ import {
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
 import { vocabCoverageCheck } from "./vocab.js";
 import { taughtNeverUsedCheck } from "./taughtNeverUsed.js";
+import { baseSplitCheck } from "./baseSplit.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import {
   collectionStateCheck,
@@ -69,6 +70,7 @@ export const ALL_CHECKS = [
   libraryCompletenessCheck,
   vocabCoverageCheck,
   taughtNeverUsedCheck,
+  baseSplitCheck,
   strayPackageCheck,
   packageFreshnessCheck,
   duplicatesCheck,

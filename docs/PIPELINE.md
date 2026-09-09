@@ -223,13 +223,42 @@ the `epub` prefix is only a convention) or whose `role` is `doc-toc`. The sweep 
 spec-blessed tiers came up empty, so no book that resolves today changes behaviour, and it reports
 `source: "nav-sweep"` so the probe says how the book was actually resolved.
 
+### Per-book config: invariants and hints
+
+`book.json` has two sections and they are not interchangeable, because they grant different powers
+(`src/corpus/bookConfig.js`).
+
+- **`invariants`** are facts code may branch on, because they really are stable for this book.
+  `labelDecoding` is the archetype: stamped once, frozen forever, because a chapter label flows into
+  a live Anki deck name. `bookInvariants` returns **only** keys named in `INVARIANT_KEYS`.
+- **`hints`** are what onboarding noticed about this publisher, for example that vocabulary tables
+  tend to carry `class="voca"`. They reach **prompts only** (`renderBookHints`), as orientation for
+  a model that is free to disagree. Nothing branches on them, so a wrong or missing hint costs
+  recall and can never cost correctness.
+
+The separation is enforced rather than merely documented: a hint cannot become a code dependency by
+being read, only by being **promoted** into `INVARIANT_KEYS`, which is a reviewed change to code.
+`assertConfigSeparation` rejects a book that declares the same key as both.
+
+Why the split exists at all: three modules once hardcoded one publisher's markup, and the
+vocabulary-table selector failed silently: on a book that marks tables differently the regex
+matched nothing and the coverage check reported zero misses, which is indistinguishable from a
+chapter that was fully carded. Moving those selectors into config without the split would have kept
+the same failure and merely relocated it, because no EPUB is reliably consistent enough for a
+selector to be a guarantee.
+
+A book registered before this split keeps its flat file and is **never rewritten**; `bookInvariants`
+reads the legacy top-level shape too. A pinned config a delivered deck depends on is not migrated as
+a side effect of a refactor.
+
 ### Label decoding is versioned per book
 
 A chapter label is not just text a person reads: `unitDeckSegments` turns it into a live Anki deck
 name, and renaming a deck in Anki is not a rename — it is a new deck, and the existing notes stay in
 the old one with all their scheduling. So the decoder that produces labels is **versioned per book**,
 stamped once into `book.json` at registration by `registerEpub` and read back by
-`resolveLabelDecoding` (`src/corpus/epubLibrary.js`).
+`resolveLabelDecoding` (`src/corpus/epubLibrary.js`). It lives under that file's `invariants`
+section, which is the section code is permitted to branch on — see _Per-book config_ below.
 
 - **v1** — the five original entities (`&amp;` `&lt;` `&gt;` `&quot;` `&#39;`), tags removed with
   nothing in their place. Any book registered before this existed stays here forever.
@@ -958,8 +987,9 @@ always relative to the repo itself, regardless of which directory you invoke the
 .anki-builder/
   audio/<voiceId>/<model>/<hash>.mp3            # ElevenLabs TTS cache (segmented by model)
   epubs/<epubHash>/book.epub                    # idempotent copy of a registered .epub
-  epubs/<epubHash>/book.json                    # { title, slug } — title from <dc:title>, slug
-                                                 #   filled in lazily on first --output-root use
+  epubs/<epubHash>/book.json                    # { title, slug, invariants, hints } — title from
+                                                 #   <dc:title>, slug filled in lazily on first
+                                                 #   --output-root use. See "Per-book config".
   epubs/<epubHash>/cache-v<N>/chapters/<chapterNumber>.xhtml   # extracted-chapter cache
   epubs/<epubHash>/cache-v<N>/images/<...>          # images the cached chapters reference,
                                                      #   at whatever relative path their own
@@ -1073,6 +1103,961 @@ Three properties are load-bearing:
 signed off.
 
 ## Model passes: pinning, env scopes and timeouts
+
+### Shadow-running phase 1 against a corpus a human already reviewed
+
+`node scripts/shadow-run.mjs <unitName>` runs phase 1 over a chapter that already has a reviewed
+corpus and diffs the two. `--list` names the eligible units, `--dry` prints what it would spend,
+`--keep` leaves the scratch output for inspection.
+
+It is the cheapest validation available because the ground truth is already paid for: a reviewed
+corpus is a human's own answer to "what should this chapter have produced", and there are 33 of them.
+
+**Read the diff in both directions.**
+
+- `extra`: produced by v2, absent from the reviewed corpus. **Candidate gaps in v1**, which is the
+  reason for the rewrite.
+- `missing`: kept by a human, not produced by v2. **Regressions in v2**, and the half most likely to
+  go unlooked-at, because the instinct is to search only for improvements.
+
+Neither is automatically a defect. The reviewed corpus is one human's answer on one day, not a
+specification, and an item it excluded was a decision rather than a miss. Excluded cards are
+filtered out of the comparison for exactly that reason, since counting one as a gap would send a
+reviewer to re-add what they just cut.
+
+**It writes nowhere near the deck.** The run is given a throwaway unit directory under the system
+temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
+they are months of human review with no backup anywhere but git, so a comparison that could edit its
+own yardstick is not a comparison. Golden rule 6 covers exactly this: a check runs against a scratch
+resource, never the product.
+
+### An extras unit's identity is derived, not typed
+
+Phase 2 writes `corpus.json` into a new unit directory, and that unit needs three fields the phase
+itself knows nothing about: which chapter it belongs to, what it is called, and which lesson its
+drills hang under. `extrasUnitMeta` derives all three from the base unit's approved `cards.json`.
+
+They had been typed by hand sixteen times, once per extras unit in the collection, and all sixteen
+agree. That agreement is the argument for deriving it rather than evidence that typing it is fine: a
+convention nothing enforces holds until the first time someone is in a hurry, and two of the fields
+are read by the deck build.
+
+`chapterLabel` is the base label plus `" (Extras)"`, and the suffix is not decoration:
+`src/deck/deckPath.js` splits on it to nest the drills under their lesson, so a unit that spells it
+differently ships as a sibling deck of the book rather than a child of the lesson, with nothing to
+say that was not intended. `baseChapterLabel` is what `src/deck/rebuild.js` groups on.
+
+`epubHash` is deliberately not carried over, matching all sixteen existing units. An extras unit is
+built from its base unit's approved cards rather than from the book, and the one thing that does
+need the book, finding the cached chapter, reads the hash off the base unit directly.
+
+### The backward deduplicator, and the blind spot it closes
+
+Backward dedup ran in exactly one place, `assemble`, comparing exact strings against the
+reviewed-corpus library. Two consequences followed, and neither was visible from inside the feature:
+
+- **An `-extras` unit never ran it at all**, because it is built by `build-extras.mjs` and never goes
+  through `assemble`.
+- **Extras content never entered the library.** The library is keyed `(epubHash, chapterNumber)`, and
+  an extras unit shares its base unit's chapter number, so writing one would overwrite the base
+  chapter's entry and later chapters would be deduped against the drills instead of the lesson. The
+  dashboard refuses the write and the `extras-library-write` check enforces it.
+
+Measured on the live book: **a new chapter was deduped against 1,176 targets and blind to 1,163
+more** that its own extras units already teach. Half the collection.
+
+**The fix does not touch the library.** That key collision is a property of how the file is stored,
+not of the comparison, so `loadEarlierUnitItems` reads every earlier unit off disk instead, base and
+extras alike. A base unit counts as earlier than its own extras sibling, because the extras unit is
+built from the base unit's approved vocabulary.
+
+**The pre-filter is fuzzy on purpose.** Exact matching already finds what exact matching can find, so
+everything left is a near miss: `おかし` against `かし`, or two glosses that say the same thing in
+different words. Three signals propose a pair, and all three thresholds were set by running the
+unfiltered version over a real chapter:
+
+- **same target**, which the base path suppresses (`skipExactMatches`) because `assemble` flags those
+  itself; the extras path keeps them, since nothing else ever checks an extras unit
+- **one target a prefix or suffix of the other**, at half its length or more. Plain substring
+  matching proposed `せん` inside `いきませんか` and `です` inside `どうですか`, because grammatical
+  endings are substrings of everything built from them; the ratio then drops `ちょっと` inside
+  `ちょっとまってください` at 0.36
+- **glosses agree**, via the existing `glossesAgree`
+
+Each candidate shows at most five prior cards, strongest signal first, because one real card matched
+dozens on gloss overlap alone and the judge should not have to read a wall to answer one question.
+
+**It flags and never removes**, which is `dedupBackward`'s existing philosophy and the right one: a
+word deliberately re-taught in a new grammatical role is a legitimate card, and only a human reading
+both can say. An `already-taught` verdict sets `uncertain` and appends a note naming the earlier
+unit, without discarding whatever the card already said.
+
+### Inflected forms, as a per-language plugin
+
+A learner who meets `あいます` and never meets `あいました`, `あいません` or `あいませんでした` knows
+one form and cannot use the word. On chapter 9, **fifteen of the coverage adversary's forty-eight
+gaps were exactly that**: conjugations printed in the chapter and carded by nobody.
+
+`src/cards/inflectionSchemes.js` declares the paradigms worth carding, keyed by ISO 639-1 like every
+other language registry here. Japanese declares five verb forms (dictionary, polite present, past,
+negative, past-negative) and four adjective forms. Every other language is deliberately absent, and
+an unconfigured one returns `null` so its prompt is told to card each word once rather than to invent
+a paradigm.
+
+**It states what is worth carding, not what must exist.** A form earns a card in the chapter that
+teaches it, and nowhere else. That boundary is not a detail: `card-authoring-rules.md` records that
+supplying forms the source has not reached was tried on this deck in 2026-09, reviewed, and stripped
+back out, because a citation form carded before the lesson that explains it means the learner meets a
+form before the explanation that makes sense of it. The owner reaffirmed that on 2026-09-08 after
+considering the alternative. The rule is one rule with two halves: **card what the chapter teaches,
+all of it, and nothing it has not reached.**
+
+**Why a script cannot generate the forms.** The polite forms are mechanical from the `ます` stem, but
+the dictionary form is not: `あいます → あう` and `たべます → たべる` differ by verb class, and the
+`ます` form alone does not say which class a verb is in. So the scheme states the requirement, the
+prompts carry it, and the agents produce the forms.
+
+It reaches three prompts, chosen because they are the three that decide what earns a card: the table
+specialist and the chapter reader, which should card a printed form on the way in, and the gap
+filler, which catches what they missed. The gap filler's decline list says so explicitly, because its
+first draft would have refused these as "a bare inflection of a word the corpus has" and declined the
+entire class.
+
+### The gap filler, and the snapshot rule it forced
+
+The coverage adversary enumerates a chapter independently and a set operation diffs that against the
+corpus. That worked from the first run: on chapter 9 it found 48 items the corpus lacked, including
+`あまり…〜ません` and `ぜんぜん…〜ません`, paired constructions the specialists had carded only as bare
+adverbs, losing the pairing that makes them usable.
+
+**And nothing consumed any of it.** `candidates/coverage.json` was written, a line was printed
+suggesting somebody read it, and no code path anywhere opened the file. The review page did not know
+it existed, no audit check looked at it, and phase 2's `computeGaps` is a different notion of gap
+entirely. The most expensive role in phase 1 produced findings into a file nobody opens.
+
+The owner's ruling (2026-09-08) was that the adversary should FILL its gaps rather than surface them:
+a review is a light human check that nothing is missing, not a worklist of holes to chase. So
+`gapFiller` takes the diff and writes finished cards, or declines a gap with a reason.
+
+**Why it is a separate role from the adversary.** The adversary must never see the corpus, because a
+list written after reading someone else's answer agrees with it, and that independence is what makes
+the diff mean anything. The filler sees everything: the gaps, the corpus, the chapter. Splitting them
+keeps the enumeration honest and lets the filling be informed enough to decline a gap an earlier
+chapter already covers.
+
+**It defaults to filling.** An unfilled gap is a card that never gets made, and there is no longer a
+human downstream reading the list. Declining is for a concrete reason: an earlier chapter teaches it,
+it is a sentence belonging to the extras unit, it is a fragment of an existing card, or the chapter
+never taught it at all.
+
+**And it forced the snapshot's rule into the open.** The snapshot is the pre-review baseline the
+learning pass diffs against, so a card ADDED after it looks like the reviewer added it, and an
+exclusion made BEFORE it is invisible. The step order now states that directly:
+
+```
+reconcile → coverage-adversary → gap-filler → SNAPSHOT → semantic-dedup → backward-dedup
+                  everything that adds  ↑  everything that removes
+```
+
+Producing happens above the line; pruning happens below it. Both halves are asserted.
+
+### The semantic deduplicator: the one agent that reconciles rather than produces
+
+Every other agent in the pipeline is a producer. Nine of them across the two phases, and each either
+finds content or authors it. Reconciliation, the one place where "is this the same as that?" is
+asked, was a script comparing normalised strings.
+
+That script is strict on purpose. `reconcile` merges on target AND gloss so that `はし` (bridge) and
+`はし` (chopsticks) cannot collapse into one card and silently lose a sense. The cost is measurable:
+on the first live phase-1 run, **19 of 83 items were a target already present in the same corpus**,
+differing only in whether the gloss used a comma or a semicolon. No normalisation separates
+"Watch, clock." from "Watch; clock." while keeping "Bridge" apart from "Chopsticks", because the
+difference is meaning rather than spelling.
+
+**So the work is split.** `findDuplicateCandidates` (`src/cards/dedupGroups.js`) groups items that
+share a normalised target, or share a gloss with different targets. It removes nothing and decides
+nothing. The agent judges each group `duplicate` (naming which id to keep) or `distinct`.
+
+**It is pinned to Opus, above every producer in both phases**, and for a sharper reason than the
+coverage adversary's: this role can DELETE. A wrong `duplicate` verdict removes a card and nobody
+notices it is gone, which is why the prompt's tie-breaker is to return `distinct` when unsure, and
+why `applyVerdicts` validates every verdict against its own group before applying it. A verdict
+naming an id outside the group, or emptying it, is discarded with the group left intact: a malformed
+answer costs nothing rather than costing a card.
+
+**It excludes rather than deletes**, stamping `excludedBy: "semantic-dedup"` so the card stays in the
+file, the reviewer sees why, and the learning pass can tell it from a human's decision.
+
+**It runs last, after the snapshot**, and both halves of that matter. Last, because it acts on the
+finished set. After the snapshot, because the snapshot is the pre-review baseline: run before it, the
+deduplicator's work would be invisible to the one mechanism built to audit what happens to a corpus
+between generation and review.
+
+A corpus with no look-alike groups skips the call entirely rather than paying an Opus round trip to
+be told there is nothing to do.
+
+### Every pass declares its model, including the v1 ones that survived
+
+Both the v2 role registry (`src/agents/roles.js`) and the two v1 families
+(`EPUB_PASS_PINS`, `TRANSLATE_PASS_PINS`) declare a model and an effort per pass, and
+`test/agents/survivingPassPins.test.js` holds the v1 tables to the same two rules the role registry
+is held to: every pass names both, and a checking pass outranks what it checks.
+
+The v1 passes were not previously unpinned in the sense of inheriting the operator's model.
+`resolvePinning` falls through to a hardcoded `DEFAULT_MODEL` of `claude-sonnet-5`, so they had a
+pin; it just lived in a constant three files away that would have moved eight passes at once if
+anyone had changed it.
+
+**What was actually wrong is the forward-flag pass.** It reads items the extraction just produced
+and judges whether any are premature, which makes it a checking role, and it was running at the same
+rank as the pass it checks with nothing saying that was a choice. It is now Opus against the
+extraction's Sonnet, and the ordering is derived from a `checks` field rather than stated in a
+comment, so getting it backwards fails the build.
+
+They stay in their own tables rather than moving into `ROLES`, and that is now a decision rather
+than a deferral: the v1 families group passes that share an env knob and a blast radius, and the v2
+roles deliberately do not share one. The table specialist and the coverage adversary are pinned apart
+on purpose, and a single knob moving both would undo the ranking the registry exists to assert.
+
+### The base/extras split, checked rather than trusted
+
+The `base-split` audit check flags cards in a base unit whose target reads as a sentence. The split
+is the reason phase 2 exists, and until now nothing enforced it: the phases put a card where their
+prompt says, and a prompt is a rule that holds until the day it does not.
+
+**The test is lexical entry versus utterance, never length**, so it is not a character count. A fixed
+expression the book glosses as a unit is an entry at twelve characters; a short clause is an utterance
+at four.
+
+`src/cards/predicateShape.js` holds the rule, per language, in the registry shape
+`romanizationLibraries.js` established: keyed by ISO 639-1, with an absent language returning `null`
+rather than an empty list. Only `ja` is worked out, and every other language is deliberately absent,
+because a wrong marker list would flag correct vocabulary as misfiled and send a reviewer to move
+cards that were already right.
+
+A target is an utterance when it has **both** a sentence-final predicate ending **and** clause
+structure, and the second half is what makes the check usable. This deck cards verbs in their polite
+ます form, so `あるきます` ("Walk") and `あります` ("Be, exist") are lexical entries that end in a
+predicate marker; requiring a particle as well drops every one of them, along with the fixed
+greetings that end the same way. The structure test runs on what is left once the predicate is
+removed, because `です` contains `で` and would otherwise prove itself a clause.
+
+**Its limit is that a particle is an ordinary kana.** There is no way to tell the topic marker `は`
+from the `は` inside `はな` without morphological analysis, so every particle in the set also fires
+word-internally. Which particles are in it is a measured recall/noise trade, recorded in the module
+against the 1,224 shipping cards of the live base units. The upgrade path, if the noise justifies it,
+is kuromoji, which this repo already depends on for Japanese romanization.
+
+**Only phase-built units are judged, and the check is ACK.** A v1 base unit is 20-30% utterances by
+this measure and that is the convention those chapters were built under, so they are counted and
+named as a permanent exemption rather than flagged: not rewriting them is an explicit non-goal. ACK
+rather than FAIL because a fixed expression is an entry however sentence-like it looks, and a tier
+that blocked would be overridden the first time it fired.
+
+### One source of card rules, included rather than restated
+
+`docs/card-rules-shared.md` holds the rules every pass that writes, edits or deletes a card has to
+obey. `renderPromptTemplate` substitutes it at each prompt's `{{CARD_RULES}}` marker, so no caller
+passes it and no caller can forget it.
+
+It exists because `card-authoring-rules.md` opened by claiming it governed "every pass that writes
+cards" and nothing made that true. The passes are separate prompts in separate files, each written
+when its pass was, so a rule added to one after another was written never reached the other. That is
+not hypothetical: the extraction prompt protects forms the source marks irregular from being sampled
+away, `semantic-dedup-prompt.md` had never mentioned the word, and a correctly-mined irregular card
+was deleted as "the third example of a frame the source teaches twice". Both passes did exactly what
+their own prompt said.
+
+**A test enumerates every `docs/*-prompt.md` and insists each one either carries the marker or is
+named in `NO_CARD_RULES` with a reason.** There is no third state, which is the point: a pass added
+later cannot quietly opt out by being new. Five prompts are exempt today, and each says why (they
+write a book-level doc, an index, a flag, or a permutation, not card content).
+
+**The file is short and language-neutral, and both are enforced consequences rather than style.** It
+is prepended to every card-writing call, so its length is multiplied by the number of passes. And it
+reaches every language's prompts including the generic romanization one, which an existing test holds
+to containing no Japanese: that test caught the first draft, which used Japanese examples. A rule
+illustrated in one script reads as a rule about that script.
+
+The full rulebook stays where it was, at
+`.claude/skills/build-anki-deck/references/card-authoring-rules.md`. Most of its five hundred lines
+concern a single pass, and a rule earns a place in the shared file only by being cross-pass.
+
+### Onboarding a book: evidence, not conclusions
+
+`scripts/epub-hints.mjs` samples spine files spread across a book and prints frequency tables for the
+four things a `hints` entry is about: classes on `<table>`, classes inside tables, image filename
+stems, and the first word of each nav label. It is free, read-only, and it concludes nothing.
+
+The judgement-free part is the whole design. `class="voca"` was hardcoded in `vocabCoverage` for
+months, and on any book but the one it was written for it returned an empty list, reported zero
+uncovered headwords, and printed clean. A frequency table cannot make that mistake because it does
+not claim anything, and a script that proposed a value would be the same bug with a longer fuse.
+
+Two details are there because the counts were unreadable without them. A trailing counter is stripped
+including roman numerals, because the proven book numbers its exercise blocks `enum-I` through
+`enum-VIII` and stripping only digits left eight stems of six instead of one stem of fifty. And the
+prefix every stem shares is reported once and removed from the listing, because publishers put the
+ISBN on every asset and the distinguishing half of a filename can start forty characters in.
+
+The sample is spread across the book rather than taken from the front: front matter is the part least
+likely to look like a lesson.
+
+**It deliberately does not read the book's prose.** That is `conventions.md`, it costs a paid
+whole-book pass, and it stays a separate step. Onboarding produces structure; the paid passes produce
+meaning, and keeping them apart is what makes onboarding runnable on a book still being considered.
+
+### Phase 1 as `assemble`'s extraction step
+
+`anki-builder assemble --epub …` runs phase 1 as its extraction step and changes nothing else about
+the build. `--extraction v1` selects the old single pass instead.
+
+That is the whole seam, and the narrowness is the point. v2 replaces one thing about an EPUB build:
+how a chapter becomes a list of candidate items. Everything `assemble` does around that step is
+wanted unchanged, and it is most of the build: registering the book, the cached whole-book
+conventions, extracting the chapter's bytes, stamping `epubHash` / `chapterNumber` / `chapterLabel`,
+the backward dedup against what the book already taught, the forward flags for vocabulary a later
+chapter introduces, the pedagogical sort, the pass ledger, the run claim, and chaining into
+`prepare`. Every item on that list has been got wrong at least once, and the order is load-bearing.
+
+Re-implementing that order inside the phase script was the alternative, and it is risk without
+reward: a second copy of a sequence whose only value is that this one is proven.
+
+**An EPUB chapter gets the phase by default, and `--extraction v1` is the opt-out.** It was the
+other way round while the rewrite was being written, when `main` was still finishing a book with the
+old pass and both had to work side by side. The default inverted when the rewrite landed, for a
+reason worth stating: a unit built by the old pass is indistinguishable from a phase-built one
+afterwards. Same `corpus.json`, same schema, same review page, minus the coverage adversary, the
+image verdicts and both deduplicators. Forgetting a flag is easy and nothing downstream would ever
+report it, so the flag is not what stands between a chapter and the pipeline meant to build it.
+
+The old pass keeps working and stays selectable, because chapters 0-16 were built with it and
+comparing against it is how a regression gets found. A typo in the value is an error either way,
+checked at the top of the command before the book is registered or the chapter pulled, so a
+misspelling costs nothing to discover.
+
+**The default is per source, not global.** Phase 1 reads a chapter, so a template or a dictated word
+list defaults to the only extraction it can have, and asking for the phase there is an error rather
+than a silent downgrade.
+
+**A re-run reuses the phase's output.** `assemble` is this project's resume command, so re-running
+it on a half-built lesson has to be cheap. It also has to be possible at all: `writeSnapshot`
+refuses to overwrite, deliberately, so a phase that could not be re-entered would turn that
+safeguard into a crash on the recovery path. The presence of `as-generated.json` beside
+`corpus.json` is what says the phase finished; a corpus without one is a crash between the reconcile
+step and the snapshot, and it runs again.
+
+`scripts/build-base.mjs` is unchanged and still runs the phase standalone, which is what
+`shadow-run.mjs` uses. The difference is only who calls it.
+
+### From a phase corpus to a reviewable unit
+
+A phase script ends at `corpus.json`. The review gate reads `cards.json`. `anki-builder prepare
+--run <unitDir>` is still what spans the two, unchanged: translate, then the cross-lesson note pass,
+then number readings.
+
+What changed is the one pass in that chain phase 2 now owns. `prepare` mines fill-in-the-blank
+drills and semantically dedups them, and running that on a v2 unit is wrong in both directions: it
+would put sentences into a base unit, which is defined as lexical entries only, and it would stack a
+second differently-mined drill block onto an extras unit that already holds the miners' output.
+
+**`meta.phase` is what says so**, stamped on the corpus by the phase script that wrote it and
+carried into `cards.json` by translate. Absent is the v1 answer: the corpus came from `assemble`, so
+`prepare` still owns the drill mining. The field is on the corpus rather than derived from
+`as-generated.json`, which records the phase too, because the snapshot is build scratch: untracked,
+deletable, and a correctness rule resting on a deletable file fails in the direction that costs a
+card set.
+
+**`drillPassExpected(meta)` in `src/cards/readiness.js` is the only place that rule is written.**
+Three callers have to agree with each other, and the failure when they don't is not a wrong report:
+
+- `prepare` decides whether to run the pass.
+- `lessonReadiness` decides whether the `enriched` marker is required before a human may sign off.
+  This one is the sharp edge: readiness required that marker for every non-template unit, so a
+  phase-built unit would never have shown a **Mark reviewed** button. The phase would have produced
+  a corpus nobody could sign off on.
+- `resume` decides whether to send the operator back to `prepare`, which for a phase unit would have
+  been a recommendation that never stopped recommending itself.
+
+The `readiness-exemptions` audit check reads it too, for a different reason: it lists done units
+carrying no record of the pre-review passes, described as signed off before those markers existed.
+That is true of the v1 units it was written for and false of every v2 unit, so it asks the same
+question rather than counting them.
+
+### The learning pass: reading the review back
+
+`node scripts/learning-pass.mjs <unitDir>` diffs a unit's `as-generated.json` against its approved
+`cards.json` and attributes every difference to the role that produced the item.
+
+It exists because moving extraction to agents removed the eval fixtures' replay seam for that half of
+the pipeline: there is no recorded stdout to diff when the work is a judgement spread across several
+roles. What replaces it is the reviewer, who already looks at every card and already excludes and
+edits. Those actions are ground truth about where a role was wrong, they cost nothing extra, and
+until now nothing read them back.
+
+**Only a human exclusion is feedback.** An exclusion carries `excludedBy`, and the difference between
+`human` and a script name is the difference between "a person judged this card wrong" and "the
+pipeline did its job". Counting a `semantic-dedup` exclusion against the role that produced the card
+would punish it for being deduplicated, which is usually the system working. The two are counted
+apart and can never be added together.
+
+**A changed field is reported as changed, never as a rejection.** A card records no author for a
+field, so a reviewer's edit and a later pass's edit are indistinguishable. Claiming the reviewer
+rejected a wording would send someone to fix a prompt that was never at fault.
+
+**An item no role claimed is unattributed**, which is a real category rather than a rounding error: a
+card can reach the corpus by a route no role was recorded for, and inventing an attribution is worse
+than admitting the gap.
+
+A unit built by v1 has no snapshot and says so plainly. That is a gap in the record, not an error:
+the snapshot is written by the phase script before the review, so it only exists for units v2 built.
+
+Run against a real phase-1 output with a simulated review, it reports per role: produced, kept, cut
+by human, cut by script, and edited, with the human cuts named alongside their reasons.
+
+### Phase 3: a chapter's audio, and the refetch audit that guards it
+
+`node scripts/build-audio.mjs <collectionDir> <n> --lang <code>` generates a chapter's audio for
+**both** its units in one run, because they share one audio review. `--dry` runs the readiness check
+and the refetch audit and fetches nothing.
+
+**The cache hit rate is the wrong question.** The obvious check is whether every card's text still
+resolves to a file in `.anki-builder/audio`, and against the real deck that is **76%**. It is not a
+regression: the cache is documented as disposable, `rm -rf` on it is sanctioned whenever audio
+generation changes, and it has been dropped. The clips live in each unit's `audio/` directory,
+296 MB against the cache's 171 MB.
+
+**The real invariant is that no shipping card is refetched.** A default clip is named for the hash of
+the text it speaks, so if the derivation still produces that hash the clip stands and nothing is
+fetched. If the derivation drifts, every card's name stops matching at once and the stage re-buys
+roughly 4,400 clips silently, because a refetch looks exactly like a first fetch.
+
+`src/audio/refetchAudit.js` measures it, and counts **hand-curated takes separately**: a manual trim,
+an upload or a generated variant keeps its own filename by design, and folding those into "stale"
+would make the check cry wolf on 326 real cards and be ignored within a week. Across the whole book
+today: 2,062 current, 326 hand-curated, **0 would be refetched**.
+
+A non-zero refetch count **stops the run** rather than warning, because the money is spent the moment
+it proceeds.
+
+The generation itself is v1's, driven rather than reimplemented: `src/audio` is the most portable
+code in the repo and the most expensive to get wrong.
+
+### The combined audio review page
+
+`GET /chapter/<type>/<id>/<n>` renders a chapter's base unit and its `-extras` sibling on one page,
+and `POST /api/deck/<type>/<id>/chapter/<n>/done` signs both off at once.
+
+It is a **scope on the existing renderer**, not a new page. `renderReviewPage` already rendered N
+units together (that is how the deck-level view works), so the chapter view is a filter on
+`u.number` alongside the unit filter it already had. The task that produced this was scoped as a new
+page in a 4,472-line surface; reading the code first made it a few lines.
+
+`meta.done` is still set **per unit**, because that is what the package build and the deliverer
+select on. Only the sign-off is shared.
+
+The handler **refuses before writing anything** when the chapter is not ready, reusing
+`chapterAudioReadiness` rather than re-deriving the rule, so the dashboard and the CLI cannot
+disagree about when a chapter may proceed. A partial sign-off would ship half a chapter, so the check
+runs across both units before either is touched.
+
+`safeCollectionDir` derives the collection directory from the adapter's own `unitDir`, so the three
+collection shapes stay the adapters' business and this does not become a fourth place that knows
+where books live on disk.
+
+### The chapter-level audio gate
+
+A chapter's two units share **one** audio review, which is why v2 has three gates per chapter where
+v1 had four. `src/review/chapterGate.js` holds the rule.
+
+Worth stating what did **not** change, because the task that produced this was scoped as adding a
+stage. The per-unit machinery is untouched: each unit still moves `corpus` then `audio`, and
+`meta.reviewed` and `meta.done` keep their exact meanings, which matters because those two booleans
+drive package selection and delivery.
+
+`chapterAudioReadiness` refuses in three distinguishable ways, because "not yet", "this chapter has
+no readable cards" and "the extras unit was never built" call for different next actions and a caller
+that cannot tell them apart will guess:
+
+- **a unit not signed off**: audio covers both units, so it waits for both reviews rather than
+  splitting into two and re-introducing the second visit the design removed.
+- **an absent `-extras` unit**: phase 2 runs after the base review and before audio, so its absence
+  means the chapter is not finished, never that it legitimately has no drills.
+- **an unreadable `cards.json`**: reported as itself rather than collapsing into "unreviewed".
+
+### Phase 2 as one ordered script
+
+`node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code>` takes an **approved**
+base unit to a reviewable extras corpus. `--dry` prints the nine steps and says five of them spend.
+
+It refuses an unreviewed base unit. Phase 2 exists to show approved vocabulary at work, so running it
+earlier means every sentence rests on words a human may still cut, which is how v1's extras units
+ended up audited against a card set that no longer existed.
+
+The order carries three constraints, each asserted by a test:
+
+- **The three miners run before the gaps are computed.** A gap is only real if a miner did not
+  already fill it, and computing first would hand the gap author holes that no longer exist and spend
+  a call closing them twice.
+- **The gaps are computed between the miners and the gap author**, from the base unit plus everything
+  mined so far. That is the only moment the number is true.
+- **The inventive author runs last.** Its allowance is a share of what the others produced, and its
+  job is to add what is missing; earlier, the allowance would be a guess and it could not avoid
+  reinventing what it had not yet seen.
+
+It is also given every **earlier lesson's** cards, so the vocabulary rule is judged against what the
+learner has actually met rather than against this chapter alone.
+
+Findings are surfaced before the review rather than after: sentences that appear to use an untaught
+word, gaps left open for want of taught vocabulary, invented sentences that repeat a mined one, and
+targets carrying more than one sense.
+
+### Phase 1 as one ordered script
+
+`node scripts/build-base.mjs <unitDir> <epubHash> <n> --lang <code>` takes a chapter to a reviewable
+base-vocabulary corpus. `--dry` prints the steps and what each would write, and spends nothing.
+
+**The steps are data** (`BASE_PHASE_STEPS`, `src/agents/basePhase.js`), and the script only drives
+them. An ordering constraint that lives inside a script is one nothing can assert; three of the
+constraints here are load-bearing and a test pins each:
+
+- **Raw material before judgement.** Every agent is fed by a deterministic step, and no agent is
+  handed a selector or a filter.
+- **The merge before the snapshot.** The snapshot is the pre-review baseline, and a baseline taken
+  mid-merge is not one.
+- **The adversary last, and never shown the corpus.** Last only so its diff has something to compare
+  against; the comparison happens in code afterwards, and its prompt has nowhere to put the corpus
+  even if the order changed.
+
+| #   | step                     | kind          | artifact                   |
+| --- | ------------------------ | ------------- | -------------------------- |
+| 1-3 | tables, sections, images | deterministic | `candidates/*-raw.json`    |
+| 4   | table specialist         | agent         | `candidates/tables.json`   |
+| 5   | chapter reader           | agent         | `candidates/chapter.json`  |
+| 6   | image specialist         | agent         | `candidates/images.json`   |
+| 7   | reconcile                | deterministic | `corpus.json`              |
+| 8   | snapshot                 | deterministic | `as-generated.json`        |
+| 9   | coverage adversary       | agent         | `candidates/coverage.json` |
+
+Four of the nine spend, one of them at a higher pinning. `--dry` says so before you commit to it.
+
+**The run verifies itself against its own artifacts.** `verifyRun` re-reads the files at the end with
+every step id required, so a step that returned cheerfully and wrote nothing is caught here rather
+than at a review gate, and the script exits 2 rather than handing over a link.
+
+Three things it surfaces before the review rather than after: targets carrying more than one sense
+(kept, and named), coverage gaps the adversary found, and any image that came back `unreadable`.
+
+### The coverage adversary: enumerate, then diff in code
+
+`src/agents/coverageAdversary.js` is the check on the three phase-1 roles, and it is deliberately
+**not asked what they missed**.
+
+Asked directly whether something is absent from a document, a reader performs at close to chance:
+absence has no text to attend to, so there is nothing to notice. Asked to enumerate a source
+independently, the same reader does well, and comparing the two lists finds the gaps reliably. So the
+role returns a **list**, and `findGaps` does the comparison in JavaScript. Absence detection is a set
+operation, and a set operation belongs in code.
+
+It is shown **neither the corpus nor the other roles' prompts**. A list written after reading someone
+else's answer agrees with it. That independence is a property of the function signature rather than a
+habit of its callers: `renderCoverageAdversaryPrompt` has nowhere to put the other roles' output even
+by accident, and a test asserts that.
+
+It is pinned to Opus, above the three Sonnet roles it checks, for the two reasons the role registry
+enforces generally: noticing an omission is harder than producing content, and a checker drawn from
+the same family as its generator leans toward approving it.
+
+`findGaps` uses the same matcher as the reconciler and the eval fixtures, so three callers cannot
+drift on what counts as the same item. It returns `onlyInCorpus` as well, which is not noise: an item
+the corpus has and the adversary did not enumerate is either a legitimate addition or a sign the
+adversary read short, and both are worth a glance before trusting the gap list.
+
+The artifact at `candidates/coverage.json` records the counts alongside the gaps, because a gap list
+with no denominator cannot be judged: four gaps means something different against an enumeration of
+twelve than against one of two hundred.
+
+**It decides nothing.** Its output is candidate gaps for a human at the review gate, and `confidence`
+travels with each so a reviewer can start where the evidence is strongest.
+
+### Phase 2 roles, and the vocabulary rule they are all held to
+
+Phase 2 runs **after** the base corpus review, so every extras role is fed vocabulary a human has
+already approved. Its job is to show those words at work, never to teach new ones.
+
+**Every word a produced sentence uses must already be taught**, from this chapter's approved base
+unit or an earlier lesson. v1 calls this the rule most likely to be broken and the most damaging when
+it is, because a sentence built on an untaught word cannot be studied and sits in the deck looking
+finished.
+
+`src/agents/extrasVocabulary.js` checks it mechanically rather than trusting the prompt. Three
+prompts will state the rule and three models will mostly follow it, and "mostly" is the problem: the
+violation is invisible at review, because a sentence using one unfamiliar word reads perfectly well
+to anyone who knows the language.
+
+The check is **coverage, not parsing**: walk the sentence marking every character a taught form
+accounts for, and report the residue. `これはとけいです` against a set holding これ/は/です/ペン
+leaves `とけい`, which is a finding a person can act on.
+
+It is a **report, never a filter**. Substring containment over a space-free script cannot be certain,
+so a silent drop would remove a good sentence for a bad reason and say nothing about it.
+
+#### The inventive author (F5), the only capped role
+
+It writes practice the book does not supply, and it is the only phase-2 role with a ceiling:
+`allowanceFor(priorCount)` is 20% of what the other roles produced, rounded up.
+
+The miners are uncapped because they mine. If the book prints a sentence, that is a fact about the
+chapter and there is no reason to stop at any number. This role invents, and an inventive role with
+no ceiling is how a unit fills with padding: another sentence is always possible, each looks
+reasonable alone, and the unit ends up twice the size with no more teaching in it.
+
+**It runs last**, and is given every sentence the other roles produced, so it can tell "this context
+is missing" from "I have not seen it yet". Running it earlier would make its allowance a guess and
+its duplicate-avoidance impossible.
+
+**The cap is enforced, not requested.** `assertWithinAllowance` refuses a response that exceeds it
+rather than trimming, because trimming would hide a role ignoring its brief and would make the module
+choose which cards to drop, which is a content judgement it has no basis for. Returning fewer is fine
+and often correct.
+
+Two things are reported rather than refused, both because they are judgements: a sentence that
+**reinvents** one the miners already produced (matched on the reconciler's own key, so this cannot
+disagree with the merge that follows), and a sentence using an **untaught word**. This role is the
+likeliest to slip there, since it writes freely rather than copying and a natural sentence is exactly
+where an untaught word gets in.
+
+Every item must carry a `why`: what a learner gets from it that the existing sentences do not give
+them. A sentence that cannot be justified in one line is one that should not have been written, and
+writing the line is the cheapest way to find that out.
+
+`ALLOWANCE_SHARE` is a named constant, because 20% is a dial rather than a law and it is the first
+number to tune if extras units come out thin or bloated.
+
+#### The gap author (F4), and why its holes are counted
+
+The three miners work from what the chapter contains. The gap author works from what the lesson's
+own cards are **missing**, and the difference is that the holes are found by arithmetic
+(`src/agents/coverageGaps.js`) rather than by a model's sense of what feels thin.
+
+That matters because a role asked "what is this unit missing" answers from impression and produces
+plausible work with no relationship to the deck's actual shape. Handed a computed list, it writes
+against evidence. Same scripts-supply-agents-judge split as everywhere else, with arithmetic as the
+raw material.
+
+Two sources are computed, one is supplied:
+
+- **`neverUsed`**: `findTaughtNeverUsed` reports a word the lesson teaches and then uses in nothing longer.
+- **`underExampled`**: function words with fewer than three sentences showing them at work.
+  Counting is the honest test: `の` once had ten examples in this deck and all ten were the same
+  `[company]の[person]` shape, so presence was never the question.
+- **`paradigm`**: deliberately **not** computed. A grid's spec is hand-authored per chapter because
+  knowing which paradigm a chapter teaches is a judgement, not a count. With no spec it reports
+  `null` rather than `[]`, because "nobody checked" and "nothing missing" are different answers.
+
+`assertGapsAddressed` refuses a response that leaves a computed gap unmentioned. `unfillable` is a
+correct outcome: a hole that cannot be closed without an untaught word must stay open, since filling
+it with one turns one gap into two.
+
+A lesson with no gaps costs **no model call at all**, which is the common case for a well-covered
+chapter and should not be paid for.
+
+#### The line between the two miners
+
+**The exercise miner mines what the book PRINTS; the fill-in-the-blank miner expands what the book
+IMPLIES.** A worked `e.g.` line is a sentence the author wrote, so mining it is a fact about the
+chapter and that role is unbounded. A frame with six fillers beside it is a recipe for six sentences
+the author did not write, so how many deserve a card is a judgement, and that role is capped at three
+per frame.
+
+Drawing that line late cost a near-duplicate: the exercise miner's first prompt claimed substitutions
+too, which would have produced the same sentences twice under two role names and made the provenance
+meaningless. The prompts now name each other's territory.
+
+Two exceptions the cap never applies to, both learned by getting it wrong in v1: an **irregular** form
+is kept whatever the cap says, because sampling is for cells a learner can derive and an irregular is
+by definition the one they cannot; and a **distinct derivation** is not a repeat, since
+`かいます→かう`, `のみます→のむ` and `かえります→かえる` are three row shapes rather than one.
+
+#### Unresolved slots are refused, not reported
+
+Everything else in this pipeline reports and lets a human decide, because most judgements are
+genuinely close. This one is not. A target still holding `___`, an empty full-width paren or a bare
+`〜` cannot be studied by anyone in any context, so there is nothing for a reviewer to weigh, and
+`assertNoUnresolvedSlots` throws at parse time rather than adding a card whose only future is
+deletion.
+
+`frameYield` records what each frame offered against what it kept, so "this chapter was thin" and
+"this role capped hard" are told apart by reading rather than guessing.
+
+#### The exercise miner (F1)
+
+Turns drills and worked examples into complete sentences, and accounts for **every numbered exercise
+block**. One chapter's read once stopped at Exercise V of VIII with two blocks never seen, one of
+which held the only use of two words in the whole book.
+
+`skipped` is a first-class part of its answer rather than an apology. A drill needing a word neither
+list teaches must be skipped, and naming which and why is how a reviewer tells "this chapter had less
+in it" apart from "this role quietly lowered its standards". A block may be accounted for by either
+list, so skipping is never indistinguishable from never arriving.
+
+### Alternate readings are split in code, before the merge
+
+A cell like `ゼロ ／ れい` teaches two readings. The first live shadow run showed both ways of
+getting that wrong at once: some roles emitted the raw cell as a **target** (four of them, and a
+target holding two readings is not a word), while others recorded the second reading as a **note** on
+the first, so no card taught it either. Both are the same v1 miss arriving by different routes, from
+roles whose prompts warn about it explicitly.
+
+`expandAlternates` splits them, and it lives in code rather than a prompt because splitting a cell on
+a separator is not a judgement. It runs **before** the merge, which is what makes the halves join up:
+one role's `ゼロ／れい` becomes `ゼロ` and `れい`, and that `ゼロ` then merges with the bare `ゼロ`
+another role found rather than shipping as a third card.
+
+Each half carries a note naming its sibling, because two cards glossed "Zero" with nothing else
+separating them is precisely the collision the deck's cue rules exist for.
+
+Verified against the real agent output kept from the shadow run, at no cost: 83 items became 87,
+`れい`, `し`, `しち` and `く` all appear as entries, and no target contains a separator.
+
+### The union reconciler: union for existence, never a vote
+
+`src/cards/unionReconciler.js` merges the three phase-1 roles into one candidate corpus. Nothing in
+it decides an item is wrong. It decides only when two candidates are **the same item**, and what the
+merged version should say.
+
+**An item only one role found is kept.** That is the entire reason three roles exist: a majority vote
+would delete exactly the singletons, and in a recall task the minority report is what you want. In
+this deck, `テニス` was lost for appearing only in a drill's cue and `れい` only in a chart, and both
+are singletons.
+
+**The match key is target AND gloss together, not target alone.** Two roles finding `はし` may have
+found one word glossed twice, or two senses sharing a spelling: bridge and chopsticks. v1's duplicate
+check already says roughly a third of same-target groups are cards that should stay. So same target
+with a different gloss stays two items and is reported in `senseCollisions` for the reviewer, because
+a rule cannot tell those apart and a deleted sense is invisible.
+
+**A role that found only half the key folds into the role that found both.** The image specialist
+reading `れい` off a chart with no gloss is agreeing with the table specialist that glossed it, not
+describing something else.
+
+Two smaller guarantees: the richer record wins the fields so information is never lost to a tie-break
+(and the thinner role is still credited), and ids are made unique on merge, because a card id becomes
+an Anki note GUID and a duplicate makes the package build refuse outright, which used to surface only
+at **Mark done**, after both reviews were signed off.
+
+`agreement` is recorded as evidence for the review gate, never applied as a threshold in code.
+
+### The image specialist, and why the dull verdicts are kept
+
+`src/agents/imageSpecialist.js` opens every image a chapter references and says what each one is,
+transcribing the ones that carry teaching content. It is the **only** pass that looks: every text
+pass in this pipeline is blind to a chart that was drawn rather than marked up, and an `<img>` tag's
+`alt` is usually empty even when the picture is the whole lesson.
+
+The failure being closed is not "the model judged an image wrongly", it is "nobody looked and the
+output says nothing about it". So `assertImagesAccountedFor` rejects a response that omits any image
+it was given, decorative ones included, reusing `unaccountedImages` from the storage module so the
+check and the artifact cannot drift apart on what "accounted for" means.
+
+Two guards worth knowing:
+
+- **An image absent from disk is forced to `unreadable`**, whatever the response claims. A file that
+  does not exist cannot have been opened, so a `decorative` verdict for it is a statement about a
+  picture nobody saw.
+- **The prompt tells the role that a file it did not open must take `unreadable`.** Deciding a
+  picture was decorative without opening it is precisely the failure here, and from the outside it is
+  indistinguishable from having looked.
+
+### The chapter reader, and why it overlaps the table specialist
+
+`src/agents/chapterReader.js` reads the whole bounded chapter and returns vocabulary found anywhere,
+independent of markup. Its results are **unioned** with the table specialist's rather than either
+deferring to the other.
+
+The overlap is the design, not waste. A role reasoning from structure has a blind spot shaped like
+that structure, and no EPUB is reliably consistent. What only this role can find is the word taught
+somewhere a table is not: in a note, a caption, or a drill's cue. Two words were once dropped from a
+lesson on the reasoning that scaffolding is mechanical, and turned out to be carded nowhere in the
+entire book.
+
+**Its accountability unit is the section, because its failure mode is a short read.** A chapter you
+stopped reading looks exactly like a chapter that ended. One lesson's read stopped at line 780 of
+942, two exercises were never seen, and one held the only use of `みなみぐち` and `しんじゅく` in
+the whole book. So the role returns a line per heading and `assertSectionsAccountedFor` rejects a
+response that does not, in either direction.
+
+Two answers it is explicitly allowed to give, so that honesty is cheaper than silence:
+`contributed: 0` with a reason (a listening drill whose answers live in a separate download), and
+`read: false` (`unreadSections` surfaces those rather than burying them).
+
+Headings are matched by title **and count**, since a chapter may legitimately print `EXERCISES`
+twice and demanding unique titles would make an honest response unrepresentable.
+
+### The table specialist, and why it must account for every table
+
+`src/agents/tableSpecialist.js` is fed the raw dump from `parseTables` and returns two things: the
+entries it read, and **a verdict for every table it was shown** (`vocabulary`, `paradigm`,
+`reference`, `example`, `layout`, `unreadable`).
+
+The second half is not bookkeeping. The failure this role replaces was a CSS-class selector that, on
+a book marking tables any other way, matched nothing and reported the chapter's vocabulary fully
+covered. So a table nobody judged and a table holding nothing have to be distinguishable in the
+output, or the same silence returns wearing a model's name.
+
+`assertAccountedFor` enforces it: a response missing a verdict for any table it was given is
+**rejected rather than merged**, as is a verdict for a table that was never sent, or a table judged
+twice, or a verdict outside the fixed set. The prompt states the rule and the code checks it, because
+a rule stated only in a prompt holds until the day it does not.
+
+Three things the prompt is explicit about, each from a real miss in this deck:
+
+- **A headword is not always in column 0.** The numbers chart prints the digit first and the reading
+  second.
+- **One cell can hold two entries.** `ゼロ ／ れい` teaches two readings; `ゼロ` and `よん` are
+  carded in this deck and `れい`, `し`, `しち`, `く` appear on no card at all.
+- **Hints are orientation, not instructions.** Where a hint disagrees with the table in front of it,
+  the table wins and the role says so in that table's `reason`.
+
+Items are stamped `producedBy`, which is what lets the as-generated snapshot attribute a reviewer's
+later correction back to the role that caused it.
+
+`src/agents/runRole.js` is the one place a role's pinning is applied. It deliberately has **no family
+fallback**: v1's families group passes that share a blast radius, and v2's roles do not share one, so
+a single knob moving both the adversary and what it checks would undo the ranking the registry
+asserts.
+
+### Numbered blocks come from the book's own markers
+
+`chapterOutline` reports a chapter's numbered runs (`EXERCISES: 8 block(s) — I … VIII`) and names
+any hole in them, because a gap is a block nobody read. Those markers used to be a literal
+`(enum|wnum)` regex mapped to two hardcoded labels. They now come from `book.json`'s
+`hints.numberedBlockMarkers`, so a publisher that numbers its blocks differently is describable
+rather than unsupported.
+
+**A book with no markers gets no checklist, and the script says so in words.** That distinction is
+the whole reason this signal was demoted to a bonus in the first place: an empty result must read as
+"this book does not number things", never "there is nothing to read here". The completeness
+guarantee is the file bounds, which are universal; the checklist is a bonus this publisher happens
+to make possible.
+
+While making it configurable, a silent ceiling came out with it. The roman numerals were a literal
+array stopping at `XIV`, so on a book numbering fifteen or more blocks the expected run could never
+contain `XV` and a missing `XV` was invisible **in the check written to make a missed block
+visible**. They are computed now, and there is no ceiling.
+
+### Image verdicts are persisted, whatever the verdict is
+
+`src/agents/imageVerdicts.js` records what the image specialist concluded about **every** image a
+chapter references, and `unaccountedImages` reports the ones carrying no verdict at all.
+
+That last function is the check. v1 already required the extraction model to report which images it
+opened, and `diffImageCoverage` already computed which were never accounted for. Both work. Then
+`epubLlmCorpus.js` destructures the result down to `{ items }`, so after a build a grammar table the
+model skipped and a chapter that never had one produce byte-identical output. Publishers put exactly
+the grid-shaped content that carries a paradigm into pictures, which is what makes that the sharpest
+silent failure in the pipeline.
+
+Two distinctions the vocabulary keeps apart:
+
+- **`decorative` is worth recording.** The point is not to keep the interesting verdicts. What makes
+  the failure invisible is an image with no entry, and that is only detectable when the
+  uninteresting ones are present too.
+- **`unreadable` is a verdict, not an error.** An image the specialist could not open or could not
+  make sense of is a real state, and separating it from `decorative` is what stops "looked and could
+  not tell" being filed as "looked and it was nothing". It is the one verdict that should make a
+  human look.
+
+An unknown verdict string is refused at write time rather than sorting as not-content-bearing, which
+would quietly reintroduce the failure.
+
+### Dumping a chapter's tables, so a script never decides which are vocabulary
+
+`node scripts/chapter-tables.mjs <runDir> | <epubHash> <n>` prints **every** `<table>` a chapter
+contains (`src/corpus/chapterTables.js`), with its class, row and column counts, and cell text.
+Which of them are vocabulary is a judgement, and this script does not make it.
+
+It replaces a selector that made that judgement badly. `vocabCoverage` found vocabulary blocks by
+matching `<table class="voca">`, and on chapter file 15 of the only book in the library that sees 6
+tables and misses 3:
+
+| table | class        | what it holds                                      |
+| ----- | ------------ | -------------------------------------------------- |
+| 4     | `tab1 FS-95` | the numbers chart, `0 ゼロ／れい` and `4 よん／し` |
+| 1     | `tab1 FS-95` | the です / でした paradigm                         |
+| 2     | (none)       | `これは わたしの ペンです。` and its gloss         |
+
+The readings in that first row (`れい`, `し`, `しち`, `く`) are the target of no card anywhere in
+the deck. On a different publisher the same selector matches nothing at all and the coverage check
+reports zero misses, which reads exactly like a fully carded chapter.
+
+**A book hint annotates; it never filters.** Where `book.json`'s `hints.vocabularyTableClass` is
+set, a matching table is flagged, and nothing is ever removed for failing to match: the failure mode
+of a hint is that it is out of date, and the table it missed is the one that mattered. A book with
+no hint gets `hintMatch: null`, meaning "not asked", which is deliberately distinct from `false`.
+
+`columnCounts` is a list rather than a number because raggedness is signal: a vocabulary block whose
+rows are mostly two cells with a few threes usually means indented sub-entries.
+
+### A phase reports what it produced, and the check is the file
+
+Each phase script writes a `run-report.json` into the unit dir
+(`src/agents/runReport.js`): one entry per step, with its status, role, model, effort, duration,
+counts and the artifact it produced. `verifyRun` then checks the report **against the files**, and
+that is what the main thread reads. Never the log.
+
+The distinction matters because a log is prose a step writes about itself, and a step that skipped
+its work writes the same prose as one that did it. A report is a set of claims each naming a file.
+
+What separates "found nothing" from "never ran" is shape, not counts: **a declared artifact must
+exist even when it holds an empty list.** A missing file is a problem and blocks the review
+handover; an empty list is a note for a person. A failed step must carry a reason, and a
+non-terminal status is refused when it is recorded rather than surfacing as a puzzle afterwards.
+
+### The as-generated snapshot, and why it comes first
+
+`as-generated.json` (`src/agents/snapshot.js`) is the corpus exactly as the agents produced it,
+before any human touched it. The learning pass diffs it against what the reviewer approved, so every
+edit and exclusion becomes feedback on the role that caused it.
+
+It is written **once**: `writeSnapshot` refuses to overwrite, and the dashboard never imports the
+module, so a review cannot rebase its own baseline. A re-run that overwrote it would report that the
+reviewer changed nothing.
+
+Provenance lives here rather than on the card, because "which role produced this" is a fact about
+the build and the card schema is a contract with a live Anki collection. It maps an id to a **list**
+of roles, since the phase-1 roles deliberately overlap and are unioned. An item nobody claimed
+reports nobody rather than a guess.
+
+The file is build scratch and stays out of git under `.gitignore`'s existing `/output/**` rule.
+
+### v2 agent roles are pinned in a registry, and a missing pin fails the build
+
+`src/agents/roles.js` declares every v2 agent role with its own `model`, `effort` and `timeoutMs`.
+It exists because the operator thread runs Opus 5 and an agent that does not state a model inherits
+whatever spawned it, so an unpinned role silently bills Opus rates for work Sonnet does well and
+nothing in the output says so. Pinning is the whole reason running this work in scripts is cheaper
+than doing it in the operator's own context, so it is enforced rather than remembered:
+`test/agents/roles.test.js` fails the build for a role missing a model, an effort or a timeout.
+
+Two further invariants the same test pins:
+
+- **A verification role outranks what it verifies.** A role that checks others declares
+  `checks: [...]`, and must be pinned strictly above every id it names, ordered by `MODEL_RANK`.
+  Noticing that something is absent is harder than producing it, and a checker drawn from the same
+  family as its generator is biased toward approving it. Getting this backwards would leave the
+  pipeline looking fully verified while the verification was its weakest link.
+- **Every model a role names is ranked.** An unranked model fails rather than sorting as unknown, so
+  adding a model is the deliberate act of saying where it sits.
+
+Overrides go through `ANKI_BUILDER_<SCOPE>_MODEL` / `_EFFORT` / `_TIMEOUT_MS` and resolve through
+the same `resolvePinning` the v1 passes use, so there is one resolution order in the codebase rather
+than two. A role's own declaration is the floor, never a fallback for a missing one, and a caller
+cannot upgrade a role for a single run.
+
+The thirteen v1 passes below still declare their pinning at their call sites and are deliberately
+not migrated into the registry: Stages D to F of the v2 plan rewrite them, so moving them first
+would be work thrown away.
 
 Every `claude -p` call in the pipeline goes through `runClaudeWithPrompt` (`src/util/runClaude.js`):
 prompt on stdin, a hard timeout, one retry. What differs per pass is the **pinning** — model, effort

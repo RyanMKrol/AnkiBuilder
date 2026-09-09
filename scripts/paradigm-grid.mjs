@@ -36,6 +36,7 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { join, resolve } from "path";
 import { auditParadigmGrid } from "../src/cards/paradigmGrid.js";
+import { isUnitDir } from "../src/model/unitDir.js";
 
 const args = process.argv.slice(2);
 const gridAt = args.indexOf("--grid");
@@ -58,7 +59,7 @@ for (const path of [resolve(bookDir), resolve(gridPath)]) {
 function collectionCards(dir) {
   const cards = [];
   for (const name of readdirSync(dir)) {
-    if (!/^(chapter|lesson)-\d+(-extras)?$/.test(name)) continue;
+    if (!isUnitDir(name)) continue;
     const path = join(dir, name, "cards.json");
     if (!existsSync(path)) continue;
     for (const item of JSON.parse(readFileSync(path, "utf-8")).items ?? []) {

@@ -214,6 +214,15 @@ export async function runAssemble(flags, ctx) {
     ctx.log("both --lesson and --chapter-number given — using --chapter-number (manual override)");
   }
 
+  // Both checks happen here, before anything is resolved or extracted, so a bad value costs nothing.
+  // A typo caught after the chapter has been pulled has already spent the expensive part of the
+  // build. Phase 1 reads a chapter, so it has nothing to do on a template or a dictated word list;
+  // only an EXPLICIT --extraction phase trips that, since the default is false without --epub.
+  assertExtractionFlag(flags);
+  if (flags.extraction === "phase" && !flags.epub) {
+    throw new Error("--extraction phase needs an --epub source; phase 1 reads a chapter");
+  }
+
   const runDir = resolveAssembleRunDir(flags, ctx);
   if (!runDir) {
     throw new Error(
@@ -248,6 +257,43 @@ export async function runAssemble(flags, ctx) {
     return;
   }
   return runPrepare({ ...flags, run: runDir }, ctx);
+}
+
+/**
+ * Whether this build's extraction step is phase 1.
+ *
+ * **An EPUB chapter defaults to the phase extraction.** It was opt-in while the rewrite was being
+ * written and `main` was still finishing a book with the old single pass; both had to work side by
+ * side, so the flag said which one you meant. Once the rewrite landed that default inverted for a
+ * specific reason: an unflagged build getting the old extraction produces a unit that looks exactly
+ * like a phase-built one, minus the adversary, the image verdicts and both deduplicators. A missing
+ * flag is the easiest thing in the world to forget, and nothing downstream would ever say so.
+ *
+ * `--extraction v1` stays sayable, because the old pass is what chapters 0-16 were built with and
+ * comparing against it is how a regression gets found. A typo is an error rather than a silent
+ * fallback either way.
+ *
+ * A template or a dictated word list has no chapter to read, so the phase cannot run on one and the
+ * default is false there. Asking for it explicitly on such a source is an error, not a downgrade.
+ */
+function usePhaseExtraction(flags) {
+  assertExtractionFlag(flags);
+  if (flags.extraction === "phase") return true;
+  if (flags.extraction === "v1") return false;
+  return Boolean(flags.epub);
+}
+
+/**
+ * Reject an unrecognised `--extraction` value.
+ *
+ * Split out from the branch above so it can be called at the very top of the command, before the
+ * book is registered and the chapter is pulled. A misspelled flag is a typo, and a typo should cost
+ * nothing to discover.
+ */
+function assertExtractionFlag(flags) {
+  const value = flags.extraction;
+  if (value === undefined || value === "phase" || value === "v1") return;
+  throw new Error(`--extraction must be "phase" or "v1" (got "${value}")`);
 }
 
 async function assembleIntoRunDir(flags, ctx, runDir) {
@@ -361,12 +407,22 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
             { log: ctx.log },
           );
 
-    corpus = ctx.assembleCorpusFromChapter({
-      chapterFilePath,
-      targetLanguage: flags.lang,
-      bookConventions,
-      log: ctx.log,
-    });
+    // The one thing v2 changes about an EPUB build: how a chapter becomes candidate items.
+    // Everything below this line is the same work in the same order for either extraction.
+    corpus = usePhaseExtraction(flags)
+      ? ctx.extractBaseCorpus({
+          unitDir: runDir,
+          chapterFilePath,
+          targetLanguage: flags.lang,
+          epubHash,
+          log: ctx.log,
+        })
+      : ctx.assembleCorpusFromChapter({
+          chapterFilePath,
+          targetLanguage: flags.lang,
+          bookConventions,
+          log: ctx.log,
+        });
     const chapterLabel = lesson
       ? lesson.label
       : ctx.describeChapter(flags.epub, chapterNumber, {

@@ -1,4 +1,5 @@
 import { defineCheck } from "../registry.js";
+import { unitLanguage } from "../units.js";
 import { validateCards, validateCorpus } from "../../model/index.js";
 import { findCollisions, findCrossChapterDuplicates } from "../../cards/extrasTools.js";
 import { existsSync } from "fs";
@@ -122,7 +123,16 @@ export const spacingCheck = defineCheck({
   // drift; chapter-13-extras shipped 66 spaced cards this way and rendered the 分かち書き word
   // separation the deck deliberately strips.
   run({ unit }) {
-    const lang = unit.meta?.targetLanguage ?? "ja";
+    const lang = unitLanguage(unit);
+    // No language means this check cannot run, and saying "clean" would be a lie in the one
+    // tier that blocks. The schema check already fails such a unit; this one declines to judge.
+    if (!lang) {
+      return {
+        findings: [],
+        notes: [`${unit.name}: no target language declared, spacing not judged`],
+        summary: "not judged: no target language",
+      };
+    }
     if (!isSpaceFreeLanguage(lang)) return { findings: [], summary: `${lang}: not space-free` };
     const findings = [];
     for (const item of shipped(unit)) {

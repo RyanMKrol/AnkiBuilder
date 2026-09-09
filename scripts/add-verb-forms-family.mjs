@@ -25,7 +25,7 @@
 // `shippableCards()` holds it out of the .apkg AND the AnkiConnect deliver until it has passed the
 // per-card additions gates at /additions/epub/<book>. The destination units keep their own `done`
 // sign-off untouched — that is the whole point of the additions gate. See
-// .claude/skills/augment-anki-deck/SKILL.md.
+// .claude/skills/build-anki-deck/references/augment-pathway.md.
 //
 // Usage:
 //   node scripts/add-verb-forms-family.mjs --dry          print the plan, touch nothing

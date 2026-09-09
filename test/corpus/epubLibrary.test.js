@@ -115,7 +115,8 @@ test("registerEpub() writes book.json with the EPUB's title and a null slug", ()
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Japanese for Busy People",
       slug: null,
-      labelDecoding: LABEL_DECODING_CURRENT,
+      invariants: { labelDecoding: LABEL_DECODING_CURRENT },
+      hints: {},
     });
   });
 });
@@ -129,7 +130,8 @@ test("registerEpub() writes a null title when the EPUB has no <dc:title>", () =>
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: null,
       slug: null,
-      labelDecoding: LABEL_DECODING_CURRENT,
+      invariants: { labelDecoding: LABEL_DECODING_CURRENT },
+      hints: {},
     });
   });
 });
@@ -145,8 +147,30 @@ test("registerEpub() does not overwrite book.json on a second call", () => {
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Original Title",
       slug: "original-title",
-      labelDecoding: LABEL_DECODING_CURRENT,
+      invariants: { labelDecoding: LABEL_DECODING_CURRENT },
+      hints: {},
     });
+  });
+});
+
+test("a book registered before the config split keeps its flat file, unrewritten", () => {
+  withTempDir(({ libraryHomeDir, sourceDir }) => {
+    const epubPath = buildFixtureEpub(sourceDir, fixtureManifest(["Legacy Book"]));
+    const { epubHash } = registerEpub(epubPath, { libraryHomeDir });
+
+    // Simulate the live book: a flat file, and one with no labelDecoding at all, which is what a
+    // book registered before that field existed looks like.
+    const metaPath = join(libraryHomeDir, "epubs", epubHash, "book.json");
+    writeFileSync(metaPath, JSON.stringify({ title: "Legacy Book", slug: "legacy-book" }));
+
+    // Frozen at v1, and re-registering does not upgrade the file underneath a delivered deck.
+    assert.equal(resolveLabelDecoding(epubPath, { libraryHomeDir }), 1);
+    registerEpub(epubPath, { libraryHomeDir });
+    assert.deepEqual(JSON.parse(readFileSync(metaPath, "utf-8")), {
+      title: "Legacy Book",
+      slug: "legacy-book",
+    });
+    assert.equal(resolveLabelDecoding(epubPath, { libraryHomeDir }), 1);
   });
 });
 
@@ -163,10 +187,13 @@ test("saveBookSlug()/loadBookMeta() round-trip and preserve the stored title", (
 
     saveBookSlug(epubHash, "some-book-title", { libraryHomeDir });
 
+    // saveBookSlug spreads the stored meta, so the config sections survive a slug write. If they
+    // did not, resolving a slug would silently unpin a book's label decoding.
     assert.deepEqual(loadBookMeta(epubHash, { libraryHomeDir }), {
       title: "Some Book Title",
       slug: "some-book-title",
-      labelDecoding: LABEL_DECODING_CURRENT,
+      invariants: { labelDecoding: LABEL_DECODING_CURRENT },
+      hints: {},
     });
   });
 });

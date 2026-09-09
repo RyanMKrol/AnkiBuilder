@@ -328,11 +328,23 @@ function writeCachedChapter(libraryRoot, epubHash, number, html) {
   writeFileSync(join(dir, `${number}.xhtml`), html);
 }
 
+// The check reads which tables are vocabulary from the BOOK's hints, and has no default. A book
+// without this is reported as unknown rather than clean, which is asserted separately below.
+function writeBookHints(libraryRoot, epubHash, hints) {
+  const dir = join(libraryRoot, "epubs", epubHash);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "book.json"), JSON.stringify({ title: null, slug: null, hints }));
+}
+
 test("vocab coverage: a headword no card teaches is named, with its nearest card", () => {
   const { root, cleanup } = makeOutputRoot();
   const library = makeOutputRoot();
   try {
     writeCachedChapter(library.root, "h", 11, VOCA_CHAPTER);
+    writeBookHints(library.root, "h", {
+      vocabularyTableClass: "voca",
+      vocabularySubRowClass: "sub",
+    });
     writeUnit(root, "epubs/book/chapter-1", {
       meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
       items: [
@@ -355,6 +367,10 @@ test("vocab coverage: an -extras unit is not diffed against its base chapter's v
   const library = makeOutputRoot();
   try {
     writeCachedChapter(library.root, "h", 11, VOCA_CHAPTER);
+    writeBookHints(library.root, "h", {
+      vocabularyTableClass: "voca",
+      vocabularySubRowClass: "sub",
+    });
     writeUnit(root, "epubs/book/chapter-1", {
       meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
       items: [
@@ -681,5 +697,57 @@ test("note claims: an ordinary note is not a claim, and reviewNote is never read
     assert.deepEqual(messages(runOnly(root, "note-claims")), []);
   } finally {
     cleanup();
+  }
+});
+
+test("spacing: a unit with no target language is declined, not passed", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    // This target WOULD be flagged as Japanese. Before, the check defaulted the language to "ja"
+    // and judged it anyway; a check that cannot establish the language must decline instead. The
+    // schema check is what fails such a unit, and it is FAIL tier.
+    writeUnit(root, "epubs/book/chapter-1-extras", {
+      meta: { targetLanguage: undefined },
+      items: [card("a", { target: "これは ペン です" })],
+    });
+    assert.equal(messages(runOnly(root, "spacing")).length, 0);
+  } finally {
+    cleanup();
+  }
+});
+
+test("note claims: a unit with no target language is declined, not passed", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { targetLanguage: undefined },
+      items: [card("a", { note: "お + かし = おかし" })],
+    });
+    assert.equal(messages(runOnly(root, "note-claims")).length, 0);
+  } finally {
+    cleanup();
+  }
+});
+
+test("vocab coverage: a book with no selector is reported unknown, never clean", () => {
+  // The failure this check was rewritten to remove. Before, a book marking its tables any other way
+  // yielded no entries and the check reported zero uncovered headwords, which reads exactly like a
+  // fully carded chapter.
+  const { root, cleanup } = makeOutputRoot();
+  const library = makeOutputRoot();
+  try {
+    writeCachedChapter(library.root, "h", 11, VOCA_CHAPTER);
+    // No writeBookHints: this book records no vocabulary-table selector.
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { epubHash: "h", chapterNumber: 11, reviewed: true },
+      items: [card("a", { target: "\u304e\u3093\u3053\u3046" })],
+    });
+    const report = runOnly(root, "vocab-coverage", { libraryHomeDir: library.root });
+    const text = JSON.stringify(report);
+    assert.match(text, /records no hints.vocabularyTableClass/);
+    assert.match(text, /not the same|That is not a clean result/);
+  } finally {
+    cleanup();
+    library.cleanup();
   }
 });

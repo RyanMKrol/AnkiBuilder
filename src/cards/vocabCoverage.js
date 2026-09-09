@@ -9,14 +9,31 @@
 // The matching lives here, behind tests, rather than in the script: a mutating or reporting tool's
 // judgement is the thing worth pinning, and a rule that changes per chapter is not a check.
 
-const VOCA_TABLE = /<table[^>]*class="[^"]*\bvoca\b[^"]*"[^>]*>([\s\S]*?)<\/table>/gi;
+// The vocabulary-table selector is the BOOK's, never this file's. It used to be a literal
+// `class="voca"`, which is one publisher's markup, so on any other book the regex matched nothing,
+// the entry list came back empty, and the check reported zero uncovered headwords. That is
+// indistinguishable from a chapter whose vocabulary is fully carded: a silent zero in the one check
+// written to catch a silent miss.
+//
+// So there is no default. A caller that cannot supply a selector gets `null`, meaning "could not
+// look", which every caller must report differently from `[]`, meaning "looked and found none".
+function tablePattern(tableClass) {
+  const escaped = String(tableClass).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(
+    `<table[^>]*class="[^"]*\\b${escaped}\\b[^"]*"[^>]*>([\\s\\S]*?)</table>`,
+    "gi",
+  );
+}
 const ROW = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
 const CELL = /<t[dh]\b([^>]*)>([\s\S]*?)<\/t[dh]>/gi;
 
 // `<td class="sub">` / `sub2` is how this book indents a component or derived form under its parent
 // headword (お〜 under おかし). Those rows are real, individually-glossed vocabulary — the extraction
 // prompt says so explicitly — so they are entries here too, flagged for the report.
-const SUB_CELL = /\bclass="[^"]*\bsub\d?\b[^"]*"/i;
+function subCellPattern(subRowClass) {
+  const escaped = String(subRowClass).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`\\bclass="[^"]*\\b${escaped}\\d?\\b[^"]*"`, "i");
+}
 
 function stripTags(html) {
   return html
@@ -54,12 +71,23 @@ export function splitAlternates(headword) {
   return parts.length > 1 ? parts : [String(headword)];
 }
 
-export function parseVocaEntries(html) {
+/**
+ * Every headword/gloss pair in the chapter's vocabulary tables, or `null` when the book does not say
+ * which tables those are.
+ *
+ * `null` is the load-bearing return value. `[]` means "looked at this book's vocabulary tables and
+ * found no entry"; `null` means "no selector, so nobody looked". Reporting the second as the first
+ * is the failure this whole function was rewritten to remove, so every caller must branch on it.
+ */
+export function parseVocabularyEntries(html, { tableClass, subRowClass = null } = {}) {
+  if (!tableClass) return null;
+  const tables = tablePattern(tableClass);
+  const subCell = subRowClass ? subCellPattern(subRowClass) : null;
   const entries = [];
-  for (const [, tableBody] of html.matchAll(VOCA_TABLE)) {
+  for (const [, tableBody] of String(html).matchAll(tables)) {
     for (const [, rowBody] of tableBody.matchAll(ROW)) {
       const cells = [...rowBody.matchAll(CELL)].map(([, attrs, body]) => ({
-        sub: SUB_CELL.test(attrs),
+        sub: subCell ? subCell.test(attrs) : false,
         text: stripTags(body),
       }));
       if (cells.length < 2) continue;

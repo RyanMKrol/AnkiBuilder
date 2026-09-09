@@ -1,5 +1,7 @@
 # Task: Write Back-of-Card Notes for One Lesson
 
+{{CARD_RULES}}
+
 ## Overview
 
 You improve the teachability of Anki flashcard notes for an English speaker learning

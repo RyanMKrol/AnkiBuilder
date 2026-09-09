@@ -1,4 +1,4 @@
-import { categoryHistogram } from "./itemSetDiff.js";
+import { categoryHistogram } from "../cards/itemSetDiff.js";
 
 /**
  * Renders a `diffItemSets` result as plain text for a person to read.

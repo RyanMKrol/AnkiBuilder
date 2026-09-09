@@ -1,5 +1,7 @@
 # Task: Produce the Correct Romanization
 
+{{CARD_RULES}}
+
 ## Overview
 
 Each flashcard carries a `target` text in {{TARGET_LANGUAGE}}{{LIBRARY_INPUT_CLAUSE}}. Your job is to

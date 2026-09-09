@@ -1,5 +1,7 @@
 # Task: Spell Out the Numbers in These Cards
 
+{{CARD_RULES}}
+
 ## Overview
 
 Each card below shows a number as digits on its face, which is correct — a learner should see

@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync } from "fs";
 import { join, resolve } from "path";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
 import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
+import { parseUnitDir } from "../model/unitDir.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
 // automatic rebuild, so a rebuild triggered from the browser is byte-identical to the CLI's. The
@@ -24,7 +25,6 @@ import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
 // study and rate-limit independently, and sort next to each other because one name prefixes the
 // other. The unit's own `chapterLabel` already carries the " (Extras)" suffix, so its deck name is
 // just its label like any other unit's.
-const BOOK_UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)(-extras)?$/;
 
 function readJson(path) {
   return JSON.parse(readFileSync(path, "utf-8"));
@@ -39,9 +39,9 @@ function readJson(path) {
  */
 export function selectDoneChapterDecks(bookDir) {
   const chapterDirs = readdirSync(bookDir)
-    .map((name) => name.match(BOOK_UNIT_DIR_PATTERN))
+    .map((name) => parseUnitDir(name))
     .filter(Boolean)
-    .map((m) => ({ seq: Number(m[1]), extras: Boolean(m[2]), dir: join(bookDir, m[0]) }))
+    .map((u) => ({ seq: u.number, extras: u.extras, dir: join(bookDir, u.name) }))
     // An extras unit sorts immediately after the lesson it belongs to, so the sub-deck order in the
     // package matches the order they're studied in.
     .sort((a, b) => a.seq - b.seq || Number(a.extras) - Number(b.extras));

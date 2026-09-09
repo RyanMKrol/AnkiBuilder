@@ -51,7 +51,7 @@ was looking for a form never carded at all.
 Twenty of the twenty-three went to `chapter-15-extras`, which is where the book teaches the form.
 Three went to `chapter-16-extras` instead: やすみます, しょくじをします and パーティーをします are
 Lesson 16 vocabulary, and a citation form in Lesson 15 would be met before the ます-form it derives
-from. Prerequisite beats topical fit, per `augment-anki-deck/SKILL.md`.
+from. Prerequisite beats topical fit, per `build-anki-deck/references/augment-pathway.md`.
 
 Twelve are plain verbs (あう, あげる, ある, おくる, かりる, くれる, にあう, のぼる, みせる, もらう,
 やすむ, わかる) and eleven are noun+をする compounds, where only the します part changes.

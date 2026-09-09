@@ -5,6 +5,8 @@
 // Usage:
 //   node scripts/await-review.mjs <run-dir> --gate 1        wait for Mark reviewed
 //   node scripts/await-review.mjs <run-dir> --gate 2        wait for Mark done AND its rebuild
+//   node scripts/await-review.mjs <run-dir> --gate 3        the same check, named for the chapter's
+//                                                          shared audio gate
 //   ... --timeout 30m                                       give up after this long (default 30m)
 //   ... --interval 15s                                      how often to poll (default 15s)
 //
@@ -40,10 +42,26 @@ for (let i = 0; i < args.length; i++) {
 // persists between calls and drifts the moment anything does a `cd`, and a relative path that stops
 // resolving is exactly how a watcher polls forever against a file that can never be read.
 const runDir = resolve(positional[0] || "");
-const gate = Number(flagValue("gate", "1"));
+// THIS SCRIPT'S GATES ARE PER UNIT; THE CHAPTER ARC'S ARE PER CHAPTER, AND THEY DO NOT LINE UP.
+//
+// There are two flags on a unit: `reviewed` and `done`. A v2 chapter passes three gates, because it
+// has two units sharing one audio review: base corpus (unit 1 reviewed), extras corpus (unit 2
+// reviewed), then the chapter's audio (BOTH units done). So a chapter's gates 1 and 2 are both
+// `--gate 1` on different directories, and its gate 3 is `--gate 2` on either.
+//
+// `--gate 3` is accepted as a name for that last one rather than left as a trap, since every v2 doc
+// calls the audio review gate 3. It is the same check: Mark done, plus the rebuild it triggers.
+const GATE_ALIASES = { 1: 1, 2: 2, 3: 2 };
+const requested = Number(flagValue("gate", "1"));
+const gate = GATE_ALIASES[requested];
 
-if (!positional[0] || (gate !== 1 && gate !== 2)) {
-  console.error("usage: await-review.mjs <run-dir> --gate 1|2 [--timeout 30m] [--interval 15s]");
+if (!positional[0] || !gate) {
+  console.error(
+    "usage: await-review.mjs <run-dir> --gate 1|2|3 [--timeout 30m] [--interval 15s]\n" +
+      "  1  Mark reviewed  (a chapter's base OR extras corpus gate)\n" +
+      "  2  Mark done      (per unit)\n" +
+      "  3  Mark done      (the chapter's shared audio gate; same check as 2)",
+  );
   process.exit(2);
 }
 
@@ -57,7 +75,7 @@ try {
   process.exit(2);
 }
 
-const label = gate === 2 ? "Mark done (gate 2)" : "Mark reviewed (gate 1)";
+const label = gate === 2 ? `Mark done (gate ${requested})` : "Mark reviewed (gate 1)";
 const sleep = (ms) => new Promise((done) => setTimeout(done, ms));
 
 // Sparse on purpose: a monitor that prints every poll floods the thread and gets stopped

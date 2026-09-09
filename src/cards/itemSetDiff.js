@@ -4,6 +4,12 @@ import { normalizeDisplayText } from "../model/scriptSpacing.js";
  * Set-level diff between a human-approved REFERENCE item list and the CANDIDATE list a pass just
  * produced.
  *
+ * It lives under `cards/` rather than `evals/` because three things need it and only one of them
+ * is an eval: the eval fixtures, the union reconciler that merges the overlapping phase-1 roles,
+ * and the learning pass that diffs a unit's as-generated snapshot against what the reviewer
+ * approved. All three are asking the same question, "which items are the same item", and the
+ * answer must not differ between them.
+ *
  * This is deliberately not an assertion. Extraction is generative: two good runs of the same prompt
  * over the same chapter will disagree about a handful of borderline items, and an exact-match check
  * would either be permanently red or force the prompt to be tuned toward one historical sample. So
@@ -116,13 +122,21 @@ function fieldChanges(refItem, candItem) {
   return changes;
 }
 
-function targetKey(item, languageCode) {
+/**
+ * The two match keys, exported because more than one caller must agree on them.
+ *
+ * The eval diff, the union reconciler that merges the overlapping phase-1 roles, and the learning
+ * pass all ask "are these the same item", and a second implementation of that question is how the
+ * unit-directory regex ended up hand-copied into seven files with three different shapes. One
+ * definition, used everywhere.
+ */
+export function targetKey(item, languageCode) {
   if (typeof item?.target !== "string") return "";
   const normalized = normalizeDisplayText(item.target.trim(), languageCode);
   return normalized ? `target:${normalized}` : "";
 }
 
-function englishKey(item) {
+export function englishKey(item) {
   if (typeof item?.english !== "string") return "";
   const normalized = item.english
     .trim()

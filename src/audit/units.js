@@ -1,6 +1,9 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import { basename, join, resolve } from "path";
 import { isRetiredCollection } from "../cli/outputPaths.js";
+import { UNIT_DIR_PATTERN, isUnitDir, parseUnitDir } from "../model/unitDir.js";
+
+export { UNIT_DIR_PATTERN };
 
 /**
  * The ONE place that knows what a unit directory looks like, and what a collection is.
@@ -37,8 +40,20 @@ const EPUBS_DIR = "epubs";
 const COURSES_DIR = "courses";
 const TEMPLATES_DIR = "templates";
 
-/** A `chapter-<n>` / `lesson-<n>` folder, optionally suffixed `-extras`. */
-export const UNIT_DIR_PATTERN = /^(?:chapter|lesson)-(\d+)(-extras)?$/;
+/**
+ * A unit's target language, or `null` when it does not declare one.
+ *
+ * There is deliberately NO fallback. `targetLanguage` is required by both schemas and every one of
+ * the 72 real unit files carries it, so a default could only ever fire on data that is already
+ * invalid, and what it did there was quietly apply Japanese rules to a unit of unknown language.
+ * Three checks defaulted to "ja" this way. A language-dependent check that cannot establish the
+ * language must say so rather than answer, which is the same rule the book config follows: report
+ * unknown, never zero.
+ */
+export function unitLanguage(unit) {
+  const code = unit?.meta?.targetLanguage;
+  return typeof code === "string" && code.trim() ? code : null;
+}
 
 /** The files a unit directory is recognised by, and validated through. */
 export const UNIT_FILES = ["cards.json", "corpus.json"];
@@ -81,7 +96,7 @@ export function unitChapterNumber(meta) {
 
 /** True for a unit directory basename that is a base or extras unit of a book/course. */
 export function isUnitDirName(name) {
-  return UNIT_DIR_PATTERN.test(name);
+  return isUnitDir(name);
 }
 
 /** True when a directory holds at least one of the files that make it a unit. */
@@ -195,15 +210,15 @@ function unitInventory(dir, kind) {
   const unitDirs = [];
   const unmatchedDirs = [];
   for (const name of directoryNames(dir)) {
-    const match = UNIT_DIR_PATTERN.exec(name);
+    const unit = parseUnitDir(name);
     const path = join(dir, name);
-    if (match) {
+    if (unit) {
       unitDirs.push({
         dir: path,
         name,
-        shape: match[2] ? "extras" : "unit",
-        number: Number(match[1]),
-        extras: Boolean(match[2]),
+        shape: unit.extras ? "extras" : "unit",
+        number: unit.number,
+        extras: unit.extras,
       });
     } else if (looksLikeUnitDir(path)) {
       unmatchedDirs.push(path);
@@ -238,13 +253,13 @@ export function listUnitDirs(collection) {
 export function loadUnit(unitDir) {
   const descriptor =
     typeof unitDir === "string"
-      ? isUnitDirName(basename(unitDir))
+      ? isUnitDir(basename(unitDir))
         ? {
             dir: unitDir,
             name: basename(unitDir),
-            shape: UNIT_DIR_PATTERN.exec(basename(unitDir))[2] ? "extras" : "unit",
-            number: Number(UNIT_DIR_PATTERN.exec(basename(unitDir))[1]),
-            extras: Boolean(UNIT_DIR_PATTERN.exec(basename(unitDir))[2]),
+            shape: parseUnitDir(basename(unitDir)).extras ? "extras" : "unit",
+            number: parseUnitDir(basename(unitDir)).number,
+            extras: parseUnitDir(basename(unitDir)).extras,
           }
         : templateUnit(unitDir)
       : unitDir;

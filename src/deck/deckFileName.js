@@ -1,6 +1,7 @@
 import { existsSync } from "fs";
 import { basename, dirname, join } from "path";
 import { slugify } from "../util/slugify.js";
+import { isUnitDir } from "../model/unitDir.js";
 
 // What a built `.apkg` is called on disk.
 //
@@ -19,9 +20,7 @@ export const LEGACY_DECK_FILENAME = "deck.apkg";
 
 // Matches the `-extras` suffix too. A unit dir's own basename never identifies anything by itself,
 // and that is just as true of `chapter-3-extras` as of `chapter-3`: without the parent folded in,
-// every book in the output tree would produce the same `chapter-3-extras.apkg`. Keep this in step
-// with the same pattern in src/deck/rebuild.js and src/server/adapters/stage.js.
-const UNIT_DIR_PATTERN = /^(?:chapter|lesson)-\d+(?:-extras)?$/;
+// every book in the output tree would produce the same `chapter-3-extras.apkg`.
 const TEMPLATES_SEGMENT = "templates";
 
 /**
@@ -37,7 +36,7 @@ export function deckIdentityForDir(dir) {
   const parent = basename(dirname(dir));
   const grandparent = basename(dirname(dirname(dir)));
 
-  if (UNIT_DIR_PATTERN.test(base)) return `${parent}-${base}`;
+  if (isUnitDir(base)) return `${parent}-${base}`;
   if (grandparent === TEMPLATES_SEGMENT) return `${parent}-${base}`;
   return base;
 }

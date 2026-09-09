@@ -3,7 +3,7 @@ import { basename, dirname, join, resolve } from "path";
 import { resolveDeckPathForDir } from "../deck/deckFileName.js";
 import { readDeliveredMarker } from "../anki/deliveredMarker.js";
 import { readUnitCards } from "../review/gateState.js";
-import { UNIT_DIR_PATTERN } from "./units.js";
+import { isUnitDir } from "../model/unitDir.js";
 
 /**
  * ONE answer to "where does this unit/collection stand", for every guard to key on.
@@ -47,7 +47,7 @@ export const STATE_KEYS = ["authored", "reviewed", "done", "packaged", "delivere
  */
 export function collectionDirForUnit(runDir) {
   const dir = resolve(runDir);
-  return UNIT_DIR_PATTERN.test(basename(dir)) ? dirname(dir) : dir;
+  return isUnitDir(basename(dir)) ? dirname(dir) : dir;
 }
 
 function mtimeMs(path) {
@@ -180,7 +180,7 @@ function listUnitDirsOnDisk(collectionDir) {
     return [];
   }
   return names
-    .filter((name) => UNIT_DIR_PATTERN.test(name))
+    .filter((name) => isUnitDir(name))
     .sort()
     .map((name) => join(collectionDir, name))
     .filter((dir) => existsSync(join(dir, "cards.json")));

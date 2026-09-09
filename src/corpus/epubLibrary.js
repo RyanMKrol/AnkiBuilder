@@ -5,6 +5,7 @@ import { join, sep } from "path";
 import { libraryHome } from "../model/index.js";
 import { getBookTitle, LABEL_DECODING_CURRENT } from "./epubArchive.js";
 import { writeArtifactMeta } from "./artifactMeta.js";
+import { bookInvariants, bookHints, assertConfigSeparation } from "./bookConfig.js";
 
 // Same sha256 + hex + 16-char-truncation convention as src/audio/index.js's
 // hashTerm, applied to file bytes rather than a term string.
@@ -67,7 +68,15 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
     writeFileAtomic(
       metaPath,
       JSON.stringify(
-        { title: getBookTitle(epubPath), slug: null, labelDecoding: LABEL_DECODING_CURRENT },
+        {
+          title: getBookTitle(epubPath),
+          slug: null,
+          // Split by what code may do with it — see src/corpus/bookConfig.js. A book registered
+          // before this split keeps its flat shape and is never rewritten, because a pinned config
+          // a delivered deck depends on is not migrated as a side effect of a refactor.
+          invariants: { labelDecoding: LABEL_DECODING_CURRENT },
+          hints: {},
+        },
         null,
         2,
       ),
@@ -95,7 +104,7 @@ export function registerEpub(epubPath, { libraryHomeDir } = {}) {
 export function resolveLabelDecoding(epubPath, { libraryHomeDir } = {}) {
   const meta = loadBookMeta(hashEpubFile(epubPath), { libraryHomeDir });
   if (!meta) return LABEL_DECODING_CURRENT;
-  return meta.labelDecoding ?? 1;
+  return bookInvariants(meta).labelDecoding ?? 1;
 }
 
 /**
@@ -421,4 +430,15 @@ export function clearBookCache(
     for (const target of removed) rmSync(target, { recursive: true, force: true });
   }
   return removed;
+}
+
+/**
+ * A book's hints, for a PROMPT. Never branch on one of these — see src/corpus/bookConfig.js for
+ * why the two sections of book.json are not interchangeable.
+ */
+export function loadBookHints(epubHash, { libraryHomeDir } = {}) {
+  const meta = loadBookMeta(epubHash, { libraryHomeDir });
+  if (!meta) return {};
+  assertConfigSeparation(meta, { path: bookMetaPath(epubHash, { libraryHomeDir }) });
+  return bookHints(meta);
 }

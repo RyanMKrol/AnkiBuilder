@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "fs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import { renderPromptTemplate } from "../../src/util/promptTemplate.js";
 
 // Golden checks on the hand-editable prompt templates in docs/. The renderers throw on an
 // UNRESOLVED placeholder, but a placeholder that gets DELETED in a hand edit fails silently —
@@ -26,6 +27,143 @@ const TEMPLATES = {
     ],
     // The envelope: items plus the model's own account of what it read.
     outputContract: /"items"[\s\S]*"coverage"/,
+  },
+  "inventive-author-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "PRIOR_COUNT",
+      "ALLOWANCE",
+      "ALLOWANCE_HALF",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "EXISTING_SENTENCES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+    ],
+    // `usedAllowance` keeps the ceiling in the role's own answer rather than only in the checker.
+    outputContract: /"items"[\s\S]*"usedAllowance"/,
+  },
+  "gap-author-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "EXAMPLES_WANTED",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "GAPS_JSON",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+    ],
+    // The envelope: sentences that close gaps, and the gaps deliberately left open. Losing
+    // `unfillable` makes "this hole needs an untaught word" indistinguishable from silence.
+    outputContract: /"items"[\s\S]*"unfillable"/,
+  },
+  "example-sentence-miner-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+      "SECTIONS_JSON",
+    ],
+    outputContract: /"items"[\s\S]*"sections"[\s\S]*"skipped"/,
+  },
+  "fill-in-blank-miner-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+    ],
+    // The envelope: sentences, the frames they came from with offered-vs-kept counts, and the
+    // fillers skipped for want of taught vocabulary.
+    outputContract: /"items"[\s\S]*"frames"[\s\S]*"skipped"/,
+  },
+  "exercise-miner-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BASE_VOCABULARY",
+      "EARLIER_VOCABULARY",
+      "BLOCKS_JSON",
+    ],
+    // The envelope: sentences, a line per block, and the blocks deliberately skipped. Losing
+    // `skipped` would make "this drill needed an untaught word" indistinguishable from silence.
+    outputContract: /"items"[\s\S]*"blocks"[\s\S]*"skipped"/,
+  },
+  "gap-filler-prompt.md": {
+    // It sees everything the adversary must not: the corpus, the chapter, the gaps. That asymmetry
+    // is the design, not an oversight: the enumeration stays independent so its diff means
+    // something, and the filling is informed so it can decline a gap an earlier chapter covers.
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CORPUS_JSON",
+      "GAPS_JSON",
+      "CATEGORY_LIST",
+      "INFLECTION_SCHEME",
+    ],
+    outputContract: /"items"[\s\S]*"fillsGap"[\s\S]*"declined"/,
+  },
+  "backward-deduplicator-prompt.md": {
+    // The new unit's cards paired with the earlier ones a filter thought related, and nothing else.
+    // No chapter: whether a card repeats an earlier one is answered by the two cards, and the source
+    // text would only add a way to be distracted.
+    placeholders: ["TARGET_LANGUAGE", "CANDIDATES_JSON"],
+    outputContract: /"verdict"[\s\S]*"already-taught"[\s\S]*"new"/,
+  },
+  "semantic-deduplicator-prompt.md": {
+    // Only the groups. It judges what the corpus already contains, so it needs no chapter, no
+    // categories and no card faces: everything it can act on is in front of it, and anything else
+    // would widen a prompt whose whole job is a bounded yes/no per group.
+    placeholders: ["TARGET_LANGUAGE", "GROUPS_JSON"],
+    outputContract: /"verdict"[\s\S]*"duplicate"[\s\S]*"distinct"/,
+  },
+  "coverage-adversary-prompt.md": {
+    // Deliberately NO category list, card faces or book hints: this role enumerates the source, it
+    // does not author cards, and anything derived from the corpus would anchor it to the answer it
+    // exists to check independently.
+    placeholders: ["TARGET_LANGUAGE", "CHAPTER_FILE_PATH", "IMAGE_COUNT", "IMAGE_PATHS"],
+    outputContract: /"items"[\s\S]*"coverage"/,
+  },
+  "image-specialist-prompt.md": {
+    placeholders: ["TARGET_LANGUAGE", "CATEGORY_LIST", "CARD_FACES", "BOOK_HINTS", "IMAGES_JSON"],
+    // The envelope: what the pictures teach, plus a verdict for every one of them. Losing the
+    // second half makes a skipped chart indistinguishable from a chapter that had none.
+    outputContract: /"items"[\s\S]*"verdicts"/,
+  },
+  "chapter-reader-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CHAPTER_FILE_PATH",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BOOK_HINTS",
+      "SECTIONS_JSON",
+      "INFLECTION_SCHEME",
+    ],
+    // The envelope: words found, plus a line per heading. Losing the second half puts back the
+    // short read that a chapter's own bounds cannot detect.
+    outputContract: /"items"[\s\S]*"sections"/,
+  },
+  "table-specialist-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CATEGORY_LIST",
+      "CARD_FACES",
+      "BOOK_HINTS",
+      "TABLES_JSON",
+      "INFLECTION_SCHEME",
+    ],
+    // The envelope: entries read, plus a verdict for every table it was shown. Losing the second
+    // half would put back the silence this role exists to remove.
+    outputContract: /"items"[\s\S]*"tables"/,
   },
   "epub-book-conventions-prompt.md": {
     placeholders: ["TARGET_LANGUAGE", "CHAPTER_COUNT", "CHAPTER_FILE_PATHS"],
@@ -155,4 +293,60 @@ test("every *-prompt.md template in docs/ is covered by this golden check", () =
   // transcribe are now real templates in this map, which is what stopped the transcript drifting.
   const uncovered = promptFiles.filter((f) => f !== "translate-prompts.md" && !TEMPLATES[f]);
   assert.deepEqual(uncovered, [], "add new templates to the TEMPLATES map above");
+});
+
+// ---------------------------------------------------------------------------
+// The shared card rules, and the classification that keeps them shared.
+// ---------------------------------------------------------------------------
+
+// Prompts that deliberately carry NO card rules, each with the reason. A prompt is in this map or it
+// carries the marker; there is no third state, so a prompt added later cannot opt out by being new.
+//
+// The test that enumerates docs/ is the whole mechanism. `card-authoring-rules.md` claimed for a year
+// to govern "every pass that writes cards" and nothing made that true, which is how the extraction
+// prompt came to protect irregular forms from sampling while the semantic de-dup prompt had never
+// heard the word and deleted one as a repeat.
+const NO_CARD_RULES = {
+  "epub-book-conventions-prompt.md": "writes a prose doc about the book; it authors no card",
+  "epub-taught-index-prompt.md": "writes a whole-book index of what each chapter introduces",
+  "epub-forward-flag-prompt.md": "flags items as possibly premature; it never edits card content",
+  "epub-forward-flag-index-prompt.md": "the same pass, reading the taught index instead",
+  "pedagogical-sort-prompt.md": "a permutation of items that already exist; it writes no field",
+};
+
+test("every prompt either carries the shared card rules or is classified as not needing them", () => {
+  const prompts = readdirSync(DOCS).filter((name) => name.endsWith("-prompt.md"));
+  assert.ok(prompts.length > 15, "sanity: the prompt set was found");
+
+  for (const name of prompts) {
+    const text = readFileSync(join(DOCS, name), "utf-8");
+    const carries = text.includes("{{CARD_RULES}}");
+    const exempt = name in NO_CARD_RULES;
+    assert.notEqual(
+      carries,
+      exempt,
+      carries
+        ? `${name} carries {{CARD_RULES}} and is also listed as exempt — pick one`
+        : `${name} neither carries {{CARD_RULES}} nor is listed in NO_CARD_RULES with a reason. ` +
+            `If it writes, edits or deletes a card, add the marker; if it does not, say so there.`,
+    );
+  }
+});
+
+test("every exemption states a reason, so the list cannot grow silently", () => {
+  for (const [name, reason] of Object.entries(NO_CARD_RULES)) {
+    assert.ok(reason && reason.length > 20, `${name} needs a real reason, not a placeholder`);
+  }
+});
+
+test("the rules actually reach a rendered prompt, and carry the rule the incident was about", () => {
+  // The one that caused this: extraction protected forms the source marks irregular, semantic de-dup
+  // never mentioned them, and a correctly-mined irregular card was deleted as a pattern repeat.
+  const rendered = renderPromptTemplate(join(DOCS, "semantic-dedup-prompt.md"), {
+    TARGET_LANGUAGE: "Japanese",
+    CARDS_JSON: "[]",
+  });
+  assert.ok(!rendered.includes("{{CARD_RULES}}"), "the marker was substituted, not left literal");
+  assert.match(rendered, /irregular/i);
+  assert.match(rendered, /never optional and never redundant/i);
 });

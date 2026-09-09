@@ -8,6 +8,7 @@ import { resolveIso639Code } from "../../model/iso639.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../../cards/spokenNumbers.js";
 import { mergeIntoCardsFile } from "../../cards/mergeIntoCardsFile.js";
 import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
+import { drillPassExpected } from "../../cards/readiness.js";
 import { readJson, runDirOrderContext } from "./shared.js";
 import { runTranslateInner } from "./translate.js";
 
@@ -115,6 +116,11 @@ async function runPrepareInner(flags, ctx) {
   // A template is a fixed vocabulary list: there are no drills to mine and no sibling lessons to
   // cross-reference, so both enrichment and the note pass are no-ops for it by design.
   const isTemplate = meta.sourceType === "template";
+  // Whether the drill block is this stage's to mine. False for a template, and false for a v2
+  // phase-built unit: phase 2's miners produced this chapter's sentences into its EXTRAS unit, and
+  // a base unit is lexical entries only. Mining here would put sentences into a base unit and a
+  // second, differently-mined drill block into an extras one.
+  const minesDrills = drillPassExpected(meta);
   // Every pass below this line except translate FAILS OPEN, so prepare can finish having skipped the
   // drill mining or the note pass. It used to sign off with "ready for the corpus review" regardless,
   // which is how a lesson missing two passes reads as a lesson ready to review: the markers were
@@ -162,7 +168,7 @@ async function runPrepareInner(flags, ctx) {
     }
   }
 
-  if (!isTemplate && meta.enriched === true) {
+  if (minesDrills && meta.enriched === true) {
     // The marker IS the record: this pass, and the semantic de-dup that runs inside it, completed in
     // an earlier run, which is exactly why this branch is being skipped. Stamping the ledger from
     // what THIS run did instead would assert something false about the unit — the first version of
@@ -172,7 +178,7 @@ async function runPrepareInner(flags, ctx) {
     notePass("semanticDedup", PASS_OK, "completed in an earlier run (enriched marker set)");
   }
 
-  if (!isTemplate && meta.enriched !== true) {
+  if (minesDrills && meta.enriched !== true) {
     updateClaim(runDir, { stage: "fill-in-the-blank" });
 
     // Reaching here means this lesson has no `enriched` marker, so the pass is about to run — and
@@ -350,6 +356,17 @@ async function runPrepareInner(flags, ctx) {
     // wondering whether they were forgotten.
     notePass("fillInBlank", PASS_SKIPPED, "a template has no source text to mine drills from");
     notePass("crossLessonNotes", PASS_SKIPPED, "a template has no sibling lessons to reference");
+  } else if (!minesDrills) {
+    // Same shape, different owner. The note pass still runs on a phase unit, so only the drill pair
+    // is recorded here.
+    notePass(
+      "fillInBlank",
+      PASS_SKIPPED,
+      meta.phase === "base"
+        ? "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+        : "phase 2's own miners produced this unit's sentences",
+    );
+    notePass("semanticDedup", PASS_SKIPPED, "phase 2 dedups its own miners' output");
   }
   if (!passOutcomes.some((o) => o.name === "semanticDedup")) {
     notePass(

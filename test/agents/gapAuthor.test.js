@@ -1,0 +1,236 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { mkdtempSync, rmSync, writeFileSync } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
+import {
+  ROLE_ID,
+  gapHandles,
+  assertGapsAddressed,
+  authorGapFills,
+  renderGapAuthorPrompt,
+  unaddressedGaps,
+} from "../../src/agents/gapAuthor.js";
+import { computeGaps, underExampledForms, noGaps } from "../../src/agents/coverageGaps.js";
+
+const ja = { languageCode: "ja" };
+const BASE = [{ target: "これ" }, { target: "は" }, { target: "です" }, { target: "ペン" }];
+const stub = (payload) => () => JSON.stringify(payload);
+
+function withChapter(fn) {
+  const dir = mkdtempSync(join(tmpdir(), "gap-author-"));
+  const file = join(dir, "15.xhtml");
+  writeFileSync(file, "<h2>VOCABULARY</h2>");
+  try {
+    return fn(file);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+const GAPS = {
+  neverUsed: [{ id: "neko", target: "ねこ", english: "Cat" }],
+  underExampled: [{ id: "ga", target: "が", english: "Subject particle", examples: 0 }],
+  paradigm: null,
+};
+
+test("under-exampled counts sentences, so presence is never mistaken for coverage", () => {
+  // の once had ten examples in this deck and all ten were the same [company]の[person] shape.
+  const cards = [
+    { id: "ga", target: "が", category: "Grammar & Function Words" },
+    { id: "wa", target: "は", category: "Grammar & Function Words" },
+    { id: "s1", target: "これはペンです" },
+    { id: "s2", target: "これはとけいです" },
+    { id: "s3", target: "それはほんです" },
+  ];
+  assert.deepEqual(
+    underExampledForms(cards, ja).map((g) => [g.target, g.examples]),
+    [["が", 0]],
+    "は has three sentences and is not reported",
+  );
+});
+
+test("no paradigm spec reports null, not an empty list", () => {
+  // "nobody checked" and "nothing missing" are different answers.
+  assert.equal(computeGaps([], ja).paradigm, null);
+  assert.deepEqual(computeGaps([], { ...ja, paradigmMisses: [] }).paradigm, []);
+});
+
+test("a gap left unmentioned is refused", () => {
+  assert.throws(
+    () => assertGapsAddressed(GAPS, { items: [{ fillsGap: "ねこ" }], unfillable: [] }),
+    /left 1 computed gap\(s\) unaddressed: が/,
+  );
+});
+
+test("declining a gap counts as addressing it, because some holes must stay open", () => {
+  // Filling a gap with an untaught word turns one gap into two.
+  assert.doesNotThrow(() =>
+    assertGapsAddressed(GAPS, {
+      items: [{ fillsGap: "ねこ" }],
+      unfillable: [{ gap: "が", reason: "no taught sentence frame for it yet" }],
+    }),
+  );
+});
+
+test("items are stamped with the role and flagged as authored", () => {
+  withChapter((file) => {
+    const { items } = authorGapFills({
+      chapterFilePath: file,
+      gaps: GAPS,
+      baseItems: BASE,
+      targetLanguage: "ja",
+      runClaude: stub({
+        items: [
+          { id: "a", target: "これはペンです", fillsGap: "ねこ", gapKind: "neverUsed" },
+          { id: "b", target: "これはペンです", fillsGap: "が", gapKind: "underExampled" },
+        ],
+        unfillable: [],
+      }),
+    });
+    assert.equal(items[0].producedBy, ROLE_ID);
+    assert.equal(items[0].aiSuggested, true, "authored content is badged for the reviewer");
+  });
+});
+
+test("a well-covered lesson costs no model call at all", () => {
+  withChapter((file) => {
+    const never = () => assert.fail("must not spawn a model when there is nothing to fill");
+    const empty = { neverUsed: [], underExampled: [], paradigm: null };
+    assert.ok(noGaps(empty));
+    assert.deepEqual(
+      authorGapFills({
+        chapterFilePath: file,
+        gaps: empty,
+        baseItems: BASE,
+        targetLanguage: "ja",
+        runClaude: never,
+      }),
+      { items: [], unfillable: [], notes: null, unteachable: [], unaddressed: [] },
+    );
+  });
+});
+
+test("the prompt hands over the computed list and says not to invent gaps", () => {
+  withChapter((file) => {
+    const prompt = renderGapAuthorPrompt({
+      chapterFilePath: file,
+      gaps: GAPS,
+      baseItems: BASE,
+      targetLanguage: "ja",
+    });
+    assert.match(prompt, /"target": "が"/);
+    assert.match(prompt, /Do not invent a gap/);
+    assert.match(prompt, /minimal pair/);
+    assert.doesNotMatch(prompt, /\{\{[A-Z_]+\}\}/);
+  });
+});
+
+test("gapHandles is one spelling, so prompt and check cannot disagree", () => {
+  assert.deepEqual(gapHandles(GAPS), ["ねこ", "が"]);
+  assert.deepEqual(gapHandles({ ...GAPS, paradigm: [{ label: "past negative" }] }), [
+    "ねこ",
+    "が",
+    "past negative",
+  ]);
+});
+
+test("an unaddressed gap is REPORTED by the author, so the phase can persist it before failing", () => {
+  // The guard used to throw straight after parsing, so a rejected response was never written. A real
+  // chapter-9 run died with a count and no artifact, and nothing on disk could say whether the model
+  // had dropped the gaps or answered with handles that did not match.
+  withChapter((file) => {
+    const gaps = {
+      neverUsed: [{ target: "ちち", english: "My father." }],
+      underExampled: [{ target: "あまり", english: "Not much.", examples: 1 }],
+      paradigm: null,
+    };
+    const result = authorGapFills({
+      chapterFilePath: file,
+      gaps,
+      baseItems: BASE,
+      targetLanguage: "ja",
+      runClaude: () =>
+        JSON.stringify({
+          items: [
+            {
+              id: "chichi-1",
+              target: "ちちは がっこうに いきます",
+              english: "My father goes to school.",
+              category: "Family & People",
+              fillsGap: "ちち",
+            },
+          ],
+          unfillable: [],
+        }),
+    });
+
+    // It returns rather than throwing, and names exactly what went unanswered.
+    assert.deepEqual(result.unaddressed, ["あまり"]);
+    assert.equal(result.items.length, 1, "and the answer it DID give survives to be written");
+  });
+});
+
+test("assertGapsAddressed still refuses that response when the phase checks it", () => {
+  const gaps = {
+    neverUsed: [{ target: "ちち" }],
+    underExampled: [{ target: "あまり" }],
+    paradigm: null,
+  };
+  assert.throws(
+    () => assertGapsAddressed(gaps, { items: [{ fillsGap: "ちち" }], unfillable: [] }),
+    /1 computed gap\(s\) unaddressed/,
+  );
+  // ...and accepts it once the gap is explicitly declined.
+  assert.doesNotThrow(() =>
+    assertGapsAddressed(gaps, {
+      items: [{ fillsGap: "ちち" }],
+      unfillable: [{ gap: "あまり", reason: "no taught word to build a second example from" }],
+    }),
+  );
+});
+
+test("a gap is addressed by its ID or its target, because the prompt promises both", () => {
+  // The chapter-9 run of 2026-09-08 in one test. The gap author returned fifty items covering every
+  // gap, thirty-five naming a gap by id, and the check reported 39 of 39 unaddressed: gapHandles
+  // returned targets only while the prompt said "the id or target of the gap this closes". The phase
+  // died having done the work.
+  const gaps = {
+    neverUsed: [{ id: "suzuki-sama", target: "すずきさま", english: "Mr. Suzuki" }],
+    underExampled: [{ id: "amari-masen", target: "あまり … 〜ません", examples: 0 }],
+    paradigm: null,
+  };
+
+  assert.deepEqual(
+    unaddressedGaps(gaps, {
+      items: [{ fillsGap: "suzuki-sama" }, { fillsGap: "あまり … 〜ません" }],
+      unfillable: [],
+    }),
+    [],
+    "one gap named by id, one by target, both accepted",
+  );
+
+  // And a gap named by neither is still reported, so the guard keeps its teeth.
+  assert.deepEqual(
+    unaddressedGaps(gaps, { items: [{ fillsGap: "suzuki-sama" }], unfillable: [] }),
+    ["あまり … 〜ません"],
+    "and it is named by its TARGET, which tells a reader what is missing",
+  );
+});
+
+test("a gap counts as addressed ONCE, not once per handle", () => {
+  // Grouped rather than flattened: naming both handles of one gap must not look like two gaps
+  // closed, or a response could satisfy the check while leaving another gap silent.
+  const gaps = {
+    neverUsed: [
+      { id: "a", target: "あ" },
+      { id: "b", target: "い" },
+    ],
+    underExampled: [],
+    paradigm: null,
+  };
+  assert.deepEqual(
+    unaddressedGaps(gaps, { items: [{ fillsGap: "a" }, { fillsGap: "あ" }], unfillable: [] }),
+    ["い"],
+  );
+});

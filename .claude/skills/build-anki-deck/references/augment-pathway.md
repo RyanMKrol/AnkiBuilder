@@ -1,21 +1,20 @@
----
-name: augment-anki-deck
-description: Use when notes arrive covering material a deck ALREADY taught, and those cards have to be threaded back into finished lessons. Class handouts, a dictated word list, a PDF of lesson notes, or a second deck being absorbed into the first. Not for building a new lesson, which is build-anki-deck.
----
-
 # Retrofitting notes into a deck that is already finished
 
-`build-anki-deck` takes a source and produces units. This skill takes notes about material the deck
-has ALREADY covered and threads them into units that exist, which is a different job with different
-failure modes.
+**Pathway 2 of `build-anki-deck`.** Pathways 1 and 3 take a source and produce units. This one takes
+notes about material the deck has ALREADY covered and threads them into units that exist, which is a
+different job with different failure modes.
 
 It happens whenever a class runs ahead of, or alongside, a book: the notes cover Lesson 6 grammar and
 Lesson 3 counters, and both of those lessons were signed off months ago.
 
 **Every card rule still lives in
-[build-anki-deck/references/card-authoring-rules.md](../build-anki-deck/references/card-authoring-rules.md).**
-This file does not restate any of them. What it covers is routing, and the traps, because those have
-no home anywhere else.
+[card-authoring-rules.md](card-authoring-rules.md).** This file does not restate any of them. What it
+covers is routing, and the traps, because those have no home anywhere else.
+
+**None of the three phases runs on this pathway.** Phases 1 and 2 read a chapter; a retrofit's source
+is a handout, a dictated list or another deck, and its destination is a unit that has already been
+signed off. What it shares with the other pathways is the audio stage and the deliver, and its gates
+are the per-card additions pair rather than a unit's own.
 
 ## The shape of the work
 
@@ -147,4 +146,4 @@ holding. `scripts/absorption-crosscheck.mjs` is the shape to copy.
 Unchanged, with one addition specific to this work: if cards are moving between COLLECTIONS, their
 Anki notes have to be moved into the destination deck tree BEFORE delivering, or the deliver cannot
 see them and adds them fresh with no review history. That is a migration, not a flag, and
-[build-anki-deck/references/deliver.md](../build-anki-deck/references/deliver.md) describes its shape.
+[deliver.md](deliver.md) describes its shape.

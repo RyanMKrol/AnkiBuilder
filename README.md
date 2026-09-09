@@ -9,19 +9,35 @@ studyable Anki deck, complete with translations, pronunciation guides, and spoke
 
 ## How it works
 
-Every deck moves through the same CLI stages, with **exactly two human review gates** in the local
-dashboard (`npm run serve`): a **Corpus** review (English + target + pronunciation) and an **Audio**
-review. Those two are the only states a lesson rests in — everything between assembling a lesson and
-its first review runs as one uninterrupted `prepare` stage, so a lesson is never left half-built and
-offered for review. The dashboard surfaces each lesson at its gate and is where you exclude items, fix
-fields, and pick audio; the CLI advances it.
+Every deck moves through the same CLI stages, and a human reviews it in the local dashboard
+(`npm run serve`), which is where you exclude items, fix fields and pick audio; the CLI advances it.
+Everything between assembling a lesson and its first review runs as one uninterrupted `prepare`
+stage, so a lesson is never left half-built and offered for review.
 
-| Stage        | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **assemble** | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. Writes the English corpus, then chains straight into `prepare`.                                                                                                                                                                                                                                                                                                                              |
-| **prepare**  | Everything between assembling and the first review, as one stage: translate each term and give it a pronunciation guide (via Claude); for an EPUB or dictated lesson, mine the source's fill-in-the-blank drills into extra practice cards and semantically de-dup them; then write each card's cross-lesson notes. Runs under one build claim so the card set is final — and complete — before anyone reviews it. The **Corpus** review is the first gate.                                 |
-| **audio**    | Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `ttsText` (a phonetic spelling in the target script) that TTS speaks instead of `target`; it is never rendered on a card face. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front. |
-| **deck**     | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+**A chapter of a book is one unit of work and passes three gates**, because it produces two decks:
+its base vocabulary and its extras drills, which share a single audio review at the end.
+
+| Gate                 | What you check                   | On what            |
+| -------------------- | -------------------------------- | ------------------ |
+| **1. Base corpus**   | English + target + pronunciation | `chapter-N`        |
+| **2. Extras corpus** | the same, on the drill sentences | `chapter-N-extras` |
+| **3. Audio**         | every clip, both units together  | the chapter        |
+
+The order is the design. Extras sentences are written against vocabulary a human has already
+approved, so cutting a base card can never orphan a sentence built on it, and no TTS credit is spent
+on a card that might still be dropped. A template or a dictated word list is one unit, so it has a
+corpus gate and an audio gate and no extras phase.
+
+A fourth review, **Additions**, is not a chapter state: it covers cards retrofitted into a unit that
+is already finished, and its two gates are per card rather than per unit.
+
+| Stage        | What happens                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **assemble** | Pull a word list together — from a bundled template, an EPUB chapter, or a lesson you dictate. On an EPUB chapter the extraction step is a scripted phase: a table specialist, a whole-chapter reader and an image specialist each find vocabulary independently, their results are unioned rather than voted on, and a coverage adversary pinned to a stronger model enumerates the chapter separately so the difference can be diffed in code. Writes the English corpus, then chains straight into `prepare`.                                                 |
+| **prepare**  | Everything between assembling and the first review, as one stage: translate each term and give it a pronunciation guide (via Claude), then write each card's cross-lesson notes and spell out any digit the voice would misread. Runs under one build claim so the card set is final — and complete — before anyone reviews it. On a dictated lesson it also mines the source's fill-in-the-blank drills; on a phase-built chapter it does not, because sentences are the extras phase's job. The **base corpus** review is the first gate.                      |
+| **extras**   | A chapter's second unit, built from the vocabulary gate 1 approved. Three miners pull every complete sentence the chapter contains (drills, worked examples, Key Sentences, dialogue), a gap author fills what a script computed as missing, and one inventive author adds practice sentences the book does not contain, capped at 20% of what the miners found so the unit cannot fill with padding. The **extras corpus** review is the second gate.                                                                                                           |
+| **audio**    | Both of a chapter's units at once, so one review covers the chapter. Each term gets one spoken recording (the default take), via ElevenLabs. A card may carry an optional `ttsText` (a phonetic spelling in the target script) that TTS speaks instead of `target`; it is never rendered on a card face. For a language with an "alt audio" transform (Japanese appends `。`) the default is the with-`。` take. Every other variant — the no-`。` take, comma/bracket forms, kana+kanji — is generated on demand in the dashboard's audio review, not up front. |
+| **deck**     | Everything is packaged into a `.apkg` file, ready to import into Anki.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 For books and courses, each chapter/lesson goes through this individually and then gets merged
 into one deck with a sub-deck per chapter/lesson.
@@ -375,7 +391,7 @@ operator has to override on the day it lands is worse than no gate.
 
 ## Implementation status
 
-10 of 11 backlog tasks are done:
+What is built, newest last:
 
 - [x] Project scaffold, CI
 - [x] Pipeline data contracts + run-directory conventions
@@ -554,6 +570,27 @@ operator has to override on the day it lands is worse than no gate.
       is what lets `deliver-to-anki.mjs` find their live Anki notes by `abid:` tag and update them in
       place with their review history rather than adding them fresh. Design, the full routing table
       and the commands that re-derive its claims: `docs/designs/nihongo-absorption-2026-08.md`
+- [x] The corpus generation rewritten as scripted phases (2026-09, git tag `v2`). A chapter's base
+      vocabulary and its extras drills are each built by one script whose steps cannot be skipped,
+      and every semantic judgement inside them is a `claude -p` agent pinned to an explicit model and
+      effort rather than an inherited one. What that buys, in the order it was needed: three
+      specialists find vocabulary independently and are unioned rather than voted on, so a minority
+      report survives; every image gets a verdict recorded whatever it is, so "nobody looked" stops
+      reading like "nothing there"; a coverage adversary enumerates the chapter without seeing the
+      corpus, diffed in code, and a gap author turns what it found into cards rather than into a
+      report for a human; two deduplicators decide which look-alikes are one card, one within the
+      unit being built and one against every unit the collection already shipped; and each unit keeps
+      an immutable as-generated snapshot, so `scripts/learning-pass.mjs` can attribute every
+      reviewer edit and exclusion back to the role that produced the item. Base units hold lexical
+      entries and extras hold sentences, enforced by a check rather than by convention. One shared
+      card-rules document is injected into every prompt that writes cards, asserted by a test,
+      because the rule that a paradigm's irregular forms are never sampled away used to live in one
+      prompt and be unknown to the next. Chapters 0-16 keep their v1 conventions and are not
+      rewritten; that is a stated non-goal. Design and acceptance criteria:
+      `docs/designs/v2-goals-2026-09.md`
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
-See `.harness/tracking/TASKS.json` for the authoritative, up-to-date backlog.
+What gets built next comes from [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md),
+the live list of trade-offs and known gaps, each with a status; an unshaped thought goes in
+`.harness/tracking/IDEAS.jsonl`. The `TASKS.json` backlog beside it belongs to the retired build
+harness and is a historical record — nothing reads it.

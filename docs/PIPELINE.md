@@ -1127,7 +1127,9 @@ reviewer to re-add what they just cut.
 
 **It writes nowhere near the deck.** The run is given a throwaway unit directory under the system
 temp dir and the real one is only ever read. The reviewed corpora are what it is judged against, and
-`V2-MIGRATION.md` forbids the `v2` branch from touching `output/` or `.anki-builder/` at all.
+they are months of human review with no backup anywhere but git, so a comparison that could edit its
+own yardstick is not a comparison. Golden rule 6 covers exactly this: a check runs against a scratch
+resource, never the product.
 
 ### An extras unit's identity is derived, not typed
 
@@ -1407,8 +1409,8 @@ meaning, and keeping them apart is what makes onboarding runnable on a book stil
 
 ### Phase 1 as `assemble`'s extraction step
 
-`anki-builder assemble --epub … --extraction phase` substitutes phase 1 for the v1 extraction pass
-and changes nothing else about the build.
+`anki-builder assemble --epub …` runs phase 1 as its extraction step and changes nothing else about
+the build. `--extraction v1` selects the old single pass instead.
 
 That is the whole seam, and the narrowness is the point. v2 replaces one thing about an EPUB build:
 how a chapter becomes a list of candidate items. Everything `assemble` does around that step is
@@ -1421,10 +1423,22 @@ chapter introduces, the pedagogical sort, the pass ledger, the run claim, and ch
 Re-implementing that order inside the phase script was the alternative, and it is risk without
 reward: a second copy of a sequence whose only value is that this one is proven.
 
-**`--extraction` is per build, not a mode the tree is in.** Both extractions have to keep working
-for the whole migration: `main` is still finishing a book with v1, and a v2 chapter has to be
-buildable beside it. The flag takes `phase` or `v1`, and a typo is an error rather than a quiet
-fall back to the old path, which would look exactly like a successful v2 build.
+**An EPUB chapter gets the phase by default, and `--extraction v1` is the opt-out.** It was the
+other way round while the rewrite was being written, when `main` was still finishing a book with the
+old pass and both had to work side by side. The default inverted when the rewrite landed, for a
+reason worth stating: a unit built by the old pass is indistinguishable from a phase-built one
+afterwards. Same `corpus.json`, same schema, same review page, minus the coverage adversary, the
+image verdicts and both deduplicators. Forgetting a flag is easy and nothing downstream would ever
+report it, so the flag is not what stands between a chapter and the pipeline meant to build it.
+
+The old pass keeps working and stays selectable, because chapters 0-16 were built with it and
+comparing against it is how a regression gets found. A typo in the value is an error either way,
+checked at the top of the command before the book is registered or the chapter pulled, so a
+misspelling costs nothing to discover.
+
+**The default is per source, not global.** Phase 1 reads a chapter, so a template or a dictated word
+list defaults to the only extraction it can have, and asking for the phase there is an error rather
+than a silent downgrade.
 
 **A re-run reuses the phase's output.** `assemble` is this project's resume command, so re-running
 it on a half-built lesson has to be cheap. It also has to be possible at all: `writeSnapshot`

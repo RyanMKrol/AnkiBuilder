@@ -22,9 +22,9 @@
 // instinct is to search only for improvements.
 //
 // ⚠️ IT WRITES NOWHERE NEAR THE DECK. Everything lands in a scratch directory outside the repo. The
-// reviewed corpora are what this is judged against and V2-MIGRATION.md forbids the v2 branch from
-// touching output/ or .anki-builder/ at all, so the run is given a throwaway unit dir and the real
-// one is only ever READ.
+// reviewed corpora are the yardstick here, and they are months of human review that exists nowhere
+// but this disk and git, so a run that could edit them would be measuring against itself. The run
+// gets a throwaway unit dir and the real one is only ever READ.
 import { existsSync, readFileSync, mkdirSync, mkdtempSync, rmSync, readdirSync } from "fs";
 import { join, resolve } from "path";
 import { tmpdir } from "os";

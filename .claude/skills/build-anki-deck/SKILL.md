@@ -317,10 +317,10 @@ under a single build claim. There is no stopping point in the middle, by design:
 steps changes which cards exist or what they say, so a lesson that halts partway is a half-built
 lesson nobody can sign off on.
 
-**On an EPUB chapter, pass `--extraction phase`. That is what makes it a v2 build.** Without it you
-get v1's single extraction pass, which still works and is what `main` is running; with it, the
-extraction step is phase 1: four agents, three of them finding vocabulary independently and a fourth
-pinned higher and used to check them.
+**On an EPUB chapter the extraction step IS phase 1, and there is no flag to remember.** Four
+agents: three finding vocabulary independently, and a fourth pinned higher and used to check them.
+`--extraction v1` selects the older single pass, which is what chapters 0-16 were built with and is
+worth reaching for only to compare against.
 
 | Step | Who | What it does |
 | --- | --- | --- |
@@ -347,7 +347,7 @@ task the minority report is exactly what you want to keep. On the first live run
 the adversary caught four number readings all three specialists had recorded as prose rather than as
 entries.
 
-**Everything else about the build is unchanged.** `--extraction phase` swaps one step. Registering
+**Everything else about the build is unchanged.** The phase swaps one step. Registering
 the book, the cached whole-book conventions, extracting the chapter's bytes, the unit's identity, the
 backward dedup against what the book already taught, the forward flags for vocabulary a later chapter
 introduces, the pedagogical sort, and the chaining into `prepare` all run exactly as they always have.
@@ -382,15 +382,15 @@ anki-builder assemble --output-root output --words <wordsFile> \
   [--lesson-label "Lesson <N>: <topic>"]
 
 # EPUB — files under output/epubs/<book-slug>/chapter-<seq>/. Prefer --lesson (from Step 1's
-# --list-lessons); --chapter-number is the no-TOC fallback. --extraction phase is the v2 build.
-anki-builder assemble --output-root output --epub <path> --lesson "<label or number>" --lang <lang> --extraction phase
-anki-builder assemble --output-root output --book <book-slug> --lesson "<label or number>" --lang <lang> --extraction phase
+# --list-lessons); --chapter-number is the no-TOC fallback. Phase 1 is the default extraction here.
+anki-builder assemble --output-root output --epub <path> --lesson "<label or number>" --lang <lang>
+anki-builder assemble --output-root output --book <book-slug> --lesson "<label or number>" --lang <lang>
 ```
 
-`--extraction` takes `phase` or `v1`, and a typo is an error rather than a silent v1 build, which
-would look exactly like a successful v2 one. It needs an `--epub` source: phase 1 reads a chapter, so
-it has nothing to do on a template or a dictated word list (pathway 3), which build the same way they
-always did.
+`--extraction` takes `phase` or `v1`, and a typo is an error rather than a silent build on the wrong
+path, which would look exactly like a successful one. The default is per source: an `--epub` chapter
+gets the phase, and a template or a dictated word list (pathway 3) has no chapter to read, so it gets
+the only extraction it can have. Asking for the phase on one of those is an error, not a downgrade.
 
 Notes on the forms:
 

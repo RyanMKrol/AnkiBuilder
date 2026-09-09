@@ -27,19 +27,24 @@ process and no visual surface.
 
 ## Generations, and the deck data they share
 
-**Which generation is this tree?** If `V2-MIGRATION.md` exists at the repo root, the v2 rewrite is
-still in progress and that file's rules override the branching conventions below for the duration.
-If it does not exist, the rewrite has landed and this file stands as written. Check for the file
-rather than assuming either way.
+**Which generation is this tree?** v2, and it is the only one. The rewrite landed on 2026-09-09 and
+`V2-MIGRATION.md` was deleted as the act that says so, which is why this file no longer defers to it.
+If that file ever reappears at the repo root, a migration is in progress and its rules win for the
+duration.
 
-**`v1` is a git tag, and it is the archive.** It marks the pipeline as it stood on 2026-09-06: 13
-single-shot `claude -p` passes plus the operator procedure in `.claude/skills/build-anki-deck/`,
-having built Japanese for Busy People Book 1 to chapter 17. Recover it whenever you need to compare
-against it, without disturbing the working tree:
+**Both generations are git tags, and both are the archive.** `v1` marks the pipeline as it stood on
+2026-09-06: 13 single-shot `claude -p` passes plus the operator procedure in
+`.claude/skills/build-anki-deck/`, having built Japanese for Busy People Book 1 to chapter 17. `v2`
+marks the corpus generation rewritten as scripted phases with every model call pinned. Recover either
+without disturbing the working tree:
 
 ```sh
 git worktree add ../anki-builder-v1 v1
 ```
+
+**The v1 extraction pass is still in the code and still selectable** (`assemble --extraction v1`), so
+comparing a chapter against how it would have been built does not need the worktree. Chapters 0-16
+were built that way and are deliberately not rewritten.
 
 **`output/` and `.anki-builder/` belong to no generation.** They are the product, and any rewrite
 inherits them rather than replacing them. Two consequences worth knowing before touching either:

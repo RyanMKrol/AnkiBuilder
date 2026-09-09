@@ -3,6 +3,7 @@
 //
 // Usage:
 //   node scripts/shadow-run.mjs <unitName> [--lang ja] [--dry] [--keep] [--extras]
+//   node scripts/shadow-run.mjs <unitName> --from <phase-1 unit dir>   phase 2 only
 //   node scripts/shadow-run.mjs --list
 //
 // --extras runs phase 2 as well, on phase 1's own output, and diffs the COMBINED corpus (base plus
@@ -46,6 +47,13 @@ const positional = argv.filter((a) => !a.startsWith("--"));
 const dry = argv.includes("--dry");
 const keep = argv.includes("--keep");
 const withExtras = argv.includes("--extras");
+// --from <dir> reuses a phase-1 output that already exists instead of building another one.
+//
+// Phase 1 completed four times while phase 2 never completed once, and each of those runs paid ~24
+// minutes of agent time to regenerate an input already sitting on disk. Phase 1 is not the thing
+// under test, and re-running it to test phase 2 is half the cost of every run for nothing.
+const fromAt = argv.indexOf("--from");
+const reuseFrom = fromAt === -1 ? null : resolve(argv[fromAt + 1] ?? "");
 const langAt = argv.indexOf("--lang");
 const targetLanguage = langAt === -1 ? "ja" : argv[langAt + 1];
 
@@ -99,14 +107,16 @@ function readUnit(name) {
 }
 const agentSteps = (steps) => steps.filter((s) => s.kind === "agent");
 const spends = [
-  ...agentSteps(BASE_PHASE_STEPS),
-  ...(withExtras ? agentSteps(EXTRAS_PHASE_STEPS) : []),
+  ...(reuseFrom ? [] : agentSteps(BASE_PHASE_STEPS)),
+  ...(withExtras || reuseFrom ? agentSteps(EXTRAS_PHASE_STEPS) : []),
 ];
 const opus = spends.filter((s) => ROLES[s.role].model === "claude-opus-5").length;
 
 console.log(`unit:     ${unitName}  (${reviewed.length} reviewed card(s))`);
 console.log(`chapter:  ${chapterFilePath}`);
-if (withExtras) {
+if (reuseFrom) {
+  console.log(`reusing:  phase 1 output at ${reuseFrom} (phase 1 will NOT run)`);
+} else if (withExtras) {
   console.log(`extras:   phase 2 will run on phase 1's own output, into the same scratch dir`);
 }
 console.log(`spends:   ${spends.length} agent step(s), ${opus} of them on Opus`);
@@ -123,26 +133,37 @@ mkdirSync(scratchUnit, { recursive: true });
 console.log(`scratch:  ${scratchUnit}\n`);
 
 let result;
-try {
-  result = runBasePhase({
-    unitDir: scratchUnit,
-    chapterFilePath,
-    chapterHtml: readFileSync(chapterFilePath, "utf-8"),
-    targetLanguage,
-    meta: { hints: loadBookHints(meta.epubHash) },
-    // Without this the backward judge runs against an empty prior set and reports 0 candidates,
-    // which reads exactly like "nothing repeats" while actually meaning "nothing was compared".
-    priorItems: loadEarlierUnitItems(BOOK, unitName),
-  });
-} catch (error) {
-  console.error(`phase 1 failed: ${error.message}`);
-  if (!keep) rmSync(scratch, { recursive: true, force: true });
-  process.exit(2);
-}
+if (reuseFrom) {
+  const corpus = join(reuseFrom, "corpus.json");
+  if (!existsSync(corpus)) {
+    console.error(`no corpus.json at ${corpus} — --from wants a phase-1 unit directory`);
+    process.exit(2);
+  }
+  const loaded = JSON.parse(readFileSync(corpus, "utf-8"));
+  result = { items: loaded.items, gaps: null, run: { steps: [] } };
+  console.log(`  · loaded ${loaded.items.filter((i) => !i.excluded).length} shipping item(s)\n`);
+} else {
+  try {
+    result = runBasePhase({
+      unitDir: scratchUnit,
+      chapterFilePath,
+      chapterHtml: readFileSync(chapterFilePath, "utf-8"),
+      targetLanguage,
+      meta: { hints: loadBookHints(meta.epubHash) },
+      // Without this the backward judge runs against an empty prior set and reports 0 candidates,
+      // which reads exactly like "nothing repeats" while actually meaning "nothing was compared".
+      priorItems: loadEarlierUnitItems(BOOK, unitName),
+    });
+  } catch (error) {
+    console.error(`phase 1 failed: ${error.message}`);
+    if (!keep) rmSync(scratch, { recursive: true, force: true });
+    process.exit(2);
+  }
 
-for (const step of result.run.steps) {
-  const c = step.counts ? ` (${step.counts.in ?? "-"} → ${step.counts.out ?? "-"})` : "";
-  console.log(`  · ${step.step.padEnd(20)}${c}`);
+  for (const step of result.run.steps) {
+    const c = step.counts ? ` (${step.counts.in ?? "-"} → ${step.counts.out ?? "-"})` : "";
+    console.log(`  · ${step.step.padEnd(20)}${c}`);
+  }
 }
 
 // Reference = the human's answer, candidate = this run. `missing` is therefore what a human kept and
@@ -155,7 +176,7 @@ for (const step of result.run.steps) {
 // pipeline that does not exist.
 // ---------------------------------------------------------------------------------------------
 let extrasResult = null;
-if (withExtras) {
+if (withExtras || reuseFrom) {
   const scratchExtras = join(scratch, `${unitName}-extras`);
   mkdirSync(scratchExtras, { recursive: true });
   console.log(`\nphase 2 -> ${scratchExtras}`);
@@ -197,7 +218,7 @@ console.log(`  CANDIDATE GAPS IN v1 (produced, not reviewed): ${diff.extra.lengt
 for (const item of diff.extra.slice(0, 12))
   console.log(`     + ${item.target}  ${item.english ?? ""}`);
 if (diff.extra.length > 12) console.log(`     … ${diff.extra.length - 12} more`);
-console.log(`  adversary gaps against THIS run: ${result.gaps.counts.gaps}`);
+if (result.gaps) console.log(`  adversary gaps against THIS run: ${result.gaps.counts.gaps}`);
 
 if (extrasResult) {
   const shipping = (items) => (items ?? []).filter((i) => !i.excluded);

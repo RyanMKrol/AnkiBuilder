@@ -4120,3 +4120,25 @@ re-derives the chapter and the gap filler cards what was missed, recovering fift
 good work at the higher settings, and their failure mode is silent: a merged sense or a wrongly
 flagged card looks like a decision rather than a mistake. Nothing has been compared before and after.
 
+## A checker that honours less than its prompt promises rejects correct work
+
+The gap author's prompt has always said `"fillsGap": "the id or target of the gap this closes"`.
+`gapHandles` returned targets only. So a response naming gaps by id matched nothing, and the phase
+refused work that was complete.
+
+**Measured on the chapter-9 run of 2026-09-08.** The gap author returned fifty items covering every
+gap, thirty-five of them naming a gap by id, and the check reported **39 of 39 unaddressed**. Replayed
+against the fix: **0**. An earlier run had mixed ids and targets and failed partially, which is why
+the cause looked like a model dropping gaps rather than a contract the checker did not honour.
+
+**Two things made this findable, and neither existed a day earlier.** The artifact is now written
+before the guard runs, so the model's actual answer survived a rejection. And the run report records
+what each step produced, so "fifty items, thirty-nine unaddressed" was visible as a contradiction
+rather than a plausible failure.
+
+**The general shape.** A prompt is a contract with two sides, and only one of them is tested. Every
+`{{PLACEHOLDER}}` is pinned by `test/docs/promptTemplates.test.js`, and nothing pins what the prompt
+promises about the SHAPE of a response against the code that reads it. The other agents' matchers
+(`gapFiller` on `fillsGap`, both deduplicators on `group`) have not been audited for the same gap.
+
+**Status:** fixed here, open as a class.

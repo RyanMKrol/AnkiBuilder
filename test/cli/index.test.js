@@ -235,6 +235,8 @@ test("assemble: dispatches to the --epub path — registers, extracts, dedups, a
         "3",
         "--lang",
         "Japanese",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub,
@@ -313,6 +315,8 @@ test("assemble: --lesson resolves a multi-file lesson, extracts the whole spine 
         "Lesson 3",
         "--lang",
         "Japanese",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub,
@@ -427,6 +431,8 @@ test("assemble: runs the book-conventions pass on the first --epub assemble for 
         "1",
         "--lang",
         "Japanese",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub,
@@ -522,6 +528,80 @@ test("assemble --extraction phase: phase 1 replaces extraction and nothing else"
   });
 });
 
+test("assemble: an --epub build with no --extraction flag uses the phase, not the old pass", async () => {
+  // The default has to be the phase, because a build that quietly got the old extraction is
+  // indistinguishable from a phase-built unit afterwards: same corpus.json, same schema, same
+  // review page, just no adversary, no image verdicts and neither deduplicator. Forgetting a flag
+  // is the easiest mistake there is, so the flag is not what stands between a chapter and the
+  // pipeline it is supposed to be built by.
+  await withTempDir(async (runDir) => {
+    let phaseRan = false;
+
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "1",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub: () => ({ epubHash: "hash123" }),
+        resolveLabelDecoding: () => 1,
+        chapterCachePath: () => "/cache/1.xhtml",
+        extractChapterToFile: (epubPath, chapterNumber, destPath) => destPath,
+        loadBookConventions: () => "cached conventions",
+        describeChapter: () => "Lesson 1",
+        assembleCorpusFromChapter: () => {
+          throw new Error("the pre-rewrite extraction must not be the default for an --epub build");
+        },
+        extractBaseCorpus: () => {
+          phaseRan = true;
+          return baseEpubCorpus();
+        },
+        loadPriorChapterItems: () => [],
+        dedupBackward: (items) => ({ items, flagged: [] }),
+        flagForwardConcerns: ({ candidateItems }) => ({ items: candidateItems, flagged: [] }),
+        sortItemsPedagogically: ({ items }) => ({ items, changed: false }),
+        log: () => {},
+      },
+    );
+
+    assert.equal(phaseRan, true);
+  });
+});
+
+test("assemble: a template build with no --extraction flag does NOT try to run the phase", async () => {
+  // The default is per SOURCE, not global. Phase 1 reads a chapter, and a template has none, so
+  // defaulting it on would make every template build fail on a step with nothing to read.
+  await withTempDir(async (runDir) => {
+    const args = [
+      "assemble",
+      "--no-prepare",
+      "--run",
+      runDir,
+      "--template",
+      "travel-essentials",
+      "--lang",
+      "es",
+    ];
+    await runCli(args, {
+      extractBaseCorpus: () => {
+        throw new Error("the phase cannot run on a template — there is no chapter to read");
+      },
+      sortItemsPedagogically: ({ items }) => ({ items, changed: false }),
+      log: () => {},
+    });
+
+    assert.equal(existsSync(runPaths(runDir).corpus), true);
+  });
+});
+
 test("assemble: --extraction takes phase or v1, and a typo is an error not a silent v1 build", async () => {
   await withTempDir(async (runDir) => {
     await assert.rejects(
@@ -594,6 +674,8 @@ test("assemble: skips the book-conventions pass when it's already cached for tha
         "2",
         "--lang",
         "Japanese",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub,
@@ -782,6 +864,8 @@ test("assemble: --output-root resolves the run dir via resolveBookSlug/resolveCh
         "15",
         "--lang",
         "Japanese",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub,
@@ -1054,6 +1138,8 @@ test("assemble: logs one line per flagged item for both passes, not just a count
         "2",
         "--lang",
         "Japanese",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub,
@@ -1113,7 +1199,17 @@ test("assemble: is resumable — skips work when corpus.json already exists", as
       return baseCorpus();
     };
 
-    await runCli(["assemble", "--no-prepare", "--run", runDir, "--template", "travel-essentials"], {
+    const args = [
+      "assemble",
+      "--no-prepare",
+      "--run",
+      runDir,
+      "--template",
+      "travel-essentials",
+      "--lang",
+      "es",
+    ];
+    await runCli(args, {
       loadTemplate,
       log: () => {},
     });
@@ -2444,6 +2540,8 @@ test("assemble: warns when an earlier lesson of the book is not marked reviewed"
         "9",
         "--lang",
         "ja",
+        "--extraction",
+        "v1",
       ],
       {
         registerEpub: () => ({ epubHash: "hash" }),

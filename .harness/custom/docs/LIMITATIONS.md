@@ -4142,3 +4142,34 @@ promises about the SHAPE of a response against the code that reads it. The other
 (`gapFiller` on `fillsGap`, both deduplicators on `group`) have not been audited for the same gap.
 
 **Status:** fixed here, open as a class.
+
+## The phase extraction is now the default, and the old pass stays reachable
+
+`assemble` on an `--epub` source runs phase 1 unless `--extraction v1` says otherwise. It was the
+other way round while the rewrite was being written, because `main` was finishing a book with the old
+pass and both had to work side by side without a branch switch.
+
+**Why the default inverted.** A unit built by the old pass is indistinguishable from a phase-built one
+after the fact: same `corpus.json`, same schema, same review page. What it lacks is the coverage
+adversary, the per-image verdicts and both deduplicators, and none of those absences is visible in the
+output. So a forgotten flag produced a unit that read as fully built and was not, which is this
+project's signature failure shape. The flag is no longer what stands between a chapter and the
+pipeline meant to build it.
+
+**The trade-off accepted.** The default is now per SOURCE rather than global: an `--epub` chapter gets
+the phase, and a template or dictated word list gets the only extraction it can have, because phase 1
+reads a chapter and those have none. That means `usePhaseExtraction` consults `flags.epub`, so the
+answer to "which extraction is this" is no longer readable from the flag alone. Asking for the phase
+on a source that cannot run it is an error rather than a silent downgrade, which is what keeps the
+per-source default from becoming a second way to get the wrong pipeline quietly.
+
+**Impact:** none on chapters 0-16, which are built and not rewritten. A future non-EPUB source type
+that COULD support a phase would need this default revisited rather than inherited.
+
+**Revisit when:** a third extraction exists, or a non-EPUB source grows a phase. At that point the
+per-source boolean should become an explicit per-source table.
+
+**Verified by:** `node --test test/cli/index.test.js` — two tests pin the default in both directions
+(an `--epub` build with no flag must run the phase; a template build with no flag must not).
+
+**Status:** current design.

@@ -106,3 +106,47 @@ test("matches shown per candidate are capped, strongest evidence first", () => {
   assert.equal(described.alreadyInTheDeck.length, 5);
   assert.equal(described.alreadyInTheDeck[0].noticed, "one-target-contains-the-other");
 });
+
+test("an exact repeat of an EXTRAS unit's word survives skipExactMatches, because nothing else sees it", () => {
+  // The crack this closes. On the base path `assemble` runs a library-backed string matcher after
+  // this pass, so raising exact matches here would duplicate its work -- but that library holds base
+  // units only, since an extras unit shares its base chapter's number and is refused the write. So an
+  // exact repeat of an extras unit's word was skipped here AND invisible there.
+  //
+  // Measured on Lesson 17: まち (chapter-13-extras) and おとうと (chapter-9-extras) reached the review
+  // unflagged and the reviewer excluded both by hand.
+  const earlier = [
+    { id: "town", target: "まち", english: "Town", __unit: "chapter-13-extras" },
+    { id: "shop", target: "みせ", english: "Shop", __unit: "chapter-3" },
+  ];
+  const items = [
+    { id: "machi", target: "まち", english: "Town" },
+    { id: "mise", target: "みせ", english: "Shop" },
+  ];
+
+  const candidates = findBackwardCandidates(items, earlier, {
+    languageCode: "ja",
+    skipExactMatches: true,
+  });
+
+  const raised = candidates.map((c) => c.item.id);
+  assert.ok(raised.includes("machi"), "an extras unit's exact repeat must still be raised");
+  assert.ok(
+    !raised.includes("mise"),
+    "a BASE unit's exact repeat stays skipped — assemble's own matcher flags that one",
+  );
+});
+
+test("on the extras path every exact match is still raised, base or extras", () => {
+  // skipExactMatches is false there, and that behaviour is unchanged: nothing else runs backward
+  // dedup for an extras unit, so exact matches are the only coverage it has.
+  const earlier = [{ id: "shop", target: "みせ", english: "Shop", __unit: "chapter-3" }];
+  const candidates = findBackwardCandidates(
+    [{ id: "mise", target: "みせ", english: "Shop" }],
+    earlier,
+    {
+      languageCode: "ja",
+    },
+  );
+  assert.equal(candidates.length, 1);
+});

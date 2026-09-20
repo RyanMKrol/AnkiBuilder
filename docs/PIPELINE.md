@@ -1104,6 +1104,24 @@ signed off.
 
 ## Model passes: pinning, env scopes and timeouts
 
+### The adversary's gap list is evidence about the passes it checks
+
+`candidates/coverage.json` and `candidates/coverage-fills.json` are written every phase-1 build and
+were, until Lesson 17, read once and discarded. `scripts/adversary-learnings.mjs` reads them back:
+decline reasons grouped, recoveries clustered by the section the adversary saw them in, and a flag
+when one section accounts for half or more of what got carded.
+
+**The counting is mechanism and the verdict is not.** A cluster means the upstream passes lacked a
+rule OR that this chapter genuinely concentrates its new material in one table, and no code can tell
+those apart. So the script stops at the cluster and the operator decides, which is the same
+script-proposes/agent-disposes split the duplicate and collision audits use.
+
+Two calibration facts worth knowing before reading a report. The adversary is tuned for recall, told
+in its prompt to be exhaustive rather than tidy, so a high gap count is normal rather than alarming.
+And it reads ONE chapter with no dedup library, deliberately, so "already taught in an earlier
+chapter" dominating the declines is it working, not failing: the gap filler holds the earlier-unit
+knowledge and drops those.
+
 ### Shadow-running phase 1 against a corpus a human already reviewed
 
 `node scripts/shadow-run.mjs <unitName>` runs phase 1 over a chapter that already has a reviewed

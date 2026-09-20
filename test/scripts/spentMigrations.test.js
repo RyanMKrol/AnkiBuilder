@@ -52,6 +52,7 @@ const STANDING = [
   "shadow-run.mjs",
   "build-extras.mjs",
   "build-audio.mjs",
+  "adversary-learnings.mjs",
   "learning-pass.mjs",
   "epub-hints.mjs",
   "epub-probe.mjs",

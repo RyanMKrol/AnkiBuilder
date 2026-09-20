@@ -20,12 +20,20 @@
 These hold no matter which pass you are. They exist because a pass that did not know one of them
 silently undid another pass's correct work.
 
-**An irregular or exceptional form is never optional and never redundant.** If the source marks
-something as irregular, an exception, or as the form that breaks the rule it just taught, it earns a
-card and it keeps that card. Do not sample it away as one of several similar cells, and do not remove
-it as a repeat of a pattern already covered: an irregular form is by definition the one a learner
-cannot derive, which is exactly why it looks like a duplicate of the regular ones and exactly why it
-is not. Watch for _but_, _except_, _instead_, _irregular_ and _does not take_.
+**Every cell of a paradigm the source lays out earns its own card.** When the source presents one
+form varying over a closed set of slots -- a grid, a table, or a run of examples it tells the learner
+to memorize -- each filled cell is a card, not just the first one and not just the citation form.
+Regularity is not a reason to drop a cell: a learner who has not yet internalised the rule cannot
+produce the other cells from the one you kept, and the source printing all of them is the source
+saying so.
+
+**An irregular or exceptional form is never optional and never redundant.** The sharpest case of the
+rule above, and the one most often lost. If the source marks something as irregular, an exception, or
+as the form that breaks the rule it just taught, it earns a card and it keeps that card. Do not
+sample it away as one of several similar cells, and do not remove it as a repeat of a pattern already
+covered: an irregular form is by definition the one a learner cannot derive, which is exactly why it
+looks like a duplicate of the regular ones and exactly why it is not. Watch for _but_, _except_,
+_instead_, _irregular_ and _does not take_.
 
 **Only vocabulary and grammar the learner has already met.** A card may use only what this chapter or
 an earlier one teaches. Where topical fit and this rule disagree, this rule wins.

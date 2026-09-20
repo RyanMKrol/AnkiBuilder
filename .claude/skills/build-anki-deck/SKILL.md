@@ -659,6 +659,51 @@ the deck. Full ordering rules, and every card-content rule (sentence-case Englis
 spaces or terminal `。`, `ttsText` for numerals, provenance flags, scene/hint/note/reviewNote, collisions,
 Q&A splits, worked examples for grammar cards): [card-authoring-rules](references/card-authoring-rules.md).
 
+## Step 2b: Ask what the adversary just taught you about the other passes
+
+**Required after every corpus build, before you hand over the review link.** One command:
+
+```sh
+node scripts/adversary-learnings.mjs <runDir>
+```
+
+**The adversary is a safety net, and a net that keeps catching the same thing is telling you about
+the thing above it.** Every chapter it recovers items the specialists missed, and that is the design
+working. What the design does not do by itself is notice when the misses have ONE cause, because each
+chapter's gap list is read once and thrown away. Without this step a missing rule is paid for again
+every chapter, silently, in two extra model calls.
+
+The script counts and clusters; it never decides. Read three things:
+
+- **The decline reasons.** A reason that dominates is usually the adversary's own calibration rather
+  than a miss. On Lesson 17, 38 of 59 declines were *already taught in an earlier chapter*, which is
+  the adversary working exactly as designed: it reads ONE chapter and has no dedup library, on
+  purpose, so it cannot be anchored by what the other passes saw. The gap filler, which can see
+  earlier units, drops those. Nothing to fix.
+- **Where the recoveries came from.** Scattered across the chapter is ordinary. Concentrated in one
+  section is the shape of a rule the upstream passes do not have, and the script flags it when one
+  place accounts for half or more.
+- **Whether a prompt should have caught them.** This is the judgement, and it is yours. The script
+  stops at the cluster on purpose.
+
+**Then surface it to the owner with the review link, and let them decide.** Say what the cluster was,
+what rule you think is missing, and what it would cost to leave it. Do not quietly edit a prompt: a
+prompt change alters every future chapter of every book, which is a bigger blast radius than the
+lesson in front of you, and the owner may know the cluster is just what this chapter looks like.
+
+**The worked example, because this convention exists because of it.** On Lesson 17 the adversary
+reported 84 gaps and the gap filler carded 25. Nineteen of those 25 were cells of one conjugation
+table the chapter tells the learner to memorize, present and past, affirmative and negative. Not
+nineteen oversights: one missing rule, recovered nineteen times. The specialists had a rule
+protecting *irregular* cells from being sampled away and no rule about regular ones, while the
+adversary's own prompt said to enumerate every cell of a paradigm. The fix was one line in
+`docs/card-rules-shared.md`. Nobody would have found it by reading 84 gaps once.
+
+**A high gap count is not itself a finding.** 84 gaps against a 74-item corpus sounds alarming and
+mostly is not: the adversary is tuned for recall over precision, told in its own prompt to be
+exhaustive rather than tidy, so over-reporting is the design. What matters is the shape of what
+survived the gap filler, which is what this step reads.
+
 ## Step 3: Gate 1, the base corpus review
 
 Open the lesson's **Review** view on the dashboard (`/review/...` — distinct from the read-only
@@ -1099,6 +1144,17 @@ validate → preflight. Every report is printed for you to read; nothing but the
 and no audit is given `--apply`. Exit 2 means a report is waiting for your judgment, not that
 something is broken. ⚠️ `prepare` spends model credits. Full reasoning:
 [extras-pass](references/extras-pass.md).
+
+### Read what the adversary taught you about the other passes
+
+```sh
+node scripts/adversary-learnings.mjs <unitDir>
+```
+
+Counts the coverage adversary's gaps, groups the gap filler's declines by reason, and clusters the
+recoveries by where in the chapter they came from. Flags it when one section accounts for half or
+more, because that shape is usually a rule the upstream passes are missing rather than bad luck.
+Read-only, exits 0 always: it reports, it never gates. Step 2b is where it belongs in the flow.
 
 ### Recover a pass that failed — `anki-builder resume`
 

@@ -457,3 +457,19 @@ actually signed it off. Then Step 4 generates audio for it exactly like any othe
 done** folds it into the package as its own sub-deck beside the lesson.
 
 Build the extras unit for chapter N **before** moving on to chapter N+1, same as the base lessons.
+
+## The base-split check and the noun + particle + verb compound
+
+`preflight`'s `base-split` check flags a base-unit card whose target reads like an utterance, because
+a base unit holds lexical entries and sentences belong here. On a language that builds verbs by
+attaching a generic "do" verb to a noun, it fires on ordinary vocabulary: `しょくじをします`,
+`りょうりをします`, `はなみをします` are single headwords the book lists in a WORD POWER table, and they
+have a particle and a predicate because that is how the word is spelled.
+
+**The check says so itself** -- "if it is a fixed expression the book glosses as a single unit, it
+belongs exactly where it is and this finding is a false positive" -- so read the chapter's own
+vocabulary block before deciding, then `--accept` with a note saying you did. On Lesson 17 that was
+seven findings and all seven were false positives.
+
+What a REAL finding looks like: a target with a subject in it, or one the book prints inside a drill
+rather than in a vocabulary list.

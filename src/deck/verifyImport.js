@@ -5,7 +5,7 @@ import { join } from "path";
 /**
  * Import a built `.apkg` into a THROWAWAY Anki collection and report what actually happened.
  *
- * Why this exists. LIMITATIONS.md records three `.apkg` format bugs that "all passed `npm test` and
+ * Why this exists. Three `.apkg` format bugs once shipped that "all passed `npm test` and
  * every synthetic check", because nothing in this repo has ever run a real import. The zip is
  * written by hand, the collection is hand-built SQLite, and every assertion about the result is an
  * assertion about bytes this repo produced, checked by code this repo also produced. A real import

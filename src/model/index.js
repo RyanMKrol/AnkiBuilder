@@ -301,7 +301,7 @@ const CARDS_SCHEMA = {
           //
           // So the .apkg builder deliberately still emits BOTH card rows and the DELIVERER suspends
           // the unwanted ordinal — which means the .apkg no longer reproduces the delivered deck
-          // card-for-card. That is stated in docs/PIPELINE.md and in LIMITATIONS.
+          // card-for-card. That is stated in docs/PIPELINE.md.
           dirSuspended: { type: "array", items: { type: "integer", minimum: 0 } },
           // Set by the dashboard translate review to drop a card from the built deck (reversible
           // flag, not a delete). The deck build skips excluded cards.

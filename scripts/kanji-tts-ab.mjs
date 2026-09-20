@@ -45,7 +45,7 @@
 // created after it, so a positive result changes new work and touches nothing already voiced.
 //
 // STATUS: never run. Building the harness costs nothing; running it spends credits, which is the
-// owner's call. See the LIMITATIONS entry "Kanji-orthography TTS is opt-in and unmeasured".
+// owner's call. Kanji-orthography TTS is opt-in and the A/B below has never been run.
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import { listUnitDirs, loadUnit, describeCollectionDir } from "../src/audit/units.js";

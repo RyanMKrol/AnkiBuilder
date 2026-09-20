@@ -139,7 +139,7 @@ export const LANGUAGE_PROMPT_RULES = {
   // ── Languages whose romanization library is NOT trustworthy ────────────────────────────────────
   //
   // Only ja / zh / ko have ever been run end to end. The rest were wired in on the strength of the
-  // library existing, and measured output is unusable — see the entries below and the LIMITATIONS
+  // library existing, and measured output is unusable — see the entries below and the
   // row "Only ja / zh / ko have a proven romanization path". These fragments exist so the model is
   // told what it is actually being handed instead of being shown Japanese and left to guess.
 

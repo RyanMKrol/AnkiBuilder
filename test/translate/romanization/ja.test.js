@@ -5,7 +5,7 @@ import { romanize } from "../../../src/translate/romanization/ja.js";
 // This is the slowest test in the suite — it genuinely loads kuromoji's ~40MB IPADIC dictionary
 // on first call (module-level cache in ja.js means every test in this file after the first pays
 // no extra cost). If CI time ever becomes a real problem, this is the file to gate behind a
-// slower/separate test run — see .harness/custom/docs/LIMITATIONS.md's dependency-exception entry.
+// slower/separate test run: kuroshiro's dictionary load is a deliberate, bounded exception.
 
 test("romanize() converts hiragana-only text to spaced romaji", async () => {
   const result = await romanize("これはねこです");

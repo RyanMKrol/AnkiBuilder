@@ -16,7 +16,7 @@
 // `deleteDecks` was called with cardsToo:false and Anki has refused that since 2.1.28. Both this
 // script and the wrapper were fixed and it was re-run to finish. The deleted notes were unaffected
 // — deleteNotes had already returned — so the halfway state was recoverable by fixing forward.
-// See the LIMITATIONS entry "A safety flag that Anki stopped accepting".
+// The `cardsToo: false` default this once passed is no longer accepted by Anki.
 //
 // ⚠️ THIS DELETES NOTES THE OWNER HAS BEEN STUDYING. That is the point of it, and it is why every
 // safety property below exists. Run it only when the routing table says those notes are redundant

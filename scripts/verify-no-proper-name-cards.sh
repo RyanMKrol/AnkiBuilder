@@ -7,7 +7,7 @@
 # That is why it is a script you run deliberately and not a preflight check: the rule it enforces
 # lives in docs/card-rules-shared.md, where every card-writing pass gets it.
 #
-# Backs the LIMITATIONS entry "Nothing mechanically stops a proper name becoming a card".
+# The rule it backs is "A proper name is not a card" in docs/card-rules-shared.md.
 set -euo pipefail
 
 node -e '

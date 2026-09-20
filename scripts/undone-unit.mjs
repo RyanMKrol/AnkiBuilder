@@ -2,8 +2,8 @@
 // Pulls a finished unit back out of the shipping package: back up cards.json, clear meta.done,
 // rebuild the collection.
 //
-// This is the reverse of the dashboard's Mark done, which has no button (see LIMITATIONS,
-// "No un-done control in the dashboard"). It was a hand edit of a live unit's JSON; this is the
+// This is the reverse of the dashboard's Mark done, which deliberately has no button. It was a
+// hand edit of a live unit's JSON; this is the
 // same operation with a backup, schema validation and the rebuild that has to follow it.
 //
 // Usage:

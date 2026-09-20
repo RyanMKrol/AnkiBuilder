@@ -3,7 +3,7 @@
  * Import a built `.apkg` into a throwaway Anki collection and report what really happened.
  *
  * ── WHY ──────────────────────────────────────────────────────────────────────────────────────────
- * LIMITATIONS.md records three `.apkg` format bugs that "all passed npm test and every synthetic
+ * Three `.apkg` format bugs once shipped that "all passed npm test and every synthetic
  * check". They passed because nothing here has ever run a real import: the zip is hand-written, the
  * collection is hand-built SQLite, and every check on the result is written by the same repo that
  * produced the bytes. This is the one tool that can disagree with us.

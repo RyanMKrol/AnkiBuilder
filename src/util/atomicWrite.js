@@ -20,7 +20,7 @@ import { dirname, join, basename } from "path";
  *
  * Deliberately NOT fsync'd. Rename is atomic with respect to other processes regardless
  * of fsync; fsync only buys durability across a power cut, and it costs real time on a
- * 10 MB `.apkg`. See LIMITATIONS.
+ * 10 MB `.apkg`.
  *
  * Not for user-chosen output paths (`restyle-font --out`, `view-deck --out`): those have
  * no concurrent reader, and rename replaces the inode — dropping any hardlinks, ACLs or

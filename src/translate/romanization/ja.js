@@ -25,8 +25,8 @@ async function getKuroshiro() {
 
 /**
  * Romanizes Japanese text (kana and/or kanji) to spaced romaji via kuroshiro + kuromoji's
- * morphological analyzer — the only real kanji-aware deterministic option (see
- * .harness/custom/docs/LIMITATIONS.md). The analyzer's dictionary is loaded once per process
+ * morphological analyzer — the only real kanji-aware deterministic option, and a deliberate,
+ * bounded dependency. The analyzer's dictionary is loaded once per process
  * (module-level cache above), not once per call.
  */
 export async function romanize(targetText) {

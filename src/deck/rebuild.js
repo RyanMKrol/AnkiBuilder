@@ -199,8 +199,8 @@ export function rebuildRunDir(runDir, { buildDeck = defaultBuildDeck, deckName =
  * deck's DISPLAY name, or renaming a deck would change every guid and orphan its live scheduling.
  *
  * Any run-dir package built before this existed shipped BARE guids, and re-importing over it will
- * add new notes rather than update the old ones. There were none on disk when this landed; see the
- * LIMITATIONS entry for the one-line remedy if an older one turns up.
+ * add new notes rather than update the old ones. There were none on disk when this landed. If an
+ * older one turns up, the remedy is to write the namespace into its manifest before rebuilding.
  */
 function runDirGuidNamespace(runDir) {
   // `resolve` first, always. `deckIdentityForDir` walks basename/dirname, so the RELATIVE string

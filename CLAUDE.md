@@ -19,11 +19,9 @@ process and no visual surface.
   before touching anything user-facing): `.claude/skills/build-anki-deck/SKILL.md`, which is
   normative for procedure. A book that has never been built goes through
   `.claude/skills/onboard-epub/SKILL.md` first. `docs/PIPELINE.md` covers how the code is wired.
-- **What's planned:** two files, and they ARE the planning loop.
-  [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md) is the live one:
-  every trade-off, bottleneck and known gap, each with a `**Status:**`, and it is what the work
-  keeps being driven by. `.harness/tracking/IDEAS.jsonl` is the zero-ceremony inbox for anything
-  not yet thought through. A larger piece of work gets a design doc under `docs/designs/`.
+- **What's planned:** `.harness/tracking/IDEAS.jsonl` is the zero-ceremony inbox for anything not
+  yet thought through, and a larger piece of work gets a design doc under `docs/designs/`. There is
+  no limitations log; see golden rule 5 for where a correction goes instead.
 
 ## Generations, and the deck data they share
 
@@ -99,9 +97,8 @@ the same commit** — never as a follow-up. A task is **done when its branch is 
   the skill is where that lives, and it is normative for procedure. A change that makes SKILL.md
   wrong is not finished.
 - **`docs/PIPELINE.md`** — if the change alters how the stages are wired.
-- **`.harness/custom/docs/LIMITATIONS.md`** — see golden rule 5. If the change RESOLVES an
-  existing entry, update that entry's `**Status:**` in the same commit; a resolved limitation
-  left reading as live is the same failure as a missing one.
+- **the place the rule is enforced** — see golden rule 5. A prompt, a check, `SKILL.md`, or a
+  comment at the code site, chosen by who has to obey it.
 - **design docs** (`docs/designs/`) — only if the change alters the design or an architectural
   decision. Day-to-day implementation usually doesn't touch them.
 - If a change introduces a convention or decision worth remembering, note it here in
@@ -121,32 +118,31 @@ it, and nothing anywhere else has a copy. **Treat "uncommitted" as "not durable.
 unit of work is done — a doc sweep, a new script with its tests, a recovery — **commit and push it
 immediately**, don't leave it sitting in the tree across a session.
 
-### 5. Record a trade-off when someone will have to act on it
+### 5. Fix it where it is enforced, don't file it
 
-Two files, and which one an entry goes in is decided by whether there is work waiting.
+**There is no limitations log.** There was one, it reached 199 entries and 4,265 lines, and it was
+deleted on 2026-09-20 because filing a problem had become a substitute for fixing one. Git holds it
+if you ever need the history.
 
-- **[`LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md) is the planning queue**: open
-  trade-offs, bottlenecks and known gaps. What gets built next comes from reading it, so an entry
-  earns its place by naming a condition under which someone would act. Four fields, short: what it
-  is, *why* it was chosen, its **impact**, and a `**Status:**` giving *when to revisit*. A row
-  asserting a fact about live data also gives a `**Verified by:**` command that re-derives it,
-  because counts rot and a false limitation is worse than a missing one.
-- **[`DECISIONS.md`](./.harness/custom/docs/DECISIONS.md) is the settled list**: choices made
-  deliberately, kept so nobody re-litigates them. If the answer to "when would we revisit this" is
-  "we would not", it belongs here, not in the queue.
+When you find a limitation, put the correction where the thing is actually decided:
 
-Both live in the `custom/` **overlay**, never the plugin-owned `.harness/docs/LIMITATIONS.md`.
+- **A rule an agent has to follow** goes in `docs/card-rules-shared.md` if every card-writing pass
+  needs it, or in that one pass's prompt if only it does. A rule written in one prompt and needed by
+  four is the failure mode this project keeps hitting: it happened with the paradigm-cell rule and
+  again with proper names, and both times the rule existed and simply did not travel.
+- **A rule a human has to follow** goes in `.claude/skills/build-anki-deck/SKILL.md`, which is
+  normative for operator procedure.
+- **Something a check could catch** becomes a check: a preflight tier, a test, or a script in
+  `scripts/`. A rule in prose is a hope; a check is a guarantee.
+- **A constraint the code must respect** goes in a comment at the site that respects it, not in a
+  document somewhere else. A comment two directories away from the code it explains is a comment
+  nobody reads at the moment it matters.
+- **A settled choice nobody should re-litigate** goes in
+  [`DECISIONS.md`](./.harness/custom/docs/DECISIONS.md), which is the one file that survived, because
+  its entries close a question rather than parking one.
 
-**Three things that are NOT limitations**, because writing them down is what buried the queue under
-199 entries:
-
-- **A bug you fixed in the same commit.** That is a commit message. The code comment explaining why
-  the guard exists is worth more than a row saying it once did not.
-- **Anything already resolved.** When a change resolves an entry, **DELETE the entry** in that same
-  commit rather than marking it resolved. Git holds the history. Marking instead of deleting is
-  precisely how a file that is supposed to be read in one sitting stopped being readable.
-- **A settled choice.** That is `DECISIONS.md`. Moving one back to LIMITATIONS is fine and expected
-  when its reasoning stops holding; say what changed.
+If a thing genuinely cannot be fixed now, say so in the conversation and let the owner decide. Do not
+write it down somewhere and call that addressed.
 
 ### 6. Tests never touch production state
 
@@ -181,8 +177,8 @@ The boundary is the collection, not the lesson.
 
 This was an owner ruling on 2026-08-14, after three cross-collection checks had already been written
 and merged. They were removed. See the addendum in `docs/designs/skill-review-2026-08-plan.md` and
-the entry in `.harness/custom/docs/LIMITATIONS.md` for the one mechanical concern that survives it
-and how that concern is handled without any content comparison.
+`DECISIONS.md` for the one mechanical concern that survives it and how that concern is handled
+without any content comparison.
 
 ## Standard workflow for a change
 
@@ -266,10 +262,9 @@ What that means:
 - **Do not run `.harness/scripts/loop.sh` or `supervise.sh`**, and do not author new `TASKS.json`
   tasks. `TASKS.json`, `tasks/` and `worklog/` are a historical record of how the project was built,
   kept because they are exactly that; nothing reads them.
-- **`.harness/custom/docs/LIMITATIONS.md` + `.harness/tracking/IDEAS.jsonl` are the planning loop.**
-  Limitations are the live list of what is wrong or deferred and each carries a `**Status:**`; the
-  ideas inbox is where an unshaped thought goes (one JSON row: `{id, title, description,
-  capturedAt}`). Both live under `.harness/` for the same reason as the record: that is where they
-  already were, and moving them would break more references than it fixes.
+- **`.harness/tracking/IDEAS.jsonl` is the inbox** for an unshaped thought (one JSON row:
+  `{id, title, description, capturedAt}`). It lives under `.harness/` for the same reason as the
+  record: that is where it already was. There is no limitations log beside it any more; golden
+  rule 5 says where a correction goes.
 - Anything big enough to need sequencing gets a design doc in `docs/designs/` and, if it is being
   built by several agents, one branch per workstream.

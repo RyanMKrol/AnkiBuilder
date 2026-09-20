@@ -29,25 +29,29 @@
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (おとうと is formally taught in the own-family vs. others'-family vocabulary set)",
       "note": "This is your own younger brother. For someone else's, use おとうとさん (otōtosan) from Lesson 9.",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 134
     },
     {
       "id": "robii",
       "target": "ロビー",
       "english": "Lobby",
-      "category": "Travel & Tourism"
+      "category": "Travel & Tourism",
+      "sourceOrder": 271
     },
     {
       "id": "shiryou",
       "target": "しりょう",
       "english": "Material, data, documents",
-      "category": "Work & Occupations"
+      "category": "Work & Occupations",
+      "sourceOrder": 850
     },
     {
       "id": "tegami",
       "target": "てがみ",
       "english": "Letter",
-      "category": "Technology & Communication"
+      "category": "Technology & Communication",
+      "sourceOrder": 2982
     },
     {
       "id": "machi",
@@ -55,7 +59,8 @@
       "english": "Town",
       "category": "Directions",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3407
     },
     {
       "id": "te",
@@ -63,25 +68,29 @@
       "english": "Hand",
       "category": "Body & Health",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 21: Asking Permission: May I Have It? (て (hand) is formally taught as part of the parts-of-the-body vocabulary set)"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 21: Asking Permission: May I Have It? (て (hand) is formally taught as part of the parts-of-the-body vocabulary set)",
+      "sourceOrder": 2333
     },
     {
       "id": "kurabu",
       "target": "クラブ",
       "english": "Club",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "sourceOrder": 3541
     },
     {
       "id": "kagu",
       "target": "かぐ",
       "english": "Furniture",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "sourceOrder": 3568
     },
     {
       "id": "antiiku",
       "target": "アンティーク",
       "english": "Antiques",
-      "category": "Shopping"
+      "category": "Shopping",
+      "sourceOrder": 3838
     },
     {
       "id": "biyouin",
@@ -90,14 +99,16 @@
       "category": "Shopping",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same word; 'Hair salon, hairdresser' is the fuller, more natural gloss."
+      "excludedReason": "Same word; 'Hair salon, hairdresser' is the fuller, more natural gloss.",
+      "sourceOrder": 4202
     },
     {
       "id": "biyouin-2",
       "target": "びよういん",
       "english": "Hair salon, hairdresser",
       "category": "Shopping",
-      "note": "Don't confuse it with びょういん (byōin) \"Hospital, clinic\" from Lesson 13. This one has よ (yo), and it means a place to get your hair done."
+      "note": "Don't confuse it with びょういん (byōin) \"Hospital, clinic\" from Lesson 13. This one has よ (yo), and it means a place to get your hair done.",
+      "sourceOrder": 4255
     },
     {
       "id": "kaigi-l17",
@@ -107,7 +118,8 @@
       "uncertain": true,
       "reviewNote": "Used in Key Sentence 2 and Exercise IV, never glossed in a vocabulary table. May be taught earlier. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4081
     },
     {
       "id": "okawari-none",
@@ -117,7 +129,8 @@
       "uncertain": true,
       "reviewNote": "Chapter title and dialogue are about buying a souvenir, but no vocabulary table glosses it here. Probably taught earlier. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 156
     },
     {
       "id": "onsen",
@@ -127,7 +140,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise II drill cues (おんせんに いきます). No gloss in the chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 2963
     },
     {
       "id": "nyuusu-l17",
@@ -137,7 +151,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise V-A cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4492
     },
     {
       "id": "meeru-adoresu",
@@ -147,7 +162,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4688
     },
     {
       "id": "pathii",
@@ -157,7 +173,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise IV example. No gloss. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4162
     },
     {
       "id": "mise-l17",
@@ -167,7 +184,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-B cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3576
     },
     {
       "id": "tokoro-l17",
@@ -177,7 +195,8 @@
       "uncertain": true,
       "reviewNote": "Exercise III cues. No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3348
     },
     {
       "id": "chikaku",
@@ -187,7 +206,8 @@
       "uncertain": true,
       "reviewNote": "Exercise III (うみの ちかく, この ちかくに). No gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3365
     },
     {
       "id": "kuni-l17",
@@ -197,31 +217,36 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3456
     },
     {
       "id": "shourai",
       "target": "しょうらい",
       "english": "In the future",
-      "category": "Time"
+      "category": "Time",
+      "sourceOrder": 3340
     },
     {
       "id": "ikebana",
       "target": "いけばな",
       "english": "Flower arrangement",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "sourceOrder": 2223
     },
     {
       "id": "karate",
       "target": "からて",
       "english": "Karate",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "sourceOrder": 2228
     },
     {
       "id": "piano",
       "target": "ピアノ",
       "english": "Piano",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "sourceOrder": 2232
     },
     {
       "id": "dansu",
@@ -229,7 +254,8 @@
       "english": "Dance",
       "category": "Sports & Hobbies",
       "uncertain": true,
-      "reviewNote": "Appears only as a Hobbies picture caption (item 4); the vocabulary table does not list it. Gloss is mine. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)"
+      "reviewNote": "Appears only as a Hobbies picture caption (item 4); the vocabulary table does not list it. Gloss is mine. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
+      "sourceOrder": 2236
     },
     {
       "id": "shizuka-na",
@@ -240,7 +266,8 @@
       "reviewNote": "Only in an Exercise III-A cue, (しずかな まち). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "note": "This is しずか (shizuka) from Lesson 10. The な (na) only appears when it comes directly before a noun, as in しずかなところ (shizuka na tokoro).",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3403
     },
     {
       "id": "atatakai-l17",
@@ -250,7 +277,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-A cue, (あたたかい ところ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3385
     },
     {
       "id": "furui-l17",
@@ -260,7 +288,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-B cue, (ふるい かぐを かいます、みせ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3565
     },
     {
       "id": "zehi-l17",
@@ -269,13 +298,15 @@
       "category": "Grammar & Function Words",
       "uncertain": true,
       "reviewNote": "Paul's reply いいですね。ぜひ。 in Speaking Practice 1; the English gloss there is 'I'd love to', so this is the whole-phrase sense. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
-      "repeatOf": "zehi"
+      "repeatOf": "zehi",
+      "sourceOrder": 5074
     },
     {
       "id": "nemasu",
       "target": "ねます",
       "english": "Sleep, go to bed",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "sourceOrder": 2155
     },
     {
       "id": "nemasu-2",
@@ -284,7 +315,8 @@
       "category": "Everyday Objects",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same verb; the glosses differ only by 'to'. Keep the shorter id."
+      "excludedReason": "Same verb; the glosses differ only by 'to'. Keep the shorter id.",
+      "sourceOrder": 2297
     },
     {
       "id": "mae",
@@ -294,7 +326,8 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Scene added at the collision audit: まえ is already taught in Lesson 12 in its position sense (\"in front\"), and this card teaches the time sense. Confirm the wording.",
       "note": "Here まえ (mae) means \"before\" in time. In Lesson 12 it meant \"in front\" of a place, so the sentence tells you which.",
-      "scene": "saying when something happens"
+      "scene": "saying when something happens",
+      "sourceOrder": 187
     },
     {
       "id": "no-mae-ni",
@@ -302,20 +335,23 @@
       "english": "Before the meeting",
       "category": "Time",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Target changed from the schematic 〜のまえに to a concrete instance the chapter prints (EXERCISES V), because a placeholder is not a card. Confirm the choice."
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Target changed from the schematic 〜のまえに to a concrete instance the chapter prints (EXERCISES V), because a placeholder is not a card. Confirm the choice.",
+      "sourceOrder": 843
     },
     {
       "id": "neru-mae-ni",
       "target": "ねるまえに",
       "english": "Before sleeping, before going to bed",
       "category": "Time",
-      "note": "A verb in its dictionary form (Lesson 15) goes straight before まえに (mae ni), with no の (no). A noun needs の, as in 〜のまえに (no mae ni)."
+      "note": "A verb in its dictionary form (Lesson 15) goes straight before まえに (mae ni), with no の (no). A noun needs の, as in 〜のまえに (no mae ni).",
+      "sourceOrder": 873
     },
     {
       "id": "naraimasu",
       "target": "ならいます",
       "english": "Learn, take lessons in",
-      "category": "School & Education"
+      "category": "School & Education",
+      "sourceOrder": 2246
     },
     {
       "id": "naraimasu-2",
@@ -324,13 +360,15 @@
       "category": "School & Education",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same verb; glosses differ only by 'to'."
+      "excludedReason": "Same verb; glosses differ only by 'to'.",
+      "sourceOrder": 2348
     },
     {
       "id": "sutorecchi-o-shimasu",
       "target": "ストレッチをします",
       "english": "Do stretching exercises",
-      "category": "Sports & Hobbies"
+      "category": "Sports & Hobbies",
+      "sourceOrder": 878
     },
     {
       "id": "sutoretchi-o-shimasu",
@@ -339,14 +377,16 @@
       "category": "Sports & Hobbies",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same phrase, glosses differ only by 'to'; the ids differ only by a romanization typo."
+      "excludedReason": "Same phrase, glosses differ only by 'to'; the ids differ only by a romanization typo.",
+      "sourceOrder": 2175
     },
     {
       "id": "ryouri-o-shimasu",
       "target": "りょうりをします",
       "english": "Cook",
       "category": "Home & Household",
-      "hint": "the activity, not the person"
+      "hint": "the activity, not the person",
+      "sourceOrder": 2252
     },
     {
       "id": "ryouri-o-shimasu-2",
@@ -355,13 +395,15 @@
       "category": "Home & Household",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same phrase; 'Cook' and 'To cook' are one card."
+      "excludedReason": "Same phrase; 'Cook' and 'To cook' are one card.",
+      "sourceOrder": 2372
     },
     {
       "id": "araimasu",
       "target": "あらいます",
       "english": "Wash",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "sourceOrder": 2261
     },
     {
       "id": "araimasu-2",
@@ -370,13 +412,15 @@
       "category": "Home & Household",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same verb; 'Wash' and 'To wash'."
+      "excludedReason": "Same verb; 'Wash' and 'To wash'.",
+      "sourceOrder": 2384
     },
     {
       "id": "shawaa-o-abimasu",
       "target": "シャワーをあびます",
       "english": "Take a shower",
-      "category": "Home & Household"
+      "category": "Home & Household",
+      "sourceOrder": 2267
     },
     {
       "id": "shawaa-o-abimasu-2",
@@ -385,7 +429,8 @@
       "category": "Home & Household",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same phrase; glosses differ only by 'To'."
+      "excludedReason": "Same phrase; glosses differ only by 'To'.",
+      "sourceOrder": 2393
     },
     {
       "id": "shokuji-o-shimasu",
@@ -394,13 +439,15 @@
       "category": "Food",
       "uncertain": true,
       "reviewNote": "Verb caption ⑤ in the Word Power picture list; the vocabulary table does not gloss it. English is my best guess. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
-      "repeatOf": "shokuji-shimasu"
+      "repeatOf": "shokuji-shimasu",
+      "sourceOrder": 2277
     },
     {
       "id": "hajimemasu",
       "target": "はじめます",
       "english": "Start, begin",
-      "category": "Other"
+      "category": "Other",
+      "sourceOrder": 2286
     },
     {
       "id": "hajimemasu-2",
@@ -409,7 +456,8 @@
       "category": "Grammar & Function Words",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same verb; glosses differ only by 'to'. 'Grammar & Function Words' is the wrong category for it, so keep the 'Other' one."
+      "excludedReason": "Same verb; glosses differ only by 'to'. 'Grammar & Function Words' is the wrong category for it, so keep the 'Other' one.",
+      "sourceOrder": 2417
     },
     {
       "id": "kakimasu",
@@ -419,7 +467,8 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target) | Scene added at the collision audit: かきます is already taught in Lesson 15 as \"draw\". Same kana, different sense. Confirm the wording.",
       "note": "This is the same word as かきます (kakimasu) \"Draw\" from Lesson 15. The object tells you which: a letter or words means write, a picture means draw.",
-      "scene": "asked what you do with a letter or an email"
+      "scene": "asked what you do with a letter or an email",
+      "sourceOrder": 2292
     },
     {
       "id": "kakimasu-2",
@@ -430,7 +479,8 @@
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same verb; 'Write' and 'To write'.",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)"
+      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "sourceOrder": 2437
     },
     {
       "id": "sumimasu",
@@ -441,7 +491,8 @@
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same verb; 'To live (in a place)' is the fuller gloss.",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (すみます is re-taught later as すんでいます in the present-state て-form lesson)"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (すみます is re-taught later as すんでいます in the present-state て-form lesson)",
+      "sourceOrder": 3620
     },
     {
       "id": "sumimasu-2",
@@ -450,7 +501,8 @@
       "category": "Home & Household",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (すみます is re-taught later as すんでいます in the present-state て-form lesson)",
-      "note": "This is すみます (sumimasu), a verb whose place takes に (ni). It is not すみません (sumimasen) \"Excuse me\" from Frequently Used Expressions, though the two sound alike."
+      "note": "This is すみます (sumimasu), a verb whose place takes に (ni). It is not すみません (sumimasen) \"Excuse me\" from Frequently Used Expressions, though the two sound alike.",
+      "sourceOrder": 3620
     },
     {
       "id": "benkyou-shimasu",
@@ -460,7 +512,8 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3634
     },
     {
       "id": "benkyou-shimasu-2",
@@ -469,14 +522,16 @@
       "category": "School & Education",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same verb; 'Study' and 'To study'."
+      "excludedReason": "Same verb; 'Study' and 'To study'.",
+      "sourceOrder": 3634
     },
     {
       "id": "hanami-o-shimasu",
       "target": "はなみをします",
       "english": "View cherry blossoms",
       "category": "Weather & Nature",
-      "note": "The book prints it with an optional お in front (おはなみ)."
+      "note": "The book prints it with an optional お in front (おはなみ).",
+      "sourceOrder": 3501
     },
     {
       "id": "ohanami-o-shimasu",
@@ -484,13 +539,15 @@
       "english": "To view cherry blossoms",
       "category": "Weather & Nature",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3710
     },
     {
       "id": "daunroodo-shimasu",
       "target": "ダウンロードします",
       "english": "Download",
-      "category": "Technology & Communication"
+      "category": "Technology & Communication",
+      "sourceOrder": 4122
     },
     {
       "id": "daunroudo-shimasu",
@@ -499,7 +556,8 @@
       "category": "Technology & Communication",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same verb; the ids differ only by a romanization variant."
+      "excludedReason": "Same verb; the ids differ only by a romanization variant.",
+      "sourceOrder": 4238
     },
     {
       "id": "chekku-shimasu",
@@ -510,7 +568,8 @@
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same verb; the category 'Technology & Communication' fits better than 'Other'.",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)",
+      "sourceOrder": 4497
     },
     {
       "id": "chekku-shimasu-2",
@@ -518,7 +577,8 @@
       "english": "To check",
       "category": "Technology & Communication",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)",
+      "sourceOrder": 4918
     },
     {
       "id": "okurimasu",
@@ -528,7 +588,8 @@
       "uncertain": true,
       "reviewNote": "Key Sentence 2 and Exercise V; no vocabulary entry here. Gloss is mine. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 855
     },
     {
       "id": "shashin-o-torimasu",
@@ -548,7 +609,8 @@
       "uncertain": true,
       "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
       "repeatOf": "oyogimasu-swim",
-      "hint": "the single verb, not the noun-plus-suru form"
+      "hint": "the single verb, not the noun-plus-suru form",
+      "sourceOrder": 4782
     },
     {
       "id": "kaerimasu-l17",
@@ -558,7 +620,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise V-B cue, (ポールさん、くにに かえります). No gloss. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4751
     },
     {
       "id": "itadakimasu",
@@ -569,7 +632,8 @@
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same phrase; 'Let's eat (said before eating)' is a real gloss, while '[Said before eating]' is only a description.",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Frequently Used Expressions (matched on target)"
+      "reviewNote": "Possibly already taught — already introduced in Frequently Used Expressions (matched on target)",
+      "sourceOrder": 5351
     },
     {
       "id": "itadakimasu-2",
@@ -581,14 +645,16 @@
       "note": "Same word as いただきます (itadakimasu) in Frequently Used Expressions. In Lesson 10 it also meant \"Yes, thank you\" when accepting an offer, so the moment decides the meaning.",
       "hint": "said at the table, before the food",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 5806
     },
     {
       "id": "taberu-mae-ni",
       "target": "たべるまえに",
       "english": "Before eating",
       "category": "Time",
-      "note": "Dictionary form plus まえに (mae ni), with no の (no). It is the same pattern as ねるまえに (neru mae ni)."
+      "note": "Dictionary form plus まえに (mae ni), with no の (no). It is the same pattern as ねるまえに (neru mae ni).",
+      "sourceOrder": 318
     },
     {
       "id": "kaitai-desu",
@@ -597,13 +663,15 @@
       "category": "Grammar & Function Words",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same phrase; '(I) want to buy' is the fuller, more natural gloss."
+      "excludedReason": "Same phrase; '(I) want to buy' is the fuller, more natural gloss.",
+      "sourceOrder": 161
     },
     {
       "id": "kaitai-desu-2",
       "target": "かいたいです",
       "english": "(I) want to buy",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 698
     },
     {
       "id": "tabetai-desu",
@@ -612,147 +680,170 @@
       "category": "Food",
       "excluded": true,
       "excludedBy": "semantic-dedup",
-      "excludedReason": "Same phrase; '(I) want to eat' is the fuller gloss."
+      "excludedReason": "Same phrase; '(I) want to eat' is the fuller gloss.",
+      "sourceOrder": 828
     },
     {
       "id": "tabetai-desu-2",
       "target": "たべたいです",
       "english": "(I) want to eat",
-      "category": "Food"
+      "category": "Food",
+      "sourceOrder": 2083
     },
     {
       "id": "ikitai-desu",
       "target": "いきたいです",
       "english": "(I) want to go",
       "category": "Grammar & Function Words",
-      "hint": "Drop ます from いきます, add たいです"
+      "hint": "Drop ます from いきます, add たいです",
+      "sourceOrder": 1192
     },
     {
       "id": "ikitakunai-desu",
       "target": "いきたくないです",
       "english": "(I) don't want to go",
       "category": "Grammar & Function Words",
-      "note": "たい conjugates like an い-adjective, so the negative is たくないです."
+      "note": "たい conjugates like an い-adjective, so the negative is たくないです.",
+      "sourceOrder": 1211
     },
     {
       "id": "ikitakatta-desu",
       "target": "いきたかったです",
       "english": "(I) wanted to go",
       "category": "Grammar & Function Words",
-      "note": "Past tense follows the い-adjective pattern (Lesson 11): たい (tai) becomes たかった (takatta)."
+      "note": "Past tense follows the い-adjective pattern (Lesson 11): たい (tai) becomes たかった (takatta).",
+      "sourceOrder": 1237
     },
     {
       "id": "ikitakunakatta-desu",
       "target": "いきたくなかったです",
       "english": "(I) didn't want to go",
       "category": "Grammar & Function Words",
-      "note": "Past negative follows the い-adjective pattern (Lesson 11): たくない (takunai) becomes たくなかった (takunakatta)."
+      "note": "Past negative follows the い-adjective pattern (Lesson 11): たくない (takunai) becomes たくなかった (takunakatta).",
+      "sourceOrder": 1260
     },
     {
       "id": "nomitai-desu",
       "target": "のみたいです",
       "english": "(I) want to drink",
       "category": "Grammar & Function Words",
-      "note": "With たい, the object can take が instead of を: ワインが のみたいです."
+      "note": "With たい, the object can take が instead of を: ワインが のみたいです.",
+      "sourceOrder": 1351
     },
     {
       "id": "kaitakunai-desu",
       "target": "かいたくないです",
       "english": "(I) don't want to buy",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2613
     },
     {
       "id": "kaitakatta-desu",
       "target": "かいたかったです",
       "english": "(I) wanted to buy",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2621
     },
     {
       "id": "kaitakunakatta-desu",
       "target": "かいたくなかったです",
       "english": "(I) didn't want to buy",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2629
     },
     {
       "id": "tabetakunai-desu",
       "target": "たべたくないです",
       "english": "(I) don't want to eat",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2654
     },
     {
       "id": "tabetakatta-desu",
       "target": "たべたかったです",
       "english": "(I) wanted to eat",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2662
     },
     {
       "id": "tabetakunakatta-desu",
       "target": "たべたくなかったです",
       "english": "(I) didn't want to eat",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2670
     },
     {
       "id": "mitai-desu",
       "target": "みたいです",
       "english": "(I) want to see, want to watch",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2689
     },
     {
       "id": "mitakunai-desu",
       "target": "みたくないです",
       "english": "(I) don't want to see, don't want to watch",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2694
     },
     {
       "id": "mitakatta-desu",
       "target": "みたかったです",
       "english": "(I) wanted to see, wanted to watch",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2701
     },
     {
       "id": "mitakunakatta-desu",
       "target": "みたくなかったです",
       "english": "(I) didn't want to see, didn't want to watch",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2708
     },
     {
       "id": "aitai-desu",
       "target": "あいたいです",
       "english": "(I) want to meet",
       "category": "Grammar & Function Words",
-      "note": "あいます (aimasu, Lesson 9) marks the person you meet with に (ni). That stays the same with たい (tai): たなかさんにあいたいです (Tanaka-san ni aitai desu)."
+      "note": "あいます (aimasu, Lesson 9) marks the person you meet with に (ni). That stays the same with たい (tai): たなかさんにあいたいです (Tanaka-san ni aitai desu).",
+      "sourceOrder": 2727
     },
     {
       "id": "aitakunai-desu",
       "target": "あいたくないです",
       "english": "(I) don't want to meet",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2733
     },
     {
       "id": "aitakatta-desu",
       "target": "あいたかったです",
       "english": "(I) wanted to meet",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2741
     },
     {
       "id": "aitakunakatta-desu",
       "target": "あいたくなかったです",
       "english": "(I) didn't want to meet",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2749
     },
     {
       "id": "jaa-mata-ashita",
       "target": "じゃ、またあした",
       "english": "See you tomorrow",
       "category": "Greetings",
-      "note": "Compare じゃ、また (ja, mata) \"See you\" from Frequently Used Expressions. Adding the day or time you will meet again is the usual way to part, instead of さようなら (sayōnara)."
+      "note": "Compare じゃ、また (ja, mata) \"See you\" from Frequently Used Expressions. Adding the day or time you will meet again is the usual way to part, instead of さようなら (sayōnara).",
+      "sourceOrder": 5631
     },
     {
       "id": "ja-mata-suiyoubi-ni",
       "target": "じゃ、またすいようびに",
       "english": "See you on Wednesday",
       "category": "Greetings",
-      "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead."
+      "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead.",
+      "sourceOrder": 5081
     },
     {
       "id": "chotto-matte-kudasai-l17",
@@ -762,7 +853,8 @@
       "uncertain": true,
       "reviewNote": "Speaking Practice 2. Glossed in the dialogue translation only; may already be taught. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target) | Possibly premature — uses verb[て-form]ください (and the verb まちます), neither introduced until later in the book",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 5362
     },
     {
       "id": "wakarimashita-l17",
@@ -771,7 +863,8 @@
       "category": "Greetings",
       "uncertain": true,
       "reviewNote": "Paul's closing line. Translation is 'I've got that'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (わかります is formally taught as a verb/grammar point (noun が わかります) later)",
-      "repeatOf": "wakarimashita"
+      "repeatOf": "wakarimashita",
+      "sourceOrder": 293
     },
     {
       "id": "nozomi-hotel",
@@ -781,7 +874,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 247
     },
     {
       "id": "ajaruto-sukuuru",
@@ -791,7 +885,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3476
     },
     {
       "id": "sakura-kouen",
@@ -801,7 +896,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3516
     },
     {
       "id": "minato-tenisu-kurabu",
@@ -811,7 +907,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3548
     },
     {
       "id": "antiiku-toukyou",
@@ -821,7 +918,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3582
     }
   ]
 }

@@ -103,6 +103,11 @@ const CORPUS_SCHEMA = {
           // has one meaning and a cue would invent a distinction. Must name a card in the same
           // collision group, so it cannot be used to silence an unrelated finding.
           repeatOf: { type: ["string", "null"] },
+          // Where this card's target first appears in the source chapter, as a character offset.
+          // The REVIEW view sorts by it so a reviewer can read the chapter alongside the table;
+          // the stored order stays pedagogical and is what reaches the deck. Base units only:
+          // an extras unit is mostly composed sentences that appear nowhere in the book.
+          sourceOrder: { type: ["number", "null"] },
           // Legacy alias for `note`, kept optional so pre-rename corpus.json still validates; the
           // migration folds `cardNote` into `note` and splits out `hint`.
           cardNote: { type: ["string", "null"] },
@@ -218,6 +223,11 @@ const CARDS_SCHEMA = {
           // has one meaning and a cue would invent a distinction. Must name a card in the same
           // collision group, so it cannot be used to silence an unrelated finding.
           repeatOf: { type: ["string", "null"] },
+          // Where this card's target first appears in the source chapter, as a character offset.
+          // The REVIEW view sorts by it so a reviewer can read the chapter alongside the table;
+          // the stored order stays pedagogical and is what reaches the deck. Base units only:
+          // an extras unit is mostly composed sentences that appear nowhere in the book.
+          sourceOrder: { type: ["number", "null"] },
           target: { type: "string" },
           pronunciation: { type: "string" },
           // Same contract as the corpus schema's `ttsText`: the text TTS speaks instead of the target

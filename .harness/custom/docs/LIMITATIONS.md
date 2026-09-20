@@ -2794,3 +2794,24 @@ assemble stays the resume command.
 
 **Status:** worked around; the structural fix is open.
 
+
+## A duplicate target is merged by `translate`, silently, and preflight reads it as drift
+
+- **What:** the union reconciler deliberately keeps two items with the same target and different
+  glosses, because merging on target alone is how one of two senses gets deleted (bridge and
+  chopsticks share a spelling). The `semantic-dedup` agent is supposed to resolve those afterwards.
+  On Lesson 17 it changed nothing, and `translate` then collapsed 16 of them by target on its way to
+  `cards.json`, leaving 99 corpus items and 83 cards.
+- **Why it stands:** no content is lost. Every one of the 16 has a surviving twin carrying the same
+  target, verified on two separate builds of this chapter (19 of 19, then 16 of 16). The merge is
+  doing the right thing; it is the silence that is wrong.
+- **Impact:** three surfaces disagree about what happened. `corpus.json` and `cards.json` differ with
+  no record of why, the reviewer sees 83 cards and no indication that 16 were merged away, and
+  preflight reports it as `corpus drift ... an item that never became a card, or a card deleted from
+  one file only`, which describes a defect. Anyone reading that line has to re-derive the explanation
+  by hand, as this entry did.
+- **Status:** open. **Revisit when** a merge turns out to have dropped a real sense, or when the
+  corpus-drift check is next touched. The fix is small either way: have whichever pass merges record
+  it, so the drift check can tell a merge from a loss instead of naming both in one sentence.
+- **Verified by:** the two counts should differ only by merged duplicates, never by content —
+  `node -e "const c=require('./output/epubs/japanese-for-busy-people-book-1-kana/chapter-17/corpus.json'),k=require('./output/epubs/japanese-for-busy-people-book-1-kana/chapter-17/cards.json');const t=new Set(k.items.map(i=>(i.target||'').trim()));console.log(c.items.filter(i=>!k.items.some(x=>x.id===i.id)&&!t.has((i.target||'').trim())).length+' genuine loss(es)')"`

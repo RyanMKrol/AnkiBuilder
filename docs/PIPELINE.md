@@ -1464,14 +1464,17 @@ list defaults to the only extraction it can have, and asking for the phase there
 than a silent downgrade.
 
 **A re-run reuses the phase's output.** `assemble` is this project's resume command, so re-running
-it on a half-built lesson has to be cheap. It also has to be possible at all: `writeSnapshot`
-refuses to overwrite, deliberately, so a phase that could not be re-entered would turn that
-safeguard into a crash on the recovery path. The presence of `as-generated.json` beside
-`corpus.json` is what says the phase finished; a corpus without one is a crash between the reconcile
-step and the snapshot, and it runs again.
+it on a half-built lesson has to be cheap. The phase writes its merged items to `phase-corpus.json`,
+and the presence of `as-generated.json` beside it is what says the phase finished; a phase corpus
+without a snapshot is a crash between the reconcile step and the snapshot, and it runs again.
 
-`scripts/build-base.mjs` is unchanged and still runs the phase standalone, which is what
-`shadow-run.mjs` uses. The difference is only who calls it.
+**`corpus.json` has exactly one writer, and that is the point of the separate name.** It used to be
+written by the phase as well, so a crash between the phase and the stamping left a corpus with no
+`epubHash`, `chapterNumber` or `chapterLabel` that a re-run read as complete -- and the deck path
+comes from `chapterLabel`, so the lesson would have been built and shipped somewhere wrong. `resume`
+could not tell either: it reads the pass ledger, and a crash before the stamping writes none. With
+one writer, "is this corpus finished?" is answered by the filename rather than by a heuristic that
+sniffed for a missing stamp.
 
 ### From a phase corpus to a reviewable unit
 

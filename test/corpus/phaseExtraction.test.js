@@ -4,6 +4,7 @@ import { promises as fs, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import os from "os";
 import { extractBaseCorpus } from "../../src/corpus/phaseExtraction.js";
+import { PHASE_CORPUS_FILE } from "../../src/agents/basePhase.js";
 
 async function withTempDir(fn) {
   const dir = await fs.mkdtemp(join(os.tmpdir(), "phase-extract-"));
@@ -27,7 +28,7 @@ test("returns what the phase actually wrote, not what it reported", () => {
       items: [{ id: "a", english: "One", category: "Numbers", target: "いち" }],
     };
     const runPhase = () => {
-      writeFileSync(join(unitDir, "corpus.json"), JSON.stringify(corpus));
+      writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify(corpus));
       writeFileSync(join(unitDir, "as-generated.json"), JSON.stringify({ phase: "base" }));
       return { run: okRun(), verdict: { ok: true, problems: [], notes: [] }, gaps: null };
     };
@@ -50,7 +51,7 @@ test("a re-run reuses the phase's output instead of re-spending four agent calls
   return withTempDir(async (unitDir) => {
     mkdirSync(unitDir, { recursive: true });
     const corpus = { meta: { phase: "base" }, items: [{ id: "a" }, { id: "b" }] };
-    writeFileSync(join(unitDir, "corpus.json"), JSON.stringify(corpus));
+    writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify(corpus));
     writeFileSync(join(unitDir, "as-generated.json"), JSON.stringify({ phase: "base" }));
 
     const logged = [];
@@ -74,12 +75,12 @@ test("a re-run reuses the phase's output instead of re-spending four agent calls
 });
 
 test("a corpus with no snapshot beside it is a half-run phase, and runs again", () => {
-  // The snapshot is what says the phase completed. corpus.json alone can be a crash between the
+  // The snapshot is what says the phase completed. The phase corpus alone can be a crash between the
   // reconcile step and the snapshot, and reusing that would ship a corpus with no baseline to
   // diff the review against.
   return withTempDir(async (unitDir) => {
     mkdirSync(unitDir, { recursive: true });
-    writeFileSync(join(unitDir, "corpus.json"), JSON.stringify({ meta: {}, items: [] }));
+    writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify({ meta: {}, items: [] }));
 
     let ran = false;
     extractBaseCorpus({
@@ -89,7 +90,7 @@ test("a corpus with no snapshot beside it is a half-run phase, and runs again", 
       targetLanguage: "ja",
       runPhase: () => {
         ran = true;
-        writeFileSync(join(unitDir, "corpus.json"), JSON.stringify({ meta: {}, items: [] }));
+        writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify({ meta: {}, items: [] }));
         return { run: okRun([]), verdict: { ok: true, problems: [] } };
       },
     });
@@ -131,7 +132,7 @@ test("the adversary's gaps are surfaced, because nobody reads a JSON file they w
       targetLanguage: "ja",
       log: (line) => logged.push(line),
       runPhase: () => {
-        writeFileSync(join(unitDir, "corpus.json"), JSON.stringify({ meta: {}, items: [] }));
+        writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify({ meta: {}, items: [] }));
         return {
           run: okRun([]),
           verdict: { ok: true, problems: [] },

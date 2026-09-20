@@ -111,9 +111,18 @@ if (dry) {
 }
 
 // The generation itself is v1's, unchanged and deliberately so: src/audio is the most portable code
-// in the repo and the most expensive to get wrong, so v2 drives it rather than reimplementing it.
-console.log(`\nrun the audio stage for each unit, then review both at once:`);
+// in the repo and the most expensive to get wrong, so v2 DRIVES it rather than reimplementing it.
+//
+// It used to print these two commands and exit 0. That is the one thing this script must never do:
+// its own header warns that it spends real money, so an operator who reads the exit code rather than
+// the clips on disk hands over an audio review with no audio in it. Driving both units from here is
+// also the point of the script -- a chapter's two units get their clips in ONE run, which is what
+// gives them one shared review.
+const { runCli } = await import("../src/cli/index.js");
 for (const unit of withCards) {
-  console.log(`   node src/cli/bin.js audio --run ${unit.dir}`);
+  console.log(`\naudio: ${unit.name}`);
+  await runCli(["audio", "--run", unit.dir]);
 }
-console.log(`   then: /chapter/<type>/<id>/${chapterNumber}`);
+console.log(
+  `\nboth units voiced. One audio review for the chapter: /chapter/<type>/<id>/${chapterNumber}`,
+);

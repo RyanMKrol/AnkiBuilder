@@ -166,6 +166,10 @@ export function runBasePhase({
   );
   recordStep(run, {
     step: "table-specialist",
+    // A table/section it named that it was not given: recorded, never fatal.
+    reason: tableResult.value.unaskedFor?.length
+      ? `reported ${tableResult.value.unaskedFor.length} it was not given: ${tableResult.value.unaskedFor.join(", ")}`
+      : null,
     role: "tableSpecialist",
     status: STEP_STATUS.OK,
     durationMs: tableResult.durationMs,
@@ -184,6 +188,10 @@ export function runBasePhase({
   );
   recordStep(run, {
     step: "chapter-reader",
+    // A table/section it named that it was not given: recorded, never fatal.
+    reason: readerResult.value.unaskedFor?.length
+      ? `reported ${readerResult.value.unaskedFor.length} it was not given: ${readerResult.value.unaskedFor.join(", ")}`
+      : null,
     role: "chapterReader",
     status: STEP_STATUS.OK,
     durationMs: readerResult.durationMs,

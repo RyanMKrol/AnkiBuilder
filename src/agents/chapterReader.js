@@ -79,13 +79,15 @@ export function assertSectionsAccountedFor(sections, reported) {
         `this deck has lost real content to exactly that.`,
     );
   }
-  const extra = [...reportedTally].filter(([title, n]) => (wanted.get(title) ?? 0) < n);
-  if (extra.length) {
-    throw new Error(
-      `chapter reader reported section(s) it was not given: ${extra.map(([t]) => t).join(", ")}`,
-    );
-  }
-  return reported;
+  // An UNASKED-FOR section is not the same failure as a missing one, and must not be treated as one.
+  // The reader is given the chapter's headings; a chapter also has content between them, and naming
+  // something outside the list is reading slightly wide rather than inventing coverage. Refusing
+  // over it discards the whole response and every step queued behind it, which is what the exercise
+  // miner did to a real Lesson 17 build over a TARGET DIALOGUE heading. Reported, never fatal.
+  const unaskedFor = [...reportedTally]
+    .filter(([title, n]) => (wanted.get(title) ?? 0) < n)
+    .map(([title]) => title);
+  return { reported, unaskedFor };
 }
 
 /** Sections the role admits it did not read. Never empty-by-construction; a caller must look. */
@@ -115,11 +117,13 @@ export function readChapter({
   const parsed = JSON.parse(extractJsonObjectText(raw));
 
   const reported = Array.isArray(parsed.sections) ? parsed.sections : [];
-  assertSectionsAccountedFor(sections, reported);
+  const { unaskedFor } = assertSectionsAccountedFor(sections, reported);
 
   const items = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => ({
     ...item,
     producedBy: ROLE_ID,
   }));
-  return { items, sections: reported };
+  // Headings it named that were not in the list it was given: a note for the run report, not a
+  // rejection. See assertSectionsAccountedFor.
+  return { items, sections: reported, unaskedFor };
 }

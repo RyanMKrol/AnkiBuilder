@@ -65,14 +65,23 @@ test("a response that skips a table is rejected, not merged", () => {
   );
 });
 
-test("a verdict for a table that was never sent is rejected", () => {
+test("a verdict for a table that was never sent is dropped and reported, not rejected", () => {
+  // It cannot be attached to anything, so dropping it loses nothing -- while refusing the whole
+  // response discards every verdict the specialist got right, and with it the items it extracted.
+  // The missing check below is the one that protects real coverage.
+  const { verdicts, unaskedFor } = assertAccountedFor(TABLES, [
+    ...TABLES.map((t) => ({ index: t.index, verdict: "vocabulary" })),
+    { index: 9, verdict: "layout" },
+  ]);
+  assert.deepEqual(unaskedFor, [9]);
+  assert.equal(verdicts.length, TABLES.length);
+  assert.ok(!verdicts.some((v) => v.index === 9));
+});
+
+test("a table it WAS given and never judged still throws", () => {
   assert.throws(
-    () =>
-      assertAccountedFor(TABLES, [
-        { index: 0, verdict: "vocabulary" },
-        { index: 9, verdict: "layout" },
-      ]),
-    /judged table 9, which it was not given/,
+    () => assertAccountedFor(TABLES, [{ index: TABLES[0].index, verdict: "vocabulary" }]),
+    /did not account for table\(s\)/,
   );
 });
 

@@ -76,9 +76,16 @@ export function renderTableSpecialistPrompt({ tables, targetLanguage, meta = nul
 export function assertAccountedFor(tables, verdicts) {
   const given = new Set(tables.map((t) => t.index));
   const seen = new Map();
+  const unaskedFor = [];
   for (const verdict of verdicts) {
+    // A verdict on a table index that does not exist cannot be attached to anything, so dropping it
+    // loses nothing -- unlike refusing the response, which discards every verdict the specialist got
+    // right. The missing check below still catches a table it genuinely failed to judge, which is
+    // the failure that matters: a table nobody judged and a table holding nothing must not look the
+    // same.
     if (!given.has(verdict.index)) {
-      throw new Error(`table specialist judged table ${verdict.index}, which it was not given`);
+      unaskedFor.push(verdict.index);
+      continue;
     }
     if (seen.has(verdict.index)) {
       throw new Error(`table specialist judged table ${verdict.index} twice`);
@@ -98,7 +105,9 @@ export function assertAccountedFor(tables, verdicts) {
         `A table nobody judged and a table holding nothing must not look the same.`,
     );
   }
-  return verdicts;
+  // Only the verdicts naming a real table, plus the indices that named none, so the run report can
+  // say the specialist answered about a table that does not exist.
+  return { verdicts: [...seen.values()], unaskedFor };
 }
 
 /**
@@ -116,13 +125,15 @@ export function judgeTables({ tables, targetLanguage, meta = null, runClaude } =
   const parsed = JSON.parse(extractJsonObjectText(raw));
 
   const verdicts = Array.isArray(parsed.tables) ? parsed.tables : [];
-  assertAccountedFor(tables, verdicts);
+  const { verdicts: judged, unaskedFor } = assertAccountedFor(tables, verdicts);
 
   const items = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => ({
     ...item,
     producedBy: ROLE_ID,
   }));
-  return { items, tables: verdicts };
+  // `judged` rather than `verdicts`: a verdict naming a table that does not exist is dropped, and
+  // `unaskedFor` carries those indices to the run report instead.
+  return { items, tables: judged, unaskedFor };
 }
 
 /** The prompt template, for the eval fixtures and the golden placeholder check. */

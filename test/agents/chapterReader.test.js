@@ -79,10 +79,25 @@ test("a response that skips a section is rejected: a short read must not look li
 
 test("a repeated heading is accounted for by count, since a chapter may print one twice", () => {
   assert.doesNotThrow(() => assertSectionsAccountedFor(SECTIONS, allSections));
+});
+
+test("a heading it was NOT given is reported, never fatal", () => {
+  // The same split the exercise miner needed: a section it was given and never mentioned is a real
+  // coverage failure, because a section that taught nothing and one nobody reached look identical.
+  // A section it names that was not on the list is reading wide, and discarding the whole response
+  // over it throws away every item the reader did find.
+  const { unaskedFor, reported } = assertSectionsAccountedFor(SECTIONS, [
+    ...allSections,
+    { title: "EXERCISES", read: true },
+  ]);
+  assert.deepEqual(unaskedFor, ["EXERCISES"]);
+  assert.equal(reported.length, allSections.length + 1);
+});
+
+test("a heading it WAS given and never mentioned still throws", () => {
   assert.throws(
-    () =>
-      assertSectionsAccountedFor(SECTIONS, [...allSections, { title: "EXERCISES", read: true }]),
-    /reported section\(s\) it was not given/,
+    () => assertSectionsAccountedFor(SECTIONS, allSections.slice(1)),
+    /did not account for section\(s\)/,
   );
 });
 

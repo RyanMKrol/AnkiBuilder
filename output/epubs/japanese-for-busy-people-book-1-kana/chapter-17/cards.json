@@ -380,7 +380,8 @@
       "audioOriginal": "5f0ea2d182e88fd8.orig.mp3",
       "audioAuto": "5f0ea2d182e88fd8.mp3",
       "audioMarked": true,
-      "audioTextHash": "5f0ea2d182e88fd8"
+      "audioTextHash": "5f0ea2d182e88fd8",
+      "repeatOf": "zehi"
     },
     {
       "id": "nemasu",
@@ -511,7 +512,8 @@
       "audioOriginal": "081254233ac10e46.orig.mp3",
       "audioAuto": "081254233ac10e46.mp3",
       "audioMarked": true,
-      "audioTextHash": "081254233ac10e46"
+      "audioTextHash": "081254233ac10e46",
+      "repeatOf": "shokuji-shimasu"
     },
     {
       "id": "hajimemasu",
@@ -659,7 +661,9 @@
       "audioOriginal": "6d6d4ce8fc692d62.orig.mp3",
       "audioAuto": "6d6d4ce8fc692d62.mp3",
       "audioMarked": true,
-      "audioTextHash": "6d6d4ce8fc692d62"
+      "audioTextHash": "6d6d4ce8fc692d62",
+      "repeatOf": "oyogimasu-swim",
+      "hint": "the single verb, not the noun-plus-suru form"
     },
     {
       "id": "kaerimasu-l17",
@@ -1005,7 +1009,8 @@
       "audioOriginal": "cace7afeb5538c98.orig.mp3",
       "audioAuto": "cace7afeb5538c98.mp3",
       "audioMarked": true,
-      "audioTextHash": "cace7afeb5538c98"
+      "audioTextHash": "cace7afeb5538c98",
+      "repeatOf": "wakarimashita"
     },
     {
       "id": "nozomi-hotel",

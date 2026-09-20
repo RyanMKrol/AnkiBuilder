@@ -157,3 +157,51 @@ test("ordering: elliptical answers and bare-particle fragments are never foundat
 test("ordering: requires a seed", () => {
   assert.throws(() => orderExtrasUnit([], {}), /seed/);
 });
+
+test("a card that names the repeat it makes resolves the collision without a cue", () => {
+  // A collision is one face with two different answers, and a cue tells the learner which is wanted.
+  // A deliberate repeat has one answer: the book teaches およぎます in Lesson 15 and again in 17, and
+  // a cue would invent a distinction that does not exist. The check cannot tell "Swim" from "To
+  // swim" as one meaning, so the reviewer records the decision and the check honours it.
+  const units = [
+    {
+      unit: "chapter-15",
+      items: [{ id: "oyogimasu-swim", english: "Swim", target: "およぎます" }],
+    },
+    {
+      unit: "chapter-17",
+      items: [
+        { id: "oyogimasu", english: "To swim", target: "およぎます", repeatOf: "oyogimasu-swim" },
+      ],
+    },
+  ];
+  const { byTarget } = findCollisions(units);
+  assert.equal(byTarget.length, 1, "still reported as a group — the audit still sees it");
+  assert.equal(
+    byTarget[0].members.every((m) => m.hasCue),
+    true,
+    "but every member counts as resolved, so it raises no FAIL",
+  );
+});
+
+test("repeatOf pointing outside the group does NOT silence the collision", () => {
+  // Otherwise it becomes a way to mute any finding by naming any id at all.
+  const units = [
+    {
+      unit: "chapter-15",
+      items: [{ id: "oyogimasu-swim", english: "Swim", target: "およぎます" }],
+    },
+    {
+      unit: "chapter-17",
+      items: [
+        { id: "oyogimasu", english: "To swim", target: "およぎます", repeatOf: "some-other-card" },
+      ],
+    },
+  ];
+  const { byTarget } = findCollisions(units);
+  assert.equal(
+    byTarget[0].members.some((m) => !m.hasCue),
+    true,
+    "an id that names nothing in this group is not an acknowledgement of it",
+  );
+});

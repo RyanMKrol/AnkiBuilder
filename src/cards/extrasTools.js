@@ -66,6 +66,31 @@ const filled = (value) => typeof value === "string" && value.trim().length > 0;
  * targets (a Production card's face), and same target with different glosses (Recognition).
  * Report-only by design — pre-existing collisions on signed-off cards are for a human to word.
  */
+/**
+ * Whether this card says, explicitly, that it repeats another card in the same collision group.
+ *
+ * A collision is "one face, two different answers", and a cue resolves it by telling the learner
+ * which answer is wanted. A DELIBERATE repeat has no second answer: the book teaches およぎます in
+ * Lesson 15 and again in Lesson 17, the meaning is the same both times, and a cue would be inventing
+ * a distinction that does not exist. The check cannot tell that apart from a real collision, because
+ * "Swim" and "To swim" are two strings and only a human knows they are one meaning.
+ *
+ * So the reviewer records the decision rather than the check guessing it. `repeatOf` names the
+ * earlier card, and it must name a card in THIS group -- an id pointing anywhere else is not an
+ * acknowledgement of this collision and does not silence it.
+ *
+ * ONE member naming another resolves the whole group. The acknowledgement is about the pair, and the
+ * card that gets the marker is the new one, because the earlier one is usually in a unit that has
+ * already shipped: requiring a marker on both would mean editing a delivered lesson to record a
+ * decision about a lesson written months later.
+ */
+function groupAcknowledgesARepeat(members) {
+  const ids = new Set(members.map(({ item }) => item.id));
+  return members.some(
+    ({ item }) => item?.repeatOf && item.repeatOf !== item.id && ids.has(item.repeatOf),
+  );
+}
+
 export function findCollisions(units) {
   const collect = (keyOf, valueOf, cueAccepted) => {
     const map = new Map();
@@ -82,6 +107,7 @@ export function findCollisions(units) {
     for (const [key, members] of map) {
       const answers = new Set(members.map(({ item }) => valueOf(item)));
       if (answers.size < 2) continue;
+      const acknowledged = groupAcknowledgesARepeat(members);
       collisions.push({
         key,
         members: members.map(({ unit, item }) => ({
@@ -96,7 +122,7 @@ export function findCollisions(units) {
           // late to help. So a hint fixes an English-gloss collision and CANNOT fix a target one.
           // Accepting either everywhere is what once let a shelf of unanswerable Recognition cards
           // pass this audit as "hint ok".
-          hasCue: cueAccepted(item),
+          hasCue: cueAccepted(item) || acknowledged,
         })),
       });
     }

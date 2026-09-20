@@ -403,7 +403,8 @@
       "english": "Cook",
       "category": "Work & Occupations",
       "target": "コック",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces",
+      "hint": "the person who cooks, not the activity"
     },
     {
       "id": "td-intro-tanaka-short",

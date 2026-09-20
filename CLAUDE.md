@@ -55,6 +55,14 @@ inherits them rather than replacing them. Two consequences worth knowing before 
   have. Read the comments in `.gitignore` before editing it: the exclusion is written as
   `/output/**` followed by a directory re-include precisely because git never descends into an
   excluded directory, so the obvious `/output` entry would silently un-track all 93.
+- **A field belongs in BOTH schemas or neither.** `corpus.json` and `cards.json` have separate
+  declarations in `src/model/index.js`, and a field one knows and the other does not produces a build
+  that gets most of the way and then dies at a write. That happened four times in one day:
+  `alternateOf` (written by the reconciler), `baseChapterLabel` (stamped by the extras phase, written
+  back by `prepare`), `fillInBlank` (produced by phase 2's miner, silently dropped), and `fromTable`
+  (agent provenance, which correctly belongs in neither). Ask which passes WRITE the field, not just
+  which read it: `prepare` writes the corpus back after translating, so anything the corpus carries
+  has to survive a round trip.
 - **Four things are a contract, not an implementation detail**, because they are already baked into
   a live collection: the `cards.json` / `corpus.json` schemas, the audio filename convention (which
   addresses roughly 480 MB of paid clips, including the 14 hand-trimmed originals `.gitignore` lists

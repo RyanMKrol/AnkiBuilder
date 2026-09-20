@@ -173,6 +173,13 @@ One more thing to do before you hand the link over, which is not the watcher's j
   accept a finding you have not actually looked at: the whole point of the tier is that the number
   it prints is instances nobody has judged yet.
 
+- **Do not run a build or a test suite while someone is editing in the dashboard.** The pre-push
+  hook snapshots `output/`, `.anki-builder/` and `anki-backups/` around the test run to catch a test
+  writing to production state (golden rule 6). A reviewer hand-trimming a clip at the same moment
+  writes to exactly those trees, so the guard reports it as a test violation and blocks the push.
+  Nothing is wrong and nothing needs restoring: commit the reviewer's edits and push again once they
+  pause. Never reach for `--no-verify`, which is what the message is designed to stop.
+
 - **Run `npm run check` before a DELIVER**, not just before a review link. It is
   `ci && validate:decks && preflight` — the full gate over both tracked code and on-disk deck state.
   (It is deliberately not in the `pre-push` hook: that would couple `git push` to deck state that
@@ -354,6 +361,13 @@ introduces, the pedagogical sort, and the chaining into `prepare` all run exactl
 
 **Base units are lexical entries. Sentences belong to phase 2.** That is the split the two phases
 exist to enforce, and `prepare` no longer mines drills into a phase-built unit.
+
+**Check the artifact, not the exit code — that applies to SCRIPTS, not just to review clicks.**
+`build-audio.mjs` once printed the two commands it should have run and exited 0, having generated
+nothing, while its own header warned in capitals that it spends real money. A clean exit from a
+script that says it spends money reads as money spent, and the only symptom was that no card had an
+`audio` field. Before reporting a stage done, count the thing it was supposed to produce: clips on
+disk, cards with the field set, units in the package build's own line.
 
 **Do not report a lesson to the user until `assemble` has returned.** Its last line is
 `prepare: <runDir> is ready for the corpus review` — that, not `wrote corpus with N item(s)`, is the
@@ -704,10 +718,41 @@ mostly is not: the adversary is tuned for recall over precision, told in its own
 exhaustive rather than tidy, so over-reporting is the design. What matters is the shape of what
 survived the gap filler, which is what this step reads.
 
+### Known rough edges at this gate
+
+Two things a reviewer of Lesson 17 asked for that are not built yet, recorded here so the next
+session does not rediscover them from scratch:
+
+- **The review table is in pedagogical order, not book order.** That is right for the deck -- a
+  learner must meet vocabulary before the sentences built on it -- and wrong for reading a chapter
+  alongside the review, which means jumping around. The fix is a `sourceOrder` stamped on each BASE
+  item (the extras unit does not need it; its sentences are often invented and appear nowhere in the
+  book) and the review view sorting on it, leaving the stored order alone. Measured on Lesson 17:
+  taking each card's first occurrence in the chapter text, claimed longest-target-first so a short
+  word cannot match inside a longer one, resolves 57 of 57 and reproduces the book's own order.
+- **A rejected agent response is never written.** Every guard in `src/agents` parses, validates and
+  then throws, so a rejection destroys the evidence it was judging -- on one failure only
+  `blocks.json` reached disk. The fix is to persist the raw response before parsing, but production
+  leaves `runClaude` undefined and lets `runRole` supply the default, so a phase that always injects
+  a teeing wrapper risks a test that does not stub it spawning a real model. That is golden rule 6,
+  so it needs doing deliberately rather than in passing.
+
 ## Step 3: Gate 1, the base corpus review
 
-Open the lesson's **Review** view on the dashboard (`/review/...` — distinct from the read-only
-**Browse** view). The unit renders the combined **Corpus review**: columns #, **English**,
+Open the lesson's **Review** view on the dashboard (distinct from the read-only **Browse** view):
+
+```
+/review/<type>/<collection-slug>/<unit>      one unit      e.g. /review/book/my-book-slug/17
+/review/<type>/<collection-slug>             every unit
+/chapter/<type>/<collection-slug>/<n>        a chapter's two units on one page (the gate 3 view)
+/faces/<type>/<collection-slug>/<unit>       the card-face preview, read-only
+```
+
+**`<type>` is the ADAPTER name — `book`, `course` or `template` — not the folder under `output/`.**
+The directories are `output/epubs/…`, `output/courses/…`, `output/templates/…`, and guessing `epubs`
+from the path gives a rendered 404 that looks exactly like a dead server. **`<unit>` is the bare
+number** (`17`), or `17-extras`, never `chapter-17`. When in doubt, take a link off the dashboard
+home page rather than building one. The unit renders the combined **Corpus review**: columns #, **English**,
 **Category**, **Target**, **Pronunciation** (romaji), **Hint**, **Note**, **Review note**,
 **AI-suggested**, **Uncertain**, **Exclude**. Target/Pronunciation are inline-editable (click a cell,
 edit, click away to save); each row has an **Exclude** checkbox and the lesson a **Mark reviewed**
@@ -897,8 +942,15 @@ hand-made clip. **Exclude** drops a card without returning to the corpus review.
 works: [audio-pipeline](references/audio-pipeline.md). Rebuilds are fully automatic, with no manual
 rebuild button; **Mark done** folds the lesson into the group package and rebuilds then.
 
-**Mark done, the Gate 3 sign-off.** When the audio is finalized, click **Mark done** on the
-chapter page. It sets `cards.meta.done` on BOTH units and rebuilds the collection package, so a
+**Mark done, the Gate 3 sign-off. Click it on the CHAPTER page (`/chapter/…/<n>`), not on one
+unit's own review page.** The chapter page signs off both units in one request; a unit page signs off
+only the unit you are looking at, which is correct for a single-lesson deck and wrong for a chapter.
+Getting this wrong is silent and expensive: the merge selects on `done`, so a chapter whose extras
+unit never got one ships without it. That happened on Lesson 17 -- 111 reviewed, voiced cards left
+out of the package, and the only visible symptom was the unit count in the `deck --book-dir` line.
+**Read that line.** It says how many units went in, and you know how many the chapter has.
+
+It sets `cards.meta.done` on BOTH units and rebuilds the collection package, so a
 chapter is signed off once rather than twice. This is the gate the book/course merge checks:
 `deck --book-dir` and the dashboard package only `done` units.
 

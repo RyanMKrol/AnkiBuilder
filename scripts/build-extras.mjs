@@ -67,8 +67,15 @@ if (!existsSync(chapterFilePath)) {
 
 const baseItems = (cards.items ?? []).filter((i) => !i.excluded);
 
-// Every earlier lesson of this collection, so the vocabulary rule is judged against what the learner
-// has actually met rather than against this chapter alone.
+// Every earlier BASE lesson of this collection, so the vocabulary rule is judged against what the
+// learner has met rather than against this chapter alone.
+//
+// Extras units are deliberately left out here, and that is a stricter rule than reality: an extras
+// unit can teach real vocabulary of its own (chapter-9-extras teaches おとうと), so a miner is denied
+// a word the learner does know. It fails SAFE -- the damage from using unmet vocabulary is a card the
+// learner cannot read, and the damage from this is a sentence that could have been slightly richer --
+// but it is a constraint, not an accurate model of the learner. `priorItems` below reads extras too,
+// because backward dedup has the opposite risk profile.
 const collection = dirname(baseDir);
 const thisNumber = parseUnitDir(baseDir.split("/").pop())?.number ?? Infinity;
 const earlierItems = [];
@@ -84,8 +91,13 @@ for (const name of (await import("fs")).readdirSync(collection)) {
 
 const spends = EXTRAS_PHASE_STEPS.filter((s) => s.kind === "agent");
 console.log(`base:    ${baseDir}  (${baseItems.length} approved card(s))`);
+// `thisNumber` is the CHAPTER number, not a unit count. Printing it after the words "earlier
+// unit(s)" read as a count and cost a real abort: 17 looked like a loss of half the collection
+// against the 34 units on disk, with a paid run about to start.
 console.log(
-  `earlier: ${earlierItems.length} card(s) from ${thisNumber === Infinity ? "?" : thisNumber} earlier unit(s)`,
+  `earlier: ${earlierItems.length} card(s) from every base unit before chapter ${
+    thisNumber === Infinity ? "?" : thisNumber
+  }`,
 );
 console.log(`chapter: ${chapterFilePath}`);
 

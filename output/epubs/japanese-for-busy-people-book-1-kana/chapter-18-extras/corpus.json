@@ -21,10 +21,7 @@
       "target": "じゅうしょをかいてください",
       "english": "Please write your address.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true,
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
+      "aiSuggested": true
     },
     {
       "id": "smith-report-after-meeting",
@@ -793,6 +790,106 @@
       "excluded": true,
       "excludedBy": "gate2-frame-trim",
       "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
+    },
+    {
+      "id": "link-kaette-terebi",
+      "category": "Home & Household",
+      "english": "I'll go home and watch television.",
+      "target": "うちにかえって、テレビをみます",
+      "note": "かえって (kaette) is the て-form of かえります (kaerimasu), a Regular 1 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: かえって appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-oshiete-basho",
+      "category": "Directions",
+      "english": "I'll tell Smith-san the location and we'll go together.",
+      "target": "スミスさんにばしょをおしえて、いっしょにいきます",
+      "note": "おしえて (oshiete) is the て-form of おしえます (oshiemasu), a Regular 2 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: おしえて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-hanashite-report",
+      "category": "Work & Occupations",
+      "english": "I'll talk with a colleague and write the report.",
+      "target": "どうりょうとはなして、レポートをかきます",
+      "note": "はなして (hanashite) is the て-form of はなします (hanashimasu), a Regular 1 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: はなして appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-matte-hirugohan",
+      "category": "Food",
+      "english": "I'll wait in the lobby and we'll have lunch together.",
+      "target": "ロビーでまって、いっしょにひるごはんをたべます",
+      "note": "まって (matte) is the て-form of まちます (machimasu), a Regular 1 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: まって appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-kashite-densha",
+      "category": "Transport",
+      "english": "I'll lend my friend the car and go home by train.",
+      "target": "ともだちにくるまをかして、でんしゃでかえります",
+      "note": "かして (kashite) is the て-form of かします (kashimasu), a Regular 1 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: かして appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-misete-meishi",
+      "category": "Work & Occupations",
+      "english": "I'll show my business card at reception and wait in the lobby.",
+      "target": "うけつけでめいしをみせて、ロビーでまちます",
+      "note": "みせて (misete) is the て-form of みせます (misemasu), a Regular 2 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: みせて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-kiite-tegami",
+      "category": "Sports & Hobbies",
+      "english": "I'll listen to music and write a letter.",
+      "target": "おんがくをきいて、てがみをかきます",
+      "note": "きいて (kiite) is the て-form of ききます (kikimasu), a Regular 1 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: きいて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-yonde-denwa",
+      "category": "Technology & Communication",
+      "english": "I'll read the e-mail and telephone Smith-san.",
+      "target": "メールをよんで、スミスさんにでんわをします",
+      "note": "よんで (yonde) is the て-form of よみます (yomimasu), a Regular 1 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: よんで appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-mite-bangohan",
+      "category": "Sports & Hobbies",
+      "english": "I'll see a movie and eat dinner.",
+      "target": "えいがをみて、ばんごはんをたべます",
+      "note": "みて (mite) is the て-form of みます (mimasu), a Regular 2 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: みて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+    },
+    {
+      "id": "link-ite-hon",
+      "category": "Home & Household",
+      "english": "I'll stay home and read a book.",
+      "target": "うちにいて、ほんをよみます",
+      "note": "いて (ite) is the て-form of います (imasu), a Regular 2 verb.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Authored at gate 2 to fill a real hole: いて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
     }
   ]
 }

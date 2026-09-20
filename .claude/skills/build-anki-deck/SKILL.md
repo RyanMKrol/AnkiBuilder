@@ -881,10 +881,11 @@ rather than that something is broken.
 Mark the extras unit reviewed, then run the learning pass on it too, then go to Step 4. Build both of
 chapter N's units before starting chapter N+1.
 
-## Step 3c: The final review, before any audio is paid for
+## Step 3c: The final review — run it TWICE, once per corpus gate
 
-**Run this after gate 2 and before the audio stage.** It is the one step that reads the CHAPTER
-against the built cards, which is the question none of the other loops asks.
+**Run it at gate 1 on the base unit, and again after gate 2 on the whole chapter.** It is the one
+step that reads the CHAPTER against the built cards, which is the question none of the other loops
+asks.
 
 ```sh
 node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang> --dry   # always first
@@ -892,8 +893,25 @@ node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang>
 ```
 
 `--dry` assembles everything, prints what it would send and what the deterministic side already
-knows, and calls no model. The real run spends **one Opus call**, which is why it sits here: after
-both content gates, before the stage that buys audio for every card.
+knows, and calls no model. Each real run spends **one Opus call**.
+
+**The mode is detected, not typed.** With no extras unit on disk it runs in `base` mode; once the
+extras unit exists it runs in `chapter` mode. The two ask DIFFERENT questions, because the same six
+are not worth asking twice:
+
+| | `base`, at gate 1 | `chapter`, after gate 2 |
+| --- | --- | --- |
+| What it sees | the base unit only | both units |
+| Its sharpest question | **does this card everything the chapter teaches**, including anything printed only in a table or a picture | is the dominant drill frame actually this chapter's grammar point |
+| Also asks | collisions needing a cue, premature or untaught cards | what is under-drilled, untaught vocabulary in a sentence |
+| Both ask | are the notes TRUE, and what do the transcripts explain | |
+
+**Gate 1 is the run that can still change anything.** Nothing may be added to a lesson after its
+reviewer signs off, so a word the chapter teaches and nobody carded is only fixable HERE. The
+chapter-mode run happens when both units are frozen, which is why its questions are about shape
+rather than coverage: by then a missing card costs a trip back through the gate. Running only the
+late one — which is what this did until 2026-09-20 — meant the base unit was reviewed after it was
+frozen AND after the extras had been authored on top of it, two gates too late to act.
 
 **What it ties together, and why that is the point.** Three things in this repo compute something
 true and then leave it in a report: `preflight`'s INFO findings, the drill-shape measurements, and

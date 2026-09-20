@@ -52,16 +52,22 @@ const chapterNumber = String(positional[1]);
 const baseDir = join(collectionDir, `chapter-${chapterNumber}`);
 const extrasDir = join(collectionDir, `chapter-${chapterNumber}-extras`);
 
-for (const dir of [baseDir, extrasDir]) {
-  if (!existsSync(join(dir, "cards.json"))) {
-    console.error(`no cards.json in ${dir}`);
-    process.exit(2);
-  }
+if (!existsSync(join(baseDir, "cards.json"))) {
+  console.error(`no cards.json in ${baseDir}`);
+  process.exit(2);
 }
+
+// TWO GATES, TWO MODES. At gate 1 the extras unit does not exist yet, and that absence is the whole
+// reason to run here: it is the last point at which a card can be added to this lesson. Refusing
+// without an extras unit — which this script used to do — meant the base unit was only ever reviewed
+// after it had been frozen and after the extras had been authored on top of it, which is two gates
+// too late to act on anything found.
+const hasExtras = existsSync(join(extrasDir, "cards.json"));
+const mode = hasExtras ? "chapter" : "base";
 
 const readCards = (dir) => JSON.parse(readFileSync(join(dir, "cards.json"), "utf-8"));
 const baseCards = readCards(baseDir);
-const extrasCards = readCards(extrasDir);
+const extrasCards = hasExtras ? readCards(extrasDir) : null;
 const shipped = (cards) => cards.items.filter((i) => !i.excluded);
 
 // ── the chapter, from the same cache the extraction model read ───────────────────────────────────
@@ -108,35 +114,44 @@ function yieldFor(dir, cards) {
   }
 }
 
-const frame = dominantFrame(extrasCards.items);
+// Drill shape needs a drill unit. At gate 1 there is none, and saying so beats sending zeroes that
+// would read as "nothing is drilled" — a finding — rather than "nothing drills anything yet".
+const frame = hasExtras ? dominantFrame(extrasCards.items) : null;
 const deterministic = {
   roleYield: {
     base: yieldFor(baseDir, baseCards),
-    extras: yieldFor(extrasDir, extrasCards),
+    extras: hasExtras ? yieldFor(extrasDir, extrasCards) : null,
   },
-  drillShape: {
-    dominantFrame: frame,
-    topFrames: frameDistribution(extrasCards.items).slice(0, 5),
-    taughtItemsDrilledOnlyInDominantFrame: itemsOnlyInFrame(
-      baseCards.items,
-      extrasCards.items,
-      frame?.frame,
-    ).map(({ item, count }) => ({ id: item.id, target: item.target, sentences: count })),
-    leastDrilled: drillCoverage(baseCards.items, extrasCards.items)
-      .slice(0, 15)
-      .map(({ item, count }) => ({ id: item.id, target: item.target, sentences: count })),
-  },
+  drillShape: hasExtras
+    ? {
+        dominantFrame: frame,
+        topFrames: frameDistribution(extrasCards.items).slice(0, 5),
+        taughtItemsDrilledOnlyInDominantFrame: itemsOnlyInFrame(
+          baseCards.items,
+          extrasCards.items,
+          frame?.frame,
+        ).map(({ item, count }) => ({ id: item.id, target: item.target, sentences: count })),
+        leastDrilled: drillCoverage(baseCards.items, extrasCards.items)
+          .slice(0, 15)
+          .map(({ item, count }) => ({ id: item.id, target: item.target, sentences: count })),
+      }
+    : "no extras unit yet — this chapter has not been drilled, so there is no drill shape to report",
   checks: checkFindings,
 };
 
 // ── the transcripts ──────────────────────────────────────────────────────────────────────────────
-const logs = [...readRunLogs(baseDir), ...readRunLogs(extrasDir)];
+const logs = [...readRunLogs(baseDir), ...(hasExtras ? readRunLogs(extrasDir) : [])];
 const transcripts = summarizeTranscripts(logs);
-const transcriptsPresent = hasRunLogs(baseDir) || hasRunLogs(extrasDir);
+const transcriptsPresent = hasRunLogs(baseDir) || (hasExtras && hasRunLogs(extrasDir));
 
 console.log(`chapter:  ${chapterFilePath}`);
+console.log(
+  `mode:     ${mode}${mode === "base" ? "  (gate 1 — cards can still be added)" : "  (both units, before audio)"}`,
+);
 console.log(`base:     ${baseDir}  (${shipped(baseCards).length} shipping)`);
-console.log(`extras:   ${extrasDir}  (${shipped(extrasCards).length} shipping)`);
+console.log(
+  `extras:   ${hasExtras ? `${extrasDir}  (${shipped(extrasCards).length} shipping)` : "not built yet"}`,
+);
 console.log(
   `checks:   ${checkFindings.length} check(s) with findings ` +
     `(${checkFindings.filter((c) => c.tier === "FAIL").length} FAIL, ` +
@@ -144,9 +159,9 @@ console.log(
     `${checkFindings.filter((c) => c.tier === "INFO").length} INFO)`,
 );
 console.log(
-  `frame:    ${frame ? `"${frame.frame}" in ${frame.count}/${frame.total} (${Math.round(frame.share * 100)}%)` : "no dominant frame"}`,
+  `frame:    ${frame ? `"${frame.frame}" in ${frame.count}/${frame.total} (${Math.round(frame.share * 100)}%)` : hasExtras ? "no dominant frame" : "n/a until the extras unit exists"}`,
 );
-const worst = (deterministic.roleYield.extras ?? [])[0];
+const worst = (deterministic.roleYield.extras ?? deterministic.roleYield.base ?? [])[0];
 console.log(
   `yield:    ${worst ? `worst role ${worst.role} kept ${worst.kept}/${worst.produced} (${Math.round(worst.keepRate * 100)}%)` : "no snapshot — this unit predates role attribution"}`,
 );
@@ -162,9 +177,10 @@ if (dry) {
 const review = reviewChapter({
   chapterFilePath,
   baseItems: baseCards.items,
-  extrasItems: extrasCards.items,
+  extrasItems: hasExtras ? extrasCards.items : null,
   deterministic,
   transcripts,
+  mode,
   targetLanguage: targetLanguage ?? baseCards.meta?.targetLanguage ?? "ja",
 });
 

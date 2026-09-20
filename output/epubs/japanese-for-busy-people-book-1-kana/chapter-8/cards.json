@@ -53,7 +53,8 @@
       "audioOriginal": "particle-wo-user-ba8c8c00.orig.mp3",
       "audioAuto": "particle-wo-user-ba8c8c00.mp3",
       "audioFilter": "standard",
-      "audio": "particle-wo-user-ba8c8c00.mp3"
+      "audio": "particle-wo-user-ba8c8c00.mp3",
+      "scene": "marking the thing the verb acts on"
     },
     {
       "id": "shimasu",

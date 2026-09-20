@@ -1,0 +1,1194 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 43,
+    "chapterLabel": "Lesson 19: Making a Request: Please Give Her My Regards",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "made",
+      "target": "まで",
+      "english": "To, as far as (particle)",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 3678,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "note": "Same まで (made) as \"Until (particle)\" from Lesson 3, where it marked the end of a time span. Here it also covers distance: \"as far as\" a place.",
+      "hint": "a place you go as far as, not a time",
+      "scene": "marking how far along a route you are travelling"
+    },
+    {
+      "id": "made-2",
+      "target": "まで",
+      "english": "To, as far as",
+      "category": "Grammar & Function Words",
+      "note": "Particle.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same particle まで with the same gloss; 'particle' appears in the gloss of the kept card, and the other's note only restates it.",
+      "sourceOrder": 3737,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)"
+    },
+    {
+      "id": "made-ni",
+      "target": "までに",
+      "english": "By [specified time]",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 3351,
+      "note": "まで (made) is \"until\" for something that continues; adding に (ni) gives a deadline, \"by\" a time. Compare しごとはごじまでです (shigoto wa go-ji made desu, work lasts until 5:00) with a task that must be finished by 5:00."
+    },
+    {
+      "id": "wo-place-particle",
+      "target": "を",
+      "english": "Particle marking a place or space passed through",
+      "category": "Grammar & Function Words",
+      "note": "Same を (o) as the object marker from Lesson 8, but here it marks the road or space you move along, with verbs like まがります (magarimasu).",
+      "sourceOrder": 197,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "scene": "marking a space that is moved along or through"
+    },
+    {
+      "id": "de-means-particle",
+      "target": "で",
+      "english": "Particle marking a means of communication or transportation",
+      "category": "Grammar & Function Words",
+      "note": "Same で (de) as \"By means of (particle)\" from Lesson 4 and Lesson 7. Here it extends to how you communicate, not just what you travel by.",
+      "sourceOrder": 159,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "scene": "naming what something is sent by, or travelled by"
+    },
+    {
+      "id": "ni-tsuite",
+      "target": "について",
+      "english": "About…",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 914,
+      "note": "Attaches to a noun: にほんについて (Nihon ni tsuite), \"about Japan\". The noun comes first, unlike English \"about\".",
+      "uncertain": true,
+      "reviewNote": "Restored at gate 1 with the tilde stripped, on the final review's finding: the placeholder check had removed the only card for a headword the chapter glosses."
+    },
+    {
+      "id": "ja",
+      "target": "じゃ",
+      "english": "Then, well then",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "sourceOrder": 231,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target)",
+      "note": "Same word as じゃ (ja) \"Well then\" from Lesson 4, a casual short form of では (dewa) from Lesson 6.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-4/ja (same target and sense)"
+    },
+    {
+      "id": "sou-desu-ka",
+      "target": "そうですか",
+      "english": "Is that so? / I see.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "sourceOrder": 225,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/sou-desu-ka (same target and sense)"
+    },
+    {
+      "id": "doumo",
+      "target": "どうも",
+      "english": "Thanks",
+      "category": "Greetings",
+      "uncertain": true,
+      "sourceOrder": 3920,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-5/doumo (same target and sense)"
+    },
+    {
+      "id": "arigatou-gozaimashita",
+      "target": "ありがとうございました",
+      "english": "Thank you very much (for what you did)",
+      "category": "Greetings",
+      "uncertain": true,
+      "sourceOrder": 3905,
+      "note": "The past form of ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions. Use it to thank someone for something they have already done."
+    },
+    {
+      "id": "migi",
+      "target": "みぎ",
+      "english": "Right",
+      "category": "Directions",
+      "sourceOrder": 1096
+    },
+    {
+      "id": "hidari",
+      "target": "ひだり",
+      "english": "Left",
+      "category": "Directions",
+      "sourceOrder": 1706
+    },
+    {
+      "id": "massugu",
+      "target": "まっすぐ",
+      "english": "Straight",
+      "category": "Directions",
+      "sourceOrder": 1710
+    },
+    {
+      "id": "mae",
+      "target": "まえ",
+      "english": "In front of",
+      "category": "Directions",
+      "uncertain": true,
+      "reviewNote": "Appears as caption 6 in Positions and directions with no gloss. Probably taught earlier. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: chapter 48 teaches 〜まえ, though in the time sense ('ago') rather than this spatial 'in front of' sense — reviewer should confirm which lesson this belongs to)",
+      "sourceOrder": 1696,
+      "note": "In Lesson 17, まえ (mae) meant \"Before\" in time, and Lesson 12 had まえ \"In front\" too. Here it is a spatial word in directions, so the place context decides.",
+      "hint": "a location in directions, not a time",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/mae-in-front, chapter-17/mae (same target and sense)"
+    },
+    {
+      "id": "saki",
+      "target": "さき",
+      "english": "Beyond",
+      "category": "Directions",
+      "sourceOrder": 1693,
+      "note": "さき (saki) means further along past a landmark. Contrast てまえ (temae), \"Just before\" it."
+    },
+    {
+      "id": "temae",
+      "target": "てまえ",
+      "english": "Just before",
+      "category": "Directions",
+      "sourceOrder": 1699,
+      "note": "The opposite of さき (saki) \"Beyond\": てまえ (temae) is the near side of a landmark, before you reach it."
+    },
+    {
+      "id": "tonari",
+      "target": "となり",
+      "english": "Next to, neighboring",
+      "category": "Directions",
+      "uncertain": true,
+      "sourceOrder": 4134,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "note": "Same word as となり (tonari) \"Next to\" from Lesson 12.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/tonari-next-to (same target and sense)"
+    },
+    {
+      "id": "chikaku",
+      "target": "ちかく",
+      "english": "Near, vicinity",
+      "category": "Directions",
+      "uncertain": true,
+      "reviewNote": "Appears in とうきょうタワーの ちかくまで おねがいします with no gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3734,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/chikaku-near (same target and sense)"
+    },
+    {
+      "id": "michi",
+      "target": "みち",
+      "english": "Road",
+      "category": "Directions",
+      "sourceOrder": 1687
+    },
+    {
+      "id": "kado",
+      "target": "かど",
+      "english": "Corner",
+      "category": "Directions",
+      "sourceOrder": 1690
+    },
+    {
+      "id": "kousaten",
+      "target": "こうさてん",
+      "english": "Intersection",
+      "category": "Directions",
+      "sourceOrder": 1676
+    },
+    {
+      "id": "shingou",
+      "target": "しんごう",
+      "english": "Traffic light",
+      "category": "Directions",
+      "sourceOrder": 1091
+    },
+    {
+      "id": "hashi",
+      "target": "はし",
+      "english": "Bridge",
+      "category": "Directions",
+      "sourceOrder": 3079
+    },
+    {
+      "id": "tsugi-no",
+      "target": "つぎの",
+      "english": "Next",
+      "category": "Directions",
+      "sourceOrder": 1088,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on english) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "hint": "the form that attaches to a following noun"
+    },
+    {
+      "id": "me-suffix",
+      "target": "〜め",
+      "english": "(Suffix that attaches to a number and turns it into an ordinal number)",
+      "category": "Numbers",
+      "note": "Indented sub-row in the source, under ふたつめ.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same ordinal suffix 〜め; the gloss differs only by wrapping parentheses. The dropped card's note only records where it sat in the source.",
+      "sourceOrder": 3268
+    },
+    {
+      "id": "me-suffix-2",
+      "target": "〜め",
+      "english": "Suffix that attaches to a number and turns it into an ordinal number",
+      "category": "Numbers",
+      "sourceOrder": 3268,
+      "note": "Attach to a number to make an ordinal: ふたつ (futatsu) from Lesson 5 becomes ふたつめ (futatsume), \"second\".",
+      "excluded": true,
+      "excludedBy": "preflight-placeholder-target",
+      "excludedReason": "Schematic target 〜め is notation, not an utterance; ふたつめ (futatsume) is carded and demonstrates the ordinal suffix."
+    },
+    {
+      "id": "futatsume",
+      "target": "ふたつめ",
+      "english": "Second",
+      "category": "Numbers",
+      "sourceOrder": 3063,
+      "note": "Attach め (me) to a number to make an ordinal: ふたつ (futatsu) from Lesson 5 becomes ふたつめ (futatsume), \"second\". みっつ (mittsu) becomes みっつめ (mittsume), \"third\"."
+    },
+    {
+      "id": "tokyo-tower",
+      "target": "とうきょうタワー",
+      "english": "Tokyo Tower",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "A real landmark, but proper-name-like. Reviewer decides whether it counts as ordinary vocabulary.",
+      "sourceOrder": 3725
+    },
+    {
+      "id": "ebisu-eki",
+      "target": "えびすえき",
+      "english": "Ebisu Station",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "A real station name. The common noun えき is the reusable part.",
+      "sourceOrder": 3932
+    },
+    {
+      "id": "ginza-dori",
+      "target": "ぎんざどおり",
+      "english": "Ginza Street",
+      "category": "Directions",
+      "uncertain": true,
+      "reviewNote": "A real street name, proper-name-like. Reviewer decides.",
+      "sourceOrder": 2955
+    },
+    {
+      "id": "iimasu",
+      "target": "いいます",
+      "english": "Say",
+      "category": "Technology & Communication",
+      "sourceOrder": 1521
+    },
+    {
+      "id": "iimasu-te-form",
+      "target": "いって",
+      "english": "Say (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1, い (i) → って (tte), exactly like かいます (kaimasu) → かって (katte) from Lesson 18. It is spelled the same as いって (itte), the て-form of いきます (ikimasu) \"Go\" from Lesson 18, so the context tells them apart.",
+      "sourceOrder": 1846,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "hint": "to say, not to go",
+      "scene": "in a request for someone to repeat or tell you something"
+    },
+    {
+      "id": "machimasu",
+      "target": "まちます",
+      "english": "Wait",
+      "category": "Everyday Objects",
+      "uncertain": true,
+      "reviewNote": "The table's English cell reads \"wai\", an evident typo for \"wait\". | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "sourceOrder": 1539,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/machimasu (same target and sense)"
+    },
+    {
+      "id": "te-form-matte",
+      "target": "まって",
+      "english": "Wait (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. ち (chi) → って (tte), the same as まって (matte) in Lesson 18.",
+      "sourceOrder": 1049,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-18/te-form-matsu (same target and sense)"
+    },
+    {
+      "id": "magarimasu",
+      "target": "まがります",
+      "english": "Turn",
+      "category": "Directions",
+      "note": "Takes を (o) for the place you turn at, which is this chapter's third grammar point: つぎのしんごうをみぎにまがってください (tsugi no shingou o migi ni magatte kudasai).",
+      "sourceOrder": 1510
+    },
+    {
+      "id": "te-form-magatte",
+      "target": "まがって",
+      "english": "Turn (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. り (ri) → って (tte), like かえって (kaette) from Lesson 18.",
+      "sourceOrder": 1576
+    },
+    {
+      "id": "torimasu",
+      "target": "とります",
+      "english": "Take",
+      "category": "Everyday Objects",
+      "uncertain": true,
+      "reviewNote": "The table prints only \"ります\" in the ます-form column, evidently a dropped と; the て-form column reads とって. Supplied とります. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "sourceOrder": 2198,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/torimasu-photo (same target and sense)"
+    },
+    {
+      "id": "te-form-totte",
+      "target": "とって",
+      "english": "Take (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. り (ri) → って (tte), like まがって (magatte) and かえって (kaette).",
+      "sourceOrder": 1879
+    },
+    {
+      "id": "kashimasu",
+      "target": "かします",
+      "english": "Lend, loan",
+      "category": "Everyday Objects",
+      "sourceOrder": 1891,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 14: Giving and Receiving: I Received It from My Friend (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-14/kashimasu (same target and sense)"
+    },
+    {
+      "id": "kashite",
+      "target": "かして",
+      "english": "Lend, loan (て-form)",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same て-form of かします; the kept one has the note naming the dictionary form.",
+      "sourceOrder": 1895,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target)"
+    },
+    {
+      "id": "te-form-kashite",
+      "target": "かして",
+      "english": "Lend (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. し (shi) → して (shite), so ます (masu) simply becomes て (te). Same form as かして (kashite) in Lesson 18.",
+      "sourceOrder": 1895,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-18/te-form-kasu (same target and sense)"
+    },
+    {
+      "id": "misemasu",
+      "target": "みせます",
+      "english": "Show",
+      "category": "Everyday Objects",
+      "sourceOrder": 1902,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/misemasu (same target and sense)"
+    },
+    {
+      "id": "te-form-misete",
+      "target": "みせて",
+      "english": "Show (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te). Same form as みせて (misete) in Lesson 18.",
+      "sourceOrder": 1906,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-18/te-form-miseru (same target and sense)"
+    },
+    {
+      "id": "tomemasu",
+      "target": "とめます",
+      "english": "Stop",
+      "category": "Directions",
+      "note": "Regular 2. Not to be confused with とります (torimasu) \"Take\", which is Regular 1.",
+      "sourceOrder": 1516,
+      "uncertain": true,
+      "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it."
+    },
+    {
+      "id": "te-form-tomete",
+      "target": "とめて",
+      "english": "Stop (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te): とめます (tomemasu) → とめて (tomete).",
+      "sourceOrder": 1917,
+      "uncertain": true,
+      "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it."
+    },
+    {
+      "id": "oshiemasu",
+      "target": "おしえます",
+      "english": "Tell, teach",
+      "category": "School & Education",
+      "sourceOrder": 1930,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/oshiemasu-tell (same target and sense)"
+    },
+    {
+      "id": "te-form-oshiete",
+      "target": "おしえて",
+      "english": "Tell, teach (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te). Same form as おしえて (oshiete) in Lesson 18.",
+      "sourceOrder": 1935,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-18/te-form-oshieru (same target and sense)"
+    },
+    {
+      "id": "todokemasu",
+      "target": "とどけます",
+      "english": "Deliver",
+      "category": "Transport",
+      "note": "Regular 2. The thing delivered is the object, the recipient is marked with に (ni).",
+      "sourceOrder": 1533
+    },
+    {
+      "id": "te-form-todokete",
+      "target": "とどけて",
+      "english": "Deliver (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te): とどけます (todokemasu) → とどけて (todokete).",
+      "sourceOrder": 1951
+    },
+    {
+      "id": "motte-kimasu",
+      "target": "もってきます",
+      "english": "Bring",
+      "category": "Everyday Objects",
+      "sourceOrder": 1526
+    },
+    {
+      "id": "te-form-motte-kite",
+      "target": "もってきて",
+      "english": "Bring (て-form)",
+      "category": "Grammar & Function Words",
+      "note": "もって (motte) is the Regular 1 て-form of もちます (mochimasu), followed by きて (kite), the Irregular て-form of きます (kimasu) from Lesson 18.",
+      "sourceOrder": 1966
+    },
+    {
+      "id": "tsutaemasu",
+      "target": "つたえます",
+      "english": "Relay a message",
+      "category": "Technology & Communication",
+      "note": "Regular 2. Used for passing on a message or greeting, as in よろしくつたえてください (yoroshiku tsutaete kudasai).",
+      "sourceOrder": 327
+    },
+    {
+      "id": "houkoku-shimasu",
+      "target": "ほうこくします",
+      "english": "Report",
+      "category": "Work & Occupations",
+      "sourceOrder": 360,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
+      "note": "A formal, spoken or business report to a superior. It is a verb, unlike レポート (repōto) \"Report\" from Lesson 18, the written document.",
+      "hint": "to report to someone (verb)"
+    },
+    {
+      "id": "okurimasu",
+      "target": "おくります",
+      "english": "Send",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "おくりました and おくってください appear in the dialogue, key sentences and exercises with no gloss anywhere. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/okurimasu-send (same target and sense)"
+    },
+    {
+      "id": "okurimashita",
+      "target": "おくりました",
+      "english": "Sent",
+      "category": "Work & Occupations",
+      "hint": "Past of おくります",
+      "sourceOrder": 214
+    },
+    {
+      "id": "kakimasu",
+      "target": "かきます",
+      "english": "Write",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "sourceOrder": 2157,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-15/kakimasu-draw, chapter-17/kakimasu (same target and sense)"
+    },
+    {
+      "id": "azukarimasu",
+      "target": "あずかります",
+      "english": "Keep, take care of",
+      "category": "Everyday Objects",
+      "sourceOrder": 5060
+    },
+    {
+      "id": "moraimashita",
+      "target": "もらいました",
+      "english": "Received",
+      "category": "Shopping",
+      "uncertain": true,
+      "sourceOrder": 198,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 14: Giving and Receiving: I Received It from My Friend (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-14/moraimashita (same target and sense)"
+    },
+    {
+      "id": "kudasai-te-form",
+      "target": "〜てください",
+      "english": "Please do [verb]",
+      "category": "Grammar & Function Words",
+      "note": "Attach ください (kudasai) to the て-form: まってください (matte kudasai). It is the pattern behind every ください card in Lesson 18, and it works for any verb.",
+      "excluded": true,
+      "excludedBy": "preflight-placeholder-target",
+      "excludedReason": "Schematic target 〜てください is notation, not an utterance. The pattern is this chapter's grammar point and survives it: まがってください, ほうこくしてください and よろしくつたえてください all ship, and the extras unit drills it further."
+    },
+    {
+      "id": "magatte-kudasai",
+      "target": "まがってください",
+      "english": "Please turn",
+      "category": "Directions",
+      "sourceOrder": 1099,
+      "note": "Direction phrase you say or hear when giving directions. Combine with を (o) for the place you turn: つぎのしんごうをまがってください (tsugi no shingō o magatte kudasai)."
+    },
+    {
+      "id": "houkoku-shite-kudasai",
+      "target": "ほうこくしてください",
+      "english": "Please report",
+      "category": "Work & Occupations",
+      "sourceOrder": 244
+    },
+    {
+      "id": "yoroshiku-tsutaete-kudasai",
+      "target": "よろしくつたえてください",
+      "english": "Please give him/her my regards.",
+      "category": "Greetings",
+      "note": "Set phrase for asking someone to pass on your greetings to a person who is not present.",
+      "sourceOrder": 308
+    },
+    {
+      "id": "onegai-dekimasu-ka",
+      "target": "おねがいできますか",
+      "english": "May I ask [you to do this]?",
+      "category": "Greetings",
+      "note": "More polite than おねがいします when asking for a noun.",
+      "sourceOrder": 4399
+    },
+    {
+      "id": "shouchi-shimashita",
+      "target": "しょうちしました",
+      "english": "Yes, certainly.",
+      "category": "Greetings",
+      "note": "A more polite way of saying わかりました when asked to do something or relay information.",
+      "sourceOrder": 4419
+    },
+    {
+      "id": "takuhaibin",
+      "target": "たくはいびん",
+      "english": "Parcel delivery service",
+      "category": "Transport",
+      "sourceOrder": 207
+    },
+    {
+      "id": "baikubin",
+      "target": "バイクびん",
+      "english": "Motorbike courier service",
+      "category": "Transport",
+      "sourceOrder": 1743
+    },
+    {
+      "id": "yuubin",
+      "target": "ゆうびん",
+      "english": "Mail",
+      "category": "Technology & Communication",
+      "sourceOrder": 1738
+    },
+    {
+      "id": "nimotsu",
+      "target": "にもつ",
+      "english": "Package, luggage",
+      "category": "Everyday Objects",
+      "sourceOrder": 2636
+    },
+    {
+      "id": "shorui",
+      "target": "しょるい",
+      "english": "Documents",
+      "category": "Work & Occupations",
+      "sourceOrder": 2599
+    },
+    {
+      "id": "shiryou",
+      "target": "しりょう",
+      "english": "Materials, documents",
+      "category": "Work & Occupations",
+      "sourceOrder": 1074,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (matched on target)",
+      "note": "Same word as しりょう (shiryō) in Lesson 17. Compare しょるい (shorui) \"Documents\": しょるい are paperwork like forms, しりょう are reference materials.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-17/shiryou (same target and sense)"
+    },
+    {
+      "id": "sanpuru",
+      "target": "サンプル",
+      "english": "Sample",
+      "category": "Everyday Objects",
+      "sourceOrder": 193
+    },
+    {
+      "id": "katarogu",
+      "target": "カタログ",
+      "english": "Catalog",
+      "category": "Shopping",
+      "sourceOrder": 2663
+    },
+    {
+      "id": "menyuu",
+      "target": "メニュー",
+      "english": "Menu",
+      "category": "Food",
+      "sourceOrder": 2452
+    },
+    {
+      "id": "pakkeeji",
+      "target": "パッケージ",
+      "english": "Package",
+      "category": "Shopping",
+      "uncertain": true,
+      "reviewNote": "Unglossed in this chapter's vocabulary boxes. | Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
+      "sourceOrder": 172,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-18/package (same target and sense)"
+    },
+    {
+      "id": "fea",
+      "target": "フェア",
+      "english": "Fair",
+      "category": "Shopping",
+      "uncertain": true,
+      "reviewNote": "Unglossed in the vocabulary boxes; appears in the dialogue and in パッケージフェア. | Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
+      "sourceOrder": 153,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-18/fair (same target and sense)"
+    },
+    {
+      "id": "meeru",
+      "target": "メール",
+      "english": "E-mail",
+      "category": "Technology & Communication",
+      "sourceOrder": 1070,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/meeru (same target and sense)"
+    },
+    {
+      "id": "meeru-adoresu",
+      "target": "メールアドレス",
+      "english": "E-mail address",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "Only appears as a substitution cue in Exercise III. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "sourceOrder": 2434,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/mail-address (same target and sense)"
+    },
+    {
+      "id": "pasokon",
+      "target": "パソコン",
+      "english": "Personal computer",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "sourceOrder": 2236,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-4/pasokon (same target and sense)"
+    },
+    {
+      "id": "pen",
+      "target": "ペン",
+      "english": "Pen",
+      "category": "Everyday Objects",
+      "uncertain": true,
+      "sourceOrder": 2223,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/pen (same target and sense)"
+    },
+    {
+      "id": "shashin",
+      "target": "しゃしん",
+      "english": "Photograph",
+      "category": "Everyday Objects",
+      "uncertain": true,
+      "sourceOrder": 2193,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/shashin (same target and sense)"
+    },
+    {
+      "id": "namae",
+      "target": "なまえ",
+      "english": "Name",
+      "category": "Family & People",
+      "uncertain": true,
+      "sourceOrder": 2153,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/namae (same target and sense)"
+    },
+    {
+      "id": "onamae",
+      "target": "おなまえ",
+      "english": "Your name",
+      "category": "Family & People",
+      "note": "Polite お- prefix; used for the other person's name.",
+      "uncertain": true,
+      "sourceOrder": 3585,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-8/onamae (same target and sense)"
+    },
+    {
+      "id": "gojuusho",
+      "target": "ごじゅうしょ",
+      "english": "Your address",
+      "category": "Everyday Objects",
+      "sourceOrder": 3334,
+      "note": "じゅうしょ (jūsho) \"Address\" from Lesson 2 with the honorific prefix ご (go) from Lesson 9, used for the other person's address."
+    },
+    {
+      "id": "unten-shu",
+      "target": "うんてんしゅ",
+      "english": "Driver",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Only a speaker label in the Exercise VI taxi dialogue. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on english)",
+      "sourceOrder": 3747,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/untenshu (same target and sense)"
+    },
+    {
+      "id": "kaigi",
+      "target": "かいぎ",
+      "english": "Meeting",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Unglossed in this chapter's vocabulary boxes; probably taught earlier. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "sourceOrder": 240,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/kaigi (same target and sense)"
+    },
+    {
+      "id": "shisha",
+      "target": "ししゃ",
+      "english": "Branch office",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Appears in おおさかししゃ with no gloss. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "sourceOrder": 280,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/shisha (same target and sense)"
+    },
+    {
+      "id": "iroiro",
+      "target": "いろいろ",
+      "english": "Various",
+      "category": "Descriptions & Qualities",
+      "note": "Printed with (な): used as a な-adjective.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word printed once in the source as いろいろ(な); the kept card has the fuller target and a note explaining how it attaches to nouns.",
+      "sourceOrder": 188
+    },
+    {
+      "id": "iroiro-2",
+      "target": "いろいろ(な)",
+      "english": "Various",
+      "category": "Descriptions & Qualities",
+      "note": "Printed with the な in parentheses, so it attaches to nouns as いろいろな.",
+      "sourceOrder": 766
+    },
+    {
+      "id": "takusan",
+      "target": "たくさん",
+      "english": "Many, a lot",
+      "category": "Descriptions & Qualities",
+      "uncertain": true,
+      "sourceOrder": 178,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 13: Asking for a Place: Where Is It? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-13/takusan (same target and sense)"
+    },
+    {
+      "id": "omoshiroi",
+      "target": "おもしろい",
+      "english": "Interesting",
+      "category": "Descriptions & Qualities",
+      "uncertain": true,
+      "sourceOrder": 167,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/omoshiroi (same target and sense)"
+    },
+    {
+      "id": "shiroi",
+      "target": "しろい",
+      "english": "White",
+      "category": "Colors",
+      "uncertain": true,
+      "reviewNote": "Only appears in あの しろい ビルの まえで in Exercise VI. | Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english)",
+      "sourceOrder": 3809,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-5/white (same target and sense)"
+    },
+    {
+      "id": "mou-ichido",
+      "target": "もういちど",
+      "english": "Once more, again",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 2208,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/mou-ichido (same target and sense)"
+    },
+    {
+      "id": "ima",
+      "target": "いま",
+      "english": "Now",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 272,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/ima (same target and sense)"
+    },
+    {
+      "id": "ashita",
+      "target": "あした",
+      "english": "Tomorrow",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 3552,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/ashita (same target and sense)"
+    },
+    {
+      "id": "gogo",
+      "target": "ごご",
+      "english": "Afternoon, p.m.",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 3556,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/gogo (same target and sense)"
+    },
+    {
+      "id": "getsuyoubi",
+      "target": "げつようび",
+      "english": "Monday",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 234,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/getsuyoubi (same target and sense)"
+    },
+    {
+      "id": "nichiyoubi",
+      "target": "にちようび",
+      "english": "Sunday",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 3670,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/nichiyoubi (same target and sense)"
+    },
+    {
+      "id": "en",
+      "target": "えん",
+      "english": "Yen",
+      "category": "Money",
+      "uncertain": true,
+      "sourceOrder": 3887,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-4/en-suffix (same target and sense)"
+    },
+    {
+      "id": "ginkou",
+      "target": "ぎんこう",
+      "english": "Bank",
+      "category": "Money",
+      "uncertain": true,
+      "sourceOrder": 2869,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-1/ginkou (same target and sense)"
+    },
+    {
+      "id": "gakkou",
+      "target": "がっこう",
+      "english": "School",
+      "category": "School & Education",
+      "uncertain": true,
+      "sourceOrder": 3005,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/gakkou-school (same target and sense)"
+    },
+    {
+      "id": "depaato",
+      "target": "デパート",
+      "english": "Department store",
+      "category": "Shopping",
+      "uncertain": true,
+      "sourceOrder": 2589,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-1/depaato (same target and sense)"
+    },
+    {
+      "id": "suupaa",
+      "target": "スーパー",
+      "english": "Supermarket",
+      "category": "Shopping",
+      "uncertain": true,
+      "sourceOrder": 2991,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/suupaa (same target and sense)"
+    },
+    {
+      "id": "resutoran",
+      "target": "レストラン",
+      "english": "Restaurant",
+      "category": "Food",
+      "uncertain": true,
+      "sourceOrder": 2410,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/resutoran (same target and sense)"
+    },
+    {
+      "id": "osaka",
+      "target": "おおさか",
+      "english": "Osaka",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "sourceOrder": 276,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/osaka (same target and sense)"
+    },
+    {
+      "id": "yokohama",
+      "target": "よこはま",
+      "english": "Yokohama",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "sourceOrder": 2649,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/yokohama (same target and sense)"
+    },
+    {
+      "id": "biru",
+      "target": "ビル",
+      "english": "Building",
+      "category": "Home & Household",
+      "sourceOrder": 3812
+    },
+    {
+      "id": "manshon",
+      "target": "マンション",
+      "english": "Condominium",
+      "category": "Home & Household",
+      "sourceOrder": 3963
+    },
+    {
+      "id": "heya",
+      "target": "へや",
+      "english": "Room",
+      "category": "Home & Household",
+      "uncertain": true,
+      "sourceOrder": 4138,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/heya-room (same target and sense)"
+    },
+    {
+      "id": "isu",
+      "target": "いす",
+      "english": "Chair",
+      "category": "Home & Household",
+      "uncertain": true,
+      "sourceOrder": 4142,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/isu-chair (same target and sense)"
+    },
+    {
+      "id": "sofaa",
+      "target": "ソファー",
+      "english": "Sofa",
+      "category": "Home & Household",
+      "uncertain": true,
+      "reviewNote": "Only appears as a substitution cue in Exercise VI. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "sourceOrder": 3654,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/sofaa-sofa (same target and sense)"
+    },
+    {
+      "id": "reizouko",
+      "target": "れいぞうこ",
+      "english": "Refrigerator",
+      "category": "Home & Household",
+      "uncertain": true,
+      "reviewNote": "Only appears inside the Exercise VI example dialogue. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english)",
+      "sourceOrder": 3524,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-4/reizouko (same target and sense)"
+    },
+    {
+      "id": "denshi-renji",
+      "target": "でんしレンジ",
+      "english": "Microwave oven",
+      "category": "Home & Household",
+      "uncertain": true,
+      "reviewNote": "Only appears as a substitution cue in Exercise VI. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english)",
+      "sourceOrder": 3614,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-4/denshi-renji (same target and sense)"
+    },
+    {
+      "id": "moufu",
+      "target": "もうふ",
+      "english": "Blanket",
+      "category": "Home & Household",
+      "sourceOrder": 4395
+    },
+    {
+      "id": "ruumu-saabisu",
+      "target": "ルームサービス",
+      "english": "Room service",
+      "category": "Travel & Tourism",
+      "sourceOrder": 4376
+    },
+    {
+      "id": "furonto",
+      "target": "フロント",
+      "english": "Front desk",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "sourceOrder": 4580,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/furonto (same target and sense)"
+    }
+  ]
+}

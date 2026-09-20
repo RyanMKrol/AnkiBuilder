@@ -133,11 +133,18 @@ const SEVERITIES = new Set(["blocker", "concern", "note"]);
 /**
  * How much of each transcript reaches the prompt.
  *
- * A whole extras run is eleven responses, several of them fifty cards of JSON, and sending all of it
- * verbatim would crowd out the chapter. The head of each response is enough to see its SHAPE, which
- * is what this role reads transcripts for; the parsed output is already in the cards.
+ * Raised from 4000 on 2026-09-20, because the reviewer caught this on its first live run and was
+ * right: at 4000 every one of chapter 19's six responses arrived cut off mid-JSON, and it reported
+ * that it could not confirm what the coverage adversary flagged past its ~45th item. It had the
+ * evidence to notice — `responseChars` records the true length beside the truncated text — and the
+ * correct conclusion was the one it drew: missing evidence, not a clean result.
+ *
+ * The reasoning for a cap still holds, so this is a bigger budget rather than none. The largest real
+ * response measured is ~14k characters, so 20k passes every one of them whole while still bounding a
+ * pathological run. Note the cap was never a STORAGE limit: `runLog` writes the full response to
+ * disk, and only the prompt was ever truncated — so nothing was lost, it simply was not shown.
  */
-const TRANSCRIPT_CHARS = 4000;
+const TRANSCRIPT_CHARS = 20_000;
 
 export function summarizeTranscripts(logs, { chars = TRANSCRIPT_CHARS } = {}) {
   return logs.map((log) => ({

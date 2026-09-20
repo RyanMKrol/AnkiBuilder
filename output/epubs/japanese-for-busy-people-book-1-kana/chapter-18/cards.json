@@ -183,7 +183,8 @@
       "audioOriginal": "4cf5e4d68ef08a16.orig.mp3",
       "audioAuto": "4cf5e4d68ef08a16.mp3",
       "audioMarked": true,
-      "audioTextHash": "4cf5e4d68ef08a16"
+      "audioTextHash": "4cf5e4d68ef08a16",
+      "scene": "in a sentence about a journey, before the next thing done there"
     },
     {
       "id": "tabete",
@@ -501,7 +502,8 @@
       "audioOriginal": "d59c772b5a4dec72.orig.mp3",
       "audioAuto": "d59c772b5a4dec72.mp3",
       "audioMarked": true,
-      "audioTextHash": "d59c772b5a4dec72"
+      "audioTextHash": "d59c772b5a4dec72",
+      "hint": "the document itself"
     },
     {
       "id": "purezen-o-shimasu",

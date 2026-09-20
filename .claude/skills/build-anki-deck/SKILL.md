@@ -801,6 +801,23 @@ identical in a JSON row. The check produces the list and stops there on purpose;
 おかし is a fact about Japanese, and no amount of code decides it. Fix or delete a note you cannot
 confirm — an unverifiable note is worth less than none, because the learner has no way to know.
 
+**Excluding a schematic target? Check what goes with it, and what is left teaching that headword.**
+`placeholder-target` is right that a `〜` form is notation rather than an utterance, but the check
+reports the card and stops; deciding what replaces it is yours, and there are two ways to get it
+wrong. On Lesson 19 both happened in one sweep:
+
+- **The note leaves with the card.** `〜め` was excluded because `ふたつめ` was carded and "demonstrates
+  the ordinal suffix" — but `ふたつめ` shipped as a bare gloss, "Second", with no note, so the suffix
+  the chapter explicitly teaches was taught nowhere. A learner who meets only `ふたつめ` cannot form
+  `みっつめ`. Move the excluded card's explanation onto the instance you named as its survivor.
+- **Sometimes there is no survivor.** `〜について` was excluded the same way, and nothing else carded
+  it at all. Strip the tilde and keep the card instead: this deck already ships bare particles
+  (`を`, `で`, `まで`, `までに`) on exactly that reasoning, because the tilde marks where a noun
+  attaches and is not part of the word.
+
+The rule underneath both: before excluding, ask which card is left teaching that headword, and say
+so in the `excludedReason`. If the answer is "none", it is not a redundant card.
+
 When it looks right, click **Mark reviewed**. That sets `cards.meta.reviewed: true` and, for an
 EPUB source, saves the reviewed (excluded-filtered) corpus to the dedup library for later chapters'
 backward-dedup. Then move straight into **Step 3b** in the same turn: marking reviewed IS the

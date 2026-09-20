@@ -45,6 +45,7 @@ import { fillCoverageGaps, GAP_FILLS_FILE, ROLE_ID as GAP_FILLER_ROLE } from "./
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
+import { logDirFor, withRunLogDir } from "./runLog.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 /**
@@ -117,7 +118,7 @@ function writeArtifact(unitDir, relative, body) {
  * anything. That is the v1 idiom and it is what makes an ordering bug cost a test run rather than a
  * paid build.
  */
-export function runBasePhase({
+function runBasePhaseInner({
   unitDir,
   chapterFilePath,
   chapterHtml,
@@ -428,4 +429,17 @@ export function runBasePhase({
 function writeRelative(unitDir, relative, body) {
   writeArtifact(unitDir, relative, body);
   return relative;
+}
+
+/**
+ * runBasePhase, with every agent call inside it teeing its raw response into the unit's
+ * `agent-logs/` directory.
+ *
+ * The wrapper is here rather than inside the body so the logging scope is exactly the phase: it is
+ * restored on the way out even when the phase throws, which is the run whose transcript is most
+ * worth having.
+ */
+export function runBasePhase(options = {}) {
+  const dir = options.unitDir ? logDirFor(options.unitDir) : null;
+  return withRunLogDir(dir, () => runBasePhaseInner(options));
 }

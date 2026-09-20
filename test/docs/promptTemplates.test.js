@@ -43,6 +43,21 @@ const TEMPLATES = {
     // `usedAllowance` keeps the ceiling in the role's own answer rather than only in the checker.
     outputContract: /"items"[\s\S]*"usedAllowance"/,
   },
+  "final-review-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "CARD_RULES",
+      "CHAPTER_TEXT",
+      "BASE_CARDS",
+      "EXTRAS_CARDS",
+      "DETERMINISTIC_FINDINGS",
+      "TRANSCRIPTS",
+    ],
+    // The envelope: the six fixed answers and the findings. `answers` is the half that makes a miss
+    // expensive — a reviewing agent that may simply say nothing is indistinguishable from one that
+    // looked and found nothing, so losing it would make the questions decorative.
+    outputContract: /"answers"[\s\S]*"findings"[\s\S]*"verdict"/,
+  },
   "gap-author-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

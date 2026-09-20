@@ -12,6 +12,43 @@
         "message": "chapter-16/fib-tsukare-sou-shimashou ships a clip with the TTS end marker audible — re-trim it, or accept it",
         "note": "Judged at gate 2 with segment-level evidence: the original's marker occupies 2.82-4.00s (two short runs after a 0.84s gap); the hand cuts end at 2.00s, so every sample the marker could occupy is outside the shipping clip. audit-marker-stuck cannot clear these because its detector false-positives on そうしましょう, the card's own final word."
       }
+    },
+    "base-split": {
+      "chapter-17/hajimemasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"はじめます\" (Start, begin) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/hanami-o-shimasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"はなみをします\" (View cherry blossoms) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/ohanami-o-shimasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"(お)はなみをします\" (To view cherry blossoms) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/ryouri-o-shimasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"りょうりをします\" (Cook) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/shawaa-o-abimasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"シャワーをあびます\" (Take a shower) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/shokuji-o-shimasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"しょくじをします\" (To have a meal) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/sutorecchi-o-shimasu": {
+        "at": "2026-09-20T19:38:39.242Z",
+        "message": "chapter-17: \"ストレッチをします\" (Do stretching exercises) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      }
     }
   }
 }

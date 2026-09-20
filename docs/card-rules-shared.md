@@ -15,17 +15,19 @@
   example in one script is a rule that reads as being about that script. Describe the shape instead.
 -->
 
-## Rules every pass shares
+## CRITICAL — these have each been broken, and each cost real cards
 
-These hold no matter which pass you are. They exist because a pass that did not know one of them
-silently undid another pass's correct work.
+Every rule in this file matters. These five are first because each one has already reached a shipped
+deck, and the incident is named so you can tell this is a report rather than a preference. If you are
+about to drop, merge or skip something, check this list before you do.
 
 **Every cell of a paradigm the source lays out earns its own card.** When the source presents one
 form varying over a closed set of slots -- a grid, a table, or a run of examples it tells the learner
 to memorize -- each filled cell is a card, not just the first one and not just the citation form.
 Regularity is not a reason to drop a cell: a learner who has not yet internalised the rule cannot
 produce the other cells from the one you kept, and the source printing all of them is the source
-saying so.
+saying so. _Lesson 17 shipped 19 of its 20 conjugation cells only because a second reader recovered
+them; Lesson 15 reached its review with 7 of 10 cells uncarded._
 
 **An irregular or exceptional form is never optional and never redundant.** The sharpest case of the
 rule above, and the one most often lost. If the source marks something as irregular, an exception, or
@@ -42,11 +44,22 @@ an earlier one teaches. Where topical fit and this rule disagree, this rule wins
 and above all one the source invented to populate an exercise -- teaches the learner nothing about
 the language. Card the common noun the source teaches instead (hotel, school, park), and let the
 name do its job inside a sentence, which is where the source put it. Real places a learner meets
-outside the book, countries and cities, are ordinary vocabulary and do count.
+outside the book, countries and cities, are ordinary vocabulary and do count. _Five invented business
+names reached a human review as vocabulary cards before anyone noticed._
 
 **Never card a schematic pattern.** A frame with a slot in it, written with a placeholder or a
 bracketed part of speech rather than a real word, is not a card. Card a complete, concrete instance
-of the pattern instead.
+of the pattern instead. _A card carrying a bare placeholder reached a review gate in a chapter that
+printed three concrete instances of that same pattern._
+
+## The rest
+
+These hold no matter which pass you are, and exist because a pass that did not know one silently
+undid another pass's correct work.
+
+**A label describing a table is not taught by it.** Column headers, row labels and the words a chart
+uses to organise itself (`Present form`, `aff.`, `Verbs`) are not vocabulary, whether you are reading
+the table as markup or as a picture. The entries are the cells.
 
 **English reads as natural sentence-case English.** Not a lowercased clip, not a dictionary stub.
 Capitalize it as you would write it in a sentence.

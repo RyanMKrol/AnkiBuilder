@@ -553,7 +553,7 @@ All four of these prompts are hand-editable Markdown templates in `docs/`, rende
 edit and the only ones with no automated contract; `test/docs/promptTemplates.test.js` now pins each
 one's placeholders and output contract. [`translate-prompts.md`](./translate-prompts.md) says which
 prompt runs when and which language fragments each takes, and
-[`.harness/custom/docs/LIMITATIONS.md`](../.harness/custom/docs/LIMITATIONS.md) covers the dependency
+`DECISIONS.md` covers the dependency
 trade-offs this introduces.
 
 **One pinned romanization spec, three prompts, one lint.** `src/translate/romajiStyle.js` holds the
@@ -2185,7 +2185,7 @@ Some mechanics worth knowing before you add a fixture:
   under `node --test` by `assertExternalCallAllowed` (`src/util/testEnv.js`).
 - The chapter `.xhtml` under `test/fixtures/evals/chapters/` is committed because the extracted-chapter
   cache is not tracked and a fixture with no input is not a fixture. This is a private repo; see
-  `.harness/custom/docs/LIMITATIONS.md`.
+  a comment at the site that respects it.
 
 ## Output layout
 

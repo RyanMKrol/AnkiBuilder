@@ -590,8 +590,8 @@ What is built, newest last:
       `docs/designs/v2-goals-2026-09.md`
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
-What gets built next comes from [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md),
-the queue of open trade-offs and known gaps; a choice that is settled rather than pending lives in
-[`DECISIONS.md`](./.harness/custom/docs/DECISIONS.md) beside it, and an unshaped thought goes in
-`.harness/tracking/IDEAS.jsonl`. The `TASKS.json` backlog belongs to the retired build harness and is
-a historical record: nothing reads it.
+There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a
+check, `SKILL.md`, or a comment at the code site (CLAUDE.md golden rule 5). A choice that is settled
+rather than pending lives in [`DECISIONS.md`](./.harness/custom/docs/DECISIONS.md), and an unshaped
+thought goes in `.harness/tracking/IDEAS.jsonl`. The `TASKS.json` backlog belongs to the retired build
+harness and is a historical record: nothing reads it.

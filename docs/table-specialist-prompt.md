@@ -36,7 +36,11 @@ Respond with ONLY a single JSON object, no markdown fences and no prose around i
   ],
   "tables": [
     { "index": 0, "verdict": "vocabulary", "reason": "glossed headword/gloss pairs" },
-    { "index": 1, "verdict": "paradigm", "reason": "one word across its forms, not a word list" }
+    {
+      "index": 1,
+      "verdict": "paradigm",
+      "reason": "one word across its forms; every cell extracted"
+    }
   ]
 }
 ```
@@ -49,7 +53,8 @@ this pass exists is that they must not be.
 
 - `vocabulary` — glossed entries, each a word or fixed expression paired with its meaning.
 - `paradigm` — one word or pattern laid out across its forms (present/past, affirmative/negative).
-  Real teaching content, but it is not a word list and its cells are not headwords.
+  Real teaching content, and **every filled cell is an entry**. This verdict classifies the table; it
+  does not excuse you from extracting it.
 - `reference` — a chart of numbers, counters, times, kana. Often holds real entries; say so in the
   reason if it does, and extract them.
 - `example` — model sentences or a dialogue laid out as a table.
@@ -78,7 +83,6 @@ this pass exists is that they must not be.
 
 - Column headers, row labels, and anything that is describing the table rather than taught by it
   (`Present form`, `aff.`, `い-adj.`).
-- Cells of a `paradigm` table. Its content is the transformation, and a later pass handles that.
 - Complete sentences. Those belong to the extras unit, not the base vocabulary this pass feeds.
 
 ## Category

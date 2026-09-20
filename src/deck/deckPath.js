@@ -20,8 +20,8 @@
 // ⚠️ The invariant that matters: **a deck holding cards must never have children.** Anki studies a
 // parent deck together with everything beneath it, so a card-holding parent cannot be studied on its
 // own. Grouping decks exist purely to nest and hold nothing. An earlier version nested the drills
-// under the LESSON deck itself, which made the lesson unstudyable alone; see
-// .harness/custom/docs/LIMITATIONS.md.
+// under the LESSON deck itself, which made the lesson unstudyable alone: Anki cannot study a
+// card-holding parent deck on its own.
 //
 // A label with no such prefix (a course's bare "Lesson 1", a book's "Frequently Used Expressions")
 // has nothing to group with and stays one level under the parent.

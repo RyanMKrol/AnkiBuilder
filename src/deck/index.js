@@ -33,7 +33,7 @@ function embedLanguageFont(targetLanguage, media, mediaEntries, counter, getFont
 // keep keys unique across merged chapters, which LOOKS like a reasonable unique key
 // but silently produces an .apkg Anki's importer rejects outright with "A number was
 // invalid or out of range" — confirmed by bisecting a real import against the actual
-// Anki backend (see .harness/custom/docs/LIMITATIONS.md). `counter` is a single shared
+// Anki backend. `counter` is a single shared
 // mutable `{ next }` object threaded across every chapter's call in buildBookDeck, so
 // numbering stays globally sequential with no resets and no prefixes.
 function resolveChapterAudio(cards, audioDir, media, mediaEntries, counter) {

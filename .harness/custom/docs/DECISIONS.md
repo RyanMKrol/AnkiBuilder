@@ -511,3 +511,35 @@ per-source boolean should become an explicit per-source table.
 - **When to revisit:** if the local library ever gets large enough to matter, prune `.orig.mp3` files
   for lessons already marked done — they're only needed while a lesson is still being reviewed.
 
+## This project keeps no limitations log
+
+- **What was decided:** the overlay `custom/docs/LIMITATIONS.md` was deleted on 2026-09-20. A
+  correction goes where the thing is enforced -- a prompt, a check, `SKILL.md`, or a comment at the
+  code site -- per golden rule 5.
+- **Why:** it reached 199 entries and 4,265 lines, 138 of them still marked open, and 99% append-only
+  across its whole history. Filing a problem had become a substitute for fixing one, and a queue
+  nobody can read in one sitting steers nothing. Two of its entries were measurably wrong when
+  checked: one described a fix that had moved rather than landed.
+- **What this does not change:** the plugin-owned `.harness/docs/LIMITATIONS.md` still tells you to
+  add rows to the overlay. That file is refreshed on harness upgrade and is not ours to edit, so it
+  will keep saying so. This entry is the answer: ignore it, and read golden rule 5.
+- **What would reopen it:** a recurring class of problem that genuinely has no enforcement site --
+  nothing to put in a prompt, no check that could catch it, no code comment that would be read. None
+  of the 138 open entries was that, which is why it went.
+
+## A spent migration stays in `scripts/`, marked, rather than moving
+
+- **What was decided:** a one-off migration that has already run against the live decks keeps a
+  `// SPENT: <date>` header saying not to run it, and stays where it is.
+  `test/scripts/spentMigrations.test.js` requires every `.mjs` in `scripts/` to be classified as
+  either a standing tool or a spent migration, so a new script makes the suite red until someone
+  says which it is.
+- **Why:** moving them to `scripts/migrations/` would break every doc reference and every
+  muscle-memory path, for a distinction that only has to be visible at the top of the file.
+- **The spent ones**, named here so they stay discoverable from a document rather than only from a
+  test array: `absorb-nihongo.mjs`, `migrate-nihongo-absorption.mjs`,
+  `migrate-absorption-to-additions.mjs`, `migrate-reading-to-ttstext.mjs`,
+  `backfill-audio-text-hash.mjs`, `add-verb-forms-family.mjs`, `enhance-card-notes.mjs`,
+  `strip-restatement-notes.mjs`, `split-front-hint.mjs`, `jumble-number-runs.mjs`.
+- **What would reopen it:** `scripts/` growing large enough that the two kinds are hard to tell
+  apart by eye, at which point the folder split becomes worth its cost.

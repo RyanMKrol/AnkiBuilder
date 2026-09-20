@@ -442,7 +442,7 @@ function insertNotesAndCards(
       //
       // The stated consequence: a `.apkg` built here deliberately does NOT reproduce the delivered
       // deck card-for-card. That is the right trade — the two builders must not drift STRUCTURALLY —
-      // but it is a real difference and is written down in docs/PIPELINE.md and LIMITATIONS.
+      // but it is a real difference and is written down in docs/PIPELINE.md.
       for (let ord = 0; ord < 2; ord++) {
         const cardId = noteId + ord + 1;
         insertCard.run(

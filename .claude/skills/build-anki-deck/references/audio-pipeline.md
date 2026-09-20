@@ -254,3 +254,21 @@ One related subtlety the stage handles for you: clip names are content-addressed
 stage compares the stored clip against the card's CURRENT text rather than only checking that a file
 exists, so the edited card gets fresh audio on the next run instead of silently keeping the old
 recording.
+
+## Re-clean every clip already on disk
+
+```sh
+node scripts/clean-audio.mjs --dry      # always first
+node scripts/clean-audio.mjs --apply
+```
+
+Applies the current background-noise cleanup to cards built before that cleanup existed, or after the
+filter changes. **Entirely local: ffmpeg only, no ElevenLabs calls, no credits, and a take you
+already approved is never re-rolled** -- only the processing applied to it changes.
+
+A card with an `audioOriginal` simply has its `audioAuto` re-derived from the untouched take. A card
+without one (generated before originals were kept) cannot be improved this way, because the only copy
+on disk is already processed, and the script says so rather than cleaning a clip twice.
+
+This is the repair path for the whole collection. Dropping the audio cache does NOT do it: the cache
+holds fetches, and these clips are already fetched.

@@ -1,0 +1,687 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 42,
+    "chapterLabel": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (Extras)",
+    "baseChapterLabel": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her",
+    "phase": "extras"
+  },
+  "items": [
+    {
+      "id": "oshieru-basho",
+      "target": "ばしょをおしえてください",
+      "english": "Please tell me the location.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaku-jusho",
+      "target": "じゅうしょをかいてください",
+      "english": "Please write your address.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-report-after-meeting",
+      "target": "スミスさんはかいぎのあと、レポートをかきました",
+      "english": "Smith-san wrote a report after the meeting.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "purezen-kaigi",
+      "target": "あしたかいぎでプレゼンをします",
+      "english": "I'm going to give a presentation at the meeting tomorrow.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "invite-come-home-lunch",
+      "target": "うちにきて、ひるごはんをたべませんか",
+      "english": "Shall we have lunch at my place? (Come over and eat lunch.)",
+      "category": "Food",
+      "note": "きて (kite) is the て-form of きます (kimasu), an Irregular verb."
+    },
+    {
+      "id": "kiku-ask",
+      "target": "なかむらさんにでんわばんごうをきいてください",
+      "english": "Please ask Nakamura-san for his telephone number.",
+      "category": "Technology & Communication",
+      "note": "Contrast pair with おんがくをきいてください (ongaku o kiite kudasai). Same て-form, but きいて (kiite) means \"ask\" when a person is marked with に (ni) and \"listen\" when the object is something you hear.",
+      "aiSuggested": true
+    },
+    {
+      "id": "answer-hakone-tennis",
+      "target": "はこねにいって、テニスをします",
+      "english": "I'll go to Hakone and play tennis.",
+      "category": "Sports & Hobbies",
+      "scene": "Someone asks what you are going to do tomorrow.",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+    },
+    {
+      "id": "oshieru-denwa",
+      "target": "でんわばんごうをおしえてください",
+      "english": "Please tell me your telephone number.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kiku-listen-pair",
+      "target": "ラジオでニュースをきいてください",
+      "english": "Please listen to the news on the radio.",
+      "category": "Technology & Communication",
+      "note": "Contrast pair with なかむらさんにでんわばんごうをきいてください (Nakamura-san ni denwa bangō o kiite kudasai). Only the object and particle change, but the meaning of きいて (kiite) does.",
+      "aiSuggested": true
+    },
+    {
+      "id": "restaurant-hirugohan-bijutsukan",
+      "target": "レストランでひるごはんをたべて、びじゅつかんにいきます",
+      "english": "I'll eat lunch at a restaurant and then go to the art museum.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "miseru-shashin",
+      "target": "しゃしんをみせてください",
+      "english": "Please show me the photo.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "matsu-robii",
+      "target": "ロビーでまってください",
+      "english": "Please wait in the lobby.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaku-namae",
+      "target": "ここになまえをかいてください",
+      "english": "Please write your name here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogu-umi",
+      "target": "うみでおよいでください",
+      "english": "Please swim in the ocean.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "fair-no-ato-nara-otera",
+      "target": "フェアのあと、ならにいって、ふるいおてらをみます",
+      "english": "After the fair, I'll go to Nara and see old temples.",
+      "category": "Travel & Tourism",
+      "scene": "Answering: What will you do after the fair?",
+      "fillInBlank": true
+    },
+    {
+      "id": "hanasu-nihongo",
+      "target": "にほんごではなしてください",
+      "english": "Please speak in Japanese.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tomodachi-ni-atte-eiga",
+      "target": "ともだちにあって、えいがをみます",
+      "english": "I'll meet a friend and watch a movie.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "miseru-meishi",
+      "target": "めいしをみせてください",
+      "english": "Please show me your business card.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "went-ginza-ate-lunch",
+      "target": "きのうぎんざにいって、ひるごはんをたべました",
+      "english": "Yesterday I went to Ginza and ate lunch there.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "hanasu-koko",
+      "target": "ここではなしてください",
+      "english": "Please talk here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "miseru-sumaho",
+      "target": "スマホをみせてください",
+      "english": "Please show me your smartphone.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nikko-itte-jinja-mimasen-ka",
+      "target": "にっこうにいって、ゆうめいなじんじゃをみませんか",
+      "english": "Shall we go to Nikko and see a famous shrine?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "miru-koko",
+      "target": "ここをみてください",
+      "english": "Please look here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "sandwich-katte-kouen-tabemasen-ka",
+      "target": "サンドイッチをかって、こうえんでたべませんか",
+      "english": "Shall we buy sandwiches and eat them in the park?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "kau-chiketto",
+      "target": "チケットをかってください",
+      "english": "Please buy a ticket.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "yoroshii-ashita",
+      "target": "あしたはよろしいですか",
+      "english": "Is tomorrow all right?",
+      "category": "Greetings",
+      "note": "Minimal pair with いまよろしいですか (ima yoroshii desu ka): いま (ima) becomes あしたは (ashita wa).",
+      "aiSuggested": true
+    },
+    {
+      "id": "kasu-kasa",
+      "target": "かさをかしてください",
+      "english": "Please lend me an umbrella.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuruma-karite-doraibu-yesterday",
+      "target": "くるまをかりて、ドライブをしました",
+      "english": "I rented a car and went for a drive.",
+      "category": "Grammar & Function Words",
+      "scene": "Answering: What did you do yesterday?",
+      "fillInBlank": true,
+      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te)."
+    },
+    {
+      "id": "eat-after-meeting-ato-de",
+      "target": "かいぎのあとでたべます",
+      "english": "I'll eat after the meeting.",
+      "category": "Grammar & Function Words",
+      "scene": "A coworker asks when you plan to eat supper on a day you have an evening meeting.",
+      "note": "あとで (ato de) after かいぎの (kaigi no) stresses that eating comes after the meeting. Compare まえに (mae ni) \"Before\" for the opposite order."
+    },
+    {
+      "id": "chan-invite-kobe-beef",
+      "target": "じゃ、こうべにいって、こうべビーフをたべませんか",
+      "english": "Well then, how about going to Kobe and having some Kobe beef?",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "matsu-uketsuke",
+      "target": "うけつけでまってください",
+      "english": "Please wait at the reception desk.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "meeting-then-report",
+      "target": "ごご1じからかいぎがあります。かいぎのあと、レポートをかきます",
+      "english": "There is a meeting from 1:00 p.m. After the meeting, I will write a report.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "yoroshii-ima",
+      "target": "いまよろしいですか",
+      "english": "Is now a good time?",
+      "category": "Greetings",
+      "note": "Minimal pair with あしたはよろしいですか (ashita wa yoroshii desu ka): only the time word changes.",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-osaka-meeting-call",
+      "target": "スミスさんはもくようびにおおさかにいって、かいぎをします。かいぎのあと、グリーンさんにでんわをします",
+      "english": "On Thursday, Smith-san will go to Osaka and have a meeting. After the meeting, he will telephone Green-san.",
+      "category": "Work & Occupations",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+    },
+    {
+      "id": "yomu-meeru",
+      "target": "メールをよんでください",
+      "english": "Please read the e-mail.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "chan-likes-steak-topic",
+      "target": "エマさん、ステーキはすきですか",
+      "english": "Emma-san, do you like steak?",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "kaeru-goji",
+      "target": "ごじにかえってください",
+      "english": "Please go home at 5:00.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "chotto-kite",
+      "target": "ちょっとここにきてください",
+      "english": "Please come here for a moment.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "matsu-koko",
+      "target": "ここでまってください",
+      "english": "Please wait here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "party-then-taxi-home",
+      "target": "きのうパーティーがありました。パーティーのあと、タクシーでうちにかえりました",
+      "english": "There was a party yesterday. After the party, I went home by taxi.",
+      "category": "Transport"
+    },
+    {
+      "id": "kaeru-uchi",
+      "target": "うちにかえってください",
+      "english": "Please go home.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-plans-tomorrow",
+      "target": "あしたなにをしますか",
+      "english": "What are you going to do tomorrow?",
+      "category": "Time"
+    },
+    {
+      "id": "hanasu-douryou",
+      "target": "どうりょうとはなしてください",
+      "english": "Please talk with a colleague.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kau-pan",
+      "target": "パンをかってください",
+      "english": "Please buy some bread.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kiku-ongaku",
+      "target": "おんがくをきいてください",
+      "english": "Please listen to the music.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ginza-kaimono-eiga-tomorrow",
+      "target": "ぎんざでかいものをして、えいがをみます",
+      "english": "I'll do some shopping in Ginza and watch a movie.",
+      "category": "Grammar & Function Words",
+      "scene": "Answering: What are you going to do tomorrow?",
+      "fillInBlank": true,
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb: かいものをして (kaimono o shite)."
+    },
+    {
+      "id": "ginza-then-meet-friend",
+      "target": "ぎんざにいって、ともだちにあいます",
+      "english": "I'll go to Ginza and meet a friend.",
+      "category": "Grammar & Function Words",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. It links two actions with the same subject."
+    },
+    {
+      "id": "iru-koko",
+      "target": "ここにいてください",
+      "english": "Please stay here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "depaato-ni-itte-kaimono",
+      "target": "デパートにいって、かいものをします",
+      "english": "I'll go to the department store and do some shopping.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "ki-o-tsukete-itterasshai",
+      "target": "きをつけて、いってらっしゃい",
+      "english": "Take care, and have a good trip.",
+      "category": "Greetings",
+      "aiSuggested": true
+    },
+    {
+      "id": "oshieru-namae",
+      "target": "なまえをおしえてください",
+      "english": "Please tell me your name.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Identical target and gloss to the card in chapter-2-extras.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Exact target and gloss duplicate of chapter-2-extras/namae-o-oshiete-kudasai"
+    },
+    {
+      "id": "fair-no-ato-shisha-uchiawase",
+      "target": "フェアのあと、ししゃにいって、チャンさんとうちあわせをします",
+      "english": "After the fair, I'll go to the branch office and have a preparatory meeting with Chan-san.",
+      "category": "Work & Occupations",
+      "scene": "Answering: What will you do after the fair?",
+      "fillInBlank": true
+    },
+    {
+      "id": "chain-shite-kiku",
+      "target": "スミスさんにでんわをして、レストランのばしょをききます",
+      "english": "I'll call Smith-san and ask where the restaurant is.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because a person is marked with に (ni)."
+    },
+    {
+      "id": "nomu-ocha",
+      "target": "おちゃをのんでください",
+      "english": "Please drink some tea.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tomodachi-atte-sumo-yesterday",
+      "target": "ともだちにあって、いっしょにすもうをみました",
+      "english": "I met a friend and we watched sumo together.",
+      "category": "Grammar & Function Words",
+      "scene": "Answering: What did you do yesterday?",
+      "fillInBlank": true
+    },
+    {
+      "id": "emma-kobe-meet-friend",
+      "target": "こうべにいって、ともだちにあいます",
+      "english": "I'll go to Kobe and meet a friend.",
+      "category": "Travel & Tourism",
+      "scene": "Kato asks Emma what she is going to do after the fair.",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+    },
+    {
+      "id": "kasu-hon",
+      "target": "ほんをかしてください",
+      "english": "Please lend me a book.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuru-ashita",
+      "target": "あしたきてください",
+      "english": "Please come tomorrow.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "answer-osaka-branch-presentation",
+      "target": "おおさかししゃにいって、プレゼンをしました",
+      "english": "I went to the Osaka branch office and gave a presentation.",
+      "category": "Work & Occupations",
+      "scene": "Someone asks what you did yesterday.",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita)."
+    },
+    {
+      "id": "kaku-denwa",
+      "target": "でんわばんごうをかいてください",
+      "english": "Please write your telephone number.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogu-puuru",
+      "target": "プールでおよいでください",
+      "english": "Please swim in the pool.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "past-chain-swim",
+      "target": "きのうプールでおよいで、ビールをのみました",
+      "english": "Yesterday I swam in the pool and then drank a beer.",
+      "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "koujou-tokyo",
+      "target": "こうじょうはとうきょうにあります",
+      "english": "The factory is in Tokyo.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomu-koohii",
+      "target": "コーヒーをのんでください",
+      "english": "Please drink some coffee.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "chain-buy-give",
+      "target": "デパートでかばんをかって、ともだちにあげます",
+      "english": "I'll buy a bag at the department store and give it to a friend.",
+      "category": "Shopping",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuru-goji",
+      "target": "ごじにきてください",
+      "english": "Please come at 5:00.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "yoroshii-place",
+      "target": "ここでよろしいですか",
+      "english": "Is here all right?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "miru-terebi",
+      "target": "テレビをみてください",
+      "english": "Please watch television.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogu-koko",
+      "target": "ここでおよいでください",
+      "english": "Please swim here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kiku-rajio",
+      "target": "ラジオをきいてください",
+      "english": "Please listen to the radio.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "au-smith",
+      "target": "スミスさんにあってください",
+      "english": "Please meet Smith-san.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-what-did-yesterday",
+      "target": "きのうなにをしましたか",
+      "english": "What did you do yesterday?",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Identical target and gloss to the card in chapter-8-extras.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Exact target and gloss duplicate of chapter-8-extras/sp2-kinou-nani-o-shimashita-ka; the answer cards in this unit each carry their own scene, so nothing is stranded"
+    },
+    {
+      "id": "yomu-hon",
+      "target": "ほんをよんでください",
+      "english": "Please read the book.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kasu-pen",
+      "target": "ペンをかしてください",
+      "english": "Please lend me a pen.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "chain-mail-send",
+      "target": "メールをかいて、スミスさんにおくります",
+      "english": "I'll write an e-mail and send it to Smith-san.",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "chain-bookstore-park",
+      "target": "ほんやにいって、ほんをかって、こうえんでよみます",
+      "english": "I'll go to the bookstore, buy a book, and read it in the park.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabete-keeki",
+      "target": "ケーキをたべてください",
+      "english": "Please eat some cake.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "three-verb-chain",
+      "target": "ひるごはんをたべて、コーヒーをのんで、うちにかえります",
+      "english": "I'll eat lunch, have some coffee, and then go home.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "doraibu-hakone",
+      "target": "しゅうまつにはこねでドライブをします",
+      "english": "I'm going for a drive in Hakone this weekend.",
+      "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "emma-osaka-branch-te-form",
+      "target": "エマさんはあしたおおさかししゃにいって、チャンさんにあいます",
+      "english": "Emma-san will go to the Osaka branch office tomorrow and see Chan-san.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "party-no-ato-bar-whiskey",
+      "target": "パーティーのあと、バーにいって、ウイスキーをのみます",
+      "english": "After the party, I will go to a bar and drink whiskey.",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "chain-kite",
+      "target": "あしたうちにきて、いっしょにえいがをみましょう",
+      "english": "Come to my place tomorrow, and let's watch a movie together.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-after-pair",
+      "target": "かいぎのまえにしりょうをよみます。かいぎのあと、うちにかえります",
+      "english": "I'll read the documents before the meeting. After the meeting, I'll go home.",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaeru-takushii",
+      "target": "タクシーでかえってください",
+      "english": "Please go home by taxi.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "miru-shashin",
+      "target": "しゃしんをみてください",
+      "english": "Please look at the photo.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "supper-before-or-after-meeting",
+      "target": "ばんごはんはかいぎのまえにたべますか。あとでたべますか",
+      "english": "Will you eat supper before the meeting? Or after?",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "kato-ask-after-fair",
+      "target": "エマさん、フェアのあと、なにをしますか",
+      "english": "Emma-san, what are you going to do after the fair?",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "kaigi-no-ato-yamamoto-san",
+      "target": "かいぎのあと、やまもとさんにあいます",
+      "english": "After the meeting, I will meet Yamamoto-san.",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "kiku-nyuusu",
+      "target": "ニュースをきいてください",
+      "english": "Please listen to the news.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "yomu-tegami",
+      "target": "てがみをよんでください",
+      "english": "Please read the letter.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "yokohama-soccer-match-tomorrow",
+      "target": "よこはまにいって、サッカーのしあいをみます",
+      "english": "I'll go to Yokohama and watch a soccer match.",
+      "category": "Grammar & Function Words",
+      "scene": "Answering: What are you going to do tomorrow?",
+      "fillInBlank": true
+    },
+    {
+      "id": "repeat-please",
+      "target": "もういちどはなしてください",
+      "english": "Please say that once more.",
+      "category": "Greetings",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabete-koko",
+      "target": "ここでたべてください",
+      "english": "Please eat here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomu-mizu",
+      "target": "ここでみずをのんでください",
+      "english": "Please drink water here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    }
+  ]
+}

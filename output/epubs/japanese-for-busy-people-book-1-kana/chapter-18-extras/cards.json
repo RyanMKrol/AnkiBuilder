@@ -1,0 +1,795 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 42,
+    "chapterLabel": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (Extras)",
+    "baseChapterLabel": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "oshieru-basho",
+      "english": "Please tell me the location.",
+      "category": "Grammar & Function Words",
+      "target": "ばしょをおしえてください",
+      "pronunciation": "basho o oshiete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaku-jusho",
+      "english": "Please write your address.",
+      "category": "Grammar & Function Words",
+      "target": "じゅうしょをかいてください",
+      "pronunciation": "jūsho o kaite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-report-after-meeting",
+      "english": "Smith-san wrote a report after the meeting.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんはかいぎのあと、レポートをかきました",
+      "pronunciation": "Sumisu-san wa kaigi no ato, repōto o kakimashita"
+    },
+    {
+      "id": "purezen-kaigi",
+      "english": "I'm going to give a presentation at the meeting tomorrow.",
+      "category": "Work & Occupations",
+      "target": "あしたかいぎでプレゼンをします",
+      "pronunciation": "ashita kaigi de purezen o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "invite-come-home-lunch",
+      "english": "Shall we have lunch at my place? (Come over and eat lunch.)",
+      "category": "Food",
+      "target": "うちにきて、ひるごはんをたべませんか",
+      "pronunciation": "uchi ni kite, hirugohan o tabemasen ka",
+      "note": "きて (kite) is the て-form of きます (kimasu), an Irregular verb."
+    },
+    {
+      "id": "kiku-ask",
+      "english": "Please ask Nakamura-san for his telephone number.",
+      "category": "Technology & Communication",
+      "target": "なかむらさんにでんわばんごうをきいてください",
+      "pronunciation": "Nakamura-san ni denwa bangō o kiite kudasai",
+      "aiSuggested": true,
+      "note": "Contrast pair with おんがくをきいてください (ongaku o kiite kudasai). Same て-form, but きいて (kiite) means \"ask\" when a person is marked with に (ni) and \"listen\" when the object is something you hear."
+    },
+    {
+      "id": "answer-hakone-tennis",
+      "english": "I'll go to Hakone and play tennis.",
+      "category": "Sports & Hobbies",
+      "target": "はこねにいって、テニスをします",
+      "pronunciation": "Hakone ni itte, tenisu o shimasu",
+      "scene": "Someone asks what you are going to do tomorrow.",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+    },
+    {
+      "id": "oshieru-denwa",
+      "english": "Please tell me your telephone number.",
+      "category": "Grammar & Function Words",
+      "target": "でんわばんごうをおしえてください",
+      "pronunciation": "denwa bangō o oshiete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kiku-listen-pair",
+      "english": "Please listen to the news on the radio.",
+      "category": "Technology & Communication",
+      "target": "ラジオでニュースをきいてください",
+      "pronunciation": "rajio de nyūsu o kiite kudasai",
+      "aiSuggested": true,
+      "note": "Contrast pair with なかむらさんにでんわばんごうをきいてください (Nakamura-san ni denwa bangō o kiite kudasai). Only the object and particle change, but the meaning of きいて (kiite) does."
+    },
+    {
+      "id": "restaurant-hirugohan-bijutsukan",
+      "english": "I'll eat lunch at a restaurant and then go to the art museum.",
+      "category": "Grammar & Function Words",
+      "target": "レストランでひるごはんをたべて、びじゅつかんにいきます",
+      "pronunciation": "resutoran de hirugohan o tabete, bijutsukan ni ikimasu"
+    },
+    {
+      "id": "miseru-shashin",
+      "english": "Please show me the photo.",
+      "category": "Grammar & Function Words",
+      "target": "しゃしんをみせてください",
+      "pronunciation": "shashin o misete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "matsu-robii",
+      "english": "Please wait in the lobby.",
+      "category": "Grammar & Function Words",
+      "target": "ロビーでまってください",
+      "pronunciation": "robī de matte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaku-namae",
+      "english": "Please write your name here.",
+      "category": "Grammar & Function Words",
+      "target": "ここになまえをかいてください",
+      "pronunciation": "koko ni namae o kaite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogu-umi",
+      "english": "Please swim in the ocean.",
+      "category": "Grammar & Function Words",
+      "target": "うみでおよいでください",
+      "pronunciation": "umi de oyoide kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "fair-no-ato-nara-otera",
+      "english": "After the fair, I'll go to Nara and see old temples.",
+      "category": "Travel & Tourism",
+      "target": "フェアのあと、ならにいって、ふるいおてらをみます",
+      "pronunciation": "fea no ato, Nara ni itte, furui otera o mimasu",
+      "scene": "Answering: What will you do after the fair?"
+    },
+    {
+      "id": "hanasu-nihongo",
+      "english": "Please speak in Japanese.",
+      "category": "Grammar & Function Words",
+      "target": "にほんごではなしてください",
+      "pronunciation": "nihongo de hanashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "tomodachi-ni-atte-eiga",
+      "english": "I'll meet a friend and watch a movie.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにあって、えいがをみます",
+      "pronunciation": "tomodachi ni atte, eiga o mimasu"
+    },
+    {
+      "id": "miseru-meishi",
+      "english": "Please show me your business card.",
+      "category": "Grammar & Function Words",
+      "target": "めいしをみせてください",
+      "pronunciation": "meishi o misete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "went-ginza-ate-lunch",
+      "english": "Yesterday I went to Ginza and ate lunch there.",
+      "category": "Grammar & Function Words",
+      "target": "きのうぎんざにいって、ひるごはんをたべました",
+      "pronunciation": "kinō Ginza ni itte, hirugohan o tabemashita"
+    },
+    {
+      "id": "hanasu-koko",
+      "english": "Please talk here.",
+      "category": "Grammar & Function Words",
+      "target": "ここではなしてください",
+      "pronunciation": "koko de hanashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "miseru-sumaho",
+      "english": "Please show me your smartphone.",
+      "category": "Grammar & Function Words",
+      "target": "スマホをみせてください",
+      "pronunciation": "sumaho o misete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "nikko-itte-jinja-mimasen-ka",
+      "english": "Shall we go to Nikko and see a famous shrine?",
+      "category": "Grammar & Function Words",
+      "target": "にっこうにいって、ゆうめいなじんじゃをみませんか",
+      "pronunciation": "Nikkō ni itte, yūmei na jinja o mimasen ka"
+    },
+    {
+      "id": "miru-koko",
+      "english": "Please look here.",
+      "category": "Grammar & Function Words",
+      "target": "ここをみてください",
+      "pronunciation": "koko o mite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "sandwich-katte-kouen-tabemasen-ka",
+      "english": "Shall we buy sandwiches and eat them in the park?",
+      "category": "Grammar & Function Words",
+      "target": "サンドイッチをかって、こうえんでたべませんか",
+      "pronunciation": "sandoitchi o katte, kōen de tabemasen ka"
+    },
+    {
+      "id": "kau-chiketto",
+      "english": "Please buy a ticket.",
+      "category": "Grammar & Function Words",
+      "target": "チケットをかってください",
+      "pronunciation": "chiketto o katte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "yoroshii-ashita",
+      "english": "Is tomorrow all right?",
+      "category": "Greetings",
+      "target": "あしたはよろしいですか",
+      "pronunciation": "ashita wa yoroshii desu ka",
+      "aiSuggested": true,
+      "note": "Minimal pair with いまよろしいですか (ima yoroshii desu ka): いま (ima) becomes あしたは (ashita wa)."
+    },
+    {
+      "id": "kasu-kasa",
+      "english": "Please lend me an umbrella.",
+      "category": "Grammar & Function Words",
+      "target": "かさをかしてください",
+      "pronunciation": "kasa o kashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuruma-karite-doraibu-yesterday",
+      "english": "I rented a car and went for a drive.",
+      "category": "Grammar & Function Words",
+      "target": "くるまをかりて、ドライブをしました",
+      "pronunciation": "kuruma o karite, doraibu o shimashita",
+      "scene": "Answering: What did you do yesterday?",
+      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te)."
+    },
+    {
+      "id": "eat-after-meeting-ato-de",
+      "english": "I'll eat after the meeting.",
+      "category": "Grammar & Function Words",
+      "target": "かいぎのあとでたべます",
+      "pronunciation": "kaigi no ato de tabemasu",
+      "scene": "A coworker asks when you plan to eat supper on a day you have an evening meeting.",
+      "note": "あとで (ato de) after かいぎの (kaigi no) stresses that eating comes after the meeting. Compare まえに (mae ni) \"Before\" for the opposite order."
+    },
+    {
+      "id": "chan-invite-kobe-beef",
+      "english": "Well then, how about going to Kobe and having some Kobe beef?",
+      "category": "Grammar & Function Words",
+      "target": "じゃ、こうべにいって、こうべビーフをたべませんか",
+      "pronunciation": "ja, Kōbe ni itte, Kōbe bīfu o tabemasen ka"
+    },
+    {
+      "id": "matsu-uketsuke",
+      "english": "Please wait at the reception desk.",
+      "category": "Grammar & Function Words",
+      "target": "うけつけでまってください",
+      "pronunciation": "uketsuke de matte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "meeting-then-report",
+      "english": "There is a meeting from 1:00 p.m. After the meeting, I will write a report.",
+      "category": "Work & Occupations",
+      "target": "ごご1じからかいぎがあります。かいぎのあと、レポートをかきます",
+      "pronunciation": "gogo ichi-ji kara kaigi ga arimasu. kaigi no ato, repōto o kakimasu",
+      "ttsText": "ごごいちじからかいぎがあります。かいぎのあと、レポートをかきます",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "yoroshii-ima",
+      "english": "Is now a good time?",
+      "category": "Greetings",
+      "target": "いまよろしいですか",
+      "pronunciation": "ima yoroshii desu ka",
+      "aiSuggested": true,
+      "note": "Minimal pair with あしたはよろしいですか (ashita wa yoroshii desu ka): only the time word changes."
+    },
+    {
+      "id": "smith-osaka-meeting-call",
+      "english": "On Thursday, Smith-san will go to Osaka and have a meeting. After the meeting, he will telephone Green-san.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはもくようびにおおさかにいって、かいぎをします。かいぎのあと、グリーンさんにでんわをします",
+      "pronunciation": "Sumisu-san wa mokuyōbi ni Ōsaka ni itte, kaigi o shimasu. kaigi no ato, Gurīn-san ni denwa o shimasu",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+    },
+    {
+      "id": "yomu-meeru",
+      "english": "Please read the e-mail.",
+      "category": "Grammar & Function Words",
+      "target": "メールをよんでください",
+      "pronunciation": "mēru o yonde kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "chan-likes-steak-topic",
+      "english": "Emma-san, do you like steak?",
+      "category": "Grammar & Function Words",
+      "target": "エマさん、ステーキはすきですか",
+      "pronunciation": "Ema-san, sutēki wa suki desu ka"
+    },
+    {
+      "id": "kaeru-goji",
+      "english": "Please go home at 5:00.",
+      "category": "Grammar & Function Words",
+      "target": "ごじにかえってください",
+      "pronunciation": "go-ji ni kaette kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "chotto-kite",
+      "english": "Please come here for a moment.",
+      "category": "Grammar & Function Words",
+      "target": "ちょっとここにきてください",
+      "pronunciation": "chotto koko ni kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "matsu-koko",
+      "english": "Please wait here.",
+      "category": "Grammar & Function Words",
+      "target": "ここでまってください",
+      "pronunciation": "koko de matte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "party-then-taxi-home",
+      "english": "There was a party yesterday. After the party, I went home by taxi.",
+      "category": "Transport",
+      "target": "きのうパーティーがありました。パーティーのあと、タクシーでうちにかえりました",
+      "pronunciation": "kinō pātī ga arimashita. pātī no ato, takushī de uchi ni kaerimashita"
+    },
+    {
+      "id": "kaeru-uchi",
+      "english": "Please go home.",
+      "category": "Grammar & Function Words",
+      "target": "うちにかえってください",
+      "pronunciation": "uchi ni kaette kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-plans-tomorrow",
+      "english": "What are you going to do tomorrow?",
+      "category": "Time",
+      "target": "あしたなにをしますか",
+      "pronunciation": "ashita nani o shimasu ka"
+    },
+    {
+      "id": "hanasu-douryou",
+      "english": "Please talk with a colleague.",
+      "category": "Grammar & Function Words",
+      "target": "どうりょうとはなしてください",
+      "pronunciation": "dōryō to hanashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kau-pan",
+      "english": "Please buy some bread.",
+      "category": "Grammar & Function Words",
+      "target": "パンをかってください",
+      "pronunciation": "pan o katte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kiku-ongaku",
+      "english": "Please listen to the music.",
+      "category": "Grammar & Function Words",
+      "target": "おんがくをきいてください",
+      "pronunciation": "ongaku o kiite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "ginza-kaimono-eiga-tomorrow",
+      "english": "I'll do some shopping in Ginza and watch a movie.",
+      "category": "Grammar & Function Words",
+      "target": "ぎんざでかいものをして、えいがをみます",
+      "pronunciation": "Ginza de kaimono o shite, eiga o mimasu",
+      "scene": "Answering: What are you going to do tomorrow?",
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb: かいものをして (kaimono o shite)."
+    },
+    {
+      "id": "ginza-then-meet-friend",
+      "english": "I'll go to Ginza and meet a friend.",
+      "category": "Grammar & Function Words",
+      "target": "ぎんざにいって、ともだちにあいます",
+      "pronunciation": "Ginza ni itte, tomodachi ni aimasu",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. It links two actions with the same subject."
+    },
+    {
+      "id": "iru-koko",
+      "english": "Please stay here.",
+      "category": "Grammar & Function Words",
+      "target": "ここにいてください",
+      "pronunciation": "koko ni ite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "depaato-ni-itte-kaimono",
+      "english": "I'll go to the department store and do some shopping.",
+      "category": "Grammar & Function Words",
+      "target": "デパートにいって、かいものをします",
+      "pronunciation": "depāto ni itte, kaimono o shimasu"
+    },
+    {
+      "id": "ki-o-tsukete-itterasshai",
+      "english": "Take care, and have a good trip.",
+      "category": "Greetings",
+      "target": "きをつけて、いってらっしゃい",
+      "pronunciation": "ki o tsukete, itterasshai",
+      "aiSuggested": true
+    },
+    {
+      "id": "oshieru-namae",
+      "english": "Please tell me your name.",
+      "category": "Grammar & Function Words",
+      "target": "なまえをおしえてください",
+      "pronunciation": "namae o oshiete kudasai",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — Identical target and gloss to the card in chapter-2-extras.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Exact target and gloss duplicate of chapter-2-extras/namae-o-oshiete-kudasai"
+    },
+    {
+      "id": "fair-no-ato-shisha-uchiawase",
+      "english": "After the fair, I'll go to the branch office and have a preparatory meeting with Chan-san.",
+      "category": "Work & Occupations",
+      "target": "フェアのあと、ししゃにいって、チャンさんとうちあわせをします",
+      "pronunciation": "fea no ato, shisha ni itte, Chan-san to uchiawase o shimasu",
+      "scene": "Answering: What will you do after the fair?"
+    },
+    {
+      "id": "chain-shite-kiku",
+      "english": "I'll call Smith-san and ask where the restaurant is.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんにでんわをして、レストランのばしょをききます",
+      "pronunciation": "Sumisu-san ni denwa o shite, resutoran no basho o kikimasu",
+      "aiSuggested": true,
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because a person is marked with に (ni)."
+    },
+    {
+      "id": "nomu-ocha",
+      "english": "Please drink some tea.",
+      "category": "Grammar & Function Words",
+      "target": "おちゃをのんでください",
+      "pronunciation": "ocha o nonde kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "tomodachi-atte-sumo-yesterday",
+      "english": "I met a friend and we watched sumo together.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにあって、いっしょにすもうをみました",
+      "pronunciation": "tomodachi ni atte, issho ni sumō o mimashita",
+      "scene": "Answering: What did you do yesterday?"
+    },
+    {
+      "id": "emma-kobe-meet-friend",
+      "english": "I'll go to Kobe and meet a friend.",
+      "category": "Travel & Tourism",
+      "target": "こうべにいって、ともだちにあいます",
+      "pronunciation": "Kōbe ni itte, tomodachi ni aimasu",
+      "scene": "Kato asks Emma what she is going to do after the fair.",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+    },
+    {
+      "id": "kasu-hon",
+      "english": "Please lend me a book.",
+      "category": "Grammar & Function Words",
+      "target": "ほんをかしてください",
+      "pronunciation": "hon o kashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuru-ashita",
+      "english": "Please come tomorrow.",
+      "category": "Grammar & Function Words",
+      "target": "あしたきてください",
+      "pronunciation": "ashita kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "answer-osaka-branch-presentation",
+      "english": "I went to the Osaka branch office and gave a presentation.",
+      "category": "Work & Occupations",
+      "target": "おおさかししゃにいって、プレゼンをしました",
+      "pronunciation": "Ōsaka shisha ni itte, purezen o shimashita",
+      "scene": "Someone asks what you did yesterday.",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita)."
+    },
+    {
+      "id": "kaku-denwa",
+      "english": "Please write your telephone number.",
+      "category": "Grammar & Function Words",
+      "target": "でんわばんごうをかいてください",
+      "pronunciation": "denwa bangō o kaite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogu-puuru",
+      "english": "Please swim in the pool.",
+      "category": "Grammar & Function Words",
+      "target": "プールでおよいでください",
+      "pronunciation": "pūru de oyoide kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "past-chain-swim",
+      "english": "Yesterday I swam in the pool and then drank a beer.",
+      "category": "Sports & Hobbies",
+      "target": "きのうプールでおよいで、ビールをのみました",
+      "pronunciation": "kinō pūru de oyoide, bīru o nomimashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "koujou-tokyo",
+      "english": "The factory is in Tokyo.",
+      "category": "Work & Occupations",
+      "target": "こうじょうはとうきょうにあります",
+      "pronunciation": "kōjō wa Tōkyō ni arimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomu-koohii",
+      "english": "Please drink some coffee.",
+      "category": "Grammar & Function Words",
+      "target": "コーヒーをのんでください",
+      "pronunciation": "kōhī o nonde kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "chain-buy-give",
+      "english": "I'll buy a bag at the department store and give it to a friend.",
+      "category": "Shopping",
+      "target": "デパートでかばんをかって、ともだちにあげます",
+      "pronunciation": "depāto de kaban o katte, tomodachi ni agemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kuru-goji",
+      "english": "Please come at 5:00.",
+      "category": "Grammar & Function Words",
+      "target": "ごじにきてください",
+      "pronunciation": "go-ji ni kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "yoroshii-place",
+      "english": "Is here all right?",
+      "category": "Grammar & Function Words",
+      "target": "ここでよろしいですか",
+      "pronunciation": "koko de yoroshii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "miru-terebi",
+      "english": "Please watch television.",
+      "category": "Grammar & Function Words",
+      "target": "テレビをみてください",
+      "pronunciation": "terebi o mite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogu-koko",
+      "english": "Please swim here.",
+      "category": "Grammar & Function Words",
+      "target": "ここでおよいでください",
+      "pronunciation": "koko de oyoide kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kiku-rajio",
+      "english": "Please listen to the radio.",
+      "category": "Grammar & Function Words",
+      "target": "ラジオをきいてください",
+      "pronunciation": "rajio o kiite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "au-smith",
+      "english": "Please meet Smith-san.",
+      "category": "Grammar & Function Words",
+      "target": "スミスさんにあってください",
+      "pronunciation": "Sumisu-san ni atte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-what-did-yesterday",
+      "english": "What did you do yesterday?",
+      "category": "Time",
+      "target": "きのうなにをしましたか",
+      "pronunciation": "kinō nani o shimashita ka",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Identical target and gloss to the card in chapter-8-extras.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Exact target and gloss duplicate of chapter-8-extras/sp2-kinou-nani-o-shimashita-ka; the answer cards in this unit each carry their own scene, so nothing is stranded"
+    },
+    {
+      "id": "yomu-hon",
+      "english": "Please read the book.",
+      "category": "Grammar & Function Words",
+      "target": "ほんをよんでください",
+      "pronunciation": "hon o yonde kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "kasu-pen",
+      "english": "Please lend me a pen.",
+      "category": "Grammar & Function Words",
+      "target": "ペンをかしてください",
+      "pronunciation": "pen o kashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "chain-mail-send",
+      "english": "I'll write an e-mail and send it to Smith-san.",
+      "category": "Technology & Communication",
+      "target": "メールをかいて、スミスさんにおくります",
+      "pronunciation": "mēru o kaite, Sumisu-san ni okurimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "chain-bookstore-park",
+      "english": "I'll go to the bookstore, buy a book, and read it in the park.",
+      "category": "Grammar & Function Words",
+      "target": "ほんやにいって、ほんをかって、こうえんでよみます",
+      "pronunciation": "honya ni itte, hon o katte, kōen de yomimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabete-keeki",
+      "english": "Please eat some cake.",
+      "category": "Grammar & Function Words",
+      "target": "ケーキをたべてください",
+      "pronunciation": "kēki o tabete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "three-verb-chain",
+      "english": "I'll eat lunch, have some coffee, and then go home.",
+      "category": "Grammar & Function Words",
+      "target": "ひるごはんをたべて、コーヒーをのんで、うちにかえります",
+      "pronunciation": "hirugohan o tabete, kōhī o nonde, uchi ni kaerimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "doraibu-hakone",
+      "english": "I'm going for a drive in Hakone this weekend.",
+      "category": "Sports & Hobbies",
+      "target": "しゅうまつにはこねでドライブをします",
+      "pronunciation": "shūmatsu ni Hakone de doraibu o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "emma-osaka-branch-te-form",
+      "english": "Emma-san will go to the Osaka branch office tomorrow and see Chan-san.",
+      "category": "Grammar & Function Words",
+      "target": "エマさんはあしたおおさかししゃにいって、チャンさんにあいます",
+      "pronunciation": "Ema-san wa ashita Ōsaka shisha ni itte, Chan-san ni aimasu"
+    },
+    {
+      "id": "party-no-ato-bar-whiskey",
+      "english": "After the party, I will go to a bar and drink whiskey.",
+      "category": "Time",
+      "target": "パーティーのあと、バーにいって、ウイスキーをのみます",
+      "pronunciation": "pātī no ato, bā ni itte, uisukī o nomimasu"
+    },
+    {
+      "id": "chain-kite",
+      "english": "Come to my place tomorrow, and let's watch a movie together.",
+      "category": "Grammar & Function Words",
+      "target": "あしたうちにきて、いっしょにえいがをみましょう",
+      "pronunciation": "ashita uchi ni kite, issho ni eiga o mimashō",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-after-pair",
+      "english": "I'll read the documents before the meeting. After the meeting, I'll go home.",
+      "category": "Time",
+      "target": "かいぎのまえにしりょうをよみます。かいぎのあと、うちにかえります",
+      "pronunciation": "kaigi no mae ni shiryō o yomimasu. kaigi no ato, uchi ni kaerimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaeru-takushii",
+      "english": "Please go home by taxi.",
+      "category": "Grammar & Function Words",
+      "target": "タクシーでかえってください",
+      "pronunciation": "takushī de kaette kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "miru-shashin",
+      "english": "Please look at the photo.",
+      "category": "Grammar & Function Words",
+      "target": "しゃしんをみてください",
+      "pronunciation": "shashin o mite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "supper-before-or-after-meeting",
+      "english": "Will you eat supper before the meeting? Or after?",
+      "category": "Grammar & Function Words",
+      "target": "ばんごはんはかいぎのまえにたべますか。あとでたべますか",
+      "pronunciation": "bangohan wa kaigi no mae ni tabemasu ka. ato de tabemasu ka"
+    },
+    {
+      "id": "kato-ask-after-fair",
+      "english": "Emma-san, what are you going to do after the fair?",
+      "category": "Work & Occupations",
+      "target": "エマさん、フェアのあと、なにをしますか",
+      "pronunciation": "Ema-san, fea no ato, nani o shimasu ka"
+    },
+    {
+      "id": "kaigi-no-ato-yamamoto-san",
+      "english": "After the meeting, I will meet Yamamoto-san.",
+      "category": "Time",
+      "target": "かいぎのあと、やまもとさんにあいます",
+      "pronunciation": "kaigi no ato, Yamamoto-san ni aimasu"
+    },
+    {
+      "id": "kiku-nyuusu",
+      "english": "Please listen to the news.",
+      "category": "Grammar & Function Words",
+      "target": "ニュースをきいてください",
+      "pronunciation": "nyūsu o kiite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "yomu-tegami",
+      "english": "Please read the letter.",
+      "category": "Grammar & Function Words",
+      "target": "てがみをよんでください",
+      "pronunciation": "tegami o yonde kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "yokohama-soccer-match-tomorrow",
+      "english": "I'll go to Yokohama and watch a soccer match.",
+      "category": "Grammar & Function Words",
+      "target": "よこはまにいって、サッカーのしあいをみます",
+      "pronunciation": "Yokohama ni itte, sakkā no shiai o mimasu",
+      "scene": "Answering: What are you going to do tomorrow?"
+    },
+    {
+      "id": "repeat-please",
+      "english": "Please say that once more.",
+      "category": "Greetings",
+      "target": "もういちどはなしてください",
+      "pronunciation": "mō ichido hanashite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabete-koko",
+      "english": "Please eat here.",
+      "category": "Grammar & Function Words",
+      "target": "ここでたべてください",
+      "pronunciation": "koko de tabete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomu-mizu",
+      "english": "Please drink water here.",
+      "category": "Grammar & Function Words",
+      "target": "ここでみずをのんでください",
+      "pronunciation": "koko de mizu o nonde kudasai",
+      "aiSuggested": true
+    }
+  ]
+}

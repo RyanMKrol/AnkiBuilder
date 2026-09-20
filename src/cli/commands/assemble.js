@@ -260,6 +260,41 @@ export async function runAssemble(flags, ctx) {
 }
 
 /**
+ * Removes the properties a corpus item may not carry, and says on the log which they were.
+ *
+ * **Called before every validation, not only before the write.** The first attempt put it at the
+ * write alone, which read as the one boundary every path crosses -- and it is, but the EPUB branch
+ * validates the corpus itself several steps earlier, so the projection ran after the check it was
+ * meant to satisfy. Chapter 17 then failed a second time, on `fillsGap` from the gap author, in the
+ * same place and for the same reason as the first time. A guard that runs after the thing it guards
+ * is not a guard.
+ *
+ * The fields are real provenance an agent volunteered -- `fromTable` from the table specialist,
+ * `foundIn` from the chapter reader, `fillsGap` from the gap author -- each already persisted in the
+ * candidate artifact that step wrote, and read by nothing downstream. `corpus.json` is a closed
+ * schema on purpose, being the contract the dashboard, the deck build and the delivery share. What
+ * was wrong was letting a field nobody needed abort a pipeline that had already been paid for.
+ *
+ * Logged rather than swallowed: a field named here is either a prompt to stop asking for it or a
+ * schema that should grow a home for it, and hiding it would make a closed schema quietly lossy.
+ */
+function dropVolunteeredFields(corpus, ctx) {
+  const volunteered = new Set();
+  corpus.items = corpus.items.map((item) => {
+    const { item: projected, dropped } = projectCorpusItem(item);
+    for (const field of dropped) volunteered.add(field);
+    return projected;
+  });
+  if (volunteered.size) {
+    ctx.log(
+      `dropped ${volunteered.size} field(s) no corpus item may carry: ` +
+        `${[...volunteered].sort().join(", ")} — kept in the candidate artifacts`,
+    );
+  }
+  return [...volunteered].sort();
+}
+
+/**
  * Whether an existing `corpus.json` is a build that died between the phase and the stamping.
  *
  * **Two different writers produce this filename on the phase path, and they mean different things.**
@@ -370,6 +405,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       chapterNumber: lessonNumber,
       chapterLabel: flags["lesson-label"] || `Lesson ${lessonNumber}`,
     };
+    dropVolunteeredFields(corpus, ctx);
     validateCorpus(corpus);
   } else if (flags.chapter) {
     if (flags.epub) {
@@ -529,6 +565,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
         `(${backward.flagged.length} flagged as already-taught, ${forward.flagged.length} flagged as possibly premature)`,
     );
 
+    dropVolunteeredFields(corpus, ctx);
     validateCorpus(corpus);
   } else if (flags.template) {
     if (!flags.lang) {
@@ -575,28 +612,9 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     if (item.ttsText) item.ttsText = normalizeDisplayText(item.ttsText, displayLang);
   }
 
-  // Last stop before the write, and the reason it is HERE rather than only in the phase that
-  // produced the items: this is the boundary the schema guards, and every path reaches it. A fresh
-  // phase, a re-run reusing an existing corpus, the pre-rewrite extraction, a future source type --
-  // all of them write through this line, so projecting here is what makes "a build never dies over a
-  // field an agent volunteered" a guarantee instead of a habit each producer has to remember.
-  //
-  // Chapter 17's first live build is why. The table specialist reported `fromTable`, which is real
-  // provenance already persisted in candidates/tables.json and wanted by nothing downstream. Phase 1
-  // finished all ten steps, both deduplicators ran, the forward pass ran, and the write then refused
-  // the whole corpus. The schema being closed is correct; a whole paid build being the unit of
-  // failure for it was not.
-  const volunteered = new Set();
-  corpus.items = corpus.items.map((item) => {
-    const { item: projected, dropped } = projectCorpusItem(item);
-    for (const field of dropped) volunteered.add(field);
-    return projected;
-  });
-  if (volunteered.size) {
-    ctx.log(
-      `dropped ${volunteered.size} field(s) no corpus item may carry: ${[...volunteered].sort().join(", ")} — kept in the candidate artifacts`,
-    );
-  }
+  // The backstop for any path that never reached a validation above (a template, say). Idempotent,
+  // so running it twice on the same corpus costs nothing and finds nothing.
+  dropVolunteeredFields(corpus, ctx);
 
   writeJson(paths.corpus, corpus);
   ctx.log(`wrote corpus with ${corpus.items.length} item(s) to ${paths.corpus}`);

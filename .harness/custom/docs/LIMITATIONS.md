@@ -4188,12 +4188,18 @@ specialist's own provenance, telling you which of the chapter's ten tables an it
 already persisted in `candidates/tables.json`, nothing downstream reads it, and it cost roughly twenty
 minutes of paid agent calls. The chapter reader volunteers `foundIn` the same way.
 
-**The fix is a projection, at the write.** `projectCorpusItem` keeps only the properties
+**The fix is a projection, before every validation.** `projectCorpusItem` keeps only the properties
 `CORPUS_SCHEMA` declares, derives that set from the schema so a second list cannot drift from the
 validator, and returns what it dropped. It runs in the union reconciler, so the run report attributes
-a volunteered field to the step that produced it, and again at `assemble`'s write, which is the line
-every path crosses: a fresh phase, a re-run reusing an existing corpus, the pre-rewrite extraction, or
-a source type that does not exist yet.
+a volunteered field to the step that produced it, and through `dropVolunteeredFields` at each of
+`assemble`'s validation points plus its write.
+
+**The first attempt put it at the write alone**, reasoning that the write is the one boundary every
+path crosses. It is, but the EPUB branch validates the corpus several steps before reaching it, so the
+projection ran after the check it existed to satisfy. Chapter 17 then failed a second time, in the
+same place, on `fillsGap` from the gap author. A guard that runs after the thing it guards is not a
+guard, and "the last line before the write" was the wrong unit: the right one is "everywhere the
+schema is consulted".
 
 **What is dropped is logged, never swallowed.** A field appearing in that list means an agent is
 volunteering something the corpus has no home for, which is either a prompt to fix or a schema to

@@ -1900,8 +1900,12 @@ test("re-running assemble on an unfinished lesson resumes it through prepare", a
   await withTempDir(async (runDir) => {
     const paths = runPaths(runDir);
     mkdirSync(runDir, { recursive: true });
-    // The exact state a stopped build leaves behind: corpus.json, no cards.json.
-    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+    // The exact state a stopped build leaves behind: corpus.json, no cards.json. `epubHash` is part
+    // of that state and not decoration -- assemble stamps it, so a corpus that finished assemble
+    // always carries it, and one that does not is a build that stopped EARLIER than this test means.
+    const finished = baseEpubCorpus();
+    finished.meta.epubHash = "hash123";
+    writeFileSync(paths.corpus, JSON.stringify(finished));
 
     const calls = [];
     let assembled = false;
@@ -3258,5 +3262,103 @@ test("assemble: a live course is unaffected by the retired guard", async () => {
       },
     );
     assert.ok(resolved && existsSync(join(resolved, "corpus.json")));
+  });
+});
+
+test("assemble: a corpus the phase wrote but assemble never stamped is NOT treated as reusable", async () => {
+  // Chapter 17's first build ended between the two writers of this filename. The phase's reconcile
+  // step wrote 93 items to corpus.json, assemble then refused them at its own write, and the reuse
+  // branch would have read "corpus.json exists" as "assemble finished" and gone straight to prepare
+  // on a corpus with no epubHash, no chapterNumber and no chapterLabel. The deck path comes from
+  // chapterLabel, so the lesson would have shipped somewhere wrong with nothing saying so.
+  await withTempDir(async (runDir) => {
+    // Exactly what the phase leaves behind: valid, but carrying none of assemble's stamps.
+    writeFileSync(
+      runPaths(runDir).corpus,
+      JSON.stringify({
+        meta: { targetLanguage: "ja", sourceType: "epub", phase: "base" },
+        items: [{ id: "omiyage", english: "Souvenir", category: "Shopping", target: "おみやげ" }],
+      }),
+    );
+
+    let reExtracted = false;
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "1",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        registerEpub: () => ({ epubHash: "hash123" }),
+        resolveLabelDecoding: () => 1,
+        chapterCachePath: () => "/cache/1.xhtml",
+        extractChapterToFile: (epubPath, chapterNumber, destPath) => destPath,
+        loadBookConventions: () => "cached conventions",
+        describeChapter: () => "Lesson 17",
+        extractBaseCorpus: () => {
+          reExtracted = true;
+          return baseEpubCorpus();
+        },
+        loadPriorChapterItems: () => [],
+        dedupBackward: (items) => ({ items, flagged: [] }),
+        flagForwardConcerns: ({ candidateItems }) => ({ items: candidateItems, flagged: [] }),
+        sortItemsPedagogically: ({ items }) => ({ items, changed: false }),
+        log: () => {},
+      },
+    );
+
+    assert.equal(reExtracted, true, "the build must re-enter assemble, not skip to prepare");
+    const corpus = JSON.parse(readFileSync(runPaths(runDir).corpus, "utf-8"));
+    assert.equal(corpus.meta.epubHash, "hash123");
+    assert.equal(corpus.meta.chapterLabel, "Lesson 17");
+  });
+});
+
+test("assemble: a FINISHED corpus is still reused, so a re-run stays the resume command", async () => {
+  // The other half. If the stamp check were wrong in this direction, every re-run would rebuild from
+  // scratch and re-spend the phase, which is the opposite of what re-running assemble is for.
+  await withTempDir(async (runDir) => {
+    writeFileSync(
+      runPaths(runDir).corpus,
+      JSON.stringify({
+        meta: {
+          targetLanguage: "ja",
+          sourceType: "epub",
+          epubHash: "hash123",
+          chapterNumber: 39,
+          chapterLabel: "Lesson 17",
+        },
+        items: [{ id: "omiyage", english: "Souvenir", category: "Shopping", target: "おみやげ" }],
+      }),
+    );
+
+    await runCli(
+      [
+        "assemble",
+        "--no-prepare",
+        "--run",
+        runDir,
+        "--epub",
+        "/tmp/book.epub",
+        "--chapter-number",
+        "1",
+        "--lang",
+        "Japanese",
+      ],
+      {
+        extractBaseCorpus: () => {
+          throw new Error("a finished corpus must not be rebuilt");
+        },
+        registerEpub: () => ({ epubHash: "hash123" }),
+        log: () => {},
+      },
+    );
   });
 });

@@ -78,6 +78,13 @@ const CORPUS_SCHEMA = {
           // Internal review-only rationale — why an item is `uncertain` or `aiSuggested`. Shown ONLY at
           // the dashboard review gates; NEVER embedded in the deck or shown in the read-only viewer.
           reviewNote: { type: ["string", "null"] },
+          // Set by the union reconciler when it splits a headword the book printed as two readings
+          // (`ゼロ／れい`): each half records the OTHER reading, so the review gate can show that this
+          // card is one of a pair rather than a lone word. Code-authored, unlike the provenance an
+          // agent volunteers, which `projectCorpusItem` drops -- so it belongs in the schema. It was
+          // missing from it, which made every corpus containing a split alternate unwritable; nothing
+          // caught that because the field only appears when a chapter has such a headword.
+          alternateOf: { type: ["string", "null"] },
           // Legacy alias for `note`, kept optional so pre-rename corpus.json still validates; the
           // migration folds `cardNote` into `note` and splits out `hint`.
           cardNote: { type: ["string", "null"] },
@@ -184,6 +191,10 @@ const CARDS_SCHEMA = {
           note: { type: ["string", "null"] },
           cardNote: { type: ["string", "null"] },
           reviewNote: { type: ["string", "null"] },
+          // The other reading of a headword the book printed as a pair (`ゼロ／れい`), set by the
+          // union reconciler and carried through by `prepare`. Allowed in BOTH schemas on purpose:
+          // allowing it in only one moves the failure from the assemble write to the prepare write.
+          alternateOf: { type: ["string", "null"] },
           target: { type: "string" },
           pronunciation: { type: "string" },
           // Same contract as the corpus schema's `ttsText`: the text TTS speaks instead of the target
@@ -452,6 +463,46 @@ function validateItemObject(arrayKey, index, item, itemSchema) {
       }
     }
   }
+}
+
+/**
+ * The property names a corpus item is allowed to carry, read off the schema that validates it.
+ *
+ * Derived rather than typed out, because a second list would be free to drift from the first and the
+ * drift would only show up as a build dying at the write.
+ */
+export function corpusItemFields() {
+  return Object.keys(CORPUS_SCHEMA.properties.items.items.properties);
+}
+
+/**
+ * Drops the properties a corpus item may not carry, and says which it dropped.
+ *
+ * **An agent volunteers fields, and that is not a bug.** The table specialist reports `fromTable` and
+ * the chapter reader reports `foundIn` -- real provenance, genuinely useful, already persisted in the
+ * candidate artifacts where the whole record of the run lives. What they must not do is reach
+ * `corpus.json`, whose schema is closed on purpose: it is the contract the dashboard, the deck build
+ * and the delivery all read.
+ *
+ * The alternative was leaving the schema to catch it, which is what happened on the first live run of
+ * chapter 17. Phase 1 finished all ten steps, both deduplicators ran, the forward pass ran, and the
+ * build then died on `Unexpected property in items[0]: fromTable` -- about twenty minutes of paid
+ * agent calls thrown away over a field nobody needed. A closed schema is right; making a whole build
+ * the unit of failure for it was not.
+ *
+ * **What is dropped is returned, never swallowed.** A field appearing here means an agent is
+ * volunteering something the corpus has no place for, which is worth seeing: either the prompt should
+ * stop asking for it or the schema should grow a home for it. Callers put the list in the run report.
+ */
+export function projectCorpusItem(item) {
+  const allowed = new Set(corpusItemFields());
+  const kept = {};
+  const dropped = [];
+  for (const [key, value] of Object.entries(item)) {
+    if (allowed.has(key)) kept[key] = value;
+    else dropped.push(key);
+  }
+  return { item: kept, dropped };
 }
 
 export function validateCorpus(obj) {

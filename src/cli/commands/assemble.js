@@ -4,7 +4,7 @@
 import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
 import { withClaim } from "../runClaim.js";
-import { validateCorpus } from "../../model/index.js";
+import { validateCorpus, projectCorpusItem } from "../../model/index.js";
 import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { listTemplates } from "../../corpus/templates.js";
@@ -233,7 +233,7 @@ export async function runAssemble(flags, ctx) {
 
   warnIfBuiltOutOfOrder(flags, ctx, runDir);
 
-  if (existsSync(paths.corpus)) {
+  if (existsSync(paths.corpus) && !corpusStoppedMidAssemble(paths.corpus)) {
     ctx.log(`corpus.json already exists at ${paths.corpus} — reusing`);
   } else {
     // A FAILED assemble deliberately keeps its claim (clearOnFailure: false): the run dir was
@@ -257,6 +257,78 @@ export async function runAssemble(flags, ctx) {
     return;
   }
   return runPrepare({ ...flags, run: runDir }, ctx);
+}
+
+/**
+ * Removes the properties a corpus item may not carry, and says on the log which they were.
+ *
+ * **Called before every validation, not only before the write.** The first attempt put it at the
+ * write alone, which read as the one boundary every path crosses -- and it is, but the EPUB branch
+ * validates the corpus itself several steps earlier, so the projection ran after the check it was
+ * meant to satisfy. Chapter 17 then failed a second time, on `fillsGap` from the gap author, in the
+ * same place and for the same reason as the first time. A guard that runs after the thing it guards
+ * is not a guard.
+ *
+ * The fields are real provenance an agent volunteered -- `fromTable` from the table specialist,
+ * `foundIn` from the chapter reader, `fillsGap` from the gap author -- each already persisted in the
+ * candidate artifact that step wrote, and read by nothing downstream. `corpus.json` is a closed
+ * schema on purpose, being the contract the dashboard, the deck build and the delivery share. What
+ * was wrong was letting a field nobody needed abort a pipeline that had already been paid for.
+ *
+ * Logged rather than swallowed: a field named here is either a prompt to stop asking for it or a
+ * schema that should grow a home for it, and hiding it would make a closed schema quietly lossy.
+ */
+function dropVolunteeredFields(corpus, ctx) {
+  const volunteered = new Set();
+  corpus.items = corpus.items.map((item) => {
+    const { item: projected, dropped } = projectCorpusItem(item);
+    for (const field of dropped) volunteered.add(field);
+    return projected;
+  });
+  if (volunteered.size) {
+    ctx.log(
+      `dropped ${volunteered.size} field(s) no corpus item may carry: ` +
+        `${[...volunteered].sort().join(", ")} — kept in the candidate artifacts`,
+    );
+  }
+  return [...volunteered].sort();
+}
+
+/**
+ * Whether an existing `corpus.json` is a build that died between the phase and the stamping.
+ *
+ * **Two different writers produce this filename on the phase path, and they mean different things.**
+ * The phase's reconcile step writes its merged items to `corpus.json` as its own artifact, and
+ * `assemble` writes the finished corpus to the same path after stamping the unit's identity and
+ * running the backward dedup, the forward flags and the pedagogical sort. So "corpus.json exists" is
+ * ambiguous, and the reuse branch above read it as the second when it can be the first.
+ *
+ * Chapter 17's first build ended exactly there: the phase wrote 93 items, `assemble` then refused
+ * them at its own write, and a plain re-run would have sailed past the reuse branch into `prepare` on
+ * a corpus with no `epubHash`, no `chapterNumber` and no `chapterLabel` -- and the deck path is
+ * derived from `chapterLabel`, so the lesson would have shipped into the wrong place with nothing
+ * saying so. `resume` was no help either: it reads the pass ledger, and a crash before the stamping
+ * leaves no ledger, so an empty one read as "nothing failed".
+ *
+ * `epubHash` is the marker because `assemble` is the only thing that sets it. The check is scoped to
+ * the EPUB path deliberately: a template or a dictated word list has no intermediate writer, so their
+ * `corpus.json` can only ever be the finished one, and asking them for a stamp they never carry would
+ * make every re-run rebuild from scratch.
+ *
+ * The real fix is for the phase to stop writing this filename at all. That is a wider change than the
+ * failure warranted, so it is recorded as a limitation instead of taken here.
+ */
+function corpusStoppedMidAssemble(corpusPath) {
+  let corpus;
+  try {
+    corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
+  } catch {
+    // Unreadable or torn is not this function's question, and pretending it is finished would hide
+    // it. Let the reuse branch take it and fail loudly on a real read.
+    return false;
+  }
+  if (corpus?.meta?.sourceType !== "epub") return false;
+  return !corpus.meta.epubHash;
 }
 
 /**
@@ -333,6 +405,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
       chapterNumber: lessonNumber,
       chapterLabel: flags["lesson-label"] || `Lesson ${lessonNumber}`,
     };
+    dropVolunteeredFields(corpus, ctx);
     validateCorpus(corpus);
   } else if (flags.chapter) {
     if (flags.epub) {
@@ -492,6 +565,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
         `(${backward.flagged.length} flagged as already-taught, ${forward.flagged.length} flagged as possibly premature)`,
     );
 
+    dropVolunteeredFields(corpus, ctx);
     validateCorpus(corpus);
   } else if (flags.template) {
     if (!flags.lang) {
@@ -537,6 +611,10 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     if (item.target) item.target = normalizeDisplayText(item.target, displayLang);
     if (item.ttsText) item.ttsText = normalizeDisplayText(item.ttsText, displayLang);
   }
+
+  // The backstop for any path that never reached a validation above (a template, say). Idempotent,
+  // so running it twice on the same corpus costs nothing and finds nothing.
+  dropVolunteeredFields(corpus, ctx);
 
   writeJson(paths.corpus, corpus);
   ctx.log(`wrote corpus with ${corpus.items.length} item(s) to ${paths.corpus}`);

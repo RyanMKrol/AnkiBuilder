@@ -16,6 +16,7 @@
 // back to a role. It is evidence for a human, never a threshold in code.
 
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
+import { projectCorpusItem } from "../model/index.js";
 import { targetKey, englishKey } from "./itemSetDiff.js";
 import { splitAlternates } from "./vocabCoverage.js";
 
@@ -134,6 +135,7 @@ export function reconcile(candidateLists, { languageCode } = {}) {
   const provenance = {};
   const singletons = [];
   const seenIds = new Set();
+  const droppedFields = new Set();
 
   for (const { item, roles } of entries) {
     const id = uniqueId(item.id, seenIds);
@@ -141,10 +143,16 @@ export function reconcile(candidateLists, { languageCode } = {}) {
     const producers = [...roles].sort();
     // `producedBy` was a per-role stamp; the merged item carries the full list in `provenance`
     // instead, so a card found twice does not read as having come from whichever role happened to be
-    // merged into. Deleting it from a copy keeps the source list untouched for the caller.
+    // merged into. Removed by name rather than left to the projection below, because its removal is
+    // the design and reporting it as a surprise on every single run would bury the real ones.
     const rest = { ...item };
     delete rest.producedBy;
-    items.push({ ...rest, id });
+    // Then drop the provenance an agent volunteered — `fromTable`, `foundIn` — which belongs in the
+    // candidate artifacts and would otherwise fail the corpus schema at the write, after every paid
+    // step of the phase had already run.
+    const { item: projected, dropped } = projectCorpusItem(rest);
+    for (const field of dropped) droppedFields.add(field);
+    items.push({ ...projected, id });
     provenance[id] = producers;
     if (producers.length <= 1) singletons.push(id);
   }
@@ -153,6 +161,9 @@ export function reconcile(candidateLists, { languageCode } = {}) {
     items,
     provenance,
     singletons,
+    // Reported, not swallowed: a field here means an agent is volunteering something the corpus has
+    // no home for, which is a prompt to fix or a schema to grow rather than noise to hide.
+    droppedFields: [...droppedFields].sort(),
     senseCollisions: findSenseCollisions(items, languageCode),
     agreement: {
       total: items.length,

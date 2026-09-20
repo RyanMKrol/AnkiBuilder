@@ -4173,3 +4173,93 @@ per-source boolean should become an explicit per-source table.
 (an `--epub` build with no flag must run the phase; a template build with no flag must not).
 
 **Status:** current design.
+
+## A closed corpus schema made a whole paid build the unit of failure
+
+`corpus.json`'s item schema is closed: an unknown property is an error. That is right, because the
+corpus is the contract the dashboard, the deck build and the delivery all read. What was wrong is
+where the error landed.
+
+**Measured on chapter 17's first live build, 2026-09-09.** Phase 1 completed all ten steps, the
+coverage adversary ran, the gap filler ran, both deduplicators ran, the backward dedup flagged 19
+already-taught items and the forward pass flagged 8 premature ones. Then the write refused the corpus
+with `Unexpected property in items[0]: fromTable` and the build exited 1. `fromTable` is the table
+specialist's own provenance, telling you which of the chapter's ten tables an item came from. It is
+already persisted in `candidates/tables.json`, nothing downstream reads it, and it cost roughly twenty
+minutes of paid agent calls. The chapter reader volunteers `foundIn` the same way.
+
+**The fix is a projection, before every validation.** `projectCorpusItem` keeps only the properties
+`CORPUS_SCHEMA` declares, derives that set from the schema so a second list cannot drift from the
+validator, and returns what it dropped. It runs in the union reconciler, so the run report attributes
+a volunteered field to the step that produced it, and through `dropVolunteeredFields` at each of
+`assemble`'s validation points plus its write.
+
+**The first attempt put it at the write alone**, reasoning that the write is the one boundary every
+path crosses. It is, but the EPUB branch validates the corpus several steps before reaching it, so the
+projection ran after the check it existed to satisfy. Chapter 17 then failed a second time, in the
+same place, on `fillsGap` from the gap author. A guard that runs after the thing it guards is not a
+guard, and "the last line before the write" was the wrong unit: the right one is "everywhere the
+schema is consulted".
+
+**What is dropped is logged, never swallowed.** A field appearing in that list means an agent is
+volunteering something the corpus has no home for, which is either a prompt to fix or a schema to
+grow. Silence would turn a closed schema into a quietly lossy one, which is worse than the crash.
+
+**A second bug of the same class, with the opposite fix.** `alternateOf` is written by the reconciler
+itself when it splits a headword the book printed as a pair (`ゼロ／れい`), and it tells the review
+gate the card is one of two readings. It was in NEITHER schema, so any corpus containing a split
+headword was unwritable, and any unit that got past `assemble` would have failed again at `prepare`.
+Nothing caught it because the field only appears when a chapter actually has such a headword; chapter
+17 has none, which is the only reason `fromTable` surfaced first. Both schemas now declare it.
+
+**Impact:** none on chapters 0-16. The general shape is the one worth remembering: a strict boundary
+crossed once at the end of an expensive pipeline turns any surprise into a total loss. Either validate
+early on a cheap sample, or make the boundary forgiving and loud.
+
+**Revisit when:** an agent volunteers a field that SHOULD be carried. The log line names it, and the
+answer is a schema addition, not a wider projection.
+
+**Verified by:** `node --test test/cards/unionReconciler.test.js` — one test pins that a volunteered
+field is dropped and reported and the result still validates, another that `alternateOf` survives.
+
+**Status:** fixed.
+
+## Two writers produce `corpus.json` on the phase path, so its existence is ambiguous
+
+The phase's reconcile step writes its merged items to `<unitDir>/corpus.json` as that step's artifact.
+`assemble` writes the finished corpus to the same path, after stamping the unit's identity and running
+the backward dedup, the forward flags and the pedagogical sort. Both are called `corpus.json`, and they
+mean different things.
+
+**What that cost.** Chapter 17's first build stopped between them: the phase wrote 93 items, `assemble`
+refused them at its own write. A plain re-run reads "corpus.json exists" as "assemble finished" and
+goes straight to `prepare`, on a corpus with no `epubHash`, no `chapterNumber` and no `chapterLabel`.
+The deck path is derived from `chapterLabel` (`unitDeckSegments`), so the lesson would have been built
+and shipped into the wrong place, with nothing anywhere reporting it. `resume` was no help: it reads
+the pass ledger, and a crash before the stamping writes no ledger, so an empty one read as "nothing
+failed" and it reported only `prepare`.
+
+**What was done.** `corpusStoppedMidAssemble` treats an `epub` corpus with no `epubHash` as unfinished
+and re-enters `assemble`, which then reuses the phase's items off disk rather than re-spending its
+agent calls. `epubHash` is the marker because `assemble` alone sets it. Scoped to the EPUB path,
+because a template or a dictated word list has no intermediate writer and asking them for a stamp they
+never carry would make every re-run rebuild from scratch.
+
+**What was NOT done, and is the real fix.** The phase should not write `corpus.json` at all. Give the
+reconcile step its own artifact name and `assemble` becomes the only writer, at which point the
+filename is unambiguous, the reuse check is unnecessary and `resume` needs no ledger to tell the two
+apart. That touches `basePhase`, `extrasPhase`, `phaseExtraction`, the reuse path and their tests,
+which is wider than the failure warranted while a chapter was mid-build.
+
+**Impact:** a stamp check is a proxy for a structural property, so it is exactly as good as the marker
+it picked. A future source type with an intermediate writer and no `epubHash` reproduces the original
+bug.
+
+**Revisit when:** anything else grows a second writer for a unit artifact, or the next time
+`phaseExtraction` is touched for another reason. Do the rename then.
+
+**Verified by:** `node --test test/cli/index.test.js` — one test pins that an unstamped phase corpus
+re-enters assemble and comes out stamped, another that a finished corpus is still reused so re-running
+assemble stays the resume command.
+
+**Status:** worked around; the structural fix is open.

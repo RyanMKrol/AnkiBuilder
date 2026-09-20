@@ -259,6 +259,12 @@ export function runExtrasPhase({
   );
   recordStep(run, {
     step: "reconcile",
+    // A field an agent volunteered that the corpus has no home for. Recorded on the step rather
+    // than discarded in silence, so the next person can decide whether the prompt should stop
+    // asking for it or the schema should grow a place for it.
+    reason: merged.droppedFields.length
+      ? `dropped ${merged.droppedFields.length} volunteered field(s) not in the corpus schema: ${merged.droppedFields.join(", ")}`
+      : null,
     status: STEP_STATUS.OK,
     counts: { in: existing.length + invented.value.items.length, out: merged.items.length },
     artifact: write(unitDir, "corpus.json", {

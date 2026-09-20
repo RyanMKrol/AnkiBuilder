@@ -3,9 +3,16 @@ import assert from "node:assert";
 import { fileURLToPath } from "url";
 import { tmpdir } from "os";
 import { dirname, join, resolve } from "path";
-import { validateCorpus, validateCards, libraryHome, runPaths } from "../../src/model/index.js";
+import {
+  validateCorpus,
+  validateCards,
+  libraryHome,
+  runPaths,
+  isKnownProvenanceField,
+} from "../../src/model/index.js";
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url)); // test/model/
+const BASE_META = { targetLanguage: "ja", sourceType: "epub" };
 const REPO_ROOT = resolve(join(TEST_DIR, "..", ".."));
 
 test("validateCorpus - valid corpus passes validation", () => {
@@ -612,4 +619,20 @@ test("baseChapterLabel is accepted by BOTH schemas, because prepare writes the c
   const base = { id: "a", english: "A", category: "Shopping", target: "あ" };
   assert.doesNotThrow(() => validateCorpus({ meta, items: [base] }));
   assert.doesNotThrow(() => validateCards({ meta, items: [{ ...base, pronunciation: "a" }] }));
+});
+
+test("fillInBlank survives the corpus, and an unrecognised field is distinguishable from provenance", () => {
+  // Lesson 17's extras unit lost the drill marker on all 111 cards. v1 only ever added these inside
+  // prepare, straight into cards.json, so the corpus schema never needed the field -- but phase 2's
+  // miner produces them as corpus items, and the projection drops what the schema does not declare.
+  //
+  // The drop was logged. It was read past because the line listed it beside fromTable and fillsGap,
+  // which are provenance and genuinely disposable. That is what isKnownProvenanceField separates.
+  const item = { id: "a", english: "A", category: "Shopping", target: "あ", fillInBlank: true };
+  assert.doesNotThrow(() => validateCorpus({ meta: BASE_META, items: [item] }));
+
+  assert.equal(isKnownProvenanceField("fromTable"), true);
+  assert.equal(isKnownProvenanceField("fillsGap"), true);
+  assert.equal(isKnownProvenanceField("fillInBlank"), false, "a card property is not provenance");
+  assert.equal(isKnownProvenanceField("ttsText"), false);
 });

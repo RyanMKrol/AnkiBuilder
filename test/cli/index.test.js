@@ -6,6 +6,7 @@ import { join } from "path";
 import os from "os";
 import { Buffer } from "buffer";
 import { runCli } from "../../src/cli/index.js";
+import { PHASE_CORPUS_FILE } from "../../src/agents/basePhase.js";
 import { runPaths, validateCards } from "../../src/model/index.js";
 import { TTS_MODEL } from "../../src/audio/ttsModel.js";
 import { deckPathForDir } from "../../src/deck/deckFileName.js";
@@ -3265,23 +3266,13 @@ test("assemble: a live course is unaffected by the retired guard", async () => {
   });
 });
 
-test("assemble: a corpus the phase wrote but assemble never stamped is NOT treated as reusable", async () => {
-  // Chapter 17's first build ended between the two writers of this filename. The phase's reconcile
-  // step wrote 93 items to corpus.json, assemble then refused them at its own write, and the reuse
-  // branch would have read "corpus.json exists" as "assemble finished" and gone straight to prepare
-  // on a corpus with no epubHash, no chapterNumber and no chapterLabel. The deck path comes from
-  // chapterLabel, so the lesson would have shipped somewhere wrong with nothing saying so.
+test("assemble is the ONLY writer of corpus.json; the phase writes its own file", async () => {
+  // The structural fix for two writers. corpus.json used to be written by the phase at its reconcile
+  // step AND by assemble after stamping, so a crash between them left a corpus with no epubHash,
+  // chapterNumber or chapterLabel that a re-run read as finished — and the deck path comes from
+  // chapterLabel. The phase now writes PHASE_CORPUS_FILE, so the presence of corpus.json means the
+  // build got all the way through, and no heuristic has to guess that.
   await withTempDir(async (runDir) => {
-    // Exactly what the phase leaves behind: valid, but carrying none of assemble's stamps.
-    writeFileSync(
-      runPaths(runDir).corpus,
-      JSON.stringify({
-        meta: { targetLanguage: "ja", sourceType: "epub", phase: "base" },
-        items: [{ id: "omiyage", english: "Souvenir", category: "Shopping", target: "おみやげ" }],
-      }),
-    );
-
-    let reExtracted = false;
     await runCli(
       [
         "assemble",
@@ -3301,11 +3292,10 @@ test("assemble: a corpus the phase wrote but assemble never stamped is NOT treat
         chapterCachePath: () => "/cache/1.xhtml",
         extractChapterToFile: (epubPath, chapterNumber, destPath) => destPath,
         loadBookConventions: () => "cached conventions",
-        describeChapter: () => "Lesson 17",
-        extractBaseCorpus: () => {
-          reExtracted = true;
-          return baseEpubCorpus();
-        },
+        describeChapter: () => "Lesson 1",
+        // A real phase writes PHASE_CORPUS_FILE itself; this stub stands in for that, and the point
+        // is that assemble does not depend on it having done so.
+        extractBaseCorpus: () => baseEpubCorpus(),
         loadPriorChapterItems: () => [],
         dedupBackward: (items) => ({ items, flagged: [] }),
         flagForwardConcerns: ({ candidateItems }) => ({ items: candidateItems, flagged: [] }),
@@ -3314,13 +3304,12 @@ test("assemble: a corpus the phase wrote but assemble never stamped is NOT treat
       },
     );
 
-    assert.equal(reExtracted, true, "the build must re-enter assemble, not skip to prepare");
     const corpus = JSON.parse(readFileSync(runPaths(runDir).corpus, "utf-8"));
-    assert.equal(corpus.meta.epubHash, "hash123");
-    assert.equal(corpus.meta.chapterLabel, "Lesson 17");
+    assert.equal(corpus.meta.epubHash, "hash123", "corpus.json exists only once it is stamped");
+    assert.equal(corpus.meta.chapterLabel, "Lesson 1");
+    assert.notEqual(PHASE_CORPUS_FILE, "corpus.json", "the two files must not share a name");
   });
 });
-
 test("assemble: a FINISHED corpus is still reused, so a re-run stays the resume command", async () => {
   // The other half. If the stamp check were wrong in this direction, every re-run would rebuild from
   // scratch and re-spend the phase, which is the opposite of what re-running assemble is for.

@@ -28,7 +28,7 @@
 
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
-import { runBasePhase } from "../agents/basePhase.js";
+import { PHASE_CORPUS_FILE, runBasePhase } from "../agents/basePhase.js";
 import { SNAPSHOT_FILE } from "../agents/snapshot.js";
 import { loadBookHints } from "./epubLibrary.js";
 
@@ -47,7 +47,10 @@ export function extractBaseCorpus({
   log = () => {},
   runPhase = runBasePhase,
 } = {}) {
-  const corpusPath = join(unitDir, "corpus.json");
+  // The PHASE's own output, not corpus.json. Reusing from corpus.json meant reading a file assemble
+  // also writes, so "phase 1 already ran" and "assemble already finished" were the same question
+  // asked of one filename.
+  const corpusPath = join(unitDir, PHASE_CORPUS_FILE);
   if (existsSync(join(unitDir, SNAPSHOT_FILE)) && existsSync(corpusPath)) {
     const existing = JSON.parse(readFileSync(corpusPath, "utf-8"));
     log(

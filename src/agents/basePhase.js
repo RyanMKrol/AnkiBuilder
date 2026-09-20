@@ -50,6 +50,20 @@ import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runRe
  * The phase, in order. `kind` says who does the work; `artifact` is what the step must leave behind
  * for `verifyRun` to check, relative to the unit dir.
  */
+/**
+ * Where phase 1 leaves its merged items.
+ *
+ * NOT `corpus.json`. That file has exactly one writer -- `assemble`, after it stamps the unit's
+ * identity and runs the backward dedup, the forward flags and the pedagogical sort -- and it used to
+ * have two. A crash between them left a corpus with no `epubHash`, `chapterNumber` or `chapterLabel`
+ * that a re-run read as finished, and the deck path comes from `chapterLabel`, so the lesson would
+ * have been built and shipped somewhere wrong. `resume` could not tell either: it reads the pass
+ * ledger, and a crash before the stamping writes none.
+ *
+ * With one writer, "is this corpus finished?" is answered by the filename.
+ */
+export const PHASE_CORPUS_FILE = "phase-corpus.json";
+
 export const BASE_PHASE_STEPS = Object.freeze([
   { id: "tables", kind: "deterministic", artifact: "candidates/tables-raw.json" },
   { id: "sections", kind: "deterministic", artifact: "candidates/sections.json" },
@@ -72,7 +86,7 @@ export const BASE_PHASE_STEPS = Object.freeze([
     role: "imageSpecialist",
     artifact: "candidates/images.json",
   },
-  { id: "reconcile", kind: "deterministic", artifact: "corpus.json" },
+  { id: "reconcile", kind: "deterministic", artifact: PHASE_CORPUS_FILE },
   { id: "coverage-adversary", kind: "agent", role: "coverageAdversary", artifact: COVERAGE_FILE },
   { id: "gap-filler", kind: "agent", role: "gapFiller", artifact: GAP_FILLS_FILE },
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
@@ -233,7 +247,7 @@ export function runBasePhase({
         imageResult.value.items.length,
       out: merged.items.length,
     },
-    artifact: writeRelative(unitDir, "corpus.json", {
+    artifact: writeRelative(unitDir, PHASE_CORPUS_FILE, {
       meta: {
         targetLanguage,
         sourceType: "epub",
@@ -373,7 +387,7 @@ export function runBasePhase({
 
   // The corpus is rewritten because the exclusions are part of it. The SNAPSHOT is not: it was taken
   // before this ran, on purpose, and `writeSnapshot` refuses a second write anyway.
-  writeRelative(unitDir, "corpus.json", {
+  writeRelative(unitDir, PHASE_CORPUS_FILE, {
     meta: {
       targetLanguage,
       sourceType: "epub",

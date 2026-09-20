@@ -233,7 +233,11 @@ export async function runAssemble(flags, ctx) {
 
   warnIfBuiltOutOfOrder(flags, ctx, runDir);
 
-  if (existsSync(paths.corpus) && !corpusStoppedMidAssemble(paths.corpus)) {
+  // `corpus.json` now has exactly ONE writer -- this command, after the stamping -- so its presence
+  // means the build finished. It used to be written by the phase too, and a crash between the two
+  // left a corpus this branch read as complete; `corpusStoppedMidAssemble` guessed the difference
+  // from a missing `epubHash`. The phase writes `phase-corpus.json` instead, so the guess is gone.
+  if (existsSync(paths.corpus)) {
     ctx.log(`corpus.json already exists at ${paths.corpus} — reusing`);
   } else {
     // A FAILED assemble deliberately keeps its claim (clearOnFailure: false): the run dir was
@@ -302,43 +306,6 @@ function dropVolunteeredFields(corpus, ctx) {
     }
   }
   return [...volunteered].sort();
-}
-
-/**
- * Whether an existing `corpus.json` is a build that died between the phase and the stamping.
- *
- * **Two different writers produce this filename on the phase path, and they mean different things.**
- * The phase's reconcile step writes its merged items to `corpus.json` as its own artifact, and
- * `assemble` writes the finished corpus to the same path after stamping the unit's identity and
- * running the backward dedup, the forward flags and the pedagogical sort. So "corpus.json exists" is
- * ambiguous, and the reuse branch above read it as the second when it can be the first.
- *
- * Chapter 17's first build ended exactly there: the phase wrote 93 items, `assemble` then refused
- * them at its own write, and a plain re-run would have sailed past the reuse branch into `prepare` on
- * a corpus with no `epubHash`, no `chapterNumber` and no `chapterLabel` -- and the deck path is
- * derived from `chapterLabel`, so the lesson would have shipped into the wrong place with nothing
- * saying so. `resume` was no help either: it reads the pass ledger, and a crash before the stamping
- * leaves no ledger, so an empty one read as "nothing failed".
- *
- * `epubHash` is the marker because `assemble` is the only thing that sets it. The check is scoped to
- * the EPUB path deliberately: a template or a dictated word list has no intermediate writer, so their
- * `corpus.json` can only ever be the finished one, and asking them for a stamp they never carry would
- * make every re-run rebuild from scratch.
- *
- * The real fix is for the phase to stop writing this filename at all. That is a wider change than the
- * failure warranted, so it is recorded as a limitation instead of taken here.
- */
-function corpusStoppedMidAssemble(corpusPath) {
-  let corpus;
-  try {
-    corpus = JSON.parse(readFileSync(corpusPath, "utf-8"));
-  } catch {
-    // Unreadable or torn is not this function's question, and pretending it is finished would hide
-    // it. Let the reuse branch take it and fail loudly on a real read.
-    return false;
-  }
-  if (corpus?.meta?.sourceType !== "epub") return false;
-  return !corpus.meta.epubHash;
 }
 
 /**

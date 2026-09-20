@@ -45,6 +45,16 @@ why it breaks.
 - **Do not fill a gap twice.** One sentence per `neverUsed` entry. The count for `underExampled` is a
   target, not a minimum to beat.
 - **Do not pad.** If two sentences fill a gap properly, write two and stop.
+- **Vary the FRAME, not just the noun.** Three sentences that differ only in which object sits in
+  one slot are a single sentence with three nouns, and they drill the frame instead of the form the
+  gap is about. Move something structural between them: a different sentence pattern, a different
+  subject, a different tense, or make one a question. If the only thing changing across your
+  sentences is a noun, you have padded, whatever the count says.
+- **Prefer a frame built from THIS chapter's grammar.** The lesson has a point, and a gap sentence is
+  where the learner practises it. An earlier, simpler pattern is allowed, and is the right answer
+  when the chapter's own grammar cannot carry the form, but it should be the exception rather than
+  the shape of the whole set. Gap fills that nearly all reach for one earlier chapter's frame drill
+  that chapter rather than this one.
 - **Do not invent a gap.** Something you think is missing but that is not on the list belongs to a
   different pass. Say so in `notes` if it matters.
 

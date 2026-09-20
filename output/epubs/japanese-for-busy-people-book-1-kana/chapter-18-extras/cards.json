@@ -47,7 +47,10 @@
       "category": "Grammar & Function Words",
       "target": "じゅうしょをかいてください",
       "pronunciation": "jūsho o kaite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "smith-report-after-meeting",
@@ -96,7 +99,10 @@
       "category": "Grammar & Function Words",
       "target": "でんわばんごうをおしえてください",
       "pronunciation": "denwa bangō o oshiete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kiku-listen-pair",
@@ -105,7 +111,10 @@
       "target": "ラジオでニュースをきいてください",
       "pronunciation": "rajio de nyūsu o kiite kudasai",
       "aiSuggested": true,
-      "note": "Contrast pair with なかむらさんにでんわばんごうをきいてください (Nakamura-san ni denwa bangō o kiite kudasai). Only the object and particle change, but the meaning of きいて (kiite) does."
+      "note": "Contrast pair with なかむらさんにでんわばんごうをきいてください (Nakamura-san ni denwa bangō o kiite kudasai). Only the object and particle change, but the meaning of きいて (kiite) does.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "restaurant-hirugohan-bijutsukan",
@@ -136,7 +145,10 @@
       "category": "Grammar & Function Words",
       "target": "ここになまえをかいてください",
       "pronunciation": "koko ni namae o kaite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "oyogu-umi",
@@ -144,7 +156,10 @@
       "category": "Grammar & Function Words",
       "target": "うみでおよいでください",
       "pronunciation": "umi de oyoide kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "fair-no-ato-nara-otera",
@@ -175,7 +190,10 @@
       "category": "Grammar & Function Words",
       "target": "めいしをみせてください",
       "pronunciation": "meishi o misete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "went-ginza-ate-lunch",
@@ -190,7 +208,10 @@
       "category": "Grammar & Function Words",
       "target": "ここではなしてください",
       "pronunciation": "koko de hanashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "miseru-sumaho",
@@ -198,7 +219,10 @@
       "category": "Grammar & Function Words",
       "target": "スマホをみせてください",
       "pronunciation": "sumaho o misete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "nikko-itte-jinja-mimasen-ka",
@@ -213,7 +237,10 @@
       "category": "Grammar & Function Words",
       "target": "ここをみてください",
       "pronunciation": "koko o mite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "sandwich-katte-kouen-tabemasen-ka",
@@ -228,7 +255,10 @@
       "category": "Grammar & Function Words",
       "target": "チケットをかってください",
       "pronunciation": "chiketto o katte kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yoroshii-ashita",
@@ -278,7 +308,10 @@
       "category": "Grammar & Function Words",
       "target": "うけつけでまってください",
       "pronunciation": "uketsuke de matte kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "meeting-then-report",
@@ -336,7 +369,10 @@
       "category": "Grammar & Function Words",
       "target": "ちょっとここにきてください",
       "pronunciation": "chotto koko ni kite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "matsu-koko",
@@ -344,7 +380,10 @@
       "category": "Grammar & Function Words",
       "target": "ここでまってください",
       "pronunciation": "koko de matte kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "party-then-taxi-home",
@@ -359,7 +398,10 @@
       "category": "Grammar & Function Words",
       "target": "うちにかえってください",
       "pronunciation": "uchi ni kaette kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "ask-plans-tomorrow",
@@ -374,7 +416,10 @@
       "category": "Grammar & Function Words",
       "target": "どうりょうとはなしてください",
       "pronunciation": "dōryō to hanashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kau-pan",
@@ -382,7 +427,10 @@
       "category": "Grammar & Function Words",
       "target": "パンをかってください",
       "pronunciation": "pan o katte kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kiku-ongaku",
@@ -390,7 +438,10 @@
       "category": "Grammar & Function Words",
       "target": "おんがくをきいてください",
       "pronunciation": "ongaku o kiite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "ginza-kaimono-eiga-tomorrow",
@@ -468,7 +519,10 @@
       "category": "Grammar & Function Words",
       "target": "おちゃをのんでください",
       "pronunciation": "ocha o nonde kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "tomodachi-atte-sumo-yesterday",
@@ -493,7 +547,10 @@
       "category": "Grammar & Function Words",
       "target": "ほんをかしてください",
       "pronunciation": "hon o kashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kuru-ashita",
@@ -501,7 +558,10 @@
       "category": "Grammar & Function Words",
       "target": "あしたきてください",
       "pronunciation": "ashita kite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "answer-osaka-branch-presentation",
@@ -518,7 +578,10 @@
       "category": "Grammar & Function Words",
       "target": "でんわばんごうをかいてください",
       "pronunciation": "denwa bangō o kaite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "oyogu-puuru",
@@ -526,7 +589,10 @@
       "category": "Grammar & Function Words",
       "target": "プールでおよいでください",
       "pronunciation": "pūru de oyoide kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "past-chain-swim",
@@ -550,7 +616,10 @@
       "category": "Grammar & Function Words",
       "target": "コーヒーをのんでください",
       "pronunciation": "kōhī o nonde kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "chain-buy-give",
@@ -566,7 +635,10 @@
       "category": "Grammar & Function Words",
       "target": "ごじにきてください",
       "pronunciation": "go-ji ni kite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yoroshii-place",
@@ -590,7 +662,10 @@
       "category": "Grammar & Function Words",
       "target": "ここでおよいでください",
       "pronunciation": "koko de oyoide kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kiku-rajio",
@@ -598,7 +673,10 @@
       "category": "Grammar & Function Words",
       "target": "ラジオをきいてください",
       "pronunciation": "rajio o kiite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "au-smith",
@@ -606,7 +684,10 @@
       "category": "Grammar & Function Words",
       "target": "スミスさんにあってください",
       "pronunciation": "Sumisu-san ni atte kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "ask-what-did-yesterday",
@@ -626,7 +707,10 @@
       "category": "Grammar & Function Words",
       "target": "ほんをよんでください",
       "pronunciation": "hon o yonde kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kasu-pen",
@@ -634,7 +718,10 @@
       "category": "Grammar & Function Words",
       "target": "ペンをかしてください",
       "pronunciation": "pen o kashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "chain-mail-send",
@@ -658,7 +745,10 @@
       "category": "Grammar & Function Words",
       "target": "ケーキをたべてください",
       "pronunciation": "kēki o tabete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "three-verb-chain",
@@ -712,7 +802,10 @@
       "category": "Grammar & Function Words",
       "target": "タクシーでかえってください",
       "pronunciation": "takushī de kaette kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "miru-shashin",
@@ -720,7 +813,10 @@
       "category": "Grammar & Function Words",
       "target": "しゃしんをみてください",
       "pronunciation": "shashin o mite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "supper-before-or-after-meeting",
@@ -749,7 +845,10 @@
       "category": "Grammar & Function Words",
       "target": "ニュースをきいてください",
       "pronunciation": "nyūsu o kiite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yomu-tegami",
@@ -757,7 +856,10 @@
       "category": "Grammar & Function Words",
       "target": "てがみをよんでください",
       "pronunciation": "tegami o yonde kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yokohama-soccer-match-tomorrow",
@@ -773,7 +875,10 @@
       "category": "Greetings",
       "target": "もういちどはなしてください",
       "pronunciation": "mō ichido hanashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "tabete-koko",
@@ -781,7 +886,10 @@
       "category": "Grammar & Function Words",
       "target": "ここでたべてください",
       "pronunciation": "koko de tabete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "nomu-mizu",
@@ -789,7 +897,10 @@
       "category": "Grammar & Function Words",
       "target": "ここでみずをのんでください",
       "pronunciation": "koko de mizu o nonde kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     }
   ]
 }

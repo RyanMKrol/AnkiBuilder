@@ -21,7 +21,10 @@
       "target": "じゅうしょをかいてください",
       "english": "Please write your address.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "smith-report-after-meeting",
@@ -64,7 +67,10 @@
       "target": "でんわばんごうをおしえてください",
       "english": "Please tell me your telephone number.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kiku-listen-pair",
@@ -72,7 +78,10 @@
       "english": "Please listen to the news on the radio.",
       "category": "Technology & Communication",
       "note": "Contrast pair with なかむらさんにでんわばんごうをきいてください (Nakamura-san ni denwa bangō o kiite kudasai). Only the object and particle change, but the meaning of きいて (kiite) does.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "restaurant-hirugohan-bijutsukan",
@@ -100,14 +109,20 @@
       "target": "ここになまえをかいてください",
       "english": "Please write your name here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "oyogu-umi",
       "target": "うみでおよいでください",
       "english": "Please swim in the ocean.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "fair-no-ato-nara-otera",
@@ -136,7 +151,10 @@
       "target": "めいしをみせてください",
       "english": "Please show me your business card.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "went-ginza-ate-lunch",
@@ -149,14 +167,20 @@
       "target": "ここではなしてください",
       "english": "Please talk here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "miseru-sumaho",
       "target": "スマホをみせてください",
       "english": "Please show me your smartphone.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "nikko-itte-jinja-mimasen-ka",
@@ -170,7 +194,10 @@
       "target": "ここをみてください",
       "english": "Please look here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "sandwich-katte-kouen-tabemasen-ka",
@@ -184,7 +211,10 @@
       "target": "チケットをかってください",
       "english": "Please buy a ticket.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yoroshii-ashita",
@@ -229,7 +259,10 @@
       "target": "うけつけでまってください",
       "english": "Please wait at the reception desk.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "meeting-then-report",
@@ -277,14 +310,20 @@
       "target": "ちょっとここにきてください",
       "english": "Please come here for a moment.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "matsu-koko",
       "target": "ここでまってください",
       "english": "Please wait here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "party-then-taxi-home",
@@ -297,7 +336,10 @@
       "target": "うちにかえってください",
       "english": "Please go home.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "ask-plans-tomorrow",
@@ -310,21 +352,30 @@
       "target": "どうりょうとはなしてください",
       "english": "Please talk with a colleague.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kau-pan",
       "target": "パンをかってください",
       "english": "Please buy some bread.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kiku-ongaku",
       "target": "おんがくをきいてください",
       "english": "Please listen to the music.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "ginza-kaimono-eiga-tomorrow",
@@ -396,7 +447,10 @@
       "target": "おちゃをのんでください",
       "english": "Please drink some tea.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "tomodachi-atte-sumo-yesterday",
@@ -419,14 +473,20 @@
       "target": "ほんをかしてください",
       "english": "Please lend me a book.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kuru-ashita",
       "target": "あしたきてください",
       "english": "Please come tomorrow.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "answer-osaka-branch-presentation",
@@ -441,14 +501,20 @@
       "target": "でんわばんごうをかいてください",
       "english": "Please write your telephone number.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "oyogu-puuru",
       "target": "プールでおよいでください",
       "english": "Please swim in the pool.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "past-chain-swim",
@@ -469,7 +535,10 @@
       "target": "コーヒーをのんでください",
       "english": "Please drink some coffee.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "chain-buy-give",
@@ -483,7 +552,10 @@
       "target": "ごじにきてください",
       "english": "Please come at 5:00.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yoroshii-place",
@@ -504,21 +576,30 @@
       "target": "ここでおよいでください",
       "english": "Please swim here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kiku-rajio",
       "target": "ラジオをきいてください",
       "english": "Please listen to the radio.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "au-smith",
       "target": "スミスさんにあってください",
       "english": "Please meet Smith-san.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "ask-what-did-yesterday",
@@ -536,14 +617,20 @@
       "target": "ほんをよんでください",
       "english": "Please read the book.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "kasu-pen",
       "target": "ペンをかしてください",
       "english": "Please lend me a pen.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "chain-mail-send",
@@ -564,7 +651,10 @@
       "target": "ケーキをたべてください",
       "english": "Please eat some cake.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "three-verb-chain",
@@ -612,14 +702,20 @@
       "target": "タクシーでかえってください",
       "english": "Please go home by taxi.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "miru-shashin",
       "target": "しゃしんをみてください",
       "english": "Please look at the photo.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "supper-before-or-after-meeting",
@@ -645,14 +741,20 @@
       "target": "ニュースをきいてください",
       "english": "Please listen to the news.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yomu-tegami",
       "target": "てがみをよんでください",
       "english": "Please read the letter.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "yokohama-soccer-match-tomorrow",
@@ -667,21 +769,30 @@
       "target": "もういちどはなしてください",
       "english": "Please say that once more.",
       "category": "Greetings",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "tabete-koko",
       "target": "ここでたべてください",
       "english": "Please eat here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     },
     {
       "id": "nomu-mizu",
       "target": "ここでみずをのんでください",
       "english": "Please drink water here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: three request-framed cards per te-form varied only the noun, which the extras rules call padding. Kept one request per form that no linking sentence already covers; every te-form still appears in at least one sentence."
     }
   ]
 }

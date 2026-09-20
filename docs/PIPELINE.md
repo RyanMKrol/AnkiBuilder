@@ -1194,8 +1194,13 @@ everything left is a near miss: `おかし` against `かし`, or two glosses tha
 different words. Three signals propose a pair, and all three thresholds were set by running the
 unfiltered version over a real chapter:
 
-- **same target**, which the base path suppresses (`skipExactMatches`) because `assemble` flags those
-  itself; the extras path keeps them, since nothing else ever checks an extras unit
+- **same target**, which the base path suppresses (`skipExactMatches`) for a prior in a BASE unit,
+  because `assemble` flags those itself -- but keeps for a prior in an EXTRAS unit, because
+  `assemble`'s matcher reads the library and the library has no extras content in it. Suppressing
+  both was the original form of this code and it reopened the very blind spot the section above says
+  was closed: on Lesson 17 the phase raised zero candidates, and the reviewer excluded まち
+  (chapter-13-extras) and おとうと (chapter-9-extras) by hand after recognising them. The extras path
+  keeps every exact match, since nothing else ever checks an extras unit.
 - **one target a prefix or suffix of the other**, at half its length or more. Plain substring
   matching proposed `せん` inside `いきませんか` and `です` inside `どうですか`, because grammatical
   endings are substrings of everything built from them; the ratio then drops `ちょっと` inside

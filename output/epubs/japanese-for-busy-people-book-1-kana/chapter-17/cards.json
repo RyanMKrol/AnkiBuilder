@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "phase": "base",
     "epubHash": "1fab0f99d1195ad9",
     "chapterNumber": 39,
@@ -49,7 +49,9 @@
       "pronunciation": "otōto",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (おとうと is formally taught in the own-family vs. others'-family vocabulary set)",
-      "note": "This is your own younger brother. For someone else's, use おとうとさん (otōtosan) from Lesson 9."
+      "note": "This is your own younger brother. For someone else's, use おとうとさん (otōtosan) from Lesson 9.",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "robii",
@@ -77,7 +79,9 @@
       "english": "Town",
       "category": "Directions",
       "target": "まち",
-      "pronunciation": "machi"
+      "pronunciation": "machi",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "te",
@@ -124,7 +128,9 @@
       "target": "かいぎ",
       "pronunciation": "kaigi",
       "uncertain": true,
-      "reviewNote": "Used in Key Sentence 2 and Exercise IV, never glossed in a vocabulary table. May be taught earlier. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)"
+      "reviewNote": "Used in Key Sentence 2 and Exercise IV, never glossed in a vocabulary table. May be taught earlier. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "okawari-none",
@@ -133,7 +139,9 @@
       "target": "おみやげ",
       "pronunciation": "omiyage",
       "uncertain": true,
-      "reviewNote": "Chapter title and dialogue are about buying a souvenir, but no vocabulary table glosses it here. Probably taught earlier. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on english)"
+      "reviewNote": "Chapter title and dialogue are about buying a souvenir, but no vocabulary table glosses it here. Probably taught earlier. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "onsen",
@@ -142,7 +150,9 @@
       "target": "おんせん",
       "pronunciation": "onsen",
       "uncertain": true,
-      "reviewNote": "Only in Exercise II drill cues (おんせんに いきます). No gloss in the chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)"
+      "reviewNote": "Only in Exercise II drill cues (おんせんに いきます). No gloss in the chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "nyuusu-l17",
@@ -151,7 +161,9 @@
       "target": "ニュース",
       "pronunciation": "nyūsu",
       "uncertain": true,
-      "reviewNote": "Only in Exercise V-A cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)"
+      "reviewNote": "Only in Exercise V-A cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "meeru-adoresu",
@@ -160,7 +172,9 @@
       "target": "メールアドレス",
       "pronunciation": "mēru adoresu",
       "uncertain": true,
-      "reviewNote": "Only in Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)"
+      "reviewNote": "Only in Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "pathii",
@@ -169,7 +183,9 @@
       "target": "パーティー",
       "pronunciation": "pātī",
       "uncertain": true,
-      "reviewNote": "Only in Exercise IV example. No gloss. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)"
+      "reviewNote": "Only in Exercise IV example. No gloss. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "mise-l17",
@@ -178,7 +194,9 @@
       "target": "みせ",
       "pronunciation": "mise",
       "uncertain": true,
-      "reviewNote": "Only in an Exercise III-B cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)"
+      "reviewNote": "Only in an Exercise III-B cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "tokoro-l17",
@@ -187,7 +205,9 @@
       "target": "ところ",
       "pronunciation": "tokoro",
       "uncertain": true,
-      "reviewNote": "Exercise III cues. No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)"
+      "reviewNote": "Exercise III cues. No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "chikaku",
@@ -196,7 +216,9 @@
       "target": "ちかく",
       "pronunciation": "chikaku",
       "uncertain": true,
-      "reviewNote": "Exercise III (うみの ちかく, この ちかくに). No gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)"
+      "reviewNote": "Exercise III (うみの ちかく, この ちかくに). No gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "kuni-l17",
@@ -205,7 +227,9 @@
       "target": "くに",
       "pronunciation": "kuni",
       "uncertain": true,
-      "reviewNote": "Only in an Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)"
+      "reviewNote": "Only in an Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "shourai",
@@ -252,7 +276,9 @@
       "pronunciation": "shizuka na",
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-A cue, (しずかな まち). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
-      "note": "This is しずか (shizuka) from Lesson 10. The な (na) only appears when it comes directly before a noun, as in しずかなところ (shizuka na tokoro)."
+      "note": "This is しずか (shizuka) from Lesson 10. The な (na) only appears when it comes directly before a noun, as in しずかなところ (shizuka na tokoro).",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "atatakai-l17",
@@ -261,7 +287,9 @@
       "target": "あたたかい",
       "pronunciation": "atatakai",
       "uncertain": true,
-      "reviewNote": "Only in an Exercise III-A cue, (あたたかい ところ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)"
+      "reviewNote": "Only in an Exercise III-A cue, (あたたかい ところ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "furui-l17",
@@ -270,7 +298,9 @@
       "target": "ふるい",
       "pronunciation": "furui",
       "uncertain": true,
-      "reviewNote": "Only in an Exercise III-B cue, (ふるい かぐを かいます、みせ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)"
+      "reviewNote": "Only in an Exercise III-B cue, (ふるい かぐを かいます、みせ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "zehi-l17",
@@ -394,7 +424,9 @@
       "target": "べんきょうします",
       "pronunciation": "benkyō shimasu",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)"
+      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "hanami-o-shimasu",
@@ -434,7 +466,9 @@
       "target": "おくります",
       "pronunciation": "okurimasu",
       "uncertain": true,
-      "reviewNote": "Key Sentence 2 and Exercise V; no vocabulary entry here. Gloss is mine. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)"
+      "reviewNote": "Key Sentence 2 and Exercise V; no vocabulary entry here. Gloss is mine. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "shashin-o-torimasu",
@@ -443,7 +477,9 @@
       "target": "しゃしんをとります",
       "pronunciation": "shashin o torimasu",
       "uncertain": true,
-      "reviewNote": "Appears only as しゃしんを とりたいです in Speaking Practice 2 (English: 'I want to take a picture'); dictionary and polite forms are not printed. | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: taking photos (とります) is the vocabulary focus of the later 'Please don't take photos' lesson)"
+      "reviewNote": "Appears only as しゃしんを とりたいです in Speaking Practice 2 (English: 'I want to take a picture'); dictionary and polite forms are not printed. | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: taking photos (とります) is the vocabulary focus of the later 'Please don't take photos' lesson)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "oyogimasu",
@@ -461,7 +497,9 @@
       "target": "かえります",
       "pronunciation": "kaerimasu",
       "uncertain": true,
-      "reviewNote": "Only in an Exercise V-B cue, (ポールさん、くにに かえります). No gloss. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)"
+      "reviewNote": "Only in an Exercise V-B cue, (ポールさん、くにに かえります). No gloss. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "itadakimasu-2",
@@ -472,7 +510,9 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Frequently Used Expressions (matched on target)",
       "note": "Same word as いただきます (itadakimasu) in Frequently Used Expressions. In Lesson 10 it also meant \"Yes, thank you\" when accepting an offer, so the moment decides the meaning.",
-      "hint": "said at the table, before the food"
+      "hint": "said at the table, before the food",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "taberu-mae-ni",
@@ -678,7 +718,9 @@
       "target": "ちょっとまってください",
       "pronunciation": "chotto matte kudasai",
       "uncertain": true,
-      "reviewNote": "Speaking Practice 2. Glossed in the dialogue translation only; may already be taught. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target) | Possibly premature — uses verb[て-form]ください (and the verb まちます), neither introduced until later in the book"
+      "reviewNote": "Speaking Practice 2. Glossed in the dialogue translation only; may already be taught. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target) | Possibly premature — uses verb[て-form]ください (and the verb まちます), neither introduced until later in the book",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "wakarimashita-l17",

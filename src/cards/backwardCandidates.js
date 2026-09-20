@@ -20,6 +20,7 @@
 // IT DECIDES NOTHING. A candidate here is a question, not a finding. A word legitimately re-taught
 // in a later chapter is ordinary, and a target appearing twice can be two senses.
 
+import { parseUnitDir } from "../model/unitDir.js";
 import { targetKey } from "./itemSetDiff.js";
 import { glossesAgree } from "./glossMatch.js";
 
@@ -55,6 +56,17 @@ function bare(item, languageCode) {
 }
 
 /**
+ * Whether a prior item came from an `-extras` unit.
+ *
+ * `loadEarlierUnitItems` stamps every item with the directory it was read from. An item with no
+ * stamp came from the dedup library, which holds base units only, so treating it as non-extras is
+ * correct rather than a fallback.
+ */
+function fromExtrasUnit(prior) {
+  return parseUnitDir(prior?.__unit ?? "")?.extras === true;
+}
+
+/**
  * Candidate prior art for each new item.
  *
  * Returns `[{ item, matches: [{ prior, reason }] }]`, only for items with at least one match.
@@ -87,13 +99,21 @@ export function findBackwardCandidates(
       if (!matches.has(prior)) matches.set(prior, reason);
     };
 
-    // `skipExactMatches` is set on the base path, where `assemble` runs the v1 string matcher after
-    // this phase and flags every exact target repeat itself. Raising them here too would spend an
-    // Opus judgement to produce a second review note saying what the first already said. The extras
-    // path does NOT set it: nothing else ever runs backward dedup for an extras unit, so there the
-    // exact matches are the only coverage there is.
-    if (!skipExactMatches) {
-      for (const prior of byTarget.get(key) ?? []) add(prior, MATCH_REASON.TARGET);
+    // `skipExactMatches` is set on the base path, where `assemble` runs its library-backed string
+    // matcher after this phase and flags exact target repeats itself. Raising those here too would
+    // spend a judgement to produce a second review note saying what the first already said.
+    //
+    // BUT THAT MATCHER ONLY SEES BASE UNITS. Its library is keyed by (epubHash, chapterNumber) and
+    // an extras unit is forbidden from writing to it, because it shares its base chapter's number
+    // and the write would overwrite that chapter's entry -- there is a preflight FAIL check for
+    // exactly that. So an exact repeat of a word an EXTRAS unit taught is covered by nothing unless
+    // this pass raises it, and skipping it here dropped it through the crack between the two.
+    //
+    // Measured on Lesson 17: まち was taught in chapter-13-extras and おとうと in chapter-9-extras.
+    // Neither was flagged, and the reviewer excluded both by hand after recognising them.
+    for (const prior of byTarget.get(key) ?? []) {
+      if (skipExactMatches && !fromExtrasUnit(prior)) continue;
+      add(prior, MATCH_REASON.TARGET);
     }
 
     for (const prior of priors) {

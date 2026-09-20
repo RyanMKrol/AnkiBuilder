@@ -1,0 +1,475 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 39,
+    "chapterLabel": "Lesson 17: Stating a Wish: I Want to Buy a Souvenir",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "robii",
+      "english": "Lobby",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ロビー"
+    },
+    {
+      "id": "shiryou",
+      "english": "Material, data, documents",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しりょう"
+    },
+    {
+      "id": "tegami",
+      "english": "Letter",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "てがみ"
+    },
+    {
+      "id": "te",
+      "english": "Hand",
+      "category": "Body & Health",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 21: Asking Permission: May I Have It? (て (hand) is formally taught as part of the parts-of-the-body vocabulary set)",
+      "target": "て",
+      "uncertain": true
+    },
+    {
+      "id": "kurabu",
+      "english": "Club",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "クラブ"
+    },
+    {
+      "id": "kagu",
+      "english": "Furniture",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "かぐ"
+    },
+    {
+      "id": "antiiku",
+      "english": "Antiques",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "アンティーク"
+    },
+    {
+      "id": "biyouin-2",
+      "english": "Hair salon, hairdresser",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "びよういん"
+    },
+    {
+      "id": "shourai",
+      "english": "In the future",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "しょうらい"
+    },
+    {
+      "id": "ikebana",
+      "english": "Flower arrangement",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "いけばな"
+    },
+    {
+      "id": "karate",
+      "english": "Karate",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "からて"
+    },
+    {
+      "id": "piano",
+      "english": "Piano",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ピアノ"
+    },
+    {
+      "id": "dansu",
+      "english": "Dance",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Appears only as a Hobbies picture caption (item 4); the vocabulary table does not list it. Gloss is mine. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
+      "target": "ダンス",
+      "uncertain": true
+    },
+    {
+      "id": "zehi-l17",
+      "english": "By all means, definitely",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Paul's reply いいですね。ぜひ。 in Speaking Practice 1; the English gloss there is 'I'd love to', so this is the whole-phrase sense. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "target": "ぜひ",
+      "uncertain": true
+    },
+    {
+      "id": "nemasu",
+      "english": "Sleep, go to bed",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ねます"
+    },
+    {
+      "id": "mae",
+      "english": "Before",
+      "category": "Time",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach))",
+      "target": "まえ",
+      "uncertain": true
+    },
+    {
+      "id": "no-mae-ni",
+      "english": "Before the meeting",
+      "category": "Time",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Target changed from the schematic 〜のまえに to a concrete instance the chapter prints (EXERCISES V), because a placeholder is not a card. Confirm the choice.",
+      "target": "かいぎのまえに",
+      "uncertain": true
+    },
+    {
+      "id": "neru-mae-ni",
+      "english": "Before sleeping, before going to bed",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ねるまえに"
+    },
+    {
+      "id": "naraimasu",
+      "english": "Learn, take lessons in",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ならいます"
+    },
+    {
+      "id": "sutorecchi-o-shimasu",
+      "english": "Do stretching exercises",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ストレッチをします"
+    },
+    {
+      "id": "ryouri-o-shimasu",
+      "english": "Cook",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "りょうりをします"
+    },
+    {
+      "id": "araimasu",
+      "english": "Wash",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "あらいます"
+    },
+    {
+      "id": "shawaa-o-abimasu",
+      "english": "Take a shower",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "シャワーをあびます"
+    },
+    {
+      "id": "shokuji-o-shimasu",
+      "english": "To have a meal",
+      "category": "Food",
+      "reviewNote": "Verb caption ⑤ in the Word Power picture list; the vocabulary table does not gloss it. English is my best guess. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "target": "しょくじをします",
+      "uncertain": true
+    },
+    {
+      "id": "hajimemasu",
+      "english": "Start, begin",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "はじめます"
+    },
+    {
+      "id": "kakimasu",
+      "english": "Write",
+      "category": "School & Education",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "target": "かきます",
+      "uncertain": true
+    },
+    {
+      "id": "sumimasu-2",
+      "english": "To live (in a place)",
+      "category": "Home & Household",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (すみます is re-taught later as すんでいます in the present-state て-form lesson)",
+      "target": "すみます",
+      "uncertain": true
+    },
+    {
+      "id": "hanami-o-shimasu",
+      "english": "View cherry blossoms",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "はなみをします"
+    },
+    {
+      "id": "ohanami-o-shimasu",
+      "english": "To view cherry blossoms",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "(お)はなみをします"
+    },
+    {
+      "id": "daunroodo-shimasu",
+      "english": "Download",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "ダウンロードします"
+    },
+    {
+      "id": "chekku-shimasu-2",
+      "english": "To check",
+      "category": "Technology & Communication",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)",
+      "target": "チェックします",
+      "uncertain": true
+    },
+    {
+      "id": "oyogimasu",
+      "english": "To swim",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "target": "およぎます",
+      "uncertain": true
+    },
+    {
+      "id": "taberu-mae-ni",
+      "english": "Before eating",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "たべるまえに"
+    },
+    {
+      "id": "kaitai-desu-2",
+      "english": "(I) want to buy",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かいたいです"
+    },
+    {
+      "id": "tabetai-desu-2",
+      "english": "(I) want to eat",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "たべたいです"
+    },
+    {
+      "id": "ikitai-desu",
+      "english": "(I) want to go",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いきたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunai-desu",
+      "english": "(I) don't want to go",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いきたくないです",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakatta-desu",
+      "english": "(I) wanted to go",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いきたかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunakatta-desu",
+      "english": "(I) didn't want to go",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いきたくなかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomitai-desu",
+      "english": "(I) want to drink",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "のみたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunai-desu",
+      "english": "(I) don't want to buy",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かいたくないです",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakatta-desu",
+      "english": "(I) wanted to buy",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かいたかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunakatta-desu",
+      "english": "(I) didn't want to buy",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かいたくなかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakunai-desu",
+      "english": "(I) don't want to eat",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たべたくないです",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakatta-desu",
+      "english": "(I) wanted to eat",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たべたかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakunakatta-desu",
+      "english": "(I) didn't want to eat",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たべたくなかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitai-desu",
+      "english": "(I) want to see, want to watch",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunai-desu",
+      "english": "(I) don't want to see, don't want to watch",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みたくないです",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakatta-desu",
+      "english": "(I) wanted to see, wanted to watch",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みたかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunakatta-desu",
+      "english": "(I) didn't want to see, didn't want to watch",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みたくなかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitai-desu",
+      "english": "(I) want to meet",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あいたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunai-desu",
+      "english": "(I) don't want to meet",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あいたくないです",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakatta-desu",
+      "english": "(I) wanted to meet",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あいたかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunakatta-desu",
+      "english": "(I) didn't want to meet",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あいたくなかったです",
+      "aiSuggested": true
+    },
+    {
+      "id": "jaa-mata-ashita",
+      "english": "See you tomorrow",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "じゃ、またあした"
+    },
+    {
+      "id": "ja-mata-suiyoubi-ni",
+      "english": "See you on Wednesday",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "じゃ、またすいようびに",
+      "aiSuggested": true
+    },
+    {
+      "id": "wakarimashita-l17",
+      "english": "I've got that, I understand",
+      "category": "Greetings",
+      "reviewNote": "Paul's closing line. Translation is 'I've got that'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (わかります is formally taught as a verb/grammar point (noun が わかります) later)",
+      "target": "わかりました",
+      "uncertain": true
+    }
+  ]
+}

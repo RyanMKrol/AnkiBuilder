@@ -95,8 +95,45 @@ for (const collection of scan.collections) {
 
       totals.checked++;
       const label = `${unit.name}/${item.id}  "${item.target}"`;
-      const found = findEndMarker(shipping);
 
+      // ── The positional proof runs FIRST, and does not consult the detector ─────────────────────
+      //
+      // This used to sit behind `if (found) … continue`, so it was reachable only when the detector
+      // was silent — which is to say, unreachable in exactly the case it was written for. The
+      // header above already distrusts a detector NEGATIVE as "reasoning from a known-blind
+      // instrument"; the same instrument's POSITIVE was then taken at face value, and that is the
+      // asymmetry this fixes.
+      //
+      // `findEndMarker` returns the clip's trailing run of separated speech, which IS the marker in
+      // a one-clause utterance and is the final clause in anything with an internal pause. Measured
+      // on the five live flags, every one was the latter:
+      //
+      //   ええ、| そうしましょう              →  flagged そうしましょう
+      //   ６じにえきですね。| わかりました      →  flagged わかりました
+      //   スミスさんに | ばしょをおしえて、| いっしょにいきます  →  flagged いっしょにいきます
+      //   わたしは | がくせいです             →  flagged がくせいです
+      //
+      // All four had a hand cut landing well before the ORIGINAL's trailing run (4.14s vs 6.00s;
+      // 3.53s vs 5.28s; 2.47s vs 3.40s), so the marker was provably outside the shipping clip the
+      // whole time and the reviewer's fix could never be recognised. Where the clip ends relative to
+      // where the marker begins is geometry; it does not depend on recognising the marker at all, so
+      // it is the stronger evidence and is consulted first.
+      const original = item.audioOriginal ? join(audioDir, item.audioOriginal) : null;
+      const cutEnd = item.audioTrim?.end;
+      const runStart = original && existsSync(original) ? trailingRunStart(original) : null;
+      const cutClear = Number.isFinite(cutEnd) && runStart != null && cutEnd <= runStart + 1e-6;
+
+      if (flagged && cutClear) {
+        totals.cleared++;
+        console.log(
+          `✓  ${label} — hand cut ends at ${cutEnd.toFixed(2)}s, before the original's trailing run at ${runStart.toFixed(2)}s`,
+        );
+        delete item.audioMarkerStuck;
+        touched++;
+        continue;
+      }
+
+      const found = findEndMarker(shipping);
       if (found) {
         if (flagged) {
           totals.stillStuck++;
@@ -111,30 +148,15 @@ for (const collection of scan.collections) {
       }
       if (!flagged) continue;
 
-      // The detector found nothing — which on exactly these clips proves nothing. Ask where the
-      // reviewer put the end of the clip instead.
-      const original = item.audioOriginal ? join(audioDir, item.audioOriginal) : null;
-      const cutEnd = item.audioTrim?.end;
-      const runStart = original && existsSync(original) ? trailingRunStart(original) : null;
-
-      if (Number.isFinite(cutEnd) && runStart != null && cutEnd <= runStart + 1e-6) {
-        totals.cleared++;
-        console.log(
-          `✓  ${label} — hand cut ends at ${cutEnd.toFixed(2)}s, before the original's trailing run at ${runStart.toFixed(2)}s`,
-        );
-        delete item.audioMarkerStuck;
-        touched++;
-      } else {
-        totals.unproven++;
-        console.log(
-          `·  ${label} — detector finds no marker, but nothing proves it was cut` +
-            (Number.isFinite(cutEnd) ? ` (cut ends ${cutEnd.toFixed(2)}s` : " (no hand cut") +
-            (runStart == null
-              ? ", no trailing run in the original)"
-              : `, run starts ${runStart.toFixed(2)}s)`) +
-            " — left flagged",
-        );
-      }
+      totals.unproven++;
+      console.log(
+        `·  ${label} — detector finds no marker, but nothing proves it was cut` +
+          (Number.isFinite(cutEnd) ? ` (cut ends ${cutEnd.toFixed(2)}s` : " (no hand cut") +
+          (runStart == null
+            ? ", no trailing run in the original)"
+            : `, run starts ${runStart.toFixed(2)}s)`) +
+          " — left flagged",
+      );
     }
 
     if (touched && apply) {

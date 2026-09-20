@@ -325,8 +325,9 @@
       "target": "まえ",
       "pronunciation": "mae",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach))",
-      "note": "Here まえ (mae) means \"before\" in time. In Lesson 12 it meant \"in front\" of a place, so the sentence tells you which."
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Scene added at the collision audit: まえ is already taught in Lesson 12 in its position sense (\"in front\"), and this card teaches the time sense. Confirm the wording.",
+      "note": "Here まえ (mae) means \"before\" in time. In Lesson 12 it meant \"in front\" of a place, so the sentence tells you which.",
+      "scene": "saying when something happens"
     },
     {
       "id": "no-mae-ni",
@@ -404,8 +405,9 @@
       "target": "かきます",
       "pronunciation": "kakimasu",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
-      "note": "This is the same word as かきます (kakimasu) \"Draw\" from Lesson 15. The object tells you which: a letter or words means write, a picture means draw."
+      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target) | Scene added at the collision audit: かきます is already taught in Lesson 15 as \"draw\". Same kana, different sense. Confirm the wording.",
+      "note": "This is the same word as かきます (kakimasu) \"Draw\" from Lesson 15. The object tells you which: a letter or words means write, a picture means draw.",
+      "scene": "asked what you do with a letter or an email"
     },
     {
       "id": "sumimasu-2",

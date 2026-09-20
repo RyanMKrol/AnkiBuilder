@@ -10,260 +10,11 @@
   },
   "items": [
     {
-      "id": "sushi-want-to-eat",
-      "target": "おすしをたべたいです",
-      "english": "I want to eat sushi.",
-      "category": "Food"
-    },
-    {
-      "id": "sushi-dont-want-to-eat",
-      "target": "おすしをたべたくないです",
-      "english": "I don't want to eat sushi.",
-      "category": "Food"
-    },
-    {
-      "id": "future-where-want-to-live-q",
-      "target": "しょうらいどんなところにすみたいですか",
-      "english": "What kind of place would you like to live in someday?",
-      "category": "Grammar & Function Words",
-      "excluded": true,
-      "excludedBy": "semantic-dedup",
-      "excludedReason": "Same sentence, same meaning; only the English wording differs. Kept the gloss that translates しょうらい as 'In the future' and the shorter id."
-    },
-    {
-      "id": "future-where-want-to-live-a",
-      "target": "うみのちかくにすみたいです",
-      "english": "I want to live near the sea.",
-      "category": "Grammar & Function Words",
-      "scene": "Someone asks what kind of place you would like to live in someday."
-    },
-    {
-      "id": "meal-before-meeting",
-      "target": "ごご1じからかいぎがあります。かいぎのまえにしょくじをします",
-      "english": "There is a meeting from 1:00 p.m. Before the meeting, I'll have a meal.",
-      "category": "Time"
-    },
-    {
-      "id": "wine-before-party",
-      "target": "ごご7じからパーティーがあります。パーティーのまえにワインをかいます",
-      "english": "There is a party from 7:00 p.m. Before the party, I'll buy some wine.",
-      "category": "Time"
-    },
-    {
-      "id": "smith-stretch-before-sleep",
-      "target": "スミスさんはねるまえにストレッチをします",
-      "english": "Smith-san does stretching exercises before going to bed.",
-      "category": "Grammar & Function Words"
-    },
-    {
-      "id": "smith-japanese-study-before-coming",
-      "target": "スミスさんはにほんにくるまえににほんごのべんきょうをはじめました",
-      "english": "Smith-san started studying Japanese before he came to Japan.",
-      "category": "School & Education"
-    },
-    {
-      "id": "live-warm-place",
-      "target": "あたたかいところにすみたいです",
-      "english": "I want to live in a warm place.",
-      "category": "Grammar & Function Words"
-    },
-    {
-      "id": "cherry-blossom-good-place-ask",
-      "target": "おはなみをしたいです。このちかくにいいところがありますか",
-      "english": "I want to view the cherry blossoms. Is there a good place near here?",
-      "category": "Travel & Tourism"
-    },
-    {
-      "id": "tennis-lessons-good-club-ask",
-      "target": "テニスをならいたいです。このちかくにいいクラブがありますか",
-      "english": "I want to take tennis lessons. Is there a good club near here?",
-      "category": "Sports & Hobbies"
-    },
-    {
-      "id": "old-furniture-good-shop-ask",
-      "target": "ふるいかぐをかいたいです。このちかくにいいみせがありますか",
-      "english": "I want to buy some old furniture. Is there a good shop near here?",
-      "category": "Shopping"
-    },
-    {
-      "id": "before-meeting-download-material",
-      "target": "かいぎのまえにしりょうをダウンロードします",
-      "english": "I will download the materials before the meeting.",
-      "category": "Work & Occupations"
-    },
-    {
-      "id": "before-party-hair-salon",
-      "target": "パーティーのまえにびよういんにいきます",
-      "english": "I will go to the hair salon before the party.",
-      "category": "Time"
-    },
-    {
-      "id": "before-party-shower",
-      "target": "パーティーのまえにシャワーをあびます",
-      "english": "I will take a shower before the party.",
-      "category": "Time"
-    },
-    {
-      "id": "before-work-check-news",
-      "target": "スミスさんはしごとをはじめるまえにニュースをチェックします",
-      "english": "Smith-san checks the news before starting work.",
-      "category": "Work & Occupations"
-    },
-    {
-      "id": "before-breakfast-shower",
-      "target": "スミスさんはあさごはんをたべるまえにシャワーをあびます",
-      "english": "Smith-san takes a shower before eating breakfast.",
-      "category": "Food"
-    },
-    {
-      "id": "before-cooking-wash-hands",
-      "target": "スミスさんはりょうりをするまえにてをあらいます",
-      "english": "Smith-san washes their hands before cooking.",
-      "category": "Everyday Objects"
-    },
-    {
-      "id": "suzuki-before-email-checked-address",
-      "target": "すずきさんはメールをおくるまえにメールアドレスをチェックしました",
-      "english": "Suzuki-san checked the email address before sending the email.",
-      "category": "Technology & Communication"
-    },
-    {
-      "id": "paul-before-home-bought-souvenir",
-      "target": "ポールさんはくににかえるまえにおみやげをかいました",
-      "english": "Paul-san bought souvenirs before returning to their country.",
-      "category": "Travel & Tourism"
-    },
-    {
-      "id": "emma-before-swimming-stretched",
-      "target": "エマさんはおよぐまえにストレッチをしました",
-      "english": "Emma-san did stretching exercises before swimming.",
-      "category": "Sports & Hobbies"
-    },
-    {
-      "id": "oishii-osushi-tabetai",
-      "target": "おいしいおすしをたべたいです",
-      "english": "I want to eat some good sushi.",
-      "category": "Grammar & Function Words"
-    },
-    {
-      "id": "kaigi-no-mae-ni-shiryou",
-      "target": "スミスさんはかいぎのまえにしりょうをおくります",
-      "english": "Smith-san will send the materials before the meeting.",
-      "category": "Work & Occupations"
-    },
-    {
-      "id": "neru-mae-ni-stretch",
-      "target": "スミスさんはまいにちねるまえにストレッチをします",
-      "english": "Smith-san does stretching exercises every day before going to bed.",
-      "category": "Grammar & Function Words"
-    },
-    {
-      "id": "wine-o-nomitai",
-      "target": "ワインをのみたいです",
-      "english": "I want to drink wine.",
-      "category": "Grammar & Function Words"
-    },
-    {
-      "id": "shourai-donna-tokoro-sumitai",
-      "target": "しょうらいどんなところにすみたいですか",
-      "english": "In the future, what kind of place do you want to live in?",
-      "category": "Grammar & Function Words"
-    },
-    {
-      "id": "taberu-mae-ni-shashin-toritai",
-      "target": "ちょっとまってください。たべるまえにしゃしんをとりたいです",
-      "english": "Please wait a minute. Before we eat, I want to take a picture.",
-      "category": "Food"
-    },
-    {
-      "id": "robii-1",
-      "target": "ロビーでともだちをまちます",
-      "english": "I'll wait for my friend in the lobby.",
-      "category": "Travel & Tourism",
-      "aiSuggested": true
-    },
-    {
-      "id": "antiiku-1",
-      "target": "アンティークのとけいはたかいです",
-      "english": "Antique clocks are expensive.",
-      "category": "Shopping",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikebana-1",
-      "target": "いけばなはむずかしいです",
-      "english": "Flower arrangement is difficult.",
+      "id": "like-but-dont-want",
+      "target": "テニスがすきです。でも、きょうはテニスをしたくないです",
+      "english": "I like tennis. But I don't want to play tennis today.",
       "category": "Sports & Hobbies",
-      "aiSuggested": true
-    },
-    {
-      "id": "piano-1",
-      "target": "チャンさんはピアノがじょうずです",
-      "english": "Chan-san is good at the piano.",
-      "category": "Sports & Hobbies",
-      "aiSuggested": true
-    },
-    {
-      "id": "dansu-1",
-      "target": "わたしはダンスがすきです",
-      "english": "I like dancing.",
-      "category": "Sports & Hobbies",
-      "aiSuggested": true
-    },
-    {
-      "id": "zehi-1",
-      "target": "こんどぜひきてください",
-      "english": "Please be sure to come next time.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "zehi-2",
-      "target": "にっこうにぜひいきたいです",
-      "english": "I definitely want to go to Nikko.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "zehi-3",
-      "target": "このえいがはぜひみてください",
-      "english": "Please be sure to see this movie.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "nemasu-1",
-      "target": "まいばんじゅうにじにねます",
-      "english": "I go to bed at 12:00 every night.",
-      "category": "Home & Household",
-      "aiSuggested": true
-    },
-    {
-      "id": "naraimasu-1",
-      "target": "スミスさんはまいしゅうにほんごをならいます",
-      "english": "Smith-san takes Japanese lessons every week.",
-      "category": "School & Education",
-      "aiSuggested": true
-    },
-    {
-      "id": "ryouri-1",
-      "target": "にちようびにともだちとりょうりをします",
-      "english": "On Sunday, I cook with a friend.",
-      "category": "Home & Household",
-      "aiSuggested": true
-    },
-    {
-      "id": "hajimemasu-1",
-      "target": "かいぎを３じにはじめます",
-      "english": "We'll start the meeting at 3:00.",
-      "category": "Other",
-      "aiSuggested": true
-    },
-    {
-      "id": "kakimasu-1",
-      "target": "ともだちにてがみをかきます",
-      "english": "I write a letter to my friend.",
-      "category": "School & Education",
+      "note": "",
       "aiSuggested": true
     },
     {
@@ -274,10 +25,240 @@
       "aiSuggested": true
     },
     {
-      "id": "oyogimasu-1",
-      "target": "エマさんはうみでおよぎます",
-      "english": "Emma-san swims in the ocean.",
+      "id": "cherry-blossom-good-place-ask",
+      "target": "おはなみをしたいです。このちかくにいいところがありますか",
+      "english": "I want to view the cherry blossoms. Is there a good place near here?",
+      "category": "Travel & Tourism",
+      "note": "します (shimasu) uses the stem し (shi), so \"want to do\" is したい (shitai). That gives おはなみをしたいです (ohanami o shitai desu)."
+    },
+    {
+      "id": "tabetakunakatta-3",
+      "target": "カレーはたべたくなかったです",
+      "english": "I didn't want to eat curry.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-meeting-download-material",
+      "target": "かいぎのまえにしりょうをダウンロードします",
+      "english": "I will download the materials before the meeting.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "shourai-donna-tokoro-sumitai",
+      "target": "しょうらいどんなところにすみたいですか",
+      "english": "In the future, what kind of place do you want to live in?",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "mae-time-go-home",
+      "target": "ごじのまえにうちにかえりたいです",
+      "english": "I want to go home before 5:00.",
+      "category": "Time",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-japanese-study-before-coming",
+      "target": "スミスさんはにほんにくるまえににほんごのべんきょうをはじめました",
+      "english": "Smith-san started studying Japanese before he came to Japan.",
+      "category": "School & Education"
+    },
+    {
+      "id": "kaigi-no-mae-ni-shiryou",
+      "target": "スミスさんはかいぎのまえにしりょうをおくります",
+      "english": "Smith-san will send the materials before the meeting.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "wine-before-party",
+      "target": "ごご7じからパーティーがあります。パーティーのまえにワインをかいます",
+      "english": "There is a party from 7:00 p.m. Before the party, I'll buy some wine.",
+      "category": "Time"
+    },
+    {
+      "id": "tabetakunakatta-2",
+      "target": "つかれましたから、なにもたべたくなかったです",
+      "english": "I was tired, so I didn't want to eat anything.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakatta-2",
+      "target": "きのうのサッカーのしあいをみたかったです",
+      "english": "I wanted to watch yesterday's soccer match.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakatta-3",
+      "target": "おかねがありませんでした。でも、かいたかったです",
+      "english": "I had no money. But I wanted to buy it.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "hungry-wanted-ramen",
+      "target": "おなかがすきましたから、ラーメンをたべたかったです",
+      "english": "I was hungry, so I wanted to eat ramen.",
+      "category": "Food",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakunai-x1",
+      "target": "ステーキはたべたくないです",
+      "english": "I don't want to eat steak.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakatta-1",
+      "target": "かぞくにあいたかったです",
+      "english": "I wanted to meet my family.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "neru-mae-ni-stretch",
+      "target": "スミスさんはまいにちねるまえにストレッチをします",
+      "english": "Smith-san does stretching exercises every day before going to bed.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "tennis-lessons-good-club-ask",
+      "target": "テニスをならいたいです。このちかくにいいクラブがありますか",
+      "english": "I want to take tennis lessons. Is there a good club near here?",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "aitakatta-3",
+      "target": "きょうとでたなかさんにあいたかったです",
+      "english": "I wanted to meet Tanaka-san in Kyoto.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-work-check-news",
+      "target": "スミスさんはしごとをはじめるまえにニュースをチェックします",
+      "english": "Smith-san checks the news before starting work.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "tabetakunakatta-1",
+      "target": "あさごはんはたべたくなかったです",
+      "english": "I didn't want to eat breakfast.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "zehi-1",
+      "target": "こんどぜひきてください",
+      "english": "Please be sure to come next time.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikebana-1",
+      "target": "いけばなはむずかしいです",
+      "english": "Flower arrangement is difficult.",
       "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "wine-o-nomitai",
+      "target": "ワインをのみたいです",
+      "english": "I want to drink wine.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "aitakunai-3",
+      "target": "じょうしにあいたくないです",
+      "english": "I don't want to meet my boss.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakatta-1",
+      "target": "てんぷらをたべたかったです",
+      "english": "I wanted to eat tempura.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "old-furniture-good-shop-ask",
+      "target": "ふるいかぐをかいたいです。このちかくにいいみせがありますか",
+      "english": "I want to buy some old furniture. Is there a good shop near here?",
+      "category": "Shopping"
+    },
+    {
+      "id": "ikitakatta-3",
+      "target": "ほっかいどうにいきたかったですが、いそがしかったです",
+      "english": "I wanted to go to Hokkaido, but I was busy.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "note": "が (ga) after a clause means \"but\", as in Lesson 11. Here it joins ほっかいどうにいきたかったです (Hokkaidō ni ikitakatta desu) to the reason it did not happen."
+    },
+    {
+      "id": "ryouri-1",
+      "target": "にちようびにともだちとりょうりをします",
+      "english": "On Sunday, I cook with a friend.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakatta-2",
+      "target": "デパートでセーターをかいたかったです",
+      "english": "I wanted to buy a sweater at the department store.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitai-1",
+      "target": "きょうとにいきたいです",
+      "english": "I want to go to Kyoto.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakatta-2",
+      "target": "きのうはすしをたべたかったです",
+      "english": "Yesterday I wanted to eat sushi.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-cooking-wash-hands",
+      "target": "スミスさんはりょうりをするまえにてをあらいます",
+      "english": "Smith-san washes their hands before cooking.",
+      "category": "Everyday Objects"
+    },
+    {
+      "id": "beer-no-water-yes",
+      "target": "ビールはのみたくないです。みずをのみたいです",
+      "english": "I don't want to drink beer. I want to drink water.",
+      "category": "Food",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunai-2",
+      "target": "つかれましたから、ともだちにあいたくないです",
+      "english": "I'm tired, so I don't want to meet my friend.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-breakfast-shower",
+      "target": "スミスさんはあさごはんをたべるまえにシャワーをあびます",
+      "english": "Smith-san takes a shower before eating breakfast.",
+      "category": "Food"
+    },
+    {
+      "id": "tabetakunai-x2",
+      "target": "ばんごはんはたべたくないです",
+      "english": "I don't want to eat dinner.",
+      "category": "Grammar & Function Words",
       "aiSuggested": true
     },
     {
@@ -290,417 +271,6 @@
       "reviewNote": "Possibly already taught — The じゃ、またあした farewell is already in chapter-17 (and では、あした in chapter-6-extras); the only addition is a かいぎはあしたですね lead-in."
     },
     {
-      "id": "wakarimashita-1",
-      "target": "６じにえきですね。わかりました",
-      "english": "6:00 at the station, right? Got it.",
-      "category": "Greetings",
-      "aiSuggested": true,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — Same ですね。わかりました confirm-and-acknowledge exchange as chapter-16 and chapter-16-extras; only the time and place differ."
-    },
-    {
-      "id": "ikitai-1",
-      "target": "きょうとにいきたいです",
-      "english": "I want to go to Kyoto.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitai-2",
-      "target": "おきなわのうみにいきたいです",
-      "english": "I want to go to the ocean in Okinawa.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitai-3",
-      "target": "どこにいきたいですか",
-      "english": "Where do you want to go?",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakunai-1",
-      "target": "きょうはデパートにいきたくないです",
-      "english": "I don't want to go to the department store today.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakunai-2",
-      "target": "さむいですから、うみにいきたくないです",
-      "english": "It's cold, so I don't want to go to the ocean.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakunai-3",
-      "target": "おんせんにいきたいですか。いいえ、いきたくないです",
-      "english": "Do you want to go to the hot spring? No, I don't want to go.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakatta-1",
-      "target": "きのうはおおさかにいきたかったです",
-      "english": "Yesterday I wanted to go to Osaka.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakatta-2",
-      "target": "コンサートにいきたかったです",
-      "english": "I wanted to go to the concert.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakatta-3",
-      "target": "ほっかいどうにいきたかったですが、いそがしかったです",
-      "english": "I wanted to go to Hokkaido, but I was busy.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakunakatta-1",
-      "target": "きのうはがっこうにいきたくなかったです",
-      "english": "Yesterday I didn't want to go to school.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakunakatta-2",
-      "target": "さむかったですから、うみにいきたくなかったです",
-      "english": "It was cold, so I didn't want to go to the ocean.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ikitakunakatta-3",
-      "target": "あさくさにいきたくなかったですが、ともだちといきました",
-      "english": "I didn't want to go to Asakusa, but I went with a friend.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakunai-1",
-      "target": "たかいですから、かいたくないです",
-      "english": "It's expensive, so I don't want to buy it.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakunai-2",
-      "target": "ふるいとけいはかいたくないです",
-      "english": "I don't want to buy an old clock.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakunai-3",
-      "target": "きょうはなにもかいたくないです",
-      "english": "I don't want to buy anything today.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakatta-1",
-      "target": "あたらしいカメラをかいたかったです",
-      "english": "I wanted to buy a new camera.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakatta-2",
-      "target": "デパートでセーターをかいたかったです",
-      "english": "I wanted to buy a sweater at the department store.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakatta-3",
-      "target": "おかねがありませんでした。でも、かいたかったです",
-      "english": "I had no money. But I wanted to buy it.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakunakatta-1",
-      "target": "たかいセーターはかいたくなかったです",
-      "english": "I didn't want to buy an expensive sweater.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakunakatta-2",
-      "target": "きのうはなにもかいたくなかったです",
-      "english": "Yesterday I didn't want to buy anything.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitakunakatta-3",
-      "target": "ワインはかいたくなかったです",
-      "english": "I didn't want to buy wine.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitai-x1",
-      "target": "あたらしいパソコンをかいたいです",
-      "english": "I want to buy a new computer.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "kaitai-x2",
-      "target": "おみやげにおかしをかいたいです",
-      "english": "I want to buy sweets as a souvenir.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakatta-1",
-      "target": "てんぷらをたべたかったです",
-      "english": "I wanted to eat tempura.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakatta-2",
-      "target": "きのうはすしをたべたかったです",
-      "english": "Yesterday I wanted to eat sushi.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakatta-3",
-      "target": "なにをたべたかったですか",
-      "english": "What did you want to eat?",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakunakatta-1",
-      "target": "あさごはんはたべたくなかったです",
-      "english": "I didn't want to eat breakfast.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakunakatta-2",
-      "target": "つかれましたから、なにもたべたくなかったです",
-      "english": "I was tired, so I didn't want to eat anything.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakunakatta-3",
-      "target": "カレーはたべたくなかったです",
-      "english": "I didn't want to eat curry.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "nomitai-x1",
-      "target": "ビールをのみたいです",
-      "english": "I want to drink beer.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "nomitai-x2",
-      "target": "のどがかわきましたから、みずをのみたいです",
-      "english": "I'm thirsty, so I want to drink water.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakunai-x1",
-      "target": "ステーキはたべたくないです",
-      "english": "I don't want to eat steak.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "tabetakunai-x2",
-      "target": "ばんごはんはたべたくないです",
-      "english": "I don't want to eat dinner.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakunai-1",
-      "target": "ニュースはみたくないです",
-      "english": "I don't want to watch the news.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakunai-2",
-      "target": "きょうはテレビをみたくないです",
-      "english": "I don't want to watch TV today.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakunai-3",
-      "target": "つまらないえいがはみたくないです",
-      "english": "I don't want to watch a boring movie.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakatta-1",
-      "target": "かぶきをみたかったです",
-      "english": "I wanted to watch kabuki.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakatta-2",
-      "target": "きのうのサッカーのしあいをみたかったです",
-      "english": "I wanted to watch yesterday's soccer match.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakatta-3",
-      "target": "なにをみたかったですか",
-      "english": "What did you want to see?",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakunakatta-1",
-      "target": "つまらないえいがはみたくなかったです",
-      "english": "I didn't want to watch a boring movie.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakunakatta-2",
-      "target": "きのうはテレビをみたくなかったです",
-      "english": "Yesterday I didn't want to watch TV.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "mitakunakatta-3",
-      "target": "わたしはニュースをみたくなかったです",
-      "english": "I didn't want to watch the news.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitai-1",
-      "target": "たなかさんにあいたいです",
-      "english": "I want to meet Tanaka-san.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitai-2",
-      "target": "かぞくにあいたいです",
-      "english": "I want to meet my family.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitai-3",
-      "target": "だれにあいたいですか",
-      "english": "Who do you want to meet?",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakunai-1",
-      "target": "スミスさんにあいたくないです",
-      "english": "I don't want to meet Smith-san.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakunai-2",
-      "target": "つかれましたから、ともだちにあいたくないです",
-      "english": "I'm tired, so I don't want to meet my friend.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakunai-3",
-      "target": "じょうしにあいたくないです",
-      "english": "I don't want to meet my boss.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakatta-1",
-      "target": "かぞくにあいたかったです",
-      "english": "I wanted to meet my family.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakatta-2",
-      "target": "きのうともだちにあいたかったです",
-      "english": "Yesterday I wanted to meet a friend.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakatta-3",
-      "target": "きょうとでたなかさんにあいたかったです",
-      "english": "I wanted to meet Tanaka-san in Kyoto.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakunakatta-1",
-      "target": "じょうしにあいたくなかったです",
-      "english": "I didn't want to meet my boss.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakunakatta-2",
-      "target": "ともだちにあいたくなかったです",
-      "english": "I didn't want to meet my friend.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "aitakunakatta-3",
-      "target": "しゃちょうにあいたくなかったです",
-      "english": "I didn't want to meet the company president.",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "where-eat-dinner",
-      "target": "どこでばんごはんをたべたいですか",
-      "english": "Where do you want to eat dinner?",
-      "category": "Food",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
-      "id": "eat-at-restaurant-answer",
-      "target": "あのレストランでたべたいです",
-      "english": "I want to eat at that restaurant.",
-      "category": "Food",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
-      "id": "like-but-dont-want",
-      "target": "テニスがすきです。でも、きょうはテニスをしたくないです",
-      "english": "I like tennis. But I don't want to play tennis today.",
-      "category": "Sports & Hobbies",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
       "id": "want-to-come-japan",
       "target": "らいねんにほんにきたいです",
       "english": "I want to come to Japan next year.",
@@ -709,59 +279,10 @@
       "aiSuggested": true
     },
     {
-      "id": "beer-no-water-yes",
-      "target": "ビールはのみたくないです。みずをのみたいです",
-      "english": "I don't want to drink beer. I want to drink water.",
-      "category": "Food",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
-      "id": "invite-then-want",
-      "target": "いっしょにおんせんにいきませんか。ええ、ぜひいきたいです",
-      "english": "Shall we go to a hot spring together? Yes, I'd love to go.",
-      "category": "Travel & Tourism",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
-      "id": "piano-wanted-no-money",
-      "target": "ピアノをならいたかったですが、おかねがありませんでした",
-      "english": "I wanted to take piano lessons, but I had no money.",
-      "category": "School & Education",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
-      "id": "mae-before-verb-station",
-      "target": "えきにいくまえに、ともだちにでんわをします",
-      "english": "Before I go to the station, I'll call my friend.",
+      "id": "ikitakatta-1",
+      "target": "きのうはおおさかにいきたかったです",
+      "english": "Yesterday I wanted to go to Osaka.",
       "category": "Grammar & Function Words",
-      "note": "Contrast pair with the next item: まえ after a verb means 'before', while after a place it means 'in front'.",
-      "aiSuggested": true
-    },
-    {
-      "id": "mae-front-station",
-      "target": "えきのまえでともだちをまちます",
-      "english": "I'll wait for my friend in front of the station.",
-      "category": "Grammar & Function Words",
-      "note": "Contrast pair with the previous item: compare えきのまえ (in front of the station) with えきにいくまえに (before going to the station).",
-      "aiSuggested": true
-    },
-    {
-      "id": "mae-time-go-home",
-      "target": "ごじのまえにうちにかえりたいです",
-      "english": "I want to go home before 5:00.",
-      "category": "Time",
-      "note": "",
-      "aiSuggested": true
-    },
-    {
-      "id": "hungry-wanted-ramen",
-      "target": "おなかがすきましたから、ラーメンをたべたかったです",
-      "english": "I was hungry, so I wanted to eat ramen.",
-      "category": "Food",
-      "note": "",
       "aiSuggested": true
     },
     {
@@ -775,6 +296,88 @@
       "reviewNote": "Possibly already taught — Same ねるまえに pattern as chapter-17; only the きく + おんがく sentence is added, so flagged for a human to judge."
     },
     {
+      "id": "aitai-3",
+      "target": "だれにあいたいですか",
+      "english": "Who do you want to meet?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunai-2",
+      "target": "さむいですから、うみにいきたくないです",
+      "english": "It's cold, so I don't want to go to the ocean.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunai-1",
+      "target": "たかいですから、かいたくないです",
+      "english": "It's expensive, so I don't want to buy it.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "future-where-want-to-live-a",
+      "target": "うみのちかくにすみたいです",
+      "english": "I want to live near the sea.",
+      "category": "Grammar & Function Words",
+      "scene": "Someone asks what kind of place you would like to live in someday."
+    },
+    {
+      "id": "live-warm-place",
+      "target": "あたたかいところにすみたいです",
+      "english": "I want to live in a warm place.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "kakimasu-1",
+      "target": "ともだちにてがみをかきます",
+      "english": "I write a letter to my friend.",
+      "category": "School & Education",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunakatta-3",
+      "target": "あさくさにいきたくなかったですが、ともだちといきました",
+      "english": "I didn't want to go to Asakusa, but I went with a friend.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "piano-1",
+      "target": "チャンさんはピアノがじょうずです",
+      "english": "Chan-san is good at the piano.",
+      "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitai-1",
+      "target": "たなかさんにあいたいです",
+      "english": "I want to meet Tanaka-san.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunakatta-2",
+      "target": "ともだちにあいたくなかったです",
+      "english": "I didn't want to meet my friend.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-party-shower",
+      "target": "パーティーのまえにシャワーをあびます",
+      "english": "I will take a shower before the party.",
+      "category": "Time"
+    },
+    {
+      "id": "antiiku-1",
+      "target": "アンティークのとけいはたかいです",
+      "english": "Antique clocks are expensive.",
+      "category": "Shopping",
+      "aiSuggested": true
+    },
+    {
       "id": "future-buy-house",
       "target": "しょうらい、おおきいうちをかいたいです",
       "english": "In the future, I want to buy a big house.",
@@ -783,12 +386,412 @@
       "aiSuggested": true
     },
     {
+      "id": "kaitai-x1",
+      "target": "あたらしいパソコンをかいたいです",
+      "english": "I want to buy a new computer.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "zehi-2",
+      "target": "にっこうにぜひいきたいです",
+      "english": "I definitely want to go to Nikko.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "before-party-hair-salon",
+      "target": "パーティーのまえにびよういんにいきます",
+      "english": "I will go to the hair salon before the party.",
+      "category": "Time"
+    },
+    {
+      "id": "aitakatta-2",
+      "target": "きのうともだちにあいたかったです",
+      "english": "Yesterday I wanted to meet a friend.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nemasu-1",
+      "target": "まいばんじゅうにじにねます",
+      "english": "I go to bed at 12:00 every night.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitai-x2",
+      "target": "おみやげにおかしをかいたいです",
+      "english": "I want to buy sweets as a souvenir.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "sushi-dont-want-to-eat",
+      "target": "おすしをたべたくないです",
+      "english": "I don't want to eat sushi.",
+      "category": "Food"
+    },
+    {
+      "id": "ikitakatta-2",
+      "target": "コンサートにいきたかったです",
+      "english": "I wanted to go to the concert.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakatta-3",
+      "target": "なにをたべたかったですか",
+      "english": "What did you want to eat?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "eat-at-restaurant-answer",
+      "target": "あのレストランでたべたいです",
+      "english": "I want to eat at that restaurant.",
+      "category": "Food",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunakatta-3",
+      "target": "わたしはニュースをみたくなかったです",
+      "english": "I didn't want to watch the news.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunakatta-3",
+      "target": "ワインはかいたくなかったです",
+      "english": "I didn't want to buy wine.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-stretch-before-sleep",
+      "target": "スミスさんはねるまえにストレッチをします",
+      "english": "Smith-san does stretching exercises before going to bed.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "piano-wanted-no-money",
+      "target": "ピアノをならいたかったですが、おかねがありませんでした",
+      "english": "I wanted to take piano lessons, but I had no money.",
+      "category": "School & Education",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunai-1",
+      "target": "ニュースはみたくないです",
+      "english": "I don't want to watch the news.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitai-2",
+      "target": "おきなわのうみにいきたいです",
+      "english": "I want to go to the ocean in Okinawa.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "sushi-want-to-eat",
+      "target": "おすしをたべたいです",
+      "english": "I want to eat sushi.",
+      "category": "Food"
+    },
+    {
+      "id": "mitakatta-1",
+      "target": "かぶきをみたかったです",
+      "english": "I wanted to watch kabuki.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "taberu-mae-ni-shashin-toritai",
+      "target": "ちょっとまってください。たべるまえにしゃしんをとりたいです",
+      "english": "Please wait a minute. Before we eat, I want to take a picture.",
+      "category": "Food"
+    },
+    {
+      "id": "mitakunai-3",
+      "target": "つまらないえいがはみたくないです",
+      "english": "I don't want to watch a boring movie.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunakatta-2",
+      "target": "きのうはテレビをみたくなかったです",
+      "english": "Yesterday I didn't want to watch TV.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunakatta-1",
+      "target": "きのうはがっこうにいきたくなかったです",
+      "english": "Yesterday I didn't want to go to school.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "robii-1",
+      "target": "ロビーでともだちをまちます",
+      "english": "I'll wait for my friend in the lobby.",
+      "category": "Travel & Tourism",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakatta-1",
+      "target": "あたらしいカメラをかいたかったです",
+      "english": "I wanted to buy a new camera.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitai-2",
+      "target": "かぞくにあいたいです",
+      "english": "I want to meet my family.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunakatta-2",
+      "target": "きのうはなにもかいたくなかったです",
+      "english": "Yesterday I didn't want to buy anything.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "mae-before-verb-station",
+      "target": "えきにいくまえに、ともだちにでんわをします",
+      "english": "Before I go to the station, I'll call my friend.",
+      "category": "Grammar & Function Words",
+      "note": "Contrast pair with the next item: まえ after a verb means 'before', while after a place it means 'in front'.",
+      "aiSuggested": true
+    },
+    {
+      "id": "paul-before-home-bought-souvenir",
+      "target": "ポールさんはくににかえるまえにおみやげをかいました",
+      "english": "Paul-san bought souvenirs before returning to their country.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "mitakatta-3",
+      "target": "なにをみたかったですか",
+      "english": "What did you want to see?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunai-3",
+      "target": "きょうはなにもかいたくないです",
+      "english": "I don't want to buy anything today.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "note": "なにも (nani mo) from Lesson 8 still needs a negative ending, and たくない (takunai) supplies it: \"don't want to buy anything\"."
+    },
+    {
+      "id": "nomitai-x1",
+      "target": "ビールをのみたいです",
+      "english": "I want to drink beer.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunai-2",
+      "target": "ふるいとけいはかいたくないです",
+      "english": "I don't want to buy an old clock.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "hajimemasu-1",
+      "target": "かいぎを３じにはじめます",
+      "english": "We'll start the meeting at 3:00.",
+      "category": "Other",
+      "aiSuggested": true
+    },
+    {
+      "id": "oishii-osushi-tabetai",
+      "target": "おいしいおすしをたべたいです",
+      "english": "I want to eat some good sushi.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "ikitakunai-3",
+      "target": "おんせんにいきたいですか。いいえ、いきたくないです",
+      "english": "Do you want to go to the hot spring? No, I don't want to go.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "invite-then-want",
+      "target": "いっしょにおんせんにいきませんか。ええ、ぜひいきたいです",
+      "english": "Shall we go to a hot spring together? Yes, I'd love to go.",
+      "category": "Travel & Tourism",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunakatta-1",
+      "target": "じょうしにあいたくなかったです",
+      "english": "I didn't want to meet my boss.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "emma-before-swimming-stretched",
+      "target": "エマさんはおよぐまえにストレッチをしました",
+      "english": "Emma-san did stretching exercises before swimming.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "mitakunakatta-1",
+      "target": "つまらないえいがはみたくなかったです",
+      "english": "I didn't want to watch a boring movie.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunai-1",
+      "target": "スミスさんにあいたくないです",
+      "english": "I don't want to meet Smith-san.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "meal-before-meeting",
+      "target": "ごご1じからかいぎがあります。かいぎのまえにしょくじをします",
+      "english": "There is a meeting from 1:00 p.m. Before the meeting, I'll have a meal.",
+      "category": "Time"
+    },
+    {
+      "id": "mitakunai-2",
+      "target": "きょうはテレビをみたくないです",
+      "english": "I don't want to watch TV today.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "where-eat-dinner",
+      "target": "どこでばんごはんをたべたいですか",
+      "english": "Where do you want to eat dinner?",
+      "category": "Food",
+      "note": "",
+      "aiSuggested": true
+    },
+    {
+      "id": "oyogimasu-1",
+      "target": "エマさんはうみでおよぎます",
+      "english": "Emma-san swims in the ocean.",
+      "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitai-3",
+      "target": "どこにいきたいですか",
+      "english": "Where do you want to go?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunakatta-3",
+      "target": "しゃちょうにあいたくなかったです",
+      "english": "I didn't want to meet the company president.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "zehi-3",
+      "target": "このえいがはぜひみてください",
+      "english": "Please be sure to see this movie.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunai-1",
+      "target": "きょうはデパートにいきたくないです",
+      "english": "I don't want to go to the department store today.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "mae-front-station",
+      "target": "えきのまえでともだちをまちます",
+      "english": "I'll wait for my friend in front of the station.",
+      "category": "Grammar & Function Words",
+      "note": "Contrast pair with the previous item: compare えきのまえ (in front of the station) with えきにいくまえに (before going to the station).",
+      "aiSuggested": true
+    },
+    {
+      "id": "naraimasu-1",
+      "target": "スミスさんはまいしゅうにほんごをならいます",
+      "english": "Smith-san takes Japanese lessons every week.",
+      "category": "School & Education",
+      "aiSuggested": true
+    },
+    {
+      "id": "wakarimashita-1",
+      "target": "６じにえきですね。わかりました",
+      "english": "6:00 at the station, right? Got it.",
+      "category": "Greetings",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same ですね。わかりました confirm-and-acknowledge exchange as chapter-16 and chapter-16-extras; only the time and place differ."
+    },
+    {
+      "id": "ikitakunakatta-2",
+      "target": "さむかったですから、うみにいきたくなかったです",
+      "english": "It was cold, so I didn't want to go to the ocean.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunakatta-1",
+      "target": "たかいセーターはかいたくなかったです",
+      "english": "I didn't want to buy an expensive sweater.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nomitai-x2",
+      "target": "のどがかわきましたから、みずをのみたいです",
+      "english": "I'm thirsty, so I want to drink water.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "suzuki-before-email-checked-address",
+      "target": "すずきさんはメールをおくるまえにメールアドレスをチェックしました",
+      "english": "Suzuki-san checked the email address before sending the email.",
+      "category": "Technology & Communication"
+    },
+    {
       "id": "coffee-before-work",
       "target": "しごとのまえにコーヒーをのみたいです",
       "english": "I want to drink coffee before work.",
       "category": "Work & Occupations",
       "note": "",
       "aiSuggested": true
+    },
+    {
+      "id": "dansu-1",
+      "target": "わたしはダンスがすきです",
+      "english": "I like dancing.",
+      "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "future-where-want-to-live-q",
+      "target": "しょうらいどんなところにすみたいですか",
+      "english": "What kind of place would you like to live in someday?",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, same meaning; only the English wording differs. Kept the gloss that translates しょうらい as 'In the future' and the shorter id."
     }
   ]
 }

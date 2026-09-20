@@ -909,6 +909,14 @@ shipped, and it fires on the units that are RIGHT (the invitation lesson is 48% 
 frame, because a chapter with one grammar point should drill it). The full calibration is in the
 header of `src/cards/drillShape.js`.
 
+**It reads the per-role yield too, which is the cheapest signal in the pipeline.** The learning pass
+already computes how many cards each role produced and how many survived, and until now nothing
+consumed it automatically. On Lesson 18 the gap author kept 16 of 50 while every other role in the
+same run kept nearly everything (13/13, 7/7, 10/11) — the same defect the frame analysis found by
+hand, visible for free and from a different direction. A low keep rate is not automatically a fault,
+since a role can be doing its job and being legitimately deduplicated, but it is the one number that
+points at a CAUSE rather than a symptom.
+
 **It cannot pass by saying nothing.** The standing risk with any reviewing agent is that a miss and a
 clean run look identical. So the prompt asks six fixed questions — what the chapter teaches, whether
 the dominant frame is one of those things, what is under-drilled, whether any sentence uses untaught

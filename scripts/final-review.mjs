@@ -25,6 +25,7 @@ import { join, resolve, basename } from "path";
 import { audit } from "../src/audit/index.js";
 import { readRunLogs, hasRunLogs } from "../src/agents/runLog.js";
 import { reviewChapter, summarizeTranscripts } from "../src/agents/finalReview.js";
+import { learnFromReview, roleYield } from "../src/agents/learningPass.js";
 import {
   dominantFrame,
   frameDistribution,
@@ -91,8 +92,28 @@ const checkFindings = relevant.map((r) => ({
   findings: r.findings.map((f) => (typeof f === "string" ? f : f.message)),
 }));
 
+// Per-role yield, from the snapshot each phase took before its dedups ran. This is the cheapest
+// signal in the pipeline and until now nothing consumed it: on this chapter the gap author kept 16
+// of 50 while every other role kept nearly everything, which is the same defect the frame analysis
+// found by hand, available for free and from a different direction. A unit built before snapshots
+// existed simply has none, and says so rather than reporting a clean run over nothing.
+function yieldFor(dir, cards) {
+  const snapshotPath = join(dir, "as-generated.json");
+  if (!existsSync(snapshotPath)) return null;
+  try {
+    const snapshot = JSON.parse(readFileSync(snapshotPath, "utf-8"));
+    return roleYield(learnFromReview(snapshot, cards, { languageCode: targetLanguage ?? "ja" }));
+  } catch {
+    return null;
+  }
+}
+
 const frame = dominantFrame(extrasCards.items);
 const deterministic = {
+  roleYield: {
+    base: yieldFor(baseDir, baseCards),
+    extras: yieldFor(extrasDir, extrasCards),
+  },
   drillShape: {
     dominantFrame: frame,
     topFrames: frameDistribution(extrasCards.items).slice(0, 5),
@@ -124,6 +145,10 @@ console.log(
 );
 console.log(
   `frame:    ${frame ? `"${frame.frame}" in ${frame.count}/${frame.total} (${Math.round(frame.share * 100)}%)` : "no dominant frame"}`,
+);
+const worst = (deterministic.roleYield.extras ?? [])[0];
+console.log(
+  `yield:    ${worst ? `worst role ${worst.role} kept ${worst.kept}/${worst.produced} (${Math.round(worst.keepRate * 100)}%)` : "no snapshot — this unit predates role attribution"}`,
 );
 console.log(
   `logs:     ${transcriptsPresent ? `${logs.length} transcript(s)` : "NONE — this chapter predates transcript recording, so the review runs with less evidence"}`,

@@ -33,6 +33,12 @@ A `findings` array that is empty is a legitimate and expected result for a well-
   derivation. They are given to you precisely because the code that produced them cannot decide
   whether they matter. Deciding is your job, and an INFO finding you ignore silently is the same as
   one nobody computed.
+- **Per-role yield.** For each role that produced cards, how many it produced and how many survived
+  to the approved set. A low keep rate is not automatically a fault — a role can be doing its job
+  and having its output legitimately deduplicated — but it is the first place to look when something
+  about the unit seems off, and it is the one number that points at a CAUSE rather than a symptom.
+  When one role's keep rate is far below its peers in the same run, say so and say whether it
+  explains anything else you found.
 - **The agent transcripts.** What each producing role actually returned, including any call that
   failed. Read these when a finding needs a cause: a role that returned fifty sentences in one
   pattern is visible here and nowhere else.

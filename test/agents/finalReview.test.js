@@ -8,6 +8,9 @@ import {
   reviewChapter,
 } from "../../src/agents/finalReview.js";
 import { ROLES, capabilityRank } from "../../src/agents/roles.js";
+import { roleYield } from "../../src/agents/learningPass.js";
+
+const roleYieldOf = (byRole) => roleYield({ byRole });
 
 const fullAnswers = Object.fromEntries(REQUIRED_ANSWERS.map((k) => [k, `answer for ${k}`]));
 
@@ -112,4 +115,59 @@ test("a failed transcript keeps its error, which is the whole reason failures ar
   const summary = summarizeTranscripts([{ role: "gapAuthor", ok: false, error: "bad json" }]);
   assert.equal(summary[0].ok, false);
   assert.equal(summary[0].error, "bad json");
+});
+
+test("roleYield ranks the worst keep rate first, which is where a cause is likeliest", () => {
+  const report = {
+    byRole: {
+      minerA: {
+        produced: 13,
+        kept: 13,
+        excludedByScript: [],
+        excludedByHuman: [],
+        changedSinceGeneration: [],
+      },
+      author: {
+        produced: 50,
+        kept: 16,
+        excludedByScript: new Array(34).fill({}),
+        excludedByHuman: [],
+        changedSinceGeneration: [],
+      },
+      minerB: {
+        produced: 11,
+        kept: 10,
+        excludedByScript: [{}],
+        excludedByHuman: [],
+        changedSinceGeneration: [],
+      },
+    },
+  };
+  const ranked = roleYield(report);
+  assert.equal(ranked[0].role, "author");
+  assert.equal(ranked[0].kept, 16);
+  assert.equal(ranked[0].cutByScript, 34);
+  assert.ok(ranked[0].keepRate < 0.35);
+  assert.equal(ranked[ranked.length - 1].role, "minerA");
+});
+
+test("a role that produced nothing does not sort ahead of one that produced badly", () => {
+  // keepRate is null for a zero-produce role; it must not read as a 0% keep rate.
+  const ranked = roleYieldOf({
+    idle: {
+      produced: 0,
+      kept: 0,
+      excludedByScript: [],
+      excludedByHuman: [],
+      changedSinceGeneration: [],
+    },
+    bad: {
+      produced: 10,
+      kept: 1,
+      excludedByScript: [],
+      excludedByHuman: [],
+      changedSinceGeneration: [],
+    },
+  });
+  assert.equal(ranked[0].role, "bad");
 });

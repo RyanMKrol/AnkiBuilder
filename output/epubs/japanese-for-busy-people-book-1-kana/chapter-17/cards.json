@@ -52,7 +52,8 @@
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (おとうと is formally taught in the own-family vs. others'-family vocabulary set)",
       "note": "This is your own younger brother. For someone else's, use おとうとさん (otōtosan) from Lesson 9.",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 134
     },
     {
       "id": "robii",
@@ -64,7 +65,8 @@
       "audioOriginal": "3e0530f54a471311.orig.mp3",
       "audioAuto": "3e0530f54a471311.mp3",
       "audioMarked": true,
-      "audioTextHash": "3e0530f54a471311"
+      "audioTextHash": "3e0530f54a471311",
+      "sourceOrder": 271
     },
     {
       "id": "shiryou",
@@ -76,7 +78,8 @@
       "audioOriginal": "572f0d0a2a322ca0.orig.mp3",
       "audioAuto": "572f0d0a2a322ca0.mp3",
       "audioMarked": true,
-      "audioTextHash": "572f0d0a2a322ca0"
+      "audioTextHash": "572f0d0a2a322ca0",
+      "sourceOrder": 850
     },
     {
       "id": "tegami",
@@ -88,7 +91,8 @@
       "audioOriginal": "587a46a6d8d3cafb.orig.mp3",
       "audioAuto": "587a46a6d8d3cafb.mp3",
       "audioMarked": true,
-      "audioTextHash": "587a46a6d8d3cafb"
+      "audioTextHash": "587a46a6d8d3cafb",
+      "sourceOrder": 2982
     },
     {
       "id": "machi",
@@ -97,7 +101,8 @@
       "target": "まち",
       "pronunciation": "machi",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3407
     },
     {
       "id": "te",
@@ -111,7 +116,8 @@
       "audioOriginal": "5c8b8b79047427f5.orig.mp3",
       "audioAuto": "5c8b8b79047427f5.mp3",
       "audioMarked": true,
-      "audioTextHash": "5c8b8b79047427f5"
+      "audioTextHash": "5c8b8b79047427f5",
+      "sourceOrder": 2333
     },
     {
       "id": "kurabu",
@@ -123,7 +129,8 @@
       "audioOriginal": "797405ab170723cb.orig.mp3",
       "audioAuto": "797405ab170723cb.mp3",
       "audioMarked": true,
-      "audioTextHash": "797405ab170723cb"
+      "audioTextHash": "797405ab170723cb",
+      "sourceOrder": 3541
     },
     {
       "id": "kagu",
@@ -135,7 +142,8 @@
       "audioOriginal": "1460aa0ccfa3453b.orig.mp3",
       "audioAuto": "1460aa0ccfa3453b.mp3",
       "audioMarked": true,
-      "audioTextHash": "1460aa0ccfa3453b"
+      "audioTextHash": "1460aa0ccfa3453b",
+      "sourceOrder": 3568
     },
     {
       "id": "antiiku",
@@ -147,7 +155,8 @@
       "audioOriginal": "de9d202020d060b7.orig.mp3",
       "audioAuto": "de9d202020d060b7.mp3",
       "audioMarked": true,
-      "audioTextHash": "de9d202020d060b7"
+      "audioTextHash": "de9d202020d060b7",
+      "sourceOrder": 3838
     },
     {
       "id": "biyouin-2",
@@ -160,7 +169,8 @@
       "audioOriginal": "933be15e34a414ec.orig.mp3",
       "audioAuto": "933be15e34a414ec.mp3",
       "audioMarked": true,
-      "audioTextHash": "933be15e34a414ec"
+      "audioTextHash": "933be15e34a414ec",
+      "sourceOrder": 4202
     },
     {
       "id": "kaigi-l17",
@@ -171,7 +181,8 @@
       "uncertain": true,
       "reviewNote": "Used in Key Sentence 2 and Exercise IV, never glossed in a vocabulary table. May be taught earlier. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4081
     },
     {
       "id": "okawari-none",
@@ -182,7 +193,8 @@
       "uncertain": true,
       "reviewNote": "Chapter title and dialogue are about buying a souvenir, but no vocabulary table glosses it here. Probably taught earlier. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 156
     },
     {
       "id": "onsen",
@@ -193,7 +205,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise II drill cues (おんせんに いきます). No gloss in the chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 2963
     },
     {
       "id": "nyuusu-l17",
@@ -204,7 +217,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise V-A cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4492
     },
     {
       "id": "meeru-adoresu",
@@ -215,7 +229,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4688
     },
     {
       "id": "pathii",
@@ -226,7 +241,8 @@
       "uncertain": true,
       "reviewNote": "Only in Exercise IV example. No gloss. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4162
     },
     {
       "id": "mise-l17",
@@ -237,7 +253,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-B cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3576
     },
     {
       "id": "tokoro-l17",
@@ -248,7 +265,8 @@
       "uncertain": true,
       "reviewNote": "Exercise III cues. No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3348
     },
     {
       "id": "chikaku",
@@ -259,7 +277,8 @@
       "uncertain": true,
       "reviewNote": "Exercise III (うみの ちかく, この ちかくに). No gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3365
     },
     {
       "id": "kuni-l17",
@@ -270,7 +289,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise V-B cue. No gloss. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3456
     },
     {
       "id": "shourai",
@@ -282,7 +302,8 @@
       "audioOriginal": "72438f595829af27.orig.mp3",
       "audioAuto": "72438f595829af27.mp3",
       "audioMarked": true,
-      "audioTextHash": "72438f595829af27"
+      "audioTextHash": "72438f595829af27",
+      "sourceOrder": 3340
     },
     {
       "id": "ikebana",
@@ -294,7 +315,8 @@
       "audioOriginal": "4643c3921ef72544.orig.mp3",
       "audioAuto": "4643c3921ef72544.mp3",
       "audioMarked": true,
-      "audioTextHash": "4643c3921ef72544"
+      "audioTextHash": "4643c3921ef72544",
+      "sourceOrder": 2223
     },
     {
       "id": "karate",
@@ -306,7 +328,8 @@
       "audioOriginal": "9b16b07c66d3c1c9.orig.mp3",
       "audioAuto": "9b16b07c66d3c1c9.mp3",
       "audioMarked": true,
-      "audioTextHash": "9b16b07c66d3c1c9"
+      "audioTextHash": "9b16b07c66d3c1c9",
+      "sourceOrder": 2228
     },
     {
       "id": "piano",
@@ -318,7 +341,8 @@
       "audioOriginal": "e2d03469a9269600.orig.mp3",
       "audioAuto": "e2d03469a9269600.mp3",
       "audioMarked": true,
-      "audioTextHash": "e2d03469a9269600"
+      "audioTextHash": "e2d03469a9269600",
+      "sourceOrder": 2232
     },
     {
       "id": "dansu",
@@ -332,7 +356,8 @@
       "audioOriginal": "7b773e2afc52f56a.orig.mp3",
       "audioAuto": "7b773e2afc52f56a.mp3",
       "audioMarked": true,
-      "audioTextHash": "7b773e2afc52f56a"
+      "audioTextHash": "7b773e2afc52f56a",
+      "sourceOrder": 2236
     },
     {
       "id": "shizuka-na",
@@ -344,7 +369,8 @@
       "reviewNote": "Only in an Exercise III-A cue, (しずかな まち). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "note": "This is しずか (shizuka) from Lesson 10. The な (na) only appears when it comes directly before a noun, as in しずかなところ (shizuka na tokoro).",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3403
     },
     {
       "id": "atatakai-l17",
@@ -355,7 +381,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-A cue, (あたたかい ところ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3385
     },
     {
       "id": "furui-l17",
@@ -366,7 +393,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise III-B cue, (ふるい かぐを かいます、みせ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3565
     },
     {
       "id": "zehi-l17",
@@ -381,7 +409,8 @@
       "audioAuto": "5f0ea2d182e88fd8.mp3",
       "audioMarked": true,
       "audioTextHash": "5f0ea2d182e88fd8",
-      "repeatOf": "zehi"
+      "repeatOf": "zehi",
+      "sourceOrder": 5074
     },
     {
       "id": "nemasu",
@@ -393,7 +422,8 @@
       "audioOriginal": "e14108772cdd349f.orig.mp3",
       "audioAuto": "e14108772cdd349f.mp3",
       "audioMarked": true,
-      "audioTextHash": "e14108772cdd349f"
+      "audioTextHash": "e14108772cdd349f",
+      "sourceOrder": 2155
     },
     {
       "id": "mae",
@@ -409,7 +439,8 @@
       "audioOriginal": "1ac5880b7f90e6a6.orig.mp3",
       "audioAuto": "1ac5880b7f90e6a6.mp3",
       "audioMarked": true,
-      "audioTextHash": "1ac5880b7f90e6a6"
+      "audioTextHash": "1ac5880b7f90e6a6",
+      "sourceOrder": 187
     },
     {
       "id": "no-mae-ni",
@@ -423,7 +454,8 @@
       "audioOriginal": "daecfe96b61f0905.orig.mp3",
       "audioAuto": "daecfe96b61f0905.mp3",
       "audioMarked": true,
-      "audioTextHash": "daecfe96b61f0905"
+      "audioTextHash": "daecfe96b61f0905",
+      "sourceOrder": 843
     },
     {
       "id": "neru-mae-ni",
@@ -436,7 +468,8 @@
       "audioOriginal": "d21b5a8e2c88c83a.orig.mp3",
       "audioAuto": "d21b5a8e2c88c83a.mp3",
       "audioMarked": true,
-      "audioTextHash": "d21b5a8e2c88c83a"
+      "audioTextHash": "d21b5a8e2c88c83a",
+      "sourceOrder": 873
     },
     {
       "id": "naraimasu",
@@ -448,7 +481,8 @@
       "audioOriginal": "3fe1f50dfde1f9af.orig.mp3",
       "audioAuto": "3fe1f50dfde1f9af.mp3",
       "audioMarked": true,
-      "audioTextHash": "3fe1f50dfde1f9af"
+      "audioTextHash": "3fe1f50dfde1f9af",
+      "sourceOrder": 2246
     },
     {
       "id": "sutorecchi-o-shimasu",
@@ -460,7 +494,8 @@
       "audioOriginal": "6bdf1526117a4085.orig.mp3",
       "audioAuto": "6bdf1526117a4085.mp3",
       "audioMarked": true,
-      "audioTextHash": "6bdf1526117a4085"
+      "audioTextHash": "6bdf1526117a4085",
+      "sourceOrder": 878
     },
     {
       "id": "ryouri-o-shimasu",
@@ -473,7 +508,8 @@
       "audioOriginal": "3bfabd4800d97ac1.orig.mp3",
       "audioAuto": "3bfabd4800d97ac1.mp3",
       "audioMarked": true,
-      "audioTextHash": "3bfabd4800d97ac1"
+      "audioTextHash": "3bfabd4800d97ac1",
+      "sourceOrder": 2252
     },
     {
       "id": "araimasu",
@@ -486,7 +522,8 @@
       "audioMarked": true,
       "audioTextHash": "60f6c41118975cb2",
       "audioFilter": "standard",
-      "audio": "60f6c41118975cb2-genkanji-a67c49df.mp3"
+      "audio": "60f6c41118975cb2-genkanji-a67c49df.mp3",
+      "sourceOrder": 2261
     },
     {
       "id": "shawaa-o-abimasu",
@@ -498,7 +535,8 @@
       "audioOriginal": "2d065cf8901e099f.orig.mp3",
       "audioAuto": "2d065cf8901e099f.mp3",
       "audioMarked": true,
-      "audioTextHash": "2d065cf8901e099f"
+      "audioTextHash": "2d065cf8901e099f",
+      "sourceOrder": 2267
     },
     {
       "id": "shokuji-o-shimasu",
@@ -513,7 +551,8 @@
       "audioAuto": "081254233ac10e46.mp3",
       "audioMarked": true,
       "audioTextHash": "081254233ac10e46",
-      "repeatOf": "shokuji-shimasu"
+      "repeatOf": "shokuji-shimasu",
+      "sourceOrder": 2277
     },
     {
       "id": "hajimemasu",
@@ -525,7 +564,8 @@
       "audioOriginal": "6d8848b42aeb9830.orig.mp3",
       "audioAuto": "6d8848b42aeb9830.mp3",
       "audioMarked": true,
-      "audioTextHash": "6d8848b42aeb9830"
+      "audioTextHash": "6d8848b42aeb9830",
+      "sourceOrder": 2286
     },
     {
       "id": "kakimasu",
@@ -541,7 +581,8 @@
       "audioOriginal": "641794d0a3619820.orig.mp3",
       "audioAuto": "641794d0a3619820.mp3",
       "audioMarked": true,
-      "audioTextHash": "641794d0a3619820"
+      "audioTextHash": "641794d0a3619820",
+      "sourceOrder": 2292
     },
     {
       "id": "sumimasu-2",
@@ -556,7 +597,8 @@
       "audioOriginal": "4dabbb0d40f831b1.orig.mp3",
       "audioAuto": "4dabbb0d40f831b1.mp3",
       "audioMarked": true,
-      "audioTextHash": "4dabbb0d40f831b1"
+      "audioTextHash": "4dabbb0d40f831b1",
+      "sourceOrder": 3620
     },
     {
       "id": "benkyou-shimasu",
@@ -567,7 +609,8 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3634
     },
     {
       "id": "hanami-o-shimasu",
@@ -580,7 +623,8 @@
       "audioOriginal": "689eb8886ce6d2b8.orig.mp3",
       "audioAuto": "689eb8886ce6d2b8.mp3",
       "audioMarked": true,
-      "audioTextHash": "689eb8886ce6d2b8"
+      "audioTextHash": "689eb8886ce6d2b8",
+      "sourceOrder": 3501
     },
     {
       "id": "ohanami-o-shimasu",
@@ -594,7 +638,8 @@
       "audioMarked": true,
       "audioTextHash": "32ac360ff263ccb1",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 3710
     },
     {
       "id": "daunroodo-shimasu",
@@ -611,7 +656,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.724347602739726
-      }
+      },
+      "sourceOrder": 4122
     },
     {
       "id": "chekku-shimasu-2",
@@ -625,7 +671,8 @@
       "audioOriginal": "d5cd232b037c51d5.orig.mp3",
       "audioAuto": "d5cd232b037c51d5.mp3",
       "audioMarked": true,
-      "audioTextHash": "d5cd232b037c51d5"
+      "audioTextHash": "d5cd232b037c51d5",
+      "sourceOrder": 4497
     },
     {
       "id": "okurimasu",
@@ -636,7 +683,8 @@
       "uncertain": true,
       "reviewNote": "Key Sentence 2 and Exercise V; no vocabulary entry here. Gloss is mine. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 855
     },
     {
       "id": "shashin-o-torimasu",
@@ -663,7 +711,8 @@
       "audioMarked": true,
       "audioTextHash": "6d6d4ce8fc692d62",
       "repeatOf": "oyogimasu-swim",
-      "hint": "the single verb, not the noun-plus-suru form"
+      "hint": "the single verb, not the noun-plus-suru form",
+      "sourceOrder": 4782
     },
     {
       "id": "kaerimasu-l17",
@@ -674,7 +723,8 @@
       "uncertain": true,
       "reviewNote": "Only in an Exercise V-B cue, (ポールさん、くにに かえります). No gloss. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 4751
     },
     {
       "id": "itadakimasu-2",
@@ -687,7 +737,8 @@
       "note": "Same word as いただきます (itadakimasu) in Frequently Used Expressions. In Lesson 10 it also meant \"Yes, thank you\" when accepting an offer, so the moment decides the meaning.",
       "hint": "said at the table, before the food",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 5351
     },
     {
       "id": "taberu-mae-ni",
@@ -700,7 +751,8 @@
       "audioOriginal": "6934b67ba8555fd6.orig.mp3",
       "audioAuto": "6934b67ba8555fd6.mp3",
       "audioMarked": true,
-      "audioTextHash": "6934b67ba8555fd6"
+      "audioTextHash": "6934b67ba8555fd6",
+      "sourceOrder": 318
     },
     {
       "id": "kaitai-desu-2",
@@ -712,7 +764,8 @@
       "audioOriginal": "5ac963f35e03e4e3.orig.mp3",
       "audioAuto": "5ac963f35e03e4e3.mp3",
       "audioMarked": true,
-      "audioTextHash": "5ac963f35e03e4e3"
+      "audioTextHash": "5ac963f35e03e4e3",
+      "sourceOrder": 161
     },
     {
       "id": "tabetai-desu-2",
@@ -724,7 +777,8 @@
       "audioOriginal": "07cd7e67c8be9fed.orig.mp3",
       "audioAuto": "07cd7e67c8be9fed.mp3",
       "audioMarked": true,
-      "audioTextHash": "07cd7e67c8be9fed"
+      "audioTextHash": "07cd7e67c8be9fed",
+      "sourceOrder": 828
     },
     {
       "id": "ikitai-desu",
@@ -737,7 +791,8 @@
       "audioOriginal": "4fdc055ee839708e.orig.mp3",
       "audioAuto": "4fdc055ee839708e.mp3",
       "audioMarked": true,
-      "audioTextHash": "4fdc055ee839708e"
+      "audioTextHash": "4fdc055ee839708e",
+      "sourceOrder": 1192
     },
     {
       "id": "ikitakunai-desu",
@@ -750,7 +805,8 @@
       "audioOriginal": "53ddfeb58057abb7.orig.mp3",
       "audioAuto": "53ddfeb58057abb7.mp3",
       "audioMarked": true,
-      "audioTextHash": "53ddfeb58057abb7"
+      "audioTextHash": "53ddfeb58057abb7",
+      "sourceOrder": 1211
     },
     {
       "id": "ikitakatta-desu",
@@ -763,7 +819,8 @@
       "audioOriginal": "729b6c6a4996c33b.orig.mp3",
       "audioAuto": "729b6c6a4996c33b.mp3",
       "audioMarked": true,
-      "audioTextHash": "729b6c6a4996c33b"
+      "audioTextHash": "729b6c6a4996c33b",
+      "sourceOrder": 1237
     },
     {
       "id": "ikitakunakatta-desu",
@@ -776,7 +833,8 @@
       "audioOriginal": "6b9114a88d3425a2.orig.mp3",
       "audioAuto": "6b9114a88d3425a2.mp3",
       "audioMarked": true,
-      "audioTextHash": "6b9114a88d3425a2"
+      "audioTextHash": "6b9114a88d3425a2",
+      "sourceOrder": 1260
     },
     {
       "id": "nomitai-desu",
@@ -789,7 +847,8 @@
       "audioOriginal": "2af3d44100e0e293.orig.mp3",
       "audioAuto": "2af3d44100e0e293.mp3",
       "audioMarked": true,
-      "audioTextHash": "2af3d44100e0e293"
+      "audioTextHash": "2af3d44100e0e293",
+      "sourceOrder": 1351
     },
     {
       "id": "kaitakunai-desu",
@@ -801,7 +860,8 @@
       "audioOriginal": "e9cfbe01fa9ac4c8.orig.mp3",
       "audioAuto": "e9cfbe01fa9ac4c8.mp3",
       "audioMarked": true,
-      "audioTextHash": "e9cfbe01fa9ac4c8"
+      "audioTextHash": "e9cfbe01fa9ac4c8",
+      "sourceOrder": 2613
     },
     {
       "id": "kaitakatta-desu",
@@ -813,7 +873,8 @@
       "audioOriginal": "0003095b24051c9d.orig.mp3",
       "audioAuto": "0003095b24051c9d.mp3",
       "audioMarked": true,
-      "audioTextHash": "0003095b24051c9d"
+      "audioTextHash": "0003095b24051c9d",
+      "sourceOrder": 2621
     },
     {
       "id": "kaitakunakatta-desu",
@@ -825,7 +886,8 @@
       "audioOriginal": "0a444d89ae77d187.orig.mp3",
       "audioAuto": "0a444d89ae77d187.mp3",
       "audioMarked": true,
-      "audioTextHash": "0a444d89ae77d187"
+      "audioTextHash": "0a444d89ae77d187",
+      "sourceOrder": 2629
     },
     {
       "id": "tabetakunai-desu",
@@ -837,7 +899,8 @@
       "audioOriginal": "f4373d35d0e85cec.orig.mp3",
       "audioAuto": "f4373d35d0e85cec.mp3",
       "audioMarked": true,
-      "audioTextHash": "f4373d35d0e85cec"
+      "audioTextHash": "f4373d35d0e85cec",
+      "sourceOrder": 2654
     },
     {
       "id": "tabetakatta-desu",
@@ -849,7 +912,8 @@
       "audioOriginal": "f4431924d87f3a5d.orig.mp3",
       "audioAuto": "f4431924d87f3a5d.mp3",
       "audioMarked": true,
-      "audioTextHash": "f4431924d87f3a5d"
+      "audioTextHash": "f4431924d87f3a5d",
+      "sourceOrder": 2662
     },
     {
       "id": "tabetakunakatta-desu",
@@ -861,7 +925,8 @@
       "audioOriginal": "cc7a83128f8434ca.orig.mp3",
       "audioAuto": "cc7a83128f8434ca.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc7a83128f8434ca"
+      "audioTextHash": "cc7a83128f8434ca",
+      "sourceOrder": 2670
     },
     {
       "id": "mitai-desu",
@@ -873,7 +938,8 @@
       "audioOriginal": "2b3542a180165f84.orig.mp3",
       "audioAuto": "2b3542a180165f84.mp3",
       "audioMarked": true,
-      "audioTextHash": "2b3542a180165f84"
+      "audioTextHash": "2b3542a180165f84",
+      "sourceOrder": 2689
     },
     {
       "id": "mitakunai-desu",
@@ -885,7 +951,8 @@
       "audioOriginal": "aac69cb9a7bb417f.orig.mp3",
       "audioAuto": "aac69cb9a7bb417f.mp3",
       "audioMarked": true,
-      "audioTextHash": "aac69cb9a7bb417f"
+      "audioTextHash": "aac69cb9a7bb417f",
+      "sourceOrder": 2694
     },
     {
       "id": "mitakatta-desu",
@@ -897,7 +964,8 @@
       "audioOriginal": "0923237d86db250b.orig.mp3",
       "audioAuto": "0923237d86db250b.mp3",
       "audioMarked": true,
-      "audioTextHash": "0923237d86db250b"
+      "audioTextHash": "0923237d86db250b",
+      "sourceOrder": 2701
     },
     {
       "id": "mitakunakatta-desu",
@@ -909,7 +977,8 @@
       "audioOriginal": "a510b81330572720.orig.mp3",
       "audioAuto": "a510b81330572720.mp3",
       "audioMarked": true,
-      "audioTextHash": "a510b81330572720"
+      "audioTextHash": "a510b81330572720",
+      "sourceOrder": 2708
     },
     {
       "id": "aitai-desu",
@@ -922,7 +991,8 @@
       "audioOriginal": "89836b66dd851c12.orig.mp3",
       "audioAuto": "89836b66dd851c12.mp3",
       "audioMarked": true,
-      "audioTextHash": "89836b66dd851c12"
+      "audioTextHash": "89836b66dd851c12",
+      "sourceOrder": 2727
     },
     {
       "id": "aitakunai-desu",
@@ -934,7 +1004,8 @@
       "audioOriginal": "51705fe15dc6c139.orig.mp3",
       "audioAuto": "51705fe15dc6c139.mp3",
       "audioMarked": true,
-      "audioTextHash": "51705fe15dc6c139"
+      "audioTextHash": "51705fe15dc6c139",
+      "sourceOrder": 2733
     },
     {
       "id": "aitakatta-desu",
@@ -946,7 +1017,8 @@
       "audioOriginal": "b33b7a0d93c512be.orig.mp3",
       "audioAuto": "b33b7a0d93c512be.mp3",
       "audioMarked": true,
-      "audioTextHash": "b33b7a0d93c512be"
+      "audioTextHash": "b33b7a0d93c512be",
+      "sourceOrder": 2741
     },
     {
       "id": "aitakunakatta-desu",
@@ -958,7 +1030,8 @@
       "audioOriginal": "08cbeeca9e0563f5.orig.mp3",
       "audioAuto": "08cbeeca9e0563f5.mp3",
       "audioMarked": true,
-      "audioTextHash": "08cbeeca9e0563f5"
+      "audioTextHash": "08cbeeca9e0563f5",
+      "sourceOrder": 2749
     },
     {
       "id": "jaa-mata-ashita",
@@ -971,7 +1044,8 @@
       "audioOriginal": "0d9fe7fbf0055a5a.orig.mp3",
       "audioAuto": "0d9fe7fbf0055a5a.mp3",
       "audioMarked": true,
-      "audioTextHash": "0d9fe7fbf0055a5a"
+      "audioTextHash": "0d9fe7fbf0055a5a",
+      "sourceOrder": 5631
     },
     {
       "id": "ja-mata-suiyoubi-ni",
@@ -984,7 +1058,8 @@
       "audioOriginal": "edd305dc010f2b94.orig.mp3",
       "audioAuto": "edd305dc010f2b94.mp3",
       "audioMarked": true,
-      "audioTextHash": "edd305dc010f2b94"
+      "audioTextHash": "edd305dc010f2b94",
+      "sourceOrder": 5081
     },
     {
       "id": "chotto-matte-kudasai-l17",
@@ -995,7 +1070,8 @@
       "uncertain": true,
       "reviewNote": "Speaking Practice 2. Glossed in the dialogue translation only; may already be taught. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target) | Possibly premature — uses verb[て-form]ください (and the verb まちます), neither introduced until later in the book",
       "excluded": true,
-      "excludedBy": "human"
+      "excludedBy": "human",
+      "sourceOrder": 5362
     },
     {
       "id": "wakarimashita-l17",
@@ -1010,7 +1086,8 @@
       "audioAuto": "cace7afeb5538c98.mp3",
       "audioMarked": true,
       "audioTextHash": "cace7afeb5538c98",
-      "repeatOf": "wakarimashita"
+      "repeatOf": "wakarimashita",
+      "sourceOrder": 293
     },
     {
       "id": "nozomi-hotel",
@@ -1021,7 +1098,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 247
     },
     {
       "id": "ajaruto-sukuuru",
@@ -1032,7 +1110,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3476
     },
     {
       "id": "sakura-kouen",
@@ -1043,7 +1122,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3516
     },
     {
       "id": "minato-tenisu-kurabu",
@@ -1054,7 +1134,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3548
     },
     {
       "id": "antiiku-toukyou",
@@ -1065,7 +1146,8 @@
       "note": null,
       "excluded": true,
       "excludedBy": "proper-name-rule",
-      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own.",
+      "sourceOrder": 3582
     }
   ]
 }

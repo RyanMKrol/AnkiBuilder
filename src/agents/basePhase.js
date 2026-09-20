@@ -33,6 +33,7 @@ import { judgeTables } from "./tableSpecialist.js";
 import { readChapter } from "./chapterReader.js";
 import { judgeImages } from "./imageSpecialist.js";
 import { reconcile } from "../cards/unionReconciler.js";
+import { assignSourceOrder } from "../cards/sourceOrder.js";
 import {
   enumerateChapter,
   findGaps,
@@ -384,6 +385,16 @@ export function runBasePhase({
       unaccounted: backward.value.unaccounted,
     }),
   });
+
+  // Where each card's word sits in the chapter, so a review can be read alongside the book. The
+  // stored order stays pedagogical and is what reaches the deck; this is a second, independent
+  // answer the review view sorts by. Stamped here because it is the last point still holding the
+  // chapter text.
+  const positions = assignSourceOrder(merged.items, chapterHtml, { languageCode: targetLanguage });
+  for (const item of merged.items) {
+    const at = positions.get(item.id);
+    if (typeof at === "number") item.sourceOrder = at;
+  }
 
   // The corpus is rewritten because the exclusions are part of it. The SNAPSHOT is not: it was taken
   // before this ran, on purpose, and `writeSnapshot` refuses a second write anyway.

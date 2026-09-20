@@ -723,13 +723,14 @@ survived the gap filler, which is what this step reads.
 Two things a reviewer of Lesson 17 asked for that are not built yet, recorded here so the next
 session does not rediscover them from scratch:
 
-- **The review table is in pedagogical order, not book order.** That is right for the deck -- a
-  learner must meet vocabulary before the sentences built on it -- and wrong for reading a chapter
-  alongside the review, which means jumping around. The fix is a `sourceOrder` stamped on each BASE
-  item (the extras unit does not need it; its sentences are often invented and appear nowhere in the
-  book) and the review view sorting on it, leaving the stored order alone. Measured on Lesson 17:
-  taking each card's first occurrence in the chapter text, claimed longest-target-first so a short
-  word cannot match inside a longer one, resolves 57 of 57 and reproduces the book's own order.
+- **The review table renders in BOOK order, and the deck does not.** A base unit's cards carry
+  `sourceOrder`, the character offset where the card's word first appears in the chapter, and the
+  review view sorts by it so the table can be read alongside the chapter. The STORED order stays
+  pedagogical (vocabulary before the sentences built on it) and that is what reaches the deck: two
+  different questions, two different answers. An extras unit carries no `sourceOrder` -- its
+  sentences are largely composed and appear nowhere in the book -- and renders in its stored order,
+  as does anything built before the field existed.
+
 - **A rejected agent response is never written.** Every guard in `src/agents` parses, validates and
   then throws, so a rejection destroys the evidence it was judging -- on one failure only
   `blocks.json` reached disk. The fix is to persist the raw response before parsing, but production

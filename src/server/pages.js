@@ -3,6 +3,7 @@
 // (renderDeckPage). The functions moved verbatim out of createDeckServer in
 // src/server/index.js; there they closed over the server's injected deps, so this
 // module keeps them as a factory taking those same values via a context object.
+import { inSourceOrder } from "../cards/sourceOrder.js";
 import { existsSync } from "fs";
 import { join as pathJoin, dirname as pathDirname } from "path";
 import {
@@ -366,7 +367,12 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
       reason: u.reason || null,
       numberIssues: u.numberIssues || [],
       kanjiTts: !!u.kanjiTts,
-      cards: u.cards.map((c) => ({
+      // Book order when the cards carry it, which a phase-built BASE unit does. The stored order is
+      // pedagogical -- vocabulary before the sentences built on it -- and that is what reaches the
+      // deck; it is the wrong order for reading a chapter alongside the review, which is what this
+      // page is for. A unit with no `sourceOrder` (an extras unit, anything built before the field
+      // existed) is untouched, because `inSourceOrder` keeps unplaced cards in their existing order.
+      cards: inSourceOrder(u.cards).map((c) => ({
         ...c,
         unit: u.seq,
         stage: u.stage || "audio",
@@ -543,7 +549,12 @@ ${modal}
     const sections = units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
-      cards: u.cards.map((c) => ({
+      // Book order when the cards carry it, which a phase-built BASE unit does. The stored order is
+      // pedagogical -- vocabulary before the sentences built on it -- and that is what reaches the
+      // deck; it is the wrong order for reading a chapter alongside the review, which is what this
+      // page is for. A unit with no `sourceOrder` (an extras unit, anything built before the field
+      // existed) is untouched, because `inSourceOrder` keeps unplaced cards in their existing order.
+      cards: inSourceOrder(u.cards).map((c) => ({
         ...c,
         unit: u.seq,
         stage: u.stage || "audio",

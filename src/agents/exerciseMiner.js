@@ -62,10 +62,21 @@ export function blockLabel(block) {
 }
 
 /**
- * Rejects a response that did not account for every exercise block it was given.
+ * Checks a response accounted for every exercise block it was given. Returns what it said about
+ * blocks it was NOT given, which is a report rather than a rejection.
  *
  * A block may appear under `blocks` or under `skipped`: skipping for an untaught word is a correct
- * outcome and must not be indistinguishable from never reaching the block.
+ * outcome and must not be indistinguishable from never reaching the block. THAT is worth refusing a
+ * response over, because a block nobody reached leaves no trace otherwise.
+ *
+ * **An UNASKED-FOR block is not the same failure and must not be treated as one.** The miner is
+ * given the chapter's numbered blocks; the chapter also has named sections, and naming one of those
+ * is a model reading slightly outside its remit, not inventing coverage it does not have. Refusing
+ * over it threw away this miner's entire output and the six agent steps queued behind it, on a
+ * chapter whose only sin was having a TARGET DIALOGUE section next to its EXERCISES. The items it
+ * found are kept, because union-for-existence is this phase's whole design and a surplus sentence
+ * costs a reviewer one click while a lost one is invisible. The stray label is returned so the run
+ * report can name it.
  */
 export function assertBlocksAccountedFor(blocks, { blocks: reported = [], skipped = [] } = {}) {
   const want = blocks.map(blockLabel);
@@ -77,11 +88,7 @@ export function assertBlocksAccountedFor(blocks, { blocks: reported = [], skippe
         `A block nobody reached and a block that held nothing look identical otherwise.`,
     );
   }
-  const extra = [...seen].filter((label) => !want.includes(label));
-  if (extra.length) {
-    throw new Error(`exercise miner reported block(s) it was not given: ${extra.join(", ")}`);
-  }
-  return reported;
+  return { reported, unaskedFor: [...seen].filter((label) => !want.includes(label)) };
 }
 
 /**
@@ -113,7 +120,7 @@ export function mineExercises({
   const parsed = JSON.parse(
     extractJsonObjectText(runRole(ROLE_ID, prompt, runClaude ? { runClaude } : {})),
   );
-  assertBlocksAccountedFor(blocks, parsed);
+  const { unaskedFor } = assertBlocksAccountedFor(blocks, parsed);
 
   const items = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => ({
     ...item,
@@ -125,6 +132,9 @@ export function mineExercises({
     items,
     blocks: parsed.blocks ?? [],
     skipped: parsed.skipped ?? [],
+    // Blocks the miner named that it was never given. A report, so the run says so rather than the
+    // phase dying over it; see assertBlocksAccountedFor.
+    unaskedFor,
     unteachable: findUnteachable(items, taught, { languageCode: targetLanguage }),
   };
 }

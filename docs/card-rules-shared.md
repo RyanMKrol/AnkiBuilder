@@ -38,6 +38,12 @@ _instead_, _irregular_ and _does not take_.
 **Only vocabulary and grammar the learner has already met.** A card may use only what this chapter or
 an earlier one teaches. Where topical fit and this rule disagree, this rule wins.
 
+**A proper name is not a card.** The name of a person, a business, a school, a shop or a club --
+and above all one the source invented to populate an exercise -- teaches the learner nothing about
+the language. Card the common noun the source teaches instead (hotel, school, park), and let the
+name do its job inside a sentence, which is where the source put it. Real places a learner meets
+outside the book, countries and cities, are ordinary vocabulary and do count.
+
 **Never card a schematic pattern.** A frame with a slot in it, written with a placeholder or a
 bracketed part of speech rather than a real word, is not a card. Card a complete, concrete instance
 of the pattern instead.

@@ -748,7 +748,10 @@
       "english": "Nozomi Hotel",
       "category": "Travel & Tourism",
       "note": null,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "ajaruto-sukuuru",
@@ -756,7 +759,10 @@
       "english": "AJALT School",
       "category": "School & Education",
       "note": null,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "sakura-kouen",
@@ -764,7 +770,10 @@
       "english": "Sakura Park",
       "category": "Travel & Tourism",
       "note": null,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "minato-tenisu-kurabu",
@@ -772,7 +781,10 @@
       "english": "Minato Tennis Club",
       "category": "Sports & Hobbies",
       "note": null,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "antiiku-toukyou",
@@ -780,7 +792,10 @@
       "english": "Antique Tokyo",
       "category": "Shopping",
       "note": null,
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     }
   ]
 }

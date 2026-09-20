@@ -1350,11 +1350,12 @@
       "target": "このえいがはぜひみてください",
       "pronunciation": "kono eiga wa zehi mite kudasai",
       "aiSuggested": true,
-      "audio": "b9e8e0b7603e258f.mp3",
-      "audioOriginal": "b9e8e0b7603e258f.orig.mp3",
-      "audioAuto": "b9e8e0b7603e258f.mp3",
+      "audioOriginal": "02317612d45a9e06-genkanji-70389cc1.orig.mp3",
+      "audioAuto": "02317612d45a9e06-genkanji-70389cc1.mp3",
       "audioMarked": true,
-      "audioTextHash": "b9e8e0b7603e258f"
+      "audioTextHash": "02317612d45a9e06",
+      "audioFilter": "standard",
+      "audio": "02317612d45a9e06-genkanji-70389cc1.mp3"
     },
     {
       "id": "ikitakunai-1",
@@ -1406,11 +1407,17 @@
       "aiSuggested": true,
       "reviewNote": "Possibly already taught — Same ですね。わかりました confirm-and-acknowledge exchange as chapter-16 and chapter-16-extras; only the time and place differ. | Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
       "ttsText": "ろくじにえきですね。わかりました",
-      "audio": "513732f261563ff1.mp3",
+      "audio": "wakarimashita-1-manual-05bbd9dc.mp3",
       "audioOriginal": "513732f261563ff1.orig.mp3",
       "audioAuto": "513732f261563ff1.mp3",
       "audioMarked": true,
-      "audioTextHash": "513732f261563ff1"
+      "audioTextHash": "513732f261563ff1",
+      "audioManual": "wakarimashita-1-manual-05bbd9dc.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.5302260273972603
+      },
+      "audioMarkerStuck": true
     },
     {
       "id": "ikitakunakatta-2",

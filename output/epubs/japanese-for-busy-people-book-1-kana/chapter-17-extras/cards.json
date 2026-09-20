@@ -39,7 +39,12 @@
       "category": "Sports & Hobbies",
       "target": "テニスがすきです。でも、きょうはテニスをしたくないです",
       "pronunciation": "tenisu ga suki desu. demo, kyō wa tenisu o shitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "37980b65e5e7463d.mp3",
+      "audioOriginal": "37980b65e5e7463d.orig.mp3",
+      "audioAuto": "37980b65e5e7463d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "37980b65e5e7463d"
     },
     {
       "id": "sumimasu-1",
@@ -47,7 +52,12 @@
       "category": "Home & Household",
       "target": "わたしはとうきょうにすみます",
       "pronunciation": "watashi wa Tōkyō ni sumimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "acf16b8e4f5a9a63.mp3",
+      "audioOriginal": "acf16b8e4f5a9a63.orig.mp3",
+      "audioAuto": "acf16b8e4f5a9a63.mp3",
+      "audioMarked": true,
+      "audioTextHash": "acf16b8e4f5a9a63"
     },
     {
       "id": "cherry-blossom-good-place-ask",
@@ -55,7 +65,12 @@
       "category": "Travel & Tourism",
       "target": "おはなみをしたいです。このちかくにいいところがありますか",
       "pronunciation": "ohanami o shitai desu. kono chikaku ni ii tokoro ga arimasu ka",
-      "note": "します (shimasu) uses the stem し (shi), so \"want to do\" is したい (shitai). That gives おはなみをしたいです (ohanami o shitai desu)."
+      "note": "します (shimasu) uses the stem し (shi), so \"want to do\" is したい (shitai). That gives おはなみをしたいです (ohanami o shitai desu).",
+      "audio": "c3eada3e5c6b9277.mp3",
+      "audioOriginal": "c3eada3e5c6b9277.orig.mp3",
+      "audioAuto": "c3eada3e5c6b9277.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c3eada3e5c6b9277"
     },
     {
       "id": "tabetakunakatta-3",
@@ -63,21 +78,36 @@
       "category": "Grammar & Function Words",
       "target": "カレーはたべたくなかったです",
       "pronunciation": "karē wa tabetakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "912eef3338b9dcec.mp3",
+      "audioOriginal": "912eef3338b9dcec.orig.mp3",
+      "audioAuto": "912eef3338b9dcec.mp3",
+      "audioMarked": true,
+      "audioTextHash": "912eef3338b9dcec"
     },
     {
       "id": "before-meeting-download-material",
       "english": "I will download the materials before the meeting.",
       "category": "Work & Occupations",
       "target": "かいぎのまえにしりょうをダウンロードします",
-      "pronunciation": "kaigi no mae ni shiryō o daunrōdo shimasu"
+      "pronunciation": "kaigi no mae ni shiryō o daunrōdo shimasu",
+      "audio": "3593a57667f5acbe.mp3",
+      "audioOriginal": "3593a57667f5acbe.orig.mp3",
+      "audioAuto": "3593a57667f5acbe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3593a57667f5acbe"
     },
     {
       "id": "shourai-donna-tokoro-sumitai",
       "english": "In the future, what kind of place do you want to live in?",
       "category": "Grammar & Function Words",
       "target": "しょうらいどんなところにすみたいですか",
-      "pronunciation": "shōrai donna tokoro ni sumitai desu ka"
+      "pronunciation": "shōrai donna tokoro ni sumitai desu ka",
+      "audio": "7dc924378e34f6bb.mp3",
+      "audioOriginal": "7dc924378e34f6bb.orig.mp3",
+      "audioAuto": "7dc924378e34f6bb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7dc924378e34f6bb"
     },
     {
       "id": "mae-time-go-home",
@@ -86,21 +116,36 @@
       "target": "ごじのまえにうちにかえりたいです",
       "pronunciation": "go-ji no mae ni uchi ni kaeritai desu",
       "aiSuggested": true,
-      "note": "A time word takes の (no) before まえに (mae ni): ごじのまえに (go-ji no mae ni), like かいぎのまえに (kaigi no mae ni). Only a verb attaches directly, as in ねるまえに (neru mae ni)."
+      "note": "A time word takes の (no) before まえに (mae ni): ごじのまえに (go-ji no mae ni), like かいぎのまえに (kaigi no mae ni). Only a verb attaches directly, as in ねるまえに (neru mae ni).",
+      "audio": "cb51d7913e328152.mp3",
+      "audioOriginal": "cb51d7913e328152.orig.mp3",
+      "audioAuto": "cb51d7913e328152.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cb51d7913e328152"
     },
     {
       "id": "smith-japanese-study-before-coming",
       "english": "Smith-san started studying Japanese before he came to Japan.",
       "category": "School & Education",
       "target": "スミスさんはにほんにくるまえににほんごのべんきょうをはじめました",
-      "pronunciation": "Sumisu-san wa Nihon ni kuru mae ni nihongo no benkyō o hajimemashita"
+      "pronunciation": "Sumisu-san wa Nihon ni kuru mae ni nihongo no benkyō o hajimemashita",
+      "audio": "27e6145b1b20dfd3.mp3",
+      "audioOriginal": "27e6145b1b20dfd3.orig.mp3",
+      "audioAuto": "27e6145b1b20dfd3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "27e6145b1b20dfd3"
     },
     {
       "id": "kaigi-no-mae-ni-shiryou",
       "english": "Smith-san will send the materials before the meeting.",
       "category": "Work & Occupations",
       "target": "スミスさんはかいぎのまえにしりょうをおくります",
-      "pronunciation": "Sumisu-san wa kaigi no mae ni shiryō o okurimasu"
+      "pronunciation": "Sumisu-san wa kaigi no mae ni shiryō o okurimasu",
+      "audio": "ad438747b1ecdd75.mp3",
+      "audioOriginal": "ad438747b1ecdd75.orig.mp3",
+      "audioAuto": "ad438747b1ecdd75.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ad438747b1ecdd75"
     },
     {
       "id": "wine-before-party",
@@ -110,7 +155,12 @@
       "pronunciation": "gogo shichi-ji kara pātī ga arimasu. pātī no mae ni wain o kaimasu",
       "ttsText": "ごごしちじからパーティーがあります。パーティーのまえにワインをかいます",
       "uncertain": true,
-      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
+      "audio": "cb862383a5428f22.mp3",
+      "audioOriginal": "cb862383a5428f22.orig.mp3",
+      "audioAuto": "cb862383a5428f22.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cb862383a5428f22"
     },
     {
       "id": "tabetakunakatta-2",
@@ -118,7 +168,12 @@
       "category": "Grammar & Function Words",
       "target": "つかれましたから、なにもたべたくなかったです",
       "pronunciation": "tsukaremashita kara, nani mo tabetakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c13c41f8308ddd01.mp3",
+      "audioOriginal": "c13c41f8308ddd01.orig.mp3",
+      "audioAuto": "c13c41f8308ddd01.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c13c41f8308ddd01"
     },
     {
       "id": "mitakatta-2",
@@ -126,7 +181,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうのサッカーのしあいをみたかったです",
       "pronunciation": "kinō no sakkā no shiai o mitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d24f7c399d767d60.mp3",
+      "audioOriginal": "d24f7c399d767d60.orig.mp3",
+      "audioAuto": "d24f7c399d767d60.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d24f7c399d767d60"
     },
     {
       "id": "kaitakatta-3",
@@ -134,7 +194,12 @@
       "category": "Grammar & Function Words",
       "target": "おかねがありませんでした。でも、かいたかったです",
       "pronunciation": "okane ga arimasen deshita. demo, kaitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "94b5883aea0a8e92.mp3",
+      "audioOriginal": "94b5883aea0a8e92.orig.mp3",
+      "audioAuto": "94b5883aea0a8e92.mp3",
+      "audioMarked": true,
+      "audioTextHash": "94b5883aea0a8e92"
     },
     {
       "id": "hungry-wanted-ramen",
@@ -142,7 +207,12 @@
       "category": "Food",
       "target": "おなかがすきましたから、ラーメンをたべたかったです",
       "pronunciation": "onaka ga sukimashita kara, rāmen o tabetakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2f0e2c5c451f9c09.mp3",
+      "audioOriginal": "2f0e2c5c451f9c09.orig.mp3",
+      "audioAuto": "2f0e2c5c451f9c09.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2f0e2c5c451f9c09"
     },
     {
       "id": "tabetakunai-x1",
@@ -150,7 +220,12 @@
       "category": "Grammar & Function Words",
       "target": "ステーキはたべたくないです",
       "pronunciation": "sutēki wa tabetakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "379b439b07ff4b1d.mp3",
+      "audioOriginal": "379b439b07ff4b1d.orig.mp3",
+      "audioAuto": "379b439b07ff4b1d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "379b439b07ff4b1d"
     },
     {
       "id": "aitakatta-1",
@@ -158,21 +233,36 @@
       "category": "Grammar & Function Words",
       "target": "かぞくにあいたかったです",
       "pronunciation": "kazoku ni aitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f7975afcc635a412.mp3",
+      "audioOriginal": "f7975afcc635a412.orig.mp3",
+      "audioAuto": "f7975afcc635a412.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f7975afcc635a412"
     },
     {
       "id": "neru-mae-ni-stretch",
       "english": "Smith-san does stretching exercises every day before going to bed.",
       "category": "Grammar & Function Words",
       "target": "スミスさんはまいにちねるまえにストレッチをします",
-      "pronunciation": "Sumisu-san wa mainichi neru mae ni sutoretchi o shimasu"
+      "pronunciation": "Sumisu-san wa mainichi neru mae ni sutoretchi o shimasu",
+      "audio": "f3e4e8110561621a.mp3",
+      "audioOriginal": "f3e4e8110561621a.orig.mp3",
+      "audioAuto": "f3e4e8110561621a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f3e4e8110561621a"
     },
     {
       "id": "tennis-lessons-good-club-ask",
       "english": "I want to take tennis lessons. Is there a good club near here?",
       "category": "Sports & Hobbies",
       "target": "テニスをならいたいです。このちかくにいいクラブがありますか",
-      "pronunciation": "tenisu o naraitai desu. kono chikaku ni ii kurabu ga arimasu ka"
+      "pronunciation": "tenisu o naraitai desu. kono chikaku ni ii kurabu ga arimasu ka",
+      "audio": "4ef730dc9da3c840.mp3",
+      "audioOriginal": "4ef730dc9da3c840.orig.mp3",
+      "audioAuto": "4ef730dc9da3c840.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ef730dc9da3c840"
     },
     {
       "id": "aitakatta-3",
@@ -180,14 +270,24 @@
       "category": "Grammar & Function Words",
       "target": "きょうとでたなかさんにあいたかったです",
       "pronunciation": "Kyōto de Tanaka-san ni aitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "de886f4d3f868dc8.mp3",
+      "audioOriginal": "de886f4d3f868dc8.orig.mp3",
+      "audioAuto": "de886f4d3f868dc8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de886f4d3f868dc8"
     },
     {
       "id": "before-work-check-news",
       "english": "Smith-san checks the news before starting work.",
       "category": "Work & Occupations",
       "target": "スミスさんはしごとをはじめるまえにニュースをチェックします",
-      "pronunciation": "Sumisu-san wa shigoto o hajimeru mae ni nyūsu o chekku shimasu"
+      "pronunciation": "Sumisu-san wa shigoto o hajimeru mae ni nyūsu o chekku shimasu",
+      "audio": "aa0de5fd62afb99b.mp3",
+      "audioOriginal": "aa0de5fd62afb99b.orig.mp3",
+      "audioAuto": "aa0de5fd62afb99b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aa0de5fd62afb99b"
     },
     {
       "id": "tabetakunakatta-1",
@@ -195,7 +295,12 @@
       "category": "Grammar & Function Words",
       "target": "あさごはんはたべたくなかったです",
       "pronunciation": "asagohan wa tabetakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "588f1ac5bfeead95.mp3",
+      "audioOriginal": "588f1ac5bfeead95.orig.mp3",
+      "audioAuto": "588f1ac5bfeead95.mp3",
+      "audioMarked": true,
+      "audioTextHash": "588f1ac5bfeead95"
     },
     {
       "id": "zehi-1",
@@ -203,7 +308,12 @@
       "category": "Grammar & Function Words",
       "target": "こんどぜひきてください",
       "pronunciation": "kondo zehi kite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7bbdc00d8a9b8315.mp3",
+      "audioOriginal": "7bbdc00d8a9b8315.orig.mp3",
+      "audioAuto": "7bbdc00d8a9b8315.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7bbdc00d8a9b8315"
     },
     {
       "id": "ikebana-1",
@@ -211,14 +321,24 @@
       "category": "Sports & Hobbies",
       "target": "いけばなはむずかしいです",
       "pronunciation": "ikebana wa muzukashii desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "baac3eea95945cd8.mp3",
+      "audioOriginal": "baac3eea95945cd8.orig.mp3",
+      "audioAuto": "baac3eea95945cd8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "baac3eea95945cd8"
     },
     {
       "id": "wine-o-nomitai",
       "english": "I want to drink wine.",
       "category": "Grammar & Function Words",
       "target": "ワインをのみたいです",
-      "pronunciation": "wain o nomitai desu"
+      "pronunciation": "wain o nomitai desu",
+      "audio": "b8db14e4879f9bd0.mp3",
+      "audioOriginal": "b8db14e4879f9bd0.orig.mp3",
+      "audioAuto": "b8db14e4879f9bd0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b8db14e4879f9bd0"
     },
     {
       "id": "aitakunai-3",
@@ -226,7 +346,12 @@
       "category": "Grammar & Function Words",
       "target": "じょうしにあいたくないです",
       "pronunciation": "jōshi ni aitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6f93c70d2bbb68cf.mp3",
+      "audioOriginal": "6f93c70d2bbb68cf.orig.mp3",
+      "audioAuto": "6f93c70d2bbb68cf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6f93c70d2bbb68cf"
     },
     {
       "id": "tabetakatta-1",
@@ -234,14 +359,24 @@
       "category": "Grammar & Function Words",
       "target": "てんぷらをたべたかったです",
       "pronunciation": "tenpura o tabetakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "63f5955f540039d5.mp3",
+      "audioOriginal": "63f5955f540039d5.orig.mp3",
+      "audioAuto": "63f5955f540039d5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "63f5955f540039d5"
     },
     {
       "id": "old-furniture-good-shop-ask",
       "english": "I want to buy some old furniture. Is there a good shop near here?",
       "category": "Shopping",
       "target": "ふるいかぐをかいたいです。このちかくにいいみせがありますか",
-      "pronunciation": "furui kagu o kaitai desu. kono chikaku ni ii mise ga arimasu ka"
+      "pronunciation": "furui kagu o kaitai desu. kono chikaku ni ii mise ga arimasu ka",
+      "audio": "584ad4dea090f042.mp3",
+      "audioOriginal": "584ad4dea090f042.orig.mp3",
+      "audioAuto": "584ad4dea090f042.mp3",
+      "audioMarked": true,
+      "audioTextHash": "584ad4dea090f042"
     },
     {
       "id": "ikitakatta-3",
@@ -250,7 +385,12 @@
       "target": "ほっかいどうにいきたかったですが、いそがしかったです",
       "pronunciation": "Hokkaidō ni ikitakatta desu ga, isogashikatta desu",
       "aiSuggested": true,
-      "note": "が (ga) after a clause means \"but\", as in Lesson 11. Here it joins ほっかいどうにいきたかったです (Hokkaidō ni ikitakatta desu) to the reason it did not happen."
+      "note": "が (ga) after a clause means \"but\", as in Lesson 11. Here it joins ほっかいどうにいきたかったです (Hokkaidō ni ikitakatta desu) to the reason it did not happen.",
+      "audio": "c442c3487199d4ef.mp3",
+      "audioOriginal": "c442c3487199d4ef.orig.mp3",
+      "audioAuto": "c442c3487199d4ef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c442c3487199d4ef"
     },
     {
       "id": "ryouri-1",
@@ -258,7 +398,12 @@
       "category": "Home & Household",
       "target": "にちようびにともだちとりょうりをします",
       "pronunciation": "nichiyōbi ni tomodachi to ryōri o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f2f1f36c36d299ff.mp3",
+      "audioOriginal": "f2f1f36c36d299ff.orig.mp3",
+      "audioAuto": "f2f1f36c36d299ff.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f2f1f36c36d299ff"
     },
     {
       "id": "kaitakatta-2",
@@ -266,7 +411,12 @@
       "category": "Grammar & Function Words",
       "target": "デパートでセーターをかいたかったです",
       "pronunciation": "depāto de sētā o kaitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9ffac264abeb3c83.mp3",
+      "audioOriginal": "9ffac264abeb3c83.orig.mp3",
+      "audioAuto": "9ffac264abeb3c83.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9ffac264abeb3c83"
     },
     {
       "id": "ikitai-1",
@@ -274,7 +424,12 @@
       "category": "Grammar & Function Words",
       "target": "きょうとにいきたいです",
       "pronunciation": "Kyōto ni ikitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a48dd06b14c4f29f.mp3",
+      "audioOriginal": "a48dd06b14c4f29f.orig.mp3",
+      "audioAuto": "a48dd06b14c4f29f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a48dd06b14c4f29f"
     },
     {
       "id": "tabetakatta-2",
@@ -282,14 +437,24 @@
       "category": "Grammar & Function Words",
       "target": "きのうはすしをたべたかったです",
       "pronunciation": "kinō wa sushi o tabetakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "db693e4112df46eb.mp3",
+      "audioOriginal": "db693e4112df46eb.orig.mp3",
+      "audioAuto": "db693e4112df46eb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "db693e4112df46eb"
     },
     {
       "id": "before-cooking-wash-hands",
       "english": "Smith-san washes their hands before cooking.",
       "category": "Everyday Objects",
       "target": "スミスさんはりょうりをするまえにてをあらいます",
-      "pronunciation": "Sumisu-san wa ryōri o suru mae ni te o araimasu"
+      "pronunciation": "Sumisu-san wa ryōri o suru mae ni te o araimasu",
+      "audio": "7f4f5e95df2f0172.mp3",
+      "audioOriginal": "7f4f5e95df2f0172.orig.mp3",
+      "audioAuto": "7f4f5e95df2f0172.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7f4f5e95df2f0172"
     },
     {
       "id": "beer-no-water-yes",
@@ -297,7 +462,13 @@
       "category": "Food",
       "target": "ビールはのみたくないです。みずをのみたいです",
       "pronunciation": "bīru wa nomitakunai desu. mizu o nomitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "cf8759dab648bb39.mp3",
+      "audioOriginal": "cf8759dab648bb39.orig.mp3",
+      "audioAuto": "cf8759dab648bb39.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "cf8759dab648bb39"
     },
     {
       "id": "aitakunai-2",
@@ -305,14 +476,24 @@
       "category": "Grammar & Function Words",
       "target": "つかれましたから、ともだちにあいたくないです",
       "pronunciation": "tsukaremashita kara, tomodachi ni aitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8aa4160ca792f17d.mp3",
+      "audioOriginal": "8aa4160ca792f17d.orig.mp3",
+      "audioAuto": "8aa4160ca792f17d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8aa4160ca792f17d"
     },
     {
       "id": "before-breakfast-shower",
       "english": "Smith-san takes a shower before eating breakfast.",
       "category": "Food",
       "target": "スミスさんはあさごはんをたべるまえにシャワーをあびます",
-      "pronunciation": "Sumisu-san wa asagohan o taberu mae ni shawā o abimasu"
+      "pronunciation": "Sumisu-san wa asagohan o taberu mae ni shawā o abimasu",
+      "audio": "7dc8f783f95c26a9.mp3",
+      "audioOriginal": "7dc8f783f95c26a9.orig.mp3",
+      "audioAuto": "7dc8f783f95c26a9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7dc8f783f95c26a9"
     },
     {
       "id": "tabetakunai-x2",
@@ -320,7 +501,12 @@
       "category": "Grammar & Function Words",
       "target": "ばんごはんはたべたくないです",
       "pronunciation": "bangohan wa tabetakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e5106ac4723e9ad1.mp3",
+      "audioOriginal": "e5106ac4723e9ad1.orig.mp3",
+      "audioAuto": "e5106ac4723e9ad1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5106ac4723e9ad1"
     },
     {
       "id": "jaa-mata-ashita-1",
@@ -330,7 +516,12 @@
       "pronunciation": "kaigi wa ashita desu ne. ja, mata ashita",
       "uncertain": true,
       "aiSuggested": true,
-      "reviewNote": "Possibly already taught — The じゃ、またあした farewell is already in chapter-17 (and では、あした in chapter-6-extras); the only addition is a かいぎはあしたですね lead-in."
+      "reviewNote": "Possibly already taught — The じゃ、またあした farewell is already in chapter-17 (and では、あした in chapter-6-extras); the only addition is a かいぎはあしたですね lead-in.",
+      "audio": "cdfbffd35b9e1ae3.mp3",
+      "audioOriginal": "cdfbffd35b9e1ae3.orig.mp3",
+      "audioAuto": "cdfbffd35b9e1ae3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cdfbffd35b9e1ae3"
     },
     {
       "id": "want-to-come-japan",
@@ -339,7 +530,12 @@
       "target": "らいねんにほんにきたいです",
       "pronunciation": "rainen Nihon ni kitai desu",
       "aiSuggested": true,
-      "note": "くる (kuru, Lesson 15) is irregular. The stem is き (ki), from きます (kimasu), so \"want to come\" is きたい (kitai), not くたい (kutai)."
+      "note": "くる (kuru, Lesson 15) is irregular. The stem is き (ki), from きます (kimasu), so \"want to come\" is きたい (kitai), not くたい (kutai).",
+      "audio": "e44b4495cda8d870.mp3",
+      "audioOriginal": "e44b4495cda8d870.orig.mp3",
+      "audioAuto": "e44b4495cda8d870.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e44b4495cda8d870"
     },
     {
       "id": "ikitakatta-1",
@@ -347,7 +543,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうはおおさかにいきたかったです",
       "pronunciation": "kinō wa Ōsaka ni ikitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2d5391b53a1f9354.mp3",
+      "audioOriginal": "2d5391b53a1f9354.orig.mp3",
+      "audioAuto": "2d5391b53a1f9354.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d5391b53a1f9354"
     },
     {
       "id": "music-before-sleep",
@@ -357,7 +558,12 @@
       "pronunciation": "neru mae ni, ongaku o kikimasu",
       "uncertain": true,
       "aiSuggested": true,
-      "reviewNote": "Possibly already taught — Same ねるまえに pattern as chapter-17; only the きく + おんがく sentence is added, so flagged for a human to judge."
+      "reviewNote": "Possibly already taught — Same ねるまえに pattern as chapter-17; only the きく + おんがく sentence is added, so flagged for a human to judge.",
+      "audio": "54d5f5dcb9f7db5e.mp3",
+      "audioOriginal": "54d5f5dcb9f7db5e.orig.mp3",
+      "audioAuto": "54d5f5dcb9f7db5e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "54d5f5dcb9f7db5e"
     },
     {
       "id": "aitai-3",
@@ -365,7 +571,12 @@
       "category": "Grammar & Function Words",
       "target": "だれにあいたいですか",
       "pronunciation": "dare ni aitai desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "73554c8201c0952e.mp3",
+      "audioOriginal": "73554c8201c0952e.orig.mp3",
+      "audioAuto": "73554c8201c0952e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "73554c8201c0952e"
     },
     {
       "id": "ikitakunai-2",
@@ -373,7 +584,12 @@
       "category": "Grammar & Function Words",
       "target": "さむいですから、うみにいきたくないです",
       "pronunciation": "samui desu kara, umi ni ikitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "416a863ef28b9f67.mp3",
+      "audioOriginal": "416a863ef28b9f67.orig.mp3",
+      "audioAuto": "416a863ef28b9f67.mp3",
+      "audioMarked": true,
+      "audioTextHash": "416a863ef28b9f67"
     },
     {
       "id": "kaitakunai-1",
@@ -381,7 +597,12 @@
       "category": "Grammar & Function Words",
       "target": "たかいですから、かいたくないです",
       "pronunciation": "takai desu kara, kaitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a48e51b61bdd3eef.mp3",
+      "audioOriginal": "a48e51b61bdd3eef.orig.mp3",
+      "audioAuto": "a48e51b61bdd3eef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a48e51b61bdd3eef"
     },
     {
       "id": "future-where-want-to-live-a",
@@ -389,7 +610,12 @@
       "category": "Grammar & Function Words",
       "target": "うみのちかくにすみたいです",
       "pronunciation": "umi no chikaku ni sumitai desu",
-      "scene": "Someone asks what kind of place you would like to live in someday."
+      "scene": "Someone asks what kind of place you would like to live in someday.",
+      "audio": "9771c8f5c84911f3.mp3",
+      "audioOriginal": "9771c8f5c84911f3.orig.mp3",
+      "audioAuto": "9771c8f5c84911f3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9771c8f5c84911f3"
     },
     {
       "id": "live-warm-place",
@@ -397,7 +623,12 @@
       "category": "Grammar & Function Words",
       "target": "あたたかいところにすみたいです",
       "pronunciation": "atatakai tokoro ni sumitai desu",
-      "note": "An い-adjective goes straight before the noun: あたたかいところ (atatakai tokoro). Compare しずかなところ (shizuka na tokoro), where the な-adjective needs な (na)."
+      "note": "An い-adjective goes straight before the noun: あたたかいところ (atatakai tokoro). Compare しずかなところ (shizuka na tokoro), where the な-adjective needs な (na).",
+      "audio": "023bb0dff246381a.mp3",
+      "audioOriginal": "023bb0dff246381a.orig.mp3",
+      "audioAuto": "023bb0dff246381a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "023bb0dff246381a"
     },
     {
       "id": "kakimasu-1",
@@ -405,7 +636,12 @@
       "category": "School & Education",
       "target": "ともだちにてがみをかきます",
       "pronunciation": "tomodachi ni tegami o kakimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9aab42d81e532426.mp3",
+      "audioOriginal": "9aab42d81e532426.orig.mp3",
+      "audioAuto": "9aab42d81e532426.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9aab42d81e532426"
     },
     {
       "id": "ikitakunakatta-3",
@@ -413,7 +649,13 @@
       "category": "Grammar & Function Words",
       "target": "あさくさにいきたくなかったですが、ともだちといきました",
       "pronunciation": "Asakusa ni ikitakunakatta desu ga, tomodachi to ikimashita",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "56ebc9a2819bea03.mp3",
+      "audioOriginal": "56ebc9a2819bea03.orig.mp3",
+      "audioAuto": "56ebc9a2819bea03.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "56ebc9a2819bea03"
     },
     {
       "id": "piano-1",
@@ -421,7 +663,12 @@
       "category": "Sports & Hobbies",
       "target": "チャンさんはピアノがじょうずです",
       "pronunciation": "Chan-san wa piano ga jōzu desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e1c61d74e5244dd9.mp3",
+      "audioOriginal": "e1c61d74e5244dd9.orig.mp3",
+      "audioAuto": "e1c61d74e5244dd9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e1c61d74e5244dd9"
     },
     {
       "id": "aitai-1",
@@ -429,7 +676,12 @@
       "category": "Grammar & Function Words",
       "target": "たなかさんにあいたいです",
       "pronunciation": "Tanaka-san ni aitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "294622ec9231b8a0.mp3",
+      "audioOriginal": "294622ec9231b8a0.orig.mp3",
+      "audioAuto": "294622ec9231b8a0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "294622ec9231b8a0"
     },
     {
       "id": "aitakunakatta-2",
@@ -437,14 +689,24 @@
       "category": "Grammar & Function Words",
       "target": "ともだちにあいたくなかったです",
       "pronunciation": "tomodachi ni aitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "5f73cfd701b0afd1.mp3",
+      "audioOriginal": "5f73cfd701b0afd1.orig.mp3",
+      "audioAuto": "5f73cfd701b0afd1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f73cfd701b0afd1"
     },
     {
       "id": "before-party-shower",
       "english": "I will take a shower before the party.",
       "category": "Time",
       "target": "パーティーのまえにシャワーをあびます",
-      "pronunciation": "pātī no mae ni shawā o abimasu"
+      "pronunciation": "pātī no mae ni shawā o abimasu",
+      "audio": "63e0878b51e06328.mp3",
+      "audioOriginal": "63e0878b51e06328.orig.mp3",
+      "audioAuto": "63e0878b51e06328.mp3",
+      "audioMarked": true,
+      "audioTextHash": "63e0878b51e06328"
     },
     {
       "id": "antiiku-1",
@@ -452,7 +714,12 @@
       "category": "Shopping",
       "target": "アンティークのとけいはたかいです",
       "pronunciation": "antīku no tokei wa takai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "4cce07e312fe3cfa.mp3",
+      "audioOriginal": "4cce07e312fe3cfa.orig.mp3",
+      "audioAuto": "4cce07e312fe3cfa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4cce07e312fe3cfa"
     },
     {
       "id": "future-buy-house",
@@ -460,7 +727,12 @@
       "category": "Home & Household",
       "target": "しょうらい、おおきいうちをかいたいです",
       "pronunciation": "shōrai, ōkii uchi o kaitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c14b4d4a008d7285.mp3",
+      "audioOriginal": "c14b4d4a008d7285.orig.mp3",
+      "audioAuto": "c14b4d4a008d7285.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c14b4d4a008d7285"
     },
     {
       "id": "kaitai-x1",
@@ -468,7 +740,12 @@
       "category": "Grammar & Function Words",
       "target": "あたらしいパソコンをかいたいです",
       "pronunciation": "atarashii pasokon o kaitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9a7207ed747194f0.mp3",
+      "audioOriginal": "9a7207ed747194f0.orig.mp3",
+      "audioAuto": "9a7207ed747194f0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9a7207ed747194f0"
     },
     {
       "id": "zehi-2",
@@ -476,14 +753,24 @@
       "category": "Grammar & Function Words",
       "target": "にっこうにぜひいきたいです",
       "pronunciation": "Nikkō ni zehi ikitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b1906ca6c7b53650.mp3",
+      "audioOriginal": "b1906ca6c7b53650.orig.mp3",
+      "audioAuto": "b1906ca6c7b53650.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b1906ca6c7b53650"
     },
     {
       "id": "before-party-hair-salon",
       "english": "I will go to the hair salon before the party.",
       "category": "Time",
       "target": "パーティーのまえにびよういんにいきます",
-      "pronunciation": "pātī no mae ni biyōin ni ikimasu"
+      "pronunciation": "pātī no mae ni biyōin ni ikimasu",
+      "audio": "ec4a743cff88ae5a.mp3",
+      "audioOriginal": "ec4a743cff88ae5a.orig.mp3",
+      "audioAuto": "ec4a743cff88ae5a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ec4a743cff88ae5a"
     },
     {
       "id": "aitakatta-2",
@@ -491,7 +778,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうともだちにあいたかったです",
       "pronunciation": "kinō tomodachi ni aitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "4d0070b5a6dba891.mp3",
+      "audioOriginal": "4d0070b5a6dba891.orig.mp3",
+      "audioAuto": "4d0070b5a6dba891.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4d0070b5a6dba891"
     },
     {
       "id": "nemasu-1",
@@ -499,7 +791,12 @@
       "category": "Home & Household",
       "target": "まいばんじゅうにじにねます",
       "pronunciation": "maiban jūni-ji ni nemasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "acf71b36febbc209.mp3",
+      "audioOriginal": "acf71b36febbc209.orig.mp3",
+      "audioAuto": "acf71b36febbc209.mp3",
+      "audioMarked": true,
+      "audioTextHash": "acf71b36febbc209"
     },
     {
       "id": "kaitai-x2",
@@ -507,14 +804,24 @@
       "category": "Grammar & Function Words",
       "target": "おみやげにおかしをかいたいです",
       "pronunciation": "omiyage ni okashi o kaitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8056b1b433f2c41c.mp3",
+      "audioOriginal": "8056b1b433f2c41c.orig.mp3",
+      "audioAuto": "8056b1b433f2c41c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8056b1b433f2c41c"
     },
     {
       "id": "sushi-dont-want-to-eat",
       "english": "I don't want to eat sushi.",
       "category": "Food",
       "target": "おすしをたべたくないです",
-      "pronunciation": "osushi o tabetakunai desu"
+      "pronunciation": "osushi o tabetakunai desu",
+      "audio": "c73b5a6a141ceef4.mp3",
+      "audioOriginal": "c73b5a6a141ceef4.orig.mp3",
+      "audioAuto": "c73b5a6a141ceef4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c73b5a6a141ceef4"
     },
     {
       "id": "ikitakatta-2",
@@ -522,7 +829,12 @@
       "category": "Grammar & Function Words",
       "target": "コンサートにいきたかったです",
       "pronunciation": "konsāto ni ikitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "812a0360707dac91.mp3",
+      "audioOriginal": "812a0360707dac91.orig.mp3",
+      "audioAuto": "812a0360707dac91.mp3",
+      "audioMarked": true,
+      "audioTextHash": "812a0360707dac91"
     },
     {
       "id": "tabetakatta-3",
@@ -530,7 +842,12 @@
       "category": "Grammar & Function Words",
       "target": "なにをたべたかったですか",
       "pronunciation": "nani o tabetakatta desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ab41ad1d099a8847.mp3",
+      "audioOriginal": "ab41ad1d099a8847.orig.mp3",
+      "audioAuto": "ab41ad1d099a8847.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ab41ad1d099a8847"
     },
     {
       "id": "eat-at-restaurant-answer",
@@ -538,7 +855,12 @@
       "category": "Food",
       "target": "あのレストランでたべたいです",
       "pronunciation": "ano resutoran de tabetai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9dad0c245a236a85.mp3",
+      "audioOriginal": "9dad0c245a236a85.orig.mp3",
+      "audioAuto": "9dad0c245a236a85.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9dad0c245a236a85"
     },
     {
       "id": "mitakunakatta-3",
@@ -546,7 +868,12 @@
       "category": "Grammar & Function Words",
       "target": "わたしはニュースをみたくなかったです",
       "pronunciation": "watashi wa nyūsu o mitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "1858c2e3445543a9.mp3",
+      "audioOriginal": "1858c2e3445543a9.orig.mp3",
+      "audioAuto": "1858c2e3445543a9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1858c2e3445543a9"
     },
     {
       "id": "kaitakunakatta-3",
@@ -554,14 +881,24 @@
       "category": "Grammar & Function Words",
       "target": "ワインはかいたくなかったです",
       "pronunciation": "wain wa kaitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "232d891aced0161a.mp3",
+      "audioOriginal": "232d891aced0161a.orig.mp3",
+      "audioAuto": "232d891aced0161a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "232d891aced0161a"
     },
     {
       "id": "smith-stretch-before-sleep",
       "english": "Smith-san does stretching exercises before going to bed.",
       "category": "Grammar & Function Words",
       "target": "スミスさんはねるまえにストレッチをします",
-      "pronunciation": "Sumisu-san wa neru mae ni sutoretchi o shimasu"
+      "pronunciation": "Sumisu-san wa neru mae ni sutoretchi o shimasu",
+      "audio": "4598722632bb0372.mp3",
+      "audioOriginal": "4598722632bb0372.orig.mp3",
+      "audioAuto": "4598722632bb0372.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4598722632bb0372"
     },
     {
       "id": "piano-wanted-no-money",
@@ -569,7 +906,12 @@
       "category": "School & Education",
       "target": "ピアノをならいたかったですが、おかねがありませんでした",
       "pronunciation": "piano o naraitakatta desu ga, okane ga arimasen deshita",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "38268f03884bc15e.mp3",
+      "audioOriginal": "38268f03884bc15e.orig.mp3",
+      "audioAuto": "38268f03884bc15e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "38268f03884bc15e"
     },
     {
       "id": "mitakunai-1",
@@ -577,7 +919,12 @@
       "category": "Grammar & Function Words",
       "target": "ニュースはみたくないです",
       "pronunciation": "nyūsu wa mitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "5da4c54faff7ed74.mp3",
+      "audioOriginal": "5da4c54faff7ed74.orig.mp3",
+      "audioAuto": "5da4c54faff7ed74.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5da4c54faff7ed74"
     },
     {
       "id": "ikitai-2",
@@ -585,14 +932,24 @@
       "category": "Grammar & Function Words",
       "target": "おきなわのうみにいきたいです",
       "pronunciation": "Okinawa no umi ni ikitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e633a461db4fafe8.mp3",
+      "audioOriginal": "e633a461db4fafe8.orig.mp3",
+      "audioAuto": "e633a461db4fafe8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e633a461db4fafe8"
     },
     {
       "id": "sushi-want-to-eat",
       "english": "I want to eat sushi.",
       "category": "Food",
       "target": "おすしをたべたいです",
-      "pronunciation": "osushi o tabetai desu"
+      "pronunciation": "osushi o tabetai desu",
+      "audio": "7e6f3f33107de60f.mp3",
+      "audioOriginal": "7e6f3f33107de60f.orig.mp3",
+      "audioAuto": "7e6f3f33107de60f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7e6f3f33107de60f"
     },
     {
       "id": "mitakatta-1",
@@ -600,14 +957,24 @@
       "category": "Grammar & Function Words",
       "target": "かぶきをみたかったです",
       "pronunciation": "kabuki o mitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "cda7d2b8238f95c8.mp3",
+      "audioOriginal": "cda7d2b8238f95c8.orig.mp3",
+      "audioAuto": "cda7d2b8238f95c8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cda7d2b8238f95c8"
     },
     {
       "id": "taberu-mae-ni-shashin-toritai",
       "english": "Please wait a minute. Before we eat, I want to take a picture.",
       "category": "Food",
       "target": "ちょっとまってください。たべるまえにしゃしんをとりたいです",
-      "pronunciation": "chotto matte kudasai. taberu mae ni shashin o toritai desu"
+      "pronunciation": "chotto matte kudasai. taberu mae ni shashin o toritai desu",
+      "audio": "6ce230b5da9247b3.mp3",
+      "audioOriginal": "6ce230b5da9247b3.orig.mp3",
+      "audioAuto": "6ce230b5da9247b3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6ce230b5da9247b3"
     },
     {
       "id": "mitakunai-3",
@@ -615,7 +982,12 @@
       "category": "Grammar & Function Words",
       "target": "つまらないえいがはみたくないです",
       "pronunciation": "tsumaranai eiga wa mitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "eea8d8a1a09467fc.mp3",
+      "audioOriginal": "eea8d8a1a09467fc.orig.mp3",
+      "audioAuto": "eea8d8a1a09467fc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eea8d8a1a09467fc"
     },
     {
       "id": "mitakunakatta-2",
@@ -623,7 +995,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうはテレビをみたくなかったです",
       "pronunciation": "kinō wa terebi o mitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "39e4e10a72d2bae4.mp3",
+      "audioOriginal": "39e4e10a72d2bae4.orig.mp3",
+      "audioAuto": "39e4e10a72d2bae4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "39e4e10a72d2bae4"
     },
     {
       "id": "ikitakunakatta-1",
@@ -631,7 +1008,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうはがっこうにいきたくなかったです",
       "pronunciation": "kinō wa gakkō ni ikitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "48c4e52ebde9ed15.mp3",
+      "audioOriginal": "48c4e52ebde9ed15.orig.mp3",
+      "audioAuto": "48c4e52ebde9ed15.mp3",
+      "audioMarked": true,
+      "audioTextHash": "48c4e52ebde9ed15"
     },
     {
       "id": "robii-1",
@@ -639,7 +1021,12 @@
       "category": "Travel & Tourism",
       "target": "ロビーでともだちをまちます",
       "pronunciation": "robī de tomodachi o machimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "435a327d86315724.mp3",
+      "audioOriginal": "435a327d86315724.orig.mp3",
+      "audioAuto": "435a327d86315724.mp3",
+      "audioMarked": true,
+      "audioTextHash": "435a327d86315724"
     },
     {
       "id": "kaitakatta-1",
@@ -647,7 +1034,12 @@
       "category": "Grammar & Function Words",
       "target": "あたらしいカメラをかいたかったです",
       "pronunciation": "atarashii kamera o kaitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "556e8038bedfbb93.mp3",
+      "audioOriginal": "556e8038bedfbb93.orig.mp3",
+      "audioAuto": "556e8038bedfbb93.mp3",
+      "audioMarked": true,
+      "audioTextHash": "556e8038bedfbb93"
     },
     {
       "id": "aitai-2",
@@ -655,7 +1047,12 @@
       "category": "Grammar & Function Words",
       "target": "かぞくにあいたいです",
       "pronunciation": "kazoku ni aitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "442a8eafb94812b9.mp3",
+      "audioOriginal": "442a8eafb94812b9.orig.mp3",
+      "audioAuto": "442a8eafb94812b9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "442a8eafb94812b9"
     },
     {
       "id": "kaitakunakatta-2",
@@ -663,7 +1060,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうはなにもかいたくなかったです",
       "pronunciation": "kinō wa nani mo kaitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6380564c4dc85eff.mp3",
+      "audioOriginal": "6380564c4dc85eff.orig.mp3",
+      "audioAuto": "6380564c4dc85eff.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6380564c4dc85eff"
     },
     {
       "id": "mae-before-verb-station",
@@ -672,14 +1074,24 @@
       "target": "えきにいくまえに、ともだちにでんわをします",
       "pronunciation": "eki ni iku mae ni, tomodachi ni denwa o shimasu",
       "aiSuggested": true,
-      "note": "Contrast pair with the next item: まえ after a verb means 'before', while after a place it means 'in front'."
+      "note": "Contrast pair with the next item: まえ after a verb means 'before', while after a place it means 'in front'.",
+      "audio": "3b224721dcf1331b.mp3",
+      "audioOriginal": "3b224721dcf1331b.orig.mp3",
+      "audioAuto": "3b224721dcf1331b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3b224721dcf1331b"
     },
     {
       "id": "paul-before-home-bought-souvenir",
       "english": "Paul-san bought souvenirs before returning to their country.",
       "category": "Travel & Tourism",
       "target": "ポールさんはくににかえるまえにおみやげをかいました",
-      "pronunciation": "Pōru-san wa kuni ni kaeru mae ni omiyage o kaimashita"
+      "pronunciation": "Pōru-san wa kuni ni kaeru mae ni omiyage o kaimashita",
+      "audio": "a8b6ad4df779dbb8.mp3",
+      "audioOriginal": "a8b6ad4df779dbb8.orig.mp3",
+      "audioAuto": "a8b6ad4df779dbb8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a8b6ad4df779dbb8"
     },
     {
       "id": "mitakatta-3",
@@ -687,7 +1099,12 @@
       "category": "Grammar & Function Words",
       "target": "なにをみたかったですか",
       "pronunciation": "nani o mitakatta desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8b4ceed14d5b8212.mp3",
+      "audioOriginal": "8b4ceed14d5b8212.orig.mp3",
+      "audioAuto": "8b4ceed14d5b8212.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8b4ceed14d5b8212"
     },
     {
       "id": "kaitakunai-3",
@@ -696,7 +1113,12 @@
       "target": "きょうはなにもかいたくないです",
       "pronunciation": "kyō wa nani mo kaitakunai desu",
       "aiSuggested": true,
-      "note": "なにも (nani mo) from Lesson 8 still needs a negative ending, and たくない (takunai) supplies it: \"don't want to buy anything\"."
+      "note": "なにも (nani mo) from Lesson 8 still needs a negative ending, and たくない (takunai) supplies it: \"don't want to buy anything\".",
+      "audio": "413a98e2eaf6ddd7.mp3",
+      "audioOriginal": "413a98e2eaf6ddd7.orig.mp3",
+      "audioAuto": "413a98e2eaf6ddd7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "413a98e2eaf6ddd7"
     },
     {
       "id": "nomitai-x1",
@@ -704,7 +1126,12 @@
       "category": "Grammar & Function Words",
       "target": "ビールをのみたいです",
       "pronunciation": "bīru o nomitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d05993b29720829c.mp3",
+      "audioOriginal": "d05993b29720829c.orig.mp3",
+      "audioAuto": "d05993b29720829c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d05993b29720829c"
     },
     {
       "id": "kaitakunai-2",
@@ -712,7 +1139,12 @@
       "category": "Grammar & Function Words",
       "target": "ふるいとけいはかいたくないです",
       "pronunciation": "furui tokei wa kaitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "709416021ddd7431.mp3",
+      "audioOriginal": "709416021ddd7431.orig.mp3",
+      "audioAuto": "709416021ddd7431.mp3",
+      "audioMarked": true,
+      "audioTextHash": "709416021ddd7431"
     },
     {
       "id": "hajimemasu-1",
@@ -723,14 +1155,24 @@
       "aiSuggested": true,
       "ttsText": "かいぎをさんじにはじめます",
       "uncertain": true,
-      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
+      "audio": "f7fc6f81c24cc2b8.mp3",
+      "audioOriginal": "f7fc6f81c24cc2b8.orig.mp3",
+      "audioAuto": "f7fc6f81c24cc2b8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f7fc6f81c24cc2b8"
     },
     {
       "id": "oishii-osushi-tabetai",
       "english": "I want to eat some good sushi.",
       "category": "Grammar & Function Words",
       "target": "おいしいおすしをたべたいです",
-      "pronunciation": "oishii osushi o tabetai desu"
+      "pronunciation": "oishii osushi o tabetai desu",
+      "audio": "39bae17c766767b7.mp3",
+      "audioOriginal": "39bae17c766767b7.orig.mp3",
+      "audioAuto": "39bae17c766767b7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "39bae17c766767b7"
     },
     {
       "id": "ikitakunai-3",
@@ -738,7 +1180,12 @@
       "category": "Grammar & Function Words",
       "target": "おんせんにいきたいですか。いいえ、いきたくないです",
       "pronunciation": "onsen ni ikitai desu ka. iie, ikitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "898fcb9e4b4c59be.mp3",
+      "audioOriginal": "898fcb9e4b4c59be.orig.mp3",
+      "audioAuto": "898fcb9e4b4c59be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "898fcb9e4b4c59be"
     },
     {
       "id": "invite-then-want",
@@ -746,7 +1193,12 @@
       "category": "Travel & Tourism",
       "target": "いっしょにおんせんにいきませんか。ええ、ぜひいきたいです",
       "pronunciation": "issho ni onsen ni ikimasen ka. ē, zehi ikitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2054870d580b41fc.mp3",
+      "audioOriginal": "2054870d580b41fc.orig.mp3",
+      "audioAuto": "2054870d580b41fc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2054870d580b41fc"
     },
     {
       "id": "aitakunakatta-1",
@@ -754,14 +1206,24 @@
       "category": "Grammar & Function Words",
       "target": "じょうしにあいたくなかったです",
       "pronunciation": "jōshi ni aitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "080b312a13570de2.mp3",
+      "audioOriginal": "080b312a13570de2.orig.mp3",
+      "audioAuto": "080b312a13570de2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "080b312a13570de2"
     },
     {
       "id": "emma-before-swimming-stretched",
       "english": "Emma-san did stretching exercises before swimming.",
       "category": "Sports & Hobbies",
       "target": "エマさんはおよぐまえにストレッチをしました",
-      "pronunciation": "Ema-san wa oyogu mae ni sutoretchi o shimashita"
+      "pronunciation": "Ema-san wa oyogu mae ni sutoretchi o shimashita",
+      "audio": "a0789449d8a6e512.mp3",
+      "audioOriginal": "a0789449d8a6e512.orig.mp3",
+      "audioAuto": "a0789449d8a6e512.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a0789449d8a6e512"
     },
     {
       "id": "mitakunakatta-1",
@@ -769,7 +1231,12 @@
       "category": "Grammar & Function Words",
       "target": "つまらないえいがはみたくなかったです",
       "pronunciation": "tsumaranai eiga wa mitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "bd58789d1ca31247.mp3",
+      "audioOriginal": "bd58789d1ca31247.orig.mp3",
+      "audioAuto": "bd58789d1ca31247.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bd58789d1ca31247"
     },
     {
       "id": "aitakunai-1",
@@ -777,7 +1244,12 @@
       "category": "Grammar & Function Words",
       "target": "スミスさんにあいたくないです",
       "pronunciation": "Sumisu-san ni aitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c639cbfd2726c4e7.mp3",
+      "audioOriginal": "c639cbfd2726c4e7.orig.mp3",
+      "audioAuto": "c639cbfd2726c4e7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c639cbfd2726c4e7"
     },
     {
       "id": "meal-before-meeting",
@@ -787,7 +1259,12 @@
       "pronunciation": "gogo ichi-ji kara kaigi ga arimasu. kaigi no mae ni shokuji o shimasu",
       "ttsText": "ごごいちじからかいぎがあります。かいぎのまえにしょくじをします",
       "uncertain": true,
-      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
+      "audio": "d88be4abb222f5cd.mp3",
+      "audioOriginal": "d88be4abb222f5cd.orig.mp3",
+      "audioAuto": "d88be4abb222f5cd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d88be4abb222f5cd"
     },
     {
       "id": "mitakunai-2",
@@ -795,7 +1272,12 @@
       "category": "Grammar & Function Words",
       "target": "きょうはテレビをみたくないです",
       "pronunciation": "kyō wa terebi o mitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f57bcb61ffaf18e6.mp3",
+      "audioOriginal": "f57bcb61ffaf18e6.orig.mp3",
+      "audioAuto": "f57bcb61ffaf18e6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f57bcb61ffaf18e6"
     },
     {
       "id": "where-eat-dinner",
@@ -803,7 +1285,12 @@
       "category": "Food",
       "target": "どこでばんごはんをたべたいですか",
       "pronunciation": "doko de bangohan o tabetai desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ca6acfddbb3d18ae.mp3",
+      "audioOriginal": "ca6acfddbb3d18ae.orig.mp3",
+      "audioAuto": "ca6acfddbb3d18ae.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ca6acfddbb3d18ae"
     },
     {
       "id": "oyogimasu-1",
@@ -811,7 +1298,12 @@
       "category": "Sports & Hobbies",
       "target": "エマさんはうみでおよぎます",
       "pronunciation": "Ema-san wa umi de oyogimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "fa42a2f5d9527f6f.mp3",
+      "audioOriginal": "fa42a2f5d9527f6f.orig.mp3",
+      "audioAuto": "fa42a2f5d9527f6f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fa42a2f5d9527f6f"
     },
     {
       "id": "ikitai-3",
@@ -819,7 +1311,12 @@
       "category": "Grammar & Function Words",
       "target": "どこにいきたいですか",
       "pronunciation": "doko ni ikitai desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "320f5723bbd525bd.mp3",
+      "audioOriginal": "320f5723bbd525bd.orig.mp3",
+      "audioAuto": "320f5723bbd525bd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "320f5723bbd525bd"
     },
     {
       "id": "aitakunakatta-3",
@@ -827,7 +1324,12 @@
       "category": "Grammar & Function Words",
       "target": "しゃちょうにあいたくなかったです",
       "pronunciation": "shachō ni aitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b1f9991a6650272a.mp3",
+      "audioOriginal": "b1f9991a6650272a.orig.mp3",
+      "audioAuto": "b1f9991a6650272a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b1f9991a6650272a"
     },
     {
       "id": "zehi-3",
@@ -835,7 +1337,12 @@
       "category": "Grammar & Function Words",
       "target": "このえいがはぜひみてください",
       "pronunciation": "kono eiga wa zehi mite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b9e8e0b7603e258f.mp3",
+      "audioOriginal": "b9e8e0b7603e258f.orig.mp3",
+      "audioAuto": "b9e8e0b7603e258f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b9e8e0b7603e258f"
     },
     {
       "id": "ikitakunai-1",
@@ -843,7 +1350,12 @@
       "category": "Grammar & Function Words",
       "target": "きょうはデパートにいきたくないです",
       "pronunciation": "kyō wa depāto ni ikitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c09ed38b2756a95a.mp3",
+      "audioOriginal": "c09ed38b2756a95a.orig.mp3",
+      "audioAuto": "c09ed38b2756a95a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c09ed38b2756a95a"
     },
     {
       "id": "mae-front-station",
@@ -852,7 +1364,12 @@
       "target": "えきのまえでともだちをまちます",
       "pronunciation": "eki no mae de tomodachi o machimasu",
       "aiSuggested": true,
-      "note": "Contrast pair with the previous item: compare えきのまえ (in front of the station) with えきにいくまえに (before going to the station)."
+      "note": "Contrast pair with the previous item: compare えきのまえ (in front of the station) with えきにいくまえに (before going to the station).",
+      "audio": "1e0d04caadc98f1f.mp3",
+      "audioOriginal": "1e0d04caadc98f1f.orig.mp3",
+      "audioAuto": "1e0d04caadc98f1f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1e0d04caadc98f1f"
     },
     {
       "id": "naraimasu-1",
@@ -860,7 +1377,12 @@
       "category": "School & Education",
       "target": "スミスさんはまいしゅうにほんごをならいます",
       "pronunciation": "Sumisu-san wa maishū nihongo o naraimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "366d49fa0f1958ba.mp3",
+      "audioOriginal": "366d49fa0f1958ba.orig.mp3",
+      "audioAuto": "366d49fa0f1958ba.mp3",
+      "audioMarked": true,
+      "audioTextHash": "366d49fa0f1958ba"
     },
     {
       "id": "wakarimashita-1",
@@ -871,7 +1393,12 @@
       "uncertain": true,
       "aiSuggested": true,
       "reviewNote": "Possibly already taught — Same ですね。わかりました confirm-and-acknowledge exchange as chapter-16 and chapter-16-extras; only the time and place differ. | Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "ttsText": "ろくじにえきですね。わかりました"
+      "ttsText": "ろくじにえきですね。わかりました",
+      "audio": "513732f261563ff1.mp3",
+      "audioOriginal": "513732f261563ff1.orig.mp3",
+      "audioAuto": "513732f261563ff1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "513732f261563ff1"
     },
     {
       "id": "ikitakunakatta-2",
@@ -879,7 +1406,12 @@
       "category": "Grammar & Function Words",
       "target": "さむかったですから、うみにいきたくなかったです",
       "pronunciation": "samukatta desu kara, umi ni ikitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "90df95afc5aa056a.mp3",
+      "audioOriginal": "90df95afc5aa056a.orig.mp3",
+      "audioAuto": "90df95afc5aa056a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "90df95afc5aa056a"
     },
     {
       "id": "kaitakunakatta-1",
@@ -887,7 +1419,12 @@
       "category": "Grammar & Function Words",
       "target": "たかいセーターはかいたくなかったです",
       "pronunciation": "takai sētā wa kaitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8f8447acaa9937a5.mp3",
+      "audioOriginal": "8f8447acaa9937a5.orig.mp3",
+      "audioAuto": "8f8447acaa9937a5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f8447acaa9937a5"
     },
     {
       "id": "nomitai-x2",
@@ -895,14 +1432,24 @@
       "category": "Grammar & Function Words",
       "target": "のどがかわきましたから、みずをのみたいです",
       "pronunciation": "nodo ga kawakimashita kara, mizu o nomitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b9bf146d5c93a800.mp3",
+      "audioOriginal": "b9bf146d5c93a800.orig.mp3",
+      "audioAuto": "b9bf146d5c93a800.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b9bf146d5c93a800"
     },
     {
       "id": "suzuki-before-email-checked-address",
       "english": "Suzuki-san checked the email address before sending the email.",
       "category": "Technology & Communication",
       "target": "すずきさんはメールをおくるまえにメールアドレスをチェックしました",
-      "pronunciation": "Suzuki-san wa mēru o okuru mae ni mēru adoresu o chekku shimashita"
+      "pronunciation": "Suzuki-san wa mēru o okuru mae ni mēru adoresu o chekku shimashita",
+      "audio": "ba125dec93ef4bad.mp3",
+      "audioOriginal": "ba125dec93ef4bad.orig.mp3",
+      "audioAuto": "ba125dec93ef4bad.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ba125dec93ef4bad"
     },
     {
       "id": "coffee-before-work",
@@ -910,7 +1457,12 @@
       "category": "Work & Occupations",
       "target": "しごとのまえにコーヒーをのみたいです",
       "pronunciation": "shigoto no mae ni kōhī o nomitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3b36d7c068152fd1.mp3",
+      "audioOriginal": "3b36d7c068152fd1.orig.mp3",
+      "audioAuto": "3b36d7c068152fd1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3b36d7c068152fd1"
     },
     {
       "id": "dansu-1",
@@ -918,7 +1470,12 @@
       "category": "Sports & Hobbies",
       "target": "わたしはダンスがすきです",
       "pronunciation": "watashi wa dansu ga suki desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7e1c2e0229c9c0d6.mp3",
+      "audioOriginal": "7e1c2e0229c9c0d6.orig.mp3",
+      "audioAuto": "7e1c2e0229c9c0d6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7e1c2e0229c9c0d6"
     }
   ]
 }

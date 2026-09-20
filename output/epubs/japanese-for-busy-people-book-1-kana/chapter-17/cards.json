@@ -58,21 +58,36 @@
       "english": "Lobby",
       "category": "Travel & Tourism",
       "target": "ロビー",
-      "pronunciation": "robī"
+      "pronunciation": "robī",
+      "audio": "3e0530f54a471311.mp3",
+      "audioOriginal": "3e0530f54a471311.orig.mp3",
+      "audioAuto": "3e0530f54a471311.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3e0530f54a471311"
     },
     {
       "id": "shiryou",
       "english": "Material, data, documents",
       "category": "Work & Occupations",
       "target": "しりょう",
-      "pronunciation": "shiryō"
+      "pronunciation": "shiryō",
+      "audio": "572f0d0a2a322ca0.mp3",
+      "audioOriginal": "572f0d0a2a322ca0.orig.mp3",
+      "audioAuto": "572f0d0a2a322ca0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "572f0d0a2a322ca0"
     },
     {
       "id": "tegami",
       "english": "Letter",
       "category": "Technology & Communication",
       "target": "てがみ",
-      "pronunciation": "tegami"
+      "pronunciation": "tegami",
+      "audio": "587a46a6d8d3cafb.mp3",
+      "audioOriginal": "587a46a6d8d3cafb.orig.mp3",
+      "audioAuto": "587a46a6d8d3cafb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "587a46a6d8d3cafb"
     },
     {
       "id": "machi",
@@ -90,28 +105,48 @@
       "target": "て",
       "pronunciation": "te",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 21: Asking Permission: May I Have It? (て (hand) is formally taught as part of the parts-of-the-body vocabulary set)"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 21: Asking Permission: May I Have It? (て (hand) is formally taught as part of the parts-of-the-body vocabulary set)",
+      "audio": "5c8b8b79047427f5.mp3",
+      "audioOriginal": "5c8b8b79047427f5.orig.mp3",
+      "audioAuto": "5c8b8b79047427f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5c8b8b79047427f5"
     },
     {
       "id": "kurabu",
       "english": "Club",
       "category": "Sports & Hobbies",
       "target": "クラブ",
-      "pronunciation": "kurabu"
+      "pronunciation": "kurabu",
+      "audio": "797405ab170723cb.mp3",
+      "audioOriginal": "797405ab170723cb.orig.mp3",
+      "audioAuto": "797405ab170723cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "797405ab170723cb"
     },
     {
       "id": "kagu",
       "english": "Furniture",
       "category": "Home & Household",
       "target": "かぐ",
-      "pronunciation": "kagu"
+      "pronunciation": "kagu",
+      "audio": "1460aa0ccfa3453b.mp3",
+      "audioOriginal": "1460aa0ccfa3453b.orig.mp3",
+      "audioAuto": "1460aa0ccfa3453b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1460aa0ccfa3453b"
     },
     {
       "id": "antiiku",
       "english": "Antiques",
       "category": "Shopping",
       "target": "アンティーク",
-      "pronunciation": "antīku"
+      "pronunciation": "antīku",
+      "audio": "de9d202020d060b7.mp3",
+      "audioOriginal": "de9d202020d060b7.orig.mp3",
+      "audioAuto": "de9d202020d060b7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de9d202020d060b7"
     },
     {
       "id": "biyouin-2",
@@ -119,7 +154,12 @@
       "category": "Shopping",
       "target": "びよういん",
       "pronunciation": "biyōin",
-      "note": "Don't confuse it with びょういん (byōin) \"Hospital, clinic\" from Lesson 13. This one has よ (yo), and it means a place to get your hair done."
+      "note": "Don't confuse it with びょういん (byōin) \"Hospital, clinic\" from Lesson 13. This one has よ (yo), and it means a place to get your hair done.",
+      "audio": "933be15e34a414ec.mp3",
+      "audioOriginal": "933be15e34a414ec.orig.mp3",
+      "audioAuto": "933be15e34a414ec.mp3",
+      "audioMarked": true,
+      "audioTextHash": "933be15e34a414ec"
     },
     {
       "id": "kaigi-l17",
@@ -236,28 +276,48 @@
       "english": "In the future",
       "category": "Time",
       "target": "しょうらい",
-      "pronunciation": "shōrai"
+      "pronunciation": "shōrai",
+      "audio": "72438f595829af27.mp3",
+      "audioOriginal": "72438f595829af27.orig.mp3",
+      "audioAuto": "72438f595829af27.mp3",
+      "audioMarked": true,
+      "audioTextHash": "72438f595829af27"
     },
     {
       "id": "ikebana",
       "english": "Flower arrangement",
       "category": "Sports & Hobbies",
       "target": "いけばな",
-      "pronunciation": "ikebana"
+      "pronunciation": "ikebana",
+      "audio": "4643c3921ef72544.mp3",
+      "audioOriginal": "4643c3921ef72544.orig.mp3",
+      "audioAuto": "4643c3921ef72544.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4643c3921ef72544"
     },
     {
       "id": "karate",
       "english": "Karate",
       "category": "Sports & Hobbies",
       "target": "からて",
-      "pronunciation": "karate"
+      "pronunciation": "karate",
+      "audio": "9b16b07c66d3c1c9.mp3",
+      "audioOriginal": "9b16b07c66d3c1c9.orig.mp3",
+      "audioAuto": "9b16b07c66d3c1c9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9b16b07c66d3c1c9"
     },
     {
       "id": "piano",
       "english": "Piano",
       "category": "Sports & Hobbies",
       "target": "ピアノ",
-      "pronunciation": "piano"
+      "pronunciation": "piano",
+      "audio": "e2d03469a9269600.mp3",
+      "audioOriginal": "e2d03469a9269600.orig.mp3",
+      "audioAuto": "e2d03469a9269600.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e2d03469a9269600"
     },
     {
       "id": "dansu",
@@ -266,7 +326,12 @@
       "target": "ダンス",
       "pronunciation": "dansu",
       "uncertain": true,
-      "reviewNote": "Appears only as a Hobbies picture caption (item 4); the vocabulary table does not list it. Gloss is mine. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)"
+      "reviewNote": "Appears only as a Hobbies picture caption (item 4); the vocabulary table does not list it. Gloss is mine. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
+      "audio": "7b773e2afc52f56a.mp3",
+      "audioOriginal": "7b773e2afc52f56a.orig.mp3",
+      "audioAuto": "7b773e2afc52f56a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7b773e2afc52f56a"
     },
     {
       "id": "shizuka-na",
@@ -309,14 +374,24 @@
       "target": "ぜひ",
       "pronunciation": "zehi",
       "uncertain": true,
-      "reviewNote": "Paul's reply いいですね。ぜひ。 in Speaking Practice 1; the English gloss there is 'I'd love to', so this is the whole-phrase sense. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)"
+      "reviewNote": "Paul's reply いいですね。ぜひ。 in Speaking Practice 1; the English gloss there is 'I'd love to', so this is the whole-phrase sense. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "audio": "5f0ea2d182e88fd8.mp3",
+      "audioOriginal": "5f0ea2d182e88fd8.orig.mp3",
+      "audioAuto": "5f0ea2d182e88fd8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f0ea2d182e88fd8"
     },
     {
       "id": "nemasu",
       "english": "Sleep, go to bed",
       "category": "Home & Household",
       "target": "ねます",
-      "pronunciation": "nemasu"
+      "pronunciation": "nemasu",
+      "audio": "e14108772cdd349f.mp3",
+      "audioOriginal": "e14108772cdd349f.orig.mp3",
+      "audioAuto": "e14108772cdd349f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e14108772cdd349f"
     },
     {
       "id": "mae",
@@ -327,7 +402,12 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target) | Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Scene added at the collision audit: まえ is already taught in Lesson 12 in its position sense (\"in front\"), and this card teaches the time sense. Confirm the wording.",
       "note": "Here まえ (mae) means \"before\" in time. In Lesson 12 it meant \"in front\" of a place, so the sentence tells you which.",
-      "scene": "saying when something happens"
+      "scene": "saying when something happens",
+      "audio": "1ac5880b7f90e6a6.mp3",
+      "audioOriginal": "1ac5880b7f90e6a6.orig.mp3",
+      "audioAuto": "1ac5880b7f90e6a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1ac5880b7f90e6a6"
     },
     {
       "id": "no-mae-ni",
@@ -336,7 +416,12 @@
       "target": "かいぎのまえに",
       "pronunciation": "kaigi no mae ni",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Target changed from the schematic 〜のまえに to a concrete instance the chapter prints (EXERCISES V), because a placeholder is not a card. Confirm the choice."
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Target changed from the schematic 〜のまえに to a concrete instance the chapter prints (EXERCISES V), because a placeholder is not a card. Confirm the choice.",
+      "audio": "daecfe96b61f0905.mp3",
+      "audioOriginal": "daecfe96b61f0905.orig.mp3",
+      "audioAuto": "daecfe96b61f0905.mp3",
+      "audioMarked": true,
+      "audioTextHash": "daecfe96b61f0905"
     },
     {
       "id": "neru-mae-ni",
@@ -344,21 +429,36 @@
       "category": "Time",
       "target": "ねるまえに",
       "pronunciation": "neru mae ni",
-      "note": "A verb in its dictionary form (Lesson 15) goes straight before まえに (mae ni), with no の (no). A noun needs の, as in 〜のまえに (no mae ni)."
+      "note": "A verb in its dictionary form (Lesson 15) goes straight before まえに (mae ni), with no の (no). A noun needs の, as in 〜のまえに (no mae ni).",
+      "audio": "d21b5a8e2c88c83a.mp3",
+      "audioOriginal": "d21b5a8e2c88c83a.orig.mp3",
+      "audioAuto": "d21b5a8e2c88c83a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d21b5a8e2c88c83a"
     },
     {
       "id": "naraimasu",
       "english": "Learn, take lessons in",
       "category": "School & Education",
       "target": "ならいます",
-      "pronunciation": "naraimasu"
+      "pronunciation": "naraimasu",
+      "audio": "3fe1f50dfde1f9af.mp3",
+      "audioOriginal": "3fe1f50dfde1f9af.orig.mp3",
+      "audioAuto": "3fe1f50dfde1f9af.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3fe1f50dfde1f9af"
     },
     {
       "id": "sutorecchi-o-shimasu",
       "english": "Do stretching exercises",
       "category": "Sports & Hobbies",
       "target": "ストレッチをします",
-      "pronunciation": "sutoretchi o shimasu"
+      "pronunciation": "sutoretchi o shimasu",
+      "audio": "6bdf1526117a4085.mp3",
+      "audioOriginal": "6bdf1526117a4085.orig.mp3",
+      "audioAuto": "6bdf1526117a4085.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6bdf1526117a4085"
     },
     {
       "id": "ryouri-o-shimasu",
@@ -366,21 +466,36 @@
       "category": "Home & Household",
       "target": "りょうりをします",
       "pronunciation": "ryōri o shimasu",
-      "hint": "the activity, not the person"
+      "hint": "the activity, not the person",
+      "audio": "3bfabd4800d97ac1.mp3",
+      "audioOriginal": "3bfabd4800d97ac1.orig.mp3",
+      "audioAuto": "3bfabd4800d97ac1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3bfabd4800d97ac1"
     },
     {
       "id": "araimasu",
       "english": "Wash",
       "category": "Home & Household",
       "target": "あらいます",
-      "pronunciation": "araimasu"
+      "pronunciation": "araimasu",
+      "audio": "bc5b465183b4f172.mp3",
+      "audioOriginal": "bc5b465183b4f172.orig.mp3",
+      "audioAuto": "bc5b465183b4f172.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bc5b465183b4f172"
     },
     {
       "id": "shawaa-o-abimasu",
       "english": "Take a shower",
       "category": "Home & Household",
       "target": "シャワーをあびます",
-      "pronunciation": "shawā o abimasu"
+      "pronunciation": "shawā o abimasu",
+      "audio": "2d065cf8901e099f.mp3",
+      "audioOriginal": "2d065cf8901e099f.orig.mp3",
+      "audioAuto": "2d065cf8901e099f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d065cf8901e099f"
     },
     {
       "id": "shokuji-o-shimasu",
@@ -389,14 +504,24 @@
       "target": "しょくじをします",
       "pronunciation": "shokuji o shimasu",
       "uncertain": true,
-      "reviewNote": "Verb caption ⑤ in the Word Power picture list; the vocabulary table does not gloss it. English is my best guess. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)"
+      "reviewNote": "Verb caption ⑤ in the Word Power picture list; the vocabulary table does not gloss it. English is my best guess. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "audio": "081254233ac10e46.mp3",
+      "audioOriginal": "081254233ac10e46.orig.mp3",
+      "audioAuto": "081254233ac10e46.mp3",
+      "audioMarked": true,
+      "audioTextHash": "081254233ac10e46"
     },
     {
       "id": "hajimemasu",
       "english": "Start, begin",
       "category": "Other",
       "target": "はじめます",
-      "pronunciation": "hajimemasu"
+      "pronunciation": "hajimemasu",
+      "audio": "6d8848b42aeb9830.mp3",
+      "audioOriginal": "6d8848b42aeb9830.orig.mp3",
+      "audioAuto": "6d8848b42aeb9830.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6d8848b42aeb9830"
     },
     {
       "id": "kakimasu",
@@ -407,7 +532,12 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target) | Scene added at the collision audit: かきます is already taught in Lesson 15 as \"draw\". Same kana, different sense. Confirm the wording.",
       "note": "This is the same word as かきます (kakimasu) \"Draw\" from Lesson 15. The object tells you which: a letter or words means write, a picture means draw.",
-      "scene": "asked what you do with a letter or an email"
+      "scene": "asked what you do with a letter or an email",
+      "audio": "641794d0a3619820.mp3",
+      "audioOriginal": "641794d0a3619820.orig.mp3",
+      "audioAuto": "641794d0a3619820.mp3",
+      "audioMarked": true,
+      "audioTextHash": "641794d0a3619820"
     },
     {
       "id": "sumimasu-2",
@@ -417,7 +547,12 @@
       "pronunciation": "sumimasu",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (すみます is re-taught later as すんでいます in the present-state て-form lesson)",
-      "note": "This is すみます (sumimasu), a verb whose place takes に (ni). It is not すみません (sumimasen) \"Excuse me\" from Frequently Used Expressions, though the two sound alike."
+      "note": "This is すみます (sumimasu), a verb whose place takes に (ni). It is not すみません (sumimasen) \"Excuse me\" from Frequently Used Expressions, though the two sound alike.",
+      "audio": "4dabbb0d40f831b1.mp3",
+      "audioOriginal": "4dabbb0d40f831b1.orig.mp3",
+      "audioAuto": "4dabbb0d40f831b1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4dabbb0d40f831b1"
     },
     {
       "id": "benkyou-shimasu",
@@ -436,21 +571,36 @@
       "category": "Weather & Nature",
       "target": "はなみをします",
       "pronunciation": "hanami o shimasu",
-      "note": "The book prints it with an optional お in front (おはなみ)."
+      "note": "The book prints it with an optional お in front (おはなみ).",
+      "audio": "689eb8886ce6d2b8.mp3",
+      "audioOriginal": "689eb8886ce6d2b8.orig.mp3",
+      "audioAuto": "689eb8886ce6d2b8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "689eb8886ce6d2b8"
     },
     {
       "id": "ohanami-o-shimasu",
       "english": "To view cherry blossoms",
       "category": "Weather & Nature",
       "target": "(お)はなみをします",
-      "pronunciation": "(o)hanami o shimasu"
+      "pronunciation": "(o)hanami o shimasu",
+      "audio": "32ac360ff263ccb1.mp3",
+      "audioOriginal": "32ac360ff263ccb1.orig.mp3",
+      "audioAuto": "32ac360ff263ccb1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "32ac360ff263ccb1"
     },
     {
       "id": "daunroodo-shimasu",
       "english": "Download",
       "category": "Technology & Communication",
       "target": "ダウンロードします",
-      "pronunciation": "daunrōdo shimasu"
+      "pronunciation": "daunrōdo shimasu",
+      "audio": "200a4b4901e8ba4a.mp3",
+      "audioOriginal": "200a4b4901e8ba4a.orig.mp3",
+      "audioAuto": "200a4b4901e8ba4a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "200a4b4901e8ba4a"
     },
     {
       "id": "chekku-shimasu-2",
@@ -459,7 +609,12 @@
       "target": "チェックします",
       "pronunciation": "chekku shimasu",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (チェック appears as taught vocabulary in a later lesson)",
+      "audio": "d5cd232b037c51d5.mp3",
+      "audioOriginal": "d5cd232b037c51d5.orig.mp3",
+      "audioAuto": "d5cd232b037c51d5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5cd232b037c51d5"
     },
     {
       "id": "okurimasu",
@@ -490,7 +645,12 @@
       "target": "およぎます",
       "pronunciation": "oyogimasu",
       "uncertain": true,
-      "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)"
+      "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "audio": "6d6d4ce8fc692d62.mp3",
+      "audioOriginal": "6d6d4ce8fc692d62.orig.mp3",
+      "audioAuto": "6d6d4ce8fc692d62.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6d6d4ce8fc692d62"
     },
     {
       "id": "kaerimasu-l17",
@@ -522,21 +682,36 @@
       "category": "Time",
       "target": "たべるまえに",
       "pronunciation": "taberu mae ni",
-      "note": "Dictionary form plus まえに (mae ni), with no の (no). It is the same pattern as ねるまえに (neru mae ni)."
+      "note": "Dictionary form plus まえに (mae ni), with no の (no). It is the same pattern as ねるまえに (neru mae ni).",
+      "audio": "6934b67ba8555fd6.mp3",
+      "audioOriginal": "6934b67ba8555fd6.orig.mp3",
+      "audioAuto": "6934b67ba8555fd6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6934b67ba8555fd6"
     },
     {
       "id": "kaitai-desu-2",
       "english": "(I) want to buy",
       "category": "Grammar & Function Words",
       "target": "かいたいです",
-      "pronunciation": "kaitai desu"
+      "pronunciation": "kaitai desu",
+      "audio": "5ac963f35e03e4e3.mp3",
+      "audioOriginal": "5ac963f35e03e4e3.orig.mp3",
+      "audioAuto": "5ac963f35e03e4e3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5ac963f35e03e4e3"
     },
     {
       "id": "tabetai-desu-2",
       "english": "(I) want to eat",
       "category": "Food",
       "target": "たべたいです",
-      "pronunciation": "tabetai desu"
+      "pronunciation": "tabetai desu",
+      "audio": "07cd7e67c8be9fed.mp3",
+      "audioOriginal": "07cd7e67c8be9fed.orig.mp3",
+      "audioAuto": "07cd7e67c8be9fed.mp3",
+      "audioMarked": true,
+      "audioTextHash": "07cd7e67c8be9fed"
     },
     {
       "id": "ikitai-desu",
@@ -545,7 +720,12 @@
       "target": "いきたいです",
       "pronunciation": "ikitai desu",
       "aiSuggested": true,
-      "hint": "Drop ます from いきます, add たいです"
+      "hint": "Drop ます from いきます, add たいです",
+      "audio": "4fdc055ee839708e.mp3",
+      "audioOriginal": "4fdc055ee839708e.orig.mp3",
+      "audioAuto": "4fdc055ee839708e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4fdc055ee839708e"
     },
     {
       "id": "ikitakunai-desu",
@@ -554,7 +734,12 @@
       "target": "いきたくないです",
       "pronunciation": "ikitakunai desu",
       "aiSuggested": true,
-      "note": "たい conjugates like an い-adjective, so the negative is たくないです."
+      "note": "たい conjugates like an い-adjective, so the negative is たくないです.",
+      "audio": "53ddfeb58057abb7.mp3",
+      "audioOriginal": "53ddfeb58057abb7.orig.mp3",
+      "audioAuto": "53ddfeb58057abb7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "53ddfeb58057abb7"
     },
     {
       "id": "ikitakatta-desu",
@@ -563,7 +748,12 @@
       "target": "いきたかったです",
       "pronunciation": "ikitakatta desu",
       "aiSuggested": true,
-      "note": "Past tense follows the い-adjective pattern (Lesson 11): たい (tai) becomes たかった (takatta)."
+      "note": "Past tense follows the い-adjective pattern (Lesson 11): たい (tai) becomes たかった (takatta).",
+      "audio": "729b6c6a4996c33b.mp3",
+      "audioOriginal": "729b6c6a4996c33b.orig.mp3",
+      "audioAuto": "729b6c6a4996c33b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "729b6c6a4996c33b"
     },
     {
       "id": "ikitakunakatta-desu",
@@ -572,7 +762,12 @@
       "target": "いきたくなかったです",
       "pronunciation": "ikitakunakatta desu",
       "aiSuggested": true,
-      "note": "Past negative follows the い-adjective pattern (Lesson 11): たくない (takunai) becomes たくなかった (takunakatta)."
+      "note": "Past negative follows the い-adjective pattern (Lesson 11): たくない (takunai) becomes たくなかった (takunakatta).",
+      "audio": "6b9114a88d3425a2.mp3",
+      "audioOriginal": "6b9114a88d3425a2.orig.mp3",
+      "audioAuto": "6b9114a88d3425a2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6b9114a88d3425a2"
     },
     {
       "id": "nomitai-desu",
@@ -581,7 +776,12 @@
       "target": "のみたいです",
       "pronunciation": "nomitai desu",
       "aiSuggested": true,
-      "note": "With たい, the object can take が instead of を: ワインが のみたいです."
+      "note": "With たい, the object can take が instead of を: ワインが のみたいです.",
+      "audio": "2af3d44100e0e293.mp3",
+      "audioOriginal": "2af3d44100e0e293.orig.mp3",
+      "audioAuto": "2af3d44100e0e293.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2af3d44100e0e293"
     },
     {
       "id": "kaitakunai-desu",
@@ -589,7 +789,12 @@
       "category": "Grammar & Function Words",
       "target": "かいたくないです",
       "pronunciation": "kaitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e9cfbe01fa9ac4c8.mp3",
+      "audioOriginal": "e9cfbe01fa9ac4c8.orig.mp3",
+      "audioAuto": "e9cfbe01fa9ac4c8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e9cfbe01fa9ac4c8"
     },
     {
       "id": "kaitakatta-desu",
@@ -597,7 +802,12 @@
       "category": "Grammar & Function Words",
       "target": "かいたかったです",
       "pronunciation": "kaitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "0003095b24051c9d.mp3",
+      "audioOriginal": "0003095b24051c9d.orig.mp3",
+      "audioAuto": "0003095b24051c9d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0003095b24051c9d"
     },
     {
       "id": "kaitakunakatta-desu",
@@ -605,7 +815,12 @@
       "category": "Grammar & Function Words",
       "target": "かいたくなかったです",
       "pronunciation": "kaitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "0a444d89ae77d187.mp3",
+      "audioOriginal": "0a444d89ae77d187.orig.mp3",
+      "audioAuto": "0a444d89ae77d187.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0a444d89ae77d187"
     },
     {
       "id": "tabetakunai-desu",
@@ -613,7 +828,12 @@
       "category": "Grammar & Function Words",
       "target": "たべたくないです",
       "pronunciation": "tabetakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f4373d35d0e85cec.mp3",
+      "audioOriginal": "f4373d35d0e85cec.orig.mp3",
+      "audioAuto": "f4373d35d0e85cec.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f4373d35d0e85cec"
     },
     {
       "id": "tabetakatta-desu",
@@ -621,7 +841,12 @@
       "category": "Grammar & Function Words",
       "target": "たべたかったです",
       "pronunciation": "tabetakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f4431924d87f3a5d.mp3",
+      "audioOriginal": "f4431924d87f3a5d.orig.mp3",
+      "audioAuto": "f4431924d87f3a5d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f4431924d87f3a5d"
     },
     {
       "id": "tabetakunakatta-desu",
@@ -629,7 +854,12 @@
       "category": "Grammar & Function Words",
       "target": "たべたくなかったです",
       "pronunciation": "tabetakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "cc7a83128f8434ca.mp3",
+      "audioOriginal": "cc7a83128f8434ca.orig.mp3",
+      "audioAuto": "cc7a83128f8434ca.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc7a83128f8434ca"
     },
     {
       "id": "mitai-desu",
@@ -637,7 +867,12 @@
       "category": "Grammar & Function Words",
       "target": "みたいです",
       "pronunciation": "mitai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2b3542a180165f84.mp3",
+      "audioOriginal": "2b3542a180165f84.orig.mp3",
+      "audioAuto": "2b3542a180165f84.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b3542a180165f84"
     },
     {
       "id": "mitakunai-desu",
@@ -645,7 +880,12 @@
       "category": "Grammar & Function Words",
       "target": "みたくないです",
       "pronunciation": "mitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "aac69cb9a7bb417f.mp3",
+      "audioOriginal": "aac69cb9a7bb417f.orig.mp3",
+      "audioAuto": "aac69cb9a7bb417f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aac69cb9a7bb417f"
     },
     {
       "id": "mitakatta-desu",
@@ -653,7 +893,12 @@
       "category": "Grammar & Function Words",
       "target": "みたかったです",
       "pronunciation": "mitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "0923237d86db250b.mp3",
+      "audioOriginal": "0923237d86db250b.orig.mp3",
+      "audioAuto": "0923237d86db250b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0923237d86db250b"
     },
     {
       "id": "mitakunakatta-desu",
@@ -661,7 +906,12 @@
       "category": "Grammar & Function Words",
       "target": "みたくなかったです",
       "pronunciation": "mitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a510b81330572720.mp3",
+      "audioOriginal": "a510b81330572720.orig.mp3",
+      "audioAuto": "a510b81330572720.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a510b81330572720"
     },
     {
       "id": "aitai-desu",
@@ -670,7 +920,12 @@
       "target": "あいたいです",
       "pronunciation": "aitai desu",
       "aiSuggested": true,
-      "note": "あいます (aimasu, Lesson 9) marks the person you meet with に (ni). That stays the same with たい (tai): たなかさんにあいたいです (Tanaka-san ni aitai desu)."
+      "note": "あいます (aimasu, Lesson 9) marks the person you meet with に (ni). That stays the same with たい (tai): たなかさんにあいたいです (Tanaka-san ni aitai desu).",
+      "audio": "89836b66dd851c12.mp3",
+      "audioOriginal": "89836b66dd851c12.orig.mp3",
+      "audioAuto": "89836b66dd851c12.mp3",
+      "audioMarked": true,
+      "audioTextHash": "89836b66dd851c12"
     },
     {
       "id": "aitakunai-desu",
@@ -678,7 +933,12 @@
       "category": "Grammar & Function Words",
       "target": "あいたくないです",
       "pronunciation": "aitakunai desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "51705fe15dc6c139.mp3",
+      "audioOriginal": "51705fe15dc6c139.orig.mp3",
+      "audioAuto": "51705fe15dc6c139.mp3",
+      "audioMarked": true,
+      "audioTextHash": "51705fe15dc6c139"
     },
     {
       "id": "aitakatta-desu",
@@ -686,7 +946,12 @@
       "category": "Grammar & Function Words",
       "target": "あいたかったです",
       "pronunciation": "aitakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b33b7a0d93c512be.mp3",
+      "audioOriginal": "b33b7a0d93c512be.orig.mp3",
+      "audioAuto": "b33b7a0d93c512be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b33b7a0d93c512be"
     },
     {
       "id": "aitakunakatta-desu",
@@ -694,7 +959,12 @@
       "category": "Grammar & Function Words",
       "target": "あいたくなかったです",
       "pronunciation": "aitakunakatta desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "08cbeeca9e0563f5.mp3",
+      "audioOriginal": "08cbeeca9e0563f5.orig.mp3",
+      "audioAuto": "08cbeeca9e0563f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "08cbeeca9e0563f5"
     },
     {
       "id": "jaa-mata-ashita",
@@ -702,7 +972,12 @@
       "category": "Greetings",
       "target": "じゃ、またあした",
       "pronunciation": "ja, mata ashita",
-      "note": "Compare じゃ、また (ja, mata) \"See you\" from Frequently Used Expressions. Adding the day or time you will meet again is the usual way to part, instead of さようなら (sayōnara)."
+      "note": "Compare じゃ、また (ja, mata) \"See you\" from Frequently Used Expressions. Adding the day or time you will meet again is the usual way to part, instead of さようなら (sayōnara).",
+      "audio": "0d9fe7fbf0055a5a.mp3",
+      "audioOriginal": "0d9fe7fbf0055a5a.orig.mp3",
+      "audioAuto": "0d9fe7fbf0055a5a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0d9fe7fbf0055a5a"
     },
     {
       "id": "ja-mata-suiyoubi-ni",
@@ -711,7 +986,12 @@
       "target": "じゃ、またすいようびに",
       "pronunciation": "ja, mata suiyōbi ni",
       "aiSuggested": true,
-      "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead."
+      "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead.",
+      "audio": "edd305dc010f2b94.mp3",
+      "audioOriginal": "edd305dc010f2b94.orig.mp3",
+      "audioAuto": "edd305dc010f2b94.mp3",
+      "audioMarked": true,
+      "audioTextHash": "edd305dc010f2b94"
     },
     {
       "id": "chotto-matte-kudasai-l17",
@@ -731,7 +1011,12 @@
       "target": "わかりました",
       "pronunciation": "wakarimashita",
       "uncertain": true,
-      "reviewNote": "Paul's closing line. Translation is 'I've got that'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (わかります is formally taught as a verb/grammar point (noun が わかります) later)"
+      "reviewNote": "Paul's closing line. Translation is 'I've got that'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (わかります is formally taught as a verb/grammar point (noun が わかります) later)",
+      "audio": "cace7afeb5538c98.mp3",
+      "audioOriginal": "cace7afeb5538c98.orig.mp3",
+      "audioAuto": "cace7afeb5538c98.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cace7afeb5538c98"
     },
     {
       "id": "nozomi-hotel",

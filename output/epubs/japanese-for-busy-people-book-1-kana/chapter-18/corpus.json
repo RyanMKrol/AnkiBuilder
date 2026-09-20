@@ -1,0 +1,819 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "phase": "base"
+  },
+  "items": [
+    {
+      "id": "otouto",
+      "target": "おとうと",
+      "english": "(My) younger brother.",
+      "category": "Family & People",
+      "note": "Used for one's own younger brother, not someone else's."
+    },
+    {
+      "id": "kaitai-desu",
+      "target": "かいたいです",
+      "english": "Want to buy.",
+      "category": "Grammar & Function Words",
+      "note": "ます-stem か(い) + たいです. Conjugates like an い-adjective: かいたくないです / かいたかったです / かいたくなかったです."
+    },
+    {
+      "id": "no-mae-ni",
+      "target": "〜のまえに",
+      "english": "Before…",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same 'before' pattern; -2 carries the noun-vs-verb attachment note and a fuller gloss."
+    },
+    {
+      "id": "mae",
+      "target": "まえ",
+      "english": "Before.",
+      "category": "Time",
+      "note": "Printed as an indented sub-entry under 〜のまえに."
+    },
+    {
+      "id": "nozomi-hotel",
+      "target": "のぞみホテル",
+      "english": "Nozomi Hotel.",
+      "category": "Travel & Tourism",
+      "note": "An invented name used in the textbook's examples."
+    },
+    {
+      "id": "robii",
+      "target": "ロビー",
+      "english": "Lobby.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "taberu-mae-ni",
+      "target": "たべる まえに",
+      "english": "Before eating.",
+      "category": "Grammar & Function Words",
+      "note": "Dictionary form + まえに."
+    },
+    {
+      "id": "tabetai-desu",
+      "target": "たべたいです",
+      "english": "Want to eat.",
+      "category": "Grammar & Function Words",
+      "note": "ます-stem たべ + たいです."
+    },
+    {
+      "id": "shiryou",
+      "target": "しりょう",
+      "english": "Material, data, documents.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "neru-mae-ni",
+      "target": "ねるまえに",
+      "english": "Before sleeping / going to bed.",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same phrase; -2 carries the 'dictionary form ねる + まえに' note."
+    },
+    {
+      "id": "nemasu",
+      "target": "ねます",
+      "english": "Sleep, go to bed.",
+      "category": "Body & Health",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; -2 has the Regular II / dictionary-form note (its 'Other' category should be corrected to Body & Health)."
+    },
+    {
+      "id": "sutorecchi-o-shimasu",
+      "target": "ストレッチをします",
+      "english": "Do stretching exercises.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "ikebana",
+      "target": "いけばな",
+      "english": "Flower arrangement.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "karate",
+      "target": "からて",
+      "english": "Karate.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "piano",
+      "target": "ピアノ",
+      "english": "Piano.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "naraimasu",
+      "target": "ならいます",
+      "english": "Learn, take lessons in.",
+      "category": "School & Education"
+    },
+    {
+      "id": "ryouri-o-shimasu",
+      "target": "りょうりをします",
+      "english": "Cook.",
+      "category": "Food"
+    },
+    {
+      "id": "araimasu",
+      "target": "あらいます",
+      "english": "Wash.",
+      "category": "Home & Household"
+    },
+    {
+      "id": "shawaa-o-abimasu",
+      "target": "シャワーをあびます",
+      "english": "Take a shower.",
+      "category": "Body & Health",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same phrase; -wo carries the 'あびます is Regular II' note."
+    },
+    {
+      "id": "hajimemasu",
+      "target": "はじめます",
+      "english": "Start, begin.",
+      "category": "Other",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; -2 carries the Regular II / dictionary-form / transitive note."
+    },
+    {
+      "id": "kakimasu",
+      "target": "かきます",
+      "english": "Write.",
+      "category": "School & Education"
+    },
+    {
+      "id": "tegami",
+      "target": "てがみ",
+      "english": "Letter.",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "shourai",
+      "target": "しょうらい",
+      "english": "In the future.",
+      "category": "Time"
+    },
+    {
+      "id": "sumimasu",
+      "target": "すみます",
+      "english": "Live.",
+      "category": "Home & Household",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; -2 carries the 'takes に for the place' note with an example."
+    },
+    {
+      "id": "machi",
+      "target": "まち",
+      "english": "Town.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "benkyou-shimasu",
+      "target": "べんきょうします",
+      "english": "Study.",
+      "category": "School & Education"
+    },
+    {
+      "id": "ajaruto-school",
+      "target": "アジャルト・スクール",
+      "english": "AJALT School.",
+      "category": "School & Education",
+      "note": "An invented name used in the textbook's examples."
+    },
+    {
+      "id": "ohanami-o-shimasu",
+      "target": "(お)はなみをします",
+      "english": "View cherry blossoms.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "sakura-kouen",
+      "target": "さくらこうえん",
+      "english": "Sakura Park.",
+      "category": "Travel & Tourism",
+      "note": "An invented name used in the textbook's examples."
+    },
+    {
+      "id": "kurabu",
+      "target": "クラブ",
+      "english": "Club.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "minato-tennis-club",
+      "target": "みなとテニスクラブ",
+      "english": "Minato Tennis Club.",
+      "category": "Sports & Hobbies",
+      "note": "An invented name used in the textbook's examples."
+    },
+    {
+      "id": "kagu",
+      "target": "かぐ",
+      "english": "Furniture.",
+      "category": "Home & Household"
+    },
+    {
+      "id": "antiiku-toukyou",
+      "target": "アンティークとうきょう",
+      "english": "Antique Tokyo.",
+      "category": "Shopping",
+      "note": "An invented shop name used in the textbook's examples."
+    },
+    {
+      "id": "antiiku",
+      "target": "アンティーク",
+      "english": "Antiques.",
+      "category": "Shopping"
+    },
+    {
+      "id": "daunroodo-shimasu",
+      "target": "ダウンロードします",
+      "english": "Download.",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "biyouin",
+      "target": "びよういん",
+      "english": "Hairdresser.",
+      "category": "Work & Occupations",
+      "note": "びよういん (beauty salon) has no long vowel; びょういん means 'hospital'."
+    },
+    {
+      "id": "chekku-shimasu",
+      "target": "チェックします",
+      "english": "Check.",
+      "category": "Other"
+    },
+    {
+      "id": "te",
+      "target": "て",
+      "english": "Hand.",
+      "category": "Body & Health"
+    },
+    {
+      "id": "itadakimasu",
+      "target": "いただきます",
+      "english": "Thank you for the meal.",
+      "category": "Food",
+      "note": "Said before eating.",
+      "uncertain": true,
+      "reviewNote": "The table gives only a usage bracket, '[said before eating]', not a translation. 'Thank you for the meal.' is the conventional rendering and should be confirmed by a human."
+    },
+    {
+      "id": "omiyage",
+      "target": "おみやげ",
+      "english": "Souvenir.",
+      "category": "Shopping",
+      "note": "Often takes the polite prefix お (here おみやげ).",
+      "uncertain": true,
+      "reviewNote": "The lesson's title word and used throughout the dialogue and exercises (おみやげを かいます), but it never appears in any VOCABULARY table in this chapter. May have been taught earlier; flagging so it does not fall through."
+    },
+    {
+      "id": "anime",
+      "target": "アニメ",
+      "english": "Anime.",
+      "category": "Sports & Hobbies",
+      "uncertain": true,
+      "reviewNote": "Appears only in the target dialogue (おとうとも アニメが すきですから) with no gloss anywhere in the chapter."
+    },
+    {
+      "id": "kaimono",
+      "target": "かいもの",
+      "english": "Shopping.",
+      "category": "Shopping",
+      "uncertain": true,
+      "reviewNote": "Used as かいものを します/しましょう in the dialogue and the square-marked summary sentence; not glossed in a vocab table this chapter."
+    },
+    {
+      "id": "hirugohan",
+      "target": "ひるごはん",
+      "english": "Lunch.",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "In the dialogue (ひるごはんの まえに) and the summary sentence; glossed only in the running English translation, not a vocab table. Likely taught in an earlier meals lesson."
+    },
+    {
+      "id": "akihabara",
+      "target": "あきはばら",
+      "english": "Akihabara (district of Tokyo).",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Place name appearing only in the dialogue (あきはばらで おみやげを かいたいです). Treated like a city/place name rather than a business."
+    },
+    {
+      "id": "shinjuku",
+      "target": "しんじゅく",
+      "english": "Shinjuku (district of Tokyo).",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Place name appearing only in the dialogue (しんじゅくの のぞみホテルです). Treated like a city/place name."
+    },
+    {
+      "id": "no-mae-ni-2",
+      "target": "〜の まえに",
+      "english": "Before … .",
+      "category": "Grammar & Function Words",
+      "note": "Noun + の まえに. With a verb, the plain dictionary form attaches directly to まえに without の."
+    },
+    {
+      "id": "mae-2",
+      "target": "まえ",
+      "english": "Before; front.",
+      "category": "Time",
+      "note": "Also the spatial sense 'front / in front of'.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word introduced as the temporal sub-entry under 〜のまえに; keep the one scoped to what the chapter teaches rather than mae-2's added spatial 'front' sense."
+    },
+    {
+      "id": "kaigi",
+      "target": "かいぎ",
+      "english": "Meeting; conference.",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "In KS2 and Exercise IV (かいぎの まえに / かいぎが あります); glossed only via the English of the key sentence, not a vocab table. Probably introduced earlier."
+    },
+    {
+      "id": "okurimasu",
+      "target": "おくります",
+      "english": "To send.",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "KS2 (しりょうを おくります) and Exercise V cue (メールを おくります); glossed only in the key-sentence English. Likely an earlier-lesson verb."
+    },
+    {
+      "id": "wain",
+      "target": "ワイン",
+      "english": "Wine.",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "In the grammar note (ワインを／が のみたいです) and an Exercise IV cue (ワインを かいます); never glossed."
+    },
+    {
+      "id": "nomitai-desu",
+      "target": "のみたいです",
+      "english": "Want to drink.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Demonstrated in the grammar NOTE about が replacing を as the object marker. Included as a concrete instance of the たいです pattern; may be redundant with the pattern card."
+    },
+    {
+      "id": "shiryou-2",
+      "target": "しりょう",
+      "english": "Materials; data; documents.",
+      "category": "Work & Occupations",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Identical word; only singular/plural and comma-vs-semicolon differ, so keep the shorter id."
+    },
+    {
+      "id": "neru-mae-ni-2",
+      "target": "ねる まえに",
+      "english": "Before going to bed.",
+      "category": "Grammar & Function Words",
+      "note": "Dictionary form ねる + まえに."
+    },
+    {
+      "id": "nemasu-2",
+      "target": "ねます",
+      "english": "To sleep; to go to bed.",
+      "category": "Other",
+      "note": "Regular II verb; dictionary form ねる."
+    },
+    {
+      "id": "sutorecchi-wo-shimasu",
+      "target": "ストレッチを します",
+      "english": "To do stretching exercises.",
+      "category": "Sports & Hobbies",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same phrase; 'Do stretching exercises' is the more natural gloss and the id is shorter."
+    },
+    {
+      "id": "dansu",
+      "target": "ダンス",
+      "english": "Dance.",
+      "category": "Sports & Hobbies",
+      "uncertain": true,
+      "reviewNote": "WORD POWER 'Hobbies' illustration ④ダンス. The other three hobbies in that row (いけばな, からて, ピアノ) are in the following vocab table but ダンス is not."
+    },
+    {
+      "id": "shokuji-wo-shimasu",
+      "target": "しょくじを します",
+      "english": "To have a meal; to dine.",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "WORD POWER 'Verbs' illustration ⑤しょくじを します. Every other verb in that row is in the following vocab table; this one is not glossed anywhere."
+    },
+    {
+      "id": "naraimasu-2",
+      "target": "ならいます",
+      "english": "To learn; to take lessons in.",
+      "category": "School & Education",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; only the 'to' infinitive marker and semicolon differ, so keep the shorter id."
+    },
+    {
+      "id": "ryouri-wo-shimasu",
+      "target": "りょうりを します",
+      "english": "To cook.",
+      "category": "Home & Household",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same phrase; 'Food' is the right category over 'Home & Household' and the id is shorter."
+    },
+    {
+      "id": "araimasu-2",
+      "target": "あらいます",
+      "english": "To wash.",
+      "category": "Home & Household",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb, same category; only the 'to' marker differs, so keep the shorter id."
+    },
+    {
+      "id": "shawaa-wo-abimasu",
+      "target": "シャワーを あびます",
+      "english": "To take a shower.",
+      "category": "Body & Health",
+      "note": "あびます is a Regular II verb."
+    },
+    {
+      "id": "hajimemasu-2",
+      "target": "はじめます",
+      "english": "To start; to begin.",
+      "category": "Other",
+      "note": "Regular II verb; dictionary form はじめる. Transitive (takes を)."
+    },
+    {
+      "id": "kakimasu-2",
+      "target": "かきます",
+      "english": "To write.",
+      "category": "School & Education",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb, same category; only the 'to' marker differs, so keep the shorter id."
+    },
+    {
+      "id": "sumimasu-2",
+      "target": "すみます",
+      "english": "To live; to reside.",
+      "category": "Home & Household",
+      "note": "Takes に for the place lived in (うみの ちかくに すみます)."
+    },
+    {
+      "id": "benkyou-shimasu-2",
+      "target": "べんきょうします",
+      "english": "To study.",
+      "category": "School & Education",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb, same category; only the 'to' marker differs, so keep the shorter id."
+    },
+    {
+      "id": "ohanami-wo-shimasu",
+      "target": "おはなみを します",
+      "english": "To go cherry-blossom viewing.",
+      "category": "Travel & Tourism",
+      "note": "The book writes the honorific お as optional: (お)はなみ."
+    },
+    {
+      "id": "onsen",
+      "target": "おんせん",
+      "english": "Hot spring.",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "In Exercise II (おんせんに いきます) as a transform cue; not glossed anywhere in the chapter."
+    },
+    {
+      "id": "mitai-desu",
+      "target": "みたいです",
+      "english": "Want to see; want to watch.",
+      "category": "Grammar & Function Words",
+      "note": "Drilled in Exercise I's たい-form conjugation table (present/past, affirmative/negative)."
+    },
+    {
+      "id": "aitai-desu",
+      "target": "あいたいです",
+      "english": "Want to meet.",
+      "category": "Grammar & Function Words",
+      "note": "Drilled in Exercise I's たい-form conjugation table."
+    },
+    {
+      "id": "ikitai-desu",
+      "target": "いきたいです",
+      "english": "Want to go.",
+      "category": "Grammar & Function Words",
+      "note": "Used as the model in the GRAMMAR e.g. table (いきたくないです / いきたかったです / いきたくなかったです) and drilled in Exercise I."
+    },
+    {
+      "id": "asagohan",
+      "target": "あさごはん",
+      "english": "Breakfast.",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Exercise V-A cue (あさごはんを たべます); not glossed. Likely from an earlier meals lesson."
+    },
+    {
+      "id": "maiasa",
+      "target": "まいあさ",
+      "english": "Every morning.",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "In the Exercise VI listening prompts (チャンさんは まいあさ …); not glossed."
+    },
+    {
+      "id": "nyuusu",
+      "target": "ニュース",
+      "english": "News.",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "Exercise V-A sentence (ニュースを チェックします); not glossed."
+    },
+    {
+      "id": "meeru",
+      "target": "メール",
+      "english": "Email.",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "Exercise V-B cue (メールを おくります); not glossed."
+    },
+    {
+      "id": "meeru-adoresu",
+      "target": "メールアドレス",
+      "english": "Email address.",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "Exercise V-B sentence (メールアドレスを チェックしました); not glossed."
+    },
+    {
+      "id": "oyogimasu",
+      "target": "およぎます",
+      "english": "To swim.",
+      "category": "Sports & Hobbies",
+      "uncertain": true,
+      "reviewNote": "Exercise V-B cue (エマさん、およぎます); not glossed anywhere in the chapter."
+    },
+    {
+      "id": "tenisu",
+      "target": "テニス",
+      "english": "Tennis.",
+      "category": "Sports & Hobbies",
+      "uncertain": true,
+      "reviewNote": "Exercise III-B cue (テニスを ならいます); not glossed."
+    },
+    {
+      "id": "atatakai",
+      "target": "あたたかい",
+      "english": "Is warm.",
+      "category": "Weather & Nature",
+      "uncertain": true,
+      "reviewNote": "Exercise III-A cue (あたたかい ところ); not glossed. い-adjective, possibly from an earlier lesson."
+    },
+    {
+      "id": "umi",
+      "target": "うみ",
+      "english": "Sea; ocean.",
+      "category": "Weather & Nature",
+      "uncertain": true,
+      "reviewNote": "Exercise III-A model answer (うみの ちかくに すみたいです); not glossed."
+    },
+    {
+      "id": "daunroodo-shimasu-2",
+      "target": "ダウンロードします",
+      "english": "To download.",
+      "category": "Technology & Communication",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb, same category; only the 'to' marker differs, so keep the shorter id."
+    },
+    {
+      "id": "biyouin-2",
+      "target": "びよういん",
+      "english": "Hairdresser; beauty salon.",
+      "category": "Other",
+      "note": "びよういん (beauty salon), distinct from びょういん (hospital).",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word; biyouin has the right category (Work & Occupations) and the more instructive 'no long vowel vs びょういん' note."
+    },
+    {
+      "id": "chekku-shimasu-2",
+      "target": "チェックします",
+      "english": "To check.",
+      "category": "Technology & Communication",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; glosses equivalent and category is not clearly better either way, so keep the shorter id."
+    },
+    {
+      "id": "bangohan",
+      "target": "ばんごはん",
+      "english": "Dinner; the evening meal.",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Speaking Practice 1 (いっしょに ばんごはんを たべませんか); not glossed. Likely from an earlier meals lesson."
+    },
+    {
+      "id": "zehi",
+      "target": "ぜひ",
+      "english": "By all means; I'd love to.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Speaking Practice 1, Paul's line 'いいですね。ぜひ。' Appears only here, no gloss; English render is 'I'd love to.'"
+    },
+    {
+      "id": "mata-ashita",
+      "target": "また あした",
+      "english": "See you tomorrow.",
+      "category": "Greetings",
+      "note": "Parting phrase: また + a time word. Japanese speakers usually say this rather than さようなら when they know the next meeting."
+    },
+    {
+      "id": "itadakimasu-2",
+      "target": "いただきます",
+      "english": "Said before eating a meal.",
+      "category": "Greetings",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same set phrase; 'Thank you for the meal' is the natural gloss plus a usage note, where itadakimasu-2's gloss is only a usage description."
+    },
+    {
+      "id": "ikitakunai-desu",
+      "target": "いきたくないです",
+      "english": "I don't want to go.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "いきたくないです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakatta-desu",
+      "target": "いきたかったです",
+      "english": "I wanted to go.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "いきたかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikitakunakatta-desu",
+      "target": "いきたくなかったです",
+      "english": "I didn't want to go.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "いきたくなかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunai-desu",
+      "target": "かいたくないです",
+      "english": "I don't want to buy it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "かいたくないです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakatta-desu",
+      "target": "かいたかったです",
+      "english": "I wanted to buy it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "かいたかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaitakunakatta-desu",
+      "target": "かいたくなかったです",
+      "english": "I didn't want to buy it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "かいたくなかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakunai-desu",
+      "target": "たべたくないです",
+      "english": "I don't want to eat it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "たべたくないです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakatta-desu",
+      "target": "たべたかったです",
+      "english": "I wanted to eat it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "たべたかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "tabetakunakatta-desu",
+      "target": "たべたくなかったです",
+      "english": "I didn't want to eat it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "たべたくなかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunai-desu",
+      "target": "みたくないです",
+      "english": "I don't want to see it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "みたくないです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakatta-desu",
+      "target": "みたかったです",
+      "english": "I wanted to see it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "みたかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "mitakunakatta-desu",
+      "target": "みたくなかったです",
+      "english": "I didn't want to see it.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "みたくなかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunai-desu",
+      "target": "あいたくないです",
+      "english": "I don't want to meet them.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "あいたくないです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakatta-desu",
+      "target": "あいたかったです",
+      "english": "I wanted to meet them.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "あいたかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "aitakunakatta-desu",
+      "target": "あいたくなかったです",
+      "english": "I didn't want to meet them.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "あいたくなかったです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumitai-desu",
+      "target": "すみたいです",
+      "english": "I want to live there.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "すみたいです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "benkyou-shitai-desu",
+      "target": "べんきょうしたいです",
+      "english": "I want to study.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "べんきょうしたいです",
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    },
+    {
+      "id": "toritai-desu",
+      "target": "とりたいです",
+      "english": "I want to take a photo.",
+      "category": "Grammar & Function Words",
+      "fillsGap": "とりたいです",
+      "uncertain": true,
+      "producedBy": "gapFiller",
+      "aiSuggested": true
+    }
+  ]
+}

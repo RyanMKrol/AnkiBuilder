@@ -1,22 +1,36 @@
-# custom/docs/LIMITATIONS.md — this project's trade-offs & limitations log
+# custom/docs/LIMITATIONS.md — this project's OPEN trade-offs
 
-Customization overlay for `.harness/docs/LIMITATIONS.md`. **This is where your project's own
-limitation/trade-off rows go** (golden rule 5): when a change introduces a trade-off, bottleneck, or known
-limitation, add a row **here** — not in the pristine `docs/LIMITATIONS.md`, which is plugin-owned and
-refreshed on upgrade. Harness upgrades never touch this file. (See `.harness/custom/CLAUDE.md`.)
+Customization overlay for `.harness/docs/LIMITATIONS.md`. Harness upgrades never touch this file.
 
-Each row: what it is, *why* it was chosen, its **impact**, **status**, and *when to revisit*.
+**This file holds open trade-offs and nothing else.** It is the planning queue: what gets built next
+comes from reading it, so anything in here that is already settled or already fixed is actively in
+the way. Three rules keep it that way.
 
-**Every entry carries a `**Status:**` line** — `open`, `resolved <what resolved it>`, or
-`superseded by <entry>`. Without it an entry has no way to stop being true, and this file is long
-enough that a resolved limitation reads exactly like a live one. Fix the status in the same commit
-that changes the situation.
+**A resolved entry is DELETED, not marked resolved.** Git holds the history, and the commit that
+fixed the thing is a better record than a row saying it used to be broken. Marking instead of
+deleting is how this file reached 199 entries of which 138 were open, 31 were invisible because they
+used `###` instead of `##`, and one was 397 lines because 23 entries had been nested inside it.
 
-**An entry that asserts a fact about live data also carries `**Verified by:** <command>`** — the
-command that re-derives the claim — instead of freezing a count in prose. Counts rot: three entries
-here were measurably false when this convention was introduced, and a false limitation is worse than
-a missing one, because it closes a question that is still open. If no command can re-derive a claim,
-say when it was measured rather than stating it as a standing fact.
+**A settled decision goes in [`DECISIONS.md`](./DECISIONS.md), not here.** "We store every clip
+twice" is not a limitation waiting to be fixed, it is a choice with a reason. Mixing the two is what
+made `open` stop meaning anything: a queue you cannot read in one sitting steers nothing.
+
+**A bug you fixed in the same commit is a commit message.** Golden rule 5 asks for a trade-off with a
+revisit condition, not a log of everything that ever went wrong. If the entry has no condition under
+which someone would act on it, it is not a limitation.
+
+**Writing one.** Four fields, short. The originating convention is four LINES, and entries here average twenty:
+
+- **What** it is
+- **Why** it was chosen
+- **Impact**
+- **Status:** `open`, plus **when to revisit** — the condition that would make someone act
+
+An entry asserting a fact about live data also carries **Verified by:** the command that re-derives
+it. Counts rot, and a false limitation is worse than a missing one because it closes a question that
+is still open.
+
+To list what is here: `grep '^## ' .harness/custom/docs/LIMITATIONS.md`
 
 ## The Corpus review translates every item before you can exclude it
 
@@ -52,22 +66,6 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if kanji variants get used at scale, add a round-trip check (romanize the kanji
   via kuroshiro, compare to the kana reading, auto-discard on mismatch) before offering the take.
-
-## ~~Dashboard editing unlocks only when EVERY unit of a deck has reached the audio stage~~ (RESOLVED)
-
-- **Resolved** by the unit-scoped review (`/review/:type/:id/:unit`): a lesson now edits when THAT
-  lesson is at the audio stage, independent of its siblings. So you can finalize a done chapter's audio
-  while an earlier chapter is still pre-audio. `renderReviewPage`'s `canEdit` is computed over the
-  *filtered* units, so a single-lesson view unlocks on its own.
-- **One package per group, no per-lesson `.apkg`, no download.** Rebuilds always target the single
-  group package (`rebuildBookDir` merge of `done` lessons, or a template's own deck) — there is no
-  per-lesson build. The dashboard keeps that file current: marking a lesson done, and
-  audio edits to an already-done lesson, rebuild the group (`rebuildGroupQuiet`, best-effort). The
-  server is local so there's no download route — import the collection's on-disk `.apkg` directly.
-- **Residual (by design):** a *whole-deck* review (`/review/:type/:id`, no `:unit`) still only edits
-  when EVERY unit is at audio, and the merge packages only `done` lessons (409 if none). Intentional —
-  the merge is the shippable artifact and must not bake in an un-finished lesson.
-- **Status:** resolved by the unit-scoped review (`/review/:type/:id/:unit`), described in this entry
 
 ## Switching the TTS model re-fetches every clip (cache is model-segmented)
 
@@ -177,29 +175,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if a real EPUB is found to misparse — add a targeted case to the scanner
   rather than reaching for a full parser unless several distinct cases pile up.
 
-## Backward dedup only catches exact-string duplicates, not paraphrases
-
-- **What:** `dedupBackward` (`src/corpus/epubDedup.js`) matches `english` case-insensitively and
-  `target` exactly (both trimmed) against every earlier reviewed chapter of the same book. A
-  differently-worded duplicate (e.g. "How much is this?" vs. "What does this cost?") is not caught
-  by this pass — only the forward flag pass has any chance of surfacing semantic overlap, and even
-  then only for content it judges is *explicitly re-taught*, not merely similar.
-- **Why:** exact-string matching is deterministic, free, and instant — the intentional trade-off
-  for a pass that runs on every `assemble --epub` call with zero API cost. It used to be a hard
-  drop; it's now purely advisory, same as the forward pass — matched items are kept in the corpus
-  with `uncertain: true` and a `"Possibly already taught — ..."` note (naming the earlier chapter
-  and which field matched) rather than silently removed, so a false-positive match (e.g. a grammar
-  particle whose earlier occurrence taught a different point) doesn't quietly disappear before a
-  human ever sees it.
-- **Impact:** near-duplicate phrasing across chapters can still slip through uncaught and needs to
-  be noticed during `review` instead; conversely, an exact match that IS a legitimate re-teach
-  (rather than a true duplicate) now shows up as a flagged row the reviewer must actively dismiss,
-  rather than vanishing invisibly.
-- **Status:** open
-- **When to revisit:** if near-duplicate leakage across chapters proves common in practice — would
-  need a semantic-similarity check (embeddings or an LLM call), a real cost/complexity step up from
-  the current pure-function pass.
-
 ## Forward flag pass re-reads every later chapter's content on every `assemble --epub` call
 
 - **What:** `flagForwardConcerns` (`src/corpus/epubForwardFlags.js`) extracts (or reuses a cached
@@ -268,30 +243,6 @@ say when it was measured rather than stating it as a standing fact.
   fine-grained labels, or where the same-spine-file collapse drops a label a reviewer actually
   wanted to see — consider representing external chapters as a tree instead of a flat list, or
   surfacing collapsed entries somewhere in the audit trail rather than discarding them.
-
-## `assemble --template` now requires `--lang` — a breaking change to the template CLI
-
-- **What:** templates are now language-agnostic — `templates/*.json` carry only English terms +
-  categories, no `meta.targetLanguage`. `loadTemplate(name, targetLanguage)` (`src/corpus/
-  templates.js`) takes the language from its caller and injects it into the assembled corpus's meta,
-  and `assemble --template <name>` now **requires** `--lang <language>` (throws if absent), the same
-  way the `--epub`/`--chapter`/`--words` paths already do. Previously `--template` ignored `--lang`
-  entirely and the template file's own baked `targetLanguage` (`travel-essentials` → `"Spanish"`)
-  drove translation.
-- **Why:** creating a template and building a deck are orthogonal concerns — a template is reusable
-  vocabulary, and which language you study it in is a build-time choice, not a property of the word
-  list. Baking one language into the file meant a second Spanish-only "numbers" template couldn't be
-  reused for French without duplicating the JSON. Dropping the language entirely (rather than keeping
-  it as an overridable default) was the deliberate choice for the cleanest separation.
-- **Impact:** a caller that ran `assemble --template travel-essentials` with no `--lang` now errors
-  instead of silently defaulting to Spanish — a breaking CLI change (there is no released
-  compatibility contract, so no deprecation shim was added). The corpus's `targetLanguage` is now
-  whatever `--lang` supplies (typically an ISO code like `es`, consistent with the other sources),
-  not the full name `"Spanish"` the old template baked in.
-- **Status:** open
-- **When to revisit:** if a template ever genuinely needs a default language (e.g. one so
-  language-specific it's meaningless in another), reintroduce an *optional* `meta.targetLanguage`
-  that `--lang` overrides, rather than making it required-in-file again.
 
 ## The category enum is a first-cut list, not yet validated against real usage
 
@@ -403,55 +354,6 @@ say when it was measured rather than stating it as a standing fact.
   slow/costly in practice — switch to a representative-chapter sample (first, a few middle,
   last, plus any chapter self-identified as exercise-heavy) instead of reading every chapter, or
   parse the `## Coverage` section and warn explicitly when it reports incomplete coverage.
-
-## Image-embedded EPUB content relies on model diligence — no forced inspection, no OCR fallback
-
-- **What:** `docs/epub-book-conventions-prompt.md` and `docs/epub-extraction-prompt.md` instruct the
-  model to open referenced image files with its own Read tool when they sit in a content section,
-  rather than trusting (often-empty) `alt` text. This was discovered manually: a real textbook's
-  "Frequently Used Expressions" page (a whole chapter's worth of vocabulary) is rendered entirely as
-  illustrated images with no extractable text at all. The original manual discovery actually hit a
-  more fundamental bug, since fixed: `extractChapterToFile` (`src/corpus/epubArchive.js`) wrote only
-  the chapter's XHTML to the local library cache and never unpacked the images it referenced, so the
-  `../images/...` paths the prompt tells the model to resolve and open pointed at nothing on disk —
-  the model couldn't have opened them no matter how diligent it was. `extractChapterToFile` now also
-  extracts every `<img src>` the chapter references, at the same relative path from the cached
-  chapter file that the src attribute encodes from the original chapter file, so the images genuinely
-  exist for the model's Read tool to find. With that fixed, the remaining gap is the one this entry
-  originally named: there is still no code-level enforcement that the model actually opens any given
-  image once it exists, and no OCR/vision fallback if it declines or misjudges an image as
-  decorative — the guidance is prose in the prompt, not a mechanism.
-- **Why:** neither prompt template has any way to programmatically detect "this image contains
-  text" ahead of the model call — that judgment call is exactly what the model is being asked to
-  make. Building a real enforcement mechanism (e.g. a separate vision pass that always runs and is
-  cross-checked against the extraction output) was not justified without first seeing whether
-  prompt-level guidance already closes the gap in practice, now that the images are actually present.
-- **Impact:** a book that embeds significant content in images could still silently under-extract if
-  the model skips an image it should have opened — this would look identical to "this chapter
-  genuinely has little vocabulary," with no automatic signal that content was missed.
-- **Status:** open
-- **When to revisit:** if a real run is later found to have silently skipped image content despite
-  this guidance, add a deterministic check — e.g. flag any chapter where the source has `<img>` tags
-  in content sections but the extractor returned few/no items, so a human is prompted to check
-  manually, rather than relying solely on the model choosing to look.
-
-## Audio review artifact embeds every clip as base64 in one HTML file — no chunking
-
-- **What:** `renderAudioReviewPage` (`src/review/renderAudioReviewPage.js`), invoked via
-  `anki-builder render-review --stage audio`, base64-encodes every card's mp3 and inlines it as a
-  `data:audio/mpeg;base64,...` `<audio>` element in a single `review-audio.html` file — there's no
-  size cap or splitting into multiple pages.
-- **Why:** simplest correct behavior, and matches how the other two review stages already produce
-  one file per stage; splitting introduces real complexity (deciding a chunk size, threading
-  chunk index through the CLI/publish step) that wasn't justified without a real deck actually
-  hitting a size problem.
-- **Impact:** a large deck (many dozens of cards) can produce a large HTML file that's slow to
-  generate/publish/open as a Claude Artifact. There's no automatic warning when this happens —
-  it has to be noticed by whoever runs `render-review`.
-- **Status:** open
-- **When to revisit:** if a real deck's audio review artifact becomes noticeably slow or fails to
-  publish, add a `--chunk-size <n>` flag to `render-review` that splits the audio stage's output
-  into `review-audio-1.html`, `review-audio-2.html`, etc.
 
 ## `.apkg` media manifest keys must be plain sequential integers — chapter-prefixing broke real Anki imports
 
@@ -579,30 +481,6 @@ say when it was measured rather than stating it as a standing fact.
   translate review artifact and validate it (ideally a deterministic generator for numerics, LLM +
   review for open vocabulary) so the whole pipeline can produce reading-driven audio unattended.
 
-## `--output-root` reorg has no automatic migration for pre-existing flat `output/` folders
-
-- **What:** every source type now nests under a reserved top-level segment of `outputRoot` —
-  `epubs/` (books), `courses/` (courses), `templates/` (templates) — via `EPUBS_DIR`/`COURSES_DIR`/
-  `TEMPLATES_DIR` in `src/cli/outputPaths.js`. This eliminates cross-source slug collisions at the
-  root (a book titled "Templates" now lands at `output/epubs/templates/`, never alongside the
-  template tree). But the resolvers only ever look under the new segments: any book/course folder
-  created by an OLDER version directly at `output/<slug>/` (flat, pre-reorg) is invisible to
-  `resolveBookSlug`/`resolveChapterRunDir`/`listCourses`/`resolveCourseSlug`/`resolveLessonRunDir`
-  until it's physically moved under the right segment (`output/<slug>/` → `output/epubs/<slug>/` or
-  `output/courses/<slug>/`). There's no built-in migration command.
-- **Why:** the reserved-segment layout was the explicit ask, and `output/` is gitignored build
-  output — a one-time manual `mv` (or re-assemble) is cheaper than shipping and testing a migration
-  path for what is, for most users, a single machine's throwaway folder.
-- **Impact:** after upgrading, a pre-existing flat book/course won't be found (a re-assemble would
-  allocate a fresh folder under the new segment instead of reusing the old one) until its folder is
-  moved; the persisted book slug in `.anki-builder/` and the `.epub-hash`/`course.json` markers all
-  still match once the folder is in the new location, so a manual move is sufficient — nothing needs
-  regenerating.
-- **Status:** open
-- **When to revisit:** if this reorg ever ships to users with real populated `output/` trees, add a
-  one-shot `migrate-output` helper (or a lazy "found a flat `<slug>/` with a marker — relocating it
-  under `<segment>/`" fallback in the resolvers) instead of a manual move.
-
 ## EPUB lesson selection is TOC-driven and file-level — it can't split two lessons that share one spine file
 
 - **What:** `--lesson` (`src/corpus/epubLessons.js`, built on `listExternalChapters` in
@@ -633,25 +511,6 @@ say when it was measured rather than stating it as a standing fact.
   EPUB has no nav document (add the LLM-only structure-inference fallback). A `--list-lessons` that
   emitted a "couldn't detect structure" note for the no-TOC case would make the fallback discoverable.
 
-## Alt audio doubles TTS calls and is a heuristic, not a guaranteed improvement
-
-- **What:** for a language listed in `src/audio/altAudio.js`'s `ALT_AUDIO_TRANSFORMS` (currently only
-  Japanese → append `。`), the audio stage generates a SECOND recording per card from the transformed
-  spoken text, so every card fetches two ElevenLabs clips instead of one. The alt is offered in the
-  audio review to switch to or drop; the deck only ever embeds the card's final `audio`.
-- **Why:** empirically a trailing `。` gives ElevenLabs a sentence boundary that fixes many
-  mis-rendered short/bare Japanese clips (lone kana like はん/ふん, some numbers) — a real, recurring
-  quality problem found while building the JBP Kana Lesson 3 deck. Generating both (rather than
-  guessing which clip is better per card) lets a human pick in the review.
-- **Impact:** ~2× the TTS API calls (and cache files, and audio-review artifact size) for a
-  configured language. The `。` transform is a blunt heuristic — it helps short clips but isn't
-  guaranteed better for every card (e.g. a card whose target already ends in `。` gets a doubled
-  `。。`), which is exactly why it's an opt-in *alt* per card, never the silent default.
-- **Status:** open
-- **When to revisit:** if cost matters, `audio --no-alt` skips the pass for a run; longer term,
-  generate alt clips lazily (only for rows the review actually flags) instead of for every card, and
-  make the transform smarter (skip cards already ending in sentence punctuation).
-
 ## Deck font is embedded whole and only supports the classic .apkg format
 
 - **What:** the deck builder (per-language `LANGUAGE_FONTS`, `src/deck/fontLibrary.js`) and
@@ -671,7 +530,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** subset the font to the glyphs a deck actually uses (needs a subsetter) to
   shrink it; add `anki21b` support to `restyle-font` if a real deck needs it.
 
-### Deck dashboard (`serve`) reads build folders, is localhost-only, no `.apkg` ingestion yet
+## Deck dashboard (`serve`) reads build folders, is localhost-only, no `.apkg` ingestion yet
 - **What:** the `serve` dashboard discovers decks from the `output/` **build folders** (`cards.json` +
   `audio/`), not from arbitrary `.apkg` files, and binds `localhost` with **no authentication**. Only
   the built-in formats (book/course/template) are ingested — a new layout needs a new adapter.
@@ -686,7 +545,7 @@ say when it was measured rather than stating it as a standing fact.
   in-memory audio) behind the same interface if browsing arbitrary packages is wanted; add auth/bind
   options before exposing beyond localhost.
 
-### Dashboard editing: orphaned clips, last-writer-wins, credit cost
+## Dashboard editing: orphaned clips, last-writer-wins, credit cost
 - **What:** editing a card's audio from the dashboard leaves the **previous clip on disk** (the card
   just stops referencing it); two rapid edits to the **same** card are last-writer-wins; **Generate**
   makes up to 8 ElevenLabs calls per card (billed) on EVERY click — fresh takes by design (no cache
@@ -700,7 +559,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** add a "prune unreferenced audio" pass; a per-run-dir write lock if concurrent
   editing ever matters; a confirm/estimate before Generate, or a per-card generate cap, if credit cost becomes a concern.
 
-### Trailing-silence trim is best-effort and needs an optional system ffmpeg
+## Trailing-silence trim is best-effort and needs an optional system ffmpeg
 - **What:** ElevenLabs clips are auto-trimmed of trailing silence + the end blip via ffmpeg
   (`src/audio/trimSilence.js`), but ffmpeg is a system binary the project does not bundle and isn't
   installed by default. The trim uses fixed `silencedetect` thresholds and re-encodes (pass 2).
@@ -714,7 +573,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if under/over-trimming recurs, tune the `ANKI_BUILDER_TRIM_*` env knobs or add a
   start-trim / loudness-normalize pass; add a one-time backfill over existing on-disk clips if wanted.
 
-### Deliver-to-Anki matches notes by content on the first run (no GUID from AnkiConnect)
+## Deliver-to-Anki matches notes by content on the first run (no GUID from AnkiConnect)
 - **What:** `src/anki/deliver.js` pushes corpus state to Anki via AnkiConnect using explicit
   `updateNoteFields`/`addNotes` (not `.apkg` `importPackage`). `notesInfo` doesn't return a note's GUID
   on the user's Anki, so notes are matched to cards by a durable `abid:<card.id>` tag — but that tag
@@ -731,7 +590,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if AnkiConnect exposes GUIDs, key directly off `card.id`; add a small "resolve
   ambiguous" helper (stamp the tag by hand-picked noteId) if the tail of ambiguous cards grows.
 
-### Deliver-to-Anki does not push card ORDER, delete orphans, or back up the whole collection
+## Deliver-to-Anki does not push card ORDER, delete orphans, or back up the whole collection
 - **What:** the deliverer never repositions new cards (order isn't delivered), never deletes an Anki
   note whose card left the corpus (reported as `orphaned`), and backs up only the *managed* decks
   (`exportPackage` with scheduling) + a note-type structure snapshot — not the whole collection.
@@ -746,7 +605,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** add an opt-in `--prune` to delete orphans; a full `.colpkg` backup if AnkiConnect
   gains a reliable action; a fresh-import path if delivering order ever becomes important.
 
-### Deliver auto-syncs with AnkiWeb, but a schema change still needs one manual Upload click
+## Deliver auto-syncs with AnkiWeb, but a schema change still needs one manual Upload click
 - **What:** the deliverer calls AnkiConnect `sync` before (pull) and after (push) each run. A
   content-only delivery syncs incrementally with no prompt; a delivery that changes the note-type SCHEMA
   (adds a field, edits a template/CSS) forces a one-way full sync that Anki gates behind its GUI
@@ -761,7 +620,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if AnkiConnect ever adds a directional full-sync action, drive it from
   `schemaChanged` to make even structural deliveries fully hands-off.
 
-### Atomic writes protect concurrent readers, not power loss
+## Atomic writes protect concurrent readers, not power loss
 
 - **What:** `src/util/atomicWrite.js` publishes a file by writing a temp file in the destination's own
   directory and `rename`-ing it into place, so a concurrent reader always sees a whole file. It does
@@ -779,23 +638,7 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** never, unless these artifacts stop being cheaply reproducible from their inputs.
 
-### Some writes are deliberately left non-atomic
-
-- **What:** `restyle-font --out` and `view-deck --out` (`src/cli/index.js`), the delivery backup
-  (`src/anki/deliver.js`), and every `scripts/*.mjs` maintenance script still write directly.
-- **Why:** the two `--out` paths are arbitrary user-chosen destinations with no concurrent reader, and
-  rename is actively worse there — it replaces the inode, discarding any hardlinks/ACLs/xattrs set on an
-  existing destination, and fails `EXDEV` if the destination is on another volume. The delivery backup
-  writes into a freshly created timestamped directory with a single writer. The `scripts/` migrations
-  are run by hand, one at a time, never concurrently.
-- **Impact:** a torn file is possible at those sites only if you deliberately run two of them at once
-  against the same path.
-- **Status:** open
-- **When to revisit:** if a script ever runs unattended alongside a build. The cross-lesson note pass
-  is the one to watch: it reads every sibling lesson's `cards.json`, so running the whole-book form of
-  `scripts/enhance-card-notes.mjs` while a lesson is being prepared reads that lesson mid-flight.
-
-### Run directories are reserved up front, which changes three behaviours
+## Run directories are reserved up front, which changes three behaviours
 
 - **What:** a chapter/lesson directory is created and claimed the moment it is allocated, rather than
   appearing minutes later when `corpus.json` is written. So (1) assembling a chapter a live build
@@ -815,7 +658,7 @@ say when it was measured rather than stating it as a standing fact.
   autoincrement seq (see the row below), the whole reuse ladder collapses into an idempotent
   `mkdir(recursive:true)` and can be deleted.
 
-### Run directories keep their autoincrement `seq`, not the chapter number
+## Run directories keep their autoincrement `seq`, not the chapter number
 
 - **What:** run dirs stay `chapter-<seq>`/`lesson-<seq>`, so allocating one needs a compare-and-swap.
   Naming them `chapter-<chapterNumber>` instead would have made allocation a plain idempotent
@@ -830,7 +673,7 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** only alongside a deliberate migration of the URL space and deck ordering.
 
-### A cached chapter file is trusted without checking its images
+## A cached chapter file is trusted without checking its images
 
 - **What:** `extractChapterToFile`/`extractChapterRangeToFile` skip re-extracting when the cached
   `.xhtml` exists and is non-empty. They do not verify that the images it references are still on
@@ -846,7 +689,7 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if anything ever prunes the cache selectively rather than wholesale.
 
-### Two rebuilds can't interleave only because the rebuild path never yields
+## Two rebuilds can't interleave only because the rebuild path never yields
 
 - **What:** `rebuildBookDir` reads the done-set and publishes the collection package with no `await` anywhere in
   between — `readdirSync`/`readFileSync`, a synchronous `buildBookDeck`, then `writeFileAtomic` +
@@ -867,7 +710,7 @@ say when it was measured rather than stating it as a standing fact.
   to bring back a lock or an in-process queue, not a reason to make it async and hope. There is a
   regression test in `test/deck/rebuild.test.js` that fails if the property is lost.
 
-### "Building" is derived from a claim file, which can be left behind by a crash
+## "Building" is derived from a claim file, which can be left behind by a crash
 
 - **What:** the dashboard renders a lesson read-only with a `building (<stage>)` badge whenever its
   `claim.json` names a live process. A crash can leave that claim behind. It does not wedge the
@@ -885,7 +728,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if these directories are ever shared between machines, replace the pid probe
   with a lease the owner renews.
 
-### The audio stage merges rather than overwrites, but only for the `audio` field
+## The audio stage merges rather than overwrites, but only for the `audio` field
 
 - **What:** `runAudio` re-reads `cards.json` after the TTS pass and applies only each item's `audio`
   filename onto the fresh copy, so dashboard edits made during the (minutes-long) stage survive.
@@ -898,7 +741,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if a future stage ever writes more than one field of a file a human can edit
   concurrently.
 
-### `prepare` bundles four passes behind one claim, so a partial failure is invisible in the exit code
+## `prepare` bundles four passes behind one claim, so a partial failure is invisible in the exit code
 
 - **What:** `prepare` runs translate → fill-in-the-blank → semantic de-dup → cross-lesson notes as one
   stage. Every pass but translate **fails open**: a model or parse error logs a line and leaves the
@@ -916,7 +759,7 @@ say when it was measured rather than stating it as a standing fact.
   outcome recorded in `cards.meta` (ran / failed / nothing-to-do) and surfaced as a banner at the
   corpus review, rather than only in the CLI log.
 
-### An `INCOMPLETE` lesson is detected from file presence, not from a recorded build outcome
+## An `INCOMPLETE` lesson is detected from file presence, not from a recorded build outcome
 
 - **What:** a run dir counts as unfinished purely because it has `corpus.json` and no `cards.json`.
   Nothing records *why* — a crash, a Ctrl-C, an `--no-prepare` run, and a translate that threw all
@@ -930,7 +773,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if diagnosing failed builds after the fact becomes common — a `lastError` in
   the claim (kept on failure, which `prepare` already does) would carry the reason.
 
-### The test-runner guard covers the LLM spawn, not the TTS fetch
+## The test-runner guard covers the LLM spawn, not the TTS fetch
 
 - **What:** `assertExternalCallAllowed` (`src/util/testEnv.js`) makes both `runClaude` wrappers refuse
   to spawn `claude` under `node --test`. The ElevenLabs fetch has no equivalent guard; it relies on
@@ -944,7 +787,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** next time `src/audio/` grows a call site, or the first time a test bill shows
   up. `fetchElevenLabsTts` should call the same guard.
 
-### A lesson's build reads the book's REVIEWED history, so lessons must be built in order
+## A lesson's build reads the book's REVIEWED history, so lessons must be built in order
 
 - **What:** backward de-dup reads the library at `.anki-builder/epubs/<hash>/corpora/`, which is
   written by the dashboard's "Mark reviewed" and by nothing else. The drill and cross-lesson-note
@@ -964,7 +807,7 @@ say when it was measured rather than stating it as a standing fact.
   `prepare` and replacing it at Mark reviewed — but that trades the "compare against what a human
   kept" property away, so it needs thought rather than a patch.
 
-### Rebuilding a missing dedup-library entry re-derives history rather than recovering it
+## Rebuilding a missing dedup-library entry re-derives history rather than recovering it
 
 - **Status:** the script this described (`backfill-dedup-library.mjs`, once in `scripts/`) was
   deleted; the reasoning is kept because it applies to any future backfill.
@@ -978,7 +821,7 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if the library grows a second consumer that cares about the state at review
   time rather than the current state.
 
-### Readiness is inferred from markers, so a pass that lies about itself is undetectable
+## Readiness is inferred from markers, so a pass that lies about itself is undetectable
 
 - **What:** `lessonReadiness` trusts `cards.meta.enriched` / `notesEnhanced`. Those are set by
   `prepare` when the pass had complete inputs — but "the pass ran with what it needed" is not the same
@@ -995,7 +838,7 @@ say when it was measured rather than stating it as a standing fact.
   each pass's OUTCOME in meta (ran / failed / nothing-to-do) rather than a boolean, and surface a
   "this lesson has no drills — is that right?" note at the review.
 
-### The gate can be bypassed by hand-editing cards.json
+## The gate can be bypassed by hand-editing cards.json
 
 - **What:** setting `"enriched": true` in a `cards.json` by hand makes a lesson reviewable without the
   pass having run. Same for `"reviewed": true` and the done gate.
@@ -1007,7 +850,7 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** never, unless this stops being a local single-user tool.
 
-### Numerals are auto-filled by a model, so the counter needs a human eye
+## Numerals are auto-filled by a model, so the counter needs a human eye
 
 - **What:** `findUnreadableNumbers` (`src/cards/spokenNumbers.js`) checks two things — the spoken text
   handed to TTS, and the romaji the learner reads — and the REVIEW gate holds a lesson back until both
@@ -1032,7 +875,7 @@ say when it was measured rather than stating it as a standing fact.
   counter readings would catch the common ones deterministically, leaving the model only the cases a
   table cannot cover.
 
-### A stale clip is detected by filename, which only works for clips the stage generated
+## A stale clip is detected by filename, which only works for clips the stage generated
 
 - **What:** the `audio` stage now treats a card's clip as current only if its filename still matches
   the hash of the card's spoken text — so editing a `reading` and re-running regenerates just that
@@ -1066,20 +909,6 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** not really revisitable — the bytes are gone. If it ever matters at scale, the
   fix is a one-off backfill script the owner runs knowingly, not automatic recovery.
-
-## Every clip is stored twice
-
-- **What:** the cache and each run's `audio/` now hold both `<hash>.orig.mp3` and `<hash>.mp3`. The
-  original is written even when the trim changed nothing, so the two files can be byte-identical.
-- **Why:** an always-present sibling is what makes its ABSENCE mean exactly one thing ("this clip
-  predates originals"). Writing it conditionally would conflate "the trim was a no-op" with "there is no
-  original", and the review would have no way to tell a reviewer which one they're looking at.
-- **Impact:** roughly 2x audio disk in `.anki-builder/audio` and in every run dir. A clip is tens of KB,
-  so a large book is single-digit MB either way — but it does double, and the cache is not pruned.
-  Only the shipping clip is embedded in the `.apkg`; originals never reach the deck.
-- **Status:** open
-- **When to revisit:** if the local library ever gets large enough to matter, prune `.orig.mp3` files
-  for lessons already marked done — they're only needed while a lesson is still being reviewed.
 
 ## Regenerating never overwrites a hand-picked clip, even when the card's text changed
 
@@ -1127,26 +956,6 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if run dirs get noticeably cluttered, sweep `-manual-` files no card references
   when a lesson is marked done.
-
-## Backfilling originals can't just re-run the `audio` stage
-
-- **What:** giving already-built cards an `audioOriginal` needed a dedicated one-off script, not
-  `rm -rf .anki-builder/audio` plus a re-run of `audio`. (That script has since been removed: every
-  card on disk now has an original. Kept here because the reasoning still applies if it recurs.) Two things defeat the obvious route:
-  `alreadyDone` checks the RUN DIR rather than the cache, so with every clip still sitting there the
-  stage reports "already generated — reusing" and does nothing; and the stage's copy loop is
-  `if (!existsSync(dest))`, so even forced past that it would leave the run dir's OLD trimmed clip in
-  place while adding a NEW `.orig.mp3` from a different generation — a mismatched pair where the
-  review's Original column plays a different recording than In use.
-- **Why:** both behaviours are right for the stage itself (don't re-spend credits on work already done;
-  don't clobber files that are already correct). They're simply wrong for a backfill, which has to
-  replace a card's two takes *together* so they always come from one recording.
-- **Impact:** the backfill is a separate, explicitly-invoked tool. It's dry by default, skips
-  hand-picked clips (a `-gen-` pick or Replace upload — regenerating those would discard the reviewer's
-  work), and costs one call per unique spoken term.
-- **Status:** resolved — every card on disk has an original and the one-off script was deleted; kept because the reasoning applies to any future backfill
-- **When to revisit:** if the stage ever grows a `--force` flag, make sure it replaces both takes
-  together rather than only the missing one.
 
 ## Noise cleanup is tuned to one voice family, and the corner frequency is the risk
 
@@ -1374,25 +1183,6 @@ say when it was measured rather than stating it as a standing fact.
   leaving it as a documented step, the same way the old loose `node scripts/…` content passes became
   `prepare`.
 
-## A deck that holds cards is never given children
-
-- **What:** units that belong together (a lesson and its extras drills) nest under a **grouping deck**
-  that holds no cards of its own — `Book::Lesson 5::Shopping (2)…` beside
-  `Book::Lesson 5::Shopping (2)… (Extras)`. A deck containing cards is never made a parent.
-  `src/deck/deckPath.js` derives every unit's path, for the `.apkg` and AnkiConnect alike.
-- **Why:** Anki studies a parent deck together with every deck beneath it, so a card-holding parent
-  cannot be studied on its own. This was learned twice. First the drills were nested under the LESSON
-  deck, which made the lesson unstudyable alone. Then they were flattened to siblings, which fixed
-  that but produced an unreadable wall of long names and lost the ability to study a lesson and its
-  drills together. The grouping deck gives all three modes because it holds nothing.
-- **Impact:** the tree is derived from a label convention (`"Lesson N: Title"`) by regex in
-  `unitDeckSegments`, so a book whose TOC labels its units differently gets no grouping and falls back
-  to one flat level. That is a silent degradation, not an error. Renaming a base lesson also re-groups
-  it, orphaning its extras under the old group name until both are renamed together.
-- **Status:** open
-- **When to revisit:** if a second book's labels don't match the convention, replace the regex with an
-  explicit `meta.deckGroup` field rather than widening the pattern.
-
 ## The forward-flag pass judges from a compact index, not the later chapters' full text
 
 - **What:** `flagForwardConcerns` no longer has the model re-read every later chapter on each
@@ -1467,30 +1257,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if un-shipping a lesson turns out to happen with any regularity, add a small
   guarded control (confirm dialog) rather than resurrecting the old read-only flow.
 
-## Scene cues on ambiguous single-word cards partially reveal the answer (by design)
-
-- **What:** the `Scene` field renders on the front of BOTH card directions. For sentence cards a
-  scene names the question just asked and reveals nothing. For an ambiguous single-word card
-  (に "2" vs the direction particle, ほん "Book" vs the counter), any cue that disambiguates the
-  Recognition front necessarily points partway at the answer ("counting, not the particle").
-  Three degenerate pairs were left with no scene at all at the time of the scene migration, because
-  no non-revealing wording existed and their glosses barely differed: です ("To be" vs
-  "Is / am / are"), ばん ("Evening" vs the number suffix), and ばんごはん ("Dinner" twice).
-- **Why:** an answerable-but-easier card beats an unanswerable one; the Production direction keeps
-  full rigor because definitional hints stay off the Recognition front (they show on its back).
-- **Impact:** a handful of Recognition cards are softer tests than a purist would like. **The three
-  named pairs are no longer among them** (checked 2026-08-14 against the live deck): the second です
-  card (`desu-suffix-ch15`) and the duplicate ばんごはん (`chapter-3-extras`) are both excluded, so
-  neither pair exists any more, and both ばん cards now carry a scene ("the time of day" /
-  "labelling something by its number"). The general trade-off stands; the examples do not, which is
-  why this row now points at a command instead of a count.
-- **Status:** open (the design trade-off), with all three cited instances resolved
-- **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>` — it lists every group
-  sharing a gloss or a target and flags members with no cue on the face they collide on
-- **When to revisit:** if a future uncued pair causes real study friction, merge it into one card
-  with a combined gloss instead of inventing a leaky scene. The scene migration's pre-change state
-  is in `*.pre-scene.bak` beside every `cards.json` / `corpus.json`.
-
 ## TTS fetch pool is pinned to the ElevenLabs plan's concurrency cap
 
 - **What:** `CONCURRENT_TTS_FETCHES` in `src/audio/index.js` is a hardcoded 3, matching the
@@ -1520,22 +1286,6 @@ say when it was measured rather than stating it as a standing fact.
 - **Verified by:** `node scripts/extras-collision-audit.mjs <collection-dir>`
 - **When to revisit:** if the card templates ever change which fields render on which front, this
   per-face rule has to move with them, since it encodes the template layout in a script.
-
-## Anki deck names carry a zero-padded lesson number
-
-- **What:** `unitDeckSegments` pads a label's lesson number to two digits when deriving the Anki
-  deck name (`Lesson 9: Title` -> deck `Lesson 09::Title`). The unit's label is untouched
-  everywhere else, so `cards.json`, the dashboard and the card faces still read "Lesson 9".
-- **Why:** Anki sorts sibling decks as text, with no natural-number sort and no manual ordering, so
-  an unpadded deck list runs 1, 10, 11, 2, 3. Padding is the only lever available.
-- **Impact:** two digits caps a book at 99 lessons before the sort breaks again, and the deck list
-  reads "Lesson 01" where the book says "Lesson 1". Any collection created before this change needs
-  the one-shot `scripts/migrate-deck-numbering.mjs` (create + changeDeck + delete the empty
-  original, since AnkiConnect has no rename action), or delivery will file new cards in the padded
-  deck while old cards sit in the unpadded one.
-- **Status:** open
-- **When to revisit:** if a book ever exceeds 99 lessons, or if Anki gains a natural sort, in which
-  case the padding can be dropped and migrated the same way.
 
 ## The state snapshot in git is JSON-only, so it protects nothing an audio change could destroy
 
@@ -1616,19 +1366,6 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if the backups become a nuisance, wire `prune-baks.mjs` into preflight as a
   report line rather than making it automatic. Deleting a restore point should stay a decision.
-
-## `src/cards/crossLessonNotes.js` still uses the unstamped, first-run-only backup
-
-- **What:** the `prepare` pass and `scripts/enhance-card-notes.mjs` share
-  `enhanceLessonNotes`, which backed up through `backupFileOnce(file, ".pre-enhance.bak")`. That one
-  writer was left on the old convention while the six `scripts/` writers moved to stamped backups.
-- **Why:** it sits on the `prepare` pipeline path rather than in `scripts/`, and other in-flight work
-  edits the same file. Changing it was out of scope for the change that introduced stamping.
-- **Impact:** re-running the enhance pass over a lesson kept only the pre-first-run snapshot, so the
-  state the second run found was not recoverable from a `.bak`.
-- **Status:** RESOLVED (WS8 item 4). The pass now writes through `mergeIntoCardsFile`, which uses
-  `writeUnitJson` — validate, stamped `<file>.pre-enhance-<YYYYMMDDHHmm>.bak`, atomic write, re-read
-  and validate. `references/card-authoring-rules.md` was corrected in the same commit.
 
 ## Exclusion provenance is optional, so the 100 exclusions already on disk stay unattributable
 
@@ -1712,21 +1449,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if the merged document grows unwieldy, add a single de-duplicating pass over
   the merged text rather than merging at generation time. If shortfall lines turn out to be common
   and real, surface them in preflight rather than only in the assemble log.
-
-## Un-shipping a unit changes the package, never the live Anki collection
-
-- **What:** `scripts/undone-unit.mjs` backs up `cards.json`, clears `meta.done` and rebuilds the
-  collection package. It does not talk to Anki, so notes already delivered stay in the live
-  collection with their scheduling; the unit simply stops being in the next package.
-- **Why:** removing delivered notes is a destructive, unrecoverable act on a deck the user studies
-  daily, and it is a different decision from "this unit is not finished after all". `deliver-to-anki`
-  already reports orphans and refuses to delete them, for the same reason.
-- **Impact:** after un-shipping a delivered unit, its cards keep coming up in study until someone
-  removes them in Anki by hand. The script requires `--force` on a collection carrying
-  `anki-delivered.json` so the gap is stated at the moment it matters, not discovered later.
-- **Status:** open
-- **When to revisit:** if un-shipping delivered units becomes common, give the deliverer an opt-in
-  `--suspend-orphans` (already specified for the exclusion case) and point this script at it.
 
 ## The review watcher polls; it does not subscribe
 
@@ -1997,24 +1719,6 @@ say when it was measured rather than stating it as a standing fact.
 
 <!-- WS3 (skill-review 2026-08): extraction & prompt quality — appended as one block, newest last. -->
 
-## The Anki note-type field is still called "Reading" after the JSON field became `ttsText`
-
-- **What:** the pipeline's `reading` field was renamed to `ttsText` everywhere (schemas, prompts,
-  passes, dashboard, tests, and all 46 tracked cards.json / corpus.json / dedup-corpora files). The
-  Anki note type's field keeps the name "Reading", and `src/deck/collection.js`'s `fieldValue` maps
-  `ttsText` onto it in one line.
-- **Why:** renaming a field on a live note type rewrites every note in both delivered collections and
-  forces a one-way AnkiWeb sync, for a field no template renders. The point of the rename was to stop
-  future agents reading the name as a display field; inside Anki the field is invisible, so the risk
-  it was fixing does not exist there.
-- **Impact:** one place in the repo (that `case "Reading":` arm) knows both names, and anyone reading
-  the note type in Anki sees a name that no longer matches the JSON. A future note-type migration that
-  does touch field names should fold this in.
-- **Status:** open (deliberate; the mapping is one line and is commented)
-- **When to revisit:** whenever a note-type field migration happens for another reason, or if a
-  template is ever given a reason to render the value (which would need a decision first: today the
-  rule is that `ttsText` is never rendered on any card face).
-
 ## The dedup-library corpora are not schema-validated
 
 - **What:** `.anki-builder/epubs/*/corpora/<n>.json` files are corpus-shaped but carry a `meta.done`
@@ -2064,6 +1768,7 @@ say when it was measured rather than stating it as a standing fact.
   by about 1%) stays deferred until the headless import verifier exists and passes on a memoized
   package — the payoff is 22 entries out of 1,914 against re-entering the one code path whose last
   reasonable-looking change produced a package Anki rejected while passing every test.
+
 ## Package freshness is an mtime comparison, so a byte-identical rewrite reads as stale
 
 - **What:** `preflight`'s `package-freshness` check FAILs when a done unit's `cards.json` is newer
@@ -2118,20 +1823,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** only if `--apply` is ever asked to carry more weight than "propose, human
   disposes". It should not be.
 
-## Preflight is not in `npm run ci`, and deliberately not in the pre-push hook
-
-- **What:** `npm run ci` (which the pre-push hook runs) stays format/lint/test/build. Preflight and
-  `validate:decks` are the separate `npm run check`, run by hand.
-- **Why:** `npm run ci` asserts on tracked state and passes in a fresh clone. Preflight asserts on
-  `output/`, whose bulk is gitignored and untracked. Wiring it into the hook couples `git push` to
-  unversioned deck state, is a no-op in CI and a fresh clone by construction, and would block a README
-  typo behind a deck rebuild whose only escape is `--no-verify`.
-- **Impact:** the deterministic gate is only as reliable as the habit of running it. Nothing forces
-  it before a review link is handed over or before a deliver; the skill doc says to, and that is all.
-- **Status:** open
-- **When to revisit:** if the gate is skipped in practice, add the preflight half to the hook as
-  ADVISORY: print, never contribute a non-zero exit.
-
 ## The `.apkg` import verifier needs Python, so it can never be part of the automatic gate
 
 - **What:** `scripts/verify-apkg-import.mjs` shells out to the pinned `anki` Python package in a
@@ -2185,7 +1876,11 @@ say when it was measured rather than stating it as a standing fact.
 
 - **What:** a one-off migration carries a `// SPENT: <date>` header saying not to run it. It stays in
   `scripts/`. `test/scripts/spentMigrations.test.js` requires every `.mjs` in `scripts/` to be listed
-  as either a standing tool or a spent migration.
+  as either a standing tool or a spent migration. The spent ones, so they stay discoverable from a
+  doc rather than only from a test array: `absorb-nihongo.mjs`, `migrate-nihongo-absorption.mjs`,
+  `migrate-absorption-to-additions.mjs`, `migrate-reading-to-ttstext.mjs`,
+  `backfill-audio-text-hash.mjs`, `add-verb-forms-family.mjs`, `enhance-card-notes.mjs`,
+  `strip-restatement-notes.mjs`, `split-front-hint.mjs`, `jumble-number-runs.mjs`.
 - **Why:** moving the files would break every doc reference, every muscle-memory path, and the
   docs-integrity test, for a distinction that only has to be visible at the top of the file.
 - **Impact:** the classification lives in a test's two arrays, so adding a script to `scripts/` makes
@@ -2195,41 +1890,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if the friction is what people notice rather than the distinction, derive the
   lists from the headers themselves (spent = has the marker) and keep only the "no standing tool is
   marked spent" half.
-
-## Collections are isolated, so nothing detects a bare-guid overlap between two decks
-
-- **What:** an owner ruling on 2026-08-14 established that two collections (one book, one course, one
-  template) are two separate products and must never be overlapped, compared, cued against each
-  other, or considered in reference to each other. Three preflight checks that did exactly that
-  (`cross-collection-ids`, `cross-deck-prompts`, `cross-deck-glosses`) had already been written,
-  tested and merged. They were removed on branch `ws1-isolation`, along with WS4 item 8, which
-  existed only to resolve their findings.
-- **Why:** the checks were built on the observation that Anki interleaves every deck studied that day
-  and matches note guids collection-wide. That observation is true, and it is not the rule this
-  project follows. A deck is authored, reviewed and shipped as one product; making one product's
-  wording answer for another's turns every new deck into a re-review of every old one, and the cue
-  it would ask for ("say which scarf you mean") is a cue the learner of either deck alone does not
-  need.
-- **Impact:** the one mechanical concern the removed checks also covered now has nothing watching it.
-  Both live collections ship BARE guids, decided once at each folder's creation and deliberately
-  frozen there. If both are ever `.apkg`-imported into the same Anki collection, notes sharing an id
-  overwrite each other silently. That was measurable at the time of the ruling (ten shared ids, nine
-  byte-identical, one differing: スカーフ vs マフラー, both glossed "Scarf"). It is now unwatched by
-  design, because detecting it requires reading two collections' cards together.
-- **Mitigation, and it needs no comparison:** per-deck guid namespacing (WS6 item 5) makes the
-  overlap impossible by construction, and is decided per collection at creation with no reference to
-  any other. Alongside it, the delivery runbook rule: never `.apkg`-import a bare-guid deck into a
-  collection that already holds another bare-guid deck. In-place AnkiConnect delivery is unaffected,
-  because it matches on the `abid:` tag rather than the guid, and it is the normal path for a deck
-  the owner already studies.
-- **Status:** open
-- **Verified by:** `node scripts/preflight.mjs --all` reports no cross-collection findings by
-  construction; `grep -rn "guidNamespace" output/*/*/book.json output/*/*/course.json` shows which
-  collections are bare.
-- **When to revisit:** when WS6 item 5 lands guid namespacing for new collections, note here that new
-  decks are safe by construction and that the two pre-namespace decks stay bare forever (renaming an
-  existing deck's guids would orphan its live scheduling). Do not revisit by reintroducing a content
-  comparison.
 
 ## The cached-artifact drift check compares prompt TEMPLATES, not rendered prompts
 
@@ -2285,80 +1945,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** if reviewed chapters start showing more than about one exception each, tighten
   the wording or make the reviewNote a required, greppable prefix so the count is mechanical.
 
-## vocab-coverage reports at INFO, and only where the chapter cache exists
-
-- **What:** the vocabulary diff runs two ways: `scripts/vocab-coverage.mjs <chapterFile> <unitDir>`
-  for one unit, and a `vocab-coverage` check in preflight (`src/audit/checks/vocab.js`) over every
-  base unit of an EPUB collection. The matching lives in `src/cards/vocabCoverage.js` behind tests.
-  The check is INFO, and it SKIPS rather than passes when a unit's chapter file is not cached.
-- **Why:** INFO because the check has known false positives that only a human can dismiss (a book
-  prints its vocabulary in ways no string match resolves), and the standing rule is that a blocking
-  check ships with the fix or the ACK for its live instances. Nobody has looked at a live count yet:
-  the chapter cache is a free re-inflate of the EPUB and is untracked, so it is absent in a fresh
-  clone and in every worktree, and this check has never been run against real chapters.
-- **Impact:** the check contributes nothing to the exit code, and on a machine without the chapter
-  cache it reports a skip line rather than a number. The skip is the honest answer, but it means the
-  gate is only real on the machine that built the book.
-- **Status:** open — INFO on purpose, pending a live count.
-- **When to revisit:** run `npm run preflight` on the machine holding the chapter cache, read the
-  findings once, then either fix them or promote the check to ACK in the same commit that accepts
-  the residue.
-
-## ~~vocab-coverage only sees ONE publisher's vocabulary tables~~ (RESOLVED: the selector is the book's)
-
-- **What:** `parseVocaEntries` (`src/cards/vocabCoverage.js:12`) finds a chapter's vocabulary blocks
-  with `VOCA_TABLE = /<table[^>]*class="[^"]*\bvoca\b[^"]*"/`, and its indented sub-rows with
-  `SUB_CELL = /class="[^"]*\bsub\d?\b[^"]*"/`. Both are *Japanese for Busy People*'s markup. The
-  module says so in prose ("the shape this book uses", `:34`), but the `vocab-coverage` preflight
-  check (`src/audit/checks/vocab.js`) gates on `collection.kind === "epub"`, not on whether the book
-  is that one. On any other publisher the regex matches nothing, `findUncoveredVocab` receives an
-  empty entry list, and the check reports **zero uncovered headwords**, which is indistinguishable
-  from a chapter whose vocabulary is fully carded.
-- **Why:** the check was written against the only book in the library, and a regex over that book's
-  own markup was the cheapest thing that worked. Nothing has exercised it against a second book, so
-  the failure has never been seen. Note the same file's *content* rules (`／` alternate readings,
-  `(お)` optional prefixes, `〜` attachment points, counter sound-variants) are stated as language
-  facts but are equally this publisher's typography.
-- **Impact:** a silent zero on the one check whose whole job is to catch a silent miss. This is the
-  project's signature failure (an absent thing reading exactly like a working one) inside the
-  check written to prevent it. On the current book the check is correct and useful; the risk is
-  entirely on book #2, where it would report clean while seeing nothing.
-- **Verified by:**
-  ```sh
-  node -e 'import("./src/cards/vocabCoverage.js").then((m) => {
-    const row = "<tr><td>ねこ</td><td>Cat</td></tr>";
-    console.log("voca:", m.parseVocaEntries(`<table class="voca">${row}</table>`).length);
-    console.log("other:", m.parseVocaEntries(`<table class="tab1 FS-95">${row}</table>`).length);
-  })'
-  # expect: voca: 1 / other: 0. The same vocabulary table, seen or not seen by its class alone.
-  ```
-- **A deterministic replacement was measured and rejected.** The obvious fix, widen the check to
-  every `<table>` instead of the `voca` ones, was shadow-run across all 17 base units against the
-  reviewed cards. It finds 781 candidate headwords to the selector's 705, but the extra 76 are
-  mostly false positives (`い-adj.`, `①1かいにレストランがあります`, `〜です` placeholder forms),
-  and it brings its own false negatives: in chapter file 15 the numbers chart puts the digit in
-  column 0 and the reading in column 1, so a "first cell is the headword" rule finds none of it, and
-  the cell `ゼロ ／ れい` needs splitting before `れい` is visible at all. `ゼロ` and `よん` are
-  carded; `れい`, `し`, `しち` and `く` are the target of no card in the deck. Swapping one set of
-  blind spots for another is not progress, and this is the evidence that which table is vocabulary,
-  which cell is the headword, and whether one cell holds two readings are judgements rather than
-  patterns.
-- **Verified by:** `node scripts/chapter-tables.mjs 1fab0f99d1195ad9 15` shows all 9 tables in that
-  chapter, 3 of which the `voca` selector cannot see.
-- **Resolved by:** v2 task D4. `parseVocabularyEntries` takes the selector and has no default of its
-  own, and it returns **`null`** when the book records none. `null` is the whole fix: `[]` means
-  "looked at this book's vocabulary tables and found no entry", `null` means "no selector, so nobody
-  looked", and both callers now branch on it. The preflight check reports the book as unknown and
-  refuses to call it clean; `scripts/vocab-coverage.mjs` exits 2 with "Nothing was checked, that is
-  not the same as nothing being missing". This book keeps working unchanged because its selector
-  moved to `book.json`'s `hints.vocabularyTableClass`: 72 INFO findings before and after.
-- **What is deliberately still open:** the check reads the book's HINT, not the table specialist's
-  verdicts. A hint is a good guess about which tables are vocabulary, and E1 is the judgement. Wiring
-  the check to E1's persisted output belongs with E6, when a phase script exists to produce it. Until
-  then the honest reading of a clean result is "clean against what this book says its vocabulary
-  tables are".
-- **Status:** resolved (2026-09-06) for the code coupling; the hint-versus-judgement step is E6.
-
 ## v2 narrows v1's outright ban on carding the dialogue
 
 - **What:** `docs/epub-extraction-prompt.md` forbids walking a modeled conversation line by line,
@@ -2398,37 +1984,6 @@ say when it was measured rather than stating it as a standing fact.
 - **Status:** open
 - **When to revisit:** if `notForms` lists start repeating across chapters, that is the signal that a
   tokenizer would pay for itself.
-
-## The extraction coverage report is self-reported, and only its image half is checked
-
-- **What:** extraction now answers with `{ items, coverage }`, where coverage names the images the
-  model opened, the ones it dismissed as decorative, and any concerns. The image lists are diffed
-  against the chapter's real referenced-image set and every gap is logged; `concerns` is logged
-  verbatim.
-- **Why:** a chapter the model could not read produced the same output shape as a chapter with
-  nothing in it. Something had to make the difference visible, and the image set is the one part of
-  the claim the code can check independently.
-- **Impact:** a model that lists an image as opened without opening it passes the check. `concerns`
-  is not checked at all, by construction: an empty list is a claim, not evidence. The warnings go to
-  the assemble log, which nobody reads after the fact, so this helps whoever is watching the build
-  and nobody else. Nothing yet surfaces it at a review gate.
-- **Status:** open
-- **When to revisit:** when preflight has scopes, storing the coverage block per unit would let the
-  gap be reported at review time instead of only in the build log.
-
-## The romanization style hook exists but is empty
-
-- **What:** `docs/romanization-prompt.md` takes a `{{ROMANIZATION_STYLE_RULES}}` fragment from
-  `languageRules.js`'s `romanizationStyle`. No language sets it, so today it renders as nothing.
-- **Why:** the move of the four translate prompts into `docs/` had to stay a move. Pinning a Hepburn
-  spec is a separate, opinionated change (the deck's romanization drifts per batch: trailing periods
-  100% in some units and 0% in others, `-san` hyphenated 32/32 in one unit and spaced 40/40 in the
-  next), and mixing it into the move would have made both harder to judge.
-- **Impact:** the drift is unchanged until something fills the fragment in. The hook makes that a
-  one-place edit rather than four.
-- **Status:** open — the hook is deliberate groundwork, not an oversight.
-- **When to revisit:** the pinned-Hepburn work. Fill `romanizationStyle` for `ja` and every prompt
-  that romanizes inherits it.
 
 ## Two new categories exist, but no card has been recategorized
 
@@ -2532,24 +2087,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** at the next deliver of either collection.
 - **Verified by:** `node src/cli/bin.js deliver --book-dir <collection> --dry`
 
-## The Japanese font rule was narrowed differently from the plan
-
-- **What:** the plan asked for the webfont to be scoped "to the target rather than `.card`".
-  `languageFontCss` still targets `.card`; what changed is its Latin fallback, from
-  `"Helvetica Neue", Helvetica, Arial, sans-serif` to `arial` (the card's own stack).
-- **Why:** the `@font-face` already carries a `unicode-range` covering only kana, kanji and CJK
-  punctuation, so the font can never render a Latin glyph no matter which selector it is on — the
-  scoping the plan wanted is already there, per glyph. Narrowing the SELECTOR to the prompt and
-  answer elements would have stripped the textbook face from the Japanese quoted inside a `note` or a
-  `scene`, which the learner reads too. The real defect was the fallback: registering a Japanese font
-  silently restyled every Latin string on the card.
-- **Impact:** none on the target script. Latin text on a `ja` card now renders in `arial` (what
-  BASE_CSS asks for) rather than Helvetica Neue.
-- **Status:** open — recorded because it is a deliberate deviation from an approved plan item, not
-  because anything is wrong.
-- **When to revisit:** if a language is ever configured whose font has no `unicode-range`, the
-  `.card` selector stops being safe and the narrowing becomes necessary after all.
-
 ## The notes truth-check finds claims, it cannot judge them
 
 - **What:** `note-claims` lists every note asserting a decomposition, derivation, distinction or
@@ -2622,49 +2159,6 @@ say when it was measured rather than stating it as a standing fact.
   gated path before trusting it.
 - **Verified by:** `node --test test/anki/directionSuspension.test.js` (the last two tests assert the
   probes are still unanswered and that the gate opens once they are not)
-
-## The .apkg no longer reproduces the delivered deck card-for-card
-
-- **What:** the `.apkg` builder emits BOTH card rows for every note, including one carrying
-  `dirSuspended`; the AnkiConnect deliverer suspends the unwanted ordinal. So a package built from a
-  collection differs from the live deck by exactly those suspensions.
-- **Why:** omitting the row at build time is inert on the delivery path (Anki generates one card per
-  template on `addNote`) and self-reversing on the `.apkg` path (Check Database and any template
-  update regenerate it), so the two builders would have drifted STRUCTURALLY for no gain. Keeping
-  both rows keeps them structurally identical and puts the difference where it is intentional.
-- **Impact:** importing a built `.apkg` into a fresh collection produces a deck with every direction
-  live. Anything treating the `.apkg` as a faithful snapshot of the delivered deck — the freshness
-  check, a restore-by-import — is comparing packages, not scheduling, and is unaffected; a human
-  reading one as "what the owner sees" would be wrong.
-- **Status:** open — accepted trade, recorded so it is not rediscovered as a bug.
-- **When to revisit:** if `.apkg` import ever becomes the primary delivery path again, this inverts
-  and the suspension has to move into the builder.
-
-<!-- WS5 -->
-
-## The audio text-hash badge is a badge, and 30 clips can never be checked at all
-
-- **What:** `audioTextHash` records what text each clip was generated from, so the ~200 hand-picked,
-  hand-trimmed and uploaded cards stop being exempt from the text-changed check. It reports, in the
-  audio review (a **Text changed** badge) and in `npm run preflight` (`audio text hash`). It does not
-  block "Mark done", and 30 live clips carry a hand-given name with no hash in it, so nobody can say
-  whether they still match their card.
-- **Why:** a block would have been the first ever gate on the owner's daily path, and a mismatch has
-  no exit that does not destroy the reviewer's hand trim or hand pick — the "Keep this clip" button
-  is the exit, and it is a decision, not a fix. The 30 are unverifiable because the only other way to
-  give them a hash is to compute one from the card's current text, which would declare every drifted
-  clip correct in a single pass and destroy the signal permanently.
-- **Impact:** a stale clip still ships until a human acts on the badge. On the first live run the
-  count was ONE (`nihongo-101-course-n5/lesson-0/irl-l1-31`, whose hand-trimmed clip was generated
-  from text nobody can now reconstruct); it is left badged rather than regenerated, because deciding
-  between spending credits and keeping the take is the owner's call. 106 clips report unverifiable:
-  30 whose take carries a hand-given name with no hash in it, and the rest kanji takes generated
-  before `ttsKanji` was stored on the card.
-- **Status:** open — badge-only by design, pending a measurement of how often it goes red in practice.
-- **Verified by:** `node scripts/preflight.mjs --all --only audio-text-hash --verbose`
-- **When to revisit:** once the live stale count has been observed over a few chapters. If it stays
-  at or near zero, promoting the check to ACK (accept-or-fix, not a hard block) is the next rung —
-  the exit action and its provenance fields already exist, which is what a promotion needs.
 
 ## A cleared marker-stuck flag rests on where the cut landed, not on the detector
 
@@ -2856,25 +2350,6 @@ say when it was measured rather than stating it as a standing fact.
 - **When to revisit:** once both live markers carry `deliveredCardIds`, the fallback branch in
   `markerCoversUnit` is dead code for this workspace and could become a warning instead.
 
-## The two delivered collections keep bare note guids, and are not being retrofitted
-
-- **What:** `output/epubs/japanese-for-busy-people-book-1-kana` and
-  `output/courses/nihongo-101-course-n5` both write BARE card ids as their packages' note guids
-  (`book.json` has `"guidNamespace": null`, `course.json` has no such field). Every collection
-  created after 024184c gets a namespace from its immutable slug; these two do not, on purpose.
-- **Why:** a guid is what Anki matches a note by at import. Changing the guids of an already-imported
-  deck makes every note look new, so a retrofit trades a hypothetical import collision for a certain
-  one. The owner ruled: namespace new collections from creation, leave these two alone.
-- **Impact:** an `.apkg` import of one of them into an Anki collection already holding the other can
-  overwrite notes that share a card id. The AnkiConnect path is unaffected (deck-scoped, matched by
-  `abid:` tag), and the mitigation is the runbook rule that a bare-guid deck is never `.apkg`-imported
-  into a collection holding another. `npm run preflight` prints each collection's mode.
-- **Status:** open — deliberate, with a stated trigger.
-- **When to revisit:** when `scripts/verify-apkg-import.mjs` has been run against a namespaced and a
-  bare build of the same deck and shown what a guid change does to the restore path. That answer, not
-  a preference, decides whether a retrofit is worth doing.
-- **Verified by:** `node scripts/preflight.mjs --all --only guid-namespace`
-
 ## A run-dir deck built before namespacing will not update on re-import
 
 - **What:** a bundled template or one-off run dir now derives its guid namespace from its directory
@@ -2889,37 +2364,6 @@ say when it was measured rather than stating it as a standing fact.
   the AnkiConnect path does not manage run-dir decks).
 - **Status:** open — no known instance.
 - **When to revisit:** the first time a pre-namespace template deck is rebuilt and re-imported.
-
-## Three delivery write paths are written but dormant, waiting on the live probes
-
-- **What:** the guarded `modelTemplateAdd` path (`--allow-template-add`), the `--refile` run and the
-  `--suspend-orphans` run all exist, are tested, and refuse to execute. `src/anki/probeEvidence.js`
-  holds an `answer: null` for every question `scripts/anki-behaviour-probe.mjs` would settle, and
-  each feature names the evidence it lacks when it refuses. The `--dry` previews work today.
-- **Why:** each is a live write to a card's scheduling state whose behaviour on a card in a filtered
-  deck nobody has established. Shipping them on an assumption is the failure this project keeps
-  paying for; deleting them would mean re-deriving the design when the answers arrive.
-- **Impact:** a deck-name correction cannot reach the existing book yet, a post-delivery exclusion
-  still leaves a card the learner drills, and a new card direction has to be added by hand in Anki.
-  All three are stated in `references/deliver.md` with the probe each waits on.
-- **Status:** open — blocked on a human probe session (two minutes in Anki's profile manager, then
-  `node scripts/anki-behaviour-probe.mjs --check`).
-- **When to revisit:** as soon as a probe session is run. Record each answer in BOTH halves of the
-  record (the runbook table and `probeEvidence.js`) in one commit; a test fails if an id exists in
-  one and not the other.
-
-## The delivery add ceiling is a fixed 200, not a proportion
-
-- **What:** `DEFAULT_MAX_ADDS = 200` per collection per deliver, overridable only by
-  `--allow-bulk-add` (there is no `--max-adds`).
-- **Why:** the ceiling exists to catch a matching failure that would re-add a book, and a proportion
-  of the collection's size would have been derived from the same lookup the failure broke. A flat
-  number cannot be argued into being wrong by the bug it is watching for.
-- **Impact:** the first delivery of any collection larger than 200 cards needs the flag, which is
-  exactly the case where reading the `--dry` output is worth the minute. A future 190-card book
-  would deliver in one go with no prompt at all.
-- **Status:** open — deliberate.
-- **When to revisit:** if a legitimate incremental deliver (not a first run) ever trips it.
 
 ## The .apkg's own deck-options preset may not survive import at all
 
@@ -2941,52 +2385,7 @@ say when it was measured rather than stating it as a standing fact.
 
 <!-- Live-collection incidents -->
 
-### A pre-WS6 deliver cross-bound と and から, and the owner found it in study
-
-**What.** On 2026-08-17 the owner reported that a から card had changed meaning from "from" to
-"because". It had. Four live notes were bound to the wrong card ids, and two pairs had their content
-straight-swapped, audio included:
-
-| note | deck | showed | should have shown |
-|---|---|---|---|
-| 1784507481510 | Lesson 03 | から "Because (particle)" | から "From (particle)" |
-| 1785019499117 | Lesson 06 | から "From (particle)" | nothing: its card is excluded on disk |
-| 1784508481630 | Lesson 04 | と "With, together with" | と "And (particle)" |
-| 1785019498813 | Lesson 06 | と "And (particle)" | と "With, together with" |
-
-Note 1784507481510 had accumulated three `abid:` tags (`kara-particle`, `kara-particle-because`,
-`kara-particle-place`), which is the fingerprint of the bug: one note claimed by three card ids.
-
-**Why.** `deliver.js` identifies a note by its `abid:<card id>` tag and, failing that, by a content
-fingerprint. Both と and から appear several times across this book in different senses, so a card
-whose id had no tagged note yet matched a note that merely shared its target, overwrote that note's
-fields, and added its own tag. Last writer won. This is the cross-bind the 2026-08 review identified
-(17 repeated targets in this book) and WS6 fixed going forward by unit-scoping the fingerprint
-indexes, deleting the loose prefix fallback, and reporting rather than silently binding a note it
-cannot uniquely identify. The damage already in the collection was not undone by that fix, because
-nothing retroactively unpicks a bind.
-
-**Impact.** The owner studied a wrong meaning on a 26-day interval for an unknown period, and heard
-the wrong audio with it. Found by a human noticing, not by any check: preflight reads the on-disk
-decks, and nothing compares them against the live collection. `deliver --dry` is what surfaced it,
-because WS6's version reports a note matched outside its expected deck.
-
-**Repaired 2026-08-17.** Fields rewritten from disk through the repo's own `noteFields()`, tags
-reduced to exactly one id per note, and the Lesson 06 から duplicate (whose card is excluded on disk)
-tagged `ankibuilder-orphan` and suspended rather than deleted. Every interval and rep count was left
-untouched and verified afterwards. `kara-particle-because` now owns no note, so the next content
-delivery adds it as a genuinely new card in Lesson 14, which is the right outcome: that sense was
-never actually learned.
-
-- **Status:** open
-- **Verified by:** `node --env-file=.env scripts/deliver-to-anki.mjs --dry` (every `abid:` tag should
-  resolve to exactly one note, and no note should be reported as matched outside its expected deck)
-- **When to revisit.** If a delivery ever again reports adopting a note under an old deck name, check
-  tag multiplicity on the notes involved before running it. A check that walks the live collection
-  looking for a note carrying two or more `abid:` tags would have caught this the day it happened, and
-  is the obvious next guard if it recurs.
-
-### A rebuilt-from-scratch lesson lands in a NEW run directory, leaving a husk
+## A rebuilt-from-scratch lesson lands in a NEW run directory, leaving a husk
 
 **What.** Emptying a unit dir (deleting `corpus.json`/`cards.json`) and re-running the
 `--book`/`--lesson` form of `assemble` does not rebuild in place: the run directory is allocated by
@@ -3015,95 +2414,6 @@ documenting in SKILL.md that a from-scratch rebuild must use `--run <that same r
   `--lesson` form to reuse the directory whose `meta.chapterNumber` matches the resolved spine index,
   rather than always allocating.
 
-### Paradigm-table restraint outranked the irregular-form rule, and dropped both irregular verbs
-
-**What.** Lesson 15 of the Japanese book teaches the ます→dictionary-form conversion. Its WORD POWER
-chart has ten cells in three groups, the third headed **Irregular**. The extraction carded three of
-the ten and said so in its coverage report, citing the prompt's paradigm-table restraint rule ("the
-complete set of forms for a few representative words teaches the pattern"). Among the seven it dropped
-were くる and する, the only two irregular verbs in Japanese and the entire reason the chart has a third
-group.
-
-**Why.** The prompt held both rules and connected neither: restraint on large paradigm tables, and "a
-form the chapter names as an EXCEPTION is high priority, never optional… watch for the words but,
-except, instead, **irregular**". A sampling rule and a never-sample rule met on one table and the
-sampling rule won. A second, subtler cause: the chart is a DERIVATION table, one output form per word,
-where the derivation differs per row (-ki→-ku, -i→-u, -mi→-mu, -ri→-ru), so "a few representative
-words" sampled the wrong unit — a learner shown only ききます→きく cannot produce かいます→かう.
-
-**Impact.** The chapter's own grammar point would have shipped with its two underivable cells missing.
-Nothing downstream could have caught it: every later pass reads text only, and the chart is an image.
-The gate-1 image sweep caught it, which is the only reason it is a near-miss rather than an incident.
-
-**Fixed 2026-08-18.** `docs/epub-extraction-prompt.md` now states that restraint never applies to a
-cell the source marks irregular or exceptional, and that a derivation table is sampled per distinct
-derivation rather than per word. `SKILL.md` now says a paradigm found in an image is BASE-lesson work
-to be added before gate 1, not material for the Step 3b brief — adding it later is impossible, since
-nothing may be added after sign-off. The seven missing cells were authored by hand into Lesson 15.
-
-- **Status:** open
-- **Verified by:** open the chapter's chart image and check every cell against `cards.json`; the
-  eval fixture in `src/evals/` is the mechanical version once a chart-bearing chapter is added to it
-- **When to revisit.** If a future lesson's chart is sampled the same way despite the amended prompt,
-  the prompt is not the lever and the check has to be mechanical: a `paradigm-grid` spec authored per
-  chart-bearing chapter, run at gate 1.
-
-## The whole-book taught index is a command, not something a lesson build pays for
-
-- **What:** `getTaughtIndex()` (was `ensureTaughtIndex`) no longer builds on demand. It reads the
-  book's cached index and returns null when there isn't one; building is `anki-builder epub
-  taught-index <hash>`, which refuses to re-spend on a book that already has one unless `--force`.
-  A build with no index falls back to reading the later chapters directly and logs the command that
-  would fix it for every subsequent lesson.
-- **Why:** building lesson 15 of a 57-chapter book fired an unannounced whole-book model pass
-  partway through the lesson. It exhausted the usage window, and the four passes after it in the
-  same build then failed in turn — the index build, the forward flags, the pedagogical sort, the
-  drill mining and the note pass, all lost to one implicit call nobody asked for. The one-time cost
-  was never the problem; its timing was.
-- **Impact:** a book nobody has run the command for pays the slower per-lesson fallback (the model
-  reads every chapter after this lesson) instead of silently paying the whole-book cost once. That
-  is the deliberate trade: predictable per-lesson spend by default, the cheap path when an operator
-  chooses it. The fallback is a real quality path, not a degraded one — it is what the pass did
-  before the index existed.
-- **Verified by:** `node -e "import('./src/corpus/epubTaughtIndex.js').then(m => console.log(m.getTaughtIndex.toString().includes('build = false')))"`
-- **Status:** resolved (2026-08-18)
-- **When to revisit:** if operators keep forgetting to run it and lessons keep taking the slow path,
-  make `assemble` refuse to start on a book with no index rather than falling back — but only with
-  a flag to override, never by spending on their behalf.
-
-## Recovery is driven by a ledger on the unit, not by a human's memory of what failed
-
-- **What:** every model pass records `ok` / `failed` / `skipped` (with a reason) at `meta.passes`
-  (`src/cards/passLedger.js`), a FAIL-tier preflight check refuses a unit with an incomplete pass,
-  and `anki-builder resume --run <dir>` re-runs exactly the failed ones. The hand-driven recovery
-  script that did the same job from operator-picked flags has been deleted rather than kept
-  alongside: two recovery paths drift, and the one that drifts is the one nobody ran this month.
-- **Why:** `prepare`'s markers already made its own passes recoverable; the four passes outside it
-  wrote nothing, so a quota interruption was both invisible and unrecoverable. The instance: a lesson
-  reached its review gate with the romanization correction never having run, and the only thing that
-  knew was a log line that had scrolled away.
-- **Extras units were a blind spot until 2026-08-19:** only `assemble` and `translate` wrote to the
-  ledger, and a hand-authored extras unit runs neither, so all 15 of them carried no `meta.passes` and
-  the FAIL-tier check went silent on half the collection without saying so. `prepare` now stamps the
-  five passes it owns, which every unit runs.
-- **The ledger reports what the UNIT achieved, not what one run did.** `prepare` skips any pass whose
-  marker is already set, so on a re-run those branches never execute. The first version stamped from
-  this run's actions alone and so recorded `semanticDedup: skipped — no drill cards were mined` on a
-  unit holding eleven of them. A pass skipped because its marker says it is done is now recorded `ok`,
-  with the marker named as the evidence. A ledger that asserts something false about the unit is worse
-  than no ledger at all, because the check that reads it is FAIL-tier.
-- **Impact:** three passes are resumable because they only annotate or reorder. `extraction` is not
-  and never will be — it IS the item set, so a failed extraction still means rebuilding the unit and
-  losing anything hand-added since. `resume` reports that rather than attempting it. The ledger is
-  also only as good as the passes that write to it: a pass added later that forgets to call
-  `recordPass` is invisible to `resume` exactly as all four were before. `KNOWN_PASSES` is the list
-  to check a new pass against.
-- **Verified by:** `node --test test/cards/resumePasses.test.js`
-- **Status:** resolved (2026-08-18)
-- **When to revisit:** if a new model pass lands, confirm it appears in `KNOWN_PASSES` and calls
-  `recordPass` on both outcomes; a pass that only records success is worse than one that records
-  nothing, because it makes the ledger look complete.
-
 ## The package-freshness check reads mtimes, and git rewrites the mtimes of tracked deck JSON
 
 - **What:** `preflight`'s `package freshness` check FAILs when a done unit's `cards.json` is newer
@@ -3124,37 +2434,6 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** the moment someone dismisses this FAIL without checking. The fix is to compare
   CONTENT, not timestamps: stamp the source card sets' hash into the package build and compare that,
   so a byte-identical file rewritten by git is correctly seen as no change at all.
-
-## A cache hit reports no verdict about the end marker, and that is no longer read as "clean"
-
-- **What:** `fetchTermsToCache`'s cache-hit branch returns no `markerStuck` at all, because nothing was
-  fetched and nothing was trimmed — it has no evidence either way. The writeback in
-  `generateAudio` now distinguishes three states: `true` and `false` are verdicts from a real
-  fetch-and-trim and either may overwrite the card, while `undefined` (a cache hit) leaves whatever
-  the card already records untouched.
-- **Why:** it used to be two states. `undefined` was falsy, so the writeback took the `delete`
-  branch, and re-running `audio` over a unit with cached clips silently erased `audioMarkerStuck`
-  from every marker-audible clip it owned. The clip on disk was byte-identical and still spoke the
-  `。ででで`; the card asserted clean audio, the dashboard's **Marker audible** badge vanished, and
-  preflight's ACK-tier audio-markers check passed. Found on 2026-08-19 on
-  `chapter-15-extras/fib-donna-e-kaku-suki-q`: re-running `audio` to re-roll that one clip cleared its
-  true flag instead of re-rolling it, and the unit then reported clean.
-- **Impact:** the flag can now only be cleared by evidence, which is right, but it also means a flag
-  set by a take that has since been replaced by hand outside the stage stays until something re-asks.
-  That is what `scripts/audit-marker-stuck.mjs` is for.
-- **Blast radius, measured:** ONE card, the one that surfaced the bug. Every removal of an
-  `audioMarkerStuck` field from a tracked `cards.json` is in git, and there are only three commits:
-  `a0dfa10` (the commit that began tracking the JSON at all), `79327cf` (the deliberate
-  `audit-marker-stuck.mjs --apply` run that cleared the seven stale flags on 2026-08-14, each with a
-  recorded positional proof that the clip's hand cut lands before its marker), and `6cb84a0` (this
-  fix). No silent erasure happened in the tracked period. Before 2026-08-14 `output/` was untracked,
-  so that window cannot be audited — but no clip in it has been reported marker-audible by ear
-  either. There is no re-listening sweep to do.
-- **Verified by:** `node --test test/audio/index.test.js` (the two tests named "a cache hit does NOT
-  clear a marker-stuck flag..." and "a real trim that finds no marker DOES clear a stale flag")
-- **Status:** resolved (2026-08-19)
-- **When to revisit:** if a clip is ever reported marker-audible by ear on a card with no flag, that
-  is a pre-fix erasure surfacing — note the unit, since it bounds how many others to re-listen to.
 
 ## Words taught but never used are now counted, and the standing count is large
 
@@ -3182,48 +2461,6 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
   all legitimate standalones, that is the moment to consider a `legitimatelyStandalone` marker on the
   card rather than promoting the tier — the count only becomes useful when it can go to zero.
 
-## Un-reviewing a unit that already has audio used to strand it at gate 2
-
-- **What:** the dashboard picked a unit's review gate from "does any card have a clip" alone
-  (`loadStageData`, `src/server/adapters/stage.js`). It now requires `meta.reviewed === true` as well,
-  so an unreviewed unit sits at the corpus gate whether or not it has been voiced.
-- **Why:** the old rule was sound while clips could only exist after a sign-off — the `audio` CLI
-  stage refuses an unreviewed unit. `Unreview` breaks that, and so does adding cards to a unit that
-  has already been voiced. The unit went back to `reviewed: false`, the stage stayed `audio`, and the
-  reviewer was parked at gate 2 where **Mark done** correctly refuses ("this lesson has not passed the
-  corpus review") and the page offers no way to do the corpus review it is demanding. A dead end
-  reachable from the dashboard's own button, hit on 2026-08-19 on `chapter-15-extras`.
-- **Impact:** none on the normal path — a reviewed unit with clips is still the audio stage. The
-  clips are kept when a unit moves back to gate 1; only which gate is rendered changes. Two tests had
-  encoded the old assumption by giving a fixture audio with no `reviewed` flag, a state the CLI cannot
-  produce; both now say so explicitly.
-- **Verified by:** `node --test test/server/stage.test.js`
-- **Status:** resolved (2026-08-19)
-- **When to revisit:** if a third gate is ever added, this is the function that decides which one a
-  unit is at, and "the artifact exists" will be the wrong test for that one too.
-
-## The end-marker flag recorded the intent to cut, not whether anything was cut
-
-- **What:** `autoTrim`'s `markerStuck` now requires BOTH that the marker was located
-  (`flags.markerStripped`) AND that a trim point was actually applied (`flags.trimmedTo`). It used to
-  read only the first.
-- **Why:** `markerStripped` is set the moment a candidate passes the pulse-shape check — the decision.
-  `computeTrimPoint` can then return null, because the speech runs to the end of the file and there is
-  no trailing silence to cut against, which is precisely the shape a marker that ran long produces.
-  Nothing is removed, the clip ships whole with the marker audible, and the flags say it was stripped.
-- **Impact, measured on the live book:** **52 of 1,978 marked takes (2.6%) came out exactly as long as
-  their originals. The badge caught 0 of them. The operator hand-trimmed all 52 by ear** — doing the
-  trim's job fifty-two times while the mechanism meant to warn them stayed silent. Re-deriving those
-  52 with the fix flags 43; the other 9, and 6 false positives across 1,926 good clips, are mostly the
-  trim rules having changed since those clips were made, so the replay is not exact. Going forward the
-  invariant is exact, because it is asked of the take as it is produced.
-- **Verified by:** `node --test test/audio/trimSilence.test.js test/audio/index.test.js`
-- **Status:** resolved (2026-08-19)
-- **When to revisit:** a second, independent instrument is still worth having — a preflight check
-  comparing each stage-owned marked clip's duration against its `.orig.mp3` would catch this whatever
-  the flag says. It is ~2,000 ffprobe calls, so it wants to be its own command rather than part of the
-  default sweep.
-
 ## The source EPUB's OCR corrupts small kana, and nothing checks the target against its own romaji
 
 - **What:** this book's scan renders small ょ/ゅ/っ as large よ/ゆ/つ in places, so extraction faithfully
@@ -3250,108 +2487,6 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** the next book. If a second source shows the same damage, build the round-trip
   check rather than re-deriving the regex — a hand sweep that is 85% false positives will get skipped.
 
-## The dashboard's Exclude toggle wrote only cards.json, so exclusions drifted from the corpus
-
-- **What:** `setCardExcluded` (`src/server/adapters/applyCards.js`) now mirrors the flag into
-  `corpus.json` as well, in both directions, and reports whether it did. It is silent when the corpus
-  has no such item (a mined `fillInBlank` card exists only on the cards side by design) or when the
-  unit has no corpus at all.
-- **Why:** the two files are read by different things. The deck build and the review read
-  `cards.json`; `translate` and `resume` rebuild the cards FROM `corpus.json`. An exclusion recorded
-  in only one is a decision with a shelf life — the next rebuild silently reinstates an excluded card,
-  or re-drops a restored one. Every `scripts/` tool that excludes has mirrored for exactly this reason
-  and says so in its comments; the dashboard toggle, which is where almost every real exclusion is
-  actually made, did not.
-- **Impact:** found live on 2026-08-19 when a reviewer restored a card at gate 1 and the two files
-  disagreed. Preflight's `corpus drift` check reports it, and it has been quietly accumulating: four
-  units of the live book carry unmirrored exclusions from before this fix (`hiragana-sa`,
-  `hiragana-ki`, `topic-particle-wa`, `object-particle-o`, and five counter suffixes), plus one corpus
-  id with no card at all. **Those are NOT repaired by this change** — they are done, delivered units,
-  and rewriting deck data the owner has shipped is their call, not the fix's. `cards.json` is the
-  truth for each: it is what the package was built from.
-- **Verified by:** `node --test test/server/applyCards.test.js`
-- **Status:** resolved for new exclusions (2026-08-19); the four historical units are open
-- **When to revisit:** if `corpus drift` is ever promoted above INFO, the historical four have to be
-  repaired first or the check lands red on day one.
-
-## Coverage misses come from reading a PREFIX, and three checks now exist because of it
-
-- **What:** `scripts/chapter-outline.mjs` (+ `src/corpus/chapterOutline.js`) prints a chapter's own
-  sections and, crucially, the book's numbered runs — `EXERCISES: 8 block(s) — I … VIII`. SKILL.md now
-  requires it as the FIRST step of an EPUB build, ahead of the image sweep, and requires accounting for
-  every numbered block when the review link is handed over.
-- **Why:** three lesson-level misses in two chapters, all the same shape — enumerate, process a
-  prefix, conclude. Lesson 15: four charts named, two opened, sweep reported complete; the unread two
-  held the chapter's main grammar table. Lesson 16 text: 780 lines of 942 read, EXERCISES VI and VII
-  never seen, and VII is the only place the chapter uses `みなみぐち` and `しんじゅく`. Lesson 16 extras:
-  33 hand-authored cards against a median of 57, from the same partial read. None of the individual
-  steps was wrong, and no amount of reading carefully fixes it, because **a section you did not read is
-  indistinguishable from a section with nothing in it.**
-- **What it rests on, deliberately separated:** the completeness guarantee is the FILE BOUNDS, which
-  are universal — `extractChapterToFile` already writes exactly one lesson's content, so the script
-  prints all of it and stamps `END OF CHAPTER`. That works for any EPUB. The structure summary on top
-  is a bonus of two different qualities: the text-vs-image balance is generic (a chapter with little
-  text and many figures has its content in the pictures, which is a real shape and not an empty
-  chapter), while the numbered runs (`EXERCISES: I … VIII`) come from THAT BOOK's own markers and are
-  empty for front matter, for a novel, and for any book that numbers differently. Those markers were
-  a literal `(enum|wnum)` regex in the code until v2 moved them into `book.json`'s `hints`
-  (`numberedBlockMarkers`), so a book that numbers its blocks some other way is now describable
-  rather than unsupported, and a book that records none reports that in words. The script
-  states that explicitly, because an empty checklist must read as "this book does not number things"
-  and never as "there is nothing to read". An earlier cut of this had the numbered run as the
-  backbone, which would have silently degraded to no signal at all on book #2.
-- **Impact:** the outline is structural only — it says nothing about what belongs on a card, which is
-  the judgement it exists to make possible about ALL sections rather than a prefix.
-- **Verified by:** `node --test test/corpus/chapterOutline.test.js`, and
-  `node scripts/chapter-outline.mjs 1fab0f99d1195ad9 38` reports the 8 exercises that were missed
-- **Status:** resolved (2026-08-20)
-- **When to revisit:** if a fourth miss of this class happens, the answer is not another checklist —
-  it is that the extraction pass should report its own coverage per section, so the account is produced
-  by the thing doing the reading rather than by the operator watching it.
-
-## A half-covered vocabulary cell reads exactly like a false positive
-
-- **What:** `parseVocaEntries` now splits a headword cell on `／` and emits one entry per word, so
-  `つま ／ かない` is checked as two headwords rather than one string. SKILL.md records both this and
-  the containment case below.
-- **Why:** reporting the cell whole produced `MISSING つま ／ かない … nearest card target: つま` — the
-  `nearest` pointing at the half that IS carded, which is indistinguishable from the documented
-  optional-parts noise (`(お)てら` vs `おてら`). Two words sat unreported behind that shape for the life
-  of the deck: `かない`, and `しゅじん`, which four sentence cards already used with nothing teaching
-  it. The check was working; reading it was not.
-- **Impact:** a second, related blind spot remains and is NOT fixed. A headword can be hidden by a
-  longer word containing it — `しゅじん` still reads as covered because `ごしゅじん` is carded, and those
-  are different words. Containment is deliberate elsewhere (a word used inside a sentence does count),
-  so narrowing it would create false positives across the whole deck. The honest mitigation is in
-  SKILL.md: when a finding's only coverage is another vocabulary entry rather than a sentence, check
-  by hand.
-- **Verified by:** `node --test test/cards/vocabCoverage.test.js`, and a full-book re-scan that
-  surfaced `かない` as its own finding where it had previously been invisible
-- **Status:** resolved for the `／` case (2026-08-20); the containment case is open
-- **When to revisit:** if a third word is found this way, the fix is for the extraction prompt to emit
-  one item per alternate at source, rather than for the coverage check to reconstruct the split later.
-
-## note-claims only matched an identity phrasing the deck never writes
-
-- **What:** the `identity` claim pattern matched `the same word` / `the same as` only. Widened to cover
-  `also read`, `also called`, `another word for`, `both mean`, `same meaning as` — the phrasings the
-  deck's notes actually use.
-- **Why:** `つま`'s note said *"Also read かない (kanai) — both mean 'my wife'"*, and `かない` had no card
-  anywhere in the deck. That is precisely the class the check exists to surface — a note naming a form
-  the deck does not teach — and it stayed silent, because a pattern that only matches a phrasing
-  nobody writes is silent by construction. `おっと`/`しゅじん` was the same. Both words were eventually
-  found by hand, from the owner studying a card.
-- **Impact:** the widening surfaces 18 identity claims on the live book, of which 3 name a form with
-  no card and **all 3 are false positives** — `きのう` and `ソファー` are carded (the note writes `ソファ`
-  without its long vowel) and the third quotes a whole sentence. So the immediate yield on this deck is
-  zero new real findings, because the two real ones were fixed before the pattern was widened. It is a
-  correctness fix for the next book, not a discovery for this one, and it costs a little INFO noise.
-- **Verified by:** `node --test test/audit/checks.test.js` — the test fails against the old pattern
-- **Status:** resolved (2026-08-20)
-- **When to revisit:** if the identity findings become noise nobody reads, the fix is to compare the
-  named form against the deck AFTER normalizing long vowels and dropping sentence-length quotes,
-  rather than to narrow the pattern back.
-
 ## The Nihongo 101 absorption crosses the collection boundary, once, to remove it
 
 - **What:** golden rule 7 forbids two collections being compared, deduped, or considered in reference
@@ -3374,24 +2509,6 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **When to revisit:** if the migration stalls part-done. A half-absorbed course is worse than either
   end state, because the duplicate cards then exist in both decks with divergent review histories.
 
-## Relocated course cards keep a card shape the extras rules forbid for new cards
-
-- **What:** `extras-pass.md` says "Do not add bare vocabulary cards, numbers, or counter recitations."
-  A large share of the 134 cards moving out of Nihongo 101 are exactly that: bare nouns (Toy,
-  Ladybird, Watch, Box, Star), the minute counters, the floor counters.
-- **Why:** that rule governs **authoring new padding**, where a bare noun is filler the pass invented.
-  These are pre-existing cards with real review history that the owner studies daily. Dropping them to
-  satisfy a rule about authoring would delete studied content, which is a worse outcome than an extras
-  unit containing some bare vocabulary.
-- **Impact:** several extras units end up shaped less like the rule describes than a freshly authored
-  unit would be, and a future reader comparing them against `extras-pass.md` will find a discrepancy
-  that is intentional. Each relocated card carries a `reviewNote` naming its Nihongo 101 origin, so
-  the provenance is visible on the card rather than only here.
-- **Verified by:** `grep -l "Nihongo 101" output/epubs/japanese-for-busy-people-book-1-kana/*/cards.json`
-- **Status:** open, and expected to stay open
-- **When to revisit:** if a later pass tries to enforce the no-bare-vocabulary rule mechanically, it
-  must exempt cards carrying the relocation `reviewNote`, or it will propose deleting studied cards.
-
 ## Card ids collide across the two bare-guid collections, but only on dropped cards
 
 - **What:** a card id becomes the `abid:<id>` tag `deliver-to-anki.mjs` matches notes by, so a course
@@ -3411,127 +2528,7 @@ nothing may be added after sign-off. The seven missing cells were authored by ha
 - **Status:** open while the course exists; resolved when Phase 6 removes it
 - **When to revisit:** before Phase 5 runs, and before any change to the routing table.
 
-## A relocated card carrying `fillInBlank` is DELETED by the next `prepare`
-
-- **What:** `fillInBlank: true` means "the drill miner produced this card for THIS unit". Nine cards
-  moved out of the Nihongo 101 course carried it, because the course's own miner had produced them
-  there. On the first `prepare` after the move, the miner saw a flagged card it did not recognise as
-  its own and dropped it: "fill-in-the-blank: dropped 1 unmarked practice card(s) from an earlier
-  run". `fib-watashi-wa-enjinia-desu` was deleted from chapter-1-extras that way, a card with real
-  review history in the live collection.
-- **Why it is easy to hit:** the drop is correct behaviour for the case it was written for, which is
-  a half-finished run leaving orphan drills behind. Nothing distinguishes that from a card the flag
-  followed into a new home. The message is printed, not raised, so a batch run scrolls past it.
-- **Impact:** the card is gone from `cards.json` with no exclusion record, so it does not appear in
-  any review, any audit, or the exclusion counts. `scripts/absorb-nihongo.mjs` now strips the flag on
-  relocation, which is correct on its own terms: the card is no longer part of any drill block, and
-  leaving the flag also exposes it to the semantic de-dup, which only ever considers flagged cards
-  and could exclude it as a repeat of a block it was never in. Provenance survives in the card's
-  `reviewNote`. **Any future relocation of cards between units must strip it too.**
-- **Verified by:** the moved-cards-present command in the Verification section of
-  `docs/designs/nihongo-absorption-2026-08.md`, which must print `all moved cards present` and
-  `none carries fillInBlank`
-- **Status:** resolved for this migration (2026-08-24); the underlying sharp edge in `prepare` is open
-- **When to revisit:** if a second migration relocates cards. The durable fix would be for the miner
-  to report what it dropped as an exclusion with provenance rather than deleting outright, so a
-  silent removal becomes a visible one.
-
-## The additions gate is per CARD, which no other review state is
-
-- **What:** a card retrofitted into a finished unit carries `addition: "<batch>"` and does not ship
-  until it carries `additionReviewed: true`. Enforced by one predicate in `shippableCards()`, which is
-  the single function both delivery paths call. Reviewed at `/additions/<type>/<id>`, the third review
-  type, added 2026-08-25.
-- **Why:** class notes keep arriving for material a deck taught chapters ago, so cards land in units
-  that were signed off months before. The only mechanism that existed was to clear `done` on the unit
-  and withdraw its corpus sign-off, which puts hundreds of approved cards back in front of a reviewer
-  in order to approve about a dozen. Doing that by hand across fifteen units is what caused this to be
-  built.
-- **Impact:** every other review state in this project is per unit, and this one is not, so anything
-  that reasons about "what is waiting for review" now has two shapes to handle. The dashboard's home
-  page treats them separately on purpose. A pending card is also invisible to the deck while being
-  fully visible to every audit, which is the intended asymmetry but is worth knowing before reading a
-  count from one and comparing it against the other.
-- **Verified by:** `node --test test/deck/shippableCards.test.js test/server/additions.test.js`
-- **Status:** open, and expected to stay open
-- **When to revisit:** if a retrofit ever targets a BASE unit rather than an extras unit. Approving an
-  addition does not re-save the unit's reviewed corpus into the backward-dedup library, which
-  `markCardsReviewed` does; extras units are exempt from that library anyway, so the gap is latent
-  today and becomes real the first time a base unit is retrofitted.
-
-## An excluded pending addition is shown but not counted
-
-- **What:** the additions review renders an excluded pending card struck through, the way the corpus
-  review does, but does not count it in "N cards waiting" or in the home page's pending badge.
-- **Why:** it has already been decided and cannot ship whatever happens at the gate, so counting it
-  advertises work that does not exist. On the first real batch, 35 of 246 were in that state, so the
-  page would have claimed 246 outstanding when 211 were.
-- **Impact:** the number on the page is smaller than the number of rows on it, which reads as a bug
-  until you notice the struck-through rows. The alternative (hiding them) is worse: an exclusion made
-  by a script is exactly the kind a reviewer should be able to overturn.
-- **Verified by:** `node --test test/server/additions.test.js`
-- **Status:** resolved by choosing the smaller count (2026-08-25)
-- **When to revisit:** if the two numbers being different causes a real misreading, show both rather
-  than picking one.
-
-## The absorption predates the gate, so it was migrated onto it afterwards
-
-- **What:** the 2026-08-24 Nihongo absorption held its 246 cards back the only way available at the
-  time, by clearing `done` and withdrawing the corpus sign-off on fifteen finished units.
-  `scripts/migrate-absorption-to-additions.mjs` stamped those cards with their batch and restored
-  every unit's sign-off, so the units are finished again with pending additions attached.
-- **Why:** leaving it would have meant reviewing the first real batch through the mechanism the batch
-  itself proved was wrong.
-- **Impact:** the set of cards to stamp was derived from git (the ids each unit gained since the
-  commit before the merge) rather than from a marker, because no marker existed at the time. That is
-  sound for this one migration and is not a pattern to repeat: a future retrofit stamps `addition` as
-  it appends, so the set is recorded rather than reconstructed.
-- **Verified by:** the package note count returned to 2,159, exactly the delivered baseline in
-  `anki-delivered.json`, with 211 pending additions held back
-- **Status:** resolved (2026-08-25)
-- **When to revisit:** never; the script is spent.
-
-## An addition passes TWO gates, because one was only ever right for the first batch
-
-- **What:** a retrofitted card ships only with both `additionReviewed` (content) and `additionDone`
-  (audio), mirroring a lesson's `reviewed` and `done`. It started as a single flag.
-- **Why the single flag was wrong:** the first batch happened to be a migration, so its 133 cards
-  arrived with clips already generated and "approve" could mean both "the text is right" and "ready
-  to ship" at once. That is the exception, not the rule. The normal case is a PDF of class notes,
-  where a card is authored with no clip at all and audio has to be generated BETWEEN the two
-  sign-offs: content first so nothing spends TTS credits on a card that might be cut, audio second so
-  no clip reaches a studied deck unheard.
-- **Impact:** two flags per retrofitted card rather than one, and the additions page renders two
-  groups instead of one. Both reuse the corpus and audio `STAGE_TABLES` entries, so the surface is
-  the existing review filtered to a batch rather than a second implementation of it. The cost is that
-  `isPendingAddition` is now a two-condition predicate, and anything reading it has to mean
-  "not through BOTH" rather than "not approved".
-- **Verified by:** `node --test test/deck/shippableCards.test.js test/server/additions.test.js`
-- **Status:** open, and expected to stay open
-- **When to revisit:** if a batch ever legitimately arrives fully voiced, the audio gate is still
-  worth passing: a clip that was right in its old deck is worth hearing once in its new context.
-
-## "Which clips are new" cannot be reconstructed from the audio field afterwards
-
-- **What:** the audio review separates a clip the retrofit carried across from one synthesized after
-  the content gate, using `additionAudioInherited`. A future retrofit sets it as it copies the clip.
-  The first batch predated the field, so `scripts/migrate-mark-inherited-audio.mjs` reconstructed the
-  set from the routing table's record of which cards MOVED.
-- **Why not derive it:** the obvious signal, "its `audio` field changed during the audio run", is
-  wrong. The audio stage re-resolves a cached clip under a canonical name, so on this batch 126 cards
-  showed a changed filename where only 78 were actually synthesized. Reconstructing from that would
-  have marked 48 cards as needing an ear that nobody had generated, which is the opposite of the
-  point.
-- **Impact:** the fact has to be recorded at the moment it is true, by whatever copies the clip. A
-  retrofit that forgets leaves its carried-over clips indistinguishable from new ones, and the only
-  recovery is the same routing-table reconstruction, which needs a routing table to exist.
-- **Verified by:** `node --test test/server/additions.test.js`, and on the live batch:
-  132 inherited + 79 fresh = 211, where the single moved card counted as fresh is `irl-l1-39`, whose
-  clip really was regenerated after its `[number]` placeholder was rewritten
-- **Status:** resolved for this batch (2026-08-26); the field is the standing mechanism
-- **When to revisit:** if a batch ever mixes sources per card rather than per batch.
-
-### Eight live notes carry no `abid:` tag, so no deliver can see them
+## Eight live notes carry no `abid:` tag, so no deliver can see them
 
 **What.** The book's deck tree in the live collection holds eight notes on the `AnkiBuilder ja` note
 type that have no `abid:<card.id>` tag: the counters まい, ほん, ぼん, ぽん, つ, かい, がい, and the
@@ -3576,78 +2573,7 @@ const u=n.filter(x=>!x.tags.some(t=>t.startsWith("abid:")));
 console.log(u.length+" untagged:",u.map(x=>x.fields.Target.value).join(" "));})()'
 ```
 
-### A safety flag that Anki stopped accepting read as the safest option right up until it ran
-
-**What.** `deleteDecks` took a `cardsToo` argument, and this repo's wrapper defaulted it to `false`
-on the reasoning that a deck which turns out not to be empty should give its cards up to Default
-rather than to deletion. Anki removed that option in **2.1.28**: the call now fails outright with
-"Since Anki 2.1.28 it's not possible to delete decks without deleting cards as well". The default was
-not a weaker safety net than intended, it was a request that could only ever throw.
-
-**Why it survived.** Two reinforcing reasons. Every caller that actually ran in anger passed
-`cardsToo: true` explicitly (`deliver.js`, `migrate-deck-numbering.mjs`, `restore-anki-backup.mjs`),
-so the default was only reachable from the one script nobody had run yet. And the unit test asserted
-the default, describing it in a comment as "the safety property, not a detail" — but it asserts
-against a **mock**, and a mock accepts values the real server rejects. The test was pinning a belief
-about Anki, not a behaviour of Anki, and it passed for exactly as long as nobody checked.
-
-**Impact.** It surfaced on the live retirement of the Nihongo 101 course: 103 notes were deleted,
-then the deck removal failed, leaving four empty decks behind. Recoverable by fixing forward, because
-`deleteNotes` had already returned and the deletion was the irreversible half. Had the order been
-reversed, the failure would have aborted before any deletion and looked like nothing but noise.
-
-**Status.** Fixed. `cardsToo` is now a **required** argument with no default, so the choice happens at
-each call site. The guarantee moved to where it can hold: the caller counts the cards in each deck and
-refuses if the count is not zero, which is strictly stronger than the old flag — the flag rescued
-cards after being wrong about emptiness, the check means never being wrong about it.
-
-**The general lesson, which is the reason this entry exists at all.** A test written against a mock
-proves what we SEND, never what the server does with it. Where a mocked assertion also carries a
-claim about the remote system's behaviour, that claim is unverified by construction, and a confident
-comment on it makes it read as verified. Any argument whose whole purpose is safety against a remote
-API is worth confirming against the real thing at least once.
-
-**Revisit** if AnkiConnect wrappers grow more defaults that encode assumptions about Anki's rules; the
-same shape of bug is available anywhere a default stands in for a live behaviour nobody has probed.
-`src/anki/probeResults.js` is where such behaviours get answered.
-
-### A retired collection blocked delivery of every OTHER collection
-
-**What.** The Nihongo 101 course was absorbed into the book and its Anki deck deleted. Its
-`anki-delivered.json` still recorded 236 delivered notes, so the next delivery hit the
-delivered-before-but-ZERO-notes-found guard and aborted. That guard is correct in isolation — from
-where it stands, a deliberately deleted deck and a RENAMED one look identical, and continuing past a
-rename would re-add every card as a new note with no scheduling. But one guard failure aborts the
-whole run, and the dashboard's "Deliver to Anki" button delivers ALL collections. So a collection
-retired days earlier silently blocked an unrelated book from uploading, and the error named only the
-retired deck, which reads as unrelated to the deck the owner was actually trying to ship.
-
-**Why.** There was no way to say "this deck is gone on purpose". The two states the pipeline could
-represent were "deliver it" and "it failed", and retirement is neither.
-
-**Impact.** Delivery of the live book was blocked outright until the flag existed. The trap in the
-guard's own suggested fix made it worse: it advises clearing `deliveredCardIds`, which would have
-re-armed the collection and re-delivered all 236 cards into a recreated deck as new notes.
-
-**Status.** Fixed. A collection's manifest (`book.json` / `course.json`) may carry `retired: true`,
-and `resolveDecks` skips it with `skipped: "retired"` before any stage touches it. Only a human sets
-it, because only a human knows whether a missing deck is intentional. `retired` must be exactly
-`true`; absent, `false` or merely truthy all mean not retired, so the thousands of existing manifests
-without the field are unaffected.
-
-**Revisit** if collections ever need retiring per-UNIT rather than whole; the flag is deliberately
-collection-wide because that is the only granularity retirement has meant so far. Note the fix above
-covered DELIVERY only. See "A retired collection was still a build target, still audited, and still
-offered for review" below for what that left behind.
-
-**Verified by:**
-
-```sh
-node -e 'import("./src/anki/deliver.js").then(m=>{for(const d of m.resolveDecks("output","all"))
-  console.log(d.type, d.id, "| skipped:", d.skipped||"-")})'
-```
-
-### Front cues quoted Japanese with no English gloss, so a learner who can't read kana was stuck
+## Front cues quoted Japanese with no English gloss, so a learner who can't read kana was stuck
 
 **What.** A `scene` or a `hint` renders BEFORE the answer, and 46 of them in the kana book quoted
 Japanese. Only 4 gave an English meaning. 16 quoted bare kana with nothing in brackets at all
@@ -3704,135 +2630,6 @@ print(f"{total} cue(s) quote Japanese; {bare} unglossed")   # expect: 46 quote J
 PY
 ```
 
-## Most verbs have no citation form, and three of those are a real miss
-
-- **What:** the deck cards verbs in whatever form the book prints. Twenty-four bare ます-form verb
-  entries have no dictionary-form card anywhere in the collection. Twenty-one of those are expected:
-  Japanese for Busy People Book 1 simply never prints their dictionary form, and the owner ruled on
-  2026-09-05 that the deck follows the book's schedule rather than running ahead of it. **Three are a
-  genuine bug:** Lesson 15's GRAMMAR 2 prose enumerates the Regular 2 verbs taught up to that point so
-  the learner can derive their dictionary forms, and みせる, あげる and かりる were never carded
-  although the chapter names them. The chapter's conjugation chart is a page image
-  (`Page_145_Image_0001.jpg`), so extraction carded only what the prose beside it listed.
-- **Why:** the twenty-one are a deliberate ruling, not an oversight. A batch supplying all twenty-three
-  was authored, audio-generated and content-reviewed in 2026-09, then stripped back out: carding a
-  citation form ahead of the lesson that explains the concept means meeting a form before its
-  explanation, and gathering them into Lesson 15 (the one lesson that does teach it) piled that lesson
-  with verbs whose own lesson was chapters earlier. It was applied by the spent migration
-  `scripts/add-verb-forms-family.mjs`; see `docs/designs/verb-forms-family-2026-09.md`
-  for the batch and the reversal, and the "Card every verb form the source teaches, and none it does
-  not" rule in `card-authoring-rules.md`. The three-verb miss has no such defence and is simply open.
-- **Impact:** a learner through Lesson 16 can say たべます and not たべる for most verbs, which is the
-  plain register informal speech runs in. Lessons 17 to 24 introduce more forms and will close part of
-  it as they are built. Nothing mechanical will catch the next miss of the Lesson 15 kind: there is no
-  `preflight` check for a citation form the source teaches and the cards lack, because a general check
-  needs per-language morphology this tool deliberately does not carry (deciding かります is Regular 2
-  while おくります is Regular 1 is a lookup, not a transformation).
-- **Status:** open — three verbs are a real gap against the source; the rest is by design
-- **Verified by:** counts bare inflected-form verb entries against the citation-form cards that name
-  them. Expect `24 with no citation form` until Lesson 17+ is built or the three are recovered:
-
-```sh
-node - <<'JS'
-import { readFileSync, readdirSync } from "fs";
-import { join } from "path";
-const BOOK = "output/epubs/japanese-for-busy-people-book-1-kana";
-const cards = [];
-for (const d of readdirSync(BOOK, { withFileTypes: true })) {
-  if (!d.isDirectory()) continue;
-  try { cards.push(...JSON.parse(readFileSync(join(BOOK, d.name, "cards.json"), "utf-8")).items.filter(i => !i.excluded)); } catch {}
-}
-const dict = cards.filter(c => /dictionary form/i.test(c.english));
-const masu = cards.filter(c => /ます$/.test(c.target || "") && c.target.length <= 9
-  && !/[.?!、。]/.test(c.english) && c.english.split(/[ ,]+/).length <= 4
-  && !/^(おはようございます|でございます)$/.test(c.target));
-const missing = masu.filter(m => !dict.some(d => (d.note || "").includes(m.target)));
-console.log(`${masu.length} bare ます-form verb entries; ${dict.length} citation-form cards; ${missing.length} with no citation form`);
-JS
-```
-
-- **When to revisit:** recovering みせる, あげる and かりる into `chapter-15` is a small, source-backed
-  fix worth doing on its own; it needs no ruling because the chapter names them. The other twenty-one
-  stay open until the book teaches them.
-
-## Book 1's family vocabulary stops short of siblings, and the deck is faithful to that
-
-- **What:** the Japanese for Busy People deck teaches twelve family terms, all of them from Lesson 9's
-  own WORD POWER table (ごかぞく, おとうさん, おかあさん, おくさん, かぞく, ちち, はは, つま, かない,
-  ごしゅじん, おっと, しゅじん). Siblings, children, sons and daughters are not missing from the
-  extraction: the book does not teach them until Lesson 24, which this deck has not been built to.
-  Grandparents (そふ, そぼ, おじいさん, おばあさん) and りょうしん never appear anywhere in Book 1, in
-  any lesson or either glossary.
-- **Why:** the deck follows the book's teaching order, and the forward-flag pass exists specifically to
-  keep a lesson from carding vocabulary the book introduces later. Pulling Lesson 24's family table
-  forward would have been the pass working incorrectly, not correctly.
-- **Impact:** a learner studying through Lesson 16 can name their parents and spouse and cannot name a
-  brother. The twenty-two-card `family-vocabulary` addition batch closes it ahead of the book, marked
-  `aiSuggested`, and every card's `reviewNote` records whether it came from Lesson 24's table or is
-  absent from Book 1 entirely. When Lessons 17 to 24 are eventually built, that batch will collide
-  with Lesson 24's own extraction and the duplicates will need reconciling.
-- **Status:** open (deliberate; the collision at Lesson 24 is the thing to remember)
-- **Verified by:** the terms Book 1 never teaches, checked against the extracted chapter cache:
-
-```sh
-cd .anki-builder/epubs/1fab0f99d1195ad9/cache-v2/chapters &&
-for w in そふ そぼ おじいさん おばあさん りょうしん; do
-  echo "$w: $(grep -l "$w" *.xhtml 2>/dev/null | tr '\n' ' ')NONE-means-absent"
-done
-```
-
-- **When to revisit:** when Lesson 24 is built. Reconcile the `family-vocabulary` batch against that
-  lesson's own extraction before shipping it, keeping the earliest card id so Anki review history
-  survives.
-
-### A retired collection was still a build target, still audited, and still offered for review
-
-**What.** `retired: true` was read in exactly one place: a private `isRetired()` inside
-`src/anki/deliver.js`. Delivery was correctly blocked, but nothing else in the codebase could see the
-flag, so every other surface treated a retired collection as live. The dashboard listed the dead
-Nihongo 101 course under "Built · ready to study" alongside the live book; `preflight` swept its
-three lessons on every run and emitted findings (two corpus-drift warnings) that nobody would ever
-act on; `listBooks` dropped the field entirely, so a retired BOOK could not have been filtered at
-all; and the build flow offered the course as a source to build a new lesson into, which is how it
-was found: a Step 1 question presented a deck that has been dead since 2026-08-26.
-
-**Why.** The flag was introduced to solve one incident (a retired collection aborting delivery of
-every other collection) and was scoped to that incident. Retirement is a property of the collection,
-but it was implemented as a property of the delivery path.
-
-**Impact.** Assembling into it would have been silent and expensive: the lesson builds, spends model
-and TTS credits, passes both review gates, and only then goes nowhere, because delivery skips the
-whole collection. Nothing anywhere would have reported it, because the wasted work looks exactly like
-finished work right up until it fails to appear in Anki. A latent variant was worse:
-`materializeBookInOutput` rewrites `book.json` wholesale and carried forward only five fields, so any
-`assemble` against a retired BOOK would have silently ERASED `retired: true`, turning a deliberately
-deleted deck back into a deliverable one with no error and no trace.
-
-**Status.** Fixed. `isRetiredCollection` (`src/cli/outputPaths.js`) is now the single definition, and
-`deliver.js` calls it instead of its own copy. `assemble` refuses a retired collection before
-allocating a run directory (`--force` overrides); `scanWorkspace` leaves it out of the sweep and
-reports it in preflight's coverage header; the dashboard gives it its own **Retired** section;
-`listBooks` carries the field like `listCourses` already did; and `materializeBookInOutput` preserves
-it across a marker refresh. Pointing preflight at a retired collection directly still checks it. The
-filter keeps dead decks out of a whole-root sweep, not out of reach.
-
-**Revisit** when any new surface enumerates collections. The rule this entry exists to record is that
-discovering a collection and honoring its retirement are the same responsibility; a lister that finds
-a collection but cannot say whether it is retired will get this wrong again. The same applies to any
-future hand-set manifest field, which `materializeBookInOutput` must be taught to preserve.
-
-**Verified by:**
-
-```sh
-# the retired course is skipped by delivery, absent from the preflight sweep but named in its
-# coverage header, and refused as a build target
-node -e 'import("./src/anki/deliver.js").then(m=>{for(const d of m.resolveDecks("output","all"))
-  console.log(d.type, d.id, "| skipped:", d.skipped||"-")})'
-npm run preflight | head -5
-npx anki-builder assemble --output-root output --words /dev/null \
-  --course "Nihongo 101 Course (N5)" --lesson-number 99 --lang ja 2>&1 | tail -1
-```
-
 ## The quota circuit breaker reads the CLI's prose, and that prose is not a contract
 
 **What:** `looksLikeQuotaExhaustion` (`src/util/runClaude.js`) decides whether a failed `claude -p`
@@ -3876,48 +2673,6 @@ node -e 'import("./src/util/runClaude.js").then(m=>{
 node --test test/util/runClaude.test.js
 ```
 
-## `meta.phase` is a fact about the build that four consumers have to agree on
-
-`prepare`'s fill-in-the-blank pass is skipped for a v2 phase unit, and the rule lives in exactly one
-function (`drillPassExpected`, `src/cards/readiness.js`) because four places ask it: `prepare`
-itself, the readiness gate, `resume`, and the `readiness-exemptions` audit check.
-
-**Why it is one function.** The consequence of two of them disagreeing is not a wrong number. If
-readiness keeps requiring the `enriched` marker while `prepare` stops setting it, a phase-built unit
-shows no **Mark reviewed** button and can never be signed off, and nothing in the pipeline says why:
-the phase ran, the corpus is there, the card set is complete, and the gate is simply absent.
-
-**Impact.** A fifth consumer that reads `meta.enriched` directly will misreport every v2 unit, and
-will look correct on the 34 v1 units it is tested against. The field is also on the corpus schema,
-which `main` validates too, so a v1 tree reads it as an optional field it never sets.
-
-**Status:** live, and this is the shape to keep. Revisit only if a consumer needs a different
-question than "was the drill pass this unit's to run", at which point it wants its own predicate
-rather than a second reading of this one.
-
-**Verified by:** `grep -rn "meta.enriched\|meta\[.enriched" src/ | grep -v readiness.js`. Every
-hit must be guarded by `drillPassExpected` or be inside `prepare`'s own `minesDrills` branch.
-
-## The surviving v1 model passes declare an effort at most, never a model
-
-**Status: RESOLVED.** Every pass in both families now names a model and an effort in a declared
-table (`EPUB_PASS_PINS`, `TRANSLATE_PASS_PINS`), and `test/agents/survivingPassPins.test.js` holds
-them to it alongside the v2 role registry.
-
-**One correction to what this entry originally said.** It implied the unpinned passes were spending
-at whatever the operator thread runs. They were not: `resolvePinning` falls through to a hardcoded
-`DEFAULT_MODEL` of `claude-sonnet-5`, so they were pinned, just invisibly, by a constant three files
-away that would have moved eight passes at once if anyone changed it.
-
-**What was actually wrong, and is now fixed.** The forward-flag pass is a checking role: it reads
-items the extraction just produced and judges whether any are premature. v2's rule is that a role
-verifying another is pinned strictly above it, and this one was running at the same rank as the pass
-it checks, with nothing anywhere saying that was a choice. It is now Opus against the extraction's
-Sonnet, and the ordering is asserted from the `checks` field rather than left in a comment.
-
-**Verified by:** `node --test test/agents/survivingPassPins.test.js`, and
-`grep -n "PASS_PINS" src/corpus/epubLlmRunClaude.js src/translate/runClaude.js` for the tables.
-
 ## A page-scan EPUB has no text, so the TEXT path cannot read it
 
 The second EPUB this project was tested against (Genki I, supplied 2026-09-07 as a test fixture
@@ -3955,127 +2710,6 @@ this entry first claimed.
 
 **Verified by:** `node scripts/epub-probe.mjs <the epub>` reports `1 file(s), 35 KB of content` and
 `132 chars of text, 393 image(s)`. For the PDF, a raw scan for `/Type /Font` returns zero matches.
-
-## The union reconciler ships the same word twice when two roles gloss it differently
-
-Measured on the only live phase-1 run so far (chapter 2, 4 agent calls): **19 of 83 items are a
-target that already appears elsewhere in the same corpus**, differing only in how the gloss is
-punctuated.
-
-```
-とけい   x2   'Watch, clock.'   /  'Watch; clock.'
-わたしの x2   'My, mine.'       /  'My; mine.'
-かし     x2   'Sweets.'         /  'Sweets; confectionery.'
-いち     x2   'One (1).'        /  'One.'
-```
-
-**Why it happens.** `candidateKey` is `targetKey|englishKey`, and keying on the gloss as well as the
-target is deliberate: it is what stops はし (bridge) and はし (chopsticks) merging into one item and
-silently deleting a sense. But `englishKey` normalises only case, whitespace and a trailing `.?!`,
-so `watch, clock` and `watch; clock` are different keys and both entries survive. The specialists
-overlap by design and each writes its own gloss, so this fires whenever two of them agree on a word
-and differ on a comma.
-
-**Impact.** About a quarter of a base corpus reaches the review as near-identical pairs, and the
-reviewer culls them by hand. Worse, the pairs are not obviously wrong on screen: two cards reading
-"Watch, clock." and "Watch; clock." look like a duplicate someone already decided to keep. It is also
-the largest single quality gap between v2's output and a reviewed v1 unit.
-
-**Why the obvious fix is not obviously right.** Normalising `,` and `;` inside the gloss would merge
-these, but the same normalisation moves the boundary that protects a real sense split, and the sense
-split is the failure that costs a card rather than a reviewer's minute. A safer shape is probably to
-keep the key as it is and add a post-merge pass that reports same-target pairs whose glosses differ
-only in punctuation, so a script proposes and a human or an agent disposes, which is this project's
-existing idiom.
-
-**Status: RESOLVED.** A `semantic-dedup` agent step now runs last in both phases, after the
-snapshot. `findDuplicateCandidates` groups the look-alikes and an Opus role judges each group
-`duplicate` or `distinct`. Replayed against the corpus that produced this entry: 21 groups, 18
-excluded, 3 kept as distinct, 0 unaccounted, 83 shipping items down to 65.
-
-**Verified by:** re-run `node scripts/shadow-run.mjs` for a reviewed chapter and count targets
-appearing more than once in the resulting `corpus.json`.
-
-## Backward dedup was blind to every extras unit
-
-**Status: RESOLVED**, by a `backward-dedup` agent step in both phases, fed by
-`loadEarlierUnitItems`, which reads every earlier unit off disk rather than through the library.
-
-**What was wrong.** `dedupBackward` ran in one place (`assemble`), so an `-extras` unit never ran it,
-and it compared against a library keyed `(epubHash, chapterNumber)` that extras units are forbidden
-to write to: an extras unit shares its base's chapter number, so the write would overwrite the base
-chapter's entry. On the live book a new chapter was deduped against 1,176 targets and blind to 1,163
-more, which is half the collection.
-
-**What is kept.** The v1 string matcher still runs in `assemble` and still flags exact repeats. The
-agent's pre-filter suppresses those on the base path (`skipExactMatches`) so the reviewer does not
-get the same concern twice, and keeps them on the extras path where nothing else checks at all.
-
-**Verified by:** replaying chapter 16 against everything before it: 2,273 prior items, 1,117 of them
-from extras units, 22 candidates raised, prompt bounded at 16 KB.
-
-## A gap is only answerable if it names a FORM, and category alone does not say that
-
-Found by the first two-phase shadow run (chapter 9, 2026-09-08). Phase 2 died after eleven paid model
-calls with `gap author left 25 computed gap(s) unaddressed`.
-
-**The chain.** The example-sentence miner categorises a Key Sentence as `Grammar & Function Words`,
-which is right: the sentence exists to teach a grammar point. `underExampledForms` filtered on that
-category alone and read it as "a function WORD needing three sentences to demonstrate it". Since
-nothing in a chapter contains a whole sentence, each of those reported **0 examples forever**, and
-the gap author was asked to write three sentences demonstrating a sentence. Six of chapter 9's
-thirty-eight gaps were that request. Its silence then tripped a guard that was right to fire.
-
-**Fixed** by skipping utterance-shaped items (`isPredicateShaped`), which is the same judgement the
-base/extras split already makes. Re-computed on the same run's artifacts: 38 gaps down to 33.
-
-**One survivor, and it is the heuristic's known limit.** `ときどききます` ("I come here sometimes")
-is a sentence with no particle, so the predicate test cannot see it. That is why the prompt now also
-says a gap you cannot make sense of belongs in `unfillable` with that as the reason: fixing the
-generator is not enough on its own, because the generator is a heuristic.
-
-**Status:** resolved for the six-in-thirty-eight case, open as a class. A malformed gap is possible
-whenever a card's category and its shape disagree, and the second line of defence is the author being
-able to decline rather than go quiet.
-
-**Verified by:** `node --test test/agents/coverageGaps.test.js`.
-
-## A guard that throws before writing destroys the evidence it was checking
-
-Same run. `assertGapsAddressed` threw immediately after parsing, so the rejected response was never
-persisted: the failure gave a count and nothing on disk could say whether the model had dropped the
-gaps or answered with handles that did not match. Every other step in the phase is verified by its
-artifact; this one destroyed its own.
-
-**Fixed** by splitting reporting from enforcing. `authorGapFills` returns `unaddressed` and does not
-throw; the phase writes `candidates/gap-fills.json` and then asserts. The guard still stops the
-phase, and the answer survives to be read.
-
-**Worth generalising.** Any future step that validates a model's response should write first and
-judge second, for the same reason: a rejection you cannot inspect costs the whole run's evidence.
-
-**Status:** fixed here; the general rule is not enforced anywhere.
-
-## The coverage adversary's findings went into a file nobody opened
-
-**Status: RESOLVED** by the `gap-filler` step, which acts on the diff instead of recording it.
-
-The adversary is the most expensive role in phase 1 (Opus, high effort, 25-minute timeout) and its
-output reached nothing. `candidates/coverage.json` was written and verified to exist, a line was
-printed suggesting someone read it, and no code path opened it: not the review page, not an audit
-check, not phase 2 (whose `computeGaps` is a different notion of gap entirely). On chapter 9 that was
-48 real findings, including two paired constructions carded only as bare adverbs.
-
-The goals doc had specified the opposite ("the review gate refuses the link if the artifact is
-missing") and that gate was never built. `verifyRun` checking the artifact existed made the role
-LOOK wired, which is the failure this project names as its signature.
-
-**The general lesson, which is not enforced anywhere.** Every artifact a step writes should have a
-named consumer, and "a human might read it" is not one. The other artifacts added in the same period
-(`dedup.json`, `backward.json`, `image-verdicts.json`) have not been audited for the same problem.
-
-**Verified by:** `grep -rn "coverage.json" src/ scripts/` should show a consumer, not only writers
-and log lines.
 
 ## The checking roles are Sonnet now, and half the debias argument went with them
 
@@ -4120,110 +2754,6 @@ re-derives the chapter and the gap filler cards what was missed, recovering fift
 good work at the higher settings, and their failure mode is silent: a merged sense or a wrongly
 flagged card looks like a decision rather than a mistake. Nothing has been compared before and after.
 
-## A checker that honours less than its prompt promises rejects correct work
-
-The gap author's prompt has always said `"fillsGap": "the id or target of the gap this closes"`.
-`gapHandles` returned targets only. So a response naming gaps by id matched nothing, and the phase
-refused work that was complete.
-
-**Measured on the chapter-9 run of 2026-09-08.** The gap author returned fifty items covering every
-gap, thirty-five of them naming a gap by id, and the check reported **39 of 39 unaddressed**. Replayed
-against the fix: **0**. An earlier run had mixed ids and targets and failed partially, which is why
-the cause looked like a model dropping gaps rather than a contract the checker did not honour.
-
-**Two things made this findable, and neither existed a day earlier.** The artifact is now written
-before the guard runs, so the model's actual answer survived a rejection. And the run report records
-what each step produced, so "fifty items, thirty-nine unaddressed" was visible as a contradiction
-rather than a plausible failure.
-
-**The general shape.** A prompt is a contract with two sides, and only one of them is tested. Every
-`{{PLACEHOLDER}}` is pinned by `test/docs/promptTemplates.test.js`, and nothing pins what the prompt
-promises about the SHAPE of a response against the code that reads it. The other agents' matchers
-(`gapFiller` on `fillsGap`, both deduplicators on `group`) have not been audited for the same gap.
-
-**Status:** fixed here, open as a class.
-
-## The phase extraction is now the default, and the old pass stays reachable
-
-`assemble` on an `--epub` source runs phase 1 unless `--extraction v1` says otherwise. It was the
-other way round while the rewrite was being written, because `main` was finishing a book with the old
-pass and both had to work side by side without a branch switch.
-
-**Why the default inverted.** A unit built by the old pass is indistinguishable from a phase-built one
-after the fact: same `corpus.json`, same schema, same review page. What it lacks is the coverage
-adversary, the per-image verdicts and both deduplicators, and none of those absences is visible in the
-output. So a forgotten flag produced a unit that read as fully built and was not, which is this
-project's signature failure shape. The flag is no longer what stands between a chapter and the
-pipeline meant to build it.
-
-**The trade-off accepted.** The default is now per SOURCE rather than global: an `--epub` chapter gets
-the phase, and a template or dictated word list gets the only extraction it can have, because phase 1
-reads a chapter and those have none. That means `usePhaseExtraction` consults `flags.epub`, so the
-answer to "which extraction is this" is no longer readable from the flag alone. Asking for the phase
-on a source that cannot run it is an error rather than a silent downgrade, which is what keeps the
-per-source default from becoming a second way to get the wrong pipeline quietly.
-
-**Impact:** none on chapters 0-16, which are built and not rewritten. A future non-EPUB source type
-that COULD support a phase would need this default revisited rather than inherited.
-
-**Revisit when:** a third extraction exists, or a non-EPUB source grows a phase. At that point the
-per-source boolean should become an explicit per-source table.
-
-**Verified by:** `node --test test/cli/index.test.js` — two tests pin the default in both directions
-(an `--epub` build with no flag must run the phase; a template build with no flag must not).
-
-**Status:** current design.
-
-## A closed corpus schema made a whole paid build the unit of failure
-
-`corpus.json`'s item schema is closed: an unknown property is an error. That is right, because the
-corpus is the contract the dashboard, the deck build and the delivery all read. What was wrong is
-where the error landed.
-
-**Measured on chapter 17's first live build, 2026-09-09.** Phase 1 completed all ten steps, the
-coverage adversary ran, the gap filler ran, both deduplicators ran, the backward dedup flagged 19
-already-taught items and the forward pass flagged 8 premature ones. Then the write refused the corpus
-with `Unexpected property in items[0]: fromTable` and the build exited 1. `fromTable` is the table
-specialist's own provenance, telling you which of the chapter's ten tables an item came from. It is
-already persisted in `candidates/tables.json`, nothing downstream reads it, and it cost roughly twenty
-minutes of paid agent calls. The chapter reader volunteers `foundIn` the same way.
-
-**The fix is a projection, before every validation.** `projectCorpusItem` keeps only the properties
-`CORPUS_SCHEMA` declares, derives that set from the schema so a second list cannot drift from the
-validator, and returns what it dropped. It runs in the union reconciler, so the run report attributes
-a volunteered field to the step that produced it, and through `dropVolunteeredFields` at each of
-`assemble`'s validation points plus its write.
-
-**The first attempt put it at the write alone**, reasoning that the write is the one boundary every
-path crosses. It is, but the EPUB branch validates the corpus several steps before reaching it, so the
-projection ran after the check it existed to satisfy. Chapter 17 then failed a second time, in the
-same place, on `fillsGap` from the gap author. A guard that runs after the thing it guards is not a
-guard, and "the last line before the write" was the wrong unit: the right one is "everywhere the
-schema is consulted".
-
-**What is dropped is logged, never swallowed.** A field appearing in that list means an agent is
-volunteering something the corpus has no home for, which is either a prompt to fix or a schema to
-grow. Silence would turn a closed schema into a quietly lossy one, which is worse than the crash.
-
-**A second bug of the same class, with the opposite fix.** `alternateOf` is written by the reconciler
-itself when it splits a headword the book printed as a pair (`ゼロ／れい`), and it tells the review
-gate the card is one of two readings. It was in NEITHER schema, so any corpus containing a split
-headword was unwritable, and any unit that got past `assemble` would have failed again at `prepare`.
-Nothing caught it because the field only appears when a chapter actually has such a headword; chapter
-17 has none, which is the only reason `fromTable` surfaced first. Both schemas now declare it.
-
-**Impact:** none on chapters 0-16. The general shape is the one worth remembering: a strict boundary
-crossed once at the end of an expensive pipeline turns any surprise into a total loss. Either validate
-early on a cheap sample, or make the boundary forgiving and loud.
-
-**Revisit when:** an agent volunteers a field that SHOULD be carried. The log line names it, and the
-answer is a schema addition, not a wider projection.
-
-**Verified by:** `node --test test/cards/unionReconciler.test.js` — one test pins that a volunteered
-field is dropped and reported and the result still validates, another that `alternateOf` survives.
-
-**Status:** fixed.
-
 ## Two writers produce `corpus.json` on the phase path, so its existence is ambiguous
 
 The phase's reconcile step writes its merged items to `<unitDir>/corpus.json` as that step's artifact.
@@ -4263,3 +2793,4 @@ re-enters assemble and comes out stamped, another that a finished corpus is stil
 assemble stays the resume command.
 
 **Status:** worked around; the structural fix is open.
+

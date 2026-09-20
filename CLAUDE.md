@@ -121,19 +121,32 @@ it, and nothing anywhere else has a copy. **Treat "uncommitted" as "not durable.
 unit of work is done — a doc sweep, a new script with its tests, a recovery — **commit and push it
 immediately**, don't leave it sitting in the tree across a session.
 
-### 5. Every change records its trade-offs & limitations
+### 5. Record a trade-off when someone will have to act on it
 
-- When a change introduces or reveals a design **trade-off**, **bottleneck**, or known
-  **limitation**, add a row to [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md)
-  **in the same commit** — what it is, *why* it was chosen, its **impact**, its `**Status:**`, and
-  *when to revisit*. If the row asserts a fact about live data, give it a `**Verified by:**` command
-  that re-derives that fact instead of freezing a count in prose. (Record it in the `custom/`
-  **overlay**, not the plugin-owned `.harness/docs/LIMITATIONS.md`.)
-- That file is the single place to evaluate the design's compromises later without
-  re-deriving them from the code. A capped scope, a hardcoded assumption, an "un-handled for
-  now" — that's exactly what belongs there. **It is also this project's planning loop**: what
-  gets built next comes from reading it, so an entry that is stale, or missing, quietly steers
-  the work wrong.
+Two files, and which one an entry goes in is decided by whether there is work waiting.
+
+- **[`LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md) is the planning queue**: open
+  trade-offs, bottlenecks and known gaps. What gets built next comes from reading it, so an entry
+  earns its place by naming a condition under which someone would act. Four fields, short: what it
+  is, *why* it was chosen, its **impact**, and a `**Status:**` giving *when to revisit*. A row
+  asserting a fact about live data also gives a `**Verified by:**` command that re-derives it,
+  because counts rot and a false limitation is worse than a missing one.
+- **[`DECISIONS.md`](./.harness/custom/docs/DECISIONS.md) is the settled list**: choices made
+  deliberately, kept so nobody re-litigates them. If the answer to "when would we revisit this" is
+  "we would not", it belongs here, not in the queue.
+
+Both live in the `custom/` **overlay**, never the plugin-owned `.harness/docs/LIMITATIONS.md`.
+
+**Three things that are NOT limitations**, because writing them down is what buried the queue under
+199 entries:
+
+- **A bug you fixed in the same commit.** That is a commit message. The code comment explaining why
+  the guard exists is worth more than a row saying it once did not.
+- **Anything already resolved.** When a change resolves an entry, **DELETE the entry** in that same
+  commit rather than marking it resolved. Git holds the history. Marking instead of deleting is
+  precisely how a file that is supposed to be read in one sitting stopped being readable.
+- **A settled choice.** That is `DECISIONS.md`. Moving one back to LIMITATIONS is fine and expected
+  when its reasoning stops holding; say what changed.
 
 ### 6. Tests never touch production state
 

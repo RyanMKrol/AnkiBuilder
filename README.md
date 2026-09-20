@@ -591,6 +591,7 @@ What is built, newest last:
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 What gets built next comes from [`.harness/custom/docs/LIMITATIONS.md`](./.harness/custom/docs/LIMITATIONS.md),
-the live list of trade-offs and known gaps, each with a status; an unshaped thought goes in
-`.harness/tracking/IDEAS.jsonl`. The `TASKS.json` backlog beside it belongs to the retired build
-harness and is a historical record — nothing reads it.
+the queue of open trade-offs and known gaps; a choice that is settled rather than pending lives in
+[`DECISIONS.md`](./.harness/custom/docs/DECISIONS.md) beside it, and an unshaped thought goes in
+`.harness/tracking/IDEAS.jsonl`. The `TASKS.json` backlog belongs to the retired build harness and is
+a historical record: nothing reads it.

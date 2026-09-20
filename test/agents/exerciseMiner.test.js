@@ -142,3 +142,33 @@ test("a chapter with no numbered blocks means no call and no items", () => {
     );
   });
 });
+
+test("a block the miner was NOT given is reported, not thrown, and its items survive", () => {
+  // Lesson 17's first live phase-2 run died here. The miner is handed the chapter's NUMBERED blocks
+  // (WORD POWER I-II, EXERCISES I-VI); it also named TARGET DIALOGUE, a real section sitting next to
+  // them. Refusing over that discarded the miner's whole output and the six agent steps behind it.
+  //
+  // Naming an adjacent real section is a model reading one section wide, not inventing coverage.
+  // The missing-block check is the one that matters and it still throws: a block nobody reached
+  // leaves no trace otherwise.
+  const blocks = [{ kind: "EXERCISES", numeral: "I", at: 10 }];
+  const response = {
+    blocks: [{ block: "EXERCISES I" }, { block: "TARGET DIALOGUE" }],
+    skipped: [],
+  };
+
+  const { reported, unaskedFor } = assertBlocksAccountedFor(blocks, response);
+  assert.deepEqual(unaskedFor, ["TARGET DIALOGUE"]);
+  assert.equal(reported.length, 2, "the response's own blocks are returned untouched");
+});
+
+test("a block it WAS given and never mentioned still throws", () => {
+  const blocks = [
+    { kind: "EXERCISES", numeral: "I", at: 10 },
+    { kind: "EXERCISES", numeral: "II", at: 20 },
+  ];
+  assert.throws(
+    () => assertBlocksAccountedFor(blocks, { blocks: [{ block: "EXERCISES I" }], skipped: [] }),
+    /did not account for block\(s\): EXERCISES II/,
+  );
+});

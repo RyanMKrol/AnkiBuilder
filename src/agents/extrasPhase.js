@@ -172,6 +172,11 @@ export function runExtrasPhase({
     step: "exercise-miner",
     role: "exerciseMiner",
     status: STEP_STATUS.OK,
+    // A block it named that it was not given: kept as a note rather than a refusal, because the
+    // miner reading one section wide is not the same failure as a block it never reached.
+    reason: exercises.value.unaskedFor?.length
+      ? `reported ${exercises.value.unaskedFor.length} block(s) it was not given: ${exercises.value.unaskedFor.join(", ")}`
+      : null,
     durationMs: exercises.durationMs,
     counts: { in: blocks.length, out: exercises.value.items.length },
     artifact: write(unitDir, "candidates/exercises.json", exercises.value),

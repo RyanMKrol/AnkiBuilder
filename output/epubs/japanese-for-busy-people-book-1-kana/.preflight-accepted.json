@@ -48,6 +48,26 @@
         "at": "2026-09-20T19:38:39.242Z",
         "message": "chapter-17: \"ストレッチをします\" (Do stretching exercises) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-18/doraibu-o-shimasu": {
+        "at": "2026-09-20T20:47:24.928Z",
+        "message": "chapter-18: \"ドライブをします\" (Go for a drive) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 18: the four 〜をします entries (プレゼン/ドライブ/かいぎ/うちあわせ) are each a single glossed row in the book's own VOCABULARY tables — noun+をします compound verbs, i.e. lexical entries, not sentences. Verified against the chapter text."
+      },
+      "chapter-18/kaigi-o-shimasu": {
+        "at": "2026-09-20T20:47:24.928Z",
+        "message": "chapter-18: \"かいぎをします\" (Have a meeting) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 18: the four 〜をします entries (プレゼン/ドライブ/かいぎ/うちあわせ) are each a single glossed row in the book's own VOCABULARY tables — noun+をします compound verbs, i.e. lexical entries, not sentences. Verified against the chapter text."
+      },
+      "chapter-18/purezen-o-shimasu": {
+        "at": "2026-09-20T20:47:24.928Z",
+        "message": "chapter-18: \"プレゼンをします\" (Give a presentation) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 18: the four 〜をします entries (プレゼン/ドライブ/かいぎ/うちあわせ) are each a single glossed row in the book's own VOCABULARY tables — noun+をします compound verbs, i.e. lexical entries, not sentences. Verified against the chapter text."
+      },
+      "chapter-18/uchiawase-o-shimasu": {
+        "at": "2026-09-20T20:47:24.928Z",
+        "message": "chapter-18: \"うちあわせをします\" (Have a preparatory meeting) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 18: the four 〜をします entries (プレゼン/ドライブ/かいぎ/うちあわせ) are each a single glossed row in the book's own VOCABULARY tables — noun+をします compound verbs, i.e. lexical entries, not sentences. Verified against the chapter text."
       }
     }
   }

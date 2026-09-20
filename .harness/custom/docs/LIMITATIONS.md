@@ -2815,3 +2815,28 @@ assemble stays the resume command.
   it, so the drift check can tell a merge from a loss instead of naming both in one sentence.
 - **Verified by:** the two counts should differ only by merged duplicates, never by content —
   `node -e "const c=require('./output/epubs/japanese-for-busy-people-book-1-kana/chapter-17/corpus.json'),k=require('./output/epubs/japanese-for-busy-people-book-1-kana/chapter-17/cards.json');const t=new Set(k.items.map(i=>(i.target||'').trim()));console.log(c.items.filter(i=>!k.items.some(x=>x.id===i.id)&&!t.has((i.target||'').trim())).length+' genuine loss(es)')"`
+
+## Nothing mechanically stops a proper name becoming a card
+
+- **What:** five fictitious business names the book invented to populate a drill (`のぞみホテル`,
+  `アジャルト・スクール`, `さくらこうえん`, `みなとテニスクラブ`, `アンティークとうきょう`) were carded in
+  Lesson 17 and caught by the owner at gate 1, not by any check. The prohibition now lives in
+  `docs/card-rules-shared.md`, so every card-writing pass gets it.
+- **Why it happened:** the rule already existed in three separate prompts (the chapter reader, the
+  coverage adversary, and the v1 extraction prompt, which names this book's own
+  "Nozomi Department Store" as its example) and in none of the shared rules. So the gap filler, the
+  gap author and the inventive author never had it, and the gap filler is what carded these. This is
+  v2 acceptance criterion 5 -- *rules compose* -- failing in a new place: a rule written three times
+  and shared zero times.
+- **Impact:** the fix is a prompt rule, which is a hope rather than a guarantee. A model that ignores
+  it produces a card nobody catches until a human reads the review table, which is exactly how these
+  five were found.
+- **Status:** open. **Revisit when** another proper-name card reaches a gate, or when book `hints`
+  are next extended. The deterministic check is available but book-shaped: this publisher labels them
+  in its own text, "(fictitious hotel name)", so a check could flag any card whose target matches a
+  name the book declared that way. That string is an English-language convention of one publisher, so
+  it belongs in `hints` and must report *unknown* for a book without it, never *clean*.
+- **Verified by:** `bash scripts/verify-no-proper-name-cards.sh` -- reads every fictitious name the
+  book declares in its own chapter text and reports any that ships as a card. Expect
+  `34 fictitious names declared by the book; 0 shipping as cards`.
+

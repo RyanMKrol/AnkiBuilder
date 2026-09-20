@@ -1145,6 +1145,21 @@ and no audit is given `--apply`. Exit 2 means a report is waiting for your judgm
 something is broken. ⚠️ `prepare` spends model credits. Full reasoning:
 [extras-pass](references/extras-pass.md).
 
+### Check no card teaches an invented name
+
+```sh
+bash scripts/verify-no-proper-name-cards.sh
+```
+
+A textbook invents hotels, schools and shops to populate its drills, and a learner who memorizes
+"Minato Tennis Club" has learned nothing about the language. The rule is in
+`docs/card-rules-shared.md` so every card-writing pass has it; this script is the second pair of eyes,
+and it works by reading the names THIS publisher labels "(fictitious … name)" in its own text.
+
+**An empty result means this book does not label them, never that the deck is clean.** Five such
+cards reached gate 1 on Lesson 17 and were caught by the owner reading the review table, which is the
+failure this exists to make less likely rather than impossible.
+
 ### Read what the adversary taught you about the other passes
 
 ```sh

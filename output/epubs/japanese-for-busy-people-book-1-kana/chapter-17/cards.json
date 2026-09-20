@@ -696,7 +696,10 @@
       "target": "のぞみホテル",
       "pronunciation": "Nozomi Hoteru",
       "aiSuggested": true,
-      "note": null
+      "note": null,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "ajaruto-sukuuru",
@@ -705,7 +708,10 @@
       "target": "アジャルト・スクール",
       "pronunciation": "Ajaruto Sukūru",
       "aiSuggested": true,
-      "note": null
+      "note": null,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "sakura-kouen",
@@ -714,7 +720,10 @@
       "target": "さくらこうえん",
       "pronunciation": "Sakura Kōen",
       "aiSuggested": true,
-      "note": null
+      "note": null,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "minato-tenisu-kurabu",
@@ -723,7 +732,10 @@
       "target": "みなとテニスクラブ",
       "pronunciation": "Minato Tenisu Kurabu",
       "aiSuggested": true,
-      "note": null
+      "note": null,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     },
     {
       "id": "antiiku-toukyou",
@@ -732,7 +744,10 @@
       "target": "アンティークとうきょう",
       "pronunciation": "Antīku Tōkyō",
       "aiSuggested": true,
-      "note": null
+      "note": null,
+      "excluded": true,
+      "excludedBy": "proper-name-rule",
+      "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
     }
   ]
 }

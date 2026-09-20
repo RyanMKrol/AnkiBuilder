@@ -82,8 +82,14 @@ export function unfilledGaps(gaps, { items = [], declined = [] } = {}) {
 /**
  * Fills what it can. Returns `{ items, declined, unfilled, skipped }`.
  *
- * `items` carry `producedBy` and `aiSuggested`, so the reconciler credits them and the reviewer can
- * see which cards came from here rather than from a specialist reading the chapter directly.
+ * `items` carry `producedBy`, so the reconciler credits them and the learning pass can attribute a
+ * reviewer's correction back here. They do NOT carry `aiSuggested`, and that distinction matters:
+ * the flag means "not from the source" (card-authoring-rules.md), and everything this role fills is
+ * a gap the coverage adversary found IN THE CHAPTER. Stamping it said the opposite of the truth --
+ * on Lesson 17 it marked 19 of the 20 cells of a conjugation table the book prints verbatim as model
+ * inventions, which is backwards for a reviewer deciding what to scrutinise. Which PASS produced a
+ * card is a different question from whether the BOOK contains it, and `producedBy` plus the
+ * as-generated snapshot already answer the first.
  *
  * Costs nothing when the adversary found no gaps, which is the result to hope for.
  */
@@ -105,10 +111,11 @@ export function fillCoverageGaps({
   );
   const parsed = JSON.parse(extractJsonObjectText(raw));
 
+  // `...item` first, so an `uncertain` the model set on a gap it read off a chart without a gloss
+  // survives. That is the right flag for a shaky reading; `aiSuggested` is not.
   const filled = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => ({
     ...item,
     producedBy: ROLE_ID,
-    aiSuggested: true,
   }));
   const declined = Array.isArray(parsed.declined) ? parsed.declined : [];
 

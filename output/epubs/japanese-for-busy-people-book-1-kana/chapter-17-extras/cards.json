@@ -463,12 +463,16 @@
       "target": "ビールはのみたくないです。みずをのみたいです",
       "pronunciation": "bīru wa nomitakunai desu. mizu o nomitai desu",
       "aiSuggested": true,
-      "audio": "cf8759dab648bb39.mp3",
+      "audio": "beer-no-water-yes-manual-e4667c18.mp3",
       "audioOriginal": "cf8759dab648bb39.orig.mp3",
       "audioAuto": "cf8759dab648bb39.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "cf8759dab648bb39"
+      "audioTextHash": "cf8759dab648bb39",
+      "audioManual": "beer-no-water-yes-manual-e4667c18.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 4.859917808219178
+      }
     },
     {
       "id": "aitakunai-2",
@@ -650,12 +654,16 @@
       "target": "あさくさにいきたくなかったですが、ともだちといきました",
       "pronunciation": "Asakusa ni ikitakunakatta desu ga, tomodachi to ikimashita",
       "aiSuggested": true,
-      "audio": "56ebc9a2819bea03.mp3",
+      "audio": "ikitakunakatta-3-manual-86fa99ea.mp3",
       "audioOriginal": "56ebc9a2819bea03.orig.mp3",
       "audioAuto": "56ebc9a2819bea03.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "56ebc9a2819bea03"
+      "audioTextHash": "56ebc9a2819bea03",
+      "audioManual": "ikitakunakatta-3-manual-86fa99ea.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 4.23455051369863
+      }
     },
     {
       "id": "piano-1",
@@ -792,11 +800,12 @@
       "target": "まいばんじゅうにじにねます",
       "pronunciation": "maiban jūni-ji ni nemasu",
       "aiSuggested": true,
-      "audio": "acf71b36febbc209.mp3",
-      "audioOriginal": "acf71b36febbc209.orig.mp3",
-      "audioAuto": "acf71b36febbc209.mp3",
+      "audioOriginal": "6b1841e1e1ce7539-genkanji-63be99ea.orig.mp3",
+      "audioAuto": "6b1841e1e1ce7539-genkanji-63be99ea.mp3",
       "audioMarked": true,
-      "audioTextHash": "acf71b36febbc209"
+      "audioTextHash": "6b1841e1e1ce7539",
+      "audioFilter": "standard",
+      "audio": "6b1841e1e1ce7539-genkanji-63be99ea.mp3"
     },
     {
       "id": "kaitai-x2",
@@ -1075,11 +1084,12 @@
       "pronunciation": "eki ni iku mae ni, tomodachi ni denwa o shimasu",
       "aiSuggested": true,
       "note": "Contrast pair with the next item: まえ after a verb means 'before', while after a place it means 'in front'.",
-      "audio": "3b224721dcf1331b.mp3",
-      "audioOriginal": "3b224721dcf1331b.orig.mp3",
-      "audioAuto": "3b224721dcf1331b.mp3",
+      "audioOriginal": "e09954cdc9daaeec-genkanji-8b460f79.orig.mp3",
+      "audioAuto": "e09954cdc9daaeec-genkanji-8b460f79.mp3",
       "audioMarked": true,
-      "audioTextHash": "3b224721dcf1331b"
+      "audioTextHash": "e09954cdc9daaeec",
+      "audioFilter": "standard",
+      "audio": "e09954cdc9daaeec-genkanji-8b460f79.mp3"
     },
     {
       "id": "paul-before-home-bought-souvenir",

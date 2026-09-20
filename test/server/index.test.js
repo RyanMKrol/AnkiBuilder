@@ -1897,6 +1897,32 @@ test("one chapter sign-off marks both units done", async () => {
   }
 });
 
+test("the chapter page wires Mark done to the CHAPTER endpoint, not the per-unit one", async () => {
+  // The endpoint above worked and its test passed, and nothing reached it: the button always posted
+  // /unit/<n>/done, so a chapter sign-off marked the base unit and left its extras sibling without
+  // meta.done. The extras unit was then silently dropped from the package, because the merge selects
+  // on done. Chapter 17 shipped 34 of its 35 units that way.
+  //
+  // The client decides which path to post from `data-chapter` on #deckctx, so that attribute is the
+  // whole wiring and this is the assertion that would have caught it.
+  const root = withChapterPair(fixture());
+  try {
+    await withServer(root, async (url) => {
+      const chapterPage = await (await fetch(`${url}/chapter/book/mybook/2`)).text();
+      assert.match(chapterPage, /data-chapter="2"/, "a chapter page must say which chapter it is");
+
+      const unitPage = await (await fetch(`${url}/review/book/mybook/2`)).text();
+      assert.doesNotMatch(
+        unitPage,
+        /data-chapter=/,
+        "a single-unit page must NOT, or it would sign off a sibling the reviewer never opened",
+      );
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("the chapter sign-off refuses before writing when a unit is unreviewed", async () => {
   const root = withChapterPair(fixture(), { extrasReviewed: false });
   try {

@@ -503,7 +503,7 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
       deliver: editable,
       extraHtml: `\n${buildBanner}${toolbar ? `\n<div class="bar">${toolbar}</div>` : ""}`,
     })}
-${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}" hidden></div>` : ""}
+${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}"${chapterNumber != null ? ` data-chapter="${escapeHtml(String(chapterNumber))}"` : ""} hidden></div>` : ""}
 ${sectionHtml}
 ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;

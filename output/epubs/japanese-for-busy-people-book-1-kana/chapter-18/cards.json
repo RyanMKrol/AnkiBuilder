@@ -142,7 +142,7 @@
       "category": "Grammar & Function Words",
       "target": "いって",
       "pronunciation": "itte",
-      "note": "Irregular: いきます (ikimasu) does not follow the き→いて (ki→ite) pattern of かいて (kaite). It becomes いって (itte), like かって (katte)."
+      "note": "Regular 1, and the one cell the book stars as an exception. き (ki) normally gives いて (ite), as in かいて (kaite), yet いきます (ikimasu) becomes いって (itte). It is NOT an Irregular verb — only きます (kimasu) and します (shimasu) are. Don't confuse it with いて (ite), the て-form of います (imasu)."
     },
     {
       "id": "tabete",
@@ -152,7 +152,7 @@
       "pronunciation": "tabete",
       "uncertain": true,
       "reviewNote": "Only て-form given in text (exercise I example). The main て-form chart is an image I could not read; other て-forms may need adding from it. | Resolved at gate 1: the chart (Page_173_Image_0001) WAS read by the image specialist, and all 19 て-form cells were audited cell-by-cell against the cards — none missing.",
-      "note": "Drop る (ru) from たべる (taberu, Lesson 15) and add て (te). The same rule gives みて (mite), いて (ite), おしえて (oshiete) and みせて (misete)."
+      "note": "Regular 2. Simpler than Regular 1: just change ます (masu) to て (te). みて (mite), いて (ite), おしえて (oshiete) and みせて (misete) all work this way."
     },
     {
       "id": "te-form-kau",
@@ -160,7 +160,7 @@
       "category": "Grammar & Function Words",
       "target": "かって",
       "pronunciation": "katte",
-      "note": "From かう (kau, Lesson 15): う (u) becomes って (tte). まつ (matsu), かえる (kaeru) and あう (au) follow the same pattern."
+      "note": "Regular 1. For these the sound before ます (masu) decides the ending: い (i) → って (tte). あいます (aimasu) → あって (atte) works the same way."
     },
     {
       "id": "te-form-matsu",
@@ -170,7 +170,7 @@
       "pronunciation": "matte",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (まちます is listed as a formally taught verb in the next lesson's vocabulary, so its て-form may be better placed there) | Resolved at gate 1: まって is a Regular 1 cell of THIS chapter's own て-form chart, so it belongs here. (まちます itself was already carded in Lesson 10.)",
-      "note": "From まつ (matsu): つ (tsu) becomes って (tte), the same sound change as かって (katte) and かえって (kaette)."
+      "note": "Regular 1. ち (chi) → って (tte) — the same ending as かって (katte) and かえって (kaette), which come from い (i) and り (ri)."
     },
     {
       "id": "te-form-kaeru",
@@ -178,7 +178,7 @@
       "category": "Grammar & Function Words",
       "target": "かえって",
       "pronunciation": "kaette",
-      "note": "Watch out: かえる (kaeru) ends in る (ru) but is not a drop-る verb like たべて (tabete). It becomes かえって (kaette), like かって (katte)."
+      "note": "Regular 1. り (ri) → って (tte), the same ending as まって (matte) and かって (katte)."
     },
     {
       "id": "te-form-kaku",
@@ -186,7 +186,7 @@
       "category": "Grammar & Function Words",
       "target": "かいて",
       "pronunciation": "kaite",
-      "note": "From かく (kaku): く (ku) becomes いて (ite). ききます (kikimasu) gives きいて (kiite) the same way. The one exception is いって (itte) from いく (iku)."
+      "note": "Regular 1. き (ki) → いて (ite). ききます (kikimasu) → きいて (kiite) follows it; いきます (ikimasu) is the starred exception that does not."
     },
     {
       "id": "te-form-oyogu",
@@ -194,7 +194,7 @@
       "category": "Grammar & Function Words",
       "target": "およいで",
       "pronunciation": "oyoide",
-      "note": "From およぐ (oyogu): ぐ (gu) becomes いで (ide), with a voiced で (de) instead of て (te)."
+      "note": "Regular 1. ぎ (gi) → いで (ide) — the voiced partner of き (ki) → いて (ite)."
     },
     {
       "id": "te-form-nomu",
@@ -202,7 +202,7 @@
       "category": "Grammar & Function Words",
       "target": "のんで",
       "pronunciation": "nonde",
-      "note": "From のむ (nomu): む (mu) becomes んで (nde), with a voiced で (de). よむ (yomu) gives よんで (yonde) the same way."
+      "note": "Regular 1. み (mi) → んで (nde). よみます (yomimasu) → よんで (yonde) is the same."
     },
     {
       "id": "te-form-kasu",
@@ -210,21 +210,23 @@
       "category": "Grammar & Function Words",
       "target": "かして",
       "pronunciation": "kashite",
-      "note": "From かす (kasu): す (su) becomes して (shite). はなす (hanasu) gives はなして (hanashite) the same way."
+      "note": "Regular 1. し (shi) → して (shite), so here the ます (masu) simply becomes て (te). はなします (hanashimasu) → はなして (hanashite) is the same."
     },
     {
       "id": "te-form-oshieru",
       "english": "Tell, teach (て-form of おしえます)",
       "category": "Grammar & Function Words",
       "target": "おしえて",
-      "pronunciation": "oshiete"
+      "pronunciation": "oshiete",
+      "note": "Regular 2. Change ます (masu) to て (te), like たべます (tabemasu) → たべて (tabete)."
     },
     {
       "id": "te-form-miseru",
       "english": "Show (て-form of みせます)",
       "category": "Grammar & Function Words",
       "target": "みせて",
-      "pronunciation": "misete"
+      "pronunciation": "misete",
+      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みて (mite), the て-form of みます (mimasu), \"see\"."
     },
     {
       "id": "te-form-miru",
@@ -232,7 +234,7 @@
       "category": "Grammar & Function Words",
       "target": "みて",
       "pronunciation": "mite",
-      "note": "Drop る (ru) from みる (miru) and add て (te), like たべて (tabete)."
+      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みせて (misete), \"show\"."
     },
     {
       "id": "te-form-iru",
@@ -240,7 +242,7 @@
       "category": "Grammar & Function Words",
       "target": "いて",
       "pronunciation": "ite",
-      "note": "A Regular 2 verb: change ます (masu) to て (te), so います (imasu) → いて (ite), the same way たべます (tabemasu) → たべて (tabete). Don't confuse いて (ite) with いって (itte), the て-form of いきます (ikimasu).",
+      "note": "Regular 2. Change ます (masu) to て (te), so います (imasu) → いて (ite), the same way たべます (tabemasu) → たべて (tabete). Don't confuse いて (ite) with いって (itte), the て-form of いきます (ikimasu).",
       "uncertain": true,
       "reviewNote": "Note rewritten at gate 1: the generated note claimed います \"drops る\", but います contains no る and the book's own chart states the Regular 2 rule as \"change ます to て\". Please confirm."
     },
@@ -251,7 +253,7 @@
       "target": "きて",
       "pronunciation": "kite",
       "reviewNote": "Listed under Irregular in the chart.",
-      "note": "Irregular. くる (kuru, Lesson 15) becomes きて (kite), not the drop-る pattern of たべて (tabete). Learn it as a fixed form."
+      "note": "Irregular. Only two verbs are irregular: きます (kimasu) → きて (kite) and します (shimasu) → して (shite). Both take the Regular 2 shape, so neither is hard."
     },
     {
       "id": "te-form-suru",
@@ -260,7 +262,7 @@
       "target": "して",
       "pronunciation": "shite",
       "reviewNote": "Listed under Irregular in the chart.",
-      "note": "Irregular. する (suru, Lesson 15) becomes して (shite). Learn it as a fixed form."
+      "note": "Irregular — one of only two, with きます (kimasu) → きて (kite). Note that かします (kashimasu) → かして (kashite) ends the same way but is Regular 1."
     },
     {
       "id": "te-form-au",
@@ -269,7 +271,8 @@
       "target": "あって",
       "pronunciation": "atte",
       "uncertain": true,
-      "reviewNote": "Appears only in the practice card boxes, not in the chart. English gloss is my own; check whether an earlier chapter teaches あいます. | Resolved at gate 1: あいます is already taught (Lessons 9 and 16). あって is a WORD POWER cell of this chapter."
+      "reviewNote": "Appears only in the practice card boxes, not in the chart. English gloss is my own; check whether an earlier chapter teaches あいます. | Resolved at gate 1: あいます is already taught (Lessons 9 and 16). あって is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. い (i) → って (tte), exactly like かいます (kaimasu) → かって (katte)."
     },
     {
       "id": "te-form-kiku",
@@ -278,7 +281,8 @@
       "target": "きいて",
       "pronunciation": "kiite",
       "uncertain": true,
-      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches ききます. | Resolved at gate 1: ききます is already taught (Lessons 8 and 9). きいて is a WORD POWER cell of this chapter."
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches ききます. | Resolved at gate 1: ききます is already taught (Lessons 8 and 9). きいて is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. き (ki) → いて (ite), the same as かきます (kakimasu) → かいて (kaite)."
     },
     {
       "id": "te-form-yomu",
@@ -288,7 +292,7 @@
       "pronunciation": "yonde",
       "uncertain": true,
       "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches よみます. | Resolved at gate 1: よみます is already taught (Lessons 8 and 9). よんで is a WORD POWER cell of this chapter.",
-      "note": "From よむ (yomu): む (mu) becomes んで (nde), like のんで (nonde)."
+      "note": "Regular 1. み (mi) → んで (nde), exactly like のみます (nomimasu) → のんで (nonde)."
     },
     {
       "id": "te-form-hanasu",
@@ -297,7 +301,8 @@
       "target": "はなして",
       "pronunciation": "hanashite",
       "uncertain": true,
-      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches はなします. | Resolved at gate 1: はなします is already taught (Lesson 15). はなして is a WORD POWER cell of this chapter."
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches はなします. | Resolved at gate 1: はなします is already taught (Lesson 15). はなして is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. し (shi) → して (shite), the same as かします (kashimasu) → かして (kashite)."
     },
     {
       "id": "ki-o-tsukete",

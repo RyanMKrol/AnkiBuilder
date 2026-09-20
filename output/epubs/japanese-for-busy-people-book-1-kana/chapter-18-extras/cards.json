@@ -30,7 +30,8 @@
         "reason": "phase 2 dedups its own miners' output"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -39,7 +40,12 @@
       "category": "Grammar & Function Words",
       "target": "ばしょをおしえてください",
       "pronunciation": "basho o oshiete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e6355e56d571b9b7.mp3",
+      "audioOriginal": "e6355e56d571b9b7.orig.mp3",
+      "audioAuto": "e6355e56d571b9b7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e6355e56d571b9b7"
     },
     {
       "id": "kaku-jusho",
@@ -47,14 +53,24 @@
       "category": "Grammar & Function Words",
       "target": "じゅうしょをかいてください",
       "pronunciation": "jūsho o kaite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7739fb454d6ee11a.mp3",
+      "audioOriginal": "7739fb454d6ee11a.orig.mp3",
+      "audioAuto": "7739fb454d6ee11a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7739fb454d6ee11a"
     },
     {
       "id": "smith-report-after-meeting",
       "english": "Smith-san wrote a report after the meeting.",
       "category": "Grammar & Function Words",
       "target": "スミスさんはかいぎのあと、レポートをかきました",
-      "pronunciation": "Sumisu-san wa kaigi no ato, repōto o kakimashita"
+      "pronunciation": "Sumisu-san wa kaigi no ato, repōto o kakimashita",
+      "audio": "7f17d166e9c1293c.mp3",
+      "audioOriginal": "7f17d166e9c1293c.orig.mp3",
+      "audioAuto": "7f17d166e9c1293c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7f17d166e9c1293c"
     },
     {
       "id": "purezen-kaigi",
@@ -62,7 +78,12 @@
       "category": "Work & Occupations",
       "target": "あしたかいぎでプレゼンをします",
       "pronunciation": "ashita kaigi de purezen o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b923ff83dae1a99d.mp3",
+      "audioOriginal": "b923ff83dae1a99d.orig.mp3",
+      "audioAuto": "b923ff83dae1a99d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b923ff83dae1a99d"
     },
     {
       "id": "invite-come-home-lunch",
@@ -70,7 +91,13 @@
       "category": "Food",
       "target": "うちにきて、ひるごはんをたべませんか",
       "pronunciation": "uchi ni kite, hirugohan o tabemasen ka",
-      "note": "きて (kite) is the て-form of きます (kimasu), an Irregular verb."
+      "note": "きて (kite) is the て-form of きます (kimasu), an Irregular verb.",
+      "audioOriginal": "ce31bb33b946a76a-genkanji-55a17fb2.orig.mp3",
+      "audioAuto": "ce31bb33b946a76a-genkanji-55a17fb2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ce31bb33b946a76a",
+      "audioFilter": "standard",
+      "audio": "ce31bb33b946a76a-genkanji-55a17fb2.mp3"
     },
     {
       "id": "kiku-ask",
@@ -79,7 +106,12 @@
       "target": "なかむらさんにでんわばんごうをきいてください",
       "pronunciation": "Nakamura-san ni denwa bangō o kiite kudasai",
       "aiSuggested": true,
-      "note": "Contrast pair with おんがくをきいてください (ongaku o kiite kudasai). Same て-form, but きいて (kiite) means \"ask\" when a person is marked with に (ni) and \"listen\" when the object is something you hear."
+      "note": "Contrast pair with おんがくをきいてください (ongaku o kiite kudasai). Same て-form, but きいて (kiite) means \"ask\" when a person is marked with に (ni) and \"listen\" when the object is something you hear.",
+      "audio": "a3f92a9cd0583fb6.mp3",
+      "audioOriginal": "a3f92a9cd0583fb6.orig.mp3",
+      "audioAuto": "a3f92a9cd0583fb6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a3f92a9cd0583fb6"
     },
     {
       "id": "answer-hakone-tennis",
@@ -88,7 +120,12 @@
       "target": "はこねにいって、テニスをします",
       "pronunciation": "Hakone ni itte, tenisu o shimasu",
       "scene": "Someone asks what you are going to do tomorrow.",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb.",
+      "audio": "191ca4033e21a949.mp3",
+      "audioOriginal": "191ca4033e21a949.orig.mp3",
+      "audioAuto": "191ca4033e21a949.mp3",
+      "audioMarked": true,
+      "audioTextHash": "191ca4033e21a949"
     },
     {
       "id": "oshieru-denwa",
@@ -118,7 +155,12 @@
       "english": "I'll eat lunch at a restaurant and then go to the art museum.",
       "category": "Grammar & Function Words",
       "target": "レストランでひるごはんをたべて、びじゅつかんにいきます",
-      "pronunciation": "resutoran de hirugohan o tabete, bijutsukan ni ikimasu"
+      "pronunciation": "resutoran de hirugohan o tabete, bijutsukan ni ikimasu",
+      "audio": "893edf5991bca53c.mp3",
+      "audioOriginal": "893edf5991bca53c.orig.mp3",
+      "audioAuto": "893edf5991bca53c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "893edf5991bca53c"
     },
     {
       "id": "miseru-shashin",
@@ -126,7 +168,12 @@
       "category": "Grammar & Function Words",
       "target": "しゃしんをみせてください",
       "pronunciation": "shashin o misete kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "abd89feae8038856.mp3",
+      "audioOriginal": "abd89feae8038856.orig.mp3",
+      "audioAuto": "abd89feae8038856.mp3",
+      "audioMarked": true,
+      "audioTextHash": "abd89feae8038856"
     },
     {
       "id": "matsu-robii",
@@ -134,7 +181,12 @@
       "category": "Grammar & Function Words",
       "target": "ロビーでまってください",
       "pronunciation": "robī de matte kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "1c1f7984d53a61eb.mp3",
+      "audioOriginal": "1c1f7984d53a61eb.orig.mp3",
+      "audioAuto": "1c1f7984d53a61eb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1c1f7984d53a61eb"
     },
     {
       "id": "kaku-namae",
@@ -164,7 +216,12 @@
       "category": "Travel & Tourism",
       "target": "フェアのあと、ならにいって、ふるいおてらをみます",
       "pronunciation": "fea no ato, Nara ni itte, furui otera o mimasu",
-      "scene": "Answering: What will you do after the fair?"
+      "scene": "Answering: What will you do after the fair?",
+      "audio": "0906f38fc846a050.mp3",
+      "audioOriginal": "0906f38fc846a050.orig.mp3",
+      "audioAuto": "0906f38fc846a050.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0906f38fc846a050"
     },
     {
       "id": "hanasu-nihongo",
@@ -172,14 +229,24 @@
       "category": "Grammar & Function Words",
       "target": "にほんごではなしてください",
       "pronunciation": "nihongo de hanashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ca4e8379390aa613.mp3",
+      "audioOriginal": "ca4e8379390aa613.orig.mp3",
+      "audioAuto": "ca4e8379390aa613.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ca4e8379390aa613"
     },
     {
       "id": "tomodachi-ni-atte-eiga",
       "english": "I'll meet a friend and watch a movie.",
       "category": "Grammar & Function Words",
       "target": "ともだちにあって、えいがをみます",
-      "pronunciation": "tomodachi ni atte, eiga o mimasu"
+      "pronunciation": "tomodachi ni atte, eiga o mimasu",
+      "audio": "1a9ac55656b94fc3.mp3",
+      "audioOriginal": "1a9ac55656b94fc3.orig.mp3",
+      "audioAuto": "1a9ac55656b94fc3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1a9ac55656b94fc3"
     },
     {
       "id": "miseru-meishi",
@@ -197,7 +264,12 @@
       "english": "Yesterday I went to Ginza and ate lunch there.",
       "category": "Grammar & Function Words",
       "target": "きのうぎんざにいって、ひるごはんをたべました",
-      "pronunciation": "kinō Ginza ni itte, hirugohan o tabemashita"
+      "pronunciation": "kinō Ginza ni itte, hirugohan o tabemashita",
+      "audio": "f838332139def4c7.mp3",
+      "audioOriginal": "f838332139def4c7.orig.mp3",
+      "audioAuto": "f838332139def4c7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f838332139def4c7"
     },
     {
       "id": "hanasu-koko",
@@ -226,7 +298,12 @@
       "english": "Shall we go to Nikko and see a famous shrine?",
       "category": "Grammar & Function Words",
       "target": "にっこうにいって、ゆうめいなじんじゃをみませんか",
-      "pronunciation": "Nikkō ni itte, yūmei na jinja o mimasen ka"
+      "pronunciation": "Nikkō ni itte, yūmei na jinja o mimasen ka",
+      "audio": "73545fb51e1fb5a6.mp3",
+      "audioOriginal": "73545fb51e1fb5a6.orig.mp3",
+      "audioAuto": "73545fb51e1fb5a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "73545fb51e1fb5a6"
     },
     {
       "id": "miru-koko",
@@ -244,7 +321,12 @@
       "english": "Shall we buy sandwiches and eat them in the park?",
       "category": "Grammar & Function Words",
       "target": "サンドイッチをかって、こうえんでたべませんか",
-      "pronunciation": "sandoitchi o katte, kōen de tabemasen ka"
+      "pronunciation": "sandoitchi o katte, kōen de tabemasen ka",
+      "audio": "79e40d0a8d6348da.mp3",
+      "audioOriginal": "79e40d0a8d6348da.orig.mp3",
+      "audioAuto": "79e40d0a8d6348da.mp3",
+      "audioMarked": true,
+      "audioTextHash": "79e40d0a8d6348da"
     },
     {
       "id": "kau-chiketto",
@@ -264,7 +346,12 @@
       "target": "あしたはよろしいですか",
       "pronunciation": "ashita wa yoroshii desu ka",
       "aiSuggested": true,
-      "note": "Minimal pair with いまよろしいですか (ima yoroshii desu ka): いま (ima) becomes あしたは (ashita wa)."
+      "note": "Minimal pair with いまよろしいですか (ima yoroshii desu ka): いま (ima) becomes あしたは (ashita wa).",
+      "audio": "5d49f3f1bfc35be6.mp3",
+      "audioOriginal": "5d49f3f1bfc35be6.orig.mp3",
+      "audioAuto": "5d49f3f1bfc35be6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5d49f3f1bfc35be6"
     },
     {
       "id": "kasu-kasa",
@@ -272,7 +359,12 @@
       "category": "Grammar & Function Words",
       "target": "かさをかしてください",
       "pronunciation": "kasa o kashite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c1abe0d178a13f48.mp3",
+      "audioOriginal": "c1abe0d178a13f48.orig.mp3",
+      "audioAuto": "c1abe0d178a13f48.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c1abe0d178a13f48"
     },
     {
       "id": "kuruma-karite-doraibu-yesterday",
@@ -281,7 +373,12 @@
       "target": "くるまをかりて、ドライブをしました",
       "pronunciation": "kuruma o karite, doraibu o shimashita",
       "scene": "Answering: What did you do yesterday?",
-      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te)."
+      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te).",
+      "audio": "1a91cdfd61ce7416.mp3",
+      "audioOriginal": "1a91cdfd61ce7416.orig.mp3",
+      "audioAuto": "1a91cdfd61ce7416.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1a91cdfd61ce7416"
     },
     {
       "id": "eat-after-meeting-ato-de",
@@ -290,14 +387,25 @@
       "target": "かいぎのあとでたべます",
       "pronunciation": "kaigi no ato de tabemasu",
       "scene": "A coworker asks when you plan to eat supper on a day you have an evening meeting.",
-      "note": "あとで (ato de) after かいぎの (kaigi no) stresses that eating comes after the meeting. Compare まえに (mae ni) \"Before\" for the opposite order."
+      "note": "あとで (ato de) after かいぎの (kaigi no) stresses that eating comes after the meeting. Compare まえに (mae ni) \"Before\" for the opposite order.",
+      "audioOriginal": "970027587c7bfd7d-genkanji-60b2c3e4.orig.mp3",
+      "audioAuto": "970027587c7bfd7d-genkanji-60b2c3e4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "970027587c7bfd7d",
+      "audioFilter": "standard",
+      "audio": "970027587c7bfd7d-genkanji-60b2c3e4.mp3"
     },
     {
       "id": "chan-invite-kobe-beef",
       "english": "Well then, how about going to Kobe and having some Kobe beef?",
       "category": "Grammar & Function Words",
       "target": "じゃ、こうべにいって、こうべビーフをたべませんか",
-      "pronunciation": "ja, Kōbe ni itte, Kōbe bīfu o tabemasen ka"
+      "pronunciation": "ja, Kōbe ni itte, Kōbe bīfu o tabemasen ka",
+      "audio": "ec8215f9dd59d545.mp3",
+      "audioOriginal": "ec8215f9dd59d545.orig.mp3",
+      "audioAuto": "ec8215f9dd59d545.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ec8215f9dd59d545"
     },
     {
       "id": "matsu-uketsuke",
@@ -318,7 +426,12 @@
       "pronunciation": "gogo ichi-ji kara kaigi ga arimasu. kaigi no ato, repōto o kakimasu",
       "ttsText": "ごごいちじからかいぎがあります。かいぎのあと、レポートをかきます",
       "uncertain": true,
-      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
+      "audio": "7c79d7d01e9dab8c.mp3",
+      "audioOriginal": "7c79d7d01e9dab8c.orig.mp3",
+      "audioAuto": "7c79d7d01e9dab8c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7c79d7d01e9dab8c"
     },
     {
       "id": "yoroshii-ima",
@@ -327,7 +440,12 @@
       "target": "いまよろしいですか",
       "pronunciation": "ima yoroshii desu ka",
       "aiSuggested": true,
-      "note": "Minimal pair with あしたはよろしいですか (ashita wa yoroshii desu ka): only the time word changes."
+      "note": "Minimal pair with あしたはよろしいですか (ashita wa yoroshii desu ka): only the time word changes.",
+      "audio": "6cf6c699b8c9c3ee.mp3",
+      "audioOriginal": "6cf6c699b8c9c3ee.orig.mp3",
+      "audioAuto": "6cf6c699b8c9c3ee.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6cf6c699b8c9c3ee"
     },
     {
       "id": "smith-osaka-meeting-call",
@@ -335,7 +453,12 @@
       "category": "Work & Occupations",
       "target": "スミスさんはもくようびにおおさかにいって、かいぎをします。かいぎのあと、グリーンさんにでんわをします",
       "pronunciation": "Sumisu-san wa mokuyōbi ni Ōsaka ni itte, kaigi o shimasu. kaigi no ato, Gurīn-san ni denwa o shimasu",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb.",
+      "audio": "cb4fe9b6f0dab6d2.mp3",
+      "audioOriginal": "cb4fe9b6f0dab6d2.orig.mp3",
+      "audioAuto": "cb4fe9b6f0dab6d2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cb4fe9b6f0dab6d2"
     },
     {
       "id": "yomu-meeru",
@@ -343,14 +466,24 @@
       "category": "Grammar & Function Words",
       "target": "メールをよんでください",
       "pronunciation": "mēru o yonde kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "4a6ea92c02278aa8.mp3",
+      "audioOriginal": "4a6ea92c02278aa8.orig.mp3",
+      "audioAuto": "4a6ea92c02278aa8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4a6ea92c02278aa8"
     },
     {
       "id": "chan-likes-steak-topic",
       "english": "Emma-san, do you like steak?",
       "category": "Grammar & Function Words",
       "target": "エマさん、ステーキはすきですか",
-      "pronunciation": "Ema-san, sutēki wa suki desu ka"
+      "pronunciation": "Ema-san, sutēki wa suki desu ka",
+      "audio": "0eb8f66ecce08891.mp3",
+      "audioOriginal": "0eb8f66ecce08891.orig.mp3",
+      "audioAuto": "0eb8f66ecce08891.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0eb8f66ecce08891"
     },
     {
       "id": "kaeru-goji",
@@ -358,7 +491,17 @@
       "category": "Grammar & Function Words",
       "target": "ごじにかえってください",
       "pronunciation": "go-ji ni kaette kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "kaeru-goji-manual-9044784a.mp3",
+      "audioOriginal": "5ffb222dc03350b5.orig.mp3",
+      "audioAuto": "5ffb222dc03350b5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5ffb222dc03350b5",
+      "audioManual": "kaeru-goji-manual-9044784a.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.6071250000000001
+      }
     },
     {
       "id": "chotto-kite",
@@ -387,7 +530,12 @@
       "english": "There was a party yesterday. After the party, I went home by taxi.",
       "category": "Transport",
       "target": "きのうパーティーがありました。パーティーのあと、タクシーでうちにかえりました",
-      "pronunciation": "kinō pātī ga arimashita. pātī no ato, takushī de uchi ni kaerimashita"
+      "pronunciation": "kinō pātī ga arimashita. pātī no ato, takushī de uchi ni kaerimashita",
+      "audio": "8f6e65a78c20a6c9.mp3",
+      "audioOriginal": "8f6e65a78c20a6c9.orig.mp3",
+      "audioAuto": "8f6e65a78c20a6c9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f6e65a78c20a6c9"
     },
     {
       "id": "kaeru-uchi",
@@ -405,7 +553,12 @@
       "english": "What are you going to do tomorrow?",
       "category": "Time",
       "target": "あしたなにをしますか",
-      "pronunciation": "ashita nani o shimasu ka"
+      "pronunciation": "ashita nani o shimasu ka",
+      "audio": "a2750a3e93f2586c.mp3",
+      "audioOriginal": "a2750a3e93f2586c.orig.mp3",
+      "audioAuto": "a2750a3e93f2586c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a2750a3e93f2586c"
     },
     {
       "id": "hanasu-douryou",
@@ -447,7 +600,12 @@
       "target": "ぎんざでかいものをして、えいがをみます",
       "pronunciation": "Ginza de kaimono o shite, eiga o mimasu",
       "scene": "Answering: What are you going to do tomorrow?",
-      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb: かいものをして (kaimono o shite)."
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb: かいものをして (kaimono o shite).",
+      "audio": "f57d0186a287c396.mp3",
+      "audioOriginal": "f57d0186a287c396.orig.mp3",
+      "audioAuto": "f57d0186a287c396.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f57d0186a287c396"
     },
     {
       "id": "ginza-then-meet-friend",
@@ -455,7 +613,13 @@
       "category": "Grammar & Function Words",
       "target": "ぎんざにいって、ともだちにあいます",
       "pronunciation": "Ginza ni itte, tomodachi ni aimasu",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. It links two actions with the same subject."
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. It links two actions with the same subject.",
+      "audioOriginal": "25732abb3303dc7b-genkanji-b7471782.orig.mp3",
+      "audioAuto": "25732abb3303dc7b-genkanji-b7471782.mp3",
+      "audioMarked": true,
+      "audioTextHash": "25732abb3303dc7b",
+      "audioFilter": "standard",
+      "audio": "25732abb3303dc7b-genkanji-b7471782.mp3"
     },
     {
       "id": "iru-koko",
@@ -463,14 +627,24 @@
       "category": "Grammar & Function Words",
       "target": "ここにいてください",
       "pronunciation": "koko ni ite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8166c74bd78de6aa.mp3",
+      "audioOriginal": "8166c74bd78de6aa.orig.mp3",
+      "audioAuto": "8166c74bd78de6aa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8166c74bd78de6aa"
     },
     {
       "id": "depaato-ni-itte-kaimono",
       "english": "I'll go to the department store and do some shopping.",
       "category": "Grammar & Function Words",
       "target": "デパートにいって、かいものをします",
-      "pronunciation": "depāto ni itte, kaimono o shimasu"
+      "pronunciation": "depāto ni itte, kaimono o shimasu",
+      "audio": "341b62b0b3422f99.mp3",
+      "audioOriginal": "341b62b0b3422f99.orig.mp3",
+      "audioAuto": "341b62b0b3422f99.mp3",
+      "audioMarked": true,
+      "audioTextHash": "341b62b0b3422f99"
     },
     {
       "id": "ki-o-tsukete-itterasshai",
@@ -478,7 +652,12 @@
       "category": "Greetings",
       "target": "きをつけて、いってらっしゃい",
       "pronunciation": "ki o tsukete, itterasshai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8f42961e1a868380.mp3",
+      "audioOriginal": "8f42961e1a868380.orig.mp3",
+      "audioAuto": "8f42961e1a868380.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f42961e1a868380"
     },
     {
       "id": "oshieru-namae",
@@ -499,7 +678,12 @@
       "category": "Work & Occupations",
       "target": "フェアのあと、ししゃにいって、チャンさんとうちあわせをします",
       "pronunciation": "fea no ato, shisha ni itte, Chan-san to uchiawase o shimasu",
-      "scene": "Answering: What will you do after the fair?"
+      "scene": "Answering: What will you do after the fair?",
+      "audio": "42ac2731105145ea.mp3",
+      "audioOriginal": "42ac2731105145ea.orig.mp3",
+      "audioAuto": "42ac2731105145ea.mp3",
+      "audioMarked": true,
+      "audioTextHash": "42ac2731105145ea"
     },
     {
       "id": "chain-shite-kiku",
@@ -508,7 +692,12 @@
       "target": "スミスさんにでんわをして、レストランのばしょをききます",
       "pronunciation": "Sumisu-san ni denwa o shite, resutoran no basho o kikimasu",
       "aiSuggested": true,
-      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because a person is marked with に (ni)."
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because a person is marked with に (ni).",
+      "audio": "1de0b1f86da1fe28.mp3",
+      "audioOriginal": "1de0b1f86da1fe28.orig.mp3",
+      "audioAuto": "1de0b1f86da1fe28.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1de0b1f86da1fe28"
     },
     {
       "id": "nomu-ocha",
@@ -527,7 +716,12 @@
       "category": "Grammar & Function Words",
       "target": "ともだちにあって、いっしょにすもうをみました",
       "pronunciation": "tomodachi ni atte, issho ni sumō o mimashita",
-      "scene": "Answering: What did you do yesterday?"
+      "scene": "Answering: What did you do yesterday?",
+      "audio": "5db271d30c8c089b.mp3",
+      "audioOriginal": "5db271d30c8c089b.orig.mp3",
+      "audioAuto": "5db271d30c8c089b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5db271d30c8c089b"
     },
     {
       "id": "emma-kobe-meet-friend",
@@ -536,7 +730,12 @@
       "target": "こうべにいって、ともだちにあいます",
       "pronunciation": "Kōbe ni itte, tomodachi ni aimasu",
       "scene": "Kato asks Emma what she is going to do after the fair.",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb."
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb.",
+      "audio": "0ed9473c1c4f5a81.mp3",
+      "audioOriginal": "0ed9473c1c4f5a81.orig.mp3",
+      "audioAuto": "0ed9473c1c4f5a81.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0ed9473c1c4f5a81"
     },
     {
       "id": "kasu-hon",
@@ -567,7 +766,12 @@
       "target": "おおさかししゃにいって、プレゼンをしました",
       "pronunciation": "Ōsaka shisha ni itte, purezen o shimashita",
       "scene": "Someone asks what you did yesterday.",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita)."
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita).",
+      "audio": "f478268d15a90f71.mp3",
+      "audioOriginal": "f478268d15a90f71.orig.mp3",
+      "audioAuto": "f478268d15a90f71.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f478268d15a90f71"
     },
     {
       "id": "kaku-denwa",
@@ -597,7 +801,12 @@
       "category": "Sports & Hobbies",
       "target": "きのうプールでおよいで、ビールをのみました",
       "pronunciation": "kinō pūru de oyoide, bīru o nomimashita",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f4cba880bf46da2f.mp3",
+      "audioOriginal": "f4cba880bf46da2f.orig.mp3",
+      "audioAuto": "f4cba880bf46da2f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f4cba880bf46da2f"
     },
     {
       "id": "koujou-tokyo",
@@ -605,7 +814,12 @@
       "category": "Work & Occupations",
       "target": "こうじょうはとうきょうにあります",
       "pronunciation": "kōjō wa Tōkyō ni arimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "bb50518907e0ee29.mp3",
+      "audioOriginal": "bb50518907e0ee29.orig.mp3",
+      "audioAuto": "bb50518907e0ee29.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bb50518907e0ee29"
     },
     {
       "id": "nomu-koohii",
@@ -624,7 +838,12 @@
       "category": "Shopping",
       "target": "デパートでかばんをかって、ともだちにあげます",
       "pronunciation": "depāto de kaban o katte, tomodachi ni agemasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "11f1dc5afbc7c157.mp3",
+      "audioOriginal": "11f1dc5afbc7c157.orig.mp3",
+      "audioAuto": "11f1dc5afbc7c157.mp3",
+      "audioMarked": true,
+      "audioTextHash": "11f1dc5afbc7c157"
     },
     {
       "id": "kuru-goji",
@@ -643,7 +862,12 @@
       "category": "Grammar & Function Words",
       "target": "ここでよろしいですか",
       "pronunciation": "koko de yoroshii desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c7fe86287bb3c662.mp3",
+      "audioOriginal": "c7fe86287bb3c662.orig.mp3",
+      "audioAuto": "c7fe86287bb3c662.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c7fe86287bb3c662"
     },
     {
       "id": "miru-terebi",
@@ -651,7 +875,12 @@
       "category": "Grammar & Function Words",
       "target": "テレビをみてください",
       "pronunciation": "terebi o mite kudasai",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "4f07d2d4f4f35515.mp3",
+      "audioOriginal": "4f07d2d4f4f35515.orig.mp3",
+      "audioAuto": "4f07d2d4f4f35515.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4f07d2d4f4f35515"
     },
     {
       "id": "oyogu-koko",
@@ -726,7 +955,12 @@
       "category": "Technology & Communication",
       "target": "メールをかいて、スミスさんにおくります",
       "pronunciation": "mēru o kaite, Sumisu-san ni okurimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9a46fef0b2396c3c.mp3",
+      "audioOriginal": "9a46fef0b2396c3c.orig.mp3",
+      "audioAuto": "9a46fef0b2396c3c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9a46fef0b2396c3c"
     },
     {
       "id": "chain-bookstore-park",
@@ -734,7 +968,12 @@
       "category": "Grammar & Function Words",
       "target": "ほんやにいって、ほんをかって、こうえんでよみます",
       "pronunciation": "honya ni itte, hon o katte, kōen de yomimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "bb6cabfc8a343331.mp3",
+      "audioOriginal": "bb6cabfc8a343331.orig.mp3",
+      "audioAuto": "bb6cabfc8a343331.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bb6cabfc8a343331"
     },
     {
       "id": "tabete-keeki",
@@ -753,7 +992,12 @@
       "category": "Grammar & Function Words",
       "target": "ひるごはんをたべて、コーヒーをのんで、うちにかえります",
       "pronunciation": "hirugohan o tabete, kōhī o nonde, uchi ni kaerimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "041ed176c8214287.mp3",
+      "audioOriginal": "041ed176c8214287.orig.mp3",
+      "audioAuto": "041ed176c8214287.mp3",
+      "audioMarked": true,
+      "audioTextHash": "041ed176c8214287"
     },
     {
       "id": "doraibu-hakone",
@@ -761,21 +1005,38 @@
       "category": "Sports & Hobbies",
       "target": "しゅうまつにはこねでドライブをします",
       "pronunciation": "shūmatsu ni Hakone de doraibu o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audioOriginal": "de7375e3d55ed13c-genkanji-b029b171.orig.mp3",
+      "audioAuto": "de7375e3d55ed13c-genkanji-b029b171.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de7375e3d55ed13c",
+      "audioFilter": "standard",
+      "audio": "de7375e3d55ed13c-genkanji-b029b171.mp3"
     },
     {
       "id": "emma-osaka-branch-te-form",
       "english": "Emma-san will go to the Osaka branch office tomorrow and see Chan-san.",
       "category": "Grammar & Function Words",
       "target": "エマさんはあしたおおさかししゃにいって、チャンさんにあいます",
-      "pronunciation": "Ema-san wa ashita Ōsaka shisha ni itte, Chan-san ni aimasu"
+      "pronunciation": "Ema-san wa ashita Ōsaka shisha ni itte, Chan-san ni aimasu",
+      "audio": "b10ac516d323b446.mp3",
+      "audioOriginal": "b10ac516d323b446.orig.mp3",
+      "audioAuto": "b10ac516d323b446.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b10ac516d323b446"
     },
     {
       "id": "party-no-ato-bar-whiskey",
       "english": "After the party, I will go to a bar and drink whiskey.",
       "category": "Time",
       "target": "パーティーのあと、バーにいって、ウイスキーをのみます",
-      "pronunciation": "pātī no ato, bā ni itte, uisukī o nomimasu"
+      "pronunciation": "pātī no ato, bā ni itte, uisukī o nomimasu",
+      "audioOriginal": "e31d19c3213a3add-genkanji-2eb9ef64.orig.mp3",
+      "audioAuto": "e31d19c3213a3add-genkanji-2eb9ef64.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e31d19c3213a3add",
+      "audioFilter": "standard",
+      "audio": "e31d19c3213a3add-genkanji-2eb9ef64.mp3"
     },
     {
       "id": "chain-kite",
@@ -783,7 +1044,12 @@
       "category": "Grammar & Function Words",
       "target": "あしたうちにきて、いっしょにえいがをみましょう",
       "pronunciation": "ashita uchi ni kite, issho ni eiga o mimashō",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "27e7bc660c094f25.mp3",
+      "audioOriginal": "27e7bc660c094f25.orig.mp3",
+      "audioAuto": "27e7bc660c094f25.mp3",
+      "audioMarked": true,
+      "audioTextHash": "27e7bc660c094f25"
     },
     {
       "id": "before-after-pair",
@@ -791,7 +1057,12 @@
       "category": "Time",
       "target": "かいぎのまえにしりょうをよみます。かいぎのあと、うちにかえります",
       "pronunciation": "kaigi no mae ni shiryō o yomimasu. kaigi no ato, uchi ni kaerimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "797a1d72e0a7ae7f.mp3",
+      "audioOriginal": "797a1d72e0a7ae7f.orig.mp3",
+      "audioAuto": "797a1d72e0a7ae7f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "797a1d72e0a7ae7f"
     },
     {
       "id": "kaeru-takushii",
@@ -820,21 +1091,36 @@
       "english": "Will you eat supper before the meeting? Or after?",
       "category": "Grammar & Function Words",
       "target": "ばんごはんはかいぎのまえにたべますか。あとでたべますか",
-      "pronunciation": "bangohan wa kaigi no mae ni tabemasu ka. ato de tabemasu ka"
+      "pronunciation": "bangohan wa kaigi no mae ni tabemasu ka. ato de tabemasu ka",
+      "audio": "27c692e7d90b12bf.mp3",
+      "audioOriginal": "27c692e7d90b12bf.orig.mp3",
+      "audioAuto": "27c692e7d90b12bf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "27c692e7d90b12bf"
     },
     {
       "id": "kato-ask-after-fair",
       "english": "Emma-san, what are you going to do after the fair?",
       "category": "Work & Occupations",
       "target": "エマさん、フェアのあと、なにをしますか",
-      "pronunciation": "Ema-san, fea no ato, nani o shimasu ka"
+      "pronunciation": "Ema-san, fea no ato, nani o shimasu ka",
+      "audio": "c64e0eb5a5720e95.mp3",
+      "audioOriginal": "c64e0eb5a5720e95.orig.mp3",
+      "audioAuto": "c64e0eb5a5720e95.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c64e0eb5a5720e95"
     },
     {
       "id": "kaigi-no-ato-yamamoto-san",
       "english": "After the meeting, I will meet Yamamoto-san.",
       "category": "Time",
       "target": "かいぎのあと、やまもとさんにあいます",
-      "pronunciation": "kaigi no ato, Yamamoto-san ni aimasu"
+      "pronunciation": "kaigi no ato, Yamamoto-san ni aimasu",
+      "audio": "da81812fd1f9a862.mp3",
+      "audioOriginal": "da81812fd1f9a862.orig.mp3",
+      "audioAuto": "da81812fd1f9a862.mp3",
+      "audioMarked": true,
+      "audioTextHash": "da81812fd1f9a862"
     },
     {
       "id": "kiku-nyuusu",
@@ -864,7 +1150,12 @@
       "category": "Grammar & Function Words",
       "target": "よこはまにいって、サッカーのしあいをみます",
       "pronunciation": "Yokohama ni itte, sakkā no shiai o mimasu",
-      "scene": "Answering: What are you going to do tomorrow?"
+      "scene": "Answering: What are you going to do tomorrow?",
+      "audio": "66546cc745220faa.mp3",
+      "audioOriginal": "66546cc745220faa.orig.mp3",
+      "audioAuto": "66546cc745220faa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "66546cc745220faa"
     },
     {
       "id": "repeat-please",
@@ -908,7 +1199,12 @@
       "note": "かえって (kaette) is the て-form of かえります (kaerimasu), a Regular 1 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: かえって appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: かえって appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "c8a5a4fa52e7c31c.mp3",
+      "audioOriginal": "c8a5a4fa52e7c31c.orig.mp3",
+      "audioAuto": "c8a5a4fa52e7c31c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c8a5a4fa52e7c31c"
     },
     {
       "id": "link-oshiete-basho",
@@ -919,7 +1215,18 @@
       "note": "おしえて (oshiete) is the て-form of おしえます (oshiemasu), a Regular 2 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: おしえて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: おしえて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "link-oshiete-basho-manual-58676ca6.mp3",
+      "audioOriginal": "e71d60501141b7a5.orig.mp3",
+      "audioAuto": "e71d60501141b7a5.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "e71d60501141b7a5",
+      "audioManual": "link-oshiete-basho-manual-58676ca6.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 4.141479452054795
+      }
     },
     {
       "id": "link-hanashite-report",
@@ -930,7 +1237,12 @@
       "note": "はなして (hanashite) is the て-form of はなします (hanashimasu), a Regular 1 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: はなして appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: はなして appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "6abd253b2f9bc253.mp3",
+      "audioOriginal": "6abd253b2f9bc253.orig.mp3",
+      "audioAuto": "6abd253b2f9bc253.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6abd253b2f9bc253"
     },
     {
       "id": "link-matte-hirugohan",
@@ -941,7 +1253,12 @@
       "note": "まって (matte) is the て-form of まちます (machimasu), a Regular 1 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: まって appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: まって appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "ee94716cd2160a9e.mp3",
+      "audioOriginal": "ee94716cd2160a9e.orig.mp3",
+      "audioAuto": "ee94716cd2160a9e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ee94716cd2160a9e"
     },
     {
       "id": "link-kashite-densha",
@@ -952,7 +1269,12 @@
       "note": "かして (kashite) is the て-form of かします (kashimasu), a Regular 1 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: かして appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: かして appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "bfcf4d9a467a8a9d.mp3",
+      "audioOriginal": "bfcf4d9a467a8a9d.orig.mp3",
+      "audioAuto": "bfcf4d9a467a8a9d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bfcf4d9a467a8a9d"
     },
     {
       "id": "link-misete-meishi",
@@ -963,7 +1285,12 @@
       "note": "みせて (misete) is the て-form of みせます (misemasu), a Regular 2 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: みせて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: みせて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "787b8b4267631ade.mp3",
+      "audioOriginal": "787b8b4267631ade.orig.mp3",
+      "audioAuto": "787b8b4267631ade.mp3",
+      "audioMarked": true,
+      "audioTextHash": "787b8b4267631ade"
     },
     {
       "id": "link-kiite-tegami",
@@ -974,7 +1301,12 @@
       "note": "きいて (kiite) is the て-form of ききます (kikimasu), a Regular 1 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: きいて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: きいて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "f185d86e9db113d5.mp3",
+      "audioOriginal": "f185d86e9db113d5.orig.mp3",
+      "audioAuto": "f185d86e9db113d5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f185d86e9db113d5"
     },
     {
       "id": "link-yonde-denwa",
@@ -985,7 +1317,12 @@
       "note": "よんで (yonde) is the て-form of よみます (yomimasu), a Regular 1 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: よんで appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: よんで appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "8874bbea3bd6161c.mp3",
+      "audioOriginal": "8874bbea3bd6161c.orig.mp3",
+      "audioAuto": "8874bbea3bd6161c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8874bbea3bd6161c"
     },
     {
       "id": "link-mite-bangohan",
@@ -996,7 +1333,12 @@
       "note": "みて (mite) is the て-form of みます (mimasu), a Regular 2 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: みて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: みて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "e26e175878470ed9.mp3",
+      "audioOriginal": "e26e175878470ed9.orig.mp3",
+      "audioAuto": "e26e175878470ed9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e26e175878470ed9"
     },
     {
       "id": "link-ite-hon",
@@ -1007,7 +1349,12 @@
       "note": "いて (ite) is the て-form of います (imasu), a Regular 2 verb.",
       "aiSuggested": true,
       "uncertain": true,
-      "reviewNote": "Authored at gate 2 to fill a real hole: いて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18)."
+      "reviewNote": "Authored at gate 2 to fill a real hole: いて appeared only in a 〜てください request and never in this chapter's own linking construction. Every content word checked against the taught lexicon (chapters 0-18).",
+      "audio": "70209ed8a5292567.mp3",
+      "audioOriginal": "70209ed8a5292567.orig.mp3",
+      "audioAuto": "70209ed8a5292567.mp3",
+      "audioMarked": true,
+      "audioTextHash": "70209ed8a5292567"
     }
   ]
 }

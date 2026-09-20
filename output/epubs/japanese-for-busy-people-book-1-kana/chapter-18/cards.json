@@ -38,7 +38,8 @@
         "status": "ok"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -47,7 +48,12 @@
       "category": "Grammar & Function Words",
       "target": "よろしい",
       "pronunciation": "yoroshii",
-      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 9. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior."
+      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 9. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior.",
+      "audio": "da56bd0b84c9787a.mp3",
+      "audioOriginal": "da56bd0b84c9787a.orig.mp3",
+      "audioAuto": "da56bd0b84c9787a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "da56bd0b84c9787a"
     },
     {
       "id": "chotto-yoroshii-desu-ka",
@@ -55,28 +61,48 @@
       "category": "Greetings",
       "target": "ちょっとよろしいですか",
       "pronunciation": "chotto yoroshii desu ka",
-      "note": "Use it to approach someone of higher status who is busy. It is more formal than the casual ちょっと (chotto) \"Well, it's a bit...\" from Lesson 16, which here means \"a moment\", not a polite refusal."
+      "note": "Use it to approach someone of higher status who is busy. It is more formal than the casual ちょっと (chotto) \"Well, it's a bit...\" from Lesson 16, which here means \"a moment\", not a polite refusal.",
+      "audio": "b359e06932546ced.mp3",
+      "audioOriginal": "b359e06932546ced.orig.mp3",
+      "audioAuto": "b359e06932546ced.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b359e06932546ced"
     },
     {
       "id": "package",
       "english": "Package",
       "category": "Shopping",
       "target": "パッケージ",
-      "pronunciation": "pakkēji"
+      "pronunciation": "pakkēji",
+      "audio": "b230e0dea80cf498.mp3",
+      "audioOriginal": "b230e0dea80cf498.orig.mp3",
+      "audioAuto": "b230e0dea80cf498.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b230e0dea80cf498"
     },
     {
       "id": "fair",
       "english": "Fair",
       "category": "Shopping",
       "target": "フェア",
-      "pronunciation": "fea"
+      "pronunciation": "fea",
+      "audio": "4e4ad3c2defe35c4.mp3",
+      "audioOriginal": "4e4ad3c2defe35c4.orig.mp3",
+      "audioAuto": "4e4ad3c2defe35c4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4e4ad3c2defe35c4"
     },
     {
       "id": "package-fair",
       "english": "Package fair",
       "category": "Shopping",
       "target": "パッケージフェア",
-      "pronunciation": "pakkēji fea"
+      "pronunciation": "pakkēji fea",
+      "audio": "ea67c85f56ff42e7.mp3",
+      "audioOriginal": "ea67c85f56ff42e7.orig.mp3",
+      "audioAuto": "ea67c85f56ff42e7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ea67c85f56ff42e7"
     },
     {
       "id": "ato",
@@ -84,7 +110,12 @@
       "category": "Time",
       "target": "あと",
       "pronunciation": "ato",
-      "note": "The counterpart of まえ (mae) \"Before\" from Lesson 17. After a noun it takes の (no): かいぎのあと (kaigi no ato), like かいぎのまえに (kaigi no mae ni)."
+      "note": "The counterpart of まえ (mae) \"Before\" from Lesson 17. After a noun it takes の (no): かいぎのあと (kaigi no ato), like かいぎのまえに (kaigi no mae ni).",
+      "audio": "a35afaadbb33e7ca.mp3",
+      "audioOriginal": "a35afaadbb33e7ca.orig.mp3",
+      "audioAuto": "a35afaadbb33e7ca.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a35afaadbb33e7ca"
     },
     {
       "id": "no-ato",
@@ -121,7 +152,12 @@
       "pronunciation": "ato de",
       "uncertain": true,
       "note": "あと (ato) alone is \"after\". Adding で (de) stresses that the second action comes after the first: かいぎのあとで (kaigi no ato de).",
-      "reviewNote": "Named in grammar prose 3 and used in the Smith and Nakamura dialogue."
+      "reviewNote": "Named in grammar prose 3 and used in the Smith and Nakamura dialogue.",
+      "audio": "dd09d22a5522400d.mp3",
+      "audioOriginal": "dd09d22a5522400d.orig.mp3",
+      "audioAuto": "dd09d22a5522400d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dd09d22a5522400d"
     },
     {
       "id": "asatte",
@@ -142,7 +178,12 @@
       "category": "Grammar & Function Words",
       "target": "いって",
       "pronunciation": "itte",
-      "note": "Regular 1, and the one cell the book stars as an exception. き (ki) normally gives いて (ite), as in かいて (kaite), yet いきます (ikimasu) becomes いって (itte). It is NOT an Irregular verb — only きます (kimasu) and します (shimasu) are. Don't confuse it with いて (ite), the て-form of います (imasu)."
+      "note": "Regular 1, and the one cell the book stars as an exception. き (ki) normally gives いて (ite), as in かいて (kaite), yet いきます (ikimasu) becomes いって (itte). It is NOT an Irregular verb — only きます (kimasu) and します (shimasu) are. Don't confuse it with いて (ite), the て-form of います (imasu).",
+      "audio": "4cf5e4d68ef08a16.mp3",
+      "audioOriginal": "4cf5e4d68ef08a16.orig.mp3",
+      "audioAuto": "4cf5e4d68ef08a16.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4cf5e4d68ef08a16"
     },
     {
       "id": "tabete",
@@ -152,7 +193,12 @@
       "pronunciation": "tabete",
       "uncertain": true,
       "reviewNote": "Only て-form given in text (exercise I example). The main て-form chart is an image I could not read; other て-forms may need adding from it. | Resolved at gate 1: the chart (Page_173_Image_0001) WAS read by the image specialist, and all 19 て-form cells were audited cell-by-cell against the cards — none missing.",
-      "note": "Regular 2. Simpler than Regular 1: just change ます (masu) to て (te). みて (mite), いて (ite), おしえて (oshiete) and みせて (misete) all work this way."
+      "note": "Regular 2. Simpler than Regular 1: just change ます (masu) to て (te). みて (mite), いて (ite), おしえて (oshiete) and みせて (misete) all work this way.",
+      "audio": "70f03d0081f0cc5b.mp3",
+      "audioOriginal": "70f03d0081f0cc5b.orig.mp3",
+      "audioAuto": "70f03d0081f0cc5b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "70f03d0081f0cc5b"
     },
     {
       "id": "te-form-kau",
@@ -160,7 +206,12 @@
       "category": "Grammar & Function Words",
       "target": "かって",
       "pronunciation": "katte",
-      "note": "Regular 1. For these the sound before ます (masu) decides the ending: い (i) → って (tte). あいます (aimasu) → あって (atte) works the same way."
+      "note": "Regular 1. For these the sound before ます (masu) decides the ending: い (i) → って (tte). あいます (aimasu) → あって (atte) works the same way.",
+      "audio": "b21833e83224b82f.mp3",
+      "audioOriginal": "b21833e83224b82f.orig.mp3",
+      "audioAuto": "b21833e83224b82f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b21833e83224b82f"
     },
     {
       "id": "te-form-matsu",
@@ -170,7 +221,12 @@
       "pronunciation": "matte",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (まちます is listed as a formally taught verb in the next lesson's vocabulary, so its て-form may be better placed there) | Resolved at gate 1: まって is a Regular 1 cell of THIS chapter's own て-form chart, so it belongs here. (まちます itself was already carded in Lesson 10.)",
-      "note": "Regular 1. ち (chi) → って (tte) — the same ending as かって (katte) and かえって (kaette), which come from い (i) and り (ri)."
+      "note": "Regular 1. ち (chi) → って (tte) — the same ending as かって (katte) and かえって (kaette), which come from い (i) and り (ri).",
+      "audio": "43d53e7892133a79.mp3",
+      "audioOriginal": "43d53e7892133a79.orig.mp3",
+      "audioAuto": "43d53e7892133a79.mp3",
+      "audioMarked": true,
+      "audioTextHash": "43d53e7892133a79"
     },
     {
       "id": "te-form-kaeru",
@@ -178,7 +234,12 @@
       "category": "Grammar & Function Words",
       "target": "かえって",
       "pronunciation": "kaette",
-      "note": "Regular 1. り (ri) → って (tte), the same ending as まって (matte) and かって (katte)."
+      "note": "Regular 1. り (ri) → って (tte), the same ending as まって (matte) and かって (katte).",
+      "audio": "743b5173b152594f.mp3",
+      "audioOriginal": "743b5173b152594f.orig.mp3",
+      "audioAuto": "743b5173b152594f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "743b5173b152594f"
     },
     {
       "id": "te-form-kaku",
@@ -186,7 +247,12 @@
       "category": "Grammar & Function Words",
       "target": "かいて",
       "pronunciation": "kaite",
-      "note": "Regular 1. き (ki) → いて (ite). ききます (kikimasu) → きいて (kiite) follows it; いきます (ikimasu) is the starred exception that does not."
+      "note": "Regular 1. き (ki) → いて (ite). ききます (kikimasu) → きいて (kiite) follows it; いきます (ikimasu) is the starred exception that does not.",
+      "audio": "6a245c61dc2820f4.mp3",
+      "audioOriginal": "6a245c61dc2820f4.orig.mp3",
+      "audioAuto": "6a245c61dc2820f4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6a245c61dc2820f4"
     },
     {
       "id": "te-form-oyogu",
@@ -194,7 +260,12 @@
       "category": "Grammar & Function Words",
       "target": "およいで",
       "pronunciation": "oyoide",
-      "note": "Regular 1. ぎ (gi) → いで (ide) — the voiced partner of き (ki) → いて (ite)."
+      "note": "Regular 1. ぎ (gi) → いで (ide) — the voiced partner of き (ki) → いて (ite).",
+      "audio": "efdcfe444a771c38.mp3",
+      "audioOriginal": "efdcfe444a771c38.orig.mp3",
+      "audioAuto": "efdcfe444a771c38.mp3",
+      "audioMarked": true,
+      "audioTextHash": "efdcfe444a771c38"
     },
     {
       "id": "te-form-nomu",
@@ -202,7 +273,12 @@
       "category": "Grammar & Function Words",
       "target": "のんで",
       "pronunciation": "nonde",
-      "note": "Regular 1. み (mi) → んで (nde). よみます (yomimasu) → よんで (yonde) is the same."
+      "note": "Regular 1. み (mi) → んで (nde). よみます (yomimasu) → よんで (yonde) is the same.",
+      "audio": "e7f53237a64c099a.mp3",
+      "audioOriginal": "e7f53237a64c099a.orig.mp3",
+      "audioAuto": "e7f53237a64c099a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e7f53237a64c099a"
     },
     {
       "id": "te-form-kasu",
@@ -210,7 +286,12 @@
       "category": "Grammar & Function Words",
       "target": "かして",
       "pronunciation": "kashite",
-      "note": "Regular 1. し (shi) → して (shite), so here the ます (masu) simply becomes て (te). はなします (hanashimasu) → はなして (hanashite) is the same."
+      "note": "Regular 1. し (shi) → して (shite), so here the ます (masu) simply becomes て (te). はなします (hanashimasu) → はなして (hanashite) is the same.",
+      "audio": "2e8ae60143d8f99f.mp3",
+      "audioOriginal": "2e8ae60143d8f99f.orig.mp3",
+      "audioAuto": "2e8ae60143d8f99f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2e8ae60143d8f99f"
     },
     {
       "id": "te-form-oshieru",
@@ -218,7 +299,12 @@
       "category": "Grammar & Function Words",
       "target": "おしえて",
       "pronunciation": "oshiete",
-      "note": "Regular 2. Change ます (masu) to て (te), like たべます (tabemasu) → たべて (tabete)."
+      "note": "Regular 2. Change ます (masu) to て (te), like たべます (tabemasu) → たべて (tabete).",
+      "audio": "48964930cf454e4a.mp3",
+      "audioOriginal": "48964930cf454e4a.orig.mp3",
+      "audioAuto": "48964930cf454e4a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "48964930cf454e4a"
     },
     {
       "id": "te-form-miseru",
@@ -226,7 +312,12 @@
       "category": "Grammar & Function Words",
       "target": "みせて",
       "pronunciation": "misete",
-      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みて (mite), the て-form of みます (mimasu), \"see\"."
+      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みて (mite), the て-form of みます (mimasu), \"see\".",
+      "audio": "dad62a8fdea99115.mp3",
+      "audioOriginal": "dad62a8fdea99115.orig.mp3",
+      "audioAuto": "dad62a8fdea99115.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dad62a8fdea99115"
     },
     {
       "id": "te-form-miru",
@@ -234,7 +325,12 @@
       "category": "Grammar & Function Words",
       "target": "みて",
       "pronunciation": "mite",
-      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みせて (misete), \"show\"."
+      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みせて (misete), \"show\".",
+      "audio": "7823365970107b8c.mp3",
+      "audioOriginal": "7823365970107b8c.orig.mp3",
+      "audioAuto": "7823365970107b8c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7823365970107b8c"
     },
     {
       "id": "te-form-iru",
@@ -244,7 +340,12 @@
       "pronunciation": "ite",
       "note": "Regular 2. Change ます (masu) to て (te), so います (imasu) → いて (ite), the same way たべます (tabemasu) → たべて (tabete). Don't confuse いて (ite) with いって (itte), the て-form of いきます (ikimasu).",
       "uncertain": true,
-      "reviewNote": "Note rewritten at gate 1: the generated note claimed います \"drops る\", but います contains no る and the book's own chart states the Regular 2 rule as \"change ます to て\". Please confirm."
+      "reviewNote": "Note rewritten at gate 1: the generated note claimed います \"drops る\", but います contains no る and the book's own chart states the Regular 2 rule as \"change ます to て\". Please confirm.",
+      "audio": "922bd6088d1df034.mp3",
+      "audioOriginal": "922bd6088d1df034.orig.mp3",
+      "audioAuto": "922bd6088d1df034.mp3",
+      "audioMarked": true,
+      "audioTextHash": "922bd6088d1df034"
     },
     {
       "id": "te-form-kuru",
@@ -253,7 +354,13 @@
       "target": "きて",
       "pronunciation": "kite",
       "reviewNote": "Listed under Irregular in the chart.",
-      "note": "Irregular. Only two verbs are irregular: きます (kimasu) → きて (kite) and します (shimasu) → して (shite). Both take the Regular 2 shape, so neither is hard."
+      "note": "Irregular. Only two verbs are irregular: きます (kimasu) → きて (kite) and します (shimasu) → して (shite). Both take the Regular 2 shape, so neither is hard.",
+      "audioOriginal": "ddf40496274436d1-gen-70dc366a.orig.mp3",
+      "audioAuto": "ddf40496274436d1-gen-70dc366a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ddf40496274436d1",
+      "audioFilter": "standard",
+      "audio": "ddf40496274436d1-gen-70dc366a.mp3"
     },
     {
       "id": "te-form-suru",
@@ -262,7 +369,12 @@
       "target": "して",
       "pronunciation": "shite",
       "reviewNote": "Listed under Irregular in the chart.",
-      "note": "Irregular — one of only two, with きます (kimasu) → きて (kite). Note that かします (kashimasu) → かして (kashite) ends the same way but is Regular 1."
+      "note": "Irregular — one of only two, with きます (kimasu) → きて (kite). Note that かします (kashimasu) → かして (kashite) ends the same way but is Regular 1.",
+      "audio": "2cf0f6e3aa5c8ee6.mp3",
+      "audioOriginal": "2cf0f6e3aa5c8ee6.orig.mp3",
+      "audioAuto": "2cf0f6e3aa5c8ee6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2cf0f6e3aa5c8ee6"
     },
     {
       "id": "te-form-au",
@@ -272,7 +384,12 @@
       "pronunciation": "atte",
       "uncertain": true,
       "reviewNote": "Appears only in the practice card boxes, not in the chart. English gloss is my own; check whether an earlier chapter teaches あいます. | Resolved at gate 1: あいます is already taught (Lessons 9 and 16). あって is a WORD POWER cell of this chapter.",
-      "note": "Regular 1. い (i) → って (tte), exactly like かいます (kaimasu) → かって (katte)."
+      "note": "Regular 1. い (i) → って (tte), exactly like かいます (kaimasu) → かって (katte).",
+      "audio": "2b8cfe38ab5b3aab.mp3",
+      "audioOriginal": "2b8cfe38ab5b3aab.orig.mp3",
+      "audioAuto": "2b8cfe38ab5b3aab.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b8cfe38ab5b3aab"
     },
     {
       "id": "te-form-kiku",
@@ -282,7 +399,12 @@
       "pronunciation": "kiite",
       "uncertain": true,
       "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches ききます. | Resolved at gate 1: ききます is already taught (Lessons 8 and 9). きいて is a WORD POWER cell of this chapter.",
-      "note": "Regular 1. き (ki) → いて (ite), the same as かきます (kakimasu) → かいて (kaite)."
+      "note": "Regular 1. き (ki) → いて (ite), the same as かきます (kakimasu) → かいて (kaite).",
+      "audio": "b02d9361912a8d07.mp3",
+      "audioOriginal": "b02d9361912a8d07.orig.mp3",
+      "audioAuto": "b02d9361912a8d07.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b02d9361912a8d07"
     },
     {
       "id": "te-form-yomu",
@@ -292,7 +414,12 @@
       "pronunciation": "yonde",
       "uncertain": true,
       "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches よみます. | Resolved at gate 1: よみます is already taught (Lessons 8 and 9). よんで is a WORD POWER cell of this chapter.",
-      "note": "Regular 1. み (mi) → んで (nde), exactly like のみます (nomimasu) → のんで (nonde)."
+      "note": "Regular 1. み (mi) → んで (nde), exactly like のみます (nomimasu) → のんで (nonde).",
+      "audio": "1ba18f00339cb2e4.mp3",
+      "audioOriginal": "1ba18f00339cb2e4.orig.mp3",
+      "audioAuto": "1ba18f00339cb2e4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1ba18f00339cb2e4"
     },
     {
       "id": "te-form-hanasu",
@@ -302,7 +429,12 @@
       "pronunciation": "hanashite",
       "uncertain": true,
       "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches はなします. | Resolved at gate 1: はなします is already taught (Lesson 15). はなして is a WORD POWER cell of this chapter.",
-      "note": "Regular 1. し (shi) → して (shite), the same as かします (kashimasu) → かして (kashite)."
+      "note": "Regular 1. し (shi) → して (shite), the same as かします (kashimasu) → かして (kashite).",
+      "audio": "3ad251e7df09a777.mp3",
+      "audioOriginal": "3ad251e7df09a777.orig.mp3",
+      "audioAuto": "3ad251e7df09a777.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3ad251e7df09a777"
     },
     {
       "id": "ki-o-tsukete",
@@ -310,14 +442,29 @@
       "category": "Greetings",
       "target": "きをつけて",
       "pronunciation": "ki o tsukete",
-      "note": "To someone leaving on a trip it often means 'Have a safe trip!'"
+      "note": "To someone leaving on a trip it often means 'Have a safe trip!'",
+      "audio": "ki-o-tsukete-manual-07831d6a.mp3",
+      "audioOriginal": "22da4137d4610f42.orig.mp3",
+      "audioAuto": "22da4137d4610f42.mp3",
+      "audioMarked": true,
+      "audioTextHash": "22da4137d4610f42",
+      "audioManual": "ki-o-tsukete-manual-07831d6a.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.1139888698630136
+      }
     },
     {
       "id": "koujou",
       "english": "Factory",
       "category": "Work & Occupations",
       "target": "こうじょう",
-      "pronunciation": "kōjō"
+      "pronunciation": "kōjō",
+      "audio": "2bd77082c6917e44.mp3",
+      "audioOriginal": "2bd77082c6917e44.orig.mp3",
+      "audioAuto": "2bd77082c6917e44.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2bd77082c6917e44"
     },
     {
       "id": "shisha",
@@ -349,56 +496,96 @@
       "english": "Report",
       "category": "School & Education",
       "target": "レポート",
-      "pronunciation": "repōto"
+      "pronunciation": "repōto",
+      "audio": "d59c772b5a4dec72.mp3",
+      "audioOriginal": "d59c772b5a4dec72.orig.mp3",
+      "audioAuto": "d59c772b5a4dec72.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d59c772b5a4dec72"
     },
     {
       "id": "purezen-o-shimasu",
       "english": "Give a presentation",
       "category": "Work & Occupations",
       "target": "プレゼンをします",
-      "pronunciation": "purezen o shimasu"
+      "pronunciation": "purezen o shimasu",
+      "audio": "bc59c8b1fa0796be.mp3",
+      "audioOriginal": "bc59c8b1fa0796be.orig.mp3",
+      "audioAuto": "bc59c8b1fa0796be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bc59c8b1fa0796be"
     },
     {
       "id": "doraibu-o-shimasu",
       "english": "Go for a drive",
       "category": "Sports & Hobbies",
       "target": "ドライブをします",
-      "pronunciation": "doraibu o shimasu"
+      "pronunciation": "doraibu o shimasu",
+      "audio": "e7fd7b25653e7be1.mp3",
+      "audioOriginal": "e7fd7b25653e7be1.orig.mp3",
+      "audioAuto": "e7fd7b25653e7be1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e7fd7b25653e7be1"
     },
     {
       "id": "kaigi-o-shimasu",
       "english": "Have a meeting",
       "category": "Work & Occupations",
       "target": "かいぎをします",
-      "pronunciation": "kaigi o shimasu"
+      "pronunciation": "kaigi o shimasu",
+      "audio": "85caf3d56be0e363.mp3",
+      "audioOriginal": "85caf3d56be0e363.orig.mp3",
+      "audioAuto": "85caf3d56be0e363.mp3",
+      "audioMarked": true,
+      "audioTextHash": "85caf3d56be0e363"
     },
     {
       "id": "uchiawase-o-shimasu",
       "english": "Have a preparatory meeting",
       "category": "Work & Occupations",
       "target": "うちあわせをします",
-      "pronunciation": "uchiawase o shimasu"
+      "pronunciation": "uchiawase o shimasu",
+      "audio": "d6367e4f5c130bb5.mp3",
+      "audioOriginal": "d6367e4f5c130bb5.orig.mp3",
+      "audioAuto": "d6367e4f5c130bb5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d6367e4f5c130bb5"
     },
     {
       "id": "sumou",
       "english": "Sumo [wrestling]",
       "category": "Sports & Hobbies",
       "target": "すもう",
-      "pronunciation": "sumō"
+      "pronunciation": "sumō",
+      "audio": "4ccccc6890b218bd.mp3",
+      "audioOriginal": "4ccccc6890b218bd.orig.mp3",
+      "audioAuto": "4ccccc6890b218bd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ccccc6890b218bd"
     },
     {
       "id": "koube",
       "english": "Kobe (city near Osaka)",
       "category": "Nationalities & Countries",
       "target": "こうべ",
-      "pronunciation": "Kōbe"
+      "pronunciation": "Kōbe",
+      "audio": "2810e4bcc9aee239.mp3",
+      "audioOriginal": "2810e4bcc9aee239.orig.mp3",
+      "audioAuto": "2810e4bcc9aee239.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2810e4bcc9aee239"
     },
     {
       "id": "nara",
       "english": "Nara (old city in western Japan)",
       "category": "Nationalities & Countries",
       "target": "なら",
-      "pronunciation": "Nara"
+      "pronunciation": "Nara",
+      "audio": "57071a5e593e4de5.mp3",
+      "audioOriginal": "57071a5e593e4de5.orig.mp3",
+      "audioAuto": "57071a5e593e4de5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57071a5e593e4de5"
     },
     {
       "id": "koube-beef",
@@ -406,7 +593,12 @@
       "category": "Food",
       "target": "こうべビーフ",
       "pronunciation": "Kōbe bīfu",
-      "note": "Famous, high-quality beef."
+      "note": "Famous, high-quality beef.",
+      "audio": "26fee89f710590d6.mp3",
+      "audioOriginal": "26fee89f710590d6.orig.mp3",
+      "audioAuto": "26fee89f710590d6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "26fee89f710590d6"
     },
     {
       "id": "furui",

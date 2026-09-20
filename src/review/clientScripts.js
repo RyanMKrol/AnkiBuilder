@@ -699,7 +699,15 @@ export const MARK_DONE_SCRIPT = `(function () {
         var unit = btn.getAttribute("data-unit");
         var msg = btn.parentNode.querySelector(".done-msg");
         btn.disabled = true; if (msg) msg.textContent = "saving\\u2026";
-        fetch(base + "/unit/" + encodeURIComponent(unit) + path, { method: "POST" })
+        // A chapter page marks the WHOLE chapter: both its units share one audio review, so one
+        // click has to sign off both. The per-unit path is what a single-lesson page uses. This
+        // shipped posting the per-unit path from both, so a chapter's extras unit was reviewed,
+        // signed off in the UI, and then silently left out of the package for want of meta.done.
+        var chapter = ctx.getAttribute("data-chapter");
+        var target = chapter
+          ? base + "/chapter/" + encodeURIComponent(chapter) + path
+          : base + "/unit/" + encodeURIComponent(unit) + path;
+        fetch(target, { method: "POST" })
           .then(jsonp).then(function (x) {
             if (!x.ok) throw new Error(x.j.error || "failed");
             if (x.j.rebuildError) {

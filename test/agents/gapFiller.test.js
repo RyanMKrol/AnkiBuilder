@@ -36,7 +36,15 @@ test("a filled gap becomes a card credited to this role", () => {
 
   assert.equal(out.items.length, 1);
   assert.equal(out.items[0].producedBy, "gapFiller");
-  assert.equal(out.items[0].aiSuggested, true, "authored, not found in the chapter directly");
+  // NOT aiSuggested. The flag means "not from the source", and every gap this role fills was found
+  // in the chapter by the coverage adversary — so the book does contain it, the specialists just
+  // missed it. On Lesson 17 the old stamp marked 19 cells of a printed conjugation table as model
+  // inventions, which tells a reviewer to scrutinise exactly the cards that need it least.
+  assert.equal(
+    out.items[0].aiSuggested,
+    undefined,
+    "a gap found in the chapter is not an invention",
+  );
   assert.deepEqual(out.declined[0], { gap: "としょかん", reason: "chapter-8 already teaches it" });
   assert.deepEqual(out.unfilled, []);
 });

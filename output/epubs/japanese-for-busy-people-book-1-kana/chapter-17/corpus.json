@@ -480,7 +480,9 @@
       "id": "ohanami-o-shimasu",
       "target": "(お)はなみをします",
       "english": "To view cherry blossoms",
-      "category": "Weather & Nature"
+      "category": "Weather & Nature",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "daunroodo-shimasu",
@@ -619,23 +621,20 @@
       "target": "いきたいです",
       "english": "(I) want to go",
       "category": "Grammar & Function Words",
-      "hint": "Drop ます from いきます, add たいです",
-      "aiSuggested": true
+      "hint": "Drop ます from いきます, add たいです"
     },
     {
       "id": "ikitakunai-desu",
       "target": "いきたくないです",
       "english": "(I) don't want to go",
       "category": "Grammar & Function Words",
-      "note": "たい conjugates like an い-adjective, so the negative is たくないです.",
-      "aiSuggested": true
+      "note": "たい conjugates like an い-adjective, so the negative is たくないです."
     },
     {
       "id": "ikitakatta-desu",
       "target": "いきたかったです",
       "english": "(I) wanted to go",
       "category": "Grammar & Function Words",
-      "aiSuggested": true,
       "note": "Past tense follows the い-adjective pattern (Lesson 11): たい (tai) becomes たかった (takatta)."
     },
     {
@@ -643,7 +642,6 @@
       "target": "いきたくなかったです",
       "english": "(I) didn't want to go",
       "category": "Grammar & Function Words",
-      "aiSuggested": true,
       "note": "Past negative follows the い-adjective pattern (Lesson 11): たくない (takunai) becomes たくなかった (takunakatta)."
     },
     {
@@ -651,107 +649,92 @@
       "target": "のみたいです",
       "english": "(I) want to drink",
       "category": "Grammar & Function Words",
-      "note": "With たい, the object can take が instead of を: ワインが のみたいです.",
-      "aiSuggested": true
+      "note": "With たい, the object can take が instead of を: ワインが のみたいです."
     },
     {
       "id": "kaitakunai-desu",
       "target": "かいたくないです",
       "english": "(I) don't want to buy",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "kaitakatta-desu",
       "target": "かいたかったです",
       "english": "(I) wanted to buy",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "kaitakunakatta-desu",
       "target": "かいたくなかったです",
       "english": "(I) didn't want to buy",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "tabetakunai-desu",
       "target": "たべたくないです",
       "english": "(I) don't want to eat",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "tabetakatta-desu",
       "target": "たべたかったです",
       "english": "(I) wanted to eat",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "tabetakunakatta-desu",
       "target": "たべたくなかったです",
       "english": "(I) didn't want to eat",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "mitai-desu",
       "target": "みたいです",
       "english": "(I) want to see, want to watch",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "mitakunai-desu",
       "target": "みたくないです",
       "english": "(I) don't want to see, don't want to watch",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "mitakatta-desu",
       "target": "みたかったです",
       "english": "(I) wanted to see, wanted to watch",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "mitakunakatta-desu",
       "target": "みたくなかったです",
       "english": "(I) didn't want to see, didn't want to watch",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "aitai-desu",
       "target": "あいたいです",
       "english": "(I) want to meet",
       "category": "Grammar & Function Words",
-      "aiSuggested": true,
       "note": "あいます (aimasu, Lesson 9) marks the person you meet with に (ni). That stays the same with たい (tai): たなかさんにあいたいです (Tanaka-san ni aitai desu)."
     },
     {
       "id": "aitakunai-desu",
       "target": "あいたくないです",
       "english": "(I) don't want to meet",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "aitakatta-desu",
       "target": "あいたかったです",
       "english": "(I) wanted to meet",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "aitakunakatta-desu",
       "target": "あいたくなかったです",
       "english": "(I) didn't want to meet",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "category": "Grammar & Function Words"
     },
     {
       "id": "jaa-mata-ashita",
@@ -765,8 +748,7 @@
       "target": "じゃ、またすいようびに",
       "english": "See you on Wednesday",
       "category": "Greetings",
-      "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead.",
-      "aiSuggested": true
+      "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead."
     },
     {
       "id": "chotto-matte-kudasai-l17",
@@ -792,7 +774,6 @@
       "english": "Nozomi Hotel",
       "category": "Travel & Tourism",
       "note": null,
-      "aiSuggested": true,
       "excluded": true,
       "excludedBy": "proper-name-rule",
       "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
@@ -803,7 +784,6 @@
       "english": "AJALT School",
       "category": "School & Education",
       "note": null,
-      "aiSuggested": true,
       "excluded": true,
       "excludedBy": "proper-name-rule",
       "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
@@ -814,7 +794,6 @@
       "english": "Sakura Park",
       "category": "Travel & Tourism",
       "note": null,
-      "aiSuggested": true,
       "excluded": true,
       "excludedBy": "proper-name-rule",
       "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
@@ -825,7 +804,6 @@
       "english": "Minato Tennis Club",
       "category": "Sports & Hobbies",
       "note": null,
-      "aiSuggested": true,
       "excluded": true,
       "excludedBy": "proper-name-rule",
       "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."
@@ -836,7 +814,6 @@
       "english": "Antique Tokyo",
       "category": "Shopping",
       "note": null,
-      "aiSuggested": true,
       "excluded": true,
       "excludedBy": "proper-name-rule",
       "reviewNote": "Excluded: a fictitious business/place name the book invented to populate an exercise. The chapter's own gloss calls it a fictitious name. It may appear inside an extras sentence; it is not vocabulary on its own."

@@ -1014,6 +1014,22 @@ and rebuild once at the end. The boundary that makes it safe:
 - **Expect orphans on the next delivery.** A card excluded after it has already reached Anki leaves
   a note behind. `deliver-to-anki` reports it and never deletes it, so removing it is a manual step.
 
+## Step 4c: Review the session, not just the chapter
+
+**Do this before you report the chapter finished.** Step 4b's learning pass reads what the REVIEWER
+changed, and Step 2b reads what the ADVERSARY found. Neither looks at what went wrong in the work
+itself, and on the chapter these conventions came from that was the larger list: a documented URL
+that 404'd, a script that exited 0 having generated nothing, a rule present in three prompts and
+absent from the shared ones, a guard that discarded a miner's whole output over a section name.
+
+One question: **did anything cost time that a document, a prompt, a check or a comment could have
+prevented?** Then fix each where it is enforced, per CLAUDE.md golden rule 5 -- a prompt for an agent
+rule, this file for an operator rule, a check for anything mechanical, a comment at the code site for
+a constraint the code must respect.
+
+**Surface the list to the owner rather than acting on all of it silently.** A prompt change alters
+every future chapter of every book, which is a wider blast radius than the lesson in front of you.
+
 ## Step 5: Deck build
 
 ```sh

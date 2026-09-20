@@ -268,7 +268,8 @@
       "english": "By all means, definitely",
       "category": "Grammar & Function Words",
       "uncertain": true,
-      "reviewNote": "Paul's reply いいですね。ぜひ。 in Speaking Practice 1; the English gloss there is 'I'd love to', so this is the whole-phrase sense. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)"
+      "reviewNote": "Paul's reply いいですね。ぜひ。 in Speaking Practice 1; the English gloss there is 'I'd love to', so this is the whole-phrase sense. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "repeatOf": "zehi"
     },
     {
       "id": "nemasu",
@@ -392,7 +393,8 @@
       "english": "To have a meal",
       "category": "Food",
       "uncertain": true,
-      "reviewNote": "Verb caption ⑤ in the Word Power picture list; the vocabulary table does not gloss it. English is my best guess. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)"
+      "reviewNote": "Verb caption ⑤ in the Word Power picture list; the vocabulary table does not gloss it. English is my best guess. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "repeatOf": "shokuji-shimasu"
     },
     {
       "id": "hajimemasu",
@@ -544,7 +546,9 @@
       "english": "To swim",
       "category": "Sports & Hobbies",
       "uncertain": true,
-      "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)"
+      "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "repeatOf": "oyogimasu-swim",
+      "hint": "the single verb, not the noun-plus-suru form"
     },
     {
       "id": "kaerimasu-l17",
@@ -766,7 +770,8 @@
       "english": "I've got that, I understand",
       "category": "Greetings",
       "uncertain": true,
-      "reviewNote": "Paul's closing line. Translation is 'I've got that'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (わかります is formally taught as a verb/grammar point (noun が わかります) later)"
+      "reviewNote": "Paul's closing line. Translation is 'I've got that'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (わかります is formally taught as a verb/grammar point (noun が わかります) later)",
+      "repeatOf": "wakarimashita"
     },
     {
       "id": "nozomi-hotel",

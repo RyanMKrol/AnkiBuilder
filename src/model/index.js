@@ -98,6 +98,11 @@ const CORPUS_SCHEMA = {
           // missing from it, which made every corpus containing a split alternate unwritable; nothing
           // caught that because the field only appears when a chapter has such a headword.
           alternateOf: { type: ["string", "null"] },
+          // Names an earlier card this one deliberately repeats, when a book re-teaches a word.
+          // The collision audit treats it as resolved INSTEAD of demanding a cue, because a repeat
+          // has one meaning and a cue would invent a distinction. Must name a card in the same
+          // collision group, so it cannot be used to silence an unrelated finding.
+          repeatOf: { type: ["string", "null"] },
           // Legacy alias for `note`, kept optional so pre-rename corpus.json still validates; the
           // migration folds `cardNote` into `note` and splits out `hint`.
           cardNote: { type: ["string", "null"] },
@@ -208,6 +213,11 @@ const CARDS_SCHEMA = {
           // union reconciler and carried through by `prepare`. Allowed in BOTH schemas on purpose:
           // allowing it in only one moves the failure from the assemble write to the prepare write.
           alternateOf: { type: ["string", "null"] },
+          // Names an earlier card this one deliberately repeats, when a book re-teaches a word.
+          // The collision audit treats it as resolved INSTEAD of demanding a cue, because a repeat
+          // has one meaning and a cue would invent a distinction. Must name a card in the same
+          // collision group, so it cannot be used to silence an unrelated finding.
+          repeatOf: { type: ["string", "null"] },
           target: { type: "string" },
           pronunciation: { type: "string" },
           // Same contract as the corpus schema's `ttsText`: the text TTS speaks instead of the target

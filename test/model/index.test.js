@@ -594,3 +594,22 @@ test("validateCards - an unknown audio-ish field is still rejected", () => {
     /Unexpected property/,
   );
 });
+
+test("baseChapterLabel is accepted by BOTH schemas, because prepare writes the corpus back", () => {
+  // Lesson 17's extras unit died here on its first live build. The extras phase stamps
+  // baseChapterLabel on corpus.json, translate copies meta into cards.json, and then the
+  // cross-lesson note pass writes the CORPUS back — which the corpus schema refused, after 111
+  // items had already been translated. Same shape as alternateOf: a field one schema knows and the
+  // other does not is a build that gets most of the way through and then stops.
+  const meta = {
+    targetLanguage: "ja",
+    sourceType: "epub",
+    chapterLabel: "Lesson 17: Stating a Wish (Extras)",
+    baseChapterLabel: "Lesson 17: Stating a Wish",
+  };
+  // `pronunciation` is a cards-only field, so the two schemas need their own item shapes; the point
+  // here is the META field, which must be legal in both.
+  const base = { id: "a", english: "A", category: "Shopping", target: "あ" };
+  assert.doesNotThrow(() => validateCorpus({ meta, items: [base] }));
+  assert.doesNotThrow(() => validateCards({ meta, items: [{ ...base, pronunciation: "a" }] }));
+});

@@ -152,6 +152,32 @@ When you find a limitation, put the correction where the thing is actually decid
 If a thing genuinely cannot be fixed now, say so in the conversation and let the owner decide. Do not
 write it down somewhere and call that addressed.
 
+### 5a. Before you stop, review the SESSION, not just the output
+
+Two loops already read what the agents produced: the learning pass (`scripts/learning-pass.mjs`)
+attributes a reviewer's edits back to the role that wrote the card, and Step 2b reads the coverage
+adversary's gaps for a systematic cause. Both are about CARDS.
+
+**This one is about the tooling, and nothing else was looking at it.** At the end of a working
+session ask one question: *did anything cost time that a document, a prompt, a check or a comment
+could have prevented?* Then put each answer where golden rule 5 says it goes, in the same session,
+while you still remember what actually happened.
+
+The kinds that keep recurring, all four observed in a single day:
+
+- **A document that was wrong.** SKILL.md wrote a dashboard path ambiguously and the owner got a 404
+  mid-review.
+- **A script that lied about what it did.** `build-audio.mjs` warned in capitals that it spends real
+  money, printed the commands it should have run, and exited 0 having generated nothing.
+- **A rule that lived in one place and was needed in four.** The prohibition on carding a proper name
+  existed in three prompts and in none of the shared rules, so the passes that needed it never had it.
+- **A guard that fired on the wrong thing.** A miner naming a section next to the ones it was given
+  had its entire output discarded, along with the six agent steps queued behind it.
+
+**A fix that only lands in the conversation has not landed.** The session ends, the next one starts
+without it, and the same hour gets spent again. If a finding is real but too big to fix now, say so
+to the owner and record it where the next session will look -- not as a note to nobody.
+
 ### 6. Tests never touch production state
 
 Every **test** run must execute against a **scratch / throwaway** resource —

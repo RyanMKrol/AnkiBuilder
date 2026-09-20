@@ -41,6 +41,12 @@ const CORPUS_SCHEMA = {
         // since both sourceTypes need the exact same "numbered sub-deck of a bigger
         // merged collection" shape — see resolveLessonRunDir in cli/outputPaths.js.
         courseSlug: { type: ["string", "null"] },
+        // Set on an EXTRAS unit: the label of the base lesson whose drills it holds, so the merge
+        // nests it as `Book::<baseChapterLabel>::Extras`. Declared in BOTH schemas, like
+        // `alternateOf`: the extras phase stamps it on the corpus, `prepare`'s cross-lesson note
+        // pass writes that corpus back, and allowing it in only one of the two means the unit
+        // builds and then dies at the write partway through prepare.
+        baseChapterLabel: { type: "string" },
         // Which v2 phase script built this corpus: "base" (lexical entries, phase 1) or "extras"
         // (propositions, phase 2). ABSENT IS MEANINGFUL, and it is the v1 answer: the corpus came
         // from `assemble`, so `prepare` still owns the drill mining. A phase unit's sentences were

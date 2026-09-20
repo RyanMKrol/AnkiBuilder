@@ -1,0 +1,615 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 42,
+    "chapterLabel": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "yoroshii",
+      "target": "よろしい",
+      "english": "Be all right (polite expression of いい)",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word and same meaning; 'polite form of' vs 'polite expression of' is wording only, and yoroshii-2 carries a useful usage note.",
+      "sourceOrder": 695
+    },
+    {
+      "id": "yoroshii-2",
+      "target": "よろしい",
+      "english": "Be all right (polite form of いい)",
+      "category": "Grammar & Function Words",
+      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 9. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior.",
+      "sourceOrder": 894
+    },
+    {
+      "id": "chotto-yoroshii-desu-ka",
+      "target": "ちょっとよろしいですか",
+      "english": "May I have a moment of your time?",
+      "category": "Greetings",
+      "note": "Use it to approach someone of higher status who is busy. It is more formal than the casual ちょっと (chotto) \"Well, it's a bit...\" from Lesson 16, which here means \"a moment\", not a polite refusal.",
+      "sourceOrder": 136
+    },
+    {
+      "id": "package",
+      "target": "パッケージ",
+      "english": "Package",
+      "category": "Shopping",
+      "sourceOrder": 747
+    },
+    {
+      "id": "fair",
+      "target": "フェア",
+      "english": "Fair",
+      "category": "Shopping",
+      "sourceOrder": 195
+    },
+    {
+      "id": "package-fair",
+      "target": "パッケージフェア",
+      "english": "Package fair",
+      "category": "Shopping",
+      "sourceOrder": 177
+    },
+    {
+      "id": "ato",
+      "target": "あと",
+      "english": "After",
+      "category": "Time",
+      "sourceOrder": 199,
+      "note": "The counterpart of まえ (mae) \"Before\" from Lesson 17. After a noun it takes の (no): かいぎのあと (kaigi no ato), like かいぎのまえに (kaigi no mae ni)."
+    },
+    {
+      "id": "no-ato",
+      "target": "〜のあと",
+      "english": "After…",
+      "category": "Time",
+      "sourceOrder": 785,
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (the book's vocabulary tables show 〜の あと as an entry in the following lesson's chapter too — uncertain whether it is formally re-taught there, worth a glance)",
+      "note": "A noun goes before it, joined by の (no): かいぎのあと (kaigi no ato), \"after the meeting\". It mirrors 〜のまえに (no mae ni) from Lesson 17.",
+      "excluded": true,
+      "excludedBy": "preflight-placeholder-target",
+      "excludedReason": "Schematic target 〜のあと is notation, not an utterance; あと (ato) is carded and its note teaches the の construction with the worked example かいぎのあと"
+    },
+    {
+      "id": "no-ato-2",
+      "target": "〜のあと",
+      "english": "After ...",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Identical target and gloss; only the ellipsis character differs. Keep the shorter id.",
+      "sourceOrder": 785,
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (duplicate of the same 〜の あと entry; same concern about a possible formal re-teaching in the next lesson)"
+    },
+    {
+      "id": "mae-ni",
+      "target": "まえに",
+      "english": "Before",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Appears in ...かいぎの まえに たべますか, contrasting with あとで. No gloss in a vocabulary table. | Possibly already taught — already introduced in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (matched on english)",
+      "sourceOrder": 5105,
+      "note": "Lesson 17 has まえ (mae) \"Before\" on its own. Here に (ni) is attached, which is the form that goes after a noun + の (no) or a dictionary-form verb.",
+      "hint": "the full phrase with に (ni), not bare まえ",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 17, which teaches まえ and the 〜のまえに construction throughout"
+    },
+    {
+      "id": "ato-de",
+      "target": "あとで",
+      "english": "Afterwards, after",
+      "category": "Time",
+      "note": "あと (ato) alone is \"after\". Adding で (de) stresses that the second action comes after the first: かいぎのあとで (kaigi no ato de).",
+      "uncertain": true,
+      "reviewNote": "Named in grammar prose 3 and used in the Smith and Nakamura dialogue.",
+      "sourceOrder": 5114
+    },
+    {
+      "id": "asatte",
+      "target": "あさって",
+      "english": "The day after tomorrow",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Glossed only via the dialogue translation. May be taught earlier. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "sourceOrder": 221,
+      "note": "Same word as あさって (asatte) \"Day after tomorrow\" from Lesson 6.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 6 (chapter-6/asatte, same target あさって)"
+    },
+    {
+      "id": "itte",
+      "target": "いって",
+      "english": "Go (te-form of いきます)",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Both are the て-form of いきます; only the category and 'te' vs 'て' spelling differ. Keep the Grammar & Function Words entry, where te-forms belong.",
+      "sourceOrder": 206
+    },
+    {
+      "id": "itte-2",
+      "target": "いって",
+      "english": "Go (て-form of いきます)",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 802,
+      "note": "Regular 1, and the one cell the book stars as an exception. き (ki) normally gives いて (ite), as in かいて (kaite), yet いきます (ikimasu) becomes いって (itte). It is NOT an Irregular verb — only きます (kimasu) and します (shimasu) are. Don't confuse it with いて (ite), the て-form of います (imasu)."
+    },
+    {
+      "id": "mite",
+      "target": "みて",
+      "english": "See (te-form of みます)",
+      "category": "Other",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "All three are the て-form of みます; te-form-miru has the fuller gloss ('See, watch') and the right category.",
+      "sourceOrder": 231
+    },
+    {
+      "id": "mite-2",
+      "target": "みて",
+      "english": "See (て-form of みます)",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "All three are the て-form of みます; te-form-miru has the fuller gloss ('See, watch') and the right category.",
+      "sourceOrder": 299
+    },
+    {
+      "id": "tabete",
+      "target": "たべて",
+      "english": "Eat (て-form of たべます)",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Only て-form given in text (exercise I example). The main て-form chart is an image I could not read; other て-forms may need adding from it. | Resolved at gate 1: the chart (Page_173_Image_0001) WAS read by the image specialist, and all 19 て-form cells were audited cell-by-cell against the cards — none missing.",
+      "sourceOrder": 2688,
+      "note": "Regular 2. Simpler than Regular 1: just change ます (masu) to て (te). みて (mite), いて (ite), おしえて (oshiete) and みせて (misete) all work this way."
+    },
+    {
+      "id": "te-form-kau",
+      "target": "かって",
+      "english": "Buy (て-form of かいます)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. For these the sound before ます (masu) decides the ending: い (i) → って (tte). あいます (aimasu) → あって (atte) works the same way."
+    },
+    {
+      "id": "te-form-matsu",
+      "target": "まって",
+      "english": "Wait (て-form of まちます)",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (まちます is listed as a formally taught verb in the next lesson's vocabulary, so its て-form may be better placed there) | Resolved at gate 1: まって is a Regular 1 cell of THIS chapter's own て-form chart, so it belongs here. (まちます itself was already carded in Lesson 10.)",
+      "note": "Regular 1. ち (chi) → って (tte) — the same ending as かって (katte) and かえって (kaette), which come from い (i) and り (ri)."
+    },
+    {
+      "id": "te-form-kaeru",
+      "target": "かえって",
+      "english": "Return, go home (て-form of かえります)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. り (ri) → って (tte), the same ending as まって (matte) and かって (katte)."
+    },
+    {
+      "id": "te-form-kaku",
+      "target": "かいて",
+      "english": "Draw, write (て-form of かきます)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. き (ki) → いて (ite). ききます (kikimasu) → きいて (kiite) follows it; いきます (ikimasu) is the starred exception that does not."
+    },
+    {
+      "id": "te-form-oyogu",
+      "target": "およいで",
+      "english": "Swim (て-form of およぎます)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. ぎ (gi) → いで (ide) — the voiced partner of き (ki) → いて (ite)."
+    },
+    {
+      "id": "te-form-nomu",
+      "target": "のんで",
+      "english": "Drink (て-form of のみます)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. み (mi) → んで (nde). よみます (yomimasu) → よんで (yonde) is the same."
+    },
+    {
+      "id": "te-form-kasu",
+      "target": "かして",
+      "english": "Lend (て-form of かします)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1. し (shi) → して (shite), so here the ます (masu) simply becomes て (te). はなします (hanashimasu) → はなして (hanashite) is the same."
+    },
+    {
+      "id": "te-form-oshieru",
+      "target": "おしえて",
+      "english": "Tell, teach (て-form of おしえます)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te), like たべます (tabemasu) → たべて (tabete)."
+    },
+    {
+      "id": "te-form-miseru",
+      "target": "みせて",
+      "english": "Show (て-form of みせます)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みて (mite), the て-form of みます (mimasu), \"see\"."
+    },
+    {
+      "id": "te-form-miru",
+      "target": "みて",
+      "english": "See, watch (て-form of みます)",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 833,
+      "note": "Regular 2. Change ます (masu) to て (te). Don't confuse it with みせて (misete), \"show\"."
+    },
+    {
+      "id": "te-form-iru",
+      "target": "いて",
+      "english": "Be (て-form of います)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 2. Change ます (masu) to て (te), so います (imasu) → いて (ite), the same way たべます (tabemasu) → たべて (tabete). Don't confuse いて (ite) with いって (itte), the て-form of いきます (ikimasu).",
+      "uncertain": true,
+      "reviewNote": "Note rewritten at gate 1: the generated note claimed います \"drops る\", but います contains no る and the book's own chart states the Regular 2 rule as \"change ます to て\". Please confirm."
+    },
+    {
+      "id": "te-form-kuru",
+      "target": "きて",
+      "english": "Come (て-form of きます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Listed under Irregular in the chart.",
+      "sourceOrder": 3679,
+      "note": "Irregular. Only two verbs are irregular: きます (kimasu) → きて (kite) and します (shimasu) → して (shite). Both take the Regular 2 shape, so neither is hard."
+    },
+    {
+      "id": "te-form-suru",
+      "target": "して",
+      "english": "Do (て-form of します)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Listed under Irregular in the chart.",
+      "note": "Irregular — one of only two, with きます (kimasu) → きて (kite). Note that かします (kashimasu) → かして (kashite) ends the same way but is Regular 1."
+    },
+    {
+      "id": "te-form-au",
+      "target": "あって",
+      "english": "Meet (て-form of あいます)",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Appears only in the practice card boxes, not in the chart. English gloss is my own; check whether an earlier chapter teaches あいます. | Resolved at gate 1: あいます is already taught (Lessons 9 and 16). あって is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. い (i) → って (tte), exactly like かいます (kaimasu) → かって (katte)."
+    },
+    {
+      "id": "te-form-kiku",
+      "target": "きいて",
+      "english": "Listen, ask (て-form of ききます)",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches ききます. | Resolved at gate 1: ききます is already taught (Lessons 8 and 9). きいて is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. き (ki) → いて (ite), the same as かきます (kakimasu) → かいて (kaite)."
+    },
+    {
+      "id": "te-form-yomu",
+      "target": "よんで",
+      "english": "Read (て-form of よみます)",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches よみます. | Resolved at gate 1: よみます is already taught (Lessons 8 and 9). よんで is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. み (mi) → んで (nde), exactly like のみます (nomimasu) → のんで (nonde)."
+    },
+    {
+      "id": "te-form-hanasu",
+      "target": "はなして",
+      "english": "Speak, talk (て-form of はなします)",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches はなします. | Resolved at gate 1: はなします is already taught (Lesson 15). はなして is a WORD POWER cell of this chapter.",
+      "note": "Regular 1. し (shi) → して (shite), the same as かします (kashimasu) → かして (kashite)."
+    },
+    {
+      "id": "ki-o-tsukete",
+      "target": "きをつけて",
+      "english": "Take care.",
+      "category": "Greetings",
+      "note": "To someone leaving on a trip it often means 'Have a safe trip!'",
+      "sourceOrder": 265
+    },
+    {
+      "id": "koujou",
+      "target": "こうじょう",
+      "english": "Factory",
+      "category": "Work & Occupations",
+      "sourceOrder": 225
+    },
+    {
+      "id": "shisha",
+      "target": "ししゃ",
+      "english": "Branch office",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Glossed only via the dialogue translation, no vocabulary entry. May be taught earlier. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "sourceOrder": 202,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 6 (chapter-6/shisha, same target ししゃ)"
+    },
+    {
+      "id": "hikouki",
+      "target": "ひこうき",
+      "english": "Airplane, flight",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Glossed only via the dialogue translation ('4:00 flight'). May be taught earlier. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "sourceOrder": 237,
+      "note": "Same word as ひこうき (hikōki) \"Airplane\" from Lesson 7.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 7 (chapter-7/hikouki, same target ひこうき)"
+    },
+    {
+      "id": "repooto",
+      "target": "レポート",
+      "english": "Report",
+      "category": "School & Education",
+      "sourceOrder": 1164
+    },
+    {
+      "id": "purezen-o-shimasu",
+      "target": "プレゼンをします",
+      "english": "Give a presentation",
+      "category": "Work & Occupations",
+      "sourceOrder": 3508
+    },
+    {
+      "id": "doraibu-o-shimasu",
+      "target": "ドライブをします",
+      "english": "Go for a drive",
+      "category": "Sports & Hobbies",
+      "sourceOrder": 3457
+    },
+    {
+      "id": "kaigi-o-shimasu",
+      "target": "かいぎをします",
+      "english": "Have a meeting",
+      "category": "Work & Occupations",
+      "sourceOrder": 4281
+    },
+    {
+      "id": "uchiawase-o-shimasu",
+      "target": "うちあわせをします",
+      "english": "Have a preparatory meeting",
+      "category": "Work & Occupations",
+      "sourceOrder": 4542
+    },
+    {
+      "id": "sumou",
+      "target": "すもう",
+      "english": "Sumo [wrestling]",
+      "category": "Sports & Hobbies",
+      "sourceOrder": 3490
+    },
+    {
+      "id": "sumou-2",
+      "target": "すもう",
+      "english": "Sumo (wrestling)",
+      "category": "Sports & Hobbies",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word, and the glosses differ only in brackets vs parentheses. Keep the shorter id.",
+      "sourceOrder": 3552
+    },
+    {
+      "id": "koube",
+      "target": "こうべ",
+      "english": "Kobe (city near Osaka)",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 4462
+    },
+    {
+      "id": "koube-2",
+      "target": "こうべ",
+      "english": "Kobe",
+      "category": "Nationalities & Countries",
+      "note": "City near Osaka.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same city; one puts the descriptor in the gloss and the other in a note. Keep the shorter id, which has the gloss in the English field.",
+      "sourceOrder": 4585
+    },
+    {
+      "id": "nara",
+      "target": "なら",
+      "english": "Nara (old city in western Japan)",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 4502
+    },
+    {
+      "id": "nara-2",
+      "target": "なら",
+      "english": "Nara",
+      "category": "Nationalities & Countries",
+      "note": "Old city in western Japan.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same city; the descriptor sits in the gloss in one and in a note in the other. Keep the shorter id.",
+      "sourceOrder": 4607
+    },
+    {
+      "id": "koube-biifu",
+      "target": "こうべビーフ",
+      "english": "Kobe beef (famous, high-quality beef)",
+      "category": "Food",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same item; the only difference is where the descriptor goes. Keep koube-beef, whose clean gloss 'Kobe beef' carries the descriptor in a note.",
+      "sourceOrder": 4881
+    },
+    {
+      "id": "koube-beef",
+      "target": "こうべビーフ",
+      "english": "Kobe beef",
+      "category": "Food",
+      "note": "Famous, high-quality beef.",
+      "sourceOrder": 5659
+    },
+    {
+      "id": "furui",
+      "target": "ふるい",
+      "english": "Old",
+      "category": "Descriptions & Qualities",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise VIII cue (ふるい おてら). Guessed gloss; may be taught earlier. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "sourceOrder": 4505,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 10 (chapter-10/furui, same target ふるい)"
+    },
+    {
+      "id": "otera",
+      "target": "おてら",
+      "english": "Temple (Buddhist)",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise VIII cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 4508,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 12 (chapter-12/otera-temple, same target おてら)"
+    },
+    {
+      "id": "jinja",
+      "target": "じんじゃ",
+      "english": "Shrine",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise V cue (ゆうめいな じんじゃ). Guessed gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3747,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 12 (chapter-12/jinja-shrine, same target じんじゃ)"
+    },
+    {
+      "id": "yuumei-na",
+      "target": "ゆうめいな",
+      "english": "Famous",
+      "category": "Descriptions & Qualities",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise V cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "sourceOrder": 3742,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 10 as ゆうめい, which also demonstrates the attributive ゆうめいな"
+    },
+    {
+      "id": "bijutsukan",
+      "target": "びじゅつかん",
+      "english": "Art museum",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise II cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
+      "sourceOrder": 2994,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 15 (chapter-15/art-museum, same target びじゅつかん)"
+    },
+    {
+      "id": "shiai",
+      "target": "しあい",
+      "english": "Match, game",
+      "category": "Sports & Hobbies",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise III cue (サッカーの しあい). Guessed gloss. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "sourceOrder": 3244,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 16 (chapter-16/shiai, same target しあい)"
+    },
+    {
+      "id": "sakkaa",
+      "target": "サッカー",
+      "english": "Soccer",
+      "category": "Sports & Hobbies",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise III cue. May be taught earlier. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "sourceOrder": 3239,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 15 (chapter-15/soccer-vocab, same target サッカー)"
+    },
+    {
+      "id": "uisukii",
+      "target": "ウイスキー",
+      "english": "Whiskey",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise VI cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
+      "sourceOrder": 4082,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 15 (chapter-15/whiskey-vocab, same target ウイスキー)"
+    },
+    {
+      "id": "baa",
+      "target": "バー",
+      "english": "Bar",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise VI cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "sourceOrder": 4075,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 8 (chapter-8/baa, same target バー)"
+    },
+    {
+      "id": "sandoicchi",
+      "target": "サンドイッチ",
+      "english": "Sandwich",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Appears only in the exercise V cue. May be taught earlier. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english)",
+      "sourceOrder": 3699,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 4 (chapter-4/sandwich, same target サンドイッチ)"
+    },
+    {
+      "id": "sutee-ki",
+      "target": "ステーキ",
+      "english": "Steak",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Appears in the Chan and Emma dialogue with the translation 'steak'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
+      "sourceOrder": 4844,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 8 (chapter-8/suteeki, same target ステーキ)"
+    },
+    {
+      "id": "zehi",
+      "target": "ぜひ",
+      "english": "By all means, I'd love to",
+      "category": "Greetings",
+      "uncertain": true,
+      "reviewNote": "Emma's reply to an invitation; only glossed by the dialogue translation ('I'd love to'). | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "sourceOrder": 4909,
+      "note": "Same word as ぜひ (zehi) in Lessons 16 and 17. It is the enthusiastic answer to an invitation, often on its own: ええ、ぜひ (ē, zehi).",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught in Lesson 16 and Lesson 17 (same target ぜひ)"
+    }
+  ]
+}

@@ -69,6 +69,11 @@ added to separate parts of a word, and no sentence-final punctuation the languag
 a card. Pronunciation and TTS text are separate fields with their own rules, and neither is ever
 rendered on a card.
 
+**When a source sorts inflected forms into classes, name the class in the note.** A note giving
+only the change teaches one word; naming the class teaches the learner to inflect the next one
+alone. Use the source's own class names, and never promote a form the source marks as an exception
+into a class of its own.
+
 **A note must never restate the card.** A note that repeats the gloss or the target teaches nothing
 and costs the learner a line to read. If there is nothing to add, add nothing.
 

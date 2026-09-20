@@ -881,6 +881,57 @@ rather than that something is broken.
 Mark the extras unit reviewed, then run the learning pass on it too, then go to Step 4. Build both of
 chapter N's units before starting chapter N+1.
 
+## Step 3c: The final review, before any audio is paid for
+
+**Run this after gate 2 and before the audio stage.** It is the one step that reads the CHAPTER
+against the built cards, which is the question none of the other loops asks.
+
+```sh
+node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang> --dry   # always first
+node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang>
+```
+
+`--dry` assembles everything, prints what it would send and what the deterministic side already
+knows, and calls no model. The real run spends **one Opus call**, which is why it sits here: after
+both content gates, before the stage that buys audio for every card.
+
+**What it ties together, and why that is the point.** Three things in this repo compute something
+true and then leave it in a report: `preflight`'s INFO findings, the drill-shape measurements, and
+the agent transcripts. This script is the loop that closes: it runs the deterministic checks,
+gathers the transcripts, and hands both to a role pinned above everything that produced the chapter,
+along with the chapter itself.
+
+**The division of labour is a measured result, not a preference.** Code computes the facts, because
+arithmetic over cards is exact and free. The agent supplies the one thing code cannot — what the
+chapter actually teaches — and the comparison is mechanical again. The reverse was tried first: a
+deterministic "one frame dominates this unit" threshold was calibrated against every unit already
+shipped, and it fires on the units that are RIGHT (the invitation lesson is 48% the invitation
+frame, because a chapter with one grammar point should drill it). The full calibration is in the
+header of `src/cards/drillShape.js`.
+
+**It reads the per-role yield too, which is the cheapest signal in the pipeline.** The learning pass
+already computes how many cards each role produced and how many survived, and until now nothing
+consumed it automatically. On Lesson 18 the gap author kept 16 of 50 while every other role in the
+same run kept nearly everything (13/13, 7/7, 10/11) — the same defect the frame analysis found by
+hand, visible for free and from a different direction. A low keep rate is not automatically a fault,
+since a role can be doing its job and being legitimately deduplicated, but it is the one number that
+points at a CAUSE rather than a symptom.
+
+**It cannot pass by saying nothing.** The standing risk with any reviewing agent is that a miss and a
+clean run look identical. So the prompt asks six fixed questions — what the chapter teaches, whether
+the dominant frame is one of those things, what is under-drilled, whether any sentence uses untaught
+vocabulary, whether the notes are TRUE, and what the transcripts explain — and the guard rejects a
+response that left any of them unanswered. An empty findings list is a fine result; an unanswered
+question is a failed run.
+
+Exit code is 1 when it reports a **blocker**, which is the tier meaning a learner would be taught
+something false or could not study a shipping card. The verdict is recomputed from the findings
+rather than trusted from the response, so a model that reports a blocker and then says "ready"
+is overridden.
+
+**A chapter built before 2026-09-20 has no agent transcripts**, and the script says so rather than
+reporting a clean run over missing evidence.
+
 ## Step 4: Phase 3, the chapter's audio, then Gate 3
 
 **Both of a chapter's units get their audio in one run and one review.** That is the gate v2 removed
@@ -1228,6 +1279,17 @@ and it works by reading the names THIS publisher labels "(fictitious … name)" 
 **An empty result means this book does not label them, never that the deck is clean.** Five such
 cards reached gate 1 on Lesson 17 and were caught by the owner reading the review table, which is the
 failure this exists to make less likely rather than impossible.
+
+### The final review of a built chapter
+
+```sh
+node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang> [--dry]
+```
+
+⚠️ Spends one Opus call. Runs the deterministic checks, gathers the agent transcripts, and hands
+both plus the chapter itself to a role pinned above every role that produced it. Six fixed
+questions, all of which must be answered. Exit 1 on a blocker. Step 3c is where it belongs in the
+flow, after gate 2 and before any audio is bought.
 
 ### Read what the adversary taught you about the other passes
 

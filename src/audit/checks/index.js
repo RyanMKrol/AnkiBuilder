@@ -27,6 +27,7 @@ import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./
 import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
 import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "./cardQuality.js";
 import { noteClaimsCheck } from "./noteClaims.js";
+import { drillFrameCheck } from "./drillShape.js";
 import { passLedgerCheck } from "./passLedger.js";
 
 /**
@@ -56,6 +57,7 @@ export const ALL_CHECKS = [
   answerableAloneCheck,
   productionLengthCheck,
   noteClaimsCheck,
+  drillFrameCheck,
   // collection scope
   collectionStateCheck,
   guidNamespaceCheck,

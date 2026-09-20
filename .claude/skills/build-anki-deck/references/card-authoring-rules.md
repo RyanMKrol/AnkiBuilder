@@ -244,7 +244,14 @@ it has not reached.**
 Put the derivation in the `note`, because that is the part that transfers. Name the conjugation class
 and the change: which letters moved, and one verb already carded that makes the same move. A card
 reading only "dictionary form of X" teaches one word; a card reading "Regular 1, so the い before ます
-becomes う, the same change as あいます → あう" teaches the learner to do the next one alone.
+becomes う, the same change as あいます → あう" teaches the learner to do the next one alone. That rule reached no prompt until 2026-09-20: it lived only in this file, which is not injected
+anywhere, so the note pass wrote derivations without ever naming a class. It now also sits in
+`docs/card-rules-shared.md`, which every card-writing prompt does carry.
+
+The trap on the other side is promoting an exception into a class of its own. Lesson 18's chart
+prints いきます in **Regular 1** with an asterisk meaning *exceptional inflection*, and the generated
+note called it "Irregular", a group the book fills with only きます and します. Copy the source's own
+grouping, and let an asterisk stay an asterisk.
 
 Audit an existing deck for a MISS the way this one was found: group every card by the verb it
 inflects, and report any group with no citation-form member, then check each gap against what the

@@ -31,6 +31,7 @@ import { reconcile } from "../cards/unionReconciler.js";
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
+import { logDirFor, withRunLogDir } from "./runLog.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 export const EXTRAS_PHASE_STEPS = Object.freeze([
@@ -119,7 +120,7 @@ function write(unitDir, relative, body) {
  * Every model-calling collaborator is injectable, so the whole phase is exercisable without spawning
  * anything: an ordering bug costs a test run rather than five paid calls.
  */
-export function runExtrasPhase({
+function runExtrasPhaseInner({
   unitDir,
   chapterFilePath,
   chapterHtml,
@@ -370,4 +371,17 @@ export function runExtrasPhase({
     allowance: invented.value.allowance,
     unteachable,
   };
+}
+
+/**
+ * runExtrasPhase, with every agent call inside it teeing its raw response into the unit's
+ * `agent-logs/` directory.
+ *
+ * The wrapper is here rather than inside the body so the logging scope is exactly the phase: it is
+ * restored on the way out even when the phase throws, which is the run whose transcript is most
+ * worth having.
+ */
+export function runExtrasPhase(options = {}) {
+  const dir = options.unitDir ? logDirFor(options.unitDir) : null;
+  return withRunLogDir(dir, () => runExtrasPhaseInner(options));
 }

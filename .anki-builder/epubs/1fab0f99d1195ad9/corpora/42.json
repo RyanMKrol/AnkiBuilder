@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 42,
+    "chapterLabel": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "yoroshii-2",
+      "english": "Be all right (polite form of いい)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "よろしい"
+    },
+    {
+      "id": "chotto-yoroshii-desu-ka",
+      "english": "May I have a moment of your time?",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ちょっとよろしいですか"
+    },
+    {
+      "id": "package",
+      "english": "Package",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "パッケージ"
+    },
+    {
+      "id": "fair",
+      "english": "Fair",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "フェア"
+    },
+    {
+      "id": "package-fair",
+      "english": "Package fair",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "パッケージフェア"
+    },
+    {
+      "id": "ato",
+      "english": "After",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "あと"
+    },
+    {
+      "id": "ato-de",
+      "english": "Afterwards, after",
+      "category": "Time",
+      "reviewNote": "Named in grammar prose 3 and used in the Smith and Nakamura dialogue.",
+      "target": "あとで",
+      "uncertain": true
+    },
+    {
+      "id": "itte-2",
+      "english": "Go (て-form of いきます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いって"
+    },
+    {
+      "id": "tabete",
+      "english": "Eat (て-form of たべます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Only て-form given in text (exercise I example). The main て-form chart is an image I could not read; other て-forms may need adding from it. | Resolved at gate 1: the chart (Page_173_Image_0001) WAS read by the image specialist, and all 19 て-form cells were audited cell-by-cell against the cards — none missing.",
+      "target": "たべて",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-kau",
+      "english": "Buy (て-form of かいます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かって"
+    },
+    {
+      "id": "te-form-matsu",
+      "english": "Wait (て-form of まちます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (まちます is listed as a formally taught verb in the next lesson's vocabulary, so its て-form may be better placed there) | Resolved at gate 1: まって is a Regular 1 cell of THIS chapter's own て-form chart, so it belongs here. (まちます itself was already carded in Lesson 10.)",
+      "target": "まって",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-kaeru",
+      "english": "Return, go home (て-form of かえります)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かえって"
+    },
+    {
+      "id": "te-form-kaku",
+      "english": "Draw, write (て-form of かきます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かいて"
+    },
+    {
+      "id": "te-form-oyogu",
+      "english": "Swim (て-form of およぎます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "およいで"
+    },
+    {
+      "id": "te-form-nomu",
+      "english": "Drink (て-form of のみます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "のんで"
+    },
+    {
+      "id": "te-form-kasu",
+      "english": "Lend (て-form of かします)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かして"
+    },
+    {
+      "id": "te-form-oshieru",
+      "english": "Tell, teach (て-form of おしえます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "おしえて"
+    },
+    {
+      "id": "te-form-miseru",
+      "english": "Show (て-form of みせます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みせて"
+    },
+    {
+      "id": "te-form-miru",
+      "english": "See, watch (て-form of みます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みて"
+    },
+    {
+      "id": "te-form-iru",
+      "english": "Be (て-form of います)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Note rewritten at gate 1: the generated note claimed います \"drops る\", but います contains no る and the book's own chart states the Regular 2 rule as \"change ます to て\". Please confirm.",
+      "target": "いて",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-kuru",
+      "english": "Come (て-form of きます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Listed under Irregular in the chart.",
+      "target": "きて"
+    },
+    {
+      "id": "te-form-suru",
+      "english": "Do (て-form of します)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Listed under Irregular in the chart.",
+      "target": "して"
+    },
+    {
+      "id": "te-form-au",
+      "english": "Meet (て-form of あいます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Appears only in the practice card boxes, not in the chart. English gloss is my own; check whether an earlier chapter teaches あいます. | Resolved at gate 1: あいます is already taught (Lessons 9 and 16). あって is a WORD POWER cell of this chapter.",
+      "target": "あって",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-kiku",
+      "english": "Listen, ask (て-form of ききます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches ききます. | Resolved at gate 1: ききます is already taught (Lessons 8 and 9). きいて is a WORD POWER cell of this chapter.",
+      "target": "きいて",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-yomu",
+      "english": "Read (て-form of よみます)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches よみます. | Resolved at gate 1: よみます is already taught (Lessons 8 and 9). よんで is a WORD POWER cell of this chapter.",
+      "target": "よんで",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-hanasu",
+      "english": "Speak, talk (て-form of はなします)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Appears only in the practice card boxes. English gloss is my own; check whether an earlier chapter teaches はなします. | Resolved at gate 1: はなします is already taught (Lesson 15). はなして is a WORD POWER cell of this chapter.",
+      "target": "はなして",
+      "uncertain": true
+    },
+    {
+      "id": "ki-o-tsukete",
+      "english": "Take care.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "きをつけて"
+    },
+    {
+      "id": "koujou",
+      "english": "Factory",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "こうじょう"
+    },
+    {
+      "id": "repooto",
+      "english": "Report",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "レポート"
+    },
+    {
+      "id": "purezen-o-shimasu",
+      "english": "Give a presentation",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "プレゼンをします"
+    },
+    {
+      "id": "doraibu-o-shimasu",
+      "english": "Go for a drive",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ドライブをします"
+    },
+    {
+      "id": "kaigi-o-shimasu",
+      "english": "Have a meeting",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "かいぎをします"
+    },
+    {
+      "id": "uchiawase-o-shimasu",
+      "english": "Have a preparatory meeting",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "うちあわせをします"
+    },
+    {
+      "id": "sumou",
+      "english": "Sumo [wrestling]",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "すもう"
+    },
+    {
+      "id": "koube",
+      "english": "Kobe (city near Osaka)",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "こうべ"
+    },
+    {
+      "id": "nara",
+      "english": "Nara (old city in western Japan)",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "なら"
+    },
+    {
+      "id": "koube-beef",
+      "english": "Kobe beef",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "こうべビーフ"
+    }
+  ]
+}

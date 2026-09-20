@@ -218,6 +218,38 @@ export const ROLES = Object.freeze({
     // the only bounded one: an inventive role with no ceiling is how a unit fills with padding.
     purpose: "Add roughly 20% more practice, using only vocabulary the book has already taught.",
   },
+
+  // ---- Review: the last look before any audio is paid for --------------------------------
+  finalReview: {
+    envScope: "FINAL_REVIEW",
+    // Opus, and that is forced rather than chosen. This role names every other role in `checks`, and
+    // the registry asserts a checker outranks everything it checks; `coverageAdversary` is already
+    // sonnet-5/high, the top of the Sonnet range, so nothing below Opus can sit above it. The cost
+    // is bounded by frequency: one call per chapter, at the end, after both corpus gates.
+    model: "claude-opus-5",
+    effort: "medium",
+    timeoutMs: 30 * MINUTES,
+    phase: "review",
+    // Everything. This role is the last thing to look at a chapter before its audio is paid for, so
+    // its remit is the whole pipeline's output rather than one step's.
+    checks: [
+      "tableSpecialist",
+      "chapterReader",
+      "imageSpecialist",
+      "coverageAdversary",
+      "backwardDeduplicator",
+      "semanticDeduplicator",
+      "gapFiller",
+      "exerciseMiner",
+      "fillInBlankMiner",
+      "exampleSentenceMiner",
+      "gapAuthor",
+      "inventiveAuthor",
+    ],
+    purpose:
+      "Read the built chapter against the chapter itself, plus the deterministic findings and the " +
+      "agent transcripts, and say what a human reviewer would otherwise have to notice by hand.",
+  },
 });
 
 /** Every declared role id. */

@@ -140,3 +140,33 @@ export function describeLearning(report) {
   );
   return lines.join("\n");
 }
+
+/**
+ * Per-role yield, worst keep-rate first.
+ *
+ * `describeLearning` orders by HUMAN exclusions, because that is the only line that is unambiguously
+ * feedback about a role. This orders by keep rate instead, and the difference is the point: a role
+ * can be producing badly without a human ever touching it, because the scripts cut its output first.
+ *
+ * Measured on chapter-18-extras: the gap author produced 50 and kept 16, a 32% keep rate, while
+ * every other role in the same run kept nearly all of its output (13/13, 7/7, 10/11, 10/13). That
+ * gap was pure arithmetic and was available before anyone read a single card — it is the same defect
+ * the frame analysis found by hand, visible from a different direction and for free.
+ *
+ * It is reported, never gated on. A low keep rate is not automatically a fault: a role can be doing
+ * exactly its job and having its output legitimately deduplicated. What it is, reliably, is the
+ * first place to look.
+ */
+export function roleYield(report) {
+  return Object.entries(report.byRole)
+    .map(([role, r]) => ({
+      role,
+      produced: r.produced,
+      kept: r.kept,
+      cutByScript: r.excludedByScript.length,
+      cutByHuman: r.excludedByHuman.length,
+      edited: r.changedSinceGeneration.length,
+      keepRate: r.produced ? r.kept / r.produced : null,
+    }))
+    .sort((a, b) => (a.keepRate ?? 1) - (b.keepRate ?? 1));
+}

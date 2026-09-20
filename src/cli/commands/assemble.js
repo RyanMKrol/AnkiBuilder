@@ -4,7 +4,7 @@
 import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
 import { withClaim } from "../runClaim.js";
-import { validateCorpus, projectCorpusItem } from "../../model/index.js";
+import { validateCorpus, projectCorpusItem, isKnownProvenanceField } from "../../model/index.js";
 import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { listTemplates } from "../../corpus/templates.js";
@@ -286,10 +286,20 @@ function dropVolunteeredFields(corpus, ctx) {
     return projected;
   });
   if (volunteered.size) {
-    ctx.log(
-      `dropped ${volunteered.size} field(s) no corpus item may carry: ` +
-        `${[...volunteered].sort().join(", ")} — kept in the candidate artifacts`,
-    );
+    const all = [...volunteered].sort();
+    const provenance = all.filter(isKnownProvenanceField);
+    const surprises = all.filter((f) => !isKnownProvenanceField(f));
+    if (provenance.length) {
+      ctx.log(`dropped provenance: ${provenance.join(", ")} — kept in the candidate artifacts`);
+    }
+    // Loud, and separate, because this is the one that has cost something: a real card property
+    // with no schema home reads exactly like harmless provenance in a combined list.
+    if (surprises.length) {
+      ctx.log(
+        `⚠ dropped UNRECOGNISED field(s): ${surprises.join(", ")} — if any of those is a card ` +
+          `property rather than provenance, it needs a home in the schema or it is being lost`,
+      );
+    }
   }
   return [...volunteered].sort();
 }

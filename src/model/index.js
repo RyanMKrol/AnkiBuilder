@@ -84,6 +84,13 @@ const CORPUS_SCHEMA = {
           // Internal review-only rationale — why an item is `uncertain` or `aiSuggested`. Shown ONLY at
           // the dashboard review gates; NEVER embedded in the deck or shown in the read-only viewer.
           reviewNote: { type: ["string", "null"] },
+          // Marks a practice sentence mined from a drill rather than printed as source material.
+          // Declared in BOTH schemas: v1 only ever added these in `prepare`, straight into
+          // cards.json, so the corpus never carried one -- but phase 2's fill-in-the-blank miner
+          // produces them as corpus items, and a corpus field the schema does not know is dropped
+          // on the way through. `semanticDedup` reads it to decide which drills are redundant, and
+          // the card-face preview badges it.
+          fillInBlank: { type: "boolean" },
           // Set by the union reconciler when it splits a headword the book printed as two readings
           // (`ゼロ／れい`): each half records the OTHER reading, so the review gate can show that this
           // card is one of a pair rather than a lone word. Code-authored, unlike the provenance an
@@ -479,6 +486,34 @@ function validateItemObject(arrayKey, index, item, itemSchema) {
  */
 export function corpusItemFields() {
   return Object.keys(CORPUS_SCHEMA.properties.items.items.properties);
+}
+
+/**
+ * Fields an agent volunteers as PROVENANCE, which the corpus has no home for by design.
+ *
+ * The distinction matters because dropping is silent. `fromTable` going missing costs nothing --
+ * it is already in that step's candidate artifact. `fillInBlank` going missing cost a whole unit
+ * its drill markers, and the log line naming it read exactly like the harmless ones, so it was
+ * read past. Anything dropped that is NOT on this list is reported as unrecognised, which is the
+ * question worth asking: is this a card property that needs a schema home?
+ */
+const KNOWN_PROVENANCE = new Set([
+  "producedBy",
+  "fromTable",
+  "foundIn",
+  "fromBlock",
+  "fromFrame",
+  "fromSection",
+  "fillsGap",
+  "gapKind",
+  "source",
+  "why",
+  "demonstrates",
+]);
+
+/** Whether a dropped field is provenance we expect, or a surprise worth looking at. */
+export function isKnownProvenanceField(name) {
+  return KNOWN_PROVENANCE.has(name);
 }
 
 /**

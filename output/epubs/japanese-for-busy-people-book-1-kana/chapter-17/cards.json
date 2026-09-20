@@ -118,7 +118,7 @@
       "note": "Don't confuse it with びょういん (byōin) \"Hospital, clinic\" from Lesson 13. This one has よ (yo), and it means a place to get your hair done."
     },
     {
-      "id": "kaigi",
+      "id": "kaigi-l17",
       "english": "Meeting",
       "category": "Work & Occupations",
       "target": "かいぎ",
@@ -145,7 +145,7 @@
       "reviewNote": "Only in Exercise II drill cues (おんせんに いきます). No gloss in the chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)"
     },
     {
-      "id": "nyuusu",
+      "id": "nyuusu-l17",
       "english": "News",
       "category": "Technology & Communication",
       "target": "ニュース",
@@ -172,7 +172,7 @@
       "reviewNote": "Only in Exercise IV example. No gloss. | Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)"
     },
     {
-      "id": "mise",
+      "id": "mise-l17",
       "english": "Shop",
       "category": "Shopping",
       "target": "みせ",
@@ -181,7 +181,7 @@
       "reviewNote": "Only in an Exercise III-B cue. No gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)"
     },
     {
-      "id": "tokoro",
+      "id": "tokoro-l17",
       "english": "Place",
       "category": "Directions",
       "target": "ところ",
@@ -199,7 +199,7 @@
       "reviewNote": "Exercise III (うみの ちかく, この ちかくに). No gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)"
     },
     {
-      "id": "kuni",
+      "id": "kuni-l17",
       "english": "Country, one's home country",
       "category": "Nationalities & Countries",
       "target": "くに",
@@ -255,7 +255,7 @@
       "note": "This is しずか (shizuka) from Lesson 10. The な (na) only appears when it comes directly before a noun, as in しずかなところ (shizuka na tokoro)."
     },
     {
-      "id": "atatakai",
+      "id": "atatakai-l17",
       "english": "Warm",
       "category": "Descriptions & Qualities",
       "target": "あたたかい",
@@ -264,7 +264,7 @@
       "reviewNote": "Only in an Exercise III-A cue, (あたたかい ところ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)"
     },
     {
-      "id": "furui",
+      "id": "furui-l17",
       "english": "Old",
       "category": "Descriptions & Qualities",
       "target": "ふるい",
@@ -273,7 +273,7 @@
       "reviewNote": "Only in an Exercise III-B cue, (ふるい かぐを かいます、みせ). No gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)"
     },
     {
-      "id": "zehi",
+      "id": "zehi-l17",
       "english": "By all means, definitely",
       "category": "Grammar & Function Words",
       "target": "ぜひ",
@@ -300,12 +300,12 @@
     },
     {
       "id": "no-mae-ni",
-      "english": "Before…",
+      "english": "Before the meeting",
       "category": "Time",
-      "target": "〜のまえに",
-      "pronunciation": "no mae ni",
+      "target": "かいぎのまえに",
+      "pronunciation": "kaigi no mae ni",
       "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach))"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 22: Forbidding Actions: Please Don’t Take Photos (uncertain: 〜まえ is listed as taught vocabulary later (there in the 'ago' sense, so this may not be a true re-teach)) | Target changed from the schematic 〜のまえに to a concrete instance the chapter prints (EXERCISES V), because a placeholder is not a card. Confirm the choice."
     },
     {
       "id": "neru-mae-ni",
@@ -334,7 +334,8 @@
       "english": "Cook",
       "category": "Home & Household",
       "target": "りょうりをします",
-      "pronunciation": "ryōri o shimasu"
+      "pronunciation": "ryōri o shimasu",
+      "hint": "the activity, not the person"
     },
     {
       "id": "araimasu",
@@ -454,7 +455,7 @@
       "reviewNote": "Only in the Exercise V-B cue, (エマさん、およぎます). No gloss anywhere in the chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)"
     },
     {
-      "id": "kaerimasu",
+      "id": "kaerimasu-l17",
       "english": "To return, to go home",
       "category": "Travel & Tourism",
       "target": "かえります",
@@ -671,7 +672,7 @@
       "note": "Short for すいようびに あいましょう. People rarely say さようなら when parting and usually name the next meeting instead."
     },
     {
-      "id": "chotto-matte-kudasai",
+      "id": "chotto-matte-kudasai-l17",
       "english": "Please wait a minute",
       "category": "Greetings",
       "target": "ちょっとまってください",
@@ -680,7 +681,7 @@
       "reviewNote": "Speaking Practice 2. Glossed in the dialogue translation only; may already be taught. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target) | Possibly premature — uses verb[て-form]ください (and the verb まちます), neither introduced until later in the book"
     },
     {
-      "id": "wakarimashita",
+      "id": "wakarimashita-l17",
       "english": "I've got that, I understand",
       "category": "Greetings",
       "target": "わかりました",

@@ -30,7 +30,8 @@
         "reason": "phase 2 dedups its own miners' output"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -1150,11 +1151,12 @@
       "target": "ふるいとけいはかいたくないです",
       "pronunciation": "furui tokei wa kaitakunai desu",
       "aiSuggested": true,
-      "audio": "709416021ddd7431.mp3",
-      "audioOriginal": "709416021ddd7431.orig.mp3",
-      "audioAuto": "709416021ddd7431.mp3",
+      "audioOriginal": "0bf2259b37e7be6c-genkanji-85096ae1.orig.mp3",
+      "audioAuto": "0bf2259b37e7be6c-genkanji-85096ae1.mp3",
       "audioMarked": true,
-      "audioTextHash": "709416021ddd7431"
+      "audioTextHash": "0bf2259b37e7be6c",
+      "audioFilter": "standard",
+      "audio": "0bf2259b37e7be6c-genkanji-85096ae1.mp3"
     },
     {
       "id": "hajimemasu-1",

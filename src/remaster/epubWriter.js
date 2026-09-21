@@ -115,7 +115,10 @@ const CONTAINER = `<?xml version="1.0" encoding="utf-8"?>
  *
  * `modified` is a parameter, not `new Date()`, so a test gets identical bytes on every run.
  */
-export function buildRemasteredEpub(entries, { title, language, sourceHash, modified }) {
+export function buildRemasteredEpub(
+  entries,
+  { title, language, sourceHash, modified, purpose = null },
+) {
   // Figure crops and whole-page images, each `{ name: "images/…jpg", data }`, relative to OEBPS/
   // like the chapter files that reference them. The same crop can be listed by two builds of one
   // entry; it is packed once.
@@ -129,8 +132,11 @@ export function buildRemasteredEpub(entries, { title, language, sourceHash, modi
     }
   }
   const identity = createHash("sha256")
+    // The purpose is part of the identity: two conversions of one book for different purposes are
+    // two collections, even in the unlikely case that they selected the same chapters.
     .update(
-      `${sourceHash}\n${entries.map((e) => `${e.label}:${e.firstPage}-${e.lastPage}`).join("\n")}`,
+      `${sourceHash}\n${purpose ?? ""}\n` +
+        entries.map((e) => `${e.label}:${e.firstPage}-${e.lastPage}`).join("\n"),
     )
     .digest("hex");
   const identifier = `urn:anki-builder:remaster:${identity.slice(0, 32)}`;
@@ -144,7 +150,9 @@ export function buildRemasteredEpub(entries, { title, language, sourceHash, modi
           title,
           language,
           identifier,
-          source: `remastered from page images, source sha256 prefix ${sourceHash}`,
+          source:
+            `remastered from page images, source sha256 prefix ${sourceHash}` +
+            (purpose ? `, purpose ${purpose}` : ""),
           modified,
         }),
       ),

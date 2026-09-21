@@ -246,6 +246,14 @@ the image is still the only complete answer.
    reasoning, in `DECISIONS.md`. On the rerun outline Genki has 29 chapters: the two kana charts,
    the writing-system introduction, Greetings, Numbers, Lessons 1 to 12 and Reading and Writing 1
    to 12. Fourteen front- and back-matter entries are left out.
+7. **A conversion has a purpose**, and each purpose's book is its own collection: speaking and
+   listening (the default, what the deck pipeline builds) or reading and writing. The pipeline is
+   shared; only the selection criteria and the book's name change, and transcripts are shared
+   across purposes. Recorded in `DECISIONS.md`. For speaking and listening, the agent recommends
+   Genki's Greetings, Numbers and Lessons 1 to 12 (14 chapters), and leaves the kana charts, the
+   writing-system introduction and all twelve Reading and Writing units for a later
+   reading-and-writing conversion. It also warns that from Lesson 8 the casual and past forms of
+   known verbs may be flagged as repeats, though the forms are new.
 
 ## Where this goes next
 

@@ -39,7 +39,7 @@ export function candidateUnits(outline) {
   return outline.entries.filter((entry) => entry.kind === "lesson");
 }
 
-export function renderSelectPrompt({ bookTitle, outline, ocrByPage }) {
+export function renderSelectPrompt({ bookTitle, outline, ocrByPage, purpose }) {
   const units = candidateUnits(outline).map((entry) => {
     const pages = [];
     for (
@@ -59,6 +59,8 @@ export function renderSelectPrompt({ bookTitle, outline, ocrByPage }) {
   });
   return renderPromptTemplate(TEMPLATE, {
     BOOK_TITLE: bookTitle ?? "(untitled)",
+    PURPOSE: purpose.title,
+    PURPOSE_CRITERIA: purpose.criteria,
     UNITS: units.join("\n\n"),
   });
 }
@@ -68,7 +70,7 @@ export function renderSelectPrompt({ bookTitle, outline, ocrByPage }) {
  * recommendation and category. Returns the selection record with every `decision` still null,
  * because only the owner fills that in (applyDecisions).
  */
-export function parseSelection(raw, { outline }) {
+export function parseSelection(raw, { outline, purpose }) {
   const parsed = JSON.parse(extractJsonObjectText(raw));
   const units = candidateUnits(outline);
   const byEntry = new Map((parsed.units ?? []).map((u) => [u.entry, u]));
@@ -94,6 +96,8 @@ export function parseSelection(raw, { outline }) {
     throw new Error(`the selection is not usable:\n  - ${problems.join("\n  - ")}`);
   }
   return {
+    // Which purpose these decisions are for (purpose.js); one selection file per purpose.
+    purpose: purpose?.name ?? null,
     summary: parsed.summary ?? "",
     units: units.map((entry) => {
       const unit = byEntry.get(entry.number);

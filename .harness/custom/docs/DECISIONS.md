@@ -62,6 +62,30 @@ To list what is here: `grep '^## ' .harness/custom/docs/DECISIONS.md`
   study-order field the outline reads from the book and a person confirms, rather than renumbering by
   hand.
 
+## A conversion has a purpose, and each purpose is its own collection
+
+- **What:** a book converted from page images is converted FOR a purpose: `speaking-listening` (the
+  default) or `reading-writing` (`src/remaster/purpose.js`). The conversion pipeline is shared end to
+  end; the purpose changes only which study units the selection agent recommends, and it goes into the
+  converted book's title and identity. Each purpose's converted book is a separate collection, so the
+  two are never deduplicated against each other (the collection-isolation rule applies unchanged).
+  There is no "everything" purpose. Owner ruling, 2026-09-21.
+- **Why:** the deck pipeline builds listening and speaking decks: vocabulary, phrases and grammar with
+  audio. Reading and writing is a different skill with different cards (a character's meaning and
+  readings, a known word's written form), and for Japanese it is large and ongoing. Genki showed what
+  happens when the two are mixed: its kanji lessons teach the written form of words the conversation
+  lessons already taught, so the backward dedup flagged nearly every kanji card as "already taught".
+  Separate collections remove that conflict by design instead of patching the dedup. An "everything"
+  purpose would feed the kanji units straight back into the speaking pipeline.
+- **Impact:** page transcripts are shared by every purpose, so converting a book for a second purpose
+  only pays for the pages the first did not cover. No deck pipeline builds reading-and-writing cards
+  yet; the converter says so when that purpose is used. For most scripts, reading is a one-off
+  alphabet deck (a template, not a book); only languages written with characters need an ongoing
+  character track.
+- **Status:** decided
+- **When to revisit:** when a reading-and-writing deck pipeline is designed, or if a book's two skills
+  cannot be separated by unit.
+
 ## Scene cues on ambiguous single-word cards partially reveal the answer (by design)
 
 - **What:** the `Scene` field renders on the front of BOTH card directions. For sentence cards a

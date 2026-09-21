@@ -13,14 +13,19 @@
 //   node scripts/remaster-epub.mjs select     <book.epub>   (an agent recommends which units to convert)
 //   node scripts/remaster-epub.mjs decide     <book.epub> [--accept-recommendations]
 //                                             [--include <entry> ...] [--exclude <entry> ...]
-//   (transcribe, settle and build then work on every chosen chapter, or those named by --chapter)
-//   node scripts/remaster-epub.mjs transcribe <book.epub> --entry <n> [--pages a-b] [--concurrency 4]
-//                                             [--reading b]   (an independent second run)
-//   node scripts/remaster-epub.mjs crosscheck <book.epub> [--entry <n>]
-//   node scripts/remaster-epub.mjs settle     <book.epub> --entry <n>   (after readings a and b)
-//   node scripts/remaster-epub.mjs build      <book.epub> --out <remastered.epub> [--entry <n> ...]
+//   node scripts/remaster-epub.mjs transcribe <book.epub> [--chapter <n>] [--pages a-b]
+//                                             [--concurrency 4] [--reading b]
+//   node scripts/remaster-epub.mjs crosscheck <book.epub> [--chapter <n>]
+//   node scripts/remaster-epub.mjs settle     <book.epub> [--chapter <n>]   (after readings a and b)
+//   node scripts/remaster-epub.mjs build      <book.epub> --out <converted.epub> [--chapter <n> ...]
 //                                             [--allow-missing]
-//   node scripts/remaster-epub.mjs verify     <book.epub> --book <remastered.epub> [--entry <n> ...]
+//   node scripts/remaster-epub.mjs verify     <book.epub> --book <converted.epub> [--chapter <n> ...]
+//
+// transcribe, settle and build work on every chosen chapter unless --chapter (or --entry, an
+// outline number) names some. Every step after `outline` takes --purpose speaking-listening (the
+// default) or reading-writing (src/remaster/purpose.js). The purpose picks which units are
+// converted and names the result; page transcripts are shared, so a second purpose only pays for
+// the pages the first did not cover.
 //
 // `check` is free and read-only. `ocr` is free (Apple Vision, local). `outline` is one text-only
 // model call. `transcribe` is one vision call per page and is the only step that costs real
@@ -53,6 +58,7 @@ import {
   includedEntries,
   formatSelection,
 } from "../src/remaster/selection.js";
+import { resolvePurpose, DEFAULT_PURPOSE } from "../src/remaster/purpose.js";
 import {
   renderPagePrompt,
   parsePageReply,
@@ -78,6 +84,17 @@ import { writeFileAtomic } from "../src/util/atomicWrite.js";
 const [command, target, ...rest] = process.argv.slice(2);
 const REMASTER_MODIFIED = "2000-01-01T00:00:00Z";
 const READING = rest.includes("--reading") ? rest[rest.indexOf("--reading") + 1] : "a";
+// What this conversion is for (purpose.js). It decides which selection is used, and so which
+// chapters exist; every page transcript is shared across purposes.
+let PURPOSE;
+try {
+  PURPOSE = resolvePurpose(
+    rest.includes("--purpose") ? rest[rest.indexOf("--purpose") + 1] : DEFAULT_PURPOSE,
+  );
+} catch (error) {
+  console.error(error.message);
+  process.exit(2);
+}
 
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 
@@ -109,7 +126,7 @@ const log = (line) => console.log(line);
 async function workspace() {
   const hash = hashEpubFile(epubPath);
   // --reading b (c, ...) points transcribe and crosscheck at an independent second run.
-  const paths = readingPaths(remasterPaths(remasterRoot(hash)), READING);
+  const paths = readingPaths(remasterPaths(remasterRoot(hash), { purpose: PURPOSE.name }), READING);
   const pages = extractPageImages(epubPath, paths.images);
   return { hash, paths, pages };
 }
@@ -145,6 +162,15 @@ function loadOutline(paths) {
   // always the ones the current decisions imply (numberChapters is deterministic in both).
   const outline = JSON.parse(readFileSync(paths.outline, "utf-8"));
   return numberChapters(outline, includedEntries(loadSelection(paths)));
+}
+
+/** Said wherever a purpose nothing builds decks from is used, so a conversion never implies one. */
+function warnWithoutDeckPipeline() {
+  if (PURPOSE.hasDeckPipeline) return;
+  log(
+    `note: no deck pipeline makes ${PURPOSE.title} cards yet. This conversion works, but nothing ` +
+      `will build decks from it until one exists.`,
+  );
 }
 
 function loadSelection(paths) {
@@ -385,20 +411,28 @@ Object.assign(commands, {
     );
     const pin = remasterPinning("SELECT");
     const logged = loggedRunner(paths.root, async (text) => runSelectClaude(text), {
-      role: "select",
+      role: `select-${PURPOSE.name}`,
       ...pin,
-      context: () => ({ units: candidateUnits(outline).length }),
+      context: () => ({ purpose: PURPOSE.name, units: candidateUnits(outline).length }),
     });
     log(
-      `select: one call (${pin.model} ${pin.effort}) over ${candidateUnits(outline).length} study units`,
+      `select for ${PURPOSE.title}: one call (${pin.model} ${pin.effort}) over ` +
+        `${candidateUnits(outline).length} study units`,
     );
+    warnWithoutDeckPipeline();
     const raw = await logged.run(
-      renderSelectPrompt({ bookTitle: getBookTitle(epubPath), outline, ocrByPage }),
+      renderSelectPrompt({
+        bookTitle: getBookTitle(epubPath),
+        outline,
+        ocrByPage,
+        purpose: PURPOSE,
+      }),
     );
-    const selection = parseSelection(raw, { outline });
+    const selection = parseSelection(raw, { outline, purpose: PURPOSE });
     writeFileAtomic(paths.selection, `${JSON.stringify(selection, null, 2)}\n`);
     appendJournal(paths.root, {
       step: "select",
+      purpose: PURPOSE.name,
       ...pin,
       agentLog: logged.lastLog(),
       recommendations: selection.units.map((u) => `${u.entry} ${u.recommendation} ${u.category}`),
@@ -754,10 +788,14 @@ Object.assign(commands, {
       console.error("no outline entry is fully transcribed yet; nothing to build");
       process.exit(1);
     }
+    warnWithoutDeckPipeline();
     const bytes = buildRemasteredEpub(entries, {
-      title: `${getBookTitle(epubPath)} (remastered)`,
+      // The purpose is in the title, so two conversions of one book are two distinct collections
+      // by name as well as by bytes (DECISIONS.md, "A conversion has a purpose…").
+      title: `${getBookTitle(epubPath)} (${PURPOSE.title})`,
       language: option("lang") ?? "ja",
       sourceHash: hash,
+      purpose: PURPOSE.name,
       // Fixed, not the clock. The library identifies a book by the hash of its bytes, so the
       // same transcripts must always give the same file; a timestamp here made every rebuild a
       // "new book" with an empty dedup library.

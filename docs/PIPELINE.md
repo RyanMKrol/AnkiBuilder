@@ -207,7 +207,11 @@ are separate subcommands so each paid one can be checked before the next:
   `Chapter NN: <the book's own name>` (`numberChapters`), and only those chapters go into the
   converted book. Every command takes `--chapter <n>` as well as `--entry <outline number>`. The
   rule and why are in `DECISIONS.md` ("Converted books number their study units as chapters").
-- `select`, then `decide`: which study units are worth converting at all. One Opus call
+- `select --purpose <p>`, then `decide`: which study units are worth converting, for a purpose:
+  `speaking-listening` (the default, what the deck pipeline builds) or `reading-writing`
+  (`src/remaster/purpose.js`). The purpose swaps the agent's criteria, gets its own
+  `selection-<purpose>.json`, and names the converted book; each purpose's book is its own
+  collection (`DECISIONS.md`, "A conversion has a purpose…"). One Opus call
   (`docs/remaster-select-prompt.md`, pin `SELECT`) reads each unit's opening pages and recommends
   include, exclude or ask, with a category, a reason and the units it repeats; it is told how the
   backward dedup will treat a unit that re-presents earlier material, so it can warn about it.

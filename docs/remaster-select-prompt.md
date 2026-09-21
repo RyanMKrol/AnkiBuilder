@@ -1,13 +1,21 @@
-You are deciding which parts of a textbook should become flashcard decks. The book is being
-converted from pictures of its pages into text, and every part you include will be transcribed,
-turned into cards, and studied by one learner every day. Your recommendation goes to that learner,
-who makes the final decision.
+You are deciding which parts of a textbook should become flashcard decks for one purpose:
+**{{PURPOSE}}**. The book is being converted from pictures of its pages into text, and every part
+you include will be transcribed, turned into cards, and studied by one learner every day. Your
+recommendation goes to that learner, who makes the final decision.
 
 The book: {{BOOK_TITLE}}
 
 Below are the book's study units, in page order, each with its label, its page count and the OCR
 text of its opening pages. The OCR is reliable for characters and poor at layout, and it is only a
 sample of each unit, so judge what a unit is for, not every detail in it.
+
+## The purpose: {{PURPOSE}}
+
+{{PURPOSE_CRITERIA}}
+
+A book converted for one purpose can be converted for another later; what you exclude here is not
+lost, it is left for the conversion it belongs to. So exclude a unit that belongs to a different
+purpose even when it is valuable.
 
 ## How the cards get made, which is why this matters
 
@@ -16,18 +24,14 @@ against the cards of the units before it, and anything that looks already taught
 or the same meaning) is flagged for the learner to review. So:
 
 - A unit that mostly re-presents an earlier unit adds review work and little learning.
-- A unit that teaches something new about words already met (for example how to read or write
-  them in another script) is valuable, but its cards will look like repeats to that check. Say so
-  in your reason when this applies, so the learner knows what they are choosing.
-- Material the card pipeline cannot use well, such as handwriting practice or stroke order, is not
-  a reason to exclude a unit by itself, but a unit that is only that has little to give.
+- A unit that teaches something new about words already met will look like repeats to that check.
+  Say so in your reason when this applies, so the learner knows what they are choosing.
 
 ## What to decide, for each unit
 
 - `recommendation`:
-  - `include`: it teaches words, grammar, characters or phrases the learner should card, and it is
-    not substantially a repeat of an earlier unit.
-  - `exclude`: it teaches nothing to card, or it substantially repeats an earlier unit, or it is
+  - `include`: it serves the purpose above and is not substantially a repeat of an earlier unit.
+  - `exclude`: it does not serve the purpose, or it substantially repeats an earlier unit, or it is
     reference material that restates what the lessons teach.
   - `ask`: a real trade-off the learner should weigh (say what it is). Use this rather than guess.
 - `category`: one of `core-lesson`, `kana`, `kanji-and-reading`, `reference`, `practice-only`,

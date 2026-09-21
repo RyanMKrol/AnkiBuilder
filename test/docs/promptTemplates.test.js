@@ -288,7 +288,7 @@ const TEMPLATES = {
     outputContract: /"entries"[\s\S]*"firstPage"[\s\S]*"lastPage"/,
   },
   "remaster-select-prompt.md": {
-    placeholders: ["BOOK_TITLE", "UNITS"],
+    placeholders: ["BOOK_TITLE", "PURPOSE", "PURPOSE_CRITERIA", "UNITS"],
     // parseSelection (src/remaster/selection.js) reads exactly these fields.
     outputContract: /"units"[\s\S]*"recommendation"[\s\S]*"category"[\s\S]*"overlapsWith"/,
   },

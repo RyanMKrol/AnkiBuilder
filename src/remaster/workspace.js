@@ -15,6 +15,7 @@ import { libraryHome } from "../model/index.js";
 //     images/page-NNN.jpg          the page images, copied out of the archive
 //     ocr/page-NNN.json            Apple Vision's reading of each page (free, local)
 //     outline.json                 the lesson ranges, from the outline pass (a human reviews it)
+//     selection-<purpose>.json     which units that purpose converts: recommendation + owner decision
 //     transcripts/page-NNN.xhtml   Claude's reading of each page (paid, the expensive part)
 //     checks/page-NNN.json         the OCR cross-check of each transcript
 //     transcripts-b/, checks-b/    a second, independent reading (--reading b)
@@ -24,14 +25,16 @@ export function remasterRoot(sourceHash, { libraryHomeDir } = {}) {
   return join(libraryHomeDir || libraryHome(), "remaster", sourceHash);
 }
 
-export function remasterPaths(root) {
+export function remasterPaths(root, { purpose = "speaking-listening" } = {}) {
   return {
     root,
+    purpose,
     images: join(root, "images"),
     ocr: join(root, "ocr"),
     outline: join(root, "outline.json"),
-    // Which study units become chapters: the agent's recommendation and the owner's decision.
-    selection: join(root, "selection.json"),
+    // Which study units become chapters, for ONE purpose (purpose.js): the agent's recommendation
+    // and the owner's decision. Everything else in the workspace is shared by every purpose.
+    selection: join(root, `selection-${purpose}.json`),
     transcripts: join(root, "transcripts"),
     checks: join(root, "checks"),
     // The page the build uses when two readings exist: B where they agreed, the adjudicated page

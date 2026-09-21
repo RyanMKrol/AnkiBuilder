@@ -144,3 +144,39 @@ test("the adversary's gaps are surfaced, because nobody reads a JSON file they w
     assert.match(logged.join("\n"), /coverage\.json/);
   });
 });
+
+test("the phase's backward judge is handed every earlier unit, extras included", () => {
+  // It never was: Lessons 17 to 20 each ran it against zero prior cards, which is how Lesson 20
+  // re-carded ごふん and じゅっぷん from Lesson 3's extras without a flag.
+  return withTempDir(async (root) => {
+    const unitDir = join(root, "chapter-3");
+    mkdirSync(unitDir, { recursive: true });
+    for (const [unit, id] of [
+      ["chapter-1", "bus"],
+      ["chapter-1-extras", "five-minutes"],
+      ["chapter-4", "later"],
+    ]) {
+      mkdirSync(join(root, unit), { recursive: true });
+      writeFileSync(
+        join(root, unit, "cards.json"),
+        JSON.stringify({ meta: {}, items: [{ id, target: id, english: id }] }),
+      );
+    }
+    let seen = null;
+    extractBaseCorpus({
+      unitDir,
+      chapterFilePath: join(unitDir, "ch.xhtml"),
+      chapterHtml: "",
+      targetLanguage: "ja",
+      runPhase: (opts) => {
+        seen = opts.priorItems;
+        writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify({ meta: {}, items: [] }));
+        return { run: okRun(), verdict: { ok: true, problems: [] } };
+      },
+    });
+    assert.deepEqual(
+      seen.map((i) => `${i.__unit}/${i.id}`),
+      ["chapter-1/bus", "chapter-1-extras/five-minutes"],
+    );
+  });
+});

@@ -1186,7 +1186,10 @@ more** that its own extras units already teach. Half the collection.
 
 **The fix does not touch the library.** That key collision is a property of how the file is stored,
 not of the comparison, so `loadEarlierUnitItems` reads every earlier unit off disk instead, base and
-extras alike. A base unit counts as earlier than its own extras sibling, because the extras unit is
+extras alike. Phase 1 gets that list from `extractBaseCorpus`, which did not pass it until
+2026-09-22: Lessons 17 to 20 each ran the base judge against zero prior cards (`priorItems: 0` in
+every `candidates/backward.json`), so near misses and exact repeats of extras cards went unflagged.
+The build now logs how many earlier cards the judge reads, so a zero is visible. A base unit counts as earlier than its own extras sibling, because the extras unit is
 built from the base unit's approved vocabulary.
 
 **The pre-filter is fuzzy on purpose.** Exact matching already finds what exact matching can find, so
@@ -1632,7 +1635,11 @@ The order carries three constraints, each asserted by a test:
   reinventing what it had not yet seen.
 
 It is also given every **earlier lesson's** cards, so the vocabulary rule is judged against what the
-learner has actually met rather than against this chapter alone.
+learner has actually met rather than against this chapter alone. That means every earlier base unit,
+plus the lexical entries of every earlier extras unit (`loadEarlierTaughtItems`). A drill sentence
+does not teach the words inside it, so extras sentences stay out, but a word carded in an extras unit
+is taught: pathway 2 retrofits land there. Leaving extras out entirely made Lesson 20's miners drop
+the chapter's title question, because its どうやって is carded only in Lesson 7's extras.
 
 Findings are surfaced before the review rather than after: sentences that appear to use an untaught
 word, gaps left open for want of taught vocabulary, invented sentences that repeat a mined one, and

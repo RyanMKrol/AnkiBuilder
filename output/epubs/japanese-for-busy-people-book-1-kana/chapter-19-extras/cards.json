@@ -1,0 +1,752 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 43,
+    "chapterLabel": "Lesson 19: Making a Request: Please Give Her My Regards (Extras)",
+    "baseChapterLabel": "Lesson 19: Making a Request: Please Give Her My Regards",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "request-say-again",
+      "english": "Please say it one more time.",
+      "category": "Grammar & Function Words",
+      "target": "もういちどいってください",
+      "pronunciation": "mō ichido itte kudasai"
+    },
+    {
+      "id": "say-again-dont-understand",
+      "english": "I don't understand. Please say it one more time.",
+      "category": "Technology & Communication",
+      "target": "わかりません。もういちどいってください",
+      "pronunciation": "wakarimasen. mō ichido itte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "report-at-monday-meeting",
+      "english": "Then, please report on it at the meeting on Monday.",
+      "category": "Work & Occupations",
+      "target": "じゃ、げつようびのかいぎでほうこくしてください",
+      "pronunciation": "ja, getsuyōbi no kaigi de hōkoku shite kudasai"
+    },
+    {
+      "id": "thank-you-driver",
+      "english": "Thank you very much.",
+      "category": "Greetings",
+      "target": "ありがとうございました",
+      "pronunciation": "arigatō gozaimashita",
+      "uncertain": true,
+      "scene": "A taxi driver, after you have paid the fare and are getting out",
+      "reviewNote": "Possibly already taught — Same phrase as chapter-19 ありがとうございました with nearly the same gloss; a duplicate.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Bare ありがとうございました is already the base unit's entry, which now carries this card's scene. The two longer drills in this unit are kept."
+    },
+    {
+      "id": "tomorrow-afternoon-please",
+      "english": "Tomorrow afternoon, please.",
+      "category": "Shopping",
+      "target": "あしたのごごおねがいします",
+      "pronunciation": "ashita no gogo onegai shimasu",
+      "scene": "A store clerk asks when you want a refrigerator you just bought to be delivered"
+    },
+    {
+      "id": "request-show-menu",
+      "english": "Excuse me. Please show me the menu.",
+      "category": "Food",
+      "target": "すみません。メニューをみせてください",
+      "pronunciation": "sumimasen. menyū o misete kudasai"
+    },
+    {
+      "id": "delivery-microwave-request",
+      "english": "Excuse me. Please deliver this microwave oven.",
+      "category": "Shopping",
+      "target": "すみません。このでんしレンジをとどけてください",
+      "pronunciation": "sumimasen. kono denshi renji o todokete kudasai",
+      "scene": "At a store, after buying an appliance"
+    },
+    {
+      "id": "taxi-near-tokyo-tower",
+      "english": "To near Tokyo Tower, please.",
+      "category": "Transport",
+      "target": "とうきょうタワーのちかくまでおねがいします",
+      "pronunciation": "Tōkyō Tawā no chikaku made onegai shimasu",
+      "note": "まで (made) here means \"as far as\" a place, not \"until\" a time. The place comes before まで, and おねがいします (onegai shimasu) from Lesson 2 asks the driver to take you there."
+    },
+    {
+      "id": "motte-kite-meeting",
+      "english": "Please bring the documents before the meeting.",
+      "category": "Grammar & Function Words",
+      "target": "かいぎのまえにしりょうをもってきてください",
+      "pronunciation": "kaigi no mae ni shiryō o motte kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "turn-before-department-store",
+      "english": "Please turn just before the department store.",
+      "category": "Directions",
+      "target": "デパートのてまえをまがってください",
+      "pronunciation": "depāto no temae o magatte kudasai"
+    },
+    {
+      "id": "moufu-o-onegai-dekimasu-ka",
+      "english": "May I ask for a blanket?",
+      "category": "Travel & Tourism",
+      "target": "もうふをおねがいできますか",
+      "pronunciation": "mōfu o onegai dekimasu ka",
+      "scene": "You phone room service from your hotel room to ask for something extra to sleep with"
+    },
+    {
+      "id": "stop-in-front-of-bank",
+      "english": "Please stop in front of the bank.",
+      "category": "Directions",
+      "target": "ぎんこうのまえでとめてください",
+      "pronunciation": "ginkō no mae de tomete kudasai",
+      "note": "まえ (mae) here is a place, \"in front of\", not the time word \"before\" from Lesson 17. The place noun and の (no) come first: ぎんこうのまえ (ginkō no mae)."
+    },
+    {
+      "id": "deliver-fridge",
+      "english": "Excuse me. Please deliver this refrigerator.",
+      "category": "Shopping",
+      "target": "すみません。このれいぞうこをとどけてください",
+      "pronunciation": "sumimasen. kono reizōko o todokete kudasai"
+    },
+    {
+      "id": "kakimasu-form",
+      "english": "I write my name and address here.",
+      "category": "Work & Occupations",
+      "target": "ここになまえとじゅうしょをかきます",
+      "pronunciation": "koko ni namae to jūsho o kakimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "turn-left-next-light",
+      "english": "Please turn left at the next traffic light.",
+      "category": "Directions",
+      "target": "つぎのしんごうをひだりにまがってください",
+      "pronunciation": "tsugi no shingō o hidari ni magatte kudasai"
+    },
+    {
+      "id": "taxi-turn-beyond-school",
+      "english": "Please turn just beyond the school.",
+      "category": "Directions",
+      "target": "がっこうのさきをまがってください",
+      "pronunciation": "gakkō no saki o magatte kudasai"
+    },
+    {
+      "id": "fair-how-was-it",
+      "english": "How was the fair?",
+      "category": "Work & Occupations",
+      "target": "フェアはどうでしたか",
+      "pronunciation": "fea wa dō deshita ka"
+    },
+    {
+      "id": "come-to-meeting-room",
+      "english": "Please come to the meeting room at 3:00 tomorrow afternoon.",
+      "category": "Work & Occupations",
+      "target": "あしたのごごさんじにかいぎしつにきてください",
+      "pronunciation": "ashita no gogo san-ji ni kaigishitsu ni kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "azukarimasu-front",
+      "english": "The front desk keeps the guests' luggage.",
+      "category": "Everyday Objects",
+      "target": "フロントがおきゃくさんのにもつをあずかります",
+      "pronunciation": "furonto ga okyakusan no nimotsu o azukarimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-right-second-corner",
+      "english": "Please turn right at the second corner.",
+      "category": "Directions",
+      "target": "ふたつめのかどをみぎにまがってください",
+      "pronunciation": "futatsume no kado o migi ni magatte kudasai"
+    },
+    {
+      "id": "room-service-hello",
+      "english": "Hello. This is room service.",
+      "category": "Travel & Tourism",
+      "target": "はい、ルームサービスです",
+      "pronunciation": "hai, rūmu sābisu desu"
+    },
+    {
+      "id": "thank-you-driver-sentence",
+      "english": "Thank you very much, driver.",
+      "category": "Greetings",
+      "target": "うんてんしゅさん、ありがとうございました",
+      "pronunciation": "untenshu-san, arigatō gozaimashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "bus-to-station",
+      "english": "Please go to the station by bus.",
+      "category": "Transport",
+      "target": "バスでえきまでいってください",
+      "pronunciation": "basu de eki made itte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-right-next-light",
+      "english": "Please turn right at the next traffic light.",
+      "category": "Directions",
+      "target": "つぎのしんごうをみぎにまがってください",
+      "pronunciation": "tsugi no shingō o migi ni magatte kudasai",
+      "scene": "Riding in a taxi"
+    },
+    {
+      "id": "sent-so-look",
+      "english": "I sent the material by e-mail yesterday, so please take a look.",
+      "category": "Work & Occupations",
+      "target": "きのうメールでしりょうをおくりましたから、みてください",
+      "pronunciation": "kinō mēru de shiryō o okurimashita kara, mite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "todokemasu-company",
+      "english": "I deliver the documents to the company by motorbike courier.",
+      "category": "Transport",
+      "target": "バイクびんでしょるいをかいしゃにとどけます",
+      "pronunciation": "baikubin de shorui o kaisha ni todokemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "made-ni-friday",
+      "english": "I'll send the documents by Friday.",
+      "category": "Grammar & Function Words",
+      "target": "きんようびまでにしょるいをおくります",
+      "pronunciation": "kin'yōbi made ni shorui o okurimasu",
+      "aiSuggested": true,
+      "note": "までに marks a deadline, by when. まで alone means until, and the action continues up to that time."
+    },
+    {
+      "id": "taxi-turn-before-supermarket",
+      "english": "Please turn just before the supermarket.",
+      "category": "Directions",
+      "target": "スーパーのてまえをまがってください",
+      "pronunciation": "sūpā no temae o magatte kudasai"
+    },
+    {
+      "id": "many-interesting-packages",
+      "english": "There were many interesting packages.",
+      "category": "Work & Occupations",
+      "target": "おもしろいパッケージがたくさんありました",
+      "pronunciation": "omoshiroi pakkēji ga takusan arimashita",
+      "scene": "Replying to a colleague who asked how the fair was"
+    },
+    {
+      "id": "delivery-sofa-request",
+      "english": "Excuse me. Please deliver this sofa.",
+      "category": "Shopping",
+      "target": "すみません。このソファーをとどけてください",
+      "pronunciation": "sumimasen. kono sofā o todokete kudasai",
+      "scene": "At a store, after buying furniture"
+    },
+    {
+      "id": "chotto-matte-bike",
+      "english": "Please wait a moment. I'll park the motorbike.",
+      "category": "Grammar & Function Words",
+      "target": "ちょっとまってください。バイクをとめます",
+      "pronunciation": "chotto matte kudasai. baiku o tomemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-de-houkoku-shite-kudasai",
+      "english": "Please report at the meeting on Monday.",
+      "category": "Work & Occupations",
+      "target": "げつようびのかいぎでほうこくしてください",
+      "pronunciation": "getsuyōbi no kaigi de hōkoku shite kudasai"
+    },
+    {
+      "id": "fare-4000-yen",
+      "english": "That will be 4,000 yen.",
+      "category": "Money",
+      "target": "4,000えんです",
+      "pronunciation": "yonsen'en desu",
+      "scene": "A taxi driver at the end of the ride",
+      "ttsText": "よんせんえんです",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "chotto-matte-documents",
+      "english": "Please wait a moment. I'll get the documents.",
+      "category": "Grammar & Function Words",
+      "target": "ちょっとまってください。しょるいをとります",
+      "pronunciation": "chotto matte kudasai. shorui o torimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "wait-until-five",
+      "english": "Please wait until 5:00.",
+      "category": "Time",
+      "target": "ごじまでまってください",
+      "pronunciation": "go-ji made matte kudasai",
+      "aiSuggested": true,
+      "note": "Contrast pair with the next item: まで means the action goes on up to 5:00, while までに means it must be done by 5:00."
+    },
+    {
+      "id": "request-send-documents-by-mail",
+      "english": "Please send the documents to the Nozomi Department Store by mail.",
+      "category": "Work & Occupations",
+      "target": "のぞみデパートにゆうびんでしょるいをおくってください",
+      "pronunciation": "Nozomi Depāto ni yūbin de shorui o okutte kudasai"
+    },
+    {
+      "id": "deliver-to-president-office",
+      "english": "Please deliver the documents to the president's office.",
+      "category": "Work & Occupations",
+      "target": "しょるいをしゃちょうしつにとどけてください",
+      "pronunciation": "shorui o shachōshitsu ni todokete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-right-before-bridge",
+      "english": "Please turn right just before the bridge.",
+      "category": "Directions",
+      "target": "はしのてまえをみぎにまがってください",
+      "pronunciation": "hashi no temae o migi ni magatte kudasai"
+    },
+    {
+      "id": "say-again-address",
+      "english": "Smith-san, please say the address one more time.",
+      "category": "Technology & Communication",
+      "target": "スミスさん、じゅうしょをもういちどいってください",
+      "pronunciation": "Sumisu-san, jūsho o mō ichido itte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "report-to-president",
+      "english": "Please report to the president about the meeting.",
+      "category": "Work & Occupations",
+      "target": "しゃちょうにかいぎについてほうこくしてください",
+      "pronunciation": "shachō ni kaigi ni tsuite hōkoku shite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "please-write-name",
+      "english": "Please write your name.",
+      "category": "Grammar & Function Words",
+      "target": "なまえをかいてください",
+      "pronunciation": "namae o kaite kudasai"
+    },
+    {
+      "id": "arigatou-gozaimashita-staff",
+      "english": "Thank you very much. Please come again.",
+      "category": "Greetings",
+      "target": "ありがとうございました。またきてください",
+      "pronunciation": "arigatō gozaimashita. mata kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "straight-next-intersection",
+      "english": "Please go straight through the next intersection.",
+      "category": "Directions",
+      "target": "つぎのこうさてんをまっすぐいってください",
+      "pronunciation": "tsugi no kōsaten o massugu itte kudasai",
+      "note": "The を (o) marks the space you pass through, so つぎのこうさてんを (tsugi no kōsaten o) means \"through the next intersection\", not \"at\" it."
+    },
+    {
+      "id": "keep-bag-until-five",
+      "english": "Excuse me. Please keep my bag until 5:00 p.m.",
+      "category": "Travel & Tourism",
+      "target": "すみません。にもつを5じまであずかってください",
+      "pronunciation": "sumimasen. nimotsu o go-ji made azukatte kudasai",
+      "ttsText": "すみません。にもつをごじまであずかってください",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "taxi-turn-left-next-intersection",
+      "english": "Please turn left at the next intersection.",
+      "category": "Directions",
+      "target": "つぎのこうさてんをひだりにまがってください",
+      "pronunciation": "tsugi no kōsaten o hidari ni magatte kudasai"
+    },
+    {
+      "id": "totte-chain",
+      "english": "Please take the pen in the drawer and show it to Smith-san.",
+      "category": "Grammar & Function Words",
+      "target": "ひきだしのなかのペンをとって、スミスさんにみせてください",
+      "pronunciation": "hikidashi no naka no pen o totte, Sumisu-san ni misete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "give-chan-my-regards",
+      "english": "Please give my regards to Chan-san.",
+      "category": "Greetings",
+      "target": "チャンさんによろしくつたえてください",
+      "pronunciation": "Chan-san ni yoroshiku tsutaete kudasai"
+    },
+    {
+      "id": "may-i-ask-blanket",
+      "english": "Excuse me. May I ask for a blanket?",
+      "category": "Travel & Tourism",
+      "target": "すみません。もうふをおねがいできますか",
+      "pronunciation": "sumimasen. mōfu o onegai dekimasu ka"
+    },
+    {
+      "id": "request-lend-pen",
+      "english": "Please lend me a pen.",
+      "category": "Everyday Objects",
+      "target": "ペンをかしてください",
+      "pronunciation": "pen o kashite kudasai"
+    },
+    {
+      "id": "sample-takuhaibin-okurimashita",
+      "english": "I received various samples, so I sent them by parcel delivery service.",
+      "category": "Work & Occupations",
+      "target": "いろいろなサンプルをもらいましたから、たくはいびんでおくりました",
+      "pronunciation": "iroiro na sanpuru o moraimashita kara, takuhaibin de okurimashita",
+      "scene": "Explaining to your boss what you did after collecting things at a trade fair"
+    },
+    {
+      "id": "iimasu-again",
+      "english": "I'll say it one more time.",
+      "category": "Technology & Communication",
+      "target": "もういちどいいます",
+      "pronunciation": "mō ichido iimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "totte-kudasai-key",
+      "english": "Please take the key in the drawer.",
+      "category": "Grammar & Function Words",
+      "target": "ひきだしのなかのかぎをとってください",
+      "pronunciation": "hikidashi no naka no kagi o totte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "torimasu-pen",
+      "english": "I take the pen on the desk.",
+      "category": "Everyday Objects",
+      "target": "つくえのうえのペンをとります",
+      "pronunciation": "tsukue no ue no pen o torimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "say-again-sumimasen",
+      "english": "Excuse me, please say it one more time.",
+      "category": "Technology & Communication",
+      "target": "すみません、もういちどいってください",
+      "pronunciation": "sumimasen, mō ichido itte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "stop-in-front-white-building",
+      "english": "Please stop in front of that white building.",
+      "category": "Transport",
+      "target": "あのしろいビルのまえでとめてください",
+      "pronunciation": "ano shiroi biru no mae de tomete kudasai"
+    },
+    {
+      "id": "corner-then-straight",
+      "english": "Please turn right at the second corner and then go straight.",
+      "category": "Directions",
+      "target": "ふたつめのかどをみぎにまがって、まっすぐいってください",
+      "pronunciation": "futatsume no kado o migi ni magatte, massugu itte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "yes-certainly-hotel",
+      "english": "Yes, certainly.",
+      "category": "Travel & Tourism",
+      "target": "はい、しょうちしました",
+      "pronunciation": "hai, shōchi shimashita",
+      "uncertain": true,
+      "scene": "A hotel employee answers a guest's request for a blanket",
+      "note": "More polite than わかりました.",
+      "reviewNote": "Possibly already taught — Only adds はい to chapter-19 しょうちしました, and the gloss is identical."
+    },
+    {
+      "id": "taxi-stop-before-intersection",
+      "english": "Please stop just before the intersection.",
+      "category": "Directions",
+      "target": "こうさてんのてまえでとめてください",
+      "pronunciation": "kōsaten no temae de tomete kudasai"
+    },
+    {
+      "id": "taxi-stop-before-condominium",
+      "english": "Please stop in front of the condominium.",
+      "category": "Directions",
+      "target": "マンションのまえでとめてください",
+      "pronunciation": "manshon no mae de tomete kudasai",
+      "scene": "Riding in a taxi, nearing the destination"
+    },
+    {
+      "id": "taxi-to-ebisu-station",
+      "english": "To Ebisu Station, please.",
+      "category": "Transport",
+      "target": "えびすえきまでおねがいします",
+      "pronunciation": "Ebisu-eki made onegai shimasu",
+      "scene": "Getting into a taxi"
+    },
+    {
+      "id": "chotto-matte-kudasai-l19",
+      "english": "Please wait a moment.",
+      "category": "Grammar & Function Words",
+      "target": "ちょっとまってください",
+      "pronunciation": "chotto matte kudasai",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same target as chapter-0 ちょっとまってください, with an equivalent gloss.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Exact repeat of chapter-0/chotto-matte-kudasai, which is already in the live Anki collection. Re-identified as well as excluded: sharing that id made this whole unit read as delivered, and would collapse onto chapter 0's Anki note if it were ever restored. The three longer ちょっとまって drills here are kept."
+    },
+    {
+      "id": "write-address-phone",
+      "english": "Please write your address and telephone number.",
+      "category": "Work & Occupations",
+      "target": "じゅうしょとでんわばんごうをかいてください",
+      "pronunciation": "jūsho to denwa bangō o kaite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-bring-meeting-documents",
+      "english": "Excuse me. Please bring the documents for the meeting.",
+      "category": "Work & Occupations",
+      "target": "すみません。かいぎのしりょうをもってきてください",
+      "pronunciation": "sumimasen. kaigi no shiryō o motte kite kudasai"
+    },
+    {
+      "id": "yes-i-will-relay",
+      "english": "Yes, I will relay your message.",
+      "category": "Greetings",
+      "target": "はい、つたえます",
+      "pronunciation": "hai, tsutaemasu",
+      "scene": "Replying to someone who asked you to pass on their regards to a colleague"
+    },
+    {
+      "id": "motte-kite-chain",
+      "english": "Please bring the samples and show them in the meeting room.",
+      "category": "Grammar & Function Words",
+      "target": "サンプルをもってきて、かいぎしつでみせてください",
+      "pronunciation": "sanpuru o motte kite, kaigishitsu de misete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "magarimasu-signal",
+      "english": "I turn right at the next traffic light.",
+      "category": "Directions",
+      "target": "つぎのしんごうをみぎにまがります",
+      "pronunciation": "tsugi no shingō o migi ni magarimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "chotto-matte-sumimasen",
+      "english": "Excuse me, please wait a moment. I'm going to the meeting room.",
+      "category": "Grammar & Function Words",
+      "target": "すみません、ちょっとまってください。かいぎしつにいきます",
+      "pronunciation": "sumimasen, chotto matte kudasai. kaigishitsu ni ikimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-send-package-by-parcel",
+      "english": "Please send this package to Chan-san at the Osaka branch by parcel delivery service.",
+      "category": "Work & Occupations",
+      "target": "おおさかししゃのチャンさんにたくはいびんでこのにもつをおくってください",
+      "pronunciation": "Ōsaka shisha no Chan-san ni takuhaibin de kono nimotsu o okutte kudasai"
+    },
+    {
+      "id": "return-by-five",
+      "english": "Please go home by 5:00.",
+      "category": "Time",
+      "target": "ごじまでにかえってください",
+      "pronunciation": "go-ji made ni kaette kudasai",
+      "aiSuggested": true,
+      "note": "Contrast pair with ごじまでまってください: までに sets a deadline, まで sets an end point for a continuing action."
+    },
+    {
+      "id": "emma-report-fair-monday",
+      "english": "Emma-san will report on the package fair at the meeting on Monday.",
+      "category": "Work & Occupations",
+      "target": "エマさんはげつようびのかいぎでパッケージフェアについてほうこくします",
+      "pronunciation": "Ema-san wa getsuyōbi no kaigi de pakkēji fea ni tsuite hōkoku shimasu"
+    },
+    {
+      "id": "made-ni-five",
+      "english": "Please deliver the package by 5:00 tomorrow.",
+      "category": "Grammar & Function Words",
+      "target": "あしたのごじまでににもつをとどけてください",
+      "pronunciation": "ashita no go-ji made ni nimotsu o todokete kudasai",
+      "aiSuggested": true,
+      "note": "までに (made ni) marks a deadline, so the package must arrive by 5:00 tomorrow. With plain まで (made) it would mean something continues until then."
+    },
+    {
+      "id": "heading-to-osaka-branch",
+      "english": "Are you now headed to the Osaka branch office?",
+      "category": "Work & Occupations",
+      "target": "いまからおおさかししゃですか",
+      "pronunciation": "ima kara Ōsaka shisha desu ka"
+    },
+    {
+      "id": "delivery-sunday-by-two",
+      "english": "By 2:00 on Sunday, please.",
+      "category": "Time",
+      "target": "にちようびの２じまでにおねがいします",
+      "pronunciation": "nichiyōbi no ni-ji made ni onegai shimasu",
+      "scene": "Answering a shop employee who asks when you want your purchase delivered",
+      "note": "までに (made ni) sets a deadline: the delivery must happen by 2:00, not continue until 2:00. Compare まで (made) \"Until\" from Lesson 3.",
+      "ttsText": "にちようびのにじまでにおねがいします",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "request-send-catalog-by-motorbike",
+      "english": "Please send the catalog to the Yokohama branch by motorbike courier service.",
+      "category": "Work & Occupations",
+      "target": "よこはまししゃにバイクびんでカタログをおくってください",
+      "pronunciation": "Yokohama shisha ni baikubin de katarogu o okutte kudasai"
+    },
+    {
+      "id": "emma-sent-material-by-email",
+      "english": "Emma-san sent Chan-san the material by e-mail.",
+      "category": "Technology & Communication",
+      "target": "エマさんはチャンさんにメールでしりょうをおくりました",
+      "pronunciation": "Ema-san wa Chan-san ni mēru de shiryō o okurimashita"
+    },
+    {
+      "id": "motte-kimasu-sample",
+      "english": "I'll bring the samples tomorrow.",
+      "category": "Everyday Objects",
+      "target": "あしたサンプルをもってきます",
+      "pronunciation": "ashita sanpuru o motte kimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "through-the-park",
+      "english": "Please go straight through the park.",
+      "category": "Directions",
+      "target": "こうえんのなかをまっすぐいってください",
+      "pronunciation": "kōen no naka o massugu itte kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-go-straight-this-road",
+      "english": "Please go straight along this road.",
+      "category": "Directions",
+      "target": "このみちをまっすぐいってください",
+      "pronunciation": "kono michi o massugu itte kudasai",
+      "note": "を (o) marks the road you travel along, the same use as in つぎのしんごうをまがってください (tsugi no shingō o magatte kudasai)."
+    },
+    {
+      "id": "send-material-by-email-request",
+      "english": "Please send Smith-san the material by e-mail.",
+      "category": "Technology & Communication",
+      "target": "スミスさんにメールでしりょうをおくってください",
+      "pronunciation": "Sumisu-san ni mēru de shiryō o okutte kudasai"
+    },
+    {
+      "id": "tell-restaurant-name",
+      "english": "Excuse me. Please tell me the name of that restaurant.",
+      "category": "Shopping",
+      "target": "すみません。あのレストランのなまえをおしえてください",
+      "pronunciation": "sumimasen. ano resutoran no namae o oshiete kudasai"
+    },
+    {
+      "id": "request-deliver-computer",
+      "english": "Please deliver the computer.",
+      "category": "Shopping",
+      "target": "パソコンをとどけてください",
+      "pronunciation": "pasokon o todokete kudasai"
+    },
+    {
+      "id": "bring-coffee-to-room",
+      "english": "Please bring coffee to my room.",
+      "category": "Travel & Tourism",
+      "target": "コーヒーをへやにもってきてください",
+      "pronunciation": "kōhī o heya ni motte kite kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "ni-tsuite-tokyo",
+      "english": "I'll read a book about Tokyo.",
+      "category": "Grammar & Function Words",
+      "target": "とうきょうについてほんをよみます",
+      "pronunciation": "Tōkyō ni tsuite hon o yomimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-stop-beyond-traffic-light",
+      "english": "Please stop just beyond the traffic light.",
+      "category": "Directions",
+      "target": "しんごうのさきでとめてください",
+      "pronunciation": "shingō no saki de tomete kudasai"
+    },
+    {
+      "id": "ni-tsuite-meeting",
+      "english": "I'll ask Smith-san about the meeting.",
+      "category": "Grammar & Function Words",
+      "target": "かいぎについてスミスさんにききます",
+      "pronunciation": "kaigi ni tsuite Sumisu-san ni kikimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "nimotsu-go-ji-made-azukatte",
+      "english": "Please keep my bag here until 5:00 p.m.",
+      "category": "Travel & Tourism",
+      "target": "にもつを5じまであずかってください",
+      "pronunciation": "nimotsu o go-ji made azukatte kudasai",
+      "scene": "Checking out of a hotel, you ask the front desk to hold your luggage during the day",
+      "ttsText": "にもつをごじまであずかってください",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "delivery-friday",
+      "english": "Friday, please.",
+      "category": "Time",
+      "target": "きんようびにおねがいします",
+      "pronunciation": "kin'yōbi ni onegai shimasu",
+      "scene": "Answering a shop employee who asks when you want your purchase delivered"
+    },
+    {
+      "id": "taxi-go-straight-ginza-street",
+      "english": "Please go straight along Ginza Street.",
+      "category": "Directions",
+      "target": "ぎんざどおりをまっすぐいってください",
+      "pronunciation": "Ginza-dōri o massugu itte kudasai"
+    },
+    {
+      "id": "iroiro-catalog",
+      "english": "There are various samples.",
+      "category": "Descriptions & Qualities",
+      "target": "いろいろなサンプルがあります",
+      "pronunciation": "iroiro na sanpuru ga arimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-write-email-address",
+      "english": "Excuse me. Please write down your e-mail address.",
+      "category": "Technology & Communication",
+      "target": "すみません。メールアドレスをかいてください",
+      "pronunciation": "sumimasen. mēru adoresu o kaite kudasai"
+    }
+  ]
+}

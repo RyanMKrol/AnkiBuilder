@@ -146,7 +146,8 @@
       "pronunciation": "arigatō gozaimashita",
       "uncertain": true,
       "note": "The past form of ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions. Use it to thank someone for something they have already done.",
-      "sourceOrder": 3905
+      "sourceOrder": 3905,
+      "scene": "A taxi driver, after you have paid the fare and are getting out"
     },
     {
       "id": "migi",
@@ -683,7 +684,8 @@
       "target": "しょうちしました",
       "pronunciation": "shōchi shimashita",
       "note": "A more polite way of saying わかりました when asked to do something or relay information.",
-      "sourceOrder": 4419
+      "sourceOrder": 4419,
+      "hint": "the expression on its own, without はい (hai)"
     },
     {
       "id": "takuhaibin",

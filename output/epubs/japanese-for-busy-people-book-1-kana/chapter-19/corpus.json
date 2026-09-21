@@ -129,7 +129,8 @@
       "category": "Greetings",
       "uncertain": true,
       "sourceOrder": 3905,
-      "note": "The past form of ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions. Use it to thank someone for something they have already done."
+      "note": "The past form of ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions. Use it to thank someone for something they have already done.",
+      "scene": "A taxi driver, after you have paid the fare and are getting out"
     },
     {
       "id": "migi",
@@ -637,7 +638,8 @@
       "english": "Yes, certainly.",
       "category": "Greetings",
       "note": "A more polite way of saying わかりました when asked to do something or relay information.",
-      "sourceOrder": 4419
+      "sourceOrder": 4419,
+      "hint": "the expression on its own, without はい (hai)"
     },
     {
       "id": "takuhaibin",

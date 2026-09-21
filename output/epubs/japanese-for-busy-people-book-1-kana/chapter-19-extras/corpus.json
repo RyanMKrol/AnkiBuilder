@@ -1,0 +1,660 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 43,
+    "chapterLabel": "Lesson 19: Making a Request: Please Give Her My Regards (Extras)",
+    "baseChapterLabel": "Lesson 19: Making a Request: Please Give Her My Regards",
+    "phase": "extras"
+  },
+  "items": [
+    {
+      "id": "request-say-again",
+      "target": "もう いちど いってください",
+      "english": "Please say it one more time.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "say-again-dont-understand",
+      "target": "わかりません。もういちどいってください",
+      "english": "I don't understand. Please say it one more time.",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "report-at-monday-meeting",
+      "target": "じゃ、げつようびのかいぎでほうこくしてください",
+      "english": "Then, please report on it at the meeting on Monday.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "thank-you-driver",
+      "target": "ありがとうございました",
+      "english": "Thank you very much.",
+      "category": "Greetings",
+      "scene": "A taxi driver, after you have paid the fare and are getting out",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same phrase as chapter-19 ありがとうございました with nearly the same gloss; a duplicate.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Bare ありがとうございました is already the base unit's entry, which now carries this card's scene. The two longer drills in this unit are kept."
+    },
+    {
+      "id": "tomorrow-afternoon-please",
+      "target": "あしたのごごおねがいします",
+      "english": "Tomorrow afternoon, please.",
+      "category": "Shopping",
+      "scene": "A store clerk asks when you want a refrigerator you just bought to be delivered"
+    },
+    {
+      "id": "request-show-menu",
+      "target": "すみません。メニューを みせてください",
+      "english": "Excuse me. Please show me the menu.",
+      "category": "Food",
+      "fillInBlank": true
+    },
+    {
+      "id": "delivery-microwave-request",
+      "target": "すみません。この でんしレンジを とどけてください",
+      "english": "Excuse me. Please deliver this microwave oven.",
+      "category": "Shopping",
+      "scene": "At a store, after buying an appliance",
+      "fillInBlank": true
+    },
+    {
+      "id": "taxi-near-tokyo-tower",
+      "target": "とうきょうタワーのちかくまでおねがいします",
+      "english": "To near Tokyo Tower, please.",
+      "category": "Transport",
+      "note": "まで (made) here means \"as far as\" a place, not \"until\" a time. The place comes before まで, and おねがいします (onegai shimasu) from Lesson 2 asks the driver to take you there."
+    },
+    {
+      "id": "motte-kite-meeting",
+      "target": "かいぎのまえにしりょうをもってきてください",
+      "english": "Please bring the documents before the meeting.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "turn-before-department-store",
+      "target": "デパートのてまえをまがってください",
+      "english": "Please turn just before the department store.",
+      "category": "Directions"
+    },
+    {
+      "id": "moufu-o-onegai-dekimasu-ka",
+      "target": "もうふをおねがいできますか",
+      "english": "May I ask for a blanket?",
+      "category": "Travel & Tourism",
+      "scene": "You phone room service from your hotel room to ask for something extra to sleep with"
+    },
+    {
+      "id": "stop-in-front-of-bank",
+      "target": "ぎんこうのまえでとめてください",
+      "english": "Please stop in front of the bank.",
+      "category": "Directions",
+      "note": "まえ (mae) here is a place, \"in front of\", not the time word \"before\" from Lesson 17. The place noun and の (no) come first: ぎんこうのまえ (ginkō no mae)."
+    },
+    {
+      "id": "deliver-fridge",
+      "target": "すみません。このれいぞうこをとどけてください",
+      "english": "Excuse me. Please deliver this refrigerator.",
+      "category": "Shopping"
+    },
+    {
+      "id": "kakimasu-form",
+      "target": "ここになまえとじゅうしょをかきます",
+      "english": "I write my name and address here.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "turn-left-next-light",
+      "target": "つぎのしんごうをひだりにまがってください",
+      "english": "Please turn left at the next traffic light.",
+      "category": "Directions"
+    },
+    {
+      "id": "taxi-turn-beyond-school",
+      "target": "がっこうの さきを まがってください",
+      "english": "Please turn just beyond the school.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "fair-how-was-it",
+      "target": "フェアはどうでしたか",
+      "english": "How was the fair?",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "come-to-meeting-room",
+      "target": "あしたのごごさんじにかいぎしつにきてください",
+      "english": "Please come to the meeting room at 3:00 tomorrow afternoon.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "azukarimasu-front",
+      "target": "フロントがおきゃくさんのにもつをあずかります",
+      "english": "The front desk keeps the guests' luggage.",
+      "category": "Everyday Objects",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-right-second-corner",
+      "target": "ふたつめの かどを みぎに まがってください",
+      "english": "Please turn right at the second corner.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "room-service-hello",
+      "target": "はい、ルームサービスです",
+      "english": "Hello. This is room service.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "thank-you-driver-sentence",
+      "target": "うんてんしゅさん、ありがとうございました",
+      "english": "Thank you very much, driver.",
+      "category": "Greetings",
+      "aiSuggested": true
+    },
+    {
+      "id": "bus-to-station",
+      "target": "バスでえきまでいってください",
+      "english": "Please go to the station by bus.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-right-next-light",
+      "target": "つぎの しんごうを みぎに まがってください",
+      "english": "Please turn right at the next traffic light.",
+      "category": "Directions",
+      "scene": "Riding in a taxi",
+      "fillInBlank": true
+    },
+    {
+      "id": "sent-so-look",
+      "target": "きのうメールでしりょうをおくりましたから、みてください",
+      "english": "I sent the material by e-mail yesterday, so please take a look.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "todokemasu-company",
+      "target": "バイクびんでしょるいをかいしゃにとどけます",
+      "english": "I deliver the documents to the company by motorbike courier.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "made-ni-friday",
+      "target": "きんようびまでにしょるいをおくります",
+      "english": "I'll send the documents by Friday.",
+      "category": "Grammar & Function Words",
+      "note": "までに marks a deadline, by when. まで alone means until, and the action continues up to that time.",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-before-supermarket",
+      "target": "スーパーの てまえを まがってください",
+      "english": "Please turn just before the supermarket.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "many-interesting-packages",
+      "target": "おもしろいパッケージがたくさんありました",
+      "english": "There were many interesting packages.",
+      "category": "Work & Occupations",
+      "scene": "Replying to a colleague who asked how the fair was"
+    },
+    {
+      "id": "delivery-sofa-request",
+      "target": "すみません。この ソファーを とどけてください",
+      "english": "Excuse me. Please deliver this sofa.",
+      "category": "Shopping",
+      "scene": "At a store, after buying furniture",
+      "fillInBlank": true
+    },
+    {
+      "id": "chotto-matte-bike",
+      "target": "ちょっとまってください。バイクをとめます",
+      "english": "Please wait a moment. I'll park the motorbike.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaigi-de-houkoku-shite-kudasai",
+      "target": "げつようびのかいぎでほうこくしてください",
+      "english": "Please report at the meeting on Monday.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "fare-4000-yen",
+      "target": "4,000えんです",
+      "english": "That will be 4,000 yen.",
+      "category": "Money",
+      "scene": "A taxi driver at the end of the ride"
+    },
+    {
+      "id": "chotto-matte-documents",
+      "target": "ちょっとまってください。しょるいをとります",
+      "english": "Please wait a moment. I'll get the documents.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "wait-until-five",
+      "target": "ごじまでまってください",
+      "english": "Please wait until 5:00.",
+      "category": "Time",
+      "note": "Contrast pair with the next item: まで means the action goes on up to 5:00, while までに means it must be done by 5:00.",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-send-documents-by-mail",
+      "target": "のぞみデパートに ゆうびんで しょるいを おくってください",
+      "english": "Please send the documents to the Nozomi Department Store by mail.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "deliver-to-president-office",
+      "target": "しょるいをしゃちょうしつにとどけてください",
+      "english": "Please deliver the documents to the president's office.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-turn-right-before-bridge",
+      "target": "はしの てまえを みぎに まがってください",
+      "english": "Please turn right just before the bridge.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "say-again-address",
+      "target": "スミスさん、じゅうしょをもういちどいってください",
+      "english": "Smith-san, please say the address one more time.",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "report-to-president",
+      "target": "しゃちょうにかいぎについてほうこくしてください",
+      "english": "Please report to the president about the meeting.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "please-write-name",
+      "target": "なまえをかいてください",
+      "english": "Please write your name.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "arigatou-gozaimashita-staff",
+      "target": "ありがとうございました。またきてください",
+      "english": "Thank you very much. Please come again.",
+      "category": "Greetings",
+      "aiSuggested": true
+    },
+    {
+      "id": "straight-next-intersection",
+      "target": "つぎのこうさてんをまっすぐいってください",
+      "english": "Please go straight through the next intersection.",
+      "category": "Directions",
+      "note": "The を (o) marks the space you pass through, so つぎのこうさてんを (tsugi no kōsaten o) means \"through the next intersection\", not \"at\" it."
+    },
+    {
+      "id": "keep-bag-until-five",
+      "target": "すみません。にもつを5じまであずかってください",
+      "english": "Excuse me. Please keep my bag until 5:00 p.m.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "taxi-turn-left-next-intersection",
+      "target": "つぎの こうさてんを ひだりに まがってください",
+      "english": "Please turn left at the next intersection.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "totte-chain",
+      "target": "ひきだしのなかのペンをとって、スミスさんにみせてください",
+      "english": "Please take the pen in the drawer and show it to Smith-san.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "give-chan-my-regards",
+      "target": "チャンさんによろしくつたえてください",
+      "english": "Please give my regards to Chan-san.",
+      "category": "Greetings"
+    },
+    {
+      "id": "may-i-ask-blanket",
+      "target": "すみません。もうふをおねがいできますか",
+      "english": "Excuse me. May I ask for a blanket?",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "request-lend-pen",
+      "target": "ペンを かしてください",
+      "english": "Please lend me a pen.",
+      "category": "Everyday Objects",
+      "fillInBlank": true
+    },
+    {
+      "id": "sample-takuhaibin-okurimashita",
+      "target": "いろいろなサンプルをもらいましたから、たくはいびんでおくりました",
+      "english": "I received various samples, so I sent them by parcel delivery service.",
+      "category": "Work & Occupations",
+      "scene": "Explaining to your boss what you did after collecting things at a trade fair"
+    },
+    {
+      "id": "iimasu-again",
+      "target": "もういちどいいます",
+      "english": "I'll say it one more time.",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "totte-kudasai-key",
+      "target": "ひきだしのなかのかぎをとってください",
+      "english": "Please take the key in the drawer.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "torimasu-pen",
+      "target": "つくえのうえのペンをとります",
+      "english": "I take the pen on the desk.",
+      "category": "Everyday Objects",
+      "aiSuggested": true
+    },
+    {
+      "id": "say-again-sumimasen",
+      "target": "すみません、もういちどいってください",
+      "english": "Excuse me, please say it one more time.",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "stop-in-front-white-building",
+      "target": "あのしろいビルのまえでとめてください",
+      "english": "Please stop in front of that white building.",
+      "category": "Transport"
+    },
+    {
+      "id": "corner-then-straight",
+      "target": "ふたつめのかどをみぎにまがって、まっすぐいってください",
+      "english": "Please turn right at the second corner and then go straight.",
+      "category": "Directions",
+      "aiSuggested": true
+    },
+    {
+      "id": "yes-certainly-hotel",
+      "target": "はい、しょうちしました",
+      "english": "Yes, certainly.",
+      "category": "Travel & Tourism",
+      "scene": "A hotel employee answers a guest's request for a blanket",
+      "note": "More polite than わかりました.",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Only adds はい to chapter-19 しょうちしました, and the gloss is identical."
+    },
+    {
+      "id": "taxi-stop-before-intersection",
+      "target": "こうさてんの てまえで とめてください",
+      "english": "Please stop just before the intersection.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "taxi-stop-before-condominium",
+      "target": "マンションの まえで とめてください",
+      "english": "Please stop in front of the condominium.",
+      "category": "Directions",
+      "scene": "Riding in a taxi, nearing the destination",
+      "fillInBlank": true
+    },
+    {
+      "id": "taxi-to-ebisu-station",
+      "target": "えびすえきまで おねがいします",
+      "english": "To Ebisu Station, please.",
+      "category": "Transport",
+      "scene": "Getting into a taxi",
+      "fillInBlank": true
+    },
+    {
+      "id": "chotto-matte-kudasai-l19",
+      "target": "ちょっとまってください",
+      "english": "Please wait a moment.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same target as chapter-0 ちょっとまってください, with an equivalent gloss.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Exact repeat of chapter-0/chotto-matte-kudasai, which is already in the live Anki collection. Re-identified as well as excluded: sharing that id made this whole unit read as delivered, and would collapse onto chapter 0's Anki note if it were ever restored. The three longer ちょっとまって drills here are kept."
+    },
+    {
+      "id": "write-address-phone",
+      "target": "じゅうしょとでんわばんごうをかいてください",
+      "english": "Please write your address and telephone number.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-bring-meeting-documents",
+      "target": "すみません。かいぎの しりょうを もってきてください",
+      "english": "Excuse me. Please bring the documents for the meeting.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "yes-i-will-relay",
+      "target": "はい、つたえます",
+      "english": "Yes, I will relay your message.",
+      "category": "Greetings",
+      "scene": "Replying to someone who asked you to pass on their regards to a colleague"
+    },
+    {
+      "id": "motte-kite-chain",
+      "target": "サンプルをもってきて、かいぎしつでみせてください",
+      "english": "Please bring the samples and show them in the meeting room.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "magarimasu-signal",
+      "target": "つぎのしんごうをみぎにまがります",
+      "english": "I turn right at the next traffic light.",
+      "category": "Directions",
+      "aiSuggested": true
+    },
+    {
+      "id": "chotto-matte-sumimasen",
+      "target": "すみません、ちょっとまってください。かいぎしつにいきます",
+      "english": "Excuse me, please wait a moment. I'm going to the meeting room.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-send-package-by-parcel",
+      "target": "おおさかししゃの チャンさんに たくはいびんで この にもつを おくってください",
+      "english": "Please send this package to Chan-san at the Osaka branch by parcel delivery service.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "return-by-five",
+      "target": "ごじまでにかえってください",
+      "english": "Please go home by 5:00.",
+      "category": "Time",
+      "note": "Contrast pair with ごじまでまってください: までに sets a deadline, まで sets an end point for a continuing action.",
+      "aiSuggested": true
+    },
+    {
+      "id": "emma-report-fair-monday",
+      "target": "エマさんはげつようびのかいぎでパッケージフェアについてほうこくします",
+      "english": "Emma-san will report on the package fair at the meeting on Monday.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "made-ni-five",
+      "target": "あしたのごじまでににもつをとどけてください",
+      "english": "Please deliver the package by 5:00 tomorrow.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "note": "までに (made ni) marks a deadline, so the package must arrive by 5:00 tomorrow. With plain まで (made) it would mean something continues until then."
+    },
+    {
+      "id": "heading-to-osaka-branch",
+      "target": "いまからおおさかししゃですか",
+      "english": "Are you now headed to the Osaka branch office?",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "delivery-sunday-by-two",
+      "target": "にちようびの ２じまでに おねがいします",
+      "english": "By 2:00 on Sunday, please.",
+      "category": "Time",
+      "scene": "Answering a shop employee who asks when you want your purchase delivered",
+      "fillInBlank": true,
+      "note": "までに (made ni) sets a deadline: the delivery must happen by 2:00, not continue until 2:00. Compare まで (made) \"Until\" from Lesson 3."
+    },
+    {
+      "id": "request-send-catalog-by-motorbike",
+      "target": "よこはまししゃに バイクびんで カタログを おくってください",
+      "english": "Please send the catalog to the Yokohama branch by motorbike courier service.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "emma-sent-material-by-email",
+      "target": "エマさんはチャンさんにメールでしりょうをおくりました",
+      "english": "Emma-san sent Chan-san the material by e-mail.",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "motte-kimasu-sample",
+      "target": "あしたサンプルをもってきます",
+      "english": "I'll bring the samples tomorrow.",
+      "category": "Everyday Objects",
+      "aiSuggested": true
+    },
+    {
+      "id": "through-the-park",
+      "target": "こうえんのなかをまっすぐいってください",
+      "english": "Please go straight through the park.",
+      "category": "Directions",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-go-straight-this-road",
+      "target": "この みちを まっすぐ いってください",
+      "english": "Please go straight along this road.",
+      "category": "Directions",
+      "fillInBlank": true,
+      "note": "を (o) marks the road you travel along, the same use as in つぎのしんごうをまがってください (tsugi no shingō o magatte kudasai)."
+    },
+    {
+      "id": "send-material-by-email-request",
+      "target": "スミスさんにメールでしりょうをおくってください",
+      "english": "Please send Smith-san the material by e-mail.",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "tell-restaurant-name",
+      "target": "すみません。あのレストランのなまえをおしえてください",
+      "english": "Excuse me. Please tell me the name of that restaurant.",
+      "category": "Shopping"
+    },
+    {
+      "id": "request-deliver-computer",
+      "target": "パソコンを とどけてください",
+      "english": "Please deliver the computer.",
+      "category": "Shopping",
+      "fillInBlank": true
+    },
+    {
+      "id": "bring-coffee-to-room",
+      "target": "コーヒーをへやにもってきてください",
+      "english": "Please bring coffee to my room.",
+      "category": "Travel & Tourism",
+      "aiSuggested": true
+    },
+    {
+      "id": "ni-tsuite-tokyo",
+      "target": "とうきょうについてほんをよみます",
+      "english": "I'll read a book about Tokyo.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "taxi-stop-beyond-traffic-light",
+      "target": "しんごうの さきで とめてください",
+      "english": "Please stop just beyond the traffic light.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "ni-tsuite-meeting",
+      "target": "かいぎについてスミスさんにききます",
+      "english": "I'll ask Smith-san about the meeting.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nimotsu-go-ji-made-azukatte",
+      "target": "にもつを5じまであずかってください",
+      "english": "Please keep my bag here until 5:00 p.m.",
+      "category": "Travel & Tourism",
+      "scene": "Checking out of a hotel, you ask the front desk to hold your luggage during the day"
+    },
+    {
+      "id": "delivery-friday",
+      "target": "きんようびに おねがいします",
+      "english": "Friday, please.",
+      "category": "Time",
+      "scene": "Answering a shop employee who asks when you want your purchase delivered",
+      "fillInBlank": true
+    },
+    {
+      "id": "taxi-go-straight-ginza-street",
+      "target": "ぎんざどおりを まっすぐ いってください",
+      "english": "Please go straight along Ginza Street.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "iroiro-catalog",
+      "target": "いろいろなサンプルがあります",
+      "english": "There are various samples.",
+      "category": "Descriptions & Qualities",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-write-email-address",
+      "target": "すみません。メールアドレスを かいてください",
+      "english": "Excuse me. Please write down your e-mail address.",
+      "category": "Technology & Communication",
+      "fillInBlank": true
+    },
+    {
+      "id": "tsugi-no-shingou-migi-magatte",
+      "target": "つぎのしんごうをみぎにまがってください",
+      "english": "Turn right at the next traffic light.",
+      "category": "Directions",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence and same meaning; the kept card has the natural target spacing, the fuller 'Please' gloss and a scene."
+    }
+  ]
+}

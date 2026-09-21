@@ -243,7 +243,9 @@
       "target": "4,000えんです",
       "english": "That will be 4,000 yen.",
       "category": "Money",
-      "scene": "A taxi driver at the end of the ride"
+      "scene": "A taxi driver at the end of the ride",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "chotto-matte-documents",

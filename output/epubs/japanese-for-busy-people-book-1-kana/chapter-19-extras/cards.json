@@ -30,7 +30,8 @@
         "reason": "phase 2 dedups its own miners' output"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -100,12 +101,16 @@
       "category": "Food",
       "target": "すみません。メニューをみせてください",
       "pronunciation": "sumimasen. menyū o misete kudasai",
-      "audio": "4b322a5ee8e501ad.mp3",
+      "audio": "request-show-menu-manual-87a024d6.mp3",
       "audioOriginal": "4b322a5ee8e501ad.orig.mp3",
       "audioAuto": "4b322a5ee8e501ad.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "4b322a5ee8e501ad"
+      "audioTextHash": "4b322a5ee8e501ad",
+      "audioManual": "request-show-menu-manual-87a024d6.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.748330479452055
+      }
     },
     {
       "id": "delivery-microwave-request",
@@ -165,11 +170,12 @@
       "target": "もうふをおねがいできますか",
       "pronunciation": "mōfu o onegai dekimasu ka",
       "scene": "You phone room service from your hotel room to ask for something extra to sleep with",
-      "audio": "ba45d932989e7217.mp3",
-      "audioOriginal": "ba45d932989e7217.orig.mp3",
-      "audioAuto": "ba45d932989e7217.mp3",
+      "audioOriginal": "9ede9da3ce018508-genkanji-0741f3de.orig.mp3",
+      "audioAuto": "9ede9da3ce018508-genkanji-0741f3de.mp3",
       "audioMarked": true,
-      "audioTextHash": "ba45d932989e7217"
+      "audioTextHash": "9ede9da3ce018508",
+      "audioFilter": "standard",
+      "audio": "9ede9da3ce018508-genkanji-0741f3de.mp3"
     },
     {
       "id": "stop-in-front-of-bank",
@@ -265,11 +271,12 @@
       "target": "フロントがおきゃくさんのにもつをあずかります",
       "pronunciation": "furonto ga okyakusan no nimotsu o azukarimasu",
       "aiSuggested": true,
-      "audio": "88ffa11bc2212d08.mp3",
-      "audioOriginal": "88ffa11bc2212d08.orig.mp3",
-      "audioAuto": "88ffa11bc2212d08.mp3",
+      "audioOriginal": "1737fa96c744fc5e-genkanji-9fcf3080.orig.mp3",
+      "audioAuto": "1737fa96c744fc5e-genkanji-9fcf3080.mp3",
       "audioMarked": true,
-      "audioTextHash": "88ffa11bc2212d08"
+      "audioTextHash": "1737fa96c744fc5e",
+      "audioFilter": "standard",
+      "audio": "1737fa96c744fc5e-genkanji-9fcf3080.mp3"
     },
     {
       "id": "taxi-turn-right-second-corner",
@@ -451,7 +458,9 @@
       "audioOriginal": "5133d00ef061ad32.orig.mp3",
       "audioAuto": "5133d00ef061ad32.mp3",
       "audioMarked": true,
-      "audioTextHash": "5133d00ef061ad32"
+      "audioTextHash": "5133d00ef061ad32",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "chotto-matte-documents",
@@ -600,11 +609,12 @@
       "category": "Directions",
       "target": "つぎのこうさてんをひだりにまがってください",
       "pronunciation": "tsugi no kōsaten o hidari ni magatte kudasai",
-      "audio": "fae461e2e4c6db42.mp3",
-      "audioOriginal": "fae461e2e4c6db42.orig.mp3",
-      "audioAuto": "fae461e2e4c6db42.mp3",
+      "audioOriginal": "3d41ad8454fd3819-genkanji-7539de5d.orig.mp3",
+      "audioAuto": "3d41ad8454fd3819-genkanji-7539de5d.mp3",
       "audioMarked": true,
-      "audioTextHash": "fae461e2e4c6db42"
+      "audioTextHash": "3d41ad8454fd3819",
+      "audioFilter": "standard",
+      "audio": "3d41ad8454fd3819-genkanji-7539de5d.mp3"
     },
     {
       "id": "totte-chain",
@@ -791,11 +801,12 @@
       "target": "えびすえきまでおねがいします",
       "pronunciation": "Ebisu-eki made onegai shimasu",
       "scene": "Getting into a taxi",
-      "audio": "a10dfd7662a8b937.mp3",
-      "audioOriginal": "a10dfd7662a8b937.orig.mp3",
-      "audioAuto": "a10dfd7662a8b937.mp3",
+      "audioOriginal": "04f96e26e68d1ffc-genkanji-c63e01d9.orig.mp3",
+      "audioAuto": "04f96e26e68d1ffc-genkanji-c63e01d9.mp3",
       "audioMarked": true,
-      "audioTextHash": "a10dfd7662a8b937"
+      "audioTextHash": "04f96e26e68d1ffc",
+      "audioFilter": "standard",
+      "audio": "04f96e26e68d1ffc-genkanji-c63e01d9.mp3"
     },
     {
       "id": "chotto-matte-kudasai-l19",
@@ -1096,12 +1107,16 @@
       "category": "Directions",
       "target": "しんごうのさきでとめてください",
       "pronunciation": "shingō no saki de tomete kudasai",
-      "audio": "a6bed60fa3e51073.mp3",
+      "audio": "taxi-stop-beyond-traffic-light-manual-0154ad0f.mp3",
       "audioOriginal": "a6bed60fa3e51073.orig.mp3",
       "audioAuto": "a6bed60fa3e51073.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "a6bed60fa3e51073"
+      "audioTextHash": "a6bed60fa3e51073",
+      "audioManual": "taxi-stop-beyond-traffic-light-manual-0154ad0f.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.046521404109589
+      }
     },
     {
       "id": "ni-tsuite-meeting",

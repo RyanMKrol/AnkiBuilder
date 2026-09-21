@@ -37,8 +37,12 @@ const MAX_ZIP_ENTRIES = 0xffff;
 
 /**
  * Builds a minimal ZIP archive (deflate-compressed entries, no zip64) from
- * `entries: [{ name, data: Buffer }]`. Sufficient for Anki's .apkg format,
+ * `entries: [{ name, data: Buffer, store? }]`. Sufficient for Anki's .apkg format,
  * which is a plain zip.
+ *
+ * `store: true` writes that one entry uncompressed (method 0). An EPUB needs it: the spec requires
+ * its `mimetype` entry to be the first in the archive and stored, so a reader can identify the
+ * file from its first bytes. Every other entry, and every `.apkg` entry, stays deflated.
  *
  * Throws past 65,535 entries rather than emitting a package whose central directory lies about how
  * much is in it. The alternative is zip64, which this builder does not implement; a `.apkg` that
@@ -60,16 +64,17 @@ export function buildZip(entries) {
   const centralParts = [];
   let offset = 0;
 
-  for (const { name, data } of entries) {
+  for (const { name, data, store = false } of entries) {
     const nameBuf = Buffer.from(name, "utf-8");
-    const compressed = deflateRawSync(data);
+    const method = store ? 0 : 8;
+    const compressed = store ? data : deflateRawSync(data);
     const crc = crc32(data);
 
     const localHeader = Buffer.alloc(30);
     localHeader.writeUInt32LE(0x04034b50, 0);
     localHeader.writeUInt16LE(20, 4); // version needed
     localHeader.writeUInt16LE(0, 6); // flags
-    localHeader.writeUInt16LE(8, 8); // method: deflate
+    localHeader.writeUInt16LE(method, 8); // 8 = deflate, 0 = stored
     localHeader.writeUInt16LE(time, 10);
     localHeader.writeUInt16LE(date, 12);
     localHeader.writeUInt32LE(crc, 14);
@@ -85,7 +90,7 @@ export function buildZip(entries) {
     centralHeader.writeUInt16LE(20, 4); // version made by
     centralHeader.writeUInt16LE(20, 6); // version needed
     centralHeader.writeUInt16LE(0, 8); // flags
-    centralHeader.writeUInt16LE(8, 10); // method: deflate
+    centralHeader.writeUInt16LE(method, 10);
     centralHeader.writeUInt16LE(time, 12);
     centralHeader.writeUInt16LE(date, 14);
     centralHeader.writeUInt32LE(crc, 16);

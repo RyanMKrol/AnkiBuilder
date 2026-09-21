@@ -30,6 +30,8 @@ export function remasterPaths(root) {
     images: join(root, "images"),
     ocr: join(root, "ocr"),
     outline: join(root, "outline.json"),
+    // Which study units become chapters: the agent's recommendation and the owner's decision.
+    selection: join(root, "selection.json"),
     transcripts: join(root, "transcripts"),
     checks: join(root, "checks"),
     // The page the build uses when two readings exist: B where they agreed, the adjudicated page

@@ -287,6 +287,11 @@ const TEMPLATES = {
     // parseOutline (src/remaster/outline.js) reads exactly these fields.
     outputContract: /"entries"[\s\S]*"firstPage"[\s\S]*"lastPage"/,
   },
+  "remaster-select-prompt.md": {
+    placeholders: ["BOOK_TITLE", "UNITS"],
+    // parseSelection (src/remaster/selection.js) reads exactly these fields.
+    outputContract: /"units"[\s\S]*"recommendation"[\s\S]*"category"[\s\S]*"overlapsWith"/,
+  },
   "remaster-settle-prompt.md": {
     placeholders: [
       "IMAGE_PATH",
@@ -351,6 +356,8 @@ const NO_CARD_RULES = {
   "epub-forward-flag-index-prompt.md": "the same pass, reading the taught index instead",
   "pedagogical-sort-prompt.md": "a permutation of items that already exist; it writes no field",
   "remaster-outline-prompt.md": "rebuilds a book's table of contents from OCR; it sees no card",
+  "remaster-select-prompt.md":
+    "recommends which of a book's units to convert at all; it writes no card and sees none",
   "remaster-settle-prompt.md":
     "decides between two transcriptions of one page, upstream of any card, for the same reason",
   "remaster-page-prompt.md":

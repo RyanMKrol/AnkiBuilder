@@ -233,7 +233,15 @@ the image is still the only complete answer.
 3. **Every page gets two readings**, settled by Opus where they disagree: about 860 model calls for
    Genki's 393 pages.
 4. **Figure crops are good enough as they are.** Some clip a label's edge; not worth tuning.
-5. **Converted books number their study units as chapters** in page order,
+5. **The conversion decides which units to convert, and the owner has the final say.** Genki's
+   second half teaches the kanji of words the first half already taught, so its cards would look
+   "already taught" to the backward dedup (which flags, never deletes, and matches on meaning).
+   A `select` step now has Opus recommend include, exclude or ask for every study unit, with a
+   reason, and `decide` records the owner's choice. On Genki it recommended the writing-system
+   primer over the two kana charts and over Reading and Writing 1 and 2 (all repeats of it), the
+   greetings, numbers and twelve lessons, and the ten kanji units with a warning on each about the
+   repeat flags.
+6. **Converted books number their study units as chapters** in page order,
    `Chapter NN: <the book's own name>`, and leave front and back matter out. Recorded, with the
    reasoning, in `DECISIONS.md`. On the rerun outline Genki has 29 chapters: the two kana charts,
    the writing-system introduction, Greetings, Numbers, Lessons 1 to 12 and Reading and Writing 1

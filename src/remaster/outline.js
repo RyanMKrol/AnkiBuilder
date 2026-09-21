@@ -132,14 +132,19 @@ export function parseOutline(raw, { pageCount }) {
  *   - The book's own name is kept after the number, because the book's exercises and
  *     cross-references say "Lesson 3" and a learner needs to find it.
  */
-export function numberChapters(outline) {
-  const studyCount = outline.entries.filter((entry) => entry.kind === "lesson").length;
+export function numberChapters(outline, included = null) {
+  // `included` is the owner's selection (selection.js): the entry numbers to convert. A study unit
+  // left out of it gets no chapter, and the rest close ranks, so chapter numbers have no gaps.
+  // Without a selection every study unit counts, which is what an outline alone implies.
+  const isChapter = (entry) =>
+    entry.kind === "lesson" && (included === null || included.has(entry.number));
+  const studyCount = outline.entries.filter(isChapter).length;
   const width = Math.max(2, String(studyCount).length);
   let chapter = 0;
   return {
     ...outline,
     entries: outline.entries.map((entry) => {
-      if (entry.kind !== "lesson") return { ...entry, chapter: null, chapterLabel: null };
+      if (!isChapter(entry)) return { ...entry, chapter: null, chapterLabel: null };
       chapter++;
       return {
         ...entry,
@@ -151,16 +156,15 @@ export function numberChapters(outline) {
 }
 
 /** The entries that become chapters of the converted book, in order. */
-export function studyChapters(outline) {
-  return numberChapters(outline).entries.filter((entry) => entry.chapter !== null);
+export function studyChapters(outline, included = null) {
+  return numberChapters(outline, included).entries.filter((entry) => entry.chapter !== null);
 }
 
-export function formatOutline(outline) {
-  return numberChapters(outline).entries.map(
-    (entry) =>
-      `[${String(entry.number).padStart(2)}] pages ${entry.firstPage}-${entry.lastPage} ` +
-      (entry.chapterLabel
-        ? entry.chapterLabel
-        : `(${entry.kind}, not in the converted book) ${entry.label}`),
-  );
+export function formatOutline(outline, included = null) {
+  return numberChapters(outline, included).entries.map((entry) => {
+    const range = `[${String(entry.number).padStart(2)}] pages ${entry.firstPage}-${entry.lastPage} `;
+    if (entry.chapterLabel) return range + entry.chapterLabel;
+    const why = entry.kind === "lesson" ? "not selected" : entry.kind;
+    return `${range}(${why}, not in the converted book) ${entry.label}`;
+  });
 }

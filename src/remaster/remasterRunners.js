@@ -22,6 +22,9 @@ export const REMASTER_PASS_PINS = Object.freeze({
     timeoutMs: 10 * 60 * 1000,
     checks: ["TRANSCRIBE"],
   },
+  // One call over the whole book, deciding what is worth building: a judgement the owner acts on,
+  // so the strongest model. It checks no pass, so it declares no `checks`.
+  SELECT: { model: "claude-opus-5", effort: "high", timeoutMs: 15 * 60 * 1000 },
 });
 
 const prefixesFor = (scope) => [`ANKI_BUILDER_REMASTER_${scope}`];
@@ -37,6 +40,12 @@ export function remasterPinning(scope) {
   const { model, effort } = resolvePinning(prefixesFor(scope), REMASTER_PASS_PINS[scope]);
   return { model, effort };
 }
+
+export const runSelectClaude = (prompt) =>
+  runClaudeWithPrompt(prompt, {
+    scopeEnvPrefix: prefixesFor("SELECT"),
+    defaults: REMASTER_PASS_PINS.SELECT,
+  });
 
 export const runOutlineClaude = (prompt) =>
   runClaudeWithPrompt(prompt, {

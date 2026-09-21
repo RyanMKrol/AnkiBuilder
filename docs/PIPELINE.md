@@ -207,6 +207,16 @@ are separate subcommands so each paid one can be checked before the next:
   `Chapter NN: <the book's own name>` (`numberChapters`), and only those chapters go into the
   converted book. Every command takes `--chapter <n>` as well as `--entry <outline number>`. The
   rule and why are in `DECISIONS.md` ("Converted books number their study units as chapters").
+- `select`, then `decide`: which study units are worth converting at all. One Opus call
+  (`docs/remaster-select-prompt.md`, pin `SELECT`) reads each unit's opening pages and recommends
+  include, exclude or ask, with a category, a reason and the units it repeats; it is told how the
+  backward dedup will treat a unit that re-presents earlier material, so it can warn about it.
+  `selection.json` keeps the recommendation beside the owner's decision, which `decide` records
+  (`--accept-recommendations`, then `--include` / `--exclude <entry>` to override or to settle an
+  `ask`). Chapters are numbered from the included units only, and `transcribe`, `settle` and
+  `build` refuse to run while any unit is undecided (`src/remaster/selection.js`). The decision
+  belongs here rather than in the deck pipeline because it is about the whole book, and the
+  pipeline only ever sees one chapter.
 - `transcribe --entry <n>`: one Claude vision call per page (`docs/remaster-page-prompt.md`,
   pinned in `REMASTER_PASS_PINS`), writing XHTML with `<ruby>` for furigana and
   `class="vocabulary"` on vocabulary tables. The model is never shown the OCR, so the two

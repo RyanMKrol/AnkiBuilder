@@ -10,6 +10,10 @@
 //   node scripts/remaster-epub.mjs check      <book.epub>
 //   node scripts/remaster-epub.mjs ocr        <book.epub>
 //   node scripts/remaster-epub.mjs outline    <book.epub>
+//   node scripts/remaster-epub.mjs select     <book.epub>   (an agent recommends which units to convert)
+//   node scripts/remaster-epub.mjs decide     <book.epub> [--accept-recommendations]
+//                                             [--include <entry> ...] [--exclude <entry> ...]
+//   (transcribe, settle and build then work on every chosen chapter, or those named by --chapter)
 //   node scripts/remaster-epub.mjs transcribe <book.epub> --entry <n> [--pages a-b] [--concurrency 4]
 //                                             [--reading b]   (an independent second run)
 //   node scripts/remaster-epub.mjs crosscheck <book.epub> [--entry <n>]
@@ -39,8 +43,16 @@ import {
   parseOutline,
   formatOutline,
   numberChapters,
-  studyChapters,
 } from "../src/remaster/outline.js";
+import {
+  candidateUnits,
+  renderSelectPrompt,
+  parseSelection,
+  applyDecisions,
+  undecided,
+  includedEntries,
+  formatSelection,
+} from "../src/remaster/selection.js";
 import {
   renderPagePrompt,
   parsePageReply,
@@ -56,6 +68,7 @@ import {
   runOutlineClaude,
   runTranscribeClaude,
   runSettleClaude,
+  runSelectClaude,
   remasterPinning,
 } from "../src/remaster/remasterRunners.js";
 import { appendJournal, loggedRunner } from "../src/remaster/journal.js";
@@ -79,7 +92,7 @@ function optionAll(name) {
 
 function usage() {
   console.error(
-    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|transcribe|crosscheck|settle|build|verify> <book.epub> [options]",
+    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|select|decide|transcribe|crosscheck|settle|build|verify> <book.epub> [options]",
   );
   process.exit(2);
 }
@@ -128,9 +141,50 @@ function loadOutline(paths) {
     console.error(`no outline yet (${paths.outline}); run the outline step first`);
     process.exit(1);
   }
-  // Numbered on every load, so an outline written before chapter numbering existed gets the same
-  // numbers a new one would (numberChapters is deterministic in the entries' kinds and order).
-  return numberChapters(JSON.parse(readFileSync(paths.outline, "utf-8")));
+  // Numbered on every load, from the entries' kinds and the owner's selection, so the numbers are
+  // always the ones the current decisions imply (numberChapters is deterministic in both).
+  const outline = JSON.parse(readFileSync(paths.outline, "utf-8"));
+  return numberChapters(outline, includedEntries(loadSelection(paths)));
+}
+
+function loadSelection(paths) {
+  return existsSync(paths.selection) ? JSON.parse(readFileSync(paths.selection, "utf-8")) : null;
+}
+
+/**
+ * Transcribing and building wait for the owner's selection: nothing is paid for or built from a
+ * unit nobody has decided on. Exits with what is missing.
+ */
+function requireDecidedSelection(paths) {
+  const selection = loadSelection(paths);
+  if (!selection) {
+    console.error(
+      "no chapter selection yet: run `select`, then `decide`, so the owner chooses which study " +
+        "units become chapters before anything is transcribed",
+    );
+    process.exit(1);
+  }
+  const open = undecided(selection);
+  if (open.length) {
+    console.error(`${open.length} study unit(s) still undecided (see \`select\`):`);
+    for (const unit of open)
+      console.error(`  [${unit.entry}] ${unit.recommendation}: ${unit.label}`);
+    process.exit(1);
+  }
+  return selection;
+}
+
+/** Only chapters are transcribed, settled or built: a unit left out has nothing to spend on. */
+function requireChapters(entries) {
+  const outside = entries.filter((entry) => entry.chapter === null);
+  if (outside.length) {
+    console.error(
+      "not a chapter of the converted book (front or back matter, or not selected): " +
+        outside.map((e) => `[${e.number}] ${e.label}`).join(", "),
+    );
+    process.exit(2);
+  }
+  return entries;
 }
 
 /**
@@ -257,10 +311,9 @@ function flaggedPages(paths, entries) {
 
 function reportVerification(builtPath, paths, entries, outline) {
   // "The whole book" is every chapter: front and back matter are left out of it on purpose.
-  const bookPages = studyChapters(outline).reduce(
-    (sum, entry) => sum + entry.lastPage - entry.firstPage + 1,
-    0,
-  );
+  const bookPages = outline.entries
+    .filter((entry) => entry.chapter !== null)
+    .reduce((sum, entry) => sum + entry.lastPage - entry.firstPage + 1, 0);
   const result = verifyRemasteredEpub(builtPath, { expected: entries, bookPages });
   appendJournal(paths.root, {
     step: "verify",
@@ -322,18 +375,102 @@ Object.assign(commands, {
     );
   },
 
+  // One Opus call: which study units are worth converting, with a reason for each (selection.js).
+  // Writes the recommendations with every decision open; `decide` records the owner's choices.
+  async select() {
+    const { paths, pages } = await workspace();
+    const outline = JSON.parse(readFileSync(paths.outline, "utf-8"));
+    const ocrByPage = new Map(
+      pages.map((page) => [page.number, loadPageOcr(paths.ocr, pageFileStem, page.number)]),
+    );
+    const pin = remasterPinning("SELECT");
+    const logged = loggedRunner(paths.root, async (text) => runSelectClaude(text), {
+      role: "select",
+      ...pin,
+      context: () => ({ units: candidateUnits(outline).length }),
+    });
+    log(
+      `select: one call (${pin.model} ${pin.effort}) over ${candidateUnits(outline).length} study units`,
+    );
+    const raw = await logged.run(
+      renderSelectPrompt({ bookTitle: getBookTitle(epubPath), outline, ocrByPage }),
+    );
+    const selection = parseSelection(raw, { outline });
+    writeFileAtomic(paths.selection, `${JSON.stringify(selection, null, 2)}\n`);
+    appendJournal(paths.root, {
+      step: "select",
+      ...pin,
+      agentLog: logged.lastLog(),
+      recommendations: selection.units.map((u) => `${u.entry} ${u.recommendation} ${u.category}`),
+    });
+    for (const line of formatSelection(selection)) log(line);
+    log(
+      `\nwritten to ${paths.selection}. Nothing is transcribed until every unit is decided: ` +
+        `decide --accept-recommendations [--include <entry> ...] [--exclude <entry> ...]`,
+    );
+  },
+
+  // The owner's decisions, recorded beside the agent's recommendations.
+  async decide() {
+    const { paths } = await workspace();
+    const selection = loadSelection(paths);
+    if (!selection) {
+      console.error("no selection yet: run `select` first");
+      process.exit(1);
+    }
+    const decided = applyDecisions(selection, {
+      acceptRecommendations: rest.includes("--accept-recommendations"),
+      include: optionAll("include").map(Number),
+      exclude: optionAll("exclude").map(Number),
+    });
+    writeFileAtomic(paths.selection, `${JSON.stringify(decided, null, 2)}\n`);
+    appendJournal(paths.root, {
+      step: "decide",
+      decisions: decided.units
+        .filter((u) => u.decision !== selection.units.find((s) => s.entry === u.entry).decision)
+        .map((u) => ({
+          entry: u.entry,
+          label: u.label,
+          recommendation: u.recommendation,
+          decision: u.decision,
+        })),
+    });
+    for (const line of formatSelection(decided)) log(line);
+    const open = undecided(decided);
+    log(
+      open.length
+        ? `\n${open.length} unit(s) still undecided: ${open.map((u) => u.entry).join(", ")}`
+        : "\nevery unit decided. The chapters are now:",
+    );
+    if (!open.length) {
+      for (const line of formatOutline(loadOutline(paths), includedEntries(decided))) log(line);
+    }
+  },
+
   async transcribe() {
     const { paths, pages } = await workspace();
+    requireDecidedSelection(paths);
     const outline = loadOutline(paths);
-    const [entry, ...more] = selectedEntries(outline);
-    if (!entry || more.length || !option("entry")) {
-      console.error("transcribe takes exactly one --entry <n> (and optionally --pages a-b)");
+    // Every chapter by default (the whole-book run), or the ones named by --chapter / --entry.
+    const named = optionAll("entry").length || optionAll("chapter").length;
+    const chapters = named
+      ? requireChapters(selectedEntries(outline))
+      : outline.entries.filter((e) => e.chapter !== null);
+    if (option("pages") && chapters.length !== 1) {
+      console.error("--pages narrows one chapter; name exactly one with --chapter or --entry");
       process.exit(2);
     }
     const force = rest.includes("--force");
-    const numbers = pageRange(entry).filter(
+    const labelOf = new Map();
+    for (const chapter of chapters) {
+      for (const number of pageRange(chapter)) labelOf.set(number, chapter.label);
+    }
+    const numbers = [...labelOf.keys()].filter(
       (number) => force || !existsSync(transcriptPath(paths, number)),
     );
+    const entry = {
+      label: chapters.length === 1 ? chapters[0].label : `${chapters.length} chapters`,
+    };
     const byNumber = new Map(pages.map((page) => [page.number, page]));
     const title = getBookTitle(epubPath);
     const concurrency = Number(option("concurrency") ?? 4);
@@ -362,7 +499,7 @@ Object.assign(commands, {
           bookTitle: title,
           pageNumber: number,
           pageCount: pages.length,
-          entryLabel: entry.label,
+          entryLabel: labelOf.get(number),
         });
         const started = Date.now();
         const rawPath = join(paths.transcripts, `${pageFileStem(number)}.raw.txt`);
@@ -525,16 +662,12 @@ Object.assign(commands, {
     const sources = { settled: 0, transcript: 0 };
     // Only chapters go into the converted book (numberChapters, outline.js). Naming a front- or
     // back-matter entry explicitly is refused rather than quietly dropped.
-    const selected = selectedEntries(outline);
-    const notChapters = selected.filter((entry) => entry.chapter === null);
-    if (optionAll("entry").length && notChapters.length) {
-      console.error(
-        `not a chapter of the converted book (front or back matter): ` +
-          notChapters.map((e) => `[${e.number}] ${e.label}`).join(", "),
-      );
-      process.exit(2);
-    }
-    for (const entry of selected.filter((e) => e.chapter !== null).map(asChapter)) {
+    requireDecidedSelection(paths);
+    const named = optionAll("entry").length || optionAll("chapter").length;
+    const selected = named
+      ? requireChapters(selectedEntries(outline))
+      : outline.entries.filter((e) => e.chapter !== null);
+    for (const entry of selected.map(asChapter)) {
       const numbers = pageRange(entry);
       // A settled page (two readings, reconciled) wins over a single reading.
       const transcripts = numbers.map((number) => {
@@ -675,22 +808,27 @@ Object.assign(commands, {
   async settle() {
     const { paths, pages } = await workspace();
     const b = readingPaths(paths, "b");
+    requireDecidedSelection(paths);
     const outline = loadOutline(paths);
-    const [entry, ...more] = selectedEntries(outline);
-    if (!entry || more.length || !option("entry")) {
-      console.error("settle takes exactly one --entry <n>");
-      process.exit(2);
-    }
+    const named = optionAll("entry").length || optionAll("chapter").length;
+    const chapters = named
+      ? requireChapters(selectedEntries(outline))
+      : outline.entries.filter((e) => e.chapter !== null);
     const byNumber = new Map(pages.map((page) => [page.number, page]));
     const title = getBookTitle(epubPath);
     const force = rest.includes("--force");
     mkdirSync(paths.settled, { recursive: true });
     const tally = { agreed: 0, settled: 0, unsettled: 0, skipped: 0 };
     const settlePin = remasterPinning("SETTLE");
-    appendJournal(paths.root, { step: "settle", event: "start", entry: entry.label, ...settlePin });
-    const queue = pageRange(entry).filter(
-      (n) => force || !existsSync(join(paths.settled, `${pageFileStem(n)}.xhtml`)),
-    );
+    appendJournal(paths.root, {
+      step: "settle",
+      event: "start",
+      chapters: chapters.map((c) => c.label),
+      ...settlePin,
+    });
+    const queue = chapters
+      .flatMap((chapter) => pageRange(chapter))
+      .filter((n) => force || !existsSync(join(paths.settled, `${pageFileStem(n)}.xhtml`)));
     const worker = async () => {
       while (queue.length) {
         const number = queue.shift();

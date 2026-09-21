@@ -820,6 +820,22 @@ card (delete these), missing `ttsText` on numerals, a verb form the chapter teac
 or names only in its grammar prose and that never became a card, and study order (a sentence landing
 before its vocabulary).
 
+**Judge every "already taught" flag before you hand over the link.** Backward dedup never excludes
+anything. The exact-match flagger in `assemble` and the phase's judge both only set **Uncertain**
+with a review note naming the earlier card, and left alone those cards ship as duplicate card ids and
+uncued collisions, which preflight FAILs. Decide each one:
+
+- **Same word, same sense**: exclude it with `excludedBy: "backward-dedup"` and an
+  `excludedReason` of `Already taught: <unit>/<id> (same target and sense)`. If its note says
+  something the earlier card does not, move the note onto a card that survives.
+- **A sense this chapter adds** (Lesson 20's を for the place you leave, after Lesson 8's object
+  marker): keep it, give it its own id if it shares the earlier card's (an id is an Anki note guid),
+  and put a scene on both sides of the collision. The earlier side is a field edit on a done unit, so
+  follow the field-only rules in Step 4b.
+
+On Lesson 20 that was 35 flags: 30 excluded and 5 kept as new senses. Doing it by hand is the design,
+because a word re-taught in a new role is a legitimate card and only someone reading both can tell.
+
 Run `npm run preflight` before you hand over the link. Its INFO checks name what the columns cannot:
 `answerable-alone` (a reply-shaped English with no scene), `production-length` (a Production face
 over 60 characters), `near-siblings` (one sentence frame drilled three times with a swapped name),

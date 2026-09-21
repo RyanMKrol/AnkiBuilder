@@ -304,7 +304,8 @@
       "hint": null,
       "note": "Suffix — attaches after a number to name a specific year, e.g. 1998ねん (1998, \"the year 1998\").",
       "reviewNote": null,
-      "target": "ねん"
+      "target": "ねん",
+      "scene": "naming a calendar year"
     },
     {
       "id": "1998nen",

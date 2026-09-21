@@ -1,0 +1,608 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 46,
+    "chapterLabel": "Lesson 20: Going Places (3): How Do You Go There?",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "wo-departure-particle",
+      "english": "Particle marking the vehicle got off or the place left",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught: Lesson 8 (object marker) and Lesson 19 (place passed through) are different senses. Gloss written from GRAMMAR 2; id changed from particle-wo, which is Lesson 8's note.",
+      "target": "を",
+      "uncertain": true
+    },
+    {
+      "id": "ni-particle-vehicle-arrival",
+      "english": "Particle marking the vehicle boarded and the place arrived at",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "に",
+      "uncertain": true
+    },
+    {
+      "id": "kan-period-suffix",
+      "english": "Optional suffix for a period of time",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かん"
+    },
+    {
+      "id": "nan-desu-ka-repeat",
+      "english": "…what? (asking for a partly heard word to be repeated)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "…なんですか"
+    },
+    {
+      "id": "neboushimasu",
+      "english": "Oversleep",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ねぼうします"
+    },
+    {
+      "id": "nebou-shimashita",
+      "english": "Overslept",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ねぼうしました"
+    },
+    {
+      "id": "demasu-2",
+      "english": "To leave",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "でます"
+    },
+    {
+      "id": "norimasu-2",
+      "english": "To get on, to take (a train, bus, etc.)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "のります"
+    },
+    {
+      "id": "orimasu-2",
+      "english": "To get off",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "おります"
+    },
+    {
+      "id": "tsukimasu-2",
+      "english": "To arrive",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "つきます"
+    },
+    {
+      "id": "kakarimasu-2",
+      "english": "To take (time)",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "かかります"
+    },
+    {
+      "id": "imasu-stay",
+      "english": "To stay (for a period)",
+      "category": "Other",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "target": "います",
+      "uncertain": true
+    },
+    {
+      "id": "noru-dict",
+      "english": "Get on, take (dictionary form)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "のる"
+    },
+    {
+      "id": "noru-te",
+      "english": "Get on, take (て-form)",
+      "category": "Transport",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
+      "target": "のって"
+    },
+    {
+      "id": "oriru-dict",
+      "english": "Get off (dictionary form)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "おりる"
+    },
+    {
+      "id": "orite-te",
+      "english": "Get off (て-form)",
+      "category": "Transport",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
+      "target": "おりて"
+    },
+    {
+      "id": "deru-dict",
+      "english": "Leave (dictionary form)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "でる"
+    },
+    {
+      "id": "dete-te",
+      "english": "Leave (て-form)",
+      "category": "Transport",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
+      "target": "でて"
+    },
+    {
+      "id": "tsuku-dict",
+      "english": "Arrive (dictionary form)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "つく"
+    },
+    {
+      "id": "tsuite-te",
+      "english": "Arrive (て-form)",
+      "category": "Transport",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
+      "target": "ついて"
+    },
+    {
+      "id": "kakaru-dict",
+      "english": "Take [time] (dictionary form)",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "かかる"
+    },
+    {
+      "id": "kakatte-te",
+      "english": "Take [time] (て-form)",
+      "category": "Time",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
+      "target": "かかって"
+    },
+    {
+      "id": "haneda-kuukou",
+      "english": "Haneda Airport",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "はねだくうこう"
+    },
+    {
+      "id": "kafe",
+      "english": "Café",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カフェ"
+    },
+    {
+      "id": "hakubutsukan",
+      "english": "Museum",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "はくぶつかん"
+    },
+    {
+      "id": "ekiin",
+      "english": "Station employee",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "えきいん"
+    },
+    {
+      "id": "suidoubashi",
+      "english": "Suidobashi (station in Tokyo)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "すいどうばし"
+    },
+    {
+      "id": "bansen-counter",
+      "english": "Platform… (counter)",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ばんせん"
+    },
+    {
+      "id": "go-bansen",
+      "english": "Platform 5",
+      "category": "Transport",
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
+      "target": "５ばんせん",
+      "ttsText": "ごばんせん",
+      "uncertain": true
+    },
+    {
+      "id": "hiroshima",
+      "english": "Hiroshima (city in western Japan)",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ひろしま"
+    },
+    {
+      "id": "hiroshima-eki",
+      "english": "Hiroshima Station",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ひろしまえき"
+    },
+    {
+      "id": "nyuuyooku",
+      "english": "New York",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ニューヨーク"
+    },
+    {
+      "id": "akasaka",
+      "english": "Akasaka (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "あかさか"
+    },
+    {
+      "id": "otemachi",
+      "english": "Otemachi (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "おおてまち"
+    },
+    {
+      "id": "tsukiji",
+      "english": "Tsukiji (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "つきじ"
+    },
+    {
+      "id": "toukyou-doomu",
+      "english": "Tokyo Dome",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "とうきょうドーム"
+    },
+    {
+      "id": "myuujikaru",
+      "english": "Musical",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ミュージカル"
+    },
+    {
+      "id": "daibingu-o-shimasu",
+      "english": "Scuba dive",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ダイビングをします"
+    },
+    {
+      "id": "ikitai-n-desu-ga",
+      "english": "I'd like to go",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "いきたいんですが"
+    },
+    {
+      "id": "juugofun",
+      "english": "Fifteen minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅうごふん"
+    },
+    {
+      "id": "sanjuppun",
+      "english": "Thirty minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじゅっぷん"
+    },
+    {
+      "id": "nijuugofun",
+      "english": "Twenty-five minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にじゅうごふん"
+    },
+    {
+      "id": "nijuppun",
+      "english": "Twenty minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にじゅっぷん"
+    },
+    {
+      "id": "ka-nichi",
+      "english": "…days",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "〜か"
+    },
+    {
+      "id": "yokka",
+      "english": "Four days",
+      "category": "Time",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "よっか",
+      "uncertain": true
+    },
+    {
+      "id": "futsuka",
+      "english": "Two days",
+      "category": "Time",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "ふつか",
+      "uncertain": true
+    },
+    {
+      "id": "muika",
+      "english": "Six days",
+      "category": "Time",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "むいか",
+      "uncertain": true
+    },
+    {
+      "id": "ichinichi",
+      "english": "One day",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いちにち"
+    },
+    {
+      "id": "itsuka",
+      "english": "Five days",
+      "category": "Time",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "いつか",
+      "uncertain": true
+    },
+    {
+      "id": "mikka",
+      "english": "Three days",
+      "category": "Time",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "target": "みっか",
+      "uncertain": true
+    },
+    {
+      "id": "sanjikan",
+      "english": "Three hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじかん"
+    },
+    {
+      "id": "ichijikan",
+      "english": "One hour",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いちじかん"
+    },
+    {
+      "id": "rokujikan",
+      "english": "Six hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ろくじかん"
+    },
+    {
+      "id": "nijikan",
+      "english": "Two hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にじかん"
+    },
+    {
+      "id": "gojikan",
+      "english": "Five hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごじかん"
+    },
+    {
+      "id": "yojikan",
+      "english": "Four hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "よじかん"
+    },
+    {
+      "id": "shuukan-counter",
+      "english": "…weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "しゅうかん"
+    },
+    {
+      "id": "sanshuukan",
+      "english": "Three weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんしゅうかん"
+    },
+    {
+      "id": "isshuukan",
+      "english": "One week",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いっしゅうかん"
+    },
+    {
+      "id": "goshuukan",
+      "english": "Five weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごしゅうかん"
+    },
+    {
+      "id": "nishuukan",
+      "english": "Two weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にしゅうかん"
+    },
+    {
+      "id": "rokushuukan",
+      "english": "Six weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ろくしゅうかん"
+    },
+    {
+      "id": "yonshuukan",
+      "english": "Four weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "よんしゅうかん"
+    },
+    {
+      "id": "kagetsu-counter",
+      "english": "…months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "かげつ"
+    },
+    {
+      "id": "sankagetsu",
+      "english": "Three months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんかげつ"
+    },
+    {
+      "id": "ikkagetsu",
+      "english": "One month",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いっかげつ"
+    },
+    {
+      "id": "rokkagetsu",
+      "english": "Six months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ろっかげつ"
+    },
+    {
+      "id": "nikagetsu",
+      "english": "Two months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にかげつ"
+    },
+    {
+      "id": "gokagetsu",
+      "english": "Five months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごかげつ"
+    },
+    {
+      "id": "yonkagetsu",
+      "english": "Four months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "よんかげつ"
+    },
+    {
+      "id": "nen-counter",
+      "english": "…years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "〜ねん"
+    },
+    {
+      "id": "sannen",
+      "english": "Three years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんねん"
+    },
+    {
+      "id": "ichinen",
+      "english": "One year",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いちねん"
+    },
+    {
+      "id": "rokunen",
+      "english": "Six years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ろくねん"
+    },
+    {
+      "id": "ninen",
+      "english": "Two years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "にねん"
+    },
+    {
+      "id": "gonen",
+      "english": "Five years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごねん"
+    },
+    {
+      "id": "yonen",
+      "english": "Four years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "よねん"
+    },
+    {
+      "id": "sanjikan-han",
+      "english": "Three and a half hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "さんじかんはん"
+    },
+    {
+      "id": "ichinen-han",
+      "english": "One and a half years",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いちねんはん"
+    }
+  ]
+}

@@ -45,7 +45,8 @@
       "english": "question marker particle",
       "category": "Grammar & Function Words",
       "target": "か",
-      "note": "Added to the very end of a です (desu) sentence to turn it into a yes/no question, with no change to word order, e.g. アメリカじんですか (amerikajin desu ka), 'Is (he) American?' — unlike English, you don't invert word order or add a helper word."
+      "note": "Added to the very end of a です (desu) sentence to turn it into a yes/no question, with no change to word order, e.g. アメリカじんですか (amerikajin desu ka), 'Is (he) American?' — unlike English, you don't invert word order or add a helper word.",
+      "scene": "at the end of a sentence"
     },
     {
       "id": "hai",

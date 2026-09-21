@@ -902,14 +902,12 @@
     },
     {
       "id": "ka-nichi",
-      "target": "〜か",
-      "english": "…days",
+      "target": "か",
+      "english": "…days (counter)",
       "category": "Time",
       "note": "Also 〜にち, depending on the number. Can take かん to state the length clearly.",
       "sourceOrder": 2929,
-      "excluded": true,
-      "excludedBy": "preflight-placeholder-target",
-      "excludedReason": "Schematic target 〜か is notation, not an utterance. ふつか to むいか teach it and ふつか now carries the rule; にち is Lesson 7's."
+      "scene": "after a number, counting days"
     },
     {
       "id": "ka-nichi-suffix",
@@ -1189,14 +1187,12 @@
     },
     {
       "id": "nen-counter",
-      "target": "〜ねん",
-      "english": "…years",
+      "target": "ねん",
+      "english": "…years (counter)",
       "category": "Time",
       "note": "Can take かん to state the length clearly.",
       "sourceOrder": 2970,
-      "excluded": true,
-      "excludedBy": "preflight-placeholder-target",
-      "excludedReason": "Schematic target 〜ねん is notation, not an utterance. いちねん to ろくねん teach it and いちねん now carries the note, including the contrast with Lesson 7's ねん."
+      "scene": "after a number, counting years"
     },
     {
       "id": "nen-suffix",

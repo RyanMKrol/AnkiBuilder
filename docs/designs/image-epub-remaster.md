@@ -181,6 +181,23 @@ settle pass (or any other checker) at or below what it checks stops the run befo
 Every transcript records the model and effort that wrote it; the Lesson 1 pages predate that and
 show as "not recorded".
 
+## The second half of the book (pilot, Reading and Writing 3)
+
+The reading-and-writing half has layouts the first half does not: kanji tables, stroke-order
+diagrams and reading passages. Reading and Writing 3 (pages 313 to 316, the first kanji lesson) was
+run with two readings.
+
+- The kanji tables came through intact: each kanji's number, its on and kun readings (the ▶ and ▷
+  markers), meaning and example compounds. The orange highlighting that marks the words to learn
+  became `<em>` exactly where it is printed (一時 highlighted, 一分 not).
+- Stroke-order diagrams were the one real problem. Both runs faked the partial strokes with
+  look-alike characters (冇, 亣, 丶), disagreed on which, and the settle pass could only pick between
+  two wrong answers. The prompt now keeps the printed stroke count as text and makes the sequence a
+  boxed `stroke-order` figure, so the build crops it as an image. Rerun, all four pages agreed with no
+  settling needed, and the crops hold the full sequences (all ten strokes of 時).
+- The OCR check flags page 314 now, because it reads the partial strokes of 時 as 日 and 月. Expected
+  on stroke-order pages, and one more reason the OCR is a backstop rather than the verdict.
+
 ## How a missing page is caught
 
 Asked after the Lesson 1 run: would we notice if pages went missing? At that point, only partly.

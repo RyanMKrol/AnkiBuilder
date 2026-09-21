@@ -53,6 +53,10 @@ Use plain XHTML, well formed. Escape `&` as `&amp;` and `<` as `&lt;` in text.
   whole picture, including any words printed inside it, and nothing else. A row of separate small
   pictures (four clocks, six food items) is one `<figure>` each, each with its own box.
   Decorative elements get no figure at all.
+- **Stroke-order diagrams** (a kanji or kana drawn up stroke by stroke: 一 二 三, or 丨 冂 … 四). The
+  partial shapes are not characters, so never approximate them with look-alike characters. Keep
+  the printed stroke count as text and make the sequence a boxed figure:
+  `(4) <figure class="stroke-order" data-box="…"><figcaption>[Stroke order of 五, 4 strokes]</figcaption></figure>`.
 - **Emphasis the book prints in colour or bold** that carries meaning (a highlighted particle, the
   changed part of a conjugation): `<em>`.
 - **Blank lines and boxes for students to write in:** `<span class="blank"></span>`.

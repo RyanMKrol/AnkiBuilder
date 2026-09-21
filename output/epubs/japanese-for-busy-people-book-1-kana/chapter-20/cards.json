@@ -97,7 +97,7 @@
       "category": "Grammar & Function Words",
       "target": "かん",
       "pronunciation": "kan",
-      "note": "The chart writes it in brackets. Add it when you want to state a period of time clearly, as in ごふんかん. It is not added after はん (さんじかんはん).",
+      "note": "The chart writes it in brackets. Add it when you want to state a period of time clearly, as in ごふんかん. It is not added before はん (いちねんはん).",
       "sourceOrder": 629
     },
     {
@@ -144,7 +144,7 @@
       "category": "Transport",
       "target": "でます",
       "pronunciation": "demasu",
-      "note": "Takes を for the place you leave.",
+      "note": "Takes を for the place you leave. Regular 2.",
       "sourceOrder": 1382
     },
     {
@@ -162,7 +162,7 @@
       "category": "Transport",
       "target": "おります",
       "pronunciation": "orimasu",
-      "note": "The vehicle takes を.",
+      "note": "The vehicle takes を. Regular 2.",
       "sourceOrder": 1241
     },
     {
@@ -222,8 +222,7 @@
       "category": "Transport",
       "target": "のって",
       "pronunciation": "notte",
-      "uncertain": true,
-      "reviewNote": "The book prints the て-form here, but て-form is not in this deck's configured verb forms. Keep or drop as the owner decides.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3122
     },
     {
@@ -241,9 +240,8 @@
       "category": "Transport",
       "target": "おりて",
       "pronunciation": "orite",
-      "uncertain": true,
       "note": "R2 verb",
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3138
     },
     {
@@ -261,9 +259,8 @@
       "category": "Transport",
       "target": "でて",
       "pronunciation": "dete",
-      "uncertain": true,
       "note": "R2 verb",
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3151
     },
     {
@@ -280,8 +277,7 @@
       "category": "Transport",
       "target": "ついて",
       "pronunciation": "tsuite",
-      "uncertain": true,
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3165
     },
     {
@@ -298,8 +294,7 @@
       "category": "Time",
       "target": "かかって",
       "pronunciation": "kakatte",
-      "uncertain": true,
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3186
     },
     {
@@ -745,7 +740,7 @@
       "category": "Time",
       "target": "〜ふん",
       "pronunciation": "fun",
-      "note": "Also 〜ぷん, depending on the number. Add かん to give a length of time.",
+      "note": "Also 〜ぷん, depending on the number. Can take かん to state the length clearly.",
       "sourceOrder": 2911,
       "excluded": true,
       "excludedBy": "backward-dedup",
@@ -783,7 +778,7 @@
       "category": "Time",
       "target": "じゅうごふん",
       "pronunciation": "jūgo-fun",
-      "note": "Add かん to give a length of time: じゅうごふんかん.",
+      "note": "Can take かん to state the length clearly: じゅうごふんかん.",
       "sourceOrder": 2316
     },
     {
@@ -792,8 +787,11 @@
       "category": "Time",
       "target": "ごふん",
       "pronunciation": "go-fun",
-      "note": "Add かん to give a length of time: ごふんかん.",
-      "sourceOrder": 2285
+      "note": "Can take かん to state the length clearly: ごふんかん.",
+      "sourceOrder": 2285,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3-extras/five-minutes (same target and sense); the ぷん sound change stays on にじゅっぷん and さんじゅっぷん"
     },
     {
       "id": "sanjuppun",
@@ -801,7 +799,7 @@
       "category": "Time",
       "target": "さんじゅっぷん",
       "pronunciation": "sanjup-pun",
-      "note": "Sound change: ふん (fun) becomes ぷん (pun) after さんじゅっ (sanjup). Add かん to give a length of time: さんじゅっぷんかん.",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after さんじゅっ (sanjup). Can take かん to state the length clearly: さんじゅっぷんかん.",
       "sourceOrder": 2369
     },
     {
@@ -810,8 +808,11 @@
       "category": "Time",
       "target": "じゅっぷん",
       "pronunciation": "jup-pun",
-      "note": "Sound change: ふん (fun) becomes ぷん (pun) after じゅっ (jup). Add かん to give a length of time: じゅっぷんかん.",
-      "sourceOrder": 2300
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after じゅっ (jup). Can take かん to state the length clearly: じゅっぷんかん.",
+      "sourceOrder": 2300,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3-extras/ten-minutes (same target and sense); the ぷん sound change stays on にじゅっぷん and さんじゅっぷん"
     },
     {
       "id": "nijuugofun",
@@ -819,7 +820,7 @@
       "category": "Time",
       "target": "にじゅうごふん",
       "pronunciation": "nijūgo-fun",
-      "note": "Add かん to give a length of time: にじゅうごふんかん.",
+      "note": "Can take かん to state the length clearly: にじゅうごふんかん.",
       "sourceOrder": 2351
     },
     {
@@ -828,7 +829,7 @@
       "category": "Time",
       "target": "にじゅっぷん",
       "pronunciation": "nijup-pun",
-      "note": "Sound change: ふん (fun) becomes ぷん (pun) after にじゅっ (nijup). Add かん to give a length of time: にじゅっぷんかん.",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after にじゅっ (nijup). Can take かん to state the length clearly: にじゅっぷんかん.",
       "sourceOrder": 2334
     },
     {
@@ -837,7 +838,7 @@
       "category": "Time",
       "target": "〜か",
       "pronunciation": "ka",
-      "note": "Also 〜にち, depending on the number. Add かん to give a length of time.",
+      "note": "Also 〜にち, depending on the number. Can take かん to state the length clearly.",
       "sourceOrder": 2929,
       "excluded": true,
       "excludedBy": "preflight-placeholder-target",
@@ -877,7 +878,7 @@
       "target": "ふつか",
       "pronunciation": "futsuka",
       "uncertain": true,
-      "note": "Two to ten days use the native か reading (ふつか, みっか, よっか…), not にち. Add かん to give a length of time: ふつかかん.",
+      "note": "Two to ten days use the native か reading (ふつか, みっか, よっか…), not にち. Can take かん to state the length clearly: ふつかかん.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
       "sourceOrder": 2436,
       "hint": "a length of time, not a date",
@@ -903,7 +904,7 @@
       "target": "いちにち",
       "pronunciation": "ichi-nichi",
       "sourceOrder": 2407,
-      "note": "Irregular reading. Not to be confused with ついたち (tsuitachi), the 1st of the month from Lesson 7.",
+      "note": "Uses にち, unlike two to ten days (ふつか, みっか…). Not to be confused with ついたち (tsuitachi), the 1st of the month from Lesson 7.",
       "hint": "a length of time, not a date"
     },
     {
@@ -1016,7 +1017,7 @@
       "category": "Time",
       "target": "いっしゅうかん",
       "pronunciation": "is-shūkan",
-      "note": "Irregular sound change: いち (ichi) becomes いっ (is-), so it is いっしゅうかん (is-shūkan), not いちしゅうかん.",
+      "note": "Sound change: いち (ichi) becomes いっ (is-), so it is いっしゅうかん (is-shūkan), not いちしゅうかん.",
       "sourceOrder": 2411
     },
     {
@@ -1057,7 +1058,7 @@
       "category": "Time",
       "target": "かげつ",
       "pronunciation": "kagetsu",
-      "note": "Add かん to give a length of time.",
+      "note": "Can take かん to state the length clearly.",
       "sourceOrder": 2955
     },
     {
@@ -1066,7 +1067,7 @@
       "category": "Time",
       "target": "さんかげつ",
       "pronunciation": "san-kagetsu",
-      "note": "Add かん to give a length of time: さんかげつかん.",
+      "note": "Can take かん to state the length clearly: さんかげつかん.",
       "sourceOrder": 2479
     },
     {
@@ -1075,7 +1076,7 @@
       "category": "Time",
       "target": "いっかげつ",
       "pronunciation": "ik-kagetsu",
-      "note": "Irregular sound change: いち (ichi) becomes いっ (ik-), so it is いっかげつ (ik-kagetsu). Add かん to give a length of time: いっかげつかん.",
+      "note": "Sound change: いち (ichi) becomes いっ (ik-), so it is いっかげつ (ik-kagetsu). Can take かん to state the length clearly: いっかげつかん.",
       "sourceOrder": 2418
     },
     {
@@ -1084,7 +1085,7 @@
       "category": "Time",
       "target": "ろっかげつ",
       "pronunciation": "rok-kagetsu",
-      "note": "Irregular sound change: ろく (roku) becomes ろっ (rok-), so it is ろっかげつ (rok-kagetsu). Add かん to give a length of time: ろっかげつかん.",
+      "note": "Sound change: ろく (roku) becomes ろっ (rok-), so it is ろっかげつ (rok-kagetsu). Can take かん to state the length clearly: ろっかげつかん.",
       "sourceOrder": 2571
     },
     {
@@ -1093,7 +1094,7 @@
       "category": "Time",
       "target": "にかげつ",
       "pronunciation": "ni-kagetsu",
-      "note": "Add かん to give a length of time: にかげつかん.",
+      "note": "Can take かん to state the length clearly: にかげつかん.",
       "sourceOrder": 2449
     },
     {
@@ -1102,7 +1103,7 @@
       "category": "Time",
       "target": "ごかげつ",
       "pronunciation": "go-kagetsu",
-      "note": "Add かん to give a length of time: ごかげつかん.",
+      "note": "Can take かん to state the length clearly: ごかげつかん.",
       "sourceOrder": 2541
     },
     {
@@ -1111,7 +1112,7 @@
       "category": "Time",
       "target": "よんかげつ",
       "pronunciation": "yon-kagetsu",
-      "note": "Add かん to give a length of time: よんかげつかん.",
+      "note": "Can take かん to state the length clearly: よんかげつかん.",
       "sourceOrder": 2511
     },
     {
@@ -1120,7 +1121,7 @@
       "category": "Time",
       "target": "〜ねん",
       "pronunciation": "nen",
-      "note": "Add かん to give a length of time.",
+      "note": "Can take かん to state the length clearly.",
       "sourceOrder": 2970,
       "excluded": true,
       "excludedBy": "preflight-placeholder-target",
@@ -1132,7 +1133,7 @@
       "category": "Time",
       "target": "さんねん",
       "pronunciation": "san-nen",
-      "note": "Add かん to give a length of time: さんねんかん.",
+      "note": "Can take かん to state the length clearly: さんねんかん.",
       "sourceOrder": 2488
     },
     {
@@ -1141,7 +1142,7 @@
       "category": "Time",
       "target": "いちねん",
       "pronunciation": "ichi-nen",
-      "note": "Add かん to give a length of time: いちねんかん. This ねん counts years; the ねん from Lesson 7 names a year.",
+      "note": "Can take かん to state the length clearly: いちねんかん. This ねん counts years; the ねん from Lesson 7 names a year.",
       "sourceOrder": 2427
     },
     {
@@ -1150,7 +1151,7 @@
       "category": "Time",
       "target": "ろくねん",
       "pronunciation": "roku-nen",
-      "note": "Add かん to give a length of time: ろくねんかん.",
+      "note": "Can take かん to state the length clearly: ろくねんかん.",
       "sourceOrder": 2580
     },
     {
@@ -1159,7 +1160,7 @@
       "category": "Time",
       "target": "にねん",
       "pronunciation": "ni-nen",
-      "note": "Add かん to give a length of time: にねんかん.",
+      "note": "Can take かん to state the length clearly: にねんかん.",
       "sourceOrder": 2457
     },
     {
@@ -1168,7 +1169,7 @@
       "category": "Time",
       "target": "ごねん",
       "pronunciation": "go-nen",
-      "note": "Add かん to give a length of time: ごねんかん.",
+      "note": "Can take かん to state the length clearly: ごねんかん.",
       "sourceOrder": 2549
     },
     {
@@ -1177,7 +1178,7 @@
       "category": "Time",
       "target": "よねん",
       "pronunciation": "yo-nen",
-      "note": "Says よ, not よん. Add かん to give a length of time: よねんかん.",
+      "note": "Says よ, not よん. Can take かん to state the length clearly: よねんかん.",
       "sourceOrder": 2520
     },
     {
@@ -1187,7 +1188,7 @@
       "target": "さんじかんはん",
       "pronunciation": "san-jikan han",
       "sourceOrder": 2844,
-      "note": "はん comes after the counter, and かん is then left out."
+      "note": "はん comes after the counter."
     },
     {
       "id": "ichinen-han",
@@ -1195,7 +1196,8 @@
       "category": "Time",
       "target": "いちねんはん",
       "pronunciation": "ichi-nen han",
-      "sourceOrder": 2869
+      "sourceOrder": 2869,
+      "note": "はん comes after the counter, and the optional かん is left out: いちねんはん, not いちねんかんはん."
     }
   ]
 }

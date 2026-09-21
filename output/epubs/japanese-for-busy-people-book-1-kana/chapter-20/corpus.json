@@ -71,7 +71,7 @@
       "target": "かん",
       "english": "Optional suffix for a period of time",
       "category": "Grammar & Function Words",
-      "note": "The chart writes it in brackets. Add it when you want to state a period of time clearly, as in ごふんかん. It is not added after はん (さんじかんはん).",
+      "note": "The chart writes it in brackets. Add it when you want to state a period of time clearly, as in ごふんかん. It is not added before はん (いちねんはん).",
       "sourceOrder": 629
     },
     {
@@ -134,7 +134,7 @@
       "target": "でます",
       "english": "To leave",
       "category": "Transport",
-      "note": "Takes を for the place you leave.",
+      "note": "Takes を for the place you leave. Regular 2.",
       "sourceOrder": 1382
     },
     {
@@ -171,7 +171,7 @@
       "target": "おります",
       "english": "To get off",
       "category": "Transport",
-      "note": "The vehicle takes を.",
+      "note": "The vehicle takes を. Regular 2.",
       "sourceOrder": 1241
     },
     {
@@ -267,8 +267,7 @@
       "target": "のって",
       "english": "Get on, take (て-form)",
       "category": "Transport",
-      "uncertain": true,
-      "reviewNote": "The book prints the て-form here, but て-form is not in this deck's configured verb forms. Keep or drop as the owner decides.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3122
     },
     {
@@ -295,8 +294,7 @@
       "english": "Get off (て-form)",
       "category": "Transport",
       "note": "R2 verb",
-      "uncertain": true,
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3138
     },
     {
@@ -323,8 +321,7 @@
       "english": "Leave (て-form)",
       "category": "Transport",
       "note": "R2 verb",
-      "uncertain": true,
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3151
     },
     {
@@ -349,8 +346,7 @@
       "target": "ついて",
       "english": "Arrive (て-form)",
       "category": "Transport",
-      "uncertain": true,
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3165
     },
     {
@@ -375,8 +371,7 @@
       "target": "かかって",
       "english": "Take [time] (て-form)",
       "category": "Time",
-      "uncertain": true,
-      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3186
     },
     {
@@ -808,7 +803,7 @@
       "target": "〜ふん",
       "english": "…minutes",
       "category": "Time",
-      "note": "Also 〜ぷん, depending on the number. Add かん to give a length of time.",
+      "note": "Also 〜ぷん, depending on the number. Can take かん to state the length clearly.",
       "sourceOrder": 2911,
       "excluded": true,
       "excludedBy": "backward-dedup",
@@ -856,7 +851,7 @@
       "target": "じゅうごふん",
       "english": "Fifteen minutes",
       "category": "Time",
-      "note": "Add かん to give a length of time: じゅうごふんかん.",
+      "note": "Can take かん to state the length clearly: じゅうごふんかん.",
       "sourceOrder": 2316
     },
     {
@@ -864,15 +859,18 @@
       "target": "ごふん",
       "english": "Five minutes",
       "category": "Time",
-      "note": "Add かん to give a length of time: ごふんかん.",
-      "sourceOrder": 2285
+      "note": "Can take かん to state the length clearly: ごふんかん.",
+      "sourceOrder": 2285,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3-extras/five-minutes (same target and sense); the ぷん sound change stays on にじゅっぷん and さんじゅっぷん"
     },
     {
       "id": "sanjuppun",
       "target": "さんじゅっぷん",
       "english": "Thirty minutes",
       "category": "Time",
-      "note": "Sound change: ふん (fun) becomes ぷん (pun) after さんじゅっ (sanjup). Add かん to give a length of time: さんじゅっぷんかん.",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after さんじゅっ (sanjup). Can take かん to state the length clearly: さんじゅっぷんかん.",
       "sourceOrder": 2369
     },
     {
@@ -880,15 +878,18 @@
       "target": "じゅっぷん",
       "english": "Ten minutes",
       "category": "Time",
-      "note": "Sound change: ふん (fun) becomes ぷん (pun) after じゅっ (jup). Add かん to give a length of time: じゅっぷんかん.",
-      "sourceOrder": 2300
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after じゅっ (jup). Can take かん to state the length clearly: じゅっぷんかん.",
+      "sourceOrder": 2300,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3-extras/ten-minutes (same target and sense); the ぷん sound change stays on にじゅっぷん and さんじゅっぷん"
     },
     {
       "id": "nijuugofun",
       "target": "にじゅうごふん",
       "english": "Twenty-five minutes",
       "category": "Time",
-      "note": "Add かん to give a length of time: にじゅうごふんかん.",
+      "note": "Can take かん to state the length clearly: にじゅうごふんかん.",
       "sourceOrder": 2351
     },
     {
@@ -896,7 +897,7 @@
       "target": "にじゅっぷん",
       "english": "Twenty minutes",
       "category": "Time",
-      "note": "Sound change: ふん (fun) becomes ぷん (pun) after にじゅっ (nijup). Add かん to give a length of time: にじゅっぷんかん.",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after にじゅっ (nijup). Can take かん to state the length clearly: にじゅっぷんかん.",
       "sourceOrder": 2334
     },
     {
@@ -904,7 +905,7 @@
       "target": "〜か",
       "english": "…days",
       "category": "Time",
-      "note": "Also 〜にち, depending on the number. Add かん to give a length of time.",
+      "note": "Also 〜にち, depending on the number. Can take かん to state the length clearly.",
       "sourceOrder": 2929,
       "excluded": true,
       "excludedBy": "preflight-placeholder-target",
@@ -953,7 +954,7 @@
       "target": "ふつか",
       "english": "Two days",
       "category": "Time",
-      "note": "Two to ten days use the native か reading (ふつか, みっか, よっか…), not にち. Add かん to give a length of time: ふつかかん.",
+      "note": "Two to ten days use the native か reading (ふつか, みっか, よっか…), not にち. Can take かん to state the length clearly: ふつかかん.",
       "sourceOrder": 2436,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
@@ -978,7 +979,7 @@
       "english": "One day",
       "category": "Time",
       "sourceOrder": 2407,
-      "note": "Irregular reading. Not to be confused with ついたち (tsuitachi), the 1st of the month from Lesson 7.",
+      "note": "Uses にち, unlike two to ten days (ふつか, みっか…). Not to be confused with ついたち (tsuitachi), the 1st of the month from Lesson 7.",
       "hint": "a length of time, not a date"
     },
     {
@@ -1089,7 +1090,7 @@
       "target": "いっしゅうかん",
       "english": "One week",
       "category": "Time",
-      "note": "Irregular sound change: いち (ichi) becomes いっ (is-), so it is いっしゅうかん (is-shūkan), not いちしゅうかん.",
+      "note": "Sound change: いち (ichi) becomes いっ (is-), so it is いっしゅうかん (is-shūkan), not いちしゅうかん.",
       "sourceOrder": 2411
     },
     {
@@ -1125,7 +1126,7 @@
       "target": "かげつ",
       "english": "…months",
       "category": "Time",
-      "note": "Add かん to give a length of time.",
+      "note": "Can take かん to state the length clearly.",
       "sourceOrder": 2955
     },
     {
@@ -1143,7 +1144,7 @@
       "target": "さんかげつ",
       "english": "Three months",
       "category": "Time",
-      "note": "Add かん to give a length of time: さんかげつかん.",
+      "note": "Can take かん to state the length clearly: さんかげつかん.",
       "sourceOrder": 2479
     },
     {
@@ -1151,7 +1152,7 @@
       "target": "いっかげつ",
       "english": "One month",
       "category": "Time",
-      "note": "Irregular sound change: いち (ichi) becomes いっ (ik-), so it is いっかげつ (ik-kagetsu). Add かん to give a length of time: いっかげつかん.",
+      "note": "Sound change: いち (ichi) becomes いっ (ik-), so it is いっかげつ (ik-kagetsu). Can take かん to state the length clearly: いっかげつかん.",
       "sourceOrder": 2418
     },
     {
@@ -1159,7 +1160,7 @@
       "target": "ろっかげつ",
       "english": "Six months",
       "category": "Time",
-      "note": "Irregular sound change: ろく (roku) becomes ろっ (rok-), so it is ろっかげつ (rok-kagetsu). Add かん to give a length of time: ろっかげつかん.",
+      "note": "Sound change: ろく (roku) becomes ろっ (rok-), so it is ろっかげつ (rok-kagetsu). Can take かん to state the length clearly: ろっかげつかん.",
       "sourceOrder": 2571
     },
     {
@@ -1167,7 +1168,7 @@
       "target": "にかげつ",
       "english": "Two months",
       "category": "Time",
-      "note": "Add かん to give a length of time: にかげつかん.",
+      "note": "Can take かん to state the length clearly: にかげつかん.",
       "sourceOrder": 2449
     },
     {
@@ -1175,7 +1176,7 @@
       "target": "ごかげつ",
       "english": "Five months",
       "category": "Time",
-      "note": "Add かん to give a length of time: ごかげつかん.",
+      "note": "Can take かん to state the length clearly: ごかげつかん.",
       "sourceOrder": 2541
     },
     {
@@ -1183,7 +1184,7 @@
       "target": "よんかげつ",
       "english": "Four months",
       "category": "Time",
-      "note": "Add かん to give a length of time: よんかげつかん.",
+      "note": "Can take かん to state the length clearly: よんかげつかん.",
       "sourceOrder": 2511
     },
     {
@@ -1191,7 +1192,7 @@
       "target": "〜ねん",
       "english": "…years",
       "category": "Time",
-      "note": "Add かん to give a length of time.",
+      "note": "Can take かん to state the length clearly.",
       "sourceOrder": 2970,
       "excluded": true,
       "excludedBy": "preflight-placeholder-target",
@@ -1212,7 +1213,7 @@
       "target": "さんねん",
       "english": "Three years",
       "category": "Time",
-      "note": "Add かん to give a length of time: さんねんかん.",
+      "note": "Can take かん to state the length clearly: さんねんかん.",
       "sourceOrder": 2488
     },
     {
@@ -1220,7 +1221,7 @@
       "target": "いちねん",
       "english": "One year",
       "category": "Time",
-      "note": "Add かん to give a length of time: いちねんかん. This ねん counts years; the ねん from Lesson 7 names a year.",
+      "note": "Can take かん to state the length clearly: いちねんかん. This ねん counts years; the ねん from Lesson 7 names a year.",
       "sourceOrder": 2427
     },
     {
@@ -1228,7 +1229,7 @@
       "target": "ろくねん",
       "english": "Six years",
       "category": "Time",
-      "note": "Add かん to give a length of time: ろくねんかん.",
+      "note": "Can take かん to state the length clearly: ろくねんかん.",
       "sourceOrder": 2580
     },
     {
@@ -1236,7 +1237,7 @@
       "target": "にねん",
       "english": "Two years",
       "category": "Time",
-      "note": "Add かん to give a length of time: にねんかん.",
+      "note": "Can take かん to state the length clearly: にねんかん.",
       "sourceOrder": 2457
     },
     {
@@ -1244,7 +1245,7 @@
       "target": "ごねん",
       "english": "Five years",
       "category": "Time",
-      "note": "Add かん to give a length of time: ごねんかん.",
+      "note": "Can take かん to state the length clearly: ごねんかん.",
       "sourceOrder": 2549
     },
     {
@@ -1252,7 +1253,7 @@
       "target": "よねん",
       "english": "Four years",
       "category": "Time",
-      "note": "Says よ, not よん. Add かん to give a length of time: よねんかん.",
+      "note": "Says よ, not よん. Can take かん to state the length clearly: よねんかん.",
       "sourceOrder": 2520
     },
     {
@@ -1261,14 +1262,15 @@
       "english": "Three and a half hours",
       "category": "Time",
       "sourceOrder": 2844,
-      "note": "はん comes after the counter, and かん is then left out."
+      "note": "はん comes after the counter."
     },
     {
       "id": "ichinen-han",
       "target": "いちねんはん",
       "english": "One and a half years",
       "category": "Time",
-      "sourceOrder": 2869
+      "sourceOrder": 2869,
+      "note": "はん comes after the counter, and the optional かん is left out: いちねんはん, not いちねんかんはん."
     }
   ]
 }

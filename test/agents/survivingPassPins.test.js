@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { EPUB_PASS_PINS } from "../../src/corpus/epubLlmRunClaude.js";
 import { TRANSLATE_PASS_PINS } from "../../src/translate/runClaude.js";
+import { REMASTER_PASS_PINS } from "../../src/remaster/remasterRunners.js";
 import { MODEL_RANK } from "../../src/agents/roles.js";
 
 // v2's rule is that every agent a script invokes declares its own model and effort. The v2 roles are
@@ -13,12 +14,13 @@ import { MODEL_RANK } from "../../src/agents/roles.js";
 const FAMILIES = [
   ["epub", EPUB_PASS_PINS],
   ["translate", TRANSLATE_PASS_PINS],
+  ["remaster", REMASTER_PASS_PINS],
 ];
 
 test("every surviving pass names a model and an effort", () => {
   for (const [family, pins] of FAMILIES) {
     const scopes = Object.keys(pins);
-    assert.ok(scopes.length > 3, `${family}: sanity, the table was found`);
+    assert.ok(scopes.length >= 3, `${family}: sanity, the table was found`);
     for (const [scope, pin] of Object.entries(pins)) {
       assert.ok(pin.model, `${family}/${scope} declares no model`);
       assert.ok(pin.effort, `${family}/${scope} declares no effort`);
@@ -56,4 +58,9 @@ test("the forward-flag pass is the one that outranks, and it checks extraction",
   // Pinned here so the relationship survives someone editing the table without reading the comment.
   assert.deepEqual(EPUB_PASS_PINS.FORWARD_FLAGS.checks, ["EXTRACT"]);
   assert.equal(EPUB_PASS_PINS.FORWARD_FLAGS.model, "claude-opus-5");
+});
+
+test("the remaster's settle pass outranks the transcriber whose two readings it decides between", () => {
+  assert.deepEqual(REMASTER_PASS_PINS.SETTLE.checks, ["TRANSCRIBE"]);
+  assert.equal(REMASTER_PASS_PINS.SETTLE.model, "claude-opus-5");
 });

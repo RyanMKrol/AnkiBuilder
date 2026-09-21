@@ -408,7 +408,10 @@
       "category": "Transport",
       "target": "かとうさんは10じにホテルをでました。11じにくうこうにつきました",
       "uncertain": true,
-      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise III item 1 (ホテル). The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7."
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise III item 1 (ホテル). The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7.",
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "ホテル is taught nowhere in the deck: its only card, in Lesson 7, is excluded. Owner decision after gate 2."
     },
     {
       "id": "london-year-and-half",

@@ -77,10 +77,13 @@ contents page and running headers, and they were right.
 - **18 pages transcribed cleanly on the first attempt**, about 20 seconds each, 4 at a time.
 - **1 page (53) came back as two `<page>` elements**: the model corrected itself mid-reply. The
   parser now takes the last one, and the saved reply was re-read for free.
-- **1 page (46, the second dialogue) was refused.** The model declined to reproduce a copyrighted
-  textbook page word for word and wrote a summary instead. The parser rejected the summary, as it
-  should. See open question 1.
-- **Cross-check, after tuning: 2 of 19 pages flagged (50 and 54), and both were OCR errors.**
+- **1 page (46, the second dialogue) was refused on the first run.** The model declined to
+  reproduce a copyrighted textbook page word for word and wrote a summary instead. The parser
+  rejected the summary, as it should. At the owner's request the page was retried (up to three
+  attempts allowed) and the first retry transcribed it cleanly, matching the image line for line.
+  So refusals are not deterministic, and one in twenty pages on the first pass is the rate seen so
+  far. See open question 1.
+- **Cross-check, after tuning: 2 of 20 pages flagged (50 and 54), and both were OCR errors.**
   Pages 47 and 60 were compared with the image by eye and had no errors. On pages 45, 50, 52 and 54
   every disagreement was traced to its source, and each one was an OCR misread (the transcript
   agreed with the page's own English, e.g. "Ms. Hart" and "Canadian" for ハート and カナダ). The first
@@ -106,8 +109,9 @@ Found and fixed on the way:
 
 ## Open questions for the owner
 
-1. **Copyright refusals.** One page in twenty was refused. Options: (a) retry the page once
-   (refusals are not deterministic), (b) add honest context to the prompt: this is the owner's own
+1. **Copyright refusals.** One page in twenty was refused on the first pass, and a single retry
+   fixed it. Options for the whole book: (a) retry a refused page a small, fixed number of times
+   (what Lesson 1 did), (b) add honest context to the prompt: this is the owner's own
    copy, the output stays on this machine, and it is used only to make the owner's study cards,
    (c) accept a placeholder and let the extraction pass work without that page, or (d) change the
    design so the vision pass extracts study items from each page rather than transcribing it. We

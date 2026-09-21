@@ -549,12 +549,10 @@ ${modal}
     const sections = units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
-      // Book order when the cards carry it, which a phase-built BASE unit does. The stored order is
-      // pedagogical -- vocabulary before the sentences built on it -- and that is what reaches the
-      // deck; it is the wrong order for reading a chapter alongside the review, which is what this
-      // page is for. A unit with no `sourceOrder` (an extras unit, anything built before the field
-      // existed) is untouched, because `inSourceOrder` keeps unplaced cards in their existing order.
-      cards: inSourceOrder(u.cards).map((c) => ({
+      // STORED order, deliberately. Book order is for the REVIEW view, where a chapter is being read
+      // alongside the table; this is the read-only browse view of a finished deck, and it should
+      // show the order the deck is actually studied in (owner, 2026-09-21).
+      cards: u.cards.map((c) => ({
         ...c,
         unit: u.seq,
         stage: u.stage || "audio",

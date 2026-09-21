@@ -62,7 +62,7 @@
       "id": "torimasu-photo",
       "english": "Take (a photo)",
       "category": "Other",
-      "scene": null,
+      "scene": "with a camera",
       "hint": "used with しゃしんを (shashin o, \"photo\" plus the object marker) as the object",
       "note": "Combined as しゃしんを とります (shashin wo torimasu), \"take a photo.\"",
       "reviewNote": null,

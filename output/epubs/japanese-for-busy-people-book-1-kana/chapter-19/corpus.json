@@ -80,7 +80,7 @@
       "target": "について",
       "english": "About…",
       "category": "Grammar & Function Words",
-      "sourceOrder": 914,
+      "sourceOrder": 356,
       "note": "Attaches to a noun: にほんについて (Nihon ni tsuite), \"about Japan\". The noun comes first, unlike English \"about\".",
       "uncertain": true,
       "reviewNote": "Restored at gate 1 with the tilde stripped, on the final review's finding: the placeholder check had removed the only card for a headword the chapter glosses."
@@ -268,7 +268,7 @@
       "target": "め",
       "english": "Suffix that attaches to a number and turns it into an ordinal number",
       "category": "Numbers",
-      "sourceOrder": 3268,
+      "sourceOrder": 1607,
       "note": "Attach to a number to make an ordinal: ふたつ (futatsu) from Lesson 5 becomes ふたつめ (futatsume), \"second\".",
       "uncertain": true,
       "reviewNote": "Restored by the owner, then the tilde stripped at gate 1 so it is an utterance rather than notation — the same treatment as について. め now owns the ordinal explanation.",
@@ -374,11 +374,9 @@
       "english": "Take",
       "category": "Everyday Objects",
       "uncertain": true,
-      "reviewNote": "The table prints only \"ります\" in the ます-form column, evidently a dropped と; the て-form column reads とって. Supplied とります. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "reviewNote": "Kept at the owner's request. Chapter 11 already teaches とります as \"Take (a photo)\"; this card carries the general sense the chapter glosses as just \"take\". The scenes separate them on the Recognition front, but note this chapter's only concrete use (しゃしんをとります) is itself a photo, so the distinction is in the glosses rather than in the book's example.",
       "sourceOrder": 2198,
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-11/torimasu-photo (same target and sense)"
+      "scene": "picking something up or taking it with you"
     },
     {
       "id": "te-form-totte",

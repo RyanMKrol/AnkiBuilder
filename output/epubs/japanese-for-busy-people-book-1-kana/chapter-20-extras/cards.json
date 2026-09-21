@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "chapterNumber": 46,
     "chapterLabel": "Lesson 20: Going Places (3): How Do You Go There? (Extras)",
     "baseChapterLabel": "Lesson 20: Going Places (3): How Do You Go There?",
@@ -147,7 +147,9 @@
       "category": "Travel & Tourism",
       "target": "つきじですしをたべました",
       "pronunciation": "Tsukiji de sushi o tabemashita",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "ekiin-ask",

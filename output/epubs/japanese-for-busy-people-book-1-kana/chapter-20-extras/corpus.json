@@ -99,7 +99,9 @@
       "target": "つきじですしをたべました",
       "english": "I ate sushi in Tsukiji.",
       "category": "Travel & Tourism",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "ekiin-ask",

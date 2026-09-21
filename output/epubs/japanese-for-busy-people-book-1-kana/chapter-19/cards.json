@@ -264,20 +264,19 @@
       "id": "me-suffix-2",
       "english": "Suffix that attaches to a number and turns it into an ordinal number",
       "category": "Numbers",
-      "target": "〜め",
+      "target": "め",
       "pronunciation": "me",
       "note": "Attach to a number to make an ordinal: ふたつ (futatsu) from Lesson 5 becomes ふたつめ (futatsume), \"second\".",
-      "excluded": true,
-      "excludedBy": "preflight-placeholder-target",
-      "excludedReason": "Schematic target 〜め is notation, not an utterance; ふたつめ (futatsume) is carded and demonstrates the ordinal suffix."
+      "uncertain": true,
+      "reviewNote": "Restored by the owner, then the tilde stripped at gate 1 so it is an utterance rather than notation — the same treatment as について. め now owns the ordinal explanation.",
+      "scene": "attached to the end of a number"
     },
     {
       "id": "futatsume",
       "english": "Second",
       "category": "Numbers",
       "target": "ふたつめ",
-      "pronunciation": "futatsume",
-      "note": "Attach め (me) to a number to make an ordinal: ふたつ (futatsu) from Lesson 5 becomes ふたつめ (futatsume), \"second\". みっつ (mittsu) becomes みっつめ (mittsume), \"third\"."
+      "pronunciation": "futatsume"
     },
     {
       "id": "tokyo-tower",
@@ -552,16 +551,14 @@
       "hint": "Past of おくります"
     },
     {
-      "id": "kakimasu",
+      "id": "kakimasu-l19",
       "english": "Write",
       "category": "Work & Occupations",
       "target": "かきます",
       "pronunciation": "kakimasu",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (matched on english)",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-15/kakimasu-draw, chapter-17/kakimasu (same target and sense)"
+      "reviewNote": "Kept at the owner's request with a distinct id. NOTE: chapter-17/kakimasu already ships かきます \"Write\" with its own scene and a note distinguishing it from かきます \"Draw\" (Lesson 15). This card adds no new sense — the scene below is drawn from this chapter's exercises (なまえ/じゅうしょ) rather than a real difference in meaning. Exclude it if it reads as repetition.",
+      "scene": "writing your name or address on a form"
     },
     {
       "id": "azukarimasu",
@@ -590,8 +587,7 @@
       "pronunciation": "te kudasai",
       "note": "Attach ください (kudasai) to the て-form: まってください (matte kudasai). It is the pattern behind every ください card in Lesson 18, and it works for any verb.",
       "excluded": true,
-      "excludedBy": "preflight-placeholder-target",
-      "excludedReason": "Schematic target 〜てください is notation, not an utterance. The pattern is this chapter's grammar point and survives it: まがってください, ほうこくしてください and よろしくつたえてください all ship, and the extras unit drills it further."
+      "excludedBy": "human"
     },
     {
       "id": "magatte-kudasai",
@@ -816,7 +812,9 @@
       "category": "Everyday Objects",
       "target": "ごじゅうしょ",
       "pronunciation": "gojūsho",
-      "note": "じゅうしょ (jūsho) \"Address\" from Lesson 2 with the honorific prefix ご (go) from Lesson 9, used for the other person's address."
+      "note": "じゅうしょ (jūsho) \"Address\" from Lesson 2 with the honorific prefix ご (go) from Lesson 9, used for the other person's address.",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "unten-shu",

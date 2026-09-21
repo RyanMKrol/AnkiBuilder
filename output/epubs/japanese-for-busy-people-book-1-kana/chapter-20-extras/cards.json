@@ -30,7 +30,8 @@
         "reason": "phase 2 dedups its own miners' output"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -91,12 +92,16 @@
       "category": "Time",
       "target": "なんじにかいしゃにつきますか",
       "pronunciation": "nan-ji ni kaisha ni tsukimasu ka",
-      "audio": "9edf4bff5768bf70.mp3",
+      "audio": "what-time-arrive-at-office-manual-91701f95.mp3",
       "audioOriginal": "9edf4bff5768bf70.orig.mp3",
       "audioAuto": "9edf4bff5768bf70.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "9edf4bff5768bf70"
+      "audioTextHash": "9edf4bff5768bf70",
+      "audioManual": "what-time-arrive-at-office-manual-91701f95.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.964524828767123
+      }
     },
     {
       "id": "plane-arrive-osaka",
@@ -240,12 +245,10 @@
       "ttsText": "うちからえきまであるいてじゅうごふんぐらいかかります",
       "uncertain": true,
       "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "audio": "390fd0c215d5d93b.mp3",
-      "audioOriginal": "390fd0c215d5d93b.orig.mp3",
-      "audioAuto": "390fd0c215d5d93b.mp3",
-      "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "390fd0c215d5d93b"
+      "audioOriginal": "walk-fifteen-minutes-user-e5657d41.orig.mp3",
+      "audioAuto": "walk-fifteen-minutes-user-e5657d41.mp3",
+      "audioFilter": "standard",
+      "audio": "walk-fifteen-minutes-user-e5657d41.mp3"
     },
     {
       "id": "how-long-london-q",
@@ -445,7 +448,9 @@
       "audioOriginal": "c26ed7ee5f77036e.orig.mp3",
       "audioAuto": "c26ed7ee5f77036e.mp3",
       "audioMarked": true,
-      "audioTextHash": "c26ed7ee5f77036e"
+      "audioTextHash": "c26ed7ee5f77036e",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "stay-friends-house-three-days",
@@ -533,12 +538,16 @@
       "category": "Transport",
       "target": "ねぼうしました。いまうちをでました",
       "pronunciation": "nebō shimashita. ima uchi o demashita",
-      "audio": "3f12e30fd2c1f661.mp3",
+      "audio": "dlg-nebou-uchi-o-demashita-manual-17731d2c.mp3",
       "audioOriginal": "3f12e30fd2c1f661.orig.mp3",
       "audioAuto": "3f12e30fd2c1f661.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "3f12e30fd2c1f661"
+      "audioTextHash": "3f12e30fd2c1f661",
+      "audioManual": "dlg-nebou-uchi-o-demashita-manual-17731d2c.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.595571061643836
+      }
     },
     {
       "id": "stay-one-week",
@@ -639,7 +648,9 @@
       "audioOriginal": "e8ab0158c0968922.orig.mp3",
       "audioAuto": "e8ab0158c0968922.mp3",
       "audioMarked": true,
-      "audioTextHash": "e8ab0158c0968922"
+      "audioTextHash": "e8ab0158c0968922",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "leave-at-730",
@@ -825,11 +836,10 @@
       "ttsText": "すずきさんのうちからはくぶつかんまでさんじゅっぷんぐらいかかります",
       "uncertain": true,
       "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "audio": "a4df1eb12f1be3f2.mp3",
-      "audioOriginal": "a4df1eb12f1be3f2.orig.mp3",
-      "audioAuto": "a4df1eb12f1be3f2.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a4df1eb12f1be3f2"
+      "audioOriginal": "suzuki-house-to-museum-30-minutes-user-5d3f379e.orig.mp3",
+      "audioAuto": "suzuki-house-to-museum-30-minutes-user-5d3f379e.mp3",
+      "audioFilter": "standard",
+      "audio": "suzuki-house-to-museum-30-minutes-user-5d3f379e.mp3"
     },
     {
       "id": "how-long-london-a",

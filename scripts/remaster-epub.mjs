@@ -14,6 +14,7 @@
 //   node scripts/remaster-epub.mjs crosscheck <book.epub> [--entry <n>]
 //   node scripts/remaster-epub.mjs build      <book.epub> --out <remastered.epub> [--entry <n> ...]
 //                                             [--allow-missing]
+//   node scripts/remaster-epub.mjs verify     <book.epub> --book <remastered.epub> [--entry <n> ...]
 //
 // `check` is free and read-only. `ocr` is free (Apple Vision, local). `outline` is one text-only
 // model call. `transcribe` is one vision call per page and is the only step that costs real
@@ -34,6 +35,8 @@ import {
 } from "../src/remaster/pageTranscribe.js";
 import { crossCheckPage } from "../src/remaster/ocrCrossCheck.js";
 import { buildRemasteredEpub } from "../src/remaster/epubWriter.js";
+import { transcribeWithRetries } from "../src/remaster/transcribeRetry.js";
+import { verifyRemasteredEpub, formatVerification } from "../src/remaster/verifyRemaster.js";
 import { runOutlineClaude, runTranscribeClaude } from "../src/remaster/remasterRunners.js";
 import { writeFileAtomic } from "../src/util/atomicWrite.js";
 
@@ -51,7 +54,7 @@ function optionAll(name) {
 
 function usage() {
   console.error(
-    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|transcribe|crosscheck|build> <book.epub> [options]",
+    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|transcribe|crosscheck|build|verify> <book.epub> [options]",
   );
   process.exit(2);
 }
@@ -165,6 +168,26 @@ function describeCheck(check) {
   return `${check.flagged ? "FLAG " : ""}${parts.join("; ")}`;
 }
 
+function flaggedPages(paths, entries) {
+  const flagged = [];
+  for (const entry of entries) {
+    for (let number = entry.firstPage; number <= entry.lastPage; number++) {
+      const path = join(paths.checks, `${pageFileStem(number)}.json`);
+      if (existsSync(path) && JSON.parse(readFileSync(path, "utf-8")).flagged) flagged.push(number);
+    }
+  }
+  return flagged;
+}
+
+function reportVerification(builtPath, paths, entries, outline) {
+  const bookPages = outline.entries.at(-1).lastPage;
+  const result = verifyRemasteredEpub(builtPath, { expected: entries, bookPages });
+  for (const line of formatVerification(result, { flaggedPages: flaggedPages(paths, entries) })) {
+    log(line);
+  }
+  return result.problems.length === 0;
+}
+
 Object.assign(commands, {
   async outline() {
     const { paths, pages } = await workspace();
@@ -227,36 +250,57 @@ Object.assign(commands, {
         const started = Date.now();
         const rawPath = join(paths.transcripts, `${pageFileStem(number)}.raw.txt`);
         let page;
-        try {
-          // A reply already paid for is read again before paying for another: a parser fix
-          // (a self-correcting reply with two <page> elements) recovers it for nothing.
-          const saved = !force && existsSync(rawPath) ? readFileSync(rawPath, "utf-8") : null;
-          const reparsed = saved && tryParse(saved, number);
-          if (reparsed && !reparsed.problems.length) {
-            page = reparsed;
-          } else {
-            const raw = await runTranscribeClaude(prompt);
-            writeFileAtomic(rawPath, raw);
-            page = parsePageReply(raw, { pageNumber: number });
+        let attempts = 0;
+        // A reply already paid for is read again before paying for another: a parser fix
+        // (a self-correcting reply with two <page> elements) recovers it for nothing.
+        const saved = !force && existsSync(rawPath) ? readFileSync(rawPath, "utf-8") : null;
+        const reparsed = saved && tryParse(saved, number);
+        if (reparsed && !reparsed.problems.length) {
+          page = reparsed;
+        } else {
+          // Quota refusals propagate out of here and end the run: see transcribeRetry.js.
+          const result = await transcribeWithRetries({
+            pageNumber: number,
+            prompt,
+            run: runTranscribeClaude,
+          });
+          // Every rejected reply is kept under its attempt number, so a refusal leaves a record.
+          for (const failure of result.failures) {
+            if (failure.raw === null) continue;
+            writeFileAtomic(
+              join(paths.transcripts, `${pageFileStem(number)}.attempt-${failure.attempt}.txt`),
+              failure.raw,
+            );
           }
-        } catch (error) {
-          failures.push(`page ${number}: ${error.message}`);
-          log(`  page ${number}: FAILED ${error.message.split("\n")[0]}`);
-          continue;
+          attempts = result.attempts;
+          if (!result.page) {
+            const reasons = result.failures.map((f) => `#${f.attempt}: ${f.reason}`).join(" / ");
+            failures.push(`page ${number}: failed ${result.attempts} attempt(s): ${reasons}`);
+            log(`  page ${number}: FAILED after ${result.attempts} attempt(s)`);
+            continue;
+          }
+          writeFileAtomic(rawPath, result.raw);
+          page = result.page;
         }
         const seconds = Math.round((Date.now() - started) / 1000);
-        if (page.problems.length) {
-          // Kept as .raw.txt only: a malformed page must not reach the book.
-          failures.push(`page ${number}: ${page.problems.join("; ")}`);
-          log(`  page ${number}: MALFORMED (${page.problems.join("; ")}) ${seconds}s`);
-          continue;
-        }
+        const retried = attempts > 1 ? ` (attempt ${attempts})` : "";
         writeFileAtomic(transcriptPath(paths, number), serializeTranscript(page));
         const check = runCrossCheck(paths, number, page.body);
-        log(`  page ${number} (p.${page.printed || "-"}) ${seconds}s: ${describeCheck(check)}`);
+        log(
+          `  page ${number} (p.${page.printed || "-"}) ${seconds}s${retried}: ${describeCheck(check)}`,
+        );
       }
     };
-    await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, worker));
+    try {
+      await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, worker));
+    } catch (error) {
+      if (!error.quotaExhausted) throw error;
+      // Pages finished before the refusal are saved; re-running picks up the rest.
+      log(`\nSTOPPED: ${error.message.split("\n")[0]}`);
+      log("Transcripts already written are kept. Re-run the same command once the limit resets.");
+      process.exitCode = 1;
+      return;
+    }
     if (failures.length) {
       log(`\n${failures.length} page(s) not transcribed:`);
       for (const failure of failures) log(`  ${failure}`);
@@ -290,7 +334,6 @@ Object.assign(commands, {
     }
     const { hash, paths } = await workspace();
     const outline = loadOutline(paths);
-    const explicit = optionAll("entry").length > 0;
     const allowMissing = rest.includes("--allow-missing");
     const entries = [];
     for (const entry of selectedEntries(outline)) {
@@ -313,11 +356,14 @@ Object.assign(commands, {
         );
       } else if (missing.length) {
         const message = `"${entry.label}" is missing ${missing.length} page transcript(s): ${missing.join(", ")}`;
-        if (explicit) {
-          console.error(message);
-          process.exit(1);
-        }
-        continue;
+        // Named or not, an incomplete lesson stops the build. Skipping it quietly when no
+        // --entry was given produced a "whole book" with a lesson missing and no word about it.
+        console.error(message);
+        console.error(
+          "transcribe the missing pages, build only the lessons you want with --entry, or pass " +
+            "--allow-missing to put placeholders in",
+        );
+        process.exit(1);
       }
       // The outline's offset is measured over the whole book's margins; the model's own reading of
       // one page's number is not (it put page 51 at printed 51, not 42). Use the offset when the
@@ -348,7 +394,24 @@ Object.assign(commands, {
     for (const entry of entries) {
       log(`  ${entry.label} (pages ${entry.firstPage}-${entry.lastPage})`);
     }
+    // The build checks its own output end to end, every time: the file it just wrote, read back.
+    const ok = reportVerification(resolve(out), paths, entries, outline);
+    if (!ok) process.exitCode = 1;
     log(`next: node scripts/remaster-epub.mjs check ${out}`);
+  },
+
+  // Reads a built EPUB back against the outline. With no --entry it expects the WHOLE book, which
+  // is the check to run before onboarding; --entry narrows it to the lessons named.
+  async verify() {
+    const built = option("book");
+    if (!built || !existsSync(resolve(built))) {
+      console.error("verify needs --book <remastered.epub>");
+      process.exit(2);
+    }
+    const { paths } = await workspace();
+    const outline = loadOutline(paths);
+    const ok = reportVerification(resolve(built), paths, selectedEntries(outline), outline);
+    if (!ok) process.exitCode = 1;
   },
 });
 

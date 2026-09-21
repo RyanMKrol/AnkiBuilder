@@ -44,7 +44,9 @@ Free and read-only. It gives one verdict:
   separate procedure that spends money, one vision call per page, so tell the user what the check
   found and let them decide. The procedure and what it costs are in
   `docs/designs/image-epub-remaster.md` and the `remaster` section of `docs/PIPELINE.md`. Once the
-  book has been converted, onboard the EPUB the conversion writes, never the original.
+  book has been converted, onboard the EPUB the conversion writes, never the original, and only
+  after `node scripts/remaster-epub.mjs verify <original.epub> --book <converted.epub>` passes
+  for the whole book. Step 1's probe cannot tell a complete conversion from one missing a lesson.
 - **`blocked`**: neither path can use the book. The check says why. Report it; do not work around it.
 
 ## 1. Will this book work at all?

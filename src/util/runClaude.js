@@ -231,12 +231,22 @@ export async function runClaudeWithPromptAsync(
 
   const { model, effort, timeout } = resolvePinning(scopeEnvPrefix, defaults);
 
+  // The same breaker as the sync runner, and the same process-scoped state. The async runner had
+  // none, which was harmless while its only caller was one dashboard request at a time. The
+  // remaster transcribes hundreds of pages four at a time through it: without the breaker, a quota
+  // refusal on page 40 would be followed by every remaining page spawning, failing, and retrying.
+  if (quotaExhausted) throw new QuotaExhaustedError(quotaExhausted);
+
   let lastError;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       return await invokeOnceAsync(prompt, { model, effort, timeout, maxBuffer, spawnImpl });
     } catch (error) {
       lastError = error;
+      if (looksLikeQuotaExhaustion(error.message)) {
+        quotaExhausted = error.message;
+        throw new QuotaExhaustedError(error.message);
+      }
     }
   }
   throw lastError;

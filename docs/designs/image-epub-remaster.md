@@ -107,6 +107,29 @@ Found and fixed on the way:
 - The build stamped the current time into the EPUB, so every rebuild had a new hash and would have
   registered as a new book. It is now deterministic.
 
+## How a missing page is caught
+
+Asked after the Lesson 1 run: would we notice if pages went missing? At that point, only partly.
+Each step checked its own output, but nothing checked the finished file, and a whole-book build
+skipped an incomplete lesson without saying so. That is now closed. The guards, in order:
+
+| Where a page could go missing                                                                | What catches it                                                                                        |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| The outline leaves a page out of every lesson                                                | `parseOutline` refuses anything but every page once, in order                                          |
+| The model refuses a page or returns something unusable                                       | retried up to 3 times with the same prompt; still failing, the page is reported and has no transcript  |
+| A page never gets a transcript                                                               | `build` refuses the lesson (named or not) unless `--allow-missing`, which writes a visible placeholder |
+| The built file lacks a page, a lesson, or has a placeholder, a repeat or a page out of order | `verify` reads the EPUB back against the outline, page by page; `build` runs it on its own output      |
+| A transcript exists but drops part of its page                                               | the OCR cross-check flags it, if the drop is large enough                                              |
+
+The first four are exact: they count page numbers, so a missing page cannot pass them. Tests cover
+each case, and on the real Lesson 1 file a copy with page 50 deleted fails `verify` while `check`
+still calls it `native`.
+
+The last one is the weak point. The cross-check compares character counts with an OCR that is
+itself noisy on this book, so the thresholds are set to catch a dropped table row or paragraph, not
+a single word or line. A transcript missing one short line would most likely pass. Proofreading
+against the image is the only complete answer, and the flagged pages are where to start.
+
 ## Open questions for the owner
 
 1. **Copyright refusals.** One page in twenty was refused on the first pass, and a single retry

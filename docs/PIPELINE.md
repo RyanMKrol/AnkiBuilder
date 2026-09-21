@@ -206,12 +206,22 @@ are separate subcommands so each paid one can be checked before the next:
 - `transcribe --entry <n>`: one Claude vision call per page (`docs/remaster-page-prompt.md`,
   pinned in `REMASTER_PASS_PINS`), writing XHTML with `<ruby>` for furigana and
   `class="vocabulary"` on vocabulary tables. The model is never shown the OCR, so the two
-  readings stay independent. A saved reply is re-read before a page is paid for again.
+  readings stay independent. A saved reply is re-read before a page is paid for again. A reply
+  that cannot be used (a refusal, a summary, broken markup) is asked again with the same prompt, up
+  to 3 attempts (`src/remaster/transcribeRetry.js`), and each rejected reply is kept as
+  `page-NNN.attempt-N.txt`. A usage-limit refusal is not retried: it stops the run, and the async
+  runner's breaker keeps the remaining pages from spawning.
 - `crosscheck`: counts kana, kanji and English words in each transcript against the OCR, ignoring
   order, and flags a page that dropped or invented text (`src/remaster/ocrCrossCheck.js`).
 - `build --out <file>`: one XHTML file per outline entry plus a nav document. The output is
-  deterministic, so the same transcripts give the same bytes and the same library hash.
-  `--allow-missing` puts a visible placeholder where a page has no transcript.
+  deterministic, so the same transcripts give the same bytes and the same library hash. A lesson
+  with a missing page stops the build, whether or not it was named with `--entry`;
+  `--allow-missing` puts a visible placeholder in instead.
+- `verify --book <file>`: reads the built EPUB back and checks every page of the outline is in it
+  exactly once, in its lesson, in order, with no placeholders (`src/remaster/verifyRemaster.js`).
+  With no `--entry` it expects the whole book. `build` runs it on its own output every time.
+  `check` cannot do this job: a book missing a lesson is still a readable book, so it says
+  `native`.
 
 Everything lives under `.anki-builder/remaster/<source hash>/`, which is gitignored. Transcripts are
 a commercial book's text and this repository is public, so none of them is ever committed. Design,

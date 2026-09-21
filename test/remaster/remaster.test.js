@@ -14,6 +14,11 @@ import { parsePageReply, xhtmlProblems } from "../../src/remaster/pageTranscribe
 import { crossCheckPage, transcriptParts } from "../../src/remaster/ocrCrossCheck.js";
 import { buildRemasteredEpub } from "../../src/remaster/epubWriter.js";
 import { remasterRoot } from "../../src/remaster/workspace.js";
+import {
+  transcribeWithRetries,
+  MAX_TRANSCRIBE_ATTEMPTS,
+} from "../../src/remaster/transcribeRetry.js";
+import { verifyRemasteredEpub, formatVerification } from "../../src/remaster/verifyRemaster.js";
 
 function withTempDir(fn) {
   const dir = mkdtempSync(join(tmpdir(), "anki-builder-remaster-"));
@@ -366,5 +371,164 @@ test("each page keeps its provenance in the chapter file", () => {
     );
     assert.match(chapter, /<title>Lesson 1: New Friends<\/title>/);
     assert.ok(!existsSync(join(dir, "OEBPS")), "nothing unpacked beside the book");
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Retries
+// ---------------------------------------------------------------------------------------------
+
+const goodReply = (n) => `<page number="${n}" printed=""><p>はじめまして。</p></page>`;
+const refusal =
+  "I can't transcribe this page word for word, because it's a copyrighted textbook page.";
+
+test("a refused page is asked again with the same prompt, and the refusal is kept", async () => {
+  const prompts = [];
+  const replies = [refusal, goodReply(46)];
+  const result = await transcribeWithRetries({
+    pageNumber: 46,
+    prompt: "PROMPT",
+    run: async (prompt) => {
+      prompts.push(prompt);
+      return replies.shift();
+    },
+  });
+  assert.equal(result.attempts, 2);
+  assert.equal(result.page.body, "<p>はじめまして。</p>");
+  assert.deepEqual(prompts, ["PROMPT", "PROMPT"], "retrying is not rewording");
+  assert.equal(result.failures[0].raw, refusal);
+  assert.match(result.failures[0].reason, /no <page> element/);
+});
+
+test("a page that fails every attempt stops at the limit and says why each time", async () => {
+  let calls = 0;
+  const result = await transcribeWithRetries({
+    pageNumber: 46,
+    prompt: "P",
+    run: async () => {
+      calls++;
+      if (calls === 2) throw new Error("claude -p timed out after 600000 ms");
+      return calls === 3 ? '<page number="46"><table></page>' : refusal;
+    },
+  });
+  assert.equal(calls, MAX_TRANSCRIBE_ATTEMPTS);
+  assert.equal(result.page, null);
+  assert.deepEqual(
+    result.failures.map((f) => [f.attempt, f.raw === null]),
+    [
+      [1, false],
+      [2, true],
+      [3, false],
+    ],
+  );
+  assert.match(result.failures[1].reason, /timed out/);
+  assert.match(result.failures[2].reason, /unclosed: <table>/);
+});
+
+test("a usage-limit refusal is not retried: it ends the run", async () => {
+  let calls = 0;
+  const quota = Object.assign(new Error("usage limit appears to be reached"), {
+    quotaExhausted: true,
+  });
+  await assert.rejects(
+    () =>
+      transcribeWithRetries({
+        pageNumber: 46,
+        prompt: "P",
+        run: async () => {
+          calls++;
+          throw quota;
+        },
+      }),
+    /usage limit/,
+  );
+  assert.equal(calls, 1);
+});
+
+// ---------------------------------------------------------------------------------------------
+// End-to-end verification of the written book
+// ---------------------------------------------------------------------------------------------
+
+const lesson1 = { number: 11, label: "Lesson 1: New Friends", firstPage: 45, lastPage: 46 };
+const lesson2 = { number: 12, label: "Lesson 2: Shopping", firstPage: 47, lastPage: 47 };
+
+function bookOf(dir, entries, name = "book.epub") {
+  const path = join(dir, name);
+  writeFileSync(
+    path,
+    buildRemasteredEpub(entries, {
+      title: "T",
+      language: "ja",
+      sourceHash: "0123456789abcdef",
+      modified: "2000-01-01T00:00:00Z",
+    }),
+  );
+  return path;
+}
+
+const pagesFor = (entry, body = (n) => `<p>ページ${n}</p>`) =>
+  Array.from({ length: entry.lastPage - entry.firstPage + 1 }, (_, i) => ({
+    number: entry.firstPage + i,
+    printed: "",
+    body: body(entry.firstPage + i),
+  }));
+
+test("verify passes a complete book and counts its pages", () => {
+  withTempDir((dir) => {
+    const path = bookOf(dir, [
+      { ...lesson1, pages: pagesFor(lesson1) },
+      { ...lesson2, pages: pagesFor(lesson2) },
+    ]);
+    const result = verifyRemasteredEpub(path, { expected: [lesson1, lesson2], bookPages: 3 });
+    assert.deepEqual(result.problems, []);
+    assert.equal(result.pagesPresent, 3);
+    assert.match(formatVerification(result)[0], /ok.*the whole book \(3 pages\)/);
+  });
+});
+
+test("verify catches a page that is missing from a lesson", () => {
+  withTempDir((dir) => {
+    const pages = pagesFor(lesson1).filter((p) => p.number !== 46);
+    const path = bookOf(dir, [{ ...lesson1, pages }]);
+    const { problems } = verifyRemasteredEpub(path, { expected: [lesson1], bookPages: 2 });
+    assert.deepEqual(problems, ['"Lesson 1: New Friends" is missing page(s) 46']);
+  });
+});
+
+test("verify catches a placeholder, a repeated page and a page out of order", () => {
+  withTempDir((dir) => {
+    const placeholder = pagesFor(lesson1, (n) =>
+      n === 46 ? '<p class="missing-page">[Page 46 was not transcribed.]</p>' : "<p>あ</p>",
+    );
+    const repeated = [...pagesFor(lesson1), pagesFor(lesson1)[0]];
+    const reversed = [...pagesFor(lesson1)].reverse();
+    for (const [pages, message] of [
+      [placeholder, /page 46 is a placeholder/],
+      [repeated, /appear more than once: 45/],
+      [reversed, /out of order: 46, 45/],
+    ]) {
+      const path = bookOf(dir, [{ ...lesson1, pages }]);
+      const { problems } = verifyRemasteredEpub(path, { expected: [lesson1], bookPages: 2 });
+      assert.match(problems.join("\n"), message);
+    }
+  });
+});
+
+test("verify catches a whole lesson missing from a book that claims to be complete", () => {
+  withTempDir((dir) => {
+    const path = bookOf(dir, [{ ...lesson1, pages: pagesFor(lesson1) }]);
+    const { problems } = verifyRemasteredEpub(path, { expected: [lesson1, lesson2], bookPages: 3 });
+    assert.match(problems[0], /nav lists 1 lesson\(s\).*expected 2/);
+    assert.equal(problems[1], '"Lesson 2: Shopping" has no chapter file');
+  });
+});
+
+test("a page with no text is noted, not failed: books have blank pages", () => {
+  withTempDir((dir) => {
+    const pages = pagesFor(lesson1, (n) => (n === 46 ? "" : "<p>あ</p>"));
+    const path = bookOf(dir, [{ ...lesson1, pages }]);
+    const result = verifyRemasteredEpub(path, { expected: [lesson1], bookPages: 2 });
+    assert.deepEqual(result.problems, []);
+    assert.match(result.notes[0], /page 46 has no text/);
   });
 });

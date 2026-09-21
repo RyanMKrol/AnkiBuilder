@@ -572,3 +572,35 @@ test("halving still terminates on a single failed item", async () => {
   assert.equal(calls, 2, "one attempt, one retry — a one-item set cannot halve further");
   assert.equal(errors.length, 1);
 });
+
+test("carries sourceOrder onto the card, including the zero offset", async () => {
+  // The base phase stamps `sourceOrder` on the corpus; translate builds each card from an explicit
+  // allowlist, so a field absent from the carry-over is dropped in silence. That is what happened to
+  // this one: the commit that added it backfilled chapter 17's cards by hand and never exercised
+  // this path, so the next two chapters built with the field on every corpus item and none of their
+  // cards. Nothing failed — a review table in pedagogical order looks exactly like one in book
+  // order — which is why it needs a test rather than a reader.
+  const corpus = baseCorpus([
+    { ...untranslated("a", "Alpha", "Greetings"), sourceOrder: 0 },
+    { ...untranslated("b", "Beta", "Greetings"), sourceOrder: 4120 },
+    untranslated("c", "Gamma", "Greetings"),
+  ]);
+
+  const { cards } = await translateCorpus(corpus, {
+    runClaude: () =>
+      JSON.stringify([
+        { id: "a", target: "A", pronunciation: "a" },
+        { id: "b", target: "B", pronunciation: "b" },
+        { id: "c", target: "C", pronunciation: "c" },
+      ]),
+  });
+
+  const byId = Object.fromEntries(cards.items.map((c) => [c.id, c]));
+  // Zero is the first character of the chapter, not "no position", so the carry-over tests the type
+  // rather than truthiness. A `if (src.sourceOrder)` here would drop exactly one card per chapter.
+  assert.equal(byId.a.sourceOrder, 0);
+  assert.equal(byId.b.sourceOrder, 4120);
+  // A card whose word appears nowhere in the chapter text — every te-form of Lesson 18, whose
+  // paradigm is printed only inside two images — carries no position and must not invent one.
+  assert.equal("sourceOrder" in byId.c, false);
+});

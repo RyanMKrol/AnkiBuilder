@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  REQUIRED_ANSWERS,
+  QUESTIONS,
+  MODES,
+  requiredAnswers,
   unansweredQuestions,
   assertAnswered,
   summarizeTranscripts,
@@ -12,7 +14,9 @@ import { roleYield } from "../../src/agents/learningPass.js";
 
 const roleYieldOf = (byRole) => roleYield({ byRole });
 
-const fullAnswers = Object.fromEntries(REQUIRED_ANSWERS.map((k) => [k, `answer for ${k}`]));
+const answersFor = (mode) =>
+  Object.fromEntries(requiredAnswers(mode).map((k) => [k, `answer for ${k}`]));
+const fullAnswers = answersFor("chapter");
 
 const respond = (payload) => () => JSON.stringify(payload);
 
@@ -170,4 +174,52 @@ test("a role that produced nothing does not sort ahead of one that produced badl
     },
   });
   assert.equal(ranked[0].role, "bad");
+});
+
+test("each mode asks its own questions, because the evidence differs", () => {
+  assert.deepEqual([...MODES].sort(), ["base", "chapter"]);
+  const base = requiredAnswers("base");
+  const chapter = requiredAnswers("chapter");
+  // The gate-1 question that only gate 1 can answer, and the one that needs a drill unit.
+  assert.ok(base.includes("coverage"), "base must ask what the chapter teaches but nothing cards");
+  assert.ok(!base.includes("dominantFrameVerdict"), "a base unit drills nothing");
+  assert.ok(chapter.includes("dominantFrameVerdict"));
+  assert.ok(!chapter.includes("coverage"), "by gate 3 nothing can be added, so coverage is moot");
+});
+
+test("an unknown mode is refused rather than silently defaulting", () => {
+  assert.throws(() => requiredAnswers("halfway"), /unknown final-review mode/);
+});
+
+test("base mode accepts base answers and records the mode it ran in", () => {
+  const review = reviewChapter({
+    chapterText: "the chapter",
+    targetLanguage: "ja",
+    mode: "base",
+    runClaude: respond({ answers: answersFor("base"), findings: [] }),
+  });
+  assert.equal(review.mode, "base");
+  assert.equal(review.verdict, "ready");
+});
+
+test("answers for the WRONG mode are rejected, not quietly accepted", () => {
+  assert.throws(
+    () =>
+      reviewChapter({
+        chapterText: "c",
+        targetLanguage: "ja",
+        mode: "chapter",
+        runClaude: respond({ answers: answersFor("base"), findings: [] }),
+      }),
+    /dominantFrameVerdict/,
+  );
+});
+
+test("every question has a non-empty prompt line, or the model is asked nothing", () => {
+  for (const mode of MODES) {
+    for (const [key, text] of QUESTIONS[mode]) {
+      assert.ok(key.length, `${mode} has a question with no key`);
+      assert.ok(text.length > 40, `${mode}/${key} has no usable question text`);
+    }
+  }
 });

@@ -56,6 +56,26 @@
         "at": "2026-09-20T20:47:24.928Z",
         "message": "chapter-18: \"うちあわせをします\" (Have a preparatory meeting) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "Chapter 18: the four 〜をします entries (プレゼン/ドライブ/かいぎ/うちあわせ) are each a single glossed row in the book's own VOCABULARY tables — noun+をします compound verbs, i.e. lexical entries, not sentences. Verified against the chapter text."
+      },
+      "chapter-19/arigatou-gozaimashita": {
+        "at": "2026-09-20T22:38:14.981Z",
+        "message": "chapter-19: \"ありがとうございました\" (Thank you very much (for what you did)) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 19: all four are rows in the book's own VOCABULARY blocks, not sentences. まがります is a plain verb caught on its ます ending; まがってください, おねがいできますか and ありがとうございました are each glossed as a single entry by the book. Verified against the chapter text."
+      },
+      "chapter-19/magarimasu": {
+        "at": "2026-09-20T22:38:14.981Z",
+        "message": "chapter-19: \"まがります\" (Turn) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 19: all four are rows in the book's own VOCABULARY blocks, not sentences. まがります is a plain verb caught on its ます ending; まがってください, おねがいできますか and ありがとうございました are each glossed as a single entry by the book. Verified against the chapter text."
+      },
+      "chapter-19/magatte-kudasai": {
+        "at": "2026-09-20T22:38:14.981Z",
+        "message": "chapter-19: \"まがってください\" (Please turn) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 19: all four are rows in the book's own VOCABULARY blocks, not sentences. まがります is a plain verb caught on its ます ending; まがってください, おねがいできますか and ありがとうございました are each glossed as a single entry by the book. Verified against the chapter text."
+      },
+      "chapter-19/onegai-dekimasu-ka": {
+        "at": "2026-09-20T22:38:14.981Z",
+        "message": "chapter-19: \"おねがいできますか\" (May I ask [you to do this]?) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Chapter 19: all four are rows in the book's own VOCABULARY blocks, not sentences. まがります is a plain verb caught on its ます ending; まがってください, おねがいできますか and ありがとうございました are each glossed as a single entry by the book. Verified against the chapter text."
       }
     }
   }

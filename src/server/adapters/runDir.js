@@ -86,6 +86,9 @@ export function toRenderCard(item) {
     // passed both (or is not an addition at all).
     additionStage: additionStage(item),
     additionAudioInherited: !!item.additionAudioInherited,
+    // Carried for the same reason as the corpus projection above: the review view sorts by it, and
+    // null-when-absent so a 0 offset is not confused with "no position".
+    sourceOrder: typeof item.sourceOrder === "number" ? item.sourceOrder : null,
   };
 }
 
@@ -132,6 +135,14 @@ export function toCorpusRenderCard(item) {
     excludedReason: item.excludedReason || "",
     uncertain: !!item.uncertain,
     aiSuggested: !!item.aiSuggested,
+    // Where this card's word sits in the chapter. Carried so the REVIEW view can sort by it; the
+    // stored order is pedagogical and is what reaches the deck, and nothing else re-orders on this.
+    //
+    // Null rather than "" or 0 when absent: 0 is the first character of the chapter, so a falsy
+    // default would put an unplaced card at the top instead of leaving it where it sat. Absent is
+    // normal — an extras unit is composed sentences that appear nowhere in the book, and a te-form
+    // printed only inside an image has no offset in the chapter's text either.
+    sourceOrder: typeof item.sourceOrder === "number" ? item.sourceOrder : null,
   };
 }
 

@@ -465,6 +465,17 @@ export async function translateCorpus(
     const backNote = src?.note ?? src?.cardNote;
     if (backNote) item.note = backNote;
     if (src?.reviewNote) item.reviewNote = src.reviewNote;
+    // Where the card's word sits in the chapter, stamped by the base phase so the review can be read
+    // alongside the book. Zero is a real offset — the first word of the chapter — so this tests the
+    // TYPE, not truthiness, unlike every line above it where a falsy value carries no information.
+    //
+    // Added 2026-09-21, after chapters 18 and 19 both built with the field on every corpus item and
+    // none of their cards. The commit that introduced `sourceOrder` stamped it in the phase and
+    // backfilled chapter 17's cards.json by hand, so the only unit that ever had it got it without
+    // this path running; the first real build after that silently dropped it. Nothing failed,
+    // because a review table in pedagogical order looks exactly like one in book order unless you
+    // read it against the chapter.
+    if (typeof src?.sourceOrder === "number") item.sourceOrder = src.sourceOrder;
   }
 
   // Cards follow corpus (study) order, whatever order the group/retry passes pushed them in —

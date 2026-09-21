@@ -35,7 +35,8 @@
       "note": "を (o) marks a direct object, a different job from お (o), the honorific prefix from Lesson 1 (おくに, okuni) — same-sounding syllable, unrelated grammar.",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (explicitly re-taught as its own dedicated vocabulary-table row (with its own grammar cross-reference))",
       "target": "を",
-      "uncertain": true
+      "uncertain": true,
+      "scene": "marking the thing the verb acts on"
     },
     {
       "id": "shimasu",

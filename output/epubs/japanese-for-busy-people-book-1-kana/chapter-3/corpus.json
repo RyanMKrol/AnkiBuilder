@@ -69,7 +69,8 @@
       "english": "until (particle)",
       "category": "Grammar & Function Words",
       "target": "まで",
-      "note": "Marks an ending point in time or place ('until'); pairs with から (kara, 'from') to state a range, as in しごとはくじからごじまでです (shigoto wa kuji kara goji made desu), 'work is from 9:00 to 5:00.'"
+      "note": "Marks an ending point in time or place ('until'); pairs with から (kara, 'from') to state a range, as in しごとはくじからごじまでです (shigoto wa kuji kara goji made desu), 'work is from 9:00 to 5:00.'",
+      "scene": "marking a point in time that something runs until"
     },
     {
       "id": "ni-ji-han",

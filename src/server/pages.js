@@ -9,8 +9,10 @@ import { join as pathJoin, dirname as pathDirname } from "path";
 import {
   escapeHtml,
   renderLessonSections,
+  renderFilterBar,
   DASH_PRELUDE_SCRIPT,
   EXPAND_COLLAPSE_SCRIPT,
+  REVIEW_FILTER_SCRIPT,
   DECK_EDIT_SCRIPT,
   REVIEW_EDIT_SCRIPT,
   ADDITIONS_REVIEW_SCRIPT,
@@ -510,12 +512,16 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
       extraHtml: `\n${buildBanner}${toolbar ? `\n<div class="bar">${toolbar}</div>` : ""}`,
     })}
 ${editable ? `<div id="deckctx" data-type="${escapeHtml(type)}" data-id="${escapeHtml(id)}" data-done="${anyDone ? "1" : "0"}"${chapterNumber != null ? ` data-chapter="${escapeHtml(String(chapterNumber))}"` : ""} hidden></div>` : ""}
+${renderFilterBar(sections)}
 ${sectionHtml}
 ${modal}
 <footer>Served locally by anki-builder. Audio streams from the deck's build folder.</footer>`;
     // Review renders lessons expanded with no expand/collapse buttons, so EXPAND_COLLAPSE_SCRIPT is
     // not needed here (it still drives the read-only Browse view below).
     const scripts = [];
+    // The row filters are a pure view over the table — no writes, no dependency on `editable` — so
+    // they load for a read-only review too.
+    scripts.push(REVIEW_FILTER_SCRIPT);
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);
     // The trim editor lives in the same editable audio review as Replace/Generate.
     if (canEdit) scripts.push(AUDIO_TRIM_SCRIPT);

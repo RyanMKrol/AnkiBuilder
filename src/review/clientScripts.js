@@ -809,3 +809,56 @@ document.querySelectorAll(".clear-claim").forEach((btn) => {
   });
 });
 `;
+
+/**
+ * The review page's row filters.
+ *
+ * Chips UNION rather than intersect: the question is "show me the flagged ones", so two chips on
+ * means both sets. Intersecting would make most pairs empty and read as a broken filter.
+ *
+ * A section whose every row is hidden is collapsed and dimmed rather than removed, because a unit
+ * vanishing from the page looks like a bug and the reviewer still needs to know it was there and
+ * had nothing matching.
+ *
+ * Nothing here writes: filtering is a view over the table, so a filtered row keeps its inline
+ * editors and its Exclude box and behaves exactly as it does unfiltered.
+ */
+export const REVIEW_FILTER_SCRIPT = `(function () {
+  var bar = document.getElementById("fbar");
+  if (!bar) return;
+  var chips = Array.prototype.slice.call(bar.querySelectorAll(".fchip[data-filter]"));
+  var clear = document.getElementById("fclear");
+  var count = document.getElementById("fcount");
+  var rows = function () { return document.querySelectorAll("tr.row[data-f]"); };
+
+  var apply = function () {
+    var on = chips.filter(function (c) { return c.classList.contains("on"); })
+                  .map(function (c) { return c.getAttribute("data-filter"); });
+    var shown = 0, total = 0;
+    rows().forEach(function (tr) {
+      total++;
+      var toks = (tr.getAttribute("data-f") || "").split(" ");
+      var keep = on.length === 0 || on.some(function (k) { return toks.indexOf(k) >= 0; });
+      tr.hidden = !keep;
+      if (keep) shown++;
+    });
+    // Renumber nothing: the # column is the card's position in the unit, and a filtered view that
+    // renumbers 1..n destroys the one thing that ties a row back to the full table.
+    document.querySelectorAll("details.lesson").forEach(function (d) {
+      var any = d.querySelector("tr.row[data-f]:not([hidden])");
+      d.classList.toggle("empty-filtered", !any);
+      if (on.length && any) d.open = true;
+    });
+    if (clear) clear.classList.toggle("on", on.length === 0);
+    if (count) count.textContent = on.length ? shown + " of " + total + " shown" : "";
+  };
+
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () { c.classList.toggle("on"); apply(); });
+  });
+  if (clear) clear.addEventListener("click", function () {
+    chips.forEach(function (c) { c.classList.remove("on"); });
+    apply();
+  });
+  apply();
+})();`;

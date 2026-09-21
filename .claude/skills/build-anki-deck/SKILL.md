@@ -762,6 +762,23 @@ exclude it here (or tell me the rows and I'll edit `cards.json`). Excluding a ca
 reversible `excluded` flag: the `audio` stage skips excluded cards (no TTS spent) and the deck build
 drops them.
 
+**Filter the table rather than scrolling it.** A chip bar above the review shows only the flags this
+page actually has, with a count on each: **Excluded**, **Cut by a script**, **Uncertain**,
+**AI-suggested**, **Has a review note**, and at the audio gate **Marker audible** and **No audio**.
+Chips union rather than intersect, so two of them on means both sets.
+
+Two of those are worth reaching for deliberately:
+
+- **Cut by a script** is the one the provenance badge exists for. A human exclusion is a decision
+  already made; a sweep's is one to re-check, and this is how you see only the second kind.
+- **No audio** means a SHIPPING card with no clip. Excluded cards never get one (the audio stage
+  skips them so no TTS is spent on a card that may be cut), so they are deliberately not counted —
+  otherwise the chip would just restate "Excluded".
+
+A chip renders only when at least one row matches it, so a clean unit shows no bar rather than a row
+of zeroes. Filtering is a view: a filtered row keeps its inline editors and its Exclude box, and the
+`#` column is never renumbered, because that number is what ties a row back to the full table.
+
 **Open the Card faces view too** (the "Card faces →" link in the review lede, or `/faces/...` with
 the same path). It renders every card through the deck's real templates and real CSS — both
 directions, front and back, click a header to flip. Read the two FRONTS side by side before you

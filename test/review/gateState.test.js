@@ -9,6 +9,8 @@ import {
   parseDuration,
   readUnitCards,
   GATE_EXIT,
+  watchStep,
+  REBUILD_GRACE_MS,
 } from "../../src/review/gateState.js";
 import { deckPathForDir } from "../../src/deck/deckFileName.js";
 
@@ -111,4 +113,29 @@ test("durations default to MINUTES, because every documented wait here is in min
   assert.equal(parseDuration("2h"), 2 * 3_600_000);
   assert.throws(() => parseDuration("soon"), /cannot read/);
   assert.throws(() => parseDuration("0m"), /positive/);
+});
+
+test("watchStep waits out a stale package for the rebuild, then reports it", () => {
+  // Lesson 20: the flag landed six seconds before the package, and the watcher exited 3 between them.
+  const stale = { status: "stale-package" };
+  const first = watchStep(stale, null, 1000);
+  assert.equal(first.action, "wait");
+  assert.equal(first.staleSince, 1000);
+  assert.equal(watchStep(stale, 1000, 1000 + REBUILD_GRACE_MS - 1).action, "wait");
+  assert.deepEqual(watchStep(stale, 1000, 1000 + REBUILD_GRACE_MS), {
+    action: "exit",
+    code: GATE_EXIT.stalePackage,
+  });
+});
+
+test("watchStep: the rebuild landing inside the grace window is a sign-off", () => {
+  assert.deepEqual(watchStep({ status: "signed-off" }, 1000, 5000), {
+    action: "exit",
+    code: GATE_EXIT.signedOff,
+  });
+  assert.deepEqual(watchStep({ status: "waiting" }, 1000, 5000), {
+    action: "poll",
+    staleSince: null,
+  });
+  assert.equal(watchStep({ status: "unreadable" }, null, 0).code, GATE_EXIT.unreadable);
 });

@@ -14,12 +14,20 @@
 //   0  signed off (gate 2: and the collection package really did rebuild)
 //   1  timed out with no sign-off
 //   2  the unit could not be read — this watch could never have fired (a bug, not patience)
-//   3  gate 2 only: marked done, but the package is missing or older than cards.json
+//   3  gate 2 only: marked done, but the package is missing or older than cards.json, and still
+//      is after a two-minute grace for the rebuild that Mark done starts after writing the flag
 //
 // It only ever READS. Setting a review flag to unblock a stage defeats the gate that keeps unseen
 // cards out of the deck, so this never writes one.
 import { resolve } from "path";
-import { gateState, parseDuration, formatDuration, GATE_EXIT } from "../src/review/gateState.js";
+import {
+  gateState,
+  parseDuration,
+  formatDuration,
+  GATE_EXIT,
+  REBUILD_GRACE_MS,
+  watchStep,
+} from "../src/review/gateState.js";
 
 const args = process.argv.slice(2);
 
@@ -89,21 +97,32 @@ console.log(
 const startedAt = Date.now();
 let lastHeartbeat = startedAt;
 
+let staleSince = null;
+
 while (Date.now() - startedAt < timeoutMs) {
   const state = gateState(runDir, gate);
+  const step = watchStep(state, staleSince, Date.now());
 
-  if (state.status === "unreadable") {
-    console.log(`🛑 BUG: ${state.message} — this watcher can never fire. Stopping.`);
-    process.exit(GATE_EXIT.unreadable);
+  if (step.action === "exit") {
+    if (step.code === GATE_EXIT.unreadable) {
+      console.log(`🛑 BUG: ${state.message} — this watcher can never fire. Stopping.`);
+    } else if (step.code === GATE_EXIT.signedOff) {
+      console.log(`✅ ${state.message} — picking it up now`);
+    } else {
+      console.log(
+        `⚠️ ${state.message} (still stale after waiting ${formatDuration(REBUILD_GRACE_MS)} for the rebuild)`,
+      );
+    }
+    process.exit(step.code);
   }
-  if (state.status === "signed-off") {
-    console.log(`✅ ${state.message} — picking it up now`);
-    process.exit(GATE_EXIT.signedOff);
+  if (step.action === "wait") {
+    // Done, but the rebuild may still be running: Mark done writes the flag before the package.
+    if (staleSince === null) console.log("⏳ marked done, waiting for the package rebuild to land");
+    staleSince = step.staleSince;
+    await sleep(step.ms);
+    continue;
   }
-  if (state.status === "stale-package") {
-    console.log(`⚠️ ${state.message}`);
-    process.exit(GATE_EXIT.stalePackage);
-  }
+  staleSince = null;
 
   if (Date.now() - lastHeartbeat >= HEARTBEAT_MS) {
     lastHeartbeat = Date.now();

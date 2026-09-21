@@ -52,7 +52,12 @@
       "note": "Same まで (made) as \"Until (particle)\" from Lesson 3, where it marked the end of a time span. Here it also covers distance: \"as far as\" a place.",
       "hint": "a place you go as far as, not a time",
       "scene": "marking how far along a route you are travelling",
-      "sourceOrder": 3678
+      "sourceOrder": 3678,
+      "audio": "3d3a4b969adcb136.mp3",
+      "audioOriginal": "3d3a4b969adcb136.orig.mp3",
+      "audioAuto": "3d3a4b969adcb136.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3d3a4b969adcb136"
     },
     {
       "id": "made-ni",
@@ -61,7 +66,12 @@
       "target": "までに",
       "pronunciation": "made ni",
       "note": "まで (made) is \"until\" for something that continues; adding に (ni) gives a deadline, \"by\" a time. Compare しごとはごじまでです (shigoto wa go-ji made desu, work lasts until 5:00) with a task that must be finished by 5:00.",
-      "sourceOrder": 3351
+      "sourceOrder": 3351,
+      "audio": "8820eaac45aa56fc.mp3",
+      "audioOriginal": "8820eaac45aa56fc.orig.mp3",
+      "audioAuto": "8820eaac45aa56fc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8820eaac45aa56fc"
     },
     {
       "id": "wo-place-particle",
@@ -73,7 +83,12 @@
       "note": "Same を (o) as the object marker from Lesson 8, but here it marks the road or space you move along, with verbs like まがります (magarimasu).",
       "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
       "scene": "marking a space that is moved along or through",
-      "sourceOrder": 197
+      "sourceOrder": 197,
+      "audio": "cd887be7dcd6d4bf.mp3",
+      "audioOriginal": "cd887be7dcd6d4bf.orig.mp3",
+      "audioAuto": "cd887be7dcd6d4bf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cd887be7dcd6d4bf"
     },
     {
       "id": "de-means-particle",
@@ -85,7 +100,12 @@
       "note": "Same で (de) as \"By means of (particle)\" from Lesson 4 and Lesson 7. Here it extends to how you communicate, not just what you travel by.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
       "scene": "naming what something is sent by, or travelled by",
-      "sourceOrder": 159
+      "sourceOrder": 159,
+      "audio": "210d401c5f95bd81.mp3",
+      "audioOriginal": "210d401c5f95bd81.orig.mp3",
+      "audioAuto": "210d401c5f95bd81.mp3",
+      "audioMarked": true,
+      "audioTextHash": "210d401c5f95bd81"
     },
     {
       "id": "ni-tsuite",
@@ -96,7 +116,12 @@
       "note": "Attaches to a noun: にほんについて (Nihon ni tsuite), \"about Japan\". The noun comes first, unlike English \"about\".",
       "uncertain": true,
       "reviewNote": "Restored at gate 1 with the tilde stripped, on the final review's finding: the placeholder check had removed the only card for a headword the chapter glosses.",
-      "sourceOrder": 356
+      "sourceOrder": 356,
+      "audio": "f5d9ca97eb6bf9be.mp3",
+      "audioOriginal": "f5d9ca97eb6bf9be.orig.mp3",
+      "audioAuto": "f5d9ca97eb6bf9be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f5d9ca97eb6bf9be"
     },
     {
       "id": "ja",
@@ -147,7 +172,12 @@
       "uncertain": true,
       "note": "The past form of ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions. Use it to thank someone for something they have already done.",
       "sourceOrder": 3905,
-      "scene": "A taxi driver, after you have paid the fare and are getting out"
+      "scene": "A taxi driver, after you have paid the fare and are getting out",
+      "audio": "e3efeff27538da48.mp3",
+      "audioOriginal": "e3efeff27538da48.orig.mp3",
+      "audioAuto": "e3efeff27538da48.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e3efeff27538da48"
     },
     {
       "id": "migi",
@@ -155,7 +185,12 @@
       "category": "Directions",
       "target": "みぎ",
       "pronunciation": "migi",
-      "sourceOrder": 1096
+      "sourceOrder": 1096,
+      "audio": "488396e214d4e540.mp3",
+      "audioOriginal": "488396e214d4e540.orig.mp3",
+      "audioAuto": "488396e214d4e540.mp3",
+      "audioMarked": true,
+      "audioTextHash": "488396e214d4e540"
     },
     {
       "id": "hidari",
@@ -163,7 +198,12 @@
       "category": "Directions",
       "target": "ひだり",
       "pronunciation": "hidari",
-      "sourceOrder": 1706
+      "sourceOrder": 1706,
+      "audio": "2ab0fbc2a9ca18ab.mp3",
+      "audioOriginal": "2ab0fbc2a9ca18ab.orig.mp3",
+      "audioAuto": "2ab0fbc2a9ca18ab.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ab0fbc2a9ca18ab"
     },
     {
       "id": "massugu",
@@ -171,7 +211,12 @@
       "category": "Directions",
       "target": "まっすぐ",
       "pronunciation": "massugu",
-      "sourceOrder": 1710
+      "sourceOrder": 1710,
+      "audio": "c60576f6f5fd4638.mp3",
+      "audioOriginal": "c60576f6f5fd4638.orig.mp3",
+      "audioAuto": "c60576f6f5fd4638.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c60576f6f5fd4638"
     },
     {
       "id": "mae",
@@ -195,7 +240,12 @@
       "target": "さき",
       "pronunciation": "saki",
       "note": "さき (saki) means further along past a landmark. Contrast てまえ (temae), \"Just before\" it.",
-      "sourceOrder": 1693
+      "sourceOrder": 1693,
+      "audio": "42c50b45ed976bd7.mp3",
+      "audioOriginal": "42c50b45ed976bd7.orig.mp3",
+      "audioAuto": "42c50b45ed976bd7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "42c50b45ed976bd7"
     },
     {
       "id": "temae",
@@ -204,7 +254,12 @@
       "target": "てまえ",
       "pronunciation": "temae",
       "note": "The opposite of さき (saki) \"Beyond\": てまえ (temae) is the near side of a landmark, before you reach it.",
-      "sourceOrder": 1699
+      "sourceOrder": 1699,
+      "audio": "ed3e82c9064f380e.mp3",
+      "audioOriginal": "ed3e82c9064f380e.orig.mp3",
+      "audioAuto": "ed3e82c9064f380e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ed3e82c9064f380e"
     },
     {
       "id": "tonari",
@@ -239,7 +294,12 @@
       "category": "Directions",
       "target": "みち",
       "pronunciation": "michi",
-      "sourceOrder": 1687
+      "sourceOrder": 1687,
+      "audio": "37a8ba43a47f1354.mp3",
+      "audioOriginal": "37a8ba43a47f1354.orig.mp3",
+      "audioAuto": "37a8ba43a47f1354.mp3",
+      "audioMarked": true,
+      "audioTextHash": "37a8ba43a47f1354"
     },
     {
       "id": "kado",
@@ -247,7 +307,12 @@
       "category": "Directions",
       "target": "かど",
       "pronunciation": "kado",
-      "sourceOrder": 1690
+      "sourceOrder": 1690,
+      "audio": "3941ea4a8250382b.mp3",
+      "audioOriginal": "3941ea4a8250382b.orig.mp3",
+      "audioAuto": "3941ea4a8250382b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3941ea4a8250382b"
     },
     {
       "id": "kousaten",
@@ -255,7 +320,12 @@
       "category": "Directions",
       "target": "こうさてん",
       "pronunciation": "kōsaten",
-      "sourceOrder": 1676
+      "sourceOrder": 1676,
+      "audio": "3da40055726361d7.mp3",
+      "audioOriginal": "3da40055726361d7.orig.mp3",
+      "audioAuto": "3da40055726361d7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3da40055726361d7"
     },
     {
       "id": "shingou",
@@ -263,7 +333,12 @@
       "category": "Directions",
       "target": "しんごう",
       "pronunciation": "shingō",
-      "sourceOrder": 1091
+      "sourceOrder": 1091,
+      "audio": "eb4236ff43c287a3.mp3",
+      "audioOriginal": "eb4236ff43c287a3.orig.mp3",
+      "audioAuto": "eb4236ff43c287a3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eb4236ff43c287a3"
     },
     {
       "id": "hashi",
@@ -271,7 +346,12 @@
       "category": "Directions",
       "target": "はし",
       "pronunciation": "hashi",
-      "sourceOrder": 3079
+      "sourceOrder": 3079,
+      "audio": "8dfee0512cf9b88c.mp3",
+      "audioOriginal": "8dfee0512cf9b88c.orig.mp3",
+      "audioAuto": "8dfee0512cf9b88c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8dfee0512cf9b88c"
     },
     {
       "id": "tsugi-no",
@@ -282,7 +362,12 @@
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on english) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
       "hint": "the form that attaches to a following noun",
-      "sourceOrder": 1088
+      "sourceOrder": 1088,
+      "audio": "25aa9830c2d9ecf0.mp3",
+      "audioOriginal": "25aa9830c2d9ecf0.orig.mp3",
+      "audioAuto": "25aa9830c2d9ecf0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "25aa9830c2d9ecf0"
     },
     {
       "id": "me-suffix-2",
@@ -294,7 +379,12 @@
       "uncertain": true,
       "reviewNote": "Restored by the owner, then the tilde stripped at gate 1 so it is an utterance rather than notation — the same treatment as について. め now owns the ordinal explanation.",
       "scene": "attached to the end of a number",
-      "sourceOrder": 1607
+      "sourceOrder": 1607,
+      "audio": "f246efa733234dc9.mp3",
+      "audioOriginal": "f246efa733234dc9.orig.mp3",
+      "audioAuto": "f246efa733234dc9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f246efa733234dc9"
     },
     {
       "id": "futatsume",
@@ -302,7 +392,12 @@
       "category": "Numbers",
       "target": "ふたつめ",
       "pronunciation": "futatsume",
-      "sourceOrder": 3063
+      "sourceOrder": 3063,
+      "audio": "508018cd16fe9f6f.mp3",
+      "audioOriginal": "508018cd16fe9f6f.orig.mp3",
+      "audioAuto": "508018cd16fe9f6f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "508018cd16fe9f6f"
     },
     {
       "id": "tokyo-tower",
@@ -311,7 +406,12 @@
       "target": "とうきょうタワー",
       "pronunciation": "Tōkyō Tawā",
       "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
-      "sourceOrder": 3725
+      "sourceOrder": 3725,
+      "audio": "8bcb19fe4981e67c.mp3",
+      "audioOriginal": "8bcb19fe4981e67c.orig.mp3",
+      "audioAuto": "8bcb19fe4981e67c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8bcb19fe4981e67c"
     },
     {
       "id": "ebisu-eki",
@@ -320,7 +420,12 @@
       "target": "えびすえき",
       "pronunciation": "Ebisu-eki",
       "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
-      "sourceOrder": 3932
+      "sourceOrder": 3932,
+      "audio": "2d9668507e3d7081.mp3",
+      "audioOriginal": "2d9668507e3d7081.orig.mp3",
+      "audioAuto": "2d9668507e3d7081.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d9668507e3d7081"
     },
     {
       "id": "ginza-dori",
@@ -329,7 +434,12 @@
       "target": "ぎんざどおり",
       "pronunciation": "Ginza-dōri",
       "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
-      "sourceOrder": 2955
+      "sourceOrder": 2955,
+      "audio": "c56845d389b46a4d.mp3",
+      "audioOriginal": "c56845d389b46a4d.orig.mp3",
+      "audioAuto": "c56845d389b46a4d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c56845d389b46a4d"
     },
     {
       "id": "iimasu",
@@ -337,7 +447,12 @@
       "category": "Technology & Communication",
       "target": "いいます",
       "pronunciation": "iimasu",
-      "sourceOrder": 1521
+      "sourceOrder": 1521,
+      "audio": "83d41c7bbabb9a32.mp3",
+      "audioOriginal": "83d41c7bbabb9a32.orig.mp3",
+      "audioAuto": "83d41c7bbabb9a32.mp3",
+      "audioMarked": true,
+      "audioTextHash": "83d41c7bbabb9a32"
     },
     {
       "id": "iimasu-te-form",
@@ -350,7 +465,12 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
       "hint": "to say, not to go",
       "scene": "in a request for someone to repeat or tell you something",
-      "sourceOrder": 1846
+      "sourceOrder": 1846,
+      "audio": "4cf5e4d68ef08a16.mp3",
+      "audioOriginal": "4cf5e4d68ef08a16.orig.mp3",
+      "audioAuto": "4cf5e4d68ef08a16.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4cf5e4d68ef08a16"
     },
     {
       "id": "machimasu",
@@ -386,7 +506,12 @@
       "target": "まがります",
       "pronunciation": "magarimasu",
       "note": "Takes を (o) for the place you turn at, which is this chapter's third grammar point: つぎのしんごうをみぎにまがってください (tsugi no shingou o migi ni magatte kudasai).",
-      "sourceOrder": 1510
+      "sourceOrder": 1510,
+      "audio": "4881b6a7b5a69166.mp3",
+      "audioOriginal": "4881b6a7b5a69166.orig.mp3",
+      "audioAuto": "4881b6a7b5a69166.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4881b6a7b5a69166"
     },
     {
       "id": "te-form-magatte",
@@ -395,7 +520,12 @@
       "target": "まがって",
       "pronunciation": "magatte",
       "note": "Regular 1. り (ri) → って (tte), like かえって (kaette) from Lesson 18.",
-      "sourceOrder": 1576
+      "sourceOrder": 1576,
+      "audio": "b072f9f325607638.mp3",
+      "audioOriginal": "b072f9f325607638.orig.mp3",
+      "audioAuto": "b072f9f325607638.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b072f9f325607638"
     },
     {
       "id": "torimasu",
@@ -406,7 +536,12 @@
       "uncertain": true,
       "reviewNote": "Kept at the owner's request. Chapter 11 already teaches とります as \"Take (a photo)\"; this card carries the general sense the chapter glosses as just \"take\". The scenes separate them on the Recognition front, but note this chapter's only concrete use (しゃしんをとります) is itself a photo, so the distinction is in the glosses rather than in the book's example.",
       "sourceOrder": 2198,
-      "scene": "picking something up or taking it with you"
+      "scene": "picking something up or taking it with you",
+      "audio": "dcb06d5d18f5156b.mp3",
+      "audioOriginal": "dcb06d5d18f5156b.orig.mp3",
+      "audioAuto": "dcb06d5d18f5156b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dcb06d5d18f5156b"
     },
     {
       "id": "te-form-totte",
@@ -415,7 +550,12 @@
       "target": "とって",
       "pronunciation": "totte",
       "note": "Regular 1. り (ri) → って (tte), like まがって (magatte) and かえって (kaette).",
-      "sourceOrder": 1879
+      "sourceOrder": 1879,
+      "audio": "4918830f855d61e4.mp3",
+      "audioOriginal": "4918830f855d61e4.orig.mp3",
+      "audioAuto": "4918830f855d61e4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4918830f855d61e4"
     },
     {
       "id": "kashimasu",
@@ -480,7 +620,12 @@
       "uncertain": true,
       "note": "Regular 2. Not to be confused with とります (torimasu) \"Take\", which is Regular 1.",
       "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it.",
-      "sourceOrder": 1516
+      "sourceOrder": 1516,
+      "audio": "1b5869c89deed973.mp3",
+      "audioOriginal": "1b5869c89deed973.orig.mp3",
+      "audioAuto": "1b5869c89deed973.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1b5869c89deed973"
     },
     {
       "id": "te-form-tomete",
@@ -491,7 +636,12 @@
       "uncertain": true,
       "note": "Regular 2. Change ます (masu) to て (te): とめます (tomemasu) → とめて (tomete).",
       "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it.",
-      "sourceOrder": 1917
+      "sourceOrder": 1917,
+      "audio": "c8f69369a7f2c5c0.mp3",
+      "audioOriginal": "c8f69369a7f2c5c0.orig.mp3",
+      "audioAuto": "c8f69369a7f2c5c0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c8f69369a7f2c5c0"
     },
     {
       "id": "oshiemasu",
@@ -527,7 +677,12 @@
       "target": "とどけます",
       "pronunciation": "todokemasu",
       "note": "Regular 2. The thing delivered is the object, the recipient is marked with に (ni).",
-      "sourceOrder": 1533
+      "sourceOrder": 1533,
+      "audio": "b36e65ec0ba23675.mp3",
+      "audioOriginal": "b36e65ec0ba23675.orig.mp3",
+      "audioAuto": "b36e65ec0ba23675.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b36e65ec0ba23675"
     },
     {
       "id": "te-form-todokete",
@@ -536,7 +691,12 @@
       "target": "とどけて",
       "pronunciation": "todokete",
       "note": "Regular 2. Change ます (masu) to て (te): とどけます (todokemasu) → とどけて (todokete).",
-      "sourceOrder": 1951
+      "sourceOrder": 1951,
+      "audio": "92bae2279f96be57.mp3",
+      "audioOriginal": "92bae2279f96be57.orig.mp3",
+      "audioAuto": "92bae2279f96be57.mp3",
+      "audioMarked": true,
+      "audioTextHash": "92bae2279f96be57"
     },
     {
       "id": "motte-kimasu",
@@ -544,7 +704,12 @@
       "category": "Everyday Objects",
       "target": "もってきます",
       "pronunciation": "motte kimasu",
-      "sourceOrder": 1526
+      "sourceOrder": 1526,
+      "audio": "8473cfe30bf72a2e.mp3",
+      "audioOriginal": "8473cfe30bf72a2e.orig.mp3",
+      "audioAuto": "8473cfe30bf72a2e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8473cfe30bf72a2e"
     },
     {
       "id": "te-form-motte-kite",
@@ -553,7 +718,12 @@
       "target": "もってきて",
       "pronunciation": "motte kite",
       "note": "もって (motte) is the Regular 1 て-form of もちます (mochimasu), followed by きて (kite), the Irregular て-form of きます (kimasu) from Lesson 18.",
-      "sourceOrder": 1966
+      "sourceOrder": 1966,
+      "audio": "25556afb0655a987.mp3",
+      "audioOriginal": "25556afb0655a987.orig.mp3",
+      "audioAuto": "25556afb0655a987.mp3",
+      "audioMarked": true,
+      "audioTextHash": "25556afb0655a987"
     },
     {
       "id": "tsutaemasu",
@@ -562,7 +732,12 @@
       "target": "つたえます",
       "pronunciation": "tsutaemasu",
       "note": "Regular 2. Used for passing on a message or greeting, as in よろしくつたえてください (yoroshiku tsutaete kudasai).",
-      "sourceOrder": 327
+      "sourceOrder": 327,
+      "audio": "ab8a6570ece6514c.mp3",
+      "audioOriginal": "ab8a6570ece6514c.orig.mp3",
+      "audioAuto": "ab8a6570ece6514c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ab8a6570ece6514c"
     },
     {
       "id": "houkoku-shimasu",
@@ -574,7 +749,12 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
       "note": "A formal, spoken or business report to a superior. It is a verb, unlike レポート (repōto) \"Report\" from Lesson 18, the written document.",
       "hint": "to report to someone (verb)",
-      "sourceOrder": 360
+      "sourceOrder": 360,
+      "audio": "f68cac6b05e4d24f.mp3",
+      "audioOriginal": "f68cac6b05e4d24f.orig.mp3",
+      "audioAuto": "f68cac6b05e4d24f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f68cac6b05e4d24f"
     },
     {
       "id": "okurimasu",
@@ -595,7 +775,12 @@
       "target": "おくりました",
       "pronunciation": "okurimashita",
       "hint": "Past of おくります",
-      "sourceOrder": 214
+      "sourceOrder": 214,
+      "audio": "f4d8003742acf48c.mp3",
+      "audioOriginal": "f4d8003742acf48c.orig.mp3",
+      "audioAuto": "f4d8003742acf48c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f4d8003742acf48c"
     },
     {
       "id": "kakimasu-l19",
@@ -606,7 +791,12 @@
       "uncertain": true,
       "reviewNote": "Kept at the owner's request with a distinct id. NOTE: chapter-17/kakimasu already ships かきます \"Write\" with its own scene and a note distinguishing it from かきます \"Draw\" (Lesson 15). This card adds no new sense — the scene below is drawn from this chapter's exercises (なまえ/じゅうしょ) rather than a real difference in meaning. Exclude it if it reads as repetition.",
       "scene": "writing your name or address on a form",
-      "sourceOrder": 2157
+      "sourceOrder": 2157,
+      "audio": "641794d0a3619820.mp3",
+      "audioOriginal": "641794d0a3619820.orig.mp3",
+      "audioAuto": "641794d0a3619820.mp3",
+      "audioMarked": true,
+      "audioTextHash": "641794d0a3619820"
     },
     {
       "id": "azukarimasu",
@@ -614,7 +804,12 @@
       "category": "Everyday Objects",
       "target": "あずかります",
       "pronunciation": "azukarimasu",
-      "sourceOrder": 5060
+      "sourceOrder": 5060,
+      "audio": "4153c9145855f30a.mp3",
+      "audioOriginal": "4153c9145855f30a.orig.mp3",
+      "audioAuto": "4153c9145855f30a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4153c9145855f30a"
     },
     {
       "id": "moraimashita",
@@ -646,7 +841,12 @@
       "target": "まがってください",
       "pronunciation": "magatte kudasai",
       "note": "Direction phrase you say or hear when giving directions. Combine with を (o) for the place you turn: つぎのしんごうをまがってください (tsugi no shingō o magatte kudasai).",
-      "sourceOrder": 1099
+      "sourceOrder": 1099,
+      "audio": "a0545da0550b7e86.mp3",
+      "audioOriginal": "a0545da0550b7e86.orig.mp3",
+      "audioAuto": "a0545da0550b7e86.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a0545da0550b7e86"
     },
     {
       "id": "houkoku-shite-kudasai",
@@ -655,7 +855,12 @@
       "target": "ほうこくしてください",
       "pronunciation": "hōkoku shite kudasai",
       "sourceOrder": 244,
-      "note": "ほうこくして is the て-form of ほうこくします, an Irregular (する) verb, like します (shimasu) → して (shite)."
+      "note": "ほうこくして is the て-form of ほうこくします, an Irregular (する) verb, like します (shimasu) → して (shite).",
+      "audio": "267939fbc6c7b526.mp3",
+      "audioOriginal": "267939fbc6c7b526.orig.mp3",
+      "audioAuto": "267939fbc6c7b526.mp3",
+      "audioMarked": true,
+      "audioTextHash": "267939fbc6c7b526"
     },
     {
       "id": "yoroshiku-tsutaete-kudasai",
@@ -664,7 +869,12 @@
       "target": "よろしくつたえてください",
       "pronunciation": "yoroshiku tsutaete kudasai",
       "note": "Set phrase for asking someone to pass on your greetings to a person who is not present.",
-      "sourceOrder": 308
+      "sourceOrder": 308,
+      "audio": "5c38d6f669f5f1ad.mp3",
+      "audioOriginal": "5c38d6f669f5f1ad.orig.mp3",
+      "audioAuto": "5c38d6f669f5f1ad.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5c38d6f669f5f1ad"
     },
     {
       "id": "onegai-dekimasu-ka",
@@ -673,7 +883,12 @@
       "target": "おねがいできますか",
       "pronunciation": "onegai dekimasu ka",
       "note": "More polite than おねがいします when asking for a noun.",
-      "sourceOrder": 4399
+      "sourceOrder": 4399,
+      "audio": "88972251735472d7.mp3",
+      "audioOriginal": "88972251735472d7.orig.mp3",
+      "audioAuto": "88972251735472d7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "88972251735472d7"
     },
     {
       "id": "shouchi-shimashita",
@@ -683,7 +898,12 @@
       "pronunciation": "shōchi shimashita",
       "note": "A more polite way of saying わかりました when asked to do something or relay information.",
       "sourceOrder": 4419,
-      "hint": "the expression on its own, without はい (hai)"
+      "hint": "the expression on its own, without はい (hai)",
+      "audio": "eac631f23234cf70.mp3",
+      "audioOriginal": "eac631f23234cf70.orig.mp3",
+      "audioAuto": "eac631f23234cf70.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eac631f23234cf70"
     },
     {
       "id": "takuhaibin",
@@ -691,7 +911,12 @@
       "category": "Transport",
       "target": "たくはいびん",
       "pronunciation": "takuhaibin",
-      "sourceOrder": 207
+      "sourceOrder": 207,
+      "audio": "895e6fcafa0ae2bb.mp3",
+      "audioOriginal": "895e6fcafa0ae2bb.orig.mp3",
+      "audioAuto": "895e6fcafa0ae2bb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "895e6fcafa0ae2bb"
     },
     {
       "id": "baikubin",
@@ -699,7 +924,12 @@
       "category": "Transport",
       "target": "バイクびん",
       "pronunciation": "baikubin",
-      "sourceOrder": 1743
+      "sourceOrder": 1743,
+      "audio": "f8cd970fbc91386c.mp3",
+      "audioOriginal": "f8cd970fbc91386c.orig.mp3",
+      "audioAuto": "f8cd970fbc91386c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f8cd970fbc91386c"
     },
     {
       "id": "yuubin",
@@ -707,7 +937,12 @@
       "category": "Technology & Communication",
       "target": "ゆうびん",
       "pronunciation": "yūbin",
-      "sourceOrder": 1738
+      "sourceOrder": 1738,
+      "audio": "ae6845dd3cbc85da.mp3",
+      "audioOriginal": "ae6845dd3cbc85da.orig.mp3",
+      "audioAuto": "ae6845dd3cbc85da.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ae6845dd3cbc85da"
     },
     {
       "id": "nimotsu",
@@ -715,7 +950,12 @@
       "category": "Everyday Objects",
       "target": "にもつ",
       "pronunciation": "nimotsu",
-      "sourceOrder": 2636
+      "sourceOrder": 2636,
+      "audio": "3b6584866d398e1a.mp3",
+      "audioOriginal": "3b6584866d398e1a.orig.mp3",
+      "audioAuto": "3b6584866d398e1a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3b6584866d398e1a"
     },
     {
       "id": "shorui",
@@ -723,7 +963,12 @@
       "category": "Work & Occupations",
       "target": "しょるい",
       "pronunciation": "shorui",
-      "sourceOrder": 2599
+      "sourceOrder": 2599,
+      "audio": "cea2afb25f52ba46.mp3",
+      "audioOriginal": "cea2afb25f52ba46.orig.mp3",
+      "audioAuto": "cea2afb25f52ba46.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cea2afb25f52ba46"
     },
     {
       "id": "shiryou",
@@ -745,7 +990,12 @@
       "category": "Everyday Objects",
       "target": "サンプル",
       "pronunciation": "sanpuru",
-      "sourceOrder": 193
+      "sourceOrder": 193,
+      "audio": "d101389939300806.mp3",
+      "audioOriginal": "d101389939300806.orig.mp3",
+      "audioAuto": "d101389939300806.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d101389939300806"
     },
     {
       "id": "katarogu",
@@ -753,7 +1003,12 @@
       "category": "Shopping",
       "target": "カタログ",
       "pronunciation": "katarogu",
-      "sourceOrder": 2663
+      "sourceOrder": 2663,
+      "audio": "bd73774d462a13a6.mp3",
+      "audioOriginal": "bd73774d462a13a6.orig.mp3",
+      "audioAuto": "bd73774d462a13a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bd73774d462a13a6"
     },
     {
       "id": "menyuu",
@@ -761,7 +1016,12 @@
       "category": "Food",
       "target": "メニュー",
       "pronunciation": "menyū",
-      "sourceOrder": 2452
+      "sourceOrder": 2452,
+      "audio": "f20f5c2b03a1f89f.mp3",
+      "audioOriginal": "f20f5c2b03a1f89f.orig.mp3",
+      "audioAuto": "f20f5c2b03a1f89f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f20f5c2b03a1f89f"
     },
     {
       "id": "pakkeeji",
@@ -938,7 +1198,12 @@
       "target": "いろいろ(な)",
       "pronunciation": "iroiro (na)",
       "note": "A な-adjective: it takes な before a noun, as in いろいろな サンプル (iroiro na sanpuru), \"various samples\".",
-      "sourceOrder": 766
+      "sourceOrder": 766,
+      "audio": "8816483927735404.mp3",
+      "audioOriginal": "8816483927735404.orig.mp3",
+      "audioAuto": "8816483927735404.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8816483927735404"
     },
     {
       "id": "takusan",
@@ -1167,7 +1432,12 @@
       "category": "Home & Household",
       "target": "ビル",
       "pronunciation": "biru",
-      "sourceOrder": 3812
+      "sourceOrder": 3812,
+      "audio": "ccb319c2618403e5.mp3",
+      "audioOriginal": "ccb319c2618403e5.orig.mp3",
+      "audioAuto": "ccb319c2618403e5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ccb319c2618403e5"
     },
     {
       "id": "manshon",
@@ -1175,7 +1445,12 @@
       "category": "Home & Household",
       "target": "マンション",
       "pronunciation": "manshon",
-      "sourceOrder": 3963
+      "sourceOrder": 3963,
+      "audio": "d97efb687ce4004b.mp3",
+      "audioOriginal": "d97efb687ce4004b.orig.mp3",
+      "audioAuto": "d97efb687ce4004b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d97efb687ce4004b"
     },
     {
       "id": "heya",
@@ -1248,7 +1523,12 @@
       "category": "Home & Household",
       "target": "もうふ",
       "pronunciation": "mōfu",
-      "sourceOrder": 4395
+      "sourceOrder": 4395,
+      "audio": "22e17e6c8fe3b9c6.mp3",
+      "audioOriginal": "22e17e6c8fe3b9c6.orig.mp3",
+      "audioAuto": "22e17e6c8fe3b9c6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "22e17e6c8fe3b9c6"
     },
     {
       "id": "ruumu-saabisu",
@@ -1256,7 +1536,12 @@
       "category": "Travel & Tourism",
       "target": "ルームサービス",
       "pronunciation": "rūmu sābisu",
-      "sourceOrder": 4376
+      "sourceOrder": 4376,
+      "audio": "29a17dfd5b96ec4c.mp3",
+      "audioOriginal": "29a17dfd5b96ec4c.orig.mp3",
+      "audioAuto": "29a17dfd5b96ec4c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "29a17dfd5b96ec4c"
     },
     {
       "id": "furonto",

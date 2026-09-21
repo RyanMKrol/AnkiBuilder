@@ -76,6 +76,16 @@
         "at": "2026-09-20T22:38:14.981Z",
         "message": "chapter-19: \"おねがいできますか\" (May I ask [you to do this]?) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "Chapter 19: all four are rows in the book's own VOCABULARY blocks, not sentences. まがります is a plain verb caught on its ます ending; まがってください, おねがいできますか and ありがとうございました are each glossed as a single entry by the book. Verified against the chapter text."
+      },
+      "chapter-20/daibingu-o-shimasu": {
+        "at": "2026-09-21T21:28:48.144Z",
+        "message": "chapter-20: \"ダイビングをします\" (Scuba dive) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "でます is a verb headword from the vocabulary box, and ダイビングをします is glossed there as one unit (scuba dive). Both are lexical entries, not sentences."
+      },
+      "chapter-20/demasu-2": {
+        "at": "2026-09-21T21:28:48.144Z",
+        "message": "chapter-20: \"でます\" (To leave) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "でます is a verb headword from the vocabulary box, and ダイビングをします is glossed there as one unit (scuba dive). Both are lexical entries, not sentences."
       }
     }
   }

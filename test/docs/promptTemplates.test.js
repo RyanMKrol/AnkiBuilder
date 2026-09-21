@@ -282,6 +282,17 @@ const TEMPLATES = {
     ],
     outputContract: /"pronunciation"/,
   },
+  "remaster-outline-prompt.md": {
+    placeholders: ["BOOK_TITLE", "PAGE_COUNT", "FRONT_PAGES", "FRONT_TEXT", "MARGINS"],
+    // parseOutline (src/remaster/outline.js) reads exactly these fields.
+    outputContract: /"entries"[\s\S]*"firstPage"[\s\S]*"lastPage"/,
+  },
+  "remaster-page-prompt.md": {
+    placeholders: ["IMAGE_PATH", "BOOK_TITLE", "PAGE_NUMBER", "PAGE_COUNT", "ENTRY_LABEL"],
+    // parsePageReply (src/remaster/pageTranscribe.js) looks for one <page> element, and the
+    // cross-check separates furigana by its <rt>.
+    outputContract: /^(?=[\s\S]*<page number="\{\{PAGE_NUMBER\}\}")(?=[\s\S]*<rt>)/,
+  },
 };
 
 for (const [file, contract] of Object.entries(TEMPLATES)) {
@@ -327,6 +338,10 @@ const NO_CARD_RULES = {
   "epub-forward-flag-prompt.md": "flags items as possibly premature; it never edits card content",
   "epub-forward-flag-index-prompt.md": "the same pass, reading the taught index instead",
   "pedagogical-sort-prompt.md": "a permutation of items that already exist; it writes no field",
+  "remaster-outline-prompt.md": "rebuilds a book's table of contents from OCR; it sees no card",
+  "remaster-page-prompt.md":
+    "transcribes a page picture verbatim into XHTML, upstream of any card; card rules there " +
+    "would invite it to edit the book",
 };
 
 test("every prompt either carries the shared card rules or is classified as not needing them", () => {

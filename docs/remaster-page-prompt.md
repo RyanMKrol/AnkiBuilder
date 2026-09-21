@@ -34,6 +34,10 @@ Use plain XHTML, well formed. Escape `&` as `&amp;` and `<` as `&lt;` in text.
 - **Tables and column lists.** Anything laid out in columns is a `<table>`, one `<tr>` per row and
   one cell per column, including vocabulary lists (Japanese, reading, English) and greeting
   lists (Japanese, romanization, English). Use `<th>` only where the book prints a header row.
+- **The lesson's vocabulary list** (the section a textbook titles Vocabulary, 単語 or たんご) is
+  `<table class="vocabulary">`, every one of its tables, and no other table on any page. Later
+  checks find a lesson's headwords by that class, so a vocabulary table without it is invisible
+  to them and a grammar table with it is counted as vocabulary.
 - **Lists of numbered items** (questions, example sentences): one `<p>` per item, starting with
   the printed number exactly as printed ("1.", "A.", "(1)"). If an item has a romanization line
   under it, put that in its own `<p class="romanization">` right after.

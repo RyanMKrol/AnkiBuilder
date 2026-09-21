@@ -13,6 +13,7 @@
 //   node scripts/remaster-epub.mjs transcribe <book.epub> --entry <n> [--pages a-b] [--concurrency 4]
 //   node scripts/remaster-epub.mjs crosscheck <book.epub> [--entry <n>]
 //   node scripts/remaster-epub.mjs build      <book.epub> --out <remastered.epub> [--entry <n> ...]
+//                                             [--allow-missing]
 //
 // `check` is free and read-only. `ocr` is free (Apple Vision, local). `outline` is one text-only
 // model call. `transcribe` is one vision call per page and is the only step that costs real
@@ -37,6 +38,7 @@ import { runOutlineClaude, runTranscribeClaude } from "../src/remaster/remasterR
 import { writeFileAtomic } from "../src/util/atomicWrite.js";
 
 const [command, target, ...rest] = process.argv.slice(2);
+const REMASTER_MODIFIED = "2000-01-01T00:00:00Z";
 
 function option(name) {
   const index = rest.indexOf(`--${name}`);
@@ -120,6 +122,14 @@ function pageRange(entry) {
     last ??= first;
   }
   return Array.from({ length: last - first + 1 }, (_, i) => first + i);
+}
+
+function tryParse(raw, number) {
+  try {
+    return parsePageReply(raw, { pageNumber: number });
+  } catch {
+    return null;
+  }
 }
 
 function transcriptPath(paths, number) {
@@ -215,11 +225,20 @@ Object.assign(commands, {
           entryLabel: entry.label,
         });
         const started = Date.now();
+        const rawPath = join(paths.transcripts, `${pageFileStem(number)}.raw.txt`);
         let page;
         try {
-          const raw = await runTranscribeClaude(prompt);
-          writeFileAtomic(join(paths.transcripts, `${pageFileStem(number)}.raw.txt`), raw);
-          page = parsePageReply(raw, { pageNumber: number });
+          // A reply already paid for is read again before paying for another: a parser fix
+          // (a self-correcting reply with two <page> elements) recovers it for nothing.
+          const saved = !force && existsSync(rawPath) ? readFileSync(rawPath, "utf-8") : null;
+          const reparsed = saved && tryParse(saved, number);
+          if (reparsed && !reparsed.problems.length) {
+            page = reparsed;
+          } else {
+            const raw = await runTranscribeClaude(prompt);
+            writeFileAtomic(rawPath, raw);
+            page = parsePageReply(raw, { pageNumber: number });
+          }
         } catch (error) {
           failures.push(`page ${number}: ${error.message}`);
           log(`  page ${number}: FAILED ${error.message.split("\n")[0]}`);
@@ -272,12 +291,27 @@ Object.assign(commands, {
     const { hash, paths } = await workspace();
     const outline = loadOutline(paths);
     const explicit = optionAll("entry").length > 0;
+    const allowMissing = rest.includes("--allow-missing");
     const entries = [];
     for (const entry of selectedEntries(outline)) {
       const numbers = pageRange(entry);
       const transcripts = numbers.map((number) => loadTranscript(paths, number));
       const missing = numbers.filter((_, i) => !transcripts[i]);
-      if (missing.length) {
+      if (missing.length && allowMissing) {
+        // A visible hole, never a silent one: the placeholder is text the extraction model reads,
+        // and it says a page is missing rather than letting the lesson look complete.
+        transcripts.forEach((transcript, i) => {
+          if (transcript) return;
+          transcripts[i] = {
+            number: numbers[i],
+            printed: "",
+            body: `<p class="missing-page">[Page ${numbers[i]} of the source was not transcribed. Its content is missing from this lesson.]</p>`,
+          };
+        });
+        log(
+          `  "${entry.label}": ${missing.length} page(s) left as placeholders: ${missing.join(", ")}`,
+        );
+      } else if (missing.length) {
         const message = `"${entry.label}" is missing ${missing.length} page transcript(s): ${missing.join(", ")}`;
         if (explicit) {
           console.error(message);
@@ -285,7 +319,16 @@ Object.assign(commands, {
         }
         continue;
       }
-      entries.push({ ...entry, pages: transcripts });
+      // The outline's offset is measured over the whole book's margins; the model's own reading of
+      // one page's number is not (it put page 51 at printed 51, not 42). Use the offset when the
+      // book has a constant one.
+      const offset = outline.printedPageOffset;
+      const pagesOut = transcripts.map((page) =>
+        Number.isInteger(offset) && page.number > offset
+          ? { ...page, printed: String(page.number - offset) }
+          : page,
+      );
+      entries.push({ ...entry, pages: pagesOut });
     }
     if (!entries.length) {
       console.error("no outline entry is fully transcribed yet; nothing to build");
@@ -295,7 +338,10 @@ Object.assign(commands, {
       title: `${getBookTitle(epubPath)} (remastered)`,
       language: option("lang") ?? "ja",
       sourceHash: hash,
-      modified: new Date().toISOString().replace(/\.\d+Z$/, "Z"),
+      // Fixed, not the clock. The library identifies a book by the hash of its bytes, so the
+      // same transcripts must always give the same file; a timestamp here made every rebuild a
+      // "new book" with an empty dedup library.
+      modified: REMASTER_MODIFIED,
     });
     writeFileSync(resolve(out), bytes);
     log(`wrote ${resolve(out)}: ${entries.length} entr(ies)`);

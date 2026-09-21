@@ -8,7 +8,9 @@ description: Prepare a new EPUB for deck building. Survey its structure, work ou
 Run this **once per book, before its first chapter is built**. It produces one artifact: a draft
 `hints` block for the book's `book.json`, ready for a human to read and commit.
 
-Nothing here spends money and nothing here writes to the library. Every step is a read.
+Nothing here spends money and nothing here writes to the library. Every step is a read. The one
+thing that can follow step 0 and does spend money, converting a book of page images, is a separate
+procedure the user decides on.
 
 ## Why a book needs onboarding at all
 
@@ -27,6 +29,23 @@ missing hint costs recall, never correctness.
 
 **That is why guessing is worse than leaving a hint unset.** A wrong hint is silent. A missing one
 makes the check say *unknown*, which is a state somebody looks at.
+
+## 0. Can the pipeline read this book at all?
+
+```sh
+node scripts/remaster-epub.mjs check <path/to/book.epub>
+```
+
+Free and read-only. It gives one verdict:
+
+- **`native`**: carry on with step 1.
+- **`remaster`**: the book's pages are pictures (a PDF converted to EPUB is the usual cause), so
+  there is no text for anything below to read. **Stop onboarding here.** Converting it is a
+  separate procedure that spends money, one vision call per page, so tell the user what the check
+  found and let them decide. The procedure and what it costs are in
+  `docs/designs/image-epub-remaster.md` and the `remaster` section of `docs/PIPELINE.md`. Once the
+  book has been converted, onboard the EPUB the conversion writes, never the original.
+- **`blocked`**: neither path can use the book. The check says why. Report it; do not work around it.
 
 ## 1. Will this book work at all?
 
@@ -72,6 +91,11 @@ signal here, and am I confident enough to write it down?
 | `vocabularySubRowClass` | a class inside tables marking rows that CONTINUE the entry above rather than starting a new one. Rarer, and easy to get wrong; leave it unset unless you have looked. |
 | `numberedBlockMarkers` | image stems appearing in runs across many chapters, e.g. `enum` and `wnum`. Each entry is `{ filenamePrefix, label }`, and the label is what the block is called in the book's own words. |
 | `lessonLabelWords` | the words this book's lesson labels begin with. Usually two or three, with a long tail of front-matter words to ignore. |
+
+**A remastered book has one answer already.** Its pages were written by the remaster, which marks
+every vocabulary table `class="vocabulary"` and nothing else, so `vocabularyTableClass` is
+`vocabulary`. Still open one chapter and confirm it: that rule lives in a prompt, and a prompt can
+miss.
 
 **Open the book and check.** The counts tell you what is frequent, never what it means. A class that
 appears 45 times can be the vocabulary table or it can be the page furniture, and the only way to

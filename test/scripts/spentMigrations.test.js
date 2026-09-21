@@ -34,6 +34,7 @@ const SPENT = [
 ];
 
 const STANDING = [
+  "remaster-epub.mjs",
   "preflight.mjs",
   "validate-decks.mjs",
   "deliver-to-anki.mjs",

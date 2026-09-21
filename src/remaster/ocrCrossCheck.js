@@ -41,7 +41,9 @@ for (const group of LOOKALIKE_CLASSES) {
 }
 for (let i = 0; i < SMALL_KANA.length; i++) FOLD.set(SMALL_KANA[i], LARGE_KANA[i]);
 
-const JAPANESE = /[぀-ヿ㐀-䶿一-鿿ー]/u;
+// Kana and kanji only. Punctuation is left out: Genki's vocabulary page has a dotted border the
+// OCR reads as seventeen ・, and 〜 and ＊ carry no content either reader could get wrong.
+const JAPANESE = /[\u3041-\u3096\u30a1-\u30fa\u30fc\u3400-\u4dbf\u4e00-\u9fff]/u;
 
 function count(map, key) {
   map.set(key, (map.get(key) ?? 0) + 1);
@@ -94,9 +96,12 @@ function stripTags(html) {
  */
 export function transcriptParts(body) {
   const readings = [...body.matchAll(/<rt>([\s\S]*?)<\/rt>/g)].map((m) => stripTags(m[1]));
+  const withoutReadings = body.replace(/<rt>[\s\S]*?<\/rt>/g, " ");
+  const captions = [...withoutReadings.matchAll(/<figcaption>([\s\S]*?)<\/figcaption>/g)];
   return {
-    base: stripTags(body.replace(/<rt>[\s\S]*?<\/rt>/g, " ")),
+    base: stripTags(withoutReadings.replace(/<figcaption>[\s\S]*?<\/figcaption>/g, " ")),
     readings: readings.join(" "),
+    captions: captions.map((m) => stripTags(m[1])).join(" "),
   };
 }
 
@@ -112,12 +117,19 @@ export function ocrBodyText(ocr) {
     .join("\n");
 }
 
-// A page is flagged when the readers disagree on more than this share of the OCR's characters,
-// or on at least this many characters outright. Both, because a sparse page (a divider with one
-// title) can disagree on 30% by missing three characters, and a dense page can hide a dropped
-// sentence under 2%. First values; tune them on the Lesson 1 run.
-const FLAG_SHARE = 0.03;
-const FLAG_ABSOLUTE = 8;
+// A page is flagged when the readers disagree on more than FLAG_SHARE of what the OCR read AND on
+// at least FLAG_ABSOLUTE characters (or words). Both conditions, because a sparse page can
+// disagree on 30% by one misread name, and a dense page's noise alone reaches a dozen characters.
+//
+// Calibrated on Genki Lesson 1 (20 pages, 2026-09-21), where every page was also read by eye.
+// The OCR is the weaker reader of the two on this book: it misreads katakana crowded by furigana
+// (アメリカ as エイタ), splits letter-spaced headings, and turns subscripts into letters. So the
+// bar is set to catch a dropped table row or sentence, not a single glyph.
+const FLAG_SHARE = 0.1;
+const FLAG_ABSOLUTE = 10;
+// English words are noisier still: the OCR splits letter-spaced headings ("le dial" for "Lesson
+// Dialogue") and misreads romanization ("mearli"), which put two correct pages at 16-18%.
+const FLAG_WORD_SHARE = 0.25;
 
 /**
  * Two directions, each against the right baseline:
@@ -127,11 +139,15 @@ const FLAG_ABSOLUTE = 8;
  *   onlyInTranscript  printed-size transcript text the OCR never saw. An invented word looks
  *                     like this. Furigana is left out of this side on purpose (see
  *                     transcriptParts); how much of it the OCR missed is reported, not flagged.
+ *                     So are illustration captions: "[Illustration: a clock showing half past
+ *                     one]" is the model's description, not the book's text, and on a page of 22
+ *                     clocks it outweighed everything else. They still count on the other side,
+ *                     because words printed inside a picture are ones the OCR can read.
  */
 export function crossCheckPage({ body, ocr }) {
   const parts = transcriptParts(body);
   const base = tally(parts.base);
-  const withReadings = tally(`${parts.base} ${parts.readings}`);
+  const withReadings = tally(`${parts.base} ${parts.readings} ${parts.captions}`);
   const vision = tally(ocrBodyText(ocr));
   const onlyInOcr = difference(vision.japanese, withReadings.japanese);
   const onlyInTranscript = difference(base.japanese, vision.japanese);
@@ -146,8 +162,11 @@ export function crossCheckPage({ body, ocr }) {
     wordsOnlyInOcr.reduce((s, [, n]) => s + n, 0) +
     wordsOnlyInTranscript.reduce((s, [, n]) => s + n, 0);
   const share = ocrChars ? disagreeing / ocrChars : disagreeing ? 1 : 0;
+  const ocrWords = total(vision.latin);
+  const wordShare = ocrWords ? disagreeingWords / ocrWords : disagreeingWords ? 1 : 0;
   const flagged =
-    (disagreeing >= FLAG_ABSOLUTE && share > FLAG_SHARE) || disagreeingWords >= FLAG_ABSOLUTE;
+    (disagreeing >= FLAG_ABSOLUTE && share > FLAG_SHARE) ||
+    (disagreeingWords >= FLAG_ABSOLUTE && wordShare > FLAG_WORD_SHARE);
 
   return {
     ocrJapaneseChars: ocrChars,
@@ -156,6 +175,7 @@ export function crossCheckPage({ body, ocr }) {
     disagreeingChars: disagreeing,
     disagreeingWords,
     share: Number(share.toFixed(4)),
+    wordShare: Number(wordShare.toFixed(4)),
     flagged,
     onlyInOcr: onlyInOcr.map(([k, n]) => (n > 1 ? `${k}×${n}` : k)).join(" "),
     onlyInTranscript: onlyInTranscript.map(([k, n]) => (n > 1 ? `${k}×${n}` : k)).join(" "),

@@ -184,6 +184,39 @@ this pipeline is proven on.
 Warnings are advisory, never a gate — every one of them describes a book that still builds, just
 not the way its own table of contents suggests. Run the probe before spending a pass on a new book.
 
+### Books of page images: eligibility and the remaster
+
+The shape report's warnings are advisory, which is right for a book with a few thin chapters and
+wrong for a book with no text at all. A PDF run through Calibre's "PDF Reflow" becomes an EPUB of
+page pictures with a one-entry table of contents: it parses, warns twice, and would build every page
+as one lesson. `src/corpus/epubEligibility.js` reads the same shape report and gives one verdict:
+`native` (build it), `remaster` (under 20 characters of text per image across at least 10 images)
+or `blocked` (with the reason). Run it with `node scripts/remaster-epub.mjs check <book.epub>`.
+
+A `remaster` book is converted once into an ordinary EPUB by `scripts/remaster-epub.mjs`, and the
+converted file then goes through onboarding and the stages below with no special handling. The steps
+are separate subcommands so each paid one can be checked before the next:
+
+- `ocr`: Apple Vision reads every page (free, local, macOS only; `src/remaster/vision-ocr.swift`
+  is compiled once into the library's `remaster/bin/`).
+- `outline`: one text-only model call over the OCR's margins and contents pages writes
+  `outline.json`, the lesson page ranges that replace the missing table of contents.
+  `parseOutline` refuses gaps, overlaps and repeated labels. Read it before going further, because
+  every deck name comes from it.
+- `transcribe --entry <n>`: one Claude vision call per page (`docs/remaster-page-prompt.md`,
+  pinned in `REMASTER_PASS_PINS`), writing XHTML with `<ruby>` for furigana and
+  `class="vocabulary"` on vocabulary tables. The model is never shown the OCR, so the two
+  readings stay independent. A saved reply is re-read before a page is paid for again.
+- `crosscheck`: counts kana, kanji and English words in each transcript against the OCR, ignoring
+  order, and flags a page that dropped or invented text (`src/remaster/ocrCrossCheck.js`).
+- `build --out <file>`: one XHTML file per outline entry plus a nav document. The output is
+  deterministic, so the same transcripts give the same bytes and the same library hash.
+  `--allow-missing` puts a visible placeholder where a page has no transcript.
+
+Everything lives under `.anki-builder/remaster/<source hash>/`, which is gitignored. Transcripts are
+a commercial book's text and this repository is public, so none of them is ever committed. Design,
+results from the first lesson, and open questions: `docs/designs/image-epub-remaster.md`.
+
 ### What the nav parser now refuses to drop quietly
 
 Four things used to disappear without a word, all of them in `src/corpus/epubArchive.js`:

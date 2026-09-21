@@ -69,7 +69,10 @@ function attr(attrs, name) {
  * and left for the caller to decide on.
  */
 export function parsePageReply(raw, { pageNumber }) {
-  const match = /<page\b([^>]*)>([\s\S]*)<\/page>/.exec(raw);
+  // The LAST complete <page> element. A model that corrects itself mid-reply ("Wait, that heading
+  // duplicates the text. Corrected answer:") writes two, and the second is the one it stands by;
+  // a greedy match from the first to the last tag glued both into one malformed page.
+  const match = [...raw.matchAll(/<page\b([^>]*)>([\s\S]*?)<\/page>/g)].at(-1);
   if (!match) {
     throw new Error(`page ${pageNumber}: the reply has no <page> element`);
   }

@@ -5,6 +5,7 @@ import {
   parseHeadings,
   parseNumberedBlocks,
   countImages,
+  plainText,
 } from "../../src/corpus/chapterOutline.js";
 
 test("parseHeadings reads a title nested inside other tags", () => {
@@ -114,4 +115,12 @@ test("a chapter with no headings at all still reports its size and images", () =
   assert.deepEqual(sections, []);
   assert.ok(chars > 0);
   assert.equal(images, 1);
+});
+
+test("plainText drops furigana, so a ruby headword reads as the word itself", () => {
+  assert.equal(plainText("<td><ruby>アメリカ<rt>あめりか</rt></ruby></td>"), "アメリカ");
+  assert.equal(
+    plainText("<h2><ruby>表現<rt>ひょうげん</rt></ruby>ノート (Expression Notes)</h2>"),
+    "表現 ノート (Expression Notes)",
+  );
 });

@@ -117,9 +117,13 @@ export function ocrLinesTopDown(ocr) {
  * where a book says where you are in it. `band` is the fraction of the page counted as margin at
  * each edge, top and bottom as well as left and right (Genki's lesson tab sits on the right edge).
  */
-export function marginLines(ocr, { band = 0.08 } = {}) {
+export function marginLines(ocr, { band = 0.08, maxChars = 20 } = {}) {
+  // Short lines only. A header, a page number and a tab are a few characters; a footnote printed
+  // near the bottom edge is a sentence, and treating it as margin hid it from the cross-check
+  // (Genki page 50's footnote about こんにちは) and fed body text to the outline pass.
   return ocrLinesTopDown(ocr).filter(
     (line) =>
-      line.y + line.h > 1 - band || line.y < band || line.x > 1 - band || line.x + line.w < band,
+      line.text.trim().length <= maxChars &&
+      (line.y + line.h > 1 - band || line.y < band || line.x > 1 - band || line.x + line.w < band),
   );
 }

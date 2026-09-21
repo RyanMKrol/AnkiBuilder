@@ -53,7 +53,10 @@
       "english": "Then, please report on it at the meeting on Monday.",
       "category": "Work & Occupations",
       "target": "じゃ、げつようびのかいぎでほうこくしてください",
-      "pronunciation": "ja, getsuyōbi no kaigi de hōkoku shite kudasai"
+      "pronunciation": "ja, getsuyōbi no kaigi de hōkoku shite kudasai",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Differs from kaigi-de-houkoku-shite-kudasai only by a leading じゃ、. Neither carries a scene, so kept the cleaner standalone drill."
     },
     {
       "id": "thank-you-driver",
@@ -309,7 +312,7 @@
       "target": "ごじまでまってください",
       "pronunciation": "go-ji made matte kudasai",
       "aiSuggested": true,
-      "note": "Contrast pair with the next item: まで means the action goes on up to 5:00, while までに means it must be done by 5:00."
+      "note": "まで (made) means the action goes on up to 5:00; までに (made ni) means it must be done by then. Contrast it with ごじまでにかえってください (go-ji made ni kaette kudasai), \"please go home by 5:00\"."
     },
     {
       "id": "request-send-documents-by-mail",
@@ -380,7 +383,10 @@
       "pronunciation": "sumimasen. nimotsu o go-ji made azukatte kudasai",
       "ttsText": "すみません。にもつをごじまであずかってください",
       "uncertain": true,
-      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Differs from nimotsu-go-ji-made-azukatte only by a leading すみません. Kept the one carrying the scene."
     },
     {
       "id": "taxi-turn-left-next-intersection",
@@ -409,7 +415,10 @@
       "english": "Excuse me. May I ask for a blanket?",
       "category": "Travel & Tourism",
       "target": "すみません。もうふをおねがいできますか",
-      "pronunciation": "sumimasen. mōfu o onegai dekimasu ka"
+      "pronunciation": "sumimasen. mōfu o onegai dekimasu ka",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Differs from moufu-o-onegai-dekimasu-ka only by a leading すみません, so the two Production faces ask for near-identical answers. Kept the one carrying the scene."
     },
     {
       "id": "request-lend-pen",
@@ -690,7 +699,10 @@
       "category": "Grammar & Function Words",
       "target": "とうきょうについてほんをよみます",
       "pronunciation": "Tōkyō ni tsuite hon o yomimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "とうきょうについてほんをよみます uses について adnominally without の. Natural Japanese is とうきょうについての ほん, and についての is untaught, so this cannot be corrected without reaching past the chapter. について stays drilled by three sentences that use it adverbially as the chapter models it."
     },
     {
       "id": "taxi-stop-beyond-traffic-light",

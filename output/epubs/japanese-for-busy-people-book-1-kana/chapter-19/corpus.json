@@ -287,8 +287,7 @@
       "target": "とうきょうタワー",
       "english": "Tokyo Tower",
       "category": "Travel & Tourism",
-      "uncertain": true,
-      "reviewNote": "A real landmark, but proper-name-like. Reviewer decides whether it counts as ordinary vocabulary.",
+      "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
       "sourceOrder": 3725
     },
     {
@@ -296,8 +295,7 @@
       "target": "えびすえき",
       "english": "Ebisu Station",
       "category": "Transport",
-      "uncertain": true,
-      "reviewNote": "A real station name. The common noun えき is the reusable part.",
+      "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
       "sourceOrder": 3932
     },
     {
@@ -305,8 +303,7 @@
       "target": "ぎんざどおり",
       "english": "Ginza Street",
       "category": "Directions",
-      "uncertain": true,
-      "reviewNote": "A real street name, proper-name-like. Reviewer decides.",
+      "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
       "sourceOrder": 2955
     },
     {
@@ -614,7 +611,8 @@
       "target": "ほうこくしてください",
       "english": "Please report",
       "category": "Work & Occupations",
-      "sourceOrder": 244
+      "sourceOrder": 244,
+      "note": "ほうこくして is the て-form of ほうこくします, an Irregular (する) verb, like します (shimasu) → して (shite)."
     },
     {
       "id": "yoroshiku-tsutaete-kudasai",
@@ -881,7 +879,7 @@
       "target": "いろいろ(な)",
       "english": "Various",
       "category": "Descriptions & Qualities",
-      "note": "Printed with the な in parentheses, so it attaches to nouns as いろいろな.",
+      "note": "A な-adjective: it takes な before a noun, as in いろいろな サンプル (iroiro na sanpuru), \"various samples\".",
       "sourceOrder": 766
     },
     {

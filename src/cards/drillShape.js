@@ -98,13 +98,37 @@ export function frameDistribution(items, { minCount = 3 } = {}) {
  * nowhere at all is not reported here — that hole is `taughtNeverUsed`'s job, and reporting it twice
  * under two names is how one problem becomes two numbers nobody reads.
  */
+/**
+ * The forms a taught item might actually be written as inside a sentence.
+ *
+ * A handful of headwords carry the book's optional-part notation — `いろいろ(な)`, `(お)さら` — and
+ * that literal string appears in no sentence, so a card using the word every day counted as drilled
+ * zero times. Reported by the final review on Lesson 19, where `いろいろ(な)` read as undrilled while
+ * two shipping sentences used いろいろな.
+ *
+ * This is a COUNTING aid only. `assignSourceOrder` deliberately does not do this: it matches against
+ * the chapter, where `normalizeDisplayText` already resolves the notation, and adding variants there
+ * was measured and moved a card to the wrong offset.
+ */
+function writtenForms(target) {
+  const base = String(target ?? "");
+  if (!base) return [];
+  if (!/[()（）]/.test(base)) return [base];
+  return [
+    ...new Set([base.replace(/[()（）]/g, ""), base.replace(/[(（][^)）]*[)）]/g, ""), base]),
+  ].filter(Boolean);
+}
+
+const usesItem = (drillTarget, itemTarget) =>
+  writtenForms(itemTarget).some((form) => drillTarget.includes(form));
+
 export function itemsOnlyInFrame(taughtItems, drillItems, frame) {
   if (!frame) return [];
   const drills = drillItems.filter((item) => !item.excluded && item.target);
   return taughtItems
     .filter((item) => !item.excluded && item.target)
     .map((item) => {
-      const using = drills.filter((drill) => drill.target.includes(item.target));
+      const using = drills.filter((drill) => usesItem(drill.target, item.target));
       return { item, using };
     })
     .filter(({ using }) => using.length > 0 && using.every((d) => d.target.endsWith(frame)))
@@ -118,7 +142,7 @@ export function drillCoverage(taughtItems, drillItems) {
     .filter((item) => !item.excluded && item.target)
     .map((item) => ({
       item,
-      count: drills.filter((drill) => drill.target.includes(item.target)).length,
+      count: drills.filter((drill) => usesItem(drill.target, item.target)).length,
     }))
     .sort((a, b) => a.count - b.count);
 }

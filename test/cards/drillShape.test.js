@@ -79,3 +79,27 @@ test("drillCoverage counts sentences per taught item, thinnest first", () => {
   assert.equal(coverage[0].item.id, "およいで");
   for (let i = 1; i < coverage.length; i++) assert.ok(coverage[i - 1].count <= coverage[i].count);
 });
+
+test("an optional-part headword counts the form a sentence actually writes", () => {
+  // The book prints a handful of headwords with its optional-part notation — いろいろ(な), (お)さら —
+  // and that literal string appears in no sentence. Before this, a card used every day read as
+  // drilled zero times, which is the one number `leastDrilled` exists to report. Found by the final
+  // review on Lesson 19, where いろいろ(な) showed 0 while two shipping sentences used いろいろな.
+  const taught = [card("いろいろ(な)"), card("(お)さら")];
+  const drills = [
+    card("いろいろなサンプルをもらいました"),
+    card("いろいろなカタログをみせてください"),
+    card("おさらをとってください"),
+  ];
+  const coverage = drillCoverage(taught, drills);
+  const by = Object.fromEntries(coverage.map((c) => [c.item.id, c.count]));
+  assert.equal(by["いろいろ(な)"], 2);
+  // Both readings count: (お)さら is さら or おさら depending on politeness, and which the sentence
+  // uses is not knowable from the headword.
+  assert.equal(by["(お)さら"], 1);
+});
+
+test("a plain headword is unaffected by the optional-part handling", () => {
+  const coverage = drillCoverage([card("ほん")], [card("ほんをよみます"), card("ペンをかします")]);
+  assert.equal(coverage[0].count, 1);
+});

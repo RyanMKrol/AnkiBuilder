@@ -27,7 +27,10 @@
       "id": "report-at-monday-meeting",
       "target": "じゃ、げつようびのかいぎでほうこくしてください",
       "english": "Then, please report on it at the meeting on Monday.",
-      "category": "Work & Occupations"
+      "category": "Work & Occupations",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Differs from kaigi-de-houkoku-shite-kudasai only by a leading じゃ、. Neither carries a scene, so kept the cleaner standalone drill."
     },
     {
       "id": "thank-you-driver",
@@ -254,7 +257,7 @@
       "target": "ごじまでまってください",
       "english": "Please wait until 5:00.",
       "category": "Time",
-      "note": "Contrast pair with the next item: まで means the action goes on up to 5:00, while までに means it must be done by 5:00.",
+      "note": "まで (made) means the action goes on up to 5:00; までに (made ni) means it must be done by then. Contrast it with ごじまでにかえってください (go-ji made ni kaette kudasai), \"please go home by 5:00\".",
       "aiSuggested": true
     },
     {
@@ -316,7 +319,10 @@
       "id": "keep-bag-until-five",
       "target": "すみません。にもつを5じまであずかってください",
       "english": "Excuse me. Please keep my bag until 5:00 p.m.",
-      "category": "Travel & Tourism"
+      "category": "Travel & Tourism",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Differs from nimotsu-go-ji-made-azukatte only by a leading すみません. Kept the one carrying the scene."
     },
     {
       "id": "taxi-turn-left-next-intersection",
@@ -342,7 +348,10 @@
       "id": "may-i-ask-blanket",
       "target": "すみません。もうふをおねがいできますか",
       "english": "Excuse me. May I ask for a blanket?",
-      "category": "Travel & Tourism"
+      "category": "Travel & Tourism",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Differs from moufu-o-onegai-dekimasu-ka only by a leading すみません, so the two Production faces ask for near-identical answers. Kept the one carrying the scene."
     },
     {
       "id": "request-lend-pen",
@@ -595,7 +604,10 @@
       "target": "とうきょうについてほんをよみます",
       "english": "I'll read a book about Tokyo.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "とうきょうについてほんをよみます uses について adnominally without の. Natural Japanese is とうきょうについての ほん, and についての is untaught, so this cannot be corrected without reaching past the chapter. について stays drilled by three sentences that use it adverbially as the chapter models it."
     },
     {
       "id": "taxi-stop-beyond-traffic-light",

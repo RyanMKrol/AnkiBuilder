@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { promises as fs, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import os from "os";
-import { loadEarlierUnitItems } from "../../src/cards/earlierUnits.js";
+import { loadEarlierUnitItems, loadEarlierTaughtItems } from "../../src/cards/earlierUnits.js";
 
 async function withCollection(units, fn) {
   const dir = await fs.mkdtemp(join(os.tmpdir(), "earlier-"));
@@ -81,5 +81,36 @@ test("a unit that will not parse is skipped rather than crashing the build", () 
     assert.deepEqual(
       loadEarlierUnitItems(dir, "chapter-3").map((i) => i.__unit),
       ["chapter-1"],
+    );
+  }));
+
+const ja = (id, target, extra = {}) => ({ id, target, english: id, ...extra });
+
+test("taught vocabulary counts an earlier extras unit's WORDS but not its sentences", () =>
+  withCollection(
+    {
+      "chapter-7": [ja("bus", "バス")],
+      // Lesson 7's extras really do teach どうやって, as a Nihongo 102 addition. Leaving it out made
+      // Lesson 20's miners drop the chapter's title question as untaught.
+      "chapter-7-extras": [
+        ja("how", "どうやって"),
+        ja("sentence", "スミスさんはバスでかいしゃにいきます"),
+      ],
+      "chapter-8": [ja("hotel", "ホテル", { excluded: true })],
+      "chapter-20": [ja("later", "あとで")],
+    },
+    (dir) => {
+      const items = loadEarlierTaughtItems(dir, 20, "ja");
+      assert.deepEqual(items.map((i) => i.id).sort(), ["bus", "how"]);
+    },
+  ));
+
+test("taught vocabulary keeps extras out entirely for a language with no sentence markers", () =>
+  withCollection({ "chapter-1": [card("a")], "chapter-1-extras": [card("b")] }, (dir) => {
+    // isPredicateShaped returns null here, and null must mean "not known to be a word".
+    const items = loadEarlierTaughtItems(dir, 2, "xx");
+    assert.deepEqual(
+      items.map((i) => i.id),
+      ["a"],
     );
   }));

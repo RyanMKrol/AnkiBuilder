@@ -22,7 +22,7 @@ import {
 import { EXTRAS_PHASE_STEPS, runExtrasPhase, extrasUnitMeta } from "../src/agents/extrasPhase.js";
 import { ROLES } from "../src/agents/roles.js";
 import { parseUnitDir } from "../src/model/unitDir.js";
-import { loadEarlierUnitItems } from "../src/cards/earlierUnits.js";
+import { loadEarlierUnitItems, loadEarlierTaughtItems } from "../src/cards/earlierUnits.js";
 
 const argv = process.argv.slice(2);
 const positional = argv.filter((a) => !a.startsWith("--"));
@@ -67,27 +67,11 @@ if (!existsSync(chapterFilePath)) {
 
 const baseItems = (cards.items ?? []).filter((i) => !i.excluded);
 
-// Every earlier BASE lesson of this collection, so the vocabulary rule is judged against what the
-// learner has met rather than against this chapter alone.
-//
-// Extras units are deliberately left out here, and that is a stricter rule than reality: an extras
-// unit can teach real vocabulary of its own (chapter-9-extras teaches おとうと), so a miner is denied
-// a word the learner does know. It fails SAFE -- the damage from using unmet vocabulary is a card the
-// learner cannot read, and the damage from this is a sentence that could have been slightly richer --
-// but it is a constraint, not an accurate model of the learner. `priorItems` below reads extras too,
-// because backward dedup has the opposite risk profile.
+// What the learner has met before this chapter, which is the vocabulary the miners may USE. See
+// `loadEarlierTaughtItems` for why extras units count only for their lexical entries.
 const collection = dirname(baseDir);
 const thisNumber = parseUnitDir(baseDir.split("/").pop())?.number ?? Infinity;
-const earlierItems = [];
-for (const name of (await import("fs")).readdirSync(collection)) {
-  const unit = parseUnitDir(name);
-  if (!unit || unit.extras || unit.number >= thisNumber) continue;
-  const f = join(collection, name, "cards.json");
-  if (!existsSync(f)) continue;
-  earlierItems.push(
-    ...(JSON.parse(readFileSync(f, "utf-8")).items ?? []).filter((i) => !i.excluded),
-  );
-}
+const earlierItems = loadEarlierTaughtItems(collection, thisNumber, targetLanguage);
 
 const spends = EXTRAS_PHASE_STEPS.filter((s) => s.kind === "agent");
 console.log(`base:    ${baseDir}  (${baseItems.length} approved card(s))`);
@@ -95,7 +79,7 @@ console.log(`base:    ${baseDir}  (${baseItems.length} approved card(s))`);
 // unit(s)" read as a count and cost a real abort: 17 looked like a loss of half the collection
 // against the 34 units on disk, with a paid run about to start.
 console.log(
-  `earlier: ${earlierItems.length} card(s) from every base unit before chapter ${
+  `earlier: ${earlierItems.length} card(s) from every unit before chapter ${
     thisNumber === Infinity ? "?" : thisNumber
   }`,
 );
@@ -125,8 +109,8 @@ const result = runExtrasPhase({
   earlierItems,
   targetLanguage,
   meta: { hints: loadBookHints(meta.epubHash), unit: extrasUnitMeta(meta) },
-  // Distinct from `earlierItems` above, which is the vocabulary the miners may USE and deliberately
-  // excludes extras units. This is prior art for the backward judge and must include them.
+  // Distinct from `earlierItems` above, which is the vocabulary the miners may USE and leaves out
+  // extras sentences. This is prior art for the backward judge and must include them.
   priorItems: loadEarlierUnitItems(collection, extrasDir.split("/").pop()),
 });
 

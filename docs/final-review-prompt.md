@@ -35,8 +35,8 @@ A `findings` array that is empty is a legitimate and expected result for a well-
   whether they matter. Deciding is your job, and an INFO finding you ignore silently is the same as
   one nobody computed.
 - **Per-role yield.** For each role that produced cards, how many it produced and how many survived
-  to the approved set. A low keep rate is not automatically a fault — a role can be doing its job
-  and having its output legitimately deduplicated — but it is the first place to look when something
+  to the approved set. A low keep rate is not automatically a fault (a role can be doing its job
+  and having its output legitimately deduplicated), but it is the first place to look when something
   about the unit seems off, and it is the one number that points at a CAUSE rather than a symptom.
   When one role's keep rate is far below its peers in the same run, say so and say whether it
   explains anything else you found.
@@ -87,11 +87,11 @@ One JSON object, nothing around it.
 
 `severity`:
 
-- **`blocker`** — a learner would be taught something false, or could not study a shipping card.
+- **`blocker`**: a learner would be taught something false, or could not study a shipping card.
   This is the tier that should stop audio being bought.
-- **`concern`** — a real weakness worth a human decision, like a chapter's grammar point being
+- **`concern`**: a real weakness worth a human decision, like a chapter's grammar point being
   under-drilled relative to something it does not teach.
-- **`note`** — worth knowing, no action required.
+- **`note`**: worth knowing, no action required.
 
 `verdict` is `not-ready` if and only if you reported at least one `blocker`.
 

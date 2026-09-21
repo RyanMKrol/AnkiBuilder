@@ -322,6 +322,19 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    the worst moment: the corpus review has already passed, the unit is signed off, and fixing it
    means editing a finished unit. Running the check while the lesson is still at gate 1 turns the
    same problem into one tick of an Exclude box.
+   **An excluded duplicate can still block every tool, if it shares a DELIVERED id.** A unit counts
+   as delivered when any of its card ids is in the collection's delivery record, and that check
+   reads every card, excluded or not. On Lesson 19 the extras miner re-mined
+   `ちょっとまってください` under chapter 0's exact id (a card already in the live collection), so
+   the whole new unit read as delivered and `extras-order` refused with advice to pass
+   `--force-delivered`. Excluding the card did not clear it.
+
+   **Re-identify it; do not reach for the flag.** Give the excluded duplicate its own id (the `-l19`
+   suffix convention) and the block clears, because nothing in the unit is in Anki any more. The
+   flag would have silenced a correct report about a real duplicate, and the check is right to be
+   conservative: its real case is a card delivered and THEN excluded, which still exists in Anki as
+   an orphan.
+
 2. **A deck-wide collision audit** — also scripted:
 
    ```sh

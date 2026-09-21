@@ -41,7 +41,7 @@ export const ROLE_ID = "finalReview";
  * all that exists and its deadline is absolute: nothing may be added to a lesson after its reviewer
  * signs off, so "does this card everything the chapter teaches" is the most valuable question
  * available and it is only answerable HERE. By the time the extras unit exists that ship has sailed,
- * and the useful question becomes whether the drilling matches what the chapter teaches — which is
+ * and the useful question becomes whether the drilling matches what the chapter teaches, which is
  * meaningless at gate 1, since a base unit holds lexical entries and drills nothing.
  *
  * Asking a question the evidence cannot answer is not free: it invites a confident paragraph about
@@ -136,13 +136,13 @@ const SEVERITIES = new Set(["blocker", "concern", "note"]);
  * Raised from 4000 on 2026-09-20, because the reviewer caught this on its first live run and was
  * right: at 4000 every one of chapter 19's six responses arrived cut off mid-JSON, and it reported
  * that it could not confirm what the coverage adversary flagged past its ~45th item. It had the
- * evidence to notice — `responseChars` records the true length beside the truncated text — and the
+ * evidence to notice (`responseChars` records the true length beside the truncated text) and the
  * correct conclusion was the one it drew: missing evidence, not a clean result.
  *
  * The reasoning for a cap still holds, so this is a bigger budget rather than none. The largest real
  * response measured is ~14k characters, so 20k passes every one of them whole while still bounding a
  * pathological run. Note the cap was never a STORAGE limit: `runLog` writes the full response to
- * disk, and only the prompt was ever truncated — so nothing was lost, it simply was not shown.
+ * disk, and only the prompt was ever truncated, so nothing was lost, it simply was not shown.
  */
 const TRANSCRIPT_CHARS = 20_000;
 

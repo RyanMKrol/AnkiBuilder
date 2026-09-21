@@ -81,7 +81,7 @@ test("drillCoverage counts sentences per taught item, thinnest first", () => {
 });
 
 test("an optional-part headword counts the form a sentence actually writes", () => {
-  // The book prints a handful of headwords with its optional-part notation — いろいろ(な), (お)さら —
+  // The book prints a handful of headwords with its optional-part notation, いろいろ(な), (お)さら,
   // and that literal string appears in no sentence. Before this, a card used every day read as
   // drilled zero times, which is the one number `leastDrilled` exists to report. Found by the final
   // review on Lesson 19, where いろいろ(な) showed 0 while two shipping sentences used いろいろな.

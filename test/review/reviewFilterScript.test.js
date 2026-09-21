@@ -96,8 +96,8 @@ test("Not excluded alone shows exactly the shipping cards", () => {
 });
 
 test("Not excluded NARROWS a flag: shipping AND uncertain, not shipping OR uncertain", () => {
-  // The whole reason it is a scope. Unioned, this would also show row 2 — an excluded uncertain card
-  // — which is precisely what choosing "Not excluded" asked to hide.
+  // The whole reason it is a scope. Unioned, this would also show row 2, an excluded uncertain card
+  //which is precisely what choosing "Not excluded" asked to hide.
   const p = page(SPECS, ROWS);
   p.chip("shipping").click();
   p.chip("uncertain").click();

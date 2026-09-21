@@ -459,7 +459,7 @@ const cardRow = (c, n, stage, ctx) => {
 export function filterTokens(card, stage) {
   const t = [];
   // The complement of `excluded`: the cards that are, or will be, in the deck. A SCOPE rather than a
-  // flag — see `scope` on FILTERS — so it narrows the flag chips instead of adding to them.
+  // flag (see `scope` on FILTERS) so it narrows the flag chips instead of adding to them.
   if (!card.excluded) t.push("shipping");
   if (card.excluded) {
     t.push("excluded");
@@ -471,8 +471,8 @@ export function filterTokens(card, stage) {
   if (card.reviewNote) t.push("rnote");
   if (stage === "audio") {
     if (card.audioMarkerStuck) t.push("marker");
-    // A SHIPPING card with no clip. An excluded card never gets one — the audio stage skips it so no
-    // TTS is spent on a card that may be cut — so counting those would make the chip a restatement
+    // A SHIPPING card with no clip. An excluded card never gets one, the audio stage skips it so no
+    // TTS is spent on a card that may be cut, so counting those would make the chip a restatement
     // of "Excluded" and hide the handful that actually need a recording.
     if (!card.audio && !card.excluded) t.push("noaudio");
   }
@@ -484,7 +484,7 @@ export function filterTokens(card, stage) {
  *
  * `scope` chips NARROW and flag chips WIDEN, and the difference is deliberate. Flags union, because
  * "Uncertain" plus "AI-suggested" asks for both sets. A scope intersects, because "Not excluded" plus
- * "Uncertain" asks for the shipping cards that are uncertain — unioning it would pull every excluded
+ * "Uncertain" asks for the shipping cards that are uncertain, unioning it would pull every excluded
  * uncertain card straight back in and defeat the reason for choosing it.
  *
  * `excludes` names the chips a scope contradicts. "Not excluded" and "Excluded" can never both match
@@ -539,7 +539,7 @@ export function renderFilterBar(sections) {
       `${f.excludes ? ` data-excludes="${f.excludes.join(" ")}"` : ""}` +
       `>${escapeHtml(f.label)}<span class="fn">${counts.get(f.key)}</span></button>`,
   );
-  // A bar holding only a scope chip is still worth showing — "Not excluded" alone is a real view —
+  // A bar holding only a scope chip is still worth showing, "Not excluded" alone is a real view,
   // so the test is simply whether anything useful survived.
   if (!chips.length) return "";
   return `<div class="fbar" id="fbar"><span class="flab">Show only</span>${chips.join("")}<button type="button" class="fchip fclear" id="fclear">All</button><span class="fcount" id="fcount"></span></div>`;

@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 46,
+    "chapterLabel": "Lesson 20: Going Places (3): How Do You Go There?",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "wo-departure-particle",
+      "target": "を",
+      "english": "Particle marking the vehicle got off or the place left",
+      "category": "Grammar & Function Words",
+      "note": "Lesson 20's を: the point you move away from. うちを でました, I left home. でんしゃを おります, I get off the train.",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught: Lesson 8 (object marker) and Lesson 19 (place passed through) are different senses. Gloss written from GRAMMAR 2; id changed from particle-wo, which is Lesson 8's note.",
+      "sourceOrder": 184,
+      "scene": "with おります (orimasu) or でます (demasu)"
+    },
+    {
+      "id": "ni-particle-vehicle-arrival",
+      "target": "に",
+      "english": "Particle marking the vehicle boarded and the place arrived at",
+      "category": "Grammar & Function Words",
+      "note": "Used with のります and つきます. Example: スミスさんは とうきょうえきで しんかんせんに のります.",
+      "uncertain": true,
+      "sourceOrder": 247,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "scene": "with のります (norimasu) or つきます (tsukimasu)"
+    },
+    {
+      "id": "gurai",
+      "target": "ぐらい",
+      "english": "About, approximately",
+      "category": "Grammar & Function Words",
+      "note": "Use ぐらい (gurai) after an amount or length of time: さんじかんぐらい (san-jikan gurai). For a point in time on the clock, use 〜ごろ (goro) instead.",
+      "sourceOrder": 218,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/gurai (same target and sense)"
+    },
+    {
+      "id": "douyatte",
+      "target": "どうやって",
+      "english": "How, in what way",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 3733,
+      "note": "Same どうやって (dō yatte) \"How\" from Lesson 7. Here it asks for the route or means of getting somewhere, and the answer names the vehicles and stops.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7-extras/how (same target and sense)"
+    },
+    {
+      "id": "kan-period-suffix",
+      "target": "かん",
+      "english": "Optional suffix for a period of time",
+      "category": "Grammar & Function Words",
+      "note": "The chart writes it in brackets. Add it when you want to state a period of time clearly, as in ごふんかん. It is not added after はん (さんじかんはん).",
+      "sourceOrder": 629
+    },
+    {
+      "id": "n-desu-ga-preliminary",
+      "target": "〜んですが",
+      "english": "Preliminary phrase before a question or request",
+      "category": "Grammar & Function Words",
+      "note": "Sets up a request for advice or information and leaves the question itself unsaid. とうきょうドームに いきたいんですが implies 'which train should I take?'",
+      "excluded": true,
+      "excludedBy": "preflight-placeholder-target",
+      "excludedReason": "Schematic target 〜んですが is notation, not an utterance. いきたいんですが teaches it and now carries its note."
+    },
+    {
+      "id": "nan-desu-ka-repeat",
+      "target": "…なんですか",
+      "english": "…what? (asking for a partly heard word to be repeated)",
+      "category": "Grammar & Function Words",
+      "note": "Say the part you heard, pause, then add なんですか. Paul says すい…なんですか for すいどうばし.",
+      "hint": "Trailing off after the part you caught",
+      "sourceOrder": 5239
+    },
+    {
+      "id": "neboushimasu",
+      "target": "ねぼうします",
+      "english": "Oversleep",
+      "category": "Other",
+      "sourceOrder": 547
+    },
+    {
+      "id": "neboushimasu-2",
+      "target": "ねぼうします",
+      "english": "To oversleep",
+      "category": "Everyday Objects",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb, gloss differs only by 'To'.",
+      "sourceOrder": 547
+    },
+    {
+      "id": "nebou-shimashita",
+      "target": "ねぼうしました",
+      "english": "Overslept",
+      "category": "Time",
+      "note": "Polite past of ねぼうします. Suzuki says it when phoning to say they are late.",
+      "sourceOrder": 172
+    },
+    {
+      "id": "demasu",
+      "target": "でます",
+      "english": "Leave",
+      "category": "Transport",
+      "note": "R2 verb",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; keep the one whose note gives the を particle pattern.",
+      "sourceOrder": 591
+    },
+    {
+      "id": "demasu-2",
+      "target": "でます",
+      "english": "To leave",
+      "category": "Transport",
+      "note": "Takes を for the place you leave.",
+      "sourceOrder": 1382
+    },
+    {
+      "id": "norimasu",
+      "target": "のります",
+      "english": "Get on, take [train, bus, etc.]",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; keep the one with the に particle note.",
+      "sourceOrder": 672
+    },
+    {
+      "id": "norimasu-2",
+      "target": "のります",
+      "english": "To get on, to take (a train, bus, etc.)",
+      "category": "Transport",
+      "note": "The vehicle takes に.",
+      "sourceOrder": 993
+    },
+    {
+      "id": "orimasu",
+      "target": "おります",
+      "english": "Get off",
+      "category": "Transport",
+      "note": "R2 verb",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; keep the one with the を particle note.",
+      "sourceOrder": 699
+    },
+    {
+      "id": "orimasu-2",
+      "target": "おります",
+      "english": "To get off",
+      "category": "Transport",
+      "note": "The vehicle takes を.",
+      "sourceOrder": 1241
+    },
+    {
+      "id": "tsukimasu",
+      "target": "つきます",
+      "english": "Arrive",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; keep the one with the に particle note.",
+      "sourceOrder": 1124
+    },
+    {
+      "id": "tsukimasu-2",
+      "target": "つきます",
+      "english": "To arrive",
+      "category": "Transport",
+      "note": "The place of arrival takes に.",
+      "sourceOrder": 2253
+    },
+    {
+      "id": "kakarimasu",
+      "target": "かかります",
+      "english": "Take [time]",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; keep the one with the useful note.",
+      "sourceOrder": 203
+    },
+    {
+      "id": "kakarimasu-2",
+      "target": "かかります",
+      "english": "To take (time)",
+      "category": "Time",
+      "note": "Used when the speaker feels the time is long.",
+      "sourceOrder": 221
+    },
+    {
+      "id": "imasu-stay",
+      "target": "います",
+      "english": "To stay (for a period)",
+      "category": "Other",
+      "note": "Same います (imasu) as \"Be, exist\" from Lesson 12, which is used for people and animals. With a length of time it means you stay somewhere for that long. Regular 2.",
+      "sourceOrder": 248,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "scene": "remaining somewhere for a length of time"
+    },
+    {
+      "id": "imasu-stay-2",
+      "target": "います",
+      "english": "To stay, to be",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb and sense; keep the one carrying the R2 class note.",
+      "sourceOrder": 755,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)"
+    },
+    {
+      "id": "arukimasu",
+      "target": "あるきます",
+      "english": "To walk",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Exercise IV-A example dialogue, no gloss. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "sourceOrder": 3792,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/arukimasu (same target and sense)"
+    },
+    {
+      "id": "noru-dict",
+      "target": "のる",
+      "english": "Get on, take (dictionary form)",
+      "category": "Transport",
+      "sourceOrder": 3120
+    },
+    {
+      "id": "norimasu-dict",
+      "target": "のる",
+      "english": "To get on, to take (dictionary form)",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same dictionary-form verb; the second id is a misnomer.",
+      "sourceOrder": 3120
+    },
+    {
+      "id": "noru-te",
+      "target": "のって",
+      "english": "Get on, take (て-form)",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "The book prints the て-form here, but て-form is not in this deck's configured verb forms. Keep or drop as the owner decides.",
+      "sourceOrder": 3122
+    },
+    {
+      "id": "oriru-dict",
+      "target": "おりる",
+      "english": "Get off (dictionary form)",
+      "category": "Transport",
+      "note": "R2 verb",
+      "sourceOrder": 3135
+    },
+    {
+      "id": "oriru-dict-2",
+      "target": "おりる",
+      "english": "To get off (dictionary form)",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same dictionary form; keep the one with the class note.",
+      "sourceOrder": 3135
+    },
+    {
+      "id": "orite-te",
+      "target": "おりて",
+      "english": "Get off (て-form)",
+      "category": "Transport",
+      "note": "R2 verb",
+      "uncertain": true,
+      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "sourceOrder": 3138
+    },
+    {
+      "id": "deru-dict",
+      "target": "でる",
+      "english": "Leave (dictionary form)",
+      "category": "Transport",
+      "note": "R2 verb",
+      "sourceOrder": 3149
+    },
+    {
+      "id": "deru-dict-2",
+      "target": "でる",
+      "english": "To leave (dictionary form)",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same dictionary form; keep the one with the class note.",
+      "sourceOrder": 3149
+    },
+    {
+      "id": "dete-te",
+      "target": "でて",
+      "english": "Leave (て-form)",
+      "category": "Transport",
+      "note": "R2 verb",
+      "uncertain": true,
+      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "sourceOrder": 3151
+    },
+    {
+      "id": "tsuku-dict",
+      "target": "つく",
+      "english": "Arrive (dictionary form)",
+      "category": "Transport",
+      "sourceOrder": 3163
+    },
+    {
+      "id": "tsuku-dict-2",
+      "target": "つく",
+      "english": "To arrive (dictionary form)",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same dictionary form, gloss differs only by 'To'.",
+      "sourceOrder": 3163
+    },
+    {
+      "id": "tsuite-te",
+      "target": "ついて",
+      "english": "Arrive (て-form)",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "sourceOrder": 3165
+    },
+    {
+      "id": "kakaru-dict",
+      "target": "かかる",
+      "english": "Take [time] (dictionary form)",
+      "category": "Time",
+      "sourceOrder": 3183
+    },
+    {
+      "id": "kakaru-dict-2",
+      "target": "かかる",
+      "english": "To take (time) (dictionary form)",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same dictionary form, gloss differs only in punctuation and 'To'.",
+      "sourceOrder": 3183
+    },
+    {
+      "id": "kakatte-te",
+      "target": "かかって",
+      "english": "Take [time] (て-form)",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "て-form is not in this deck's configured verb forms; the book prints it in this table.",
+      "sourceOrder": 3186
+    },
+    {
+      "id": "chikatetsu",
+      "target": "ちかてつ",
+      "english": "Subway",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Underlined slot in the Exercise IV example. Probably taught earlier. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on english)",
+      "sourceOrder": 3760,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/chikatetsu (same target and sense)"
+    },
+    {
+      "id": "shinkansen",
+      "target": "しんかんせん",
+      "english": "Shinkansen, bullet train",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Used in the key sentences and Exercise V with no gloss. Probably taught earlier. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "sourceOrder": 665,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/shinkansen (same target and sense)"
+    },
+    {
+      "id": "kuukou",
+      "target": "くうこう",
+      "english": "Airport",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Exercise III cue. Probably taught earlier. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on english)",
+      "sourceOrder": 3577,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/kuukou (same target and sense)"
+    },
+    {
+      "id": "haneda-kuukou",
+      "target": "はねだくうこう",
+      "english": "Haneda Airport",
+      "category": "Travel & Tourism",
+      "sourceOrder": 4591
+    },
+    {
+      "id": "basu-bus",
+      "target": "バス",
+      "english": "Bus",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/basu (same target and sense)"
+    },
+    {
+      "id": "takushii-taxi",
+      "target": "タクシー",
+      "english": "Taxi",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/takushii (same target and sense)"
+    },
+    {
+      "id": "kafe",
+      "target": "カフェ",
+      "english": "Café",
+      "category": "Food",
+      "sourceOrder": 244
+    },
+    {
+      "id": "hakubutsukan",
+      "target": "はくぶつかん",
+      "english": "Museum",
+      "category": "Travel & Tourism",
+      "sourceOrder": 272
+    },
+    {
+      "id": "otera",
+      "target": "おてら",
+      "english": "Temple",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Exercise VII cue, no gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
+      "sourceOrder": 4921,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/otera-temple (same target and sense)"
+    },
+    {
+      "id": "ekiin",
+      "target": "えきいん",
+      "english": "Station employee",
+      "category": "Work & Occupations",
+      "sourceOrder": 5198
+    },
+    {
+      "id": "suidoubashi",
+      "target": "すいどうばし",
+      "english": "Suidobashi (station in Tokyo)",
+      "category": "Transport",
+      "sourceOrder": 5218
+    },
+    {
+      "id": "bansen-suffix",
+      "target": "〜ばんせん",
+      "english": "Platform...",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same counter, only the ellipsis style differs.",
+      "sourceOrder": 6181
+    },
+    {
+      "id": "bansen-counter",
+      "target": "ばんせん",
+      "english": "Platform… (counter)",
+      "category": "Transport",
+      "sourceOrder": 6181,
+      "note": "Goes after a number: ５ばんせん (go-bansen), Platform 5."
+    },
+    {
+      "id": "go-bansen",
+      "target": "５ばんせん",
+      "english": "Platform 5",
+      "category": "Transport",
+      "sourceOrder": 5203
+    },
+    {
+      "id": "tokyo",
+      "target": "とうきょう",
+      "english": "Tokyo",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "sourceOrder": 657,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-1/toukyou (same target and sense)"
+    },
+    {
+      "id": "nikko",
+      "target": "にっこう",
+      "english": "Nikko",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/nikko-place (same target and sense)"
+    },
+    {
+      "id": "yokohama",
+      "target": "よこはま",
+      "english": "Yokohama",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/yokohama (same target and sense)"
+    },
+    {
+      "id": "hiroshima",
+      "target": "ひろしま",
+      "english": "Hiroshima (city in western Japan)",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 713
+    },
+    {
+      "id": "hiroshima-2",
+      "target": "ひろしま",
+      "english": "Hiroshima",
+      "category": "Nationalities & Countries",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same city; the fuller gloss adds context.",
+      "sourceOrder": 744
+    },
+    {
+      "id": "hiroshima-eki",
+      "target": "ひろしまえき",
+      "english": "Hiroshima Station",
+      "category": "Transport",
+      "sourceOrder": 685
+    },
+    {
+      "id": "sapporo",
+      "target": "さっぽろ",
+      "english": "Sapporo",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Exercise VI cue only. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
+      "sourceOrder": 4543,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/sapporo (same target and sense)"
+    },
+    {
+      "id": "okinawa",
+      "target": "おきなわ",
+      "english": "Okinawa",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Exercise VII cue only. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target)",
+      "sourceOrder": 4863,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/okinawa (same target and sense)"
+    },
+    {
+      "id": "hokkaidou",
+      "target": "ほっかいどう",
+      "english": "Hokkaido",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Exercise VIII listening blank sentence only. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "sourceOrder": 5081,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/hokkaido (same target and sense)"
+    },
+    {
+      "id": "kamakura",
+      "target": "かまくら",
+      "english": "Kamakura",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Exercise VIII listening blank sentence only. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 5056,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/kamakura (same target and sense)"
+    },
+    {
+      "id": "sydney",
+      "target": "シドニー",
+      "english": "Sydney",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/sydney (same target and sense)"
+    },
+    {
+      "id": "rondon",
+      "target": "ロンドン",
+      "english": "London",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Exercise VI cue and grammar example 4. Not in a vocabulary box. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on english)",
+      "sourceOrder": 2028,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-1/rondon (same target and sense)"
+    },
+    {
+      "id": "honkon",
+      "target": "ホンコン",
+      "english": "Hong Kong",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Exercise VI cue only. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on english)",
+      "sourceOrder": 4517,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/honkon (same target and sense)"
+    },
+    {
+      "id": "nyuuyooku",
+      "target": "ニューヨーク",
+      "english": "New York",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 4483
+    },
+    {
+      "id": "akasaka",
+      "target": "あかさか",
+      "english": "Akasaka (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "sourceOrder": 3753
+    },
+    {
+      "id": "otemachi",
+      "target": "おおてまち",
+      "english": "Otemachi (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "sourceOrder": 3769
+    },
+    {
+      "id": "tsukiji",
+      "target": "つきじ",
+      "english": "Tsukiji (district in Tokyo)",
+      "category": "Travel & Tourism",
+      "sourceOrder": 4074
+    },
+    {
+      "id": "toukyou-doomu",
+      "target": "とうきょうドーム",
+      "english": "Tokyo Dome",
+      "category": "Travel & Tourism",
+      "sourceOrder": 5180
+    },
+    {
+      "id": "uchi-home",
+      "target": "うち",
+      "english": "Home, house",
+      "category": "Home & Household",
+      "sourceOrder": 182,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/uchi (same target and sense)"
+    },
+    {
+      "id": "asa-morning",
+      "target": "あさ",
+      "english": "Morning",
+      "category": "Time",
+      "uncertain": true,
+      "sourceOrder": 3585,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on english)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/asa (same target and sense)"
+    },
+    {
+      "id": "mainichi",
+      "target": "まいにち",
+      "english": "Every day",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Exercise IV-B example dialogue, no gloss. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english)",
+      "sourceOrder": 3908,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/mainichi-everyday (same target and sense)"
+    },
+    {
+      "id": "natsuyasumi",
+      "target": "なつやすみ",
+      "english": "Summer vacation",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Exercise VII example dialogue, no gloss. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on english)",
+      "sourceOrder": 4756,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/natsuyasumi (same target and sense)"
+    },
+    {
+      "id": "jigoro",
+      "target": "〜ごろ",
+      "english": "Around (a time)",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Seen in 1じごろ in an Exercise III cue. No gloss.",
+      "note": "Goes after a clock time: 3じごろ (san-ji goro). For an amount or length of time, use ぐらい (gurai) instead, as in さんじかんぐらい (san-jikan gurai).",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-13/goro (same target and sense); the contrast with ぐらい moved onto いちじかん"
+    },
+    {
+      "id": "futatsume",
+      "target": "ふたつめ",
+      "english": "The second one",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Station employee says ここから ふたつめです. Translated as 'second station from here' but not glossed as a word. | Possibly already taught — already introduced in Lesson 19: Making a Request: Please Give Her My Regards (matched on target)",
+      "sourceOrder": 5264,
+      "note": "Same ふたつめ (futatsume) as \"Second\" from Lesson 19: ふたつ (futatsu) plus the ordinal め (me).",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-19/futatsume (same target and sense)"
+    },
+    {
+      "id": "myuujikaru",
+      "target": "ミュージカル",
+      "english": "Musical",
+      "category": "Sports & Hobbies",
+      "sourceOrder": 4786
+    },
+    {
+      "id": "daibingu-o-shimasu",
+      "target": "ダイビングをします",
+      "english": "Scuba dive",
+      "category": "Sports & Hobbies",
+      "sourceOrder": 4868
+    },
+    {
+      "id": "daibingu-o-shimasu-2",
+      "target": "ダイビングをします",
+      "english": "To scuba dive",
+      "category": "Sports & Hobbies",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same phrase; the kept target has no editorial spacing.",
+      "sourceOrder": 5115
+    },
+    {
+      "id": "ikitai-n-desu-ga",
+      "target": "いきたいんですが",
+      "english": "I'd like to go",
+      "category": "Travel & Tourism",
+      "note": "A polite opener that asks for advice. The question itself is left unsaid: とうきょうドームに いきたいんですが implies \"which train should I take?\"",
+      "sourceOrder": 5189
+    },
+    {
+      "id": "doko-dono-kurai",
+      "target": "どのくらい",
+      "english": "How long, how much",
+      "category": "Time",
+      "uncertain": true,
+      "reviewNote": "Used in the dialogue and in Exercises V and VI. The chapter never glosses it. | Possibly already taught — already introduced in Lesson 11: Describing Impressions: It Was Beautiful (matched on target)",
+      "sourceOrder": 198,
+      "note": "Same どのくらい (dono kurai) \"How long\" from Lesson 11. Here it asks how much time a trip takes, and the answer is a length like さんじかん (san-jikan).",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/dono-kurai (same target and sense)"
+    },
+    {
+      "id": "fun-pun",
+      "target": "〜ふん",
+      "english": "…minutes",
+      "category": "Time",
+      "note": "Also 〜ぷん, depending on the number. Add かん to give a length of time.",
+      "sourceOrder": 2911,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/fun-pun-suffix (same target and sense)"
+    },
+    {
+      "id": "fun-pun-suffix",
+      "target": "〜ふん",
+      "english": "...minutes",
+      "category": "Time",
+      "note": "Also read ぷん.",
+      "alternateOf": "〜ふん",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same counter; keep the fuller note.",
+      "sourceOrder": 2911
+    },
+    {
+      "id": "fun-pun-suffix-alt2",
+      "target": "ぷん",
+      "english": "...minutes",
+      "category": "Time",
+      "note": "Also read 〜ふん.",
+      "alternateOf": "〜ふん",
+      "sourceOrder": 216,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/fun-pun-suffix (same target and sense); the ふん/ぷん alternation is on the じゅっぷん card"
+    },
+    {
+      "id": "han",
+      "target": "はん",
+      "english": "Half",
+      "category": "Time",
+      "note": "Comes after the counter, and かん is then left out.",
+      "sourceOrder": 1424,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-3/han-suffix (same target and sense); the rule for はん after a counter moved onto さんじかんはん"
+    },
+    {
+      "id": "juugofun",
+      "target": "じゅうごふん",
+      "english": "Fifteen minutes",
+      "category": "Time",
+      "note": "Add かん to give a length of time: じゅうごふんかん.",
+      "sourceOrder": 2316
+    },
+    {
+      "id": "gofun",
+      "target": "ごふん",
+      "english": "Five minutes",
+      "category": "Time",
+      "note": "Add かん to give a length of time: ごふんかん.",
+      "sourceOrder": 2285
+    },
+    {
+      "id": "sanjuppun",
+      "target": "さんじゅっぷん",
+      "english": "Thirty minutes",
+      "category": "Time",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after さんじゅっ (sanjup). Add かん to give a length of time: さんじゅっぷんかん.",
+      "sourceOrder": 2369
+    },
+    {
+      "id": "juppun",
+      "target": "じゅっぷん",
+      "english": "Ten minutes",
+      "category": "Time",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after じゅっ (jup). Add かん to give a length of time: じゅっぷんかん.",
+      "sourceOrder": 2300
+    },
+    {
+      "id": "nijuugofun",
+      "target": "にじゅうごふん",
+      "english": "Twenty-five minutes",
+      "category": "Time",
+      "note": "Add かん to give a length of time: にじゅうごふんかん.",
+      "sourceOrder": 2351
+    },
+    {
+      "id": "nijuppun",
+      "target": "にじゅっぷん",
+      "english": "Twenty minutes",
+      "category": "Time",
+      "note": "Sound change: ふん (fun) becomes ぷん (pun) after にじゅっ (nijup). Add かん to give a length of time: にじゅっぷんかん.",
+      "sourceOrder": 2334
+    },
+    {
+      "id": "ka-nichi",
+      "target": "〜か",
+      "english": "…days",
+      "category": "Time",
+      "note": "Also 〜にち, depending on the number. Add かん to give a length of time.",
+      "sourceOrder": 2929,
+      "excluded": true,
+      "excludedBy": "preflight-placeholder-target",
+      "excludedReason": "Schematic target 〜か is notation, not an utterance. ふつか to むいか teach it and ふつか now carries the rule; にち is Lesson 7's."
+    },
+    {
+      "id": "ka-nichi-suffix",
+      "target": "〜か",
+      "english": "...days",
+      "category": "Time",
+      "note": "Also read にち.",
+      "alternateOf": "〜か",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same counter; keep the fuller note.",
+      "sourceOrder": 2929
+    },
+    {
+      "id": "ka-nichi-suffix-alt2",
+      "target": "にち",
+      "english": "...days",
+      "category": "Time",
+      "note": "Also read 〜か.",
+      "alternateOf": "〜か",
+      "sourceOrder": 2932,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/nichi-suffix (same target and sense); the counts of days are carded one by one, from いちにち to むいか"
+    },
+    {
+      "id": "yokka",
+      "target": "よっか",
+      "english": "Four days",
+      "category": "Time",
+      "note": "Irregular reading, same as よっか (yokka) \"4th (of the month)\" from Lesson 7. Here it counts four days as a length of time. Not よんにち (yon-nichi).",
+      "sourceOrder": 2497,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "hint": "a length of time, not a date",
+      "scene": "a length of time"
+    },
+    {
+      "id": "futsuka",
+      "target": "ふつか",
+      "english": "Two days",
+      "category": "Time",
+      "note": "Two to ten days use the native か reading (ふつか, みっか, よっか…), not にち. Add かん to give a length of time: ふつかかん.",
+      "sourceOrder": 2436,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "hint": "a length of time, not a date",
+      "scene": "a length of time"
+    },
+    {
+      "id": "muika",
+      "target": "むいか",
+      "english": "Six days",
+      "category": "Time",
+      "note": "Irregular reading, same as むいか (muika) \"6th (of the month)\" from Lesson 7. Here it counts six days as a length of time. Not ろくにち (roku-nichi).",
+      "sourceOrder": 2557,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "hint": "a length of time, not a date",
+      "scene": "a length of time"
+    },
+    {
+      "id": "ichinichi",
+      "target": "いちにち",
+      "english": "One day",
+      "category": "Time",
+      "sourceOrder": 2407,
+      "note": "Irregular reading. Not to be confused with ついたち (tsuitachi), the 1st of the month from Lesson 7.",
+      "hint": "a length of time, not a date"
+    },
+    {
+      "id": "itsuka",
+      "target": "いつか",
+      "english": "Five days",
+      "category": "Time",
+      "note": "Irregular reading, same as いつか (itsuka) \"5th (of the month)\" from Lesson 7. Here it counts five days as a length of time. Not ごにち (go-nichi).",
+      "sourceOrder": 2528,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "hint": "a length of time, not a date",
+      "scene": "a length of time"
+    },
+    {
+      "id": "mikka",
+      "target": "みっか",
+      "english": "Three days",
+      "category": "Time",
+      "note": "Irregular reading, same as みっか (mikka) \"3rd (of the month)\" from Lesson 7. Here it counts three days as a length of time. Not さんにち (san-nichi).",
+      "sourceOrder": 2465,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "hint": "a length of time, not a date",
+      "scene": "a length of time"
+    },
+    {
+      "id": "jikan-hours",
+      "target": "〜じかん",
+      "english": "…hours",
+      "category": "Time",
+      "note": "Counts a length of time, e.g. よじかん (four hours). Not the same as 〜じ, the time of day.",
+      "uncertain": true,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-11/jikan-suffix (same target and sense); the contrast with 〜じ moved onto いちじかん"
+    },
+    {
+      "id": "sanjikan",
+      "target": "さんじかん",
+      "english": "Three hours",
+      "category": "Time",
+      "sourceOrder": 2327
+    },
+    {
+      "id": "ichijikan",
+      "target": "いちじかん",
+      "english": "One hour",
+      "category": "Time",
+      "sourceOrder": 2293,
+      "note": "Counts hours of time, unlike 〜じ for the time of day. For about an hour add ぐらい: いちじかんぐらい. ごろ goes after a clock time instead: いちじごろ."
+    },
+    {
+      "id": "rokujikan",
+      "target": "ろくじかん",
+      "english": "Six hours",
+      "category": "Time",
+      "sourceOrder": 2381
+    },
+    {
+      "id": "nijikan",
+      "target": "にじかん",
+      "english": "Two hours",
+      "category": "Time",
+      "sourceOrder": 2310
+    },
+    {
+      "id": "gojikan",
+      "target": "ごじかん",
+      "english": "Five hours",
+      "category": "Time",
+      "sourceOrder": 2363
+    },
+    {
+      "id": "yojikan",
+      "target": "よじかん",
+      "english": "Four hours",
+      "category": "Time",
+      "note": "Says よ, not よん.",
+      "sourceOrder": 2345
+    },
+    {
+      "id": "shuukan-counter",
+      "target": "しゅうかん",
+      "english": "…weeks",
+      "category": "Time",
+      "sourceOrder": 2943
+    },
+    {
+      "id": "shuukan-suffix",
+      "target": "〜しゅうかん",
+      "english": "...weeks",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same counter, only the ellipsis style differs.",
+      "sourceOrder": 2943
+    },
+    {
+      "id": "sanshuukan",
+      "target": "さんしゅうかん",
+      "english": "Three weeks",
+      "category": "Time",
+      "sourceOrder": 2472
+    },
+    {
+      "id": "isshuukan",
+      "target": "いっしゅうかん",
+      "english": "One week",
+      "category": "Time",
+      "note": "Irregular sound change: いち (ichi) becomes いっ (is-), so it is いっしゅうかん (is-shūkan), not いちしゅうかん.",
+      "sourceOrder": 2411
+    },
+    {
+      "id": "goshuukan",
+      "target": "ごしゅうかん",
+      "english": "Five weeks",
+      "category": "Time",
+      "sourceOrder": 2535
+    },
+    {
+      "id": "nishuukan",
+      "target": "にしゅうかん",
+      "english": "Two weeks",
+      "category": "Time",
+      "sourceOrder": 2443
+    },
+    {
+      "id": "rokushuukan",
+      "target": "ろくしゅうかん",
+      "english": "Six weeks",
+      "category": "Time",
+      "sourceOrder": 2564
+    },
+    {
+      "id": "yonshuukan",
+      "target": "よんしゅうかん",
+      "english": "Four weeks",
+      "category": "Time",
+      "sourceOrder": 2504
+    },
+    {
+      "id": "kagetsu-counter",
+      "target": "かげつ",
+      "english": "…months",
+      "category": "Time",
+      "note": "Add かん to give a length of time.",
+      "sourceOrder": 2955
+    },
+    {
+      "id": "kagetsu-suffix",
+      "target": "〜かげつ",
+      "english": "...months",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same counter; keep the one with the note.",
+      "sourceOrder": 2955
+    },
+    {
+      "id": "sankagetsu",
+      "target": "さんかげつ",
+      "english": "Three months",
+      "category": "Time",
+      "note": "Add かん to give a length of time: さんかげつかん.",
+      "sourceOrder": 2479
+    },
+    {
+      "id": "ikkagetsu",
+      "target": "いっかげつ",
+      "english": "One month",
+      "category": "Time",
+      "note": "Irregular sound change: いち (ichi) becomes いっ (ik-), so it is いっかげつ (ik-kagetsu). Add かん to give a length of time: いっかげつかん.",
+      "sourceOrder": 2418
+    },
+    {
+      "id": "rokkagetsu",
+      "target": "ろっかげつ",
+      "english": "Six months",
+      "category": "Time",
+      "note": "Irregular sound change: ろく (roku) becomes ろっ (rok-), so it is ろっかげつ (rok-kagetsu). Add かん to give a length of time: ろっかげつかん.",
+      "sourceOrder": 2571
+    },
+    {
+      "id": "nikagetsu",
+      "target": "にかげつ",
+      "english": "Two months",
+      "category": "Time",
+      "note": "Add かん to give a length of time: にかげつかん.",
+      "sourceOrder": 2449
+    },
+    {
+      "id": "gokagetsu",
+      "target": "ごかげつ",
+      "english": "Five months",
+      "category": "Time",
+      "note": "Add かん to give a length of time: ごかげつかん.",
+      "sourceOrder": 2541
+    },
+    {
+      "id": "yonkagetsu",
+      "target": "よんかげつ",
+      "english": "Four months",
+      "category": "Time",
+      "note": "Add かん to give a length of time: よんかげつかん.",
+      "sourceOrder": 2511
+    },
+    {
+      "id": "nen-counter",
+      "target": "〜ねん",
+      "english": "…years",
+      "category": "Time",
+      "note": "Add かん to give a length of time.",
+      "sourceOrder": 2970,
+      "excluded": true,
+      "excludedBy": "preflight-placeholder-target",
+      "excludedReason": "Schematic target 〜ねん is notation, not an utterance. いちねん to ろくねん teach it and いちねん now carries the note, including the contrast with Lesson 7's ねん."
+    },
+    {
+      "id": "nen-suffix",
+      "target": "〜ねん",
+      "english": "...years",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same counter; keep the one with the note.",
+      "sourceOrder": 2970
+    },
+    {
+      "id": "sannen",
+      "target": "さんねん",
+      "english": "Three years",
+      "category": "Time",
+      "note": "Add かん to give a length of time: さんねんかん.",
+      "sourceOrder": 2488
+    },
+    {
+      "id": "ichinen",
+      "target": "いちねん",
+      "english": "One year",
+      "category": "Time",
+      "note": "Add かん to give a length of time: いちねんかん. This ねん counts years; the ねん from Lesson 7 names a year.",
+      "sourceOrder": 2427
+    },
+    {
+      "id": "rokunen",
+      "target": "ろくねん",
+      "english": "Six years",
+      "category": "Time",
+      "note": "Add かん to give a length of time: ろくねんかん.",
+      "sourceOrder": 2580
+    },
+    {
+      "id": "ninen",
+      "target": "にねん",
+      "english": "Two years",
+      "category": "Time",
+      "note": "Add かん to give a length of time: にねんかん.",
+      "sourceOrder": 2457
+    },
+    {
+      "id": "gonen",
+      "target": "ごねん",
+      "english": "Five years",
+      "category": "Time",
+      "note": "Add かん to give a length of time: ごねんかん.",
+      "sourceOrder": 2549
+    },
+    {
+      "id": "yonen",
+      "target": "よねん",
+      "english": "Four years",
+      "category": "Time",
+      "note": "Says よ, not よん. Add かん to give a length of time: よねんかん.",
+      "sourceOrder": 2520
+    },
+    {
+      "id": "sanjikan-han",
+      "target": "さんじかんはん",
+      "english": "Three and a half hours",
+      "category": "Time",
+      "sourceOrder": 2844,
+      "note": "はん comes after the counter, and かん is then left out."
+    },
+    {
+      "id": "ichinen-han",
+      "target": "いちねんはん",
+      "english": "One and a half years",
+      "category": "Time",
+      "sourceOrder": 2869
+    }
+  ]
+}

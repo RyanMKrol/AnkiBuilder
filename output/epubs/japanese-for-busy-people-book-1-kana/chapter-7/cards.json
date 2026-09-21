@@ -206,7 +206,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "5dd30357e75ddff0",
-      "audio": "5dd30357e75ddff0-genkanji-1092ae50.mp3"
+      "audio": "5dd30357e75ddff0-genkanji-1092ae50.mp3",
+      "scene": "a date in the month"
     },
     {
       "id": "youka-8th",
@@ -807,7 +808,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audio": "fcc186a2f6ae705c-gen-2b49f1ab.mp3",
-      "audioTextHash": "fcc186a2f6ae705c"
+      "audioTextHash": "fcc186a2f6ae705c",
+      "scene": "a date in the month"
     },
     {
       "id": "hatsuka-20th",
@@ -834,7 +836,8 @@
       "audioAuto": "121c740530c2d1cc.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "121c740530c2d1cc"
+      "audioTextHash": "121c740530c2d1cc",
+      "scene": "a date in the month"
     },
     {
       "id": "nijuuichinichi-21st",
@@ -860,7 +863,8 @@
       "audioAuto": "e91222322bf8c2d5.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "e91222322bf8c2d5"
+      "audioTextHash": "e91222322bf8c2d5",
+      "scene": "a date in the month"
     },
     {
       "id": "nijuuninichi-22nd",
@@ -886,7 +890,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audio": "10fce6b6a326baf3-gen-73ea7c73.mp3",
-      "audioTextHash": "10fce6b6a326baf3"
+      "audioTextHash": "10fce6b6a326baf3",
+      "scene": "a date in the month"
     },
     {
       "id": "nijuusannichi-23rd",

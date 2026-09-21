@@ -138,7 +138,8 @@
       "hint": null,
       "note": null,
       "reviewNote": null,
-      "target": "よっか"
+      "target": "よっか",
+      "scene": "a date in the month"
     },
     {
       "id": "youka-8th",
@@ -539,7 +540,8 @@
       "hint": null,
       "note": null,
       "reviewNote": null,
-      "target": "ふつか"
+      "target": "ふつか",
+      "scene": "a date in the month"
     },
     {
       "id": "hatsuka-20th",
@@ -557,7 +559,8 @@
       "hint": null,
       "note": null,
       "reviewNote": null,
-      "target": "みっか"
+      "target": "みっか",
+      "scene": "a date in the month"
     },
     {
       "id": "nijuuichinichi-21st",
@@ -575,7 +578,8 @@
       "hint": null,
       "note": null,
       "reviewNote": null,
-      "target": "いつか"
+      "target": "いつか",
+      "scene": "a date in the month"
     },
     {
       "id": "nijuuninichi-22nd",
@@ -593,7 +597,8 @@
       "hint": null,
       "note": null,
       "reviewNote": null,
-      "target": "むいか"
+      "target": "むいか",
+      "scene": "a date in the month"
     },
     {
       "id": "nijuusannichi-23rd",

@@ -53,7 +53,8 @@
       "audioOriginal": "da56bd0b84c9787a.orig.mp3",
       "audioAuto": "da56bd0b84c9787a.mp3",
       "audioMarked": true,
-      "audioTextHash": "da56bd0b84c9787a"
+      "audioTextHash": "da56bd0b84c9787a",
+      "sourceOrder": 894
     },
     {
       "id": "chotto-yoroshii-desu-ka",
@@ -66,7 +67,8 @@
       "audioOriginal": "b359e06932546ced.orig.mp3",
       "audioAuto": "b359e06932546ced.mp3",
       "audioMarked": true,
-      "audioTextHash": "b359e06932546ced"
+      "audioTextHash": "b359e06932546ced",
+      "sourceOrder": 136
     },
     {
       "id": "package",
@@ -78,7 +80,8 @@
       "audioOriginal": "b230e0dea80cf498.orig.mp3",
       "audioAuto": "b230e0dea80cf498.mp3",
       "audioMarked": true,
-      "audioTextHash": "b230e0dea80cf498"
+      "audioTextHash": "b230e0dea80cf498",
+      "sourceOrder": 747
     },
     {
       "id": "fair",
@@ -90,7 +93,8 @@
       "audioOriginal": "4e4ad3c2defe35c4.orig.mp3",
       "audioAuto": "4e4ad3c2defe35c4.mp3",
       "audioMarked": true,
-      "audioTextHash": "4e4ad3c2defe35c4"
+      "audioTextHash": "4e4ad3c2defe35c4",
+      "sourceOrder": 195
     },
     {
       "id": "package-fair",
@@ -102,7 +106,8 @@
       "audioOriginal": "ea67c85f56ff42e7.orig.mp3",
       "audioAuto": "ea67c85f56ff42e7.mp3",
       "audioMarked": true,
-      "audioTextHash": "ea67c85f56ff42e7"
+      "audioTextHash": "ea67c85f56ff42e7",
+      "sourceOrder": 177
     },
     {
       "id": "ato",
@@ -115,7 +120,8 @@
       "audioOriginal": "a35afaadbb33e7ca.orig.mp3",
       "audioAuto": "a35afaadbb33e7ca.mp3",
       "audioMarked": true,
-      "audioTextHash": "a35afaadbb33e7ca"
+      "audioTextHash": "a35afaadbb33e7ca",
+      "sourceOrder": 199
     },
     {
       "id": "no-ato",
@@ -128,7 +134,8 @@
       "note": "A noun goes before it, joined by の (no): かいぎのあと (kaigi no ato), \"after the meeting\". It mirrors 〜のまえに (no mae ni) from Lesson 17.",
       "excluded": true,
       "excludedBy": "preflight-placeholder-target",
-      "excludedReason": "Schematic target 〜のあと is notation, not an utterance; あと (ato) is carded and its note teaches the の construction with the worked example かいぎのあと"
+      "excludedReason": "Schematic target 〜のあと is notation, not an utterance; あと (ato) is carded and its note teaches the の construction with the worked example かいぎのあと",
+      "sourceOrder": 785
     },
     {
       "id": "mae-ni",
@@ -142,7 +149,8 @@
       "hint": "the full phrase with に (ni), not bare まえ",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 17, which teaches まえ and the 〜のまえに construction throughout"
+      "excludedReason": "Already taught in Lesson 17, which teaches まえ and the 〜のまえに construction throughout",
+      "sourceOrder": 5105
     },
     {
       "id": "ato-de",
@@ -157,7 +165,8 @@
       "audioOriginal": "dd09d22a5522400d.orig.mp3",
       "audioAuto": "dd09d22a5522400d.mp3",
       "audioMarked": true,
-      "audioTextHash": "dd09d22a5522400d"
+      "audioTextHash": "dd09d22a5522400d",
+      "sourceOrder": 5114
     },
     {
       "id": "asatte",
@@ -170,7 +179,8 @@
       "note": "Same word as あさって (asatte) \"Day after tomorrow\" from Lesson 6.",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 6 (chapter-6/asatte, same target あさって)"
+      "excludedReason": "Already taught in Lesson 6 (chapter-6/asatte, same target あさって)",
+      "sourceOrder": 221
     },
     {
       "id": "itte-2",
@@ -184,7 +194,8 @@
       "audioAuto": "4cf5e4d68ef08a16.mp3",
       "audioMarked": true,
       "audioTextHash": "4cf5e4d68ef08a16",
-      "scene": "in a sentence about a journey, before the next thing done there"
+      "scene": "in a sentence about a journey, before the next thing done there",
+      "sourceOrder": 802
     },
     {
       "id": "tabete",
@@ -199,7 +210,8 @@
       "audioOriginal": "70f03d0081f0cc5b.orig.mp3",
       "audioAuto": "70f03d0081f0cc5b.mp3",
       "audioMarked": true,
-      "audioTextHash": "70f03d0081f0cc5b"
+      "audioTextHash": "70f03d0081f0cc5b",
+      "sourceOrder": 2688
     },
     {
       "id": "te-form-kau",
@@ -331,7 +343,8 @@
       "audioOriginal": "7823365970107b8c.orig.mp3",
       "audioAuto": "7823365970107b8c.mp3",
       "audioMarked": true,
-      "audioTextHash": "7823365970107b8c"
+      "audioTextHash": "7823365970107b8c",
+      "sourceOrder": 833
     },
     {
       "id": "te-form-iru",
@@ -361,7 +374,8 @@
       "audioMarked": true,
       "audioTextHash": "ddf40496274436d1",
       "audioFilter": "standard",
-      "audio": "ddf40496274436d1-gen-70dc366a.mp3"
+      "audio": "ddf40496274436d1-gen-70dc366a.mp3",
+      "sourceOrder": 3679
     },
     {
       "id": "te-form-suru",
@@ -453,7 +467,8 @@
       "audioTrim": {
         "start": 0,
         "end": 1.1139888698630136
-      }
+      },
+      "sourceOrder": 265
     },
     {
       "id": "koujou",
@@ -465,7 +480,8 @@
       "audioOriginal": "2bd77082c6917e44.orig.mp3",
       "audioAuto": "2bd77082c6917e44.mp3",
       "audioMarked": true,
-      "audioTextHash": "2bd77082c6917e44"
+      "audioTextHash": "2bd77082c6917e44",
+      "sourceOrder": 225
     },
     {
       "id": "shisha",
@@ -477,7 +493,8 @@
       "reviewNote": "Glossed only via the dialogue translation, no vocabulary entry. May be taught earlier. | Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 6 (chapter-6/shisha, same target ししゃ)"
+      "excludedReason": "Already taught in Lesson 6 (chapter-6/shisha, same target ししゃ)",
+      "sourceOrder": 202
     },
     {
       "id": "hikouki",
@@ -490,7 +507,8 @@
       "note": "Same word as ひこうき (hikōki) \"Airplane\" from Lesson 7.",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 7 (chapter-7/hikouki, same target ひこうき)"
+      "excludedReason": "Already taught in Lesson 7 (chapter-7/hikouki, same target ひこうき)",
+      "sourceOrder": 237
     },
     {
       "id": "repooto",
@@ -503,7 +521,8 @@
       "audioAuto": "d59c772b5a4dec72.mp3",
       "audioMarked": true,
       "audioTextHash": "d59c772b5a4dec72",
-      "hint": "the document itself"
+      "hint": "the document itself",
+      "sourceOrder": 1164
     },
     {
       "id": "purezen-o-shimasu",
@@ -515,7 +534,8 @@
       "audioOriginal": "bc59c8b1fa0796be.orig.mp3",
       "audioAuto": "bc59c8b1fa0796be.mp3",
       "audioMarked": true,
-      "audioTextHash": "bc59c8b1fa0796be"
+      "audioTextHash": "bc59c8b1fa0796be",
+      "sourceOrder": 3508
     },
     {
       "id": "doraibu-o-shimasu",
@@ -527,7 +547,8 @@
       "audioOriginal": "e7fd7b25653e7be1.orig.mp3",
       "audioAuto": "e7fd7b25653e7be1.mp3",
       "audioMarked": true,
-      "audioTextHash": "e7fd7b25653e7be1"
+      "audioTextHash": "e7fd7b25653e7be1",
+      "sourceOrder": 3457
     },
     {
       "id": "kaigi-o-shimasu",
@@ -539,7 +560,8 @@
       "audioOriginal": "85caf3d56be0e363.orig.mp3",
       "audioAuto": "85caf3d56be0e363.mp3",
       "audioMarked": true,
-      "audioTextHash": "85caf3d56be0e363"
+      "audioTextHash": "85caf3d56be0e363",
+      "sourceOrder": 4281
     },
     {
       "id": "uchiawase-o-shimasu",
@@ -551,7 +573,8 @@
       "audioOriginal": "d6367e4f5c130bb5.orig.mp3",
       "audioAuto": "d6367e4f5c130bb5.mp3",
       "audioMarked": true,
-      "audioTextHash": "d6367e4f5c130bb5"
+      "audioTextHash": "d6367e4f5c130bb5",
+      "sourceOrder": 4542
     },
     {
       "id": "sumou",
@@ -563,7 +586,8 @@
       "audioOriginal": "4ccccc6890b218bd.orig.mp3",
       "audioAuto": "4ccccc6890b218bd.mp3",
       "audioMarked": true,
-      "audioTextHash": "4ccccc6890b218bd"
+      "audioTextHash": "4ccccc6890b218bd",
+      "sourceOrder": 3490
     },
     {
       "id": "koube",
@@ -575,7 +599,8 @@
       "audioOriginal": "2810e4bcc9aee239.orig.mp3",
       "audioAuto": "2810e4bcc9aee239.mp3",
       "audioMarked": true,
-      "audioTextHash": "2810e4bcc9aee239"
+      "audioTextHash": "2810e4bcc9aee239",
+      "sourceOrder": 4462
     },
     {
       "id": "nara",
@@ -587,7 +612,8 @@
       "audioOriginal": "57071a5e593e4de5.orig.mp3",
       "audioAuto": "57071a5e593e4de5.mp3",
       "audioMarked": true,
-      "audioTextHash": "57071a5e593e4de5"
+      "audioTextHash": "57071a5e593e4de5",
+      "sourceOrder": 4502
     },
     {
       "id": "koube-beef",
@@ -600,7 +626,8 @@
       "audioOriginal": "26fee89f710590d6.orig.mp3",
       "audioAuto": "26fee89f710590d6.mp3",
       "audioMarked": true,
-      "audioTextHash": "26fee89f710590d6"
+      "audioTextHash": "26fee89f710590d6",
+      "sourceOrder": 5659
     },
     {
       "id": "furui",
@@ -612,7 +639,8 @@
       "reviewNote": "Appears only in the exercise VIII cue (ふるい おてら). Guessed gloss; may be taught earlier. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 10 (chapter-10/furui, same target ふるい)"
+      "excludedReason": "Already taught in Lesson 10 (chapter-10/furui, same target ふるい)",
+      "sourceOrder": 4505
     },
     {
       "id": "otera",
@@ -624,7 +652,8 @@
       "reviewNote": "Appears only in the exercise VIII cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 12 (chapter-12/otera-temple, same target おてら)"
+      "excludedReason": "Already taught in Lesson 12 (chapter-12/otera-temple, same target おてら)",
+      "sourceOrder": 4508
     },
     {
       "id": "jinja",
@@ -636,7 +665,8 @@
       "reviewNote": "Appears only in the exercise V cue (ゆうめいな じんじゃ). Guessed gloss. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 12 (chapter-12/jinja-shrine, same target じんじゃ)"
+      "excludedReason": "Already taught in Lesson 12 (chapter-12/jinja-shrine, same target じんじゃ)",
+      "sourceOrder": 3747
     },
     {
       "id": "yuumei-na",
@@ -648,7 +678,8 @@
       "reviewNote": "Appears only in the exercise V cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 10 as ゆうめい, which also demonstrates the attributive ゆうめいな"
+      "excludedReason": "Already taught in Lesson 10 as ゆうめい, which also demonstrates the attributive ゆうめいな",
+      "sourceOrder": 3742
     },
     {
       "id": "bijutsukan",
@@ -660,7 +691,8 @@
       "reviewNote": "Appears only in the exercise II cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 15 (chapter-15/art-museum, same target びじゅつかん)"
+      "excludedReason": "Already taught in Lesson 15 (chapter-15/art-museum, same target びじゅつかん)",
+      "sourceOrder": 2994
     },
     {
       "id": "shiai",
@@ -672,7 +704,8 @@
       "reviewNote": "Appears only in the exercise III cue (サッカーの しあい). Guessed gloss. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 16 (chapter-16/shiai, same target しあい)"
+      "excludedReason": "Already taught in Lesson 16 (chapter-16/shiai, same target しあい)",
+      "sourceOrder": 3244
     },
     {
       "id": "sakkaa",
@@ -684,7 +717,8 @@
       "reviewNote": "Appears only in the exercise III cue. May be taught earlier. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 15 (chapter-15/soccer-vocab, same target サッカー)"
+      "excludedReason": "Already taught in Lesson 15 (chapter-15/soccer-vocab, same target サッカー)",
+      "sourceOrder": 3239
     },
     {
       "id": "uisukii",
@@ -696,7 +730,8 @@
       "reviewNote": "Appears only in the exercise VI cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 15 (chapter-15/whiskey-vocab, same target ウイスキー)"
+      "excludedReason": "Already taught in Lesson 15 (chapter-15/whiskey-vocab, same target ウイスキー)",
+      "sourceOrder": 4082
     },
     {
       "id": "baa",
@@ -708,7 +743,8 @@
       "reviewNote": "Appears only in the exercise VI cue. Guessed gloss. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 8 (chapter-8/baa, same target バー)"
+      "excludedReason": "Already taught in Lesson 8 (chapter-8/baa, same target バー)",
+      "sourceOrder": 4075
     },
     {
       "id": "sandoicchi",
@@ -720,7 +756,8 @@
       "reviewNote": "Appears only in the exercise V cue. May be taught earlier. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 4 (chapter-4/sandwich, same target サンドイッチ)"
+      "excludedReason": "Already taught in Lesson 4 (chapter-4/sandwich, same target サンドイッチ)",
+      "sourceOrder": 3699
     },
     {
       "id": "sutee-ki",
@@ -732,7 +769,8 @@
       "reviewNote": "Appears in the Chan and Emma dialogue with the translation 'steak'. May be taught earlier. | Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on english)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 8 (chapter-8/suteeki, same target ステーキ)"
+      "excludedReason": "Already taught in Lesson 8 (chapter-8/suteeki, same target ステーキ)",
+      "sourceOrder": 4844
     },
     {
       "id": "zehi",
@@ -745,7 +783,8 @@
       "note": "Same word as ぜひ (zehi) in Lessons 16 and 17. It is the enthusiastic answer to an invitation, often on its own: ええ、ぜひ (ē, zehi).",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught in Lesson 16 and Lesson 17 (same target ぜひ)"
+      "excludedReason": "Already taught in Lesson 16 and Lesson 17 (same target ぜひ)",
+      "sourceOrder": 4909
     }
   ]
 }

@@ -723,26 +723,31 @@ survived the gap filler, which is what this step reads.
 
 ### Known rough edges at this gate
 
-Recorded so the next session does not rediscover them. These are REAL and OPEN: each was found on
-Lessons 18-19 and judged too wide to change mid-chapter, because each alters a prompt or a pass that
-every future chapter runs through.
+Recorded so the next session does not rediscover them. These are real and open, left on purpose
+because neither changes what reaches the deck.
 
-- **The semantic deduplicator misses prefix-only variants.** Two miners hitting the same dialogue line
-  produce `もうふをおねがいできますか` and `すみません。もうふをおねがいできますか`, and only exact
-  matches merge. Three such pairs reached Lesson 19's gate 2. Caught by the final review and excluded
-  by hand; the fix belongs in `docs/semantic-deduplicator-prompt.md` (treat a leading すみません,
-  じゃ or はい as a near-duplicate signal).
 - **The gap filler works without the taught index.** On Lesson 19 it proposed 34 words and 30 were
   already taught, then correctly cut by backward dedup. Nothing ships wrong, but it spends a call
   rediscovering old vocabulary every chapter.
-- **The gap author does not read the chapter.** Its transcript says so outright. That is why
-  Lesson 19's とって drills are invented drawer scenes rather than the chapter's own
-  `しゃしんをとってください`, and why one sentence used について in a form the chapter never models.
 - **`drillCoverage` cannot tell homograph te-forms apart.** いって "go" and いって "say" share a
   spelling, so the count for either includes the other. Report such a count as unresolvable rather
   than trusting it.
 
-Two entries that used to sit here are FIXED, and are kept as one line each so nobody re-files them:
+Four entries that used to sit here are FIXED, kept briefly so nobody re-files them.
+
+The deduplicator "missing" すみません/じゃ variants was never the deduplicator: candidates are grouped
+in code by exact target or exact gloss, and a pair that differs by a leading interjection matches
+neither, so the judge was never shown it. A third grouping now finds them (`dedupGroups.js`,
+`same-after-interjection`) and still leaves the verdict to the judge. Run over Lesson 19's snapshot it
+found the three pairs the final review caught plus a fourth nobody did; across the other 18 extras
+units it fires twice, both はい-answer pairs where the opening word may genuinely matter.
+
+The gap author was handed the chapter as a file path headed "for context", and skipped it: its
+Lesson 19 transcript reads "I did not read the chapter file". It now receives the chapter as inline
+text, headed as the source of its sentence frames. This also explains why the Lesson 18 rule telling
+it to prefer the chapter's own grammar changed nothing: it had never seen that grammar.
+
+The other two:
 book-order sorting on the review page now works (it never had: two field allowlists dropped
 `sourceOrder` between the stamp and the page, and the sort's unit test passed because it never
 exercised what the page received), and a rejected agent response is now written, since `runRole` tees

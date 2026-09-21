@@ -9,6 +9,7 @@ import {
   assertGapsAddressed,
   authorGapFills,
   renderGapAuthorPrompt,
+  chapterTextFor,
   unaddressedGaps,
 } from "../../src/agents/gapAuthor.js";
 import { computeGaps, underExampledForms, noGaps } from "../../src/agents/coverageGaps.js";
@@ -233,4 +234,28 @@ test("a gap counts as addressed ONCE, not once per handle", () => {
     unaddressedGaps(gaps, { items: [{ fillsGap: "a" }, { fillsGap: "あ" }], unfillable: [] }),
     ["い"],
   );
+});
+
+test("the prompt carries the chapter's TEXT, so there is nothing for the model to skip", () => {
+  // It used to carry only a file path, headed "for context", and the role treated that as optional:
+  // its Lesson 19 transcript reads "I did not read the chapter file". A rule telling it to prefer
+  // the chapter's own frames was therefore unfollowable. Inlining the text is what makes it real.
+  withChapter((file) => {
+    const prompt = renderGapAuthorPrompt({
+      chapterFilePath: file,
+      gaps: GAPS,
+      baseItems: BASE,
+      targetLanguage: "ja",
+    });
+    const words = chapterTextFor({ chapterFilePath: file });
+    assert.ok(words.length > 0, "the fixture chapter should flatten to some text");
+    assert.ok(prompt.includes(words), "the chapter's words must be IN the prompt, not referenced");
+    assert.doesNotMatch(prompt, /<[a-z][^>]*>/i, "markup is flattened out, not sent raw");
+    assert.match(prompt, /It is not background/);
+  });
+});
+
+test("inline chapter text wins over a path, and an absent chapter degrades to empty", () => {
+  assert.equal(chapterTextFor({ chapterText: "直接", chapterFilePath: "/nope" }), "直接");
+  assert.equal(chapterTextFor({ chapterFilePath: "/does/not/exist.xhtml" }), "");
 });

@@ -123,7 +123,9 @@ node scripts/await-review.mjs <runDir> --gate 2     # wait for Mark done AND its
 Exit codes, so you know what happened without reading the log: **0** signed off (at gate 2, and the
 collection package really did rebuild), **1** timed out with no sign-off, **2** the unit could not be
 read — a bug, this watch could never have fired, **3** gate 2 only: marked done but the package is
-missing or older than `cards.json`. Missing means the rebuild failed. OLDER has two causes the check
+missing or older than `cards.json`, and still is after two minutes. The wait is there because Mark done
+writes the flag before it rebuilds: on Lesson 20 the watcher polled inside that six-second gap and
+reported a rebuild that had worked as failed. Missing means the rebuild failed. OLDER has two causes the check
 cannot tell apart: a failed rebuild, or a successful one followed by an edit (an exclusion or a trim
 made after Mark done). Rebuild with `deck --book-dir`: if it succeeds, it was the edit, and nothing
 was wrong. On Lesson 19 it was the edit. To run the next stage the instant the flag

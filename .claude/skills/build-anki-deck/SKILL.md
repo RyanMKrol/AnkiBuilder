@@ -273,9 +273,12 @@ how the retired Nihongo 101 course got offered as a build target.
   index: an EPUB "chapter number" is just a content file's position, and a lesson can span several
   files. Run
   `anki-builder assemble --output-root output {--epub <path> | --book <slug>} --list-lessons --lang <lang>`
-  (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and pass the chosen `label` (or
-  `[number]`) to `assemble --lesson`. Fall back to `--chapter-number <spine index>` only when the book
-  has no navigation document.
+  (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and pass the chosen `label` to
+  `assemble --lesson`. Prefer the label over the `[number]`: a bare number is the nav ORDINAL, not
+  the book's lesson number, and on this book they never agree (`--lesson 20` is entry [20], Quiz 1;
+  Lesson 20 is [46]). A number that another entry's label also carries is now refused as ambiguous,
+  but the label is what you mean, so type it. Fall back to `--chapter-number <spine index>` only when
+  the book has no navigation document.
 
   **Present EVERY nav entry, with its `type` as an annotation — never as a filter.** `classifyLesson`
   is a label-only heuristic anchored on English words (`Unit …`, `Lesson …`, quiz/review/test,

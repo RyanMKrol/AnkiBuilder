@@ -128,6 +128,16 @@ test("resolveLesson() throws when a label substring matches nothing", () => {
   });
 });
 
+test("resolveLesson() refuses a bare number that is another entry's own lesson number", () => {
+  withTempDir((dir) => {
+    // [2] is "Unit 1: At the Office", but [4] is "Lesson 2: Possession".
+    assert.throws(
+      () => resolveLesson(buildBook(dir), "2"),
+      /ambiguous.*\[4\] "Lesson 2: Possession"/s,
+    );
+  });
+});
+
 test("resolveLesson() throws when the ordinal is out of range", () => {
   withTempDir((dir) => {
     assert.throws(() => resolveLesson(buildBook(dir), "99"), /out of range/i);

@@ -150,7 +150,7 @@ export function describeLearning(report) {
  *
  * Measured on chapter-18-extras: the gap author produced 50 and kept 16, a 32% keep rate, while
  * every other role in the same run kept nearly all of its output (13/13, 7/7, 10/11, 10/13). That
- * gap was pure arithmetic and was available before anyone read a single card — it is the same defect
+ * gap was pure arithmetic and was available before anyone read a single card, it is the same defect
  * the frame analysis found by hand, visible from a different direction and for free.
  *
  * It is reported, never gated on. A low keep rate is not automatically a fault: a role can be doing

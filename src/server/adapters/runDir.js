@@ -140,7 +140,7 @@ export function toCorpusRenderCard(item) {
     //
     // Null rather than "" or 0 when absent: 0 is the first character of the chapter, so a falsy
     // default would put an unplaced card at the top instead of leaving it where it sat. Absent is
-    // normal — an extras unit is composed sentences that appear nowhere in the book, and a te-form
+    // normal, an extras unit is composed sentences that appear nowhere in the book, and a te-form
     // printed only inside an image has no offset in the chapter's text either.
     sourceOrder: typeof item.sourceOrder === "number" ? item.sourceOrder : null,
   };

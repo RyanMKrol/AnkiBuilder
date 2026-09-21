@@ -100,10 +100,19 @@ export function gateState(runDir, gate) {
     };
   }
   if (packageAt < mtimeMs(cardsPath)) {
+    // Two causes produce this and the evidence cannot tell them apart: the rebuild that Mark done
+    // triggered failed, OR it succeeded and cards.json was edited afterwards, an exclusion or a trim
+    // made after the click. This used to assert the first. On Lesson 19 it was the second (a card
+    // excluded at 21:45, seven minutes after a successful 21:38 rebuild), and the message sent a
+    // session hunting for a build error that did not exist. Exit 3 is still right either way: a
+    // stale package must be rebuilt before anything is delivered from it.
     return {
       status: "stale-package",
       exitCode: GATE_EXIT.stalePackage,
-      message: `marked done, but ${packagePath} is OLDER than cards.json — the rebuild FAILED`,
+      message:
+        `marked done, but ${packagePath} is OLDER than cards.json — either the rebuild failed, or ` +
+        `cards.json was edited after it ran (an exclusion or trim after Mark done). Rebuild with ` +
+        `\`deck --book-dir\`; if that succeeds, it was the edit.`,
     };
   }
   return {

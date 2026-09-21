@@ -578,8 +578,8 @@ test("carries sourceOrder onto the card, including the zero offset", async () =>
   // allowlist, so a field absent from the carry-over is dropped in silence. That is what happened to
   // this one: the commit that added it backfilled chapter 17's cards by hand and never exercised
   // this path, so the next two chapters built with the field on every corpus item and none of their
-  // cards. Nothing failed — a review table in pedagogical order looks exactly like one in book
-  // order — which is why it needs a test rather than a reader.
+  // cards. Nothing failed, a review table in pedagogical order looks exactly like one in book
+  // order, which is why it needs a test rather than a reader.
   const corpus = baseCorpus([
     { ...untranslated("a", "Alpha", "Greetings"), sourceOrder: 0 },
     { ...untranslated("b", "Beta", "Greetings"), sourceOrder: 4120 },
@@ -600,7 +600,7 @@ test("carries sourceOrder onto the card, including the zero offset", async () =>
   // rather than truthiness. A `if (src.sourceOrder)` here would drop exactly one card per chapter.
   assert.equal(byId.a.sourceOrder, 0);
   assert.equal(byId.b.sourceOrder, 4120);
-  // A card whose word appears nowhere in the chapter text — every te-form of Lesson 18, whose
-  // paradigm is printed only inside two images — carries no position and must not invent one.
+  // A card whose word appears nowhere in the chapter text, every te-form of Lesson 18, whose
+  // paradigm is printed only inside two images, carries no position and must not invent one.
   assert.equal("sourceOrder" in byId.c, false);
 });

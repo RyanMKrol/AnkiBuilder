@@ -8,13 +8,13 @@
  * That split is not squeamishness, it is the calibration result. On 2026-09-20 an extras unit was
  * built whose gap fills were 51% one frame, the request pattern, which is NOT what its chapter
  * teaches; ten of its nineteen taught verb forms appeared in that frame and nowhere else. The
- * obvious check — "flag a unit where one frame dominates" — was measured against every unit already
+ * obvious check ("flag a unit where one frame dominates") was measured against every unit already
  * shipped in this book before being written, and it fires on the units that are RIGHT:
  *
  *   chapter-16-extras  48% "invite" frame   its lesson IS making an invitation
  *   chapter-17         45% "past wish"      its lesson IS stating a wish
  *   chapter-12-extras  35% "there is"       its lesson IS asking what is somewhere
- *   chapter-5-extras   25%, and 11 taught items drilled in that frame alone — its lesson IS
+ *   chapter-5-extras   25%, and 11 taught items drilled in that frame alone, its lesson IS
  *                      ordering things, so the counters SHOULD only appear in it
  *
  * A dominant frame is what a well-built unit looks like when the chapter has one grammar point. The
@@ -95,13 +95,13 @@ export function frameDistribution(items, { minCount = 3 } = {}) {
  * Taught items that appear in the drill unit ONLY inside sentences ending with `frame`.
  *
  * `taughtItems` are the base unit's approved cards; `drillItems` the extras unit's. An item drilled
- * nowhere at all is not reported here — that hole is `taughtNeverUsed`'s job, and reporting it twice
+ * nowhere at all is not reported here, that hole is `taughtNeverUsed`'s job, and reporting it twice
  * under two names is how one problem becomes two numbers nobody reads.
  */
 /**
  * The forms a taught item might actually be written as inside a sentence.
  *
- * A handful of headwords carry the book's optional-part notation — `いろいろ(な)`, `(お)さら` — and
+ * A handful of headwords carry the book's optional-part notation (`いろいろ(な)`, `(お)さら`) and
  * that literal string appears in no sentence, so a card using the word every day counted as drilled
  * zero times. Reported by the final review on Lesson 19, where `いろいろ(な)` read as undrilled while
  * two shipping sentences used いろいろな.

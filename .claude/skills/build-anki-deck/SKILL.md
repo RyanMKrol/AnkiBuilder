@@ -123,7 +123,10 @@ node scripts/await-review.mjs <runDir> --gate 2     # wait for Mark done AND its
 Exit codes, so you know what happened without reading the log: **0** signed off (at gate 2, and the
 collection package really did rebuild), **1** timed out with no sign-off, **2** the unit could not be
 read — a bug, this watch could never have fired, **3** gate 2 only: marked done but the package is
-missing or older than `cards.json`, so the rebuild FAILED. To run the next stage the instant the flag
+missing or older than `cards.json`. Missing means the rebuild failed. OLDER has two causes the check
+cannot tell apart: a failed rebuild, or a successful one followed by an edit (an exclusion or a trim
+made after Mark done). Rebuild with `deck --book-dir`: if it succeeds, it was the edit, and nothing
+was wrong. On Lesson 19 it was the edit. To run the next stage the instant the flag
 flips, chain it: `node scripts/await-review.mjs "$RUN" --gate 1 && anki-builder audio --run "$RUN"`.
 
 Use the script; do not hand-roll a poll loop. It encodes four rules, each of which was learned by
@@ -720,23 +723,30 @@ survived the gap filler, which is what this step reads.
 
 ### Known rough edges at this gate
 
-Two things a reviewer of Lesson 17 asked for that are not built yet, recorded here so the next
-session does not rediscover them from scratch:
+Recorded so the next session does not rediscover them. These are REAL and OPEN: each was found on
+Lessons 18-19 and judged too wide to change mid-chapter, because each alters a prompt or a pass that
+every future chapter runs through.
 
-- **The review table renders in BOOK order, and the deck does not.** A base unit's cards carry
-  `sourceOrder`, the character offset where the card's word first appears in the chapter, and the
-  review view sorts by it so the table can be read alongside the chapter. The STORED order stays
-  pedagogical (vocabulary before the sentences built on it) and that is what reaches the deck: two
-  different questions, two different answers. An extras unit carries no `sourceOrder` -- its
-  sentences are largely composed and appear nowhere in the book -- and renders in its stored order,
-  as does anything built before the field existed.
+- **The semantic deduplicator misses prefix-only variants.** Two miners hitting the same dialogue line
+  produce `もうふをおねがいできますか` and `すみません。もうふをおねがいできますか`, and only exact
+  matches merge. Three such pairs reached Lesson 19's gate 2. Caught by the final review and excluded
+  by hand; the fix belongs in `docs/semantic-deduplicator-prompt.md` (treat a leading すみません,
+  じゃ or はい as a near-duplicate signal).
+- **The gap filler works without the taught index.** On Lesson 19 it proposed 34 words and 30 were
+  already taught, then correctly cut by backward dedup. Nothing ships wrong, but it spends a call
+  rediscovering old vocabulary every chapter.
+- **The gap author does not read the chapter.** Its transcript says so outright. That is why
+  Lesson 19's とって drills are invented drawer scenes rather than the chapter's own
+  `しゃしんをとってください`, and why one sentence used について in a form the chapter never models.
+- **`drillCoverage` cannot tell homograph te-forms apart.** いって "go" and いって "say" share a
+  spelling, so the count for either includes the other. Report such a count as unresolvable rather
+  than trusting it.
 
-- **A rejected agent response is never written.** Every guard in `src/agents` parses, validates and
-  then throws, so a rejection destroys the evidence it was judging -- on one failure only
-  `blocks.json` reached disk. The fix is to persist the raw response before parsing, but production
-  leaves `runClaude` undefined and lets `runRole` supply the default, so a phase that always injects
-  a teeing wrapper risks a test that does not stub it spawning a real model. That is golden rule 6,
-  so it needs doing deliberately rather than in passing.
+Two entries that used to sit here are FIXED, and are kept as one line each so nobody re-files them:
+book-order sorting on the review page now works (it never had: two field allowlists dropped
+`sourceOrder` between the stamp and the page, and the sort's unit test passed because it never
+exercised what the page received), and a rejected agent response is now written, since `runRole` tees
+every call, failures included, into `<unit>/agent-logs/`.
 
 ## Step 3: Gate 1, the base corpus review
 
@@ -767,14 +777,14 @@ page actually has, with a count on each: **Not excluded**, **Excluded**, **Cut b
 **Uncertain**, **AI-suggested**, **Has a review note**, and at the audio gate **Marker audible** and
 **No audio**.
 
-**Flag chips widen; "Not excluded" narrows.** Two flags on means both sets — "Uncertain" plus
+**Flag chips widen; "Not excluded" narrows.** Two flags on means both sets: "Uncertain" plus
 "AI-suggested" shows either. "Not excluded" is a scope instead, so it intersects: "Not excluded" plus
 "Uncertain" is the *shipping* cards that are uncertain, which is usually the review you actually want,
 since an excluded card is not going into the deck. Unioning it would pull every excluded uncertain card
 straight back in. It is drawn with a dashed border to mark the difference, and switching it on switches
 off Excluded and Cut by a script, which it contradicts, rather than leaving an empty table.
 
-"Not excluded" only appears when something IS excluded — on a unit with no exclusions it would match
+"Not excluded" only appears when something IS excluded. On a unit with no exclusions it would match
 every row and narrow nothing.
 
 Two of those are worth reaching for deliberately:
@@ -782,7 +792,7 @@ Two of those are worth reaching for deliberately:
 - **Cut by a script** is the one the provenance badge exists for. A human exclusion is a decision
   already made; a sweep's is one to re-check, and this is how you see only the second kind.
 - **No audio** means a SHIPPING card with no clip. Excluded cards never get one (the audio stage
-  skips them so no TTS is spent on a card that may be cut), so they are deliberately not counted —
+  skips them so no TTS is spent on a card that may be cut), so they are deliberately not counted;
   otherwise the chip would just restate "Excluded".
 
 A chip renders only when at least one row matches it, so a clean unit shows no bar rather than a row
@@ -834,7 +844,7 @@ reports the card and stops; deciding what replaces it is yours, and there are tw
 wrong. On Lesson 19 both happened in one sweep:
 
 - **The note leaves with the card.** `〜め` was excluded because `ふたつめ` was carded and "demonstrates
-  the ordinal suffix" — but `ふたつめ` shipped as a bare gloss, "Second", with no note, so the suffix
+  the ordinal suffix", but `ふたつめ` shipped as a bare gloss, "Second", with no note, so the suffix
   the chapter explicitly teaches was taught nowhere. A learner who meets only `ふたつめ` cannot form
   `みっつめ`. Move the excluded card's explanation onto the instance you named as its survivor.
 - **Sometimes there is no survivor.** `〜について` was excluded the same way, and nothing else carded
@@ -925,7 +935,7 @@ rather than that something is broken.
 Mark the extras unit reviewed, then run the learning pass on it too, then go to Step 4. Build both of
 chapter N's units before starting chapter N+1.
 
-## Step 3c: The final review — run it TWICE, once per corpus gate
+## Step 3c: The final review, run once at each corpus gate
 
 **Run it at gate 1 on the base unit, and again after gate 2 on the whole chapter.** It is the one
 step that reads the CHAPTER against the built cards, which is the question none of the other loops
@@ -954,7 +964,7 @@ are not worth asking twice:
 reviewer signs off, so a word the chapter teaches and nobody carded is only fixable HERE. The
 chapter-mode run happens when both units are frozen, which is why its questions are about shape
 rather than coverage: by then a missing card costs a trip back through the gate. Running only the
-late one — which is what this did until 2026-09-20 — meant the base unit was reviewed after it was
+late one (which is what this did until 2026-09-20) meant the base unit was reviewed after it was
 frozen AND after the extras had been authored on top of it, two gates too late to act.
 
 **What it ties together, and why that is the point.** Three things in this repo compute something
@@ -964,8 +974,8 @@ gathers the transcripts, and hands both to a role pinned above everything that p
 along with the chapter itself.
 
 **The division of labour is a measured result, not a preference.** Code computes the facts, because
-arithmetic over cards is exact and free. The agent supplies the one thing code cannot — what the
-chapter actually teaches — and the comparison is mechanical again. The reverse was tried first: a
+arithmetic over cards is exact and free. The agent supplies the one thing code cannot, which is what the
+chapter actually teaches, and the comparison is mechanical again. The reverse was tried first: a
 deterministic "one frame dominates this unit" threshold was calibrated against every unit already
 shipped, and it fires on the units that are RIGHT (the invitation lesson is 48% the invitation
 frame, because a chapter with one grammar point should drill it). The full calibration is in the
@@ -974,15 +984,15 @@ header of `src/cards/drillShape.js`.
 **It reads the per-role yield too, which is the cheapest signal in the pipeline.** The learning pass
 already computes how many cards each role produced and how many survived, and until now nothing
 consumed it automatically. On Lesson 18 the gap author kept 16 of 50 while every other role in the
-same run kept nearly everything (13/13, 7/7, 10/11) — the same defect the frame analysis found by
+same run kept nearly everything (13/13, 7/7, 10/11). That is the same defect the frame analysis found by
 hand, visible for free and from a different direction. A low keep rate is not automatically a fault,
 since a role can be doing its job and being legitimately deduplicated, but it is the one number that
 points at a CAUSE rather than a symptom.
 
 **It cannot pass by saying nothing.** The standing risk with any reviewing agent is that a miss and a
-clean run look identical. So the prompt asks six fixed questions — what the chapter teaches, whether
+clean run look identical. So the prompt asks six fixed questions (what the chapter teaches, whether
 the dominant frame is one of those things, what is under-drilled, whether any sentence uses untaught
-vocabulary, whether the notes are TRUE, and what the transcripts explain — and the guard rejects a
+vocabulary, whether the notes are TRUE, and what the transcripts explain), and the guard rejects a
 response that left any of them unanswered. An empty findings list is a fine result; an unanswered
 question is a failed run.
 
@@ -1195,7 +1205,13 @@ restorable with `scripts/restore-anki-backup.mjs`. The user studies daily: prote
 re-read on-disk deck files before every edit. Full detail, including the restore procedure and the
 managed-collection rules: [deliver](references/deliver.md).
 
-A deliver can stop on one of four guards, and none of them is a reason to reach for a flag without
+**Read the dry run's summary line, not the per-card lines.** It prints one line per collection,
+`7 updated, 140 added, 2651 unchanged`, and those three sum to the package's note count, which is a
+check worth doing. The per-card listing only shows ADDS, so counting its lines reports zero updates
+even when field edits are about to be pushed. On Lesson 19 that nearly hid seven collision cues
+written onto earlier chapters' cards. An update is in place by GUID and keeps scheduling.
+
+A deliver can stop on one of four guardsA deliver can stop on one of four guards, and none of them is a reason to reach for a flag without
 reading: the parent deck was renamed (the lookup found no notes where the marker says a delivery
 happened); more than 10% of the previously-delivered cards no longer resolve; more than 200 notes
 would be ADDED at once (`--allow-bulk-add` after reading the dry run); or the pre-delivery backup did
@@ -1413,7 +1429,7 @@ behind each of those is in [The shape of the workflow](#the-shape-of-the-workflo
 
 For a one-shot answer instead of a wait — "is this unit really shipped?" — `node
 scripts/check-done.mjs <runDir>` runs the same gate-2 check once and exits 0 / 1 (not done yet) /
-3 (done, but the rebuild failed).
+3 (done, but the package is missing or older than `cards.json`; see exit 3 above for the two causes).
 
 ### Un-ship a unit (undo a Mark done)
 

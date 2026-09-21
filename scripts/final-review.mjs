@@ -15,8 +15,8 @@
 // everything that produced the chapter, together with the chapter itself.
 //
 // The division of labour is deliberate and is the finding that shaped it. Code computes the facts,
-// because arithmetic over cards is exact and free. The agent supplies the one thing code cannot —
-// what the chapter actually teaches — and the comparison becomes mechanical again. See the
+// because arithmetic over cards is exact and free. The agent supplies the one thing code cannot,
+// what the chapter actually teaches, and the comparison becomes mechanical again. See the
 // calibration note in src/cards/drillShape.js for why the reverse (a threshold on concentration)
 // was measured, found to flag the units that are correct, and abandoned.
 
@@ -59,7 +59,7 @@ if (!existsSync(join(baseDir, "cards.json"))) {
 
 // TWO GATES, TWO MODES. At gate 1 the extras unit does not exist yet, and that absence is the whole
 // reason to run here: it is the last point at which a card can be added to this lesson. Refusing
-// without an extras unit — which this script used to do — meant the base unit was only ever reviewed
+// without an extras unit (which this script used to do) meant the base unit was only ever reviewed
 // after it had been frozen and after the extras had been authored on top of it, which is two gates
 // too late to act on anything found.
 const hasExtras = existsSync(join(extrasDir, "cards.json"));
@@ -115,7 +115,7 @@ function yieldFor(dir, cards) {
 }
 
 // Drill shape needs a drill unit. At gate 1 there is none, and saying so beats sending zeroes that
-// would read as "nothing is drilled" — a finding — rather than "nothing drills anything yet".
+// would read as "nothing is drilled" (a finding) rather than "nothing drills anything yet".
 const frame = hasExtras ? dominantFrame(extrasCards.items) : null;
 const deterministic = {
   roleYield: {

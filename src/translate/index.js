@@ -466,7 +466,7 @@ export async function translateCorpus(
     if (backNote) item.note = backNote;
     if (src?.reviewNote) item.reviewNote = src.reviewNote;
     // Where the card's word sits in the chapter, stamped by the base phase so the review can be read
-    // alongside the book. Zero is a real offset — the first word of the chapter — so this tests the
+    // alongside the book. Zero is a real offset (the first word of the chapter) so this tests the
     // TYPE, not truthiness, unlike every line above it where a falsy value carries no information.
     //
     // Added 2026-09-21, after chapters 18 and 19 both built with the field on every corpus item and

@@ -519,7 +519,7 @@ ${modal}
     // Review renders lessons expanded with no expand/collapse buttons, so EXPAND_COLLAPSE_SCRIPT is
     // not needed here (it still drives the read-only Browse view below).
     const scripts = [];
-    // The row filters are a pure view over the table — no writes, no dependency on `editable` — so
+    // The row filters are a pure view over the table (no writes, no dependency on `editable`) so
     // they load for a read-only review too.
     scripts.push(REVIEW_FILTER_SCRIPT);
     if (canEdit) scripts.push(DECK_EDIT_SCRIPT);

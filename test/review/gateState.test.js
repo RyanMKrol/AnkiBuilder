@@ -71,7 +71,12 @@ test("gate 2 fails a package OLDER than cards.json, and passes a rebuilt one", (
   const runDir = unit(dir, "chapter-1", { reviewed: true, done: true });
 
   packageFile(dir, -60_000);
-  assert.equal(gateState(runDir, 2).status, "stale-package");
+  const stale = gateState(runDir, 2);
+  assert.equal(stale.status, "stale-package");
+  // It names BOTH causes rather than asserting a failure it cannot see: an edit after a successful
+  // rebuild produces exactly this state, and that is what happened on Lesson 19.
+  assert.match(stale.message, /either the rebuild failed, or/);
+  assert.match(stale.message, /edited after it ran/);
 
   packageFile(dir, 60_000);
   const fresh = gateState(runDir, 2);

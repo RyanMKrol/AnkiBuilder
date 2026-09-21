@@ -10,6 +10,8 @@ import { runClaudeWithPrompt, runClaudeWithPromptAsync } from "../util/runClaude
 export const REMASTER_PASS_PINS = Object.freeze({
   OUTLINE: { model: "claude-sonnet-5", effort: "high", timeoutMs: 15 * 60 * 1000 },
   TRANSCRIBE: { model: "claude-sonnet-5", effort: "high", timeoutMs: 10 * 60 * 1000 },
+  // A checking role, so pinned above the pass it checks: it decides between two TRANSCRIBE runs.
+  SETTLE: { model: "claude-opus-5", effort: "high", timeoutMs: 10 * 60 * 1000 },
 });
 
 export const runOutlineClaude = (prompt) =>
@@ -23,4 +25,10 @@ export const runTranscribeClaude = (prompt) =>
   runClaudeWithPromptAsync(prompt, {
     scopeEnvPrefix: ["ANKI_BUILDER_REMASTER_TRANSCRIBE"],
     defaults: REMASTER_PASS_PINS.TRANSCRIBE,
+  });
+
+export const runSettleClaude = (prompt) =>
+  runClaudeWithPromptAsync(prompt, {
+    scopeEnvPrefix: ["ANKI_BUILDER_REMASTER_SETTLE"],
+    defaults: REMASTER_PASS_PINS.SETTLE,
   });

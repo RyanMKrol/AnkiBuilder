@@ -11,7 +11,9 @@
 //   node scripts/remaster-epub.mjs ocr        <book.epub>
 //   node scripts/remaster-epub.mjs outline    <book.epub>
 //   node scripts/remaster-epub.mjs transcribe <book.epub> --entry <n> [--pages a-b] [--concurrency 4]
+//                                             [--reading b]   (an independent second run)
 //   node scripts/remaster-epub.mjs crosscheck <book.epub> [--entry <n>]
+//   node scripts/remaster-epub.mjs settle     <book.epub> --entry <n>   (after readings a and b)
 //   node scripts/remaster-epub.mjs build      <book.epub> --out <remastered.epub> [--entry <n> ...]
 //                                             [--allow-missing]
 //   node scripts/remaster-epub.mjs verify     <book.epub> --book <remastered.epub> [--entry <n> ...]
@@ -24,7 +26,12 @@ import { join, resolve } from "path";
 import { hashEpubFile } from "../src/corpus/epubLibrary.js";
 import { getBookTitle } from "../src/corpus/epubArchive.js";
 import { assessEpubEligibility, formatEligibility } from "../src/corpus/epubEligibility.js";
-import { remasterRoot, remasterPaths, pageFileStem } from "../src/remaster/workspace.js";
+import {
+  remasterRoot,
+  remasterPaths,
+  readingPaths,
+  pageFileStem,
+} from "../src/remaster/workspace.js";
 import { extractPageImages } from "../src/remaster/sourcePages.js";
 import { ensureOcrBinary, ocrPages, loadPageOcr } from "../src/remaster/visionOcr.js";
 import { renderOutlinePrompt, parseOutline, formatOutline } from "../src/remaster/outline.js";
@@ -36,8 +43,14 @@ import {
 import { crossCheckPage } from "../src/remaster/ocrCrossCheck.js";
 import { buildRemasteredEpub } from "../src/remaster/epubWriter.js";
 import { transcribeWithRetries } from "../src/remaster/transcribeRetry.js";
+import { settlePage, renderSettlePrompt } from "../src/remaster/settle.js";
+import { attachFigureImages, sipsCropper, imageSize } from "../src/remaster/figureCrops.js";
 import { verifyRemasteredEpub, formatVerification } from "../src/remaster/verifyRemaster.js";
-import { runOutlineClaude, runTranscribeClaude } from "../src/remaster/remasterRunners.js";
+import {
+  runOutlineClaude,
+  runTranscribeClaude,
+  runSettleClaude,
+} from "../src/remaster/remasterRunners.js";
 import { writeFileAtomic } from "../src/util/atomicWrite.js";
 
 const [command, target, ...rest] = process.argv.slice(2);
@@ -54,7 +67,7 @@ function optionAll(name) {
 
 function usage() {
   console.error(
-    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|transcribe|crosscheck|build|verify> <book.epub> [options]",
+    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|transcribe|crosscheck|settle|build|verify> <book.epub> [options]",
   );
   process.exit(2);
 }
@@ -70,7 +83,8 @@ const log = (line) => console.log(line);
 
 async function workspace() {
   const hash = hashEpubFile(epubPath);
-  const paths = remasterPaths(remasterRoot(hash));
+  // --reading b (c, ...) points transcribe and crosscheck at an independent second run.
+  const paths = readingPaths(remasterPaths(remasterRoot(hash)), option("reading") ?? "a");
   const pages = extractPageImages(epubPath, paths.images);
   return { hash, paths, pages };
 }
@@ -133,6 +147,13 @@ function tryParse(raw, number) {
   } catch {
     return null;
   }
+}
+
+function loadPageFile(dir, number) {
+  const path = join(dir, `${pageFileStem(number)}.xhtml`);
+  return existsSync(path)
+    ? parsePageReply(readFileSync(path, "utf-8"), { pageNumber: number })
+    : null;
 }
 
 function transcriptPath(paths, number) {
@@ -332,23 +353,44 @@ Object.assign(commands, {
       console.error("build needs --out <remastered.epub>");
       process.exit(2);
     }
-    const { hash, paths } = await workspace();
+    const { hash, paths, pages } = await workspace();
     const outline = loadOutline(paths);
     const allowMissing = rest.includes("--allow-missing");
+    const byNumber = new Map(pages.map((page) => [page.number, page]));
     const entries = [];
+    const sources = { settled: 0, transcript: 0 };
     for (const entry of selectedEntries(outline)) {
       const numbers = pageRange(entry);
-      const transcripts = numbers.map((number) => loadTranscript(paths, number));
+      // A settled page (two readings, reconciled) wins over a single reading.
+      const transcripts = numbers.map((number) => {
+        const settled = loadPageFile(paths.settled, number);
+        if (settled) sources.settled++;
+        const page = settled ?? loadTranscript(paths, number);
+        if (page && !settled) sources.transcript++;
+        return page;
+      });
       const missing = numbers.filter((_, i) => !transcripts[i]);
       if (missing.length && allowMissing) {
         // A visible hole, never a silent one: the placeholder is text the extraction model reads,
         // and it says a page is missing rather than letting the lesson look complete.
         transcripts.forEach((transcript, i) => {
           if (transcript) return;
+          // The whole page image goes in with it, so the pipeline's image passes can still read
+          // the page even though no transcript of it exists.
           transcripts[i] = {
             number: numbers[i],
             printed: "",
-            body: `<p class="missing-page">[Page ${numbers[i]} of the source was not transcribed. Its content is missing from this lesson.]</p>`,
+            body:
+              `<p class="missing-page">[Page ${numbers[i]} of the source was not transcribed. ` +
+              `Its text is missing from this lesson; the page image follows.]</p>` +
+              `<figure class="page-image"><img src="images/${pageFileStem(numbers[i])}.jpg" ` +
+              `alt="Page ${numbers[i]} of the source"/></figure>`,
+            images: [
+              {
+                name: `images/${pageFileStem(numbers[i])}.jpg`,
+                path: byNumber.get(numbers[i]).localPath,
+              },
+            ],
           };
         });
         log(
@@ -369,12 +411,36 @@ Object.assign(commands, {
       // one page's number is not (it put page 51 at printed 51, not 42). Use the offset when the
       // book has a constant one.
       const offset = outline.printedPageOffset;
-      const pagesOut = transcripts.map((page) =>
-        Number.isInteger(offset) && page.number > offset
-          ? { ...page, printed: String(page.number - offset) }
-          : page,
-      );
-      entries.push({ ...entry, pages: pagesOut });
+      const images = [];
+      let unboxed = 0;
+      const pagesOut = transcripts.map((page) => {
+        const printed =
+          Number.isInteger(offset) && page.number > offset
+            ? String(page.number - offset)
+            : page.printed;
+        images.push(...(page.images ?? []));
+        const pageImage = byNumber.get(page.number).localPath;
+        const figures = attachFigureImages(page.body, {
+          pageNumber: page.number,
+          stem: pageFileStem,
+          cropsDir: paths.crops,
+          pageSize: page.body.includes("data-box=") ? imageSize(pageImage) : null,
+          crop: sipsCropper(pageImage),
+        });
+        images.push(...figures.images);
+        unboxed += figures.skipped;
+        return { ...page, printed, body: figures.body };
+      });
+      if (unboxed && !rest.includes("--quiet")) {
+        log(
+          `  "${entry.label}": ${unboxed} figure(s) have no position, so no image (captions kept)`,
+        );
+      }
+      entries.push({
+        ...entry,
+        pages: pagesOut,
+        images: images.map((image) => ({ name: image.name, data: readFileSync(image.path) })),
+      });
     }
     if (!entries.length) {
       console.error("no outline entry is fully transcribed yet; nothing to build");
@@ -390,7 +456,11 @@ Object.assign(commands, {
       modified: REMASTER_MODIFIED,
     });
     writeFileSync(resolve(out), bytes);
-    log(`wrote ${resolve(out)}: ${entries.length} entr(ies)`);
+    log(
+      `wrote ${resolve(out)}: ${entries.length} entr(ies), ${sources.settled} settled page(s), ` +
+        `${sources.transcript} single-reading page(s), ` +
+        `${entries.reduce((n, e) => n + e.images.length, 0)} image(s)`,
+    );
     for (const entry of entries) {
       log(`  ${entry.label} (pages ${entry.firstPage}-${entry.lastPage})`);
     }
@@ -398,6 +468,85 @@ Object.assign(commands, {
     const ok = reportVerification(resolve(out), paths, entries, outline);
     if (!ok) process.exitCode = 1;
     log(`next: node scripts/remaster-epub.mjs check ${out}`);
+  },
+
+  // Two readings (transcripts/ and transcripts-b/) into one settled page each. Pages that agree
+  // keep reading B as is; pages that disagree go to the SETTLE pin (Opus) with the image, and its
+  // answer is rejected if it adds or drops content neither reading supports (settle.js).
+  async settle() {
+    const { paths, pages } = await workspace();
+    const b = readingPaths(paths, "b");
+    const outline = loadOutline(paths);
+    const [entry, ...more] = selectedEntries(outline);
+    if (!entry || more.length || !option("entry")) {
+      console.error("settle takes exactly one --entry <n>");
+      process.exit(2);
+    }
+    const byNumber = new Map(pages.map((page) => [page.number, page]));
+    const title = getBookTitle(epubPath);
+    const force = rest.includes("--force");
+    mkdirSync(paths.settled, { recursive: true });
+    const tally = { agreed: 0, settled: 0, unsettled: 0, skipped: 0 };
+    const queue = pageRange(entry).filter(
+      (n) => force || !existsSync(join(paths.settled, `${pageFileStem(n)}.xhtml`)),
+    );
+    const worker = async () => {
+      while (queue.length) {
+        const number = queue.shift();
+        const readingA = loadTranscript(paths, number);
+        const readingB = loadPageFile(b.transcripts, number);
+        if (!readingA || !readingB) {
+          tally.skipped++;
+          log(`  page ${number}: needs both readings (a: ${!!readingA}, b: ${!!readingB})`);
+          continue;
+        }
+        const result = await settlePage({
+          pageNumber: number,
+          readingA,
+          readingB,
+          run: runSettleClaude,
+          prompt: (differences) =>
+            renderSettlePrompt({
+              imagePath: byNumber.get(number).localPath,
+              bookTitle: title,
+              pageNumber: number,
+              readingA: serializeTranscript(readingA),
+              readingB: serializeTranscript(readingB),
+              differences,
+            }),
+        });
+        tally[result.source]++;
+        const record = {
+          page: number,
+          source: result.source,
+          differences: result.differences,
+          problems: result.problems,
+        };
+        writeFileAtomic(
+          join(paths.settled, `${pageFileStem(number)}.json`),
+          `${JSON.stringify(record, null, 1)}\n`,
+        );
+        if (result.page) {
+          writeFileAtomic(
+            join(paths.settled, `${pageFileStem(number)}.xhtml`),
+            serializeTranscript(result.page),
+          );
+        }
+        const detail = result.differences.length
+          ? `: ${result.differences.map((d) => `[A:${d.a}|B:${d.b}]`).join(" ")}`
+          : "";
+        const why = result.problems.length ? ` REJECTED: ${result.problems.join("; ")}` : "";
+        log(`  page ${number}: ${result.source}${detail}${why}`);
+      }
+    };
+    await Promise.all(
+      Array.from({ length: Math.min(Number(option("concurrency") ?? 4), queue.length) }, worker),
+    );
+    log(
+      `\n${tally.agreed} agreed, ${tally.settled} settled by the adjudicator, ` +
+        `${tally.unsettled} unsettled, ${tally.skipped} missing a reading`,
+    );
+    if (tally.unsettled || tally.skipped) process.exitCode = 1;
   },
 
   // Reads a built EPUB back against the outline. With no --entry it expects the WHOLE book, which

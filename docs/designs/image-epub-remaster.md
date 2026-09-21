@@ -107,6 +107,44 @@ Found and fixed on the way:
 - The build stamped the current time into the EPUB, so every rebuild had a new hash and would have
   registered as a new book. It is now deterministic.
 
+## Two readings, and pictures (second iteration)
+
+Asked next: would several runs guard against a process that samples, and could the book keep its
+pictures? Both were tried on Lesson 1 with one more run of 20 pages (reading B), using a prompt that
+also marks where each figure sits.
+
+**Two readings.** A plain string comparison of A and B matched on 9 of 20 pages. Most differences
+were harmless: letter case, a colon, ruby grouped differently (表現 against 表 + 現), and side-by-side
+columns read in a different order. Ignoring those (`compareReadings.js`), 17 of 20 agreed. The 3 that
+did not held three real errors, and every one was confirmed against the page image:
+
+- page 45, reading B dropped the printed dialogue line numbers 1 to 5
+- page 56, reading B wrote なななさい where the page has ななさい (the OCR check did not flag it)
+- page 45, reading A dropped the いっ in the furigana だい いっ か over 第1課
+
+So a single run carried a small error on about one page in ten, and the two runs never made the
+same one. `settle` sent those 3 pages to Opus with the image and both readings; it fixed all three
+correctly, and its answers passed the guard that rejects added or dropped content. Cost: 20 more
+Sonnet calls and 3 Opus calls for the lesson.
+
+Three or more runs with a vote were not tried. Two runs find the disputed spans, and a stronger
+model with the image resolves them, which is cheaper than a third run and gives an answer where a
+vote over formatted text would be ambiguous.
+
+**The line check.** Counting characters could not see a dropped short line. A second check now
+looks for each OCR line in the transcript. Measured by deleting each line of each correct Lesson 1
+transcript in turn, it catches 61% of single dropped lines (77% of lines of 25 characters or more)
+while flagging 2 of 20 correct pages. Tighter settings caught a few more and flagged up to half the
+book; the numbers are in `ocrCrossCheck.js`. Its ceiling is the OCR's own, which is why the second
+reading matters more.
+
+**Pictures.** The build cuts each boxed figure out of the page image and puts it in the book as a
+real image, with the description kept as its caption, so the image passes have something to read.
+Lesson 1 has 44 figures (688 KB). The boxes are roughly right but not exact: a portrait and a clock
+came out clean, a wristwatch's label lost its last letters, and one portrait on page 59 was cut off
+at the chin. The crop pads each box by 1.5% of the page; a wider pad, or snapping a box to the
+picture's edges, is the next thing to try if clipping matters for cards.
+
 ## How a missing page is caught
 
 Asked after the Lesson 1 run: would we notice if pages went missing? At that point, only partly.
@@ -125,10 +163,11 @@ The first four are exact: they count page numbers, so a missing page cannot pass
 each case, and on the real Lesson 1 file a copy with page 50 deleted fails `verify` while `check`
 still calls it `native`.
 
-The last one is the weak point. The cross-check compares character counts with an OCR that is
-itself noisy on this book, so the thresholds are set to catch a dropped table row or paragraph, not
-a single word or line. A transcript missing one short line would most likely pass. Proofreading
-against the image is the only complete answer, and the flagged pages are where to start.
+The last one was the weak point and is now covered twice. The OCR checks have a ceiling set by the
+OCR's own mistakes. The second reading does not share them, and in Lesson 1 it found the one error
+the OCR checks missed. What is left is an error both runs make the same way, which neither the
+comparison nor, if the OCR misreads the same spot, the line check would see. Proofreading against
+the image is still the only complete answer.
 
 ## Open questions for the owner
 
@@ -145,9 +184,10 @@ against the image is the only complete answer, and the flagged pages are where t
    start again. So either transcribe the whole book once before onboarding (about 373 more calls,
    roughly 35 minutes at 4 at a time), or teach the library that a remastered book keeps its
    source's identity. The first is simpler and is the recommendation.
-3. **Model.** Transcription runs Sonnet 5 at high effort (`REMASTER_PASS_PINS`). Lesson 1 gave no
-   reason to move it. A page the cross-check flags could go to Opus for a second reading rather
-   than to a person.
+3. **Model and cost.** Transcription runs Sonnet 5 at high effort and settling runs Opus 5
+   (`REMASTER_PASS_PINS`). Two readings of the whole book is about 786 Sonnet calls, plus Opus on
+   roughly the one page in seven that disagreed in Lesson 1. Whether every book gets two readings,
+   or only the lessons being built, is the owner's call.
 
 ## Where this goes next
 

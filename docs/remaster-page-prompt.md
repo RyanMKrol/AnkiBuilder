@@ -43,9 +43,16 @@ Use plain XHTML, well formed. Escape `&` as `&amp;` and `<` as `&lt;` in text.
   under it, put that in its own `<p class="romanization">` right after.
 - **Dialogue.** One `<p>` per line, starting with the speaker as printed (`メアリー：`, `A：`).
 - **Audio markers.** A speaker icon with a track code: `<span class="audio">K01-19</span>`.
-- **Illustrations and photos.** `<figure><figcaption>[Illustration: what it shows]</figcaption></figure>`.
+- **Illustrations and photos.**
+  `<figure data-box="left,top,right,bottom"><figcaption>[Illustration: what it shows]</figcaption></figure>`.
   If the picture carries words (speech bubbles, labels, signs, a clock face, a price tag),
   transcribe those words inside the figcaption; they are often part of an exercise.
+  `data-box` says where the picture is, so it can be cut out of the page and kept in the book:
+  four numbers from 0 to 1, as fractions of the page's width and height measured from its
+  top-left corner, to two decimal places (e.g. `data-box="0.40,0.35,0.60,0.53"`). Enclose the
+  whole picture, including any words printed inside it, and nothing else. A row of separate small
+  pictures (four clocks, six food items) is one `<figure>` each, each with its own box.
+  Decorative elements get no figure at all.
 - **Emphasis the book prints in colour or bold** that carries meaning (a highlighted particle, the
   changed part of a conjugation): `<em>`.
 - **Blank lines and boxes for students to write in:** `<span class="blank"></span>`.

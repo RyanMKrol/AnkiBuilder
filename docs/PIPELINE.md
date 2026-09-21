@@ -212,13 +212,27 @@ are separate subcommands so each paid one can be checked before the next:
   `page-NNN.attempt-N.txt`. A usage-limit refusal is not retried: it stops the run, and the async
   runner's breaker keeps the remaining pages from spawning.
 - `crosscheck`: counts kana, kanji and English words in each transcript against the OCR, ignoring
-  order, and flags a page that dropped or invented text (`src/remaster/ocrCrossCheck.js`).
+  order, and flags a page that dropped or invented text. It also looks for each OCR line in the
+  transcript and reports gaps in numbered items (`src/remaster/ocrCrossCheck.js`, which records
+  how the thresholds were measured).
+- `transcribe --reading b`, then `settle --entry <n>`: a second, independent transcription into
+  `transcripts-b/`, compared with the first in order (`src/remaster/compareReadings.js`; markup,
+  case, punctuation, ruby grouping and moved text are ignored). Pages that agree keep reading B.
+  Pages that disagree go to the `SETTLE` pin (Opus, above the Sonnet transcriber it checks) with the
+  image and both readings, and its answer is rejected if it adds content neither reading has or
+  drops content both agreed on (`src/remaster/settle.js`). The result is `settled/`, which the
+  build prefers over a single reading.
 - `build --out <file>`: one XHTML file per outline entry plus a nav document. The output is
   deterministic, so the same transcripts give the same bytes and the same library hash. A lesson
   with a missing page stops the build, whether or not it was named with `--entry`;
-  `--allow-missing` puts a visible placeholder in instead.
+  `--allow-missing` puts a visible placeholder in instead, with the whole page image so the image
+  passes can still read it. Every figure the transcript boxed (`data-box`, fractions of the page)
+  is cut out of the page image with `sips` and placed in its `<figure>` as a real `<img>`
+  (`src/remaster/figureCrops.js`), so the pipeline's image passes work on a converted book as they
+  do on any other.
 - `verify --book <file>`: reads the built EPUB back and checks every page of the outline is in it
-  exactly once, in its lesson, in order, with no placeholders (`src/remaster/verifyRemaster.js`).
+  exactly once, in its lesson, in order, with no placeholders, and that every image a page shows
+  is in the book (`src/remaster/verifyRemaster.js`).
   With no `--entry` it expects the whole book. `build` runs it on its own output every time.
   `check` cannot do this job: a book missing a lesson is still a readable book, so it says
   `native`.

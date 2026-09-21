@@ -85,6 +85,13 @@ export function verifyRemasteredEpub(epubPath, { expected, bookPages }) {
       }
     }
     pagesPresent += found.length;
+
+    // Every picture a page shows has to be in the book: a figure whose image is missing reads as
+    // a picture to the pipeline's image passes and gives them nothing to open.
+    for (const [, src] of html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)) {
+      if (!files.has(`OEBPS/${src}`))
+        problems.push(`"${entry.label}" shows ${src}, which is not in the book`);
+    }
   }
 
   const repeated = [...seen.entries()].filter(([, n]) => n > 1).map(([page]) => page);

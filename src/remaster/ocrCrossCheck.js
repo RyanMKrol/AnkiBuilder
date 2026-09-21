@@ -131,6 +131,109 @@ const FLAG_ABSOLUTE = 10;
 // Dialogue") and misreads romanization ("mearli"), which put two correct pages at 16-18%.
 const FLAG_WORD_SHARE = 0.25;
 
+// ---------------------------------------------------------------------------------------------
+// Line by line
+// ---------------------------------------------------------------------------------------------
+//
+// The counts above cannot see a dropped short line: one missing sentence on a dense page is a few
+// characters out of hundreds, under any threshold that also tolerates the OCR's own noise. So each
+// OCR line is also looked for in the transcript, as a fuzzy substring, allowing for the OCR's
+// misreads. A line the transcript has nowhere is reported by itself, with where it sits on the
+// page, which is both a sharper signal and something a person can check in seconds.
+
+/** Kana, kanji, Latin letters and digits only, folded and lower-cased: what both readers agree on. */
+export function matchKey(text) {
+  let out = "";
+  for (const ch of text.normalize("NFKC").toLowerCase().replace(/['’‘]/g, "")) {
+    const folded = FOLD.get(ch) ?? ch;
+    if (JAPANESE.test(folded) || /[a-z0-9]/.test(folded)) out += folded;
+  }
+  return out;
+}
+
+/**
+ * The smallest edit distance between `needle` and any substring of `haystack` (Sellers' variant of
+ * Levenshtein: a match may start and end anywhere in the haystack at no cost).
+ */
+export function substringDistance(needle, haystack) {
+  const m = needle.length;
+  let previous = new Uint16Array(m + 1);
+  for (let i = 0; i <= m; i++) previous[i] = i;
+  let best = m;
+  let current = new Uint16Array(m + 1);
+  for (let j = 1; j <= haystack.length; j++) {
+    current[0] = 0;
+    const h = haystack.charCodeAt(j - 1);
+    for (let i = 1; i <= m; i++) {
+      const cost = needle.charCodeAt(i - 1) === h ? 0 : 1;
+      current[i] = Math.min(previous[i - 1] + cost, previous[i] + 1, current[i - 1] + 1);
+    }
+    if (current[m] < best) best = current[m];
+    [previous, current] = [current, previous];
+  }
+  return best;
+}
+
+// Each OCR line is checked on its own. Lines shorter than LINE_MIN_CHARS are skipped (a stray
+// glyph matches anything); a line may differ from the transcript by LINE_MAX_ERROR_SHARE of its
+// characters, which absorbs the OCR's misreads.
+//
+// Measured on Genki Lesson 1 (2026-09-21) by deleting each line of each correct transcript in turn:
+//
+//   min 6, 30%   2 of 20 correct pages flagged   61% of single dropped lines caught
+//   min 6, 20%   5                               64%
+//   min 5, 20%   7                               71%
+//   min 3, exact below 6, 20%   10               72%
+//   OCR fragments joined into visual rows   13   86%   (a row crosses a grid's columns)
+//
+// Tightening buys a few points of detection for many false alarms, because the misses are the
+// OCR's own limits: short vocabulary cells it reads as separate fragments, and drill lines that
+// differ from their neighbours by a word. So this check is kept cheap and quiet, and a dropped
+// short line is left to the second reading (compareReadings.js), which does not share those limits.
+const LINE_MIN_CHARS = 6;
+const LINE_EXACT_BELOW = 6;
+const LINE_MAX_ERROR_SHARE = 0.3;
+
+export function unmatchedOcrLines({ body, ocr }) {
+  const parts = transcriptParts(body);
+  const haystack = matchKey(`${parts.base}|${parts.readings}|${parts.captions}`);
+  const margins = new Set(marginLines(ocr));
+  const missing = [];
+  for (const line of ocrLinesTopDown(ocr)) {
+    if (margins.has(line)) continue;
+    const key = matchKey(line.text);
+    if (key.length < LINE_MIN_CHARS) continue;
+    // A short fragment (a vocabulary cell: いま, ima) has no room for a misread to hide in, so it
+    // must be found exactly; a longer line is allowed the OCR's error rate.
+    const allowed =
+      key.length < LINE_EXACT_BELOW ? 0 : Math.ceil(key.length * LINE_MAX_ERROR_SHARE);
+    if (substringDistance(key, haystack) > allowed) {
+      missing.push({ text: line.text, fromTop: Number((1 - line.y - line.h).toFixed(2)) });
+    }
+  }
+  return missing;
+}
+
+/**
+ * Numbered items with a hole in them: "1. 2. 3. 5." within one section means item 4 was dropped
+ * (the OCR drops list numbers; a transcript can drop the item). Numbering restarts at each heading.
+ */
+export function numberingGaps(body) {
+  const gaps = [];
+  for (const section of body.split(/<h[1-6]\b/)) {
+    const numbers = [...section.matchAll(/<(?:p|td|li)>\s*(\d{1,2})\.\s/g)].map((m) =>
+      Number(m[1]),
+    );
+    if (numbers.length < 2 || numbers[0] !== 1) continue;
+    for (let i = 1; i < numbers.length; i++) {
+      if (numbers[i] > numbers[i - 1] + 1) {
+        gaps.push(`${numbers[i - 1]} is followed by ${numbers[i]}`);
+      }
+    }
+  }
+  return gaps;
+}
+
 /**
  * Two directions, each against the right baseline:
  *
@@ -164,9 +267,13 @@ export function crossCheckPage({ body, ocr }) {
   const share = ocrChars ? disagreeing / ocrChars : disagreeing ? 1 : 0;
   const ocrWords = total(vision.latin);
   const wordShare = ocrWords ? disagreeingWords / ocrWords : disagreeingWords ? 1 : 0;
+  const missingLines = unmatchedOcrLines({ body, ocr });
+  const gaps = numberingGaps(body);
   const flagged =
     (disagreeing >= FLAG_ABSOLUTE && share > FLAG_SHARE) ||
-    (disagreeingWords >= FLAG_ABSOLUTE && wordShare > FLAG_WORD_SHARE);
+    (disagreeingWords >= FLAG_ABSOLUTE && wordShare > FLAG_WORD_SHARE) ||
+    missingLines.length > 0 ||
+    gaps.length > 0;
 
   return {
     ocrJapaneseChars: ocrChars,
@@ -176,6 +283,8 @@ export function crossCheckPage({ body, ocr }) {
     disagreeingWords,
     share: Number(share.toFixed(4)),
     wordShare: Number(wordShare.toFixed(4)),
+    missingLines,
+    numberingGaps: gaps,
     flagged,
     onlyInOcr: onlyInOcr.map(([k, n]) => (n > 1 ? `${k}×${n}` : k)).join(" "),
     onlyInTranscript: onlyInTranscript.map(([k, n]) => (n > 1 ? `${k}×${n}` : k)).join(" "),

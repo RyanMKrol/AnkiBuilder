@@ -624,8 +624,10 @@ What is built, newest last:
   whether the pipeline can read a book (`native`, `remaster` or `blocked`). A `remaster` book,
   such as a PDF converted to EPUB, is rebuilt as a text EPUB: Apple Vision OCR, one outline
   call that rebuilds the table of contents, one Claude vision call per page, an OCR
-  cross-check, then an ordinary EPUB that onboards like any other. Proven on Genki I Lesson 1;
-  open questions are in `docs/designs/image-epub-remaster.md`
+  cross-check, optionally a second reading settled against the first by Opus, figures cut out of
+  the page images, and an end-to-end `verify`, then an ordinary EPUB that onboards like any
+  other. Proven on Genki I Lesson 1; results and open questions are in
+  `docs/designs/image-epub-remaster.md`
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

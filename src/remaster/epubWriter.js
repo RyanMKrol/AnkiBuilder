@@ -66,13 +66,16 @@ function renderNav(entries, { title, language }) {
 `;
 }
 
-function renderOpf(entries, { title, language, identifier, source, modified }) {
-  const manifest = entries
-    .map(
+function renderOpf(entries, images, { title, language, identifier, source, modified }) {
+  const manifest = [
+    ...entries.map(
       (entry) =>
         `<item id="e${entry.number}" href="${entryFileName(entry)}" media-type="application/xhtml+xml"/>`,
-    )
-    .join("\n    ");
+    ),
+    ...images.map(
+      (image, i) => `<item id="img${i + 1}" href="${image.name}" media-type="image/jpeg"/>`,
+    ),
+  ].join("\n    ");
   const spine = entries.map((entry) => `<itemref idref="e${entry.number}"/>`).join("\n    ");
   return `<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="book-id">
@@ -110,6 +113,18 @@ const CONTAINER = `<?xml version="1.0" encoding="utf-8"?>
  * `modified` is a parameter, not `new Date()`, so a test gets identical bytes on every run.
  */
 export function buildRemasteredEpub(entries, { title, language, sourceHash, modified }) {
+  // Figure crops and whole-page images, each `{ name: "images/…jpg", data }`, relative to OEBPS/
+  // like the chapter files that reference them. The same crop can be listed by two builds of one
+  // entry; it is packed once.
+  const images = [];
+  const seenImages = new Set();
+  for (const entry of entries) {
+    for (const image of entry.images ?? []) {
+      if (seenImages.has(image.name)) continue;
+      seenImages.add(image.name);
+      images.push(image);
+    }
+  }
   const identity = createHash("sha256")
     .update(
       `${sourceHash}\n${entries.map((e) => `${e.label}:${e.firstPage}-${e.lastPage}`).join("\n")}`,
@@ -122,7 +137,7 @@ export function buildRemasteredEpub(entries, { title, language, sourceHash, modi
     {
       name: "OEBPS/content.opf",
       data: Buffer.from(
-        renderOpf(entries, {
+        renderOpf(entries, images, {
           title,
           language,
           identifier,
@@ -136,6 +151,7 @@ export function buildRemasteredEpub(entries, { title, language, sourceHash, modi
       name: `OEBPS/${entryFileName(entry)}`,
       data: Buffer.from(renderEntryXhtml(entry, entry.pages, { language })),
     })),
+    ...images.map((image) => ({ name: `OEBPS/${image.name}`, data: image.data })),
   ];
   return buildZip(files);
 }

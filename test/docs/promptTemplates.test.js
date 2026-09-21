@@ -287,6 +287,18 @@ const TEMPLATES = {
     // parseOutline (src/remaster/outline.js) reads exactly these fields.
     outputContract: /"entries"[\s\S]*"firstPage"[\s\S]*"lastPage"/,
   },
+  "remaster-settle-prompt.md": {
+    placeholders: [
+      "IMAGE_PATH",
+      "BOOK_TITLE",
+      "PAGE_NUMBER",
+      "DIFFERENCES",
+      "READING_A",
+      "READING_B",
+    ],
+    // settlePage parses one <page> element, like the transcriber.
+    outputContract: /<page number="\{\{PAGE_NUMBER\}\}"/,
+  },
   "remaster-page-prompt.md": {
     placeholders: ["IMAGE_PATH", "BOOK_TITLE", "PAGE_NUMBER", "PAGE_COUNT", "ENTRY_LABEL"],
     // parsePageReply (src/remaster/pageTranscribe.js) looks for one <page> element, and the
@@ -339,6 +351,8 @@ const NO_CARD_RULES = {
   "epub-forward-flag-index-prompt.md": "the same pass, reading the taught index instead",
   "pedagogical-sort-prompt.md": "a permutation of items that already exist; it writes no field",
   "remaster-outline-prompt.md": "rebuilds a book's table of contents from OCR; it sees no card",
+  "remaster-settle-prompt.md":
+    "decides between two transcriptions of one page, upstream of any card, for the same reason",
   "remaster-page-prompt.md":
     "transcribes a page picture verbatim into XHTML, upstream of any card; card rules there " +
     "would invite it to edit the book",

@@ -11,7 +11,15 @@ import { listLessons } from "../../src/corpus/epubLessons.js";
 import { listPageImages, extractPageImages } from "../../src/remaster/sourcePages.js";
 import { parseOutline, contentsLikePages } from "../../src/remaster/outline.js";
 import { parsePageReply, xhtmlProblems } from "../../src/remaster/pageTranscribe.js";
-import { crossCheckPage, transcriptParts } from "../../src/remaster/ocrCrossCheck.js";
+import {
+  crossCheckPage,
+  transcriptParts,
+  unmatchedOcrLines,
+  numberingGaps,
+} from "../../src/remaster/ocrCrossCheck.js";
+import { compareReadings } from "../../src/remaster/compareReadings.js";
+import { settlePage, settleGuard } from "../../src/remaster/settle.js";
+import { parseBox, pixelRect, attachFigureImages } from "../../src/remaster/figureCrops.js";
 import { buildRemasteredEpub } from "../../src/remaster/epubWriter.js";
 import { remasterRoot } from "../../src/remaster/workspace.js";
 import {
@@ -531,4 +539,216 @@ test("a page with no text is noted, not failed: books have blank pages", () => {
     assert.deepEqual(result.problems, []);
     assert.match(result.notes[0], /page 46 has no text/);
   });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Two readings, compared and settled
+// ---------------------------------------------------------------------------------------------
+
+test("two faithful readings agree despite markup, case, punctuation and ruby grouping", () => {
+  const a =
+    "<h2>ADDITIONAL VOCABULARY</h2><p>Mearii: Hajimemashite.</p>" +
+    "<p><ruby>表現<rt>ひょうげん</rt></ruby>ノート</p>";
+  const b =
+    "<table><tr><td>Additional Vocabulary</td></tr></table><p>Mearii Hajimemashite</p>" +
+    "<p><ruby>表<rt>ひょう</rt></ruby><ruby>現<rt>げん</rt></ruby>ノート</p>";
+  assert.equal(compareReadings(a, b).agrees, true);
+});
+
+test("the same content in a different order is a move, not a disagreement (Genki page 64)", () => {
+  const a = "<td>8 はっぷん／はちふん</td><td>18 じゅうはっぷん</td>";
+  const b = "<td>8 はっぷん</td><td>18 じゅうはっぷん</td><td>はちふん</td>";
+  const result = compareReadings(a, b);
+  assert.equal(result.agrees, true);
+  assert.ok(result.moved > 0);
+});
+
+test("an extra kana and a dropped line number are disagreements (Genki pages 56 and 45)", () => {
+  const typo = compareReadings("<p>7 ななさい</p>", "<p>7 なななさい</p>");
+  assert.equal(typo.agrees, false);
+  assert.equal(typo.differences[0].b, "な");
+  const dropped = compareReadings("<p>1 たけし：こんにちは。</p>", "<p>たけし：こんにちは。</p>");
+  assert.equal(dropped.differences[0].a, "1");
+});
+
+test("a furigana difference is caught even when the printed text agrees", () => {
+  const a = "<p><ruby>第1課<rt>だいか</rt></ruby></p>";
+  const b = "<p><ruby>第1課<rt>だいいっか</rt></ruby></p>";
+  const result = compareReadings(a, b);
+  assert.equal(result.differences[0].stream, "furigana");
+});
+
+test("illustration descriptions differ between runs and are not compared", () => {
+  const a = "<p>いちじです。</p><figure><figcaption>[Illustration: a clock]</figcaption></figure>";
+  const b =
+    '<p>いちじです。</p><figure data-box="0.1,0.1,0.2,0.2"><figcaption>[Illustration: ' +
+    "an alarm clock at one]</figcaption></figure>";
+  assert.equal(compareReadings(a, b).agrees, true);
+});
+
+test("pages that agree keep reading B without a model call", async () => {
+  const readingB = { body: '<p>はい。</p><figure data-box="0.1,0.1,0.2,0.2"></figure>' };
+  const result = await settlePage({
+    pageNumber: 49,
+    readingA: { body: "<p>はい。</p>" },
+    readingB,
+    prompt: () => "unused",
+    run: async () => assert.fail("no call for a page that agrees"),
+  });
+  assert.equal(result.source, "agreed");
+  assert.equal(result.page, readingB);
+});
+
+test("an adjudicated page is accepted when it only chooses between the readings", async () => {
+  const result = await settlePage({
+    pageNumber: 56,
+    readingA: { body: "<p>7 ななさい。ろくさい。</p>" },
+    readingB: { body: "<p>7 なななさい。ろくさい。</p>" },
+    prompt: (differences) => `settle ${differences.length}`,
+    run: async () => '<page number="56"><p>7 ななさい。ろくさい。</p></page>',
+  });
+  assert.equal(result.source, "settled");
+  assert.equal(result.page.body, "<p>7 ななさい。ろくさい。</p>");
+});
+
+test("an adjudicator that rewrites the page is rejected, not trusted", async () => {
+  const readingA = { body: "<p>たけし：こんにちは。きむら たけしです。</p>" };
+  const readingB = { body: "<p>たけし：こんにちは。きむら たけしです</p>" };
+  const invented = await settlePage({
+    pageNumber: 45,
+    readingA: { body: "<p>1 たけし：こんにちは。</p>" },
+    readingB: { body: "<p>たけし：こんにちは。</p>" },
+    prompt: () => "p",
+    run: async () =>
+      '<page number="45"><p>1 たけし：こんにちは。はじめまして、よろしく。</p></page>',
+  });
+  assert.equal(invented.source, "unsettled");
+  assert.match(invented.problems[0], /adds \d+ text character\(s\) that neither reading has/);
+
+  const dropped = settleGuard("<p>たけし：</p>", readingA.body, readingB.body);
+  assert.match(dropped[0], /drops \d+ text character\(s\) both readings agreed on/);
+});
+
+// ---------------------------------------------------------------------------------------------
+// Figures
+// ---------------------------------------------------------------------------------------------
+
+test("a figure box is parsed, padded and clamped to the page", () => {
+  assert.deepEqual(parseBox("0.19,0.81,0.30,0.90"), [0.19, 0.81, 0.3, 0.9]);
+  for (const bad of ["", "0.1,0.2,0.3", "0.3,0.1,0.2,0.4", "0.1,0.1,1.2,0.4", "a,b,c,d"]) {
+    assert.equal(parseBox(bad), null, bad);
+  }
+  assert.deepEqual(pixelRect([0, 0.5, 0.5, 1], { width: 1000, height: 2000 }, 0.01), {
+    x: 0,
+    y: 980,
+    width: 510,
+    height: 1020,
+  });
+});
+
+test("each boxed figure gets its cropped image; an unboxed one keeps only its caption", () => {
+  withTempDir((dir) => {
+    const crops = [];
+    const body =
+      '<figure data-box="0.1,0.1,0.3,0.3"><figcaption>[Illustration: a "clock" &amp; hands]</figcaption></figure>' +
+      "<figure><figcaption>[Illustration: no box]</figcaption></figure>";
+    const result = attachFigureImages(body, {
+      pageNumber: 61,
+      stem: (n) => `page-0${n}`,
+      cropsDir: dir,
+      pageSize: { width: 1000, height: 1000 },
+      crop: (rect, dest) => {
+        crops.push(rect);
+        writeFileSync(dest, "jpeg");
+      },
+    });
+    assert.equal(crops.length, 1);
+    assert.equal(result.skipped, 1);
+    assert.deepEqual(result.images, [
+      { name: "images/page-061-fig-1.jpg", path: join(dir, "page-061-fig-1.jpg") },
+    ]);
+    assert.match(
+      result.body,
+      /<figure data-box="[^"]*"><img src="images\/page-061-fig-1.jpg" alt="Illustration: a clock amp; hands"\/>/,
+    );
+    // A crop already on disk is reused, not cut again.
+    attachFigureImages(body, {
+      pageNumber: 61,
+      stem: (n) => `page-0${n}`,
+      cropsDir: dir,
+      pageSize: { width: 1000, height: 1000 },
+      crop: () => assert.fail("reused"),
+    });
+  });
+});
+
+test("images are packed into the book, and verify catches one that is not", () => {
+  withTempDir((dir) => {
+    const page = {
+      number: 45,
+      printed: "",
+      body: '<figure><img src="images/page-045-fig-1.jpg" alt=""/></figure><p>あ</p>',
+    };
+    const lesson = { number: 11, label: "Lesson 1", firstPage: 45, lastPage: 45 };
+    const withImage = bookOf(dir, [
+      {
+        ...lesson,
+        pages: [page],
+        images: [{ name: "images/page-045-fig-1.jpg", data: Buffer.from("jpeg") }],
+      },
+    ]);
+    const packed = readZip(readFileSync(withImage));
+    assert.ok(packed.some((e) => e.name === "OEBPS/images/page-045-fig-1.jpg"));
+    assert.match(
+      packed.find((e) => e.name === "OEBPS/content.opf").data.toString(),
+      /href="images\/page-045-fig-1.jpg" media-type="image\/jpeg"/,
+    );
+    assert.deepEqual(
+      verifyRemasteredEpub(withImage, { expected: [lesson], bookPages: 1 }).problems,
+      [],
+    );
+
+    const withoutImage = bookOf(dir, [{ ...lesson, pages: [page] }], "no-image.epub");
+    assert.deepEqual(
+      verifyRemasteredEpub(withoutImage, { expected: [lesson], bookPages: 1 }).problems,
+      ['"Lesson 1" shows images/page-045-fig-1.jpg, which is not in the book'],
+    );
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Line-level OCR check
+// ---------------------------------------------------------------------------------------------
+
+test("a dropped line the character counts cannot see is found by the line check", () => {
+  const lines = [
+    "たけし：こんにちは。きむら たけしです。",
+    "メアリー：メアリー・ハートです。あのう、りゅうがくせいですか。",
+    "たけし：いいえ、にほんじんです。",
+    "メアリー：そうですか。なんねんせいですか。",
+    "たけし：よねんせいです。",
+  ];
+  const full = lines.map((l) => `<p>${l}</p>`).join("");
+  const ocrOfPage = ocr(...lines);
+  assert.deepEqual(unmatchedOcrLines({ body: full, ocr: ocrOfPage }), []);
+  const oneDropped = full.replace("<p>たけし：いいえ、にほんじんです。</p>", "");
+  const missing = unmatchedOcrLines({ body: oneDropped, ocr: ocrOfPage });
+  assert.deepEqual(
+    missing.map((m) => m.text),
+    ["たけし：いいえ、にほんじんです。"],
+  );
+  assert.equal(crossCheckPage({ body: oneDropped, ocr: ocrOfPage }).flagged, true);
+});
+
+test("an OCR misread of a line the transcript has is still found", () => {
+  // The OCR read メアリー as メテリー and ハート as ハード (Genki page 63).
+  const body = "<p>A：メアリー・ハートです。</p>";
+  assert.deepEqual(unmatchedOcrLines({ body, ocr: ocr("A：メテリー・ハードです。") }), []);
+});
+
+test("a gap in numbered items is reported", () => {
+  assert.deepEqual(numberingGaps("<h3>C</h3><p>1. a</p><p>2. b</p><p>4. d</p>"), [
+    "2 is followed by 4",
+  ]);
+  assert.deepEqual(numberingGaps("<h3>C</h3><p>1. a</p><p>2. b</p><h3>D</h3><p>1. c</p>"), []);
 });

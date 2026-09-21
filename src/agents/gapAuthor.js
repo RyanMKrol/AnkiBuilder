@@ -12,7 +12,7 @@
 // outcome: a hole that cannot be closed without an untaught word must stay open, since filling it
 // with one would turn one gap into two.
 
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
@@ -21,6 +21,7 @@ import { CATEGORIES } from "../model/categories.js";
 import { teachableVocabulary, findUnteachable, vocabularyForPrompt } from "./extrasVocabulary.js";
 import { EXAMPLES_WANTED, noGaps } from "./coverageGaps.js";
 import { runRole } from "./runRole.js";
+import { plainText } from "../corpus/chapterOutline.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 export const GAP_AUTHOR_PROMPT_PATH = resolve(
@@ -65,8 +66,34 @@ export function gapHandles(gaps) {
   return gapHandleGroups(gaps).map((handles) => handles[0]);
 }
 
+/**
+ * The chapter as TEXT, not as a path.
+ *
+ * This role used to be handed the chapter as a file path under a heading reading "for context", and
+ * it treated it as optional. Its Lesson 19 transcript says so in as many words: "I did not read the
+ * chapter file; sentences were built only from the supplied vocabulary." That one sentence explains
+ * two things that looked unrelated. On Lesson 18 a rule was added telling it to prefer frames built
+ * from THIS chapter's grammar, the pass was re-run, and 44 of 50 sentences were still requests.
+ * The rule had nothing to act on, because the agent never saw the chapter's grammar. And on Lesson
+ * 19 its とって drills were invented drawer scenes while the chapter's own しゃしんをとってください
+ * went uncarded.
+ *
+ * Inlined as plain text, which is about a seventh of the raw XHTML (6-7k characters against 38-54k
+ * on these chapters) and carries everything this role needs: the Key Sentences, the dialogue and the
+ * drill patterns it should build from. Images are dropped, which costs nothing here: this role
+ * writes sentences, and the pictures that matter were already read by the base phase.
+ */
+export function chapterTextFor({ chapterText = null, chapterFilePath = null } = {}) {
+  if (typeof chapterText === "string" && chapterText.length) return chapterText;
+  if (chapterFilePath && existsSync(chapterFilePath)) {
+    return plainText(readFileSync(chapterFilePath, "utf-8"));
+  }
+  return "";
+}
+
 export function renderGapAuthorPrompt({
   chapterFilePath,
+  chapterText = null,
   gaps,
   baseItems,
   earlierItems = [],
@@ -75,7 +102,7 @@ export function renderGapAuthorPrompt({
   const earlier = vocabularyForPrompt(earlierItems);
   return renderPromptTemplate(GAP_AUTHOR_PROMPT_PATH, {
     TARGET_LANGUAGE: targetLanguage,
-    CHAPTER_FILE_PATH: chapterFilePath,
+    CHAPTER_TEXT: chapterTextFor({ chapterText, chapterFilePath }),
     EXAMPLES_WANTED: String(EXAMPLES_WANTED),
     CATEGORY_LIST: CATEGORIES.map((c) => `- ${c}`).join("\n"),
     CARD_FACES: renderCardFacesBlock(),

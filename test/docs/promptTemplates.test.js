@@ -61,7 +61,7 @@ const TEMPLATES = {
   "gap-author-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",
-      "CHAPTER_FILE_PATH",
+      "CHAPTER_TEXT",
       "EXAMPLES_WANTED",
       "CATEGORY_LIST",
       "CARD_FACES",

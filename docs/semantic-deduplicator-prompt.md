@@ -3,8 +3,15 @@
 {{CARD_RULES}}
 
 You are given groups of flashcard items from ONE {{TARGET_LANGUAGE}} lesson that has just been
-built. Every group was found mechanically: its members share a target, or share an English gloss.
-Sharing is not the same as duplicating, and telling those apart is the entire job.
+built. Every group was found mechanically: its members share a target, share an English gloss, or
+share a target once a leading interjection such as すみません or じゃ is set aside. Sharing is not
+the same as duplicating, and telling those apart is the entire job.
+
+A `same-after-interjection` group is usually one line of the chapter mined twice, once with the word
+the speaker opened with and once without. Two such cards ask a learner for near-identical answers to
+near-identical English, so they are normally one card: keep the one carrying a `scene` if either
+does, otherwise the one without the interjection. Return `distinct` only when the opening word
+genuinely changes what the learner has to produce.
 
 For each group, decide whether its members are **one card written twice** or **genuinely different
 cards that happen to look alike**.

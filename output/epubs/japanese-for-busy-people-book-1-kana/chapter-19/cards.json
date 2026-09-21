@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "phase": "base",
     "epubHash": "1fab0f99d1195ad9",
     "chapterNumber": 43,

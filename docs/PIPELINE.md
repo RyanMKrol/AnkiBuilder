@@ -202,7 +202,11 @@ are separate subcommands so each paid one can be checked before the next:
 - `outline`: one text-only model call over the OCR's margins and contents pages writes
   `outline.json`, the lesson page ranges that replace the missing table of contents.
   `parseOutline` refuses gaps, overlaps and repeated labels. Read it before going further, because
-  every deck name comes from it.
+  every deck name comes from it. The model names each entry with the book's own name and says
+  whether it is a study unit (`kind: "lesson"`); code then numbers the study units in page order as
+  `Chapter NN: <the book's own name>` (`numberChapters`), and only those chapters go into the
+  converted book. Every command takes `--chapter <n>` as well as `--entry <outline number>`. The
+  rule and why are in `DECISIONS.md` ("Converted books number their study units as chapters").
 - `transcribe --entry <n>`: one Claude vision call per page (`docs/remaster-page-prompt.md`,
   pinned in `REMASTER_PASS_PINS`), writing XHTML with `<ruby>` for furigana and
   `class="vocabulary"` on vocabulary tables. The model is never shown the OCR, so the two

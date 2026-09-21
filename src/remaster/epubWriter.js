@@ -18,9 +18,12 @@ function escapeXml(text) {
     .replace(/"/g, "&quot;");
 }
 
-/** `lesson-01.xhtml`: sortable, stable across rebuilds of the same outline. */
+/**
+ * `chapter-04.xhtml`, from the chapter number (see numberChapters in outline.js). Sortable, and the
+ * same number the chapter's label, nav position and spine position carry.
+ */
 export function entryFileName(entry) {
-  return `entry-${String(entry.number).padStart(2, "0")}.xhtml`;
+  return `chapter-${String(entry.number).padStart(2, "0")}.xhtml`;
 }
 
 export function renderEntryXhtml(entry, pages, { language }) {

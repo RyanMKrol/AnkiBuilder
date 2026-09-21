@@ -28,16 +28,17 @@ one block of front matter, or one appendix.
 - Keep the book's own grouping. If a book has two parts that each number their lessons from 1
   (for example a conversation-and-grammar part and a reading-and-writing part), they are separate
   entries, and their labels must say which part they belong to.
-- Front matter (cover, contents, introduction, how to use this book, character charts, greetings
-  taught before lesson 1) and back matter (appendices, grammar indexes, vocabulary indexes,
-  answer keys) are entries too. Split them where the book itself does, not into one lump.
+- Front matter (cover, copyright, preface, contents, introduction, how to use this book) and back
+  matter (appendices, indexes, answer keys) are entries too. Split them where the book itself
+  does, not into one lump.
 - Use the printed contents page to name entries and find their printed start pages, then use the
   margin lines to convert printed page numbers into page numbers here. Check each boundary against
   the margins: the running header or side tab should change there.
 
 ## Labels
 
-Labels become deck names and must be unique.
+A label is the book's own name for the entry, in English. Do not number entries yourself: the
+converted book numbers its study units as chapters, in page order, after you answer.
 
 - A lesson in the book's main numbered sequence: `Lesson <n>: <English title>`, using the title
   the book prints (translate a Japanese-only title into short English).
@@ -45,9 +46,24 @@ Labels become deck names and must be unique.
   name first, e.g. `Reading and Writing <n>: <title>`. Never `Lesson <n>` for both.
 - Anything else: the book's own heading, in English, e.g. `Greetings`, `Appendix: Grammar Index`.
 
+Labels must be unique.
+
 ## Kind
 
-`kind` is one of `lesson`, `front-matter`, `back-matter`, `other`.
+`kind` decides whether the entry becomes a chapter of the converted book. Exactly one of:
+
+- `lesson`: something a learner studies. It teaches words, grammar, characters or phrases, or
+  drills them. Every numbered lesson is one, and so is a unit the book teaches outside its
+  numbering (greetings or numbers taught before lesson 1, a kana chart the book teaches from, an
+  introduction to the writing system).
+- `front-matter`: before the lessons and teaches nothing (cover, copyright, preface, contents,
+  how to use this book, an introduction to the characters in the story).
+- `back-matter`: after the lessons and teaches nothing new (indexes, glossaries, answer keys,
+  reference tables that repeat what the lessons taught).
+- `other`: anything else. Use it rarely, and say why in `evidence`.
+
+When unsure between `lesson` and a matter kind, choose `lesson`: a person reviews this outline,
+and a unit wrongly left out is harder to notice than one wrongly included.
 
 ## Answer format
 

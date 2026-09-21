@@ -34,7 +34,13 @@ import {
 } from "../src/remaster/workspace.js";
 import { extractPageImages } from "../src/remaster/sourcePages.js";
 import { ensureOcrBinary, ocrPages, loadPageOcr } from "../src/remaster/visionOcr.js";
-import { renderOutlinePrompt, parseOutline, formatOutline } from "../src/remaster/outline.js";
+import {
+  renderOutlinePrompt,
+  parseOutline,
+  formatOutline,
+  numberChapters,
+  studyChapters,
+} from "../src/remaster/outline.js";
 import {
   renderPagePrompt,
   parsePageReply,
@@ -122,18 +128,36 @@ function loadOutline(paths) {
     console.error(`no outline yet (${paths.outline}); run the outline step first`);
     process.exit(1);
   }
-  return JSON.parse(readFileSync(paths.outline, "utf-8"));
+  // Numbered on every load, so an outline written before chapter numbering existed gets the same
+  // numbers a new one would (numberChapters is deterministic in the entries' kinds and order).
+  return numberChapters(JSON.parse(readFileSync(paths.outline, "utf-8")));
 }
 
+/**
+ * The outline entries named by --entry <outline number> and/or --chapter <chapter number>, or every
+ * entry when neither is given. --chapter is the number an operator sees everywhere else (the label,
+ * the deck, --lesson in assemble); --entry reaches front and back matter too.
+ */
 function selectedEntries(outline) {
-  const wanted = optionAll("entry").map(Number);
-  if (!wanted.length) return outline.entries;
-  const entries = outline.entries.filter((entry) => wanted.includes(entry.number));
-  if (entries.length !== wanted.length) {
-    console.error(`no such outline entry among: ${wanted.join(", ")}`);
+  const byEntry = optionAll("entry").map(Number);
+  const byChapter = optionAll("chapter").map(Number);
+  if (!byEntry.length && !byChapter.length) return outline.entries;
+  const entries = outline.entries.filter(
+    (entry) => byEntry.includes(entry.number) || byChapter.includes(entry.chapter),
+  );
+  if (entries.length !== byEntry.length + byChapter.length) {
+    console.error(
+      `no such outline entry or chapter among: ` +
+        [...byEntry.map((n) => `entry ${n}`), ...byChapter.map((n) => `chapter ${n}`)].join(", "),
+    );
     process.exit(2);
   }
   return entries;
+}
+
+/** A chapter as the converted book carries it: numbered and labelled by numberChapters. */
+function asChapter(entry) {
+  return { ...entry, number: entry.chapter, label: entry.chapterLabel };
 }
 
 function pageRange(entry) {
@@ -232,7 +256,11 @@ function flaggedPages(paths, entries) {
 }
 
 function reportVerification(builtPath, paths, entries, outline) {
-  const bookPages = outline.entries.at(-1).lastPage;
+  // "The whole book" is every chapter: front and back matter are left out of it on purpose.
+  const bookPages = studyChapters(outline).reduce(
+    (sum, entry) => sum + entry.lastPage - entry.firstPage + 1,
+    0,
+  );
   const result = verifyRemasteredEpub(builtPath, { expected: entries, bookPages });
   appendJournal(paths.root, {
     step: "verify",
@@ -495,7 +523,18 @@ Object.assign(commands, {
     const byNumber = new Map(pages.map((page) => [page.number, page]));
     const entries = [];
     const sources = { settled: 0, transcript: 0 };
-    for (const entry of selectedEntries(outline)) {
+    // Only chapters go into the converted book (numberChapters, outline.js). Naming a front- or
+    // back-matter entry explicitly is refused rather than quietly dropped.
+    const selected = selectedEntries(outline);
+    const notChapters = selected.filter((entry) => entry.chapter === null);
+    if (optionAll("entry").length && notChapters.length) {
+      console.error(
+        `not a chapter of the converted book (front or back matter): ` +
+          notChapters.map((e) => `[${e.number}] ${e.label}`).join(", "),
+      );
+      process.exit(2);
+    }
+    for (const entry of selected.filter((e) => e.chapter !== null).map(asChapter)) {
       const numbers = pageRange(entry);
       // A settled page (two readings, reconciled) wins over a single reading.
       const transcripts = numbers.map((number) => {
@@ -742,7 +781,10 @@ Object.assign(commands, {
     }
     const { paths } = await workspace();
     const outline = loadOutline(paths);
-    const ok = reportVerification(resolve(built), paths, selectedEntries(outline), outline);
+    const chapters = selectedEntries(outline)
+      .filter((entry) => entry.chapter !== null)
+      .map(asChapter);
+    const ok = reportVerification(resolve(built), paths, chapters, outline);
     if (!ok) process.exitCode = 1;
   },
 });

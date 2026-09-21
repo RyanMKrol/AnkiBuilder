@@ -94,10 +94,16 @@ signal here, and am I confident enough to write it down?
 | `numberedBlockMarkers` | image stems appearing in runs across many chapters, e.g. `enum` and `wnum`. Each entry is `{ filenamePrefix, label }`, and the label is what the block is called in the book's own words. |
 | `lessonLabelWords` | the words this book's lesson labels begin with. Usually two or three, with a long tail of front-matter words to ignore. |
 
-**A remastered book has one answer already.** Its pages were written by the remaster, which marks
+**A remastered book has two answers already.** Its pages were written by the remaster, which marks
 every vocabulary table `class="vocabulary"` and nothing else, so `vocabularyTableClass` is
-`vocabulary`. Still open one chapter and confirm it: that rule lives in a prompt, and a prompt can
-miss.
+`vocabulary`. And every study unit is labelled `Chapter NN: <the book's own name>` (for example
+`Chapter 06: Lesson 1: New Friends`), so `lessonLabelWords` is `["Chapter"]`. Still open one
+chapter and confirm both: the first rule lives in a prompt, and a prompt can miss.
+
+In a remastered book the numbers line up: `Chapter 06` is `--lesson 6`, the sixth spine file, and
+the deck `Chapter 06`. The book holds only its study chapters (front and back matter are left out
+on purpose, see `DECISIONS.md`), so nothing shifts them. That holds for the whole-book build only;
+a test build of a few chapters numbers its nav from 1.
 
 **Open the book and check.** The counts tell you what is frequent, never what it means. A class that
 appears 45 times can be the vocabulary table or it can be the page furniture, and the only way to

@@ -222,25 +222,22 @@ the OCR checks missed. What is left is an error both runs make the same way, whi
 comparison nor, if the OCR misreads the same spot, the line check would see. Proofreading against
 the image is still the only complete answer.
 
-## Open questions for the owner
+## Decisions taken (owner, 2026-09-21)
 
-1. **Copyright refusals.** One page in twenty was refused on the first pass, and a single retry
-   fixed it. Options for the whole book: (a) retry a refused page a small, fixed number of times
-   (what Lesson 1 did), (b) add honest context to the prompt: this is the owner's own
-   copy, the output stays on this machine, and it is used only to make the owner's study cards,
-   (c) accept a placeholder and let the extraction pass work without that page, or (d) change the
-   design so the vision pass extracts study items from each page rather than transcribing it. We
-   should not reword the prompt just to get past a refusal. (b) is only acceptable if every part of
-   it is true, and only the owner can confirm that.
-2. **Whole book up front, or lesson by lesson?** The library identifies a book by its bytes. A
-   book rebuilt with Lesson 2 added is a new file with a new hash, and the dedup library would
-   start again. So either transcribe the whole book once before onboarding (about 373 more calls,
-   roughly 35 minutes at 4 at a time), or teach the library that a remastered book keeps its
-   source's identity. The first is simpler and is the recommendation.
-3. **Model and cost.** Transcription runs Sonnet 5 at high effort and settling runs Opus 5
-   (`REMASTER_PASS_PINS`). Two readings of the whole book is about 786 Sonnet calls, plus Opus on
-   roughly the one page in seven that disagreed in Lesson 1. Whether every book gets two readings,
-   or only the lessons being built, is the owner's call.
+1. **Copyright refusals are retried, never argued with.** A refused page is asked again with the
+   same prompt, up to 3 attempts. Refusals ran at 2 in 41 calls and every one cleared on the next
+   attempt. The prompt is not reworded to get past a refusal.
+2. **The whole book is converted before onboarding.** The library identifies a book by its bytes,
+   so a book rebuilt lesson by lesson would register as a new book each time and restart the dedup
+   library.
+3. **Every page gets two readings**, settled by Opus where they disagree: about 860 model calls for
+   Genki's 393 pages.
+4. **Figure crops are good enough as they are.** Some clip a label's edge; not worth tuning.
+5. **Converted books number their study units as chapters** in page order,
+   `Chapter NN: <the book's own name>`, and leave front and back matter out. Recorded, with the
+   reasoning, in `DECISIONS.md`. On the rerun outline Genki has 29 chapters: the two kana charts,
+   the writing-system introduction, Greetings, Numbers, Lessons 1 to 12 and Reading and Writing 1
+   to 12. Fourteen front- and back-matter entries are left out.
 
 ## Where this goes next
 

@@ -382,7 +382,7 @@ test("each page keeps its provenance in the chapter file", () => {
   withTempDir((dir) => {
     const { bytes } = writtenBook(dir);
     const chapter = readZip(bytes)
-      .find((e) => e.name === "OEBPS/entry-11.xhtml")
+      .find((e) => e.name === "OEBPS/chapter-11.xhtml")
       .data.toString();
     assert.match(
       chapter,
@@ -501,7 +501,7 @@ test("verify passes a complete book and counts its pages", () => {
     const result = verifyRemasteredEpub(path, { expected: [lesson1, lesson2], bookPages: 3 });
     assert.deepEqual(result.problems, []);
     assert.equal(result.pagesPresent, 3);
-    assert.match(formatVerification(result)[0], /ok.*the whole book \(3 pages\)/);
+    assert.match(formatVerification(result)[0], /ok.*every chapter of the book \(3 pages\)/);
   });
 });
 

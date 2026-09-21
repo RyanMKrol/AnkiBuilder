@@ -25,7 +25,10 @@ function textLength(html) {
 }
 
 /**
- * `expected` is the outline entries the file should contain, in order. Returns
+ * `expected` is the chapters the file should contain, in order, each with its `number` and `label`
+ * as the build wrote them. `bookPages` is the page count of every chapter the whole converted book
+ * holds: front and back matter are left out on purpose, so "the whole book" means its chapters.
+ * Returns
  * `{ problems, notes, pagesPresent, pagesExpected, bookPages }`. `problems` means the file is not
  * the book it claims to be; `notes` are things a person should know but that do not make it wrong
  * (a page with no text, which a blank page legitimately is).
@@ -105,8 +108,8 @@ export function formatVerification(result, { flaggedPages = [] } = {}) {
   const lines = [];
   const scope =
     result.pagesExpected === result.bookPages
-      ? `the whole book (${result.bookPages} pages)`
-      : `${result.pagesExpected} of the book's ${result.bookPages} pages`;
+      ? `every chapter of the book (${result.bookPages} pages)`
+      : `${result.pagesExpected} of the ${result.bookPages} pages in the book's chapters`;
   lines.push(
     result.problems.length
       ? `verify: FAILED. ${result.problems.length} problem(s) in ${scope}:`

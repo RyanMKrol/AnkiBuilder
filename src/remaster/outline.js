@@ -100,7 +100,7 @@ export function parseOutline(raw, { pageCount }) {
   if (problems.length) {
     throw new Error(`the outline is not usable:\n  - ${problems.join("\n  - ")}`);
   }
-  return {
+  return numberChapters({
     printedPageOffset: parsed.printedPageOffset ?? null,
     entries: entries.map((entry, index) => ({
       number: index + 1,
@@ -111,13 +111,56 @@ export function parseOutline(raw, { pageCount }) {
       lastPage: entry.lastPage,
       evidence: entry.evidence ?? "",
     })),
+  });
+}
+
+/**
+ * The chapter numbering every converted book gets (owner ruling, 2026-09-21; see DECISIONS.md).
+ *
+ * Each study unit (`kind: "lesson"`) becomes `Chapter NN: <the book's own name for it>`, numbered
+ * in page order. Everything else stays in the outline as a record and is left out of the converted
+ * EPUB. Assigned here, in code, never by the model, so the rule is the same for every book.
+ *
+ * Why this shape, from what the pipeline reads:
+ *   - `unitDeckSegments` already groups `Chapter N: Title` like `Lesson N: Title`, so a chapter and
+ *     its extras nest under one `Chapter NN` deck with no change to the deck contract.
+ *   - With only chapters in the EPUB, a chapter's number, its `--lesson` ordinal and its spine
+ *     position are the same number, and back matter such as an index cannot pose as a "later
+ *     chapter" to the forward-flag check.
+ *   - The number is zero-padded (to the width the book needs, at least two digits) so that
+ *     `--lesson "Chapter 01"` cannot also match "Chapter 10".
+ *   - The book's own name is kept after the number, because the book's exercises and
+ *     cross-references say "Lesson 3" and a learner needs to find it.
+ */
+export function numberChapters(outline) {
+  const studyCount = outline.entries.filter((entry) => entry.kind === "lesson").length;
+  const width = Math.max(2, String(studyCount).length);
+  let chapter = 0;
+  return {
+    ...outline,
+    entries: outline.entries.map((entry) => {
+      if (entry.kind !== "lesson") return { ...entry, chapter: null, chapterLabel: null };
+      chapter++;
+      return {
+        ...entry,
+        chapter,
+        chapterLabel: `Chapter ${String(chapter).padStart(width, "0")}: ${entry.label}`,
+      };
+    }),
   };
 }
 
+/** The entries that become chapters of the converted book, in order. */
+export function studyChapters(outline) {
+  return numberChapters(outline).entries.filter((entry) => entry.chapter !== null);
+}
+
 export function formatOutline(outline) {
-  return outline.entries.map(
+  return numberChapters(outline).entries.map(
     (entry) =>
       `[${String(entry.number).padStart(2)}] pages ${entry.firstPage}-${entry.lastPage} ` +
-      `(${entry.kind}) ${entry.label}`,
+      (entry.chapterLabel
+        ? entry.chapterLabel
+        : `(${entry.kind}, not in the converted book) ${entry.label}`),
   );
 }

@@ -763,9 +763,19 @@ reversible `excluded` flag: the `audio` stage skips excluded cards (no TTS spent
 drops them.
 
 **Filter the table rather than scrolling it.** A chip bar above the review shows only the flags this
-page actually has, with a count on each: **Excluded**, **Cut by a script**, **Uncertain**,
-**AI-suggested**, **Has a review note**, and at the audio gate **Marker audible** and **No audio**.
-Chips union rather than intersect, so two of them on means both sets.
+page actually has, with a count on each: **Not excluded**, **Excluded**, **Cut by a script**,
+**Uncertain**, **AI-suggested**, **Has a review note**, and at the audio gate **Marker audible** and
+**No audio**.
+
+**Flag chips widen; "Not excluded" narrows.** Two flags on means both sets — "Uncertain" plus
+"AI-suggested" shows either. "Not excluded" is a scope instead, so it intersects: "Not excluded" plus
+"Uncertain" is the *shipping* cards that are uncertain, which is usually the review you actually want,
+since an excluded card is not going into the deck. Unioning it would pull every excluded uncertain card
+straight back in. It is drawn with a dashed border to mark the difference, and switching it on switches
+off Excluded and Cut by a script, which it contradicts, rather than leaving an empty table.
+
+"Not excluded" only appears when something IS excluded — on a unit with no exclusions it would match
+every row and narrow nothing.
 
 Two of those are worth reaching for deliberately:
 

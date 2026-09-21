@@ -236,7 +236,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .excl-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .excl-btn:disabled{opacity:.5;cursor:default}
 td.excl-cell{text-align:center}
-.fbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 14px}.flab{font-size:12px;color:var(--muted);margin-right:2px}.fchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:inherit;font:inherit;font-size:12px;cursor:pointer}.fchip:hover{border-color:var(--accent)}.fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}.fchip .fn{font-variant-numeric:tabular-nums;opacity:.7;font-size:11px}.fchip.on .fn{opacity:.9}.fcount{font-size:12px;color:var(--muted);margin-left:4px}details.lesson.empty-filtered>summary{opacity:.45}td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
+.fbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 14px}.flab{font-size:12px;color:var(--muted);margin-right:2px}.fchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:inherit;font:inherit;font-size:12px;cursor:pointer}.fchip:hover{border-color:var(--accent)}.fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}.fchip .fn{font-variant-numeric:tabular-nums;opacity:.7;font-size:11px}.fchip.on .fn{opacity:.9}.fchip.fscope{border-style:dashed}.fchip.fscope.on{border-style:solid}.fcount{font-size:12px;color:var(--muted);margin-left:4px}details.lesson.empty-filtered>summary{opacity:.45}td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
 td.saved{background:rgba(122,59,54,.1)}`;
 
 // The @font-face rule for the target-script font. Pass { base64 } for an inlined data URI (static
@@ -458,6 +458,9 @@ const cardRow = (c, n, stage, ctx) => {
  */
 export function filterTokens(card, stage) {
   const t = [];
+  // The complement of `excluded`: the cards that are, or will be, in the deck. A SCOPE rather than a
+  // flag — see `scope` on FILTERS — so it narrows the flag chips instead of adding to them.
+  if (!card.excluded) t.push("shipping");
   if (card.excluded) {
     t.push("excluded");
     // "" means a human decision or a file written before provenance existed; a name means a sweep.
@@ -476,8 +479,25 @@ export function filterTokens(card, stage) {
   return t;
 }
 
-/** Chip definitions, in the order they are shown. `key` is the token; `label` the chip's text. */
+/**
+ * Chip definitions, in the order they are shown. `key` is the token; `label` the chip's text.
+ *
+ * `scope` chips NARROW and flag chips WIDEN, and the difference is deliberate. Flags union, because
+ * "Uncertain" plus "AI-suggested" asks for both sets. A scope intersects, because "Not excluded" plus
+ * "Uncertain" asks for the shipping cards that are uncertain — unioning it would pull every excluded
+ * uncertain card straight back in and defeat the reason for choosing it.
+ *
+ * `excludes` names the chips a scope contradicts. "Not excluded" and "Excluded" can never both match
+ * a row, so turning one on turns the other off rather than producing an empty table that reads as a
+ * broken filter.
+ */
 const FILTERS = [
+  {
+    key: "shipping",
+    label: "Not excluded",
+    scope: true,
+    excludes: ["excluded", "script-excluded"],
+  },
   { key: "excluded", label: "Excluded" },
   { key: "script-excluded", label: "Cut by a script" },
   { key: "uncertain", label: "Uncertain" },
@@ -499,17 +519,28 @@ const FILTERS = [
  */
 export function renderFilterBar(sections) {
   const counts = new Map();
+  let total = 0;
   for (const s of sections ?? []) {
     for (const c of s.cards ?? []) {
+      total++;
       for (const tok of filterTokens(c, s.stage || "audio")) {
         counts.set(tok, (counts.get(tok) ?? 0) + 1);
       }
     }
   }
-  const chips = FILTERS.filter((f) => counts.get(f.key)).map(
+  // A scope that matches every row narrows nothing: on a unit with no exclusions, "Not excluded"
+  // is the whole table, and rendering it would put a do-nothing chip on a page that previously had
+  // no bar at all. A flag chip is kept at any non-zero count, since it always narrows.
+  const useful = (f) => counts.get(f.key) && !(f.scope && counts.get(f.key) === total);
+  const chips = FILTERS.filter(useful).map(
     (f) =>
-      `<button type="button" class="fchip" data-filter="${f.key}">${escapeHtml(f.label)}<span class="fn">${counts.get(f.key)}</span></button>`,
+      `<button type="button" class="fchip${f.scope ? " fscope" : ""}" data-filter="${f.key}"` +
+      `${f.scope ? ` data-scope="1"` : ""}` +
+      `${f.excludes ? ` data-excludes="${f.excludes.join(" ")}"` : ""}` +
+      `>${escapeHtml(f.label)}<span class="fn">${counts.get(f.key)}</span></button>`,
   );
+  // A bar holding only a scope chip is still worth showing — "Not excluded" alone is a real view —
+  // so the test is simply whether anything useful survived.
   if (!chips.length) return "";
   return `<div class="fbar" id="fbar"><span class="flab">Show only</span>${chips.join("")}<button type="button" class="fchip fclear" id="fclear">All</button><span class="fcount" id="fcount"></span></div>`;
 }

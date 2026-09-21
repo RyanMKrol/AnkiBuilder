@@ -16,16 +16,26 @@ const card = (over = {}) => ({
   ...over,
 });
 
-test("a clean card carries no tokens, so it matches no filter", () => {
-  assert.deepEqual(filterTokens(card(), "corpus"), []);
+test("a clean card carries only `shipping`, so it matches no flag", () => {
+  // `shipping` is the scope token for "Not excluded"; it narrows rather than flags, so a clean card
+  // still matches none of the flag chips.
+  assert.deepEqual(filterTokens(card(), "corpus"), ["shipping"]);
+});
+
+test("`shipping` and `excluded` are exact complements", () => {
+  assert.ok(filterTokens(card(), "corpus").includes("shipping"));
+  assert.ok(!filterTokens(card(), "corpus").includes("excluded"));
+  const cut = filterTokens(card({ excluded: true, excludedBy: "human" }), "corpus");
+  assert.ok(cut.includes("excluded"));
+  assert.ok(!cut.includes("shipping"));
 });
 
 test("the three the owner asked for", () => {
   assert.deepEqual(filterTokens(card({ excluded: true, excludedBy: "human" }), "corpus"), [
     "excluded",
   ]);
-  assert.deepEqual(filterTokens(card({ uncertain: true }), "corpus"), ["uncertain"]);
-  assert.deepEqual(filterTokens(card({ aiSuggested: true }), "corpus"), ["ai"]);
+  assert.deepEqual(filterTokens(card({ uncertain: true }), "corpus"), ["shipping", "uncertain"]);
+  assert.deepEqual(filterTokens(card({ aiSuggested: true }), "corpus"), ["shipping", "ai"]);
 });
 
 test("a script exclusion is its own token as well as `excluded`", () => {
@@ -51,7 +61,7 @@ test("a human exclusion is NOT script-excluded, and neither is a pre-provenance 
 
 test("audio-only tokens do not appear at the corpus gate, where there is no audio yet", () => {
   const t = filterTokens(card({ audio: null, audioMarkerStuck: true }), "corpus");
-  assert.deepEqual(t, []);
+  assert.deepEqual(t, ["shipping"]);
 });
 
 test("`noaudio` means a SHIPPING card with no clip, not an excluded one", () => {
@@ -101,4 +111,38 @@ test("counts add up across every section on the page", () => {
 test("the bar survives a section with no cards", () => {
   const sections = [{ stage: "corpus", cards: [] }, { stage: "corpus" }];
   assert.equal(renderFilterBar(sections), "");
+});
+
+test("Not excluded renders when it narrows the table", () => {
+  const sections = [
+    {
+      stage: "corpus",
+      cards: [card(), card(), card({ excluded: true, excludedBy: "human" })],
+    },
+  ];
+  const html = renderFilterBar(sections);
+  assert.match(html, /data-filter="shipping" data-scope="1"/);
+  assert.match(html, /Not excluded<span class="fn">2</);
+});
+
+test("Not excluded does NOT render when nothing is excluded, since it would narrow nothing", () => {
+  // On a unit with no exclusions it matches every row. Rendering it would put a do-nothing chip on
+  // a page, and would give a clean unit a bar it has never had.
+  const sections = [{ stage: "corpus", cards: [card(), card(), card()] }];
+  assert.equal(renderFilterBar(sections), "");
+});
+
+test("Not excluded declares the chips it contradicts, so the client can clear them", () => {
+  const sections = [
+    { stage: "corpus", cards: [card(), card({ excluded: true, excludedBy: "backward-dedup" })] },
+  ];
+  assert.match(renderFilterBar(sections), /data-excludes="excluded script-excluded"/);
+});
+
+test("the scope chip comes first, ahead of the flags it narrows", () => {
+  const sections = [
+    { stage: "corpus", cards: [card({ uncertain: true }), card({ excluded: true })] },
+  ];
+  const html = renderFilterBar(sections);
+  assert.ok(html.indexOf('data-filter="shipping"') < html.indexOf('data-filter="uncertain"'));
 });

@@ -831,14 +831,24 @@ export const REVIEW_FILTER_SCRIPT = `(function () {
   var count = document.getElementById("fcount");
   var rows = function () { return document.querySelectorAll("tr.row[data-f]"); };
 
+  var active = function (wantScope) {
+    return chips.filter(function (c) {
+      return c.classList.contains("on") && (c.getAttribute("data-scope") === "1") === wantScope;
+    }).map(function (c) { return c.getAttribute("data-filter"); });
+  };
+
   var apply = function () {
-    var on = chips.filter(function (c) { return c.classList.contains("on"); })
-                  .map(function (c) { return c.getAttribute("data-filter"); });
+    // Scopes NARROW (every one must match) and flags WIDEN (any one may). "Not excluded" plus
+    // "Uncertain" therefore means the shipping cards that are uncertain, not every uncertain card
+    // plus every shipping one.
+    var scopes = active(true), flags = active(false);
+    var on = scopes.length + flags.length;
     var shown = 0, total = 0;
     rows().forEach(function (tr) {
       total++;
       var toks = (tr.getAttribute("data-f") || "").split(" ");
-      var keep = on.length === 0 || on.some(function (k) { return toks.indexOf(k) >= 0; });
+      var has = function (k) { return toks.indexOf(k) >= 0; };
+      var keep = scopes.every(has) && (flags.length === 0 || flags.some(has));
       tr.hidden = !keep;
       if (keep) shown++;
     });
@@ -847,14 +857,33 @@ export const REVIEW_FILTER_SCRIPT = `(function () {
     document.querySelectorAll("details.lesson").forEach(function (d) {
       var any = d.querySelector("tr.row[data-f]:not([hidden])");
       d.classList.toggle("empty-filtered", !any);
-      if (on.length && any) d.open = true;
+      if (on && any) d.open = true;
     });
-    if (clear) clear.classList.toggle("on", on.length === 0);
-    if (count) count.textContent = on.length ? shown + " of " + total + " shown" : "";
+    if (clear) clear.classList.toggle("on", on === 0);
+    if (count) count.textContent = on ? shown + " of " + total + " shown" : "";
+  };
+
+  var byKey = function (k) {
+    return chips.filter(function (c) { return c.getAttribute("data-filter") === k; })[0];
   };
 
   chips.forEach(function (c) {
-    c.addEventListener("click", function () { c.classList.toggle("on"); apply(); });
+    c.addEventListener("click", function () {
+      var turningOn = !c.classList.contains("on");
+      c.classList.toggle("on");
+      if (turningOn) {
+        // A scope and the chips it contradicts can never both match a row, so switching one on
+        // switches the others off instead of leaving an empty table that reads as broken.
+        (c.getAttribute("data-excludes") || "").split(" ").forEach(function (k) {
+          var other = k && byKey(k); if (other) other.classList.remove("on");
+        });
+        chips.forEach(function (s) {
+          var ex = (s.getAttribute("data-excludes") || "").split(" ");
+          if (s !== c && ex.indexOf(c.getAttribute("data-filter")) >= 0) s.classList.remove("on");
+        });
+      }
+      apply();
+    });
   });
   if (clear) clear.addEventListener("click", function () {
     chips.forEach(function (c) { c.classList.remove("on"); });

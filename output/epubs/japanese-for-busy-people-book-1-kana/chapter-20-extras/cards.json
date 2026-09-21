@@ -1,0 +1,616 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 46,
+    "chapterLabel": "Lesson 20: Going Places (3): How Do You Go There? (Extras)",
+    "baseChapterLabel": "Lesson 20: Going Places (3): How Do You Go There?",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "dete-te-sentence",
+      "english": "I leave home and take the subway.",
+      "category": "Transport",
+      "target": "うちをでて、ちかてつにのります",
+      "pronunciation": "uchi o dete, chikatetsu ni norimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-takes-shinkansen-tokyo-station",
+      "english": "Smith-san will take the Shinkansen from Tokyo Station.",
+      "category": "Transport",
+      "target": "スミスさんはとうきょうえきでしんかんせんにのります",
+      "pronunciation": "Sumisu-san wa Tōkyō-eki de shinkansen ni norimasu"
+    },
+    {
+      "id": "home-to-office-40-minutes",
+      "english": "It takes about 40 minutes from my home to the office.",
+      "category": "Transport",
+      "target": "うちからかいしゃまで40ぷんぐらいかかります",
+      "pronunciation": "uchi kara kaisha made yonjup-pun gurai kakarimasu",
+      "ttsText": "うちからかいしゃまでよんじゅっぷんぐらいかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "how-long-hongkong-q",
+      "english": "How long did Tanaka-san stay in Hong Kong?",
+      "category": "Time",
+      "target": "たなかさんはどのくらいホンコンにいましたか",
+      "pronunciation": "Tanaka-san wa dono kurai Honkon ni imashita ka"
+    },
+    {
+      "id": "what-time-arrive-at-office",
+      "english": "What time do you arrive at the office?",
+      "category": "Time",
+      "target": "なんじにかいしゃにつきますか",
+      "pronunciation": "nan-ji ni kaisha ni tsukimasu ka"
+    },
+    {
+      "id": "plane-arrive-osaka",
+      "english": "The plane arrived in Osaka at 5:00.",
+      "category": "Transport",
+      "target": "ひこうきはおおさかに5じにつきました",
+      "pronunciation": "hikōki wa Ōsaka ni go-ji ni tsukimashita",
+      "aiSuggested": true,
+      "ttsText": "ひこうきはおおさかにごじにつきました",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "how-long-to-get-here",
+      "english": "How long will it take you to get here?",
+      "category": "Transport",
+      "target": "ここまでどのくらいかかりますか",
+      "pronunciation": "koko made dono kurai kakarimasu ka"
+    },
+    {
+      "id": "how-long-will-you-be-in-new-york",
+      "english": "I see. How long will you be in New York?",
+      "category": "Travel & Tourism",
+      "target": "そうですか。どのくらいニューヨークにいますか",
+      "pronunciation": "sō desu ka. dono kurai Nyūyōku ni imasu ka"
+    },
+    {
+      "id": "how-long-hongkong-a",
+      "english": "I stayed for two weeks.",
+      "category": "Time",
+      "target": "にしゅうかんいました",
+      "pronunciation": "ni-shūkan imashita",
+      "scene": "Answering a question about a stay abroad"
+    },
+    {
+      "id": "ill-be-in-first-floor-cafe",
+      "english": "I see. Then I'll be in the café on the first floor.",
+      "category": "Travel & Tourism",
+      "target": "そうですか。じゃ、1かいのカフェにいます",
+      "pronunciation": "sō desu ka. ja, ik-kai no kafe ni imasu",
+      "ttsText": "そうですか。じゃ、いっかいのカフェにいます",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "tsuite-te-sentence",
+      "english": "I arrive at Tokyo Station and call Smith-san.",
+      "category": "Transport",
+      "target": "とうきょうえきについて、スミスさんにでんわをします",
+      "pronunciation": "Tōkyō-eki ni tsuite, Sumisu-san ni denwa o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "otemachi-kaisha",
+      "english": "Smith-san is going to a company in Otemachi.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはおおてまちのかいしゃにいきます",
+      "pronunciation": "Sumisu-san wa Ōtemachi no kaisha ni ikimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-arrived-office-at-8",
+      "english": "Smith-san arrived at the office at 8:00.",
+      "category": "Transport",
+      "target": "スミスさんは8じにかいしゃにつきました",
+      "pronunciation": "Sumisu-san wa hachi-ji ni kaisha ni tsukimashita",
+      "ttsText": "スミスさんははちじにかいしゃにつきました",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "tsukiji-sushi",
+      "english": "I ate sushi in Tsukiji.",
+      "category": "Travel & Tourism",
+      "target": "つきじですしをたべました",
+      "pronunciation": "Tsukiji de sushi o tabemashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "ekiin-ask",
+      "english": "I asked the station employee where Tokyo Dome is.",
+      "category": "Work & Occupations",
+      "target": "えきいんにとうきょうドームのばしょをききました",
+      "pronunciation": "ekiin ni Tōkyō Dōmu no basho o kikimashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "walk-fifteen-minutes",
+      "english": "It takes about 15 minutes on foot from my home to the station.",
+      "category": "Time",
+      "target": "うちからえきまであるいて15ふんぐらいかかります",
+      "pronunciation": "uchi kara eki made aruite jūgo-fun gurai kakarimasu",
+      "aiSuggested": true,
+      "ttsText": "うちからえきまであるいてじゅうごふんぐらいかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "how-long-london-q",
+      "english": "How long did Tanaka-san stay in London?",
+      "category": "Time",
+      "target": "たなかさんはどのくらいロンドンにいましたか",
+      "pronunciation": "Tanaka-san wa dono kurai Rondon ni imashita ka"
+    },
+    {
+      "id": "what-will-you-do-summer-vacation",
+      "english": "What are you going to do over summer vacation?",
+      "category": "Travel & Tourism",
+      "target": "なつやすみになにをしますか",
+      "pronunciation": "natsuyasumi ni nani o shimasu ka"
+    },
+    {
+      "id": "what-time-leave-home-every-day",
+      "english": "What time do you leave home every day?",
+      "category": "Time",
+      "target": "まいにちなんじにうちをでますか",
+      "pronunciation": "mainichi nan-ji ni uchi o demasu ka"
+    },
+    {
+      "id": "deru-dict-mae-ni",
+      "english": "Before I leave home, I eat breakfast.",
+      "category": "Transport",
+      "target": "うちをでるまえに、あさごはんをたべます",
+      "pronunciation": "uchi o deru mae ni, asagohan o tabemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "how-long-in-new-york",
+      "english": "How long did you stay in New York, Tanaka-san?",
+      "category": "Travel & Tourism",
+      "target": "たなかさんはどのくらいニューヨークにいましたか",
+      "pronunciation": "Tanaka-san wa dono kurai Nyūyōku ni imashita ka"
+    },
+    {
+      "id": "overslept-no-breakfast",
+      "english": "I overslept yesterday, so I didn't eat breakfast.",
+      "category": "Other",
+      "target": "きのうねぼうしましたから、あさごはんをたべませんでした",
+      "pronunciation": "kinō nebō shimashita kara, asagohan o tabemasen deshita",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-gets-off-shinkansen-hiroshima",
+      "english": "Smith-san will get off the Shinkansen at Hiroshima Station.",
+      "category": "Transport",
+      "target": "スミスさんはひろしまえきでしんかんせんをおります",
+      "pronunciation": "Sumisu-san wa Hiroshima-eki de shinkansen o orimasu"
+    },
+    {
+      "id": "oriru-dict-mae-ni",
+      "english": "Before I get off the subway, I send Smith-san an e-mail.",
+      "category": "Transport",
+      "target": "ちかてつをおりるまえに、スミスさんにメールをおくります",
+      "pronunciation": "chikatetsu o oriru mae ni, Sumisu-san ni mēru o okurimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "about-30-minutes-takes",
+      "english": "It will take about 30 minutes.",
+      "category": "Transport",
+      "target": "30ぷんぐらいかかります",
+      "pronunciation": "sanjup-pun gurai kakarimasu",
+      "scene": "Asked how long it will take to get to the meeting place",
+      "ttsText": "さんじゅっぷんぐらいかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "vacation-kyoto-how-long-a",
+      "english": "I'll be there for five days.",
+      "category": "Time",
+      "target": "いつかいます",
+      "pronunciation": "itsuka imasu",
+      "scene": "Answering a question about the length of a trip"
+    },
+    {
+      "id": "vacation-kyoto-how-long-q",
+      "english": "How long will you be in Kyoto?",
+      "category": "Time",
+      "target": "どのくらいきょうとにいますか",
+      "pronunciation": "dono kurai Kyōto ni imasu ka"
+    },
+    {
+      "id": "vacation-okinawa-how-long-a",
+      "english": "I'll be there for six days.",
+      "category": "Time",
+      "target": "むいかいます",
+      "pronunciation": "muika imasu",
+      "scene": "Answering a question about the length of a trip"
+    },
+    {
+      "id": "gr4-london-3nen-imashita",
+      "english": "Tanaka-san stayed in London for about three years.",
+      "category": "Time",
+      "target": "たなかさんはロンドンに３ねんぐらいいました",
+      "pronunciation": "Tanaka-san wa Rondon ni san-nen gurai imashita",
+      "note": "ぐらい after the period makes it approximate",
+      "ttsText": "たなかさんはロンドンにさんねんぐらいいました",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "smith-in-hiroshima-one-week",
+      "english": "Smith-san will be in Hiroshima for a week.",
+      "category": "Travel & Tourism",
+      "target": "スミスさんはひろしまに1しゅうかんいます",
+      "pronunciation": "Sumisu-san wa Hiroshima ni isshūkan imasu",
+      "ttsText": "スミスさんはひろしまにいっしゅうかんいます",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "nan-desu-ka-akasaka",
+      "english": "Aka... what? (asking for the rest of a word you only half heard)",
+      "category": "Grammar & Function Words",
+      "target": "あか…なんですか",
+      "pronunciation": "aka... nan desu ka",
+      "uncertain": true,
+      "aiSuggested": true,
+      "note": "Say the part you caught, pause, then add なんですか. The answer would be あかさかです.",
+      "reviewNote": "Possibly already taught — Same 'X…なんですか' request for a half-heard word as the chapter-20 '…なんですか' card, with 'aka' in the slot. Chapter-2-extras なんですか is a different question."
+    },
+    {
+      "id": "stay-friends-house-three-days",
+      "english": "I stayed at a friend's house for three days.",
+      "category": "Time",
+      "target": "ともだちのうちにみっかいました",
+      "pronunciation": "tomodachi no uchi ni mikka imashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "vacation-okinawa-plan",
+      "english": "I'll go to Okinawa and scuba dive.",
+      "category": "Travel & Tourism",
+      "target": "おきなわにいって、ダイビングをします",
+      "pronunciation": "Okinawa ni itte, daibingu o shimasu",
+      "scene": "Answering a question about summer vacation plans"
+    },
+    {
+      "id": "sp-5bansen-norite-orite-kudasai",
+      "english": "Take the train at Platform 5 and get off at Suidobashi.",
+      "category": "Transport",
+      "target": "５ばんせんのでんしゃにのって、すいどうばしでおりてください",
+      "pronunciation": "go-bansen no densha ni notte, Suidōbashi de orite kudasai",
+      "scene": "You ask a station employee how to get to your destination.",
+      "ttsText": "ごばんせんのでんしゃにのって、すいどうばしでおりてください",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "vacation-kyoto-plan",
+      "english": "I'll go to Kyoto and see temples.",
+      "category": "Travel & Tourism",
+      "target": "きょうとにいって、おてらをみます",
+      "pronunciation": "Kyōto ni itte, otera o mimasu",
+      "scene": "Answering a question about summer vacation plans"
+    },
+    {
+      "id": "go-to-new-york-see-musical",
+      "english": "I'm going to New York and will see a musical.",
+      "category": "Travel & Tourism",
+      "target": "ニューヨークにいって、ミュージカルをみます",
+      "pronunciation": "Nyūyōku ni itte, myūjikaru o mimasu",
+      "scene": "Asked what he will do over summer vacation"
+    },
+    {
+      "id": "how-long-sapporo-q",
+      "english": "How long did Tanaka-san stay in Sapporo?",
+      "category": "Time",
+      "target": "たなかさんはどのくらいさっぽろにいましたか",
+      "pronunciation": "Tanaka-san wa dono kurai Sapporo ni imashita ka"
+    },
+    {
+      "id": "dlg-nebou-uchi-o-demashita",
+      "english": "I overslept. I've just now left home.",
+      "category": "Transport",
+      "target": "ねぼうしました。いまうちをでました",
+      "pronunciation": "nebō shimashita. ima uchi o demashita"
+    },
+    {
+      "id": "stay-one-week",
+      "english": "I'll be there for a week.",
+      "category": "Travel & Tourism",
+      "target": "1しゅうかんいます",
+      "pronunciation": "isshūkan imasu",
+      "scene": "Asked how long he will be in New York",
+      "ttsText": "いっしゅうかんいます",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "leave-board-get-off-chain",
+      "english": "I leave home, take the subway, and get off at Shibuya.",
+      "category": "Transport",
+      "target": "うちをでて、ちかてつにのって、しぶやでおります",
+      "pronunciation": "uchi o dete, chikatetsu ni notte, Shibuya de orimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kato-leave-tokyo-arrive-kyoto",
+      "english": "Kato-san left Tokyo in the morning. He arrived in Kyoto around 1:00.",
+      "category": "Transport",
+      "target": "かとうさんはあさとうきょうをでました。1じごろきょうとにつきました",
+      "pronunciation": "Katō-san wa asa Tōkyō o demashita. ichi-ji goro Kyōto ni tsukimashita",
+      "ttsText": "かとうさんはあさとうきょうをでました。いちじごろきょうとにつきました",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "stayed-four-days",
+      "english": "I stayed four days.",
+      "category": "Travel & Tourism",
+      "target": "よっかいました",
+      "pronunciation": "yokka imashita",
+      "scene": "Asked how long he stayed in New York"
+    },
+    {
+      "id": "bus-to-airport-one-hour",
+      "english": "It takes one hour to the airport by bus.",
+      "category": "Time",
+      "target": "バスでくうこうまで1じかんかかります",
+      "pronunciation": "basu de kūkō made ichi-jikan kakarimasu",
+      "aiSuggested": true,
+      "ttsText": "バスでくうこうまでいちじかんかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "noru-dict-mae-ni",
+      "english": "Before I get on the Shinkansen, I buy a box lunch.",
+      "category": "Transport",
+      "target": "しんかんせんにのるまえに、べんとうをかいます",
+      "pronunciation": "shinkansen ni noru mae ni, bentō o kaimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "sui-what",
+      "english": "Sui…what?",
+      "category": "Transport",
+      "target": "すい…なんですか",
+      "pronunciation": "sui... nan desu ka",
+      "uncertain": true,
+      "scene": "Only part of a station name was heard, so you ask for it again",
+      "reviewNote": "Possibly already taught — Same partial-hearing 'X…なんですか' request as the chapter-20 card '…なんですか', with 'sui' in the slot."
+    },
+    {
+      "id": "leave-at-730",
+      "english": "I leave at 7:30.",
+      "category": "Time",
+      "target": "7じはんにでます",
+      "pronunciation": "shichi-ji han ni demasu",
+      "scene": "Asked what time he leaves home every day",
+      "ttsText": "しちじはんにでます",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "arrive-at-8",
+      "english": "I arrive at 8:00.",
+      "category": "Time",
+      "target": "8じにつきます",
+      "pronunciation": "hachi-ji ni tsukimasu",
+      "scene": "Asked what time he arrives at the office",
+      "ttsText": "はちじにつきます",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "akasaka-otemachi-commute",
+      "english": "I take the subway at Akasaka Station and get off at Otemachi Station.",
+      "category": "Transport",
+      "target": "あかさかえきでちかてつにのって、おおてまちえきでおります",
+      "pronunciation": "Akasaka-eki de chikatetsu ni notte, Ōtemachi-eki de orimasu",
+      "scene": "Asked how he gets to the office",
+      "uncertain": true,
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise IV-A's example answer, whose question uses どうやって. The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7."
+    },
+    {
+      "id": "train-off-bus-on",
+      "english": "I get off the train and take the bus.",
+      "category": "Transport",
+      "target": "でんしゃをおりて、バスにのります",
+      "pronunciation": "densha o orite, basu ni norimasu",
+      "aiSuggested": true,
+      "note": "を marks the train you leave, に marks the bus you board."
+    },
+    {
+      "id": "suidobashi-second-from-here",
+      "english": "Suidobashi. It's the second station from here.",
+      "category": "Transport",
+      "target": "すいどうばしです。ここからふたつめです",
+      "pronunciation": "Suidōbashi desu. koko kara futatsu-me desu"
+    },
+    {
+      "id": "how-long-sapporo-a",
+      "english": "I stayed for five months.",
+      "category": "Time",
+      "target": "ごかげついました",
+      "pronunciation": "go-kagetsu imashita",
+      "scene": "Answering a question about a stay in a city"
+    },
+    {
+      "id": "neboushimasu-tokidoki",
+      "english": "I sometimes oversleep.",
+      "category": "Other",
+      "target": "わたしはときどきねぼうします",
+      "pronunciation": "watashi wa tokidoki nebō shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "tsuku-dict-mae-ni",
+      "english": "Before I arrive at the office, I drink coffee.",
+      "category": "Transport",
+      "target": "かいしゃにつくまえに、コーヒーをのみます",
+      "pronunciation": "kaisha ni tsuku mae ni, kōhī o nomimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "how-long-tokyo-to-hiroshima",
+      "english": "How long does it take from Tokyo to Hiroshima?",
+      "category": "Transport",
+      "target": "とうきょうからひろしままでどのくらいかかりますか",
+      "pronunciation": "Tōkyō kara Hiroshima made dono kurai kakarimasu ka"
+    },
+    {
+      "id": "leave-school-walk-home",
+      "english": "I leave school and walk home.",
+      "category": "Transport",
+      "target": "がっこうをでて、あるいてうちにかえります",
+      "pronunciation": "gakkō o dete, aruite uchi ni kaerimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "vacation-okinawa-how-long-q",
+      "english": "How long will you be in Okinawa?",
+      "category": "Time",
+      "target": "どのくらいおきなわにいますか",
+      "pronunciation": "dono kurai Okinawa ni imasu ka"
+    },
+    {
+      "id": "kato-hotel-airport",
+      "english": "Kato-san left the hotel at 10:00. He arrived at the airport at 11:00.",
+      "category": "Transport",
+      "target": "かとうさんは10じにホテルをでました。11じにくうこうにつきました",
+      "pronunciation": "Katō-san wa jū-ji ni hoteru o demashita. jūichi-ji ni kūkō ni tsukimashita",
+      "ttsText": "かとうさんはじゅうじにホテルをでました。じゅういちじにくうこうにつきました",
+      "uncertain": true,
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise III item 1 (ホテル). The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7."
+    },
+    {
+      "id": "london-year-and-half",
+      "english": "I stayed in London for a year and a half.",
+      "category": "Time",
+      "target": "ロンドンにいちねんはんいました",
+      "pronunciation": "Rondon ni ichi-nen han imashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "suzuki-house-to-museum-30-minutes",
+      "english": "It takes about 30 minutes from Suzuki-san's house to the museum.",
+      "category": "Transport",
+      "target": "すずきさんのうちからはくぶつかんまで30ぷんぐらいかかります",
+      "pronunciation": "Suzuki-san no uchi kara hakubutsukan made sanjup-pun gurai kakarimasu",
+      "ttsText": "すずきさんのうちからはくぶつかんまでさんじゅっぷんぐらいかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "how-long-london-a",
+      "english": "I stayed for three years.",
+      "category": "Time",
+      "target": "さんねんいました",
+      "pronunciation": "san-nen imashita",
+      "scene": "Answering a question about a long stay abroad"
+    },
+    {
+      "id": "paul-want-to-go-tokyo-dome",
+      "english": "I'd like to go to Tokyo Dome.",
+      "category": "Transport",
+      "target": "とうきょうドームにいきたいんですが",
+      "pronunciation": "Tōkyō Dōmu ni ikitai n desu ga",
+      "scene": "Asking a station employee for directions"
+    },
+    {
+      "id": "kato-left-home-arrived-office",
+      "english": "Kato-san left home at 7:00. He arrived at the office at 8:00.",
+      "category": "Transport",
+      "target": "かとうさんは7じにうちをでました。8じにかいしゃにつきました",
+      "pronunciation": "Katō-san wa shichi-ji ni uchi o demashita. hachi-ji ni kaisha ni tsukimashita",
+      "ttsText": "かとうさんはしちじにうちをでました。はちじにかいしゃにつきました",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "douyatte-kaisha-question",
+      "english": "How do you get to the office, Smith-san?",
+      "category": "Transport",
+      "target": "スミスさんはどうやってかいしゃにいきますか",
+      "pronunciation": "Sumisu-san wa dō yatte kaisha ni ikimasu ka",
+      "uncertain": true,
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise IV-A's example question, the chapter's title question. The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7."
+    },
+    {
+      "id": "smith-left-home-730",
+      "english": "Smith-san left home at 7:30.",
+      "category": "Transport",
+      "target": "スミスさんは7じはんにうちをでました",
+      "pronunciation": "Sumisu-san wa shichi-ji han ni uchi o demashita",
+      "ttsText": "スミスさんはしちじはんにうちをでました",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "what-time-leave-yesterday",
+      "english": "What time did you leave home yesterday?",
+      "category": "Time",
+      "target": "きのうなんじにうちをでましたか",
+      "pronunciation": "kinō nan-ji ni uchi o demashita ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "shinkansen-about-4-hours",
+      "english": "It takes about four hours by Shinkansen.",
+      "category": "Transport",
+      "target": "しんかんせんで4じかんぐらいかかります",
+      "pronunciation": "shinkansen de yo-jikan gurai kakarimasu",
+      "scene": "Asked how long it takes to get from Tokyo to Hiroshima",
+      "ttsText": "しんかんせんでよじかんぐらいかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "tokyo-hiroshima-shinkansen-4-hours",
+      "english": "It takes four hours from Tokyo to Hiroshima by Shinkansen.",
+      "category": "Transport",
+      "target": "とうきょうからひろしままでしんかんせんで4じかんかかります",
+      "pronunciation": "Tōkyō kara Hiroshima made shinkansen de yo-jikan kakarimasu",
+      "ttsText": "とうきょうからひろしままでしんかんせんでよじかんかかります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    }
+  ]
+}

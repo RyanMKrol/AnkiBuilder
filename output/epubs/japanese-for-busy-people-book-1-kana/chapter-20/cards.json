@@ -153,7 +153,7 @@
       "category": "Transport",
       "target": "のります",
       "pronunciation": "norimasu",
-      "note": "The vehicle takes に.",
+      "note": "The vehicle takes に. Regular 1.",
       "sourceOrder": 993
     },
     {
@@ -171,7 +171,7 @@
       "category": "Transport",
       "target": "つきます",
       "pronunciation": "tsukimasu",
-      "note": "The place of arrival takes に.",
+      "note": "The place of arrival takes に. Regular 1.",
       "sourceOrder": 2253
     },
     {
@@ -180,7 +180,7 @@
       "category": "Time",
       "target": "かかります",
       "pronunciation": "kakarimasu",
-      "note": "Used when the speaker feels the time is long.",
+      "note": "Used when the speaker feels the time is long. Regular 1.",
       "sourceOrder": 221
     },
     {
@@ -214,7 +214,8 @@
       "category": "Transport",
       "target": "のる",
       "pronunciation": "noru",
-      "sourceOrder": 3120
+      "sourceOrder": 3120,
+      "note": "R1 verb"
     },
     {
       "id": "noru-te",
@@ -223,7 +224,8 @@
       "target": "のって",
       "pronunciation": "notte",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
-      "sourceOrder": 3122
+      "sourceOrder": 3122,
+      "note": "R1 verb"
     },
     {
       "id": "oriru-dict",
@@ -269,7 +271,8 @@
       "category": "Transport",
       "target": "つく",
       "pronunciation": "tsuku",
-      "sourceOrder": 3163
+      "sourceOrder": 3163,
+      "note": "R1 verb"
     },
     {
       "id": "tsuite-te",
@@ -278,7 +281,8 @@
       "target": "ついて",
       "pronunciation": "tsuite",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
-      "sourceOrder": 3165
+      "sourceOrder": 3165,
+      "note": "R1 verb"
     },
     {
       "id": "kakaru-dict",
@@ -286,7 +290,8 @@
       "category": "Time",
       "target": "かかる",
       "pronunciation": "kakaru",
-      "sourceOrder": 3183
+      "sourceOrder": 3183,
+      "note": "R1 verb"
     },
     {
       "id": "kakatte-te",
@@ -295,7 +300,8 @@
       "target": "かかって",
       "pronunciation": "kakatte",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
-      "sourceOrder": 3186
+      "sourceOrder": 3186,
+      "note": "R1 verb"
     },
     {
       "id": "chikatetsu",

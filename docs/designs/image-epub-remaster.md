@@ -145,6 +145,42 @@ came out clean, a wristwatch's label lost its last letters, and one portrait on 
 at the chin. The crop pads each box by 1.5% of the page; a wider pad, or snapping a box to the
 picture's edges, is the next thing to try if clipping matters for cards.
 
+## Where robustness stands (third iteration)
+
+**Calls per page.** With two readings, each page gets two Sonnet transcriptions, one more for each
+retry (2 in 41 calls on Lesson 1, both copyright refusals), and one Opus call when the two disagree
+(3 of 20 pages).
+That is about 2.2 model calls a page, plus the OCR, which is free and local. The whole book at that
+rate is roughly 860 calls.
+
+**What each layer caught on Lesson 1**, against what a person found checking against the images:
+
+| Layer                      | Real errors caught                                                                                  | False alarms           |
+| -------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------- |
+| Retry on an unusable reply | 2 copyright refusals (page 46 in reading A, page 54 in reading B), both cleared on the next attempt | none                   |
+| Second reading + settle    | all 3 real transcription errors                                                                     | none after normalizing |
+| OCR character counts       | 0                                                                                                   | 2 pages                |
+| OCR line check             | 0 (it would have missed all 3: a line number, one extra kana, one furigana run)                     | 2 pages                |
+| `verify`                   | nothing to catch in the real run; catches a deleted page in the tampered test                       | none                   |
+
+So on this lesson, every real error was caught by comparing two Claude runs, and none by the OCR.
+The OCR still earns its place for three reasons. It builds the outline (the running headers are
+where lesson boundaries come from, and that part has been right). It is the only reader that does not
+share Claude's blind spots, so it is the one check that could notice an error both runs make the same
+way. And it costs nothing. But it is a backstop, not the main defence: its noise on furigana and
+letter-spaced headings sets its thresholds, and those thresholds let small errors through. On this
+evidence it should stay in, and nobody should read "the OCR check passed" as "the page is right".
+
+**What would still get through:** an error both readings make identically, at a spot the OCR also
+misreads or cannot check (a short line, a furigana run). One lesson is too little to say how often
+that happens. The cheapest way to find out is to proofread one more lesson fully against the images
+and count.
+
+**Pinning.** The environment is now checked as well as the tables: an override that would put the
+settle pass (or any other checker) at or below what it checks stops the run before its first call.
+Every transcript records the model and effort that wrote it; the Lesson 1 pages predate that and
+show as "not recorded".
+
 ## How a missing page is caught
 
 Asked after the Lesson 1 run: would we notice if pages went missing? At that point, only partly.

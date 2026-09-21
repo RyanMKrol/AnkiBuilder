@@ -237,6 +237,14 @@ are separate subcommands so each paid one can be checked before the next:
   `check` cannot do this job: a book missing a lesson is still a readable book, so it says
   `native`.
 
+Every run leaves a record a checker can read afterwards (`src/remaster/journal.js`):
+`agent-logs/NN-<role>.json` holds every model call in full, rejected replies included, in the same
+format as a unit's agent transcripts (so `readRunLogs` reads it); `journal.jsonl` holds one line per
+decision (a retried attempt and why, a cross-check, a comparison, a settle verdict and its guard, a
+build, a verify), each naming the agent log behind it; and every transcript has a
+`page-NNN.meta.json` recording the model, effort and prompt hash that wrote it. `build` counts the
+pages by the model that wrote them, so a pin that changed part way through a book is visible.
+
 Everything lives under `.anki-builder/remaster/<source hash>/`, which is gitignored. Transcripts are
 a commercial book's text and this repository is public, so none of them is ever committed. Design,
 results from the first lesson, and open questions: `docs/designs/image-epub-remaster.md`.
@@ -2164,6 +2172,17 @@ already set keeps moving the passes it always moved.
 **The timeout travels with the scope, and that is load-bearing.** Effort and wall clock are the same
 decision. Raising a slow agentic pass to `high` under a shared 10-minute ceiling does not buy quality,
 it buys a hard mid-pass abort with a misleading error, after the money is spent.
+
+**An override cannot quietly invert a checker.** The tables are tested to keep every checking pass
+above what it checks, but the environment is not a table: `ANKI_BUILDER_LLM_MODEL=claude-sonnet-5`
+moves every pass at once and leaves 14 checkers on the same footing as the passes they check, and
+`ANKI_BUILDER_LLM_EFFORT=medium` alone does it to the coverage adversary. So every pin table
+registers itself with the runner (`registerPinFamily`), and before a process's first model call the
+runner resolves every registered pin under the current environment and refuses to start if any
+checker would be at or below what it checks (`pinOrderProblems` in `src/util/runClaude.js`, ranked
+by `src/util/modelRank.js`). `ANKI_BUILDER_ALLOW_PIN_INVERSION=1` turns the refusal into a warning
+for a deliberate cheap run. The remaster's passes use the scopes `ANKI_BUILDER_REMASTER_OUTLINE`,
+`_TRANSCRIBE` and `_SETTLE`, with no family prefix.
 
 | pass                | module                              | prompt                                   | model / effort              | env scope                      | batched?                                        | typical wall clock |
 | ------------------- | ----------------------------------- | ---------------------------------------- | --------------------------- | ------------------------------ | ----------------------------------------------- | ------------------ |

@@ -50,11 +50,17 @@ import {
   runOutlineClaude,
   runTranscribeClaude,
   runSettleClaude,
+  remasterPinning,
 } from "../src/remaster/remasterRunners.js";
+import { appendJournal, loggedRunner } from "../src/remaster/journal.js";
+import { createHash } from "crypto";
 import { writeFileAtomic } from "../src/util/atomicWrite.js";
 
 const [command, target, ...rest] = process.argv.slice(2);
 const REMASTER_MODIFIED = "2000-01-01T00:00:00Z";
+const READING = rest.includes("--reading") ? rest[rest.indexOf("--reading") + 1] : "a";
+
+const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 
 function option(name) {
   const index = rest.indexOf(`--${name}`);
@@ -84,7 +90,7 @@ const log = (line) => console.log(line);
 async function workspace() {
   const hash = hashEpubFile(epubPath);
   // --reading b (c, ...) points transcribe and crosscheck at an independent second run.
-  const paths = readingPaths(remasterPaths(remasterRoot(hash)), option("reading") ?? "a");
+  const paths = readingPaths(remasterPaths(remasterRoot(hash)), READING);
   const pages = extractPageImages(epubPath, paths.images);
   return { hash, paths, pages };
 }
@@ -156,6 +162,26 @@ function loadPageFile(dir, number) {
     : null;
 }
 
+function metaPath(dir, number) {
+  return join(dir, `${pageFileStem(number)}.meta.json`);
+}
+
+function readMeta(dir, number) {
+  const path = metaPath(dir, number);
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
+}
+
+function checkSummary(check) {
+  if (!check) return null;
+  return {
+    flagged: check.flagged,
+    disagreeingChars: check.disagreeingChars,
+    disagreeingWords: check.disagreeingWords,
+    missingLines: check.missingLines.map((l) => l.text),
+    numberingGaps: check.numberingGaps,
+  };
+}
+
 function transcriptPath(paths, number) {
   return join(paths.transcripts, `${pageFileStem(number)}.xhtml`);
 }
@@ -189,6 +215,11 @@ function describeCheck(check) {
   return `${check.flagged ? "FLAG " : ""}${parts.join("; ")}`;
 }
 
+function readSettleRecord(paths, number) {
+  const path = join(paths.settled, `${pageFileStem(number)}.json`);
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
+}
+
 function flaggedPages(paths, entries) {
   const flagged = [];
   for (const entry of entries) {
@@ -203,6 +234,14 @@ function flaggedPages(paths, entries) {
 function reportVerification(builtPath, paths, entries, outline) {
   const bookPages = outline.entries.at(-1).lastPage;
   const result = verifyRemasteredEpub(builtPath, { expected: entries, bookPages });
+  appendJournal(paths.root, {
+    step: "verify",
+    book: builtPath,
+    ok: result.problems.length === 0,
+    problems: result.problems,
+    notes: result.notes,
+    flaggedPages: flaggedPages(paths, entries),
+  });
   for (const line of formatVerification(result, { flaggedPages: flaggedPages(paths, entries) })) {
     log(line);
   }
@@ -227,11 +266,28 @@ Object.assign(commands, {
       ocrByPage,
     });
     log(`outline: one text-only model call over ${pages.length} pages of OCR margins`);
-    const raw = runOutlineClaude(prompt);
+    const outlinePin = remasterPinning("OUTLINE");
+    const logged = loggedRunner(paths.root, async (text) => runOutlineClaude(text), {
+      role: "outline",
+      ...outlinePin,
+      context: () => ({ pages: pages.length }),
+    });
+    const raw = await logged.run(prompt);
+    appendJournal(paths.root, {
+      step: "outline",
+      event: "reply",
+      ...outlinePin,
+      agentLog: logged.lastLog(),
+    });
     mkdirSync(paths.root, { recursive: true });
     writeFileAtomic(join(paths.root, "outline.raw.txt"), raw);
     const outline = parseOutline(raw, { pageCount: pages.length });
     writeFileAtomic(paths.outline, `${JSON.stringify(outline, null, 2)}\n`);
+    appendJournal(paths.root, {
+      step: "outline",
+      event: "accepted",
+      entries: outline.entries.map((e) => `${e.firstPage}-${e.lastPage} ${e.label}`),
+    });
     for (const line of formatOutline(outline)) log(line);
     log(
       `\nwritten to ${paths.outline}. Read it before transcribing: every deck name comes from it.`,
@@ -254,7 +310,19 @@ Object.assign(commands, {
     const title = getBookTitle(epubPath);
     const concurrency = Number(option("concurrency") ?? 4);
     mkdirSync(paths.transcripts, { recursive: true });
-    log(`transcribe "${entry.label}": ${numbers.length} page(s) to do, ${concurrency} at a time`);
+    const pin = remasterPinning("TRANSCRIBE");
+    log(
+      `transcribe "${entry.label}" (reading ${READING}, ${pin.model} ${pin.effort}): ` +
+        `${numbers.length} page(s) to do, ${concurrency} at a time`,
+    );
+    appendJournal(paths.root, {
+      step: "transcribe",
+      event: "start",
+      reading: READING,
+      entry: entry.label,
+      pages: numbers,
+      ...pin,
+    });
 
     const queue = [...numbers];
     const failures = [];
@@ -279,12 +347,34 @@ Object.assign(commands, {
         if (reparsed && !reparsed.problems.length) {
           page = reparsed;
         } else {
-          // Quota refusals propagate out of here and end the run: see transcribeRetry.js.
-          const result = await transcribeWithRetries({
-            pageNumber: number,
-            prompt,
-            run: runTranscribeClaude,
+          // Every call goes to agent-logs/, reply and all, before anything judges it.
+          let calls = 0;
+          const logged = loggedRunner(paths.root, runTranscribeClaude, {
+            role: `transcribe-${READING}`,
+            ...pin,
+            context: () => ({ page: number, reading: READING, attempt: ++calls }),
           });
+          const callLogs = [];
+          const run = async (text) => {
+            try {
+              return await logged.run(text);
+            } finally {
+              callLogs.push(logged.lastLog());
+            }
+          };
+          // Quota refusals propagate out of here and end the run: see transcribeRetry.js.
+          const result = await transcribeWithRetries({ pageNumber: number, prompt, run });
+          for (const failure of result.failures) {
+            appendJournal(paths.root, {
+              step: "transcribe",
+              event: "attempt-rejected",
+              page: number,
+              reading: READING,
+              attempt: failure.attempt,
+              reason: failure.reason,
+              agentLog: callLogs[failure.attempt - 1] ?? null,
+            });
+          }
           // Every rejected reply is kept under its attempt number, so a refusal leaves a record.
           for (const failure of result.failures) {
             if (failure.raw === null) continue;
@@ -296,17 +386,52 @@ Object.assign(commands, {
           attempts = result.attempts;
           if (!result.page) {
             const reasons = result.failures.map((f) => `#${f.attempt}: ${f.reason}`).join(" / ");
+            appendJournal(paths.root, {
+              step: "transcribe",
+              event: "failed",
+              page: number,
+              reading: READING,
+              attempts: result.attempts,
+            });
             failures.push(`page ${number}: failed ${result.attempts} attempt(s): ${reasons}`);
             log(`  page ${number}: FAILED after ${result.attempts} attempt(s)`);
             continue;
           }
           writeFileAtomic(rawPath, result.raw);
           page = result.page;
+          // Which model wrote this page, recorded beside it: a pin changed half way through a book
+          // then shows up as pages that differ, not as nothing at all.
+          writeFileAtomic(
+            metaPath(paths.transcripts, number),
+            `${JSON.stringify(
+              {
+                page: number,
+                reading: READING,
+                ...pin,
+                promptSha256: sha256(prompt),
+                attempts: result.attempts,
+                agentLog: callLogs.at(-1),
+                at: new Date().toISOString(),
+              },
+              null,
+              1,
+            )}\n`,
+          );
         }
         const seconds = Math.round((Date.now() - started) / 1000);
         const retried = attempts > 1 ? ` (attempt ${attempts})` : "";
         writeFileAtomic(transcriptPath(paths, number), serializeTranscript(page));
         const check = runCrossCheck(paths, number, page.body);
+        appendJournal(paths.root, {
+          step: "transcribe",
+          event: "transcribed",
+          page: number,
+          reading: READING,
+          attempts,
+          reused: attempts === 0,
+          agentLog: readMeta(paths.transcripts, number)?.agentLog ?? null,
+          crosscheck: checkSummary(check),
+        });
         log(
           `  page ${number} (p.${page.printed || "-"}) ${seconds}s${retried}: ${describeCheck(check)}`,
         );
@@ -316,6 +441,11 @@ Object.assign(commands, {
       await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, worker));
     } catch (error) {
       if (!error.quotaExhausted) throw error;
+      appendJournal(paths.root, {
+        step: "transcribe",
+        event: "stopped",
+        reason: error.message.split("\n")[0],
+      });
       // Pages finished before the refusal are saved; re-running picks up the rest.
       log(`\nSTOPPED: ${error.message.split("\n")[0]}`);
       log("Transcripts already written are kept. Re-run the same command once the limit resets.");
@@ -339,6 +469,12 @@ Object.assign(commands, {
         const page = loadTranscript(paths, number);
         if (!page) continue;
         const check = runCrossCheck(paths, number, page.body);
+        appendJournal(paths.root, {
+          step: "crosscheck",
+          page: number,
+          reading: READING,
+          ...checkSummary(check),
+        });
         checked++;
         if (check?.flagged) flagged++;
         log(`page ${number} (p.${page.printed || "-"}): ${describeCheck(check)}`);
@@ -464,6 +600,30 @@ Object.assign(commands, {
     for (const entry of entries) {
       log(`  ${entry.label} (pages ${entry.firstPage}-${entry.lastPage})`);
     }
+    // Which models wrote the pages in this book, counted. A lesson built from two different pins is
+    // reported, because a pin changed part way through a book is otherwise invisible.
+    const models = {};
+    for (const entry of entries) {
+      for (const page of entry.pages) {
+        const record = readSettleRecord(paths, page.number);
+        const writers = record
+          ? [record.readings?.a, record.readings?.b].filter(Boolean)
+          : [readMeta(paths.transcripts, page.number)].filter(Boolean);
+        const key = writers.length
+          ? [...new Set(writers.map((w) => `${w.model} ${w.effort}`))].join(" + ")
+          : "not recorded (transcribed before provenance existed)";
+        models[key] = (models[key] ?? 0) + 1;
+      }
+    }
+    for (const [key, count] of Object.entries(models)) log(`  pages written by ${key}: ${count}`);
+    appendJournal(paths.root, {
+      step: "build",
+      out: resolve(out),
+      entries: entries.map((e) => e.label),
+      sources,
+      models,
+      images: entries.reduce((n, e) => n + e.images.length, 0),
+    });
     // The build checks its own output end to end, every time: the file it just wrote, read back.
     const ok = reportVerification(resolve(out), paths, entries, outline);
     if (!ok) process.exitCode = 1;
@@ -487,6 +647,8 @@ Object.assign(commands, {
     const force = rest.includes("--force");
     mkdirSync(paths.settled, { recursive: true });
     const tally = { agreed: 0, settled: 0, unsettled: 0, skipped: 0 };
+    const settlePin = remasterPinning("SETTLE");
+    appendJournal(paths.root, { step: "settle", event: "start", entry: entry.label, ...settlePin });
     const queue = pageRange(entry).filter(
       (n) => force || !existsSync(join(paths.settled, `${pageFileStem(n)}.xhtml`)),
     );
@@ -500,11 +662,17 @@ Object.assign(commands, {
           log(`  page ${number}: needs both readings (a: ${!!readingA}, b: ${!!readingB})`);
           continue;
         }
+        let calls = 0;
+        const logged = loggedRunner(paths.root, runSettleClaude, {
+          role: "settle",
+          ...settlePin,
+          context: () => ({ page: number, attempt: ++calls }),
+        });
         const result = await settlePage({
           pageNumber: number,
           readingA,
           readingB,
-          run: runSettleClaude,
+          run: logged.run,
           prompt: (differences) =>
             renderSettlePrompt({
               imagePath: byNumber.get(number).localPath,
@@ -521,7 +689,22 @@ Object.assign(commands, {
           source: result.source,
           differences: result.differences,
           problems: result.problems,
+          // Who wrote what: the two readings' models, and the adjudicator's when it was asked.
+          readings: {
+            a: readMeta(paths.transcripts, number),
+            b: readMeta(b.transcripts, number),
+          },
+          adjudicator:
+            result.source === "agreed" ? null : { ...settlePin, agentLog: logged.lastLog() },
         };
+        appendJournal(paths.root, {
+          step: "settle",
+          page: number,
+          source: result.source,
+          differences: result.differences.map((d) => ({ stream: d.stream, a: d.a, b: d.b })),
+          problems: result.problems,
+          agentLog: result.source === "agreed" ? null : logged.lastLog(),
+        });
         writeFileAtomic(
           join(paths.settled, `${pageFileStem(number)}.json`),
           `${JSON.stringify(record, null, 1)}\n`,

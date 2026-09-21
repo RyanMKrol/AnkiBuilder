@@ -1,4 +1,9 @@
-import { runClaudeWithPrompt, runClaudeWithPromptAsync } from "../util/runClaude.js";
+import {
+  runClaudeWithPrompt,
+  runClaudeWithPromptAsync,
+  registerPinFamily,
+  resolvePinning,
+} from "../util/runClaude.js";
 
 // The model pins for the two remaster passes, as data (the same convention as EPUB_PASS_PINS in
 // src/corpus/epubLlmRunClaude.js). Each has its own env scope, so either can be overridden with
@@ -18,6 +23,20 @@ export const REMASTER_PASS_PINS = Object.freeze({
     checks: ["TRANSCRIBE"],
   },
 });
+
+const prefixesFor = (scope) => [`ANKI_BUILDER_REMASTER_${scope}`];
+
+registerPinFamily({ family: "remaster", pins: REMASTER_PASS_PINS, prefixesFor });
+
+/**
+ * The model and effort a pass will actually run with, after the environment has had its say. Every
+ * transcript and settled page records this, so a pin that changes half way through a book shows up
+ * as a difference between pages instead of disappearing.
+ */
+export function remasterPinning(scope) {
+  const { model, effort } = resolvePinning(prefixesFor(scope), REMASTER_PASS_PINS[scope]);
+  return { model, effort };
+}
 
 export const runOutlineClaude = (prompt) =>
   runClaudeWithPrompt(prompt, {

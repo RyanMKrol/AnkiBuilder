@@ -21,40 +21,11 @@
 // same two rules by tests (test/agents/survivingPassPins.test.js), so "every agent is pinned" is
 // asserted across the whole pipeline rather than only across half of it.
 
-import { resolvePinning } from "../util/runClaude.js";
+import { resolvePinning, registerPinFamily } from "../util/runClaude.js";
 
-/**
- * Model capability order, for the adversary assertion. Higher wins.
- *
- * This is a RANKING, not a price list, and it is the only place that ordering is written down. When
- * a new model lands, adding it here is the deliberate act of saying where it sits relative to the
- * others; leaving it out makes every role that names it fail the build rather than silently rank as
- * unknown.
- */
-export const MODEL_RANK = Object.freeze({
-  "claude-haiku-4-5-20251001": 1,
-  "claude-sonnet-5": 2,
-  "claude-opus-5": 3,
-});
-
-/**
- * Effort, as the tiebreak within one model.
- *
- * The adversary assertion used to compare models alone, which worked while checkers were Opus and
- * producers were Sonnet. Moving the checkers to Sonnet on cost grounds (owner, 2026-09-08) collapses
- * that comparison: same model on both sides, so the only remaining axis is how hard each one thinks.
- *
- * Note what this does NOT recover. Half the original reason for the tier gap was that a model
- * checking its own family's output leans toward approving it, and effort does not address that at
- * all. What survives is the other half: noticing an omission is harder than producing content, so a
- * checker should at least be working harder than what it checks.
- */
-export const EFFORT_RANK = Object.freeze({ low: 0, medium: 1, high: 2 });
-
-/** A role's capability as one comparable number: model tier first, effort as the tiebreak. */
-export function capabilityRank(role) {
-  return MODEL_RANK[role.model] * 10 + (EFFORT_RANK[role.effort] ?? 0);
-}
+// The ranking lives in src/util/modelRank.js so the runner's own pin-order check can read it too.
+// Re-exported here because every test and caller already imports it from this file.
+export { MODEL_RANK, EFFORT_RANK, capabilityRank } from "../util/modelRank.js";
 
 const MINUTES = 60 * 1000;
 
@@ -277,3 +248,11 @@ export function resolveRolePinning(id, { env = process.env } = {}) {
     process.env = previous;
   }
 }
+
+// The runner checks, before a process's first model call, that no environment override has put a
+// checking role at or below a role it checks (runClaude.js, assertPinOrder).
+registerPinFamily({
+  family: "agents",
+  pins: ROLES,
+  prefixesFor: (id) => [`ANKI_BUILDER_${ROLES[id].envScope}`],
+});

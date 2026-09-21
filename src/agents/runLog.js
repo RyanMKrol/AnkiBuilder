@@ -76,6 +76,9 @@ export function appendRunLog(logDir, entry) {
         promptHead: (entry.prompt ?? "").slice(0, PROMPT_HEAD_CHARS),
         response: entry.response ?? null,
         error: entry.error ?? null,
+        // What the call was about, for callers outside a unit's phases (the remaster logs which page,
+        // which reading and which attempt).
+        context: entry.context ?? null,
       },
       null,
       2,
@@ -93,9 +96,10 @@ export function appendRunLog(logDir, entry) {
 export function readRunLogs(unitDir) {
   const dir = logDirFor(unitDir);
   if (!existsSync(dir)) return [];
+  // By the sequence number, not the name: past 99 calls, "100-x" sorts before "11-x" as text.
   return readdirSync(dir)
     .filter((f) => f.endsWith(".json"))
-    .sort()
+    .sort((a, b) => parseInt(a, 10) - parseInt(b, 10) || a.localeCompare(b))
     .map((f) => {
       try {
         return { file: f, ...JSON.parse(readFileSync(join(dir, f), "utf-8")) };

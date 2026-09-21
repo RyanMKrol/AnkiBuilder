@@ -1,5 +1,6 @@
 import { spawnSync, spawn } from "child_process";
 import { assertExternalCallAllowed } from "./testEnv.js";
+import { MODEL_RANK, capabilityRank } from "./modelRank.js";
 
 // One core for every `claude -p` call in the pipeline. Sonnet at medium effort was
 // validated empirically for both prompt families (see the two wrapper modules'
@@ -61,6 +62,83 @@ export function resolvePinning(scopeEnvPrefix, defaults = {}) {
   return { model, effort, timeout };
 }
 
+// ---------------------------------------------------------------------------------------------
+// Pin order, checked where it is used
+// ---------------------------------------------------------------------------------------------
+//
+// Every pin table declares which of its passes checks which (`checks: [...]`), and a test holds the
+// TABLES to "a checker is pinned strictly above what it checks". The environment is not held to
+// it: ANKI_BUILDER_LLM_MODEL=claude-sonnet-5 moves every pass at once, checkers included, and
+// silently leaves a checker judging a pass on the same footing. So before a process's first model
+// call, every table loaded in that process is resolved the way the calls will resolve it, and an
+// inversion stops the run. ANKI_BUILDER_ALLOW_PIN_INVERSION=1 turns the refusal into a warning, for
+// a deliberate cheap run.
+
+const pinFamilies = [];
+
+/**
+ * A pin table announces itself here when its module loads. `pins` is `{ scope: { model, effort,
+ * timeoutMs?, checks? } }`, and `prefixesFor(scope)` gives the env prefixes its runner resolves
+ * with, narrowest first, exactly as that runner passes them to `resolvePinning`.
+ */
+export function registerPinFamily({ family, pins, prefixesFor }) {
+  if (!pinFamilies.some((f) => f.family === family))
+    pinFamilies.push({ family, pins, prefixesFor });
+}
+
+/** Every inversion the current environment produces, as sentences. Empty when all is in order. */
+export function pinOrderProblems() {
+  const problems = [];
+  for (const { family, pins, prefixesFor } of pinFamilies) {
+    const resolved = (scope) => resolvePinning(prefixesFor(scope), pins[scope]);
+    for (const [scope, pin] of Object.entries(pins)) {
+      for (const target of pin.checks ?? []) {
+        if (!pins[target]) continue;
+        const checker = resolved(scope);
+        const checked = resolved(target);
+        for (const side of [checker, checked]) {
+          if (MODEL_RANK[side.model] === undefined) {
+            problems.push(
+              `${family}/${scope}: "${side.model}" is not in MODEL_RANK, so its order is unknown`,
+            );
+          }
+        }
+        if (capabilityRank(checker) <= capabilityRank(checked)) {
+          problems.push(
+            `${family}/${scope} (${checker.model}, ${checker.effort}) checks ${target} ` +
+              `(${checked.model}, ${checked.effort}) but no longer outranks it`,
+          );
+        }
+      }
+    }
+  }
+  return [...new Set(problems)];
+}
+
+let pinOrderChecked = false;
+
+function assertPinOrder() {
+  if (pinOrderChecked) return;
+  pinOrderChecked = true;
+  const problems = pinOrderProblems();
+  if (!problems.length) return;
+  const message =
+    `the environment's model overrides put a checking pass at or below what it checks:\n  - ` +
+    `${problems.join("\n  - ")}\n` +
+    `Unset the override (ANKI_BUILDER_LLM_MODEL moves every pass at once), or set ` +
+    `ANKI_BUILDER_ALLOW_PIN_INVERSION=1 to run anyway.`;
+  if (process.env.ANKI_BUILDER_ALLOW_PIN_INVERSION) {
+    console.warn(`WARNING: ${message}`);
+    return;
+  }
+  throw new Error(message);
+}
+
+/** Test seam: forget that the check ran, so a test can run it again under a different env. */
+export function resetPinOrderCheck() {
+  pinOrderChecked = false;
+}
+
 /**
  * Invokes the local `claude -p` CLI with the given prompt and returns its stdout.
  *
@@ -84,6 +162,7 @@ export function runClaudeWithPrompt(
   { scopeEnvPrefix, defaults, maxBuffer = 20 * 1024 * 1024, spawn = spawnSync } = {},
 ) {
   assertExternalCallAllowed("spawn `claude -p`");
+  assertPinOrder();
 
   const { model, effort, timeout } = resolvePinning(scopeEnvPrefix, defaults);
 
@@ -228,6 +307,7 @@ export async function runClaudeWithPromptAsync(
   { scopeEnvPrefix, defaults, maxBuffer = 20 * 1024 * 1024, spawnImpl = spawn } = {},
 ) {
   assertExternalCallAllowed("spawn `claude -p`");
+  assertPinOrder();
 
   const { model, effort, timeout } = resolvePinning(scopeEnvPrefix, defaults);
 

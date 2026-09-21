@@ -22,11 +22,22 @@ import { settlePage, settleGuard } from "../../src/remaster/settle.js";
 import { parseBox, pixelRect, attachFigureImages } from "../../src/remaster/figureCrops.js";
 import { buildRemasteredEpub } from "../../src/remaster/epubWriter.js";
 import { remasterRoot } from "../../src/remaster/workspace.js";
+import { appendJournal, readJournal, loggedRunner } from "../../src/remaster/journal.js";
+import { readRunLogs } from "../../src/agents/runLog.js";
 import {
   transcribeWithRetries,
   MAX_TRANSCRIBE_ATTEMPTS,
 } from "../../src/remaster/transcribeRetry.js";
 import { verifyRemasteredEpub, formatVerification } from "../../src/remaster/verifyRemaster.js";
+
+async function withTempDirAsync(fn) {
+  const dir = mkdtempSync(join(tmpdir(), "anki-builder-remaster-"));
+  try {
+    return await fn(dir);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
 
 function withTempDir(fn) {
   const dir = mkdtempSync(join(tmpdir(), "anki-builder-remaster-"));
@@ -751,4 +762,50 @@ test("a gap in numbered items is reported", () => {
     "2 is followed by 4",
   ]);
   assert.deepEqual(numberingGaps("<h3>C</h3><p>1. a</p><p>2. b</p><h3>D</h3><p>1. c</p>"), []);
+});
+
+// ---------------------------------------------------------------------------------------------
+// Logs
+// ---------------------------------------------------------------------------------------------
+
+test("every call is logged in full, including one that throws, and the journal points at it", async () => {
+  await withTempDirAsync(async (dir) => {
+    let calls = 0;
+    const logged = loggedRunner(dir, async () => (calls++ ? refusal : goodReply(46)), {
+      role: "transcribe-a",
+      model: "claude-sonnet-5",
+      effort: "high",
+      context: () => ({ page: 46, attempt: calls }),
+    });
+    await logged.run("PROMPT");
+    const first = logged.lastLog();
+    await logged.run("PROMPT");
+    appendJournal(dir, { step: "transcribe", page: 46, agentLog: logged.lastLog() });
+
+    const failing = loggedRunner(
+      dir,
+      async () => {
+        throw new Error("claude -p timed out");
+      },
+      { role: "settle", model: "claude-opus-5", effort: "high", context: () => ({ page: 56 }) },
+    );
+    await assert.rejects(() => failing.run("P"), /timed out/);
+
+    assert.equal(first, "01-transcribe-a.json");
+    assert.equal(failing.lastLog(), "03-settle-FAILED.json");
+    const refused = JSON.parse(readFileSync(join(dir, "agent-logs", "02-transcribe-a.json")));
+    assert.equal(refused.response, refusal);
+    assert.equal(refused.model, "claude-sonnet-5");
+    assert.deepEqual(refused.context, { page: 46, attempt: 2 });
+    assert.deepEqual(readJournal(dir)[0].agentLog, "02-transcribe-a.json");
+    // The same format and place as a unit's agent transcripts, so the existing reader reads them.
+    assert.deepEqual(
+      readRunLogs(dir).map((l) => [l.file, l.ok]),
+      [
+        ["01-transcribe-a.json", true],
+        ["02-transcribe-a.json", true],
+        ["03-settle-FAILED.json", false],
+      ],
+    );
+  });
 });

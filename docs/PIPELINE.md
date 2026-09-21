@@ -1872,6 +1872,14 @@ Two smaller guarantees: the richer record wins the fields so information is neve
 an Anki note GUID and a duplicate makes the package build refuse outright, which used to surface only
 at **Mark done**, after both reviews were signed off.
 
+It also makes two repairs so a stray agent answer cannot fail the corpus write after every paid
+step has run. A field the corpus schema has no home for (`fromTable`, `foundIn`) is dropped and
+listed in `droppedFields`. A `category` that is not on the list becomes `Other` and is listed in
+`recategorized` with what the agent wrote. Both show up in the reconcile step's reason line in
+`run-report.json`. The second exists because Lesson 20's inventive author wrote "Daily Life" with the
+list in its prompt, and `prepare` then died on the schema. Both phases call the same function, so
+this covers phase 1 and phase 2.
+
 `agreement` is recorded as evidence for the review gate, never applied as a threshold in code.
 
 ### The image specialist, and why the dull verdicts are kept

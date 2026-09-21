@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { reconcile, candidateKey } from "../../src/cards/unionReconciler.js";
+import { reconcile, reconcileReason, candidateKey } from "../../src/cards/unionReconciler.js";
 import { validateCorpus } from "../../src/model/index.js";
 
 const ja = { languageCode: "ja" };
@@ -274,4 +274,33 @@ test("alternateOf survives the projection, because the reconciler itself writes 
   assert.doesNotThrow(() =>
     validateCorpus({ meta: { targetLanguage: "ja", sourceType: "epub" }, items }),
   );
+});
+
+test("a category off the list becomes Other and is reported, so the corpus write cannot fail on it", () => {
+  // Lesson 20's extras: the inventive author wrote "Daily Life", the phase finished, and prepare
+  // died on the schema.
+  const merged = reconcile(
+    [
+      from("inventiveAuthor", {
+        id: "overslept",
+        target: "ねぼうしました",
+        english: "I overslept",
+        category: "Daily Life",
+      }),
+      from("exerciseMiner", { id: "bus", target: "バス", english: "Bus", category: "Transport" }),
+    ],
+    ja,
+  );
+  const byId = Object.fromEntries(merged.items.map((i) => [i.id, i]));
+  assert.equal(byId.overslept.category, "Other");
+  assert.equal(byId.bus.category, "Transport");
+  assert.deepEqual(merged.recategorized, [{ id: "overslept", category: "Daily Life" }]);
+  assert.match(reconcileReason(merged), /overslept \("Daily Life"\)/);
+  assert.doesNotThrow(() =>
+    validateCorpus({ meta: { targetLanguage: "ja", sourceType: "epub" }, items: merged.items }),
+  );
+});
+
+test("reconcileReason is null when nothing was repaired", () => {
+  assert.equal(reconcileReason({ droppedFields: [], recategorized: [] }), null);
 });

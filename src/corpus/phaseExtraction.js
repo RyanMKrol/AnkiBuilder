@@ -27,10 +27,11 @@
 // the recovery path.
 
 import { existsSync, readFileSync } from "fs";
-import { join } from "path";
+import { basename, dirname, join } from "path";
 import { PHASE_CORPUS_FILE, runBasePhase } from "../agents/basePhase.js";
 import { SNAPSHOT_FILE } from "../agents/snapshot.js";
 import { loadBookHints } from "./epubLibrary.js";
+import { loadEarlierUnitItems } from "../cards/earlierUnits.js";
 
 /**
  * Runs phase 1 into `unitDir` and returns its corpus in `assemble`'s shape.
@@ -61,12 +62,21 @@ export function extractBaseCorpus({
   }
 
   const hints = epubHash ? loadBookHints(epubHash) : {};
+  // Every earlier unit of this collection, base and extras, for the phase's backward judge. This
+  // was never passed, so on Lessons 17 to 20 the judge ran against ZERO prior cards: every
+  // candidates/backward.json reads `priorItems: 0`. The v1 string matcher in `assemble` still
+  // flagged exact repeats of BASE cards, which hid it, but it reads the dedup library, and the
+  // library cannot hold an extras unit. So an exact repeat of an extras card, and every near miss,
+  // went through: Lesson 20 re-carded ごふん and じゅっぷん, already live in Lesson 3's extras.
+  const priorItems = loadEarlierUnitItems(dirname(unitDir), basename(unitDir));
+  log(`[phase:base] backward dedup reads ${priorItems.length} card(s) from earlier units`);
   const result = runPhase({
     unitDir,
     chapterFilePath,
     chapterHtml: chapterHtml ?? readFileSync(chapterFilePath, "utf-8"),
     targetLanguage,
     meta: { hints },
+    priorItems,
   });
 
   for (const step of result.run.steps) {

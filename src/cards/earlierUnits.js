@@ -22,6 +22,7 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { parseUnitDir } from "../model/unitDir.js";
+import { isPredicateShaped } from "./predicateShape.js";
 
 /**
  * Shipping items from every unit ordered before `unitName`, each stamped `__unit`.
@@ -58,6 +59,44 @@ export function loadEarlierUnitItems(collectionDir, unitName) {
     for (const item of parsed.items ?? []) {
       if (item?.excluded) continue;
       items.push({ ...item, __unit: name, __chapterLabel: parsed.meta?.chapterLabel ?? null });
+    }
+  }
+  return items;
+}
+
+/**
+ * The vocabulary a phase-2 role may USE when building chapter `beforeNumber`: every shipping card of
+ * every earlier BASE unit, plus the lexical entries of every earlier EXTRAS unit.
+ *
+ * Extras units used to be left out entirely, on the reasoning that a drill sentence does not teach
+ * the words inside it, and counting one would make every word of every drill look taught. That half
+ * still holds, so sentence cards stay out. But an extras unit also holds real vocabulary: pathway 2
+ * retrofits land there (Lesson 7's extras teach どうやって, from the Nihongo 102 notes), and so do
+ * words like chapter-9-extras' おとうと. Leaving those out made Lesson 20's miners drop the chapter's
+ * own title question, どうやって X に いきますか, as untaught.
+ *
+ * So an extras card counts when `isPredicateShaped` says it is NOT a sentence. For a language with no
+ * markers that returns null, and null keeps the card out: the old strict rule, which fails safe.
+ * Different from `loadEarlierUnitItems`, which is prior art for backward dedup and reads everything.
+ */
+export function loadEarlierTaughtItems(collectionDir, beforeNumber, targetLanguage) {
+  if (!collectionDir || !existsSync(collectionDir)) return [];
+  const items = [];
+  for (const name of readdirSync(collectionDir).sort()) {
+    const unit = parseUnitDir(name);
+    if (!unit || unit.number >= beforeNumber) continue;
+    const file = join(collectionDir, name, "cards.json");
+    if (!existsSync(file)) continue;
+    let parsed;
+    try {
+      parsed = JSON.parse(readFileSync(file, "utf-8"));
+    } catch {
+      continue;
+    }
+    for (const item of parsed.items ?? []) {
+      if (item?.excluded) continue;
+      if (unit.extras && isPredicateShaped(item.target, targetLanguage) !== false) continue;
+      items.push(item);
     }
   }
   return items;

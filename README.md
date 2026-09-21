@@ -93,7 +93,9 @@ anki-builder epub cache <hash> --clear
 anki-builder epub taught-index <hash> --lang ja
 anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
 # --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
-# right span of spine files (however many), and extracts them all as one unit.
+# right span of spine files (however many), and extracts them all as one unit. A bare number
+# is the nav ordinal, and one that another entry's label also carries ("20" when "Lesson 20"
+# sits at [46]) is refused as ambiguous rather than guessed.
 #
 # --chapter-number <N> still works as a low-level escape hatch (the Nth spine file), e.g.
 # for a book whose EPUB has no usable table of contents:

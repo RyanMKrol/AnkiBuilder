@@ -27,7 +27,7 @@ import { mineExampleSentences } from "./exampleSentenceMiner.js";
 import { computeGaps } from "./coverageGaps.js";
 import { authorGapFills, assertGapsAddressed } from "./gapAuthor.js";
 import { authorInventedPractice } from "./inventiveAuthor.js";
-import { reconcile } from "../cards/unionReconciler.js";
+import { reconcile, reconcileReason } from "../cards/unionReconciler.js";
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
@@ -268,9 +268,7 @@ function runExtrasPhaseInner({
     // A field an agent volunteered that the corpus has no home for. Recorded on the step rather
     // than discarded in silence, so the next person can decide whether the prompt should stop
     // asking for it or the schema should grow a place for it.
-    reason: merged.droppedFields.length
-      ? `dropped ${merged.droppedFields.length} volunteered field(s) not in the corpus schema: ${merged.droppedFields.join(", ")}`
-      : null,
+    reason: reconcileReason(merged),
     status: STEP_STATUS.OK,
     counts: { in: existing.length + invented.value.items.length, out: merged.items.length },
     artifact: write(unitDir, "corpus.json", {

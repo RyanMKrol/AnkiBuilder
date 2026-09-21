@@ -32,7 +32,7 @@ import { resolveChapterImages } from "../corpus/chapterImages.js";
 import { judgeTables } from "./tableSpecialist.js";
 import { readChapter } from "./chapterReader.js";
 import { judgeImages } from "./imageSpecialist.js";
-import { reconcile } from "../cards/unionReconciler.js";
+import { reconcile, reconcileReason } from "../cards/unionReconciler.js";
 import { assignSourceOrder } from "../cards/sourceOrder.js";
 import {
   enumerateChapter,
@@ -238,9 +238,7 @@ function runBasePhaseInner({
     // A field an agent volunteered that the corpus has no home for. Recorded on the step rather
     // than discarded in silence, so the next person can decide whether the prompt should stop
     // asking for it or the schema should grow a place for it.
-    reason: merged.droppedFields.length
-      ? `dropped ${merged.droppedFields.length} volunteered field(s) not in the corpus schema: ${merged.droppedFields.join(", ")}`
-      : null,
+    reason: reconcileReason(merged),
     status: STEP_STATUS.OK,
     counts: {
       in:

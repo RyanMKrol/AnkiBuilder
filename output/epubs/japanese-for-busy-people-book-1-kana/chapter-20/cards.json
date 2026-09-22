@@ -464,7 +464,10 @@
       "audioOriginal": "3d04ebe6fd7e5324.orig.mp3",
       "audioAuto": "3d04ebe6fd7e5324.mp3",
       "audioMarked": true,
-      "audioTextHash": "3d04ebe6fd7e5324"
+      "audioTextHash": "3d04ebe6fd7e5324",
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is くうこう."
     },
     {
       "id": "basu-bus",
@@ -553,7 +556,10 @@
       "audioOriginal": "4e6e5f99ecaeb61c.orig.mp3",
       "audioAuto": "4e6e5f99ecaeb61c.mp3",
       "audioMarked": true,
-      "audioTextHash": "4e6e5f99ecaeb61c"
+      "audioTextHash": "4e6e5f99ecaeb61c",
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is えき."
     },
     {
       "id": "bansen-counter",
@@ -646,7 +652,10 @@
       "audioOriginal": "c7b65aceae829dcb.orig.mp3",
       "audioAuto": "c7b65aceae829dcb.mp3",
       "audioMarked": true,
-      "audioTextHash": "c7b65aceae829dcb"
+      "audioTextHash": "c7b65aceae829dcb",
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is えき."
     },
     {
       "id": "sapporo",
@@ -801,7 +810,10 @@
       "audioOriginal": "e3b8bb657fb6df41.orig.mp3",
       "audioAuto": "e3b8bb657fb6df41.mp3",
       "audioMarked": true,
-      "audioTextHash": "e3b8bb657fb6df41"
+      "audioTextHash": "e3b8bb657fb6df41",
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is the venue itself; ドーム is not carded."
     },
     {
       "id": "uchi-home",

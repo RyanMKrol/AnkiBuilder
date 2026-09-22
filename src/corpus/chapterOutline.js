@@ -30,13 +30,22 @@
  * "アメリカ あめりか" would never match its card.
  */
 export function plainText(html) {
-  return String(html)
-    .replace(/<rt\b[^>]*>[\s\S]*?<\/rt>/gi, "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&#160;|&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/\s+/g, " ")
-    .trim();
+  return (
+    String(html)
+      .replace(/<rt\b[^>]*>[\s\S]*?<\/rt>/gi, "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&#160;|&nbsp;/g, " ")
+      // Numeric character references are the characters they name. Without this a heading reads
+      // "Class Activity&#8212;Meeting someone" and never matches the same heading read by an agent,
+      // which is how a section came back unaccounted for on the first converted book.
+      .replace(/&#(x[0-9a-fA-F]+|\d+);/g, (whole, digits) => {
+        const code = digits[0] === "x" ? parseInt(digits.slice(1), 16) : Number(digits);
+        return Number.isFinite(code) && code >= 32 ? String.fromCodePoint(code) : whole;
+      })
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
 }
 
 /**

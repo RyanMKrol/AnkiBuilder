@@ -248,6 +248,29 @@ test("a reply that corrects itself is read from its last page element (Genki pag
   assert.equal(page.body, "<h2><ruby>表現<rt>ひょうげん</rt></ruby>ノート</h2>");
 });
 
+test("a ruby with no reading is the plain word, not a malformed page (Genki page 236)", () => {
+  const page = parsePageReply(
+    '<page number="236"><p><ruby>ピアノ</ruby>を ひきます。<ruby>日本<rt>にほん</rt></ruby></p></page>',
+    { pageNumber: 236 },
+  );
+  assert.deepEqual(page.problems, []);
+  assert.equal(page.body, "<p>ピアノを ひきます。<ruby>日本<rt>にほん</rt></ruby></p>");
+});
+
+test("numeric character references become their characters, but not the three that make markup", () => {
+  const page = parsePageReply(
+    '<page number="43"><h4>B. Class Activity&#8212;Meeting someone</h4>' +
+      "<p>Mary&#8217;s &#160;&#8220;hello&#8221; &#8594; &#38; &#60;</p></page>",
+    { pageNumber: 43 },
+  );
+  assert.deepEqual(page.problems, []);
+  // &#160; is a non-breaking space, which is what it decodes to; plainText folds it to a space later.
+  assert.equal(
+    page.body,
+    "<h4>B. Class Activity—Meeting someone</h4><p>Mary’s  “hello” → &amp; &lt;</p>",
+  );
+});
+
 test("markup that would swallow the rest of a lesson is reported", () => {
   assert.deepEqual(xhtmlProblems("<table><tr><td>a</td></tr>"), ["unclosed: <table>"]);
   assert.deepEqual(xhtmlProblems("<p>a</div>"), ["</div> closes <p>", "unclosed: <p>"]);

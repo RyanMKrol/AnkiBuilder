@@ -58,6 +58,28 @@ export function xhtmlProblems(body) {
   return problems;
 }
 
+/**
+ * Numeric character references written as the characters they mean: `&#8212;` becomes an em dash,
+ * `&#160;` a space. The model writes them for punctuation it could equally write directly, and
+ * downstream nothing decodes them: a section heading reached the chapter reader as
+ * "Class Activity&#8212;Meeting someone", which did not match the heading the parser had, and a
+ * card could have carried "Mary&#8217;s" as printed text. XHTML takes the characters themselves,
+ * so this is lossless.
+ *
+ * The three that must stay encoded are left alone, as their named forms: decoding `&#38;` would
+ * turn text into markup.
+ */
+export function decodeNumericEntities(html) {
+  return html.replace(/&#(x[0-9a-fA-F]+|\d+);/g, (whole, digits) => {
+    const code = digits[0] === "x" ? parseInt(digits.slice(1), 16) : Number(digits);
+    if (code === 38) return "&amp;";
+    if (code === 60) return "&lt;";
+    if (code === 62) return "&gt;";
+    if (!Number.isFinite(code) || code < 32) return whole;
+    return String.fromCodePoint(code);
+  });
+}
+
 function attr(attrs, name) {
   const match = new RegExp(`\\b${name}\\s*=\\s*"([^"]*)"`).exec(attrs);
   return match ? match[1] : "";
@@ -76,7 +98,14 @@ export function parsePageReply(raw, { pageNumber }) {
   if (!match) {
     throw new Error(`page ${pageNumber}: the reply has no <page> element`);
   }
-  const [, attrs, inner] = match;
+  const [, attrs, rawInner] = match;
+  // A <ruby> with no <rt> is the plain word with nothing over it, so it is unwrapped rather than
+  // rejected. The model does this to a word printed without furigana among neighbours that have it
+  // (Genki page 236, ピアノ beside readings), consistently: all three attempts at that page did it,
+  // and rejecting it cost three calls for markup that carried no error.
+  const inner = decodeNumericEntities(
+    rawInner.replace(/<ruby>((?:(?!<rt>)[\s\S])*?)<\/ruby>/g, "$1"),
+  );
   const number = Number(attr(attrs, "number"));
   const problems = xhtmlProblems(inner);
   if (number !== pageNumber) {

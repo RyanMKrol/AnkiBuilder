@@ -124,3 +124,13 @@ test("plainText drops furigana, so a ruby headword reads as the word itself", ()
     "表現 ノート (Expression Notes)",
   );
 });
+
+test("plainText decodes numeric character references, so a heading matches what an agent read", () => {
+  // A converted page wrote "Class Activity&#8212;Meeting someone"; the chapter reader reported the
+  // heading with a real em dash, and the section came back unaccounted for.
+  assert.equal(
+    plainText("<h4>B. Class Activity&#8212;Meeting someone</h4>"),
+    "B. Class Activity—Meeting someone",
+  );
+  assert.equal(plainText("<td>Mary&#8217;s&#160;book &#x2192; here</td>"), "Mary’s book → here");
+});

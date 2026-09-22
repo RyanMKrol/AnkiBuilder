@@ -540,11 +540,43 @@ Object.assign(commands, {
         let page;
         let attempts = 0;
         // A reply already paid for is read again before paying for another: a parser fix
-        // (a self-correcting reply with two <page> elements) recovers it for nothing.
-        const saved = !force && existsSync(rawPath) ? readFileSync(rawPath, "utf-8") : null;
-        const reparsed = saved && tryParse(saved, number);
-        if (reparsed && !reparsed.problems.length) {
+        // (a self-correcting reply with two <page> elements, a <ruby> with no reading) recovers
+        // it for nothing. The accepted reply is tried first, then each rejected attempt, newest
+        // first, since a rejection that only the parser objected to is still a transcript.
+        const savedReplies = force
+          ? []
+          : [rawPath, 3, 2, 1]
+              .map((p) =>
+                typeof p === "string"
+                  ? p
+                  : join(paths.transcripts, `${pageFileStem(number)}.attempt-${p}.txt`),
+              )
+              .filter((p) => existsSync(p))
+              .map((p) => readFileSync(p, "utf-8"));
+        const reparsed = savedReplies
+          .map((reply) => tryParse(reply, number))
+          .find((parsed) => parsed && !parsed.problems.length);
+        if (reparsed) {
           page = reparsed;
+          if (!existsSync(metaPath(paths.transcripts, number))) {
+            // Recovered from a reply saved by an earlier run of this same pin: record it, marked
+            // as recovered, so the page does not show as "not recorded".
+            writeFileAtomic(
+              metaPath(paths.transcripts, number),
+              `${JSON.stringify(
+                {
+                  page: number,
+                  reading: READING,
+                  ...pin,
+                  promptSha256: sha256(prompt),
+                  recoveredFromSavedReply: true,
+                  at: new Date().toISOString(),
+                },
+                null,
+                1,
+              )}\n`,
+            );
+          }
         } else {
           // Every call goes to agent-logs/, reply and all, before anything judges it.
           let calls = 0;
@@ -937,14 +969,27 @@ Object.assign(commands, {
         log(`  page ${number}: ${result.source}${detail}${why}`);
       }
     };
-    await Promise.all(
-      Array.from({ length: Math.min(Number(option("concurrency") ?? 4), queue.length) }, worker),
-    );
+    // The same clean stop as transcribe: a usage-limit refusal ends the run with a message and a
+    // non-zero exit, not a stack trace. Settled pages are on disk; re-running resumes from them.
+    let stopped = null;
+    try {
+      await Promise.all(
+        Array.from({ length: Math.min(Number(option("concurrency") ?? 4), queue.length) }, worker),
+      );
+    } catch (error) {
+      if (!error.quotaExhausted) throw error;
+      stopped = error.message.split("\n")[0];
+      appendJournal(paths.root, { step: "settle", event: "stopped", reason: stopped });
+    }
     log(
       `\n${tally.agreed} agreed, ${tally.settled} settled by the adjudicator, ` +
         `${tally.unsettled} unsettled, ${tally.skipped} missing a reading`,
     );
-    if (tally.unsettled || tally.skipped) process.exitCode = 1;
+    if (stopped) {
+      log(`STOPPED: ${stopped}`);
+      log("Settled pages are kept. Re-run the same command once the limit resets.");
+    }
+    if (stopped || tally.unsettled || tally.skipped) process.exitCode = 1;
   },
 
   // Reads a built EPUB back against the outline. With no --entry it expects the WHOLE book, which

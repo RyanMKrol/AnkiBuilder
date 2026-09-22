@@ -421,7 +421,10 @@
       "target": "はねだくうこう",
       "english": "Haneda Airport",
       "category": "Travel & Tourism",
-      "sourceOrder": 4591
+      "sourceOrder": 4591,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is くうこう."
     },
     {
       "id": "basu-bus",
@@ -483,7 +486,10 @@
       "target": "すいどうばし",
       "english": "Suidobashi (station in Tokyo)",
       "category": "Transport",
-      "sourceOrder": 5218
+      "sourceOrder": 5218,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is えき."
     },
     {
       "id": "bansen-suffix",
@@ -566,7 +572,10 @@
       "target": "ひろしまえき",
       "english": "Hiroshima Station",
       "category": "Transport",
-      "sourceOrder": 685
+      "sourceOrder": 685,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is えき."
     },
     {
       "id": "sapporo",
@@ -684,7 +693,10 @@
       "target": "とうきょうドーム",
       "english": "Tokyo Dome",
       "category": "Travel & Tourism",
-      "sourceOrder": 5180
+      "sourceOrder": 5180,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is the venue itself; ドーム is not carded."
     },
     {
       "id": "uchi-home",

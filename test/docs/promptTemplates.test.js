@@ -287,6 +287,11 @@ const TEMPLATES = {
     // parseOutline (src/remaster/outline.js) reads exactly these fields.
     outputContract: /"entries"[\s\S]*"firstPage"[\s\S]*"lastPage"/,
   },
+  "remaster-audit-prompt.md": {
+    placeholders: ["IMAGE_PATH", "BOOK_TITLE", "PAGE_NUMBER", "DISAGREEMENTS", "TRANSCRIPT"],
+    // parseAudit and applyCorrections (src/remaster/auditFlags.js) read exactly these.
+    outputContract: /"verdict"[\s\S]*"corrections"[\s\S]*"find"[\s\S]*"replace"/,
+  },
   "remaster-select-prompt.md": {
     placeholders: ["BOOK_TITLE", "PURPOSE", "PURPOSE_CRITERIA", "UNITS"],
     // parseSelection (src/remaster/selection.js) reads exactly these fields.
@@ -358,6 +363,9 @@ const NO_CARD_RULES = {
   "remaster-outline-prompt.md": "rebuilds a book's table of contents from OCR; it sees no card",
   "remaster-select-prompt.md":
     "recommends which of a book's units to convert at all; it writes no card and sees none",
+  "remaster-audit-prompt.md":
+    "judges a page transcript against the page image, upstream of any card; it corrects spans of " +
+    "a book's own text and never authors content",
   "remaster-settle-prompt.md":
     "decides between two transcriptions of one page, upstream of any card, for the same reason",
   "remaster-page-prompt.md":

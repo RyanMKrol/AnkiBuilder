@@ -255,6 +255,13 @@ are separate subcommands so each paid one can be checked before the next:
   is cut out of the page image with `sips` and placed in its `<figure>` as a real `<img>`
   (`src/remaster/figureCrops.js`), so the pipeline's image passes work on a converted book as they
   do on any other.
+- `audit`: every page the cross-check flagged, judged against its image by the `AUDIT` pin (Opus,
+  above the Sonnet transcriber it checks). One call per flagged page, about the flagged spans only;
+  a correction is an exact find-and-replace that is applied only if its text occurs exactly once and
+  the audit changes under 200 characters, so a spot-check cannot become a rewrite
+  (`src/remaster/auditFlags.js`). Confirmed and corrected pages drop off the build's "read these
+  yourself" list; `unclear`, rejected and failed pages stay on it. The cross-check reads the page the
+  BUILD would use (settled where there is one), so its flags describe what actually ships.
 - `verify --book <file>`: reads the built EPUB back and checks every page of the outline is in it
   exactly once, in its lesson, in order, with no placeholders, and that every image a page shows
   is in the book (`src/remaster/verifyRemaster.js`).

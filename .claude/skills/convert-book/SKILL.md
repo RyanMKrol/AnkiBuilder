@@ -122,9 +122,22 @@ The build runs `verify` on its own output: every page of every chapter present o
 every image it shows packed in the book. **A failed verify is a stop.** It also prints which models
 wrote the pages and which pages the OCR cross-check flagged.
 
-**Look at every flagged page against its image** (`.anki-builder/remaster/<hash>/images/`). On Genki
-the flags were OCR misreads, not transcription errors, but the check exists because it could be
-otherwise. Stroke-order pages always flag, because the OCR reads partial strokes as characters.
+**Audit the flagged pages before you read any of them yourself:**
+
+```sh
+$TOOL audit "$BOOK" --purpose <p>     # one Opus call per flagged page
+```
+
+Each flagged page goes to an auditor with the page image, the transcript and the specific
+disagreements. It answers about those spans only, and any correction is an exact swap that is
+applied only if its text occurs once and the whole audit changes little. Pages it confirms or
+corrects drop off the build's list; what remains (`unclear`, a rejected correction, a failure) is
+what you read against the image yourself (`.anki-builder/remaster/<hash>/images/`).
+
+On Genki: 51 of 265 pages flagged, all 51 confirmed correct, each with a reason naming what the OCR
+had misread. Tested by deleting one printed line from a page: the check flagged it and the auditor
+restored exactly that line. Expect stroke-order pages to flag, because the OCR reads partial strokes
+as characters.
 
 Then confirm the result is an ordinary book:
 

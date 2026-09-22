@@ -16,6 +16,7 @@
 //   node scripts/remaster-epub.mjs transcribe <book.epub> [--chapter <n>] [--pages a-b]
 //                                             [--concurrency 4] [--reading b]
 //   node scripts/remaster-epub.mjs crosscheck <book.epub> [--chapter <n>]
+//   node scripts/remaster-epub.mjs audit      <book.epub> [--chapter <n>]   (judge the flagged pages)
 //   node scripts/remaster-epub.mjs settle     <book.epub> [--chapter <n>]   (after readings a and b)
 //   node scripts/remaster-epub.mjs build      <book.epub> --out <converted.epub> [--chapter <n> ...]
 //                                             [--allow-missing]
@@ -67,6 +68,7 @@ import { crossCheckPage } from "../src/remaster/ocrCrossCheck.js";
 import { buildRemasteredEpub } from "../src/remaster/epubWriter.js";
 import { transcribeWithRetries } from "../src/remaster/transcribeRetry.js";
 import { settlePage, renderSettlePrompt } from "../src/remaster/settle.js";
+import { renderAuditPrompt, parseAudit, applyCorrections } from "../src/remaster/auditFlags.js";
 import { attachFigureImages, sipsCropper, imageSize } from "../src/remaster/figureCrops.js";
 import { verifyRemasteredEpub, formatVerification } from "../src/remaster/verifyRemaster.js";
 import {
@@ -74,6 +76,7 @@ import {
   runTranscribeClaude,
   runSettleClaude,
   runSelectClaude,
+  runAuditClaude,
   remasterPinning,
 } from "../src/remaster/remasterRunners.js";
 import { appendJournal, loggedRunner } from "../src/remaster/journal.js";
@@ -108,7 +111,7 @@ function optionAll(name) {
 
 function usage() {
   console.error(
-    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|select|decide|transcribe|crosscheck|settle|build|verify> <book.epub> [options]",
+    "usage: node scripts/remaster-epub.mjs <check|ocr|outline|select|decide|transcribe|crosscheck|settle|audit|build|verify> <book.epub> [options]",
   );
   process.exit(2);
 }
@@ -322,17 +325,34 @@ function describeCheck(check) {
   return `${check.flagged ? "FLAG " : ""}${parts.join("; ")}`;
 }
 
+function loadCheck(paths, number) {
+  const path = join(paths.checks, `${pageFileStem(number)}.json`);
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
+}
+
+function loadAudit(paths, number) {
+  const path = join(paths.audits, `${pageFileStem(number)}.json`);
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
+}
+
 function readSettleRecord(paths, number) {
   const path = join(paths.settled, `${pageFileStem(number)}.json`);
   return existsSync(path) ? JSON.parse(readFileSync(path, "utf-8")) : null;
 }
 
+/**
+ * Flagged pages nobody has resolved: still flagged by the cross-check, and either never audited or
+ * audited without an answer. A page an auditor confirmed or corrected is not something to read
+ * again (audits/, `audit`).
+ */
 function flaggedPages(paths, entries) {
   const flagged = [];
   for (const entry of entries) {
     for (let number = entry.firstPage; number <= entry.lastPage; number++) {
-      const path = join(paths.checks, `${pageFileStem(number)}.json`);
-      if (existsSync(path) && JSON.parse(readFileSync(path, "utf-8")).flagged) flagged.push(number);
+      if (!loadCheck(paths, number)?.flagged) continue;
+      const outcome = loadAudit(paths, number)?.outcome;
+      if (outcome === "correct" || outcome === "corrected") continue;
+      flagged.push(number);
     }
   }
   return flagged;
@@ -700,7 +720,10 @@ Object.assign(commands, {
     let checked = 0;
     for (const entry of selectedEntries(outline)) {
       for (const number of pageRange(entry)) {
-        const page = loadTranscript(paths, number);
+        // The page the BUILD would use: settled where two readings were reconciled, else the single
+        // reading. Checking reading A instead described a text the book does not contain, so a
+        // settled page's flags said nothing about what shipped.
+        const page = loadPageFile(paths.settled, number) ?? loadTranscript(paths, number);
         if (!page) continue;
         const check = runCrossCheck(paths, number, page.body);
         appendJournal(paths.root, {
@@ -715,6 +738,139 @@ Object.assign(commands, {
       }
     }
     log(`\n${checked} page(s) checked, ${flagged} flagged`);
+  },
+
+  // Every page the cross-check flagged, judged against its image by the AUDIT pin (Opus). One call
+  // per flagged page, about the flagged spans only; corrections are exact swaps and are applied
+  // only if each occurs once and the whole audit changes little (auditFlags.js).
+  async audit() {
+    const { paths, pages, title } = await workspace();
+    requireDecidedSelection(paths);
+    const outline = loadOutline(paths);
+    const named = optionAll("entry").length || optionAll("chapter").length;
+    const chapters = named
+      ? requireChapters(selectedEntries(outline))
+      : outline.entries.filter((e) => e.chapter !== null);
+    const byNumber = new Map(pages.map((page) => [page.number, page]));
+    const force = rest.includes("--force");
+    const pin = remasterPinning("AUDIT");
+    mkdirSync(paths.audits, { recursive: true });
+
+    // A page is worth a call when its check flagged it and nobody has judged it yet. The page the
+    // build would use is the one audited: settled where there is one, else the single reading.
+    const queue = [];
+    for (const chapter of chapters) {
+      for (const number of pageRange(chapter)) {
+        const check = loadCheck(paths, number);
+        if (!check?.flagged) continue;
+        if (!force && existsSync(join(paths.audits, `${pageFileStem(number)}.json`))) continue;
+        const page = loadPageFile(paths.settled, number) ?? loadTranscript(paths, number);
+        if (page) queue.push({ number, page, check });
+      }
+    }
+    log(`audit: ${queue.length} flagged page(s) to judge (${pin.model} ${pin.effort})`);
+    appendJournal(paths.root, {
+      step: "audit",
+      event: "start",
+      pages: queue.map((q) => q.number),
+      ...pin,
+    });
+
+    const tally = { correct: 0, corrected: 0, rejected: 0, unclear: 0, failed: 0 };
+    const worker = async () => {
+      while (queue.length) {
+        const { number, page, check } = queue.shift();
+        const logged = loggedRunner(paths.root, runAuditClaude, {
+          role: "audit",
+          ...pin,
+          context: () => ({ page: number }),
+        });
+        let audit;
+        try {
+          const raw = await logged.run(
+            renderAuditPrompt({
+              imagePath: byNumber.get(number).localPath,
+              bookTitle: title,
+              pageNumber: number,
+              transcript: serializeTranscript(page),
+              check,
+            }),
+          );
+          audit = parseAudit(raw);
+        } catch (error) {
+          if (error.quotaExhausted) throw error;
+          tally.failed++;
+          log(`  page ${number}: FAILED ${error.message.split("\n")[0]}`);
+          continue;
+        }
+
+        let applied = 0;
+        let problems = [];
+        if (audit.verdict === "transcript-wrong" && audit.corrections.length) {
+          const result = applyCorrections(page.body, audit.corrections);
+          problems = result.problems;
+          if (!problems.length) {
+            applied = result.applied;
+            const target = existsSync(join(paths.settled, `${pageFileStem(number)}.xhtml`))
+              ? join(paths.settled, `${pageFileStem(number)}.xhtml`)
+              : transcriptPath(paths, number);
+            writeFileAtomic(target, serializeTranscript({ ...page, body: result.body }));
+            // The check is re-run on the corrected page, so its flag reflects the page as it now is.
+            runCrossCheck(paths, number, result.body);
+          }
+        }
+        const outcome = problems.length
+          ? "rejected"
+          : audit.verdict === "transcript-correct"
+            ? "correct"
+            : audit.verdict === "unclear"
+              ? "unclear"
+              : applied
+                ? "corrected"
+                : "unclear";
+        tally[outcome]++;
+        const record = {
+          page: number,
+          outcome,
+          verdict: audit.verdict,
+          reason: audit.reason,
+          corrections: audit.corrections,
+          applied,
+          problems,
+          ...pin,
+          agentLog: logged.lastLog(),
+          at: new Date().toISOString(),
+        };
+        writeFileAtomic(
+          join(paths.audits, `${pageFileStem(number)}.json`),
+          `${JSON.stringify(record, null, 1)}\n`,
+        );
+        appendJournal(paths.root, { step: "audit", ...record });
+        log(
+          `  page ${number}: ${outcome}${applied ? ` (${applied} correction(s))` : ""} — ${audit.reason}` +
+            (problems.length ? ` REJECTED: ${problems.join("; ")}` : ""),
+        );
+      }
+    };
+    try {
+      await Promise.all(
+        Array.from({ length: Math.min(Number(option("concurrency") ?? 4), queue.length) }, worker),
+      );
+    } catch (error) {
+      if (!error.quotaExhausted) throw error;
+      log(`\nSTOPPED: ${error.message.split("\n")[0]}`);
+      log("Audited pages are kept. Re-run the same command once the limit resets.");
+      process.exitCode = 1;
+      return;
+    }
+    log(
+      `\n${tally.correct} transcript(s) confirmed, ${tally.corrected} corrected, ` +
+        `${tally.unclear} unclear, ${tally.rejected} correction(s) rejected, ${tally.failed} failed`,
+    );
+    if (tally.unclear || tally.rejected || tally.failed) {
+      log("Pages left unresolved are the ones to read against the image yourself.");
+      process.exitCode = 1;
+    }
   },
 
   async build() {

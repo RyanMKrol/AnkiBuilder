@@ -22,6 +22,14 @@ export const REMASTER_PASS_PINS = Object.freeze({
     timeoutMs: 10 * 60 * 1000,
     checks: ["TRANSCRIBE"],
   },
+  // One call per flagged page, judging a transcript against the page image: a checking role, so
+  // pinned above the pass it checks.
+  AUDIT: {
+    model: "claude-opus-5",
+    effort: "high",
+    timeoutMs: 10 * 60 * 1000,
+    checks: ["TRANSCRIBE"],
+  },
   // One call over the whole book, deciding what is worth building: a judgement the owner acts on,
   // so the strongest model. It checks no pass, so it declares no `checks`.
   SELECT: { model: "claude-opus-5", effort: "high", timeoutMs: 15 * 60 * 1000 },
@@ -40,6 +48,12 @@ export function remasterPinning(scope) {
   const { model, effort } = resolvePinning(prefixesFor(scope), REMASTER_PASS_PINS[scope]);
   return { model, effort };
 }
+
+export const runAuditClaude = (prompt) =>
+  runClaudeWithPromptAsync(prompt, {
+    scopeEnvPrefix: prefixesFor("AUDIT"),
+    defaults: REMASTER_PASS_PINS.AUDIT,
+  });
 
 export const runSelectClaude = (prompt) =>
   runClaudeWithPrompt(prompt, {

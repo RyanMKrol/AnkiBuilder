@@ -91,7 +91,10 @@
       "category": "Grammar & Function Words",
       "note": "Say the part you heard, pause, then add なんですか. Paul says すい…なんですか for すいどうばし.",
       "hint": "Trailing off after the part you caught",
-      "sourceOrder": 5239
+      "sourceOrder": 5239,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Owner decision 2026-09-22: the leading … is a slot, both concrete instances (すい…なんですか, あか…なんですか) were excluded at gate 2, and what remains sounds identical to chapter-2-extras/irl-l1-38 (なんですか, What is it?)."
     },
     {
       "id": "neboushimasu",

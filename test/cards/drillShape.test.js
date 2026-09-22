@@ -103,3 +103,25 @@ test("a plain headword is unaffected by the optional-part handling", () => {
   const coverage = drillCoverage([card("ほん")], [card("ほんをよみます"), card("ペンをかします")]);
   assert.equal(coverage[0].count, 1);
 });
+
+test("drillCoverage counts a sentence that writes the number as a digit, via its ttsText", () => {
+  // Lesson 20: うちからえきまで…15ふん drills じゅうごふん, but only its ttsText spells it out.
+  const taught = [
+    { id: "15", target: "じゅうごふん" },
+    { id: "1h", target: "いちじかん" },
+  ];
+  const drills = [
+    {
+      id: "walk",
+      target: "うちからえきまであるいて15ふんぐらいかかります",
+      ttsText: "うちからえきまであるいてじゅうごふんぐらいかかります",
+    },
+    {
+      id: "bus",
+      target: "バスでくうこうまで1じかんかかります",
+      ttsText: "バスでくうこうまでいちじかんかかります",
+    },
+  ];
+  const counts = Object.fromEntries(drillCoverage(taught, drills).map((c) => [c.item.id, c.count]));
+  assert.deepEqual(counts, { 15: 1, "1h": 1 });
+});

@@ -91,3 +91,16 @@ test("a card with no target is ignored rather than crashing", () => {
 test("an empty unit is not an error", () => {
   assert.deepEqual(findTaughtNeverUsed([]), []);
 });
+
+test("a word a sentence spells out only in its ttsText counts as used", () => {
+  const cards = [
+    { id: "15", target: "じゅうごふん" },
+    { id: "a", target: "バス" },
+    { id: "b", target: "ホテル" },
+    { id: "walk", target: "あるいて15ふんです", ttsText: "あるいてじゅうごふんです" },
+    { id: "s1", target: "バスでいきます" },
+  ];
+  const stranded = findTaughtNeverUsed(cards).map((c) => c.id);
+  assert.equal(stranded.includes("15"), false);
+  assert.equal(stranded.includes("b"), true);
+});

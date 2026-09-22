@@ -33,7 +33,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { join, resolve } from "path";
 import { hashEpubFile } from "../src/corpus/epubLibrary.js";
-import { getBookTitle } from "../src/corpus/epubArchive.js";
 import { assessEpubEligibility, formatEligibility } from "../src/corpus/epubEligibility.js";
 import {
   remasterRoot,
@@ -41,7 +40,7 @@ import {
   readingPaths,
   pageFileStem,
 } from "../src/remaster/workspace.js";
-import { extractPageImages } from "../src/remaster/sourcePages.js";
+import { extractSourcePages } from "../src/remaster/sourceBook.js";
 import { ensureOcrBinary, ocrPages, loadPageOcr } from "../src/remaster/visionOcr.js";
 import {
   renderOutlinePrompt,
@@ -127,8 +126,12 @@ async function workspace() {
   const hash = hashEpubFile(epubPath);
   // --reading b (c, ...) points transcribe and crosscheck at an independent second run.
   const paths = readingPaths(remasterPaths(remasterRoot(hash), { purpose: PURPOSE.name }), READING);
-  const pages = extractPageImages(epubPath, paths.images);
-  return { hash, paths, pages };
+  // An EPUB of page pictures and a PDF converge here: both become a numbered list of page images.
+  const source = extractSourcePages(epubPath, {
+    imagesDir: paths.images,
+    binDir: join(paths.root, "..", "bin"),
+  });
+  return { hash, paths, pages: source.pages, source, title: source.title };
 }
 
 const commands = {
@@ -357,7 +360,7 @@ function reportVerification(builtPath, paths, entries, outline) {
 
 Object.assign(commands, {
   async outline() {
-    const { paths, pages } = await workspace();
+    const { paths, pages, title } = await workspace();
     const ocrByPage = new Map();
     for (const page of pages) {
       const ocr = loadPageOcr(paths.ocr, pageFileStem, page.number);
@@ -368,7 +371,7 @@ Object.assign(commands, {
       ocrByPage.set(page.number, ocr);
     }
     const prompt = renderOutlinePrompt({
-      bookTitle: getBookTitle(epubPath),
+      bookTitle: title,
       pageCount: pages.length,
       ocrByPage,
     });
@@ -404,7 +407,7 @@ Object.assign(commands, {
   // One Opus call: which study units are worth converting, with a reason for each (selection.js).
   // Writes the recommendations with every decision open; `decide` records the owner's choices.
   async select() {
-    const { paths, pages } = await workspace();
+    const { paths, pages, title } = await workspace();
     const outline = JSON.parse(readFileSync(paths.outline, "utf-8"));
     const ocrByPage = new Map(
       pages.map((page) => [page.number, loadPageOcr(paths.ocr, pageFileStem, page.number)]),
@@ -422,7 +425,7 @@ Object.assign(commands, {
     warnWithoutDeckPipeline();
     const raw = await logged.run(
       renderSelectPrompt({
-        bookTitle: getBookTitle(epubPath),
+        bookTitle: title,
         outline,
         ocrByPage,
         purpose: PURPOSE,
@@ -482,7 +485,7 @@ Object.assign(commands, {
   },
 
   async transcribe() {
-    const { paths, pages } = await workspace();
+    const { paths, pages, title } = await workspace();
     requireDecidedSelection(paths);
     const outline = loadOutline(paths);
     // Every chapter by default (the whole-book run), or the ones named by --chapter / --entry.
@@ -506,7 +509,7 @@ Object.assign(commands, {
       label: chapters.length === 1 ? chapters[0].label : `${chapters.length} chapters`,
     };
     const byNumber = new Map(pages.map((page) => [page.number, page]));
-    const title = getBookTitle(epubPath);
+
     const concurrency = Number(option("concurrency") ?? 4);
     mkdirSync(paths.transcripts, { recursive: true });
     const pin = remasterPinning("TRANSCRIBE");
@@ -720,7 +723,7 @@ Object.assign(commands, {
       console.error("build needs --out <remastered.epub>");
       process.exit(2);
     }
-    const { hash, paths, pages } = await workspace();
+    const { hash, paths, pages, title } = await workspace();
     const outline = loadOutline(paths);
     const allowMissing = rest.includes("--allow-missing");
     const byNumber = new Map(pages.map((page) => [page.number, page]));
@@ -824,7 +827,7 @@ Object.assign(commands, {
     const bytes = buildRemasteredEpub(entries, {
       // The purpose is in the title, so two conversions of one book are two distinct collections
       // by name as well as by bytes (DECISIONS.md, "A conversion has a purpose…").
-      title: `${getBookTitle(epubPath)} (${PURPOSE.title})`,
+      title: `${title} (${PURPOSE.title})`,
       language: option("lang") ?? "ja",
       sourceHash: hash,
       purpose: PURPOSE.name,
@@ -876,7 +879,7 @@ Object.assign(commands, {
   // keep reading B as is; pages that disagree go to the SETTLE pin (Opus) with the image, and its
   // answer is rejected if it adds or drops content neither reading supports (settle.js).
   async settle() {
-    const { paths, pages } = await workspace();
+    const { paths, pages, title } = await workspace();
     const b = readingPaths(paths, "b");
     requireDecidedSelection(paths);
     const outline = loadOutline(paths);
@@ -885,7 +888,7 @@ Object.assign(commands, {
       ? requireChapters(selectedEntries(outline))
       : outline.entries.filter((e) => e.chapter !== null);
     const byNumber = new Map(pages.map((page) => [page.number, page]));
-    const title = getBookTitle(epubPath);
+
     const force = rest.includes("--force");
     mkdirSync(paths.settled, { recursive: true });
     const tally = { agreed: 0, settled: 0, unsettled: 0, skipped: 0 };

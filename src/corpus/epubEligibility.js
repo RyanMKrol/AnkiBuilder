@@ -1,3 +1,4 @@
+import { extname } from "path";
 import { buildShapeReport } from "./epubShapeReport.js";
 
 // One answer to "can the pipeline build this book?", given before anything is registered or paid
@@ -26,6 +27,19 @@ const PAGE_IMAGE_MIN_IMAGES = 10;
 const SINGLE_ENTRY_MIN_BYTES = 100 * 1024;
 
 export function assessEpubEligibility(epubPath, { buildReport = buildShapeReport } = {}) {
+  // A PDF is never native: the pipeline reads EPUBs. Its pages are rendered to images and it joins
+  // the conversion where a page-image EPUB does (src/remaster/sourceBook.js). Whether it carries a
+  // text layer is reported by the conversion's own first step, not guessed at here.
+  if (extname(epubPath).toLowerCase() === ".pdf") {
+    return {
+      verdict: "remaster",
+      reasons: [
+        "this is a PDF, and the pipeline reads EPUBs: its pages are rendered to images and " +
+          "converted the same way a book of page pictures is",
+      ],
+      report: null,
+    };
+  }
   let report;
   try {
     report = buildReport(epubPath);

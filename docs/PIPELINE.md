@@ -193,6 +193,13 @@ as one lesson. `src/corpus/epubEligibility.js` reads the same shape report and g
 `native` (build it), `remaster` (under 20 characters of text per image across at least 10 images)
 or `blocked` (with the reason). Run it with `node scripts/remaster-epub.mjs check <book.epub>`.
 
+**A PDF is also a source.** The pipeline reads EPUBs, so a PDF is never `native`: its pages are
+rendered to images by a compiled PDFKit helper (`src/remaster/pdf-render.swift`, about 17 seconds
+for 393 pages) and it joins the conversion exactly where a page-image EPUB does, at a numbered list
+of page pictures. `src/remaster/sourceBook.js` is the only place that knows which kind of file the
+conversion started from. The renderer also reports how much selectable text the PDF carries, which
+is zero for a scan; nothing branches on it yet.
+
 A `remaster` book is converted once into an ordinary EPUB by `scripts/remaster-epub.mjs`, and the
 converted file then goes through onboarding and the stages below with no special handling. The steps
 are separate subcommands so each paid one can be checked before the next:

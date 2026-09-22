@@ -5,7 +5,9 @@ description: Turn a book the deck pipeline cannot read (an EPUB of page images, 
 
 # Convert a book the pipeline cannot read
 
-Run this **before `onboard-epub`**, on any book whose eligibility check does not say `native`. It
+Run this **before `onboard-epub`**, on any book whose eligibility check does not say `native`, and
+on any PDF (the pipeline reads EPUBs, so a PDF always needs converting; its pages are rendered to
+images and it follows the identical path from there). It
 ends with a converted EPUB that onboards and builds like any other book. The tool it drives is
 `scripts/remaster-epub.mjs`; the design, the measurements behind every threshold and the decisions
 already taken are in `docs/designs/image-epub-remaster.md`, and how the steps are wired is in the

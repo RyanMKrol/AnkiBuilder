@@ -267,7 +267,10 @@ with an EPUB the normal path can onboard:
    transcript.
 4. Build, confirm `check` now says `native`, then hand over to onboard-epub.
 
-PDF input is a small addition to the same path. A PDF with a text layer may need no transcription
-at all (PDFKit can read the text and render each page for the OCR and the vision pass); a PDF
-without one is rendered to page images and joins the path at `ocr`. The eligibility check would
-learn one more verdict for that case.
+PDF input is done: `check` on a `.pdf` says `remaster`, `ocr` renders its pages with PDFKit and
+reads them, and everything after that is the same path (`src/remaster/pdfPages.js`,
+`sourceBook.js`). Measured on Genki's own source PDF, 2026-09-22: 393 pages rendered in 17 seconds
+at 1224x1584, OCR'd in under 3 minutes, and its text layer is empty, so it is pictures of pages
+like its EPUB. What is NOT done is using a text layer when one exists. A PDF with a text layer may need no transcription
+at all, or may use its text as a third reader beside Claude and the OCR; the renderer already
+reports how much text the file holds, so that decision has the number it needs.

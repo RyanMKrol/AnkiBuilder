@@ -1,6 +1,8 @@
 # Books the pipeline cannot read: the remaster
 
-Status: prototype, 2026-09-21. Branch `feat/image-epub-remaster`. Proven on one lesson of one book.
+Status: 2026-09-22. Branch `feat/image-epub-remaster`, not merged. One book converted whole (Genki
+I: 14 chapters, 265 pages, two readings each) and its first chapter built into cards through the
+normal pipeline. PDF sources supported.
 
 ## The problem
 
@@ -197,6 +199,49 @@ run with two readings.
   settling needed, and the crops hold the full sequences (all ten strokes of 時).
 - The OCR check flags page 314 now, because it reads the partial strokes of 時 as 日 and 月. Expected
   on stroke-order pages, and one more reason the OCR is a backstop rather than the verdict.
+
+## The whole book, and the first chapter built from it (2026-09-22)
+
+Genki was converted end to end for speaking and listening: 14 chapters, 265 pages, every page read
+twice, 634 figures. What that run taught:
+
+- **The usage limit was hit three times.** Every stop was clean, nothing finished was lost, and
+  re-running the same command resumed. Chain the stages with `&&`: with `;` the next stage starts
+  straight into the same limit (it cost one wasted call).
+- **Settling:** 62 pages agreed outright, 71 were settled by Opus, 2 were rejected by the guard.
+  One rejection is the case the guard exists for: on page 256 the adjudicator added 39 furigana
+  characters neither reading had. Those pages keep reading A.
+- **51 of 265 pages carry a cross-check flag.** Eight were read against the image (45, 47, 50, 52,
+  54, 60, 67, 227) and every one was an OCR misread, not a transcription error: page 227's sentence
+  really is printed twice, page 67's vocabulary really is all there. The other 43 have not been read
+  by eye.
+- **A `<ruby>` with no `<rt>`** failed one page three times over markup carrying no error. It is now
+  unwrapped to the plain word, and `transcribe` re-reads rejected attempts before paying again,
+  which recovered that page for nothing.
+- **Onboarding found what it should.** 87 vocabulary tables carry `class="vocabulary"`, every label
+  starts with `Chapter`, and the two hints that have no signal were left unset.
+- **The whole-book conventions pass read it accurately**, citing real examples from chapters 3 to 12
+  (the wave-dash suffix convention, particle frames after verbs, the fill-in blanks).
+
+**The first real build found a genuine integration bug**, which is what building a chapter was for.
+Punctuation arrived as numeric HTML entities, so a heading reached the chapter reader as
+"Class Activity&#8212;Meeting someone" and the coverage guard refused to continue with a section
+nobody had accounted for. Unfixed, a card could have shipped "Mary&#8217;s" as printed text. The
+conversion now writes the characters, and `plainText` decodes entities for any book.
+
+Chapter 01 (Greetings) then built cleanly: 37 items, 29 cards, 12 cross-lesson notes. The
+forward-flag pass reported です and はい as taught later in Chapter 03, and the semantic deduplicator
+merged duplicate greetings with reasons. Preflight is clean, after excluding one schematic card
+(〜です) and accepting three base-split findings, since this chapter's entries are the book's own
+greetings rows.
+
+Two things worth knowing for the next conversion:
+
+- **A rebuild changes the book's bytes**, so the library sees a new book. The conventions pass was
+  carried over by hand rather than re-paid. Rebuild before registering, not after.
+- **The failed first build left a book folder holding the old file**, so the rebuild allocated a
+  second slug (`…-third-ed-2`). The folders were merged by hand. A build that fails before writing a
+  chapter should leave nothing behind.
 
 ## How a missing page is caught
 

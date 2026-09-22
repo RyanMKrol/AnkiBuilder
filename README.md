@@ -623,10 +623,12 @@ What is built, newest last:
 - [~] Books of page images (prototype). `node scripts/remaster-epub.mjs check <book.epub>` says
   whether the pipeline can read a book (`native`, `remaster` or `blocked`). A `remaster` book,
   such as a PDF converted to EPUB, is rebuilt as a text EPUB: Apple Vision OCR, one outline
-  call that rebuilds the table of contents, one Claude vision call per page, an OCR
-  cross-check, optionally a second reading settled against the first by Opus, figures cut out of
-  the page images, and an end-to-end `verify`, then an ordinary EPUB that onboards like any
-  other. Proven on Genki I Lesson 1; results and open questions are in
+  call that rebuilds the table of contents, an agent that recommends which units are worth
+  converting (the owner decides), one Claude vision call per page, an OCR cross-check, a second
+  reading settled against the first by Opus, figures cut out of the page images, and an end-to-end
+  `verify`, then an ordinary EPUB that onboards like any other. A PDF is a source too: its pages
+  are rendered and it joins the same path. Genki I is converted whole (14 chapters, 265 pages) and
+  its first chapter is built; the procedure is the `convert-book` skill and the results are in
   `docs/designs/image-epub-remaster.md`
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

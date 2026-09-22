@@ -50,6 +50,10 @@ export function findTaughtNeverUsed(cards) {
   if (targets.length === 0) return [];
   const unique = [...new Set(targets)];
 
+  const spoken = cards.map((card) => ({
+    card,
+    texts: [card.target, card.ttsText].filter((t) => typeof t === "string" && t.length),
+  }));
   const lengths = [...targets].map((t) => t.length).sort((a, b) => a - b);
   const median = lengths[Math.floor(lengths.length / 2)];
 
@@ -61,7 +65,12 @@ export function findTaughtNeverUsed(cards) {
     if (target.length > median) return false;
     const isAtom = !unique.some((other) => other !== target && target.includes(other));
     if (!isAtom) return false;
-    const isUsed = unique.some((other) => other !== target && other.includes(target));
+    // Used when another card's written OR spoken text holds it. A sentence writing 15ふん carries
+    // じゅうごふん only in its ttsText, and reading targets alone called that word never used.
+    const isUsed = spoken.some(
+      ({ card: other, texts }) =>
+        other !== card && texts.some((t) => t !== target && t.includes(target)),
+    );
     return !isUsed;
   });
 }

@@ -119,8 +119,14 @@ function writtenForms(target) {
   ].filter(Boolean);
 }
 
-const usesItem = (drillTarget, itemTarget) =>
-  writtenForms(itemTarget).some((form) => drillTarget.includes(form));
+// A drill is read in both its written and its spoken text. A sentence that writes a number as a
+// digit (うちからえきまで…15ふん) spells it out only in `ttsText` (じゅうごふん), so reading the target
+// alone reported じゅうごふん, さんじゅっぷん and いちじかん as undrilled on Lesson 20 while three
+// shipping sentences drilled them.
+const drillTexts = (drill) =>
+  [drill.target, drill.ttsText].filter((t) => typeof t === "string" && t.length);
+const usesItem = (drill, itemTarget) =>
+  writtenForms(itemTarget).some((form) => drillTexts(drill).some((text) => text.includes(form)));
 
 export function itemsOnlyInFrame(taughtItems, drillItems, frame) {
   if (!frame) return [];
@@ -128,7 +134,7 @@ export function itemsOnlyInFrame(taughtItems, drillItems, frame) {
   return taughtItems
     .filter((item) => !item.excluded && item.target)
     .map((item) => {
-      const using = drills.filter((drill) => usesItem(drill.target, item.target));
+      const using = drills.filter((drill) => usesItem(drill, item.target));
       return { item, using };
     })
     .filter(({ using }) => using.length > 0 && using.every((d) => d.target.endsWith(frame)))
@@ -142,7 +148,7 @@ export function drillCoverage(taughtItems, drillItems) {
     .filter((item) => !item.excluded && item.target)
     .map((item) => ({
       item,
-      count: drills.filter((drill) => usesItem(drill.target, item.target)).length,
+      count: drills.filter((drill) => usesItem(drill, item.target)).length,
     }))
     .sort((a, b) => a.count - b.count);
 }

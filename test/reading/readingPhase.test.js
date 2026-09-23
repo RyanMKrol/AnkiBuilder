@@ -10,6 +10,7 @@ import {
   readingCardId,
   runReadingPhase,
   earlierReadingTargets,
+  laterBuiltChapters,
 } from "../../src/reading/readingPhase.js";
 import {
   renderReadingTablePrompt,
@@ -457,4 +458,30 @@ test("two written forms printed as one headword become two cards", () => {
   assert.deepEqual(items.map((i) => i.target).sort(), ["なん", "なに", "十才", "十歳"].sort());
   assert.ok(items.every((i) => i.english));
   assert.equal(items.find((i) => i.target === "十才").ttsText, "じゅっさい");
+});
+
+test("the chapters built after this one in book order are named, so they can be re-merged", () => {
+  const dir = mkdtempSync(join(tmpdir(), "reading-later-"));
+  try {
+    for (const [name, chapterNumber] of [
+      ["chapter-0", 2],
+      ["chapter-1", 6],
+      ["chapter-2", 18],
+    ]) {
+      mkdirSync(join(dir, name), { recursive: true });
+      writeFileSync(
+        join(dir, name, "cards.json"),
+        JSON.stringify({ meta: { chapterNumber, chapterLabel: `C${chapterNumber}` }, items: [] }),
+      );
+    }
+    assert.deepEqual(
+      laterBuiltChapters(dir, 4)
+        .map((u) => u.label)
+        .sort(),
+      ["C18", "C6"],
+    );
+    assert.deepEqual(laterBuiltChapters(dir, 18), []);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

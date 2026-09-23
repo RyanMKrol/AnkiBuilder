@@ -189,3 +189,20 @@ test("audio-files: a done reading unit's silent kanji card needs no clip", () =>
     cleanup();
   }
 });
+
+test("readiness exemptions do not list a done reading chapter, which runs no speaking passes", () => {
+  const { root, cleanup } = readingRoot([word("a", "映画", { ttsText: "えいが" })], {
+    meta: { done: true, reviewed: true },
+  });
+  try {
+    const rows = audit({
+      outputRoot: root,
+      checks: ALL_CHECKS,
+      only: ["readiness-exemptions"],
+    }).results;
+    assert.ok(rows.every((r) => !(r.notes ?? []).join(" ").includes("chapter-0")));
+    assert.ok(rows.every((r) => !String(r.summary ?? "").includes("chapter-0")));
+  } finally {
+    cleanup();
+  }
+});

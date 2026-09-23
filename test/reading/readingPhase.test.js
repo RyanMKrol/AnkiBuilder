@@ -304,6 +304,10 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
     const byTarget = Object.fromEntries(cards.items.map((i) => [i.target, i]));
     assert.equal(byTarget["映画"].pronunciation, "r:映画");
     assert.equal(byTarget["日"].pronunciation, "");
+    // The voice is given the written form of a kanji word, through the speaking decks' own switch.
+    assert.equal(cards.meta.kanjiTts, true);
+    assert.equal(byTarget["映画"].ttsKanji, "映画");
+    assert.equal(byTarget["日"].ttsKanji, undefined);
     assert.ok(existsSync(join(unitDir, "corpus.json")));
     assert.ok(existsSync(join(unitDir, "as-generated.json")));
     const coverage = JSON.parse(readFileSync(join(unitDir, "candidates/coverage.json"), "utf-8"));
@@ -508,4 +512,18 @@ test("the chapters built after this one in book order are named, so they can be 
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("the voice gets the written form, except a single kanji word or a word with two readings", async () => {
+  const { spokenFromWrittenForm } = await import("../../src/reading/readingPhase.js");
+  const { readingScheme } = await import("../../src/reading/readingSchemes.js");
+  const scheme = readingScheme("ja");
+  const conflicted = new Set(["今日"]);
+  const spoken = (item) => spokenFromWrittenForm(item, { scheme, conflicted });
+  assert.equal(spoken({ target: "週末", ttsText: "しゅうまつ" }), true);
+  assert.equal(spoken({ target: "食べる", ttsText: "たべる" }), true);
+  assert.equal(spoken({ target: "一", ttsText: "いち" }), false);
+  assert.equal(spoken({ target: "今日", ttsText: "きょう" }), false);
+  assert.equal(spoken({ target: "おはよう" }), false);
+  assert.equal(spoken({ target: "日" }), false);
 });

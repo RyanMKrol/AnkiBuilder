@@ -287,8 +287,9 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       target: form,
       english,
       category,
-      // The reading drives TTS and is never rendered (the `ttsText` contract, src/model/index.js).
-      // Only a word whose written form the TTS voice might misread needs one.
+      // The book's kana reading, never rendered (the `ttsText` contract, src/model/index.js). It makes
+      // the romaji; the voice is given the written form except where that is ambiguous (see
+      // spokenFromWrittenForm and the write-unit step below).
       ...(reading && reading !== form ? { ttsText: reading } : {}),
       ...(notes.length ? { reviewNote: notes.join(" ") } : {}),
     });
@@ -322,6 +323,22 @@ export function findReadingGaps(enumerated, items, { dropped = [], targetLanguag
     onlyInUnit,
     counts: { enumerated: listed.size, unit: have.size, gaps: gaps.length },
   };
+}
+
+/**
+ * Whether the voice is given a card's WRITTEN FORM rather than its kana reading.
+ *
+ * The written form, whenever it holds a kanji: that is the word as it is written, so the voice knows
+ * which word it is (and so its pitch). Two exceptions, both cases the code already knows are
+ * ambiguous with no sentence around them, are spoken from the book's kana instead:
+ *   - a single kanji taught as a word (一 alone is いち or ひとつ);
+ *   - a word the book prints with more than one reading (十: じゅう／とお; 今日: きょう, こんにち).
+ * A kana-only word is spoken as written in any case, and a silent kanji is not spoken at all.
+ */
+export function spokenFromWrittenForm(item, { scheme, conflicted = new Set() } = {}) {
+  if (!scheme?.requiresReading?.(item.target) || !item.ttsText) return false;
+  if ([...String(item.target)].length === 1) return false;
+  return !conflicted.has(item.target);
 }
 
 // ---- the earlier chapters of this collection -------------------------------------------------
@@ -598,9 +615,23 @@ async function runReadingPhaseInner({
   writeArtifact(unitDir, "corpus.json", corpus);
   // `pronunciation` is the romaji on the back (owner decision, 2026-09-23 evening). A silent
   // character card has none, and the field is still required, so it is empty there.
+  //
+  // What the VOICE is given (owner decision, 2026-09-23 evening): the written form, as the book prints
+  // it, because kanji-and-kana is how Japanese is written and what the TTS voice reads best. The kana
+  // reading still makes the romaji and is what the audio review checks a clip against. Rule
+  // `spokenFromWrittenForm` says which cards; the rest are spoken from their kana. This reuses the
+  // speaking decks' own switch (`ttsKanji` per card, `meta.kanjiTts` per unit, src/audio/index.js
+  // clipSourceText), so no field is new and no speaking deck changes.
+  const conflicted = new Set(merged.readingConflicts.map((c) => c.target));
   const cards = {
-    meta: unitMeta,
-    items: merged.items.map((item) => ({ ...item, pronunciation: item.pronunciation ?? "" })),
+    meta: { ...unitMeta, kanjiTts: true },
+    items: merged.items.map((item) => ({
+      ...item,
+      pronunciation: item.pronunciation ?? "",
+      ...(spokenFromWrittenForm(item, { scheme: readingScheme(targetLanguage), conflicted })
+        ? { ttsKanji: item.target }
+        : {}),
+    })),
   };
   validateCards(cards);
   recordStep(run, {

@@ -642,7 +642,7 @@ What is built, newest last:
   book carries a speaking and a reading collection with separate folders, dedup corpora, Anki
   parent decks and note types. The reading card rules (`docs/card-rules-reading.md`) and the
   Japanese reading plugin (`src/reading/readingSchemes.js`: the kanji spelling is the card, single
-  kanji are carded without audio, kanji words carry a kana reading for the audio) are built. The
+  kanji are carded without audio, kanji words carry a kana reading for the romaji and the voice is given the written form) are built. The
   reading extraction is built (`scripts/build-reading.mjs`: three reading agents, a merge that
   enforces the rules, a coverage adversary), and so are its preflight checks
   (`src/audit/checks/reading.js`; a reading collection skips the speaking-only checks and says

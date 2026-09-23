@@ -11,8 +11,10 @@ import { isReadingKind } from "../model/deckKind.js";
 //   2. a kanji the book teaches AS A CHARACTER is a card of its own, meaning only;
 //   3. that card is silent: a kanji alone has no one pronunciation (日 is に in 日本, び in 日曜日,
 //      ひ on its own), so any single audio would teach a reading that is wrong most of the time;
-//   4. every kanji word carries its kana reading, copied from the book, which drives the audio and is
-//      never shown.
+//   4. every kanji word carries its kana reading, copied from the book, which makes the romaji, is
+//      what the audio review checks a clip against, and is never shown. The voice itself is given
+//      the written form, except where that is ambiguous (src/reading/readingPhase.js,
+//      spokenFromWrittenForm).
 
 const HAN = /\p{Script=Han}/u;
 const KANA_CHAR = /^[\p{Script=Hiragana}\p{Script=Katakana}ー]$/u;

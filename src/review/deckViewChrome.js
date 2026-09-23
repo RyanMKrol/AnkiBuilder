@@ -411,13 +411,21 @@ const STAGE_TABLES = {
 // A READING deck's tables (docs/designs/reading-decks/). Its card is the written form alone on the
 // front and the English, romaji and audio on the back, so the speaking columns (Hint, Note)
 // are always empty here, and the one thing worth checking on a kanji word is missing from them: its
-// kana READING, which drives the audio and the romaji and is never shown on the card. So these show
+// kana READING, which makes the romaji and is never shown on the card. So these show
 // the written form, the romaji (inline-editable), the reading (inline-editable: it is `ttsText`),
 // and the kind of card, which says whether a single kanji is a silent character card or a voiced word.
+// Markers about the card, rendered in the ENGLISH cell. Never inside an inline-editable cell: the
+// editor saves a cell's whole text, so a marker there would be saved into the field (editing the
+// silent 日 once saved "日kanji, silent" as its written form, before this moved).
 const readingKind = (c) => {
   const chars = [...String(c.target ?? "").trim()];
   if (chars.length === 1 && /\p{Script=Han}/u.test(chars[0]) && !c.ttsText) {
-    return `<span class="cat" title="A kanji taught as a character: meaning only, no audio">kanji, silent</span>`;
+    return `<div class="cat" title="A kanji taught as a character: meaning only, no romaji, no audio">kanji, silent</div>`;
+  }
+  // The voice is given the written form unless the card is one of the ambiguous exceptions
+  // (src/reading/readingPhase.js, spokenFromWrittenForm), which are spoken from the kana reading.
+  if (c.ttsText && !c.ttsKanji) {
+    return `<div class="cat" title="A single kanji word, or a word the book prints with two readings: the voice is given the kana reading, not the written form">voice reads the kana</div>`;
   }
   return "";
 };
@@ -434,11 +442,11 @@ const romajiCell = (c) =>
 const READING_TABLES = {
   corpus: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-pron"><col class="c-pron"><col class="c-excl">`,
-    head: `<th class="num">#</th><th>English (the back)</th><th>Category</th><th>Written form (the front)</th><th>Romaji (the back)</th><th>Reading (drives the audio)</th><th></th>`,
+    head: `<th class="num">#</th><th>English (the back)</th><th>Category</th><th>Written form (the front)</th><th>Romaji (the back)</th><th>Reading (makes the romaji)</th><th></th>`,
     cells: (c, ctx) =>
-      `<td class="en">${escapeHtml(c.english)}</td>
+      `<td class="en">${escapeHtml(c.english)}${readingKind(c)}</td>
   <td class="cat-col">${escapeHtml(c.category)}</td>
-  <td class="jp" data-field="target">${jpOrDash(c.target)}${readingKind(c)}</td>
+  <td class="jp" data-field="target">${jpOrDash(c.target)}</td>
   ${romajiCell(c)}
   ${readingCell(c)}
   <td class="excl-cell">${rowExtra(ctx, "corpus", c)}</td>`,
@@ -447,8 +455,8 @@ const READING_TABLES = {
     cols: `<col class="c-num"><col class="c-en"><col class="c-jp"><col class="c-pron"><col class="c-pron"><col class="c-au">`,
     head: `<th class="num">#</th><th>English (the back)</th><th>Written form (the front)</th><th>Romaji</th><th>Reading</th><th>Audio</th>`,
     cells: (c, ctx) =>
-      `<td class="en">${escapeHtml(c.english)}${inlineFlags(c)}</td>
-  <td class="jp">${escapeHtml(c.target)}${readingKind(c)}</td>
+      `<td class="en">${escapeHtml(c.english)}${inlineFlags(c)}${readingKind(c)}</td>
+  <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation ?? "")}</td>
   ${readingCell(c)}
   ${ctx.originalCell ? `<td class="au au-orig">${ctx.originalCell(c)}</td>\n  ` : ""}<td class="au">${readingKind(c) ? `<span class="x" title="silent by design">none</span>` : ctx.audioCell(c)}</td>`,

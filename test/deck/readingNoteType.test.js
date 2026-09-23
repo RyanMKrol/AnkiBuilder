@@ -214,9 +214,11 @@ test("a reading deck's review shows the written form and its reading, not the sp
     sections: [{ leaf: "Chapter 01", stage: "corpus", reading: true, cards: [card, kanji] }],
     rowControl: () => "",
   });
-  assert.match(html, /Reading \(drives the audio\)/);
+  assert.match(html, /Reading \(makes the romaji\)/);
   assert.match(html, /data-field="ttsText"[^>]*>えいが</);
   assert.match(html, /kanji, silent/);
+  // A marker never sits inside an inline-editable cell, where the editor would save it as text.
+  assert.doesNotMatch(html, /data-field="target"[^>]*>[^<]*<div/);
   assert.doesNotMatch(html, /<th>Hint<\/th>|<th>Pronunciation<\/th>/);
   const speaking = renderLessonSections({
     sections: [{ leaf: "Chapter 01", stage: "corpus", cards: [card] }],

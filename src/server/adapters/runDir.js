@@ -123,6 +123,10 @@ export function toCorpusRenderCard(item) {
     target: item.target || "",
     pronunciation: item.pronunciation || "",
     ttsText: item.ttsText || "",
+    // The orthography the voice is given when the unit has opted into kanji TTS. A reading deck sets
+    // it on nearly every kanji word, and its review marks the cards WITHOUT it as spoken from the
+    // kana; dropped here, every kanji word looked like an exception.
+    ttsKanji: item.ttsKanji || "",
     category: item.category || "",
     hint: item.hint || "",
     scene: item.scene || "",

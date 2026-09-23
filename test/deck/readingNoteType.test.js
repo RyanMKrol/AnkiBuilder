@@ -248,3 +248,18 @@ test("the reading review says why a reading is empty, and why a chapter has no c
   assert.match(html, /data-field="ttsText" data-empty="none: silent"><\/td>/);
   assert.match(html, /No cards: nothing in this chapter is carded/);
 });
+
+test("the corpus review keeps ttsKanji, so only the kana exceptions are marked", async () => {
+  const { toCorpusRenderCard } = await import("../../src/server/adapters/runDir.js");
+  const { renderLessonSections } = await import("../../src/review/deckViewChrome.js");
+  const cards = [
+    { id: "a", target: "週末", ttsText: "しゅうまつ", ttsKanji: "週末", english: "Weekend" },
+    { id: "b", target: "一", ttsText: "いち", english: "One" },
+  ].map(toCorpusRenderCard);
+  assert.equal(cards[0].ttsKanji, "週末");
+  const { html } = renderLessonSections({
+    sections: [{ leaf: "L3", stage: "corpus", reading: true, cards }],
+    rowControl: () => "",
+  });
+  assert.equal((html.match(/>voice reads the kana</g) ?? []).length, 1);
+});

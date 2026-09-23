@@ -221,10 +221,14 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       : "character";
     // A character card carries no reading: it is silent by design. A reading an agent attached to a
     // character anyway is dropped here rather than voicing one arbitrary reading of it.
+    // A book can print two readings for one form (Genki's 七: しち／なな; 十歳: じゅっさい／じっさい).
+    // Each is its own reading: the audio is spoken from ONE, and the alternatives are named for
+    // review. Kept whole, "しち／なな" would be spoken as both and is not a kana reading at all.
     const readings = [
       ...new Set(
         (kind === "character" ? [] : wordMembers)
-          .map((m) => String(m.reading ?? "").trim())
+          .flatMap((m) => String(m.reading ?? "").split(/[／/・,，、]/u))
+          .map((reading) => reading.trim())
           .filter(Boolean),
       ),
     ];

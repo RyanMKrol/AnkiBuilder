@@ -122,7 +122,7 @@ function joinGlosses(glosses) {
   const out = [];
   for (const gloss of glosses) {
     // "Good-bye" and "Goodbye", "Good morning." and "Good morning" are one gloss.
-    const dedupeKey = gloss.toLowerCase().replace(/[\s.,;:!?'"\-]+/g, "");
+    const dedupeKey = gloss.toLowerCase().replace(/[\s.,;:!?'"-]+/g, "");
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
     out.push(gloss);

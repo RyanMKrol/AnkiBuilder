@@ -71,7 +71,9 @@ with `--remerge` (free: no model is called; a reviewed chapter is refused). To b
 from scratch, including the paid agent steps, delete its unit folder first.
 
 Build chapters in book order. A written form is carded once per collection, in the chapter that first
-teaches it, and the merge only knows about chapters built before it.
+teaches it, and the merge only knows about chapters built before it. A chapter built out of order says so
+at the end of its run and prints the `--remerge` command for each later chapter; run them in book
+order. Preflight's `one card per written form` names any repeat that is left.
 
 ## 2. Gate 1: content
 

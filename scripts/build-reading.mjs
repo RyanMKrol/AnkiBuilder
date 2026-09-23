@@ -47,6 +47,7 @@ import {
   READING_PHASE_STEPS,
   runReadingPhase,
   earlierReadingTargets,
+  laterBuiltChapters,
 } from "../src/reading/readingPhase.js";
 import { readingScheme } from "../src/reading/readingSchemes.js";
 
@@ -207,6 +208,23 @@ console.log(
       ? `:\n${result.gaps.gaps.map((g) => `  - ${g.target}${g.english ? ` (${g.english})` : ""}`).join("\n")}`
       : ""),
 );
+// Built out of book order: the later chapters were merged without this one, so a written form both
+// teach is now carded twice. Re-merging them is free and fixes it; preflight would catch it anyway.
+const later = laterBuiltChapters(collectionDir, first);
+if (later.length) {
+  console.log(
+    `\nBUILT OUT OF ORDER: ${later.length} later chapter(s) were built before this one and do not ` +
+      `know what it cards. Re-merge each (free), in book order:`,
+  );
+  for (const unit of later) {
+    console.log(
+      unit.reviewed
+        ? `  - ${unit.label}: reviewed, so it is not re-merged automatically; preflight will name any repeat`
+        : `  - ${unit.label}: node scripts/build-reading.mjs --output-root ${outputRootArg} ` +
+            `--epub <book> --lesson "${unit.label}" --lang ${lang} --remerge`,
+    );
+  }
+}
 if (!result.verdict.ok) {
   console.error(`\nthe run did not verify:\n  ${result.verdict.problems.join("\n  ")}`);
   process.exit(2);

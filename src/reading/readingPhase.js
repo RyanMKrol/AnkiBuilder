@@ -583,3 +583,31 @@ export function runReadingPhase(options = {}) {
   const dir = options.unitDir ? logDirFor(options.unitDir) : null;
   return withRunLogDir(dir, () => runReadingPhaseInner(options));
 }
+
+/**
+ * The chapters of this collection built AFTER `chapterNumber` in book order, as `{ dir, label }`.
+ * Each was merged without knowing what this chapter cards, so a written form both teach is carded
+ * twice until they are re-merged (build-reading.mjs --remerge). Found on the Genki pilot, where
+ * Lesson 1 was built after Lesson 3 and はい landed in both.
+ */
+export function laterBuiltChapters(collectionDir, chapterNumber) {
+  if (!existsSync(collectionDir)) return [];
+  const later = [];
+  for (const name of readdirSync(collectionDir)) {
+    const cardsPath = join(collectionDir, name, "cards.json");
+    if (!/^chapter-\d+$/.test(name) || !existsSync(cardsPath)) continue;
+    try {
+      const meta = JSON.parse(readFileSync(cardsPath, "utf-8")).meta ?? {};
+      if (typeof meta.chapterNumber === "number" && meta.chapterNumber > chapterNumber) {
+        later.push({
+          dir: join(collectionDir, name),
+          label: meta.chapterLabel ?? name,
+          reviewed: meta.reviewed === true,
+        });
+      }
+    } catch {
+      /* an unreadable unit is preflight's to report */
+    }
+  }
+  return later;
+}

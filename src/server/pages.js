@@ -637,7 +637,7 @@ ${sectionHtml}
         `each rendered from the deck's real templates and CSS. Click a header to flip one card; ` +
         (reading
           ? `this is a reading deck: one card per item, the written form alone on a silent front, ` +
-            `the English and the audio on the back. A single kanji has no audio by design. `
+            `the English, the romaji and the audio on the back. A single kanji has no romaji or audio by design. `
           : `<code>scene</code> shows on BOTH fronts and <code>hint</code> only on the Production ` +
             `front, so read the two fronts side by side before you accept a cue. `) +
         `<a class="back" href="${reviewHref}">← back to the review</a>`,

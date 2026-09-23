@@ -37,7 +37,8 @@ import { validateCorpus, validateCards } from "../model/index.js";
 import { writeSnapshot, hasSnapshot } from "../agents/snapshot.js";
 import { logDirFor, withRunLogDir } from "../agents/runLog.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "../agents/runReport.js";
-import { readingScheme } from "./readingSchemes.js";
+import { readingScheme, silentCardPredicate } from "./readingSchemes.js";
+import { romanizeReadingItems } from "./readingRomaji.js";
 import {
   ITEM_KINDS,
   readTables,
@@ -48,6 +49,7 @@ import {
 
 export const READING_REPORT_FILE = "reading-report.json";
 export const READING_COVERAGE_FILE = "candidates/coverage.json";
+export const READING_ROMAJI_FILE = "candidates/romanization.json";
 
 export const READING_PHASE_STEPS = Object.freeze([
   { id: "tables", kind: "deterministic", artifact: "candidates/tables-raw.json" },
@@ -72,6 +74,10 @@ export const READING_PHASE_STEPS = Object.freeze([
     artifact: "candidates/images.json",
   },
   { id: "reconcile", kind: "deterministic", artifact: READING_REPORT_FILE },
+  // The romaji on the back: the library over each card's kana reading, then one correction pass
+  // against the house style (src/reading/readingRomaji.js). Before the snapshot, because the romaji
+  // is part of what a reviewer is shown and may correct.
+  { id: "romanize", kind: "agent", artifact: READING_ROMAJI_FILE },
   { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
   {
     id: "coverage-adversary",
@@ -376,7 +382,7 @@ function writeArtifact(unitDir, relative, body) {
  * `lastChapterNumber` for a multi-file lesson). `earlier` is `earlierReadingTargets`' answer. Every
  * agent is injectable through `agents`, so the whole phase runs in a test without a model.
  */
-function runReadingPhaseInner({
+async function runReadingPhaseInner({
   unitDir,
   chapterFilePath,
   targetLanguage,
@@ -504,6 +510,35 @@ function runReadingPhaseInner({
     }),
   });
 
+  // --- the romaji, reused per card from an earlier run ----------------------------------------
+  const cachedRomaji = readArtifact(unitDir, READING_ROMAJI_FILE)?.items ?? [];
+  const romaji = await (impl.romanizeReadingItems ?? romanizeReadingItems)(merged.items, {
+    targetLanguage,
+    isSilent: silentCardPredicate({ targetLanguage, deckKind: "reading" }),
+    cached: Object.fromEntries(
+      cachedRomaji.filter((r) => r.pronunciation).map((r) => [r.id, r.pronunciation]),
+    ),
+    ...(agents.runRomanization ? { runClaude: agents.runRomanization } : {}),
+    log,
+  });
+  merged.items = romaji.items;
+  const romajiRows = new Map(cachedRomaji.map((r) => [r.id, r]));
+  for (const row of romaji.romanized) romajiRows.set(row.id, row);
+  recordStep(run, {
+    step: "romanize",
+    status: STEP_STATUS.OK,
+    reason: romaji.failed
+      ? `the style correction failed (${romaji.reason}); the library's romaji was kept`
+      : romaji.reused
+        ? `${romaji.reused} reused from an earlier run`
+        : null,
+    counts: { in: merged.items.length, out: romaji.romanized.length },
+    artifact: writeArtifact(unitDir, READING_ROMAJI_FILE, {
+      items: [...romajiRows.values()],
+      skipped: romaji.skipped,
+    }),
+  });
+
   // --- the baseline, before anything a reviewer does ------------------------------------------
   if (!hasSnapshot(unitDir)) {
     writeSnapshot(unitDir, {
@@ -549,14 +584,23 @@ function runReadingPhaseInner({
     ...unit,
     phase: "reading",
   };
-  const corpus = { meta: unitMeta, items: merged.items };
+  // The corpus carries no romaji (like a speaking corpus, whose pronunciation `prepare` adds on the
+  // way to cards.json); the corpus schema has no field for it.
+  const corpus = {
+    meta: unitMeta,
+    items: merged.items.map((item) => {
+      const rest = { ...item };
+      delete rest.pronunciation;
+      return rest;
+    }),
+  };
   validateCorpus(corpus);
   writeArtifact(unitDir, "corpus.json", corpus);
-  // `pronunciation` is required on a card and never rendered on a reading card: the back is the
-  // English and the audio (owner decision, 2026-09-23).
+  // `pronunciation` is the romaji on the back (owner decision, 2026-09-23 evening). A silent
+  // character card has none, and the field is still required, so it is empty there.
   const cards = {
     meta: unitMeta,
-    items: merged.items.map((item) => ({ ...item, pronunciation: "" })),
+    items: merged.items.map((item) => ({ ...item, pronunciation: item.pronunciation ?? "" })),
   };
   validateCards(cards);
   recordStep(run, {

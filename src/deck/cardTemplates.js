@@ -60,9 +60,11 @@ export const CARD_TEMPLATES = [
 //
 // The front is the written form and nothing else: no scene, no category, and above all no audio,
 // because the card asks "can you read this?" and a sound on the front answers it. The back is the
-// English and the audio. No reading, romaji or note is rendered (owner decision 2026-09-23): the
-// reading drives the audio and is never shown, as in the speaking decks. `{{#Audio}}` wraps the
-// sound so a silent card (a single kanji, which has no one pronunciation) shows no empty block.
+// written form, the English, the romaji and the audio (owner decision, 2026-09-23 evening: reading is
+// for speaking too, so the learner checks they read the word right, not only that they understood
+// it). The kana reading drives the audio and the romaji and is never shown, as in the speaking decks.
+// `{{#Pronunciation}}` and `{{#Audio}}` wrap their blocks so a silent card (a single kanji, which has
+// no one pronunciation) shows neither.
 //
 // A test pins the front to `{{Target}}` alone; see test/deck/readingNoteType.test.js.
 export const READING_TEMPLATES = [
@@ -72,6 +74,7 @@ export const READING_TEMPLATES = [
     qfmt: '<div class="prompt">{{Target}}</div>',
     afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
+{{#Pronunciation}}<div class="field"><div class="field-label">Says</div><div class="pron">{{Pronunciation}}</div></div>{{/Pronunciation}}
 {{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
   },
 ];

@@ -247,10 +247,30 @@ function fakeAgents(calls) {
       items: [{ target: "映画" }, { target: "音楽", english: "Music" }],
       coverage: { notes: "n" },
     }),
+    // The romaji step, faked like every agent: the real one loads a dictionary and calls a model.
+    romanizeReadingItems: async (items, { isSilent, cached }) => {
+      const todo = items.filter((i) => !isSilent(i) && !cached[i.id]);
+      if (todo.length) calls.push("romaji");
+      return {
+        items: items.map((i) => ({
+          ...i,
+          pronunciation: isSilent(i) ? "" : (cached[i.id] ?? `r:${i.target}`),
+        })),
+        romanized: todo.map((i) => ({
+          id: i.id,
+          target: i.target,
+          pronunciation: `r:${i.target}`,
+        })),
+        reused: items.length - todo.length,
+        skipped: [],
+        failed: false,
+        reason: null,
+      };
+    },
   };
 }
 
-test("the phase writes a valid reading unit, and a re-run pays for nothing already done", () => {
+test("the phase writes a valid reading unit, and a re-run pays for nothing already done", async () => {
   const dir = mkdtempSync(join(tmpdir(), "reading-phase-"));
   try {
     const unitDir = join(dir, "chapter-0");
@@ -268,9 +288,9 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
       unit: { epubHash: "abc", chapterNumber: 3, chapterLabel: "Chapter 02: Greetings" },
       agents: fakeAgents(calls),
     };
-    const result = runReadingPhase(options);
+    const result = await runReadingPhase(options);
     assert.equal(result.verdict.ok, true, result.verdict.problems.join("; "));
-    assert.deepEqual(calls, ["tables", "chapter", "images", "adversary"]);
+    assert.deepEqual(calls, ["tables", "chapter", "images", "romaji", "adversary"]);
 
     const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
     assert.doesNotThrow(() => validateCards(cards));
@@ -280,6 +300,10 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
       cards.items.map((i) => i.target).sort(),
       ["おはようございます", "日", "映画"].sort(),
     );
+    // The romaji is on every voiced card and absent from the silent kanji.
+    const byTarget = Object.fromEntries(cards.items.map((i) => [i.target, i]));
+    assert.equal(byTarget["映画"].pronunciation, "r:映画");
+    assert.equal(byTarget["日"].pronunciation, "");
     assert.ok(existsSync(join(unitDir, "corpus.json")));
     assert.ok(existsSync(join(unitDir, "as-generated.json")));
     const coverage = JSON.parse(readFileSync(join(unitDir, "candidates/coverage.json"), "utf-8"));
@@ -290,7 +314,7 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
 
     // A second run reuses every paid step from disk: no agent is called.
     const again = [];
-    const rerun = runReadingPhase({ ...options, agents: fakeAgents(again) });
+    const rerun = await runReadingPhase({ ...options, agents: fakeAgents(again) });
     assert.deepEqual(again, []);
     assert.equal(rerun.items.length, 3);
   } finally {

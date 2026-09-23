@@ -38,7 +38,6 @@ import { isReadingKind } from "../../model/deckKind.js";
 // the reading checks below say which were skipped rather than letting "not run" read as "passed".
 const SPEAKING_ONLY = [
   collisionsCheck,
-  romajiStyleCheck,
   inlineRomanizationCheck,
   answerableAloneCheck,
   productionLengthCheck,

@@ -34,9 +34,11 @@ All on 2026-09-23.
 - **One card per item, one direction.** Written form on the front. There is no English-to-Japanese
   card.
 - **The front is silent.** No audio until the card is turned.
-- **The back of a word card is the English and the audio.** No kana reading, no romaji and no note.
-  That matches the rule the speaking decks already follow (the reading is TTS plumbing and is never
-  rendered), just on a different side of the card.
+- **The back of a word card is the written form, the English, the romaji and the audio.** Revised
+  the same evening: the first design had no romaji, and the owner asked for it on seeing the cards,
+  because reading is for speaking too and the romaji lets you check you read the word right. Still no
+  kana reading and no note: the reading is TTS plumbing and is never rendered, as in the speaking
+  decks.
 - **Single kanji get cards, with no audio.** A kanji on its own has no single pronunciation (日 is に
   in 日本, び in 日曜日, ひ on its own), so its card teaches what it means and nothing else.
 - **Kanji words are said correctly.** A word containing kanji carries its kana reading, which drives
@@ -64,12 +66,14 @@ front              back                     front              back
 |            |     |    映画     |           |            |     |     日      |
 |    映画     |     |  --------  |           |     日      |     |  --------  |
 |            |     |  Movie     |           |            |     |  Day; sun  |
+|            |     |  eiga      |           |            |     |            |
 |            |     |  [audio]   |           |            |     |            |
 +------------+     +------------+           +------------+     +------------+
 ```
 
-One template serves both: front `{{Target}}`, back the front, `{{English}}` and `{{Audio}}`. A kanji
-card simply has no audio, and Anki renders an empty field as nothing. Details in 02 and 05.
+One template serves both: front `{{Target}}`, back the front, `{{English}}`, `{{Pronunciation}}` (the
+romaji) and `{{Audio}}`. A kanji card simply has no romaji and no audio, and Anki renders an empty
+field as nothing. Details in 02 and 05.
 
 ## Build order
 

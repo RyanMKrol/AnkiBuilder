@@ -134,3 +134,14 @@ test("plainText decodes numeric character references, so a heading matches what 
   );
   assert.equal(plainText("<td>Mary&#8217;s&#160;book &#x2192; here</td>"), "Mary’s book → here");
 });
+
+test("the speaking chapter reader also matches a furigana heading however it is spaced", async () => {
+  const { assertSectionsAccountedFor } = await import("../../src/agents/chapterReader.js");
+  assert.doesNotThrow(() =>
+    assertSectionsAccountedFor([{ title: "単 語 Vocabulary" }], [{ title: "単語 Vocabulary" }]),
+  );
+  assert.throws(
+    () => assertSectionsAccountedFor([{ title: "単 語 Vocabulary" }], [{ title: "Grammar" }]),
+    /単 語 Vocabulary/,
+  );
+});

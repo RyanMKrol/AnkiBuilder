@@ -190,6 +190,12 @@ export function materializeBookInOutput(
   // An owner-chosen deck name (setCollectionDeckName) is a human-set field, and this function
   // rewrites the marker whole, so it is carried forward like `retired`.
   let deckName;
+  // The title too. It starts as the EPUB's own <dc:title>, which for a converted book runs to
+  // "GENKI: An Integrated Course … [Third Edition] 初級日本語げんき[第3版] (everything)", and the
+  // owner shortens it by hand in book.json. Re-read from the EPUB on every run, that edit lasted
+  // until the next chapter was built. Where no deckName is set the title is also the Anki parent
+  // deck, which is a second reason it must not change under a delivered collection by itself.
+  let title;
   const existingKind = folderDeckKind(outputRoot, slug);
   if (existsSync(markerPath)) {
     try {
@@ -197,6 +203,7 @@ export function materializeBookInOutput(
       guidNamespace = existing.guidNamespace ?? null;
       if (existing.retired === true) retired = true;
       if (typeof existing.deckName === "string") deckName = existing.deckName;
+      if (typeof existing.title === "string" && existing.title.trim()) title = existing.title;
     } catch {
       guidNamespace = null;
     }
@@ -211,7 +218,7 @@ export function materializeBookInOutput(
     markerPath,
     JSON.stringify(
       {
-        title: getBookTitle(dest) || null,
+        title: title ?? (getBookTitle(dest) || null),
         slug,
         epubHash,
         targetLanguage: targetLanguage || null,

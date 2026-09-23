@@ -65,7 +65,10 @@ name before it**, and pass it as `--deck-name "Genki I (Reading)"`: without one 
 after the book's own title, which for a converted book runs to "GENKI: An Integrated Course … [Third
 Edition] 初級日本語げんき[第3版] (everything) (Reading)". It can be given on any later run too, until
 the collection is first delivered; after that the name is how delivery finds the deck, and changing
-it is a migration. Each chapter is one deck straight under that name (`Chapter 06: Lesson 3: Making a
+it is a migration. The book's name on the dashboard is the separate `title` in the collection's
+`book.json`, copied from the EPUB when the collection is registered; shorten it there by hand if the
+owner asks (Genki's became "Genki: An Integrated Course in Elementary Japanese 1"), and later builds
+keep it. Each chapter is one deck straight under that name (`Chapter 06: Lesson 3: Making a
 Date`): a reading deck has no extras, so it has no grouping level.
 
 The run prints:

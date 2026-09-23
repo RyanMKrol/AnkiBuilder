@@ -193,6 +193,21 @@ test("materializeBookInOutput() is idempotent for the copy but refreshes the mar
   });
 });
 
+test("materializeBookInOutput() keeps a title the owner shortened by hand", () => {
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Long Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+
+    const markerPath = join(outputRoot, "epubs", slug, "book.json");
+    const marker = JSON.parse(readFileSync(markerPath, "utf-8"));
+    writeFileSync(markerPath, JSON.stringify({ ...marker, title: "Short" }, null, 2));
+
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+    assert.equal(loadBookMarker(join(outputRoot, "epubs", slug)).title, "Short");
+  });
+});
+
 test("listBooks() returns worked-on books and ignores non-book folders", () => {
   withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
     const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");

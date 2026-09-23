@@ -459,7 +459,7 @@ const READING_TABLES = {
   <td class="jp">${escapeHtml(c.target)}</td>
   <td class="pron">${escapeHtml(c.pronunciation ?? "")}</td>
   ${readingCell(c)}
-  ${ctx.originalCell ? `<td class="au au-orig">${ctx.originalCell(c)}</td>\n  ` : ""}<td class="au">${readingKind(c) ? `<span class="x" title="silent by design">none</span>` : ctx.audioCell(c)}</td>`,
+  ${ctx.originalCell ? `<td class="au au-orig">${ctx.originalCell(c)}</td>\n  ` : ""}<td class="au">${isSilentKanji(c) ? `<span class="x" title="silent by design">none</span>` : ctx.audioCell(c)}</td>`,
   },
 };
 

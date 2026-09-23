@@ -263,3 +263,25 @@ test("the corpus review keeps ttsKanji, so only the kana exceptions are marked",
   });
   assert.equal((html.match(/>voice reads the kana</g) ?? []).length, 1);
 });
+
+test("the reading audio review plays every voiced card, including the ones spoken from the kana", async () => {
+  // Found on the pilot's audio gate: the player was hidden on any card with a marker, so the 19
+  // cards marked "voice reads the kana" showed "none" although each had its clip.
+  const { renderLessonSections } = await import("../../src/review/deckViewChrome.js");
+  const { html } = renderLessonSections({
+    sections: [
+      {
+        leaf: "R&W 3",
+        stage: "audio",
+        reading: true,
+        cards: [
+          { id: "ichi", target: "一", ttsText: "いち", english: "One", audio: "a.mp3" },
+          { id: "man", target: "万", english: "Ten thousand" },
+        ],
+      },
+    ],
+    audioCell: (c) => `<audio src="${c.audio}"></audio>`,
+  });
+  assert.match(html, /<audio src="a.mp3">/);
+  assert.equal((html.match(/title="silent by design">none</g) ?? []).length, 1);
+});

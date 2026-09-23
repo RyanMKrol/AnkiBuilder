@@ -139,11 +139,11 @@ document.addEventListener("click", (e) => {
 });
 `;
 
-function faceBlock(face, { front, back }) {
+function faceBlock(face, { front, back }, side = "front") {
   return [
-    `<div class="faces-card" data-side="front">`,
+    `<div class="faces-card" data-side="${side}">`,
     `<div class="faces-card-head" data-flip title="click to flip">`,
-    `<span>${escapeAttr(face.name)} · ord ${face.ord}</span><span class="faces-side">FRONT</span>`,
+    `<span>${escapeAttr(face.name)} · ord ${face.ord}</span><span class="faces-side">${side.toUpperCase()}</span>`,
     `</div>`,
     // Both sides are in the DOM and CSS shows one, so flipping never re-renders and a long back
     // cannot make the row jump. `.card` is Anki's own wrapper class, which is what makes the deck
@@ -175,16 +175,25 @@ export function renderCardFacesPage(
         ? `direction-suspended: ${card.dirSuspended.map((o) => templates[o]?.name ?? o).join(", ")}`
         : null,
     ].filter(Boolean);
+    const content = (face) => ({
+      front: hasVisibleContent(face.front)
+        ? face.front
+        : `<span class="faces-empty">(this front renders empty)</span>`,
+      back: face.back,
+    });
+    // A note type with ONE template (a reading deck) has one card per note, so the row shows that
+    // card's front and back side by side rather than one front beside an empty column. Found on the
+    // first owner look at a reading deck: every card looked as if it had no back.
+    const blocks =
+      faces.length === 1
+        ? [
+            faceBlock(faces[0], content(faces[0]), "front"),
+            faceBlock(faces[0], content(faces[0]), "back"),
+          ]
+        : faces.map((face) => faceBlock(face, content(face)));
     return [
       `<div class="faces-row">`,
-      ...faces.map((face) =>
-        faceBlock(face, {
-          front: hasVisibleContent(face.front)
-            ? face.front
-            : `<span class="faces-empty">(this front renders empty)</span>`,
-          back: face.back,
-        }),
-      ),
+      ...blocks,
       `<div class="faces-meta"><span class="faces-id">${escapeAttr(card.id ?? "")}</span>` +
         flags.map((f) => `<span class="faces-flag">${escapeAttr(f)}</span>`).join("") +
         `</div>`,

@@ -360,9 +360,14 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
     const deckLanguageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));
     const isJa = deckLanguageCode === "ja";
 
+    // A reading deck's sections render with its own columns (src/review/deckViewChrome.js).
+    const reading = isReadingKind(
+      collectionDeckKind(pathDirname(adapter.deckFile(outputRoot, id))),
+    );
     const sections = units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
+      reading,
       seq: u.seq,
       reviewed: !!u.reviewed,
       done: !!u.done,
@@ -554,9 +559,13 @@ ${modal}
       unit != null ? deck.units.filter((u) => String(u.seq) === String(unit)) : deck.units;
     if (units.length === 0) return null;
 
+    const reading = isReadingKind(
+      collectionDeckKind(pathDirname(adapter.deckFile(outputRoot, id))),
+    );
     const sections = units.map((u) => ({
       leaf: u.label,
       stage: u.stage || "audio",
+      reading,
       // STORED order, deliberately. Book order is for the REVIEW view, where a chapter is being read
       // alongside the table; this is the read-only browse view of a finished deck, and it should
       // show the order the deck is actually studied in (owner, 2026-09-21).

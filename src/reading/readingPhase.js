@@ -99,6 +99,9 @@ export const targetKey = (target, languageCode = null) =>
       .normalize("NFC")
       .trim()
       .replace(/[.。．!！]+$/u, "")
+      // A book writes a suffix as 〜ごろ in a vocabulary list and ごろ in running text; the tilde
+      // is a placeholder for the word it attaches to, not something to read.
+      .replace(/^[〜~～]+|[〜~～]+$/gu, "")
       .trim(),
     resolveIso639Code(languageCode) ?? languageCode,
   );
@@ -173,10 +176,33 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
     groups.get(form).push({ ...item, kind });
   }
 
+  // A kana form that is the READING of a kanji form in this same chapter is the same word, and the
+  // kanji spelling is the card (the language plugin's rule 1). On the Lesson 3 pilot, an
+  // illustration labelled its verbs in kana and the image reader carded たべる beside 食べる.
+  const kanaOfKanji = new Map();
+  if (scheme) {
+    for (const [form, members] of groups) {
+      if (!scheme.requiresReading(form)) continue;
+      for (const m of members) {
+        const reading = key(m.reading ?? "");
+        if (reading && reading !== form) kanaOfKanji.set(reading, form);
+      }
+    }
+  }
+
   const items = [];
   const provenance = {};
   const readingConflicts = [];
   for (const [form, members] of groups) {
+    const spelledAs = kanaOfKanji.get(form);
+    if (spelledAs && !scheme.requiresReading(form)) {
+      dropped.push({
+        target: form,
+        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
+        reason: `the same word as ${spelledAs}, which the chapter prints in kanji and is the card`,
+      });
+      continue;
+    }
     if (earlierByKey.has(form)) {
       dropped.push({
         target: form,

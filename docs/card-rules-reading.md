@@ -20,8 +20,9 @@ speaking-and-listening deck and never come into this one.
 
 1. **Card what this chapter teaches you to read: all of it, and nothing it has not reached.** A
    vocabulary table, a list of set expressions, a table of characters the chapter teaches. Not a word
-   that only appears in a dialogue, an exercise, an example sentence or a reading passage, and not a
-   word the book has not taught yet.
+   that only appears in a dialogue, an exercise, an example sentence or a reading passage, not a word
+   that only appears in a heading, a title or an instruction (a chapter called デートの約束 does not
+   teach 約束), and not a word the book has not taught yet.
 2. **One card per word, in the fullest written form the book prints.** When the book prints a word in
    more than one form, the language rules below say which form is the card. A word printed in one
    form only is carded exactly as printed.

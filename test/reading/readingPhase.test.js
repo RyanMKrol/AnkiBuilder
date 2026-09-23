@@ -395,3 +395,24 @@ test("a heading with furigana counts as read when the reader reports it without 
     [],
   );
 });
+
+test("a kana form that is a kanji word's reading is the same word, and a suffix's tilde goes", () => {
+  // Found on the Lesson 3 pilot: an illustration labelled verbs in kana, so たべる was carded beside
+  // 食べる; and the table's 〜ごろ and the text's ごろ made two cards.
+  const { items, dropped } = reconcileReading(
+    [
+      [
+        { target: "食べる", reading: "たべる", english: "To eat", kind: "word", producedBy: "t" },
+        { target: "〜ごろ", english: "At about . . .", kind: "word", producedBy: "t" },
+        { target: "スポーツ", english: "Sports", kind: "word", producedBy: "t" },
+      ],
+      [
+        { target: "たべる", english: "Eat", kind: "word", producedBy: "i" },
+        { target: "ごろ", english: "At about", kind: "word", producedBy: "c" },
+      ],
+    ],
+    { targetLanguage: "ja" },
+  );
+  assert.deepEqual(items.map((i) => i.target).sort(), ["ごろ", "スポーツ", "食べる"].sort());
+  assert.match(dropped.find((d) => d.target === "たべる").reason, /食べる/);
+});

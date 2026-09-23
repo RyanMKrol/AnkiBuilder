@@ -932,6 +932,13 @@ Three rules make the record trustworthy rather than decorative:
 
 ### `deck`
 
+**Two note types per language.** A speaking collection's notes use `AnkiBuilder <lang>` (Recognition
+and Production, two cards per note). A reading collection's use `AnkiBuilder <lang> Reading`
+(`READING_TEMPLATES`, `src/deck/cardTemplates.js`): one card per note, the written form alone on the
+front, English and audio on the back. The builder writes as many card rows per note as the note type
+has templates, and the model's `req` comes from each template's `requiredField`. Design:
+`docs/designs/reading-decks/02-reading-note-type.md`.
+
 **What the package is called (`src/deck/deckFileName.js`).** A built `.apkg` is named after the deck
 it contains, not the legacy `deck.apkg` — otherwise every package is indistinguishable the moment it leaves its
 folder, and picking the right one in a downloads directory or Anki's import dialog means reading the

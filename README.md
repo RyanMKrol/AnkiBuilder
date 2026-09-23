@@ -634,6 +634,12 @@ What is built, newest last:
   `everything`, and the speaking pipeline refuses a book converted for anything but the first; the
   procedure is the `convert-book` skill and the results are in
   `docs/designs/image-epub-remaster.md`
+- [~] Reading decks (in progress; design and build order in `docs/designs/reading-decks/`). A
+  second deck kind whose card shows the written form alone on a silent front, with the English and
+  the audio on the back. Built so far: the `everything` conversion purpose, and the reading note
+  type (`AnkiBuilder <lang> Reading`, one template, its own id), which the `.apkg` builder writes
+  one card per note for. Collection identity, the reading extraction, its checks and the
+  `build-reading-deck` skill are not built yet.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

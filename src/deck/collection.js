@@ -6,7 +6,8 @@ import { tmpdir } from "os";
 import { resolveIso639Code } from "../model/iso639.js";
 import { getLanguageFont } from "./fontLibrary.js";
 import { unitDeckSegments, groupingSegments } from "./deckPath.js";
-import { CARD_TEMPLATES } from "./cardTemplates.js";
+import { templatesForDeckKind } from "./cardTemplates.js";
+import { isReadingKind } from "../model/deckKind.js";
 import { modelCss } from "./cardStyles.js";
 import { FIELD_NAMES, fieldValue } from "./noteFields.js";
 
@@ -59,12 +60,18 @@ function languageModelId(label) {
 
 // Resolves the per-language note-type identity + optional embedded font for a deck's target
 // language. `getFont` is injectable so tests can turn font embedding off.
-function resolveModelSpec(targetLanguage, getFont) {
+//
+// A READING collection gets a second note type per language, `AnkiBuilder <lang> Reading`, with one
+// template (docs/designs/reading-decks/02). Its id comes from the same function over "<lang> reading",
+// so it can never be the speaking note type's id; a test asserts that for every supported language.
+function resolveModelSpec(targetLanguage, getFont, deckKind) {
   const label = languageLabel(targetLanguage);
+  const reading = isReadingKind(deckKind);
   return {
-    modelId: languageModelId(label),
-    modelName: `AnkiBuilder ${label}`,
+    modelId: languageModelId(reading ? `${label} reading` : label),
+    modelName: reading ? `AnkiBuilder ${label} Reading` : `AnkiBuilder ${label}`,
     fontDescriptor: getFont(resolveIso639Code(targetLanguage)),
+    templates: templatesForDeckKind(deckKind),
   };
 }
 
@@ -160,19 +167,23 @@ CREATE INDEX ix_notes_csum on notes (csum);
 // ADD path is the other divergence: `buildModel` writes whatever templates the spec has, whereas
 // AnkiConnect cannot create a template row at all on an existing note type, so a spec template with
 // no live counterpart is a refusal in the deliverer rather than a silent no-op (see syncStructure).
-function noteTypeSpec(targetLanguage, { getFont = getLanguageFont } = {}) {
-  const { modelId, modelName, fontDescriptor } = resolveModelSpec(targetLanguage, getFont);
+function noteTypeSpec(targetLanguage, { getFont = getLanguageFont, deckKind } = {}) {
+  const { modelId, modelName, fontDescriptor, templates } = resolveModelSpec(
+    targetLanguage,
+    getFont,
+    deckKind,
+  );
   return {
     modelName,
     modelId,
     fields: [...FIELD_NAMES],
-    templates: CARD_TEMPLATES.map((t) => ({ name: t.name, qfmt: t.qfmt, afmt: t.afmt })),
+    templates: templates.map((t) => ({ name: t.name, qfmt: t.qfmt, afmt: t.afmt })),
     css: modelCss(fontDescriptor),
     fontDescriptor,
   };
 }
 
-function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
+function buildModel(nowSeconds, { modelId, modelName, fontDescriptor, templates }) {
   return {
     [modelId]: {
       id: modelId,
@@ -182,7 +193,7 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
       usn: -1,
       sortf: 0,
       did: DECK_ID,
-      tmpls: CARD_TEMPLATES.map((t, ord) => ({
+      tmpls: templates.map((t, ord) => ({
         name: t.name,
         ord,
         qfmt: t.qfmt,
@@ -204,10 +215,9 @@ function buildModel(nowSeconds, { modelId, modelName, fontDescriptor }) {
       latexPre:
         "\\documentclass[12pt]{article}\\special{papersize=3in,5in}\\usepackage[utf8]{inputenc}\\usepackage{amssymb,amsmath}\\pagestyle{empty}\\setlength{\\parindent}{0in}\\begin{document}",
       latexPost: "\\end{document}",
-      req: [
-        [0, "any", [0]],
-        [1, "any", [2]],
-      ],
+      // Which field makes Anki generate each card: [[0, "any", [0]], [1, "any", [2]]] for the
+      // speaking note type (Target, English), [[0, "any", [0]]] for the reading one.
+      req: templates.map((t, ord) => [ord, "any", [FIELD_NAMES.indexOf(t.requiredField)]]),
     },
   };
 }
@@ -394,6 +404,7 @@ function insertNotesAndCards(
   nowSeconds,
   modelId,
   guidNamespace = null,
+  templateCount = 2,
 ) {
   let position = 1;
   chapterGroups.forEach(({ deckId, cards }, chapterIndex) => {
@@ -413,7 +424,7 @@ function insertNotesAndCards(
     // them, and a chapter's block is contiguous.
     const chapterBase = position;
     const itemCount = cards.items.length;
-    position += itemCount * 2;
+    position += itemCount * templateCount;
 
     cards.items.forEach((card, itemIndex) => {
       const noteId = now + chapterIndex * CHAPTER_ID_BLOCK + itemIndex * 10;
@@ -443,7 +454,10 @@ function insertNotesAndCards(
       // The stated consequence: a `.apkg` built here deliberately does NOT reproduce the delivered
       // deck card-for-card. That is the right trade — the two builders must not drift STRUCTURALLY —
       // but it is a real difference and is written down in docs/PIPELINE.md.
-      for (let ord = 0; ord < 2; ord++) {
+      //
+      // One row per TEMPLATE of the note type: two for a speaking note, one for a reading note
+      // (docs/designs/reading-decks/02).
+      for (let ord = 0; ord < templateCount; ord++) {
         const cardId = noteId + ord + 1;
         insertCard.run(
           cardId,
@@ -511,6 +525,7 @@ function writeCollectionDb({
         nowSeconds,
         modelSpec.modelId,
         guidNamespace,
+        modelSpec.templates.length,
       );
     } finally {
       db.close();
@@ -530,7 +545,7 @@ function writeCollectionDb({
  */
 export function buildCollection(
   cards,
-  { deckName, now, getFont = getLanguageFont, guidNamespace = null },
+  { deckName, now, getFont = getLanguageFont, guidNamespace = null, deckKind },
 ) {
   const nowSeconds = Math.floor(now / 1000);
   return writeCollectionDb({
@@ -540,7 +555,7 @@ export function buildCollection(
     now,
     nowSeconds,
     chapterGroups: [{ deckId: DECK_ID, cards }],
-    modelSpec: resolveModelSpec(cards.meta?.targetLanguage, getFont),
+    modelSpec: resolveModelSpec(cards.meta?.targetLanguage, getFont, deckKind),
     guidNamespace,
   });
 }
@@ -560,7 +575,7 @@ export function buildCollection(
  */
 export function buildMultiDeckCollection(
   chapterDecks,
-  { bookName, now, getFont = getLanguageFont, guidNamespace = null },
+  { bookName, now, getFont = getLanguageFont, guidNamespace = null, deckKind },
 ) {
   const nowSeconds = Math.floor(now / 1000);
   const chapterNames = chapterDecks.map((c) => c.name);
@@ -577,7 +592,7 @@ export function buildMultiDeckCollection(
     now,
     nowSeconds,
     chapterGroups,
-    modelSpec: resolveModelSpec(chapterDecks[0]?.cards?.meta?.targetLanguage, getFont),
+    modelSpec: resolveModelSpec(chapterDecks[0]?.cards?.meta?.targetLanguage, getFont, deckKind),
     guidNamespace,
   });
 }

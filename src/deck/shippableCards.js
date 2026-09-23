@@ -66,11 +66,20 @@ export function additionStage(item) {
  * It runs AFTER `shippableCards()`, so it never sees an excluded card or an addition that is still
  * being reviewed. Those are deliberately not shipping and have no business having audio yet.
  */
-export function assertEveryCardHasAudio(cardSets, deckDescription) {
+//
+// `isSilent` is the one exemption: a reading deck's language plugin may declare a card kind that has
+// no audio by design (a single kanji, which has no one pronunciation; see
+// src/reading/readingSchemes.js). It defaults to nothing being silent, so a speaking deck is checked
+// exactly as before, and a reading WORD card with no audio is still refused.
+export function assertEveryCardHasAudio(
+  cardSets,
+  deckDescription,
+  { isSilent = () => false } = {},
+) {
   const missing = [];
   for (const { label, items } of cardSets) {
     for (const card of items) {
-      if (!card.audio) missing.push(`${card.id} (${label ?? "?"})`);
+      if (!card.audio && !isSilent(card)) missing.push(`${card.id} (${label ?? "?"})`);
     }
   }
   if (!missing.length) return;

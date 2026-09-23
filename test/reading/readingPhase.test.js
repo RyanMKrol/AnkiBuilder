@@ -437,3 +437,24 @@ test("two readings printed as one are split, the first voiced and the rest named
   assert.deepEqual(readingConflicts, [{ target: "十歳", readings: ["じゅっさい", "じっさい"] }]);
   assert.match(items[0].reviewNote, /じっさい/);
 });
+
+test("two written forms printed as one headword become two cards", () => {
+  // Found on the Genki Lesson 1 pilot: なん／なに came through as one card.
+  const { items } = reconcileReading(
+    [
+      [
+        { target: "なん／なに", english: "What", kind: "word", producedBy: "t" },
+        {
+          target: "十歳／十才",
+          reading: "じゅっさい／じゅっさい",
+          english: "Ten years old",
+          producedBy: "t",
+        },
+      ],
+    ],
+    { targetLanguage: "ja" },
+  );
+  assert.deepEqual(items.map((i) => i.target).sort(), ["なん", "なに", "十才", "十歳"].sort());
+  assert.ok(items.every((i) => i.english));
+  assert.equal(items.find((i) => i.target === "十才").ttsText, "じゅっさい");
+});

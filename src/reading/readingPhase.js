@@ -139,6 +139,28 @@ function kindOf(item) {
   return [...targetKey(item.target)].length === 1 ? "character" : "word";
 }
 
+// A book prints two written forms of one word as one headword: Genki's なん／なに ("what"),
+// ゼロ／れい ("zero"). Each is its own written form and its own card. When the reading splits into
+// the same number of parts, each form keeps its own; otherwise a single reading is kept for all.
+const ALTERNATE_FORM_SEPARATOR = /[／/]/u;
+
+export function splitAlternateForms(item) {
+  const forms = String(item.target ?? "")
+    .split(ALTERNATE_FORM_SEPARATOR)
+    .map((form) => form.trim())
+    .filter(Boolean);
+  if (forms.length < 2) return [item];
+  const readings = String(item.reading ?? "")
+    .split(ALTERNATE_FORM_SEPARATOR)
+    .map((reading) => reading.trim())
+    .filter(Boolean);
+  return forms.map((target, index) => ({
+    ...item,
+    target,
+    reading: readings.length === forms.length ? readings[index] : item.reading,
+  }));
+}
+
 /**
  * Merges the readers' items into one reading corpus and applies every rule the code can see.
  *
@@ -155,7 +177,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
   const dropped = [];
   const groups = new Map();
 
-  for (const item of sources.flat()) {
+  for (const item of sources.flat().flatMap(splitAlternateForms)) {
     const form = key(item.target);
     if (!form) continue;
     const chars = [...form];

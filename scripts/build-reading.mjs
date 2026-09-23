@@ -5,7 +5,7 @@
 //
 //   node scripts/build-reading.mjs --output-root output {--epub <book.epub> | --book <slug>} --list-lessons
 //   node scripts/build-reading.mjs --output-root output {--epub <book.epub> | --book <slug>}
-//                                  --lesson <selector> --lang <code> [--dry]
+//                                  --lesson <selector> --lang <code> [--dry | --remerge]
 //
 // It registers the book's reading collection on first use (`<slug>-reading`, a book plus a deck kind:
 // DECISIONS.md), extracts the lesson's chapter to the free cache, and runs the reading phase: three
@@ -14,10 +14,11 @@
 // content gate in the dashboard.
 //
 // `--dry` prints the steps, the paths and which paid steps would be reused from an earlier run, and
-// spends nothing. A usage-limit stop loses only the step that was running: re-run the same command
+// spends nothing. `--remerge` re-runs the merge of a built but UNREVIEWED chapter from its saved
+// agent output, for free: what to do after a rule in the merge changes. It refuses a reviewed one. A usage-limit stop loses only the step that was running: re-run the same command
 // and every finished agent step is reused from disk.
 
-import { existsSync } from "fs";
+import { existsSync, readFileSync, rmSync } from "fs";
 import { join, resolve } from "path";
 import {
   hashEpubFile,
@@ -62,12 +63,13 @@ const bookArg = flag("book");
 const lessonArg = flag("lesson");
 const lang = flag("lang");
 const dry = has("dry");
+const remerge = has("remerge");
 
 function usage(message) {
   if (message) console.error(message);
   console.error(
     "usage: build-reading.mjs --output-root <dir> {--epub <book.epub> | --book <slug>} " +
-      "(--list-lessons | --lesson <selector> --lang <code> [--dry])",
+      "(--list-lessons | --lesson <selector> --lang <code> [--dry | --remerge])",
   );
   process.exit(1);
 }
@@ -134,10 +136,28 @@ if (!existsSync(chapterFilePath)) {
 }
 
 const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, first);
+if (remerge && existsSync(join(unitDir, "cards.json"))) {
+  const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
+  if (cards.meta?.reviewed === true) {
+    console.error(
+      `${unitDir} is reviewed. Re-merging it would discard the review; withdraw the review in the ` +
+        `dashboard first if the merge really has to change.`,
+    );
+    process.exit(2);
+  }
+  // Everything the merge and the adversary diff wrote. The agents' own output (candidates/*.json,
+  // agent-logs/) is kept, so no model is called again.
+  for (const file of ["cards.json", "corpus.json", "reading-report.json", "as-generated.json"]) {
+    rmSync(join(unitDir, file), { force: true });
+  }
+  rmSync(join(unitDir, "candidates", "coverage.json"), { force: true });
+  console.log(`re-merging ${unitDir} from its saved agent output`);
+}
 if (existsSync(join(unitDir, "cards.json"))) {
   console.log(
     `${join(unitDir, "cards.json")} already exists: this chapter is built. Review it in the ` +
-      `dashboard, or delete the unit folder to build it again from scratch.`,
+      `dashboard; --remerge to re-run the merge after a rule change (free); or delete the unit ` +
+      `folder to build it again from scratch.`,
   );
   process.exit(0);
 }

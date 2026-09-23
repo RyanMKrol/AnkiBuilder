@@ -1780,7 +1780,8 @@ collection is dropped. Every drop is in `reading-report.json` with its reason. T
 the phase writes `corpus.json` and `cards.json` itself (`meta.phase: "reading"`, which the readiness
 gate accepts with no speaking passes), and the card id is `r-<sha1 of the written form>`, stable
 across rebuilds. Each agent step reuses its artifact if one is already on disk, so a stop costs only
-the step that was running. `--dry` spends nothing.
+the step that was running. `--dry` spends nothing, and `--remerge` re-runs the merge of an unreviewed
+chapter from its saved agent output (free), which is what to do after a merge rule changes.
 
 Preflight knows a collection's kind (`collection.deckKind`, `src/audit/units.js`). A reading
 collection runs the reading checks (`src/audit/checks/reading.js`: the front gives nothing away, one

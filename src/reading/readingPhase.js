@@ -331,7 +331,10 @@ export function findReadingGaps(enumerated, items, { dropped = [], targetLanguag
   const accounted = new Set(dropped.map((d) => formOf(d.target)));
   const listed = new Set();
   const gaps = [];
-  for (const item of enumerated) {
+  // The adversary's items get the same splitting the merge gives the readers': なん／なに is two
+  // cards, and おやすみ(なさい) is おやすみなさい. Compared whole, Genki's Lesson 1 reported なん／なに
+  // as a gap although both cards were in the unit.
+  for (const item of enumerated.flatMap(splitAlternateForms).map(expandOptionalPart)) {
     const form = formOf(item.target);
     if (!form || listed.has(form)) continue;
     listed.add(form);

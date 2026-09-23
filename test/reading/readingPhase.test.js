@@ -383,3 +383,15 @@ test("a card's English comes from one reader, the table first, not every reader'
   assert.equal(byTarget["いただきます"].english, "Thank you for the meal. (before eating)");
   assert.equal(byTarget["さようなら"].english, "Good-bye");
 });
+
+test("a heading with furigana counts as read when the reader reports it without the spaces", () => {
+  // Found on the Lesson 3 run of the Genki everything conversion: 単 語 Vocabulary (parsed) against
+  // 単語 Vocabulary (reported) refused a finished response.
+  assert.deepEqual(
+    sectionsUnaccounted(
+      [{ title: "単 語 Vocabulary" }, { title: "文 法 Grammar" }],
+      [{ title: "単語 Vocabulary" }, { title: "文法　Grammar" }],
+    ),
+    [],
+  );
+});

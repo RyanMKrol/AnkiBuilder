@@ -23,6 +23,7 @@ import { CATEGORIES } from "../model/categories.js";
 import { renderBookHints } from "../corpus/bookConfig.js";
 import { runRole } from "./runRole.js";
 import { describeScheme } from "../cards/inflectionSchemes.js";
+import { sectionTitleKey } from "../corpus/chapterOutline.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 export const CHAPTER_READER_PROMPT_PATH = resolve(
@@ -64,8 +65,16 @@ export function renderChapterReaderPrompt({
  * is not tolerated is a count mismatch, because that is exactly the short read this guards.
  */
 export function assertSectionsAccountedFor(sections, reported) {
-  const want = sections.map((s) => s.title);
-  const got = (reported ?? []).map((s) => s.title);
+  // Compared on `sectionTitleKey`, not the raw string: a heading with furigana parses with a space
+  // where each reading was, and the model reports it without (src/corpus/chapterOutline.js).
+  const shown = new Map();
+  const keyOf = (title) => {
+    const key = sectionTitleKey(title);
+    if (!shown.has(key)) shown.set(key, title);
+    return key;
+  };
+  const want = sections.map((s) => keyOf(s.title));
+  const got = (reported ?? []).map((s) => keyOf(s.title));
   const tally = (list) =>
     list.reduce((acc, title) => acc.set(title, (acc.get(title) ?? 0) + 1), new Map());
   const wanted = tally(want);
@@ -74,7 +83,7 @@ export function assertSectionsAccountedFor(sections, reported) {
   const missing = [...wanted].filter(([title, n]) => (reportedTally.get(title) ?? 0) < n);
   if (missing.length) {
     throw new Error(
-      `chapter reader did not account for section(s): ${missing.map(([t]) => t).join(", ")}. ` +
+      `chapter reader did not account for section(s): ${missing.map(([t]) => shown.get(t)).join(", ")}. ` +
         `A section that taught nothing and a section nobody reached look identical otherwise, and ` +
         `this deck has lost real content to exactly that.`,
     );
@@ -86,7 +95,7 @@ export function assertSectionsAccountedFor(sections, reported) {
   // miner did to a real Lesson 17 build over a TARGET DIALOGUE heading. Reported, never fatal.
   const unaskedFor = [...reportedTally]
     .filter(([title, n]) => (wanted.get(title) ?? 0) < n)
-    .map(([title]) => title);
+    .map(([title]) => shown.get(title));
   return { reported, unaskedFor };
 }
 

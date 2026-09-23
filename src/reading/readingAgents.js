@@ -15,6 +15,7 @@ import { CATEGORIES } from "../model/categories.js";
 import { renderBookHints } from "../corpus/bookConfig.js";
 import { runRole } from "../agents/runRole.js";
 import { readingLanguageBlock } from "./readingSchemes.js";
+import { sectionTitleKey } from "../corpus/chapterOutline.js";
 
 const DOCS = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "docs"));
 export const READING_PROMPTS = Object.freeze({
@@ -125,13 +126,22 @@ export function renderReadingChapterPrompt({ chapterFilePath, sections, targetLa
   });
 }
 
-/** Headings the reader did not account for. Counted, because a chapter can repeat a heading. */
+/**
+ * Headings the reader did not account for. Counted, because a chapter can repeat a heading, and
+ * compared on `sectionTitleKey`, because a heading with furigana parses as "単 語 Vocabulary" and the
+ * reader reports "単語 Vocabulary" (the first Lesson 3 run refused a finished response over that).
+ */
 export function sectionsUnaccounted(sections, reported) {
+  const shown = new Map();
   const tally = (titles) =>
-    titles.reduce((acc, title) => acc.set(title, (acc.get(title) ?? 0) + 1), new Map());
+    titles.reduce((acc, title) => {
+      const key = sectionTitleKey(title);
+      if (!shown.has(key)) shown.set(key, title);
+      return acc.set(key, (acc.get(key) ?? 0) + 1);
+    }, new Map());
   const want = tally(sections.map((s) => s.title));
   const got = tally((reported ?? []).map((s) => s?.title));
-  return [...want].filter(([title, n]) => (got.get(title) ?? 0) < n).map(([title]) => title);
+  return [...want].filter(([key, n]) => (got.get(key) ?? 0) < n).map(([key]) => shown.get(key));
 }
 
 export function readChapterForReading({

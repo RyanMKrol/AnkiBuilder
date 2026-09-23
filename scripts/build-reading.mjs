@@ -117,7 +117,7 @@ if (dry) {
   );
   console.log("\nsteps:");
   for (const [i, step] of READING_PHASE_STEPS.entries()) {
-    const paid = step.kind === "agent" ? `  PAID (${step.role})` : "";
+    const paid = step.kind === "agent" ? `  PAID (${step.role ?? step.id})` : "";
     console.log(
       `  ${i + 1}. ${step.id.padEnd(20)} ${step.kind.padEnd(13)} ${step.artifact}${paid}`,
     );

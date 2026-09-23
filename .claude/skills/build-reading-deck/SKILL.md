@@ -48,13 +48,17 @@ $TOOL --epub <book.epub> --list-lessons      # or --book <slug> for a book alrea
 
 ## 1. Build a chapter
 
-Say the cost first: **four model calls per chapter** (three readers and the coverage adversary, all
-Sonnet), whatever the chapter's size. `--dry` shows the steps and spends nothing.
+Say the cost first: **five model calls per chapter** (three readers, the romaji correction and the
+coverage adversary, all Sonnet), whatever the chapter's size. `--dry` shows the steps and spends
+nothing.
 
 ```sh
-$TOOL --epub <book.epub> --lesson "<label or [n] from --list-lessons>" --lang ja --dry
-$TOOL --epub <book.epub> --lesson "<label or [n]>" --lang ja
+$TOOL --epub <book.epub> --lesson "<label, or n from [n] in --list-lessons>" --lang ja --dry
+$TOOL --epub <book.epub> --lesson "<label, or n>" --lang ja
 ```
+
+`--lesson` takes a piece of the label (`"Chapter 01"`) or the bare number `n`, never `[n]` with its
+brackets, which is read as label text and matches nothing.
 
 The first run registers the reading collection (`<slug>-reading`). **Ask the owner for a short deck
 name before it**, and pass it as `--deck-name "Genki I (Reading)"`: without one the Anki deck is named

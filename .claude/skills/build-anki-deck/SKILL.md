@@ -310,6 +310,10 @@ how the retired Nihongo 101 course got offered as a build target.
 
 ### A book that has never been built before
 
+**This skill builds speaking-and-listening collections only.** A reading collection
+(`output/epubs/<slug>-reading/`) belongs to `build-reading-deck`, and every script here refuses one,
+as it refuses a book converted for `everything` or `reading-writing`.
+
 **First check the pipeline can read it at all**, which is free:
 `node scripts/remaster-epub.mjs check <book>`. A PDF, or an EPUB whose pages are pictures, comes
 back `remaster`: it has to go through the [`convert-book`](../convert-book/SKILL.md) skill before

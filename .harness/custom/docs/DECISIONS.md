@@ -104,7 +104,7 @@ To list what is here: `grep '^## ' .harness/custom/docs/DECISIONS.md`
 - **Impact:** a reading collection gets its own output folder (`<slug>-reading`), its own dedup
   corpora, its own Anki parent deck (`<title> (Reading)`) and its own note type. Book facts (the EPUB,
   hints, chapter cache, conventions) stay shared. Existing collections are unchanged.
-- **Status:** decided, not built.
+- **Status:** decided; built (`src/model/deckKind.js`, `src/cli/outputPaths.js`).
 - **When to revisit:** if a third deck kind is proposed, add it to the same field rather than
   inventing a second axis.
 

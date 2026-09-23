@@ -22,6 +22,7 @@ import { BASE_PHASE_STEPS, runBasePhase } from "../src/agents/basePhase.js";
 import { loadEarlierUnitItems } from "../src/cards/earlierUnits.js";
 import { ROLES } from "../src/agents/roles.js";
 import { assertSpeakingSourceHash } from "../src/remaster/speakingSource.js";
+import { assertCollectionKind } from "../src/cli/outputPaths.js";
 
 const argv = process.argv.slice(2);
 const positional = argv.filter((a) => !a.startsWith("--"));
@@ -51,6 +52,9 @@ if (!existsSync(chapterFilePath)) {
 }
 
 try {
+  // A speaking phase never runs on a reading collection (DECISIONS.md, "A collection is a book plus
+  // a deck kind"), nor on a book converted for anything but speaking and listening.
+  assertCollectionKind(dirname(unitDir), "speaking-listening");
   assertSpeakingSourceHash(epubHash);
 } catch (err) {
   console.error(err.message);

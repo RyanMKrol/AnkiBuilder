@@ -1084,6 +1084,16 @@ with a clear error.
 
 ## Local library
 
+**A collection is a book plus a deck kind** (`src/model/deckKind.js`; DECISIONS.md). One registered
+book can carry a speaking-listening collection (`output/epubs/<slug>/`, as always) and a reading one
+(`output/epubs/<slug>-reading/`, with a `.deck-kind` file and `deckKind: "reading"` in its
+`book.json`). Book facts in the library are shared (the EPUB, hints, chapter cache, conventions);
+the dedup corpora are per kind. The library's `book.json` keeps `slug` for the speaking collection
+and records others under `slugByKind`. The kind picks the note type and the Anki parent deck
+(`<title> (Reading)`), and every speaking entry point refuses a reading collection
+(`assertCollectionKind`, `src/cli/outputPaths.js`). A marker with no `deckKind` is speaking-listening,
+so no existing file changed.
+
 All durable state that survives between runs — the ElevenLabs audio cache and the EPUB registry —
 lives inside this checkout at `.anki-builder/` (gitignored, never committed or pushed), via
 `libraryHome()` in `src/model/index.js`. There's no env-var override and nothing to configure; it's
@@ -1101,6 +1111,8 @@ always relative to the repo itself, regardless of which directory you invoke the
                                                      #   at whatever relative path their own
                                                      #   <img src> resolves to from chapters/
   epubs/<epubHash>/corpora/<chapterNumber>.json     # reviewed corpus, saved on "Mark reviewed"
+  epubs/<epubHash>/reading/corpora/<chapterNumber>.json  # the same, for the book's READING
+                                                     #   collection (its own dedup library)
   epubs/<epubHash>/conventions.md               # one-time whole-book conventions analysis
   epubs/<epubHash>/conventions.md.meta.json     # which prompt/model/effort produced it, and when
   epubs/<epubHash>/taught-index.json            # one-time whole-book taught-content index

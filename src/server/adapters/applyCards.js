@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from "fs";
 import { writeFileAtomic } from "../../util/atomicWrite.js";
-import { basename, join } from "path";
+import { basename, dirname, join } from "path";
 import { validateCards as defaultValidateCards } from "../../model/index.js";
 import {
   saveChapterCorpus as defaultSaveChapterCorpus,
@@ -8,6 +8,7 @@ import {
 } from "../../corpus/epubLibrary.js";
 import { lessonReadiness, describeReadiness } from "../../cards/readiness.js";
 import { httpError } from "../../util/httpError.js";
+import { collectionDeckKind } from "../../model/deckKind.js";
 
 // Write-back for the dashboard Corpus review — non-audio edits to cards.json (exclude a card, fix its
 // target/pronunciation/ttsText, or mark the lesson reviewed). Each is a read-modify-write targeting the
@@ -245,7 +246,14 @@ export function markCardsReviewed(
         ...(i.uncertain ? { uncertain: true } : {}),
         ...(i.aiSuggested ? { aiSuggested: true } : {}),
       }));
-    saveChapterCorpus(epubHash, chapterNumber, { meta: data.meta, items });
+    // Into THIS collection's dedup library: a reading collection's reviewed chapters go to its own
+    // corpora, never the speaking deck's (src/corpus/epubLibrary.js, corporaDir).
+    saveChapterCorpus(
+      epubHash,
+      chapterNumber,
+      { meta: data.meta, items },
+      { deckKind: collectionDeckKind(dirname(runDir)) },
+    );
   }
   return { reviewed: true };
 }
@@ -276,7 +284,9 @@ export function unmarkCardsReviewed(
 
   const { epubHash, chapterNumber } = data.meta;
   if (epubHash && chapterNumber != null && !isExtrasRunDir(runDir)) {
-    removeChapterCorpus(epubHash, chapterNumber);
+    removeChapterCorpus(epubHash, chapterNumber, {
+      deckKind: collectionDeckKind(dirname(runDir)),
+    });
   }
   return { reviewed: false };
 }

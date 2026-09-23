@@ -141,6 +141,11 @@ export function buildBookDeck(
     // `<namespace>/<card.id>` note guids for books/courses created after the namespace existed
     // (their dir marker carries it); null keeps the legacy bare-card.id guids. See rebuild.js.
     guidNamespace = null,
+    // The collection's deck kind picks the note type (src/model/deckKind.js); absent is speaking.
+    deckKind,
+    // Which cards may ship without audio by design (a reading deck's single kanji). Nothing, unless
+    // the caller says so: see assertEveryCardHasAudio.
+    isSilent,
   } = {},
 ) {
   if (!outPath) {
@@ -167,6 +172,7 @@ export function buildBookDeck(
       items: shippableCards(chapter.cards),
     })),
     `book "${bookName}"`,
+    { isSilent },
   );
   embedLanguageFont(
     chapterDecks[0]?.cards?.meta?.targetLanguage,
@@ -182,6 +188,7 @@ export function buildBookDeck(
     now,
     getFont,
     guidNamespace,
+    deckKind,
   });
 
   const zipEntries = [

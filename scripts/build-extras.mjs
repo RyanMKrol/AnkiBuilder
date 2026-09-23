@@ -22,6 +22,7 @@ import {
 import { EXTRAS_PHASE_STEPS, runExtrasPhase, extrasUnitMeta } from "../src/agents/extrasPhase.js";
 import { ROLES } from "../src/agents/roles.js";
 import { assertSpeakingSourceHash } from "../src/remaster/speakingSource.js";
+import { assertCollectionKind } from "../src/cli/outputPaths.js";
 import { parseUnitDir } from "../src/model/unitDir.js";
 import { loadEarlierUnitItems, loadEarlierTaughtItems } from "../src/cards/earlierUnits.js";
 
@@ -58,6 +59,7 @@ if (!meta.reviewed) {
 }
 
 try {
+  assertCollectionKind(dirname(baseDir), "speaking-listening");
   assertSpeakingSourceHash(meta.epubHash);
 } catch (err) {
   console.error(err.message);

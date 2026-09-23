@@ -4,7 +4,19 @@ import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { claimLiveness, claimMatches, describeClaim, readClaim, writeClaim } from "./runClaim.js";
 import { slugify } from "../util/slugify.js";
 import { getBookTitle } from "../corpus/epubArchive.js";
-import { loadBookMeta, saveBookSlug, libraryEpubPath } from "../corpus/epubLibrary.js";
+import {
+  loadBookMeta,
+  saveBookSlug,
+  bookSlugForKind,
+  libraryEpubPath,
+} from "../corpus/epubLibrary.js";
+import {
+  DEFAULT_DECK_KIND,
+  READING,
+  SPEAKING_LISTENING,
+  collectionDeckKind,
+  resolveDeckKind,
+} from "../model/deckKind.js";
 
 // Every source type lands under its own reserved top-level segment of `outputRoot`,
 // so book slugs, course slugs, and template names can never collide with each other
@@ -29,9 +41,24 @@ function epubHashMarkerPath(outputRoot, slug) {
   return join(epubsRoot(outputRoot), slug, ".epub-hash");
 }
 
-function matchesHashMarker(outputRoot, slug, epubHash) {
+// A collection folder that is not speaking-listening says so in a `.deck-kind` file written when the
+// folder is claimed, before its book.json exists. Both collections of one book carry the same
+// `.epub-hash`, so the hash alone no longer says whose folder it is (docs/designs/reading-decks/01).
+function deckKindMarkerPath(outputRoot, slug) {
+  return join(epubsRoot(outputRoot), slug, ".deck-kind");
+}
+
+function folderDeckKind(outputRoot, slug) {
+  return collectionDeckKind(join(epubsRoot(outputRoot), slug));
+}
+
+function matchesHashMarker(outputRoot, slug, epubHash, deckKind = DEFAULT_DECK_KIND) {
   const markerPath = epubHashMarkerPath(outputRoot, slug);
-  return existsSync(markerPath) && readFileSync(markerPath, "utf-8").trim() === epubHash;
+  return (
+    existsSync(markerPath) &&
+    readFileSync(markerPath, "utf-8").trim() === epubHash &&
+    folderDeckKind(outputRoot, slug) === resolveDeckKind(deckKind)
+  );
 }
 
 /**
@@ -45,18 +72,25 @@ function matchesHashMarker(outputRoot, slug, epubHash) {
  * back to a numeric suffix (`-2`, `-3`, ...) rather than a hash suffix, staying
  * human-readable.
  */
+//
+// `opts.deckKind` picks WHICH of the book's collections: speaking-listening (the default, and the only
+// kind before 2026-09-23) or reading, whose folder is `<slug>-reading` and carries a `.deck-kind`
+// marker. A collection is a book plus a deck kind (DECISIONS.md).
 export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
+  const deckKind = resolveDeckKind(opts.deckKind);
   const meta = loadBookMeta(epubHash, opts);
-  if (meta?.slug && matchesHashMarker(outputRoot, meta.slug, epubHash)) {
-    return meta.slug;
+  const known = bookSlugForKind(meta, deckKind);
+  if (known && matchesHashMarker(outputRoot, known, epubHash, deckKind)) {
+    return known;
   }
 
-  const baseSlug = slugify(getBookTitle(epubPath) || epubHash);
+  const titleSlug = slugify(getBookTitle(epubPath) || epubHash);
+  const baseSlug = deckKind === READING ? `${titleSlug}-reading` : titleSlug;
   let candidate = baseSlug;
   let suffix = 2;
   while (
     existsSync(join(epubsRoot(outputRoot), candidate)) &&
-    !matchesHashMarker(outputRoot, candidate, epubHash)
+    !matchesHashMarker(outputRoot, candidate, epubHash, deckKind)
   ) {
     candidate = `${baseSlug}-${suffix}`;
     suffix++;
@@ -72,13 +106,17 @@ export function resolveBookSlug(outputRoot, epubPath, epubHash, opts = {}) {
       break;
     } catch (err) {
       if (err.code !== "EEXIST") throw err;
-      if (matchesHashMarker(outputRoot, candidate, epubHash)) break; // ours already
+      if (matchesHashMarker(outputRoot, candidate, epubHash, deckKind)) break; // ours already
       candidate = `${baseSlug}-${suffix}`;
       suffix++;
     }
   }
+  // The kind first: a folder with a hash marker and no kind marker reads as speaking-listening.
+  if (deckKind !== SPEAKING_LISTENING) {
+    writeFileAtomic(deckKindMarkerPath(outputRoot, candidate), `${deckKind}\n`);
+  }
   writeFileAtomic(epubHashMarkerPath(outputRoot, candidate), epubHash);
-  saveBookSlug(epubHash, candidate, opts);
+  saveBookSlug(epubHash, candidate, { ...opts, deckKind });
   return candidate;
 }
 
@@ -110,7 +148,14 @@ export function loadBookMarker(bookDir) {
  * registerEpub / the audio cache), while the marker is refreshed each call so it tracks
  * the most recent build's `targetLanguage`. Returns the destination EPUB path.
  */
-export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, targetLanguage) {
+export function materializeBookInOutput(
+  outputRoot,
+  slug,
+  epubPath,
+  epubHash,
+  targetLanguage,
+  { deckKind } = {},
+) {
   const dir = join(epubsRoot(outputRoot), slug);
   mkdirSync(dir, { recursive: true });
 
@@ -133,8 +178,16 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
   // because a wiped flag and a never-set flag are the same absence. Any future manifest field a
   // human sets by hand has to be added here for the same reason.
   const markerPath = bookMarkerPath(outputRoot, slug);
+  //
+  // `deckKind` is carried forward for the same reason, and checked: a collection's kind is part of
+  // its identity (DECISIONS.md, "A collection is a book plus a deck kind"), so a speaking assemble
+  // aimed at a reading collection, or the reverse, is refused here rather than turning one into the
+  // other. The field is written only for a non-default kind, so a speaking marker keeps the exact
+  // shape it has always had.
+  const requestedKind = resolveDeckKind(deckKind);
   let guidNamespace = slug;
   let retired;
+  const existingKind = folderDeckKind(outputRoot, slug);
   if (existsSync(markerPath)) {
     try {
       const existing = JSON.parse(readFileSync(markerPath, "utf-8"));
@@ -143,6 +196,11 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
     } catch {
       guidNamespace = null;
     }
+  }
+  if (existingKind !== requestedKind) {
+    throw new Error(
+      wrongKindMessage(join(epubsRoot(outputRoot), slug), existingKind, requestedKind),
+    );
   }
 
   writeFileAtomic(
@@ -154,6 +212,7 @@ export function materializeBookInOutput(outputRoot, slug, epubPath, epubHash, ta
         epubHash,
         targetLanguage: targetLanguage || null,
         guidNamespace,
+        ...(requestedKind !== SPEAKING_LISTENING ? { deckKind: requestedKind } : {}),
         ...(retired ? { retired: true } : {}),
       },
       null,
@@ -195,6 +254,7 @@ export function listBooks(outputRoot) {
           marker?.epubHash ??
           (hasHashMarker ? readFileSync(join(dir, ".epub-hash"), "utf-8").trim() : null),
         targetLanguage: marker?.targetLanguage ?? null,
+        deckKind: folderDeckKind(outputRoot, entry.name),
         epubPath: hasOwnEpub ? ownEpub : null,
         // Carried through so callers can filter a retired book the same way they filter a retired
         // course: `listCourses` spreads the whole manifest and gets this for free, and a lister that
@@ -553,4 +613,26 @@ export function lessonNumberInUse(outputRoot, courseSlug, lessonNumber) {
     }
   }
   return false;
+}
+
+const SKILL_FOR_KIND = {
+  [SPEAKING_LISTENING]: "build-anki-deck",
+  [READING]: "build-reading-deck",
+};
+
+function wrongKindMessage(collectionDir, actual, expected) {
+  return (
+    `${collectionDir} is a ${actual} collection, and this step builds ${expected} decks. ` +
+    `A collection's kind is part of its identity; use the ${SKILL_FOR_KIND[actual]} skill for it.`
+  );
+}
+
+/**
+ * Refuses to run a step for one deck kind on a collection of another, before anything is paid for.
+ * Each skill builds only its own kind (DECISIONS.md, "A collection is a book plus a deck kind").
+ */
+export function assertCollectionKind(collectionDir, expectedKind) {
+  const actual = collectionDeckKind(collectionDir);
+  const expected = resolveDeckKind(expectedKind);
+  if (actual !== expected) throw new Error(wrongKindMessage(collectionDir, actual, expected));
 }

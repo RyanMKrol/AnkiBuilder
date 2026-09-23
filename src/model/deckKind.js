@@ -1,3 +1,6 @@
+import { existsSync, readFileSync } from "fs";
+import { join } from "path";
+
 // What a collection's deck is FOR. A collection is identified by its book AND its deck kind (owner
 // ruling 2026-09-23, DECISIONS.md "A collection is a book plus a deck kind"), so one book file can
 // carry a speaking-and-listening deck and a reading deck without their folders, dedup corpora, Anki
@@ -31,3 +34,18 @@ export function deckKindOf(marker) {
 }
 
 export const isReadingKind = (kind) => resolveDeckKind(kind) === READING;
+
+/**
+ * The deck kind of the collection at `collectionDir` (a book or course folder): its `.deck-kind`
+ * file, written when a non-default collection's folder is claimed and before its marker exists, or
+ * else its book.json / course.json marker. Speaking-listening when neither says otherwise.
+ */
+export function collectionDeckKind(collectionDir) {
+  const kindPath = join(collectionDir, ".deck-kind");
+  if (existsSync(kindPath)) return resolveDeckKind(readFileSync(kindPath, "utf-8").trim());
+  for (const name of ["book.json", "course.json"]) {
+    const path = join(collectionDir, name);
+    if (existsSync(path)) return deckKindOf(JSON.parse(readFileSync(path, "utf-8")));
+  }
+  return DEFAULT_DECK_KIND;
+}

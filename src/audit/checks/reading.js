@@ -114,24 +114,47 @@ export const readingSingleCharacterCheck = readingCheck({
   scope: "unit",
   tier: "FAIL",
   /**
-   * A single kana or letter is never a card (card rules 5); a single character is one only when the
-   * language plugin cards characters and this is one it cards (card rules 4).
+   * A single character is a card only when the language plugin cards characters and this is one it
+   * cards (card rules 4). A single kana is judged by reading-single-kana instead: it is right as a
+   * word (に "Two") and wrong as a letter, and the card does not record which.
    */
   run({ unit }) {
     const scheme = readingScheme(unitLanguage(unit));
     const findings = [];
     for (const item of shipped(unit)) {
       const target = String(item.target ?? "").trim();
-      if (chars(target).length !== 1) continue;
+      if (chars(target).length !== 1 || scheme?.isSingleLetter?.(target)) continue;
       const allowed = scheme?.characterCards && scheme.isCharacterTarget(target);
       if (!allowed) {
         findings.push({
           key: item.id,
-          message: `${item.id} "${target}" is a single ${scheme?.isSingleLetter?.(target) ? "kana" : "character"} this deck does not card`,
+          message: `${item.id} "${target}" is a single character this deck does not card`,
         });
       }
     }
     return { findings, summary: "every single-character card is one the language cards" };
+  },
+});
+
+export const readingSingleKanaCheck = readingCheck({
+  id: "reading-single-kana",
+  title: "single-kana cards",
+  scope: "unit",
+  tier: "ACK",
+  /**
+   * A single kana is a card only as a word the book teaches with its own meaning (に "Two"), never as
+   * a letter of the syllabary (card rules 5, owner ruling 2026-09-24). The merge keeps only the ones
+   * a reader called a word, but the card does not carry that, so each is confirmed by a person.
+   */
+  run({ unit }) {
+    const scheme = readingScheme(unitLanguage(unit));
+    const findings = shipped(unit)
+      .filter((item) => scheme?.isSingleLetter?.(String(item.target ?? "").trim()))
+      .map((item) => ({
+        key: item.id,
+        message: `${item.id} "${item.target}" (${item.english}) is a single kana: right as a word, wrong as a letter`,
+      }));
+    return { findings, summary: "no single-kana card" };
   },
 });
 
@@ -305,6 +328,7 @@ export const READING_CHECKS = [
   readingFrontCheck,
   readingLatinCheck,
   readingSingleCharacterCheck,
+  readingSingleKanaCheck,
   readingLengthCheck,
   readingReadingCheck,
   readingKanjiSpellingCheck,

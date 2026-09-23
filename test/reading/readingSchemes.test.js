@@ -64,7 +64,7 @@ test("the prompt block carries the Japanese rules only for Japanese", () => {
   const ja = readingLanguageBlock("ja");
   assert.match(ja, /kanji spelling/);
   assert.match(ja, /COPIED from the book/);
-  assert.match(ja, /Never a single hiragana or katakana/);
+  assert.match(ja, /single hiragana or katakana is a card only when the book teaches it as a word/);
   const other = readingLanguageBlock("fr");
   assert.doesNotMatch(other, /kanji/i);
   assert.match(other, /no character cards/);

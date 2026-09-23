@@ -1776,7 +1776,7 @@ and a coverage adversary that never sees the corpus and whose gaps are a set dif
 The merge (`reconcileReading`) is where the reading rules the code can see are enforced: one card per
 written form (English joined, two readings noted), a kana word printed with an optional ending in
 brackets (`おやすみ(なさい)`) is carded as the full form, the word wins over a single character, no
-single kana, a character card carries no reading, and a written form already carded earlier in the
+kana taught as a letter (a kana a reader calls a word, like に "Two", is kept), a character card carries no reading, and a written form already carded earlier in the
 collection is dropped. Every drop is in `reading-report.json` with its reason. There is no `prepare`:
 the phase writes `corpus.json` and `cards.json` itself (`meta.phase: "reading"`, which the readiness
 gate accepts with no speaking passes), and the card id is `r-<sha1 of the written form>`, stable
@@ -1794,7 +1794,7 @@ the collection has been delivered).
 
 Preflight knows a collection's kind (`collection.deckKind`, `src/audit/units.js`). A reading
 collection runs the reading checks (`src/audit/checks/reading.js`: the front gives nothing away, one
-card per written form, no single kana, word-sized, kanji words carry a kana reading, the kanji
+card per written form, single kana acknowledged as words, word-sized, kanji words carry a kana reading, the kanji
 spelling was used, English present, silent cards stay silent) and skips the speaking-only ones listed
 in `src/audit/checks/index.js`, reporting which it skipped. A speaking collection runs no reading
 check.

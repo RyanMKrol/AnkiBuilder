@@ -249,7 +249,16 @@ export function defaultClipFilename(item, languageCode, opts = {}) {
 
 export async function generateAudio(
   cards,
-  { voiceId, fetchTts = null, libraryHomeDir = null, model = TTS_MODEL, trim = undefined } = {},
+  {
+    voiceId,
+    fetchTts = null,
+    libraryHomeDir = null,
+    model = TTS_MODEL,
+    trim = undefined,
+    // Cards with no audio BY DESIGN (a reading deck's single kanji; src/reading/readingSchemes.js).
+    // Treated like an excluded card here: no TTS is spent and any clip is cleared.
+    isSilent = () => false,
+  } = {},
 ) {
   if (!voiceId) {
     throw new Error("voiceId is required");
@@ -308,7 +317,7 @@ export async function generateAudio(
   const handPicked = (item) => item.audio && !isStageOwnedCard(item);
   const uniqueTerms = new Set();
   for (const item of cards.items) {
-    if (item.excluded || handPicked(item)) continue;
+    if (item.excluded || isSilent(item) || handPicked(item)) continue;
     uniqueTerms.add(defaultTextFor(item));
   }
   const fetchedFiles = await fetchTermsToCache(uniqueTerms, audioDir, fetchCtx);
@@ -316,7 +325,7 @@ export async function generateAudio(
   const annotatedCards = {
     ...cards,
     items: cards.items.map((item) => {
-      if (item.excluded) {
+      if (item.excluded || isSilent(item)) {
         const rest = { ...item };
         for (const field of AUDIO_FIELDS) delete rest[field];
         return rest;

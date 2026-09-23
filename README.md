@@ -640,8 +640,10 @@ What is built, newest last:
   type (`AnkiBuilder <lang> Reading`, one template, its own id), which the `.apkg` builder writes
   one card per note for, and collection identity: a collection is a book plus a deck kind, so one
   book carries a speaking and a reading collection with separate folders, dedup corpora, Anki
-  parent decks and note types. The reading extraction, its checks and the `build-reading-deck`
-  skill are not built yet.
+  parent decks and note types. The reading card rules (`docs/card-rules-reading.md`) and the
+  Japanese reading plugin (`src/reading/readingSchemes.js`: the kanji spelling is the card, single
+  kanji are carded without audio, kanji words carry a kana reading for the audio) are built. The
+  reading extraction, its checks and the `build-reading-deck` skill are not built yet.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

@@ -373,8 +373,35 @@ const NO_CARD_RULES = {
     "would invite it to edit the book",
 };
 
+// A READING prompt (`reading-*-prompt.md`, docs/designs/reading-decks/) carries the reading rules
+// and never the speaking ones, and no other prompt carries the reading rules. The speaking rules are
+// about scenes, hints and a Production card a reading deck does not have; the reading rules would
+// tell a speaking pass to drop its grammar cards.
+const isReadingPrompt = (name) => name.startsWith("reading-");
+
+test("reading prompts carry the reading rules, and only reading prompts do", () => {
+  for (const name of readdirSync(DOCS).filter((n) => n.endsWith("-prompt.md"))) {
+    const text = readFileSync(join(DOCS, name), "utf-8");
+    const carriesReading = text.includes("{{READING_CARD_RULES}}");
+    if (isReadingPrompt(name)) {
+      assert.ok(
+        carriesReading,
+        `${name} is a reading prompt and must carry {{READING_CARD_RULES}}`,
+      );
+      assert.ok(!text.includes("{{CARD_RULES}}"), `${name} must not carry the speaking rules`);
+    } else {
+      assert.ok(
+        !carriesReading,
+        `${name} is not a reading prompt and must not carry reading rules`,
+      );
+    }
+  }
+});
+
 test("every prompt either carries the shared card rules or is classified as not needing them", () => {
-  const prompts = readdirSync(DOCS).filter((name) => name.endsWith("-prompt.md"));
+  const prompts = readdirSync(DOCS).filter(
+    (name) => name.endsWith("-prompt.md") && !isReadingPrompt(name),
+  );
   assert.ok(prompts.length > 15, "sanity: the prompt set was found");
 
   for (const name of prompts) {

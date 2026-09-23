@@ -1,6 +1,12 @@
 # 05 The Japanese reading plugin
 
-Depends on: 02 (the audio exemption lives there). Lands with 04. Status: not built.
+Depends on: 02 (the audio exemption lives there). Lands with 04. Status: built (branch
+`feat/reading-rules-japanese`), `src/reading/readingSchemes.js`, tested in
+`test/reading/readingSchemes.test.js`. The silent predicate is wired into the book deck build,
+delivery's audio check and the audio stage (`isSilent`), and the prompt block is
+`readingLanguageBlock`. One refinement found while building it: "silent" is decided from the target
+AND the absence of a reading, not the target alone, because rule 4's exception (a single kanji taught
+as a word) is the same one character carrying a reading, and it must be voiced.
 
 ## Why a plugin
 

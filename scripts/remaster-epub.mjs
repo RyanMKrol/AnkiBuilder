@@ -28,6 +28,9 @@
 // converted and names the result; page transcripts are shared, so a second purpose only pays for
 // the pages the first did not cover.
 //
+// `settle` exits 1 when it STOPPED (a usage limit: re-run it), and 3 when it finished with pages
+// that need a person (an unsettled page builds from reading A, so the next stage can go ahead).
+//
 // `check` is free and read-only. `ocr` is free (Apple Vision, local). `outline` is one text-only
 // model call. `transcribe` is one vision call per page and is the only step that costs real
 // money at scale, so it only ever runs on the pages you name.
@@ -67,7 +70,12 @@ import {
 import { crossCheckPage } from "../src/remaster/ocrCrossCheck.js";
 import { buildRemasteredEpub } from "../src/remaster/epubWriter.js";
 import { transcribeWithRetries } from "../src/remaster/transcribeRetry.js";
-import { settlePage, renderSettlePrompt } from "../src/remaster/settle.js";
+import {
+  settlePage,
+  renderSettlePrompt,
+  settleQueue,
+  settleExitCode,
+} from "../src/remaster/settle.js";
 import { renderAuditPrompt, parseAudit, applyCorrections } from "../src/remaster/auditFlags.js";
 import { attachFigureImages, sipsCropper, imageSize } from "../src/remaster/figureCrops.js";
 import { verifyRemasteredEpub, formatVerification } from "../src/remaster/verifyRemaster.js";
@@ -1055,9 +1063,16 @@ Object.assign(commands, {
       chapters: chapters.map((c) => c.label),
       ...settlePin,
     });
-    const queue = chapters
-      .flatMap((chapter) => pageRange(chapter))
-      .filter((n) => force || !existsSync(join(paths.settled, `${pageFileStem(n)}.xhtml`)));
+    const { queue, alreadyUnsettled } = settleQueue(
+      chapters.flatMap((chapter) => pageRange(chapter)),
+      paths.settled,
+      pageFileStem,
+      { force },
+    );
+    tally.unsettled += alreadyUnsettled.length;
+    for (const n of alreadyUnsettled) {
+      log(`  page ${n}: unsettled in an earlier run (the build uses reading A); --force to retry`);
+    }
     const worker = async () => {
       while (queue.length) {
         const number = queue.shift();
@@ -1148,7 +1163,8 @@ Object.assign(commands, {
       log(`STOPPED: ${stopped}`);
       log("Settled pages are kept. Re-run the same command once the limit resets.");
     }
-    if (stopped || tally.unsettled || tally.skipped) process.exitCode = 1;
+    // Two outcomes, two exit codes, so an unattended chain can tell them apart (settleExitCode).
+    process.exitCode = settleExitCode({ stopped, ...tally }) || process.exitCode;
   },
 
   // Reads a built EPUB back against the outline. With no --entry it expects the WHOLE book, which

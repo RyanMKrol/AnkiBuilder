@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from "fs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { renderPromptTemplate } from "../util/promptTemplate.js";
@@ -127,4 +128,35 @@ export async function settlePage({ pageNumber, readingA, readingB, prompt, run }
     differences: comparison.differences,
     problems,
   };
+}
+
+/**
+ * Which pages a settle run sends to the adjudicator, and which an earlier run already judged
+ * unsettled. A settled page (`<stem>.xhtml`) is done; a page whose record says `unsettled` has a
+ * verdict on disk, and sending it again pays for the same answer (Genki's page 256 was re-adjudicated
+ * by every settle run until this). `force` sends everything.
+ */
+export function settleQueue(pageNumbers, settledDir, stem, { force = false } = {}) {
+  if (force) return { queue: [...pageNumbers], alreadyUnsettled: [] };
+  const judgedUnsettled = (n) => {
+    const recordPath = join(settledDir, `${stem(n)}.json`);
+    if (!existsSync(recordPath)) return false;
+    try {
+      return JSON.parse(readFileSync(recordPath, "utf-8")).source === "unsettled";
+    } catch {
+      return false;
+    }
+  };
+  const alreadyUnsettled = pageNumbers.filter(judgedUnsettled);
+  const queue = pageNumbers.filter(
+    (n) => !existsSync(join(settledDir, `${stem(n)}.xhtml`)) && !alreadyUnsettled.includes(n),
+  );
+  return { queue, alreadyUnsettled };
+}
+
+/** Settle's exit code: 1 when the run stopped (re-run it), 3 when it finished with pages that need a
+ * person (an unsettled page builds from reading A, so the next stage can go ahead), else 0. */
+export function settleExitCode({ stopped, unsettled, skipped }) {
+  if (stopped) return 1;
+  return unsettled || skipped ? 3 : 0;
 }

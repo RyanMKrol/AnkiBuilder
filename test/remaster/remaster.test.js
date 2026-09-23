@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync, readFileSync, existsSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
+import { settleQueue, settleExitCode } from "../../src/remaster/settle.js";
 import { Buffer } from "buffer";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
 import { readZip } from "../../src/deck/zip.js";
@@ -831,4 +832,23 @@ test("every call is logged in full, including one that throws, and the journal p
       ],
     );
   });
+});
+
+test("settle does not re-send a page an earlier run judged unsettled, and says so by exit code", () => {
+  const dir = mkdtempSync(join(tmpdir(), "settle-queue-"));
+  try {
+    const stem = (n) => `page-${String(n).padStart(3, "0")}`;
+    writeFileSync(join(dir, `${stem(1)}.xhtml`), "<page/>");
+    writeFileSync(join(dir, `${stem(1)}.json`), JSON.stringify({ source: "settled" }));
+    writeFileSync(join(dir, `${stem(2)}.json`), JSON.stringify({ source: "unsettled" }));
+    const { queue, alreadyUnsettled } = settleQueue([1, 2, 3], dir, stem);
+    assert.deepEqual(queue, [3]);
+    assert.deepEqual(alreadyUnsettled, [2]);
+    assert.deepEqual(settleQueue([1, 2, 3], dir, stem, { force: true }).queue, [1, 2, 3]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+  assert.equal(settleExitCode({ stopped: "limit", unsettled: 1, skipped: 0 }), 1);
+  assert.equal(settleExitCode({ stopped: null, unsettled: 1, skipped: 0 }), 3);
+  assert.equal(settleExitCode({ stopped: null, unsettled: 0, skipped: 0 }), 0);
 });

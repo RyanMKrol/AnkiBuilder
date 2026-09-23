@@ -113,6 +113,12 @@ What to expect, and what to do:
   **Never reword the prompt to get past a refusal.**
 - **A usage-limit refusal stops the run.** Everything finished is kept; re-run the same command once
   the limit resets and it picks up where it stopped.
+- **`settle` has two failure exits.** Exit 1 means it STOPPED (a usage limit): re-run it. Exit 3
+  means it FINISHED and some pages could not be settled: those build from reading A, so the chain
+  can go on to the build, and the pages are for the owner to look at. A page already judged
+  unsettled is not sent again on a re-run (`--force` retries it), so re-running costs nothing for
+  it. In a `&&` chain, let settle's 3 through: `settle … ; [ $? -eq 0 -o $? -eq 3 ] && build …`
+  would lose the first `$?`, so capture it: `settle …; s=$?; [ $s -eq 0 -o $s -eq 3 ] && build …`.
 - **A page that fails all its attempts** is listed at the end. Tell the owner. The build will refuse
   its chapter until it has a transcript, or until they accept a placeholder (`--allow-missing`, which
   embeds the page image instead).

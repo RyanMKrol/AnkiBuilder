@@ -43,7 +43,10 @@ speaking-and-listening deck and never come into this one.
 ## What an item may contain
 
 - `target`: the written form exactly as the book prints it, and nothing else. No reading in brackets,
-  no furigana, no romaji, no punctuation the book did not print, no sentence-ending punctuation.
+  no furigana, no romaji. Leave off the full stop a book prints after a phrase (おはよう。 is the card
+  おはよう), and, in a language written without spaces, the spaces a beginners' book puts between
+  words (おはよう ございます is おはようございます). Keep a question mark that belongs to the phrase.
 - `english`: as above.
 - `reading`: only where the language rules ask for one, copied from the book, never worked out.
-- Nothing else: no scene, hint, category, note or pronunciation. The card has nowhere to show them.
+- `category`: one of the categories the prompt lists. It groups the review and is never shown.
+- Nothing else: no scene, hint, note or pronunciation. The card has nowhere to show them.

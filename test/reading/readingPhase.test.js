@@ -320,3 +320,38 @@ test("earlier units of the same collection count as already carded", () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("the book's full stop and a beginners' book's spaces never make a second card", () => {
+  // Found on the first live run (Genki's Greetings): the table reader copied おはよう。 and the chapter
+  // reader おはよう ございます, and the merge made two cards of each phrase.
+  const { items } = reconcileReading(
+    [
+      [
+        {
+          target: "おはようございます。",
+          english: "Good morning.",
+          kind: "phrase",
+          producedBy: "t",
+        },
+        {
+          target: "すみません。",
+          english: "Excuse me.; I'm sorry.",
+          kind: "phrase",
+          producedBy: "t",
+        },
+      ],
+      [
+        { target: "おはよう ございます", english: "Good morning", kind: "phrase", producedBy: "c" },
+        { target: "お元気ですか？", english: "How are you?", kind: "phrase", producedBy: "c" },
+      ],
+    ],
+    { targetLanguage: "ja" },
+  );
+  const byTarget = Object.fromEntries(items.map((i) => [i.target, i]));
+  assert.deepEqual(
+    Object.keys(byTarget).sort(),
+    ["おはようございます", "お元気ですか？", "すみません"].sort(),
+  );
+  assert.equal(byTarget["おはようございます"].english, "Good morning.");
+  assert.equal(byTarget["すみません"].english, "Excuse me; I'm sorry");
+});

@@ -18,7 +18,9 @@ process and no visual surface.
 - **How to build a deck with it** (the operator procedure, and the file most worth reading
   before touching anything user-facing): `.claude/skills/build-anki-deck/SKILL.md`, which is
   normative for procedure. A book that has never been built goes through
-  `.claude/skills/onboard-epub/SKILL.md` first. `docs/PIPELINE.md` covers how the code is wired.
+  `.claude/skills/onboard-epub/SKILL.md` first, and a book the pipeline cannot read at all (a PDF,
+  or an EPUB whose pages are pictures) goes through `.claude/skills/convert-book/SKILL.md` before
+  that. `docs/PIPELINE.md` covers how the code is wired.
 - **What's planned:** `.harness/tracking/IDEAS.jsonl` is the zero-ceremony inbox for anything not
   yet thought through, and a larger piece of work gets a design doc under `docs/designs/`. There is
   no limitations log; see golden rule 5 for where a correction goes instead.

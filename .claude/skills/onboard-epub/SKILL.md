@@ -39,11 +39,10 @@ node scripts/remaster-epub.mjs check <path/to/book.epub>
 Free and read-only. It gives one verdict:
 
 - **`native`**: carry on with step 1.
-- **`remaster`**: the book's pages are pictures (a PDF converted to EPUB is the usual cause), so
-  there is no text for anything below to read. **Stop onboarding here.** Converting it is a
-  separate procedure that spends money, one vision call per page, so tell the user what the check
-  found and let them decide. The procedure and what it costs are in
-  `docs/designs/image-epub-remaster.md` and the `remaster` section of `docs/PIPELINE.md`. Once the
+- **`remaster`**: the book's pages are pictures (a PDF, or a PDF converted to EPUB), so there is no
+  text for anything below to read. **Stop onboarding here** and run the
+  [`convert-book`](../convert-book/SKILL.md) skill, which is the whole procedure. It spends money,
+  about two vision calls per page, so it asks the user before each paid step. Once the
   book has been converted, onboard the EPUB the conversion writes, never the original, and only
   after `node scripts/remaster-epub.mjs verify <original.epub> --book <converted.epub>` passes
   for the whole book. Step 1's probe cannot tell a complete conversion from one missing a lesson.

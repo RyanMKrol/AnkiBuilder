@@ -285,3 +285,32 @@ test("the reading audio review plays every voiced card, including the ones spoke
   assert.match(html, /<audio src="a.mp3">/);
   assert.equal((html.match(/title="silent by design">none</g) ?? []).length, 1);
 });
+
+test("a reading deck is flat: one deck per chapter under the book, in book order", async () => {
+  const { unitDeckSegments, groupingSegments } = await import("../../src/deck/deckPath.js");
+  assert.deepEqual(unitDeckSegments("Chapter 2: Greetings", { deckKind: "reading" }), [
+    "Chapter 02: Greetings",
+  ]);
+  assert.deepEqual(groupingSegments(["Chapter 02: Greetings"], { deckKind: "reading" }), []);
+  // The speaking layout is unchanged.
+  assert.deepEqual(unitDeckSegments("Chapter 02: Greetings"), ["Chapter 02", "Greetings"]);
+
+  const bytes = buildMultiDeckCollection(
+    [
+      { name: "Chapter 02: Greetings", cards: readingCards() },
+      { name: "Chapter 06: Lesson 3: Making a Date", cards: { ...readingCards(), items: [] } },
+    ],
+    { bookName: "Genki I (Reading)", now: 1_700_000_000_000, getFont: noFont, deckKind: "reading" },
+  );
+  withTempDb(bytes, (db) => {
+    const names = Object.values(JSON.parse(db.prepare("SELECT decks FROM col").get().decks))
+      .map((d) => d.name)
+      .sort();
+    assert.deepEqual(names, [
+      "Default",
+      "Genki I (Reading)",
+      "Genki I (Reading)::Chapter 02: Greetings",
+      "Genki I (Reading)::Chapter 06: Lesson 3: Making a Date",
+    ]);
+  });
+});

@@ -93,6 +93,11 @@ export function resolveBookName(
   epubHash,
   { loadBookMeta, loadCourseMeta, bookNameFallback = null } = {},
 ) {
+  // A name the owner chose for this collection wins (`deckName` on its marker; set by
+  // setCollectionDeckName before the first delivery). A converted book's own title can run to
+  // "GENKI: An Integrated Course … [Third Edition] 初級日本語げんき[第3版] (everything)".
+  const chosen = readMarkerField(bookDir, "deckName");
+  if (typeof chosen === "string" && chosen.trim()) return chosen.trim();
   const bookMeta = epubHash ? loadBookMeta?.(epubHash) : loadCourseMeta?.(bookDir);
   const name = bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
   // A book's reading collection shares its title with the speaking one, so its Anki parent deck is
@@ -222,4 +227,17 @@ function runDirGuidNamespace(runDir) {
   // different namespaces — and therefore different guids for the same deck, which is the exact
   // failure the namespace exists to prevent.
   return deckIdentityForDir(resolve(runDir));
+}
+
+function readMarkerField(bookDir, field) {
+  for (const marker of ["book.json", "course.json"]) {
+    const markerPath = join(bookDir, marker);
+    if (!existsSync(markerPath)) continue;
+    try {
+      return readJson(markerPath)[field];
+    } catch {
+      return undefined;
+    }
+  }
+  return undefined;
 }

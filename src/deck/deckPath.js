@@ -45,10 +45,19 @@ const padLessonNumber = (digits) => digits.padStart(2, "0");
 /**
  * `["Lesson 01", "Meeting: Nice to Meet You"]` for a grouped label, else `["<label>"]`.
  * Segments are returned raw; the caller sanitizes them for its own target.
+ *
+ * A READING collection (`deckKind: "reading"`) is flat: one deck per chapter, `Chapter 02: Greetings`,
+ * straight under the book. The grouping level exists so a speaking lesson and its extras unit sit
+ * together, and a reading deck has no extras, so the level only added a click per chapter (owner,
+ * on first seeing the reading deck in Anki, 2026-09-23). The number is still padded so the decks
+ * sort in book order. The speaking layout is unchanged: it is baked into a live collection.
  */
-export function unitDeckSegments(label) {
+export function unitDeckSegments(label, { deckKind } = {}) {
   const text = String(label ?? "").trim();
   const m = GROUPED_LABEL.exec(text);
+  if (deckKind === "reading") {
+    return [m ? `${m[1]} ${padLessonNumber(m[2])}: ${m[3]}` : text];
+  }
   if (m) return [`${m[1]} ${padLessonNumber(m[2])}`, m[3]];
   const bare = BARE_NUMBERED_LABEL.exec(text);
   return bare ? [`${bare[1]} ${padLessonNumber(bare[2])}`] : [text];
@@ -58,10 +67,10 @@ export function unitDeckSegments(label) {
  * Every grouping deck implied by a set of labels — the decks that must exist to nest under but which
  * hold no cards of their own. Returned in the order first seen.
  */
-export function groupingSegments(labels) {
+export function groupingSegments(labels, { deckKind } = {}) {
   const groups = [];
   for (const label of labels) {
-    const segs = unitDeckSegments(label);
+    const segs = unitDeckSegments(label, { deckKind });
     if (segs.length > 1 && !groups.includes(segs[0])) groups.push(segs[0]);
   }
   return groups;

@@ -196,3 +196,32 @@ test("a step for one kind refuses a collection of the other", () => {
     assert.throws(() => assertCollectionKind(dir, "speaking-listening"), /build-reading-deck/);
   });
 });
+
+test("a reading collection can carry a short deck name, kept on refresh, and fixed once delivered", async () => {
+  const { setCollectionDeckName } = await import("../../src/cli/outputPaths.js");
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerBook(sourceDir, libraryHomeDir);
+    const reading = resolveBookSlug(outputRoot, epubPath, epubHash, {
+      libraryHomeDir,
+      deckKind: "reading",
+    });
+    materializeBookInOutput(outputRoot, reading, epubPath, epubHash, "ja", { deckKind: "reading" });
+    const dir = join(outputRoot, "epubs", reading);
+    const loadMeta = (hash) => loadBookMeta(hash, { libraryHomeDir });
+
+    assert.deepEqual(setCollectionDeckName(dir, "Genki I (Reading)"), {
+      changed: true,
+      deckName: "Genki I (Reading)",
+    });
+    assert.equal(resolveBookName(dir, epubHash, { loadBookMeta: loadMeta }), "Genki I (Reading)");
+    // A refresh of the marker keeps the owner's name.
+    materializeBookInOutput(outputRoot, reading, epubPath, epubHash, "ja", { deckKind: "reading" });
+    assert.equal(readJson(join(dir, "book.json")).deckName, "Genki I (Reading)");
+    assert.throws(() => setCollectionDeckName(dir, "A::B"), /no "::"/);
+
+    // Once delivered, the name is how the deck is found again, so it is not changed here.
+    writeFileSync(join(dir, "anki-delivered.json"), "{}");
+    assert.throws(() => setCollectionDeckName(dir, "Genki (Reading)"), /already been delivered/);
+    assert.equal(setCollectionDeckName(dir, "Genki I (Reading)").changed, false);
+  });
+});

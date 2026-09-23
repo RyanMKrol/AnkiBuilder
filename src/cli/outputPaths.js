@@ -187,12 +187,16 @@ export function materializeBookInOutput(
   const requestedKind = resolveDeckKind(deckKind);
   let guidNamespace = slug;
   let retired;
+  // An owner-chosen deck name (setCollectionDeckName) is a human-set field, and this function
+  // rewrites the marker whole, so it is carried forward like `retired`.
+  let deckName;
   const existingKind = folderDeckKind(outputRoot, slug);
   if (existsSync(markerPath)) {
     try {
       const existing = JSON.parse(readFileSync(markerPath, "utf-8"));
       guidNamespace = existing.guidNamespace ?? null;
       if (existing.retired === true) retired = true;
+      if (typeof existing.deckName === "string") deckName = existing.deckName;
     } catch {
       guidNamespace = null;
     }
@@ -213,6 +217,7 @@ export function materializeBookInOutput(
         targetLanguage: targetLanguage || null,
         guidNamespace,
         ...(requestedKind !== SPEAKING_LISTENING ? { deckKind: requestedKind } : {}),
+        ...(deckName ? { deckName } : {}),
         ...(retired ? { retired: true } : {}),
       },
       null,
@@ -635,4 +640,32 @@ export function assertCollectionKind(collectionDir, expectedKind) {
   const actual = collectionDeckKind(collectionDir);
   const expected = resolveDeckKind(expectedKind);
   if (actual !== expected) throw new Error(wrongKindMessage(collectionDir, actual, expected));
+}
+
+/**
+ * Sets the Anki parent-deck name a collection is filed under, in place of its book's own title
+ * (src/deck/rebuild.js, resolveBookName). Refused once the collection has been delivered: the
+ * delivered deck is found in Anki by this name, so renaming it here would make the next delivery
+ * look for a deck that is not there (the rename guard in src/anki/deliver.js). Renaming a delivered
+ * deck is a migration, done in Anki and here together.
+ */
+export function setCollectionDeckName(collectionDir, deckName) {
+  const name = String(deckName ?? "").trim();
+  if (!name || name.includes("::")) {
+    throw new Error(
+      `a deck name must be non-empty and contain no "::" (got ${JSON.stringify(deckName)})`,
+    );
+  }
+  const markerPath = join(collectionDir, "book.json");
+  if (!existsSync(markerPath)) throw new Error(`${collectionDir} has no book.json marker`);
+  const marker = JSON.parse(readFileSync(markerPath, "utf-8"));
+  if (marker.deckName === name) return { changed: false, deckName: name };
+  if (existsSync(join(collectionDir, "anki-delivered.json"))) {
+    throw new Error(
+      `${collectionDir} has already been delivered to Anki as "${marker.deckName ?? marker.title}". ` +
+        `Renaming it here would break the next delivery; rename the deck in Anki and here together.`,
+    );
+  }
+  writeFileAtomic(markerPath, `${JSON.stringify({ ...marker, deckName: name }, null, 2)}\n`);
+  return { changed: true, deckName: name };
 }

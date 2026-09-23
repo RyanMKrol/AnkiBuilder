@@ -56,7 +56,15 @@ $TOOL --epub <book.epub> --lesson "<label or [n] from --list-lessons>" --lang ja
 $TOOL --epub <book.epub> --lesson "<label or [n]>" --lang ja
 ```
 
-The first run registers the reading collection (`<slug>-reading`). The run prints:
+The first run registers the reading collection (`<slug>-reading`). **Ask the owner for a short deck
+name before it**, and pass it as `--deck-name "Genki I (Reading)"`: without one the Anki deck is named
+after the book's own title, which for a converted book runs to "GENKI: An Integrated Course … [Third
+Edition] 初級日本語げんき[第3版] (everything) (Reading)". It can be given on any later run too, until
+the collection is first delivered; after that the name is how delivery finds the deck, and changing
+it is a migration. Each chapter is one deck straight under that name (`Chapter 06: Lesson 3: Making a
+Date`): a reading deck has no extras, so it has no grouping level.
+
+The run prints:
 
 - the number of cards written;
 - **what the rules left out**, with the reason for each (`reading-report.json` has the full list):
@@ -119,7 +127,8 @@ anki-builder deck --book-dir output/epubs/<slug>-reading
 node scripts/preflight.mjs output/epubs/<slug>-reading
 ```
 
-The package's parent deck is `<book title> (Reading)` and its notes use the note type
+The package's parent deck is the collection's deck name (or `<book title> (Reading)` if none was
+set), each chapter a deck directly beneath it, and its notes use the note type
 `AnkiBuilder <lang> Reading`, one card each. **Delivery is the owner's step**, exactly as for a
 speaking deck (`node scripts/deliver-to-anki.mjs --dry`, then without `--dry`). The first delivery
 of any reading deck creates the reading note type; the dry run says `createModel`. Whether creating a

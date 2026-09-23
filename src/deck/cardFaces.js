@@ -112,7 +112,13 @@ export function renderCardFacesBlock(card = EXAMPLE_CARD) {
 // back, and a single kanji, which is silent because a kanji alone has no one pronunciation. Both are
 // shown because the difference between them is the thing a reading pass most needs to see.
 const READING_EXAMPLE_CARDS = [
-  { Target: "映画", English: "Movie", Reading: "えいが", Audio: "[sound:example.mp3]" },
+  {
+    Target: "映画",
+    English: "Movie",
+    Pronunciation: "eiga",
+    Reading: "えいが",
+    Audio: "[sound:example.mp3]",
+  },
   { Target: "日", English: "Day; sun", Audio: "" },
 ];
 
@@ -137,7 +143,8 @@ export function renderReadingCardFacesBlock(cards = READING_EXAMPLE_CARDS) {
     "```",
     "",
     "The front shows `target` alone, so `target` must never contain the answer: no reading in",
-    "brackets, no furigana, no romaji. The reading you record is used only to make the audio, which",
-    "plays when the card is turned; it is never shown. A single kanji has no audio at all.",
+    "brackets, no furigana, no romaji. The back shows the written form, the English, the romaji and",
+    "plays the audio. The reading you record is never shown: the romaji and the audio are made from",
+    "it, which is why it must be copied from the book. A single kanji has no romaji and no audio.",
   ].join("\n");
 }

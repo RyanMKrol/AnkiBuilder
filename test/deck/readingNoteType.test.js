@@ -56,8 +56,14 @@ test("the reading front is the written form alone: no audio, no scene, no catego
   assert.deepEqual(reading.qfmt.match(/\{\{[^}]+\}\}/g), ["{{Target}}"]);
   assert.match(reading.afmt, /\{\{English\}\}/);
   assert.match(reading.afmt, /\{\{#Audio\}\}.*\{\{Audio\}\}.*\{\{\/Audio\}\}/s);
-  // The owner's decision: the back is the English and the audio, and nothing that gives the reading.
-  for (const hidden of ["Pronunciation", "Reading", "Note", "Hint", "Scene", "Category"]) {
+  // The owner's decision (2026-09-23 evening): the back is the written form, the English, the romaji
+  // and the audio, in that order, and never the kana reading.
+  const at = (tag) => reading.afmt.indexOf(tag);
+  assert.ok(at("{{FrontSide}}") < at("{{English}}"));
+  assert.ok(at("{{English}}") < at("{{Pronunciation}}"));
+  assert.ok(at("{{Pronunciation}}") < at("{{Audio}}"));
+  assert.match(reading.afmt, /\{\{#Pronunciation\}\}/);
+  for (const hidden of ["Reading", "Note", "Hint", "Scene", "Category"]) {
     assert.doesNotMatch(reading.afmt, new RegExp(`\\{\\{[#/]?${hidden}\\}\\}`), hidden);
   }
 });

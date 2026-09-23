@@ -1,6 +1,6 @@
 ---
 name: build-reading-deck
-description: Build a READING deck from a book, one chapter at a time. Each card shows the word as the book writes it on a silent front, with the English and the audio on the back; for Japanese, single kanji get meaning-only cards with no audio. Separate from build-anki-deck, which builds speaking and listening decks. Use when the owner asks for reading cards, a reading deck, or kanji recognition cards for a book.
+description: Build a READING deck from a book, one chapter at a time. Each card shows the word as the book writes it on a silent front, with the English, the romaji and the audio on the back; for Japanese, single kanji get meaning-only cards with no audio. Separate from build-anki-deck, which builds speaking and listening decks. Use when the owner asks for reading cards, a reading deck, or kanji recognition cards for a book.
 ---
 
 # Build a reading deck
@@ -12,8 +12,9 @@ agents and checks. The design, the owner's decisions and what each piece does ar
 This file is normative for the procedure.
 
 **What a card is.** The front is the written form exactly as the book prints it (`映画`), nothing
-else, and silent. The back is the English and the audio. No kana, no romaji, no note. For Japanese, a
-kanji the book teaches as a character gets its own card with its meaning and **no audio** (a kanji
+else, and silent. The back is the written form, the English, the romaji and the audio, so you can
+check you read it right as well as understood it. No kana reading and no note. For Japanese, a
+kanji the book teaches as a character gets its own card with its meaning and **no romaji or audio** (a kanji
 alone has no one pronunciation), and every word containing kanji carries its kana reading, copied
 from the book, which drives the audio and is never shown. What earns a card is in
 `docs/card-rules-reading.md`; the Japanese behaviour is `src/reading/readingSchemes.js`.

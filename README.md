@@ -635,8 +635,8 @@ What is built, newest last:
   procedure is the `convert-book` skill and the results are in
   `docs/designs/image-epub-remaster.md`
 - [~] Reading decks (in progress; design and build order in `docs/designs/reading-decks/`). A
-  second deck kind whose card shows the written form alone on a silent front, with the English and
-  the audio on the back. Built so far: the `everything` conversion purpose, and the reading note
+  second deck kind whose card shows the written form alone on a silent front, with the English, the
+  romaji and the audio on the back. Built so far: the `everything` conversion purpose, and the reading note
   type (`AnkiBuilder <lang> Reading`, one template, its own id), which the `.apkg` builder writes
   one card per note for, and collection identity: a collection is a book plus a deck kind, so one
   book carries a speaking and a reading collection with separate folders, dedup corpora, Anki

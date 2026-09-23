@@ -935,7 +935,7 @@ Three rules make the record trustworthy rather than decorative:
 **Two note types per language.** A speaking collection's notes use `AnkiBuilder <lang>` (Recognition
 and Production, two cards per note). A reading collection's use `AnkiBuilder <lang> Reading`
 (`READING_TEMPLATES`, `src/deck/cardTemplates.js`): one card per note, the written form alone on the
-front, English and audio on the back. The builder writes as many card rows per note as the note type
+front, English, romaji and audio on the back. The builder writes as many card rows per note as the note type
 has templates, and the model's `req` comes from each template's `requiredField`. Design:
 `docs/designs/reading-decks/02-reading-note-type.md`.
 

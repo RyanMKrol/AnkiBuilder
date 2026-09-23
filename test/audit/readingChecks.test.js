@@ -150,7 +150,7 @@ test("a reading collection skips the speaking checks and says which", () => {
   try {
     const { results } = audit({ outputRoot: root, checks: ALL_CHECKS });
     const ran = new Set(results.map((r) => r.id));
-    for (const speaking of ["collisions", "production-length", "romaji-style"]) {
+    for (const speaking of ["collisions", "production-length", "near-siblings"]) {
       assert.ok(!ran.has(speaking), `${speaking} should not run on a reading collection`);
     }
     const skipped = results.find((r) => r.id === "reading-skipped-speaking-checks");

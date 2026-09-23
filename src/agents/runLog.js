@@ -139,9 +139,21 @@ export function currentRunLogDir() {
 export function withRunLogDir(dir, fn) {
   const previous = ambientLogDir;
   ambientLogDir = dir;
+  let result;
   try {
-    return fn();
-  } finally {
+    result = fn();
+  } catch (error) {
     ambientLogDir = previous;
+    throw error;
   }
+  // An async phase (the reading phase romanises through an async library) keeps the scope until its
+  // promise settles, the way withClaim keeps its claim; restoring it on return would log every agent
+  // call after the first await to the wrong place.
+  if (result && typeof result.then === "function") {
+    return result.finally(() => {
+      ambientLogDir = previous;
+    });
+  }
+  ambientLogDir = previous;
+  return result;
 }

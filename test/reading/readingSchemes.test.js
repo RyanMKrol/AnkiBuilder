@@ -115,3 +115,39 @@ test("a reading prompt gets the reading rules injected; a speaking one never ask
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("reading romaji comes from the kana reading, reuses what is cached, and skips a silent card", async () => {
+  const { romanizeReadingItems } = await import("../../src/reading/readingRomaji.js");
+  const prompts = [];
+  // The correction pass is a model call, faked; the library (kuroshiro) is real and local. On kana
+  // alone the library splits えいが as "e iga", which is exactly what the correction pass is for, as
+  // it is for the speaking decks.
+  const runClaude = (prompt) => {
+    prompts.push(prompt);
+    return JSON.stringify([{ id: "eiga", pronunciation: "eiga" }]);
+  };
+  const result = await romanizeReadingItems(
+    [
+      { id: "eiga", target: "映画", ttsText: "えいが", english: "Movie" },
+      { id: "hi", target: "日", english: "Day; sun" },
+      { id: "kohii", target: "コーヒー", english: "Coffee" },
+    ],
+    {
+      targetLanguage: "ja",
+      isSilent: silentCardPredicate({ targetLanguage: "ja", deckKind: "reading" }),
+      cached: { kohii: "kōhī" },
+      runClaude,
+    },
+  );
+  const byId = Object.fromEntries(result.items.map((i) => [i.id, i.pronunciation]));
+  assert.equal(byId.eiga, "eiga");
+  assert.equal(byId.hi, "");
+  assert.equal(byId.kohii, "kōhī");
+  assert.equal(result.reused, 1);
+  assert.deepEqual(
+    result.romanized.map((r) => r.id),
+    ["eiga"],
+  );
+  assert.equal(prompts.length, 1);
+  assert.match(prompts[0], /えいが/);
+});

@@ -241,6 +241,26 @@ export const readingEnglishCheck = readingCheck({
   },
 });
 
+export const readingRomajiCheck = readingCheck({
+  id: "reading-romaji",
+  title: "every voiced card has its romaji",
+  scope: "unit",
+  tier: "FAIL",
+  /**
+   * The back shows the romaji (owner decision, 2026-09-23 evening), so a card with audio and no romaji
+   * leaves the learner unable to check how they read it. A silent character card has none by design.
+   */
+  run({ unit }) {
+    const scheme = readingScheme(unitLanguage(unit));
+    const findings = shipped(unit)
+      .filter(
+        (item) => !isSilentReadingCard(item, scheme) && !String(item.pronunciation ?? "").trim(),
+      )
+      .map((item) => ({ key: item.id, message: `${item.id} "${item.target}" has no romaji` }));
+    return { findings, summary: "every voiced card carries its romaji" };
+  },
+});
+
 export const readingSilentCheck = readingCheck({
   id: "reading-silent",
   title: "silent cards stay silent",
@@ -289,6 +309,7 @@ export const READING_CHECKS = [
   readingReadingCheck,
   readingKanjiSpellingCheck,
   readingEnglishCheck,
+  readingRomajiCheck,
   readingSilentCheck,
   readingOneCardPerFrontCheck,
 ];

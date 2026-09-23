@@ -12,8 +12,9 @@ A second note type per language, `AnkiBuilder ja Reading`, with one template:
 
 - front (`qfmt`): `{{Target}}`, nothing else. Not `{{Scene}}`, not `{{Category}}`, not `{{Audio}}`.
 - back (`afmt`): `{{FrontSide}}`, the answer divider, `{{English}}`, then
-  `{{#Audio}}...{{Audio}}...{{/Audio}}`, so a card with no audio (a kanji card, see 05) renders no
-  empty block and no dead play button.
+  `{{#Pronunciation}}...{{/Pronunciation}}` (the romaji, added on the owner's first look at the
+  cards) and `{{#Audio}}...{{Audio}}...{{/Audio}}`, so a card with no romaji or audio (a kanji card,
+  see 05) renders no empty block and no dead play button.
 
 It keeps the ten fields every AnkiBuilder note has (`src/deck/noteFields.js`), so every builder,
 checker and the dashboard keep reading the same shape. `Reading` stays on the note and feeds TTS

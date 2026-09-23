@@ -43,10 +43,13 @@ because of the Production card, and a reading deck has none.
 
 ## What the back shows
 
-- A word or phrase: the English and the audio. The audio is spoken from the word's reading when the
-  language plugin requires one (05), otherwise from the word itself.
-- A character: the English only. No audio, no readings.
-- Never: a kana reading, romaji, or the `Note` field. In the speaking decks `Note` carries usage and
+- A word or phrase: the written form, the English, the romaji and the audio. The romaji and the
+  audio are made from the word's reading when the language plugin requires one (05), otherwise from
+  the word itself. (Owner decision, 2026-09-23 evening: reading is for speaking too, so the back lets
+  the learner check they read the word right, not only that they understood it. The first design had
+  no romaji.)
+- A character: the English only. No romaji, no audio, no readings.
+- Never: the kana reading, or the `Note` field. In the speaking decks `Note` carries usage and
   grammar remarks ("polite form of ...", "used with に"), which are about saying a word, not reading
   it.
 

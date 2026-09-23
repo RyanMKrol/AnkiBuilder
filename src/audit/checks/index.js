@@ -29,6 +29,40 @@ import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "
 import { noteClaimsCheck } from "./noteClaims.js";
 import { drillFrameCheck } from "./drillShape.js";
 import { passLedgerCheck } from "./passLedger.js";
+import { READING_CHECKS, readingSkippedChecks } from "./reading.js";
+import { isReadingKind } from "../../model/deckKind.js";
+
+// Checks that exist because of the SPEAKING deck: its Production card (collision cues, the production
+// face length, answerable-alone), its romanisation, its drills and extras, its note pass, and its
+// library bookkeeping. A reading collection (docs/designs/reading-decks/07) does not run them, and
+// the reading checks below say which were skipped rather than letting "not run" read as "passed".
+const SPEAKING_ONLY = [
+  collisionsCheck,
+  romajiStyleCheck,
+  inlineRomanizationCheck,
+  answerableAloneCheck,
+  productionLengthCheck,
+  nearSiblingsCheck,
+  noteClaimsCheck,
+  drillFrameCheck,
+  vocabCoverageCheck,
+  taughtNeverUsedCheck,
+  baseSplitCheck,
+  extrasLibraryWriteCheck,
+  libraryCompletenessCheck,
+  duplicatesCheck,
+];
+const SPEAKING_ONLY_IDS = new Set(SPEAKING_ONLY.map((check) => check.id));
+
+/** A speaking-only check, made to skip a reading collection. */
+function forSpeaking(check) {
+  if (!SPEAKING_ONLY_IDS.has(check.id)) return check;
+  return {
+    ...check,
+    appliesTo: (collection, workspace) =>
+      !isReadingKind(collection?.deckKind) && check.appliesTo(collection, workspace),
+  };
+}
 
 /**
  * Every check, in report order.
@@ -45,7 +79,7 @@ import { passLedgerCheck } from "./passLedger.js";
  * workspace-scope check may iterate collections to apply PER-COLLECTION logic, but it must never
  * compare one collection's cards against another's.
  */
-export const ALL_CHECKS = [
+const SPEAKING_AND_SHARED_CHECKS = [
   passLedgerCheck,
   // unit scope
   schemaCheck,
@@ -83,6 +117,12 @@ export const ALL_CHECKS = [
   templateExemptionsCheck,
   unmatchedDirsCheck,
   // workspace scope: none, on purpose. See the isolation note above.
+];
+
+export const ALL_CHECKS = [
+  ...SPEAKING_AND_SHARED_CHECKS.map(forSpeaking),
+  ...READING_CHECKS,
+  readingSkippedChecks([...SPEAKING_ONLY_IDS]),
 ];
 
 /** The subset `validate-decks` folds into: schema validation only, across every unit shape. */

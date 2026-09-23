@@ -644,8 +644,9 @@ What is built, newest last:
   Japanese reading plugin (`src/reading/readingSchemes.js`: the kanji spelling is the card, single
   kanji are carded without audio, kanji words carry a kana reading for the audio) are built. The
   reading extraction is built (`scripts/build-reading.mjs`: three reading agents, a merge that
-  enforces the rules, a coverage adversary). Its checks and the `build-reading-deck` skill are not
-  built yet.
+  enforces the rules, a coverage adversary), and so are its preflight checks
+  (`src/audit/checks/reading.js`; a reading collection skips the speaking-only checks and says
+  which). The `build-reading-deck` skill is not built yet.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

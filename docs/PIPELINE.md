@@ -1782,6 +1782,13 @@ gate accepts with no speaking passes), and the card id is `r-<sha1 of the writte
 across rebuilds. Each agent step reuses its artifact if one is already on disk, so a stop costs only
 the step that was running. `--dry` spends nothing.
 
+Preflight knows a collection's kind (`collection.deckKind`, `src/audit/units.js`). A reading
+collection runs the reading checks (`src/audit/checks/reading.js`: the front gives nothing away, one
+card per written form, no single kana, word-sized, kanji words carry a kana reading, the kanji
+spelling was used, English present, silent cards stay silent) and skips the speaking-only ones listed
+in `src/audit/checks/index.js`, reporting which it skipped. A speaking collection runs no reading
+check.
+
 ### Phase 1 as one ordered script
 
 `node scripts/build-base.mjs <unitDir> <epubHash> <n> --lang <code>` takes a chapter to a reviewable

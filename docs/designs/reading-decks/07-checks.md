@@ -1,6 +1,11 @@
 # 07 Checks
 
-Depends on: 04, 05 and 06. Status: not built.
+Depends on: 04, 05 and 06. Status: built (branch `feat/reading-checks`): `src/audit/checks/reading.js`,
+tested in `test/audit/readingChecks.test.js`. Check 2 is split in two: furigana, a bracketed reading
+and sentence punctuation FAIL (`reading-front`), and Latin letters are an ACK (`reading-latin`),
+because Japanese writes some words with them (Ｔシャツ). Check 10 is the existing `audio-files`
+check, which now exempts a silent card; check 12 is `reading-skipped-speaking-checks`. The
+speaking-only list lives in `src/audit/checks/index.js`.
 
 A rule in prose is a hope, so each rule in 04 and 05 that code can see becomes a check. All of them
 run on one reading collection at a time; none reads another collection. They run in preflight, and

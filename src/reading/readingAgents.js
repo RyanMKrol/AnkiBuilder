@@ -144,6 +144,19 @@ export function sectionsUnaccounted(sections, reported) {
   return [...want].filter(([key, n]) => (got.get(key) ?? 0) < n).map(([key]) => shown.get(key));
 }
 
+/**
+ * The headings the chapter reader must report. A converted book opens every chapter with its own
+ * title as the one level-1 heading ("Chapter 03: Numbers") and puts everything under level-2
+ * headings beneath it. That title is not a section: on Genki's Numbers the reader reported all five
+ * real sections and 37 items, left the title out, and the whole paid response was refused. A title
+ * with nothing under it is still a section and must be reported.
+ */
+export function sectionsToAccountFor(sections) {
+  const [first, ...rest] = sections;
+  const wrapsChapter = first?.level === 1 && rest.length > 0 && rest.every((s) => s.level > 1);
+  return wrapsChapter ? rest : sections;
+}
+
 export function readChapterForReading({
   chapterFilePath,
   sections = [],
@@ -161,7 +174,7 @@ export function readChapterForReading({
     runRole("readingChapterReader", prompt, runClaude ? { runClaude } : {}),
     "the reading chapter reader",
   );
-  const missing = sectionsUnaccounted(sections, parsed.sections);
+  const missing = sectionsUnaccounted(sectionsToAccountFor(sections), parsed.sections);
   if (missing.length) {
     throw new Error(
       `the reading chapter reader did not account for section(s): ${missing.join(", ")}. A section ` +

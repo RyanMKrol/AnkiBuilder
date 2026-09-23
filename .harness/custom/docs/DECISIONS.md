@@ -69,7 +69,10 @@ To list what is here: `grep '^## ' .harness/custom/docs/DECISIONS.md`
   end; the purpose changes only which study units the selection agent recommends, and it goes into the
   converted book's title and identity. Each purpose's converted book is a separate collection, so the
   two are never deduplicated against each other (the collection-isolation rule applies unchanged).
-  There is no "everything" purpose. Owner ruling, 2026-09-21.
+  Owner ruling, 2026-09-21. **Amended 2026-09-23:** a third purpose, `everything`, keeps every study
+  unit, so a reading deck can be built from the whole book (`docs/designs/reading-decks/03-everything-conversion.md`).
+  The speaking pipeline refuses an `everything` or `reading-writing` book, which keeps the original
+  reason below enforced as a check rather than by the purpose not existing.
 - **Why:** the deck pipeline builds listening and speaking decks: vocabulary, phrases and grammar with
   audio. Reading and writing is a different skill with different cards (a character's meaning and
   readings, a known word's written form), and for Japanese it is large and ongoing. Genki showed what
@@ -94,7 +97,7 @@ To list what is here: `grep '^## ' .harness/custom/docs/DECISIONS.md`
   the kind: `build-anki-deck` builds speaking-listening collections, `build-reading-deck` builds
   reading ones, and neither builds the other's. A conversion's purpose (previous entry) is only how a
   book is ingested and is not the deck kind: Genki's reading deck is built from its speaking-listening
-  conversion. Owner ruling, 2026-09-23. Design: `docs/designs/reading-decks.md`.
+  conversion. Owner ruling, 2026-09-23. Design: `docs/designs/reading-decks/`.
 - **Why:** identified by book alone, a reading deck built from the same file would share the speaking
   deck's folder and dedup corpora, and every reading card would look already taught. Putting the kind
   in the identity keeps the two apart by construction, with nothing comparing them.

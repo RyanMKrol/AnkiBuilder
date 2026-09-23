@@ -247,6 +247,9 @@ For the full command reference (every flag, every source type), see the skill's
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   so re-runs don't redo expensive work. The audio cache, the extracted chapters and the extracted
   images are gitignored; the dedup corpora and the two cached LLM artifacts are not (see below).
+  A book being converted from page images keeps its work in `.anki-builder/remaster/<hash>/`, which
+  is gitignored in full and must stay that way: its transcripts are a book's text, and this
+  repository is public.
 - **The hand-reviewed JSON is version-controlled.** `output/` and `.anki-builder/` are mostly
   gitignored, but the files that hold human review are deliberately tracked: every `cards.json`,
   `corpus.json`, `book.json`, `course.json`, `anki-delivered.json` and `.preflight-accepted.json`
@@ -619,6 +622,16 @@ What is built, newest last:
       prompt and be unknown to the next. Chapters 0-16 keep their v1 conventions and are not
       rewritten; that is a stated non-goal. Design and acceptance criteria:
       `docs/designs/v2-goals-2026-09.md`
+- [~] Books of page images (prototype). `node scripts/remaster-epub.mjs check <book.epub>` says
+  whether the pipeline can read a book (`native`, `remaster` or `blocked`). A `remaster` book,
+  such as a PDF converted to EPUB, is rebuilt as a text EPUB: Apple Vision OCR, one outline
+  call that rebuilds the table of contents, an agent that recommends which units are worth
+  converting (the owner decides), one Claude vision call per page, an OCR cross-check, a second
+  reading settled against the first by Opus, figures cut out of the page images, and an end-to-end
+  `verify`, then an ordinary EPUB that onboards like any other. A PDF is a source too: its pages
+  are rendered and it joins the same path. Genki I is converted whole (14 chapters, 265 pages) and
+  its first chapter is built; the procedure is the `convert-book` skill and the results are in
+  `docs/designs/image-epub-remaster.md`
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

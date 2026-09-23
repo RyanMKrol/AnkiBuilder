@@ -20,14 +20,24 @@ function withEnv(overrides, fn) {
     if (value === undefined) delete process.env[key];
     else process.env[key] = value;
   }
-  try {
-    return fn();
-  } finally {
+  const restore = () => {
     for (const [key, value] of Object.entries(saved)) {
       if (value === undefined) delete process.env[key];
       else process.env[key] = value;
     }
+  };
+  let result;
+  try {
+    result = fn();
+  } catch (error) {
+    restore();
+    throw error;
   }
+  // An async test keeps the overrides until it settles. Restoring synchronously put the env back
+  // at the test's first await, so a second call after it ran without them.
+  if (result && typeof result.then === "function") return result.finally(restore);
+  restore();
+  return result;
 }
 
 const ok = (stdout = "OK") => ({ status: 0, stdout, stderr: "" });
@@ -392,6 +402,36 @@ test("a quota refusal stops the run instead of retrying, and stops the NEXT call
       /usage limit appears to be reached/,
     );
     assert.equal(laterSpawns, 0, "the rest of the run does not spawn");
+    resetQuotaState();
+  });
+});
+
+test("async: a quota refusal is not retried, and stops every later call in the run", async () => {
+  await withEnv({}, async () => {
+    resetQuotaState();
+    let spawns = 0;
+    await assert.rejects(
+      () =>
+        runClaudeWithPromptAsync("p", {
+          spawnImpl: () => {
+            spawns++;
+            return fakeChild({ code: 1, stdout: "You've hit your session limit · resets 3am" });
+          },
+        }),
+      /usage limit appears to be reached/,
+    );
+    assert.equal(spawns, 1, "no retry is spent on a quota refusal");
+    await assert.rejects(
+      () =>
+        runClaudeWithPromptAsync("p", {
+          spawnImpl: () => {
+            spawns++;
+            return fakeChild({ stdout: "ok" });
+          },
+        }),
+      /usage limit appears to be reached/,
+    );
+    assert.equal(spawns, 1, "the next page does not spawn at all");
     resetQuotaState();
   });
 });

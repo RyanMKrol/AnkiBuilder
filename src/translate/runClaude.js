@@ -1,4 +1,8 @@
-import { runClaudeWithPrompt, runClaudeWithPromptAsync } from "../util/runClaude.js";
+import {
+  runClaudeWithPrompt,
+  runClaudeWithPromptAsync,
+  registerPinFamily,
+} from "../util/runClaude.js";
 
 /**
  * The translate-family runners — one per pass, not one for the family.
@@ -26,6 +30,13 @@ export const TRANSLATE_PASS_PINS = Object.freeze({
   NUMBER_READINGS: { model: "claude-sonnet-5", effort: "medium" },
   CROSS_LESSON: { model: "claude-sonnet-5", effort: "medium", timeoutMs: 20 * 60 * 1000 },
   KANJI: { model: "claude-sonnet-5", effort: "medium" },
+});
+
+registerPinFamily({
+  family: "translate",
+  pins: TRANSLATE_PASS_PINS,
+  prefixesFor: (scope) =>
+    scope === "FAMILY" ? [FAMILY_PREFIX] : [`ANKI_BUILDER_${scope}`, FAMILY_PREFIX],
 });
 
 function translateRunner(scope, defaults = {}) {

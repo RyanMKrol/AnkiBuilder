@@ -1,4 +1,4 @@
-import { runClaudeWithPrompt } from "../util/runClaude.js";
+import { runClaudeWithPrompt, registerPinFamily } from "../util/runClaude.js";
 
 /**
  * The EPUB-family runners — one per pass, not one for the family.
@@ -36,6 +36,15 @@ export const EPUB_PASS_PINS = Object.freeze({
   SORT: { model: "claude-sonnet-5", effort: "medium" },
   FILL_BLANK: { model: "claude-sonnet-5", effort: "medium" },
   FAMILY: { model: "claude-sonnet-5", effort: "medium" },
+});
+
+// Resolved with exactly the prefixes each runner below uses, so the runner's pin-order check sees
+// what the calls will see. FAMILY is the scope-less runner.
+registerPinFamily({
+  family: "epub",
+  pins: EPUB_PASS_PINS,
+  prefixesFor: (scope) =>
+    scope === "FAMILY" ? [FAMILY_PREFIX] : [`ANKI_BUILDER_${scope}`, FAMILY_PREFIX],
 });
 
 function epubRunner(scope, defaults = {}) {

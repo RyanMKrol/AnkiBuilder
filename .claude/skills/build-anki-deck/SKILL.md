@@ -310,7 +310,12 @@ how the retired Nihongo 101 course got offered as a build target.
 
 ### A book that has never been built before
 
-**Run the [`onboard-epub`](../onboard-epub/SKILL.md) skill first, before its first chapter.** It
+**First check the pipeline can read it at all**, which is free:
+`node scripts/remaster-epub.mjs check <book>`. A PDF, or an EPUB whose pages are pictures, comes
+back `remaster`: it has to go through the [`convert-book`](../convert-book/SKILL.md) skill before
+anything below, and that skill ends by handing the converted book to onboarding.
+
+**Then run the [`onboard-epub`](../onboard-epub/SKILL.md) skill, before its first chapter.** It
 surveys the archive, works out where this publisher's markup differs from the last one's, and drafts
 the book's `hints` for a human to commit. The whole survey is free and read-only.
 

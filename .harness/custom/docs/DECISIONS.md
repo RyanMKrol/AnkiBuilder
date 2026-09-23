@@ -38,6 +38,54 @@ To list what is here: `grep '^## ' .harness/custom/docs/DECISIONS.md`
 - **When to revisit:** if a second book's labels don't match the convention, replace the regex with an
   explicit `meta.deckGroup` field rather than widening the pattern.
 
+## Converted books number their study units as chapters
+
+- **What:** every book converted from page images (`scripts/remaster-epub.mjs`) labels its study units
+  `Chapter NN: <the book's own name for the unit>`, numbered in page order, zero-padded:
+  `Chapter 06: Lesson 1: New Friends`, `Chapter 18: Reading and Writing 1: Hiragana`. Front and back
+  matter (cover, preface, contents, indexes) stay in the outline as a record and are left out of the
+  converted EPUB. The numbers are assigned in code (`numberChapters`, `src/remaster/outline.js`), never
+  by a model. Owner ruling, 2026-09-21, for all books going forward.
+- **Why:** one rule has to cover any book, however it names its own parts. Genki has two numbered
+  sequences (Lesson 1 to 12 and Reading and Writing 1 to 12); left as they were, the second fell outside
+  the deck grouping and sorted "10" between "1" and "2". `Chapter N: Title` already matches
+  `unitDeckSegments`, so this needed no change to the deck contract above (the regex was not widened).
+  Leaving front and back matter out makes a chapter's number, its `--lesson` ordinal and its spine
+  position the same number, and stops an index from posing as a "later chapter" to the forward-flag
+  check. The book's own name stays in the label because its exercises and cross-references use it.
+- **Impact:** chapters follow page order, not a book's suggested study order. Genki means Reading and
+  Writing N to be studied beside Lesson N; here Hiragana is Chapter 18, after the twelve conversation
+  lessons. Studying decks in another order in Anki is unaffected. Output folders (`chapter-N`) are still
+  numbered by build order, as they are for every book, so they need not match.
+- **Status:** decided
+- **When to revisit:** if a book's study order matters enough that page order misleads, add a
+  study-order field the outline reads from the book and a person confirms, rather than renumbering by
+  hand.
+
+## A conversion has a purpose, and each purpose is its own collection
+
+- **What:** a book converted from page images is converted FOR a purpose: `speaking-listening` (the
+  default) or `reading-writing` (`src/remaster/purpose.js`). The conversion pipeline is shared end to
+  end; the purpose changes only which study units the selection agent recommends, and it goes into the
+  converted book's title and identity. Each purpose's converted book is a separate collection, so the
+  two are never deduplicated against each other (the collection-isolation rule applies unchanged).
+  There is no "everything" purpose. Owner ruling, 2026-09-21.
+- **Why:** the deck pipeline builds listening and speaking decks: vocabulary, phrases and grammar with
+  audio. Reading and writing is a different skill with different cards (a character's meaning and
+  readings, a known word's written form), and for Japanese it is large and ongoing. Genki showed what
+  happens when the two are mixed: its kanji lessons teach the written form of words the conversation
+  lessons already taught, so the backward dedup flagged nearly every kanji card as "already taught".
+  Separate collections remove that conflict by design instead of patching the dedup. An "everything"
+  purpose would feed the kanji units straight back into the speaking pipeline.
+- **Impact:** page transcripts are shared by every purpose, so converting a book for a second purpose
+  only pays for the pages the first did not cover. No deck pipeline builds reading-and-writing cards
+  yet; the converter says so when that purpose is used. For most scripts, reading is a one-off
+  alphabet deck (a template, not a book); only languages written with characters need an ongoing
+  character track.
+- **Status:** decided
+- **When to revisit:** when a reading-and-writing deck pipeline is designed, or if a book's two skills
+  cannot be separated by unit.
+
 ## Scene cues on ambiguous single-word cards partially reveal the answer (by design)
 
 - **What:** the `Scene` field renders on the front of BOTH card directions. For sentence cards a

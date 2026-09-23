@@ -5,6 +5,7 @@ import {
   parseHeadings,
   parseNumberedBlocks,
   countImages,
+  plainText,
 } from "../../src/corpus/chapterOutline.js";
 
 test("parseHeadings reads a title nested inside other tags", () => {
@@ -114,4 +115,22 @@ test("a chapter with no headings at all still reports its size and images", () =
   assert.deepEqual(sections, []);
   assert.ok(chars > 0);
   assert.equal(images, 1);
+});
+
+test("plainText drops furigana, so a ruby headword reads as the word itself", () => {
+  assert.equal(plainText("<td><ruby>アメリカ<rt>あめりか</rt></ruby></td>"), "アメリカ");
+  assert.equal(
+    plainText("<h2><ruby>表現<rt>ひょうげん</rt></ruby>ノート (Expression Notes)</h2>"),
+    "表現 ノート (Expression Notes)",
+  );
+});
+
+test("plainText decodes numeric character references, so a heading matches what an agent read", () => {
+  // A converted page wrote "Class Activity&#8212;Meeting someone"; the chapter reader reported the
+  // heading with a real em dash, and the section came back unaccounted for.
+  assert.equal(
+    plainText("<h4>B. Class Activity&#8212;Meeting someone</h4>"),
+    "B. Class Activity—Meeting someone",
+  );
+  assert.equal(plainText("<td>Mary&#8217;s&#160;book &#x2192; here</td>"), "Mary’s book → here");
 });

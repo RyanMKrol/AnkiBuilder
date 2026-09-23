@@ -22,14 +22,30 @@
 // reported as a bonus and never as the backbone: an empty `groups` must read as "this book does not
 // number things", never as "there is nothing to read".
 
-/** Tags stripped, entities folded, whitespace collapsed. */
+/**
+ * Tags stripped, entities folded, whitespace collapsed. Furigana (`<rt>`) is dropped with its tag,
+ * the same rule the nav label decoder applies (epubArchive.js), so 日本<rt>にほん</rt> reads 日本
+ * and not 日本 にほん. No book built before 2026-09 carried ruby; a remastered page-image book
+ * (src/remaster/) marks every reading this way, and a vocabulary headword that read
+ * "アメリカ あめりか" would never match its card.
+ */
 export function plainText(html) {
-  return String(html)
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&#160;|&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/\s+/g, " ")
-    .trim();
+  return (
+    String(html)
+      .replace(/<rt\b[^>]*>[\s\S]*?<\/rt>/gi, "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&#160;|&nbsp;/g, " ")
+      // Numeric character references are the characters they name. Without this a heading reads
+      // "Class Activity&#8212;Meeting someone" and never matches the same heading read by an agent,
+      // which is how a section came back unaccounted for on the first converted book.
+      .replace(/&#(x[0-9a-fA-F]+|\d+);/g, (whole, digits) => {
+        const code = digits[0] === "x" ? parseInt(digits.slice(1), 16) : Number(digits);
+        return Number.isFinite(code) && code >= 32 ? String.fromCodePoint(code) : whole;
+      })
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
 }
 
 /**

@@ -282,6 +282,39 @@ const TEMPLATES = {
     ],
     outputContract: /"pronunciation"/,
   },
+  "remaster-outline-prompt.md": {
+    placeholders: ["BOOK_TITLE", "PAGE_COUNT", "FRONT_PAGES", "FRONT_TEXT", "MARGINS"],
+    // parseOutline (src/remaster/outline.js) reads exactly these fields.
+    outputContract: /"entries"[\s\S]*"firstPage"[\s\S]*"lastPage"/,
+  },
+  "remaster-audit-prompt.md": {
+    placeholders: ["IMAGE_PATH", "BOOK_TITLE", "PAGE_NUMBER", "DISAGREEMENTS", "TRANSCRIPT"],
+    // parseAudit and applyCorrections (src/remaster/auditFlags.js) read exactly these.
+    outputContract: /"verdict"[\s\S]*"corrections"[\s\S]*"find"[\s\S]*"replace"/,
+  },
+  "remaster-select-prompt.md": {
+    placeholders: ["BOOK_TITLE", "PURPOSE", "PURPOSE_CRITERIA", "UNITS"],
+    // parseSelection (src/remaster/selection.js) reads exactly these fields.
+    outputContract: /"units"[\s\S]*"recommendation"[\s\S]*"category"[\s\S]*"overlapsWith"/,
+  },
+  "remaster-settle-prompt.md": {
+    placeholders: [
+      "IMAGE_PATH",
+      "BOOK_TITLE",
+      "PAGE_NUMBER",
+      "DIFFERENCES",
+      "READING_A",
+      "READING_B",
+    ],
+    // settlePage parses one <page> element, like the transcriber.
+    outputContract: /<page number="\{\{PAGE_NUMBER\}\}"/,
+  },
+  "remaster-page-prompt.md": {
+    placeholders: ["IMAGE_PATH", "BOOK_TITLE", "PAGE_NUMBER", "PAGE_COUNT", "ENTRY_LABEL"],
+    // parsePageReply (src/remaster/pageTranscribe.js) looks for one <page> element, and the
+    // cross-check separates furigana by its <rt>.
+    outputContract: /^(?=[\s\S]*<page number="\{\{PAGE_NUMBER\}\}")(?=[\s\S]*<rt>)/,
+  },
 };
 
 for (const [file, contract] of Object.entries(TEMPLATES)) {
@@ -327,6 +360,17 @@ const NO_CARD_RULES = {
   "epub-forward-flag-prompt.md": "flags items as possibly premature; it never edits card content",
   "epub-forward-flag-index-prompt.md": "the same pass, reading the taught index instead",
   "pedagogical-sort-prompt.md": "a permutation of items that already exist; it writes no field",
+  "remaster-outline-prompt.md": "rebuilds a book's table of contents from OCR; it sees no card",
+  "remaster-select-prompt.md":
+    "recommends which of a book's units to convert at all; it writes no card and sees none",
+  "remaster-audit-prompt.md":
+    "judges a page transcript against the page image, upstream of any card; it corrects spans of " +
+    "a book's own text and never authors content",
+  "remaster-settle-prompt.md":
+    "decides between two transcriptions of one page, upstream of any card, for the same reason",
+  "remaster-page-prompt.md":
+    "transcribes a page picture verbatim into XHTML, upstream of any card; card rules there " +
+    "would invite it to edit the book",
 };
 
 test("every prompt either carries the shared card rules or is classified as not needing them", () => {

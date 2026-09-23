@@ -184,6 +184,103 @@ this pipeline is proven on.
 Warnings are advisory, never a gate — every one of them describes a book that still builds, just
 not the way its own table of contents suggests. Run the probe before spending a pass on a new book.
 
+### Books of page images: eligibility and the remaster
+
+The shape report's warnings are advisory, which is right for a book with a few thin chapters and
+wrong for a book with no text at all. A PDF run through Calibre's "PDF Reflow" becomes an EPUB of
+page pictures with a one-entry table of contents: it parses, warns twice, and would build every page
+as one lesson. `src/corpus/epubEligibility.js` reads the same shape report and gives one verdict:
+`native` (build it), `remaster` (under 20 characters of text per image across at least 10 images)
+or `blocked` (with the reason). Run it with `node scripts/remaster-epub.mjs check <book.epub>`.
+
+**A PDF is also a source.** The pipeline reads EPUBs, so a PDF is never `native`: its pages are
+rendered to images by a compiled PDFKit helper (`src/remaster/pdf-render.swift`, about 17 seconds
+for 393 pages) and it joins the conversion exactly where a page-image EPUB does, at a numbered list
+of page pictures. `src/remaster/sourceBook.js` is the only place that knows which kind of file the
+conversion started from. The renderer also reports how much selectable text the PDF carries, which
+is zero for a scan; nothing branches on it yet.
+
+A `remaster` book is converted once into an ordinary EPUB by `scripts/remaster-epub.mjs`, and the
+converted file then goes through onboarding and the stages below with no special handling. The steps
+are separate subcommands so each paid one can be checked before the next:
+
+- `ocr`: Apple Vision reads every page (free, local, macOS only; `src/remaster/vision-ocr.swift`
+  is compiled once into the library's `remaster/bin/`).
+- `outline`: one text-only model call over the OCR's margins and contents pages writes
+  `outline.json`, the lesson page ranges that replace the missing table of contents.
+  `parseOutline` refuses gaps, overlaps and repeated labels. Read it before going further, because
+  every deck name comes from it. The model names each entry with the book's own name and says
+  whether it is a study unit (`kind: "lesson"`); code then numbers the study units in page order as
+  `Chapter NN: <the book's own name>` (`numberChapters`), and only those chapters go into the
+  converted book. Every command takes `--chapter <n>` as well as `--entry <outline number>`. The
+  rule and why are in `DECISIONS.md` ("Converted books number their study units as chapters").
+- `select --purpose <p>`, then `decide`: which study units are worth converting, for a purpose:
+  `speaking-listening` (the default, what the deck pipeline builds) or `reading-writing`
+  (`src/remaster/purpose.js`). The purpose swaps the agent's criteria, gets its own
+  `selection-<purpose>.json`, and names the converted book; each purpose's book is its own
+  collection (`DECISIONS.md`, "A conversion has a purpose…"). One Opus call
+  (`docs/remaster-select-prompt.md`, pin `SELECT`) reads each unit's opening pages and recommends
+  include, exclude or ask, with a category, a reason and the units it repeats; it is told how the
+  backward dedup will treat a unit that re-presents earlier material, so it can warn about it.
+  `selection.json` keeps the recommendation beside the owner's decision, which `decide` records
+  (`--accept-recommendations`, then `--include` / `--exclude <entry>` to override or to settle an
+  `ask`). Chapters are numbered from the included units only, and `transcribe`, `settle` and
+  `build` refuse to run while any unit is undecided (`src/remaster/selection.js`). The decision
+  belongs here rather than in the deck pipeline because it is about the whole book, and the
+  pipeline only ever sees one chapter.
+- `transcribe --entry <n>`: one Claude vision call per page (`docs/remaster-page-prompt.md`,
+  pinned in `REMASTER_PASS_PINS`), writing XHTML with `<ruby>` for furigana and
+  `class="vocabulary"` on vocabulary tables. The model is never shown the OCR, so the two
+  readings stay independent. A saved reply is re-read before a page is paid for again. A reply
+  that cannot be used (a refusal, a summary, broken markup) is asked again with the same prompt, up
+  to 3 attempts (`src/remaster/transcribeRetry.js`), and each rejected reply is kept as
+  `page-NNN.attempt-N.txt`. A usage-limit refusal is not retried: it stops the run, and the async
+  runner's breaker keeps the remaining pages from spawning.
+- `crosscheck`: counts kana, kanji and English words in each transcript against the OCR, ignoring
+  order, and flags a page that dropped or invented text. It also looks for each OCR line in the
+  transcript and reports gaps in numbered items (`src/remaster/ocrCrossCheck.js`, which records
+  how the thresholds were measured).
+- `transcribe --reading b`, then `settle --entry <n>`: a second, independent transcription into
+  `transcripts-b/`, compared with the first in order (`src/remaster/compareReadings.js`; markup,
+  case, punctuation, ruby grouping and moved text are ignored). Pages that agree keep reading B.
+  Pages that disagree go to the `SETTLE` pin (Opus, above the Sonnet transcriber it checks) with the
+  image and both readings, and its answer is rejected if it adds content neither reading has or
+  drops content both agreed on (`src/remaster/settle.js`). The result is `settled/`, which the
+  build prefers over a single reading.
+- `build --out <file>`: one XHTML file per outline entry plus a nav document. The output is
+  deterministic, so the same transcripts give the same bytes and the same library hash. A lesson
+  with a missing page stops the build, whether or not it was named with `--entry`;
+  `--allow-missing` puts a visible placeholder in instead, with the whole page image so the image
+  passes can still read it. Every figure the transcript boxed (`data-box`, fractions of the page)
+  is cut out of the page image with `sips` and placed in its `<figure>` as a real `<img>`
+  (`src/remaster/figureCrops.js`), so the pipeline's image passes work on a converted book as they
+  do on any other.
+- `audit`: every page the cross-check flagged, judged against its image by the `AUDIT` pin (Opus,
+  above the Sonnet transcriber it checks). One call per flagged page, about the flagged spans only;
+  a correction is an exact find-and-replace that is applied only if its text occurs exactly once and
+  the audit changes under 200 characters, so a spot-check cannot become a rewrite
+  (`src/remaster/auditFlags.js`). Confirmed and corrected pages drop off the build's "read these
+  yourself" list; `unclear`, rejected and failed pages stay on it. The cross-check reads the page the
+  BUILD would use (settled where there is one), so its flags describe what actually ships.
+- `verify --book <file>`: reads the built EPUB back and checks every page of the outline is in it
+  exactly once, in its lesson, in order, with no placeholders, and that every image a page shows
+  is in the book (`src/remaster/verifyRemaster.js`).
+  With no `--entry` it expects the whole book. `build` runs it on its own output every time.
+  `check` cannot do this job: a book missing a lesson is still a readable book, so it says
+  `native`.
+
+Every run leaves a record a checker can read afterwards (`src/remaster/journal.js`):
+`agent-logs/NN-<role>.json` holds every model call in full, rejected replies included, in the same
+format as a unit's agent transcripts (so `readRunLogs` reads it); `journal.jsonl` holds one line per
+decision (a retried attempt and why, a cross-check, a comparison, a settle verdict and its guard, a
+build, a verify), each naming the agent log behind it; and every transcript has a
+`page-NNN.meta.json` recording the model, effort and prompt hash that wrote it. `build` counts the
+pages by the model that wrote them, so a pin that changed part way through a book is visible.
+
+Everything lives under `.anki-builder/remaster/<source hash>/`, which is gitignored. Transcripts are
+a commercial book's text and this repository is public, so none of them is ever committed. Design,
+results from the first lesson, and open questions: `docs/designs/image-epub-remaster.md`.
+
 ### What the nav parser now refuses to drop quietly
 
 Four things used to disappear without a word, all of them in `src/corpus/epubArchive.js`:
@@ -2122,6 +2219,17 @@ already set keeps moving the passes it always moved.
 **The timeout travels with the scope, and that is load-bearing.** Effort and wall clock are the same
 decision. Raising a slow agentic pass to `high` under a shared 10-minute ceiling does not buy quality,
 it buys a hard mid-pass abort with a misleading error, after the money is spent.
+
+**An override cannot quietly invert a checker.** The tables are tested to keep every checking pass
+above what it checks, but the environment is not a table: `ANKI_BUILDER_LLM_MODEL=claude-sonnet-5`
+moves every pass at once and leaves 14 checkers on the same footing as the passes they check, and
+`ANKI_BUILDER_LLM_EFFORT=medium` alone does it to the coverage adversary. So every pin table
+registers itself with the runner (`registerPinFamily`), and before a process's first model call the
+runner resolves every registered pin under the current environment and refuses to start if any
+checker would be at or below what it checks (`pinOrderProblems` in `src/util/runClaude.js`, ranked
+by `src/util/modelRank.js`). `ANKI_BUILDER_ALLOW_PIN_INVERSION=1` turns the refusal into a warning
+for a deliberate cheap run. The remaster's passes use the scopes `ANKI_BUILDER_REMASTER_OUTLINE`,
+`_TRANSCRIBE` and `_SETTLE`, with no family prefix.
 
 | pass                | module                              | prompt                                   | model / effort              | env scope                      | batched?                                        | typical wall clock |
 | ------------------- | ----------------------------------- | ---------------------------------------- | --------------------------- | ------------------------------ | ----------------------------------------------- | ------------------ |

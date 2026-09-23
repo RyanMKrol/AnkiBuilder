@@ -51,6 +51,14 @@ built on (station, airport) and leave the name in the sentences that use it. Own
 after the two base readers split on four such names in Lesson 20. _Five invented business
 names reached a human review as vocabulary cards before anyone noticed._
 
+**A word the source prints with an optional part is ONE entry.** Where a source writes a word with
+part of it in brackets, the brackets are the source saying the short and the full form are the same
+entry: card it once, written the way the source writes it. Do not split it into a bare card and a
+full card, and do not add either form as a "missing" item. If a source really does teach the two
+forms apart, it gives them their own rows, and then you follow the source. _One greeting row reached
+a review gate as three cards, two of them authored to fill "gaps" that were the brackets being read
+as two words._
+
 **Never card a schematic pattern.** A frame with a slot in it, written with a placeholder or a
 bracketed part of speech rather than a real word, is not a card. Card a complete, concrete instance
 of the pattern instead. _A card carrying a bare placeholder reached a review gate in a chapter that

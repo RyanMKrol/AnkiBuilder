@@ -18,7 +18,8 @@ import { listExternalChapters } from "./epubArchive.js";
 export function classifyLesson(label) {
   const l = label.trim().toLowerCase();
   if (/^unit\b/.test(l)) return "unit";
-  if (/^lesson\b/.test(l)) return "lesson";
+  // "Chapter NN: …" is how every converted book labels its study units (src/remaster/outline.js).
+  if (/^(lesson|chapter)\b/.test(l)) return "lesson";
   if (/\b(quiz|review|test|exercise)s?\b/.test(l)) return "quiz";
   if (
     /\b(cover|title page|copyright|contents|preface|introduction|index|acknowledge?ment|foreword|appendix|glossary|about the author)\b/.test(

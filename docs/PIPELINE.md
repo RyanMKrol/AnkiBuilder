@@ -1774,14 +1774,18 @@ agents (`src/reading/readingAgents.js`: tables, the whole chapter, images; each 
 and a coverage adversary that never sees the corpus and whose gaps are a set difference in code.
 
 The merge (`reconcileReading`) is where the reading rules the code can see are enforced: one card per
-written form (English joined, two readings noted), the word wins over a single character, no single
-kana, a character card carries no reading, and a written form already carded earlier in the
+written form (English joined, two readings noted), a kana word printed with an optional ending in
+brackets (`おやすみ(なさい)`) is carded as the full form, the word wins over a single character, no
+single kana, a character card carries no reading, and a written form already carded earlier in the
 collection is dropped. Every drop is in `reading-report.json` with its reason. There is no `prepare`:
 the phase writes `corpus.json` and `cards.json` itself (`meta.phase: "reading"`, which the readiness
 gate accepts with no speaking passes), and the card id is `r-<sha1 of the written form>`, stable
 across rebuilds. Each agent step reuses its artifact if one is already on disk, so a stop costs only
-the step that was running. `--dry` spends nothing, and `--remerge` re-runs the merge of an unreviewed
-chapter from its saved agent output (free), which is what to do after a merge rule changes.
+the step that was running. The romaji (`src/reading/readingRomaji.js`) is cached per card, but only
+when its correction pass succeeded: a failed correction leaves the library's romaji on the cards and
+the next run tries again. `--dry` spends nothing, and `--remerge` re-runs the merge of an unreviewed
+chapter from its saved agent output, which is what to do after a merge rule changes. It calls no
+reader; the one call it can make is the romaji correction, for cards with no cached romaji.
 
 A reading collection's Anki layout is flat, one deck per chapter directly under the parent
 (`unitDeckSegments(label, { deckKind: "reading" })`, shared by the package and delivery), and its

@@ -82,7 +82,12 @@ The run prints:
 step that finished is reused from disk (`candidates/*.json`).
 
 **After a change to the merge rules**, re-merge an unreviewed chapter from its saved agent output
-with `--remerge` (free: no model is called; a reviewed chapter is refused). To build a chapter again
+with `--remerge` (a reviewed chapter is refused). No reader is called; the romaji correction runs for
+any card with no cached romaji, which is only a card the merge newly produced or one whose correction
+failed.
+
+**If the run prints `romanization eval: failed`**, the cards carry the library's uncorrected romaji
+(`gozai masu`, `shi tsu rei`). It is not cached, so `--remerge` retries it. Do that before the gate. To build a chapter again
 from scratch, including the paid agent steps, delete its unit folder first.
 
 Build chapters in book order. A written form is carded once per collection, in the chapter that first

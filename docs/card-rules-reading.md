@@ -32,8 +32,11 @@ speaking-and-listening deck and never come into this one.
 4. **A single character is a card only when the language rules say so** and the book teaches it as a
    character (a character table). A character that only appears inside a word is not a card of its
    own. A single character the book also teaches as a word in its own right is one card: the word.
-5. **Never a single letter of an alphabet or syllabary** (in Japanese, never a single hiragana or
-   katakana). The learner studies those in a separate deck.
+5. **Never a letter of an alphabet or syllabary taught as a letter** (in Japanese, a hiragana or
+   katakana from a kana chart or a writing lesson). The learner studies those in a separate deck. A
+   single kana the book teaches as a WORD, with a meaning of its own, is a word like any other: に
+   "Two", ご "Five", き "Tree". Give it `kind: "word"`; a kana taught as a letter is
+   `kind: "character"` and is left out.
 6. **No sentences, grammar patterns, conjugation tables or drill lines.** A set phrase is a card only
    when the book teaches it as a unit (a greeting, a classroom expression). A phrase whose meaning is
    just its words added together is its words.

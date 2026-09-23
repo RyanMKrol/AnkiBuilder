@@ -31,7 +31,7 @@ const JAPANESE = Object.freeze({
     const c = chars(target);
     return c.length === 1 && HAN.test(c[0]);
   },
-  /** A single hiragana or katakana: never a card (the owner studies kana in a separate deck). */
+  /** A single hiragana or katakana: a card only as a word, never as a letter (card rules 5). */
   isSingleLetter: (target) => {
     const c = chars(target);
     return c.length === 1 && KANA_CHAR.test(c[0]);
@@ -59,7 +59,8 @@ const JAPANESE = Object.freeze({
   the table prints.
 - **A single kanji the book also teaches as a word in its own right** (日 read ひ, "day") is ONE
   item: the word, with its \`reading\`, and it has audio.
-- **Never a single hiragana or katakana.**`,
+- **A single hiragana or katakana is a card only when the book teaches it as a word** with its own
+  meaning (に "Two", ご "Five"), as \`kind: "word"\`. Never a kana taught as a letter of the syllabary.`,
 });
 
 const SCHEMES = Object.freeze({ ja: JAPANESE });

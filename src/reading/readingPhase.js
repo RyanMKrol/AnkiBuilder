@@ -205,9 +205,16 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
     const kind = kindOf(item);
     const drop = (reason) => dropped.push({ target: form, producedBy: item.producedBy, reason });
 
-    if (chars.length === 1) {
+    // A single kana taught as a WORD is a word (Genki's に "two", ご "five", く "nine"); the rule
+    // against single kana is about carding the syllabary, which the owner studies in a separate
+    // deck (owner ruling, 2026-09-24). The readers say which it is: a kana from a kana chart comes
+    // back as a character, a number word as a word. Before this, Genki's Numbers lost four numbers.
+    const kanaWord = scheme?.isSingleLetter?.(form) && (kind === "word" || kind === "phrase");
+    if (chars.length === 1 && !kanaWord) {
       if (scheme?.isSingleLetter?.(form) || !scheme?.characterCards) {
-        drop("a single letter or kana is never a card (card rules 5)");
+        drop(
+          "a single letter or kana taught as a letter, not a word, is never a card (card rules 5)",
+        );
         continue;
       }
       if (!scheme.isCharacterTarget(form)) {

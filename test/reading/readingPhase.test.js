@@ -96,6 +96,23 @@ test("the merge enforces the rules: no single kana, the word wins, a character i
   assert.equal(byTarget["日"].ttsText, "ひ");
 });
 
+test("a single kana taught as a word is a card; one taught as a letter is not", () => {
+  // Genki's Numbers: に "Two" is a word. The kana chart's に is a letter.
+  const { items, dropped } = reconcileReading(
+    [
+      [
+        { target: "に", english: "Two", kind: "word", producedBy: "c" },
+        { target: "ご", english: "Five", kind: "word", producedBy: "c" },
+        { target: "あ", english: "a", kind: "character", producedBy: "t" },
+        { target: "い", english: "i", producedBy: "t" },
+      ],
+    ],
+    { targetLanguage: "ja" },
+  );
+  assert.deepEqual(items.map((i) => i.target).sort(), ["ご", "に"]);
+  assert.deepEqual(dropped.map((d) => d.target).sort(), ["あ", "い"]);
+});
+
 test("the merge drops what this collection already carded, and says where", () => {
   const { items, dropped } = reconcileReading(
     [[{ target: "映画", reading: "えいが", english: "Movie", kind: "word", producedBy: "t" }]],

@@ -73,8 +73,13 @@ test("reading-latin: romaji on a front is acknowledged, not silently shipped", (
   expect("reading-latin", [word("a", "eiga")], [word("a", "映画", { ttsText: "えいが" })], /Latin/);
 });
 
-test("reading-single-character: never a single kana, only the characters the plugin cards", () => {
-  expect("reading-single-character", [word("a", "あ")], [word("a", "日")], /single kana/);
+test("reading-single-character: only the characters the plugin cards", () => {
+  expect("reading-single-character", [word("a", "Ａ")], [word("a", "日")], /single character/);
+});
+
+test("reading-single-kana: a single kana is confirmed by a person, not failed", () => {
+  // Right as a word (に "Two"), wrong as a letter; the card does not say which.
+  expect("reading-single-kana", [word("a", "に")], [word("a", "おはよう")], /single kana/);
 });
 
 test("reading-length: a front past word size is acknowledged", () => {

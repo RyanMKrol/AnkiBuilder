@@ -21,8 +21,9 @@ for a single kanji word or a word the book prints with two readings, which are s
 (the review marks those "voice reads the kana"). What earns a card is in
 `docs/card-rules-reading.md`; the Japanese behaviour is `src/reading/readingSchemes.js`.
 
-**What is left out on purpose**: sentences, grammar, drills, single kana (the owner studies kana in a
-separate deck), proper names, and the whole extras phase. There are two gates per chapter, content
+**What is left out on purpose**: sentences, grammar, drills, kana taught as letters (the owner studies
+kana in a separate deck; a single kana the book teaches as a word, like に "Two", IS a card), proper
+names, and the whole extras phase. There are two gates per chapter, content
 then audio.
 
 **A collection is a book plus a deck kind** (DECISIONS.md). A book's reading collection is
@@ -75,7 +76,7 @@ The run prints:
 
 - the number of cards written;
 - **what the rules left out**, with the reason for each (`reading-report.json` has the full list):
-  single kana, a single character the language does not card, a word already carded in an earlier
+  a kana taught as a letter, a single character the language does not card, a word already carded in an earlier
   chapter of this collection;
 - **words the book gives more than one reading for**: the audio uses the first; check it at the gate;
 - **coverage**: how many items the adversary listed on its own, and every one the unit lacks. A gap
@@ -109,8 +110,9 @@ npm run serve
 
 Preflight runs the reading checks (`src/audit/checks/reading.js`) and says which speaking checks it
 skipped. **FAIL** findings must be fixed before the link goes out: a front carrying furigana, a
-bracketed reading or sentence punctuation; a written form carded twice; a single kana; a kanji word
-with no kana reading. **ACK** findings are judgements: Latin letters on a front (Ｔシャツ is right,
+bracketed reading or sentence punctuation; a written form carded twice; a kanji word with no kana
+reading. **ACK** findings are judgements: a single kana (right as a word like に "Two", wrong as a
+letter of the syllabary), Latin letters on a front (Ｔシャツ is right,
 romaji is not), a front over 16 characters (right for a long set phrase the book teaches), a word
 carded in kana where the chapter prints its kanji.
 

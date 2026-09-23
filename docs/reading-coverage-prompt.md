@@ -26,7 +26,7 @@ something to read:
 
 List every item the rules above would card from this chapter: words, set phrases and, where the
 language rules allow, characters. Be exhaustive: a vocabulary table of forty rows is forty items.
-Leave out what the rules leave out (sentences, drills, proper names, single kana).
+Leave out what the rules leave out (sentences, drills, proper names, a kana taught as a letter rather than as a word).
 
 ## Output
 

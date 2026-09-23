@@ -21,6 +21,7 @@ import {
 } from "../src/corpus/epubLibrary.js";
 import { EXTRAS_PHASE_STEPS, runExtrasPhase, extrasUnitMeta } from "../src/agents/extrasPhase.js";
 import { ROLES } from "../src/agents/roles.js";
+import { assertSpeakingSourceHash } from "../src/remaster/speakingSource.js";
 import { parseUnitDir } from "../src/model/unitDir.js";
 import { loadEarlierUnitItems, loadEarlierTaughtItems } from "../src/cards/earlierUnits.js";
 
@@ -53,6 +54,13 @@ if (!meta.reviewed) {
     `${baseDir} is not reviewed. Phase 2 shows APPROVED vocabulary at work; running it now means ` +
       `every sentence rests on words a human may still cut.`,
   );
+  process.exit(2);
+}
+
+try {
+  assertSpeakingSourceHash(meta.epubHash);
+} catch (err) {
+  console.error(err.message);
   process.exit(2);
 }
 

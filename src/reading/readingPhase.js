@@ -121,7 +121,8 @@ function joinGlosses(glosses) {
   const seen = new Set();
   const out = [];
   for (const gloss of glosses) {
-    const dedupeKey = gloss.toLowerCase().replace(/[.!?]+$/, "");
+    // "Good-bye" and "Goodbye", "Good morning." and "Good morning" are one gloss.
+    const dedupeKey = gloss.toLowerCase().replace(/[\s.,;:!?'"-]+/g, "");
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
     out.push(gloss);
@@ -202,7 +203,15 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       ),
     ];
     if (readings.length > 1) readingConflicts.push({ target: form, readings });
-    const english = joinGlosses(members.flatMap((m) => splitGloss(m.english)));
+    // The English comes from ONE reader: the first in `sources` order that found this form (the
+    // table reader first, because a table is the book's own gloss). Joining every reader's wording
+    // turned one meaning into three ("Thank you for the meal (before eating); Thanks for the meal
+    // (said before eating)") on the first live run. Glosses are joined only within that reader,
+    // which is where a form with two real meanings shows up (今日: today; these days).
+    const glossSource = members[0].producedBy;
+    const english = joinGlosses(
+      members.filter((m) => m.producedBy === glossSource).flatMap((m) => splitGloss(m.english)),
+    );
     const category = members.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ?? "Other";
     const reading = readings[0] ?? null;
     const notes = [];

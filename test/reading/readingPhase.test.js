@@ -41,7 +41,7 @@ test("the steps run raw material first, merge before snapshot, adversary after, 
   assert.equal(order.at(-1), "write-unit");
 });
 
-test("the merge keeps one card per written form and joins what the readers said", () => {
+test("the merge keeps one card per written form, glossed by the first reader to find it", () => {
   const { items, provenance } = reconcileReading(
     [
       [{ target: "映画", reading: "えいが", english: "Movie", kind: "word", producedBy: "t" }],
@@ -59,7 +59,7 @@ test("the merge keeps one card per written form and joins what the readers said"
   );
   assert.equal(items.length, 1);
   assert.equal(items[0].target, "映画");
-  assert.equal(items[0].english, "Movie; film");
+  assert.equal(items[0].english, "Movie");
   assert.equal(items[0].ttsText, "えいが");
   assert.equal(items[0].id, readingCardId("映画"));
   assert.deepEqual(provenance[items[0].id], ["t", "c"]);
@@ -113,7 +113,7 @@ test("the merge notes two readings, and a kanji word the book gave no reading fo
           reading: "こんにち",
           english: "These days",
           kind: "word",
-          producedBy: "c",
+          producedBy: "t",
         },
         { target: "学生", english: "Student", kind: "word", producedBy: "c" },
       ],
@@ -354,4 +354,32 @@ test("the book's full stop and a beginners' book's spaces never make a second ca
   );
   assert.equal(byTarget["おはようございます"].english, "Good morning.");
   assert.equal(byTarget["すみません"].english, "Excuse me; I'm sorry");
+});
+
+test("a card's English comes from one reader, the table first, not every reader's wording", () => {
+  // Found on the second live run: the three readers' paraphrases were all joined onto one back.
+  const { items } = reconcileReading(
+    [
+      [
+        {
+          target: "いただきます",
+          english: "Thank you for the meal. (before eating)",
+          producedBy: "t",
+        },
+      ],
+      [
+        {
+          target: "いただきます",
+          english: "Thanks for the meal (said before eating)",
+          producedBy: "c",
+        },
+      ],
+      [{ target: "さようなら", english: "Good-bye", producedBy: "i" }],
+      [{ target: "さようなら", english: "Goodbye", producedBy: "i" }],
+    ],
+    { targetLanguage: "ja" },
+  );
+  const byTarget = Object.fromEntries(items.map((i) => [i.target, i]));
+  assert.equal(byTarget["いただきます"].english, "Thank you for the meal. (before eating)");
+  assert.equal(byTarget["さようなら"].english, "Good-bye");
 });

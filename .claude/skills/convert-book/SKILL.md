@@ -59,7 +59,7 @@ Ask the owner with `AskUserQuestion`. Three purposes (`src/remaster/purpose.js`)
 - **`reading-writing`**: the script and its characters. No deck pipeline builds these cards yet;
   converting for it works, but say so.
 - **`everything`**: every study unit, from both halves of a book like Genki. This is the book a
-  reading deck is built from (`docs/designs/reading-decks/`), so it misses nothing the book teaches.
+  reading deck is built from (the `build-reading-deck` skill), so it misses nothing the book teaches.
   The speaking pipeline refuses it (and `reading-writing`): a speaking deck is built from the
   `speaking-listening` conversion, because a book holding the kanji lessons makes the speaking
   pipeline flag every kanji card as already taught.

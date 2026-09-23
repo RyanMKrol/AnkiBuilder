@@ -29,6 +29,8 @@ import { cleanupNames } from "../audio/cleanupFilter.js";
 import { audioTextState } from "../audio/textHash.js";
 import { page } from "./respond.js";
 import { renderCardFacesPage } from "../deck/cardFacePreview.js";
+import { templatesForDeckKind } from "../deck/cardTemplates.js";
+import { collectionDeckKind, isReadingKind } from "../model/deckKind.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
@@ -612,6 +614,10 @@ ${sectionHtml}
     if (units.length === 0) return null;
 
     const cards = units.flatMap((u) => u.cards.map((c) => ({ ...c, unit: u.seq })));
+    // The collection's own note type: a reading collection has ONE card per note (the written form
+    // alone, silent), a speaking one has two (docs/designs/reading-decks/02).
+    const deckKind = collectionDeckKind(pathDirname(adapter.deckFile(outputRoot, id)));
+    const reading = isReadingKind(deckKind);
     const reviewHref = `/review/${encodeURIComponent(type)}/${encodeURIComponent(id)}${
       unit != null ? `/${encodeURIComponent(unit)}` : ""
     }`;
@@ -620,9 +626,13 @@ ${sectionHtml}
       lede:
         `${cards.length} card(s) across ${units.length} lesson${units.length === 1 ? "" : "s"}, ` +
         `each rendered from the deck's real templates and CSS. Click a header to flip one card; ` +
-        `<code>scene</code> shows on BOTH fronts and <code>hint</code> only on the Production front, ` +
-        `so read the two fronts side by side before you accept a cue. ` +
+        (reading
+          ? `this is a reading deck: one card per item, the written form alone on a silent front, ` +
+            `the English and the audio on the back. A single kanji has no audio by design. `
+          : `<code>scene</code> shows on BOTH fronts and <code>hint</code> only on the Production ` +
+            `front, so read the two fronts side by side before you accept a cue. `) +
         `<a class="back" href="${reviewHref}">← back to the review</a>`,
+      templates: templatesForDeckKind(deckKind),
       mediaUrl: (file, card) => mediaUrl(type, id, card.unit, file),
       // The dashboard already serves the deck's own embedded font at /assets/font.woff2 under the
       // family name "DeckScript" (respond.js's page() registers it), so the preview points `.card`

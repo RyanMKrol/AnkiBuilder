@@ -23,7 +23,9 @@ export const READING_TARGET_MAX_CHARS = 16;
 
 const RUBY = /<\/?(ruby|rt|rp)\b/i;
 const BRACKETED_KANA = /[(（][\p{Script=Hiragana}\p{Script=Katakana}ー\s]+[)）]/u;
-const SENTENCE_PUNCTUATION = /[。？！?!]/;
+// A question mark is left alone: お元気ですか？ is a set phrase. A full stop or an exclamation mark
+// on a front means a sentence got in (the merge strips the one a book prints after a phrase).
+const SENTENCE_PUNCTUATION = /[。！!]/;
 const LATIN = /[A-Za-z]/;
 
 function readingCheck(spec) {

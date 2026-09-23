@@ -646,7 +646,7 @@ What is built, newest last:
   reading extraction is built (`scripts/build-reading.mjs`: three reading agents, a merge that
   enforces the rules, a coverage adversary), and so are its preflight checks
   (`src/audit/checks/reading.js`; a reading collection skips the speaking-only checks and says
-  which). The `build-reading-deck` skill is not built yet.
+  which). The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

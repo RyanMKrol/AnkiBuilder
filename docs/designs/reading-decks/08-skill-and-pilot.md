@@ -1,6 +1,9 @@
 # 08 The skill, and the Genki pilot
 
-Depends on: 01 to 07. Status: not built.
+Depends on: 01 to 07. Status: the skill is built (`.claude/skills/build-reading-deck/SKILL.md`),
+and the dashboard's card-faces view renders a reading collection's one card. The pilot is under way:
+Greetings was built from the speaking-listening conversion as a first test of the tooling, and the
+Genki `everything` conversion is running.
 
 ## The skill
 

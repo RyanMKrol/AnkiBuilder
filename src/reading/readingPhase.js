@@ -31,6 +31,8 @@ import { parseHeadings } from "../corpus/chapterOutline.js";
 import { resolveChapterImages } from "../corpus/chapterImages.js";
 import { assignSourceOrder } from "../cards/sourceOrder.js";
 import { CATEGORIES } from "../model/categories.js";
+import { resolveIso639Code } from "../model/iso639.js";
+import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { validateCorpus, validateCards } from "../model/index.js";
 import { writeSnapshot, hasSnapshot } from "../agents/snapshot.js";
 import { logDirFor, withRunLogDir } from "../agents/runLog.js";
@@ -84,12 +86,22 @@ export const REQUIRED_READING_STEPS = Object.freeze(READING_PHASE_STEPS.map((s) 
 
 // ---- the merge -------------------------------------------------------------------------------
 
-/** The comparison key for a written form: trimmed, NFC. Two spellings that differ only in Unicode
- * normalisation are the same front. */
-export const targetKey = (target) =>
-  String(target ?? "")
-    .normalize("NFC")
-    .trim();
+/**
+ * The written form as a card shows it, which is also its comparison key: NFC, trimmed, without the
+ * full stop or exclamation mark a book prints after a phrase (Genki prints おはよう。), and, for a
+ * language written without spaces, without the spaces a beginners' book puts between words
+ * (おはよう ございます). Two readers that copied the same phrase differently must land on one card.
+ * A question mark is kept: お元気ですか？ is the phrase.
+ */
+export const targetKey = (target, languageCode = null) =>
+  normalizeDisplayText(
+    String(target ?? "")
+      .normalize("NFC")
+      .trim()
+      .replace(/[.。．!！]+$/u, "")
+      .trim(),
+    resolveIso639Code(languageCode) ?? languageCode,
+  );
 
 /** A stable card id from the written form: the id is the Anki note's GUID, so it must not change
  * between rebuilds, and one card per written form makes the form a unique key in the collection. */
@@ -103,16 +115,19 @@ function splitGloss(english) {
     .filter(Boolean);
 }
 
+// Several glosses are joined with "; ", and a full stop inside that list reads as "Excuse me.; I'm
+// sorry.", so a joined gloss loses its trailing full stops. A single gloss is kept as written.
 function joinGlosses(glosses) {
   const seen = new Set();
   const out = [];
   for (const gloss of glosses) {
-    const key = gloss.toLowerCase().replace(/[.!?]+$/, "");
-    if (seen.has(key)) continue;
-    seen.add(key);
+    const dedupeKey = gloss.toLowerCase().replace(/[.!?]+$/, "");
+    if (seen.has(dedupeKey)) continue;
+    seen.add(dedupeKey);
     out.push(gloss);
   }
-  return out.join("; ");
+  if (out.length === 1) return out[0];
+  return out.map((gloss) => gloss.replace(/\.+$/, "")).join("; ");
 }
 
 function kindOf(item) {
@@ -131,40 +146,41 @@ function kindOf(item) {
  */
 export function reconcileReading(sources, { targetLanguage, earlier = [] } = {}) {
   const scheme = readingScheme(targetLanguage);
-  const earlierByKey = new Map(earlier.map((e) => [targetKey(e.target), e.chapterLabel ?? null]));
+  const key = (target) => targetKey(target, targetLanguage);
+  const earlierByKey = new Map(earlier.map((e) => [key(e.target), e.chapterLabel ?? null]));
   const dropped = [];
   const groups = new Map();
 
   for (const item of sources.flat()) {
-    const key = targetKey(item.target);
-    if (!key) continue;
-    const chars = [...key];
+    const form = key(item.target);
+    if (!form) continue;
+    const chars = [...form];
     const kind = kindOf(item);
-    const drop = (reason) => dropped.push({ target: key, producedBy: item.producedBy, reason });
+    const drop = (reason) => dropped.push({ target: form, producedBy: item.producedBy, reason });
 
     if (chars.length === 1) {
-      if (scheme?.isSingleLetter?.(key) || !scheme?.characterCards) {
+      if (scheme?.isSingleLetter?.(form) || !scheme?.characterCards) {
         drop("a single letter or kana is never a card (card rules 5)");
         continue;
       }
-      if (!scheme.isCharacterTarget(key)) {
+      if (!scheme.isCharacterTarget(form)) {
         drop("a single character that is not one this language cards (card rules 4)");
         continue;
       }
     }
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push({ ...item, kind });
+    if (!groups.has(form)) groups.set(form, []);
+    groups.get(form).push({ ...item, kind });
   }
 
   const items = [];
   const provenance = {};
   const readingConflicts = [];
-  for (const [key, members] of groups) {
-    if (earlierByKey.has(key)) {
+  for (const [form, members] of groups) {
+    if (earlierByKey.has(form)) {
       dropped.push({
-        target: key,
+        target: form,
         producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
-        reason: `already carded in ${earlierByKey.get(key) ?? "an earlier chapter"} of this collection`,
+        reason: `already carded in ${earlierByKey.get(form) ?? "an earlier chapter"} of this collection`,
       });
       continue;
     }
@@ -185,7 +201,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
           .filter(Boolean),
       ),
     ];
-    if (readings.length > 1) readingConflicts.push({ target: key, readings });
+    if (readings.length > 1) readingConflicts.push({ target: form, readings });
     const english = joinGlosses(members.flatMap((m) => splitGloss(m.english)));
     const category = members.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ?? "Other";
     const reading = readings[0] ?? null;
@@ -195,18 +211,18 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
         `The book gives more than one reading: ${readings.join(", ")}. Audio uses the first.`,
       );
     }
-    if (scheme?.requiresReading?.(key) && kind !== "character" && !reading) {
+    if (scheme?.requiresReading?.(form) && kind !== "character" && !reading) {
       notes.push("No reading was found in the book for this word; it cannot be voiced reliably.");
     }
-    const id = readingCardId(key);
+    const id = readingCardId(form);
     items.push({
       id,
-      target: key,
+      target: form,
       english,
       category,
       // The reading drives TTS and is never rendered (the `ttsText` contract, src/model/index.js).
       // Only a word whose written form the TTS voice might misread needs one.
-      ...(reading && reading !== key ? { ttsText: reading } : {}),
+      ...(reading && reading !== form ? { ttsText: reading } : {}),
       ...(notes.length ? { reviewNote: notes.join(" ") } : {}),
     });
     provenance[id] = [...new Set(members.map((m) => m.producedBy))];
@@ -219,17 +235,19 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
  * the written form. Targets the rules leave out (a single kana) and ones already carded earlier in
  * the collection are not gaps.
  */
-export function findReadingGaps(enumerated, items, { dropped = [] } = {}) {
-  const have = new Set(items.map((i) => targetKey(i.target)));
-  const accounted = new Set(dropped.map((d) => targetKey(d.target)));
+export function findReadingGaps(enumerated, items, { dropped = [], targetLanguage = null } = {}) {
+  const formOf = (target) => targetKey(target, targetLanguage);
+  const have = new Set(items.map((i) => formOf(i.target)));
+  const accounted = new Set(dropped.map((d) => formOf(d.target)));
   const listed = new Set();
   const gaps = [];
   for (const item of enumerated) {
-    const key = targetKey(item.target);
-    if (!key || listed.has(key)) continue;
-    listed.add(key);
-    if (!have.has(key) && !accounted.has(key))
-      gaps.push({ target: key, english: item.english ?? null });
+    const form = formOf(item.target);
+    if (!form || listed.has(form)) continue;
+    listed.add(form);
+    if (!have.has(form) && !accounted.has(form)) {
+      gaps.push({ target: form, english: item.english ?? null });
+    }
   }
   const onlyInUnit = [...have].filter((key) => !listed.has(key));
   return {
@@ -448,7 +466,10 @@ function runReadingPhaseInner({
     () => impl.enumerateForReading({ chapterFilePath, imagePaths, targetLanguage, runClaude }),
     0,
   );
-  const gaps = findReadingGaps(enumerated.items ?? [], merged.items, { dropped: merged.dropped });
+  const gaps = findReadingGaps(enumerated.items ?? [], merged.items, {
+    dropped: merged.dropped,
+    targetLanguage,
+  });
   writeArtifact(unitDir, READING_COVERAGE_FILE, {
     role: "readingCoverageAdversary",
     counts: gaps.counts,

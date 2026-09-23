@@ -170,13 +170,15 @@ by its book's hash. Build to a NEW file, then move each collection onto it:
 node scripts/rebase-collection.mjs output/epubs/<slug> --epub <rebuilt.epub> --dry   # the plan
 node scripts/rebase-collection.mjs output/epubs/<slug> --epub <rebuilt.epub>
 anki-builder deck --book-dir output/epubs/<slug>
-node scripts/deliver-to-anki.mjs --dry --refile     # if it was delivered: move notes to renamed decks
+node scripts/deliver-to-anki.mjs --dry --refile     # if it was delivered: lists the notes to move
 ```
 
 It matches each built chapter to the new book by name (the label without its number) and keeps the
 slug, the card ids, the audio and the review state, so delivered notes keep their scheduling. Never
 build from the rebuilt EPUB before rebasing: it would register a second collection with a `-2` slug.
-The old chapter decks are left empty in Anki for the owner to delete.
+`--refile` itself is refused until its live-Anki probe is recorded (build-anki-deck's
+`references/deliver.md`), so today the owner moves the listed notes by hand in Anki's browser (Change
+Deck) and deletes the emptied deck. A normal delivery afterwards creates any missing chapter deck.
 
 ## 7. Hand over
 

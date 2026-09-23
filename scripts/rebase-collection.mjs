@@ -60,4 +60,6 @@ applyRebase(plan, {
   registerSlug: (hash) =>
     saveBookSlug(hash, collectionDir.split("/").pop(), { deckKind: plan.deckKind }),
 });
-console.log("\nrebased. Next: anki-builder deck --book-dir, then deliver-to-anki --dry --refile");
+console.log(
+  "\nrebased. Next: anki-builder deck --book-dir; if delivered, deliver-to-anki --dry --refile lists the notes to move by hand",
+);

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ORPHAN_TAG, syncDeckContent } from "../../src/anki/deliver.js";
+import { ORPHAN_TAG, deliverToAnki, syncDeckContent } from "../../src/anki/deliver.js";
 import { noteTypeSpec } from "../../src/deck/collection.js";
 
 /**
@@ -212,4 +212,24 @@ test("orphans are still reported when the flag is off — that behaviour is unch
   );
   assert.equal(report.suspendedOrphans, null);
   assert.equal(ORPHAN_TAG, "ab-orphaned");
+});
+
+test("deliverToAnki refuses --refile before it syncs, backs up or creates a deck", async () => {
+  // On 2026-09-24 the refusal came from inside the per-deck step, after an AnkiWeb pull, a backup
+  // and an empty deck created in the owner's collection. It must come before the client is used.
+  const calls = [];
+  const client = new Proxy(
+    {},
+    {
+      get: (_, name) => async () => {
+        calls.push(name);
+        return name === "version" ? 6 : null;
+      },
+    },
+  );
+  await assert.rejects(
+    () => deliverToAnki("/nonexistent", "all", { client, refile: true, sync: true }),
+    /--refile .* is gated on live-Anki behaviour probes/,
+  );
+  assert.deepEqual(calls, []);
 });

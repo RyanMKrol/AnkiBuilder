@@ -24,7 +24,7 @@ import {
 } from "../deck/shippableCards.js";
 import { getAdapter, listAllDecks, ADAPTERS } from "../server/adapters/index.js";
 import { DELIVERED_MARKER, readDeliveredMarker } from "./deliveredMarker.js";
-import { assertProbesRecorded } from "./probeResults.js";
+import { assertProbesRecorded, unansweredProbes } from "./probeResults.js";
 import {
   applyDirectionSuspension,
   assertStudiableDirection,
@@ -1319,6 +1319,29 @@ export async function deliverToAnki(
   } = {},
 ) {
   if (!client) throw new Error("deliverToAnki requires an AnkiConnect client");
+
+  // The probe gates, before the AnkiWeb sync, the backup, the note-type sync and deck creation.
+  // syncDeckContent checks them too, but only once it reaches a deck, and by then all four have
+  // happened: on 2026-09-24 a --refile of Genki's reading deck was refused there, after it had
+  // pulled from AnkiWeb, backed up, and created the empty deck it meant to move cards into. A dry
+  // run is not refused, since it writes nothing, but it says the real run would be, so the preview
+  // cannot promise a move that will never happen.
+  const gates = [
+    refile && [["change-deck-on-filtered"], "--refile (moving delivered cards between decks)"],
+    suspendOrphans && [
+      ["suspend-on-filtered", "housekeeping-unsuspends"],
+      "--suspend-orphans (suspending delivered notes whose card left the corpus)",
+    ],
+  ].filter(Boolean);
+  for (const [ids, feature] of gates) {
+    if (!dry) assertProbesRecorded(ids, feature);
+    else if (unansweredProbes(ids).length) {
+      log(
+        `${feature}: the real run would be REFUSED, because live-Anki probes have not been run ` +
+          `(${unansweredProbes(ids).join(", ")}). The moves below are a preview only.`,
+      );
+    }
+  }
 
   // 1. PREFLIGHT
   const apiVersion = await client.version();

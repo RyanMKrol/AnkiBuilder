@@ -339,6 +339,18 @@ decoding fix changes its deck labels. The sequence, when the probes are in:
 2. Confirm the moves are the rename you expect, and that the skipped list is only filtered cards.
 3. Re-run without `--dry`. The pre-delivery backup covers you; the restore path is above.
 
+## Redelivering after the decks were deleted
+
+Deleting a deck in Anki deletes its cards. The next delivery then refuses ("delivered before but the
+lookup found ZERO notes"), because a deleted deck and a renamed one look the same from here, and
+guessing wrong on a renamed deck re-adds every card with no scheduling. Tell them apart before
+anything else: a renamed deck still has its notes. Query AnkiConnect for the collection's note type
+(`findNotes` with `note:"AnkiBuilder ja Reading"`, or the ids in `anki-delivered.json`). Only when
+the owner says they deleted the decks AND none of the notes exist anywhere, move the record aside
+(`anki-delivered.json` to `anki-delivered.json.<why>-<date>.bak`), dry-run, and deliver: it is a
+first delivery again. Done this way for Genki's reading deck on 2026-09-24, after its chapters were
+renumbered and the owner deleted both Greetings decks rather than moving the cards.
+
 ## Backups
 
 Before any real delivery (never on `--dry`), the tool snapshots every managed deck into

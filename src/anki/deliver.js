@@ -727,7 +727,9 @@ function assertBookQueryResolves(deck, noteIds) {
       `notes by the parent deck's name, and the name it expects is ` +
       `"${deck.marker.ankiParent ?? deck.ankiParent}". ` +
       `Continuing would re-add every card in this collection as a new note with no scheduling. ` +
-      `Rename the deck back, or update the collection's title so the two agree, then re-run.`,
+      `Rename the deck back, or update the collection's title so the two agree, then re-run. If ` +
+      `the owner DELETED the decks on purpose, see "Redelivering after the decks were deleted" in ` +
+      `.claude/skills/build-anki-deck/references/deliver.md.`,
   );
 }
 

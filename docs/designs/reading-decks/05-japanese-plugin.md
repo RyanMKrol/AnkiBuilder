@@ -61,9 +61,20 @@ column of a vocabulary table, or the reading printed beside an example word in a
 agents are told to copy it, not to derive it, because a kanji's reading depends on the word it is in
 and a guessed reading is exactly the error this exists to prevent.
 
-The reading drives the audio through the existing path (`reading` becomes `ttsText`, and `speechText`
-in `src/audio/index.js` speaks `ttsText` when there is one). It is never rendered, which is the rule
-the speaking decks already follow ("reading never rendered", settled 2026-08-14).
+The reading is stored as `ttsText` and is never rendered, which is the rule the speaking decks already
+follow ("reading never rendered", settled 2026-08-14). It makes the romaji on the back, and it is what
+the audio review checks a clip against.
+
+**What the voice is given (revised 2026-09-23 evening).** The first version spoke every kanji word
+from its kana reading, a convention carried over from the speaking decks, where it exists because
+Japanese for Busy People (kana edition) prints only kana. A reading card's front is already the word
+as Japanese writes it, kanji and kana, which is what the voice reads best and which tells it which
+word it is. So the voice is given the written form, through the speaking decks' own switch
+(`ttsKanji` on the card, `meta.kanjiTts` on the unit, `clipSourceText` in `src/audio/index.js`).
+Two kinds of card are spoken from the kana instead, because with no sentence around them the written
+form is ambiguous and the code already knows which they are (`spokenFromWrittenForm`,
+`src/reading/readingPhase.js`): a single kanji taught as a word (一 is いち or ひとつ) and a word the
+book prints with two readings (十: じゅう／とお). The review marks those "voice reads the kana".
 
 The audio review gate works as it does for the speaking decks, including the existing alternate-take
 tools, so a word the TTS voice still says oddly is caught by ear.

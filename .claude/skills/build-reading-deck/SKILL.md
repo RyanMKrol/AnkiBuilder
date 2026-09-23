@@ -16,7 +16,9 @@ else, and silent. The back is the written form, the English, the romaji and the 
 check you read it right as well as understood it. No kana reading and no note. For Japanese, a
 kanji the book teaches as a character gets its own card with its meaning and **no romaji or audio** (a kanji
 alone has no one pronunciation), and every word containing kanji carries its kana reading, copied
-from the book, which drives the audio and is never shown. What earns a card is in
+from the book, which makes the romaji and is never shown. The voice is given the written form, except
+for a single kanji word or a word the book prints with two readings, which are spoken from the kana
+(the review marks those "voice reads the kana"). What earns a card is in
 `docs/card-rules-reading.md`; the Japanese behaviour is `src/reading/readingSchemes.js`.
 
 **What is left out on purpose**: sentences, grammar, drills, single kana (the owner studies kana in a

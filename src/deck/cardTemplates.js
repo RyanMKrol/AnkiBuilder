@@ -62,7 +62,7 @@ export const CARD_TEMPLATES = [
 // because the card asks "can you read this?" and a sound on the front answers it. The back is the
 // written form, the English, the romaji and the audio (owner decision, 2026-09-23 evening: reading is
 // for speaking too, so the learner checks they read the word right, not only that they understood
-// it). The kana reading drives the audio and the romaji and is never shown, as in the speaking decks.
+// it). The kana reading makes the romaji and is never shown, as in the speaking decks.
 // `{{#Pronunciation}}` and `{{#Audio}}` wrap their blocks so a silent card (a single kanji, which has
 // no one pronunciation) shows neither.
 //

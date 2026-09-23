@@ -22,7 +22,7 @@ its own branch, and says what it depends on and when it is done.
 | [02-reading-note-type.md](02-reading-note-type.md)         | the one-template note type, and the code that assumes two templates |
 | [03-everything-conversion.md](03-everything-conversion.md) | a conversion purpose that keeps every study unit                    |
 | [04-card-rules.md](04-card-rules.md)                       | what earns a reading card, in every language                        |
-| [05-japanese-plugin.md](05-japanese-plugin.md)             | kanji cards without audio, and kana readings for the word audio     |
+| [05-japanese-plugin.md](05-japanese-plugin.md)             | kanji cards without audio, kana readings, and what the voice reads  |
 | [06-reading-extraction.md](06-reading-extraction.md)       | the phase that turns a chapter into a reading corpus                |
 | [07-checks.md](07-checks.md)                               | every rule code can see, as a check                                 |
 | [08-skill-and-pilot.md](08-skill-and-pilot.md)             | the `build-reading-deck` skill, and the Genki pilot                 |
@@ -41,8 +41,12 @@ All on 2026-09-23.
   decks.
 - **Single kanji get cards, with no audio.** A kanji on its own has no single pronunciation (日 is に
   in 日本, び in 日曜日, ひ on its own), so its card teaches what it means and nothing else.
-- **Kanji words are said correctly.** A word containing kanji carries its kana reading, which drives
-  the audio and is never shown.
+- **Kanji words are said correctly.** The voice is given the written form (kanji and kana, as
+  Japanese is written), which is what it reads best. A word containing kanji also carries its kana
+  reading, copied from the book: it makes the romaji, is what the audio review checks against, and is
+  never shown. A single kanji word or a word the book prints with two readings is spoken from the
+  kana, because on its own its written form is ambiguous. (Revised the same evening: the first
+  version spoke every kanji word from the kana, a habit from the kana-only Japanese for Busy People.)
 - **The Japanese behaviour is a language plugin.** Kanji cards and kana readings are declared for
   Japanese; a language without a plugin gets word cards only.
 - **The source is what the book teaches.** Words written in kana count as well as words written in

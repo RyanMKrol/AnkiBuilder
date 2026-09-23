@@ -1,3 +1,5 @@
+import { isReadingKind } from "../model/deckKind.js";
+
 // The two card templates: the SINGLE SOURCE OF TRUTH for the note type's visual structure, shared by
 // the `.apkg` builder (`buildModel`), the AnkiConnect deliverer (`noteTypeSpec`) and the authoring
 // prompts' `{{CARD_FACES}}` block (`./cardFaces.js`). Keep them here so those paths can never drift.
@@ -21,6 +23,8 @@
 export const CARD_TEMPLATES = [
   {
     name: "Recognition",
+    // The field whose presence makes Anki generate this card (the model's `req`, buildModel).
+    requiredField: "Target",
     // {{Scene}} on this front, {{Hint}} only on the back: the hint is an English cue ("said when
     // entering a room"), which on a Target→English card is a piece of the answer, while the scene
     // is the situation ("answering whose bag this is") without which the sentence is ambiguous.
@@ -39,6 +43,7 @@ export const CARD_TEMPLATES = [
   },
   {
     name: "Production",
+    requiredField: "English",
     qfmt: '{{#Category}}<div class="cat-chip">{{Category}}</div>{{/Category}}<div class="prompt">{{English}}</div>{{#Scene}}<div class="scene">{{Scene}}</div>{{/Scene}}{{#Hint}}<div class="hint">{{Hint}}</div>{{/Hint}}',
     afmt: `{{FrontSide}}<hr id=answer>
 <div class="field"><div class="field-label">Answer</div><div class="answer">{{Target}}</div></div>
@@ -48,3 +53,30 @@ export const CARD_TEMPLATES = [
 {{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
   },
 ];
+
+// The reading deck's ONE template (docs/designs/reading-decks/02-reading-note-type.md). It belongs to
+// its own note type (`AnkiBuilder <lang> Reading`), never to the shared speaking one above, so adding
+// it changes nothing about any existing card.
+//
+// The front is the written form and nothing else: no scene, no category, and above all no audio,
+// because the card asks "can you read this?" and a sound on the front answers it. The back is the
+// English and the audio. No reading, romaji or note is rendered (owner decision 2026-09-23): the
+// reading drives the audio and is never shown, as in the speaking decks. `{{#Audio}}` wraps the
+// sound so a silent card (a single kanji, which has no one pronunciation) shows no empty block.
+//
+// A test pins the front to `{{Target}}` alone; see test/deck/readingNoteType.test.js.
+export const READING_TEMPLATES = [
+  {
+    name: "Reading",
+    requiredField: "Target",
+    qfmt: '<div class="prompt">{{Target}}</div>',
+    afmt: `{{FrontSide}}<hr id=answer>
+<div class="field"><div class="field-label">Answer</div><div class="answer">{{English}}</div></div>
+{{#Audio}}<div class="field">{{Audio}}</div>{{/Audio}}`,
+  },
+];
+
+/** The templates a collection of this deck kind uses. */
+export function templatesForDeckKind(deckKind) {
+  return isReadingKind(deckKind) ? READING_TEMPLATES : CARD_TEMPLATES;
+}

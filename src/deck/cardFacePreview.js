@@ -71,9 +71,11 @@ const escapeAttr = (value) =>
  * `ord` is the template ordinal, which is also the Anki card ordinal a direction-suspension flag
  * refers to — so the preview and `dirSuspended` are talking about the same thing by construction.
  */
-export function renderCardFaceHtml(card, { mediaUrl = null } = {}) {
+export function renderCardFaceHtml(card, { mediaUrl = null, templates = CARD_TEMPLATES } = {}) {
   const fields = noteFields(card);
-  return CARD_TEMPLATES.map((template, ord) => {
+  // `templates` is the collection's own list: both speaking directions, or the reading deck's one
+  // card (templatesForDeckKind, ./cardTemplates.js).
+  return templates.map((template, ord) => {
     const frontHtml = renderAnkiTemplate(template.qfmt, fields);
     const backHtml = renderAnkiTemplate(template.afmt, fields, frontHtml);
     return {
@@ -160,17 +162,17 @@ function faceBlock(face, { front, back }) {
  */
 export function renderCardFacesPage(
   cards,
-  { title, lede = "", mediaUrl = null, fontCss = "" } = {},
+  { title, lede = "", mediaUrl = null, fontCss = "", templates = CARD_TEMPLATES } = {},
 ) {
   const rows = cards.map((card) => {
-    const faces = renderCardFaceHtml(card, { mediaUrl });
+    const faces = renderCardFaceHtml(card, { mediaUrl, templates });
     const flags = [
       card.excluded ? "excluded" : null,
       card.uncertain ? "uncertain" : null,
       card.aiSuggested ? "ai-suggested" : null,
       card.fillInBlank ? "drill" : null,
       Array.isArray(card.dirSuspended) && card.dirSuspended.length
-        ? `direction-suspended: ${card.dirSuspended.map((o) => CARD_TEMPLATES[o]?.name ?? o).join(", ")}`
+        ? `direction-suspended: ${card.dirSuspended.map((o) => templates[o]?.name ?? o).join(", ")}`
         : null,
     ].filter(Boolean);
     return [

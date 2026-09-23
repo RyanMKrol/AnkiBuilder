@@ -1,6 +1,10 @@
 # 02 The reading note type
 
-Depends on: nothing. Status: not built.
+Depends on: nothing. Status: built (branch `feat/reading-note-type`): the template, the spec per deck
+kind, the card-row loop, the model `req`, the reading card faces block, the preview's template
+option and the `isSilent` audio exemption, all tested in `test/deck/readingNoteType.test.js`. Passing
+the collection's `deckKind` from its marker into delivery and the deck build lands with 01. The
+scratch-profile import is a manual step for the owner.
 
 ## What
 

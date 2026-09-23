@@ -1,4 +1,4 @@
-import { CARD_TEMPLATES } from "./cardTemplates.js";
+import { CARD_TEMPLATES, READING_TEMPLATES } from "./cardTemplates.js";
 import { renderAnkiTemplate } from "./cardFacePreview.js";
 
 // What a card actually LOOKS LIKE, rendered from the real Anki templates, as plain text an authoring
@@ -105,5 +105,39 @@ export function renderCardFacesBlock(card = EXAMPLE_CARD) {
     "be safe in both directions at once; `hint` renders on the Production front and the Recognition",
     "BACK, which is why it may describe the target word but must never appear on a front that is",
     "asking for that word. Anything that only helps AFTER the answer belongs in `note`, on the back.",
+  ].join("\n");
+}
+
+// The reading deck's example cards (docs/designs/reading-decks/02): a word, which is spoken on the
+// back, and a single kanji, which is silent because a kanji alone has no one pronunciation. Both are
+// shown because the difference between them is the thing a reading pass most needs to see.
+const READING_EXAMPLE_CARDS = [
+  { Target: "映画", English: "Movie", Reading: "えいが", Audio: "[sound:example.mp3]" },
+  { Target: "日", English: "Day; sun", Audio: "" },
+];
+
+/**
+ * The `{{CARD_FACES}}` block for the READING passes: every item becomes ONE card, rendered from the
+ * reading note type's real template. Never the speaking block: a reading pass told that each item
+ * becomes two cards would start writing for a Production front that does not exist.
+ */
+export function renderReadingCardFacesBlock(cards = READING_EXAMPLE_CARDS) {
+  const blocks = cards.map((card) => {
+    const face = renderFace(READING_TEMPLATES[0], card);
+    const front = face.front.map((line) => `  ${line}`).join("\n");
+    const back = face.back.map((line) => `  ${line}`).join("\n");
+    return [`${card.Target}: FRONT`, front, "", `${card.Target}: BACK`, back].join("\n");
+  });
+  return [
+    "Every item you write becomes ONE card, and only one: the written form on the front, nothing",
+    "else. This is what it looks like, rendered from the reading deck's real template:",
+    "",
+    "```",
+    blocks.join("\n\n"),
+    "```",
+    "",
+    "The front shows `target` alone, so `target` must never contain the answer: no reading in",
+    "brackets, no furigana, no romaji. The reading you record is used only to make the audio, which",
+    "plays when the card is turned; it is never shown. A single kanji has no audio at all.",
   ].join("\n");
 }

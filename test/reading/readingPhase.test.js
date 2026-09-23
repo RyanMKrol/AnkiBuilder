@@ -601,3 +601,12 @@ test("a chapter's own title heading need not be reported, but a lone heading mus
   const twoTitles = [title, { level: 1, title: "Appendix" }];
   assert.deepEqual(sectionsToAccountFor(twoTitles), twoTitles);
 });
+
+test("a coverage gap is not reported for a headword the merge split into its forms", () => {
+  const { gaps } = findReadingGaps(
+    [{ target: "なん／なに", english: "What" }, { target: "おやすみ(なさい)" }],
+    [{ target: "なん" }, { target: "なに" }, { target: "おやすみなさい" }],
+    { targetLanguage: "ja" },
+  );
+  assert.deepEqual(gaps, []);
+});

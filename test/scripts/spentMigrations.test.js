@@ -36,6 +36,7 @@ const SPENT = [
 const STANDING = [
   "build-reading.mjs",
   "remaster-epub.mjs",
+  "rebase-collection.mjs",
   "preflight.mjs",
   "validate-decks.mjs",
   "deliver-to-anki.mjs",

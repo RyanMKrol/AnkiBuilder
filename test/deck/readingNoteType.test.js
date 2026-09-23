@@ -182,3 +182,39 @@ test("a card may ship without audio only when the language plugin says it is sil
   const wordWithoutAudio = [{ label: "Chapter 01", items: [{ id: "x", target: "映画" }] }];
   assert.throws(() => assertEveryCardHasAudio(wordWithoutAudio, "the deck", { isSilent }), /x/);
 });
+
+test("the card-faces page shows a reading card's front and back side by side", async () => {
+  const { renderCardFacesPage } = await import("../../src/deck/cardFacePreview.js");
+  const html = renderCardFacesPage([{ id: "eiga", target: "映画", english: "Movie" }], {
+    title: "t",
+    templates: READING_TEMPLATES,
+  });
+  assert.equal((html.match(/class="faces-card" data-side="front"/g) ?? []).length, 1);
+  assert.equal((html.match(/class="faces-card" data-side="back"/g) ?? []).length, 1);
+  assert.match(html, /Movie/);
+});
+
+test("a reading deck's review shows the written form and its reading, not the speaking columns", async () => {
+  const { renderLessonSections } = await import("../../src/review/deckViewChrome.js");
+  const card = {
+    id: "eiga",
+    target: "映画",
+    ttsText: "えいが",
+    english: "Movie",
+    category: "Other",
+  };
+  const kanji = { id: "hi", target: "日", english: "Day; sun", category: "Other" };
+  const { html } = renderLessonSections({
+    sections: [{ leaf: "Chapter 01", stage: "corpus", reading: true, cards: [card, kanji] }],
+    rowControl: () => "",
+  });
+  assert.match(html, /Reading \(drives the audio\)/);
+  assert.match(html, /data-field="ttsText">えいが</);
+  assert.match(html, /kanji, silent/);
+  assert.doesNotMatch(html, /<th>Hint<\/th>|<th>Pronunciation<\/th>/);
+  const speaking = renderLessonSections({
+    sections: [{ leaf: "Chapter 01", stage: "corpus", cards: [card] }],
+    rowControl: () => "",
+  }).html;
+  assert.match(speaking, /<th>Pronunciation<\/th>/);
+});

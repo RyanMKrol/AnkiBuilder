@@ -4,6 +4,7 @@ import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } 
 import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
 import { parseUnitDir } from "../model/unitDir.js";
 import { collectionDeckKind, isReadingKind } from "../model/deckKind.js";
+import { silentCardPredicate } from "../reading/readingSchemes.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
 // automatic rebuild, so a rebuild triggered from the browser is byte-identical to the CLI's. The
@@ -146,12 +147,18 @@ export async function rebuildBookDir(
     loadCourseMeta,
     bookNameFallback,
   });
+  const deckKind = collectionDeckKind(bookDir);
   return buildBookDeck(chapterDecks, {
     outPath,
     bookName,
     now: now(),
     guidNamespace: readGuidNamespace(bookDir),
-    deckKind: collectionDeckKind(bookDir),
+    deckKind,
+    // A reading deck's single kanji ship without audio by design (src/reading/readingSchemes.js).
+    isSilent: silentCardPredicate({
+      targetLanguage: chapterDecks[0]?.cards?.meta?.targetLanguage,
+      deckKind,
+    }),
   });
 }
 

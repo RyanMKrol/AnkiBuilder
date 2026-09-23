@@ -33,6 +33,7 @@ import {
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { isRetiredCollection, loadCourseMeta } from "../cli/outputPaths.js";
 import { collectionDeckKind } from "../model/deckKind.js";
+import { silentCardPredicate } from "../reading/readingSchemes.js";
 
 const ABID = "abid:";
 const sanitizeSeg = (s) => String(s).replace(/::/g, "-");
@@ -592,10 +593,19 @@ export function assertUniqueCardIds(deck) {
  * Refusing is recoverable and cheap (run the audio stage, deliver again); a silent card in a live
  * deck is neither, because by the time it is noticed it has scheduling attached.
  */
+//
+// The one exemption is a reading deck's single kanji, silent by design (src/reading/readingSchemes.js):
+// its card is the meaning alone, because a kanji on its own has no one pronunciation.
 export function assertDeliverableAudio(deck) {
   assertEveryCardHasAudio(
     deck.units.map((unit) => ({ label: unit.ankiDeck, items: unit.cards })),
     `${deck.type}:${deck.id}`,
+    {
+      isSilent: silentCardPredicate({
+        targetLanguage: deck.targetLanguage,
+        deckKind: deck.deckKind,
+      }),
+    },
   );
 }
 

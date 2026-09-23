@@ -2,7 +2,7 @@
 // (plus the untrimmed original) into the run's audio/ directory.
 // Moved verbatim from src/cli/index.js when the CLI was split per command.
 import { copyFileSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
+import { dirname, join, resolve } from "path";
 import { withClaim } from "../runClaim.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import {
@@ -14,6 +14,8 @@ import {
 import { TTS_MODEL } from "../../audio/ttsModel.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../../cards/spokenNumbers.js";
 import { readJson, writeJson } from "./shared.js";
+import { collectionDeckKind } from "../../model/deckKind.js";
+import { silentCardPredicate } from "../../reading/readingSchemes.js";
 
 export async function runAudio(flags, ctx) {
   if (!flags.run) {
@@ -80,7 +82,13 @@ async function runAudioInner(flags, ctx) {
     (item.audioOriginal
       ? item.audioOriginal === defaultOriginalFilename(item, audioLanguageCode, { kanjiTts })
       : item.audio === defaultClipFilename(item, audioLanguageCode, { kanjiTts }));
-  const active = cards.items.filter((item) => !item.excluded);
+  // A reading collection's single kanji are silent by design and never voiced
+  // (src/reading/readingSchemes.js); for a speaking unit nothing is silent.
+  const isSilent = silentCardPredicate({
+    targetLanguage: cards.meta.targetLanguage,
+    deckKind: collectionDeckKind(dirname(resolve(flags.run))),
+  });
+  const active = cards.items.filter((item) => !item.excluded && !isSilent(item));
   const stale = active.filter((item) => item.audio && !clipIsCurrent(item));
   const alreadyDone =
     active.length > 0 &&
@@ -116,6 +124,7 @@ async function runAudioInner(flags, ctx) {
     voiceId,
     fetchTts: ctx.fetchTts,
     libraryHomeDir: ctx.libraryHome(),
+    isSilent,
   });
 
   mkdirSync(paths.audio, { recursive: true });
@@ -155,8 +164,9 @@ async function runAudioInner(flags, ctx) {
   for (const item of fresh.items) {
     const next = generated.get(item.id);
     if (!next) continue;
-    // An excluded card ships nothing, whatever its clip's provenance — drop the lot.
-    if (item.excluded) {
+    // An excluded card ships nothing, whatever its clip's provenance — drop the lot. A silent card
+    // (a reading deck's single kanji) likewise has no clip by design.
+    if (item.excluded || isSilent(item)) {
       for (const field of AUDIO_FIELDS) delete item[field];
       continue;
     }
@@ -177,9 +187,11 @@ async function runAudioInner(flags, ctx) {
   // Printing the file's length made a complete run look like it had missed five cards, and would
   // equally have hidden a run that really did miss some.
   const voiced = fresh.items.filter((item) => item.audio).length;
-  const skipped = fresh.items.length - voiced;
+  const silent = fresh.items.filter((item) => !item.excluded && isSilent(item)).length;
+  const skipped = fresh.items.length - voiced - silent;
   ctx.log(
     `voiced ${voiced} of ${fresh.items.length} item(s) into ${paths.audio}` +
+      (silent > 0 ? ` (${silent} silent by design: single-character cards)` : "") +
       (skipped > 0 ? ` (${skipped} skipped: excluded, or no spoken text)` : ""),
   );
 }

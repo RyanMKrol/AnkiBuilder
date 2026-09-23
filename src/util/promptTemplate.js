@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import { cardRules, CARD_RULES_KEY } from "./cardRules.js";
+import { readingCardRules, READING_CARD_RULES_KEY } from "./readingCardRules.js";
 
 /**
  * Renders one of the human-editable Markdown prompt templates in `docs/`, substituting every
@@ -14,7 +15,12 @@ import { cardRules, CARD_RULES_KEY } from "./cardRules.js";
  */
 export function renderPromptTemplate(templatePath, values) {
   let rendered = readFileSync(templatePath, "utf-8");
-  const resolved = CARD_RULES_KEY in values ? values : { ...values, [CARD_RULES_KEY]: cardRules() };
+  let resolved = CARD_RULES_KEY in values ? values : { ...values, [CARD_RULES_KEY]: cardRules() };
+  // The reading rules are filled in the same way, but only for a template that asks for them, so a
+  // speaking render never reads the file (docs/card-rules-reading.md).
+  if (!(READING_CARD_RULES_KEY in resolved) && rendered.includes(`{{${READING_CARD_RULES_KEY}}}`)) {
+    resolved = { ...resolved, [READING_CARD_RULES_KEY]: readingCardRules() };
+  }
   for (const [key, value] of Object.entries(resolved)) {
     rendered = rendered.split(`{{${key}}}`).join(value);
   }

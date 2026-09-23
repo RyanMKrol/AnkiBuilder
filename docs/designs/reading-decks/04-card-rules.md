@@ -1,7 +1,10 @@
 # 04 What earns a reading card
 
 Depends on: nothing to write, but it lands with 05, because the Japanese plugin is how several of
-these rules reach Japanese. Status: not built.
+these rules reach Japanese. Status: built (branch `feat/reading-rules-japanese`):
+`docs/card-rules-reading.md`, injected by `renderPromptTemplate` wherever a template carries
+`{{READING_CARD_RULES}}` (`src/util/readingCardRules.js`). A test holds every `reading-*-prompt.md`
+to carrying it and never `{{CARD_RULES}}`, and every other prompt to never carrying it.
 
 These rules go in a new `docs/card-rules-reading.md`, included by every reading pass the same way
 `docs/card-rules-shared.md` travels with the speaking passes. A rule needed by more than one pass lives
